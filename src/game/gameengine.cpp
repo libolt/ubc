@@ -80,87 +80,81 @@ timing gameEngine::getTimer()  // retrieves the value of timer
 {
     return (timer);
 }
-void gameEngine::setTimer(timing time)  // sets the value of timer
+void gameEngine::setTimer(timing set)  // sets the value of timer
 {
-    timer = time;
+    timer = set;
 }
 
-// gets and sets menuActive
-bool gameEngine::getMenuActive()
+bool gameEngine::getMenuActive()   // retrieves the value of menuActive
 {
     return(menuActive);
 }
-
-void gameEngine::setMenuActive(bool active)
+void gameEngine::setMenuActive(bool set)  // sets the value of menuActive
 {
-    menuActive = active;
+    menuActive = set;
 }
 
-bool gameEngine::getQuitGame()
+bool gameEngine::getQuitGame()  // retrieves the value of quitGame
 {
     return(quitGame);
 }
-void gameEngine::setQuitGame(bool quit)
+void gameEngine::setQuitGame(bool set)  // sets the value of quitGame
 {
-    quitGame = quit;
+    quitGame = set;
 }
 
-bool gameEngine::getServerRunning()
+bool gameEngine::getServerRunning()  // retrieves the value of serverRunning
 {
 	return (serverRunning);
 }
-
-void gameEngine::setServerRunning(bool server)
+void gameEngine::setServerRunning(bool set)  // sets the value of serverRunning
 {
-	serverRunning = server;
+	serverRunning = set;
 }
 
-bool gameEngine::getClientRunning()
+bool gameEngine::getClientRunning()  // retrieves the value of clientRunning
 {
 	return (clientRunning);
 }
-
-void gameEngine::setClientRunning(bool client)
+void gameEngine::setClientRunning(bool set)  // sets the value of clientRunning
 {
-	clientRunning = client;
+	clientRunning = set;
 }
 
-bool gameEngine::getCreateScene()
+bool gameEngine::getCreateScene()  // retrieves the value of createScene
 {
 	return (createScene);
 }
-
-void gameEngine::setCreateScene(bool scene)
+void gameEngine::setCreateScene(bool set)  // sets the value of createScene
 {
-	createScene = scene;
+	createScene = set;
 }
-bool gameEngine::getSceneCreated()
+
+bool gameEngine::getSceneCreated()  // retrieves the value of sceneCreated
 {
 	return (sceneCreated);
 }
-
-void gameEngine::setSceneCreated(bool created)
+void gameEngine::setSceneCreated(bool set)  // sets the value of sceneCreated
 {
-	sceneCreated = created;
+	sceneCreated = set;
 }
-bool gameEngine::getRenderScene()
+
+bool gameEngine::getRenderScene()  // retrieves the value of renderScene
 {
 	return (renderScene);
 }
-
-void gameEngine::setRenderScene(bool scene)
+void gameEngine::setRenderScene(bool set)  // sets the value of renderScene
 {
-	renderScene = scene;
+	renderScene = set;
 }
 
-bool gameEngine::getMovePlayer()
+bool gameEngine::getMovePlayer()  // retrieves the value of moviePlayer
 {
 	return (movePlayer);
 }
-
-void gameEngine::setMovePlayer(bool player)
+void gameEngine::setMovePlayer(bool set)  // sets the value of moviePlayer
 {
-	movePlayer = player;
+	movePlayer = set;
 }
 
 float gameEngine::getYOffset() // returns the value of yOffset

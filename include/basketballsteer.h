@@ -26,19 +26,19 @@
 class basketballSteer : public steering
 {
     public:
-	 
-	basketballSteer();
-	~basketballSteer();
-	 
-	int getID(); // retrieves the value of ID
-	void setID(int id); // sets the value of ID
-	 
-	void reset(void); // resets the state
-	void update (const float currentTime, const float elapsedTime); // update steering sim every frame
+ 
+        basketballSteer();
+        ~basketballSteer();
+        
+        int getID(); // retrieves the value of ID
+        void setID(int id); // sets the value of ID
+ 
+        void reset(void); // resets the state
+        void update (const float currentTime, const float elapsedTime); // update steering sim every frame
 	
-	private:
+    private:
 	 
-	int ID; // Stores which player on the team the instance associates with
+        int ID; // Stores which player on the team the instance associates with
 };
  
 #endif

@@ -27,28 +27,28 @@
     #define OGRE_STATIC_GLES2
 //    #define OGRE_STATIC_ParticleFX
 //    #define OGRE_STATIC_OctreeSceneManager
-    #include "OgreStaticPluginLoader.h"
+#include "OgreStaticPluginLoader.h"
 
 
-    #include <EGL/egl.h>
-    #include <android/log.h>
-    #include <android_native_app_glue.h>
-    #include <android/native_window.h> 
-	#include <android/native_window_jni.h>
-    #include <android/asset_manager.h>
-    #include <android/asset_manager_jni.h>
+#include <EGL/egl.h>
+#include <android/log.h>
+#include <android_native_app_glue.h>
+#include <android/native_window.h> 
+#include <android/native_window_jni.h>
+#include <android/asset_manager.h>
+#include <android/asset_manager_jni.h>
 
-    #include "RTShaderHelper.h"
-    #include "Android/OgreAndroidEGLWindow.h"
-    #include "Android/OgreAPKFileSystemArchive.h"
-    #include "Android/OgreAPKZipArchive.h"
+#include "RTShaderHelper.h"
+#include "Android/OgreAndroidEGLWindow.h"
+#include "Android/OgreAPKFileSystemArchive.h"
+#include "Android/OgreAPKZipArchive.h"
 
 
 /*#elif OGRE_PLATFORM == OGRE_PLATFORM_APPLE
     #include "Ogre/OgreMemoryMacros.h"
     #include "Ogre/Ogre.h" */
 #else
-    #include "Ogre.h"
+#include "Ogre.h"
 #endif
 
 #include "SDL.h"
@@ -58,62 +58,62 @@
 
 class renderEngine
 {
-	public:
+    public:
 
     //static renderEngine *Instance();
     static boost::shared_ptr<renderEngine> Instance();
 
-    Ogre::Root *getMRoot();
-    void setMRoot(Ogre::Root *root);
+    Ogre::Root *getMRoot();  // retrieves the value of mRoot
+    void setMRoot(Ogre::Root *set);  // sets the value of mRoot
 
-    Ogre::Camera *getMCamera();
-    void setMCamera(Ogre::Camera *camera);
+    Ogre::Camera *getMCamera();  // retrieves the value of mCamera
+    void setMCamera(Ogre::Camera *set);  // sets the value of mCamera
 
-    Ogre::SceneManager *getMSceneMgr();
-    void setMSceneMgr(Ogre::SceneManager *sceneMgr);
+    Ogre::SceneManager *getMSceneMgr();  // retrieves the value of mSceneMgr
+    void setMSceneMgr(Ogre::SceneManager *set);  // sets the value of mSceneMgr
 
-    Ogre::RenderWindow *getMWindow();
-    void setMWindow(Ogre::RenderWindow *window);
+    Ogre::RenderWindow *getMWindow();  // retrieves the value of mWindow
+    void setMWindow(Ogre::RenderWindow *set);  // sets the value of mWindow
 
-	Ogre::Viewport *getViewPort(); // retrieves the value of viewPort
-	void setViewPort(Ogre::Viewport *vp); // sets the value of viewPort
+    Ogre::Viewport *getViewPort(); // retrieves the value of viewPort
+    void setViewPort(Ogre::Viewport *set); // sets the value of viewPort
 	
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-	Ogre::DataStreamPtr openAPKFile(const std::string &fileName);
+    Ogre::DataStreamPtr openAPKFile(const std::string &set);  // opens APK file
 
-    AAssetManager* getMAssetMgr();
-    void setMAssetMgr(AAssetManager* asset);
+    AAssetManager* getMAssetMgr();  // retrieves the value of mAssetMgr
+    void setMAssetMgr(AAssetManager* set);  // stes the value of mAssetMgr
 	
-    android_app *getApp();
-    void setApp(android_app *ap);
+    android_app *getApp();  // retireves the value of app
+    void setApp(android_app *set);  // sets the value of app
 #endif
 
-    Ogre::Vector3 getMTranslateVector();
-    void setMTranslateVector(Ogre::Vector3 vector);
+    Ogre::Vector3 getMTranslateVector();  // retrieves the value of mTranslateVector
+    void setMTranslateVector(Ogre::Vector3 set);  // sets the value of mTranslateVector
 
-    Ogre::Radian getMRotX();
-    void setMRotX(Ogre::Radian rotX);
+    Ogre::Radian getMRotX();  // retrieves the value of mRotX
+    void setMRotX(Ogre::Radian set);  // sets the value of mRotX
 
-    Ogre::Radian getMRotY();
-    void setMRotY(Ogre::Radian rotY);
+    Ogre::Radian getMRotY();  // retrieves the value of mRotY
+    void setMRotY(Ogre::Radian set);  // sets the value of mRotY
 
-    Ogre::Real getMMoveSpeed();
-    void setMMoveSpeed(Ogre::Real speed);
+    Ogre::Real getMMoveSpeed();  // retrieves the value of mMoveSpeed
+    void setMMoveSpeed(Ogre::Real set);  // sets the value of mMoveSpeed
 
-    Ogre::Degree getMRotateSpeed();
-    void setMRotateSpeed(Ogre::Degree speed);
+    Ogre::Degree getMRotateSpeed();  // retrieves the value of mRotateSpeed
+    void setMRotateSpeed(Ogre::Degree set);  // stes the value of mRotateSpeed
 
-    float getMMoveScale();
-    void setMMoveScale(float scale);
+    float getMMoveScale();  // retrieves the value of mMoveScale
+    void setMMoveScale(float set);  // sets the value of mMoveScale
 
-    Ogre::Degree getMRotScale();
-    void setMRotScale(Ogre::Degree scale);
+    Ogre::Degree getMRotScale();  // retrieves the value of mRotScale
+    void setMRotScale(Ogre::Degree set);  // sets the value of mRotScale
 
-    std::string getMResourceGroup();
-    void setMResourceGroup(std::string resource);
+    std::string getMResourceGroup();  // retrieves the value of mResourceGroup
+    void setMResourceGroup(std::string set);  // sets the value of mResourceGroup
 
-	SDL_Window *getSDLWindow();
-	void setSDLWindow(SDL_Window *window);
+    SDL_Window *getSDLWindow();  // retireves the value of SDLWindow
+    void setSDLWindow(SDL_Window *set);  // sets the value of SDLWindow
 
     uint32_t getWindowWidth();  // retrieves the value of windowWidth
     void setWindowWidth(uint32_t set);  // sets the value of windowWidth
@@ -124,62 +124,60 @@ class renderEngine
     ~renderEngine();
 
 
-    bool initSDL();
-    bool initOgre();
+    bool initSDL();  // initializes the SDL Subsystem
+    bool initOgre();  // initializes the OGRE Subsystem
 
-    bool createWindow();
-    bool createScene();
-    bool frameStarted();
-    bool frameEnded();
-    void createSceneManager();
+    bool createWindow();  // creates a window
+    bool createScene();  // creates a scene
+    bool frameStarted();  // begins a frame
+    bool frameEnded();  // ends a frame
+    void createSceneManager();  // creates the scene manager
 
-	protected:
+    protected:
     renderEngine();
     renderEngine(const renderEngine&);
     renderEngine& operator= (const renderEngine&);
 
-    #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-        android_app* app;
-        //static
-        Ogre::StaticPluginLoader* gStaticPluginLoader;
-        AConfiguration* config;
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+    android_app* app;
+    //static
+    Ogre::StaticPluginLoader* gStaticPluginLoader;
+    AConfiguration* config;
 
-    #endif
+#endif
     
     // SDL code
-    SDL_Window *sdlWindow;
-	SDL_GLContext sdlGLContext;
-    SDL_SysWMinfo sysInfo;
-    SDLTest_CommonState *state;
+    SDL_Window *sdlWindow;  // stores the SDL window
+    SDL_GLContext sdlGLContext;  // the SDL GL Context
+    SDL_SysWMinfo sysInfo;  // stores the SDL System information
+    SDLTest_CommonState *state;  // stores the state
 
     // Ogre code
-    Ogre::Root *mRoot;
-    Ogre::Camera *mCamera;
-    Ogre::SceneManager *mSceneMgr;
-    Ogre::RenderWindow *mWindow;
-    Ogre::Viewport *viewPort;
-    std::string mResourceGroup;  	// stores resource locations
-	Ogre::NameValuePairList misc;	// options to pass to mWindow during creation
-	std::string winHandle;			// window handle
+    Ogre::Root *mRoot;  // stores the OGRE Root
+    Ogre::Camera *mCamera;  // stores the camera used by OGRE
+    Ogre::SceneManager *mSceneMgr;  // store the OGRE Scene Manager
+    Ogre::RenderWindow *mWindow;  // stores the OGRE Render Window
+    Ogre::Viewport *viewPort;  // stores the OGRE View Port
+    std::string mResourceGroup;  // stores resource locations
+    Ogre::NameValuePairList misc;  // options to pass to mWindow during creation
+    std::string winHandle;  // window handle
 
     // general
     uint32_t windowWidth;  // stores the width of the window
     uint32_t windowHeight;  // stores the height of the window
-	// Android support
+    // Android support
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-	AAssetManager* mAssetMgr;
-	Ogre::ShaderGeneratorTechniqueResolverListener* mMatListener;
+    AAssetManager* mAssetMgr;  // stores the android asset manager
+    Ogre::ShaderGeneratorTechniqueResolverListener* mMatListener;  // stores the material listener
 #endif
-    //	InputReader* mInputDevice;
-    Ogre::Vector3 mTranslateVector;
-    Ogre::Radian mRotX, mRotY;
-    Ogre::Real mMoveSpeed;
-    Ogre::Degree mRotateSpeed;
-    float mMoveScale;
-    Ogre::Degree mRotScale;
-
-
-    Ogre::Real mTimeUntilNextToggle ;
+    // InputReader* mInputDevice;
+    Ogre::Vector3 mTranslateVector;  // stores the translate vector
+    Ogre::Radian mRotX, mRotY;  // stores x and y rotations
+    Ogre::Real mMoveSpeed;  // stores the movement speed
+    Ogre::Degree mRotateSpeed;  // stores the rotation speed
+    float mMoveScale;  // stores the movement scale
+    Ogre::Degree mRotScale;  // stores the rotation scale
+    Ogre::Real mTimeUntilNextToggle;  // stores the time until next toggle
 
     private:
 

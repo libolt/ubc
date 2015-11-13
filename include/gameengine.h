@@ -39,44 +39,42 @@ public:
     static boost::shared_ptr<gameEngine> Instance();
     
     timing getTimer();  // retrieves the value of timer
-    void setTimer(timing time);  // sets the value of timer
+    void setTimer(timing set);  // sets the value of timer
     
-    bool getMenuActive();					// retrieves menuActive variable
-    void setMenuActive(bool active);		// sets menuActive variable
+    bool getMenuActive();  // retrieves the value of menuActive
+    void setMenuActive(bool set);  // sets the value of menuActive 
 
-    bool getQuitGame();						// retrieves quitGame variable
-    void setQuitGame(bool quit);			// sets quitGame variable
+    bool getQuitGame();  // retrieves the value of quitGame
+    void setQuitGame(bool set);  // sets the value of quitGame
 
-    bool getServerRunning();				// retrieves serverRunning variable
-    void setServerRunning(bool server);		// sets serverRunning variable
+    bool getServerRunning();  // retrieves the value of serverRunning 
+    void setServerRunning(bool set);  // the value of sets serverRunning 
 
-    bool getClientRunning();				// retrieves clientRunning variable
-    void setClientRunning(bool client);		// sets clientRunning variable
+    bool getClientRunning();  // retrieves the value of clientRunning 
+    void setClientRunning(bool set);  // sets the value of clientRunning 
 
-    bool getCreateScene();					// retrieves createScene variable
-    void setCreateScene(bool scene);		// sets createScene variable
+    bool getCreateScene();  // retrieves the value of createScene 
+    void setCreateScene(bool set);  // sets the value of createScene 
 
-    bool getSceneCreated();					// returns sceneCreated variable
-    void setSceneCreated(bool created);		// sets sceneCreated variable
+    bool getSceneCreated();  // retrieves the value of sceneCreated
+    void setSceneCreated(bool set);  // sets the value of sceneCreated 
 
-    bool getRenderScene();					// retrieves renderScene variable
-    void setRenderScene(bool scene);		// sets renderScene variable
+    bool getRenderScene();  // retrieves the value of renderScene 
+    void setRenderScene(bool set);  // sets the value of renderScene 
 
-    bool getMovePlayer();					// retrieves movePlayer variable
-    void setMovePlayer(bool player);		    // sets movePlayer variable
+    bool getMovePlayer();  // retrieves the value of movePlayer 
+    void setMovePlayer(bool set);  // sets the value of movePlayer 
 
-    float getYOffset(); // returns the value of yOffset
-    void setYOffset(float set); // sets the value of yOffset
+    float getYOffset();  // retrieves the value of yOffset
+    void setYOffset(float set);  // sets the value of yOffset
 
-    // starts a game
-    bool startGame();
+    bool startGame();  // starts a game
 
-    // quits entire game
-    void quit();
+    void quit();  // quits the entire game
 
-    void gameLoop();	// runs the Main loop for the game
+    void gameLoop();  // runs the Main loop for the game
 
-	void processInput();  // processes game input
+    void processInput();  // processes game input
 	
 protected:
     gameEngine();
@@ -108,16 +106,16 @@ private:
     
 
     // Flags
-    bool userInputLoaded; // if set then user input configuration has been loaded from file
-    bool menuActive;	// determines whether or not a menu is active
-    bool start;			// if set then starts running game logic
-    bool quitGame;		// if set then triggers the shutdown process for the game
-    bool serverRunning;	// if set triggers the network server code
-    bool clientRunning;	// if set triggers the network client code
-    bool createScene;	// if set triggers the render system's createScene function
-    bool sceneCreated;	// stores whether scene has been created
-    bool renderScene;	// if set triggers the render system's scene rendering function
-    bool movePlayer;	// if set triggers movement of a player for testing netwoirk code
+    bool userInputLoaded;  // if set then user input configuration has been loaded from file
+    bool menuActive;  // determines whether or not a menu is active
+    bool start;  // if set then starts running game logic
+    bool quitGame;  // if set then triggers the shutdown process for the game
+    bool serverRunning;  // if set triggers the network server code
+    bool clientRunning;  // if set triggers the network client code
+    bool createScene;  // if set triggers the render system's createScene function
+    bool sceneCreated;  // stores whether scene has been created
+    bool renderScene;  // if set triggers the render system's scene rendering function
+    bool movePlayer;  // if set triggers movement of a player for testing netwoirk code
 };
 
 #endif // _GAMEENGINE_H_

@@ -27,7 +27,7 @@ class defenseState
 {
 public:
 
-	defenseState();	// constructor
+    defenseState();	// constructor
 
     teamTypes getTeamType();  // retrieves the value of teamType
     void setTeamType(teamTypes set);  // sets the value of teamType
@@ -47,7 +47,7 @@ private:
     teamTypes teamType;  // stores the type of team on defense
     courtSide_t courtSide;  // stores which side of the court the defense executes on.
 
-	bool execute;	// If set then execute the defense logic
+    bool execute;	// If set then execute the defense logic
 
 };
 

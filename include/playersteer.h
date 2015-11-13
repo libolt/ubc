@@ -29,14 +29,14 @@ class playerSteer : public steering
     public:
 
 //	playerSteer(std::vector<playerSteer*> others, std::vector<playerSteer*> allplayers, /*Ball* ball,*/ bool isTeamA, int id);
-	playerSteer()
+    playerSteer()
     {
-	    std::vector<playerSteer*> others;
-	    std::vector<playerSteer*> allplayers;
+        std::vector<playerSteer*> others;
+        std::vector<playerSteer*> allplayers;
 //	    bool isTeamA;
         int id = 0;
-	    m_others = others;
-	    m_AllPlayers = allplayers;
+        m_others = others;
+        m_AllPlayers = allplayers;
 	    //m_Ball(ball),
 //	    b_ImTeamA = isTeamA;
         m_MyID = 0;
@@ -44,17 +44,17 @@ class playerSteer : public steering
 
 //    b_ImTeamA = true;
         teamType = NOTEAM;
-	    ID = -1;
-	    counter = 0;
-		distToPosition = -1.0f;
-		execute = false;
+        ID = -1;
+        counter = 0;
+        distToPosition = -1.0f;
+        execute = false;
 		
-	    m_home = OpenSteer::Vec3::zero;
+        m_home = OpenSteer::Vec3::zero;
 //	steering::reset (); // reset the vehicle
-	    reset();
-		setPosition(OpenSteer::Vec3(0,0,0));
-		setRadius (0.5f);
-		setMass(10.0f);
+        reset();
+        setPosition(OpenSteer::Vec3(0,0,0));
+        setRadius (0.5f);
+        setMass(10.0f);
 	/*    setSpeed (0.0f);         // speed along Forward direction.
     setMaxForce (3000.7f);      // steering force is clipped to this magnitude
     setMaxSpeed (10);         // velocity is clipped to this magnitude
@@ -62,54 +62,55 @@ class playerSteer : public steering
     setMass(1.0f);
 */
     }
-	~playerSteer();
+    
+    ~playerSteer();
 
-    teamTypes getTeamType(); // retrieves the value of teamType
-    void setTeamType(teamTypes set); // sets the value of teamType
+    teamTypes getTeamType();  // retrieves the value of teamType
+    void setTeamType(teamTypes set);  // sets the value of teamType
 
-    size_t getID(); // retrieves the value of ID
-    void setID(size_t set); // sets the value of ID
+    size_t getID();  // retrieves the value of ID
+    void setID(size_t set);  // sets the value of ID
 
     playerPositions getPlayerPosition();  // retrieves the value of playerPosition
     void setPlayerPosition(playerPositions set);  // sets the value of playerPosition
 	
-	float getDistToPosition(); // retrieves the value of distToPosition
-	void setDistToPosition(float dist); // sets value of distToPosition
+    float getDistToPosition();  // retrieves the value of distToPosition
+    void setDistToPosition(float dist);  // sets value of distToPosition
 	
-	bool getExecute();  // retrieves the value of execute
-	void setExecute(bool set);  // sets the value of execute
+    bool getExecute();  // retrieves the value of execute
+    void setExecute(bool set);  // sets the value of execute
 	
-	OpenSteer::Vec3 getSteerCoords();  // retrieves the value of steerCoords
-	void setSteerCoords(OpenSteer::Vec3 coords);  // sets the value of steerCoords
+    OpenSteer::Vec3 getSteerCoords();  // retrieves the value of steerCoords
+    void setSteerCoords(OpenSteer::Vec3 coords);  // sets the value of steerCoords
 	
-	std::vector<bool> getPositionReached();  // retrieves the value of positionReached
-	void setPositionReached(std::vector<bool> reached);  // sets the value of positionReached
+    std::vector<bool> getPositionReached();  // retrieves the value of positionReached
+    void setPositionReached(std::vector<bool> reached);  // sets the value of positionReached
 	
-	void reset(void); // resets the state
-	void update (const float currentTime, const float elapsedTime); // update steering sim every frame
+    void reset(void);  // resets the state
+    void update (const float currentTime, const float elapsedTime);  // update steering sim every frame
 
     void checkCourtPosition();  // checks if the player's position has changed
-	void updateOffense(const float currentTime, const float elapsedTime);	// updates the offense steering sim
-	void updateDefense(const float currentTime, const float elapsedTime);	// updates the defense steering sim
+    void updateOffense(const float currentTime, const float elapsedTime);  // updates the offense steering sim
+    void updateDefense(const float currentTime, const float elapsedTime);  // updates the defense steering sim
 
-	private:
+    private:
 
-	int counter;
-    std::vector<playerSteer*>	m_others;
-    std::vector<playerSteer*>	m_AllPlayers;
-    OpenSteer::Vec3 m_home;
+    int counter;
+    std::vector<playerSteer*> m_others;  // stores steering object of other players
+    std::vector<playerSteer*> m_AllPlayers;  // stores steering objects of all players
+    OpenSteer::Vec3 m_home;  // home point to stear to
     //Ball*	m_Ball;
     teamTypes teamType;  // stores which team the player belongs to
-    int		m_MyID;
+    int	m_MyID;
     int ID; // Stores which player on the team the instance associates with
     playerPositions playerPosition;  // stores which position the player is playing
     float distToPosition; // stores the distance player is from target position
 	
     bool execute;  // stores whether or not to execute steering code
 	
-    OpenSteer::Vec3 steerCoords;
+    OpenSteer::Vec3 steerCoords;  // stores the steering coordinates
 	
-    std::vector<bool> positionReached;
+    std::vector<bool> positionReached;  // stores whether or not positions have been reached
 };
 
 #endif

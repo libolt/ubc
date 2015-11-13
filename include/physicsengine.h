@@ -40,20 +40,20 @@ public:
     ~physicsEngine();	// destructor
 
     
-    bool getBasketballlPhysicsSetup();  // retrieves the value of the playerPhysicsSetup variable
-    void setBasketballPhysicsSetup(bool setup);	 // sets the value of the playerPhysicsSetup variable
+    bool getBasketballlPhysicsSetup();  // retrieves the value of playerPhysicsSetup 
+    void setBasketballPhysicsSetup(bool set);	 // sets the value of playerPhysicsSetup 
 
-    bool getCourtPhysicsSetup();  // retrieves the value of the courtPhysicsSetup variable
-    void setCourtPhysicsSetup(bool setup);  // sets the value of the courtPhysicsSetup variable
+    bool getCourtPhysicsSetup();  // retrieves the value of courtPhysicsSetup 
+    void setCourtPhysicsSetup(bool set);  // sets the value of courtPhysicsSetup 
 
-    bool getHoopPhysicsSetup();	 // retrieves the value of the hoopPhysicsSetup variable
-    void setHoopPhysicsSetup(bool setup);  // sets the value of the hoopPhysicsSetup variable
+    bool getHoopPhysicsSetup();	 // retrieves the value of hoopPhysicsSetup 
+    void setHoopPhysicsSetup(bool set);  // sets the value of hoopPhysicsSetup 
 
-    bool getPairCollided();	 // retrieves value of thepairCollided variable
-    void setPairCollided(bool collided);  // sets value of thepairCollided variable
+    bool getPairCollided();	 // retrieves value of pairCollided 
+    void setPairCollided(bool set);  // sets value of pairCollided 
 
-    bool getPassCollision();  // retrieves the value of the passCollision variable
-    void setPassCollision(bool collision);  // sets the value of the passCollision variable
+    bool getPassCollision();  // retrieves the value of passCollision 
+    void setPassCollision(bool set);  // sets the value of passCollision 
 
     btVector3 getBasketballVelocity();  // retrieves the value of basketballVelocity
     void setBasketballVelocity(const btVector3 &set);  // sets the value of basketballVelocity
@@ -105,14 +105,14 @@ private:
 //    btAxisSweep3 *broadPhase;
     btBroadphaseInterface *broadPhase;  
     btDefaultCollisionConfiguration *collisionConfig;
-	btCollisionDispatcher *dispatcher;
-	btSequentialImpulseConstraintSolver *solver;
-	btContactSolverInfo contactInfo;
+    btCollisionDispatcher *dispatcher;
+    btSequentialImpulseConstraintSolver *solver;
+    btContactSolverInfo contactInfo;
 
 
-	btCollisionShape *courtShape;  // stores the shape of the court object
+    btCollisionShape *courtShape;  // stores the shape of the court object
 //	btDefaultMotionState *courtBodyState;
-	BtOgre::RigidBodyState *courtBodyState; // stores state of the court object
+    BtOgre::RigidBodyState *courtBodyState; // stores state of the court object
 	
 	// hoop
 //	btCollisionShape *hoopShape;
@@ -196,21 +196,21 @@ private:
     	}
     };*/
 
-struct   MyContactResultCallback : public btCollisionWorld::ContactResultCallback
+struct MyContactResultCallback : public btCollisionWorld::ContactResultCallback
 {
-	bool m_connected;
-	MyContactResultCallback() :m_connected(false)
-	{
-	}
+    bool m_connected;
+    MyContactResultCallback() :m_connected(false)
+    {
+    }
 //	  btScalar   addSingleResult(btManifoldPoint& cp, const btCollisionObject* colObj0, int partId0, int index0, const btCollisionObject* colObj1, int partId1, int index1)
     btScalar addSingleResult(btManifoldPoint& cp, const btCollisionObjectWrapper* colObj0Wrap, int partId0, int index0, const btCollisionObjectWrapper* colObj1Wrap, int partId1, int index1)
-	{
-		if (cp.getDistance() <= 0)
-		{
-			m_connected = true;
-		}
-		return 1.f;
-	}
+    {
+        if (cp.getDistance() <= 0)
+        {
+            m_connected = true;
+        }
+        return 1.f;
+    }
 };
 
 

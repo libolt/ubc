@@ -21,29 +21,29 @@
 #ifndef _ENUMS_H_
 #define _ENUMS_H_
 
-	enum inputMaps { INNO, INUP, INDOWN, INLEFT, INRIGHT, INUPLEFT, INUPRIGHT, INDOWNLEFT, INDOWNRIGHT, INSHOOTBLOCK, INPASSSTEAL, INPAUSE, INSTARTSELECT, INQUIT, INBACKSPACE, INRETURN }; // map of human player input
-	enum directions { NODIRECT, UP, DOWN, LEFT, RIGHT, UPLEFT, UPRIGHT, DOWNLEFT, DOWNRIGHT };	// direction objects are moving
-	enum gameTypes { NOGAME, SINGLE, MULTI }; // defines whether a game is single or multi player
-	enum netGameTypes { CLIENT, SERVER}; // defines which type of network game this instance is running
+    enum inputMaps { INNO, INUP, INDOWN, INLEFT, INRIGHT, INUPLEFT, INUPRIGHT, INDOWNLEFT, INDOWNRIGHT, INSHOOTBLOCK, INPASSSTEAL, INPAUSE, INSTARTSELECT, INQUIT, INBACKSPACE, INRETURN }; // map of human player input
+    enum directions { NODIRECT, UP, DOWN, LEFT, RIGHT, UPLEFT, UPRIGHT, DOWNLEFT, DOWNRIGHT };	// direction objects are moving
+    enum gameTypes { NOGAME, SINGLE, MULTI }; // defines whether a game is single or multi player
+    enum netGameTypes { CLIENT, SERVER}; // defines which type of network game this instance is running
     enum quarters { NOQUARTER, FIRST, SECOND, THIRD, FOURTH }; // defines the quarters within the game
     enum courtSide_t {RIGHTSIDE, LEFTSIDE };	// defines which side of the court the offensive team is on
 
-	// GUI
+    // GUI
     enum activeMenus { MAIN, NETWORK, NETWORKCLIENT, NETWORKSERVER, OPTIONS, DISPLAY, INPUTMENU, AUDIO, GAMESETUP, PLAYERSTART, TEAMSELECT, COURTSELECT }; // stores which menu is set to active
 
     // jump ball
     enum jumpBallLocations_t { CENTERCIRCLE, RIGHTKEYCIRCLE, LEFTKEYCIRCLE };
 
     // offense / defense
-	enum playerPositions { NONE, PG, SG, SF, PF, C }; // defines the name for each player position
-	enum directiveTypes { WAIT, FREELANCE}; // defines the type of directive a player has
+    enum playerPositions { NONE, PG, SG, SF, PF, C }; // defines the name for each player position
+    enum directiveTypes { WAIT, FREELANCE}; // defines the type of directive a player has
     enum offenseWaitFor { PLAYERPOSITIONSET, TIME }; // defines what an offensive player is waiting for
     enum positionTypes { START, EXECUTE};
 
-	// Network
-	enum packetTypes { GAMEDATA, GAMESTATE, PLAYERDATA, PLAYERSTATE, TEAMDATA, TEAMSTATE }; // Defines what type of data is being sent over the network
-	// Physics bit masks
-	#define BIT(x) (1<<(x))
+    // Network
+    enum packetTypes { GAMEDATA, GAMESTATE, PLAYERDATA, PLAYERSTATE, TEAMDATA, TEAMSTATE }; // Defines what type of data is being sent over the network
+    // Physics bit masks
+    #define BIT(x) (1<<(x))
 
     // Player and Basketball
     enum positionChangedTypes { NOCHANGE, STARTCHANGE, STEERCHANGE, INPUTCHANGE, PHYSICSCHANGE, PLAYERMOVECHANGE, PLAYERDIRECTCHANGE }; // Defines the type of position change that occured

@@ -70,7 +70,7 @@ class playerState
         size_t getAge(void);  // retrieves the value of age
         void setAge(size_t set); // sets the value of age
 
-        size_t getHeight(void); // retrieves the value of height
+        size_t getHeight(void);  // retrieves the value of height
         void setHeight(size_t set);  // sets the value of height
 
         size_t getWeight(void);  // retrieves the value of weight
@@ -85,11 +85,11 @@ class playerState
         playerPositions getActivePosition();  // retrieves the value of activePosition
         void setActivePosition(playerPositions set);  // sets the value of activePosition
 
-        bool getIsActive(); // retrieves the value of isActive
-        void setIsActive(bool set); // sets the value of isActive
+        bool getIsActive();  // retrieves the value of isActive
+        void setIsActive(bool set);  // sets the value of isActive
 
         bool getModelLoaded();  // retrieves the value of modelLoaded
-        void setModelLoaded(bool set); // sets the value of modelLoaded
+        void setModelLoaded(bool set);  // sets the value of modelLoaded
 
         size_t getOffDef();  // retrieves the value of offDef
         void setOffDef(size_t set);  // sets the value of offDef
@@ -160,7 +160,7 @@ class playerState
         Ogre::SceneNode *getNode();  // retrieves the value of node
         void setNode(Ogre::SceneNode *set); // sets the value of node
 
-        btRigidBody *getPhysBody();	// retrieves the value of physBody
+        btRigidBody *getPhysBody();  // retrieves the value of physBody
         void setPhysBody(btRigidBody *set);  // sets the value of physBody
 
         playerPhysics getPhysics();  // retrieves the value of physics
@@ -169,47 +169,47 @@ class playerState
         playerSteer *getSteer(); // retrieves the steering instance
         void setSteer(playerSteer *set); // sets the steering instance
 
-        bool getMovement();	// retrieves the value of movement
-        void setMovement(bool set);	// sets the value of movement
+        bool getMovement();  // retrieves the value of movement
+        void setMovement(bool set);  // sets the value of movement
 
-        directions getDirection();	// retrieves the value of direction
-        void setDirection(directions set);	// sets the value of direction
+        directions getDirection();  // retrieves the value of direction
+        void setDirection(directions set);  // sets the value of direction
 
-        directions getOldDirection();	// retrieves the value of oldDirection
-        void setOldDirection(directions set);	// sets the value of oldDirection
+        directions getOldDirection();  // retrieves the value of oldDirection
+        void setOldDirection(directions set);  // sets the value of oldDirection
 
-        Ogre::Vector3 getPosChange();	// retrieves the value of posChange
-        void setPosChange(Ogre::Vector3 set);	// sets the value of posChange
+        Ogre::Vector3 getPosChange();  // retrieves the value of posChange
+        void setPosChange(Ogre::Vector3 set);  // sets the value of posChange
 
         bool getStartPosReached();  // retrieves the value of startPosReached
         void setStartPosReached(bool set);  // sets the value of startPosReached
         
         bool getShootBlock();  // retrieves the value of shootBlock
-        void setShootBlock(bool set);   // sets the value of shootBlock
+        void setShootBlock(bool set);  // sets the value of shootBlock
 
         bool getPassSteal();  // retrieves the value of passSteal
-        void setPassSteal(bool set); // sets the value of passSteal
+        void setPassSteal(bool set);  // sets the value of passSteal
 
-        bool getPassBall();	// retrieves the value of passBall
-        void setPassBall(bool set);	// sets the value of passBall
+        bool getPassBall();  // retrieves the value of passBall
+        void setPassBall(bool set);  // sets the value of passBall
 
-        bool getPassCalculated();	// retrieves the value of passCalculated
-        void setPassCalculated(bool set);	// sets the value of passCalculated
+        bool getPassCalculated();  // retrieves the value of passCalculated
+        void setPassCalculated(bool set);  // sets the value of passCalculated
 
-        bool getPassCompleted();	// retrieves the value of passCompleted
-        void setPassCompleted(bool set);	// sets the value of passCompleted
+        bool getPassCompleted();  // retrieves the value of passCompleted
+        void setPassCompleted(bool set);  // sets the value of passCompleted
 
-        size_t getPassToPlayer();	// retrieves the value of passToPlayer
-        void setPassToPlayer(size_t set);	// sets the value of passToPlayer
+        size_t getPassToPlayer();  // retrieves the value of passToPlayer
+        void setPassToPlayer(size_t set);  // sets the value of passToPlayer
 
-        bool getShotTaken();		// retrieves the value of shotTaken
-        void setShotTaken(bool set);	// sets the value of shotTaken
+        bool getShotTaken();  // retrieves the value of shotTaken
+        void setShotTaken(bool set);  // sets the value of shotTaken
         
-        bool getShotSet(); // retrieves the value of shotSet
+        bool getShotSet();  // retrieves the value of shotSet
         void setShotSet(bool set);  // sets the value of shotSet
         
-        bool getShotComplete();	// retrieves the value of shotComplete
-        void setShotComplete(bool set);	// sets the value of shotComplete
+        bool getShotComplete();  // retrieves the value of shotComplete
+        void setShotComplete(bool set);  // sets the value of shotComplete
 
         Ogre::Vector3 getJumpBeginPos();  // retrieves the value of playerJumpBeginPos
         void setJumpBeginPos(Ogre::Vector3 set);  // sets the value of playerJumpBeginPos
@@ -223,16 +223,16 @@ class playerState
         bool getJumpComplete();  // retrieves the value of jumpComplete
         void setJumpComplete(bool set);  // sets the value of jumpComplete
 
-		bool getOffenseSet(void); // retrieves the value of offenseSet
-		void setOffenseSet(bool set);  // sets the value of offenseSet
+        bool getOffenseSet(void);  // retrieves the value of offenseSet
+        void setOffenseSet(bool set);  // sets the value of offenseSet
 
-		bool getDefenseSet(void); // retrieves the value of defenseSet
-		void setDefenseSet(bool set);  // sets the value of defenseSet
+        bool getDefenseSet(void);  // retrieves the value of defenseSet
+        void setDefenseSet(bool set);  // sets the value of defenseSet
 
-        Ogre::Vector3 getCourtPosition(); // retrieves the value of courtPosition
+        Ogre::Vector3 getCourtPosition();  // retrieves the value of courtPosition
         void setCourtPosition(Ogre::Vector3 set);  // sets the value of courtPosition
 
-        Ogre::Vector3 getNewCourtPosition(); // retrieves the value of newCourtPosition
+        Ogre::Vector3 getNewCourtPosition();  // retrieves the value of newCourtPosition
         void setNewCourtPosition(Ogre::Vector3 set);  // sets the value of newCourtPosition
 
         bool getCourtPositionChanged();  // retrieves the value of courtPositionChanged
@@ -244,15 +244,12 @@ class playerState
         bool getStateSet();  // retrieves the value of stateSet
         void setStateSet(bool set);  // sets the value of stateSet
         
-        bool getInitialized(void); // retreives the value of initialized
-        void setInitialized(bool set); // sets the value of initialized
+        bool getInitialized(void);  // retreives the value of initialized
+        void setInitialized(bool set);  // sets the value of initialized
 
+        void updateState();  // updates the state of the object
 
-
-
-        void updateState();	// updates the state of the object
-
-        bool loadModel();   // loads the 3D model from file specified in modelName
+        bool loadModel();  // loads the 3D model from file specified in modelName
 
         bool updateCourtPosition();  // updates the X, Y and Z coordinates of the 3D model
 
@@ -260,9 +257,9 @@ class playerState
 
         void updateDirection();  // updates the direction players the player is facing
 
-        void calculatePass();	// calculates which player to pass the ball to
+        void calculatePass();  // calculates which player to pass the ball to
 
-        void shotLogic(Ogre::Vector3 playerPos);   // carries out basketball shot logic
+        void shotLogic(Ogre::Vector3 playerPos);  // carries out basketball shot logic
 
     private:
 
@@ -274,149 +271,120 @@ class playerState
 
         std::string firstName;   // stores the first name of the player
 
-        std::string lastName;    // stores the last name of the player
-        std::string playerName;	// string which stores the player's full name
+        std::string lastName;  // stores the last name of the player
+        std::string playerName;	 // string which stores the player's full name
 
-        size_t age;    // stores the age of the player
+        size_t age;  // stores the age of the player
 
-        size_t height; // stores the height in centimeters of the player
+        size_t height;  // stores the height in centimeters of the player
 
-        size_t weight; // stores the weight of the player in pounds.
+        size_t weight;  // stores the weight of the player in pounds.
 
-        size_t ID; // stores the unique ID of the player.
+        size_t ID;  // stores the unique ID of the player.
 
-        playerPositions primaryPosition; // stores the primary position of the player
+        playerPositions primaryPosition;  // stores the primary position of the player
         
-        playerPositions secondaryPosition; // stores the secondary position of the player
+        playerPositions secondaryPosition;  // stores the secondary position of the player
 
-        playerPositions activePosition; // stores the active position of the player
+        playerPositions activePosition;  // stores the active position of the player
 
         bool isActive;  // stores whether or not the player is on the court.
 
-        bool modelLoaded; // stores whether or not the player's model has been loaded from disk
+        bool modelLoaded;  // stores whether or not the player's model has been loaded from disk
 
 
-        // determines whether player is on offense or defense
-        size_t offDef;
-        // holds value of which offensive player defender is gaurding
-        size_t defending;
+        size_t offDef;  // determines whether player is on offense or defense
+        
+	size_t defending;  // holds value of which offensive player defender is gaurding
 
-        // Sets whether or not a player is user controlled
-        bool userControlled;
+        bool userControlled;  // Sets whether or not a player is user controlled
 
-        // Sets which player a user is controlled by if userControlled is set
-        size_t user;
+        size_t user;  // Sets which player a user is controlled by if userControlled is set
 
-        // Tracks how many points the player has scored
-        size_t points;
+        size_t points;  // Tracks how many points the player has scored
 
-        // Tracks how many fouls the player has
-        size_t fouls;
+        size_t fouls;  // Tracks how many fouls the player has
 
-        // Tracks how many rebounds the player has on offense
-        size_t offensiveRebounds;
+        size_t offensiveRebounds;  // Tracks how many rebounds the player has on offense
 
-        // Tracks how many rebounds the player has on defense
-        size_t defensiveRebounds;
+        size_t defensiveRebounds;  // Tracks how many rebounds the player has on defense
 
-        // Tracks how many total rebounds the player has
-        size_t totalRebounds;
+        size_t totalRebounds;  // Tracks how many total rebounds the player has
 
-        // Tracks how much stamina the player has remaining
-        size_t stamina;
+        size_t stamina;  // Tracks how much stamina the player has remaining
 
-        // Tracks how many steals the player has
-        size_t steals;
+        size_t steals;  // Tracks how many steals the player has
 
-        // Tracks how many blocks the player has
-        size_t blocks;
+        size_t blocks;  // Tracks how many blocks the player has
 
-        // Tracks how many turnovers the player has
-        size_t turnovers;
+        size_t turnovers;  // Tracks how many turnovers the player has
 
-        // Tracks how many assists the player has
-        size_t assists;
+        size_t assists;  // Tracks how many assists the player has
 
-        // Tracks how many field goals the player has attempted
-        size_t fieldGoalsAttemped;
+        size_t fieldGoalsAttemped;  // Tracks how many field goals the player has attempted
 
-        // Tracks how many field goals the player has made
-        size_t fieldGoalsMade;
+        size_t fieldGoalsMade;  // Tracks how many field goals the player has made
 
-        // Tracks how many three pointers the player has attempted
-        size_t threePointersAttempted;
+        size_t threePointersAttempted;  // Tracks how many three pointers the player has attempted
 
-        // Tracks how many three pointers the player has made
-        size_t threePointersMade;
+        size_t threePointersMade;  // Tracks how many three pointers the player has made
 
-        // Tracks how many free throws the player has attempted
-        size_t freeThrowsAttempted;
+        size_t freeThrowsAttempted;  // Tracks how many free throws the player has attempted
 
-        // Tracks how many fere throws the player has made
-        size_t freeThrowsMade;
+        size_t freeThrowsMade;  // Tracks how many fere throws the player has made
 
-        // stores the name of the 3D model representing the player
-        std::string modelName;
+	std::string modelName;  // stores the name of the 3D model representing the player
 
         bool movement; // if true then player is moving
 
-        directions direction;	// stores direction player is moving
-        directions oldDirection; // stores the previous player direction.
+        directions direction;  // stores direction player is moving
+        directions oldDirection;  // stores the previous player direction.
 
-        // stores value of players' position changes during logic updates
-        Ogre::Vector3 posChange;
+	Ogre::Vector3 posChange;  // stores value of players' position changes during logic updates
 
         bool startPosReached;  // stores whether a player is in the starting position for tipoff
-        // variables for offense and defense;
+       
+       	// variables for offense and defense;
         bool shootBlock;  // stores whether or not a player attempts to shoot or block a shot
         bool passSteal;  // stores whether a player attempts to pass or steal the ball
 
         // Passing variables
-        bool passBall;	// stores whether a player is to pass the ball to another player or not.
-        bool passCalculated;	// stores whether or not the player to pass ball to has been calculated
-        bool passCompleted;	// stores whether or not the pass has been completed
-        int passToPlayer;	// stores the value of the player to be passed to.
+        bool passBall;  // stores whether a player is to pass the ball to another player or not.
+        bool passCalculated;  // stores whether or not the player to pass ball to has been calculated
+        bool passCompleted;  // stores whether or not the pass has been completed
+        int passToPlayer;  // stores the value of the player to be passed to.
 
         // Shooting variables
-        bool shotTaken;	// Determines whether or not a player has shot the ball
+        bool shotTaken;	 // Determines whether or not a player has shot the ball
         bool shotSet;  // Determines if shot has been setup
-        bool shotComplete;	// Determine whether or not a player's shot is complete
+        bool shotComplete;  // Determine whether or not a player's shot is complete
 
         // player Jump variables
         Ogre::Vector3 jumpBeginPos;  // stores the coordinates of the player at the beginning of the jump
         Ogre::Vector3 jumpEndPos;  // stores the coordinates the player should reach at the end of the jump
-        bool jumpSet; // determines whether or not the playerJumpBeginPos has been set
+        bool jumpSet;  // determines whether or not the playerJumpBeginPos has been set
         bool jumpComplete;  // determines whether or not the jump has been completed
 
         bool offenseSet;  // tracks state of player's offense
-		bool defenseSet;  // tracks state of player's defense
+        bool defenseSet;  // tracks state of player's defense
 
-        // Stores the 3D model that represents the player
-        Ogre::Entity *model;
+        Ogre::Entity *model;  // Stores the 3D model that represents the player
 
-        // stores the Scene Node that represents the player
-        Ogre::SceneNode *node;
+	Ogre::SceneNode *node;  // stores the Scene Node that represents the player
 
-        // stores the physics object that represents the player
-        btRigidBody *physBody;
+        btRigidBody *physBody;  // stores the physics object that represents the player
 
-        // stores the playerPhysics object
-        playerPhysics physics;
+        playerPhysics physics;  // stores the playerPhysics object
         
-        // stores the steering objerct taht represents the player
-        playerSteer *steer;
+        playerSteer *steer;  // stores the steering objerct that represents the player
 
-        // stores the position of the player on the court in an Ogre::Vector3
-        Ogre::Vector3 courtPosition;
+	Ogre::Vector3 courtPosition;  // stores the position of the player on the court in an Ogre::Vector3
 
-        // stores the upfated position of the player on the court in an Ogre::Vector3
-        Ogre::Vector3 newCourtPosition;
+	Ogre::Vector3 newCourtPosition;  // stores the upfated position of the player on the court in an Ogre::Vector3
         
-        // if the court position has changed then this flag is set
-        bool courtPositionChanged;
+        bool courtPositionChanged;  // if the court position has changed then this flag is set
 
-        // stores what subsystem changed the position of the player
-        positionChangedTypes courtPositionChangedType;
+        positionChangedTypes courtPositionChangedType;  // stores what subsystem changed the position of the player
 
         bool stateSet;  // if true the playerState object has been set to initial state
         // temporary hack

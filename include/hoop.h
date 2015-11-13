@@ -32,49 +32,42 @@ class hoopState
 {
     public:
 
-    hoopState();   // constructor
+    hoopState(); // constructor
     ~hoopState();  // destructor
 
-    // gets and sets modelName
-    std::string getModelName();
-    void setModelName(std::string name);
+    std::string getModelName();  // retrieves the value of modelName
+    void setModelName(std::string set);  // sets the value of modelName
 
-    // gets and sets entityName
-    std::string getEntityName();
-    void setEntityName(std::string name);
+    std::string getEntityName();  // retrieves the value of entityName
+    void setEntityName(std::string set);  // sets the value of entityName
 
-    // gets and sets entityName
-    std::string getNodeName();
-    void setNodeName(std::string name);
+    std::string getNodeName();  // retrieves the value of nodeName
+    void setNodeName(std::string set);  // sets the value of nodeName
 
-    // gets and sets model
-    Ogre::Entity *getModel();
-    void setModel(Ogre::Entity *Model);
+    Ogre::Entity *getModel();  // retrieves the value of model	
+    void setModel(Ogre::Entity *set);  // sets the value of model
 
-    // gets and sets node
-    Ogre::SceneNode *getNode();
-    void setNode(Ogre::SceneNode *Node);
+    Ogre::SceneNode *getNode();  // retrieves the value of node
+    void setNode(Ogre::SceneNode *set);  // sets the value of node
 
-    btRigidBody *getPhysBody();	// retrieves physBody variable
-    void setPhysBody(btRigidBody *body);	// sets physBody variable
+    btRigidBody *getPhysBody();	 // retrieves the value of physBody 
+    void setPhysBody(btRigidBody *set);  // sets the value of physBody 
 
     bool getStateSet();  // retrieves the value of stateSet
     void setStateSet(bool set);  // sets the value of stateSet
         
-    // loads the 3D Model and attaches it to the node as well as sets coordinates
-    bool loadModel();
+    bool loadModel();  // loads the 3D Model and attaches it to the node as well as sets coordinates
 
     private:
 
-    std::string modelName;   // stores the file name of the 3D Model
-    std::string entityName;	// stores the name of the model object in the scene
-    std::string nodeName;     // stores the name of the scene node
-    Ogre::Entity *model;    // stores the 3D Model representing the first hoop
+    std::string modelName;  // stores the file name of the 3D Model
+    std::string entityName;  // stores the name of the model object in the scene
+    std::string nodeName;  // stores the name of the scene node
+    Ogre::Entity *model;  // stores the 3D Model representing the first hoop
 
     Ogre::SceneNode *node;  // stores the node the 3D Model is attached to
 
-    // stores the physics object that represents the player
-    btRigidBody *physBody;
+    btRigidBody *physBody;  // stores the physics object representing the hoop
 
     bool stateSet;  // if true then the hoop state has been set
 

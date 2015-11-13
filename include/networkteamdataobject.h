@@ -26,19 +26,19 @@
 
 class networkTeamDataObject 
 {
-	public:
-	
+    public:
+
     int ID;
-	int packetType;
-	
-	friend std::ostream& operator<< (std::ostream& out, networkTeamDataObject& object) 
-	{
+    int packetType;
+
+    friend std::ostream& operator<< (std::ostream& out, networkTeamDataObject& object) 
+    {
         out << object.ID << " " << object.packetType;   //The space (" ") is necessari for separete elements
         return out;
     }
 
     friend std::istream& operator>> (std::istream& in, networkTeamDataObject& object) 
-	{
+    {
         in >> object.ID;
         in >> object.packetType;
         return in;

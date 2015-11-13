@@ -30,48 +30,44 @@ courtState::~courtState()
 {
 }
 
-// gets and sets modelName
-std::string courtState::getModelName()
+std::string courtState::getModelName()  // retrieves the value of modelName
 {
     return (modelName);
 }
-void courtState::setModelName(std::string name)
+void courtState::setModelName(std::string set)  // sets the value of modelName
 {
-    modelName = name;
+    modelName = set;
 }
 
-// gets and sets model
-Ogre::Entity *courtState::getModel()
+Ogre::Entity *courtState::getModel()  // retrieves the value of model
 {
     return (model);
 }
-void courtState::setModel(Ogre::Entity *Model)
+void courtState::setModel(Ogre::Entity *set)  // sets the value of model
 {
-    model = Model;
+    model = set;
 }
 
-// gets and sets node
-Ogre::SceneNode *courtState::getNode()
+Ogre::SceneNode *courtState::getNode()  // retrieves the value of node
 {
     return (node);
 }
-void courtState::setNode(Ogre::SceneNode *Node)
+void courtState::setNode(Ogre::SceneNode *set)  // sets the value of node
 {
-    node = Node;
+    node = set;
 }
 
-btRigidBody *courtState::getPhysBody()	// retrieves physBody variable
+btRigidBody *courtState::getPhysBody()	// retrieves the value of physBody 
 {
 	return (physBody);
 }
 
-void courtState::setPhysBody(btRigidBody *body)	// sets physBody variable
+void courtState::setPhysBody(btRigidBody *set)	// sets the value of physBody 
 {
-	physBody = body;
-
+	physBody = set;
 }
 
-Ogre::Vector3 courtState::getNodePosition()  // returns the value of nodePosition
+Ogre::Vector3 courtState::getNodePosition()  // retrieves the value of nodePosition
 {
     return (nodePosition);
 }

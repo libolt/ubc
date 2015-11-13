@@ -46,7 +46,20 @@ public:
     //static inputSystem *Instance();
     static boost::shared_ptr<inputSystem> Instance();
 
+    SDL_Event getInputEvent();  // retrieves the value of inputEvent 
+    void setInputEvent(SDL_Event set);  // sets the value of inputEvent 
 
+    std::string getKeyPressed();  // retrieves the value of keyPressed pressed 
+    void setKeyPressed(std::string set);  // sets the value of keyPressed 
+
+    inputMaps getInputMap();  // retrieves the value of inputMap 
+    void setInputMap(inputMaps set);  // sets the value of inputMap 
+
+    inputWorkQueues getInputWorkQueue();  // retrieves the value of inputWorkQueue
+    void setInputWorkQueue(inputWorkQueues set);  // sets the value of inputWorkQueue
+
+    std::vector<userInput> getUInput();  // retrieves the value of uInput
+    void setUInput(std::vector<userInput> set);  // sets the value of uInput
     bool setup();   // sets up and initializes the  Input System
     bool destroy(); // destroys the Input system and related objects
 
@@ -58,22 +71,6 @@ public:
     bool processUnbufferedTouchInput(); // reads in unbuffered touch input
     bool processUnbufferedGamepadInput(); // reads in unbuffered mouse input
 	
-    // SDL Input functions
-    SDL_Event getInputEvent();   // retrieves the value of the inputEvent variable
-    void setInputEvent(SDL_Event input); // sets the value of the inputEvent variable
-
-    std::string getKeyPressed(); // retrieves the value of the keyPressed pressed variable
-    void setKeyPressed(std::string key); // sets the value of the keyPressed variable
-
-    inputMaps getInputMap();  // retrieves the value of the inputMap variable
-    void setInputMap(inputMaps map);  // sets the value of the inputMap variable
-
-    inputWorkQueues getInputWorkQueue();  // retrieves the value of inputWorkQueue
-    void setInputWorkQueue(inputWorkQueues set);  // sets the value of inputWorkQueue
-    
-    std::vector<userInput> getUInput();  // retrieves the value of uInput
-    void setUInput(std::vector<userInput> set);  // sets the value of uInput
-    
 protected:
     inputSystem();
     inputSystem(const inputSystem&);
@@ -81,7 +78,7 @@ protected:
 
     //~inputSystem();
     // SDL Input
-    SDL_Event inputEvent;
+    SDL_Event inputEvent;  // stores input events
     SDL_Event events[EVENT_BUF_SIZE];
     int eventWrite;
 

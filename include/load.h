@@ -44,57 +44,56 @@ public:
     //static loader *Instance();
     static boost::shared_ptr<loader> Instance();
 
-	std::vector<std::string> pathSplit(const std::string paths);
+    std::vector<std::string> pathSplit(const std::string paths);
     string findFile(string fileName);
 //	string * pathArray;
 
-    std::vector<std::string> getPlayerFiles();    // returns list of player xml files
-    void setPlayerFiles(std::vector<std::string> files);     // sets list of player xml files
+    std::vector<std::string> getPlayerFiles();  // retrieves the value of playerFiles
+    void setPlayerFiles(std::vector<std::string> set);  // sets the value of playerFiles
 
-    std::vector<std::string> getTeamFiles();    // returns list of player xml files
-    void setTeamFiles(std::vector<std::string> files);    // sets list of player xml files
+    std::vector<std::string> getTeamFiles();  // retrieves the value of teamFiles
+    void setTeamFiles(std::vector<std::string> set);  // sets the value of teamFiles
 
-    std::vector<std::string> getOffensePlayFiles();    // returns list of offense play xml files
-    void setOffensePlayFiles(std::vector<std::string> files);     // sets list of offense play xml files
+    std::vector<std::string> getOffensePlayFiles();  // retrieves the value of offensePlayFiles
+    void setOffensePlayFiles(std::vector<std::string> set);  // sets the value of offensePlayFiles
 
-    std::vector<std::string> getCourtFiles();   // returns list of court xml files
-    void setCourtFiles(std::vector<std::string> set);  // sets list of court xml files
+    std::vector<std::string> getCourtFiles();  // retrieves the value of courtFiles
+    void setCourtFiles(std::vector<std::string> set);  // sets the value of courtFiles
 
-    std::vector<std::string> getUserInputFiles();   // returns list of user input xml files
-    void setUserInputFiles(std::vector<std::string> set);  // sets list of user input xml files
+    std::vector<std::string> getUserInputFiles();  // retrieves the value of userInputFiles
+    void setUserInputFiles(std::vector<std::string> set);  // sets the value of userInputFiles
 
     bool loadXMLFile(string fileName);
 
-    int readFile(const char *sourceFile, char **destination);
+    int readFile(const char *sourceFile, char **destination);  // reads in the XML file
 
     SDL_RWops *readBinaryFile(const char *sourceFile);
 
-//    int readFile(const char *sourceFile, std:string *destination);
 
     // Teams
-    std::vector<teamData> loadTeams();   // loads team data from XML files
-    bool loadTeamListFile(string fileName); // loads list of team files from teams.xml
-    teamData loadTeamFile(string fileName); // loads data from the team XML files
+    std::vector<teamData> loadTeams();  // loads team data from XML files
+    bool loadTeamListFile(string fileName);  // loads list of team files from teams.xml
+    teamData loadTeamFile(string fileName);  // loads data from the team XML files
 
     // Players
-    std::vector<playerData> loadPlayers(); // loads player data from XML files
-    bool loadPlayerListFile(string fileName);   // loads list of player files from players.xml
-    playerData loadPlayerFile(string fileName);   // loads data from the player XML files
+    std::vector<playerData> loadPlayers();  // loads player data from XML files
+    bool loadPlayerListFile(string fileName);  // loads list of player files from players.xml
+    playerData loadPlayerFile(string fileName);  // loads data from the player XML files
 
     //Offense
-    std::vector<offensePlays> loadOffensePlays();	// load offense plays from XML files
-    bool loadOffensePlayListFile(string fileName);	// loads the list of offense play files from plays.xml
+    std::vector<offensePlays> loadOffensePlays();  // load offense plays from XML files
+    bool loadOffensePlayListFile(string fileName);  // loads the list of offense play files from plays.xml
     offensePlays loadOffensePlayFile(string fileName);	// loads data from the offense play XML files
 
     // courts
-    std::vector<courtData> loadCourts();	// load court XML files
-    bool loadCourtListFile(string fileName);	// load the list of courts from courts.xml
-    courtData loadCourtFile(string fileName);	// loads data from the court XML files.
+    std::vector<courtData> loadCourts();  // load court XML files
+    bool loadCourtListFile(string fileName);  // load the list of courts from courts.xml
+    courtData loadCourtFile(string fileName);  // loads data from the court XML files.
 
     // user input
-    std::vector<userInput> loadUserInputs();    // load user input XML files
-    bool loadUserInputListFile(string fileName);    // load the list of user input configs from userinputs.xml
-    userInput loadUserInputFile(string fileName);   // loads data from the user input XML files.
+    std::vector<userInput> loadUserInputs();  // load user input XML files
+    bool loadUserInputListFile(string fileName);  // load the list of user input configs from userinputs.xml
+    userInput loadUserInputFile(string fileName);  // loads data from the user input XML files.
 
 protected:
     loader();
@@ -102,16 +101,13 @@ protected:
     loader& operator= (const loader&);
 
 private:
-//    static loader *pInstance;
     static boost::shared_ptr<loader> pInstance;
 
-//	static string *pathArray;
-    std::vector<std::string> playerFiles; // stores list of player xml files
-    std::vector<std::string> teamFiles;	// stores list of team xml files
-    std::vector<std::string> offensePlayFiles;	// stores list of offense play xml files
-    std::vector<std::string> courtFiles;	// stores list of court xml files
-    std::vector<std::string> userInputFiles;    // stores list of court xml files
-
+    std::vector<std::string> playerFiles;  // stores list of player xml files
+    std::vector<std::string> teamFiles;	 // stores list of team xml files
+    std::vector<std::string> offensePlayFiles;  // stores list of offense play xml files
+    std::vector<std::string> courtFiles;  // stores list of court xml files
+    std::vector<std::string> userInputFiles;  // stores list of court xml files
 
 };
 

@@ -31,46 +31,43 @@ class courtState
 {
     public:
 
-    courtState();   // constructor
-    ~courtState();  // destructor
+        courtState();   // constructor
+        ~courtState();  // destructor
 
-    // gets and sets modelName
-    std::string getModelName();
-    void setModelName(std::string name);
+        std::string getModelName();  // retrieves the value of modelName
+        void setModelName(std::string set);  // sets the value of modelName
 
-    // gets and sets model
-    Ogre::Entity *getModel();
-    void setModel(Ogre::Entity *Model);
+        Ogre::Entity *getModel();  // retrieves the value of model
+        void setModel(Ogre::Entity *set);  // sets the value of model
 
-    // gets and sets node
-    Ogre::SceneNode *getNode();
-    void setNode(Ogre::SceneNode *Node);
+        Ogre::SceneNode *getNode();  // retrieves the value of node
+        void setNode(Ogre::SceneNode *set);  // sets the value of node
 
-    btRigidBody *getPhysBody();	// retrieves physBody variable
-    void setPhysBody(btRigidBody *body);	// sets physBody variable
+        btRigidBody *getPhysBody();	// retrieves the value of physBody
+        void setPhysBody(btRigidBody *set);	// sets the value physBody 
 
-    Ogre::Vector3 getNodePosition();  // returns the value of nodePosition
-    void setNodePosition(Ogre::Vector3 set);  // sets the value of nodePosition
+        Ogre::Vector3 getNodePosition();  // retrieves the value of nodePosition
+        void setNodePosition(Ogre::Vector3 set);  // sets the value of nodePosition
     
-    bool getStateSet();  // retrieves the value of stateSet
-    void setStateSet(bool set);  // sets the value of stateSet
+        bool getStateSet();  // retrieves the value of stateSet
+        void setStateSet(bool set);  // sets the value of stateSet
         
-    // loads the 3D Model and attaches it to the node as well as sets coordinates
-    bool loadModel();
+        // loads the 3D Model and attaches it to the node as well as sets coordinates
+        bool loadModel();
 
     private:
 
-    std::string modelName;   // stores the file name of the 3D Model
+        std::string modelName;   // stores the file name of the 3D Model
 
-    Ogre::Entity *model;    // stores the 3D Model representing the court
+        Ogre::Entity *model;    // stores the 3D Model representing the court
 
-    Ogre::SceneNode *node;  // stores the node the 3D Model is attached to
+        Ogre::SceneNode *node;  // stores the node the 3D Model is attached to
 
-    Ogre::Vector3 nodePosition;  // stores the position of the node
-    // stores the physics object that represents the player
-    btRigidBody *physBody;
+        Ogre::Vector3 nodePosition;  // stores the position of the node
+        // stores the physics object that represents the player
+        btRigidBody *physBody;
 
-    bool stateSet;  // if true then the basketball court state has been set
+        bool stateSet;  // if true then the basketball court state has been set
 
 };
 

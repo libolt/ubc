@@ -52,62 +52,62 @@ class networkEngine
 //    networkEngine();
     ~networkEngine();
 
-    teamTypes getTeamType();  // returns the value of teamType
+    teamTypes getTeamType();  // retrieves the value of teamType
     void setTeamType(teamTypes set);  // sets the value of teamType
     
-    bool getIsClient();	// returns the value of the isClient variable
-    void setIsClient(bool client);	// sets the value of the isClient variable
+    bool getIsClient();	 // retrieves the value of isClient 
+    void setIsClient(bool set);  // sets the value of isClient 
 
-    bool getIsServer();	// returns the value of the isServer variable
-    void setIsServer(bool server);	// sets the value of the isServer variable
+    bool getIsServer();	// retrieves the value of isServer 
+    void setIsServer(bool set);	// sets the value of isServer 
 
-    bool getClientEstablishedConnection();					// returns clientEstablishedConnection variable
-    void setClientEstablishedConnection(bool connection);	// sets clientEstablishedConnection variable
+    bool getClientEstablishedConnection();  // retrieves the value of clientEstablishedConnection 
+    void setClientEstablishedConnection(bool set);  // sets the value of clientEstablishedConnection 
 
-    bool getServerReceivedConnection();						// returns serverReceivedConnection variable
-    void setServerReceivedConnection(bool connection);		// sets serverReceivedConnection variable
+    bool getServerReceivedConnection();	 // retrieves the value of serverReceivedConnection 
+    void setServerReceivedConnection(bool set);	  // sets the value of serverReceivedConnection
 
-    bool getPacketReceived();								// returns packetReceived variable
-    void setPacketReceived(bool received);					// sets packetReceived variable
+    bool getPacketReceived();  // retrieves the value of packetReceived 
+    void setPacketReceived(bool set);  // sets the value of packetReceived 
 
-    int getClientID();	// returns the value of clientID variable;
-    void setClientID(int ID);  // sets the value of clientID variable;
+    int getClientID();	// retrieves the value of clientID 
+    void setClientID(int set);  // sets the value of clientID 
 
-    std::string getIPAddress();	// returns the value of the ipAddress string
-    void setIPAddress(std::string IP);	// sets the value of the ipAddress string
+    std::string getIPAddress();	// retrieves the value of ipAddress 
+    void setIPAddress(std::string set);	 // sets the value of ipAddress 
 
-    std::string getReceivedData();	// returns receivedData variable
-    void setReceivedData(std::string data);
+    std::string getReceivedData();  // retrieves the value of receivedData
+    void setReceivedData(std::string set);  // sets the value of receivedData
 
-    ENetAddress getListenAddress();	// returns listenAddress variable
-    void setListenAddress(ENetAddress address);	// sets listenAddress variable
+    ENetAddress getListenAddress();  // retrieves the value of  listenAddress 
+    void setListenAddress(ENetAddress set);  // sets the value of listenAddress 
 
-    ENetAddress getServerAddress();	// returns serverAddress variable
-    void setServerAddress(ENetAddress address);	// sets serverAddress variable
+    ENetAddress getServerAddress();  // retrieves the value of serverAddress 
+    void setServerAddress(ENetAddress set);  // sets the value of serverAddress 
 
-    ENetHost *getClient();	//	returns client variable
-    void setClient(ENetHost *Client);	// sets client variable
+    ENetHost *getClient();  // retrieves the value of client 
+    void setClient(ENetHost *set);  // sets the value of client 
 
-    ENetEvent getEvent();	// returns event variable
-    void setEvent(ENetEvent Event);	// sets event variable
+    ENetEvent getEvent();  // retrieves the value of event 
+    void setEvent(ENetEvent set);  // sets event 
 
-    ENetPeer *getPeer();	// returns peer variable
-    void setPeer(ENetPeer *Peer);	// sets peer variable
+    ENetPeer *getPeer();  // retrieves the value of peer 
+    void setPeer(ENetPeer *set);  // sets the value of peer 
 
-    ENetHost *getServer();	// returns server variable
-    void setServer(ENetHost *Server);	// sets server variable
+    ENetHost *getServer();  // retrieves the value of server 
+    void setServer(ENetHost *set);  // sets the value of server 
 
-    int initialize();	// initialize networkEngine code
-    void clientConnect();	// setup client connection.
-    void networkClient();	// Client code
+    int initialize();  // initialize networkEngine code
+    void clientConnect();  // setup client connection.
+    void networkClient();  // Client code
 
-    void serverSetup();	// setup server.
-    void networkServer();	// Server code
+    void serverSetup();	 // setup server.
+    void networkServer();  // Server code
 
     void processLocalInput();  // processes local input for sending to remote system
-    void processRemoteInput(); // processes input received from a remote system
+    void processRemoteInput();  // processes input received from a remote system
     
-    void sendPacket(std::string packetData);	// sends a packet to the peer
+    void sendPacket(std::string packetData);  // sends a packet to the peer
 
     protected:
     networkEngine();
@@ -121,10 +121,10 @@ class networkEngine
     static boost::shared_ptr<networkEngine> pInstance;
 
 
-    int clientID;	// defines the client ID number used to identify which client is communicating with the server
-    std::string ipAddress; // stores IP Address used for either server or client code
-    std::string receivedData; // stores received packet data
-    bool packetReceived;	// if set then a packet was received from remote connection
+    int clientID;  // defines the client ID number used to identify which client is communicating with the server
+    std::string ipAddress;  // stores IP Address used for either server or client code
+    std::string receivedData;  // stores received packet data
+    bool packetReceived;  // if set then a packet was received from remote connection
 
     // ENET related code
     ENetAddress listenAddress;
@@ -135,15 +135,15 @@ class networkEngine
     ENetHost *server;
     ENetPacket *packet;
 
-    netGameTypes netGameType;   // stores what type of network game this instance is
-    teamTypes teamType; // stores which team the network player is on
+    netGameTypes netGameType;  // stores what type of network game this instance is
+    teamTypes teamType;  // stores which team the network player is on
     // FiXME! deprecated in favor of netGameTypes
-    bool isClient;	// stores whether or not this instance is the client
-    bool isServer; // stores whethr or not this instance is the server
+    bool isClient;  // stores whether or not this instance is the client
+    bool isServer;  // stores whethr or not this instance is the server
 
-    bool serverSetupComplete;	// stores whether or not the server is setup and running
-    bool clientEstablishedConnection;	// stores whether or not a connection from client to server was successful
-    bool serverReceivedConnection;		// stores whether or not server received a client connection.
+    bool serverSetupComplete;  // stores whether or not the server is setup and running
+    bool clientEstablishedConnection;  // stores whether or not a connection from client to server was successful
+    bool serverReceivedConnection;  // stores whether or not server received a client connection.
 };
 
 

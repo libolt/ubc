@@ -38,33 +38,34 @@ class playerSteerPlugin : public OpenSteer::PlugIn, steering
     // be more "nice" to avoid a compiler warning
     ~playerSteerPlugin() {}
 
-    void open(void);
+    void open(void);  // opens the plugin
 
-    void update (const float currentTime, const float elapsedTime);
+    void update (const float currentTime, const float elapsedTime);  // updates the plugin state
 
     void redraw (const float currentTime, const float elapsedTime);
 
-    void close (void);
+    void close (void);  // closes the plugin
 
-    void reset (void);
+    void reset (void);  // resets the plugin
 
 
-    /* const*/ OpenSteer::AVGroup& allVehicles (void) {return (/*const*/ OpenSteer::AVGroup&) TeamA;}
+    OpenSteer::AVGroup& allVehicles (void) {return (OpenSteer::AVGroup&) TeamA;} // returns list of all 'vehicles' in the game
 
-    unsigned int	m_PlayerCountA;
-    unsigned int	m_PlayerCountB;
-    std::vector<playerSteer*> TeamA;
-    std::vector<playerSteer*> TeamB;
-    std::vector<playerSteer*> m_AllPlayers;
+    unsigned int m_PlayerCountA;  // counts number of players on Team A
+    unsigned int m_PlayerCountB;  // counts number of playres on Team B
+    std::vector<playerSteer*> TeamA;  // stores steering objects for Team A
+    std::vector<playerSteer*> TeamB;  // stores teering objects for Team B
+    std::vector<playerSteer*> m_AllPlayers;  // stores steering objects for all players
 
 //        Ball	*m_Ball;
-    steering::AABBox	*courtBBox;
+    steering::AABBox *courtBBox;  // Axis Aligned Bounding Box for the court
 /*        AABBox	*m_TeamAGoal;
         AABBox	*m_TeamBGoal;
-*/
+
     int junk;
     int	 m_redScore;
     int	 m_blueScore;
+*/
 };
  
  #endif

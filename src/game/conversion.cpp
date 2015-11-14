@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean   *
- *   libolt@libolt.net   *
+ *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -20,23 +20,19 @@
 
 #include "conversion.h"
 
-//conversion* conversion::pInstance = 0;
 boost::shared_ptr<conversion> conversion::pInstance;
 
-//conversion* conversion::Instance()
 boost::shared_ptr<conversion> conversion::Instance()
 {
     if (pInstance == 0)  // is it the first call?
     {
-//        pInstance = new conversion; // create sole instance
         boost::shared_ptr<conversion> tInstance(new conversion);
         pInstance = tInstance;
     }
     return pInstance; // returns the value of pInstance
 }
 
-// inputSystem constructor
-conversion::conversion()
+conversion::conversion()  // constructor
 {
     
 }

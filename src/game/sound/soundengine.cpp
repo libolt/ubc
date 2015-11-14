@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean   *
- *   libolt@libolt.net   *
+ *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -23,15 +23,12 @@
 #include "conversion.h"
 #include "load.h"
 
-//soundEngine* soundEngine::pInstance = 0;
 boost::shared_ptr<soundEngine> soundEngine::pInstance;
 
-//soundEngine* soundEngine::Instance()
 boost::shared_ptr<soundEngine> soundEngine::Instance()
 {
     if (pInstance == 0)  // is it the first call?
     {
-//        pInstance = new soundEngine; // create sole instance
         boost::shared_ptr<soundEngine> tInstance(new soundEngine);
         pInstance = tInstance;
 
@@ -39,7 +36,7 @@ boost::shared_ptr<soundEngine> soundEngine::Instance()
     return pInstance; // address of sole instance
 }
 
-soundEngine::soundEngine()
+soundEngine::soundEngine()  // constructor
 {
 //    g_PlayingAudio[16];
     still_playing = AL_TRUE;
@@ -48,14 +45,13 @@ soundEngine::soundEngine()
         
 }
 
-soundEngine::~soundEngine()
+soundEngine::~soundEngine()  // destructor
 {
     
 }
 
 void soundEngine::Internal_SoundFinished_CallbackIntercept(ALint which_channel, ALuint al_source, ALmixer_Data* almixer_data, ALboolean finished_naturally, void* user_data)
 {
-    //conversion *convert = conversion::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
     logMsg("Channel " +convert->toString(which_channel) +" finished\n");
     g_PlayingAudio[which_channel] = AL_FALSE;
@@ -73,7 +69,6 @@ void soundEngine::setSetupComplete(bool set)  // sets the value of setupComplete
 
 bool soundEngine::loadSound(std::string sound)  // loads sounds from media file
 {
-    //conversion *convert = conversion::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<loader> load = loader::Instance();
 
@@ -105,7 +100,7 @@ bool soundEngine::loadSound(std::string sound)  // loads sounds from media file
 //    exit(0);
     return (true);}
 
-bool soundEngine::setup()
+bool soundEngine::setup()  // sets up the sound engine
 {
     //conversion *convert = conversion::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
@@ -138,5 +133,4 @@ bool soundEngine::setup()
     logMsg("Sound Engine Setup Complete!");
     return true;
 }
-
 

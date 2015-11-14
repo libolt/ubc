@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean   *
- *   libolt@libolt.net   *
+ *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -26,7 +26,7 @@
 
 defenseState::defenseState() // constructor
 {
-	execute = false;
+    execute = false;
 }
 
 teamTypes defenseState::getTeamType()  // retrieves the value of teamType
@@ -49,11 +49,11 @@ void defenseState::setCourtSide(courtSide_t set)  // sets the value of courtSide
 
 bool defenseState::getExecute()	// retrieves the value of execute variable
 {
-	return (execute);
+    return (execute);
 }
 void defenseState::setExecute(bool ex)	// sets the value of the execute variable
 {
-	execute = ex;
+    execute = ex;
 }
 
 void defenseState::setupState()		// sets up initial state of the object
@@ -62,13 +62,11 @@ void defenseState::setupState()		// sets up initial state of the object
 }
 void defenseState::updateState(teamTypes teamOnDefense)	// updates the state of the object
 {
-    //conversion *convert = conversion::Instance();
-	boost::shared_ptr<conversion> convert = conversion::Instance();
-    //gameState *gameS = gameState::Instance();
+    boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
     teamTypes teamWithBall = gameS->getTeamWithBall();
 
-	std::vector<teamState> teamInstance = gameS->getTeamInstance();
+    std::vector<teamState> teamInstance = gameS->getTeamInstance();
     std::vector<playerState> playerDInstance = teamInstance[teamOnDefense].getActivePlayerInstance();
     std::vector<playerState> playerOInstance = teamInstance[teamWithBall].getActivePlayerInstance();
     std::vector<size_t> activeDID = teamInstance[teamOnDefense].getActivePlayerID();

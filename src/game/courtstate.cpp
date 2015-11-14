@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean   *
- *   libolt@libolt.net   *
+ *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -85,12 +85,11 @@ void courtState::setStateSet(bool set)  // sets the value of stateSet
     stateSet = set;
 }
 
-// loads the 3D Model and attaches it to the node as well as sets coordinates
-bool courtState::loadModel()
+bool courtState::loadModel()  // loads the 3D Model and attaches it to the node as well as sets coordinates
 {
     boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
-    model = render->getMSceneMgr()->createEntity("courtModel", modelName);	// loads the Court model
+    model = render->getMSceneMgr()->createEntity("courtModel", modelName);  // loads the Court model
 
     // creates the courtNode
     node = render->getMSceneMgr()->getRootSceneNode()->createChildSceneNode("courtSceneNode");

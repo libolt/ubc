@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean   *
- *   libolt@libolt.net   *
+ *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -27,7 +27,7 @@
 
 #include <string>
 
- basketballs::basketballs()
+ basketballs::basketballs()  // constructor
 {
 //    playerControlBasketball = -1;
     maxHeight = 0;
@@ -72,7 +72,7 @@
 
 }
 
-basketballs::~basketballs()
+basketballs::~basketballs()  // destructor
 {
 }
 
@@ -383,9 +383,6 @@ bool basketballs::loadModel()  // loads the 3D model
 // calculates change in position along the x,y,z axes
 Ogre::Vector3 basketballs::calculatePositionChange()
 {
-
-	//   UBC *ubc = UBC::Instance();
-    //gameState *gameS = gameState::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
 
     Ogre::Vector3 changeInPosition;	// stores the calculated change in position
@@ -400,7 +397,6 @@ Ogre::Vector3 basketballs::calculatePositionChange()
 
 void basketballs::updateState()  // updates the state of the basketball
 {
-    
     if (modelNeedsLoaded)
     {
 //        exit(0);
@@ -439,7 +435,6 @@ void basketballs::updateState()  // updates the state of the basketball
 void basketballs::updatePosition() // updates the position of the basketball
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    //boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
     comparison compare;
     Ogre::Vector3 changePos;
     btVector3 physChange = btVector3(0,0,0);
@@ -552,7 +547,7 @@ void basketballs::updateMovement()  // updates the basketball(s) movements
     {
         bballCurrentPos = courtPosition;
     }
-    playerPos = activePlayerInstance[playerWithBallInstance].getCourtPosition();    // stores the current position of player with ball
+    playerPos = activePlayerInstance[playerWithBallInstance].getCourtPosition();  // stores the current position of player with ball
     //bballPos = bballCurrentPos;
     bballPos = Ogre::Vector3(0,0,0);
     logMsg("bballHere???");

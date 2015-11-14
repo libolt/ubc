@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean   *
- *   libolt@libolt.net   *
+ *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -36,10 +36,8 @@
 #include "config.h"
 #endif
 
-//GUISystem* GUISystem::pInstance = 0;
 boost::shared_ptr<GUISystem> GUISystem::pInstance;
 
-//GUISystem* GUISystem::Instance()
 boost::shared_ptr<GUISystem> GUISystem::Instance()
 {
     if (pInstance == 0)  // is it the first call?
@@ -52,8 +50,7 @@ boost::shared_ptr<GUISystem> GUISystem::Instance()
     return pInstance; // address of sole instance
 }
 
-// Initializes the GUISystem class
-GUISystem::GUISystem()
+GUISystem::GUISystem()  // Initializes the GUISystem class
 {
 //    mGUIRenderer = 0;
 //    mGUISystem = 0;
@@ -88,20 +85,20 @@ GUISystem::~GUISystem()
 
 }
 
-bool GUISystem::getMainMenuCreated()   // retrieves the value of mainMenuCreated
+bool GUISystem::getMainMenuCreated()  // retrieves the value of mainMenuCreated
 {
     return (mainMenuCreated);
 }
-void GUISystem::setMainMenuCreated(bool created) // sets the value of mainMenuCreated
+void GUISystem::setMainMenuCreated(bool created)  // sets the value of mainMenuCreated
 {
     mainMenuCreated = created;
 }
 
-bool GUISystem::getBackButtonsCreated() // retrieves the value of backButtonsCreated
+bool GUISystem::getBackButtonsCreated()  // retrieves the value of backButtonsCreated
 {
 	return (backButtonsCreated);
 }
-void GUISystem::setBackButtonsCreated(bool created) // sets the value of backButtonsCreated
+void GUISystem::setBackButtonsCreated(bool created)  // sets the value of backButtonsCreated
 {
 	backButtonsCreated = created;
 }
@@ -197,41 +194,40 @@ void GUISystem::setCourtSelectionDataLoaded(bool loaded)  // sets the value of c
     courtSelectionDataLoaded = loaded;
 }
 
-bool GUISystem::getMenuActive() // retrieves the value of menuActive
+bool GUISystem::getMenuActive()  // retrieves the value of menuActive
 {
 	return (menuActive);
 }
-void GUISystem::setMenuActive(bool active) // sets the value of menuActive
+void GUISystem::setMenuActive(bool active)  // sets the value of menuActive
 {
 	menuActive = active;
 }
-activeMenus GUISystem::getActiveMenu() // retrieves the value of activeMenu
+activeMenus GUISystem::getActiveMenu()  // retrieves the value of activeMenu
 {
 	return (activeMenu);
 }
-void GUISystem::setActiveMenu(activeMenus menu) // sets the value of activeMenu
+void GUISystem::setActiveMenu(activeMenus menu)  // sets the value of activeMenu
 {
 	activeMenu = menu;
 }
 
-activeMenus GUISystem::getPreviousActiveMenu() // retrieves the value of previousActiveMenu
+activeMenus GUISystem::getPreviousActiveMenu()  // retrieves the value of previousActiveMenu
 {
 	return (previousActiveMenu);
 }
-void GUISystem::setPreviousActiveMenu(activeMenus menu) // sets the value of previousActiveMenu
+void GUISystem::setPreviousActiveMenu(activeMenus menu)  // sets the value of previousActiveMenu
 {
 	previousActiveMenu = menu;
 }
 
-// Initializes MyGUI
-bool GUISystem::initMyGUI()
+bool GUISystem::initMyGUI()  // Initializes MyGUI
 {
     boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     Ogre::RenderWindow *mWindow = render->getMWindow();
     Ogre::SceneManager *mSceneMgr = render->getMSceneMgr();
 
-	logMsg("*** Initializing MyGUI ***");
-	mPlatform = new MyGUI::OgrePlatform();
+    logMsg("*** Initializing MyGUI ***");
+    mPlatform = new MyGUI::OgrePlatform();
     logMsg("Crash?");
 
 /*#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
@@ -242,18 +238,15 @@ bool GUISystem::initMyGUI()
 //#endif
 
     logMsg("Crash??");
-	mGUI = new MyGUI::Gui();
-	logMsg("Crash???");
-	mGUI->initialise();
+    mGUI = new MyGUI::Gui();
+    logMsg("Crash???");
+    mGUI->initialise();
     logMsg("*** MyGUI Initialized ***");
-	return true;
+    return true;
 }
 
-
-
-void GUISystem::startSinglePlayerGame() // starts single player game
+void GUISystem::startSinglePlayerGame()  // starts single player game
 {
-	//gameState *gameS = gameState::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
 
     gameS->setGameType(SINGLE);
@@ -263,24 +256,24 @@ void GUISystem::startSinglePlayerGame() // starts single player game
 //	menuActive = false;
 }
 
-void GUISystem::startMultiPlayerGame() // starts multiplayer game
+void GUISystem::startMultiPlayerGame()  // starts multiplayer game
 {
-	if (!networkSetupMenuCreated)
-	{
-	    createNetworkSetupGUI();    // creates the GUI for the Network Setup Screen
-	}
+    if (!networkSetupMenuCreated)
+    {
+        createNetworkSetupGUI();  // creates the GUI for the Network Setup Screen
+    }
 
     changeActiveMenu(NETWORK);
 }
 
-void GUISystem::optionsMenu() // displays options menu
+void GUISystem::optionsMenu()  // displays options menu
 {
-	if (!optionsMenuCreated)
-	{
-		createOptionsMenuGUI();
-	}
+    if (!optionsMenuCreated)
+    {
+        createOptionsMenuGUI();
+    }
 
-	changeActiveMenu(OPTIONS);
+    changeActiveMenu(OPTIONS);
 }
 
 void GUISystem::displayMenu()  // displays display menu
@@ -312,19 +305,18 @@ void GUISystem::audioMenu()  // displays the audio menu
     changeActiveMenu(AUDIO);
 }
 
-void GUISystem::gameSetupMenu() // displays game setup menu
+void GUISystem::gameSetupMenu()  // displays game setup menu
 {
-	if (!gameSetupMenuCreated)
-	{
-		createGameSetupMenuGUI();
-		gameSetupMenuCreated = true;
-	}
-
+    if (!gameSetupMenuCreated)
+    {
+        createGameSetupMenuGUI();
+        gameSetupMenuCreated = true;
+    }
 	
-	changeActiveMenu(GAMESETUP);
+    changeActiveMenu(GAMESETUP);
 }
 
-void GUISystem::playerStartSelectionMenu() // displays player start selection menu
+void GUISystem::playerStartSelectionMenu()  // displays player start selection menu
 {
     if (!playerStartSelectionMenuCreated)
     {
@@ -336,7 +328,7 @@ void GUISystem::playerStartSelectionMenu() // displays player start selection me
     changeActiveMenu(PLAYERSTART);
 }
 
-void GUISystem::teamSelectionMenu() // displays team selection menu
+void GUISystem::teamSelectionMenu()  // displays team selection menu
 {
     if (!teamSelectionMenuCreated)
     {
@@ -349,7 +341,6 @@ void GUISystem::teamSelectionMenu() // displays team selection menu
 
 void GUISystem::courtSelectionMenu() // displays court selection menu
 {
-    //gameState *gameS = gameState::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
     
     boost::shared_ptr<loader> load = loader::Instance();
@@ -419,10 +410,10 @@ void GUISystem::networkServer()  // sets up  game as a network server
     boost::shared_ptr<gameState> gameS = gameState::Instance();
 
     gameS->setGameType(MULTI);
- //   hideNetworkSetupWidgets();  // Hides Network Setup Menu widgets
+//   hideNetworkSetupWidgets();  // Hides Network Setup Menu widgets
     menuActive = false;
     network->setIPAddress(serverIPAddressBox->getCaption());  // sets the neworkEngine's ipAddress string to that of the caption
-   logMsg("server ip = " +network->getIPAddress());
+    logMsg("server ip = " +network->getIPAddress());
     network->serverSetup();
 
 //    gameE->setCreateScene(true); // sets variable true that tells gameEngine to start rendering the scene
@@ -430,11 +421,8 @@ void GUISystem::networkServer()  // sets up  game as a network server
 }
 void GUISystem::networkClient()  // sets up game as a network client
 {
-    //networkEngine * network = networkEngine::Instance();
     boost::shared_ptr<networkEngine> network = networkEngine::Instance();
-    //gameEngine * gameE = gameEngine::Instance();
     boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
-    //gameState *gameS = gameState::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
 
     gameS->setGameType(MULTI);
@@ -638,11 +626,11 @@ void GUISystem::playerStartSelected()  // process player start selection
     }
 
     teamInstance[1].setActivePlayerID(activePlayerID);
-    if (!teamInstance[1].getPlayerInstancesCreated())    // checks if playerInstances have been created
+    if (!teamInstance[1].getPlayerInstancesCreated())  // checks if playerInstances have been created
     {
         logMsg("Creating team 1 player instances");
 //            exit(0);
-        if (teamInstance[1].createPlayerInstances()) // creates the player instances based on playerIDS
+        if (teamInstance[1].createPlayerInstances())  // creates the player instances based on playerIDS
         {
 //            exit(0);
 
@@ -688,7 +676,7 @@ void GUISystem::playerStartSelected()  // process player start selection
 
     if (teamInstance[0].getPlayerInstancesCreated() && teamInstance[1].getPlayerInstancesCreated())
     {
-        gameS->setTeamInstance(teamInstance); // sets the teamInstance vector
+        gameS->setTeamInstance(teamInstance);  // sets the teamInstance vector
         gameS->setGameSetupComplete(true);
     }
     else

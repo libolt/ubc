@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean   *
- *   libolt@libolt.net   *
+ *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -36,9 +36,8 @@
 #include "config.h"
 #endif
 
-bool GUISystem::addCourtSelectionMenuData() // adds data to Player Start Selection Menu widgets
+bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Selection Menu widgets
 {
-    //gameState *gameS = gameState::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
     
     std::vector<courtData> courtDataInstance;
@@ -71,13 +70,10 @@ bool GUISystem::addCourtSelectionMenuData() // adds data to Player Start Selecti
     return (true);
 }
 
-void GUISystem::addPlayerStartSelectionMenuData() // adds data to Player Start Selection Menu widgets
+void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start Selection Menu widgets
 {
-    //conversion *convert = conversion::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    //gameState *gameS = gameState::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
-    
     boost::shared_ptr<loader> load = loader::Instance();
 
     std::vector<playerData> playerDataInstance; // = gameS->getPlayerDataInstance();
@@ -158,9 +154,9 @@ void GUISystem::addPlayerStartSelectionMenuData() // adds data to Player Start S
         flag = 0;
         for (size_t j=0; j < (overallRatingsSize -1); ++j)
         {
-            if (overallRatings[0][j+1] > overallRatings[0][j])      // ascending order simply changes to <
+            if (overallRatings[0][j+1] > overallRatings[0][j])  // ascending order simply changes to <
             {
-                temp = overallRatings[0][j];             // swap elements
+                temp = overallRatings[0][j];  // swap elements
                 tempName = playerNames[0][j];
                 tempPosition = playerPositions[0][j];
                 tempID = playerIDs[0][j];
@@ -195,9 +191,9 @@ void GUISystem::addPlayerStartSelectionMenuData() // adds data to Player Start S
         flag = 0;
         for (size_t j=0; j < (overallRatingsSize -1); ++j)
         {
-            if (overallRatings[1][j+1] > overallRatings[1][j])      // ascending order simply changes to <
+            if (overallRatings[1][j+1] > overallRatings[1][j])  // ascending order simply changes to <
             {
-                temp = overallRatings[1][j];             // swap elements
+                temp = overallRatings[1][j];  // swap elements
                 tempName = playerNames[1][j];
                 tempPosition = playerPositions[1][j];
                 tempID = playerIDs[1][j];
@@ -212,7 +208,7 @@ void GUISystem::addPlayerStartSelectionMenuData() // adds data to Player Start S
                 playerPositions[1][j+1] = tempPosition;
                 playerIDs[1][j+1] = tempID;
 
-                flag = 1;               // indicates that a swap occurred.
+                flag = 1;  // indicates that a swap occurred.
             }
         }
 
@@ -228,15 +224,6 @@ void GUISystem::addPlayerStartSelectionMenuData() // adds data to Player Start S
     }
 
     size_t startID = 0;
-/*    for (size_t i=0;i<5;++i)
-    {
-
-        teamStarterID[0].push_back(startID);
-//        exit(0);
-        teamStarterID[1].push_back(startID);
-//        exit(0);
-    }
-*/
     for (size_t i = 0;i < playerNames[0].size(); ++i)
     {
        bool playerNameLengthReached = false;
@@ -380,6 +367,5 @@ void GUISystem::addPlayerStartSelectionMenuData() // adds data to Player Start S
 
 //    exit(0);
 
-    
 }
 

@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean   *
- *   libolt@libolt.net   *
+ *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -36,7 +36,7 @@
 #include "config.h"
 #endif
 
-void GUISystem::hideMainMenuWidgets()   // hides the widgets tied to the Main Menu
+void GUISystem::hideMainMenuWidgets()  // hides the widgets tied to the Main Menu
 {
     startSingleGameButton->setVisible(false);
     startMultiGameButton->setVisible(false);
@@ -44,7 +44,7 @@ void GUISystem::hideMainMenuWidgets()   // hides the widgets tied to the Main Me
     exitButton->setVisible(false);
     startSingleGameButton->setStateSelected(false);
 }
-void GUISystem::showMainMenuWidgets()         // shows all widgets tied to the Main Menu
+void GUISystem::showMainMenuWidgets()  // shows all widgets tied to the Main Menu
 {
     startSingleGameButton->setVisible(true);
     startMultiGameButton->setVisible(true);
@@ -53,14 +53,14 @@ void GUISystem::showMainMenuWidgets()         // shows all widgets tied to the M
     startSingleGameButton->setStateSelected(true);
     MyGUI::InputManager::getInstance().setKeyFocusWidget(startSingleGameButton);
 }
-void GUISystem::hideNetworkSetupWidgets()   // hides the widgets tied to the Network Setup Menu
+void GUISystem::hideNetworkSetupWidgets()  // hides the widgets tied to the Network Setup Menu
 {
 //  ipAddressBox->setVisible(false);
     serverButton->setVisible(false);
     clientButton->setVisible(false);
     backMainMenuButton->setVisible(false);
 }
-void GUISystem::showNetworkSetupWidgets()     // shows all widgets tied to the Network Setup Menu
+void GUISystem::showNetworkSetupWidgets()  // shows all widgets tied to the Network Setup Menu
 {
     boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     Ogre::Viewport *viewPort = render->getViewPort();
@@ -102,37 +102,6 @@ void GUISystem::showNetworkServerSetupWidgets()  // shows all widgets tied to th
 
     numClientsSelectBox->setVisible(true);
     
-/*    team0Player1SelectBox->setVisible(true);
-    team0Player1SelectBox->setPosition((0.1 *viewPort->getActualWidth() ), (0.05 *viewPort->getActualHeight()) );
-    
-    team0Player2SelectBox->setVisible(true);
-    team0Player2SelectBox->setPosition((0.1 *viewPort->getActualWidth() ), (0.09 *viewPort->getActualHeight()) );
-    
-    team0Player3SelectBox->setVisible(true);
-    team0Player3SelectBox->setPosition((0.1 *viewPort->getActualWidth() ), (0.13 *viewPort->getActualHeight()) );
-    
-    team0Player4SelectBox->setVisible(true);
-    team0Player4SelectBox->setPosition((0.1 *viewPort->getActualWidth() ), (0.17 *viewPort->getActualHeight()) );
-
-    team0Player5SelectBox->setVisible(true);
-    team0Player5SelectBox->setPosition((0.1 *viewPort->getActualWidth() ), (0.21 *viewPort->getActualHeight()) );
-    
-    team1Player1SelectBox->setVisible(true);
-    team1Player1SelectBox->setPosition((0.5 *viewPort->getActualWidth() ), (0.05 *viewPort->getActualHeight()) );
-    
-    team1Player2SelectBox->setVisible(true);
-    team1Player2SelectBox->setPosition((0.5 *viewPort->getActualWidth() ), (0.09 *viewPort->getActualHeight()) );
-    
-    team1Player3SelectBox->setVisible(true);
-    team1Player3SelectBox->setPosition((0.5 *viewPort->getActualWidth() ), (0.13 *viewPort->getActualHeight()) );
-    
-    team1Player4SelectBox->setVisible(true);
-    team1Player4SelectBox->setPosition((0.5 *viewPort->getActualWidth() ), (0.17 *viewPort->getActualHeight()) );
-    
-    team1Player5SelectBox->setVisible(true);
-    team1Player5SelectBox->setPosition((0.5 *viewPort->getActualWidth() ), (0.21 *viewPort->getActualHeight()) );
-*/
-
     serverIPAddressBox->setVisible(true);
     serverIPAddressBox->setPosition((0.3 *viewPort->getActualWidth() ), (0.10 *viewPort->getActualHeight()) );
 
@@ -143,13 +112,13 @@ void GUISystem::showNetworkServerSetupWidgets()  // shows all widgets tied to th
     backNetworkSetupButton->setPosition((0.3 *viewPort->getActualWidth() ), (0.18 *viewPort->getActualHeight()) );
 }
 
-void GUISystem::hideNetworkClientSetupWidgets()   // hides the widgets tied to the Network Setup Menu
+void GUISystem::hideNetworkClientSetupWidgets()  // hides the widgets tied to the Network Setup Menu
 {
     clientIPAddressBox->setVisible(false);
     clientConnectButton->setVisible(false);
     backNetworkSetupButton->setVisible(false);
 }
-void GUISystem::showNetworkClientSetupWidgets()     // shows all widgets tied to the Network Setup Menu
+void GUISystem::showNetworkClientSetupWidgets()  // shows all widgets tied to the Network Setup Menu
 {
     boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     Ogre::Viewport *viewPort = render->getViewPort();
@@ -165,7 +134,7 @@ void GUISystem::showNetworkClientSetupWidgets()     // shows all widgets tied to
 
 }
 
-void GUISystem::hideOptionsMenuWidgets()    // hides all widgets tied to the Options Menu
+void GUISystem::hideOptionsMenuWidgets()  // hides all widgets tied to the Options Menu
 {
     displayButton->setVisible(false);
     inputButton->setVisible(false);
@@ -185,7 +154,7 @@ void GUISystem::showOptionsMenuWidgets()  // shows all widgets tied to the Optio
 
 }
 
-void GUISystem::hideDisplayMenuWidgets()    // hides all widgets tied to the Display Menu
+void GUISystem::hideDisplayMenuWidgets()  // hides all widgets tied to the Display Menu
 {
     changeResolutionButton->setVisible(false);
 
@@ -278,7 +247,7 @@ void GUISystem::showGameSetupMenuWidgets()  // shows all widgets tied to the Gam
     }
 }
 
-void GUISystem::hidePlayerStartSelectionMenuWidgets() // hides all widgets tied to the Player Start Selection Menu
+void GUISystem::hidePlayerStartSelectionMenuWidgets()  // hides all widgets tied to the Player Start Selection Menu
 {
 
     // Team 0 widgets
@@ -321,7 +290,7 @@ void GUISystem::hidePlayerStartSelectionMenuWidgets() // hides all widgets tied 
     backTeamSelectionMenuButton->setVisible(false);
 
 }
-void GUISystem::showPlayerStartSelectionMenuWidgets() // shows all widgets tied to the Player Start Selection Menu
+void GUISystem::showPlayerStartSelectionMenuWidgets()  // shows all widgets tied to the Player Start Selection Menu
 {
 
     boost::shared_ptr<renderEngine> render = renderEngine::Instance();
@@ -413,7 +382,7 @@ void GUISystem::showPlayerStartSelectionMenuWidgets() // shows all widgets tied 
 
 }
 
-void GUISystem::hideTeamSelectionMenuWidgets() // hides all widgets tied to the Team Selection Menu
+void GUISystem::hideTeamSelectionMenuWidgets()  // hides all widgets tied to the Team Selection Menu
 {
     //conversion *convert = conversion::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
@@ -425,24 +394,10 @@ void GUISystem::hideTeamSelectionMenuWidgets() // hides all widgets tied to the 
     teamsSelectedButton->setVisible(false);
     logMsg("previousActiveMenu = " +convert->toString(previousActiveMenu));
 
-/*    if (previousActiveMenu == MAIN)
-    {
-        backMainMenuButton->setVisible(false);
-    }
-    else if (previousActiveMenu == NETWORKCLIENT)
-    {
-        backNetworkClientButton->setVisible(false);
-    }
-    else if (previousActiveMenu == NETWORK)
-    {
-        backNetworkSetupButton->setVisible(false);
-
-    }
-    */
     backCourtSelectionMenuButton->setVisible(false);
 }
 
-void GUISystem::showTeamSelectionMenuWidgets() // show all widgets tied to the Team Selection Menu
+void GUISystem::showTeamSelectionMenuWidgets()  // show all widgets tied to the Team Selection Menu
 {
     boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     Ogre::Viewport *viewPort = render->getViewPort();
@@ -461,29 +416,13 @@ void GUISystem::showTeamSelectionMenuWidgets() // show all widgets tied to the T
 
     teamsSelectedButton->setVisible(true);
     teamsSelectedButton->setPosition((0.3 *viewPort->getActualWidth() ), (0.25 *viewPort->getActualHeight()) );
-/*    if (previousActiveMenu == MAIN)
-    {
-        backMainMenuButton->setVisible(true);
-        backMainMenuButton->setPosition((0.3 *viewPort->getActualWidth() ), (0.22 *viewPort->getActualHeight()) );
-
-    }
-    else if (previousActiveMenu == NETWORKCLIENT)
-    {
-        backNetworkClientButton->setVisible(true);
-        backNetworkClientButton->setPosition((0.3 *viewPort->getActualWidth() ), (0.22 *viewPort->getActualHeight()) );
-    }
-    else if (previousActiveMenu == NETWORK)
-    {
-        backNetworkSetupButton->setVisible(true);
-        backNetworkSetupButton->setPosition((0.3 *viewPort->getActualWidth() ), (0.22 *viewPort->getActualHeight()) );
-    }
-    */
+    
     backCourtSelectionMenuButton->setVisible(true);
     backCourtSelectionMenuButton->setPosition((0.3 *viewPort->getActualWidth() ), (0.30 *viewPort->getActualHeight()) );
 
 }
 
-void GUISystem::hideCourtSelectionMenuWidgets() // hides all widgets tied to the Court Selection Menu
+void GUISystem::hideCourtSelectionMenuWidgets()  // hides all widgets tied to the Court Selection Menu
 {
     backMainMenuButton->setVisible(false);
     courtSelectBox->setVisible(false);
@@ -492,7 +431,7 @@ void GUISystem::hideCourtSelectionMenuWidgets() // hides all widgets tied to the
     courtSelectButton->setVisible(false);
 
 }
-void GUISystem::showCourtSelectionMenuWidgets() // show all widgets tied to the Court Selection Menu
+void GUISystem::showCourtSelectionMenuWidgets()  // show all widgets tied to the Court Selection Menu
 {
     boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     Ogre::Viewport *viewPort = render->getViewPort();

@@ -39,8 +39,8 @@ boost::shared_ptr<AISystem> AISystem::Instance()
 
 AISystem::AISystem()
 {
-	selectedVehicle = NULL;
-	oldTime = 0.0f;
+    selectedVehicle = NULL;
+    oldTime = 0.0f;
 
 }
 AISystem::~AISystem()
@@ -48,31 +48,31 @@ AISystem::~AISystem()
 
 }
 
-OpenSteer::AbstractVehicle* AISystem::getSelectedVehicle() // retrieves the value of selectedVehicle
+OpenSteer::AbstractVehicle* AISystem::getSelectedVehicle()  // retrieves the value of selectedVehicle
 {
-	return (selectedVehicle);
+    return (selectedVehicle);
 }
-void AISystem::setSelectedVehicle(OpenSteer::AbstractVehicle* vehicle)  // sets the value of selectedVehicle
+void AISystem::setSelectedVehicle(OpenSteer::AbstractVehicle* set)  // sets the value of selectedVehicle
 {
-	selectedVehicle = vehicle;
-}
-
-std::vector<playerSteer*> AISystem::getAllPlayerSteers()	// retrieves the value of allPlayerSteers
-{
-	return (allPlayerSteers);
-}
-void AISystem::setAllPlayerSteers( std::vector<playerSteer*> steers)	// sets the value of allPlayerSteers
-{
-    allPlayerSteers = steers;
+    selectedVehicle = set;
 }
 
-float AISystem::getOldTime() // returns the value of oldTime
+std::vector<playerSteer*> AISystem::getAllPlayerSteers()  // retrieves the value of allPlayerSteers
 {
-	return oldTime;
+    return (allPlayerSteers);
 }
-void AISystem::setOldTime(float time) // sets the value of oldTime
+void AISystem::setAllPlayerSteers( std::vector<playerSteer*> set)  // sets the value of allPlayerSteers
 {
-	oldTime = time;
+    allPlayerSteers = set;
+}
+
+float AISystem::getOldTime()  // returns the value of oldTime
+{
+    return oldTime;
+}
+void AISystem::setOldTime(float set)  // sets the value of oldTime
+{
+    oldTime = set;
 }
 
 void printPlugIn (OpenSteer::PlugIn& pi);
@@ -80,8 +80,7 @@ void printPlugIn (OpenSteer::PlugIn& pi);
 // initial setup of AI state
 bool AISystem::setup(void)
 {
-
-	// select the default PlugIn
+    // select the default PlugIn
     selectDefaultPlugIn ();
     {
         // XXX this block is for debugging purposes,
@@ -103,13 +102,11 @@ bool AISystem::setup(void)
 
     // initialize the default PlugIn
     openSelectedPlugIn ();
-
-
 	return true;
 }
 
-// updates AI state
-void AISystem::update(const float currentTime, const float elapsedTime)
+
+void AISystem::update(const float currentTime, const float elapsedTime) // updates AI state
 {
 	aiTimer.update();
 //	updateSelectedPlugIn( currentTime, elapsedTime);
@@ -121,49 +118,32 @@ void printPlugIn (OpenSteer::PlugIn& pi)
 //	Ogre::LogManager::getSingletonPtr()->logMessage(" " << toString(pi));
 } // anonymous namespace
 
-
-// select the default PlugIn
-
-
-void AISystem::selectDefaultPlugIn (void)
+void AISystem::selectDefaultPlugIn (void)  // selects the default plugin
 {
     OpenSteer::PlugIn::sortBySelectionOrder ();
     selectedPlugIn = OpenSteer::PlugIn::findDefault ();
 }
 
-// select the "next" plug-in, cycling through "plug-in selection order"
-
-
-void AISystem::selectNextPlugIn (void)
+void AISystem::selectNextPlugIn (void)  // select the "next" plug-in, cycling through "plug-in selection order"
 {
     closeSelectedPlugIn ();
     selectedPlugIn = selectedPlugIn->next ();
     openSelectedPlugIn ();
 }
 
-// return name of currently selected plug-in
-
-
-const char* AISystem::nameOfSelectedPlugIn (void)
+const char* AISystem::nameOfSelectedPlugIn (void)  // return name of currently selected plug-in
 {
     return (selectedPlugIn ? selectedPlugIn->name() : "no PlugIn");
 }
 
-// open the currently selected plug-in
-
-
-void AISystem::openSelectedPlugIn (void)
+void AISystem::openSelectedPlugIn (void)  // open the currently selected plug-in
 {
 //    camera.reset ();
     selectedVehicle = NULL;
     selectedPlugIn->open ();
 }
 
-// do a simulation update for the currently selected plug-in
-
-
-void AISystem::updateSelectedPlugIn (const float currentTime,
-                                                const float elapsedTime)
+void AISystem::updateSelectedPlugIn (const float currentTime, const float elapsedTime)  // do a simulation update for the currently selected plug-in
 {
     // switch to Update phase
 //    pushPhase (updatePhase);
@@ -185,38 +165,28 @@ void AISystem::updateSelectedPlugIn (const float currentTime,
 //    popPhase ();
 }
 
-// close the currently selected plug-in
-
-
-void AISystem::closeSelectedPlugIn (void)
+void AISystem::closeSelectedPlugIn (void)  // close the currently selected plug-in
 {
     selectedPlugIn->close ();
     selectedVehicle = NULL;
 }
 
-// reset the currently selected plug-in
-
-
-void AISystem::resetSelectedPlugIn (void)
+void AISystem::resetSelectedPlugIn (void)  // reset the currently selected plug-in
 {
     selectedPlugIn->reset ();
 }
 
-// return a group (an STL vector of AbstractVehicle pointers) of all
-// vehicles(/agents/characters) defined by the currently selected PlugIn
 
 
-const OpenSteer::AVGroup& AISystem::allVehiclesOfSelectedPlugIn (void)
-{
+const OpenSteer::AVGroup& AISystem::allVehiclesOfSelectedPlugIn (void)  // return a group (an STL vector of AbstractVehicle pointers) of all
+{                                                                       // vehicles(/agents/characters) defined by the currently selected PlugIn
     return selectedPlugIn->allVehicles ();
 }
 
-// select the "next" vehicle: the one listed after the currently selected one
-// in allVehiclesOfSelectedPlugIn
 
 
-void AISystem::selectNextVehicle (void)
-{
+void AISystem::selectNextVehicle (void)  // select the "next" vehicle: the one listed after the currently selected one
+{                                        // in allVehiclesOfSelectedPlugIn
     if (selectedVehicle != NULL)
     {
         // get a container of all vehicles
@@ -237,4 +207,3 @@ void AISystem::selectNextVehicle (void)
         if (s == last) selectedVehicle = NULL;
     }
 }
-

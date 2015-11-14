@@ -30,11 +30,8 @@
 
 void playerSteerPlugin::open(void)
 {
-	//AISystem *ai = AISystem::Instance();
     boost::shared_ptr<AISystem> ai = AISystem::Instance();
-    //conversion *convert = conversion::Instance();
 	boost::shared_ptr<conversion> convert = conversion::Instance();
-    //gameState *gameS = gameState::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
 
 	std::vector<courtState> courtInstance = gameS->getCourtInstance();
@@ -46,13 +43,13 @@ void playerSteerPlugin::open(void)
 */
     std::vector<std::vector<playerState> > activePlayerInstance;
     
-	std::vector<playerSteer *> allPlayerSteers = ai->getAllPlayerSteers();
+    std::vector<playerSteer *> allPlayerSteers = ai->getAllPlayerSteers();
 
-	logMsg("Opening playerSteer plugin");
+    logMsg("Opening playerSteer plugin");
 
 	// builds team 0 steering instances
 //	for (size_t x=0;x<team0ActivePlayerInstance.size();++x)
-	size_t x = 0;
+    size_t x = 0;
     while (x < teamInstance.size())
     {
         activePlayerInstance.push_back(teamInstance[x].getActivePlayerInstance());
@@ -119,15 +116,15 @@ void playerSteerPlugin::open(void)
 
 
 	// create the court bounding box based off the meshes bbox
-	Ogre::AxisAlignedBox cbox = courtInstance[0].getModel()->getBoundingBox();
-	Ogre::Vector3 cboxMin = cbox.getMinimum();
-	Ogre::Vector3 cboxMax = cbox.getMaximum();
+    Ogre::AxisAlignedBox cbox = courtInstance[0].getModel()->getBoundingBox();
+    Ogre::Vector3 cboxMin = cbox.getMinimum();
+    Ogre::Vector3 cboxMax = cbox.getMaximum();
 
     OpenSteer::Vec3 courtBoxMin = convert->toOpenSteerVec3(cboxMin);
     OpenSteer::Vec3 courtBoxMax = convert->toOpenSteerVec3(cboxMax);
 
     courtBBox = new steering::AABBox( OpenSteer::Vec3(0,0,0), OpenSteer::Vec3(0,0,0));
-	courtBBox->setMin(courtBoxMin);
+    courtBBox->setMin(courtBoxMin);
 
  /*           // Red goal
             m_TeamAGoal = new AABBox(Vec3(-21,0,-7), Vec3(-19,0,7));
@@ -170,9 +167,7 @@ void playerSteerPlugin::open(void)
 
 void playerSteerPlugin::update(const float currentTime, const float elapsedTime)
 {
-    //conversion *convert = conversion::Instance();
-	boost::shared_ptr<conversion> convert = conversion::Instance();
-    //gameState *gameS = gameState::Instance();
+    boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
     
 	std::vector<teamState> teamInstance = gameS->getTeamInstance();
@@ -291,20 +286,28 @@ void playerSteerPlugin::redraw (const float currentTime, const float elapsedTime
 void playerSteerPlugin::close (void)
 {
     for(unsigned int i=0; i < m_PlayerCountA ; i++)
+    {
         delete TeamA[i];
+    }
     TeamA.clear ();
     for(unsigned int i=0; i < m_PlayerCountB ; i++)
+    {
         delete TeamB[i];
+    }
     TeamB.clear ();
-        m_AllPlayers.clear();
+    m_AllPlayers.clear();
 }
 
 void playerSteerPlugin::reset (void)
 {
     // reset vehicle
     for(unsigned int i=0; i < m_PlayerCountA ; i++)
+    {
         TeamA[i]->reset ();
+    }
     for(unsigned int i=0; i < m_PlayerCountB ; i++)
+    {
         TeamB[i]->reset ();
+    }
 //            m_Ball->reset();
 }

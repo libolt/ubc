@@ -60,9 +60,7 @@ steering::~steering (void)
 // parameter names commented out to prevent compiler warning from "-W"
 
 
-OpenSteer::Vec3
-steering::adjustRawSteeringForce (const OpenSteer::Vec3& force,
-                                                  const float /* deltaTime */)
+OpenSteer::Vec3 steering::adjustRawSteeringForce (const OpenSteer::Vec3& force, const float /* deltaTime */)
 {
     const float maxAdjustedSpeed = 0.2f * maxSpeed ();
 
@@ -99,8 +97,7 @@ steering::adjustRawSteeringForce (const OpenSteer::Vec3& force,
 // used by both applySteeringForce and applyBrakingForce?
 
 
-void
-steering::applyBrakingForce (const float rate, const float deltaTime)
+void steering::applyBrakingForce (const float rate, const float deltaTime)
 {
     const float rawBraking = speed () * rate;
     const float clipBraking = ((rawBraking < maxForce ()) ?
@@ -116,11 +113,8 @@ steering::applyBrakingForce (const float rate, const float deltaTime)
 // adjusting our orientation to maintain velocity-alignment.
 
 
-void
-steering::applySteeringForce (const OpenSteer::Vec3& force,
-                                              const float elapsedTime)
+void steering::applySteeringForce (const OpenSteer::Vec3& force, const float elapsedTime)
 {
-
     const OpenSteer::Vec3 adjustedForce = adjustRawSteeringForce (force, elapsedTime);
 
     // enforce limit on magnitude of steering force
@@ -135,9 +129,7 @@ steering::applySteeringForce (const OpenSteer::Vec3& force,
     if (elapsedTime > 0)
     {
         const float smoothRate = OpenSteer::clip (9 * elapsedTime, 0.15f, 0.4f);
-        blendIntoAccumulator (smoothRate,
-                              newAcceleration,
-                              _smoothedAcceleration);
+        blendIntoAccumulator (smoothRate, newAcceleration, _smoothedAcceleration);
     }
 
     // Euler integrate (per frame) acceleration into velocity
@@ -160,9 +152,7 @@ steering::applySteeringForce (const OpenSteer::Vec3& force,
     measurePathCurvature (elapsedTime);
 
     // running average of recent positions
-    blendIntoAccumulator (elapsedTime * 0.06f, // QQQ
-                          position (),
-                          _smoothedPosition);
+    blendIntoAccumulator (elapsedTime * 0.06f, position (), _smoothedPosition);
 }
 
 
@@ -173,9 +163,7 @@ steering::applySteeringForce (const OpenSteer::Vec3& force,
 // parameter names commented out to prevent compiler warning from "-W"
 
 
-void
-steering::regenerateLocalSpace (const OpenSteer::Vec3& newVelocity,
-                                                const float /* elapsedTime */)
+void steering::regenerateLocalSpace (const OpenSteer::Vec3& newVelocity, const float /* elapsedTime */)
 {
     // adjust orthonormal basis vectors to be aligned with new velocity
     if (speed() > 0) regenerateOrthonormalBasisUF (newVelocity / speed());
@@ -190,9 +178,7 @@ steering::regenerateLocalSpace (const OpenSteer::Vec3& newVelocity,
 // XXX experimental cwr 6-5-03
 
 
-void
-steering::regenerateLocalSpaceForBanking (const OpenSteer::Vec3& newVelocity,
-                                                          const float elapsedTime)
+void steering::regenerateLocalSpaceForBanking (const OpenSteer::Vec3& newVelocity, const float elapsedTime)
 {
     // the length of this global-upward-pointing vector controls the vehicle's
     // tendency to right itself as it is rolled over from turning acceleration
@@ -225,8 +211,7 @@ steering::regenerateLocalSpaceForBanking (const OpenSteer::Vec3& newVelocity,
 // measure path curvature (1/turning-radius), maintain smoothed version
 
 
-void
-steering::measurePathCurvature (const float elapsedTime)
+void steering::measurePathCurvature (const float elapsedTime)
 {
     if (elapsedTime > 0)
     {
@@ -235,9 +220,7 @@ steering::measurePathCurvature (const float elapsedTime)
         const OpenSteer::Vec3 lateral = dF.perpendicularComponent (forward ());
         const float sign = (lateral.dot (side ()) < 0) ? 1.0f : -1.0f;
         _curvature = lateral.length() * sign;
-        OpenSteer::blendIntoAccumulator (elapsedTime * 4.0f,
-                              _curvature,
-                              _smoothedCurvature);
+        OpenSteer::blendIntoAccumulator (elapsedTime * 4.0f, _curvature, _smoothedCurvature);
         _lastForward = forward ();
         _lastPosition = position ();
     }
@@ -248,9 +231,7 @@ steering::measurePathCurvature (const float elapsedTime)
 // draw lines from vehicle's position showing its velocity and acceleration
 
 
-void
-steering::annotationVelocityAcceleration (float maxLengthA,
-                                                          float maxLengthV)
+void steering::annotationVelocityAcceleration (float maxLengthA, float maxLengthV)
 {
     const float desat = 0.4f;
     const float aScale = maxLengthA / maxForce ();
@@ -274,8 +255,7 @@ steering::annotationVelocityAcceleration (float maxLengthA,
 // XXX move to a vehicle utility mixin?
 
 
-OpenSteer::Vec3
-steering::predictFuturePosition (const float predictionTime) const
+OpenSteer::Vec3 steering::predictFuturePosition (const float predictionTime) const
 {
     return position() + (velocity() * predictionTime);
 }

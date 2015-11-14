@@ -30,8 +30,10 @@ class timing
         
         boost::chrono::nanoseconds getChangeInTimeNano();  // retrieves the value of changeInTimeNano
         void setChangeInTimeNano(boost::chrono::nanoseconds time);  // sets the value of changeInTimeNano
+
         boost::chrono::milliseconds getChangeInTimeMill();  // retrieves the value of changeInTimeMill
         void setChangeInTimeMill(boost::chrono::milliseconds time);  // sets the value of changeInTimeMill
+
         boost::chrono::system_clock::time_point getPreviousTime();  // retrieves the value of previousTime
         void setPreviousTime(boost::chrono::system_clock::time_point time);  // sets the value of previousTime
 
@@ -42,14 +44,14 @@ class timing
     
     private:
     
-    boost::chrono::system_clock::time_point startTime;
-    boost::chrono::system_clock::time_point currentTime;
-    boost::chrono::system_clock::time_point previousTime;
-    boost::chrono::nanoseconds changeInTimeNano;
-    boost::chrono::microseconds changeInTimeMicro;
-    boost::chrono::milliseconds changeInTimeMill;
-    boost::chrono::milliseconds loopTimeMill;
-    boost::chrono::milliseconds previousTimeMill;
+    boost::chrono::system_clock::time_point startTime;  // stores the start time
+    boost::chrono::system_clock::time_point currentTime;  // stores the current time
+    boost::chrono::system_clock::time_point previousTime;  // stores the previous time
+    boost::chrono::nanoseconds changeInTimeNano;  // stores the change in time in nanoseconds
+    boost::chrono::microseconds changeInTimeMicro;  // stores the change in time in microseconds
+    boost::chrono::milliseconds changeInTimeMill;  // stores the change in time in milliseconds
+    boost::chrono::milliseconds loopTimeMill;  // stores the loop time in milliseconds
+    boost::chrono::milliseconds previousTimeMill;  // stores the previous time in milliseconds
 };
 
 #endif

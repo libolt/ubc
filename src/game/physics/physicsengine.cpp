@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean   *
- *   libolt@libolt.net   *
+ *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -29,14 +29,9 @@
 #include "comparison.h"
 #include "jumpballs.h"
 
-
-//physicsEngine* physicsEngine::pInstance = 0;
 boost::shared_ptr<physicsEngine> physicsEngine::pInstance;
 
-
-//physicsEngine* physicsEngine::Instance()
 boost::shared_ptr<physicsEngine> physicsEngine::Instance()
-
 {
     if (pInstance == 0)  // is it the first call?
     {
@@ -44,14 +39,12 @@ boost::shared_ptr<physicsEngine> physicsEngine::Instance()
         boost::shared_ptr<physicsEngine> tInstance(new physicsEngine);
         pInstance = tInstance;
     }
-    return pInstance; // address of sole instance
+    return pInstance;  // address of sole instance
 }
 
-
-//-------------------------------------------------------------------------------------
-physicsEngine::physicsEngine()
+physicsEngine::physicsEngine()  // contructor
 {
-        //Bullet initialisation.
+    // Bullet initialisation.
 //      broadPhase = new btAxisSweep3(btVector3(-10000,-10000,-10000), btVector3(10000,10000,10000), 1024);
     broadPhase = new btDbvtBroadphase();
     collisionConfig = new btDefaultCollisionConfiguration();
@@ -106,8 +99,8 @@ physicsEngine::physicsEngine()
     midShotXPosReached = false;
     endShotPosSet = false;
 }
-//-------------------------------------------------------------------------------------
-physicsEngine::~physicsEngine()
+
+physicsEngine::~physicsEngine()  // destructor
 {
     //Free rigid bodies
 
@@ -137,49 +130,49 @@ physicsEngine::~physicsEngine()
 
 }
 
-bool physicsEngine::getBasketballlPhysicsSetup()    // retrieves the value of the playerPhysicsSetup variable
+bool physicsEngine::getBasketballlPhysicsSetup()  // retrieves the value of playerPhysicsSetup 
 {
     return (basketballPhysicsSetup);
 }
-void physicsEngine::setBasketballPhysicsSetup(bool setup)   // sets the value of the playerPhysicsSetup variable
+void physicsEngine::setBasketballPhysicsSetup(bool set)  // sets the value of the playerPhysicsSetup 
 {
-    basketballPhysicsSetup = setup;
+    basketballPhysicsSetup = set;
 }
 
-bool physicsEngine::getCourtPhysicsSetup()  // retrieves the value of the courtPhysicsSetup variable
+bool physicsEngine::getCourtPhysicsSetup()  // retrieves the value of courtPhysicsSetup 
 {
     return (courtPhysicsSetup);
 }
-void physicsEngine::setCourtPhysicsSetup(bool setup)    // sets the value of the courtPhysicsSetup variable
+void physicsEngine::setCourtPhysicsSetup(bool set)  // sets the value of courtPhysicsSetup 
 {
-    courtPhysicsSetup = setup;
+    courtPhysicsSetup = set;
 }
 
-bool physicsEngine::getHoopPhysicsSetup()   // retrieves the value of the hoopPhysicsSetup variable
+bool physicsEngine::getHoopPhysicsSetup()  // retrieves the value of hoopPhysicsSetup 
 {
     return (hoopPhysicsSetup);
 }
-void physicsEngine::setHoopPhysicsSetup(bool setup) // sets the value of the hoopPhysicsSetup variable
+void physicsEngine::setHoopPhysicsSetup(bool set) // sets the value of hoopPhysicsSetup 
 {
-    hoopPhysicsSetup = setup;
+    hoopPhysicsSetup = set;
 }
 
-bool physicsEngine::getPairCollided()   // retrieves value of pairCollided variable
+bool physicsEngine::getPairCollided()  // retrieves value of pairCollided 
 {
     return (pairCollided);
 }
-void physicsEngine::setPairCollided(bool collided)  // sets value of pairCollided variable
+void physicsEngine::setPairCollided(bool set)  // sets value of pairCollided
 {
-    pairCollided = collided;
+    pairCollided = set;
 }
 
-bool physicsEngine::getPassCollision()  // retrieves the value of passCollision variable
+bool physicsEngine::getPassCollision()  // retrieves the value of passCollision 
 {
     return(passCollision);
 }
-void physicsEngine::setPassCollision(bool collision)    // sets the value of passCollision variable
+void physicsEngine::setPassCollision(bool set)    // sets the value of passCollision
 {
-    passCollision = collision;
+    passCollision = set;
 }
 
 btVector3 physicsEngine::getBasketballVelocity()  // retrieves the value of basketballVelocity
@@ -229,9 +222,8 @@ void physicsEngine::setTeam2CollidesWith(size_t set) // k the vslue of team2Coll
     team2CollidesWith = set;
 }
 
-void physicsEngine::setupState(void)
+void physicsEngine::setupState(void)  // sets up the state of the physics engine
 {
-
     boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
     // Debug drawing!
@@ -269,7 +261,7 @@ void physicsEngine::setupState(void)
 
     if (!hoopPhysicsSetup)
     {
-        if (setupHoopPhysics()) // sets up physics state for hoop
+        if (setupHoopPhysics())  // sets up physics state for hoop
         {
             hoopPhysicsSetup = true;
         }
@@ -281,35 +273,15 @@ void physicsEngine::setupState(void)
     {
     }
 
-/*    if (!basketballPhysicsSetup)
-    {
-        if (setupBasketballPhysics()) // sets up physics state for basketball
-        {
-            basketballPhysicsSetup = true;
-        }
-        else
-        {
-        }
-    }
-    else
-    {
-    }
-*/
-
 }
 
 
-void physicsEngine::updateState()
+void physicsEngine::updateState()  // updates the state for the physics engine
 {
-    //conversion *convert = conversion::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    //gameEngine *gameE = gameEngine::Instance();
     boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
-    //gameState *gameS = gameState::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
-    //inputSystem *input = inputSystem::Instance();
     boost::shared_ptr<inputSystem> input = inputSystem::Instance();
-//    teamState *teamS = teamState::Instance();
 
     comparison compare;
     
@@ -390,7 +362,7 @@ void physicsEngine::updateState()
             }
 
     //      exit(0);
-            if (teamInstance[teamWithBall].getPlayerWithBallDribbling()) // checks if the player with ball is dribbling and updates accordingly
+            if (teamInstance[teamWithBall].getPlayerWithBallDribbling())  // checks if the player with ball is dribbling and updates accordingly
             {
 //              exit(0);
 //              logMsg("Dribbling!!");
@@ -398,7 +370,7 @@ void physicsEngine::updateState()
 //              logMsg("Human Player = " +convert->toString(teamInstance[1].getHumanPlayer()));
 
             }
-/*          else if (!teamInstance[teamWithBall].getPlayerWithBallDribbling()) // checks if the player with ball is dribbling and updates accordingly
+/*          else if (!teamInstance[teamWithBall].getPlayerWithBallDribbling())  // checks if the player with ball is dribbling and updates accordingly
             {
                 exit(0);
                 cout << "dah" << endl;
@@ -488,13 +460,7 @@ void physicsEngine::updateBasketballPosition()  // updates the position of baske
 void physicsEngine::updatePlayerPositions()  // updates the position of player objecgts
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    //gameEngine *gameE = gameEngine::Instance();
-    //boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
-    //gameState *gameS = gameState::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
-    //inputSystem *input = inputSystem::Instance();
-    //boost::shared_ptr<inputSystem> input = inputSystem::Instance();
-//    teamState *teamS = teamState::Instance();
 
     comparison compare;
 
@@ -555,15 +521,13 @@ void physicsEngine::updatePlayerPositions()  // updates the position of player o
     gameS->setTeamInstance(teamInstance);
 }
 
-void physicsEngine::stepWorld() // steps the world of the physics simulation
+void physicsEngine::stepWorld()  // steps the world of the physics simulation
 {
-    //gameEngine *gameE = gameEngine::Instance();
     boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
 
     btScalar currentTime;
     btScalar fixedTimeStep;
-
 
     logMsg("Time");
 
@@ -594,11 +558,9 @@ void physicsEngine::stepWorld() // steps the world of the physics simulation
 }
 
 
-void physicsEngine::ballDribbling() // simulates basketball dribble
+void physicsEngine::ballDribbling()  // simulates basketball dribble
 {
-    //conversion *convert = conversion::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    //gameState *gameS = gameState::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
 
 //    std::vector<playerState> pInstance = gameS->getPlayerInstance();
@@ -618,16 +580,15 @@ void physicsEngine::ballDribbling() // simulates basketball dribble
     }
     else
     {
-        gameS->setBballBounce(1);   // sets the ball to bounce down
+        gameS->setBballBounce(1);  // sets the ball to bounce down
     }
 
-    if (gameS->getBballBounce() == 1)       // checks if the ball is set bounce downward
+    if (gameS->getBballBounce() == 1)  // checks if the ball is set bounce downward
     {
         basketballInstance[activeBBallInstance].getPhysBody()->setLinearVelocity(btVector3(0,-10,0));
     }
     else
     {
-
     }
 
     pairCollided = false;
@@ -642,7 +603,7 @@ void physicsEngine::ballDribbling() // simulates basketball dribble
 //  bballPhysBody->checkCollideWith(courtPhysBody);
     world->contactPairTest(bballPhysBody, courtPhysBody, courtCollisionResult);
 //    logMsg("court collision " +convert->toString(courtCollisionResult));
-  int numManifolds = world->getDispatcher()->getNumManifolds();
+    int numManifolds = world->getDispatcher()->getNumManifolds();
     for (int i = 0; i<numManifolds; i++)
     {
         btPersistentManifold* contactManifold = world->getDispatcher()->getManifoldByIndexInternal(i);
@@ -710,7 +671,7 @@ bool physicsEngine::collisionCheck(btRigidBody *objectA, btRigidBody *objectB)  
     return (false);
 }
 
-void physicsEngine::passCollisionCheck()    // checks whether the ball has collided with the player being passed to
+void physicsEngine::passCollisionCheck()  // checks whether the ball has collided with the player being passed to
 {
 //  exit(0);
     //conversion *convert = conversion::Instance();
@@ -750,9 +711,7 @@ void physicsEngine::passCollisionCheck()    // checks whether the ball has colli
 
 bool physicsEngine::playerJump(teamTypes teamType, int playerID)  // calculates and executes player jumping in the air
 {
-    //conversion *convert = conversion::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    //gameState *gameS = gameState::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
 
     std::vector<courtState> courtInstance = gameS->getCourtInstance();
@@ -843,9 +802,7 @@ bool physicsEngine::playerJump(teamTypes teamType, int playerID)  // calculates 
 
 bool physicsEngine::shootBasketball(teamTypes teamType, int playerID)  // calculates and executes basketball being shot
 {
-    //conversion *convert = conversion::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    //gameState *gameS = gameState::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
 
     comparison compare;

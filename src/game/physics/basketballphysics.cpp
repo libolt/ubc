@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean   *
- *   libolt@libolt.net   *
+ *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -24,7 +24,7 @@
 #include "physicsengine.h"
 #include "gamestate.h"
 
-basketballPhysics::basketballPhysics()  // initializer
+basketballPhysics::basketballPhysics()  // constructor
 {
     bballCollidesWith = COL_COURT; // | COL_TEAM1 | COL_TEAM2;  // determines what the basketball collides with
 
@@ -82,7 +82,7 @@ void basketballPhysics::setStateSet(bool set)  // sets the value of stateSet
     stateSet = set;
 }
 
-bool basketballPhysics::setupPhysics()
+bool basketballPhysics::setupPhysics()  // sets up physics for the basketball
 {
     exit(0);
     boost::shared_ptr<conversion> convert = conversion::Instance();
@@ -109,7 +109,7 @@ bool basketballPhysics::setupPhysics()
 //        exit(0);
         basketballBodyState = new BtOgre::RigidBodyState(basketballInstance[number].getNode());
 //    exit(0);
-        btRigidBody::btRigidBodyConstructionInfo info(mass,basketballBodyState,basketballShape,inertia); //motion state would actually be non-null in most real usages
+        btRigidBody::btRigidBodyConstructionInfo info(mass,basketballBodyState,basketballShape,inertia);  //motion state would actually be non-null in most real usages
         info.m_restitution = 0.85f;
 //    info.m_friction = 2.0f;
 //    exit(0);
@@ -146,14 +146,13 @@ bool basketballPhysics::setupPhysics()
 
 bool basketballPhysics::setupState()  // sets up the state of the basketballPhysics object
 {
-
     return (true);
 }
 void basketballPhysics::updateState()  // updates basketball physics state
 {
     if (!physicsSetup)
     {
-        if (setupPhysics()) // sets up physics state for basketball
+        if (setupPhysics())  // sets up physics state for basketball
         {
             physicsSetup = true;
         }

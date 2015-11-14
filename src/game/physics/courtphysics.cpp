@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean   *
- *   libolt@libolt.net   *
+ *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -33,7 +33,6 @@ bool physicsEngine::setupCourtPhysics()
     btVector3 inertia, inertia2;
     inertia = btVector3(0,0,0);
 
-
     //Create the ground shape.
     BtOgre::StaticMeshToShapeConverter converter(courtInstance.at(0).getModel());
 //    courtShape = converter.createTrimesh();
@@ -45,10 +44,9 @@ bool physicsEngine::setupCourtPhysics()
 //    courtBodyState = new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(0,-25,0)));
     courtBodyState = new BtOgre::RigidBodyState(courtInstance[0].getNode());
 //    courtBodyState = new BtOgre::RigidBodyState(courtInstance.at(0).getNode());
-    btRigidBody::btRigidBodyConstructionInfo info(mass,courtBodyState,courtShape,inertia); //motion state would actually be non-null in most real usages
+    btRigidBody::btRigidBodyConstructionInfo info(mass,courtBodyState,courtShape,inertia);  //motion state would actually be non-null in most real usages
     info.m_restitution = 1.0f;
     info.m_friction = 15.5f;
-
 
     //Create the Body.
 //    courtBody = new btRigidBody(0, courtBodyState, courtShape, btVector3(0,0,0));
@@ -64,7 +62,7 @@ bool physicsEngine::setupCourtPhysics()
     return true;
 }
 
-bool physicsEngine::setupHoopPhysics()
+bool physicsEngine::setupHoopPhysics()  // sets up physics for the hoop
 {
 //    courtState *courtS = courtState::Instance();
     //gameState *gameS = gameState::Instance();
@@ -93,10 +91,9 @@ bool physicsEngine::setupHoopPhysics()
     //    courtBodyState = new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(0,-25,0)));
         hoopBodyState = new BtOgre::RigidBodyState(hoopInstance[x].getNode());
     //    courtBodyState = new BtOgre::RigidBodyState(courtInstance.at(0).getNode());
-        btRigidBody::btRigidBodyConstructionInfo info(mass,hoopBodyState,hoopShape,inertia); //motion state would actually be non-null in most real usages
+        btRigidBody::btRigidBodyConstructionInfo info(mass,hoopBodyState,hoopShape,inertia);  // motion state would actually be non-null in most real usages
         info.m_restitution = 1.0f;
         info.m_friction = 15.5f;
-
 
         //Create the Body.
     //    courtBody = new btRigidBody(0, courtBodyState, courtShape, btVector3(0,0,0));

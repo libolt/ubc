@@ -457,7 +457,7 @@ void GUISystem::processDisplayMenuKeyPress(std::string keyPressed)  // processes
 
 }
 
-void GUISystem::processInputMenuKeyPress(std::string keyPressed) / / processes input settings menu key input
+void GUISystem::processInputMenuKeyPress(std::string keyPressed) // processes input settings menu key input
 {
     if (keyPressed == "c")
     {

@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean   *
- *   libolt@libolt.net   *
+ *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -30,11 +30,8 @@
 #include "renderengine.h"
 #include "soundengine.h"
 
-
-//gameEngine* gameEngine::pInstance = 0;
 boost::shared_ptr<gameEngine> gameEngine::pInstance;
 
-//gameEngine* gameEngine::Instance()
 boost::shared_ptr<gameEngine> gameEngine::Instance()
 {
     if (pInstance == 0)  // is it the first call?
@@ -48,8 +45,7 @@ boost::shared_ptr<gameEngine> gameEngine::Instance()
 }
 
 
-//-------------------------------------------------------------------------------------
-gameEngine::gameEngine()
+gameEngine::gameEngine()  // constructor
 //    : player[0](0),
  // playerNode[0](0)
 {
@@ -71,8 +67,8 @@ gameEngine::gameEngine()
     renderScene = false;
     movePlayer = false;
 }
-//-------------------------------------------------------------------------------------
-gameEngine::~gameEngine()
+
+gameEngine::~gameEngine()  // destructor
 {
 }
 
@@ -157,33 +153,27 @@ void gameEngine::setMovePlayer(bool set)  // sets the value of moviePlayer
 	movePlayer = set;
 }
 
-float gameEngine::getYOffset() // returns the value of yOffset
+float gameEngine::getYOffset()  // returns the value of yOffset
 {
     return (yOffset);
 }
-void gameEngine::setYOffset(float set) // sets the value of yOffset
+void gameEngine::setYOffset(float set)  // sets the value of yOffset
 {
     yOffset = set;
 }
 
-bool gameEngine::startGame()
+bool gameEngine::startGame()  // starts the game
 {
-//    gameState *gameS = gameState::Instance();
-    //gameState *gameS = gameState::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
     
-//#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-//    Ogre::LogManager::getSingletonPtr()->logMessage("startGame()");
-	logMsg("startGame()");
+    logMsg("startGame()");
 
     gameS->setupState();
-//#endif
     return true;
 }
 
-void gameEngine::quit()
+void gameEngine::quit()  // quits the game
 {
-    //inputSystem *input = inputSystem::Instance();
     boost::shared_ptr<inputSystem> input = inputSystem::Instance();
 
     input->destroy();
@@ -192,15 +182,10 @@ void gameEngine::quit()
 
 void gameEngine::processInput()  // processes game input
 {
-    //conversion *convert = conversion::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    //gameState *gameS = gameState::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
-    //GUISystem *gui = GUISystem::Instance();
     boost::shared_ptr<GUISystem> gui = GUISystem::Instance();
-    //inputSystem *input = inputSystem::Instance();
     boost::shared_ptr<inputSystem> input = inputSystem::Instance();
-    //networkEngine *network = networkEngine::Instance();
     boost::shared_ptr<networkEngine> network = networkEngine::Instance();
 
     std::vector<teamState> teamInstance = gameS->getTeamInstance();
@@ -226,7 +211,7 @@ void gameEngine::processInput()  // processes game input
                         inputWorkQueues inputQueue = input->getInputWorkQueue();
         //                              logMsg("INPUT MAP ======== "  +toString(inputMap));
                         std::stringstream ss;
-                                  //  exit(0);
+//                      exit(0);
                         size_t x = 0;
                         size_t humanInstance = 11;
                         while (x < activePlayerInstance.size())
@@ -261,7 +246,6 @@ void gameEngine::processInput()  // processes game input
                                         teamInstance[inputIterator].setActivePlayerInstance(activePlayerInstance);
                                         gameS->setTeamInstance(teamInstance);
 //                                        exit(0);
-
                                     break;
                                     case INDOWN:
                                         activePlayerInstance[humanInstance].setMovement(true);
@@ -325,7 +309,6 @@ void gameEngine::processInput()  // processes game input
                                     default:
                                     break;
                                 }
-
                                 ++x;
                             }
                         }
@@ -368,7 +351,7 @@ void gameEngine::processInput()  // processes game input
     }   
 }
 
-void gameEngine::gameLoop()	// Main Game Loop
+void gameEngine::gameLoop()  // Main Game Loop
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
@@ -378,9 +361,7 @@ void gameEngine::gameLoop()	// Main Game Loop
     boost::shared_ptr<networkEngine> network = networkEngine::Instance();
     boost::shared_ptr<soundEngine> sound = soundEngine::Instance();
 
-
     networkPlayerStateObject netPStateObj;
-
 
     float lastFPS = 0.0f;	// stores value of last Frames Per Second
 //    float changeInTime;		// stores change in time
@@ -451,17 +432,7 @@ void gameEngine::gameLoop()	// Main Game Loop
 
 //	SDL_StartTextInput();
     while (!quitGame)
-	{
-			//SDL_SetWindowGrab(render->getSDLWindow(), SDL_TRUE);
-//#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-//			std::vector<playerState> activePlayerInstance = gameS->getPlayerInstance();	// stores th player instances
-
-	//        ubc->processUnbufferedKeyInput();
-
-	//        render->frameStarted();
-			// run the message pump (Eihort)
-	//		Ogre::WindowEventUtilities::messagePump();
-//		   exit(0);
+    {
 
 /*        if (!sound->getSetupComplete())
         {
@@ -478,7 +449,7 @@ void gameEngine::gameLoop()	// Main Game Loop
             sound->loadSound("cbeep.wav");
         }
 */
-        if (gameS->getGameSetupComplete())   // checks to make sure game setup is complete before continuing
+        if (gameS->getGameSetupComplete())  // checks to make sure game setup is complete before continuing
 	    {
             if (!sceneCreated)
             {
@@ -488,7 +459,7 @@ void gameEngine::gameLoop()	// Main Game Loop
                 }
                 else if (gameS->getGameType() == MULTI)
                 {
-                    if (network->getServerReceivedConnection() || network->getClientEstablishedConnection())    // checks if server and client are connected
+                    if (network->getServerReceivedConnection() || network->getClientEstablishedConnection())  // checks if server and client are connected
                     {
                         createScene = true;
                     }
@@ -497,7 +468,7 @@ void gameEngine::gameLoop()	// Main Game Loop
             }
         }
         
-        if (createScene)	// checks if the scene should be created
+        if (createScene)  // checks if the scene should be created
         {
 //	    		if (render->createScene())
             {
@@ -516,7 +487,6 @@ void gameEngine::gameLoop()	// Main Game Loop
                 renderScene = true;
             }
         }
-//#else
         lastFPS = render->getMWindow()->getLastFPS();
         std::string currFPS = convert->toString(lastFPS);
 
@@ -549,7 +519,6 @@ void gameEngine::gameLoop()	// Main Game Loop
         
         logMsg("serverRunning = " +serverRunning);
         logMsg("clientRunning = " +clientRunning);
-        
         boost::chrono::microseconds changeInTimeMicro = timer.calcChangeInTimeMicro();
         boost::chrono::milliseconds changeInTimeMill = timer.calcChangeInTimeMill();
         changeInTime = changeInTimeMill.count();
@@ -579,9 +548,7 @@ void gameEngine::gameLoop()	// Main Game Loop
             //boost::chrono::milliseconds milliSecs = boost::chrono::duration_cast<boost::chrono::milliseconds>(newT);
             //oldTime = milliSecs.count();
             timer.setPreviousTime(boost::chrono::system_clock::now());
-
         }
-    
 
 	        // writes Framerate to Ogre.log
 //	                Ogre::LogManager::getSingletonPtr()->logMessage("FPS = " +currFPS);
@@ -601,7 +568,6 @@ void gameEngine::gameLoop()	// Main Game Loop
             render->getMWindow()->windowMovedOrResized();
             render->getMRoot()->renderOneFrame();
         }
-//		#endif
     }
 
 }

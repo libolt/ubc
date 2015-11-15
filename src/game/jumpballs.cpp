@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean   *
- *   libolt@libolt.net   *
+ *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -25,7 +25,7 @@
 #include "physicsengine.h"
 #include "jumpballs.h"
 
-jumpBalls::jumpBalls()
+jumpBalls::jumpBalls()  // constructor
 {
     ballTipped = false;
     ballTippedToTeam = NOTEAM;
@@ -74,6 +74,7 @@ void jumpBalls::setBallTippedToTeam(teamTypes set)  // sets the value of ballTip
 {
     ballTippedToTeam = set;
 }
+
 size_t jumpBalls::getBallTippedToPlayerID()  // retrieves the value of ballTippedToPlayerID
 {
     return (ballTippedToPlayerID);
@@ -183,7 +184,7 @@ bool jumpBalls::updateState()  // updates state of the jumpBalls instance
     return (false);  // returns false until jump ball has completed
 }
 
-bool jumpBalls::jumpBallExecute() // initiates jump ball from jump ball circle
+bool jumpBalls::jumpBallExecute()  // initiates jump ball from jump ball circle
 {
 //    exit(0);
     boost::shared_ptr<conversion> convert = conversion::Instance();
@@ -219,7 +220,6 @@ bool jumpBalls::jumpBallExecute() // initiates jump ball from jump ball circle
             }
             else
             {
-                
             }
             i++;
               //teamTypes teamType = teamInstance[x].getTeamType();
@@ -311,8 +311,6 @@ bool jumpBalls::tipToPlayer()  // tips the basketball to the appropriate player
 
     activePlayerInstance = teamInstance[ballTippedToTeam].getActivePlayerInstance();
     
-
-
     size_t y = 0;
     while (y < activePlayerInstance.size())
     {
@@ -324,7 +322,6 @@ bool jumpBalls::tipToPlayer()  // tips the basketball to the appropriate player
         }
         ++y;
     }
-
 
     if (!ballTipForceApplied)
     {
@@ -393,7 +390,6 @@ bool jumpBalls::tipToPlayer()  // tips the basketball to the appropriate player
         }
         else
         {
-
         }
     }
     else
@@ -426,28 +422,25 @@ bool jumpBalls::tipToPlayer()  // tips the basketball to the appropriate player
                     case 0:
                         activeDefensivePlayer = teamInstance[1].getActivePlayerID()[0];
                         teamInstance[AWAYTEAM].setHumanPlayer(activeDefensivePlayer);
-                        break;
+                    break;
                     case 1:
                         activeDefensivePlayer = teamInstance[0].getActivePlayerID()[0];
                         teamInstance[HOMETEAM].setHumanPlayer(activeDefensivePlayer);
-                        break;
+                    break;
                     default:
                     break;
                 }
                 gameS->setTeamInstance(teamInstance);
 
                 return(true);
-
             }
             else
             {
-
             }
 //            exit(0);
         }
         else
         {
-
         }
 //        exit(0);
     }

@@ -67,7 +67,7 @@ bool networkPlayerStateObject::getMovement()  // retrieves the value of movement
 }
 void networkPlayerStateObject::setMovement(bool set)  // sets the value of movement
 {
-    movement = move;
+    movement = set;
 }
 
 int networkPlayerStateObject::getDirection()  // retrieves the value of direction

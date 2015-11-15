@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean   *
- *   libolt@libolt.net   *
+ *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -26,15 +26,12 @@
 #include "Ogre.h"
 #include "renderengine.h"
  
-//logging* logging::pInstance = 0;
 boost::shared_ptr<logging> logging::pInstance;
 
-//logging* logging::Instance()
 boost::shared_ptr<logging> logging::Instance()
 {
     if (pInstance == 0)  // is it the first call?
     {
-//        pInstance = new logging; // create sole instance
         boost::shared_ptr<logging> tInstance(new logging);
         pInstance = tInstance;
 
@@ -42,31 +39,27 @@ boost::shared_ptr<logging> logging::Instance()
     return pInstance; // address of sole instance
 }
  
-logging::logging()
+logging::logging()  // constructor
 {
-	 
 }
  
-logging::~logging()
+logging::~logging()  // destructor
 {
-	 
 }
  
-void logging::logMessage(std::string msg)
+void logging::logMessage(std::string msg)  // logs a message to appropriate output
 {
-	boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
 #ifdef __ANDROID__
-
     __android_log_print(ANDROID_LOG_DEBUG, "com.libolt.ubc", msg.c_str());
 #else
 
     if (render->getMRoot()->isInitialised())
     {
-		Ogre::LogManager::getSingletonPtr()->logMessage(msg);
-	}
+        Ogre::LogManager::getSingletonPtr()->logMessage(msg);
+    }
 #endif
 
 }
-
 

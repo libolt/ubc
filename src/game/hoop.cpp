@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean   *
- *   libolt@libolt.net   *
+ *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -19,77 +19,70 @@
  ***************************************************************************/
 
 #include "hoop.h"
-
 #include "renderengine.h"
 
-hoopState::hoopState()
+hoopState::hoopState()  // constructor
 {
     stateSet = false;
 }
 
-hoopState::~hoopState()
+hoopState::~hoopState()  // destructor
 {
 }
 
-// gets and sets modelName
-std::string hoopState::getModelName()
+std::string hoopState::getModelName()  // retrieves the value of modelName
 {
     return (modelName);
 }
-void hoopState::setModelName(std::string name)
+void hoopState::setModelName(std::string set)  // sets the value of modelName
 {
-    modelName = name;
+    modelName = set;
 }
 
-// gets and sets entityName
-std::string hoopState::getEntityName()
+std::string hoopState::getEntityName()  // retrieves the value of entityName
 {
     return (entityName);
 }
-void hoopState::setEntityName(std::string name)
+void hoopState::setEntityName(std::string set)  // sets the value of entityName
 {
-    entityName = name;
+    entityName = set;
 }
 
-// gets and sets nodeName
-std::string hoopState::getNodeName()
+std::string hoopState::getNodeName()  // retrieves the value of nodeName
 {
     return (nodeName);
 }
-void hoopState::setNodeName(std::string name)
+void hoopState::setNodeName(std::string set)  // sets the value of nodeName
 {
-    nodeName = name;
+    nodeName = set;
 }
 
-// gets and sets model
-Ogre::Entity *hoopState::getModel()
+Ogre::Entity *hoopState::getModel()  // retrieves the value of model
 {
     return (model);
 }
-void hoopState::setModel(Ogre::Entity *Model)
+void hoopState::setModel(Ogre::Entity *set)  // sets the value of model
 {
-    model = Model;
+    model = set;
 }
 
-// gets and sets node
-Ogre::SceneNode *hoopState::getNode()
+Ogre::SceneNode *hoopState::getNode()  // retrieves the value of node
 {
     return (node);
 }
-void hoopState::setNode(Ogre::SceneNode *Node)
+void hoopState::setNode(Ogre::SceneNode *set)  // sets the value of node
 {
-    node = Node;
+    node = set;
 }
 
-btRigidBody *hoopState::getPhysBody()	// retrieves physBody variable
+btRigidBody *hoopState::getPhysBody()  // retrieves physBody variable
 {
-	return (physBody);
+    return (physBody);
 }
 
-void hoopState::setPhysBody(btRigidBody *body)	// sets physBody variable
+void hoopState::setPhysBody(btRigidBody *set)	// sets physBody variable
 {
-	physBody = body;
-
+    physBody = set;
 }
 
 bool hoopState::getStateSet()  // retrieves the value of stateSet
@@ -101,12 +94,11 @@ void hoopState::setStateSet(bool set)  // sets the value of stateSet
     stateSet = set;
 }
 
-// loads the 3D Model and attaches it to the node as well as sets coordinates
-bool hoopState::loadModel()
+bool hoopState::loadModel()  // loads the 3D Model and attaches it to the node as well as sets coordinates
 {
     boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
-    model = render->getMSceneMgr()->createEntity(entityName, modelName);	// loads the hoop model
+    model = render->getMSceneMgr()->createEntity(entityName, modelName);  // loads the hoop model
 
     // creates the hoopNode
     node = render->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(nodeName);

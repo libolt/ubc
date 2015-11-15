@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean   *
- *   libolt@libolt.net   *
+ *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -20,139 +20,137 @@
 
 #include "offenseplays.h"
 
-std::string offensePlays::getPlayName()	// returns the value of playName;
+std::string offensePlays::getPlayName()	 // retrieves the value of playName
 {
-	return (playName);
+    return (playName);
 }
-void offensePlays::setPlayName(std::string name)	// sets the value of playName
+void offensePlays::setPlayName(std::string set)  // sets the value of playName
 {
-	playName = name;
-}
-
-int offensePlays::getVariation()	// returns the value of variation
-{
-	return (variation);
-}
-void offensePlays::setVariation(int vari)	// sets the value of variation
-{
-	variation = vari;
+    playName = set;
 }
 
-std::string offensePlays::getTitle()	// returns the value of title
+int offensePlays::getVariation()  // retrieves the value of variation
 {
-	return (title);
+    return (variation);
 }
-void offensePlays::setTitle(std::string Title)	// sets the value of title
+void offensePlays::setVariation(int set)  // sets the value of variation
 {
-	title = Title;
-}
-
-std::vector<playerPositions> offensePlays::getPlayerPosition()	// returns the value of playerPosition
-{
-	return (playerPosition);
-}
-void offensePlays::setPlayerPosition(std::vector<playerPositions> position)	// sets the value of playerPosition
-{
-	playerPosition = position;
+    variation = set;
 }
 
-std::vector<Ogre::Vector3> offensePlays::getStartPositions()	// retrieves startPositions variable
+std::string offensePlays::getTitle()  // retrieves the value of title
 {
-	return (startPositions);
+    return (title);
+}
+void offensePlays::setTitle(std::string set)	// sets the value of title
+{
+    title = set;
 }
 
-void offensePlays::setStartPositions(std::vector<Ogre::Vector3> positions)	// sets startPositions
+std::vector<playerPositions> offensePlays::getPlayerPosition()	// retrieves the value of playerPosition
 {
-	startPositions = positions;
+    return (playerPosition);
+}
+void offensePlays::setPlayerPosition(std::vector<playerPositions> set)  // sets the value of playerPosition
+{
+    playerPosition = set;
 }
 
-std::vector< std::vector<Ogre::Vector3> > offensePlays::getExecutePositions()	// retrieves startPositions variable
+std::vector<Ogre::Vector3> offensePlays::getStartPositions()  // retrieves the value of startPositions 
 {
-	return (executePositions);
+    return (startPositions);
+}
+void offensePlays::setStartPositions(std::vector<Ogre::Vector3> set)  // sets the value of startPositions
+{
+    startPositions = set;
 }
 
-void offensePlays::setExecutePositions(std::vector< std::vector<Ogre::Vector3> > positions)	// sets startPositions
+std::vector< std::vector<Ogre::Vector3> > offensePlays::getExecutePositions()  // retrieves the value of startPositions 
 {
-	executePositions = positions;
+    return (executePositions);
+}
+void offensePlays::setExecutePositions(std::vector< std::vector<Ogre::Vector3> > set)  // sets the value of startPositions
+{
+    executePositions = set;
 }
 
 std::vector<bool> offensePlays::getStartPositionSet()  // returns the value of startPositionSet
 {
-	return (startPositionSet);
+    return (startPositionSet);
 }
 void offensePlays::setStartPositionSet(std::vector<bool> set) // sets the value of startPositionSet
 {
-	startPositionSet = set;
+    startPositionSet = set;
 }
 
 std::vector< std::vector<bool> > offensePlays::getExecutePositionReached()  // returns the value of executePositionSet
 {
-	return (executePositionReached);
+    return (executePositionReached);
 }
-void offensePlays::setExecutePositionReached(std::vector< std::vector<bool> > reached) // sets the value of executePositionSet
+void offensePlays::setExecutePositionReached(std::vector< std::vector<bool> > set)  // sets the value of executePositionSet
 {
-	executePositionReached = reached;
+    executePositionReached = set;
 }
 
 std::vector<offensePlays::playerDirectives> offensePlays::getPlayerDirective()  // returns the value of playerDirective
 {
-	return (playerDirective);
+    return (playerDirective);
 }
-void offensePlays::setPlayerDirective(std::vector<offensePlays::playerDirectives> directive)  // sets the value of playerDirective
+void offensePlays::setPlayerDirective(std::vector<offensePlays::playerDirectives> set)  // sets the value of playerDirective
 {
-	playerDirective = directive;
+    playerDirective = set;
 }
 
 playerPositions offensePlays::playerDirectives::getPlayerPosition()  // retrieves the value of playerPosition
 {
-	return (playerPosition);
+    return (playerPosition);
 }
-void offensePlays::playerDirectives::setPlayerPosition(playerPositions position)  // sets the value of playerPosition
+void offensePlays::playerDirectives::setPlayerPosition(playerPositions set)  // sets the value of playerPosition
 {
-	playerPosition = position;
+    playerPosition = set;
 }
 
 directiveTypes offensePlays::playerDirectives::getType()  // retrieves the value of type
 {
-	return (type);
+    return (type);
 }
-void offensePlays::playerDirectives::setType(directiveTypes Type)  // sets the value of type
+void offensePlays::playerDirectives::setType(directiveTypes set)  // sets the value of type
 {
-	type = Type;
+    type = set;
 }
 
 offenseWaitFor offensePlays::playerDirectives::getWaitFor()  // retrieves the value of waitFor
 {
-	return (waitFor);
+    return (waitFor);
 }
-void offensePlays::playerDirectives::setWaitFor(offenseWaitFor wait)  // sets the value of waitFor
+void offensePlays::playerDirectives::setWaitFor(offenseWaitFor set)  // sets the value of waitFor
 {
-	waitFor = wait;
+    waitFor = set;
 }
 		
 playerPositions offensePlays::playerDirectives::getPlayerSet()  // retrieves the value of playerSet
 {
-	return (playerSet);
+    return (playerSet);
 }
 void offensePlays::playerDirectives::setPlayerSet(playerPositions set)  // sets the value of playerSet
 {
-	playerSet = set;
+    playerSet = set;
 }
 
 positionTypes offensePlays::playerDirectives::getPositionType()  // retrieves the value of positionType
 {
-	return (positionType);
+    return (positionType);
 }
-void offensePlays::playerDirectives::setPositionType(positionTypes Type)  // sets the value of positionType 
+void offensePlays::playerDirectives::setPositionType(positionTypes set)  // sets the value of positionType 
 {
-	positionType = Type;
+    positionType = set;
 }
 
 int offensePlays::playerDirectives::getPosition()  // retrieves the value of position
 {
-	return (position);
+    return (position);
 }
-void offensePlays::playerDirectives::setPosition(int pos)  // sets the value of position
+void offensePlays::playerDirectives::setPosition(int set)  // sets the value of position
 {
-	position = pos;
+    position = set;
 }

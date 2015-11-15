@@ -420,7 +420,7 @@ void networkEngine::networkServer()  // executes the network server code
                 enet_packet_destroy (event.packet);
             break;
             case ENET_EVENT_TYPE_DISCONNECT:
-                logMsg(event.peer->data +" disconected.");
+                logMsg(convert->toString(event.peer->data) +" disconected.");
 
                 // Reset the peer's client information.
                 event.peer -> data = NULL;

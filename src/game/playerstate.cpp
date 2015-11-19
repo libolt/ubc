@@ -1,11 +1,11 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean   *
- *   libolt@libolt.net   *
+ *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any latier version.                                   *
+ *   (at your option) any latier version.                                  *
  *                                                                         *
  *   This program is distributed in the hope that it will be useful,       *
  *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
@@ -73,8 +73,8 @@ playerState::playerState()
     shotTaken = false;
     shotSet = false;
     shotComplete = false;
-	offenseSet = false;
-	defenseSet = false;
+    offenseSet = false;
+    defenseSet = false;
     initialized = false;
     jumpSet = false;
     jumpComplete = false;
@@ -87,7 +87,7 @@ playerState::playerState()
     oldDirection = NODIRECT;
 }
 
-playerState::~playerState()
+playerState::~playerState() // destructor
 {
 }
 
@@ -95,7 +95,6 @@ size_t playerState::getPlayerID()  // retrieves the value of playerID
 {
     return(playerID);
 }
-
 void playerState::setPlayerID(size_t set)  // sets the value of playerID
 {
     playerID = set;
@@ -110,82 +109,74 @@ void playerState::setTeamType(teamTypes set)  // sets the value of teamType
     teamType = set;
 }
 
-bool playerState::getNetworkControlled()
+bool playerState::getNetworkControlled()  // retrieves the value of networkControlled
 {
 	return (networkControlled);
 }
-
-void playerState::setNetworkControlled(bool set)
+void playerState::setNetworkControlled(bool set)  // sets the value of networkControlled
 {
 	networkControlled = set;
 }
 
-std::string playerState::getFirstName()
+std::string playerState::getFirstName()  // retrieves the value of firstName
 {
     return(firstName);
 }
-
-void playerState::setFirstName(std::string set)
+void playerState::setFirstName(std::string set)  // sets the value of firstName
 {
     firstName = set;
 }
 
-std::string playerState::getLastName()
+std::string playerState::getLastName()  // retrieves the value of lastName
 {
     return(lastName);
 }
-
-void playerState::setLastName(std::string set)
+void playerState::setLastName(std::string set)  // sets the value of lastName
 {
     lastName = set;
 }
 
-std::string playerState::getPlayerName()
+std::string playerState::getPlayerName()  // retrieves the value of playerName
 {
     return(playerName);
 }
-
-void playerState::setPlayerName(std::string set)
+void playerState::setPlayerName(std::string set)  // sets the value of playerName
 {
     playerName = set;
 }
 
-size_t playerState::getAge()
+size_t playerState::getAge()  // retrieves the value of age
 {
     return(age);
 }
-
-void playerState::setAge(size_t set)
+void playerState::setAge(size_t set)  // sets the value of age 
 {
     age = set;
 }
 
-size_t playerState::getHeight()
+size_t playerState::getHeight()  // retrieves the value of height
 {
     return(height);
 }
-
-void playerState::setHeight(size_t set)
+void playerState::setHeight(size_t set)  // sets the value of height
 {
     height = set;
 }
 
-size_t playerState::getWeight()
+size_t playerState::getWeight()  // retrieves the value of weight
 {
     return(weight);
 }
-
-void playerState::setWeight(size_t set)
+void playerState::setWeight(size_t set)  // sets the value of weight
 {
     weight = set;
 }
 
-playerPositions playerState::getPrimaryPosition()
+playerPositions playerState::getPrimaryPosition()  // retrieves the value of primaryPosition
 {
     return(primaryPosition);
 }
-
-void playerState::setPrimaryPosition(playerPositions set)
+void playerState::setPrimaryPosition(playerPositions set)  // sets the value of primaryPosition
 {
     primaryPosition = set;
 }
@@ -226,141 +217,128 @@ void playerState::setModelLoaded(bool set) // sets the value of modelLoaded
     modelLoaded = set;
 }
 
-size_t playerState::getOffDef()
+size_t playerState::getOffDef()  // retrieves the value of offDef
 {
     return(offDef);
 }
-
-void playerState::setOffDef(size_t set)
+void playerState::setOffDef(size_t set)  // sets the value of offDef
 {
     offDef = set;
 }
 
-size_t playerState::getDefending()
+size_t playerState::getDefending()  // retrieves the value of defending
 {
     return (defending);
 }
-
-void playerState::setDefending(size_t set)
+void playerState::setDefending(size_t set)  // sets the value of defending
 {
     defending = set;
 }
 
-bool playerState::getUserControlled()
+bool playerState::getUserControlled()  // retrieves the value of userControlled
 {
     return(userControlled);
 }
-
-void playerState::setUserControlled(bool set)
+void playerState::setUserControlled(bool set)  // sets the value of userControlled
 {
     userControlled = set;
 }
 
-size_t playerState::getUser()
+size_t playerState::getUser()  // retrieves the value of user
 {
     return(user);
 }
-
-void playerState::setUser(size_t set)
+void playerState::setUser(size_t set)  // sets the value of user
 {
     user = set;
 }
 
-size_t playerState::getPoints()
+size_t playerState::getPoints()  // retrieves the value of points
 {
     return(points);
 }
-void playerState::setPoints(size_t set)
+void playerState::setPoints(size_t set)  // sets the vlaue of points
 {
     points = set;
 }
 
-size_t playerState::getFouls()
+size_t playerState::getFouls()  // retrieves the value of fouls
 {
     return(fouls);
 }
-
-void playerState::setFoulds(size_t set)
+void playerState::setFoulds(size_t set)  // sets the value of fouls
 {
     fouls = set;
 }
 
-size_t playerState::getOffensiveRebounds()
+size_t playerState::getOffensiveRebounds()  // retrieves the value of offensiveRebounds
 {
     return(offensiveRebounds);
 }
-
-void playerState::setOffensiveRebounds(size_t set)
+void playerState::setOffensiveRebounds(size_t set)  // sets the value of offensiveRebounds
 {
     offensiveRebounds = set;
 }
 
-size_t playerState::getDefensiveRebounds()
+size_t playerState::getDefensiveRebounds()  // retrieves the value of defensiveRebounds
 {
     return(defensiveRebounds);
 }
-
-void playerState::setDefensiveRebounds(size_t set)
+void playerState::setDefensiveRebounds(size_t set)  // sets the value of defensiveRebounds
 {
     defensiveRebounds = set;
 }
 
-size_t playerState::getTotalRebounds()
+size_t playerState::getTotalRebounds()  // retrieves the value of totalRebounds
 {
     return(totalRebounds);
 }
-
-void playerState::setTotalReboundS(size_t set)
+void playerState::setTotalReboundS(size_t set)  // sets the value of totalRebounds
 {
     totalRebounds = set;
 }
 
-size_t playerState::getStamina()
+size_t playerState::getStamina()  // retrieves the value of stamina
 {
     return(stamina);
 }
-
-void playerState::setStamina(size_t set)
+void playerState::setStamina(size_t set)  // sets the value of stamina
 {
     stamina = set;
 }
 
-size_t playerState::getSteals()
+size_t playerState::getSteals()  // retrieves the value of steals
 {
     return(steals);
 }
-
-void playerState::setSteals(size_t set)
+void playerState::setSteals(size_t set) // sets the value of steals
 {
     steals = set;
 }
 
-size_t playerState::getBlocks()
+size_t playerState::getBlocks()  // retrieves the value of blocks
 {
     return(blocks);
 }
-
-void playerState::setBlocks(size_t set)
+void playerState::setBlocks(size_t set)  // sets the value of blocks
 {
     blocks = set;
 }
 
-size_t playerState::getTurnovers()
+size_t playerState::getTurnovers()  // retrieves the value of turnovers
 {
     return(turnovers);
 }
-
-void playerState::setTurnovers(size_t set)
+void playerState::setTurnovers(size_t set)  // sets the value of turnovers
 {
     turnovers = set;
 }
 
-size_t playerState::getAssists()
+size_t playerState::getAssists()  // retrieves the value of assist
 {
     return(assists);
 }
-
-void playerState::setAssists(size_t set)
+void playerState::setAssists(size_t set)  // sets the value of assists
 {
     assists = set;
 }

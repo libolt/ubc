@@ -154,6 +154,7 @@ void playerData::setSecondaryPosition(playerPositions set)  // sets the value of
 bool playerData::getActive()  // retrieves the value of active
 {
     return(active);
+}
 
 void playerData::setActive(bool set)  // sets the value of active
 {

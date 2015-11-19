@@ -379,63 +379,58 @@ void playerState::setThreePointersMade(size_t set)  // sets the value of threePo
     threePointersMade = set;
 }
 
-size_t playerState::getFreeThrowsAttempted()
+size_t playerState::getFreeThrowsAttempted()  // retrieves the value of freeThrowsAttempted
 {
     return(freeThrowsAttempted);
 }
-
-void playerState::setFreeThrowsAttempted(size_t set)
+void playerState::setFreeThrowsAttempted(size_t set)  // sets the value of freeThrowsAttempted
 {
     freeThrowsAttempted = set;
 }
 
-size_t playerState::getFreeThrowsMade()
+size_t playerState::getFreeThrowsMade()  // retrieves the value of freeThrowsMade
 {
     return(freeThrowsMade);
 }
-
-void playerState::setFreeThrowsMade(size_t set)
+void playerState::setFreeThrowsMade(size_t set)  // sets the value of freeThrowsMade
 {
     freeThrowsMade = set;
 }
 
-string playerState::getModelName()
+string playerState::getModelName()  // retrieves the value of modelName
 {
     return (modelName);
 }
-
-void playerState::setModelName(string set)
+void playerState::setModelName(string set)  // sets the value of modelName
 {
     modelName = set;
 }
 
-Ogre::Entity *playerState::getModel()
+Ogre::Entity *playerState::getModel()  // retrieves the value of model
 {
     return (model);
 }
-
-void playerState::setModel(Ogre::Entity *set)
+void playerState::setModel(Ogre::Entity *set)  // sets the value of model
 {
     model = set;
 }
 
-Ogre::SceneNode *playerState::getNode()
+Ogre::SceneNode *playerState::getNode()  // retrieves the value of node
 {
     return (node);
 }
-
-void playerState::setNode(Ogre::SceneNode *set)
+void playerState::setNode(Ogre::SceneNode *set)  // sets the value of node
 {
     node = set;
 }
 
-btRigidBody *playerState::getPhysBody()	  // returns physBody
+btRigidBody *playerState::getPhysBody()	 // retrieves the value of physBody
 {
-	return (physBody);
+    return (physBody);
 }
-void playerState::setPhysBody(btRigidBody *set)  	// sets physBody
+void playerState::setPhysBody(btRigidBody *set)  // sets the value of physBody
 {
-	physBody = set;
+    physBody = set;
 }
 
 playerPhysics playerState::getPhysics()  // retrieves the value of physics
@@ -447,40 +442,40 @@ void playerState::setPhysics(playerPhysics set)  // sets the value of physics
     physics = set;
 }
 
-playerSteer *playerState::getSteer() // retrieves the steering instance
+playerSteer *playerState::getSteer() // retrieves the value of steer
 {
-	return (steer);
+    return (steer);
 }
-void playerState::setSteer(playerSteer *set) // sets the steering instance
+void playerState::setSteer(playerSteer *set)  // sets the value of steer
 {
-	steer = set;
-}
-
-bool playerState::getMovement()	// returns movement
-{
-	return (movement);
-}
-void playerState::setMovement(bool set)	// sets movement
-{
-	movement = set;
+    steer = set;
 }
 
-directions playerState::getDirection()	// retrieves the value of direction
+bool playerState::getMovement()	 // retrieves the value of movement
 {
-	return (direction);
+    return (movement);
 }
-void playerState::setDirection(directions set)	// sets direction
+void playerState::setMovement(bool set)  // sets the value of movement
 {
-	direction = set;
+    movement = set;
 }
 
-directions playerState::getOldDirection()	// retrieves the value of the oldDirection
+directions playerState::getDirection()  // retrieves the value of direction
 {
-	return (oldDirection);
+    return (direction);
 }
-void playerState::setOldDirection(directions set)	// sets the value of the oldDirection
+void playerState::setDirection(directions set)	// sets the value of direction
 {
-	oldDirection = set;
+    direction = set;
+}
+
+directions playerState::getOldDirection()  // retrieves the value of oldDirection
+{
+    return (oldDirection);
+}
+void playerState::setOldDirection(directions set)  // sets the value of oldDirection
+{
+    oldDirection = set;
 }
 
 Ogre::Vector3 playerState::getPosChange()  // retrieves the value of posChange
@@ -514,43 +509,43 @@ bool playerState::getPassSteal()  // retrieves the value of passSteal
 {
     return (passSteal);
 }
-void playerState::setPassSteal(bool set) // sets the value of passSteal
+void playerState::setPassSteal(bool set)  // sets the value of passSteal
 {
     passSteal = set;
 }
 
-bool playerState::getPassBall()	// retrieves the value of the passBall
+bool playerState::getPassBall()  // retrieves the value of passBall
 {
-	return (passBall);
+    return (passBall);
 }
-void playerState::setPassBall(bool set)	// sets the value of the passBall
+void playerState::setPassBall(bool set)  // sets the value of passBall
 {
-	passBall = set;
-}
-
-bool playerState::getPassCalculated()	// retrieves the value of the passCalculated
-{
-	return (passCalculated);
-}
-void playerState::setPassCalculated(bool set)  	// sets the value of the passCalculated
-{
-	passCalculated = set;
+    passBall = set;
 }
 
-bool playerState::getPassCompleted()	// retrieves the value of the passCompleted
+bool playerState::getPassCalculated()  // retrieves the value of passCalculated
 {
-	return (passCompleted);
+    return (passCalculated);
 }
-void playerState::setPassCompleted(bool set)	// sets the value of the passCompleted
+void playerState::setPassCalculated(bool set)  // sets the value of passCalculated
 {
-	passCompleted = set;
+    passCalculated = set;
 }
 
-size_t playerState::getPassToPlayer()	// retrieves the value of the passToPlayer
+bool playerState::getPassCompleted()  // retrieves the value of passCompleted
 {
-	return (passToPlayer);
+    return (passCompleted);
 }
-void playerState::setPassToPlayer(size_t set)	// sets the value of the passToPlayer
+void playerState::setPassCompleted(bool set)  // sets the value of passCompleted
+{
+    passCompleted = set;
+}
+
+size_t playerState::getPassToPlayer()  // retrieves the value of passToPlayer
+{
+    return (passToPlayer);
+}
+void playerState::setPassToPlayer(size_t set)  // sets the value of passToPlayer
 {
     passToPlayer = set;
 }
@@ -564,7 +559,7 @@ void playerState::setShotTaken(bool set)  // sets the value of shotTaken
     shotTaken = set;
 }
 
-bool playerState::getShotSet() // retrieves the value of shotSet
+bool playerState::getShotSet()  // retrieves the value of shotSet
 {
     return (shotSet);
 }
@@ -573,7 +568,7 @@ void playerState::setShotSet(bool set)  // sets the value of shotSet
     shotSet = set;
 }
 
-bool playerState::getShotComplete() // retrieves the value of shotComplete
+bool playerState::getShotComplete()  // retrieves the value of shotComplete
 {
     return (shotComplete);
 }
@@ -618,7 +613,7 @@ void playerState::setJumpComplete(bool set)  // sets the value of jumpComplete
     jumpComplete = set;
 }
 
-bool playerState::getOffenseSet() // retrieves the value of offenseSet
+bool playerState::getOffenseSet()  // retrieves the value of offenseSet
 {
 	return (offenseSet);
 }
@@ -627,7 +622,7 @@ void playerState::setOffenseSet(bool set)  // sets the value of offenseSet
 	offenseSet = set;
 }
 
-bool playerState::getDefenseSet() // retrieves the value of defenseSet
+bool playerState::getDefenseSet()  // retrieves the value of defenseSet
 {
 	return (defenseSet);
 }
@@ -636,7 +631,7 @@ void playerState::setDefenseSet(bool set)  // sets the value of defenseSet
 	defenseSet = set;
 }
 
-Ogre::Vector3 playerState::getCourtPosition() // retrieves the value of courtPosition
+Ogre::Vector3 playerState::getCourtPosition()  // retrieves the value of courtPosition
 {
     return (courtPosition);
 }
@@ -645,7 +640,7 @@ void playerState::setCourtPosition(Ogre::Vector3 set)  // sets the value of cour
     courtPosition = set;
 }
 
-Ogre::Vector3 playerState::getNewCourtPosition() // retrieves the value of newCourtPosition
+Ogre::Vector3 playerState::getNewCourtPosition()  // retrieves the value of newCourtPosition
 {
     return (newCourtPosition);
 }
@@ -681,24 +676,21 @@ void playerState::setStateSet(bool set)  // sets the value of stateSet
     stateSet = set;
 }
 
-bool playerState::getInitialized() // retreives the value of initialized
+bool playerState::getInitialized()  // retreives the value of initialized
 {
     return (initialized);
 }
 
-void playerState::setInitialized(bool set) // sets the value of initialized
+void playerState::setInitialized(bool set)  // sets the value of initialized
 {
     initialized = set;
 }
 
-bool playerState::loadModel()   // loads the player's 3D model from the file specified in modelName
+bool playerState::loadModel()  // loads the player's 3D model from the file specified in modelName
 {
 
     boost::shared_ptr<renderEngine> render = renderEngine::Instance();
-//    playerName += firstName;    // adds the first name to playerName string
-//    playerName += lastName;     // adds the last name to the playerName string
 
-//        playerName += toString(playerNum);
     logMsg("playerName == " +playerName);
     // creates and instantiates the playerNode object
     node = render->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(playerName);
@@ -723,14 +715,14 @@ void playerState::updateState()
     boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
 
     jumpBalls jumpBall = gameS->getJumpBall();
-	Ogre::Vector3 playerPos;
+    Ogre::Vector3 playerPos;
 
     if (physics.getStateSet())
     {
         logMsg("playerState::updateState");
         exit(0);
     }
-//    if (shotTaken && !shotComplete)	// checks if a player takes a shot
+//    if (shotTaken && !shotComplete)  // checks if a player takes a shot
 
     
     if (shootBlock)
@@ -799,7 +791,6 @@ void playerState::updateState()
 
 bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3D model
 {
-    //conversion *convert = conversion::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
     comparison compare;
@@ -814,10 +805,8 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
         switch (courtPositionChangedType)
         {
             case STARTCHANGE:
-                //logMsg("Updating player court position based on start position");
-                
                 node->translate(newCourtPosition);
-                physChange = BtOgre::Convert::toBullet(newCourtPosition); // converts from Ogre::Vector3 to btVector3
+                physChange = BtOgre::Convert::toBullet(newCourtPosition);  // converts from Ogre::Vector3 to btVector3
                 physBody->translate(physChange); // moves physics body in unison with the model
                 steer->setPosition(convert->toOpenSteerVec3(newCourtPosition));
                 courtPositionChanged = false;
@@ -832,7 +821,7 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
                 changePos = compare.OgreVector3ToOgreVector3Result(courtPosition, newCourtPosition);
                 //logMsg("change playerCourtPosition = " +convert->toString(changePos));
                 node->translate(changePos);
-                physChange = BtOgre::Convert::toBullet(changePos); // converts from Ogre::Vector3 to btVector3
+                physChange = BtOgre::Convert::toBullet(changePos);  // converts from Ogre::Vector3 to btVector3
                 physBody->translate(physChange); // moves physics body in unison with the model
                 //exit(0);
                 
@@ -844,8 +833,8 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
             case INPUTCHANGE:
                 //logMsg("Updating court position based on input");
                 node->translate(newCourtPosition);
-                physChange = BtOgre::Convert::toBullet(newCourtPosition); // converts from Ogre::Vector3 to btVector3
-                physBody->translate(physChange); // moves physics body in unison with the model
+                physChange = BtOgre::Convert::toBullet(newCourtPosition);  // converts from Ogre::Vector3 to btVector3
+                physBody->translate(physChange);  // moves physics body in unison with the model
                 steer->setPosition(convert->toOpenSteerVec3(newCourtPosition));
                 courtPositionChanged = false;
                 courtPositionChangedType = NOCHANGE;
@@ -872,7 +861,6 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
             default:
             break;
         }
-        
         ++posChangeAmount;
         logMsg("player ID " +convert->toString(playerID) +"change amount = " +convert->toString(posChangeAmount));
         
@@ -882,10 +870,10 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
 //	cout << "posChange = " << posChange << endl;
     node->translate(posChange);
 	btVector3 change = btVector3(0,0,0);
-	change = BtOgre::Convert::toBullet(posChange); // converts from Ogre::Vector3 to btVector3
+	change = BtOgre::Convert::toBullet(posChange);  // converts from Ogre::Vector3 to btVector3
 //	logMsg("playerPhysicsSetup = " +convert->toString(physEngine->getPlayerPhysicsSetup()));
 
-	physBody->translate(change); // moves physics body in unison with the model
+	physBody->translate(change);  // moves physics body in unison with the model
 //	exit(0);
 //	physBody->translate(btVector3(0,0,0));
 //	logMsg("player position updated.");
@@ -1014,7 +1002,6 @@ void playerState::updateDirection()
 
 void playerState::updateMovement()	// updates movement status of the player
 {
-    //conversion *convert = conversion::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
     std::vector<teamState> teamInstance = gameS->getTeamInstance();
@@ -1068,14 +1055,14 @@ void playerState::updateMovement()	// updates movement status of the player
 
         }
     }
-    else if (!movement)	// if false then sets their coordinate changes to 0.0
+    else if (!movement)  // if false then sets their coordinate changes to 0.0
     {
         posChange = Ogre::Vector3(0.0f, 0.0f, 0.0f);
     }
 
     if (posChange.x != 0 || posChange.y != 0 || posChange.z != 0)
     {
-        newCourtPosition = posChange;	// sets the newCourtPosition for current playerInstance
+        newCourtPosition = posChange;  // sets the newCourtPosition for current playerInstance
         courtPositionChanged = true;
         courtPositionChangedType = INPUTCHANGE;
         movement = false;
@@ -1086,52 +1073,49 @@ void playerState::updateMovement()	// updates movement status of the player
 
 void playerState::calculatePass()	// calculates which player to pass the ball to
 {
-//	exit(0);
-    //conversion *convert = conversion::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    //gameState *gameS = gameState::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
     
-	logMsg("In calculatePass function");
+    logMsg("In calculatePass function");
 
-	std::vector<teamState> teamInstance = gameS->getTeamInstance();
-	size_t teamWithBall = gameS->getTeamWithBall();
-	size_t playerWithBallInstance = teamInstance[teamWithBall].getPlayerWithBallInstance();
-//	if (playerWithBall < 5)	// checks if the player belongs to the first team
-//	{
-		if (playerWithBallInstance +1 < 5)	// checks if the player + 1 is still on the first team
-		{
-			passToPlayer = playerWithBallInstance +1;
-		}
-		else
-		{
-			passToPlayer = 0;
-		}
-//	}
+    std::vector<teamState> teamInstance = gameS->getTeamInstance();
+    size_t teamWithBall = gameS->getTeamWithBall();
+    size_t playerWithBallInstance = teamInstance[teamWithBall].getPlayerWithBallInstance();
+//    if (playerWithBall < 5)  // checks if the player belongs to the first team
+//    {
+        if (playerWithBallInstance +1 < 5)  // checks if the player + 1 is still on the first team
+        {
+            passToPlayer = playerWithBallInstance +1;
+        }
+        else
+        {
+            passToPlayer = 0;
+        }
+//        }
 /*
-	else if (playerWithBall > 4)	// checks if the player belongs to the second team
-	{
-		if (playerWithBall + 1 < 10)	// checks if the player + 1 is still on the second team
-		{
-			passToPlayer = playerWithBall +1;
-		}
-		else
-		{
-			passToPlayer = 5;
-		}
-	}
-	else
-	{
-	}
+    else if (playerWithBall > 4)  // checks if the player belongs to the second team
+    {
+        if (playerWithBall + 1 < 10)  // checks if the player + 1 is still on the second team
+        {
+            passToPlayer = playerWithBall +1;
+        }
+        else
+        {
+            passToPlayer = 5;
+        }
+    }
+    else
+    {
+    }
 */
 
     logMsg("Pass to player is now = " +convert->toString(passToPlayer));
 
 
-	passCalculated = true;
-//	logMsg("Player to pass to =   " +convert->toString(passToPlayer));
+    passCalculated = true;
+//    logMsg("Player to pass to =   " +convert->toString(passToPlayer));
 
-	exit(0);
+    exit(0);
 }
 
 void playerState::shotLogic(Ogre::Vector3 playerPos)

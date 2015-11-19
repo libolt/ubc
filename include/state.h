@@ -21,4 +21,11 @@
  #ifndef _STATE_H_
  #define _STATE_H_
  
+ class state
+ {
+     public:
+     
+     private:
+     
+ };
  #endif

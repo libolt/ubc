@@ -311,7 +311,7 @@ size_t playerState::getSteals()  // retrieves the value of steals
 {
     return(steals);
 }
-void playerState::setSteals(size_t set) // sets the value of steals
+void playerState::setSteals(size_t set)  // sets the value of steals
 {
     steals = set;
 }
@@ -343,41 +343,38 @@ void playerState::setAssists(size_t set)  // sets the value of assists
     assists = set;
 }
 
-size_t playerState::getFieldGoalsAttemped()
+size_t playerState::getFieldGoalsAttemped()  // retrieves the value of fieldGoalsAttempted
 {
     return(fieldGoalsAttemped);
 }
-
-void playerState::setFieldGoalsAttempted(size_t set)
+void playerState::setFieldGoalsAttempted(size_t set)  // sets the value of fieldGoalsAttempted
 {
     fieldGoalsAttemped = set;
 }
 
-size_t playerState::getFieldGoalsMade()
+size_t playerState::getFieldGoalsMade()  // retrieved the value of fieldGoalsMade
 {
     return(fieldGoalsMade);
 }
-void playerState::setFieldGoalsmade(size_t set)
+void playerState::setFieldGoalsmade(size_t set)  // sets the value of fieldGoalsMade
 {
     fieldGoalsMade = set;
 }
 
-size_t playerState::getThreePointersAttempted()
+size_t playerState::getThreePointersAttempted()  // retrieves the value of threePointersAttempted
 {
     return(threePointersAttempted);
 }
-
-void playerState::setThreePointersAttempted(size_t set)
+void playerState::setThreePointersAttempted(size_t set)  // sets the value of threePointersAttempted
 {
     threePointersAttempted = set;
 }
 
-size_t playerState::getThreePointersMade()
+size_t playerState::getThreePointersMade()  // retrieves the value of threePointersMade
 {
     return(threePointersMade);
 }
-
-void playerState::setThreePointersMade(size_t set)
+void playerState::setThreePointersMade(size_t set)  // sets the value of threePointersMade
 {
     threePointersMade = set;
 }

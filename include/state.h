@@ -18,14 +18,21 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
- #ifndef _STATE_H_
- #define _STATE_H_
+#ifndef _STATE_H_
+#define _STATE_H_
  
- class state
- {
-     public:
-     
-     private:
-     
- };
- #endif
+class state
+{
+    public:
+    
+    state();  // constructor
+    
+    void updateState();  // updates the state of the basketball
+    bool getStateSet();  // retrieves the value of stateSet
+    void setStateSet(bool set);  // sets the value of stateSet
+
+    private:
+    bool stateSet;  // if true then the basketball state is set
+
+};
+#endif

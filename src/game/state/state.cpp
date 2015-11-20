@@ -18,4 +18,18 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
- #include "state.h"
+#include "state.h"
+ 
+state::state()  // constructor
+{
+    stateSet = false;
+}
+ 
+bool state::getStateSet()  // retrieves the value of stateSet
+{
+    return (stateSet);
+}
+void state::setStateSet(bool set)  // sets the value of stateSet
+{
+    stateSet = set;
+}

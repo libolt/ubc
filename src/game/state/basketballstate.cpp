@@ -68,7 +68,7 @@
     newCourtPosition = Ogre::Vector3(0,0,0);
     courtPositionChanged = false;
     number = 999999;
-    stateSet = false;
+//    stateSet = false;
 
 }
 
@@ -353,7 +353,7 @@ void basketballs::setNumber(size_t set)  // sets the value of number
     numberSet = true;
 }
 
-bool basketballs::getStateSet()  // retrieves the value of stateSet
+/*bool basketballs::getStateSet()  // retrieves the value of stateSet
 {
     return (stateSet);
 }
@@ -361,7 +361,7 @@ void basketballs::setStateSet(bool set)  // sets the value of stateSet
 {
     stateSet = set;
 }
-
+*/
 bool basketballs::loadModel()  // loads the 3D model
 {
     boost::shared_ptr<renderEngine> render = renderEngine::Instance();

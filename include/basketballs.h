@@ -233,7 +233,7 @@ private:
     // stores what subsystem changed the position of the baskteball
     positionChangedTypes courtPositionChangedType;
 
-    bool stateSet;  // if true then the basketball state is set
+//    bool stateSet;  // if true then the basketball state is set
 };
 
 #endif

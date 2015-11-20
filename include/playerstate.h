@@ -40,7 +40,9 @@
 
 #include "playerphysics.h"
 
-class playerState
+#include "state.h"
+
+class playerState : public state
 {
     public:
 

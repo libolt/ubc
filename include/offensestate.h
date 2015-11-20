@@ -25,8 +25,9 @@
 
 #include "enums.h"
 #include "offenseplays.h"
+#include "state.h"
 
-class offenseState
+class offenseState : public state
 {
 public:
 

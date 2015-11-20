@@ -35,7 +35,7 @@
 #include "jumpballs.h"
 
 //using namespace std;
-class gameState
+class gameState : public state
 {
 public:
 
@@ -126,8 +126,8 @@ public:
     bool getTipOffComplete();  // retrieves the value of tipOffComplete
     void setTipOffComplete(bool set);  // sets the value of tipOffComplete
 
-    bool getStateSet();  // retrieves the value of stateSet
-    void setStateSet(bool set);  // sets the value of stateSet
+//    bool getStateSet();  // retrieves the value of stateSet
+//    void setStateSet(bool set);  // sets the value of stateSet
 
     void processNetworkEvents();  // processes events received from network connection.
     void processNetworkPlayerEvents();  // processes player evernts received from network connection
@@ -214,7 +214,7 @@ private:
 
     size_t bballBounce;  // stores which direction the ball is bouncing;
 
-    bool stateSet;  // if true then the game state has been set
+//    bool stateSet;  // if true then the game state has been set
 
 };
 

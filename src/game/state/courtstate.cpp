@@ -23,7 +23,7 @@
 
 courtState::courtState()
 {
-    stateSet = false;
+//    stateSet = false;
 }
 
 courtState::~courtState()
@@ -76,7 +76,7 @@ void courtState::setNodePosition(Ogre::Vector3 set)  // sets the value of nodePo
     nodePosition = set;
 }
 
-bool courtState::getStateSet()  // retrieves the value of stateSet
+/*bool courtState::getStateSet()  // retrieves the value of stateSet
 {
     return (stateSet);
 }
@@ -84,6 +84,7 @@ void courtState::setStateSet(bool set)  // sets the value of stateSet
 {
     stateSet = set;
 }
+*/
 
 bool courtState::loadModel()  // loads the 3D Model and attaches it to the node as well as sets coordinates
 {

@@ -38,8 +38,9 @@
 #include "basketballsteer.h"
 #include "basketballphysics.h"
 #include "enums.h"
+#include "state.h"
 
-class basketballs
+class basketballs : public state
 {
 public:
 
@@ -141,8 +142,8 @@ public:
     positionChangedTypes getCourtPositionChangedType();  // retrieves the value of courtPositionChangedType
     void setCourtPositionChangedType(positionChangedTypes set);  // sets the value of courtPositionChangedType
 
-    bool getStateSet();  // retrieves the value of stateSet
-    void setStateSet(bool set);  // sets the value of stateSet
+//    bool getStateSet();  // retrieves the value of stateSet
+//    void setStateSet(bool set);  // sets the value of stateSet
         
     
     size_t getNumber();  // retrieves the value of number

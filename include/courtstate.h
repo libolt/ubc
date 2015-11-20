@@ -26,8 +26,9 @@
 #include "BtOgrePG.h"
 #include "BtOgreGP.h"
 #include "BtOgreExtras.h"
+#include "state.h"
 
-class courtState
+class courtState : public state
 {
     public:
 
@@ -49,8 +50,8 @@ class courtState
         Ogre::Vector3 getNodePosition();  // retrieves the value of nodePosition
         void setNodePosition(Ogre::Vector3 set);  // sets the value of nodePosition
     
-        bool getStateSet();  // retrieves the value of stateSet
-        void setStateSet(bool set);  // sets the value of stateSet
+//        bool getStateSet();  // retrieves the value of stateSet
+//        void setStateSet(bool set);  // sets the value of stateSet
         
         // loads the 3D Model and attaches it to the node as well as sets coordinates
         bool loadModel();
@@ -67,7 +68,7 @@ class courtState
         // stores the physics object that represents the player
         btRigidBody *physBody;
 
-        bool stateSet;  // if true then the basketball court state has been set
+//        bool stateSet;  // if true then the basketball court state has been set
 
 };
 

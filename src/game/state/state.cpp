@@ -33,3 +33,13 @@ void state::setStateSet(bool set)  // sets the value of stateSet
 {
     stateSet = set;
 }
+
+bool state::setupState()  // sets up initial state of the object
+{
+    return (false);
+}
+
+bool state::updateState()  // updates the state of the object
+{
+    return (false);
+}

@@ -22,6 +22,7 @@
 #define _DEFENSESTATE_H_
 
 #include "enums.h"
+#include "state.h"
 
 class defenseState
 {
@@ -38,15 +39,14 @@ public:
     bool getExecute();	// retrieves the value of execute variable
     void setExecute(bool ex);	// sets the value of the execute variable
 
-    void setupState();		// sets up initial state of the object
+    void setupState();  // sets up initial state of the object
 
-    void updateState(teamTypes teamType);	// updates the state of the object
+    void updateState(teamTypes teamType);  // updates the state of the object
 
 private:
 
     teamTypes teamType;  // stores the type of team on defense
     courtSide_t courtSide;  // stores which side of the court the defense executes on.
-
     bool execute;	// If set then execute the defense logic
 
 };

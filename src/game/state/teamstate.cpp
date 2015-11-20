@@ -64,7 +64,7 @@ teamState::teamState()
 
     hoop = -1;
 
-    stateSet = false;
+//    stateSet = false;
 //    setupState();
 }
 
@@ -396,7 +396,7 @@ void teamState::setDefenseInstance(defenseState *set)	// sets the value of defen
 	defenseInstance = set;
 }
 
-bool teamState::getStateSet() // retrieves the value of stateSet
+/*bool teamState::getStateSet() // retrieves the value of stateSet
 {
     return (stateSet);
 }
@@ -404,9 +404,11 @@ void teamState::setStateSet(bool set) // sets the value of stateSet
 {
     stateSet = set;
 }
+*/
 
 void teamState::setupState()	// sets up the state of the object
 {
+    bool stateSet = this->getStateSet();
     if (!stateSet)
     {
         logMsg("Setting state");

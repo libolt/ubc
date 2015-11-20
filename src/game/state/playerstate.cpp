@@ -80,7 +80,7 @@ playerState::playerState()
     jumpComplete = false;
     courtPosition = Ogre::Vector3(0.0f,0.0f,0.0f);
     courtPositionChanged = false;
-    stateSet = false;
+//    stateSet = false;
     // hack
     posChangeAmount = 0;
     direction = NODIRECT;
@@ -667,7 +667,7 @@ void playerState::setCourtPositionChangedType(positionChangedTypes set)  // sets
     courtPositionChangedType = set;
 }
 
-bool playerState::getStateSet()  // retrieves the value of stateSet
+/*bool playerState::getStateSet()  // retrieves the value of stateSet
 {
     return (stateSet);
 }
@@ -675,6 +675,7 @@ void playerState::setStateSet(bool set)  // sets the value of stateSet
 {
     stateSet = set;
 }
+*/
 
 bool playerState::getInitialized()  // retreives the value of initialized
 {

@@ -27,9 +27,12 @@ class state
     
     state();  // constructor
     
-    void updateState();  // updates the state of the basketball
     bool getStateSet();  // retrieves the value of stateSet
     void setStateSet(bool set);  // sets the value of stateSet
+
+    bool setupState();		// sets up initial state of the object
+
+    bool updateState();  // updates the state of the object
 
     private:
     bool stateSet;  // if true then the basketball state is set

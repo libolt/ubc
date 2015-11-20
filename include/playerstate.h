@@ -243,9 +243,9 @@ class playerState : public state
         positionChangedTypes getCourtPositionChangedType();  // retrieves the value of courtPositionChangedType
         void setCourtPositionChangedType(positionChangedTypes set);  // sets the value of courtPositionChangedType
 
-        bool getStateSet();  // retrieves the value of stateSet
+/*        bool getStateSet();  // retrieves the value of stateSet
         void setStateSet(bool set);  // sets the value of stateSet
-        
+*/
         bool getInitialized(void);  // retreives the value of initialized
         void setInitialized(bool set);  // sets the value of initialized
 
@@ -372,7 +372,7 @@ class playerState : public state
 
         Ogre::Entity *model;  // Stores the 3D model that represents the player
 
-	Ogre::SceneNode *node;  // stores the Scene Node that represents the player
+        Ogre::SceneNode *node;  // stores the Scene Node that represents the player
 
         btRigidBody *physBody;  // stores the physics object that represents the player
 
@@ -380,15 +380,15 @@ class playerState : public state
         
         playerSteer *steer;  // stores the steering objerct that represents the player
 
-	Ogre::Vector3 courtPosition;  // stores the position of the player on the court in an Ogre::Vector3
+        Ogre::Vector3 courtPosition;  // stores the position of the player on the court in an Ogre::Vector3
 
-	Ogre::Vector3 newCourtPosition;  // stores the upfated position of the player on the court in an Ogre::Vector3
+        Ogre::Vector3 newCourtPosition;  // stores the upfated position of the player on the court in an Ogre::Vector3
         
         bool courtPositionChanged;  // if the court position has changed then this flag is set
 
         positionChangedTypes courtPositionChangedType;  // stores what subsystem changed the position of the player
 
-        bool stateSet;  // if true the playerState object has been set to initial state
+//        bool stateSet;  // if true the playerState object has been set to initial state
         // temporary hack
         bool initialized;
         

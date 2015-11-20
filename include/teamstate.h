@@ -30,10 +30,9 @@
 
 #include "basketballs.h"
 #include "playerstate.h"
+#include "state.h"
 
-using namespace std;
-
-class teamState
+class teamState : public state
 {
 public:
 
@@ -41,7 +40,7 @@ public:
     ~teamState();
 
 /*    int getTeamNumber();	// retrieves the value of teamNumber
-    void setTeamNumber(int set);	// sets the value of teamNumber
+    void setTeamNumber(int set);  // sets the value of teamNumber
 */
     size_t getID();	 // retrieves the value of teamID
     void setTeamID(size_t set);	 // sets the value of teamID
@@ -148,8 +147,8 @@ public:
     defenseState *getDefenseInstance();	 // retrieves the value of defenseInstance
     void setDefenseInstance(defenseState *set);	 // sets the value of defenseInstance
 
-    bool getStateSet();  // retrieves the value of stateSet
-    void setStateSet(bool set);  // sets the value of stateSet
+//    bool getStateSet();  // retrieves the value of stateSet
+//    void setStateSet(bool set);  // sets the value of stateSet
 
     // creates player Instances
     bool createPlayerInstances();  // creates the player instances
@@ -219,7 +218,7 @@ private:
     offenseState *offenseInstance;  // stores the offenseState instance
     defenseState *defenseInstance;  // stores the defenseState instance
 
-    bool stateSet;  // stores whether or not the class state has been setup correctly
+//    bool stateSet;  // stores whether or not the class state has been setup correctly
 };
 
 #endif // _TEAMSATE_H_

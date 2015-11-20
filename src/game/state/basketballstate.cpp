@@ -60,8 +60,8 @@
     teamNumber = 0;
     player = 0;
 
-    modelNeedsLoaded = false;
-    modelLoaded = false;
+//    modelNeedsLoaded = false;
+//    modelLoaded = false;
     numberSet = false;
     
     courtPosition = Ogre::Vector3(0,0,0);
@@ -76,11 +76,11 @@ basketballs::~basketballs()  // destructor
 {
 }
 
-Ogre::Vector3 basketballs::getNodePosition()  // retrieves position of basketball node
+/*Ogre::Vector3 basketballs::getNodePosition()  // retrieves position of basketball node
 {
 	return (node->getPosition());
 }
-
+*/
 float basketballs::getMaxHeight(void)  // retrieves the value of maxHeight
 {
     return(maxHeight);
@@ -223,12 +223,12 @@ void basketballs::setOldDirection(directions set)  // sets the value of oldDirec
 {
     oldDirection = set;
 }
-
+/*
 std::string basketballs::getModelName()  // retrieves the value of modelName
 {
     return (modelName);
 }
- void basketballs::setModelName(string set)  // sets the value of modelName
+void basketballs::setModelName(string set)  // sets the value of modelName
 {
     modelName = set;
 }
@@ -296,7 +296,7 @@ void basketballs::setModelLoaded(bool set)  // sets the value of modelLoaded
 {
     modelLoaded = set;
 }
-
+*/
 bool basketballs::getNumberSet()  // retrieves the value of numberSet
 {
     return (numberSet);
@@ -349,7 +349,7 @@ size_t basketballs::getNumber()  // retrieves the value of number
 void basketballs::setNumber(size_t set)  // sets the value of number
 {
     number = set;
-    physics.setNumber(set); // sets the physics number as well
+    getPhysics().setNumber(set); // sets the physics number as well
     numberSet = true;
 }
 
@@ -361,7 +361,7 @@ void basketballs::setStateSet(bool set)  // sets the value of stateSet
 {
     stateSet = set;
 }
-*/
+
 bool basketballs::loadModel()  // loads the 3D model
 {
     boost::shared_ptr<renderEngine> render = renderEngine::Instance();
@@ -379,6 +379,7 @@ bool basketballs::loadModel()  // loads the 3D model
 
    return true;
 }
+*/
 
 // calculates change in position along the x,y,z axes
 Ogre::Vector3 basketballs::calculatePositionChange()
@@ -386,7 +387,7 @@ Ogre::Vector3 basketballs::calculatePositionChange()
     boost::shared_ptr<gameState> gameS = gameState::Instance();
 
     Ogre::Vector3 changeInPosition;	// stores the calculated change in position
-    Ogre::Vector3 pos = node->getPosition();	// stores the basketball nodes position
+    Ogre::Vector3 pos = getNode()->getPosition();	// stores the basketball nodes position
 
     // initializes the variable
     changeInPosition[0] = 0.0f;
@@ -397,20 +398,21 @@ Ogre::Vector3 basketballs::calculatePositionChange()
 
 void basketballs::updateState()  // updates the state of the basketball
 {
-    if (modelNeedsLoaded)
+    bool modelNeedsLoaded = getModelNeedsLoaded();
+    if (getModelNeedsLoaded())
     {
 //        exit(0);
         if (loadModel())
         {
-            modelNeedsLoaded = false;
-            modelLoaded = true;
+            setModelNeedsLoaded(false);
+            setModelLoaded(true);
             
         }
     }
 
     if (numberSet)  // runs the physics update code
     {
-        physics.updateState();
+        getPhysics().updateState();
     }
     if (directChange)
     {
@@ -447,10 +449,10 @@ void basketballs::updatePosition() // updates the position of the basketball
             case STARTCHANGE:
                 logMsg("Updating basketball court position based on start position");
                 
-                node->translate(newCourtPosition);
+                getNode()->translate(newCourtPosition);
                 physChange = BtOgre::Convert::toBullet(newCourtPosition); // converts from Ogre::Vector3 to btVector3
-                physBody->translate(physChange); // moves physics body in unison with the model
-                steer->setPosition(convert->toOpenSteerVec3(newCourtPosition));
+                getPhysBody()->translate(physChange); // moves physics body in unison with the model
+                getSteer()->setPosition(convert->toOpenSteerVec3(newCourtPosition));
                 courtPositionChanged = false;
                 courtPositionChangedType = NOCHANGE;
             break;
@@ -459,9 +461,9 @@ void basketballs::updatePosition() // updates the position of the basketball
                 logMsg("Updating basketball court position based on steering");
                 //logMsg("Team " +convert->toString(teamNumber) + " Player " +convert->toString(playerID));
                 changePos = compare.OgreVector3ToOgreVector3Result(courtPosition, newCourtPosition);
-                node->translate(changePos);
+                getNode()->translate(changePos);
                 physChange = BtOgre::Convert::toBullet(changePos); // converts from Ogre::Vector3 to btVector3
-                physBody->translate(physChange); // moves physics body in unison with the model
+                getPhysBody()->translate(physChange); // moves physics body in unison with the model
                
                 courtPositionChanged = false;
                 courtPositionChangedType = NOCHANGE;
@@ -469,10 +471,10 @@ void basketballs::updatePosition() // updates the position of the basketball
 
             case INPUTCHANGE:
                 logMsg("Updating court position based on input");
-                node->translate(newCourtPosition);
+                getNode()->translate(newCourtPosition);
                 physChange = BtOgre::Convert::toBullet(newCourtPosition); // converts from Ogre::Vector3 to btVector3
-                physBody->translate(physChange); // moves physics body in unison with the model
-                steer->setPosition(convert->toOpenSteerVec3(newCourtPosition));
+                getPhysBody()->translate(physChange); // moves physics body in unison with the model
+                getSteer()->setPosition(convert->toOpenSteerVec3(newCourtPosition));
                 courtPositionChanged = false;
                 courtPositionChangedType = NOCHANGE;
                 //exit(0);
@@ -484,12 +486,12 @@ void basketballs::updatePosition() // updates the position of the basketball
             break;
             case PLAYERMOVECHANGE:
                 logMsg("Updating basketball court position based on player movement");
-                node->translate(newCourtPosition);
+                getNode()->translate(newCourtPosition);
                 logMsg("bball newCourtPosition = " +convert->toString(newCourtPosition));
-                logMsg("bball node position" +convert->toString((node->getPosition())));
+                logMsg("bball node position" +convert->toString((getNode()->getPosition())));
                 //exit(0);
                 physChange = BtOgre::Convert::toBullet(newCourtPosition); // converts from Ogre::Vector3 to btVector3
-                physBody->translate(physChange); // moves physics body in unison with the model
+                getPhysBody()->translate(physChange); // moves physics body in unison with the model
                 //steer->setPosition(convert->toOpenSteerVec3(newCourtPosition));
                 courtPositionChanged = false;
                 courtPositionChangedType = NOCHANGE;
@@ -497,12 +499,12 @@ void basketballs::updatePosition() // updates the position of the basketball
             break;
             case PLAYERDIRECTCHANGE:
                 logMsg("Updating basketball court position based on player movement");
-                node->translate(newCourtPosition);
+                getNode()->translate(newCourtPosition);
                 logMsg("bball newCourtPosition = " +convert->toString(newCourtPosition));
-                logMsg("bball node position" +convert->toString((node->getPosition())));
+                logMsg("bball node position" +convert->toString((getNode()->getPosition())));
                 //exit(0);
                 physChange = BtOgre::Convert::toBullet(newCourtPosition); // converts from Ogre::Vector3 to btVector3
-                physBody->translate(physChange); // moves physics body in unison with the model
+                getPhysBody()->translate(physChange); // moves physics body in unison with the model
                 //steer->setPosition(convert->toOpenSteerVec3(newCourtPosition));
                 courtPositionChanged = false;
                 courtPositionChangedType = NOCHANGE;
@@ -510,7 +512,7 @@ void basketballs::updatePosition() // updates the position of the basketball
             default:
             break;
         }
-        courtPosition = node->getPosition();
+        courtPosition = getNode()->getPosition();
         
     }
     
@@ -541,7 +543,7 @@ void basketballs::updateMovement()  // updates the basketball(s) movements
 
     if (courtPosition.x == 0 && courtPosition.y == 0 && courtPosition.z == 0)
     {
-        bballCurrentPos = node->getPosition();
+        bballCurrentPos = getNode()->getPosition();
     }
     else
     {
@@ -643,7 +645,7 @@ void basketballs::updateDirection()  // updates basketball direction(s)
 
             if (courtPosition.x == 0 && courtPosition.y == 0 && courtPosition.z == 0)
             {
-                bballCurrentPos = node->getPosition();
+                bballCurrentPos = getNode()->getPosition();
             }
             else
             {

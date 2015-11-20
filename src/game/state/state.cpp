@@ -43,3 +43,8 @@ bool state::updateState()  // updates the state of the object
 {
     return (false);
 }
+
+bool resetState()  // resets the state of the object
+{
+    return (false);
+}

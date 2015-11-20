@@ -18,26 +18,35 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef _STATE_H_
-#define _STATE_H_
- 
-class state
+#ifndef _ENTITY_H_
+#define _ENTITY_H
+
+#include "entity.h"
+#include "basketballphysics.h"
+#include "basketballsteer.h"
+
+class basketballEntity : public entity
 {
     public:
     
-    state();  // constructor
+    basketballEntity();  // constructor
+    ~basketballEntity();  // destructor
     
-    bool getStateSet();  // retrieves the value of stateSet
-    void setStateSet(bool set);  // sets the value of stateSet
+    basketballPhysics getPhysics();  // retrieves the value of physics
+    void setPhysics(basketballPhysics set);  // sets the value of physics
 
-    bool setupState();		// sets up initial state of the object
+    basketballSteer *getSteer();  // retrieves the value of steer
+    void setSteer(basketballSteer *set);  // sets the value of steer
 
-    bool updateState();  // updates the state of the object
+    Ogre::Vector3 getNodePosition();  // the value of nodePosition
 
-    bool resetState();  // resets the state of the object
-    
     private:
-    bool stateSet;  // if true then the basketball state is set
+    
+    basketballPhysics physics;  // instanciates an object to handle the physics for the basketball
 
+    basketballSteer *steer;  // instance of the basketballSteer class
+
+    
 };
+ 
 #endif

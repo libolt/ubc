@@ -35,12 +35,13 @@
 #include "BtOgreGP.h"
 #include "BtOgreExtras.h"
 
-#include "basketballsteer.h"
-#include "basketballphysics.h"
+#include "basketballentity.h"
+//#include "basketballsteer.h"
+//#include "basketballphysics.h"
 #include "enums.h"
 #include "state.h"
 
-class basketballs : public state
+class basketballs: public state, public basketballEntity
 {
 public:
 
@@ -50,7 +51,7 @@ public:
 
 // declaration of functions which access/modify private variables in the class
 
-    Ogre::Vector3 getNodePosition();  // the value of nodePosition
+//    Ogre::Vector3 getNodePosition();  // the value of nodePosition
 
     float getMaxHeight(void);  //	retrieves the value of maxHeight
     void setMaxHeight(float set);  //	sets the value of maxHeight
@@ -103,7 +104,7 @@ public:
     directions getOldDirection();  // retrieves the value of oldDirection
     void setOldDirection(directions set);  // sets the value of oldDirection 
   
-    std::string getModelName();  // retrieves the value of modelName
+/*    std::string getModelName();  // retrieves the value of modelName
     void setModelName(std::string set);  // sets the value of modelName
 
     Ogre::Entity *getModel();  // retrieves the value of model
@@ -120,12 +121,13 @@ public:
 
     basketballSteer *getSteer();  // retrieves the value of steer
     void setSteer(basketballSteer *set);  // sets the value of steer
-    
+
     bool getModelNeedsLoaded();  // retrieves the value of modelNeedsLoaded
     void setModelNeedsLoaded(bool set);  // sets the value of modelNeedsLoaded
 
     bool getModelLoaded();  // retrieves the value of modelLoaded
     void setModelLoaded(bool set);  // sets the value of modelLoaded
+*/
 
     bool getNumberSet();  // retrieves the value of numberSet
     void setNumberSet(bool set);  // sets the value of numberSet
@@ -149,7 +151,7 @@ public:
     size_t getNumber();  // retrieves the value of number
     void setNumber(size_t set);  // sets the value of number
 
-    bool loadModel();  // loads the 3D model from file specified in modelName
+//    bool loadModel();  // loads the 3D model from file specified in modelName
 
     void updateState();  // updates the state of the basketball
     
@@ -173,7 +175,7 @@ protected:
 private:
 //    static basketballs *pInstance;
 
-    std::string modelName;  // stores the file name of the 3d model
+/*    std::string modelName;  // stores the file name of the 3d model
 
     Ogre::Entity *model;  // stores 3d model
 
@@ -189,7 +191,7 @@ private:
     bool modelNeedsLoaded;  // stores whether or not to load the model
 
     bool modelLoaded;  // stores whether the 3D model of the basketball has been loaded
-
+*/
     bool numberSet;  // stores whether the the instance number had been set
     
     float maxHeight;  // stores the maximum height pf the basketball

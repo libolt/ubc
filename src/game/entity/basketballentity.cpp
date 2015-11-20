@@ -18,26 +18,37 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef _STATE_H_
-#define _STATE_H_
- 
-class state
+#include "basketballentity.h"
+
+basketballEntity::basketballEntity()  // constructor
 {
-    public:
+
+}
+basketballEntity::~basketballEntity()  // destructor
+{
     
-    state();  // constructor
-    
-    bool getStateSet();  // retrieves the value of stateSet
-    void setStateSet(bool set);  // sets the value of stateSet
+}
 
-    bool setupState();		// sets up initial state of the object
+Ogre::Vector3 basketballEntity::getNodePosition()  // retrieves position of basketball node
+{
+    return (getNode()->getPosition());
+}
 
-    bool updateState();  // updates the state of the object
+basketballPhysics basketballEntity::getPhysics()  // retrieves the value of physics
+{
+    return (physics);
+}
+void basketballEntity::setPhysics(basketballPhysics set)  // sets the value of physics
+{
+    physics = set;
+}
 
-    bool resetState();  // resets the state of the object
-    
-    private:
-    bool stateSet;  // if true then the basketball state is set
+basketballSteer *basketballEntity::getSteer()  // retrieves the value of steer
+{
+    return (steer);
+}
+void basketballEntity::setSteer(basketballSteer *set)  // sets the value of steer
+{
+    steer = set;
+}
 
-};
-#endif

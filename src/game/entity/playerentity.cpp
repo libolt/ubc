@@ -18,33 +18,31 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef _BASKETBALLENTITY_H_
-#define _BASKETBALLENTITY_H
+#include "playerentity.h"
 
-#include "entity.h"
-#include "basketballphysics.h"
-#include "basketballsteer.h"
-
-class basketballEntity : public entity
+playerEntity::playerEntity()  // constructor
 {
-    public:
-    
-    basketballEntity();  // constructor
-    ~basketballEntity();  // destructor
-    
-    basketballPhysics getPhysics();  // retrieves the value of physics
-    void setPhysics(basketballPhysics set);  // sets the value of physics
 
-    basketballSteer *getSteer();  // retrieves the value of steer
-    void setSteer(basketballSteer *set);  // sets the value of steer
+}
+playerEntity::~playerEntity()  // destructor
+{
 
-    private:
-    
-    basketballPhysics physics;  // instanciates an object to handle the physics for the basketball
+}
 
-    basketballSteer *steer;  // instance of the basketballSteer class
+playerPhysics playerEntity::getPhysics()  // retrieves the value of physics
+{
+    return (physics);
+}
+void playerEntity::setPhysics(playerPhysics set)  // sets the value of physics
+{
+    physics = set;
+}
 
-    
-};
- 
-#endif
+playerSteer *playerEntity::getSteer() // retrieves the value of steer
+{
+    return (steer);
+}
+void playerEntity::setSteer(playerSteer *set)  // sets the value of steer
+{
+    steer = set;
+}

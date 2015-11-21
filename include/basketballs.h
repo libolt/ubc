@@ -41,7 +41,7 @@
 #include "enums.h"
 #include "state.h"
 
-class basketballs: public state, public basketballEntity
+class basketballs : public state, public basketballEntity
 {
 public:
 

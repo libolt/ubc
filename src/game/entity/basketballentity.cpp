@@ -29,11 +29,6 @@ basketballEntity::~basketballEntity()  // destructor
     
 }
 
-Ogre::Vector3 basketballEntity::getNodePosition()  // retrieves position of basketball node
-{
-    return (getNode()->getPosition());
-}
-
 basketballPhysics basketballEntity::getPhysics()  // retrieves the value of physics
 {
     return (physics);

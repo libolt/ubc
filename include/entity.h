@@ -53,6 +53,8 @@ class entity  // base class for entity objects
     bool getModelLoaded();  // retrieves the value of modelLoaded
     void setModelLoaded(bool set);  // sets the value of modelLoaded
 
+    Ogre::Vector3 getNodePosition();  // the value of nodePosition
+
     bool loadModel();  // loads the 3D model from file specified in modelName
 
     private:
@@ -69,8 +71,6 @@ class entity  // base class for entity objects
     bool modelNeedsLoaded;  // stores whether or not to load the model
 
     bool modelLoaded;  // stores whether the 3D model of the basketball has been loaded
-
-    
     
 };
 

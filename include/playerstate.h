@@ -41,8 +41,9 @@
 #include "playerphysics.h"
 
 #include "state.h"
+#include "playerentity.h"
 
-class playerState : public state
+class playerState : public state, public playerEntity
 {
     public:
 
@@ -153,6 +154,7 @@ class playerState : public state
         size_t getFreeThrowsMade();  // retrieves the value of freeThrowsMade
         void setFreeThrowsMade(size_t set);  // sest the value of freeThrowsMade
 
+/*
         std::string getModelName();  // retrieves the value of modelName
         void setModelName(std::string set);  // sets the value of modelName
 
@@ -170,7 +172,7 @@ class playerState : public state
         
         playerSteer *getSteer(); // retrieves the steering instance
         void setSteer(playerSteer *set); // sets the steering instance
-
+*/
         bool getMovement();  // retrieves the value of movement
         void setMovement(bool set);  // sets the value of movement
 
@@ -251,7 +253,7 @@ class playerState : public state
 
         void updateState();  // updates the state of the object
 
-        bool loadModel();  // loads the 3D model from file specified in modelName
+//        bool loadModel();  // loads the 3D model from file specified in modelName
 
         bool updateCourtPosition();  // updates the X, Y and Z coordinates of the 3D model
 
@@ -335,14 +337,14 @@ class playerState : public state
 
         size_t freeThrowsMade;  // Tracks how many fere throws the player has made
 
-	std::string modelName;  // stores the name of the 3D model representing the player
+//        std::string modelName;  // stores the name of the 3D model representing the player
 
         bool movement; // if true then player is moving
 
         directions direction;  // stores direction player is moving
         directions oldDirection;  // stores the previous player direction.
 
-	Ogre::Vector3 posChange;  // stores value of players' position changes during logic updates
+        Ogre::Vector3 posChange;  // stores value of players' position changes during logic updates
 
         bool startPosReached;  // stores whether a player is in the starting position for tipoff
        
@@ -370,7 +372,7 @@ class playerState : public state
         bool offenseSet;  // tracks state of player's offense
         bool defenseSet;  // tracks state of player's defense
 
-        Ogre::Entity *model;  // Stores the 3D model that represents the player
+/*        Ogre::Entity *model;  // Stores the 3D model that represents the player
 
         Ogre::SceneNode *node;  // stores the Scene Node that represents the player
 
@@ -379,7 +381,7 @@ class playerState : public state
         playerPhysics physics;  // stores the playerPhysics object
         
         playerSteer *steer;  // stores the steering objerct that represents the player
-
+*/
         Ogre::Vector3 courtPosition;  // stores the position of the player on the court in an Ogre::Vector3
 
         Ogre::Vector3 newCourtPosition;  // stores the upfated position of the player on the court in an Ogre::Vector3

@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "entity.h"
+#include "renderengine.h"
 
 entity::entity()  // constructor
 {
@@ -84,6 +85,11 @@ bool entity::getModelLoaded()  // retrieves the value of modelLoaded
 void entity::setModelLoaded(bool set)  // sets the value of modelLoaded
 {
     modelLoaded = set;
+}
+
+Ogre::Vector3 entity::getNodePosition()  // retrieves position of basketball node
+{
+    return (getNode()->getPosition());
 }
 
 bool entity::loadModel()  // loads the 3D model

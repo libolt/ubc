@@ -702,7 +702,7 @@ bool teamState::createPlayerInstances()
 //                exit(0);
                 if (!playerInstance[x].getModelLoaded())
                 {
-                    if (playerInstance[x].loadModel())
+                    if (playerInstance[x].loadModel(playerInstance[x].getPlayerName()))
                     {
                         logMsg("Loading Model");
 //                        exit(0);

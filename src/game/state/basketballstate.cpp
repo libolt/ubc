@@ -402,7 +402,7 @@ void basketballs::updateState()  // updates the state of the basketball
     if (getModelNeedsLoaded())
     {
 //        exit(0);
-        if (loadModel())
+        if (loadModel("basketball"))
         {
             setModelNeedsLoaded(false);
             setModelLoaded(true);

@@ -55,7 +55,7 @@ class entity  // base class for entity objects
 
     Ogre::Vector3 getNodePosition();  // the value of nodePosition
 
-    bool loadModel();  // loads the 3D model from file specified in modelName
+    bool loadModel(std::string nodeName);  // loads the 3D model from file specified in modelName
 
     private:
     

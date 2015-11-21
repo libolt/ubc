@@ -92,14 +92,14 @@ Ogre::Vector3 entity::getNodePosition()  // retrieves position of basketball nod
     return (getNode()->getPosition());
 }
 
-bool entity::loadModel()  // loads the 3D model
+bool entity::loadModel(std::string nodeName)  // loads the 3D model
 {
     boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
     model = render->getMSceneMgr()->createEntity("basketball", modelName);  // loads the basketball model
 
     // creates and instantiates the node object
-    node = render->getMSceneMgr()->getRootSceneNode()->createChildSceneNode("basketball");
+    node = render->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(nodeName);
 
     // attaches 3D model to the node
     node->attachObject(model);

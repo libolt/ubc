@@ -337,7 +337,7 @@ bool gameState::createBasketballInstances()  // creates basketball Instances
     logMsg("setting model name");
     bballInstance.setModelName("bball.mesh");
     logMsg("loading model");
-    if (bballInstance.loadModel())
+    if (bballInstance.loadModel("basketball"))
     {
         bballInstance.setModelNeedsLoaded(false);
         bballInstance.setModelLoaded(true);

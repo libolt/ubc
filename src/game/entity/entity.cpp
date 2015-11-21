@@ -20,6 +20,7 @@
 
 #include "entity.h"
 #include "renderengine.h"
+#include "logging.h"
 
 entity::entity()  // constructor
 {
@@ -96,13 +97,15 @@ bool entity::loadModel(std::string nodeName)  // loads the 3D model
 {
     boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
-    model = render->getMSceneMgr()->createEntity("basketball", modelName);  // loads the basketball model
-
+    model = render->getMSceneMgr()->createEntity(nodeName, modelName);  // loads the basketball model
+    logMsg("Entity Created!");
     // creates and instantiates the node object
     node = render->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(nodeName);
-
-    // attaches 3D model to the node
+    logMsg("scene node created!");
     node->attachObject(model);
+    logMsg("node attached!");
+    // attaches 3D model to the node
+//    node->attachObject(model);
     // sets the size of the bball node
     node->setScale(0.25f,0.25f,0.25f);
     node->setPosition(0.0f,0.0f,0.0f);

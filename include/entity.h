@@ -53,7 +53,8 @@ class entity  // base class for entity objects
     bool getModelLoaded();  // retrieves the value of modelLoaded
     void setModelLoaded(bool set);  // sets the value of modelLoaded
 
-    Ogre::Vector3 getNodePosition();  // the value of nodePosition
+    Ogre::Vector3 getNodePosition();  // retrieves the value of nodePosition
+    void setNodePosition(Ogre::Vector3 set);  // sets the value of nodePosition
 
     bool loadModel(std::string nodeName);  // loads the 3D model from file specified in modelName
 
@@ -64,6 +65,8 @@ class entity  // base class for entity objects
     Ogre::Entity *model;  // stores 3d model
 
     Ogre::SceneNode *node;  // stores node 3d model is attached to
+
+    Ogre::Vector3 nodePosition;  // stores the position of the node
 
     // stores the physics object that represents the player
     btRigidBody *physBody;

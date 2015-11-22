@@ -30,6 +30,7 @@ courtState::~courtState()
 {
 }
 
+/*
 std::string courtState::getModelName()  // retrieves the value of modelName
 {
     return (modelName);
@@ -75,7 +76,7 @@ void courtState::setNodePosition(Ogre::Vector3 set)  // sets the value of nodePo
 {
     nodePosition = set;
 }
-
+*/
 /*bool courtState::getStateSet()  // retrieves the value of stateSet
 {
     return (stateSet);
@@ -86,7 +87,7 @@ void courtState::setStateSet(bool set)  // sets the value of stateSet
 }
 */
 
-bool courtState::loadModel()  // loads the 3D Model and attaches it to the node as well as sets coordinates
+/*bool courtState::loadModel()  // loads the 3D Model and attaches it to the node as well as sets coordinates
 {
     boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
@@ -102,4 +103,4 @@ bool courtState::loadModel()  // loads the 3D Model and attaches it to the node 
     node->setScale(1.0f,1.0f,1.0f);
 
     return true;
-}
+}*/

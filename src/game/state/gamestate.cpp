@@ -388,7 +388,7 @@ bool gameState::createCourtInstances()  // creates court Instances
 
     cInstance.setModelName(courtDataInstance[selectedCourtDataInstance].getModelName());
 //    exit(0);
-    cInstance.loadModel();
+    cInstance.loadModel(cInstance.getModelName());
     courtInstance.push_back(cInstance);
 
     return true;

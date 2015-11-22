@@ -88,9 +88,13 @@ void entity::setModelLoaded(bool set)  // sets the value of modelLoaded
     modelLoaded = set;
 }
 
-Ogre::Vector3 entity::getNodePosition()  // retrieves position of basketball node
+Ogre::Vector3 entity::getNodePosition()  // retrieves the value of nodePosition
 {
-    return (getNode()->getPosition());
+    return (nodePosition);
+}
+void entity::setNodePosition(Ogre::Vector3 set)  // sets the value of nodePosition
+{
+    nodePosition = set;
 }
 
 bool entity::loadModel(std::string nodeName)  // loads the 3D model

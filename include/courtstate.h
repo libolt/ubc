@@ -27,15 +27,16 @@
 #include "BtOgreGP.h"
 #include "BtOgreExtras.h"
 #include "state.h"
+#include "entity.h"
 
-class courtState : public state
+class courtState : public state, public entity
 {
     public:
 
         courtState();   // constructor
         ~courtState();  // destructor
 
-        std::string getModelName();  // retrieves the value of modelName
+/*        std::string getModelName();  // retrieves the value of modelName
         void setModelName(std::string set);  // sets the value of modelName
 
         Ogre::Entity *getModel();  // retrieves the value of model
@@ -49,16 +50,17 @@ class courtState : public state
 
         Ogre::Vector3 getNodePosition();  // retrieves the value of nodePosition
         void setNodePosition(Ogre::Vector3 set);  // sets the value of nodePosition
-    
+*/
+
 //        bool getStateSet();  // retrieves the value of stateSet
 //        void setStateSet(bool set);  // sets the value of stateSet
         
         // loads the 3D Model and attaches it to the node as well as sets coordinates
-        bool loadModel();
+//        bool loadModel();
 
     private:
 
-        std::string modelName;   // stores the file name of the 3D Model
+/*        std::string modelName;   // stores the file name of the 3D Model
 
         Ogre::Entity *model;    // stores the 3D Model representing the court
 
@@ -67,7 +69,7 @@ class courtState : public state
         Ogre::Vector3 nodePosition;  // stores the position of the node
         // stores the physics object that represents the player
         btRigidBody *physBody;
-
+*/
 //        bool stateSet;  // if true then the basketball court state has been set
 
 };

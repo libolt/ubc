@@ -42,6 +42,24 @@ void entity::setModelName(std::string set)  // sets the value of modelName
     modelName = set;
 }
 
+std::string entity::getEntityName()  // retrieves the value of entityName
+{
+    return (entityName);
+}
+void entity::setEntityName(std::string set)  // sets the value of entityName
+{
+    entityName = set;
+}
+
+std::string entity::getNodeName()  // retrieves the value of nodeName
+{
+    return (nodeName);
+}
+void entity::setNodeName(std::string set)  // sets the value of nodeName
+{
+    nodeName = set;
+}
+
 Ogre::Entity *entity::getModel()  // retrieves the value of model
 {
     return (model);
@@ -97,11 +115,11 @@ void entity::setNodePosition(Ogre::Vector3 set)  // sets the value of nodePositi
     nodePosition = set;
 }
 
-bool entity::loadModel(std::string nodeName)  // loads the 3D model
+bool entity::loadModel()  // loads the 3D model
 {
     boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
-    model = render->getMSceneMgr()->createEntity(nodeName, modelName);  // loads the basketball model
+    model = render->getMSceneMgr()->createEntity(entityName, modelName);  // loads the basketball model
     logMsg("Entity Created!");
     // creates and instantiates the node object
     node = render->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(nodeName);

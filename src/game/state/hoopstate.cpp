@@ -18,18 +18,19 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "hoop.h"
+#include "state/hoopstate.h"
 #include "engine/renderengine.h"
 
 hoopState::hoopState()  // constructor
 {
-    stateSet = false;
+//    stateSet = false;
 }
 
 hoopState::~hoopState()  // destructor
 {
 }
 
+/*
 std::string hoopState::getModelName()  // retrieves the value of modelName
 {
     return (modelName);
@@ -111,3 +112,4 @@ bool hoopState::loadModel()  // loads the 3D Model and attaches it to the node a
 
     return true;
 }
+*/

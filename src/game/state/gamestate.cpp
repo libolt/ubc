@@ -336,8 +336,11 @@ bool gameState::createBasketballInstances()  // creates basketball Instances
     basketballState bballInstance;  // creates an instance of the basketballs class
     logMsg("setting model name");
     bballInstance.setModelName("bball.mesh");
+    bballInstance.setEntityName(bballInstance.getModelName());
+    bballInstance.setNodeName(bballInstance.getModelName());
+
     logMsg("loading model");
-    if (bballInstance.loadModel("basketball"))
+    if (bballInstance.loadModel())
     {
         bballInstance.setModelNeedsLoaded(false);
         bballInstance.setModelLoaded(true);
@@ -388,7 +391,9 @@ bool gameState::createCourtInstances()  // creates court Instances
 
     cInstance.setModelName(courtDataInstance[selectedCourtDataInstance].getModelName());
 //    exit(0);
-    cInstance.loadModel(cInstance.getModelName());
+    cInstance.setNodeName(cInstance.getModelName());
+    cInstance.setEntityName(cInstance.getModelName());
+    cInstance.loadModel();
     cInstance.getNode()->setScale(1.0f,1.0f,1.0f);
     courtInstance.push_back(cInstance);
 
@@ -403,11 +408,13 @@ bool gameState::createHoopInstances()  // creates hoop Instances
     hInstance[0].setModelName("Hoop.mesh");
     hInstance[0].setNodeName("hoopNode1");
     hInstance[0].loadModel();
+    hInstance[0].getNode()->setScale(0.8f,0.8f,0.8f);
 
     hInstance[1].setEntityName("hoop2");
     hInstance[1].setModelName("Hoop.mesh");
     hInstance[1].setNodeName("hoopNode2");
     hInstance[1].loadModel();
+    hInstance[1].getNode()->setScale(0.8f,0.8f,0.8f);
 
     hoopInstance.push_back(hInstance[0]);  // loads the first hoop
     hoopInstance.push_back(hInstance[1]);  // loads the second hoop

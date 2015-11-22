@@ -702,7 +702,9 @@ bool teamState::createPlayerInstances()
 //                exit(0);
                 if (!playerInstance[x].getModelLoaded())
                 {
-                    if (playerInstance[x].loadModel(playerInstance[x].getPlayerName()))
+                    playerInstance[x].setEntityName(playerInstance[x].getPlayerName());
+                    playerInstance[x].setNodeName(playerInstance[x].getPlayerName());
+                    if (playerInstance[x].loadModel())
                     {
                         logMsg("Loading Model");
 //                        exit(0);

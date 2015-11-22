@@ -27,15 +27,17 @@
 #include "BtOgreGP.h"
 #include "BtOgreExtras.h"
 
+#include "state/state.h"
+#include "entity/hoopentity.h"
 
-class hoopState
+class hoopState : public state, public hoopEntity
 {
     public:
 
     hoopState(); // constructor
     ~hoopState();  // destructor
 
-    std::string getModelName();  // retrieves the value of modelName
+/*    std::string getModelName();  // retrieves the value of modelName
     void setModelName(std::string set);  // sets the value of modelName
 
     std::string getEntityName();  // retrieves the value of entityName
@@ -57,10 +59,10 @@ class hoopState
     void setStateSet(bool set);  // sets the value of stateSet
         
     bool loadModel();  // loads the 3D Model and attaches it to the node as well as sets coordinates
-
+*/
     private:
 
-    std::string modelName;  // stores the file name of the 3D Model
+/*    std::string modelName;  // stores the file name of the 3D Model
     std::string entityName;  // stores the name of the model object in the scene
     std::string nodeName;  // stores the name of the scene node
     Ogre::Entity *model;  // stores the 3D Model representing the first hoop
@@ -70,7 +72,7 @@ class hoopState
     btRigidBody *physBody;  // stores the physics object representing the hoop
 
     bool stateSet;  // if true then the hoop state has been set
-
+*/
 };
 
 #endif

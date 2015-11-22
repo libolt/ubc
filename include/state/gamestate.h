@@ -27,7 +27,7 @@
 #include "state/basketballstate.h"
 #include "courtdata.h"
 #include "state/courtstate.h"
-#include "hoop.h"
+#include "state/hoopstate.h"
 #include "state/playerstate.h"
 #include "state/teamstate.h"
 #include "teamdata.h"

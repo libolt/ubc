@@ -38,6 +38,12 @@ class entity  // base class for entity objects
     std::string getModelName();  // retrieves the value of modelName
     void setModelName(std::string set);  // sets the value of modelName
 
+    std::string getEntityName();  // retrieves the value of entityName
+    void setEntityName(std::string set);  // sets the value of entityName
+
+    std::string getNodeName();  // retrieves the value of nodeName
+    void setNodeName(std::string set);  // sets the value of nodeName
+
     Ogre::Entity *getModel();  // retrieves the value of model
     void setModel(Ogre::Entity *set);  // sets the value of model
 
@@ -56,11 +62,15 @@ class entity  // base class for entity objects
     Ogre::Vector3 getNodePosition();  // retrieves the value of nodePosition
     void setNodePosition(Ogre::Vector3 set);  // sets the value of nodePosition
 
-    bool loadModel(std::string nodeName);  // loads the 3D model from file specified in modelName
+    bool loadModel();  // loads the 3D model from file specified in modelName
 
     private:
     
     std::string modelName;  // stores the file name of the 3d model
+
+    std::string entityName;  // stores the name of the model object in the scene
+
+    std::string nodeName;  // stores the name of the scene node
 
     Ogre::Entity *model;  // stores 3d model
 

@@ -240,7 +240,7 @@ LOCAL_MODULE := UltimateBasketballChallenge
 #OGGVORBIS_PATH := ${BUILD_ROOT}/libvorbislibogg
 #OPENAL_PATH := ${BUILD_ROOT}/openal-soft
 
-UBC_ROOT := $(BUILD_ROOT)/ubc2
+UBC_ROOT := $(BUILD_ROOT)/ubc
 UBC_SRC_DIR := $(UBC_ROOT)/src/game
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/$(UBC_DEPENDS_PATH)/include
@@ -287,8 +287,6 @@ LOCAL_SRC_FILES := \
                        $(wildcard $(LOCAL_PATH)/../../src/game/entity/*.cpp)) \
                    $(subst $(LOCAL_PATH)/,, \
                        $(wildcard $(LOCAL_PATH)/../../src/game/engine/*.cpp)) \
-                   $(subst $(LOCAL_PATH)/,, \
-
 
 LOCAL_LDLIBS	:= -landroid -lc -lm -ldl -llog -lEGL -lGLESv1_CM -lGLESv2 
 

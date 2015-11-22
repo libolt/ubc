@@ -230,7 +230,7 @@ void gameEngine::processInput()  // processes game input
                         logMsg("inputQueue.size = " +convert->toString(inputQueue.size()));
                         x = 0;
                         int activeBBallInstance = gameS->getActiveBBallInstance();
-                        std::vector<basketballs> bballInstance = gameS->getBasketballInstance();
+                        std::vector<basketballState> bballInstance = gameS->getBasketballInstance();
                         logMsg("humanInstance.size() == " +convert->toString(humanInstance));
                         if (humanInstance < 11) // makes sure that the humanInstance is a valid number
                         {

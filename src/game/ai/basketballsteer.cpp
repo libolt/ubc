@@ -57,7 +57,7 @@ void basketballSteer::reset(void)
     setMaxSpeed (10);         // velocity is clipped to this magnitude
     
 	std::vector<teamState> teamInstance = gameS->getTeamInstance();
-	std::vector<basketballs> basketballInstance = gameS->getBasketballInstance();
+	std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
     int activeBBallInstance = gameS->getActiveBBallInstance();
     OpenSteer::Vec3 basketballSteerPos = convert->toOpenSteerVec3(basketballInstance[activeBBallInstance].getNodePosition());
     // Place me on my part of the field, looking at oponnents goal

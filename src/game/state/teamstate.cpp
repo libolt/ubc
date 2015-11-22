@@ -453,7 +453,7 @@ void teamState::updateState()	// updates the state of the object
 //	logMsg("Updating team state " +convert->toString(teamNumber));
 	if (gameS->getBasketballInstancesCreated() && playerInstancesCreated)
 	{
-		std::vector<basketballs> basketballInstance = gameS->getBasketballInstance();
+		std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
 
 //		exit(0);
 
@@ -947,7 +947,7 @@ void teamState::updatePlayerDirections()
 //    std::vector<playerState> pInstance = getPlayerInstance();
  //   std::vector<size_t> playerDirection = player->getPlayerDirection(); // stores contents of playerDirectdion from players class in local variable
 //    std::vector<size_t> oldPlayerDirection = player->getOldPlayerDirection();   // stores contents of oldPlayerDirection form players in local variable
-	std::vector<basketballs> basketballInstance = gameS->getBasketballInstance();
+	std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
     std::vector<Ogre::SceneNode>::iterator playersIT;
 
     std::string playerID = convert->toString(playerInstance[4].getPlayerID());
@@ -1153,7 +1153,7 @@ void teamState::executePass()		// executes the pass between players
     size_t activeBBallInstance = gameS->getActiveBBallInstance();
 
     size_t passToPlayer = activePlayerInstance[playerWithBallInstance].getPassToPlayer();
-	std::vector<basketballs> basketballInstance = gameS->getBasketballInstance();
+	std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
     Ogre::Vector3 playerWithBallCoords = activePlayerInstance[playerWithBallInstance].getNode()->getPosition();
     Ogre::Vector3 passToPlayerCoords = activePlayerInstance[passToPlayer].getNode()->getPosition();
 //	exit(0);

@@ -205,11 +205,11 @@ void gameState::setTeamInstance(std::vector<teamState> Instance)  // sets the va
     teamInstance = Instance;
 }
 
-std::vector <basketballs> gameState::getBasketballInstance()  // retrieves the value of basketballInstance
+std::vector <basketballState> gameState::getBasketballInstance()  // retrieves the value of basketballInstance
 {
     return (basketballInstance);
 }
-void gameState::setBasketballInstance(std::vector<basketballs> bballInstance)  // sets the value of basketballInstance
+void gameState::setBasketballInstance(std::vector<basketballState> bballInstance)  // sets the value of basketballInstance
 {
     basketballInstance = bballInstance;
 }
@@ -333,7 +333,7 @@ bool gameState::assignHoopToTeams()  // assigns which hoop belongs to each team
 bool gameState::createBasketballInstances()  // creates basketball Instances
 {
     logMsg("creating temporary baskteball instance");
-    basketballs bballInstance;  // creates an instance of the basketballs class
+    basketballState bballInstance;  // creates an instance of the basketballs class
     logMsg("setting model name");
     bballInstance.setModelName("bball.mesh");
     logMsg("loading model");
@@ -389,6 +389,7 @@ bool gameState::createCourtInstances()  // creates court Instances
     cInstance.setModelName(courtDataInstance[selectedCourtDataInstance].getModelName());
 //    exit(0);
     cInstance.loadModel(cInstance.getModelName());
+    cInstance.getNode()->setScale(1.0f,1.0f,1.0f);
     courtInstance.push_back(cInstance);
 
     return true;

@@ -27,7 +27,7 @@
 
 #include <string>
 
- basketballs::basketballs()  // constructor
+ basketballState::basketballState()  // constructor
 {
 //    playerControlBasketball = -1;
     maxHeight = 0;
@@ -72,7 +72,7 @@
 
 }
 
-basketballs::~basketballs()  // destructor
+basketballState::~basketballState()  // destructor
 {
 }
 
@@ -81,145 +81,145 @@ basketballs::~basketballs()  // destructor
 	return (node->getPosition());
 }
 */
-float basketballs::getMaxHeight(void)  // retrieves the value of maxHeight
+float basketballState::getMaxHeight(void)  // retrieves the value of maxHeight
 {
     return(maxHeight);
 }
-void basketballs::setMaxHeight(float set)  // sets the value og maxHeight
+void basketballState::setMaxHeight(float set)  // sets the value og maxHeight
 {
     maxHeight = set;
 }
 
-bool basketballs::getMaxHeightReached(void)  // retrieves the value of maxHeightReached
+bool basketballState::getMaxHeightReached(void)  // retrieves the value of maxHeightReached
 {
     return(maxHeightReached);
 }
-void basketballs::setMaxHeightReached(bool set)  // sets the value of maxHeightReachef
+void basketballState::setMaxHeightReached(bool set)  // sets the value of maxHeightReachef
 {
     maxHeightReached = set;
 }
 
-float basketballs::getMinHeight(void)  // retrieves the value minHeight
+float basketballState::getMinHeight(void)  // retrieves the value minHeight
 {
     return(minHeight);
 }
-void basketballs::setMinHeight(float set)  // sets the value of minHeight
+void basketballState::setMinHeight(float set)  // sets the value of minHeight
 {
     minHeight = set;
 }
 
-bool basketballs::getMinHeightReached(void)  // retrieves the value of minHeightReached
+bool basketballState::getMinHeightReached(void)  // retrieves the value of minHeightReached
 {
     return(minHeightReached);
 }
-void basketballs::setMinHeightReached(bool set)  // sets the value of minHeightReached
+void basketballState::setMinHeightReached(bool set)  // sets the value of minHeightReached
 {
     minHeightReached = set;
 }
 
-size_t basketballs::getRotate(void)  // retrieves the value of rotate
+size_t basketballState::getRotate(void)  // retrieves the value of rotate
 {
     return (rotate);
 }
-void basketballs::setRotate(size_t set)  // sets the value of rotate
+void basketballState::setRotate(size_t set)  // sets the value of rotate
 {
     rotate = set;
 }
 
-size_t basketballs::getTeamNumber(void)  // retrieves the value of teamNumber
+size_t basketballState::getTeamNumber(void)  // retrieves the value of teamNumber
 {
     return(teamNumber);
 }
-void basketballs::setTeamNumber(size_t set)  // sets the value of teamNumber
+void basketballState::setTeamNumber(size_t set)  // sets the value of teamNumber
 {
     teamNumber = set;
 }
 
-Ogre::Vector3 basketballs::getVelocity(void)  // retrieves the value of velocity
+Ogre::Vector3 basketballState::getVelocity(void)  // retrieves the value of velocity
 {
     return(velocity);
 }
-void basketballs::setVelocity(Ogre::Vector3 set)  // sets the value of velocity
+void basketballState::setVelocity(Ogre::Vector3 set)  // sets the value of velocity
 {
     velocity = set;
 }
 
-Ogre::Vector3 basketballs::getStartCoords(void)  // retrieves the value of startCoords
+Ogre::Vector3 basketballState::getStartCoords(void)  // retrieves the value of startCoords
 {
     return(startCoords);
 }
-void basketballs::setStartCoords(Ogre::Vector3 set) // sets the value of startCoords
+void basketballState::setStartCoords(Ogre::Vector3 set) // sets the value of startCoords
 {
     startCoords = set;
 }
 
-bool basketballs::getTipOffStart()  // retroeves the value of tipOffStart
+bool basketballState::getTipOffStart()  // retroeves the value of tipOffStart
 {
     return (tipOffStart);
 }
-void basketballs::setTipOffStart(bool set)  // sets the value of tipOffStart
+void basketballState::setTipOffStart(bool set)  // sets the value of tipOffStart
 {
     tipOffStart = set;
 }
 
-bool basketballs::getTipOff()  // retrieves the value of tipOff
+bool basketballState::getTipOff()  // retrieves the value of tipOff
 {
     return (tipOff);
 }
-void basketballs::setTipOff(bool set)  // sets the value of tipOff
+void basketballState::setTipOff(bool set)  // sets the value of tipOff
 {
     tipOff = set;
 }
 
-bool basketballs::getDribblingStart(void)  // retrieves the value of dribblingStart
+bool basketballState::getDribblingStart(void)  // retrieves the value of dribblingStart
 {
     return (dribblingStart);
 }
-void basketballs::setDribblingStart(bool set)  // sets the value of dribblingStart
+void basketballState::setDribblingStart(bool set)  // sets the value of dribblingStart
 {
     dribblingStart = set;
 }
 
-bool basketballs::getDribbling(void)  // retrieves the value of dribbling
+bool basketballState::getDribbling(void)  // retrieves the value of dribbling
 {
     return (dribbling);
 }
-void basketballs::setDribbling(bool set)  // sets the value of dribbling
+void basketballState::setDribbling(bool set)  // sets the value of dribbling
 {
     dribbling = set;
 }
 
-bool basketballs::getMovement()  // retrieves the value of movement
+bool basketballState::getMovement()  // retrieves the value of movement
 {
     return (movement);
 }
-void basketballs::setMovement(bool set)  // sets the value of movement
+void basketballState::setMovement(bool set)  // sets the value of movement
 {
     movement = set;
 }
 
-bool basketballs::getDirectChange() // retrieves the value of directChange
+bool basketballState::getDirectChange() // retrieves the value of directChange
 {
     return (directChange);
 }
-void basketballs::setDirectChange(bool set)  // sets the value of directChange
+void basketballState::setDirectChange(bool set)  // sets the value of directChange
 {
     directChange = set;
 }
-directions basketballs::getDirection()  // retrieves the value of direction
+directions basketballState::getDirection()  // retrieves the value of direction
 {
     return (direction);
 }
-void basketballs::setDirection(directions set)  // sets the value of direction 
+void basketballState::setDirection(directions set)  // sets the value of direction
 {
     direction = set;
 }
 
-directions basketballs::getOldDirection()  // retrieves the value of oldDirection
+directions basketballState::getOldDirection()  // retrieves the value of oldDirection
 {
     return (oldDirection);
 }
-void basketballs::setOldDirection(directions set)  // sets the value of oldDirection 
+void basketballState::setOldDirection(directions set)  // sets the value of oldDirection
 {
     oldDirection = set;
 }
@@ -297,56 +297,56 @@ void basketballs::setModelLoaded(bool set)  // sets the value of modelLoaded
     modelLoaded = set;
 }
 */
-bool basketballs::getNumberSet()  // retrieves the value of numberSet
+bool basketballState::getNumberSet()  // retrieves the value of numberSet
 {
     return (numberSet);
 }
-void basketballs::setNumberSet(bool set)  // sets the value of numberSet
+void basketballState::setNumberSet(bool set)  // sets the value of numberSet
 {
     numberSet = set;
 }
 
-Ogre::Vector3 basketballs::getCourtPosition()  // retrieves the value of courtPosition
+Ogre::Vector3 basketballState::getCourtPosition()  // retrieves the value of courtPosition
 {
     return (courtPosition);
 }
-void basketballs::setCourtPosition(Ogre::Vector3 set)  // sets the value of courtPosition
+void basketballState::setCourtPosition(Ogre::Vector3 set)  // sets the value of courtPosition
 {
     courtPosition = set;
 }
 
-Ogre::Vector3 basketballs::getNewCourtPosition()  // retrieves the value of newCourtPosition
+Ogre::Vector3 basketballState::getNewCourtPosition()  // retrieves the value of newCourtPosition
 {
     return (newCourtPosition);
 }
-void basketballs::setNewCourtPosition(Ogre::Vector3 set)  // sets the value of newCourtPosition
+void basketballState::setNewCourtPosition(Ogre::Vector3 set)  // sets the value of newCourtPosition
 {
     newCourtPosition = set;
 }
 
-bool basketballs::getCourtPositionChanged()  // retrieves the value of courtPositionChanged
+bool basketballState::getCourtPositionChanged()  // retrieves the value of courtPositionChanged
 {
     return (courtPositionChanged);
 }
-void basketballs::setCourtPositionChanged(bool set)  // sets the value of courtPositionChanged
+void basketballState::setCourtPositionChanged(bool set)  // sets the value of courtPositionChanged
 {
     courtPositionChanged = set;
 }
 
-positionChangedTypes basketballs::getCourtPositionChangedType()  // retrieves the value of courtPositionChangedType
+positionChangedTypes basketballState::getCourtPositionChangedType()  // retrieves the value of courtPositionChangedType
 {
     return (courtPositionChangedType);
 }
-void basketballs::setCourtPositionChangedType(positionChangedTypes set)  // sets the value of courtPositionChangedType
+void basketballState::setCourtPositionChangedType(positionChangedTypes set)  // sets the value of courtPositionChangedType
 {
     courtPositionChangedType = set;
 }
 
-size_t basketballs::getNumber()  // retrieves the value of number
+size_t basketballState::getNumber()  // retrieves the value of number
 {
     return (number);
 }
-void basketballs::setNumber(size_t set)  // sets the value of number
+void basketballState::setNumber(size_t set)  // sets the value of number
 {
     number = set;
     getPhysics().setNumber(set); // sets the physics number as well
@@ -382,7 +382,7 @@ bool basketballs::loadModel()  // loads the 3D model
 */
 
 // calculates change in position along the x,y,z axes
-Ogre::Vector3 basketballs::calculatePositionChange()
+Ogre::Vector3 basketballState::calculatePositionChange()
 {
     boost::shared_ptr<gameState> gameS = gameState::Instance();
 
@@ -396,7 +396,7 @@ Ogre::Vector3 basketballs::calculatePositionChange()
     return(changeInPosition);
 }
 
-void basketballs::updateState()  // updates the state of the basketball
+void basketballState::updateState()  // updates the state of the basketball
 {
     bool modelNeedsLoaded = getModelNeedsLoaded();
     if (getModelNeedsLoaded())
@@ -434,7 +434,7 @@ void basketballs::updateState()  // updates the state of the basketball
     logMsg("position updated!");
 }
 
-void basketballs::updatePosition() // updates the position of the basketball
+void basketballState::updatePosition() // updates the position of the basketball
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     comparison compare;
@@ -523,7 +523,7 @@ void basketballs::updatePosition() // updates the position of the basketball
 */
 }
 
-void basketballs::updateMovement()  // updates the basketball(s) movements
+void basketballState::updateMovement()  // updates the basketball(s) movements
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
@@ -591,7 +591,7 @@ void basketballs::updateMovement()  // updates the basketball(s) movements
 
 }
 
-void basketballs::updateDirection()  // updates basketball direction(s)
+void basketballState::updateDirection()  // updates basketball direction(s)
 {
     //conversion *convert = conversion::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
@@ -704,24 +704,24 @@ void basketballs::updateDirection()  // updates basketball direction(s)
     gameS->setJumpBall(jumpBall);
 }
 
-size_t basketballs::getPlayer()
+size_t basketballState::getPlayer()
 {
     return (player);
 }
 
-void basketballs::setPlayer(size_t Player)
+void basketballState::setPlayer(size_t Player)
 {
     player = Player;
 }
 
 // calculates the trajectory the basketball travels when shot
-bool basketballs::calculateShot()
+bool basketballState::calculateShot()
 {
     return true;
 }
 
 // handles the shot logic as the ball travels towards the hoop
-bool basketballs::shotLogic()
+bool basketballState::shotLogic()
 {
     return true;
 }

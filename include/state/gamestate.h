@@ -108,8 +108,8 @@ public:
     std::vector< std::vector<size_t> > getTeamStarterID();  // retrieves value of teamStarterID
     void setTeamStarterID(std::vector< std::vector<size_t> > set);  // sets the value of teamStarterID
 
-    std::vector <basketballs> getBasketballInstance();  // retrieves the value of basketballInstance
-    void setBasketballInstance(std::vector<basketballs> set);  // sets the value of basketballInstance
+    std::vector <basketballState> getBasketballInstance();  // retrieves the value of basketballInstance
+    void setBasketballInstance(std::vector<basketballState> set);  // sets the value of basketballInstance
 
     std::vector <teamState> getTeamInstance();  // retireves the value of teamInstance
     void setTeamInstance(std::vector<teamState> set);  // sets the value of teamInstance
@@ -187,7 +187,7 @@ private:
     std::vector< std::vector<size_t> > teamStarterID;  // stores the selected starters for each team
 
 
-    std::vector <basketballs> basketballInstance;  // creates instance of the basketballs class
+    std::vector <basketballState> basketballInstance;  // creates instance of the basketballs class
     std::vector <courtState> courtInstance;  // creates instance of the courtState class
     std::vector <hoopState> hoopInstance;  // creates instance of the hoop class
 

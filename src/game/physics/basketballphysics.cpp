@@ -89,7 +89,7 @@ bool basketballPhysics::setupPhysics()  // sets up physics for the basketball
     boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
 
-    std::vector<basketballs> basketballInstance = gameS->getBasketballInstance();
+    std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
     size_t activeBBallInstance = gameS->getActiveBBallInstance();
     btScalar mass = 0.62f;
     btVector3 inertia, inertia2;

@@ -41,12 +41,12 @@
 #include "enums.h"
 #include "state/state.h"
 
-class basketballs : public state, public basketballEntity
+class basketballState : public state, public basketballEntity
 {
 public:
 
-    basketballs();
-    ~basketballs();	// destructor
+    basketballState();
+    ~basketballState();	// destructor
 
 
 // declaration of functions which access/modify private variables in the class

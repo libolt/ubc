@@ -295,7 +295,7 @@ void physicsEngine::updateState()  // updates the state for the physics engine
 
     std::vector<teamState> teamInstance = gameS->getTeamInstance();
     std::vector <std::vector<playerState> > activePlayerInstance;
-    std::vector<basketballs> basketballInstance = gameS->getBasketballInstance();
+    std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
 
 //    exit(0);
     if (gameS->getBasketballInstancesCreated())
@@ -443,7 +443,7 @@ void physicsEngine::updateBasketballPosition()  // updates the position of baske
     boost::shared_ptr<gameState> gameS = gameState::Instance();
 
     size_t activeBBallInstance = gameS->getActiveBBallInstance();
-    std::vector<basketballs> basketballInstance = gameS->getBasketballInstance();
+    std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
 
     if (basketballVelocitySet)
     {
@@ -471,7 +471,7 @@ void physicsEngine::updatePlayerPositions()  // updates the position of player o
 
     std::vector<teamState> teamInstance = gameS->getTeamInstance();
     std::vector <std::vector<playerState> > activePlayerInstance;
-    std::vector<basketballs> basketballInstance = gameS->getBasketballInstance();
+    std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
 
     // checks to see if player positions need updated
     size_t z = 0;
@@ -564,7 +564,7 @@ void physicsEngine::ballDribbling()  // simulates basketball dribble
     boost::shared_ptr<gameState> gameS = gameState::Instance();
 
 //    std::vector<playerState> pInstance = gameS->getPlayerInstance();
-    std::vector<basketballs> basketballInstance = gameS->getBasketballInstance();
+    std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
     std::vector<courtState> courtInstance = gameS->getCourtInstance();
 
     int activeBBallInstance = gameS->getActiveBBallInstance();
@@ -682,7 +682,7 @@ void physicsEngine::passCollisionCheck()  // checks whether the ball has collide
     teamTypes teamWithBall = gameS->getTeamWithBall();
     std::vector<teamState>  teamInstance = gameS->getTeamInstance();
     std::vector<playerState> activePlayerInstance = teamInstance[teamWithBall].getActivePlayerInstance();
-    std::vector<basketballs> basketballInstance = gameS->getBasketballInstance();
+    std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
 
     int activeBBallInstance = gameS->getActiveBBallInstance();
 
@@ -808,7 +808,7 @@ bool physicsEngine::shootBasketball(teamTypes teamType, int playerID)  // calcul
     comparison compare;
     std::vector<courtState> courtInstance = gameS->getCourtInstance();
     std::vector<hoopState> hoopInstance = gameS->getHoopInstance();
-    std::vector<basketballs> basketballInstance = gameS->getBasketballInstance();
+    std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
     std::vector<teamState> teamInstance = gameS->getTeamInstance();
     std::vector<playerState> activePlayerInstance = teamInstance[teamType].getActivePlayerInstance();
 

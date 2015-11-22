@@ -178,7 +178,7 @@ void playerSteer::update (const float currentTime, float elapsedTime)
 
 //	logMsg("elapsedTime = " +convert->toString(elapsedTime));
 
-	std::vector<basketballs> basketball = gameS->getBasketballInstance();
+	std::vector<basketballState> basketball = gameS->getBasketballInstance();
 	std::vector<teamState> teamInstance = gameS->getTeamInstance();
 //    std::vector<playerState> team0ActivePlayerInstance = teamInstance[0].getActivePlayerInstance();
 //    std::vector<playerState> team1ActivePlayerInstance = teamInstance[1].getActivePlayerInstance();

@@ -18,15 +18,15 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "network.h"
+#include "network/network.h"
 
-#include "gui.h"
+#include "gui/gui.h"
 #include "courtdata.h"
-#include "gameengine.h"
-#include "gamestate.h"
+#include "engine/gameengine.h"
+#include "state/gamestate.h"
 #include "load.h"
 #include "logging.h"
-#include "renderengine.h"
+#include "engine/renderengine.h"
 #include "teamdata.h"
 
 #ifdef __ANDROID__

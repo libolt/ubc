@@ -22,13 +22,13 @@
 
 #include "Ogre.h"
 
-#include "playerstate.h"
-#include "gamestate.h"
+#include "state/playerstate.h"
+#include "state/gamestate.h"
 #include "logging.h"
-#include "physicsengine.h"
-#include "renderengine.h"
-#include "steering.h"
-#include "teamstate.h"
+#include "physics/physicsengine.h"
+#include "engine/renderengine.h"
+#include "ai/steering.h"
+#include "state/teamstate.h"
 #include "comparison.h"
 #include "jumpballs.h"
 

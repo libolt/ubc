@@ -24,12 +24,12 @@
 #include <vector>
 #include <boost/shared_ptr.hpp>
 
-#include "basketballs.h"
+#include "state/basketballstate.h"
 #include "courtdata.h"
-#include "courtstate.h"
+#include "state/courtstate.h"
 #include "hoop.h"
-#include "playerstate.h"
-#include "teamstate.h"
+#include "state/playerstate.h"
+#include "state/teamstate.h"
 #include "teamdata.h"
 #include "playerdata.h"
 #include "jumpballs.h"

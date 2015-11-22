@@ -19,10 +19,10 @@
  ***************************************************************************/
 
 #include "conversion.h"
-#include "gamestate.h"
+#include "state/gamestate.h"
 #include "comparison.h"
 #include "logging.h"
-#include "physicsengine.h"
+#include "physics/physicsengine.h"
 #include "jumpballs.h"
 
 jumpBalls::jumpBalls()  // constructor

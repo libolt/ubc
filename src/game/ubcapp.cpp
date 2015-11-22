@@ -20,8 +20,8 @@
 
 #include "conversion.h"
 #include "OgrePrerequisites.h"
-#include "gameengine.h"
-#include "gamestate.h"
+#include "engine/gameengine.h"
+#include "state/gamestate.h"
 #include "logging.h"
 #include "ubcapp.h"
 

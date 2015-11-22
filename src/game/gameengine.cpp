@@ -19,16 +19,16 @@
  ***************************************************************************/
 
 
-#include "gameengine.h"
+#include "engine/gameengine.h"
 #include "conversion.h"
-#include "gamestate.h"
-#include "gui.h"
+#include "state/gamestate.h"
+#include "gui/gui.h"
 #include "input.h"
 #include "logging.h"
-#include "network.h"
-#include "networkplayerstateobject.h"
-#include "renderengine.h"
-#include "soundengine.h"
+#include "network/network.h"
+#include "network/networkplayerstateobject.h"
+#include "engine/renderengine.h"
+#include "engine/sound/soundengine.h"
 
 boost::shared_ptr<gameEngine> gameEngine::pInstance;
 

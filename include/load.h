@@ -32,7 +32,7 @@
 #include "tinyxml2.h"
 
 #include "courtdata.h"
-#include "gamestate.h"
+#include "state/gamestate.h"
 #include "offenseplays.h"
 #include "userinput.h"
 

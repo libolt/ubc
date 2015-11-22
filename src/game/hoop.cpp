@@ -19,7 +19,7 @@
  ***************************************************************************/
 
 #include "hoop.h"
-#include "renderengine.h"
+#include "engine/renderengine.h"
 
 hoopState::hoopState()  // constructor
 {

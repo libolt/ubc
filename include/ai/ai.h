@@ -21,11 +21,11 @@
 #ifndef _AI_H_
 #define _AI_H_
 
-#include "steering.h"
+#include "ai/steering.h"
 #include "OpenSteer/Clock.h"
 #include <boost/shared_ptr.hpp>
 
-#include "playersteerplugin.h"
+#include "ai/playersteerplugin.h"
 
 class AISystem
 {

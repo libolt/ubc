@@ -19,8 +19,8 @@
  ***************************************************************************/
 
 #include "conversion.h"
-#include "gamestate.h"
-#include "renderengine.h"
+#include "state/gamestate.h"
+#include "engine/renderengine.h"
 #include "comparison.h"
 #include "logging.h"
 #include "jumpballs.h"

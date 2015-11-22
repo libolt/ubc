@@ -19,12 +19,12 @@
  ***************************************************************************/
 
 #include "conversion.h"
-#include "teamstate.h"
-#include "gameengine.h"
-#include "gamestate.h"
+#include "state/teamstate.h"
+#include "engine/gameengine.h"
+#include "state/gamestate.h"
 #include "logging.h"
-#include "physicsengine.h"
-#include "playersteer.h"
+#include "physics/physicsengine.h"
+#include "ai/playersteer.h"
 #include "enums.h"
 #include "jumpballs.h"
 

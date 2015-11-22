@@ -19,10 +19,10 @@
  ***************************************************************************/
 
 #include "conversion.h"
-#include "defensestate.h"
-#include "gamestate.h"
+#include "state/defensestate.h"
+#include "state/gamestate.h"
 #include "logging.h"
-#include "teamstate.h"
+#include "state/teamstate.h"
 
 defenseState::defenseState() // constructor
 {

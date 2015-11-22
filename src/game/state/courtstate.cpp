@@ -18,8 +18,8 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "courtstate.h"
-#include "renderengine.h"
+#include "state/courtstate.h"
+#include "engine/renderengine.h"
 
 courtState::courtState()
 {

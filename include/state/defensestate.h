@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean                              *
- *   libolt@libolt.net                                                     *
+ *   Copyright (C) 1999 - 2015 by Mike McLean   *
+ *   libolt@libolt.net   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -18,33 +18,37 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef _BASKETBALLENTITY_H_
-#define _BASKETBALLENTITY_H
+#ifndef _DEFENSESTATE_H_
+#define _DEFENSESTATE_H_
 
-#include "entity.h"
-#include "basketballphysics.h"
-#include "basketballsteer.h"
+#include "enums.h"
+#include "state/state.h"
 
-class basketballEntity : public entity
+class defenseState
 {
-    public:
-    
-    basketballEntity();  // constructor
-    ~basketballEntity();  // destructor
-    
-    basketballPhysics getPhysics();  // retrieves the value of physics
-    void setPhysics(basketballPhysics set);  // sets the value of physics
+public:
 
-    basketballSteer *getSteer();  // retrieves the value of steer
-    void setSteer(basketballSteer *set);  // sets the value of steer
+    defenseState();	// constructor
 
-    private:
+    teamTypes getTeamType();  // retrieves the value of teamType
+    void setTeamType(teamTypes set);  // sets the value of teamType
     
-    basketballPhysics physics;  // instanciates an object to handle the physics for the basketball
+    courtSide_t getCourtSide();  // retrieves the value of courtSide
+    void setCourtSide(courtSide_t set);  // sets the value of courtSide
 
-    basketballSteer *steer;  // instance of the basketballSteer class
+    bool getExecute();	// retrieves the value of execute variable
+    void setExecute(bool ex);	// sets the value of the execute variable
 
-    
+    void setupState();  // sets up initial state of the object
+
+    void updateState(teamTypes teamType);  // updates the state of the object
+
+private:
+
+    teamTypes teamType;  // stores the type of team on defense
+    courtSide_t courtSide;  // stores which side of the court the defense executes on.
+    bool execute;	// If set then execute the defense logic
+
 };
- 
+
 #endif

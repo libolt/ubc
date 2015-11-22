@@ -21,8 +21,8 @@
 #ifndef _PLAYERSTEERPLUGIN_H_
 #define _PLAYERSTEERPLUGIN_H_
 
-#include "steering.h"
-#include "playersteer.h"
+#include "ai/steering.h"
+#include "ai/playersteer.h"
 
 // PlugIn for OpenSteerDemo
 class playerSteerPlugin : public OpenSteer::PlugIn, steering

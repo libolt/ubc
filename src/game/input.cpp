@@ -33,12 +33,12 @@
 #include "MyGUI_OgrePlatform.h"
 
 #include "input.h"
-#include "gameengine.h"
-#include "gamestate.h"
-#include "gui.h"
+#include "engine/gameengine.h"
+#include "state/gamestate.h"
+#include "gui/gui.h"
 #include "load.h"
 #include "logging.h"
-#include "renderengine.h"
+#include "engine/renderengine.h"
 
 
 boost::shared_ptr<inputSystem> inputSystem::pInstance;

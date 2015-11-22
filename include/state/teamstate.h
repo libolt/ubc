@@ -21,16 +21,16 @@
 #ifndef _TEAMSATE_H_
 #define _TEAMSATE_H_
 
-#include "defensestate.h"
+#include "state/defensestate.h"
 
 #include <vector>
 #include "OgreString.h"
 
-#include "offensestate.h"
+#include "state/offensestate.h"
 
-#include "basketballs.h"
-#include "playerstate.h"
-#include "state.h"
+#include "state/basketballstate.h"
+#include "state/playerstate.h"
+#include "state/state.h"
 
 class teamState : public state
 {

@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean   *
- *   libolt@libolt.net   *
+ *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -18,37 +18,33 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef _DEFENSESTATE_H_
-#define _DEFENSESTATE_H_
+#ifndef _BASKETBALLENTITY_H_
+#define _BASKETBALLENTITY_H
 
-#include "enums.h"
-#include "state.h"
+#include "entity/entity.h"
+#include "physics/basketballphysics.h"
+#include "ai/basketballsteer.h"
 
-class defenseState
+class basketballEntity : public entity
 {
-public:
-
-    defenseState();	// constructor
-
-    teamTypes getTeamType();  // retrieves the value of teamType
-    void setTeamType(teamTypes set);  // sets the value of teamType
+    public:
     
-    courtSide_t getCourtSide();  // retrieves the value of courtSide
-    void setCourtSide(courtSide_t set);  // sets the value of courtSide
+    basketballEntity();  // constructor
+    ~basketballEntity();  // destructor
+    
+    basketballPhysics getPhysics();  // retrieves the value of physics
+    void setPhysics(basketballPhysics set);  // sets the value of physics
 
-    bool getExecute();	// retrieves the value of execute variable
-    void setExecute(bool ex);	// sets the value of the execute variable
+    basketballSteer *getSteer();  // retrieves the value of steer
+    void setSteer(basketballSteer *set);  // sets the value of steer
 
-    void setupState();  // sets up initial state of the object
+    private:
+    
+    basketballPhysics physics;  // instanciates an object to handle the physics for the basketball
 
-    void updateState(teamTypes teamType);  // updates the state of the object
+    basketballSteer *steer;  // instance of the basketballSteer class
 
-private:
-
-    teamTypes teamType;  // stores the type of team on defense
-    courtSide_t courtSide;  // stores which side of the court the defense executes on.
-    bool execute;	// If set then execute the defense logic
-
+    
 };
-
+ 
 #endif

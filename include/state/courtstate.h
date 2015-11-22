@@ -26,8 +26,8 @@
 #include "BtOgrePG.h"
 #include "BtOgreGP.h"
 #include "BtOgreExtras.h"
-#include "state.h"
-#include "entity.h"
+#include "state/state.h"
+#include "entity/entity.h"
 
 class courtState : public state, public entity
 {

@@ -18,8 +18,8 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "entity.h"
-#include "renderengine.h"
+#include "entity/entity.h"
+#include "engine/renderengine.h"
 #include "logging.h"
 
 entity::entity()  // constructor

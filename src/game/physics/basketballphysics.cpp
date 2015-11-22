@@ -20,9 +20,9 @@
 
 #include "conversion.h"
 #include "logging.h"
-#include "basketballphysics.h"
-#include "physicsengine.h"
-#include "gamestate.h"
+#include "physics/basketballphysics.h"
+#include "physics/physicsengine.h"
+#include "state/gamestate.h"
 
 basketballPhysics::basketballPhysics()  // constructor
 {

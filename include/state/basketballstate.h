@@ -35,11 +35,11 @@
 #include "BtOgreGP.h"
 #include "BtOgreExtras.h"
 
-#include "basketballentity.h"
-//#include "basketballsteer.h"
-//#include "basketballphysics.h"
+#include "entity/basketballentity.h"
+//#include "ai/basketballsteer.h"
+//#include "physics/basketballphysics.h"
 #include "enums.h"
-#include "state.h"
+#include "state/state.h"
 
 class basketballs : public state, public basketballEntity
 {

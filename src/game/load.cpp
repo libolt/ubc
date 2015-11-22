@@ -29,7 +29,7 @@
 #include "load.h"
 #include "logging.h"
 #include "playerdata.h"
-#include "renderengine.h"
+#include "engine/renderengine.h"
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 #include "android.h"

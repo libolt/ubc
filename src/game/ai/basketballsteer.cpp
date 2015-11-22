@@ -19,10 +19,10 @@
  ***************************************************************************/
 #include "conversion.h"
 
-#include "basketballsteer.h"
-#include "gamestate.h"
-#include "playerstate.h"
-#include "teamstate.h"
+#include "ai/basketballsteer.h"
+#include "state/gamestate.h"
+#include "state/playerstate.h"
+#include "state/teamstate.h"
 
 basketballSteer::basketballSteer()
 {

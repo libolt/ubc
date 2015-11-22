@@ -21,7 +21,7 @@
 #ifndef _BASKETBALLSTEER_H_
 #define _BASKETBALLSTEER_H_
 
-#include "steering.h"
+#include "ai/steering.h"
  
 class basketballSteer : public steering
 {

@@ -17,15 +17,15 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "network.h"
+#include "network/network.h"
 
-#include "playersteer.h"
-#include "ai.h"
+#include "ai/playersteer.h"
+#include "ai/ai.h"
 #include "conversion.h"
-#include "gamestate.h"
+#include "state/gamestate.h"
 #include "logging.h"
-#include "playerstate.h"
-#include "teamstate.h"
+#include "state/playerstate.h"
+#include "state/teamstate.h"
 #include "comparison.h"
 
 playerSteer::~playerSteer()

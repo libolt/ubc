@@ -19,13 +19,13 @@
  ***************************************************************************/
 
 #include "conversion.h"
-#include "gameengine.h"
-#include "gamestate.h"
+#include "engine/gameengine.h"
+#include "state/gamestate.h"
 #include "input.h"
 #include "logging.h"
-#include "playerstate.h"
-#include "physicsengine.h"
-#include "renderengine.h"
+#include "state/playerstate.h"
+#include "physics/physicsengine.h"
+#include "engine/renderengine.h"
 #include "comparison.h"
 #include "jumpballs.h"
 

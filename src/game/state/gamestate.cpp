@@ -19,17 +19,17 @@
  ***************************************************************************/
 
 //#include "boost/shared_array.hpp"
-#include "network.h"
-#include "ai.h"
+#include "network/network.h"
+#include "ai/ai.h"
 #include "conversion.h"
-#include "gamestate.h"
-#include "gameengine.h"
+#include "state/gamestate.h"
+#include "engine/gameengine.h"
 #include "load.h"
 #include "logging.h"
-#include "networkplayerstateobject.h"
+#include "network/networkplayerstateobject.h"
 #include "playerdata.h"
-#include "physicsengine.h"
-#include "renderengine.h"
+#include "physics/physicsengine.h"
+#include "engine/renderengine.h"
 #include "timing.h"
 
 boost::shared_ptr<gameState> gameState::pInstance;

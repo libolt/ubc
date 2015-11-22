@@ -21,7 +21,7 @@
 #ifndef _CONVERSION_H_
 #define _CONVERSION_H_
 
-#include "network.h"
+#include "network/network.h"
 
 #include <iostream>
 #include <sstream>
@@ -36,7 +36,7 @@
 #include "OgreVector3.h"
 #include "LinearMath/btVector3.h"
 
-#include "steering.h"
+#include "ai/steering.h"
 #include "enums.h"
 
 //template<class T, class TL>

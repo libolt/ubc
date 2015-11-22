@@ -25,7 +25,7 @@
 //#include "OgreAL.h"
 
 //#include "soundobject.h"
-#include "gameengine.h"
+#include "engine/gameengine.h"
 
 #define MAX_SOURCES 16
 #include <cstddef>

@@ -21,9 +21,9 @@
 #ifndef _PLAYERENTITY_H_
 #define _PLAYERENTITY_H_
 
-#include "entity.h"
-#include "playerphysics.h"
-#include "playersteer.h"
+#include "entity/entity.h"
+#include "physics/playerphysics.h"
+#include "ai/playersteer.h"
 
 class playerEntity : public entity
 {

@@ -21,7 +21,7 @@
 #ifndef _PLAYERSTEER_H_
 #define _PLAYERSTEER_H_
 
-#include "steering.h"
+#include "ai/steering.h"
 #include "enums.h"
 
 class playerSteer : public steering

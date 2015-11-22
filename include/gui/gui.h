@@ -42,7 +42,7 @@
 
 #include "enums.h"
 #include "input.h"
-#include "renderengine.h"
+#include "engine/renderengine.h"
 
 
 class GUISystem //: public renderEngine //, inputSystem

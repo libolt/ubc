@@ -19,7 +19,7 @@
  ***************************************************************************/
 
 #include "Ogre.h"
-#include "steering.h"
+#include "ai/steering.h"
 #include <algorithm>
 
 int steering::serialNumberCounter = 0;

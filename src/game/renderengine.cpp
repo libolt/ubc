@@ -17,6 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+
 #ifdef __ANDROID__
 #include "android-config.h"
 #else
@@ -25,13 +26,13 @@
 
 
 #include "conversion.h"
-#include "renderengine.h"
-#include "gameengine.h"
-#include "gamestate.h"
-#include "gui.h"
+#include "engine/renderengine.h"
+#include "engine/gameengine.h"
+#include "state/gamestate.h"
+#include "gui/gui.h"
 #include "logging.h"
-#include "physicsengine.h"
-#include "soundengine.h"
+#include "physics/physicsengine.h"
+#include "engine/sound/soundengine.h"
 
 #define FREEIMAGE_LIB
 #include "FreeImage.h"

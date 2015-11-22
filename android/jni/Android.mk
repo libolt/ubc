@@ -240,7 +240,7 @@ LOCAL_MODULE := UltimateBasketballChallenge
 #OGGVORBIS_PATH := ${BUILD_ROOT}/libvorbislibogg
 #OPENAL_PATH := ${BUILD_ROOT}/openal-soft
 
-UBC_ROOT := $(BUILD_ROOT)/ubc2
+UBC_ROOT := $(BUILD_ROOT)/ubc
 UBC_SRC_DIR := $(UBC_ROOT)/src/game
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/$(UBC_DEPENDS_PATH)/include
@@ -257,14 +257,15 @@ LOCAL_C_INCLUDES += $(LOCAL_PATH)/$(UBC_DEPENDS_PATH)/include/OGRE/RenderSystems
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/$(UBC_DEPENDS_PATH)/include/OGRE/RenderSystems/GLES2/EGL
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/$(UBC_DEPENDS_PATH)/include/AL
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/$(UBC_DEPENDS_PATH)/include/MYGUI
-#LOCAL_C_INCLUDES += $(LOCAL_PATH)/$(MYGUI_PATH)/Platforms/Ogre/OgrePlatform/include
-#LOCAL_C_INCLUDES += $(LOCAL_PATH)/$(ALMIXER_PATH)/include
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../include
-#LOCAL_C_INCLUDES += $(LOCAL_PATH)/$(UBC_ROOT)/include
-#LOCAL_C_INCLUDES += $(LOCAL_PATH)/$(TINYXML_PATH)
-# Add your application source files here...
-#LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.c \
-#LOCAL_PATH := ../../.. 
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../include/ai
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../include/engine
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../include/entity
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../include/gui
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../include/network
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../include/physics
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../include/state
+
 LOCAL_SRC_FILES := \
                    $(subst $(LOCAL_PATH)/,, \
                        $(wildcard $(LOCAL_PATH)/../../src/game/*.cpp)) \
@@ -284,7 +285,8 @@ LOCAL_SRC_FILES := \
                        $(wildcard $(LOCAL_PATH)/../../src/game/state/*.cpp)) \
                    $(subst $(LOCAL_PATH)/,, \
                        $(wildcard $(LOCAL_PATH)/../../src/game/entity/*.cpp)) \
-
+                   $(subst $(LOCAL_PATH)/,, \
+                       $(wildcard $(LOCAL_PATH)/../../src/game/engine/*.cpp)) \
 
 LOCAL_LDLIBS	:= -landroid -lc -lm -ldl -llog -lEGL -lGLESv1_CM -lGLESv2 
 

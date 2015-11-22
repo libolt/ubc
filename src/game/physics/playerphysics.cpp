@@ -19,8 +19,8 @@
  ***************************************************************************/
 
 #include "conversion.h"
-#include "gamestate.h"
-#include "physicsengine.h"
+#include "state/gamestate.h"
+#include "physics/physicsengine.h"
 #include "logging.h"
 
 playerPhysics::playerPhysics()  // constructor

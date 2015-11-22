@@ -18,7 +18,9 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "entity.h"
+#include "entity/entity.h"
+#include "engine/renderengine.h"
+#include "logging.h"
 
 entity::entity()  // constructor
 {
@@ -38,6 +40,24 @@ std::string entity::getModelName()  // retrieves the value of modelName
 void entity::setModelName(std::string set)  // sets the value of modelName
 {
     modelName = set;
+}
+
+std::string entity::getEntityName()  // retrieves the value of entityName
+{
+    return (entityName);
+}
+void entity::setEntityName(std::string set)  // sets the value of entityName
+{
+    entityName = set;
+}
+
+std::string entity::getNodeName()  // retrieves the value of nodeName
+{
+    return (nodeName);
+}
+void entity::setNodeName(std::string set)  // sets the value of nodeName
+{
+    nodeName = set;
 }
 
 Ogre::Entity *entity::getModel()  // retrieves the value of model
@@ -86,17 +106,28 @@ void entity::setModelLoaded(bool set)  // sets the value of modelLoaded
     modelLoaded = set;
 }
 
+Ogre::Vector3 entity::getNodePosition()  // retrieves the value of nodePosition
+{
+    return (nodePosition);
+}
+void entity::setNodePosition(Ogre::Vector3 set)  // sets the value of nodePosition
+{
+    nodePosition = set;
+}
+
 bool entity::loadModel()  // loads the 3D model
 {
     boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
-    model = render->getMSceneMgr()->createEntity("basketball", modelName);  // loads the basketball model
-
+    model = render->getMSceneMgr()->createEntity(entityName, modelName);  // loads the basketball model
+    logMsg("Entity Created!");
     // creates and instantiates the node object
-    node = render->getMSceneMgr()->getRootSceneNode()->createChildSceneNode("basketball");
-
-    // attaches 3D model to the node
+    node = render->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(nodeName);
+    logMsg("scene node created!");
     node->attachObject(model);
+    logMsg("node attached!");
+    // attaches 3D model to the node
+//    node->attachObject(model);
     // sets the size of the bball node
     node->setScale(0.25f,0.25f,0.25f);
     node->setPosition(0.0f,0.0f,0.0f);

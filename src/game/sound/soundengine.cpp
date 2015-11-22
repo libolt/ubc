@@ -19,7 +19,7 @@
  ***************************************************************************/
 
  
-#include "soundengine.h"
+#include "engine/sound/soundengine.h"
 #include "conversion.h"
 #include "load.h"
 

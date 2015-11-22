@@ -17,15 +17,15 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "network.h"
+#include "network/network.h"
 
-#include "playersteer.h"
-#include "ai.h"
+#include "ai/playersteer.h"
+#include "ai/ai.h"
 #include "conversion.h"
-#include "gamestate.h"
+#include "state/gamestate.h"
 #include "logging.h"
-#include "playerstate.h"
-#include "teamstate.h"
+#include "state/playerstate.h"
+#include "state/teamstate.h"
 #include "comparison.h"
 
 playerSteer::~playerSteer()
@@ -178,7 +178,7 @@ void playerSteer::update (const float currentTime, float elapsedTime)
 
 //	logMsg("elapsedTime = " +convert->toString(elapsedTime));
 
-	std::vector<basketballs> basketball = gameS->getBasketballInstance();
+	std::vector<basketballState> basketball = gameS->getBasketballInstance();
 	std::vector<teamState> teamInstance = gameS->getTeamInstance();
 //    std::vector<playerState> team0ActivePlayerInstance = teamInstance[0].getActivePlayerInstance();
 //    std::vector<playerState> team1ActivePlayerInstance = teamInstance[1].getActivePlayerInstance();

@@ -24,7 +24,7 @@
 #include "conversion.h"
 
 #include "Ogre.h"
-#include "renderengine.h"
+#include "engine/renderengine.h"
  
 boost::shared_ptr<logging> logging::pInstance;
 

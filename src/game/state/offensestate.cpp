@@ -19,14 +19,14 @@
  ***************************************************************************/
 
 #include "conversion.h"
-#include "offensestate.h"
-#include "gamestate.h"
-#include "gameengine.h"
+#include "state/offensestate.h"
+#include "state/gamestate.h"
+#include "engine/gameengine.h"
 #include "load.h"
 #include "logging.h"
-#include "playerstate.h"
-#include "playersteer.h"
-#include "teamstate.h"
+#include "state/playerstate.h"
+#include "ai/playersteer.h"
+#include "state/teamstate.h"
 
 offenseState::offenseState()  // constructor
 {

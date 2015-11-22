@@ -18,10 +18,10 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "network.h"
-#include "networkplayerstateobject.h"
-#include "gameengine.h"
-#include "gamestate.h"
+#include "network/network.h"
+#include "network/networkplayerstateobject.h"
+#include "engine/gameengine.h"
+#include "state/gamestate.h"
 #include "logging.h"
 #include "input.h"
 #include "conversion.h"

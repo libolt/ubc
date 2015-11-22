@@ -19,17 +19,17 @@
  ***************************************************************************/
 
 //#include "boost/shared_array.hpp"
-#include "network.h"
-#include "ai.h"
+#include "network/network.h"
+#include "ai/ai.h"
 #include "conversion.h"
-#include "gamestate.h"
-#include "gameengine.h"
+#include "state/gamestate.h"
+#include "engine/gameengine.h"
 #include "load.h"
 #include "logging.h"
-#include "networkplayerstateobject.h"
+#include "network/networkplayerstateobject.h"
 #include "playerdata.h"
-#include "physicsengine.h"
-#include "renderengine.h"
+#include "physics/physicsengine.h"
+#include "engine/renderengine.h"
 #include "timing.h"
 
 boost::shared_ptr<gameState> gameState::pInstance;
@@ -205,11 +205,11 @@ void gameState::setTeamInstance(std::vector<teamState> Instance)  // sets the va
     teamInstance = Instance;
 }
 
-std::vector <basketballs> gameState::getBasketballInstance()  // retrieves the value of basketballInstance
+std::vector <basketballState> gameState::getBasketballInstance()  // retrieves the value of basketballInstance
 {
     return (basketballInstance);
 }
-void gameState::setBasketballInstance(std::vector<basketballs> bballInstance)  // sets the value of basketballInstance
+void gameState::setBasketballInstance(std::vector<basketballState> bballInstance)  // sets the value of basketballInstance
 {
     basketballInstance = bballInstance;
 }
@@ -333,9 +333,12 @@ bool gameState::assignHoopToTeams()  // assigns which hoop belongs to each team
 bool gameState::createBasketballInstances()  // creates basketball Instances
 {
     logMsg("creating temporary baskteball instance");
-    basketballs bballInstance;  // creates an instance of the basketballs class
+    basketballState bballInstance;  // creates an instance of the basketballs class
     logMsg("setting model name");
     bballInstance.setModelName("bball.mesh");
+    bballInstance.setEntityName(bballInstance.getModelName());
+    bballInstance.setNodeName(bballInstance.getModelName());
+
     logMsg("loading model");
     if (bballInstance.loadModel())
     {
@@ -388,7 +391,10 @@ bool gameState::createCourtInstances()  // creates court Instances
 
     cInstance.setModelName(courtDataInstance[selectedCourtDataInstance].getModelName());
 //    exit(0);
+    cInstance.setNodeName(cInstance.getModelName());
+    cInstance.setEntityName(cInstance.getModelName());
     cInstance.loadModel();
+    cInstance.getNode()->setScale(1.0f,1.0f,1.0f);
     courtInstance.push_back(cInstance);
 
     return true;
@@ -402,11 +408,13 @@ bool gameState::createHoopInstances()  // creates hoop Instances
     hInstance[0].setModelName("Hoop.mesh");
     hInstance[0].setNodeName("hoopNode1");
     hInstance[0].loadModel();
+    hInstance[0].getNode()->setScale(0.8f,0.8f,0.8f);
 
     hInstance[1].setEntityName("hoop2");
     hInstance[1].setModelName("Hoop.mesh");
     hInstance[1].setNodeName("hoopNode2");
     hInstance[1].loadModel();
+    hInstance[1].getNode()->setScale(0.8f,0.8f,0.8f);
 
     hoopInstance.push_back(hInstance[0]);  // loads the first hoop
     hoopInstance.push_back(hInstance[1]);  // loads the second hoop

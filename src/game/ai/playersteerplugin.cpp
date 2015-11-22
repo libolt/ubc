@@ -21,13 +21,13 @@
 #include "conversion.h"
 
 #include "Ogre.h"
-#include "playersteerplugin.h"
-#include "ai.h"
-#include "courtstate.h"
-#include "gamestate.h"
+#include "ai/playersteerplugin.h"
+#include "ai/ai.h"
+#include "state/courtstate.h"
+#include "state/gamestate.h"
 #include "logging.h"
-#include "teamstate.h"
-#include "playerstate.h"
+#include "state/teamstate.h"
+#include "state/playerstate.h"
 
 void playerSteerPlugin::open(void)
 {

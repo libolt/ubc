@@ -19,10 +19,10 @@
  ***************************************************************************/
 #include "conversion.h"
 
-#include "basketballsteer.h"
-#include "gamestate.h"
-#include "playerstate.h"
-#include "teamstate.h"
+#include "ai/basketballsteer.h"
+#include "state/gamestate.h"
+#include "state/playerstate.h"
+#include "state/teamstate.h"
 
 basketballSteer::basketballSteer()
 {
@@ -57,7 +57,7 @@ void basketballSteer::reset(void)
     setMaxSpeed (10);         // velocity is clipped to this magnitude
     
 	std::vector<teamState> teamInstance = gameS->getTeamInstance();
-	std::vector<basketballs> basketballInstance = gameS->getBasketballInstance();
+	std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
     int activeBBallInstance = gameS->getActiveBBallInstance();
     OpenSteer::Vec3 basketballSteerPos = convert->toOpenSteerVec3(basketballInstance[activeBBallInstance].getNodePosition());
     // Place me on my part of the field, looking at oponnents goal

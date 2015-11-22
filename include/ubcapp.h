@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean   *
- *   libolt@libolt.net   *
+ *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -27,21 +27,21 @@
 #include "config.h"
 #endif
 
-#include "network.h"
+#include "network/network.h"
 
-#include "gui.h"
+#include "gui/gui.h"
 #include "SDL.h"
 #include "SDL_syswm.h"
 #include "SDL_test_common.h"
 #include "Ogre.h"
 #include "OgreStringConverter.h" 
 #include "OgreString.h"
-#include "renderengine.h"
-#include "gameengine.h"
-#include "gamestate.h"
+#include "engine/renderengine.h"
+#include "engine/gameengine.h"
+#include "state/gamestate.h"
 #include "input.h"
 #include "playerdata.h"
-#include "playerstate.h"
+#include "state/playerstate.h"
 
 class UBC
 {

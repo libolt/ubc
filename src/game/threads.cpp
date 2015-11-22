@@ -20,10 +20,10 @@
 
 #include "conversion.h"
 #include "threads.h"
-#include "gameengine.h" 
+#include "engine/gameengine.h" 
 #include <cstdlib>
 
-#include "gameengine.h"
+#include "engine/gameengine.h"
 
 threads::threads()
 {

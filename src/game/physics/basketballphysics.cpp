@@ -20,29 +20,31 @@
 
 #include "conversion.h"
 #include "logging.h"
-#include "basketballphysics.h"
-#include "physicsengine.h"
-#include "gamestate.h"
+#include "physics/basketballphysics.h"
+#include "physics/physicsengine.h"
+#include "state/gamestate.h"
 
 basketballPhysics::basketballPhysics()  // constructor
 {
-    bballCollidesWith = COL_COURT; // | COL_TEAM1 | COL_TEAM2;  // determines what the basketball collides with
+//    bballCollidesWith = COL_COURT; // | COL_TEAM1 | COL_TEAM2;  // determines what the basketball collides with
 
-    physicsSetup = false;
+/*    physicsSetup = false;
 
     number = 999999;
 
     stateSet = false;
-//    setupState();
+    setupState();
+*/
 }
 
-btCollisionShape *basketballPhysics::getBasketballShape()  // retrieves the value of basketballShape
+/*
+btCollisionShape *basketballPhysics::getShape()  // retrieves the value of basketballShape
 {
-    return (basketballShape);
+    return (shape);
 }
-void basketballPhysics::setBasketballShape(btCollisionShape *set)  // sets the value of basketballShape
+void basketballPhysics::setShape(btCollisionShape *set)  // sets the value of basketballShape
 {
-    basketballShape = set;
+    shape = set;
 }
 
 BtOgre::RigidBodyState *basketballPhysics::getBasketballBodyState()  // retrieves the value of basketballBodyState
@@ -81,15 +83,17 @@ void basketballPhysics::setStateSet(bool set)  // sets the value of stateSet
 {
     stateSet = set;
 }
+*/
 
-bool basketballPhysics::setupPhysics()  // sets up physics for the basketball
+bool basketballPhysics::setup()  // sets up physics for the basketball
 {
     exit(0);
+    setCollidesWith(COL_COURT);  // collides with the court
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
 
-    std::vector<basketballs> basketballInstance = gameS->getBasketballInstance();
+    std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
     size_t activeBBallInstance = gameS->getActiveBBallInstance();
     btScalar mass = 0.62f;
     btVector3 inertia, inertia2;
@@ -98,18 +102,19 @@ bool basketballPhysics::setupPhysics()  // sets up physics for the basketball
 
     
     //Create the basketball shape.
-    if (number != 999999 && basketballInstance[number].getModelLoaded()) //&& gameS->getBasketballInstancesCreated())
+    if (getNumber() != 999999 && basketballInstance[getNumber()].getModelLoaded()) //&& gameS->getBasketballInstancesCreated())
     {
-        logMsg("bball number == " +convert->toString(number));
+        logMsg("bball number == " +convert->toString(getNumber()));
 //        exit(0);
-        BtOgre::StaticMeshToShapeConverter converter(basketballInstance[number].getModel());
-        basketballShape = converter.createSphere();
+        BtOgre::StaticMeshToShapeConverter converter(basketballInstance[getNumber()].getModel());
+        setShape(converter.createSphere());
         
-        basketballShape->calculateLocalInertia(mass, inertia);
+        getShape()->calculateLocalInertia(mass, inertia);
 //        exit(0);
-        basketballBodyState = new BtOgre::RigidBodyState(basketballInstance[number].getNode());
+
+        setBodyState(new BtOgre::RigidBodyState(basketballInstance[getNumber()].getNode()));
 //    exit(0);
-        btRigidBody::btRigidBodyConstructionInfo info(mass,basketballBodyState,basketballShape,inertia);  //motion state would actually be non-null in most real usages
+        btRigidBody::btRigidBodyConstructionInfo info(mass,getBodyState(),getShape(),inertia);  //motion state would actually be non-null in most real usages
         info.m_restitution = 0.85f;
 //    info.m_friction = 2.0f;
 //    exit(0);
@@ -126,7 +131,7 @@ bool basketballPhysics::setupPhysics()  // sets up physics for the basketball
         basketballInstance[activeBBallInstance].setPhysBody(bballBody);
 
         btDynamicsWorld *world = physEngine->getWorld();
-        world->addRigidBody(basketballInstance[activeBBallInstance].getPhysBody(), COL_BBALL, bballCollidesWith);
+        world->addRigidBody(basketballInstance[activeBBallInstance].getPhysBody(), COL_BBALL, getCollidesWith());
         physEngine->setWorld(world);
 
 //    world->addRigidBody(basketballInstance[activeBBallInstance].getPhysBody());
@@ -136,7 +141,7 @@ bool basketballPhysics::setupPhysics()  // sets up physics for the basketball
     }
     else
     {
-        basketballInstance[number].setModelNeedsLoaded(true);
+        basketballInstance[getNumber()].setModelNeedsLoaded(true);
         gameS->setBasketballInstance(basketballInstance);
         logMsg("Model Needs Loaded!");
 //        exit(0);
@@ -144,15 +149,18 @@ bool basketballPhysics::setupPhysics()  // sets up physics for the basketball
     return false;
 }
 
+/*
 bool basketballPhysics::setupState()  // sets up the state of the basketballPhysics object
 {
     return (true);
 }
+
+
 void basketballPhysics::updateState()  // updates basketball physics state
 {
-    if (!physicsSetup)
+    if (!setup)
     {
-        if (setupPhysics())  // sets up physics state for basketball
+        if (setup())  // sets up physics state for basketball
         {
             physicsSetup = true;
         }
@@ -164,3 +172,4 @@ void basketballPhysics::updateState()  // updates basketball physics state
     {
     }
 }
+*/

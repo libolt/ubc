@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean   *
- *   libolt@libolt.net   *
+ *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -21,7 +21,7 @@
 #ifndef _CONVERSION_H_
 #define _CONVERSION_H_
 
-#include "network.h"
+#include "network/network.h"
 
 #include <iostream>
 #include <sstream>
@@ -36,7 +36,7 @@
 #include "OgreVector3.h"
 #include "LinearMath/btVector3.h"
 
-#include "steering.h"
+#include "ai/steering.h"
 #include "enums.h"
 
 //template<class T, class TL>

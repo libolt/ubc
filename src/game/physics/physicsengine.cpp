@@ -301,7 +301,7 @@ void physicsEngine::updateState()  // updates the state for the physics engine
     if (gameS->getBasketballInstancesCreated())
     {
 //        exit(0);
-        basketballInstance[activeBBallInstance].getPhysics().updateState();
+        basketballInstance[activeBBallInstance].getPhysics().update();
     }
     else
     {

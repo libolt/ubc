@@ -18,58 +18,56 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef _BASKETBALLPHYSICS_H_
-#define _BASKETBALLPHYSICS_H_
+#ifndef _PHYSICS_H_
+#define _PHYSICS_H_
 
 #include "BtOgrePG.h"
 #include "BtOgreGP.h"
 #include "BtOgreExtras.h"
 #include "BulletDynamics/Dynamics/btRigidBody.h"
 
-#include "physics/physics.h"
-
-class basketballPhysics : public physics
+class physics
 {
     public:
+        physics();  // constructor
+        ~physics();  // destructor
 
-        basketballPhysics();  // initializer
+        btCollisionShape *getShape();  // retrieves the value of shape
+        void setShape(btCollisionShape *set);  // sets the value of shape
 
-/*        btCollisionShape *getShape();  // retrieves the value of basketballShape
-        void setShape(btCollisionShape *set);  // sets the value of basketballShape
+        BtOgre::RigidBodyState *getBodyState();  // retrieves the value of bodyState
+        void setBodyState(BtOgre::RigidBodyState *set);  // sets the value of bodyState
 
-        BtOgre::RigidBodyState *getBasketballBodyState();  // retrieves the value of basketballBodyState
-        void setBasketBallBodyState(BtOgre::RigidBodyState *set);  // sets the value of basketballBodyState
+        int getCollidesWith();  // retrieves the value of collidesWith
+        void setCollidesWith(int set);  // sets the value of collidesWith
 
         size_t getNumber();  // retrieves the value of number
         void setNumber(size_t set);  // sets the value of number
 
         bool getStateSet();  // retrieves the value of stateSet
         void setStateSet(bool set);  // sets the value of stateSet
-        
-        bool getPhysicsSetup();  // retrieves the value of physicsSetup
-        void setPhysicsSetup(bool set);  // sets the value of physicsSetup
-*/
-        bool setup();  // sets up basketball physics
 
+        bool getSetupComplete();  // retrieves the value of physicsSetup
+        void setSetupComplete(bool set);  // sets the value of physicsSetup
 
-        bool setupState();  // sets up the state of the basketballPhysics object
+        bool setupPhysics();  // sets up object physics
 
-        void updateState();  // updates the basketball physics state
+        bool setup();  // sets up the of the object
+
+        void update();  // updates the object
 
     private:
 
-/*        btCollisionShape *shape;  // stores the shape of the basketball shape
-        BtOgre::RigidBodyState *basketballBodyState;  // stores the state of the basketball
+        btCollisionShape *shape;  // stores the shape of the object shape
+        BtOgre::RigidBodyState *bodyState;  // stores the state of the body objectt
 
-        int bballCollidesWith;	// determines what the basketball collides with
+        int collidesWith;	// determines what the object collides with
 
-        bool physicsSetup;  // stores whether the basketblal physics have been setup.
+        bool setupComplete;  // stores whether the basketblal physics have been setup.
 
         size_t number;  // stores the number of the object
 
-        bool stateSet;  // if true then the basketball physics state has been set
-*/
+        bool stateSet;  // if true then the object physics state has been set
 };
 
-#endif // _BASKETBALLPHYSICS_H_
-
+#endif // _PHYSICS_H_

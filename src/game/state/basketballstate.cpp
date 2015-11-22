@@ -412,7 +412,7 @@ void basketballState::updateState()  // updates the state of the basketball
 
     if (numberSet)  // runs the physics update code
     {
-        getPhysics().updateState();
+        getPhysics().update();
     }
     if (directChange)
     {

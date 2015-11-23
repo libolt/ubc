@@ -61,6 +61,7 @@ class physics
         btCollisionShape *shape;  // stores the shape of the object shape
         BtOgre::RigidBodyState *bodyState;  // stores the state of the body objectt
 
+        size_t entityInstance;  // stores which instance of the entity object(s) to use for shape
         int collidesWith;	// determines what the object collides with
 
         bool setupComplete;  // stores whether the basketblal physics have been setup.

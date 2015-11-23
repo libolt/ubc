@@ -53,6 +53,9 @@
     // Data Types
     //enum dataTypes { CHAR, INT, FLOAT, DOUBLE, OGREVEC3, OPENSTEERVEC3, BULLETVEC3 };  // Defines type of data being passed to function
     
+    // physics
+    enum physicsShapes {CAPSULE, BOX, CYLINDER, SPHERE };  // Defines what type of physics object to create
+
     enum collisiontypes
     {
         COL_NOTHING = 0, //<Collide with nothing

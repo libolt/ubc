@@ -18,13 +18,20 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "physics/physicsengine.h"
+#include "physics/courtphysics.h"
 #include "state/gamestate.h"
+
+courtPhysics::courtPhysics()  // constructor
+{
+
+}
+courtPhysics::~courtPhysics()  // destructor
+{
+
+}
 
 bool physicsEngine::setupCourtPhysics()
 {
-//    courtState *courtS = courtState::Instance();
-    //gameState *gameS = gameState::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
 
     std::vector<courtState> courtInstance = gameS->getCourtInstance();

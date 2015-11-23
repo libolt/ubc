@@ -21,5 +21,16 @@
 #ifndef _COURTPHYSICS_H_
 #define _COURTPHYSICS_H_
 
+#include "physics.h"
+
+class courtPhysics : public physics
+{
+    public:
+        courtPhysics();  // constructor
+        ~courtPhysics();  // destructor
+
+    private:
+};
+
 #endif // COURTPHYSICS_H
 

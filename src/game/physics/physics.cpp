@@ -62,6 +62,15 @@ void physics::setShapeType(physicsShapes set)  // sets the value of shapeType
     shapeType = set;
 }
 
+int physics::getColObject()  // retrieves the value of colObject
+{
+    return (colObject);
+}
+void physics::setColObject(int set)  // sets the value of colObject
+{
+    colObject = set;
+}
+
 int physics::getCollidesWith()  // retrieves the value of collidesWith
 {
     return (collidesWith);
@@ -102,15 +111,17 @@ bool physics::setup()  // sets up the state of the object
     return (true);
 }
 
-bool physics::setupPhysics(physicsShapes modelShape, Ogre::Entity **model, Ogre::SceneNode **node, btRigidBody **physBody)  // sets up physics for the object
+bool physics::setupPhysics(Ogre::Entity **model, Ogre::SceneNode **node, btRigidBody **physBody)  // sets up physics for the object
 {
-    setCollidesWith(COL_COURT);  // collides with the court
+//    setCollidesWith(COL_COURT);  // collides with the court
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
 
 //    std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
 //    size_t activeBBallInstance = gameS->getActiveBBallInstance();
+
+//    Ogre::SceneNode *tempNode = node;
     btScalar mass = 0.62f;
     btVector3 inertia, inertia2;
     inertia = btVector3(0,0,0);
@@ -123,9 +134,9 @@ bool physics::setupPhysics(physicsShapes modelShape, Ogre::Entity **model, Ogre:
         logMsg("bball number == " +convert->toString(getNumber()));
 //        exit(0);
 */
-        BtOgre::StaticMeshToShapeConverter converter(&model);
+        BtOgre::StaticMeshToShapeConverter converter(*model);
         
-        switch (modelShape)
+        switch (getShapeType())
         {
             case CAPSULE:
             break;
@@ -141,10 +152,10 @@ bool physics::setupPhysics(physicsShapes modelShape, Ogre::Entity **model, Ogre:
         }
 //        setShape(converter.createSphere());
         
-        shape().calculateLocalInertia(mass, inertia);
+        shape->calculateLocalInertia(mass, inertia);
 //        exit(0);
 
-        bodyState = new BtOgre::RigidBodyState(node);
+        bodyState = new BtOgre::RigidBodyState(*node);
 //    exit(0);
         btRigidBody::btRigidBodyConstructionInfo info(mass,bodyState,shape,inertia);  //motion state would actually be non-null in most real usages
         info.m_restitution = 0.85f;
@@ -160,10 +171,10 @@ bool physics::setupPhysics(physicsShapes modelShape, Ogre::Entity **model, Ogre:
         body = new btRigidBody(info);
 //    bballBody->setActivationState(DISABLE_DEACTIVATION);
     //    bballBody->setCollisionFlags(bballBody->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
-        physBody = body;
+        *physBody = body;
 
         btDynamicsWorld *world = physEngine->getWorld();
-        world->addRigidBody(physBody, COL_BBALL, getCollidesWith());
+        world->addRigidBody(*physBody, getColObject(), getCollidesWith());
         physEngine->setWorld(world);
 
 //    world->addRigidBody(basketballInstance[activeBBallInstance].getPhysBody());

@@ -51,8 +51,15 @@ bool basketballEntity::setupPhysics()  // sets up the physics object
 {
     Ogre::Entity *tempModel = getModel();
     Ogre::SceneNode *tempNode = getNode();
-    getPhysics().setupPhysics(SPHERE, &tempModel, &tempNode);
+    btRigidBody *tempPhysBody = getPhysBody();
+    getPhysics().setShapeType(SPHERE);
+    getPhysics().setColObject(COL_BBALL);
+    getPhysics().setCollidesWith(COL_COURT);    
+
+    getPhysics().setupPhysics(&tempModel, &tempNode, &tempPhysBody);
     setModel(tempModel);
     setNode(tempNode);
+    setPhysBody(tempPhysBody);
+
     return (false);
 }

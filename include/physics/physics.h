@@ -43,7 +43,10 @@ class physics
 
         physicsShapes getShapeType();  // retrieves the value of shapeType
         void setShapeType(physicsShapes set);  // sets the value of shapeType
-        
+       
+        int getColObject();  // retrieves the value of colObject
+        void setColObject(int set);  // sets the value of colObject
+ 
         int getCollidesWith();  // retrieves the value of collidesWith
         void setCollidesWith(int set);  // sets the value of collidesWith
 
@@ -56,7 +59,7 @@ class physics
         bool getSetupComplete();  // retrieves the value of physicsSetup
         void setSetupComplete(bool set);  // sets the value of physicsSetup
 
-        bool setupPhysics(physicsShapes modelShape, Ogre::Entity *model, Ogre::SceneNode *node, btRigidBody *physBody);  // sets up object physics
+        bool setupPhysics(Ogre::Entity **model, Ogre::SceneNode **node, btRigidBody **physBody);  // sets up object physics
 
         bool setup();  // sets up the object
 
@@ -70,6 +73,9 @@ class physics
         physicsShapes shapeType;  // stores what type of shape to create 
         
         size_t entityInstance;  // stores which instance of the entity object(s) to use for shape
+        
+        int colObject;  // stores the type of collision object
+
         int collidesWith;	// determines what the object collides with
 
         bool setupComplete;  // stores whether the basketblal physics have been setup.

@@ -46,7 +46,6 @@ class basketballEntity : public entity
 
     basketballSteer *steer;  // instance of the basketballSteer class
 
-    
 };
  
 #endif

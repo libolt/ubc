@@ -56,7 +56,7 @@
     // physics
     enum physicsShapes {CAPSULE, BOX, CYLINDER, SPHERE };  // Defines what type of physics object to create
 
-    enum collisiontypes
+    enum collisionTypes
     {
         COL_NOTHING = 0, //<Collide with nothing
         COL_COURT = BIT(0), // Collide with court

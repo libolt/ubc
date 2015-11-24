@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean   *
- *   libolt@libolt.net   *
+ *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -27,4 +27,32 @@ courtEntity::courtEntity()  // constructor
 courtEntity::~courtEntity()  // destructor
 {
 
+}
+
+courtPhysics courtEntity::getPhysics()  // retrieves the value of physics
+{
+    return (physics);
+}
+void courtEntity::setPhysics(courtPhysics set)  // sets the value of physics
+{
+    physics = set;
+}
+
+bool courtEntity::setupPhysics()  // sets up the physics object
+{
+    Ogre::Entity *tempModel = getModel();
+    Ogre::SceneNode *tempNode = getNode();
+    btRigidBody *tempPhysBody = getPhysBody();
+    
+    int collides = COL_BBALL | COL_TEAM1 | COL_TEAM2;
+    getPhysics().setShapeType(BOX);
+    getPhysics().setColObject(COL_COURT);
+    getPhysics().setCollidesWith(collides);
+
+    getPhysics().setupPhysics(&tempModel, &tempNode, &tempPhysBody);
+    setModel(tempModel);
+    setNode(tempNode);
+    setPhysBody(tempPhysBody);
+
+    return (false);
 }

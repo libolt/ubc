@@ -87,7 +87,7 @@ void basketballPhysics::setStateSet(bool set)  // sets the value of stateSet
 
 bool basketballPhysics::setup()  // sets up physics for the basketball
 {
-    exit(0);
+/*    exit(0);
     setCollidesWith(COL_COURT);  // collides with the court
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
@@ -146,6 +146,7 @@ bool basketballPhysics::setup()  // sets up physics for the basketball
         logMsg("Model Needs Loaded!");
 //        exit(0);
     }
+*/
     return false;
 }
 

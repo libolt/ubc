@@ -25,11 +25,15 @@
 
 playerPhysics::playerPhysics()  // constructor
 {
-    physicsSetup = false;
-    stateSet = false;
+//    physicsSetup = false;
+//    stateSet = false;
 }
 
-bool playerPhysics::getPhysicsSetup()  // retrieves the value of physicsSetup
+playerPhysics::~playerPhysics()  // destructor
+{
+}
+
+/*bool playerPhysics::getPhysicsSetup()  // retrieves the value of physicsSetup
 {
     return (physicsSetup);
 }
@@ -182,3 +186,4 @@ bool playerPhysics::setupPhysics()  // sets up playerPhysics
 //    exit(0);
     return true;
 }
+*/

@@ -21,11 +21,15 @@
 #ifndef _PLAYERPHYSICS_H_
 #define _PLAYERPHYSICS_H_
 
-class playerPhysics
+#include "physics/physics.h"
+
+class playerPhysics : public physics
 {
     public:
+        playerPhysics();  // constructor
+        ~playerPhysics();  // destructor
     
-        bool getPhysicsSetup();  // retrieves the value of physicsSetup
+/*        bool getPhysicsSetup();  // retrieves the value of physicsSetup
         void setPhysicsSetup(bool set);  // sets the value of physicsSetup
         
         bool getStateSet();  // retrieves the value of stateSet
@@ -38,10 +42,11 @@ class playerPhysics
         bool setupState();  // sets up state of player physics
         
         void updateState();  // updates the state of player physics
-        
+*/        
     private:
-        bool physicsSetup;  // determines whether all players' physics bodies have been setup
+/*        bool physicsSetup;  // determines whether all players' physics bodies have been setup
         bool stateSet;  // if true then the player physics state has been set
+*/
 };
 
 #endif // PLAYERPHYSICS_H

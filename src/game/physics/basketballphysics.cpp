@@ -21,8 +21,8 @@
 #include "conversion.h"
 #include "logging.h"
 #include "physics/basketballphysics.h"
-#include "physics/physicsengine.h"
-#include "state/gamestate.h"
+//#include "physics/physicsengine.h"
+//#include "state/gamestate.h"
 
 basketballPhysics::basketballPhysics()  // constructor
 {

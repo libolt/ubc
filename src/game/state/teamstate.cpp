@@ -653,8 +653,9 @@ bool teamState::createPlayerInstances()
             logMsg("psteer resset!");
             pInstance.setSteer(pSteer);
             logMsg("steer set!");
-            if (pPhysics.setupState())
+            if (pPhysics.setup())
             {
+                pPhysics.setSetupComplete(true);
                 pInstance.setPhysics(pPhysics);
             }
             else

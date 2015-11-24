@@ -46,3 +46,5 @@ void playerEntity::setSteer(playerSteer *set)  // sets the value of steer
 {
     steer = set;
 }
+
+

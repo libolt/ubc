@@ -49,10 +49,16 @@ bool courtEntity::setupPhysics()  // sets up the physics object
     getPhysics().setColObject(COL_COURT);
     getPhysics().setCollidesWith(collides);
 
-    getPhysics().setupPhysics(&tempModel, &tempNode, &tempPhysBody);
-    setModel(tempModel);
-    setNode(tempNode);
-    setPhysBody(tempPhysBody);
-
+    if (getPhysics().setupPhysics(&tempModel, &tempNode, &tempPhysBody))
+    {
+        getPhysics().setSetupComplete(true);
+        setModel(tempModel);
+        setNode(tempNode);
+        setPhysBody(tempPhysBody);
+        return (true);
+    }
+    else
+    {
+    } 
     return (false);
 }

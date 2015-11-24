@@ -27,7 +27,6 @@ physics::physics()  // constructor
 
     number = 999999;
 
-    stateSet = false;
 }
 physics::~physics()  // destructor
 {
@@ -98,14 +97,6 @@ void physics::setSetupComplete(bool set)  // sets the value of setupComplete
     setupComplete = set;
 }
 
-bool physics::getStateSet()  // retrieves the value of stateSet
-{
-    return (stateSet);
-}
-void physics::setStateSet(bool set)  // sets the value of stateSet
-{
-    stateSet = set;
-}
 bool physics::setup()  // sets up the state of the object
 {
     return (true);
@@ -190,7 +181,7 @@ bool physics::setupPhysics(Ogre::Entity **model, Ogre::SceneNode **node, btRigid
 //        exit(0);
     }
     */
-    return (false);
+    return (true);
 }
 
 void physics::update()  // updates object physics state

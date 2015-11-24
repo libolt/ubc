@@ -29,9 +29,9 @@
 #include "comparison.h"
 #include "jumpballs.h"
 
-boost::shared_ptr<physicsEngine> physicsEngine::pInstance;
+///boost::shared_ptr<physicsEngine> physicsEngine::pInstance;
 
-boost::shared_ptr<physicsEngine> physicsEngine::Instance()
+/*boost::shared_ptr<physicsEngine> physicsEngine::Instance()
 {
     if (pInstance == 0)  // is it the first call?
     {
@@ -41,6 +41,7 @@ boost::shared_ptr<physicsEngine> physicsEngine::Instance()
     }
     return pInstance;  // address of sole instance
 }
+*/
 
 physicsEngine::physicsEngine()  // contructor
 {

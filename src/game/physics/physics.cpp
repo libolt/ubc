@@ -107,7 +107,7 @@ bool physics::setupPhysics(Ogre::Entity **model, Ogre::SceneNode **node, btRigid
 //    setCollidesWith(COL_COURT);  // collides with the court
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
-    boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
+//    boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
 
 //    std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
 //    size_t activeBBallInstance = gameS->getActiveBBallInstance();
@@ -164,9 +164,9 @@ bool physics::setupPhysics(Ogre::Entity **model, Ogre::SceneNode **node, btRigid
     //    bballBody->setCollisionFlags(bballBody->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
         *physBody = body;
 
-        btDynamicsWorld *world = physEngine->getWorld();
+        btDynamicsWorld *world = getWorld();
         world->addRigidBody(*physBody, getColObject(), getCollidesWith());
-        physEngine->setWorld(world);
+        setWorld(world);
 
 //    world->addRigidBody(basketballInstance[activeBBallInstance].getPhysBody());
 

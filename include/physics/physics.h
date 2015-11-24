@@ -29,7 +29,7 @@
 #include "physics/physicsengine.h"
 #include "enums.h"
 
-class physics
+class physics : public physicsEngine
 {
     public:
         physics();  // constructor

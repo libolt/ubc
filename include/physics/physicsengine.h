@@ -35,7 +35,7 @@ class physicsEngine
 {
 public:
     //static physicsEngine *Instance();
-    static boost::shared_ptr<physicsEngine> Instance();
+///    static boost::shared_ptr<physicsEngine> Instance();
 
     ~physicsEngine();	// destructor
 
@@ -92,15 +92,15 @@ public:
    
 protected:
     physicsEngine();
-    physicsEngine(const physicsEngine&);
-    physicsEngine &operator = (const physicsEngine&);
+///    physicsEngine(const physicsEngine&);
+///    physicsEngine &operator = (const physicsEngine&);
 
 private:
 
     //static physicsEngine *pInstance;
-    static boost::shared_ptr<physicsEngine> pInstance;
+///    static boost::shared_ptr<physicsEngine> pInstance;
 
-    btDynamicsWorld *world;  // stores the physics world
+    static btDynamicsWorld *world;  // stores the physics world
     BtOgre::DebugDrawer *debugDraw;  // used to draw debug shapes for objects
 //    btAxisSweep3 *broadPhase;
     btBroadphaseInterface *broadPhase;  

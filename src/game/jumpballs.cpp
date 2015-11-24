@@ -189,7 +189,7 @@ bool jumpBalls::jumpBallExecute()  // initiates jump ball from jump ball circle
 //    exit(0);
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
-    boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
+///    boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
 
     std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
     size_t activeBBallInstance = gameS->getActiveBBallInstance();
@@ -234,7 +234,7 @@ bool jumpBalls::jumpBallExecute()  // initiates jump ball from jump ball circle
 //    exit(0);
 //    teamTypes teamType = teamInstance[0].getTeamType();
     bool collCheck = false;
-//    collCheck = physEngine->collisionCheck(basketballInstance[activeBBallInstance].getPhysBody(), activePlayerInstance[0][jumpPlayerInstance[0]].getPhysBody());
+//    collCheck = /*physEngine->*/ collisionCheck(basketballInstance[activeBBallInstance].getPhysBody(), activePlayerInstance[0][jumpPlayerInstance[0]].getPhysBody());
     size_t y = 0;
     playerState activePInstance;
     while (y < teamInstance.size())
@@ -251,7 +251,7 @@ bool jumpBalls::jumpBallExecute()  // initiates jump ball from jump ball circle
             break;
         }
 //        exit(0);
-        if (physEngine->collisionCheck(basketballInstance[activeBBallInstance].getPhysBody(), activePInstance.getPhysBody()))
+        if (/*physEngine->*/ collisionCheck(basketballInstance[activeBBallInstance].getPhysBody(), activePInstance.getPhysBody()))
         {
             logMsg("team " +convert->toString(y) +" center collided with ball");
             ballTippedToTeam = teamInstance[y].getTeamType();
@@ -265,7 +265,7 @@ bool jumpBalls::jumpBallExecute()  // initiates jump ball from jump ball circle
         }
 /*        logMsg("Team " +convert->toString(teamType) +" playerInstance " +convert->toString(jumpPlayerInstance[0]) +" collCheck == " +convert->toString(collCheck));
         teamType = teamInstance[1].getTeamType();
-        collCheck = physEngine->collisionCheck(basketballInstance[activeBBallInstance].getPhysBody(), activePlayerInstance[1][jumpPlayerInstance[1]].getPhysBody());
+        collCheck = /*physEngine->*/ collisionCheck(basketballInstance[activeBBallInstance].getPhysBody(), activePlayerInstance[1][jumpPlayerInstance[1]].getPhysBody());
         if (collCheck)
         {
             logMsg("team 1 center collided with ball");
@@ -299,7 +299,7 @@ bool jumpBalls::tipToPlayer()  // tips the basketball to the appropriate player
 {
     boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
+//    boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
 
     std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
     std::vector<teamState> teamInstance = gameS->getTeamInstance();
@@ -383,8 +383,8 @@ bool jumpBalls::tipToPlayer()  // tips the basketball to the appropriate player
         }
         if (bballVelocity.getX() != 0 || bballVelocity.getY() != 0 || bballVelocity.getZ() != 0)
         {
-            physEngine->setBasketballVelocity(bballVelocity);
-            physEngine->setBasketballVelocitySet(true);
+            /*physEngine->*/ setBasketballVelocity(bballVelocity);
+            /*physEngine->*/ setBasketballVelocitySet(true);
             ballTipForceApplied = true;
 //            exit(0);
         }
@@ -399,14 +399,14 @@ bool jumpBalls::tipToPlayer()  // tips the basketball to the appropriate player
         {
             logMsg("ballTippedToPlayerInstance == " +convert->toString(ballTippedToPlayerInstance));
 
-            if (physEngine->collisionCheck(basketballInstance[activeBBallInstance].getPhysBody(), activePlayerInstance[ballTippedToPlayerInstance].getPhysBody()))
+            if (/*physEngine->*/ collisionCheck(basketballInstance[activeBBallInstance].getPhysBody(), activePlayerInstance[ballTippedToPlayerInstance].getPhysBody()))
             {
  //               exit(0);
                 gameS->setTeamWithBall(ballTippedToTeam);
                 logMsg("ballTippedToPlayerID == " +convert->toString(ballTippedToPlayerID));
                 teamInstance[ballTippedToTeam].setPlayerWithBallID(ballTippedToPlayerID);
                 teamInstance[ballTippedToTeam].setPlayerWithBallInstance(ballTippedToPlayerInstance);
-                physEngine->setBasketballVelocitySet(false);
+                /*physEngine->*/ setBasketballVelocitySet(false);
                 teamInstance[ballTippedToTeam].setPlayerWithBallDribbling(true);
                 if (teamInstance[ballTippedToTeam].getHumanControlled())
                 {

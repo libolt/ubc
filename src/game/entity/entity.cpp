@@ -24,6 +24,7 @@
 
 entity::entity()  // constructor
 {
+    physicsSetup = false;
     modelNeedsLoaded = false;
     modelLoaded = false;
 }
@@ -88,6 +89,15 @@ void entity::setPhysBody(btRigidBody *set)  // sets physBody variable
     physBody = set;
 }
 
+bool entity::getPhysicsSetup()  // retrieves the value of physicsSetup
+{
+    return (physicsSetup);
+}
+void entity::setPhysicsSetup(bool set)  // sets the value of physicsSetup
+{
+    physicsSetup = set;
+}
+
 bool entity::getModelNeedsLoaded()  // retrieves the value of modelNeedsLoaded
 {
     return (modelNeedsLoaded);
@@ -133,4 +143,10 @@ bool entity::loadModel()  // loads the 3D model
     node->setPosition(0.0f,0.0f,0.0f);
 
    return true;
+}
+
+bool entity::setupPhysics()  // sets up the physics object
+{
+    bballInstance.getPhysics().setupPhysics(*model);
+    return (false);
 }

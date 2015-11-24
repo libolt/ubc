@@ -26,6 +26,9 @@
 #include "BtOgreExtras.h"
 #include "BulletDynamics/Dynamics/btRigidBody.h"
 
+#include "physics/physicsengine.h"
+#include "enums.h"
+
 class physics
 {
     public:
@@ -38,6 +41,9 @@ class physics
         BtOgre::RigidBodyState *getBodyState();  // retrieves the value of bodyState
         void setBodyState(BtOgre::RigidBodyState *set);  // sets the value of bodyState
 
+        physicsShapes getShapeType();  // retrieves the value of shapeType
+        void setShapeType(physicsShapes set);  // sets the value of shapeType
+        
         int getCollidesWith();  // retrieves the value of collidesWith
         void setCollidesWith(int set);  // sets the value of collidesWith
 
@@ -50,9 +56,9 @@ class physics
         bool getSetupComplete();  // retrieves the value of physicsSetup
         void setSetupComplete(bool set);  // sets the value of physicsSetup
 
-        bool setupPhysics();  // sets up object physics
+        bool setupPhysics(physicsShapes modelShape, Ogre::Entity **model, Ogre::SceneNode **node, btRigidBody **physBody);  // sets up object physics
 
-        bool setup();  // sets up the of the object
+        bool setup();  // sets up the object
 
         void update();  // updates the object
 
@@ -61,6 +67,8 @@ class physics
         btCollisionShape *shape;  // stores the shape of the object shape
         BtOgre::RigidBodyState *bodyState;  // stores the state of the body objectt
 
+        physicsShapes shapeType;  // stores what type of shape to create 
+        
         size_t entityInstance;  // stores which instance of the entity object(s) to use for shape
         int collidesWith;	// determines what the object collides with
 

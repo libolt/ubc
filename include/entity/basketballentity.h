@@ -38,6 +38,8 @@ class basketballEntity : public entity
     basketballSteer *getSteer();  // retrieves the value of steer
     void setSteer(basketballSteer *set);  // sets the value of steer
 
+    bool setupPhysics();  // sets up the physics object
+    
     private:
     
     basketballPhysics physics;  // instanciates an object to handle the physics for the basketball

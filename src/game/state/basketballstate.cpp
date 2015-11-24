@@ -27,7 +27,7 @@
 
 #include <string>
 
- basketballState::basketballState()  // constructor
+basketballState::basketballState()  // constructor
 {
 //    playerControlBasketball = -1;
     maxHeight = 0;

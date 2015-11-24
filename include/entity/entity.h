@@ -53,6 +53,9 @@ class entity  // base class for entity objects
     btRigidBody *getPhysBody();  // retrieves the value of physBody
     void setPhysBody(btRigidBody *set);  // sets the value of physBody
 
+    bool getPhysicsSetup();  // retrieves the value of physicsSetup
+    void setPhysicsSetup(bool set);  // sets the value of physicsSetup
+    
     bool getModelNeedsLoaded();  // retrieves the value of modelNeedsLoaded
     void setModelNeedsLoaded(bool set);  // sets the value of modelNeedsLoaded
 
@@ -63,7 +66,9 @@ class entity  // base class for entity objects
     void setNodePosition(Ogre::Vector3 set);  // sets the value of nodePosition
 
     bool loadModel();  // loads the 3D model from file specified in modelName
-
+    
+    bool setupPhysics();  // sets up the physics object
+    
     private:
     
     std::string modelName;  // stores the file name of the 3d model
@@ -81,6 +86,8 @@ class entity  // base class for entity objects
     // stores the physics object that represents the player
     btRigidBody *physBody;
 
+    bool physicsSetup;  // stores whether the physics object needs setup
+    
     bool modelNeedsLoaded;  // stores whether or not to load the model
 
     bool modelLoaded;  // stores whether the 3D model of the basketball has been loaded

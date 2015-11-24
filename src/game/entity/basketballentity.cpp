@@ -47,3 +47,12 @@ void basketballEntity::setSteer(basketballSteer *set)  // sets the value of stee
     steer = set;
 }
 
+bool basketballEntity::setupPhysics()  // sets up the physics object
+{
+    Ogre::Entity *tempModel = getModel();
+    Ogre::SceneNode *tempNode = getNode();
+    getPhysics().setupPhysics(SPHERE, &tempModel, &tempNode);
+    setModel(tempModel);
+    setNode(tempNode);
+    return (false);
+}

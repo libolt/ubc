@@ -56,7 +56,7 @@ class physics
         bool getSetupComplete();  // retrieves the value of physicsSetup
         void setSetupComplete(bool set);  // sets the value of physicsSetup
 
-        bool setupPhysics(physicsShapes modelShape, Ogre::Entity **model, Ogre::SceneNode **node, btRigidBody **physBody);  // sets up object physics
+        bool setupPhysics(physicsShapes modelShape, Ogre::Entity *model, Ogre::SceneNode *node, btRigidBody *physBody);  // sets up object physics
 
         bool setup();  // sets up the object
 

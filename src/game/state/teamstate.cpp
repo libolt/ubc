@@ -615,8 +615,7 @@ bool teamState::createPlayerInstances()
     std::vector <playerData>::iterator playerIT;
 //    std::vector <playerState>::iterator pInstanceIT;
     logMsg("Creating players");
-
-
+    
     logMsg("playerDataInstance size = " +convert->toString(playerDataInstance.size()));
 //    exit(0);
 //    for (playerIT = playerDataInstance.begin(); playerIT != playerDataInstance.end(); ++playerIT)   // loops through playerID std::vector
@@ -630,12 +629,13 @@ bool teamState::createPlayerInstances()
         playerState pInstance;  // creates a new instance of playerState
         playerSteer *pSteer = new playerSteer; // steer instance
         playerPhysics *pPhysics = new playerPhysics;
-            logMsg("Player Team ID = " +convert->toString(playerDataInstance[i].getTeamID()));
-            logMsg("Team ID = " +convert->toString(teamID));
+        logMsg("Player Team ID = " +convert->toString(playerDataInstance[i].getTeamID()));
+        logMsg("Team ID = " +convert->toString(teamID));      
 
         if (playerDataInstance[i].getTeamID() == teamID)	// checks if player is assigned to this team
         {
             logMsg("teamID!!!!");
+            exit(0);
             id += 1;
             pInstance.setModelName(playerDataInstance[i].getModel());
             pInstance.setFirstName(playerDataInstance[i].getFirstName());  // copies the first name from the playerData std::vector to the pInstance class
@@ -708,7 +708,7 @@ bool teamState::createPlayerInstances()
                     if (playerInstance[x].loadModel())
                     {
                         logMsg("Loading Model");
-//                        exit(0);
+                        exit(0);
                         playerInstance[x].setModelLoaded(true);
                     }
                     else
@@ -767,9 +767,11 @@ void teamState::setPlayerStartPositions()	// sets the initial coordinates for th
 #else
         y = -23.5f;
 #endif
+        
 
 //        yOffset = y;
         gameE->setYOffset(yOffset);
+        
         
         startingPos.push_back(Ogre::Vector3(14.4f,yOffset,352.0f));
         startingPos.push_back(Ogre::Vector3(2.0f,yOffset,347.6f));
@@ -777,7 +779,7 @@ void teamState::setPlayerStartPositions()	// sets the initial coordinates for th
         startingPos.push_back(Ogre::Vector3(5.2f,yOffset,351.6f));
         startingPos.push_back(Ogre::Vector3(1.6f,yOffset,352.0f));
         
-        playerDirection = LEFT;
+        playerDirection = LEFT;     
     }
     else if (teamType == AWAYTEAM) // assigns the positions and directions for team 2 players
     {
@@ -795,7 +797,7 @@ void teamState::setPlayerStartPositions()	// sets the initial coordinates for th
         startingPos.push_back(Ogre::Vector3(4.4f,yOffset,348.8f));
         startingPos.push_back(Ogre::Vector3(-0.4f,yOffset,352.0f));
 
-        playerDirection = RIGHT;
+        playerDirection = RIGHT;        
     }
     
     if (startingPos.size() > 0)
@@ -818,6 +820,7 @@ void teamState::setPlayerStartPositions()	// sets the initial coordinates for th
                 logMsg("X " +convert->toString(i) +" = " +convert->toString(x));
             playerInstance[x].setIsActive(true);    // sets the player active for startup which is used by other code such as physics and steering
 */
+            
             if (activePlayerInstance[x].getActivePosition() == PG)
             {
                 //activePlayerInstance[x].getNode()->setPosition(startingPos[0]);
@@ -827,7 +830,7 @@ void teamState::setPlayerStartPositions()	// sets the initial coordinates for th
                 
                 activePlayerInstance[x].setDirection(playerDirection);
                 activePlayerInstance[x].getSteer()->setPlayerPosition(PG);
-                //activePlayerInstance[x].getSteer()->setPosition(convert->toOpenSteerVec3(startingPos[0]));
+                //activePlayerInstance[x].getSteer()->setPosition(convert->toOpenSteerVec3(startingPos[0]));               
             }
             else if (activePlayerInstance[x].getActivePosition() == SG)
             {
@@ -877,8 +880,8 @@ void teamState::setPlayerStartPositions()	// sets the initial coordinates for th
             {
             }
 //            }
-            x++;
-        }
+            x++;            
+        }      
 /*            i++;
         }
 */
@@ -889,6 +892,7 @@ void teamState::setPlayerStartPositions()	// sets the initial coordinates for th
     {
         
         logMsg("PlayerSteerNode Position == " +convert->toString(activePlayerInstance[x].getNode()->getPosition()));
+        exit(0);
         logMsg("PlayerSteer Position == " +convert->toString(activePlayerInstance[x].getSteer()->position()));
         ++x;
     }

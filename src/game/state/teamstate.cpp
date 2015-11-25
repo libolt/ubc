@@ -635,7 +635,7 @@ bool teamState::createPlayerInstances()
         if (playerDataInstance[i].getTeamID() == teamID)	// checks if player is assigned to this team
         {
             logMsg("teamID!!!!");
-            exit(0);
+//            exit(0);
             id += 1;
             pInstance.setModelName(playerDataInstance[i].getModel());
             pInstance.setFirstName(playerDataInstance[i].getFirstName());  // copies the first name from the playerData std::vector to the pInstance class
@@ -697,18 +697,21 @@ bool teamState::createPlayerInstances()
             logMsg("playerInstance[x].getPlayerID() = " +convert->toString(playerInstance[x].getPlayerID()));
             if (activePlayerID[i] == playerInstance[x].getPlayerID())
             {
+                logMsg("I am here!");
 //                exit(0);
 //                IDMatch = true;
                 logMsg("Success!");
 //                exit(0);
                 if (!playerInstance[x].getModelLoaded())
                 {
+                    logMsg("Here as well!");
+//                    exit(0);
                     playerInstance[x].setEntityName(playerInstance[x].getPlayerName());
                     playerInstance[x].setNodeName(playerInstance[x].getPlayerName());
                     if (playerInstance[x].loadModel())
                     {
                         logMsg("Loading Model");
-                        exit(0);
+//                        exit(0);
                         playerInstance[x].setModelLoaded(true);
                     }
                     else
@@ -892,7 +895,7 @@ void teamState::setPlayerStartPositions()	// sets the initial coordinates for th
     {
         
         logMsg("PlayerSteerNode Position == " +convert->toString(activePlayerInstance[x].getNode()->getPosition()));
-        exit(0);
+//        exit(0);
         logMsg("PlayerSteer Position == " +convert->toString(activePlayerInstance[x].getSteer()->position()));
         ++x;
     }

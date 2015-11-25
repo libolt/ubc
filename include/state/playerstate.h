@@ -91,9 +91,9 @@ class playerState : public state, public playerEntity
         bool getIsActive();  // retrieves the value of isActive
         void setIsActive(bool set);  // sets the value of isActive
 
-        bool getModelLoaded();  // retrieves the value of modelLoaded
+/*        bool getModelLoaded();  // retrieves the value of modelLoaded
         void setModelLoaded(bool set);  // sets the value of modelLoaded
-
+*/
         size_t getOffDef();  // retrieves the value of offDef
         void setOffDef(size_t set);  // sets the value of offDef
 
@@ -294,7 +294,7 @@ class playerState : public state, public playerEntity
 
         bool isActive;  // stores whether or not the player is on the court.
 
-        bool modelLoaded;  // stores whether or not the player's model has been loaded from disk
+//        bool modelLoaded;  // stores whether or not the player's model has been loaded from disk
 
 
         size_t offDef;  // determines whether player is on offense or defense

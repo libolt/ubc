@@ -208,14 +208,14 @@ void playerState::setIsActive(bool set) // sets the value of isActive
     isActive = set;
 }
 
-bool playerState::getModelLoaded()  // retrieves the value of modelLoaded
+/*bool playerState::getModelLoaded()  // retrieves the value of modelLoaded
 {
     return (modelLoaded);
 }
 void playerState::setModelLoaded(bool set) // sets the value of modelLoaded
 {
     modelLoaded = set;
-}
+}*/
 
 size_t playerState::getOffDef()  // retrieves the value of offDef
 {

@@ -37,6 +37,7 @@ public:
     //static physicsEngine *Instance();
 ///    static boost::shared_ptr<physicsEngine> Instance();
 
+    physicsEngine();  // constructor
     ~physicsEngine();	// destructor
 
     
@@ -91,7 +92,7 @@ public:
     bool shootBasketball(teamTypes teamType, int playerID);  // calculates and executes basketball being shot
    
 protected:
-    physicsEngine();
+
 ///    physicsEngine(const physicsEngine&);
 ///    physicsEngine &operator = (const physicsEngine&);
 

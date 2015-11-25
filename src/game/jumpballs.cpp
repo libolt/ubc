@@ -190,7 +190,7 @@ bool jumpBalls::jumpBallExecute()  // initiates jump ball from jump ball circle
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
 ///    boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
-
+    physicsEngine physEngine;
     std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
     size_t activeBBallInstance = gameS->getActiveBBallInstance();
 
@@ -251,7 +251,7 @@ bool jumpBalls::jumpBallExecute()  // initiates jump ball from jump ball circle
             break;
         }
 //        exit(0);
-        if (/*physEngine->*/ collisionCheck(basketballInstance[activeBBallInstance].getPhysBody(), activePInstance.getPhysBody()))
+        if (physEngine.collisionCheck(basketballInstance[activeBBallInstance].getPhysBody(), activePInstance.getPhysBody()))
         {
             logMsg("team " +convert->toString(y) +" center collided with ball");
             ballTippedToTeam = teamInstance[y].getTeamType();
@@ -265,7 +265,7 @@ bool jumpBalls::jumpBallExecute()  // initiates jump ball from jump ball circle
         }
 /*        logMsg("Team " +convert->toString(teamType) +" playerInstance " +convert->toString(jumpPlayerInstance[0]) +" collCheck == " +convert->toString(collCheck));
         teamType = teamInstance[1].getTeamType();
-        collCheck = /*physEngine->*/ collisionCheck(basketballInstance[activeBBallInstance].getPhysBody(), activePlayerInstance[1][jumpPlayerInstance[1]].getPhysBody());
+        collCheck = physEngine.collisionCheck(basketballInstance[activeBBallInstance].getPhysBody(), activePlayerInstance[1][jumpPlayerInstance[1]].getPhysBody());
         if (collCheck)
         {
             logMsg("team 1 center collided with ball");
@@ -301,6 +301,7 @@ bool jumpBalls::tipToPlayer()  // tips the basketball to the appropriate player
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
 
+    physicsEngine physEngine;
     std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
     std::vector<teamState> teamInstance = gameS->getTeamInstance();
     std::vector<playerState> activePlayerInstance;
@@ -383,8 +384,8 @@ bool jumpBalls::tipToPlayer()  // tips the basketball to the appropriate player
         }
         if (bballVelocity.getX() != 0 || bballVelocity.getY() != 0 || bballVelocity.getZ() != 0)
         {
-            /*physEngine->*/ setBasketballVelocity(bballVelocity);
-            /*physEngine->*/ setBasketballVelocitySet(true);
+            physEngine.setBasketballVelocity(bballVelocity);
+            physEngine.setBasketballVelocitySet(true);
             ballTipForceApplied = true;
 //            exit(0);
         }
@@ -399,14 +400,14 @@ bool jumpBalls::tipToPlayer()  // tips the basketball to the appropriate player
         {
             logMsg("ballTippedToPlayerInstance == " +convert->toString(ballTippedToPlayerInstance));
 
-            if (/*physEngine->*/ collisionCheck(basketballInstance[activeBBallInstance].getPhysBody(), activePlayerInstance[ballTippedToPlayerInstance].getPhysBody()))
+            if (physEngine.collisionCheck(basketballInstance[activeBBallInstance].getPhysBody(), activePlayerInstance[ballTippedToPlayerInstance].getPhysBody()))
             {
  //               exit(0);
                 gameS->setTeamWithBall(ballTippedToTeam);
                 logMsg("ballTippedToPlayerID == " +convert->toString(ballTippedToPlayerID));
                 teamInstance[ballTippedToTeam].setPlayerWithBallID(ballTippedToPlayerID);
                 teamInstance[ballTippedToTeam].setPlayerWithBallInstance(ballTippedToPlayerInstance);
-                /*physEngine->*/ setBasketballVelocitySet(false);
+                physEngine.setBasketballVelocitySet(false);
                 teamInstance[ballTippedToTeam].setPlayerWithBallDribbling(true);
                 if (teamInstance[ballTippedToTeam].getHumanControlled())
                 {

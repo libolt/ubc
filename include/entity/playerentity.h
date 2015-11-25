@@ -31,15 +31,15 @@ class playerEntity : public entity
     playerEntity();  // constructor
     ~playerEntity();  // destructor
 
-    playerPhysics getPhysics();  // retrieves the value of physics
-    void setPhysics(playerPhysics set);  // sets the value of physics
+    playerPhysics *getPhysics();  // retrieves the value of physics
+    void setPhysics(playerPhysics *set);  // sets the value of physics
 
     playerSteer *getSteer(); // retrieves the steering instance
     void setSteer(playerSteer *set); // sets the steering instance
 
     private:
 
-    playerPhysics physics;  // stores the playerPhysics object
+    playerPhysics *physics;  // stores the playerPhysics object
 
     playerSteer *steer;  // stores the steering objerct that represents the player
 };

@@ -29,6 +29,9 @@
 #include "comparison.h"
 #include "jumpballs.h"
 
+
+btDynamicsWorld *physicsEngine::world;  // stores the physics world
+
 ///boost::shared_ptr<physicsEngine> physicsEngine::pInstance;
 
 /*boost::shared_ptr<physicsEngine> physicsEngine::Instance()
@@ -302,7 +305,7 @@ void physicsEngine::updateState()  // updates the state for the physics engine
     if (gameS->getBasketballInstancesCreated())
     {
 //        exit(0);
-        basketballInstance[activeBBallInstance].getPhysics().update();
+        basketballInstance[activeBBallInstance].getPhysics()->update();
     }
     else
     {

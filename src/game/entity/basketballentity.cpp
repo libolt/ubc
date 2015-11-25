@@ -22,18 +22,18 @@
 
 basketballEntity::basketballEntity()  // constructor
 {
-
+  physics = new basketballPhysics;
 }
 basketballEntity::~basketballEntity()  // destructor
 {
     
 }
 
-basketballPhysics basketballEntity::getPhysics()  // retrieves the value of physics
+basketballPhysics *basketballEntity::getPhysics()  // retrieves the value of physics
 {
     return (physics);
 }
-void basketballEntity::setPhysics(basketballPhysics set)  // sets the value of physics
+void basketballEntity::setPhysics(basketballPhysics *set)  // sets the value of physics
 {
     physics = set;
 }
@@ -52,13 +52,13 @@ bool basketballEntity::setupPhysics()  // sets up the physics object
     Ogre::Entity *tempModel = getModel();
     Ogre::SceneNode *tempNode = getNode();
     btRigidBody *tempPhysBody = getPhysBody();
-    getPhysics().setShapeType(SPHERE);
-    getPhysics().setColObject(COL_BBALL);
-    getPhysics().setCollidesWith(COL_COURT);    
+    getPhysics()->setShapeType(SPHERE);
+    getPhysics()->setColObject(COL_BBALL);
+    getPhysics()->setCollidesWith(COL_COURT);
 
-    if (getPhysics().setupPhysics(&tempModel, &tempNode, &tempPhysBody))
+    if (getPhysics()->setupPhysics(&tempModel, &tempNode, &tempPhysBody))
     {
-        getPhysics().setSetupComplete(true);
+        getPhysics()->setSetupComplete(true);
         setModel(tempModel);
         setNode(tempNode);
         setPhysBody(tempPhysBody);

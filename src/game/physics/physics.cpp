@@ -17,9 +17,9 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+#include "conversion.h"
 
 #include "physics/physics.h"
-#include "conversion.h"
 
 physics::physics()  // constructor
 {
@@ -164,7 +164,7 @@ bool physics::setupPhysics(Ogre::Entity **model, Ogre::SceneNode **node, btRigid
     //    bballBody->setCollisionFlags(bballBody->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
         *physBody = body;
 
-        btDynamicsWorld *world = getWorld();
+        static btDynamicsWorld *world = getWorld();
         world->addRigidBody(*physBody, getColObject(), getCollidesWith());
         setWorld(world);
 

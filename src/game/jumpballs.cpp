@@ -138,7 +138,7 @@ bool jumpBalls::updateState()  // updates state of the jumpBalls instance
 
     size_t activeBBallInstance = gameS->getActiveBBallInstance();
     std::vector<basketballState> basketBallInstance = gameS->getBasketballInstance();
-    bool bballPhysicsSetup = basketBallInstance[activeBBallInstance].getPhysics().getSetupComplete();
+    bool bballPhysicsSetup = basketBallInstance[activeBBallInstance].getPhysics()->getSetupComplete();
     if (gameS->getTeamWithBall() == NOTEAM && bballPhysicsSetup) //&& gameS->getTeamInstancesCreated())
     {
 
@@ -234,7 +234,7 @@ bool jumpBalls::jumpBallExecute()  // initiates jump ball from jump ball circle
 //    exit(0);
 //    teamTypes teamType = teamInstance[0].getTeamType();
     bool collCheck = false;
-//    collCheck = /*physEngine->*/ collisionCheck(basketballInstance[activeBBallInstance].getPhysBody(), activePlayerInstance[0][jumpPlayerInstance[0]].getPhysBody());
+//    collCheck = /*physEngine.*/ collisionCheck(basketballInstance[activeBBallInstance].getPhysBody(), activePlayerInstance[0][jumpPlayerInstance[0]].getPhysBody());
     size_t y = 0;
     playerState activePInstance;
     while (y < teamInstance.size())

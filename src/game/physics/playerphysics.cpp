@@ -145,10 +145,10 @@ bool playerPhysics::setupPhysics()  // sets up playerPhysics
                 logMsg("team = " + convert->toString(x));
 
                 logMsg("Adding Rigid Body to world");
-                world = physEngine->getWorld();
-                size_t team1CollidesWith = physEngine->getTeam1CollidesWith();
+                world = physEngine.getWorld();
+                size_t team1CollidesWith = physEngine.getTeam1CollidesWith();
                 world->addRigidBody(activePlayerInstance[i].getPhysBody(), COL_TEAM1, team1CollidesWith);
-                physEngine->setWorld(world);
+                physEngine.setWorld(world);
 
     //          world->addRigidBody(pInstance[i].getPhysBody());
             }
@@ -159,10 +159,10 @@ bool playerPhysics::setupPhysics()  // sets up playerPhysics
                 logMsg("team = " + convert->toString(x));
 
                 logMsg("Adding Rigid Body to world");
-                world = physEngine->getWorld();
-                size_t team2CollidesWith = physEngine->getTeam2CollidesWith();
+                world = physEngine.getWorld();
+                size_t team2CollidesWith = physEngine.getTeam2CollidesWith();
                 world->addRigidBody(activePlayerInstance[i].getPhysBody(), COL_TEAM2, team2CollidesWith);
-                physEngine->setWorld(world);
+                physEngine.setWorld(world);
     //          world->addRigidBody(pInstance[i].getPhysBody());
 
             }

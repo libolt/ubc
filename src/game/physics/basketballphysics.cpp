@@ -130,9 +130,9 @@ bool basketballPhysics::setup()  // sets up physics for the basketball
     //    bballBody->setCollisionFlags(bballBody->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
         basketballInstance[activeBBallInstance].setPhysBody(bballBody);
 
-        btDynamicsWorld *world = physEngine->getWorld();
+        btDynamicsWorld *world = physEngine.getWorld();
         world->addRigidBody(basketballInstance[activeBBallInstance].getPhysBody(), COL_BBALL, getCollidesWith());
-        physEngine->setWorld(world);
+        physEngine.setWorld(world);
 
 //    world->addRigidBody(basketballInstance[activeBBallInstance].getPhysBody());
 

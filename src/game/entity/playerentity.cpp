@@ -22,18 +22,18 @@
 
 playerEntity::playerEntity()  // constructor
 {
-
+    physics = new playerPhysics;
 }
 playerEntity::~playerEntity()  // destructor
 {
 
 }
 
-playerPhysics playerEntity::getPhysics()  // retrieves the value of physics
+playerPhysics *playerEntity::getPhysics()  // retrieves the value of physics
 {
     return (physics);
 }
-void playerEntity::setPhysics(playerPhysics set)  // sets the value of physics
+void playerEntity::setPhysics(playerPhysics *set)  // sets the value of physics
 {
     physics = set;
 }

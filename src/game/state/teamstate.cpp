@@ -444,8 +444,8 @@ void teamState::updateState()	// updates the state of the object
     boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
 	//gameState *gameS = gameState::Instance();
 	boost::shared_ptr<gameState> gameS = gameState::Instance();
-    boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
-
+    ///boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
+    physicsEngine physEngine;
     jumpBalls jumpBall = gameS->getJumpBall();
 
     size_t activeBBallInstance = gameS->getActiveBBallInstance();
@@ -529,7 +529,7 @@ void teamState::updateState()	// updates the state of the object
 					{
 //						exit(0);
 						executePass();
-						if (physEngine->getPassCollision())	// checks if ball has collided with player being passed to.
+                        if (physEngine.getPassCollision())	// checks if ball has collided with player being passed to.
 						{
 //							exit(0);
                             activePlayerInstance[instanceWithBall].setPassBall(false);	// player is no longer passing the ball
@@ -539,7 +539,7 @@ void teamState::updateState()	// updates the state of the object
 							{
                                 humanPlayer = instanceWithBall;
 							}
-							physEngine->setPassCollision(false);	// resets the pass collision state
+                            physEngine.setPassCollision(false);	// resets the pass collision state
 
 						}
 						else
@@ -563,7 +563,7 @@ void teamState::updateState()	// updates the state of the object
 //		exit(0);
 
 
-/*		if (physEngine->getPlayerPhysicsSetup())	// makes sure player physics are setup before modifying physics positions
+/*		if (physEngine.getPlayerPhysicsSetup())	// makes sure player physics are setup before modifying physics positions
 		{
 			updatePositions();
 //            exit(0);
@@ -629,7 +629,7 @@ bool teamState::createPlayerInstances()
 
         playerState pInstance;  // creates a new instance of playerState
         playerSteer *pSteer = new playerSteer; // steer instance
-        playerPhysics pPhysics;
+        playerPhysics *pPhysics = new playerPhysics;
             logMsg("Player Team ID = " +convert->toString(playerDataInstance[i].getTeamID()));
             logMsg("Team ID = " +convert->toString(teamID));
 
@@ -653,9 +653,9 @@ bool teamState::createPlayerInstances()
             logMsg("psteer resset!");
             pInstance.setSteer(pSteer);
             logMsg("steer set!");
-            if (pPhysics.setup())
+            if (pPhysics->setup())
             {
-                pPhysics.setSetupComplete(true);
+                pPhysics->setSetupComplete(true);
                 pInstance.setPhysics(pPhysics);
             }
             else

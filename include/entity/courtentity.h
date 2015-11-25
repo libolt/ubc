@@ -30,13 +30,13 @@ class courtEntity : public entity
         courtEntity();  // constructor
         ~courtEntity();  // destructor
 
-        courtPhysics getPhysics();  // retrieves the value of physics
-        void setPhysics(courtPhysics set);  // sets the value of physics
+        courtPhysics *getPhysics();  // retrieves the value of physics
+        void setPhysics(courtPhysics *set);  // sets the value of physics
 
         bool setupPhysics();  // sets up the physics object
 
     private:
-        courtPhysics physics;  // instanciates an object to handle the physics for the court
+        courtPhysics *physics;  // instanciates an object to handle the physics for the court
 };
 
 #endif // _COURTENTITY_H_

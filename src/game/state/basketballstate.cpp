@@ -349,7 +349,7 @@ size_t basketballState::getNumber()  // retrieves the value of number
 void basketballState::setNumber(size_t set)  // sets the value of number
 {
     number = set;
-    getPhysics().setNumber(set); // sets the physics number as well
+    getPhysics()->setNumber(set); // sets the physics number as well
     numberSet = true;
 }
 
@@ -412,7 +412,7 @@ void basketballState::updateState()  // updates the state of the basketball
 
     if (numberSet)  // runs the physics update code
     {
-        getPhysics().update();
+        getPhysics()->update();
     }
     if (directChange)
     {

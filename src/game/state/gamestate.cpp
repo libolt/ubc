@@ -524,7 +524,8 @@ bool gameState::setupState()  // sets up the game condition
     boost::shared_ptr<AISystem> ai = AISystem::Instance();
     boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     boost::shared_ptr<loader> load = loader::Instance();
-    boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
+    //boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
+    physicsEngine physEngine;
     boost::shared_ptr<conversion> convert = conversion::Instance();
 
     logMsg("Setting up state!");
@@ -581,7 +582,7 @@ bool gameState::setupState()  // sets up the game condition
 //    basketballInstance[activeBBallInstance].getNode()->setPosition(1.4f,5.0f,366.0f);
 
 
-    physEngine->setupState();  // sets up the Physics Engine state
+    physEngine.setupState();  // sets up the Physics Engine state
 //    exit(0);
 	ai->setup();
 
@@ -626,7 +627,8 @@ bool gameState::updateState()  // updates the game state
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
     boost::shared_ptr<networkEngine> network = networkEngine::Instance();
-    boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
+    //boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
+    physicsEngine physEngine;
     timing timer = gameE->getTimer();
     Ogre::Vector3 playerPos;
 
@@ -673,10 +675,10 @@ bool gameState::updateState()  // updates the game state
     }
 
     logMsg("Physics");
-    physEngine->updateState();	// updates the state of the physics simulation
+    physEngine.updateState();	// updates the state of the physics simulation
     logMsg("stepWorld");
     //    exit(0);
-	physEngine->stepWorld();  // steps the physics simulation
+    physEngine.stepWorld();  // steps the physics simulation
 /*    logMsg("DirectionsAndMovement");
     updateDirectionsAndMovements();
 */

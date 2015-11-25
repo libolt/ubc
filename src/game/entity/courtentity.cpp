@@ -22,18 +22,18 @@
 
 courtEntity::courtEntity()  // constructor
 {
-
+    physics = new courtPhysics;
 }
 courtEntity::~courtEntity()  // destructor
 {
 
 }
 
-courtPhysics courtEntity::getPhysics()  // retrieves the value of physics
+courtPhysics *courtEntity::getPhysics()  // retrieves the value of physics
 {
     return (physics);
 }
-void courtEntity::setPhysics(courtPhysics set)  // sets the value of physics
+void courtEntity::setPhysics(courtPhysics *set)  // sets the value of physics
 {
     physics = set;
 }
@@ -45,13 +45,13 @@ bool courtEntity::setupPhysics()  // sets up the physics object
     btRigidBody *tempPhysBody = getPhysBody();
     
     int collides = COL_BBALL | COL_TEAM1 | COL_TEAM2;
-    getPhysics().setShapeType(BOX);
-    getPhysics().setColObject(COL_COURT);
-    getPhysics().setCollidesWith(collides);
+    getPhysics()->setShapeType(BOX);
+    getPhysics()->setColObject(COL_COURT);
+    getPhysics()->setCollidesWith(collides);
 
-    if (getPhysics().setupPhysics(&tempModel, &tempNode, &tempPhysBody))
+    if (getPhysics()->setupPhysics(&tempModel, &tempNode, &tempPhysBody))
     {
-        getPhysics().setSetupComplete(true);
+        getPhysics()->setSetupComplete(true);
         setModel(tempModel);
         setNode(tempNode);
         setPhysBody(tempPhysBody);

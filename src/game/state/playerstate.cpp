@@ -715,8 +715,8 @@ void playerState::updateState()
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
-    boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
-
+///    boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
+    physicsEngine physEngine;
     jumpBalls jumpBall = gameS->getJumpBall();
     Ogre::Vector3 playerPos;
 
@@ -739,12 +739,12 @@ void playerState::updateState()
             {
                 shotTaken = true;
             }
-            physEngine->shootBasketball(teamType, playerID);
+            physEngine.shootBasketball(teamType, playerID);
 
         }
         else
         {
-            physEngine->playerJump(teamType, playerID);
+            physEngine.playerJump(teamType, playerID);
         }
         
     }
@@ -796,7 +796,9 @@ void playerState::updateState()
 bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3D model
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
+    ///boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
+    physicsEngine physEngine;
+
     comparison compare;
     btVector3 physChange = btVector3(0,0,0);
     Ogre::Vector3 changePos = Ogre::Vector3(0,0,0);
@@ -875,7 +877,7 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
     node->translate(posChange);
 	btVector3 change = btVector3(0,0,0);
 	change = BtOgre::Convert::toBullet(posChange);  // converts from Ogre::Vector3 to btVector3
-//	logMsg("playerPhysicsSetup = " +convert->toString(physEngine->getPlayerPhysicsSetup()));
+//	logMsg("playerPhysicsSetup = " +convert->toString(physEngine.getPlayerPhysicsSetup()));
 
 	physBody->translate(change);  // moves physics body in unison with the model
 //	exit(0);

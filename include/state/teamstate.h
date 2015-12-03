@@ -147,6 +147,12 @@ public:
     defenseState *getDefenseInstance();	 // retrieves the value of defenseInstance
     void setDefenseInstance(defenseState *set);	 // sets the value of defenseInstance
 
+    size_t getTeamColObject();  // retrieves the value of teamColObject
+    void setTeamColObject(size_t set); // sets the value of teamColObject
+    
+    size_t getTeamCollidesWith();  // retrieves the value of teamCollidesWith
+    void setTeamCollidesWith(size_t set); // sets the value of teamCollidesWith
+    
 //    bool getStateSet();  // retrieves the value of stateSet
 //    void setStateSet(bool set);  // sets the value of stateSet
 
@@ -217,6 +223,9 @@ private:
     size_t hoop;  // holds which hoop the team is shooting on
     offenseState *offenseInstance;  // stores the offenseState instance
     defenseState *defenseInstance;  // stores the defenseState instance
+
+    size_t teamColObject;  // stores the object that collides with others
+    size_t teamCollidesWith;   // stores what team players collides with
 
 //    bool stateSet;  // stores whether or not the class state has been setup correctly
 };

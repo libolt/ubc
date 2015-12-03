@@ -72,8 +72,8 @@ physicsEngine::physicsEngine()  // contructor
 
     courtCollidesWith = COL_BBALL | COL_TEAM1 | COL_TEAM2;  // determines what the court collides with
 //    bballCollidesWith = COL_COURT; // | COL_TEAM1 | COL_TEAM2;  // determines what the basketball collides with
-    team1CollidesWith = COL_COURT; // | COL_BBALL | COL_TEAM2;  // determines what team1 collides with
-    team2CollidesWith = COL_COURT; // | COL_BBALL | COL_TEAM1;  // determiens what team2 collides with
+//    team1CollidesWith = COL_COURT; // | COL_BBALL | COL_TEAM2;  // determines what team1 collides with
+//    team2CollidesWith = COL_COURT; // | COL_BBALL | COL_TEAM1;  // determiens what team2 collides with
 
     basketballPhysicsSetup = false;
     courtPhysicsSetup = false;
@@ -208,6 +208,7 @@ void physicsEngine::setWorld(btDynamicsWorld *set)  // sets the value of world
     world = set;
 }
 
+/*
 size_t physicsEngine::getTeam1CollidesWith()  // retrieves the value of team1CollidesWith
 {
     return (team1CollidesWith);
@@ -225,6 +226,7 @@ void physicsEngine::setTeam2CollidesWith(size_t set) // k the vslue of team2Coll
 {
     team2CollidesWith = set;
 }
+*/
 
 void physicsEngine::setupState(void)  // sets up the state of the physics engine
 {
@@ -248,7 +250,7 @@ void physicsEngine::setupState(void)  // sets up the state of the physics engine
     else
     {
     }
-    */
+    
     if (!courtPhysicsSetup)
     {
         if (setupCourtPhysics()) // sets up physics state for court
@@ -262,7 +264,7 @@ void physicsEngine::setupState(void)  // sets up the state of the physics engine
     else
     {
     }
-
+    */
     if (!hoopPhysicsSetup)
     {
         if (setupHoopPhysics())  // sets up physics state for hoop

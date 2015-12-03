@@ -130,8 +130,10 @@ bool physics::setupPhysics(Ogre::Entity **model, Ogre::SceneNode **node, btRigid
         switch (getShapeType())
         {
             case CAPSULE:
+                shape = converter.createCapsule();
             break;
             case BOX:
+               shape = converter.createBox();
             break;
             case CYLINDER:
             break;

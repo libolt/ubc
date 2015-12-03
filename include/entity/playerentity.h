@@ -37,6 +37,8 @@ class playerEntity : public entity
     playerSteer *getSteer(); // retrieves the steering instance
     void setSteer(playerSteer *set); // sets the steering instance
 
+    bool setupPhysics();  // sets up the physics object
+ 
     private:
 
     playerPhysics *physics;  // stores the playerPhysics object

@@ -64,6 +64,8 @@ teamState::teamState()
 
     hoop = -1;
 
+    //teamCollidesWith = COL_COURT; // | COL_BBALL | COL_TEAM2;  // determines what team1 collides with
+
 //    stateSet = false;
 //    setupState();
 }
@@ -396,6 +398,24 @@ void teamState::setDefenseInstance(defenseState *set)	// sets the value of defen
 	defenseInstance = set;
 }
 
+size_t teamState::getTeamColObject()  // retrieves the value of teamColObject
+{
+    return (teamColObject);
+}
+void teamState::setTeamColObject(size_t set) // sets the value of teamColObject
+{
+    teamColObject = set;
+}
+
+size_t teamState::getTeamCollidesWith()  // retrieves the value of teamCollidesWith
+{
+    return (teamCollidesWith);
+}
+void teamState::setTeamCollidesWith(size_t set) // sets the value of teamCollidesWith
+{
+    teamCollidesWith = set;
+}
+
 /*bool teamState::getStateSet() // retrieves the value of stateSet
 {
     return (stateSet);
@@ -656,6 +676,7 @@ bool teamState::createPlayerInstances()
             if (pPhysics->setup())
             {
                 pPhysics->setSetupComplete(true);
+                pPhysics->setCollidesWith(teamCollidesWith);
                 pInstance.setPhysics(pPhysics);
             }
             else

@@ -369,6 +369,10 @@ bool gameState::createTeamInstances()  // creates team Instances
     teamInstance[1].setTeamType(AWAYTEAM);
     teamInstance[0].setHumanControlled(true);
     teamInstance[1].setHumanControlled(false);
+    teamInstance[0].setTeamColObject(COL_TEAM1);
+    teamInstance[1].setTeamColObject(COL_TEAM2);
+    teamInstance[0].setTeamCollidesWith(COL_COURT /* | COL_BBALL | COL_TEAM2;   determines what team0 collides with*/);
+    teamInstance[1].setTeamCollidesWith(COL_COURT /* | COL_BBALL | COL_TEAM2;   determines what team1 collides with*/);
     teamInstance[0].setupState();
     teamInstance[1].setupState();
 //	exit(0);

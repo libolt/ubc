@@ -47,4 +47,26 @@ void playerEntity::setSteer(playerSteer *set)  // sets the value of steer
     steer = set;
 }
 
+bool playerEntity::setupPhysics()  // sets up the physics object
+{
+    Ogre::Entity *tempModel = getModel();
+    Ogre::SceneNode *tempNode = getNode();
+    btRigidBody *tempPhysBody = getPhysBody();
+    getPhysics()->setShapeType(CAPSULE);
+    getPhysics()->setColObject(COL_BBALL);
+//    getPhysics()->setCollidesWith(COL_COURT);
 
+    if (getPhysics()->setupPhysics(&tempModel, &tempNode, &tempPhysBody))
+    {
+        getPhysics()->setSetupComplete(true);
+        setModel(tempModel);
+        setNode(tempNode);
+        setPhysBody(tempPhysBody);
+        return (true);
+    }
+    else
+    {
+    }
+
+    return (false);
+}

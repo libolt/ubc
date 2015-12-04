@@ -267,7 +267,9 @@ void playerSteer::update (const float currentTime, float elapsedTime)
     }
 */
     OpenSteer::Vec3 playerSteerPos;
-    playerSteerPos = convert->toOpenSteerVec3(activePlayerInstance[teamType][ID].getCourtPosition());
+//    playerSteerPos = convert->toOpenSteerVec3(activePlayerInstance[teamType][ID].getCourtPosition());
+    logMsg(convert->toString(activePlayerInstance[teamType][ID].getCourtPosition()));
+    exit(0);
     /*
     size_t z = 0;
     while (z < teamInstance.size())

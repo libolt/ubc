@@ -109,7 +109,7 @@ physicsEngine::~physicsEngine()  // destructor
     //Free rigid bodies
 
     // FIXME!: Fix this so that it relies on a variable that stores total number of players
-    for (int i=0; i<10; ++i)
+/*    for (int i=0; i<10; ++i)
     {
 //        world->removeRigidBody(*playerBody[i]);
     }
@@ -131,6 +131,7 @@ physicsEngine::~physicsEngine()  // destructor
     delete dispatcher;
     delete collisionConfig;
     delete broadPhase;
+    */
 
 }
 
@@ -559,7 +560,7 @@ void physicsEngine::stepWorld()  // steps the world of the physics simulation
     world->stepSimulation(changeInTime, 1, fixedTimeStep);
     logMsg("crash at stepSimulation?");
 //  logMsg("World->Step ");
-    debugDraw->step();
+//    debugDraw->step();
 
 }
 

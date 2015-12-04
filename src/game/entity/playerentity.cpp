@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "entity/playerentity.h"
+#include "logging.h"
 
 playerEntity::playerEntity()  // constructor
 {
@@ -49,6 +50,8 @@ void playerEntity::setSteer(playerSteer *set)  // sets the value of steer
 
 bool playerEntity::setupPhysics()  // sets up the physics object
 {
+    logMsg("playerEntity!");
+//    exit(0);
     Ogre::Entity *tempModel = getModel();
     Ogre::SceneNode *tempNode = getNode();
     btRigidBody *tempPhysBody = getPhysBody();

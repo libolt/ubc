@@ -673,17 +673,8 @@ bool teamState::createPlayerInstances()
             logMsg("psteer resset!");
             pInstance.setSteer(pSteer);
             logMsg("steer set!");
-            if (pPhysics->setup())
-            {
-                pPhysics->setSetupComplete(true);
-                pPhysics->setCollidesWith(teamCollidesWith);
-                pInstance.setPhysics(pPhysics);
-            }
-            else
-            {
-                logMsg("Unable to setup Player Physics!");
-                exit(0);
-            }
+            //if (pPhysics->setup())
+            
             playerInstance.push_back(pInstance);    // adds pInstance to the playerInstance std::vector.
             logMsg("pInstance set!");
             logMsg("steerID = " +convert->toString(pInstance.getSteer()->getID()));
@@ -738,7 +729,20 @@ bool teamState::createPlayerInstances()
                     else
                     {
                         logMsg("Failed to load model " +playerInstance[x].getPlayerName());
+                        exit(0);
                     }
+                }
+                if (playerInstance[x].setupPhysics())
+                {
+                    logMsg("player setupPhysics!");
+                    //exit(0);
+                    playerInstance[x].getPhysics()->setSetupComplete(true);
+                    playerInstance[x].getPhysics()->setCollidesWith(teamCollidesWith);
+                }
+                else
+                {
+                    logMsg("Unable to setup Player Physics!");
+                    exit(0);
                 }
 //                    exit(0);
             }

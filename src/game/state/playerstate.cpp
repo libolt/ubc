@@ -634,7 +634,9 @@ void playerState::setDefenseSet(bool set)  // sets the value of defenseSet
 
 Ogre::Vector3 playerState::getCourtPosition()  // retrieves the value of courtPosition
 {
+    courtPosition = Ogre::Vector3(1,1,1);
     return (courtPosition);
+//    return (getNode()->getPosition());
 }
 void playerState::setCourtPosition(Ogre::Vector3 set)  // sets the value of courtPosition
 {

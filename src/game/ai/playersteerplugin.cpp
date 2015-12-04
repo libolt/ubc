@@ -193,8 +193,10 @@ void playerSteerPlugin::update(const float currentTime, const float elapsedTime)
         size_t y = 0;
         while (y < activePlayerInstance[x].size())
         {
-            if (y != teamInstance[x].getHumanPlayer())
+            if (y != teamInstance[x].getHumanPlayer() && activePlayerInstance[x][y].getModelLoaded())
             {
+//                exit(0);
+                logMsg("x = " +convert->toString(x) +"y = " +convert->toString(y));
                 activePlayerInstance[x][y].getSteer()->update(currentTime, elapsedTime);
             }
             ++y;

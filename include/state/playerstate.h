@@ -42,8 +42,9 @@
 
 #include "state/state.h"
 #include "entity/playerentity.h"
+#include "data/playerdata.h"
 
-class playerState : public state, public playerEntity
+class playerState : public state, public playerEntity, public playerData
 {
     public:
 

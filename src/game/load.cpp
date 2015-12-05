@@ -1,4 +1,4 @@
-/***************************************************************************
+ /***************************************************************************
  *   Copyright (C) 1999 - 2015 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
@@ -28,7 +28,7 @@
 #include "load.h"
 #include "load.h"
 #include "logging.h"
-#include "playerdata.h"
+#include "data/playerdata.h"
 #include "engine/renderengine.h"
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
@@ -568,8 +568,8 @@ playerData loader::loadPlayerFile(string fileName)  // loads the player file
     boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
-    playerData playerD;;
-    std::vector<playerData> playerDataInstance = gameS->getPlayerDataInstance();
+    playerState player;
+    std::vector<playerState> playerInstance = gameS->getPlayerInstance();
     string firstName;
     string lastName;
     string model;
@@ -594,7 +594,7 @@ playerData loader::loadPlayerFile(string fileName)  // loads the player file
     int offenseAwareness = 0;
     int defenseAwareness = 0;
     int offenseRebound = 0;
-    int defenseRebound = 0;
+    int defenseRebound = 0;   
     int blocking = 0;
     int stealing = 0;
     int interiorDefense = 0;
@@ -607,7 +607,7 @@ playerData loader::loadPlayerFile(string fileName)  // loads the player file
     int durability = 0;
     int demeanor = 0;
     int improvability = 0;
-    playerData player;
+ 
     std::string fileContents;
     tinyxml2::XMLDocument doc;
 
@@ -619,7 +619,7 @@ playerData loader::loadPlayerFile(string fileName)  // loads the player file
     
     doc.Parse(contents);
     if (doc.Error())
-    {
+    { 
         logMsg("Unable to parse player file");
         logMsg("Error ID = " +convert->toString(doc.ErrorID()));
         logMsg(convert->toString(doc.GetErrorStr1()));
@@ -938,51 +938,51 @@ playerData loader::loadPlayerFile(string fileName)  // loads the player file
         improvability = convert->toInt(pElem->GetText());
     }
     
-    playerD.setFirstName(firstName);
-    playerD.setLastName(lastName);
-    playerD.setAge(age);
-    playerD.setHeight(height);
-    playerD.setWeight(weight);
-    playerD.setID(ID);
-    playerD.setTeamID(teamID);
-    playerD.setModel(model);
-//    playerD.setTeamInits(teamInitials);
-    playerD.setPrimaryPosition(primaryPosition);
-    playerD.setSecondaryPosition(secondaryPosition);
-    playerD.setShooting(shooting);
-    playerD.setFreeThrow(freeThrow);
-    playerD.setLayup(layup);
-    playerD.setDunk(dunk);
-    playerD.setInside(inside);
-    playerD.setMidRange(midRange);
-    playerD.setThreePoint(threePoint);
-    playerD.setBallHandling(ballHandling);
-    playerD.setBallSecurity(ballSecurity);
-    playerD.setPassing(passing);
-    playerD.setPickSetting(pickSetting);
-    playerD.setOffenseAwareness(offenseAwareness);
-    playerD.setDefenseAwareness(defenseAwareness);
-    playerD.setOffenseRebound(offenseRebound);
-    playerD.setDefenseRebound(defenseRebound);
-    playerD.setBlocking(blocking);
-    playerD.setStealing(stealing);
-    playerD.setInteriorDefense(interiorDefense);
-    playerD.setMidRangeDefense(midRangeDefense);
-    playerD.setPerimeterDefense(perimeterDefense);
-    playerD.setHustle(hustle);
-    playerD.setSpeed(speed);
-    playerD.setQuickness(quickness);
-    playerD.setFatigue(fatigue);
-    playerD.setDurability(durability);
-    playerD.setDemeanor(demeanor);
-    playerD.setImprovability(improvability);
-    playerD.calculateOverallRating();
-    playerDataInstance.push_back(playerD);
+    player.setFirstName(firstName);
+    player.setLastName(lastName);
+    player.setAge(age);
+    player.setHeight(height);
+    player.setWeight(weight);
+    player.setID(ID);
+    player.setTeamID(teamID);
+    player.setModel(model);
+//    player.setTeamInits(teamInitials);
+    player.setPrimaryPosition(primaryPosition);
+    player.setSecondaryPosition(secondaryPosition);
+    player.setShooting(shooting);
+    player.setFreeThrow(freeThrow);
+    player.setLayup(layup);
+    player.setDunk(dunk);
+    player.setInside(inside);
+    player.setMidRange(midRange);
+    player.setThreePoint(threePoint);
+    player.setBallHandling(ballHandling);
+    player.setBallSecurity(ballSecurity);
+    player.setPassing(passing);
+    player.setPickSetting(pickSetting);
+    player.setOffenseAwareness(offenseAwareness);
+    player.setDefenseAwareness(defenseAwareness);
+    player.setOffenseRebound(offenseRebound);
+    player.setDefenseRebound(defenseRebound);
+    player.setBlocking(blocking);
+    player.setStealing(stealing);
+    player.setInteriorDefense(interiorDefense);
+    player.setMidRangeDefense(midRangeDefense);
+    player.setPerimeterDefense(perimeterDefense);
+    player.setHustle(hustle);
+    player.setSpeed(speed);
+    player.setQuickness(quickness);
+    player.setFatigue(fatigue);
+    player.setDurability(durability);
+    player.setDemeanor(demeanor);
+    player.setImprovability(improvability);
+    player.calculateOverallRating();
+    playerInstance.push_back(player);
 
     //gameS->setPlayerDataInstances(playerDataInstance);
     //	vector<players::playerData> playerN = playerG->getPlayer();
 
-    return (playerD);
+    return (player);
 }
 
 //Offense

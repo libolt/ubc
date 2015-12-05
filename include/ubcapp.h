@@ -40,7 +40,7 @@
 #include "engine/gameengine.h"
 #include "state/gamestate.h"
 #include "input.h"
-#include "playerdata.h"
+//#include "playerdata.h"
 #include "state/playerstate.h"
 
 class UBC

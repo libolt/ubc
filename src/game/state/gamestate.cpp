@@ -27,7 +27,7 @@
 #include "load.h"
 #include "logging.h"
 #include "network/networkplayerstateobject.h"
-#include "playerdata.h"
+#include "data/playerdata.h"
 #include "physics/physicsengine.h"
 #include "engine/renderengine.h"
 #include "timing.h"
@@ -133,11 +133,11 @@ void gameState::setTeamDataInstance(std::vector<teamData> instance)  // sets the
 	teamDataInstance = instance;
 }
 
-std::vector<playerData> gameState::getPlayerDataInstance()  // retrieves the value of playerDataInstance
+std::vector<playerState> gameState::getPlayerInstance()  // retrieves the value of playerInstance
 {
-	return (playerDataInstance);
+	return (playerInstance);
 }
-void gameState::setPlayerDataInstances(std::vector<playerData> instance)  // sets the value of playerDataInstance
+void gameState::setPlayerInstances(std::vector<player> instance)  // sets the value of playerInstance
 {
 	playerDataInstance = instance;
 }

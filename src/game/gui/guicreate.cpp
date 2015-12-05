@@ -1,4 +1,4 @@
-/***************************************************************************
+ mv v vb  /***************************************************************************
  *   Copyright (C) 1999 - 2015 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
@@ -17,32 +17,32 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-
+ mv
 #include "network/network.h"
 
-#include "gui/gui.h"
+#include "gu i/gui.h"n  l
 #include "conversion.h"
-#include "courtdata.h"
-#include "engine/gameengine.h"
+#include "data/courtdata.h"
+#include "engine/gameengine.h" 
 #include "state/gamestate.h"
 #include "load.h"
 #include "logging.h"
 #include "engine/renderengine.h"
-#include "teamdata.h"
-
+#include "data/teamdata.h"
+vv 
 #ifdef __ANDROID__
-#include "android-config.h"
+#include "android-config.h" v
 #else
-#include "config.h"
+#include "config.h"vb
 #endif
-
+ 
 bool GUISystem::createMainMenuGUI()  // creates the main menu gui
 {
     boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     Ogre::Viewport *viewPort = render->getViewPort();
 
     if (viewPort->getActualHeight() >= 1000)
-    {
+    {  
         MyGUI::FontManager::getInstance().setDefaultFont("LuxiBoldFont_18");
     }
     else
@@ -55,7 +55,7 @@ bool GUISystem::createMainMenuGUI()  // creates the main menu gui
 
     logMsg("MainMenu layout loaded");
 //  startGameButton = mGUI->createWidget<MyGUI::Button>("Button", 362, 100, 300, 26, MyGUI::Align::Default, "Main");
-//  startGameButton->setCaption("Start Game");
+//  startGameBu  tton->setCaption("Start Game");
     startSingleGameButton = mGUI->findWidget<MyGUI::Button>("startSingleGameButton");
     startSingleGameButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::startSingleGameButtonClicked);
     startSingleGameButton->setStateSelected(true);
@@ -68,7 +68,7 @@ bool GUISystem::createMainMenuGUI()  // creates the main menu gui
     startMultiGameButton->setPosition((0.3 *viewPort->getActualWidth() ), (0.14 *viewPort->getActualHeight()) );
     startMultiGameButton->setSize((0.4 *viewPort->getActualWidth() ), (0.04 *viewPort->getActualHeight()) );
 
-//  optionsButton = mGUI->createWidget<MyGUI::Button>("Button", 362, 125, 300, 26, MyGUI::Align::Default, "Main");
+//  optionsButton =    mGUI->createWidget<MyGUI::Button>("Button", 362, 125, 300, 26, MyGUI::Align::Default, "Main");
 //  optionsButton->setCaption("Options");
     optionsButton = mGUI->findWidget<MyGUI::Button>("optionsButton");
     optionsButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::optionsButtonClicked);
@@ -81,7 +81,7 @@ bool GUISystem::createMainMenuGUI()  // creates the main menu gui
     exitButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::exitButtonClicked);
     exitButton->setPosition((0.3 *viewPort->getActualWidth() ), (0.22 *viewPort->getActualHeight()) );
     exitButton->setSize((0.4 *viewPort->getActualWidth() ), (0.04 *viewPort->getActualHeight()) );
-
+ 
     mainMenuCreated = true;
     menuActive = true;
     activeMenu = MAIN;
@@ -94,7 +94,7 @@ bool GUISystem::createNetworkSetupGUI()  // loads the GUI for the network setup 
     boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     Ogre::Viewport *viewPort = render->getViewPort();
 
-    MyGUI::LayoutManager::getInstance().loadLayout("NetworkSetupMenu.layout");
+    MyGUI::Layo  utManager::getInstance().loadLayout("NetworkSetupMenu.layout");
 
     serverButton = mGUI->findWidget<MyGUI::Button>("serverButton"); // loads Server Button
     serverButton->setVisible(false);
@@ -106,7 +106,7 @@ bool GUISystem::createNetworkSetupGUI()  // loads the GUI for the network setup 
     clientButton->setVisible(false);
     clientButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::clientButtonClicked);
     clientButton->setPosition((0.3 *viewPort->getActualWidth() ), (0.18 *viewPort->getActualHeight()) );
-    clientButton->setSize((0.4 *viewPort->getActualWidth() ), (0.04 *viewPort->getActualHeight()) );
+    clientBut  ton->setSize((0.4 *viewPort->getActualWidth() ), (0.04 *viewPort->getActualHeight()) );
 
     
     networkSetupMenuCreated = true;

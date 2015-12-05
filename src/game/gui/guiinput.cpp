@@ -21,13 +21,13 @@
 #include "network/network.h"
 
 #include "gui/gui.h"
-#include "courtdata.h"
+#include "data/courtdata.h"
 #include "engine/gameengine.h"
 #include "state/gamestate.h"
 #include "load.h"
 #include "logging.h"
 #include "engine/renderengine.h"
-#include "teamdata.h"
+#include "data/teamdata.h"
 
 #ifdef __ANDROID__
 #include "android-config.h"

@@ -31,12 +31,10 @@
 
 #include "tinyxml2.h"
 
-#include "courtdata.h"
+#include "data/courtdata.h"
 #include "state/gamestate.h"
 #include "offenseplays.h"
 #include "userinput.h"
-
-using namespace std;
 
 class loader
 {

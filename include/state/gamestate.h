@@ -25,13 +25,13 @@
 #include <boost/shared_ptr.hpp>
 
 #include "state/basketballstate.h"
-#include "courtdata.h"
+#include "data/courtdata.h"
 #include "state/courtstate.h"
     #include "state/hoopstate.h"
 #include "state/playerstate.h"
 #include "state/teamstate.h"
-#include "teamdata.h"
-#include "playerdata.h"
+#include "data/teamdata.h"
+#include "data/playerdata.h"
 #include "jumpballs.h"
 
 //using namespace std;
@@ -90,8 +90,8 @@ public:
     std::vector<teamData> getTeamDataInstance();  // retrieves the value of teamDataInstance
     void setTeamDataInstance(std::vector<teamData> set);  // sets the value of teamDataInstance;
 
-    std::vector<playerData> getPlayerDataInstance();  // retrieves the value of playerDataInstance
-    void setPlayerDataInstances(std::vector<playerData> set);  // sets the value of playerDataInstance;
+    std::vector<playerState> getPlayerInstance();  // retrieves the value of playerInstance
+    void setPlayerInstances(std::vector<playerState> set);  // sets the value of playerInstance;
 
     std::vector<courtData> getCourtDataInstance();  // retrieves the value of courtDataInstance
     void setCourtDataInstance(std::vector<courtData> set);  // sets the value of courtDataInstance
@@ -176,7 +176,9 @@ private:
     bool finished;  // indicates whether a game is finished.
 
     std::vector<teamData> teamDataInstance;	 // stores the vector of teams loaded from the xml files
-    std::vector<playerData> playerDataInstance;  // stores the vector of the players loaded from the xml files
+//    std::vector<playerData> playerDataInstance;  // stores the vector of the players loaded from the xml files
+    std::vector<playerState> playerInstance;  // stores the vector of the players loaded from the xml files
+    
     std::vector<courtData> courtDataInstance;  // stores the vector the courts loaded from the xml files
 
     size_t selectedCourtDataInstance;  // stores which court should be loaded by courtInstance

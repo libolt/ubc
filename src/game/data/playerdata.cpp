@@ -161,7 +161,7 @@ void playerData::setActive(bool set)  // sets the value of active
     active = set;
 }
 
-string playerData::getModeFilelName()  // retrieves the value of model
+std::string playerData::getModelFileName()  // retrieves the value of model
 {
     return (modelFileName);
 }

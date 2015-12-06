@@ -628,7 +628,7 @@ bool teamState::createPlayerInstances()
     boost::shared_ptr<gameState> gameS = gameState::Instance();
 
     std::vector< std::vector<size_t> > teamStarterID = gameS->getTeamStarterID();
-	std::vector<playerData> playerDataInstance = gameS->getPlayerDataInstance();
+    std::vector<playerState> playerInstance = gameS->getPlayerInstance();
 //	size_t x = 0;
 	//	size_t playerID =
 //    std::vector <playerData> playerN = player->getPlayer(); // copies Player values to playerN
@@ -636,36 +636,36 @@ bool teamState::createPlayerInstances()
 //    std::vector <playerState>::iterator pInstanceIT;
     logMsg("Creating players");
     
-    logMsg("playerDataInstance size = " +convert->toString(playerDataInstance.size()));
+    logMsg("playerInstance size = " +convert->toString(playerInstance.size()));
 //    exit(0);
-//    for (playerIT = playerDataInstance.begin(); playerIT != playerDataInstance.end(); ++playerIT)   // loops through playerID std::vector
+//    for (playerIT = playerInstance.begin(); playerIT != playerInstance.end(); ++playerIT)   // loops through playerID std::vector
     size_t id = -1; // stores id for steer
     size_t i = 0;
     
-    //    for (size_t i = 0;i < playerDataInstance.size(); ++i)
-    while (i<playerDataInstance.size())
+    //    for (size_t i = 0;i < playerInstance.size(); ++i)
+    while (i<playerInstance.size())
     {
 
         playerState pInstance;  // creates a new instance of playerState
         playerSteer *pSteer = new playerSteer; // steer instance
         playerPhysics *pPhysics = new playerPhysics;
-        logMsg("Player Team ID = " +convert->toString(playerDataInstance[i].getTeamID()));
+        logMsg("Player Team ID = " +convert->toString(playerInstance[i].getTeamID()));
         logMsg("Team ID = " +convert->toString(teamID));      
 
-        if (playerDataInstance[i].getTeamID() == teamID)	// checks if player is assigned to this team
+        if (playerInstance[i].getTeamID() == teamID)	// checks if player is assigned to this team
         {
             logMsg("teamID!!!!");
 //            exit(0);
             id += 1;
-            pInstance.setModelName(playerDataInstance[i].getModel());
-            pInstance.setFirstName(playerDataInstance[i].getFirstName());  // copies the first name from the playerData std::vector to the pInstance class
-            pInstance.setLastName(playerDataInstance[i].getLastName());    // copies the last name from the playerData std::vector to the pInstance class
-            pInstance.setPlayerName(playerDataInstance[i].getFirstName() + " " +playerDataInstance[i].getLastName());
-            pInstance.setPlayerID(playerDataInstance[i].getID());
+            pInstance.setModelName(playerInstance[i].getModel());
+            pInstance.setFirstName(playerInstance[i].getFirstName());  // copies the first name from the playerData std::vector to the pInstance class
+            pInstance.setLastName(playerInstance[i].getLastName());    // copies the last name from the playerData std::vector to the pInstance class
+            pInstance.setPlayerName(playerInstance[i].getFirstName() + " " +playerInstance[i].getLastName());
+            pInstance.setPlayerID(playerInstance[i].getID());
             pInstance.setTeamType(teamType);  // sets the team number the player belongs to
             logMsg("teamtype1");
-            pInstance.setPrimaryPosition(playerDataInstance[i].getPrimaryPosition());    // copies the primary position from the playerData std::vector to the pInstance class
-            pInstance.setSecondaryPosition(playerDataInstance[i].getSecondaryPosition());    // copies the secondary position from the playerData std::vector to the pInstance class
+            pInstance.setPrimaryPosition(playerInstance[i].getPrimaryPosition());    // copies the primary position from the playerData std::vector to the pInstance class
+            pInstance.setSecondaryPosition(playerInstance[i].getSecondaryPosition());    // copies the secondary position from the playerData std::vector to the pInstance class
             pInstance.setPosChange(Ogre::Vector3(0.0f,0.0f,0.0f));
 //            pSteer->setTeamType(teamType);
 //            logMsg("teamtyp2");

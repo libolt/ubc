@@ -29,11 +29,11 @@
 #include "logging.h"
 #include "engine/renderengine.h"
 #include "data/teamdata.h"
-vv 
+
 #ifdef __ANDROID__
-#include "android-config.h" v
+#include "android-config.h"
 #else
-#include "config.h"vb
+#include "config.h"
 #endif
  
 bool GUISystem::createMainMenuGUI()  // creates the main menu gui
@@ -94,7 +94,7 @@ bool GUISystem::createNetworkSetupGUI()  // loads the GUI for the network setup 
     boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     Ogre::Viewport *viewPort = render->getViewPort();
 
-    MyGUI::Layo  utManager::getInstance().loadLayout("NetworkSetupMenu.layout");
+    MyGUI::LayoutManager::getInstance().loadLayout("NetworkSetupMenu.layout");
 
     serverButton = mGUI->findWidget<MyGUI::Button>("serverButton"); // loads Server Button
     serverButton->setVisible(false);
@@ -106,7 +106,7 @@ bool GUISystem::createNetworkSetupGUI()  // loads the GUI for the network setup 
     clientButton->setVisible(false);
     clientButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::clientButtonClicked);
     clientButton->setPosition((0.3 *viewPort->getActualWidth() ), (0.18 *viewPort->getActualHeight()) );
-    clientBut  ton->setSize((0.4 *viewPort->getActualWidth() ), (0.04 *viewPort->getActualHeight()) );
+    clientButton->setSize((0.4 *viewPort->getActualWidth() ), (0.04 *viewPort->getActualHeight()) );
 
     
     networkSetupMenuCreated = true;

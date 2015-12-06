@@ -482,9 +482,9 @@ teamData loader::loadTeamFile(string fileName)  // loads the team file
     return (teamD);
 }
 
-std::vector<playerData> loader::loadPlayers()  // loads the players
+std::vector<playerState> loader::loadPlayers()  // loads the players
 {
-    std::vector<playerData> players;
+    std::vector<playerState> players;
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     string playerList = "data/players/players.xml";
 #else
@@ -562,7 +562,7 @@ bool loader::loadPlayerListFile( string fileName)  // loads the player list file
     return true;
 }
 
-playerData loader::loadPlayerFile(string fileName)  // loads the player file
+playerState loader::loadPlayerFile(string fileName)  // loads the player file
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();

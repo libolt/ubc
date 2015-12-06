@@ -628,7 +628,7 @@ bool teamState::createPlayerInstances()
     boost::shared_ptr<gameState> gameS = gameState::Instance();
 
     std::vector< std::vector<size_t> > teamStarterID = gameS->getTeamStarterID();
-    std::vector<playerState> playerInstance = gameS->getPlayerInstance();
+    std::vector<playerState> gamePlayerInstance = gameS->getPlayerInstance();
 //	size_t x = 0;
 	//	size_t playerID =
 //    std::vector <playerData> playerN = player->getPlayer(); // copies Player values to playerN
@@ -643,7 +643,7 @@ bool teamState::createPlayerInstances()
     size_t i = 0;
     
     //    for (size_t i = 0;i < playerInstance.size(); ++i)
-    while (i<playerInstance.size())
+    while (i<gamePlayerInstance.size())
     {
 
         playerState pInstance;  // creates a new instance of playerState
@@ -652,12 +652,14 @@ bool teamState::createPlayerInstances()
         logMsg("Player Team ID = " +convert->toString(playerInstance[i].getTeamID()));
         logMsg("Team ID = " +convert->toString(teamID));      
 
-        if (playerInstance[i].getTeamID() == teamID)	// checks if player is assigned to this team
+        if (gamePlayerInstance[i].getTeamID() == teamID)	// checks if player is assigned to this team
         {
+            playerInstance.push_back(gamePlayerInstance[i]);    // adds pInstance to the playerInstance std::vector.
+
             logMsg("teamID!!!!");
 //            exit(0);
             id += 1;
-            pInstance.setModelName(playerInstance[i].getModel());
+/*            pInstance.setModelName(playerInstance[i].getModel());
             pInstance.setFirstName(playerInstance[i].getFirstName());  // copies the first name from the playerData std::vector to the pInstance class
             pInstance.setLastName(playerInstance[i].getLastName());    // copies the last name from the playerData std::vector to the pInstance class
             pInstance.setPlayerName(playerInstance[i].getFirstName() + " " +playerInstance[i].getLastName());
@@ -674,8 +676,7 @@ bool teamState::createPlayerInstances()
             pInstance.setSteer(pSteer);
             logMsg("steer set!");
             //if (pPhysics->setup())
-            
-            playerInstance.push_back(pInstance);    // adds pInstance to the playerInstance std::vector.
+            */
             logMsg("pInstance set!");
             logMsg("steerID = " +convert->toString(pInstance.getSteer()->getID()));
             logMsg("player name = " +pInstance.getPlayerName());

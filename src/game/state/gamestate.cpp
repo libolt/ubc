@@ -83,9 +83,9 @@ gameTypes gameState::getGameType()  // retrieves the value of gameType
 {
     return(gameType);
 }
-void gameState::setGameType(gameTypes type)  // sets the value of gameType
+void gameState::setGameType(gameTypes set)  // sets the value of gameType
 {
-    gameType = type;
+    gameType = set;
 }
 
 quarters gameState::getQuarter()  // retrieves the value of quarter
@@ -101,54 +101,54 @@ bool gameState::getGameSetupComplete()  // retrieves the value of gameSetupCompl
 {
     return (gameSetupComplete);
 }
-void gameState::setGameSetupComplete(bool complete)  // sets the value of gameSetupComplete
+void gameState::setGameSetupComplete(bool set)  // sets the value of gameSetupComplete
 {
-    gameSetupComplete = complete;
+    gameSetupComplete = set;
 }
 
 std::vector <courtState> gameState::getCourtInstance()  // retrieves the value of courtInstance
 {
     return (courtInstance);
 }
-void gameState::setCourtInstance(std::vector<courtState> Instance)  // sest the value of courtInstance
+void gameState::setCourtInstance(std::vector<courtState> set)  // sest the value of courtInstance
 {
-    courtInstance = Instance;
+    courtInstance = set;
 }
 
 std::vector <hoopState> gameState::getHoopInstance()  // retrieves the value of hoopInstance
 {
     return (hoopInstance);
 }
-void gameState::setHoopInstance(std::vector<hoopState> Instance)  // sets the value of hoopInstance
+void gameState::setHoopInstance(std::vector<hoopState> set)  // sets the value of hoopInstance
 {
-    hoopInstance = Instance;
+    hoopInstance = set;
 }
 
 std::vector<teamData> gameState::getTeamDataInstance()  // retrieves the value of teamDataInstance
 {
 	return (teamDataInstance);
 }
-void gameState::setTeamDataInstance(std::vector<teamData> instance)  // sets the value of teamDataInstance
+void gameState::setTeamDataInstance(std::vector<teamData> set)  // sets the value of teamDataInstance
 {
-	teamDataInstance = instance;
+    teamDataInstance = set;
 }
 
 std::vector<playerState> gameState::getPlayerInstance()  // retrieves the value of playerInstance
 {
 	return (playerInstance);
 }
-void gameState::setPlayerInstances(std::vector<player> instance)  // sets the value of playerInstance
+void gameState::setPlayerInstances(std::vector<playerState> set)  // sets the value of playerInstance
 {
-	playerDataInstance = instance;
+    playerInstance = set;
 }
 
 std::vector<courtData>	gameState::getCourtDataInstance()  // retrieves the value of courtDataInstance
 {
 	return (courtDataInstance);
 }
-void gameState::setCourtDataInstance(std::vector<courtData> instance)  // sets the value of courtDataInstance
+void gameState::setCourtDataInstance(std::vector<courtData> set)  // sets the value of courtDataInstance
 {
-	courtDataInstance = instance;
+    courtDataInstance = set;
 }
 
 size_t gameState::getActiveBBallInstance()  // retrieves the value of activeBBallInstance
@@ -164,63 +164,63 @@ size_t gameState::getSelectedCourtDataInstance()  // retrieves the value of sele
 {
     return (selectedCourtDataInstance);
 }
-void gameState::setSelectedCourtDataInstance(size_t selected)  // sets the value of selectedCourtDataInstance
+void gameState::setSelectedCourtDataInstance(size_t set)  // sets the value of selectedCourtDataInstance
 {
-    selectedCourtDataInstance = selected;
+    selectedCourtDataInstance = set;
 }
 
-std::vector<size_t> gameState::getTeamID(void)  // retrieves the value of teamID
+std::vector<size_t> gameState::getTeamID()  // retrieves the value of teamID
 {
     return (teamID);
 }
-void gameState::setTeamID(std::vector<size_t> ID)  // sets the value of teamID
+void gameState::setTeamID(std::vector<size_t> set)  // sets the value of teamID
 {
-    teamID = ID;
+    teamID = set;
 }
 
-std::vector<size_t> gameState::getPlayerID(void)  // retrieves the value of playerID
+std::vector<size_t> gameState::getPlayerID()  // retrieves the value of playerID
 {
     return (playerID);
 }
-void gameState::setPlayerID(std::vector<size_t> ID)  // sets the value of playerID
+void gameState::setPlayerID(std::vector<size_t> set)  // sets the value of playerID
 {
-    playerID = ID;
+    playerID = set;
 }
 
 std::vector< std::vector<size_t> > gameState::getTeamStarterID()  // retrieves value of teamStarterID
 {
     return (teamStarterID);
 }
-void gameState::setTeamStarterID(std::vector< std::vector<size_t> > ID)  // sets the value of teamStarterID
+void gameState::setTeamStarterID(std::vector< std::vector<size_t> > set)  // sets the value of teamStarterID
 {
-    teamStarterID = ID;
+    teamStarterID = set;
 }
 
 std::vector <teamState> gameState::getTeamInstance()  // retrieves the value of teamInstance
 {
     return (teamInstance);
 }
-void gameState::setTeamInstance(std::vector<teamState> Instance)  // sets the value of teamInstance
+void gameState::setTeamInstance(std::vector<teamState> set)  // sets the value of teamInstance
 {
-    teamInstance = Instance;
+    teamInstance = set;
 }
 
 std::vector <basketballState> gameState::getBasketballInstance()  // retrieves the value of basketballInstance
 {
     return (basketballInstance);
 }
-void gameState::setBasketballInstance(std::vector<basketballState> bballInstance)  // sets the value of basketballInstance
+void gameState::setBasketballInstance(std::vector<basketballState> set)  // sets the value of basketballInstance
 {
-    basketballInstance = bballInstance;
+    basketballInstance = set;
 }
 
-bool gameState::getGameStarted(void)  // retrieves the value of gameStarted
+bool gameState::getGameStarted()  // retrieves the value of gameStarted
 {
     return(gameStarted);
 }
-void gameState::setGameStarted(bool started)  // sets the value of gameStarted
+void gameState::setGameStarted(bool set)  // sets the value of gameStarted
 {
-    gameStarted = started;
+    gameStarted = set;
 }
 
 jumpBalls gameState::getJumpBall()  // retrieves the value of jumpBall
@@ -250,7 +250,7 @@ void gameState::setTipOffComplete(bool set)  // sets the value of tipOffComplete
     tipOffComplete = set;
 }
 
-teamTypes gameState::getTeamWithBall(void)  // retrieves the value of teamWithBall
+teamTypes gameState::getTeamWithBall()  // retrieves the value of teamWithBall
 {
     return (teamWithBall);
 }
@@ -263,27 +263,27 @@ size_t gameState::getBballBounce()  // retrieves the value of bballBounce
 {
     return (bballBounce);
 }
-void gameState::setBballBounce(size_t bounce)  // sets the value of bballBounce
+void gameState::setBballBounce(size_t set)  // sets the value of bballBounce
 {
-    bballBounce = bounce;
+    bballBounce = set;
 }
 
 bool gameState::getCourtDataLoaded()  // retrieves the value of courtDataLoaded
 {
     return (courtDataLoaded);
 }
-void gameState::setCourtDataLoaded(bool loaded)  // sets the value of courtDataLoaded
+void gameState::setCourtDataLoaded(bool set)  // sets the value of courtDataLoaded
 {
-    courtDataLoaded = loaded;
+    courtDataLoaded = set;
 }
 
 bool gameState::getCourtInstanceCreated()  // gets the value of the courtInstanceCreated
 {
     return (courtInstanceCreated);
 }
-void gameState::setCourtInstanceCreated(bool created)  // sets the value of the courtInstanceCreated
+void gameState::setCourtInstanceCreated(bool set)  // sets the value of the courtInstanceCreated
 {
-    courtInstanceCreated = created;
+    courtInstanceCreated = set;
 }
 
 bool gameState::getCourtModelLoaded()  // retrieves the value of courtModelLoaded
@@ -299,9 +299,9 @@ bool gameState::getTeamInstancesCreated()  // gets the value of teamInstancesCre
 {
     return (teamInstancesCreated);
 }
-void gameState::setTeamInstancesCreated(bool created)  // sets the value of teamInstancesCreated
+void gameState::setTeamInstancesCreated(bool set)  // sets the value of teamInstancesCreated
 {
-    teamInstancesCreated = created;
+    teamInstancesCreated = set;
 }
 
 bool gameState::getBasketballInstancesCreated()  // gets the value of basketballInstancesCreated

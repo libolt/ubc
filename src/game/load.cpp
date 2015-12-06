@@ -572,7 +572,7 @@ playerData loader::loadPlayerFile(string fileName)  // loads the player file
     std::vector<playerState> playerInstance = gameS->getPlayerInstance();
     string firstName;
     string lastName;
-    string model;
+    string modelName;
     playerPositions primaryPosition;
     playerPositions secondaryPosition;
     int ID = 0;
@@ -702,8 +702,8 @@ playerData loader::loadPlayerFile(string fileName)  // loads the player file
     pElem=pElem->NextSiblingElement()->ToElement();
     if (pElem)
     {
-        model = pElem->GetText();
-        logMsg("Model = " +model);
+        modelName = pElem->GetText();
+        logMsg("Model = " +modelName);
     }
 
     pElem=pElem->NextSiblingElement()->ToElement();
@@ -945,8 +945,7 @@ playerData loader::loadPlayerFile(string fileName)  // loads the player file
     player.setWeight(weight);
     player.setID(ID);
     player.setTeamID(teamID);
-    player.setModel(model);
-//    player.setTeamInits(teamInitials);
+    player.setModelFileName(modelName);
     player.setPrimaryPosition(primaryPosition);
     player.setSecondaryPosition(secondaryPosition);
     player.setShooting(shooting);

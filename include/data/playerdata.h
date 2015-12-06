@@ -42,19 +42,19 @@ class playerData
         void setLastName(string set);  // sets the value of lastName
 
         int getAge(void);  // retrieves the value of age
-        void setAge(int age);  // sets the value of  age
+        void setAge(int set);  // sets the value of  age
 
         int getHeight(void);  // retrieves the value of height
-        void setHeight(int height);  // sets the value of height 
+        void setHeight(int set);  // sets the value of height 
 
         int getWeight(void);  // retrieves the value of weight
-        void setWeight(int weight);  // sets the value of weight
+        void setWeight(int set);  // sets the value of weight
 
         int getID(void);  // retrieves the value of ID
-        void setID(int id);  // sets the value of ID
+        void setID(int set);  // sets the value of ID
 
         int getTeamID(void);  // retrieves the value of teamID
-        void setTeamID(int id);  // sets the value of teamID
+        void setTeamID(int set);  // sets the value of teamID
 
         playerPositions getPrimaryPosition();  // retrieves the value of primaryPosition
         void setPrimaryPosition(playerPositions set);  // sets the value of primaryPosition
@@ -63,10 +63,10 @@ class playerData
         void setSecondaryPosition(playerPositions set);  // sets the value of secondaryPosition
 
         bool getActive(void);  // retrieves the value of active
-        void setActive(bool active);  // sets the value of active
+        void setActive(bool set);  // sets the value of active
 
-        string getModel();  // retrieves the value of model
-        void setModel(string Model);  // sets the value of model
+        string getModelFileName();  // retrieves the value of modelName
+        void setModelFileName(string set);  // sets the value of modelName
 
         int getShooting();  // retrieves the value of shooting
         void setShooting(int set);  // sets the value of shooting
@@ -197,7 +197,7 @@ class playerData
         // if player is playing this is true
         bool active;
 
-        string model;  // stores the name of the 3D model to load for the player
+        string modelFileName;  // stores the name of the 3D model to load for the player
         
 
 

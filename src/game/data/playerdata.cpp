@@ -161,13 +161,13 @@ void playerData::setActive(bool set)  // sets the value of active
     active = set;
 }
 
-string playerData::getModel()  // retrieves the value of model
+string playerData::getModeFilelName()  // retrieves the value of model
 {
-    return (model);
+    return (modelFileName);
 }
-void playerData::setModel(string set)  // sets the value of model
+void playerData::setModelFileName(string set)  // sets the value of model
 {
-    model = set; 
+    modelFileName = set; 
 }
 
 int playerData::getShooting()  // retrieves the value of shooting

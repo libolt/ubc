@@ -1,4 +1,4 @@
- mv v vb  /***************************************************************************
+ /***************************************************************************
  *   Copyright (C) 1999 - 2015 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
@@ -17,10 +17,10 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
- mv
+
 #include "network/network.h"
 
-#include "gu i/gui.h"n  l
+#include "gui/gui.h"
 #include "conversion.h"
 #include "data/courtdata.h"
 #include "engine/gameengine.h" 

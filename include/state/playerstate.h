@@ -300,7 +300,7 @@ class playerState : public state, public playerEntity, public playerData
 
         size_t offDef;  // determines whether player is on offense or defense
         
-	size_t defending;  // holds value of which offensive player defender is gaurding
+        size_t defending;  // holds value of which offensive player defender is gaurding
 
         bool userControlled;  // Sets whether or not a player is user controlled
 

@@ -632,12 +632,12 @@ bool teamState::createPlayerInstances()
 //	size_t x = 0;
 	//	size_t playerID =
 //    std::vector <playerData> playerN = player->getPlayer(); // copies Player values to playerN
-    std::vector <playerData>::iterator playerIT;
+    std::vector <playerState>::iterator playerIT;
 //    std::vector <playerState>::iterator pInstanceIT;
     logMsg("Creating players");
     
     logMsg("playerInstance size = " +convert->toString(playerInstance.size()));
-//    exit(0);
+    exit(0);
 //    for (playerIT = playerInstance.begin(); playerIT != playerInstance.end(); ++playerIT)   // loops through playerID std::vector
     size_t id = -1; // stores id for steer
     size_t i = 0;
@@ -647,9 +647,13 @@ bool teamState::createPlayerInstances()
     {
 
         playerState pInstance;  // creates a new instance of playerState
+        
         playerSteer *pSteer = new playerSteer; // steer instance
+        
         playerPhysics *pPhysics = new playerPhysics;
-        logMsg("Player Team ID = " +convert->toString(playerInstance[i].getTeamID()));
+        
+        logMsg("Player Team ID = " +convert->toString(gamePlayerInstance[i].getTeamID()));
+//        exit(0);
         logMsg("Team ID = " +convert->toString(teamID));      
 
         if (gamePlayerInstance[i].getTeamID() == teamID)	// checks if player is assigned to this team
@@ -657,7 +661,11 @@ bool teamState::createPlayerInstances()
             playerInstance.push_back(gamePlayerInstance[i]);    // adds pInstance to the playerInstance std::vector.
 
             logMsg("teamID!!!!");
-//            exit(0);
+            logMsg("pInstance set!");
+            logMsg("steerID = " +convert->toString(gamePlayerInstance[i].getSteer()->getID()));
+            logMsg("player name = " +gamePlayerInstance[i].getPlayerName());
+
+            exit(0);
             id += 1;
 /*            pInstance.setModelName(playerInstance[i].getModel());
             pInstance.setFirstName(playerInstance[i].getFirstName());  // copies the first name from the playerData std::vector to the pInstance class
@@ -677,15 +685,13 @@ bool teamState::createPlayerInstances()
             logMsg("steer set!");
             //if (pPhysics->setup())
             */
-            logMsg("pInstance set!");
-            logMsg("steerID = " +convert->toString(pInstance.getSteer()->getID()));
-            logMsg("player name = " +pInstance.getPlayerName());
         }
         else
         {
         }
         i++;
     }
+//    exit(0);
 //    std::vector <playerState>::iterator pInstanceIT;
 
     logMsg("before playerID");

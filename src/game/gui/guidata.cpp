@@ -77,8 +77,9 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     boost::shared_ptr<loader> load = loader::Instance();
 
     std::vector<playerState> playerInstance; // = gameS->getPlayerDataInstance();
-    playerInstance = load->loadPlayers();
-    gameS->setPlayerInstances(playerInstance);
+//    playerInstance = load->loadPlayers();
+    playerInstance = gameS->getPlayerInstance();
+//    gameS->setPlayerInstances(playerInstance);
 
     std::vector<size_t> overAllRatings;
     std::vector<std::string> pNames;

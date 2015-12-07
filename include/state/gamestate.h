@@ -143,6 +143,8 @@ public:
     bool setupTipOff();  // sets up Tip Off conditions
     bool executeTipOff();  // executes the game tip off
 
+    bool createInstances();  // creates object instances
+    
     bool createBasketballInstances();  // creates the instances of the basketballs
 
     bool createTeamInstances();  // creates the instances of the teams
@@ -153,6 +155,8 @@ public:
 
     bool createHoopInstances();  // creates hoop Instances
 
+    bool createPlayerInstances();  // creates player instances
+    
     bool setupState();  // sets up the game condition
     bool updateState();  // updates the state of the game
 

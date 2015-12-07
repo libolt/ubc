@@ -67,6 +67,8 @@ int main(int argc, char *argv[])
     render->initOgre(); // Initializes the Ogre Subsystem
     render->createScene(); // creates rendering scene.
 
+    gameS->createInstances();  // creates object instances
+    
     gui->initMyGUI(); // Initializes MyGUI
     if (!gui->getMainMenuCreated())
     {

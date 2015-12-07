@@ -667,6 +667,7 @@ playerState loader::loadPlayerFile(string fileName)  // loads the player file
         {
             firstName = childElement->GetText();
             logMsg("First Name: " +firstName);
+//            exit(0);
         }
         childElement=childElement->NextSiblingElement()->ToElement();
         pKey=childElement->Value();
@@ -940,6 +941,7 @@ playerState loader::loadPlayerFile(string fileName)  // loads the player file
     
     player.setFirstName(firstName);
     player.setLastName(lastName);
+    player.setPlayerName(firstName +" " +lastName);
     player.setAge(age);
     player.setHeight(height);
     player.setWeight(weight);
@@ -977,7 +979,7 @@ playerState loader::loadPlayerFile(string fileName)  // loads the player file
     player.setImprovability(improvability);
     player.calculateOverallRating();
     playerInstance.push_back(player);
-
+    logMsg("player First Name == "+player.getFirstName());
     //gameS->setPlayerDataInstances(playerDataInstance);
     //	vector<players::playerData> playerN = playerG->getPlayer();
 

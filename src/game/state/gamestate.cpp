@@ -330,6 +330,18 @@ bool gameState::assignHoopToTeams()  // assigns which hoop belongs to each team
     return (true);
 }
 
+bool gameState::createInstances()  // creates object instances
+{
+    if (createPlayerInstances())
+    {
+        return (true);
+    }
+    else 
+    {
+        logMsg("Failed to create playerInstances!");
+    }
+    return (false);
+}
 bool gameState::createBasketballInstances()  // creates basketball Instances
 {
     logMsg("creating temporary baskteball instance");
@@ -354,7 +366,7 @@ bool gameState::createBasketballInstances()  // creates basketball Instances
     bballInstance.setNumberSet(true);
 //    bballInstance.setModelNeedsLoaded(true);
     basketballInstance.push_back(bballInstance);
-    return true;
+    return (true);
 }
 
 bool gameState::createTeamInstances()  // creates team Instances
@@ -376,7 +388,7 @@ bool gameState::createTeamInstances()  // creates team Instances
     teamInstance[0].setupState();
     teamInstance[1].setupState();
 //	exit(0);
-    return true;
+    return (true);
 }
 
 bool gameState::createCourtDataInstances()  // creates instances of court data
@@ -402,7 +414,7 @@ bool gameState::createCourtInstances()  // creates court Instances
     cInstance.getNode()->setScale(1.0f,1.0f,1.0f);
     courtInstance.push_back(cInstance);
 
-    return true;
+    return (true);
 }
 
 bool gameState::createHoopInstances()  // creates hoop Instances
@@ -424,7 +436,20 @@ bool gameState::createHoopInstances()  // creates hoop Instances
     hoopInstance.push_back(hInstance[0]);  // loads the first hoop
     hoopInstance.push_back(hInstance[1]);  // loads the second hoop
 
-    return true;
+    return (true);
+}
+bool gameState::createPlayerInstances()  // creates player instances
+{
+    boost::shared_ptr<loader> load = loader::Instance();
+
+    playerInstance = load->loadPlayers();
+    if (playerInstance.size() > 0)
+    {
+        logMsg("player name = " +playerInstance[0].getPlayerName());
+        exit(0);
+        return (true);
+    }
+    return (false);
 }
 
 bool gameState::setupEnvironment()
@@ -439,7 +464,7 @@ bool gameState::setupEnvironment()
     l->setPosition(20,80,56);
 */
 
-    return true;
+    return (true);
 }
 
 void gameState::setBasketballStartPositions()  // sets the initial coordinates for the basketball(s)

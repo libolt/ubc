@@ -1626,7 +1626,7 @@ courtData loader::loadCourtFile(string fileName)  // loads data from the offense
     Ogre::Vector2 sidelineInboundPos = Ogre::Vector2(sidelineInboundXPos,sidelineInboundZPos);
 
     court.setName(name);
-    court.setModelName(modelName);
+    court.setModelFileName(modelName);
     court.setBoundary(boundary);
     court.setBoundaryPos(boundaryPos);
     court.setCenterCourt(centerCourt);

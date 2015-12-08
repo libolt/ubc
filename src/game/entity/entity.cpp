@@ -34,13 +34,13 @@ entity::~entity()  // destructor
     
 }
 
-std::string entity::getModelName()  // retrieves the value of modelName
+std::string entity::getModelFileName()  // retrieves the value of modelName
 {
-    return (modelName);
+    return (modelFileName);
 }
-void entity::setModelName(std::string set)  // sets the value of modelName
+void entity::setModelFileName(std::string set)  // sets the value of modelName
 {
-    modelName = set;
+    modelFileName = set;
 }
 
 std::string entity::getEntityName()  // retrieves the value of entityName
@@ -130,7 +130,7 @@ bool entity::loadModel()  // loads the 3D model
 {
     boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
-    model = render->getMSceneMgr()->createEntity(entityName, modelName);  // loads the basketball model
+    model = render->getMSceneMgr()->createEntity(entityName, modelFileName);  // loads the basketball model
     logMsg("Entity Created!");
     // creates and instantiates the node object
     node = render->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(nodeName);

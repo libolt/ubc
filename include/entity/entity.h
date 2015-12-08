@@ -35,8 +35,8 @@ class entity  // base class for entity objects
     entity();  // constructor
     ~entity();  // destructor
     
-    std::string getModelName();  // retrieves the value of modelName
-    void setModelName(std::string set);  // sets the value of modelName
+    std::string getModelFileName();  // retrieves the value of modelName
+    void setModelFileName(std::string set);  // sets the value of modelName
 
     std::string getEntityName();  // retrieves the value of entityName
     void setEntityName(std::string set);  // sets the value of entityName
@@ -71,7 +71,7 @@ class entity  // base class for entity objects
     
     private:
     
-    std::string modelName;  // stores the file name of the 3d model
+    std::string modelFileName;  // stores the file name of the 3d model
 
     std::string entityName;  // stores the name of the model object in the scene
 

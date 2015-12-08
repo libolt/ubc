@@ -88,6 +88,15 @@ void playerData::setLastName(string set)  // sets the value of lastName
     lastName = set;
 }
 
+std::string playerData::getPlayerName()  // retrieves the value of playerName
+{
+    return(playerName);
+}
+void playerData::setPlayerName(std::string set)  // sets the value of playerName
+{
+    playerName = set;
+}
+
 int playerData::getAge()  // retrieves the value of age
 {
     return(age);
@@ -161,7 +170,7 @@ void playerData::setActive(bool set)  // sets the value of active
     active = set;
 }
 
-std::string playerData::getModelFileName()  // retrieves the value of model
+/*std::string playerData::getModelFileName()  // retrieves the value of model
 {
     return (modelFileName);
 }
@@ -169,6 +178,7 @@ void playerData::setModelFileName(string set)  // sets the value of model
 {
     modelFileName = set; 
 }
+*/
 
 int playerData::getShooting()  // retrieves the value of shooting
 {

@@ -347,9 +347,9 @@ bool gameState::createBasketballInstances()  // creates basketball Instances
     logMsg("creating temporary baskteball instance");
     basketballState bballInstance;  // creates an instance of the basketballs class
     logMsg("setting model name");
-    bballInstance.setModelName("bball.mesh");
-    bballInstance.setEntityName(bballInstance.getModelName());
-    bballInstance.setNodeName(bballInstance.getModelName());
+    bballInstance.setModelFileName("bball.mesh");
+    bballInstance.setEntityName(bballInstance.getModelFileName());
+    bballInstance.setNodeName(bballInstance.getModelFileName());
 
     logMsg("loading model");
     if (bballInstance.loadModel())
@@ -401,15 +401,15 @@ bool gameState::createCourtDataInstances()  // creates instances of court data
 bool gameState::createCourtInstances()  // creates court Instances
 {
     courtState cInstance;  // creates an instance of the courtState class
-//    cInstance.setModelName("court.mesh");
-//    cInstance.setModelName("Court.mesh");
+//    cInstance.setModelFileName("court.mesh");
+//    cInstance.setModelFileName("Court.mesh");
     
-    logMsg("Model Name = " +courtDataInstance[selectedCourtDataInstance].getModelName());
+    logMsg("Model Name = " +courtDataInstance[selectedCourtDataInstance].getModelFileName());
 
-    cInstance.setModelName(courtDataInstance[selectedCourtDataInstance].getModelName());
+    cInstance.setModelFileName(courtDataInstance[selectedCourtDataInstance].getModelFileName());
 //    exit(0);
-    cInstance.setNodeName(cInstance.getModelName());
-    cInstance.setEntityName(cInstance.getModelName());
+    cInstance.setNodeName(cInstance.getModelFileName());
+    cInstance.setEntityName(cInstance.getModelFileName());
     cInstance.loadModel();
     cInstance.getNode()->setScale(1.0f,1.0f,1.0f);
     courtInstance.push_back(cInstance);
@@ -420,15 +420,15 @@ bool gameState::createCourtInstances()  // creates court Instances
 bool gameState::createHoopInstances()  // creates hoop Instances
 {
     hoopState *hInstance = new hoopState[2];  // creates an instance of the hoopState class
-//    cInstance.setModelName("court.mesh");
+//    cInstance.setModelFileName("court.mesh");
     hInstance[0].setEntityName("hoop1");
-    hInstance[0].setModelName("Hoop.mesh");
+    hInstance[0].setModelFileName("Hoop.mesh");
     hInstance[0].setNodeName("hoopNode1");
     hInstance[0].loadModel();
     hInstance[0].getNode()->setScale(0.8f,0.8f,0.8f);
 
     hInstance[1].setEntityName("hoop2");
-    hInstance[1].setModelName("Hoop.mesh");
+    hInstance[1].setModelFileName("Hoop.mesh");
     hInstance[1].setNodeName("hoopNode2");
     hInstance[1].loadModel();
     hInstance[1].getNode()->setScale(0.8f,0.8f,0.8f);

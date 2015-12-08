@@ -660,6 +660,8 @@ bool teamState::createPlayerInstances()
         {
             playerInstance.push_back(gamePlayerInstance[i]);    // adds pInstance to the playerInstance std::vector.
 
+            logMsg("Player Model Name == " +gamePlayerInstance[i].getModelFileName());
+            exit(0);
             logMsg("teamID!!!!");
             logMsg("pInstance set!");
 //            logMsg("steerID = " +convert->toString(gamePlayerInstance[i].getSteer()->getID()));
@@ -667,7 +669,7 @@ bool teamState::createPlayerInstances()
 
 //            exit(0);
             id += 1;
-/*            pInstance.setModelName(playerInstance[i].getModel());
+/*            pInstance.setModelFileName(playerInstance[i].getModel());
             pInstance.setFirstName(playerInstance[i].getFirstName());  // copies the first name from the playerData std::vector to the pInstance class
             pInstance.setLastName(playerInstance[i].getLastName());    // copies the last name from the playerData std::vector to the pInstance class
             pInstance.setPlayerName(playerInstance[i].getFirstName() + " " +playerInstance[i].getLastName());

@@ -23,7 +23,7 @@
 courtData::courtData()  // constructor
 {
     name = "";
-    modelName = "";
+    modelFileName = "";
     dimensions = Ogre::Vector2(0,0);
     boundary = Ogre::Vector2(0,0);
     boundaryPos = Ogre::Vector2(0,0);
@@ -51,13 +51,13 @@ void courtData::setName(std::string set)  // sets the value of name
     name = set;
 }
 
-std::string courtData::getModelName()  // retrieves the value of modelName;
+std::string courtData::getModelFileName()  // retrieves the value of modelFileName;
 {
-    return (modelName);
+    return (modelFileName);
 }
-void courtData::setModelName(std::string name)  // sets the value of modelName
+void courtData::setModelFileName(std::string set)  // sets the value of modelFileName
 {
-    modelName = name;
+    modelFileName = set;
 }
 
 Ogre::Vector2 courtData::getDimensions()  // retrieves the value of dimensions

@@ -34,8 +34,8 @@ public:
     std::string getName();  // retrieves the value of name
     void setName(std::string set);  // sets the value of name
     
-    std::string getModelName();  // retrieves the value of modelName
-    void setModelName(std::string name); // sets the value of modelName
+    std::string getModelFileName();  // retrieves the value of modelFileName
+    void setModelFileName(std::string set); // sets the value of modelFileName
 
     Ogre::Vector2 getDimensions();  // retrieves the value of dimensions
     void setDimensions(Ogre::Vector2 set);  // sets the value of dimensions
@@ -77,7 +77,7 @@ protected:
 private:
 
     std::string name;  // stores the name of the court
-    std::string modelName;   // stores the file name of the court 3D model
+    std::string modelFileName;   // stores the file name of the court 3D model
     Ogre::Vector2 dimensions;  // stores the length and width of the court
     Ogre::Vector2 boundary;  // stores the playable length and width of the court
     Ogre::Vector2 boundaryPos;  // stores the offset of the boundary from the x and y coords of the court

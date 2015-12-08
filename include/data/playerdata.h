@@ -25,8 +25,6 @@
 
 #include "enums.h"
 
-using namespace std;
-
 class playerData
 {
 
@@ -35,11 +33,14 @@ class playerData
         playerData();
         ~playerData();
 
-        string getFirstName(void);  // retrieves the value of firstName
-        void setFirstName(string set);  // sets the value of firstName
+        std::string getFirstName(void);  // retrieves the value of firstName
+        void setFirstName(std::string set);  // sets the value of firstName
 
-        string getLastName(void);  // retrieves the value of lastName
-        void setLastName(string set);  // sets the value of lastName
+        std::string getLastName(void);  // retrieves the value of lastName
+        void setLastName(std::string set);  // sets the value of lastName
+
+        std::string getPlayerName(void);  // retrieves the value of playerName
+        void setPlayerName(std::string set);  // sets the value of playerName
 
         int getAge(void);  // retrieves the value of age
         void setAge(int set);  // sets the value of  age
@@ -65,8 +66,9 @@ class playerData
         bool getActive(void);  // retrieves the value of active
         void setActive(bool set);  // sets the value of active
 
-        string getModelFileName();  // retrieves the value of modelName
+/*        string getModelFileName();  // retrieves the value of modelName
         void setModelFileName(string set);  // sets the value of modelName
+*/
 
         int getShooting();  // retrieves the value of shooting
         void setShooting(int set);  // sets the value of shooting
@@ -156,8 +158,9 @@ class playerData
         
     private:
 
-        string firstName;  // stores the first name of the player
-        string lastName;  // stores the last name of the player
+        std::string firstName;  // stores the first name of the player
+        std::string lastName;  // stores the last name of the player
+        std::string playerName;  // stores the full player name
         int age;  // stores the age of the player
         int height;  // stores the height in centimeters of the player
         int weight;  // stores the weight of the player in pounds.
@@ -197,7 +200,7 @@ class playerData
         // if player is playing this is true
         bool active;
 
-        string modelFileName;  // stores the name of the 3D model to load for the player
+        std::string modelFileName;  // stores the name of the 3D model to load for the player
         
 
 

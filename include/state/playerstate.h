@@ -62,7 +62,7 @@ class playerState : public state, public playerEntity, public playerData
         bool getNetworkControlled();  // retrieves the value of networkControlled
         void setNetworkControlled(bool set);  // sets the value of networkControlled
 
-        std::string getFirstName(void);  // retrieves the value of firstName
+/*        std::string getFirstName(void);  // retrieves the value of firstName
         void setFirstName(std::string set);  // sets the value of firstName
 
         std::string getLastName(void);  // retrieves the value of lastName
@@ -86,15 +86,16 @@ class playerState : public state, public playerEntity, public playerData
         playerPositions getSecondaryPosition();  // retrieves the value of secondaryPosition
         void setSecondaryPosition(playerPositions set);  // sets the value of secondaryPosition
 
+        bool getModelLoaded();  // retrieves the value of modelLoaded
+        void setModelLoaded(bool set);  // sets the value of modelLoaded
+*/
+        
         playerPositions getActivePosition();  // retrieves the value of activePosition
         void setActivePosition(playerPositions set);  // sets the value of activePosition
 
         bool getIsActive();  // retrieves the value of isActive
         void setIsActive(bool set);  // sets the value of isActive
 
-/*        bool getModelLoaded();  // retrieves the value of modelLoaded
-        void setModelLoaded(bool set);  // sets the value of modelLoaded
-*/
         size_t getOffDef();  // retrieves the value of offDef
         void setOffDef(size_t set);  // sets the value of offDef
 

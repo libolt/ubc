@@ -446,7 +446,7 @@ bool gameState::createPlayerInstances()  // creates player instances
     if (playerInstance.size() > 0)
     {
         logMsg("player name = " +playerInstance[0].getPlayerName());
-        exit(0);
+//        exit(0);
         return (true);
     }
     return (false);

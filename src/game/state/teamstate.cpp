@@ -637,7 +637,7 @@ bool teamState::createPlayerInstances()
     logMsg("Creating players");
     
     logMsg("playerInstance size = " +convert->toString(playerInstance.size()));
-    exit(0);
+//    exit(0);
 //    for (playerIT = playerInstance.begin(); playerIT != playerInstance.end(); ++playerIT)   // loops through playerID std::vector
     size_t id = -1; // stores id for steer
     size_t i = 0;
@@ -662,10 +662,10 @@ bool teamState::createPlayerInstances()
 
             logMsg("teamID!!!!");
             logMsg("pInstance set!");
-            logMsg("steerID = " +convert->toString(gamePlayerInstance[i].getSteer()->getID()));
+//            logMsg("steerID = " +convert->toString(gamePlayerInstance[i].getSteer()->getID()));
             logMsg("player name = " +gamePlayerInstance[i].getPlayerName());
 
-            exit(0);
+//            exit(0);
             id += 1;
 /*            pInstance.setModelName(playerInstance[i].getModel());
             pInstance.setFirstName(playerInstance[i].getFirstName());  // copies the first name from the playerData std::vector to the pInstance class

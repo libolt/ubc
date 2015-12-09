@@ -70,20 +70,20 @@ playerData::~playerData()  // destructor
 {
 }
 
-string playerData::getFirstName()  // retrieves the value of firstName
+std::string playerData::getFirstName()  // retrieves the value of firstName
 {
     return(firstName);
 }
-void playerData::setFirstName(string set)  // sets the value of firstName
+void playerData::setFirstName(std::string set)  // sets the value of firstName
 {
     firstName = set;
 }
 
-string playerData::getLastName()  // retrieves the value of lastName
+std::string playerData::getLastName()  // retrieves the value of lastName
 {
     return(lastName);
 }
-void playerData::setLastName(string set)  // sets the value of lastName
+void playerData::setLastName(std::string set)  // sets the value of lastName
 {
     lastName = set;
 }

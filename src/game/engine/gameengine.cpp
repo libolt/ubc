@@ -216,9 +216,9 @@ void gameEngine::processInput()  // processes game input
                         size_t humanInstance = 11;
                         while (x < activePlayerInstance.size())
                         {
-                            logMsg("GEPlayerID == " +convert->toString(activePlayerInstance[x].getPlayerID()));
+                            logMsg("GEPlayerID == " +convert->toString(activePlayerInstance[x].getID()));
                             logMsg("GEHumanPlayer == " +convert->toString(humanPlayer));
-                            if (activePlayerInstance[x].getPlayerID() == humanPlayer)
+                            if (activePlayerInstance[x].getID() == humanPlayer)
                             {
                                 humanInstance = x;
                                 break;
@@ -321,10 +321,10 @@ void gameEngine::processInput()  // processes game input
                         {
                             if (activePlayerInstance[humanInstance].getMovement())
                             {
-                                logMsg("human playerID == " +convert->toString(activePlayerInstance[humanInstance].getPlayerID()));
+                                logMsg("human playerID == " +convert->toString(activePlayerInstance[humanInstance].getID()));
                                 logMsg("ball player == " +convert->toString(teamInstance[inputIterator].getPlayerWithBallInstance()));
                                 logMsg("ball playerID == " +convert->toString(teamInstance[inputIterator].getPlayerWithBallID()));
-                                if (activePlayerInstance[humanInstance].getPlayerID() == teamInstance[inputIterator].getPlayerWithBallID())
+                                if (activePlayerInstance[humanInstance].getID() == teamInstance[inputIterator].getPlayerWithBallID())
                                 {
                                     bballInstance[activeBBallInstance].setMovement(true);
                                     gameS->setBasketballInstance(bballInstance);

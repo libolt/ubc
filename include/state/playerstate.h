@@ -53,8 +53,8 @@ class playerState : public state, public playerEntity, public playerData
 
 //        Ogre::Vector3 getNodePosition();  // retrieves the position of player node
 
-        size_t getPlayerID();  // retrieves the value of playerID
-        void setPlayerID(size_t set);  // sets the value of playerID
+//        size_t getPlayerID();  // retrieves the value of playerID
+//        void setPlayerID(size_t set);  // sets the value of playerID
 
         teamTypes getTeamType();  // retrieves the value of teamType
         void setTeamType(teamTypes set);  // sets the value of teamType
@@ -269,7 +269,7 @@ class playerState : public state, public playerEntity, public playerData
 
     private:
 
-        size_t playerID;  // stores the ID of the player which is unique to each player in the game
+//        size_t playerID;  // stores the ID of the player which is unique to each player in the game
 
         teamTypes teamType;  // stores which of the two teams the player belongs to
         
@@ -286,7 +286,7 @@ class playerState : public state, public playerEntity, public playerData
 
         size_t weight;  // stores the weight of the player in pounds.
 
-        size_t ID;  // stores the unique ID of the player.
+//        size_t ID;  // stores the unique ID of the player.
 
         playerPositions primaryPosition;  // stores the primary position of the player
         

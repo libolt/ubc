@@ -573,10 +573,14 @@ void GUISystem::playerStartSelected()  // process player start selection
     for (size_t x=0;x<5;++x)
     {
         activePlayerID.push_back(teamStarterID[0][x]);
+        logMsg("activePlayerID = " +convert->toString(activePlayerID[x]));
     }
+    
     teamInstance[0].setActivePlayerID(activePlayerID);
     if (!teamInstance[0].getPlayerInstancesCreated())    // checks if playerInstances have been created
     {
+        logMsg("player instances created!");
+        
         if (teamInstance[0].createPlayerInstances()) // creates the player instances based on playerIDS
         {
             logMsg("Team 0 Player instances created!");
@@ -588,19 +592,24 @@ void GUISystem::playerStartSelected()  // process player start selection
     activePlayerInstance.clear();
     playerInstance = teamInstance[0].getPlayerInstance();
     size_t y = 0;
+    logMsg("GUI playerInstance.size() = " +convert->toString(playerInstance.size()));
+    
     while (y < playerInstance.size())
     {
         size_t z = 0;
         while (z < activePlayerID.size())
         {
-            if (playerInstance[y].getPlayerID() == activePlayerID[z])
+            if (playerInstance[y].getID() == activePlayerID[z])
             {
                 activePlayerInstance.push_back(playerInstance[y]);
+                logMsg("GUI playerInstance[y] ID  = " +convert->toString(playerInstance[y].getID()));
+    
             }
             ++z;
         }
         ++y;
     }
+    exit(0);
     logMsg("GUI activePlayerInstance.size() = " +convert->toString(activePlayerInstance.size()));
     teamInstance[0].setActivePlayerInstance(activePlayerInstance);
     teamInstance[0].setPlayerStartActivePositions();
@@ -612,7 +621,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     playerInstance = teamInstance[0].getPlayerInstance();
     while (i<playerInstance.size())
     {
-        if (activePlayerID[4] == playerInstance[i].getPlayerID())
+        if (activePlayerID[4] == playerInstance[i].getID())
         {
             teamInstance[0].setHumanPlayer(i);
             logMsg("human player set!");
@@ -650,7 +659,7 @@ void GUISystem::playerStartSelected()  // process player start selection
         size_t z = 0;
         while (z < activePlayerID.size())
         {
-            if (playerInstance[y].getPlayerID() == activePlayerID[z])
+            if (playerInstance[y].getID() == activePlayerID[z])
             {
                 activePlayerInstance.push_back(playerInstance[y]);
             }
@@ -666,7 +675,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     playerInstance = teamInstance[1].getPlayerInstance();
     while (i<playerInstance.size())
     {
-        if (activePlayerID[4] == playerInstance[i].getPlayerID())
+        if (activePlayerID[4] == playerInstance[i].getID())
         {
             teamInstance[1].setHumanPlayer(i);
             logMsg("human player set!");

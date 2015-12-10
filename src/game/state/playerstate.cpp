@@ -34,15 +34,15 @@
 
 playerState::playerState()
 {
-    playerID = 0;
+//    playerID = 0;
     teamType = NOTEAM;
     isActive = false;
 //    modelLoaded = false;
     networkControlled = false;
     offDef = 0;
     defending = -1;
-    primaryPosition = NONE;
-    secondaryPosition = NONE;
+//    primaryPosition = NONE;
+//    secondaryPosition = NONE;
     activePosition = NONE;
     userControlled = false;
     user = -1;
@@ -91,7 +91,7 @@ playerState::~playerState() // destructor
 {
 }
 
-size_t playerState::getPlayerID()  // retrieves the value of playerID
+/*size_t playerState::getPlayerID()  // retrieves the value of playerID
 {
     return(playerID);
 }
@@ -99,6 +99,7 @@ void playerState::setPlayerID(size_t set)  // sets the value of playerID
 {
     playerID = set;
 }
+*/
 
 teamTypes playerState::getTeamType()  // retrieves the value of teamType
 {
@@ -743,12 +744,12 @@ void playerState::updateState()
             {
                 shotTaken = true;
             }
-            physEngine.shootBasketball(teamType, playerID);
+            physEngine.shootBasketball(teamType, getID());
 
         }
         else
         {
-            physEngine.playerJump(teamType, playerID);
+            physEngine.playerJump(teamType, getID());
         }
         
     }
@@ -783,9 +784,9 @@ void playerState::updateState()
         if (teamType == gameS->getTeamWithBall() && gameS->getTipOffComplete())
         {
             logMsg("dplayerWithBallID == " +convert->toString(playerWithBallID));
-            if (playerID == playerWithBallID && playerID >= 0)
+            if (getID() == playerWithBallID && getID() >= 0)
             {
-                logMsg("playerID == " +convert->toString(playerID));
+                logMsg("playerID == " +convert->toString(getID()));
                 int activeBBallInstance = gameS->getActiveBBallInstance();
                 std::vector<basketballState> bballInstance = gameS->getBasketballInstance();
                 bballInstance[activeBBallInstance].setMovement(true);
@@ -872,7 +873,7 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
             break;
         }
         ++posChangeAmount;
-        logMsg("player ID " +convert->toString(playerID) +"change amount = " +convert->toString(posChangeAmount));
+        logMsg("player ID " +convert->toString(getID()) +"change amount = " +convert->toString(posChangeAmount));
         
     }
     
@@ -997,8 +998,8 @@ void playerState::updateDirection()
     }
     logMsg("player Team Type == " +convert->toString(teamType));
     logMsg("directplayerWithBallID == " +convert->toString(playerWithBallID));
-    logMsg("directplayerID == " +convert->toString(playerID));
-    if (playerID == playerWithBallID)
+    logMsg("directplayerID == " +convert->toString(getID()));
+    if (getID() == playerWithBallID)
     {
 //        exit(0);
         bballInstance[activeBBallInstance].setDirectChange(true);
@@ -1058,7 +1059,7 @@ void playerState::updateMovement()	// updates movement status of the player
             break;
         }
 
-        if (playerID == playerWithBallID)
+        if (getID() == playerWithBallID)
         {
             bballInstance[activeBBallInstance].setMovement(true);
             gameS->setBasketballInstance(bballInstance);

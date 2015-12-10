@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean   *
- *   libolt@libolt.net   *
+ *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -515,7 +515,7 @@ void teamState::updateState()	// updates the state of the object
                 size_t instanceWithBall = -1;
                 while (x < activePlayerInstance.size())
                 {
-                    if (activePlayerInstance[x].getPlayerID() == playerWithBallID)
+                    if (activePlayerInstance[x].getID() == playerWithBallID)
                     {
                         instanceWithBall = x;
                         break;
@@ -636,7 +636,7 @@ bool teamState::createPlayerInstances()
 //    std::vector <playerState>::iterator pInstanceIT;
     logMsg("Creating players");
     
-    logMsg("playerInstance size = " +convert->toString(playerInstance.size()));
+    logMsg("playerInstance size = " +convert->toString(gamePlayerInstance.size()));
 //    exit(0);
 //    for (playerIT = playerInstance.begin(); playerIT != playerInstance.end(); ++playerIT)   // loops through playerID std::vector
     size_t id = -1; // stores id for steer
@@ -658,10 +658,16 @@ bool teamState::createPlayerInstances()
 
         if (gamePlayerInstance[i].getTeamID() == teamID)	// checks if player is assigned to this team
         {
-            playerInstance.push_back(gamePlayerInstance[i]);    // adds pInstance to the playerInstance std::vector.
+            logMsg("i ====" +convert->toString(i));
+            pInstance = gamePlayerInstance[i];
+            pInstance.setTeamType(teamType);  // sets the team number the player belongs to            
+            pSteer->setTeamType(teamType);
+            pSteer->reset();
+            pInstance.setSteer(pSteer);
+            playerInstance.push_back(pInstance);    // adds pInstance to the playerInstance std::vector.
 
             logMsg("Player Model Name == " +gamePlayerInstance[i].getModelFileName());
-            exit(0);
+//            exit(0);
             logMsg("teamID!!!!");
             logMsg("pInstance set!");
 //            logMsg("steerID = " +convert->toString(gamePlayerInstance[i].getSteer()->getID()));
@@ -693,7 +699,7 @@ bool teamState::createPlayerInstances()
         }
         i++;
     }
-//    exit(0);
+    exit(0);
 //    std::vector <playerState>::iterator pInstanceIT;
 
     logMsg("before playerID");
@@ -715,8 +721,8 @@ bool teamState::createPlayerInstances()
         while (i<activePlayerID.size())
         {
 
-            logMsg("playerInstance[x].getPlayerID() = " +convert->toString(playerInstance[x].getPlayerID()));
-            if (activePlayerID[i] == playerInstance[x].getPlayerID())
+            logMsg("playerInstance[x].getID()() = " +convert->toString(playerInstance[x].getID()));
+            if (activePlayerID[i] == playerInstance[x].getID())
             {
                 logMsg("I am here!");
 //                exit(0);
@@ -994,7 +1000,7 @@ void teamState::updatePlayerDirections()
 	std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
     std::vector<Ogre::SceneNode>::iterator playersIT;
 
-    std::string playerID = convert->toString(playerInstance[4].getPlayerID());
+    std::string playerID = convert->toString(playerInstance[4].getID());
 //    exit(0);
 //    logMsg("playerID == " +playerID);
     // checks if a player's direction has changed and rotates the model accordingly.
@@ -1091,9 +1097,9 @@ void teamState::updatePlayerDirections()
                     break;
             }
         }
-        logMsg("directPlayerID == " +convert->toString(activePlayerInstance[x].getPlayerID()));
+        logMsg("directPlayerID == " +convert->toString(activePlayerInstance[x].getID()));
         logMsg("directPlayerWithBallInstance == " +convert->toString(playerWithBallInstance));
-        if (activePlayerInstance[x].getPlayerID() != playerWithBallID)
+        if (activePlayerInstance[x].getID() != playerWithBallID)
         {
             oldPlayerDirection = playerDirection;
             activePlayerInstance[x].setOldDirection(oldPlayerDirection);  // copies contents of oldPlayerDirection to the oldDirection variable

@@ -204,10 +204,13 @@ bool jumpBalls::jumpBallExecute()  // initiates jump ball from jump ball circle
     {
         //activePlayerInstance.clear();
         activePlayerInstance.push_back(teamInstance[x].getActivePlayerInstance());
+        
         size_t i = 0;
-
+        logMsg("active player instance size =" +convert->toString(activePlayerInstance[x].size()));
         while (i < activePlayerInstance[x].size()) // loops until the activePlayerInstance is found that is currently playing center
         {
+            
+//            exit(0);
             logMsg("jump i == " +convert->toString(i));
             if (activePlayerInstance[x][i].getActivePosition() == C)
             {
@@ -317,7 +320,7 @@ bool jumpBalls::tipToPlayer()  // tips the basketball to the appropriate player
     {
         if (activePlayerInstance[y].getActivePosition() == jumpBall.getBallTippedToPosition())
         {
-            ballTippedToPlayerID = activePlayerInstance[y].getPlayerID();
+            ballTippedToPlayerID = activePlayerInstance[y].getID();
             ballTippedToPlayerInstance = y;
             break;
         }

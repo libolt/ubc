@@ -619,7 +619,7 @@ void basketballState::updateDirection()  // updates basketball direction(s)
         Ogre::Vector3 posChange;
         while (x < activePlayerInstance.size())
         {
-            if (activePlayerInstance[x].getPlayerID() == playerWithBallID)
+            if (activePlayerInstance[x].getID() == playerWithBallID)
             {
                 playerWithBallInstance = x;
                 break;

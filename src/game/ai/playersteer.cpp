@@ -100,26 +100,29 @@ void playerSteer::setPositionReached(std::vector<bool> reached)  // sets the val
 void playerSteer::reset(void)    // reset state
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-
+    logMsg("steer alive?");
     steering::reset ();  // reset the vehicle
+   logMsg("steer alive?2");
     setSpeed (0.0f);  // speed along Forward direction.
 //    setMaxForce (3000.7f);      // steering force is clipped to this magnitude
+    logMsg("steer alive?3");
     setMaxForce (30.0f);  // steering force is clipped to this magnitude
-
+    logMsg("steer alive?4");
 //    setMaxSpeed (10);         // velocity is clipped to this magnitude
     setMaxSpeed (20.0f);  // velocity is clipped to this magnitude
-
+    logMsg("steer alive?5");
     if (teamType != NOTEAM)
     {
+//        exit(0);
         logMsg("teamType steer!");
 	    //gameState *gameS = gameState::Instance();
         boost::shared_ptr<gameState> gameS = gameState::Instance();
-        
+//        exit(0);
 	    std::vector<teamState> teamInstance = gameS->getTeamInstance();
         logMsg("teamType == " +convert->toString(teamType));
         std::vector<playerState> activePlayerInstance = teamInstance[teamType].getActivePlayerInstance();
         logMsg("teamType steer2!");
-
+//        exit(0);
 	    OpenSteer::Vec3 playerSteerPos;
         std::vector< std::vector<size_t> > teamStarterID = gameS->getTeamStarterID();
         if(ID < 9 && ID >= 0)
@@ -159,7 +162,8 @@ void playerSteer::reset(void)    // reset state
         /*OpenSteer::Vec3*/
         m_home = playerSteerPos;
 //		exit(0);
-	}
+    }
+    logMsg("steer alive??");
 //    m_home = position();
  //   AnnotationMixin::clearTrailHistory ();    // prevent long streaks due to teleportation
 //    OpenSteer::clearTrailHistory ();
@@ -440,7 +444,7 @@ void playerSteer::checkCourtPosition()  // checks if the player's position has c
     }
     int humanPlayer = teamInstance[teamType].getHumanPlayer();
     logMsg("steer Human Player = " +convert->toString(humanPlayer));
-    if (activePlayerInstance[teamType][ID].getPlayerID() != humanPlayer)  // makes sure to not steer human player
+    if (activePlayerInstance[teamType][ID].getID() != humanPlayer)  // makes sure to not steer human player
     {
         if (activePlayerInstance[teamType][ID].getInitialized())
         {

@@ -353,9 +353,9 @@ void offenseState::executeOffense() // executes box offense
         size_t x = 0;
         while (x < activePlayerInstance.size())
         {
-            if ( activePlayerInstance[x].getPlayerID() != playerWithBallID)
+            if ( activePlayerInstance[x].getID() != playerWithBallID)
             {
-                logMsg("activeSteerInstanceID == " +convert->toString(activePlayerInstance[x].getPlayerID()));
+                logMsg("activeSteerInstanceID == " +convert->toString(activePlayerInstance[x].getID()));
                 pSteer = activePlayerInstance[x].getSteer();
                 std::vector<bool> positionReached = pSteer->getPositionReached();
                 if (positionReached.size() != 1)

@@ -395,7 +395,7 @@ void physicsEngine::updateState()  // updates the state for the physics engine
             size_t playerWithBallInstance = -1;
             while (x < activePlayerInstance[teamWithBall].size())
             {
-                if (activePlayerInstance[teamWithBall][x].getPlayerID() == playerWithBallID)
+                if (activePlayerInstance[teamWithBall][x].getID() == playerWithBallID)
                 {
                     playerWithBallInstance = x;
                     break;
@@ -734,7 +734,7 @@ bool physicsEngine::playerJump(teamTypes teamType, int playerID)  // calculates 
 //        while (y<activePlayerID.size())
 //        {
 //        if (activePlayerInstance[x].getPlayerID() == activePlayerID[y])
-        if (activePlayerInstance[x].getPlayerID() == playerID)
+        if (activePlayerInstance[x].getID() == playerID)
         {
             bool jumpSet = activePlayerInstance[x].getJumpSet();
             bool jumpComplete = activePlayerInstance[x].getJumpComplete();
@@ -829,7 +829,7 @@ bool physicsEngine::shootBasketball(teamTypes teamType, int playerID)  // calcul
     while (x<activePlayerInstance.size())
     {
         
-        if (activePlayerInstance[x].getPlayerID() == playerID)
+        if (activePlayerInstance[x].getID() == playerID)
         {
             shotSet = activePlayerInstance[x].getShotSet();
             shotComplete = activePlayerInstance[x].getShotComplete();

@@ -97,7 +97,7 @@ void defenseState::updateState(teamTypes teamOnDefense)	// updates the state of 
             size_t i = 0;
             while (i<activeOID.size())
             {
-                if (activeOID[i] == playerOInstance[x].getPlayerID())
+                if (activeOID[i] == playerOInstance[x].getID())
                 {
                     playerOPos.push_back(playerOInstance[x].getNode()->getPosition());
 
@@ -114,7 +114,7 @@ void defenseState::updateState(teamTypes teamOnDefense)	// updates the state of 
             size_t i = 0;
             while (i<activeDID.size())
             {
-                if (activeDID[i] == playerDInstance[x].getPlayerID())
+                if (activeDID[i] == playerDInstance[x].getID())
                 {
                     playerDPos.push_back(playerDInstance[x].getNode()->getPosition());
 
@@ -141,7 +141,7 @@ void defenseState::updateState(teamTypes teamOnDefense)	// updates the state of 
             size_t i = 0;
             while (i<activeDID.size())
             {
-                if (activeDID[i] == playerDInstance[x].getPlayerID())
+                if (activeDID[i] == playerDInstance[x].getID())
                 {
                     if (playerDInstance[x].getActivePosition() == PG)
                     {
@@ -178,7 +178,7 @@ void defenseState::updateState(teamTypes teamOnDefense)	// updates the state of 
             size_t i = 0;
             while (i<activeOID.size())
             {
-                if (activeOID[i] == playerOInstance[x].getPlayerID())
+                if (activeOID[i] == playerOInstance[x].getID())
                 {
                     if (playerOInstance[x].getActivePosition() == PG)
                     {

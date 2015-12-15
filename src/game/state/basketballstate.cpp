@@ -56,6 +56,8 @@ basketballState::basketballState()  // constructor
 
     movement = false;
     directChange = false;
+    
+    playerControlled = false;
 
     teamNumber = 0;
     player = 0;
@@ -206,6 +208,25 @@ void basketballState::setDirectChange(bool set)  // sets the value of directChan
 {
     directChange = set;
 }
+
+bool basketballState::getPlayerControlled()  // retrieves the value of player controlled
+{
+    return (playerControlled);
+}
+void basketballState::setPlayerControlled(bool set)  // sets the value of playerControlled
+{
+    playerControlled = set;
+}
+
+playerState *basketballState::getPlayerWithBall()  // retrieves the value of playerWithBall
+{
+    return (playerWithBall);
+}
+void basketballState::setPlayerWithBall(playerState *set)  // sets the value of playerWithBall
+{
+    playerWithBall = set;
+}
+
 directions basketballState::getDirection()  // retrieves the value of direction
 {
     return (direction);

@@ -40,6 +40,8 @@
 //#include "physics/basketballphysics.h"
 #include "enums.h"
 #include "state/state.h"
+#include "state/playerstate.h"
+
 
 class basketballState : public state, public basketballEntity
 {
@@ -98,6 +100,12 @@ public:
     bool getDirectChange(); // retrieves the value of directChange
     void setDirectChange(bool set);  // sets the value of directChange
 
+    bool getPlayerControlled();  // retrieves the value of player controlled
+    void setPlayerControlled(bool set);  // sets the value of playerControlled
+    
+    playerState *getPlayerWithBall();  // retrieves the value of playerWithBall
+    void setPlayerWithBall(playerState *set);  // sets the value of playerWithBall
+    
     directions getDirection();  // retrieves the value of direction
     void setDirection(directions set);  // sets the value of direction 
     
@@ -221,6 +229,10 @@ private:
     bool movement;  // basketball has been moved by an outside force.
     bool directChange; // baskteball has changed direction
 
+    bool playerControlled;  // set to true if human or cpu player has the ball
+    
+    playerState *playerWithBall;  // stores copy of player that controls ball
+    
     directions direction;  // stores direction the ball has been moved
     directions oldDirection;  // stores the previous direction of the ball
     

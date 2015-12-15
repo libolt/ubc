@@ -56,6 +56,8 @@ class basketballPhysics : public physics
 
         void updateState();  // updates the basketball physics state
 
+        void ballDribbling();  // simulates basketball dribble
+
     private:
 
 /*        btCollisionShape *shape;  // stores the shape of the basketball shape

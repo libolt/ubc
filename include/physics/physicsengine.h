@@ -85,7 +85,7 @@ public:
     void updatePlayerPositions();  // updates the position of player objecgts
     void stepWorld();  // steps the physics simulation
 
-    void ballDribbling();  // simulates basketball dribble
+//    void ballDribbling();  // simulates basketball dribble
     void passCollisionCheck();  // checks whether the ball has collided with the player being passed to
 
     bool collisionCheck(btRigidBody *objectA,btRigidBody *objectB);  // tests whther or not two objects have collided

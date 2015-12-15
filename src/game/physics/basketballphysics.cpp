@@ -174,3 +174,101 @@ void basketballPhysics::updateState()  // updates basketball physics state
     }
 }
 */
+
+void basketballPhysics::ballDribbling()  // simulates basketball dribble
+{
+    boost::shared_ptr<conversion> convert = conversion::Instance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+
+//    std::vector<playerState> pInstance = gameS->getPlayerInstance();
+//    std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
+//    std::vector<courtState> courtInstance = gameS->getCourtInstance();
+
+//    int activeBBallInstance = gameS->getActiveBBallInstance();
+
+    MyContactResultCallback courtCollisionResult;
+
+//    Ogre::Vector3 bballPos = basketballInstance[activeBBallInstance].getNode()->getPosition();
+//    Ogre::Vector3 courtPos = courtInstance[0].getNode()->getPosition();
+
+    if (gameS->getBballBounce() == 0 && bballPos[1] < courtPos[1] + 5)  // checks if the ball is set to bounce up and hasn't reached the max height
+    {
+        basketballInstance[activeBBallInstance].getPhysBody()->setLinearVelocity(btVector3(0,10,0));
+    }
+    else
+    {
+        gameS->setBballBounce(1);  // sets the ball to bounce down
+    }
+
+    if (gameS->getBballBounce() == 1)  // checks if the ball is set bounce downward
+    {
+        basketballInstance[activeBBallInstance].getPhysBody()->setLinearVelocity(btVector3(0,-10,0));
+    }
+    else
+    {
+    }
+
+    pairCollided = false;
+//  logMsg("basketballInstance size = " +convert->toString(basketballInstance.size()));
+//  logMsg("courtInstance size = " +convert->toString(courtInstance.size()));
+
+//  logMsg("basketballInstance position = " + convert->toString(basketballInstance[activeBBallInstance].getNode()->getPosition()));
+//  logMsg("courtInstance position = " + convert->toString(courtInstance[0].getNode()->getPosition()));
+
+    btRigidBody *bballPhysBody = basketballInstance[activeBBallInstance].getPhysBody();
+    btRigidBody *courtPhysBody = courtInstance[0].getPhysBody();
+//  bballPhysBody->checkCollideWith(courtPhysBody);
+    world->contactPairTest(bballPhysBody, courtPhysBody, courtCollisionResult);
+//    logMsg("court collision " +convert->toString(courtCollisionResult));
+    int numManifolds = world->getDispatcher()->getNumManifolds();
+    for (int i = 0; i<numManifolds; i++)
+    {
+        btPersistentManifold* contactManifold = world->getDispatcher()->getManifoldByIndexInternal(i);
+//      btCollisionObject* obA = static_cast<btCollisionObject*>(contactManifold->getBody0());
+//      btCollisionObject* obB = static_cast<btCollisionObject*>(contactManifold->getBody1());
+        #if BT_BULLET_VERSION>=281
+        btCollisionObject* obA = const_cast<btCollisionObject*>(contactManifold->getBody0());; // For newer Bullet versions
+        btCollisionObject* obB = const_cast<btCollisionObject*>(contactManifold->getBody1()); // For newer Bullet versions
+        #else
+        btCollisionObject* obA = static_cast<btCollisionObject*>(contactManifold->getBody0()); // For older Bullet versions (original code)
+        btCollisionObject* obB = static_cast<btCollisionObject*>(contactManifold->getBody1()); // For older Bullet versions (original code)
+        #endif
+        int numContacts = contactManifold->getNumContacts();
+        for (int j = 0; j<numContacts; j++)
+        {
+            btManifoldPoint& pt = contactManifold->getContactPoint(j);
+            if (pt.getDistance()<0.f)
+            {
+                const btVector3& ptA = pt.getPositionWorldOnA();
+                const btVector3& ptB = pt.getPositionWorldOnB();
+                const btVector3& normalOnB = pt.m_normalWorldOnB;
+                // ZOMG A COLLISIONNNNNNNNNNN ...
+                if ((btRigidBody*)obA == bballPhysBody || (btRigidBody*)obB == courtPhysBody)
+                {
+                    logMsg("ball collided with court!");
+                   // exit(0);
+                    // myRigidBodyPtrA totally just collided with something ... if I care what then I have to code more
+                }
+            }
+        }
+    }
+    int dee = 0;
+
+    logMsg("basketball - court collision tested");
+    if (courtCollisionResult.m_connected)
+    {
+//      gameS->setPlayerWithBall(gameS->getBallTippedToPlayer());
+//      gameS->setBallTipForceApplied(false);
+//          basketballInstance[activeBBallInstance].getPhysBody()->applyForce(btVector3(-1.0f, 0.50f, 0.0f),btVector3(0.0f,0.0f,0.0f));
+//          basketballInstance[activeBBallInstance].getPhysBody()->forceActivationState(ISLAND_SLEEPING);
+//      basketballInstance[activeBBallInstance].getPhysBody()->setLinearVelocity(btVector3(0,10,0));
+//      gameS->setTipOffComplete(true);
+//          exit(0);
+        gameS->setBballBounce(0);
+    }
+    else
+    {
+    }
+
+}
+

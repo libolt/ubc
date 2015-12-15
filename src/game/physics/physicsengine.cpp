@@ -369,7 +369,7 @@ void physicsEngine::updateState()  // updates the state for the physics engine
             }
 
     //      exit(0);
-            if (teamInstance[teamWithBall].getPlayerWithBallDribbling())  // checks if the player with ball is dribbling and updates accordingly
+            if (teamInstance[teamWithBall].getPlayerWithBallbbbling())  // checks if the player with ball is dribbling and updates accordingly
             {
 //              exit(0);
 //              logMsg("Dribbling!!");
@@ -565,7 +565,7 @@ void physicsEngine::stepWorld()  // steps the world of the physics simulation
 }
 
 
-void physicsEngine::ballDribbling()  // simulates basketball dribble
+/*void physicsEngine::ballDribbling()  // simulates basketball dribble
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
@@ -660,7 +660,7 @@ void physicsEngine::ballDribbling()  // simulates basketball dribble
     {
     }
 
-}
+}*/
 
 
 bool physicsEngine::collisionCheck(btRigidBody *objectA, btRigidBody *objectB)  // tests whther or not two objects have collided

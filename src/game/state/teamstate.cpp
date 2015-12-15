@@ -699,7 +699,7 @@ bool teamState::createPlayerInstances()
         }
         i++;
     }
-    exit(0);
+//    exit(0);
 //    std::vector <playerState>::iterator pInstanceIT;
 
     logMsg("before playerID");

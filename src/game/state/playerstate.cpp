@@ -637,7 +637,7 @@ void playerState::setDefenseSet(bool set)  // sets the value of defenseSet
 
 Ogre::Vector3 playerState::getCourtPosition()  // retrieves the value of courtPosition
 {
-    courtPosition = Ogre::Vector3(1,1,1);
+//    courtPosition = Ogre::Vector3(1,1,1);
     return (courtPosition);
 //    return (getNode()->getPosition());
 }
@@ -824,6 +824,8 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
                 courtPositionChangedType = NOCHANGE;
                 startPosReached = true;
                 courtPosition = getNode()->getPosition();
+                logMsg("start change,");
+                exit(0);
             break;
             
             case STEERCHANGE:

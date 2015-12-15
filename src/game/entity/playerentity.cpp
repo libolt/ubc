@@ -65,6 +65,7 @@ bool playerEntity::setupPhysics()  // sets up the physics object
         setModel(tempModel);
         setNode(tempNode);
         setPhysBody(tempPhysBody);
+//        exit(0);
         return (true);
     }
     else

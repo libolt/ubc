@@ -609,7 +609,7 @@ void GUISystem::playerStartSelected()  // process player start selection
         }
         ++y;
     }
-    exit(0);
+//    exit(0);
     logMsg("GUI activePlayerInstance.size() = " +convert->toString(activePlayerInstance.size()));
     teamInstance[0].setActivePlayerInstance(activePlayerInstance);
     teamInstance[0].setPlayerStartActivePositions();

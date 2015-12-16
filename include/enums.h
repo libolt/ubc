@@ -40,6 +40,7 @@
     enum offenseWaitFor { PLAYERPOSITIONSET, TIME }; // defines what an offensive player is waiting for
     enum positionTypes { START, EXECUTE};
 
+    enum bballBounces { NOBOUNCE, BOUNCEUP, BOUNCEDOWN};  // defines state of basketball bounce
     // Network
     enum packetTypes { GAMEDATA, GAMESTATE, PLAYERDATA, PLAYERSTATE, TEAMDATA, TEAMSTATE }; // Defines what type of data is being sent over the network
     // Physics bit masks

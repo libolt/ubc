@@ -26,6 +26,7 @@
 #include "BtOgreExtras.h"
 #include "BulletDynamics/Dynamics/btRigidBody.h"
 
+#include "OgreVector3.h"
 #include "physics/physics.h"
 
 class basketballPhysics : public physics
@@ -49,6 +50,9 @@ class basketballPhysics : public physics
         bool getPhysicsSetup();  // retrieves the value of physicsSetup
         void setPhysicsSetup(bool set);  // sets the value of physicsSetup
 */
+        bballBounces getBounce();  // retrieves value of bounce
+        void setBounce(bballBounces set);  // sets the value of bounce 
+        
         bool setup();  // sets up basketball physics
 
 
@@ -56,10 +60,12 @@ class basketballPhysics : public physics
 
         void updateState();  // updates the basketball physics state
 
-        void ballDribbling();  // simulates basketball dribble
+        void ballDribbling(Ogre::Vector3 bballPos, btRigidBody *courtPhysBody, Ogre::Vector3 courtPos);  // simulates basketball dribble
 
     private:
 
+        bballBounces bounce;  // stores bounce state of the ball
+        
 /*        btCollisionShape *shape;  // stores the shape of the basketball shape
         BtOgre::RigidBodyState *basketballBodyState;  // stores the state of the basketball
 

@@ -227,6 +227,15 @@ void basketballState::setPlayerWithBall(playerState *set)  // sets the value of 
     playerWithBall = set;
 }
 
+courtState *basketballState::getCourtInstance()  // retrieves the value of courtInstance
+{
+    return (courtInstance);
+}
+void basketballState::setCourtInstance(courtState *set)  // sets the value of courtInstance
+{
+    courtInstance = set;
+}
+
 directions basketballState::getDirection()  // retrieves the value of direction
 {
     return (direction);

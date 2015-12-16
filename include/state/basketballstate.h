@@ -37,13 +37,13 @@
 
 #include "entity/basketballentity.h"
 //#include "ai/basketballsteer.h"
-//#include "physics/basketballphysics.h"
+#include "physics/basketballphysics.h"
 #include "enums.h"
 #include "state/state.h"
 #include "state/playerstate.h"
+#include "state/courtstate.h"
 
-
-class basketballState : public state, public basketballEntity
+class basketballState : public state, public basketballEntity, public basketballPhysics
 {
 public:
 
@@ -105,6 +105,9 @@ public:
     
     playerState *getPlayerWithBall();  // retrieves the value of playerWithBall
     void setPlayerWithBall(playerState *set);  // sets the value of playerWithBall
+    
+    courtState *getCourtInstance();  // retrieves the value of courtInstance
+    void setCourtInstance(courtState *set);  // sets the value of courtInstance
     
     directions getDirection();  // retrieves the value of direction
     void setDirection(directions set);  // sets the value of direction 
@@ -232,6 +235,8 @@ private:
     bool playerControlled;  // set to true if human or cpu player has the ball
     
     playerState *playerWithBall;  // stores copy of player that controls ball
+    
+    courtState *courtInstance;  // storee the active courtInstance
     
     directions direction;  // stores direction the ball has been moved
     directions oldDirection;  // stores the previous direction of the ball

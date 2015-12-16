@@ -76,8 +76,8 @@ public:
     void setupState();  // sets up state of physics engine.
 
     // sets up object physics
-    bool setupCourtPhysics();  // sets up court physics
-    bool setupHoopPhysics();  // sets up hoop physics
+//    bool setupCourtPhysics();  // sets up court physics
+//    bool setupHoopPhysics();  // sets up hoop physics
     
     void updateState();  // updates the state of the physics engine.
     void updatePositions();  // updates thr position of objects

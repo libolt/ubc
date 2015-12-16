@@ -85,6 +85,15 @@ void basketballPhysics::setStateSet(bool set)  // sets the value of stateSet
 }
 */
 
+bballBounces basketballPhysics::getBounce()  // retrieves value of bounce
+{
+    return (bounce);
+}
+void basketballPhysics::setBounce(bballBounces set)  // sets the value of bounce 
+{
+    bounce = set;
+}
+
 bool basketballPhysics::setup()  // sets up physics for the basketball
 {
 /*    exit(0);
@@ -175,9 +184,10 @@ void basketballPhysics::updateState()  // updates basketball physics state
 }
 */
 
-void basketballPhysics::ballDribbling()  // simulates basketball dribble
+void basketballPhysics::ballDribbling(Ogre::Vector3 bballPos, btRigidBody *courtPhysBody, Ogre::Vector3 courtPos)  // simulates basketball dribble
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
+    physicsEngine physEngine;
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 
 //    std::vector<playerState> pInstance = gameS->getPlayerInstance();
@@ -186,44 +196,50 @@ void basketballPhysics::ballDribbling()  // simulates basketball dribble
 
 //    int activeBBallInstance = gameS->getActiveBBallInstance();
 
-    MyContactResultCallback courtCollisionResult;
+    //MyContactResultCallback courtCollisionResult;
 
 //    Ogre::Vector3 bballPos = basketballInstance[activeBBallInstance].getNode()->getPosition();
 //    Ogre::Vector3 courtPos = courtInstance[0].getNode()->getPosition();
 
-    if (gameS->getBballBounce() == 0 && bballPos[1] < courtPos[1] + 5)  // checks if the ball is set to bounce up and hasn't reached the max height
+//    if (gameS->getBballBounce() == 0 && bballPos[1] < courtPos[1] + 5)  // checks if the ball is set to bounce up and hasn't reached the max height
+    if (bounce == BOUNCEUP && bballPos < courtPos + 5)
     {
-        basketballInstance[activeBBallInstance].getPhysBody()->setLinearVelocity(btVector3(0,10,0));
+//        basketballInstance[activeBBallInstance].getPhysBody()->setLinearVelocity(btVector3(0,10,0));
+        getPhysBody()->setLinearVelocity(btVector3(0,10,0));
     }
     else
     {
-        gameS->setBballBounce(1);  // sets the ball to bounce down
+//        gameS->setBballBounce(1);  // sets the ball to bounce down
+        bounce = BOUNCEDOWN;
     }
 
-    if (gameS->getBballBounce() == 1)  // checks if the ball is set bounce downward
+//    if (gameS->getBballBounce() == 1)  // checks if the ball is set bounce downward
+    if (bounce == BOUNCEDOWN)
     {
-        basketballInstance[activeBBallInstance].getPhysBody()->setLinearVelocity(btVector3(0,-10,0));
+//        basketballInstance[activeBBallInstance].getPhysBody()->setLinearVelocity(btVector3(0,-10,0));
+        getPhysBody()->setLinearVelocity(btVector3(0,-10,0));
     }
     else
     {
     }
 
-    pairCollided = false;
+//    pairCollided = false;
 //  logMsg("basketballInstance size = " +convert->toString(basketballInstance.size()));
 //  logMsg("courtInstance size = " +convert->toString(courtInstance.size()));
 
 //  logMsg("basketballInstance position = " + convert->toString(basketballInstance[activeBBallInstance].getNode()->getPosition()));
 //  logMsg("courtInstance position = " + convert->toString(courtInstance[0].getNode()->getPosition()));
 
-    btRigidBody *bballPhysBody = basketballInstance[activeBBallInstance].getPhysBody();
-    btRigidBody *courtPhysBody = courtInstance[0].getPhysBody();
+//    btRigidBody *bballPhysBody = basketballInstance[activeBBallInstance].getPhysBody();
+//    btRigidBody *courtPhysBody = courtInstance[0].getPhysBody();
 //  bballPhysBody->checkCollideWith(courtPhysBody);
-    world->contactPairTest(bballPhysBody, courtPhysBody, courtCollisionResult);
-//    logMsg("court collision " +convert->toString(courtCollisionResult));
-    int numManifolds = world->getDispatcher()->getNumManifolds();
+//    physEngine.getWorld()->contactPairTest(getPhysBody(), courtPhysBody, courtCollisionResult);
+    bool bballCourtCollided = physEngine.collisionCheck(getPhysBody(), courtPhysBody);
+    //    logMsg("court collision " +convert->toString(courtCollisionResult));
+    int numManifolds = physEngine.getWorld()->getDispatcher()->getNumManifolds();
     for (int i = 0; i<numManifolds; i++)
     {
-        btPersistentManifold* contactManifold = world->getDispatcher()->getManifoldByIndexInternal(i);
+        btPersistentManifold* contactManifold = physEngine.getWorld()->getDispatcher()->getManifoldByIndexInternal(i);
 //      btCollisionObject* obA = static_cast<btCollisionObject*>(contactManifold->getBody0());
 //      btCollisionObject* obB = static_cast<btCollisionObject*>(contactManifold->getBody1());
         #if BT_BULLET_VERSION>=281
@@ -243,7 +259,7 @@ void basketballPhysics::ballDribbling()  // simulates basketball dribble
                 const btVector3& ptB = pt.getPositionWorldOnB();
                 const btVector3& normalOnB = pt.m_normalWorldOnB;
                 // ZOMG A COLLISIONNNNNNNNNNN ...
-                if ((btRigidBody*)obA == bballPhysBody || (btRigidBody*)obB == courtPhysBody)
+                if ((btRigidBody*)obA == getPhysBody() || (btRigidBody*)obB == courtPhysBody)
                 {
                     logMsg("ball collided with court!");
                    // exit(0);
@@ -255,7 +271,7 @@ void basketballPhysics::ballDribbling()  // simulates basketball dribble
     int dee = 0;
 
     logMsg("basketball - court collision tested");
-    if (courtCollisionResult.m_connected)
+    if (bballCourtCollided)
     {
 //      gameS->setPlayerWithBall(gameS->getBallTippedToPlayer());
 //      gameS->setBallTipForceApplied(false);
@@ -264,7 +280,8 @@ void basketballPhysics::ballDribbling()  // simulates basketball dribble
 //      basketballInstance[activeBBallInstance].getPhysBody()->setLinearVelocity(btVector3(0,10,0));
 //      gameS->setTipOffComplete(true);
 //          exit(0);
-        gameS->setBballBounce(0);
+//        gameS->setBballBounce(0);
+        bounce = BOUNCEUP;
     }
     else
     {

@@ -61,6 +61,16 @@ void physics::setShapeType(physicsShapes set)  // sets the value of shapeType
     shapeType = set;
 }
 
+btRigidBody *physics::getPhysBody()  // retrieves physBody variable
+{
+    return (physBody);
+}
+
+void physics::setPhysBody(btRigidBody *set)  // sets physBody variable
+{
+    physBody = set;
+}
+
 int physics::getColObject()  // retrieves the value of colObject
 {
     return (colObject);

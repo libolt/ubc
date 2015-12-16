@@ -43,7 +43,10 @@ class physics : public physicsEngine
 
         physicsShapes getShapeType();  // retrieves the value of shapeType
         void setShapeType(physicsShapes set);  // sets the value of shapeType
-       
+ 
+        btRigidBody *getPhysBody();  // retrieves the value of physBody
+        void setPhysBody(btRigidBody *set);  // sets the value of physBody
+
         int getColObject();  // retrieves the value of colObject
         void setColObject(int set);  // sets the value of colObject
  
@@ -69,6 +72,8 @@ class physics : public physicsEngine
 
         physicsShapes shapeType;  // stores what type of shape to create 
         
+        btRigidBody *physBody;  // stores the physics object that represents the player
+    
         size_t entityInstance;  // stores which instance of the entity object(s) to use for shape
         
         int colObject;  // stores the type of collision object

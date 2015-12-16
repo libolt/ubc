@@ -80,16 +80,6 @@ void entity::setNode(Ogre::SceneNode *set)  // sets the value of node
     node = set;
 }
 
-btRigidBody *entity::getPhysBody()  // retrieves physBody variable
-{
-    return (physBody);
-}
-
-void entity::setPhysBody(btRigidBody *set)  // sets physBody variable
-{
-    physBody = set;
-}
-
 bool entity::getPhysicsSetup()  // retrieves the value of physicsSetup
 {
     return (physicsSetup);

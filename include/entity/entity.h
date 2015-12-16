@@ -50,8 +50,6 @@ class entity  // base class for entity objects
     Ogre::SceneNode *getNode();  // retrieves the value of node
     void setNode(Ogre::SceneNode *set);  // sets the value of node
 
-    btRigidBody *getPhysBody();  // retrieves the value of physBody
-    void setPhysBody(btRigidBody *set);  // sets the value of physBody
 
     bool getPhysicsSetup();  // retrieves the value of physicsSetup
     void setPhysicsSetup(bool set);  // sets the value of physicsSetup
@@ -82,9 +80,6 @@ class entity  // base class for entity objects
     Ogre::SceneNode *node;  // stores node 3d model is attached to
 
     Ogre::Vector3 nodePosition;  // stores the position of the node
-
-    // stores the physics object that represents the player
-    btRigidBody *physBody;
 
     bool physicsSetup;  // stores whether the physics object needs setup
     

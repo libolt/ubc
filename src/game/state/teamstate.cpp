@@ -771,6 +771,7 @@ bool teamState::createPlayerInstances()
 
 void teamState::setPlayerStartPositions()	// sets the initial coordinates for the players.
 {
+
     //conversion *convert = conversion::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
     //gameState *gameS = gameState::Instance();
@@ -791,18 +792,20 @@ void teamState::setPlayerStartPositions()	// sets the initial coordinates for th
             gameS->setCourtStartPositions();
         }
     }
+
     std::vector<courtState> courtInstance = gameS->getCourtInstance();
 
     Ogre::Vector3 courtPos = courtInstance[0].getNodePosition();
 //    exit(0);
-    float yOffset = courtPos.y + 5.0;
+/*    float yOffset = courtPos.y + 5.0;
     float y = 0.0;
     logMsg("courtpos.y == " +convert->toString(courtPos.y));
     logMsg("yOffset == " +convert->toString(yOffset));
+*/
 //    exit(0);
     // set initial player coordinates for the tipoff
 
-    if (teamType == HOMETEAM)	// assigns the positions and directions for team 1 players
+/*    if (teamType == HOMETEAM)	// assigns the positions and directions for team 1 players
 	{
 		// assign positions
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
@@ -842,27 +845,17 @@ void teamState::setPlayerStartPositions()	// sets the initial coordinates for th
 
         playerDirection = RIGHT;        
     }
-    
+*/    
+/*    
     if (startingPos.size() > 0)
     {
         
 //        for (size_t i=0;i<5;++i)
         size_t i = 0;
-/*        while (i<teamStarterID[teamType].size())
-        {
-            size_t playerID = teamStarterID[teamType][i];
-            logMsg("ID " +convert->toString(i) +" = " +convert->toString(playerID));
-*/
+
         size_t x = 0;
         while (x < activePlayerInstance.size()) //&& playerID != playerInstance[x].getPlayerID())
         {
-/*            if (playerID == playerInstance[x].getPlayerID())
-            {
-
-                logMsg("Player ID = " +convert->toString(playerInstance[x].getPlayerID()));
-                logMsg("X " +convert->toString(i) +" = " +convert->toString(x));
-            playerInstance[x].setIsActive(true);    // sets the player active for startup which is used by other code such as physics and steering
-*/
             
             if (activePlayerInstance[x].getActivePosition() == PG)
             {
@@ -925,20 +918,20 @@ void teamState::setPlayerStartPositions()	// sets the initial coordinates for th
 //            }
             x++;            
         }      
-/*            i++;
-        }
-*/
 //	    exit(0);
 	}
+*/
     size_t x = 0;
+    /*
     while (x < activePlayerInstance.size())
     {
         
-        logMsg("PlayerSteerNode Position == " +convert->toString(activePlayerInstance[x].getNode()->getPosition()));
+        logMsg("Team " +convert->toString(teamType) +" PlayerSteerNode" +convert->toString(x) +" Position == " +convert->toString(activePlayerInstance[x].getNode()->getPosition()));
 //        exit(0);
-        logMsg("PlayerSteer Position == " +convert->toString(activePlayerInstance[x].getSteer()->position()));
+        logMsg("Team " +convert->toString(teamType) +" PlayerSteer " +convert->toString(x) +" Position ==  " +convert->toString(activePlayerInstance[x].getSteer()->position()));
         ++x;
     }
+    */
 //    exit(0);
 }
 

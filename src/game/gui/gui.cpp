@@ -613,8 +613,10 @@ void GUISystem::playerStartSelected()  // process player start selection
     logMsg("GUI activePlayerInstance.size() = " +convert->toString(activePlayerInstance.size()));
     teamInstance[0].setActivePlayerInstance(activePlayerInstance);
     teamInstance[0].setPlayerStartActivePositions();
+    
     teamInstance[0].setPlayerStartPositions();
-    logMsg("Team 0 player start positions set");
+//    logMsg("Team 0 player start positions set");
+    exit(0);
     size_t i = 0;
     //std::vector<playerState> playerInstance;
     playerInstance.clear();

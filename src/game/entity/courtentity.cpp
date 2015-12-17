@@ -22,36 +22,36 @@
 
 courtEntity::courtEntity()  // constructor
 {
-    physics = new courtPhysics;
+//    physics = new courtPhysics;
 }
 courtEntity::~courtEntity()  // destructor
 {
 
 }
 
-courtPhysics *courtEntity::getPhysics()  // retrieves the value of physics
+/*courtPhysics *courtEntity::getPhysics()  // retrieves the value of physics
 {
     return (physics);
 }
 void courtEntity::setPhysics(courtPhysics *set)  // sets the value of physics
 {
     physics = set;
-}
+}*/
 
-bool courtEntity::setupPhysics()  // sets up the physics object
+bool courtEntity::setupPhysicsObject()  // sets up the physics object
 {
     Ogre::Entity *tempModel = getModel();
     Ogre::SceneNode *tempNode = getNode();
     btRigidBody *tempPhysBody = getPhysBody();
     
     int collides = COL_BBALL | COL_TEAM1 | COL_TEAM2;
-    getPhysics()->setShapeType(BOX);
-    getPhysics()->setColObject(COL_COURT);
-    getPhysics()->setCollidesWith(collides);
+    setShapeType(BOX);
+    setColObject(COL_COURT);
+    setCollidesWith(collides);
 
-    if (getPhysics()->setupPhysics(&tempModel, &tempNode, &tempPhysBody))
+    if (setupPhysics(&tempModel, &tempNode, &tempPhysBody))
     {
-        getPhysics()->setSetupComplete(true);
+        setPhysicsSetup(true);
         setModel(tempModel);
         setNode(tempNode);
         setPhysBody(tempPhysBody);

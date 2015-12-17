@@ -30,7 +30,9 @@
 #include "state/state.h"
 #include "entity/hoopentity.h"
 
-class hoopState : public state, public hoopEntity
+#include "physics/hoopphysics.h"
+
+class hoopState : public state, public hoopEntity, public hoopPhysics
 {
     public:
 

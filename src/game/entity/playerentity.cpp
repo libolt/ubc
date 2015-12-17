@@ -23,21 +23,21 @@
 
 playerEntity::playerEntity()  // constructor
 {
-    physics = new playerPhysics;
+//    physics = new playerPhysics;
 }
 playerEntity::~playerEntity()  // destructor
 {
 
 }
 
-playerPhysics *playerEntity::getPhysics()  // retrieves the value of physics
+/*playerPhysics *playerEntity::getPhysics()  // retrieves the value of physics
 {
     return (physics);
 }
 void playerEntity::setPhysics(playerPhysics *set)  // sets the value of physics
 {
     physics = set;
-}
+}*/
 
 playerSteer *playerEntity::getSteer() // retrieves the value of steer
 {
@@ -48,20 +48,20 @@ void playerEntity::setSteer(playerSteer *set)  // sets the value of steer
     steer = set;
 }
 
-bool playerEntity::setupPhysics()  // sets up the physics object
+bool playerEntity::setupPhysicsObject()  // sets up the physics object
 {
     logMsg("playerEntity!");
 //    exit(0);
     Ogre::Entity *tempModel = getModel();
     Ogre::SceneNode *tempNode = getNode();
     btRigidBody *tempPhysBody = getPhysBody();
-    getPhysics()->setShapeType(CAPSULE);
-    getPhysics()->setColObject(COL_BBALL);
+    setShapeType(CAPSULE);
+    setColObject(COL_BBALL);
 //    getPhysics()->setCollidesWith(COL_COURT);
 
-    if (getPhysics()->setupPhysics(&tempModel, &tempNode, &tempPhysBody))
+    if (setupPhysics(&tempModel, &tempNode, &tempPhysBody))
     {
-        getPhysics()->setSetupComplete(true);
+        setPhysicsSetup(true);
         setModel(tempModel);
         setNode(tempNode);
         setPhysBody(tempPhysBody);

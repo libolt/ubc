@@ -265,7 +265,7 @@ void physicsEngine::setupState(void)  // sets up the state of the physics engine
     else
     {
     }
-    */
+
     if (!hoopPhysicsSetup)
     {
         if (setupHoopPhysics())  // sets up physics state for hoop
@@ -279,7 +279,7 @@ void physicsEngine::setupState(void)  // sets up the state of the physics engine
     else
     {
     }
-
+*/
 }
 
 
@@ -308,7 +308,9 @@ void physicsEngine::updateState()  // updates the state for the physics engine
     if (gameS->getBasketballInstancesCreated())
     {
 //        exit(0);
-        basketballInstance[activeBBallInstance].getPhysics()->update();
+//        basketballInstance[activeBBallInstance].getPhysics()->update();
+        basketballInstance[activeBBallInstance].updatePhysObj();
+
     }
     else
     {
@@ -369,25 +371,26 @@ void physicsEngine::updateState()  // updates the state for the physics engine
             }
 
     //      exit(0);
-            if (teamInstance[teamWithBall].getPlayerWithBallbbbling())  // checks if the player with ball is dribbling and updates accordingly
+/// FIXME!
+/*            if (teamInstance[teamWithBall].getPlayerWithBallbbbling())  // checks if the player with ball is dribbling and updates accordingly
             {
 //              exit(0);
 //              logMsg("Dribbling!!");
-                ballDribbling();
+/// FIXME!                ballDribbling();
 //              logMsg("Human Player = " +convert->toString(teamInstance[1].getHumanPlayer()));
 
             }
-/*          else if (!teamInstance[teamWithBall].getPlayerWithBallDribbling())  // checks if the player with ball is dribbling and updates accordingly
-            {
-                exit(0);
-                cout << "dah" << endl;
-            }*/
+//          else if (!teamInstance[teamWithBall].getPlayerWithBallDribbling())  // checks if the player with ball is dribbling and updates accordingly
+//            {
+//                exit(0);
+//                cout << "dah" << endl;
+//            }
             else
             {
 //              logMsg("Not Dribbling");
             }
 //              logMsg("A Team Has Ball");
-
+*/
            // activePlayerInstance = teamInstance[teamWithBall].getActivePlayerInstance();
             playerWithBallID = teamInstance[teamWithBall].getPlayerWithBallID();
             logMsg("Player with ball ID ==" +convert->toString(playerWithBallID));
@@ -436,7 +439,6 @@ void physicsEngine::updateState()  // updates the state for the physics engine
 //    }
 
     updatePositions();  // updates the positions of game objects
-
 }
 
 void physicsEngine::updatePositions()  // updates thr position of objects

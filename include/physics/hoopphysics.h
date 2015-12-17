@@ -18,32 +18,19 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef _PLAYERENTITY_H_
-#define _PLAYERENTITY_H_
+#ifndef _HOOPPHYSICS_H_
+#define _HOOPPHYSICS_H_
 
-#include "entity/entity.h"
-#include "physics/playerphysics.h"
-#include "ai/playersteer.h"
+#include "physics.h"
 
-class playerEntity : public entity, public playerPhysics
+class hoopPhysics : public physics
 {
     public:
-    playerEntity();  // constructor
-    ~playerEntity();  // destructor
+        hoopPhysics();  // constructor
+        ~hoopPhysics();  // destructor
 
-/*    playerPhysics *getPhysics();  // retrieves the value of physics
-    void setPhysics(playerPhysics *set);  // sets the value of physics
-*/
-    playerSteer *getSteer(); // retrieves the steering instance
-    void setSteer(playerSteer *set); // sets the steering instance
-
-    bool setupPhysicsObject();  // sets up the physics object
- 
     private:
-
-//    playerPhysics *physics;  // stores the playerPhysics object
-
-    playerSteer *steer;  // stores the steering objerct that represents the player
 };
 
-#endif // _PLAYERENTITY_H_
+#endif // HOOPPHYSICS_H
+

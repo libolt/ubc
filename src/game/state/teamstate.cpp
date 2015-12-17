@@ -747,12 +747,12 @@ bool teamState::createPlayerInstances()
                         exit(0);
                     }
                 }
-                if (playerInstance[x].setupPhysics())
+                if (playerInstance[x].setupPhysicsObject())
                 {
                     logMsg("player setupPhysics!");
                     //exit(0);
-                    playerInstance[x].getPhysics()->setSetupComplete(true);
-                    playerInstance[x].getPhysics()->setCollidesWith(teamCollidesWith);
+                    playerInstance[x].setPhysicsSetup(true);
+                    playerInstance[x].setCollidesWith(teamCollidesWith);
                 }
                 else
                 {

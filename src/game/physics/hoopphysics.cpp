@@ -17,33 +17,15 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+#include "state/gamestate.h"
 
-#ifndef _PLAYERENTITY_H_
-#define _PLAYERENTITY_H_
+#include "physics/hoopphysics.h"
 
-#include "entity/entity.h"
-#include "physics/playerphysics.h"
-#include "ai/playersteer.h"
-
-class playerEntity : public entity, public playerPhysics
+hoopPhysics::hoopPhysics()  // constructor
 {
-    public:
-    playerEntity();  // constructor
-    ~playerEntity();  // destructor
 
-/*    playerPhysics *getPhysics();  // retrieves the value of physics
-    void setPhysics(playerPhysics *set);  // sets the value of physics
-*/
-    playerSteer *getSteer(); // retrieves the steering instance
-    void setSteer(playerSteer *set); // sets the steering instance
+}
+hoopPhysics::~hoopPhysics()  // destructor
+{
 
-    bool setupPhysicsObject();  // sets up the physics object
- 
-    private:
-
-//    playerPhysics *physics;  // stores the playerPhysics object
-
-    playerSteer *steer;  // stores the steering objerct that represents the player
-};
-
-#endif // _PLAYERENTITY_H_
+}

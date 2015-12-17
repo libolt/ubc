@@ -43,7 +43,7 @@
 #include "state/playerstate.h"
 #include "state/courtstate.h"
 
-class basketballState : public state, public basketballEntity, public basketballPhysics
+class basketballState : public state, public basketballEntity
 {
 public:
 

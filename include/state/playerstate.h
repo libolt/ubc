@@ -44,7 +44,7 @@
 #include "entity/playerentity.h"
 #include "data/playerdata.h"
 
-class playerState : public state, public playerEntity, public playerData, public playerPhysics
+class playerState : public state, public playerEntity, public playerData
 {
     public:
 

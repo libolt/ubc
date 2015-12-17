@@ -136,8 +136,8 @@ bool entity::loadModel()  // loads the 3D model
    return true;
 }
 
-bool entity::setupPhysics()  // sets up the physics object
+/*bool entity::setupPhysics()  // sets up the physics object
 {
 //    bballInstance.getPhysics().setupPhysics(*model);
     return (false);
-}
+}*/

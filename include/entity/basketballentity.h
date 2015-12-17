@@ -25,24 +25,24 @@
 #include "physics/basketballphysics.h"
 #include "ai/basketballsteer.h"
 
-class basketballEntity : public entity
+class basketballEntity : public entity, public basketballPhysics
 {
     public:
     
     basketballEntity();  // constructor
     ~basketballEntity();  // destructor
     
-    basketballPhysics *getPhysics();  // retrieves the value of physics
+/*    basketballPhysics *getPhysics();  // retrieves the value of physics
     void setPhysics(basketballPhysics *set);  // sets the value of physics
-
+*/
     basketballSteer *getSteer();  // retrieves the value of steer
     void setSteer(basketballSteer *set);  // sets the value of steer
 
-    bool setupPhysics();  // sets up the physics object
+    bool setupPhysicsObject();  // sets up the physics object
     
     private:
-    
-    basketballPhysics *physics;  // instanciates an object to handle the physics for the basketball
+
+//    basketballPhysics *physics;  // instanciates an object to handle the physics for the basketball
 
     basketballSteer *steer;  // instance of the basketballSteer class
 

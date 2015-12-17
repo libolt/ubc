@@ -356,7 +356,7 @@ bool gameState::createBasketballInstances()  // creates basketball Instances
     {
         bballInstance.setModelNeedsLoaded(false);
         bballInstance.setModelLoaded(true);
-        bballInstance.setupPhysics();
+        bballInstance.setupPhysicsObject();
     }
     logMsg("creating steer object");
     basketballSteer *bballSteer = new basketballSteer;  // steer instance

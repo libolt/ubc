@@ -53,17 +53,18 @@ class physics : public physicsEngine
         int getCollidesWith();  // retrieves the value of collidesWith
         void setCollidesWith(int set);  // sets the value of collidesWith
 
-        size_t getNumber();  // retrieves the value of number
-        void setNumber(size_t set);  // sets the value of number
+        size_t getPhysObjNumber();  // retrieves the value of number
+        void setPhysObjNumber(size_t set);  // sets the value of number
 
-        bool getSetupComplete();  // retrieves the value of physicsSetup
+/*        bool getSetupComplete();  // retrieves the value of physicsSetup
         void setSetupComplete(bool set);  // sets the value of physicsSetup
+*/
 
         bool setupPhysics(Ogre::Entity **model, Ogre::SceneNode **node, btRigidBody **physBody);  // sets up object physics
 
         bool setup();  // sets up the object
 
-        void update();  // updates the object
+        void updatePhysObj();  // updates the object
 
     private:
 
@@ -80,9 +81,9 @@ class physics : public physicsEngine
 
         int collidesWith;	// determines what the object collides with
 
-        bool setupComplete;  // stores whether the basketblal physics have been setup.
+//        bool setupComplete;  // stores whether the basketblal physics have been setup.
 
-        size_t number;  // stores the number of the object
+        size_t physObjNumber;  // stores the number of the object
 
 };
 

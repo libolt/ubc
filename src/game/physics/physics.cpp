@@ -23,9 +23,9 @@
 
 physics::physics()  // constructor
 {
-    setupComplete = false;
+//    physicsSetup = false;
 
-    number = 999999;
+    physObjNumber = 999999;
 
 }
 physics::~physics()  // destructor
@@ -89,23 +89,23 @@ void physics::setCollidesWith(int set)  // sets the value of collidesWith
     collidesWith = set;
 }
 
-size_t physics::getNumber()  // retrieves the value of number
+size_t physics::getPhysObjNumber()  // retrieves the value of number
 {
-    return (number);
+    return (physObjNumber);
 }
-void physics::setNumber(size_t set)  // sets the value of number
+void physics::setPhysObjNumber(size_t set)  // sets the value of number
 {
-    number = set;
+    physObjNumber = set;
 }
 
-bool physics::getSetupComplete()  // retrieves the value of setupComplete
+/*bool physics::getSetupComplete()  // retrieves the value of setupComplete
 {
     return (setupComplete);
 }
 void physics::setSetupComplete(bool set)  // sets the value of setupComplete
 {
     setupComplete = set;
-}
+}*/
 
 bool physics::setup()  // sets up the state of the object
 {
@@ -196,20 +196,21 @@ bool physics::setupPhysics(Ogre::Entity **model, Ogre::SceneNode **node, btRigid
     return (true);
 }
 
-void physics::update()  // updates object physics state
+void physics::updatePhysObj()  // updates object physics state
 {
-    if (setupComplete)
+/*    if (physicsSetup)
     {
-/*        if (setupPhysics())  // sets up physics state for the object
+        if (setupPhysics())  // sets up physics state for the object
         {
             setupComplete = true;
         }
         else
         {
         }
-*/
+
     }
     else
     {
     }
+*/
 }

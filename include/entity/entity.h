@@ -23,6 +23,7 @@
 
 #include <string>
 #include "Ogre.h"
+#include "OgreEntity.h"
 #include "OgreVector3.h"
 #include "BtOgrePG.h"
 #include "BtOgreGP.h"
@@ -65,7 +66,7 @@ class entity  // base class for entity objects
 
     bool loadModel();  // loads the 3D model from file specified in modelName
     
-    bool setupPhysics();  // sets up the physics object
+//    bool setupPhysics();  // sets up the physics object
     
     private:
     

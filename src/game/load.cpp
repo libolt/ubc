@@ -17,7 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
- 
+
 #ifdef __ANDROID__
 #include "android-config.h"
 #else
@@ -30,12 +30,12 @@
 #include "logging.h"
 #include "data/playerdata.h"
 #include "engine/renderengine.h"
+#include "state/basketballstate.h"
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 #include "android.h"
 #endif
 
-using namespace std;
 
 loader::loader()  // constructor
 {
@@ -84,6 +84,15 @@ std::vector<std::string> loader::getOffensePlayFiles()  // retrieves the value o
 void loader::setOffensePlayFiles(std::vector<std::string> set)  // sets the value of offensePlayFiles
 {
     offensePlayFiles = set;
+}
+
+std::vector<std::string> loader::getBasketballFiles()  // retrieves the value of basketballFiles
+{
+    return (basketballFiles);
+}
+void loader::setBasketballFiles(std::vector<std::string> set)  // sets the value of basketballFiles
+{
+    basketballFiles = set;
 }
 
 std::vector<std::string> loader::getCourtFiles()   // retrieves the value of courtFiles
@@ -1359,6 +1368,144 @@ offensePlays loader::loadOffensePlayFile(string fileName)  // loads data from th
     play.setPlayerDirective(playerDirective);
 
     return (play);
+}
+
+// Basketballs
+std::vector<basketballState> loader::loadBasketballs()  // load basketball settings from XML files
+{
+    std::vector<basketballState> basketballs;
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+    string basketballList = "data/basketballs/basketballs.xml";
+#else
+    string basketballList = findFile("basketballs/basketballs.xml");
+#endif
+    loadBasketballListFile(basketballList);
+//    std::vector<std::string> playerFiles = load->getPlayerFiles();
+
+    std::vector<std::string>::iterator it;
+    for (it = basketballFiles.begin(); it != basketballFiles.end(); ++it)
+    {
+        logMsg("basketballFile = " +*it);
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+        basketballs.push_back(loadBasketballFile("data/basketballs/" + *it));
+#else
+        basketballs.push_back(loadBasketballFile(findFile("basketballs/" + *it)));
+#endif
+    }
+    return (basketballs);
+}
+
+bool loader::loadBasketballListFile(string fileName) // loads the list of baskteball list file
+{
+    boost::shared_ptr<conversion> convert = conversion::Instance();
+    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+    std::vector<std::string> basketballFile;
+
+    std::string fileContents;
+    tinyxml2::XMLDocument doc;
+
+    logMsg(fileName);
+    char *contents = NULL;
+    readFile(fileName.c_str(), &contents);
+    fileContents = convert->toString(contents);
+    logMsg("fileContents = " +fileContents);
+
+    doc.Parse(contents);
+    if (doc.Error())
+    {
+        logMsg("Unable to parse basketballs.xml file");
+        logMsg("Error ID = " +convert->toString(doc.ErrorID()));
+        logMsg(convert->toString(doc.GetErrorStr1()));
+        logMsg(convert->toString(doc.GetErrorStr2()));
+        exit(0);
+    }
+
+    tinyxml2::XMLHandle hDoc(&doc);
+    tinyxml2::XMLElement *pElem;
+    tinyxml2::XMLHandle hRoot(0);
+    pElem=hDoc.FirstChildElement().ToElement();
+    // should always have a valid root but handle gracefully if it does
+    if (!pElem)
+    {
+        logMsg("Unable to find a valid basketball list root!");
+    }
+
+    // save this for later
+    hRoot=tinyxml2::XMLHandle(pElem);
+
+    pElem=hRoot.FirstChild().ToElement();
+    for( pElem; pElem; pElem=pElem->NextSiblingElement())
+    {
+        string pKey=pElem->Value();
+        string pText=pElem->GetText();
+        basketballFile.push_back(pText);
+    }
+
+    setBasketballFiles(basketballFile);
+
+    return true;
+}
+
+basketballState loader::loadBasketballFile(string fileName)  // loads data from the basketball XML files
+{
+    boost::shared_ptr<conversion> convert = conversion::Instance();
+
+    basketballState basketball;
+    std::string name;
+    std::string modelName;
+
+    std::string fileContents;
+    tinyxml2::XMLDocument doc;
+
+    char *contents = NULL;
+    readFile(fileName.c_str(), &contents);
+    fileContents = convert->toString(contents);
+
+    doc.Parse(contents);
+    if (doc.Error())
+    {
+        logMsg("Unable to parse basketball xml file");
+        logMsg("Error ID = " +convert->toString(doc.ErrorID()));
+        logMsg(convert->toString(doc.GetErrorStr1()));
+        logMsg(convert->toString(doc.GetErrorStr2()));
+        exit(0);
+    }
+
+    tinyxml2::XMLHandle hDoc(&doc);
+    tinyxml2::XMLElement *rootElement;
+    tinyxml2::XMLElement *child;
+    tinyxml2::XMLHandle hRoot(0);
+
+    rootElement = doc.FirstChildElement()->ToElement();
+    // should always have a valid root but handle gracefully if it does
+    if (!rootElement)
+    {
+        logMsg("Unable to load basketball element");
+        //exit(0);
+    }
+
+    child = rootElement->FirstChild()->ToElement();
+    if (child)
+    {
+        string cKey = child->Value();
+        if (cKey == "Name")
+        {
+            name = child->GetText();
+            logMsg("name = " +name);
+        }
+        child = child->NextSiblingElement()->ToElement();
+        if (child)
+        {
+            modelName = child->GetText();
+            logMsg("modelName = " +modelName);
+        }
+
+    }
+
+    basketball.setName(name);
+    basketball.setModelFileName(modelName);
+
+    return (basketball);
 }
 
 // Courts

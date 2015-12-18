@@ -52,8 +52,10 @@ gameState::gameState()  // constructor
     hoopInstancesCreated = false;
     playerInstancesCreated = false;
     teamInstancesCreated = false;
+    basketballModelLoaded = false;
     courtModelLoaded = false;
     hoopModelLoaded = false;
+    modelsLoaded = false;
     setupEnvironmentCompleted = false;
     courtDataLoaded = false;
     gameStarted = false;
@@ -63,6 +65,7 @@ gameState::gameState()  // constructor
     selectedCourtDataInstance = -1;
     
     activeBBallInstance = -1;
+    activeCourtInstance = -1;
 
     gameType = NOGAME;
     gameSetupComplete = false;
@@ -288,20 +291,20 @@ void gameState::setBasketballInstancesCreated(bool set)  // sets the value of ba
     basketballInstancesCreated = set;
 }
 
-bool gameState::getCourtInstanceCreated()  // gets the value of the courtInstanceCreated
+bool gameState::getCourtInstancesCreated()  // gets the value of the courtInstancesCreated
 {
-    return (courtInstanceCreated);
+    return (courtInstancesCreated);
 }
-void gameState::setCourtInstanceCreated(bool set)  // sets the value of the courtInstanceCreated
+void gameState::setCourtInstancesCreated(bool set)  // sets the value of the courtInstancesCreated
 {
-    courtInstanceCreated = set;
+    courtInstancesCreated = set;
 }
 
 bool gameState::getHoopInstancesCreated()  // retrieves the value of hoopInstancesCreated
 {
     return (hoopInstancesCreated);
 }
-void gameState::setHoopInstancesCreated(bool created)  // sets the value of hoopInstancesCreated
+void gameState::setHoopInstancesCreated(bool set)  // sets the value of hoopInstancesCreated
 {
     hoopInstancesCreated = set;
 }
@@ -310,7 +313,7 @@ bool gameState::getPlayerInstanceCreated()  // retrieves the value of playerInst
 {
     return (playerInstancesCreated);
 }
-void gameState::setPlayerInstanceCreated(bool created)  // sets the value of playerInstancesCreated
+void gameState::setPlayerInstanceCreated(bool set)  // sets the value of playerInstancesCreated
 {
     playerInstancesCreated = set;
 }
@@ -328,9 +331,18 @@ bool gameState::getCourtModelLoaded()  // retrieves the value of courtModelLoade
 {
     return (courtModelLoaded);
 }
-void gameState::setCourdModelLoaded(bool set)  // sets the value of courtModelLoaded
+void gameState::setCourtModelLoaded(bool set)  // sets the value of courtModelLoaded
 {
-    courtModelLoaded = true;
+    courtModelLoaded = set;
+}
+
+bool gameState::getModelsLoaded()  // retrieves the value of modelsLoaded
+{
+    return (modelsLoaded);
+}
+void gameState::setModelsLoaded(bool set)  // sets the value of modelsLoaded
+{
+    modelsLoaded = set;
 }
 
 /*bool gameState::getStateSet()  // retrieves the value of stateSet
@@ -395,7 +407,7 @@ bool gameState::createInstances()  // creates object instances
     {
         if (createHoopInstances())  // create hoop instances
         {
-            hoopInstancesCreated = true
+            hoopInstancesCreated = true;
             return (true);
         }
         else 
@@ -406,7 +418,7 @@ bool gameState::createInstances()  // creates object instances
     
     if (!basketballInstancesCreated)
     {
-        if (createBasketbaInstances())  // create basketball instances
+        if (createBasketballInstances())  // create basketball instances
         {
             basketballInstancesCreated = true;
             return (true);
@@ -428,13 +440,6 @@ bool gameState::createBasketballInstances()  // creates basketball Instances
     bballInstance.setEntityName(bballInstance.getModelFileName());
     bballInstance.setEntityNodeName(bballInstance.getModelFileName());
 
-    logMsg("loading model");
-    if (bballInstance.loadModel())
-    {
-        bballInstance.setModelNeedsLoaded(false);
-        bballInstance.setModelLoaded(true);
-        bballInstance.setupPhysicsObject();
-    }
     logMsg("creating steer object");
     basketballSteer *bballSteer = new basketballSteer;  // steer instance
     bballInstance.setSteer(bballSteer);
@@ -492,16 +497,12 @@ bool gameState::createHoopInstances()  // creates hoop Instances
     hoopState *hInstance = new hoopState[2];  // creates an instance of the hoopState class
 //    cInstance.setModelFileName("court.mesh");
     hInstance[0].setEntityName("hoop1");
-    hInstance[0].setModelFileName("Hoop.mesh");
-    hInstance[0].setNodeName("hoopNode1");
-    hInstance[0].loadModel();
-    hInstance[0].getNode()->setScale(0.8f,0.8f,0.8f);
+    hInstance[0].setEntityModelFileName("Hoop.mesh");
+    hInstance[0].setEntityNodeName("hoopNode1");
 
     hInstance[1].setEntityName("hoop2");
-    hInstance[1].setModelFileName("Hoop.mesh");
-    hInstance[1].setNodeName("hoopNode2");
-    hInstance[1].loadModel();
-    hInstance[1].getNode()->setScale(0.8f,0.8f,0.8f);
+    hInstance[1].setEntityModelFileName("Hoop.mesh");
+    hInstance[1].setEntityNodeName("hoopNode2");
 
     hoopInstance.push_back(hInstance[0]);  // loads the first hoop
     hoopInstance.push_back(hInstance[1]);  // loads the second hoop
@@ -536,23 +537,101 @@ bool gameState::setupEnvironment()
 
     return (true);
 }
+bool gameState::loadBasketballModel()  // loads selected basketball model
+{
+    logMsg("loading model");
+    if (basketballInstance[activeBBallInstance].loadModel())
+    {
+        basketballInstance[activeBBallInstance].setModelNeedsLoaded(false);
+        basketballInstance[activeBBallInstance].setModelLoaded(true);
+        basketballInstance[activeBBallInstance].setupPhysicsObject();
+        return (true);
+    }
+    else
+    {
+        logMsg("Failed to load the basketball model!");
+    }
+    return (false);
+}
 
 bool gameState::loadCourtModel()  // loads selected court model
 {
-    logMsg("Model Name = " +courtInstance[selectedCourtInstance].getModelFileName());
+    logMsg("Model Name = " +courtInstance[activeCourtInstance].getModelFileName());
 
-    courtInstance[selectedCourtInstance].setEntityModelFileName(courtInstance[selectedCourtInstance].getModelFileName());
-    courtInstance[selectedCourtInstance].setEntityNodeName(courtInstance[selectedCourtInstance].getModelFileName());
-    courtInstance[selectedCourtInstance].setEntityName(courtInstance[selectedCourtInstance].getModelFileName());
-    if (courtInstance[selectedCourtInstance].loadModel())
+    courtInstance[activeCourtInstance].setEntityModelFileName(courtInstance[activeCourtInstance].getModelFileName());
+    courtInstance[activeCourtInstance].setEntityNodeName(courtInstance[activeCourtInstance].getModelFileName());
+    courtInstance[activeCourtInstance].setEntityName(courtInstance[activeCourtInstance].getModelFileName());
+    if (courtInstance[activeCourtInstance].loadModel())
     {
-        courtInstance[selectedCourtInstance].getNode()->setScale(1.0f,1.0f,1.0f);
-        return (true)
+        courtInstance[activeCourtInstance].getNode()->setScale(1.0f,1.0f,1.0f);
+        return (true);
     }
     else
     {
         logMsg("Court model not loaded!");
     }
+    return (false);
+}
+
+bool gameState::loadHoopModel()  // loads selected hoop model
+{
+    hoopInstance[0].loadModel();
+    hoopInstance[0].getNode()->setScale(0.8f,0.8f,0.8f);
+    hoopInstance[1].loadModel();
+    hoopInstance[1].getNode()->setScale(0.8f,0.8f,0.8f);
+
+    return (false);
+}
+
+bool gameState::loadModels()  // loads all game object models excluding the players
+{
+    if (!basketballModelLoaded)  // Checks if basketball model has been loaded
+    {
+        logMsg("Loading basketball Model!");
+        if (loadBasketballModel())  // Loads the basketball model
+        {
+            basketballInstancesCreated = true;
+            return (true);
+        }
+        else
+        {
+            logMsg("Unable to load basketball model!");
+        }
+
+        // FIXEME! this should not be hard coded
+        activeBBallInstance = 0;  // Sets the active basketball instance
+    }
+
+    if (!courtModelLoaded)  // Checks if the court model has been loaded
+    {
+        logMsg("Loading court model!");
+        if (loadCourtModel())  // load the court model
+        {
+            courtModelLoaded = true;
+            return (true);
+        }
+        else
+        {
+            logMsg("Unable to load the court model!");
+        }
+    }
+
+
+    if (!hoopModelLoaded)  // Checks if the hoop model(s) have been loaded
+    {
+        logMsg("Loading hoop model(s)!");
+        if (loadHoopModel())  // Creates the hoop instances
+        {
+            hoopModelLoaded = true;
+            return (true);
+        }
+        else
+        {
+            logMsg("Unable to load the hoop model(s)!");
+        }
+    }
+
+
     return (false);
 }
 
@@ -648,35 +727,20 @@ bool gameState::setupState()  // sets up the game condition
 
     logMsg("Setting up state!");
 
-    if (!courtModelLoaded)
+    if (!modelsLoaded)
     {
-        logMsg("creating court instances!");
-        if (createCourtInstances())  // creates the court instances
+        if (loadModels())
         {
-            courtModelLoaded = true;
-            courtInstanceCreated = true;
+            modelsLoaded = true;
+        }
+        else
+        {
+            logMsg("Unable to load all models!");
         }
     }
-
-    if (!basketballInstancesCreated)  // checks if court model has been loaded
+    else
     {
-        logMsg("creating basketball instances!");
-    	if (createBasketballInstances())  // creates the basketball instances
-    	{
-            basketballInstancesCreated = true;
-    	}
 
-        // FIXEME! this should not be hard coded
-        activeBBallInstance = 0;  // sets the active basketball instance
-    }
-
-    if (!hoopModelLoaded)
-    {
-        logMsg("creating hoop instances!");
-        if (createHoopInstances())  // creates the hoop instances
-        {
-            hoopModelLoaded = true;
-        }
     }
 
     setBasketballStartPositions();  // sets starting positions for all basketballs that are instantiated

@@ -666,7 +666,7 @@ bool teamState::createPlayerInstances()
             pInstance.setSteer(pSteer);
             playerInstance.push_back(pInstance);    // adds pInstance to the playerInstance std::vector.
 
-            logMsg("Player Model Name == " +gamePlayerInstance[i].getModelFileName());
+            logMsg("Player Model Name == " +gamePlayerInstance[i].getEntityModelFileName());
 //            exit(0);
             logMsg("teamID!!!!");
             logMsg("pInstance set!");
@@ -734,7 +734,7 @@ bool teamState::createPlayerInstances()
                     logMsg("Here as well!");
 //                    exit(0);
                     playerInstance[x].setEntityName(playerInstance[x].getPlayerName());
-                    playerInstance[x].setNodeName(playerInstance[x].getPlayerName());
+                    playerInstance[x].setEntityNodeName(playerInstance[x].getPlayerName());
                     if (playerInstance[x].loadModel())
                     {
                         logMsg("Loading Model");
@@ -783,7 +783,7 @@ void teamState::setPlayerStartPositions()	// sets the initial coordinates for th
     std::vector<Ogre::Vector3> startingPos;
     directions playerDirection; // stores the direction players face at start
 
-    if (!gameS->getCourtInstanceCreated())
+/*    if (!gameS->getCourtInstanceCreated())
     {
         if (gameS->createCourtInstances())
         {
@@ -791,7 +791,7 @@ void teamState::setPlayerStartPositions()	// sets the initial coordinates for th
             gameS->setCourdModelLoaded(true);
             gameS->setCourtStartPositions();
         }
-    }
+    }*/
 
     std::vector<courtState> courtInstance = gameS->getCourtInstance();
 

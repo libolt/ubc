@@ -31,7 +31,9 @@
 
 #include "tinyxml2.h"
 
-#include "data/courtdata.h"
+#include "state/basketballstate.h"
+#include "state/courtstate.h"
+#include "state/hoopstate.h"
 #include "state/gamestate.h"
 #include "offenseplays.h"
 #include "userinput.h"
@@ -54,6 +56,10 @@ public:
 
     std::vector<std::string> getOffensePlayFiles();  // retrieves the value of offensePlayFiles
     void setOffensePlayFiles(std::vector<std::string> set);  // sets the value of offensePlayFiles
+
+    
+    std::vector<std::string> getBasketballFiles();  // retrieves the value of basketballFiles
+    void setBasketballFiles(std::vector<std::string> set);  // sets the value of basketballFiles
 
     std::vector<std::string> getCourtFiles();  // retrieves the value of courtFiles
     void setCourtFiles(std::vector<std::string> set);  // sets the value of courtFiles
@@ -83,12 +89,17 @@ public:
     bool loadOffensePlayListFile(string fileName);  // loads the list of offense play files from plays.xml
     offensePlays loadOffensePlayFile(string fileName);	// loads data from the offense play XML files
 
-    // courts
+    // Basketballs
+    std::vector<basketballState> loadBasketballs();  // load basketball XML files
+    bool loadBasketballListFile(string fileName);  // load the list of basketballs from basketballs.xml
+    basketballState loadBasketballFile(string fileName);  // loads data from the basketball XML files.
+
+    // Courts
     std::vector<courtState> loadCourts();  // load court XML files
     bool loadCourtListFile(string fileName);  // load the list of courts from courts.xml
     courtState loadCourtFile(string fileName);  // loads data from the court XML files.
 
-    // user input
+    // User input
     std::vector<userInput> loadUserInputs();  // load user input XML files
     bool loadUserInputListFile(string fileName);  // load the list of user input configs from userinputs.xml
     userInput loadUserInputFile(string fileName);  // loads data from the user input XML files.
@@ -105,6 +116,7 @@ private:
     std::vector<std::string> teamFiles;	 // stores list of team xml files
     std::vector<std::string> offensePlayFiles;  // stores list of offense play xml files
     std::vector<std::string> courtFiles;  // stores list of court xml files
+    std::vector<std::string> basketballFiles;  // stores list of basketball xml files
     std::vector<std::string> userInputFiles;  // stores list of court xml files
 
 };

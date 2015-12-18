@@ -40,23 +40,23 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
 {
     boost::shared_ptr<gameState> gameS = gameState::Instance();
     
-    std::vector<courtData> courtDataInstance;
+    std::vector<courtState> courtInstance;
     std::vector<std::string> courtName;
-    if (!gameS->getCourtDataLoaded())
+    if (!gameS->getCourtInstancesCreated())
     {
-        if (gameS->createCourtDataInstances())
+        if (gameS->createCourtInstances())
         {
-            gameS->setCourtDataLoaded(true);
+            gameS->setCourtInstancesCreated(true);
         }
         else
         {
         }
     }
-    courtDataInstance = gameS->getCourtDataInstance();
+    courtInstance = gameS->getCourtInstance();
     
-    for (size_t x=0;x<courtDataInstance.size();++x)
+    for (size_t x=0;x<courtInstance.size();++x)
     {
-        courtName.push_back(courtDataInstance[x].getName());
+        courtName.push_back(courtInstance[x].getName());
     }
     
     logMsg("courtName = " +courtName[0]);

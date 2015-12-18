@@ -75,17 +75,24 @@ public:
     size_t getSelectedCourtDataInstance();  // retrieves the value of selectedCourtDataInstance
     void setSelectedCourtDataInstance(size_t set);  // sets the value of selectedCourtDataInstance
 
-    bool getCourtInstanceCreated();  // retrieves the value of courtInstanceCreated
-    void setCourtInstanceCreated(bool created);  // sets the value of courtInstanceCreated
-
+    
     bool getCourtModelLoaded();  // retrieves the value of courtModelLoaded
     void setCourdModelLoaded(bool set);  // sets the value of courtModelLoaded
 
-    bool getTeamInstancesCreated();	 // retrieves the value of teamInstancesCreated
-    void setTeamInstancesCreated(bool set);	 // sets the value of teamInstancesCreated
-
     bool getBasketballInstancesCreated();  // retrieves the value of basketballInstancesCreated
     void setBasketballInstancesCreated(bool set);   // sets the value of basketballInstancesCreated
+
+    bool getCourtInstancesCreated();  // retrieves the value of courtInstancesCreated
+    void setCourtInstancesCreated(bool created);  // sets the value of courtInstancesCreated
+
+    bool getHoopInstancesCreated();  // retrieves the value of hoopInstancesCreated
+    void setHoopInstancesCreated(bool created);  // sets the value of hoopInstancesCreated
+
+    bool getPlayerInstanceCreated();  // retrieves the value of playerInstancesCreated
+    void setPlayerInstanceCreated(bool created);  // sets the value of playerInstancesCreated
+
+    bool getTeamInstancesCreated();	 // retrieves the value of teamInstancesCreated
+    void setTeamInstancesCreated(bool set);	 // sets the value of teamInstancesCreated
 
     std::vector<teamData> getTeamDataInstance();  // retrieves the value of teamDataInstance
     void setTeamDataInstance(std::vector<teamData> set);  // sets the value of teamDataInstance;
@@ -157,6 +164,8 @@ public:
 
     bool createPlayerInstances();  // creates player instances
     
+    bool gameState::loadCourtModel();  // loads selected court model
+
     bool setupState();  // sets up the game condition
     bool updateState();  // updates the state of the game
 
@@ -201,13 +210,14 @@ private:
 
     size_t activeBBallInstance;  // stores which instance of the baskteball class is active
 
-    bool basketballInstancesCreated;  // stores whether basketball instance(s) have been created
- 
     bool courtModelLoaded;  // stores whether court model has been loaded
     bool hoopModelLoaded;  // stores whether the hoop model has been loaded
     bool setupEnvironmentCompleted;  // stores whether environment has been setup
     bool courtDataLoaded;  // stores whether or not the court data has been loaded from file
-    bool courtInstanceCreated;  // stores whether team instances have been created
+    bool basketballInstancesCreated;  // stores whether basketball instance(s) have been created
+    bool courtInstancesCreated;  // stores whether team instances have been created
+    bool hoopInstancesCreated;  // stores whether team instances have been created
+    bool playerInstancesCreated;  // stores whether player instances have been created
     bool teamInstancesCreated;  // stores whether team instances have been created
     bool sceneCreated;  // stores whether the scene has been created
     bool gameStarted;  // Determines whether or not a basketball game has been started

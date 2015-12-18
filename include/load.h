@@ -84,9 +84,9 @@ public:
     offensePlays loadOffensePlayFile(string fileName);	// loads data from the offense play XML files
 
     // courts
-    std::vector<courtData> loadCourts();  // load court XML files
+    std::vector<courtState> loadCourts();  // load court XML files
     bool loadCourtListFile(string fileName);  // load the list of courts from courts.xml
-    courtData loadCourtFile(string fileName);  // loads data from the court XML files.
+    courtState loadCourtFile(string fileName);  // loads data from the court XML files.
 
     // user input
     std::vector<userInput> loadUserInputs();  // load user input XML files

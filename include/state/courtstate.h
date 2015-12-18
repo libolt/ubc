@@ -28,8 +28,9 @@
 #include "BtOgreExtras.h"
 #include "state/state.h"
 #include "entity/courtentity.h"
+#include "data/courtdata.h"
 
-class courtState : public state, public courtEntity
+class courtState : public state, public courtEntity, public courtData
 {
     public:
 

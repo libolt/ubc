@@ -947,7 +947,7 @@ playerState loader::loadPlayerFile(string fileName)  // loads the player file
     player.setWeight(weight);
     player.setID(ID);
     player.setTeamID(teamID);
-    player.setModelFileName(modelName);
+    player.setEntityModelFileName(modelName);
     player.setPrimaryPosition(primaryPosition);
     player.setSecondaryPosition(secondaryPosition);
     player.setShooting(shooting);
@@ -1362,9 +1362,9 @@ offensePlays loader::loadOffensePlayFile(string fileName)  // loads data from th
 }
 
 // Courts
-std::vector<courtData> loader::loadCourts()  // load court settings from XML files
+std::vector<courtState> loader::loadCourts()  // load court settings from XML files
 {
-    std::vector<courtData> courts;
+    std::vector<courtState> courts;
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     string courtList = "data/courts/courts.xml";
 #else
@@ -1438,11 +1438,11 @@ bool loader::loadCourtListFile(string fileName)	// loads the list of court list 
     return true;
 }
 
-courtData loader::loadCourtFile(string fileName)  // loads data from the offense play XML files
+courtState loader::loadCourtFile(string fileName)  // loads data from the offense play XML files
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     
-    courtData court;
+    courtState court;
     std::string name;
     std::string modelName;
     float length = 0;

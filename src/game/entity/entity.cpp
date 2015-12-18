@@ -34,13 +34,13 @@ entity::~entity()  // destructor
     
 }
 
-std::string entity::getModelFileName()  // retrieves the value of modelName
+std::string entity::getEntityModelFileName()  // retrieves the value of entityModelName
 {
-    return (modelFileName);
+    return (entityModelFileName);
 }
-void entity::setModelFileName(std::string set)  // sets the value of modelName
+void entity::setEntityModelFileName(std::string set)  // sets the value of entityNodelName
 {
-    modelFileName = set;
+    entityModelFileName = set;
 }
 
 std::string entity::getEntityName()  // retrieves the value of entityName
@@ -52,13 +52,13 @@ void entity::setEntityName(std::string set)  // sets the value of entityName
     entityName = set;
 }
 
-std::string entity::getNodeName()  // retrieves the value of nodeName
+std::string entity::getEntithNodeName()  // retrieves the value of entityNodeName
 {
-    return (nodeName);
+    return (entityNodeName);
 }
-void entity::setNodeName(std::string set)  // sets the value of nodeName
+void entity::setEntityNodeName(std::string set)  // sets the value of entityNodeName
 {
-    nodeName = set;
+    entityNodeName = set;
 }
 
 Ogre::Entity *entity::getModel()  // retrieves the value of model

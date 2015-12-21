@@ -32,7 +32,9 @@
 #include "state/playerstate.h"
 #include "state/state.h"
 
-class teamState : public state
+#include "data/teamdata.h"
+
+class teamState : public state, public teamData;
 {
 public:
 

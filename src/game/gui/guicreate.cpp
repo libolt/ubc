@@ -28,7 +28,7 @@
 #include "load.h"
 #include "logging.h"
 #include "engine/renderengine.h"
-#include "data/teamdata.h"
+#include "state/teamstate.h"
 
 #ifdef __ANDROID__
 #include "android-config.h"
@@ -480,11 +480,13 @@ bool GUISystem::createTeamSelectionMenuGUI()  // creates GUI for team selection 
     Ogre::Viewport *viewPort = render->getViewPort();
 
     //load->loadTeams();
-    std::vector<teamData> teamDataInstance; // = gameS->getTeamDataInstance();
+    std::vector<teamState> teamInstance; // = gameS->getTeamDataInstance();
 
-    teamDataInstance = load->loadTeams();
+/*    teamInstance = load->loadTeams();
     gameS->setTeamDataInstance(teamDataInstance);
-
+*/
+    teamInstance = gameS->getTeamInstance();
+    
     MyGUI::LayoutManager::getInstance().loadLayout("TeamSelectionMenu.layout");
 
     team0SelectBox = mGUI->findWidget<MyGUI::ListBox>("team0SelectBox");  // loads team 0 ListBox
@@ -495,11 +497,11 @@ bool GUISystem::createTeamSelectionMenuGUI()  // creates GUI for team selection 
     team1SelectBox->setVisible(false);
     team1SelectBox->setSize((0.4 *viewPort->getActualWidth() ), (0.04 *viewPort->getActualHeight()) );
 
-    logMsg(convert->toString(teamDataInstance.size()));
+    logMsg(convert->toString(teamInstance.size()));
 
-    for (size_t x=0;x<teamDataInstance.size(); ++x)
+    for (size_t x=0;x<teamInstance.size(); ++x)
     {
-        std::string teamName = teamDataInstance[x].getCity() + " " +teamDataInstance[x].getName();
+        std::string teamName = teamInstance[x].getCity() + " " +teamInstance[x].getName();
 
         team0SelectBox->addItem(teamName);
         team1SelectBox->addItem(teamName);

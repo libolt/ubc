@@ -453,6 +453,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 	{
 		selectedRenderSystem = rsList.at(c);
 		std::string rname = selectedRenderSystem->getName();
+        logMsg("RendererName == " +rname);
 		if (rname.compare("OpenGL Rendering Subsystem") == 0)
 		{
 			foundit = true;

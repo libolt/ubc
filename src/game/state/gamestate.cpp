@@ -129,7 +129,7 @@ void gameState::setHoopInstance(std::vector<hoopState> set)  // sets the value o
     hoopInstance = set;
 }
 
-std::vector<teamData> gameState::getTeamDataInstance()  // retrieves the value of teamDataInstance
+/*std::vector<teamData> gameState::getTeamDataInstance()  // retrieves the value of teamDataInstance
 {
 	return (teamDataInstance);
 }
@@ -137,6 +137,7 @@ void gameState::setTeamDataInstance(std::vector<teamData> set)  // sets the valu
 {
     teamDataInstance = set;
 }
+*/
 
 std::vector<playerState> gameState::getPlayerInstance()  // retrieves the value of playerInstance
 {
@@ -370,7 +371,7 @@ bool gameState::createInstances()  // creates object instances
         if (createPlayerInstances())  // create player instances
         {
             logMsg("Player instances created!");
-     
+//            exit(0);
             playerInstancesCreated = true;
 //            return (true);
         }
@@ -382,12 +383,13 @@ bool gameState::createInstances()  // creates object instances
     
     if (!teamInstancesCreated)
     {
-        
+        logMsg("Creating Team Instances!");
+//        exit(0);
         if (createTeamInstances())  // create team instances
         {
-            exit(0);
+            
             logMsg("Team instances created!");
-     
+            exit(0);
             teamInstancesCreated = true;
 //            return (true);
         }
@@ -395,6 +397,7 @@ bool gameState::createInstances()  // creates object instances
         {
             logMsg("Failed to create teamInstances!");
         }
+        exit(0);
     }
     
     if (!courtInstancesCreated)
@@ -462,12 +465,16 @@ bool gameState::createBasketballInstances()  // creates basketball Instances
 
 bool gameState::createTeamInstances()  // creates team Instances
 {
+    boost::shared_ptr<conversion> convert = conversion::Instance();
     teamState tInstance;
-    teamInstance.push_back(tInstance);  // adds empty teamState to teamInstance vector
-    teamInstance.push_back(tInstance);  // adds empty teamState to teamInstance vector
+    //teamInstance.push_back(tInstance);  // adds empty teamState to teamInstance vector
+    //teamInstance.push_back(tInstance);  // adds empty teamState to teamInstance vector
+    tInstance = load->loadTeams();
+    logMsg("teamID.size() == " +convert->toString(teamID.size()));
     exit(0);
     teamInstance[0].setTeamID(teamID[0]);
     teamInstance[1].setTeamID(teamID[1]);
+    exit(0);
     teamInstance[0].setTeamType(HOMETEAM);
     teamInstance[1].setTeamType(AWAYTEAM);
     teamInstance[0].setHumanControlled(true);
@@ -478,7 +485,7 @@ bool gameState::createTeamInstances()  // creates team Instances
     teamInstance[1].setTeamCollidesWith(COL_COURT /* | COL_BBALL | COL_TEAM2;   determines what team1 collides with*/);
     teamInstance[0].setupState();
     teamInstance[1].setupState();
-	exit(0);
+    exit(0);
     return (true);
 }
 

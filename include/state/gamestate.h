@@ -30,7 +30,7 @@
     #include "state/hoopstate.h"
 #include "state/playerstate.h"
 #include "state/teamstate.h"
-#include "data/teamdata.h"
+//#include "data/teamdata.h"
 #include "data/playerdata.h"
 #include "jumpballs.h"
 
@@ -102,8 +102,9 @@ public:
     bool getModelsLoaded();  // retrieves the value of modelsLoaded
     void setModelsLoaded(bool set);  // sets the value of modelsLoaded
 
-    std::vector<teamData> getTeamDataInstance();  // retrieves the value of teamDataInstance
+/*    std::vector<teamData> getTeamDataInstance();  // retrieves the value of teamDataInstance
     void setTeamDataInstance(std::vector<teamData> set);  // sets the value of teamDataInstance;
+*/
 
     std::vector<playerState> getPlayerInstance();  // retrieves the value of playerInstance
     void setPlayerInstances(std::vector<playerState> set);  // sets the value of playerInstance;
@@ -199,7 +200,7 @@ private:
 
     bool finished;  // indicates whether a game is finished.
 
-    std::vector<teamData> teamDataInstance;	 // stores the vector of teams loaded from the xml files
+//    std::vector<teamData> teamDataInstance;	 // stores the vector of teams loaded from the xml files
 //    std::vector<playerData> playerDataInstance;  // stores the vector of the players loaded from the xml files
     std::vector<playerState> playerInstance;  // stores the vector of the players loaded from the xml files
     

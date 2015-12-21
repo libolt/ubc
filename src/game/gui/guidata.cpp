@@ -39,11 +39,13 @@
 bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Selection Menu widgets
 {
     boost::shared_ptr<gameState> gameS = gameState::Instance();
+    boost::shared_ptr<conversion> convert = conversion::Instance();
     
     std::vector<courtState> courtInstance;
     std::vector<std::string> courtName;
     if (!gameS->getCourtInstancesCreated())
     {
+        exit(0);
         if (gameS->createCourtInstances())
         {
             gameS->setCourtInstancesCreated(true);
@@ -60,13 +62,16 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
     }
     
     logMsg("courtName = " +courtName[0]);
+    logMsg("courtName size = " +convert->toString(courtName.size()));
+    
     size_t i = 0;
     while (i<courtName.size())
     {
         courtSelectBox->addItem(courtName[i]);
         ++i;
     }
-    
+    logMsg("Court names added!");
+//    exit(0);
     return (true);
 }
 

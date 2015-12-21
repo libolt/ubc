@@ -342,7 +342,7 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
 void GUISystem::courtSelectionMenu() // displays court selection menu
 {
     boost::shared_ptr<gameState> gameS = gameState::Instance();
-    
+    boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<loader> load = loader::Instance();
 
     if (!courtSelectionMenuCreated)
@@ -352,11 +352,15 @@ void GUISystem::courtSelectionMenu() // displays court selection menu
     
     if (!courtSelectionDataLoaded)
     {
+        logMsg("addCourtSelectionMenuData = " +convert->toString(addCourtSelectionMenuData()));
+        exit(0);
         if (addCourtSelectionMenuData())
         {
+            exit(0);
             courtSelectBox->setIndexSelected(0);
             courtSelectionDataLoaded = true;
         }
+        exit(0);
     }
     changeActiveMenu(COURTSELECT);
     

@@ -364,12 +364,15 @@ bool gameState::assignHoopToTeams()  // assigns which hoop belongs to each team
 
 bool gameState::createInstances()  // creates object instances
 {
+    logMsg("gameState creating instances!");
     if (!playerInstancesCreated)
     {
         if (createPlayerInstances())  // create player instances
         {
+            logMsg("Player instances created!");
+     
             playerInstancesCreated = true;
-            return (true);
+//            return (true);
         }
         else 
         {
@@ -379,10 +382,14 @@ bool gameState::createInstances()  // creates object instances
     
     if (!teamInstancesCreated)
     {
+        
         if (createTeamInstances())  // create team instances
         {
+            exit(0);
+            logMsg("Team instances created!");
+     
             teamInstancesCreated = true;
-            return (true);
+//            return (true);
         }
         else 
         {
@@ -394,8 +401,10 @@ bool gameState::createInstances()  // creates object instances
     { 
         if (createCourtInstances())  // create court instances
         {
+            logMsg("Court instances created!");
+//            exit(0);
             courtInstancesCreated = true;
-            return (true);
+//            return (true);
         }
         else 
         {
@@ -408,7 +417,7 @@ bool gameState::createInstances()  // creates object instances
         if (createHoopInstances())  // create hoop instances
         {
             hoopInstancesCreated = true;
-            return (true);
+//            return (true);
         }
         else 
         {
@@ -421,7 +430,7 @@ bool gameState::createInstances()  // creates object instances
         if (createBasketballInstances())  // create basketball instances
         {
             basketballInstancesCreated = true;
-            return (true);
+//            return (true);
         }
         else 
         {
@@ -456,7 +465,7 @@ bool gameState::createTeamInstances()  // creates team Instances
     teamState tInstance;
     teamInstance.push_back(tInstance);  // adds empty teamState to teamInstance vector
     teamInstance.push_back(tInstance);  // adds empty teamState to teamInstance vector
-
+    exit(0);
     teamInstance[0].setTeamID(teamID[0]);
     teamInstance[1].setTeamID(teamID[1]);
     teamInstance[0].setTeamType(HOMETEAM);
@@ -469,7 +478,7 @@ bool gameState::createTeamInstances()  // creates team Instances
     teamInstance[1].setTeamCollidesWith(COL_COURT /* | COL_BBALL | COL_TEAM2;   determines what team1 collides with*/);
     teamInstance[0].setupState();
     teamInstance[1].setupState();
-//	exit(0);
+	exit(0);
     return (true);
 }
 

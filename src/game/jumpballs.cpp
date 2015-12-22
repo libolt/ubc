@@ -139,7 +139,7 @@ bool jumpBalls::updateState()  // updates state of the jumpBalls instance
     size_t activeBBallInstance = gameS->getActiveBBallInstance();
     std::vector<basketballState> basketBallInstance = gameS->getBasketballInstance();
     bool bballPhysicsSetup = basketBallInstance[activeBBallInstance].getPhysicsSetup();
-    if (gameS->getTeamWithBall() == NOTEAM && bballPhysicsSetup) //&& gameS->getTeamInstancesCreated())
+    if (gameS->getTeamWithBall() == NOTEAM && bballPhysicsSetup) //&& gameS->getActiveTeamInstancesCreated())
     {
 
         logMsg("teamWithBall = NOTEAM");
@@ -194,16 +194,16 @@ bool jumpBalls::jumpBallExecute()  // initiates jump ball from jump ball circle
     std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
     size_t activeBBallInstance = gameS->getActiveBBallInstance();
 
-    std::vector<teamState> teamInstance = gameS->getTeamInstance();
+    std::vector<teamState> activeTeamInstance = gameS->getActiveTeamInstance();
     std::vector< std::vector<playerState> > activePlayerInstance;
 
     std::vector<size_t> jumpPlayerInstance;  // stores playerID of players jumping for the ball
     
     size_t x = 0;
-    while (x < teamInstance.size())
+    while (x < activeTeamInstance.size())
     {
         //activePlayerInstance.clear();
-        activePlayerInstance.push_back(teamInstance[x].getActivePlayerInstance());
+        activePlayerInstance.push_back(activeTeamInstance[x].getActivePlayerInstance());
         
         size_t i = 0;
         logMsg("active player instance size =" +convert->toString(activePlayerInstance[x].size()));
@@ -225,7 +225,7 @@ bool jumpBalls::jumpBallExecute()  // initiates jump ball from jump ball circle
             {
             }
             i++;
-              //teamTypes teamType = teamInstance[x].getTeamType();
+              //teamTypes teamType = activeTeamInstance[x].getTeamType();
                 //size_t player = 4;
                 //bool collCheck = collisionCheck(basketballInstance[activeBBallInstance].getPhysBody(), activePlayerInstance[centerID].getPhysBody());
                 //logMsg("Team " +convert->toString(teamType) +" player " +convert->toString(player) +" collCheck == " +convert->toString(collCheck));
@@ -235,14 +235,14 @@ bool jumpBalls::jumpBallExecute()  // initiates jump ball from jump ball circle
 //    exit(0);
     logMsg("jumpPlayerID.size() = " +convert->toString(jumpPlayerInstance.size()));
 //    exit(0);
-//    teamTypes teamType = teamInstance[0].getTeamType();
+//    teamTypes teamType = activeTeamInstance[0].getTeamType();
     bool collCheck = false;
 //    collCheck = /*physEngine.*/ collisionCheck(basketballInstance[activeBBallInstance].getPhysBody(), activePlayerInstance[0][jumpPlayerInstance[0]].getPhysBody());
     size_t y = 0;
     playerState activePInstance;
-    while (y < teamInstance.size())
+    while (y < activeTeamInstance.size())
     {
-        switch(teamInstance[y].getTeamType())
+        switch(activeTeamInstance[y].getTeamType())
         {
             case HOMETEAM:
                 activePInstance = activePlayerInstance[0][jumpPlayerInstance[0]];
@@ -259,7 +259,7 @@ bool jumpBalls::jumpBallExecute()  // initiates jump ball from jump ball circle
         if (physEngine.collisionCheck(basketballInstance[activeBBallInstance].getPhysBody(), activePInstance.getPhysBody()))
         {
             logMsg("team " +convert->toString(y) +" center collided with ball");
-            ballTippedToTeam = teamInstance[y].getTeamType();
+            ballTippedToTeam = activeTeamInstance[y].getTeamType();
             ballTippedToPosition = PG;
 //            exit(0);
         
@@ -269,7 +269,7 @@ bool jumpBalls::jumpBallExecute()  // initiates jump ball from jump ball circle
         
         }
 /*        logMsg("Team " +convert->toString(teamType) +" playerInstance " +convert->toString(jumpPlayerInstance[0]) +" collCheck == " +convert->toString(collCheck));
-        teamType = teamInstance[1].getTeamType();
+        teamType = activeTeamInstance[1].getTeamType();
         collCheck = physEngine.collisionCheck(basketballInstance[activeBBallInstance].getPhysBody(), activePlayerInstance[1][jumpPlayerInstance[1]].getPhysBody());
         if (collCheck)
         {
@@ -308,14 +308,14 @@ bool jumpBalls::tipToPlayer()  // tips the basketball to the appropriate player
 
     physicsEngine physEngine;
     std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
-    std::vector<teamState> teamInstance = gameS->getTeamInstance();
+    std::vector<teamState> activeTeamInstance = gameS->getActiveTeamInstance();
     std::vector<playerState> activePlayerInstance;
     jumpBalls jumpBall = gameS->getJumpBall();
     teamTypes ballTippedToTeam = jumpBall.getBallTippedToTeam();
     quarters quarter = gameS->getQuarter();
     size_t activeBBallInstance = gameS->getActiveBBallInstance();
 
-    activePlayerInstance = teamInstance[ballTippedToTeam].getActivePlayerInstance();
+    activePlayerInstance = activeTeamInstance[ballTippedToTeam].getActivePlayerInstance();
     
     size_t y = 0;
     while (y < activePlayerInstance.size())
@@ -410,33 +410,33 @@ bool jumpBalls::tipToPlayer()  // tips the basketball to the appropriate player
  //               exit(0);
                 gameS->setTeamWithBall(ballTippedToTeam);
                 logMsg("ballTippedToPlayerID == " +convert->toString(ballTippedToPlayerID));
-                teamInstance[ballTippedToTeam].setPlayerWithBallID(ballTippedToPlayerID);
-                teamInstance[ballTippedToTeam].setPlayerWithBallInstance(ballTippedToPlayerInstance);
+                activeTeamInstance[ballTippedToTeam].setPlayerWithBallID(ballTippedToPlayerID);
+                activeTeamInstance[ballTippedToTeam].setPlayerWithBallInstance(ballTippedToPlayerInstance);
                 physEngine.setBasketballVelocitySet(false);
-                teamInstance[ballTippedToTeam].setPlayerWithBallDribbling(true);
-                if (teamInstance[ballTippedToTeam].getHumanControlled())
+                activeTeamInstance[ballTippedToTeam].setPlayerWithBallDribbling(true);
+                if (activeTeamInstance[ballTippedToTeam].getHumanControlled())
                 {
-                    teamInstance[ballTippedToTeam].setHumanPlayer(ballTippedToPlayerID);
+                    activeTeamInstance[ballTippedToTeam].setHumanPlayer(ballTippedToPlayerID);
                     logMsg("ball tipped to human playerID == " +convert->toString(jumpBall.getBallTippedToPlayerID()));
         //            exit(0);
                 }
                 logMsg("jumpBall.getBallTippedToPlayer() = " +convert->toString(jumpBall.getBallTippedToPlayerID()));
-                logMsg("playerWithBallInstanceTipped == " +convert->toString(teamInstance[ballTippedToTeam].getPlayerWithBallInstance()));
+                logMsg("playerWithBallInstanceTipped == " +convert->toString(activeTeamInstance[ballTippedToTeam].getPlayerWithBallInstance()));
                 int activeDefensivePlayer = 9999;
                 switch (ballTippedToTeam)
                 {
                     case 0:
-                        activeDefensivePlayer = teamInstance[1].getActivePlayerID()[0];
-                        teamInstance[AWAYTEAM].setHumanPlayer(activeDefensivePlayer);
+                        activeDefensivePlayer = activeTeamInstance[1].getActivePlayerID()[0];
+                        activeTeamInstance[AWAYTEAM].setHumanPlayer(activeDefensivePlayer);
                     break;
                     case 1:
-                        activeDefensivePlayer = teamInstance[0].getActivePlayerID()[0];
-                        teamInstance[HOMETEAM].setHumanPlayer(activeDefensivePlayer);
+                        activeDefensivePlayer = activeTeamInstance[0].getActivePlayerID()[0];
+                        activeTeamInstance[HOMETEAM].setHumanPlayer(activeDefensivePlayer);
                     break;
                     default:
                     break;
                 }
-                gameS->setTeamInstance(teamInstance);
+                gameS->setActiveTeamInstance(activeTeamInstance);
 
                 return(true);
             }

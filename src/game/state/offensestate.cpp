@@ -196,8 +196,8 @@ void offenseState::setupState()  // sets up initial state of the object
 void offenseState::updateState(teamTypes teamType)	// updates the state of the object
 {
     boost::shared_ptr<gameState> gameS = gameState::Instance();
-    std::vector<teamState> teamInstance = gameS->getTeamInstance();
-    std::vector<playerState> activePlayerInstance = teamInstance[teamType].getActivePlayerInstance();
+    std::vector<teamState> activeTeamInstance = gameS->getActiveTeamInstance();
+    std::vector<playerState> activePlayerInstance = activeTeamInstance[teamType].getActivePlayerInstance();
 
     if (!offenseSetup)
     {
@@ -207,8 +207,8 @@ void offenseState::updateState(teamTypes teamType)	// updates the state of the o
     {
         executeOffense();
     }
-    teamInstance[teamType].setActivePlayerInstance(activePlayerInstance);
-    gameS->setTeamInstance(teamInstance);
+    activeTeamInstance[teamType].setActivePlayerInstance(activePlayerInstance);
+    gameS->setActiveTeamInstance(activeTeamInstance);
 }
 
 void offenseState::loadPlays()	// loads offense plays from file
@@ -337,12 +337,12 @@ void offenseState::executeOffense() // executes box offense
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
     
-    std::vector<teamState> teamInstance = gameS->getTeamInstance();
-    std::vector<playerState> activePlayerInstance = teamInstance[gameS->getTeamWithBall()].getActivePlayerInstance();
+    std::vector<teamState> activeTeamInstance = gameS->getActiveTeamInstance();
+    std::vector<playerState> activePlayerInstance = activeTeamInstance[gameS->getTeamWithBall()].getActivePlayerInstance();
 
     teamTypes teamWithBall = gameS->getTeamWithBall();
-    size_t playerWithBallInstance = teamInstance[teamWithBall].getPlayerWithBallInstance();
-    size_t playerWithBallID = teamInstance[teamWithBall].getPlayerWithBallID();
+    size_t playerWithBallInstance = activeTeamInstance[teamWithBall].getPlayerWithBallInstance();
+    size_t playerWithBallID = activeTeamInstance[teamWithBall].getPlayerWithBallID();
 
     playerSteer *pSteer;
 

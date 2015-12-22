@@ -35,6 +35,7 @@
 #include "state/courtstate.h"
 #include "state/hoopstate.h"
 #include "state/gamestate.h"
+#include "state/teamstate.h"
 #include "offenseplays.h"
 #include "userinput.h"
 
@@ -75,9 +76,9 @@ public:
 
 
     // Teams
-    std::vector<teamData> loadTeams();  // loads team data from XML files
+    std::vector<teamState> loadTeams();  // loads team data from XML files
     bool loadTeamListFile(string fileName);  // loads list of team files from teams.xml
-    teamData loadTeamFile(string fileName);  // loads data from the team XML files
+    teamState loadTeamFile(string fileName);  // loads data from the team XML files
 
     // Players
     std::vector<playerState> loadPlayers();  // loads player data from XML files

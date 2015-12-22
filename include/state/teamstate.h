@@ -34,7 +34,8 @@
 
 #include "data/teamdata.h"
 
-class teamState : public state, public teamData;
+class teamState : public state, public teamData
+
 {
 public:
 

@@ -779,8 +779,8 @@ void playerState::updateState()
         updateDirection();
         updateMovement();
         oldDirection = direction;
-        std::vector<teamState> teamInstance = gameS->getTeamInstance();
-        size_t playerWithBallID = teamInstance[teamType].getPlayerWithBallID();
+        std::vector<teamState> activeTeamInstance = gameS->getActiveTeamInstance();
+        size_t playerWithBallID = activeTeamInstance[teamType].getPlayerWithBallID();
         if (teamType == gameS->getTeamWithBall() && gameS->getTipOffComplete())
         {
             logMsg("dplayerWithBallID == " +convert->toString(playerWithBallID));
@@ -899,10 +899,10 @@ void playerState::updateDirection()
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
-    std::vector<teamState> teamInstance = gameS->getTeamInstance();
+    std::vector<teamState> activeTeamInstance = gameS->getActiveTeamInstance();
     std::vector<basketballState> bballInstance = gameS->getBasketballInstance();
     size_t activeBBallInstance = gameS->getActiveBBallInstance();
-    size_t playerWithBallID = teamInstance[teamType].getPlayerWithBallID();
+    size_t playerWithBallID = activeTeamInstance[teamType].getPlayerWithBallID();
 
     if (direction != oldDirection)
     {
@@ -1017,10 +1017,10 @@ void playerState::updateMovement()	// updates movement status of the player
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
-    std::vector<teamState> teamInstance = gameS->getTeamInstance();
+    std::vector<teamState> activeTeamInstance = gameS->getActiveTeamInstance();
     std::vector<basketballState> bballInstance = gameS->getBasketballInstance();
     size_t activeBBallInstance = gameS->getActiveBBallInstance();
-    size_t playerWithBallID = teamInstance[teamType].getPlayerWithBallID();
+    size_t playerWithBallID = activeTeamInstance[teamType].getPlayerWithBallID();
 
     Ogre::Vector3 posChange;	// stores change in position
     posChange = Ogre::Vector3(0.0f, 0.0f, 0.0f);
@@ -1091,9 +1091,9 @@ void playerState::calculatePass()	// calculates which player to pass the ball to
     
     logMsg("In calculatePass function");
 
-    std::vector<teamState> teamInstance = gameS->getTeamInstance();
+    std::vector<teamState> activeTeamInstance = gameS->getActiveTeamInstance();
     size_t teamWithBall = gameS->getTeamWithBall();
-    size_t playerWithBallInstance = teamInstance[teamWithBall].getPlayerWithBallInstance();
+    size_t playerWithBallInstance = activeTeamInstance[teamWithBall].getPlayerWithBallInstance();
 //    if (playerWithBall < 5)  // checks if the player belongs to the first team
 //    {
         if (playerWithBallInstance +1 < 5)  // checks if the player + 1 is still on the first team

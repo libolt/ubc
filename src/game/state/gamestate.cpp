@@ -52,6 +52,7 @@ gameState::gameState()  // constructor
     hoopInstancesCreated = false;
     playerInstancesCreated = false;
     teamInstancesCreated = false;
+    activeTeamInstancesCreated = false;
     basketballModelLoaded = false;
     courtModelLoaded = false;
     hoopModelLoaded = false;
@@ -220,6 +221,15 @@ void gameState::setBasketballInstance(std::vector<basketballState> set)  // sets
     basketballInstance = set;
 }
 
+std::vector <teamState> gameState::getActiveTeamInstance()  // retireves the value of activeTeamInstance
+{
+    return (activeTeamInstance);
+}
+void gameState::setActiveTeamInstance(std::vector<teamState> set)  // sets the value of activeTeamInstance
+{
+    activeTeamInstance = set;
+}
+
 bool gameState::getGameStarted()  // retrieves the value of gameStarted
 {
     return(gameStarted);
@@ -328,6 +338,16 @@ void gameState::setTeamInstancesCreated(bool set)  // sets the value of teamInst
     teamInstancesCreated = set;
 }
 
+bool gameState::getActiveTeamInstancesCreated()	 // retrieves the value of activeTeamInstancesCreated
+{
+    return (activeTeamInstancesCreated);
+}
+
+void gameState::setActiveTeamInstancesCreated(bool set)	 // sets the value of activeTeamInstancesCreated
+{
+    activeTeamInstancesCreated = set;
+}
+
 bool gameState::getCourtModelLoaded()  // retrieves the value of courtModelLoaded
 {
     return (courtModelLoaded);
@@ -358,8 +378,8 @@ void gameState::setStateSet(bool set)  // sets the value of stateSet
 
 bool gameState::assignHoopToTeams()  // assigns which hoop belongs to each team
 {
-    teamInstance[0].setHoop(1);
-    teamInstance[1].setHoop(0);
+    activeTeamInstance[0].setHoop(1);
+    activeTeamInstance[1].setHoop(0);
     return (true);
 }
 
@@ -466,12 +486,12 @@ bool gameState::createBasketballInstances()  // creates basketball Instances
 bool gameState::createTeamInstances()  // creates team Instances
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    teamState tInstance;
-    //teamInstance.push_back(tInstance);  // adds empty teamState to teamInstance vector
-    //teamInstance.push_back(tInstance);  // adds empty teamState to teamInstance vector
+    boost::shared_ptr<loader> load = loader::Instance();
+
+    std::vector<teamState> tInstance;
     tInstance = load->loadTeams();
     logMsg("teamID.size() == " +convert->toString(teamID.size()));
-    exit(0);
+/*    exit(0);
     teamInstance[0].setTeamID(teamID[0]);
     teamInstance[1].setTeamID(teamID[1]);
     exit(0);
@@ -481,11 +501,13 @@ bool gameState::createTeamInstances()  // creates team Instances
     teamInstance[1].setHumanControlled(false);
     teamInstance[0].setTeamColObject(COL_TEAM1);
     teamInstance[1].setTeamColObject(COL_TEAM2);
-    teamInstance[0].setTeamCollidesWith(COL_COURT /* | COL_BBALL | COL_TEAM2;   determines what team0 collides with*/);
-    teamInstance[1].setTeamCollidesWith(COL_COURT /* | COL_BBALL | COL_TEAM2;   determines what team1 collides with*/);
-    teamInstance[0].setupState();
-    teamInstance[1].setupState();
+*/
+//    teamInstance[0].setTeamCollidesWith(COL_COURT /* | COL_BBALL | COL_TEAM2;   determines what team0 collides with*/);
+//    teamInstance[1].setTeamCollidesWith(COL_COURT /* | COL_BBALL | COL_TEAM2;   determines what team1 collides with*/);
+//    teamInstance[0].setupState();
+//    teamInstance[1].setupState();
     exit(0);
+
     return (true);
 }
 
@@ -537,6 +559,28 @@ bool gameState::createPlayerInstances()  // creates player instances
         return (true);
     }
     return (false);
+}
+
+bool gameState::createActiveTeamInstances()  // creates the active team instances
+{
+    teamState tInstance;
+    activeTeamInstance.push_back(tInstance);  // adds empty teamState to activeTeamInstance vector
+    activeTeamInstance.push_back(tInstance);  // adds empty teamState to activeTeamInstance vector
+
+    activeTeamInstance[0] = teamInstance[teamID[0]];
+    activeTeamInstance[1] = teamInstance[teamID[1]];
+    activeTeamInstance[0].setTeamType(HOMETEAM);
+    activeTeamInstance[1].setTeamType(AWAYTEAM);
+    activeTeamInstance[0].setHumanControlled(true);
+    activeTeamInstance[1].setHumanControlled(false);
+    activeTeamInstance[0].setTeamColObject(COL_TEAM1);
+    activeTeamInstance[1].setTeamColObject(COL_TEAM2);
+    activeTeamInstance[0].setTeamCollidesWith(COL_COURT /* | COL_BBALL | COL_TEAM2;   determines what team0 collides with*/);
+    activeTeamInstance[1].setTeamCollidesWith(COL_COURT /* | COL_BBALL | COL_TEAM2;   determines what team1 collides with*/);
+    activeTeamInstance[0].setupState();
+    activeTeamInstance[1].setupState();
+
+    return (true);
 }
 
 bool gameState::setupEnvironment()
@@ -696,7 +740,7 @@ bool gameState::setupTipOff()  // sets up tip off conditions
     teamTypes currentTeam = jumpBall.getBallTippedToTeam();
 
     std::vector<playerPositions> jumpBallPlayer = jumpBall.getJumpBallPlayer();
-    if (teamWithBall == NOTEAM && teamInstancesCreated)
+    if (teamWithBall == NOTEAM && activeTeamInstancesCreated)
     {
         if (!jumpBall.getSetupComplete())
         {
@@ -771,7 +815,7 @@ bool gameState::setupState()  // sets up the game condition
         {
             logMsg("TIC!");
             teamInstancesCreated = true;
-            assignHoopToTeams();  // assigns proper hoop to the teams that were created.
+//            assignHoopToTeams();  // assigns proper hoop to the teams that were created.
         }
     }
 
@@ -900,30 +944,30 @@ bool gameState::updateState()  // updates the game state
     // Initiates offense or defense for a team depending on value of teamWithBall
     if (teamWithBall == 0)	// if 0 puts team 0 on offense and team 1 on defense
     {
-    	teamInstance[0].setOffense(true);
-    	teamInstance[0].setDefense(false);
+        activeTeamInstance[0].setOffense(true);
+        activeTeamInstance[0].setDefense(false);
 
-    	teamInstance[1].setOffense(false);
-    	teamInstance[1].setDefense(true);
+        activeTeamInstance[1].setOffense(false);
+        activeTeamInstance[1].setDefense(true);
     }
     else if (teamWithBall == 1)  // if 1 puts team 1 on offense and team 0 on defense
     {
-    	teamInstance[0].setOffense(false);
-    	teamInstance[0].setDefense(true);
+        activeTeamInstance[0].setOffense(false);
+        activeTeamInstance[0].setDefense(true);
 
-    	teamInstance[1].setOffense(true);
-    	teamInstance[1].setDefense(false);
+        activeTeamInstance[1].setOffense(true);
+        activeTeamInstance[1].setDefense(false);
     }
     else
     {
     }
 
     // updates the state of each team
-    if (teamInstancesCreated)
+    if (activeTeamInstancesCreated)
     {
         //FIXME crash in updateState code
-    	teamInstance[0].updateState();
-    	teamInstance[1].updateState();
+        activeTeamInstance[0].updateState();
+        activeTeamInstance[1].updateState();
 //    	exit(0);
     }
     else
@@ -948,17 +992,17 @@ void gameState::processNetworkEvents()  // processes events from network code
     }
 
 //	std::vector<teamState> teamInstance = teamInstance();
-    teamInstance[0].setPlayerType("human");  // sets playerType for teamInstance 0 to human
+    activeTeamInstance[0].setPlayerType("human");  // sets playerType for activeTeamInstance 0 to human
 
-    // checks if this instance is a server and whether teamInstance 1 is set to be controlled by network player
-    if (network->getServerReceivedConnection() && teamInstance[1].getPlayerType() != "network")
+    // checks if this instance is a server and whether activeTeamInstance 1 is set to be controlled by network player
+    if (network->getServerReceivedConnection() && activeTeamInstance[1].getPlayerType() != "network")
     {
-        teamInstance[1].setPlayerType("network");  // sets teamInstance 1 playerType to 'network'
+        activeTeamInstance[1].setPlayerType("network");  // sets activeTeamInstance 1 playerType to 'network'
     }
-    // checks if this instance is a client and whether teamInstance 0 is set to be controlled by network player
-    else if (network->getClientEstablishedConnection() && teamInstance[0].getPlayerType() != "network" )
+    // checks if this instance is a client and whether activeTeamInstance 0 is set to be controlled by network player
+    else if (network->getClientEstablishedConnection() && activeTeamInstance[0].getPlayerType() != "network" )
     {
-        teamInstance[0].setPlayerType("network");
+        activeTeamInstance[0].setPlayerType("network");
     }
 }
 
@@ -984,12 +1028,12 @@ void gameState::processNetworkPlayerEvents()  // processes player events from ne
     if (network->getIsClient())
     {
         logMsg("is client");
-        activePlayerInstance = teamInstance[1].getActivePlayerInstance();
+        activePlayerInstance = activeTeamInstance[1].getActivePlayerInstance();
     }
     else if (network->getIsServer())
     {
         logMsg("is server");
-        activePlayerInstance = teamInstance[0].getActivePlayerInstance();
+        activePlayerInstance = activeTeamInstance[0].getActivePlayerInstance();
     }
     else
     {
@@ -1052,11 +1096,11 @@ void gameState::processNetworkPlayerEvents()  // processes player events from ne
             }
             if (network->getIsClient())
             {
-                teamInstance[1].setActivePlayerInstance(activePlayerInstance);
+                activeTeamInstance[1].setActivePlayerInstance(activePlayerInstance);
             }
             else if (network->getIsServer())
             {
-                teamInstance[0].setActivePlayerInstance(activePlayerInstance);
+                activeTeamInstance[0].setActivePlayerInstance(activePlayerInstance);
             }
         }
         else if (netPStateObj.getShootBlock())
@@ -1085,7 +1129,7 @@ void gameState::updateDirectionsAndMovements()
     if (teamWithBall >= 0) // && playerHasBasketball)
     {
 //		logMsg("teamWithBall ios " +convert->toString(teamWithBall));
-//		logMsg("playetWithBall is " +convert->toString(teamInstance[teamWithBall].getPlayerWithBall()));
+//		logMsg("playetWithBall is " +convert->toString(activeTeamInstance[teamWithBall].getPlayerWithBall()));
 //        updateBasketballMovements();	// updates the movement of basketball objec(s)
         //updateBasketballDirections(); // updates direction of basketball object(s)
     }

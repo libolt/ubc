@@ -121,7 +121,7 @@ int loader::readFile(const char *sourceFile, char **destination)  // loads an xm
     int MAX_BLOCKS = 1024;
 
 ///#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-//	Ogre::DataStreamPtr fileData = render->openAPKFile("teamd.xml");
+//	Ogre::DataStreamPtr fileData = render->openAPKFile("teamInstance.xml");
 //	destination = new std::string;
 ///	destination = (char**)fileData->getAsString().c_str();
 //#else
@@ -133,7 +133,7 @@ int loader::readFile(const char *sourceFile, char **destination)  // loads an xm
 //    SDL_RWops *file;
     logMsg("sourceFile = " +convert->toString(sourceFile));
 //	logMsg(SDL_AndroidGetInternalStoragePath());
-//    file = SDL_RWFromFile("teamd.xml", "rb");
+//    file = SDL_RWFromFile("teamInstance.xml", "rb");
 
     SDL_RWops *file;
 	file = SDL_RWFromFile(sourceFile, "r");
@@ -274,10 +274,10 @@ string loader::findFile(string fileName)  // finds the location of a file
     return ("");
 }
 
-std::vector<teamData> loader::loadTeams()  // load teams from XML files
+std::vector<teamState> loader::loadTeams()  // load teams from XML files
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    std::vector<teamData> teams;
+    std::vector<teamState> teams;
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     string teamList = "data/teams/teams.xml";
 #else
@@ -386,13 +386,13 @@ bool loader::loadTeamListFile(string fileName)  // loads the team list file
     return true;
 }
 
-teamData loader::loadTeamFile(string fileName)  // loads the team file
+teamState loader::loadTeamFile(string fileName)  // loads the team file
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<renderEngine> render = renderEngine::Instance();
-    std::vector<teamData> teamDataInstance = gameS->getTeamDataInstance();
-    teamData teamD;
+    std::vector<teamState> teamInstance = gameS->getTeamInstance();
+    teamState tInstance;
 
     int ID;
     string City;
@@ -477,18 +477,18 @@ teamData loader::loadTeamFile(string fileName)  // loads the team file
         logMsg("Logo == " +Logo);
     }
 
-    teamD.setID(ID);
-    teamD.setCity(City);
-    teamD.setName(Name);
-    teamD.setCoach(Coach);
-    teamD.setInits(Initials);
-    teamD.setLogoFile(Logo);
+    tInstance.setID(ID);
+    tInstance.setCity(City);
+    tInstance.setName(Name);
+    tInstance.setCoach(Coach);
+    tInstance.setInits(Initials);
+    tInstance.setLogoFile(Logo);
 
-//    team->setTeamArray(teamD);
-//   teamDataInstance.push_back(teamD);
-//   gameS->setTeamDataInstance(teamDataInstance);
+//    team->setTeamArray(teamInstance);
+//   teamInstance.push_back(teamInstance);
+//   gameS->setteamInstance(teamInstance);
 
-    return (teamD);
+    return (tInstance);
 }
 
 std::vector<playerState> loader::loadPlayers()  // loads the players

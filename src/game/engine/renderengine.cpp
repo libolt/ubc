@@ -39,6 +39,7 @@
 #include "OgreDDSCodec.h"
 #include "OgreFreeImageCodec.h"
 
+//#include "RTShaderSystem/OgreRTShaderSystem.h"
 #ifndef OGRE_PLUGIN_DIR
 #define OGRE_PLUGIN_DIR
 #endif
@@ -419,7 +420,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 
 	if (buildType == "Debug")
 	{
-		mRoot->loadPlugin(pluginDir + "/RenderSystem_Direct3D9_d.dll");
+        mRoot->loadPlugin(pluginDir + "/RenderSystem_Direct3D11_d.dll");
 //		mRoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager_d");
 	}
 	else
@@ -623,6 +624,15 @@ bool renderEngine::createScene()
 	Ogre::MaterialManager::getSingleton().addListener(mMatListener);
 #else
 
+/// FIXME! ugly hack to tester d3d11
+#define D3D11
+    Ogre::RTShader::ShaderGenerator::initialize();
+    Ogre::RTShader::ShaderGenerator::getSingletonPtr()->setTargetLanguage("hlsl");
+    mMatListener = new Ogre::ShaderGeneratorTechniqueResolverListener();
+    Ogre::MaterialManager::getSingleton().addListener(mMatListener);
+#ifdef D3D11
+
+#endif
 	// logMsg("Rendering!");
 	misc["externalWindowHandle"] = winHandle; //
 

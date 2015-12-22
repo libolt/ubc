@@ -87,11 +87,11 @@ bool playerPhysics::setupPhysics()  // sets up playerPhysics
     boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
 
-    std::vector<teamState> teamInstance = gameS->getTeamInstance();
+    std::vector<teamState> activeTeamInstance = gameS->getActiveTeamInstance();
     btDynamicsWorld *world;
-    for (size_t x=0; x<teamInstance.size();++x)
+    for (size_t x=0; x<activeTeamInstance.size();++x)
     {
-        std::vector<playerState> activePlayerInstance = teamInstance[x].getActivePlayerInstance();
+        std::vector<playerState> activePlayerInstance = activeTeamInstance[x].getActivePlayerInstance();
 
         btRigidBody *playerBody;
         btCollisionShape *playerShape;
@@ -102,7 +102,7 @@ bool playerPhysics::setupPhysics()  // sets up playerPhysics
         // loops through physics objects for all players
         size_t i = 0;
         size_t j = 0;
-        std::vector<size_t> activeID = teamInstance[x].getActivePlayerID();
+        std::vector<size_t> activeID = activeTeamInstance[x].getActivePlayerID();
 
 //      for (size_t i=0; i<activePlayerInstance.size(); ++i)
         while (i<activePlayerInstance.size())
@@ -172,17 +172,17 @@ bool playerPhysics::setupPhysics()  // sets up playerPhysics
             i++;
         }
 //        exit(0);
-        teamInstance[x].setActivePlayerInstance(activePlayerInstance);
+        activeTeamInstance[x].setActivePlayerInstance(activePlayerInstance);
     }
 //  activePlayerInstance[0].getPhysBody()->translate(btVector3 (0,1,0));
 //    playerShape.push_back(*shape);
     for (int x=0;x<2; ++x)
     {
-        std::vector<playerState> activePlayerInstance = teamInstance[x].getActivePlayerInstance();
+        std::vector<playerState> activePlayerInstance = activeTeamInstance[x].getActivePlayerInstance();
 
         logMsg("activePlayerInstance.size = " + convert->toString(activePlayerInstance.size()));
     }
-    gameS->setTeamInstance(teamInstance);   // stores all the changes to the teamInstance
+    gameS->setActiveTeamInstance(activeTeamInstance);   // stores all the changes to the activeTeamInstance
 //    exit(0);
     return true;
 }

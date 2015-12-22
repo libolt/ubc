@@ -90,6 +90,9 @@ public:
     bool getTeamInstancesCreated();	 // retrieves the value of teamInstancesCreated
     void setTeamInstancesCreated(bool set);	 // sets the value of teamInstancesCreated
 
+    bool getActiveTeamInstancesCreated();	 // retrieves the value of activeTeamInstancesCreated
+    void setActiveTeamInstancesCreated(bool set);	 // sets the value of activeTeamInstancesCreated
+
     bool getBasketballModelLoaded();  // retrieves the value of basketballModelLoaded
     void setBasketballModelLoaded(bool set);  // sets the value of basketballModelLoaded
 
@@ -136,6 +139,9 @@ public:
     std::vector <hoopState> getHoopInstance();  // retrieves the value of hoopInstance
     void setHoopInstance(std::vector<hoopState> set);  // sets the value of hoopInstance
 
+    std::vector <teamState> getActiveTeamInstance();  // retireves the value of activeTeamInstance
+    void setActiveTeamInstance(std::vector<teamState> set);  // sets the value of activeTeamInstance
+
     bool getTipOffSetupComplete();  // retrieves the value of tipOffSetupComplete
     void setTipOffSetupComplete(bool set);  // sets the value of tipOffSetupComplete
 
@@ -173,6 +179,8 @@ public:
 
     bool createPlayerInstances();  // creates player instances
     
+    bool createActiveTeamInstances();  // creates the active team instances
+
     bool loadBasketballModel();  // loads selected basketball model
     bool loadCourtModel();  // loads selected court model
     bool loadHoopModel();  // loads selected hoop model
@@ -213,12 +221,14 @@ private:
 
     std::vector< std::vector<size_t> > teamStarterID;  // stores the selected starters for each team
 
-
+    // stores all instances of the objects
     std::vector <basketballState> basketballInstance;  // creates instance of the basketballs class
     std::vector <courtState> courtInstance;  // creates instance of the courtState class
     std::vector <hoopState> hoopInstance;  // creates instance of the hoop class
-
     std::vector <teamState>  teamInstance;  // creates instance of the teamState class
+
+    // stores active instances of objects
+    std::vector<teamState> activeTeamInstance;  // stores the active team instances
 
     size_t activeBBallInstance;  // stores which instance of the baskteball class is active
     size_t activeCourtInstance;  // stores which instance of the court is active
@@ -230,6 +240,7 @@ private:
     bool hoopInstancesCreated;  // stores whether team instances have been created
     bool playerInstancesCreated;  // stores whether player instances have been created
     bool teamInstancesCreated;  // stores whether team instances have been created
+    bool activeTeamInstancesCreated;  // stores whether the active team instances have been created
     bool basketballModelLoaded;  // stores whether basketball model has been loaded
     bool courtModelLoaded;  // stores whether court model has been loaded
     bool hoopModelLoaded;  // stores whether the hoop model has been loaded

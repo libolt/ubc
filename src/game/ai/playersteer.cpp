@@ -117,9 +117,9 @@ void playerSteer::reset(void)    // reset state
 	    //gameState *gameS = gameState::Instance();
         boost::shared_ptr<gameState> gameS = gameState::Instance();
 //        exit(0);
-	    std::vector<teamState> teamInstance = gameS->getTeamInstance();
+        std::vector<teamState> activeTeamInstance = gameS->getActiveTeamInstance();
         logMsg("teamType == " +convert->toString(teamType));
-        std::vector<playerState> activePlayerInstance = teamInstance[teamType].getActivePlayerInstance();
+        std::vector<playerState> activePlayerInstance = activeTeamInstance[teamType].getActivePlayerInstance();
         logMsg("teamType steer2!");
 //        exit(0);
 	    OpenSteer::Vec3 playerSteerPos;
@@ -182,12 +182,12 @@ void playerSteer::update (const float currentTime, float elapsedTime)
 //	logMsg("elapsedTime = " +convert->toString(elapsedTime));
 
 	std::vector<basketballState> basketball = gameS->getBasketballInstance();
-	std::vector<teamState> teamInstance = gameS->getTeamInstance();
-//    std::vector<playerState> team0ActivePlayerInstance = teamInstance[0].getActivePlayerInstance();
-//    std::vector<playerState> team1ActivePlayerInstance = teamInstance[1].getActivePlayerInstance();
+    std::vector<teamState> activeTeamInstance = gameS->getActiveTeamInstance();
+//    std::vector<playerState> team0ActivePlayerInstance = activeTeamInstance[0].getActivePlayerInstance();
+//    std::vector<playerState> team1ActivePlayerInstance = activeTeamInstance[1].getActivePlayerInstance();
     std::vector<std::vector<playerState> > activePlayerInstance;
-//    std::vector<int> team0ActivePlayerID = teamInstance[0].getActivePlayerID();
-//    std::vector<int> team1ActivePlayerID = teamInstance[1].getActivePlayerID();
+//    std::vector<int> team0ActivePlayerID = activeTeamInstance[0].getActivePlayerID();
+//    std::vector<int> team1ActivePlayerID = activeTeamInstance[1].getActivePlayerID();
     std::vector<std::vector<int> > activePlayerID;
 
 //	std::vector<playerSteer*> playerSteerInstance;
@@ -200,9 +200,9 @@ void playerSteer::update (const float currentTime, float elapsedTime)
 
 
     size_t z = 0;
-    while (z < teamInstance.size())
+    while (z < activeTeamInstance.size())
     {
-        activePlayerInstance.push_back(teamInstance[z].getActivePlayerInstance());
+        activePlayerInstance.push_back(activeTeamInstance[z].getActivePlayerInstance());
         std::vector<int> activeID;
         activePlayerID.push_back(activeID);
         size_t x = 0;
@@ -216,11 +216,11 @@ void playerSteer::update (const float currentTime, float elapsedTime)
    }
 
 //    logMsg("Player = " +convert->toString(ID));
-//	logMsg("Node position = " +convert->toString(teamInstance[teamType].getActivePlayerInstance()[ID].getNodePosition()));
+//	logMsg("Node position = " +convert->toString(activeTeamInstance[teamType].getActivePlayerInstance()[ID].getNodePosition()));
 //	logMsg("Steer position = " +convert->toString(toOgreVector3(position())));
     logMsg("Team = " +convert->toString(teamType));
     logMsg("ID = " +convert->toString(ID));
-//    OpenSteer::Vec3 currentNodePos = toOpenSteerVec3(teamInstance[teamType].getActiePlayerInstance()[ID].getNodePosition());
+//    OpenSteer::Vec3 currentNodePos = toOpenSteerVec3(activeTeamInstance[teamType].getActiePlayerInstance()[ID].getNodePosition());
 
 /*	if (position().x != currentNodePos.x || position().y != currentNodePos.y || position().z != currentNodePos.z)
 	{
@@ -275,7 +275,7 @@ void playerSteer::update (const float currentTime, float elapsedTime)
 //    exit(0);
     /*
     size_t z = 0;
-    while (z < teamInstance.size())
+    while (z < activeTeamInstance.size())
     {
         size_t x = 0;
         while (x < activePlayerInstance[z].size())
@@ -421,9 +421,9 @@ void playerSteer::checkCourtPosition()  // checks if the player's position has c
     logMsg("checkCourtAlive!");
 
     comparison compare;
-    std::vector<teamState> teamInstance = gameS->getTeamInstance();
-    //std::vector<playerState> team0ActivePlayerInstance = teamInstance[0].getActivePlayerInstance();
-    //std::vector<playerState> team1ActivePlayerInstance = teamInstance[1].getActivePlayerInstance();
+    std::vector<teamState> activeTeamInstance = gameS->getActiveTeamInstance();
+    //std::vector<playerState> team0ActivePlayerInstance = activeTeamInstance[0].getActivePlayerInstance();
+    //std::vector<playerState> team1ActivePlayerInstance = activeTeamInstance[1].getActivePlayerInstance();
     std::vector<std::vector<playerState> > activePlayerInstance;
     // moves the player model and physics body
     btVector3 physBodyChange; // = btVector3(0,0,0);
@@ -436,12 +436,12 @@ void playerSteer::checkCourtPosition()  // checks if the player's position has c
     OpenSteer::Vec3 seekTarget;
     
     size_t z = 0;
-    while (z < teamInstance.size())
+    while (z < activeTeamInstance.size())
     {
-        activePlayerInstance.push_back(teamInstance[z].getActivePlayerInstance());
+        activePlayerInstance.push_back(activeTeamInstance[z].getActivePlayerInstance());
         ++z;
     }
-    int humanPlayer = teamInstance[teamType].getHumanPlayer();
+    int humanPlayer = activeTeamInstance[teamType].getHumanPlayer();
     logMsg("steer Human Player = " +convert->toString(humanPlayer));
     if (activePlayerInstance[teamType][ID].getID() != humanPlayer)  // makes sure to not steer human player
     {
@@ -463,15 +463,15 @@ void playerSteer::checkCourtPosition()  // checks if the player's position has c
     {
         
     }
-    teamInstance[teamType].setActivePlayerInstance(activePlayerInstance[teamType]);
+    activeTeamInstance[teamType].setActivePlayerInstance(activePlayerInstance[teamType]);
 
-    gameS->setTeamInstance(teamInstance);
-    std::vector<teamState> teamI = gameS->getTeamInstance();
+    gameS->setActiveTeamInstance(activeTeamInstance);
+    std::vector<teamState> teamI = gameS->getActiveTeamInstance();
     std::vector<std::vector<playerState> > activePlayerI;
     size_t w = 0;
-    while (w < teamInstance.size())
+    while (w < activeTeamInstance.size())
     {
-        activePlayerI.push_back(teamInstance[w].getActivePlayerInstance());
+        activePlayerI.push_back(activeTeamInstance[w].getActivePlayerInstance());
         ++w;
     }
     if (activePlayerI[teamType][ID].getCourtPositionChangedType() == STEERCHANGE)
@@ -485,22 +485,22 @@ void playerSteer::updateOffense(const float currentTime, const float elapsedTime
 	boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
 
-	std::vector<teamState> teamInstance = gameS->getTeamInstance();
-    //std::vector<playerState> team0ActivePlayerInstance = teamInstance[0].getActivePlayerInstance();
-    //std::vector<playerState> team1ActivePlayerInstance = teamInstance[1].getActivePlayerInstance();
+    std::vector<teamState> activeTeamInstance = gameS->getActiveTeamInstance();
+    //std::vector<playerState> team0ActivePlayerInstance = activeTeamInstance[0].getActivePlayerInstance();
+    //std::vector<playerState> team1ActivePlayerInstance = activeTeamInstance[1].getActivePlayerInstance();
     std::vector<std::vector<playerState> > activePlayerInstance;
-    std::vector<size_t> team0ActivePlayerID = teamInstance[0].getActivePlayerID();
-    std::vector<size_t> team1ActivePlayerID = teamInstance[1].getActivePlayerID();
+    std::vector<size_t> team0ActivePlayerID = activeTeamInstance[0].getActivePlayerID();
+    std::vector<size_t> team1ActivePlayerID = activeTeamInstance[1].getActivePlayerID();
 
-    std::vector<bool> startPositionReached = teamInstance[teamType].getOffenseInstance()->getStartPositionReached();
+    std::vector<bool> startPositionReached = activeTeamInstance[teamType].getOffenseInstance()->getStartPositionReached();
 
     OpenSteer::Vec3 seekTarget;
     distToPosition = OpenSteer::Vec3::distance (steerCoords, position());	
 
     size_t z = 0;
-    while (z < teamInstance.size())
+    while (z < activeTeamInstance.size())
     {
-        activePlayerInstance.push_back(teamInstance[z].getActivePlayerInstance());
+        activePlayerInstance.push_back(activeTeamInstance[z].getActivePlayerInstance());
         ++z;
     }
 	if (distToPosition >= 3)
@@ -518,7 +518,7 @@ void playerSteer::updateOffense(const float currentTime, const float elapsedTime
         logMsg("positionReached size" +convert->toString(positionReached.size()));
 //		positionReached[0] = true;
         logMsg("not seeked!");
-//		teamInstance[teamType].getOffenseInstance()->setStartPositionReached(startPositionReached);
+//		activeTeamInstance[teamType].getOffenseInstance()->setStartPositionReached(startPositionReached);
 	}
 		
 /*
@@ -531,7 +531,7 @@ void playerSteer::updateOffense(const float currentTime, const float elapsedTime
 	    OpenSteer::Vec3 startPosition;
 	    OpenSteer::Vec3 seekTarget;
 
-        offenseStartPositions = teamInstance[teamType].getOffenseInstance()->getStartPositions();
+        offenseStartPositions = activeTeamInstance[teamType].getOffenseInstance()->getStartPositions();
         logMsg("Team " +convert->toString(teamType) +" Player " +convert->toString(ID) +" Seeking Offense Start Position!");
         startPosition = toOpenSteerVec3(offenseStartPositions[ID]);
         logMsg("startPosition = " +convert->toString(offenseStartPositions[ID]));
@@ -551,7 +551,7 @@ void playerSteer::updateOffense(const float currentTime, const float elapsedTime
 		{
 //			startPositionReached[ID] = true;
 			positionReached[0] = true;
-//			teamInstance[teamType].getOffenseInstance()->setStartPositionReached(startPositionReached);
+//			activeTeamInstance[teamType].getOffenseInstance()->setStartPositionReached(startPositionReached);
 
 		}
 	}
@@ -564,8 +564,8 @@ void playerSteer::updateOffense(const float currentTime, const float elapsedTime
 	    OpenSteer::Vec3 seekTarget;
 //	    float distPlayerExecutePosition;
 
-        offenseExecutePositions = teamInstance[teamType].getOffenseInstance()->getExecutePositions();
-        offenseExecutePositionReached = teamInstance[teamType].getOffenseInstance()->getExecutePositionReached();
+        offenseExecutePositions = activeTeamInstance[teamType].getOffenseInstance()->getExecutePositions();
+        offenseExecutePositionReached = activeTeamInstance[teamType].getOffenseInstance()->getExecutePositionReached();
 
         seekTarget = xxxsteerForSeek(steerCoords);
  //       logMsg("seekTarget = " +convert->toString(toOgreVector3(executePosition)));
@@ -606,7 +606,7 @@ void playerSteer::updateOffense(const float currentTime, const float elapsedTime
                 }
                 ++x;
             }
-            //teamInstance[0].setActivePlayerInstance(team0ActivePlayerInstance);
+            //activeTeamInstance[0].setActivePlayerInstance(team0ActivePlayerInstance);
 			break;
 		case 1:
             logMsg("ID = " +convert->toString(ID));
@@ -624,7 +624,7 @@ void playerSteer::updateOffense(const float currentTime, const float elapsedTime
                 }
                 ++x;
             }
-            teamInstance[1].setActivePlayerInstance(team1ActivePlayerInstance);
+            activeTeamInstance[1].setActivePlayerInstance(team1ActivePlayerInstance);
 			
             break;
 		default:
@@ -638,13 +638,13 @@ void playerSteer::updateDefense(const float currentTime, const float elapsedTime
 	boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
 
-	std::vector<teamState> teamInstance = gameS->getTeamInstance();
+    std::vector<teamState> activeTeamInstance = gameS->getActiveTeamInstance();
 
-    //std::vector<playerState> team0ActivePlayerInstance = teamInstance[0].getActivePlayerInstance();
-    //std::vector<playerState> team1ActivePlayerInstance = teamInstance[1].getActivePlayerInstance();
+    //std::vector<playerState> team0ActivePlayerInstance = activeTeamInstance[0].getActivePlayerInstance();
+    //std::vector<playerState> team1ActivePlayerInstance = activeTeamInstance[1].getActivePlayerInstance();
     std::vector<std::vector<playerState> > activePlayerInstance;
-    //std::vector<int> team0ActivePlayerID = teamInstance[0].getActivePlayerID();
-    //std::vector<int> team1ActivePlayerID = teamInstance[1].getActivePlayerID();
+    //std::vector<int> team0ActivePlayerID = activeTeamInstance[0].getActivePlayerID();
+    //std::vector<int> team1ActivePlayerID = activeTeamInstance[1].getActivePlayerID();
 
 	//std::vector<playerSteer*> team0Steers;
 	//std::vector<playerSteer*> team1Steers;
@@ -652,9 +652,9 @@ void playerSteer::updateDefense(const float currentTime, const float elapsedTime
     std::vector<std::vector<playerSteer*> > teamSteers;
 
     size_t z = 0;
-    while (z < teamInstance.size())
+    while (z < activeTeamInstance.size())
     {
-        activePlayerInstance.push_back(teamInstance[z].getActivePlayerInstance());
+        activePlayerInstance.push_back(activeTeamInstance[z].getActivePlayerInstance());
         size_t x = 0;
         while (x < activePlayerInstance[z].size())
         {
@@ -768,7 +768,7 @@ void playerSteer::updateDefense(const float currentTime, const float elapsedTime
                 }
                 ++x;
             }
-            teamInstance[0].setActivePlayerInstance(team0ActivePlayerInstance);
+            activeTeamInstance[0].setActivePlayerInstance(team0ActivePlayerInstance);
 			break;
 		case 1:
             logMsg("ID = " +convert->toString(ID));
@@ -787,7 +787,7 @@ void playerSteer::updateDefense(const float currentTime, const float elapsedTime
                 }
                 ++x;
             }
-            teamInstance[1].setActivePlayerInstance(team1ActivePlayerInstance);
+            activeTeamInstance[1].setActivePlayerInstance(team1ActivePlayerInstance);
 			break;
 		default:
 		    break;

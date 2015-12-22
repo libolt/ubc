@@ -188,24 +188,24 @@ void gameEngine::processInput()  // processes game input
     boost::shared_ptr<inputSystem> input = inputSystem::Instance();
     boost::shared_ptr<networkEngine> network = networkEngine::Instance();
 
-    std::vector<teamState> teamInstance = gameS->getTeamInstance();
+    std::vector<teamState> activeTeamInstance = gameS->getActiveTeamInstance();
     networkPlayerStateObject netPStateObj;
 
     logMsg("inputProcess!");
  
     if (input->processInput())
     {
-        if (gameS->getTeamInstancesCreated())
+        if (gameS->getActiveTeamInstancesCreated())
         {
             size_t inputIterator = 0;
-            while (inputIterator < teamInstance.size())
+            while (inputIterator < activeTeamInstance.size())
             {
-                if (teamInstance[inputIterator].getPlayerInstancesCreated())
+                if (activeTeamInstance[inputIterator].getPlayerInstancesCreated())
                 {
-                    std::vector<playerState> activePlayerInstance = teamInstance[inputIterator].getActivePlayerInstance();
-                    if (teamInstance[inputIterator].getHumanControlled())
+                    std::vector<playerState> activePlayerInstance = activeTeamInstance[inputIterator].getActivePlayerInstance();
+                    if (activeTeamInstance[inputIterator].getHumanControlled())
                     {
-                        int humanPlayer = teamInstance[inputIterator].getHumanPlayer();
+                        int humanPlayer = activeTeamInstance[inputIterator].getHumanPlayer();
                         logMsg("inputHumanPlayer == " +convert->toString(humanPlayer));
                         //inputMaps inputMap = input->keyMap();
                         inputWorkQueues inputQueue = input->getInputWorkQueue();
@@ -243,63 +243,63 @@ void gameEngine::processInput()  // processes game input
                                     case INUP:
                                         activePlayerInstance[humanInstance].setMovement(true);
                                         activePlayerInstance[humanInstance].setDirection(UP);
-                                        teamInstance[inputIterator].setActivePlayerInstance(activePlayerInstance);
-                                        gameS->setTeamInstance(teamInstance);
+                                        activeTeamInstance[inputIterator].setActivePlayerInstance(activePlayerInstance);
+                                        gameS->setActiveTeamInstance(activeTeamInstance);
 //                                        exit(0);
                                     break;
                                     case INDOWN:
                                         activePlayerInstance[humanInstance].setMovement(true);
                                         activePlayerInstance[humanInstance].setDirection(DOWN);
-                                        teamInstance[inputIterator].setActivePlayerInstance(activePlayerInstance);
-                                        gameS->setTeamInstance(teamInstance);
+                                        activeTeamInstance[inputIterator].setActivePlayerInstance(activePlayerInstance);
+                                        gameS->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INLEFT:
                                         activePlayerInstance[humanInstance].setMovement(true);
                                         activePlayerInstance[humanInstance].setDirection(LEFT);
-                                        teamInstance[inputIterator].setActivePlayerInstance(activePlayerInstance);
-                                        gameS->setTeamInstance(teamInstance);
+                                        activeTeamInstance[inputIterator].setActivePlayerInstance(activePlayerInstance);
+                                        gameS->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INRIGHT:
                                         activePlayerInstance[humanInstance].setMovement(true);
                                         activePlayerInstance[humanInstance].setDirection(RIGHT);
-                                        teamInstance[inputIterator].setActivePlayerInstance(activePlayerInstance);
-                                        gameS->setTeamInstance(teamInstance);
+                                        activeTeamInstance[inputIterator].setActivePlayerInstance(activePlayerInstance);
+                                        gameS->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INUPLEFT:
                                         activePlayerInstance[humanInstance].setMovement(true);
                                         activePlayerInstance[humanInstance].setDirection(UPLEFT);
-                                        teamInstance[inputIterator].setActivePlayerInstance(activePlayerInstance);
-                                        gameS->setTeamInstance(teamInstance);
+                                        activeTeamInstance[inputIterator].setActivePlayerInstance(activePlayerInstance);
+                                        gameS->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INUPRIGHT:
                                         activePlayerInstance[humanInstance].setMovement(true);
                                         activePlayerInstance[humanInstance].setDirection(UPRIGHT);
-                                        teamInstance[inputIterator].setActivePlayerInstance(activePlayerInstance);
-                                        gameS->setTeamInstance(teamInstance);
+                                        activeTeamInstance[inputIterator].setActivePlayerInstance(activePlayerInstance);
+                                        gameS->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INDOWNLEFT:
                                         activePlayerInstance[humanInstance].setMovement(true);
                                         activePlayerInstance[humanInstance].setDirection(DOWNLEFT);
-                                        teamInstance[inputIterator].setActivePlayerInstance(activePlayerInstance);
-                                        gameS->setTeamInstance(teamInstance);
+                                        activeTeamInstance[inputIterator].setActivePlayerInstance(activePlayerInstance);
+                                        gameS->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INDOWNRIGHT:
                                         activePlayerInstance[humanInstance].setMovement(true);
                                         activePlayerInstance[humanInstance].setDirection(DOWNRIGHT);
-                                        teamInstance[inputIterator].setActivePlayerInstance(activePlayerInstance);
-                                        gameS->setTeamInstance(teamInstance);
+                                        activeTeamInstance[inputIterator].setActivePlayerInstance(activePlayerInstance);
+                                        gameS->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INSHOOTBLOCK:
                                         activePlayerInstance[humanInstance].setMovement(false);
                                         activePlayerInstance[humanInstance].setShootBlock(true);
-                                        teamInstance[inputIterator].setActivePlayerInstance(activePlayerInstance);
-                                        gameS->setTeamInstance(teamInstance);
+                                        activeTeamInstance[inputIterator].setActivePlayerInstance(activePlayerInstance);
+                                        gameS->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INPASSSTEAL:
                                         activePlayerInstance[humanInstance].setMovement(false);
                                         activePlayerInstance[humanInstance].setPassSteal(true);
-                                        teamInstance[inputIterator].setActivePlayerInstance(activePlayerInstance);
-                                        gameS->setTeamInstance(teamInstance);
+                                        activeTeamInstance[inputIterator].setActivePlayerInstance(activePlayerInstance);
+                                        gameS->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INQUIT:
                                         logMsg("Quitting!");
@@ -312,7 +312,7 @@ void gameEngine::processInput()  // processes game input
                                 ++x;
                             }
                         }
-                        std::vector<teamState> tInstance = gameS->getTeamInstance();
+                        std::vector<teamState> tInstance = gameS->getActiveTeamInstance();
                         std::vector<playerState> activePInstance = tInstance[inputIterator].getActivePlayerInstance();
                         logMsg("humanInstance == " +convert->toString(humanInstance));
                         //logMsg("inPassSteal == " +convert->toString(activePInstance[humanInstance].getPassSteal()));
@@ -322,9 +322,9 @@ void gameEngine::processInput()  // processes game input
                             if (activePlayerInstance[humanInstance].getMovement())
                             {
                                 logMsg("human playerID == " +convert->toString(activePlayerInstance[humanInstance].getID()));
-                                logMsg("ball player == " +convert->toString(teamInstance[inputIterator].getPlayerWithBallInstance()));
-                                logMsg("ball playerID == " +convert->toString(teamInstance[inputIterator].getPlayerWithBallID()));
-                                if (activePlayerInstance[humanInstance].getID() == teamInstance[inputIterator].getPlayerWithBallID())
+                                logMsg("ball player == " +convert->toString(activeTeamInstance[inputIterator].getPlayerWithBallInstance()));
+                                logMsg("ball playerID == " +convert->toString(activeTeamInstance[inputIterator].getPlayerWithBallID()));
+                                if (activePlayerInstance[humanInstance].getID() == activeTeamInstance[inputIterator].getPlayerWithBallID())
                                 {
                                     bballInstance[activeBBallInstance].setMovement(true);
                                     gameS->setBasketballInstance(bballInstance);
@@ -335,7 +335,7 @@ void gameEngine::processInput()  // processes game input
                         {
                             logMsg("basketballmoved == " +convert->toString(bballInstance[activeBBallInstance].getMovement()));
                         }
-                        gameS->setTeamInstance(teamInstance);
+                        gameS->setActiveTeamInstance(activeTeamInstance);
 
                         if (gameS->getGameType() == MULTI)
                         {

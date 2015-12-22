@@ -38,7 +38,6 @@
 #include <android/asset_manager.h>
 #include <android/asset_manager_jni.h>
 
-#include "RTShaderHelper.h"
 #include "Android/OgreAndroidEGLWindow.h"
 #include "Android/OgreAPKFileSystemArchive.h"
 #include "Android/OgreAPKZipArchive.h"
@@ -50,6 +49,7 @@
 #else
 #include "Ogre.h"
 #endif
+#include "RTShaderHelper.h"
 
 #include "SDL.h"
 #include "SDL_syswm.h"
@@ -168,8 +168,9 @@ class renderEngine
     // Android support
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     AAssetManager* mAssetMgr;  // stores the android asset manager
-    Ogre::ShaderGeneratorTechniqueResolverListener* mMatListener;  // stores the material listener
 #endif
+    Ogre::ShaderGeneratorTechniqueResolverListener* mMatListener;  // stores the material listener
+
     // InputReader* mInputDevice;
     Ogre::Vector3 mTranslateVector;  // stores the translate vector
     Ogre::Radian mRotX, mRotY;  // stores x and y rotations

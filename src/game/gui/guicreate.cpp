@@ -486,9 +486,10 @@ bool GUISystem::createTeamSelectionMenuGUI()  // creates GUI for team selection 
     gameS->setTeamDataInstance(teamDataInstance);
 */
     teamInstance = gameS->getTeamInstance();
-    
+    logMsg("teamInstance.size() == " +convert->toString(teamInstance.size()));
+//    exit(0);
     MyGUI::LayoutManager::getInstance().loadLayout("TeamSelectionMenu.layout");
-
+    
     team0SelectBox = mGUI->findWidget<MyGUI::ListBox>("team0SelectBox");  // loads team 0 ListBox
     team0SelectBox->setVisible(false);
     team0SelectBox->setSize((0.4 *viewPort->getActualWidth() ), (0.04 *viewPort->getActualHeight()) );

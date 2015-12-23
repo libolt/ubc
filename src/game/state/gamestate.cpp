@@ -167,6 +167,15 @@ void gameState::setActiveBBallInstance(size_t set)  // sets the value of activeB
     activeBBallInstance = set;
 }
 
+size_t gameState::getActiveCourtInstance()  // retrieves the value of activeCourtInstance
+{
+    return (activeCourtInstance);
+}
+void gameState::setActiveCourtInstance(size_t set)  // sets the value of activeCourtInstance
+{
+    activeCourtInstance = set;
+}
+
 size_t gameState::getSelectedCourtDataInstance()  // retrieves the value of selectedCourtDataInstance
 {
     return (selectedCourtDataInstance);
@@ -385,6 +394,7 @@ bool gameState::assignHoopToTeams()  // assigns which hoop belongs to each team
 
 bool gameState::createInstances()  // creates object instances
 {
+    bool returnType = true;
     logMsg("gameState creating instances!");
     if (!playerInstancesCreated)
     {
@@ -398,6 +408,7 @@ bool gameState::createInstances()  // creates object instances
         else 
         {
             logMsg("Failed to create playerInstances!");
+            returnType = false;
         }
     }
     
@@ -409,15 +420,16 @@ bool gameState::createInstances()  // creates object instances
         {
             
             logMsg("Team instances created!");
-            exit(0);
+//            exit(0);
             teamInstancesCreated = true;
 //            return (true);
         }
         else 
         {
             logMsg("Failed to create teamInstances!");
+            returnType = false;
         }
-        exit(0);
+//        exit(0);
     }
     
     if (!courtInstancesCreated)
@@ -432,6 +444,7 @@ bool gameState::createInstances()  // creates object instances
         else 
         {
             logMsg("Failed to create courtInstances!");
+            returnType = false;
         }
     }
     
@@ -445,6 +458,7 @@ bool gameState::createInstances()  // creates object instances
         else 
         {
             logMsg("Failed to create hoopInstances!");
+            returnType = false;
         }
     }
     
@@ -458,10 +472,11 @@ bool gameState::createInstances()  // creates object instances
         else 
         {
             logMsg("Failed to create basketballInstances!");
+            returnType = false;
         }
     }
     
-    return (false);
+    return (returnType);
 }
 bool gameState::createBasketballInstances()  // creates basketball Instances
 {
@@ -506,8 +521,8 @@ bool gameState::createTeamInstances()  // creates team Instances
 //    teamInstance[1].setTeamCollidesWith(COL_COURT /* | COL_BBALL | COL_TEAM2;   determines what team1 collides with*/);
 //    teamInstance[0].setupState();
 //    teamInstance[1].setupState();
-    exit(0);
-
+//    exit(0);
+    teamInstance = tInstance;
     return (true);
 }
 
@@ -569,6 +584,8 @@ bool gameState::createActiveTeamInstances()  // creates the active team instance
 
     activeTeamInstance[0] = teamInstance[teamID[0]];
     activeTeamInstance[1] = teamInstance[teamID[1]];
+    activeTeamInstance[0].setTeamID(teamID[0]);
+    activeTeamInstance[1].setTeamID(teamID[1]);
     activeTeamInstance[0].setTeamType(HOMETEAM);
     activeTeamInstance[1].setTeamType(AWAYTEAM);
     activeTeamInstance[0].setHumanControlled(true);
@@ -586,6 +603,7 @@ bool gameState::createActiveTeamInstances()  // creates the active team instance
 bool gameState::setupEnvironment()
 {
     boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+    
 /*
     // Set ambient light
     render->getMSceneMgr()->setAmbientLight(ColourValue(0.5, 0.5, 0.5));
@@ -599,7 +617,10 @@ bool gameState::setupEnvironment()
 }
 bool gameState::loadBasketballModel()  // loads selected basketball model
 {
-    logMsg("loading model");
+    boost::shared_ptr<conversion> convert = conversion::Instance();
+    logMsg("loading bball");
+    logMsg("activeBBallInstance == " +convert->toString(activeBBallInstance));
+    logMsg("loading model " +basketballInstance[activeBBallInstance].getEntityModelFileName());
     if (basketballInstance[activeBBallInstance].loadModel())
     {
         basketballInstance[activeBBallInstance].setModelNeedsLoaded(false);
@@ -635,31 +656,47 @@ bool gameState::loadCourtModel()  // loads selected court model
 
 bool gameState::loadHoopModel()  // loads selected hoop model
 {
-    hoopInstance[0].loadModel();
-    hoopInstance[0].getNode()->setScale(0.8f,0.8f,0.8f);
-    hoopInstance[1].loadModel();
-    hoopInstance[1].getNode()->setScale(0.8f,0.8f,0.8f);
-
-    return (false);
+    bool returnType = true;
+    if (hoopInstance[0].loadModel())
+    {
+        hoopInstance[0].getNode()->setScale(0.8f,0.8f,0.8f);
+    }
+    else
+    {
+        logMsg("Unable to load model for hoopInstance[0]");
+        returnType = false;
+    }
+    if (hoopInstance[1].loadModel())
+    {
+        hoopInstance[1].getNode()->setScale(0.8f,0.8f,0.8f);
+    }
+    else
+    {
+        logMsg("Unable to load model for hoopInstance[1]");
+        returnType = false;
+    }
+    return (returnType);
 }
 
 bool gameState::loadModels()  // loads all game object models excluding the players
 {
+    bool returnType = true;
     if (!basketballModelLoaded)  // Checks if basketball model has been loaded
     {
+        activeBBallInstance = 0;  // Sets the active basketball instance
         logMsg("Loading basketball Model!");
         if (loadBasketballModel())  // Loads the basketball model
         {
-            basketballInstancesCreated = true;
-            return (true);
+            basketballModelLoaded = true;
+//            return (true);
         }
         else
         {
             logMsg("Unable to load basketball model!");
+            returnType = false;
         }
 
         // FIXEME! this should not be hard coded
-        activeBBallInstance = 0;  // Sets the active basketball instance
     }
 
     if (!courtModelLoaded)  // Checks if the court model has been loaded
@@ -668,11 +705,12 @@ bool gameState::loadModels()  // loads all game object models excluding the play
         if (loadCourtModel())  // load the court model
         {
             courtModelLoaded = true;
-            return (true);
+//            return (true);
         }
         else
         {
             logMsg("Unable to load the court model!");
+            returnType = false;
         }
     }
 
@@ -683,16 +721,17 @@ bool gameState::loadModels()  // loads all game object models excluding the play
         if (loadHoopModel())  // Creates the hoop instances
         {
             hoopModelLoaded = true;
-            return (true);
+//            return (true);
         }
         else
         {
             logMsg("Unable to load the hoop model(s)!");
+            returnType = false;
         }
     }
 
 
-    return (false);
+    return (returnType);
 }
 
 void gameState::setBasketballStartPositions()  // sets the initial coordinates for the basketball(s)

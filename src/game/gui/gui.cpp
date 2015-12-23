@@ -353,14 +353,14 @@ void GUISystem::courtSelectionMenu() // displays court selection menu
     if (!courtSelectionDataLoaded)
     {
         logMsg("addCourtSelectionMenuData = " +convert->toString(addCourtSelectionMenuData()));
-        exit(0);
+//        exit(0);
         if (addCourtSelectionMenuData())
         {
-            exit(0);
+//            exit(0);
             courtSelectBox->setIndexSelected(0);
             courtSelectionDataLoaded = true;
         }
-        exit(0);
+//        exit(0);
     }
     changeActiveMenu(COURTSELECT);
     
@@ -448,7 +448,9 @@ void GUISystem::courtSelected()  // processes court selection
     boost::shared_ptr<gameState> gameS = gameState::Instance();
     
     logMsg("Selected Court #" +convert->toString(courtSelectBox->getIndexSelected()));
-    gameS->setSelectedCourtDataInstance(courtSelectBox->getIndexSelected());
+//    gameS->setSelectedCourtDataInstance(courtSelectBox->getIndexSelected());
+    gameS->setActiveCourtInstance(courtSelectBox->getIndexSelected());
+
     teamSelectionMenu();
 }
 
@@ -620,7 +622,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     
     activeTeamInstance[0].setPlayerStartPositions();
 //    logMsg("Team 0 player start positions set");
-    exit(0);
+//    exit(0);
     size_t i = 0;
     //std::vector<playerState> playerInstance;
     playerInstance.clear();

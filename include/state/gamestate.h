@@ -118,6 +118,9 @@ public:
     size_t getActiveBBallInstance();  // retrieves the value of activeBBallInstance
     void setActiveBBallInstance(size_t set);  // sets the value of activeBBallInstance
 
+    size_t getActiveCourtInstance();  // retrieves the value of activeCourtInstance
+    void setActiveCourtInstance(size_t set);  // sets the value of activeCourtInstance
+
     std::vector<size_t> getTeamID(void);  // retrieves the value of teamID
     void setTeamID(std::vector<size_t> set);  // sets the value of teamID
 

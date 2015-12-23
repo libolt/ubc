@@ -655,10 +655,11 @@ bool teamState::createPlayerInstances()
         logMsg("Player Team ID = " +convert->toString(gamePlayerInstance[i].getTeamID()));
 //        exit(0);
         logMsg("Team ID = " +convert->toString(teamID));      
-
+//        exit(0);
         if (gamePlayerInstance[i].getTeamID() == teamID)	// checks if player is assigned to this team
         {
             logMsg("i ====" +convert->toString(i));
+//            exit(0);
             pInstance = gamePlayerInstance[i];
             pInstance.setTeamType(teamType);  // sets the team number the player belongs to            
             pSteer->setTeamType(teamType);

@@ -18,7 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "conversion.h"
-
+#include "logging.h"
 #include "physics/physics.h"
 
 physics::physics()  // constructor
@@ -112,7 +112,7 @@ bool physics::setup()  // sets up the state of the object
     return (true);
 }
 
-bool physics::setupPhysics(Ogre::Entity **model, Ogre::SceneNode **node, btRigidBody **physBody)  // sets up physics for the object
+bool physics::setupPhysics(Ogre::Entity **model, Ogre::SceneNode **node, btRigidBody **body)  // sets up physics for the object
 {
 //    setCollidesWith(COL_COURT);  // collides with the court
     boost::shared_ptr<conversion> convert = conversion::Instance();
@@ -126,7 +126,7 @@ bool physics::setupPhysics(Ogre::Entity **model, Ogre::SceneNode **node, btRigid
     btScalar mass = 0.62f;
     btVector3 inertia, inertia2;
     inertia = btVector3(0,0,0);
-    btRigidBody *body;
+    btRigidBody *physBody;
 
     
     //Create the basketball shape.
@@ -171,15 +171,17 @@ bool physics::setupPhysics(Ogre::Entity **model, Ogre::SceneNode **node, btRigid
 
     //Create the Body.
 //    bballBody = new btRigidBody(mass, basketballBodyState, basketballShape, inertia);
-        body = new btRigidBody(info);
+        *body = new btRigidBody(info);
 //    bballBody->setActivationState(DISABLE_DEACTIVATION);
     //    bballBody->setCollisionFlags(bballBody->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
-        *physBody = body;
+//        *physBody = body;
 
         static btDynamicsWorld *world = getWorld();
-        world->addRigidBody(*physBody, getColObject(), getCollidesWith());
+        world->addRigidBody(*body, getColObject(), getCollidesWith());
         setWorld(world);
+        physBody = *body;
 
+        logMsg("body is in world == " +convert->toString(physBody->isInWorld()));
 //    world->addRigidBody(basketballInstance[activeBBallInstance].getPhysBody());
 
 //        gameS->setBasketballInstance(basketballInstance);

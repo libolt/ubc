@@ -61,7 +61,7 @@ bool basketballEntity::setupPhysicsObject()  // sets up the physics object
         setPhysicsSetup(true);
         setModel(tempModel);
         setNode(tempNode);
-//        setPhysBody(tempPhysBody);
+        setPhysBody(tempPhysBody);
 //        exit(0);
         return (true);
     }

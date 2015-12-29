@@ -254,8 +254,11 @@ bool jumpBalls::jumpBallExecute()  // initiates jump ball from jump ball circle
             break;
         }
 //        exit(0);
+        logMsg("active basketball instance == " +convert->toString(activeBBallInstance));
         logMsg("bball physics setup complete == " +convert->toString(basketballInstance[activeBBallInstance].getPhysicsSetup()));
+        logMsg("bball physbody isinworld == " +convert->toString(basketballInstance[activeBBallInstance].getPhysBody()->isInWorld()));
         logMsg("player physics setup complete == " +convert->toString(activePInstance.getPhysicsSetup()));
+//        exit(0);
         if (physEngine.collisionCheck(basketballInstance[activeBBallInstance].getPhysBody(), activePInstance.getPhysBody()))
         {
             logMsg("team " +convert->toString(y) +" center collided with ball");

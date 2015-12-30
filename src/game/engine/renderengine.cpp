@@ -603,11 +603,11 @@ bool renderEngine::createScene()
 //	misc["externalGLContext"] = convert->toString((unsigned long)SDL_GL_GetCurrentContext());
 //	exit(0);
 	logMsg("Hello??");
-//	mWindow = mRoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
+	mWindow = mRoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
 //	exit(0);
     logMsg("renderWindow created!");
 	unsigned long handle = 0;
-//	mWindow->getCustomAttribute("WINDOW", &handle);
+	mWindow->getCustomAttribute("WINDOW", &handle);
 //    exit(0);
     logMsg("mWindow handle = " +convert->toString(handle));
 
@@ -635,14 +635,14 @@ bool renderEngine::createScene()
 	mResourceGroup = "UBCData";
 	Ogre::ResourceGroupManager *rsm = Ogre::ResourceGroupManager::getSingletonPtr();
 	rsm->createResourceGroup(mResourceGroup);
-
+    
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 	Ogre::ConfigFile cf;
 	cf.load(openAPKFile("resources.cfg"));
     logMsg("or");
 	Ogre::ConfigFile::SectionIterator seci = cf.getSectionIterator();
-//exit(0);
+    
 	while (seci.hasMoreElements())
 	{
 		std::string sec, type, arch;
@@ -658,13 +658,15 @@ bool renderEngine::createScene()
 			rsm->addResourceLocation(arch, type, mResourceGroup);
 		}
 	}
-
+    
 //	Ogre::ResourceGroupManager::getSingletonPtr()->initialiseResourceGroup(Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 
 	Ogre::RTShader::ShaderGenerator::initialize();
-	Ogre::RTShader::ShaderGenerator::getSingletonPtr()->setTargetLanguage("glsles");
+//	exit(0);
+    Ogre::RTShader::ShaderGenerator::getSingletonPtr()->setTargetLanguage("glsles");
 	mMatListener = new Ogre::ShaderGeneratorTechniqueResolverListener();
 	Ogre::MaterialManager::getSingleton().addListener(mMatListener);
+//     exit(0);
 #else
 
     std::string dataPath = UBC_DATADIR;
@@ -685,7 +687,7 @@ bool renderEngine::createScene()
 //            exit(0);
         }
         Ogre::RTShader::ShaderGenerator::initialize();
-        exit(0);
+//        exit(0);
         if (rname == "OpenGL 3+ Rendering Subsystem (ALPHA)")
         {
             Ogre::RTShader::ShaderGenerator::getSingletonPtr()->setTargetLanguage("glsl");
@@ -741,6 +743,7 @@ bool renderEngine::createScene()
 
 
     }
+//    exit(0);
     // logMsg("Rendering!");
 	misc["externalWindowHandle"] = winHandle; //
 
@@ -774,9 +777,10 @@ logMsg("Alive?");
 	rsm->addResourceLocation(dataPath + "/Media/Audio", "FileSystem", mResourceGroup);
 #endif
 
+    
 	rsm->initialiseResourceGroup(mResourceGroup);
-
-//	mSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC); // for OGRE 1.2 Dagon
+    
+	mSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC); // for OGRE 1.2 Dagon
 	mCamera = mSceneMgr->createCamera("camera");
 
 
@@ -791,6 +795,7 @@ logMsg("Alive?");
 #endif
 */
 
+//    exit(0);
 	// Position it at 500 in Z direction
 	mCamera->setPosition(Ogre::Vector3(0, 0, 455));
 	// Look back along -Z

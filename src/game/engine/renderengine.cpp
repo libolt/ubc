@@ -61,9 +61,11 @@ boost::shared_ptr<renderEngine> renderEngine::Instance()
 }
 
 // hack to hopefully make nvidia work on optimus enabled devices with Direct3d 11
+#ifdef _MSC_VER
 extern "C" {
 _declspec(dllexport) DWORD NvOptimusEnablement = 0x00000001;
 }
+#endif
 
 renderEngine::renderEngine()
 {

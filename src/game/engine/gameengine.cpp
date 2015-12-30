@@ -373,7 +373,7 @@ void gameEngine::gameLoop()  // Main Game Loop
     logMsg("Sound Test!");
 
 	logMsg("main: startup");
-
+//    exit(0);
 /*
     threads thread;
     thread.setGRunning(true);
@@ -467,16 +467,15 @@ void gameEngine::gameLoop()  // Main Game Loop
                 }
             }
         }
-        
         if (createScene)  // checks if the scene should be created
         {
 //	    		if (render->createScene())
-            {
+//            {
                 createScene = false;
                 start = true;
 //	    			renderScene = true;
                 sceneCreated = true;
-            }
+//            }
         }
 
         if (start)	// checks if it's time to start the game
@@ -487,11 +486,13 @@ void gameEngine::gameLoop()  // Main Game Loop
                 renderScene = true;
             }
         }
+
         lastFPS = render->getMWindow()->getLastFPS();
         std::string currFPS = convert->toString(lastFPS);
 
         logMsg("FPS = " +currFPS);
         //updateChangeInTime();	// calculates the change in time.
+//        exit(0);
 
 //	        logMsg("changeInTime = " +toString(changeInTime));
         // updates game logic every 100 milliseconds
@@ -566,7 +567,10 @@ void gameEngine::gameLoop()  // Main Game Loop
         {
 //			Ogre::LogManager::getSingletonPtr()->logMessage("Rendering frame");
             render->getMWindow()->windowMovedOrResized();
+//            exit(0);
             render->getMRoot()->renderOneFrame();
+//            exit(0);
+
         }
     }
 

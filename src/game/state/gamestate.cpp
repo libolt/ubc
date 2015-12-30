@@ -411,7 +411,7 @@ bool gameState::createInstances()  // creates object instances
             returnType = false;
         }
     }
-    
+//    exit(0);
     if (!teamInstancesCreated)
     {
         logMsg("Creating Team Instances!");

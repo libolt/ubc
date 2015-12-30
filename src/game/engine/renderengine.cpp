@@ -60,6 +60,10 @@ boost::shared_ptr<renderEngine> renderEngine::Instance()
     return pInstance; // address of sole instance
 }
 
+// hack to hopefully make nvidia work on optimus enabled devices with Direct3d 11
+extern "C" {
+_declspec(dllexport) DWORD NvOptimusEnablement = 0x00000001;
+}
 
 renderEngine::renderEngine()
 {
@@ -71,9 +75,10 @@ renderEngine::renderEngine()
 #endif
    mWindow = NULL;
    mRoot = NULL;
-   
+   selectedRenderSystem = 0;
    windowWidth = 0;
    windowHeight = 0;
+   useRTSS = false;
 }
 
 renderEngine::~renderEngine()
@@ -420,12 +425,16 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 
 	if (buildType == "Debug")
 	{
-        mRoot->loadPlugin(pluginDir + "/RenderSystem_Direct3D11_d.dll");
+//        mRoot->loadPlugin(/*pluginDir +*/ "RenderSystem_Direct3D11_d.dll");
+//        mRoot->loadPlugin(pluginDir +"/OgreOverlay_d.dll");
+        mRoot->loadPlugin("RenderSystem_GL_d.dll");
+//        mRoot->loadPlugin(/*pluginDir +*/"RenderSystem_GL3Plus_d.dll");
+//        mRoot->loadPlugin(pluginDir + "/OgreRTShaderSystem_d.dll");
 //		mRoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager_d");
 	}
 	else
 	{
-		mRoot->loadPlugin(pluginDir + "/RenderSystem_Direct3D9");
+        mRoot->loadPlugin(/*pluginDir +*/ "RenderSystem_Direct3D11");
 //		mRoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager");
 	}
 #elif OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
@@ -446,15 +455,30 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 	mRoot->initialise(false);
 #else
 	Ogre::RenderSystemList rsList = mRoot->getAvailableRenderers();
-
+    logMsg("blah!");
+//    exit(0);
 	int c = 0;
 	bool foundit = false;
-	Ogre::RenderSystem *selectedRenderSystem = 0;
-	while (c < (int)rsList.size())
+//	Ogre::RenderSystem *selectedRenderSystem = 0;
+    selectedRenderSystem = rsList.at(0);
+    std::string rname = selectedRenderSystem->getName();
+    //we found it, we might as well use it!
+    mRoot->setRenderSystem(selectedRenderSystem);
+    mRoot->initialise(false);
+//    mWindow = mRoot->initialise(false, "Ultimate Basketball Challenge");
+    logMsg("RendererName == " +rname);
+    if (rname == "Direct3D11 Rendering Subsystem" || rname == "OpenGL 3+ Rendering Subsystem" || rname == "OpenGL 3+ Rendering Subsystem (ALPHA)")
+    {
+        useRTSS = true;
+//        exit(0);
+    }
+    // TEMPORARY HACK!!
+//    useRTSS = true;
+/*    while (c < (int)rsList.size())
 	{
 		selectedRenderSystem = rsList.at(c);
-		std::string rname = selectedRenderSystem->getName();
         logMsg("RendererName == " +rname);
+//        exit(0);
 		if (rname.compare("OpenGL Rendering Subsystem") == 0)
 		{
 			foundit = true;
@@ -463,12 +487,28 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 		c++; // <-- oh how clever
         logMsg(convert->toString(c++));
 	}
-
-	//we found it, we might as well use it!
-	mRoot->setRenderSystem(selectedRenderSystem);
-	mWindow = mRoot->initialise(false, "Ultimate Basketball Challenge");
+*/
 #endif
 
+
+/*    c = 0;
+    foundit = false;
+    //Ogre::RenderSystem *selectedRenderSystem = 0;
+    while (c < (int)rsList.size())
+    {
+        selectedRenderSystem = rsList.at(c);
+        std::string rname = selectedRenderSystem->getName();
+        logMsg("RendererName == " +rname);
+//        exit(0);
+        if (rname.compare("OpenGL Rendering Subsystem") == 0)
+        {
+            foundit = true;
+            break;
+        }
+        c++; // <-- oh how clever
+        logMsg(convert->toString(c++));
+    }
+*/
     Ogre::DDSCodec::startup();
     Ogre::FreeImageCodec::startup();FreeImage_Initialise();
     Ogre::DDSCodec::startup();
@@ -561,11 +601,12 @@ bool renderEngine::createScene()
 //	misc["externalGLContext"] = convert->toString((unsigned long)SDL_GL_GetCurrentContext());
 //	exit(0);
 	logMsg("Hello??");
-	mWindow = mRoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
+//	mWindow = mRoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
 //	exit(0);
     logMsg("renderWindow created!");
 	unsigned long handle = 0;
-	mWindow->getCustomAttribute("WINDOW", &handle);
+//	mWindow->getCustomAttribute("WINDOW", &handle);
+//    exit(0);
     logMsg("mWindow handle = " +convert->toString(handle));
 
     logMsg("Dead");
@@ -624,19 +665,84 @@ bool renderEngine::createScene()
 	Ogre::MaterialManager::getSingleton().addListener(mMatListener);
 #else
 
-/// FIXME! ugly hack to tester d3d11
-#define D3D11
-    Ogre::RTShader::ShaderGenerator::initialize();
-    Ogre::RTShader::ShaderGenerator::getSingletonPtr()->setTargetLanguage("hlsl");
-    mMatListener = new Ogre::ShaderGeneratorTechniqueResolverListener();
-    Ogre::MaterialManager::getSingleton().addListener(mMatListener);
-#ifdef D3D11
+    std::string dataPath = UBC_DATADIR;
+    mSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC); // for OGRE 1.2 Dagon
 
-#endif
-	// logMsg("Rendering!");
+    Ogre::RTShader::ShaderGenerator* mShaderGenerator = Ogre::RTShader::ShaderGenerator::getSingletonPtr();
+    if (useRTSS)
+    {
+        std::string rname = selectedRenderSystem->getName();  // stores the name of the selected rendering system
+        rsm->addResourceLocation(dataPath +"/RTShaderLib", "FileSystem",Ogre::RTShader::ShaderGenerator::DEFAULT_SCHEME_NAME);
+        if (rname == "OpenGL 3+ Rendering Subsystem (ALPHA)")
+        {
+            rsm->addResourceLocation(dataPath +"/RTShaderLib/GLSL150", "FileSystem",Ogre::RTShader::ShaderGenerator::DEFAULT_SCHEME_NAME);
+        }
+        else if (rname == "Direct3D11 Rendering Subsystem")
+        {
+            rsm->addResourceLocation(dataPath +"/RTShaderLib/HLSL", "FileSystem",Ogre::RTShader::ShaderGenerator::DEFAULT_SCHEME_NAME);
+//            exit(0);
+        }
+        Ogre::RTShader::ShaderGenerator::initialize();
+        exit(0);
+        if (rname == "OpenGL 3+ Rendering Subsystem (ALPHA)")
+        {
+            Ogre::RTShader::ShaderGenerator::getSingletonPtr()->setTargetLanguage("glsl");
+        }
+        else if (rname == "Direct3D11 Rendering Subsystem")
+        {
+            Ogre::RTShader::ShaderGenerator::getSingletonPtr()->setTargetLanguage("hlsl");
+
+        }
+        mMatListener = new Ogre::ShaderGeneratorTechniqueResolverListener();
+        Ogre::MaterialManager::getSingleton().addListener(mMatListener);
+
+        /*if (Ogre::RTShader::ShaderGenerator::initialize())
+//        if (mShaderGenerator->initialize())
+        {
+            // Grab the shader generator pointer.
+            //mShaderGenerator = Ogre::RTShader::ShaderGenerator::getSingletonPtr();
+
+            // Add the shader libs resource location. a sample shader lib can be found in Samples\Media\RTShaderLib
+            //Ogre::ResourceGroupManager::getSingleton().addResourceLocation(dataPath +"/RTShaderLib", "FileSystem");
+            rsm->addResourceLocation(dataPath +"/RTShaderLib", "FileSystem",Ogre::RTShader::ShaderGenerator::DEFAULT_SCHEME_NAME);
+            rsm->addResourceLocation(dataPath +"/RTShaderLib/GLSL150", "FileSystem",Ogre::RTShader::ShaderGenerator::DEFAULT_SCHEME_NAME);
+            rsm->initialiseAllResourceGroups();
+            // Set shader cache path.
+//            Ogre::RTShader::ShaderGenerator::getSingletonPtr()->setVertexShaderProfiles("gpu_vp gp4vp vp40 vp30 arbvp1 vs_4_0 vs_4_0_level_9_3 vs_4_0_level_9_1 vs_3_0 vs_2_x vs_2_a vs_2_0 vs_1_1");
+//            Ogre::RTShader::ShaderGenerator::getSingletonPtr()->setFragmentShaderProfiles("ps_4_0 ps_4_0_level_9_3 ps_4_0_level_9_1 ps_3_x ps_3_0 fp40 fp30 fp20 arbfp1 ps_2_x ps_2_a ps_2_b ps_2_0 ps_1_4 ps_1_3 ps_1_2 ps_1_1");
+            logMsg("verttfag!");
+            Ogre::RTShader::ShaderGenerator::getSingletonPtr()->setShaderCachePath(dataPath +"/RTShaderLib/cache/");
+//            exit(0);
+            // Set the scene manager.
+            Ogre::RTShader::ShaderGenerator::getSingletonPtr()->addSceneManager(mSceneMgr);
+//            exit(0);
+            // Add a specialized sub-render (per-pixel lighting) state to the default scheme render state
+            Ogre::RTShader::RenderState* pMainRenderState =
+                Ogre::RTShader::ShaderGenerator::getSingletonPtr()->createOrRetrieveRenderState(Ogre::RTShader::ShaderGenerator::DEFAULT_SCHEME_NAME).first;
+            pMainRenderState->reset();*/
+
+
+
+//            exit(0);
+/*            Ogre::RTShader::ShaderGenerator::getSingletonPtr()->addSubRenderStateFactory(new Ogre::RTShader::PerPixelLightingFactory);
+            pMainRenderState->addTemplateSubRenderState(
+                Ogre::RTShader::ShaderGenerator::getSingletonPtr()->createSubRenderState(Ogre::RTShader::PerPixelLighting::Type));
+//            exit(0);
+*/
+/*            Ogre::RTShader::ShaderGenerator::getSingletonPtr()->setTargetLanguage("hlsl");
+            mMatListener = new Ogre::ShaderGeneratorTechniqueResolverListener();
+            Ogre::MaterialManager::getSingleton().addListener(mMatListener);
+            return true;
+*/
+///        }
+//            exit(0);
+
+
+    }
+    // logMsg("Rendering!");
 	misc["externalWindowHandle"] = winHandle; //
 
-//    mWindow = mRoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
+    mWindow = mRoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
 
 	//    exit(0);
 	mWindow->setVisible(true);
@@ -646,7 +752,7 @@ logMsg("Alive?");
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     std::string dataPath = "data";
 #else
-    std::string dataPath = UBC_DATADIR;
+//    std::string dataPath = UBC_DATADIR;
 
 
 	// load the basic resource location(s)
@@ -668,9 +774,11 @@ logMsg("Alive?");
 
 	rsm->initialiseResourceGroup(mResourceGroup);
 
-	mSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC); // for OGRE 1.2 Dagon
+//	mSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC); // for OGRE 1.2 Dagon
 	mCamera = mSceneMgr->createCamera("camera");
 
+
+    logMsg("RTShaderSystem Setup!");
 /*
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 	mCamera->setNearClipDistance(1.0f);
@@ -697,8 +805,18 @@ logMsg("Alive?");
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 	viewPort->setMaterialScheme(Ogre::RTShader::ShaderGenerator::DEFAULT_SCHEME_NAME);
 #endif
-	viewPort->setOverlaysEnabled(true);	// sets overlays true so that MyGUI can render
 
+    if (useRTSS)
+    {
+        // Create shader based technique from the default technique of the given material.
+//        Ogre::RTShader::ShaderGenerator::getSingletonPtr()->createShaderBasedTechnique("BaseWhiteNoLighting", Ogre::MaterialManager::DEFAULT_SCHEME_NAME, Ogre::RTShader::ShaderGenerator::DEFAULT_SCHEME_NAME);
+//        exit(0);
+        // Apply the shader generated based techniques.
+        viewPort->setMaterialScheme(Ogre::RTShader::ShaderGenerator::DEFAULT_SCHEME_NAME);
+//        exit(0);
+    }
+    viewPort->setOverlaysEnabled(true);	// sets overlays true so that MyGUI can render
+//    exit(0);
     bool overlayEnabled = viewPort->getOverlaysEnabled();
     logMsg("overlayEnabled = " +convert->toString(overlayEnabled));
 //.0.236	exit(0);
@@ -710,7 +828,7 @@ logMsg("Alive?");
     // Create a light
     Ogre::Light* l = mSceneMgr->createLight("MainLight");
     l->setPosition(20,80,56);
-
+//    exit(0);
 	//	    Ogre::LogManager::getSingletonPtr()->logMessage("winHandle = " +winHandle);
 
 	// this next bit is for the sake of the input handler

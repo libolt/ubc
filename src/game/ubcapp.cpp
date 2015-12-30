@@ -66,19 +66,20 @@ int main(int argc, char *argv[])
 
     render->initOgre(); // Initializes the Ogre Subsystem
     render->createScene(); // creates rendering scene.
-
+//    exit(0);
     gameS->createInstances();  // creates object instances
-    
+//    exit(0);
     gui->initMyGUI(); // Initializes MyGUI
     if (!gui->getMainMenuCreated())
     {
         gui->createMainMenuGUI(); // creates the main menu gui.
 		gui->createBackButtons(); // creates the back buttons.
     }
+//    exit(0);
     logMsg("Initializing Input");
     //inputSystem *input = inputSystem::Instance();
     boost::shared_ptr<inputSystem> input = inputSystem::Instance();
-
+//    exit(0);
     gameE->gameLoop();
 
     atexit(SDL_Quit);

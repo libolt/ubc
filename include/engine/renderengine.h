@@ -170,6 +170,7 @@ class renderEngine
     AAssetManager* mAssetMgr;  // stores the android asset manager
 #endif
     Ogre::ShaderGeneratorTechniqueResolverListener* mMatListener;  // stores the material listener
+    Ogre::RenderSystem *selectedRenderSystem;
 
     // InputReader* mInputDevice;
     Ogre::Vector3 mTranslateVector;  // stores the translate vector
@@ -184,7 +185,8 @@ class renderEngine
 
 //    static renderEngine *pInstance;
     static boost::shared_ptr<renderEngine> pInstance;
+    bool useRTSS;
 
 };
 
-#endif // RENDERSYSTEMS_H_INCLUDED
+#endif // RENDERENGINE_H_INCLUDED

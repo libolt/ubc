@@ -429,8 +429,8 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 	{
 //        mRoot->loadPlugin(/*pluginDir +*/ "RenderSystem_Direct3D11_d.dll");
 //        mRoot->loadPlugin(pluginDir +"/OgreOverlay_d.dll");
-        mRoot->loadPlugin("RenderSystem_GL_d.dll");
-//        mRoot->loadPlugin(/*pluginDir +*/"RenderSystem_GL3Plus_d.dll");
+//        mRoot->loadPlugin("RenderSystem_GL_d.dll");
+        mRoot->loadPlugin(/*pluginDir +*/"RenderSystem_GL3Plus_d.dll");
 //        mRoot->loadPlugin(pluginDir + "/OgreRTShaderSystem_d.dll");
 //		mRoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager_d");
 	}
@@ -603,7 +603,9 @@ bool renderEngine::createScene()
 //	misc["externalGLContext"] = convert->toString((unsigned long)SDL_GL_GetCurrentContext());
 //	exit(0);
 	logMsg("Hello??");
+#ifdef __ANDROID__
 	mWindow = mRoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
+#endif
 //	exit(0);
     logMsg("renderWindow created!");
 	unsigned long handle = 0;

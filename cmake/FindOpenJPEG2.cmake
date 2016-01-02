@@ -1,0 +1,43 @@
+# - Try to find OpenJPEG2 
+# Once done this will define
+#
+# OPENJPEG2_FOUND - system has OpenJPEG2
+# OPENJPEG2_INCLUDE_DIRS - the OPENJPEG2 include directory
+# OPENJPEG2_LIBRARIES - the libraries needed to use OpenJPEG2
+#
+# $OPENJPEG2_HOME is an environment variable used for finding OPENJPEG2.
+#
+#
+
+FIND_PATH(OPENJPEG2_INCLUDE_DIRS openjpeg.h
+    PATHS
+    $ENV{OPENJPEG2_HOME}/include
+    /usr/local
+    /usr
+    PATH_SUFFIXES include
+    )
+
+FIND_LIBRARY(OPENJPEG2_LIBRARY
+    NAMES openjp2
+    PATHS
+    $ENV{OPENJPEG2_HOME}
+    /usr/local
+    /usr
+#    PATH_SUFFIXES lib
+    )
+
+# handle the QUIETLY and REQUIRED arguments and set ENET_FOUND to TRUE if
+# all listed variables are TRUE
+INCLUDE(FindPackageHandleStandardArgs)
+FIND_PACKAGE_HANDLE_STANDARD_ARGS(OPENJPEG2 DEFAULT_MSG OPENJPEG2_LIBRARY OPENJPEG2_INCLUDE_DIRS)
+
+IF (OPENJPEG2_FOUND)
+    IF(WIN32)
+	    SET(OPENJPEG2_LIBRARIES ${OPENJPEG2_LIBRARY})
+    ELSE(WIN32)
+	    SET(OPENJPEG2_LIBRARIES ${OPENJPEG2_LIBRARY})
+    ENDIF(WIN32)
+ENDIF (OPENJPEG2_FOUND)
+
+MARK_AS_ADVANCED(OPENJPEG2_LIBRARY OPENJPEG2_LIBRARIES OPENJPEG2_INCLUDE_DIRS)
+

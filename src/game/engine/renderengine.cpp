@@ -611,6 +611,8 @@ bool renderEngine::createScene()
 	unsigned long handle = 0;
     if (useRTSS)
     {
+        mWindow = mRoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
+
 //        mWindow->getCustomAttribute("WINDOW", &handle);
     }
     //    exit(0);
@@ -681,7 +683,7 @@ bool renderEngine::createScene()
     rsm->addResourceLocation(dataPath +"/RTShaderLib", "FileSystem",Ogre::RTShader::ShaderGenerator::DEFAULT_SCHEME_NAME);
     if (rname == "OpenGL 3+ Rendering Subsystem (ALPHA)")
     {
-        rsm->addResourceLocation(dataPath +"/RTShaderLib/GLSL150", "FileSystem",Ogre::RTShader::ShaderGenerator::DEFAULT_SCHEME_NAME);
+//        rsm->addResourceLocation(dataPath +"/RTShaderLib/GLSL150", "FileSystem",Ogre::RTShader::ShaderGenerator::DEFAULT_SCHEME_NAME);
     }
     else if (rname == "Direct3D11 Rendering Subsystem")
     {

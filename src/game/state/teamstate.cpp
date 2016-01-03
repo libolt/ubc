@@ -772,10 +772,8 @@ bool teamState::createPlayerInstances()
 
 void teamState::setPlayerStartPositions()	// sets the initial coordinates for the players.
 {
-
-    //conversion *convert = conversion::Instance();
+    logMsg("setPlayerStartPositions!");
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    //gameState *gameS = gameState::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
 
@@ -798,16 +796,16 @@ void teamState::setPlayerStartPositions()	// sets the initial coordinates for th
 
     Ogre::Vector3 courtPos = courtInstance[0].getNodePosition();
 //    exit(0);
-/*    logMsg("courtPos.y == " +convert->toString(courtPos.y));
+    logMsg("courtPos.y == " +convert->toString(courtPos.y));
     float yOffset = courtPos.y + 5.0;
     float y = 0.0;
     logMsg("courtpos.y == " +convert->toString(courtPos.y));
     logMsg("yOffset == " +convert->toString(yOffset));
-*/
+
 //    exit(0);
     // set initial player coordinates for the tipoff
 
-/*    if (teamType == HOMETEAM)	// assigns the positions and directions for team 1 players
+    if (teamType == HOMETEAM)	// assigns the positions and directions for team 1 players
 	{
 		// assign positions
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
@@ -847,18 +845,20 @@ void teamState::setPlayerStartPositions()	// sets the initial coordinates for th
 
         playerDirection = RIGHT;        
     }
-*/    
-/*    
+
+
     if (startingPos.size() > 0)
     {
-        
+        logMsg("startingPosition.size > 0");
+//        exit(0);
 //        for (size_t i=0;i<5;++i)
         size_t i = 0;
 
         size_t x = 0;
         while (x < activePlayerInstance.size()) //&& playerID != playerInstance[x].getPlayerID())
         {
-            
+            logMsg("activePlayerInstance.size > 0!");
+ //           exit(0);
             if (activePlayerInstance[x].getActivePosition() == PG)
             {
                 //activePlayerInstance[x].getNode()->setPosition(startingPos[0]);
@@ -922,7 +922,7 @@ void teamState::setPlayerStartPositions()	// sets the initial coordinates for th
         }      
 //	    exit(0);
 	}
-*/
+
     size_t x = 0;
     /*
     while (x < activePlayerInstance.size())
@@ -1279,6 +1279,7 @@ void teamState::updatePositions()
 	// updates the player positions on the court
     while (x<activePlayerInstance.size())
 	{
+        exit(0);
 //		logMsg("updatePositions X = " +convert->toString(x));
         activePlayerInstance[x].updateCourtPosition();
         x++;

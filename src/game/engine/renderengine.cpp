@@ -429,8 +429,8 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 	{
 //        mRoot->loadPlugin(/*pluginDir +*/ "RenderSystem_Direct3D11_d.dll");
 //        mRoot->loadPlugin(pluginDir +"/OgreOverlay_d.dll");
-//        mRoot->loadPlugin("RenderSystem_GL_d.dll");
-        mRoot->loadPlugin(/*pluginDir +*/"RenderSystem_GL3Plus_d.dll");
+        mRoot->loadPlugin("RenderSystem_GL_d.dll");
+//        mRoot->loadPlugin(/*pluginDir +*/"RenderSystem_GL3Plus_d.dll");
 //        mRoot->loadPlugin(pluginDir + "/OgreRTShaderSystem_d.dll");
 //		mRoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager_d");
 	}
@@ -448,8 +448,9 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 #elif OGRE_PLATFORM == OGRE_PLATFORM_APPLE
 	mRoot->loadPlugin("RenderSystem_GL");
 #else
-    mRoot->loadPlugin(pluginDir + "/RenderSystem_GL3Plus_d");
-	mRoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager");
+    mRoot->loadPlugin(pluginDir + "/RenderSystem_GL_d");
+//    mRoot->loadPlugin(pluginDir + "/OgreRTShaderSystem_d");
+//	mRoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager");
 #endif
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
@@ -611,7 +612,7 @@ bool renderEngine::createScene()
 	unsigned long handle = 0;
     if (useRTSS)
     {
-        mWindow = mRoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
+//        mWindow = mRoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
 
 //        mWindow->getCustomAttribute("WINDOW", &handle);
     }
@@ -679,6 +680,8 @@ bool renderEngine::createScene()
     std::string dataPath = UBC_DATADIR;
     mSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC); // for OGRE 1.2 Dagon
 
+    if (useRTSS)
+    {
     std::string rname = selectedRenderSystem->getName();  // stores the name of the selected rendering system
     rsm->addResourceLocation(dataPath +"/RTShaderLib", "FileSystem",Ogre::RTShader::ShaderGenerator::DEFAULT_SCHEME_NAME);
     if (rname == "OpenGL 3+ Rendering Subsystem (ALPHA)")
@@ -690,14 +693,14 @@ bool renderEngine::createScene()
         rsm->addResourceLocation(dataPath +"/RTShaderLib/HLSL", "FileSystem",Ogre::RTShader::ShaderGenerator::DEFAULT_SCHEME_NAME);
 //            exit(0);
     }
+
+    rsm->initialiseAllResourceGroups();
     if (Ogre::RTShader::ShaderGenerator::initialize())
     {
         logMsg("RTSS Initialized!");
     }
 
     Ogre::RTShader::ShaderGenerator* mShaderGenerator = Ogre::RTShader::ShaderGenerator::getSingletonPtr();
-    if (useRTSS)
-    {
 //        std::string rname = selectedRenderSystem->getName();  // stores the name of the selected rendering system
         rsm->addResourceLocation(dataPath +"/RTShaderLib", "FileSystem",mShaderGenerator->DEFAULT_SCHEME_NAME);
         if (rname == "OpenGL 3+ Rendering Subsystem (ALPHA)")

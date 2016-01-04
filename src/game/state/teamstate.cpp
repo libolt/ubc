@@ -981,6 +981,7 @@ void teamState::updatePlayerStates()  // updates the states of active players
         logMsg("PlayerSteer Position == " +convert->toString(activePlayerInstance[x].getSteer()->position()));
         ++x;
     }
+
 }
 
 void teamState::updatePlayerDirections()

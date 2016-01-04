@@ -797,15 +797,18 @@ void playerState::updateState()
         }
         direction = NODIRECT;
     }
+
 }
 
 bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3D model
 {
+    logMsg("playerState::updateCourtPosition");
+
     boost::shared_ptr<conversion> convert = conversion::Instance();
     ///boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
 
-    comparison compare;
+        comparison compare;
     btVector3 physChange = btVector3(0,0,0);
     Ogre::Vector3 changePos = Ogre::Vector3(0,0,0);
     
@@ -1129,7 +1132,7 @@ void playerState::calculatePass()	// calculates which player to pass the ball to
     passCalculated = true;
 //    logMsg("Player to pass to =   " +convert->toString(passToPlayer));
 
-    exit(0);
+//    exit(0);
 }
 
 void playerState::shotLogic(Ogre::Vector3 playerPos)

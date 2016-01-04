@@ -725,12 +725,13 @@ void playerState::updateState()
     jumpBalls jumpBall = gameS->getJumpBall();
     Ogre::Vector3 playerPos;
 
-/*    if (getPhysics().getStateSet())
+    if (getPhysicsSetup())
     {
         logMsg("playerState::updateState");
-        exit(0);
+        updateCourtPosition();
+//        exit(0);
     }
-*/
+
 //    if (shotTaken && !shotComplete)  // checks if a player takes a shot
 
     

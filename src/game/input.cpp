@@ -60,6 +60,7 @@ inputSystem::inputSystem()  // constructor
     mouseY = 0;
     mouseLeftClick = -1;
     mouseRightClick = -1;
+	inputMap = INNO;
     setup();
 }
 

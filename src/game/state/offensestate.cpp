@@ -30,6 +30,7 @@
 
 offenseState::offenseState()  // constructor
 {
+	teamType = NOTEAM;
     selectedOffense = -1; // sets the default offense to box
     execute = false;
     offenseSet = false;

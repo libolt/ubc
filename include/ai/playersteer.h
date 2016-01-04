@@ -39,7 +39,7 @@ class playerSteer : public steering
         m_AllPlayers = allplayers;
 	    //m_Ball(ball),
 //	    b_ImTeamA = isTeamA;
-        m_MyID = 0;
+//        m_MyID = 0;
         m_MyID = id;
 
 //    b_ImTeamA = true;

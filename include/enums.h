@@ -26,13 +26,13 @@
     enum gameTypes { NOGAME, SINGLE, MULTI }; // defines whether a game is single or multi player
     enum netGameTypes { CLIENT, SERVER}; // defines which type of network game this instance is running
     enum quarters { NOQUARTER, FIRST, SECOND, THIRD, FOURTH }; // defines the quarters within the game
-    enum courtSide_t {RIGHTSIDE, LEFTSIDE };	// defines which side of the court the offensive team is on
+    enum courtSide_t {NOSIDE, RIGHTSIDE, LEFTSIDE };	// defines which side of the court the offensive team is on
 
     // GUI
     enum activeMenus { MAIN, NETWORK, NETWORKCLIENT, NETWORKSERVER, OPTIONS, DISPLAY, INPUTMENU, AUDIO, GAMESETUP, PLAYERSTART, TEAMSELECT, COURTSELECT }; // stores which menu is set to active
 
     // jump ball
-    enum jumpBallLocations_t { CENTERCIRCLE, RIGHTKEYCIRCLE, LEFTKEYCIRCLE };
+    enum jumpBallLocations_t { NOLOCATION, CENTERCIRCLE, RIGHTKEYCIRCLE, LEFTKEYCIRCLE };
 
     // offense / defense
     enum playerPositions { NONE, PG, SG, SF, PF, C }; // defines the name for each player position

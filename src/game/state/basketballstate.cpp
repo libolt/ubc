@@ -69,6 +69,7 @@ basketballState::basketballState()  // constructor
     courtPosition = Ogre::Vector3(0,0,0);
     newCourtPosition = Ogre::Vector3(0,0,0);
     courtPositionChanged = false;
+	courtPositionChangedType = NOCHANGE;
     number = 999999;
 //    stateSet = false;
 

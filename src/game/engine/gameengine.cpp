@@ -49,10 +49,6 @@ gameEngine::gameEngine()  // constructor
 //    : player[0](0),
  // playerNode[0](0)
 {
-    x = 0;
-    y = 0;
-    i = 0;
-    j = 0;
   
     yOffset = 0.0;
 
@@ -317,6 +313,9 @@ void gameEngine::processInput()  // processes game input
                         logMsg("humanInstance == " +convert->toString(humanInstance));
                         //logMsg("inPassSteal == " +convert->toString(activePInstance[humanInstance].getPassSteal()));
                         //exit(0);
+
+                        /// FIXME! This if statement should be adapted to work correctly instead of relying on the i variable
+                        int i = 0;
                         if (gameS->getTeamWithBall() == i)
                         {
                             if (activePlayerInstance[humanInstance].getMovement())

@@ -26,6 +26,8 @@
 
 defenseState::defenseState() // constructor
 {
+	teamType = NOTEAM;
+	courtSide = NOSIDE;
     execute = false;
 }
 

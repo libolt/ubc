@@ -64,7 +64,7 @@ gameState::gameState()  // constructor
     tipOffSetupComplete = false;
     tipOffComplete = false;
     selectedCourtDataInstance = -1;
-    
+	sceneCreated = false;
     activeBBallInstance = -1;
     activeCourtInstance = -1;
 

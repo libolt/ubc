@@ -86,10 +86,6 @@ private:
     //static gameEngine *pInstance;
     static boost::shared_ptr<gameEngine> pInstance;
 
-    int x;
-    int y;
-    int i;
-    int j;
     
     float yOffset; // stores the y offset for objects on the screen
     

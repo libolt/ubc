@@ -26,6 +26,7 @@
 
 basketballPhysics::basketballPhysics()  // constructor
 {
+	bounce = NOBOUNCE;
 //    bballCollidesWith = COL_COURT; // | COL_TEAM1 | COL_TEAM2;  // determines what the basketball collides with
 
 /*    physicsSetup = false;

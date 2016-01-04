@@ -36,6 +36,8 @@ jumpBalls::jumpBalls()  // constructor
     setupComplete = false;
     executeJumpBall = false;
     jumpBallComplete = false;
+	jumpBallLocation = NOLOCATION;
+	playerHasBasketball = false;
     
 }
 
@@ -314,7 +316,7 @@ bool jumpBalls::tipToPlayer()  // tips the basketball to the appropriate player
     std::vector<teamState> activeTeamInstance = gameS->getActiveTeamInstance();
     std::vector<playerState> activePlayerInstance;
     jumpBalls jumpBall = gameS->getJumpBall();
-    teamTypes ballTippedToTeam = jumpBall.getBallTippedToTeam();
+//    teamTypes ballTippedToTeam = jumpBall.getBallTippedToTeam();
     quarters quarter = gameS->getQuarter();
     size_t activeBBallInstance = gameS->getActiveBBallInstance();
 

@@ -825,7 +825,7 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
                 startPosReached = true;
                 courtPosition = getNode()->getPosition();
                 logMsg("start change,");
-                exit(0);
+//                exit(0);
             break;
             
             case STEERCHANGE:

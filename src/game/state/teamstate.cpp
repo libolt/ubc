@@ -1034,7 +1034,7 @@ void teamState::updatePlayerDirections()
                             break;
                         case RIGHT:
                             activePlayerInstance[x].getNode()->yaw(Ogre::Degree (90));
-                            exit(0);
+//                            exit(0);
                             break;
                         default:
                             break;

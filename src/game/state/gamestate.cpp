@@ -904,14 +904,14 @@ bool gameState::setupState()  // sets up the game condition
 bool gameState::updateState()  // updates the game state
 {
 //    logMsg("Updating gameState Logic");
-/*
+
     boost::shared_ptr<AISystem> ai = AISystem::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
     boost::shared_ptr<networkEngine> network = networkEngine::Instance();
     //boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
-    timing timer = gameE->getTimer();
+/*    timing timer = gameE->getTimer();
     Ogre::Vector3 playerPos;
 
     basketballInstance[activeBBallInstance].updateState();

@@ -48,7 +48,7 @@ btDynamicsWorld *physicsEngine::world;  // stores the physics world
 
 physicsEngine::physicsEngine()  // contructor
 {
-    /*
+    
     // Bullet initialisation.
 //      broadPhase = new btAxisSweep3(btVector3(-10000,-10000,-10000), btVector3(10000,10000,10000), 1024);
     broadPhase = new btDbvtBroadphase();
@@ -103,7 +103,7 @@ physicsEngine::physicsEngine()  // contructor
     midShotPosReached = false;
     midShotXPosReached = false;
     endShotPosSet = false;
-    */
+    
 }
 
 physicsEngine::~physicsEngine()  // destructor

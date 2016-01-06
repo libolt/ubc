@@ -62,8 +62,8 @@ void GUISystem::hideNetworkSetupWidgets()  // hides the widgets tied to the Netw
 }
 void GUISystem::showNetworkSetupWidgets()  // shows all widgets tied to the Network Setup Menu
 {
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
-    Ogre::Viewport *viewPort = render->getViewPort();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    Ogre::Viewport *viewPort = render->getViewPort();
 
 //    ipAddressBox->setVisible(true);
     serverButton->setVisible(true);

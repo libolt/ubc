@@ -70,6 +70,9 @@ int main(int argc, char *argv[])
 //    exit(0);
     gameS->createInstances();  // creates object instances
 //    exit(0);
+    Ogre::Viewport *vp = render->getViewPort();
+    gui->setViewPort(*vp);  // sets the viewPort for MyGUI
+    
     gui->initMyGUI(render); // Initializes MyGUI
     if (!gui->getMainMenuCreated())
     {

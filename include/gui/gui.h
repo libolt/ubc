@@ -99,6 +99,9 @@ public:
     activeMenus getPreviousActiveMenu(); // retrieves the value of previousActiveMenu
     void setPreviousActiveMenu(activeMenus menu); // sets the value of previousActiveMenu
 
+    Ogre::Viewport *getViewPort();  // retrieves the value of viewPort
+    void setViewPort(const Ogre::Viewport &set);  // sets the value of viewPort
+    
     bool initMyGUI(boost::shared_ptr<renderEngine> render);  // Initializes MyGUI
     bool createMainMenuGUI(boost::shared_ptr<renderEngine> render);  // creates GUI gor main menu screen.
     bool createNetworkSetupGUI(boost::shared_ptr<renderEngine> render);  // creates GUI for network setup screen.
@@ -338,6 +341,9 @@ private:
     MyGUI::ListBox *courtSelectBox;  
     MyGUI::ImageBox *courtPreviewImgBox;
     MyGUI::TextBox *courtNameTxtBox;
+
+    // OGRE specific code
+    Ogre::Viewport *viewPort; // stores the view port for mygui
 
 	// booleans
     bool mainMenuCreated;   // determines whether the main menu gui has been created

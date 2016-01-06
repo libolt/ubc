@@ -220,6 +220,15 @@ void GUISystem::setPreviousActiveMenu(activeMenus menu)  // sets the value of pr
 	previousActiveMenu = menu;
 }
 
+Ogre::Viewport *GUISystem::getViewPort()  // retrieves the value of viewPort
+{
+    return (viewPort);
+}
+void GUISystem::setViewPort(const Ogre::Viewport &set)  // sets the value of viewPort
+{
+    viewPort = set;
+}
+
 bool GUISystem::initMyGUI(boost::shared_ptr<renderEngine> render)  // Initializes MyGUI
 {
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();

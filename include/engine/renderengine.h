@@ -61,8 +61,10 @@ class renderEngine
     public:
 
     //static renderEngine *Instance();
-    static boost::shared_ptr<renderEngine> Instance();
+//    static boost::shared_ptr<renderEngine> Instance();
 
+    renderEngine();  // constructor 
+    
     Ogre::Root *getMRoot();  // retrieves the value of mRoot
     void setMRoot(Ogre::Root *set);  // sets the value of mRoot
 
@@ -134,10 +136,11 @@ class renderEngine
     void createSceneManager();  // creates the scene manager
 
     protected:
+/*
     renderEngine();
     renderEngine(const renderEngine&);
     renderEngine& operator= (const renderEngine&);
-
+*/
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     android_app* app;
     //static
@@ -184,7 +187,7 @@ class renderEngine
     private:
 
 //    static renderEngine *pInstance;
-    static boost::shared_ptr<renderEngine> pInstance;
+//    static boost::shared_ptr<renderEngine> pInstance;
     bool useRTSS;
 
 };

@@ -116,7 +116,7 @@ void loader::setUserInputFiles(std::vector<std::string> set)  // sets the value 
 int loader::readFile(const char *sourceFile, char **destination)  // loads an xml file using SDL so that it can be passed to TinyXML
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     int BLOCK_SIZE = 8;
     int MAX_BLOCKS = 1024;
 
@@ -305,7 +305,7 @@ std::vector<teamState> loader::loadTeams()  // load teams from XML files
 bool loader::loadTeamListFile(string fileName)  // loads the team list file
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
     std::vector<std::string> teamName;
     std::vector<std::string> files;
@@ -390,7 +390,7 @@ teamState loader::loadTeamFile(string fileName)  // loads the team file
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     std::vector<teamState> teamInstance = gameS->getTeamInstance();
     teamState tInstance;
 
@@ -518,7 +518,7 @@ std::vector<playerState> loader::loadPlayers()  // loads the players
 bool loader::loadPlayerListFile( string fileName)  // loads the player list file
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+  //   boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     std::vector<std::string> playerFiles;
     std::string fileContents;
     tinyxml2::XMLDocument doc;
@@ -575,7 +575,7 @@ playerState loader::loadPlayerFile(string fileName)  // loads the player file
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
     playerState player;
     std::vector<playerState> playerInstance = gameS->getPlayerInstance();
@@ -1023,7 +1023,7 @@ std::vector<offensePlays> loader::loadOffensePlays()  // load offense plays from
 bool loader::loadOffensePlayListFile(string fileName)  // loads the play list file
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
     std::vector<std::string> playFiles;
 
@@ -1398,7 +1398,7 @@ std::vector<basketballState> loader::loadBasketballs()  // load basketball setti
 bool loader::loadBasketballListFile(string fileName) // loads the list of baskteball list file
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     std::vector<std::string> basketballFile;
 
     std::string fileContents;
@@ -1536,7 +1536,7 @@ std::vector<courtState> loader::loadCourts()  // load court settings from XML fi
 bool loader::loadCourtListFile(string fileName)	// loads the list of court list file
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     std::vector<std::string> courtFile;
 
     std::string fileContents;
@@ -1817,7 +1817,7 @@ std::vector<userInput> loader::loadUserInputs()  // load user input settings fro
 bool loader::loadUserInputListFile(string fileName)  // loads the user input list file
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     std::vector<std::string> userInputFile;
 
     std::string fileContents;

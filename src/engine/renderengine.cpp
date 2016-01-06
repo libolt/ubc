@@ -43,6 +43,7 @@
 #ifndef OGRE_PLUGIN_DIR
 #define OGRE_PLUGIN_DIR
 #endif
+/*
 //renderEngine* renderEngine::pInstance = 0;
 boost::shared_ptr<renderEngine> renderEngine::pInstance;
 
@@ -59,7 +60,7 @@ boost::shared_ptr<renderEngine> renderEngine::Instance()
     }
     return pInstance; // address of sole instance
 }
-
+*/
 // hack to hopefully make nvidia work on optimus enabled devices with Direct3d 11
 #ifdef _MSC_VER
 extern "C" {

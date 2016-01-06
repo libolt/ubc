@@ -43,19 +43,17 @@
 //#include "playerdata.h"
 #include "state/playerstate.h"
 
-class UBC
+class UBC : public gameEngine
 {
-public:
+public: 
+    UBC(); // constructor
     ~UBC();	// destructor
 
     bool getQuitGame();
 	void setQuitGame(bool quit);
 protected:
-    UBC();
-//    UBC(const UBC&);
-//    UBC &operator= (const UBC&);
+  
 private:
-//    static UBC *pInstance;
 
     bool quitGame;
 };

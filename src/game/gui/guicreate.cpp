@@ -36,9 +36,9 @@
 #include "config.h"
 #endif
  
-bool GUISystem::createMainMenuGUI()  // creates the main menu gui
+bool GUISystem::createMainMenuGUI(boost::shared_ptr<renderEngine> render)  // creates the main menu gui
 {
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     Ogre::Viewport *viewPort = render->getViewPort();
 
     if (viewPort->getActualHeight() >= 1000)
@@ -89,9 +89,9 @@ bool GUISystem::createMainMenuGUI()  // creates the main menu gui
     return true;
 }
 
-bool GUISystem::createNetworkSetupGUI()  // loads the GUI for the network setup screen
+bool GUISystem::createNetworkSetupGUI(boost::shared_ptr<renderEngine> render)  // loads the GUI for the network setup screen
 {
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     Ogre::Viewport *viewPort = render->getViewPort();
 
     MyGUI::LayoutManager::getInstance().loadLayout("NetworkSetupMenu.layout");
@@ -117,9 +117,9 @@ bool GUISystem::createNetworkSetupGUI()  // loads the GUI for the network setup 
     return true;
 }
 
-bool GUISystem::createNetworkClientSetupGUI()  // creates GUI for network client setup screen.
+bool GUISystem::createNetworkClientSetupGUI(boost::shared_ptr<renderEngine> render)  // creates GUI for network client setup screen.
 {
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     Ogre::Viewport *viewPort = render->getViewPort();
 
     MyGUI::LayoutManager::getInstance().loadLayout("NetworkClientSetupMenu.layout");
@@ -138,9 +138,9 @@ bool GUISystem::createNetworkClientSetupGUI()  // creates GUI for network client
     
     return true;
 }
-bool GUISystem::createNetworkServerSetupGUI()  // creates GUI for network server setup screen.
+bool GUISystem::createNetworkServerSetupGUI(boost::shared_ptr<renderEngine> render)  // creates GUI for network server setup screen.
 {
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     Ogre::Viewport *viewPort = render->getViewPort();
 
     MyGUI::LayoutManager::getInstance().loadLayout("NetworkServerSetupMenu.layout");
@@ -162,9 +162,9 @@ bool GUISystem::createNetworkServerSetupGUI()  // creates GUI for network server
     return true;
 }
 
-bool GUISystem::createCourtSelectionMenuGUI()  // creates GUI for court selection menu screen.
+bool GUISystem::createCourtSelectionMenuGUI(boost::shared_ptr<renderEngine> render)  // creates GUI for court selection menu screen.
 {
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     Ogre::Viewport *viewPort = render->getViewPort();
 
     MyGUI::LayoutManager::getInstance().loadLayout("CourtSelectionMenu.layout");
@@ -191,9 +191,9 @@ bool GUISystem::createCourtSelectionMenuGUI()  // creates GUI for court selectio
     return true;
 }
 
-bool GUISystem::createOptionsMenuGUI()  // creates GUI for options menu screen.
+bool GUISystem::createOptionsMenuGUI(boost::shared_ptr<renderEngine> render)  // creates GUI for options menu screen.
 {
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     Ogre::Viewport *viewPort = render->getViewPort();
 
     MyGUI::LayoutManager::getInstance().loadLayout("OptionsMenu.layout");
@@ -218,9 +218,9 @@ bool GUISystem::createOptionsMenuGUI()  // creates GUI for options menu screen.
     return (true);
 }
 
-bool GUISystem::createBackButtons()  // creates the back buttons for the menus
+bool GUISystem::createBackButtons(boost::shared_ptr<renderEngine> render)  // creates the back buttons for the menus
 {
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     Ogre::Viewport *viewPort = render->getViewPort();
 
     MyGUI::LayoutManager::getInstance().loadLayout("BackButtons.layout");
@@ -270,9 +270,9 @@ bool GUISystem::createBackButtons()  // creates the back buttons for the menus
     return (true);
 }
 
-bool GUISystem::createDisplaySetupGUI()  // creates GUI for display settings screen.
+bool GUISystem::createDisplaySetupGUI(boost::shared_ptr<renderEngine> render)  // creates GUI for display settings screen.
 {
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     Ogre::Viewport *viewPort = render->getViewPort();
 
     MyGUI::LayoutManager::getInstance().loadLayout("DispkaySetupMenu.layout");
@@ -286,9 +286,9 @@ bool GUISystem::createDisplaySetupGUI()  // creates GUI for display settings scr
     return (true);
 }
 
-bool GUISystem::createInputSetupGUI()  // creates GUI for input settings screen.
+bool GUISystem::createInputSetupGUI(boost::shared_ptr<renderEngine> render)  // creates GUI for input settings screen.
 {
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     Ogre::Viewport *viewPort = render->getViewPort();
 
     MyGUI::LayoutManager::getInstance().loadLayout("InputSetupMenu.layout");
@@ -302,9 +302,9 @@ bool GUISystem::createInputSetupGUI()  // creates GUI for input settings screen.
     return (true);
 }
 
-bool GUISystem::createAudioSetupGUI()  // creates GUI for audo settings screen.
+bool GUISystem::createAudioSetupGUI(boost::shared_ptr<renderEngine> render)  // creates GUI for audo settings screen.
 {
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     Ogre::Viewport *viewPort = render->getViewPort();
 
     MyGUI::LayoutManager::getInstance().loadLayout("AudioSetupMenu.layout");
@@ -323,14 +323,14 @@ bool GUISystem::createAudioSetupGUI()  // creates GUI for audo settings screen.
 }
 
 
-bool GUISystem::createGameSetupMenuGUI()    // creates GUI for game setup menu screen.
+bool GUISystem::createGameSetupMenuGUI(boost::shared_ptr<renderEngine> render)    // creates GUI for game setup menu screen.
 {
     //conversion *convert = conversion::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
     //gameState *gameS = gameState::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<loader> load = loader::Instance();
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     Ogre::Viewport *viewPort = render->getViewPort();
 
     MyGUI::LayoutManager::getInstance().loadLayout("GameSetupMenu.layout");
@@ -339,9 +339,9 @@ bool GUISystem::createGameSetupMenuGUI()    // creates GUI for game setup menu s
     return (true);
 }
 
-bool GUISystem::createPlayerStartSelectionMenuGUI()  // creates GUI for player selection menu screen.
+bool GUISystem::createPlayerStartSelectionMenuGUI(boost::shared_ptr<renderEngine> render)  // creates GUI for player selection menu screen.
 {
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     Ogre::Viewport *viewPort = render->getViewPort();
 
 //    load->loadTeams();
@@ -469,14 +469,14 @@ bool GUISystem::createPlayerStartSelectionMenuGUI()  // creates GUI for player s
     return (true);
 }
 
-bool GUISystem::createTeamSelectionMenuGUI()  // creates GUI for team selection menu screen.
+bool GUISystem::createTeamSelectionMenuGUI(boost::shared_ptr<renderEngine> render)  // creates GUI for team selection menu screen.
 {
     //conversion *convert = conversion::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
     //gameState *gameS = gameState::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<loader> load = loader::Instance();
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     Ogre::Viewport *viewPort = render->getViewPort();
 
     //load->loadTeams();

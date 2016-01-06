@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 bygb Mike McLean   *
+ *   Copyright (C) 1999 - 2015 by Mike McLean   *
  *   libolt@libolt.net   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -23,7 +23,7 @@
 #include "engine/gameengine.h"
 #include "state/gamestate.h"
 #include "logging.h"
-#include "ubcapp.h"
+#include "ubc.h"
 
 #ifdef __ANDROID__
 //#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
@@ -57,8 +57,9 @@ void UBC::setQuitGame(bool quit)
 int main(int argc, char *argv[])
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
-    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
+    UBC ubc;
+    boost::shared_ptr<renderEngine> render = ubc.getRender();
+//    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<GUISystem> gui = GUISystem::Instance();
 
@@ -69,18 +70,18 @@ int main(int argc, char *argv[])
 //    exit(0);
     gameS->createInstances();  // creates object instances
 //    exit(0);
-    gui->initMyGUI(); // Initializes MyGUI
+    gui->initMyGUI(render); // Initializes MyGUI
     if (!gui->getMainMenuCreated())
     {
-        gui->createMainMenuGUI(); // creates the main menu gui.
-		gui->createBackButtons(); // creates the back buttons.
+        gui->createMainMenuGUI(render); // creates the main menu gui.
+		gui->createBackButtons(render); // creates the back buttons.
     }
 //    exit(0);
     logMsg("Initializing Input");
     //inputSystem *input = inputSystem::Instance();
-    boost::shared_ptr<inputSystem> input = inputSystem::Instance();
+    boost::shared_ptr<inputSystem> input = ubc.getInput();
 //    exit(0);
-    gameE->gameLoop();
+    ubc.gameLoop();
 
     atexit(SDL_Quit);
 

@@ -41,7 +41,7 @@
 #include "engine/renderengine.h"
 
 
-boost::shared_ptr<inputSystem> inputSystem::pInstance;
+/*boost::shared_ptr<inputSystem> inputSystem::pInstance;
 
 boost::shared_ptr<inputSystem> inputSystem::Instance()
 {
@@ -53,6 +53,7 @@ boost::shared_ptr<inputSystem> inputSystem::Instance()
     }
     return pInstance; // address of sole instance
 }
+*/
 
 inputSystem::inputSystem()  // constructor
 {
@@ -64,10 +65,10 @@ inputSystem::inputSystem()  // constructor
     setup();
 }
 
-/*inputSystem::~inputSystem()
+inputSystem::~inputSystem()  // destructor
 {
 }
-*/
+
 
 SDL_Event inputSystem::getInputEvent()  // retrieves the value of inputEvent
 {
@@ -203,10 +204,10 @@ inputMaps inputSystem::keyMap()  // maps value of keyPressed string to inputMap
     }
 }
 
-bool inputSystem::processInput()  // processes all input
+bool inputSystem::processInput(boost::shared_ptr<renderEngine> renderE)  // processes all input
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
     keyPressed = "";  // resets value of keyPressed
 
@@ -263,18 +264,18 @@ bool inputSystem::processInput()  // processes all input
                 logMsg("Motion!");
                 //exit(0);
                 // processes touch input
-                if (processUnbufferedTouchInput() == false)
+                if (processUnbufferedTouchInput(renderE))
                 {
                     return false;
                 }
                 break;
             case SDL_FINGERDOWN:
                 logMsg("Finger Down!");
-                logMsg("tfinger.x = " +convert->toString(inputEvent.tfinger.x*render->getWindowWidth()));
+//                logMsg("tfinger.x = " +convert->toString(inputEvent.tfinger.x*render->getWindowWidth()));
                 logMsg("tfinger.y = " +convert->toString(inputEvent.tfinger.y));
 //                exit(0);
                 // processes touch input
-                if (processUnbufferedTouchInput() == false)
+                if (processUnbufferedTouchInput(renderE) == false)
                 {
                     return false;
                 }
@@ -283,7 +284,7 @@ bool inputSystem::processInput()  // processes all input
                 logMsg("Finger Up!");
 //                exit(0);
                 // processes touch input
-                if (processUnbufferedTouchInput() == false)
+                if (processUnbufferedTouchInput(renderE) == false)
                 {
                     return false;
                 }
@@ -292,7 +293,7 @@ bool inputSystem::processInput()  // processes all input
                 logMsg("Multigesture!");
             //    exit(0);
                 // processes touch input
-                if (processUnbufferedTouchInput() == false)
+                if (processUnbufferedTouchInput(renderE) == false)
                 {
                     return false;
                 }
@@ -636,7 +637,7 @@ bool inputSystem::processUnbufferedKeyInput(bool textInput)  // processes unbuff
 bool inputSystem::processUnbufferedMouseInput()  // processes the unbuffered mouse input
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
     int x, y;
     int state = -1;
@@ -647,7 +648,7 @@ bool inputSystem::processUnbufferedMouseInput()  // processes the unbuffered mou
 
 //	logMsg("Processing mouse input");
 
-    int w, h;
+/*    int w, h;
     SDL_Window *sdlWindow = render->getSDLWindow();
 	
     SDL_GetWindowMaximumSize(sdlWindow,&w,&h);
@@ -656,7 +657,7 @@ bool inputSystem::processUnbufferedMouseInput()  // processes the unbuffered mou
     //SDL_GetGlobalMouseState(&x, &y);
     logMsg("mouse x = " +convert->toString(x));
     logMsg("mouse y = " +convert->toString(y));
-
+*/
     state = SDL_GetMouseState(NULL, NULL)&SDL_TOUCH_MOUSEID;
     logMsg("Mouse state = " +convert->toString(state));
     if (state == 1)
@@ -688,10 +689,10 @@ bool inputSystem::processUnbufferedMouseInput()  // processes the unbuffered mou
     return true;
 }
 
-bool inputSystem::processUnbufferedTouchInput() // processes the unbuffered touch input
+bool inputSystem::processUnbufferedTouchInput(boost::shared_ptr<renderEngine> renderE) // processes the unbuffered touch input
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
     int state = -1;
     SDL_TouchFingerEvent touchMotion;
@@ -715,8 +716,8 @@ bool inputSystem::processUnbufferedTouchInput() // processes the unbuffered touc
         logMsg("evtState FINGERUP = " +convert->toString(evtState));
     //    exit(0);
     }
-    int x = inputEvent.tfinger.x*render->getWindowWidth();
-    int y = inputEvent.tfinger.y*render->getWindowHeight();
+    int x = inputEvent.tfinger.x*renderE->getWindowWidth();
+    int y = inputEvent.tfinger.y*renderE->getWindowHeight();
 //    if (MyGUI::InputManager::getInstance().isFocusMouse())
 //    {
 //        exit(0);

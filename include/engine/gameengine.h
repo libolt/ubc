@@ -29,14 +29,19 @@
 #include "threads.h"
 #include "timing.h"
 
+#include "renderengine.h"
+#include "input.h"
+
 class gameEngine
 {
 
 public:
-    ~gameEngine();
+
+    gameEngine();  // constructor
+    ~gameEngine();  // destructor
     
     //static gameEngine *Instance();
-    static boost::shared_ptr<gameEngine> Instance();
+//    static boost::shared_ptr<gameEngine> Instance();
     
     timing getTimer();  // retrieves the value of timer
     void setTimer(timing set);  // sets the value of timer
@@ -68,6 +73,13 @@ public:
     float getYOffset();  // retrieves the value of yOffset
     void setYOffset(float set);  // sets the value of yOffset
 
+    
+    boost::shared_ptr<renderEngine> getRender();  // retrieves the value of render
+    void setRender(boost::shared_ptr<renderEngine> set);  // sets the value of render
+    
+    boost::shared_ptr<inputSystem> getInput();  // retrieves the value of input
+    void setInput(boost::shared_ptr<inputSystem> set);  // sets the value of input
+    
     bool startGame();  // starts a game
 
     void quit();  // quits the entire game
@@ -77,15 +89,17 @@ public:
     void processInput();  // processes game input
 	
 protected:
-    gameEngine();
+/*    gameEngine();
     gameEngine(const gameEngine&);
     gameEngine& operator= (const gameEngine&);
-
+*/
 private:
 
     //static gameEngine *pInstance;
-    static boost::shared_ptr<gameEngine> pInstance;
+//    static boost::shared_ptr<gameEngine> pInstance;
 
+    boost::shared_ptr<renderEngine> render;  // render object
+    boost::shared_ptr<inputSystem> input;  // render object
     
     float yOffset; // stores the y offset for objects on the screen
     

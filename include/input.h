@@ -33,6 +33,7 @@
 
 #include "enums.h"
 #include "userinput.h"
+#include "renderengine.h"
 
 #define EVENT_BUF_SIZE 256
 
@@ -43,8 +44,11 @@ class inputSystem
 {
 public:
 
+    inputSystem();  // constructor
+    ~inputSystem();  // destructor
+    
     //static inputSystem *Instance();
-    static boost::shared_ptr<inputSystem> Instance();
+//    static boost::shared_ptr<inputSystem> Instance();
 
     SDL_Event getInputEvent();  // retrieves the value of inputEvent 
     void setInputEvent(SDL_Event set);  // sets the value of inputEvent 
@@ -65,17 +69,17 @@ public:
 
     inputMaps keyMap();  // maps value of keyPressed string to inputMap
 	
-    bool processInput();	// processes all input
+    bool processInput(boost::shared_ptr<renderEngine> renderE);	// processes all input
     bool processUnbufferedKeyInput(bool textInput);	// reads in unbuffered key presses
     bool processUnbufferedMouseInput();	// reads in unbuffered mouse input
-    bool processUnbufferedTouchInput(); // reads in unbuffered touch input
+    bool processUnbufferedTouchInput(boost::shared_ptr<renderEngine> renderE); // reads in unbuffered touch input
     bool processUnbufferedGamepadInput(); // reads in unbuffered mouse input
 	
 protected:
-    inputSystem();
+/*    inputSystem();
     inputSystem(const inputSystem&);
     inputSystem& operator= (const inputSystem&);
-
+*/
     //~inputSystem();
     // SDL Input
     SDL_Event inputEvent;  // stores input events
@@ -89,7 +93,7 @@ protected:
 
 private:
     //static inputSystem *pInstance;
-    static boost::shared_ptr<inputSystem> pInstance;
+//    static boost::shared_ptr<inputSystem> pInstance;
 
 
     std::string keyPressed; // stores which key was pressed

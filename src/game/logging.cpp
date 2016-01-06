@@ -49,7 +49,7 @@ logging::~logging()  // destructor
  
 void logging::logMessage(std::string msg)  // logs a message to appropriate output
 {
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
 #ifdef __ANDROID__
     __android_log_print(ANDROID_LOG_DEBUG, "com.libolt.ubc", msg.c_str());

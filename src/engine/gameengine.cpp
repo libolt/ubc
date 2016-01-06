@@ -30,7 +30,7 @@
 #include "engine/renderengine.h"
 #include "engine/sound/soundengine.h"
 
-boost::shared_ptr<gameEngine> gameEngine::pInstance;
+/*boost::shared_ptr<gameEngine> gameEngine::pInstance;
 
 boost::shared_ptr<gameEngine> gameEngine::Instance()
 {
@@ -43,7 +43,7 @@ boost::shared_ptr<gameEngine> gameEngine::Instance()
     }
     return pInstance; // returns the value of pInstance
 }
-
+*/
 
 gameEngine::gameEngine()  // constructor
 //    : player[0](0),
@@ -158,6 +158,24 @@ void gameEngine::setYOffset(float set)  // sets the value of yOffset
     yOffset = set;
 }
 
+boost::shared_ptr<renderEngine> gameEngine::getRender()  // retrieves the value of renderE
+{
+    return (render);
+}
+void gameEngine::setRender(boost::shared_ptr<renderEngine> set)  // sets the value of renderE
+{
+    render = set;
+}
+
+boost::shared_ptr<inputSystem> gameEngine::getInput()  // retrieves the value of input
+{
+    return (input);
+}
+void gameEngine::setInput(boost::shared_ptr<inputSystem> set)  // sets the value of input
+{
+    input = set;
+}
+
 bool gameEngine::startGame()  // starts the game
 {
     boost::shared_ptr<gameState> gameS = gameState::Instance();
@@ -189,7 +207,7 @@ void gameEngine::processInput()  // processes game input
 
     logMsg("inputProcess!");
  
-    if (input->processInput())
+    if (input->processInput(renderE))
     {
         if (gameS->getActiveTeamInstancesCreated())
         {
@@ -356,7 +374,7 @@ void gameEngine::gameLoop()  // Main Game Loop
     boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<GUISystem> gui = GUISystem::Instance();
     boost::shared_ptr<inputSystem> input = inputSystem::Instance();
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     boost::shared_ptr<networkEngine> network = networkEngine::Instance();
     boost::shared_ptr<soundEngine> sound = soundEngine::Instance();
 

@@ -25,7 +25,7 @@
 #include "gui/gui.h"
 #include "input.h"
 #include "logging.h"
-#include "network/network.h"
+#include "engine/networkengine.h"
 #include "network/networkplayerstateobject.h"
 #include "engine/renderengine.h"
 #include "engine/sound/soundengine.h"
@@ -188,7 +188,7 @@ bool gameEngine::startGame()  // starts the game
 
 void gameEngine::quit()  // quits the game
 {
-    boost::shared_ptr<inputSystem> input = inputSystem::Instance();
+//    boost::shared_ptr<inputSystem> input = inputSystem::Instance();
 
     input->destroy();
 
@@ -199,7 +199,7 @@ void gameEngine::processInput()  // processes game input
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<GUISystem> gui = GUISystem::Instance();
-    boost::shared_ptr<inputSystem> input = inputSystem::Instance();
+//    boost::shared_ptr<inputSystem> input = inputSystem::Instance();
     boost::shared_ptr<networkEngine> network = networkEngine::Instance();
 
     std::vector<teamState> activeTeamInstance = gameS->getActiveTeamInstance();
@@ -207,7 +207,7 @@ void gameEngine::processInput()  // processes game input
 
     logMsg("inputProcess!");
  
-    if (input->processInput(renderE))
+    if (input->processInput(render))
     {
         if (gameS->getActiveTeamInstancesCreated())
         {
@@ -373,7 +373,7 @@ void gameEngine::gameLoop()  // Main Game Loop
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<GUISystem> gui = GUISystem::Instance();
-    boost::shared_ptr<inputSystem> input = inputSystem::Instance();
+//    boost::shared_ptr<inputSystem> input = inputSystem::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     boost::shared_ptr<networkEngine> network = networkEngine::Instance();
     boost::shared_ptr<soundEngine> sound = soundEngine::Instance();

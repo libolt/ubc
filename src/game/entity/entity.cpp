@@ -116,9 +116,9 @@ void entity::setNodePosition(Ogre::Vector3 set)  // sets the value of nodePositi
     nodePosition = set;
 }
 
-bool entity::loadModel()  // loads the 3D model
+bool entity::loadModel(boost::shared_ptr<renderEngine> render)  // loads the 3D model
 {
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
     model = render->getMSceneMgr()->createEntity(entityName, entityModelFileName);  // loads the basketball model
     logMsg("Entity Created!");

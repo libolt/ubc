@@ -29,6 +29,8 @@
 #include "BtOgreGP.h"
 #include "BtOgreExtras.h"
 
+#include "engine/renderengine.h"
+
 class entity  // base class for entity objects
 {
     public:
@@ -64,7 +66,7 @@ class entity  // base class for entity objects
     Ogre::Vector3 getNodePosition();  // retrieves the value of nodePosition
     void setNodePosition(Ogre::Vector3 set);  // sets the value of nodePosition
 
-    bool loadModel();  // loads the 3D model from file specified in modelName
+    bool loadModel(boost::shared_ptr<renderEngine> render);  // loads the 3D model from file specified in modelName
     
 //    bool setupPhysics();  // sets up the physics object
     

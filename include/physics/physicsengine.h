@@ -30,6 +30,8 @@
 #include <boost/shared_ptr.hpp>
 
 #include "enums.h"
+#include "engine/gameengine.h"
+#include "engine/renderengine.h"
 
 class physicsEngine
 {
@@ -73,7 +75,7 @@ public:
     void setTeam2CollidesWith(size_t set); // sets the vslue of team2CollidesWith
 */
 
-    void setupState();  // sets up state of physics engine.
+    void setupState(boost::shared_ptr<renderEngine> render);  // sets up state of physics engine.
 
     // sets up object physics
 //    bool setupCourtPhysics();  // sets up court physics
@@ -83,7 +85,7 @@ public:
     void updatePositions();  // updates thr position of objects
     void updateBasketballPosition();  // updates the position of basketball object(s)
     void updatePlayerPositions();  // updates the position of player objecgts
-    void stepWorld();  // steps the physics simulation
+    void stepWorld(boost::shared_ptr<gameEngine> gameE);  // steps the physics simulation
 
 //    void ballDribbling();  // simulates basketball dribble
     void passCollisionCheck();  // checks whether the ball has collided with the player being passed to

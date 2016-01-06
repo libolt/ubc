@@ -103,19 +103,19 @@ public:
     void setViewPort(const Ogre::Viewport &set);  // sets the value of viewPort
     
     bool initMyGUI(boost::shared_ptr<renderEngine> render);  // Initializes MyGUI
-    bool createMainMenuGUI(boost::shared_ptr<renderEngine> render);  // creates GUI gor main menu screen.
-    bool createNetworkSetupGUI(boost::shared_ptr<renderEngine> render);  // creates GUI for network setup screen.
-    bool createNetworkClientSetupGUI(boost::shared_ptr<renderEngine> render);  // creates GUI for network client setup screen.
-    bool createNetworkServerSetupGUI(boost::shared_ptr<renderEngine> render);  // creates GUI for network server setup screen.
-    bool createOptionsMenuGUI(boost::shared_ptr<renderEngine> render);  // creates GUI for options menu screen.
-    bool createDisplaySetupGUI(boost::shared_ptr<renderEngine> render);  // creates GUI for display settings screen.
-    bool createInputSetupGUI(boost::shared_ptr<renderEngine> render);  // creates GUI for input settings screen.
-    bool createAudioSetupGUI(boost::shared_ptr<renderEngine> render);	 // creates GUI for audo settings screen.
-    bool createGameSetupMenuGUI(boost::shared_ptr<renderEngine> render);  // creates GUI for game setup menu screen.
-    bool createPlayerStartSelectionMenuGUI(boost::shared_ptr<renderEngine> render);  // creates GUI for player start selection menu screen.
-    bool createTeamSelectionMenuGUI(boost::shared_ptr<renderEngine> render);	// creates GUI for team selection menu screen.
-    bool createCourtSelectionMenuGUI(boost::shared_ptr<renderEngine> render);  // creates GUI for court selection menu screen.
-    bool createBackButtons(boost::shared_ptr<renderEngine> render);  // creates the back buttons for the menus
+    bool createMainMenuGUI();  // creates GUI gor main menu screen.
+    bool createNetworkSetupGUI();  // creates GUI for network setup screen.
+    bool createNetworkClientSetupGUI();  // creates GUI for network client setup screen.
+    bool createNetworkServerSetupGUI();  // creates GUI for network server setup screen.
+    bool createOptionsMenuGUI();  // creates GUI for options menu screen.
+    bool createDisplaySetupGUI();  // creates GUI for display settings screen.
+    bool createInputSetupGUI();  // creates GUI for input settings screen.
+    bool createAudioSetupGUI();	 // creates GUI for audo settings screen.
+    bool createGameSetupMenuGUI();  // creates GUI for game setup menu screen.
+    bool createPlayerStartSelectionMenuGUI();  // creates GUI for player start selection menu screen.
+    bool createTeamSelectionMenuGUI();	// creates GUI for team selection menu screen.
+    bool createCourtSelectionMenuGUI();  // creates GUI for court selection menu screen.
+    bool createBackButtons();  // creates the back buttons for the menus
 
     void menuReceiveKeyPress(std::string keyPressed);  // processes key input
     void processMainMenuKeyPress(std::string keyPressed);  // processes main menu key input
@@ -131,18 +131,18 @@ public:
     void processTeamSelectionMenuKeyPress(std::string keyPressed);  // process team selection menu key input
     void processCourtSelectionMenuKeyPress(std::string keyPressed);  // process court selection menu key input
 	
-    void startSinglePlayerGame(boost::shared_ptr<renderEngine> render);  // starts single player game
-    void startMultiPlayerGame(boost::shared_ptr<renderEngine> render);  // starts multiplayer game
-    void optionsMenu(boost::shared_ptr<renderEngine> render);  // displays options menu
-    void displayMenu(boost::shared_ptr<renderEngine> render);  // displays display menu
-    void inputMenu(boost::shared_ptr<renderEngine> render);  // displays the input menu
-    void audioMenu(boost::shared_ptr<renderEngine> render);  // displays the audio menu
-    void gameSetupMenu(boost::shared_ptr<renderEngine> render);  // displays game setup menu
-    void playerStartSelectionMenu(boost::shared_ptr<renderEngine> render);  // displays player start selection menu
-    void teamSelectionMenu(boost::shared_ptr<renderEngine> render);  // displays team selection menu
-    void courtSelectionMenu(boost::shared_ptr<renderEngine> render);  // displays court selection menu
-    void networkClientSetupMenu(boost::shared_ptr<renderEngine> render);  // sets up the network client connection
-    void networkServerSetupMenu(boost::shared_ptr<renderEngine> render);  // sets up the networkServer instance
+    void startSinglePlayerGame();  // starts single player game
+    void startMultiPlayerGame();  // starts multiplayer game
+    void optionsMenu();  // displays options menu
+    void displayMenu();  // displays display menu
+    void inputMenu();  // displays the input menu
+    void audioMenu();  // displays the audio menu
+    void gameSetupMenu();  // displays game setup menu
+    void playerStartSelectionMenu();  // displays player start selection menu
+    void teamSelectionMenu();  // displays team selection menu
+    void courtSelectionMenu();  // displays court selection menu
+    void networkClientSetupMenu();  // sets up the network client connection
+    void networkServerSetupMenu();  // sets up the networkServer instance
     
     bool addCourtSelectionMenuData();  // adds data to Court Selection Menu widgets
 
@@ -152,7 +152,7 @@ public:
     void networkServer();  // sets up  game as a network server
     void networkClient();  // sets up game as a network client
 
-    void courtSelected(boost::shared_ptr<renderEngine> render);  // processes court selection
+    void courtSelected();  // processes court selection
     void teamsSelected();  // processes team selection
     void playerStartSelected();  // process player start selection
     void gameSetupAwaySelected();  // processes away team selectdion on game setup menu

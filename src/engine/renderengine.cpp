@@ -386,7 +386,8 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 {
     //conversion *convert = conversion::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    
+    boost::shared_ptr<logging> log = logging::Instance();
+ 
 	//    GUISystem *gui = GUISystem::Instance();
 	//    SoundSystem *sound = SoundSystem::Instance();
 
@@ -517,6 +518,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
     Ogre::FreeImageCodec::startup();FreeImage_Initialise();
     Ogre::DDSCodec::startup();
     Ogre::FreeImageCodec::startup();
+    log->setOgreRootInitialized(true); 
     logMsg("OGRE initialized successfully!");
 
 	return true;
@@ -524,11 +526,12 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 
 void renderEngine::createSceneManager()
 {
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
     // Create the SceneManager, in this case a generic one
-    render->setMSceneMgr(render->getMRoot()->createSceneManager(Ogre::ST_EXTERIOR_CLOSE));
+//    render->setMSceneMgr(render->getMRoot()->createSceneManager(Ogre::ST_EXTERIOR_CLOSE));
 
+   mSceneMgr = mRoot->createSceneManager(Ogre::ST_EXTERIOR_CLOSE); 
 }
 
 bool renderEngine::createWindow()

@@ -41,10 +41,21 @@ boost::shared_ptr<logging> logging::Instance()
  
 logging::logging()  // constructor
 {
+    ogreRootInitialized = false;
 }
  
 logging::~logging()  // destructor
 {
+}
+
+
+bool logging::getOgreRootInitialized()  // retrieves the value of ogreRootInitialized
+{
+    return(ogreRootInitialized);
+}
+void logging::setOgreRootInitialized(bool set)  // sets the value of ogreRootInitialized
+{
+    ogreRootInitialized = set;
 }
  
 void logging::logMessage(std::string msg)  // logs a message to appropriate output
@@ -55,7 +66,7 @@ void logging::logMessage(std::string msg)  // logs a message to appropriate outp
     __android_log_print(ANDROID_LOG_DEBUG, "com.libolt.ubc", msg.c_str());
 #else
 
-    if (render->getMRoot()->isInitialised())
+    if (ogreRootInitialized)
     {
         Ogre::LogManager::getSingletonPtr()->logMessage(msg);
     }

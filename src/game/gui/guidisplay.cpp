@@ -18,7 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "network/network.h"
+#include "engine/networkengine.h"
 
 #include "gui/gui.h"
 #include "conversion.h"
@@ -97,8 +97,8 @@ void GUISystem::hideNetworkServerSetupWidgets()  // hides all widgets tied to th
 }
 void GUISystem::showNetworkServerSetupWidgets()  // shows all widgets tied to the Network Server Setup Menu
 {
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
-    Ogre::Viewport *viewPort = render->getViewPort();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    Ogre::Viewport *viewPort = render->getViewPort();
 
     numClientsSelectBox->setVisible(true);
     
@@ -120,8 +120,8 @@ void GUISystem::hideNetworkClientSetupWidgets()  // hides the widgets tied to th
 }
 void GUISystem::showNetworkClientSetupWidgets()  // shows all widgets tied to the Network Setup Menu
 {
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
-    Ogre::Viewport *viewPort = render->getViewPort();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    Ogre::Viewport *viewPort = render->getViewPort();
 
     clientIPAddressBox->setVisible(true);
     clientIPAddressBox->setPosition((0.3 *viewPort->getActualWidth() ), (0.10 *viewPort->getActualHeight()) );
@@ -143,8 +143,8 @@ void GUISystem::hideOptionsMenuWidgets()  // hides all widgets tied to the Optio
 }
 void GUISystem::showOptionsMenuWidgets()  // shows all widgets tied to the Options Menu
 {
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
-    Ogre::Viewport *viewPort = render->getViewPort();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    Ogre::Viewport *viewPort = render->getViewPort();
 
     displayButton->setVisible(true);
     inputButton->setVisible(true);
@@ -212,8 +212,8 @@ void GUISystem::hideGameSetupMenuWidgets()  // hides all widgets tied to the Gam
 }
 void GUISystem::showGameSetupMenuWidgets()  // shows all widgets tied to the Game Setup Menu
 {
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
-    Ogre::Viewport *viewPort = render->getViewPort();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    Ogre::Viewport *viewPort = render->getViewPort();
 
     team0SelectBox->setVisible(true);
     team0SelectBox->setPosition((0.1 *viewPort->getActualWidth() ), (0.10 *viewPort->getActualHeight()) );
@@ -293,8 +293,8 @@ void GUISystem::hidePlayerStartSelectionMenuWidgets()  // hides all widgets tied
 void GUISystem::showPlayerStartSelectionMenuWidgets()  // shows all widgets tied to the Player Start Selection Menu
 {
 
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
-    Ogre::Viewport *viewPort = render->getViewPort();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    Ogre::Viewport *viewPort = render->getViewPort();
 
     // Team 0 widgets
     team0PGSelectBox->setVisible(true);
@@ -399,8 +399,8 @@ void GUISystem::hideTeamSelectionMenuWidgets()  // hides all widgets tied to the
 
 void GUISystem::showTeamSelectionMenuWidgets()  // show all widgets tied to the Team Selection Menu
 {
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
-    Ogre::Viewport *viewPort = render->getViewPort();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    Ogre::Viewport *viewPort = render->getViewPort();
 
     team0SelectBox->setVisible(true);
     team0SelectBox->setPosition((0.1 *viewPort->getActualWidth() ), (0.10 *viewPort->getActualHeight()) );
@@ -433,8 +433,8 @@ void GUISystem::hideCourtSelectionMenuWidgets()  // hides all widgets tied to th
 }
 void GUISystem::showCourtSelectionMenuWidgets()  // show all widgets tied to the Court Selection Menu
 {
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
-    Ogre::Viewport *viewPort = render->getViewPort();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    Ogre::Viewport *viewPort = render->getViewPort();
 
     backMainMenuButton->setVisible(true);
     backMainMenuButton->setPosition((0.25 *viewPort->getActualWidth() ), (0.4 *viewPort->getActualHeight()) );

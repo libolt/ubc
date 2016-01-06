@@ -21,7 +21,7 @@
 #ifndef _CONVERSION_H_
 #define _CONVERSION_H_
 
-#include "network/network.h"
+#include "engine/networkengine.h"
 
 #include <iostream>
 #include <sstream>

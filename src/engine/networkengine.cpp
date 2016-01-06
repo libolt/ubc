@@ -18,7 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "network/network.h"
+#include "engine/networkengine.h"
 #include "network/networkplayerstateobject.h"
 #include "engine/gameengine.h"
 #include "state/gamestate.h"
@@ -49,7 +49,7 @@ networkEngine::~networkEngine()
 
 }
 
-boost::shared_ptr<networkEngine> networkEngine::pInstance;
+/*boost::shared_ptr<networkEngine> networkEngine::pInstance;
 
 boost::shared_ptr<networkEngine> networkEngine::Instance()
 {
@@ -61,6 +61,7 @@ boost::shared_ptr<networkEngine> networkEngine::Instance()
     }
     return pInstance; // address of sole instance
 }
+*/
 
 teamTypes networkEngine::getTeamType()  // retrieves the value of teamType
 {
@@ -215,7 +216,7 @@ int networkEngine::initialize()  // initializes the network engine
 
 void networkEngine::clientConnect()  // performs a client connection to the server
 {
-    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
+//    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
 
     if (!clientEstablishedConnection)
     {
@@ -330,7 +331,7 @@ void networkEngine::networkClient()
 
 void networkEngine::serverSetup()  // sets up the network server
 {
-    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
+//    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
     
 /* Bind the server to the default localhost.     */
 /* A specific host address can be specified by   */
@@ -363,7 +364,7 @@ void networkEngine::serverSetup()  // sets up the network server
 void networkEngine::networkServer()  // executes the network server code
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
+//    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
     
     char *host; 
     std::string addressHost, addressPort, packetData, packetDataLength, packetPeer, packetChannelID;
@@ -604,7 +605,7 @@ void networkEngine::processRemoteInput() // processes input received from a remo
 void networkEngine::sendPacket(std::string packetData)  // sends a packet to remote system
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
+//    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
 
     if (gameE->getServerRunning())
     {

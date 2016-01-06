@@ -46,11 +46,11 @@ class networkEngine
     public:
 
     //static networkEngine *Instance();
-    static boost::shared_ptr<networkEngine> Instance();
+//    static boost::shared_ptr<networkEngine> Instance();
 
 
-//    networkEngine();
-    ~networkEngine();
+    networkEngine();  // constructor
+    ~networkEngine();  // destructor
 
     teamTypes getTeamType();  // retrieves the value of teamType
     void setTeamType(teamTypes set);  // sets the value of teamType
@@ -110,15 +110,15 @@ class networkEngine
     void sendPacket(std::string packetData);  // sends a packet to the peer
 
     protected:
-    networkEngine();
+/*    networkEngine();
     networkEngine(const networkEngine&);
     networkEngine& operator= (const networkEngine&);
-
+*/
     private:
 
     int counter;
     //static networkEngine *pInstance;
-    static boost::shared_ptr<networkEngine> pInstance;
+//    static boost::shared_ptr<networkEngine> pInstance;
 
 
     int clientID;  // defines the client ID number used to identify which client is communicating with the server

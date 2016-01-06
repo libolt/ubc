@@ -99,8 +99,8 @@ private:
 //    static boost::shared_ptr<gameEngine> pInstance;
 
     boost::shared_ptr<renderEngine> render;  // render object
-    boost::shared_ptr<inputSystem> input;  // render object
-    
+    boost::shared_ptr<inputSystem> input;  // input object
+    boost::shared_ptr<networkEngine> network;  // network object    
     float yOffset; // stores the y offset for objects on the screen
     
     Ogre::Vector3 courtTranslateVector;

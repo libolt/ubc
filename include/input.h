@@ -33,7 +33,7 @@
 
 #include "enums.h"
 #include "userinput.h"
-#include "renderengine.h"
+#include "engine/renderengine.h"
 
 #define EVENT_BUF_SIZE 256
 

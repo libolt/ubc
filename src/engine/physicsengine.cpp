@@ -231,9 +231,9 @@ void physicsEngine::setTeam2CollidesWith(size_t set) // k the vslue of team2Coll
 }
 */
 
-void physicsEngine::setupState(void)  // sets up the state of the physics engine
+void physicsEngine::setupState(boost::shared_ptr<renderEngine> render)  // sets up the state of the physics engine
 {
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
     // Debug drawing!
     debugDraw = new BtOgre::DebugDrawer(render->getMSceneMgr()->getRootSceneNode(), world);
@@ -288,9 +288,9 @@ void physicsEngine::setupState(void)  // sets up the state of the physics engine
 void physicsEngine::updateState()  // updates the state for the physics engine
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
+//    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
-    boost::shared_ptr<inputSystem> input = inputSystem::Instance();
+//    boost::shared_ptr<inputSystem> input = inputSystem::Instance();
 
     comparison compare;
     
@@ -532,9 +532,9 @@ void physicsEngine::updatePlayerPositions()  // updates the position of player o
     gameS->setActiveTeamInstance(activeTeamInstance);
 }
 
-void physicsEngine::stepWorld()  // steps the world of the physics simulation
+void physicsEngine::stepWorld(boost::shared_ptr<gameEngine> gameE)  // steps the world of the physics simulation
 {
-    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
+//    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
 
     btScalar currentTime;

@@ -31,22 +31,23 @@ public:
 //    static logging *Instance();
     static boost::shared_ptr<logging> Instance();
 
-	void logMessage(std::string msg);
+    bool getOgreRootInitialized();  // retrieves the value of ogreRootInitialized
+    void setOgreRootInitialized(bool set);  // sets the value of ogreRootInitialized
+
+    void logMessage(std::string msg);
 protected:
     logging();
-
+    bool ogreRootInitialized;
     logging(const logging&);
     logging& operator= (const logging&);
 private:
 //    static logging *pInstance;
     static boost::shared_ptr<logging> pInstance;
-
 	 
 };
  
 #ifndef logMsg
 #define logMsg logging::Instance()->logMessage
 #endif
- 
- 
+
 #endif

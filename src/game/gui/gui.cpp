@@ -18,7 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "network/network.h"
+#include "engine/networkengine.h"
 
 #include "gui/gui.h"
 #include "conversion.h"
@@ -226,7 +226,7 @@ Ogre::Viewport *GUISystem::getViewPort()  // retrieves the value of viewPort
 }
 void GUISystem::setViewPort(const Ogre::Viewport &set)  // sets the value of viewPort
 {
-    viewPort = set;
+    *viewPort = set;
 }
 
 bool GUISystem::initMyGUI(boost::shared_ptr<renderEngine> render)  // Initializes MyGUI
@@ -254,82 +254,82 @@ bool GUISystem::initMyGUI(boost::shared_ptr<renderEngine> render)  // Initialize
     return true;
 }
 
-void GUISystem::startSinglePlayerGame(boost::shared_ptr<renderEngine> render)  // starts single player game
+void GUISystem::startSinglePlayerGame()  // starts single player game
 {
     boost::shared_ptr<gameState> gameS = gameState::Instance();
 
     gameS->setGameType(SINGLE);
 //	hideMainMenuWidgets();	// Hides the widgets from the main menu
-    courtSelectionMenu(render);   // displays the menu for selecting which court to use
+    courtSelectionMenu();   // displays the menu for selecting which court to use
     //   gameSetupMenu();
 //	menuActive = false;
 }
 
-void GUISystem::startMultiPlayerGame(boost::shared_ptr<renderEngine> render)  // starts multiplayer game
+void GUISystem::startMultiPlayerGame()  // starts multiplayer game
 {
     if (!networkSetupMenuCreated)
     {
-        createNetworkSetupGUI(render);  // creates the GUI for the Network Setup Screen
+        createNetworkSetupGUI();  // creates the GUI for the Network Setup Screen
     }
 
     changeActiveMenu(NETWORK);
 }
 
-void GUISystem::optionsMenu(boost::shared_ptr<renderEngine> render)  // displays options menu
+void GUISystem::optionsMenu()  // displays options menu
 {
     if (!optionsMenuCreated)
     {
-        createOptionsMenuGUI(render);
+        createOptionsMenuGUI();
     }
 
     changeActiveMenu(OPTIONS);
 }
 
-void GUISystem::displayMenu(boost::shared_ptr<renderEngine> render)  // displays display menu
+void GUISystem::displayMenu()  // displays display menu
 {
     if (!displaySetupMenuCreated)
     {
-        createDisplaySetupGUI(render);
+        createDisplaySetupGUI();
     }
 
     changeActiveMenu(DISPLAY);
 }
 
-void GUISystem::inputMenu(boost::shared_ptr<renderEngine> render)  // displays the input menu
+void GUISystem::inputMenu()  // displays the input menu
 {
     if (!inputSetupMenuCreated)
     {
-        createInputSetupGUI(render);
+        createInputSetupGUI();
     }
 
     changeActiveMenu(INPUTMENU);
 }
-void GUISystem::audioMenu(boost::shared_ptr<renderEngine> render)  // displays the audio menu
+void GUISystem::audioMenu()  // displays the audio menu
 {
     if (!audioSetupMenuCreated)
     {
-        createAudioSetupGUI(render);
+        createAudioSetupGUI();
     }
 
     changeActiveMenu(AUDIO);
 }
 
-void GUISystem::gameSetupMenu(boost::shared_ptr<renderEngine> render)  // displays game setup menu
+void GUISystem::gameSetupMenu()  // displays game setup menu
 {
     if (!gameSetupMenuCreated)
     {
-        createGameSetupMenuGUI(render);
+        createGameSetupMenuGUI();
         gameSetupMenuCreated = true;
     }
 	
     changeActiveMenu(GAMESETUP);
 }
 
-void GUISystem::playerStartSelectionMenu(boost::shared_ptr<renderEngine> render)  // displays player start selection menu
+void GUISystem::playerStartSelectionMenu()  // displays player start selection menu
 {
     if (!playerStartSelectionMenuCreated)
     {
-        createPlayerStartSelectionMenuGUI(render);
+        createPlayerStartSelectionMenuGUI();
         addPlayerStartSelectionMenuData();
         playerStartSelectionMenuCreated = true;
     }
@@ -337,18 +337,18 @@ void GUISystem::playerStartSelectionMenu(boost::shared_ptr<renderEngine> render)
     changeActiveMenu(PLAYERSTART);
 }
 
-void GUISystem::teamSelectionMenu(boost::shared_ptr<renderEngine> render)  // displays team selection menu
+void GUISystem::teamSelectionMenu()  // displays team selection menu
 {
     if (!teamSelectionMenuCreated)
     {
-        createTeamSelectionMenuGUI(render);
+        createTeamSelectionMenuGUI();
         teamSelectionMenuCreated = true;
     }
 
     changeActiveMenu(TEAMSELECT);
 }
 
-void GUISystem::courtSelectionMenu(boost::shared_ptr<renderEngine> render) // displays court selection menu
+void GUISystem::courtSelectionMenu() // displays court selection menu
 {
     boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
@@ -356,7 +356,7 @@ void GUISystem::courtSelectionMenu(boost::shared_ptr<renderEngine> render) // di
 
     if (!courtSelectionMenuCreated)
     {
-        createCourtSelectionMenuGUI(render);
+        createCourtSelectionMenuGUI();
     }
     
     if (!courtSelectionDataLoaded)
@@ -390,22 +390,22 @@ void GUISystem::setSelectedIndexes()  // sets all player listbox indexes to zero
     team1CSelectBox->setIndexSelected(0);
 }
 
-void GUISystem::networkClientSetupMenu(boost::shared_ptr<renderEngine> render) // sets up the client connection
+void GUISystem::networkClientSetupMenu() // sets up the client connection
 {
     if (!networkClientSetupMenuCreated)
     {
-        createNetworkClientSetupGUI(render);
+        createNetworkClientSetupGUI();
     }
     changeActiveMenu(NETWORKCLIENT);
     MyGUI::InputManager::getInstance().setKeyFocusWidget(clientIPAddressBox);
 
 }
 
-void GUISystem::networkServerSetupMenu(boost::shared_ptr<renderEngine> render)  // sets up the networkServer instance
+void GUISystem::networkServerSetupMenu()  // sets up the networkServer instance
 {
     if (!networkServerSetupMenuCreated)
     {
-        createNetworkServerSetupGUI(render);
+        createNetworkServerSetupGUI();
     }
 
     changeActiveMenu(NETWORKSERVER);
@@ -449,7 +449,7 @@ void GUISystem::networkClient()  // sets up game as a network client
 
 }
 
-void GUISystem::courtSelected(boost::shared_ptr<renderEngine> render)  // processes court selection
+void GUISystem::courtSelected()  // processes court selection
 {
     //conversion *convert = conversion::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
@@ -460,7 +460,7 @@ void GUISystem::courtSelected(boost::shared_ptr<renderEngine> render)  // proces
 //    gameS->setSelectedCourtDataInstance(courtSelectBox->getIndexSelected());
     gameS->setActiveCourtInstance(courtSelectBox->getIndexSelected());
 
-    teamSelectionMenu(render);
+    teamSelectionMenu();
 }
 
 void GUISystem::teamsSelected()  // processes team selection

@@ -27,7 +27,7 @@
 #include "config.h"
 #endif
 
-#include "network/network.h"
+#include "engine/networkengine.h"
 
 #include "gui/gui.h"
 #include "SDL.h"

@@ -18,14 +18,13 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
+#include "conversion.h"
 
 #include "engine/gameengine.h"
-#include "conversion.h"
 #include "state/gamestate.h"
 #include "gui/gui.h"
 #include "input.h"
 #include "logging.h"
-#include "engine/networkengine.h"
 #include "network/networkplayerstateobject.h"
 #include "engine/renderengine.h"
 #include "engine/sound/soundengine.h"
@@ -176,6 +175,15 @@ void gameEngine::setInput(boost::shared_ptr<inputSystem> set)  // sets the value
     input = set;
 }
 
+boost::shared_ptr<networkEngine> gameEngine::getNetwork()  // retrieves the value of network
+{
+    return (network);
+}
+void gameEngine::setNetwork(boost::shared_ptr<networkEngine> set)  // sets the value of network
+{
+    network = set;
+}
+
 bool gameEngine::startGame()  // starts the game
 {
     boost::shared_ptr<gameState> gameS = gameState::Instance();
@@ -200,7 +208,7 @@ void gameEngine::processInput()  // processes game input
     boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<GUISystem> gui = GUISystem::Instance();
 //    boost::shared_ptr<inputSystem> input = inputSystem::Instance();
-    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
+//    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
 
     std::vector<teamState> activeTeamInstance = gameS->getActiveTeamInstance();
     networkPlayerStateObject netPStateObj;
@@ -356,7 +364,7 @@ void gameEngine::processInput()  // processes game input
 
                         if (gameS->getGameType() == MULTI)
                         {
-                            network->processLocalInput();
+                            network->processLocalInput(input);
                         }
                         inputQueue.clear();
                         input->setInputWorkQueue(inputQueue);
@@ -375,7 +383,7 @@ void gameEngine::gameLoop()  // Main Game Loop
     boost::shared_ptr<GUISystem> gui = GUISystem::Instance();
 //    boost::shared_ptr<inputSystem> input = inputSystem::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
-    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
+//    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
     boost::shared_ptr<soundEngine> sound = soundEngine::Instance();
 
     networkPlayerStateObject netPStateObj;

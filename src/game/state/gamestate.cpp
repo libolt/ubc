@@ -19,7 +19,7 @@
  ***************************************************************************/
 
 //#include "boost/shared_array.hpp"
-#include "network/network.h"
+#include "engine/networkengine.h"
 #include "ai/ai.h"
 #include "conversion.h"
 #include "state/gamestate.h"

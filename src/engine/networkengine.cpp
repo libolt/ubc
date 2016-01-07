@@ -214,7 +214,7 @@ int networkEngine::initialize()  // initializes the network engine
     return (0);
 }
 
-void networkEngine::clientConnect()  // performs a client connection to the server
+bool networkEngine::clientConnect()  // performs a client connection to the server
 {
 //    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
 
@@ -266,8 +266,9 @@ void networkEngine::clientConnect()  // performs a client connection to the serv
 
             logMsg("Connection to " +ipAddress +":1234 failed.");
         }
-        gameE->setClientRunning(true);
+//        gameE->setClientRunning(true);
         clientEstablishedConnection = true;
+        return (true);
     }
 }
 
@@ -329,7 +330,7 @@ void networkEngine::networkClient()
     }
 }
 
-void networkEngine::serverSetup()  // sets up the network server
+bool networkEngine::serverSetup()  // sets up the network server
 {
 //    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
     
@@ -358,7 +359,8 @@ void networkEngine::serverSetup()  // sets up the network server
         logMsg("An error occurred while trying to create an ENet server host.");
         exit (EXIT_FAILURE);
     }
-    gameE->setServerRunning(true);
+//    gameE->setServerRunning(true);
+    return (true);
 }
 
 void networkEngine::networkServer()  // executes the network server code
@@ -434,11 +436,9 @@ void networkEngine::networkServer()  // executes the network server code
     logMsg("End of networkServer");
 }
 
-void networkEngine::processLocalInput()  // processes local input for sending to remote system
+void networkEngine::processLocalInput(boost::shared_ptr<inputSystem> input)  // processes local input for sending to remote system
 {
-    //inputSystem *input = inputSystem::Instance();
-    boost::shared_ptr<inputSystem> input = inputSystem::Instance();
-    //gameState *gameS = gameState::Instance();
+//    boost::shared_ptr<inputSystem> input = inputSystem::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
     
     inputWorkQueues inputQueue;
@@ -607,13 +607,15 @@ void networkEngine::sendPacket(std::string packetData)  // sends a packet to rem
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
 
-    if (gameE->getServerRunning())
+//    if (gameE->getServerRunning())
+    if (isServer)
     {
         while (enet_host_service (server, &event, 0) > 0)
         {
         }
     }
-    else if (gameE->getClientRunning())
+//    else if (gameE->getClientRunning())
+    else if (isClient)
     {
         while (enet_host_service (client, &event, 0) > 0)
         {

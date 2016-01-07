@@ -20,6 +20,7 @@
 
 #ifndef _PHYSICSENGINE_H_
 #define _PHYSICSENGINE_H_
+#include "engine/gameengine.h"
 
 #include <vector>
 
@@ -30,7 +31,6 @@
 #include <boost/shared_ptr.hpp>
 
 #include "enums.h"
-#include "engine/gameengine.h"
 #include "engine/renderengine.h"
 
 class physicsEngine

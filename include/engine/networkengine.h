@@ -18,8 +18,8 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef _NETWORK_H_
-#define _NETWORK_H_
+#ifndef _NETWORKENGINE_H_
+#define _NETWORKENGINE_H_
 
 #ifndef _ENET_ISINCLUDED_
 #define _ENET_ISINCLUDED_
@@ -35,6 +35,7 @@
 #include "Ogre.h"
 
 #include "enums.h"
+#include "input.h"
 
 //using namespace std;
 
@@ -98,13 +99,13 @@ class networkEngine
     void setServer(ENetHost *set);  // sets the value of server 
 
     int initialize();  // initialize networkEngine code
-    void clientConnect();  // setup client connection.
+    bool clientConnect();  // setup client connection.
     void networkClient();  // Client code
 
-    void serverSetup();	 // setup server.
+    bool serverSetup();	 // setup server.
     void networkServer();  // Server code
 
-    void processLocalInput();  // processes local input for sending to remote system
+    void processLocalInput(boost::shared_ptr<inputSystem> input);  // processes local input for sending to remote system
     void processRemoteInput();  // processes input received from a remote system
     
     void sendPacket(std::string packetData);  // sends a packet to the peer

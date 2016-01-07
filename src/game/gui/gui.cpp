@@ -413,10 +413,10 @@ void GUISystem::networkServerSetupMenu()  // sets up the networkServer instance
 
 }
 
-void GUISystem::networkServer()  // sets up  game as a network server
+void GUISystem::networkServer(boost::shared_ptr<networkEngine> network)  // sets up  game as a network server
 {
     //networkEngine * network = networkEngine::Instance();
-    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
+//    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
     //gameEngine * gameE = gameEngine::Instance();
 //    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
     //gameState *gameS = gameState::Instance();
@@ -427,14 +427,17 @@ void GUISystem::networkServer()  // sets up  game as a network server
     menuActive = false;
     network->setIPAddress(serverIPAddressBox->getCaption());  // sets the neworkEngine's ipAddress string to that of the caption
     logMsg("server ip = " +network->getIPAddress());
-    network->serverSetup();
+    if (network->serverSetup())  // attempts to setup as a network server
+    {
+        network->setIsServer(true);  // if successful sets isServer to true
+    }
 
 //    gameE->setCreateScene(true); // sets variable true that tells gameEngine to start rendering the scene
 
 }
-void GUISystem::networkClient()  // sets up game as a network client
+void GUISystem::networkClient(boost::shared_ptr<networkEngine> network)  // sets up game as a network client
 {
-    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
+//    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
 //    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
 
@@ -444,7 +447,10 @@ void GUISystem::networkClient()  // sets up game as a network client
     menuActive = false;
     network->setIPAddress(clientIPAddressBox->getCaption());  // sets the neworkEngine's ipAddress string to that of the caption
 //    network->networkClient();
-    network->clientConnect();
+    if (network->clientConnect()) // attempts to connect to the remote server
+    {
+        network->setIsClient(true);  // if successful sets isClient to true
+    }
 //    gameE->setCreateScene(true); // sets variable true that tells gameEngine to start rendering the scenetop
 
 }

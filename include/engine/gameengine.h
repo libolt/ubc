@@ -21,6 +21,8 @@
 #ifndef _GAMEENGINE_H_
 #define _GAMEENGINE_H_
 
+#include "engine/networkengine.h"
+
 #include "OgreTimer.h"
 #include "OgreVector3.h"
 #include <boost/shared_ptr.hpp>
@@ -29,7 +31,7 @@
 #include "threads.h"
 #include "timing.h"
 
-#include "renderengine.h"
+#include "engine/renderengine.h"
 #include "input.h"
 
 class gameEngine
@@ -80,6 +82,9 @@ public:
     boost::shared_ptr<inputSystem> getInput();  // retrieves the value of input
     void setInput(boost::shared_ptr<inputSystem> set);  // sets the value of input
     
+    boost::shared_ptr<networkEngine> getNetwork();  // retrieves the value of input
+    void setNetwork(boost::shared_ptr<networkEngine> set);  // sets the value of input
+
     bool startGame();  // starts a game
 
     void quit();  // quits the entire game

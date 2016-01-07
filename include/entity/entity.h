@@ -21,6 +21,8 @@
 #ifndef _ENTITY_H_
 #define _ENTITY_H_
 
+#include "conversion.h"
+
 #include <string>
 #include "Ogre.h"
 #include "OgreEntity.h"

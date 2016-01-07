@@ -149,8 +149,8 @@ public:
     void addPlayerStartSelectionMenuData();  // adds data to Player Start Selection Menu widgets
 
     void setSelectedIndexes();  // sets all player listbox indexes to zero
-    void networkServer();  // sets up  game as a network server
-    void networkClient();  // sets up game as a network client
+    void networkServer(boost::shared_ptr<networkEngine> network);  // sets up  game as a network server
+    void networkClient(boost::shared_ptr<networkEngine> network);  // sets up game as a network client
 
     void courtSelected();  // processes court selection
     void teamsSelected();  // processes team selection

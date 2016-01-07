@@ -76,8 +76,8 @@ int main(int argc, char *argv[])
     gui->initMyGUI(render); // Initializes MyGUI
     if (!gui->getMainMenuCreated())
     {
-        gui->createMainMenuGUI(render); // creates the main menu gui.
-		gui->createBackButtons(render); // creates the back buttons.
+        gui->createMainMenuGUI(); // creates the main menu gui.
+        gui->createBackButtons(); // creates the back buttons.
     }
 //    exit(0);
     logMsg("Initializing Input");

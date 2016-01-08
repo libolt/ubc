@@ -27,7 +27,7 @@
 #include "config.h"
 #endif
 
-#include "engine/networkengine.h"
+//#include "engine/networkengine.h"
 
 #include "gui/gui.h"
 #include "SDL.h"
@@ -36,12 +36,15 @@
 #include "Ogre.h"
 #include "OgreStringConverter.h" 
 #include "OgreString.h"
-#include "engine/renderengine.h"
+//#include "engine/renderengine.h"
 #include "engine/gameengine.h"
 #include "state/gamestate.h"
 #include "input.h"
 //#include "playerdata.h"
 #include "state/playerstate.h"
+
+class GUISystem;
+class gameEngine;
 
 class UBC : public gameEngine
 {
@@ -66,5 +69,6 @@ private:
 
     bool quitGame;
 };
+
 #endif
 

@@ -21,7 +21,7 @@
 #ifndef _GUI_H_
 #define _GUI_H_
 
-#include "engine/gameengine.h"
+//#include "engine/gameengine.h"
 
 #undef None
 #undef Button1
@@ -41,9 +41,12 @@
 //#include "input.h" 
 //#include "engine/renderengine.h" 
 
-class networkEngine;
+#include "ubc.h"
 
-class GUISystem //: public renderEngine //, inputSystem
+class networkEngine;
+class UBC;
+
+class GUISystem : public UBC //: public renderEngine //, inputSystem
 {
 public:
     GUISystem();  // constructor

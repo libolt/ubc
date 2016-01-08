@@ -21,6 +21,7 @@
 #include "entity/entity.h"
 #include "engine/renderengine.h"
 #include "logging.h"
+#include "ubc.h"
 
 entity::entity()  // constructor
 {

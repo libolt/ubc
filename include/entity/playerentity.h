@@ -18,12 +18,15 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef _PLAYERENTITY_H_
-#define _PLAYERENTITY_H_
 
 #include "entity/entity.h"
 #include "physics/playerphysics.h"
 #include "ai/playersteer.h"
+
+#ifndef _PLAYERENTITY_H_
+#define _PLAYERENTITY_H_
+
+class entity;
 
 class playerEntity : public entity , public playerPhysics
 {

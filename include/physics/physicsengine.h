@@ -85,7 +85,8 @@ public:
     void updatePositions();  // updates thr position of objects
     void updateBasketballPosition();  // updates the position of basketball object(s)
     void updatePlayerPositions();  // updates the position of player objecgts
-    void stepWorld(boost::shared_ptr<gameEngine> gameE);  // steps the physics simulation
+    void stepWorld();  // steps the physics simulation
+
 
 //    void ballDribbling();  // simulates basketball dribble
     void passCollisionCheck();  // checks whether the ball has collided with the player being passed to

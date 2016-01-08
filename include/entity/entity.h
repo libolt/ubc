@@ -21,7 +21,7 @@
 #ifndef _ENTITY_H_
 #define _ENTITY_H_
 
-#include "conversion.h"
+//#include "conversion.h"
 
 #include <string>
 #include "Ogre.h"
@@ -31,11 +31,14 @@
 #include "BtOgreGP.h"
 #include "BtOgreExtras.h"
 
-#include "engine/renderengine.h"
-#include "ubc.h"
+//#include "engine/renderengine.h"
+//#include "ubc.h"
 
+//#include "ubc.h"
 
-class entity// base class for entity objects
+class UBC;
+
+class entity : public UBC // base class for entity objects
 {
     public:
     
@@ -97,3 +100,4 @@ class entity// base class for entity objects
 };
 
 #endif
+

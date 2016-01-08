@@ -38,10 +38,10 @@
 #include "OgreString.h"
 //#include "engine/renderengine.h"
 #include "engine/gameengine.h"
-#include "state/gamestate.h"
-#include "input.h"
+//#include "state/gamestate.h"
+//#include "input.h"
 //#include "playerdata.h"
-#include "state/playerstate.h"
+//#include "state/playerstate.h"
 
 class GUISystem;
 class gameEngine;

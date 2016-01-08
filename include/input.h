@@ -34,11 +34,13 @@
 #include "enums.h"
 #include "userinput.h"
 #include "engine/renderengine.h"
-#include "gui/gui.h"
+//#include "gui/gui.h"
 
 #define EVENT_BUF_SIZE 256
 
 typedef std::vector<inputMaps>   inputWorkQueues;
+
+class GUISystem;
 
 // input class
 class inputSystem

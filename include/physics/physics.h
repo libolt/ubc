@@ -26,7 +26,7 @@
 #include "BtOgreExtras.h"
 #include "BulletDynamics/Dynamics/btRigidBody.h"
 
-#include "physics/physicsengine.h"
+#include "engine/physicsengine.h"
 #include "enums.h"
 
 class physics : public physicsEngine

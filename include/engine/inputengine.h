@@ -19,8 +19,8 @@
  ***************************************************************************/
 
  
-#ifndef _INPUT_H_
-#define _INPUT_H_
+#ifndef _INPUTENGINE_H_
+#define _INPUTENGINR_H_
 
 #include "SDL.h"
 #include "SDL_syswm.h"
@@ -44,15 +44,15 @@ class GUISystem;
 class rendreEngine;
 
 // input class
-class inputSystem
+class inputEngine
 {
 public:
 
-    inputSystem();  // constructor
-    ~inputSystem();  // destructor
+    inputEngine();  // constructor
+    ~inputEngine();  // destructor
     
-    //static inputSystem *Instance();
-//    static boost::shared_ptr<inputSystem> Instance();
+    //static inputEngine *Instance();
+//    static boost::shared_ptr<inputEngine> Instance();
 
     boost::shared_ptr<GUISystem> getGui();  // retrieves the value of gui
     void setGui(boost::shared_ptr<GUISystem> set);  // sets the value of gui
@@ -83,11 +83,11 @@ public:
     bool processUnbufferedGamepadInput(); // reads in unbuffered mouse input
 	
 protected:
-/*    inputSystem();
-    inputSystem(const inputSystem&);
-    inputSystem& operator= (const inputSystem&);
+/*    inputEngine();
+    inputEngine(const inputEngine&);
+    inputEngine& operator= (const inputEngine&);
 */
-    //~inputSystem();
+    //~inputEngine();
     
 
     // SDL Input
@@ -101,8 +101,8 @@ protected:
     int mouseRightClick; // stores state of Right mouse button;
 
 private:
-    //static inputSystem *pInstance;
-//    static boost::shared_ptr<inputSystem> pInstance;
+    //static inputEngine *pInstance;
+//    static boost::shared_ptr<inputEngine> pInstance;
 
     boost::shared_ptr<GUISystem> gui;  // stores the copy of the gui object
 

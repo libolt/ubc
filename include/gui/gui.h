@@ -106,7 +106,7 @@ public:
     Ogre::Viewport *getViewPort();  // retrieves the value of viewPort
     void setViewPort(const Ogre::Viewport &set);  // sets the value of viewPort
     
-    bool initMyGUI(boost::shared_ptr<renderEngine> render);  // Initializes MyGUI
+    bool initMyGUI();  // Initializes MyGUI
     bool createMainMenuGUI();  // creates GUI gor main menu screen.
     bool createNetworkSetupGUI();  // creates GUI for network setup screen.
     bool createNetworkClientSetupGUI();  // creates GUI for network client setup screen.

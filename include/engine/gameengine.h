@@ -21,7 +21,7 @@
 #ifndef _GAMEENGINE_H_
 #define _GAMEENGINE_H_
 
-#include "input.h"
+#include "engine/inputengine.h"
 //#include "engine/networkengine.h"
 
 #include "OgreTimer.h"
@@ -93,7 +93,7 @@ public:
 
     void quit();  // quits the entire game
 
-    void gameLoop();  // runs the Main loop for the game
+//    void gameLoop();  // runs the Main loop for the game
 
     void processInput();  // processes game input
 	

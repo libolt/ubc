@@ -240,7 +240,7 @@ void GUISystem::setViewPort(const Ogre::Viewport &set)  // sets the value of vie
     *viewPort = set;
 }
 
-bool GUISystem::initMyGUI(boost::shared_ptr<renderEngine> render)  // Initializes MyGUI
+bool GUISystem::initMyGUI()  // Initializes MyGUI
 {
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     Ogre::RenderWindow *mWindow = render->getMWindow();

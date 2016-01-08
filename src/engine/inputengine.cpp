@@ -41,21 +41,21 @@
 //#include "engine/renderengine.h"
 
 
-/*boost::shared_ptr<inputSystem> inputSystem::pInstance;
+/*boost::shared_ptr<inputEngine> inputEngine::pInstance;
 
-boost::shared_ptr<inputSystem> inputSystem::Instance()
+boost::shared_ptr<inputEngine> inputEngine::Instance()
 {
     if (pInstance == 0)  // is it the first call?
     {
-        //pInstance = new inputSystem; // create sole instance
-        boost::shared_ptr<inputSystem> tInstance(new inputSystem);
+        //pInstance = new inputEngine; // create sole instance
+        boost::shared_ptr<inputEngine> tInstance(new inputEngine);
         pInstance = tInstance;
     }
     return pInstance; // address of sole instance
 }
 */
 
-inputSystem::inputSystem()  // constructor
+inputEngine::inputEngine()  // constructor
 {
     mouseX = 0;
     mouseY = 0;
@@ -65,65 +65,65 @@ inputSystem::inputSystem()  // constructor
     setup();
 }
 
-inputSystem::~inputSystem()  // destructor
+inputEngine::~inputEngine()  // destructor
 {
 }
 
-boost::shared_ptr<GUISystem> inputSystem::getGui()  // retrieves the value of gui
+boost::shared_ptr<GUISystem> inputEngine::getGui()  // retrieves the value of gui
 {
   return (gui);
 }
-void inputSystem::setGui(boost::shared_ptr<GUISystem> set)  // sets the value of gui
+void inputEngine::setGui(boost::shared_ptr<GUISystem> set)  // sets the value of gui
 {
     gui = set;
 }
 
-SDL_Event inputSystem::getInputEvent()  // retrieves the value of inputEvent
+SDL_Event inputEngine::getInputEvent()  // retrieves the value of inputEvent
 {
     return (inputEvent);
 }
-void inputSystem::setInputEvent(SDL_Event set)  // sets the value of inputEvent
+void inputEngine::setInputEvent(SDL_Event set)  // sets the value of inputEvent
 {
     inputEvent = set;
 }
 
-std::string inputSystem::getKeyPressed()  // retrieves the value of keyPressed
+std::string inputEngine::getKeyPressed()  // retrieves the value of keyPressed
 {
     return(keyPressed);
 }
-void inputSystem::setKeyPressed(std::string set)
+void inputEngine::setKeyPressed(std::string set)
 {
     keyPressed = set;
 }
 
-inputMaps inputSystem::getInputMap()  // retrieves the value of inputMap 
+inputMaps inputEngine::getInputMap()  // retrieves the value of inputMap 
 {
     return(inputMap);
 }
-void inputSystem::setInputMap(inputMaps set)  // sets the value of inputMap 
+void inputEngine::setInputMap(inputMaps set)  // sets the value of inputMap 
 {
     inputMap = set;
 }
 
-inputWorkQueues inputSystem::getInputWorkQueue()  // retrieves the value of inputWorkQueue
+inputWorkQueues inputEngine::getInputWorkQueue()  // retrieves the value of inputWorkQueue
 {
     return (inputWorkQueue);
 }
-void inputSystem::setInputWorkQueue(inputWorkQueues set)  // sets the value of inputWorkQueue
+void inputEngine::setInputWorkQueue(inputWorkQueues set)  // sets the value of inputWorkQueue
 {
     inputWorkQueue = set;
 }
 
-std::vector<userInput> inputSystem::getUInput()  // retrieves the value of uInput
+std::vector<userInput> inputEngine::getUInput()  // retrieves the value of uInput
 {
     return (uInput);
 }
-void inputSystem::setUInput(std::vector<userInput> set)  // sets the value of uInput
+void inputEngine::setUInput(std::vector<userInput> set)  // sets the value of uInput
 {
     uInput = set;
 }
 
-bool inputSystem::setup()   // sets up and initializes the Input System
+bool inputEngine::setup()   // sets up and initializes the Input System
 {
 //  mDebugOverlay = OverlayManager::getSingleton().getByName("Core/DebugOverlay");
 
@@ -138,12 +138,12 @@ bool inputSystem::setup()   // sets up and initializes the Input System
     return true;
 }
 
-bool inputSystem::destroy()  // destroys the OIS Input System and related objects
+bool inputEngine::destroy()  // destroys the OIS Input System and related objects
 {
     return true;
 }
 
-inputMaps inputSystem::keyMap()  // maps value of keyPressed string to inputMap
+inputMaps inputEngine::keyMap()  // maps value of keyPressed string to inputMap
 {
 //    exit(0);
     if (keyPressed == uInput[0].getKeyUp())
@@ -212,7 +212,7 @@ inputMaps inputSystem::keyMap()  // maps value of keyPressed string to inputMap
     }
 }
 
-bool inputSystem::processInput()  // processes all input
+bool inputEngine::processInput()  // processes all input
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
@@ -371,7 +371,7 @@ bool inputSystem::processInput()  // processes all input
     return true;
 }
 
-bool inputSystem::processUnbufferedKeyInput(bool textInput)  // processes unbuffered keyboard input
+bool inputEngine::processUnbufferedKeyInput(bool textInput)  // processes unbuffered keyboard input
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<GUISystem> gui = GUISystem::Instance();
@@ -642,7 +642,7 @@ bool inputSystem::processUnbufferedKeyInput(bool textInput)  // processes unbuff
     return true;
 }
 
-bool inputSystem::processUnbufferedMouseInput()  // processes the unbuffered mouse input
+bool inputEngine::processUnbufferedMouseInput()  // processes the unbuffered mouse input
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
@@ -697,7 +697,7 @@ bool inputSystem::processUnbufferedMouseInput()  // processes the unbuffered mou
     return true;
 }
 
-bool inputSystem::processUnbufferedTouchInput() // processes the unbuffered touch input
+bool inputEngine::processUnbufferedTouchInput() // processes the unbuffered touch input
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
@@ -800,7 +800,7 @@ bool inputSystem::processUnbufferedTouchInput() // processes the unbuffered touc
 	return true;
 }
 
-bool inputSystem::processUnbufferedGamepadInput()  // reads in unbuffered mouse input
+bool inputEngine::processUnbufferedGamepadInput()  // reads in unbuffered mouse input
 {
     return true;
 }

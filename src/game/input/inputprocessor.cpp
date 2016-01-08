@@ -17,62 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+ 
+#include "input/inputprocessor.h"
 
-#ifndef _UBC_H_
-#define _UBC_H_
-
-#ifdef __ANDROID__
-#include "android-config.h"
-#else
-#include "config.h"
-#endif
-
-//#include "engine/networkengine.h"
-
-#include "gui/gui.h"
-#include "SDL.h"
-#include "SDL_syswm.h"
-#include "SDL_test_common.h"
-#include "Ogre.h"
-#include "OgreStringConverter.h" 
-#include "OgreString.h"
-//#include "engine/renderengine.h"
-#include "engine/gameengine.h"
-//#include "state/gamestate.h"
-//#include "input.h"
-//#include "playerdata.h"
-//#include "state/playerstate.h"
-
-class GUISystem;
-class gameEngine;
-
-class UBC : public gameEngine
-{
-public: 
-    UBC(); // constructor
-    ~UBC();	// destructor
-
-    boost::shared_ptr<GUISystem> getGui();  // retrieves the value of gui
-    void setGui(boost::shared_ptr<GUISystem> set);  // sets the value of gui
-
-    bool getQuitGame();  // retrieves the value of quitGame
-    void setQuitGame(bool quit);  // sets the value of quitGame
-
-    bool setupState();  // sets up the UBC game state
-    void executeState();  // executes the UBC game code
-
-    bool startGame();  // starts a game
-
-    void gameLoop();  // runs the Main loop for the game
-
-protected:
-  
-private:
-
-    boost::shared_ptr<GUISystem> gui;  // the GUI object.
-
-    bool quitGame;
-};
-
-#endif
 

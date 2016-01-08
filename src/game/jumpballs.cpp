@@ -22,7 +22,7 @@
 #include "state/gamestate.h"
 #include "comparison.h"
 #include "logging.h"
-#include "physics/physicsengine.h"
+#include "engine/physicsengine.h"
 #include "jumpballs.h"
 
 jumpBalls::jumpBalls()  // constructor

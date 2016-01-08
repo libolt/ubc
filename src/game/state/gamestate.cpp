@@ -819,7 +819,7 @@ bool gameState::setupState()  // sets up the game condition
 {
 
     boost::shared_ptr<AISystem> ai = AISystem::Instance();
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     boost::shared_ptr<loader> load = loader::Instance();
     //boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;

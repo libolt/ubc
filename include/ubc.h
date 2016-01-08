@@ -50,13 +50,13 @@ public:
     ~UBC();	// destructor
 
     boost::shared_ptr<GUISystem> getGui();  // retrieves the value of gui
-    void setGui(boost::shared_ptr<GUISystem set);  // sets the value of gui
+    void setGui(boost::shared_ptr<GUISystem> set);  // sets the value of gui
 
     bool getQuitGame();  // retrieves the value of quitGame
     void setQuitGame(bool quit);  // sets the value of quitGame
 
-    bool UBC::setupState();  // sets up the UBC game state
-    void UBC::executeState();  // executes the UBC game code
+    bool setupState();  // sets up the UBC game state
+    void executeState();  // executes the UBC game code
 
 protected:
   

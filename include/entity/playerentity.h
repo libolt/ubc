@@ -25,7 +25,7 @@
 #include "physics/playerphysics.h"
 #include "ai/playersteer.h"
 
-class playerEntity : public entity, public playerPhysics
+class playerEntity : public entity , public playerPhysics
 {
     public:
     playerEntity();  // constructor

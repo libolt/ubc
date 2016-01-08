@@ -41,6 +41,8 @@
 //#include "input.h" 
 //#include "engine/renderengine.h" 
 
+class networkEngine;
+
 class GUISystem //: public renderEngine //, inputSystem
 {
 public:

@@ -43,11 +43,11 @@ UBC::~UBC()  // destructor
 
 }
 
-boost::shared_ptr<GUISystem> getGui()  // retrieves the value of gui
+boost::shared_ptr<GUISystem> UBC::getGui()  // retrieves the value of gui
 {
     return (gui);
 }
-void setGui(boost::shared_ptr<GUISystem set)  // sets the value of gui
+void UBC::setGui(boost::shared_ptr<GUISystem> set)  // sets the value of gui
 {
     gui = set;
 }
@@ -68,13 +68,13 @@ bool UBC::setupState()  // sets up the UBC game state
     Ogre::Viewport *vp = getRender()->getViewPort();
     gui->setViewPort(*vp);  // sets the viewPort for MyGUI
 
-    gui->initMyGUI(render); // Initializes MyGUI
+    gui->initMyGUI(getRender()); // Initializes MyGUI
     if (!gui->getMainMenuCreated())
     {
         gui->createMainMenuGUI(); // creates the main menu gui.
         gui->createBackButtons(); // creates the back buttons.
     }
-    gui->setNetwork(&getNetwork());
+    gui->setNetwork(getNetwork());
     return (false);
 }
 
@@ -89,7 +89,7 @@ int main(int argc, char *argv[])
     boost::shared_ptr<renderEngine> render = ubc.getRender();
 //    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
-    boost::shared_ptr<GUISystem> gui = GUISystem::Instance();
+    boost::shared_ptr<GUISystem> gui = ubc.getGui();
 
     render->initSDL(); // Initializes the SDL Subsystem
 

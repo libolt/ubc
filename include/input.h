@@ -86,7 +86,6 @@ protected:
 */
     //~inputSystem();
     
-    boost::shared_ptr<GUISystem> gui;  // stores the copy of the gui object
 
     // SDL Input
     SDL_Event inputEvent;  // stores input events
@@ -102,6 +101,7 @@ private:
     //static inputSystem *pInstance;
 //    static boost::shared_ptr<inputSystem> pInstance;
 
+    boost::shared_ptr<GUISystem> gui;  // stores the copy of the gui object
 
     std::string keyPressed; // stores which key was pressed
 

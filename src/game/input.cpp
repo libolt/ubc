@@ -69,11 +69,11 @@ inputSystem::~inputSystem()  // destructor
 {
 }
 
-boost::shared_ptr<GUISystem> getGui()  // retrieves the value of gui
+boost::shared_ptr<GUISystem> inputSystem::getGui()  // retrieves the value of gui
 {
   return (gui);
 }
-void setGui(boost::shared_ptr<GUISystem> set)  // sets the value of gui
+void inputSystem::setGui(boost::shared_ptr<GUISystem> set)  // sets the value of gui
 {
     gui = set;
 }

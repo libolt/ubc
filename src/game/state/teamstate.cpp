@@ -461,7 +461,7 @@ void teamState::updateState()	// updates the state of the object
     //conversion *convert = conversion::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
     //gameEngine *gameE = gameEngine::Instance();
-    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
+//    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
 	//gameState *gameS = gameState::Instance();
 	boost::shared_ptr<gameState> gameS = gameState::Instance();
     ///boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();

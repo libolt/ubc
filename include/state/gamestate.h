@@ -34,6 +34,8 @@
 #include "data/playerdata.h"
 #include "jumpballs.h"
 
+class basketballState;
+
 //using namespace std;
 class gameState : public state
 {

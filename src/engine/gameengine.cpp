@@ -206,7 +206,7 @@ void gameEngine::processInput()  // processes game input
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
-    boost::shared_ptr<GUISystem> gui = GUISystem::Instance();
+//    boost::shared_ptr<GUISystem> gui = GUISystem::Instance();
 //    boost::shared_ptr<inputSystem> input = inputSystem::Instance();
 //    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
 
@@ -380,7 +380,7 @@ void gameEngine::gameLoop()  // Main Game Loop
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
-    boost::shared_ptr<GUISystem> gui = GUISystem::Instance();
+//    boost::shared_ptr<GUISystem> gui = GUISystem::Instance();
 //    boost::shared_ptr<inputSystem> input = inputSystem::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 //    boost::shared_ptr<networkEngine> network = networkEngine::Instance();

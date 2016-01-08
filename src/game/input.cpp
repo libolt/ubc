@@ -69,6 +69,14 @@ inputSystem::~inputSystem()  // destructor
 {
 }
 
+boost::shared_ptr<GUISystem> getGui()  // retrieves the value of gui
+{
+  return (gui);
+}
+void setGui(boost::shared_ptr<GUISystem> set)  // sets the value of gui
+{
+    gui = set;
+}
 
 SDL_Event inputSystem::getInputEvent()  // retrieves the value of inputEvent
 {
@@ -366,7 +374,7 @@ bool inputSystem::processInput(boost::shared_ptr<renderEngine> renderE)  // proc
 bool inputSystem::processUnbufferedKeyInput(bool textInput)  // processes unbuffered keyboard input
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<GUISystem> gui = GUISystem::Instance();
+//    boost::shared_ptr<GUISystem> gui = GUISystem::Instance();
 //	logMsg("Processing keyboard input");
 
     logMsg("key == " +convert->toString(inputEvent.key.keysym.sym));

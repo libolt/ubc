@@ -34,6 +34,7 @@
 #include "enums.h"
 #include "userinput.h"
 #include "engine/renderengine.h"
+#include "gui/gui.h"
 
 #define EVENT_BUF_SIZE 256
 
@@ -50,6 +51,9 @@ public:
     //static inputSystem *Instance();
 //    static boost::shared_ptr<inputSystem> Instance();
 
+    boost::shared_ptr<GUISystem> getGui();  // retrieves the value of gui
+    void setGui(boost::shared_ptr<GUISystem> set);  // sets the value of gui
+  
     SDL_Event getInputEvent();  // retrieves the value of inputEvent 
     void setInputEvent(SDL_Event set);  // sets the value of inputEvent 
 
@@ -81,6 +85,9 @@ protected:
     inputSystem& operator= (const inputSystem&);
 */
     //~inputSystem();
+    
+    boost::shared_ptr<GUISystem> gui;  // stores the copy of the gui object
+
     // SDL Input
     SDL_Event inputEvent;  // stores input events
     SDL_Event events[EVENT_BUF_SIZE];

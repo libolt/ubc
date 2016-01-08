@@ -21,11 +21,7 @@
 #ifndef _GUI_H_
 #define _GUI_H_
 
-//mem probs without this next one
-#ifdef __APPLE__
-//include <Ogre/OgreNoMemoryMacros.h>
-#else
-#endif
+#include "engine/gameengine.h"
 
 #undef None
 #undef Button1
@@ -36,23 +32,26 @@
 #undef Button6
 #undef Button7
 
+
 #include "MyGUI.h"
 #include "MyGUI_OgrePlatform.h"
-//#include "MyGUI_OgreRenderManager.h"
+#include "MyGUI_OgreRenderManager.h"
 
 #include "enums.h"
-#include "input.h"
-#include "engine/renderengine.h"
-
+//#include "input.h" 
+//#include "engine/renderengine.h" 
 
 class GUISystem //: public renderEngine //, inputSystem
 {
 public:
-
-    ~GUISystem();
+    GUISystem();  // constructor
+    ~GUISystem();  // destructor
 
     //static GUISystem *Instance();
-    static boost::shared_ptr<GUISystem> Instance();
+//    static boost::shared_ptr<GUISystem> Instance();
+
+    boost::shared_ptr<networkEngine> getNetwork();  // retrieves the value of network
+    void setNetwork(boost::shared_ptr<networkEngine> set);  // sets the value of network
 
     bool getMainMenuCreated();   // retrieves the value of mainMenuCreated
     void setMainMenuCreated(bool created); // sets the value of mainMenuCreated
@@ -149,8 +148,8 @@ public:
     void addPlayerStartSelectionMenuData();  // adds data to Player Start Selection Menu widgets
 
     void setSelectedIndexes();  // sets all player listbox indexes to zero
-    void networkServer(boost::shared_ptr<networkEngine> network);  // sets up  game as a network server
-    void networkClient(boost::shared_ptr<networkEngine> network);  // sets up game as a network client
+    void networkServer();  // sets up  game as a network server
+    void networkClient();  // sets up game as a network client
 
     void courtSelected();  // processes court selection
     void teamsSelected();  // processes team selection
@@ -165,9 +164,11 @@ public:
 
 protected:
 
-    GUISystem();
-    GUISystem(const GUISystem&);
-    GUISystem& operator= (const GUISystem&);
+//    GUISystem();
+//    GUISystem(const GUISystem&);
+//    GUISystem& operator= (const GUISystem&);
+
+    boost::shared_ptr<networkEngine> network;  // stores a copy of the network object for use in the gui
 
     // MyGUI functions
     void startSingleGameButtonClicked(MyGUI::Widget *_sender);  // handles startSingleGameButton click event
@@ -245,7 +246,7 @@ protected:
 private:
 
     //static GUISystem *pInstance;
-    static boost::shared_ptr<GUISystem> pInstance;
+//    static boost::shared_ptr<GUISystem> pInstance;
     
     MyGUI::Gui *mGUI;
     MyGUI::OgrePlatform *mPlatform;
@@ -372,7 +373,7 @@ private:
     std::vector< std::vector<size_t> > playerIDs;  // stores player IDs for each team
     std::vector< std::vector<size_t> > team0IDs;
     std::vector< std::vector<size_t> > team1IDs;
-    std::vector< std::vector<size_t> > teamStarterID; // stores the selected starters for each team
+    std::vector< std::vector<size_t> > teamStarterID; // stores the selected starters for each team 
 };
 
 #endif // GUI_H_INCLUDED

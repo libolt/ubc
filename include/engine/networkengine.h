@@ -37,10 +37,6 @@
 #include "enums.h"
 #include "input.h"
 
-//using namespace std;
-
-
-//enum movementDirection { FORWARD, BACKWARD, LEFT, RIGHT };
 
 class networkEngine
 {

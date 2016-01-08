@@ -36,6 +36,7 @@
 #include "config.h"
 #endif
 
+/*
 boost::shared_ptr<GUISystem> GUISystem::pInstance;
 
 boost::shared_ptr<GUISystem> GUISystem::Instance()
@@ -49,6 +50,7 @@ boost::shared_ptr<GUISystem> GUISystem::Instance()
     }
     return pInstance; // address of sole instance
 }
+*/
 
 GUISystem::GUISystem()  // Initializes the GUISystem class
 {
@@ -61,28 +63,37 @@ GUISystem::GUISystem()  // Initializes the GUISystem class
     networkSetupMenuCreated = false;
     networkServerSetupMenuCreated = false;
     networkClientSetupMenuCreated = false;
-	optionsMenuCreated = false;
-	displaySetupMenuCreated = false;
-	inputSetupMenuCreated = false;
-	audioSetupMenuCreated = false;
-	gameSetupMenuCreated = false;
+    optionsMenuCreated = false;
+    displaySetupMenuCreated = false;
+    inputSetupMenuCreated = false;
+    audioSetupMenuCreated = false;
+    gameSetupMenuCreated = false;
     gameSetupMenuAwaySelected = false;
-	gameSetupMenuHomeSelected = false;
+    gameSetupMenuHomeSelected = false;
     playerStartSelectionMenuCreated = false;
     teamSelectionMenuCreated = false;
-	courtSelectionMenuCreated = false;
+    courtSelectionMenuCreated = false;
     courtSelectionDataLoaded = false;
     
     menuActive = false;
 
-	//activeMenu = NULL;
-	//previousActiveMenu = NULL;
+    //activeMenu = NULL;
+    //previousActiveMenu = NULL;
 
 }
 
 GUISystem::~GUISystem()
 {
 
+}
+
+boost::shared_ptr<networkEngine> GUISystem::getNetwork()  // retrieves the value of network
+{
+    return (network);
+}
+void GUISystem::setNetwork(boost::shared_ptr<networkEngine> set)  // sets the value of network
+{
+    network = set;
 }
 
 bool GUISystem::getMainMenuCreated()  // retrieves the value of mainMenuCreated
@@ -413,7 +424,7 @@ void GUISystem::networkServerSetupMenu()  // sets up the networkServer instance
 
 }
 
-void GUISystem::networkServer(boost::shared_ptr<networkEngine> network)  // sets up  game as a network server
+void GUISystem::networkServer()  // sets up  game as a network server
 {
     //networkEngine * network = networkEngine::Instance();
 //    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
@@ -435,7 +446,7 @@ void GUISystem::networkServer(boost::shared_ptr<networkEngine> network)  // sets
 //    gameE->setCreateScene(true); // sets variable true that tells gameEngine to start rendering the scene
 
 }
-void GUISystem::networkClient(boost::shared_ptr<networkEngine> network)  // sets up game as a network client
+void GUISystem::networkClient()  // sets up game as a network client
 {
 //    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
 //    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();

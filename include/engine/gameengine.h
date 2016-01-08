@@ -21,7 +21,8 @@
 #ifndef _GAMEENGINE_H_
 #define _GAMEENGINE_H_
 
-#include "engine/networkengine.h"
+#include "input.h"
+//#include "engine/networkengine.h"
 
 #include "OgreTimer.h"
 #include "OgreVector3.h"
@@ -31,8 +32,8 @@
 #include "threads.h"
 #include "timing.h"
 
-#include "engine/renderengine.h"
-#include "input.h"
+//#include "engine/renderengine.h"
+//#include "input.h"
 
 class gameEngine
 {

@@ -33,26 +33,54 @@
 #endif
 
 
-UBC::UBC()
+UBC::UBC()  // constructor
 {
 	quitGame = false;
 }
 
-UBC::~UBC()
+UBC::~UBC()  // destructor
 {
 
 }
 
-bool UBC::getQuitGame()
+boost::shared_ptr<GUISystem> getGui()  // retrieves the value of gui
+{
+    return (gui);
+}
+void setGui(boost::shared_ptr<GUISystem set)  // sets the value of gui
+{
+    gui = set;
+}
+
+bool UBC::getQuitGame()  // retrieves the value of quitGame
 {
 	return (quitGame);
 }
 
-void UBC::setQuitGame(bool quit)
+void UBC::setQuitGame(bool set)  // sets the value of quitGame
 {
-    quitGame = quit;
+    quitGame = set;
 }
 
+
+bool UBC::setupState()  // sets up the UBC game state
+{
+    Ogre::Viewport *vp = getRender()->getViewPort();
+    gui->setViewPort(*vp);  // sets the viewPort for MyGUI
+
+    gui->initMyGUI(render); // Initializes MyGUI
+    if (!gui->getMainMenuCreated())
+    {
+        gui->createMainMenuGUI(); // creates the main menu gui.
+        gui->createBackButtons(); // creates the back buttons.
+    }
+    gui->setNetwork(&getNetwork());
+    return (false);
+}
+
+void UBC::executeState()  // executes the UBC game code
+{
+}
 
 int main(int argc, char *argv[])
 {
@@ -70,7 +98,9 @@ int main(int argc, char *argv[])
 //    exit(0);
     gameS->createInstances();  // creates object instances
 //    exit(0);
-    Ogre::Viewport *vp = render->getViewPort();
+    ubc.setupState();  // sets up the game state
+
+/*    Ogre::Viewport *vp = render->getViewPort();
     gui->setViewPort(*vp);  // sets the viewPort for MyGUI
     
     gui->initMyGUI(render); // Initializes MyGUI
@@ -79,6 +109,7 @@ int main(int argc, char *argv[])
         gui->createMainMenuGUI(); // creates the main menu gui.
         gui->createBackButtons(); // creates the back buttons.
     }
+*/
 //    exit(0);
     logMsg("Initializing Input");
     //inputSystem *input = inputSystem::Instance();

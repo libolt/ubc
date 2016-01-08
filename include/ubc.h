@@ -18,8 +18,8 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef _UBCAPP_H_
-#define _UBCAPP_H_
+#ifndef _UBC_H_
+#define _UBC_H_
 
 #ifdef __ANDROID__
 #include "android-config.h"
@@ -49,64 +49,22 @@ public:
     UBC(); // constructor
     ~UBC();	// destructor
 
-    bool getQuitGame();
-	void setQuitGame(bool quit);
+    boost::shared_ptr<GUISystem> getGui();  // retrieves the value of gui
+    void setGui(boost::shared_ptr<GUISystem set);  // sets the value of gui
+
+    bool getQuitGame();  // retrieves the value of quitGame
+    void setQuitGame(bool quit);  // sets the value of quitGame
+
+    bool UBC::setupState();  // sets up the UBC game state
+    void UBC::executeState();  // executes the UBC game code
+
 protected:
   
 private:
 
-    bool quitGame;
-};
-
-/* class UBC : public players, gameObjects //, inputSystem, gameObjects, players
-{
-public:
-//	UBC(void);
-    ~UBC();
-
-    static UBC *Instance();
-
-    bool getMenuActive();
-    void setMenuActive(bool active);
-
-    // starts a game
-    bool startGame();
-
-    // quits entire game
-    void quit();
-
-    void createScene();
-    bool frameStarted();
-    bool frameEnded();
-    void createSceneManager();
+    boost::shared_ptr<GUISystem> gui;  // the GUI object.
 
     bool quitGame;
-
-protected:
-    UBC();
-    UBC(const UBC&);
-    UBC& operator= (const UBC&);
-
-
-//    void loads(string pFilename);	// loads data from XML files
-
-    int x;
-    int y;
-    int i;
-    int j;
-    Ogre::Vector3 courtTranslateVector;
-    Ogre::Timer loopTime;
-    unsigned long oldTime;
-private:
-
-    static UBC *pInstance;
-
-    // Flags
-    bool menuActive;	// determines whether or not a menu is active
-
-
 };
-*/
-
 #endif
 

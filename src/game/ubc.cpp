@@ -82,6 +82,17 @@ void UBC::executeState()  // executes the UBC game code
 {
 }
 
+bool UBC::startGame()  // starts the game
+{
+    boost::shared_ptr<gameState> gameS = gameState::Instance();
+
+    logMsg("startGame()");
+
+    gameS->setupState();
+    return true;
+}
+
+
 int main(int argc, char *argv[])
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();

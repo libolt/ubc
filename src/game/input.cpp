@@ -38,7 +38,7 @@
 #include "gui/gui.h"
 #include "load.h"
 #include "logging.h"
-#include "engine/renderengine.h"
+//#include "engine/renderengine.h"
 
 
 /*boost::shared_ptr<inputSystem> inputSystem::pInstance;
@@ -212,7 +212,7 @@ inputMaps inputSystem::keyMap()  // maps value of keyPressed string to inputMap
     }
 }
 
-bool inputSystem::processInput(boost::shared_ptr<renderEngine> renderE)  // processes all input
+bool inputSystem::processInput()  // processes all input
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
@@ -272,7 +272,7 @@ bool inputSystem::processInput(boost::shared_ptr<renderEngine> renderE)  // proc
                 logMsg("Motion!");
                 //exit(0);
                 // processes touch input
-                if (processUnbufferedTouchInput(renderE))
+                if (processUnbufferedTouchInput())
                 {
                     return false;
                 }
@@ -283,7 +283,7 @@ bool inputSystem::processInput(boost::shared_ptr<renderEngine> renderE)  // proc
                 logMsg("tfinger.y = " +convert->toString(inputEvent.tfinger.y));
 //                exit(0);
                 // processes touch input
-                if (processUnbufferedTouchInput(renderE) == false)
+                if (processUnbufferedTouchInput() == false)
                 {
                     return false;
                 }
@@ -292,7 +292,7 @@ bool inputSystem::processInput(boost::shared_ptr<renderEngine> renderE)  // proc
                 logMsg("Finger Up!");
 //                exit(0);
                 // processes touch input
-                if (processUnbufferedTouchInput(renderE) == false)
+                if (processUnbufferedTouchInput() == false)
                 {
                     return false;
                 }
@@ -301,7 +301,7 @@ bool inputSystem::processInput(boost::shared_ptr<renderEngine> renderE)  // proc
                 logMsg("Multigesture!");
             //    exit(0);
                 // processes touch input
-                if (processUnbufferedTouchInput(renderE) == false)
+                if (processUnbufferedTouchInput() == false)
                 {
                     return false;
                 }
@@ -697,7 +697,7 @@ bool inputSystem::processUnbufferedMouseInput()  // processes the unbuffered mou
     return true;
 }
 
-bool inputSystem::processUnbufferedTouchInput(boost::shared_ptr<renderEngine> renderE) // processes the unbuffered touch input
+bool inputSystem::processUnbufferedTouchInput() // processes the unbuffered touch input
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
@@ -724,8 +724,8 @@ bool inputSystem::processUnbufferedTouchInput(boost::shared_ptr<renderEngine> re
         logMsg("evtState FINGERUP = " +convert->toString(evtState));
     //    exit(0);
     }
-    int x = inputEvent.tfinger.x*renderE->getWindowWidth();
-    int y = inputEvent.tfinger.y*renderE->getWindowHeight();
+    int x = inputEvent.tfinger.x*render->getWindowWidth();
+    int y = inputEvent.tfinger.y*render->getWindowHeight();
 //    if (MyGUI::InputManager::getInstance().isFocusMouse())
 //    {
 //        exit(0);

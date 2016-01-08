@@ -29,10 +29,10 @@
 #include <boost/shared_ptr.hpp>
 #include <boost/chrono/system_clocks.hpp>
 
-#include "threads.h"
+//#include "threads.h"
 #include "timing.h"
 
-//#include "engine/renderengine.h"
+#include "engine/renderengine.h"
 //#include "input.h"
 
 class inputSystem;

@@ -44,7 +44,7 @@
 #include "ubc.h"
 
 class networkEngine;
-class UBC;
+//class UBC;
 
 class GUISystem : public UBC //: public renderEngine //, inputSystem
 {

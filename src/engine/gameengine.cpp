@@ -21,8 +21,8 @@
 #include "conversion.h"
 
 #include "engine/gameengine.h"
-#include "state/gamestate.h"
-#include "gui/gui.h"
+//#include "state/gamestate.h"
+//#include "gui/gui.h"
 #include "input.h"
 #include "logging.h"
 #include "network/networkplayerstateobject.h"
@@ -184,7 +184,7 @@ void gameEngine::setNetwork(boost::shared_ptr<networkEngine> set)  // sets the v
     network = set;
 }
 
-bool gameEngine::startGame()  // starts the game
+/*bool gameEngine::startGame()  // starts the game
 {
     boost::shared_ptr<gameState> gameS = gameState::Instance();
     
@@ -192,7 +192,7 @@ bool gameEngine::startGame()  // starts the game
 
     gameS->setupState();
     return true;
-}
+}*/
 
 void gameEngine::quit()  // quits the game
 {
@@ -215,7 +215,7 @@ void gameEngine::processInput()  // processes game input
 
     logMsg("inputProcess!");
  
-    if (input->processInput(render))
+    if (input->processInput())
     {
         if (gameS->getActiveTeamInstancesCreated())
         {

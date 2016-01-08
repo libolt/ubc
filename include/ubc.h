@@ -61,6 +61,8 @@ public:
     bool setupState();  // sets up the UBC game state
     void executeState();  // executes the UBC game code
 
+    bool startGame();  // starts a game
+
 protected:
   
 private:

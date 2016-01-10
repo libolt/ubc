@@ -20,7 +20,7 @@
 
  
 #ifndef _INPUTENGINE_H_
-#define _INPUTENGINR_H_
+#define _INPUTENGINE_H_
 
 #include "SDL.h"
 #include "SDL_syswm.h"

@@ -23,7 +23,7 @@
 #include "engine/gameengine.h"
 //#include "state/gamestate.h"
 //#include "gui/gui.h"
-#include "input.h"
+#include "engine/inputengine.h"
 #include "logging.h"
 #include "network/networkplayerstateobject.h"
 #include "engine/renderengine.h"
@@ -58,8 +58,7 @@ gameEngine::gameEngine()  // constructor
     serverRunning = false;
     clientRunning = false;
     sceneCreated = false;
-    createScene = false;
-    renderScene = false;
+    createScene = false;    renderScene = false;
     movePlayer = false;
 }
 
@@ -129,7 +128,6 @@ void gameEngine::setSceneCreated(bool set)  // sets the value of sceneCreated
 {
 	sceneCreated = set;
 }
-
 bool gameEngine::getRenderScene()  // retrieves the value of renderScene
 {
 	return (renderScene);
@@ -165,12 +163,11 @@ void gameEngine::setRender(boost::shared_ptr<renderEngine> set)  // sets the val
 {
     render = set;
 }
-
-boost::shared_ptr<inputSystem> gameEngine::getInput()  // retrieves the value of input
+boost::shared_ptr<inputEngine> gameEngine::getInput()  // retrieves the value of input
 {
     return (input);
 }
-void gameEngine::setInput(boost::shared_ptr<inputSystem> set)  // sets the value of input
+void gameEngine::setInput(boost::shared_ptr<inputEngine> set)  // sets the value of input
 {
     input = set;
 }
@@ -201,7 +198,6 @@ void gameEngine::quit()  // quits the game
     input->destroy();
 
 }
-
 void gameEngine::processInput()  // processes game input
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
@@ -237,9 +233,9 @@ void gameEngine::processInput()  // processes game input
                         size_t x = 0;
                         size_t humanInstance = 11;
                         while (x < activePlayerInstance.size())
-                        {
-                            logMsg("GEPlayerID == " +convert->toString(activePlayerInstance[x].getID()));
+                        {                           logMsg("GEPlayerID == " +convert->toString(activePlayerInstance[x].getID()));
                             logMsg("GEHumanPlayer == " +convert->toString(humanPlayer));
+
                             if (activePlayerInstance[x].getID() == humanPlayer)
                             {
                                 humanInstance = x;

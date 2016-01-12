@@ -32,6 +32,7 @@
 
 #include "enums.h"
 #include "engine/renderengine.h"
+#include "timing.h"
 
 class physicsEngine
 {
@@ -85,7 +86,7 @@ public:
     void updatePositions();  // updates thr position of objects
     void updateBasketballPosition();  // updates the position of basketball object(s)
     void updatePlayerPositions();  // updates the position of player objecgts
-    void stepWorld();  // steps the physics simulation
+    void stepWorld(timing time);  // steps the physics simulation
 
 
 //    void ballDribbling();  // simulates basketball dribble

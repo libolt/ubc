@@ -23,7 +23,7 @@
 #include "engine/gameengine.h"
 #include "state/gamestate.h"
 #include "logging.h"
-#include "input.h"
+#include "engine/inputengine.h"
 #include "conversion.h"
 
 #if _MSC_VER
@@ -436,7 +436,7 @@ void networkEngine::networkServer()  // executes the network server code
     logMsg("End of networkServer");
 }
 
-void networkEngine::processLocalInput(boost::shared_ptr<inputSystem> input)  // processes local input for sending to remote system
+void networkEngine::processLocalInput()  // processes local input for sending to remote system
 {
 //    boost::shared_ptr<inputSystem> input = inputSystem::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();

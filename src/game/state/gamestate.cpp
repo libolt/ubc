@@ -983,7 +983,7 @@ bool gameState::updateState()  // updates the game state
         physEngine.updateState();	// updates the state of the physics simulation
         logMsg("stepWorld");
 //        exit(0);
-        physEngine.stepWorld();  // steps the physics simulation
+        physEngine.stepWorld(getTimer());  // steps the physics simulation
 ///    logMsg("DirectionsAndMovement");
 ///    updateDirectionsAndMovements();
 

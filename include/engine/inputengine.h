@@ -33,7 +33,7 @@
 
 #include "enums.h"
 #include "userinput.h"
-//#include "engine/renderengine.h"
+#include "engine/renderengine.h"
 //#include "gui/gui.h"
 
 #define EVENT_BUF_SIZE 256
@@ -57,6 +57,8 @@ public:
 /*    boost::shared_ptr<GUISystem> getGui();  // retrieves the value of gui
     void setGui(boost::shared_ptr<GUISystem> set);  // sets the value of gui
 */
+    bool getKeyInputReceived();  // retrieves the value of keyInputReceived
+    void setKeyInputReceived(bool set);  // sets the value of keyInputReceived
 
     SDL_Event getInputEvent();  // retrieves the value of inputEvent 
     void setInputEvent(SDL_Event set);  // sets the value of inputEvent 
@@ -77,10 +79,10 @@ public:
 
     inputMaps keyMap();  // maps value of keyPressed string to inputMap
 	
-    bool processInput();	// processes all input
-    bool processUnbufferedKeyInput(bool textInput);	// reads in unbuffered key presses
+    bool processInput(bool menuActive, boost::shared_ptr<renderEngine> render);	// processes all input
+    bool processUnbufferedKeyInput(bool textInput, bool menuActive);	// reads in unbuffered key presses
     bool processUnbufferedMouseInput();	// reads in unbuffered mouse input
-    bool processUnbufferedTouchInput(); // reads in unbuffered touch input
+    bool processUnbufferedTouchInput(boost::shared_ptr<renderEngine> render); // reads in unbuffered touch input
     bool processUnbufferedGamepadInput(); // reads in unbuffered mouse input
 	
 protected:
@@ -106,7 +108,7 @@ private:
 //    static boost::shared_ptr<inputEngine> pInstance;
 
 //    boost::shared_ptr<GUISystem> gui;  // stores the copy of the gui object
-
+    bool keyInputReceived;  // stores whether a key has been pressed
     std::string keyPressed; // stores which key was pressed
 
     inputMaps inputMap; // stores user input

@@ -31,7 +31,7 @@
 #include "state/gamestate.h"
 #include "gui/gui.h"
 #include "logging.h"
-#include "physics/physicsengine.h"
+#include "engine/physicsengine.h"
 #include "engine/sound/soundengine.h"
 
 #define FREEIMAGE_LIB

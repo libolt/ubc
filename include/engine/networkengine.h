@@ -101,7 +101,7 @@ class networkEngine
     bool serverSetup();	 // setup server.
     void networkServer();  // Server code
 
-    void processLocalInput(boost::shared_ptr<inputEngine> input);  // processes local input for sending to remote system
+    void processLocalInput();  // processes local input for sending to remote system
     void processRemoteInput();  // processes input received from a remote system
     
     void sendPacket(std::string packetData);  // sends a packet to the peer

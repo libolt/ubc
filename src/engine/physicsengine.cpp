@@ -21,10 +21,10 @@
 #include "conversion.h"
 #include "engine/gameengine.h"
 #include "state/gamestate.h"
-#include "input.h"
+#include "engine/inputengine.h"
 #include "logging.h"
 #include "state/playerstate.h"
-#include "physics/physicsengine.h"
+#include "engine/physicsengine.h"
 #include "engine/renderengine.h"
 #include "comparison.h"
 #include "jumpballs.h"
@@ -532,7 +532,7 @@ void physicsEngine::updatePlayerPositions()  // updates the position of player o
     gameS->setActiveTeamInstance(activeTeamInstance);
 }
 
-void physicsEngine::stepWorld()  // steps the world of the physics simulation
+void physicsEngine::stepWorld(timing timer)  // steps the world of the physics simulation
 {
 //    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
@@ -544,7 +544,8 @@ void physicsEngine::stepWorld()  // steps the world of the physics simulation
 
     //    unsigned long loopChangeInTime;   // stores change in time.
 
-    currentTime = gameE->getTimer().getLoopTimeMill().count();
+//    currentTime = gameE->getTimer().getLoopTimeMill().count();
+    currentTime = timer.getLoopTimeMill().count();
     logMsg("Current time = " +convert->toString(currentTime));
     
     //    if (currentTime - oldTime >= 1000 && currentTime - oldTime <= 1200)

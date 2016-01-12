@@ -32,7 +32,7 @@
 #include "MyGUI.h"
 #include "MyGUI_OgrePlatform.h"
 
-#include "input.h"
+#include "engine/inputengine.h"
 #include "engine/gameengine.h"
 #include "state/gamestate.h"
 //#include "gui/gui.h"
@@ -57,6 +57,7 @@ boost::shared_ptr<inputEngine> inputEngine::Instance()
 
 inputEngine::inputEngine()  // constructor
 {
+    keyInputReceived = false;
     mouseX = 0;
     mouseY = 0;
     mouseLeftClick = -1;
@@ -78,6 +79,15 @@ void inputEngine::setGui(boost::shared_ptr<GUISystem> set)  // sets the value of
     gui = set;
 }*/
 
+bool inputEngine::getKeyInputReceived()  // retrieves the value of keyInputReceived
+{
+    return (keyInputReceived);
+}
+void inputEngine::setKeyInputReceived(bool set)  // sets the value of keyInputReceived
+{
+   keyInputReceived = set;
+}
+ 
 SDL_Event inputEngine::getInputEvent()  // retrieves the value of inputEvent
 {
     return (inputEvent);
@@ -212,7 +222,7 @@ inputMaps inputEngine::keyMap()  // maps value of keyPressed string to inputMap
     }
 }
 
-bool inputEngine::processInput()  // processes all input
+bool inputEngine::processInput(bool menuActive,boost::shared_ptr<renderEngine> render)  // processes all input
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
@@ -272,7 +282,7 @@ bool inputEngine::processInput()  // processes all input
                 logMsg("Motion!");
                 //exit(0);
                 // processes touch input
-                if (processUnbufferedTouchInput())
+                if (processUnbufferedTouchInput(render))
                 {
                     return false;
                 }
@@ -283,7 +293,7 @@ bool inputEngine::processInput()  // processes all input
                 logMsg("tfinger.y = " +convert->toString(inputEvent.tfinger.y));
 //                exit(0);
                 // processes touch input
-                if (processUnbufferedTouchInput() == false)
+                if (processUnbufferedTouchInput(render) == false)
                 {
                     return false;
                 }
@@ -292,7 +302,7 @@ bool inputEngine::processInput()  // processes all input
                 logMsg("Finger Up!");
 //                exit(0);
                 // processes touch input
-                if (processUnbufferedTouchInput() == false)
+                if (processUnbufferedTouchInput(render) == false)
                 {
                     return false;
                 }
@@ -301,7 +311,7 @@ bool inputEngine::processInput()  // processes all input
                 logMsg("Multigesture!");
             //    exit(0);
                 // processes touch input
-                if (processUnbufferedTouchInput() == false)
+                if (processUnbufferedTouchInput(render) == false)
                 {
                     return false;
                 }
@@ -309,7 +319,7 @@ bool inputEngine::processInput()  // processes all input
             case SDL_KEYDOWN:
             case SDL_TEXTINPUT:
                 keyPressed = "";
-                if (processUnbufferedKeyInput(true) == false)
+                if (processUnbufferedKeyInput(true,menuActive) == false)
                 {
                     return false;
                 }
@@ -325,7 +335,7 @@ bool inputEngine::processInput()  // processes all input
                 /*
             case SDL_KEYDOWN:
                 logMsg("Keydown!");
-                if (processUnbufferedKeyInput(false) == false)
+                if (processUnbufferedKeyInput(false,menuActive) == false)
                 {
                     return false;
                 }
@@ -371,7 +381,7 @@ bool inputEngine::processInput()  // processes all input
     return true;
 }
 
-bool inputEngine::processUnbufferedKeyInput(bool textInput)  // processes unbuffered keyboard input
+bool inputEngine::processUnbufferedKeyInput(bool textInput, bool menuActive)  // processes unbuffered keyboard input
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<GUISystem> gui = GUISystem::Instance();
@@ -625,7 +635,8 @@ bool inputEngine::processUnbufferedKeyInput(bool textInput)  // processes unbuff
             
         }
     }
-    if (gui->getMenuActive())  // checks if a menu is displayed
+//    if (gui->getMenuActive())  // checks if a menu is displayed
+/*    if (menuActive)  // checks if a menu is displayed
     {
         logMsg("keyPressed == " +keyPressed);
         gui->menuReceiveKeyPress(keyPressed); // sends input to menu key input processing function
@@ -635,7 +646,8 @@ bool inputEngine::processUnbufferedKeyInput(bool textInput)  // processes unbuff
     {
         return (true);
     }
-
+*/
+    keyInputReceived = true;
     keyPressed = "";
 //	logMsg("Keyboard Input Processed");
     // Return true to continue rendering
@@ -697,7 +709,7 @@ bool inputEngine::processUnbufferedMouseInput()  // processes the unbuffered mou
     return true;
 }
 
-bool inputEngine::processUnbufferedTouchInput() // processes the unbuffered touch input
+bool inputEngine::processUnbufferedTouchInput(boost::shared_ptr<renderEngine> render) // processes the unbuffered touch input
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();

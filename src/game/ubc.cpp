@@ -107,8 +107,12 @@ void UBC::processInput()  // processes game input
 
     logMsg("inputProcess!");
  
-    if (getInput()->processInput())
+    if (getInput()->processInput(getMenuActive(), getRender()))
     {
+        if (getInput()->getKeyInputReceived() && getMenuActive())
+        {
+            menuReceiveKeyPress(getInput()->getKeyPressed()); // sends input to menu key input processing function
+        }
         if (gameS->getActiveTeamInstancesCreated())
         {
             size_t inputIterator = 0;
@@ -256,7 +260,7 @@ void UBC::processInput()  // processes game input
 
                         if (gameS->getGameType() == MULTI)
                         {
-                            getNetwork()->processLocalInput(getInput());
+                            getNetwork()->processLocalInput();
                         }
                         inputQueue.clear();
                         getInput()->setInputWorkQueue(inputQueue);

@@ -84,6 +84,15 @@ void gameEngine::setMenuActive(bool set)  // sets the value of menuActive
     menuActive = set;
 }
 
+bool gameEngine::getStart()  // retrieves the value of start
+{
+    return (start);
+}
+void gameEngine::setStart(bool set)  // sets the value of start
+{
+    start = set;
+}
+
 bool gameEngine::getQuitGame()  // retrieves the value of quitGame
 {
     return(quitGame);
@@ -198,7 +207,7 @@ void gameEngine::quit()  // quits the game
     input->destroy();
 
 }
-void gameEngine::processInput()  // processes game input
+/*void gameEngine::processInput()  // processes game input
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
@@ -371,7 +380,8 @@ void gameEngine::processInput()  // processes game input
         }
     }   
 }
-
+*/
+/*
 void gameEngine::gameLoop()  // Main Game Loop
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
@@ -395,81 +405,81 @@ void gameEngine::gameLoop()  // Main Game Loop
 
 	logMsg("main: startup");
 //    exit(0);
-/*
-    threads thread;
-    thread.setGRunning(true);
+///
+///    threads thread;
+///    thread.setGRunning(true);
 
-    boost::thread t1(boost::bind(&threads::producerThread,&thread));
-    boost::thread t2(boost::bind(&threads::consumerThread,&thread));
+///   boost::thread t1(boost::bind(&threads::producerThread,&thread));
+///    boost::thread t2(boost::bind(&threads::consumerThread,&thread));
 
     // Let them run for a while
 
-    boost::posix_time::milliseconds workTime(5000);
-    boost::this_thread::sleep(workTime);
+///    boost::posix_time::milliseconds workTime(5000);
+///    boost::this_thread::sleep(workTime);
 
     // Stop gracefully and wait
 
-    thread.setGRunning(false);
-    t1.join();
-    t2.join();
-*/
+///    thread.setGRunning(false);
+///    t1.join();
+///    t2.join();
+
 //    boost::thread inputThread(boost::bind(&inputSystem::processInput,input));
 //    boost::thread t2(boost::bind(&threads::consumerThread,&thread));
 
-    /*    boost::thread *workerThread;
+///    boost::thread *workerThread;
 //	workerThread = new boost::thread(boost::bind(&threading::workerFunc,&threads));
     
-	boost::thread *workerThread2;
+///    boost::thread *workerThread2;
 //	workerThread2 = new boost::thread(boost::bind(&threading::workerFunc2,&threads));
 
-    boost::thread *inputWorkerThread;
+///    boost::thread *inputWorkerThread;
 //    inputWorkerThread = new boost::thread(boost::bind(&threading::inputWorkerFunc,&threads));
 
-    logMsg("main: waiting for thread");
+///    logMsg("main: waiting for thread");
 
-    workerThread->join();
-	workerThread2->join();
+///    workerThread->join();
+///   workerThread2->join();
 
-    logMsg("main: done");
-*/
+///    logMsg("main: done");
+
 
 //    threads *thread = threads::Instance();
 
-/*    threads::Reader reads(100);
-    threads::Writer writes1(100, 200);
-    threads::Writer writes2(200, 200);
+///    threads::Reader reads(100);
+///    threads::Writer writes1(100, 200);
+///    threads::Writer writes2(200, 200);
 
-    boost::thread readerThread(reads);
-    boost::thread writerThread1(writes1);
+///    boost::thread readerThread(reads);
+///    boost::thread writerThread1(writes1);
 //    usleep(100);
-    boost::this_thread::sleep(boost::posix_time::microseconds(100));
+///    boost::this_thread::sleep(boost::posix_time::microseconds(100));
 
-    boost::thread writerThread2(writes2);
+///    boost::thread writerThread2(writes2);
 
-    readerThread.join();
-    writerThread1.join();
-    writerThread2.join();
-*/
+///    readerThread.join();
+///    writerThread1.join();
+///    writerThread2.join();
+
 
 //	SDL_StartTextInput();
     while (!quitGame)
     {
 
-/*        if (!sound->getSetupComplete())
-        {
-            logMsg("Sound setup not complete!");
-            if (sound->setup())
-            {
-                logMsg("Sound setup!");
-                sound->setSetupComplete(true);
-            }
-        }
-        else
-        {
-            logMsg("Loading Sound!");
-            sound->loadSound("cbeep.wav");
-        }
-*/
+///        if (!sound->getSetupComplete())
+///        {
+///            logMsg("Sound setup not complete!");
+///            if (sound->setup())
+///            {
+///                logMsg("Sound setup!");
+///                sound->setSetupComplete(true);
+///            }
+///        }
+///        else
+///        {
+///            logMsg("Loading Sound!");
+///            sound->loadSound("cbeep.wav");
+///        }
+
         if (gameS->getGameSetupComplete())  // checks to make sure game setup is complete before continuing
 	    {
             if (!sceneCreated)
@@ -577,10 +587,10 @@ void gameEngine::gameLoop()  // Main Game Loop
 
         processInput();
 //          inputWorkerThread->join();
-/*	    	else
-	    	{
-	    	}
-*/
+///	    	else
+///         {
+///         }
+
 	 			//        player->getNode(0)->translate(Pos);
 	//        pInstance[bballInstance[0].getPlayer()].getNode()->translate(-0.02f,0.0f,0.0f);
 
@@ -596,3 +606,4 @@ void gameEngine::gameLoop()  // Main Game Loop
     }
 
 }
+*/

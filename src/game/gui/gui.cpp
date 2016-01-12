@@ -87,14 +87,24 @@ GUISystem::~GUISystem()
 
 }
 
-boost::shared_ptr<networkEngine> GUISystem::getNetwork()  // retrieves the value of network
+/*boost::shared_ptr<networkEngine> GUISystem::getNetworkG()  // retrieves the value of network
 {
-    return (network);
+    return (networkG);
 }
-void GUISystem::setNetwork(boost::shared_ptr<networkEngine> set)  // sets the value of network
+void GUISystem::setNetworkG(boost::shared_ptr<networkEngine> set)  // sets the value of network
 {
-    network = set;
+    networkG = set;
 }
+
+boost::shared_ptr<renderEngine> GUISystem::getRender()  // retrieves the value of render
+{
+    return (render);
+}
+void GUISystem::setRender(boost::shared_ptr<renderEngine> set)  // sets the value of render
+{
+    render = set;
+}
+*/
 
 bool GUISystem::getMainMenuCreated()  // retrieves the value of mainMenuCreated
 {
@@ -231,20 +241,20 @@ void GUISystem::setPreviousActiveMenu(activeMenus menu)  // sets the value of pr
 	previousActiveMenu = menu;
 }
 
-Ogre::Viewport *GUISystem::getViewPort()  // retrieves the value of viewPort
+/*Ogre::Viewport *GUISystem::getViewPort()  // retrieves the value of viewPort
 {
     return (viewPort);
 }
 void GUISystem::setViewPort(const Ogre::Viewport &set)  // sets the value of viewPort
 {
     *viewPort = set;
-}
+}*/
 
 bool GUISystem::initMyGUI()  // Initializes MyGUI
 {
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
-    Ogre::RenderWindow *mWindow = render->getMWindow();
-    Ogre::SceneManager *mSceneMgr = render->getMSceneMgr();
+//    Ogre::RenderWindow *mWindow = render->getMWindow();
+//    Ogre::SceneManager *mSceneMgr = render->getMSceneMgr();
 
     logMsg("*** Initializing MyGUI ***");
     mPlatform = new MyGUI::OgrePlatform();
@@ -254,7 +264,7 @@ bool GUISystem::initMyGUI()  // Initializes MyGUI
     mPlatform->initialise(mWindow, mSceneMgr, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 #else
 */
-    mPlatform->initialise(mWindow, mSceneMgr, "UBCData"); // mWindow is Ogre::RenderWindow*, mSceneManager is Ogre::SceneManager*
+    mPlatform->initialise(getRender()->getMWindow(), getRender()->getMSceneMgr(), "UBCData"); // mWindow is Ogre::RenderWindow*, mSceneManager is Ogre::SceneManager*
 //#endif
 
     logMsg("Crash??");
@@ -436,11 +446,11 @@ void GUISystem::networkServer()  // sets up  game as a network server
     gameS->setGameType(MULTI);
 //   hideNetworkSetupWidgets();  // Hides Network Setup Menu widgets
     menuActive = false;
-    network->setIPAddress(serverIPAddressBox->getCaption());  // sets the neworkEngine's ipAddress string to that of the caption
-    logMsg("server ip = " +network->getIPAddress());
-    if (network->serverSetup())  // attempts to setup as a network server
+    getNetwork()->setIPAddress(serverIPAddressBox->getCaption());  // sets the neworkEngine's ipAddress string to that of the caption
+    logMsg("server ip = " +getNetwork()->getIPAddress());
+    if (getNetwork()->serverSetup())  // attempts to setup as a network server
     {
-        network->setIsServer(true);  // if successful sets isServer to true
+        getNetwork()->setIsServer(true);  // if successful sets isServer to true
     }
 
 //    gameE->setCreateScene(true); // sets variable true that tells gameEngine to start rendering the scene
@@ -456,11 +466,11 @@ void GUISystem::networkClient()  // sets up game as a network client
 
 //    hideNetworkSetupWidgets();  // Hides Network Setup Menu widgets
     menuActive = false;
-    network->setIPAddress(clientIPAddressBox->getCaption());  // sets the neworkEngine's ipAddress string to that of the caption
+    getNetwork()->setIPAddress(clientIPAddressBox->getCaption());  // sets the neworkEngine's ipAddress string to that of the caption
 //    network->networkClient();
-    if (network->clientConnect()) // attempts to connect to the remote server
+    if (getNetwork()->clientConnect()) // attempts to connect to the remote server
     {
-        network->setIsClient(true);  // if successful sets isClient to true
+        getNetwork()->setIsClient(true);  // if successful sets isClient to true
     }
 //    gameE->setCreateScene(true); // sets variable true that tells gameEngine to start rendering the scenetop
 

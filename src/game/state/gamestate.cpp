@@ -28,9 +28,10 @@
 #include "logging.h"
 #include "network/networkplayerstateobject.h"
 #include "data/playerdata.h"
-#include "physics/physicsengine.h"
+#include "engine/physicsengine.h"
 #include "engine/renderengine.h"
 #include "timing.h"
+#include "ubc.h"
 
 boost::shared_ptr<gameState> gameState::pInstance;
 
@@ -602,7 +603,7 @@ bool gameState::createActiveTeamInstances()  // creates the active team instance
 
 bool gameState::setupEnvironment()
 {
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     
 /*
     // Set ambient light
@@ -864,7 +865,7 @@ bool gameState::setupState()  // sets up the game condition
 //    basketballInstance[activeBBallInstance].getNode()->setPosition(1.4f,5.0f,366.0f);
 
 
-    physEngine.setupState();  // sets up the Physics Engine state
+///FIXME    physEngine.setupState();  // sets up the Physics Engine state
 //    exit(0);
 	ai->setup();
 
@@ -907,8 +908,8 @@ bool gameState::updateState()  // updates the game state
 
     boost::shared_ptr<AISystem> ai = AISystem::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
-    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
+//    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
+//    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
     //boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
 /*    timing timer = gameE->getTimer();
@@ -1046,11 +1047,11 @@ bool gameState::updateState()  // updates the game state
 
 void gameState::processNetworkEvents()  // processes events from network code
 {
-    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
+//    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
 
 //	std::vector <playerState> playerInstance = gameS->getPlayerInstance();
 
-    if(Ogre::StringUtil::startsWith(network->getReceivedData(), "3" ))
+    if(Ogre::StringUtil::startsWith(getNetwork()->getReceivedData(), "3" ))
     {
         logMsg("process!ng network player event");
         processNetworkPlayerEvents();
@@ -1060,12 +1061,12 @@ void gameState::processNetworkEvents()  // processes events from network code
     activeTeamInstance[0].setPlayerType("human");  // sets playerType for activeTeamInstance 0 to human
 
     // checks if this instance is a server and whether activeTeamInstance 1 is set to be controlled by network player
-    if (network->getServerReceivedConnection() && activeTeamInstance[1].getPlayerType() != "network")
+    if (getNetwork()->getServerReceivedConnection() && activeTeamInstance[1].getPlayerType() != "network")
     {
         activeTeamInstance[1].setPlayerType("network");  // sets activeTeamInstance 1 playerType to 'network'
     }
     // checks if this instance is a client and whether activeTeamInstance 0 is set to be controlled by network player
-    else if (network->getClientEstablishedConnection() && activeTeamInstance[0].getPlayerType() != "network" )
+    else if (getNetwork()->getClientEstablishedConnection() && activeTeamInstance[0].getPlayerType() != "network" )
     {
         activeTeamInstance[0].setPlayerType("network");
     }
@@ -1074,12 +1075,12 @@ void gameState::processNetworkEvents()  // processes events from network code
 void gameState::processNetworkPlayerEvents()  // processes player events from network code
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
+//    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
 
     networkPlayerStateObject netPStateObj;
     std::stringstream strStream;
     std::vector<playerState> activePlayerInstance;
-    std::string receivedData = network->getReceivedData();  // stores receivedData value
+    std::string receivedData = getNetwork()->getReceivedData();  // stores receivedData value
     size_t playerNumber = -1;  // stores which player the data is for
     size_t iterator;  // iterator for match loop
 
@@ -1090,12 +1091,12 @@ void gameState::processNetworkPlayerEvents()  // processes player events from ne
     logMsg("received playerID = " +convert->toString(netPStateObj.getPlayerID()));
 
     // sets which team's activePlayerInstance to use
-    if (network->getIsClient())
+    if (getNetwork()->getIsClient())
     {
         logMsg("is client");
         activePlayerInstance = activeTeamInstance[1].getActivePlayerInstance();
     }
-    else if (network->getIsServer())
+    else if (getNetwork()->getIsServer())
     {
         logMsg("is server");
         activePlayerInstance = activeTeamInstance[0].getActivePlayerInstance();
@@ -1159,11 +1160,11 @@ void gameState::processNetworkPlayerEvents()  // processes player events from ne
                     activePlayerInstance[playerNumber].setMovement(false);
                 break;
             }
-            if (network->getIsClient())
+            if (getNetwork()->getIsClient())
             {
                 activeTeamInstance[1].setActivePlayerInstance(activePlayerInstance);
             }
-            else if (network->getIsServer())
+            else if (getNetwork()->getIsServer())
             {
                 activeTeamInstance[0].setActivePlayerInstance(activePlayerInstance);
             }
@@ -1180,7 +1181,7 @@ void gameState::processNetworkPlayerEvents()  // processes player events from ne
     }
 
     logMsg("Survived!");
-    network->setReceivedData("");
+    getNetwork()->setReceivedData("");
 }
 
 

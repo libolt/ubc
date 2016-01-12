@@ -20,8 +20,10 @@
 
 #ifndef _STATE_H_
 #define _STATE_H_
- 
-class state
+
+#include "ubc.h"
+
+class state : public UBC
 {
     public:
     

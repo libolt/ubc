@@ -23,7 +23,7 @@
 #include "engine/gameengine.h"
 #include "state/gamestate.h"
 #include "logging.h"
-#include "physics/physicsengine.h"
+#include "engine/physicsengine.h"
 #include "ai/playersteer.h"
 #include "enums.h"
 #include "jumpballs.h"
@@ -775,7 +775,7 @@ void teamState::setPlayerStartPositions()	// sets the initial coordinates for th
     logMsg("setPlayerStartPositions!");
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
-    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
+//    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
 
     std::vector< std::vector<size_t> > teamStarterID = gameS->getTeamStarterID();
 
@@ -816,7 +816,7 @@ void teamState::setPlayerStartPositions()	// sets the initial coordinates for th
         
 
 //        yOffset = y;
-        gameE->setYOffset(yOffset);
+        setYOffset(yOffset);
         
         
         startingPos.push_back(Ogre::Vector3(14.4f,yOffset,352.0f));

@@ -35,7 +35,7 @@
 #include "input.h"
 #include "engine/gameengine.h"
 #include "state/gamestate.h"
-#include "gui/gui.h"
+//#include "gui/gui.h"
 #include "load.h"
 #include "logging.h"
 //#include "engine/renderengine.h"
@@ -69,14 +69,14 @@ inputEngine::~inputEngine()  // destructor
 {
 }
 
-boost::shared_ptr<GUISystem> inputEngine::getGui()  // retrieves the value of gui
+/*boost::shared_ptr<GUISystem> inputEngine::getGui()  // retrieves the value of gui
 {
   return (gui);
 }
 void inputEngine::setGui(boost::shared_ptr<GUISystem> set)  // sets the value of gui
 {
     gui = set;
-}
+}*/
 
 SDL_Event inputEngine::getInputEvent()  // retrieves the value of inputEvent
 {

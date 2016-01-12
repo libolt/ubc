@@ -24,6 +24,7 @@
 #include "state/gamestate.h"
 #include "logging.h"
 #include "ubc.h"
+#include "network/networkplayerstateobject.h"
 
 #ifdef __ANDROID__
 //#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
@@ -43,7 +44,7 @@ UBC::~UBC()  // destructor
 
 }
 
-boost::shared_ptr<GUISystem> UBC::getGui()  // retrieves the value of gui
+/*boost::shared_ptr<GUISystem> UBC::getGui()  // retrieves the value of gui
 {
     return (gui);
 }
@@ -51,6 +52,7 @@ void UBC::setGui(boost::shared_ptr<GUISystem> set)  // sets the value of gui
 {
     gui = set;
 }
+*/
 
 bool UBC::getQuitGame()  // retrieves the value of quitGame
 {
@@ -65,16 +67,16 @@ void UBC::setQuitGame(bool set)  // sets the value of quitGame
 
 bool UBC::setupState()  // sets up the UBC game state
 {
-    Ogre::Viewport *vp = getRender()->getViewPort();
-    gui->setViewPort(*vp);  // sets the viewPort for MyGUI
+//    Ogre::Viewport *vp = getRender()->getViewPort();
+//    setViewPort(*vp);  // sets the viewPort for MyGUI
 
-    gui->initMyGUI(getRender()); // Initializes MyGUI
-    if (!gui->getMainMenuCreated())
+    initMyGUI(); // Initializes MyGUI
+    if (!getMainMenuCreated())
     {
-        gui->createMainMenuGUI(); // creates the main menu gui.
-        gui->createBackButtons(); // creates the back buttons.
+        createMainMenuGUI(); // creates the main menu gui.
+        createBackButtons(); // creates the back buttons.
     }
-    gui->setNetwork(getNetwork());
+    setNetwork(getNetwork());
     return (false);
 }
 
@@ -92,6 +94,179 @@ bool UBC::startGame()  // starts the game
     return true;
 }
 
+void UBC::processInput()  // processes game input
+{
+    boost::shared_ptr<conversion> convert = conversion::Instance();
+    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<GUISystem> gui = GUISystem::Instance();
+//    boost::shared_ptr<inputSystem> input = inputSystem::Instance();
+//    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
+
+    std::vector<teamState> activeTeamInstance = gameS->getActiveTeamInstance();
+    networkPlayerStateObject netPStateObj;
+
+    logMsg("inputProcess!");
+ 
+    if (getInput()->processInput())
+    {
+        if (gameS->getActiveTeamInstancesCreated())
+        {
+            size_t inputIterator = 0;
+            while (inputIterator < activeTeamInstance.size())
+            {
+                if (activeTeamInstance[inputIterator].getPlayerInstancesCreated())
+                {
+                    std::vector<playerState> activePlayerInstance = activeTeamInstance[inputIterator].getActivePlayerInstance();
+                    if (activeTeamInstance[inputIterator].getHumanControlled())
+                    {
+                        int humanPlayer = activeTeamInstance[inputIterator].getHumanPlayer();
+                        logMsg("inputHumanPlayer == " +convert->toString(humanPlayer));
+                        //inputMaps inputMap = input->keyMap();
+                        inputWorkQueues inputQueue = getInput()->getInputWorkQueue();
+        //                              logMsg("INPUT MAP ======== "  +toString(inputMap));
+                        std::stringstream ss;
+//                      exit(0);
+                        size_t x = 0;
+                        size_t humanInstance = 11;
+                        while (x < activePlayerInstance.size())
+                        {                           logMsg("GEPlayerID == " +convert->toString(activePlayerInstance[x].getID()));
+                            logMsg("GEHumanPlayer == " +convert->toString(humanPlayer));
+
+                            if (activePlayerInstance[x].getID() == humanPlayer)
+                            {
+                                humanInstance = x;
+                                break;
+                            }
+                            ++x;
+                        }
+                        logMsg("humanInstance == " +convert->toString(humanInstance));
+                        logMsg("inputHumanPlayer == " +convert->toString(humanPlayer));
+                        logMsg("inputQueue.size = " +convert->toString(inputQueue.size()));
+                        x = 0;
+                        int activeBBallInstance = gameS->getActiveBBallInstance();
+                        std::vector<basketballState> bballInstance = gameS->getBasketballInstance();
+                        logMsg("humanInstance.size() == " +convert->toString(humanInstance));
+                        if (humanInstance < 11) // makes sure that the humanInstance is a valid number
+                        {
+                            while (x < inputQueue.size())
+                            {
+                                logMsg("inputQueue[" +convert->toString(x) +"] = " +convert->toString(inputQueue[x]));
+                                // switch (inputMap)
+                                switch (inputQueue[x])
+                                {
+                                    case INUP:
+                                        activePlayerInstance[humanInstance].setMovement(true);
+                                        activePlayerInstance[humanInstance].setDirection(UP);
+                                        activeTeamInstance[inputIterator].setActivePlayerInstance(activePlayerInstance);
+                                        gameS->setActiveTeamInstance(activeTeamInstance);
+//                                        exit(0);
+                                    break;
+                                    case INDOWN:
+                                        activePlayerInstance[humanInstance].setMovement(true);
+                                        activePlayerInstance[humanInstance].setDirection(DOWN);
+                                        activeTeamInstance[inputIterator].setActivePlayerInstance(activePlayerInstance);
+                                        gameS->setActiveTeamInstance(activeTeamInstance);
+                                    break;
+                                    case INLEFT:
+                                        activePlayerInstance[humanInstance].setMovement(true);
+                                        activePlayerInstance[humanInstance].setDirection(LEFT);
+                                        activeTeamInstance[inputIterator].setActivePlayerInstance(activePlayerInstance);
+                                        gameS->setActiveTeamInstance(activeTeamInstance);
+                                    break;
+                                    case INRIGHT:
+                                        activePlayerInstance[humanInstance].setMovement(true);
+                                        activePlayerInstance[humanInstance].setDirection(RIGHT);
+                                        activeTeamInstance[inputIterator].setActivePlayerInstance(activePlayerInstance);
+                                        gameS->setActiveTeamInstance(activeTeamInstance);
+                                    break;
+                                    case INUPLEFT:
+                                        activePlayerInstance[humanInstance].setMovement(true);
+                                        activePlayerInstance[humanInstance].setDirection(UPLEFT);
+                                        activeTeamInstance[inputIterator].setActivePlayerInstance(activePlayerInstance);
+                                        gameS->setActiveTeamInstance(activeTeamInstance);
+                                    break;
+                                    case INUPRIGHT:
+                                        activePlayerInstance[humanInstance].setMovement(true);
+                                        activePlayerInstance[humanInstance].setDirection(UPRIGHT);
+                                        activeTeamInstance[inputIterator].setActivePlayerInstance(activePlayerInstance);
+                                        gameS->setActiveTeamInstance(activeTeamInstance);
+                                    break;
+                                    case INDOWNLEFT:
+                                        activePlayerInstance[humanInstance].setMovement(true);
+                                        activePlayerInstance[humanInstance].setDirection(DOWNLEFT);
+                                        activeTeamInstance[inputIterator].setActivePlayerInstance(activePlayerInstance);
+                                        gameS->setActiveTeamInstance(activeTeamInstance);
+                                    break;
+                                    case INDOWNRIGHT:
+                                        activePlayerInstance[humanInstance].setMovement(true);
+                                        activePlayerInstance[humanInstance].setDirection(DOWNRIGHT);
+                                        activeTeamInstance[inputIterator].setActivePlayerInstance(activePlayerInstance);
+                                        gameS->setActiveTeamInstance(activeTeamInstance);
+                                    break;
+                                    case INSHOOTBLOCK:
+                                        activePlayerInstance[humanInstance].setMovement(false);
+                                        activePlayerInstance[humanInstance].setShootBlock(true);
+                                        activeTeamInstance[inputIterator].setActivePlayerInstance(activePlayerInstance);
+                                        gameS->setActiveTeamInstance(activeTeamInstance);
+                                    break;
+                                    case INPASSSTEAL:
+                                        activePlayerInstance[humanInstance].setMovement(false);
+                                        activePlayerInstance[humanInstance].setPassSteal(true);
+                                        activeTeamInstance[inputIterator].setActivePlayerInstance(activePlayerInstance);
+                                        gameS->setActiveTeamInstance(activeTeamInstance);
+                                    break;
+                                    case INQUIT:
+                                        logMsg("Quitting!");
+                                        quitGame = true;
+                                        exit(0);
+                                    break;
+                                    default:
+                                    break;
+                                }
+                                ++x;
+                            }
+                        }
+                        std::vector<teamState> tInstance = gameS->getActiveTeamInstance();
+                        std::vector<playerState> activePInstance = tInstance[inputIterator].getActivePlayerInstance();
+                        logMsg("humanInstance == " +convert->toString(humanInstance));
+                        //logMsg("inPassSteal == " +convert->toString(activePInstance[humanInstance].getPassSteal()));
+                        //exit(0);
+
+                        /// FIXME! This if statement should be adapted to work correctly instead of relying on the i variable
+                        int i = 0;
+                        if (gameS->getTeamWithBall() == i)
+                        {
+                            if (activePlayerInstance[humanInstance].getMovement())
+                            {
+                                logMsg("human playerID == " +convert->toString(activePlayerInstance[humanInstance].getID()));
+                                logMsg("ball player == " +convert->toString(activeTeamInstance[inputIterator].getPlayerWithBallInstance()));
+                                logMsg("ball playerID == " +convert->toString(activeTeamInstance[inputIterator].getPlayerWithBallID()));
+                                if (activePlayerInstance[humanInstance].getID() == activeTeamInstance[inputIterator].getPlayerWithBallID())
+                                {
+                                    bballInstance[activeBBallInstance].setMovement(true);
+                                    gameS->setBasketballInstance(bballInstance);
+                                }
+                            }
+                        }
+                        if (gameS->getBasketballInstance().size() > 0)
+                        {
+                            logMsg("basketballmoved == " +convert->toString(bballInstance[activeBBallInstance].getMovement()));
+                        }
+                        gameS->setActiveTeamInstance(activeTeamInstance);
+
+                        if (gameS->getGameType() == MULTI)
+                        {
+                            getNetwork()->processLocalInput(getInput());
+                        }
+                        inputQueue.clear();
+                        getInput()->setInputWorkQueue(inputQueue);
+                    }
+                    ++inputIterator;
+                }
+            }
+        }
+    }   
+}
 void UBC::gameLoop()  // Main Game Loop
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
@@ -100,9 +275,9 @@ void UBC::gameLoop()  // Main Game Loop
 //    boost::shared_ptr<inputSystem> input = inputSystem::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 //    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
-    boost::shared_ptr<soundEngine> sound = soundEngine::Instance();
+//    boost::shared_ptr<soundEngine> sound = soundEngine::Instance();
 
-    networkPlayerStateObject netPStateObj;
+//    networkPlayerStateObject netPStateObj;
 
     float lastFPS = 0.0f;   // stores value of last Frames Per Second
 //    float changeInTime;       // stores change in time
@@ -192,43 +367,43 @@ void UBC::gameLoop()  // Main Game Loop
 */
         if (gameS->getGameSetupComplete())  // checks to make sure game setup is complete before continuing
         {
-            if (!sceneCreated)
+            if (!getSceneCreated())
             {
                 if (gameS->getGameType() == SINGLE)
                 {
-                    createScene = true;
+                    setCreateScene(true);
                 }
                 else if (gameS->getGameType() == MULTI)
                 {
-                    if (network->getServerReceivedConnection() || network->getClientEstablishedConnection())  // checks if server and client are connected
+                    if (getNetwork()->getServerReceivedConnection() || getNetwork()->getClientEstablishedConnection())  // checks if server and client are connected
                     {
-                        createScene = true;
+                        setCreateScene(true);
                     }
     //             exit(0);
                 }
             }
         }
-        if (createScene)  // checks if the scene should be created
+        if (getCreateScene())  // checks if the scene should be created
         {
 //              if (render->createScene())
 //            {
-                createScene = false;
-                start = true;
+                setCreateScene(false);
+                setStart(true);
 //                  renderScene = true;
-                sceneCreated = true;
+                setSceneCreated(true);
 //            }
         }
 
-        if (start)  // checks if it's time to start the game
+        if (getStart())  // checks if it's time to start the game
         {
             if (startGame())
             {
-                start = false;
-                renderScene = true;
+                setStart(false);
+                setRenderScene(true);
             }
         }
 
-        lastFPS = render->getMWindow()->getLastFPS();
+        lastFPS = getRender()->getMWindow()->getLastFPS();
         std::string currFPS = convert->toString(lastFPS);
 
         logMsg("FPS = " +currFPS);
@@ -237,50 +412,50 @@ void UBC::gameLoop()  // Main Game Loop
 
 //          logMsg("changeInTime = " +toString(changeInTime));
         // updates game logic every 100 milliseconds
-        if (serverRunning && !network->getIsServer())
+        if (getServerRunning() && !getNetwork()->getIsServer())
         {
-            network->setIsServer(true);
+            getNetwork()->setIsServer(true);
         }
-        if (clientRunning && !network->getIsClient())
+        if (getClientRunning() && !getNetwork()->getIsClient())
         {
-            network->setIsClient(true);
+            getNetwork()->setIsClient(true);
         }
 
-        if (gameS->getGameType() == MULTI && network->getTeamType() == NOTEAM)
+        if (gameS->getGameType() == MULTI && getNetwork()->getTeamType() == NOTEAM)
         {
-            if (network->getIsServer())
+            if (getNetwork()->getIsServer())
             {
-                network->setTeamType(HOMETEAM);
+                getNetwork()->setTeamType(HOMETEAM);
             }
             
-            if (network->getIsClient())
+            if (getNetwork()->getIsClient())
             {
-                network->setTeamType(AWAYTEAM);
+                getNetwork()->setTeamType(AWAYTEAM);
             }
         }
         
-        logMsg("serverRunning = " +serverRunning);
-        logMsg("clientRunning = " +clientRunning);
-        boost::chrono::microseconds changeInTimeMicro = timer.calcChangeInTimeMicro();
-        boost::chrono::milliseconds changeInTimeMill = timer.calcChangeInTimeMill();
+        logMsg("serverRunning = " +getServerRunning());
+        logMsg("clientRunning = " +getClientRunning());
+        boost::chrono::microseconds changeInTimeMicro = getTimer().calcChangeInTimeMicro();
+        boost::chrono::milliseconds changeInTimeMill = getTimer().calcChangeInTimeMill();
         changeInTime = changeInTimeMill.count();
         logMsg ("loopchange = " +convert->toString(changeInTime));
         if (changeInTime >= 10)
         {
 //              exit(0);
-            if (serverRunning)
+            if (getServerRunning())
             {
-                network->networkServer();   // Runs network server code
+                getNetwork()->networkServer();   // Runs network server code
                 
             }
-            if (clientRunning)
+            if (getClientRunning())
             {
-                network->networkClient();   // runs network client code
+                getNetwork()->networkClient();   // runs network client code
             }
 
 
 //            logMsg("changeInTime = " +toString(changeInTime));
-            if (renderScene)
+            if (getRenderScene())
             {
                 logMsg("gameS->updateState()");
                 gameS->updateState();  // updates the state of the game instance
@@ -289,7 +464,7 @@ void UBC::gameLoop()  // Main Game Loop
             //boost::chrono::system_clock::time_point newT = boost::chrono::system_clock::now();
             //boost::chrono::milliseconds milliSecs = boost::chrono::duration_cast<boost::chrono::milliseconds>(newT);
             //oldTime = milliSecs.count();
-            timer.setPreviousTime(boost::chrono::system_clock::now());
+            getTimer().setPreviousTime(boost::chrono::system_clock::now());
         }
 
             // writes Framerate to Ogre.log
@@ -304,12 +479,12 @@ void UBC::gameLoop()  // Main Game Loop
                 //        player->getNode(0)->translate(Pos);
     //        pInstance[bballInstance[0].getPlayer()].getNode()->translate(-0.02f,0.0f,0.0f);
 
-        if (render->getMWindow() != NULL && render->getMWindow()->isActive())
+        if (getRender()->getMWindow() != NULL && getRender()->getMWindow()->isActive())
         {
 //          Ogre::LogManager::getSingletonPtr()->logMessage("Rendering frame");
-            render->getMWindow()->windowMovedOrResized();
+            getRender()->getMWindow()->windowMovedOrResized();
 //            exit(0);
-            render->getMRoot()->renderOneFrame();
+            getRender()->getMRoot()->renderOneFrame();
 //            exit(0);
 
         }
@@ -325,7 +500,7 @@ int main(int argc, char *argv[])
     boost::shared_ptr<renderEngine> render = ubc.getRender();
 //    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
-    boost::shared_ptr<GUISystem> gui = ubc.getGui();
+//    boost::shared_ptr<GUISystem> gui = ubc.getGui();
 
     render->initSDL(); // Initializes the SDL Subsystem
 
@@ -349,7 +524,7 @@ int main(int argc, char *argv[])
 //    exit(0);
     logMsg("Initializing Input");
     //inputSystem *input = inputSystem::Instance();
-    boost::shared_ptr<inputSystem> input = ubc.getInput();
+//    boost::shared_ptr<inputSystem> input = ubc.getInput();
 //    exit(0);
     ubc.gameLoop();
 

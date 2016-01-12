@@ -43,17 +43,18 @@
 //#include "playerdata.h"
 //#include "state/playerstate.h"
 
-class GUISystem;
-class gameEngine;
+//class GUISystem;
+//class gameEngine;
 
-class UBC : public gameEngine
+class UBC : public GUISystem
 {
 public: 
     UBC(); // constructor
     ~UBC();	// destructor
 
-    boost::shared_ptr<GUISystem> getGui();  // retrieves the value of gui
+/*    boost::shared_ptr<GUISystem> getGui();  // retrieves the value of gui
     void setGui(boost::shared_ptr<GUISystem> set);  // sets the value of gui
+*/
 
     bool getQuitGame();  // retrieves the value of quitGame
     void setQuitGame(bool quit);  // sets the value of quitGame
@@ -63,13 +64,15 @@ public:
 
     bool startGame();  // starts a game
 
+    void processInput();  // processes game input
+	
     void gameLoop();  // runs the Main loop for the game
 
 protected:
   
 private:
 
-    boost::shared_ptr<GUISystem> gui;  // the GUI object.
+//    boost::shared_ptr<GUISystem> gui;  // the GUI object.
 
     bool quitGame;
 };

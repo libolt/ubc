@@ -21,7 +21,7 @@
 #ifndef _GUI_H_
 #define _GUI_H_
 
-//#include "engine/gameengine.h"
+#include "engine/gameengine.h"
 
 #undef None
 #undef Button1
@@ -41,12 +41,15 @@
 //#include "input.h" 
 //#include "engine/renderengine.h" 
 
-#include "ubc.h"
+//#include "ubc.h"
 
-class networkEngine;
+//class networkEngine;
+//class renderEngine;
+//class gameEngine;
+
 //class UBC;
 
-class GUISystem : public UBC //: public renderEngine //, inputSystem
+class GUISystem : public gameEngine //: public UBC //: public renderEngine //, inputSystem
 {
 public:
     GUISystem();  // constructor
@@ -55,8 +58,12 @@ public:
     //static GUISystem *Instance();
 //    static boost::shared_ptr<GUISystem> Instance();
 
-    boost::shared_ptr<networkEngine> getNetwork();  // retrieves the value of network
-    void setNetwork(boost::shared_ptr<networkEngine> set);  // sets the value of network
+/*    boost::shared_ptr<networkEngine> getNetworkG();  // retrieves the value of networkG
+    void setNetworkG(boost::shared_ptr<networkEngine> set);  // sets the value of networkG
+
+    boost::shared_ptr<renderEngine> getRender();  // retrieves the value of render
+    void setRender(boost::shared_ptr<renderEngine> set);  // sets the value of render
+*/
 
     bool getMainMenuCreated();   // retrieves the value of mainMenuCreated
     void setMainMenuCreated(bool created); // sets the value of mainMenuCreated
@@ -103,9 +110,10 @@ public:
     activeMenus getPreviousActiveMenu(); // retrieves the value of previousActiveMenu
     void setPreviousActiveMenu(activeMenus menu); // sets the value of previousActiveMenu
 
-    Ogre::Viewport *getViewPort();  // retrieves the value of viewPort
+/*    Ogre::Viewport *getViewPort();  // retrieves the value of viewPort
     void setViewPort(const Ogre::Viewport &set);  // sets the value of viewPort
-    
+*/
+
     bool initMyGUI();  // Initializes MyGUI
     bool createMainMenuGUI();  // creates GUI gor main menu screen.
     bool createNetworkSetupGUI();  // creates GUI for network setup screen.
@@ -173,8 +181,7 @@ protected:
 //    GUISystem(const GUISystem&);
 //    GUISystem& operator= (const GUISystem&);
 
-    boost::shared_ptr<networkEngine> network;  // stores a copy of the network object for use in the gui
-
+    
     // MyGUI functions
     void startSingleGameButtonClicked(MyGUI::Widget *_sender);  // handles startSingleGameButton click event
     void startMultiGameButtonClicked(MyGUI::Widget *_sender);  // hands startMultiGameButton click event
@@ -349,7 +356,12 @@ private:
     MyGUI::TextBox *courtNameTxtBox;
 
     // OGRE specific code
+/*    boost::shared_ptr<renderEngine> render;  // stores a copy of the render object for use in the gui
     Ogre::Viewport *viewPort; // stores the view port for mygui
+
+    // network engine
+    boost::shared_ptr<networkEngine> networkG;  // stores a copy of the network object for use in the gui
+*/
 
 	// booleans
     bool mainMenuCreated;   // determines whether the main menu gui has been created
@@ -374,7 +386,7 @@ private:
     activeMenus previousActiveMenu;  // stores which menu was last displayed
 
     std::vector< std::vector<std::string> > playerNames;
-    std::vector< std::vector<std::string> > playerPositions;
+    std::vector< std::vector<std::string> > playerPositionsPlayed;
     std::vector< std::vector<size_t> > playerIDs;  // stores player IDs for each team
     std::vector< std::vector<size_t> > team0IDs;
     std::vector< std::vector<size_t> > team1IDs;

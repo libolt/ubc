@@ -25,7 +25,7 @@
 #include "state/playerstate.h"
 #include "state/gamestate.h"
 #include "logging.h"
-#include "physics/physicsengine.h"
+#include "engine/physicsengine.h"
 #include "engine/renderengine.h"
 #include "ai/steering.h"
 #include "state/teamstate.h"

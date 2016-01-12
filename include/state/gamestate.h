@@ -35,6 +35,7 @@
 #include "jumpballs.h"
 
 class basketballState;
+class UBC;
 
 //using namespace std;
 class gameState : public state

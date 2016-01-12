@@ -20,7 +20,7 @@
 
 #include "conversion.h"
 #include "state/gamestate.h"
-#include "physics/physicsengine.h"
+#include "engine/physicsengine.h"
 #include "logging.h"
 
 playerPhysics::playerPhysics()  // constructor

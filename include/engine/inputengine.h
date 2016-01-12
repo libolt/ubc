@@ -40,7 +40,7 @@
 
 typedef std::vector<inputMaps>   inputWorkQueues;
 
-class GUISystem;
+//class GUISystem;
 class rendreEngine;
 
 // input class
@@ -54,9 +54,10 @@ public:
     //static inputEngine *Instance();
 //    static boost::shared_ptr<inputEngine> Instance();
 
-    boost::shared_ptr<GUISystem> getGui();  // retrieves the value of gui
+/*    boost::shared_ptr<GUISystem> getGui();  // retrieves the value of gui
     void setGui(boost::shared_ptr<GUISystem> set);  // sets the value of gui
-  
+*/
+
     SDL_Event getInputEvent();  // retrieves the value of inputEvent 
     void setInputEvent(SDL_Event set);  // sets the value of inputEvent 
 
@@ -104,7 +105,7 @@ private:
     //static inputEngine *pInstance;
 //    static boost::shared_ptr<inputEngine> pInstance;
 
-    boost::shared_ptr<GUISystem> gui;  // stores the copy of the gui object
+//    boost::shared_ptr<GUISystem> gui;  // stores the copy of the gui object
 
     std::string keyPressed; // stores which key was pressed
 

@@ -221,7 +221,7 @@ void offenseState::loadPlays()	// loads offense plays from file
 void offenseState::setupOffense()  // sets up box offense
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
+//    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
 
     quarters currentQuarter = gameS->getQuarter();  // gets the current quarter the game is in.
@@ -316,7 +316,7 @@ void offenseState::setupOffense()  // sets up box offense
 	
     // checks for a Y Offset so that players dont fall through the court
   
-    float yOffset = gameE->getYOffset();
+    float yOffset = getYOffset();
     for (size_t y=0;y < startPositions.size(); ++y)
     {
         startPositions[y].y = yOffset;

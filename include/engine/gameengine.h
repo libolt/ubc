@@ -55,6 +55,9 @@ public:
     bool getMenuActive();  // retrieves the value of menuActive
     void setMenuActive(bool set);  // sets the value of menuActive 
 
+    bool getStart();  // retrieves the value of start
+    void setStart(bool set);  // sets the value of start
+    
     bool getQuitGame();  // retrieves the value of quitGame
     void setQuitGame(bool set);  // sets the value of quitGame
 
@@ -95,7 +98,7 @@ public:
 
 //    void gameLoop();  // runs the Main loop for the game
 
-    void processInput();  // processes game input
+//    void processInput();  // processes game input
 	
 protected:
 /*    gameEngine();

@@ -103,8 +103,8 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     playerNames.push_back(pNames);
     playerNames.push_back(pNames);
 
-    playerPositions.push_back(pPositions);
-    playerPositions.push_back(pPositions);
+    playerPositionsPlayed.push_back(pPositions);
+    playerPositionsPlayed.push_back(pPositions);
 
     playerIDs.push_back(pIDs);
     playerIDs.push_back(pIDs);
@@ -125,7 +125,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
             size_t playerID = playerInstance[i].getID();
 
             playerNames[0].push_back(playerName);
-            playerPositions[0].push_back(playerPosition);
+            playerPositionsPlayed[0].push_back(playerPosition);
             playerIDs[0].push_back(playerID);
             overallRatings[0].push_back(overallRating);
         }
@@ -140,7 +140,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
             size_t playerID = playerInstance[i].getID();
 
             playerNames[1].push_back(playerName);
-            playerPositions[1].push_back(playerPosition);
+            playerPositionsPlayed[1].push_back(playerPosition);
             playerIDs[1].push_back(playerID);
             overallRatings[1].push_back(overallRating);
         }
@@ -164,17 +164,17 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
             {
                 temp = overallRatings[0][j];  // swap elements
                 tempName = playerNames[0][j];
-                tempPosition = playerPositions[0][j];
+                tempPosition = playerPositionsPlayed[0][j];
                 tempID = playerIDs[0][j];
 
                 overallRatings[0][j] = overallRatings[0][j+1];
                 playerNames[0][j] = playerNames[0][j+1];
-                playerPositions[0][j] = playerPositions[0][j+1];
+                playerPositionsPlayed[0][j] = playerPositionsPlayed[0][j+1];
                 playerIDs[0][j] = playerIDs[0][j+1];
 
                 overallRatings[0][j+1] = temp;
                 playerNames[0][j+1] = tempName;
-                playerPositions[0][j+1] = tempPosition;
+                playerPositionsPlayed[0][j+1] = tempPosition;
                 playerIDs[0][j+1] = tempID;
 
                 flag = 1;               // indicates that a swap occurred.
@@ -201,17 +201,17 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
             {
                 temp = overallRatings[1][j];  // swap elements
                 tempName = playerNames[1][j];
-                tempPosition = playerPositions[1][j];
+                tempPosition = playerPositionsPlayed[1][j];
                 tempID = playerIDs[1][j];
 
                 overallRatings[1][j] = overallRatings[1][j+1];
                 playerNames[1][j] = playerNames[1][j+1];
-                playerPositions[1][j] = playerPositions[1][j+1];
+                playerPositionsPlayed[1][j] = playerPositionsPlayed[1][j+1];
                 playerIDs[1][j] = playerIDs[1][j+1];
 
                 overallRatings[1][j+1] = temp;
                 playerNames[1][j+1] = tempName;
-                playerPositions[1][j+1] = tempPosition;
+                playerPositionsPlayed[1][j+1] = tempPosition;
                 playerIDs[1][j+1] = tempID;
 
                 flag = 1;  // indicates that a swap occurred.
@@ -248,28 +248,28 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         logMsg("playerNames[0][i] == " +playerNames[0][i]);
 
         std::string PName;
-        if (playerPositions[0][i] == "PG")
+        if (playerPositionsPlayed[0][i] == "PG")
         {
             team0PGSelectBox->addItem(playerNames[0][i]);
             team0IDs[0].push_back(playerIDs[0][i]);
 //            exit(0);
         }
-        else if (playerPositions[0][i] == "SG")
+        else if (playerPositionsPlayed[0][i] == "SG")
         {
             team0SGSelectBox->addItem(playerNames[0][i]);
             team0IDs[1].push_back(playerIDs[0][i]);
        }
-        else if (playerPositions[0][i] == "SF")
+        else if (playerPositionsPlayed[0][i] == "SF")
         {
             team0SFSelectBox->addItem(playerNames[0][i]);
             team0IDs[2].push_back(playerIDs[0][i]);
         }
-        else if (playerPositions[0][i] == "PF")
+        else if (playerPositionsPlayed[0][i] == "PF")
         {
             team0PFSelectBox->addItem(playerNames[0][i]);
             team0IDs[3].push_back(playerIDs[0][i]);
        }
-        else if (playerPositions[0][i] == "C")
+        else if (playerPositionsPlayed[0][i] == "C")
         {
             team0CSelectBox->addItem(playerNames[0][i]);
             team0IDs[4].push_back(playerIDs[0][i]);
@@ -319,31 +319,31 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 
         std::string PName;
 
-        if (playerPositions[1][i] == "PG")
+        if (playerPositionsPlayed[1][i] == "PG")
         {
             team1PGSelectBox->addItem(playerNames[1][i]);
             team1IDs[0].push_back(playerIDs[1][i]);
             logMsg("Adding PG1");
         }
-        else if (playerPositions[1][i] == "SG")
+        else if (playerPositionsPlayed[1][i] == "SG")
         {
             team1SGSelectBox->addItem(playerNames[1][i]);
             team1IDs[1].push_back(playerIDs[1][i]);
             logMsg("Adding SG1");
         }
-        else if (playerPositions[1][i] == "SF")
+        else if (playerPositionsPlayed[1][i] == "SF")
         {
             team1SFSelectBox->addItem(playerNames[1][i]);
             team1IDs[2].push_back(playerIDs[1][i]);
             logMsg("Adding SF1");
         }
-        else if (playerPositions[1][i] == "PF")
+        else if (playerPositionsPlayed[1][i] == "PF")
         {
             team1PFSelectBox->addItem(playerNames[1][i]);
             team1IDs[3].push_back(playerIDs[1][i]);
             logMsg("Adding PF1");
         }
-        else if (playerPositions[1][i] == "C")
+        else if (playerPositionsPlayed[1][i] == "C")
         {
             team1CSelectBox->addItem(playerNames[1][i]);
             team1IDs[4].push_back(playerIDs[1][i]);

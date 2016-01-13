@@ -604,11 +604,12 @@ void GUISystem::processPlayerStartSelectionMenuKeyPress(std::string keyPressed) 
     boost::shared_ptr<loader> load = loader::Instance();
 
     checkTeamInstancesCreated();
-    teamState testState;
-
+//    teamState testState;
+    logMsg("keyPressed == " +keyPressed);
+//    exit(0);
     if (keyPressed == "s")
     {
-//        exit(0);
+        exit(0);
         playerStartSelected();
     }
     else if (keyPressed == "b")
@@ -616,6 +617,7 @@ void GUISystem::processPlayerStartSelectionMenuKeyPress(std::string keyPressed) 
         teamSelectionMenu();
     }
 
+//    exit(0);
 }
 
 void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed)  // process team selection menu key input

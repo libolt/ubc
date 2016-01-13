@@ -779,6 +779,7 @@ void GUISystem::backNetworkClientMenuSelected()  // returns back to the network 
 
 void GUISystem::checkTeamInstancesCreated()  // Checks if team instances have been created and if not creates them.
 {
+//    exit(0);
     //gameState *gameS = gameState::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
 
@@ -789,5 +790,6 @@ void GUISystem::checkTeamInstancesCreated()  // Checks if team instances have be
         gameS->setActiveTeamInstancesCreated(true);
         gameS->assignHoopToTeams();
         logMsg("Team instances created!");
+//        exit(0);
     }
 }

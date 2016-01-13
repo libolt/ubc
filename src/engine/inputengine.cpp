@@ -227,7 +227,7 @@ bool inputEngine::processInput(bool menuActive,boost::shared_ptr<renderEngine> r
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
-    keyPressed = "";  // resets value of keyPressed
+//    keyPressed = "";  // resets value of keyPressed
 
     // processes keyboard input
 /*    if (processUnbufferedKeyInput() == false)

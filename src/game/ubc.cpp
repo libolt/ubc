@@ -112,7 +112,7 @@ void UBC::processInput()  // processes game input
 
         if (getInput()->getKeyInputReceived() && getMenuActive())
         {
-
+            logMsg("menuReceiveKeyPress == " +getInput()->getKeyPressed());
             menuReceiveKeyPress(getInput()->getKeyPressed()); // sends input to menu key input processing function
             if (getInput()->getKeyPressed() == "t")
             {

@@ -136,8 +136,8 @@ public:
     std::vector <basketballState> getBasketballInstance();  // retrieves the value of basketballInstance
     void setBasketballInstance(std::vector<basketballState> set);  // sets the value of basketballInstance
 
-    std::vector <teamState> getTeamInstance();  // retireves the value of teamInstance
-    void setTeamInstance(std::vector<teamState> set);  // sets the value of teamInstance
+    std::vector<boost::shared_ptr<teamState> > getTeamInstance();  // retireves the value of teamInstance
+    void setTeamInstance(std::vector<boost::shared_ptr<teamState> > set);  // sets the value of teamInstance
 
     std::vector <courtState> getCourtInstance();  // retrieves the value of courtInstance
     void setCourtInstance(std::vector<courtState> set);  // sets the value of courtInstance
@@ -145,8 +145,8 @@ public:
     std::vector <hoopState> getHoopInstance();  // retrieves the value of hoopInstance
     void setHoopInstance(std::vector<hoopState> set);  // sets the value of hoopInstance
 
-    std::vector <teamState> getActiveTeamInstance();  // retireves the value of activeTeamInstance
-    void setActiveTeamInstance(std::vector<teamState> set);  // sets the value of activeTeamInstance
+    std::vector <boost::shared_ptr<teamState> > getActiveTeamInstance();  // retireves the value of activeTeamInstance
+    void setActiveTeamInstance(std::vector<boost::shared_ptr<teamState> > set);  // sets the value of activeTeamInstance
 
     bool getTipOffSetupComplete();  // retrieves the value of tipOffSetupComplete
     void setTipOffSetupComplete(bool set);  // sets the value of tipOffSetupComplete
@@ -231,10 +231,10 @@ private:
     std::vector <basketballState> basketballInstance;  // creates instance of the basketballs class
     std::vector <courtState> courtInstance;  // creates instance of the courtState class
     std::vector <hoopState> hoopInstance;  // creates instance of the hoop class
-    std::vector <teamState>  teamInstance;  // creates instance of the teamState class
+    std::vector < boost::shared_ptr<teamState> >  teamInstance;  // creates instance of the teamState class
 
     // stores active instances of objects
-    std::vector<teamState> activeTeamInstance;  // stores the active team instances
+    std::vector<boost::shared_ptr<teamState> > activeTeamInstance;  // stores the active team instances
 
     size_t activeBBallInstance;  // stores which instance of the baskteball class is active
     size_t activeCourtInstance;  // stores which instance of the court is active

@@ -480,7 +480,7 @@ bool GUISystem::createTeamSelectionMenuGUI()  // creates GUI for team selection 
 //    Ogre::Viewport *viewPort = render->getViewPort();
 
     //load->loadTeams();
-    std::vector<teamState> teamInstance; // = gameS->getTeamDataInstance();
+    std::vector<boost::shared_ptr<teamState> > teamInstance; // = gameS->getTeamDataInstance();
 
 /*    teamInstance = load->loadTeams();
     gameS->setTeamDataInstance(teamDataInstance);
@@ -502,7 +502,7 @@ bool GUISystem::createTeamSelectionMenuGUI()  // creates GUI for team selection 
 
     for (size_t x=0;x<teamInstance.size(); ++x)
     {
-        std::string teamName = teamInstance[x].getCity() + " " +teamInstance[x].getName();
+        std::string teamName = teamInstance[x]->getCity() + " " +teamInstance[x]->getName();
 
         team0SelectBox->addItem(teamName);
         team1SelectBox->addItem(teamName);

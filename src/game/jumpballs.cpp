@@ -196,7 +196,7 @@ bool jumpBalls::jumpBallExecute()  // initiates jump ball from jump ball circle
     std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
     size_t activeBBallInstance = gameS->getActiveBBallInstance();
 
-    std::vector<teamState> activeTeamInstance = gameS->getActiveTeamInstance();
+    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
     std::vector< std::vector<playerState> > activePlayerInstance;
 
     std::vector<size_t> jumpPlayerInstance;  // stores playerID of players jumping for the ball
@@ -205,7 +205,7 @@ bool jumpBalls::jumpBallExecute()  // initiates jump ball from jump ball circle
     while (x < activeTeamInstance.size())
     {
         //activePlayerInstance.clear();
-        activePlayerInstance.push_back(activeTeamInstance[x].getActivePlayerInstance());
+        activePlayerInstance.push_back(activeTeamInstance[x]->getActivePlayerInstance());
         
         size_t i = 0;
         logMsg("active player instance size =" +convert->toString(activePlayerInstance[x].size()));
@@ -244,7 +244,7 @@ bool jumpBalls::jumpBallExecute()  // initiates jump ball from jump ball circle
     playerState activePInstance;
     while (y < activeTeamInstance.size())
     {
-        switch(activeTeamInstance[y].getTeamType())
+        switch(activeTeamInstance[y]->getTeamType())
         {
             case HOMETEAM:
                 activePInstance = activePlayerInstance[0][jumpPlayerInstance[0]];
@@ -264,7 +264,7 @@ bool jumpBalls::jumpBallExecute()  // initiates jump ball from jump ball circle
         if (physEngine.collisionCheck(basketballInstance[activeBBallInstance].getPhysBody(), activePInstance.getPhysBody()))
         {
             logMsg("team " +convert->toString(y) +" center collided with ball");
-            ballTippedToTeam = activeTeamInstance[y].getTeamType();
+            ballTippedToTeam = activeTeamInstance[y]->getTeamType();
             ballTippedToPosition = PG;
 //            exit(0);
         
@@ -313,14 +313,14 @@ bool jumpBalls::tipToPlayer()  // tips the basketball to the appropriate player
 
     physicsEngine physEngine;
     std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
-    std::vector<teamState> activeTeamInstance = gameS->getActiveTeamInstance();
+    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
     std::vector<playerState> activePlayerInstance;
     jumpBalls jumpBall = gameS->getJumpBall();
 //    teamTypes ballTippedToTeam = jumpBall.getBallTippedToTeam();
     quarters quarter = gameS->getQuarter();
     size_t activeBBallInstance = gameS->getActiveBBallInstance();
 
-    activePlayerInstance = activeTeamInstance[ballTippedToTeam].getActivePlayerInstance();
+    activePlayerInstance = activeTeamInstance[ballTippedToTeam]->getActivePlayerInstance();
     
     size_t y = 0;
     while (y < activePlayerInstance.size())
@@ -415,28 +415,28 @@ bool jumpBalls::tipToPlayer()  // tips the basketball to the appropriate player
  //               exit(0);
                 gameS->setTeamWithBall(ballTippedToTeam);
                 logMsg("ballTippedToPlayerID == " +convert->toString(ballTippedToPlayerID));
-                activeTeamInstance[ballTippedToTeam].setPlayerWithBallID(ballTippedToPlayerID);
-                activeTeamInstance[ballTippedToTeam].setPlayerWithBallInstance(ballTippedToPlayerInstance);
+                activeTeamInstance[ballTippedToTeam]->setPlayerWithBallID(ballTippedToPlayerID);
+                activeTeamInstance[ballTippedToTeam]->setPlayerWithBallInstance(ballTippedToPlayerInstance);
                 physEngine.setBasketballVelocitySet(false);
-                activeTeamInstance[ballTippedToTeam].setPlayerWithBallDribbling(true);
-                if (activeTeamInstance[ballTippedToTeam].getHumanControlled())
+                activeTeamInstance[ballTippedToTeam]->setPlayerWithBallDribbling(true);
+                if (activeTeamInstance[ballTippedToTeam]->getHumanControlled())
                 {
-                    activeTeamInstance[ballTippedToTeam].setHumanPlayer(ballTippedToPlayerID);
+                    activeTeamInstance[ballTippedToTeam]->setHumanPlayer(ballTippedToPlayerID);
                     logMsg("ball tipped to human playerID == " +convert->toString(jumpBall.getBallTippedToPlayerID()));
         //            exit(0);
                 }
                 logMsg("jumpBall.getBallTippedToPlayer() = " +convert->toString(jumpBall.getBallTippedToPlayerID()));
-                logMsg("playerWithBallInstanceTipped == " +convert->toString(activeTeamInstance[ballTippedToTeam].getPlayerWithBallInstance()));
+                logMsg("playerWithBallInstanceTipped == " +convert->toString(activeTeamInstance[ballTippedToTeam]->getPlayerWithBallInstance()));
                 int activeDefensivePlayer = 9999;
                 switch (ballTippedToTeam)
                 {
                     case 0:
-                        activeDefensivePlayer = activeTeamInstance[1].getActivePlayerID()[0];
-                        activeTeamInstance[AWAYTEAM].setHumanPlayer(activeDefensivePlayer);
+                        activeDefensivePlayer = activeTeamInstance[1]->getActivePlayerID()[0];
+                        activeTeamInstance[AWAYTEAM]->setHumanPlayer(activeDefensivePlayer);
                     break;
                     case 1:
-                        activeDefensivePlayer = activeTeamInstance[0].getActivePlayerID()[0];
-                        activeTeamInstance[HOMETEAM].setHumanPlayer(activeDefensivePlayer);
+                        activeDefensivePlayer = activeTeamInstance[0]->getActivePlayerID()[0];
+                        activeTeamInstance[HOMETEAM]->setHumanPlayer(activeDefensivePlayer);
                     break;
                     default:
                     break;

@@ -36,7 +36,7 @@ void playerSteerPlugin::open(void)
     boost::shared_ptr<gameState> gameS = gameState::Instance();
 
 	std::vector<courtState> courtInstance = gameS->getCourtInstance();
-    std::vector<teamState> activeTeamInstance = gameS->getActiveTeamInstance();
+    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
     /*std::vector<playerState> team0ActivePlayerInstance = activeTeamInstance[0].getActivePlayerInstance();
     std::vector<playerState> team1ActivePlayerInstance = activeTeamInstance[1].getActivePlayerInstance();
     std::vector<int> team0ActivePlayerID = activeTeamInstance[0].getActivePlayerID();
@@ -53,7 +53,8 @@ void playerSteerPlugin::open(void)
     size_t x = 0;
     while (x < activeTeamInstance.size())
     {
-        activePlayerInstance.push_back(activeTeamInstance[x].getActivePlayerInstance());
+
+        activePlayerInstance.push_back(activeTeamInstance[x]->getActivePlayerInstance());
         size_t y = 0;
         while (y < activePlayerInstance[x].size())
         {
@@ -171,7 +172,7 @@ void playerSteerPlugin::update(const float currentTime, const float elapsedTime)
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
     
-    std::vector<teamState> activeTeamInstance = gameS->getActiveTeamInstance();
+    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
 //    std::vector<playerState> team0ActivePlayerInstance = activeTeamInstance[0].getActivePlayerInstance();
 //    std::vector<playerState> team1ActivePlayerInstance = activeTeamInstance[1].getActivePlayerInstance();
 //    std::vector<int> team0ActivePlayerID = activeTeamInstance[0].getActivePlayerID();
@@ -189,11 +190,11 @@ void playerSteerPlugin::update(const float currentTime, const float elapsedTime)
     size_t x = 0;
     while (x < activeTeamInstance.size())
     {
-        activePlayerInstance.push_back(activeTeamInstance[x].getActivePlayerInstance());
+        activePlayerInstance.push_back(activeTeamInstance[x]->getActivePlayerInstance());
         size_t y = 0;
         while (y < activePlayerInstance[x].size())
         {
-            if (y != activeTeamInstance[x].getHumanPlayer() && activePlayerInstance[x][y].getModelLoaded())
+            if (y != activeTeamInstance[x]->getHumanPlayer() && activePlayerInstance[x][y].getModelLoaded())
             {
 //                exit(0);
                 logMsg("x = " +convert->toString(x) +"y = " +convert->toString(y));

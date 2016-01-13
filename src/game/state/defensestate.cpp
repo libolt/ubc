@@ -68,15 +68,15 @@ void defenseState::updateState(teamTypes teamOnDefense)	// updates the state of 
     boost::shared_ptr<gameState> gameS = gameState::Instance();
     teamTypes teamWithBall = gameS->getTeamWithBall();
 
-    std::vector<teamState> activeTeamInstance = gameS->getActiveTeamInstance();
-    std::vector<playerState> playerDInstance = activeTeamInstance[teamOnDefense].getActivePlayerInstance();
-    std::vector<playerState> playerOInstance = activeTeamInstance[teamWithBall].getActivePlayerInstance();
-    std::vector<size_t> activeDID = activeTeamInstance[teamOnDefense].getActivePlayerID();
-    std::vector<size_t> activeOID = activeTeamInstance[teamWithBall].getActivePlayerID();
+    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
+    std::vector<playerState> playerDInstance = activeTeamInstance[teamOnDefense]->getActivePlayerInstance();
+    std::vector<playerState> playerOInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
+    std::vector<size_t> activeDID = activeTeamInstance[teamOnDefense]->getActivePlayerID();
+    std::vector<size_t> activeOID = activeTeamInstance[teamWithBall]->getActivePlayerID();
     std::vector<Ogre::Vector3> playerOPos;  // stores positions of offensive players
     std::vector<Ogre::Vector3> playerDPos;  // stores positions of defensive players
 
-    int humanPlayer = activeTeamInstance[teamOnDefense].getHumanPlayer();
+    int humanPlayer = activeTeamInstance[teamOnDefense]->getHumanPlayer();
     int numPlayers = activeDID.size(); // stores the number of players on the court per team
 //	exit(0);
 	if (execute)
@@ -483,7 +483,7 @@ void defenseState::updateState(teamTypes teamOnDefense)	// updates the state of 
 //		}
 	}
 
-    activeTeamInstance[teamOnDefense].setActivePlayerInstance(playerDInstance);
+    activeTeamInstance[teamOnDefense]->setActivePlayerInstance(playerDInstance);
     gameS->setActiveTeamInstance(activeTeamInstance);
 
 }

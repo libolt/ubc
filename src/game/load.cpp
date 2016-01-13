@@ -274,10 +274,15 @@ string loader::findFile(string fileName)  // finds the location of a file
     return ("");
 }
 
-std::vector<teamState> loader::loadTeams()  // load teams from XML files
+std::vector<boost::shared_ptr<teamState> > loader::loadTeams()  // load teams from XML files
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    std::vector<teamState> teams;
+    std::vector<boost::shared_ptr<teamState> > teams;
+    teamState *tempTeamObj = new teamState;
+    boost::shared_ptr<teamState> tempTeamSharedPtr = boost::shared_ptr<teamState>(tempTeamObj);
+    std::vector<boost::shared_ptr<teamState> > tempTeams;
+    tempTeams.push_back(tempTeamSharedPtr);
+    teams = tempTeams;
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     string teamList = "data/teams/teams.xml";
 #else
@@ -386,13 +391,16 @@ bool loader::loadTeamListFile(string fileName)  // loads the team list file
     return true;
 }
 
-teamState loader::loadTeamFile(string fileName)  // loads the team file
+boost::shared_ptr<teamState> loader::loadTeamFile(string fileName)  // loads the team file
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
-    std::vector<teamState> teamInstance = gameS->getTeamInstance();
-    teamState tInstance;
+    std::vector<boost::shared_ptr<teamState> > teamInstance = gameS->getTeamInstance();
+    boost::shared_ptr<teamState> tInstance;
+    teamState *tempTeamObj = new teamState;
+//    boost::shared_ptr<renderEngine> tempRenderSharedPtr = boost::shared_ptr<renderEngine>(tempRenderObj);
+    tInstance = boost::shared_ptr<teamState>(tempTeamObj);
 
     int ID;
     string City;
@@ -477,16 +485,17 @@ teamState loader::loadTeamFile(string fileName)  // loads the team file
         logMsg("Logo == " +Logo);
     }
 
-    tInstance.setID(ID);
-    tInstance.setCity(City);
-    tInstance.setName(Name);
-    tInstance.setCoach(Coach);
-    tInstance.setInits(Initials);
-    tInstance.setLogoFile(Logo);
+    tInstance->setID(ID);
+    tInstance->setCity(City);
+    tInstance->setName(Name);
+    tInstance->setCoach(Coach);
+    tInstance->setInits(Initials);
+    tInstance->setLogoFile(Logo);
 
 //    team->setTeamArray(teamInstance);
 //   teamInstance.push_back(teamInstance);
 //   gameS->setteamInstance(teamInstance);
+//    exit(0);
 
     return (tInstance);
 }

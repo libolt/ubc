@@ -28,6 +28,7 @@
 #include "logging.h"
 #include "engine/renderengine.h"
 #include "data/teamdata.h"
+#include "conversion.h"
 
 #ifdef __ANDROID__
 #include "android-config.h"
@@ -191,6 +192,12 @@ void GUISystem::courtSelectButtonClicked(MyGUI::Widget *_sender)  // handles cou
 
 void GUISystem::menuReceiveKeyPress(std::string keyPressed)  // processes key input
 {
+    boost::shared_ptr<conversion> convert = conversion::Instance();
+
+    logMsg("menuReceiveKeyKeyPress!");
+    logMsg("activeMenu == " +convert->toString(activeMenu));
+    logMsg("keyPressed == " +keyPressed);
+//    exit(0);
     switch (activeMenu)
     {
         case MAIN:
@@ -225,6 +232,7 @@ void GUISystem::menuReceiveKeyPress(std::string keyPressed)  // processes key in
             break;
         case TEAMSELECT:
             processTeamSelectionMenuKeyPress(keyPressed);
+//            exit(0);
             break;
         case COURTSELECT:
             processCourtSelectionMenuKeyPress(keyPressed);
@@ -485,8 +493,7 @@ void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed)  // process
 {
     //gameState *gameS = gameState::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
-    
-    std::vector<teamState> teamInstance = gameS->getTeamInstance();
+    std::vector<boost::shared_ptr<teamState> > teamInstance = gameS->getTeamInstance();
     logMsg("processGameSetupMenuKeyPress");
     if (keyPressed == "a" && !gameSetupMenuAwaySelected)
     {
@@ -513,6 +520,7 @@ void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed)  // process
     }
     else if (keyPressed == "t")
     {
+        exit(0);
         teamsSelected();
         playerStartSelectionMenu();
     }
@@ -597,6 +605,7 @@ void GUISystem::processPlayerStartSelectionMenuKeyPress(std::string keyPressed) 
 
     checkTeamInstancesCreated();
     teamState testState;
+
     if (keyPressed == "s")
     {
 //        exit(0);
@@ -614,7 +623,7 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed)  // pro
     //gameState *gameS = gameState::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
     
-    std::vector<teamState> teamInstance = gameS->getTeamInstance();
+    std::vector<boost::shared_ptr<teamState> > teamInstance = gameS->getTeamInstance();
     logMsg("processGameSetupMenuKeyPress");
     if (keyPressed == "a" && !gameSetupMenuAwaySelected)
     {
@@ -646,6 +655,7 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed)  // pro
     {
         teamsSelected();
         playerStartSelectionMenu();
+//        exit(0);
     }
     else if (keyPressed == "x")
     {
@@ -718,6 +728,7 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed)  // pro
 
         }
     }
+
 }
 
 void GUISystem::processCourtSelectionMenuKeyPress(std::string keyPressed)  // process court selection menu key input

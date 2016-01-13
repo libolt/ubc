@@ -330,7 +330,7 @@ bool inputEngine::processInput(bool menuActive,boost::shared_ptr<renderEngine> r
                     inputMaps inputMap = keyMap();
                     inputWorkQueue.push_back(inputMap);
                 }
-          //      exit(0); 
+//                exit(0);
                 break;
                 /*
             case SDL_KEYDOWN:
@@ -648,7 +648,7 @@ bool inputEngine::processUnbufferedKeyInput(bool textInput, bool menuActive)  //
     }
 */
     keyInputReceived = true;
-    keyPressed = "";
+//    keyPressed = "";
 //	logMsg("Keyboard Input Processed");
     // Return true to continue rendering
     return true;

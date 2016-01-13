@@ -56,7 +56,7 @@ void basketballSteer::reset(void)
     setMaxForce (3000.7f);      // steering force is clipped to this magnitude
     setMaxSpeed (10);         // velocity is clipped to this magnitude
     
-    std::vector<teamState> activeTeamInstance = gameS->getActiveTeamInstance();
+    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
 	std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
     int activeBBallInstance = gameS->getActiveBBallInstance();
     OpenSteer::Vec3 basketballSteerPos = convert->toOpenSteerVec3(basketballInstance[activeBBallInstance].getNodePosition());

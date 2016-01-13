@@ -213,11 +213,11 @@ void gameState::setTeamStarterID(std::vector< std::vector<size_t> > set)  // set
     teamStarterID = set;
 }
 
-std::vector <teamState> gameState::getTeamInstance()  // retrieves the value of teamInstance
+std::vector<boost::shared_ptr<teamState> > gameState::getTeamInstance()  // retrieves the value of teamInstance
 {
     return (teamInstance);
 }
-void gameState::setTeamInstance(std::vector<teamState> set)  // sets the value of teamInstance
+void gameState::setTeamInstance(std::vector<boost::shared_ptr<teamState> > set)  // sets the value of teamInstance
 {
     teamInstance = set;
 }
@@ -231,11 +231,11 @@ void gameState::setBasketballInstance(std::vector<basketballState> set)  // sets
     basketballInstance = set;
 }
 
-std::vector <teamState> gameState::getActiveTeamInstance()  // retireves the value of activeTeamInstance
+std::vector <boost::shared_ptr<teamState> > gameState::getActiveTeamInstance()  // retireves the value of activeTeamInstance
 {
     return (activeTeamInstance);
 }
-void gameState::setActiveTeamInstance(std::vector<teamState> set)  // sets the value of activeTeamInstance
+void gameState::setActiveTeamInstance(std::vector<boost::shared_ptr<teamState> > set)  // sets the value of activeTeamInstance
 {
     activeTeamInstance = set;
 }
@@ -388,8 +388,8 @@ void gameState::setStateSet(bool set)  // sets the value of stateSet
 
 bool gameState::assignHoopToTeams()  // assigns which hoop belongs to each team
 {
-    activeTeamInstance[0].setHoop(1);
-    activeTeamInstance[1].setHoop(0);
+    activeTeamInstance[0]->setHoop(1);
+    activeTeamInstance[1]->setHoop(0);
     return (true);
 }
 
@@ -504,7 +504,7 @@ bool gameState::createTeamInstances()  // creates team Instances
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<loader> load = loader::Instance();
 
-    std::vector<teamState> tInstance;
+    std::vector<boost::shared_ptr<teamState> > tInstance;
     tInstance = load->loadTeams();
     logMsg("teamID.size() == " +convert->toString(teamID.size()));
 /*    exit(0);
@@ -579,24 +579,25 @@ bool gameState::createPlayerInstances()  // creates player instances
 
 bool gameState::createActiveTeamInstances()  // creates the active team instances
 {
-    teamState tInstance;
+    boost::shared_ptr<teamState> tInstance;
+//    exit(0);
     activeTeamInstance.push_back(tInstance);  // adds empty teamState to activeTeamInstance vector
     activeTeamInstance.push_back(tInstance);  // adds empty teamState to activeTeamInstance vector
 
     activeTeamInstance[0] = teamInstance[teamID[0]];
     activeTeamInstance[1] = teamInstance[teamID[1]];
-    activeTeamInstance[0].setTeamID(teamID[0]);
-    activeTeamInstance[1].setTeamID(teamID[1]);
-    activeTeamInstance[0].setTeamType(HOMETEAM);
-    activeTeamInstance[1].setTeamType(AWAYTEAM);
-    activeTeamInstance[0].setHumanControlled(true);
-    activeTeamInstance[1].setHumanControlled(false);
-    activeTeamInstance[0].setTeamColObject(COL_TEAM1);
-    activeTeamInstance[1].setTeamColObject(COL_TEAM2);
-    activeTeamInstance[0].setTeamCollidesWith(COL_COURT /* | COL_BBALL | COL_TEAM2;   determines what team0 collides with*/);
-    activeTeamInstance[1].setTeamCollidesWith(COL_COURT /* | COL_BBALL | COL_TEAM2;   determines what team1 collides with*/);
-    activeTeamInstance[0].setupState();
-    activeTeamInstance[1].setupState();
+    activeTeamInstance[0]->setTeamID(teamID[0]);
+    activeTeamInstance[1]->setTeamID(teamID[1]);
+    activeTeamInstance[0]->setTeamType(HOMETEAM);
+    activeTeamInstance[1]->setTeamType(AWAYTEAM);
+    activeTeamInstance[0]->setHumanControlled(true);
+    activeTeamInstance[1]->setHumanControlled(false);
+    activeTeamInstance[0]->setTeamColObject(COL_TEAM1);
+    activeTeamInstance[1]->setTeamColObject(COL_TEAM2);
+    activeTeamInstance[0]->setTeamCollidesWith(COL_COURT /* | COL_BBALL | COL_TEAM2;   determines what team0 collides with*/);
+    activeTeamInstance[1]->setTeamCollidesWith(COL_COURT /* | COL_BBALL | COL_TEAM2;   determines what team1 collides with*/);
+    activeTeamInstance[0]->setupState();
+    activeTeamInstance[1]->setupState();
 
     return (true);
 }
@@ -1058,17 +1059,17 @@ void gameState::processNetworkEvents()  // processes events from network code
     }
 
 //	std::vector<teamState> teamInstance = teamInstance();
-    activeTeamInstance[0].setPlayerType("human");  // sets playerType for activeTeamInstance 0 to human
+    activeTeamInstance[0]->setPlayerType("human");  // sets playerType for activeTeamInstance 0 to human
 
     // checks if this instance is a server and whether activeTeamInstance 1 is set to be controlled by network player
-    if (getNetwork()->getServerReceivedConnection() && activeTeamInstance[1].getPlayerType() != "network")
+    if (getNetwork()->getServerReceivedConnection() && activeTeamInstance[1]->getPlayerType() != "network")
     {
-        activeTeamInstance[1].setPlayerType("network");  // sets activeTeamInstance 1 playerType to 'network'
+        activeTeamInstance[1]->setPlayerType("network");  // sets activeTeamInstance 1 playerType to 'network'
     }
     // checks if this instance is a client and whether activeTeamInstance 0 is set to be controlled by network player
-    else if (getNetwork()->getClientEstablishedConnection() && activeTeamInstance[0].getPlayerType() != "network" )
+    else if (getNetwork()->getClientEstablishedConnection() && activeTeamInstance[0]->getPlayerType() != "network" )
     {
-        activeTeamInstance[0].setPlayerType("network");
+        activeTeamInstance[0]->setPlayerType("network");
     }
 }
 
@@ -1094,12 +1095,12 @@ void gameState::processNetworkPlayerEvents()  // processes player events from ne
     if (getNetwork()->getIsClient())
     {
         logMsg("is client");
-        activePlayerInstance = activeTeamInstance[1].getActivePlayerInstance();
+        activePlayerInstance = activeTeamInstance[1]->getActivePlayerInstance();
     }
     else if (getNetwork()->getIsServer())
     {
         logMsg("is server");
-        activePlayerInstance = activeTeamInstance[0].getActivePlayerInstance();
+        activePlayerInstance = activeTeamInstance[0]->getActivePlayerInstance();
     }
     else
     {
@@ -1162,11 +1163,11 @@ void gameState::processNetworkPlayerEvents()  // processes player events from ne
             }
             if (getNetwork()->getIsClient())
             {
-                activeTeamInstance[1].setActivePlayerInstance(activePlayerInstance);
+                activeTeamInstance[1]->setActivePlayerInstance(activePlayerInstance);
             }
             else if (getNetwork()->getIsServer())
             {
-                activeTeamInstance[0].setActivePlayerInstance(activePlayerInstance);
+                activeTeamInstance[0]->setActivePlayerInstance(activePlayerInstance);
             }
         }
         else if (netPStateObj.getShootBlock())

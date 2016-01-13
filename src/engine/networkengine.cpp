@@ -444,9 +444,9 @@ void networkEngine::processLocalInput()  // processes local input for sending to
     inputWorkQueues inputQueue;
     networkPlayerStateObject netPStateObj;
     
-    std::vector<teamState> activeTeamInstance = gameS->getActiveTeamInstance();
-    int humanControlled = activeTeamInstance[teamType].getHumanControlled();
-    int humanPlayer = activeTeamInstance[teamType].getHumanPlayer();
+    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
+    int humanControlled = activeTeamInstance[teamType]->getHumanControlled();
+    int humanPlayer = activeTeamInstance[teamType]->getHumanPlayer();
     
 //                              logMsg("INPUT MAP ======== "  +toString(inputMap));
     std::string packetData;

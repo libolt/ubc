@@ -558,11 +558,11 @@ void basketballState::updateMovement()  // updates the basketball(s) movements
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
-    std::vector<teamState> activeTeamInstance = gameS->getActiveTeamInstance();
+    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
     size_t teamWithBall = gameS->getTeamWithBall();
-    std::vector<playerState> activePlayerInstance = activeTeamInstance[teamWithBall].getActivePlayerInstance();
-    size_t playerWithBallInstance = activeTeamInstance[teamWithBall].getPlayerWithBallInstance();
-    size_t playerWithBallID = activeTeamInstance[teamWithBall].getPlayerWithBallID();
+    std::vector<playerState> activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
+    size_t playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();
+    size_t playerWithBallID = activeTeamInstance[teamWithBall]->getPlayerWithBallID();
     size_t x = 0;
     
     bool shotTaken = activePlayerInstance[playerWithBallInstance].getShotTaken();
@@ -627,13 +627,13 @@ void basketballState::updateDirection()  // updates basketball direction(s)
     //conversion *convert = conversion::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
-    std::vector<teamState> activeTeamInstance = gameS->getActiveTeamInstance();
+    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
     size_t teamWithBall = gameS->getTeamWithBall();
-    std::vector<playerState> activePlayerInstance = activeTeamInstance[teamWithBall].getActivePlayerInstance();
-    std::vector<size_t> activePlayerID = activeTeamInstance[teamWithBall].getActivePlayerID();
+    std::vector<playerState> activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
+    std::vector<size_t> activePlayerID = activeTeamInstance[teamWithBall]->getActivePlayerID();
     
-    size_t playerWithBallInstance = activeTeamInstance[teamWithBall].getPlayerWithBallInstance();
-    size_t playerWithBallID = activeTeamInstance[teamWithBall].getPlayerWithBallID();
+    size_t playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();
+    size_t playerWithBallID = activeTeamInstance[teamWithBall]->getPlayerWithBallID();
 
 
     jumpBalls jumpBall = gameS->getJumpBall();

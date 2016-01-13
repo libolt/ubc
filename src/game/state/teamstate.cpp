@@ -32,6 +32,7 @@
 //{
 teamState::teamState()
 {
+
     //teamNumber = -1;
     teamID = -1;
     teamType = NOTEAM;
@@ -45,11 +46,6 @@ teamState::teamState()
     timeouts = 0;
 
 //    activePlayerID = new size_t[5];
-/*    for (size_t x=0;x<5;++x)
-    {
-        activePlayerID.push_back(0);
-    }
-*/
     offenseInstance = new offenseState;
     defenseInstance = new defenseState;
 
@@ -64,10 +60,12 @@ teamState::teamState()
 
     hoop = -1;
 
-    //teamCollidesWith = COL_COURT; // | COL_BBALL | COL_TEAM2;  // determines what team1 collides with
+/*    //teamCollidesWith = COL_COURT; // | COL_BBALL | COL_TEAM2;  // determines what team1 collides with
 
 //    stateSet = false;
 //    setupState();
+
+*/
 }
 
 teamState::~teamState()

@@ -60,6 +60,29 @@ gameEngine::gameEngine()  // constructor
     sceneCreated = false;
     createScene = false;    renderScene = false;
     movePlayer = false;
+
+    // initialize subclasses
+
+    // renderEngine
+    renderEngine *tempRenderObj = new renderEngine;
+    boost::shared_ptr<renderEngine> tempRenderSharedPtr = boost::shared_ptr<renderEngine>(tempRenderObj);
+    setRender(tempRenderSharedPtr);
+
+    // networkEngine
+    networkEngine *tempNetworkObj = new networkEngine;
+    boost::shared_ptr<networkEngine> tempNetworkSharedPtr = boost::shared_ptr<networkEngine>(tempNetworkObj);
+    setNetwork(tempNetworkSharedPtr);
+
+/*    // physicsEngine
+    physicsEngine *tempPhysicsObj = new physicsEngine;
+    boost::shared_ptr<physicsEngine> tempPhysicsSharedPtr = boost::shared_ptr<physicsEngine>(tempPhysicsObj);
+    set(tempPhysicsSharedPtr);
+*/
+    // inputEngine
+    inputEngine *tempInputObj = new inputEngine;
+    boost::shared_ptr<inputEngine> tempInputSharedPtr = boost::shared_ptr<inputEngine>(tempInputObj);
+    setInput(tempInputSharedPtr);
+
 }
 
 gameEngine::~gameEngine()  // destructor

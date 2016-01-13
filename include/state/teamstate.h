@@ -117,11 +117,11 @@ public:
     bool getDefense();  // retrieves the value of defense
     void setDefense(bool set);  // sets the value of defense
 
-    std::vector <playerState> getPlayerInstance();  // retrieves the value of playerInstance
-    void setPlayerInstance(std::vector<playerState> set);  // sets the value of  playerInstance
+    std::vector <boost::shared_ptr<playerState> > getPlayerInstance();  // retrieves the value of playerInstance
+    void setPlayerInstance(std::vector <boost::shared_ptr<playerState> > set);  // sets the value of  playerInstance
 
-    std::vector <playerState> getActivePlayerInstance();  // retrieves the value of activePlayerInstance
-    void setActivePlayerInstance(std::vector<playerState> set);  // sets the value of activePlayerInstance
+    std::vector <boost::shared_ptr<playerState> > getActivePlayerInstance();  // retrieves the value of activePlayerInstance
+    void setActivePlayerInstance(std::vector <boost::shared_ptr<playerState> > set);  // sets the value of activePlayerInstance
 
     bool getPlayerInstancesCreated();  // retrieves the value of the playerInstancesCreated
     void setPlayerInstancesCreated(bool set);  // sets the value of the playerInstancesCreated
@@ -210,8 +210,8 @@ private:
     bool offense;  // if set then the team is on offense
     bool defense;  // if set then the team is on defense
 
-    std::vector <playerState> playerInstance;  // stores instance of the playerState class containing all team players
-    std::vector <playerState> activePlayerInstance;  // stores instance of the playerState class containing the active players
+    std::vector <boost::shared_ptr<playerState> > playerInstance;  // stores instance of the playerState class containing all team players
+    std::vector <boost::shared_ptr<playerState> > activePlayerInstance;  // stores instance of the playerState class containing the active players
 
     std::vector <std::string> playerModelsLoaded;  // creates a vector of strings that holds the models which are loaded
     bool playerInstancesCreated;  // stores whether player instances have been created

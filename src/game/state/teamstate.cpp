@@ -297,20 +297,20 @@ void teamState::setDefense(bool set)	// sets the value of defense
 	defense = set;
 }
 
-std::vector <playerState> teamState::getPlayerInstance()  // retrieves the value of playerInstance
+std::vector <boost::shared_ptr<playerState> > teamState::getPlayerInstance()  // retrieves the value of playerInstance
 {
     return (playerInstance);
 }
-void teamState::setPlayerInstance(std::vector<playerState> set)  // sets the value of playerInstance
+void teamState::setPlayerInstance(std::vector <boost::shared_ptr<playerState> > set)  // sets the value of playerInstance
 {
     playerInstance = set;
 }
 
-std::vector <playerState> teamState::getActivePlayerInstance()  // retrieves the value of activePlayerInstance
+std::vector <boost::shared_ptr<playerState> > teamState::getActivePlayerInstance()  // retrieves the value of activePlayerInstance
 {
     return (activePlayerInstance);
 }
-void teamState::setActivePlayerInstance(std::vector<playerState> set) // sets the value of activePlayerInstance
+void teamState::setActivePlayerInstance(std::vector <boost::shared_ptr<playerState> > set) // sets the value of activePlayerInstance
 {
     activePlayerInstance = set;
 }
@@ -622,16 +622,18 @@ void teamState::updateState()	// updates the state of the object
 
 bool teamState::createPlayerInstances()
 {
+    
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
 
     std::vector< std::vector<size_t> > teamStarterID = gameS->getTeamStarterID();
-    std::vector<playerState> gamePlayerInstance = gameS->getPlayerInstance();
+    std::vector<boost::shared_ptr<playerState> > gamePlayerInstance = gameS->getPlayerInstance();
 //	size_t x = 0;
 	//	size_t playerID =
 //    std::vector <playerData> playerN = player->getPlayer(); // copies Player values to playerN
     std::vector <playerState>::iterator playerIT;
 //    std::vector <playerState>::iterator pInstanceIT;
+      
     logMsg("Creating players");
     
     logMsg("playerInstance size = " +convert->toString(gamePlayerInstance.size()));
@@ -644,61 +646,45 @@ bool teamState::createPlayerInstances()
     while (i<gamePlayerInstance.size())
     {
 
-        playerState pInstance;  // creates a new instance of playerState
+        boost::shared_ptr<playerState> pInstance;  // creates a new instance of playerState
         
         playerSteer *pSteer = new playerSteer; // steer instance
         
         playerPhysics *pPhysics = new playerPhysics;
         
-        logMsg("Player Team ID = " +convert->toString(gamePlayerInstance[i].getTeamID()));
+        logMsg("Player Team ID = " +convert->toString(gamePlayerInstance[i]->getTeamID()));
 //        exit(0);
         logMsg("Team ID = " +convert->toString(teamID));      
 //        exit(0);
-        if (gamePlayerInstance[i].getTeamID() == teamID)	// checks if player is assigned to this team
+        if (gamePlayerInstance[i]->getTeamID() == teamID)	// checks if player is assigned to this team
         {
             logMsg("i ====" +convert->toString(i));
 //            exit(0);
             pInstance = gamePlayerInstance[i];
-            pInstance.setTeamType(teamType);  // sets the team number the player belongs to            
+            pInstance->setTeamType(teamType);  // sets the team number the player belongs to            
             pSteer->setTeamType(teamType);
             pSteer->reset();
-            pInstance.setSteer(pSteer);
-            playerInstance.push_back(pInstance);    // adds pInstance to the playerInstance std::vector.
+            pInstance->setSteer(pSteer);
+            playerInstance->push_back(pInstance);    // adds pInstance to the playerInstance std::vector.
 
-            logMsg("Player Model Name == " +gamePlayerInstance[i].getEntityModelFileName());
+            logMsg("Player Model Name == " +gamePlayerInstance[i]->getEntityModelFileName());
 //            exit(0);
             logMsg("teamID!!!!");
             logMsg("pInstance set!");
 //            logMsg("steerID = " +convert->toString(gamePlayerInstance[i].getSteer()->getID()));
-            logMsg("player name = " +gamePlayerInstance[i].getPlayerName());
+            logMsg("player name = " +gamePlayerInstance[i]->getPlayerName());
 
 //            exit(0);
             id += 1;
-/*            pInstance.setModelFileName(playerInstance[i].getModel());
-            pInstance.setFirstName(playerInstance[i].getFirstName());  // copies the first name from the playerData std::vector to the pInstance class
-            pInstance.setLastName(playerInstance[i].getLastName());    // copies the last name from the playerData std::vector to the pInstance class
-            pInstance.setPlayerName(playerInstance[i].getFirstName() + " " +playerInstance[i].getLastName());
-            pInstance.setPlayerID(playerInstance[i].getID());
-            pInstance.setTeamType(teamType);  // sets the team number the player belongs to
-            logMsg("teamtype1");
-            pInstance.setPrimaryPosition(playerInstance[i].getPrimaryPosition());    // copies the primary position from the playerData std::vector to the pInstance class
-            pInstance.setSecondaryPosition(playerInstance[i].getSecondaryPosition());    // copies the secondary position from the playerData std::vector to the pInstance class
-            pInstance.setPosChange(Ogre::Vector3(0.0f,0.0f,0.0f));
-//            pSteer->setTeamType(teamType);
-//            logMsg("teamtyp2");
-            pSteer->reset();
-            logMsg("psteer resset!");
-            pInstance.setSteer(pSteer);
-            logMsg("steer set!");
-            //if (pPhysics->setup())
-            */
+
         }
         else
         {
         }
         i++;
     }
-//    exit(0);
+    
+    exit(0);
 //    std::vector <playerState>::iterator pInstanceIT;
 
     logMsg("before playerID");
@@ -764,7 +750,7 @@ bool teamState::createPlayerInstances()
         }
         x++;
     }
-
+    exit(0);
     return true;
 }
 

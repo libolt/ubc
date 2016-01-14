@@ -203,13 +203,13 @@ void playerSteer::update (const float currentTime, float elapsedTime)
     size_t z = 0;
     while (z < activeTeamInstance.size())
     {
-        activePlayerInstance->push_back(activeTeamInstance[z]->getActivePlayerInstance());
+        activePlayerInstance.push_back(activeTeamInstance[z]->getActivePlayerInstance());
         std::vector<int> activeID;
         activePlayerID.push_back(activeID);
         size_t x = 0;
         while (x < activePlayerInstance[z].size())
         {
-            teamSteer.push_back(activePlayerInstance[z][x].getSteer());
+            teamSteer.push_back(activePlayerInstance[z][x]->getSteer());
             ++x;
         }
         teamSteers.push_back(teamSteer);
@@ -272,7 +272,7 @@ void playerSteer::update (const float currentTime, float elapsedTime)
 */
     OpenSteer::Vec3 playerSteerPos;
 //    playerSteerPos = convert->toOpenSteerVec3(activePlayerInstance[teamType][ID].getCourtPosition());
-    logMsg(convert->toString(activePlayerInstance[teamType][ID].getCourtPosition()));
+    logMsg(convert->toString(activePlayerInstance[teamType][ID]->getCourtPosition()));
 //    exit(0);
     /*
     size_t z = 0;
@@ -284,7 +284,7 @@ void playerSteer::update (const float currentTime, float elapsedTime)
             if (activePlayerInstance[z][x].getInitialized())
             {
                 logMsg("upDie???");
-                playerSteerPos = convert->toOpenSteerVec3(activePlayerInstance[z][x].getCourtPosition());
+                playerSteerPos = convert->toOpenSteerVec3(activePlayerInstance[z][x]->getCourtPosition());
                 logMsg("nope!");
             }
             ++x;
@@ -295,16 +295,16 @@ void playerSteer::update (const float currentTime, float elapsedTime)
     switch (teamType)
 	{
 		case 0:
-            logMsg("activeID size = " +convert->toString((activePlayerID[0].size())));
+            logMsg("activeID size = " +convert->toString((activePlayerID[0]->size())));
             logMsg("do");
 //            logMsg("activeID num = " +convert->toString(team0ActivePlayerID[ID]));
             x = 0;
-            while (x < activePlayerInstance[0].size())
+            while (x < activePlayerInstance[0]->size())
             {
-                if (activePlayerInstance[0][x].getInitialized())
+                if (activePlayerInstance[0][x]->getInitialized())
                 {
                     logMsg("upDie???");
-                    playerSteerPos = convert->toOpenSteerVec3(activePlayerInstance[0][x].getCourtPosition());
+                    playerSteerPos = convert->toOpenSteerVec3(activePlayerInstance[0][x]->getCourtPosition());
                     logMsg("nope!");
                 }
                 ++x;
@@ -315,13 +315,13 @@ void playerSteer::update (const float currentTime, float elapsedTime)
             logMsg("team 1 ID = " +convert->toString(ID));
 //            logMsg("activeID num = " +convert->toString(team1ActivePlayerID[ID]));
             x = 0;
-            while (x < activePlayerInstance[1].size())
+            while (x < activePlayerInstance[1]->size())
             {
                 logMsg("TEEE");
-                if (activePlayerInstance[1][x].getInitialized())
+                if (activePlayerInstance[1][x]->getInitialized())
                 {
                     logMsg("upDie????");
-                    playerSteerPos = convert->toOpenSteerVec3(activePlayerInstance[1][x].getCourtPosition());
+                    playerSteerPos = convert->toOpenSteerVec3(activePlayerInstance[1][x]->getCourtPosition());
                 }
                 ++x;
             }
@@ -439,7 +439,7 @@ void playerSteer::checkCourtPosition()  // checks if the player's position has c
     size_t z = 0;
     while (z < activeTeamInstance.size())
     {
-        activePlayerInstance->push_back(activeTeamInstance[z]->getActivePlayerInstance());
+        activePlayerInstance.push_back(activeTeamInstance[z]->getActivePlayerInstance());
         ++z;
     }
     int humanPlayer = activeTeamInstance[teamType]->getHumanPlayer();
@@ -472,7 +472,7 @@ void playerSteer::checkCourtPosition()  // checks if the player's position has c
     size_t w = 0;
     while (w < activeTeamInstance.size())
     {
-        activePlayerI->push_back(activeTeamInstance[w]->getActivePlayerInstance());
+        activePlayerI.push_back(activeTeamInstance[w]->getActivePlayerInstance());
         ++w;
     }
     if (activePlayerI[teamType][ID]->getCourtPositionChangedType() == STEERCHANGE)
@@ -501,7 +501,7 @@ void playerSteer::updateOffense(const float currentTime, const float elapsedTime
     size_t z = 0;
     while (z < activeTeamInstance.size())
     {
-        activePlayerInstance->push_back(activeTeamInstance[z]->getActivePlayerInstance());
+        activePlayerInstance.push_back(activeTeamInstance[z]->getActivePlayerInstance());
         ++z;
     }
 	if (distToPosition >= 3)
@@ -655,11 +655,11 @@ void playerSteer::updateDefense(const float currentTime, const float elapsedTime
     size_t z = 0;
     while (z < activeTeamInstance.size())
     {
-        activePlayerInstance->push_back(activeTeamInstance[z]->getActivePlayerInstance());
+        activePlayerInstance.push_back(activeTeamInstance[z]->getActivePlayerInstance());
         size_t x = 0;
-        while (x < activePlayerInstance[z]->size())
+        while (x < activePlayerInstance[z].size())
         {
-            teamSteer.push_back(activePlayerInstance[z][x].getSteer());
+            teamSteer.push_back(activePlayerInstance[z][x]->getSteer());
             ++x;
         }
         teamSteers.push_back(teamSteer);

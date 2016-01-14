@@ -488,7 +488,7 @@ void physicsEngine::updatePlayerPositions()  // updates the position of player o
     size_t z = 0;
     while (z < activeTeamInstance.size())
     {
-        activePlayerInstance->push_back(activeTeamInstance[z]->getActivePlayerInstance());
+        activePlayerInstance.push_back(activeTeamInstance[z]->getActivePlayerInstance());
         size_t y = 0;
         while (y < activePlayerInstance[z].size())
         {
@@ -693,20 +693,20 @@ void physicsEngine::passCollisionCheck()  // checks whether the ball has collide
 
     teamTypes teamWithBall = gameS->getTeamWithBall();
     std::vector<boost::shared_ptr<teamState> >  activeTeamInstance = gameS->getActiveTeamInstance();
-    std::vector<playerState> activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
+    std::vector<boost::shared_ptr<playerState> > activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
     std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
 
     int activeBBallInstance = gameS->getActiveBBallInstance();
 
     size_t playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();
-    size_t passToPlayer = activePlayerInstance[playerWithBallInstance].getPassToPlayer();
+    size_t passToPlayer = activePlayerInstance[playerWithBallInstance]->getPassToPlayer();
     MyContactResultCallback passCollisionResult;
     logMsg("Basketball Coords = " +convert->toString(basketballInstance[activeBBallInstance].getNode()->getPosition()));
     logMsg("Player to pass to = " +convert->toString(passToPlayer));
-    logMsg("Player pass to Coords = " +convert->toString(activePlayerInstance[passToPlayer].getNode()->getPosition()));
+    logMsg("Player pass to Coords = " +convert->toString(activePlayerInstance[passToPlayer]->getNode()->getPosition()));
 
     pairCollided = false;
-    world->contactPairTest(basketballInstance[activeBBallInstance].getPhysBody(), activePlayerInstance[passToPlayer].getPhysBody(), passCollisionResult);
+    world->contactPairTest(basketballInstance[activeBBallInstance].getPhysBody(), activePlayerInstance[passToPlayer]->getPhysBody(), passCollisionResult);
     if (!passCollisionResult.m_connected)
     {
         logMsg("No Pass Collision");
@@ -734,7 +734,7 @@ bool physicsEngine::playerJump(teamTypes teamType, int playerID)  // calculates 
     btVector3 playerJumpEndPos;
     size_t x = 0;
     size_t y = 0;
-    while (x<activePlayerInstance->size())
+    while (x<activePlayerInstance.size())
     {
 //        while (y<activePlayerID.size())
 //        {
@@ -831,7 +831,7 @@ bool physicsEngine::shootBasketball(teamTypes teamType, int playerID)  // calcul
 
              
     size_t x = 0;
-    while (x<activePlayerInstance->size())
+    while (x<activePlayerInstance.size())
     {
         
         if (activePlayerInstance[x]->getID() == playerID)
@@ -1063,8 +1063,8 @@ bool physicsEngine::shootBasketball(teamTypes teamType, int playerID)  // calcul
                 }
             }
 
-           activePlayerInstance[x].setShotSet(shotSet);
-           activePlayerInstance[x].setShotComplete(shotComplete);
+           activePlayerInstance[x]->setShotSet(shotSet);
+           activePlayerInstance[x]->setShotComplete(shotComplete);
         }
         
         ++x;

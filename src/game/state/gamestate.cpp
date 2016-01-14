@@ -141,11 +141,11 @@ void gameState::setTeamDataInstance(std::vector<teamData> set)  // sets the valu
 }
 */
 
-std::vector<playerState> gameState::getPlayerInstance()  // retrieves the value of playerInstance
+std::vector<boost::shared_ptr<playerState> > gameState::getPlayerInstance()  // retrieves the value of playerInstance
 {
 	return (playerInstance);
 }
-void gameState::setPlayerInstances(std::vector<playerState> set)  // sets the value of playerInstance
+void gameState::setPlayerInstances(std::vector<boost::shared_ptr<playerState> > set)  // sets the value of playerInstance
 {
     playerInstance = set;
 }
@@ -570,7 +570,7 @@ bool gameState::createPlayerInstances()  // creates player instances
     playerInstance = load->loadPlayers();
     if (playerInstance.size() > 0)
     {
-        logMsg("player name = " +playerInstance[0].getPlayerName());
+        logMsg("player name = " +playerInstance[0]->getPlayerName());
 //        exit(0);
         return (true);
     }
@@ -1080,7 +1080,7 @@ void gameState::processNetworkPlayerEvents()  // processes player events from ne
 
     networkPlayerStateObject netPStateObj;
     std::stringstream strStream;
-    std::vector<playerState> activePlayerInstance;
+    std::vector<boost::shared_ptr<playerState> > activePlayerInstance;
     std::string receivedData = getNetwork()->getReceivedData();  // stores receivedData value
     size_t playerNumber = -1;  // stores which player the data is for
     size_t iterator;  // iterator for match loop
@@ -1126,39 +1126,39 @@ void gameState::processNetworkPlayerEvents()  // processes player events from ne
             switch (netPStateObj.getDirection())
             {
                 case 0:  // move player up
-                    activePlayerInstance[playerNumber].setMovement(true);
-                    activePlayerInstance[playerNumber].setDirection(UP);
+                    activePlayerInstance[playerNumber]->setMovement(true);
+                    activePlayerInstance[playerNumber]->setDirection(UP);
                 break;
                 case 1:  // move player down
-                    activePlayerInstance[playerNumber].setMovement(true);
-                    activePlayerInstance[playerNumber].setDirection(DOWN);
+                    activePlayerInstance[playerNumber]->setMovement(true);
+                    activePlayerInstance[playerNumber]->setDirection(DOWN);
                 break;
                 case 2:  // move player left
-                    activePlayerInstance[playerNumber].setMovement(true);
-                    activePlayerInstance[playerNumber].setDirection(LEFT);
+                    activePlayerInstance[playerNumber]->setMovement(true);
+                    activePlayerInstance[playerNumber]->setDirection(LEFT);
                 break;
                 case 3:  // move player right
-                    activePlayerInstance[playerNumber].setMovement(true);
-                    activePlayerInstance[playerNumber].setDirection(RIGHT);
+                    activePlayerInstance[playerNumber]->setMovement(true);
+                    activePlayerInstance[playerNumber]->setDirection(RIGHT);
                 break;
                 case 4:  // move player up and left
-                    activePlayerInstance[playerNumber].setMovement(true);
-                    activePlayerInstance[playerNumber].setDirection(UPLEFT);
+                    activePlayerInstance[playerNumber]->setMovement(true);
+                    activePlayerInstance[playerNumber]->setDirection(UPLEFT);
                 break;
                 case 5:  // move player up aned right
-                    activePlayerInstance[playerNumber].setMovement(true);
-                    activePlayerInstance[playerNumber].setDirection(UPRIGHT);
+                    activePlayerInstance[playerNumber]->setMovement(true);
+                    activePlayerInstance[playerNumber]->setDirection(UPRIGHT);
                 break;
                 case 6:  // move player down and left
-                    activePlayerInstance[playerNumber].setMovement(true);
-                    activePlayerInstance[playerNumber].setDirection(DOWNLEFT);
+                    activePlayerInstance[playerNumber]->setMovement(true);
+                    activePlayerInstance[playerNumber]->setDirection(DOWNLEFT);
                 break;
                 case 7:  // move player down and right
-                    activePlayerInstance[playerNumber].setMovement(true);
-                    activePlayerInstance[playerNumber].setDirection(DOWNRIGHT);
+                    activePlayerInstance[playerNumber]->setMovement(true);
+                    activePlayerInstance[playerNumber]->setDirection(DOWNRIGHT);
                 break;
                 default:
-                    activePlayerInstance[playerNumber].setMovement(false);
+                    activePlayerInstance[playerNumber]->setMovement(false);
                 break;
             }
             if (getNetwork()->getIsClient())

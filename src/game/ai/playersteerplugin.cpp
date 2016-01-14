@@ -54,7 +54,7 @@ void playerSteerPlugin::open(void)
     while (x < activeTeamInstance.size())
     {
 
-        activePlayerInstance->push_back(activeTeamInstance[x]->getActivePlayerInstance());
+        activePlayerInstance.push_back(activeTeamInstance[x]->getActivePlayerInstance());
         size_t y = 0;
         while (y < activePlayerInstance[x].size())
         {
@@ -190,9 +190,9 @@ void playerSteerPlugin::update(const float currentTime, const float elapsedTime)
     size_t x = 0;
     while (x < activeTeamInstance.size())
     {
-        activePlayerInstance->push_back(activeTeamInstance[x]->getActivePlayerInstance());
+        activePlayerInstance.push_back(activeTeamInstance[x]->getActivePlayerInstance());
         size_t y = 0;
-        while (y < activePlayerInstance[x]->size())
+        while (y < activePlayerInstance[x].size())
         {
             if (y != activeTeamInstance[x]->getHumanPlayer() && activePlayerInstance[x][y]->getModelLoaded())
             {

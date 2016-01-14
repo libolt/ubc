@@ -513,7 +513,7 @@ void teamState::updateState()	// updates the state of the object
                 size_t instanceWithBall = -1;
                 while (x < activePlayerInstance.size())
                 {
-                    if (activePlayerInstance[x].getID() == playerWithBallID)
+                    if (activePlayerInstance[x]->getID() == playerWithBallID)
                     {
                         instanceWithBall = x;
                         break;
@@ -521,37 +521,37 @@ void teamState::updateState()	// updates the state of the object
 
                     ++x;
                 }
-                if (!activePlayerInstance[instanceWithBall].getPassBall())	// checks if the player with ball is passing it.
-				{
+                if (!activePlayerInstance[instanceWithBall]->getPassBall())	// checks if the player with ball is passing it.
+                {
 	//				exit(0);
                 }
-                else if (activePlayerInstance[instanceWithBall].getPassBall())
-				{
+                else if (activePlayerInstance[instanceWithBall]->getPassBall())
+                {
 					logMsg("Calculating Pass");
 	//				exit(0);
-                    if (!playerInstance[instanceWithBall].getPassCalculated())
+                    if (!playerInstance[instanceWithBall]->getPassCalculated())
 					{
 	//					exit(0);
 						Ogre::Vector3 bballPos;
 						Ogre::Vector3 playerPos;
-                        activePlayerInstance[instanceWithBall].calculatePass();
+                        activePlayerInstance[instanceWithBall]->calculatePass();
 
 						//sets the basketball Height;
 						bballPos = basketballInstance[activeBBallInstance].getNode()->getPosition();
-                        playerPos = activePlayerInstance[instanceWithBall].getNode()->getPosition();
+                        playerPos = activePlayerInstance[instanceWithBall]->getNode()->getPosition();
 						bballPos[1] = playerPos[1];
 						basketballInstance[activeBBallInstance].getNode()->setPosition(bballPos);
 
 					}
-                    else if (activePlayerInstance[playerWithBallInstance].getPassCalculated())
+                    else if (activePlayerInstance[playerWithBallInstance]->getPassCalculated())
 					{
 //						exit(0);
 						executePass();
                         if (physEngine.getPassCollision())	// checks if ball has collided with player being passed to.
 						{
 //							exit(0);
-                            activePlayerInstance[instanceWithBall].setPassBall(false);	// player is no longer passing the ball
-                            playerWithBallInstance = activePlayerInstance[instanceWithBall].getPassToPlayer(); // playerWithBall has changed
+                            activePlayerInstance[instanceWithBall]->setPassBall(false);	// player is no longer passing the ball
+                            playerWithBallInstance = activePlayerInstance[instanceWithBall]->getPassToPlayer(); // playerWithBall has changed
 
 							if (humanControlled)
 							{
@@ -567,8 +567,8 @@ void teamState::updateState()	// updates the state of the object
 					}
 				}
 //				logMsg("Player with ball ==  "  +convert->toString(playerWithBall));
-//			    logMsg("Player with ball's name: "  +activePlayerInstance[playerWithBall].getPlayerName());
-//				logMsg("Player with ball's current position: "  +convert->toString(activePlayerInstance[playerWithBall].getNode()->getPosition()));
+//			    logMsg("Player with ball's name: "  +activePlayerInstance[playerWithBall]->getPlayerName());
+//				logMsg("Player with ball's current position: "  +convert->toString(activePlayerInstance[playerWithBall]->getNode()->getPosition()));
 			}
 		}
         logMsg("Team type = " +convert->toString(teamType));
@@ -665,7 +665,7 @@ bool teamState::createPlayerInstances()
             pSteer->setTeamType(teamType);
             pSteer->reset();
             pInstance->setSteer(pSteer);
-            playerInstance->push_back(pInstance);    // adds pInstance to the playerInstance std::vector.
+            playerInstance.push_back(pInstance);    // adds pInstance to the playerInstance std::vector.
 
             logMsg("Player Model Name == " +gamePlayerInstance[i]->getEntityModelFileName());
 //            exit(0);
@@ -706,38 +706,38 @@ bool teamState::createPlayerInstances()
         while (i<activePlayerID.size())
         {
 
-            logMsg("playerInstance[x].getID()() = " +convert->toString(playerInstance[x].getID()));
-            if (activePlayerID[i] == playerInstance[x].getID())
+            logMsg("playerInstance[x]->getID()() = " +convert->toString(playerInstance[x]->getID()));
+            if (activePlayerID[i] == playerInstance[x]->getID())
             {
                 logMsg("I am here!");
 //                exit(0);
 //                IDMatch = true;
                 logMsg("Success!");
 //                exit(0);
-                if (!playerInstance[x].getModelLoaded())
+                if (!playerInstance[x]->getModelLoaded())
                 {
                     logMsg("Here as well!");
 //                    exit(0);
-                    playerInstance[x].setEntityName(playerInstance[x].getPlayerName());
-                    playerInstance[x].setEntityNodeName(playerInstance[x].getPlayerName());
-                    if (playerInstance[x].loadModel())
+                    playerInstance[x]->setEntityName(playerInstance[x]->getPlayerName());
+                    playerInstance[x]->setEntityNodeName(playerInstance[x]->getPlayerName());
+                    if (playerInstance[x]->loadModel())
                     {
                         logMsg("Loading Model");
 //                        exit(0);
-                        playerInstance[x].setModelLoaded(true);
+                        playerInstance[x]->setModelLoaded(true);
                     }
                     else
                     {
-                        logMsg("Failed to load model " +playerInstance[x].getPlayerName());
+                        logMsg("Failed to load model " +playerInstance[x]->getPlayerName());
                         exit(0);
                     }
                 }
-                if (playerInstance[x].setupPhysicsObject())
+                if (playerInstance[x]->setupPhysicsObject())
                 {
                     logMsg("player setupPhysics!");
                     //exit(0);
-                    playerInstance[x].setPhysicsSetup(true);
-                    playerInstance[x].setCollidesWith(teamCollidesWith);
+                    playerInstance[x]->setPhysicsSetup(true);
+                    playerInstance[x]->setCollidesWith(teamCollidesWith);
                 }
                 else
                 {
@@ -843,60 +843,60 @@ void teamState::setPlayerStartPositions()	// sets the initial coordinates for th
         {
             logMsg("activePlayerInstance.size > 0!");
  //           exit(0);
-            if (activePlayerInstance[x].getActivePosition() == PG)
+            if (activePlayerInstance[x]->getActivePosition() == PG)
             {
-                //activePlayerInstance[x].getNode()->setPosition(startingPos[0]);
-                activePlayerInstance[x].setCourtPositionChanged(true);
-                activePlayerInstance[x].setCourtPositionChangedType(STARTCHANGE);
-                activePlayerInstance[x].setNewCourtPosition(startingPos[0]);
+                //activePlayerInstance[x]->getNode()->setPosition(startingPos[0]);
+                activePlayerInstance[x]->setCourtPositionChanged(true);
+                activePlayerInstance[x]->setCourtPositionChangedType(STARTCHANGE);
+                activePlayerInstance[x]->setNewCourtPosition(startingPos[0]);
                 
-                activePlayerInstance[x].setDirection(playerDirection);
-                activePlayerInstance[x].getSteer()->setPlayerPosition(PG);
-                //activePlayerInstance[x].getSteer()->setPosition(convert->toOpenSteerVec3(startingPos[0]));               
+                activePlayerInstance[x]->setDirection(playerDirection);
+                activePlayerInstance[x]->getSteer()->setPlayerPosition(PG);
+                //activePlayerInstance[x]->getSteer()->setPosition(convert->toOpenSteerVec3(startingPos[0]));               
             }
-            else if (activePlayerInstance[x].getActivePosition() == SG)
+            else if (activePlayerInstance[x]->getActivePosition() == SG)
             {
-                //activePlayerInstance[x].getNode()->setPosition(startingPos[1]);
-                activePlayerInstance[x].setCourtPositionChanged(true);
-                activePlayerInstance[x].setCourtPositionChangedType(STARTCHANGE);
-                activePlayerInstance[x].setNewCourtPosition(startingPos[1]);
+                //activePlayerInstance[x]->getNode()->setPosition(startingPos[1]);
+                activePlayerInstance[x]->setCourtPositionChanged(true);
+                activePlayerInstance[x]->setCourtPositionChangedType(STARTCHANGE);
+                activePlayerInstance[x]->setNewCourtPosition(startingPos[1]);
 
-                activePlayerInstance[x].setDirection(playerDirection);
-                activePlayerInstance[x].getSteer()->setPlayerPosition(SG);
-                //activePlayerInstance[x].getSteer()->setPosition(convert->toOpenSteerVec3(startingPos[1]-5));
+                activePlayerInstance[x]->setDirection(playerDirection);
+                activePlayerInstance[x]->getSteer()->setPlayerPosition(SG);
+                //activePlayerInstance[x]->getSteer()->setPosition(convert->toOpenSteerVec3(startingPos[1]-5));
             }
-            else if (activePlayerInstance[x].getActivePosition() == SF)
+            else if (activePlayerInstance[x]->getActivePosition() == SF)
             {
-                //activePlayerInstance[x].getNode()->setPosition(startingPos[2]);
-                activePlayerInstance[x].setCourtPositionChanged(true);
-                activePlayerInstance[x].setCourtPositionChangedType(STARTCHANGE);
-                activePlayerInstance[x].setNewCourtPosition(startingPos[2]);
+                //activePlayerInstance[x]->getNode()->setPosition(startingPos[2]);
+                activePlayerInstance[x]->setCourtPositionChanged(true);
+                activePlayerInstance[x]->setCourtPositionChangedType(STARTCHANGE);
+                activePlayerInstance[x]->setNewCourtPosition(startingPos[2]);
 
-                activePlayerInstance[x].setDirection(playerDirection);
-                activePlayerInstance[x].getSteer()->setPlayerPosition(SF);
-                //activePlayerInstance[x].getSteer()->setPosition(convert->toOpenSteerVec3(startingPos[2]));
+                activePlayerInstance[x]->setDirection(playerDirection);
+                activePlayerInstance[x]->getSteer()->setPlayerPosition(SF);
+                //activePlayerInstance[x]->getSteer()->setPosition(convert->toOpenSteerVec3(startingPos[2]));
             }
-            else if (activePlayerInstance[x].getActivePosition() == PF)
+            else if (activePlayerInstance[x]->getActivePosition() == PF)
             {
-                //activePlayerInstance[x].getNode()->setPosition(startingPos[3]);
-                activePlayerInstance[x].setCourtPositionChanged(true);
-                activePlayerInstance[x].setCourtPositionChangedType(STARTCHANGE);
-                activePlayerInstance[x].setNewCourtPosition(startingPos[3]);
+                //activePlayerInstance[x]->getNode()->setPosition(startingPos[3]);
+                activePlayerInstance[x]->setCourtPositionChanged(true);
+                activePlayerInstance[x]->setCourtPositionChangedType(STARTCHANGE);
+                activePlayerInstance[x]->setNewCourtPosition(startingPos[3]);
 
-                activePlayerInstance[x].setDirection(playerDirection);
-                activePlayerInstance[x].getSteer()->setPlayerPosition(PF);
-                //activePlayerInstance[x].getSteer()->setPosition(convert->toOpenSteerVec3(startingPos[3]));
+                activePlayerInstance[x]->setDirection(playerDirection);
+                activePlayerInstance[x]->getSteer()->setPlayerPosition(PF);
+                //activePlayerInstance[x]->getSteer()->setPosition(convert->toOpenSteerVec3(startingPos[3]));
             }
-            else if (activePlayerInstance[x].getActivePosition() == C)
+            else if (activePlayerInstance[x]->getActivePosition() == C)
             {
-               // activePlayerInstance[x].getNode()->setPosition(startingPos[4]);
-                activePlayerInstance[x].setCourtPositionChanged(true);
-                activePlayerInstance[x].setCourtPositionChangedType(STARTCHANGE);
-                activePlayerInstance[x].setNewCourtPosition(startingPos[4]);
+               // activePlayerInstance[x]->getNode()->setPosition(startingPos[4]);
+                activePlayerInstance[x]->setCourtPositionChanged(true);
+                activePlayerInstance[x]->setCourtPositionChangedType(STARTCHANGE);
+                activePlayerInstance[x]->setNewCourtPosition(startingPos[4]);
 
-                activePlayerInstance[x].setDirection(playerDirection);
-                activePlayerInstance[x].getSteer()->setPlayerPosition(C);
-               // activePlayerInstance[x].getSteer()->setPosition(convert->toOpenSteerVec3(startingPos[4]));
+                activePlayerInstance[x]->setDirection(playerDirection);
+                activePlayerInstance[x]->getSteer()->setPlayerPosition(C);
+               // activePlayerInstance[x]->getSteer()->setPosition(convert->toOpenSteerVec3(startingPos[4]));
             }
             else
             {
@@ -912,9 +912,9 @@ void teamState::setPlayerStartPositions()	// sets the initial coordinates for th
     while (x < activePlayerInstance.size())
     {
         
-        logMsg("Team " +convert->toString(teamType) +" PlayerSteerNode" +convert->toString(x) +" Position == " +convert->toString(activePlayerInstance[x].getNode()->getPosition()));
+        logMsg("Team " +convert->toString(teamType) +" PlayerSteerNode" +convert->toString(x) +" Position == " +convert->toString(activePlayerInstance[x]->getNode()->getPosition()));
 //        exit(0);
-        logMsg("Team " +convert->toString(teamType) +" PlayerSteer " +convert->toString(x) +" Position ==  " +convert->toString(activePlayerInstance[x].getSteer()->position()));
+        logMsg("Team " +convert->toString(teamType) +" PlayerSteer " +convert->toString(x) +" Position ==  " +convert->toString(activePlayerInstance[x]->getSteer()->position()));
         ++x;
     }
     */
@@ -928,19 +928,19 @@ void teamState::setPlayerStartActivePositions() // sets the position the players
     logMsg("activePlayerInstance.size() =" +convert->toString(activePlayerInstance.size()));
     if (activePlayerInstance.size() > 0) // checks that activePlayerInstance has data before executing
     {
-        activePlayerInstance[0].setActivePosition(PG);
-        activePlayerInstance[1].setActivePosition(SG);
-        activePlayerInstance[2].setActivePosition(SF);
-        activePlayerInstance[3].setActivePosition(PF);
-        activePlayerInstance[4].setActivePosition(C);
+        activePlayerInstance[0]->setActivePosition(PG);
+        activePlayerInstance[1]->setActivePosition(SG);
+        activePlayerInstance[2]->setActivePosition(SF);
+        activePlayerInstance[3]->setActivePosition(PF);
+        activePlayerInstance[4]->setActivePosition(C);
     }
     // set steer IDs
     size_t x = 0;
     while (x < activePlayerInstance.size())
     {
-        //playerSteer *pSteer = activePlayerInstance[x].getSteer();
+        //playerSteer *pSteer = activePlayerInstance[x]->getSteer();
        // pSteer->setID(x);
-        activePlayerInstance[x].getSteer()->setID(x);
+        activePlayerInstance[x]->getSteer()->setID(x);
         ++x;
     }
     
@@ -954,15 +954,15 @@ void teamState::updatePlayerStates()  // updates the states of active players
     
     while (x<activePlayerInstance.size())
     {
-        activePlayerInstance[x].updateState();
+        activePlayerInstance[x]->updateState();
         ++x;
     }
     
     x = 0;
     while (x < activePlayerInstance.size())
     {
-        logMsg("PlayerSteerNode Position == " +convert->toString(activePlayerInstance[x].getNode()->getPosition()));
-        logMsg("PlayerSteer Position == " +convert->toString(activePlayerInstance[x].getSteer()->position()));
+        logMsg("PlayerSteerNode Position == " +convert->toString(activePlayerInstance[x]->getNode()->getPosition()));
+        logMsg("PlayerSteer Position == " +convert->toString(activePlayerInstance[x]->getSteer()->position()));
         ++x;
     }
 
@@ -980,7 +980,7 @@ void teamState::updatePlayerDirections()
 	std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
     std::vector<Ogre::SceneNode>::iterator playersIT;
 
-    std::string playerID = convert->toString(playerInstance[4].getID());
+    std::string playerID = convert->toString(playerInstance[4]->getID());
 //    exit(0);
 //    logMsg("playerID == " +playerID);
     // checks if a player's direction has changed and rotates the model accordingly.
@@ -991,8 +991,8 @@ void teamState::updatePlayerDirections()
 //    for (size_t i = 0; i < playerInstance.size(); ++i)
     while (x<activePlayerInstance.size())
     {
-        playerDirection = activePlayerInstance[x].getDirection();
-        oldPlayerDirection = activePlayerInstance[x].getOldDirection();
+        playerDirection = activePlayerInstance[x]->getDirection();
+        oldPlayerDirection = activePlayerInstance[x]->getOldDirection();
         if (oldPlayerDirection != playerDirection)
         {
             
@@ -1003,8 +1003,8 @@ void teamState::updatePlayerDirections()
             logMsg("oldPlayerDirection = " + oldPlayerDirect);
             logMsg("playerDirection = " + playerDirect);
             logMsg("bball player = " + bballPlayer);
-            playerInstance[basketballInstance[activeBBallInstance].getPlayer()] = playerInstance[i];
-//            playerNodes.at(basketballInstance[activeBBallInstance].getPlayer()) = playerNodes.at(i);  // sets the current player node
+            playerInstance[basketballInstance[activeBBallInstance]->getPlayer()] = playerInstance[i];
+//            playerNodes.at(basketballInstance[activeBBallInstance]->getPlayer()) = playerNodes.at(i);  // sets the current player node
             */
             switch (oldPlayerDirection)
             {
@@ -1012,13 +1012,13 @@ void teamState::updatePlayerDirections()
                     switch (playerDirection)
                     {
                         case DOWN:
-                            activePlayerInstance[x].getNode()->yaw(Ogre::Degree (180));
+                            activePlayerInstance[x]->getNode()->yaw(Ogre::Degree (180));
                             break;
                         case LEFT:
-                            activePlayerInstance[x].getNode()->yaw(Ogre::Degree (270));
+                            activePlayerInstance[x]->getNode()->yaw(Ogre::Degree (270));
                             break;
                         case RIGHT:
-                            activePlayerInstance[x].getNode()->yaw(Ogre::Degree (90));
+                            activePlayerInstance[x]->getNode()->yaw(Ogre::Degree (90));
 //                            exit(0);
                             break;
                         default:
@@ -1029,13 +1029,13 @@ void teamState::updatePlayerDirections()
                     switch (playerDirection)
                     {
                         case UP:
-                            activePlayerInstance[x].getNode()->yaw(Ogre::Degree (180));
+                            activePlayerInstance[x]->getNode()->yaw(Ogre::Degree (180));
                             break;
                         case LEFT:
-                            activePlayerInstance[x].getNode()->yaw(Ogre::Degree (90));
+                            activePlayerInstance[x]->getNode()->yaw(Ogre::Degree (90));
                             break;
                         case RIGHT:
-                            activePlayerInstance[x].getNode()->yaw(Ogre::Degree (270));
+                            activePlayerInstance[x]->getNode()->yaw(Ogre::Degree (270));
                             break;
                         default:
                             break;
@@ -1045,13 +1045,13 @@ void teamState::updatePlayerDirections()
                         switch (playerDirection)
                         {
                             case UP:
-                                activePlayerInstance[x].getNode()->yaw(Ogre::Degree (90));
+                                activePlayerInstance[x]->getNode()->yaw(Ogre::Degree (90));
                                 break;
                             case DOWN:
-                                activePlayerInstance[x].getNode()->yaw(Ogre::Degree (270));
+                                activePlayerInstance[x]->getNode()->yaw(Ogre::Degree (270));
                                 break;
                             case RIGHT:
-                                activePlayerInstance[x].getNode()->yaw(Ogre::Degree (180));
+                                activePlayerInstance[x]->getNode()->yaw(Ogre::Degree (180));
                                 break;
                             default:
                                 break;
@@ -1061,13 +1061,13 @@ void teamState::updatePlayerDirections()
                         switch (playerDirection)
                         {
                             case UP:
-                                activePlayerInstance[x].getNode()->yaw(Ogre::Degree (270));
+                                activePlayerInstance[x]->getNode()->yaw(Ogre::Degree (270));
                                 break;
                             case DOWN:
-                                activePlayerInstance[x].getNode()->yaw(Ogre::Degree (90));
+                                activePlayerInstance[x]->getNode()->yaw(Ogre::Degree (90));
                                 break;
                             case LEFT:
-                                activePlayerInstance[x].getNode()->yaw(Ogre::Degree (180));
+                                activePlayerInstance[x]->getNode()->yaw(Ogre::Degree (180));
                                 break;
                             default:
                                 break;
@@ -1077,12 +1077,12 @@ void teamState::updatePlayerDirections()
                     break;
             }
         }
-        logMsg("directPlayerID == " +convert->toString(activePlayerInstance[x].getID()));
+        logMsg("directPlayerID == " +convert->toString(activePlayerInstance[x]->getID()));
         logMsg("directPlayerWithBallInstance == " +convert->toString(playerWithBallInstance));
-        if (activePlayerInstance[x].getID() != playerWithBallID)
+        if (activePlayerInstance[x]->getID() != playerWithBallID)
         {
             oldPlayerDirection = playerDirection;
-            activePlayerInstance[x].setOldDirection(oldPlayerDirection);  // copies contents of oldPlayerDirection to the oldDirection variable
+            activePlayerInstance[x]->setOldDirection(oldPlayerDirection);  // copies contents of oldPlayerDirection to the oldDirection variable
         }
         else
         {
@@ -1109,59 +1109,59 @@ void teamState::updatePlayerMovements()	// updates player movements
 //	for (size_t i = 0; i < playerInstance.size(); ++i)
     while(x<activePlayerInstance.size())
 	{
-        if (activePlayerInstance[x].getMovement())	// if true sets coordinate change accordingly
+        if (activePlayerInstance[x]->getMovement())	// if true sets coordinate change accordingly
         {
 //                    exit(0);
-            if (activePlayerInstance[x].getDirection() == UP)
+            if (activePlayerInstance[x]->getDirection() == UP)
             {
                 posChange = Ogre::Vector3(0.0f, 0.0f, -0.400f);
                 logMsg("UP!");
 //				exit(0);
             }
-            else if (activePlayerInstance[x].getDirection() == DOWN)
+            else if (activePlayerInstance[x]->getDirection() == DOWN)
             {
                 posChange = Ogre::Vector3(0.0f, 0.0f, 0.400f);
             }
-            else if (activePlayerInstance[x].getDirection() == LEFT)
+            else if (activePlayerInstance[x]->getDirection() == LEFT)
             {
 //			    exit(0);
 
                 posChange = Ogre::Vector3(-0.400f, 0.0f, 0.0f);
-//			    playerInstance[i].getPhysBody()->setLinearVelocity(btVector3(0.4,0,0));
+//			    playerInstance[i]->getPhysBody()->setLinearVelocity(btVector3(0.4,0,0));
             }
-            else if (activePlayerInstance[x].getDirection() == RIGHT)
+            else if (activePlayerInstance[x]->getDirection() == RIGHT)
             {
                 posChange = Ogre::Vector3(0.400f, 0.0f, 0.0f);
             }
-            else if (activePlayerInstance[x].getDirection() == UPLEFT)
+            else if (activePlayerInstance[x]->getDirection() == UPLEFT)
             {
                 posChange = Ogre::Vector3(-0.400f, 0.0f, -0.400f);
             }
-            else if (activePlayerInstance[x].getDirection() == UPRIGHT)
+            else if (activePlayerInstance[x]->getDirection() == UPRIGHT)
             {
                 posChange = Ogre::Vector3(0.400f, 0.0f, -0.400f);
             }
-            else if (activePlayerInstance[x].getDirection() == DOWNLEFT)
+            else if (activePlayerInstance[x]->getDirection() == DOWNLEFT)
             {
                 posChange = Ogre::Vector3(-0.400f, 0.0f, 0.400f);
             }
-            else if (activePlayerInstance[x].getDirection() == DOWNRIGHT)
+            else if (activePlayerInstance[x]->getDirection() == DOWNRIGHT)
             {
                 posChange = Ogre::Vector3(0.400f, 0.0f, 0.400f);
             }
 
         }
-        else if (!activePlayerInstance[x].getMovement())	// if false then sets their coordinate changes to 0.0
+        else if (!activePlayerInstance[x]->getMovement())	// if false then sets their coordinate changes to 0.0
         {
             posChange = Ogre::Vector3(0.0f, 0.0f, 0.0f);
         }
 
         if (posChange.x != 0 || posChange.y != 0 || posChange.z != 0)
         {
-            activePlayerInstance[x].setNewCourtPosition(posChange);	// sets the newCourtPosition for current playerInstance
-            activePlayerInstance[x].setCourtPositionChanged(true);
-            activePlayerInstance[x].setCourtPositionChangedType(INPUTCHANGE);
-            activePlayerInstance[x].setMovement(false);
+            activePlayerInstance[x]->setNewCourtPosition(posChange);	// sets the newCourtPosition for current playerInstance
+            activePlayerInstance[x]->setCourtPositionChanged(true);
+            activePlayerInstance[x]->setCourtPositionChangedType(INPUTCHANGE);
+            activePlayerInstance[x]->setMovement(false);
         }       
         ++x;
 	}
@@ -1182,10 +1182,10 @@ void teamState::executePass()		// executes the pass between players
 
     size_t activeBBallInstance = gameS->getActiveBBallInstance();
 
-    size_t passToPlayer = activePlayerInstance[playerWithBallInstance].getPassToPlayer();
+    size_t passToPlayer = activePlayerInstance[playerWithBallInstance]->getPassToPlayer();
 	std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
-    Ogre::Vector3 playerWithBallCoords = activePlayerInstance[playerWithBallInstance].getNode()->getPosition();
-    Ogre::Vector3 passToPlayerCoords = activePlayerInstance[passToPlayer].getNode()->getPosition();
+    Ogre::Vector3 playerWithBallCoords = activePlayerInstance[playerWithBallInstance]->getNode()->getPosition();
+    Ogre::Vector3 passToPlayerCoords = activePlayerInstance[passToPlayer]->getNode()->getPosition();
 //	exit(0);
 	Ogre::Vector3 bballCoords = basketballInstance[activeBBallInstance].getNode()->getPosition();
 	btVector3 bballPosChange;
@@ -1266,7 +1266,7 @@ void teamState::updatePositions()
 	{
         exit(0);
 //		logMsg("updatePositions X = " +convert->toString(x));
-        activePlayerInstance[x].updateCourtPosition();
+        activePlayerInstance[x]->updateCourtPosition();
         x++;
     }
     logMsg("courtPosition updated!!");

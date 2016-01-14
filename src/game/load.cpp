@@ -500,9 +500,9 @@ boost::shared_ptr<teamState> loader::loadTeamFile(string fileName)  // loads the
     return (tInstance);
 }
 
-std::vector<playerState> loader::loadPlayers()  // loads the players
+std::vector<boost::shared_ptr<playerState> > loader::loadPlayers()  // loads the players
 {
-    std::vector<playerState> players;
+    std::vector<boost::shared_ptr<playerState> > players;
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     string playerList = "data/players/players.xml";
 #else
@@ -580,14 +580,14 @@ bool loader::loadPlayerListFile( string fileName)  // loads the player list file
     return true;
 }
 
-playerState loader::loadPlayerFile(string fileName)  // loads the player file
+boost::shared_ptr<playerState> loader::loadPlayerFile(string fileName)  // loads the player file
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
-    playerState player;
-    std::vector<playerState> playerInstance = gameS->getPlayerInstance();
+    boost::shared_ptr<playerState> player;
+    std::vector<boost::shared_ptr<playerState> > playerInstance = gameS->getPlayerInstance();
     string firstName;
     string lastName;
     string modelName;
@@ -957,47 +957,47 @@ playerState loader::loadPlayerFile(string fileName)  // loads the player file
         improvability = convert->toInt(pElem->GetText());
     }
     
-    player.setFirstName(firstName);
-    player.setLastName(lastName);
-    player.setPlayerName(firstName +" " +lastName);
-    player.setAge(age);
-    player.setHeight(height);
-    player.setWeight(weight);
-    player.setID(ID);
-    player.setTeamID(teamID);
-    player.setEntityModelFileName(modelName);
-    player.setPrimaryPosition(primaryPosition);
-    player.setSecondaryPosition(secondaryPosition);
-    player.setShooting(shooting);
-    player.setFreeThrow(freeThrow);
-    player.setLayup(layup);
-    player.setDunk(dunk);
-    player.setInside(inside);
-    player.setMidRange(midRange);
-    player.setThreePoint(threePoint);
-    player.setBallHandling(ballHandling);
-    player.setBallSecurity(ballSecurity);
-    player.setPassing(passing);
-    player.setPickSetting(pickSetting);
-    player.setOffenseAwareness(offenseAwareness);
-    player.setDefenseAwareness(defenseAwareness);
-    player.setOffenseRebound(offenseRebound);
-    player.setDefenseRebound(defenseRebound);
-    player.setBlocking(blocking);
-    player.setStealing(stealing);
-    player.setInteriorDefense(interiorDefense);
-    player.setMidRangeDefense(midRangeDefense);
-    player.setPerimeterDefense(perimeterDefense);
-    player.setHustle(hustle);
-    player.setSpeed(speed);
-    player.setQuickness(quickness);
-    player.setFatigue(fatigue);
-    player.setDurability(durability);
-    player.setDemeanor(demeanor);
-    player.setImprovability(improvability);
-    player.calculateOverallRating();
+    player->setFirstName(firstName);
+    player->setLastName(lastName);
+    player->setPlayerName(firstName +" " +lastName);
+    player->setAge(age);
+    player->setHeight(height);
+    player->setWeight(weight);
+    player->setID(ID);
+    player->setTeamID(teamID);
+    player->setEntityModelFileName(modelName);
+    player->setPrimaryPosition(primaryPosition);
+    player->setSecondaryPosition(secondaryPosition);
+    player->setShooting(shooting);
+    player->setFreeThrow(freeThrow);
+    player->setLayup(layup);
+    player->setDunk(dunk);
+    player->setInside(inside);
+    player->setMidRange(midRange);
+    player->setThreePoint(threePoint);
+    player->setBallHandling(ballHandling);
+    player->setBallSecurity(ballSecurity);
+    player->setPassing(passing);
+    player->setPickSetting(pickSetting);
+    player->setOffenseAwareness(offenseAwareness);
+    player->setDefenseAwareness(defenseAwareness);
+    player->setOffenseRebound(offenseRebound);
+    player->setDefenseRebound(defenseRebound);
+    player->setBlocking(blocking);
+    player->setStealing(stealing);
+    player->setInteriorDefense(interiorDefense);
+    player->setMidRangeDefense(midRangeDefense);
+    player->setPerimeterDefense(perimeterDefense);
+    player->setHustle(hustle);
+    player->setSpeed(speed);
+    player->setQuickness(quickness);
+    player->setFatigue(fatigue);
+    player->setDurability(durability);
+    player->setDemeanor(demeanor);
+    player->setImprovability(improvability);
+    player->calculateOverallRating();
     playerInstance.push_back(player);
-    logMsg("player First Name == "+player.getFirstName());
+    logMsg("player First Name == "+player->getFirstName());
     //gameS->setPlayerDataInstances(playerDataInstance);
     //	vector<players::playerData> playerN = playerG->getPlayer();
 

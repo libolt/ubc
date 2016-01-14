@@ -636,7 +636,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     size_t y = 0;
     logMsg("GUI playerInstance.size() = " +convert->toString(playerInstance.size()));
     
-    while (y < playerInstance->size())
+    while (y < playerInstance.size())
     {
         size_t z = 0;
         while (z < activePlayerID.size())
@@ -694,18 +694,18 @@ void GUISystem::playerStartSelected()  // process player start selection
 //.        exit(0);
 
     }
-    playerInstance->clear();
+    playerInstance.clear();
     playerInstance = activeTeamInstance[1]->getPlayerInstance();
-    activePlayerInstance->clear();
+    activePlayerInstance.clear();
     y = 0;
-    while (y < playerInstance->size())
+    while (y < playerInstance.size())
     {
         size_t z = 0;
         while (z < activePlayerID.size())
         {
             if (playerInstance[y]->getID() == activePlayerID[z])
             {
-                activePlayerInstance->push_back(playerInstance[y]);
+                activePlayerInstance.push_back(playerInstance[y]);
             }
             ++z;
         }

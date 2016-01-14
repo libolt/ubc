@@ -81,9 +81,9 @@ public:
     boost::shared_ptr<teamState> loadTeamFile(string fileName);  // loads data from the team XML files
 
     // Players
-    std::vector<playerState> loadPlayers();  // loads player data from XML files
+    std::vector<boost::shared_ptr<playerState> > loadPlayers();  // loads player data from XML files
     bool loadPlayerListFile(string fileName);  // loads list of player files from players.xml
-    playerState loadPlayerFile(string fileName);  // loads data from the player XML files
+    boost::shared_ptr<playerState> loadPlayerFile(string fileName);  // loads data from the player XML files
 
     //Offense
     std::vector<offensePlays> loadOffensePlays();  // load offense plays from XML files

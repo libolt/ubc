@@ -112,8 +112,8 @@ public:
     void setTeamDataInstance(std::vector<teamData> set);  // sets the value of teamDataInstance;
 */
 
-    std::vector<playerState> getPlayerInstance();  // retrieves the value of playerInstance
-    void setPlayerInstances(std::vector<playerState> set);  // sets the value of playerInstance;
+    std::vector<boost::shared_ptr<playerState> > getPlayerInstance();  // retrieves the value of playerInstance
+    void setPlayerInstances(std::vector<boost::shared_ptr<playerState> > set);  // sets the value of playerInstance;
 
     std::vector<courtData> getCourtDataInstance();  // retrieves the value of courtDataInstance
     void setCourtDataInstance(std::vector<courtData> set);  // sets the value of courtDataInstance
@@ -216,7 +216,7 @@ private:
 
 //    std::vector<teamData> teamDataInstance;	 // stores the vector of teams loaded from the xml files
 //    std::vector<playerData> playerDataInstance;  // stores the vector of the players loaded from the xml files
-    std::vector<playerState> playerInstance;  // stores the vector of the players loaded from the xml files
+    std::vector<boost::shared_ptr<playerState> > playerInstance;  // stores the vector of the players loaded from the xml files
     
     std::vector<courtData> courtDataInstance;  // stores the vector the courts loaded from the xml files
 

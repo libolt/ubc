@@ -215,7 +215,7 @@ void defenseState::updateState(teamTypes teamOnDefense)	// updates the state of 
         while (x<numPlayers) // loops until the number of players on court per team is reached
         {
             int DNum = activeDNum[x];
-            if (DNum < activeDNum.size() && DNum < playerDInstance->size())
+            if (DNum < activeDNum.size() && DNum < playerDInstance.size())
             {
                 if (activeDNum[DNum] != humanPlayer && !playerDInstance[DNum]->getDefenseSet())
                 {

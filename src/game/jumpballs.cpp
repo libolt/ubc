@@ -197,7 +197,7 @@ bool jumpBalls::jumpBallExecute()  // initiates jump ball from jump ball circle
     size_t activeBBallInstance = gameS->getActiveBBallInstance();
 
     std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
-    std::vector<boost::shared_ptr<playerState> > activePlayerInstance;
+    std::vector<std::vector<boost::shared_ptr<playerState> > > activePlayerInstance;
 
     std::vector<size_t> jumpPlayerInstance;  // stores playerID of players jumping for the ball
     
@@ -205,12 +205,12 @@ bool jumpBalls::jumpBallExecute()  // initiates jump ball from jump ball circle
     while (x < activeTeamInstance.size())
     {
         //activePlayerInstance.clear();
-//        activePlayerInstance->push_back(activeTeamInstance[x]->getActivePlayerInstance());
-        activePlayerInstance = activeTeamInstance[x]->getActivePlayerInstance();
+        activePlayerInstance.push_back(activeTeamInstance[x]->getActivePlayerInstance());
+//        activePlayerInstance->( activeTeamInstance[x]->getActivePlayerInstance();
         
         size_t i = 0;
-        logMsg("active player instance size =" +convert->toString(activePlayerInstance[x]->size()));
-        while (i < activePlayerInstance[x]->size()) // loops until the activePlayerInstance is found that is currently playing center
+        logMsg("active player instance size =" +convert->toString(activePlayerInstance[x].size()));
+        while (i < activePlayerInstance[x].size()) // loops until the activePlayerInstance is found that is currently playing center
         {
             
 //            exit(0);
@@ -260,9 +260,9 @@ bool jumpBalls::jumpBallExecute()  // initiates jump ball from jump ball circle
         logMsg("active basketball instance == " +convert->toString(activeBBallInstance));
         logMsg("bball physics setup complete == " +convert->toString(basketballInstance[activeBBallInstance].getPhysicsSetup()));
         logMsg("bball physbody isinworld == " +convert->toString(basketballInstance[activeBBallInstance].getPhysBody()->isInWorld()));
-        logMsg("player physics setup complete == " +convert->toString(activePInstance.getPhysicsSetup()));
+        logMsg("player physics setup complete == " +convert->toString(activePInstance->getPhysicsSetup()));
 //        exit(0);
-        if (physEngine.collisionCheck(basketballInstance[activeBBallInstance].getPhysBody(), activePInstance.getPhysBody()))
+        if (physEngine.collisionCheck(basketballInstance[activeBBallInstance].getPhysBody(), activePInstance->getPhysBody()))
         {
             logMsg("team " +convert->toString(y) +" center collided with ball");
             ballTippedToTeam = activeTeamInstance[y]->getTeamType();
@@ -411,7 +411,7 @@ bool jumpBalls::tipToPlayer()  // tips the basketball to the appropriate player
         {
             logMsg("ballTippedToPlayerInstance == " +convert->toString(ballTippedToPlayerInstance));
 
-            if (physEngine.collisionCheck(basketballInstance[activeBBallInstance].getPhysBody(), activePlayerInstance[ballTippedToPlayerInstance].getPhysBody()))
+            if (physEngine.collisionCheck(basketballInstance[activeBBallInstance].getPhysBody(), activePlayerInstance[ballTippedToPlayerInstance]->getPhysBody()))
             {
  //               exit(0);
                 gameS->setTeamWithBall(ballTippedToTeam);

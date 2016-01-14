@@ -127,7 +127,7 @@ void UBC::processInput()  // processes game input
             {
                 if (activeTeamInstance[inputIterator]->getPlayerInstancesCreated())
                 {
-                    std::vector<playerState> activePlayerInstance = activeTeamInstance[inputIterator]->getActivePlayerInstance();
+                    std::vector<boost::shared_ptr<playerState> > activePlayerInstance = activeTeamInstance[inputIterator]->getActivePlayerInstance();
                     if (activeTeamInstance[inputIterator]->getHumanControlled())
                     {
                         int humanPlayer = activeTeamInstance[inputIterator]->getHumanPlayer();
@@ -140,10 +140,11 @@ void UBC::processInput()  // processes game input
                         size_t x = 0;
                         size_t humanInstance = 11;
                         while (x < activePlayerInstance.size())
-                        {                           logMsg("GEPlayerID == " +convert->toString(activePlayerInstance[x].getID()));
+                        {
+                            logMsg("GEPlayerID == " +convert->toString(activePlayerInstance[x]->getID()));
                             logMsg("GEHumanPlayer == " +convert->toString(humanPlayer));
 
-                            if (activePlayerInstance[x].getID() == humanPlayer)
+                            if (activePlayerInstance[x]->getID() == humanPlayer)
                             {
                                 humanInstance = x;
                                 break;
@@ -166,63 +167,63 @@ void UBC::processInput()  // processes game input
                                 switch (inputQueue[x])
                                 {
                                     case INUP:
-                                        activePlayerInstance[humanInstance].setMovement(true);
-                                        activePlayerInstance[humanInstance].setDirection(UP);
+                                        activePlayerInstance[humanInstance]->setMovement(true);
+                                        activePlayerInstance[humanInstance]->setDirection(UP);
                                         activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
                                         gameS->setActiveTeamInstance(activeTeamInstance);
 //                                        exit(0);
                                     break;
                                     case INDOWN:
-                                        activePlayerInstance[humanInstance].setMovement(true);
-                                        activePlayerInstance[humanInstance].setDirection(DOWN);
+                                        activePlayerInstance[humanInstance]->setMovement(true);
+                                        activePlayerInstance[humanInstance]->setDirection(DOWN);
                                         activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
                                         gameS->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INLEFT:
-                                        activePlayerInstance[humanInstance].setMovement(true);
-                                        activePlayerInstance[humanInstance].setDirection(LEFT);
+                                        activePlayerInstance[humanInstance]->setMovement(true);
+                                        activePlayerInstance[humanInstance]->setDirection(LEFT);
                                         activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
                                         gameS->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INRIGHT:
-                                        activePlayerInstance[humanInstance].setMovement(true);
-                                        activePlayerInstance[humanInstance].setDirection(RIGHT);
+                                        activePlayerInstance[humanInstance]->setMovement(true);
+                                        activePlayerInstance[humanInstance]->setDirection(RIGHT);
                                         activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
                                         gameS->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INUPLEFT:
-                                        activePlayerInstance[humanInstance].setMovement(true);
-                                        activePlayerInstance[humanInstance].setDirection(UPLEFT);
+                                        activePlayerInstance[humanInstance]->setMovement(true);
+                                        activePlayerInstance[humanInstance]->setDirection(UPLEFT);
                                         activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
                                         gameS->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INUPRIGHT:
-                                        activePlayerInstance[humanInstance].setMovement(true);
-                                        activePlayerInstance[humanInstance].setDirection(UPRIGHT);
+                                        activePlayerInstance[humanInstance]->setMovement(true);
+                                        activePlayerInstance[humanInstance]->setDirection(UPRIGHT);
                                         activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
                                         gameS->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INDOWNLEFT:
-                                        activePlayerInstance[humanInstance].setMovement(true);
-                                        activePlayerInstance[humanInstance].setDirection(DOWNLEFT);
+                                        activePlayerInstance[humanInstance]->setMovement(true);
+                                        activePlayerInstance[humanInstance]->setDirection(DOWNLEFT);
                                         activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
                                         gameS->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INDOWNRIGHT:
-                                        activePlayerInstance[humanInstance].setMovement(true);
-                                        activePlayerInstance[humanInstance].setDirection(DOWNRIGHT);
+                                        activePlayerInstance[humanInstance]->setMovement(true);
+                                        activePlayerInstance[humanInstance]->setDirection(DOWNRIGHT);
                                         activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
                                         gameS->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INSHOOTBLOCK:
-                                        activePlayerInstance[humanInstance].setMovement(false);
-                                        activePlayerInstance[humanInstance].setShootBlock(true);
+                                        activePlayerInstance[humanInstance]->setMovement(false);
+                                        activePlayerInstance[humanInstance]->setShootBlock(true);
                                         activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
                                         gameS->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INPASSSTEAL:
-                                        activePlayerInstance[humanInstance].setMovement(false);
-                                        activePlayerInstance[humanInstance].setPassSteal(true);
+                                        activePlayerInstance[humanInstance]->setMovement(false);
+                                        activePlayerInstance[humanInstance]->setPassSteal(true);
                                         activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
                                         gameS->setActiveTeamInstance(activeTeamInstance);
                                     break;
@@ -238,21 +239,21 @@ void UBC::processInput()  // processes game input
                             }
                         }
                         std::vector<boost::shared_ptr<teamState> > tInstance = gameS->getActiveTeamInstance();
-                        std::vector<playerState> activePInstance = tInstance[inputIterator]->getActivePlayerInstance();
+                        std::vector<boost::shared_ptr<playerState> > activePInstance = tInstance[inputIterator]->getActivePlayerInstance();
                         logMsg("humanInstance == " +convert->toString(humanInstance));
-                        //logMsg("inPassSteal == " +convert->toString(activePInstance[humanInstance].getPassSteal()));
+                        //logMsg("inPassSteal == " +convert->toString(activePInstance[humanInstance]->getPassSteal()));
                         //exit(0);
 
                         /// FIXME! This if statement should be adapted to work correctly instead of relying on the i variable
                         int i = 0;
                         if (gameS->getTeamWithBall() == i)
                         {
-                            if (activePlayerInstance[humanInstance].getMovement())
+                            if (activePlayerInstance[humanInstance]->getMovement())
                             {
-                                logMsg("human playerID == " +convert->toString(activePlayerInstance[humanInstance].getID()));
+                                logMsg("human playerID == " +convert->toString(activePlayerInstance[humanInstance]->getID()));
                                 logMsg("ball player == " +convert->toString(activeTeamInstance[inputIterator]->getPlayerWithBallInstance()));
                                 logMsg("ball playerID == " +convert->toString(activeTeamInstance[inputIterator]->getPlayerWithBallID()));
-                                if (activePlayerInstance[humanInstance].getID() == activeTeamInstance[inputIterator]->getPlayerWithBallID())
+                                if (activePlayerInstance[humanInstance]->getID() == activeTeamInstance[inputIterator]->getPlayerWithBallID())
                                 {
                                     bballInstance[activeBBallInstance].setMovement(true);
                                     gameS->setBasketballInstance(bballInstance);

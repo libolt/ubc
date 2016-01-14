@@ -303,7 +303,7 @@ void physicsEngine::updateState()  // updates the state for the physics engine
     logMsg("Updating Physics Engine State");
 
     std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
-    std::vector <std::vector<playerState> > activePlayerInstance;
+    std::vector <std::vector<boost::shared_ptr<playerState> > > activePlayerInstance;
     std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
 
 //    exit(0);
@@ -351,19 +351,19 @@ void physicsEngine::updateState()  // updates the state for the physics engine
                 size_t y = 0;
                 while (y < activePlayerInstance[z].size())
                 {
-                    btTransform transform = activePlayerInstance[z][y].getPhysBody()->getWorldTransform();
+                    btTransform transform = activePlayerInstance[z][y]->getPhysBody()->getWorldTransform();
                     btVector3 physPos = transform.getOrigin();
-                    Ogre::Vector3 courtPos = activePlayerInstance[z][y].getCourtPosition();
-                    OpenSteer::Vec3 steerPos = activePlayerInstance[z][y].getSteer()->position();
+                    Ogre::Vector3 courtPos = activePlayerInstance[z][y]->getCourtPosition();
+                    OpenSteer::Vec3 steerPos = activePlayerInstance[z][y]->getSteer()->position();
                     logMsg("Team " +convert->toString(z) +" player " +convert->toString(y) +" pActivePhys == " +convert->toString(physPos));
                     logMsg("Team " +convert->toString(z) +" player " +convert->toString(y) +" pActiveCourt == " +convert->toString(courtPos));
                     logMsg("Team " +convert->toString(z) +" player " +convert->toString(y) +" pActiveSteer == " +convert->toString(steerPos));
-                    if (activePlayerInstance[z][y].getCourtPositionChangedType() == NOCHANGE)
+                    if (activePlayerInstance[z][y]->getCourtPositionChangedType() == NOCHANGE)
                     {
                         if (!compare.OgreVector3ToBTVector3(courtPos, physPos))
                         {
-                            activePlayerInstance[z][y].setCourtPositionChanged(true);
-                            activePlayerInstance[z][y].setCourtPositionChangedType(PHYSICSCHANGE);
+                            activePlayerInstance[z][y]->setCourtPositionChanged(true);
+                            activePlayerInstance[z][y]->setCourtPositionChangedType(PHYSICSCHANGE);
                             //exit(0);
                         }
                     }
@@ -400,7 +400,7 @@ void physicsEngine::updateState()  // updates the state for the physics engine
             size_t playerWithBallInstance = -1;
             while (x < activePlayerInstance[teamWithBall].size())
             {
-                if (activePlayerInstance[teamWithBall][x].getID() == playerWithBallID)
+                if (activePlayerInstance[teamWithBall][x]->getID() == playerWithBallID)
                 {
                     playerWithBallInstance = x;
                     break;
@@ -408,14 +408,14 @@ void physicsEngine::updateState()  // updates the state for the physics engine
                 ++x;
             }
 
-            if (!activePlayerInstance[teamWithBall][playerWithBallInstance].getPassBall())
+            if (!activePlayerInstance[teamWithBall][playerWithBallInstance]->getPassBall())
             {
                 activeTeamInstance[teamWithBall]->setPlayerWithBallDribbling(true);
     //          basketballInstance[activeBBallInstance].getPhysBody()->forceActivationState(ACTIVE_TAG);
     //          basketballInstance[activeBBallInstance].getPhysBody()->applyForce(btVector3(-0.0f, -31.0f, 0.0f),btVector3(0.0f,0.0f,0.0f));
     //          basketballInstance[activeBBallInstance].getPhysBody()->setLinearVelocity(btVector3(0,-10,0));
             }
-            else if (activePlayerInstance[teamWithBall][playerWithBallInstance].getPassBall() && activePlayerInstance[teamWithBall][playerWithBallInstance].getPassCalculated())
+            else if (activePlayerInstance[teamWithBall][playerWithBallInstance]->getPassBall() && activePlayerInstance[teamWithBall][playerWithBallInstance]->getPassCalculated())
             {
                 passCollisionCheck();
             }
@@ -481,14 +481,14 @@ void physicsEngine::updatePlayerPositions()  // updates the position of player o
     int playerWithBall;
 
     std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
-    std::vector <std::vector<playerState> > activePlayerInstance;
+    std::vector <std::vector<boost::shared_ptr<playerState> > > activePlayerInstance;
     std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
 
     // checks to see if player positions need updated
     size_t z = 0;
     while (z < activeTeamInstance.size())
     {
-        activePlayerInstance.push_back(activeTeamInstance[z]->getActivePlayerInstance());
+        activePlayerInstance->push_back(activeTeamInstance[z]->getActivePlayerInstance());
         size_t y = 0;
         while (y < activePlayerInstance[z].size())
         {
@@ -499,12 +499,12 @@ void physicsEngine::updatePlayerPositions()  // updates the position of player o
                 humanInstance = activeTeamInstance[z]->getHumanPlayer();
 
             }
-            if (y != humanInstance && !activePlayerInstance[z][y].getCourtPositionChanged())
+            if (y != humanInstance && !activePlayerInstance[z][y]->getCourtPositionChanged())
             {
-                btTransform transform = activePlayerInstance[z][y].getPhysBody()->getWorldTransform();
+                btTransform transform = activePlayerInstance[z][y]->getPhysBody()->getWorldTransform();
                 btVector3 physPos = transform.getOrigin();
 
-                Ogre::Vector3 courtPosition = activePlayerInstance[z][y].getCourtPosition();
+                Ogre::Vector3 courtPosition = activePlayerInstance[z][y]->getCourtPosition();
                 Ogre::Vector3 newCourtPosition;
                 logMsg("comparing court position");
                 if (!compare.OgreVector3ToBTVector3(courtPosition,physPos))
@@ -514,13 +514,13 @@ void physicsEngine::updatePlayerPositions()  // updates the position of player o
 
                 logMsg("court position = " +convert->toString(courtPosition));
                 logMsg("new court position = " +convert->toString(newCourtPosition));
-                if (activePlayerInstance[z][y].getStartPosReached())
+                if (activePlayerInstance[z][y]->getStartPosReached())
                 {
                     if (newCourtPosition.x != 0 && newCourtPosition.y != 0 && newCourtPosition.z != 0)
                     {
-                        activePlayerInstance[z][y].setCourtPositionChanged(true);
-                        activePlayerInstance[z][y].setCourtPositionChangedType(PHYSICSCHANGE);
-                        activePlayerInstance[z][y].setNewCourtPosition(newCourtPosition);
+                        activePlayerInstance[z][y]->setCourtPositionChanged(true);
+                        activePlayerInstance[z][y]->setCourtPositionChangedType(PHYSICSCHANGE);
+                        activePlayerInstance[z][y]->setNewCourtPosition(newCourtPosition);
                     }
                 }
             }
@@ -728,39 +728,39 @@ bool physicsEngine::playerJump(teamTypes teamType, int playerID)  // calculates 
 
     std::vector<courtState> courtInstance = gameS->getCourtInstance();
     std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
-    std::vector<playerState> activePlayerInstance = activeTeamInstance[teamType]->getActivePlayerInstance();
+    std::vector<boost::shared_ptr<playerState> > activePlayerInstance = activeTeamInstance[teamType]->getActivePlayerInstance();
     std::vector<size_t> activePlayerID = activeTeamInstance[teamType]->getActivePlayerID();
     btVector3 playerJumpBeginPos;
     btVector3 playerJumpEndPos;
     size_t x = 0;
     size_t y = 0;
-    while (x<activePlayerInstance.size())
+    while (x<activePlayerInstance->size())
     {
 //        while (y<activePlayerID.size())
 //        {
 //        if (activePlayerInstance[x].getPlayerID() == activePlayerID[y])
-        if (activePlayerInstance[x].getID() == playerID)
+        if (activePlayerInstance[x]->getID() == playerID)
         {
-            bool jumpSet = activePlayerInstance[x].getJumpSet();
-            bool jumpComplete = activePlayerInstance[x].getJumpComplete();
+            bool jumpSet = activePlayerInstance[x]->getJumpSet();
+            bool jumpComplete = activePlayerInstance[x]->getJumpComplete();
             if (!jumpComplete)
             {
                 if (!jumpSet)
                 {
-                    playerJumpBeginPos = BtOgre::Convert::toBullet(activePlayerInstance[x].getNode()->getPosition());
+                    playerJumpBeginPos = BtOgre::Convert::toBullet(activePlayerInstance[x]->getNode()->getPosition());
                     playerJumpEndPos = playerJumpBeginPos;
                     playerJumpEndPos.setY(playerJumpEndPos.getY() + 5);
                     jumpSet = true;
                 }
                 else
                 {
-                    playerJumpBeginPos = BtOgre::Convert::toBullet(activePlayerInstance[x].getJumpBeginPos());
-                    playerJumpEndPos = BtOgre::Convert::toBullet(activePlayerInstance[x].getJumpEndPos());
+                    playerJumpBeginPos = BtOgre::Convert::toBullet(activePlayerInstance[x]->getJumpBeginPos());
+                    playerJumpEndPos = BtOgre::Convert::toBullet(activePlayerInstance[x]->getJumpEndPos());
                 // activePlayerInstance[x].getPhysBody()->setLinearVelocity(btVector3(-35,0,0));
-                    activePlayerInstance[x].getPhysBody()->forceActivationState(ACTIVE_TAG);
-                    activePlayerInstance[x].getPhysBody()->translate(btVector3(0,0.5,0)/*, btVector3(-35,0,0)*/);
+                    activePlayerInstance[x]->getPhysBody()->forceActivationState(ACTIVE_TAG);
+                    activePlayerInstance[x]->getPhysBody()->translate(btVector3(0,0.5,0)/*, btVector3(-35,0,0)*/);
                 }
-                btTransform transform = activePlayerInstance[x].getPhysBody()->getWorldTransform();
+                btTransform transform = activePlayerInstance[x]->getPhysBody()->getWorldTransform();
                 btVector3 playerCurrentPos = transform.getOrigin();
                 if (playerCurrentPos.getY() >= playerJumpEndPos.getY())
                 {
@@ -771,20 +771,20 @@ bool physicsEngine::playerJump(teamTypes teamType, int playerID)  // calculates 
             {
                 btTransform courtTransform = courtInstance[0].getPhysBody()->getWorldTransform();
                 btVector3 courtPos = courtTransform.getOrigin();
-                btTransform playerTransform = activePlayerInstance[x].getPhysBody()->getWorldTransform();
+                btTransform playerTransform = activePlayerInstance[x]->getPhysBody()->getWorldTransform();
                 btVector3 playerPos = playerTransform.getOrigin();
                 logMsg("playerPos.getY = " +convert->toString(playerPos.getY()));
                 logMsg("courtPos.getY = " +convert->toString(courtPos.getY()));
                 if (playerPos.getY() > courtPos.getY() + 3.0)
                 {
-                    activePlayerInstance[x].getPhysBody()->forceActivationState(ACTIVE_TAG);
+                    activePlayerInstance[x]->getPhysBody()->forceActivationState(ACTIVE_TAG);
                 }
                 else
                 {
 //                    exit(0);
-                    activePlayerInstance[x].getPhysBody()->setLinearVelocity(btVector3(0,0,0));
-                    activePlayerInstance[x].getPhysBody()->setActivationState(ISLAND_SLEEPING);
-                    activePlayerInstance[x].setShootBlock(false);
+                    activePlayerInstance[x]->getPhysBody()->setLinearVelocity(btVector3(0,0,0));
+                    activePlayerInstance[x]->getPhysBody()->setActivationState(ISLAND_SLEEPING);
+                    activePlayerInstance[x]->setShootBlock(false);
                     jumpSet = false;
                     jumpComplete = false;
                 }
@@ -794,10 +794,10 @@ bool physicsEngine::playerJump(teamTypes teamType, int playerID)  // calculates 
 //                activePlayerInstance[x].setShootBlock(false);
  //               exit(0);
             }
-            activePlayerInstance[x].setJumpSet(jumpSet);
-            activePlayerInstance[x].setJumpComplete(jumpComplete);
-            activePlayerInstance[x].setJumpBeginPos(BtOgre::Convert::toOgre(playerJumpBeginPos));
-            activePlayerInstance[x].setJumpEndPos(BtOgre::Convert::toOgre(playerJumpEndPos));
+            activePlayerInstance[x]->setJumpSet(jumpSet);
+            activePlayerInstance[x]->setJumpComplete(jumpComplete);
+            activePlayerInstance[x]->setJumpBeginPos(BtOgre::Convert::toOgre(playerJumpBeginPos));
+            activePlayerInstance[x]->setJumpEndPos(BtOgre::Convert::toOgre(playerJumpEndPos));
 
              logMsg("JUMP!");
           //  exit(0);
@@ -808,7 +808,7 @@ bool physicsEngine::playerJump(teamTypes teamType, int playerID)  // calculates 
     }
     activeTeamInstance[teamType]->setActivePlayerInstance(activePlayerInstance);
     gameS->setActiveTeamInstance(activeTeamInstance);
-    gameS->getActiveTeamInstance()[teamType]->getActivePlayerInstance()[playerID].getPhysBody()->setLinearVelocity(btVector3(15,-15,0));
+    gameS->getActiveTeamInstance()[teamType]->getActivePlayerInstance()[playerID]->getPhysBody()->setLinearVelocity(btVector3(15,-15,0));
     return (true);
 }
 
@@ -822,7 +822,7 @@ bool physicsEngine::shootBasketball(teamTypes teamType, int playerID)  // calcul
     std::vector<hoopState> hoopInstance = gameS->getHoopInstance();
     std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
     std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
-    std::vector<playerState> activePlayerInstance = activeTeamInstance[teamType]->getActivePlayerInstance();
+    std::vector<boost::shared_ptr<playerState> > activePlayerInstance = activeTeamInstance[teamType]->getActivePlayerInstance();
 
     int activeBBallInstance = gameS->getActiveBBallInstance();
 
@@ -831,13 +831,13 @@ bool physicsEngine::shootBasketball(teamTypes teamType, int playerID)  // calcul
 
              
     size_t x = 0;
-    while (x<activePlayerInstance.size())
+    while (x<activePlayerInstance->size())
     {
         
-        if (activePlayerInstance[x].getID() == playerID)
+        if (activePlayerInstance[x]->getID() == playerID)
         {
-            shotSet = activePlayerInstance[x].getShotSet();
-            shotComplete = activePlayerInstance[x].getShotComplete();
+            shotSet = activePlayerInstance[x]->getShotSet();
+            shotComplete = activePlayerInstance[x]->getShotComplete();
             if (!shotComplete)
             {
                 int hoop = activeTeamInstance[teamType]->getHoop();
@@ -848,7 +848,7 @@ bool physicsEngine::shootBasketball(teamTypes teamType, int playerID)  // calcul
                 btTransform basketballTransform = basketballInstance[activeBBallInstance].getPhysBody()->getWorldTransform();
                 btVector3 basketballPos = basketballTransform.getOrigin();
 
-                btTransform playerTransform = activePlayerInstance[x].getPhysBody()->getWorldTransform();
+                btTransform playerTransform = activePlayerInstance[x]->getPhysBody()->getWorldTransform();
                 btVector3 playerPos = playerTransform.getOrigin();
                 float hoopBasketballDistanceX = 0;
                 float hoopBasketballDistanceY = 0;
@@ -866,27 +866,27 @@ bool physicsEngine::shootBasketball(teamTypes teamType, int playerID)  // calcul
                     
                     if (!beginShotPosSet)
                     {
-                        if (activePlayerInstance[x].getDirection() == RIGHT)
+                        if (activePlayerInstance[x]->getDirection() == RIGHT)
                         {
                             basketballPos.setX(playerPos.getX() + 3);
                             basketballPos.setY(playerPos.getY() + 5);
                             basketballPos.setZ(playerPos.getZ());
                         }
-                        else if (activePlayerInstance[x].getDirection() == LEFT)
+                        else if (activePlayerInstance[x]->getDirection() == LEFT)
                         {
                             basketballPos.setX(playerPos.getX() - 3);
                             basketballPos.setY(playerPos.getY() + 5);
                             basketballPos.setZ(playerPos.getZ());
 
                         }
-                        else if (activePlayerInstance[x].getDirection() == UP)
+                        else if (activePlayerInstance[x]->getDirection() == UP)
                         {
                             basketballPos.setX(playerPos.getX() - 3);
                             basketballPos.setY(playerPos.getY() + 5);
                             basketballPos.setZ(playerPos.getZ() + 3);
 
                         }
-                        else if (activePlayerInstance[x].getDirection() == DOWN)
+                        else if (activePlayerInstance[x]->getDirection() == DOWN)
                         {
                             basketballPos.setX(playerPos.getX() - 3);
                             basketballPos.setY(playerPos.getY() + 5);

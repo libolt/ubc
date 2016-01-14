@@ -629,7 +629,7 @@ void basketballState::updateDirection()  // updates basketball direction(s)
     boost::shared_ptr<gameState> gameS = gameState::Instance();
     std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
     size_t teamWithBall = gameS->getTeamWithBall();
-    std::vector<playerState> activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
+    std::vector<boost::shared_ptr<playerState> > activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
     std::vector<size_t> activePlayerID = activeTeamInstance[teamWithBall]->getActivePlayerID();
     
     size_t playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();
@@ -642,15 +642,15 @@ void basketballState::updateDirection()  // updates basketball direction(s)
     bool tipOffComplete = gameS->getTipOffComplete();
     size_t x = 0;
 
-    bool shotTaken = activePlayerInstance[playerWithBallInstance].getShotTaken();
+    bool shotTaken = activePlayerInstance[playerWithBallInstance]->getShotTaken();
 
     if (!shotTaken)
     {
         
         Ogre::Vector3 posChange;
-        while (x < activePlayerInstance.size())
+        while (x < activePlayerInstance->size())
         {
-            if (activePlayerInstance[x].getID() == playerWithBallID)
+            if (activePlayerInstance[x]->getID() == playerWithBallID)
             {
                 playerWithBallInstance = x;
                 break;
@@ -660,7 +660,7 @@ void basketballState::updateDirection()  // updates basketball direction(s)
         
         if (playerWithBallInstance >= 0 && playerWithBallInstance < 10 && tipOffComplete == true)  // verifies that the playerWithBall variable is set to a valid number
         {
-            Ogre::Vector3 playerPos= activePlayerInstance[playerWithBallInstance].getNode()->getPosition();
+            Ogre::Vector3 playerPos= activePlayerInstance[playerWithBallInstance]->getNode()->getPosition();
             Ogre::Vector3 bballCurrentPos;
 
             Ogre::Vector3 bballPos = playerPos;

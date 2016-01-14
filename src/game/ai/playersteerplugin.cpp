@@ -42,7 +42,7 @@ void playerSteerPlugin::open(void)
     std::vector<int> team0ActivePlayerID = activeTeamInstance[0].getActivePlayerID();
     std::vector<int> team1ActivePlayerID = activeTeamInstance[1].getActivePlayerID();
 */
-    std::vector<std::vector<playerState> > activePlayerInstance;
+    std::vector<std::vector<boost::shared_ptr<playerState> > > activePlayerInstance;
     
     std::vector<playerSteer *> allPlayerSteers = ai->getAllPlayerSteers();
 
@@ -54,22 +54,22 @@ void playerSteerPlugin::open(void)
     while (x < activeTeamInstance.size())
     {
 
-        activePlayerInstance.push_back(activeTeamInstance[x]->getActivePlayerInstance());
+        activePlayerInstance->push_back(activeTeamInstance[x]->getActivePlayerInstance());
         size_t y = 0;
         while (y < activePlayerInstance[x].size())
         {
-            playerSteer *steer = activePlayerInstance[x][y].getSteer();
+            playerSteer *steer = activePlayerInstance[x][y]->getSteer();
         //      logMsg("Alive1");
             logMsg("y = " +convert->toString(y));
-            logMsg("player position = " +convert->toString(activePlayerInstance[x][y].getCourtPosition()));
-            steer->setPosition(convert->toOpenSteerVec3(activePlayerInstance[x][y].getCourtPosition()));
+            logMsg("player position = " +convert->toString(activePlayerInstance[x][y]->getCourtPosition()));
+            steer->setPosition(convert->toOpenSteerVec3(activePlayerInstance[x][y]->getCourtPosition()));
         //      steer.setPosition(OpenSteer::Vec3(0,0,0));
         //      logMsg("Alive2");
 
         //      steer->setID(x);
             ai->selectedVehicle = steer;
-            activePlayerInstance[x][y].setSteer(steer);
-            allPlayerSteers.push_back(activePlayerInstance[x][y].getSteer());
+            activePlayerInstance[x][y]->setSteer(steer);
+            allPlayerSteers.push_back(activePlayerInstance[x][y]->getSteer());
             ++y;
         }
         ++x;
@@ -178,7 +178,7 @@ void playerSteerPlugin::update(const float currentTime, const float elapsedTime)
 //    std::vector<int> team0ActivePlayerID = activeTeamInstance[0].getActivePlayerID();
 //    std::vector<int> team1ActivePlayerID = activeTeamInstance[1].getActivePlayerID();
 
-    std::vector<std::vector<playerState> > activePlayerInstance;
+    std::vector<std::vector<boost::shared_ptr<playerState> > > activePlayerInstance;
 //	exit(0);
     // update simulation of test vehicle
 //    logMsg("team 0 activePlayerInstance size =  " +convert->toString(team0ActivePlayerInstance.size()));
@@ -190,15 +190,15 @@ void playerSteerPlugin::update(const float currentTime, const float elapsedTime)
     size_t x = 0;
     while (x < activeTeamInstance.size())
     {
-        activePlayerInstance.push_back(activeTeamInstance[x]->getActivePlayerInstance());
+        activePlayerInstance->push_back(activeTeamInstance[x]->getActivePlayerInstance());
         size_t y = 0;
-        while (y < activePlayerInstance[x].size())
+        while (y < activePlayerInstance[x]->size())
         {
-            if (y != activeTeamInstance[x]->getHumanPlayer() && activePlayerInstance[x][y].getModelLoaded())
+            if (y != activeTeamInstance[x]->getHumanPlayer() && activePlayerInstance[x][y]->getModelLoaded())
             {
 //                exit(0);
                 logMsg("x = " +convert->toString(x) +"y = " +convert->toString(y));
-                activePlayerInstance[x][y].getSteer()->update(currentTime, elapsedTime);
+                activePlayerInstance[x][y]->getSteer()->update(currentTime, elapsedTime);
             }
             ++y;
         }

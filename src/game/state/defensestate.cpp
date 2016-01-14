@@ -69,8 +69,8 @@ void defenseState::updateState(teamTypes teamOnDefense)	// updates the state of 
     teamTypes teamWithBall = gameS->getTeamWithBall();
 
     std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
-    std::vector<playerState> playerDInstance = activeTeamInstance[teamOnDefense]->getActivePlayerInstance();
-    std::vector<playerState> playerOInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
+    std::vector<boost::shared_ptr<playerState> > playerDInstance = activeTeamInstance[teamOnDefense]->getActivePlayerInstance();
+    std::vector<boost::shared_ptr<playerState> > playerOInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
     std::vector<size_t> activeDID = activeTeamInstance[teamOnDefense]->getActivePlayerID();
     std::vector<size_t> activeOID = activeTeamInstance[teamWithBall]->getActivePlayerID();
     std::vector<Ogre::Vector3> playerOPos;  // stores positions of offensive players
@@ -99,9 +99,9 @@ void defenseState::updateState(teamTypes teamOnDefense)	// updates the state of 
             size_t i = 0;
             while (i<activeOID.size())
             {
-                if (activeOID[i] == playerOInstance[x].getID())
+                if (activeOID[i] == playerOInstance[x]->getID())
                 {
-                    playerOPos.push_back(playerOInstance[x].getNode()->getPosition());
+                    playerOPos.push_back(playerOInstance[x]->getNode()->getPosition());
 
                     logMsg("offensive player set!");
                 }
@@ -116,9 +116,9 @@ void defenseState::updateState(teamTypes teamOnDefense)	// updates the state of 
             size_t i = 0;
             while (i<activeDID.size())
             {
-                if (activeDID[i] == playerDInstance[x].getID())
+                if (activeDID[i] == playerDInstance[x]->getID())
                 {
-                    playerDPos.push_back(playerDInstance[x].getNode()->getPosition());
+                    playerDPos.push_back(playerDInstance[x]->getNode()->getPosition());
 
                     logMsg("offensive player set!");
                 }
@@ -143,25 +143,25 @@ void defenseState::updateState(teamTypes teamOnDefense)	// updates the state of 
             size_t i = 0;
             while (i<activeDID.size())
             {
-                if (activeDID[i] == playerDInstance[x].getID())
+                if (activeDID[i] == playerDInstance[x]->getID())
                 {
-                    if (playerDInstance[x].getActivePosition() == PG)
+                    if (playerDInstance[x]->getActivePosition() == PG)
                     {
                         activeDNum[0] = x;
                     }
-                    else if (playerDInstance[x].getActivePosition() == SG)
+                    else if (playerDInstance[x]->getActivePosition() == SG)
                     {
                         activeDNum[1] = x;
                     }
-                    else if (playerDInstance[x].getActivePosition() == SF)
+                    else if (playerDInstance[x]->getActivePosition() == SF)
                     {
                         activeDNum[2] = x;
                     }
-                    else if (playerDInstance[x].getActivePosition() == PF)
+                    else if (playerDInstance[x]->getActivePosition() == PF)
                     {
                         activeDNum[3] = x;
                     }
-                    else if (playerDInstance[x].getActivePosition() == C)
+                    else if (playerDInstance[x]->getActivePosition() == C)
                     {
                         activeDNum[4] = x;
                     }
@@ -180,25 +180,25 @@ void defenseState::updateState(teamTypes teamOnDefense)	// updates the state of 
             size_t i = 0;
             while (i<activeOID.size())
             {
-                if (activeOID[i] == playerOInstance[x].getID())
+                if (activeOID[i] == playerOInstance[x]->getID())
                 {
-                    if (playerOInstance[x].getActivePosition() == PG)
+                    if (playerOInstance[x]->getActivePosition() == PG)
                     {
                         activeONum[0] = x;
                     }
-                    else if (playerOInstance[x].getActivePosition() == SG)
+                    else if (playerOInstance[x]->getActivePosition() == SG)
                     {
                         activeONum[1] = x;
                     }
-                    else if (playerOInstance[x].getActivePosition() == SF)
+                    else if (playerOInstance[x]->getActivePosition() == SF)
                     {
                         activeONum[2] = x;
                     }
-                    else if (playerOInstance[x].getActivePosition() == PF)
+                    else if (playerOInstance[x]->getActivePosition() == PF)
                     {
                         activeONum[3] = x;
                     }
-                    else if (playerOInstance[x].getActivePosition() == C)
+                    else if (playerOInstance[x]->getActivePosition() == C)
                     {
                         activeONum[4] = x;
                     }
@@ -215,15 +215,15 @@ void defenseState::updateState(teamTypes teamOnDefense)	// updates the state of 
         while (x<numPlayers) // loops until the number of players on court per team is reached
         {
             int DNum = activeDNum[x];
-            if (DNum < activeDNum.size() && DNum < playerDInstance.size())
+            if (DNum < activeDNum.size() && DNum < playerDInstance->size())
             {
-                if (activeDNum[DNum] != humanPlayer && !playerDInstance[DNum].getDefenseSet())
+                if (activeDNum[DNum] != humanPlayer && !playerDInstance[DNum]->getDefenseSet())
                 {
                     logMsg("playerO " +convert->toString(x) +"X Pos = " +convert->toString(playerOPos[x][0]));
                     logMsg("playerD " +convert->toString(x) +"X Pos = " +convert->toString(playerDPos[x][0]));
                     logMsg("playerO " +convert->toString(x) +"Z Pos = " +convert->toString(playerOPos[x][2]));
                     logMsg("playerD " +convert->toString(x) +"Z Pos = " +convert->toString(playerDPos[x][2]));
-                    directions playerDirection = playerOInstance[x].getDirection();
+                    directions playerDirection = playerOInstance[x]->getDirection();
     //                exit(0);
                     switch (playerDirection)
                     {
@@ -231,101 +231,101 @@ void defenseState::updateState(teamTypes teamOnDefense)	// updates the state of 
                             if (playerDPos[x][0] >= (playerOPos[x][0] + 4.0f))
                             {
 
-                                playerDInstance[x].setMovement(true);
-                                playerDInstance[x].setDirection(LEFT);
+                                playerDInstance[x]->setMovement(true);
+                                playerDInstance[x]->setDirection(LEFT);
                             }
                             else if (playerDPos[x][0] <= (playerOPos[x][0] - 4.0f))
                             {
-                                playerDInstance[x].setMovement(true);
-                                playerDInstance[x].setDirection(RIGHT);
+                                playerDInstance[x]->setMovement(true);
+                                playerDInstance[x]->setDirection(RIGHT);
                             }
                         break;
                         case RIGHT:
                             if (playerDPos[x][0] <= (playerOPos[x][0] + 4.0f))
                             {
-                                playerDInstance[x].setMovement(true);
-                                playerDInstance[x].setDirection(RIGHT);
+                                playerDInstance[x]->setMovement(true);
+                                playerDInstance[x]->setDirection(RIGHT);
                             }
                            else if (playerDPos[x][0] >= (playerOPos[x][0] - 4.0f))
                            {
-                               playerDInstance[x].setMovement(true);
-                               playerDInstance[x].setDirection(LEFT);
+                               playerDInstance[x]->setMovement(true);
+                               playerDInstance[x]->setDirection(LEFT);
                            }
                         break;
                         case UP:
                             if (playerDPos[x][2] >= (playerOPos[x][2] - 1.0f))
                             {
-                                playerDInstance[x].setMovement(true);
-                                playerDInstance[x].setDirection(UP);
+                                playerDInstance[x]->setMovement(true);
+                                playerDInstance[x]->setDirection(UP);
                             }
                             else if (playerDPos[x][2] <= (playerOPos[x][2] + 1.0f))
                                 {
-                                    playerDInstance[x].setMovement(true);
-                                    playerDInstance[x].setDirection(DOWN);
+                                    playerDInstance[x]->setMovement(true);
+                                    playerDInstance[x]->setDirection(DOWN);
                                 }
                         break;
                         case DOWN:
                             if (playerDPos[x][2] <= (playerOPos[x][2] + 1.0f))
                             {
-                                playerDInstance[x].setMovement(true);
-                                playerDInstance[x].setDirection(DOWN);
+                                playerDInstance[x]->setMovement(true);
+                                playerDInstance[x]->setDirection(DOWN);
                             }
                             else if (playerDPos[x][2] >= (playerOPos[x][2] - 1.0f))
                             {
-                                playerDInstance[x].setMovement(true);
-                                playerDInstance[x].setDirection(UP);
+                                playerDInstance[x]->setMovement(true);
+                                playerDInstance[x]->setDirection(UP);
                             }
                         break;
                         case UPLEFT:
                             if (playerDPos[x][2] >= (playerOPos[x][2] - 1.0f) && playerDPos[x][0] >= (playerOPos[x][0] + 4.0f))
                                 {
-                                    playerDInstance[x].setMovement(true);
-                                    playerDInstance[x].setDirection(UPLEFT);
+                                    playerDInstance[x]->setMovement(true);
+                                    playerDInstance[x]->setDirection(UPLEFT);
                                 }
                             else if (playerDPos[x][2] <= (playerOPos[x][2] + 1.0f) && playerDPos[x][0] <= (playerOPos[x][0] - 4.0f))
                             {
-                                playerDInstance[x].setMovement(true);
-                                playerDInstance[x].setDirection(DOWNRIGHT);
+                                playerDInstance[x]->setMovement(true);
+                                playerDInstance[x]->setDirection(DOWNRIGHT);
                             }
                         break;
                         case UPRIGHT:
                             if (playerDPos[x][2] >= (playerOPos[x][2] - 1.0f) && playerDPos[x][0] <= (playerOPos[x][0] + 4.0f))
                             {
-                                playerDInstance[x].setMovement(true);
-                                playerDInstance[x].setDirection(UPRIGHT);
+                                playerDInstance[x]->setMovement(true);
+                                playerDInstance[x]->setDirection(UPRIGHT);
                             }
                             else if (playerDPos[x][2] <= (playerOPos[x][2] + 1.0f) && playerDPos[x][0] >= (playerOPos[x][0] - 4.0f))
                             {
-                                playerDInstance[x].setMovement(true);
-                                playerDInstance[x].setDirection(DOWNLEFT);
+                                playerDInstance[x]->setMovement(true);
+                                playerDInstance[x]->setDirection(DOWNLEFT);
                             }
                         break;
                         case DOWNLEFT:
                             if (playerDPos[x][2] <= (playerOPos[x][2] + 1.0f) && playerDPos[x][0] >= (playerOPos[x][0] + 4.0f))
                             {
-                                playerDInstance[x].setMovement(true);
-                                playerDInstance[x].setDirection(DOWNLEFT);
+                                playerDInstance[x]->setMovement(true);
+                                playerDInstance[x]->setDirection(DOWNLEFT);
                             }
                             else if (playerDPos[x][2] >= (playerOPos[x][2] - 1.0f) && playerDPos[x][0] <= (playerOPos[x][0] - 4.0f))
                             {
-                                playerDInstance[x].setMovement(true);
-                                playerDInstance[x].setDirection(UPRIGHT);
+                                playerDInstance[x]->setMovement(true);
+                                playerDInstance[x]->setDirection(UPRIGHT);
                             }
                         break;
                         case DOWNRIGHT:
                             if (playerDPos[x][2] <= (playerOPos[x][2] + 1.0f) && playerDPos[x][0] <= (playerOPos[x][0] + 4.0f))
                             {
-                                playerDInstance[x].setMovement(true);
-                                playerDInstance[x].setDirection(DOWNRIGHT);
+                                playerDInstance[x]->setMovement(true);
+                                playerDInstance[x]->setDirection(DOWNRIGHT);
                             }
                             else if (playerDPos[x][2] >= (playerOPos[x][2] - 1.0f) && playerDPos[x][0] >= (playerOPos[x][0] - 4.0f))
                             {
-                                playerDInstance[x].setMovement(true);
-                                playerDInstance[x].setDirection(UPLEFT);
+                                playerDInstance[x]->setMovement(true);
+                                playerDInstance[x]->setDirection(UPLEFT);
                             }
                         break;
                         default:
-                            playerDInstance[x].setMovement(false);
+                            playerDInstance[x]->setMovement(false);
                         break;
                     }
                 }

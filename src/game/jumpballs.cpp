@@ -197,7 +197,7 @@ bool jumpBalls::jumpBallExecute()  // initiates jump ball from jump ball circle
     size_t activeBBallInstance = gameS->getActiveBBallInstance();
 
     std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
-    std::vector< std::vector<playerState> > activePlayerInstance;
+    std::vector<boost::shared_ptr<playerState> > activePlayerInstance;
 
     std::vector<size_t> jumpPlayerInstance;  // stores playerID of players jumping for the ball
     
@@ -205,20 +205,21 @@ bool jumpBalls::jumpBallExecute()  // initiates jump ball from jump ball circle
     while (x < activeTeamInstance.size())
     {
         //activePlayerInstance.clear();
-        activePlayerInstance.push_back(activeTeamInstance[x]->getActivePlayerInstance());
+//        activePlayerInstance->push_back(activeTeamInstance[x]->getActivePlayerInstance());
+        activePlayerInstance = activeTeamInstance[x]->getActivePlayerInstance();
         
         size_t i = 0;
-        logMsg("active player instance size =" +convert->toString(activePlayerInstance[x].size()));
-        while (i < activePlayerInstance[x].size()) // loops until the activePlayerInstance is found that is currently playing center
+        logMsg("active player instance size =" +convert->toString(activePlayerInstance[x]->size()));
+        while (i < activePlayerInstance[x]->size()) // loops until the activePlayerInstance is found that is currently playing center
         {
             
 //            exit(0);
             logMsg("jump i == " +convert->toString(i));
-            if (activePlayerInstance[x][i].getActivePosition() == C)
+            if (activePlayerInstance[x][i]->getActivePosition() == C)
             {
                 logMsg("jumpPlayerInstance = " +convert->toString(i));
                  // logMsg("PlayerName = " +activePlayerInstance[x][i].getPlayerName());
-                logMsg("ModelLoaded = " +convert->toString(activePlayerInstance[x][i].getModelLoaded()));
+                logMsg("ModelLoaded = " +convert->toString(activePlayerInstance[x][i]->getModelLoaded()));
     //                    exit(0);
                 //jumpPlayerID.push_back(activePlayerInstance[i].getPlayerID());
                 jumpPlayerInstance.push_back(i);
@@ -241,7 +242,7 @@ bool jumpBalls::jumpBallExecute()  // initiates jump ball from jump ball circle
     bool collCheck = false;
 //    collCheck = /*physEngine.*/ collisionCheck(basketballInstance[activeBBallInstance].getPhysBody(), activePlayerInstance[0][jumpPlayerInstance[0]].getPhysBody());
     size_t y = 0;
-    playerState activePInstance;
+    boost::shared_ptr<playerState> activePInstance;
     while (y < activeTeamInstance.size())
     {
         switch(activeTeamInstance[y]->getTeamType())
@@ -314,7 +315,7 @@ bool jumpBalls::tipToPlayer()  // tips the basketball to the appropriate player
     physicsEngine physEngine;
     std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
     std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
-    std::vector<playerState> activePlayerInstance;
+    std::vector<boost::shared_ptr<playerState> > activePlayerInstance;
     jumpBalls jumpBall = gameS->getJumpBall();
 //    teamTypes ballTippedToTeam = jumpBall.getBallTippedToTeam();
     quarters quarter = gameS->getQuarter();
@@ -325,9 +326,9 @@ bool jumpBalls::tipToPlayer()  // tips the basketball to the appropriate player
     size_t y = 0;
     while (y < activePlayerInstance.size())
     {
-        if (activePlayerInstance[y].getActivePosition() == jumpBall.getBallTippedToPosition())
+        if (activePlayerInstance[y]->getActivePosition() == jumpBall.getBallTippedToPosition())
         {
-            ballTippedToPlayerID = activePlayerInstance[y].getID();
+            ballTippedToPlayerID = activePlayerInstance[y]->getID();
             ballTippedToPlayerInstance = y;
             break;
         }

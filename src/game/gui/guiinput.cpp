@@ -520,7 +520,7 @@ void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed)  // process
     }
     else if (keyPressed == "t")
     {
-        exit(0);
+//        exit(0);
         teamsSelected();
         playerStartSelectionMenu();
     }
@@ -609,7 +609,7 @@ void GUISystem::processPlayerStartSelectionMenuKeyPress(std::string keyPressed) 
 //    exit(0);
     if (keyPressed == "s")
     {
-        exit(0);
+//        exit(0);
         playerStartSelected();
     }
     else if (keyPressed == "b")

@@ -399,7 +399,6 @@ boost::shared_ptr<teamState> loader::loadTeamFile(string fileName)  // loads the
     std::vector<boost::shared_ptr<teamState> > teamInstance = gameS->getTeamInstance();
     boost::shared_ptr<teamState> tInstance;
     teamState *tempTeamObj = new teamState;
-//    boost::shared_ptr<renderEngine> tempRenderSharedPtr = boost::shared_ptr<renderEngine>(tempRenderObj);
     tInstance = boost::shared_ptr<teamState>(tempTeamObj);
 
     int ID;
@@ -587,6 +586,12 @@ boost::shared_ptr<playerState> loader::loadPlayerFile(string fileName)  // loads
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
     boost::shared_ptr<playerState> player;
+<<<<<<< HEAD
+    playerState *tempPlayerObj = new playerState;
+    player = boost::shared_ptr<playerState>(tempPlayerObj);
+
+=======
+>>>>>>> branch 'master' of https://github.com/libolt/ubc.git
     std::vector<boost::shared_ptr<playerState> > playerInstance = gameS->getPlayerInstance();
     string firstName;
     string lastName;
@@ -957,7 +962,13 @@ boost::shared_ptr<playerState> loader::loadPlayerFile(string fileName)  // loads
         improvability = convert->toInt(pElem->GetText());
     }
     
+<<<<<<< HEAD
+    
     player->setFirstName(firstName);
+//    exit(0);
+=======
+    player->setFirstName(firstName);
+>>>>>>> branch 'master' of https://github.com/libolt/ubc.git
     player->setLastName(lastName);
     player->setPlayerName(firstName +" " +lastName);
     player->setAge(age);
@@ -1000,7 +1011,7 @@ boost::shared_ptr<playerState> loader::loadPlayerFile(string fileName)  // loads
     logMsg("player First Name == "+player->getFirstName());
     //gameS->setPlayerDataInstances(playerDataInstance);
     //	vector<players::playerData> playerN = playerG->getPlayer();
-
+//    exit(0);
     return (player);
 }
 

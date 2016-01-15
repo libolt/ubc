@@ -120,8 +120,13 @@ void entity::setNodePosition(Ogre::Vector3 set)  // sets the value of nodePositi
 bool entity::loadModel()  // loads the 3D model
 {
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
-
-    model = getRender()->getMSceneMgr()->createEntity(entityName, entityModelFileName);  // loads the basketball model
+    boost::shared_ptr<renderEngine> render = getRender();
+    logMsg("entity::loadModel");
+    logMsg("entityName == " +entityName);
+    logMsg("entityModelFileName == " +entityModelFileName);
+    Ogre::SceneManager *mSceneMgr = render->getMSceneMgr();
+    logMsg("Model");
+    model = render->getMSceneMgr()->createEntity(entityName, entityModelFileName);  // loads the basketball model
     logMsg("Entity Created!");
     // creates and instantiates the node object
     node = getRender()->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName);

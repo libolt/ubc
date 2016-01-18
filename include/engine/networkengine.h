@@ -64,7 +64,7 @@ class networkEngine
     bool getServerReceivedConnection();	 // retrieves the value of serverReceivedConnection 
     void setServerReceivedConnection(bool set);	  // sets the value of serverReceivedConnection
 
-    bool getPacketReceived();  // retrieves the value of packetReceived 
+    bool getPacketReceived();  // retrieves the value of packetReceived
     void setPacketReceived(bool set);  // sets the value of packetReceived 
 
     int getClientID();	// retrieves the value of clientID 
@@ -82,17 +82,17 @@ class networkEngine
     ENetAddress getServerAddress();  // retrieves the value of serverAddress 
     void setServerAddress(ENetAddress set);  // sets the value of serverAddress 
 
-    ENetHost *getClient();  // retrieves the value of client 
-    void setClient(ENetHost *set);  // sets the value of client 
+    boost::shared_ptr<ENetHost> getClient();  // retrieves the value of client
+    void setClient(boost::shared_ptr<ENetHost> set);  // sets the value of client
 
     ENetEvent getEvent();  // retrieves the value of event 
     void setEvent(ENetEvent set);  // sets event 
 
-    ENetPeer *getPeer();  // retrieves the value of peer 
-    void setPeer(ENetPeer *set);  // sets the value of peer 
+    boost::shared_ptr<ENetPeer> getPeer();  // retrieves the value of peer
+    void setPeer(boost::shared_ptr<ENetPeer> set);  // sets the value of peer
 
-    ENetHost *getServer();  // retrieves the value of server 
-    void setServer(ENetHost *set);  // sets the value of server 
+    boost::shared_ptr<ENetHost> getServer();  // retrieves the value of server
+    void setServer(boost::shared_ptr<ENetHost> set);  // sets the value of server
 
     int initialize();  // initialize networkEngine code
     bool clientConnect();  // setup client connection.
@@ -126,11 +126,11 @@ class networkEngine
     // ENET related code
     ENetAddress listenAddress;
     ENetAddress serverAddress;
-    ENetHost *client;
+    boost::shared_ptr<ENetHost> client;
     ENetEvent event;
-    ENetPeer *peer;
-    ENetHost *server;
-    ENetPacket *packet;
+    boost::shared_ptr<ENetPeer> peer;
+    boost::shared_ptr<ENetHost> server;
+    boost::shared_ptr<ENetPacket> packet;
 
     netGameTypes netGameType;  // stores what type of network game this instance is
     teamTypes teamType;  // stores which team the network player is on

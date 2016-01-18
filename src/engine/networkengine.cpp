@@ -44,8 +44,8 @@ networkEngine::networkEngine()
 
 networkEngine::~networkEngine()
 {
-    enet_host_destroy(server);	// cleans up server
-    enet_host_destroy(client);	// cleans up client
+    enet_host_destroy(server.get());	// cleans up server
+    enet_host_destroy(client.get());	// cleans up client
 
 }
 
@@ -166,11 +166,11 @@ void networkEngine::setServerAddress(ENetAddress set)  // sets the value of serv
     serverAddress = set;
 }
 
-ENetHost *networkEngine::getClient()  // retrieves the value of client
+boost::shared_ptr<ENetHost> networkEngine::getClient()  // retrieves the value of client
 {
     return (client);
 }
-void networkEngine::setClient(ENetHost *set)  // sets the value of client
+void networkEngine::setClient(boost::shared_ptr<ENetHost> set)  // sets the value of client
 {
     client = set;
 }
@@ -184,20 +184,20 @@ void networkEngine::setEvent(ENetEvent set)  // sets the value of event
     event = set;
 }
 
-ENetPeer *networkEngine::getPeer()  // retrieves the value of peer
+boost::shared_ptr<ENetPeer> networkEngine::getPeer()  // retrieves the value of peer
 {
     return (peer);
 }
-void networkEngine::setPeer(ENetPeer *set)  // sets the value of peer
+void networkEngine::setPeer(boost::shared_ptr<ENetPeer> set)  // sets the value of peer
 {
     peer = set;
 }
 
-ENetHost *networkEngine::getServer()  // retrieves the value of server
+boost::shared_ptr<ENetHost> networkEngine::getServer()  // retrieves the value of server
 {
     return (server);
 }
-void networkEngine::setServer(ENetHost *set)  // sets the value of server
+void networkEngine::setServer(boost::shared_ptr<ENetHost> set)  // sets the value of server
 {
     server = set;
 }
@@ -221,13 +221,19 @@ bool networkEngine::clientConnect()  // performs a client connection to the serv
     if (!clientEstablishedConnection)
     {
 
-        client = enet_host_create (NULL  /* create a client host */,
-                                   4  /* only allow 1 outgoing connection */,
-                                   2  /* allow up to 2 channels to be used, 0 and 1*/,
-                                   0  /* 56K modem with 56 Kbps downstream bandwidth */,
-                                   0  /* 56K modem with 14 Kbps upstream bandwidth */);
+//        client = enet_host_create (NULL  /* create a client host */,
+//                                   4  /* only allow 1 outgoing connection */,
+//                                   2  /* allow up to 2 channels to be used, 0 and 1*/,
+//                                   0  /* 56K modem with 56 Kbps downstream bandwidth */,
+//                                   0  /* 56K modem with 14 Kbps upstream bandwidth */);
 
-        if (client == NULL)
+        ENetHost *tempClient = enet_host_create (NULL  /* create a client host */,
+                                                          4  /* only allow 1 outgoing connection */,
+                                                          2  /* allow up to 2 channels to be used, 0 and 1*/,
+                                                          0  /* 56K modem with 56 Kbps downstream bandwidth */,
+                                                          0  /* 56K modem with 14 Kbps upstream bandwidth */);
+        client = boost::shared_ptr<ENetHost>(tempClient);
+        if (client.get() == NULL)
         {
             logMsg("An error occurred while trying to create an ENet client host.");
             exit (EXIT_FAILURE);
@@ -243,8 +249,9 @@ bool networkEngine::clientConnect()  // performs a client connection to the serv
         serverAddress.port = 1234;
 
         /* Initiate the connection, allocating the two channels 0 and 1. */
-        peer = enet_host_connect (client, & serverAddress, 2, 0);
-
+//        peer = enet_host_connect (client.get(), & serverAddress, 2, 0);
+        ENetPeer *tempPeer = enet_host_connect (client.get(), & serverAddress, 2, 0);
+        peer = boost::shared_ptr<ENetPeer>(tempPeer);
         if (peer == NULL)
         {
             logMsg("No available peers for initiating an ENet connection.");
@@ -252,7 +259,7 @@ bool networkEngine::clientConnect()  // performs a client connection to the serv
         }
 
         /* Wait up to 5 seconds for the connection attempt to succeed. */
-        if (enet_host_service (client, & event, 5000) > 0 && event.type == ENET_EVENT_TYPE_CONNECT)
+        if (enet_host_service (client.get(), & event, 5000) > 0 && event.type == ENET_EVENT_TYPE_CONNECT)
         {
             logMsg("Connection to " +ipAddress +":1234 succeeded.");
             clientEstablishedConnection = true; // Tells other code that this instance is a network client
@@ -262,7 +269,7 @@ bool networkEngine::clientConnect()  // performs a client connection to the serv
             /* Either the 5 seconds are up or a disconnect event was */
             /* received. Reset the peer in the event the 5 seconds   */
             /* had run out without any significant event.            */
-            enet_peer_reset (peer);
+            enet_peer_reset (peer.get());
 
             logMsg("Connection to " +ipAddress +":1234 failed.");
         }
@@ -289,7 +296,7 @@ void networkEngine::networkClient()
 //	event = network->getEvent();
 
     // processes client event ever 0 seconds.
-    while (enet_host_service (client, &event, 0) > 0)
+    while (enet_host_service (client.get(), &event, 0) > 0)
     {
         switch (event.type)
         {
@@ -349,11 +356,18 @@ bool networkEngine::serverSetup()  // sets up the network server
     /* Bind the server to port 1234. */
     listenAddress.port = 1234;
 
-    server = enet_host_create (& listenAddress /* the address to bind the server host to */,
-                               32  /* allow up to 32 clients and/or outgoing connections */,
-                               2  /* allows up to 2 channels, 0, 1*/,
-                               0  /* assume any amount of incoming bandwidth */,
-                               0  /* assume any amount of outgoing bandwidth */);
+//    server = enet_host_create (& listenAddress /* the address to bind the server host to */,
+//                               32  /* allow up to 32 clients and/or outgoing connections */,
+//                               2  /* allows up to 2 channels, 0, 1*/,
+//                               0  /* assume any amount of incoming bandwidth */,
+//                               0  /* assume any amount of outgoing bandwidth */);
+
+    ENetHost *tempServer = enet_host_create (& listenAddress /* the address to bind the server host to */,
+                                             32  /* allow up to 32 clients and/or outgoing connections */,
+                                             2  /* allows up to 2 channels, 0, 1*/,
+                                             0  /* assume any amount of incoming bandwidth */,
+                                             0  /* assume any amount of outgoing bandwidth */);
+    server = boost::shared_ptr<ENetHost>(tempServer);
     if (server == NULL)
     {
         logMsg("An error occurred while trying to create an ENet server host.");
@@ -388,15 +402,17 @@ void networkEngine::networkServer()  // executes the network server code
 //    do
 //    {
     /* Wait up to 1000 milliseconds for an event. */
-    while (enet_host_service (server, & event, 1) > 0)
+    while (enet_host_service (server.get(), & event, 1) > 0)
     {
-
+        ENetPeer *tempPeer;
         logMsg("EVENT == " +event.type);
         switch (event.type)
         {
             case ENET_EVENT_TYPE_CONNECT:
-          	peer = event.peer;  // stores the peer connection for later use.
-            	serverReceivedConnection = true;  // Tells code that a client has connected
+//                peer = event.peer;  // stores the peer connection for later use.
+                tempPeer = event.peer;
+                peer = boost::shared_ptr<ENetPeer>(tempPeer);
+                serverReceivedConnection = true;  // Tells code that a client has connected
 //           	exit(0);
 //                logMsg("Peer == " +convert->toString(addressHost));
             break;
@@ -610,23 +626,25 @@ void networkEngine::sendPacket(std::string packetData)  // sends a packet to rem
 //    if (gameE->getServerRunning())
     if (isServer)
     {
-        while (enet_host_service (server, &event, 0) > 0)
+        while (enet_host_service (server.get(), &event, 0) > 0)
         {
         }
     }
 //    else if (gameE->getClientRunning())
     else if (isClient)
     {
-        while (enet_host_service (client, &event, 0) > 0)
+        while (enet_host_service (client.get(), &event, 0) > 0)
         {
         }
 	}
-        std::string host = convert->toString(peer->address.host);
-        logMsg("packetData == " + packetData);
-        logMsg("Peer host == " +host);
-        exit(0);
-        packet = enet_packet_create(packetData.c_str(),strlen(packetData.c_str())+1,ENET_PACKET_FLAG_RELIABLE);
-        enet_peer_send (peer, 0, packet);
+    std::string host = convert->toString(peer->address.host);
+    logMsg("packetData == " + packetData);
+    logMsg("Peer host == " +host);
+    exit(0);
+    //packet = enet_packet_create(packetData.c_str(),strlen(packetData.c_str())+1,ENET_PACKET_FLAG_RELIABLE);
+    ENetPacket *tempPacket = enet_packet_create(packetData.c_str(),strlen(packetData.c_str())+1,ENET_PACKET_FLAG_RELIABLE);
+    packet = boost::shared_ptr<ENetPacket>(tempPacket);
+    enet_peer_send (peer.get(), 0, packet.get());
 }
 
 

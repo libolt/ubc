@@ -176,7 +176,8 @@ bool physics::setupPhysics(Ogre::Entity **model, Ogre::SceneNode **node, btRigid
     //    bballBody->setCollisionFlags(bballBody->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
 //        *physBody = body;
 
-        static btDynamicsWorld *world = getWorld();
+//        static btDynamicsWorld *world = getWorld();
+        boost::shared_ptr<btDynamicsWorld> world = getWorld();
         world->addRigidBody(*body, getColObject(), getCollidesWith());
         setWorld(world);
         physBody = *body;

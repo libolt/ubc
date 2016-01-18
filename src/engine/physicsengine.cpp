@@ -30,7 +30,7 @@
 #include "jumpballs.h"
 
 
-btDynamicsWorld *physicsEngine::world;  // stores the physics world
+//btDynamicsWorld *physicsEngine::world;  // stores the physics world
 
 ///boost::shared_ptr<physicsEngine> physicsEngine::pInstance;
 
@@ -51,12 +51,23 @@ physicsEngine::physicsEngine()  // contructor
     
     // Bullet initialisation.
 //      broadPhase = new btAxisSweep3(btVector3(-10000,-10000,-10000), btVector3(10000,10000,10000), 1024);
-    broadPhase = new btDbvtBroadphase();
-    collisionConfig = new btDefaultCollisionConfiguration();
-    dispatcher = new btCollisionDispatcher(collisionConfig);
-    solver = new btSequentialImpulseConstraintSolver();
-
-    world = new btDiscreteDynamicsWorld(dispatcher, broadPhase, solver, collisionConfig);
+    //broadPhase = new btDbvtBroadphase();
+    btBroadphaseInterface *tempBroadPhase = new btDbvtBroadphase;
+    broadPhase = boost::shared_ptr<btBroadphaseInterface>(tempBroadPhase);
+//    collisionConfig = new btDefaultCollisionConfiguration();
+    btDefaultCollisionConfiguration *tempCollisionConfig = new btDefaultCollisionConfiguration;
+    collisionConfig = boost::shared_ptr<btDefaultCollisionConfiguration>(tempCollisionConfig);
+//    dispatcher = new btCollisionDispatcher(collisionConfig);
+    btCollisionDispatcher *tempDispatcher = new btCollisionDispatcher(collisionConfig.get());
+    dispatcher = boost::shared_ptr<btCollisionDispatcher>(tempDispatcher);
+//    solver = new btSequentialImpulseConstraintSolver();
+    btSequentialImpulseConstraintSolver *tempSolver = new btSequentialImpulseConstraintSolver();
+    solver = boost::shared_ptr<btSequentialImpulseConstraintSolver>(tempSolver);
+//    world = new btDiscreteDynamicsWorld(dispatcher, broadPhase, solver, collisionConfig);
+//    world->setGravity(btVector3(0,-9.8,0));
+    btDynamicsWorld *tempWorld = new btDiscreteDynamicsWorld(dispatcher.get(), broadPhase.get(), solver.get(), collisionConfig.get());
+//    tempWorld->setGravity(btVector3(0,-9.8,0));
+    world = boost::shared_ptr<btDynamicsWorld>(tempWorld);
     world->setGravity(btVector3(0,-9.8,0));
 
     contactInfo = world->getSolverInfo();
@@ -202,11 +213,11 @@ void physicsEngine::setBasketballVelocitySet(bool set)  // sets the value of bas
     basketballVelocitySet = set;
 }
 
-btDynamicsWorld *physicsEngine::getWorld()  // retrieves the value of world
+boost::shared_ptr<btDynamicsWorld> physicsEngine::getWorld()  // retrieves the value of world
 {
     return (world);
 }
-void physicsEngine::setWorld(btDynamicsWorld *set)  // sets the value of world
+void physicsEngine::setWorld(boost::shared_ptr<btDynamicsWorld> set)  // sets the value of world
 {
     world = set;
 }
@@ -236,8 +247,10 @@ void physicsEngine::setupState(boost::shared_ptr<renderEngine> render)  // sets 
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
     // Debug drawing!
-    debugDraw = new BtOgre::DebugDrawer(render->getMSceneMgr()->getRootSceneNode(), world);
-    world->setDebugDrawer(debugDraw);
+    //debugDraw = new BtOgre::DebugDrawer(render->getMSceneMgr()->getRootSceneNode(), world.get());
+    BtOgre::DebugDrawer *tempDebugDraw = new BtOgre::DebugDrawer(render->getMSceneMgr()->getRootSceneNode(), world.get());
+    debugDraw = boost::shared_ptr<BtOgre::DebugDrawer>(tempDebugDraw);
+    world->setDebugDrawer(debugDraw.get());
 
 /*    if (!playerPhysicsSetup)
     {

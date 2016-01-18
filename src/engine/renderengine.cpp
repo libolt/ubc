@@ -68,7 +68,7 @@ _declspec(dllexport) DWORD NvOptimusEnablement = 0x00000001;
 }
 #endif
 
-renderEngine::renderEngine()
+renderEngine::renderEngine()  // constructor
 {
 #ifdef __ANDROID__
 //#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
@@ -76,15 +76,15 @@ renderEngine::renderEngine()
 	mAssetMgr = NULL;
 	mSceneMgr = NULL;
 #endif
-   mWindow = NULL;
-   mRoot = NULL;
+//   mWindow = NULL;
+//   mRoot = NULL;
    selectedRenderSystem = 0;
    windowWidth = 0;
    windowHeight = 0;
    useRTSS = false;
 }
 
-renderEngine::~renderEngine()
+renderEngine::~renderEngine()  // destructor
 {
 }
 
@@ -96,152 +96,152 @@ bool renderEngine::frameEnded()
 {
 	return true;
 }
-Ogre::Root *renderEngine::getMRoot()
+boost::shared_ptr<Ogre::Root> renderEngine::getMRoot()  // retrieves the value of mRoot
 {
 	return (mRoot);
 }
-void renderEngine::setMRoot(Ogre::Root *root)
+void renderEngine::setMRoot(boost::shared_ptr<Ogre::Root> set)  // sets the value of mRoot
 {
-	mRoot = root;
+    mRoot = set;
 }
 
-Ogre::Camera *renderEngine::getMCamera()
+boost::shared_ptr<Ogre::Camera> renderEngine::getMCamera()  // retrieves the value of mCamera
 {
 	return (mCamera);
 }
-void renderEngine::setMCamera(Ogre::Camera *camera)
+void renderEngine::setMCamera(boost::shared_ptr<Ogre::Camera> set)  // sets the value of mCamera
 {
-	mCamera = camera;
+    mCamera = set;
 }
 
-Ogre::SceneManager *renderEngine::getMSceneMgr()
+Ogre::SceneManager *renderEngine::getMSceneMgr()  // retrieves the value of mSceneMgr
 {
 	return (mSceneMgr);
 }
-void renderEngine::setMSceneMgr(Ogre::SceneManager *sceneMgr)
+void renderEngine::setMSceneMgr(Ogre::SceneManager *set)  // sets the value of mSceneMgr
 {
-	mSceneMgr = sceneMgr;
+    mSceneMgr = set;
 }
 
-Ogre::RenderWindow *renderEngine::getMWindow()
+boost::shared_ptr<Ogre::RenderWindow> renderEngine::getMWindow()  // retrieves the value of mWindow
 {
 	return (mWindow);
 }
-void renderEngine::setMWindow(Ogre::RenderWindow *window)
+void renderEngine::setMWindow(boost::shared_ptr<Ogre::RenderWindow> set)  // sets the value of mWindow
 {
-	mWindow = window;
+    mWindow = set;
 }
 
-Ogre::Viewport *renderEngine::getViewPort() // retrieves the value of viewPort
+boost::shared_ptr<Ogre::Viewport> renderEngine::getViewPort() // retrieves the value of viewPort
 {
 	return (viewPort);
 }
-void renderEngine::setViewPort(Ogre::Viewport *vp) // sets the value of viewPort
+void renderEngine::setViewPort(boost::shared_ptr<Ogre::Viewport> set) // sets the value of viewPort
 {
-	viewPort = vp;
+    viewPort = set;
 }
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 
-AAssetManager *renderEngine::getMAssetMgr()
+AAssetManager *renderEngine::getMAssetMgr()  // retrieves the value of mAssetMgr
 {
 	return (mAssetMgr);
 }
-void renderEngine::setMAssetMgr(AAssetManager *asset)
+void renderEngine::setMAssetMgr(AAssetManager *set)  // sets the value of mAssetMgr
 {
-	mAssetMgr = asset;
+    mAssetMgr = set;
 }
-android_app *renderEngine::getApp()
+android_app *renderEngine::getApp()  // retrieves the value of app
 {
 	return (app);
 }
-void renderEngine::setApp(android_app *ap)
+void renderEngine::setApp(android_app *set)  // sets the value of app
 {
-	app = ap;
+    app = set;
 }
 #endif
 
-Ogre::Vector3 renderEngine::getMTranslateVector()
+Ogre::Vector3 renderEngine::getMTranslateVector()  // retrieves the value of mTranslateVector
 {
 	return (mTranslateVector);
 }
-void renderEngine::setMTranslateVector(Ogre::Vector3 vector)
+void renderEngine::setMTranslateVector(Ogre::Vector3 set)  // retrieves the value of mTranslateVector
 {
-	mTranslateVector = vector;
+    mTranslateVector = set;
 }
 
-Ogre::Radian renderEngine::getMRotX()
+Ogre::Radian renderEngine::getMRotX()  // retrieves the value of mRotX
 {
 	return (mRotX);
 }
-void renderEngine::setMRotX(Ogre::Radian rotX)
+void renderEngine::setMRotX(Ogre::Radian set)  // sets the value of mRotX
 {
-	mRotX = rotX;
+    mRotX = set;
 }
 
-Ogre::Radian renderEngine::getMRotY()
+Ogre::Radian renderEngine::getMRotY()  // retrieves the value of mRotY
 {
 	return (mRotY);
 }
-void renderEngine::setMRotY(Ogre::Radian rotY)
+void renderEngine::setMRotY(Ogre::Radian set)  // sets the value of mRotY
 {
-	mRotY = rotY;
+    mRotY = set;
 }
 
-Ogre::Real renderEngine::getMMoveSpeed()
+Ogre::Real renderEngine::getMMoveSpeed()  // retrieves the value of mMoveSpeed
 {
 	return (mMoveSpeed);
 }
-void renderEngine::setMMoveSpeed(Ogre::Real speed)
+void renderEngine::setMMoveSpeed(Ogre::Real set)  // sets the value of mMoveSpeed
 {
-	mMoveSpeed = speed;
+    mMoveSpeed = set;
 }
 
-Ogre::Degree renderEngine::getMRotateSpeed()
+Ogre::Degree renderEngine::getMRotateSpeed()  // retrieves the value of mRotateSpeed
 {
 	return (mRotateSpeed);
 }
-void renderEngine::setMRotateSpeed(Ogre::Degree speed)
+void renderEngine::setMRotateSpeed(Ogre::Degree set)  // sets the value of mRotateSpeed
 {
-	mRotateSpeed = speed;
+    mRotateSpeed = set;
 }
 
-float renderEngine::getMMoveScale()
+float renderEngine::getMMoveScale()  // retrieves the value of mMoveScale
 {
 	return (mMoveScale);
 }
-void renderEngine::setMMoveScale(float scale)
+void renderEngine::setMMoveScale(float set)  // sets the value of mMoveScale
 {
-	mMoveScale = scale;
+    mMoveScale = set;
 }
 
-Ogre::Degree renderEngine::getMRotScale()
+Ogre::Degree renderEngine::getMRotScale()  // retrieves the value of mRotScale
 {
 	return (mRotScale);
 }
-void renderEngine::setMRotScale(Ogre::Degree scale)
+void renderEngine::setMRotScale(Ogre::Degree set)  // sets the value of mRotScale
 {
-	mRotScale = scale;
+    mRotScale = set;
 }
 
-std::string renderEngine::getMResourceGroup()
+std::string renderEngine::getMResourceGroup()  // retrieves the value of mResourceGroup
 {
 	return (mResourceGroup);
 }
 
-void renderEngine::setMResourceGroup(std::string resource)
+void renderEngine::setMResourceGroup(std::string set)  // sets the value of mResourceGroup
 {
-	mResourceGroup = resource;
+    mResourceGroup = set;
 }
 
-SDL_Window *renderEngine::getSDLWindow()
+SDL_Window *renderEngine::getSDLWindow()  // retrieves the value of SDLWindow
 {
 	return (sdlWindow);
 }
 
-void renderEngine::setSDLWindow(SDL_Window *window)
+void renderEngine::setSDLWindow(SDL_Window *set)  // sets the value of SDLWindow
 {
-	sdlWindow = window;
+    sdlWindow = set;
 }
 
 uint32_t renderEngine::getWindowWidth()  // retrieves the value of windowWidth
@@ -346,10 +346,9 @@ bool renderEngine::initSDL() // Initializes SDL Subsystem
 	logMsg(message);
 
 #else
-    sdlWindow = SDL_CreateWindow("Ultimate Basketball Challenge",
-	                             SDL_WINDOWPOS_UNDEFINED,
-	                             SDL_WINDOWPOS_UNDEFINED,
-                                 1280,1024,0);
+    sdlWindow = SDL_CreateWindow("Ultimate Basketball Challenge", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1280,1024,0);
+//    SDL_Window *tempWindow = SDL_CreateWindow("Ultimate Basketball Challenge", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1280,1024,0);
+//    sdlWindow = boost::shared_ptr<SDL_Window>(tempWindow);
 //    exit(0);
     SDL_VERSION( &sysInfo.version );
 
@@ -416,8 +415,11 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
     FreeImage_Initialise();
     
 	//std::cout << "winHandle = " << winHandle << std::endl;
-	mRoot = new Ogre::Root("", "", "Ogre.log");
-	const std::string pluginDir = OGRE_PLUGIN_DIR;
+    Ogre::Root *tempRoot = new Ogre::Root("", "", "Ogre.log");
+//	mRoot = new Ogre::Root("", "", "Ogre.log");
+    mRoot = boost::shared_ptr<Ogre::Root>(tempRoot);
+
+    const std::string pluginDir = OGRE_PLUGIN_DIR;
     logMsg("winHandle for Ogre = " +winHandle);
 
 //#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
@@ -531,7 +533,10 @@ void renderEngine::createSceneManager()
     // Create the SceneManager, in this case a generic one
 //    render->setMSceneMgr(render->getMRoot()->createSceneManager(Ogre::ST_EXTERIOR_CLOSE));
 
-   mSceneMgr = mRoot->createSceneManager(Ogre::ST_EXTERIOR_CLOSE); 
+   mSceneMgr = mRoot->createSceneManager(Ogre::ST_EXTERIOR_CLOSE);
+//    Ogre::SceneManager *tempSceneMgr = mRoot->createSceneManager(Ogre::ST_EXTERIOR_CLOSE);
+//    mSceneMgr = boost::shared_ptr<Ogre::SceneManager>(tempSceneMgr);
+
 }
 
 bool renderEngine::createWindow()
@@ -683,6 +688,8 @@ bool renderEngine::createScene()
 
     std::string dataPath = UBC_DATADIR;
     mSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC); // for OGRE 1.2 Dagon
+//    Ogre::SceneManager *tempSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC);
+//    mSceneMgr = boost::shared_ptr<Ogre::SceneManager>(tempSceneMgr);
 
     if (useRTSS)
     {
@@ -778,8 +785,9 @@ bool renderEngine::createScene()
     // logMsg("Rendering!");
 	misc["externalWindowHandle"] = winHandle; //
 
-    mWindow = mRoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
-
+//    mWindow = mRoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
+    Ogre::RenderWindow *tempWindow = mRoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
+    mWindow = boost::shared_ptr<Ogre::RenderWindow>(tempWindow);
 	//    exit(0);
 	mWindow->setVisible(true);
 #endif
@@ -811,8 +819,13 @@ logMsg("Alive?");
     
 	rsm->initialiseResourceGroup(mResourceGroup);
     
-	mSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC); // for OGRE 1.2 Dagon
-	mCamera = mSceneMgr->createCamera("camera");
+    mSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC); // for OGRE 1.2 Dagon
+//    tempSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC);
+//    mSceneMgr = boost::shared_ptr<Ogre::SceneManager>(tempSceneMgr);
+
+    Ogre::Camera *tempCamera = mSceneMgr->createCamera("camera");
+//    mCamera = mSceneMgr->createCamera("camera");
+    mCamera = boost::shared_ptr<Ogre::Camera>(tempCamera);
 
 
     logMsg("RTShaderSystem Setup!");
@@ -834,8 +847,10 @@ logMsg("Alive?");
 
 	mCamera->setNearClipDistance(5);
 
-	viewPort = mWindow->addViewport(mCamera);
-	viewPort->setBackgroundColour(Ogre::ColourValue(0, 0, 0));
+    //viewPort = mWindow->addViewport(mCamera.get());
+    Ogre::Viewport *tempViewPort = mWindow->addViewport(mCamera.get());
+    viewPort = boost::shared_ptr<Ogre::Viewport>(tempViewPort);
+    viewPort->setBackgroundColour(Ogre::ColourValue(0, 0, 0));
 
 	// most examples get the viewport size to calculate this; for now, we'll just
 	// set it to 4:3 the easy way

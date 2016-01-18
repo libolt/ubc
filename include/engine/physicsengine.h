@@ -65,8 +65,8 @@ public:
     bool getBasketballVelocitySet();  // retrieves the value of basketballVelocitySet
     void setBasketballVelocitySet(bool set);  // sets the value of basketballVelocitySet
 
-    btDynamicsWorld *getWorld();  // retrieves the value of world
-    void setWorld(btDynamicsWorld *set);  // sets the value of world
+    boost::shared_ptr<btDynamicsWorld> getWorld();  // retrieves the value of world
+    void setWorld(boost::shared_ptr<btDynamicsWorld> set);  // sets the value of world
 
 
 /*    size_t getTeam1CollidesWith();  // retrieves the value of team1CollidesWith
@@ -107,13 +107,13 @@ private:
     //static physicsEngine *pInstance;
 ///    static boost::shared_ptr<physicsEngine> pInstance;
 
-    static btDynamicsWorld *world;  // stores the physics world
-    BtOgre::DebugDrawer *debugDraw;  // used to draw debug shapes for objects
+    boost::shared_ptr<btDynamicsWorld> world;  // stores the physics world
+    boost::shared_ptr<BtOgre::DebugDrawer> debugDraw;  // used to draw debug shapes for objects
 //    btAxisSweep3 *broadPhase;
-    btBroadphaseInterface *broadPhase;  
-    btDefaultCollisionConfiguration *collisionConfig;
-    btCollisionDispatcher *dispatcher;
-    btSequentialImpulseConstraintSolver *solver;
+    boost::shared_ptr<btBroadphaseInterface> broadPhase;
+    boost::shared_ptr<btDefaultCollisionConfiguration> collisionConfig;
+    boost::shared_ptr<btCollisionDispatcher> dispatcher;
+    boost::shared_ptr<btSequentialImpulseConstraintSolver> solver;
     btContactSolverInfo contactInfo;
 
 

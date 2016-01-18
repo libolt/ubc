@@ -49,14 +49,14 @@ void basketballEntity::setSteer(basketballSteer *set)  // sets the value of stee
 
 bool basketballEntity::setupPhysicsObject()  // sets up the physics object
 {
-    Ogre::Entity *tempModel = getModel();
-    Ogre::SceneNode *tempNode = getNode();
-    btRigidBody *tempPhysBody = getPhysBody();
+    boost::shared_ptr<Ogre::Entity> tempModel = getModel();
+    boost::shared_ptr<Ogre::SceneNode> tempNode = getNode();
+    boost::shared_ptr<btRigidBody> tempPhysBody = getPhysBody();
     setShapeType(SPHERE);
     setColObject(COL_BBALL);
     setCollidesWith(COL_COURT);
 
-    if (setupPhysics(&tempModel, &tempNode, &tempPhysBody))
+    if (setupPhysics(&tempModel.get(), &tempNode.get(), &tempPhysBody.get()))
     {
         setPhysicsSetup(true);
         setModel(tempModel);

@@ -35,17 +35,17 @@ class physics : public physicsEngine
         physics();  // constructor
         ~physics();  // destructor
 
-        btCollisionShape *getShape();  // retrieves the value of shape
-        void setShape(btCollisionShape *set);  // sets the value of shape
+        boost::shared_ptr<btCollisionShape> getShape();  // retrieves the value of shape
+        void setShape(boost::shared_ptr<btCollisionShape> set);  // sets the value of shape
 
-        BtOgre::RigidBodyState *getBodyState();  // retrieves the value of bodyState
-        void setBodyState(BtOgre::RigidBodyState *set);  // sets the value of bodyState
+        boost::shared_ptr<BtOgre::RigidBodyState> getBodyState();  // retrieves the value of bodyState
+        void setBodyState(boost::shared_ptr<BtOgre::RigidBodyState> set);  // sets the value of bodyState
 
         physicsShapes getShapeType();  // retrieves the value of shapeType
         void setShapeType(physicsShapes set);  // sets the value of shapeType
  
-        btRigidBody *getPhysBody();  // retrieves the value of physBody
-        void setPhysBody(btRigidBody *set);  // sets the value of physBody
+        boost::shared_ptr<btRigidBody> getPhysBody();  // retrieves the value of physBody
+        void setPhysBody(boost::shared_ptr<btRigidBody> set);  // sets the value of physBody
 
         int getColObject();  // retrieves the value of colObject
         void setColObject(int set);  // sets the value of colObject
@@ -68,12 +68,12 @@ class physics : public physicsEngine
 
     private:
 
-        btCollisionShape *shape;  // stores the shape of the object shape
-        BtOgre::RigidBodyState *bodyState;  // stores the state of the body objectt
+        boost::shared_ptr<btCollision> Shapeshape;  // stores the shape of the object shape
+        boost::shared_ptr<BtOgre::RigidBodyState> bodyState;  // stores the state of the body objectt
 
         physicsShapes shapeType;  // stores what type of shape to create 
         
-        btRigidBody *physBody;  // stores the physics object that represents the player
+        boost::shared_ptr<btRigidBody> physBody;  // stores the physics object that represents the player
     
         size_t entityInstance;  // stores which instance of the entity object(s) to use for shape
         

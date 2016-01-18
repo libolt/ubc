@@ -54,11 +54,11 @@ class entity : public UBC // base class for entity objects
     std::string getEntityNodeName();  // retrieves the value of nodeName
     void setEntityNodeName(std::string set);  // sets the value of nodeName
 
-    Ogre::Entity *getModel();  // retrieves the value of model
-    void setModel(Ogre::Entity *set);  // sets the value of model
+    boost::shared_ptr<Ogre::Entity> getModel();  // retrieves the value of model
+    void setModel(boost::shared_ptr<Ogre::Entity> set);  // sets the value of model
 
-    Ogre::SceneNode *getNode();  // retrieves the value of node
-    void setNode(Ogre::SceneNode *set);  // sets the value of node
+    boost::shared_ptr<Ogre::SceneNode> getNode();  // retrieves the value of node
+    void setNode(boost::shared_ptr<Ogre::SceneNode> set);  // sets the value of node
 
 
     bool getPhysicsSetup();  // retrieves the value of physicsSetup
@@ -85,9 +85,9 @@ class entity : public UBC // base class for entity objects
 
     std::string entityNodeName;  // stores the name of the scene node
 
-    Ogre::Entity *model;  // stores 3d model
+    boost::shared_ptr<Ogre::Entity> model;  // stores 3d model
 
-    Ogre::SceneNode *node;  // stores node 3d model is attached to
+    boost::shared_ptr<Ogre::SceneNode> node;  // stores node 3d model is attached to
 
     Ogre::Vector3 nodePosition;  // stores the position of the node
 

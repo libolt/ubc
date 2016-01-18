@@ -62,21 +62,21 @@ void entity::setEntityNodeName(std::string set)  // sets the value of entityNode
     entityNodeName = set;
 }
 
-Ogre::Entity *entity::getModel()  // retrieves the value of model
+boost::shared_ptr<Ogre::Entity> entity::getModel()  // retrieves the value of model
 {
     return (model);
 }
- void entity::setModel(Ogre::Entity *set)  // sets the value of model
+ void entity::setModel(boost::shared_ptr<Ogre::Entity> set)  // sets the value of model
 {
     logMsg("die here?");
     model = set;
 }
 
-Ogre::SceneNode *entity::getNode()  // retrieves the value of node
+boost::shared_ptr<Ogre::SceneNode> entity::getNode()  // retrieves the value of node
 {
     return (node);
 }
-void entity::setNode(Ogre::SceneNode *set)  // sets the value of node
+void entity::setNode(boost::shared_ptr<Ogre::SceneNode> set)  // sets the value of node
 {
     node = set;
 }

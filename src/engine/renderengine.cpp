@@ -614,7 +614,10 @@ bool renderEngine::createScene()
 //	exit(0);
 	logMsg("Hello??");
 #ifdef __ANDROID__
-	mWindow = mRoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
+//	mWindow = mRoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
+    Ogre::RenderWindow *tempWindow = mRoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
+    mWindow = boost::shared_ptr<Ogre::RenderWindow>(tempWindow);
+
 #endif
 //	exit(0);
     logMsg("renderWindow created!");
@@ -630,7 +633,7 @@ bool renderEngine::createScene()
 
     logMsg("Dead");
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-	sdlWindow = SDL_CreateWindowFrom(mWindow);
+	sdlWindow = SDL_CreateWindowFrom(mWindow.get());
 #endif
 /*
 //    SDL_SetWindowSize(sdlWindow, w, h);

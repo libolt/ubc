@@ -42,12 +42,12 @@ void physics::setShape(btCollisionShape *set)  // sets the value of shape
     shape = set;
 }
 
-BtOgre::RigidBodyState *physics::getBodyState()  // retrieves the value of bodyState
+boost::shared_ptr<BtOgre::RigidBodyState> physics::getBodyState()  // retrieves the value of bodyState
 {
     return (bodyState);
 }
 
-void physics::setBodyState(BtOgre::RigidBodyState *set)  // sets the value of bodyState
+void physics::setBodyState(boost::shared_ptr<BtOgre::RigidBodyState> set)  // sets the value of bodyState
 {
     bodyState = set;
 }
@@ -61,12 +61,12 @@ void physics::setShapeType(physicsShapes set)  // sets the value of shapeType
     shapeType = set;
 }
 
-btRigidBody *physics::getPhysBody()  // retrieves physBody variable
+boost::shared_ptr<btRigidBody> physics::getPhysBody()  // retrieves physBody variable
 {
     return (physBody);
 }
 
-void physics::setPhysBody(btRigidBody *set)  // sets physBody variable
+void physics::setPhysBody(boost::shared_ptr<btRigidBody> set)  // sets physBody variable
 {
     physBody = set;
 }

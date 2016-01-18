@@ -126,11 +126,23 @@ bool entity::loadModel()  // loads the 3D model
     logMsg("entityModelFileName == " +entityModelFileName);
     Ogre::SceneManager *mSceneMgr = render->getMSceneMgr();
     logMsg("Model");
-    model = render->getMSceneMgr()->createEntity(entityName, entityModelFileName);  // loads the basketball model
+//    model = render->getMSceneMgr()->createEntity(entityName, entityModelFileName);  // loads the model
+    Ogre::Entity *tempModel = render->getMSceneMgr()->createEntity(entityName, entityModelFileName);  // loads the model
+    model = boost::shared_ptr<Ogre::Entity>(tempModel);
     logMsg("Entity Created!");
     // creates and instantiates the node object
-    node = getRender()->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName);
-    logMsg("scene node created!");
+//    node = getRender()->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName);
+    Ogre::SceneNode *tempNode = getRender()->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName);
+    tempNode->attachObject(model.get());
+    logMsg("node attached!");
+    // attaches 3D model to the node
+//    node->attachObject(model);
+    // sets the size of the bball node
+    tempNode->setScale(0.25f,0.25f,0.25f);
+    tempNode->setPosition(0.0f,0.0f,0.0f);
+
+    node = boost::shared_ptr<Ogre::SceneNode>(tempNode);
+/*    logMsg("scene node created!");
     node->attachObject(model);
     logMsg("node attached!");
     // attaches 3D model to the node
@@ -138,7 +150,7 @@ bool entity::loadModel()  // loads the 3D model
     // sets the size of the bball node
     node->setScale(0.25f,0.25f,0.25f);
     node->setPosition(0.0f,0.0f,0.0f);
-
+*/
    return true;
 }
 

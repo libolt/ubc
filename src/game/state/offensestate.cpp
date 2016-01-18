@@ -357,7 +357,7 @@ void offenseState::executeOffense() // executes box offense
             if ( activePlayerInstance[x]->getID() != playerWithBallID)
             {
                 logMsg("activeSteerInstanceID == " +convert->toString(activePlayerInstance[x]->getID()));
-                pSteer = activePlayerInstance[x]->getSteer();
+                pSteer = activePlayerInstance[x]->getSteer().get();
                 std::vector<bool> positionReached = pSteer->getPositionReached();
                 if (positionReached.size() != 1)
                 {
@@ -408,7 +408,7 @@ void offenseState::executeOffense() // executes box offense
                 {
                     if (ID != playerWithBallInstance)
                     {
-                        pSteer = activePlayerInstance[ID]->getSteer();
+                        pSteer = activePlayerInstance[ID]->getSteer().get();
                         bool directiveComplete = checkForDirective(pSteer->getPlayerPosition());  // checks if player must follow directive before executing
                         if (directiveComplete)
                         {
@@ -467,9 +467,9 @@ void offenseState::executeOffense() // executes box offense
         {
             for (int x=0;x<5;++x)
             {
-                pSteer = activePlayerInstance[x]->getSteer();
+                pSteer = activePlayerInstance[x]->getSteer().get();
                 pSteer->setExecute(false);
-                activePlayerInstance[x]->setSteer(pSteer);
+                activePlayerInstance[x]->setSteer(boost::shared_ptr<playerSteer>(pSteer));
             }
         }
 //          exit(0);

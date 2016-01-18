@@ -39,11 +39,11 @@ void playerEntity::setPhysics(playerPhysics *set)  // sets the value of physics
     physics = set;
 }*/
 
-playerSteer *playerEntity::getSteer() // retrieves the value of steer
+boost::shared_ptr<playerSteer> playerEntity::getSteer() // retrieves the value of steer
 {
     return (steer);
 }
-void playerEntity::setSteer(playerSteer *set)  // sets the value of steer
+void playerEntity::setSteer(boost::shared_ptr<playerSteer> set)  // sets the value of steer
 {
     steer = set;
 }
@@ -52,9 +52,9 @@ bool playerEntity::setupPhysicsObject()  // sets up the physics object
 {
     logMsg("playerEntity!");
 //    exit(0);
-    Ogre::Entity *tempModel = getModel();
-    Ogre::SceneNode *tempNode = getNode();
-    btRigidBody *tempPhysBody = getPhysBody();
+    Ogre::Entity *tempModel = getModel().get();
+    Ogre::SceneNode *tempNode = getNode().get();
+    btRigidBody *tempPhysBody = getPhysBody().get();
     setShapeType(CAPSULE);
     setColObject(COL_BBALL);
 //    getPhysics()->setCollidesWith(COL_COURT);
@@ -62,9 +62,9 @@ bool playerEntity::setupPhysicsObject()  // sets up the physics object
     if (setupPhysics(&tempModel, &tempNode, &tempPhysBody))
     {
         setPhysicsSetup(true);
-        setModel(tempModel);
-        setNode(tempNode);
-        setPhysBody(tempPhysBody);
+        setModel(boost::shared_ptr<Ogre::Entity>(tempModel));
+        setNode(boost::shared_ptr<Ogre::SceneNode>(tempNode));
+        setPhysBody(boost::shared_ptr<btRigidBody>(tempPhysBody));
 //        exit(0);
         return (true);
     }

@@ -209,7 +209,7 @@ void playerSteer::update (const float currentTime, float elapsedTime)
         size_t x = 0;
         while (x < activePlayerInstance[z].size())
         {
-            teamSteer.push_back(activePlayerInstance[z][x]->getSteer());
+            teamSteer.push_back(activePlayerInstance[z][x]->getSteer().get());
             ++x;
         }
         teamSteers.push_back(teamSteer);
@@ -659,7 +659,7 @@ void playerSteer::updateDefense(const float currentTime, const float elapsedTime
         size_t x = 0;
         while (x < activePlayerInstance[z].size())
         {
-            teamSteer.push_back(activePlayerInstance[z][x]->getSteer());
+            teamSteer.push_back(activePlayerInstance[z][x]->getSteer().get());
             ++x;
         }
         teamSteers.push_back(teamSteer);

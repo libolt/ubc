@@ -33,11 +33,11 @@ physics::~physics()  // destructor
 
 }
 
-btCollisionShape *physics::getShape()  // retrieves the value of shape
+boost::shared_ptr<btCollisionShape> physics::getShape()  // retrieves the value of shape
 {
     return (shape);
 }
-void physics::setShape(btCollisionShape *set)  // sets the value of shape
+void physics::setShape(boost::shared_ptr<btCollisionShape> set)  // sets the value of shape
 {
     shape = set;
 }
@@ -136,31 +136,33 @@ bool physics::setupPhysics(Ogre::Entity **model, Ogre::SceneNode **node, btRigid
 //        exit(0);
 */
         BtOgre::StaticMeshToShapeConverter converter(*model);
-        
+        btCollisionShape *tempShape; 
         switch (getShapeType())
         {
             case CAPSULE:
-                shape = converter.createCapsule();
+                tempShape = converter.createCapsule();
             break;
             case BOX:
-               shape = converter.createBox();
+                tempShape = converter.createBox();
             break;
             case CYLINDER:
             break;
             case SPHERE:
-                shape= converter.createSphere();
+                tempShape= converter.createSphere();
             break;
             default:
             break;
         }
 //        setShape(converter.createSphere());
         
-        shape->calculateLocalInertia(mass, inertia);
+        tempShape->calculateLocalInertia(mass, inertia);
+        shape = boost::shared_ptr<btCollisionShape>(tempShape);
 //        exit(0);
 
-        bodyState = new BtOgre::RigidBodyState(*node);
+        BtOgre::RigidBodyState *tempBodyState = new BtOgre::RigidBodyState(*node);
+        bodyState =  boost::shared_ptr<BtOgre::RigidBodyState>(tempBodyState);
 //    exit(0);
-        btRigidBody::btRigidBodyConstructionInfo info(mass,bodyState,shape,inertia);  //motion state would actually be non-null in most real usages
+        btRigidBody::btRigidBodyConstructionInfo info(mass,bodyState.get(),shape.get(),inertia);  //motion state would actually be non-null in most real usages
         info.m_restitution = 0.85f;
 //    info.m_friction = 2.0f;
 //    exit(0);

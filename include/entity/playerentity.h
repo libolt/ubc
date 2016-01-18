@@ -37,8 +37,8 @@ class playerEntity : public entity , public playerPhysics
 /*    playerPhysics *getPhysics();  // retrieves the value of physics
     void setPhysics(playerPhysics *set);  // sets the value of physics
 */
-    playerSteer *getSteer(); // retrieves the steering instance
-    void setSteer(playerSteer *set); // sets the steering instance
+    boost::shared_ptr<playerSteer> getSteer(); // retrieves the steering instance
+    void setSteer(boost::shared_ptr<playerSteer> set); // sets the steering instance
 
     bool setupPhysicsObject();  // sets up the physics object
  
@@ -46,7 +46,7 @@ class playerEntity : public entity , public playerPhysics
 
 //    playerPhysics *physics;  // stores the playerPhysics object
 
-    playerSteer *steer;  // stores the steering objerct that represents the player
+    boost::shared_ptr<playerSteer> steer;  // stores the steering objerct that represents the player
 };
 
 #endif // _PLAYERENTITY_H_

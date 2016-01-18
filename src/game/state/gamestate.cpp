@@ -490,7 +490,7 @@ bool gameState::createBasketballInstances()  // creates basketball Instances
 
     logMsg("creating steer object");
     basketballSteer *bballSteer = new basketballSteer;  // steer instance
-    bballInstance.setSteer(bballSteer);
+    bballInstance.setSteer(boost::shared_ptr<basketballSteer>(bballSteer));
     logMsg("setting instance number");
     bballInstance.setNumber(0);
     bballInstance.setNumberSet(true);

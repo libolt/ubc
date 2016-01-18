@@ -35,8 +35,8 @@ class basketballEntity : public entity, public basketballPhysics
 /*    basketballPhysics *getPhysics();  // retrieves the value of physics
     void setPhysics(basketballPhysics *set);  // sets the value of physics
 */
-    basketballSteer *getSteer();  // retrieves the value of steer
-    void setSteer(basketballSteer *set);  // sets the value of steer
+    boost::shared_ptr<basketballSteer> getSteer();  // retrieves the value of steer
+    void setSteer(boost::shared_ptr<basketballSteer> set);  // sets the value of steer
 
     bool setupPhysicsObject();  // sets up the physics object
     
@@ -44,7 +44,7 @@ class basketballEntity : public entity, public basketballPhysics
 
 //    basketballPhysics *physics;  // instanciates an object to handle the physics for the basketball
 
-    basketballSteer *steer;  // instance of the basketballSteer class
+    boost::shared_ptr<basketballSteer> steer;  // instance of the basketballSteer class
 
 };
  

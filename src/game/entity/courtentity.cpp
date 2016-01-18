@@ -40,9 +40,9 @@ void courtEntity::setPhysics(courtPhysics *set)  // sets the value of physics
 
 bool courtEntity::setupPhysicsObject()  // sets up the physics object
 {
-    Ogre::Entity *tempModel = getModel();
-    Ogre::SceneNode *tempNode = getNode();
-    btRigidBody *tempPhysBody = getPhysBody();
+    Ogre::Entity *tempModel = getModel().get();
+    Ogre::SceneNode *tempNode = getNode().get();
+    btRigidBody *tempPhysBody = getPhysBody().get();
     
     int collides = COL_BBALL | COL_TEAM1 | COL_TEAM2;
     setShapeType(BOX);
@@ -52,9 +52,9 @@ bool courtEntity::setupPhysicsObject()  // sets up the physics object
     if (setupPhysics(&tempModel, &tempNode, &tempPhysBody))
     {
         setPhysicsSetup(true);
-        setModel(tempModel);
-        setNode(tempNode);
-        setPhysBody(tempPhysBody);
+        setModel(boost::shared_ptr<Ogre::Entity>(tempModel));
+        setNode(boost::shared_ptr<Ogre::SceneNode>(tempNode));
+        setPhysBody(boost::shared_ptr<btRigidBody>(tempPhysBody));
         return (true);
     }
     else

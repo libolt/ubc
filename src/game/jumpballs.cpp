@@ -262,7 +262,7 @@ bool jumpBalls::jumpBallExecute()  // initiates jump ball from jump ball circle
         logMsg("bball physbody isinworld == " +convert->toString(basketballInstance[activeBBallInstance].getPhysBody()->isInWorld()));
         logMsg("player physics setup complete == " +convert->toString(activePInstance->getPhysicsSetup()));
 //        exit(0);
-        if (physEngine.collisionCheck(basketballInstance[activeBBallInstance].getPhysBody(), activePInstance->getPhysBody()))
+        if (physEngine.collisionCheck(basketballInstance[activeBBallInstance].getPhysBody().get(), activePInstance->getPhysBody().get()))
         {
             logMsg("team " +convert->toString(y) +" center collided with ball");
             ballTippedToTeam = activeTeamInstance[y]->getTeamType();
@@ -411,7 +411,7 @@ bool jumpBalls::tipToPlayer()  // tips the basketball to the appropriate player
         {
             logMsg("ballTippedToPlayerInstance == " +convert->toString(ballTippedToPlayerInstance));
 
-            if (physEngine.collisionCheck(basketballInstance[activeBBallInstance].getPhysBody(), activePlayerInstance[ballTippedToPlayerInstance]->getPhysBody()))
+            if (physEngine.collisionCheck(basketballInstance[activeBBallInstance].getPhysBody().get(), activePlayerInstance[ballTippedToPlayerInstance]->getPhysBody().get()))
             {
  //               exit(0);
                 gameS->setTeamWithBall(ballTippedToTeam);

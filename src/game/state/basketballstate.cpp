@@ -219,20 +219,20 @@ void basketballState::setPlayerControlled(bool set)  // sets the value of player
     playerControlled = set;
 }
 
-playerState *basketballState::getPlayerWithBall()  // retrieves the value of playerWithBall
+boost::shared_ptr<playerState> basketballState::getPlayerWithBall()  // retrieves the value of playerWithBall
 {
     return (playerWithBall);
 }
-void basketballState::setPlayerWithBall(playerState *set)  // sets the value of playerWithBall
+void basketballState::setPlayerWithBall(boost::shared_ptr<playerState> set)  // sets the value of playerWithBall
 {
     playerWithBall = set;
 }
 
-courtState *basketballState::getCourtInstance()  // retrieves the value of courtInstance
+boost::shared_ptr<courtState> basketballState::getCourtInstance()  // retrieves the value of courtInstance
 {
     return (courtInstance);
 }
-void basketballState::setCourtInstance(courtState *set)  // sets the value of courtInstance
+void basketballState::setCourtInstance(boost::shared_ptr<courtState>set)  // sets the value of courtInstance
 {
     courtInstance = set;
 }

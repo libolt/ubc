@@ -58,7 +58,7 @@ void playerSteerPlugin::open(void)
         size_t y = 0;
         while (y < activePlayerInstance[x].size())
         {
-            playerSteer *steer = activePlayerInstance[x][y]->getSteer();
+            playerSteer *steer = activePlayerInstance[x][y]->getSteer().get();
         //      logMsg("Alive1");
             logMsg("y = " +convert->toString(y));
             logMsg("player position = " +convert->toString(activePlayerInstance[x][y]->getCourtPosition()));
@@ -68,8 +68,8 @@ void playerSteerPlugin::open(void)
 
         //      steer->setID(x);
             ai->selectedVehicle = steer;
-            activePlayerInstance[x][y]->setSteer(steer);
-            allPlayerSteers.push_back(activePlayerInstance[x][y]->getSteer());
+            activePlayerInstance[x][y]->setSteer(boost::shared_ptr<playerSteer>(steer));
+            allPlayerSteers.push_back(activePlayerInstance[x][y]->getSteer().get());
             ++y;
         }
         ++x;

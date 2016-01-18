@@ -68,7 +68,7 @@ class physics : public physicsEngine
 
     private:
 
-        boost::shared_ptr<btCollision> Shapeshape;  // stores the shape of the object shape
+        boost::shared_ptr<btCollisionShape> shape;  // stores the shape of the object shape
         boost::shared_ptr<BtOgre::RigidBodyState> bodyState;  // stores the state of the body objectt
 
         physicsShapes shapeType;  // stores what type of shape to create 

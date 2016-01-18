@@ -719,7 +719,7 @@ void physicsEngine::passCollisionCheck()  // checks whether the ball has collide
     logMsg("Player pass to Coords = " +convert->toString(activePlayerInstance[passToPlayer]->getNode()->getPosition()));
 
     pairCollided = false;
-    world->contactPairTest(basketballInstance[activeBBallInstance].getPhysBody(), activePlayerInstance[passToPlayer]->getPhysBody(), passCollisionResult);
+    world->contactPairTest(basketballInstance[activeBBallInstance].getPhysBody().get(), activePlayerInstance[passToPlayer]->getPhysBody().get(), passCollisionResult);
     if (!passCollisionResult.m_connected)
     {
         logMsg("No Pass Collision");

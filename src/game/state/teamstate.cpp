@@ -664,7 +664,7 @@ bool teamState::createPlayerInstances()
             pInstance->setTeamType(teamType);  // sets the team number the player belongs to            
             pSteer->setTeamType(teamType);
             pSteer->reset();
-            pInstance->setSteer(pSteer);
+            pInstance->setSteer(boost::shared_ptr<playerSteer>(pSteer));
             playerInstance.push_back(pInstance);    // adds pInstance to the playerInstance std::vector.
 
             logMsg("Player Model Name == " +gamePlayerInstance[i]->getEntityModelFileName());

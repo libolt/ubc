@@ -244,6 +244,7 @@ void GUISystem::menuReceiveKeyPress(std::string keyPressed)  // processes key in
 
 void GUISystem::processMainMenuKeyPress(std::string keyPressed)  // processes main menu key input
 {
+//    exit(0);
     if (keyPressed == "s")
     {
         startSinglePlayerGame();
@@ -735,6 +736,7 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed)  // pro
 
 void GUISystem::processCourtSelectionMenuKeyPress(std::string keyPressed)  // process court selection menu key input
 {
+//    exit(0);
     //gameState *gameS = gameState::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
 

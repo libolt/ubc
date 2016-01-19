@@ -106,17 +106,21 @@ void UBC::processInput()  // processes game input
 
     logMsg("inputProcess!");
  
-    if (getInput()->processInput(getMenuActive(), getRender()))
+    if (getInput()->processInput(getRender()))
     {
 //        exit(0);
 
-        if (getInput()->getKeyInputReceived() && getMenuActive())
+        if (getInput()->getKeyInputReceived())
         {
-            logMsg("menuReceiveKeyPress == " +getInput()->getKeyPressed());
-            menuReceiveKeyPress(getInput()->getKeyPressed()); // sends input to menu key input processing function
-            if (getInput()->getKeyPressed() == "t")
+            if (getMenuActive())
             {
- //               exit(0);
+                logMsg("menuReceiveKeyPress == " +getInput()->getKeyPressed());
+                menuReceiveKeyPress(getInput()->getKeyPressed()); // sends input to menu key input processing function
+                if (getInput()->getKeyPressed() == "t")
+                {
+     //               exit(0);
+                }
+                getInput()->setKeyPressed("");
             }
         }
         if (gameS->getActiveTeamInstancesCreated())

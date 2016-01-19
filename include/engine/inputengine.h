@@ -79,8 +79,8 @@ public:
 
     inputMaps keyMap();  // maps value of keyPressed string to inputMap
 	
-    bool processInput(bool menuActive, boost::shared_ptr<renderEngine> render);	// processes all input
-    bool processUnbufferedKeyInput(bool textInput, bool menuActive);	// reads in unbuffered key presses
+    bool processInput(boost::shared_ptr<renderEngine> render);	// processes all input
+    bool processUnbufferedKeyInput(bool textInput);	// reads in unbuffered key presses
     bool processUnbufferedMouseInput();	// reads in unbuffered mouse input
     bool processUnbufferedTouchInput(boost::shared_ptr<renderEngine> render); // reads in unbuffered touch input
     bool processUnbufferedGamepadInput(); // reads in unbuffered mouse input

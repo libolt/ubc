@@ -222,7 +222,7 @@ inputMaps inputEngine::keyMap()  // maps value of keyPressed string to inputMap
     }
 }
 
-bool inputEngine::processInput(bool menuActive,boost::shared_ptr<renderEngine> render)  // processes all input
+bool inputEngine::processInput(boost::shared_ptr<renderEngine> render)  // processes all input
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
@@ -319,7 +319,7 @@ bool inputEngine::processInput(bool menuActive,boost::shared_ptr<renderEngine> r
             case SDL_KEYDOWN:
             case SDL_TEXTINPUT:
                 keyPressed = "";
-                if (processUnbufferedKeyInput(true,menuActive) == false)
+                if (processUnbufferedKeyInput(true))
                 {
                     return false;
                 }
@@ -381,7 +381,7 @@ bool inputEngine::processInput(bool menuActive,boost::shared_ptr<renderEngine> r
     return true;
 }
 
-bool inputEngine::processUnbufferedKeyInput(bool textInput, bool menuActive)  // processes unbuffered keyboard input
+bool inputEngine::processUnbufferedKeyInput(bool textInput)  // processes unbuffered keyboard input
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<GUISystem> gui = GUISystem::Instance();

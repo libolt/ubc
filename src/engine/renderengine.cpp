@@ -68,6 +68,8 @@ _declspec(dllexport) DWORD NvOptimusEnablement = 0x00000001;
 }
 #endif
 
+Ogre::SceneManager *renderEngine::mSceneMgr;  // static declaration of mSceneMgr
+
 renderEngine::renderEngine()  // constructor
 {
 #ifdef __ANDROID__
@@ -82,6 +84,7 @@ renderEngine::renderEngine()  // constructor
    windowWidth = 0;
    windowHeight = 0;
    useRTSS = false;
+
 }
 
 renderEngine::~renderEngine()  // destructor
@@ -693,7 +696,7 @@ bool renderEngine::createScene()
     mSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC); // for OGRE 1.2 Dagon
 //    Ogre::SceneManager *tempSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC);
 //    mSceneMgr = boost::shared_ptr<Ogre::SceneManager>(tempSceneMgr);
-
+//    exit(0);
     if (useRTSS)
     {
     std::string rname = selectedRenderSystem->getName();  // stores the name of the selected rendering system

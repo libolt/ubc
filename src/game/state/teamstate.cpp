@@ -750,7 +750,7 @@ bool teamState::createPlayerInstances()
         }
         x++;
     }
-    exit(0);
+//    exit(0);
     return true;
 }
 

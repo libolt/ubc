@@ -198,47 +198,50 @@ void GUISystem::menuReceiveKeyPress(std::string keyPressed)  // processes key in
     logMsg("activeMenu == " +convert->toString(activeMenu));
     logMsg("keyPressed == " +keyPressed);
 //    exit(0);
-    switch (activeMenu)
+    if (keyPressed != "")
     {
-        case MAIN:
-            processMainMenuKeyPress(keyPressed);
-            break;
-        case NETWORK:
-            processNetworkMenuKeyPress(keyPressed);
-            break;
-        case NETWORKSERVER:
-            processNetworkServerMenuKeyPress(keyPressed);
-            break;
-        case NETWORKCLIENT:
-            processNetworkClientMenuKeyPress(keyPressed);
-            break;
-        case OPTIONS:
-            processOptionsMenuKeyPress(keyPressed);
-            break;
-        case DISPLAY:
-            processDisplayMenuKeyPress(keyPressed);
-            break;
-        case INPUTMENU:
-            processInputMenuKeyPress(keyPressed);
-            break;
-        case AUDIO:
-            processAudioMenuKeyPress(keyPressed);
-            break;
-        case GAMESETUP:
-            processGameSetupMenuKeyPress(keyPressed);
-            break;
-        case PLAYERSTART:
-            processPlayerStartSelectionMenuKeyPress(keyPressed);
-            break;
-        case TEAMSELECT:
-            processTeamSelectionMenuKeyPress(keyPressed);
-//            exit(0);
-            break;
-        case COURTSELECT:
-            processCourtSelectionMenuKeyPress(keyPressed);
-            break;
-        default:
-            break;
+        switch (activeMenu)
+        {
+            case MAIN:
+                processMainMenuKeyPress(keyPressed);
+                break;
+            case NETWORK:
+                processNetworkMenuKeyPress(keyPressed);
+                break;
+            case NETWORKSERVER:
+                processNetworkServerMenuKeyPress(keyPressed);
+                break;
+            case NETWORKCLIENT:
+                processNetworkClientMenuKeyPress(keyPressed);
+                break;
+            case OPTIONS:
+                processOptionsMenuKeyPress(keyPressed);
+                break;
+            case DISPLAY:
+                processDisplayMenuKeyPress(keyPressed);
+                break;
+            case INPUTMENU:
+                processInputMenuKeyPress(keyPressed);
+                break;
+            case AUDIO:
+                processAudioMenuKeyPress(keyPressed);
+                break;
+            case GAMESETUP:
+                processGameSetupMenuKeyPress(keyPressed);
+                break;
+            case PLAYERSTART:
+                processPlayerStartSelectionMenuKeyPress(keyPressed);
+                break;
+            case TEAMSELECT:
+                processTeamSelectionMenuKeyPress(keyPressed);
+    //            exit(0);
+                break;
+            case COURTSELECT:
+                processCourtSelectionMenuKeyPress(keyPressed);
+                break;
+            default:
+                break;
+        }
     }
 }
 
@@ -600,6 +603,7 @@ void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed)  // process
 
 void GUISystem::processPlayerStartSelectionMenuKeyPress(std::string keyPressed)  // process player start selection menu key input
 {
+
     //gameState *gameS = gameState::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<loader> load = loader::Instance();
@@ -610,6 +614,8 @@ void GUISystem::processPlayerStartSelectionMenuKeyPress(std::string keyPressed) 
 //    exit(0);
     if (keyPressed == "s")
     {
+//        exit(0);
+        logMsg("processPlayerStart KeyPressed == " +keyPressed);
 //        exit(0);
         playerStartSelected();
     }

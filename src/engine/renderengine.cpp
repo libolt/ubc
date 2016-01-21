@@ -68,7 +68,7 @@ _declspec(dllexport) DWORD NvOptimusEnablement = 0x00000001;
 }
 #endif
 
-Ogre::SceneManager *renderEngine::mSceneMgr;  // static declaration of mSceneMgr
+//Ogre::SceneManager *renderEngine::mSceneMgr;  // static declaration of mSceneMgr
 
 renderEngine::renderEngine()  // constructor
 {
@@ -525,7 +525,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
     Ogre::FreeImageCodec::startup();
     log->setOgreRootInitialized(true); 
     logMsg("OGRE initialized successfully!");
-
+//    exit(0);
 	return true;
 }
 
@@ -944,8 +944,8 @@ logMsg("Alive?");
 		cout << "FIRST name = " << playerN[i].getPlayerFirstName() << endl;
 	}
 */
-//	load->loadPlayerFile(
-//	exit(0);
+//  load->loadPlayerFile(
+//  exit(0);
   //  gameE->startGame();
 return (true);
 }

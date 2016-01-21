@@ -127,7 +127,8 @@ bool entity::loadModel()  // loads the 3D model
     Ogre::SceneManager *mSceneMgr = render->getMSceneMgr();
     logMsg("Model");
 //    model = render->getMSceneMgr()->createEntity(entityName, entityModelFileName);  // loads the model
-    Ogre::Entity *tempModel = render->getMSceneMgr()->createEntity(entityName, entityModelFileName);  // loads the model
+    Ogre::Entity *tempModel = getRender()->getMSceneMgr()->createEntity(entityName, "Media/models/Player.mesh");  // loads the model
+    logMsg("tempModel loaded!");
 //    render->getMSceneMgr()->
 //    Ogre::Entity *tempModel = render->getMSceneMgr()->createEntity("dah!", "Player.mesh");
     model = boost::shared_ptr<Ogre::Entity>(tempModel);

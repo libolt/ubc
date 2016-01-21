@@ -158,7 +158,7 @@ class renderEngine
     // Ogre code
     boost::shared_ptr<Ogre::Root> mRoot;  // stores the OGRE Root
     boost::shared_ptr<Ogre::Camera> mCamera;  // stores the camera used by OGRE
-    static Ogre::SceneManager *mSceneMgr;  // store the OGRE Scene Manager
+    Ogre::SceneManager *mSceneMgr;  // store the OGRE Scene Manager
     boost::shared_ptr<Ogre::RenderWindow> mWindow;  // stores the OGRE Render Window
     boost::shared_ptr<Ogre::Viewport> viewPort;  // stores the OGRE View Port
     std::string mResourceGroup;  // stores resource locations

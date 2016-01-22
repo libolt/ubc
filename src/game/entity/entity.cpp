@@ -126,11 +126,40 @@ bool entity::loadModel()  // loads the 3D model
     logMsg("entityModelFileName == " +entityModelFileName);
     Ogre::SceneManager *mSceneMgr = render->getMSceneMgr();
     logMsg("Model");
+    Ogre::ResourceGroupManager &rsm = Ogre::ResourceGroupManager::getSingleton();
+    
+    if (rsm.resourceGroupExists("UBCData"))
+    {
+        logMsg("UBData exists!");
+        if (rsm.resourceExists("UBCData", entityModelFileName))
+        {
+            logMsg(entityModelFileName +" exists!");
+        }
+        else
+        {
+            logMsg(entityModelFileName +" doesn't exist!");
+        }
+    }
+    else
+    {
+        logMsg("UBData doesnt exist!");
+
+    }
+    
+    if (getRender()->getMSceneMgr()->hasCamera("camera"))
+    {
+        logMsg("mSceneMgr has camera!");
+    }
+    else
+    {
+        logMsg("mSceneMgr does not have camera!");
+    }
 //    model = render->getMSceneMgr()->createEntity(entityName, entityModelFileName);  // loads the model
-    Ogre::Entity *tempModel = getRender()->getMSceneMgr()->createEntity(entityName, "Media/models/Player.mesh");  // loads the model
+    Ogre::Entity *tempModel = getRender()->getMSceneMgr()->createEntity(entityName, entityModelFileName, "UBCData");  // loads the model
     logMsg("tempModel loaded!");
 //    render->getMSceneMgr()->
 //    Ogre::Entity *tempModel = render->getMSceneMgr()->createEntity("dah!", "Player.mesh");
+    
     model = boost::shared_ptr<Ogre::Entity>(tempModel);
     logMsg("Entity Created!");
     // creates and instantiates the node object

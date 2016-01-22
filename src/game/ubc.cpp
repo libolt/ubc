@@ -497,6 +497,7 @@ void UBC::gameLoop()  // Main Game Loop
 
         if (getRender()->getMWindow() != NULL && getRender()->getMWindow()->isActive())
         {
+            logMsg("LastFPS == " +convert->toString(getRender()->getMWindow()->getLastFPS()));
 //          Ogre::LogManager::getSingletonPtr()->logMessage("Rendering frame");
             getRender()->getMWindow()->windowMovedOrResized();
 //            exit(0);

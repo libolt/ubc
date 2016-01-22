@@ -313,16 +313,8 @@ bool renderEngine::initSDL() // Initializes SDL Subsystem
     
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
 	{
-        fprintf(stderr,
-                "\nUnable to initialize SDL:  %s\n",
-                SDL_GetError()
-               );
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-
-//        __android_log_print(ANDROID_LOG_DEBUG, "com.libolt.ubc", "SDL Error = %s", SDL_GetError());
         std::string msg = "SDL Error = " +convert->toString(SDL_GetError());
         logMsg(msg);
-#endif
 
         return 1;
     }
@@ -690,6 +682,8 @@ bool renderEngine::createScene()
 	mMatListener = new Ogre::ShaderGeneratorTechniqueResolverListener();
 	Ogre::MaterialManager::getSingleton().addListener(mMatListener);
 //     exit(0);
+    mSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC); // for OGRE 1.2 Dagon
+
 #else
 
     std::string dataPath = UBC_DATADIR;
@@ -699,25 +693,25 @@ bool renderEngine::createScene()
 //    exit(0);
     if (useRTSS)
     {
-    std::string rname = selectedRenderSystem->getName();  // stores the name of the selected rendering system
-    rsm->addResourceLocation(dataPath +"/RTShaderLib", "FileSystem",Ogre::RTShader::ShaderGenerator::DEFAULT_SCHEME_NAME);
-    if (rname == "OpenGL 3+ Rendering Subsystem (ALPHA)")
-    {
-//        rsm->addResourceLocation(dataPath +"/RTShaderLib/GLSL150", "FileSystem",Ogre::RTShader::ShaderGenerator::DEFAULT_SCHEME_NAME);
-    }
-    else if (rname == "Direct3D11 Rendering Subsystem")
-    {
-        rsm->addResourceLocation(dataPath +"/RTShaderLib/HLSL", "FileSystem",Ogre::RTShader::ShaderGenerator::DEFAULT_SCHEME_NAME);
-//            exit(0);
-    }
+        std::string rname = selectedRenderSystem->getName();  // stores the name of the selected rendering system
+        rsm->addResourceLocation(dataPath +"/RTShaderLib", "FileSystem",Ogre::RTShader::ShaderGenerator::DEFAULT_SCHEME_NAME);
+        if (rname == "OpenGL 3+ Rendering Subsystem (ALPHA)")
+        {
+//           rsm->addResourceLocation(dataPath +"/RTShaderLib/GLSL150", "FileSystem",Ogre::RTShader::ShaderGenerator::DEFAULT_SCHEME_NAME);
+        }
+        else if (rname == "Direct3D11 Rendering Subsystem")
+       {
+            rsm->addResourceLocation(dataPath +"/RTShaderLib/HLSL", "FileSystem",Ogre::RTShader::ShaderGenerator::DEFAULT_SCHEME_NAME);
+//              exit(0);
+        }
 
-    rsm->initialiseAllResourceGroups();
-    if (Ogre::RTShader::ShaderGenerator::initialize())
-    {
-        logMsg("RTSS Initialized!");
-    }
+        rsm->initialiseAllResourceGroups();
+        if (Ogre::RTShader::ShaderGenerator::initialize())
+        {
+            logMsg("RTSS Initialized!");
+        }
 
-    Ogre::RTShader::ShaderGenerator* mShaderGenerator = Ogre::RTShader::ShaderGenerator::getSingletonPtr();
+        Ogre::RTShader::ShaderGenerator* mShaderGenerator = Ogre::RTShader::ShaderGenerator::getSingletonPtr();
 //        std::string rname = selectedRenderSystem->getName();  // stores the name of the selected rendering system
         rsm->addResourceLocation(dataPath +"/RTShaderLib", "FileSystem",mShaderGenerator->DEFAULT_SCHEME_NAME);
         if (rname == "OpenGL 3+ Rendering Subsystem (ALPHA)")

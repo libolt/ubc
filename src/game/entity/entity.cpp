@@ -146,7 +146,7 @@ bool entity::loadModel()  // loads the 3D model
 
     }
     
-    if (getRender()->getMSceneMgr()->hasCamera("camera"))
+    if (getRender().get()->getMSceneMgr()->hasCamera("camera"))
     {
         logMsg("mSceneMgr has camera!");
     }

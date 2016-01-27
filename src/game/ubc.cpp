@@ -501,7 +501,7 @@ void UBC::gameLoop()  // Main Game Loop
 //          Ogre::LogManager::getSingletonPtr()->logMessage("Rendering frame");
             getRender()->getMWindow()->windowMovedOrResized();
 //            exit(0);
-            getRender()->getMRoot()->renderOneFrame();
+            getRender()->getRERoot()->renderOneFrame();
 //            exit(0);
 
         }

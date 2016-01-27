@@ -32,11 +32,12 @@
 //#include "threads.h"
 #include "timing.h"
 
-#include "engine/renderengine.h"
+//#include "engine/renderengine.h"
 //#include "input.h"
 
 class inputSystem;
 class networkEngine;
+class renderEngine;
 
 class gameEngine
 {

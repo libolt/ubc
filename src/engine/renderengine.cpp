@@ -69,6 +69,7 @@ _declspec(dllexport) DWORD NvOptimusEnablement = 0x00000001;
 #endif
 
 Ogre::SceneManager *renderEngine::mSceneMgr;  // static declaration of mSceneMgr
+Ogre::Camera *renderEngine::mCamera;  // static declaration of mSceneMgr
 
 renderEngine::renderEngine()  // constructor
 {
@@ -79,7 +80,7 @@ renderEngine::renderEngine()  // constructor
 	mSceneMgr = NULL;
 #endif
 //   mWindow = NULL;
-//   mRoot = NULL;
+//   RERoot = NULL;
    selectedRenderSystem = 0;
    windowWidth = 0;
    windowHeight = 0;
@@ -99,20 +100,21 @@ bool renderEngine::frameEnded()
 {
 	return true;
 }
-boost::shared_ptr<Ogre::Root> renderEngine::getMRoot()  // retrieves the value of mRoot
+
+Ogre::Root *renderEngine::getRERoot()  // retrieves the value of RERoot
 {
-	return (mRoot);
+	return (RERoot);
 }
-void renderEngine::setMRoot(boost::shared_ptr<Ogre::Root> set)  // sets the value of mRoot
+void renderEngine::setRERoot(Ogre::Root *set)  // sets the value of RERoot
 {
-    mRoot = set;
+    RERoot = set;
 }
 
-boost::shared_ptr<Ogre::Camera> renderEngine::getMCamera()  // retrieves the value of mCamera
+Ogre::Camera *renderEngine::getMCamera()  // retrieves the value of mCamera
 {
 	return (mCamera);
 }
-void renderEngine::setMCamera(boost::shared_ptr<Ogre::Camera> set)  // sets the value of mCamera
+void renderEngine::setMCamera(Ogre::Camera *set)  // sets the value of mCamera
 {
     mCamera = set;
 }
@@ -126,20 +128,20 @@ void renderEngine::setMSceneMgr(Ogre::SceneManager *set)  // sets the value of m
     mSceneMgr = set;
 }
 
-boost::shared_ptr<Ogre::RenderWindow> renderEngine::getMWindow()  // retrieves the value of mWindow
+Ogre::RenderWindow *renderEngine::getMWindow()  // retrieves the value of mWindow
 {
 	return (mWindow);
 }
-void renderEngine::setMWindow(boost::shared_ptr<Ogre::RenderWindow> set)  // sets the value of mWindow
+void renderEngine::setMWindow(Ogre::RenderWindow *set)  // sets the value of mWindow
 {
     mWindow = set;
 }
 
-boost::shared_ptr<Ogre::Viewport> renderEngine::getViewPort() // retrieves the value of viewPort
+Ogre::Viewport *renderEngine::getViewPort() // retrieves the value of viewPort
 {
 	return (viewPort);
 }
-void renderEngine::setViewPort(boost::shared_ptr<Ogre::Viewport> set) // sets the value of viewPort
+void renderEngine::setViewPort(Ogre::Viewport *set) // sets the value of viewPort
 {
     viewPort = set;
 }
@@ -381,7 +383,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
     //conversion *convert = conversion::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<logging> log = logging::Instance();
- 
+    Ogre::RenderSystemList rsList;
 	//    GUISystem *gui = GUISystem::Instance();
 	//    SoundSystem *sound = SoundSystem::Instance();
 
@@ -410,10 +412,10 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
     FreeImage_Initialise();
     
 	//std::cout << "winHandle = " << winHandle << std::endl;
-    Ogre::Root *tempRoot = new Ogre::Root("", "", "Ogre.log");
-//	mRoot = new Ogre::Root("", "", "Ogre.log");
-    mRoot = boost::shared_ptr<Ogre::Root>(tempRoot);
-
+//    Ogre::Root *tempRoot = new Ogre::Root("", "", "Ogre.log");
+	RERoot = new Ogre::Root("", "", "Ogre.log");
+//    RERoot = std::auto_ptr<Ogre::Root>(tempRoot);
+    
     const std::string pluginDir = OGRE_PLUGIN_DIR;
     logMsg("winHandle for Ogre = " +winHandle);
 
@@ -426,57 +428,52 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 
 	if (buildType == "Debug")
 	{
-//        mRoot->loadPlugin(/*pluginDir +*/ "RenderSystem_Direct3D11_d.dll");
-//        mRoot->loadPlugin(pluginDir +"/OgreOverlay_d.dll");
-        mRoot->loadPlugin("RenderSystem_GL_d.dll");
-//        mRoot->loadPlugin(/*pluginDir +*/"RenderSystem_GL3Plus_d.dll");
-//        mRoot->loadPlugin(pluginDir + "/OgreRTShaderSystem_d.dll");
-//		mRoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager_d");
+//        RERoot->loadPlugin(/*pluginDir +*/ "RenderSystem_Direct3D11_d.dll");
+//        RERoot->loadPlugin(pluginDir +"/OgreOverlay_d.dll");
+        RERoot->loadPlugin("RenderSystem_GL_d.dll");
+//        RERoot->loadPlugin(/*pluginDir +*/"RenderSystem_GL3Plus_d.dll");
+//        RERoot->loadPlugin(pluginDir + "/OgreRTShaderSystem_d.dll");
+//		RERoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager_d");
 	}
 	else
 	{
-        mRoot->loadPlugin(/*pluginDir +*/ "RenderSystem_Direct3D11");
-//		mRoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager");
+        RERoot->loadPlugin(/*pluginDir +*/ "RenderSystem_Direct3D11");
+//		RERoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager");
 	}
 #elif OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-	//	    mRoot->loadPlugin();
+	//	    RERoot->loadPlugin();
 #ifdef OGRE_STATIC_LIB
 	gStaticPluginLoader = new Ogre::StaticPluginLoader();
 	gStaticPluginLoader->load();
 #endif
 #elif OGRE_PLATFORM == OGRE_PLATFORM_APPLE
-	mRoot->loadPlugin("RenderSystem_GL");
+	RERoot->loadPlugin("RenderSystem_GL");
 #else
-    mRoot->loadPlugin(pluginDir + "/RenderSystem_GL_d");
-//    mRoot->loadPlugin(pluginDir + "/OgreRTShaderSystem_d");
-//	mRoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager");
+    RERoot->loadPlugin(pluginDir + "/RenderSystem_GL_d");
+//    RERoot->loadPlugin(pluginDir + "/OgreRTShaderSystem_d");
+//	RERoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager");
 #endif
 
+/*
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-	mRoot->setRenderSystem(mRoot->getAvailableRenderers().at(0));
-	mRoot->initialise(false);
+    RERoot->setRenderSystem(RERoot->getAvailableRenderers().at(0));
+    RERoot->initialise(false);
 #else
-	Ogre::RenderSystemList rsList = mRoot->getAvailableRenderers();
+    rsList = RERoot->getAvailableRenderers();
+
     logMsg("blah!");
 //    exit(0);
 	int c = 0;
 	bool foundit = false;
 //	Ogre::RenderSystem *selectedRenderSystem = 0;
-    selectedRenderSystem = rsList.at(0);
-    std::string rname = selectedRenderSystem->getName();
     //we found it, we might as well use it!
-    mRoot->setRenderSystem(selectedRenderSystem);
-    mRoot->initialise(false);
-//    mWindow = mRoot->initialise(false, "Ultimate Basketball Challenge");
-    logMsg("RendererName == " +rname);
-    if (rname == "Direct3D11 Rendering Subsystem" || rname == "OpenGL 3+ Rendering Subsystem" || rname == "OpenGL 3+ Rendering Subsystem (ALPHA)")
-    {
-        useRTSS = true;
-//        exit(0);
-    }
+///    RERoot->setRenderSystem(selectedRenderSystem);
+///    RERoot->initialise(false);
+//    mWindow = RERoot->initialise(false, "Ultimate Basketball Challenge");
+    
     // TEMPORARY HACK!!
 //    useRTSS = true;
-/*    while (c < (int)rsList.size())
+    while (c < (int)rsList.size())
 	{
 		selectedRenderSystem = rsList.at(c);
         logMsg("RendererName == " +rname);
@@ -489,10 +486,29 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 		c++; // <-- oh how clever
         logMsg(convert->toString(c++));
 	}
-*/
+
 #endif
+*/
 
-
+    rsList = RERoot->getAvailableRenderers();
+    if (rsList.size() == 0)
+    {
+        logMsg("No rendersystem found!");
+    }
+    else
+    {
+        selectedRenderSystem = rsList.at(0);
+        RERoot->setRenderSystem(selectedRenderSystem);
+        RERoot->initialise(false);
+    }
+    
+    std::string rname = selectedRenderSystem->getName();
+    logMsg("RendererName == " +rname);
+    if (rname == "Direct3D11 Rendering Subsystem" || rname == "OpenGL 3+ Rendering Subsystem" || rname == "OpenGL 3+ Rendering Subsystem (ALPHA)")
+    {
+        useRTSS = true;
+//        exit(0);
+    }
 /*    c = 0;
     foundit = false;
     //Ogre::RenderSystem *selectedRenderSystem = 0;
@@ -526,10 +542,10 @@ void renderEngine::createSceneManager()
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
     // Create the SceneManager, in this case a generic one
-//    render->setMSceneMgr(render->getMRoot()->createSceneManager(Ogre::ST_EXTERIOR_CLOSE));
+//    render->setMSceneMgr(render->getRERoot()->createSceneManager(Ogre::ST_EXTERIOR_CLOSE));
 
-   mSceneMgr = mRoot->createSceneManager(Ogre::ST_EXTERIOR_CLOSE);
-//    Ogre::SceneManager *tempSceneMgr = mRoot->createSceneManager(Ogre::ST_EXTERIOR_CLOSE);
+   mSceneMgr = RERoot->createSceneManager(Ogre::ST_EXTERIOR_CLOSE);
+//    Ogre::SceneManager *tempSceneMgr = RERoot->createSceneManager(Ogre::ST_EXTERIOR_CLOSE);
 //    mSceneMgr = boost::shared_ptr<Ogre::SceneManager>(tempSceneMgr);
 
 }
@@ -609,9 +625,9 @@ bool renderEngine::createScene()
 //	exit(0);
 	logMsg("Hello??");
 #ifdef __ANDROID__
-//	mWindow = mRoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
-    Ogre::RenderWindow *tempWindow = mRoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
-    mWindow = boost::shared_ptr<Ogre::RenderWindow>(tempWindow);
+	mWindow = RERoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
+//    Ogre::RenderWindow *tempWindow = RERoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
+//    mWindow = std::unique_ptr<Ogre::RenderWindow>(tempWindow);
 
 #endif
 //	exit(0);
@@ -619,7 +635,7 @@ bool renderEngine::createScene()
 	unsigned long handle = 0;
     if (useRTSS)
     {
-//        mWindow = mRoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
+//        mWindow = RERoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
 
 //        mWindow->getCustomAttribute("WINDOW", &handle);
     }
@@ -628,7 +644,7 @@ bool renderEngine::createScene()
 
     logMsg("Dead");
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-	sdlWindow = SDL_CreateWindowFrom(mWindow.get());
+	sdlWindow = SDL_CreateWindowFrom(mWindow);
 #endif
 /*
 //    SDL_SetWindowSize(sdlWindow, w, h);
@@ -673,8 +689,8 @@ bool renderEngine::createScene()
 			rsm->addResourceLocation(arch, type, mResourceGroup);
 		}
 	}
-    
-//	Ogre::ResourceGroupManager::getSingletonPtr()->initialiseResourceGroup(Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+    // question
+	Ogre::ResourceGroupManager::getSingletonPtr()->initialiseResourceGroup(Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 
 	Ogre::RTShader::ShaderGenerator::initialize();
 //	exit(0);
@@ -682,13 +698,13 @@ bool renderEngine::createScene()
 	mMatListener = new Ogre::ShaderGeneratorTechniqueResolverListener();
 	Ogre::MaterialManager::getSingleton().addListener(mMatListener);
 //     exit(0);
-    mSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC); // for OGRE 1.2 Dagon
+//    mSceneMgr = RERoot->createSceneManager(Ogre::ST_GENERIC); // for OGRE 1.2 Dagon
 
 #else
 
     std::string dataPath = UBC_DATADIR;
-    mSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC); // for OGRE 1.2 Dagon
-//    Ogre::SceneManager *tempSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC);
+    mSceneMgr = RERoot->createSceneManager(Ogre::ST_GENERIC); // for OGRE 1.2 Dagon
+//    Ogre::SceneManager *tempSceneMgr = RERoot->createSceneManager(Ogre::ST_GENERIC);
 //    mSceneMgr = boost::shared_ptr<Ogre::SceneManager>(tempSceneMgr);
 //    exit(0);
     if (useRTSS)
@@ -785,8 +801,8 @@ bool renderEngine::createScene()
     // logMsg("Rendering!");
 	misc["externalWindowHandle"] = winHandle; //
 
-//    mWindow = mRoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
-    Ogre::RenderWindow *tempWindow = mRoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
+//    mWindow = RERoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
+    Ogre::RenderWindow *tempWindow = RERoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
     mWindow = boost::shared_ptr<Ogre::RenderWindow>(tempWindow);
 	//    exit(0);
 	mWindow->setVisible(true);
@@ -819,13 +835,13 @@ logMsg("Alive?");
     
 	rsm->initialiseResourceGroup(mResourceGroup);
     
-    mSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC); // for OGRE 1.2 Dagon
-//    tempSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC);
+    mSceneMgr = RERoot->createSceneManager(Ogre::ST_GENERIC); // for OGRE 1.2 Dagon
+//    tempSceneMgr = RERoot->createSceneManager(Ogre::ST_GENERIC);
 //    mSceneMgr = boost::shared_ptr<Ogre::SceneManager>(tempSceneMgr);
 
-    Ogre::Camera *tempCamera = mSceneMgr->createCamera("camera");
-//    mCamera = mSceneMgr->createCamera("camera");
-    mCamera = boost::shared_ptr<Ogre::Camera>(tempCamera);
+//    Ogre::Camera *tempCamera = mSceneMgr->createCamera("camera");
+    mCamera = mSceneMgr->createCamera("camera");
+//    mCamera = boost::shared_ptr<Ogre::Camera>(tempCamera);
 
 
     logMsg("RTShaderSystem Setup!");
@@ -847,9 +863,9 @@ logMsg("Alive?");
 
 	mCamera->setNearClipDistance(5);
 
-    //viewPort = mWindow->addViewport(mCamera.get());
-    Ogre::Viewport *tempViewPort = mWindow->addViewport(mCamera.get());
-    viewPort = boost::shared_ptr<Ogre::Viewport>(tempViewPort);
+    viewPort = mWindow->addViewport(mCamera);
+//    Ogre::Viewport *tempViewPort = mWindow->addViewport(mCamera.get());
+//    viewPort = boost::shared_ptr<Ogre::Viewport>(tempViewPort);
     viewPort->setBackgroundColour(Ogre::ColourValue(0, 0, 0));
 
 	// most examples get the viewport size to calculate this; for now, we'll just

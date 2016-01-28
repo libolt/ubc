@@ -37,13 +37,19 @@
 
 #include "entity/basketballentity.h"
 //#include "ai/basketballsteer.h"
-#include "physics/basketballphysics.h"
+//#include "physics/basketballphysics.h"
 #include "enums.h"
 #include "state/state.h"
-#include "state/playerstate.h"
-#include "state/courtstate.h"
-
+//#include "state/playerstate.h"
+//#include "state/courtstate.h"
 #include "data/basketballdata.h"
+
+//class basketballEntity;
+class basketballPhysics;
+class state;
+class playerState;
+class courtState;
+//class basketballData;
 
 class basketballState : public state, public basketballEntity, public basketballData
 {

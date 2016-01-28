@@ -35,6 +35,7 @@
 //#include "engine/renderengine.h"
 //#include "input.h"
 
+class inputEngine;
 class inputSystem;
 class networkEngine;
 class renderEngine;

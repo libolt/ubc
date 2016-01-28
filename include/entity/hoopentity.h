@@ -23,6 +23,8 @@
 
 #include "entity/entity.h"
 
+//class entity;
+
 class hoopEntity : public entity
 {
     public:

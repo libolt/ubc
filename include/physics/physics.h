@@ -29,6 +29,8 @@
 #include "engine/physicsengine.h"
 #include "enums.h"
 
+//class physicsEngine;
+
 class physics : public physicsEngine
 {
     public:

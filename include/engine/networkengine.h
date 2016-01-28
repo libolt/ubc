@@ -35,8 +35,8 @@
 #include "Ogre.h"
 
 #include "enums.h"
-#include "engine/inputengine.h"
-
+// #include "engine/inputengine.h"
+class inputEngine;
 
 class networkEngine
 {

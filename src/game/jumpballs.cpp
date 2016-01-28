@@ -19,7 +19,10 @@
  ***************************************************************************/
 
 #include "conversion.h"
+#include "state/basketballstate.h"
 #include "state/gamestate.h"
+#include "state/teamstate.h"
+#include "state/playerstate.h"
 #include "comparison.h"
 #include "logging.h"
 #include "engine/physicsengine.h"
@@ -316,7 +319,7 @@ bool jumpBalls::tipToPlayer()  // tips the basketball to the appropriate player
     std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
     std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
     std::vector<boost::shared_ptr<playerState> > activePlayerInstance;
-    jumpBalls jumpBall = gameS->getJumpBall();
+//    jumpBalls jumpBall = gameS->getJumpBall();
 //    teamTypes ballTippedToTeam = jumpBall.getBallTippedToTeam();
     quarters quarter = gameS->getQuarter();
     size_t activeBBallInstance = gameS->getActiveBBallInstance();
@@ -326,7 +329,7 @@ bool jumpBalls::tipToPlayer()  // tips the basketball to the appropriate player
     size_t y = 0;
     while (y < activePlayerInstance.size())
     {
-        if (activePlayerInstance[y]->getActivePosition() == jumpBall.getBallTippedToPosition())
+        if (activePlayerInstance[y]->getActivePosition() == ballTippedToPosition)
         {
             ballTippedToPlayerID = activePlayerInstance[y]->getID();
             ballTippedToPlayerInstance = y;
@@ -423,10 +426,10 @@ bool jumpBalls::tipToPlayer()  // tips the basketball to the appropriate player
                 if (activeTeamInstance[ballTippedToTeam]->getHumanControlled())
                 {
                     activeTeamInstance[ballTippedToTeam]->setHumanPlayer(ballTippedToPlayerID);
-                    logMsg("ball tipped to human playerID == " +convert->toString(jumpBall.getBallTippedToPlayerID()));
+                    logMsg("ball tipped to human playerID == " +convert->toString(ballTippedToPlayerID));
         //            exit(0);
                 }
-                logMsg("jumpBall.getBallTippedToPlayer() = " +convert->toString(jumpBall.getBallTippedToPlayerID()));
+                logMsg("jumpBall.getBallTippedToPlayer() = " +convert->toString(ballTippedToPlayerID));
                 logMsg("playerWithBallInstanceTipped == " +convert->toString(activeTeamInstance[ballTippedToTeam]->getPlayerWithBallInstance()));
                 int activeDefensivePlayer = 9999;
                 switch (ballTippedToTeam)

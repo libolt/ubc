@@ -27,6 +27,10 @@
 #include "offenseplays.h"
 #include "state/state.h"
 
+//class offensePlays:
+//class offensePlays::playerDirectives;
+//class state;
+
 class offenseState : public state
 {
 public:

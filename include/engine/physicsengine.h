@@ -31,8 +31,10 @@
 #include <boost/shared_ptr.hpp>
 
 #include "enums.h"
-#include "engine/renderengine.h"
+//#include "engine/renderengine.h"
 #include "timing.h"
+
+class renderEngine;
 
 class physicsEngine
 {

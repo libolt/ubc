@@ -37,12 +37,16 @@
 #include "enums.h"
 
 #include "ai/playersteer.h"
-
 #include "physics/playerphysics.h"
-
 #include "state/state.h"
 #include "entity/playerentity.h"
 #include "data/playerdata.h"
+
+class playerSteer;
+class playerPhysics;
+class state;
+class playerEntity;
+class playerData;
 
 class playerState : public state, public playerEntity, public playerData
 {

@@ -23,6 +23,8 @@
 
 #include "physics.h"
 
+//class physics;
+
 class hoopPhysics : public physics
 {
     public:

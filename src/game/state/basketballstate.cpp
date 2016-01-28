@@ -19,7 +19,11 @@
  ***************************************************************************/
 
 #include "conversion.h"
+#include "ai/basketballsteer.h"
+#include "state/basketballstate.h"
 #include "state/gamestate.h"
+#include "state/playerstate.h"
+#include "state/teamstate.h"
 #include "engine/renderengine.h"
 #include "comparison.h"
 #include "logging.h"
@@ -636,7 +640,7 @@ void basketballState::updateDirection()  // updates basketball direction(s)
     size_t playerWithBallID = activeTeamInstance[teamWithBall]->getPlayerWithBallID();
 
 
-    jumpBalls jumpBall = gameS->getJumpBall();
+    boost::shared_ptr<jumpBalls> jumpBall = gameS->getJumpBall();
 
     logMsg("directplayerwithballInstance == " +convert->toString(playerWithBallInstance));
     bool tipOffComplete = gameS->getTipOffComplete();

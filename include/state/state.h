@@ -23,6 +23,8 @@
 
 #include "ubc.h"
 
+//class UBC;
+
 class state : public UBC
 {
     public:

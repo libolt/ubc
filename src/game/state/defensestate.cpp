@@ -21,6 +21,7 @@
 #include "conversion.h"
 #include "state/defensestate.h"
 #include "state/gamestate.h"
+#include "state/playerstate.h"
 #include "logging.h"
 #include "state/teamstate.h"
 

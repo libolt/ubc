@@ -22,6 +22,7 @@
 #include "network/networkplayerstateobject.h"
 #include "engine/gameengine.h"
 #include "state/gamestate.h"
+#include "state/teamstate.h"
 #include "logging.h"
 #include "engine/inputengine.h"
 #include "conversion.h"
@@ -651,5 +652,5 @@ void networkEngine::sendPacket(std::string packetData)  // sends a packet to rem
 struct ePacket
 {
     int ID;
-    string data;
+    std::string data;
 };

@@ -27,7 +27,7 @@
 #include "state/gamestate.h"
 #include "load.h"
 #include "logging.h"
-//#include "engine/renderengine.h"
+#include "engine/renderengine.h"
 #include "state/teamstate.h"
 
 #ifdef __ANDROID__

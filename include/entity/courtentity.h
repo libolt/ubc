@@ -24,6 +24,9 @@
 #include "entity/entity.h"
 #include "physics/courtphysics.h"
 
+//class entity;
+//class courtPhysics;
+
 class courtEntity : public entity, public courtPhysics
 {
     public:

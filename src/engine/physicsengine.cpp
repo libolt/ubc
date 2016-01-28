@@ -23,7 +23,11 @@
 #include "state/gamestate.h"
 #include "engine/inputengine.h"
 #include "logging.h"
+#include "state/basketballstate.h"
+#include "state/courtstate.h"
+#include "state/hoopstate.h"
 #include "state/playerstate.h"
+#include "state/teamstate.h"
 #include "engine/physicsengine.h"
 #include "engine/renderengine.h"
 #include "comparison.h"
@@ -309,7 +313,7 @@ void physicsEngine::updateState()  // updates the state for the physics engine
     
     size_t activeBBallInstance = gameS->getActiveBBallInstance();
 
-    jumpBalls jumpBall = gameS->getJumpBall();  // gets the jumpBall instance
+    boost::shared_ptr<jumpBalls> jumpBall = gameS->getJumpBall();  // gets the jumpBall instance
 
     teamTypes teamWithBall = gameS->getTeamWithBall();
     size_t playerWithBallID;
@@ -324,7 +328,7 @@ void physicsEngine::updateState()  // updates the state for the physics engine
     {
 //        exit(0);
 //        basketballInstance[activeBBallInstance].getPhysics()->update();
-        basketballInstance[activeBBallInstance].updatePhysObj();
+///        basketballInstance[activeBBallInstance].updatePhysObj();
 
     }
     else
@@ -472,7 +476,7 @@ void physicsEngine::updateBasketballPosition()  // updates the position of baske
     if (basketballVelocitySet)
     {
 //        exit(0);
-        basketballInstance[activeBBallInstance].getPhysBody()->setLinearVelocity(basketballVelocity);
+///        basketballInstance[activeBBallInstance].getPhysBody()->setLinearVelocity(basketballVelocity);
     }
     else
     {
@@ -695,9 +699,10 @@ bool physicsEngine::collisionCheck(btRigidBody *objectA, btRigidBody *objectB)  
     }
     return (false);
 }
-
+// FIXME! Should be moved to physics class
 void physicsEngine::passCollisionCheck()  // checks whether the ball has collided with the player being passed to
 {
+    /*
 //  exit(0);
     //conversion *convert = conversion::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
@@ -731,7 +736,7 @@ void physicsEngine::passCollisionCheck()  // checks whether the ball has collide
 //      exit(0);
         logMsg("Pass Collision");
         passCollision = true;
-    }
+    }*/
 }
 
 bool physicsEngine::playerJump(teamTypes teamType, int playerID)  // calculates and executes player jumping in the air

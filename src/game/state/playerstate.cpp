@@ -24,6 +24,7 @@
 
 #include "state/playerstate.h"
 #include "state/gamestate.h"
+#include "state/basketballstate.h"
 #include "logging.h"
 #include "engine/physicsengine.h"
 #include "engine/renderengine.h"
@@ -722,7 +723,7 @@ void playerState::updateState()
     boost::shared_ptr<gameState> gameS = gameState::Instance();
 ///    boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
-    jumpBalls jumpBall = gameS->getJumpBall();
+    boost::shared_ptr<jumpBalls> jumpBall = gameS->getJumpBall();
     Ogre::Vector3 playerPos;
 
     if (getPhysicsSetup())

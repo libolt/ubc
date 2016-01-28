@@ -30,6 +30,10 @@
 #include "entity/courtentity.h"
 #include "data/courtdata.h"
 
+//class state;
+//class courtEntity;
+//class courtData;
+
 class courtState : public state, public courtEntity, public courtData
 {
     public:

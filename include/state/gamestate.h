@@ -24,20 +24,29 @@
 #include <vector>
 #include <boost/shared_ptr.hpp>
 
-#include "state/basketballstate.h"
-#include "data/courtdata.h"
-#include "state/courtstate.h"
-    #include "state/hoopstate.h"
-#include "state/playerstate.h"
-#include "state/teamstate.h"
+//#include "state/basketballstate.h"
+//#include "data/courtdata.h"
+//#include "state/courtstate.h"
+//#include "state/hoopstate.h"
+//#include "state/playerstate.h"
+//#include "state/teamstate.h"
 //#include "data/teamdata.h"
-#include "data/playerdata.h"
-#include "jumpballs.h"
+//#include "data/playerdata.h"
+//#include "jumpballs.h"
+#include "state/state.h"
 
 class basketballState;
 class UBC;
+class courtData;
+class courtState;
+class hoopState;
+class playerState;
+class teamState;
+class teamData;
+class playerData;
+class jumpBalls;
+//class state;
 
-//using namespace std;
 class gameState : public state
 {
 public:
@@ -63,8 +72,8 @@ public:
     bool getGameStarted(void);  // retrieves the gameStarted value
     void setGameStarted(bool set);  // sets gameStarted value
 
-    jumpBalls getJumpBall();  // retrieves the value of jumpBall
-    void setJumpBall(jumpBalls &set);  // sets the value of jumpBall
+    boost::shared_ptr<jumpBalls> getJumpBall();  // retrieves the value of jumpBall
+    void setJumpBall(boost::shared_ptr<jumpBalls> set);  // sets the value of jumpBall
 
     teamTypes getTeamWithBall(void);  // retrieves teamWithBall value
     void setTeamWithBall(teamTypes set);	 // sets teamWithBall value
@@ -256,7 +265,7 @@ private:
     bool tipOffSetupComplete;  // Determines whether or not game Tip Off has been setup
     bool tipOffComplete;  // Determines whether or not game Tip Off has completed
 
-    jumpBalls jumpBall; // instance that is used for jumpBall functions.
+    boost::shared_ptr<jumpBalls> jumpBall; // instance that is used for jumpBall functions.
 
     teamTypes teamWithBall;  // stores which team has control of the basketball, valid values are 0 or 1
 

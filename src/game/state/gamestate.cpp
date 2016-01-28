@@ -21,8 +21,14 @@
 //#include "boost/shared_array.hpp"
 #include "engine/networkengine.h"
 #include "ai/ai.h"
+#include "ai/basketballsteer.h"
 #include "conversion.h"
+#include "state/basketballstate.h"
+#include "state/courtstate.h"
 #include "state/gamestate.h"
+#include "state/hoopstate.h"
+#include "state/playerstate.h"
+#include "state/teamstate.h"
 #include "engine/gameengine.h"
 #include "load.h"
 #include "logging.h"
@@ -32,6 +38,7 @@
 #include "engine/renderengine.h"
 #include "timing.h"
 #include "ubc.h"
+#include "jumpballs.h"
 
 boost::shared_ptr<gameState> gameState::pInstance;
 
@@ -249,11 +256,11 @@ void gameState::setGameStarted(bool set)  // sets the value of gameStarted
     gameStarted = set;
 }
 
-jumpBalls gameState::getJumpBall()  // retrieves the value of jumpBall
+boost::shared_ptr<jumpBalls> gameState::getJumpBall()  // retrieves the value of jumpBall
 {
  return (jumpBall);
 }
-void gameState::setJumpBall(jumpBalls &set)  // sets the value of jumpBall
+void gameState::setJumpBall(boost::shared_ptr<jumpBalls> set)  // sets the value of jumpBall
 {
     jumpBall = set;
 }
@@ -782,20 +789,20 @@ void gameState::setHoopStartPositions()  // sets the initial coordinates for the
 
 bool gameState::setupTipOff()  // sets up tip off conditions
 {
-    teamTypes currentTeam = jumpBall.getBallTippedToTeam();
+    teamTypes currentTeam = jumpBall->getBallTippedToTeam();
 
-    std::vector<playerPositions> jumpBallPlayer = jumpBall.getJumpBallPlayer();
+    std::vector<playerPositions> jumpBallPlayer = jumpBall->getJumpBallPlayer();
     if (teamWithBall == NOTEAM && activeTeamInstancesCreated)
     {
-        if (!jumpBall.getSetupComplete())
+        if (!jumpBall->getSetupComplete())
         {
-            jumpBall.setJumpBallLocation(CENTERCIRCLE);
+            jumpBall->setJumpBallLocation(CENTERCIRCLE);
             jumpBallPlayer.clear();
             jumpBallPlayer.push_back(C);
             jumpBallPlayer.push_back(C);
-            jumpBall.setJumpBallPlayer(jumpBallPlayer);
-            jumpBall.setSetupComplete(true);
-            jumpBall.setExecuteJumpBall(true);
+            jumpBall->setJumpBallPlayer(jumpBallPlayer);
+            jumpBall->setSetupComplete(true);
+            jumpBall->setExecuteJumpBall(true);
             return (true);
         }
         else
@@ -808,7 +815,7 @@ bool gameState::setupTipOff()  // sets up tip off conditions
 
 bool gameState::executeTipOff()  // executes tip off
 {
-    if (!jumpBall.updateState())
+    if (!jumpBall->updateState())
     {
         logMsg("tipOff not complete!");
 //        exit(0);

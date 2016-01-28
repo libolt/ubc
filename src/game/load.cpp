@@ -31,6 +31,11 @@
 #include "data/playerdata.h"
 #include "engine/renderengine.h"
 #include "state/basketballstate.h"
+#include "state/courtstate.h"
+#include "state/gamestate.h"
+#include "state/playerstate.h"
+#include "state/teamstate.h"
+#include "offenseplays.h"
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 #include "android.h"
@@ -63,7 +68,7 @@ std::vector<std::string> loader::getPlayerFiles()  // retrieves the value of pla
 {
     return(playerFiles);
 }
-void loader::setPlayerFiles(std::vector<string> set)  // sets the value of playerFiles
+void loader::setPlayerFiles(std::vector<std::string> set)  // sets the value of playerFiles
 {
     playerFiles = set;
 }
@@ -72,7 +77,7 @@ std::vector<std::string> loader::getTeamFiles()  // retrieves the value of teamF
 {
     return(teamFiles);
 }
-void loader::setTeamFiles(std::vector<string> set)  // sets the value of teamFiles
+void loader::setTeamFiles(std::vector<std::string> set)  // sets the value of teamFiles
 {
     teamFiles = set;
 }
@@ -190,7 +195,7 @@ std::vector<std::string> loader::pathSplit(const std::string paths)  // splits t
     int x = 0;
     std::vector<std::string> stringArray;
     const char delim = ':';
-    string::const_iterator p = paths.begin(), q;
+    std::string::const_iterator p = paths.begin(), q;
     std::vector<std::string>::iterator it;
 
     while (true)
@@ -210,15 +215,15 @@ std::vector<std::string> loader::pathSplit(const std::string paths)  // splits t
     return(stringArray);
 }
 
-string loader::findFile(string fileName)  // finds the location of a file
+std::string loader::findFile(std::string fileName)  // finds the location of a file
 {
     // tries to load file from locations specified in the pathArray
     bool fileLoaded = false;
-    string filePath = "";        // stores path to a file
+    std::string filePath = "";        // stores path to a file
     std::vector<std::string> pathArray;
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-    string dataPath = "";
+    std::string dataPath = "";
 #else
     string dataPath = UBC_DATADIR;
 #endif
@@ -284,7 +289,7 @@ std::vector<boost::shared_ptr<teamState> > loader::loadTeams()  // load teams fr
     tempTeams.push_back(tempTeamSharedPtr);
     teams = tempTeams;
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-    string teamList = "data/teams/teams.xml";
+    std::string teamList = "data/teams/teams.xml";
 #else
     string teamList = findFile("teams/teams.xml");
 #endif
@@ -307,7 +312,7 @@ std::vector<boost::shared_ptr<teamState> > loader::loadTeams()  // load teams fr
     return (teams);
 }
 
-bool loader::loadTeamListFile(string fileName)  // loads the team list file
+bool loader::loadTeamListFile(std::string fileName)  // loads the team list file
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();

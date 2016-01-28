@@ -38,7 +38,7 @@
 //#include "gui/gui.h"
 #include "load.h"
 #include "logging.h"
-//#include "engine/renderengine.h"
+#include "engine/renderengine.h"
 
 
 /*boost::shared_ptr<inputEngine> inputEngine::pInstance;

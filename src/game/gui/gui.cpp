@@ -25,6 +25,8 @@
 #include "data/courtdata.h"
 #include "engine/gameengine.h"
 #include "state/gamestate.h"
+#include "state/teamstate.h"
+#include "state/playerstate.h"
 #include "load.h"
 #include "logging.h"
 #include "engine/renderengine.h"

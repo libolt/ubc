@@ -23,6 +23,8 @@
 
 #include "physics/physics.h"
 
+//class physics;
+
 class playerPhysics : public physics
 {
     public:

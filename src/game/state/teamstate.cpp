@@ -21,7 +21,12 @@
 #include "conversion.h"
 #include "state/teamstate.h"
 #include "engine/gameengine.h"
+#include "state/basketballstate.h"
+#include "state/courtstate.h"
 #include "state/gamestate.h"
+#include "state/defensestate.h"
+#include "state/playerstate.h"
+#include "state/offensestate.h"
 #include "logging.h"
 #include "engine/physicsengine.h"
 #include "ai/playersteer.h"
@@ -464,7 +469,7 @@ void teamState::updateState()	// updates the state of the object
 	boost::shared_ptr<gameState> gameS = gameState::Instance();
     ///boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
-    jumpBalls jumpBall = gameS->getJumpBall();
+    boost::shared_ptr<jumpBalls> jumpBall = gameS->getJumpBall();
 
     size_t activeBBallInstance = gameS->getActiveBBallInstance();
 

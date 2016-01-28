@@ -29,6 +29,8 @@
 #include "OgreVector3.h"
 #include "physics/physics.h"
 
+//class physics;
+
 class basketballPhysics : public physics
 {
     public:

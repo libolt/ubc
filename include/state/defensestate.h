@@ -24,6 +24,8 @@
 #include "enums.h"
 #include "state/state.h"
 
+//class state;
+
 class defenseState : public state
 {
 public:

@@ -23,10 +23,13 @@
 #include "ai/playersteer.h"
 #include "ai/ai.h"
 #include "conversion.h"
+#include "state/basketballstate.h"
 #include "state/gamestate.h"
 #include "logging.h"
+#include "state/offensestate.h"
 #include "state/playerstate.h"
 #include "state/teamstate.h"
+#include "offenseplays.h"
 #include "comparison.h"
 
 playerSteer::~playerSteer()

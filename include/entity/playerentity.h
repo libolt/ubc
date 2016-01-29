@@ -20,14 +20,15 @@
 
 
 #include "entity/entity.h"
-//#include "physics/playerphysics.h"
+#include "physics/playerphysics.h"
 //#include "ai/playersteer.h"
 
 #ifndef _PLAYERENTITY_H_
 #define _PLAYERENTITY_H_
 
+#include "physics/playerphysics.h"
 //class entity;
-class playerPhysics;
+//class playerPhysics;
 class playerSteer;
 
 class playerEntity : public entity , public playerPhysics

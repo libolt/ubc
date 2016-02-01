@@ -79,8 +79,8 @@ renderEngine::renderEngine()  // constructor
 	mAssetMgr = NULL;
 	mSceneMgr = NULL;
 #endif
-//   mWindow = NULL;
-//   RERoot = NULL;
+   mWindow = NULL;
+   RERoot = NULL;
    selectedRenderSystem = 0;
    windowWidth = 0;
    windowHeight = 0;
@@ -441,7 +441,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 //		RERoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager");
 	}
 #elif OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-	//	    RERoot->loadPlugin();
+//    RERoot->loadPlugin();
 #ifdef OGRE_STATIC_LIB
 	gStaticPluginLoader = new Ogre::StaticPluginLoader();
 	gStaticPluginLoader->load();
@@ -498,12 +498,14 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
     else
     {
         selectedRenderSystem = rsList.at(0);
-        RERoot->setRenderSystem(selectedRenderSystem);
+//        RERoot->setRenderSystem(selectedRenderSystem);
+        RERoot->setRenderSystem(RERoot->getAvailableRenderers().at(0));
         RERoot->initialise(false);
     }
     
     std::string rname = selectedRenderSystem->getName();
     logMsg("RendererName == " +rname);
+//    exit(0);
     if (rname == "Direct3D11 Rendering Subsystem" || rname == "OpenGL 3+ Rendering Subsystem" || rname == "OpenGL 3+ Rendering Subsystem (ALPHA)")
     {
         useRTSS = true;
@@ -625,7 +627,7 @@ bool renderEngine::createScene()
 //	exit(0);
 	logMsg("Hello??");
 #ifdef __ANDROID__
-	mWindow = RERoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
+//    mWindow = RERoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
 //    Ogre::RenderWindow *tempWindow = RERoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
 //    mWindow = std::unique_ptr<Ogre::RenderWindow>(tempWindow);
 
@@ -646,6 +648,7 @@ bool renderEngine::createScene()
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 	sdlWindow = SDL_CreateWindowFrom(mWindow);
 #endif
+
 /*
 //    SDL_SetWindowSize(sdlWindow, w, h);
 //    SDL_GetWindowSize(sdlWindow, w, h);
@@ -689,15 +692,16 @@ bool renderEngine::createScene()
 			rsm->addResourceLocation(arch, type, mResourceGroup);
 		}
 	}
+    
     // question
-	Ogre::ResourceGroupManager::getSingletonPtr()->initialiseResourceGroup(Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
-
+//    Ogre::ResourceGroupManager::getSingletonPtr()->initialiseResourceGroup(Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+//exit(0);
 	Ogre::RTShader::ShaderGenerator::initialize();
-//	exit(0);
+	exit(0);
     Ogre::RTShader::ShaderGenerator::getSingletonPtr()->setTargetLanguage("glsles");
 	mMatListener = new Ogre::ShaderGeneratorTechniqueResolverListener();
 	Ogre::MaterialManager::getSingleton().addListener(mMatListener);
-//     exit(0);
+     exit(0);
 //    mSceneMgr = RERoot->createSceneManager(Ogre::ST_GENERIC); // for OGRE 1.2 Dagon
 
 #else
@@ -802,8 +806,8 @@ bool renderEngine::createScene()
 	misc["externalWindowHandle"] = winHandle; //
 
 //    mWindow = RERoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
-    Ogre::RenderWindow *tempWindow = RERoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
-    mWindow = boost::shared_ptr<Ogre::RenderWindow>(tempWindow);
+//    Ogre::RenderWindow *tempWindow = RERoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
+//    mWindow = boost::shared_ptr<Ogre::RenderWindow>(tempWindow);
 	//    exit(0);
 	mWindow->setVisible(true);
 #endif

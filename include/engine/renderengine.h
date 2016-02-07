@@ -158,11 +158,11 @@ class renderEngine
     SDLTest_CommonState *state;  // stores the state
 
     // Ogre code
-    Ogre::Root *RERoot;  // stores the OGRE Root
+    static Ogre::Root *RERoot;  // stores the OGRE Root
     static Ogre::Camera *mCamera;  // stores the camera used by OGRE
     static Ogre::SceneManager *mSceneMgr;  // store the OGRE Scene Manager
-    Ogre::RenderWindow *mWindow;  // stores the OGRE Render Window
-    Ogre::Viewport *viewPort;  // stores the OGRE View Port
+    static Ogre::RenderWindow *mWindow;  // stores the OGRE Render Window
+    static Ogre::Viewport *viewPort;  // stores the OGRE View Port
     std::string mResourceGroup;  // stores resource locations
     Ogre::NameValuePairList misc;  // options to pass to mWindow during creation
     std::string winHandle;  // window handle

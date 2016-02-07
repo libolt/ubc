@@ -403,6 +403,7 @@ void UBC::gameLoop()  // Main Game Loop
                 }
             }
         }
+        
         if (getCreateScene())  // checks if the scene should be created
         {
 //              if (render->createScene())
@@ -413,7 +414,7 @@ void UBC::gameLoop()  // Main Game Loop
                 setSceneCreated(true);
 //            }
         }
-
+        
         if (getStart())  // checks if it's time to start the game
         {
             if (startGame())
@@ -422,13 +423,13 @@ void UBC::gameLoop()  // Main Game Loop
                 setRenderScene(true);
             }
         }
-
+        
         lastFPS = getRender()->getMWindow()->getLastFPS();
         std::string currFPS = convert->toString(lastFPS);
 
         logMsg("FPS = " +currFPS);
         //updateChangeInTime(); // calculates the change in time.
-//        exit(0);
+        exit(0);
 
 //          logMsg("changeInTime = " +toString(changeInTime));
         // updates game logic every 100 milliseconds
@@ -498,7 +499,7 @@ void UBC::gameLoop()  // Main Game Loop
 */
                 //        player->getNode(0)->translate(Pos);
     //        pInstance[bballInstance[0].getPlayer()].getNode()->translate(-0.02f,0.0f,0.0f);
-
+//        exit(0);
         if (getRender()->getMWindow() != NULL && getRender()->getMWindow()->isActive())
         {
             logMsg("LastFPS == " +convert->toString(getRender()->getMWindow()->getLastFPS()));

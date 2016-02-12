@@ -21,7 +21,7 @@
 #ifndef _GAMEENGINE_H_
 #define _GAMEENGINE_H_
 
-#include "engine/inputengine.h"
+//#include "engine/inputengine.h"
 //#include "engine/networkengine.h"
 
 #include "OgreTimer.h"
@@ -35,12 +35,14 @@
 //#include "engine/renderengine.h"
 //#include "input.h"
 
+#include "engine.h" 
+
 class inputEngine;
 class inputSystem;
 class networkEngine;
 class renderEngine;
 
-class gameEngine
+class gameEngine : public engine
 {
 
 public:

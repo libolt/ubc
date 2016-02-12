@@ -36,9 +36,11 @@
 
 #include "enums.h"
 // #include "engine/inputengine.h"
+#include "engine.h"
+
 class inputEngine;
 
-class networkEngine
+class networkEngine : public engine
 {
     public:
 

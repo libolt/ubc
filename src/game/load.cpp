@@ -36,6 +36,7 @@
 #include "state/playerstate.h"
 #include "state/teamstate.h"
 #include "offenseplays.h"
+#include "userinput.h"
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 #include "android.h"

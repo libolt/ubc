@@ -21,6 +21,7 @@
 #include "conversion.h"
 #include "OgrePrerequisites.h"
 #include "engine/gameengine.h"
+#include "engine/inputengine.h"
 #include "engine/renderengine.h"
 #include "state/basketballstate.h"
 #include "state/gamestate.h"
@@ -110,10 +111,10 @@ void UBC::processInput()  // processes game input
 
     logMsg("inputProcess!");
  
-    if (getInput()->processInput(getRender()))
+    if (getInput()->processInput())
     {
 //        exit(0);
-
+/*
         if (getInput()->getKeyInputReceived())
         {
             if (getMenuActive())
@@ -285,7 +286,9 @@ void UBC::processInput()  // processes game input
                 }
             }
         }
+*/
     }   
+    
 }
 void UBC::gameLoop()  // Main Game Loop
 {
@@ -424,12 +427,13 @@ void UBC::gameLoop()  // Main Game Loop
             }
         }
         
-        lastFPS = getRender()->getMWindow()->getLastFPS();
-        std::string currFPS = convert->toString(lastFPS);
+//        lastFPS = getRender()->getMWindow()->getLastFPS();
+//        exit(0);
+//        std::string currFPS = convert->toString(lastFPS);
 
-        logMsg("FPS = " +currFPS);
+//        logMsg("FPS = " +currFPS);
         //updateChangeInTime(); // calculates the change in time.
-        exit(0);
+        
 
 //          logMsg("changeInTime = " +toString(changeInTime));
         // updates game logic every 100 milliseconds
@@ -500,15 +504,20 @@ void UBC::gameLoop()  // Main Game Loop
                 //        player->getNode(0)->translate(Pos);
     //        pInstance[bballInstance[0].getPlayer()].getNode()->translate(-0.02f,0.0f,0.0f);
 //        exit(0);
-        if (getRender()->getMWindow() != NULL && getRender()->getMWindow()->isActive())
+/*        if (getRender()->getMWindow() != NULL ) //&& getRender()->getMWindow()->isActive())
         {
             logMsg("LastFPS == " +convert->toString(getRender()->getMWindow()->getLastFPS()));
 //          Ogre::LogManager::getSingletonPtr()->logMessage("Rendering frame");
             getRender()->getMWindow()->windowMovedOrResized();
-//            exit(0);
+            exit(0);
             getRender()->getRERoot()->renderOneFrame();
 //            exit(0);
 
+        }
+*/
+        if (!getRender()->renderFrame())
+        {
+            logMsg("Unable to render frame!");
         }
     }
 
@@ -534,16 +543,9 @@ int main(int argc, char *argv[])
 //    exit(0);
     ubc.setupState();  // sets up the game state
 
-/*    Ogre::Viewport *vp = render->getViewPort();
-    gui->setViewPort(*vp);  // sets the viewPort for MyGUI
-    
-    gui->initMyGUI(render); // Initializes MyGUI
-    if (!gui->getMainMenuCreated())
-    {
-        gui->createMainMenuGUI(); // creates the main menu gui.
-        gui->createBackButtons(); // creates the back buttons.
-    }
-*/
+    Ogre::Viewport *vp = render->getViewPort();
+//    setViewPort(*vp);  // sets the viewPort for MyGUI
+
 //    exit(0);
     logMsg("Initializing Input");
     //inputSystem *input = inputSystem::Instance();

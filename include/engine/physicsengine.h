@@ -20,7 +20,8 @@
 
 #ifndef _PHYSICSENGINE_H_
 #define _PHYSICSENGINE_H_
-#include "engine/gameengine.h"
+
+//#include "engine/gameengine.h"
 
 #include <vector>
 
@@ -34,9 +35,11 @@
 //#include "engine/renderengine.h"
 #include "timing.h"
 
+#include "engine.h"
+
 class renderEngine;
 
-class physicsEngine
+class physicsEngine : public engine
 {
 public:
     //static physicsEngine *Instance();

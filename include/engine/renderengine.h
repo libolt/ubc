@@ -58,7 +58,9 @@
 #include "SDL_test_common.h"
 #include <boost/shared_ptr.hpp>
 
-class renderEngine
+#include "engine.h"
+
+class renderEngine : public engine
 {
     public:
 
@@ -137,6 +139,8 @@ class renderEngine
     bool frameEnded();  // ends a frame
     void createSceneManager();  // creates the scene manager
 
+    bool renderFrame();  // renders a frame to the screen
+    
     protected:
 /*
     renderEngine();

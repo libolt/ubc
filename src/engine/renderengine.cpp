@@ -462,6 +462,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 	RERoot->setRenderSystem(RERoot->getAvailableRenderers().at(0));
 	RERoot->initialise(false);
+    
 #else
 	Ogre::RenderSystemList rsList = RERoot->getAvailableRenderers();
     logMsg("blah!");
@@ -616,13 +617,14 @@ bool renderEngine::createScene()
 //	exit(0);
     logMsg("renderWindow created!");
 	unsigned long handle = 0;
-//	mWindow->getCustomAttribute("WINDOW", &handle);
+	mWindow->getCustomAttribute("WINDOW", &handle);
 //    exit(0);
     logMsg("mWindow handle = " +convert->toString(handle));
 
     logMsg("Dead");
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 	sdlWindow = SDL_CreateWindowFrom(mWindow);
+//    exit(0);
 #endif
 /*
 //    SDL_SetWindowSize(sdlWindow, w, h);
@@ -901,4 +903,21 @@ logMsg("Alive?");
 //	exit(0);
   //  gameE->startGame();
 return (true);
+}
+
+bool renderEngine::renderFrame()  // renders a frame to the screen
+{
+    boost::shared_ptr<conversion> convert = conversion::Instance();
+//    exit(0);
+    if (mWindow != NULL && mWindow->isActive())
+    {
+        logMsg("LastFPS == " +convert->toString(mWindow->getLastFPS()));
+//      Ogre::LogManager::getSingletonPtr()->logMessage("Rendering frame");
+        mWindow->windowMovedOrResized();
+        exit(0);
+        RERoot->renderOneFrame();
+//        exit(0);
+
+    }
+    return (true);
 }

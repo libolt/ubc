@@ -36,6 +36,8 @@
 //#include "engine/renderengine.h"
 //#include "gui/gui.h"
 
+#include "engine.h"
+
 #define EVENT_BUF_SIZE 256
 
 typedef std::vector<inputMaps>   inputWorkQueues;
@@ -44,7 +46,7 @@ typedef std::vector<inputMaps>   inputWorkQueues;
 class renderEngine;
 
 // input class
-class inputEngine
+class inputEngine : public engine
 {
 public:
 
@@ -79,10 +81,10 @@ public:
 
     inputMaps keyMap();  // maps value of keyPressed string to inputMap
 	
-    bool processInput(boost::shared_ptr<renderEngine> render);	// processes all input
+    bool processInput();	// processes all input
     bool processUnbufferedKeyInput(bool textInput);	// reads in unbuffered key presses
     bool processUnbufferedMouseInput();	// reads in unbuffered mouse input
-    bool processUnbufferedTouchInput(boost::shared_ptr<renderEngine> render); // reads in unbuffered touch input
+    bool processUnbufferedTouchInput(); // reads in unbuffered touch input
     bool processUnbufferedGamepadInput(); // reads in unbuffered mouse input
 	
 protected:

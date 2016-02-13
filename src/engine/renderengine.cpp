@@ -611,7 +611,18 @@ bool renderEngine::createScene()
 //	misc["externalGLContext"] = convert->toString((unsigned long)SDL_GL_GetCurrentContext());
 //	exit(0);
 	logMsg("Hello??");
-    mWindow = RERoot->createRenderWindow("Ultimate Basketball Challenge", 0, 0, false, &misc);
+    float winWidth = 0;
+    float winHeight = 0;
+
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+    winWidth = 0.0;
+    winHeight = 0.0;
+#else
+    winWidth = 1280.0;
+    winHeight = 1024.0;
+#endif
+
+    mWindow = RERoot->createRenderWindow("Ultimate Basketball Challenge", winWidth, winHeight, false, &misc);
 
 //	mWindow = RERoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
 //	exit(0);
@@ -756,7 +767,7 @@ bool renderEngine::createScene()
     // logMsg("Rendering!");
 	misc["externalWindowHandle"] = winHandle; //
 
-    mWindow = RERoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
+//    mWindow = RERoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
 
 	//    exit(0);
 	mWindow->setVisible(true);

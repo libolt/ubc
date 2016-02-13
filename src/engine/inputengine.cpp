@@ -632,7 +632,7 @@ bool inputEngine::processUnbufferedKeyInput(bool textInput)  // processes unbuff
     {
         return (true);
     }
-
+*/
     keyInputReceived = true;
 //    keyPressed = "";
 //	logMsg("Keyboard Input Processed");

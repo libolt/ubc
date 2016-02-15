@@ -74,10 +74,21 @@ bool UBC::setupState()  // sets up the UBC game state
 {
 //    Ogre::Viewport *vp = getRender()->getViewPort();
 //    setViewPort(*vp);  // sets the viewPort for MyGUI
+    logMsg("blah!");
+    exit(0);
+    if (initMyGUI()) // Initializes MyGUI
+    {
+        logMsg("is the main menu created?");
+    }
+    else
+    {
 
-    initMyGUI(); // Initializes MyGUI
+    }
+
     if (!getMainMenuCreated())
     {
+        logMsg("mainMenu not created!");
+        exit(0);
         createMainMenuGUI(); // creates the main menu gui.
         createBackButtons(); // creates the back buttons.
     }
@@ -528,7 +539,6 @@ int main(int argc, char *argv[])
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     UBC ubc;
-
     boost::shared_ptr<renderEngine> render = ubc.getRender();
 //    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
@@ -537,8 +547,12 @@ int main(int argc, char *argv[])
     render->initSDL(); // Initializes the SDL Subsystem
 //    exit(0);
     render->initOgre(); // Initializes the Ogre Subsystem
+//    exit(0);
     render->createScene(); // creates rendering scene.
 //    exit(0);
+    logMsg("pre setupState!");
+    ubc.setupState();  // sets up the game state
+    exit(0);
     gameS->createInstances();  // creates object instances
 //    exit(0);
     ubc.setupState();  // sets up the game state

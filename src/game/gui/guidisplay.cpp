@@ -46,6 +46,8 @@ void GUISystem::hideMainMenuWidgets()  // hides the widgets tied to the Main Men
 }
 void GUISystem::showMainMenuWidgets()  // shows all widgets tied to the Main Menu
 {
+    logMsg("showMainMenuWidgets");
+//    exit(0);
     startSingleGameButton->setVisible(true);
     startMultiGameButton->setVisible(true);
     optionsButton->setVisible(true);
@@ -496,6 +498,7 @@ void GUISystem::hideActiveMenuWidgets()  // hides active menus widgets
 
 void GUISystem::showActiveMenuWidgets()  // shows active menus widgets
 {
+//    exit(0);
     switch (activeMenu)
     {
         case MAIN: 
@@ -541,6 +544,7 @@ void GUISystem::showActiveMenuWidgets()  // shows active menus widgets
 
 void GUISystem::changeActiveMenu(activeMenus menu)  // changes the actively displayed menu
 {
+//    exit(0);
     hideActiveMenuWidgets();
     menuActive = true;
     previousActiveMenu = activeMenu;

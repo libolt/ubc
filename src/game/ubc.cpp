@@ -75,25 +75,50 @@ bool UBC::setupState()  // sets up the UBC game state
 //    Ogre::Viewport *vp = getRender()->getViewPort();
 //    setViewPort(*vp);  // sets the viewPort for MyGUI
     logMsg("blah!");
-    exit(0);
+//    exit(0);
+    bool stateSetup = true;
+    
     if (initMyGUI()) // Initializes MyGUI
     {
+        logMsg ("MyGUI initialized successfully!");
         logMsg("is the main menu created?");
-    }
+        if (!getMainMenuCreated())
+        {
+            logMsg("mainMenu not created yet!");
+//           exit(0);
+            if (createMainMenuGUI()) // creates the main menu gui.
+            {
+                logMsg("Main Menu created successfully!");
+            }
+            else
+            {
+                logMsg("Unable to create Main Menu!");
+                stateSetup = false;
+            }
+        }
+        if (!getBackButtonsCreated())
+        {
+            logMsg("Back buttons not created yet!");
+            if (createBackButtons()) // creates the back buttons.
+            {
+                logMsg("Back Buttons created successfully!");
+            }
+            else
+            {
+                logMsg("Unable to create Bsck Buttons!");
+                stateSetup = false;
+            }
+        }
+        showMainMenuWidgets();
+        setNetwork(getNetwork());
+    } 
     else
     {
 
     }
 
-    if (!getMainMenuCreated())
-    {
-        logMsg("mainMenu not created!");
-        exit(0);
-        createMainMenuGUI(); // creates the main menu gui.
-        createBackButtons(); // creates the back buttons.
-    }
-    setNetwork(getNetwork());
-    return (false);
+    
+    return (stateSetup);
 }
 
 void UBC::executeState()  // executes the UBC game code
@@ -124,7 +149,12 @@ void UBC::processInput()  // processes game input
  
     if (getInput()->processInput())
     {
-//        exit(0);
+        
+        if (getMenuActive())
+        {
+            logMsg("menuActive!");
+//            exit(0);
+        }
 /*
         if (getInput()->getKeyInputReceived())
         {
@@ -324,81 +354,25 @@ void UBC::gameLoop()  // Main Game Loop
 
     logMsg("main: startup");
 //    exit(0);
-/*
-    threads thread;
-    thread.setGRunning(true);
 
-    boost::thread t1(boost::bind(&threads::producerThread,&thread));
-    boost::thread t2(boost::bind(&threads::consumerThread,&thread));
-
-    // Let them run for a while
-
-    boost::posix_time::milliseconds workTime(5000);
-    boost::this_thread::sleep(workTime);
-
-    // Stop gracefully and wait
-
-    thread.setGRunning(false);
-    t1.join();
-    t2.join();
-*/
-//    boost::thread inputThread(boost::bind(&inputSystem::processInput,input));
-//    boost::thread t2(boost::bind(&threads::consumerThread,&thread));
-
-    /*    boost::thread *workerThread;
-//  workerThread = new boost::thread(boost::bind(&threading::workerFunc,&threads));
-    
-    boost::thread *workerThread2;
-//  workerThread2 = new boost::thread(boost::bind(&threading::workerFunc2,&threads));
-
-    boost::thread *inputWorkerThread;
-//    inputWorkerThread = new boost::thread(boost::bind(&threading::inputWorkerFunc,&threads));
-
-    logMsg("main: waiting for thread");
-
-    workerThread->join();
-    workerThread2->join();
-
-    logMsg("main: done");
-*/
-
-//    threads *thread = threads::Instance();
-
-/*    threads::Reader reads(100);
-    threads::Writer writes1(100, 200);
-    threads::Writer writes2(200, 200);
-
-    boost::thread readerThread(reads);
-    boost::thread writerThread1(writes1);
-//    usleep(100);
-    boost::this_thread::sleep(boost::posix_time::microseconds(100));
-
-    boost::thread writerThread2(writes2);
-
-    readerThread.join();
-    writerThread1.join();
-    writerThread2.join();
-*/
-
-//  SDL_StartTextInput();
     while (!quitGame)
     {
 
-/*        if (!sound->getSetupComplete())
-        {
-            logMsg("Sound setup not complete!");
-            if (sound->setup())
-            {
-                logMsg("Sound setup!");
-                sound->setSetupComplete(true);
-            }
-        }
-        else
-        {
-            logMsg("Loading Sound!");
-            sound->loadSound("cbeep.wav");
-        }
-*/
+///        if (!sound->getSetupComplete())
+///        {
+///            logMsg("Sound setup not complete!");
+///            if (sound->setup())
+///            {
+///                logMsg("Sound setup!");
+///                sound->setSetupComplete(true);
+///            }
+///        }
+///        else
+///        {
+///            logMsg("Loading Sound!");
+///            sound->loadSound("cbeep.wav");
+///        }
+/*
         if (gameS->getGameSetupComplete())  // checks to make sure game setup is complete before continuing
         {
             if (!getSceneCreated())
@@ -503,28 +477,7 @@ void UBC::gameLoop()  // Main Game Loop
             getTimer().setPreviousTime(boost::chrono::system_clock::now());
         }
 
-            // writes Framerate to Ogre.log
-//                  Ogre::LogManager::getSingletonPtr()->logMessage("FPS = " +currFPS);
-
         processInput();
-//          inputWorkerThread->join();
-/*          else
-            {
-            }
-*/
-                //        player->getNode(0)->translate(Pos);
-    //        pInstance[bballInstance[0].getPlayer()].getNode()->translate(-0.02f,0.0f,0.0f);
-//        exit(0);
-/*        if (getRender()->getMWindow() != NULL ) //&& getRender()->getMWindow()->isActive())
-        {
-            logMsg("LastFPS == " +convert->toString(getRender()->getMWindow()->getLastFPS()));
-//          Ogre::LogManager::getSingletonPtr()->logMessage("Rendering frame");
-            getRender()->getMWindow()->windowMovedOrResized();
-            exit(0);
-            getRender()->getRERoot()->renderOneFrame();
-//            exit(0);
-
-        }
 */
         if (!getRender()->renderFrame())
         {
@@ -551,11 +504,18 @@ int main(int argc, char *argv[])
     render->createScene(); // creates rendering scene.
 //    exit(0);
     logMsg("pre setupState!");
-    ubc.setupState();  // sets up the game state
-    exit(0);
+    if (ubc.setupState())  // sets up the game state
+    {
+        logMsg("UBC state setup successfully!");
+    }
+    else
+    {
+        logMsg("Unable to setip UBC state!");
+        return (false);
+    }
     gameS->createInstances();  // creates object instances
 //    exit(0);
-    ubc.setupState();  // sets up the game state
+//    ubc.setupState();  // sets up the game state
 
     Ogre::Viewport *vp = render->getViewPort();
 //    setViewPort(*vp);  // sets the viewPort for MyGUI

@@ -167,6 +167,8 @@ class renderEngine : public engine
     static Ogre::SceneManager *mSceneMgr;  // store the OGRE Scene Manager
     static Ogre::RenderWindow *mWindow;  // stores the OGRE Render Window
     static Ogre::Viewport *viewPort;  // stores the OGRE View Port
+    static Ogre::Light *l;  // stores the vslue of light
+    static Ogre::ResourceGroupManager *rsm;  // stores resources
     std::string mResourceGroup;  // stores resource locations
     Ogre::NameValuePairList misc;  // options to pass to mWindow during creation
     std::string winHandle;  // window handle
@@ -189,7 +191,7 @@ class renderEngine : public engine
     float mMoveScale;  // stores the movement scale
     Ogre::Degree mRotScale;  // stores the rotation scale
     Ogre::Real mTimeUntilNextToggle;  // stores the time until next toggle
-
+    
     private:
 
 //    static renderEngine *pInstance;

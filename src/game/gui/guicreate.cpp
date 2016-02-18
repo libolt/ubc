@@ -44,7 +44,7 @@ bool GUISystem::createMainMenuGUI()  // creates the main menu gui
     if (getRender()->getViewPort()->getActualHeight() >= 1000)
     {
         logMsg("Height greater than 1000!");
-        exit(0);
+//        exit(0);
         MyGUI::FontManager::getInstance().setDefaultFont("LuxiBoldFont_18");
     }
     else

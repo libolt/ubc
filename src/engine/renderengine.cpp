@@ -468,7 +468,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 
 	//we found it, we might as well use it!
 	RERoot->setRenderSystem(selectedRenderSystem);
-	mWindow = RERoott->initialise(false, "Ultimate Basketball Challenge");
+    mWindow = RERoot->initialise(false, "Ultimate Basketball Challenge");
 #endif
 
     logMsg("OGRE initialized successfully!");

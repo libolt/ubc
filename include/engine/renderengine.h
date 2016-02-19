@@ -121,12 +121,12 @@ class renderEngine : public engine
     SDL_Window *getSDLWindow();  // retireves the value of SDLWindow
     void setSDLWindow(SDL_Window *set);  // sets the value of SDLWindow
 
-    uint32_t getWindowWidth();  // retrieves the value of windowWidth
+/*    uint32_t getWindowWidth();  // retrieves the value of windowWidth
     void setWindowWidth(uint32_t set);  // sets the value of windowWidth
     
     uint32_t getWindowHeight();  // retrieves the value of windowHeight
     void setWindowHeight(uint32_t set);  // sets the value of windowHeight
-    
+*/
     ~renderEngine();
 
 
@@ -169,17 +169,18 @@ class renderEngine : public engine
     static Ogre::Viewport *viewPort;  // stores the OGRE View Port
     static Ogre::Light *l;  // stores the vslue of light
     static Ogre::ResourceGroupManager *rsm;  // stores resources
-    std::string mResourceGroup;  // stores resource locations
+    static std::string mResourceGroup;  // stores resource locations
     static Ogre::NameValuePairList misc;  // options to pass to mWindow during creation
-    std::string winHandle;  // window handle
+    static std::string winHandle;  // window handle
 
     // general
-    uint32_t windowWidth;  // stores the width of the window
-    uint32_t windowHeight;  // stores the height of the window
+//    uint32_t windowWidth;  // stores the width of the window
+//    uint32_t windowHeight;  // stores the height of the window
     // Android support
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     static AAssetManager* mAssetMgr;  // stores the android asset manager
 #endif
+
     static Ogre::ShaderGeneratorTechniqueResolverListener* mMatListener;  // stores the material listener
     static Ogre::RenderSystem *selectedRenderSystem;
 

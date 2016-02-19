@@ -32,6 +32,12 @@
 #include "engine/sound/soundengine.h"
 //#include "teams.h"
 
+#define FREEIMAGE_LIB
+#include "FreeImage.h"
+#include "OgreDDSCodec.h"
+#include "OgreFreeImageCodec.h"
+
+
 #ifndef OGRE_PLUGIN_DIR
 #define OGRE_PLUGIN_DIR
 #endif
@@ -68,8 +74,12 @@ Ogre::Degree renderEngine::mRotateSpeed;
 float renderEngine::mMoveScale; 
 Ogre::Degree renderEngine::mRotScale; 
 Ogre::Real renderEngine::mTimeUntilNextToggle;
+std::string renderEngine::winHandle;
+std::string renderEngine::mResourceGroup;
 
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 AAssetManager *renderEngine::mAssetMgr; 
+#endif
 
 renderEngine::renderEngine()
 {
@@ -82,8 +92,8 @@ renderEngine::renderEngine()
    mWindow = NULL;
    RERoot = NULL;
    
-   windowWidth = 0;
-   windowHeight = 0;
+//   windowWidth = 0;
+//   windowHeight = 0;
 }
 
 renderEngine::~renderEngine()
@@ -246,6 +256,7 @@ void renderEngine::setSDLWindow(SDL_Window *window)
 	sdlWindow = window;
 }
 
+/*
 uint32_t renderEngine::getWindowWidth()  // retrieves the value of windowWidth
 {
     return (windowWidth);
@@ -263,6 +274,7 @@ void renderEngine::setWindowHeight(uint32_t set)  // sets the value of windowHei
 {
     windowHeight = set;
 }
+*/
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 Ogre::DataStreamPtr renderEngine::openAPKFile(const Ogre::String& fileName)
@@ -413,7 +425,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 	RERoot = new Ogre::Root("", "", "Ogre.log");
 	const Ogre::String pluginDir = OGRE_PLUGIN_DIR;
     logMsg("winHandle for Ogre = " +winHandle);
-
+//    exit(0);
 //#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 //#else
 //	inputSystem *input = inputSystem::Instance();
@@ -440,10 +452,9 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 #elif OGRE_PLATFORM == OGRE_PLATFORM_APPLE
 	RERoot->loadPlugin("RenderSystem_GL");
 #else
-	RERoot->loadPlugin(pluginDir + "/RenderSystem_GL");
+    RERoot->loadPlugin(pluginDir + "/RenderSystem_GL_d");
 	RERoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager");
 #endif
-
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 	RERoot->setRenderSystem(RERoot->getAvailableRenderers().at(0));
 	RERoot->initialise(false);
@@ -467,12 +478,20 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 	}
 
 	//we found it, we might as well use it!
-	RERoot->setRenderSystem(selectedRenderSystem);
+    RERoot->setRenderSystem(selectedRenderSystem);
+
+
     mWindow = RERoot->initialise(false, "Ultimate Basketball Challenge");
 #endif
 
-    logMsg("OGRE initialized successfully!");
+    Ogre::DDSCodec::startup();
+    Ogre::FreeImageCodec::startup();FreeImage_Initialise();
+    Ogre::DDSCodec::startup();
+    Ogre::FreeImageCodec::startup();
+    //log->setOgreRootInitialized(true);
 
+    logMsg("OGRE initialized successfully!");
+//exit(0);
 	return true;
 }
 
@@ -553,18 +572,19 @@ bool renderEngine::createScene()
 //	misc["currentGLContext"]     = "true";
 //    misc["externalGLContext"]    = Ogre::StringConverter::toString((int)sdlWindow);
 //    winHandle = Ogre::StringConverter::toString((unsigned long)sysInfo.info.android.window);
-    
+//    exit(0);
 	misc["externalWindowHandle"] = winHandle;
 //	misc["externalGLContext"] = Ogre::StringConverter::toString((unsigned long)SDL_GL_GetCurrentContext());
-//	exit(0);
+//    exit(0);
 	logMsg("Hello??");
-	mWindow = RERoot->createRenderWindow("Ultimate Basketball Challenge", 0, 0, false, &misc);
-//	exit(0);
+//    exit(0);
+    mWindow = RERoot->createRenderWindow("Ultimate Basketball Challenge", 0, 0, false, &misc);
+    exit(0);
     logMsg("renderWindow created!");
 	unsigned long handle = 0;
 	mWindow->getCustomAttribute("WINDOW", &handle);
 	logMsg("mWindow handle = " +Ogre::StringConverter::toString(handle));
-
+exit(0);
     logMsg("Dead");
 	sdlWindow = SDL_CreateWindowFrom(mWindow);
 /*        
@@ -623,7 +643,7 @@ bool renderEngine::createScene()
 	// logMsg("Rendering!");
 	misc["externalWindowHandle"] = winHandle; //
 
-    mWindow = RERoot->createRenderWindow("Ultimate Basketball Challenge", 1280, 1024, false, &misc);
+    mWindow = RERoot->createRenderWindow("Ultimate Basketball Challenge", 0, 0, false, &misc);
 
 	//    exit(0);
 	mWindow->setVisible(true);

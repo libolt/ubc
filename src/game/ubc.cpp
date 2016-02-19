@@ -502,7 +502,7 @@ int main(int argc, char *argv[])
     render->initOgre(); // Initializes the Ogre Subsystem
 //    exit(0);
     render->createScene(); // creates rendering scene.
-//    exit(0);
+    exit(0);
     logMsg("pre setupState!");
     if (ubc.setupState())  // sets up the game state
     {

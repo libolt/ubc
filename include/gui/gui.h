@@ -271,7 +271,7 @@ private:
     MyGUI::Button *serverButton;
     MyGUI::Button *clientButton;
     
-    MyGUI::Button *backMainMenuButton;
+    static MyGUI::Button *backMainMenuButton;
     MyGUI::Button *backNetworkSetupButton;
     MyGUI::Button *displayButton;
     MyGUI::Button *inputButton;

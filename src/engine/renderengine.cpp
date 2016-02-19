@@ -46,6 +46,10 @@ renderEngine* renderEngine::Instance()
 }
 */
 
+SDL_Window *renderEngine::sdlWindow;
+SDL_SysWMinfo renderEngine::sysInfo; 
+
+
 Ogre::Root *renderEngine::RERoot;  // static declaration of mSceneMgr
 Ogre::SceneManager *renderEngine::mSceneMgr;  // static declaration of mSceneMgr
 Ogre::Camera *renderEngine::mCamera;  // static declaration of mSceneMgr
@@ -53,6 +57,20 @@ Ogre::RenderWindow *renderEngine::mWindow;  // static declaration of mSceneMgr
 Ogre::Viewport *renderEngine::viewPort;  // static declaration of mSceneMgr
 Ogre::Light *renderEngine::l;  // static declaration of l
 Ogre::ResourceGroupManager *renderEngine::rsm; // static declaration of rsm
+Ogre::NameValuePairList renderEngine::misc; 
+Ogre::ShaderGeneratorTechniqueResolverListener *renderEngine::mMatListener; 
+Ogre::RenderSystem *renderEngine::selectedRenderSystem;
+Ogre::Vector3 renderEngine::mTranslateVector; 
+Ogre::Radian renderEngine::mRotX;
+Ogre::Radian renderEngine::mRotY; 
+Ogre::Real renderEngine::mMoveSpeed;  
+Ogre::Degree renderEngine::mRotateSpeed;
+float renderEngine::mMoveScale; 
+Ogre::Degree renderEngine::mRotScale; 
+Ogre::Real renderEngine::mTimeUntilNextToggle;
+
+AAssetManager *renderEngine::mAssetMgr; 
+
 renderEngine::renderEngine()
 {
 
@@ -636,7 +654,7 @@ bool renderEngine::createScene()
 #endif
 
 	rsm->initialiseResourceGroup(mResourceGroup);
-
+//  exit(0);
 	mSceneMgr = RERoot->createSceneManager(Ogre::ST_GENERIC); // for OGRE 1.2 Dagon
 	mCamera = mSceneMgr->createCamera("camera");
 

@@ -36,6 +36,8 @@
 #include "config.h"
 #endif
  
+MyGUI::Button *GUISystem::backMainMenuButton;  // static
+
 bool GUISystem::createMainMenuGUI()  // creates the main menu gui
 {
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();

@@ -156,9 +156,9 @@ class renderEngine : public engine
 #endif
     
     // SDL code
-    SDL_Window *sdlWindow;  // stores the SDL window
+    static SDL_Window *sdlWindow;  // stores the SDL window
     SDL_GLContext sdlGLContext;  // the SDL GL Context
-    SDL_SysWMinfo sysInfo;  // stores the SDL System information
+    static SDL_SysWMinfo sysInfo;  // stores the SDL System information
     SDLTest_CommonState *state;  // stores the state
 
     // Ogre code
@@ -170,7 +170,7 @@ class renderEngine : public engine
     static Ogre::Light *l;  // stores the vslue of light
     static Ogre::ResourceGroupManager *rsm;  // stores resources
     std::string mResourceGroup;  // stores resource locations
-    Ogre::NameValuePairList misc;  // options to pass to mWindow during creation
+    static Ogre::NameValuePairList misc;  // options to pass to mWindow during creation
     std::string winHandle;  // window handle
 
     // general
@@ -178,19 +178,19 @@ class renderEngine : public engine
     uint32_t windowHeight;  // stores the height of the window
     // Android support
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-    AAssetManager* mAssetMgr;  // stores the android asset manager
+    static AAssetManager* mAssetMgr;  // stores the android asset manager
 #endif
-    Ogre::ShaderGeneratorTechniqueResolverListener* mMatListener;  // stores the material listener
-    Ogre::RenderSystem *selectedRenderSystem;
+    static Ogre::ShaderGeneratorTechniqueResolverListener* mMatListener;  // stores the material listener
+    static Ogre::RenderSystem *selectedRenderSystem;
 
     // InputReader* mInputDevice;
-    Ogre::Vector3 mTranslateVector;  // stores the translate vector
-    Ogre::Radian mRotX, mRotY;  // stores x and y rotations
-    Ogre::Real mMoveSpeed;  // stores the movement speed
-    Ogre::Degree mRotateSpeed;  // stores the rotation speed
-    float mMoveScale;  // stores the movement scale
-    Ogre::Degree mRotScale;  // stores the rotation scale
-    Ogre::Real mTimeUntilNextToggle;  // stores the time until next toggle
+    static Ogre::Vector3 mTranslateVector;  // stores the translate vector
+    static Ogre::Radian mRotX, mRotY;  // stores x and y rotations
+    static Ogre::Real mMoveSpeed;  // stores the movement speed
+    static Ogre::Degree mRotateSpeed;  // stores the rotation speed
+    static float mMoveScale;  // stores the movement scale
+    static Ogre::Degree mRotScale;  // stores the rotation scale
+    static Ogre::Real mTimeUntilNextToggle;  // stores the time until next toggle
     
     private:
 

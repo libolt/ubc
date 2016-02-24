@@ -45,6 +45,9 @@
 
 //class GUISystem;
 class gameEngine;
+class gameState;
+class networkState;
+
 
 class UBC : public GUISystem
 {
@@ -73,7 +76,10 @@ protected:
 private:
 
 //    boost::shared_ptr<GUISystem> gui;  // the GUI object.
-
+    boost::shared_ptr<gameState> gameS;  // the gameState object
+    boost::shared_ptr<networkState> networkS;  // the gameState object
+    
+    
     bool quitGame;
 };
 

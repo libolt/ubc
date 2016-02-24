@@ -40,6 +40,7 @@
 #include "ubc.h"
 #include "jumpballs.h"
 
+/*
 boost::shared_ptr<gameState> gameState::pInstance;
 
 boost::shared_ptr<gameState> gameState::Instance()
@@ -52,6 +53,7 @@ boost::shared_ptr<gameState> gameState::Instance()
     }
     return pInstance; // address of sole instance
 }
+*/
 
 gameState::gameState()  // constructor
 {

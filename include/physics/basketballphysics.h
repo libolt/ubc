@@ -64,6 +64,8 @@ class basketballPhysics : public physics
 
         void ballDribbling(Ogre::Vector3 bballPos, btRigidBody *courtPhysBody, Ogre::Vector3 courtPos);  // simulates basketball dribble
 
+        void updatePosition();  // updates the position of basketball object(s)
+
     private:
 
         bballBounces bounce;  // stores bounce state of the ball

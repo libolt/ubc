@@ -290,3 +290,22 @@ void basketballPhysics::ballDribbling(Ogre::Vector3 bballPos, btRigidBody *court
 
 }
 
+void basketballPhysics::updatePosition()  // updates the position of basketball object(s)
+{
+    boost::shared_ptr<gameState> gameS = gameState::Instance();
+
+    size_t activeBBallInstance = gameS->getActiveBBallInstance();
+    std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
+
+    if (basketballVelocitySet)
+    {
+//        exit(0);
+///        basketballInstance[activeBBallInstance].getPhysBody()->setLinearVelocity(basketballVelocity);
+    }
+    else
+    {
+//        basketballInstance[activeBBallInstance].getPhysBody()->setLinearVelocity(btVector3(0,0,0));
+
+    }
+}
+

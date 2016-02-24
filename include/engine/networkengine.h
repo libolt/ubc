@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean                              *
- *   libolt@libolt.net                                                      *
+ *   Copyright (C) 1999 - 2016 by Mike McLean                              *
+ *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -103,9 +103,6 @@ class networkEngine : public engine
     bool serverSetup();	 // setup server.
     void networkServer();  // Server code
 
-    void processLocalInput();  // processes local input for sending to remote system
-    void processRemoteInput();  // processes input received from a remote system
-    
     void sendPacket(std::string packetData);  // sends a packet to the peer
 
     protected:

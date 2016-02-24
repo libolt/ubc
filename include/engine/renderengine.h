@@ -148,10 +148,10 @@ class renderEngine : public engine
     renderEngine& operator= (const renderEngine&);
 */
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-    android_app* app;
+    static android_app *app;
     //static
-    Ogre::StaticPluginLoader* gStaticPluginLoader;
-    AConfiguration* config;
+    static Ogre::StaticPluginLoader *gStaticPluginLoader;
+    static AConfiguration *config;
 
 #endif
     

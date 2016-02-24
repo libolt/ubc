@@ -318,7 +318,7 @@ void UBC::processInput()  // processes game input
 
                         if (gameS->getGameType() == MULTI)
                         {
-                            getNetwork()->processLocalInput();
+                            networkS->processLocalInput(gameS->getActiveTeamInstance());
                         }
                         inputQueue.clear();
                         getInput()->setInputWorkQueue(inputQueue);
@@ -354,6 +354,8 @@ void UBC::gameLoop()  // Main Game Loop
 
     logMsg("main: startup");
 //    exit(0);
+
+//    render->createScene(); // creates rendering scene.
 
     while (!quitGame)
     {
@@ -482,6 +484,7 @@ void UBC::gameLoop()  // Main Game Loop
         if (!getRender()->renderFrame())
         {
             logMsg("Unable to render frame!");
+            exit(0);
         }
     }
 
@@ -492,17 +495,18 @@ int main(int argc, char *argv[])
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     UBC ubc;
-    boost::shared_ptr<renderEngine> render = ubc.getRender();
+//    boost::shared_ptr<renderEngine> render = ubc.getRender();
 //    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
     boost::shared_ptr<gameState> gameS = gameState::Instance();
 //    boost::shared_ptr<GUISystem> gui = ubc.getGui();
 
-    render->initSDL(); // Initializes the SDL Subsystem
+    ubc.getRender()->initSDL(); // Initializes the SDL Subsystem
 //    exit(0);
-    render->initOgre(); // Initializes the Ogre Subsystem
+    ubc.getRender()->initOgre(); // Initializes the Ogre Subsystem
 //    exit(0);
-    render->createScene(); // creates rendering scene.
-    exit(0);
+    ubc.getRender()->createScene(); // creates rendering scene.
+
+//    exit(0);
     logMsg("pre setupState!");
     if (ubc.setupState())  // sets up the game state
     {
@@ -513,11 +517,17 @@ int main(int argc, char *argv[])
         logMsg("Unable to setip UBC state!");
         return (false);
     }
+
     gameS->createInstances();  // creates object instances
+    if (ubc.getRender()->getMWindow() == NULL)
+    {
+        logMsg("mWindow == NULL!");
+        exit(0);
+    }
 //    exit(0);
 //    ubc.setupState();  // sets up the game state
 
-    Ogre::Viewport *vp = render->getViewPort();
+    Ogre::Viewport *vp = ubc.getRender()->getViewPort();
 //    setViewPort(*vp);  // sets the viewPort for MyGUI
 
 //    exit(0);
@@ -525,6 +535,8 @@ int main(int argc, char *argv[])
     //inputSystem *input = inputSystem::Instance();
 //    boost::shared_ptr<inputSystem> input = ubc.getInput();
 //    exit(0);
+    
+
     ubc.gameLoop();
 
     atexit(SDL_Quit);

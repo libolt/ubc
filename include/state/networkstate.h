@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   Copyright (C) 1999 - 2016 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -18,43 +18,23 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef _PLAYERPHYSICS_H_
-#define _PLAYERPHYSICS_H_
+#ifndef _NETWORKSTATE_H_
+#define _NETWORKSTATE_H_
 
-#include "physics/physics.h"
+#include "state/state.h"
 
-//class physics;
+// Forward declarations
+class teamState:
 
-class playerPhysics : public physics
+class networkState : public state
 {
     public:
-        playerPhysics();  // constructor
-        ~playerPhysics();  // destructor
+        networkState();  // constructor
+        ~networkState();  // destructor
+        
+        void processLocalInput(std::vector<boost::shared_ptr<teamState> > activeTeamInstance);  // processes local input for sending to remote system
+        void processRemoteInput();  // processes input received from a remote system
     
-/*        bool getPhysicsSetup();  // retrieves the value of physicsSetup
-        void setPhysicsSetup(bool set);  // sets the value of physicsSetup
-        
-        bool getStateSet();  // retrieves the value of stateSet
-        void setStateSet(bool set);  // sets the value of stateSet
-        
-        playerPhysics();  // constructor
-
-        bool setupPhysics();  // sets up player physics
-
-        bool setupState();  // sets up state of player physics
-        
-        void updateState();  // updates the state of player physics
-*/        
-    void updatePosition();  // updates the position of player objecgts
-
-    bool jump(teamTypes teamType, int playerID);  // calculates and executes player jumping in the air
-    bool shootBasketball(teamTypes teamType, int playerID);  // calculates and executes basketball being shot
-   
     private:
-/*        bool physicsSetup;  // determines whether all players' physics bodies have been setup
-        bool stateSet;  // if true then the player physics state has been set
-*/
-};
-
-#endif // PLAYERPHYSICS_H
-
+}
+#endif

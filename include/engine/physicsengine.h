@@ -89,8 +89,8 @@ public:
     
     void updateState();  // updates the state of the physics engine.
     void updatePositions();  // updates thr position of objects
-    void updateBasketballPosition();  // updates the position of basketball object(s)
-    void updatePlayerPositions();  // updates the position of player objecgts
+///    void updateBasketballPosition();  // updates the position of basketball object(s)
+///    void updatePlayerPositions();  // updates the position of player objecgts
     void stepWorld(timing time);  // steps the physics simulation
 
 
@@ -99,8 +99,8 @@ public:
 
     bool collisionCheck(btRigidBody *objectA,btRigidBody *objectB);  // tests whther or not two objects have collided
 
-    bool playerJump(teamTypes teamType, int playerID);  // calculates and executes player jumping in the air
-    bool shootBasketball(teamTypes teamType, int playerID);  // calculates and executes basketball being shot
+///    bool playerJump(teamTypes teamType, int playerID);  // calculates and executes player jumping in the air
+///    bool shootBasketball(teamTypes teamType, int playerID);  // calculates and executes basketball being shot
    
 protected:
 

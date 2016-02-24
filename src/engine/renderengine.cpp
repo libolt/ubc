@@ -52,6 +52,12 @@ renderEngine* renderEngine::Instance()
 }
 */
 
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+    android_app *renderEngine::app;
+    Ogre::StaticPluginLoader *renderEngine::gStaticPluginLoader;
+    AConfiguration *renderEngine::config;
+#endif
+
 SDL_Window *renderEngine::sdlWindow;
 SDL_SysWMinfo renderEngine::sysInfo; 
 
@@ -448,6 +454,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 #ifdef OGRE_STATIC_LIB
 	gStaticPluginLoader = new Ogre::StaticPluginLoader();
 	gStaticPluginLoader->load();
+//    exit(0);
 #endif
 #elif OGRE_PLATFORM == OGRE_PLATFORM_APPLE
 	RERoot->loadPlugin("RenderSystem_GL");
@@ -458,6 +465,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 	RERoot->setRenderSystem(RERoot->getAvailableRenderers().at(0));
 	RERoot->initialise(false);
+//    RERoot->init = true;
 #else
 	Ogre::RenderSystemList rsList = RERoot->getAvailableRenderers();
 
@@ -479,11 +487,10 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 
 	//we found it, we might as well use it!
     RERoot->setRenderSystem(selectedRenderSystem);
-
-
-    mWindow = RERoot->initialise(false, "Ultimate Basketball Challenge");
 #endif
 
+    mWindow = RERoot->initialise(false, "Ultimate Basketball Challenge");
+    
     Ogre::DDSCodec::startup();
     Ogre::FreeImageCodec::startup();FreeImage_Initialise();
     Ogre::DDSCodec::startup();
@@ -550,8 +557,8 @@ bool renderEngine::createScene()
     logMsg("Width = " +Ogre::StringConverter::toString(w));
     logMsg("Height = " +Ogre::StringConverter::toString(h));
     
-    windowWidth = w;
-    windowHeight = h;
+    setWindowWidth(w);
+    setWindowHeight(h);
     
     mAssetMgr = AAssetManager_fromJava(env, raw_asset_manager);
 	logMsg("Yello");
@@ -579,14 +586,18 @@ bool renderEngine::createScene()
 	logMsg("Hello??");
 //    exit(0);
     mWindow = RERoot->createRenderWindow("Ultimate Basketball Challenge", 0, 0, false, &misc);
-    exit(0);
+
+//    exit(0);
     logMsg("renderWindow created!");
 	unsigned long handle = 0;
 	mWindow->getCustomAttribute("WINDOW", &handle);
 	logMsg("mWindow handle = " +Ogre::StringConverter::toString(handle));
-exit(0);
+//exit(0);
     logMsg("Dead");
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 	sdlWindow = SDL_CreateWindowFrom(mWindow);
+#endif
+//exit(0);
 /*        
 //    SDL_SetWindowSize(sdlWindow, w, h);
 //    SDL_GetWindowSize(sdlWindow, w, h);
@@ -609,6 +620,7 @@ exit(0);
     rsm = Ogre::ResourceGroupManager::getSingletonPtr();
 	rsm->createResourceGroup(mResourceGroup);
 
+    Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 	Ogre::ConfigFile cf;
@@ -635,9 +647,16 @@ exit(0);
 //	Ogre::ResourceGroupManager::getSingletonPtr()->initialiseResourceGroup(Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 
 	Ogre::RTShader::ShaderGenerator::initialize();
-	Ogre::RTShader::ShaderGenerator::getSingletonPtr()->setTargetLanguage("glsles");
-	mMatListener = new Ogre::ShaderGeneratorTechniqueResolverListener();
-	Ogre::MaterialManager::getSingleton().addListener(mMatListener);
+     // The Shader generator instance
+      Ogre::RTShader::ShaderGenerator* shaderGen = Ogre::RTShader::ShaderGenerator::getSingletonPtr();
+	//Ogre::RTShader::ShaderGenerator::getSingletonPtr()->setTargetLanguage("glsles");
+    shaderGen->setTargetLanguage("glsles");
+	if (mMatListener == NULL)
+    {
+        mMatListener = new Ogre::ShaderGeneratorTechniqueResolverListener();
+	    Ogre::MaterialManager::getSingleton().addListener(mMatListener);
+    }
+//    shaderGen->addSceneManager(mSceneMgr);
 #else
 
 	// logMsg("Rendering!");
@@ -675,8 +694,10 @@ exit(0);
 
 	rsm->initialiseResourceGroup(mResourceGroup);
 //  exit(0);
-	mSceneMgr = RERoot->createSceneManager(Ogre::ST_GENERIC); // for OGRE 1.2 Dagon
-	mCamera = mSceneMgr->createCamera("camera");
+    mSceneMgr = RERoot->createSceneManager(Ogre::ST_GENERIC); // creates the scene manager
+//    mSceneMgr = RERoot->createSceneManager("DefaultSceneManager"); // creates the scene manager
+
+    mCamera = mSceneMgr->createCamera("camera");
 
 /*
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
@@ -694,10 +715,11 @@ exit(0);
 	mCamera->lookAt(Ogre::Vector3(0, 0, -300));
 
 	mCamera->setNearClipDistance(5);
-
+    mCamera->setFarClipDistance(5000);
 	viewPort = mWindow->addViewport(mCamera);
-	viewPort->setBackgroundColour(Ogre::ColourValue(0, 0, 0));
-
+	viewPort->setBackgroundColour(Ogre::ColourValue(1, 0, 0));
+    
+    mCamera->setAspectRatio(Ogre::Real(viewPort->getActualWidth()) / Ogre::Real(viewPort->getActualHeight()));
 	// most examples get the viewport size to calculate this; for now, we'll just
 	// set it to 4:3 the easy way
 
@@ -718,6 +740,7 @@ exit(0);
     l = mSceneMgr->createLight("MainLight");
     l->setPosition(20,80,56);
 
+ 
 	//	    Ogre::LogManager::getSingletonPtr()->logMessage("winHandle = " +winHandle);
 
 	// this next bit is for the sake of the input handler
@@ -786,6 +809,11 @@ bool renderEngine::renderFrame()  // renders a frame to the screen
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    exit(0);
+    if (mWindow == NULL)
+    {
+        logMsg("mWindow is NULL!");
+    }
+    
     if (mWindow != NULL && mWindow->isActive())
     {
         logMsg("LastFPS == " +convert->toString(mWindow->getLastFPS()));

@@ -462,10 +462,11 @@ void physicsEngine::updateState()  // updates the state for the physics engine
 
 void physicsEngine::updatePositions()  // updates thr position of objects
 {
-    updateBasketballPosition();  // updates the position of the basketball on the court
-    updatePlayerPositions();  // updates the position of the players on the court
+//    updateBasketballPosition();  // updates the position of the basketball on the court
+//    updatePlayerPositions();  // updates the position of the players on the court
 }
 
+/*
 void physicsEngine::updateBasketballPosition()  // updates the position of basketball object(s)
 {
     boost::shared_ptr<gameState> gameS = gameState::Instance();
@@ -488,7 +489,7 @@ void physicsEngine::updateBasketballPosition()  // updates the position of baske
 void physicsEngine::updatePlayerPositions()  // updates the position of player objecgts
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
 
     comparison compare;
 
@@ -548,6 +549,7 @@ void physicsEngine::updatePlayerPositions()  // updates the position of player o
     }
     gameS->setActiveTeamInstance(activeTeamInstance);
 }
+*/
 
 void physicsEngine::stepWorld(timing timer)  // steps the world of the physics simulation
 {
@@ -739,6 +741,7 @@ void physicsEngine::passCollisionCheck()  // checks whether the ball has collide
     }*/
 }
 
+/*
 bool physicsEngine::playerJump(teamTypes teamType, int playerID)  // calculates and executes player jumping in the air
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
@@ -1095,4 +1098,4 @@ bool physicsEngine::shootBasketball(teamTypes teamType, int playerID)  // calcul
     gameS->setBasketballInstance(basketballInstance);
     return (true);
 }
-
+*/

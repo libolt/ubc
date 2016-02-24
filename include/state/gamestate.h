@@ -52,9 +52,10 @@ class gameState : public state
 public:
 
     //static gameState *Instance();
-    static boost::shared_ptr<gameState> Instance();
+//    static boost::shared_ptr<gameState> Instance();
 
-    ~gameState();
+    gameState(); // constructor
+    ~gameState();  // destructor
 
     gameTypes getGameType();  // retrieves the value of gameType
     void setGameType(gameTypes set);  // sets the value of gameType
@@ -205,13 +206,13 @@ public:
     bool updateState();  // updates the state of the game
 
 protected:
-    gameState();
-    gameState(const gameState&);
-    gameState &operator = (const gameState&);
+    
+//    gameState(const gameState&);
+//    gameState &operator = (const gameState&);
 
 private:
     //static gameState *pInstance;
-    static boost::shared_ptr<gameState> pInstance;
+//    static boost::shared_ptr<gameState> pInstance;
 
     gameTypes gameType;  // Indicates whether a single or multi player game is being played.
     quarters quarter;  // stores the quarter currently being played

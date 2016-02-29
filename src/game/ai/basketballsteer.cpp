@@ -46,10 +46,10 @@ void basketballSteer::setID(int id) // sets the value of ID
 }
 
 // reset state
-void basketballSteer::reset(void)
+void basketballSteer::reset(Ogre::Vector3 nodePosition)
 {
     // gameState *gameS = gameState::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
 
     steering::reset (); // reset the vehicle
@@ -57,10 +57,10 @@ void basketballSteer::reset(void)
     setMaxForce (3000.7f);      // steering force is clipped to this magnitude
     setMaxSpeed (10);         // velocity is clipped to this magnitude
     
-    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
-	std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
-    int activeBBallInstance = gameS->getActiveBBallInstance();
-    OpenSteer::Vec3 basketballSteerPos = convert->toOpenSteerVec3(basketballInstance[activeBBallInstance].getNodePosition());
+//    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
+//	  std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
+//    int activeBBallInstance = gameS->getActiveBBallInstance();
+    OpenSteer::Vec3 basketballSteerPos = convert->toOpenSteerVec3(nodePosition);
     // Place me on my part of the field, looking at oponnents goal
 //    setPosition(b_ImTeamA ? OpenSteer::frandom01()*20 : -OpenSteer::frandom01()*20, 0, (OpenSteer::frandom01()-0.5f)*20);
 

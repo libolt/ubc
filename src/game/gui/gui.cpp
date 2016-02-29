@@ -279,7 +279,7 @@ bool GUISystem::initMyGUI()  // Initializes MyGUI
 
 void GUISystem::startSinglePlayerGame()  // starts single player game
 {
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
 
     gameS->setGameType(SINGLE);
 //	hideMainMenuWidgets();	// Hides the widgets from the main menu
@@ -373,7 +373,7 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
 
 void GUISystem::courtSelectionMenu() // displays court selection menu
 {
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<loader> load = loader::Instance();
 
@@ -443,7 +443,7 @@ void GUISystem::networkServer()  // sets up  game as a network server
     //gameEngine * gameE = gameEngine::Instance();
 //    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
     //gameState *gameS = gameState::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
 
     gameS->setGameType(MULTI);
 //   hideNetworkSetupWidgets();  // Hides Network Setup Menu widgets
@@ -462,7 +462,7 @@ void GUISystem::networkClient()  // sets up game as a network client
 {
 //    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
 //    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
 
     gameS->setGameType(MULTI);
 
@@ -483,7 +483,7 @@ void GUISystem::courtSelected()  // processes court selection
     //conversion *convert = conversion::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
     //gameState *gameS = gameState::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
     
     logMsg("Selected Court #" +convert->toString(courtSelectBox->getIndexSelected()));
 //    gameS->setSelectedCourtDataInstance(courtSelectBox->getIndexSelected());
@@ -495,7 +495,7 @@ void GUISystem::courtSelected()  // processes court selection
 void GUISystem::teamsSelected()  // processes team selection
 {
     //gameState *gameS = gameState::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
     
     std::vector<size_t> teamID;
     teamID.push_back(team0SelectBox->getIndexSelected());
@@ -509,7 +509,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     //conversion *convert = conversion::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
     //gameState *gameS = gameState::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
 
     std::vector<boost::shared_ptr<teamState> >  activeTeamInstance = gameS->getActiveTeamInstance();
 
@@ -783,7 +783,7 @@ void GUISystem::checkTeamInstancesCreated()  // Checks if team instances have be
 {
 //    exit(0);
     //gameState *gameS = gameState::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
 
     if (!gameS->getActiveTeamInstancesCreated())
     {

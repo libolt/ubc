@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   Copyright (C) 1999 - 2016 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -134,17 +134,17 @@ void jumpBalls::setBBallVelocity(const btVector3 &set)  // sets the value of bba
     bballVelocity = set;
 }
 
-bool jumpBalls::updateState()  // updates state of the jumpBalls instance
+bool jumpBalls::updateState(teamTypes teamWithBall, size_t activeBBallInstance, std::vector<basketballState> basketballInstance, std::vector<boost::shared_ptr<teamState> > activeTeamInstance, quarters quarter)  // updates state of the jumpBalls instance
 {
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
     logMsg("updating jumpBall state!");
-    logMsg("gameS->getTeamWithBall() == " +convert->toString(gameS->getTeamWithBall()));
+    logMsg("teamWithBall == " +convert->toString(teamWithBall));
 
-    size_t activeBBallInstance = gameS->getActiveBBallInstance();
-    std::vector<basketballState> basketBallInstance = gameS->getBasketballInstance();
-    bool bballPhysicsSetup = basketBallInstance[activeBBallInstance].getPhysicsSetup();
-    if (gameS->getTeamWithBall() == NOTEAM && bballPhysicsSetup) //&& gameS->getActiveTeamInstancesCreated())
+//    size_t activeBBallInstance = gameS->getActiveBBallInstance();
+//    std::vector<basketballState> basketBallInstance = gameS->getBasketballInstance();
+    bool bballPhysicsSetup = basketballInstance[activeBBallInstance].getPhysicsSetup();
+    if (teamWithBall == NOTEAM && bballPhysicsSetup) //&& gameS->getActiveTeamInstancesCreated())
     {
 
         logMsg("teamWithBall = NOTEAM");
@@ -158,14 +158,14 @@ bool jumpBalls::updateState()  // updates state of the jumpBalls instance
 //            tipoff complete!exit(0);
             if (!ballTipped)
             {
-                ballTipped = jumpBallExecute();  // executes jump ball until ball is tipped
+                ballTipped = jumpBallExecute(basketballInstance, activeBBallInstance, activeTeamInstance);  // executes jump ball until ball is tipped
                 logMsg ("Ball Tippped? " +convert->toString(ballTipped));
 //                exit(0);
             }
             else
             {
 //                exit(0);
-                jumpBallComplete = tipToPlayer();
+                jumpBallComplete = tipToPlayer(basketballInstance, activeBBallInstance, activeTeamInstance, quarter);
 
                 logMsg("jumpBallComplete == " +convert->toString(jumpBallComplete));
 //                exit(0);
@@ -173,7 +173,7 @@ bool jumpBalls::updateState()  // updates state of the jumpBalls instance
         }
         else
         {
-            logMsg("teamWithBall = " +convert->toString(gameS->getTeamWithBall()));
+            logMsg("teamWithBall = " +convert->toString(teamWithBall));
 //            exit(0);
         }
         logMsg("ballTipped == " +convert->toString(ballTipped));
@@ -181,7 +181,7 @@ bool jumpBalls::updateState()  // updates state of the jumpBalls instance
     }
     else
     {
-        logMsg("gameS->getTeamWithBall() == " +convert->toString(gameS->getTeamWithBall()));
+        logMsg("teamWithBall == " +convert->toString(teamWithBall));
         return (true);
     }
     
@@ -189,17 +189,17 @@ bool jumpBalls::updateState()  // updates state of the jumpBalls instance
     return (false);  // returns false until jump ball has completed
 }
 
-bool jumpBalls::jumpBallExecute()  // initiates jump ball from jump ball circle
+bool jumpBalls::jumpBallExecute(std::vector<basketballState> basketballInstance, size_t activeBBallInstance, std::vector<boost::shared_ptr<teamState> > activeTeamInstance)  // initiates jump ball from jump ball circle
 {
 //    exit(0);
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
 ///    boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
-    std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
-    size_t activeBBallInstance = gameS->getActiveBBallInstance();
+//    std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
+//    size_t activeBBallInstance = gameS->getActiveBBallInstance();
 
-    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
+//    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
     std::vector<std::vector<boost::shared_ptr<playerState> > > activePlayerInstance;
 
     std::vector<size_t> jumpPlayerInstance;  // stores playerID of players jumping for the ball
@@ -309,20 +309,20 @@ bool jumpBalls::jumpBallExecute()  // initiates jump ball from jump ball circle
     return (false);  // executeJumpBall has not completed
 }
 
-bool jumpBalls::tipToPlayer()  // tips the basketball to the appropriate player
+bool jumpBalls::tipToPlayer(std::vector<basketballState> basketballInstance, size_t activeBBallInstance, std::vector<boost::shared_ptr<teamState> > activeTeamInstance, quarters quarter)  // tips the basketball to the appropriate player
 {
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
 
     physicsEngine physEngine;
-    std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
-    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
+//    std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
+//    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
     std::vector<boost::shared_ptr<playerState> > activePlayerInstance;
 //    jumpBalls jumpBall = gameS->getJumpBall();
 //    teamTypes ballTippedToTeam = jumpBall.getBallTippedToTeam();
-    quarters quarter = gameS->getQuarter();
-    size_t activeBBallInstance = gameS->getActiveBBallInstance();
+//    quarters quarter = gameS->getQuarter();
+//    size_t activeBBallInstance = gameS->getActiveBBallInstance();
 
     activePlayerInstance = activeTeamInstance[ballTippedToTeam]->getActivePlayerInstance();
     
@@ -417,7 +417,7 @@ bool jumpBalls::tipToPlayer()  // tips the basketball to the appropriate player
             if (physEngine.collisionCheck(basketballInstance[activeBBallInstance].getPhysBody().get(), activePlayerInstance[ballTippedToPlayerInstance]->getPhysBody().get()))
             {
  //               exit(0);
-                gameS->setTeamWithBall(ballTippedToTeam);
+///                gameS->setTeamWithBall(ballTippedToTeam);
                 logMsg("ballTippedToPlayerID == " +convert->toString(ballTippedToPlayerID));
                 activeTeamInstance[ballTippedToTeam]->setPlayerWithBallID(ballTippedToPlayerID);
                 activeTeamInstance[ballTippedToTeam]->setPlayerWithBallInstance(ballTippedToPlayerInstance);
@@ -445,7 +445,7 @@ bool jumpBalls::tipToPlayer()  // tips the basketball to the appropriate player
                     default:
                     break;
                 }
-                gameS->setActiveTeamInstance(activeTeamInstance);
+///                gameS->setActiveTeamInstance(activeTeamInstance);
 
                 return(true);
             }

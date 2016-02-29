@@ -33,10 +33,10 @@ void playerSteerPlugin::open(void)
 {
     boost::shared_ptr<AISystem> ai = AISystem::Instance();
 	boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
 
-	std::vector<courtState> courtInstance = gameS->getCourtInstance();
-    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
+//    std::vector<courtState> courtInstance = gameS->getCourtInstance();
+//    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
     /*std::vector<playerState> team0ActivePlayerInstance = activeTeamInstance[0].getActivePlayerInstance();
     std::vector<playerState> team1ActivePlayerInstance = activeTeamInstance[1].getActivePlayerInstance();
     std::vector<int> team0ActivePlayerID = activeTeamInstance[0].getActivePlayerID();
@@ -51,10 +51,10 @@ void playerSteerPlugin::open(void)
 	// builds team 0 steering instances
 //	for (size_t x=0;x<team0ActivePlayerInstance.size();++x)
     size_t x = 0;
-    while (x < activeTeamInstance.size())
+    while (x < getActiveTeamInstance().size())
     {
 
-        activePlayerInstance.push_back(activeTeamInstance[x]->getActivePlayerInstance());
+        activePlayerInstance.push_back(getActiveTeamInstance()[x]->getActivePlayerInstance());
         size_t y = 0;
         while (y < activePlayerInstance[x].size())
         {
@@ -118,7 +118,7 @@ void playerSteerPlugin::open(void)
 
 
 	// create the court bounding box based off the meshes bbox
-    Ogre::AxisAlignedBox cbox = courtInstance[0].getModel()->getBoundingBox();
+    Ogre::AxisAlignedBox cbox = getCourtInstance()[0].getModel()->getBoundingBox();
     Ogre::Vector3 cboxMin = cbox.getMinimum();
     Ogre::Vector3 cboxMax = cbox.getMaximum();
 
@@ -170,9 +170,9 @@ void playerSteerPlugin::open(void)
 void playerSteerPlugin::update(const float currentTime, const float elapsedTime)
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
     
-    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
+//    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
 //    std::vector<playerState> team0ActivePlayerInstance = activeTeamInstance[0].getActivePlayerInstance();
 //    std::vector<playerState> team1ActivePlayerInstance = activeTeamInstance[1].getActivePlayerInstance();
 //    std::vector<int> team0ActivePlayerID = activeTeamInstance[0].getActivePlayerID();
@@ -188,13 +188,13 @@ void playerSteerPlugin::update(const float currentTime, const float elapsedTime)
 //    team1ActivePlayerInstance[3].getSteer()->update(currentTime, elapsedTime);
 
     size_t x = 0;
-    while (x < activeTeamInstance.size())
+    while (x < getActiveTeamInstance().size())
     {
-        activePlayerInstance.push_back(activeTeamInstance[x]->getActivePlayerInstance());
+        activePlayerInstance.push_back(getActiveTeamInstance()[x]->getActivePlayerInstance());
         size_t y = 0;
         while (y < activePlayerInstance[x].size())
         {
-            if (y != activeTeamInstance[x]->getHumanPlayer() && activePlayerInstance[x][y]->getModelLoaded())
+            if (y != getActiveTeamInstance()[x]->getHumanPlayer() && activePlayerInstance[x][y]->getModelLoaded())
             {
 //                exit(0);
                 logMsg("x = " +convert->toString(x) +"y = " +convert->toString(y));

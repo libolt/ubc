@@ -23,9 +23,10 @@
 
 #include "ai/steering.h"
 #include "ai/playersteer.h"
+#include "ai/steer.h"
 
 // PlugIn for OpenSteerDemo
-class playerSteerPlugin : public OpenSteer::PlugIn, steering
+class playerSteerPlugin : public OpenSteer::PlugIn, steering, public steer
 {
     public:
         

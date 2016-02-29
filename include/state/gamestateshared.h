@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   Copyright (C) 1999 - 2016 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -18,28 +18,13 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef _BASKETBALLSTEER_H_
-#define _BASKETBALLSTEER_H_
+#ifndef _GAMESTATESHARED_H_
+#define _GAMESTATESHARED_H_
 
-#include "ai/steering.h"
-#include "OgreVector3.h"
-
-class basketballSteer : public steering
+class gameStateShared
 {
     public:
- 
-        basketballSteer();
-        ~basketballSteer();
-        
-        int getID(); // retrieves the value of ID
-        void setID(int id); // sets the value of ID
- 
-        void reset(Ogre::Vector3 nodePosition); // resets the state
-        void update (const float currentTime, const float elapsedTime); // update steering sim every frame
-	
     private:
-	 
-        int ID; // Stores which player on the team the instance associates with
 };
- 
+
 #endif

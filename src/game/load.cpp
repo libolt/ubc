@@ -400,9 +400,9 @@ bool loader::loadTeamListFile(std::string fileName)  // loads the team list file
 boost::shared_ptr<teamState> loader::loadTeamFile(string fileName)  // loads the team file
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
-    std::vector<boost::shared_ptr<teamState> > teamInstance = gameS->getTeamInstance();
+//    std::vector<boost::shared_ptr<teamState> > teamInstance = gameS->getTeamInstance();
     boost::shared_ptr<teamState> tInstance;
     teamState *tempTeamObj = new teamState;
     tInstance = boost::shared_ptr<teamState>(tempTeamObj);
@@ -588,14 +588,14 @@ bool loader::loadPlayerListFile( string fileName)  // loads the player list file
 boost::shared_ptr<playerState> loader::loadPlayerFile(string fileName)  // loads the player file
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
     boost::shared_ptr<playerState> player;
     playerState *tempPlayerObj = new playerState;
     player = boost::shared_ptr<playerState>(tempPlayerObj);
     
-    std::vector<boost::shared_ptr<playerState> > playerInstance = gameS->getPlayerInstance();
+//    std::vector<boost::shared_ptr<playerState> > playerInstance = gameS->getPlayerInstance();
     string firstName;
     string lastName;
     string modelName;
@@ -1005,7 +1005,7 @@ boost::shared_ptr<playerState> loader::loadPlayerFile(string fileName)  // loads
     player->setDemeanor(demeanor);
     player->setImprovability(improvability);
     player->calculateOverallRating();
-    playerInstance.push_back(player);
+///    playerInstance.push_back(player);
     logMsg("player First Name == "+player->getFirstName());
     //gameS->setPlayerDataInstances(playerDataInstance);
     //	vector<players::playerData> playerN = playerG->getPlayer();

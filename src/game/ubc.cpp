@@ -69,6 +69,14 @@ void UBC::setQuitGame(bool set)  // sets the value of quitGame
     quitGame = set;
 }
 
+boost::shared_ptr<gameState> UBC::getGameS()  // retrieves the value of gameS
+{
+    return (gameS);
+}
+void UBC::setGameS(boost::shared_ptr<gameState> set)  // sets the value of gameS
+{
+    gameS = set;
+}
 
 bool UBC::setupState()  // sets up the UBC game state
 {
@@ -127,7 +135,7 @@ void UBC::executeState()  // executes the UBC game code
 
 bool UBC::startGame()  // starts the game
 {
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
 
     logMsg("startGame()");
 
@@ -138,7 +146,7 @@ bool UBC::startGame()  // starts the game
 void UBC::processInput()  // processes game input
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
 //    boost::shared_ptr<GUISystem> gui = GUISystem::Instance();
 //    boost::shared_ptr<inputSystem> input = inputSystem::Instance();
 //    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
@@ -334,7 +342,7 @@ void UBC::processInput()  // processes game input
 void UBC::gameLoop()  // Main Game Loop
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
 //    boost::shared_ptr<GUISystem> gui = GUISystem::Instance();
 //    boost::shared_ptr<inputSystem> input = inputSystem::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
@@ -497,7 +505,7 @@ int main(int argc, char *argv[])
     UBC ubc;
 //    boost::shared_ptr<renderEngine> render = ubc.getRender();
 //    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
 //    boost::shared_ptr<GUISystem> gui = ubc.getGui();
 
     ubc.getRender()->initSDL(); // Initializes the SDL Subsystem
@@ -518,7 +526,7 @@ int main(int argc, char *argv[])
         return (false);
     }
 
-    gameS->createInstances();  // creates object instances
+    ubc.getGameS()->createInstances();  // creates object instances
     if (ubc.getRender()->getMWindow() == NULL)
     {
         logMsg("mWindow == NULL!");

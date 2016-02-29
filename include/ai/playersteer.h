@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   Copyright (C) 1999 - 2016 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -22,9 +22,12 @@
 #define _PLAYERSTEER_H_
 
 #include "ai/steering.h"
+#include "ai/steer.h"
 #include "enums.h"
 
-class playerSteer : public steering
+class playerState;
+
+class playerSteer : public steering, public steer
 {
     public:
 
@@ -86,7 +89,7 @@ class playerSteer : public steering
     std::vector<bool> getPositionReached();  // retrieves the value of positionReached
     void setPositionReached(std::vector<bool> reached);  // sets the value of positionReached
 	
-    void reset(void);  // resets the state
+    void reset();  // resets the state
     void update (const float currentTime, const float elapsedTime);  // update steering sim every frame
 
     void checkCourtPosition();  // checks if the player's position has changed

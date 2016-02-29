@@ -668,7 +668,7 @@ bool teamState::createPlayerInstances()
             pInstance = gamePlayerInstance[i];
             pInstance->setTeamType(teamType);  // sets the team number the player belongs to            
             pSteer->setTeamType(teamType);
-            pSteer->reset();
+            pSteer->reset(gamePlayerInstance);
             pInstance->setSteer(boost::shared_ptr<playerSteer>(pSteer));
             playerInstance.push_back(pInstance);    // adds pInstance to the playerInstance std::vector.
 

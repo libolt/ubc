@@ -21,7 +21,7 @@
 #include "conversion.h"
 #include "ai/basketballsteer.h"
 #include "state/basketballstate.h"
-#include "state/gamestate.h"
+//#include "state/gamestate.h"
 #include "state/playerstate.h"
 #include "state/teamstate.h"
 #include "engine/renderengine.h"
@@ -419,7 +419,7 @@ bool basketballs::loadModel()  // loads the 3D model
 // calculates change in position along the x,y,z axes
 Ogre::Vector3 basketballState::calculatePositionChange()
 {
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
 
     Ogre::Vector3 changeInPosition;	// stores the calculated change in position
     Ogre::Vector3 pos = getNode()->getPosition();	// stores the basketball nodes position

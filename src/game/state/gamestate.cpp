@@ -57,12 +57,12 @@ boost::shared_ptr<gameState> gameState::Instance()
 
 gameState::gameState()  // constructor
 {
-    basketballInstancesCreated = false;
-    courtInstancesCreated = false;
-    hoopInstancesCreated = false;
+//    basketballInstancesCreated = false;
+//    courtInstancesCreated = false;
+//    hoopInstancesCreated = false;
     playerInstancesCreated = false;
-    teamInstancesCreated = false;
-    activeTeamInstancesCreated = false;
+//    teamInstancesCreated = false;
+//    activeTeamInstancesCreated = false;
     basketballModelLoaded = false;
     courtModelLoaded = false;
     hoopModelLoaded = false;
@@ -79,7 +79,7 @@ gameState::gameState()  // constructor
     activeCourtInstance = -1;
 
     gameType = NOGAME;
-    gameSetupComplete = false;
+//    gameSetupComplete = false;
 
     //playerHasBasketball = false;
     bballBounce = -1;
@@ -95,14 +95,14 @@ gameState::~gameState()  // destructor
 {
 }
 
-gameTypes gameState::getGameType()  // retrieves the value of gameType
+/*gameTypes gameState::getGameType()  // retrieves the value of gameType
 {
     return(gameType);
 }
 void gameState::setGameType(gameTypes set)  // sets the value of gameType
 {
     gameType = set;
-}
+}*/
 
 quarters gameState::getQuarter()  // retrieves the value of quarter
 {
@@ -113,23 +113,23 @@ void gameState::setQuarters(quarters set)  // sets he value of quarter
     quarter = set;
 }
 
-bool gameState::getGameSetupComplete()  // retrieves the value of gameSetupComplete
+/*bool gameState::getGameSetupComplete()  // retrieves the value of gameSetupComplete
 {
     return (gameSetupComplete);
 }
 void gameState::setGameSetupComplete(bool set)  // sets the value of gameSetupComplete
 {
     gameSetupComplete = set;
-}
+}*/
 
-std::vector <courtState> gameState::getCourtInstance()  // retrieves the value of courtInstance
+/*std::vector <courtState> gameState::getCourtInstance()  // retrieves the value of courtInstance
 {
     return (courtInstance);
 }
 void gameState::setCourtInstance(std::vector<courtState> set)  // sest the value of courtInstance
 {
     courtInstance = set;
-}
+}*/
 
 std::vector <hoopState> gameState::getHoopInstance()  // retrieves the value of hoopInstance
 {
@@ -150,7 +150,7 @@ void gameState::setTeamDataInstance(std::vector<teamData> set)  // sets the valu
 }
 */
 
-std::vector<boost::shared_ptr<playerState> > gameState::getPlayerInstance()  // retrieves the value of playerInstance
+/*std::vector<boost::shared_ptr<playerState> > gameState::getPlayerInstance()  // retrieves the value of playerInstance
 {
 	return (playerInstance);
 }
@@ -158,6 +158,7 @@ void gameState::setPlayerInstances(std::vector<boost::shared_ptr<playerState> > 
 {
     playerInstance = set;
 }
+*/
 
 std::vector<courtData>	gameState::getCourtDataInstance()  // retrieves the value of courtDataInstance
 {
@@ -177,14 +178,14 @@ void gameState::setActiveBBallInstance(size_t set)  // sets the value of activeB
     activeBBallInstance = set;
 }
 
-size_t gameState::getActiveCourtInstance()  // retrieves the value of activeCourtInstance
+/*size_t gameState::getActiveCourtInstance()  // retrieves the value of activeCourtInstance
 {
     return (activeCourtInstance);
 }
 void gameState::setActiveCourtInstance(size_t set)  // sets the value of activeCourtInstance
 {
     activeCourtInstance = set;
-}
+}*/
 
 size_t gameState::getSelectedCourtDataInstance()  // retrieves the value of selectedCourtDataInstance
 {
@@ -195,14 +196,14 @@ void gameState::setSelectedCourtDataInstance(size_t set)  // sets the value of s
     selectedCourtDataInstance = set;
 }
 
-std::vector<size_t> gameState::getTeamID()  // retrieves the value of teamID
+/*std::vector<size_t> gameState::getTeamID()  // retrieves the value of teamID
 {
     return (teamID);
 }
 void gameState::setTeamID(std::vector<size_t> set)  // sets the value of teamID
 {
     teamID = set;
-}
+}*/
 
 std::vector<size_t> gameState::getPlayerID()  // retrieves the value of playerID
 {
@@ -213,23 +214,23 @@ void gameState::setPlayerID(std::vector<size_t> set)  // sets the value of playe
     playerID = set;
 }
 
-std::vector< std::vector<size_t> > gameState::getTeamStarterID()  // retrieves value of teamStarterID
+/*std::vector< std::vector<size_t> > gameState::getTeamStarterID()  // retrieves value of teamStarterID
 {
     return (teamStarterID);
 }
 void gameState::setTeamStarterID(std::vector< std::vector<size_t> > set)  // sets the value of teamStarterID
 {
     teamStarterID = set;
-}
+}*/
 
-std::vector<boost::shared_ptr<teamState> > gameState::getTeamInstance()  // retrieves the value of teamInstance
+/*std::vector<boost::shared_ptr<teamState> > gameState::getTeamInstance()  // retrieves the value of teamInstance
 {
     return (teamInstance);
 }
 void gameState::setTeamInstance(std::vector<boost::shared_ptr<teamState> > set)  // sets the value of teamInstance
 {
     teamInstance = set;
-}
+}*/
 
 std::vector <basketballState> gameState::getBasketballInstance()  // retrieves the value of basketballInstance
 {
@@ -240,14 +241,14 @@ void gameState::setBasketballInstance(std::vector<basketballState> set)  // sets
     basketballInstance = set;
 }
 
-std::vector <boost::shared_ptr<teamState> > gameState::getActiveTeamInstance()  // retireves the value of activeTeamInstance
+/*std::vector <boost::shared_ptr<teamState> > gameState::getActiveTeamInstance()  // retireves the value of activeTeamInstance
 {
     return (activeTeamInstance);
 }
 void gameState::setActiveTeamInstance(std::vector<boost::shared_ptr<teamState> > set)  // sets the value of activeTeamInstance
 {
     activeTeamInstance = set;
-}
+}*/
 
 bool gameState::getGameStarted()  // retrieves the value of gameStarted
 {
@@ -312,52 +313,52 @@ void gameState::setCourtDataLoaded(bool set)  // sets the value of courtDataLoad
     courtDataLoaded = set;
 }
 
-bool gameState::getBasketballInstancesCreated()  // gets the value of basketballInstancesCreated
+/*bool gameState::getBasketballInstancesCreated()  // gets the value of basketballInstancesCreated
 {
     return (basketballInstancesCreated);
 }
 void gameState::setBasketballInstancesCreated(bool set)  // sets the value of basketballInstancesCreated
 {
     basketballInstancesCreated = set;
-}
+}*/
 
-bool gameState::getCourtInstancesCreated()  // gets the value of the courtInstancesCreated
+/*bool gameState::getCourtInstancesCreated()  // gets the value of the courtInstancesCreated
 {
     return (courtInstancesCreated);
 }
 void gameState::setCourtInstancesCreated(bool set)  // sets the value of the courtInstancesCreated
 {
     courtInstancesCreated = set;
-}
+}*/
 
-bool gameState::getHoopInstancesCreated()  // retrieves the value of hoopInstancesCreated
+/*bool gameState::getHoopInstancesCreated()  // retrieves the value of hoopInstancesCreated
 {
     return (hoopInstancesCreated);
 }
 void gameState::setHoopInstancesCreated(bool set)  // sets the value of hoopInstancesCreated
 {
     hoopInstancesCreated = set;
-}
+}*/
 
-bool gameState::getPlayerInstanceCreated()  // retrieves the value of playerInstancesCreated
+/*bool gameState::getPlayerInstanceCreated()  // retrieves the value of playerInstancesCreated
 {
     return (playerInstancesCreated);
 }
 void gameState::setPlayerInstanceCreated(bool set)  // sets the value of playerInstancesCreated
 {
     playerInstancesCreated = set;
-}
+}*/
 
-bool gameState::getTeamInstancesCreated()  // gets the value of teamInstancesCreated
+/*bool gameState::getTeamInstancesCreated()  // gets the value of teamInstancesCreated
 {
     return (teamInstancesCreated);
 }
 void gameState::setTeamInstancesCreated(bool set)  // sets the value of teamInstancesCreated
 {
     teamInstancesCreated = set;
-}
+}*/
 
-bool gameState::getActiveTeamInstancesCreated()	 // retrieves the value of activeTeamInstancesCreated
+/*bool gameState::getActiveTeamInstancesCreated()	 // retrieves the value of activeTeamInstancesCreated
 {
     return (activeTeamInstancesCreated);
 }
@@ -365,7 +366,7 @@ bool gameState::getActiveTeamInstancesCreated()	 // retrieves the value of activ
 void gameState::setActiveTeamInstancesCreated(bool set)	 // sets the value of activeTeamInstancesCreated
 {
     activeTeamInstancesCreated = set;
-}
+}*/
 
 bool gameState::getCourtModelLoaded()  // retrieves the value of courtModelLoaded
 {
@@ -926,6 +927,73 @@ bool gameState::updateState()  // updates the game state
 //    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
     //boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
+    
+    if (!getBasketballInstancesCreated && getBasketballInstancesNeedCreated)
+    {
+        logMsg("Creating Basketball Instances!");
+        if (createBasketballInstances())
+        {
+            setBasketballInstancesCreated(true);
+            setBasketballInstancesNeedCreated(false);
+//            assignHoopToTeams();
+            logMsg("Basketball Instances Created!");
+        }
+        else
+        {
+            logMsg("Unable to Create Basketball Instances!");
+            exit(0);
+        }
+    }
+    
+    if (!getCourtInstancesCreated && getCourtInstancesNeedCreated)
+    {
+        logMsg("Creating Cpurt Instances!");
+        if (createBasketballInstances())
+        {
+            setCourtInstancesCreated(true);
+            setCourtInstancesNeedCreated(false);
+//            assignHoopToTeams();
+            logMsg("Court Instances Created!");
+        }
+        else
+        {
+            logMsg("Unable to Create Cpurt Instances!");
+            exit(0);
+        }
+    }
+    
+    if (!getHoppInstancesCreated && getHoopInstancesNeedCreated)
+    {
+        logMsg("Creating Hoop Instances!");
+        if (createHoopInstances())
+        {
+            setHoopInstancesCreated(true);
+            setHoopInstancesNeedCreated(false);
+//            assignHoopToTeams();
+            logMsg("Hoop Instances Created!");
+        }
+        else
+        {
+            logMsg("Unable to Create Hoop Instances!");
+            exit(0);
+        }
+    }
+    
+    if (!getActiveTeamInstancesCreated && getActiveTeamInstancesNeedCreated)
+    {
+        logMsg("Creating active team instances!");
+        if (createActiveTeamInstances())
+        {
+            setActiveTeamInstancesCreated(true);
+            assignHoopToTeams();
+            logMsg("Team instances created!");
+        }
+        else
+        {
+            logMsg("Unable to create Active Team Instances!");
+            exit(0);
+        }
+    }
 /*    timing timer = gameE->getTimer();
     Ogre::Vector3 playerPos;
 

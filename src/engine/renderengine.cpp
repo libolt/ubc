@@ -24,8 +24,8 @@
 #endif
 #include "conversion.h"
 #include "engine/gameengine.h"
-#include "state/gamestate.h"
-#include "gui/gui.h"
+//#include "state/gamestate.h"
+//#include "gui/gui.h"
 #include "logging.h"
 #include "engine/physicsengine.h"
 #include "engine/renderengine.h"

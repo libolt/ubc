@@ -22,9 +22,10 @@
 #define _BASKETBALLSTEER_H_
 
 #include "ai/steering.h"
+#include "state/gamestateshared.h"
 #include "OgreVector3.h"
 
-class basketballSteer : public steering
+class basketballSteer : public steering, public gameStateShared
 {
     public:
  

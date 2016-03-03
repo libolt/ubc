@@ -26,6 +26,10 @@
 
 #include "enums.h"
 
+// forward declarations
+class basketballState;
+class teamState;
+
 class jumpBalls
 {
     public:

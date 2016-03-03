@@ -23,10 +23,10 @@
 
 #include "ai/steering.h"
 #include "ai/playersteer.h"
-#include "ai/steer.h"
+#include "state/gamestateshared.h"
 
 // PlugIn for OpenSteerDemo
-class playerSteerPlugin : public OpenSteer::PlugIn, steering, public steer
+class playerSteerPlugin : public OpenSteer::PlugIn, steering, public gameStateShared
 {
     public:
         

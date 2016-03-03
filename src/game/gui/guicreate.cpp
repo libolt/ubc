@@ -332,7 +332,7 @@ bool GUISystem::createGameSetupMenuGUI()    // creates GUI for game setup menu s
     //conversion *convert = conversion::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
     //gameState *gameS = gameState::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<loader> load = loader::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
@@ -478,7 +478,7 @@ bool GUISystem::createTeamSelectionMenuGUI()  // creates GUI for team selection 
     //conversion *convert = conversion::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
     //gameState *gameS = gameState::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<loader> load = loader::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
@@ -489,8 +489,8 @@ bool GUISystem::createTeamSelectionMenuGUI()  // creates GUI for team selection 
 /*    teamInstance = load->loadTeams();
     gameS->setTeamDataInstance(teamDataInstance);
 */
-    teamInstance = gameS->getTeamInstance();
-    logMsg("teamInstance.size() == " +convert->toString(teamInstance.size()));
+//    teamInstance = gameS->getTeamInstance();
+    logMsg("teamInstance.size() == " +convert->toString(getTeamInstance().size()));
 //    exit(0);
     MyGUI::LayoutManager::getInstance().loadLayout("TeamSelectionMenu.layout");
     
@@ -498,7 +498,7 @@ bool GUISystem::createTeamSelectionMenuGUI()  // creates GUI for team selection 
     team0SelectBox->setVisible(false);
     team0SelectBox->setSize((0.4 *getRender()->getViewPort()->getActualWidth() ), (0.04 *getRender()->getViewPort()->getActualHeight()) );
 
-    team1SelectBox = mGUI->findWidget<MyGUI::ListBox>("team1SelectBox");  // loads team 1 ListBox
+    team1SelectBox = mGUI->findWidget<MyGUI::ListBox>("0lol");  // loads team 1 ListBox
     team1SelectBox->setVisible(false);
     team1SelectBox->setSize((0.4 *getRender()->getViewPort()->getActualWidth() ), (0.04 *getRender()->getViewPort()->getActualHeight()) );
 

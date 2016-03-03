@@ -40,23 +40,26 @@
 
 bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Selection Menu widgets
 {
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
     
     std::vector<courtState> courtInstance;
     std::vector<std::string> courtName;
-    if (!gameS->getCourtInstancesCreated())
+//    if (!gameS->getCourtInstancesCreated())
+    if (getCourtInstancesCreated())
+
     {
-        exit(0);
-        if (gameS->createCourtInstances())
+        setCourtInstancesNeedCreated(true);
+//        exit(0);
+/*        if (gameS->createCourtInstances())
         {
             gameS->setCourtInstancesCreated(true);
         }
         else
         {
-        }
+       */
     }
-    courtInstance = gameS->getCourtInstance();
+//    courtInstance = gameS->getCourtInstance();
     
     for (size_t x=0;x<courtInstance.size();++x)
     {
@@ -80,12 +83,11 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
 void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start Selection Menu widgets
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<loader> load = loader::Instance();
 
-    std::vector<boost::shared_ptr<playerState> > playerInstance; // = gameS->getPlayerDataInstance();
 //    playerInstance = load->loadPlayers();
-    playerInstance = gameS->getPlayerInstance();
+//    playerInstance = gameS->getPlayerInstance();
 //    gameS->setPlayerInstances(playerInstance);
 
     std::vector<size_t> overAllRatings;
@@ -114,10 +116,13 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     overallRatings.push_back(overall);
     overallRatings.push_back(overall);
 
-    for (size_t i = 0;i < playerInstance.size(); ++i)
+//    for (size_t i = 0;i < playerInstance.size(); ++i)
+    for (size_t i = 0;i < getPlayerInstance().size(); ++i)
     {
         logMsg("pDTeam = " +convert->toString(playerInstance[i]->getTeamID()));
-        logMsg("teamID == " +convert->toString(gameS->getTeamID()[1]));
+//        logMsg("teamID == " +convert->toString(gameS->getTeamID()[1]));
+        logMsg("teamID == " +convert->toString(getTeamID()[1]));
+
         if (playerInstance[i]->getTeamID() == gameS->getTeamID()[0])
         {
             size_t overallRating = playerInstance[i]->getOverallRating();

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   Copyright (C) 1999 - 2016 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -35,32 +35,32 @@
 #ifdef __ANDROID__
 #include "android-config.h"
 #else
-#include "config.h"
+#include "config.h"mmn
 #endif
 
 /*
 boost::shared_ptr<GUISystem> GUISystem::pInstance;
-
+i
 boost::shared_ptr<GUISystem> GUISystem::Instance()
 {
     if (pInstance == 0)  // is it the first call?
     {
-        //pInstance = new GUISystem; // create sole instance
+        //pInstance = new GUISystkem; // create sole instance
         
         boost::shared_ptr<GUISystem> tInstance(new GUISystem);
         pInstance = tInstance;
-    }
+    }kmmmmkkkkko|mm
     return pInstance; // address of sole instance
 }
 */
 
-GUISystem::GUISystem()  // Initializes the GUISystem class
+GUISystem::GUISystem()  // Initialmizes the GUISystem class
 {
 //    mGUIRenderer = 0;
 //    mGUISystem = 0;
-//    mEditorGuiSheet =
+//    mEditorGuiSheet =m
 //    Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
-//    QuickGUI::registerScriptParser();
+//    QuickGUI::registerScriptParser()m;
     mainMenuCreated = false;
     networkSetupMenuCreated = false;
     networkServerSetupMenuCreated = false;
@@ -79,7 +79,7 @@ GUISystem::GUISystem()  // Initializes the GUISystem class
     
     menuActive = false;
 
-    //activeMenu = NULL;
+    //activeMenu = NULL;mm
     //previousActiveMenu = NULL;
 
 }
@@ -89,17 +89,18 @@ GUISystem::~GUISystem()
 
 }
 
-/*boost::shared_ptr<networkEngine> GUISystem::getNetworkG()  // retrieves the value of network
-{
+
+/*boost::shared_ptr<networkEngimmnmne> GUISystem::getNetworkG()  // retrieves the value of network
+{mmm
     return (networkG);
-}
+}y
 void GUISystem::setNetworkG(boost::shared_ptr<networkEngine> set)  // sets the value of network
 {
     networkG = set;
 }
 
 boost::shared_ptr<renderEngine> GUISystem::getRender()  // retrieves the value of render
-{
+{mnnnnbnkkm|okkkmnmn.hbn
     return (render);
 }
 void GUISystem::setRender(boost::shared_ptr<renderEngine> set)  // sets the value of render
@@ -281,7 +282,8 @@ void GUISystem::startSinglePlayerGame()  // starts single player game
 {
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 
-    gameS->setGameType(SINGLE);
+//    gameS->setGameType(SINGLE);
+    setGameType(SINGLE);
 //	hideMainMenuWidgets();	// Hides the widgets from the main menu
     courtSelectionMenu();   // displays the menu for selecting which court to use
     //   gameSetupMenu();
@@ -445,7 +447,8 @@ void GUISystem::networkServer()  // sets up  game as a network server
     //gameState *gameS = gameState::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 
-    gameS->setGameType(MULTI);
+//    gameS->setGameType(MULTI);
+    setGameType(MULTI);
 //   hideNetworkSetupWidgets();  // Hides Network Setup Menu widgets
     menuActive = false;
     getNetwork()->setIPAddress(serverIPAddressBox->getCaption());  // sets the neworkEngine's ipAddress string to that of the caption
@@ -464,8 +467,8 @@ void GUISystem::networkClient()  // sets up game as a network client
 //    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 
-    gameS->setGameType(MULTI);
-
+//    gameS->setGameType(MULTI);
+    setGameType(MULTI);
 //    hideNetworkSetupWidgets();  // Hides Network Setup Menu widgets
     menuActive = false;
     getNetwork()->setIPAddress(clientIPAddressBox->getCaption());  // sets the neworkEngine's ipAddress string to that of the caption
@@ -487,7 +490,8 @@ void GUISystem::courtSelected()  // processes court selection
     
     logMsg("Selected Court #" +convert->toString(courtSelectBox->getIndexSelected()));
 //    gameS->setSelectedCourtDataInstance(courtSelectBox->getIndexSelected());
-    gameS->setActiveCourtInstance(courtSelectBox->getIndexSelected());
+//    gameS->setActiveCourtInstance(courtSelectBox->getIndexSelected());
+    setActiveCourtInstance(courtSelectBox->getIndexSelected());
 
     teamSelectionMenu();
 }
@@ -500,7 +504,8 @@ void GUISystem::teamsSelected()  // processes team selection
     std::vector<size_t> teamID;
     teamID.push_back(team0SelectBox->getIndexSelected());
     teamID.push_back(team1SelectBox->getIndexSelected());
-    gameS->setTeamID(teamID);
+//    gameS->setTeamID(teamID);
+    setTeamID(teamID);
     logMsg("Teams selected");
 }
 
@@ -511,7 +516,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     //gameState *gameS = gameState::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 
-    std::vector<boost::shared_ptr<teamState> >  activeTeamInstance = gameS->getActiveTeamInstance();
+//    std::vector<boost::shared_ptr<teamState> >  activeTeamInstance = gameS->getActiveTeamInstance();
 
     logMsg("S");
 //        exit(0);
@@ -610,8 +615,9 @@ void GUISystem::playerStartSelected()  // process player start selection
     teamStarterID[1][4] = team1IDs[4][team1CSelectBox->getIndexSelected()];
     logMsg("teamStarterID[1][4] = " +convert->toString(teamStarterID[1][4]));
 
-    gameS->setTeamStarterID(teamStarterID); // sets the selected starters for both teams in gameState class
-
+//    gameS->setTeamStarterID(teamStarterID); // sets the selected starters for both teams in gameState class
+    setTeamStarterID(teamStarterID); // sets the selected starters for both teams in gameState class
+    
     std::vector<size_t> activePlayerID;
 
     for (size_t x=0;x<5;++x)
@@ -620,21 +626,21 @@ void GUISystem::playerStartSelected()  // process player start selection
         logMsg("activePlayerID = " +convert->toString(activePlayerID[x]));
     }
     
-    activeTeamInstance[0]->setActivePlayerID(activePlayerID);
-    if (!activeTeamInstance[0]->getPlayerInstancesCreated())    // checks if playerInstances have been created
+    getActiveTeamInstance()[0]->setActivePlayerID(activePlayerID);
+    if (!getActiveTeamInstance()[0]->getPlayerInstancesCreated())    // checks if playerInstances have been created
     {
         logMsg("player instances created!");
         
-        if (activeTeamInstance[0]->createPlayerInstances()) // creates the player instances based on playerIDS
+        if (getActiveTeamInstance()[0]->createPlayerInstances()) // creates the player instances based on playerIDS
         {
             logMsg("Team 0 Player instances created!");
-            activeTeamInstance[0]->setPlayerInstancesCreated(true);
+            getActiveTeamInstance()[0]->setPlayerInstancesCreated(true);
 //          exit(0);
         }
     }
     playerInstance.clear();
     activePlayerInstance.clear();
-    playerInstance = activeTeamInstance[0]->getPlayerInstance();
+    playerInstance = getActiveTeamInstance()[0]->getPlayerInstance();
     size_t y = 0;
     logMsg("GUI playerInstance.size() = " +convert->toString(playerInstance.size()));
     
@@ -655,21 +661,21 @@ void GUISystem::playerStartSelected()  // process player start selection
     }
 //    exit(0);
     logMsg("GUI activePlayerInstance.size() = " +convert->toString(activePlayerInstance.size()));
-    activeTeamInstance[0]->setActivePlayerInstance(activePlayerInstance);
-    activeTeamInstance[0]->setPlayerStartActivePositions();
+    getActiveTeamInstance()[0]->setActivePlayerInstance(activePlayerInstance);
+    getActiveTeamInstance()[0]->setPlayerStartActivePositions();
     
-    activeTeamInstance[0]->setPlayerStartPositions();
+    getActiveTeamInstance()[0]->setPlayerStartPositions();
 //    logMsg("Team 0 player start positions set");
 //    exit(0);
     size_t i = 0;
     //std::vector<playerState> playerInstance;
     playerInstance.clear();
-    playerInstance = activeTeamInstance[0]->getPlayerInstance();
+    playerInstance = getActiveTeamInstance()[0]->getPlayerInstance();
     while (i<playerInstance.size())
     {
         if (activePlayerID[4] == playerInstance[i]->getID())
         {
-            activeTeamInstance[0]->setHumanPlayer(i);
+            getActiveTeamInstance()[0]->setHumanPlayer(i);
             logMsg("human player set!");
         }
         i++;
@@ -680,24 +686,24 @@ void GUISystem::playerStartSelected()  // process player start selection
         activePlayerID.push_back(teamStarterID[1][x]);
     }
 
-    activeTeamInstance[1]->setActivePlayerID(activePlayerID);
-    if (!activeTeamInstance[1]->getPlayerInstancesCreated())  // checks if playerInstances have been created
+    getActiveTeamInstance()[1]->setActivePlayerID(activePlayerID);
+    if (!getActiveTeamInstance()[1]->getPlayerInstancesCreated())  // checks if playerInstances have been created
     {
         logMsg("Creating team 1 player instances");
 //            exit(0);
-        if (activeTeamInstance[1]->createPlayerInstances())  // creates the player instances based on playerIDS
+        if (getActiveTeamInstance()[1]->createPlayerInstances())  // creates the player instances based on playerIDS
         {
 //            exit(0);
 
             logMsg("Player instances created!");
-            activeTeamInstance[1]->setPlayerInstancesCreated(true);
+            getActiveTeamInstance()[1]->setPlayerInstancesCreated(true);
 //          exit(0);
         }
 //.        exit(0);
 
     }
     playerInstance.clear();
-    playerInstance = activeTeamInstance[1]->getPlayerInstance();
+    playerInstance = getActiveTeamInstance()[1]->getPlayerInstance();
     activePlayerInstance.clear();
     y = 0;
     while (y < playerInstance.size())
@@ -714,25 +720,26 @@ void GUISystem::playerStartSelected()  // process player start selection
         ++y;
     }
 
-    activeTeamInstance[1]->setActivePlayerInstance(activePlayerInstance);
-    activeTeamInstance[1]->setPlayerStartActivePositions();
-    activeTeamInstance[1]->setPlayerStartPositions();
+    getActiveTeamInstance()[1]->setActivePlayerInstance(activePlayerInstance);
+    getActiveTeamInstance()[1]->setPlayerStartActivePositions();
+    getActiveTeamInstance()[1]->setPlayerStartPositions();
     logMsg("Team 1 player start positions set");
-    playerInstance = activeTeamInstance[1]->getPlayerInstance();
+    playerInstance = getActiveTeamInstance()[1]->getPlayerInstance();
     while (i<playerInstance.size())
     {
         if (activePlayerID[4] == playerInstance[i]->getID())
         {
-            activeTeamInstance[1]->setHumanPlayer(i);
+            getActiveTeamInstance()[1]->setHumanPlayer(i);
             logMsg("human player set!");
         }
         i++;
     }
 
-    if (activeTeamInstance[0]->getPlayerInstancesCreated() && activeTeamInstance[1]->getPlayerInstancesCreated())
+    if (getActiveTeamInstance()[0]->getPlayerInstancesCreated() && getActiveTeamInstance()[1]->getPlayerInstancesCreated())
     {
-        gameS->setActiveTeamInstance(activeTeamInstance);  // sets the activeTeamInstance vector
-        gameS->setGameSetupComplete(true);
+///        gameS->setActiveTeamInstance(activeTeamInstance);  // sets the activeTeamInstance vector
+//        gameS->setGameSetupComplete(true);
+        setGameSetupComplete(true);
     }
     else
     {
@@ -779,19 +786,26 @@ void GUISystem::backNetworkClientMenuSelected()  // returns back to the network 
     changeActiveMenu(NETWORKCLIENT);
 }
 
-void GUISystem::checkTeamInstancesCreated()  // Checks if team instances have been created and if not creates them.
+bool GUISystem::checkTeamInstancesCreated()  // Checks if team instances have been created and if not creates them.
 {
 //    exit(0);
     //gameState *gameS = gameState::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 
-    if (!gameS->getActiveTeamInstancesCreated())
+    if (!getActiveTeamInstancesCreated())
     {
-        logMsg("Creating active team instances!");
+        setActiveTeamInstancesNeedCreated(true);
+/*        logMsg("Creating active team instances!");
         gameS->createActiveTeamInstances();
         gameS->setActiveTeamInstancesCreated(true);
         gameS->assignHoopToTeams();
         logMsg("Team instances created!");
+*/
+        return (false);
 //        exit(0);
+    }
+    else 
+    {
+        return (true);
     }
 }

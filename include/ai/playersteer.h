@@ -22,12 +22,12 @@
 #define _PLAYERSTEER_H_
 
 #include "ai/steering.h"
-#include "ai/steer.h"
+#include "state/gamestateshared.h"
 #include "enums.h"
 
 class playerState;
 
-class playerSteer : public steering, public steer
+class playerSteer : public steering, public gameStateShared
 {
     public:
 

@@ -34,7 +34,7 @@
 
 #include "engine/inputengine.h"
 #include "engine/gameengine.h"
-#include "state/gamestate.h"
+//#include "state/gamestate.h"
 //#include "gui/gui.h"
 #include "load.h"
 #include "logging.h"

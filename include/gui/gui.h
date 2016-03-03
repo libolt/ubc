@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   Copyright (C) 1999 - 2016 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -38,6 +38,7 @@
 #include "MyGUI_OgreRenderManager.h"
 
 #include "enums.h"
+#include "state/gamestateshared.h"
 //#include "input.h" 
 //#include "engine/renderengine.h" 
 
@@ -49,7 +50,7 @@
 
 //class UBC;
 
-class GUISystem : public gameEngine //: public UBC //: public renderEngine //, inputSystem
+class GUISystem : public gameEngine, public gameStateShared //: public UBC //: public renderEngine //, inputSystem
 {
 public:
     GUISystem();  // constructor
@@ -173,7 +174,7 @@ public:
     void backNetworkSetupMenuSelected();  // returns back to network setup screen
     void backNetworkClientMenuSelected();  // returns back to the network client menu
     
-    void checkTeamInstancesCreated();  // Checks if team instances have been created and if not creates them.
+    bool checkTeamInstancesCreated();  // Checks if team instances have been created and if not creates them.
 
 protected:
 

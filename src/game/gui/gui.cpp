@@ -505,7 +505,7 @@ void GUISystem::teamsSelected()  // processes team selection
     teamID.push_back(team0SelectBox->getIndexSelected());
     teamID.push_back(team1SelectBox->getIndexSelected());
 //    gameS->setTeamID(teamID);
-    setTeamID(teamID);
+    setTeamIDS(teamID);
     logMsg("Teams selected");
 }
 

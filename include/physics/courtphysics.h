@@ -21,11 +21,11 @@
 #ifndef _COURTPHYSICS_H_
 #define _COURTPHYSICS_H_
 
-#include "physics.h"
+#include "physics/physics.h"
 
 //class physics;
 
-class courtPhysics : public physics
+class courtPhysics // : public physics
 {
     public:
         courtPhysics();  // constructor

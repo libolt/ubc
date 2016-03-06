@@ -25,13 +25,13 @@
 #include "BtOgreGP.h"
 #include "BtOgreExtras.h"
 #include "BulletDynamics/Dynamics/btRigidBody.h"
-
+#include "state/gamestateshared.h"
 #include "engine/physicsengine.h"
 #include "enums.h"
 
 //class physicsEngine;
 
-class physics : public physicsEngine
+class physics : public physicsEngine, public gameStateShared
 {
     public:
         physics();  // constructor

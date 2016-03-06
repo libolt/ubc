@@ -25,7 +25,10 @@
 #include "OpenSteer/Clock.h"
 #include <boost/shared_ptr.hpp>
 
-#include "ai/playersteerplugin.h"
+//#include "ai/playersteerplugin.h"
+
+class playerSteerPlugin;
+class playerSteer;
 
 class AISystem
 {
@@ -81,7 +84,7 @@ public:
 	// currently selected vehicle
 	OpenSteer::AbstractVehicle* selectedVehicle;
 
-	playerSteerPlugin playerSteerPluginInstance;
+	playerSteerPlugin *playerSteerPluginInstance;
 
     
 protected:

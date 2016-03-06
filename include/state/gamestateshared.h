@@ -25,8 +25,10 @@
 
 #include "enums.h"
 
-class teamState;
 //class courtState;
+class playerState;
+class teamState;
+
 
 class gameStateShared
 {
@@ -37,8 +39,8 @@ class gameStateShared
         gameTypes getGameType();  // retrieves the value of gameType
         void setGameType(gameTypes set);  // sets the value of gameType
 
-        std::vector<size_t> getTeamID(void);  // retrieves the value of teamID
-        void setTeamID(std::vector<size_t> set);  // sets the value of teamID
+        std::vector<size_t> getTeamIDS(void);  // retrieves the value of teamIDS
+        void setTeamIDS(std::vector<size_t> set);  // sets the value of teamIDS
         
         std::vector< std::vector<size_t> > getTeamStarterID();  // retrieves value of teamStarterID
         void setTeamStarterID(std::vector< std::vector<size_t> > set);  // sets the value of teamStarterID
@@ -115,7 +117,7 @@ class gameStateShared
     private:
     
         gameTypes gameType;  // Indicates whether a single or multi player game is being played.
-        std::vector<size_t> teamID;  // std::vector that stores the IDs of the 2 teams currently playing
+        std::vector<size_t> teamIDS;  // std::vector that stores the IDs of the 2 teams currently playing
         std::vector< std::vector<size_t> > teamStarterID;  // stores the selected starters for each team
         Ogre::Vector3 bballNodePosition;  // stores a copy of the basketball node position
         teamTypes teamWithBall;  // store which team has the basketball

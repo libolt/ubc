@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "ai/ai.h"
+#include "ai/playersteerplugin.h"
 #include "logging.h"
 #include <ctime>
 
@@ -41,6 +42,7 @@ AISystem::AISystem()
 {
     selectedVehicle = NULL;
     oldTime = 0.0f;
+    playerSteerPluginInstance = new playerSteerPlugin;
 
 }
 AISystem::~AISystem()

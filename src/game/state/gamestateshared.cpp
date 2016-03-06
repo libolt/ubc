@@ -55,13 +55,13 @@ void gameStateShared::setGameType(gameTypes set)  // sets the value of gameType
     gameType = set;
 }
 
-std::vector<size_t> gameStateShared::getTeamID()  // retrieves the value of teamID
+std::vector<size_t> gameStateShared::getTeamIDS()  // retrieves the value of teamIDS
 {
-    return (teamID);
+    return (teamIDS);
 }
-void gameStateShared::setTeamID(std::vector<size_t> set)  // sets the value of teamID
+void gameStateShared::setTeamIDS(std::vector<size_t> set)  // sets the value of teamIDS
 {
-    teamID = set;
+    teamIDS = set;
 }
 
 std::vector< std::vector<size_t> > gameStateShared::getTeamStarterID()  // retrieves value of teamStarterID

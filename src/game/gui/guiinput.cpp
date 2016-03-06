@@ -496,8 +496,8 @@ void GUISystem::processAudioMenuKeyPress(std::string keyPressed)  // processes a
 void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed)  // processes game setup menu key input
 {
     //gameState *gameS = gameState::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
-    std::vector<boost::shared_ptr<teamState> > teamInstance = gameS->getTeamInstance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    std::vector<boost::shared_ptr<teamState> > teamInstance = gameS->getTeamInstance();
     logMsg("processGameSetupMenuKeyPress");
     if (keyPressed == "a" && !gameSetupMenuAwaySelected)
     {
@@ -533,7 +533,7 @@ void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed)  // process
         if (gameSetupMenuAwaySelected)
         {
             int x = team1SelectBox->getIndexSelected() +1;
-            if (x < teamInstance.size())
+            if (x < getTeamInstance().size())
             {
                 team1SelectBox->setIndexSelected(x);
                 team1SelectBox->beginToItemAt(x);
@@ -547,7 +547,7 @@ void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed)  // process
         else if (gameSetupMenuHomeSelected)
         {
             int x = team0SelectBox->getIndexSelected() +1;
-            if (x < teamInstance.size())
+            if (x < getTeamInstance().size())
             {
                 team0SelectBox->setIndexSelected(x);
                 team0SelectBox->beginToItemAt(x);
@@ -570,8 +570,8 @@ void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed)  // process
             int x = team1SelectBox->getIndexSelected() -1;
             if (x < 0)
             {
-                team1SelectBox->setIndexSelected(teamInstance.size() -1);
-                team1SelectBox->beginToItemAt(teamInstance.size() -1);
+                team1SelectBox->setIndexSelected(getTeamInstance().size() -1);
+                team1SelectBox->beginToItemAt(getTeamInstance().size() -1);
             }
             else
             {
@@ -585,8 +585,8 @@ void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed)  // process
             int x = team0SelectBox->getIndexSelected() -1;
             if (x < 0)
             {
-                team0SelectBox->setIndexSelected(teamInstance.size() -1);
-                team0SelectBox->beginToItemAt(teamInstance.size() -1);
+                team0SelectBox->setIndexSelected(getTeamInstance().size() -1);
+                team0SelectBox->beginToItemAt(getTeamInstance().size() -1);
             }
             else
             {
@@ -605,7 +605,7 @@ void GUISystem::processPlayerStartSelectionMenuKeyPress(std::string keyPressed) 
 {
 
     //gameState *gameS = gameState::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<loader> load = loader::Instance();
 
     checkTeamInstancesCreated();
@@ -630,9 +630,9 @@ void GUISystem::processPlayerStartSelectionMenuKeyPress(std::string keyPressed) 
 void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed)  // process team selection menu key input
 {
     //gameState *gameS = gameState::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
     
-    std::vector<boost::shared_ptr<teamState> > teamInstance = gameS->getTeamInstance();
+//    std::vector<boost::shared_ptr<teamState> > teamInstance = gameS->getTeamInstance();
     logMsg("processGameSetupMenuKeyPress");
     if (keyPressed == "a" && !gameSetupMenuAwaySelected)
     {
@@ -671,7 +671,7 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed)  // pro
         if (gameSetupMenuAwaySelected)
         {
             int x = team1SelectBox->getIndexSelected() +1;
-            if (x < teamInstance.size())
+            if (x < getTeamInstance().size())
             {
                 team1SelectBox->setIndexSelected(x);
                 team1SelectBox->beginToItemAt(x);
@@ -685,7 +685,7 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed)  // pro
         else if (gameSetupMenuHomeSelected)
         {
             int x = team0SelectBox->getIndexSelected() +1;
-            if (x < teamInstance.size())
+            if (x < getTeamInstance().size())
             {
                 team0SelectBox->setIndexSelected(x);
                 team0SelectBox->beginToItemAt(x);
@@ -708,8 +708,8 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed)  // pro
             int x = team1SelectBox->getIndexSelected() -1;
             if (x < 0)
             {
-                team1SelectBox->setIndexSelected(teamInstance.size() -1);
-                team1SelectBox->beginToItemAt(teamInstance.size() -1);
+                team1SelectBox->setIndexSelected(getTeamInstance().size() -1);
+                team1SelectBox->beginToItemAt(getTeamInstance().size() -1);
             }
             else
             {
@@ -723,8 +723,8 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed)  // pro
             int x = team0SelectBox->getIndexSelected() -1;
             if (x < 0)
             {
-                team0SelectBox->setIndexSelected(teamInstance.size() -1);
-                team0SelectBox->beginToItemAt(teamInstance.size() -1);
+                team0SelectBox->setIndexSelected(getTeamInstance().size() -1);
+                team0SelectBox->beginToItemAt(getTeamInstance().size() -1);
             }
             else
             {
@@ -744,7 +744,7 @@ void GUISystem::processCourtSelectionMenuKeyPress(std::string keyPressed)  // pr
 {
 //    exit(0);
     //gameState *gameS = gameState::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
 
     if (keyPressed == "b")
     {

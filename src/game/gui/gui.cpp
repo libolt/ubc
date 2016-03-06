@@ -24,6 +24,8 @@
 #include "conversion.h"
 #include "data/courtdata.h"
 #include "engine/gameengine.h"
+#include "state/basketballstate.h"
+#include "state/courtstate.h"
 #include "state/gamestate.h"
 #include "state/teamstate.h"
 #include "state/playerstate.h"
@@ -35,7 +37,7 @@
 #ifdef __ANDROID__
 #include "android-config.h"
 #else
-#include "config.h"mmn
+#include "config.h"
 #endif
 
 /*

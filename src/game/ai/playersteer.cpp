@@ -24,6 +24,7 @@
 #include "ai/ai.h"
 #include "conversion.h"
 #include "state/basketballstate.h"
+#include "state/courtstate.h"
 #include "state/gamestate.h"
 #include "logging.h"
 #include "state/offensestate.h"

@@ -21,6 +21,8 @@
 #include "conversion.h"
 #include "state/basketballstate.h"
 //#include "state/gamestate.h"
+#include "state/courtstate.h"
+#include "state/hoopstate.h"
 #include "state/teamstate.h"
 #include "state/playerstate.h"
 #include "comparison.h"

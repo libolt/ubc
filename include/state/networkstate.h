@@ -21,10 +21,15 @@
 #ifndef _NETWORKSTATE_H_
 #define _NETWORKSTATE_H_
 
+#include "boost/shared_ptr.hpp"
+
 #include "state/state.h"
+#include "state/gamestateshared.h"
+#include "ubc.h"
 
 // Forward declarations
-class teamState:
+class teamState;
+class networkEngine;
 
 class networkState : public state
 {
@@ -32,9 +37,17 @@ class networkState : public state
         networkState();  // constructor
         ~networkState();  // destructor
         
+        // getters and setters
+        boost::shared_ptr<networkEngine> getNetwork();  // retrieves the value of network
+        void setNetwork(boost::shared_ptr<networkEngine> set);  // sets the value of network
+
         void processLocalInput(std::vector<boost::shared_ptr<teamState> > activeTeamInstance);  // processes local input for sending to remote system
         void processRemoteInput();  // processes input received from a remote system
+        void processNetworkEvents(std::vector<boost::shared_ptr<teamState> > activeTeamInstance);  // processes events received from network connection.
+        void processNetworkPlayerEvents(std::vector<boost::shared_ptr<teamState> > activeTeamInstance);  // processes player evernts received from network connection
+
     
     private:
-}
+        boost::shared_ptr<networkEngine> network;
+};
 #endif

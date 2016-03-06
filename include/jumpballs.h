@@ -36,7 +36,7 @@ class jumpBalls
 
     jumpBalls();  // constructor
 
-    jumpBallLocations_t getJumpBallLocation();  // retrieves teh value of jumpBallLocation
+    jumpBallLocations_t getJumpBallLocation();  // retrieves the value of jumpBallLocation
     void setJumpBallLocation(jumpBallLocations_t set);  // sets the value of jumpBallLocation
 
     std::vector<playerPositions> getJumpBallPlayer();  // retrieves the value of jumpBallPlayer

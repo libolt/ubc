@@ -561,9 +561,9 @@ void basketballState::updatePosition() // updates the position of the basketball
 void basketballState::updateMovement()  // updates the basketball(s) movements
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
-    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
-    size_t teamWithBall = gameS->getTeamWithBall();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = getActiveTeamInstance();
+    size_t teamWithBall = getTeamWithBall();
     std::vector<boost::shared_ptr<playerState> > activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
     size_t playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();
     size_t playerWithBallID = activeTeamInstance[teamWithBall]->getPlayerWithBallID();
@@ -630,9 +630,9 @@ void basketballState::updateDirection()  // updates basketball direction(s)
 {
     //conversion *convert = conversion::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
-    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
-    size_t teamWithBall = gameS->getTeamWithBall();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = getActiveTeamInstance();
+    size_t teamWithBall = getTeamWithBall();
     std::vector<boost::shared_ptr<playerState> > activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
     std::vector<size_t> activePlayerID = activeTeamInstance[teamWithBall]->getActivePlayerID();
     
@@ -640,10 +640,10 @@ void basketballState::updateDirection()  // updates basketball direction(s)
     size_t playerWithBallID = activeTeamInstance[teamWithBall]->getPlayerWithBallID();
 
 
-    boost::shared_ptr<jumpBalls> jumpBall = gameS->getJumpBall();
+    boost::shared_ptr<jumpBalls> jumpBall = getJumpBall();
 
     logMsg("directplayerwithballInstance == " +convert->toString(playerWithBallInstance));
-    bool tipOffComplete = gameS->getTipOffComplete();
+    bool tipOffComplete = getTipOffComplete();
     size_t x = 0;
 
     bool shotTaken = activePlayerInstance[playerWithBallInstance]->getShotTaken();
@@ -736,7 +736,7 @@ void basketballState::updateDirection()  // updates basketball direction(s)
     {
 
     }
-    gameS->setJumpBall(jumpBall);
+    setJumpBall(jumpBall);
 }
 
 size_t basketballState::getPlayer()

@@ -23,6 +23,7 @@
 #include "Ogre.h"
 #include "ai/playersteerplugin.h"
 #include "ai/ai.h"
+#include "state/basketballstate.h"
 #include "state/courtstate.h"
 #include "state/gamestate.h"
 #include "logging.h"

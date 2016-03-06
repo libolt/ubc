@@ -25,7 +25,7 @@
 
 //class physics;
 
-class courtPhysics // : public physics
+class courtPhysics : public physics
 {
     public:
         courtPhysics();  // constructor

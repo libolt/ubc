@@ -66,10 +66,10 @@ void defenseState::setupState()		// sets up initial state of the object
 void defenseState::updateState(teamTypes teamOnDefense)	// updates the state of the object
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
-    teamTypes teamWithBall = gameS->getTeamWithBall();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+    teamTypes teamWithBall = getTeamWithBall();
 
-    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
+    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = getActiveTeamInstance();
     std::vector<boost::shared_ptr<playerState> > playerDInstance = activeTeamInstance[teamOnDefense]->getActivePlayerInstance();
     std::vector<boost::shared_ptr<playerState> > playerOInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
     std::vector<size_t> activeDID = activeTeamInstance[teamOnDefense]->getActivePlayerID();
@@ -485,6 +485,6 @@ void defenseState::updateState(teamTypes teamOnDefense)	// updates the state of 
 	}
 
     activeTeamInstance[teamOnDefense]->setActivePlayerInstance(playerDInstance);
-    gameS->setActiveTeamInstance(activeTeamInstance);
+    setActiveTeamInstance(activeTeamInstance);
 
 }

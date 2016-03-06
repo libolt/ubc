@@ -49,7 +49,7 @@ gameEngine::gameEngine()  // constructor
  // playerNode[0](0)
 {
   
-    yOffset = 0.0;
+//    yOffset = 0.0;
 
     userInputLoaded = false;
     menuActive = false;
@@ -178,14 +178,14 @@ void gameEngine::setMovePlayer(bool set)  // sets the value of moviePlayer
 	movePlayer = set;
 }
 
-float gameEngine::getYOffset()  // returns the value of yOffset
+/*float gameEngine::getYOffset()  // returns the value of yOffset
 {
     return (yOffset);
 }
 void gameEngine::setYOffset(float set)  // sets the value of yOffset
 {
     yOffset = set;
-}
+}*/
 
 boost::shared_ptr<renderEngine> gameEngine::getRender()  // retrieves the value of renderE
 {

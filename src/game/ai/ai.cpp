@@ -20,6 +20,8 @@
 
 #include "ai/ai.h"
 #include "ai/playersteerplugin.h"
+#include "state/basketballstate.h"
+#include "state/courtstate.h"
 #include "logging.h"
 #include <ctime>
 

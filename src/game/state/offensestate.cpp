@@ -19,11 +19,13 @@
  ***************************************************************************/
 
 #include "conversion.h"
-#include "state/offensestate.h"
-#include "state/gamestate.h"
 #include "engine/gameengine.h"
 #include "load.h"
 #include "logging.h"
+#include "state/basketballstate.h"
+#include "state/courtstate.h"
+#include "state/gamestate.h"
+#include "state/offensestate.h"
 #include "state/playerstate.h"
 #include "ai/playersteer.h"
 #include "state/teamstate.h"
@@ -196,8 +198,9 @@ void offenseState::setupState()  // sets up initial state of the object
 
 void offenseState::updateState(teamTypes teamType)	// updates the state of the object
 {
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
-    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
+    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = getActiveTeamInstance();
     std::vector<boost::shared_ptr<playerState> > activePlayerInstance = activeTeamInstance[teamType]->getActivePlayerInstance();
 
     if (!offenseSetup)
@@ -209,7 +212,7 @@ void offenseState::updateState(teamTypes teamType)	// updates the state of the o
         executeOffense();
     }
     activeTeamInstance[teamType]->setActivePlayerInstance(activePlayerInstance);
-    gameS->setActiveTeamInstance(activeTeamInstance);
+    setActiveTeamInstance(activeTeamInstance);
 }
 
 void offenseState::loadPlays()	// loads offense plays from file
@@ -222,9 +225,10 @@ void offenseState::setupOffense()  // sets up box offense
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
 
-    quarters currentQuarter = gameS->getQuarter();  // gets the current quarter the game is in.
+//    quarters currentQuarter = gameS->getQuarter();  // gets the current quarter the game is in.
+    quarters currentQuarter = getQuarter();
 
     switch (currentQuarter)
     {
@@ -336,12 +340,12 @@ void offenseState::setupOffense()  // sets up box offense
 void offenseState::executeOffense() // executes box offense
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
-    
-    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
-    std::vector<boost::shared_ptr<playerState> > activePlayerInstance = activeTeamInstance[gameS->getTeamWithBall()]->getActivePlayerInstance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+    teamTypes teamWithBall = getTeamWithBall();
 
-    teamTypes teamWithBall = gameS->getTeamWithBall();
+    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = getActiveTeamInstance();
+    std::vector<boost::shared_ptr<playerState> > activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
+
     size_t playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();
     size_t playerWithBallID = activeTeamInstance[teamWithBall]->getPlayerWithBallID();
 

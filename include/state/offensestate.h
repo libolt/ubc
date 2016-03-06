@@ -26,12 +26,13 @@
 #include "enums.h"
 #include "offenseplays.h"
 #include "state/state.h"
+#include "state/gamestateshared.h"
 
 //class offensePlays:
 //class offensePlays::playerDirectives;
 //class state;
 
-class offenseState : public state
+class offenseState : public state, public gameStateShared
 {
 public:
 

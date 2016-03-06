@@ -31,6 +31,7 @@
 //#include "state/basketballstate.h"
 //#include "state/playerstate.h"
 #include "state/state.h"
+#include "state/gamestateshared.h"
 #include "data/teamdata.h"
 
 class offenseState;
@@ -40,7 +41,7 @@ class playerState;
 //class state;
 //class teamData;
 
-class teamState : public state, public teamData
+class teamState : public state, public teamData, public gameStateShared
 
 {
 public:

@@ -22,7 +22,8 @@
 #define _LOGGING_H_
  
 #include <string>
- 
+#include "boost/shared_ptr.hpp"
+
 class logging
 {
 public:

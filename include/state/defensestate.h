@@ -23,10 +23,11 @@
 
 #include "enums.h"
 #include "state/state.h"
+#include "state/gamestateshared.h"
 
 //class state;
 
-class defenseState : public state
+class defenseState : public state, public gameStateShared
 {
 public:
 

@@ -34,7 +34,7 @@
 //#include "data/playerdata.h"
 //#include "jumpballs.h"
 #include "state/state.h"
-#include "state/gamestateshared.h"
+//#include "state/gamestateshared.h"
 
 class basketballState;
 class UBC;
@@ -61,8 +61,8 @@ public:
     gameTypes getGameType();  // retrieves the value of gameType
     void setGameType(gameTypes set);  // sets the value of gameType
 
-    quarters getQuarter();  // retrieves the value of quarter
-    void setQuarters(quarters set);  // sets he value of quarter
+//    quarters getQuarter();  // retrieves the value of quarter
+//    void setQuarters(quarters set);  // sets he value of quarter
 
 /*    bool getGameSetupComplete();  // retrieves the value of gameSetupComplete
     void setGameSetupComplete(bool set);  // sets the value of gameSetupComplete
@@ -74,8 +74,9 @@ public:
     bool getGameStarted(void);  // retrieves the gameStarted value
     void setGameStarted(bool set);  // sets gameStarted value
 
-    boost::shared_ptr<jumpBalls> getJumpBall();  // retrieves the value of jumpBall
+/*    boost::shared_ptr<jumpBalls> getJumpBall();  // retrieves the value of jumpBall
     void setJumpBall(boost::shared_ptr<jumpBalls> set);  // sets the value of jumpBall
+*/
 
 //    teamTypes getTeamWithBall(void);  // retrieves teamWithBall value
 //    void setTeamWithBall(teamTypes set);	 // sets teamWithBall value
@@ -132,8 +133,9 @@ public:
     std::vector<courtData> getCourtDataInstance();  // retrieves the value of courtDataInstance
     void setCourtDataInstance(std::vector<courtData> set);  // sets the value of courtDataInstance
 
-    size_t getActiveBBallInstance();  // retrieves the value of activeBBallInstance
+/*    size_t getActiveBBallInstance();  // retrieves the value of activeBBallInstance
     void setActiveBBallInstance(size_t set);  // sets the value of activeBBallInstance
+*/
 
 /*    size_t getActiveCourtInstance();  // retrieves the value of activeCourtInstance
     void setActiveCourtInstance(size_t set);  // sets the value of activeCourtInstance
@@ -150,8 +152,9 @@ public:
     void setTeamStarterID(std::vector< std::vector<size_t> > set);  // sets the value of teamStarterID
 */
 
-    std::vector <basketballState> getBasketballInstance();  // retrieves the value of basketballInstance
+/*    std::vector <basketballState> getBasketballInstance();  // retrieves the value of basketballInstance
     void setBasketballInstance(std::vector<basketballState> set);  // sets the value of basketballInstance
+*/
 
 /*    std::vector<boost::shared_ptr<teamState> > getTeamInstance();  // retireves the value of teamInstance
     void setTeamInstance(std::vector<boost::shared_ptr<teamState> > set);  // sets the value of teamInstance
@@ -169,14 +172,14 @@ public:
     bool getTipOffSetupComplete();  // retrieves the value of tipOffSetupComplete
     void setTipOffSetupComplete(bool set);  // sets the value of tipOffSetupComplete
 
-    bool getTipOffComplete();  // retrieves the value of tipOffComplete
-    void setTipOffComplete(bool set);  // sets the value of tipOffComplete
+//    bool getTipOffComplete();  // retrieves the value of tipOffComplete
+//    void setTipOffComplete(bool set);  // sets the value of tipOffComplete
 
 //    bool getStateSet();  // retrieves the value of stateSet
 //    void setStateSet(bool set);  // sets the value of stateSet
 
-    void processNetworkEvents();  // processes events received from network connection.
-    void processNetworkPlayerEvents();  // processes player evernts received from network connection
+//    void processNetworkEvents();  // processes events received from network connection.
+//    void processNetworkPlayerEvents();  // processes player evernts received from network connection
     void updateDirectionsAndMovements();  // updates the movement and directions of game world objecxts
 //    void updatePlayerDirections();  // updates the direction players are facing
     bool assignHoopToTeams();  // assigns which hoop belongs to each team
@@ -223,7 +226,7 @@ private:
 //    static boost::shared_ptr<gameState> pInstance;
 
 //    gameTypes gameType;  // Indicates whether a single or multi player game is being played.
-    quarters quarter;  // stores the quarter currently being played
+//    quarters quarter;  // stores the quarter currently being played
 
 //    bool gameSetupComplete;  // indicates whether initial game setup is complete.
 
@@ -246,15 +249,15 @@ private:
     std::vector< std::vector<size_t> > teamStarterID;  // stores the selected starters for each team
 
     // stores all instances of the objects
-    std::vector <basketballState> basketballInstance;  // creates instance of the basketballs class
+//    std::vector <basketballState> basketballInstance;  // creates instance of the basketballs class
 //    std::vector <courtState> courtInstance;  // creates instance of the courtState class
-    std::vector <hoopState> hoopInstance;  // creates instance of the hoop class
+//    std::vector <hoopState> hoopInstance;  // creates instance of the hoop class
 //    std::vector < boost::shared_ptr<teamState> >  teamInstance;  // creates instance of the teamState class
 
     // stores active instances of objects
 //    std::vector<boost::shared_ptr<teamState> > activeTeamInstance;  // stores the active team instances
 
-    size_t activeBBallInstance;  // stores which instance of the baskteball class is active
+//    size_t activeBBallInstance;  // stores which instance of the baskteball class is active
 //    size_t activeCourtInstance;  // stores which instance of the court is active
 
     bool setupEnvironmentCompleted;  // stores whether environment has been setup
@@ -272,9 +275,9 @@ private:
     bool sceneCreated;  // stores whether the scene has been created
     bool gameStarted;  // Determines whether or not a basketball game has been started
     bool tipOffSetupComplete;  // Determines whether or not game Tip Off has been setup
-    bool tipOffComplete;  // Determines whether or not game Tip Off has completed
+//    bool tipOffComplete;  // Determines whether or not game Tip Off has completed
 
-    boost::shared_ptr<jumpBalls> jumpBall; // instance that is used for jumpBall functions.
+//    boost::shared_ptr<jumpBalls> jumpBall; // instance that is used for jumpBall functions.
 
 //    teamTypes teamWithBall;  // stores which team has control of the basketball, valid values are 0 or 1
 

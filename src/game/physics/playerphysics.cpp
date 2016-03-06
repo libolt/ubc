@@ -19,7 +19,8 @@
  ***************************************************************************/
 
 #include "conversion.h"
-#include "state/gamestate.h"
+//#include "state/gamestate.h"
+#include "state/playerstate.h"
 #include "engine/physicsengine.h"
 #include "physics/playerphysics.h"
 #include "logging.h"

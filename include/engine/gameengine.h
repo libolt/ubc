@@ -83,9 +83,9 @@ public:
     bool getMovePlayer();  // retrieves the value of movePlayer 
     void setMovePlayer(bool set);  // sets the value of movePlayer 
 
-    float getYOffset();  // retrieves the value of yOffset
+/*    float getYOffset();  // retrieves the value of yOffset
     void setYOffset(float set);  // sets the value of yOffset
-
+*/
     
     boost::shared_ptr<renderEngine> getRender();  // retrieves the value of render
     void setRender(boost::shared_ptr<renderEngine> set);  // sets the value of render
@@ -117,7 +117,7 @@ private:
     boost::shared_ptr<renderEngine> render;  // render object
     boost::shared_ptr<inputEngine> input;  // input object
     boost::shared_ptr<networkEngine> network;  // network object    
-    float yOffset; // stores the y offset for objects on the screen
+//    float yOffset; // stores the y offset for objects on the screen
     
     Ogre::Vector3 courtTranslateVector;
 

@@ -23,7 +23,8 @@
 #include "engine/gameengine.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
-#include "state/gamestate.h"
+//#include "state/gamestate.h"
+#include "state/hoopstate.h"
 #include "state/defensestate.h"
 #include "state/playerstate.h"
 #include "state/offensestate.h"
@@ -466,17 +467,17 @@ void teamState::updateState()	// updates the state of the object
     //gameEngine *gameE = gameEngine::Instance();
 //    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
 	//gameState *gameS = gameState::Instance();
-	boost::shared_ptr<gameState> gameS = gameState::Instance();
+//	boost::shared_ptr<gameState> gameS = gameState::Instance();
     ///boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
-    boost::shared_ptr<jumpBalls> jumpBall = gameS->getJumpBall();
+    boost::shared_ptr<jumpBalls> jumpBall = getJumpBall();
 
-    size_t activeBBallInstance = gameS->getActiveBBallInstance();
+    size_t activeBBallInstance = getActiveBBallInstance();
 
 //	logMsg("Updating team state " +convert->toString(teamNumber));
-	if (gameS->getBasketballInstancesCreated() && playerInstancesCreated)
+    if (getBasketballInstanceCreated() && getPlayerInstancesCreated())
 	{
-		std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
+        std::vector<basketballState> basketballInstance = getBasketballInstance();
 
 //		exit(0);
 
@@ -504,13 +505,13 @@ void teamState::updateState()	// updates the state of the object
 
 		}
 
-        if (gameS->getTipOffComplete())
+        if (getTipOffComplete())
 		{
 //			exit(0);
 //			logMsg("Team with ball ==  "  +convert->toString(gameS->getTeamWithBall()));
 //			logMsg("Player with ball ==  "  +convert->toString(playerWithBall));
 
-            if (gameS->getTeamWithBall() == teamType) // checks if the team has the basketball
+            if (getTeamWithBall() == teamType) // checks if the team has the basketball
 			{
                 logMsg("tipoffcomplete playerWithBallInstance == " +convert->toString(playerWithBallInstance));
 
@@ -604,11 +605,11 @@ void teamState::updateState()	// updates the state of the object
 	}
 //	exit(0);
 
-    if (gameS->getTipOffComplete())
+    if (getTipOffComplete())
 	{
         logMsg("tipOff Complete!");
 //        exit(0);
-        if (gameS->getTeamWithBall() == teamType)
+        if (getTeamWithBall() == teamType)
 	    {
             offenseInstance->updateState(teamType);	// updates the state of the offenseInstance object
 	    }
@@ -629,10 +630,10 @@ bool teamState::createPlayerInstances()
 {
     
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
 
-    std::vector< std::vector<size_t> > teamStarterID = gameS->getTeamStarterID();
-    std::vector<boost::shared_ptr<playerState> > gamePlayerInstance = gameS->getPlayerInstance();
+    std::vector< std::vector<size_t> > teamStarterID = getTeamStarterID();
+    std::vector<boost::shared_ptr<playerState> > gamePlayerInstance = getPlayerInstance();
 //	size_t x = 0;
 	//	size_t playerID =
 //    std::vector <playerData> playerN = player->getPlayer(); // copies Player values to playerN
@@ -668,7 +669,7 @@ bool teamState::createPlayerInstances()
             pInstance = gamePlayerInstance[i];
             pInstance->setTeamType(teamType);  // sets the team number the player belongs to            
             pSteer->setTeamType(teamType);
-            pSteer->reset(gamePlayerInstance);
+            pSteer->reset();
             pInstance->setSteer(boost::shared_ptr<playerSteer>(pSteer));
             playerInstance.push_back(pInstance);    // adds pInstance to the playerInstance std::vector.
 
@@ -763,10 +764,10 @@ void teamState::setPlayerStartPositions()	// sets the initial coordinates for th
 {
     logMsg("setPlayerStartPositions!");
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
 //    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
 
-    std::vector< std::vector<size_t> > teamStarterID = gameS->getTeamStarterID();
+    std::vector< std::vector<size_t> > teamStarterID = getTeamStarterID();
 
     std::vector<Ogre::Vector3> startingPos;
     directions playerDirection; // stores the direction players face at start
@@ -781,7 +782,7 @@ void teamState::setPlayerStartPositions()	// sets the initial coordinates for th
         }
     }*/
 
-    std::vector<courtState> courtInstance = gameS->getCourtInstance();
+    std::vector<courtState> courtInstance = getCourtInstance();
 
     Ogre::Vector3 courtPos = courtInstance[0].getNodePosition();
 //    exit(0);
@@ -976,13 +977,13 @@ void teamState::updatePlayerStates()  // updates the states of active players
 void teamState::updatePlayerDirections()
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
 
     directions playerDirection, oldPlayerDirection;
 //    std::vector<playerState> pInstance = getPlayerInstance();
  //   std::vector<size_t> playerDirection = player->getPlayerDirection(); // stores contents of playerDirectdion from players class in local variable
 //    std::vector<size_t> oldPlayerDirection = player->getOldPlayerDirection();   // stores contents of oldPlayerDirection form players in local variable
-	std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
+    std::vector<basketballState> basketballInstance = getBasketballInstance();
     std::vector<Ogre::SceneNode>::iterator playersIT;
 
     std::string playerID = convert->toString(playerInstance[4]->getID());
@@ -1181,14 +1182,14 @@ void teamState::executePass()		// executes the pass between players
     //conversion *convert = conversion::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
     //gameState *gameS = gameState::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
 
     logMsg("In executePass function");
 
-    size_t activeBBallInstance = gameS->getActiveBBallInstance();
+    size_t activeBBallInstance = getActiveBBallInstance();
 
     size_t passToPlayer = activePlayerInstance[playerWithBallInstance]->getPassToPlayer();
-	std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
+    std::vector<basketballState> basketballInstance = getBasketballInstance();
     Ogre::Vector3 playerWithBallCoords = activePlayerInstance[playerWithBallInstance]->getNode()->getPosition();
     Ogre::Vector3 passToPlayerCoords = activePlayerInstance[passToPlayer]->getNode()->getPosition();
 //	exit(0);
@@ -1256,7 +1257,7 @@ void teamState::executePass()		// executes the pass between players
 	basketballInstance[activeBBallInstance].getPhysBody()->setLinearVelocity(btVector3(bballPosChange));
 
 
-	gameS->setBasketballInstance(basketballInstance);		// saves changes to the basketballInstance object
+    setBasketballInstance(basketballInstance);		// saves changes to the basketballInstance object
 }
 
 

@@ -38,7 +38,7 @@
 
 //#include "ai/playersteer.h"
 //#include "physics/playerphysics.h"
-#include "state/state.h"
+//#include "state/state.h"
 #include "entity/playerentity.h"
 #include "data/playerdata.h"
 

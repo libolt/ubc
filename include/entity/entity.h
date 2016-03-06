@@ -34,11 +34,11 @@
 //#include "engine/renderengine.h"
 
 
-//#include "ubc.h"
+#include "ubc.h"
 
 //class UBC;
 
-class entity //: public UBC // base class for entity objects
+class entity : public UBC // base class for entity objects
 {
     public:
     

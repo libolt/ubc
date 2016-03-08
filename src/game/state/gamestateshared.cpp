@@ -24,7 +24,7 @@
 #include "state/hoopstate.h"
 #include "state/teamstate.h"
 
-// static vars
+// vars
 
 bool gameStateShared::activeTeamInstancesCreated;  // stores whether the active team instances have been created
 bool gameStateShared::activeTeamInstancesNeedCreated;  // stores whether or not to create active team instances
@@ -98,294 +98,294 @@ gameStateShared::~gameStateShared()  // destructor
 }
         
 // getters and setters
-static gameTypes gameStateShared::getGameType()  // retrieves the value of gameType
+gameTypes gameStateShared::getGameType()  // retrieves the value of gameType
 {
     return(gameType);
 }
-static void gameStateShared::setGameType(gameTypes set)  // sets the value of gameType
+void gameStateShared::setGameType(gameTypes set)  // sets the value of gameType
 {
     gameType = set;
 }
 
-static quarters gameStateShared::getQuarter()  // retrieves the value of quarter
+quarters gameStateShared::getQuarter()  // retrieves the value of quarter
 {
     return (quarter);
 }
-static void gameStateShared::setQuarter(quarters set)  // sets he value of quarter
+void gameStateShared::setQuarter(quarters set)  // sets he value of quarter
 {
     quarter = set;
 }
 
 
-static std::vector<size_t> gameStateShared::getTeamIDS()  // retrieves the value of teamIDS
+std::vector<size_t> gameStateShared::getTeamIDS()  // retrieves the value of teamIDS
 {
     return (teamIDS);
 }
-static void gameStateShared::setTeamIDS(std::vector<size_t> set)  // sets the value of teamIDS
+void gameStateShared::setTeamIDS(std::vector<size_t> set)  // sets the value of teamIDS
 {
     teamIDS = set;
 }
 
-static std::vector< std::vector<size_t> > gameStateShared::getTeamStarterID()  // retrieves value of teamStarterID
+std::vector< std::vector<size_t> > gameStateShared::getTeamStarterID()  // retrieves value of teamStarterID
 {
     return (teamStarterID);
 }
-static void gameStateShared::setTeamStarterID(std::vector< std::vector<size_t> > set)  // sets the value of teamStarterID
+void gameStateShared::setTeamStarterID(std::vector< std::vector<size_t> > set)  // sets the value of teamStarterID
 {
     teamStarterID = set;
 }
 
-static bool gameStateShared::getActiveTeamInstancesCreated()  // retrieves the value of activeTeamInstancesCreated
+bool gameStateShared::getActiveTeamInstancesCreated()  // retrieves the value of activeTeamInstancesCreated
 {
     return (activeTeamInstancesCreated);
 }
 
-static void gameStateShared::setActiveTeamInstancesCreated(bool set)  // sets the value of activeTeamInstancesCreated
+void gameStateShared::setActiveTeamInstancesCreated(bool set)  // sets the value of activeTeamInstancesCreated
 {
     activeTeamInstancesCreated = set;
 }
 
-static bool gameStateShared::getActiveTeamInstancesNeedCreated()  // retrieves the value of activeTeamInstancesNeedCreated
+bool gameStateShared::getActiveTeamInstancesNeedCreated()  // retrieves the value of activeTeamInstancesNeedCreated
 {
     return (activeTeamInstancesNeedCreated);
 }
-static void gameStateShared::setActiveTeamInstancesNeedCreated(bool set)  // sets the value of activeTeamInstancesNeedCreated
+void gameStateShared::setActiveTeamInstancesNeedCreated(bool set)  // sets the value of activeTeamInstancesNeedCreated
 {
     activeTeamInstancesNeedCreated = set;
 }
 
-static bool gameStateShared::getBasketballInstanceCreated()  // gets the value of basketballInstanceCreated
+bool gameStateShared::getBasketballInstanceCreated()  // gets the value of basketballInstanceCreated
 {
     return (basketballInstanceCreated);
 }
-static void gameStateShared::setBasketballInstanceCreated(bool set)  // sets the value of basketballInstanceCreated
+void gameStateShared::setBasketballInstanceCreated(bool set)  // sets the value of basketballInstanceCreated
 {
     basketballInstanceCreated = set;
 }
 
-static bool gameStateShared::getBasketballInstanceNeedCreated()  // gets the value of basketballInstanceNeedCreated
+bool gameStateShared::getBasketballInstanceNeedCreated()  // gets the value of basketballInstanceNeedCreated
 {
     return (basketballInstanceNeedCreated);
 }
-static void gameStateShared::setBasketballInstanceNeedCreated(bool set)  // sets the value of basketballInstanceNeedCreated
+void gameStateShared::setBasketballInstanceNeedCreated(bool set)  // sets the value of basketballInstanceNeedCreated
 {
     basketballInstanceNeedCreated = set;
 }
 
-static bool gameStateShared::getCourtInstancesCreated()  // gets the value of the courtInstancesCreated
+bool gameStateShared::getCourtInstancesCreated()  // gets the value of the courtInstancesCreated
 {
     return (courtInstancesCreated);
 }
-static void gameStateShared::setCourtInstancesCreated(bool set)  // sets the value of the courtInstancesCreated
+void gameStateShared::setCourtInstancesCreated(bool set)  // sets the value of the courtInstancesCreated
 {
     courtInstancesCreated = set;
 }
 
-static bool gameStateShared::getCourtInstancesNeedCreated()  // gets the value of the courtInstancesNeedCreated
+bool gameStateShared::getCourtInstancesNeedCreated()  // gets the value of the courtInstancesNeedCreated
 {
     return (courtInstancesNeedCreated);
 }
-static void gameStateShared::setCourtInstancesNeedCreated(bool set)  // sets the value of the courtInstancesNeedCreated
+void gameStateShared::setCourtInstancesNeedCreated(bool set)  // sets the value of the courtInstancesNeedCreated
 {
     courtInstancesNeedCreated = set;
 }
 
-static bool gameStateShared::getHoopInstanceCreated()  // retrieves the value of hoopInstancesCreated
+bool gameStateShared::getHoopInstanceCreated()  // retrieves the value of hoopInstancesCreated
 {
     return (hoopInstancesCreated);
 }
-static void gameStateShared::setHoopInstanceCreated(bool set)  // sets the value of hoopInstancesCreated
+void gameStateShared::setHoopInstanceCreated(bool set)  // sets the value of hoopInstancesCreated
 {
     hoopInstancesCreated = set;
 }
 
-static bool gameStateShared::getHoopInstanceNeedCreated()  // retrieves the value of hoopInstancesNeedCreated
+bool gameStateShared::getHoopInstanceNeedCreated()  // retrieves the value of hoopInstancesNeedCreated
 {
     return (hoopInstancesNeedCreated);
 }
-static void gameStateShared::setHoopInstanceNeedCreated(bool set)  // sets the value of hoopInstancesNeedCreated
+void gameStateShared::setHoopInstanceNeedCreated(bool set)  // sets the value of hoopInstancesNeedCreated
 {
     hoopInstancesNeedCreated = set;
 }
 
-static bool gameStateShared::getPlayerInstanceCreated()  // retrieves the value of playerInstanceCreated
+bool gameStateShared::getPlayerInstanceCreated()  // retrieves the value of playerInstanceCreated
 {
     return (playerInstanceCreated);
 }
-static void gameStateShared::setPlayerInstanceCreated(bool set)  // sets the value of playerInstanceCreated
+void gameStateShared::setPlayerInstanceCreated(bool set)  // sets the value of playerInstanceCreated
 {
     playerInstanceCreated = set;
 }
 
-static bool gameStateShared::getPlayerInstanceNeedCreated()  // retrieves the value of playerInstanceNeedCreated
+bool gameStateShared::getPlayerInstanceNeedCreated()  // retrieves the value of playerInstanceNeedCreated
 {
     return (playerInstanceNeedCreated);
 }
-static void gameStateShared::setPlayerInstanceNeedCreated(bool set)  // sets the value of playerInstanceNeedCreated
+void gameStateShared::setPlayerInstanceNeedCreated(bool set)  // sets the value of playerInstanceNeedCreated
 {
     playerInstanceNeedCreated = set;
 }
 
-static bool gameStateShared::getTeamInstancesCreated()  // gets the value of teamInstancesCreated
+bool gameStateShared::getTeamInstancesCreated()  // gets the value of teamInstancesCreated
 {
     return (teamInstancesCreated);
 }
-static void gameStateShared::setTeamInstancesCreated(bool set)  // sets the value of teamInstancesCreated
+void gameStateShared::setTeamInstancesCreated(bool set)  // sets the value of teamInstancesCreated
 {
     teamInstancesCreated = set;
 }
 
-static bool gameStateShared::getBBallNodePositionChanged()  // retrieves the value of bballNodePositionChanged
+bool gameStateShared::getBBallNodePositionChanged()  // retrieves the value of bballNodePositionChanged
 {
     return (bballNodePositionChanged);
 }
-static void gameStateShared::setBBallNodePositionChanged(bool set)  // sets the value of bballNodePositionChanged
+void gameStateShared::setBBallNodePositionChanged(bool set)  // sets the value of bballNodePositionChanged
 {
     bballNodePositionChanged = set;
 }
 
-static bool gameStateShared::getTeamWithBallChanged()  // retrieves the value of bballNodePositionChanged
+bool gameStateShared::getTeamWithBallChanged()  // retrieves the value of bballNodePositionChanged
 {
     return (teamWithBallChanged);
 }
-static void gameStateShared::setTeamWithBallChanged(bool set)  // sets the value of teamWithBallChanged
+void gameStateShared::setTeamWithBallChanged(bool set)  // sets the value of teamWithBallChanged
 {
     teamWithBallChanged = set;
 }
 
-static bool gameStateShared::getActiveTeamInstanceChanged()  // retrieves the value of activeTeamInstanceChanged
+bool gameStateShared::getActiveTeamInstanceChanged()  // retrieves the value of activeTeamInstanceChanged
 {
     return (activeTeamInstanceChanged);
 }
-static void gameStateShared::setActiveTeamInstanceChanged(bool set)  // sets the value of activeTeamInstanceChanged
+void gameStateShared::setActiveTeamInstanceChanged(bool set)  // sets the value of activeTeamInstanceChanged
 {
     activeTeamInstanceChanged = set;
 }
 
-static bool gameStateShared::getGameSetupComplete()  // retrieves the value of gameSetupComplete
+bool gameStateShared::getGameSetupComplete()  // retrieves the value of gameSetupComplete
 {
     return (gameSetupComplete);
 }
-static void gameStateShared::setGameSetupComplete(bool set)  // sets the value of gameSetupComplete
+void gameStateShared::setGameSetupComplete(bool set)  // sets the value of gameSetupComplete
 {
     gameSetupComplete = set;
 }
 
-static bool gameStateShared::getTipOffComplete()  // retrieves the value of tipOffComplete
+bool gameStateShared::getTipOffComplete()  // retrieves the value of tipOffComplete
 {
     return (tipOffComplete);
 }
-static void gameStateShared::setTipOffComplete(bool set)  // sets the value of tipOffComplete
+void gameStateShared::setTipOffComplete(bool set)  // sets the value of tipOffComplete
 {
     tipOffComplete = set;
 }
 
-static Ogre::Vector3 gameStateShared::getBBallNodePosition()  // retrieves the value of bballNodePosition
+Ogre::Vector3 gameStateShared::getBBallNodePosition()  // retrieves the value of bballNodePosition
 {
     return (bballNodePosition);
 }
-static void gameStateShared::setBBallNodePosition(Ogre::Vector3 set)  // sets the value of bballNodePosition
+void gameStateShared::setBBallNodePosition(Ogre::Vector3 set)  // sets the value of bballNodePosition
 {
     bballNodePosition = set;
 }
 
-static teamTypes gameStateShared::getTeamWithBall()  // retrieves the value of teamWithBall
+teamTypes gameStateShared::getTeamWithBall()  // retrieves the value of teamWithBall
 {
     return (teamWithBall);
 }
-static void gameStateShared::setTeamWithBall(teamTypes set)  // sets the value of teamWithBall
+void gameStateShared::setTeamWithBall(teamTypes set)  // sets the value of teamWithBall
 {
     teamWithBall = set;
 }
 
-static std::vector<boost::shared_ptr<teamState> > gameStateShared::getActiveTeamInstance()  // retrieves the value of activeTeamInstance
+std::vector<boost::shared_ptr<teamState> > gameStateShared::getActiveTeamInstance()  // retrieves the value of activeTeamInstance
 {
     return (activeTeamInstance);
 }
-static void gameStateShared::setActiveTeamInstance(std::vector<boost::shared_ptr<teamState> > set)  // sets the value of activeTeamInstance
+void gameStateShared::setActiveTeamInstance(std::vector<boost::shared_ptr<teamState> > set)  // sets the value of activeTeamInstance
 {
     activeTeamInstance = set;
 }
 
-static size_t gameStateShared::getActiveBBallInstance()  // retrieves the value of activeBBallInstance
+size_t gameStateShared::getActiveBBallInstance()  // retrieves the value of activeBBallInstance
 {
     return (activeBBallInstance);
 }
-static void gameStateShared::setActiveBBallInstance(size_t set)  // sets the value of activeBBallInstance
+void gameStateShared::setActiveBBallInstance(size_t set)  // sets the value of activeBBallInstance
 {
     activeBBallInstance = set;
 }
 
-static size_t gameStateShared::getActiveCourtInstance()  // retrieves the value of activeCourtInstance
+size_t gameStateShared::getActiveCourtInstance()  // retrieves the value of activeCourtInstance
 {
     return (activeCourtInstance);
 }
-static void gameStateShared::setActiveCourtInstance(size_t set)  // sets the value of activeCourtInstance
+void gameStateShared::setActiveCourtInstance(size_t set)  // sets the value of activeCourtInstance
 {
     activeCourtInstance = set;
 }
 
-static std::vector <basketballState> gameStateShared::getBasketballInstance()  // retrieves the value of basketballInstance
+std::vector <basketballState> gameStateShared::getBasketballInstance()  // retrieves the value of basketballInstance
 {
     return (basketballInstance);
 }
-static void gameStateShared::setBasketballInstance(std::vector<basketballState> set)  // sets the value of basketballInstance
+void gameStateShared::setBasketballInstance(std::vector<basketballState> set)  // sets the value of basketballInstance
 {
     basketballInstance = set;
 }
 
-static std::vector<courtState> gameStateShared::getCourtInstance()  // retrieves the value of courtInstance
+std::vector<courtState> gameStateShared::getCourtInstance()  // retrieves the value of courtInstance
 {
     return (courtInstance);
 }
-static void gameStateShared::setCourtInstance(std::vector<courtState> set)  // sets the value of courtInstance
+void gameStateShared::setCourtInstance(std::vector<courtState> set)  // sets the value of courtInstance
 {
     courtInstance = set;
 }
 
-static std::vector <hoopState> gameStateShared::getHoopInstance()  // retrieves the value of hoopInstance
+std::vector <hoopState> gameStateShared::getHoopInstance()  // retrieves the value of hoopInstance
 {
     return (hoopInstance);
 }
-static void gameStateShared::setHoopInstance(std::vector<hoopState> set)  // sets the value of hoopInstance
+void gameStateShared::setHoopInstance(std::vector<hoopState> set)  // sets the value of hoopInstance
 {
     hoopInstance = set;
 }
 
-static std::vector<boost::shared_ptr<playerState> > gameStateShared::getPlayerInstance()  // retrieves the value of playerInstance
+std::vector<boost::shared_ptr<playerState> > gameStateShared::getPlayerInstance()  // retrieves the value of playerInstance
 {
     return (playerInstance);
 }
-static void gameStateShared::setPlayerInstances(std::vector<boost::shared_ptr<playerState> > set)  // sets the value of playerInstance
+void gameStateShared::setPlayerInstances(std::vector<boost::shared_ptr<playerState> > set)  // sets the value of playerInstance
 {
     playerInstance = set;
 }
 
-static std::vector<boost::shared_ptr<teamState> > gameStateShared::getTeamInstance()  // retrieves the value of teamInstance
+std::vector<boost::shared_ptr<teamState> > gameStateShared::getTeamInstance()  // retrieves the value of teamInstance
 {
     return (teamInstance);
 }
-static void gameStateShared::setTeamInstance(std::vector<boost::shared_ptr<teamState> > set)  // sets the value of teamInstance
+void gameStateShared::setTeamInstance(std::vector<boost::shared_ptr<teamState> > set)  // sets the value of teamInstance
 {
     teamInstance = set;
 }
 
-static boost::shared_ptr<jumpBalls> gameStateShared::getJumpBall()  // retrieves the value of jumpBall
+boost::shared_ptr<jumpBalls> gameStateShared::getJumpBall()  // retrieves the value of jumpBall
 {
     return (jumpBall);
 }
-static void gameStateShared::setJumpBall(boost::shared_ptr<jumpBalls> set)  // sets the value of jumpBall
+void gameStateShared::setJumpBall(boost::shared_ptr<jumpBalls> set)  // sets the value of jumpBall
 {
     jumpBall = set;
     
     
 }
 
-static float gameStateShared::getYOffset()  // returns the value of yOffset
+float gameStateShared::getYOffset()  // returns the value of yOffset
 {
     return (yOffset);
 }
-static void gameStateShared::setYOffset(float set)  // sets the value of yOffset
+void gameStateShared::setYOffset(float set)  // sets the value of yOffset
 {
     yOffset = set;
 }

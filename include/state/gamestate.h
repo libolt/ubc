@@ -265,7 +265,7 @@ private:
 //    bool basketballInstancesCreated;  // stores whether basketball instance(s) have been created
 //    bool courtInstancesCreated;  // stores whether team instances have been created
 //    bool hoopInstancesCreated;  // stores whether team instances have been created
-    bool playerInstancesCreated;  // stores whether player instances have been created
+//    bool playerInstancesCreated;  // stores whether player instances have been created
 //    bool teamInstancesCreated;  // stores whether team instances have been created
 //    bool activeTeamInstancesCreated;  // stores whether the active team instances have been created
     bool basketballModelLoaded;  // stores whether basketball model has been loaded

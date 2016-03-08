@@ -60,7 +60,7 @@ gameState::gameState()  // constructor
 //    basketballInstancesCreated = false;
 //    courtInstancesCreated = false;
 //    hoopInstancesCreated = false;
-    playerInstancesCreated = false;
+//    playerInstancesCreated = false;
 //    teamInstancesCreated = false;
 //    activeTeamInstancesCreated = false;
     basketballModelLoaded = false;
@@ -407,13 +407,14 @@ bool gameState::createInstances()  // creates object instances
 {
     bool returnType = true;
     logMsg("gameState creating instances!");
-    if (!playerInstancesCreated)
+    if (!getPlayerInstanceCreated())
     {
+        logMsg("player Instances not created!");
         if (createPlayerInstances())  // create player instances
         {
             logMsg("Player instances created!");
 //            exit(0);
-            playerInstancesCreated = true;
+            setPlayerInstanceCreated(true);
 //            return (true);
         }
         else 

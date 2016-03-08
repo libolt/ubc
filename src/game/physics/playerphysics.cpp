@@ -20,7 +20,11 @@
 
 #include "conversion.h"
 //#include "state/gamestate.h"
+#include "state/basketballstate.h"
+#include "state/courtstate.h"
+#include "state/hoopstate.h"
 #include "state/playerstate.h"
+#include "state/teamstate.h"
 #include "engine/physicsengine.h"
 #include "physics/playerphysics.h"
 #include "logging.h"
@@ -203,26 +207,26 @@ void playerPhysics::updatePosition()  // updates the position of player objecgts
 //    teamTypes teamWithBall = gameS->getTeamWithBall();
     int playerWithBall;
 
-//    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
+    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = getActiveTeamInstance();
     std::vector <std::vector<boost::shared_ptr<playerState> > > activePlayerInstance;
-//    std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
+    std::vector<basketballState> basketballInstance = getBasketballInstance();
 
     // checks to see if player positions need updated
     size_t z = 0;
     while (z < getActiveTeamInstance().size())
     {
-        activePlayerInstance.push_back(getActiveTeamInstance()[z]->getActivePlayerInstance());
+        activePlayerInstance.push_back(activeTeamInstance[z]->getActivePlayerInstance());
         size_t y = 0;
         while (y < activePlayerInstance[z].size())
         {
             int humanInstance = -1;
-            if (getActiveTeamInstance()[z]->getHumanControlled())
+            if (activeTeamInstance[z]->getHumanControlled())
             {
-                logMsg("phys update human == " +convert->toString(getActiveTeamInstance()[z]->getHumanPlayer()));
-                humanInstance = getActiveTeamInstance()[z]->getHumanPlayer();
+                logMsg("phys update human == " +convert->toString(activeTeamInstance[z]->getHumanPlayer()));
+                humanInstance = activeTeamInstance[z]->getHumanPlayer();
 
             }
-            if (y != humanInstance && !getActiveTeamInstance()[z][y]->getCourtPositionChanged())
+            if (y != humanInstance && !activePlayerInstance[z][y]->getCourtPositionChanged())
             {
                 btTransform transform = activePlayerInstance[z][y]->getPhysBody()->getWorldTransform();
                 btVector3 physPos = transform.getOrigin();
@@ -249,10 +253,10 @@ void playerPhysics::updatePosition()  // updates the position of player objecgts
             }
             ++y;
         }
-        getActiveTeamInstance()[z]->setActivePlayerInstance(activePlayerInstance[z]);
+        activeTeamInstance[z]->setActivePlayerInstance(activePlayerInstance[z]);
     ++z;
     }
-    gameS->setActiveTeamInstance(activeTeamInstance);
+    setActiveTeamInstance(activeTeamInstance);
 }
 
 bool playerPhysics::jump(teamTypes teamType, int playerID)  // calculates and executes player jumping in the air
@@ -260,8 +264,8 @@ bool playerPhysics::jump(teamTypes teamType, int playerID)  // calculates and ex
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 
-    std::vector<courtState> courtInstance = gameS->getCourtInstance();
-//    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
+    std::vector<courtState> courtInstance = getCourtInstance();
+    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = getActiveTeamInstance();
     std::vector<boost::shared_ptr<playerState> > activePlayerInstance = getActiveTeamInstance()[teamType]->getActivePlayerInstance();
     std::vector<size_t> activePlayerID = activeTeamInstance[teamType]->getActivePlayerID();
     btVector3 playerJumpBeginPos;
@@ -341,24 +345,26 @@ bool playerPhysics::jump(teamTypes teamType, int playerID)  // calculates and ex
         ++x;
     }
     activeTeamInstance[teamType]->setActivePlayerInstance(activePlayerInstance);
-    gameS->setActiveTeamInstance(activeTeamInstance);
-    gameS->getActiveTeamInstance()[teamType]->getActivePlayerInstance()[playerID]->getPhysBody()->setLinearVelocity(btVector3(15,-15,0));
+    setActiveTeamInstance(activeTeamInstance);
+    getActiveTeamInstance()[teamType]->getActivePlayerInstance()[playerID]->getPhysBody()->setLinearVelocity(btVector3(15,-15,0));
     return (true);
 }
 
 bool playerPhysics::shootBasketball(teamTypes teamType, int playerID)  // calculates and executes basketball being shot
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+
+    // FIXME! Disabled until I can do a proper rewrite
+/*    boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 
     comparison compare;
-    std::vector<courtState> courtInstance = gameS->getCourtInstance();
-    std::vector<hoopState> hoopInstance = gameS->getHoopInstance();
-    std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
-    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
+    std::vector<courtState> courtInstance = getCourtInstance();
+    std::vector<hoopState> hoopInstance = getHoopInstance();
+    std::vector<basketballState> basketballInstance = getBasketballInstance();
+    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = getActiveTeamInstance();
     std::vector<boost::shared_ptr<playerState> > activePlayerInstance = activeTeamInstance[teamType]->getActivePlayerInstance();
 
-    int activeBBallInstance = gameS->getActiveBBallInstance();
+    int activeBBallInstance = getActiveBBallInstance();
 
 //    Ogre::Vector3 playerPos = activePlayerInstance[x].getNode()->getPosition();
 //    Ogre::Vector3 basketballPos = basketballInstance[activeBBallInstance].getNode()->getPosition();
@@ -392,7 +398,7 @@ bool playerPhysics::shootBasketball(teamTypes teamType, int playerID)  // calcul
                 {
                     activeTeamInstance[teamType]->setPlayerWithBallDribbling(false);
                    // exit(0);
-                    gameS->setActiveTeamInstance(activeTeamInstance);
+                    setActiveTeamInstance(activeTeamInstance);
                 }       
 
                 if (!shotSet)
@@ -459,10 +465,10 @@ bool playerPhysics::shootBasketball(teamTypes teamType, int playerID)  // calcul
                     if (!midShotPosSet)
                     {
                         midShotPos.setY(endShotPos.getY() +8);
-                      /*  if (midShotPos.getY() < 0)
-                        {
-                            midShotPos.setY(-1 * (midShotPos.getY()));
-                        }*/
+//                        if (midShotPos.getY() < 0)
+//                        {
+//                            midShotPos.setY(-1 * (midShotPos.getY()));
+//                        }
                         midShotPosSet = true;
                         logMsg("midShotPos y = " +convert->toString(midShotPos.getY()));
                         logMsg("midShotPosSet");
@@ -610,5 +616,6 @@ bool playerPhysics::shootBasketball(teamTypes teamType, int playerID)  // calcul
   //  exit(0);
     gameS->setBasketballInstance(basketballInstance);
     return (true);
+*/
 }
 

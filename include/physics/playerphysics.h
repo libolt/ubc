@@ -22,10 +22,11 @@
 #define _PLAYERPHYSICS_H_
 
 #include "physics/physics.h"
+#include "state/gamestateshared.h"
 
 //class physics;
 
-class playerPhysics : public physics
+class playerPhysics : public physics, public gameStateShared
 {
     public:
         playerPhysics();  // constructor

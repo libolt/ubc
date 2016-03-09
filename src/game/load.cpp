@@ -518,7 +518,7 @@ std::vector<boost::shared_ptr<playerState> > loader::loadPlayers()  // loads the
 //    std::vector<std::string> playerFiles = load->getPlayerFiles();
 
     std::vector<std::string>::iterator it;
-    for (it = playerFiles.begin(); it != playerFiles.end(); ++it)
+/*    for (it = playerFiles.begin(); it != playerFiles.end(); ++it)
     {
         logMsg("playerFile = " +*it);
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
@@ -526,7 +526,8 @@ std::vector<boost::shared_ptr<playerState> > loader::loadPlayers()  // loads the
 #else
         players.push_back(loadPlayerFile(findFile("players/" + *it)));
 #endif
-    }
+//    exit(0);
+    }*/
     return (players);
 }
 

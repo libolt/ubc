@@ -237,7 +237,7 @@ private:
 
 //    std::vector<teamData> teamDataInstance;	 // stores the vector of teams loaded from the xml files
 //    std::vector<playerData> playerDataInstance;  // stores the vector of the players loaded from the xml files
-    std::vector<boost::shared_ptr<playerState> > playerInstance;  // stores the vector of the players loaded from the xml files
+//c    std::vector<boost::shared_ptr<playerState> > playerInstance;  // stores the vector of the players loaded from the xml files
     
     std::vector<courtData> courtDataInstance;  // stores the vector the courts loaded from the xml files
 

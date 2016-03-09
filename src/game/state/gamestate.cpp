@@ -578,10 +578,10 @@ bool gameState::createPlayerInstances()  // creates player instances
 {
     boost::shared_ptr<loader> load = loader::Instance();
 
-    playerInstance = load->loadPlayers();
-    if (playerInstance.size() > 0)
+    setPlayerInstances(load->loadPlayers());
+    if (getPlayerInstance().size() > 0)
     {
-        logMsg("player name = " +playerInstance[0]->getPlayerName());
+        logMsg("player name = " +getPlayerInstance()[0]->getPlayerName());
 //        exit(0);
         return (true);
     }

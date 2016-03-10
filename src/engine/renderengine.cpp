@@ -580,6 +580,9 @@ bool renderEngine::createScene()
 //    misc["externalGLContext"]    = Ogre::StringConverter::toString((int)sdlWindow);
 //    winHandle = Ogre::StringConverter::toString((unsigned long)sysInfo.info.android.window);
 //    exit(0);
+    logMsg("winHandle = " +winHandle);
+
+//    exit(0);
 	misc["externalWindowHandle"] = winHandle;
 //	misc["externalGLContext"] = Ogre::StringConverter::toString((unsigned long)SDL_GL_GetCurrentContext());
 //    exit(0);
@@ -597,6 +600,10 @@ bool renderEngine::createScene()
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 	sdlWindow = SDL_CreateWindowFrom(mWindow);
 #endif
+     if (mWindow == NULL)
+     {
+         logMsg("createScene mWindow == NULL!");
+     }
 //exit(0);
 /*        
 //    SDL_SetWindowSize(sdlWindow, w, h);
@@ -741,6 +748,11 @@ bool renderEngine::createScene()
     l->setPosition(20,80,56);
 
  
+     if (mWindow == NULL)
+     {
+         logMsg("createScene mWindow 2 == NULL!");
+     }
+     exit(0);
 	//	    Ogre::LogManager::getSingletonPtr()->logMessage("winHandle = " +winHandle);
 
 	// this next bit is for the sake of the input handler

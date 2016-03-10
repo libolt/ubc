@@ -522,7 +522,7 @@ int main(int argc, char *argv[])
     }
     else
     {
-        logMsg("Unable to setip UBC state!");
+        logMsg("Unable to setup UBC state!");
         return (false);
     }
 
@@ -530,7 +530,7 @@ int main(int argc, char *argv[])
     if (ubc.getRender()->getMWindow() == NULL)
     {
         logMsg("mWindow == NULL!");
-        exit(0);
+//        exit(0);
     }
 //    exit(0);
 //    ubc.setupState();  // sets up the game state

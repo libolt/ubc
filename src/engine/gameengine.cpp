@@ -29,6 +29,8 @@
 #include "engine/renderengine.h"
 #include "engine/sound/soundengine.h"
 
+boost::shared_ptr<renderEngine> gameEngine::render; 
+
 /*boost::shared_ptr<gameEngine> gameEngine::pInstance;
 
 boost::shared_ptr<gameEngine> gameEngine::Instance()
@@ -113,7 +115,7 @@ bool gameEngine::getStart()  // retrieves the value of start
 }
 void gameEngine::setStart(bool set)  // sets the value of start
 {
-    start = set;
+//    start = set;
 }
 
 bool gameEngine::getQuitGame()  // retrieves the value of quitGame

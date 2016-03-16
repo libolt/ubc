@@ -58,6 +58,7 @@ renderEngine* renderEngine::Instance()
     AConfiguration *renderEngine::config;
 #endif
 
+int renderEngine::instance;
 SDL_Window *renderEngine::sdlWindow;
 SDL_SysWMinfo renderEngine::sysInfo; 
 
@@ -98,6 +99,7 @@ renderEngine::renderEngine()
    mWindow = NULL;
    RERoot = NULL;
    
+   instance = 0;
 //   windowWidth = 0;
 //   windowHeight = 0;
 }
@@ -521,6 +523,7 @@ bool renderEngine::createWindow()
 bool renderEngine::createScene()
 {
 
+    instance += 1;
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     logMsg("Hello");
 	config = AConfiguration_new();
@@ -752,7 +755,7 @@ bool renderEngine::createScene()
      {
          logMsg("createScene mWindow 2 == NULL!");
      }
-     exit(0);
+//     exit(0);
 	//	    Ogre::LogManager::getSingletonPtr()->logMessage("winHandle = " +winHandle);
 
 	// this next bit is for the sake of the input handler
@@ -821,6 +824,8 @@ bool renderEngine::renderFrame()  // renders a frame to the screen
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    exit(0);
+    logMsg("Rendering Frame!");
+    logMsg("Render Instance == " +convert->toString(instance));
     if (mWindow == NULL)
     {
         logMsg("mWindow is NULL!");

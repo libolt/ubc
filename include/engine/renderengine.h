@@ -155,6 +155,8 @@ class renderEngine : public engine
 
 #endif
     
+    static int instance;  // used to count number of instances
+
     // SDL code
     static SDL_Window *sdlWindow;  // stores the SDL window
     SDL_GLContext sdlGLContext;  // the SDL GL Context

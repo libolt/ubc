@@ -59,15 +59,17 @@ public:
     void setGui(boost::shared_ptr<GUISystem> set);  // sets the value of gui
 */
 
-    bool getQuitGame();  // retrieves the value of quitGame
+/*    bool getQuitGame();  // retrieves the value of quitGame
     void setQuitGame(bool quit);  // sets the value of quitGame
-
+*/
     boost::shared_ptr<gameState> getGameS();  // retrieves the value of gameS
     void setGameS(boost::shared_ptr<gameState> set);  // sets the value of gameS
     
     bool setupState();  // sets up the UBC game state
     void executeState();  // executes the UBC game code
 
+    void run();  // runs the game
+    
     bool startGame();  // starts a game
 
     void processInput();  // processes game input
@@ -83,7 +85,7 @@ private:
     boost::shared_ptr<networkState> networkS;  // the gameState object
     
     
-    bool quitGame;
+//    bool quitGame;
 };
 
 #endif

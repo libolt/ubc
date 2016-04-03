@@ -83,9 +83,9 @@ public:
     bool getMovePlayer();  // retrieves the value of movePlayer 
     void setMovePlayer(bool set);  // sets the value of movePlayer 
 
-/*    float getYOffset();  // retrieves the value of yOffset
+    float getYOffset();  // retrieves the value of yOffset
     void setYOffset(float set);  // sets the value of yOffset
-*/
+
     
     boost::shared_ptr<renderEngine> getRender();  // retrieves the value of render
     void setRender(boost::shared_ptr<renderEngine> set);  // sets the value of render
@@ -117,7 +117,7 @@ private:
     static boost::shared_ptr<renderEngine> render;  // render object
     boost::shared_ptr<inputEngine> input;  // input object
     boost::shared_ptr<networkEngine> network;  // network object    
-//    float yOffset; // stores the y offset for objects on the screen
+    float yOffset; // stores the y offset for objects on the screen
     
     Ogre::Vector3 courtTranslateVector;
 
@@ -134,7 +134,7 @@ private:
     // Flags
     bool userInputLoaded;  // if set then user input configuration has been loaded from file
     bool menuActive;  // determines whether or not a menu is active
-    bool start;  // if set then starts running game logic
+    static bool start;  // if set then starts running game logic
     bool quitGame;  // if set then triggers the shutdown process for the game
     bool serverRunning;  // if set triggers the network server code
     bool clientRunning;  // if set triggers the network client code

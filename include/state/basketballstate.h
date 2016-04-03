@@ -40,6 +40,7 @@
 //#include "physics/basketballphysics.h"
 #include "enums.h"
 #include "state/state.h"
+#include "state/gamestateshared.h"
 //#include "state/playerstate.h"
 //#include "state/courtstate.h"
 #include "data/basketballdata.h"
@@ -51,7 +52,7 @@ class playerState;
 class courtState;
 //class basketballData;
 
-class basketballState : public state, public basketballEntity, public basketballData
+class basketballState : public state, public basketballEntity, public basketballData, public gameStateShared
 {
 public:
 

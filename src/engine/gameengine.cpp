@@ -27,9 +27,10 @@
 #include "logging.h"
 #include "network/networkplayerstateobject.h"
 #include "engine/renderengine.h"
-#include "engine/sound/soundengine.h"
+//#include "engine/sound/soundengine.h"
 
 boost::shared_ptr<renderEngine> gameEngine::render; 
+bool gameEngine::start;
 
 /*boost::shared_ptr<gameEngine> gameEngine::pInstance;
 
@@ -75,15 +76,16 @@ gameEngine::gameEngine()  // constructor
     boost::shared_ptr<networkEngine> tempNetworkSharedPtr = boost::shared_ptr<networkEngine>(tempNetworkObj);
     setNetwork(tempNetworkSharedPtr);
 
-/*    // physicsEngine
-    physicsEngine *tempPhysicsObj = new physicsEngine;
-    boost::shared_ptr<physicsEngine> tempPhysicsSharedPtr = boost::shared_ptr<physicsEngine>(tempPhysicsObj);
-    set(tempPhysicsSharedPtr);
-*/
+///    // physicsEngine
+///    physicsEngine *tempPhysicsObj = new physicsEngine;
+///    boost::shared_ptr<physicsEngine> tempPhysicsSharedPtr = boost::shared_ptr<physicsEngine>(tempPhysicsObj);
+///    set(tempPhysicsSharedPtr);
+
     // inputEngine
     inputEngine *tempInputObj = new inputEngine;
     boost::shared_ptr<inputEngine> tempInputSharedPtr = boost::shared_ptr<inputEngine>(tempInputObj);
     setInput(tempInputSharedPtr);
+
 
 }
 
@@ -109,14 +111,14 @@ void gameEngine::setMenuActive(bool set)  // sets the value of menuActive
     menuActive = set;
 }
 
-bool gameEngine::getStart()  // retrieves the value of start
+/*bool gameEngine::getStart()  // retrieves the value of start
 {
     return (start);
 }
 void gameEngine::setStart(bool set)  // sets the value of start
 {
-//    start = set;
-}
+    start = set;
+}*/
 
 bool gameEngine::getQuitGame()  // retrieves the value of quitGame
 {
@@ -180,14 +182,14 @@ void gameEngine::setMovePlayer(bool set)  // sets the value of moviePlayer
 	movePlayer = set;
 }
 
-/*float gameEngine::getYOffset()  // returns the value of yOffset
+float gameEngine::getYOffset()  // returns the value of yOffset
 {
     return (yOffset);
 }
 void gameEngine::setYOffset(float set)  // sets the value of yOffset
 {
     yOffset = set;
-}*/
+}
 
 boost::shared_ptr<renderEngine> gameEngine::getRender()  // retrieves the value of renderE
 {

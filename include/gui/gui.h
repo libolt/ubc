@@ -37,6 +37,7 @@
 #include "MyGUI_OgrePlatform.h"
 #include "MyGUI_OgreRenderManager.h"
 
+#include "ubcbase.h"
 #include "enums.h"
 #include "state/gamestateshared.h"
 //#include "input.h" 
@@ -50,7 +51,7 @@
 
 //class UBC;
 
-class GUISystem : public gameEngine, public gameStateShared //: public UBC //: public renderEngine //, inputSystem
+class GUISystem : public UBCBase, public gameStateShared //: public UBC //: public renderEngine //, inputSystem
 {
 public:
     GUISystem();  // constructor
@@ -176,7 +177,7 @@ public:
     
     bool checkTeamInstancesCreated();  // Checks if team instances have been created and if not creates them.
 
-protected:
+
 
 //    GUISystem();
 //    GUISystem(const GUISystem&);
@@ -272,7 +273,7 @@ private:
     MyGUI::Button *serverButton;
     MyGUI::Button *clientButton;
     
-    static MyGUI::Button *backMainMenuButton;
+    MyGUI::Button *backMainMenuButton;
     MyGUI::Button *backNetworkSetupButton;
     MyGUI::Button *displayButton;
     MyGUI::Button *inputButton;

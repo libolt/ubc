@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   Copyright (C) 1999 - 2016 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -29,6 +29,7 @@
 
 //#include "engine/networkengine.h"
 
+#include "ubcbase.h"
 #include "gui/gui.h"
 #include "SDL.h"
 #include "SDL_syswm.h"
@@ -49,15 +50,15 @@ class gameState;
 class networkState;
 
 
-class UBC : public GUISystem
+class UBC : public UBCBase
 {
 public: 
     UBC(); // constructor
     ~UBC();	// destructor
 
-/*    boost::shared_ptr<GUISystem> getGui();  // retrieves the value of gui
+    boost::shared_ptr<GUISystem> getGui();  // retrieves the value of gui
     void setGui(boost::shared_ptr<GUISystem> set);  // sets the value of gui
-*/
+
 
 /*    bool getQuitGame();  // retrieves the value of quitGame
     void setQuitGame(bool quit);  // sets the value of quitGame
@@ -80,7 +81,7 @@ protected:
   
 private:
 
-//    boost::shared_ptr<GUISystem> gui;  // the GUI object.
+    boost::shared_ptr<GUISystem> gui;  // the GUI object.
     boost::shared_ptr<gameState> gameS;  // the gameState object
     boost::shared_ptr<networkState> networkS;  // the gameState object
     

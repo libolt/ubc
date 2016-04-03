@@ -269,7 +269,7 @@ bool GUISystem::initMyGUI()  // Initializes MyGUI
     mPlatform->initialise(mWindow, mSceneMgr, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 #else
 */
-    mPlatform->initialise(getRender()->getMWindow(), getRender()->getMSceneMgr(), "UBCData"); // mWindow is Ogre::RenderWindow*, mSceneManager is Ogre::SceneManager*
+    mPlatform->initialise(getGameE()->getRender()->getMWindow(), getGameE()->getRender()->getMSceneMgr(), "UBCData"); // mWindow is Ogre::RenderWindow*, mSceneManager is Ogre::SceneManager*
 //#endif
 
     logMsg("Crash??");
@@ -453,11 +453,11 @@ void GUISystem::networkServer()  // sets up  game as a network server
     setGameType(MULTI);
 //   hideNetworkSetupWidgets();  // Hides Network Setup Menu widgets
     menuActive = false;
-    getNetwork()->setIPAddress(serverIPAddressBox->getCaption());  // sets the neworkEngine's ipAddress string to that of the caption
-    logMsg("server ip = " +getNetwork()->getIPAddress());
-    if (getNetwork()->serverSetup())  // attempts to setup as a network server
+    getGameE()->getNetwork()->setIPAddress(serverIPAddressBox->getCaption());  // sets the neworkEngine's ipAddress string to that of the caption
+    logMsg("server ip = " +getGameE()->getNetwork()->getIPAddress());
+    if (getGameE()->getNetwork()->serverSetup())  // attempts to setup as a network server
     {
-        getNetwork()->setIsServer(true);  // if successful sets isServer to true
+        getGameE()->getNetwork()->setIsServer(true);  // if successful sets isServer to true
     }
 
 //    gameE->setCreateScene(true); // sets variable true that tells gameEngine to start rendering the scene
@@ -473,11 +473,11 @@ void GUISystem::networkClient()  // sets up game as a network client
     setGameType(MULTI);
 //    hideNetworkSetupWidgets();  // Hides Network Setup Menu widgets
     menuActive = false;
-    getNetwork()->setIPAddress(clientIPAddressBox->getCaption());  // sets the neworkEngine's ipAddress string to that of the caption
+    getGameE()->getNetwork()->setIPAddress(clientIPAddressBox->getCaption());  // sets the neworkEngine's ipAddress string to that of the caption
 //    network->networkClient();
-    if (getNetwork()->clientConnect()) // attempts to connect to the remote server
+    if (getGameE()->getNetwork()->clientConnect()) // attempts to connect to the remote server
     {
-        getNetwork()->setIsClient(true);  // if successful sets isClient to true
+        getGameE()->getNetwork()->setIsClient(true);  // if successful sets isClient to true
     }
 //    gameE->setCreateScene(true); // sets variable true that tells gameEngine to start rendering the scenetop
 

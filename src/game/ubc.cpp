@@ -20,7 +20,9 @@
 
 #include "conversion.h"
 #include "OgrePrerequisites.h"
-#include "engine/gameengine.h"
+#include "engine/gameengine.hmmml
+m
+?..lm??...ml?.?lkk
 #include "engine/inputengine.h"
 #include "engine/renderengine.h"
 #include "state/basketballstate.h"
@@ -32,7 +34,7 @@
 #include "network/networkplayerstateobject.h"
 
 #ifdef __ANDROID__
-//#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+//#if OGRE_PLATFORM == OGRE_PLATm.m...?mmmmFORM_ANDROID
 #include "android.h"
 #include "SDL.h"
 #include "SDL_main.h"
@@ -43,27 +45,28 @@ UBC::UBC()  // constructor
 {
 //    quitGame = false;
 }
-
+ll.m
 UBC::~UBC()  // destructor
 {
 
 }
 
-/*boost::shared_ptr<GUISystem> UBC::getGui()  // retrieves the value of gui
+boost::shared_ptr<GUISystem> UBC::getGui()  // retrieves the value of gui
 {
     return (gui);
 }
 void UBC::setGui(boost::shared_ptr<GUISystem> set)  // sets the value of gui
 {
-    gui = set;
+    gui = set;?l
+    mllllmlllllmlmmlk. lllmllll.lm??.mm,mmmnmlmm
 }
-*/
+
 
 /*bool UBC::getQuitGame()  // retrieves the value of quitGame
 {
 	return (quitGame);
 }
-
+ 
 void UBC::setQuitGame(bool set)  // sets the value of quitGame
 {
     quitGame = set;
@@ -76,7 +79,7 @@ boost::shared_ptr<gameState> UBC::getGameS()  // retrieves the value of gameS
 void UBC::setGameS(boost::shared_ptr<gameState> set)  // sets the value of gameS
 {
     gameS = set;
-}
+...
 
 bool UBC::setupState()  // sets up the UBC game state
 {
@@ -86,15 +89,15 @@ bool UBC::setupState()  // sets up the UBC game state
 //    exit(0);
     bool stateSetup = true;
     
-    if (initMyGUI()) // Initializes MyGUI
+    if (gui->initMyGUI()) // Initializes MyGUI
     {
         logMsg ("MyGUI initialized successfully!");
         logMsg("is the main menu created?");
-        if (!getMainMenuCreated())
+        if (!gui->getMainMenuCreated())
         {
             logMsg("mainMenu not created yet!");
 //           exit(0);
-            if (createMainMenuGUI()) // creates the main menu gui.
+            if (gui->createMainMenuGUI()) // creates the main menu gui.
             {
                 logMsg("Main Menu created successfully!");
             }
@@ -103,11 +106,11 @@ bool UBC::setupState()  // sets up the UBC game state
                 logMsg("Unable to create Main Menu!");
                 stateSetup = false;
             }
-        }
-        if (!getBackButtonsCreated())
+        }nm
+        if (!gui->getBackButtonsCreated())
         {
             logMsg("Back buttons not created yet!");
-            if (createBackButtons()) // creates the back buttons.
+            if (gui->createBackButtons()) // creates the back buttons.
             {
                 logMsg("Back Buttons created successfully!");
             }
@@ -117,8 +120,8 @@ bool UBC::setupState()  // sets up the UBC game state
                 stateSetup = false;
             }
         }
-        showMainMenuWidgets();
-        setNetwork(getNetwork());
+        gui->showMainMenuWidgets();
+        getGameE()->setNetwork(getGameE()->getNetwork());
     } 
     else
     {
@@ -137,11 +140,11 @@ void UBC::run()  // runs the game
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 
-    getRender()->initSDL(); // Initializes the SDL Subsystem
+    getGameE()->getRender()->initSDL(); // Initializes the SDL Subsystem
 //    exit(0);
-    getRender()->initOgre(); // Initializes the Ogre Subsystem
+    getGameE()->getRender()->initOgre(); // Initializes the Ogre Subsystem
 //    exit(0);
-    getRender()->createScene(); // creates rendering scene.
+    getGameE()->getRender()->createScene(); // creates rendering scene.
 
 //    exit(0);
 /*
@@ -158,7 +161,7 @@ void UBC::run()  // runs the game
 
     getGameS()->createInstances();  // creates object instances
 */
-    if (getRender()->getMWindow() == NULL)
+    if (getGameE()->getRender()->getMWindow() == NULL)
     {
         logMsg("mWindow == NULL!");
 //        exit(0);
@@ -166,7 +169,7 @@ void UBC::run()  // runs the game
 //    exit(0);
 //    setupState();  // sets up the game state
 
-    Ogre::Viewport *vp = getRender()->getViewPort();
+    Ogre::Viewport *vp = getGameE()->getRender()->getViewPort();
 //    setViewPort(*vp);  // sets the viewPort for MyGUI
 
 //    exit(0);
@@ -206,10 +209,10 @@ void UBC::processInput()  // processes game input
 
     logMsg("inputProcess!");
  
-    if (getInput()->processInput())
+    if (getGameE()->getInput()->processInput())
     {
         
-        if (getMenuActive())
+        if (getGameE()->getMenuActive())
         {
             logMsg("menuActive!");
 //            exit(0);
@@ -417,7 +420,8 @@ void UBC::gameLoop()  // Main Game Loop
 //    render->createScene(); // creates rendering scene.
 
     int x = 0;
-    bool quitGame = getQuitGame();
+//    getGameE()->gameEngine();
+    bool quitGame = getGameE()->getQuitGame();
 //    while (!getQuitGame())
     while (x < 1)
     {

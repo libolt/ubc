@@ -20,9 +20,7 @@
 
 #include "conversion.h"
 #include "OgrePrerequisites.h"
-#include "engine/gameengine.hmmml
-m
-?..lm??...ml?.?lkk
+#include "engine/gameengine.h"
 #include "engine/inputengine.h"
 #include "engine/renderengine.h"
 #include "state/basketballstate.h"
@@ -45,7 +43,7 @@ UBC::UBC()  // constructor
 {
 //    quitGame = false;
 }
-ll.m
+
 UBC::~UBC()  // destructor
 {
 
@@ -57,8 +55,7 @@ boost::shared_ptr<GUISystem> UBC::getGui()  // retrieves the value of gui
 }
 void UBC::setGui(boost::shared_ptr<GUISystem> set)  // sets the value of gui
 {
-    gui = set;?l
-    mllllmlllllmlmmlk. lllmllll.lm??.mm,mmmnmlmm
+    gui = set;
 }
 
 
@@ -79,7 +76,7 @@ boost::shared_ptr<gameState> UBC::getGameS()  // retrieves the value of gameS
 void UBC::setGameS(boost::shared_ptr<gameState> set)  // sets the value of gameS
 {
     gameS = set;
-...
+}
 
 bool UBC::setupState()  // sets up the UBC game state
 {
@@ -106,7 +103,7 @@ bool UBC::setupState()  // sets up the UBC game state
                 logMsg("Unable to create Main Menu!");
                 stateSetup = false;
             }
-        }nm
+        }
         if (!gui->getBackButtonsCreated())
         {
             logMsg("Back buttons not created yet!");

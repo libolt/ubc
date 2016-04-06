@@ -133,7 +133,7 @@ private:
 
     // Flags
     bool userInputLoaded;  // if set then user input configuration has been loaded from file
-    bool menuActive;  // determines whether or not a menu is active
+    static bool menuActive;  // determines whether or not a menu is active
     static bool start;  // if set then starts running game logic
     bool quitGame;  // if set then triggers the shutdown process for the game
     bool serverRunning;  // if set triggers the network server code

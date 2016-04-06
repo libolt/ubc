@@ -31,6 +31,8 @@
 
 boost::shared_ptr<renderEngine> gameEngine::render; 
 bool gameEngine::start;
+bool gameEngine::menuActive;
+
 
 /*boost::shared_ptr<gameEngine> gameEngine::pInstance;
 

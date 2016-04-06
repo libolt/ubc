@@ -17,57 +17,57 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-mmmmn).
-#include "ekmgbngine/networkengine.h"
-p.u|nynmjummml
+
+#include "engine/networkengine.h"
+
 #include "gui/gui.h"
-#include "convelrsion.h"m
-#include "diokkul=ikukata/courtdata.h"m.mmk.mmm 
+#include "conversion.h"
+#include "data/courtdata.h"
 //#include mmloukoo"engine/gameengine.h" 
-#include "sogtate/gamestate.h"
-#include "loadkne.h"
-#include "mlooggming.h"j
-#include "ekmmmmmnmotmkklkjkkyyklcfgine/rendeyymrengine..mm?h"
-#include "statem/teamsn.tate.h"
-kll,mmmmmlmmoemn
+#include "state/gamestate.h"
+#include "load.h"
+#include "logging.h"
+#include "engine/renderengine.h"
+#include "state/teamstate.h"
+
 #ifdef __AmNDROID__
 #include "abndroid-config.h"
-#elsen(bf
-#include "connmfig.h"
+#else
+#include "config.h"
 #endif
- n 
+ 
 //MyGUI::Button *GUISystem::backMainMenuButton;  // static
-km
-bool GUISystem::createfMainMenuGUmmm.?,I()  // creates the main menu gui
+
+bool GUISystem::createMainMenuGUI()  // creates the main menu gui
 {
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
-oo
-    if (getGameEkmy()->getRende rf..r()->getViewPort()->getActualHeight() >= 1000)
+
+    if (getGameE()->getRender()->getViewPort()->getActualHeight() >= 1000)
     {
         logMsg("Height greater than 1000!");
 //        exit(0);
         MyGUI::FontManager::getInstance().setDefaultFont("LuxiBoldFont_18");
     }
-    elsem.. 
+    else
     {
         MyGUI::FontManager::getInstance().setDefaultFont("LuxiBoldFont_16");
 
-    }lklm. .  =icv dr
+    }
     logMsg("Loading MainMenu layout");
     MyGUI::LayoutManager::getInstance().loadLayout("MainMenu.layout");
-mymu
+
     logMsg("MainMenu layout loaded");
 //  startGameButton = mGUI->createWidget<MyGUI::Button>("Button", 362, 100, 300, 26, MyGUI::Align::Default, "Main");
 //  startGameBu  tton->setCaption("Start Game");
-    startSingleGameButton = mGU.l. mmmm.I->findWidget<MyGUI::Button>("startSingleGameButton");
+    startSingleGameButton = mGUI->findWidget<MyGUI::Button>("startSingleGameButton");
     startSingleGameButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::startSingleGameButtonClicked);
     startSingleGameButton->setStateSelected(true);
     MyGUI::InputManager::getInstance().setKeyFocusWidget(startSingleGameButton);
-    startSingleGameButton->setPosition(i(0.3 *getGameE()->getRender()->getViewPort()->getActualWidth() ), (0.1 *getGameE()->getRender()->getViewPort()->getActualHeight()) );
+    startSingleGameButton->setPosition((0.3 *getGameE()->getRender()->getViewPort()->getActualWidth() ), (0.1 *getGameE()->getRender()->getViewPort()->getActualHeight()) );
     startSingleGameButton->setSize((0.4 *getGameE()->getRender()->getViewPort()->getActualWidth() ), (0.04 *getGameE()->getRender()->getViewPort()->getActualHeight()) );
 
-    startMultiGameButton = mGUI->f.indWidget<MyGUI::Button>("startMultiGameButton");
+    startMultiGameButton = mGUI->findWidget<MyGUI::Button>("startMultiGameButton");
     startMultiGameButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::startMultiGameButtonClicked);
     startMultiGameButton->setPosition((0.3 *getGameE()->getRender()->getViewPort()->getActualWidth() ), (0.14 *getGameE()->getRender()->getViewPort()->getActualHeight()) );
     startMultiGameButton->setSize((0.4 *getGameE()->getRender()->getViewPort()->getActualWidth() ), (0.04 *getGameE()->getRender()->getViewPort()->getActualHeight()) );
@@ -77,8 +77,8 @@ mymu
     optionsButton = mGUI->findWidget<MyGUI::Button>("optionsButton");
     optionsButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::optionsButtonClicked);
     optionsButton->setPosition((0.3 *getGameE()->getRender()->getViewPort()->getActualWidth() ), (0.18 *getGameE()->getRender()->getViewPort()->getActualHeight()) );
-    optionsButton->setSize((0.4 *getGameE()ttnmtnmrlnh.,n->getRender()->getViewPort()->getActualWidth() ), (0.04 *getGameE()->getRender()->getViewPort()->getActualHeight()) );
-.lk mmmllknmvvvvvvvv.vvv,nv,vg!g.g.g...gg.nnggnvgg?gggg.llb:
+    optionsButton->setSize((0.4 *getGameE()->getRender()->getViewPort()->getActualWidth() ), (0.04 *getGameE()->getRender()->getViewPort()->getActualHeight()) );
+
 //  exitButton = mGUI->createWidget<MyGUI::Button>("Button", 362, 150, 300, 26, MyGUI::Align::Default, "Main");
 //  exitButton->setCaption("Exit");mlklkklllmmmmmmm mmllm
     exitButton = mGUI->findWidget<MyGUI::Button>("exitButton");
@@ -91,9 +91,6 @@ mymu
     activeMenu = MAIN;
 
     return true;
-     mkkmn
-     m.mmmmlk. mmmmmmm m
-      mmmmmmmmklkkkkllllolooooookkkkkkookkllllllllooook loollmmllllm.lm
 }
 
 bool GUISystem::createNetworkSetupGUI()  // loads the GUI for the network setup screen
@@ -103,7 +100,7 @@ bool GUISystem::createNetworkSetupGUI()  // loads the GUI for the network setup 
 
     MyGUI::LayoutManager::getInstance().loadLayout("NetworkSetupMenu.layout");
 
-    serverButton = mGUI->findWidget<mMyGUI::Button>("serverButton"); // loads Server Button
+    serverButton = mGUI->findWidget<MyGUI::Button>("serverButton"); // loads Server Button
     serverButton->setVisible(false);
     serverButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::serverButtonClicked);
     serverButton->setPosition((0.3 *getGameE()->getRender()->getViewPort()->getActualWidth() ), (0.14 *getGameE()->getRender()->getViewPort()->getActualHeight()) );
@@ -137,22 +134,23 @@ bool GUISystem::createNetworkClientSetupGUI()  // creates GUI for network client
     clientIPAddressBox->setSize((0.4 *getGameE()->getRender()->getViewPort()->getActualWidth() ), (0.04 *getGameE()->getRender()->getViewPort()->getActualHeight()) );
 
     clientConnectButton = mGUI->findWidget<MyGUI::Button>("clientConnectButton");  // loads Court Selection Button
-    clientConnecyoojmeqtButton->setVisible(false);
+    clientConnectButton->setVisible(false);
     clientConnectButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::clientConnectButtonClicked);
     clientConnectButton->setSize((0.4 *getGameE()->getRender()->getViewPort()->getActualWidth() ), (0.04 *getGameE()->getRender()->getViewPort()->getActualHeight()) );
-o
+
     networkClientSetupMenuCreated = true;
-    my.c
-    return true;g
-}mmk.n(
-bool GUISystem:b(:createNetworkServerSetupGUI()  // creates GUI for network server setup screen.
+    
+    return true;
+}
+
+bool GUISystem::createNetworkServerSetupGUI()  // creates GUI for network server setup screen.
 {
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
 
     MyGUI::LayoutManager::getInstance().loadLayout("NetworkServerSetupMenu.layout");
 
-    numClientsSelecfnnnntBox = mGUI->findWidget<MyGUI::ListBox>("numClientsSelectBox");  // loads  Selection box for number of clients allowed
+    numClientsSelectBox = mGUI->findWidget<MyGUI::ListBox>("numClientsSelectBox");  // loads  Selection box for number of clients allowed
     numClientsSelectBox->setVisible(false);
     
     serverIPAddressBox = mGUI->findWidget<MyGUI::EditBox>("serverIPAddressBox");  // loads IP Address EditBox

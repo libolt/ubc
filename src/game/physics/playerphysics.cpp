@@ -615,7 +615,8 @@ bool playerPhysics::shootBasketball(teamTypes teamType, int playerID)  // calcul
    // gameS->getActiveTeamInstance()[teamType].getPlayerInstance()[playerID].getPhysBody()->setLinearVelocity(btVector3(15,-15,0));
   //  exit(0);
     gameS->setBasketballInstance(basketballInstance);
+    */
     return (true);
-*/
+
 }
 

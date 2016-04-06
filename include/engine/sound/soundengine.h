@@ -22,6 +22,7 @@
 #ifndef SOUNDENGINE_H_
 #define SOUNDENGINE_H_
 
+#define NOMINMAX
 //#include "OgreAL.h"
 
 //#include "soundobject.h"

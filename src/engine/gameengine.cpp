@@ -53,7 +53,7 @@ gameEngine::gameEngine()  // constructor
 //    : player[0](0),
  // playerNode[0](0)
 {
-  
+
 //    yOffset = 0.0;
 
     userInputLoaded = false;
@@ -110,17 +110,18 @@ bool gameEngine::getMenuActive()   // retrieves the value of menuActive
 }
 void gameEngine::setMenuActive(bool set)  // sets the value of menuActive
 {
+    
     menuActive = set;
 }
 
-/*bool gameEngine::getStart()  // retrieves the value of start
+bool gameEngine::getStart()  // retrieves the value of start
 {
     return (start);
 }
 void gameEngine::setStart(bool set)  // sets the value of start
 {
     start = set;
-}*/
+}
 
 bool gameEngine::getQuitGame()  // retrieves the value of quitGame
 {

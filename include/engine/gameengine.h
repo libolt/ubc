@@ -59,9 +59,7 @@ public:
     bool getMenuActive();  // retrieves the value of menuActive
     void setMenuActive(bool set);  // sets the value of menuActive 
 
-    bool getStart();  // retrieves the value of start
-    void setStart(bool set);  // sets the value of start
-    
+        
     bool getQuitGame();  // retrieves the value of quitGame
     void setQuitGame(bool set);  // sets the value of quitGame
 
@@ -82,6 +80,9 @@ public:
 
     bool getMovePlayer();  // retrieves the value of movePlayer 
     void setMovePlayer(bool set);  // sets the value of movePlayer 
+
+    bool getStart();  // retrieves the value of start
+    void setStart(bool set);  // sets the value of start
 
     float getYOffset();  // retrieves the value of yOffset
     void setYOffset(float set);  // sets the value of yOffset

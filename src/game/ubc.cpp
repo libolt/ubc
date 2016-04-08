@@ -471,6 +471,7 @@ unsigned long changeInTime = 0;
         
         if (getGameE()->getCreateScene())  // checks if the scene should be created
         {
+//            exit(0);
 //              if (render->createScene())
 //            {
                 getGameE()->setCreateScene(false);
@@ -479,16 +480,17 @@ unsigned long changeInTime = 0;
                 getGameE()->setSceneCreated(true);
 //            }
         }
-        
+//        exit(0);
         if (getGameE()->getStart())  // checks if it's time to start the game
         {
+            exit(0);
             if (startGame())
             {
                 getGameE()->setStart(false);
                 getGameE()->setRenderScene(true);
             }
         }
-        
+        exit(0);
 //        lastFPS = getRender()->getMWindow()->getLastFPS();
 //        exit(0);
 //        std::string currFPS = convert->toString(lastFPS);

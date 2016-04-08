@@ -58,9 +58,9 @@ public:
     gameState(); // constructor
     ~gameState();  // destructor
 
-    gameTypes getGameType();  // retrieves the value of gameType
+/*    gameTypes getGameType();  // retrieves the value of gameType
     void setGameType(gameTypes set);  // sets the value of gameType
-
+*/
 //    quarters getQuarter();  // retrieves the value of quarter
 //    void setQuarters(quarters set);  // sets he value of quarter
 

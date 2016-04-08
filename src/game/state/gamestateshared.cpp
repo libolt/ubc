@@ -389,3 +389,4 @@ void gameStateShared::setYOffset(float set)  // sets the value of yOffset
 {
     yOffset = set;
 }
+

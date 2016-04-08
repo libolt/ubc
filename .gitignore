@@ -43,3 +43,6 @@ debug/ubc
 Ogre.log
 doh.txt
 *.swp
+
+# Misc
+*~

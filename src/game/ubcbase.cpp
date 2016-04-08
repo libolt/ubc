@@ -26,7 +26,10 @@ boost::shared_ptr<gameEngine> UBCBase::gameE;  // the gameEngine object
 
 UBCBase::UBCBase()  // constructor
 {
-    
+    gameEngine *tempGameEObj = new gameEngine;
+    boost::shared_ptr<gameEngine> tempGameESharedPtr = boost::shared_ptr<gameEngine>(tempGameEObj);
+    gameE = tempGameESharedPtr;
+
 }
 
 UBCBase::~UBCBase()  // destructor

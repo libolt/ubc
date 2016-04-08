@@ -30,9 +30,9 @@
 //#include "engine/sound/soundengine.h"
 
 boost::shared_ptr<renderEngine> gameEngine::render; 
-bool gameEngine::start;
-bool gameEngine::menuActive;
-
+//bool gameEngine::start;
+//bool gameEngine::menuActive;
+bool gameEngine::quitGame;
 
 /*boost::shared_ptr<gameEngine> gameEngine::pInstance;
 
@@ -63,7 +63,8 @@ gameEngine::gameEngine()  // constructor
     serverRunning = false;
     clientRunning = false;
     sceneCreated = false;
-    createScene = false;    renderScene = false;
+    createScene = false;    
+    renderScene = false;
     movePlayer = false;
 
     // initialize subclasses

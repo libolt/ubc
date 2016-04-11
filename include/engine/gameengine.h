@@ -116,7 +116,7 @@ private:
 //    static boost::shared_ptr<gameEngine> pInstance;
 
     static boost::shared_ptr<renderEngine> render;  // render object
-    boost::shared_ptr<inputEngine> input;  // input object
+    static boost::shared_ptr<inputEngine> input;  // input object
     boost::shared_ptr<networkEngine> network;  // network object    
     float yOffset; // stores the y offset for objects on the screen
     
@@ -129,20 +129,20 @@ private:
     boost::chrono::milliseconds oldTime;	// stores the last reading of the timer.
     unsigned long changeInTime; // stores the difference between current reading of the timer and the previous reading.
 */
-	timing timer;
+	static timing timer;
     
 
     // Flags
-    bool userInputLoaded;  // if set then user input configuration has been loaded from file
-    bool menuActive;  // determines whether or not a menu is active
+    static bool userInputLoaded;  // if set then user input configuration has been loaded from file
+    static bool menuActive;  // determines whether or not a menu is active
     static bool start;  // if set then starts running game logic
     static bool quitGame;  // if set then triggers the shutdown process for the game
-    bool serverRunning;  // if set triggers the network server code
-    bool clientRunning;  // if set triggers the network client code
+    static bool serverRunning;  // if set triggers the network server code
+    static bool clientRunning;  // if set triggers the network client code
     static bool createScene;  // if set triggers the render system's createScene function
-    bool sceneCreated;  // stores whether scene has been created
-    bool renderScene;  // if set triggers the render system's scene rendering function
-    bool movePlayer;  // if set triggers movement of a player for testing netwoirk code
+    static bool sceneCreated;  // stores whether scene has been created
+    static bool renderScene;  // if set triggers the render system's scene rendering function
+    static bool movePlayer;  // if set triggers movement of a player for testing netwoirk code
 };
 
 #endif // _GAMEENGINE_H_

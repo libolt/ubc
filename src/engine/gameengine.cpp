@@ -11,11 +11,11 @@
  *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
  *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
  *   GNU General Public License for more details.                          *
- *                                                                         *
+ }}{{}wwweae}*                                                                         *
  *   You should have received a copy of the GNU General Public License     *
  *   along with this program; if not, write to the                         *
  *   Free Software Foundation, Inc.,                                       *
- *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
+e *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
 #include "conversion.h"
@@ -30,12 +30,19 @@
 //#include "engine/sound/soundengine.h"
 
 boost::shared_ptr<renderEngine> gameEngine::render; 
-//bool gameEngine::start;
-//bool gameEngine::menuActive;
-bool gameEngine::quitGame;
-bool gameEngine::createScene;
-bool gameEngine::start;
+boost::shared_ptr<inputEngine> gameEngine::input;
 
+bool gameEngine::userInputLoaded;
+bool gameEngine::menuActive;
+bool gameEngine::start;
+bool gameEngine::quitGame;
+bool gameEngine::serverRunning;
+bool gameEngine::clientRunning;
+bool gameEngine::createScene;
+bool gameEngine::sceneCreated;
+bool gameEngine::renderScene;
+bool gameEngine::movePlayer;
+timing gameEngine::timer;
 /*boost::shared_ptr<gameEngine> gameEngine::pInstance;
 
 boost::shared_ptr<gameEngine> gameEngine::Instance()

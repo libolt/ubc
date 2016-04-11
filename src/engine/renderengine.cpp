@@ -836,7 +836,7 @@ bool renderEngine::renderFrame()  // renders a frame to the screen
         logMsg("LastFPS == " +convert->toString(mWindow->getLastFPS()));
 //      Ogre::LogManager::getSingletonPtr()->logMessage("Rendering frame");
         mWindow->windowMovedOrResized();
-        exit(0);
+//        exit(0);
         RERoot->renderOneFrame();
 //        exit(0);
 

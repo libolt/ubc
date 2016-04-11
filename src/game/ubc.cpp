@@ -25,6 +25,7 @@
 #include "engine/renderengine.h"
 #include "state/basketballstate.h"
 #include "state/gamestate.h"
+#include "state/networkstate.h"
 #include "state/playerstate.h"
 #include "state/teamstate.h"
 #include "logging.h"
@@ -215,24 +216,25 @@ void UBC::processInput()  // processes game input
  
     if (getGameE()->getInput()->processInput())
     {
-        
+//        exit(0);
         if (getGameE()->getMenuActive())
         {
             logMsg("menuActive!");
 //            exit(0);
         }
-/*
-        if (getInput()->getKeyInputReceived())
+
+        if (getGameE()->getInput()->getKeyInputReceived())
         {
-            if (getMenuActive())
+            exit(0);
+            if (getGameE()->getMenuActive())
             {
-                logMsg("menuReceiveKeyPress == " +getInput()->getKeyPressed());
-                menuReceiveKeyPress(getInput()->getKeyPressed()); // sends input to menu key input processing function
-                if (getInput()->getKeyPressed() == "t")
+                logMsg("menuReceiveKeyPress == " +getGameE()->getInput()->getKeyPressed());
+                gui->menuReceiveKeyPress(getGameE()->getInput()->getKeyPressed()); // sends input to menu key input processing function
+                if (getGameE()->getInput()->getKeyPressed() == "t")
                 {
      //               exit(0);
                 }
-                getInput()->setKeyPressed("");
+                getGameE()->getInput()->setKeyPressed("");
             }
         }
         if (gameS->getActiveTeamInstancesCreated())
@@ -249,7 +251,7 @@ void UBC::processInput()  // processes game input
                         int humanPlayer = activeTeamInstance[inputIterator]->getHumanPlayer();
                         logMsg("inputHumanPlayer == " +convert->toString(humanPlayer));
                         //inputMaps inputMap = input->keyMap();
-                        inputWorkQueues inputQueue = getInput()->getInputWorkQueue();
+                        inputWorkQueues inputQueue = getGameE()->getInput()->getInputWorkQueue();
         //                              logMsg("INPUT MAP ======== "  +toString(inputMap));
                         std::stringstream ss;
 //                      exit(0);
@@ -345,7 +347,7 @@ void UBC::processInput()  // processes game input
                                     break;
                                     case INQUIT:
                                         logMsg("Quitting!");
-                                        quitGame = true;
+                                        getGameE()->setQuitGame(true);
                                         exit(0);
                                     break;
                                     default:
@@ -387,14 +389,15 @@ void UBC::processInput()  // processes game input
                             networkS->processLocalInput(gameS->getActiveTeamInstance());
                         }
                         inputQueue.clear();
-                        getInput()->setInputWorkQueue(inputQueue);
+                        getGameE()->getInput()->setInputWorkQueue(inputQueue);
                     }
                     ++inputIterator;
                 }
             }
         }
-*/
+
     }   
+//    exit(0);
     
 }
 void UBC::gameLoop()  // Main Game Loop
@@ -422,7 +425,7 @@ void UBC::gameLoop()  // Main Game Loop
 //    exit(0);
 */
 
-unsigned long changeInTime = 0;
+    unsigned long changeInTime = 0;
 
 //    render->createScene(); // creates rendering scene.
 
@@ -483,14 +486,14 @@ unsigned long changeInTime = 0;
 //        exit(0);
         if (getGameE()->getStart())  // checks if it's time to start the game
         {
-            exit(0);
+//            exit(0);
             if (startGame())
             {
                 getGameE()->setStart(false);
                 getGameE()->setRenderScene(true);
             }
         }
-        exit(0);
+//        exit(0);
 //        lastFPS = getRender()->getMWindow()->getLastFPS();
 //        exit(0);
 //        std::string currFPS = convert->toString(lastFPS);
@@ -526,9 +529,11 @@ unsigned long changeInTime = 0;
         logMsg("serverRunning = " +getGameE()->getServerRunning());
         logMsg("clientRunning = " +getGameE()->getClientRunning());
         boost::chrono::microseconds changeInTimeMicro = getGameE()->getTimer().calcChangeInTimeMicro();
+        
         boost::chrono::milliseconds changeInTimeMill = getGameE()->getTimer().calcChangeInTimeMill();
         changeInTime = getGameE()->getTimer().getChangeInTimeMill().count();
         logMsg ("loopchange = " +convert->toString(changeInTime));
+//        exit(0);
         if (changeInTime >= 10)
         {
 //              exit(0);

@@ -55,6 +55,11 @@ boost::shared_ptr<inputEngine> inputEngine::Instance()
 }
 */
 
+// static variables 
+
+SDL_Event inputEngine::inputEvent; 
+bool inputEngine::keyInputReceived;
+
 inputEngine::inputEngine()  // constructor
 {
     keyInputReceived = false;
@@ -259,6 +264,7 @@ bool inputEngine::processInput()  // processes all input
 #else
 */
 //    SDL_PumpEvents();
+//    exit(0);
     int motion = SDL_EventState(SDL_FINGERMOTION, SDL_QUERY);
     logMsg ("motion = " +convert->toString(motion));
 //    exit(0);
@@ -268,7 +274,7 @@ bool inputEngine::processInput()  // processes all input
 //        exit(0);
         int numTouch = SDL_GetNumTouchDevices();
         logMsg ("numTouch = " +convert->toString(numTouch));
-        // exit(0);
+//        exit(0);
 
 //          Ogre::LogManager::getSingletonPtr()->logMessage("Crash??");
 
@@ -361,7 +367,7 @@ bool inputEngine::processInput()  // processes all input
             break;
         }
     }
-
+//    exit(0);
     processUnbufferedMouseInput();
 
     return true;

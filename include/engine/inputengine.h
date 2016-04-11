@@ -96,7 +96,7 @@ protected:
     
 
     // SDL Input
-    SDL_Event inputEvent;  // stores input events
+    static SDL_Event inputEvent;  // stores input events
     SDL_Event events[EVENT_BUF_SIZE];
     int eventWrite;
 
@@ -110,7 +110,7 @@ private:
 //    static boost::shared_ptr<inputEngine> pInstance;
 
 //    boost::shared_ptr<GUISystem> gui;  // stores the copy of the gui object
-    bool keyInputReceived;  // stores whether a key has been pressed
+    static bool keyInputReceived;  // stores whether a key has been pressed
     std::string keyPressed; // stores which key was pressed
 
     inputMaps inputMap; // stores user input

@@ -23,7 +23,7 @@
 
 #undef None
 #undef Button1
-#undef Button2
+#undef Button2p
 #undef Button3
 #undef Button4
 #undef Button5
@@ -59,14 +59,16 @@ boost::shared_ptr<inputEngine> inputEngine::Instance()
 
 SDL_Event inputEngine::inputEvent; 
 bool inputEngine::keyInputReceived;
+bool inputEngine::mouseLeftClick;
+bool inputEngine::mouseRightClick;
 
 inputEngine::inputEngine()  // constructor
 {
     keyInputReceived = false;
     mouseX = 0;
     mouseY = 0;
-    mouseLeftClick = -1;
-    mouseRightClick = -1;
+    mouseLeftClick = false;
+    mouseRightClick = false;
 	inputMap = INNO;
     setup();
 }
@@ -680,14 +682,14 @@ bool inputEngine::processUnbufferedMouseInput()  // processes the unbuffered mou
     {
         if(state == 1)
         {
-            mouseLeftClick = 1;
+            mouseLeftClick = true;
             MyGUI::InputManager::getInstance().injectMousePress(x, y, MyGUI::MouseButton::Enum(0));
 
 	//		exit(0);
         }
         else if (state == 0 && mouseLeftClick == 1) //if (SDL_GetMouseState(NULL, NULL)&SDL_BUTTON(1) == 0)
         {
-            mouseLeftClick = 0;
+            mouseLeftClick = false;
             MyGUI::InputManager::getInstance().injectMouseRelease(x, y, MyGUI::MouseButton::Enum(0));
         }
     }
@@ -729,22 +731,25 @@ bool inputEngine::processUnbufferedTouchInput() // processes the unbuffered touc
         logMsg("evtState FINGERUP = " +convert->toString(evtState));
     //    exit(0);
     }
+    
     int x = inputEvent.tfinger.x*getWindowWidth();
     int y = inputEvent.tfinger.y*getWindowHeight();
+//    exit(0);
 //    if (MyGUI::InputManager::getInstance().isFocusMouse())
 //    {
 //        exit(0);
 //        std::cout << "focused" << std::endl;
     if(SDL_EventState(SDL_FINGERDOWN, SDL_QUERY) == 1)
     {
-        mouseLeftClick = 1;
+        mouseLeftClick = true;
 //        exit(0);
         MyGUI::InputManager::getInstance().injectMousePress(x, y, MyGUI::MouseButton::Enum(0));
+        exit(0);
     }
     if (SDL_EventState(SDL_FINGERUP, SDL_QUERY) == 1) //if (SDL_GetMouseState(NULL, NULL)&SDL_BUTTON(1) == 0)
     {
 //            exit(0);
-        mouseLeftClick = 0;
+        mouseLeftClick = false;
         MyGUI::InputManager::getInstance().injectMouseRelease(x, y, MyGUI::MouseButton::Enum(0));
     }
         

@@ -719,29 +719,29 @@ bool renderEngine::createScene()
 #endif
 */
 
-	// Position it at 500 in Z direction
-	mCamera->setPosition(Ogre::Vector3(0, 0, 455));
-	// Look back along -Z
-	mCamera->lookAt(Ogre::Vector3(0, 0, -300));
+    // Position it at 500 in Z direction
+    mCamera->setPosition(Ogre::Vector3(0, 0, 455));
+    // Look back along -Z
+    mCamera->lookAt(Ogre::Vector3(0, 0, -300));
 
-	mCamera->setNearClipDistance(5);
+    mCamera->setNearClipDistance(5);
     mCamera->setFarClipDistance(5000);
-	viewPort = mWindow->addViewport(mCamera);
-	viewPort->setBackgroundColour(Ogre::ColourValue(1, 0, 0));
-    
+    viewPort = mWindow->addViewport(mCamera);
+    viewPort->setBackgroundColour(Ogre::ColourValue(0, 0, 0));
+
     mCamera->setAspectRatio(Ogre::Real(viewPort->getActualWidth()) / Ogre::Real(viewPort->getActualHeight()));
-	// most examples get the viewport size to calculate this; for now, we'll just
-	// set it to 4:3 the easy way
+    // most examples get the viewport size to calculate this; for now, we'll just
+    // set it to 4:3 the easy way
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-	viewPort->setMaterialScheme(Ogre::RTShader::ShaderGenerator::DEFAULT_SCHEME_NAME);
+    viewPort->setMaterialScheme(Ogre::RTShader::ShaderGenerator::DEFAULT_SCHEME_NAME);
 #endif
-	viewPort->setOverlaysEnabled(true);	// sets overlays true so that MyGUI can render
+    viewPort->setOverlaysEnabled(true);	// sets overlays true so that MyGUI can render
 
     bool overlayEnabled = viewPort->getOverlaysEnabled();
-	logMsg("overlayEnabled = " +Ogre::StringConverter::toString(overlayEnabled));
+    logMsg("overlayEnabled = " +Ogre::StringConverter::toString(overlayEnabled));
 //.0.236	exit(0);
-	mCamera->setAspectRatio((Ogre::Real)1.333333);
+    mCamera->setAspectRatio((Ogre::Real)1.333333);
 
     // Set ambient light
     mSceneMgr->setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5));

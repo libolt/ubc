@@ -102,8 +102,8 @@ protected:
 
     int mouseX; // stores the X coordinate of the mouse.
     int mouseY; // stores the Y coordinate of the mouse.
-    int mouseLeftClick;	// stores state of Left mouse button
-    int mouseRightClick; // stores state of Right mouse button;
+    static bool mouseLeftClick;	// stores state of Left mouse button
+    static bool mouseRightClick; // stores state of Right mouse button;
 
 private:
     //static inputEngine *pInstance;

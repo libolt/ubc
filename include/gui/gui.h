@@ -112,6 +112,9 @@ public:
     activeMenus getPreviousActiveMenu(); // retrieves the value of previousActiveMenu
     void setPreviousActiveMenu(activeMenus menu); // sets the value of previousActiveMenu
 
+    MyGUI::Gui *getMGUI();  // retrieves the value of mGUI
+    void setMGUI(MyGUI::Gui *set);  // sets the value of mGUI
+    
 /*    Ogre::Viewport *getViewPort();  // retrieves the value of viewPort
     void setViewPort(const Ogre::Viewport &set);  // sets the value of viewPort
 */
@@ -262,8 +265,8 @@ private:
     //static GUISystem *pInstance;
 //    static boost::shared_ptr<GUISystem> pInstance;
     
-    MyGUI::Gui *mGUI;
-    MyGUI::OgrePlatform *mPlatform;
+    static MyGUI::Gui *mGUI;
+    static MyGUI::OgrePlatform *mPlatform;
 
     // button widgets
     MyGUI::Button *exitButton;

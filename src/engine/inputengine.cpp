@@ -65,8 +65,10 @@ bool inputEngine::mouseRightClick;
 inputEngine::inputEngine()  // constructor
 {
     keyInputReceived = false;
-    mouseX = 0;
-    mouseY = 0;
+    mouseX = 0.0f;
+    mouseY = 0.0f;
+    mouseClick = NOCLICK;
+    mouseClicked = false;
     mouseLeftClick = false;
     mouseRightClick = false;
 	inputMap = INNO;
@@ -138,6 +140,42 @@ std::vector<userInput> inputEngine::getUInput()  // retrieves the value of uInpu
 void inputEngine::setUInput(std::vector<userInput> set)  // sets the value of uInput
 {
     uInput = set;
+}
+
+float inputEngine::getMouseX()  // retrieves the value of mouseX
+{
+    return (mouseX);
+}
+void inputEngine::setMouseX(float set)  // sets the value of mouseX
+{
+    mouseX = set;
+}
+
+float inputEngine::getMouseY()  // retrieves the value of mouseY
+{
+    return (mouseY);
+}
+void inputEngine::setMouseY(float set)  // sets the value of mouseY
+{
+    mouseY = set;
+}
+
+mouseClicks inputEngine::getMouseClick()  // retrieves the value of mouseClick
+{
+    return (mouseClick);
+}
+void inputEngine::setMouseClicks(mouseClicks set)  // sets the value of mouseClicks
+{
+    mouseClick = set;
+}
+
+bool inputEngine::getMouseClicked()  // retrieves the value of mouseClicked
+{
+    return (mouseClicked);
+}
+void inputEngine::setMouseClicked(bool set)  // sets the value of mouseClicked
+{
+    mouseClicked = set;
 }
 
 bool inputEngine::setup()   // sets up and initializes the Input System
@@ -732,8 +770,11 @@ bool inputEngine::processUnbufferedTouchInput() // processes the unbuffered touc
     //    exit(0);
     }
     
-    int x = inputEvent.tfinger.x*getWindowWidth();
-    int y = inputEvent.tfinger.y*getWindowHeight();
+    mouseX = inputEvent.tfinger.x*getWindowWidth();
+    mouseY = inputEvent.tfinger.y*getWindowHeight();
+    logMsg("touch X == " +convert->toString(mouseX));
+    logMsg("touch Y == " +convert->toString(mouseY));
+
 //    exit(0);
 //    if (MyGUI::InputManager::getInstance().isFocusMouse())
 //    {
@@ -742,15 +783,19 @@ bool inputEngine::processUnbufferedTouchInput() // processes the unbuffered touc
     if(SDL_EventState(SDL_FINGERDOWN, SDL_QUERY) == 1)
     {
         mouseLeftClick = true;
+        mouseClick = LEFTCLICK;
+        mouseClicked = true;
 //        exit(0);
-        MyGUI::InputManager::getInstance().injectMousePress(x, y, MyGUI::MouseButton::Enum(0));
+//        MyGUI::InputManager::getInstance().injectMousePress(x, y, MyGUI::MouseButton::Enum(0));
         exit(0);
     }
     if (SDL_EventState(SDL_FINGERUP, SDL_QUERY) == 1) //if (SDL_GetMouseState(NULL, NULL)&SDL_BUTTON(1) == 0)
     {
 //            exit(0);
         mouseLeftClick = false;
-        MyGUI::InputManager::getInstance().injectMouseRelease(x, y, MyGUI::MouseButton::Enum(0));
+        mouseClick = NOCLICK;
+        mouseClicked = false;
+//        MyGUI::InputManager::getInstance().injectMouseRelease(x, y, MyGUI::MouseButton::Enum(0));
     }
         
     //	SDL_GetWindowSize(

@@ -56,6 +56,12 @@ boost::shared_ptr<GUISystem> GUISystem::Instance()
 }
 */
 
+// static declarations
+
+MyGUI::Gui *GUISystem::mGUI;
+MyGUI::OgrePlatform *GUISystem::mPlatform;
+
+
 GUISystem::GUISystem()  // Initialmizes the GUISystem class
 {
 //    mGUIRenderer = 0;
@@ -244,6 +250,16 @@ activeMenus GUISystem::getPreviousActiveMenu()  // retrieves the value of previo
 void GUISystem::setPreviousActiveMenu(activeMenus menu)  // sets the value of previousActiveMenu
 {
 	previousActiveMenu = menu;
+}
+
+
+MyGUI::Gui *GUISystem::getMGUI()  // retrieves the value of mGUI
+{
+    return (mGUI);
+}
+void GUISystem::setMGUI(MyGUI::Gui *set)  // sets the value of mGUI
+{
+    mGUI = set;
 }
 
 /*Ogre::Viewport *GUISystem::getViewPort()  // retrieves the value of viewPort

@@ -39,6 +39,8 @@
 #include "SDL_main.h"
 #endif
 
+// static declarations 
+boost::shared_ptr<GUISystem> UBC::gui;  // the GUI object.
 
 UBC::UBC()  // constructor
 {
@@ -220,7 +222,7 @@ void UBC::processInput()  // processes game input
         if (getGameE()->getMenuActive())
         {
             logMsg("menuActive!");
-//            exit(0);
+            exit(0);
         }
 
         if (getGameE()->getInput()->getKeyInputReceived())
@@ -570,6 +572,20 @@ void UBC::gameLoop()  // Main Game Loop
         }
     }
 
+}
+
+bool UBC::updateGUI()  // updates the gui based on received events
+{
+    if (getGameE()->getInput()->getMouseClicked())
+    {
+        gui->getMGUI()->injectMousePress(getGameE()->getInput()->getMouseX(), getGameE()->getInput()->getMouseY(), MyGUI::MouseButton::Enum(0));
+    }
+    else
+    {
+        gui->getMGUI()->injectMouseRelease(getGameE()->getInput()->getMouseX(), getGameE()->getInput()->getMouseY(), MyGUI::MouseButton::Enum(0));
+    }
+    
+    return (true);
 }
 
 

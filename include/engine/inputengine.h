@@ -76,6 +76,19 @@ public:
 
     std::vector<userInput> getUInput();  // retrieves the value of uInput
     void setUInput(std::vector<userInput> set);  // sets the value of uInput
+    
+    float getMouseX();  // retrieves the value of mouseX
+    void setMouseX(float set);  // sets the value of mouseX
+    
+    float getMouseY();  // retrieves the value of mouseY
+    void setMouseY(float set);  // sets the value of mouseY
+
+    mouseClicks getMouseClick();  // retrieves the value of mouseClick
+    void setMouseClicks(mouseClicks set);  // sets the value of mouseClicks
+    
+    bool getMouseClicked();  // retrieves the value of mouseClicked
+    void setMouseClicked(bool set);  // sets the value of mouseClicked
+    
     bool setup();   // sets up and initializes the  Input System
     bool destroy(); // destroys the Input system and related objects
 
@@ -100,8 +113,11 @@ protected:
     SDL_Event events[EVENT_BUF_SIZE];
     int eventWrite;
 
-    int mouseX; // stores the X coordinate of the mouse.
-    int mouseY; // stores the Y coordinate of the mouse.
+    float mouseX; // stores the X coordinate of the mouse.
+    float  mouseY; // stores the Y coordinate of the mouse.
+    mouseClicks mouseClick;  // stores which mouse button has been clicked
+    bool mouseClicked;  // stores whether or not a mouse button has been clicked
+    
     static bool mouseLeftClick;	// stores state of Left mouse button
     static bool mouseRightClick; // stores state of Right mouse button;
 

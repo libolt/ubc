@@ -77,15 +77,19 @@ public:
 	
     void gameLoop();  // runs the Main loop for the game
 
+    bool updateGUI();  // updates the gui based on received events
+    
 protected:
   
 private:
 
-    boost::shared_ptr<GUISystem> gui;  // the GUI object.
+    static boost::shared_ptr<GUISystem> gui;  // the GUI object.
     boost::shared_ptr<gameState> gameS;  // the gameState object
     boost::shared_ptr<networkState> networkS;  // the gameState object
     
-    
+    float inputXPos;  // stores the x coordinate of input
+    float inputYPos;  // stores the y coordinate of input
+    bool inputLeftMouseClick;  // stores
 //    bool quitGame;
 };
 

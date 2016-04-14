@@ -113,10 +113,10 @@ protected:
     SDL_Event events[EVENT_BUF_SIZE];
     int eventWrite;
 
-    float mouseX; // stores the X coordinate of the mouse.
-    float  mouseY; // stores the Y coordinate of the mouse.
-    mouseClicks mouseClick;  // stores which mouse button has been clicked
-    bool mouseClicked;  // stores whether or not a mouse button has been clicked
+    static float mouseX; // stores the X coordinate of the mouse.
+    static float  mouseY; // stores the Y coordinate of the mouse.
+    static mouseClicks mouseClick;  // stores which mouse button has been clicked
+    static bool mouseClicked;  // stores whether or not a mouse button has been clicked
     
     static bool mouseLeftClick;	// stores state of Left mouse button
     static bool mouseRightClick; // stores state of Right mouse button;

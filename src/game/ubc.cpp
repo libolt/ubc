@@ -215,10 +215,10 @@ void UBC::processInput()  // processes game input
     networkPlayerStateObject netPStateObj;
 
     logMsg("inputProcess!");
- 
+//    exit(0);
     if (getGameE()->getInput()->processInput())
     {
-//        exit(0);
+        exit(0);
         if (getGameE()->getMenuActive())
         {
             logMsg("menuActive!");

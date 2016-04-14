@@ -61,6 +61,10 @@ SDL_Event inputEngine::inputEvent;
 bool inputEngine::keyInputReceived;
 bool inputEngine::mouseLeftClick;
 bool inputEngine::mouseRightClick;
+bool inputEngine::mouseClicked;
+float inputEngine::mouseX;
+float inputEngine::mouseY;
+mouseClicks inputEngine::mouseClick;
 
 inputEngine::inputEngine()  // constructor
 {
@@ -770,6 +774,7 @@ bool inputEngine::processUnbufferedTouchInput() // processes the unbuffered touc
     //    exit(0);
     }
     
+//    exit(0);
     mouseX = inputEvent.tfinger.x*getWindowWidth();
     mouseY = inputEvent.tfinger.y*getWindowHeight();
     logMsg("touch X == " +convert->toString(mouseX));
@@ -783,11 +788,13 @@ bool inputEngine::processUnbufferedTouchInput() // processes the unbuffered touc
     if(SDL_EventState(SDL_FINGERDOWN, SDL_QUERY) == 1)
     {
         mouseLeftClick = true;
+        //exit(0);
         mouseClick = LEFTCLICK;
+//        exit(0);
         mouseClicked = true;
 //        exit(0);
 //        MyGUI::InputManager::getInstance().injectMousePress(x, y, MyGUI::MouseButton::Enum(0));
-        exit(0);
+//        exit(0);
     }
     if (SDL_EventState(SDL_FINGERUP, SDL_QUERY) == 1) //if (SDL_GetMouseState(NULL, NULL)&SDL_BUTTON(1) == 0)
     {

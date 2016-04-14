@@ -443,12 +443,12 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 
 	if (buildType == "Debug")
 	{
-		RERoot->loadPlugin(pluginDir + "/RenderSystem_Direct3D9_d.dll");
+        RERoot->loadPlugin(pluginDir + "/RenderSystem_GL_d.dll");
 //		RERoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager_d");
 	}
 	else
 	{
-		RERoot->loadPlugin(pluginDir + "/RenderSystem_Direct3D9");
+        RERoot->loadPlugin(pluginDir + "/RenderSystem_GL");
 //		RERoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager");
 	}
 #elif OGRE_PLATFORM == OGRE_PLATFORM_ANDROID

@@ -152,12 +152,12 @@ void UBC::run()  // runs the game
 
     
     getGameE()->getRender()->initSDL(); // Initializes the SDL Subsystem
-    exit(0);
+//    exit(0);
     getGameE()->getRender()->initOgre(); // Initializes the Ogre Subsystem
-    exit(0);
+//    exit(0);
     getGameE()->getRender()->createScene(); // creates rendering scene.
 
-    exit(0);
+//    exit(0);
 
     logMsg("pre setupState!");
     if (setupState())  // sets up the game state

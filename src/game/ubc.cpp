@@ -92,18 +92,20 @@ bool UBC::setupState()  // sets up the UBC game state
     logMsg("blah!");
 //    exit(0);
     bool stateSetup = true;
-    
+//    exit(0);
     if (gui->initMyGUI()) // Initializes MyGUI
     {
         logMsg ("MyGUI initialized successfully!");
         logMsg("is the main menu created?");
+//        exit(0);
         if (!gui->getMainMenuCreated())
         {
             logMsg("mainMenu not created yet!");
-//           exit(0);
+//            exit(0);
             if (gui->createMainMenuGUI()) // creates the main menu gui.
             {
                 logMsg("Main Menu created successfully!");
+                exit(0);
             }
             else
             {
@@ -117,6 +119,7 @@ bool UBC::setupState()  // sets up the UBC game state
             if (gui->createBackButtons()) // creates the back buttons.
             {
                 logMsg("Back Buttons created successfully!");
+                exit(0);
             }
             else
             {
@@ -152,7 +155,7 @@ void UBC::run()  // runs the game
     getGameE()->getRender()->createScene(); // creates rendering scene.
 
 //    exit(0);
-/*
+
     logMsg("pre setupState!");
     if (setupState())  // sets up the game state
     {
@@ -164,8 +167,7 @@ void UBC::run()  // runs the game
         return (false);
     }
 
-    getGameS()->createInstances();  // creates object instances
-*/
+//    getGameS()->createInstances();  // creates object instances
     if (getGameE()->getRender()->getMWindow() == NULL)
     {
         logMsg("mWindow == NULL!");
@@ -218,7 +220,7 @@ void UBC::processInput()  // processes game input
 //    exit(0);
     if (getGameE()->getInput()->processInput())
     {
-        exit(0);
+//        exit(0);
         if (getGameE()->getMenuActive())
         {
             logMsg("menuActive!");

@@ -54,14 +54,18 @@ bool GUISystem::createMainMenuGUI()  // creates the main menu gui
         MyGUI::FontManager::getInstance().setDefaultFont("LuxiBoldFont_16");
 
     }
+//    exit(0);
+    
     logMsg("Loading MainMenu layout");
     MyGUI::LayoutManager::getInstance().loadLayout("MainMenu.layout");
-
+//    exit(0);
     logMsg("MainMenu layout loaded");
 //  startGameButton = mGUI->createWidget<MyGUI::Button>("Button", 362, 100, 300, 26, MyGUI::Align::Default, "Main");
 //  startGameBu  tton->setCaption("Start Game");
     startSingleGameButton = mGUI->findWidget<MyGUI::Button>("startSingleGameButton");
+//    exit(0);
     startSingleGameButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::startSingleGameButtonClicked);
+//    exit(0);
     startSingleGameButton->setStateSelected(true);
     MyGUI::InputManager::getInstance().setKeyFocusWidget(startSingleGameButton);
     startSingleGameButton->setPosition((0.3 *getGameE()->getRender()->getViewPort()->getActualWidth() ), (0.1 *getGameE()->getRender()->getViewPort()->getActualHeight()) );
@@ -73,7 +77,7 @@ bool GUISystem::createMainMenuGUI()  // creates the main menu gui
     startMultiGameButton->setSize((0.4 *getGameE()->getRender()->getViewPort()->getActualWidth() ), (0.04 *getGameE()->getRender()->getViewPort()->getActualHeight()) );
 
 //  optionsButton =    mGUI->createWidget<MyGUI::Button>("Button", 362, 125, 300, 26, MyGUI::Align::Default, "Main");
-//  optionsButton->setCaption(",?.??..?llmmmmllml.....l.m. onOptions");
+//  optionsButton->setCaption(",?ik.??..?llmmmmllml.....l.m. onOptions");
     optionsButton = mGUI->findWidget<MyGUI::Button>("optionsButton");
     optionsButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::optionsButtonClicked);
     optionsButton->setPosition((0.3 *getGameE()->getRender()->getViewPort()->getActualWidth() ), (0.18 *getGameE()->getRender()->getViewPort()->getActualHeight()) );

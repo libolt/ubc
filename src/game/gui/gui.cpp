@@ -60,7 +60,9 @@ boost::shared_ptr<GUISystem> GUISystem::Instance()
 
 MyGUI::Gui *GUISystem::mGUI;
 MyGUI::OgrePlatform *GUISystem::mPlatform;
-
+bool GUISystem::mainMenuCreated; 
+MyGUI::Button *GUISystem::startSingleGameButton;
+//void GUISystem::startSingleGameButtonClicked(MyGUI::Widget *_sender);
 
 GUISystem::GUISystem()  // Initialmizes the GUISystem class
 {

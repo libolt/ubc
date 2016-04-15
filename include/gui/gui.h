@@ -270,7 +270,7 @@ private:
 
     // button widgets
     MyGUI::Button *exitButton;
-    MyGUI::Button *startSingleGameButton;
+    static MyGUI::Button *startSingleGameButton;
     MyGUI::Button *startMultiGameButton;
     MyGUI::Button *optionsButton;
     MyGUI::Button *serverButton;
@@ -369,7 +369,7 @@ private:
 */
 
 	// booleans
-    bool mainMenuCreated;   // determines whether the main menu gui has been created
+    static bool mainMenuCreated;   // determines whether the main menu gui has been created
     bool networkSetupMenuCreated;   // determines whether the network setup gui has been created
     bool networkServerSetupMenuCreated;   // determines whether the network server setup gui has been created
     bool networkClientSetupMenuCreated;   // determines whether the network client setup gui has been created

@@ -54,6 +54,7 @@ void GUISystem::showMainMenuWidgets()  // shows all widgets tied to the Main Men
     exitButton->setVisible(true);
     startSingleGameButton->setStateSelected(true);
     MyGUI::InputManager::getInstance().setKeyFocusWidget(startSingleGameButton);
+    getGameE()->setMenuActive(true);
 }
 void GUISystem::hideNetworkSetupWidgets()  // hides the widgets tied to the Network Setup Menu
 {
@@ -547,6 +548,7 @@ void GUISystem::changeActiveMenu(activeMenus menu)  // changes the actively disp
 //    exit(0);
     hideActiveMenuWidgets();
     menuActive = true;
+    getGameE()->setMenuActive(true);
     previousActiveMenu = activeMenu;
     activeMenu = menu;
     showActiveMenuWidgets();

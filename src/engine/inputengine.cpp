@@ -65,6 +65,7 @@ bool inputEngine::mouseClicked;
 float inputEngine::mouseX;
 float inputEngine::mouseY;
 mouseClicks inputEngine::mouseClick;
+std::string inputEngine::keyPressed; 
 
 inputEngine::inputEngine()  // constructor
 {
@@ -372,7 +373,8 @@ bool inputEngine::processInput()  // processes all input
                 logMsg("Key Pressed!");
                 if (keyPressed != "")
                 {
-                //    exit(0);
+                    logMsg("keyPressed == " +keyPressed);
+                    exit(0);
                     inputMaps inputMap = keyMap();
                     inputWorkQueue.push_back(inputMap);
                 }
@@ -426,7 +428,7 @@ bool inputEngine::processUnbufferedKeyInput(bool textInput)  // processes unbuff
     logMsg("key == " +convert->toString(inputEvent.key.keysym.sym));
     keyPressed = inputEvent.text.text;
     logMsg("key = " +keyPressed);
-
+    exit(0);
     if (MyGUI::InputManager::getInstance().isFocusKey())	// checks if a MyGUI widget has key focus
     {
         logMsg("Crash?");

@@ -100,7 +100,7 @@ bool UBC::setupState()  // sets up the UBC game state
     {
         logMsg ("MyGUI initialized successfully!");
         logMsg("is the main menu created?");
-        exit(0);
+//        exit(0);
         if (!gui->getMainMenuCreated())
         {
             logMsg("mainMenu not created yet!");
@@ -108,7 +108,7 @@ bool UBC::setupState()  // sets up the UBC game state
             if (gui->createMainMenuGUI()) // creates the main menu gui.
             {
                 logMsg("Main Menu created successfully!");
-                exit(0);
+//                exit(0);
             }
             else
             {
@@ -122,7 +122,7 @@ bool UBC::setupState()  // sets up the UBC game state
             if (gui->createBackButtons()) // creates the back buttons.
             {
                 logMsg("Back Buttons created successfully!");
-                exit(0);
+//                exit(0);
             }
             else
             {
@@ -227,19 +227,20 @@ void UBC::processInput()  // processes game input
         if (getGameE()->getMenuActive())
         {
             logMsg("menuActive!");
-            exit(0);
+//            exit(0);
         }
 
         if (getGameE()->getInput()->getKeyInputReceived())
         {
-            exit(0);
+//            exit(0);
             if (getGameE()->getMenuActive())
             {
+//                exit(0);
                 logMsg("menuReceiveKeyPress == " +getGameE()->getInput()->getKeyPressed());
                 gui->menuReceiveKeyPress(getGameE()->getInput()->getKeyPressed()); // sends input to menu key input processing function
                 if (getGameE()->getInput()->getKeyPressed() == "t")
                 {
-     //               exit(0);
+                    exit(0);
                 }
                 getGameE()->getInput()->setKeyPressed("");
             }
@@ -583,6 +584,7 @@ bool UBC::updateGUI()  // updates the gui based on received events
 {
     if (getGameE()->getInput()->getMouseClicked())
     {
+        exit(0);
         gui->getMGUI()->injectMousePress(getGameE()->getInput()->getMouseX(), getGameE()->getInput()->getMouseY(), MyGUI::MouseButton::Enum(0));
     }
     else

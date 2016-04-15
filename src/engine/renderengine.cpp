@@ -672,7 +672,7 @@ bool renderEngine::createScene()
 	// logMsg("Rendering!");
 	misc["externalWindowHandle"] = winHandle; //
 
-    mWindow = RERoot->createRenderWindow("Ultimate Basketball Challenge", 0, 0, false, &misc);
+//    mWindow = RERoot->createRenderWindow("Ultimate Basketball Challenge", 0, 0, false, &misc);
 
 	//    exit(0);
 	mWindow->setVisible(true);

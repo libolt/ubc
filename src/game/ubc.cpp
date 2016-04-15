@@ -49,6 +49,9 @@ UBC::UBC()  // constructor
     boost::shared_ptr<gameEngine> tempGameESharedPtr = boost::shared_ptr<gameEngine>(tempGameEObj);
     setGameE(tempGameESharedPtr);
 */
+    GUISystem *tempGUIObj = new GUISystem;
+    boost::shared_ptr<GUISystem> tempGUISharedPtr = boost::shared_ptr<GUISystem>(tempGUIObj);
+    gui = tempGUISharedPtr;
 }
 
 UBC::~UBC()  // destructor
@@ -97,7 +100,7 @@ bool UBC::setupState()  // sets up the UBC game state
     {
         logMsg ("MyGUI initialized successfully!");
         logMsg("is the main menu created?");
-//        exit(0);
+        exit(0);
         if (!gui->getMainMenuCreated())
         {
             logMsg("mainMenu not created yet!");
@@ -149,12 +152,12 @@ void UBC::run()  // runs the game
 
     
     getGameE()->getRender()->initSDL(); // Initializes the SDL Subsystem
-//    exit(0);
+    exit(0);
     getGameE()->getRender()->initOgre(); // Initializes the Ogre Subsystem
-//    exit(0);
+    exit(0);
     getGameE()->getRender()->createScene(); // creates rendering scene.
 
-//    exit(0);
+    exit(0);
 
     logMsg("pre setupState!");
     if (setupState())  // sets up the game state
@@ -164,7 +167,7 @@ void UBC::run()  // runs the game
     else
     {
         logMsg("Unable to setup UBC state!");
-        return (false);
+//        return (false);
     }
 
 //    getGameS()->createInstances();  // creates object instances
@@ -594,8 +597,8 @@ bool UBC::updateGUI()  // updates the gui based on received events
 int main(int argc, char *argv[])
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<UBC> ubc;
-    
+//    boost::shared_ptr<UBC> ubc;
+    UBC *ubc = new UBC;
 //    boost::shared_ptr<renderEngine> render = ubc.getRender();
 //    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();

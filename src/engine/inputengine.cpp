@@ -65,7 +65,7 @@ bool inputEngine::mouseClicked;
 float inputEngine::mouseX;
 float inputEngine::mouseY;
 mouseClicks inputEngine::mouseClick;
-std::string inputEngine::keyPressed; 
+//std::string inputEngine::keyPressed; 
 
 inputEngine::inputEngine()  // constructor
 {
@@ -313,7 +313,7 @@ bool inputEngine::processInput()  // processes all input
     int motion = SDL_EventState(SDL_FINGERMOTION, SDL_QUERY);
     logMsg ("motion = " +convert->toString(motion));
 //    exit(0);
-//    SDL_StartTextInput();
+    SDL_StartTextInput();
     while (SDL_PollEvent(&inputEvent))
     {
 //        exit(0);
@@ -366,6 +366,7 @@ bool inputEngine::processInput()  // processes all input
             case SDL_KEYDOWN:
             case SDL_TEXTINPUT:
                 keyPressed = "";
+                
                 if (processUnbufferedKeyInput(true))
                 {
                     return false;
@@ -428,7 +429,7 @@ bool inputEngine::processUnbufferedKeyInput(bool textInput)  // processes unbuff
     logMsg("key == " +convert->toString(inputEvent.key.keysym.sym));
     keyPressed = inputEvent.text.text;
     logMsg("key = " +keyPressed);
-    exit(0);
+//    exit(0);
     if (MyGUI::InputManager::getInstance().isFocusKey())	// checks if a MyGUI widget has key focus
     {
         logMsg("Crash?");

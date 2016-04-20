@@ -444,7 +444,7 @@ bool gameState::createInstances()  // creates object instances
         }
 //        exit(0);
     }
-    
+    exit(0);
     if (!getCourtInstancesCreated())
     { 
         if (createCourtInstances())  // create court instances
@@ -513,14 +513,17 @@ bool gameState::createBasketballInstances()  // creates basketball Instances
 
 bool gameState::createTeamInstances()  // creates team Instances
 {
+//    exit(0);
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<loader> load = loader::Instance();
-
+    
     std::vector<boost::shared_ptr<teamState> > tInstance;
     tInstance = load->loadTeams();
+//     exit(0);
     logMsg("teamID.size() == " +convert->toString(getTeamIDS().size()));
-/*    exit(0);
-    teamInstance[0].setTeamID(teamID[0]);
+    logMsg("tInstancr size = " +convert->toString(tInstance.size()));
+    exit(0);
+/*    teamInstance[0].setTeamID(teamID[0]);
     teamInstance[1].setTeamID(teamID[1]);
     exit(0);
     teamInstance[0].setTeamType(HOMETEAM);
@@ -577,12 +580,14 @@ bool gameState::createHoopInstances()  // creates hoop Instances
 }
 bool gameState::createPlayerInstances()  // creates player instances
 {
+    boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<loader> load = loader::Instance();
 
     setPlayerInstances(load->loadPlayers());
     if (getPlayerInstance().size() > 0)
     {
-        logMsg("player name = " +getPlayerInstance()[0]->getPlayerName());
+        logMsg("playerInstance size == " +convert->toString(getPlayerInstance().size()));
+//        logMsg("player name = " +getPlayerInstance()[0]->getPlayerName());
 //        exit(0);
         return (true);
     }

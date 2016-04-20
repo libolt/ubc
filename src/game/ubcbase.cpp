@@ -37,7 +37,7 @@ UBCBase::UBCBase()  // constructor
     gameState *tempGameStateObj = new gameState;
     boost::shared_ptr<gameState> tempGameStateSharedPtr = boost::shared_ptr<gameState>(tempGameStateObj);
     gameS = tempGameStateSharedPtr;
-    exit(0);
+//    exit(0);
     networkState *tempNetworkStateObj = new networkState;
     boost::shared_ptr<networkState> tempNetworkStateSharedPtr = boost::shared_ptr<networkState>(tempNetworkStateObj);
     networkS = tempNetworkStateSharedPtr;
@@ -75,4 +75,4 @@ boost::shared_ptr<networkState> UBCBase::getNetworkS()  // retrieves the value o
 void UBCBase::setNetworkS(boost::shared_ptr<networkState> set)  // sets the value of networkS
 {
     networkS = set;
-}e
+}

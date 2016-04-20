@@ -495,7 +495,7 @@ bool GUISystem::createTeamSelectionMenuGUI()  // creates GUI for team selection 
     gameS->setTeamDataInstance(teamDataInstance);
 */
 //    teamInstance = gameS->getTeamInstance();
-    logMsg("teamInstance.size() == " +convert->toString(getTeamInstance().size()));
+    logMsg("teamInstance.size() == " +convert->toString(getGameS()->getTeamInstance().size()));
 //    exit(0);
     MyGUI::LayoutManager::getInstance().loadLayout("TeamSelectionMenu.layout");
     

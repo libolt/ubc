@@ -536,7 +536,7 @@ void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed)  // process
         if (gameSetupMenuAwaySelected)
         {
             int x = team1SelectBox->getIndexSelected() +1;
-            if (x < getTeamInstance().size())
+            if (x < getGameS()->getTeamInstance().size())
             {
                 team1SelectBox->setIndexSelected(x);
                 team1SelectBox->beginToItemAt(x);
@@ -550,7 +550,7 @@ void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed)  // process
         else if (gameSetupMenuHomeSelected)
         {
             int x = team0SelectBox->getIndexSelected() +1;
-            if (x < getTeamInstance().size())
+            if (x < getGameS()->getTeamInstance().size())
             {
                 team0SelectBox->setIndexSelected(x);
                 team0SelectBox->beginToItemAt(x);
@@ -573,8 +573,8 @@ void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed)  // process
             int x = team1SelectBox->getIndexSelected() -1;
             if (x < 0)
             {
-                team1SelectBox->setIndexSelected(getTeamInstance().size() -1);
-                team1SelectBox->beginToItemAt(getTeamInstance().size() -1);
+                team1SelectBox->setIndexSelected(getGameS()->getTeamInstance().size() -1);
+                team1SelectBox->beginToItemAt(getGameS()->getTeamInstance().size() -1);
             }
             else
             {
@@ -588,8 +588,8 @@ void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed)  // process
             int x = team0SelectBox->getIndexSelected() -1;
             if (x < 0)
             {
-                team0SelectBox->setIndexSelected(getTeamInstance().size() -1);
-                team0SelectBox->beginToItemAt(getTeamInstance().size() -1);
+                team0SelectBox->setIndexSelected(getGameS()->getTeamInstance().size() -1);
+                team0SelectBox->beginToItemAt(getGameS()->getTeamInstance().size() -1);
             }
             else
             {
@@ -674,7 +674,7 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed)  // pro
         if (gameSetupMenuAwaySelected)
         {
             int x = team1SelectBox->getIndexSelected() +1;
-            if (x < getTeamInstance().size())
+            if (x < getGameS()->getTeamInstance().size())
             {
                 team1SelectBox->setIndexSelected(x);
                 team1SelectBox->beginToItemAt(x);
@@ -688,7 +688,7 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed)  // pro
         else if (gameSetupMenuHomeSelected)
         {
             int x = team0SelectBox->getIndexSelected() +1;
-            if (x < getTeamInstance().size())
+            if (x < getGameS()->getTeamInstance().size())
             {
                 team0SelectBox->setIndexSelected(x);
                 team0SelectBox->beginToItemAt(x);
@@ -711,8 +711,8 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed)  // pro
             int x = team1SelectBox->getIndexSelected() -1;
             if (x < 0)
             {
-                team1SelectBox->setIndexSelected(getTeamInstance().size() -1);
-                team1SelectBox->beginToItemAt(getTeamInstance().size() -1);
+                team1SelectBox->setIndexSelected(getGameS()->getTeamInstance().size() -1);
+                team1SelectBox->beginToItemAt(getGameS()->getTeamInstance().size() -1);
             }
             else
             {
@@ -726,8 +726,8 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed)  // pro
             int x = team0SelectBox->getIndexSelected() -1;
             if (x < 0)
             {
-                team0SelectBox->setIndexSelected(getTeamInstance().size() -1);
-                team0SelectBox->beginToItemAt(getTeamInstance().size() -1);
+                team0SelectBox->setIndexSelected(getGameS()->getTeamInstance().size() -1);
+                team0SelectBox->beginToItemAt(getGameS()->getTeamInstance().size() -1);
             }
             else
             {

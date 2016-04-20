@@ -57,6 +57,7 @@ boost::shared_ptr<gameState> gameState::Instance()
 
 gameState::gameState()  // constructor
 {
+    
 //    basketballInstancesCreated = false;
 //    courtInstancesCreated = false;
 //    hoopInstancesCreated = false;

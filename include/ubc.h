@@ -46,8 +46,7 @@
 
 //class GUISystem;
 class gameEngine;
-class gameState;
-class networkState;
+
 
 
 class UBC : public UBCBase
@@ -63,9 +62,7 @@ public:
 /*    bool getQuitGame();  // retrieves the value of quitGame
     void setQuitGame(bool quit);  // sets the value of quitGame
 */
-    boost::shared_ptr<gameState> getGameS();  // retrieves the value of gameS
-    void setGameS(boost::shared_ptr<gameState> set);  // sets the value of gameS
-    
+
     bool setupState();  // sets up the UBC game state
     void executeState();  // executes the UBC game code
 
@@ -84,9 +81,7 @@ protected:
 private:
 
     static boost::shared_ptr<GUISystem> gui;  // the GUI object.
-    boost::shared_ptr<gameState> gameS;  // the gameState object
-    boost::shared_ptr<networkState> networkS;  // the gameState object
-    
+        
     float inputXPos;  // stores the x coordinate of input
     float inputYPos;  // stores the y coordinate of input
     bool inputLeftMouseClick;  // stores

@@ -66,8 +66,8 @@ class gameStateShared
         static bool getBasketballInstanceNeedCreated();  // retrieves the value of basketballInstancesNeedCreated
         static void setBasketballInstanceNeedCreated(bool set);   // sets the value of basketballInstancesNeedCreated
         
-        static bool getCourtInstancesCreated();  // retrieves the value of courtInstancesCreated
-        static void setCourtInstancesCreated(bool set);  // sets the value of courtInstancesCreated
+        bool getCourtInstancesCreated();  // retrieves the value of courtInstancesCreated
+        void setCourtInstancesCreated(bool set);  // sets the value of courtInstancesCreated
 
         static bool getCourtInstancesNeedCreated();  // retrieves the value of courtInstancesNeedCreated
         static void setCourtInstancesNeedCreated(bool set);  // sets the value of courtInstancesNeedCreated

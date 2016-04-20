@@ -51,7 +51,7 @@
 
 //class UBC;
 
-class GUISystem : public UBCBase, public gameStateShared //: public UBC //: public renderEngine //, inputSystem
+class GUISystem : public UBCBase //: public UBC //: public renderEngine //, inputSystem
 {
 public:
     GUISystem();  // constructor

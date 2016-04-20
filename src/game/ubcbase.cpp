@@ -20,15 +20,28 @@
 
 #include "ubcbase.h"
 #include "engine/gameengine.h"
+#include "state/gamestate.h"
+#include "state/networkstate.h"
 
+// Static Declarations
 boost::shared_ptr<gameEngine> UBCBase::gameE;  // the gameEngine object
-
+boost::shared_ptr<gameState> UBC::gameS;  // the gameState object
+boost::shared_ptr<networkState> UBC::networkS;  // the networkState object
 
 UBCBase::UBCBase()  // constructor
 {
     gameEngine *tempGameEObj = new gameEngine;
     boost::shared_ptr<gameEngine> tempGameESharedPtr = boost::shared_ptr<gameEngine>(tempGameEObj);
     gameE = tempGameESharedPtr;
+    
+    gameState *tempGameStateObj = new gameState;
+    boost::shared_ptr<gameState> tempGameStateSharedPtr = boost::shared_ptr<gameState>(tempGameStateObj);
+    gameS = tempGameStateSharedPtr;
+    exit(0);
+    networkState *tempNetworkStateObj = new networkState;
+    boost::shared_ptr<networkState> tempNetworkStateSharedPtr = boost::shared_ptr<networkState>(tempNetworkStateObj);
+    networkS = tempNetworkStateSharedPtr;
+
 
 }
 
@@ -45,3 +58,21 @@ void UBCBase::setGameE(boost::shared_ptr<gameEngine> set)  // sets the value of 
 {
     gameE = set;
 }
+
+boost::shared_ptr<gameState> UBCBase::getGameS()  // retrieves the value of gameS
+{
+    return (gameS);
+}
+void UBCBase::setGameS(boost::shared_ptr<gameState> set)  // sets the value of gameS
+{
+    gameS = set;
+}
+
+boost::shared_ptr<networkState> UBCBase::getNetworkS()  // retrieves the value of networkS
+{
+    return (networkS);
+}
+void UBCBase::setNetworkS(boost::shared_ptr<networkState> set)  // sets the value of networkS
+{
+    networkS = set;
+}e

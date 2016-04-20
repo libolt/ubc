@@ -46,10 +46,11 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
     std::vector<courtState> courtInstance;
     std::vector<std::string> courtName;
 //    if (!gameS->getCourtInstancesCreated())
-    if (getCourtInstancesCreated())
-
+    
+    if (getGameS()->getCourtInstancesCreated())
     {
-        setCourtInstancesNeedCreated(true);
+        exit(0);
+        getGameS()->setCourtInstancesNeedCreated(true);
 //        exit(0);
 /*        if (gameS->createCourtInstances())
         {
@@ -117,27 +118,27 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     overallRatings.push_back(overall);
 
 //    for (size_t i = 0;i < playerInstance.size(); ++i)
-    for (size_t i = 0;i < getPlayerInstance().size(); ++i)
+    for (size_t i = 0;i < getGameS()->getPlayerInstance().size(); ++i)
     {
 //        logMsg("pDTeam = " +convert->toString(playerInstance[i]->getTeamID()));
-        logMsg("pDTeam = " +convert->toString(getPlayerInstance()[i]->getTeamID()));
+        logMsg("pDTeam = " +convert->toString(getGameS()->getPlayerInstance()[i]->getTeamID()));
 //        logMsg("teamID == " +convert->toString(gameS->getTeamID()[1]));
-        logMsg("teamID == " +convert->toString(getTeamIDS()[1]));
+        logMsg("teamID == " +convert->toString(getGameS()->getTeamIDS()[1]));
 
 //        if (playerInstance[i]->getTeamID() == gameS->getTeamID()[0])
-       if (getPlayerInstance()[i]->getTeamID() == getTeamIDS()[0])
+       if (getGameS()->getPlayerInstance()[i]->getTeamID() == getGameS()->getTeamIDS()[0])
 
         {
 //            size_t overallRating = playerInstance[i]->getOverallRating();
-            size_t overallRating = getPlayerInstance()[i]->getOverallRating();
+            size_t overallRating = getGameS()->getPlayerInstance()[i]->getOverallRating();
             std::string playerOverallRating = convert->toString(overallRating);
 //            std::string playerName = playerInstance[i]->getFirstName() +" " +playerInstance[i]->getLastName() +" " +convert->toString(playerInstance[i]->getPrimaryPosition()); // +"            "; // +playerOverallRating;
-            std::string playerName = getPlayerInstance()[i]->getFirstName() +" " +getPlayerInstance()[i]->getLastName() +" " +convert->toString(getPlayerInstance()[i]->getPrimaryPosition()); // +"            "; // +playerOverallRating;
+            std::string playerName = getGameS()->getPlayerInstance()[i]->getFirstName() +" " +getGameS()->getPlayerInstance()[i]->getLastName() +" " +convert->toString(getGameS()->getPlayerInstance()[i]->getPrimaryPosition()); // +"            "; // +playerOverallRating;
 //            std::string playerName = getPlayerInstance()[i]->getFirstName() +" " +getPlayerInstance()([i]->getLastName() +" " +convert->toString(getPlayerInstance()[i]->getPrimaryPosition()); // +"            "; // +playerOverallRating;
 //            std::string playerPosition = convert->toString(playerInstance[i]->getPrimaryPosition());
-            std::string playerPosition = convert->toString(getPlayerInstance()[i]->getPrimaryPosition());
+            std::string playerPosition = convert->toString(getGameS()->getPlayerInstance()[i]->getPrimaryPosition());
 //            size_t playerID = getPlayerInstance()[i]->getID();
-            size_t playerID = getPlayerInstance()[i]->getID();
+            size_t playerID = getGameS()->getPlayerInstance()[i]->getID();
 
             playerNames[0].push_back(playerName);
             playerPositionsPlayed[0].push_back(playerPosition);
@@ -145,14 +146,14 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
             overallRatings[0].push_back(overallRating);
         }
 
-        if (getPlayerInstance()[i]->getTeamID() == getTeamIDS()[1])
+        if (getGameS()->getPlayerInstance()[i]->getTeamID() == getGameS()->getTeamIDS()[1])
         {
-            size_t overallRating = getPlayerInstance()[i]->getOverallRating();
+            size_t overallRating = getGameS()->getPlayerInstance()[i]->getOverallRating();
             std::string playerOverallRating = convert->toString(overallRating);
-            std::string playerName = getPlayerInstance()[i]->getFirstName() +" " +getPlayerInstance()[i]->getLastName() +" " +convert->toString(getPlayerInstance()[i]->getPrimaryPosition()); // +"            "; // +playerOverallRating;
+            std::string playerName = getGameS()->getPlayerInstance()[i]->getFirstName() +" " +getGameS()->getPlayerInstance()[i]->getLastName() +" " +convert->toString(getGameS()->getPlayerInstance()[i]->getPrimaryPosition()); // +"            "; // +playerOverallRating;
             bool playerNameLengthReached = false;
-            std::string playerPosition = convert->toString(getPlayerInstance()[i]->getPrimaryPosition());
-            size_t playerID = getPlayerInstance()[i]->getID();
+            std::string playerPosition = convert->toString(getGameS()->getPlayerInstance()[i]->getPrimaryPosition());
+            size_t playerID = getGameS()->getPlayerInstance()[i]->getID();
 
             playerNames[1].push_back(playerName);
             playerPositionsPlayed[1].push_back(playerPosition);

@@ -86,32 +86,32 @@ public:
 
     // Teams
     std::vector<boost::shared_ptr<teamState> > loadTeams();  // loads team data from XML files
-    bool loadTeamListFile(std::string fileName);  // loads list of team files from teams.xml
+    std::vector<std::string> loadTeamListFile(std::string fileName);  // loads list of team files from teams.xml
     boost::shared_ptr<teamState> loadTeamFile(std::string fileName);  // loads data from the team XML files
 
     // Players
     std::vector<boost::shared_ptr<playerState> > loadPlayers();  // loads player data from XML files
-    bool loadPlayerListFile(std::string fileName);  // loads list of player files from players.xml
+    std::vector<std::string> loadPlayerListFile(std::string fileName);  // loads list of player files from players.xml
     boost::shared_ptr<playerState> loadPlayerFile(std::string fileName);  // loads data from the player XML files
 
     //Offense
     std::vector<offensePlays> loadOffensePlays();  // load offense plays from XML files
-    bool loadOffensePlayListFile(std::string fileName);  // loads the list of offense play files from plays.xml
+    std::vector<std::string> loadOffensePlayListFile(std::string fileName);  // loads the list of offense play files from plays.xml
     offensePlays loadOffensePlayFile(std::string fileName);	// loads data from the offense play XML files
 
     // Basketballs
     std::vector<basketballState> loadBasketballs();  // load basketball XML files
-    bool loadBasketballListFile(std::string fileName);  // load the list of basketballs from basketballs.xml
+    std::vector<std::string> loadBasketballListFile(std::string fileName);  // load the list of basketballs from basketballs.xml
     basketballState loadBasketballFile(std::string fileName);  // loads data from the basketball XML files.
 
     // Courts
     std::vector<courtState> loadCourts();  // load court XML files
-    bool loadCourtListFile(std::string fileName);  // load the list of courts from courts.xml
+    std::vector<std::string> loadCourtListFile(std::string fileName);  // load the list of courts from courts.xml
     courtState loadCourtFile(std::string fileName);  // loads data from the court XML files.
 
     // User input
     std::vector<userInput> loadUserInputs();  // load user input XML files
-    bool loadUserInputListFile(std::string fileName);  // load the list of user input configs from userinputs.xml
+    std::vector<std::string> loadUserInputListFile(std::string fileName);  // load the list of user input configs from userinputs.xml
     userInput loadUserInputFile(std::string fileName);  // loads data from the user input XML files.
 
 protected:

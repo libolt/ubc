@@ -565,9 +565,9 @@ void UBC::gameLoop()  // Main Game Loop
             //oldTime = milliSecs.count();
             getGameE()->getTimer().setPreviousTime(boost::chrono::system_clock::now());
         }
-
+//        exit(0);
         processInput();
-
+        exit(0);
         if (!getGameE()->getRender()->renderFrame())
         {
             logMsg("Unable to render frame!");

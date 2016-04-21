@@ -444,7 +444,7 @@ bool gameState::createInstances()  // creates object instances
         }
 //        exit(0);
     }
-    exit(0);
+//    exit(0);
     if (!getCourtInstancesCreated())
     { 
         if (createCourtInstances())  // create court instances
@@ -488,7 +488,7 @@ bool gameState::createInstances()  // creates object instances
             returnType = false;
         }
     }
-    
+//    exit(0);
     return (returnType);
 }
 bool gameState::createBasketballInstances()  // creates basketball Instances
@@ -522,7 +522,7 @@ bool gameState::createTeamInstances()  // creates team Instances
 //     exit(0);
     logMsg("teamID.size() == " +convert->toString(getTeamIDS().size()));
     logMsg("tInstancr size = " +convert->toString(tInstance.size()));
-    exit(0);
+//    exit(0);
 /*    teamInstance[0].setTeamID(teamID[0]);
     teamInstance[1].setTeamID(teamID[1]);
     exit(0);

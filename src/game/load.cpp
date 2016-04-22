@@ -600,9 +600,12 @@ boost::shared_ptr<playerState> loader::loadPlayerFile(string fileName)  // loads
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
     boost::shared_ptr<playerState> player;
-//    playerState *tempPlayerObj = new playerState;
-//    player = boost::shared_ptr<playerState>(tempPlayerObj);
-    
+    //playerState *tempPlayerObj = new playerState;
+    //player = boost::shared_ptr<playerState>(tempPlayerObj);
+    playerState *tempPlayerObj; // = new playerState;
+    tempPlayerObj = new playerState;
+/*    boost::shared_ptr<playerState> tempPlayerSharedPtr = boost::shared_ptr<playerState>(tempPlayerObj);
+    player = tempPlayerSharedPtr;
 //    std::vector<boost::shared_ptr<playerState> > playerInstance = gameS->getPlayerInstance();
     string firstName;
     string lastName;
@@ -1014,7 +1017,7 @@ boost::shared_ptr<playerState> loader::loadPlayerFile(string fileName)  // loads
     player->setImprovability(improvability);
     player->calculateOverallRating();
 ///    playerInstance.push_back(player);
-    logMsg("player First Name == "+player->getFirstName());
+    logMsg("player First Name == "+player->getFirstName());*/
     //gameS->setPlayerDataInstances(playerDataInstance);
     //	vector<players::playerData> playerN = playerG->getPlayer();
 //    exit(0);

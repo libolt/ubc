@@ -66,6 +66,7 @@ float inputEngine::mouseX;
 float inputEngine::mouseY;
 mouseClicks inputEngine::mouseClick;
 //std::string inputEngine::keyPressed; 
+bool inputEngine::textInputStarted;
 
 inputEngine::inputEngine()  // constructor
 {
@@ -77,6 +78,7 @@ inputEngine::inputEngine()  // constructor
     mouseLeftClick = false;
     mouseRightClick = false;
 	inputMap = INNO;
+    textInputStarted = false;
     setup();
 }
 
@@ -313,7 +315,16 @@ bool inputEngine::processInput()  // processes all input
     int motion = SDL_EventState(SDL_FINGERMOTION, SDL_QUERY);
     logMsg ("motion = " +convert->toString(motion));
 //    exit(0);
-    SDL_StartTextInput();
+    if (!textInputStarted)
+    {
+//        SDL_StartTextInput();
+        textInputStarted = true;
+    }
+    else
+    {
+        
+    }
+    
     while (SDL_PollEvent(&inputEvent))
     {
 //        exit(0);
@@ -414,6 +425,7 @@ bool inputEngine::processInput()  // processes all input
             break;
         }
     }
+//    SDL_StopTextInput();
 //    exit(0);
     processUnbufferedMouseInput();
 

@@ -567,7 +567,7 @@ void UBC::gameLoop()  // Main Game Loop
         }
 //        exit(0);
         processInput();
-        exit(0);
+//        exit(0);
         if (!getGameE()->getRender()->renderFrame())
         {
             logMsg("Unable to render frame!");

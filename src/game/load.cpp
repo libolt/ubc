@@ -1,4 +1,4 @@
- /***************************************************************************
+/***************************************************************************
  *   Copyright (C) 1999 - 2015 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
@@ -512,6 +512,7 @@ boost::shared_ptr<teamState> loader::loadTeamFile(string fileName)  // loads the
 std::vector<boost::shared_ptr<playerState> > loader::loadPlayers()  // loads the players
 {
     std::vector<boost::shared_ptr<playerState> > players;
+
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     string playerList = "data/players/players.xml";
 #else
@@ -523,12 +524,13 @@ std::vector<boost::shared_ptr<playerState> > loader::loadPlayers()  // loads the
     std::vector<std::string>::iterator it;
     for (it = playerFiles.begin(); it != playerFiles.end(); ++it)
     {
+       
         logMsg("playerFile = " +*it);
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
         players.push_back(loadPlayerFile("data/players/" + *it));
 #else
         players.push_back(loadPlayerFile(findFile("players/" + *it)));
-#endif
+#endif 
 //    exit(0);
     }
     return (players);
@@ -598,8 +600,8 @@ boost::shared_ptr<playerState> loader::loadPlayerFile(string fileName)  // loads
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
     boost::shared_ptr<playerState> player;
-    playerState *tempPlayerObj = new playerState;
-    player = boost::shared_ptr<playerState>(tempPlayerObj);
+//    playerState *tempPlayerObj = new playerState;
+//    player = boost::shared_ptr<playerState>(tempPlayerObj);
     
 //    std::vector<boost::shared_ptr<playerState> > playerInstance = gameS->getPlayerInstance();
     string firstName;
@@ -1016,6 +1018,7 @@ boost::shared_ptr<playerState> loader::loadPlayerFile(string fileName)  // loads
     //gameS->setPlayerDataInstances(playerDataInstance);
     //	vector<players::playerData> playerN = playerG->getPlayer();
 //    exit(0);
+    
     return (player);
 }
 

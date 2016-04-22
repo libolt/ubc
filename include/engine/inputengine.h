@@ -100,7 +100,8 @@ public:
     bool processUnbufferedTouchInput(); // reads in unbuffered touch input
     bool processUnbufferedGamepadInput(); // reads in unbuffered mouse input
 	
-protected:
+private:
+
 /*    inputEngine();
     inputEngine(const inputEngine&);
     inputEngine& operator= (const inputEngine&);
@@ -121,7 +122,8 @@ protected:
     static bool mouseLeftClick;	// stores state of Left mouse button
     static bool mouseRightClick; // stores state of Right mouse button;
 
-private:
+    static bool textInputStarted;  // determines if text input has started
+    
     //static inputEngine *pInstance;
 //    static boost::shared_ptr<inputEngine> pInstance;
 

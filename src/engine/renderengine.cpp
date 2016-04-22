@@ -841,5 +841,6 @@ bool renderEngine::renderFrame()  // renders a frame to the screen
 //        exit(0);
 
     }
+//    exit(0);
     return (true);
 }

@@ -425,7 +425,7 @@ bool gameState::createInstances()  // creates object instances
         }
     }
 //    exit(0);
-    if (!getTeamInstancesCreated())
+/*    if (!getTeamInstancesCreated())
     {
         logMsg("Creating Team Instances!");
 //        exit(0);
@@ -487,7 +487,7 @@ bool gameState::createInstances()  // creates object instances
             logMsg("Failed to create basketballInstances!");
             returnType = false;
         }
-    }
+    }*/
 //    exit(0);
     return (returnType);
 }
@@ -584,13 +584,13 @@ bool gameState::createPlayerInstances()  // creates player instances
     boost::shared_ptr<loader> load = loader::Instance();
 
     setPlayerInstances(load->loadPlayers());
-    if (getPlayerInstance().size() > 0)
+/*    if (getPlayerInstance().size() > 0)
     {
         logMsg("playerInstance size == " +convert->toString(getPlayerInstance().size()));
 //        logMsg("player name = " +getPlayerInstance()[0]->getPlayerName());
 //        exit(0);
         return (true);
-    }
+    }*/
     return (false);
 }
 

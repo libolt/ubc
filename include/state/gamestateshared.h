@@ -132,8 +132,8 @@ class gameStateShared
         static std::vector <hoopState> getHoopInstance();  // retrieves the value of hoopInstance
         static void setHoopInstance(std::vector<hoopState> set);  // sets the value of hoopInstance
 
-        static std::vector<boost::shared_ptr<playerState> > getPlayerInstance();  // retrieves the value of playerInstance
-        static void setPlayerInstances(std::vector<boost::shared_ptr<playerState> > set);  // sets the value of playerInstance;
+        std::vector<boost::shared_ptr<playerState> > getPlayerInstance();  // retrieves the value of playerInstance
+        void setPlayerInstances(std::vector<boost::shared_ptr<playerState> > set);  // sets the value of playerInstance;
 
         static std::vector<boost::shared_ptr<teamState> > getTeamInstance();  // retireves the value of teamInstance
         static void setTeamInstance(std::vector<boost::shared_ptr<teamState> > set);  // sets the value of teamInstance

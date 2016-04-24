@@ -582,8 +582,11 @@ bool gameState::createPlayerInstances()  // creates player instances
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<loader> load = loader::Instance();
+    boost::shared_ptr<playerState> playerStateSharedPtr = boost::shared_ptr<playerState>(new playerState);
+//    gameS = tempGameStateSharedPtr;
 
-    setPlayerInstances(load->loadPlayers());
+//    boost::shared_ptr<playerState> pState(new playerState);
+//    setPlayerInstances(load->loadPlayers());
 /*    if (getPlayerInstance().size() > 0)
     {
         logMsg("playerInstance size == " +convert->toString(getPlayerInstance().size()));

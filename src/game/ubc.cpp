@@ -165,7 +165,9 @@ void UBC::run()  // runs the game
 //        return (false);
     }
 
-    getGameS()->createInstances();  // creates object instances
+//    getGameS()->createInstances();  // creates object instances
+    boost::shared_ptr<gameState> gameStateSharedPtr = boost::shared_ptr<gameState>(new gameState);
+
     if (getGameE()->getRender()->getMWindow() == NULL)
     {
         logMsg("mWindow == NULL!");

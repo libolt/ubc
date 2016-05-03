@@ -86,9 +86,9 @@ gameEngine::gameEngine()  // constructor
 
     // networkEngine
 //    networkEngine *tempNetworkObj = new networkEngine;
-    boost::shared_ptr<networkEngine> tempNetworkSharedPtr = boost::shared_ptr<networkEngine>(new networkEngine);
+/*    boost::shared_ptr<networkEngine> tempNetworkSharedPtr = boost::shared_ptr<networkEngine>(new networkEngine);
     network = tempNetworkSharedPtr;
-
+*/
 ///    // physicsEngine
 ///    physicsEngine *tempPhysicsObj = new physicsEngine;
 ///    boost::shared_ptr<physicsEngine> tempPhysicsSharedPtr = boost::shared_ptr<physicsEngine>(tempPhysicsObj);

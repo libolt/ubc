@@ -126,7 +126,7 @@ bool UBC::setupState()  // sets up the UBC game state
             }
         }
         gui->showMainMenuWidgets();
-        getGameE()->setNetwork(getGameE()->getNetwork());
+//        getGameE()->setNetwork(getGameE()->getNetwork());
     } 
     else
     {
@@ -152,6 +152,8 @@ void UBC::run()  // runs the game
 //    exit(0);
     getGameE()->getRender()->createScene(); // creates rendering scene.
 
+//    boost::shared_ptr<entity> gameStateSharedPtr = boost::shared_ptr<entity>(new entity);
+
 //    exit(0);
 
     logMsg("pre setupState!");
@@ -166,7 +168,7 @@ void UBC::run()  // runs the game
     }
 
 //    getGameS()->createInstances();  // creates object instances
-    boost::shared_ptr<gameState> gameStateSharedPtr = boost::shared_ptr<gameState>(new gameState);
+    boost::shared_ptr<entity> gameStateSharedPtr = boost::shared_ptr<entity>(new entity);
 
     if (getGameE()->getRender()->getMWindow() == NULL)
     {

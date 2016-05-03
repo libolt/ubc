@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   Copyright (C) 1999 - 2016 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -11,11 +11,11 @@
  *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
  *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
  *   GNU General Public License for more details.                          *
- }}{{}wwweae}*                                                                         *
+ *                                                                         *
  *   You should have received a copy of the GNU General Public License     *
  *   along with this program; if not, write to the                         *
  *   Free Software Foundation, Inc.,                                       *
-e *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
+ *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
 #include "conversion.h"
@@ -29,9 +29,10 @@ e *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
 #include "engine/renderengine.h"
 //#include "engine/sound/soundengine.h"
 
-boost::shared_ptr<renderEngine> gameEngine::render; 
+/*boost::shared_ptr<renderEngine> gameEngine::render; 
 boost::shared_ptr<inputEngine> gameEngine::input;
-
+boost::shared_ptr<networkEngine> gameEngine::network;
+*/
 bool gameEngine::userInputLoaded;
 bool gameEngine::menuActive;
 bool gameEngine::start;
@@ -79,14 +80,14 @@ gameEngine::gameEngine()  // constructor
     // initialize subclasses
 
     // renderEngine
-    renderEngine *tempRenderObj = new renderEngine;
-    boost::shared_ptr<renderEngine> tempRenderSharedPtr = boost::shared_ptr<renderEngine>(tempRenderObj);
-    setRender(tempRenderSharedPtr);
+//    renderEngine *tempRenderObj = new renderEngine;
+    boost::shared_ptr<renderEngine> tempRenderSharedPtr = boost::shared_ptr<renderEngine>(new renderEngine);
+    render = tempRenderSharedPtr;
 
     // networkEngine
-    networkEngine *tempNetworkObj = new networkEngine;
-    boost::shared_ptr<networkEngine> tempNetworkSharedPtr = boost::shared_ptr<networkEngine>(tempNetworkObj);
-    setNetwork(tempNetworkSharedPtr);
+//    networkEngine *tempNetworkObj = new networkEngine;
+    boost::shared_ptr<networkEngine> tempNetworkSharedPtr = boost::shared_ptr<networkEngine>(new networkEngine);
+    network = tempNetworkSharedPtr;
 
 ///    // physicsEngine
 ///    physicsEngine *tempPhysicsObj = new physicsEngine;
@@ -94,9 +95,9 @@ gameEngine::gameEngine()  // constructor
 ///    set(tempPhysicsSharedPtr);
 
     // inputEngine
-    inputEngine *tempInputObj = new inputEngine;
-    boost::shared_ptr<inputEngine> tempInputSharedPtr = boost::shared_ptr<inputEngine>(tempInputObj);
-    setInput(tempInputSharedPtr);
+//    inputEngine *tempInputObj = new inputEngine;
+    boost::shared_ptr<inputEngine> tempInputSharedPtr = boost::shared_ptr<inputEngine>(new inputEngine);
+    input = tempInputSharedPtr;
 
 
 }

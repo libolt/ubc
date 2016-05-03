@@ -38,7 +38,7 @@
 
 //class UBC;
 
-class entity : public UBC // base class for entity objects
+class entity : public UBCBase // base class for entity objects
 {
     public:
     

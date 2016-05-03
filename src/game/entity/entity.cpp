@@ -119,6 +119,7 @@ void entity::setNodePosition(Ogre::Vector3 set)  // sets the value of nodePositi
 
 bool entity::loadModel()  // loads the 3D model
 {
+//    exit(0);
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     boost::shared_ptr<renderEngine> render = getGameE()->getRender();
     logMsg("entity::loadModel");

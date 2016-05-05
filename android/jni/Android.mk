@@ -188,6 +188,12 @@ UBC_DEPENDS_INC_PATH := $(UBC_DEPENDS_PATH)/include
    include $(PREBUILT_STATIC_LIBRARY)
    
    include $(CLEAR_VARS)
+   LOCAL_MODULE := POCOFoundation-Prebuilt
+   LOCAL_SRC_FILES := $(UBC_DEPENDS_LIB_PATH)/libPocoFoundationd.a
+   include $(PREBUILT_STATIC_LIBRARY)
+
+
+   include $(CLEAR_VARS)
    LOCAL_MODULE := OpenSteer-Prebuilt
    LOCAL_SRC_FILES := $(UBC_DEPENDS_LIB_PATH)/libopensteer.a
    include $(PREBUILT_STATIC_LIBRARY)
@@ -216,13 +222,7 @@ UBC_DEPENDS_INC_PATH := $(UBC_DEPENDS_PATH)/include
 
 include $(CLEAR_VARS)
 LOCAL_SHARED_LIBRARIES  := ALMixer-Prebuilt OpeanAL-Prebuilt OGG-Prebuilt Vorbis-Prebuilt  SDL2-Prebuilt 
-LOCAL_STATIC_LIBRARIES  := Boost-System-Prebuilt MyGUIOgrePlatform-Prebuilt MyGUIEngine-Prebuilt TinyXML2-Prebuilt BtOgre-Prebuilt BulletDynamics-Prebuilt BulletCollision-Prebuilt BulletSoftbody-Prebuilt BulletLinearMath-Prebuilt OgreRTShaderSystem-Prebuilt OgreRenderSystem_GLES2-Prebuilt OgreMain-Prebuilt OgreParticleFXPlugin-Prebuilt OpenSteer-Prebuilt Boost-Thread-Prebuilt Boost-Chrono-Prebuilt FreeImage-Prebuilt ZZipLib-Prebuilt FreeType-Prebuilt ENet-Prebuilt Native-App-Glue-Prebuilt Cpu-Features-Prebuilt 
- # BtOgre-Prebuilt  BulletCollision-Prebuilt BulletDynamics-Prebuilt BulletSoftbody-Prebuilt BulletLinearMath-Prebuilt Boost-Atomic-Prebuilt Boost-Chrono-Prebuilt Boost-System-Prebuilt Boost-Thread-Prebuilt Native-App-Glue-Prebuilt Cpu-Features-Prebuilt 
-#LOCAL_SHARED_LIBRARIES  += OgreMain-Prebuilt OgreOverlay-Prebuilt OgreProperty-Prebuilt OgreRTShaderSystem-Prebuilt OgreRenderSystem_GLES2-Prebuilt
-#LOCAl_STATIC_LIBRARIES  += 
-#LOCAL_SHARED_LIBRARIES  += FreeImage-Prebuilt FreeType-Prebuilt 
-#LOCAL_SHARED_LIBRARIES  += MyGUIEngine-Prebuilt MyGUIOgrePlatform-Prebuilt
-#LOCAL_SHARED_LIBRARIES  += OpenSteer-Prebuilt SDL_Sound-Prebuilt TinyXML-Prebuilt ZLib-Prebuilt ZZipLib-Prebuilt
+LOCAL_STATIC_LIBRARIES  := Boost-System-Prebuilt MyGUIOgrePlatform-Prebuilt MyGUIEngine-Prebuilt TinyXML2-Prebuilt BtOgre-Prebuilt BulletDynamics-Prebuilt BulletCollision-Prebuilt BulletSoftbody-Prebuilt BulletLinearMath-Prebuilt OgreRTShaderSystem-Prebuilt OgreRenderSystem_GLES2-Prebuilt OgreMain-Prebuilt OgreParticleFXPlugin-Prebuilt OpenSteer-Prebuilt Boost-Thread-Prebuilt Boost-Chrono-Prebuilt FreeImage-Prebuilt ZZipLib-Prebuilt FreeType-Prebuilt ENet-Prebuilt Native-App-Glue-Prebuilt Cpu-Features-Prebuilt POCOFoundation-PreBuilt 
 LOCAL_STATIC_LIBRARIES  +=  android_native_app_glue cpufeatures  gnustl_static supc++
  
 LOCAL_MODULE := UltimateBasketballChallenge

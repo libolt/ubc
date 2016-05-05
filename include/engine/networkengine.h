@@ -30,6 +30,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <boost/shared_ptr.hpp>
+
 #include "OgreString.h"
 #include "OgreStringConverter.h"
 #include "Ogre.h"

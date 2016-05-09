@@ -430,6 +430,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 	// Error, both can't be defined or undefined same time
 #endif
 
+    exit(0);
 	//std::cout << "winHandle = " << winHandle << std::endl;
 	RERoot = new Ogre::Root("", "", "Ogre.log");
 	const Ogre::String pluginDir = OGRE_PLUGIN_DIR;

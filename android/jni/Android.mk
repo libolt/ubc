@@ -179,7 +179,7 @@ UBC_DEPENDS_INC_PATH := $(UBC_DEPENDS_PATH)/include
 
    include $(CLEAR_VARS)
    LOCAL_MODULE := MyGUIOgrePlatform-Prebuilt
-   LOCAL_SRC_FILES := $(UBC_DEPENDS_LIB_PATH)/libMyGUI.OgrePlatform.a
+   LOCAL_SRC_FILES := $(UBC_DEPENDS_LIB_PATH)/libMyGUIOgrePlatform.a
    include $(PREBUILT_STATIC_LIBRARY)
 
    include $(CLEAR_VARS)
@@ -187,12 +187,6 @@ UBC_DEPENDS_INC_PATH := $(UBC_DEPENDS_PATH)/include
    LOCAL_SRC_FILES := $(UBC_DEPENDS_LIB_PATH)/libMyGUIOpenGLESPlatform.a
    include $(PREBUILT_STATIC_LIBRARY)
    
-   include $(CLEAR_VARS)
-   LOCAL_MODULE := POCOFoundation-Prebuilt
-   LOCAL_SRC_FILES := $(UBC_DEPENDS_LIB_PATH)/libPocoFoundationd.a
-   include $(PREBUILT_STATIC_LIBRARY)
-
-
    include $(CLEAR_VARS)
    LOCAL_MODULE := OpenSteer-Prebuilt
    LOCAL_SRC_FILES := $(UBC_DEPENDS_LIB_PATH)/libopensteer.a

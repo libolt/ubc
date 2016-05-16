@@ -40,7 +40,7 @@
 
 
 #ifndef OGRE_PLUGIN_DIR
-#define OGRE_PLUGIN_DIR
+#define OGRE_PLUGIN_DIRr
 #endif
 /*renderEngine* renderEngine::pInstance = 0;
 renderEngine* renderEngine::Instance()
@@ -430,7 +430,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 	// Error, both can't be defined or undefined same time
 #endif
 
-    exit(0);
+//    exit(0);
 	//std::cout << "winHandle = " << winHandle << std::endl;
 	RERoot = new Ogre::Root("", "", "Ogre.log");
 	const Ogre::String pluginDir = OGRE_PLUGIN_DIR;
@@ -466,10 +466,13 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
     RERoot->loadPlugin(pluginDir + "/RenderSystem_GL_d");
 	RERoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager");
 #endif
+//    exit(0);
+
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 	RERoot->setRenderSystem(RERoot->getAvailableRenderers().at(0));
-	RERoot->initialise(false);
+//    RERoot->initialise(false);
 //    RERoot->init = true;
+//    exit(0);
 #else
 	Ogre::RenderSystemList rsList = RERoot->getAvailableRenderers();
 
@@ -492,17 +495,20 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 	//we found it, we might as well use it!
     RERoot->setRenderSystem(selectedRenderSystem);
 #endif
-
-    mWindow = RERoot->initialise(false, "Ultimate Basketball Challenge");
     
+    
+    mWindow = RERoot->initialise(false, "Ultimate Basketball Challenge");
+//    exit(0);
     Ogre::DDSCodec::startup();
-    Ogre::FreeImageCodec::startup();FreeImage_Initialise();
-    Ogre::DDSCodec::startup();
+    
     Ogre::FreeImageCodec::startup();
+    FreeImage_Initialise();
+//    Ogre::DDSCodec::startup();
+//    Ogre::FreeImageCodec::startup();
     //log->setOgreRootInitialized(true);
 
     logMsg("OGRE initialized successfully!");
-//exit(0);
+//    exit(0);
 	return true;
 }
 
@@ -524,27 +530,29 @@ bool renderEngine::createWindow()
 
 bool renderEngine::createScene()
 {
-
+    
     instance += 1;
+//    exit(0);
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     logMsg("Hello");
 	config = AConfiguration_new();
 	logMsg("Mello");
+//    exit(0);
 //	AConfiguration_fromAssetManager(config, app->activity->assetManager);
 //	mAssetMgr = app->activity->assetManager;
     JNIEnv* env = (JNIEnv*)SDL_AndroidGetJNIEnv();
-
+    
     jclass class_sdl_activity   = env->FindClass("com/libolt/ubc/UBCActivity");
     jmethodID method_get_native_surface = env->GetStaticMethodID(class_sdl_activity, "getNativeSurface", "()Landroid/view/Surface;");
     jobject raw_surface = env->CallStaticObjectMethod(class_sdl_activity, method_get_native_surface);
     ANativeWindow* native_window = ANativeWindow_fromSurface(env, raw_surface);
-
+    
     if ( !native_window )
 	{
 		logMsg("No Window, Goodbye!");
         return(0);
 	}
-
+    
     jclass class_activity       = env->FindClass("com/libolt/ubc/UBCActivity");
     jclass class_resources      = env->FindClass("android/content/res/Resources");
     jmethodID method_get_resources      = env->GetMethodID(class_activity, "getResources", "()Landroid/content/res/Resources;");
@@ -555,7 +563,7 @@ bool renderEngine::createScene()
 //    jobject raw_surface = env->CallStaticObjectMethod(class_sdl_activity, method_get_native_surface);
 
 //    ANativeWindow* native_window = ANativeWindow_fromSurface(env, raw_surface);
-
+//    exit(0);
     uint32_t w = ANativeWindow_getWidth(native_window);
     uint32_t h = ANativeWindow_getHeight(native_window);
 
@@ -574,6 +582,7 @@ bool renderEngine::createScene()
     Ogre::ArchiveManager::getSingleton().addArchiveFactory( new Ogre::APKFileSystemArchiveFactory(mAssetMgr) );
     Ogre::ArchiveManager::getSingleton().addArchiveFactory( new Ogre::APKZipArchiveFactory(mAssetMgr) );
 	logMsg("Hello?");
+//    exit(0);
 #endif
 	//  AConfiguration_fromAssetManager(config, app->activity->assetManager);
 	//gAssetMgr = app->activity->assetManager;
@@ -593,9 +602,9 @@ bool renderEngine::createScene()
 //    exit(0);
 	logMsg("Hello??");
 //    exit(0);
-    mWindow = RERoot->createRenderWindow("Ultimate Basketball Challenge", 0, 0, false, &misc);
+   /* mWindow = */ RERoot->createRenderWindow("Ultimate Basketball Challenge", 0, 0, false, &misc);
 
-//    exit(0);
+    exit(0);
     logMsg("renderWindow created!");
 	unsigned long handle = 0;
 	mWindow->getCustomAttribute("WINDOW", &handle);
@@ -817,7 +826,7 @@ bool renderEngine::createScene()
 	}
 */
 //	load->loadPlayerFile(
-//	exit(0);
+	exit(0);
   //  gameE->startGame();
 return (true);
 }

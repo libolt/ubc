@@ -512,15 +512,6 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 	return true;
 }
 
-void renderEngine::createSceneManager()
-{
-//    renderEngine *render = renderEngine::Instance();
-
-    // Create the SceneManager, in this case a generic one
-    mSceneMgr = RERoot->createSceneManager(Ogre::ST_EXTERIOR_CLOSE);
-
-}
-
 bool renderEngine::createWindow()
 {
 	return true;
@@ -602,9 +593,9 @@ bool renderEngine::createScene()
 //    exit(0);
 	logMsg("Hello??");
 //    exit(0);
-   /* mWindow = */ RERoot->createRenderWindow("Ultimate Basketball Challenge", 0, 0, false, &misc);
+    mWindow =  RERoot->createRenderWindow("Ultimate Basketball Challenge", 0, 0, false, &misc);
 
-    exit(0);
+//    exit(0);
     logMsg("renderWindow created!");
 	unsigned long handle = 0;
 	mWindow->getCustomAttribute("WINDOW", &handle);
@@ -826,7 +817,7 @@ bool renderEngine::createScene()
 	}
 */
 //	load->loadPlayerFile(
-	exit(0);
+//	exit(0);
   //  gameE->startGame();
 return (true);
 }

@@ -137,7 +137,7 @@ class renderEngine : public engine
     bool createScene();  // creates a scene
     bool frameStarted();  // begins a frame
     bool frameEnded();  // ends a frame
-    void createSceneManager();  // creates the scene manager
+//    void createSceneManager();  // creates the scene manager
 
     bool renderFrame();  // renders a frame to the screen
     

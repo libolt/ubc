@@ -22,7 +22,7 @@
  
 state::state()  // constructor
 {
-    stateSet = false;
+//    stateSet = false;
 }
  
 bool state::getStateSet()  // retrieves the value of stateSet

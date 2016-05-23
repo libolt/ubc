@@ -23,12 +23,12 @@ FIND_PATH(OpenSteer_INCLUDE_DIRS OpenSteer/OpenSteer.h
     )
 
 FIND_LIBRARY(OpenSteer_LIBRARY_DBG
-    NAMES opensteer libopensteer.a libopensteer
+    NAMES opensteer_debug libopensteer_debug.a libopensteer_debug
     PATHS
     $ENV{OpenSteer_HOME}
     /usr/local
     /usr
-    PATH_SUFFIXES lib/debug
+    PATH_SUFFIXES lib
     )
 
 FIND_LIBRARY(OpenSteer_LIBRARY_REL
@@ -48,8 +48,14 @@ INCLUDE(FindPackageHandleStandardArgs)
 FIND_PACKAGE_HANDLE_STANDARD_ARGS(OpenSteer DEFAULT_MSG OpenSteer_LIBRARY OpenSteer_INCLUDE_DIRS)
 
 IF (OpenSteer_FOUND)
-	MESSAGE("DAH!")
-    SET(OpenSteer_LIBRARIES ${OpenSteer_LIBRARY})
+    MESSAGE("OpenSteer Found!")
+    IF (WIN32)
+        SET(OpenSteer_LIBRARIES optimized ${OpenSteer_LIBRARIES_REL} debug ${OpenSteer_LIBRARIES_DBG})
+    ELSE (WIN32)
+        SET (OpenSteer_LIBRARIES ${OpenSteer_LIBRARY})
+    ENDIF (WIN32)
+ELSE (OpenSteer_FOUND)
+    MESSAGE("TinyXML2 Not Found!")
 ENDIF (OpenSteer_FOUND)
 
 MARK_AS_ADVANCED(OpenSteer_LIBRARY OpenSteer_LIBRARIES OpenSteer_INCLUDE_DIRS)

@@ -57,7 +57,7 @@ boost::shared_ptr<gameState> gameState::Instance()
 
 gameState::gameState()  // constructor
 {
-    
+/*    
 //    basketballInstancesCreated = false;
 //    courtInstancesCreated = false;
 //    hoopInstancesCreated = false;
@@ -90,6 +90,7 @@ gameState::gameState()  // constructor
     finished = false;
 
 //    stateSet = false;
+    */
 }
 
 gameState::~gameState()  // destructor

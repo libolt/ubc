@@ -65,6 +65,7 @@ float gameStateShared::yOffset; // stores the y offset for objects on the screen
 
 gameStateShared::gameStateShared()  // constructor
 {
+/*
     activeTeamInstancesCreated = false;
     activeTeamInstancesNeedCreated = false;
     basketballInstanceCreated = false;
@@ -89,7 +90,7 @@ gameStateShared::gameStateShared()  // constructor
     activeBBallInstance = -1;
     activeCourtInstance = -1;
     gameType = NOGAME;
-
+*/
 
 }
 

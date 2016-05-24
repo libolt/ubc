@@ -24,9 +24,9 @@
 #include "state/networkstate.h"
 
 // Static Declarations
-boost::shared_ptr<gameEngine> UBCBase::gameE;  // the gameEngine object
-boost::shared_ptr<gameState> UBCBase::gameS;  // the gameState object
-boost::shared_ptr<networkState> UBCBase::networkS;  // the networkState object
+//boost::shared_ptr<gameEngine> UBCBase::gameE;  // the gameEngine object
+//boost::shared_ptr<gameState> UBCBase::gameS;  // the gameState object
+//boost::shared_ptr<networkState> UBCBase::networkS;  // the networkState object
 
 UBCBase::UBCBase()  // constructor
 {

@@ -46,9 +46,9 @@ class UBCBase
   
     private:
     
-    static boost::shared_ptr<gameEngine> gameE;  // the gameEngine object
-    static boost::shared_ptr<gameState> gameS;  // the gameState object
-    static boost::shared_ptr<networkState> networkS;  // the gameState object
+    boost::shared_ptr<gameEngine> gameE;  // the gameEngine object
+    boost::shared_ptr<gameState> gameS;  // the gameState object
+    boost::shared_ptr<networkState> networkS;  // the gameState object
 
 };
 

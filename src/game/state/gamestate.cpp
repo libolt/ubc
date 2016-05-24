@@ -97,71 +97,6 @@ gameState::~gameState()  // destructor
 {
 }
 
-/*gameTypes gameState::getGameType()  // retrieves the value of gameType
-{
-    return(gameType);
-}
-void gameState::setGameType(gameTypes set)  // sets the value of gameType
-{
-    gameType = set;
-}*/
-
-/*(quarters gameState::getQuarter()  // retrieves the value of quarter
-{
-    return (quarter);
-}
-void gameState::setQuarters(quarters set)  // sets he value of quarter
-{
-    quarter = set;
-}*/
-
-/*bool gameState::getGameSetupComplete()  // retrieves the value of gameSetupComplete
-{
-    return (gameSetupComplete);
-}
-void gameState::setGameSetupComplete(bool set)  // sets the value of gameSetupComplete
-{
-    gameSetupComplete = set;
-}*/
-
-/*std::vector <courtState> gameState::getCourtInstance()  // retrieves the value of courtInstance
-{
-    return (courtInstance);
-}
-void gameState::setCourtInstance(std::vector<courtState> set)  // sest the value of courtInstance
-{
-    courtInstance = set;
-}*/
-
-/*std::vector <hoopState> gameState::getHoopInstance()  // retrieves the value of hoopInstance
-{
-    return (hoopInstance);
-}
-void gameState::setHoopInstance(std::vector<hoopState> set)  // sets the value of hoopInstance
-{
-    hoopInstance = set;
-}*/
-
-/*std::vector<teamData> gameState::getTeamDataInstance()  // retrieves the value of teamDataInstance
-{
-	return (teamDataInstance);
-}
-void gameState::setTeamDataInstance(std::vector<teamData> set)  // sets the value of teamDataInstance
-{
-    teamDataInstance = set;
-}
-*/
-
-/*std::vector<boost::shared_ptr<playerState> > gameState::getPlayerInstance()  // retrieves the value of playerInstance
-{
-	return (playerInstance);
-}
-void gameState::setPlayerInstances(std::vector<boost::shared_ptr<playerState> > set)  // sets the value of playerInstance
-{
-    playerInstance = set;
-}
-*/
-
 std::vector<courtData>	gameState::getCourtDataInstance()  // retrieves the value of courtDataInstance
 {
 	return (courtDataInstance);
@@ -170,24 +105,6 @@ void gameState::setCourtDataInstance(std::vector<courtData> set)  // sets the va
 {
     courtDataInstance = set;
 }
-
-/*size_t gameState::getActiveBBallInstance()  // retrieves the value of activeBBallInstance
-{
-    return (activeBBallInstance);
-}
-void gameState::setActiveBBallInstance(size_t set)  // sets the value of activeBBallInstance
-{
-    activeBBallInstance = set;
-}*/
-
-/*size_t gameState::getActiveCourtInstance()  // retrieves the value of activeCourtInstance
-{
-    return (activeCourtInstance);
-}
-void gameState::setActiveCourtInstance(size_t set)  // sets the value of activeCourtInstance
-{
-    activeCourtInstance = set;
-}*/
 
 size_t gameState::getSelectedCourtDataInstance()  // retrieves the value of selectedCourtDataInstance
 {
@@ -198,15 +115,6 @@ void gameState::setSelectedCourtDataInstance(size_t set)  // sets the value of s
     selectedCourtDataInstance = set;
 }
 
-/*std::vector<size_t> gameState::getTeamID()  // retrieves the value of teamID
-{
-    return (teamID);
-}
-void gameState::setTeamID(std::vector<size_t> set)  // sets the value of teamID
-{
-    teamID = set;
-}*/
-
 std::vector<size_t> gameState::getPlayerID()  // retrieves the value of playerID
 {
     return (playerID);
@@ -215,42 +123,6 @@ void gameState::setPlayerID(std::vector<size_t> set)  // sets the value of playe
 {
     playerID = set;
 }
-
-/*std::vector< std::vector<size_t> > gameState::getTeamStarterID()  // retrieves value of teamStarterID
-{
-    return (teamStarterID);
-}
-void gameState::setTeamStarterID(std::vector< std::vector<size_t> > set)  // sets the value of teamStarterID
-{
-    teamStarterID = set;
-}*/
-
-/*std::vector<boost::shared_ptr<teamState> > gameState::getTeamInstance()  // retrieves the value of teamInstance
-{
-    return (teamInstance);
-}
-void gameState::setTeamInstance(std::vector<boost::shared_ptr<teamState> > set)  // sets the value of teamInstance
-{
-    teamInstance = set;
-}*/
-
-/*std::vector <basketballState> gameState::getBasketballInstance()  // retrieves the value of basketballInstance
-{
-    return (basketballInstance);
-}
-void gameState::setBasketballInstance(std::vector<basketballState> set)  // sets the value of basketballInstance
-{
-    basketballInstance = set;
-}*/
-
-/*std::vector <boost::shared_ptr<teamState> > gameState::getActiveTeamInstance()  // retireves the value of activeTeamInstance
-{
-    return (activeTeamInstance);
-}
-void gameState::setActiveTeamInstance(std::vector<boost::shared_ptr<teamState> > set)  // sets the value of activeTeamInstance
-{
-    activeTeamInstance = set;
-}*/
 
 bool gameState::getGameStarted()  // retrieves the value of gameStarted
 {
@@ -261,15 +133,6 @@ void gameState::setGameStarted(bool set)  // sets the value of gameStarted
     gameStarted = set;
 }
 
-/*boost::shared_ptr<jumpBalls> gameState::getJumpBall()  // retrieves the value of jumpBall
-{
- return (jumpBall);
-}
-void gameState::setJumpBall(boost::shared_ptr<jumpBalls> set)  // sets the value of jumpBall
-{
-    jumpBall = set;
-}*/
-
 bool gameState::getTipOffSetupComplete()  // retrieves the value of tipOffSetupComplete
 {
     return (tipOffSetupComplete);
@@ -278,24 +141,6 @@ void gameState::setTipOffSetupComplete(bool set)  // sets the value of tipOffSet
 {
     tipOffSetupComplete = set;
 }
-
-/*bool gameState::getTipOffComplete()  // retrieves the value of tipOffComplete
-{
-    return (tipOffComplete);
-}
-void gameState::setTipOffComplete(bool set)  // sets the value of tipOffComplete
-{
-    tipOffComplete = set;
-}*/
-
-/*teamTypes gameState::getTeamWithBall()  // retrieves the value of teamWithBall
-{
-    return (teamWithBall);
-}
-void gameState::setTeamWithBall(teamTypes set)  // sets the value of teamWithBall
-{
-    teamWithBall = set;
-}*/
 
 size_t gameState::getBballBounce()  // retrieves the value of bballBounce
 {
@@ -315,70 +160,6 @@ void gameState::setCourtDataLoaded(bool set)  // sets the value of courtDataLoad
     courtDataLoaded = set;
 }
 
-/*bool gameState::getBasketballInstancesCreated()  // gets the value of basketballInstancesCreated
-{
-    return (basketballInstancesCreated);
-}
-void gameState::setBasketballInstancesCreated(bool set)  // sets the value of basketballInstancesCreated
-{
-    basketballInstancesCreated = set;
-}*/
-
-/*bool gameState::getCourtInstancesCreated()  // gets the value of the courtInstancesCreated
-{
-    return (courtInstancesCreated);
-}
-void gameState::setCourtInstancesCreated(bool set)  // sets the value of the courtInstancesCreated
-{
-    courtInstancesCreated = set;
-}*/
-
-/*bool gameState::getHoopInstancesCreated()  // retrieves the value of hoopInstancesCreated
-{
-    return (hoopInstancesCreated);
-}
-void gameState::setHoopInstancesCreated(bool set)  // sets the value of hoopInstancesCreated
-{
-    hoopInstancesCreated = set;
-}*/
-
-/*bool gameState::getPlayerInstanceCreated()  // retrieves the value of playerInstancesCreated
-{
-    return (playerInstancesCreated);
-}
-void gameState::setPlayerInstanceCreated(bool set)  // sets the value of playerInstancesCreated
-{
-    playerInstancesCreated = set;
-}*/
-
-/*bool gameState::getTeamInstancesCreated()  // gets the value of teamInstancesCreated
-{
-    return (teamInstancesCreated);
-}
-void gameState::setTeamInstancesCreated(bool set)  // sets the value of teamInstancesCreated
-{
-    teamInstancesCreated = set;
-}*/
-
-/*bool gameState::getActiveTeamInstancesCreated()	 // retrieves the value of activeTeamInstancesCreated
-{
-    return (activeTeamInstancesCreated);
-}
-
-void gameState::setActiveTeamInstancesCreated(bool set)	 // sets the value of activeTeamInstancesCreated
-{
-    activeTeamInstancesCreated = set;
-}*/
-
-bool gameState::getCourtModelLoaded()  // retrieves the value of courtModelLoaded
-{
-    return (courtModelLoaded);
-}
-void gameState::setCourtModelLoaded(bool set)  // sets the value of courtModelLoaded
-{
-    courtModelLoaded = set;
-}
-
 bool gameState::getModelsLoaded()  // retrieves the value of modelsLoaded
 {
     return (modelsLoaded);
@@ -387,16 +168,6 @@ void gameState::setModelsLoaded(bool set)  // sets the value of modelsLoaded
 {
     modelsLoaded = set;
 }
-
-/*bool gameState::getStateSet()  // retrieves the value of stateSet
-{
-    return (stateSet);
-}
-void gameState::setStateSet(bool set)  // sets the value of stateSet
-{
-    stateSet = set;
-}
-*/
 
 bool gameState::assignHoopToTeams()  // assigns which hoop belongs to each team
 {
@@ -876,7 +647,7 @@ bool gameState::executeTipOff()  // executes tip off
 // sets up the game condition
 bool gameState::setupState()  // sets up the game condition
 {
-
+/*
     boost::shared_ptr<AISystem> ai = AISystem::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     boost::shared_ptr<loader> load = loader::Instance();
@@ -956,7 +727,7 @@ bool gameState::setupState()  // sets up the game condition
     {
         tipOffSetupComplete = setupTipOff();  // sets up tip off conditions
     }
-
+*/
     return true;
 }
 
@@ -964,7 +735,8 @@ bool gameState::updateState()  // updates the game state
 {
 //    logMsg("Updating gameState Logic");
 
-    boost::shared_ptr<AISystem> ai = AISystem::Instance();
+// BEGINING OF TEST COMMENT
+/*    boost::shared_ptr<AISystem> ai = AISystem::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
 //    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
@@ -1037,6 +809,8 @@ bool gameState::updateState()  // updates the game state
             exit(0);
         }
     }
+*/
+// END OF TEST COMMENT    
 /*    timing timer = gameE->getTimer();
     Ogre::Vector3 playerPos;
 

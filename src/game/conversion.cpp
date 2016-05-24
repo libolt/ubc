@@ -103,7 +103,7 @@ std::string conversion::toString(const double &data)  // converts double data to
     strData = boost::lexical_cast<std::string>(data);
     return (strData);
 }
-/*std::string conversion::toString(size_t &data)  // converts size_t data to string
+/*std::string conversion::toString(const size_t &data)  // converts size_t data to string
 {
     std::string strData;
     strData = boost::lexical_cast<std::string>(data);

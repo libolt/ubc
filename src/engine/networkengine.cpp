@@ -427,7 +427,7 @@ void networkEngine::networkServer()  // executes the network server code
                         event.channelID);
                 // converts and writes data to Ogre.log for packet
                 packetData = convert->toString(event.packet->data);
-                packetDataLength = convert->toString(event.packet->dataLength);
+//                packetDataLength = convert->toString(event.packet->dataLength);
                 packetPeer = convert->toString(event.peer->data);
                 packetChannelID = convert->toString(event.channelID);
                 logMsg("A packet of length " +packetDataLength + " containing " +packetData + " was received from " +packetPeer + " on channel " +packetChannelID);

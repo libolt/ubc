@@ -23,6 +23,7 @@
 #include "conversion.h"
 #include "load.h"
 
+/*
 boost::shared_ptr<soundEngine> soundEngine::pInstance;
 
 boost::shared_ptr<soundEngine> soundEngine::Instance()
@@ -75,11 +76,11 @@ bool soundEngine::loadSound(std::string sound)  // loads sounds from media file
     ALmixer_Data *sample;
 //    if(!(sample=ALmixer_LoadAll( "roar.wav", AL_FALSE) ))
 //    if (!(audio_data[0]=ALmixer_LoadStream( sound.c_str(), AL_FALSE) ))
-/*    {
-        logMsg(convert->toString(ALmixer_GetError()) +". Quiting program.");
-		return (false);
-    }
-    */
+///    {
+///        logMsg(convert->toString(ALmixer_GetError()) +". Quiting program.");
+///		return (false);
+///    }
+    
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     std::string sampleFile = "data/Media/Audio/roar.wav";
 #else
@@ -109,15 +110,14 @@ bool soundEngine::setup()  // sets up the sound engine
     
     ALint i;
     
-/*    if(argc < 1)
-    {
-        logMsg("Pass a sound file (or files) as a parameter\n");
-    }
-    else if(argc-1 > MAX_SOURCES)
-    {
-        logMsg("Maximum supported files is "  +convert->toString(MAX_SOURCES));
-    }
-*/
+///    if(argc < 1)
+///    {
+///        logMsg("Pass a sound file (or files) as a parameter\n");
+///    }
+///    else if(argc-1 > MAX_SOURCES)
+///    {
+///        logMsg("Maximum supported files is "  +convert->toString(MAX_SOURCES));
+///    }
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 
@@ -133,4 +133,4 @@ bool soundEngine::setup()  // sets up the sound engine
     logMsg("Sound Engine Setup Complete!");
     return true;
 }
-
+*/

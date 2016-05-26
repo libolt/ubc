@@ -26,6 +26,7 @@ FIND_LIBRARY(TinyXML2_LIBRARIES_REL
     NAMES tinyxml2 libtinyxml2.a
     PATHS
     $ENV{TINYXML2_HOME}/lib/Release
+    $ENV{TINYXML2_HOME}/lib
     /usr/local
     /usr
     )
@@ -34,6 +35,7 @@ FIND_LIBRARY(TinyXML2_LIBRARIES_DBG
     NAMES tinyxml2_Debug tinyxml2 libTinyXML2_d.a
     PATHS
     $ENV{TINYXML2_HOME}/lib/Debug
+    $ENV{TINYXML2_HOME}/lib
     /usr/local
     /usr
     )

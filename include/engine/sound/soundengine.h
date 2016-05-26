@@ -34,8 +34,8 @@
 //#include <unordered_map>
 #include <vector>
 #include <list>
-#include "ALmixer.h"
-#include "ALmixer_PlatformExtensions.h"
+//#include "ALmixer.h"
+//#include "ALmixer_PlatformExtensions.h"
 #include "OgreMath.h"
 #include "SDL.h"
 #include "SDL_thread.h"
@@ -61,7 +61,7 @@
 
 class soundEngine
 {
-    public:
+/*    public:
         soundEngine();
         ~soundEngine();
 
@@ -100,7 +100,8 @@ class soundEngine
 
         ALmixer_Data *audio_data;
         
-        bool setupComplete;  // determines if setup has completed
+        bool setupComplete;  // determines if setup has complete
+*/
  };
 
 #endif // SOUNDENGINE_H_

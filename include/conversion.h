@@ -60,8 +60,10 @@ class conversion  // class for conversion between data types
         std::string toString(void *data);  // converts void * data to string
         std::string toString(const Ogre::Vector3 &data);  // converts Ogre::Vector3 data to string
         std::string toString(const OpenSteer::Vec3 &data);  // converts OpenSteer::Vec3 data to string
-//        std::string toString(const size_t &data);  // converts size_t data to string
-        std::string toString(const btVector3 &data); // converts btVector3 data to string
+#ifdef _WIN64
+	std::string toString(const size_t &data);  // converts size_t data to string
+#endif
+	std::string toString(const btVector3 &data); // converts btVector3 data to string
         std::string toString(const playerPositions &data); // converts playerPositions data to string
         std::string toString(const teamTypes &data); // converts teamTypes data to string
         std::string toString(const bool &data); // converts bool data to string

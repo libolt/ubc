@@ -103,12 +103,14 @@ std::string conversion::toString(const double &data)  // converts double data to
     strData = boost::lexical_cast<std::string>(data);
     return (strData);
 }
-/*std::string conversion::toString(const size_t &data)  // converts size_t data to string
+#ifdef _WIN64
+std::string conversion::toString(const size_t &data)  // converts size_t data to string
 {
     std::string strData;
     strData = boost::lexical_cast<std::string>(data);
     return (strData);
-}*/
+}
+#endif
 std::string conversion::toString(const Ogre::Vector3 &data)  // converts Ogre::Vector3 data to string
 {
     std::string strData;

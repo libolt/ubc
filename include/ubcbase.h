@@ -34,21 +34,21 @@ class UBCBase
     UBCBase();  // constructor
     ~UBCBase();  // destructor
     
-    boost::shared_ptr<gameEngine> getGameE();  // retrieves the value of gameE
+    static boost::shared_ptr<gameEngine> getGameE();  // retrieves the value of gameE
     void setGameE(boost::shared_ptr<gameEngine> set);  // sets the value of gameE
     
-    boost::shared_ptr<gameState> getGameS();  // retrieves the value of gameS
+    static boost::shared_ptr<gameState> getGameS();  // retrieves the value of gameS
     void setGameS(boost::shared_ptr<gameState> set);  // sets the value of gameS
     
-    boost::shared_ptr<networkState> getNetworkS();  // retrieves the value of networkS
+    static boost::shared_ptr<networkState> getNetworkS();  // retrieves the value of networkS
     void setNetworkS(boost::shared_ptr<networkState> set);  // sets the value of networkS
     
   
     private:
     
-    boost::shared_ptr<gameEngine> gameE;  // the gameEngine object
-    boost::shared_ptr<gameState> gameS;  // the gameState object
-    boost::shared_ptr<networkState> networkS;  // the gameState object
+        static boost::shared_ptr<gameEngine> gameE;  // the gameEngine object
+        static boost::shared_ptr<gameState> gameS;  // the gameState object
+        static boost::shared_ptr<networkState> networkS;  // the gameState object
 
 };
 

@@ -121,7 +121,7 @@ bool entity::loadModel()  // loads the 3D model
 {
 //    exit(0);
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
-    boost::shared_ptr<renderEngine> render = getGameE()->getRender();
+    boost::shared_ptr<renderEngine> render = base->getGameE()->getRender();
     logMsg("entity::loadModel");
     logMsg("entityName == " +entityName);
     logMsg("entityModelFileName == " +entityModelFileName);
@@ -147,7 +147,7 @@ bool entity::loadModel()  // loads the 3D model
 
     }
     
-    if (getGameE()->getRender().get()->getMSceneMgr()->hasCamera("camera"))
+    if (base->getGameE()->getRender().get()->getMSceneMgr()->hasCamera("camera"))
     {
         logMsg("mSceneMgr has camera!");
     }
@@ -156,7 +156,7 @@ bool entity::loadModel()  // loads the 3D model
         logMsg("mSceneMgr does not have camera!");
     }
 //    model = render->getMSceneMgr()->createEntity(entityName, entityModelFileName);  // loads the model
-    Ogre::Entity *tempModel = getGameE()->getRender()->getMSceneMgr()->createEntity(entityName, entityModelFileName, "UBCData");  // loads the model
+    Ogre::Entity *tempModel = base->getGameE()->getRender()->getMSceneMgr()->createEntity(entityName, entityModelFileName, "UBCData");  // loads the model
     logMsg("tempModel loaded!");
 //    render->getMSceneMgr()->
 //    Ogre::Entity *tempModel = render->getMSceneMgr()->createEntity("dah!", "Player.mesh");
@@ -165,7 +165,7 @@ bool entity::loadModel()  // loads the 3D model
     logMsg("Entity Created!");
     // creates and instantiates the node object
 //    node = getRender()->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName);
-    Ogre::SceneNode *tempNode = getGameE()->getRender()->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName);
+    Ogre::SceneNode *tempNode = base->getGameE()->getRender()->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName);
     tempNode->attachObject(model.get());
     logMsg("node attached!");
     // attaches 3D model to the node

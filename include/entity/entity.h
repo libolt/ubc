@@ -34,11 +34,11 @@
 //#include "engine/renderengine.h"
 
 
-#include "ubc.h"
+#include "ubcbase.h"
 
 //class UBC;
 
-class entity : public UBCBase // base class for entity objects
+class entity // : public UBCBase // base class for entity objects
 {
     public:
     
@@ -78,6 +78,8 @@ class entity : public UBCBase // base class for entity objects
 //    bool setupPhysics();  // sets up the physics object
     
     private:
+    
+    boost::shared_ptr<UBCBase> base;  // base class object
     
     std::string entityModelFileName;  // stores the file name of the 3d model
 

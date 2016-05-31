@@ -67,11 +67,15 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
     {
         courtName.push_back(courtInstance[x].getName());
     }
-    logMsg("courtInstane.size == " +convert->toString(courtInstance.size()));
-    exit(0);
+    if (courtInstance.size() == 0)
+    {
+        logMsg("courtInstane.size == " +convert->toString(courtInstance.size()));
+//        exit(0);
+    }
+    
     logMsg("courtName = " +courtName[0]);
     logMsg("courtName size = " +convert->toString(courtName.size()));
-    exit(0);
+//    exit(0);
     size_t i = 0;
     while (i<courtName.size())
     {

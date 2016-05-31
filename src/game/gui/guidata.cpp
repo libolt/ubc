@@ -49,20 +49,28 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
     
     if (getGameS()->getCourtInstancesCreated())
     {
-        exit(0);
+        courtInstance = getGameS()->getCourtInstance();
+//        exit(0);
         getGameS()->setCourtInstancesNeedCreated(true);
 //        exit(0);
-/*        if (gameS->createCourtInstances())
+
+    }
+    else
+    {
+        if (getGameS()->createCourtInstances())
         {
-            gameS->setCourtInstancesCreated(true);
+//            exit(0);
+            courtInstance = getGameS()->getCourtInstance();
+            getGameS()->setCourtInstancesCreated(true);
         }
         else
         {
-       */
+            logMsg("Court Instances NOT Created!");
+        }
     }
 //    exit(0);
 //    courtInstance = gameS->getCourtInstance();
-    
+
     for (size_t x=0;x<courtInstance.size();++x)
     {
         courtName.push_back(courtInstance[x].getName());

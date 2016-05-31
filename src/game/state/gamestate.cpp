@@ -330,6 +330,18 @@ bool gameState::createCourtInstances()  // creates court Instances
 //    cInstance.setModelFileName("Court.mesh");
     setCourtInstance(load->loadCourts());
 
+    if (getCourtInstance().size() > 0)
+    {
+        logMsg("Court Instances SET!");
+        return (true);
+    }
+    else
+    {
+        logMsg("Court Instances NOT SET!!");
+//        exit(0);
+        return (false);
+    }
+
     return (true);
 }
 

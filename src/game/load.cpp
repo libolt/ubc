@@ -1542,6 +1542,7 @@ basketballState loader::loadBasketballFile(string fileName)  // loads data from 
 // Courts
 std::vector<courtState> loader::loadCourts()  // load court settings from XML files
 {
+//    exit(0);
     std::vector<courtState> courts;
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     string courtList = "data/courts/courts.xml";
@@ -1561,6 +1562,7 @@ std::vector<courtState> loader::loadCourts()  // load court settings from XML fi
         courts.push_back(loadCourtFile(findFile("courts/" + *it)));
 #endif
     }
+
     return (courts);
 }
 

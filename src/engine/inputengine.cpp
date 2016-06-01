@@ -338,60 +338,63 @@ bool inputEngine::processInput()  // processes all input
         {
             case SDL_FINGERMOTION:
                 logMsg("Motion!");
-                //exit(0);
+//                exit(0);
                 // processes touch input
-                if (processUnbufferedTouchInput())
+                if (processTouchInput())
                 {
                     return false;
                 }
-                break;
+            break;
             case SDL_FINGERDOWN:
                 logMsg("Finger Down!");
 //                logMsg("tfinger.x = " +convert->toString(inputEvent.tfinger.x*render->getWindowWidth()));
                 logMsg("tfinger.y = " +convert->toString(inputEvent.tfinger.y));
 //                exit(0);
                 // processes touch input
-                if (processUnbufferedTouchInput() == false)
+                if (processTouchInput() == false)
                 {
                     return false;
                 }
-                break;
+            break;
             case SDL_FINGERUP:
                 logMsg("Finger Up!");
 //                exit(0);
                 // processes touch input
-                if (processUnbufferedTouchInput() == false)
+                if (processTouchInput() == false)
                 {
                     return false;
                 }
-                break;
+            break;
             case SDL_MULTIGESTURE:
                 logMsg("Multigesture!");
             //    exit(0);
                 // processes touch input
-                if (processUnbufferedTouchInput() == false)
+                if (processTouchInput() == false)
                 {
                     return false;
                 }
-                break;
+            break;
             case SDL_KEYDOWN:
+            break;
             case SDL_TEXTINPUT:
                 keyPressed = "";
                 
-                if (processUnbufferedKeyInput(true))
+                if (processKeyInput(true))
                 {
-                    return false;
+                    
+//                    return false;
                 }
-                logMsg("Key Pressed!");
+                logMsg("Key Pressed! == " +keyPressed);
+//                exit(0);
                 if (keyPressed != "")
                 {
                     logMsg("keyPressed == " +keyPressed);
-                    exit(0);
+//                    exit(0);
                     inputMaps inputMap = keyMap();
                     inputWorkQueue.push_back(inputMap);
                 }
 //                exit(0);
-                break;
+            break;
 
             case SDL_MOUSEMOTION:
             case SDL_MOUSEBUTTONDOWN:
@@ -399,7 +402,7 @@ bool inputEngine::processInput()  // processes all input
             case SDL_MOUSEWHEEL:
                 logMsg("Mouse!");
                 // processes mouse input
-                if (processUnbufferedMouseInput() == false)
+                if (processMouseInput() == false)
                 {
                     return false;
                 }
@@ -413,7 +416,7 @@ bool inputEngine::processInput()  // processes all input
             case SDL_CONTROLLERDEVICEREMAPPED:
                 logMsg("Controller!");
                 // processes gamepad input
-                if (processUnbufferedGamepadInput() == false)
+                if (processGamepadInput() == false)
                 {
                     return false;
                 }
@@ -427,12 +430,12 @@ bool inputEngine::processInput()  // processes all input
     }
 //    SDL_StopTextInput();
 //    exit(0);
-    processUnbufferedMouseInput();
+    processMouseInput();
 
     return true;
 }
 
-bool inputEngine::processUnbufferedKeyInput(bool textInput)  // processes unbuffered keyboard input
+bool inputEngine::processKeyInput(bool textInput)  // processes unbuffered keyboard input
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<GUISystem> gui = GUISystem::Instance();
@@ -449,6 +452,11 @@ bool inputEngine::processUnbufferedKeyInput(bool textInput)  // processes unbuff
 //        keyPressed = "";
         switch (inputEvent.key.keysym.sym)
         {
+            case SDLK_sC:
+                logMsg("S!");
+                keyPressed = "S";
+                exit(0);
+            break;
             case SDLK_RETURN:
 //            case SDLK_AC_BACK:
                 logMsg("Return!");
@@ -705,7 +713,11 @@ bool inputEngine::processUnbufferedKeyInput(bool textInput)  // processes unbuff
     return true;
 }
 
-bool inputEngine::processUnbufferedMouseInput()  // processes the unbuffered mouse input
+bool inputEngine::processTextInput()  // reads in text input
+{
+    return (true);
+}
+bool inputEngine::processMouseInput()  // processes the unbuffered mouse input
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
@@ -761,7 +773,7 @@ bool inputEngine::processUnbufferedMouseInput()  // processes the unbuffered mou
     return true;
 }
 
-bool inputEngine::processUnbufferedTouchInput() // processes the unbuffered touch input
+bool inputEngine::processTouchInput() // processes the unbuffered touch input
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
@@ -877,7 +889,7 @@ bool inputEngine::processUnbufferedTouchInput() // processes the unbuffered touc
 	return true;
 }
 
-bool inputEngine::processUnbufferedGamepadInput()  // reads in unbuffered mouse input
+bool inputEngine::processGamepadInput()  // reads in unbuffered mouse input
 {
     return true;
 }

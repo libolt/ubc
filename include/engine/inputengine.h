@@ -95,10 +95,11 @@ public:
     inputMaps keyMap();  // maps value of keyPressed string to inputMap
 	
     bool processInput();	// processes all input
-    bool processUnbufferedKeyInput(bool textInput);	// reads in unbuffered key presses
-    bool processUnbufferedMouseInput();	// reads in unbuffered mouse input
-    bool processUnbufferedTouchInput(); // reads in unbuffered touch input
-    bool processUnbufferedGamepadInput(); // reads in unbuffered mouse input
+    bool processKeyInput(bool textInput);	// reads in key presses
+    bool processTextInput();  // reads in text input
+    bool processMouseInput();	// reads in mouse input
+    bool processTouchInput(); // reads in touch input
+    bool processGamepadInput(); // reads in mouse input
 	
 private:
 

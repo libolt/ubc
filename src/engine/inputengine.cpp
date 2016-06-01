@@ -452,7 +452,7 @@ bool inputEngine::processKeyInput(bool textInput)  // processes unbuffered keybo
 //        keyPressed = "";
         switch (inputEvent.key.keysym.sym)
         {
-            case SDLK_sC:
+            case SDLK_s:
                 logMsg("S!");
                 keyPressed = "S";
                 exit(0);

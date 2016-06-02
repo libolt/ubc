@@ -313,6 +313,13 @@ std::vector<boost::shared_ptr<teamState> > loader::loadTeams()  // load teams fr
         teams.push_back(loadTeamFile(findFile("teams/" + *it)));
 #endif
     }
+    
+    if (teams.size() == 0)
+    {
+        logMsg("teams.size() == " +teams.size());
+        exit(0);
+    }
+    
     return (teams);
 }
 
@@ -1242,39 +1249,39 @@ offensePlays loader::loadOffensePlayFile(string fileName)  // loads data from th
                 }
             }
             f = f->NextSiblingElement()->ToElement();
-	    if (f)
+            if (f)
             {
                 int numPos = 0;
                 pExecuteCoords.clear();  // clears the vector for each player
-		for (tinyxml2::XMLElement *g = f->FirstChildElement(); g != NULL; g = g->NextSiblingElement())
+                for (tinyxml2::XMLElement *g = f->FirstChildElement(); g != NULL; g = g->NextSiblingElement())
                 {
                     logMsg("numPos = " +convert->toString(numPos));
                     numPos += 1;
-		    tinyxml2::XMLElement *h;
+		           tinyxml2::XMLElement *h;
 
                     h = g->FirstChildElement()->ToElement();
-		    if (h)
+                    if (h)
                     {
                         pType = h->GetText();
                         logMsg("pType = " +pType);
                         type.push_back(pType);
                     }
                     h = h->NextSiblingElement()->ToElement();
-		    if (h)
+                    if (h)
                     {
                         pXCoord = convert->toFloat(h->GetText());
                         logMsg("pXCoord = " +convert->toString(pXCoord));
                         xCoord.push_back(pXCoord);
                     }
                     h = h->NextSiblingElement()->ToElement();
-		    if (h)
+                    if (h)
                     {
                         pYCoord = convert->toFloat(h->GetText());
                         logMsg("pYCoord = " +convert->toString(pYCoord));
                         yCoord.push_back(pYCoord);
                     }
                     h = h->NextSiblingElement()->ToElement();
-		    if (h)
+                    if (h)
                     {
                         pZCoord = convert->toFloat(h->GetText());
                         logMsg("pZCoord = " +convert->toString(pZCoord));
@@ -1302,11 +1309,11 @@ offensePlays loader::loadOffensePlayFile(string fileName)  // loads data from th
                 }
             }
             f = f->NextSiblingElement()->ToElement();
-	    if (f)
+            if (f)
             {
                 int numDirectives = 0;
                 for (tinyxml2::XMLElement *g = f->FirstChildElement(); g != NULL; g = g->NextSiblingElement())
-		{
+                {
                     numDirectives += 1;
                     tinyxml2::XMLElement *h;
                     pPlayerDirective.setPlayerPosition(pPlayerDirectivePosition);
@@ -1319,7 +1326,7 @@ offensePlays loader::loadOffensePlayFile(string fileName)  // loads data from th
                         {
                             pPlayerDirective.setType(WAIT);
                             h = h->NextSiblingElement()->ToElement();
-			    if (h)
+                            if (h)
                             {
                                 logMsg("WaitFor");
                                 hKey = h->GetText();
@@ -1329,7 +1336,7 @@ offensePlays loader::loadOffensePlayFile(string fileName)  // loads data from th
                                     logMsg("PlayerPositionSet");
 
                                     h = h->NextSiblingElement()->ToElement();
-				    if (h)
+                                    if (h)
                                     {
                                         hKey = h->GetText();
                                         logMsg("PlayerSet = " +hKey);

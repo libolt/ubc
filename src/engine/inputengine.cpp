@@ -375,15 +375,16 @@ bool inputEngine::processInput()  // processes all input
                 }
             break;
             case SDL_KEYDOWN:
-            break;
-            case SDL_TEXTINPUT:
-                keyPressed = "";
-                
                 if (processKeyInput(true))
                 {
                     
 //                    return false;
                 }
+            break;
+            case SDL_TEXTINPUT:
+                keyPressed = "";
+                
+                
                 logMsg("Key Pressed! == " +keyPressed);
 //                exit(0);
                 if (keyPressed != "")
@@ -445,18 +446,118 @@ bool inputEngine::processKeyInput(bool textInput)  // processes unbuffered keybo
     keyPressed = inputEvent.text.text;
     logMsg("key = " +keyPressed);
 //    exit(0);
-    if (MyGUI::InputManager::getInstance().isFocusKey())	// checks if a MyGUI widget has key focus
-    {
+//    if (MyGUI::InputManager::getInstance().isFocusKey())	// checks if a MyGUI widget has key focus
+//    {
         logMsg("Crash?");
-//		exit(0);
-//        keyPressed = "";
+//        exit(0);
+//      keyPressed = "";
         switch (inputEvent.key.keysym.sym)
         {
-            case SDLK_s:
-                logMsg("S!");
-                keyPressed = "S";
-                exit(0);
+            case SDLK_a:
+                keyPressed = "a";
+//                exit(0);
             break;
+            case SDLK_b:
+                keyPressed = "b";
+//                exit(0);
+            break;
+            case SDLK_c:
+                keyPressed = "c";
+//                exit(0);
+            break;
+            case SDLK_d:
+                keyPressed = "d";
+//                exit(0);
+            break;
+            case SDLK_e:
+                keyPressed = "e";
+//                exit(0);
+            break;
+            case SDLK_f:
+                keyPressed = "f";
+//                exit(0);
+            break;  
+            case SDLK_g:
+                keyPressed = "g";
+//                exit(0);
+            break;
+            case SDLK_h:
+                keyPressed = "h";
+//                exit(0);
+            break;
+            case SDLK_i:
+                keyPressed = "i";
+//                exit(0);
+            break;
+            case SDLK_j:
+                 keyPressed = "j";
+//                exit(0);
+            break;   
+            case SDLK_k:
+                keyPressed = "k";
+//                exit(0);
+            break;
+            case SDLK_l:
+                keyPressed = "l";
+//                exit(0);
+            break;
+            case SDLK_m:
+                keyPressed = "m";
+//                exit(0);
+            break;
+            case SDLK_n:
+                keyPressed = "n";
+//                exit(0);
+            break;
+            case SDLK_o:
+                keyPressed = "o";
+//                exit(0);
+            break;
+            case SDLK_p:
+                keyPressed = "p";
+//                exit(0);
+            break;
+            case SDLK_q:
+                keyPressed = "q";
+//                exit(0);
+            break;
+            case SDLK_r:
+                keyPressed = "r";
+//                exit(0);
+            break;
+            case SDLK_s:
+                 keyPressed = "s";
+//                exit(0);
+            break;
+            case SDLK_t:
+                keyPressed = "t";
+//                exit(0);
+            break;
+            case SDLK_u:
+                 keyPressed = "u";
+//                exit(0);
+            break;
+            case SDLK_v:
+                keyPressed = "v";
+//                exit(0);
+            break;
+            case SDLK_w:
+                keyPressed = "w";
+//                exit(0);
+            break;
+            case SDLK_x:
+                 keyPressed = "x";
+//                exit(0);
+            break;
+            case SDLK_y:
+                keyPressed = "y";
+//                exit(0);
+            break;
+            case SDLK_z:
+                keyPressed = "z";
+//                exit(0);
+            break;
+                     
             case SDLK_RETURN:
 //            case SDLK_AC_BACK:
                 logMsg("Return!");
@@ -693,7 +794,7 @@ bool inputEngine::processKeyInput(bool textInput)  // processes unbuffered keybo
             break;
             
         }
-    }
+//    }
 //    if (gui->getMenuActive())  // checks if a menu is displayed
 /*    if (menuActive)  // checks if a menu is displayed
     {
@@ -715,6 +816,8 @@ bool inputEngine::processKeyInput(bool textInput)  // processes unbuffered keybo
 
 bool inputEngine::processTextInput()  // reads in text input
 {
+    logMsg("textInput!");
+//    exit(0);
     return (true);
 }
 bool inputEngine::processMouseInput()  // processes the unbuffered mouse input

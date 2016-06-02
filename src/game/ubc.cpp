@@ -236,12 +236,12 @@ void UBC::processInput()  // processes game input
             {
 //                exit(0);
                 logMsg("menuReceiveKeyPress == " +getGameE()->getInput()->getKeyPressed());
-                exit(0);
+//                exit(0);
                 gui->menuReceiveKeyPress(getGameE()->getInput()->getKeyPressed()); // sends input to menu key input processing function
 //                exit(0);
                 if (getGameE()->getInput()->getKeyPressed() == "t")
                 {
-                    exit(0);
+//                    exit(0);
                 }
                 getGameE()->getInput()->setKeyPressed("");
             }
@@ -439,7 +439,7 @@ void UBC::gameLoop()  // Main Game Loop
 //    render->createScene(); // creates rendering scene.
 
     int x = 0;
-   
+//    SDL_StartTextInput();
 //    getGameE()->gameEngine();
     bool quitGame = getGameE()->getQuitGame();
 //    exit(0);

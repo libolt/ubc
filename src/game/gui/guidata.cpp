@@ -104,7 +104,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 //    playerInstance = load->loadPlayers();
 //    playerInstance = gameS->getPlayerInstance();
 //    gameS->setPlayerInstances(playerInstance);
-
+    
     std::vector<size_t> overAllRatings;
     std::vector<std::string> pNames;
     std::vector<std::string> pPositions;
@@ -121,7 +121,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 
     playerNames.push_back(pNames);
     playerNames.push_back(pNames);
-
+    
     playerPositionsPlayed.push_back(pPositions);
     playerPositionsPlayed.push_back(pPositions);
 
@@ -176,7 +176,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         }
     }
 
-
+//    exit(0);
 
     overallRatingsSize = overallRatings[0].size();
     flag = 1;
@@ -185,6 +185,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     tempName.clear();
     tempPosition.clear();
     logMsg("overallRating before = " +convert->toString(overallRatings[0][0]));
+    exit(0);
     for (size_t l=0; l<overallRatingsSize && flag; ++l)
     {
         flag = 0;

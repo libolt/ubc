@@ -491,22 +491,27 @@ bool GUISystem::createTeamSelectionMenuGUI()  // creates GUI for team selection 
     //load->loadTeams();
     std::vector<boost::shared_ptr<teamState> > teamInstance; // = gameS->getTeamDataInstance();
 
-/*    teamInstance = load->loadTeams();
-    gameS->setTeamDataInstance(teamDataInstance);
+    teamInstance = load->loadTeams();
+/*    gameS->setTeamDataInstance(teamDataInstance);
 */
 //    teamInstance = gameS->getTeamInstance();
     logMsg("teamInstance.size() == " +convert->toString(getGameS()->getTeamInstance().size()));
-//    exit(0);
+    logMsg("BLEEET!");
+    if (teamInstance.size() == 0)
+    {
+        exit(0);
+    }
+    
     MyGUI::LayoutManager::getInstance().loadLayout("TeamSelectionMenu.layout");
     
     team0SelectBox = mGUI->findWidget<MyGUI::ListBox>("team0SelectBox");  // loads team 0 ListBox
     team0SelectBox->setVisible(false);
     team0SelectBox->setSize((0.4 *getGameE()->getRender()->getViewPort()->getActualWidth() ), (0.04 *getGameE()->getRender()->getViewPort()->getActualHeight()) );
-
-    team1SelectBox = mGUI->findWidget<MyGUI::ListBox>("0lol");  // loads team 1 ListBox
+    
+    team1SelectBox = mGUI->findWidget<MyGUI::ListBox>("team1SelectBox");  // loads team 1 ListBox
     team1SelectBox->setVisible(false);
     team1SelectBox->setSize((0.4 *getGameE()->getRender()->getViewPort()->getActualWidth() ), (0.04 *getGameE()->getRender()->getViewPort()->getActualHeight()) );
-
+//    exit(0);
     logMsg(convert->toString(teamInstance.size()));
 
     for (size_t x=0;x<teamInstance.size(); ++x)

@@ -289,7 +289,7 @@ std::vector<boost::shared_ptr<teamState> > loader::loadTeams()  // load teams fr
     boost::shared_ptr<teamState> tempTeamSharedPtr = boost::shared_ptr<teamState>(tempTeamObj);
     std::vector<boost::shared_ptr<teamState> > tempTeams;
     tempTeams.push_back(tempTeamSharedPtr);
-    teams = tempTeams;
+    //teams = tempTeams;
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     std::string teamList = "data/teams/teams.xml";
 #else

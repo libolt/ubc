@@ -491,7 +491,26 @@ bool GUISystem::createTeamSelectionMenuGUI()  // creates GUI for team selection 
     //load->loadTeams();
     std::vector<boost::shared_ptr<teamState> > teamInstance; // = gameS->getTeamDataInstance();
 
-    teamInstance = load->loadTeams();
+    if (getGameS()->getTeamInstancesCreated())
+    {        
+        teamInstance = getGameS()->getTeamInstance();
+        logMsg("teamInstance.size() == " +convert->toString(getGameS()->getTeamInstance().size()));
+        exit(0);
+    }
+    else
+    {
+        if (getGameS()->createTeamInstances())
+        {
+            teamInstance = getGameS()->getTeamInstance();
+            logMsg("teamInstance.size() == " +convert->toString(getGameS()->getTeamInstance().size()));
+//            exit(0);
+        }
+        else
+        {
+            logMsg("Failed to create teamSelectioMenuGUI");
+            return (false);
+        }
+    }
 /*    gameS->setTeamDataInstance(teamDataInstance);
 */
 //    teamInstance = gameS->getTeamInstance();
@@ -504,18 +523,31 @@ bool GUISystem::createTeamSelectionMenuGUI()  // creates GUI for team selection 
     
     MyGUI::LayoutManager::getInstance().loadLayout("TeamSelectionMenu.layout");
     
+    float vpWidth = getGameE()->getRender()->getViewPort()->getActualWidth();  // stores view ports width
+    float vpHeight = getGameE()->getRender()->getViewPort()->getActualHeight();  // stores view ports height
+    
     team0SelectBox = mGUI->findWidget<MyGUI::ListBox>("team0SelectBox");  // loads team 0 ListBox
     team0SelectBox->setVisible(false);
-    team0SelectBox->setSize((0.4 *getGameE()->getRender()->getViewPort()->getActualWidth() ), (0.04 *getGameE()->getRender()->getViewPort()->getActualHeight()) );
+    team0SelectBox->setSize((0.4 *vpWidth), (0.04 *vpHeight));
     
     team1SelectBox = mGUI->findWidget<MyGUI::ListBox>("team1SelectBox");  // loads team 1 ListBox
     team1SelectBox->setVisible(false);
-    team1SelectBox->setSize((0.4 *getGameE()->getRender()->getViewPort()->getActualWidth() ), (0.04 *getGameE()->getRender()->getViewPort()->getActualHeight()) );
+    team1SelectBox->setSize((0.4 *vpWidth), (0.04 *vpHeight));
 //    exit(0);
     logMsg(convert->toString(teamInstance.size()));
+    logMsg("Team City == a" +teamInstance[0]->getCity() +"b");
+    logMsg("Team City == a" +teamInstance[0]->getCity() +"b");
+    logMsg("Team City == a" +teamInstance[0]->getCity() +"b");
+    logMsg("Team City == a" +teamInstance[0]->getCity() +"b");
 
+//    exit(0);
     for (size_t x=0;x<teamInstance.size(); ++x)
     {
+        if (teamInstance[x]->getCity() == "")
+        {
+            logMsg("City is blank!");
+            exit(0);
+        }
         std::string teamName = teamInstance[x]->getCity() + " " +teamInstance[x]->getName();
 
         team0SelectBox->addItem(teamName);
@@ -527,17 +559,17 @@ bool GUISystem::createTeamSelectionMenuGUI()  // creates GUI for team selection 
     team0SelectButton = mGUI->findWidget<MyGUI::Button>("team0SelectButton");  // loads team 0 Select Button
     team0SelectButton->setVisible(false);
     team0SelectButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::team0SelectButtonClicked);
-    team0SelectButton->setSize((0.4 *getGameE()->getRender()->getViewPort()->getActualWidth() ), (0.04 *getGameE()->getRender()->getViewPort()->getActualHeight()) );
+    team0SelectButton->setSize((0.4 *vpWidth), (0.04 *vpHeight));
 
     team1SelectButton = mGUI->findWidget<MyGUI::Button>("team1SelectButton");  // loads team 1 Button
     team1SelectButton->setVisible(false);
     team1SelectButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::team1SelectButtonClicked);
-    team1SelectButton->setSize((0.4 *getGameE()->getRender()->getViewPort()->getActualWidth() ), (0.04 *getGameE()->getRender()->getViewPort()->getActualHeight()) );
+    team1SelectButton->setSize((0.4 *vpWidth), (0.04 *vpHeight));
 
     teamsSelectedButton = mGUI->findWidget<MyGUI::Button>("teamsSelectedButton");  // loads team 1 Button
     teamsSelectedButton->setVisible(false);
     teamsSelectedButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::teamsSelectedButtonClicked);
-    teamsSelectedButton->setSize((0.4 *getGameE()->getRender()->getViewPort()->getActualWidth() ), (0.04 *getGameE()->getRender()->getViewPort()->getActualHeight()) );
+    teamsSelectedButton->setSize((0.4 *vpWidth), (0.04 *vpHeight) );
 
     teamSelectionMenuCreated = true;
 

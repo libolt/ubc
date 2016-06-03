@@ -293,7 +293,9 @@ bool gameState::createTeamInstances()  // creates team Instances
     tInstance = load->loadTeams();
 //     exit(0);
     logMsg("teamID.size() == " +convert->toString(getTeamIDS().size()));
-    logMsg("tInstancr size = " +convert->toString(tInstance.size()));
+    logMsg("tInstance size = " +convert->toString(tInstance.size()));
+    logMsg("tInstance city 0 = " +tInstance[0]->getCity());
+
 //    exit(0);
 /*    teamInstance[0].setTeamID(teamID[0]);
     teamInstance[1].setTeamID(teamID[1]);
@@ -310,7 +312,17 @@ bool gameState::createTeamInstances()  // creates team Instances
 //    teamInstance[0].setupState();
 //    teamInstance[1].setupState();
 //    exit(0);
-    setTeamInstance(tInstance);
+    if (tInstance.size() > 0)
+    {
+        setTeamInstance(tInstance);
+        setTeamInstancesCreated(true);
+    }
+    else 
+    {
+        logMsg("Failed to create Team Instances!");
+        return (false);
+    }
+    
     return (true);
 }
 

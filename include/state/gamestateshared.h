@@ -45,104 +45,104 @@ class gameStateShared
 
         // getters and setters
            
-        static gameTypes getGameType();  // retrieves the value of gameType
-        static void setGameType(gameTypes set);  // sets the value of gameType
+        gameTypes getGameType();  // retrieves the value of gameType
+        void setGameType(gameTypes set);  // sets the value of gameType
 
-        static std::vector<size_t> getTeamIDS(void);  // retrieves the value of teamIDS
-        static void setTeamIDS(std::vector<size_t> set);  // sets the value of teamIDS
+        std::vector<size_t> getTeamIDS(void);  // retrieves the value of teamIDS
+        void setTeamIDS(std::vector<size_t> set);  // sets the value of teamIDS
         
-        static std::vector< std::vector<size_t> > getTeamStarterID();  // retrieves value of teamStarterID
-        static void setTeamStarterID(std::vector< std::vector<size_t> > set);  // sets the value of teamStarterID
+        std::vector< std::vector<size_t> > getTeamStarterID();  // retrieves value of teamStarterID
+        void setTeamStarterID(std::vector< std::vector<size_t> > set);  // sets the value of teamStarterID
 
-        static bool getActiveTeamInstancesCreated();    // retrieves the value of activeTeamInstancesCreated
-        static void setActiveTeamInstancesCreated(bool set);    // sets the value of activeTeamInstancesCreated
+        bool getActiveTeamInstancesCreated();    // retrieves the value of activeTeamInstancesCreated
+        void setActiveTeamInstancesCreated(bool set);    // sets the value of activeTeamInstancesCreated
 
-        static bool getActiveTeamInstancesNeedCreated();    // retrieves the value of activeTeamInstancesNeedCreated
-        static void setActiveTeamInstancesNeedCreated(bool set);    // sets the value of activeTeamInstancesNeedCreated
+        bool getActiveTeamInstancesNeedCreated();    // retrieves the value of activeTeamInstancesNeedCreated
+        void setActiveTeamInstancesNeedCreated(bool set);    // sets the value of activeTeamInstancesNeedCreated
 
-        static bool getBasketballInstanceCreated();  // retrieves the value of basketballInstancesCreated
-        static void setBasketballInstanceCreated(bool set);   // sets the value of basketballInstancesCreated
+        bool getBasketballInstanceCreated();  // retrieves the value of basketballInstancesCreated
+        void setBasketballInstanceCreated(bool set);   // sets the value of basketballInstancesCreated
 
-        static bool getBasketballInstanceNeedCreated();  // retrieves the value of basketballInstancesNeedCreated
-        static void setBasketballInstanceNeedCreated(bool set);   // sets the value of basketballInstancesNeedCreated
+        bool getBasketballInstanceNeedCreated();  // retrieves the value of basketballInstancesNeedCreated
+        void setBasketballInstanceNeedCreated(bool set);   // sets the value of basketballInstancesNeedCreated
         
         bool getCourtInstancesCreated();  // retrieves the value of courtInstancesCreated
         void setCourtInstancesCreated(bool set);  // sets the value of courtInstancesCreated
 
-        static bool getCourtInstancesNeedCreated();  // retrieves the value of courtInstancesNeedCreated
-        static void setCourtInstancesNeedCreated(bool set);  // sets the value of courtInstancesNeedCreated
+        bool getCourtInstancesNeedCreated();  // retrieves the value of courtInstancesNeedCreated
+        void setCourtInstancesNeedCreated(bool set);  // sets the value of courtInstancesNeedCreated
 
-        static bool getHoopInstanceCreated();  // retrieves the value of hoopInstancesCreated
-        static void setHoopInstanceCreated(bool created);  // sets the value of hoopInstancesCreated
+        bool getHoopInstanceCreated();  // retrieves the value of hoopInstancesCreated
+        void setHoopInstanceCreated(bool created);  // sets the value of hoopInstancesCreated
 
-        static bool getHoopInstanceNeedCreated();  // retrieves the value of hoopInstancesNeedCreated
-        static void setHoopInstanceNeedCreated(bool created);  // sets the value of hoopInstancesNeedCreated
+        bool getHoopInstanceNeedCreated();  // retrieves the value of hoopInstancesNeedCreated
+        void setHoopInstanceNeedCreated(bool created);  // sets the value of hoopInstancesNeedCreated
 
-        static bool getPlayerInstanceCreated();  // retrieves the value of playerInstanceCreated
-        static void setPlayerInstanceCreated(bool set);  // sets the value of playerInstanceCreated
+        bool getPlayerInstanceCreated();  // retrieves the value of playerInstanceCreated
+        void setPlayerInstanceCreated(bool set);  // sets the value of playerInstanceCreated
 
-        static bool getPlayerInstanceNeedCreated();  // retrieves the value of playerInstanceNeedCreated
-        static void setPlayerInstanceNeedCreated(bool set);  // sets the value of playerInstanceNeedCreated
+        bool getPlayerInstanceNeedCreated();  // retrieves the value of playerInstanceNeedCreated
+        void setPlayerInstanceNeedCreated(bool set);  // sets the value of playerInstanceNeedCreated
 
-        static bool getTeamInstancesCreated();  // retrieves the value of teamInstancesCreated
-        static void setTeamInstancesCreated(bool set);  // sets the value of teamInstancesCreated
+        bool getTeamInstancesCreated();  // retrieves the value of teamInstancesCreated
+        void setTeamInstancesCreated(bool set);  // sets the value of teamInstancesCreated
 
-        static bool getTeamInstancesNeedCreated();  // retrieves the value of teamInstancesNeedCreated
-        static void setTeamInstancesNeedCreated(bool set);  // sets the value of teamInstancesNeedCreated
+        bool getTeamInstancesNeedCreated();  // retrieves the value of teamInstancesNeedCreated
+        void setTeamInstancesNeedCreated(bool set);  // sets the value of teamInstancesNeedCreated
 
-        static bool getBBallNodePositionChanged();  // retrieves the value of bballNodePositionChanged
-        static void setBBallNodePositionChanged(bool set);  // sets the value of bballNodePositionChanged
+        bool getBBallNodePositionChanged();  // retrieves the value of bballNodePositionChanged
+        void setBBallNodePositionChanged(bool set);  // sets the value of bballNodePositionChanged
         
-        static bool getTeamWithBallChanged();  // retrieves the value of bballNodePositionChanged
-        static void setTeamWithBallChanged(bool set);  // sets the value of teamWithBallChanged
+        bool getTeamWithBallChanged();  // retrieves the value of bballNodePositionChanged
+        void setTeamWithBallChanged(bool set);  // sets the value of teamWithBallChanged
         
-        static bool getActiveTeamInstanceChanged();  // retrieves the value of activeTeamInstanceChanged
-        static void setActiveTeamInstanceChanged(bool set);  // sets the value of activeTeamInstanceChanged
+        bool getActiveTeamInstanceChanged();  // retrieves the value of activeTeamInstanceChanged
+        void setActiveTeamInstanceChanged(bool set);  // sets the value of activeTeamInstanceChanged
         
-        static bool getGameSetupComplete();  // retrieves the value of gameSetupComplete
-        static void setGameSetupComplete(bool set);  // sets the value of gameSetupComplete
+        bool getGameSetupComplete();  // retrieves the value of gameSetupComplete
+        void setGameSetupComplete(bool set);  // sets the value of gameSetupComplete
 
-        static bool getTipOffComplete();  // retrieves the value of tipOffComplete
-        static void setTipOffComplete(bool set);  // sets the value of tipOffComplet
+        bool getTipOffComplete();  // retrieves the value of tipOffComplete
+        void setTipOffComplete(bool set);  // sets the value of tipOffComplet
 
-        static quarters getQuarter();  // retrieves the value of quarter
-        static void setQuarter(quarters set);  // sets he value of quarter
+        quarters getQuarter();  // retrieves the value of quarter
+        void setQuarter(quarters set);  // sets he value of quarter
 
-        static Ogre::Vector3 getBBallNodePosition();  // retrieves the value of bballNodePosition
-        static void setBBallNodePosition(Ogre::Vector3 set);  // sets the value of bballNodePosition
+        Ogre::Vector3 getBBallNodePosition();  // retrieves the value of bballNodePosition
+        void setBBallNodePosition(Ogre::Vector3 set);  // sets the value of bballNodePosition
         
-        static teamTypes getTeamWithBall();  // retrieves the value of teamWithBall
-        static void setTeamWithBall(teamTypes set);  // sets the value of teamWithBall
+        teamTypes getTeamWithBall();  // retrieves the value of teamWithBall
+        void setTeamWithBall(teamTypes set);  // sets the value of teamWithBall
         
-        static std::vector<boost::shared_ptr<teamState> > getActiveTeamInstance();  // retrieves the value of activeTeamInstance
-        static void setActiveTeamInstance(std::vector<boost::shared_ptr<teamState> > set);  // sets the value of activeTeamInstance
+        std::vector<boost::shared_ptr<teamState> > getActiveTeamInstance();  // retrieves the value of activeTeamInstance
+        void setActiveTeamInstance(std::vector<boost::shared_ptr<teamState> > set);  // sets the value of activeTeamInstance
         
-        static size_t getActiveBBallInstance();  // retrieves the value of activeBBallInstance
-        static void setActiveBBallInstance(size_t set);  // sets the value of activeBBallInstance
+        size_t getActiveBBallInstance();  // retrieves the value of activeBBallInstance
+        void setActiveBBallInstance(size_t set);  // sets the value of activeBBallInstance
 
-        static size_t getActiveCourtInstance();  // retrieves the value of activeCourtInstance
+        size_t getActiveCourtInstance();  // retrieves the value of activeCourtInstance
         void setActiveCourtInstance(size_t set);  // sets the value of activeCourtInstance
 
-        static std::vector <basketballState> getBasketballInstance();  // retrieves the value of basketballInstance
-        static void setBasketballInstance(std::vector<basketballState> set);  // sets the value of basketballInstance
+        std::vector <basketballState> getBasketballInstance();  // retrieves the value of basketballInstance
+        void setBasketballInstance(std::vector<basketballState> set);  // sets the value of basketballInstance
 
-        static std::vector<courtState> getCourtInstance();  // retrieves the value of courtInstance
-        static void setCourtInstance(std::vector<courtState> set);  // sets the value of courtInstance
+        std::vector<courtState> getCourtInstance();  // retrieves the value of courtInstance
+        void setCourtInstance(std::vector<courtState> set);  // sets the value of courtInstance
 
-        static std::vector <hoopState> getHoopInstance();  // retrieves the value of hoopInstance
-        static void setHoopInstance(std::vector<hoopState> set);  // sets the value of hoopInstance
+        std::vector <hoopState> getHoopInstance();  // retrieves the value of hoopInstance
+        void setHoopInstance(std::vector<hoopState> set);  // sets the value of hoopInstance
 
         std::vector<boost::shared_ptr<playerState> > getPlayerInstance();  // retrieves the value of playerInstance
         void setPlayerInstances(std::vector<boost::shared_ptr<playerState> > set);  // sets the value of playerInstance;
 
-        static std::vector<boost::shared_ptr<teamState> > getTeamInstance();  // retireves the value of teamInstance
-        static void setTeamInstance(std::vector<boost::shared_ptr<teamState> > set);  // sets the value of teamInstance
+        std::vector<boost::shared_ptr<teamState> > getTeamInstance();  // retireves the value of teamInstance
+        void setTeamInstance(std::vector<boost::shared_ptr<teamState> > set);  // sets the value of teamInstance
 
-        static boost::shared_ptr<jumpBalls> getJumpBall();  // retrieves the value of jumpBall
-        static void setJumpBall(boost::shared_ptr<jumpBalls> set);  // sets the value of jumpBall
+        boost::shared_ptr<jumpBalls> getJumpBall();  // retrieves the value of jumpBall
+        void setJumpBall(boost::shared_ptr<jumpBalls> set);  // sets the value of jumpBall
 
-        static float getYOffset();  // retrieves the value of yOffset
-        static void setYOffset(float set);  // sets the value of yOffset
+        float getYOffset();  // retrieves the value of yOffset
+        void setYOffset(float set);  // sets the value of yOffset
 
     private:
 

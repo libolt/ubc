@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   .opyright (C) 1999 - 2015 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -24,7 +24,7 @@
 #include "data/courtdata.h"
 #include "engine/gameengine.h"
 #include "state/gamestate.h"
-#include "load.h"
+#include "load.h"   
 #include "logging.h"
 #include "engine/renderengine.h"
 #include "data/teamdata.h"
@@ -41,7 +41,7 @@
 
 void GUISystem::startSingleGameButtonClicked(MyGUI::Widget *_sender)  // handles startSingleGameButton click event
 {
-    startSingle Game();
+    startSinglePlayerGame();
 }
 
 void GUISystem::startMultiGameButtonClicked(MyGUI::Widget *_sender)  // handles startMultiGameButton click event

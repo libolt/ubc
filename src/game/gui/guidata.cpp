@@ -1,5 +1,5 @@
 
-......./***************************************************************************
+/***************************************************************************
  *   Copyright (C) 1999 - 2015 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
@@ -23,12 +23,12 @@
 
 #include "gui/gui.h"
 #include "conversion.h"
-..
 #include "data/courtdata.h"
 #include "engine/gameengine.h"
 #include "state/courtstate.h"
 #include "state/gamestate.h"
 #include "state/playerstate.h"
+#include "state/teamstate.h"
 #include "load.h"
 #include "logging.h"
 #include "engine/renderengine.h"
@@ -61,9 +61,9 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
     {
         if (getGameS()->createCourtInstances())
         {
-//            exit(0);
+//            exit(0);7
             courtInstance = getGameS()->getCourtInstance();
-            getGameS()->setCourtI.nstancesCreated(true);
+            getGameS()->setCourtInstancesCreated(true);
         }
         else
         {
@@ -85,7 +85,7 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
     
     logMsg("courtName = " +courtName[0]);
     logMsg("courtName size = " +convert->toString(courtName.size()));
-//    exit(0);
+//    exit(0);u
     size_t i = 0;
     while (i<courtName.size())
     {
@@ -106,10 +106,20 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 //    playerInstance = load->loadPlayers();
 //    playerInstance = gameS->getPlayerInstance();
 //    gameS->setPlayerInstances(playerInstance);
-    
+    std::vector<size_t> teamIDs = getGameS()->getTeamIDS();
     std::vector<boost::shared_ptr<teamState> > teamInstance = getGameS()->getTeamInstance();
     std::vector<std::vector<boost::shared_ptr<playerState> > > playerInstance;
-    exit(0);
+//    std::vector <boost::shared_ptr<playerState> > pInstance;
+//    pInstance = teamInstance[teamIDs[0]]->getPlayerInstance();
+    size_t x = 0;
+//    while (x < teamInstance.size())
+//    {
+        playerInstance.push_back(teamInstance[teamIDs[0]]->getPlayerInstance());
+        playerInstance.push_back(teamInstance[teamIDs[1]]->getPlayerInstance());
+
+//        x += 1;
+//    }
+//    exit(0);
     std::vector<size_t> overAllRatings;
     std::vector<std::string> pNames;
     std::vector<std::string> pPositions;
@@ -122,10 +132,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     size_t temp = 0;
     size_t tempID = 0;
     string tempName;
-    string tempPosition;..
-    
-    
-    ..
+    string tempPosition;
 
     playerNames.push_back(pNames);
     playerNames.push_back(pNames);
@@ -143,10 +150,11 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     {
 //        getGameS()->createPlayerInstance();
     }
-    logMsg("Player Instance Size = " +convert->toString(getGameS()->getPlayerInstance().size()));
-    exit(0);
+    logMsg("Player Instance Size = " +convert->toString(playerInstance.size()));
+//    exit(0);
 //    for (size_t i = 0;i < playerInstance.size(); ++i)
-    for (size_t i = 0;i < getGameS()->getPlayerInstance().size(); ++i)
+    size_t i = 0;
+    while (i < playerInstance.size())
     {
         exit(0);
 //        logMsg("pDTeam = " +convert->toString(playerInstance[i]->getTeamID()));
@@ -189,6 +197,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
             playerIDs[1].push_back(playerID);
             overallRatings[1].push_back(overallRating);
         }
+        ++i;
     }
 
 //    exit(0);
@@ -417,7 +426,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     logMsg("C1 == " +team1CSelectBox->getItemNameAt(0));
     logMsg("C1 ID == " +convert->toString(team1IDs[4][0]));
 
-//    exit(0);
+//    exit(0);mm
 
 }
 

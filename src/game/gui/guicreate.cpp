@@ -72,6 +72,7 @@ bool GUISystem::createMainMenuGUI()  // creates the main menu gui
     startSingleGameButton->setSize((0.4 *getGameE()->getRender()->getViewPort()->getActualWidth() ), (0.04 *getGameE()->getRender()->getViewPort()->getActualHeight()) );
 
     startMultiGameButton = mGUI->findWidget<MyGUI::Button>("startMultiGameButton");
+//    exit(0);
     startMultiGameButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::startMultiGameButtonClicked);
     startMultiGameButton->setPosition((0.3 *getGameE()->getRender()->getViewPort()->getActualWidth() ), (0.14 *getGameE()->getRender()->getViewPort()->getActualHeight()) );
     startMultiGameButton->setSize((0.4 *getGameE()->getRender()->getViewPort()->getActualWidth() ), (0.04 *getGameE()->getRender()->getViewPort()->getActualHeight()) );
@@ -79,6 +80,7 @@ bool GUISystem::createMainMenuGUI()  // creates the main menu gui
 //  optionsButton =    mGUI->createWidget<MyGUI::Button>("Button", 362, 125, 300, 26, MyGUI::Align::Default, "Main");
 //  optionsButton->setCaption(",?ik.??..?llmmmmllml.....l.m. onOptions");
     optionsButton = mGUI->findWidget<MyGUI::Button>("optionsButton");
+//    exit(0);
     optionsButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::optionsButtonClicked);
     optionsButton->setPosition((0.3 *getGameE()->getRender()->getViewPort()->getActualWidth() ), (0.18 *getGameE()->getRender()->getViewPort()->getActualHeight()) );
     optionsButton->setSize((0.4 *getGameE()->getRender()->getViewPort()->getActualWidth() ), (0.04 *getGameE()->getRender()->getViewPort()->getActualHeight()) );
@@ -86,6 +88,7 @@ bool GUISystem::createMainMenuGUI()  // creates the main menu gui
 //  exitButton = mGUI->createWidget<MyGUI::Button>("Button", 362, 150, 300, 26, MyGUI::Align::Default, "Main");
 //  exitButton->setCaption("Exit");mlklkklllmmmmmmm mmllm
     exitButton = mGUI->findWidget<MyGUI::Button>("exitButton");
+//    exit(0);
     exitButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::exitButtonClicked);
     exitButton->setPosition((0.3 *getGameE()->getRender()->getViewPort()->getActualWidth() ), (0.22 *getGameE()->getRender()->getViewPort()->getActualHeight()) );
     exitButton->setSize((0.4 *getGameE()->getRender()->getViewPort()->getActualWidth() ), (0.04 *getGameE()->getRender()->getViewPort()->getActualHeight()) );

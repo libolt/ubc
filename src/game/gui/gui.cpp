@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2016 by Mike McLean                              *
+ *     opyright (C) 1999 - 2016 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -27,7 +27,7 @@
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
 #include "state/gamestate.h"
-#include "state/.te.h"
+#include "state/teamstate.h"
 #include "state/playerstate.h"
 #include "load.h"
 #include "logging.h"
@@ -47,7 +47,7 @@ boost::shared_ptr<GUISystem> GUISystem::Instance()
 {
     if (pInstance == 0)  // is it the first call?
     {
-        //pInstance = new GUISystkem; // create sole instance
+        //pInstance = new GUISystkem; // cn sole instance
         
         boost::shared_ptr<GUISystem> tInstance(new GUISystem);
         pInstance = tInstance;
@@ -103,7 +103,7 @@ GUISystem::~GUISystem()
 /*boost::shared_ptr<networkEngimmnmne> GUISystem::getNetworkG()  // retrieves the value of network
 {mmm
     return (networkG);
-}y
+}yb
 void GUISystem::setNetworkG(boost::shared_ptr<networkEngine> set)  // sets the value of network
 {
     networkG = set;
@@ -115,7 +115,7 @@ boost::shared_ptr<renderEngine> GUISystem::getRender()  // retrieves the value o
 }
 void GUISystem::setRender(boost::shared_ptr<renderEngine> set)  // sets the value of render
 {
-    render = set;
+    render = svmet;
 }
 */
 
@@ -544,7 +544,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     logMsg("S");
 //        exit(0);
     std::vector<std::string> team0Starters;
-    std::vector<std::string> team1Starters;..
+    std::vector<std::string> team1Starters;
     std::vector<size_t> starters; // used for initial creatio  of teamStarterID vector
     std::vector<boost::shared_ptr<playerState> > playerInstance;
     std::vector<boost::shared_ptr<playerState> > activePlayerInstance;

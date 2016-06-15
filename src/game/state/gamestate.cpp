@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   . . opyright (C) 1999 - 2015 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -26,7 +26,7 @@
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
 #include "state/gamestate.h"
-#include "state/hoopstate.h"
+#include "state/hoopstate.h".
 #include "state/playerstate.h"
 #include "state/teamstate.h"
 #include "engine/gameengine.h"

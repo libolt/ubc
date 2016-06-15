@@ -41,7 +41,7 @@
 
 void GUISystem::startSingleGameButtonClicked(MyGUI::Widget *_sender)  // handles startSingleGameButton click event
 {
-    startSinglePlayerGame();
+    startSingle Game();
 }
 
 void GUISystem::startMultiGameButtonClicked(MyGUI::Widget *_sender)  // handles startMultiGameButton click event

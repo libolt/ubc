@@ -356,6 +356,7 @@ bool GUISystem::createPlayerStartSelectionMenuGUI()  // creates GUI for player s
 //    load->loadTeams();
 //    std::vector<teamData> teamDataInstance = gameS->getTeamDataInstance();
 
+//    exit(0);
     MyGUI::LayoutManager::getInstance().loadLayout("PlayerStartSelection.layout");
 
     team0PGSelectBox = mGUI->findWidget<MyGUI::ListBox>("team0PGSelectBox");  // loads team0PGSelectBox

@@ -1,4 +1,5 @@
-/***************************************************************************
+
+......./***************************************************************************
  *   Copyright (C) 1999 - 2015 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
@@ -22,6 +23,7 @@
 
 #include "gui/gui.h"
 #include "conversion.h"
+..
 #include "data/courtdata.h"
 #include "engine/gameengine.h"
 #include "state/courtstate.h"
@@ -61,7 +63,7 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
         {
 //            exit(0);
             courtInstance = getGameS()->getCourtInstance();
-            getGameS()->setCourtInstancesCreated(true);
+            getGameS()->setCourtI.nstancesCreated(true);
         }
         else
         {
@@ -105,6 +107,9 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 //    playerInstance = gameS->getPlayerInstance();
 //    gameS->setPlayerInstances(playerInstance);
     
+    std::vector<boost::shared_ptr<teamState> > teamInstance = getGameS()->getTeamInstance();
+    std::vector<std::vector<boost::shared_ptr<playerState> > > playerInstance;
+    exit(0);
     std::vector<size_t> overAllRatings;
     std::vector<std::string> pNames;
     std::vector<std::string> pPositions;
@@ -117,7 +122,10 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     size_t temp = 0;
     size_t tempID = 0;
     string tempName;
-    string tempPosition;
+    string tempPosition;..
+    
+    
+    ..
 
     playerNames.push_back(pNames);
     playerNames.push_back(pNames);
@@ -131,9 +139,16 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     overallRatings.push_back(overall);
     overallRatings.push_back(overall);
 
+    if (!getGameS()->getPlayerInstanceCreated())
+    {
+//        getGameS()->createPlayerInstance();
+    }
+    logMsg("Player Instance Size = " +convert->toString(getGameS()->getPlayerInstance().size()));
+    exit(0);
 //    for (size_t i = 0;i < playerInstance.size(); ++i)
     for (size_t i = 0;i < getGameS()->getPlayerInstance().size(); ++i)
     {
+        exit(0);
 //        logMsg("pDTeam = " +convert->toString(playerInstance[i]->getTeamID()));
         logMsg("pDTeam = " +convert->toString(getGameS()->getPlayerInstance()[i]->getTeamID()));
 //        logMsg("teamID == " +convert->toString(gameS->getTeamID()[1]));

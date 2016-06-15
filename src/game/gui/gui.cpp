@@ -27,7 +27,7 @@
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
 #include "state/gamestate.h"
-#include "state/teamstate.h"
+#include "state/.te.h"
 #include "state/playerstate.h"
 #include "load.h"
 #include "logging.h"
@@ -373,10 +373,12 @@ void GUISystem::gameSetupMenu()  // displays game setup menu
 
 void GUISystem::playerStartSelectionMenu()  // displays player start selection menu
 {
+//    exit(0);
     if (!playerStartSelectionMenuCreated)
     {
-        createPlayerStartSelectionMenuGUI();
+        createPlayerStartSelectionMenuGUI();	
         addPlayerStartSelectionMenuData();
+		exit(0);
         playerStartSelectionMenuCreated = true;
     }
     setSelectedIndexes();
@@ -542,7 +544,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     logMsg("S");
 //        exit(0);
     std::vector<std::string> team0Starters;
-    std::vector<std::string> team1Starters;
+    std::vector<std::string> team1Starters;..
     std::vector<size_t> starters; // used for initial creatio  of teamStarterID vector
     std::vector<boost::shared_ptr<playerState> > playerInstance;
     std::vector<boost::shared_ptr<playerState> > activePlayerInstance;

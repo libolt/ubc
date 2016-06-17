@@ -131,6 +131,12 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         teamInstance[teamIDs[0]]->createPlayerInstances();
         getGameS()->setTeamInstance(teamInstance);
     }
+    if (!teamInstance[teamIDs[1]]->getPlayerInstancesCreated())
+    {
+        teamInstance[teamIDs[1]]->createPlayerInstances();
+        getGameS()->setTeamInstance(teamInstance);
+    }
+    
     playerInstance.push_back(teamInstance[teamIDs[0]]->getPlayerInstance());
     playerInstance.push_back(teamInstance[teamIDs[1]]->getPlayerInstance());
 

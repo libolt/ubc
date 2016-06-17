@@ -642,6 +642,11 @@ bool teamState::createPlayerInstances()
       
     logMsg("Creating players");
     
+    if (!getPlayerInstanceCreated())
+    {
+        logMsg("teamGamePlayerInstance not created!");
+        exit(0);
+    }
     logMsg("gamePlayerInstance size = " +convert->toString(gamePlayerInstance.size()));
     exit(0);
 //    for (playerIT = playerInstance.begin(); playerIT != playerInstance.end(); ++playerIT)   // loops through playerID std::vector

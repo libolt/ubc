@@ -112,13 +112,28 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 //    std::vector <boost::shared_ptr<playerState> > pInstance;
 //    pInstance = teamInstance[teamIDs[0]]->getPlayerInstance();
     size_t x = 0;
-//    while (x < teamInstance.size())
-//    {
-        playerInstance.push_back(teamInstance[teamIDs[0]]->getPlayerInstance());
-        playerInstance.push_back(teamInstance[teamIDs[1]]->getPlayerInstance());
+    
+    if (!getGameS()->getPlayerInstanceCreated())
+    {
+        logMsg("player instances not yet created!");
+        if (getGameS()->createPlayerInstances())
+        {
+            logMsg("player instances created!");
+        }
+        else
+        {
+            logMsg("player instances not created!");
+        }
+//        exit(0);
+    }
+    if (!teamInstance[teamIDs[0]]->getPlayerInstancesCreated())
+    {
+        teamInstance[teamIDs[0]]->createPlayerInstances();
+        getGameS()->setTeamInstance(teamInstance);
+    }
+    playerInstance.push_back(teamInstance[teamIDs[0]]->getPlayerInstance());
+    playerInstance.push_back(teamInstance[teamIDs[1]]->getPlayerInstance());
 
-//        x += 1;
-//    }
 //    exit(0);
     std::vector<size_t> overAllRatings;
     std::vector<std::string> pNames;
@@ -156,12 +171,14 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     size_t i = 0;
     while (i < playerInstance.size())
     {
-        exit(0);
-//        logMsg("pDTeam = " +convert->toString(playerInstance[i]->getTeamID()));
-        logMsg("pDTeam = " +convert->toString(getGameS()->getPlayerInstance()[i]->getTeamID()));
+        
+        logMsg("Player Instance[i] Size = " +convert->toString(playerInstance[i].size()));
+
+//        logMsg("pDTeam = " +convert->toString(playerInstance[i][0]->getTeamID()));
+        logMsg("pDTeam = " +convert->toString(playerInstance[i][0]->getTeamID()));
 //        logMsg("teamID == " +convert->toString(gameS->getTeamID()[1]));
         logMsg("teamID == " +convert->toString(getGameS()->getTeamIDS()[1]));
-
+        exit(0);
 //        if (playerInstance[i]->getTeamID() == gameS->getTeamID()[0])
        if (getGameS()->getPlayerInstance()[i]->getTeamID() == getGameS()->getTeamIDS()[0])
 

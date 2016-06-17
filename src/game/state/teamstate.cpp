@@ -642,8 +642,8 @@ bool teamState::createPlayerInstances()
       
     logMsg("Creating players");
     
-    logMsg("playerInstance size = " +convert->toString(gamePlayerInstance.size()));
-//    exit(0);
+    logMsg("gamePlayerInstance size = " +convert->toString(gamePlayerInstance.size()));
+    exit(0);
 //    for (playerIT = playerInstance.begin(); playerIT != playerInstance.end(); ++playerIT)   // loops through playerID std::vector
     size_t id = -1; // stores id for steer
     size_t i = 0;

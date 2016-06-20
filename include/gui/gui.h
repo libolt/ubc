@@ -165,6 +165,8 @@ public:
 
     void addPlayerStartSelectionMenuData();  // adds data to Player Start Selection Menu widgets
 
+    bool addTeamStartSelectionMenuData();  // adds data to Team Start Selection Menu
+    
     void setSelectedIndexes();  // sets all player listbox indexes to zero
     void networkServer();  // sets up  game as a network server
     void networkClient();  // sets up game as a network client

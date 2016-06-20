@@ -390,6 +390,7 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
     if (!teamSelectionMenuCreated)
     {
         createTeamSelectionMenuGUI();
+        addTeamStartSelectionMenuData();
         teamSelectionMenuCreated = true;
     }
 

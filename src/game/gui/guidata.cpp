@@ -453,3 +453,64 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 
 }
 
+bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Selection Menu
+{
+    boost::shared_ptr<conversion> convert = conversion::Instance();
+
+    boost::shared_ptr<loader> load = loader::Instance();
+
+    std::vector<boost::shared_ptr<teamState> > teamInstance; // = gameS->getTeamDataInstance();
+
+    if (getGameS()->getTeamInstancesCreated())
+    {        
+        teamInstance = getGameS()->getTeamInstance();
+        logMsg("teamInstance.size() == " +convert->toString(getGameS()->getTeamInstance().size()));
+        exit(0);
+    }
+    else
+    {
+        if (getGameS()->createTeamInstances())
+        {
+            teamInstance = getGameS()->getTeamInstance();
+            logMsg("teamInstance.size() == " +convert->toString(getGameS()->getTeamInstance().size()));
+//            exit(0);
+        }
+        else
+        {
+            logMsg("Failed to create teamSelectioMenuGUI");
+            return (false);
+        }
+    }
+/*    gameS->setTeamDataInstance(teamDataInstance);
+*/
+//    teamInstance = gameS->getTeamInstance();
+    logMsg("teamInstance.size() == " +convert->toString(getGameS()->getTeamInstance().size()));
+    logMsg("BLEEET!");
+    if (teamInstance.size() == 0)
+    {
+        exit(0);
+    }
+    logMsg(convert->toString(teamInstance.size()));
+    logMsg("Team City == a" +teamInstance[0]->getCity() +"b");
+    logMsg("Team City == a" +teamInstance[0]->getCity() +"b");
+    logMsg("Team City == a" +teamInstance[0]->getCity() +"b");
+    logMsg("Team City == a" +teamInstance[0]->getCity() +"b");
+
+//    exit(0);
+    for (size_t x=0;x<teamInstance.size(); ++x)
+    {
+        if (teamInstance[x]->getCity() == "")
+        {
+            logMsg("City is blank!");
+            exit(0);
+        }
+        std::string teamName = teamInstance[x]->getCity() + " " +teamInstance[x]->getName();
+
+        team0SelectBox->addItem(teamName);
+        team1SelectBox->addItem(teamName);
+    }
+    team0SelectBox->setIndexSelected(0);
+    team1SelectBox->setIndexSelected(1);
+
+    return (false);
+}

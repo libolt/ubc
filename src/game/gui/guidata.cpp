@@ -179,7 +179,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     {
         
         logMsg("Player Instance[i] Size = " +convert->toString(playerInstance[i].size()));
-
+        
 //        logMsg("pDTeam = " +convert->toString(playerInstance[i][0]->getTeamID()));
         logMsg("pDTeam = " +convert->toString(playerInstance[i][0]->getTeamID()));
 //        logMsg("teamID == " +convert->toString(gameS->getTeamID()[1]));
@@ -449,7 +449,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     logMsg("C1 == " +team1CSelectBox->getItemNameAt(0));
     logMsg("C1 ID == " +convert->toString(team1IDs[4][0]));
 
-//    exit(0);mm
+//    exit(0);
 
 }
 

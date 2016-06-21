@@ -37,7 +37,7 @@ class UBCBase
     static boost::shared_ptr<gameEngine> getGameE();  // retrieves the value of gameE
     void setGameE(boost::shared_ptr<gameEngine> set);  // sets the value of gameE
     
-    static boost::shared_ptr<gameState> getGameS();  // retrieves the value of gameS
+    boost::shared_ptr<gameState> getGameS();  // retrieves the value of gameS
     void setGameS(boost::shared_ptr<gameState> set);  // sets the value of gameS
     
     static boost::shared_ptr<networkState> getNetworkS();  // retrieves the value of networkS

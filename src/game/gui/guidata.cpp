@@ -113,12 +113,16 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 //    pInstance = teamInstance[teamIDs[0]]->getPlayerInstance();
     size_t x = 0;
     
+    logMsg ("addPlayerStartSelectionMenuData");
+//    exit(0);
     if (!getGameS()->getPlayerInstanceCreated())
     {
         logMsg("player instances not yet created!");
         if (getGameS()->createPlayerInstances())
         {
+            
             logMsg("player instances created!");
+            getGameS()->setPlayerInstanceCreated(true);
         }
         else
         {
@@ -126,8 +130,11 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         }
 //        exit(0);
     }
+//    exit(0);
     if (!teamInstance[teamIDs[0]]->getPlayerInstancesCreated())
     {
+        logMsg("Creating Team 0 player instances!");
+//        exit(0);
         teamInstance[teamIDs[0]]->createPlayerInstances();
         getGameS()->setTeamInstance(teamInstance);
     }

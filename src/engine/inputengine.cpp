@@ -384,7 +384,7 @@ bool inputEngine::processInput()  // processes all input
             case SDL_TEXTINPUT:
                 keyPressed = "";
                 
-                
+                keyPressed = inputEvent.text.text;
                 logMsg("Key Pressed! == " +keyPressed);
 //                exit(0);
                 if (keyPressed != "")
@@ -392,6 +392,7 @@ bool inputEngine::processInput()  // processes all input
                     logMsg("keyPressed == " +keyPressed);
 //                    exit(0);
                     inputMaps inputMap = keyMap();
+                    exit(0);
                     inputWorkQueue.push_back(inputMap);
                 }
 //                exit(0);
@@ -443,7 +444,6 @@ bool inputEngine::processKeyInput(bool textInput)  // processes unbuffered keybo
 //	logMsg("Processing keyboard input");
 
     logMsg("key == " +convert->toString(inputEvent.key.keysym.sym));
-    keyPressed = inputEvent.text.text;
     logMsg("key = " +keyPressed);
 //    exit(0);
 //    if (MyGUI::InputManager::getInstance().isFocusKey())	// checks if a MyGUI widget has key focus

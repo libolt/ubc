@@ -33,7 +33,7 @@
 #include "state/state.h"
 #include "state/gamestateshared.h"
 #include "data/teamdata.h"
-
+#include "ubcbase.h"
 class offenseState;
 class defenseState;
 class basketballState;
@@ -41,7 +41,7 @@ class playerState;
 //class state;
 //class teamData;
 
-class teamState : public state, public teamData, public gameStateShared
+class teamState : public state, public teamData, public UBCBase
 
 {
 public:

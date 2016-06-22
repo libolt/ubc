@@ -393,7 +393,8 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
         addTeamStartSelectionMenuData();
         teamSelectionMenuCreated = true;
     }
-
+//    exit(0);
+    hideCourtSelectionMenuWidgets();
     changeActiveMenu(TEAMSELECT);
 }
 

@@ -439,7 +439,11 @@ void GUISystem::showCourtSelectionMenuWidgets()  // show all widgets tied to the
 {
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 //    Ogre::Viewport *getRender()->getViewPort() = render->getViewPort();
+    boost::shared_ptr<conversion> convert = conversion::Instance();
 
+    displayCount += 1;
+    logMsg("court displayCount == " +convert->toString(displayCount));
+    
     backMainMenuButton->setVisible(true);
     backMainMenuButton->setPosition((0.25 *getGameE()->getRender()->getViewPort()->getActualWidth() ), (0.4 *getGameE()->getRender()->getViewPort()->getActualHeight()) );
 

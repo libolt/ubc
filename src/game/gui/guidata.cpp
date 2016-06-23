@@ -462,12 +462,13 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 
 bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Selection Menu
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+/*    boost::shared_ptr<conversion> convert = conversion::Instance();
 
     boost::shared_ptr<loader> load = loader::Instance();
 
     std::vector<boost::shared_ptr<teamState> > teamInstance; // = gameS->getTeamDataInstance();
 
+//    exit(0);
     if (getGameS()->getTeamInstancesCreated())
     {        
         teamInstance = getGameS()->getTeamInstance();
@@ -488,8 +489,8 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
             return (false);
         }
     }
-/*    gameS->setTeamDataInstance(teamDataInstance);
-*/
+//    gameS->setTeamDataInstance(teamDataInstance);
+//
 //    teamInstance = gameS->getTeamInstance();
     logMsg("teamInstance.size() == " +convert->toString(getGameS()->getTeamInstance().size()));
     logMsg("BLEEET!");
@@ -518,6 +519,6 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     }
     team0SelectBox->setIndexSelected(0);
     team1SelectBox->setIndexSelected(1);
-
+*/
     return (false);
 }

@@ -388,6 +388,12 @@ void GUISystem::playerStartSelectionMenu()  // displays player start selection m
 
 void GUISystem::teamSelectionMenu()  // displays team selection menu
 {
+    boost::shared_ptr<loader> load = loader::Instance();
+
+    std::vector<boost::shared_ptr<teamState> > teamInstance; // = gameS->getTeamDataInstance();
+
+//    teamInstance = load->loadTeams();
+
     if (!teamSelectionMenuCreated)
     {
         createTeamSelectionMenuGUI();

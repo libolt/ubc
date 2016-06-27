@@ -285,16 +285,22 @@ std::vector<boost::shared_ptr<teamState> > loader::loadTeams()  // load teams fr
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     std::vector<boost::shared_ptr<teamState> > teams;
-    teamState *tempTeamObj = new teamState;
+//    boost::shared_ptr<teamState> tempTeamSharedPtr(new teamState);
+    
+/*    teamState *tempTeamObj = new teamState;
     boost::shared_ptr<teamState> tempTeamSharedPtr = boost::shared_ptr<teamState>(tempTeamObj);
     std::vector<boost::shared_ptr<teamState> > tempTeams;
     tempTeams.push_back(tempTeamSharedPtr);
+*/
+
+
     //teams = tempTeams;
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     std::string teamList = "data/teams/teams.xml";
 #else
     string teamList = findFile("teams/teams.xml");
 #endif
+
 
 //    logMsg("Bleeep!");
     teamFiles = loadTeamListFile(teamList);
@@ -303,6 +309,7 @@ std::vector<boost::shared_ptr<teamState> > loader::loadTeams()  // load teams fr
 
 //    exit(0);
     std::vector<std::string>::iterator it;
+
     for (it = teamFiles.begin(); it != teamFiles.end(); ++it)
     {
         logMsg("teamFile = " +*it);
@@ -313,7 +320,9 @@ std::vector<boost::shared_ptr<teamState> > loader::loadTeams()  // load teams fr
         teams.push_back(loadTeamFile(findFile("teams/" + *it)));
 #endif
     }
-    
+//    logMsg("teams.size() == " +teams.size());
+
+//    exit(0);
     if (teams.size() == 0)
     {
         logMsg("teams.size() == " +teams.size());
@@ -414,10 +423,10 @@ boost::shared_ptr<teamState> loader::loadTeamFile(string fileName)  // loads the
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 //    std::vector<boost::shared_ptr<teamState> > teamInstance = gameS->getTeamInstance();
-    boost::shared_ptr<teamState> tInstance;
-    teamState *tempTeamObj = new teamState;
+    boost::shared_ptr<teamState> tInstance; (new teamState);
+/*    teamState *tempTeamObj = new teamState;
     tInstance = boost::shared_ptr<teamState>(tempTeamObj);
-
+*/
     int ID;
     string City;
     string Name;
@@ -501,13 +510,14 @@ boost::shared_ptr<teamState> loader::loadTeamFile(string fileName)  // loads the
         logMsg("Logo == " +Logo);
     }
 
+    
     tInstance->setID(ID);
     tInstance->setCity(City);
     tInstance->setName(Name);
     tInstance->setCoach(Coach);
     tInstance->setInits(Initials);
     tInstance->setLogoFile(Logo);
-
+    logMsg("tInstance.size() == " +convert->toString(tInstance->size()));
 //    team->setTeamArray(teamInstance);
 //   teamInstance.push_back(teamInstance);
 //   gameS->setteamInstance(teamInstance);

@@ -291,31 +291,35 @@ bool gameState::createTeamInstances()  // creates team Instances
     
     std::vector<boost::shared_ptr<teamState> > tInstance;
     tInstance = load->loadTeams();
-//     exit(0);
-    logMsg("teamID.size() == " +convert->toString(getTeamIDS().size()));
+    logMsg("tInstance size == " +convert->toString(tInstance.size()));
+//    exit(0);
+/*    logMsg("teamID.size() == " +convert->toString(getTeamIDS().size()));
     logMsg("tInstance size = " +convert->toString(tInstance.size()));
     logMsg("tInstance city 0 = " +tInstance[0]->getCity());
 
 //    exit(0);
-/*    teamInstance[0].setTeamID(teamID[0]);
-    teamInstance[1].setTeamID(teamID[1]);
-    exit(0);
-    teamInstance[0].setTeamType(HOMETEAM);
-    teamInstance[1].setTeamType(AWAYTEAM);
-    teamInstance[0].setHumanControlled(true);
-    teamInstance[1].setHumanControlled(false);
-    teamInstance[0].setTeamColObject(COL_TEAM1);
-    teamInstance[1].setTeamColObject(COL_TEAM2);
-*/
-//    teamInstance[0].setTeamCollidesWith(COL_COURT /* | COL_BBALL | COL_TEAM2;   determines what team0 collides with*/);
-//    teamInstance[1].setTeamCollidesWith(COL_COURT /* | COL_BBALL | COL_TEAM2;   determines what team1 collides with*/);
+///    teamInstance[0].setTeamID(teamID[0]);
+///    teamInstance[1].setTeamID(teamID[1]);
+///    exit(0);
+///    teamInstance[0].setTeamType(HOMETEAM);
+///    teamInstance[1].setTeamType(AWAYTEAM);
+///    teamInstance[0].setHumanControlled(true);
+///    teamInstance[1].setHumanControlled(false);
+///    teamInstance[0].setTeamColObject(COL_TEAM1);
+///    teamInstance[1].setTeamColObject(COL_TEAM2);
+
+//    teamInstance[0].setTeamCollidesWith(COL_COURT); // | COL_BBALL | COL_TEAM2;   determines what team0 collides with);
+//    teamInstance[1].setTeamCollidesWith(COL_COURT); // | COL_BBALL | COL_TEAM2;   determines what team1 collides with);
 //    teamInstance[0].setupState();
 //    teamInstance[1].setupState();
 //    exit(0);
+*/
     if (tInstance.size() > 0)
     {
         setTeamInstance(tInstance);
         setTeamInstancesCreated(true);
+        logMsg("teamInstance CREATED!!");
+//        exit(0);
     }
     else 
     {

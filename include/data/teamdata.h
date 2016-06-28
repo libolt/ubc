@@ -24,54 +24,52 @@
 #include <string>
 #include <vector>
 
-using namespace std;
-
 class teamData
 {
     public:
     teamData();  // constructor
     ~teamData();  // destructor
 
-    string getName(void);  // retrieves the value of name
-    void setName(string Name);  // sets the value of name
+    std::string getName(void);  // retrieves the value of name
+    void setName(std::string set);  // sets the value of name
 
-    string getCity(void);  // retrieves the value of city
-    void setCity(string City);  // sets the value of city
+    std::string getCity(void);  // retrieves the value of city
+    void setCity(std::string set);  // sets the value of city
 
-    string getCoach(void);  // retrieves the value of coach
-    void setCoach(string Coach);  // sets the value of coach
+    std::string getCoach(void);  // retrieves the value of coach
+    void setCoach(std::string set);  // sets the value of coach
 
-    std::vector<int> getRoster(void);  // retrieves the value of roster
-    void setRoster(std::vector<int> Roster);  // sets the value of roster
+    std::vector<size_t> getRoster(void);  // retrieves the value of roster
+    void setRoster(std::vector<size_t> set);  // sets the value of roster
 
-    int getPlayerNum(void);  // retrieves the value of playerNum
-    void setPlayerNum(int num);  // sets the value of playerNum
+    size_t getPlayerNum(void);  // retrieves the value of playerNum
+    void setPlayerNum(size_t set);  // sets the value of playerNum
 
-    std::vector<int> getStarters(void);  // retrieves the value of starters
-    void setStarters(std::vector<int> Starters); // sets the value of starters
+    std::vector<size_t> getStarters(void);  // retrieves the value of starters
+    void setStarters(std::vector<size_t> set); // sets the value of starters
 
-    int getID(void);  // retrieves the value of ID
-    void setID(int teams);  // sets the value of ID
+    size_t getID(void);  // retrieves the value of ID
+    void setID(size_t set);  // sets the value of ID
 
-    string getInits(void);  // retrieves the value of inits
-    void setInits(string Inits);  // sets the vlaue of inits
+    std::string getInits(void);  // retrieves the value of inits
+    void setInits(std::string Inits);  // sets the vlaue of inits
 
-    string getLogoFile(void);  // retrieves the value of logoFile
-    void setLogoFile(string file);  // sets the value of logoFile
+    std::string getLogoFile(void);  // retrieves the value of logoFile
+    void setLogoFile(std::string set);  // sets the value of logoFile
 
 
 private:
-    string name;  // stores team name
-    string city;  //  stores home city for team
-    string coach;  // stores team's coach name
-    string inits;  // stores initials used for team
-    string logoFile;  // stores the name of the file used for team logo
-    int ID;  // stores the team's ID number
+    std::string name;  // stores team name
+    std::string city;  //  stores home city for team
+    std::string coach;  // stores team's coach name
+    std::string inits;  // stores initials used for team
+    std::string logoFile;  // stores the name of the file used for team logo
+    size_t ID;  // stores the team's ID number
 
-    std::vector<int> roster;  // stores the list of player IDs associated with the team.
-    int playerNum;  // stores total number of players on the team
+    std::vector<size_t> roster;  // stores the list of player IDs associated with the team.
+    size_t playerNum;  // stores total number of players on the team
 
-    std::vector<int> starters;  // store the IDs of the starting players
+    std::vector<size_t> starters;  // store the IDs of the starting players
 
 };
 

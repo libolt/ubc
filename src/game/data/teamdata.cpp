@@ -45,93 +45,93 @@ teamData::~teamData()
 //	delete [] teamStarters;
 }
 
-string teamData::getCity(void)
+std::string teamData::getCity(void)
 {
     return(city);
 }
 
-void teamData::setCity(string City)
+void teamData::setCity(std::string set)
 {
-    city = City;
+    city = set;
 }
 
-string teamData::getName(void)
+std::string teamData::getName(void)
 {
     return(name);
 }
 
-void teamData::setName(string Name)
+void teamData::setName(std::string set)
 {
-    name = Name;
+    name = set;
 }
 
-string teamData::getCoach(void)
+std::string teamData::getCoach(void)
 {
     return(coach);
 }
 
-void teamData::setCoach(string Coach)
+void teamData::setCoach(std::string set)
 {
-    coach = Coach;
+    coach = set;
 }
 
-vector<int> teamData::getRoster(void)
+std::vector<size_t> teamData::getRoster(void)
 {
     return(roster);
 }
 
-void teamData::setRoster(std::vector<int> Roster)
+void teamData::setRoster(std::vector<size_t> set)
 {
-    roster = Roster;
+    roster = set;
 }
 
-int teamData::getPlayerNum(void)
+size_t teamData::getPlayerNum(void)
 {
     return(playerNum);
 }
 
-void teamData::setPlayerNum(int num)
+void teamData::setPlayerNum(size_t set)
 {
-    playerNum = num;
+    playerNum = set;
 }
 
-vector<int> teamData::getStarters(void)
+std::vector<size_t> teamData::getStarters(void)
 {
     return(starters);
 }
 
-void teamData::setStarters(std::vector<int> Starters)
+void teamData::setStarters(std::vector<size_t> set)
 {
-    starters = Starters;
+    starters = set;
 }
 
-int teamData::getID(void)
+size_t teamData::getID(void)
 {
     return(ID);
 }
-void teamData::setID(int teams)
+void teamData::setID(size_t set)
 {
-    ID = teams;
+    ID = set;
 }
 
-string teamData::getInits(void)
+std::string teamData::getInits(void)
 {
     return(inits);
 }
 
-void teamData::setInits(string Inits)
+void teamData::setInits(std::string set)
 {
-    inits = Inits;
+    inits = set;
 }
 
 // gets and sets file storing team logo
-string teamData::getLogoFile(void)
+std::string teamData::getLogoFile(void)
 {
     return(logoFile);
 }
 
-void teamData::setLogoFile(string file)
+void teamData::setLogoFile(std::string set)
 {
-    logoFile = file;
+    logoFile = set;
 }
 

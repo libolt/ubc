@@ -517,11 +517,11 @@ boost::shared_ptr<teamState> loader::loadTeamFile(string fileName)  // loads the
     tInstance->setCoach(Coach);
     tInstance->setInits(Initials);
     tInstance->setLogoFile(Logo);
-    logMsg("tInstance.size() == " +convert->toString(tInstance->size()));
+    logMsg("tInstance->getID() == " +convert->toString(tInstance->getID()));
 //    team->setTeamArray(teamInstance);
 //   teamInstance.push_back(teamInstance);
 //   gameS->setteamInstance(teamInstance);
-//    exit(0);
+    exit(0);
 
     return (tInstance);
 }

@@ -223,11 +223,12 @@ std::string loader::findFile(std::string fileName)  // finds the location of a f
     bool fileLoaded = false;
     std::string filePath = "";        // stores path to a file
     std::vector<std::string> pathArray;
-
+    std::string dataPath;
+    
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-    std::string dataPath = "";
+    dataPath = "";
 #else
-    string dataPath = UBC_DATADIR;
+    dataPath = UBC_DATADIR;
 #endif
 
     logMsg("dataPath = " +dataPath);
@@ -285,6 +286,8 @@ std::vector<boost::shared_ptr<teamState> > loader::loadTeams()  // load teams fr
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     std::vector<boost::shared_ptr<teamState> > teams;
+
+    std::string teamList;
 //    boost::shared_ptr<teamState> tempTeamSharedPtr(new teamState);
     
 /*    teamState *tempTeamObj = new teamState;
@@ -296,9 +299,9 @@ std::vector<boost::shared_ptr<teamState> > loader::loadTeams()  // load teams fr
 
     //teams = tempTeams;
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-    std::string teamList = "data/teams/teams.xml";
+    teamList = "data/teams/teams.xml";
 #else
-    string teamList = findFile("teams/teams.xml");
+    teamList = findFile("teams/teams.xml");
 #endif
 
 
@@ -417,22 +420,22 @@ std::vector<std::string> loader::loadTeamListFile(std::string fileName)  // load
     return (files);
 }
 
-boost::shared_ptr<teamState> loader::loadTeamFile(string fileName)  // loads the team file
+boost::shared_ptr<teamState> loader::loadTeamFile(std::string fileName)  // loads the team file
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 //    std::vector<boost::shared_ptr<teamState> > teamInstance = gameS->getTeamInstance();
-    boost::shared_ptr<teamState> tInstance; (new teamState);
+    boost::shared_ptr<teamState> teamInstance (new teamState);
 /*    teamState *tempTeamObj = new teamState;
     tInstance = boost::shared_ptr<teamState>(tempTeamObj);
 */
-    int ID;
-    string City;
-    string Name;
-    string Coach;
-    string Initials;
-    string Logo;
+    size_t ID;
+    std::string City;
+    std::string Name;
+    std::string Coach;
+    std::string Initials;
+    std::string Logo;
 
 //    TiXmlDocument doc(fileName.c_str());
 //    if (!doc.LoadFile()) return(false);
@@ -509,31 +512,34 @@ boost::shared_ptr<teamState> loader::loadTeamFile(string fileName)  // loads the
         Logo = pElem->GetText();
         logMsg("Logo == " +Logo);
     }
-
     
-    tInstance->setID(ID);
-    tInstance->setCity(City);
-    tInstance->setName(Name);
-    tInstance->setCoach(Coach);
-    tInstance->setInits(Initials);
-    tInstance->setLogoFile(Logo);
-    logMsg("tInstance->getID() == " +convert->toString(tInstance->getID()));
+    logMsg("ID == " +convert->toString(ID));
+//    exit(0);
+    teamInstance->setID(ID);
+    teamInstance->setCity(City);
+    teamInstance->setName(Name);
+    teamInstance->setCoach(Coach);
+    teamInstance->setInits(Initials);
+    teamInstance->setLogoFile(Logo);
+    logMsg("Team ID == " +convert->toString(ID));
+    logMsg("teamInstance->getID() == " +convert->toString(teamInstance->getID()));
 //    team->setTeamArray(teamInstance);
 //   teamInstance.push_back(teamInstance);
 //   gameS->setteamInstance(teamInstance);
     exit(0);
 
-    return (tInstance);
+    return (teamInstance);
 }
 
 std::vector<boost::shared_ptr<playerState> > loader::loadPlayers()  // loads the players
 {
     std::vector<boost::shared_ptr<playerState> > players;
-
+    std::string playerList;
+    
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-    string playerList = "data/players/players.xml";
+    playerList = "data/players/players.xml";
 #else
-    string playerList = findFile("players/players.xml");
+    playerList = findFile("players/players.xml");
 #endif
     playerFiles = loadPlayerListFile(playerList);
 //    std::vector<std::string> playerFiles = load->getPlayerFiles();
@@ -553,7 +559,7 @@ std::vector<boost::shared_ptr<playerState> > loader::loadPlayers()  // loads the
     return (players);
 }
 
-std::vector<std::string> loader::loadPlayerListFile( string fileName)  // loads the player list file
+std::vector<std::string> loader::loadPlayerListFile(std::string fileName)  // loads the player list file
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
   //   boost::shared_ptr<renderEngine> render = renderEngine::Instance();
@@ -590,9 +596,9 @@ std::vector<std::string> loader::loadPlayerListFile( string fileName)  // loads 
     pElem=hRoot.FirstChild().ToElement();
     for( pElem; pElem; pElem=pElem->NextSiblingElement())
     {
-        string pKey=pElem->Value();
+        std::string pKey=pElem->Value();
 //        cout << pKey << endl;
-        string pText=pElem->GetText();
+        std::string pText=pElem->GetText();
         logMsg("pText == " +pText);
 //        cout << pText << endl;
         pFiles.push_back(pText);
@@ -610,7 +616,7 @@ std::vector<std::string> loader::loadPlayerListFile( string fileName)  // loads 
     return (pFiles);
 }
 
-boost::shared_ptr<playerState> loader::loadPlayerFile(string fileName)  // loads the player file
+boost::shared_ptr<playerState> loader::loadPlayerFile(std::string fileName)  // loads the player file
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
@@ -1046,10 +1052,12 @@ boost::shared_ptr<playerState> loader::loadPlayerFile(string fileName)  // loads
 std::vector<offensePlays> loader::loadOffensePlays()  // load offense plays from XML files
 {
     std::vector<offensePlays> plays;
+    std::string playList;
+    
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-    string playList = "data/offense/plays/plays.xml";
+    playList = "data/offense/plays/plays.xml";
 #else
-    string playList = findFile("offense/plays/plays.xml");
+    playList = findFile("offense/plays/plays.xml");
 #endif
     offensePlayFiles = loadOffensePlayListFile(playList);
 //    std::vector<std::string> playerFiles = load->getPlayerFiles();
@@ -1067,7 +1075,7 @@ std::vector<offensePlays> loader::loadOffensePlays()  // load offense plays from
     return (plays);
 }
 
-std::vector<std::string> loader::loadOffensePlayListFile(string fileName)  // loads the play list file
+std::vector<std::string> loader::loadOffensePlayListFile(std::string fileName)  // loads the play list file
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
@@ -1110,8 +1118,8 @@ std::vector<std::string> loader::loadOffensePlayListFile(string fileName)  // lo
     pElem=hRoot.FirstChildElement().ToElement();
     for( pElem; pElem; pElem=pElem->NextSiblingElement())
     {
-        string pKey=pElem->Value();
-        string pText=pElem->GetText();
+        std::string pKey=pElem->Value();
+        std::string pText=pElem->GetText();
         playFiles.push_back(pText);
     }
 
@@ -1120,7 +1128,7 @@ std::vector<std::string> loader::loadOffensePlayListFile(string fileName)  // lo
     return (playFiles);
 }
 
-offensePlays loader::loadOffensePlayFile(string fileName)  // loads data from the offense play XML files
+offensePlays loader::loadOffensePlayFile(std::string fileName)  // loads data from the offense play XML files
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     
@@ -1193,7 +1201,7 @@ offensePlays loader::loadOffensePlayFile(string fileName)  // loads data from th
     child = rootElement->FirstChildElement()->ToElement();
     if (child)
     {
-        string cKey = child->Value();
+        std::string cKey = child->Value();
         if (cKey == "PlayName")
         {
             pPlayName = child->GetText();
@@ -1330,7 +1338,7 @@ offensePlays loader::loadOffensePlayFile(string fileName)  // loads data from th
                     h = g->FirstChildElement()->ToElement();
                     if (h)
                     {
-                        string hKey = h->GetText();
+                        std::string hKey = h->GetText();
                         logMsg("hKey = " +hKey);
                         if (hKey == "Wait")
                         {
@@ -1422,10 +1430,12 @@ offensePlays loader::loadOffensePlayFile(string fileName)  // loads data from th
 std::vector<basketballState> loader::loadBasketballs()  // load basketball settings from XML files
 {
     std::vector<basketballState> basketballs;
+    std::string basketballList;
+    
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-    string basketballList = "data/basketballs/basketballs.xml";
+    basketballList = "data/basketballs/basketballs.xml";
 #else
-    string basketballList = findFile("basketballs/basketballs.xml");
+    basketballList = findFile("basketballs/basketballs.xml");
 #endif
     basketballFiles = loadBasketballListFile(basketballList);
 //    std::vector<std::string> playerFiles = load->getPlayerFiles();
@@ -1443,7 +1453,7 @@ std::vector<basketballState> loader::loadBasketballs()  // load basketball setti
     return (basketballs);
 }
 
-std::vector<std::string> loader::loadBasketballListFile(string fileName) // loads the list of baskteball list file
+std::vector<std::string> loader::loadBasketballListFile(std::string fileName) // loads the list of baskteball list file
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
@@ -1484,8 +1494,8 @@ std::vector<std::string> loader::loadBasketballListFile(string fileName) // load
     pElem=hRoot.FirstChild().ToElement();
     for( pElem; pElem; pElem=pElem->NextSiblingElement())
     {
-        string pKey=pElem->Value();
-        string pText=pElem->GetText();
+        std::string pKey=pElem->Value();
+        std::string pText=pElem->GetText();
         bballFiles.push_back(pText);
     }
 
@@ -1494,7 +1504,7 @@ std::vector<std::string> loader::loadBasketballListFile(string fileName) // load
     return (bballFiles);
 }
 
-basketballState loader::loadBasketballFile(string fileName)  // loads data from the basketball XML files
+basketballState loader::loadBasketballFile(std::string fileName)  // loads data from the basketball XML files
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 
@@ -1535,7 +1545,7 @@ basketballState loader::loadBasketballFile(string fileName)  // loads data from 
     child = rootElement->FirstChild()->ToElement();
     if (child)
     {
-        string cKey = child->Value();
+        std::string cKey = child->Value();
         if (cKey == "Name")
         {
             name = child->GetText();
@@ -1561,10 +1571,12 @@ std::vector<courtState> loader::loadCourts()  // load court settings from XML fi
 {
 //    exit(0);
     std::vector<courtState> courts;
+    std::string courtList;
+    
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-    string courtList = "data/courts/courts.xml";
+    courtList = "data/courts/courts.xml";
 #else
-    string courtList = findFile("courts/courts.xml");
+    courtList = findFile("courts/courts.xml");
 #endif
     courtFiles = loadCourtListFile(courtList);
 //    std::vector<std::string> playerFiles = load->getPlayerFiles();
@@ -1583,7 +1595,7 @@ std::vector<courtState> loader::loadCourts()  // load court settings from XML fi
     return (courts);
 }
 
-std::vector<std::string> loader::loadCourtListFile(string fileName)	// loads the list of court list file
+std::vector<std::string> loader::loadCourtListFile(std::string fileName)	// loads the list of court list file
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
@@ -1625,8 +1637,8 @@ std::vector<std::string> loader::loadCourtListFile(string fileName)	// loads the
     pElem=hRoot.FirstChild().ToElement();
     for( pElem; pElem; pElem=pElem->NextSiblingElement())
     {
-        string pKey=pElem->Value();
-        string pText=pElem->GetText();
+        std::string pKey=pElem->Value();
+        std::string pText=pElem->GetText();
         cFiles.push_back(pText);
     }
 
@@ -1635,7 +1647,7 @@ std::vector<std::string> loader::loadCourtListFile(string fileName)	// loads the
     return (cFiles);
 }
 
-courtState loader::loadCourtFile(string fileName)  // loads data from the offense play XML files
+courtState loader::loadCourtFile(std::string fileName)  // loads data from the offense play XML files
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     
@@ -1694,7 +1706,7 @@ courtState loader::loadCourtFile(string fileName)  // loads data from the offens
     child = rootElement->FirstChild()->ToElement();
     if (child)
     {
-        string cKey = child->Value();
+        std::string cKey = child->Value();
         if (cKey == "Name")
         {
             name = child->GetText();
@@ -1843,10 +1855,12 @@ courtState loader::loadCourtFile(string fileName)  // loads data from the offens
 std::vector<userInput> loader::loadUserInputs()  // load user input settings from XML files
 {
     std::vector<userInput> userInputs;
+    std::string userInputList;
+    
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-    string userInputList = "data/users/inputlist.xml";
+    userInputList = "data/users/inputlist.xml";
 #else
-    string userInputList = findFile("users/inputlist.xml");
+    userInputList = findFile("users/inputlist.xml");
 #endif
     userInputFiles = loadUserInputListFile(userInputList);
 //    std::vector<std::string> playerFiles = load->getPlayerFiles();
@@ -1864,7 +1878,7 @@ std::vector<userInput> loader::loadUserInputs()  // load user input settings fro
     return (userInputs);
 }
 
-std::vector<std::string> loader::loadUserInputListFile(string fileName)  // loads the user input list file
+std::vector<std::string> loader::loadUserInputListFile(std::string fileName)  // loads the user input list file
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
@@ -1906,10 +1920,10 @@ std::vector<std::string> loader::loadUserInputListFile(string fileName)  // load
     pElem=hRoot.FirstChild().ToElement();
     for( pElem; pElem; pElem=pElem->NextSiblingElement())
     {
-        string pKey=pElem->Value();
+        std::string pKey=pElem->Value();
         logMsg("pKey == " +pKey);
-	string pText=pElem->GetText();
-	logMsg("pText == " +pText);
+	    std::string pText=pElem->GetText();
+	    logMsg("pText == " +pText);
         uInputFiles.push_back(pText);
     }
     
@@ -1918,7 +1932,7 @@ std::vector<std::string> loader::loadUserInputListFile(string fileName)  // load
     return (uInputFiles);
 }
 
-userInput loader::loadUserInputFile(string fileName)  // loads data from the user input files
+userInput loader::loadUserInputFile(std::string fileName)  // loads data from the user input files
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     
@@ -1974,7 +1988,7 @@ userInput loader::loadUserInputFile(string fileName)  // loads data from the use
     child = rootElement->FirstChild()->ToElement();
     if (child)
     {
-        string cKey = child->Value();
+        std::string cKey = child->Value();
         if (cKey == "Name")
         {
             inputName = child->GetText();
@@ -1990,8 +2004,8 @@ userInput loader::loadUserInputFile(string fileName)  // loads data from the use
                 nextChild = child->FirstChildElement()->ToElement();
                 inputTag = true;
                 for( nextChild; nextChild; nextChild=nextChild->NextSiblingElement())
-		{
-                    string pKey=nextChild->Value();
+                {
+                    std::string pKey=nextChild->Value();
                     logMsg("pKey = " +pKey);
 //                    exit(0);
                     if (pKey == "Type")

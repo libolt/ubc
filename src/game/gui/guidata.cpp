@@ -158,8 +158,8 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     size_t flag = 1;
     size_t temp = 0;
     size_t tempID = 0;
-    string tempName;
-    string tempPosition;
+    std::string tempName;
+    std::string tempPosition;
 
     playerNames.push_back(pNames);
     playerNames.push_back(pNames);

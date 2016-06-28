@@ -41,7 +41,7 @@ teamState::teamState()
 {
 
     //teamNumber = -1;
-    teamID = -1;
+    teamID = 999999;
     teamType = NOTEAM;
 	playerType = ' ';
     assists = 0;

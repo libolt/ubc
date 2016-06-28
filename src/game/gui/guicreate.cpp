@@ -515,7 +515,7 @@ bool GUISystem::createTeamSelectionMenuGUI()  // creates GUI for team selection 
     teamsSelectedButton->setSize((0.4 *vpWidth), (0.04 *vpHeight) );
 
     teamSelectionMenuCreated = true;
-
+//    exit(0);
     return (true);
 }
 

@@ -1,4 +1,3 @@
-
 /***************************************************************************
  *   Copyright (C) 1999 - 2015 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
@@ -468,28 +467,45 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
 
     std::vector<boost::shared_ptr<teamState> > teamInstance; // = gameS->getTeamDataInstance();
 
-    if (getGameS()->getTeamInstancesCreated())
+    teamInstance = load->loadTeams();
+
+//    exit(0);
+/*    if (getGameS()->getTeamInstancesCreated())
     {        
         teamInstance = getGameS()->getTeamInstance();
         logMsg("teamInstance.size() == " +convert->toString(getGameS()->getTeamInstance().size()));
         exit(0);
     }
     else
-    {
+    {    
         if (getGameS()->createTeamInstances())
         {
-            teamInstance = getGameS()->getTeamInstance();
-            logMsg("teamInstance.size() == " +convert->toString(getGameS()->getTeamInstance().size()));
+             logMsg("teamInstance.size() == " +convert->toString(getGameS()->getTeamInstance().size()));
 //            exit(0);
+            if (getGameS()->getTeamInstance().size() == 0)
+            {
+                exit(0);
+            }
+            else
+            {
+                teamInstance = getGameS()->getTeamInstance();
+                logMsg("teamInstance.size() == " +convert->toString(getGameS()->getTeamInstance().size()));
+//                exit(0);
+            }
+
         }
         else
         {
             logMsg("Failed to create teamSelectioMenuGUI");
             return (false);
         }
+        
     }
-/*    gameS->setTeamDataInstance(teamDataInstance);
 */
+    
+/*
+//    gameS->setTeamDataInstance(teamDataInstance);
+//
 //    teamInstance = gameS->getTeamInstance();
     logMsg("teamInstance.size() == " +convert->toString(getGameS()->getTeamInstance().size()));
     logMsg("BLEEET!");
@@ -518,6 +534,6 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     }
     team0SelectBox->setIndexSelected(0);
     team1SelectBox->setIndexSelected(1);
-
+*/
     return (false);
 }

@@ -398,6 +398,8 @@ private:
     std::vector< std::vector<size_t> > team0IDs;
     std::vector< std::vector<size_t> > team1IDs;
     std::vector< std::vector<size_t> > teamStarterID; // stores the selected starters for each team 
+
+    size_t displayCount;
 };
 
 #endif // GUI_H_INCLUDED

@@ -1,5 +1,5 @@
 /***************************************************************************
- *     opyright (C) 1999 - 2016 by Mike McLean                              *
+ *   Copyright (C) 1999 - 2016 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -91,6 +91,7 @@ GUISystem::GUISystem()  // Initialmizes the GUISystem class
 
     //activeMenu = NULL;mm
     //previousActiveMenu = NULL;
+    displayCount = 0;
 
 }
 
@@ -387,13 +388,20 @@ void GUISystem::playerStartSelectionMenu()  // displays player start selection m
 
 void GUISystem::teamSelectionMenu()  // displays team selection menu
 {
+    boost::shared_ptr<loader> load = loader::Instance();
+
+    std::vector<boost::shared_ptr<teamState> > teamInstance; // = gameS->getTeamDataInstance();
+
+//    teamInstance = load->loadTeams();
+
     if (!teamSelectionMenuCreated)
     {
         createTeamSelectionMenuGUI();
         addTeamStartSelectionMenuData();
         teamSelectionMenuCreated = true;
     }
-
+//    exit(0);
+    hideCourtSelectionMenuWidgets();
     changeActiveMenu(TEAMSELECT);
 }
 

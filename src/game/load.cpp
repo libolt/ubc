@@ -252,7 +252,7 @@ std::string loader::findFile(std::string fileName)  // finds the location of a f
 
             filePath.append(fileName);
             logMsg("filePath = " +filePath);
-            fstream fileOpen;
+            std::fstream fileOpen;
             // if (!(lineupFont = TTF_OpenFont(file.c_str(), 20)));
             fileOpen.open(filePath.c_str(), ios::in);
             if (!fileOpen)

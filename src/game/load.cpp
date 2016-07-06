@@ -157,7 +157,7 @@ int loader::readFile(const char *sourceFile, char **destination)  // loads an xm
     (*destination) = new char[fileLength + 1]; // allow an extra characterfor '\0'
 
 //    ASSERT(file, "Opening file using SDL_RWops");
-    // resets the file to beginnin
+    // resets the file to beginning
     SDL_RWseek(file, 0, SEEK_SET);
     // Read text from file
     std::string *contents = new std::string;

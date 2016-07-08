@@ -54,22 +54,22 @@ UBC_DEPENDS_INC_PATH := $(UBC_DEPENDS_PATH)/include
 
    include $(CLEAR_VARS)
    LOCAL_MODULE := Boost-Atomic-Prebuilt
-   LOCAL_SRC_FILES := $(UBC_DEPENDS_LIB_PATH)/libboost_atomic-gcc-mt-s-1_58.a
+   LOCAL_SRC_FILES := $(UBC_DEPENDS_LIB_PATH)/libboost_atomic-gcc-mt-s-1_60.a
    include $(PREBUILT_STATIC_LIBRARY)
 
    include $(CLEAR_VARS)
    LOCAL_MODULE := Boost-Chrono-Prebuilt
-   LOCAL_SRC_FILES := $(UBC_DEPENDS_LIB_PATH)/libboost_chrono-gcc-mt-s-1_58.a
+   LOCAL_SRC_FILES := $(UBC_DEPENDS_LIB_PATH)/libboost_chrono-gcc-mt-s-1_60.a
    include $(PREBUILT_STATIC_LIBRARY)
 
    include $(CLEAR_VARS)
    LOCAL_MODULE := Boost-System-Prebuilt
-   LOCAL_SRC_FILES := $(UBC_DEPENDS_LIB_PATH)/libboost_system-gcc-mt-s-1_58.a
+   LOCAL_SRC_FILES := $(UBC_DEPENDS_LIB_PATH)/libboost_system-gcc-mt-s-1_60.a
    include $(PREBUILT_STATIC_LIBRARY)
 
    include $(CLEAR_VARS)
    LOCAL_MODULE := Boost-Thread-Prebuilt
-   LOCAL_SRC_FILES := $(UBC_DEPENDS_LIB_PATH)/libboost_thread_pthread-gcc-mt-s-1_58.a
+   LOCAL_SRC_FILES := $(UBC_DEPENDS_LIB_PATH)/libboost_thread_pthread-gcc-mt-s-1_60.a
    include $(PREBUILT_STATIC_LIBRARY)
 
    include $(CLEAR_VARS)
@@ -210,7 +210,7 @@ UBC_DEPENDS_INC_PATH := $(UBC_DEPENDS_PATH)/include
 #LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
-LOCAL_SHARED_LIBRARIES := OpeanAL-Prebuilt 
+LOCAL_SHARED_LIBRARIES := OpenAL-Prebuilt 
 LOCAL_STATIC_LIBRARIES := Boost-System-Prebuilt MyGUIOgrePlatform-Prebuilt MyGUIEngine-Prebuilt TinyXML2-Prebuilt SDL2-Prebuilt 
 LOCAL_STATIC_LIBRARIES += BtOgre-Prebuilt BulletDynamics-Prebuilt BulletCollision-Prebuilt BulletSoftbody-Prebuilt BulletLinearMath-Prebuilt
 LOCAL_STATIC_LIBRARIES += OgreRTShaderSystem-Prebuilt OgreRenderSystem_GLES2-Prebuilt OgreMain-Prebuilt OgreParticleFXPlugin-Prebuilt
@@ -227,7 +227,7 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/$(UBC_DEPENDS_PATH)/include
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/$(UBC_DEPENDS_PATH)/include/bullet
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/$(UBC_DEPENDS_PATH)/include/enet
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/$(UBC_DEPENDS_PATH)/include/SDL2
-LOCAL_C_INCLUDES += $(LOCAL_PATH)/$(UBC_DEPENDS_PATH)/include/boost-1_58
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/$(UBC_DEPENDS_PATH)/include/boost-1_60
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/$(UBC_DEPENDS_PATH)/include/OGRE
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/$(UBC_DEPENDS_PATH)/include/OGRE/Overlay
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/$(UBC_DEPENDS_PATH)/include/OGRE/RTShaderSystem 
@@ -280,6 +280,4 @@ APP_CFLAGS := -fno-lto
 APP_CPPFLAGS := -fno-lto
 APP_LDFLAGS := -fno-lto
 
-#LOCAL_CPPFLAGS :=  $(COMMON_FLAGS_LIST) -DOGRE_NO_GLES3_SUPPORT=1
 include $(BUILD_SHARED_LIBRARY)
-

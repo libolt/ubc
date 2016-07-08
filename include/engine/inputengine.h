@@ -22,21 +22,20 @@
 #ifndef _INPUTENGINE_H_
 #define _INPUTENGINE_H_
 
-#include "SDL.h"
 #include "SDL_syswm.h"
 #include "Ogre.h"
-#include <boost/thread/thread.hpp>
-#include <boost/date_time.hpp>
-#include <boost/thread/mutex.hpp>
-#include <boost/thread/condition_variable.hpp>
-#include <boost/thread/locks.hpp>
-
 #include "enums.h"
 #include "userinput.h"
 //#include "engine/renderengine.h"
 //#include "gui/gui.h"
 
 #include "engine.h"
+//#include <boost/thread/thread.hpp>
+//#include <boost/date_time.hpp>
+//#include <boost/thread/mutex.hpp>
+//#include <boost/thread/condition_variable.hpp>
+//#include <boost/thread/locks.hpp>
+#include "SDL.h"
 
 #define EVENT_BUF_SIZE 256
 
@@ -135,10 +134,10 @@ private:
     inputMaps inputMap; // stores user input
  
     std::vector<userInput> uInput;  // stores user input mapping
- 
+  
     inputWorkQueues inputWorkQueue;
     inputWorkQueues internalInputWorkQueue;
-    boost::mutex inputWorkQueueMutex;
+//    boost::mutex inputWorkQueueMutex;
 };
 
 

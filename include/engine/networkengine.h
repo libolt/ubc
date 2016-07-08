@@ -21,26 +21,28 @@
 #ifndef _NETWORKENGINE_H_
 #define _NETWORKENGINE_H_
 
+
+
 #ifndef _ENET_ISINCLUDED_
 #define _ENET_ISINCLUDED_
 #include "enet/enet.h"
 #endif 
 
-#include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
-
-#include <boost/shared_ptr.hpp>
-
-#include "OgreString.h"
-#include "OgreStringConverter.h"
-#include "Ogre.h"
+//#include "OgreString.h"
+//#include "OgreStringConverter.h"
 
 #include "enums.h"
 // #include "engine/inputengine.h"
 #include "engine.h"
 
+#include <iostream>
+
+#include <stdio.h>
+#include <stdlib.h>
+//#include <boost/shared_ptr.hpp>
+
 class inputEngine;
+class boost;
 
 class networkEngine : public engine
 {

@@ -19,6 +19,7 @@
  ***************************************************************************/
  
 // Input
+
 #include "conversion.h"
 
 #undef None
@@ -29,7 +30,7 @@
 #undef Button5
 #undef Button6
 #undef Button7
-#include "MyGUI.h"
+//#include "MyGUI.h"
 #include "MyGUI_OgrePlatform.h"
 
 #include "engine/inputengine.h"

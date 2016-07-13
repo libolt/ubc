@@ -21,20 +21,23 @@
 #ifndef _CONVERSION_H_
 #define _CONVERSION_H_
 
-
 #include "engine/networkengine.h"
-#include "ai/steering.h"
-#include "enums.h"
-#include <boost/lexical_cast.hpp>
+
 #include <iostream>
 #include <sstream>
-//#include <iomanip>
-#include <string>
+#include <iomanip>
+
 #include <limits>
-#include <boost/shared_ptr.hpp>
+
+#include <boost/lexical_cast.hpp>
+//#include <boost/shared_ptr.hpp>
+
 #include "Ogre.h"
 #include "OgreVector3.h"
 #include "LinearMath/btVector3.h"
+
+#include "ai/steering.h"
+#include "enums.h"
 
 //template<class T, class TL>
 class conversion  // class for conversion between data types

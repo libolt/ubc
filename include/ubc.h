@@ -30,7 +30,6 @@
 //#include "engine/networkengine.h"
 
 #include "ubcbase.h"
-#include "gui/gui.h"
 #include "SDL.h"
 #include "SDL_syswm.h"
 #include "SDL_test_common.h"
@@ -43,7 +42,7 @@
 //#include "input.h"
 //#include "playerdata.h"
 //#include "state/playerstate.h"
-
+#include "gui/gui.h"
 //class GUISystem;
 class gameEngine;
 

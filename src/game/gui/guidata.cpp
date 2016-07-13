@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   Copyright (C) 1999 - 2016 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -112,6 +112,26 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 //    pInstance = teamInstance[teamIDs[0]]->getPlayerInstance();
     size_t x = 0;
     
+/*
+    if (!getGameS()->getPlayerInstanceCreated())
+    {
+        logMsg("player instances not yet created!");
+        if (getGameS()->createPlayerInstances())
+        {
+            logMsg("player instances created!");
+        }
+        else
+        {
+            logMsg("player instances not created!");
+        }
+//        exit(0);
+    }
+    if (!teamInstance[teamIDs[0]]->getPlayerInstancesCreated())
+    {
+        teamInstance[teamIDs[0]]->createPlayerInstances();
+        getGameS()->setTeamInstance(teamInstance);
+    }
+*/
     logMsg ("addPlayerStartSelectionMenuData");
 //    exit(0);
     if (!getGameS()->getPlayerInstanceCreated())
@@ -185,7 +205,6 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     {
         
         logMsg("Player Instance[i] Size = " +convert->toString(playerInstance[i].size()));
-        
 //        logMsg("pDTeam = " +convert->toString(playerInstance[i][0]->getTeamID()));
         logMsg("pDTeam = " +convert->toString(playerInstance[i][0]->getTeamID()));
 //        logMsg("teamID == " +convert->toString(gameS->getTeamID()[1]));
@@ -437,7 +456,6 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         {
 
         }
-
     }
 
     logMsg("PG1 == " +team1PGSelectBox->getItemNameAt(0));

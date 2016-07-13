@@ -210,7 +210,7 @@ UBC_DEPENDS_INC_PATH := $(UBC_DEPENDS_PATH)/include
 #LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
-LOCAL_SHARED_LIBRARIES := OpenAL-Prebuilt 
+LOCAL_SHARED_LIBRARIES := OpeanAL-Prebuilt 
 LOCAL_STATIC_LIBRARIES := Boost-System-Prebuilt MyGUIOgrePlatform-Prebuilt MyGUIEngine-Prebuilt TinyXML2-Prebuilt SDL2-Prebuilt 
 LOCAL_STATIC_LIBRARIES += BtOgre-Prebuilt BulletDynamics-Prebuilt BulletCollision-Prebuilt BulletSoftbody-Prebuilt BulletLinearMath-Prebuilt
 LOCAL_STATIC_LIBRARIES += OgreRTShaderSystem-Prebuilt OgreRenderSystem_GLES2-Prebuilt OgreMain-Prebuilt OgreParticleFXPlugin-Prebuilt
@@ -280,4 +280,6 @@ APP_CFLAGS := -fno-lto
 APP_CPPFLAGS := -fno-lto
 APP_LDFLAGS := -fno-lto
 
+#LOCAL_CPPFLAGS :=  $(COMMON_FLAGS_LIST) -DOGRE_NO_GLES3_SUPPORT=1
 include $(BUILD_SHARED_LIBRARY)
+

@@ -23,6 +23,16 @@
 
 #include "engine/gameengine.h"
 
+#include "MyGUI_Gui.h"
+#include "MyGUI_OgrePlatform.h"
+#include "MyGUI_IItemContainer.h"
+#include "MyGUI_ListBox.h"
+#include "MyGUI_InputManager.h"
+#include "MyGUI_EditBox.h"
+#include "MyGUI_FontManager.h"
+#include "MyGUI_LayoutManager.h"
+#include "MyGUI_ImageBox.h"
+
 #undef None
 #undef Button1
 #undef Button2
@@ -33,9 +43,10 @@
 #undef Button7
 
 
-#include "MyGUI.h"
+/* #include "MyGUI.h"
 #include "MyGUI_OgrePlatform.h"
 #include "MyGUI_OgreRenderManager.h"
+*/
 
 #include "ubcbase.h"
 #include "enums.h"

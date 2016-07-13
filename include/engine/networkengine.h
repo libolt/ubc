@@ -22,27 +22,30 @@
 #define _NETWORKENGINE_H_
 
 
-
 #ifndef _ENET_ISINCLUDED_
 #define _ENET_ISINCLUDED_
 #include "enet/enet.h"
 #endif 
+#include <ctime>
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <sys/time.h>
 
-//#include "OgreString.h"
-//#include "OgreStringConverter.h"
+#include <boost/shared_ptr.hpp>
 
+/*
+#include "OgreString.h"
+#include "OgreStringConverter.h"
+#include "Ogre.h"
+*/
 #include "enums.h"
 // #include "engine/inputengine.h"
 #include "engine.h"
 
-#include <iostream>
-
-#include <stdio.h>
-#include <stdlib.h>
-//#include <boost/shared_ptr.hpp>
 
 class inputEngine;
-class boost;
 
 class networkEngine : public engine
 {
@@ -110,10 +113,10 @@ class networkEngine : public engine
     void sendPacket(std::string packetData);  // sends a packet to the peer
 
     protected:
-/*    networkEngine();
-    networkEngine(const networkEngine&);
-    networkEngine& operator= (const networkEngine&);
-*/
+//    networkEngine();
+//    networkEngine(const networkEngine&);
+//    networkEngine& operator= (const networkEngine&);
+
     private:
 
     int counter;

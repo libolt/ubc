@@ -441,7 +441,7 @@ void teamState::setupState()	// sets up the state of the object
 /*        if (!playerInstancesCreated)	// checks if playerInstances have been created
         {
     	    if (createPlayerInstances()) // creates the player instances based on playerIDS
-		    {
+		    {m
                 logMsg("Player instances created!");
                 playerInstancesCreated = true;
 //        	exit(0);

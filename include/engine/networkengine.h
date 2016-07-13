@@ -26,12 +26,9 @@
 #define _ENET_ISINCLUDED_
 #include "enet/enet.h"
 #endif 
-#include <ctime>
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
-#include <sys/time.h>
 
 #include <boost/shared_ptr.hpp>
 

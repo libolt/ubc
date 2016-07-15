@@ -7,7 +7,7 @@ public class UBCActivity extends SDLActivity
 	static 
 	{
         System.loadLibrary("openal");
-        System.loadLibrary("almixer");
+//        System.loadLibrary("almixer");
         System.loadLibrary("UltimateBasketballChallenge");
     }	
     

@@ -11,6 +11,7 @@ import java.lang.reflect.Method;
 
 import android.app.*;
 import android.content.*;
+import android.text.InputType;
 import android.view.*;
 import android.view.inputmethod.BaseInputConnection;
 import android.view.inputmethod.EditorInfo;
@@ -27,6 +28,7 @@ import android.graphics.*;
 import android.graphics.drawable.Drawable;
 import android.media.*;
 import android.hardware.*;
+import android.content.pm.ActivityInfo;
 
 /**
     SDL Activity
@@ -68,12 +70,12 @@ public class SDLActivity extends Activity {
      */
     protected String[] getLibraries() {
         return new String[] {
-            "SDL2",
+//            "SDL2",
             // "SDL2_image",
             // "SDL2_mixer",
             // "SDL2_net",
             // "SDL2_ttf",
-            //"main"
+    //        "main"
         };
     }
 
@@ -299,7 +301,7 @@ public class SDLActivity extends Activity {
         if (!SDLActivity.mIsPaused && SDLActivity.mIsSurfaceReady) {
             SDLActivity.mIsPaused = true;
             SDLActivity.nativePause();
-            mSurface.enableSensor(Sensor.TYPE_ACCELEROMETER, false);
+            mSurface.handlePause();
         }
     }
 
@@ -426,19 +428,11 @@ public class SDLActivity extends Activity {
     public static native void onNativeAccel(float x, float y, float z);
     public static native void onNativeSurfaceChanged();
     public static native void onNativeSurfaceDestroyed();
-    public static native void nativeFlipBuffers();
     public static native int nativeAddJoystick(int device_id, String name,
                                                int is_accelerometer, int nbuttons,
                                                int naxes, int nhats, int nballs);
     public static native int nativeRemoveJoystick(int device_id);
     public static native String nativeGetHint(String name);
-
-    /**
-     * This method is called by SDL using JNI.
-     */
-    public static void flipBuffers() {
-        SDLActivity.nativeFlipBuffers();
-    }
 
     /**
      * This method is called by SDL using JNI.
@@ -668,7 +662,7 @@ public class SDLActivity extends Activity {
         }
     }
 
-    // APK extension files support
+    // APK expansion files support
 
     /** com.android.vending.expansion.zipfile.ZipResourceFile object or null. */
     private Object expansionFile;
@@ -677,16 +671,43 @@ public class SDLActivity extends Activity {
     private Method expansionFileMethod;
 
     /**
-     * This method is called by SDL using JNI.
+     * This method was called by SDL using JNI.
+     * @deprecated because of an incorrect name
      */
+    @Deprecated
     public InputStream openAPKExtensionInputStream(String fileName) throws IOException {
+        return openAPKExpansionInputStream(fileName);
+    }
+
+    /**
+     * This method is called by SDL using JNI.
+     * @return an InputStream on success or null if no expansion file was used.
+     * @throws IOException on errors. Message is set for the SDL error message.
+     */
+    public InputStream openAPKExpansionInputStream(String fileName) throws IOException {
         // Get a ZipResourceFile representing a merger of both the main and patch files
         if (expansionFile == null) {
-            Integer mainVersion = Integer.valueOf(nativeGetHint("SDL_ANDROID_APK_EXPANSION_MAIN_FILE_VERSION"));
-            Integer patchVersion = Integer.valueOf(nativeGetHint("SDL_ANDROID_APK_EXPANSION_PATCH_FILE_VERSION"));
+            String mainHint = nativeGetHint("SDL_ANDROID_APK_EXPANSION_MAIN_FILE_VERSION");
+            if (mainHint == null) {
+                return null; // no expansion use if no main version was set
+            }
+            String patchHint = nativeGetHint("SDL_ANDROID_APK_EXPANSION_PATCH_FILE_VERSION");
+            if (patchHint == null) {
+                return null; // no expansion use if no patch version was set
+            }
+
+            Integer mainVersion;
+            Integer patchVersion;
+            try {
+                mainVersion = Integer.valueOf(mainHint);
+                patchVersion = Integer.valueOf(patchHint);
+            } catch (NumberFormatException ex) {
+                ex.printStackTrace();
+                throw new IOException("No valid file versions set for APK expansion files", ex);
+            }
 
             try {
-                // To avoid direct dependency on Google APK extension library that is
+                // To avoid direct dependency on Google APK expansion library that is
                 // not a part of Android SDK we access it using reflection
                 expansionFile = Class.forName("com.android.vending.expansion.zipfile.APKExpansionSupport")
                     .getMethod("getAPKExpansionZipFile", Context.class, int.class, int.class)
@@ -698,6 +719,7 @@ public class SDLActivity extends Activity {
                 ex.printStackTrace();
                 expansionFile = null;
                 expansionFileMethod = null;
+                throw new IOException("Could not access APK expansion support library", ex);
             }
         }
 
@@ -706,12 +728,14 @@ public class SDLActivity extends Activity {
         try {
             fileStream = (InputStream)expansionFileMethod.invoke(expansionFile, fileName);
         } catch (Exception ex) {
+            // calling "getInputStream" failed
             ex.printStackTrace();
-            fileStream = null;
+            throw new IOException("Could not open stream from APK expansion file", ex);
         }
 
         if (fileStream == null) {
-            throw new IOException();
+            // calling "getInputStream" was successful but null was returned
+            throw new IOException("Could not find path in APK expansion file");
         }
 
         return fileStream;
@@ -976,6 +1000,10 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
         mHeight = 1.0f;
     }
 
+    public void handlePause() {
+        enableSensor(Sensor.TYPE_ACCELEROMETER, false);
+    }
+
     public void handleResume() {
         setFocusable(true);
         setFocusableInTouchMode(true);
@@ -1062,6 +1090,42 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
         SDLActivity.onNativeResize(width, height, sdlFormat, mDisplay.getRefreshRate());
         Log.v("SDL", "Window size: " + width + "x" + height);
 
+ 
+        boolean skip = false;
+        int requestedOrientation = SDLActivity.mSingleton.getRequestedOrientation();
+
+        if (requestedOrientation == ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
+        {
+            // Accept any
+        }
+        else if (requestedOrientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+        {
+            if (mWidth > mHeight) {
+               skip = true;
+            }
+        } else if (requestedOrientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
+            if (mWidth < mHeight) {
+               skip = true;
+            }
+        }
+
+        // Special Patch for Square Resolution: Black Berry Passport
+        if (skip) {
+           double min = Math.min(mWidth, mHeight);
+           double max = Math.max(mWidth, mHeight);
+           
+           if (max / min < 1.20) {
+              Log.v("SDL", "Don't skip on such aspect-ratio. Could be a square resolution.");
+              skip = false;
+           }
+        }
+
+        if (skip) {
+           Log.v("SDL", "Skip .. Surface is not ready.");
+           return;
+        }
+
+
         // Set mIsSurfaceReady to 'true' *before* making a call to handleResume
         SDLActivity.mIsSurfaceReady = true;
         SDLActivity.onNativeSurfaceChanged();
@@ -1093,12 +1157,11 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
             }, "SDLThreadListener");
             SDLActivity.mSDLThread.start();
         }
+
+        if (SDLActivity.mHasFocus) {
+            SDLActivity.handleResume();
+        }
     }
-
-    // unused
-    @Override
-    public void onDraw(Canvas canvas) {}
-
 
     // Key events
     @Override
@@ -1133,6 +1196,20 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
             }
         }
 
+        if ((event.getSource() & InputDevice.SOURCE_MOUSE) != 0) {
+            // on some devices key events are sent for mouse BUTTON_BACK/FORWARD presses
+            // they are ignored here because sending them as mouse input to SDL is messy
+            if ((keyCode == KeyEvent.KEYCODE_BACK) || (keyCode == KeyEvent.KEYCODE_FORWARD)) {
+                switch (event.getAction()) {
+                case KeyEvent.ACTION_DOWN:
+                case KeyEvent.ACTION_UP:
+                    // mark the event as handled or it will be handled by system
+                    // handling KEYCODE_BACK by system will call onBackPressed()
+                    return true;
+                }
+            }
+        }
+
         return false;
     }
 
@@ -1151,7 +1228,7 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
         // !!! FIXME: dump this SDK check after 2.0.4 ships and require API14.
         if (event.getSource() == InputDevice.SOURCE_MOUSE && SDLActivity.mSeparateMouseAndTouch) {
             if (Build.VERSION.SDK_INT < 14) {
-                mouseButton = 1;    // For Android==12 all mouse buttons are the left button
+                mouseButton = 1; // all mouse buttons are the left button
             } else {
                 try {
                     mouseButton = (Integer) event.getClass().getMethod("getButtonState").invoke(event);
@@ -1331,6 +1408,7 @@ class DummyEdit extends View implements View.OnKeyListener {
     public InputConnection onCreateInputConnection(EditorInfo outAttrs) {
         ic = new SDLInputConnection(this, true);
 
+        outAttrs.inputType = InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD;
         outAttrs.imeOptions = EditorInfo.IME_FLAG_NO_EXTRACT_UI
                 | 33554432 /* API 11: EditorInfo.IME_FLAG_NO_FULLSCREEN */;
 
@@ -1455,7 +1533,13 @@ class SDLJoystickHandler_API12 extends SDLJoystickHandler {
             if (joystick == null) {
                 joystick = new SDLJoystick();
                 InputDevice joystickDevice = InputDevice.getDevice(deviceIds[i]);
-                if( (joystickDevice.getSources() & InputDevice.SOURCE_CLASS_JOYSTICK) != 0) {
+
+                if ( 
+                      (joystickDevice.getSources() & InputDevice.SOURCE_CLASS_JOYSTICK) != 0 
+                   ||
+                      (joystickDevice.getSources() & InputDevice.SOURCE_CLASS_BUTTON) != 0 
+                  )
+                {
                     joystick.device_id = deviceIds[i];
                     joystick.name = joystickDevice.getName();
                     joystick.axes = new ArrayList<InputDevice.MotionRange>();
@@ -1551,15 +1635,13 @@ class SDLGenericMotionListener_API12 implements View.OnGenericMotionListener {
     @Override
     public boolean onGenericMotion(View v, MotionEvent event) {
         float x, y;
-        int mouseButton;
         int action;
 
         switch ( event.getSource() ) {
             case InputDevice.SOURCE_JOYSTICK:
             case InputDevice.SOURCE_GAMEPAD:
             case InputDevice.SOURCE_DPAD:
-                SDLActivity.handleJoystickMotionEvent(event);
-                return true;
+                return SDLActivity.handleJoystickMotionEvent(event);
 
             case InputDevice.SOURCE_MOUSE:
                 action = event.getActionMasked();
@@ -1580,6 +1662,7 @@ class SDLGenericMotionListener_API12 implements View.OnGenericMotionListener {
                     default:
                         break;
                 }
+                break;
 
             default:
                 break;

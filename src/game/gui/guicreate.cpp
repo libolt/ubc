@@ -31,8 +31,8 @@
 #include "engine/renderengine.h"
 #include "state/teamstate.h"
 
-#ifdef __AmNDROID__
-#include "abndroid-config.h"
+#ifdef __ANDROID__
+#include "android-config.h"
 #else
 #include "config.h"
 #endif

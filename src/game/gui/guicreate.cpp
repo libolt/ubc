@@ -1,3 +1,4 @@
+
 /***************************************************************************
  *   Copyright (C) 1999 - 2016 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
@@ -519,4 +520,5 @@ bool GUISystem::createTeamSelectionMenuGUI()  // creates GUI for team selection 
 //    exit(0);
     return (true);
 }
+
 

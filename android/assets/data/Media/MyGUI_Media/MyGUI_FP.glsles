@@ -12,4 +12,4 @@ varying vec4 outColor;
 void main()
 {
 	gl_FragColor = outColor * texture2D(sampler, outUV0.xy);
-}
+}}}}}}nn}}}nnn

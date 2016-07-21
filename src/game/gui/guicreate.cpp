@@ -49,7 +49,7 @@ bool GUISystem::createMainMenuGUI()  // creates the main menu gui
     {
         logMsg("Height greater than 1000!");
 //        exit(0);
-        MyGUI::FontManager::getInstance().setDefaultFont("LinBiolinum_aSI.16");
+        MyGUI::FontManager::getInstance().setDefaultFont("LinBiolinum_aBL.16");
     }
     else
     {

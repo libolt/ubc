@@ -1,0 +1,698 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MyGUI type="Resource" version="1.1">
+    <Resource type="ResourceManualFont" name="LinBiolinum_K.16.manual">
+        <Property key="Source" value="LinBiolinum_K.16.png"/>
+        <Property key="DefaultHeight" value="16"/>
+        <Codes>
+            <Code index="9" advance="24"/>
+            <Code index="32" bearing="0 12" advance="3"/>
+            <Code index="33" coord="35 42 13 13" bearing="1 2"/>
+            <Code index="34" coord="49 42 13 13" bearing="1 2"/>
+            <Code index="35" coord="63 42 13 13" bearing="1 2"/>
+            <Code index="36" coord="77 42 13 13" bearing="1 2"/>
+            <Code index="37" coord="91 42 13 13" bearing="1 2"/>
+            <Code index="38" coord="105 42 13 13" bearing="1 2"/>
+            <Code index="39" coord="119 42 13 13" bearing="1 2"/>
+            <Code index="40" coord="133 42 13 13" bearing="1 2"/>
+            <Code index="41" coord="147 42 13 13" bearing="1 2"/>
+            <Code index="42" coord="161 42 13 13" bearing="1 2"/>
+            <Code index="43" coord="175 42 12 13" bearing="1 2" advance="13"/>
+            <Code index="44" coord="188 42 13 13" bearing="1 2"/>
+            <Code index="45" coord="202 42 13 13" bearing="1 2"/>
+            <Code index="46" coord="216 42 13 13" bearing="1 2"/>
+            <Code index="47" coord="230 42 13 13" bearing="1 2"/>
+            <Code index="48" coord="0 56 13 13" bearing="1 2"/>
+            <Code index="49" coord="14 56 13 13" bearing="1 2"/>
+            <Code index="50" coord="28 56 13 13" bearing="1 2"/>
+            <Code index="51" coord="42 56 13 13" bearing="1 2"/>
+            <Code index="52" coord="56 56 13 13" bearing="1 2"/>
+            <Code index="53" coord="70 56 13 13" bearing="1 2"/>
+            <Code index="54" coord="84 56 13 13" bearing="1 2"/>
+            <Code index="55" coord="98 56 13 13" bearing="1 2"/>
+            <Code index="56" coord="112 56 13 13" bearing="1 2"/>
+            <Code index="57" coord="126 56 13 13" bearing="1 2"/>
+            <Code index="58" coord="140 56 13 13" bearing="1 2"/>
+            <Code index="59" coord="154 56 13 13" bearing="1 2"/>
+            <Code index="60" coord="168 56 13 13" bearing="1 2"/>
+            <Code index="61" coord="182 56 13 13" bearing="1 2"/>
+            <Code index="62" coord="196 56 13 13" bearing="1 2"/>
+            <Code index="63" coord="210 56 13 13" bearing="1 2"/>
+            <Code index="64" coord="224 56 13 13" bearing="1 2"/>
+            <Code index="65" coord="238 56 13 13" bearing="1 2"/>
+            <Code index="66" coord="0 70 13 13" bearing="1 2"/>
+            <Code index="67" coord="14 70 13 13" bearing="1 2"/>
+            <Code index="68" coord="28 70 13 13" bearing="1 2"/>
+            <Code index="69" coord="42 70 13 13" bearing="1 2"/>
+            <Code index="70" coord="56 70 13 13" bearing="1 2"/>
+            <Code index="71" coord="70 70 13 13" bearing="1 2"/>
+            <Code index="72" coord="84 70 13 13" bearing="1 2"/>
+            <Code index="73" coord="98 70 13 13" bearing="1 2"/>
+            <Code index="74" coord="112 70 13 13" bearing="1 2" advance="14"/>
+            <Code index="75" coord="126 70 13 13" bearing="1 2"/>
+            <Code index="76" coord="140 70 13 13" bearing="1 2"/>
+            <Code index="77" coord="154 70 13 13" bearing="1 2"/>
+            <Code index="78" coord="168 70 13 13" bearing="1 2"/>
+            <Code index="79" coord="182 70 13 13" bearing="1 2"/>
+            <Code index="80" coord="196 70 13 13" bearing="1 2"/>
+            <Code index="81" coord="210 70 13 13" bearing="1 2"/>
+            <Code index="82" coord="224 70 13 13" bearing="1 2"/>
+            <Code index="83" coord="238 70 13 13" bearing="1 2"/>
+            <Code index="84" coord="0 84 13 13" bearing="1 2"/>
+            <Code index="85" coord="14 84 13 13" bearing="1 2"/>
+            <Code index="86" coord="28 84 13 13" bearing="1 2"/>
+            <Code index="87" coord="42 84 13 13" bearing="1 2"/>
+            <Code index="88" coord="56 84 13 13" bearing="1 2"/>
+            <Code index="89" coord="70 84 13 13" bearing="1 2"/>
+            <Code index="90" coord="84 84 13 13" bearing="1 2"/>
+            <Code index="91" coord="98 84 13 13" bearing="1 2"/>
+            <Code index="92" coord="112 84 13 13" bearing="1 2"/>
+            <Code index="93" coord="126 84 13 13" bearing="1 2"/>
+            <Code index="94" coord="140 84 13 13" bearing="1 2"/>
+            <Code index="95" coord="154 84 13 13" bearing="1 2"/>
+            <Code index="96" coord="168 84 13 13" bearing="1 2"/>
+            <Code index="97" coord="182 84 13 13" bearing="1 2"/>
+            <Code index="98" coord="196 84 13 13" bearing="1 2"/>
+            <Code index="99" coord="210 84 13 13" bearing="1 2"/>
+            <Code index="100" coord="224 84 13 13" bearing="1 2"/>
+            <Code index="101" coord="238 84 13 13" bearing="1 2"/>
+            <Code index="102" coord="0 98 13 13" bearing="1 2"/>
+            <Code index="103" coord="14 98 13 13" bearing="1 2"/>
+            <Code index="104" coord="28 98 13 13" bearing="1 2"/>
+            <Code index="105" coord="42 98 13 13" bearing="1 2"/>
+            <Code index="106" coord="56 98 13 13" bearing="1 2"/>
+            <Code index="107" coord="70 98 13 13" bearing="1 2"/>
+            <Code index="108" coord="84 98 13 13" bearing="1 2"/>
+            <Code index="109" coord="98 98 13 13" bearing="1 2"/>
+            <Code index="110" coord="112 98 13 13" bearing="1 2"/>
+            <Code index="111" coord="126 98 13 13" bearing="1 2"/>
+            <Code index="112" coord="140 98 13 13" bearing="1 2"/>
+            <Code index="113" coord="154 98 13 13" bearing="1 2"/>
+            <Code index="114" coord="168 98 13 13" bearing="1 2"/>
+            <Code index="115" coord="182 98 13 13" bearing="1 2"/>
+            <Code index="116" coord="196 98 13 13" bearing="1 2"/>
+            <Code index="117" coord="210 98 13 13" bearing="1 2"/>
+            <Code index="118" coord="224 98 13 13" bearing="1 2"/>
+            <Code index="119" coord="238 98 13 13" bearing="1 2"/>
+            <Code index="120" coord="0 112 13 13" bearing="1 2"/>
+            <Code index="121" coord="14 112 13 13" bearing="1 2"/>
+            <Code index="122" coord="28 112 13 13" bearing="1 2"/>
+            <Code index="123" coord="42 112 13 13" bearing="1 2"/>
+            <Code index="124" coord="56 112 13 13" bearing="1 2"/>
+            <Code index="125" coord="70 112 13 13" bearing="1 2"/>
+            <Code index="126" coord="84 112 13 13" bearing="1 2"/>
+            <Code index="161" coord="98 112 13 13" bearing="1 2"/>
+            <Code index="162" coord="112 112 13 13" bearing="1 2"/>
+            <Code index="163" coord="126 112 13 13" bearing="1 2"/>
+            <Code index="164" coord="140 112 13 13" bearing="1 2"/>
+            <Code index="165" coord="154 112 13 13" bearing="1 2"/>
+            <Code index="166" coord="168 112 13 13" bearing="1 2"/>
+            <Code index="167" coord="182 112 13 13" bearing="1 2"/>
+            <Code index="168" coord="68 0 4 2" bearing="1 5"/>
+            <Code index="171" coord="196 112 13 13" bearing="1 2"/>
+            <Code index="173" coord="210 112 13 13" bearing="1 2"/>
+            <Code index="176" coord="224 112 13 13" bearing="1 2"/>
+            <Code index="177" coord="238 112 12 13" bearing="1 2" advance="13"/>
+            <Code index="180" coord="0 126 13 13" bearing="1 2"/>
+            <Code index="181" coord="14 126 13 13" bearing="1 2"/>
+            <Code index="183" coord="28 126 13 13" bearing="1 2"/>
+            <Code index="184" coord="42 126 13 13" bearing="1 2"/>
+            <Code index="187" coord="56 126 13 13" bearing="1 2"/>
+            <Code index="192" coord="70 126 13 13" bearing="1 2"/>
+            <Code index="193" coord="84 126 13 13" bearing="1 2"/>
+            <Code index="194" coord="98 126 13 13" bearing="1 2"/>
+            <Code index="195" coord="112 126 13 13" bearing="1 2"/>
+            <Code index="196" coord="126 126 13 13" bearing="1 2"/>
+            <Code index="197" coord="140 126 13 13" bearing="1 2"/>
+            <Code index="199" coord="154 126 13 13" bearing="1 2"/>
+            <Code index="200" coord="168 126 13 13" bearing="1 2"/>
+            <Code index="201" coord="182 126 13 13" bearing="1 2"/>
+            <Code index="202" coord="196 126 13 13" bearing="1 2"/>
+            <Code index="203" coord="210 126 13 13" bearing="1 2"/>
+            <Code index="204" coord="224 126 13 13" bearing="1 2"/>
+            <Code index="205" coord="238 126 13 13" bearing="1 2"/>
+            <Code index="206" coord="0 140 13 13" bearing="1 2"/>
+            <Code index="207" coord="14 140 13 13" bearing="1 2"/>
+            <Code index="208" coord="28 140 13 13" bearing="1 2"/>
+            <Code index="209" coord="42 140 13 13" bearing="1 2"/>
+            <Code index="210" coord="56 140 13 13" bearing="1 2"/>
+            <Code index="211" coord="70 140 13 13" bearing="1 2"/>
+            <Code index="212" coord="84 140 13 13" bearing="1 2"/>
+            <Code index="213" coord="98 140 13 13" bearing="1 2"/>
+            <Code index="214" coord="112 140 13 13" bearing="1 2"/>
+            <Code index="215" coord="126 140 13 13" bearing="1 2"/>
+            <Code index="216" coord="140 140 13 13" bearing="1 2"/>
+            <Code index="217" coord="154 140 13 13" bearing="1 2"/>
+            <Code index="218" coord="168 140 13 13" bearing="1 2"/>
+            <Code index="219" coord="182 140 13 13" bearing="1 2"/>
+            <Code index="220" coord="196 140 13 13" bearing="1 2"/>
+            <Code index="221" coord="210 140 13 13" bearing="1 2"/>
+            <Code index="222" coord="224 140 13 13" bearing="1 2"/>
+            <Code index="223" coord="238 140 13 13" bearing="1 2"/>
+            <Code index="224" coord="0 154 13 13" bearing="1 2"/>
+            <Code index="225" coord="14 154 13 13" bearing="1 2"/>
+            <Code index="226" coord="28 154 13 13" bearing="1 2"/>
+            <Code index="227" coord="42 154 13 13" bearing="1 2"/>
+            <Code index="228" coord="56 154 13 13" bearing="1 2"/>
+            <Code index="229" coord="70 154 13 13" bearing="1 2"/>
+            <Code index="230" coord="84 154 13 13" bearing="1 2"/>
+            <Code index="231" coord="98 154 13 13" bearing="1 2"/>
+            <Code index="232" coord="112 154 13 13" bearing="1 2"/>
+            <Code index="233" coord="126 154 13 13" bearing="1 2"/>
+            <Code index="234" coord="140 154 13 13" bearing="1 2"/>
+            <Code index="235" coord="154 154 13 13" bearing="1 2"/>
+            <Code index="236" coord="168 154 13 13" bearing="1 2" advance="14"/>
+            <Code index="237" coord="182 154 13 13" bearing="1 2" advance="14"/>
+            <Code index="238" coord="196 154 13 13" bearing="1 2" advance="14"/>
+            <Code index="239" coord="210 154 13 13" bearing="1 2" advance="14"/>
+            <Code index="240" coord="224 154 13 13" bearing="1 2"/>
+            <Code index="241" coord="238 154 13 13" bearing="1 2"/>
+            <Code index="242" coord="0 168 13 13" bearing="1 2"/>
+            <Code index="243" coord="14 168 13 13" bearing="1 2"/>
+            <Code index="244" coord="28 168 13 13" bearing="1 2"/>
+            <Code index="245" coord="42 168 13 13" bearing="1 2"/>
+            <Code index="246" coord="56 168 13 13" bearing="1 2"/>
+            <Code index="247" coord="70 168 13 13" bearing="-2 2" advance="9"/>
+            <Code index="248" coord="84 168 13 13" bearing="1 2"/>
+            <Code index="249" coord="98 168 13 13" bearing="1 2"/>
+            <Code index="250" coord="112 168 13 13" bearing="1 2"/>
+            <Code index="251" coord="126 168 13 13" bearing="1 2"/>
+            <Code index="252" coord="140 168 13 13" bearing="1 2"/>
+            <Code index="253" coord="154 168 13 13" bearing="1 2"/>
+            <Code index="254" coord="168 168 13 13" bearing="-2 2" advance="9"/>
+            <Code index="255" coord="182 168 13 13" bearing="1 2"/>
+            <Code index="256" coord="196 168 13 13" bearing="1 2"/>
+            <Code index="257" coord="210 168 13 13" bearing="1 2"/>
+            <Code index="258" coord="224 168 13 13" bearing="1 2"/>
+            <Code index="259" coord="238 168 13 13" bearing="1 2"/>
+            <Code index="260" coord="0 182 13 13" bearing="1 2"/>
+            <Code index="261" coord="14 182 13 13" bearing="1 2"/>
+            <Code index="262" coord="28 182 13 13" bearing="1 2"/>
+            <Code index="263" coord="42 182 13 13" bearing="1 2"/>
+            <Code index="264" coord="56 182 13 13" bearing="1 2"/>
+            <Code index="265" coord="70 182 13 13" bearing="1 2"/>
+            <Code index="266" coord="84 182 13 13" bearing="1 2"/>
+            <Code index="267" coord="98 182 13 13" bearing="1 2"/>
+            <Code index="268" coord="112 182 13 13" bearing="1 2"/>
+            <Code index="269" coord="126 182 13 13" bearing="1 2"/>
+            <Code index="270" coord="140 182 13 13" bearing="1 2"/>
+            <Code index="271" coord="154 182 13 13" bearing="1 2"/>
+            <Code index="272" coord="168 182 13 13" bearing="1 2"/>
+            <Code index="273" coord="182 182 13 13" bearing="1 2"/>
+            <Code index="274" coord="196 182 13 13" bearing="1 2"/>
+            <Code index="275" coord="210 182 13 13" bearing="1 2"/>
+            <Code index="276" coord="224 182 13 13" bearing="1 2"/>
+            <Code index="277" coord="238 182 13 13" bearing="1 2"/>
+            <Code index="278" coord="0 196 13 13" bearing="1 2"/>
+            <Code index="279" coord="14 196 13 13" bearing="1 2"/>
+            <Code index="280" coord="28 196 13 13" bearing="1 2"/>
+            <Code index="281" coord="42 196 13 13" bearing="1 2"/>
+            <Code index="282" coord="56 196 13 13" bearing="1 2"/>
+            <Code index="283" coord="70 196 13 13" bearing="1 2"/>
+            <Code index="284" coord="84 196 13 13" bearing="1 2"/>
+            <Code index="285" coord="98 196 13 13" bearing="1 2"/>
+            <Code index="286" coord="112 196 13 13" bearing="1 2"/>
+            <Code index="287" coord="126 196 13 13" bearing="1 2"/>
+            <Code index="288" coord="140 196 13 13" bearing="1 2"/>
+            <Code index="289" coord="154 196 13 13" bearing="1 2"/>
+            <Code index="290" coord="168 196 13 13" bearing="1 2"/>
+            <Code index="291" coord="182 196 13 13" bearing="1 2"/>
+            <Code index="292" coord="196 196 13 13" bearing="1 2"/>
+            <Code index="293" coord="210 196 13 13" bearing="1 2"/>
+            <Code index="294" coord="224 196 13 13" bearing="1 2"/>
+            <Code index="295" coord="238 196 13 13" bearing="1 2"/>
+            <Code index="296" coord="0 210 13 13" bearing="1 2"/>
+            <Code index="297" coord="14 210 13 13" bearing="1 2" advance="14"/>
+            <Code index="298" coord="28 210 13 13" bearing="1 2"/>
+            <Code index="299" coord="42 210 13 13" bearing="1 2" advance="14"/>
+            <Code index="300" coord="56 210 13 13" bearing="1 2"/>
+            <Code index="301" coord="70 210 13 13" bearing="1 2" advance="14"/>
+            <Code index="302" coord="84 210 13 13" bearing="1 2"/>
+            <Code index="303" coord="98 210 13 13" bearing="1 2"/>
+            <Code index="304" coord="112 210 13 13" bearing="1 2"/>
+            <Code index="305" coord="126 210 13 13" bearing="1 2" advance="14"/>
+            <Code index="306" coord="140 210 13 13" bearing="1 2"/>
+            <Code index="307" coord="154 210 13 13" bearing="1 2"/>
+            <Code index="308" coord="168 210 13 13" bearing="1 2" advance="14"/>
+            <Code index="309" coord="182 210 13 13" bearing="1 2"/>
+            <Code index="310" coord="196 210 13 13" bearing="1 2"/>
+            <Code index="311" coord="210 210 13 13" bearing="1 2"/>
+            <Code index="312" coord="224 210 13 13" bearing="1 2"/>
+            <Code index="313" coord="238 210 13 13" bearing="1 2"/>
+            <Code index="314" coord="0 224 13 13" bearing="1 2"/>
+            <Code index="315" coord="14 224 13 13" bearing="1 2"/>
+            <Code index="316" coord="28 224 13 13" bearing="1 2"/>
+            <Code index="317" coord="42 224 13 13" bearing="1 2"/>
+            <Code index="318" coord="56 224 13 13" bearing="1 2"/>
+            <Code index="319" coord="70 224 13 13" bearing="1 2"/>
+            <Code index="320" coord="84 224 13 13" bearing="1 2"/>
+            <Code index="321" coord="98 224 13 13" bearing="1 2"/>
+            <Code index="322" coord="112 224 13 13" bearing="1 2"/>
+            <Code index="323" coord="126 224 13 13" bearing="1 2"/>
+            <Code index="324" coord="140 224 13 13" bearing="1 2"/>
+            <Code index="325" coord="154 224 13 13" bearing="1 2"/>
+            <Code index="326" coord="168 224 13 13" bearing="1 2"/>
+            <Code index="327" coord="182 224 13 13" bearing="1 2"/>
+            <Code index="328" coord="196 224 13 13" bearing="1 2"/>
+            <Code index="329" coord="210 224 13 13" bearing="1 2"/>
+            <Code index="332" coord="224 224 13 13" bearing="1 2"/>
+            <Code index="333" coord="238 224 13 13" bearing="1 2"/>
+            <Code index="334" coord="0 238 13 13" bearing="1 2"/>
+            <Code index="335" coord="14 238 13 13" bearing="1 2"/>
+            <Code index="336" coord="28 238 13 13" bearing="1 2"/>
+            <Code index="337" coord="42 238 13 13" bearing="1 2"/>
+            <Code index="340" coord="56 238 13 13" bearing="1 2"/>
+            <Code index="341" coord="70 238 13 13" bearing="1 2"/>
+            <Code index="342" coord="84 238 13 13" bearing="1 2"/>
+            <Code index="343" coord="98 238 13 13" bearing="1 2"/>
+            <Code index="344" coord="112 238 13 13" bearing="1 2"/>
+            <Code index="345" coord="126 238 13 13" bearing="1 2"/>
+            <Code index="346" coord="140 238 13 13" bearing="1 2"/>
+            <Code index="347" coord="154 238 13 13" bearing="1 2"/>
+            <Code index="348" coord="168 238 13 13" bearing="1 2"/>
+            <Code index="349" coord="182 238 13 13" bearing="1 2"/>
+            <Code index="350" coord="196 238 13 13" bearing="1 2"/>
+            <Code index="351" coord="210 238 13 13" bearing="1 2"/>
+            <Code index="352" coord="224 238 13 13" bearing="1 2"/>
+            <Code index="353" coord="238 238 13 13" bearing="1 2"/>
+            <Code index="354" coord="0 252 13 13" bearing="1 2"/>
+            <Code index="355" coord="14 252 13 13" bearing="1 2"/>
+            <Code index="356" coord="28 252 13 13" bearing="1 2"/>
+            <Code index="357" coord="42 252 13 13" bearing="1 2"/>
+            <Code index="358" coord="56 252 13 13" bearing="1 2"/>
+            <Code index="359" coord="70 252 13 13" bearing="1 2"/>
+            <Code index="360" coord="84 252 13 13" bearing="1 2"/>
+            <Code index="361" coord="98 252 13 13" bearing="1 2"/>
+            <Code index="362" coord="112 252 13 13" bearing="1 2"/>
+            <Code index="363" coord="126 252 13 13" bearing="1 2"/>
+            <Code index="364" coord="140 252 13 13" bearing="1 2"/>
+            <Code index="365" coord="154 252 13 13" bearing="1 2"/>
+            <Code index="366" coord="168 252 13 13" bearing="1 2"/>
+            <Code index="367" coord="182 252 13 13" bearing="1 2"/>
+            <Code index="368" coord="196 252 13 13" bearing="1 2"/>
+            <Code index="369" coord="210 252 13 13" bearing="1 2"/>
+            <Code index="370" coord="224 252 13 13" bearing="1 2"/>
+            <Code index="371" coord="238 252 13 13" bearing="1 2"/>
+            <Code index="372" coord="0 266 13 13" bearing="1 2"/>
+            <Code index="373" coord="14 266 13 13" bearing="1 2"/>
+            <Code index="374" coord="28 266 13 13" bearing="1 2"/>
+            <Code index="375" coord="42 266 13 13" bearing="1 2"/>
+            <Code index="376" coord="56 266 13 13" bearing="1 2"/>
+            <Code index="377" coord="70 266 13 13" bearing="1 2"/>
+            <Code index="378" coord="84 266 13 13" bearing="1 2"/>
+            <Code index="379" coord="98 266 13 13" bearing="1 2"/>
+            <Code index="380" coord="112 266 13 13" bearing="1 2"/>
+            <Code index="381" coord="126 266 13 13" bearing="1 2"/>
+            <Code index="382" coord="140 266 13 13" bearing="1 2"/>
+            <Code index="688" coord="98 7 5 4" bearing="0 3"/>
+            <Code index="689" coord="140 7 5 5" bearing="0 2"/>
+            <Code index="690" coord="146 7 2 5" bearing="0 3" advance="3"/>
+            <Code index="691" coord="171 3 3 3" bearing="0 4"/>
+            <Code index="692" coord="175 3 3 3" bearing="0 4"/>
+            <Code index="693" coord="149 7 3 5" bearing="0 3"/>
+            <Code index="694" coord="179 3 3 3" bearing="0 4"/>
+            <Code index="695" coord="104 7 6 4" bearing="0 4"/>
+            <Code index="696" coord="153 7 4 5" bearing="0 3" advance="5"/>
+            <Code index="697" coord="73 0 2 2" bearing="0 2" advance="3"/>
+            <Code index="698" coord="76 0 3 2" bearing="0 2" advance="5"/>
+            <Code index="699" coord="80 0 2 2" bearing="0 7"/>
+            <Code index="700" coord="83 0 2 2" bearing="0 3"/>
+            <Code index="701" coord="86 0 2 2" bearing="0 3"/>
+            <Code index="702" coord="183 3 2 3" bearing="1 3" advance="3"/>
+            <Code index="703" coord="186 3 2 3" bearing="1 3" advance="3"/>
+            <Code index="704" coord="189 3 2 3" bearing="1 3" advance="3"/>
+            <Code index="705" coord="192 3 2 3" bearing="1 3" advance="3"/>
+            <Code index="706" coord="111 7 3 4" bearing="2 3" advance="5"/>
+            <Code index="707" coord="115 7 3 4" bearing="1 7" advance="7"/>
+            <Code index="708" coord="195 3 4 3" bearing="2 6" advance="5"/>
+            <Code index="709" coord="200 3 4 3" bearing="-1 5" advance="8"/>
+            <Code index="710" coord="89 0 4 2" bearing="1 4"/>
+            <Code index="711" coord="94 0 3 2" bearing="1 4" advance="4"/>
+            <Code index="712" coord="98 0 1 2" bearing="0 3" advance="3"/>
+            <Code index="713" coord="0 0 4 1" bearing="1 5" advance="5"/>
+            <Code index="714" coord="100 0 2 2" bearing="1 4" advance="3"/>
+            <Code index="715" coord="103 0 3 2" bearing="1 4"/>
+            <Code index="716" coord="107 0 1 2" bearing="0 13" advance="3"/>
+            <Code index="717" coord="5 0 4 1" bearing="-1 12" advance="6"/>
+            <Code index="718" coord="109 0 3 2" bearing="-1 13" advance="4"/>
+            <Code index="719" coord="113 0 3 2" bearing="-1 13" advance="5"/>
+            <Code index="720" coord="119 7 3 4" bearing="0 7"/>
+            <Code index="721" coord="117 0 3 2" bearing="0 7"/>
+            <Code index="722" coord="121 0 2 2" bearing="0 13" advance="3"/>
+            <Code index="723" coord="124 0 2 2" bearing="1 13"/>
+            <Code index="724" coord="127 0 3 2" bearing="-1 12" advance="4"/>
+            <Code index="725" coord="131 0 3 2" bearing="0 13"/>
+            <Code index="726" coord="135 0 3 2" bearing="0 13" advance="4"/>
+            <Code index="727" coord="10 0 3 1" bearing="0 13" advance="4"/>
+            <Code index="728" coord="139 0 3 2" bearing="1 4"/>
+            <Code index="729" coord="205 3 3 3" bearing="1 3"/>
+            <Code index="730" coord="143 0 2 2" bearing="1 3" advance="3"/>
+            <Code index="731" coord="209 3 2 3" bearing="0 12" advance="4"/>
+            <Code index="732" coord="146 0 4 2" bearing="0 4"/>
+            <Code index="733" coord="151 0 3 2" bearing="0 2" advance="5"/>
+            <Code index="734" coord="212 3 4 3" bearing="0 5"/>
+            <Code index="735" coord="217 3 3 3" bearing="1 2" advance="4"/>
+            <Code index="736" coord="123 7 4 4" bearing="0 3"/>
+            <Code index="737" coord="128 7 3 4" bearing="0 3"/>
+            <Code index="738" coord="132 7 3 4" bearing="0 3"/>
+            <Code index="739" coord="221 3 4 3" bearing="0 6"/>
+            <Code index="740" coord="158 7 3 5" bearing="0 2"/>
+            <Code index="748" coord="226 3 4 3" bearing="0 10"/>
+            <Code index="749" coord="155 0 6 2" bearing="0 2"/>
+            <Code index="750" coord="162 0 4 2" bearing="0 7" advance="5"/>
+            <Code index="768" coord="167 0 3 2" bearing="-2 4" advance="2"/>
+            <Code index="769" coord="171 0 3 2" bearing="-2 4" advance="2"/>
+            <Code index="770" coord="175 0 4 2" bearing="-4 3"/>
+            <Code index="771" coord="180 0 4 2" bearing="-4 3"/>
+            <Code index="772" coord="14 0 4 1" bearing="-5 4" advance="5"/>
+            <Code index="773" coord="19 0 5 1" bearing="-5 4"/>
+            <Code index="774" coord="185 0 4 2" bearing="-4 3"/>
+            <Code index="775" coord="231 3 2 3" bearing="-2 3"/>
+            <Code index="776" coord="190 0 4 2" bearing="-3 5" advance="3"/>
+            <Code index="777" coord="195 0 2 2" bearing="-3 2" advance="3"/>
+            <Code index="778" coord="198 0 2 2" bearing="-2 4"/>
+            <Code index="779" coord="201 0 4 2" bearing="-4 2"/>
+            <Code index="780" coord="206 0 3 2" bearing="-4 3" advance="4"/>
+            <Code index="781" coord="210 0 1 2" bearing="-2 3" advance="2"/>
+            <Code index="782" coord="212 0 2 2" bearing="-4 3" advance="4"/>
+            <Code index="783" coord="215 0 4 2" bearing="-4 2"/>
+            <Code index="784" coord="234 3 4 3" bearing="-5 2" advance="5"/>
+            <Code index="785" coord="220 0 4 2" bearing="-4 7"/>
+            <Code index="786" coord="225 0 2 2" bearing="-2 4"/>
+            <Code index="787" coord="228 0 2 2" bearing="-2 7"/>
+            <Code index="788" coord="231 0 2 2" bearing="-2 3"/>
+            <Code index="789" coord="234 0 2 2" bearing="-2 7"/>
+            <Code index="790" coord="237 0 3 2" bearing="-5 13" advance="5"/>
+            <Code index="791" coord="241 0 2 2" bearing="-4 13" advance="4"/>
+            <Code index="792" coord="244 0 2 2" bearing="-4 13" advance="4"/>
+            <Code index="793" coord="247 0 2 2" bearing="-2 12"/>
+            <Code index="794" coord="239 3 3 3" bearing="-5 3" advance="5"/>
+            <Code index="795" coord="250 0 2 2" bearing="-3 6" advance="3"/>
+            <Code index="796" coord="253 0 2 2" bearing="-4 13" advance="4"/>
+            <Code index="797" coord="0 3 3 2" bearing="-4 12" advance="4"/>
+            <Code index="798" coord="4 3 3 2" bearing="-3 13"/>
+            <Code index="799" coord="8 3 3 2" bearing="-5 13" advance="5"/>
+            <Code index="800" coord="25 0 3 1" bearing="-5 13" advance="5"/>
+            <Code index="801" coord="243 3 3 3" bearing="-4 12" advance="4"/>
+            <Code index="802" coord="247 3 3 3" bearing="-1 12" advance="1"/>
+            <Code index="803" coord="12 3 2 2" bearing="-4 13" advance="4"/>
+            <Code index="804" coord="15 3 4 2" bearing="-5 13" advance="5"/>
+            <Code index="805" coord="20 3 2 2" bearing="-4 13" advance="4"/>
+            <Code index="806" coord="23 3 2 2" bearing="-5 13" advance="5"/>
+            <Code index="807" coord="26 3 3 2" bearing="-2 12" advance="2"/>
+            <Code index="808" coord="251 3 2 3" bearing="-4 12" advance="4"/>
+            <Code index="809" coord="30 3 1 2" bearing="-4 13" advance="4"/>
+            <Code index="810" coord="29 0 3 1" bearing="-5 14" advance="5"/>
+            <Code index="811" coord="32 3 4 2" bearing="-5 13" advance="5"/>
+            <Code index="812" coord="37 3 3 2" bearing="-4 13" advance="4"/>
+            <Code index="813" coord="41 3 3 2" bearing="-4 13" advance="4"/>
+            <Code index="814" coord="45 3 4 2" bearing="-5 11" advance="5"/>
+            <Code index="815" coord="50 3 4 2" bearing="-4 14"/>
+            <Code index="816" coord="55 3 4 2" bearing="-4 9"/>
+            <Code index="817" coord="33 0 4 1" bearing="-5 12" advance="5"/>
+            <Code index="824" coord="44 13 5 6" bearing="-6 6" advance="6"/>
+            <Code index="834" coord="60 3 4 2" bearing="-5 3" advance="5"/>
+            <Code index="835" coord="65 3 2 2" bearing="-3 5" advance="3"/>
+            <Code index="849" coord="0 7 2 3" bearing="1 3"/>
+            <Code index="855" coord="3 7 2 3" bearing="0 3" advance="3"/>
+            <Code index="856" coord="68 3 3 2" bearing="-2 4" advance="2"/>
+            <Code index="857" coord="72 3 3 2" bearing="-2 4" advance="2"/>
+            <Code index="858" coord="76 3 4 2" bearing="-2 5" advance="2"/>
+            <Code index="859" coord="81 3 3 2" bearing="-2 4" advance="2"/>
+            <Code index="860" coord="85 3 4 2" bearing="-3 4" advance="3"/>
+            <Code index="861" coord="90 3 4 2" bearing="-5 2" advance="5"/>
+            <Code index="862" coord="95 3 4 2" bearing="-5 2" advance="5"/>
+            <Code index="863" coord="100 3 4 2" bearing="-4 6"/>
+            <Code index="864" coord="105 3 3 2" bearing="-4 1" advance="4"/>
+            <Code index="865" coord="109 3 4 2" bearing="-5 4" advance="5"/>
+            <Code index="866" coord="114 3 4 2" bearing="-4 3"/>
+            <Code index="867" coord="119 3 3 2" bearing="-4 2" advance="4"/>
+            <Code index="884" coord="6 7 3 3" bearing="0 2"/>
+            <Code index="885" coord="10 7 3 3" bearing="0 9"/>
+            <Code index="1456" coord="123 3 1 2" bearing="2 13" advance="-2"/>
+            <Code index="1457" coord="125 3 4 2" bearing="1 13" advance="-1"/>
+            <Code index="1458" coord="14 7 3 3" bearing="1 12" advance="-1"/>
+            <Code index="1459" coord="18 7 3 3" bearing="1 12" advance="-1"/>
+            <Code index="1460" coord="38 0 1 1" bearing="2 13" advance="-2"/>
+            <Code index="1461" coord="40 0 2 1" bearing="1 13" advance="-1"/>
+            <Code index="1462" coord="130 3 2 2" bearing="1 13" advance="-1"/>
+            <Code index="1463" coord="43 0 2 1" bearing="1 13" advance="-1"/>
+            <Code index="1464" coord="133 3 2 2" bearing="1 13" advance="-1"/>
+            <Code index="1465" coord="46 0 1 1" bearing="1 6" advance="-1"/>
+            <Code index="1466" coord="48 0 1 1" bearing="1 6" advance="-1"/>
+            <Code index="1467" coord="136 3 4 2" bearing="1 13" advance="-1"/>
+            <Code index="1468" coord="50 0 1 1" bearing="2 9" advance="-2"/>
+            <Code index="1469" coord="141 3 1 2" bearing="2 13" advance="-2"/>
+            <Code index="1470" coord="52 0 3 1" bearing="1 5" advance="4"/>
+            <Code index="1471" coord="56 0 2 1" bearing="1 3" advance="-1"/>
+            <Code index="1472" coord="50 13 1 6" bearing="1 5" advance="3"/>
+            <Code index="1473" coord="59 0 1 1" bearing="4 6" advance="-4"/>
+            <Code index="1474" coord="61 0 1 1" bearing="0 6" advance="0"/>
+            <Code index="1475" coord="154 266 12 13" bearing="1 2" advance="13"/>
+            <Code index="1478" coord="167 266 12 13" bearing="1 2" advance="13"/>
+            <Code index="1488" coord="180 266 12 13" bearing="1 2" advance="13"/>
+            <Code index="1489" coord="193 266 12 13" bearing="1 2" advance="13"/>
+            <Code index="1490" coord="206 266 12 13" bearing="1 2" advance="13"/>
+            <Code index="1491" coord="219 266 12 13" bearing="1 2" advance="13"/>
+            <Code index="1492" coord="232 266 12 13" bearing="1 2" advance="13"/>
+            <Code index="1493" coord="0 280 12 13" bearing="1 2" advance="13"/>
+            <Code index="1494" coord="13 280 12 13" bearing="1 2" advance="13"/>
+            <Code index="1495" coord="26 280 12 13" bearing="1 2" advance="13"/>
+            <Code index="1496" coord="39 280 12 13" bearing="1 2" advance="13"/>
+            <Code index="1497" coord="52 280 12 13" bearing="1 2" advance="13"/>
+            <Code index="1498" coord="65 280 12 13" bearing="1 2" advance="13"/>
+            <Code index="1499" coord="78 280 12 13" bearing="1 2" advance="13"/>
+            <Code index="1500" coord="91 280 12 13" bearing="1 2" advance="13"/>
+            <Code index="1501" coord="104 280 12 13" bearing="1 2" advance="13"/>
+            <Code index="1502" coord="117 280 12 13" bearing="1 2" advance="13"/>
+            <Code index="1503" coord="130 280 12 13" bearing="1 2" advance="13"/>
+            <Code index="1504" coord="143 280 12 13" bearing="1 2" advance="13"/>
+            <Code index="1505" coord="156 280 12 13" bearing="1 2" advance="13"/>
+            <Code index="1506" coord="169 280 12 13" bearing="1 2" advance="13"/>
+            <Code index="1507" coord="182 280 12 13" bearing="1 2" advance="13"/>
+            <Code index="1508" coord="195 280 13 13" bearing="1 2" advance="14"/>
+            <Code index="1509" coord="209 280 12 13" bearing="1 2" advance="13"/>
+            <Code index="1510" coord="222 280 12 13" bearing="1 2" advance="13"/>
+            <Code index="1511" coord="235 280 12 13" bearing="1 2" advance="13"/>
+            <Code index="1512" coord="0 294 12 13" bearing="1 2" advance="13"/>
+            <Code index="1513" coord="13 294 12 13" bearing="1 2" advance="13"/>
+            <Code index="1514" coord="26 294 12 13" bearing="1 2" advance="13"/>
+            <Code index="1520" coord="39 294 12 13" bearing="1 2" advance="13"/>
+            <Code index="1521" coord="52 294 12 13" bearing="1 2" advance="13"/>
+            <Code index="1522" coord="65 294 12 13" bearing="1 2" advance="13"/>
+            <Code index="8592" coord="78 294 16 13" bearing="1 2" advance="17"/>
+            <Code index="8593" coord="95 294 16 13" bearing="1 2" advance="17"/>
+            <Code index="8594" coord="112 294 16 13" bearing="1 2" advance="17"/>
+            <Code index="8595" coord="129 294 16 13" bearing="1 2" advance="17"/>
+            <Code index="8596" coord="52 13 14 6" bearing="0 5" advance="15"/>
+            <Code index="8597" coord="225 378 7 15" bearing="0 1" advance="6"/>
+            <Code index="8598" coord="167 30 11 11" bearing="0 3"/>
+            <Code index="8599" coord="179 30 11 11" bearing="0 3" advance="12"/>
+            <Code index="8600" coord="191 30 11 11" bearing="0 3"/>
+            <Code index="8601" coord="203 30 11 11" bearing="0 3" advance="12"/>
+            <Code index="8602" coord="215 30 14 11" bearing="1 3"/>
+            <Code index="8603" coord="230 30 14 11" bearing="1 3"/>
+            <Code index="8613" coord="146 294 16 13" bearing="1 2" advance="17"/>
+            <Code index="8615" coord="163 294 16 13" bearing="1 2" advance="17"/>
+            <Code index="8636" coord="22 7 10 3" bearing="-1 6" advance="15"/>
+            <Code index="8637" coord="33 7 10 3" bearing="-1 11" advance="15"/>
+            <Code index="8640" coord="44 7 10 3" bearing="2 4" advance="12"/>
+            <Code index="8641" coord="55 7 10 3" bearing="2 8" advance="12"/>
+            <Code index="8656" coord="162 7 10 5" bearing="2 6" advance="12"/>
+            <Code index="8657" coord="104 30 5 10" bearing="1 6"/>
+            <Code index="8658" coord="173 7 11 5" bearing="-2 8" advance="16"/>
+            <Code index="8659" coord="245 30 5 11" bearing="-1 2" advance="7"/>
+            <Code index="8660" coord="185 7 12 5" bearing="2 6" advance="15"/>
+            <Code index="8661" coord="110 30 5 10" bearing="1 4"/>
+            <Code index="8662" coord="36 30 9 9" bearing="2 6"/>
+            <Code index="8663" coord="46 30 9 9" bearing="-1 7" advance="13"/>
+            <Code index="8664" coord="56 30 9 9" bearing="-2 4" advance="13"/>
+            <Code index="8665" coord="136 21 8 8" bearing="1 3" advance="11"/>
+            <Code index="8984" coord="180 294 13 13" bearing="1 2" advance="14"/>
+            <Code index="8997" coord="194 294 16 13" bearing="1 2" advance="17"/>
+            <Code index="8998" coord="211 294 17 13" bearing="1 2" advance="18"/>
+            <Code index="8999" coord="229 294 13 13" bearing="1 2" advance="14"/>
+            <Code index="9003" coord="0 308 17 13" bearing="1 2" advance="18"/>
+            <Code index="9085" coord="18 308 13 13" bearing="1 2" advance="14"/>
+            <Code index="9088" coord="32 308 13 13" bearing="1 2" advance="14"/>
+            <Code index="9251" coord="66 7 3 3" bearing="0 12"/>
+            <Code index="9632" coord="67 13 5 6" bearing="1 6" advance="7"/>
+            <Code index="9633" coord="198 7 5 5" bearing="1 7" advance="7"/>
+            <Code index="9650" coord="204 7 6 5" bearing="-1 6" advance="8"/>
+            <Code index="9651" coord="211 7 5 5" bearing="1 6" advance="6"/>
+            <Code index="9654" coord="73 13 5 6" bearing="1 6" advance="6"/>
+            <Code index="9655" coord="217 7 5 5" bearing="1 8" advance="6"/>
+            <Code index="9660" coord="223 7 5 5" bearing="1 8" advance="6"/>
+            <Code index="9661" coord="229 7 6 5" bearing="-1 8" advance="8"/>
+            <Code index="9664" coord="236 7 5 5" bearing="-1 8" advance="8"/>
+            <Code index="9665" coord="79 13 5 6" bearing="-1 6" advance="8"/>
+            <Code index="9670" coord="212 13 7 7" bearing="0 5" advance="9"/>
+            <Code index="9671" coord="220 13 7 7" bearing="0 5" advance="9"/>
+            <Code index="9673" coord="85 13 5 6" bearing="1 6" advance="7"/>
+            <Code index="9674" coord="145 21 6 8" bearing="1 5" advance="8"/>
+            <Code index="9675" coord="91 13 5 6" bearing="1 6" advance="7"/>
+            <Code index="9678" coord="97 13 6 6" bearing="1 6" advance="7"/>
+            <Code index="9679" coord="242 7 5 5" bearing="1 7" advance="7"/>
+            <Code index="9680" coord="104 13 6 6" bearing="1 6" advance="7"/>
+            <Code index="9681" coord="248 7 6 5" bearing="-1 8" advance="9"/>
+            <Code index="9682" coord="0 13 5 5" bearing="1 8" advance="7"/>
+            <Code index="9683" coord="111 13 6 6" bearing="-1 6" advance="9"/>
+            <Code index="9684" coord="118 13 5 6" bearing="1 6" advance="7"/>
+            <Code index="9685" coord="124 13 5 6" bearing="1 6" advance="7"/>
+            <Code index="9686" coord="6 13 3 5" bearing="1 7" advance="4"/>
+            <Code index="9687" coord="10 13 3 5" bearing="0 8" advance="5"/>
+            <Code index="9702" coord="136 7 3 4" bearing="1 7" advance="4"/>
+            <Code index="9733" coord="130 13 6 6" bearing="1 6" advance="7"/>
+            <Code index="9753" coord="0 42 12 11" bearing="1 3" advance="14"/>
+            <Code index="9755" coord="14 13 11 5" bearing="1 7" advance="12"/>
+            <Code index="9758" coord="26 13 9 5" bearing="1 7" advance="11"/>
+            <Code index="9767" coord="152 21 6 8" bearing="1 4" advance="7"/>
+            <Code index="9775" coord="137 13 7 6" bearing="1 5" advance="8"/>
+            <Code index="9785" coord="145 13 5 6" bearing="1 5" advance="7"/>
+            <Code index="9786" coord="151 13 5 6" bearing="1 5" advance="7"/>
+            <Code index="9787" coord="157 13 6 6" bearing="1 5" advance="7"/>
+            <Code index="9788" coord="228 13 7 7" bearing="1 5" advance="8"/>
+            <Code index="9789" coord="159 21 5 8" bearing="-1 6" advance="8"/>
+            <Code index="9790" coord="236 13 5 7" bearing="1 5" advance="6"/>
+            <Code index="9791" coord="116 30 5 10" bearing="1 3" advance="6"/>
+            <Code index="9792" coord="165 21 5 8" bearing="1 6" advance="6"/>
+            <Code index="9793" coord="171 21 5 8" bearing="-1 5" advance="8"/>
+            <Code index="9794" coord="177 21 6 8" bearing="1 3" advance="8"/>
+            <Code index="9795" coord="184 21 6 8" bearing="1 5" advance="8"/>
+            <Code index="9796" coord="66 30 5 9" bearing="1 5" advance="6"/>
+            <Code index="9797" coord="242 13 7 7" bearing="1 5"/>
+            <Code index="9798" coord="72 30 8 9" bearing="1 4" advance="10"/>
+            <Code index="9799" coord="250 13 5 7" bearing="1 5" advance="6"/>
+            <Code index="9800" coord="191 21 9 8" bearing="2 5" advance="10"/>
+            <Code index="9801" coord="0 21 7 7" bearing="2 5" advance="9"/>
+            <Code index="9802" coord="201 21 7 8" bearing="1 4" advance="9"/>
+            <Code index="9803" coord="164 13 8 6" bearing="2 5" advance="9"/>
+            <Code index="9804" coord="209 21 7 8" bearing="1 5" advance="9"/>
+            <Code index="9805" coord="81 30 8 9" bearing="1 5" advance="9"/>
+            <Code index="9806" coord="173 13 8 6" bearing="1 5" advance="9"/>
+            <Code index="9807" coord="90 30 7 9" bearing="1 5" advance="8"/>
+            <Code index="9808" coord="8 21 7 7" bearing="1 5" advance="8"/>
+            <Code index="9809" coord="217 21 8 8" bearing="1 5" advance="10"/>
+            <Code index="9810" coord="182 13 8 6" bearing="2 5" advance="9"/>
+            <Code index="9811" coord="16 21 7 7" bearing="1 5" advance="8"/>
+            <Code index="9824" coord="24 21 7 7" bearing="1 4" advance="9"/>
+            <Code index="9827" coord="32 21 8 7" bearing="1 4" advance="9"/>
+            <Code index="9829" coord="41 21 8 7" bearing="1 5" advance="9"/>
+            <Code index="9830" coord="226 21 7 8" bearing="1 4" advance="8"/>
+            <Code index="9833" coord="234 21 4 8" bearing="0 3" advance="5"/>
+            <Code index="9834" coord="239 21 5 8" bearing="1 3" advance="6"/>
+            <Code index="9835" coord="122 30 8 10" bearing="1 3" advance="9"/>
+            <Code index="9836" coord="131 30 8 10" bearing="1 3" advance="9"/>
+            <Code index="9877" coord="98 30 5 9" bearing="1 5"/>
+            <Code index="9880" coord="191 13 5 6" bearing="0 6"/>
+            <Code index="9890" coord="245 21 8 8" bearing="1 6" advance="10"/>
+            <Code index="9891" coord="140 30 8 10" bearing="1 3" advance="11"/>
+            <Code index="9892" coord="13 42 8 11" bearing="1 3" advance="10"/>
+            <Code index="9893" coord="149 30 6 10" bearing="1 4" advance="8"/>
+            <Code index="9901" coord="36 13 7 5" bearing="1 7" advance="9"/>
+            <Code index="10087" coord="22 42 12 11" bearing="-2 5" advance="17"/>
+            <Code index="10102" coord="50 21 7 7" bearing="1 4" advance="9"/>
+            <Code index="10103" coord="58 21 8 7" bearing="1 4" advance="9"/>
+            <Code index="10104" coord="67 21 8 7" bearing="1 4" advance="9"/>
+            <Code index="10105" coord="76 21 7 7" bearing="1 4" advance="9"/>
+            <Code index="10106" coord="84 21 8 7" bearing="1 4" advance="9"/>
+            <Code index="10107" coord="197 13 8 6" bearing="1 5" advance="9"/>
+            <Code index="10108" coord="93 21 7 7" bearing="2 4" advance="8"/>
+            <Code index="10109" coord="101 21 8 7" bearing="1 4" advance="9"/>
+            <Code index="10110" coord="110 21 8 7" bearing="1 4" advance="9"/>
+            <Code index="10111" coord="119 21 8 7" bearing="1 4" advance="9"/>
+            <Code index="57344" coord="46 308 18 13" bearing="1 2" advance="19"/>
+            <Code index="57604" coord="65 308 18 13" bearing="1 2" advance="19"/>
+            <Code index="57640" coord="0 30 11 8" bearing="3 4" advance="-1"/>
+            <Code index="57641" coord="12 30 11 8" bearing="3 4" advance="-1"/>
+            <Code index="57642" coord="24 30 11 8" bearing="3 4" advance="-1"/>
+            <Code index="57648" coord="233 378 12 15" bearing="1 1"/>
+            <Code index="57649" coord="0 394 12 15" bearing="1 1"/>
+            <Code index="57650" coord="13 394 12 15" bearing="1 1"/>
+            <Code index="57651" coord="26 394 12 15" bearing="1 1"/>
+            <Code index="57652" coord="39 394 12 15" bearing="1 1"/>
+            <Code index="57653" coord="52 394 12 15" bearing="1 1"/>
+            <Code index="57656" coord="65 394 11 15" bearing="2 1"/>
+            <Code index="57657" coord="77 394 11 15" bearing="1 1" advance="12"/>
+            <Code index="57658" coord="89 394 11 15" bearing="1 1" advance="12"/>
+            <Code index="57660" coord="101 394 11 15" bearing="1 1" advance="12"/>
+            <Code index="57661" coord="113 394 11 15" bearing="1 1" advance="12"/>
+            <Code index="57704" coord="84 308 18 13" bearing="1 2" advance="19"/>
+            <Code index="57710" coord="103 308 24 13" bearing="1 2" advance="25"/>
+            <Code index="57712" coord="128 308 24 13" bearing="1 2" advance="25"/>
+            <Code index="57713" coord="153 308 19 13" bearing="1 2" advance="20"/>
+            <Code index="57714" coord="173 308 30 13" bearing="1 2" advance="31"/>
+            <Code index="57715" coord="204 308 30 13" bearing="1 2" advance="31"/>
+            <Code index="57716" coord="235 308 18 13" bearing="1 2" advance="19"/>
+            <Code index="57717" coord="0 322 18 13" bearing="1 2" advance="19"/>
+            <Code index="57718" coord="19 322 18 13" bearing="1 2" advance="19"/>
+            <Code index="57719" coord="38 322 22 13" bearing="1 2" advance="23"/>
+            <Code index="57720" coord="61 322 16 13" bearing="1 2" advance="17"/>
+            <Code index="57721" coord="78 322 16 13" bearing="1 2" advance="17"/>
+            <Code index="57722" coord="95 322 16 13" bearing="1 2" advance="17"/>
+            <Code index="57723" coord="112 322 16 13" bearing="1 2" advance="17"/>
+            <Code index="57724" coord="129 322 16 13" bearing="1 2" advance="17"/>
+            <Code index="57725" coord="146 322 16 13" bearing="1 2" advance="17"/>
+            <Code index="57726" coord="163 322 16 13" bearing="1 2" advance="17"/>
+            <Code index="57727" coord="180 322 16 13" bearing="1 2" advance="17"/>
+            <Code index="57728" coord="197 322 16 13" bearing="1 2" advance="17"/>
+            <Code index="57729" coord="214 322 19 13" bearing="1 2" advance="20"/>
+            <Code index="57730" coord="234 322 19 13" bearing="1 2" advance="20"/>
+            <Code index="57731" coord="0 336 19 13" bearing="1 2" advance="20"/>
+            <Code index="57732" coord="20 336 19 13" bearing="1 2" advance="20"/>
+            <Code index="57733" coord="40 336 19 13" bearing="1 2" advance="20"/>
+            <Code index="57734" coord="60 336 19 13" bearing="1 2" advance="20"/>
+            <Code index="57735" coord="80 336 19 13" bearing="1 2" advance="20"/>
+            <Code index="57736" coord="100 336 16 13" bearing="1 2" advance="17"/>
+            <Code index="57737" coord="117 336 31 13" bearing="1 2" advance="32"/>
+            <Code index="57738" coord="149 336 21 13" bearing="1 2" advance="22"/>
+            <Code index="57739" coord="171 336 18 13" bearing="1 2" advance="19"/>
+            <Code index="57740" coord="190 336 49 13" bearing="1 2" advance="50"/>
+            <Code index="57742" coord="0 350 22 13" bearing="1 2" advance="23"/>
+            <Code index="57744" coord="23 350 18 13" bearing="1 2" advance="19"/>
+            <Code index="57745" coord="42 350 24 13" bearing="1 2" advance="25"/>
+            <Code index="57746" coord="67 350 24 13" bearing="1 2" advance="25"/>
+            <Code index="57747" coord="92 350 24 13" bearing="1 2" advance="25"/>
+            <Code index="57748" coord="117 350 39 13" bearing="1 2" advance="40"/>
+            <Code index="57749" coord="157 350 20 13" bearing="1 2" advance="21"/>
+            <Code index="57750" coord="178 350 26 13" bearing="1 2" advance="27"/>
+            <Code index="57752" coord="205 350 27 13" bearing="1 2" advance="28"/>
+            <Code index="57753" coord="0 364 27 13" bearing="1 2" advance="28"/>
+            <Code index="57754" coord="28 364 29 13" bearing="1 2" advance="31"/>
+            <Code index="57755" coord="58 364 29 13" bearing="1 2" advance="31"/>
+            <Code index="57760" coord="88 364 24 13" bearing="1 2" advance="25"/>
+            <Code index="57761" coord="113 364 24 13" bearing="1 2" advance="25"/>
+            <Code index="57762" coord="138 364 24 13" bearing="1 2" advance="25"/>
+            <Code index="57763" coord="163 364 24 13" bearing="1 2" advance="25"/>
+            <Code index="57764" coord="188 364 24 13" bearing="1 2" advance="25"/>
+            <Code index="57765" coord="213 364 24 13" bearing="1 2" advance="25"/>
+            <Code index="57766" coord="0 378 24 13" bearing="1 2" advance="25"/>
+            <Code index="57767" coord="25 378 24 13" bearing="1 2" advance="25"/>
+            <Code index="57768" coord="50 378 24 13" bearing="1 2" advance="25"/>
+            <Code index="57769" coord="75 378 24 13" bearing="1 2" advance="25"/>
+            <Code index="57770" coord="100 378 24 13" bearing="1 2" advance="25"/>
+            <Code index="57771" coord="125 378 24 13" bearing="1 2" advance="25"/>
+            <Code index="57772" coord="150 378 24 13" bearing="1 2" advance="25"/>
+            <Code index="57773" coord="175 378 24 13" bearing="1 2" advance="25"/>
+            <Code index="57774" coord="200 378 24 13" bearing="1 2" advance="25"/>
+            <Code index="57776" coord="128 21 7 7" bearing="0 5"/>
+            <Code index="57777" coord="63 0 4 1" bearing="2 8" advance="6"/>
+            <Code index="58200" coord="70 7 4 3" bearing="-4 2"/>
+            <Code index="58201" coord="75 7 3 3" bearing="-4 2" advance="4"/>
+            <Code index="58202" coord="79 7 4 3" bearing="-3 2" advance="3"/>
+            <Code index="58203" coord="84 7 4 3" bearing="-4 2"/>
+            <Code index="58204" coord="143 3 4 2" bearing="-4 2"/>
+            <Code index="58205" coord="148 3 4 2" bearing="-5 2" advance="5"/>
+            <Code index="58206" coord="153 3 4 2" bearing="-5 2" advance="5"/>
+            <Code index="58207" coord="158 3 4 2" bearing="-4 6"/>
+            <Code index="58208" coord="163 3 3 2" bearing="-4 1" advance="4"/>
+            <Code index="58209" coord="167 3 3 2" bearing="-4 3" advance="4"/>
+            <Code index="58210" coord="89 7 5 3" bearing="-5 2"/>
+            <Code index="58211" coord="95 7 2 3" bearing="-3 1" advance="3"/>
+            <Code index="65533" coord="156 30 10 10" bearing="2 3" advance="11"/>
+            <Code index="selected" coord="125 394 0 16"/>
+            <Code index="selected_back" coord="127 394 0 16"/>
+            <Code index="cursor" coord="129 394 2 16" advance="0"/>
+            <Code index="substitute" coord="206 13 5 7" bearing="1 4" advance="6"/>
+        </Codes>
+    </Resource>
+</MyGUI>

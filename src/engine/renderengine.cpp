@@ -604,6 +604,7 @@ bool renderEngine::createScene()
     logMsg("Dead");
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 	sdlWindow = SDL_CreateWindowFrom(mWindow);
+//    exit(0);
 #endif
      if (mWindow == NULL)
      {

@@ -439,7 +439,7 @@ void UBC::gameLoop()  // Main Game Loop
 //    render->createScene(); // creates rendering scene.
 
     int x = 0;
-//    SDL_StartTextInput();
+    SDL_StartTextInput();
 //    getGameE()->gameEngine();
     bool quitGame = getGameE()->getQuitGame();
 //    exit(0);

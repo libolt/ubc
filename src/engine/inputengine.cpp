@@ -809,9 +809,9 @@ bool inputEngine::processKeyInput(bool textInput)  // processes unbuffered keybo
 //                keyPressed = "a";
 //                exit(0);
 //            break;
-
+//        }
             
-        }
+        
         logMsg("keyInputPressed == " +keyPressed);
   
 //    }
@@ -829,7 +829,7 @@ bool inputEngine::processKeyInput(bool textInput)  // processes unbuffered keybo
 */
     logMsg("keyInputPressed == " +keyPressed);
 
-    keyInputReceived = true;
+//    keyInputReceived = true;
 //    keyPressed = "";
 //	logMsg("Keyboard Input Processed");
     // Return true to continue rendering

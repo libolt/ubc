@@ -229,9 +229,10 @@ void UBC::processInput()  // processes game input
 //            exit(0);
         }
 
-        if (getGameE()->getInput()->getKeyInputReceived())
+//        if (getGameE()->getInput()->getKeyInputReceived())
+        if (getGameE()->getInput()->geInputProcessed())
         {
-//            exit(0);
+            exit(0);
             if (getGameE()->getMenuActive())
             {
 //                exit(0);

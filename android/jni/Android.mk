@@ -189,7 +189,7 @@ UBC_DEPENDS_INC_PATH := $(UBC_DEPENDS_PATH)/include
   
    include $(CLEAR_VARS)
    LOCAL_MODULE := OpenSteer-Prebuilt
-   LOCAL_SRC_FILES := $(UBC_DEPENDS_LIB_PATH)/libOpenSteer.a
+   LOCAL_SRC_FILES := $(UBC_DEPENDS_LIB_PATH)/libopensteer.a
    include $(PREBUILT_STATIC_LIBRARY)
 
 #   include $(CLEAR_VARS)

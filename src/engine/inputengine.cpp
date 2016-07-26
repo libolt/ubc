@@ -78,6 +78,8 @@ inputEngine::inputEngine()  // constructor
     mouseClicked = false;
     mouseLeftClick = false;
     mouseRightClick = false;
+    inputProcessed = false;
+	
 	inputMap = INNO;
     textInputStarted = false;
     setup();
@@ -123,6 +125,15 @@ void inputEngine::setKeyPressed(std::string set)
     keyPressed = set;
 }
 
+bool inputEngine::getInputProcessed()  // retrieves the value of inputProcessed
+{
+    return (inputProcessed);
+}
+void inputEngine::setInputProcessed(bool set)  // sets the value of inputProcessed
+{
+    inputProcessed = set;
+}
+
 inputMaps inputEngine::getInputMap()  // retrieves the value of inputMap 
 {
     return(inputMap);
@@ -139,6 +150,15 @@ inputWorkQueues inputEngine::getInputWorkQueue()  // retrieves the value of inpu
 void inputEngine::setInputWorkQueue(inputWorkQueues set)  // sets the value of inputWorkQueue
 {
     inputWorkQueue = set;
+}
+
+inputTypeQueues inputEngine::getInputTypeQueues()  // retrieves the value of inputTypeQueue
+{
+    return (inputTypeQueue);
+}
+void inputEngine::setInputTypeQueues(inputTypeQueues set)  // sets the value of inputTypeQueues
+{
+    inputTypeQueue = set;
 }
 
 std::vector<userInput> inputEngine::getUInput()  // retrieves the value of uInput
@@ -279,7 +299,7 @@ bool inputEngine::processInput()  // processes all input
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
-
+    
 //    keyPressed = "";  // resets value of keyPressed
 
     // processes keyboard input
@@ -381,11 +401,16 @@ bool inputEngine::processInput()  // processes all input
                 logMsg("KeyDown");
                 if (processKeyInput(true))
                 {
-                    
+                    inputProcessed = true;
+                    inputTypeQueue.push_back(KEYBOARD);
+                    inputMaps inputMap = keyMap();
+//                    exit(0);
+                    inputWorkQueue.push_back(inputMap);
+
 //                    return false;
                 }
                 logMsg("keyDownPressed == " +keyPressed);
-                exit(0);
+//                exit(0);
             break; 
             case SDL_TEXTINPUT:
                 keyPressed = "";
@@ -441,7 +466,7 @@ bool inputEngine::processInput()  // processes all input
 //    exit(0);
     processMouseInput();
 
-    return true;
+    return (inputProcessed);
 }
 
 bool inputEngine::processKeyInput(bool textInput)  // processes unbuffered keyboard input
@@ -833,7 +858,12 @@ bool inputEngine::processKeyInput(bool textInput)  // processes unbuffered keybo
 //    keyPressed = "";
 //	logMsg("Keyboard Input Processed");
     // Return true to continue rendering
-    return true;
+
+	if (keyPressed != "")
+	{
+		return (true);
+	}
+    return (false);
 }
 
 bool inputEngine::processTextInput()  // reads in text input

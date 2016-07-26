@@ -25,6 +25,7 @@
 #include "SDL.h"
 #include "SDL_syswm.h"
 #include "Ogre.h"
+#include <boost/shared_ptr.hpp>
 #include <boost/thread/thread.hpp>
 #include <boost/date_time.hpp>
 #include <boost/thread/mutex.hpp>
@@ -41,6 +42,7 @@
 #define EVENT_BUF_SIZE 256
 
 typedef std::vector<inputMaps>   inputWorkQueues;
+typedef std::vector<inputTypes> inputTypeQueues;  // stores types of input processed by the engine
 
 //class GUISystem;
 class renderEngine;
@@ -68,12 +70,18 @@ public:
     std::string getKeyPressed();  // retrieves the value of keyPressed pressed 
     void setKeyPressed(std::string set);  // sets the value of keyPressed 
 
+    bool getInputProcessed();  // retrieves the value of inputProcessed
+    void setInputProcessed(bool set);  // sets the value of inputProcessed
+    
     inputMaps getInputMap();  // retrieves the value of inputMap 
     void setInputMap(inputMaps set);  // sets the value of inputMap 
 
     inputWorkQueues getInputWorkQueue();  // retrieves the value of inputWorkQueue
     void setInputWorkQueue(inputWorkQueues set);  // sets the value of inputWorkQueue
 
+    inputTypeQueues getInputTypeQueues();  // retrieves the value of inputTypeQueue
+    void setInputTypeQueues(inputTypeQueues set);  // sets the value of inputTypeQueues
+    
     std::vector<userInput> getUInput();  // retrieves the value of uInput
     void setUInput(std::vector<userInput> set);  // sets the value of uInput
     
@@ -132,12 +140,15 @@ private:
     static bool keyInputReceived;  // stores whether a key has been pressed
     std::string keyPressed; // stores which key was pressed
 
+    bool inputProcessed;
+	
     inputMaps inputMap; // stores user input
- 
+
     std::vector<userInput> uInput;  // stores user input mapping
  
     inputWorkQueues inputWorkQueue;
     inputWorkQueues internalInputWorkQueue;
+    inputTypeQueues inputTypeQueue;  // stores queue of input types to process
     boost::mutex inputWorkQueueMutex;
 };
 

@@ -32,7 +32,7 @@ FIND_LIBRARY(ENet_LIBRARY_DBG
     )
 
 FIND_LIBRARY(ENet_LIBRARY_REL
-    NAMES ENet libENet.a
+    NAMES ENet libENet.a libenet.so
     PATHS
     $ENV{ENET_HOME}/lib
     /usr/local

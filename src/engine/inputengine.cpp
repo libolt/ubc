@@ -59,6 +59,7 @@ boost::shared_ptr<inputEngine> inputEngine::Instance()
 // static variables 
 
 SDL_Event inputEngine::inputEvent; 
+bool inputEngine::inputProcessed;
 bool inputEngine::keyInputReceived;
 bool inputEngine::mouseLeftClick;
 bool inputEngine::mouseRightClick;

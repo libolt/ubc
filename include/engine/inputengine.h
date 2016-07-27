@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   Copyright (C) 1999 - 2016 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -140,7 +140,7 @@ private:
     static bool keyInputReceived;  // stores whether a key has been pressed
     std::string keyPressed; // stores which key was pressed
 
-    bool inputProcessed;
+    static bool inputProcessed;  // stores whether or not any input has been processed
 	
     inputMaps inputMap; // stores user input
 

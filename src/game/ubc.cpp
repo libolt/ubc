@@ -25,6 +25,7 @@
 #include "engine/renderengine.h"
 #include "state/basketballstate.h"
 #include "state/gamestate.h"
+#include "state/inputstate.h"
 #include "state/networkstate.h"
 #include "state/playerstate.h"
 #include "state/teamstate.h"
@@ -230,14 +231,19 @@ void UBC::processInput()  // processes game input
         }
 
 //        if (getGameE()->getInput()->getKeyInputReceived())
-        if (getGameE()->getInput()->geInputProcessed())
+        if (getGameE()->getInput()->getInputProcessed())
         {
-            exit(0);
+//            exit(0);
             if (getGameE()->getMenuActive())
             {
 //                exit(0);
                 logMsg("menuReceiveKeyPress == " +getGameE()->getInput()->getKeyPressed());
 //                exit(0);
+                getInputS()->setGameE(getGameE());
+//                exit(0);
+                getGameE()->getInput()->setKeyPressed("m"));
+//                exit(0);
+                getInputS()->process();
                 gui->menuReceiveKeyPress(getGameE()->getInput()->getKeyPressed()); // sends input to menu key input processing function
 //                exit(0);
                 if (getGameE()->getInput()->getKeyPressed() == "t")

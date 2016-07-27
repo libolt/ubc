@@ -26,6 +26,7 @@
 class gameEngine;
 class gameState;
 class networkState;
+class inputState;
 
 class UBCBase
 {
@@ -43,13 +44,16 @@ class UBCBase
     static boost::shared_ptr<networkState> getNetworkS();  // retrieves the value of networkS
     void setNetworkS(boost::shared_ptr<networkState> set);  // sets the value of networkS
     
-  
+    static boost::shared_ptr<inputState> getInputS();  // retrieves the value of inputS
+    void setInputS(boost::shared_ptr<inputState> set);  // sets the value of inputS
+
     private:
     
         static boost::shared_ptr<gameEngine> gameE;  // the gameEngine object
         static boost::shared_ptr<gameState> gameS;  // the gameState object
         static boost::shared_ptr<networkState> networkS;  // the gameState object
-
+        static boost::shared_ptr<inputState> inputS;  // the gameState object
+        
 };
 
 #endif

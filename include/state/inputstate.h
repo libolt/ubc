@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   Copyright (C) 1999 - 2016 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -19,9 +19,30 @@
  ***************************************************************************/
 
  
-#ifndef _INPUTPROCESSOR_H_
-#define _INPUTPROCESSOR_H_
+#ifndef _INPUTSTATE_H_
+#define _INPUTSTATE_H_
 
+#include "state/state.h"
+#include <boost/shared_ptr.hpp>
+
+// forward declarations
+class gameEngine;
+
+class inputState : public state
+{
+    public:
+    
+    boost::shared_ptr<gameEngine> getGameE();  // retrieves the value of gameE
+    void setGameE(boost::shared_ptr<gameEngine> set);  // sets the value of gameE
+    
+    bool process();  // processes input
+    
+    private:
+    
+    static boost::shared_ptr<gameEngine> gameE;  // the gameEngine object
+   
+    
+};
 #endif
 
 

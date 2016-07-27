@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   Copyright (C) 1999 - 2016 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -18,6 +18,25 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
  
-#include "input/inputprocessor.h"
+#include "state/inputstate.h"
+#include "logging.h"
+#include "engine/inputengine.h"
+#include "engine/gameengine.h"
 
+boost::shared_ptr<gameEngine> inputState::gameE;  // the gameEngine object
 
+boost::shared_ptr<gameEngine> inputState::getGameE()  // retrieves the value of gameE
+{
+    return (gameE);
+}
+void inputState::setGameE(boost::shared_ptr<gameEngine> set)  // sets the value of gameE
+{
+    gameE = set;
+}
+
+bool inputState::process()  // processes input
+{
+    logMsg("inputState->process menuReceiveKeyPress == " +gameE->getInput()->getKeyPressed());
+    exit(0);
+    return (true);
+}

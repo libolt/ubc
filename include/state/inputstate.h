@@ -39,7 +39,7 @@ class inputState : public state
     
     private:
     
-    static boost::shared_ptr<gameEngine> gameE;  // the gameEngine object
+    static boost::shared_ptr<inputEngine> inputE;  // the gameEngine object
    
     
 };

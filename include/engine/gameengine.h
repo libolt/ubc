@@ -88,14 +88,14 @@ public:
     void setYOffset(float set);  // sets the value of yOffset
 
     
-    boost::shared_ptr<renderEngine> getRender();  // retrieves the value of render
-    void setRender(boost::shared_ptr<renderEngine> set);  // sets the value of render
+    boost::shared_ptr<renderEngine> getRenderE();  // retrieves the value of render
+    void setRenderE(boost::shared_ptr<renderEngine> set);  // sets the value of render
     
-    boost::shared_ptr<inputEngine> getInput();  // retrieves the value of input
-    void setInput(boost::shared_ptr<inputEngine> set);  // sets the value of input
+    boost::shared_ptr<inputEngine> getInputE();  // retrieves the value of input
+    void setInputE(boost::shared_ptr<inputEngine> set);  // sets the value of input
     
-    boost::shared_ptr<networkEngine> getNetwork();  // retrieves the value of input
-    void setNetwork(boost::shared_ptr<networkEngine> set);  // sets the value of input
+    boost::shared_ptr<networkEngine> getNetworkE();  // retrieves the value of input
+    void setNetworkE(boost::shared_ptr<networkEngine> set);  // sets the value of input
 
     bool startGame();  // starts a game
 
@@ -115,9 +115,9 @@ private:
     //static gameEngine *pInstance;
 //    static boost::shared_ptr<gameEngine> pInstance;
 
-     boost::shared_ptr<renderEngine> render;  // render object
-     boost::shared_ptr<inputEngine> input;  // input object
-     boost::shared_ptr<networkEngine> network;  // network object    
+     boost::shared_ptr<renderEngine> renderE;  // render object
+     boost::shared_ptr<inputEngine> inputE;  // input object
+     boost::shared_ptr<networkEngine> networkE;  // network object    
 
     float yOffset; // stores the y offset for objects on the screen
     

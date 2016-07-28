@@ -82,7 +82,7 @@ gameEngine::gameEngine()  // constructor
     // renderEngine
 //    renderEngine *tempRenderObj = new renderEngine;
     boost::shared_ptr<renderEngine> tempRenderSharedPtr = boost::shared_ptr<renderEngine>(new renderEngine);
-    render = tempRenderSharedPtr;
+    renderE = tempRenderSharedPtr;
 
     // networkEngine
 //    networkEngine *tempNetworkObj = new networkEngine;
@@ -97,7 +97,7 @@ gameEngine::gameEngine()  // constructor
     // inputEngine
 //    inputEngine *tempInputObj = new inputEngine;
     boost::shared_ptr<inputEngine> tempInputSharedPtr = boost::shared_ptr<inputEngine>(new inputEngine);
-    input = tempInputSharedPtr;
+    inputE = tempInputSharedPtr;
 
 
 }
@@ -205,30 +205,30 @@ void gameEngine::setYOffset(float set)  // sets the value of yOffset
     yOffset = set;
 }
 
-boost::shared_ptr<renderEngine> gameEngine::getRender()  // retrieves the value of renderE
+boost::shared_ptr<renderEngine> gameEngine::getRenderE()  // retrieves the value of renderE
 {
-    return (render);
+    return (renderE);
 }
-void gameEngine::setRender(boost::shared_ptr<renderEngine> set)  // sets the value of renderE
+void gameEngine::setRenderE(boost::shared_ptr<renderEngine> set)  // sets the value of renderE
 {
-    render = set;
+    renderE = set;
 }
-boost::shared_ptr<inputEngine> gameEngine::getInput()  // retrieves the value of input
+boost::shared_ptr<inputEngine> gameEngine::getInputE()  // retrieves the value of inputE
 {
-    return (input);
+    return (inputE);
 }
-void gameEngine::setInput(boost::shared_ptr<inputEngine> set)  // sets the value of input
+void gameEngine::setInputE(boost::shared_ptr<inputEngine> set)  // sets the value of inputE
 {
-    input = set;
+    inputE = set;
 }
 
-boost::shared_ptr<networkEngine> gameEngine::getNetwork()  // retrieves the value of network
+boost::shared_ptr<networkEngine> gameEngine::getNetworkE()  // retrieves the value of networkE
 {
-    return (network);
+    return (networkE);
 }
-void gameEngine::setNetwork(boost::shared_ptr<networkEngine> set)  // sets the value of network
+void gameEngine::setNetworkE(boost::shared_ptr<networkEngine> set)  // sets the value of networkE
 {
-    network = set;
+    networkE = set;
 }
 
 /*bool gameEngine::startGame()  // starts the game
@@ -245,7 +245,7 @@ void gameEngine::quit()  // quits the game
 {
 //    boost::shared_ptr<inputSystem> input = inputSystem::Instance();
 
-    input->destroy();
+    inputE->destroy();
 
 }
 /*void gameEngine::processInput()  // processes game input

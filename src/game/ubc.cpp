@@ -147,11 +147,11 @@ void UBC::run()  // runs the game
     boost::shared_ptr<conversion> convert = conversion::Instance();
 
     
-    getGameE()->getRender()->initSDL(); // Initializes the SDL Subsystem
+    getGameE()->getRenderE()->initSDL(); // Initializes the SDL Subsystem
 //    exit(0);
-    getGameE()->getRender()->initOgre(); // Initializes the Ogre Subsystem
+    getGameE()->getRenderE()->initOgre(); // Initializes the Ogre Subsystem
 //    exit(0);
-    getGameE()->getRender()->createScene(); // creates rendering scene.
+    getGameE()->getRenderE()->createScene(); // creates rendering scene.
 
 //    boost::shared_ptr<entity> gameStateSharedPtr = boost::shared_ptr<entity>(new entity);
 
@@ -171,7 +171,7 @@ void UBC::run()  // runs the game
 //    getGameS()->createInstances();  // creates object instances
     boost::shared_ptr<entity> gameStateSharedPtr = boost::shared_ptr<entity>(new entity);
 
-    if (getGameE()->getRender()->getMWindow() == NULL)
+    if (getGameE()->getRenderE()->getMWindow() == NULL)
     {
         logMsg("mWindow == NULL!");
 //        exit(0);
@@ -179,7 +179,7 @@ void UBC::run()  // runs the game
 //    exit(0);
 //    setupState();  // sets up the game state
 
-    Ogre::Viewport *vp = getGameE()->getRender()->getViewPort();
+    Ogre::Viewport *vp = getGameE()->getRenderE()->getViewPort();
 //    setViewPort(*vp);  // sets the viewPort for MyGUI
 
 //    exit(0);
@@ -221,7 +221,7 @@ void UBC::processInput()  // processes game input
 
     logMsg("inputProcess!");
 //    exit(0);
-    if (getGameE()->getInput()->processInput())
+    if (getGameE()->getInputE()->processInput())
     {
 //        exit(0);
         if (getGameE()->getMenuActive())
@@ -231,29 +231,29 @@ void UBC::processInput()  // processes game input
         }
 
 //        if (getGameE()->getInput()->getKeyInputReceived())
-        if (getGameE()->getInput()->getInputProcessed())
+        if (getGameE()->getInputE()->getInputProcessed())
         {
 //            exit(0);
             if (getGameE()->getMenuActive())
             {
 //                exit(0);
-                logMsg("menuReceiveKeyPress == " +getGameE()->getInput()->getKeyPressed());
+                logMsg("menuReceiveKeyPress == " +getGameE()->getInputE()->getKeyPressed());
 //                exit(0);
 //                getInputS()->setGameE(getGameE());
 //                exit(0);
-                getGameE()->getInput()->setKeyPressed("m");
+                getGameE()->getInputE()->setKeyPressed("m");
 //                exit(0);
                 getInputS()->process();
-                getInputS()->getGameE()->getInput()->setKeyPressed("p");
-                logMsg("menuReceiveKeyPressAgain == " +getGameE()->getInput()->getKeyPressed());
+                getInputS()->getGameE()->getInputE()->setKeyPressed("p");
+                logMsg("menuReceiveKeyPressAgain == " +getGameE()->getInputE()->getKeyPressed());
                 exit(0);
-                gui->menuReceiveKeyPress(getGameE()->getInput()->getKeyPressed()); // sends input to menu key input processing function
+                gui->menuReceiveKeyPress(getGameE()->getInputE()->getKeyPressed()); // sends input to menu key input processing function
 //                exit(0);
-                if (getGameE()->getInput()->getKeyPressed() == "t")
+                if (getGameE()->getInputE()->getKeyPressed() == "t")
                 {
 //                    exit(0);
                 }
-                getGameE()->getInput()->setKeyPressed("");
+                getGameE()->getInputE()->setKeyPressed("");
             }
         }
         if (getGameS()->getActiveTeamInstancesCreated())
@@ -270,7 +270,7 @@ void UBC::processInput()  // processes game input
                         int humanPlayer = activeTeamInstance[inputIterator]->getHumanPlayer();
                         logMsg("inputHumanPlayer == " +convert->toString(humanPlayer));
                         //inputMaps inputMap = input->keyMap();
-                        inputWorkQueues inputQueue = getGameE()->getInput()->getInputWorkQueue();
+                        inputWorkQueues inputQueue = getGameE()->getInputE()->getInputWorkQueue();
         //                              logMsg("INPUT MAP ======== "  +toString(inputMap));
                         std::stringstream ss;
 //                      exit(0);
@@ -408,7 +408,7 @@ void UBC::processInput()  // processes game input
                             getNetworkS()->processLocalInput(getGameS()->getActiveTeamInstance());
                         }
                         inputQueue.clear();
-                        getGameE()->getInput()->setInputWorkQueue(inputQueue);
+                        getGameE()->getInputE()->setInputWorkQueue(inputQueue);
                     }
                     ++inputIterator;
                 }
@@ -482,7 +482,7 @@ void UBC::gameLoop()  // Main Game Loop
                 }
                 else if (getGameS()->getGameType() == MULTI)
                 {
-                    if (getGameE()->getNetwork()->getServerReceivedConnection() || getGameE()->getNetwork()->getClientEstablishedConnection())  // checks if server and client are connected
+                    if (getGameE()->getNetworkE()->getServerReceivedConnection() || getGameE()->getNetworkE()->getClientEstablishedConnection())  // checks if server and client are connected
                     {
                         getGameE()->setCreateScene(true);
                     }
@@ -523,25 +523,25 @@ void UBC::gameLoop()  // Main Game Loop
 
 //          logMsg("changeInTime = " +toString(changeInTime));
         // updates game logic every 100 milliseconds
-        if (getGameE()->getServerRunning() && !getGameE()->getNetwork()->getIsServer())
+        if (getGameE()->getServerRunning() && !getGameE()->getNetworkE()->getIsServer())
         {
-            getGameE()->getNetwork()->setIsServer(true);
+            getGameE()->getNetworkE()->setIsServer(true);
         }
-        if (getGameE()->getClientRunning() && !getGameE()->getNetwork()->getIsClient())
+        if (getGameE()->getClientRunning() && !getGameE()->getNetworkE()->getIsClient())
         {
-            getGameE()->getNetwork()->setIsClient(true);
+            getGameE()->getNetworkE()->setIsClient(true);
         }
 
-        if (getGameS()->getGameType() == MULTI && getGameE()->getNetwork()->getTeamType() == NOTEAM)
+        if (getGameS()->getGameType() == MULTI && getGameE()->getNetworkE()->getTeamType() == NOTEAM)
         {
-            if (getGameE()->getNetwork()->getIsServer())
+            if (getGameE()->getNetworkE()->getIsServer())
             {
-                getGameE()->getNetwork()->setTeamType(HOMETEAM);
+                getGameE()->getNetworkE()->setTeamType(HOMETEAM);
             }
             
-            if (getGameE()->getNetwork()->getIsClient())
+            if (getGameE()->getNetworkE()->getIsClient())
             {
-                getGameE()->getNetwork()->setTeamType(AWAYTEAM);
+                getGameE()->getNetworkE()->setTeamType(AWAYTEAM);
             }
         }
         
@@ -558,12 +558,12 @@ void UBC::gameLoop()  // Main Game Loop
 //              exit(0);
             if (getGameE()->getServerRunning())
             {
-                getGameE()->getNetwork()->networkServer();   // Runs network server code
+                getGameE()->getNetworkE()->networkServer();   // Runs network server code
                 
             }
             if (getGameE()->getClientRunning())
             {
-                getGameE()->getNetwork()->networkClient();   // runs network client code
+                getGameE()->getNetworkE()->networkClient();   // runs network client code
             }
 
 
@@ -582,7 +582,7 @@ void UBC::gameLoop()  // Main Game Loop
 //        exit(0);
         processInput();
 //        exit(0);
-        if (!getGameE()->getRender()->renderFrame())
+        if (!getGameE()->getRenderE()->renderFrame())
         {
             logMsg("Unable to render frame!");
             exit(0);
@@ -593,14 +593,15 @@ void UBC::gameLoop()  // Main Game Loop
 
 bool UBC::updateGUI()  // updates the gui based on received events
 {
-    if (getGameE()->getInput()->getMouseClicked())
+    if (getGameE()->getInputE()->getMouseClicked())
     {
+        logMsg("updateGUI Mouse Clicked!");
         exit(0);
-        gui->getMGUI()->injectMousePress(getGameE()->getInput()->getMouseX(), getGameE()->getInput()->getMouseY(), MyGUI::MouseButton::Enum(0));
+        gui->getMGUI()->injectMousePress(getGameE()->getInputE()->getMouseX(), getGameE()->getInputE()->getMouseY(), MyGUI::MouseButton::Enum(0));
     }
     else
     {
-        gui->getMGUI()->injectMouseRelease(getGameE()->getInput()->getMouseX(), getGameE()->getInput()->getMouseY(), MyGUI::MouseButton::Enum(0));
+        gui->getMGUI()->injectMouseRelease(getGameE()->getInputE()->getMouseX(), getGameE()->getInputE()->getMouseY(), MyGUI::MouseButton::Enum(0));
     }
     
     return (true);

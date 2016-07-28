@@ -38,7 +38,7 @@ class networkState : public state
         ~networkState();  // destructor
         
         // getters and setters
-        boost::shared_ptr<networkEngine> getNetwork();  // retrieves the value of network
+        boost::shared_ptr<networkEngine> getNetworkE();  // retrieves the value of network
         void setNetwork(boost::shared_ptr<networkEngine> set);  // sets the value of network
 
         void processLocalInput(std::vector<boost::shared_ptr<teamState> > activeTeamInstance);  // processes local input for sending to remote system

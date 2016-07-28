@@ -74,7 +74,7 @@ public:
 /*    boost::shared_ptr<networkEngine> getNetworkG();  // retrieves the value of networkG
     void setNetworkG(boost::shared_ptr<networkEngine> set);  // sets the value of networkG
 
-    boost::shared_ptr<renderEngine> getRender();  // retrieves the value of render
+    boost::shared_ptr<renderEngine> getRenderE();  // retrieves the value of render
     void setRender(boost::shared_ptr<renderEngine> set);  // sets the value of render
 */
 

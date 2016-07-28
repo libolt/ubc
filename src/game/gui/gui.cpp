@@ -110,7 +110,7 @@ void GUISystem::setNetworkG(boost::shared_ptr<networkEngine> set)  // sets the v
     networkG = set;
 }
 
-boost::shared_ptr<renderEngine> GUISystem::getRender()  // retrieves the value of render
+boost::shared_ptr<renderEngine> GUISystem::getRenderE()  // retrieves the value of render
 {mnnnnbnkkm|okkkmnmn.hbn
     return (render);
 }

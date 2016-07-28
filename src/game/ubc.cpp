@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean   *
+ *   Copyright (C) 1999 - 2016 by Mike McLean   *
  *   libolt@libolt.net   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -86,7 +86,7 @@ void UBC::setQuitGame(bool set)  // sets the value of quitGame
 
 bool UBC::setupState()  // sets up the UBC game state
 {
-//    Ogre::Viewport *vp = getRender()->getViewPort();
+//    Ogre::Viewport *vp = getRenderE()->getViewPort();
 //    setViewPort(*vp);  // sets the viewPort for MyGUI
     logMsg("blah!");
 //    exit(0);
@@ -127,7 +127,7 @@ bool UBC::setupState()  // sets up the UBC game state
             }
         }
         gui->showMainMenuWidgets();
-//        getGameE()->setNetwork(getGameE()->getNetwork());
+//        getGameE()->setNetwork(getGameE()->getNetworkE());
     } 
     else
     {
@@ -185,7 +185,7 @@ void UBC::run()  // runs the game
 //    exit(0);
     logMsg("Initializing Input");
     //inputSystem *input = inputSystem::Instance();
-//    boost::shared_ptr<inputSystem> input = getInput();
+//    boost::shared_ptr<inputSystem> input = getInputE();
 //    exit(0);
     
 /*    int x = 0;
@@ -230,7 +230,7 @@ void UBC::processInput()  // processes game input
 //            exit(0);
         }
 
-//        if (getGameE()->getInput()->getKeyInputReceived())
+//        if (getGameE()->getInputE()->getKeyInputReceived())
         if (getGameE()->getInputE()->getInputProcessed())
         {
 //            exit(0);
@@ -513,7 +513,7 @@ void UBC::gameLoop()  // Main Game Loop
             }
         }
 //        exit(0);
-//        lastFPS = getRender()->getMWindow()->getLastFPS();
+//        lastFPS = getRenderE()->getMWindow()->getLastFPS();
 //        exit(0);
 //        std::string currFPS = convert->toString(lastFPS);
 
@@ -613,7 +613,7 @@ int main(int argc, char *argv[])
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<UBC> ubc;
     UBC *ubc = new UBC;
-//    boost::shared_ptr<renderEngine> render = ubc.getRender();
+//    boost::shared_ptr<renderEngine> render = ubc.getRenderE();
 //    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 //    boost::shared_ptr<GUISystem> gui = ubc.getGui();

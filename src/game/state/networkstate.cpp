@@ -37,7 +37,7 @@ networkState::~networkState()  // destructor
 
 }
 
-boost::shared_ptr<networkEngine> networkState::getNetwork()  // retrieves the value of network
+boost::shared_ptr<networkEngine> networkState::getNetworkE()  // retrieves the value of network
 {
     return (network);
 }
@@ -56,8 +56,8 @@ void networkState::processLocalInput(std::vector<boost::shared_ptr<teamState> > 
     networkPlayerStateObject netPStateObj;
     
 //    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
-    int humanControlled = activeTeamInstance[getNetwork()->getTeamType()]->getHumanControlled();
-    int humanPlayer = activeTeamInstance[getNetwork()->getTeamType()]->getHumanPlayer();
+    int humanControlled = activeTeamInstance[getNetworkE()->getTeamType()]->getHumanControlled();
+    int humanPlayer = activeTeamInstance[getNetworkE()->getTeamType()]->getHumanPlayer();
 
 //                              logMsg("INPUT MAP ======== "  +toString(inputMap));
     std::string packetData;
@@ -72,7 +72,7 @@ void networkState::processLocalInput(std::vector<boost::shared_ptr<teamState> > 
             case INUP:
 //                                      packetData = "player0up";
                 netPStateObj.setPacketType(3);
-                netPStateObj.setTeamID(getNetwork()->getTeamType());
+                netPStateObj.setTeamID(getNetworkE()->getTeamType());
                 netPStateObj.setPlayerID(humanPlayer);
                 netPStateObj.setMovement(true);
                 netPStateObj.setDirection(0);
@@ -82,7 +82,7 @@ void networkState::processLocalInput(std::vector<boost::shared_ptr<teamState> > 
             case INDOWN:
 //                                      packetData = "player0down";
                 netPStateObj.setPacketType(3);
-                netPStateObj.setTeamID(getNetwork()->getTeamType());
+                netPStateObj.setTeamID(getNetworkE()->getTeamType());
                 netPStateObj.setPlayerID(humanPlayer);
                 netPStateObj.setMovement(true);
                 netPStateObj.setDirection(1);
@@ -92,7 +92,7 @@ void networkState::processLocalInput(std::vector<boost::shared_ptr<teamState> > 
             case INLEFT:
 //                                      packetData = "player0left";
                 netPStateObj.setPacketType(3);
-                netPStateObj.setTeamID(getNetwork()->getTeamType());
+                netPStateObj.setTeamID(getNetworkE()->getTeamType());
                 netPStateObj.setPlayerID(humanPlayer);
                 netPStateObj.setMovement(true);
                 netPStateObj.setDirection(2);
@@ -102,7 +102,7 @@ void networkState::processLocalInput(std::vector<boost::shared_ptr<teamState> > 
             case INRIGHT:
 //                                      packetData = "player0right";
                 netPStateObj.setPacketType(3);
-                netPStateObj.setTeamID(getNetwork()->getTeamType());
+                netPStateObj.setTeamID(getNetworkE()->getTeamType());
                 netPStateObj.setPlayerID(humanPlayer);
                 netPStateObj.setMovement(true);
                 netPStateObj.setDirection(3);
@@ -112,7 +112,7 @@ void networkState::processLocalInput(std::vector<boost::shared_ptr<teamState> > 
             case INUPLEFT:
 //                                      packetData = "player0upleft";
                 netPStateObj.setPacketType(3);
-                netPStateObj.setTeamID(getNetwork()->getTeamType());
+                netPStateObj.setTeamID(getNetworkE()->getTeamType());
                 netPStateObj.setPlayerID(humanPlayer);
                 netPStateObj.setMovement(true);
                 netPStateObj.setDirection(4);
@@ -122,7 +122,7 @@ void networkState::processLocalInput(std::vector<boost::shared_ptr<teamState> > 
             case INUPRIGHT:
 //                                      packetData = "player0upright";
                 netPStateObj.setPacketType(3);
-                netPStateObj.setTeamID(getNetwork()->getTeamType());
+                netPStateObj.setTeamID(getNetworkE()->getTeamType());
                 netPStateObj.setPlayerID(humanPlayer);
                 netPStateObj.setMovement(true);
                 netPStateObj.setDirection(5);
@@ -132,7 +132,7 @@ void networkState::processLocalInput(std::vector<boost::shared_ptr<teamState> > 
             case INDOWNLEFT:
 //                                      packetData = "player0downleft";
                 netPStateObj.setPacketType(3);
-                netPStateObj.setTeamID(getNetwork()->getTeamType());
+                netPStateObj.setTeamID(getNetworkE()->getTeamType());
                 netPStateObj.setPlayerID(humanPlayer);
                 netPStateObj.setMovement(true);
                 netPStateObj.setDirection(6);
@@ -142,7 +142,7 @@ void networkState::processLocalInput(std::vector<boost::shared_ptr<teamState> > 
             case INDOWNRIGHT:
 //                                      packetData = "player0downright";
                 netPStateObj.setPacketType(3);
-                netPStateObj.setTeamID(getNetwork()->getTeamType());
+                netPStateObj.setTeamID(getNetworkE()->getTeamType());
                 netPStateObj.setPlayerID(humanPlayer);
                 netPStateObj.setMovement(true);
                 netPStateObj.setDirection(7);
@@ -151,7 +151,7 @@ void networkState::processLocalInput(std::vector<boost::shared_ptr<teamState> > 
             break;
             case INSHOOTBLOCK:
                 netPStateObj.setPacketType(3);
-                netPStateObj.setTeamID(getNetwork()->getTeamType());
+                netPStateObj.setTeamID(getNetworkE()->getTeamType());
                 netPStateObj.setPlayerID(humanPlayer);
                 netPStateObj.setMovement(false);
                 netPStateObj.setShootBlock(true);
@@ -160,7 +160,7 @@ void networkState::processLocalInput(std::vector<boost::shared_ptr<teamState> > 
             break;
             case INPASSSTEAL:
                 netPStateObj.setPacketType(3);
-                netPStateObj.setTeamID(getNetwork()->getTeamType());
+                netPStateObj.setTeamID(getNetworkE()->getTeamType());
                 netPStateObj.setPlayerID(humanPlayer);
                 netPStateObj.setMovement(false);
                 netPStateObj.setPassSteal(true);
@@ -186,7 +186,7 @@ void networkState::processLocalInput(std::vector<boost::shared_ptr<teamState> > 
         }
         if (packetData != "")
         {
-            getNetwork()->sendPacket(packetData);
+            getNetworkE()->sendPacket(packetData);
         }
         ++x;
     }
@@ -220,7 +220,7 @@ void networkState::processNetworkEvents(std::vector<boost::shared_ptr<teamState>
 
 //	std::vector <playerState> playerInstance = gameS->getPlayerInstance();
 
-    if(Ogre::StringUtil::startsWith(getNetwork()->getReceivedData(), "3" ))
+    if(Ogre::StringUtil::startsWith(getNetworkE()->getReceivedData(), "3" ))
     {
         logMsg("process!ng network player event");
         processNetworkPlayerEvents(activeTeamInstance);
@@ -230,12 +230,12 @@ void networkState::processNetworkEvents(std::vector<boost::shared_ptr<teamState>
     activeTeamInstance[0]->setPlayerType("human");  // sets playerType for activeTeamInstance 0 to human
 
     // checks if this instance is a server and whether activeTeamInstance 1 is set to be controlled by network player
-    if (getNetwork()->getServerReceivedConnection() && activeTeamInstance[1]->getPlayerType() != "network")
+    if (getNetworkE()->getServerReceivedConnection() && activeTeamInstance[1]->getPlayerType() != "network")
     {
         activeTeamInstance[1]->setPlayerType("network");  // sets activeTeamInstance 1 playerType to 'network'
     }
     // checks if this instance is a client and whether activeTeamInstance 0 is set to be controlled by network player
-    else if (getNetwork()->getClientEstablishedConnection() && activeTeamInstance[0]->getPlayerType() != "network" )
+    else if (getNetworkE()->getClientEstablishedConnection() && activeTeamInstance[0]->getPlayerType() != "network" )
     {
         activeTeamInstance[0]->setPlayerType("network");
     }
@@ -252,7 +252,7 @@ void networkState::processNetworkPlayerEvents(std::vector<boost::shared_ptr<team
     networkPlayerStateObject netPStateObj;
     std::stringstream strStream;
     std::vector<boost::shared_ptr<playerState> > activePlayerInstance;
-    std::string receivedData = getNetwork()->getReceivedData();  // stores receivedData value
+    std::string receivedData = getNetworkE()->getReceivedData();  // stores receivedData value
     size_t playerNumber = -1;  // stores which player the data is for
     size_t iterator;  // iterator for match loop
 
@@ -263,12 +263,12 @@ void networkState::processNetworkPlayerEvents(std::vector<boost::shared_ptr<team
     logMsg("received playerID = " +convert->toString(netPStateObj.getPlayerID()));
 
     // sets which team's activePlayerInstance to use
-    if (getNetwork()->getIsClient())
+    if (getNetworkE()->getIsClient())
     {
         logMsg("is client");
         activePlayerInstance = activeTeamInstance[1]->getActivePlayerInstance();
     }
-    else if (getNetwork()->getIsServer())
+    else if (getNetworkE()->getIsServer())
     {
         logMsg("is server");
         activePlayerInstance = activeTeamInstance[0]->getActivePlayerInstance();
@@ -332,11 +332,11 @@ void networkState::processNetworkPlayerEvents(std::vector<boost::shared_ptr<team
                     activePlayerInstance[playerNumber]->setMovement(false);
                 break;
             }
-            if (getNetwork()->getIsClient())
+            if (getNetworkE()->getIsClient())
             {
                 activeTeamInstance[1]->setActivePlayerInstance(activePlayerInstance);
             }
-            else if (getNetwork()->getIsServer())
+            else if (getNetworkE()->getIsServer())
             {
                 activeTeamInstance[0]->setActivePlayerInstance(activePlayerInstance);
             }
@@ -353,5 +353,5 @@ void networkState::processNetworkPlayerEvents(std::vector<boost::shared_ptr<team
     }
 //    setActiveTeamInstance(activeTeamInstance);
     logMsg("Survived!");
-    getNetwork()->setReceivedData("");
+    getNetworkE()->setReceivedData("");
 }

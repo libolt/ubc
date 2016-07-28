@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2015 by Mike McLean                              *
+ *   Copyright (C) 1999 - 2016 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -121,7 +121,7 @@ bool entity::loadModel()  // loads the 3D model
 {
 //    exit(0);
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
-    boost::shared_ptr<renderEngine> render = base->getGameE()->getRender();
+    boost::shared_ptr<renderEngine> render = base->getGameE()->getRenderE();
     logMsg("entity::loadModel");
     logMsg("entityName == " +entityName);
     logMsg("entityModelFileName == " +entityModelFileName);
@@ -147,7 +147,7 @@ bool entity::loadModel()  // loads the 3D model
 
     }
     
-    if (base->getGameE()->getRender().get()->getMSceneMgr()->hasCamera("camera"))
+    if (base->getGameE()->getRenderE().get()->getMSceneMgr()->hasCamera("camera"))
     {
         logMsg("mSceneMgr has camera!");
     }
@@ -156,7 +156,7 @@ bool entity::loadModel()  // loads the 3D model
         logMsg("mSceneMgr does not have camera!");
     }
 //    model = render->getMSceneMgr()->createEntity(entityName, entityModelFileName);  // loads the model
-    Ogre::Entity *tempModel = base->getGameE()->getRender()->getMSceneMgr()->createEntity(entityName, entityModelFileName, "UBCData");  // loads the model
+    Ogre::Entity *tempModel = base->getGameE()->getRenderE()->getMSceneMgr()->createEntity(entityName, entityModelFileName, "UBCData");  // loads the model
     logMsg("tempModel loaded!");
 //    render->getMSceneMgr()->
 //    Ogre::Entity *tempModel = render->getMSceneMgr()->createEntity("dah!", "Player.mesh");
@@ -164,8 +164,8 @@ bool entity::loadModel()  // loads the 3D model
     model = boost::shared_ptr<Ogre::Entity>(tempModel);
     logMsg("Entity Created!");
     // creates and instantiates the node object
-//    node = getRender()->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName);
-    Ogre::SceneNode *tempNode = base->getGameE()->getRender()->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName);
+//    node = getRenderE()->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName);
+    Ogre::SceneNode *tempNode = base->getGameE()->getRenderE()->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName);
     tempNode->attachObject(model.get());
     logMsg("node attached!");
     // attaches 3D model to the node

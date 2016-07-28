@@ -117,11 +117,11 @@ void inputEngine::setInputEvent(SDL_Event set)  // sets the value of inputEvent
     inputEvent = set;
 }
 
-std::string inputEngine::getKeyPressed()  // retrieves the value of keyPressed
+inputKeyMaps inputEngine::getKeyPressed()  // retrieves the value of keyPressed
 {
     return(keyPressed);
 }
-void inputEngine::setKeyPressed(std::string set)
+void inputEngine::setKeyPressed(inputKeyMaps set)
 {
     keyPressed = set;
 }

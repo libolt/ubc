@@ -22,6 +22,35 @@
 #define _ENUMS_H_
 
     enum inputMaps { INNO, INUP, INDOWN, INLEFT, INRIGHT, INUPLEFT, INUPRIGHT, INDOWNLEFT, INDOWNRIGHT, INSHOOTBLOCK, INPASSSTEAL, INPAUSE, INSTARTSELECT, INQUIT, INBACKSPACE, INRETURN }; // map of human player input
+    enum inputKeyMaps  // maps input to appropriate keys
+    {
+        INKEY_A,
+        INKEY_B,
+        INKEY_C,
+        INKEY_D,
+        INKEY_E,
+        INKEY_F,
+        INKEY_G,
+        INKEY_H,
+        INKEY_I,
+        INKEY_J,
+        INKEY_K,
+        INKEY_L,
+        INKEY_M,
+        INKEY_N,
+        INKEY_O,
+        INKEY_P,
+        INKEY_Q,
+        INKEY_R,
+        INKEY_S,
+        INKEY_T,
+        INKEY_U,
+        INKEY_V,
+        INKEY_W,
+        INKEY_X,
+        INKEY_Y,
+        INKEY_Z
+    };
     enum inputTypes { KEYBOARD, MOUSE, GAMEPAD, TOUCH };  // types of inputs used in the game
 	enum mouseClicks { NOCLICK, LEFTCLICK, RIGHTCLICK, MIDDLECLICK, WHEELCLICK };  // stores which mouse button has been clicked
     enum directions { NODIRECT, UP, DOWN, LEFT, RIGHT, UPLEFT, UPRIGHT, DOWNLEFT, DOWNRIGHT };	// direction objects are moving

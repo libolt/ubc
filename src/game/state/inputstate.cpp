@@ -21,22 +21,22 @@
 #include "state/inputstate.h"
 #include "logging.h"
 #include "engine/inputengine.h"
-#include "engine/gameengine.h"
+//#include "engine/gameengine.h"
 
-boost::shared_ptr<gameEngine> inputState::gameE;  // the gameEngine object
+boost::shared_ptr<inputEngine> inputState::inputE;  // the inputEngine object
 
-boost::shared_ptr<gameEngine> inputState::getGameE()  // retrieves the value of gameE
+boost::shared_ptr<inputEngine> inputState::getInputE()  // retrieves the value of inputE
 {
-    return (gameE);
+    return (inputE);
 }
-void inputState::setGameE(boost::shared_ptr<gameEngine> set)  // sets the value of gameE
+void inputState::setInputE(boost::shared_ptr<inputEngine> set)  // sets the value of inputE
 {
-    gameE = set;
+    inputE = set;
 }
 
 bool inputState::process()  // processes input
 {
-    logMsg("inputState->process menuReceiveKeyPress == " +gameE->getInput()->getKeyPressed());
+    logMsg("inputState->process menuReceiveKeyPress == " +inputE->getKeyPressed());
 //    exit(0);
     return (true);
 }

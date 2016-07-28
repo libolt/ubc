@@ -41,7 +41,7 @@
 
 #define EVENT_BUF_SIZE 256
 
-typedef std::vector<inputMaps>   inputWorkQueues;
+typedef std::vector<inputKeyMaps>   inputWorkQueues;
 typedef std::vector<inputTypes> inputTypeQueues;  // stores types of input processed by the engine
 
 //class GUISystem;
@@ -67,8 +67,8 @@ public:
     SDL_Event getInputEvent();  // retrieves the value of inputEvent 
     void setInputEvent(SDL_Event set);  // sets the value of inputEvent 
 
-    std::string getKeyPressed();  // retrieves the value of keyPressed pressed 
-    void setKeyPressed(std::string set);  // sets the value of keyPressed 
+    inputKeyMaps getKeyPressed();  // retrieves the value of keyPressed pressed 
+    void setKeyPressed(inputKeyMaps set);  // sets the value of keyPressed 
 
     bool getInputProcessed();  // retrieves the value of inputProcessed
     void setInputProcessed(bool set);  // sets the value of inputProcessed
@@ -138,7 +138,7 @@ private:
 
 //    boost::shared_ptr<GUISystem> gui;  // stores the copy of the gui object
     static bool keyInputReceived;  // stores whether a key has been pressed
-    std::string keyPressed; // stores which key was pressed
+    inputKeyMaps keyPressed; // stores which key was pressed
 
     static bool inputProcessed;  // stores whether or not any input has been processed
 	

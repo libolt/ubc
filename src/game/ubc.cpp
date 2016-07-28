@@ -244,7 +244,7 @@ void UBC::processInput()  // processes game input
                 getGameE()->getInputE()->setKeyPressed("m");
 //                exit(0);
                 getInputS()->process();
-                getInputS()->getGameE()->getInputE()->setKeyPressed("p");
+                getInputS()->getInputE()->setKeyPressed("p");
                 logMsg("menuReceiveKeyPressAgain == " +getGameE()->getInputE()->getKeyPressed());
                 exit(0);
                 gui->menuReceiveKeyPress(getGameE()->getInputE()->getKeyPressed()); // sends input to menu key input processing function

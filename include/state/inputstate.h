@@ -26,20 +26,20 @@
 #include <boost/shared_ptr.hpp>
 
 // forward declarations
-class gameEngine;
+class inputEngine;
 
 class inputState : public state
 {
     public:
     
-    boost::shared_ptr<gameEngine> getGameE();  // retrieves the value of gameE
-    void setGameE(boost::shared_ptr<gameEngine> set);  // sets the value of gameE
+    boost::shared_ptr<inputEngine> getInputE();  // retrieves the value of gameE
+    void setInputE(boost::shared_ptr<inputEngine> set);  // sets the value of gameE
     
     bool process();  // processes input
     
     private:
     
-    static boost::shared_ptr<inputEngine> inputE;  // the gameEngine object
+    static boost::shared_ptr<inputEngine> inputE;  // the inputEngine object
    
     
 };

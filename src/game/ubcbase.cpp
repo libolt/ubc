@@ -47,7 +47,7 @@ UBCBase::UBCBase()  // constructor
     boost::shared_ptr<networkState> tempNetworkStateSharedPtr = boost::shared_ptr<networkState>(new networkState);
     networkS = tempNetworkStateSharedPtr;
 */
-    inputS->setGameE(gameE);
+    inputS->setInputE(gameE->getInputE());
 }
 
 UBCBase::~UBCBase()  // destructor

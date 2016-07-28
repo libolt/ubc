@@ -37,6 +37,6 @@ void inputState::setGameE(boost::shared_ptr<gameEngine> set)  // sets the value 
 bool inputState::process()  // processes input
 {
     logMsg("inputState->process menuReceiveKeyPress == " +gameE->getInput()->getKeyPressed());
-    exit(0);
+//    exit(0);
     return (true);
 }

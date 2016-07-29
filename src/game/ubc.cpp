@@ -241,19 +241,19 @@ void UBC::processInput()  // processes game input
 //                exit(0);
 //                getInputS()->setGameE(getGameE());
 //                exit(0);
-                getGameE()->getInputE()->setKeyPressed("m");
+                getGameE()->getInputE()->setKeyPressed(INKEY_M);
 //                exit(0);
                 getInputS()->process();
-                getInputS()->getInputE()->setKeyPressed("p");
+                getInputS()->getInputE()->setKeyPressed(INKEY_P);
                 logMsg("menuReceiveKeyPressAgain == " +getGameE()->getInputE()->getKeyPressed());
                 exit(0);
-                gui->menuReceiveKeyPress(getGameE()->getInputE()->getKeyPressed()); // sends input to menu key input processing function
+                gui->menuReceiveKeyPress(convert->toString(getGameE()->getInputE()->getKeyPressed())); // sends input to menu key input processing function
 //                exit(0);
-                if (getGameE()->getInputE()->getKeyPressed() == "t")
+                if (getGameE()->getInputE()->getKeyPressed() == INKEY_T)
                 {
 //                    exit(0);
                 }
-                getGameE()->getInputE()->setKeyPressed("");
+                getGameE()->getInputE()->setKeyPressed(INKEY_NONE);
             }
         }
         if (getGameS()->getActiveTeamInstancesCreated())

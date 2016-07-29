@@ -23,6 +23,8 @@
 #define _USERINPUT_H_
 
 #include <string>
+#include "enums.h"
+#include "conversion.h"
 
 class userInput
 {
@@ -30,44 +32,44 @@ class userInput
     
         userInput();
 
-        std::string getKeyUp();  // retrieves the value of keyUp
-        void setKeyUp(std::string set);  // sets the value of keyUp
+        inputKeyMaps getKeyUp();  // retrieves the value of keyUp
+        void setKeyUp(inputKeyMaps set);  // sets the value of keyUp
 
-        std::string getKeyDown();  // retrieves the value of keyDown
-        void setKeyDown(std::string set);  // sets the value of keyDown
+        inputKeyMaps getKeyDown();  // retrieves the value of keyDown
+        void setKeyDown(inputKeyMaps set);  // sets the value of keyDown
         
-        std::string getKeyLeft();  // retrieves the value of keyLeft
-        void setKeyLeft(std::string set);  // sets the value of keyLeft
+        inputKeyMaps getKeyLeft();  // retrieves the value of keyLeft
+        void setKeyLeft(inputKeyMaps set);  // sets the value of keyLeft
 
-        std::string getKeyRight();  // retrieves the value of keyRight
-        void setKeyRight(std::string set);  // sets the value of keyRight
+        inputKeyMaps getKeyRight();  // retrieves the value of keyRight
+        void setKeyRight(inputKeyMaps set);  // sets the value of keyRight
 
-        std::string getKeyUpLeft();  // retrieves the value of keyUpLeft
-        void setKeyUpLeft(std::string set);  // sets the value of keyUpLeft
+        inputKeyMaps getKeyUpLeft();  // retrieves the value of keyUpLeft
+        void setKeyUpLeft(inputKeyMaps set);  // sets the value of keyUpLeft
 
-        std::string getKeyUpRight();  // retrieves the value of keyUpRight
-        void setKeyUpRight(std::string set);  // sets the value of keyUpRight
+        inputKeyMaps getKeyUpRight();  // retrieves the value of keyUpRight
+        void setKeyUpRight(inputKeyMaps set);  // sets the value of keyUpRight
 
-        std::string getKeyDownLeft();  // retrieves the value of keyDownLeft
-        void setKeyDownLeft(std::string set);  // sets the value of keyDownLeft
+        inputKeyMaps getKeyDownLeft();  // retrieves the value of keyDownLeft
+        void setKeyDownLeft(inputKeyMaps set);  // sets the value of keyDownLeft
 
-        std::string getKeyDownRight();  // retrieves the value of keyDownRight
-        void setKeyDownRight(std::string set);  // sets the value of keyDownRight
+        inputKeyMaps getKeyDownRight();  // retrieves the value of keyDownRight
+        void setKeyDownRight(inputKeyMaps set);  // sets the value of keyDownRight
 
-        std::string getKeyShootBlock();  // retrieves the value of keyShootBlock
-        void setKeyShootBlock(std::string set);  // sets the value of keyShootBlock
+        inputKeyMaps getKeyShootBlock();  // retrieves the value of keyShootBlock
+        void setKeyShootBlock(inputKeyMaps set);  // sets the value of keyShootBlock
 
-        std::string getKeyPassSteal();  // retrieves the value of keyPassSteal
-        void setKeyPassSteal(std::string set);  // sets the value of keyPassSteal
+        inputKeyMaps getKeyPassSteal();  // retrieves the value of keyPassSteal
+        void setKeyPassSteal(inputKeyMaps set);  // sets the value of keyPassSteal
 
-        std::string getKeyPause();  // retrieves the value of keyPause
-        void setKeyPause(std::string set);  // sets the value of keyPause
+        inputKeyMaps getKeyPause();  // retrieves the value of keyPause
+        void setKeyPause(inputKeyMaps set);  // sets the value of keyPause
 
-        std::string getKeyStartSelect();  // retrieves the value of keyStartSelect
-        void setKeyStartSelect(std::string set);  // sets the value of keyStartSelect
+        inputKeyMaps getKeyStartSelect();  // retrieves the value of keyStartSelect
+        void setKeyStartSelect(inputKeyMaps set);  // sets the value of keyStartSelect
 
-        std::string getKeyQuit();  // retrieves the value of keyStartSelect
-        void setKeyQuit(std::string set);  // sets the value of keyStartSelect
+        inputKeyMaps getKeyQuit();  // retrieves the value of keyStartSelect
+        void setKeyQuit(inputKeyMaps set);  // sets the value of keyStartSelect
 
         std::string getJoyUp();  // retrieves the value of joyUp
         void setJoyUp(std::string set);  // sets the value of joyUp
@@ -112,19 +114,19 @@ class userInput
     private:
 
     // key input strings
-    std::string keyUp;
-    std::string keyDown;
-    std::string keyLeft;
-    std::string keyRight;
-    std::string keyUpLeft;
-    std::string keyUpRight;
-    std::string keyDownLeft;
-    std::string keyDownRight;
-    std::string keyShootBlock;
-    std::string keyPassSteal;
-    std::string keyPause;
-    std::string keyStartSelect;
-    std::string keyQuit;
+    inputKeyMaps keyUp;
+    inputKeyMaps keyDown;
+    inputKeyMaps keyLeft;
+    inputKeyMaps keyRight;
+    inputKeyMaps keyUpLeft;
+    inputKeyMaps keyUpRight;
+    inputKeyMaps keyDownLeft;
+    inputKeyMaps keyDownRight;
+    inputKeyMaps keyShootBlock;
+    inputKeyMaps keyPassSteal;
+    inputKeyMaps keyPause;
+    inputKeyMaps keyStartSelect;
+    inputKeyMaps keyQuit;
     
     // joystick input strings
     std::string joyUp;

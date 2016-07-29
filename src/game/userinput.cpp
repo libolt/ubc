@@ -26,119 +26,119 @@ userInput::userInput()
     active = false;
 }
 
-std::string userInput::getKeyUp()  // retrieves the value of keyUp
+inputKeyMaps userInput::getKeyUp()  // retrieves the value of keyUp
 {
     return (keyUp);
 }
-void userInput::setKeyUp(std::string set)  // sets the value of keyUp
+void userInput::setKeyUp(inputKeyMaps set)  // sets the value of keyUp
 {
     keyUp = set;
 }
 
-std::string userInput::getKeyDown()  // retrieves the value of keyDown
+inputKeyMaps userInput::getKeyDown()  // retrieves the value of keyDown
 {
     return (keyDown);
 }
-void userInput::setKeyDown(std::string set)  // sets the value of keyDown
+void userInput::setKeyDown(inputKeyMaps set)  // sets the value of keyDown
 {
     keyDown = set;
 }
-std::string userInput::getKeyLeft()  // retrieves the value of keyLeft
+inputKeyMaps userInput::getKeyLeft()  // retrieves the value of keyLeft
 {
     return (keyLeft);
 }
-void userInput::setKeyLeft(std::string set)  // sets the value of keyLeft
+void userInput::setKeyLeft(inputKeyMaps set)  // sets the value of keyLeft
 {
     keyLeft = set;
 }
 
-std::string userInput::getKeyRight()  // retrieves the value of keyRight
+inputKeyMaps userInput::getKeyRight()  // retrieves the value of keyRight
 {
     return (keyRight);
 }
-void userInput::setKeyRight(std::string set)  // sets the value of keyRight
+void userInput::setKeyRight(inputKeyMaps set)  // sets the value of keyRight
 {
     keyRight = set;
 }
 
-std::string userInput::getKeyUpLeft()  // retrieves the value of keyUpLeft
+inputKeyMaps userInput::getKeyUpLeft()  // retrieves the value of keyUpLeft
 {
     return (keyUpLeft);
 }
-void userInput::setKeyUpLeft(std::string set)  // sets the value of keyUpLeft
+void userInput::setKeyUpLeft(inputKeyMaps set)  // sets the value of keyUpLeft
 {
     keyUpLeft = set;
 }
 
-std::string userInput::getKeyUpRight()  // retrieves the value of keyUpRight
+inputKeyMaps userInput::getKeyUpRight()  // retrieves the value of keyUpRight
 {
-    return (keyUpRight);//pElem=hRoot.FirstChild("Name").FirstChild().Element();
+    return (keyUpRight);
 
 }
-void userInput::setKeyUpRight(std::string set)  // sets the value of keyUpRight
+void userInput::setKeyUpRight(inputKeyMaps set)  // sets the value of keyUpRight
 {
     keyUpRight = set;
 }
 
-std::string userInput::getKeyDownLeft()  // retrieves the value of keyDownLeft
+inputKeyMaps userInput::getKeyDownLeft()  // retrieves the value of keyDownLeft
 {
     return (keyDownLeft);
 }
-void userInput::setKeyDownLeft(std::string set)  // sets the value of keyDownLeft
+void userInput::setKeyDownLeft(inputKeyMaps set)  // sets the value of keyDownLeft
 {
     keyDownLeft = set;
 }
 
-std::string userInput::getKeyDownRight()  // retrieves the value of keyDownRight
+inputKeyMaps userInput::getKeyDownRight()  // retrieves the value of keyDownRight
 {
     return (keyDownRight);
 }
-void userInput::setKeyDownRight(std::string set)  // sets the value of keyDownRight
+void userInput::setKeyDownRight(inputKeyMaps set)  // sets the value of keyDownRight
 {
     keyDownRight = set;
 }
 
-std::string userInput::getKeyShootBlock()  // retrieves the value of keyShootBlock
+inputKeyMaps userInput::getKeyShootBlock()  // retrieves the value of keyShootBlock
 {
     return (keyShootBlock);
 }
-void userInput::setKeyShootBlock(std::string set)  // sets the value of keyShootBlock
+void userInput::setKeyShootBlock(inputKeyMaps set)  // sets the value of keyShootBlock
 {
     keyShootBlock = set;
 }
 
-std::string userInput::getKeyPassSteal()  // retrieves the value of keyPassSteal
+inputKeyMaps userInput::getKeyPassSteal()  // retrieves the value of keyPassSteal
 {
     return (keyPassSteal);
 }
-void userInput::setKeyPassSteal(std::string set)  // sets the value of keyPassSteal
+void userInput::setKeyPassSteal(inputKeyMaps set)  // sets the value of keyPassSteal
 {
     keyPassSteal = set;
 }
 
-std::string userInput::getKeyPause()  // retrieves the value of keyPause
+inputKeyMaps userInput::getKeyPause()  // retrieves the value of keyPause
 {
     return (keyPause);
 }
-void userInput::setKeyPause(std::string set)  // sets the value of keyPause
+void userInput::setKeyPause(inputKeyMaps set)  // sets the value of keyPause
 {
     keyPause = set;
 }
 
-std::string userInput::getKeyStartSelect()  // retrieves the value of keyStartSelect
+inputKeyMaps userInput::getKeyStartSelect()  // retrieves the value of keyStartSelect
 {
     return (keyStartSelect);
 }
-void userInput::setKeyStartSelect(std::string set)  // sets the value of keyStartSelect
+void userInput::setKeyStartSelect(inputKeyMaps set)  // sets the value of keyStartSelect
 {
     keyStartSelect = set;
 }
 
-std::string userInput::getKeyQuit()  // retrieves the value of keyStartSelect
+inputKeyMaps userInput::getKeyQuit()  // retrieves the value of keyStartSelect
 {
     return (keyQuit);
 }
-void userInput::setKeyQuit(std::string set)  // sets the value of keyStartSelect
+void userInput::setKeyQuit(inputKeyMaps set)  // sets the value of keyStartSelect
 {
     keyQuit = set;
 }

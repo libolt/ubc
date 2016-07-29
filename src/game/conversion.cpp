@@ -207,6 +207,12 @@ std::string conversion::toString(const bool &data) // converts bool data to stri
     return (strData);
 }
 
+std::string conversion::toString(const inputKeyMaps &data) // converts bool data to string
+{
+    std::string strData;
+    return (strData);
+}
+
 // convert to char
 char conversion::toChar(const std::string &data)  // converts from std::string to char
 {
@@ -1245,4 +1251,10 @@ Ogre::Vector3 conversion::toOgreVector3(const btVector3 &vect) // converts from 
     vector3[2] = vect.getZ();
 
     return (vector3);
+}
+
+inputKeyMaps conversion::toInputKey(const std::string &data)  // converts from string to inputKey
+{
+    inputKeyMaps inputKey;
+    return (inputKey);
 }

@@ -23,24 +23,35 @@
 #define _INPUTSTATE_H_
 
 #include "state/state.h"
+#include "enums.h"
 #include <boost/shared_ptr.hpp>
 
 // forward declarations
 class inputEngine;
+class userInput;
 
 class inputState : public state
 {
     public:
     
+    inputState::inputState();  // constructor
+    inputState::~inputState();  // destructor
+    
     boost::shared_ptr<inputEngine> getInputE();  // retrieves the value of gameE
     void setInputE(boost::shared_ptr<inputEngine> set);  // sets the value of gameE
     
+    std::vector<userInput> getUInput();  // retrieves the value of uInput
+    void setUInput(std::vector<userInput> set);  // sets the value of uInput
+    
+    inputKeyMaps keyMap();  // maps value of keyPressed string to inputMap
+	
     bool process();  // processes input
     
     private:
     
     static boost::shared_ptr<inputEngine> inputE;  // the inputEngine object
-   
+    std::vector<userInput> uInput;  // stores user input mapping
+ 
     
 };
 #endif

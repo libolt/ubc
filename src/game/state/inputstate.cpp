@@ -22,6 +22,21 @@
 #include "logging.h"
 #include "engine/inputengine.h"
 //#include "engine/gameengine.h"
+#include "userinput.h"
+#include "load.h"
+inputState::inputState()  // constructor
+{
+    boost::shared_ptr<loader> load = loader::Instance();
+
+    uInput = load->loadUserInputs();  // loads user defined input from file.
+    
+    uInput[0].setActive(true);
+
+}
+inputState::~inputState()  // destructor
+{
+    
+}
 
 boost::shared_ptr<inputEngine> inputState::inputE;  // the inputEngine object
 
@@ -32,6 +47,84 @@ boost::shared_ptr<inputEngine> inputState::getInputE()  // retrieves the value o
 void inputState::setInputE(boost::shared_ptr<inputEngine> set)  // sets the value of inputE
 {
     inputE = set;
+}
+
+std::vector<userInput> inputState::getUInput()  // retrieves the value of uInput
+{
+    return (uInput);
+}
+void inputState::setUInput(std::vector<userInput> set)  // sets the value of uInput
+{
+    uInput = set;
+}
+
+inputKeyMaps inputState::keyMap()  // maps value of keyPressed string to inputMap
+{
+//    exit(0);
+    if (inputE->getKeyPressed() == uInput[0].getKeyUp())
+    {
+//        exit(0);
+        return(INUP);
+    }
+    else if (keyPressed == uInput[0].getKeyDown())
+    {
+        return(INDOWN);
+    }
+    else if (keyPressed == uInput[0].getKeyLeft())
+    {
+        return(INLEFT);
+    }
+    else if (keyPressed == uInput[0].getKeyRight())
+    {
+        return(INRIGHT);
+    }
+    else if (keyPressed == uInput[0].getKeyUpLeft())
+    {
+        return(INUPLEFT);
+    }
+    else if (keyPressed == uInput[0].getKeyUpRight())
+    {
+        return(INUPRIGHT);
+    }
+    else if (keyPressed == uInput[0].getKeyDownLeft())
+    {
+        return(INDOWNLEFT);
+    }
+    else if (keyPressed == uInput[0].getKeyDownRight())
+    {
+        return(INDOWNRIGHT);
+    }
+    else if (keyPressed == uInput[0].getKeyPassSteal())
+    {
+        return(INPASSSTEAL);
+    }
+    else if (keyPressed == uInput[0].getKeyShootBlock())
+    {
+        return(INSHOOTBLOCK);
+    }
+    else if (keyPressed == uInput[0].getKeyPause())
+    {
+        return(INPAUSE);
+    }
+    else if (keyPressed == uInput[0].getKeyStartSelect())
+    {
+        return(INSTARTSELECT);
+    }
+    else if (keyPressed == uInput[0].getKeyQuit())
+    {
+        logMsg("keyQuit = " +uInput[0].getKeyQuit());
+    return(INQUIT);
+    }
+    else if (keyPressed == INKEY_BACKSPACE)
+    {
+//        logMsg("keyQuit = " +uInput[0].getKeyQuit());
+//        exit(0);
+        return(INBACKSPACE);
+    }
+    else
+    {
+        return(INNO);
+    }
 }
 
 bool inputState::process()  // processes input

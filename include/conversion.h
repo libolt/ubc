@@ -61,13 +61,14 @@ class conversion  // class for conversion between data types
         std::string toString(const Ogre::Vector3 &data);  // converts Ogre::Vector3 data to string
         std::string toString(const OpenSteer::Vec3 &data);  // converts OpenSteer::Vec3 data to string
 #ifdef _WIN64
-	std::string toString(const size_t &data);  // converts size_t data to string
+        std::string toString(const size_t &data);  // converts size_t data to string
 #endif
-	std::string toString(const btVector3 &data); // converts btVector3 data to string
+        std::string toString(const btVector3 &data); // converts btVector3 data to string
         std::string toString(const playerPositions &data); // converts playerPositions data to string
         std::string toString(const teamTypes &data); // converts teamTypes data to string
         std::string toString(const bool &data); // converts bool data to string
-
+        std::string toString(const inputKeyMaps &data); // converts bool data to string
+        
         // convert to char
         char toChar(const std::string &data);  // converts from std::string to char
         char toChar(const char *data);  // converts from char * to char
@@ -267,6 +268,10 @@ class conversion  // class for conversion between data types
         Ogre::Vector3 toOgreVector3(const OpenSteer::Vec3 &vect); // converts from OpenSteer::Vec3 to Ogre::Vector3
         Ogre::Vector3 toOgreVector3(const btVector3 &vect); // converts from btVector3 to Ogre::Vector3
 
+        
+        // inputKeyMaps conversion
+        inputKeyMaps toInputKey(const std::string &data);  // converts from string to inputKey
+        
     protected:
     conversion();
     conversion(const conversion&);

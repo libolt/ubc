@@ -2080,19 +2080,19 @@ userInput loader::loadUserInputFile(std::string fileName)  // loads data from th
 //            logMsg("modelName = " +modelName);
             if (type == "Keyboard")
             {
-                uInput.setKeyUp(up);
-                uInput.setKeyDown(down);
-                uInput.setKeyLeft(left);
-                uInput.setKeyRight(right);
-                uInput.setKeyUpLeft(upLeft);
-                uInput.setKeyUpRight(upRight);
-                uInput.setKeyDownLeft(downLeft);
-                uInput.setKeyDownRight(downRight);
-                uInput.setKeyShootBlock(shootBlock);
-                uInput.setKeyPassSteal(passSteal);
-                uInput.setKeyPause(pause);
-                uInput.setKeyStartSelect(startSelect);
-                uInput.setKeyQuit(quit);
+                uInput.setKeyUp(convert->toInputKey(up));
+                uInput.setKeyDown(convert->toInputKey(down));
+                uInput.setKeyLeft(convert->toInputKey(left));
+                uInput.setKeyRight(convert->toInputKey(right));
+                uInput.setKeyUpLeft(convert->toInputKey(upLeft));
+                uInput.setKeyUpRight(convert->toInputKey(upRight));
+                uInput.setKeyDownLeft(convert->toInputKey(downLeft));
+                uInput.setKeyDownRight(convert->toInputKey(downRight));
+                uInput.setKeyShootBlock(convert->toInputKey(shootBlock));
+                uInput.setKeyPassSteal(convert->toInputKey(passSteal));
+                uInput.setKeyPause(convert->toInputKey(pause));
+                uInput.setKeyStartSelect(convert->toInputKey(startSelect));
+                uInput.setKeyQuit(convert->toInputKey(quit));
             }
             else if (type == "Joystick")
             {

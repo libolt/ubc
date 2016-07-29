@@ -126,6 +126,15 @@ void inputEngine::setKeyPressed(inputKeyMaps set)
     keyPressed = set;
 }
 
+std::string inputEngine::getInputText()  // retrieves the value of inputText
+{
+    return (inputText);
+}
+void inputEngine::setInputText(std::string set)
+{
+    inputText = set;
+}
+
 bool inputEngine::getInputProcessed()  // retrieves the value of inputProcessed
 {
     return (inputProcessed);
@@ -160,15 +169,6 @@ inputTypeQueues inputEngine::getInputTypeQueues()  // retrieves the value of inp
 void inputEngine::setInputTypeQueues(inputTypeQueues set)  // sets the value of inputTypeQueues
 {
     inputTypeQueue = set;
-}
-
-std::vector<userInput> inputEngine::getUInput()  // retrieves the value of uInput
-{
-    return (uInput);
-}
-void inputEngine::setUInput(std::vector<userInput> set)  // sets the value of uInput
-{
-    uInput = set;
 }
 
 float inputEngine::getMouseX()  // retrieves the value of mouseX
@@ -211,11 +211,6 @@ bool inputEngine::setup()   // sets up and initializes the Input System
 {
 //  mDebugOverlay = OverlayManager::getSingleton().getByName("Core/DebugOverlay");
 
-    boost::shared_ptr<loader> load = loader::Instance();
-
-    uInput = load->loadUserInputs();  // loads user defined input from file.
-    
-    uInput[0].setActive(true);
     logMsg("*** Initializing SDL Input System ***");
     SDL_ShowCursor(0);  // Hides the SDL Cursor in favor of the MyGUI Cursor
 
@@ -225,75 +220,6 @@ bool inputEngine::setup()   // sets up and initializes the Input System
 bool inputEngine::destroy()  // destroys the OIS Input System and related objects
 {
     return true;
-}
-
-inputMaps inputEngine::keyMap()  // maps value of keyPressed string to inputMap
-{
-//    exit(0);
-    if (keyPressed == uInput[0].getKeyUp())
-    {
-//        exit(0);
-        return(INUP);
-    }
-    else if (keyPressed == uInput[0].getKeyDown())
-    {
-        return(INDOWN);
-    }
-    else if (keyPressed == uInput[0].getKeyLeft())
-    {
-        return(INLEFT);
-    }
-    else if (keyPressed == uInput[0].getKeyRight())
-    {
-        return(INRIGHT);
-    }
-    else if (keyPressed == uInput[0].getKeyUpLeft())
-    {
-        return(INUPLEFT);
-    }
-    else if (keyPressed == uInput[0].getKeyUpRight())
-    {
-        return(INUPRIGHT);
-    }
-    else if (keyPressed == uInput[0].getKeyDownLeft())
-    {
-        return(INDOWNLEFT);
-    }
-    else if (keyPressed == uInput[0].getKeyDownRight())
-    {
-        return(INDOWNRIGHT);
-    }
-    else if (keyPressed == uInput[0].getKeyPassSteal())
-    {
-        return(INPASSSTEAL);
-    }
-    else if (keyPressed == uInput[0].getKeyShootBlock())
-    {
-        return(INSHOOTBLOCK);
-    }
-    else if (keyPressed == uInput[0].getKeyPause())
-    {
-        return(INPAUSE);
-    }
-    else if (keyPressed == uInput[0].getKeyStartSelect())
-    {
-        return(INSTARTSELECT);
-    }
-    else if (keyPressed == uInput[0].getKeyQuit())
-    {
-        logMsg("keyQuit = " +uInput[0].getKeyQuit());
-	return(INQUIT);
-    }
-    else if (keyPressed == "Backspace")
-    {
-//        logMsg("keyQuit = " +uInput[0].getKeyQuit());
-//        exit(0);
-        return(INBACKSPACE);
-    }
-    else
-    {
-        return(INNO);
-    }
 }
 
 bool inputEngine::processInput()  // processes all input
@@ -404,9 +330,9 @@ bool inputEngine::processInput()  // processes all input
                 {
                     inputProcessed = true;
                     inputTypeQueue.push_back(KEYBOARD);
-                    inputMaps inputMap = keyMap();
+//                    inputKeyMaps inputMap = keyMap();
 //                    exit(0);
-                    inputWorkQueue.push_back(inputMap);
+//                    inputWorkQueue.push_back(inputMap);
 
 //                    return false;
                 }
@@ -414,18 +340,18 @@ bool inputEngine::processInput()  // processes all input
 //                exit(0);
             break; 
             case SDL_TEXTINPUT:
-                keyPressed = "";
+                inputText = "";
                 
-                keyPressed = inputEvent.text.text;
+                inputText = inputEvent.text.text;
                 logMsg("Key Pressed! == " +keyPressed);
 //                exit(0);
-                if (keyPressed != "")
+                if (inputText != "")
                 {
                     logMsg("keyPressed == " +keyPressed);
 //                    exit(0);
-                    inputMaps inputMap = keyMap();
+//                    inputMaps inputMap = keyMap();
                     exit(0);
-                    inputWorkQueue.push_back(inputMap);
+//                    inputWorkQueue.push_back(inputMap);
                 }
                 exit(0);
             break;
@@ -487,342 +413,339 @@ bool inputEngine::processKeyInput(bool textInput)  // processes unbuffered keybo
         switch (inputEvent.key.keysym.scancode)
         {
             case SDL_SCANCODE_A:
-                keyPressed = "a";
+                keyPressed = INKEY_A;
 //                logMsg("keyPressedScan === " +keyPressed);
 //                exit(0);
             break;
             case SDL_SCANCODE_B:
-                keyPressed = "b";
+                keyPressed = INKEY_B;
 //                exit(0);
             break;
             case SDL_SCANCODE_C:
-                keyPressed = "c";
+                keyPressed = INKEY_C;
 //                exit(0);
             break;
             case SDL_SCANCODE_D:
-                keyPressed = "d";
+                keyPressed = INKEY_D;
 //                exit(0);
             break;
             case SDL_SCANCODE_E:
-                keyPressed = "e";
+                keyPressed = INKEY_E;
 //                exit(0);
             break;
             case SDL_SCANCODE_F:
-                keyPressed = "f";
+                keyPressed = INKEY_F;
                 logMsg("F pressed!");
 //                exit(0);
             break;  
             case SDL_SCANCODE_G:
-                keyPressed = "g";
+                keyPressed = INKEY_G;
 //                exit(0);
             break;
             case SDL_SCANCODE_H:
-                keyPressed = "h";
+                keyPressed = INKEY_H;
 //                exit(0);
             break;
             case SDL_SCANCODE_I:
-                keyPressed = "i";
+                keyPressed = INKEY_I;
 //                exit(0);
             break;
             case SDL_SCANCODE_J:
-                 keyPressed = "j";
+                 keyPressed = INKEY_J;
 //                exit(0);
             break;   
             case SDL_SCANCODE_K:
-                keyPressed = "k";
+                keyPressed = INKEY_K;
 //                exit(0);
             break;
             case SDL_SCANCODE_L:
-                keyPressed = "l";
+                keyPressed = INKEY_L;
 //                exit(0);
             break;
             case SDL_SCANCODE_M:
-                keyPressed = "m";
+                keyPressed = INKEY_M;
 //                exit(0);
             break;
             case SDL_SCANCODE_N:
-                keyPressed = "n";
+                keyPressed = INKEY_N;
 //                exit(0);
             break;
             case SDL_SCANCODE_O:
-                keyPressed = "o";
+                keyPressed = INKEY_O;
 //                exit(0);
             break;
             case SDL_SCANCODE_P:
-                keyPressed = "p";
+                keyPressed = INKEY_P;
 //                exit(0);
             break;
             case SDL_SCANCODE_Q:
-                keyPressed = "q";
+                keyPressed = INKEY_Q;
 //                exit(0);
             break;
             case SDL_SCANCODE_R:
-                keyPressed = "r";
+                keyPressed = INKEY_R;
 //                exit(0);
             break;
             case SDL_SCANCODE_S:
-                 keyPressed = "s";
+                 keyPressed = INKEY_S;
 //                exit(0);
             break;
             case SDL_SCANCODE_T:
-                keyPressed = "t";
+                keyPressed = INKEY_T;
 //                exit(0);
             break;
             case SDL_SCANCODE_U:
-                 keyPressed = "u";
+                 keyPressed = INKEY_U;
 //                exit(0);
             break;
             case SDL_SCANCODE_V:
-                keyPressed = "v";
+                keyPressed = INKEY_V;
 //                exit(0);
             break;
             case SDL_SCANCODE_W:
-                keyPressed = "w";
+                keyPressed = INKEY_W;
 //                exit(0);
             break;
             case SDL_SCANCODE_X:
-                 keyPressed = "x";
+                 keyPressed = INKEY_X;
 //                exit(0);
             break;
             case SDL_SCANCODE_Y:
-                keyPressed = "y";
+                keyPressed = INKEY_Y;
 //                exit(0);
             break;
             case SDL_SCANCODE_Z:
-                keyPressed = "z";
+                keyPressed = INKEY_Z;
 //                exit(0);
             break;                     
             case SDL_SCANCODE_RETURN:
 //            case SDLK_AC_BACK:
                 logMsg("Return!");
-                keyPressed = "Return";
+                keyPressed = INKEY_RETURN;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Return, MyGUI::KeyCode::Return);
             break;
             case SDL_SCANCODE_BACKSPACE:
                 logMsg("Backspace!");
 //                 exit(0);
-                keyPressed = "Backspace";
+                keyPressed = INKEY_BACKSPACE;
 //                gui->menuReceiveKeyPress(keyPressed); // sends input to menu key input processing function
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Backspace, 0);
             break;
             case SDL_SCANCODE_ESCAPE:
                 logMsg("Escape!");
-                keyPressed = "Escape";
+                keyPressed = INKEY_ESCAPE;
 //              exit(0);
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Escape, 0);
             break;
             case SDL_SCANCODE_TAB:
                 logMsg("Tab!");
-                keyPressed = "Tab";
+                keyPressed = INKEY_TAB;
 //                exit(0);
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Tab, 0);
             break;
             case SDL_SCANCODE_SPACE:
                 logMsg("Space!");
-                keyPressed = "Space";
+                keyPressed = INKEY_SPACE;
 //              MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Space, ' ');
             break;
             case SDL_SCANCODE_LSHIFT:
-                keyPressed = "LeftShift";
+                keyPressed = INKEY_LSHIFT;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::LeftShift, 0);
             break;
             case SDL_SCANCODE_LCTRL:
-                keyPressed = "LeftControl";
+                keyPressed = INKEY_LCTRL;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::LeftControl, 0);
             break;
             case SDL_SCANCODE_LALT:
-                keyPressed = "LeftAlt";
+                keyPressed = INKEY_LALT;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::LeftAlt, 0);
             break;
             case SDL_SCANCODE_LGUI:
-                keyPressed = "LeftGUI";
+                keyPressed = INKEY_LGUI;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::LeftWindows, 0);
             break;
             case SDL_SCANCODE_RSHIFT:
-                keyPressed = "RightShift";
+                keyPressed = INKEY_RSHIFT;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::RightShift, 0);
             break;
             case SDL_SCANCODE_RCTRL:
-                keyPressed = "RightControl";
+                keyPressed = INKEY_RCTRL;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::RightControl, 0);
             break;
             case SDL_SCANCODE_RALT:
-                keyPressed = "RightAlt";
+                keyPressed = INKEY_RALT;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::RightAlt, 0);
             break;
             case SDL_SCANCODE_RGUI:
-                keyPressed = "RightGUI";
+                keyPressed = INKEY_RGUI;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::RightWindows, 0);
             break;
             case SDL_SCANCODE_MENU:
-                keyPressed = "Menu";
+                keyPressed = INKEY_MENU;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::RightWindow, 0);
             break;
             case SDL_SCANCODE_CAPSLOCK:
-                keyPressed = "CapsLock";
+                keyPressed = INKEY_CAPSLOCK;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Capital, 0);
             break;
             case SDL_SCANCODE_F1:
-                keyPressed = "F1";
+                keyPressed = INKEY_F1;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F1, 0);
             break;
             case SDL_SCANCODE_F2:
-                keyPressed = "F2";
+                keyPressed = INKEY_F2;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F2, 0);
             break;
             case SDL_SCANCODE_F3:
-                keyPressed = "F3";
+                keyPressed = INKEY_F3;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F3, 0);
             break;
             case SDL_SCANCODE_F4:
-                keyPressed = "F4";
+                keyPressed = INKEY_F4;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F4, 0);
             break;
             case SDL_SCANCODE_F5:
-                keyPressed = "F5";
+                keyPressed = INKEY_F5;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F5, 0);
             break;
             case SDL_SCANCODE_F6:
-                keyPressed = "F6";
+                keyPressed = INKEY_F6;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F6, 0);
             break;
             case SDL_SCANCODE_F7:
-                keyPressed = "F7";
+                keyPressed = INKEY_F7;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F7, 0);
             break;
             case SDL_SCANCODE_F8:
-                keyPressed = "F8";
+                keyPressed = INKEY_F8;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F8, 0);
             break;
             case SDL_SCANCODE_F9:
-                keyPressed = "F9";
+                keyPressed = INKEY_F9;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F9, 0);
             break;
             case SDL_SCANCODE_F10:
-                keyPressed = "F10";
+                keyPressed = INKEY_F10;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F10, 0);
             break;
             case SDL_SCANCODE_F11:
-                keyPressed = "F11";
+                keyPressed = INKEY_F11;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F11, 0);
             break;
             case SDL_SCANCODE_F12:
-                keyPressed = "F12";
+                keyPressed = INKEY_F12;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F12, 0);
             break;
             case SDL_SCANCODE_UP:
-                keyPressed = "Up";
+                keyPressed = INKEY_UP;
 //                logMsg("Up!");
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::ArrowUp, 0);
             break;
             case SDL_SCANCODE_DOWN:
-                keyPressed = "Down";
+                keyPressed = INKEY_DOWN;
 //                 MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::ArrowDown, 0);
             break;
             case SDL_SCANCODE_LEFT:
-                keyPressed = "Left";
+                keyPressed = INKEY_LEFT;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::ArrowLeft, 0);
             break;
             case SDL_SCANCODE_RIGHT:
-                keyPressed = "Right";
+                keyPressed = INKEY_RIGHT;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::ArrowRight, 0);
             break;
             case SDL_SCANCODE_SCROLLLOCK:
-                keyPressed = "ScrollLock";
+                keyPressed = INKEY_SCROLLLOCK;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::ScrollLock, 0);
             break;
             case SDL_SCANCODE_HOME:
-                keyPressed = "Home";
+                keyPressed = INKEY_HOME;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Home, 0);
             break;
             case SDL_SCANCODE_PAUSE:
-                keyPressed = "Pause";
+                keyPressed = INKEY_PAUSE_BREAK;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Pause, 0);
             break;
             case SDL_SCANCODE_INSERT:
-                keyPressed = "Insert";
+                keyPressed = INKEY_INSERT;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Insert, 0);
             break;
             case SDL_SCANCODE_PAGEUP:
-                keyPressed = "PageUp";
+                keyPressed = INKEY_PAGEUP;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::PageUp, 0);
             break;
             case SDL_SCANCODE_DELETE:
-                keyPressed = "Delete";
+                keyPressed = INKEY_DELETE;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Delete, 0);
             break;
             case SDL_SCANCODE_END:
-                keyPressed = "End";
+                keyPressed = INKEY_END;
 //            MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::End, 0);
             break;
             case SDL_SCANCODE_PAGEDOWN:
-                keyPressed = "PageDown";
+                keyPressed = INKEY_PAGEDOWN;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::PageDown, 0);
             break;
             case SDL_SCANCODE_NUMLOCKCLEAR:
-                keyPressed = "NumLockClear";
+                keyPressed = INKEY_NUMLOCK;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::NumLock, 0);
             break;
             case SDL_SCANCODE_KP_DIVIDE:
-                keyPressed = "Divide";
+                keyPressed = INKEY_DIVIDE;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Divide, 0);
             break;
             case SDL_SCANCODE_KP_MULTIPLY:
-                keyPressed = "Multiply";
+                keyPressed = INKEY_MULTIPLY;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Multiply, 0);
             break;
             case SDL_SCANCODE_KP_MINUS:
-                keyPressed = "Minud";
+                keyPressed = INKEY_MINUS;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Minus, 0);
             break;
             case SDL_SCANCODE_KP_ENTER:
-                keyPressed = "Enter";
+                keyPressed = INKEY_ENTER;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::NumpadEnter, 0);
             break;
             case SDL_SCANCODE_KP_0:
-                keyPressed = "0";
+                keyPressed = INKEY_0;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Numpad0, '0');
             break;
             case SDL_SCANCODE_KP_1:
-                keyPressed = "1";
+                keyPressed = INKEY_1;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Numpad1, '1');
             break;
             case SDL_SCANCODE_KP_2:
-                keyPressed = "2";
+                keyPressed = INKEY_2;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Numpad2, '2');
             break;
             case SDL_SCANCODE_KP_3:
-                keyPressed = "3";
+                keyPressed = INKEY_3;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Numpad3, '3');
             break;
             case SDL_SCANCODE_KP_4:
-                keyPressed = "4";
+                keyPressed = INKEY_4;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Numpad4, '4');
             break;
             case SDL_SCANCODE_KP_5:
-                keyPressed = "5";
+                keyPressed = INKEY_5;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Numpad5, '5');
             break;
             case SDL_SCANCODE_KP_6:
-                keyPressed = "6";
+                keyPressed = INKEY_6;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Numpad6, '6');
             break;
             case SDL_SCANCODE_KP_7:
-                keyPressed = "7";
+                keyPressed = INKEY_7;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Numpad7, '7');
             break;
             case SDL_SCANCODE_KP_8:
-                keyPressed = "8";
+                keyPressed = INKEY_8;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Numpad8, '8');
             break;
             case SDL_SCANCODE_KP_9:
-                keyPressed = "9";
+                keyPressed = INKEY_9;
 //                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Numpad9, '9');
             break;
-            case SDL_SCANCODE_6:
-                keyPressed = "";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Enum(6), '6');
-            break;
+            
             default:
             logMsg("break");
             //    MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Enum(inputEvent.key.keysym.sym), inputEvent.key.keysym.sym);
@@ -860,7 +783,7 @@ bool inputEngine::processKeyInput(bool textInput)  // processes unbuffered keybo
 //	logMsg("Keyboard Input Processed");
     // Return true to continue rendering
 
-	if (keyPressed != "")
+	if (keyPressed != INKEY_NONE)
 	{
 		return (true);
 	}

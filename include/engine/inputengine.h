@@ -33,7 +33,7 @@
 #include <boost/thread/locks.hpp>
 
 #include "enums.h"
-#include "userinput.h"
+
 //#include "engine/renderengine.h"
 //#include "gui/gui.h"
 
@@ -70,6 +70,9 @@ public:
     inputKeyMaps getKeyPressed();  // retrieves the value of keyPressed pressed 
     void setKeyPressed(inputKeyMaps set);  // sets the value of keyPressed 
 
+    std::string getInputText();  // retrieves the value of inputText
+    void setInputText(std::string set);
+    
     bool getInputProcessed();  // retrieves the value of inputProcessed
     void setInputProcessed(bool set);  // sets the value of inputProcessed
     
@@ -81,10 +84,7 @@ public:
 
     inputTypeQueues getInputTypeQueues();  // retrieves the value of inputTypeQueue
     void setInputTypeQueues(inputTypeQueues set);  // sets the value of inputTypeQueues
-    
-    std::vector<userInput> getUInput();  // retrieves the value of uInput
-    void setUInput(std::vector<userInput> set);  // sets the value of uInput
-    
+        
     float getMouseX();  // retrieves the value of mouseX
     void setMouseX(float set);  // sets the value of mouseX
     
@@ -100,8 +100,6 @@ public:
     bool setup();   // sets up and initializes the  Input System
     bool destroy(); // destroys the Input system and related objects
 
-    inputMaps keyMap();  // maps value of keyPressed string to inputMap
-	
     bool processInput();	// processes all input
     bool processKeyInput(bool textInput);	// reads in key presses
     bool processTextInput();  // reads in text input
@@ -140,12 +138,12 @@ private:
     static bool keyInputReceived;  // stores whether a key has been pressed
     inputKeyMaps keyPressed; // stores which key was pressed
 
+    static std::string inputText;  // stores text inout by user
+    
     static bool inputProcessed;  // stores whether or not any input has been processed
 	
     inputMaps inputMap; // stores user input
 
-    std::vector<userInput> uInput;  // stores user input mapping
- 
     inputWorkQueues inputWorkQueue;
     inputWorkQueues internalInputWorkQueue;
     inputTypeQueues inputTypeQueue;  // stores queue of input types to process

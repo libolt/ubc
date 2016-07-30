@@ -58,7 +58,7 @@ void inputState::setUInput(std::vector<userInput> set)  // sets the value of uIn
     uInput = set;
 }
 
-inputKeyMaps inputState::keyMap()  // maps value of keyPressed string to inputMap
+inputMaps inputState::keyMap()  // maps value of keyPressed string to inputMap
 {
 //    exit(0);
     if (inputE->getKeyPressed() == uInput[0].getKeyUp())
@@ -66,56 +66,56 @@ inputKeyMaps inputState::keyMap()  // maps value of keyPressed string to inputMa
 //        exit(0);
         return(INUP);
     }
-    else if (keyPressed == uInput[0].getKeyDown())
+    else if (inputE->getKeyPressed() == uInput[0].getKeyDown())
     {
         return(INDOWN);
     }
-    else if (keyPressed == uInput[0].getKeyLeft())
+    else if (inputE->getKeyPressed() == uInput[0].getKeyLeft())
     {
         return(INLEFT);
     }
-    else if (keyPressed == uInput[0].getKeyRight())
+    else if (inputE->getKeyPressed() == uInput[0].getKeyRight())
     {
         return(INRIGHT);
     }
-    else if (keyPressed == uInput[0].getKeyUpLeft())
+    else if (inputE->getKeyPressed() == uInput[0].getKeyUpLeft())
     {
         return(INUPLEFT);
     }
-    else if (keyPressed == uInput[0].getKeyUpRight())
+    else if (inputE->getKeyPressed() == uInput[0].getKeyUpRight())
     {
         return(INUPRIGHT);
     }
-    else if (keyPressed == uInput[0].getKeyDownLeft())
+    else if (inputE->getKeyPressed() == uInput[0].getKeyDownLeft())
     {
         return(INDOWNLEFT);
     }
-    else if (keyPressed == uInput[0].getKeyDownRight())
+    else if (inputE->getKeyPressed() == uInput[0].getKeyDownRight())
     {
         return(INDOWNRIGHT);
     }
-    else if (keyPressed == uInput[0].getKeyPassSteal())
+    else if (inputE->getKeyPressed() == uInput[0].getKeyPassSteal())
     {
         return(INPASSSTEAL);
     }
-    else if (keyPressed == uInput[0].getKeyShootBlock())
+    else if (inputE->getKeyPressed() == uInput[0].getKeyShootBlock())
     {
         return(INSHOOTBLOCK);
     }
-    else if (keyPressed == uInput[0].getKeyPause())
+    else if (inputE->getKeyPressed() == uInput[0].getKeyPause())
     {
         return(INPAUSE);
     }
-    else if (keyPressed == uInput[0].getKeyStartSelect())
+    else if (inputE->getKeyPressed() == uInput[0].getKeyStartSelect())
     {
         return(INSTARTSELECT);
     }
-    else if (keyPressed == uInput[0].getKeyQuit())
+    else if (inputE->getKeyPressed() == uInput[0].getKeyQuit())
     {
         logMsg("keyQuit = " +uInput[0].getKeyQuit());
     return(INQUIT);
     }
-    else if (keyPressed == INKEY_BACKSPACE)
+    else if (inputE->getKeyPressed() == INKEY_BACKSPACE)
     {
 //        logMsg("keyQuit = " +uInput[0].getKeyQuit());
 //        exit(0);

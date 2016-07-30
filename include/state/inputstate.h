@@ -43,7 +43,7 @@ class inputState : public state
     std::vector<userInput> getUInput();  // retrieves the value of uInput
     void setUInput(std::vector<userInput> set);  // sets the value of uInput
     
-    inputKeyMaps keyMap();  // maps value of keyPressed string to inputMap
+    inputMaps keyMap();  // maps value of keyPressed string to inputMap
 	
     bool process();  // processes input
     

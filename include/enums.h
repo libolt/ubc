@@ -55,7 +55,7 @@
         INKEY_ESCAPE = 'escape',
         INKEY_TAB = 'tab',
         INKEY_SPACE = 'space',
-        INKEY_LSHIFT = 'lshify',
+        INKEY_LSHIFT = 'lshift',
         INKEY_LCTRL = 'lctrl',
         INKEY_LALT = 'lalt',
         INKEY_LGUI = 'lgui',

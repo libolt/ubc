@@ -22,10 +22,11 @@
 #ifndef _INPUTSTATE_H_
 #define _INPUTSTATE_H_
 
+#include <vector>
+
 #include "state/state.h"
 #include "enums.h"
 #include <boost/shared_ptr.hpp>
-
 // forward declarations
 class inputEngine;
 class userInput;

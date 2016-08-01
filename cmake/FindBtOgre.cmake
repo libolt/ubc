@@ -31,7 +31,7 @@ FIND_LIBRARY(BtOgre_LIBRARIES_REL
     )
 
 FIND_LIBRARY(BtOgre_LIBRARIES_DBG
-	NAMES BtOgre_Debug BtOgre_D libBtOgre_d.a
+	NAMES BtOgre_Debug BtOgre_D BtOgre_d libBtOgre_d.a
     PATHS
     $ENV{BTOGRE_HOME}/lib
     /usr/local

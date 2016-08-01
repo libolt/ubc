@@ -68,7 +68,7 @@ float inputEngine::mouseX;
 float inputEngine::mouseY;
 mouseClicks inputEngine::mouseClick;
 //std::string inputEngine::keyPressed; 
-static std::string inputEngine::inputText;
+std::string inputEngine::inputText;
 bool inputEngine::textInputStarted;
 
 inputEngine::inputEngine()  // constructor

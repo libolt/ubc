@@ -129,7 +129,9 @@ inputMaps inputState::keyMap()  // maps value of keyPressed string to inputMap
 
 bool inputState::process()  // processes input
 {
-    logMsg("inputState->process menuReceiveKeyPress == " +inputE->getKeyPressed());
+    boost::shared_ptr<conversion> convert = conversion::Instance();
+
+    logMsg("inputState->process menuReceiveKeyPress == " +convert->toString(inputE->getKeyPressed()));
 //    exit(0);
     return (true);
 }

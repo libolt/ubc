@@ -206,7 +206,7 @@ bool UBC::startGame()  // starts the game
     logMsg("startGame()");
 
     getGameS()->setupState();
-    return true;
+    return (true);
 }
 
 void UBC::processInput()  // processes game input
@@ -233,11 +233,13 @@ void UBC::processInput()  // processes game input
 //        if (getGameE()->getInputE()->getKeyInputReceived())
         if (getGameE()->getInputE()->getInputProcessed())
         {
+            logMsg("Input Processed");
 //            exit(0);
             if (getGameE()->getMenuActive())
             {
+                logMsg("Input Processed menuActive");
 //                exit(0);
-                logMsg("menuReceiveKeyPress == " +getGameE()->getInputE()->getKeyPressed());
+                logMsg("menuReceiveKeyPress == " +convert->toString(getGameE()->getInputE()->getKeyPressed()));
 //                exit(0);
 //                getInputS()->setGameE(getGameE());
 //                exit(0);
@@ -245,7 +247,7 @@ void UBC::processInput()  // processes game input
 //                exit(0);
                 getInputS()->process();
                 getInputS()->getInputE()->setKeyPressed(INKEY_P);
-                logMsg("menuReceiveKeyPressAgain == " +getGameE()->getInputE()->getKeyPressed());
+                logMsg("menuReceiveKeyPressAgain == " +convert->toString(getGameE()->getInputE()->getKeyPressed()));
                 exit(0);
                 gui->menuReceiveKeyPress(convert->toString(getGameE()->getInputE()->getKeyPressed())); // sends input to menu key input processing function
 //                exit(0);

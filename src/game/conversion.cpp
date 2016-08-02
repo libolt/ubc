@@ -1703,11 +1703,11 @@ inputKeyMaps conversion::toInputKey(const std::string &data)  // converts from s
     }
     else if (data == "y")
     {
-        inputKey = "");
+        inputKey = INKEY_Y);
     }
     else if (data == "z")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_Z;
     }
     else if (data == "return")
     {

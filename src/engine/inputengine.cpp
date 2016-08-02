@@ -82,7 +82,7 @@ inputEngine::inputEngine()  // constructor
     mouseRightClick = false;
     inputProcessed = false;
 	
-	inputMap = INNO;
+	inputMap = INNONE;
     textInputStarted = false;
     setup();
 }
@@ -144,23 +144,32 @@ void inputEngine::setInputProcessed(bool set)  // sets the value of inputProcess
 {
     inputProcessed = set;
 }
+/*
+inputInGameMaps inputEngine::getInputInGameMap()  // retrieves the value of inputInGameMap 
+{
+    return(inputInGameMap);
+}
+void inputEngine::setInputInGameMap(inputInGameMaps set)  // sets the value of inputInGameMap 
+{
+    inputInGameMap = set;
+}
+*/
+inputKeyWorkQueues inputEngine::getInputKeyWorkQueue()  // retrieves the value of inputKeyWorkQueue
+{
+    return (inputKeyWorkQueue);
+}
+void inputEngine::setInputKeyWorkQueue(inputWorkKeyQueues set)  // sets the value of inputWorkQueue
+{
+    inputKeyWorkQueue = set;
+}
 
-inputMaps inputEngine::getInputMap()  // retrieves the value of inputMap 
+inputGamePadWorkQueues inputEngine::getInputGamePadWorkQueue()  // retrieves the value of inputGamePadWorkQueue
 {
-    return(inputMap);
+    return (inputGamePadWorkQueue);
 }
-void inputEngine::setInputMap(inputMaps set)  // sets the value of inputMap 
+void inputEngine::setInputGamePadWorkQueue(inputGamePadWorkQueues set)  // sets the value of inputGamePadWorkQueue
 {
-    inputMap = set;
-}
-
-inputWorkQueues inputEngine::getInputWorkQueue()  // retrieves the value of inputWorkQueue
-{
-    return (inputWorkQueue);
-}
-void inputEngine::setInputWorkQueue(inputWorkQueues set)  // sets the value of inputWorkQueue
-{
-    inputWorkQueue = set;
+    inputGamePadWorkQueue = set;
 }
 
 inputTypeQueues inputEngine::getInputTypeQueues()  // retrieves the value of inputTypeQueue
@@ -403,8 +412,8 @@ bool inputEngine::processKeyInput(bool textInput)  // processes unbuffered keybo
 //    boost::shared_ptr<GUISystem> gui = GUISystem::Instance();
 //	logMsg("Processing keyboard input");
 
-    logMsg("key == " +convert->toString(inputEvent.key.keysym.sym));
-    logMsg("key = " +keyPressed);
+    logMsg("key ==s " +convert->toString(inputEvent.key.keysym.sym));
+    logMsg("key = " +convert->toString(keyPressed));
 //    exit(0);
 //    if (MyGUI::InputManager::getInstance().isFocusKey())	// checks if a MyGUI widget has key focus
 //    {

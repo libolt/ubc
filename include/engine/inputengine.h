@@ -41,7 +41,8 @@
 
 #define EVENT_BUF_SIZE 256
 
-typedef std::vector<inputKeyMaps>   inputWorkQueues;
+typedef std::vector<inputKeyMaps>   inputKeyWorkQueues;
+typedef std::vector<inputGamePadMaps>   inputGamePadWorkQueues;
 typedef std::vector<inputTypes> inputTypeQueues;  // stores types of input processed by the engine
 
 //class GUISystem;
@@ -73,14 +74,17 @@ public:
     std::string getInputText();  // retrieves the value of inputText
     void setInputText(std::string set);
     
-    bool getInputProcessed();  // retrieves the value of inputProcessed
-    void setInputProcessed(bool set);  // sets the value of inputProcessed
+//    bool getInputProcessed();  // retrieves the value of inputProcessed
+//    void setInputProcessed(bool set);  // sets the value of inputProcessed
     
-    inputMaps getInputMap();  // retrieves the value of inputMap 
-    void setInputMap(inputMaps set);  // sets the value of inputMap 
+//    inputMaps getInputMap();  // retrieves the value of inputMap 
+//    void setInputMap(inputMaps set);  // sets the value of inputMap 
 
-    inputWorkQueues getInputWorkQueue();  // retrieves the value of inputWorkQueue
-    void setInputWorkQueue(inputWorkQueues set);  // sets the value of inputWorkQueue
+    inputKeyWorkQueues getInputKeyWorkQueue();  // retrieves the value of inputKeyWorkQueue
+    void setInputKeyWorkQueue(inputKeyWorkQueues set);  // sets the value of inputKeyWorkQueue
+
+    inputGamePadWorkQueues getInputGamePadWorkQueue();  // retrieves the value of inputGamePadWorkQueue
+    void setInputGamePadWorkQueue(inputGamePadWorkQueues set);  // sets the value of inputGamePadWorkQueue
 
     inputTypeQueues getInputTypeQueues();  // retrieves the value of inputTypeQueue
     void setInputTypeQueues(inputTypeQueues set);  // sets the value of inputTypeQueues
@@ -142,10 +146,11 @@ private:
     
     static bool inputProcessed;  // stores whether or not any input has been processed
 	
-    inputMaps inputMap; // stores user input
+//    inputMaps inputMap; // stores user input
 
-    inputWorkQueues inputWorkQueue;
-    inputWorkQueues internalInputWorkQueue;
+    inputKeyWorkQueues inputKeyWorkQueue;
+    inputKeyWorkQueues internalInputKeyWorkQueue;
+    inputGamePadWorkQueues inputGamePadWorkQueue;
     inputTypeQueues inputTypeQueue;  // stores queue of input types to process
     boost::mutex inputWorkQueueMutex;
 };

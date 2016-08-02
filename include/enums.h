@@ -21,7 +21,7 @@
 #ifndef _ENUMS_H_
 #define _ENUMS_H_
 
-    enum inputMaps { INNO, INUP, INDOWN, INLEFT, INRIGHT, INUPLEFT, INUPRIGHT, INDOWNLEFT, INDOWNRIGHT, INSHOOTBLOCK, INPASSSTEAL, INPAUSE, INSTARTSELECT, INQUIT, INBACKSPACE, INRETURN }; // map of human player input
+    enum inputInGameMaps { INNO, INUP, INDOWN, INLEFT, INRIGHT, INUPLEFT, INUPRIGHT, INDOWNLEFT, INDOWNRIGHT, INSHOOTBLOCK, INPASSSTEAL, INPAUSE, INSTARTSELECT, INQUIT }; // map of human player input
     enum inputKeyMaps  // maps input to appropriate keys
     {
         INKEY_A = 'a',
@@ -109,6 +109,34 @@
         INKEY_9 = '9',
         INKEY_NONE = 'none'
     };
+    
+    enum inputGamePadMaps  // Maps input for gamepads
+    {
+        AXISUP0, 
+        AXISDOWN0, 
+        AXISLEFT0, 
+        AXISRIGHT0, 
+        AXISUPLEFT0, 
+        AXISUPRIGHT0, 
+        AXISDOWNLEFT0,
+        AXISUP1, 
+        AXISDOWN1, 
+        AXISLEFT1, 
+        AXISRIGHT1, 
+        AXISUPLEFT1, 
+        AXISUPRIGHT1, 
+        AXISDOWNLEFT1,
+        BUTTON0,
+        BUTTON1,
+        BUTTON2,
+        BUTTON3,
+        BUTTON4,
+        BUTTON5,
+        BUTTON6,
+        BUTTON7,
+        BUTTON8
+    };
+    
     enum inputTypes { KEYBOARD, MOUSE, GAMEPAD, TOUCH };  // types of inputs used in the game
 	enum mouseClicks { NOCLICK, LEFTCLICK, RIGHTCLICK, MIDDLECLICK, WHEELCLICK };  // stores which mouse button has been clicked
     enum directions { NODIRECT, UP, DOWN, LEFT, RIGHT, UPLEFT, UPRIGHT, DOWNLEFT, DOWNRIGHT };	// direction objects are moving

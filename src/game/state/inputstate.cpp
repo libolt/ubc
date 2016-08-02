@@ -131,7 +131,195 @@ bool inputState::process()  // processes input
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 
-    logMsg("inputState->process menuReceiveKeyPress == " +convert->toString(inputE->getKeyPressed()));
-//    exit(0);
+    if (inputE->processInput())
+    {
+//        exit(0);
+        if (inputE->getInputProcessed())
+        {
+            logMsg("Input Processed");
+            exit(0);
+            if (getGameE()->getMenuActive())
+            {
+                logMsg("Input Processed menuActive");
+//                exit(0);
+                logMsg("menuReceiveKeyPress == " +convert->toString(getGameE()->getInputE()->getKeyPressed()));
+//                exit(0);
+//                getInputS()->setGameE(getGameE());
+//                exit(0);
+//                getGameE()->getInputE()->setKeyPressed(INKEY_M);
+//                exit(0);
+///                getInputS()->process();
+//                 getIunputS()->getInputE()->setKeyPressed(INKEY_P);
+                logMsg("menuReceiveKeyPressAgain == " +convert->toString(getGameE()->getInputE()->getKeyPressed()));
+//                exit(0);
+///                gui->menuReceiveKeyPress(convert->toString(getGameE()->getInputE()->getKeyPressed())); // sends input to menu key input processing function
+//                exit(0);
+                if (getGameE()->getInputE()->getKeyPressed() == INKEY_T)
+                {
+//                    exit(0);
+                }
+                getGameE()->getInputE()->setKeyPressed(INKEY_NONE);
+            }
+        }
+        if (getGameS()->getActiveTeamInstancesCreated())
+        {
+//            exit(0);
+            size_t inputIterator = 0;
+            while (inputIterator < activeTeamInstance.size())
+            {
+                if (activeTeamInstance[inputIterator]->getPlayerInstancesCreated())
+                {
+                    std::vector<boost::shared_ptr<playerState> > activePlayerInstance = activeTeamInstance[inputIterator]->getActivePlayerInstance();
+                    if (activeTeamInstance[inputIterator]->getHumanControlled())
+                    {
+                        int humanPlayer = activeTeamInstance[inputIterator]->getHumanPlayer();
+                        logMsg("inputHumanPlayer == " +convert->toString(humanPlayer));
+                        //inputMaps inputMap = input->keyMap();
+                        inputWorkQueues inputQueue = getGameE()->getInputE()->getInputWorkQueue();
+        //                              logMsg("INPUT MAP ======== "  +toString(inputMap));
+                        std::stringstream ss;
+//                      exit(0);
+                        size_t x = 0;
+                        size_t humanInstance = 11;
+                        while (x < activePlayerInstance.size())
+                        {
+                            logMsg("GEPlayerID == " +convert->toString(activePlayerInstance[x]->getID()));
+                            logMsg("GEHumanPlayer == " +convert->toString(humanPlayer));
+
+                            if (activePlayerInstance[x]->getID() == humanPlayer)
+                            {
+                                humanInstance = x;
+                                break;
+                            }
+                            ++x;
+                        }
+                        logMsg("humanInstance == " +convert->toString(humanInstance));
+                        logMsg("inputHumanPlayer == " +convert->toString(humanPlayer));
+                        logMsg("inputQueue.size = " +convert->toString(inputQueue.size()));
+                        x = 0;
+                        int activeBBallInstance = getGameS()->getActiveBBallInstance();
+                        std::vector<basketballState> bballInstance = getGameS()->getBasketballInstance();
+                        logMsg("humanInstance.size() == " +convert->toString(humanInstance));
+                        if (humanInstance < 11) // makes sure that the humanInstance is a valid number
+                        {
+                            while (x < inputQueue.size())
+                            {
+                                logMsg("inputQueue[" +convert->toString(x) +"] = " +convert->toString(inputQueue[x]));
+                                // switch (inputMap)
+                                switch (inputQueue[x])
+                                {
+                                    case INUP:
+                                        activePlayerInstance[humanInstance]->setMovement(true);
+                                        activePlayerInstance[humanInstance]->setDirection(UP);
+                                        activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
+                                        getGameS()->setActiveTeamInstance(activeTeamInstance);
+//                                        exit(0);
+                                    break;
+                                    case INDOWN:
+                                        activePlayerInstance[humanInstance]->setMovement(true);
+                                        activePlayerInstance[humanInstance]->setDirection(DOWN);
+                                        activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
+                                        getGameS()->setActiveTeamInstance(activeTeamInstance);
+                                    break;
+                                    case INLEFT:
+                                        activePlayerInstance[humanInstance]->setMovement(true);
+                                        activePlayerInstance[humanInstance]->setDirection(LEFT);
+                                        activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
+                                        getGameS()->setActiveTeamInstance(activeTeamInstance);
+                                    break;
+                                    case INRIGHT:
+                                        activePlayerInstance[humanInstance]->setMovement(true);
+                                        activePlayerInstance[humanInstance]->setDirection(RIGHT);
+                                        activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
+                                        getGameS()->setActiveTeamInstance(activeTeamInstance);
+                                    break;
+                                    case INUPLEFT:
+                                        activePlayerInstance[humanInstance]->setMovement(true);
+                                        activePlayerInstance[humanInstance]->setDirection(UPLEFT);
+                                        activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
+                                        getGameS()->setActiveTeamInstance(activeTeamInstance);
+                                    break;
+                                    case INUPRIGHT:
+                                        activePlayerInstance[humanInstance]->setMovement(true);
+                                        activePlayerInstance[humanInstance]->setDirection(UPRIGHT);
+                                        activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
+                                        getGameS()->setActiveTeamInstance(activeTeamInstance);
+                                    break;
+                                    case INDOWNLEFT:
+                                        activePlayerInstance[humanInstance]->setMovement(true);
+                                        activePlayerInstance[humanInstance]->setDirection(DOWNLEFT);
+                                        activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
+                                        getGameS()->setActiveTeamInstance(activeTeamInstance);
+                                    break;
+                                    case INDOWNRIGHT:
+                                        activePlayerInstance[humanInstance]->setMovement(true);
+                                        activePlayerInstance[humanInstance]->setDirection(DOWNRIGHT);
+                                        activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
+                                        getGameS()->setActiveTeamInstance(activeTeamInstance);
+                                    break;
+                                    case INSHOOTBLOCK:
+                                        activePlayerInstance[humanInstance]->setMovement(false);
+                                        activePlayerInstance[humanInstance]->setShootBlock(true);
+                                        activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
+                                        getGameS()->setActiveTeamInstance(activeTeamInstance);
+                                    break;
+                                    case INPASSSTEAL:
+                                        activePlayerInstance[humanInstance]->setMovement(false);
+                                        activePlayerInstance[humanInstance]->setPassSteal(true);
+                                        activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
+                                        getGameS()->setActiveTeamInstance(activeTeamInstance);
+                                    break;
+                                    case INQUIT:
+                                        logMsg("Quitting!");
+                                        getGameE()->setQuitGame(true);
+                                        exit(0);
+                                    break;
+                                    default:
+                                    break;
+                                }
+                                ++x;
+                            }
+                        }
+                        std::vector<boost::shared_ptr<teamState> > tInstance = getGameS()->getActiveTeamInstance();
+                        std::vector<boost::shared_ptr<playerState> > activePInstance = tInstance[inputIterator]->getActivePlayerInstance();
+                        logMsg("humanInstance == " +convert->toString(humanInstance));
+                        //logMsg("inPassSteal == " +convert->toString(activePInstance[humanInstance]->getPassSteal()));
+                        //exit(0);
+
+                        /// FIXME! This if statement should be adapted to work correctly instead of relying on the i variable
+                        int i = 0;
+                        if (getGameS()->getTeamWithBall() == i)
+                        {
+                            if (activePlayerInstance[humanInstance]->getMovement())
+                            {
+                                logMsg("human playerID == " +convert->toString(activePlayerInstance[humanInstance]->getID()));
+                                logMsg("ball player == " +convert->toString(activeTeamInstance[inputIterator]->getPlayerWithBallInstance()));
+                                logMsg("ball playerID == " +convert->toString(activeTeamInstance[inputIterator]->getPlayerWithBallID()));
+                                if (activePlayerInstance[humanInstance]->getID() == activeTeamInstance[inputIterator]->getPlayerWithBallID())
+                                {
+                                    bballInstance[activeBBallInstance].setMovement(true);
+                                    getGameS()->setBasketballInstance(bballInstance);
+                                }
+                            }
+                        }
+                        if (getGameS()->getBasketballInstance().size() > 0)
+                        {
+                            logMsg("basketballmoved == " +convert->toString(bballInstance[activeBBallInstance].getMovement()));
+                        }
+                        getGameS()->setActiveTeamInstance(activeTeamInstance);
+
+                        if (getGameS()->getGameType() == MULTI)
+                        {
+                            getNetworkS()->processLocalInput(getGameS()->getActiveTeamInstance());
+                        }
+                        inputQueue.clear();
+                        getGameE()->getInputE()->setInputWorkQueue(inputQueue);
+                    }
+                    ++inputIterator;
+                }
+            }
+        }
+
+    }   
     return (true);
 }

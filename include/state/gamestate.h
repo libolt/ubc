@@ -275,6 +275,12 @@ private:
     bool sceneCreated;  // stores whether the scene has been created
     bool gameStarted;  // Determines whether or not a basketball game has been started
     bool tipOffSetupComplete;  // Determines whether or not game Tip Off has been setup
+
+    bool inputReceived;  // if true process input
+    
+    
+    
+    
 //    bool tipOffComplete;  // Determines whether or not game Tip Off has completed
 
 //    boost::shared_ptr<jumpBalls> jumpBall; // instance that is used for jumpBall functions.

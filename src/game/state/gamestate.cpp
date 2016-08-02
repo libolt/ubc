@@ -57,6 +57,7 @@ boost::shared_ptr<gameState> gameState::Instance()
 
 gameState::gameState()  // constructor
 {
+    inputReceived = true;
 /*    
 //    basketballInstancesCreated = false;
 //    courtInstancesCreated = false;
@@ -761,6 +762,10 @@ bool gameState::setupState()  // sets up the game condition
 
 bool gameState::updateState()  // updates the game state
 {
+    boost::shared_ptr<conversion> convert = conversion::Instance();
+
+    
+    
 //    logMsg("Updating gameState Logic");
 
 // BEGINING OF TEST COMMENT

@@ -221,16 +221,26 @@ void UBC::processInput()  // processes game input
 
     logMsg("inputProcess!");
 //    exit(0);
-    if (getGameE()->getInputE()->processInput())
+    
+    if (getInputS()->process())
     {
-//        exit(0);
         if (getGameE()->getMenuActive())
         {
-            logMsg("menuActive!");
-//            exit(0);
+            gui->menuReceiveKeyPress(convert->toString(getGameE()->getInputE()->getKeyPressed())); // sends input to menu key input processing function
         }
-
-//        if (getGameE()->getInputE()->getKeyInputReceived())
+        else
+        {
+            
+        }
+        getGameE()->getInputE()->setKeyPressed(INKEY_NONE);
+    }
+    else
+    {
+        
+    }
+    
+/*    if (getGameE()->getInputE()->processInput())
+    {
         if (getGameE()->getInputE()->getInputProcessed())
         {
             logMsg("Input Processed");
@@ -243,12 +253,12 @@ void UBC::processInput()  // processes game input
 //                exit(0);
 //                getInputS()->setGameE(getGameE());
 //                exit(0);
-                getGameE()->getInputE()->setKeyPressed(INKEY_M);
+//                getGameE()->getInputE()->setKeyPressed(INKEY_M);
 //                exit(0);
                 getInputS()->process();
-                getInputS()->getInputE()->setKeyPressed(INKEY_P);
+//                 getInputS()->getInputE()->setKeyPressed(INKEY_P);
                 logMsg("menuReceiveKeyPressAgain == " +convert->toString(getGameE()->getInputE()->getKeyPressed()));
-                exit(0);
+//                exit(0);
                 gui->menuReceiveKeyPress(convert->toString(getGameE()->getInputE()->getKeyPressed())); // sends input to menu key input processing function
 //                exit(0);
                 if (getGameE()->getInputE()->getKeyPressed() == INKEY_T)
@@ -418,6 +428,7 @@ void UBC::processInput()  // processes game input
         }
 
     }   
+*/
 //    exit(0);
     
 }

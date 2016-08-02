@@ -1703,7 +1703,7 @@ inputKeyMaps conversion::toInputKey(const std::string &data)  // converts from s
     }
     else if (data == "y")
     {
-        inputKey = INKEY_Y);
+        inputKey = INKEY_Y;
     }
     else if (data == "z")
     {
@@ -1711,454 +1711,219 @@ inputKeyMaps conversion::toInputKey(const std::string &data)  // converts from s
     }
     else if (data == "return")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_RETURN;
     }
     else if (data == "backspace")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_BACKSPACE;
     }
     else if (data == "escape")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_ESCAPE;
     }
     else if (data == "tab")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_TAB;
     }
     else if (data == "space")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_SPACE;
     }
     else if (data == "lshift")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_LSHIFT;
     }
     else if (data == "lctrl")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_LCTRL;
     }
     else if (data == "lalt")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_LALT;
     }
     else if (data == "lgui")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_LGUI;
     }
     else if (data == "rshift")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_RSHIFT;
     }
     else if (data == "rctrl")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_RCTRL;
     }
     else if (data == "ralt")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_RALT;
     }
     else if (data == "rgui")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_RGUI;
     }
     else if (data == "menu")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_MENU;
     }
     else if (data == "capslock")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_CAPSLOCK;
     }
     else if (data == "f1")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_F1;
     }
     else if (data == "f2")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_F2;
     }
     else if (data == "f3")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_F3;
     }
     else if (data == "f4")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_F4;
     }
     else if (data == "f5")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_F5;
     }
     else if (data == "f6")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_F6;
     }
     else if (data == "f7")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_F7;
     }
     else if (data == "f8")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_F8;
     }
     else if (data == "f9")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_F9;
     }
-    else if (data == "f10")6yygy
-    {6
-        inputKey = INKEY_AWwttttt
+    else if (data == "f10")
+    {
+        inputKey = INKEY_F10;
     }
     else if (data == "f11")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_F11;
     }
     else if (data == "f12")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_F12;
     }
     else if (data == "up")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_UP;
     }
     else if (data == "down")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_DOWN;
     }
     else if (data == "left")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_LEFT;
     }
     else if (data == "right")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_RIGHT;
     }
     else if (data == "scrolllock")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_SCROLLLOCK;
     }
     else if (data == "home")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_HOME;
     }
     else if (data == "pause/break")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_PAUSE_BREAK;
     }
     else if (data == "insert")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_INSERT;
     }
     else if (data == "pageup")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_PAGEUP;
     }
     else if (data == "delete")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_DELETE;
     }
     else if (data == "end")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_END;
     }
     else if (data == "pagedown")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_PAGEDOWN;
     }
     else if (data == "divide")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_DIVIDE;
     }
     else if (data == "multiply")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_MULTIPLY;
     }
     else if (data == "minus")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_MINUS;
     }
     else if (data == "plus")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_PLUS;
     }
     else if (data == "enter")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_ENTER;
     }
     else if (data == "0")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_0;
     }
     else if (data == "1")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_1;
     }
     else if (data == "2")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_2;
     }
     else if (data == "3")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_3;
     }
     else if (data == "4")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_4;
     }
     else if (data == "5")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_5;
     }
     else if (data == "6")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_6;
     }
     else if (data == "7")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_7;
     }
     else if (data == "8")
     {
-        inputKey = INKEY_A;
+        inputKey = INKEY_8;
     }
     else if (data == "9")
     {
-        inputKey = INKEY_A;
-    }
-    
-            case INKEY_RETURN:
-//            case SDLK_AC_BACK:
-                logMsg("Return!");
-                strData = "return";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Return, MyGUI::KeyCode::Return);
-            break;
-            case INKEY_BACKSPACE:
-                logMsg("Backspace!");
-//                 exit(0);
-                strData = "backspace";
-//                gui->menuReceiveKeyPress(keyPressed); // sends input to menu key input processing function
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Backspace, 0);
-            break;
-            case INKEY_ESCAPE:
-                logMsg("Escape!");
-                strData = "escape";
-//              exit(0);
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Escape, 0);
-            break;
-            case INKEY_TAB:
-                logMsg("Tab!");
-                strData = "tab";
-//                exit(0);
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Tab, 0);
-            break;
-            case INKEY_SPACE:
-                logMsg("Space!");
-                strData = "space";
-//              MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Space, ' ');
-            break;
-            case INKEY_LSHIFT:
-                strData = "lshift";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::LeftShift, 0);
-            break;
-            case INKEY_LCTRL:
-                strData = "lctrl";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::LeftControl, 0);
-            break;
-            case INKEY_LALT:
-                strData = "lalt";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::LeftAlt, 0);
-            break;
-            case INKEY_LGUI:
-                strData = "lgui";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::LeftWindows, 0);
-            break;
-            case INKEY_RSHIFT:
-                strData = "rshift";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::RightShift, 0);
-            break;
-            case INKEY_RCTRL:
-                strData = "rctrl";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::RightControl, 0);
-            break;
-            case INKEY_RALT:
-                strData = "ralt";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::RightAlt, 0);
-            break;
-            case INKEY_RGUI:
-                strData = "rgui";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::RightWindows, 0);
-            break;
-            case INKEY_MENU:
-                strData = "menu";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::RightWindow, 0);
-            break;
-            case INKEY_CAPSLOCK:
-                strData = "capslock";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Capital, 0);
-            break;
-            case INKEY_F1:
-                strData = "f1";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F1, 0);
-            break;
-            case INKEY_F2:
-                strData = "f2";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F2, 0);
-            break;
-            case INKEY_F3:
-                strData = "f3";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F3, 0);
-            break;
-            case INKEY_F4:
-                strData = "f4";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F4, 0);
-            break;
-            case INKEY_F5:
-                strData = "f5";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F5, 0);
-            break;
-            case INKEY_F6:
-                strData = "f6";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F6, 0);
-            break;
-            case INKEY_F7:
-                strData = "f7";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F7, 0);
-            break;
-            case INKEY_F8:
-                strData = "f8";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F8, 0);
-            break;
-            case INKEY_F9:
-                strData = "f9";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F9, 0);
-            break;
-            case INKEY_F10:
-                strData = "f10";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F10, 0);
-            break;
-            case INKEY_F11:
-                strData = "f11";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F11, 0);
-            break;
-            case INKEY_F12:
-                strData = "f12";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F12, 0);
-            break;
-            case INKEY_UP:
-                strData = "up";
-//                logMsg("Up!");
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::ArrowUp, 0);
-            break;
-            case INKEY_DOWN:
-                strData = "down";
-//                 MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::ArrowDown, 0);
-            break;
-            case INKEY_LEFT:
-                strData = "left";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::ArrowLeft, 0);
-            break;
-            case INKEY_RIGHT:
-                strData = "right";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::ArrowRight, 0);
-            break;
-            case INKEY_SCROLLLOCK:
-                strData = "scrolllock";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::ScrollLock, 0);
-            break;
-            case INKEY_HOME:
-                strData = "home";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Home, 0);
-            break;
-            case INKEY_PAUSE_BREAK:
-                strData = "pause/break";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Pause, 0);
-            break;
-            case INKEY_INSERT:
-                strData = "insert";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Insert, 0);
-            break;
-            case INKEY_PAGEUP:
-                strData = "pageup";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::PageUp, 0);
-            break;
-            case INKEY_DELETE:
-                strData = "delete";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Delete, 0);
-            break;
-            case INKEY_END:
-                strData = "end";
-//            MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::End, 0);
-            break;
-            case INKEY_PAGEDOWN:
-                strData = "pagedown";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::PageDown, 0);
-            break;
-            case INKEY_NUMLOCK:
-                strData = "numlock";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::NumLock, 0);
-            break;
-            case INKEY_DIVIDE:
-                strData = "divide";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Divide, 0);
-            break;
-            case INKEY_MULTIPLY:
-                strData = "multiply";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Multiply, 0);
-            break;
-            case INKEY_MINUS:
-                strData = "minus";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Minus, 0);
-            break;
-            case INKEY_ENTER:
-                strData = "enter";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::NumpadEnter, 0);
-            break;
-            case INKEY_0:
-                strData = "0";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Numpad0, '0');
-            break;
-            case INKEY_1:
-                strData = "1";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Numpad1, '1');
-            break;
-            case INKEY_2:
-                strData = "2";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Numpad2, '2');
-            break;
-            case INKEY_3:
-                strData = "3";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Numpad3, '3');
-            break;
-            case INKEY_4:
-                strData = "4";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Numpad4, '4');
-            break;
-            case INKEY_5:
-                strData = "5";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Numpad5, '5');
-            break;
-            case INKEY_6:
-                strData = "6";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Numpad6, '6');
-            break;
-            case INKEY_7:
-                strData = "7";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Numpad7, '7');
-            break;
-            case INKEY_8:
-                strData = "8";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Numpad8, '8');
-            break;
-            case INKEY_9:
-                strData = "9";
-//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Numpad9, '9');
-            break;
-            
-            default:
-            logMsg("break");
-            //    MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Enum(inputEvent.key.keysym.sym), inputEvent.key.keysym.sym);
-            break;
-        
+        inputKey = INKEY_9;
     }
     
     return (inputKey);

@@ -82,7 +82,8 @@ inputEngine::inputEngine()  // constructor
     mouseRightClick = false;
     inputProcessed = false;
 	
-	inputMap = INNONE;
+	keyPressed = INKEY_NONE;
+//    inputGamePadMap = INGP_NONE;
     textInputStarted = false;
     setup();
 }
@@ -158,7 +159,7 @@ inputKeyWorkQueues inputEngine::getInputKeyWorkQueue()  // retrieves the value o
 {
     return (inputKeyWorkQueue);
 }
-void inputEngine::setInputKeyWorkQueue(inputWorkKeyQueues set)  // sets the value of inputWorkQueue
+void inputEngine::setInputKeyWorkQueue(inputKeyWorkQueues set)  // sets the value of inputWorkQueue
 {
     inputKeyWorkQueue = set;
 }

@@ -58,9 +58,21 @@ void inputState::setUInput(std::vector<userInput> set)  // sets the value of uIn
     uInput = set;
 }
 
-inputMaps inputState::keyMap()  // maps value of keyPressed string to inputMap
+inputInGameMaps inputState::mapInput(inputTypes type)  // maps value of keyPressed string to inputMap
 {
 //    exit(0);
+    
+    switch (type)
+    {
+        case KEYBOARD:
+            return (mapKeyInput();
+        break;
+    }
+
+}
+
+inputKeyMaps inputState::mapInput(inputTypes type)  // maps value of the keyPressed string to inputInGameMaps
+{
     if (inputE->getKeyPressed() == uInput[0].getKeyUp())
     {
 //        exit(0);
@@ -115,12 +127,6 @@ inputMaps inputState::keyMap()  // maps value of keyPressed string to inputMap
         logMsg("keyQuit = " +uInput[0].getKeyQuit());
     return(INQUIT);
     }
-    else if (inputE->getKeyPressed() == INKEY_BACKSPACE)
-    {
-//        logMsg("keyQuit = " +uInput[0].getKeyQuit());
-//        exit(0);
-        return(INBACKSPACE);
-    }
     else
     {
         return(INNO);
@@ -138,7 +144,7 @@ bool inputState::process()  // processes input
         {
             logMsg("Input Processed");
             exit(0);
-            if (getGameE()->getMenuActive())
+/*            if (getGameE()->getMenuActive())
             {
                 logMsg("Input Processed menuActive");
 //                exit(0);
@@ -319,7 +325,7 @@ bool inputState::process()  // processes input
                 }
             }
         }
-
+*/
     }   
     return (true);
 }

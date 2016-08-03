@@ -35,7 +35,7 @@
 //#include "jumpballs.h"
 #include "state/state.h"
 #include "state/gamestateshared.h"
-
+#include "engine/inputengine.h"
 class basketballState;
 class UBC;
 class courtData;
@@ -178,6 +178,12 @@ public:
 //    bool getStateSet();  // retrieves the value of stateSet
 //    void setStateSet(bool set);  // sets the value of stateSet
 
+    bool getInputReceived();  // retrieves the value of inputReceived
+    void setInputReceived(bool set);  // sets the value of inputReceived
+    
+    inputInGameWorkQueues getInputInGameWorkQueue();  // retrieves the value of inputInGameWorkQueue
+    void setInputInGameWorkQueue(inputInGameWorkQueues set);  // sets the value of inputInGameWorkQueue
+    
 //    void processNetworkEvents();  // processes events received from network connection.
 //    void processNetworkPlayerEvents();  // processes player evernts received from network connection
     void updateDirectionsAndMovements();  // updates the movement and directions of game world objecxts
@@ -215,6 +221,7 @@ public:
 
     bool setupState();  // sets up the game condition
     bool updateState();  // updates the state of the game
+    bool processInput();  // processes input received from the inputState object
 
 protected:
     
@@ -279,7 +286,7 @@ private:
     bool inputReceived;  // if true process input
     
     
-    
+    inputInGameWorkQueues inputInGameWorkQueue;  // queue of input events for game
     
 //    bool tipOffComplete;  // Determines whether or not game Tip Off has completed
 

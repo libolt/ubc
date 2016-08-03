@@ -230,7 +230,8 @@ void UBC::processInput()  // processes game input
         }
         else
         {
-            
+            getGameS()->setInputReceived(true);
+            getGameS()->setInputInGameWorkQueue();
         }
         getGameE()->getInputE()->setKeyPressed(INKEY_NONE);
     }

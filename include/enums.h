@@ -134,7 +134,8 @@
         BUTTON5,
         BUTTON6,
         BUTTON7,
-        BUTTON8
+        BUTTON8,
+        INGP_NONE
     };
     
     enum inputTypes { KEYBOARD, MOUSE, GAMEPAD, TOUCH };  // types of inputs used in the game

@@ -69,6 +69,7 @@ float inputEngine::mouseY;
 mouseClicks inputEngine::mouseClick;
 //std::string inputEngine::keyPressed; 
 std::string inputEngine::inputText;
+inputTypes inputEngine::inputType; 
 bool inputEngine::textInputStarted;
 
 inputEngine::inputEngine()  // constructor
@@ -83,6 +84,7 @@ inputEngine::inputEngine()  // constructor
     inputProcessed = false;
 	
 	keyPressed = INKEY_NONE;
+    inputType = INNOTYPE;
 //    inputGamePadMap = INGP_NONE;
     textInputStarted = false;
     setup();
@@ -137,6 +139,15 @@ void inputEngine::setInputText(std::string set)
     inputText = set;
 }
 
+inputTypes inputEngine::getInputType()  // retrieve the value of inputType
+{
+    return (inputType);
+}
+void inputEngine::setInputType(inputTypes set)  // sets the value of inputType
+{
+    inputType = set;
+}
+
 bool inputEngine::getInputProcessed()  // retrieves the value of inputProcessed
 {
     return (inputProcessed);
@@ -173,11 +184,11 @@ void inputEngine::setInputGamePadWorkQueue(inputGamePadWorkQueues set)  // sets 
     inputGamePadWorkQueue = set;
 }
 
-inputTypeQueues inputEngine::getInputTypeQueues()  // retrieves the value of inputTypeQueue
+inputTypeQueues inputEngine::getInputTypeQueue()  // retrieves the value of inputTypeQueue
 {
     return (inputTypeQueue);
 }
-void inputEngine::setInputTypeQueues(inputTypeQueues set)  // sets the value of inputTypeQueues
+void inputEngine::setInputTypeQueue(inputTypeQueues set)  // sets the value of inputTypeQueue
 {
     inputTypeQueue = set;
 }
@@ -341,6 +352,9 @@ bool inputEngine::processInput()  // processes all input
                 {
                     inputProcessed = true;
                     inputTypeQueue.push_back(KEYBOARD);
+                    inputKeyWorkQueue.push_back(keyPressed);
+                    keyInputReceived = true;
+//                    inputType = KEYBOARD;
 //                    inputKeyMaps inputMap = keyMap();
 //                    exit(0);
 //                    inputWorkQueue.push_back(inputMap);

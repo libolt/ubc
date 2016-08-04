@@ -138,7 +138,7 @@
         INGP_NONE
     };
     
-    enum inputTypes { KEYBOARD, MOUSE, GAMEPAD, TOUCH };  // types of inputs used in the game
+    enum inputTypes { KEYBOARD, MOUSE, GAMEPAD, TOUCH, INNOTYPE };  // types of inputs used in the game
 	enum mouseClicks { NOCLICK, LEFTCLICK, RIGHTCLICK, MIDDLECLICK, WHEELCLICK };  // stores which mouse button has been clicked
     enum directions { NODIRECT, UP, DOWN, LEFT, RIGHT, UPLEFT, UPRIGHT, DOWNLEFT, DOWNRIGHT };	// direction objects are moving
     enum gameTypes { NOGAME, SINGLE, MULTI }; // defines whether a game is single or multi player

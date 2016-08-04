@@ -75,6 +75,9 @@ public:
     std::string getInputText();  // retrieves the value of inputText
     void setInputText(std::string set);
     
+    inputTypes getInputType();  // retrieve the value of inputType
+    void setInputType(inputTypes set);  // sets the value of inputType
+    
     bool getInputProcessed();  // retrieves the value of inputProcessed
     void setInputProcessed(bool set);  // sets the value of inputProcessed
     
@@ -87,8 +90,8 @@ public:
     inputGamePadWorkQueues getInputGamePadWorkQueue();  // retrieves the value of inputGamePadWorkQueue
     void setInputGamePadWorkQueue(inputGamePadWorkQueues set);  // sets the value of inputGamePadWorkQueue
 
-    inputTypeQueues getInputTypeQueues();  // retrieves the value of inputTypeQueue
-    void setInputTypeQueues(inputTypeQueues set);  // sets the value of inputTypeQueues
+    inputTypeQueues getInputTypeQueue();  // retrieves the value of inputTypeQueue
+    void setInputTypeQueue(inputTypeQueues set);  // sets the value of inputTypeQueue
         
     float getMouseX();  // retrieves the value of mouseX
     void setMouseX(float set);  // sets the value of mouseX
@@ -145,6 +148,7 @@ private:
 
     static std::string inputText;  // stores text inout by user
     
+    static inputTypes inputType;  // storrs the typee of input that was received
     static bool inputProcessed;  // stores whether or not any input has been processed
 	
 //    inputMaps inputMap; // stores user input

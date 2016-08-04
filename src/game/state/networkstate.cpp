@@ -52,7 +52,7 @@ void networkState::processLocalInput(std::vector<boost::shared_ptr<teamState> > 
 //    boost::shared_ptr<inputSystem> input = inputSystem::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
     
-    inputWorkQueues inputQueue;
+    inputInGameWorkQueues inputQueue;
     networkPlayerStateObject netPStateObj;
     
 //    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();

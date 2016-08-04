@@ -27,8 +27,12 @@
 #include "state/state.h"
 #include "enums.h"
 #include <boost/shared_ptr.hpp>
+#include "engine/inputengine.h"
+
+// typedefs
+
 // forward declarations
-class inputEngine;
+//class inputEngine;
 class userInput;
 
 class inputState : public state
@@ -44,16 +48,19 @@ class inputState : public state
     std::vector<userInput> getUInput();  // retrieves the value of uInput
     void setUInput(std::vector<userInput> set);  // sets the value of uInput
     
-    inputInGameMaps mapInput(inputTypes type);  // maps value of the received input string to inputInGameMaps
-	inputKeyMaps mapInput(inputTypes type);  // maps value of the keyPressed string to inputInGameMaps
+    bool mapInput();  // maps value of the received input string to inputInGameMaps
+	inputInGameMaps mapKeyInput(inputKeyMaps inKeyMap);  // maps value of the keyPressed string to inputInGameMaps
 	
+    inputInGameWorkQueues getInputInGameWorkQueue();  // retrieves the value of inputInGameWorkQueue
+    void setInputInGameWorkQueue(inputInGameWorkQueues set);  // sets the value of inputInGameWorkQueue
+    
     bool process();  // processes input
     
     private:
     
     static boost::shared_ptr<inputEngine> inputE;  // the inputEngine object
     std::vector<userInput> uInput;  // stores user input mapping
- 
+    static inputInGameWorkQueues inputInGameWorkQueue;  // stores work queue for in game processing
     
 };
 #endif

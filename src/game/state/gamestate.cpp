@@ -1036,15 +1036,15 @@ bool gameState::processInput()  // processes input received from the inputState 
                         logMsg("inputInGameWorkQueue.size = " +convert->toString(inputInGameWorkQueue.size()));
                         x = 0;
                         int activeBBallInstance = getActiveBBallInstance();
-                        std::vector<basketballState> bballInstance = basketballInstance();
+                        std::vector<basketballState> bballInstance = getBasketballInstance();
                         logMsg("humanInstance.size() == " +convert->toString(humanInstance));
                         if (humanInstance < 11) // makes sure that the humanInstance is a valid number
                         {
-                            while (x < inputQueue.size())
+                            while (x < inputInGameWorkQueue.size())
                             {
-                                logMsg("inputQueue[" +convert->toString(x) +"] = " +convert->toString(inputQueue[x]));
+                                logMsg("inputInGameWorkQueue[" +convert->toString(x) +"] = " +convert->toString(inputInGameWorkQueue[x]));
                                 // switch (inputMap)
-                                switch (inputQueue[x])
+                                switch (inputInGameWorkQueue[x])
                                 {
                                     case INUP:
                                         activePlayerInstance[humanInstance]->setMovement(true);
@@ -1069,7 +1069,7 @@ bool gameState::processInput()  // processes input received from the inputState 
                                         activePlayerInstance[humanInstance]->setMovement(true);
                                         activePlayerInstance[humanInstance]->setDirection(RIGHT);
                                         getActiveTeamInstance()[inputIterator]->setActivePlayerInstance(activePlayerInstance);
-/i                                        getGameS()->setActiveTeamInstance(activeTeamInstance);
+//                                        getGameS()->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INUPLEFT:
                                         activePlayerInstance[humanInstance]->setMovement(true);
@@ -1118,40 +1118,41 @@ bool gameState::processInput()  // processes input received from the inputState 
                                 ++x;
                             }
                         }
-                        std::vector<boost::shared_ptr<teamState> > tInstance = getGameS()->getActiveTeamInstance();
-                        std::vector<boost::shared_ptr<playerState> > activePInstance = tInstance[inputIterator]->getActivePlayerInstance();
+//                        std::vector<boost::shared_ptr<teamState> > tInstance = getGameS()->getActiveTeamInstance();
+                        std::vector<boost::shared_ptr<playerState> > activePInstance = getTeamInstance()[inputIterator]->getActivePlayerInstance();
                         logMsg("humanInstance == " +convert->toString(humanInstance));
                         //logMsg("inPassSteal == " +convert->toString(activePInstance[humanInstance]->getPassSteal()));
                         //exit(0);
 
                         /// FIXME! This if statement should be adapted to work correctly instead of relying on the i variable
                         int i = 0;
-                        if (getGameS()->getTeamWithBall() == i)
+                        if (getTeamWithBall() == i)
                         {
                             if (activePlayerInstance[humanInstance]->getMovement())
                             {
                                 logMsg("human playerID == " +convert->toString(activePlayerInstance[humanInstance]->getID()));
-                                logMsg("ball player == " +convert->toString(activeTeamInstance[inputIterator]->getPlayerWithBallInstance()));
-                                logMsg("ball playerID == " +convert->toString(activeTeamInstance[inputIterator]->getPlayerWithBallID()));
-                                if (activePlayerInstance[humanInstance]->getID() == activeTeamInstance[inputIterator]->getPlayerWithBallID())
+                                logMsg("ball player == " +convert->toString(getActiveTeamInstance()[inputIterator]->getPlayerWithBallInstance()));
+                                logMsg("ball playerID == " +convert->toString(getActiveTeamInstance()[inputIterator]->getPlayerWithBallID()));
+                                if (activePlayerInstance[humanInstance]->getID() == getActiveTeamInstance()[inputIterator]->getPlayerWithBallID())
                                 {
                                     bballInstance[activeBBallInstance].setMovement(true);
-                                    getGameS()->setBasketballInstance(bballInstance);
+                                    setBasketballInstance(bballInstance);
                                 }
                             }
                         }
-                        if (getGameS()->getBasketballInstance().size() > 0)
+                        if (getBasketballInstance().size() > 0)
                         {
                             logMsg("basketballmoved == " +convert->toString(bballInstance[activeBBallInstance].getMovement()));
                         }
-                        getGameS()->setActiveTeamInstance(activeTeamInstance);
+//                        getGameS()->setActiveTeamInstance(activeTeamInstance);
 
-                        if (getGameS()->getGameType() == MULTI)
+                        if (getGameType() == MULTI)
                         {
-                            getNetworkS()->processLocalInput(getGameS()->getActiveTeamInstance());
+//  FIXME!                            
+///                            getNetworkS()->processLocalInput(getActiveTeamInstance());
                         }
-                        inputQueue.clear();
-                        getGameE()->getInputE()->setInputWorkQueue(inputQueue);
+                        inputInGameWorkQueue.clear();
+///                        getGameE()->getInputE()->setInputWorkQueue(inputQueue);
                     }
                     ++inputIterator;
                 }

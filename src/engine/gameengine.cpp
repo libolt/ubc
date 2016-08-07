@@ -81,14 +81,14 @@ gameEngine::gameEngine()  // constructor
 
     // renderEngine
 //    renderEngine *tempRenderObj = new renderEngine;
-    boost::shared_ptr<renderEngine> tempRenderSharedPtr = boost::shared_ptr<renderEngine>(new renderEngine);
+    boost::shared_ptr<renderEngine> tempRenderSharedPtr(new renderEngine);
     renderE = tempRenderSharedPtr;
 
     // networkEngine
 //    networkEngine *tempNetworkObj = new networkEngine;
-/*    boost::shared_ptr<networkEngine> tempNetworkSharedPtr = boost::shared_ptr<networkEngine>(new networkEngine);
-    network = tempNetworkSharedPtr;
-*/
+///    boost::shared_ptr<networkEngine> tempNetworkSharedPtr = boost::shared_ptr<networkEngine>(new networkEngine);
+///    network = tempNetworkSharedPtr;
+
 ///    // physicsEngine
 ///    physicsEngine *tempPhysicsObj = new physicsEngine;
 ///    boost::shared_ptr<physicsEngine> tempPhysicsSharedPtr = boost::shared_ptr<physicsEngine>(tempPhysicsObj);
@@ -96,7 +96,8 @@ gameEngine::gameEngine()  // constructor
 
     // inputEngine
 //    inputEngine *tempInputObj = new inputEngine;
-    boost::shared_ptr<inputEngine> tempInputSharedPtr = boost::shared_ptr<inputEngine>(new inputEngine);
+
+    boost::shared_ptr<inputEngine> tempInputSharedPtr(new inputEngine);
     inputE = tempInputSharedPtr;
 
 

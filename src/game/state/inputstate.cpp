@@ -34,6 +34,8 @@ inputState::inputState()  // constructor
 {
     boost::shared_ptr<loader> load = loader::Instance();
 
+    boost::shared_ptr<inputEngine> tempInputSharedPtr(new inputEngine);
+    inputE = tempInputSharedPtr;
     uInput = load->loadUserInputs();  // loads user defined input from file.
     
     uInput[0].setActive(true);
@@ -50,7 +52,7 @@ boost::shared_ptr<inputEngine> inputState::getInputE()  // retrieves the value o
 }
 void inputState::setInputE(boost::shared_ptr<inputEngine> set)  // sets the value of inputE
 {
-    inputE = set;
+//    inputE = set;
 }
 
 std::vector<userInput> inputState::getUInput()  // retrieves the value of uInput

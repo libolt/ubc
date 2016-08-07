@@ -23,7 +23,7 @@ FIND_PATH(OpenSteer_INCLUDE_DIRS OpenSteer/OpenSteer.h
     )
 
 FIND_LIBRARY(OpenSteer_LIBRARY_DBG
-    NAMES opensteer_debug libopensteer_debug.a libopensteer_debug
+    NAMES opensteer_d opensteer_debug libopensteer_debug.a libopensteer_debug
     PATHS
     $ENV{OpenSteer_HOME}
     /usr/local

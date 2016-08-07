@@ -50,8 +50,8 @@ UBC::UBC()  // constructor
     boost::shared_ptr<gameEngine> tempGameESharedPtr = boost::shared_ptr<gameEngine>(tempGameEObj);
     setGameE(tempGameESharedPtr);
 */
-    GUISystem *tempGUIObj = new GUISystem;
-    boost::shared_ptr<GUISystem> tempGUISharedPtr = boost::shared_ptr<GUISystem>(tempGUIObj);
+//    GUISystem *tempGUIObj = new GUISystem;
+    boost::shared_ptr<GUISystem> tempGUISharedPtr(new GUISystem);
     gui = tempGUISharedPtr;
     
     
@@ -153,7 +153,7 @@ void UBC::run()  // runs the game
 //    exit(0);
     getGameE()->getRenderE()->createScene(); // creates rendering scene.
 
-//    boost::shared_ptr<entity> gameStateSharedPtr = boost::shared_ptr<entity>(new entity);
+//    boost::shared_ptr<entity> gameStateSharedPtr(new entity);
 
 //    exit(0);
 
@@ -169,7 +169,7 @@ void UBC::run()  // runs the game
     }
 
 //    getGameS()->createInstances();  // creates object instances
-    boost::shared_ptr<entity> gameStateSharedPtr = boost::shared_ptr<entity>(new entity);
+//    boost::shared_ptr<entity> gameStateSharedPtr(new entity);
 
     if (getGameE()->getRenderE()->getMWindow() == NULL)
     {
@@ -187,16 +187,11 @@ void UBC::run()  // runs the game
     //inputSystem *input = inputSystem::Instance();
 //    boost::shared_ptr<inputSystem> input = getInputE();
 //    exit(0);
-    
-/*    int x = 0;
-    while (x < 1)
-    {
-        
-    }
-*/
+
 //    bool quitGame = getGameE()->getQuitGame();
  
     gameLoop();
+
 }
 
 bool UBC::startGame()  // starts the game
@@ -627,14 +622,16 @@ int main(int argc, char *argv[])
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<UBC> ubc;
-    UBC *ubc = new UBC;
+    boost::shared_ptr<UBC> ubc(new UBC);
 //    boost::shared_ptr<renderEngine> render = ubc.getRenderE();
 //    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 //    boost::shared_ptr<GUISystem> gui = ubc.getGui();
 
     ubc->run();
+
     logMsg("End Game!");
+
 //    atexit(SDL_Quit);
 
 	return (0);

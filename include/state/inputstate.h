@@ -39,8 +39,8 @@ class inputState : public state
 {
     public:
     
-    inputState::inputState();  // constructor
-    inputState::~inputState();  // destructor
+    inputState();  // constructor
+    ~inputState();  // destructor
     
     boost::shared_ptr<inputEngine> getInputE();  // retrieves the value of gameE
     void setInputE(boost::shared_ptr<inputEngine> set);  // sets the value of gameE

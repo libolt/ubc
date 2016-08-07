@@ -38,10 +38,10 @@
 #include "engine.h" 
 
 class inputEngine;
-class inputSystem;
+//class inputSystem;
 class networkEngine;
 class renderEngine;
-
+class physicsEngine;
 class gameEngine : public engine
 {
 

@@ -558,6 +558,8 @@ std::string conversion::toString(const inputKeyMaps &data) // converts bool data
             break;
         
     }
+    logMsg("strData == " +strData);
+//    exit(0);
     return (strData);
 }
 

@@ -144,7 +144,7 @@ private:
 
 //    boost::shared_ptr<GUISystem> gui;  // stores the copy of the gui object
     static bool keyInputReceived;  // stores whether a key has been pressed
-    inputKeyMaps keyPressed; // stores which key was pressed
+    static inputKeyMaps keyPressed; // stores which key was pressed
 
     static std::string inputText;  // stores text inout by user
     

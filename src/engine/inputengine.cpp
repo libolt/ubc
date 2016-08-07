@@ -71,7 +71,7 @@ mouseClicks inputEngine::mouseClick;
 std::string inputEngine::inputText;
 inputTypes inputEngine::inputType; 
 bool inputEngine::textInputStarted;
-
+inputKeyMaps inputEngine::keyPressed;
 inputEngine::inputEngine()  // constructor
 {
     keyInputReceived = false;
@@ -361,7 +361,7 @@ bool inputEngine::processInput()  // processes all input
 
 //                    return false;
                 }
-                logMsg("keyDownPressed == " +keyPressed);
+                logMsg("keyDown key == " +keyPressed);
 //                exit(0);
             break; 
             case SDL_TEXTINPUT:
@@ -427,7 +427,7 @@ bool inputEngine::processKeyInput(bool textInput)  // processes unbuffered keybo
 //    boost::shared_ptr<GUISystem> gui = GUISystem::Instance();
 //	logMsg("Processing keyboard input");
 
-    logMsg("key ==s " +convert->toString(inputEvent.key.keysym.sym));
+    logMsg("key == " +convert->toString(inputEvent.key.keysym.sym));
     logMsg("key = " +convert->toString(keyPressed));
 //    exit(0);
 //    if (MyGUI::InputManager::getInstance().isFocusKey())	// checks if a MyGUI widget has key focus
@@ -513,6 +513,8 @@ bool inputEngine::processKeyInput(bool textInput)  // processes unbuffered keybo
             break;
             case SDL_SCANCODE_S:
                  keyPressed = INKEY_S;
+                 logMsg("key == s!");
+                 logMsg("keyPressed == " +convert->toString(keyPressed));
 //                exit(0);
             break;
             case SDL_SCANCODE_T:

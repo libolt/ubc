@@ -75,13 +75,15 @@ bool inputState::mapInput()  // maps value of keyPressed string to inputMap
 {
     
     boost::shared_ptr<conversion> convert = conversion::Instance();
-
+    
+    logMsg("Dah");
 //    exit(0);
     
     if (inputE->getKeyInputReceived())
     {
         int x = 0;
         inputKeyWorkQueues inputKeyWorkQueue = inputE->getInputKeyWorkQueue();
+        logMsg("inputKey!");
         logMsg("inputKeyWorkQueue.size() = " +convert->toString(inputKeyWorkQueue.size()));
         while (x < inputKeyWorkQueue.size())
         {
@@ -105,6 +107,8 @@ inputInGameMaps inputState::mapKeyInput(inputKeyMaps inKeyMap)  // maps value of
     int x = 0;
 //    while (x < uInput.size())
 //    {
+    exit(0);
+    
     logMsg("mapKeyInput");
     if (inKeyMap == uInput[0].getKeyUp())
     {
@@ -172,7 +176,7 @@ inputInGameMaps inputState::mapKeyInput(inputKeyMaps inKeyMap)  // maps value of
 bool inputState::process()  // processes input
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-
+    logMsg("inoutState::process");
     if (inputE->processInput())
     {
         int x = 0;

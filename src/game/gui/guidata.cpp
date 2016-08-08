@@ -141,8 +141,10 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         {
             
             logMsg("player instances created!");
+            
             getGameS()->setPlayerInstanceCreated(true);
-        }
+//            exit(0);
+       }
         else
         {
             logMsg("player instances not created!");
@@ -150,13 +152,16 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 //        exit(0);
     }
 //    exit(0);
+    logMsg("teamInstance.size() == " +convert->toString(teamInstance.size()));
+//    exit(0);
     if (!teamInstance[teamIDs[0]]->getPlayerInstancesCreated())
     {
         logMsg("Creating Team 0 player instances!");
-//        exit(0);
+        exit(0);
         teamInstance[teamIDs[0]]->createPlayerInstances();
         getGameS()->setTeamInstance(teamInstance);
     }
+    exit(0);
     if (!teamInstance[teamIDs[1]]->getPlayerInstancesCreated())
     {
         teamInstance[teamIDs[1]]->createPlayerInstances();
@@ -473,7 +478,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     logMsg("C1 == " +team1CSelectBox->getItemNameAt(0));
     logMsg("C1 ID == " +convert->toString(team1IDs[4][0]));
 
-//    exit(0);
+    exit(0);
 
 }
 
@@ -486,6 +491,8 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     std::vector<boost::shared_ptr<teamState> > teamInstance; // = gameS->getTeamDataInstance();
 
     teamInstance = load->loadTeams();
+    getGameS()->setTeamInstance(teamInstance);
+    logMsg("GUI ADD teamInstance.size() == " +convert->toString(teamInstance.size()));
 
 //    exit(0);
 /*    if (getGameS()->getTeamInstancesCreated())

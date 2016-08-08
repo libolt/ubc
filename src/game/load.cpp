@@ -526,7 +526,7 @@ boost::shared_ptr<teamState> loader::loadTeamFile(std::string fileName)  // load
 //    team->setTeamArray(teamInstance);
 //   teamInstance.push_back(teamInstance);
 //   gameS->setteamInstance(teamInstance);
-    exit(0);
+//    exit(0);
 
     return (teamInstance);
 }

@@ -13,8 +13,8 @@
  *   GNU General Public License for more details.                          *
  *                                                                         *
  *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
+ *   along with this program; if not, write pppto the                         *
+ *   Free Software Foundation, Inc.,            pll                           *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
  
@@ -109,7 +109,7 @@ inputInGameMaps inputState::mapKeyInput(inputKeyMaps inKeyMap)  // maps value of
     int x = 0;
 //    while (x < uInput.size())
 //    {
-    exit(0);
+//    exit(0);
     
     logMsg("mapKeyInput");
     if (inKeyMap == uInput[0].getKeyUp())
@@ -117,8 +117,8 @@ inputInGameMaps inputState::mapKeyInput(inputKeyMaps inKeyMap)  // maps value of
 //        exit(0);
         return(INUP);
     }
-    exit(0);
-/*    
+//    exit(0);
+    
     else if (inKeyMap == uInput[0].getKeyDown())
     {
         return(INDOWN);
@@ -171,8 +171,8 @@ inputInGameMaps inputState::mapKeyInput(inputKeyMaps inKeyMap)  // maps value of
     else
     {
         return(INNO);
-    }*/
-    exit(0);
+    }
+//    exit(0);
 }
 
 bool inputState::process()  // processes input

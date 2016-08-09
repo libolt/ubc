@@ -161,17 +161,17 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         teamInstance[teamIDs[0]]->createPlayerInstances();
         getGameS()->setTeamInstance(teamInstance);
     }
-    exit(0);
+//    exit(0);
     if (!teamInstance[teamIDs[1]]->getPlayerInstancesCreated())
     {
         teamInstance[teamIDs[1]]->createPlayerInstances();
         getGameS()->setTeamInstance(teamInstance);
     }
-    
+    exit(0);
     playerInstance.push_back(teamInstance[teamIDs[0]]->getPlayerInstance());
     playerInstance.push_back(teamInstance[teamIDs[1]]->getPlayerInstance());
 
-//    exit(0);
+    exit(0);
     std::vector<size_t> overAllRatings;
     std::vector<std::string> pNames;
     std::vector<std::string> pPositions;

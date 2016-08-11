@@ -52,9 +52,9 @@ public:
 /*    int getTeamNumber();	// retrieves the value of teamNumber
     void setTeamNumber(int set);  // sets the value of teamNumber
 */
-    size_t getID();	 // retrieves the value of teamID
+/*    static size_t getID();	 // retrieves the value of teamID
     void setTeamID(size_t set);	 // sets the value of teamID
-
+*/
     teamTypes getTeamType();  // retrieves the value of teamType
     void setTeamType(teamTypes set);  // sets the value of teamType
 
@@ -189,7 +189,7 @@ private:
 
     size_t teamNumber;  // stores which team number the object is
     teamTypes teamType;  // stores which type of team this object is
-    size_t teamID;  // stores the ID number of the team;
+//    static size_t teamID;  // stores the ID number of the team;
 
     std::string playerType;  // stores the type of player in control of the team (human,network,ai) are valid values
     size_t assists;  // stores number of assists team has.

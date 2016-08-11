@@ -48,7 +48,7 @@ class gameStateShared
         gameTypes getGameType();  // retrieves the value of gameType
         void setGameType(gameTypes set);  // sets the value of gameType
 
-        std::vector<size_t> getTeamIDS(void);  // retrieves the value of teamIDS
+        static std::vector<size_t> getTeamIDS(void);  // retrieves the value of teamIDS
         void setTeamIDS(std::vector<size_t> set);  // sets the value of teamIDS
         
         std::vector< std::vector<size_t> > getTeamStarterID();  // retrieves value of teamStarterID

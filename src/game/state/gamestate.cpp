@@ -429,8 +429,8 @@ bool gameState::createActiveTeamInstances()  // creates the active team instance
 
     activeTeamInstance[0] = teamInstance[teamIDS[0]];
     activeTeamInstance[1] = teamInstance[teamIDS[1]];
-    activeTeamInstance[0]->setTeamID(teamIDS[0]);
-    activeTeamInstance[1]->setTeamID(teamIDS[1]);
+    activeTeamInstance[0]->setID(teamIDS[0]);
+    activeTeamInstance[1]->setID(teamIDS[1]);
     activeTeamInstance[0]->setTeamType(HOMETEAM);
     activeTeamInstance[1]->setTeamType(AWAYTEAM);
     activeTeamInstance[0]->setHumanControlled(true);

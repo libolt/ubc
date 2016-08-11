@@ -323,8 +323,9 @@ std::vector<boost::shared_ptr<teamState> > loader::loadTeams()  // load teams fr
         teams.push_back(loadTeamFile(findFile("teams/" + *it)));
 #endif
     }
-//    logMsg("teams.size() == " +teams.size());
-
+    logMsg("teams[4]->getID() ID == " +convert->toString(teams[4]->getID()));
+    logMsg("loadTeams() 4 ID == " +convert->toString(teams[4]->getID()));
+    logMsg("dah");
 //    exit(0);
     if (teams.size() == 0)
     {
@@ -426,11 +427,11 @@ boost::shared_ptr<teamState> loader::loadTeamFile(std::string fileName)  // load
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 //    std::vector<boost::shared_ptr<teamState> > teamInstance = gameS->getTeamInstance();
-    boost::shared_ptr<teamState> teamInstance (new teamState);
+    static boost::shared_ptr<teamState> teamInstance (new teamState);
 /*    teamState *tempTeamObj = new teamState;
     tInstance = boost::shared_ptr<teamState>(tempTeamObj);
 */
-    size_t ID;
+    static size_t ID;
     std::string City;
     std::string Name;
     std::string Coach;
@@ -521,7 +522,8 @@ boost::shared_ptr<teamState> loader::loadTeamFile(std::string fileName)  // load
     teamInstance->setCoach(Coach);
     teamInstance->setInits(Initials);
     teamInstance->setLogoFile(Logo);
-    logMsg("Team ID == " +convert->toString(ID));
+    logMsg("ID == " +convert->toString(ID));
+    logMsg("Load Teaminstance ID == " +convert->toString(teamInstance->getID()));
     logMsg("teamInstance->getID() == " +convert->toString(teamInstance->getID()));
 //    team->setTeamArray(teamInstance);
 //   teamInstance.push_back(teamInstance);

@@ -35,13 +35,13 @@
 #include "jumpballs.h"
 #include "ubcbase.h"
 
-//extern "C"
-//{
+// static declarations
+//static size_t teamState::teamID; 
 teamState::teamState()
 {
 
     //teamNumber = -1;
-    teamID = 999999;
+//    teamID = 0;
     teamType = NOTEAM;
 	playerType = ' ';
     assists = 0;
@@ -88,7 +88,7 @@ void teamState::setTeamType(teamTypes set)	// sets the value of the teamType
     teamType = set;
 }
 */
-size_t teamState::getID()	// retrieves the value of teamID
+/*size_t teamState::getID()	// retrieves the value of teamID
 {
     return (teamID);
 }
@@ -96,7 +96,7 @@ void teamState::setTeamID(size_t set)	// sets the value of teamID
 {
     teamID = set;
 }
-
+*/
 teamTypes teamState::getTeamType()  // retrieves the value of teamType
 {
  return (teamType);
@@ -666,9 +666,9 @@ bool teamState::createPlayerInstances()
         
         logMsg("Player Team ID = " +convert->toString(gamePlayerInstance[i]->getTeamID()));
 //        exit(0);
-        logMsg("Team ID = " +convert->toString(teamID));      
+        logMsg("Team ID = " +convert->toString(getID()));      
 //        exit(0);
-        if (gamePlayerInstance[i]->getTeamID() == teamID)	// checks if player is assigned to this team
+        if (gamePlayerInstance[i]->getTeamID() == getID())	// checks if player is assigned to this team
         {
             logMsg("i ====" +convert->toString(i));
 //            exit(0);

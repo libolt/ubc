@@ -53,7 +53,7 @@ void GUISystem::showMainMenuWidgets()  // shows all widgets tied to the Main Men
     optionsButton->setVisible(true);
     exitButton->setVisible(true);
     startSingleGameButton->setStateSelected(true);
-    MyGUI::InputManager::getInstance().setKeyFocusWidget(startSingleGameButton);
+    MyGUI::InputManager::getInstance().setKeyFocusWidget(startSingleGameButton.get());
     getGameE()->setMenuActive(true);
 }
 void GUISystem::hideNetworkSetupWidgets()  // hides the widgets tied to the Network Setup Menu
@@ -405,6 +405,7 @@ void GUISystem::showTeamSelectionMenuWidgets()  // show all widgets tied to the 
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
 
+    exit(0);
     team0SelectBox->setVisible(true);
     team0SelectBox->setPosition((0.1 *getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.10 *getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
@@ -538,6 +539,8 @@ void GUISystem::showActiveMenuWidgets()  // shows active menus widgets
             showPlayerStartSelectionMenuWidgets();
             break;
         case TEAMSELECT:
+            logMsg("TEAMSELECT");
+//            exit(0);
             showTeamSelectionMenuWidgets();
             break;
         case COURTSELECT:

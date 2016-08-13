@@ -21,6 +21,8 @@
 #ifndef _GUI_H_
 #define _GUI_H_
 
+#include "boost/shared_ptr.hpp"
+
 #include "engine/gameengine.h"
 
 #undef None
@@ -123,8 +125,8 @@ public:
     activeMenus getPreviousActiveMenu(); // retrieves the value of previousActiveMenu
     void setPreviousActiveMenu(activeMenus menu); // sets the value of previousActiveMenu
 
-    MyGUI::Gui *getMGUI();  // retrieves the value of mGUI
-    void setMGUI(MyGUI::Gui *set);  // sets the value of mGUI
+    boost::shared_ptr<MyGUI::Gui> getMGUI();  // retrieves the value of mGUI
+    void setMGUI(boost::shared_ptr<MyGUI::Gui> set);  // sets the value of mGUI
     
 /*    Ogre::Viewport *getViewPort();  // retrieves the value of viewPort
     void setViewPort(const Ogre::Viewport &set);  // sets the value of viewPort
@@ -278,100 +280,103 @@ private:
     //static GUISystem *pInstance;
 //    static boost::shared_ptr<GUISystem> pInstance;
     
-    static MyGUI::Gui *mGUI;
-    static MyGUI::OgrePlatform *mPlatform;
+//    static MyGUI::Gui *mGUI;
+//    static MyGUI::OgrePlatform *mPlatform;
+    
+    static boost::shared_ptr<MyGUI::Gui> mGUI;  // The MyGUI object
+    static boost::shared_ptr<MyGUI::OgrePlatform> mPlatform;  // The MyGUI Platform object
 
     // button widgets
-    MyGUI::Button *exitButton;
-    static MyGUI::Button *startSingleGameButton;
-    MyGUI::Button *startMultiGameButton;
-    MyGUI::Button *optionsButton;
-    MyGUI::Button *serverButton;
-    MyGUI::Button *clientButton;
+    boost::shared_ptr<MyGUI::Button> exitButton;
+    static boost::shared_ptr<MyGUI::Button> startSingleGameButton;
+    boost::shared_ptr<MyGUI::Button> startMultiGameButton;
+    boost::shared_ptr<MyGUI::Button> optionsButton;
+    boost::shared_ptr<MyGUI::Button> serverButton;
+    boost::shared_ptr<MyGUI::Button> clientButton;
     
-    MyGUI::Button *backMainMenuButton;
-    MyGUI::Button *backNetworkSetupButton;
-    MyGUI::Button *displayButton;
-    MyGUI::Button *inputButton;
-    MyGUI::Button *audioButton;
-    MyGUI::Button *team0SelectButton;
-    MyGUI::Button *team1SelectButton;
-    MyGUI::Button *startGameButton;
-    MyGUI::Button *backNetworkClientButton;
-    MyGUI::Button *changeResolutionButton;
-    MyGUI::Button *changeInputTypeButton;
-    MyGUI::Button *enableAudioButton;
-    MyGUI::Button *disableAudioButton;
-    MyGUI::Button *backOptionsMenuButton;
-    MyGUI::Button *backGameSetupMenuButton;
-    MyGUI::Button *backTeamSelectionMenuButton;
-    MyGUI::Button *backCourtSelectionMenuButton;
-    MyGUI::Button *teamsSelectedButton;
+    boost::shared_ptr<MyGUI::Button> backMainMenuButton;
+    boost::shared_ptr<MyGUI::Button> backNetworkSetupButton;
+    boost::shared_ptr<MyGUI::Button> displayButton;
+    boost::shared_ptr<MyGUI::Button> inputButton;
+    boost::shared_ptr<MyGUI::Button> audioButton;
+    boost::shared_ptr<MyGUI::Button> team0SelectButton;
+    boost::shared_ptr<MyGUI::Button> team1SelectButton;
+    boost::shared_ptr<MyGUI::Button> startGameButton;
+    boost::shared_ptr<MyGUI::Button> backNetworkClientButton;
+    boost::shared_ptr<MyGUI::Button> changeResolutionButton;
+    boost::shared_ptr<MyGUI::Button> changeInputTypeButton;
+    boost::shared_ptr<MyGUI::Button> enableAudioButton;
+    boost::shared_ptr<MyGUI::Button> disableAudioButton;
+    boost::shared_ptr<MyGUI::Button> backOptionsMenuButton;
+    boost::shared_ptr<MyGUI::Button> backGameSetupMenuButton;
+    boost::shared_ptr<MyGUI::Button> backTeamSelectionMenuButton;
+    boost::shared_ptr<MyGUI::Button> backCourtSelectionMenuButton;
+    boost::shared_ptr<MyGUI::Button> teamsSelectedButton;
     
     // Player Start Selection Menu
-    MyGUI::Button *team0StartingLineupSetButton;
-    MyGUI::Button *team1StartingLineupSetButton;
-    MyGUI::Button *startingLineupsSetButton;
+    boost::shared_ptr<MyGUI::Button> team0StartingLineupSetButton;
+    boost::shared_ptr<MyGUI::Button> team1StartingLineupSetButton;
+    boost::shared_ptr<MyGUI::Button> startingLineupsSetButton;
     
     // listbox widgets
-    MyGUI::ListBox *team0SelectBox;
-    MyGUI::ListBox *team1SelectBox;
+    boost::shared_ptr<MyGUI::ListBox> team0SelectBox;
+    boost::shared_ptr<MyGUI::ListBox> team1SelectBox;
 
     // Network Server Setup Widgets
-    MyGUI::ListBox *numClientsSelectBox;  // allows you to select the number of network players
-    MyGUI::Button *serverHostButton;
-    MyGUI::EditBox *serverIPAddressBox;
+    boost::shared_ptr<MyGUI::ListBox> numClientsSelectBox;  // allows you to select the number of network players
+    boost::shared_ptr<MyGUI::Button> serverHostButton;
+    boost::shared_ptr<MyGUI::EditBox> serverIPAddressBox;
     
     // Network Client Setup Widgets
-    MyGUI::EditBox *clientIPAddressBox;
-    MyGUI::Button *clientConnectButton;
+    boost::shared_ptr<MyGUI::EditBox> clientIPAddressBox;
+    boost::shared_ptr<MyGUI::Button> clientConnectButton;
     
-    MyGUI::ListBox *team0Player1SelectBox;
-    MyGUI::ListBox *team0Player2SelectBox;
-    MyGUI::ListBox *team0Player3SelectBox;
-    MyGUI::ListBox *team0Player4SelectBox;
-    MyGUI::ListBox *team0Player5SelectBox;
-    MyGUI::ListBox *team1Player1SelectBox;
-    MyGUI::ListBox *team1Player2SelectBox;
-    MyGUI::ListBox *team1Player3SelectBox;
-    MyGUI::ListBox *team1Player4SelectBox;
-    MyGUI::ListBox *team1Player5SelectBox;
+    boost::shared_ptr<MyGUI::ListBox> team0Player1SelectBox;
+    boost::shared_ptr<MyGUI::ListBox> team0Player2SelectBox;
+    boost::shared_ptr<MyGUI::ListBox> team0Player3SelectBox;
+    boost::shared_ptr<MyGUI::ListBox> team0Player4SelectBox;
+    boost::shared_ptr<MyGUI::ListBox> team0Player5SelectBox;
+    boost::shared_ptr<MyGUI::ListBox> team1Player1SelectBox;
+    boost::shared_ptr<MyGUI::ListBox> team1Player2SelectBox;
+    boost::shared_ptr<MyGUI::ListBox> team1Player3SelectBox;
+    boost::shared_ptr<MyGUI::ListBox> team1Player4SelectBox;
+    boost::shared_ptr<MyGUI::ListBox> team1Player5SelectBox;
     
     
     // Player Selection Menu widgets
-    MyGUI::ListBox *team0PGSelectBox;
-    MyGUI::ListBox *team0SGSelectBox;
-    MyGUI::ListBox *team0SFSelectBox;
-    MyGUI::ListBox *team0PFSelectBox;
-    MyGUI::ListBox *team0CSelectBox;
+    boost::shared_ptr<MyGUI::ListBox> team0PGSelectBox;
+    boost::shared_ptr<MyGUI::ListBox> team0SGSelectBox;
+    boost::shared_ptr<MyGUI::ListBox> team0SFSelectBox;
+    boost::shared_ptr<MyGUI::ListBox> team0PFSelectBox;
+    boost::shared_ptr<MyGUI::ListBox> team0CSelectBox;
 
-    MyGUI::ListBox *team1PGSelectBox;
-    MyGUI::ListBox *team1SGSelectBox;
-    MyGUI::ListBox *team1SFSelectBox;
-    MyGUI::ListBox *team1PFSelectBox;
-    MyGUI::ListBox *team1CSelectBox;
+    boost::shared_ptr<MyGUI::ListBox> team1PGSelectBox;
+    boost::shared_ptr<MyGUI::ListBox> team1SGSelectBox;
+    boost::shared_ptr<MyGUI::ListBox> team1SFSelectBox;
+    boost::shared_ptr<MyGUI::ListBox> team1PFSelectBox;
+    boost::shared_ptr<MyGUI::ListBox> team1CSelectBox;
 
-    MyGUI::TextBox *team0PGRating;
-    MyGUI::TextBox *team0SGRating;
-    MyGUI::TextBox *team0SFRating;
-    MyGUI::TextBox *team0PFRating;
-    MyGUI::TextBox *team0CRating;
+    boost::shared_ptr<MyGUI::TextBox> team0PGRating;
+    boost::shared_ptr<MyGUI::TextBox> team0SGRating;
+    boost::shared_ptr<MyGUI::TextBox> team0SFRating;
+    boost::shared_ptr<MyGUI::TextBox> team0PFRating;
+    boost::shared_ptr<MyGUI::TextBox> team0CRating;
 
-    MyGUI::TextBox *team1PGRating;
-    MyGUI::TextBox *team1SGRating;
-    MyGUI::TextBox *team1SFRating;
-    MyGUI::TextBox *team1PFRating;
-    MyGUI::TextBox *team1CRating;
+    boost::shared_ptr<MyGUI::TextBox> team1PGRating;
+    boost::shared_ptr<MyGUI::TextBox> team1SGRating;
+    boost::shared_ptr<MyGUI::TextBox> team1SFRating;
+    boost::shared_ptr<MyGUI::TextBox> team1PFRating;
+    boost::shared_ptr<MyGUI::TextBox> team1CRating;
 
-    MyGUI::ImageBox *team0Logo;
-    MyGUI::ImageBox *team1Logo;
+    boost::shared_ptr<MyGUI::ImageBox> team0Logo;
+    boost::shared_ptr<MyGUI::ImageBox> team1Logo;
 	
     // Court selection menu widgets
-    MyGUI::Button *backPlayerStartSelectionMenuButton;
-    MyGUI::Button *courtSelectButton;
-    MyGUI::ListBox *courtSelectBox;  
-    MyGUI::ImageBox *courtPreviewImgBox;
-    MyGUI::TextBox *courtNameTxtBox;
+    boost::shared_ptr<MyGUI::Button> backPlayerStartSelectionMenuButton;
+    boost::shared_ptr<MyGUI::Button> courtSelectButton;
+    boost::shared_ptr<MyGUI::ListBox> courtSelectBox;  
+    boost::shared_ptr<MyGUI::ImageBox> courtPreviewImgBox;
+    boost::shared_ptr<MyGUI::TextBox> courtNameTxtBox;
 
     // OGRE specific code
 /*    boost::shared_ptr<renderEngine> render;  // stores a copy of the render object for use in the gui

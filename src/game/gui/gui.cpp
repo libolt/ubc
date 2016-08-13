@@ -58,10 +58,10 @@ boost::shared_ptr<GUISystem> GUISystem::Instance()
 
 // static declarations
 
-MyGUI::Gui *GUISystem::mGUI;
-MyGUI::OgrePlatform *GUISystem::mPlatform;
+boost::shared_ptr<MyGUI::Gui> GUISystem::mGUI;
+boost::shared_ptr<MyGUI::OgrePlatform> GUISystem::mPlatform;
 bool GUISystem::mainMenuCreated; 
-MyGUI::Button *GUISystem::startSingleGameButton;
+boost::shared_ptr<MyGUI::Button> GUISystem::startSingleGameButton;
 //void GUISystem::startSingleGameButtonClicked(MyGUI::Widget *_sender);
 
 GUISystem::GUISystem()  // Initialmizes the GUISystem class
@@ -256,11 +256,11 @@ void GUISystem::setPreviousActiveMenu(activeMenus menu)  // sets the value of pr
 }
 
 
-MyGUI::Gui *GUISystem::getMGUI()  // retrieves the value of mGUI
+boost::shared_ptr<MyGUI::Gui> GUISystem::getMGUI()  // retrieves the value of mGUI
 {
     return (mGUI);
 }
-void GUISystem::setMGUI(MyGUI::Gui *set)  // sets the value of mGUI
+void GUISystem::setMGUI(boost::shared_ptr<MyGUI::Gui> set)  // sets the value of mGUI
 {
     mGUI = set;
 }
@@ -282,7 +282,8 @@ bool GUISystem::initMyGUI()  // Initializes MyGUI
 //    Ogre::SceneManager *mSceneMgr = render->getMSceneMgr();
 
     logMsg("*** Initializing MyGUI ***");
-    mPlatform = new MyGUI::OgrePlatform();
+    boost::shared_ptr<MyGUI::OgrePlatform> tempPlatform(new MyGUI::OgrePlatform());
+    mPlatform = tempPlatform;
     logMsg("Crash?");
 
 /*#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
@@ -293,7 +294,8 @@ bool GUISystem::initMyGUI()  // Initializes MyGUI
 //#endif
 
     logMsg("Crash??");
-    mGUI = new MyGUI::Gui();
+    boost::shared_ptr<MyGUI::Gui> tempGUI(new MyGUI::Gui());
+    mGUI = tempGUI;
     logMsg("Crash???");
     mGUI->initialise();
     logMsg("*** MyGUI Initialized ***");
@@ -392,6 +394,7 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
 
     std::vector<boost::shared_ptr<teamState> > teamInstance; // = gameS->getTeamDataInstance();
 
+    logMsg("teamSelectionMenu");
 //    teamInstance = load->loadTeams();
 
     if (!teamSelectionMenuCreated)
@@ -454,8 +457,8 @@ void GUISystem::networkClientSetupMenu() // sets up the client connection
         createNetworkClientSetupGUI();
     }
     changeActiveMenu(NETWORKCLIENT);
-    MyGUI::InputManager::getInstance().setKeyFocusWidget(clientIPAddressBox);
-
+    MyGUI::InputManager::getInstance().setKeyFocusWidget(clientIPAddressBox.get());
+//    mGUI::InputManager->getInstance().setKeyFocusWidget(clientIPAddressBox);
 }
 
 void GUISystem::networkServerSetupMenu()  // sets up the networkServer instance
@@ -466,7 +469,7 @@ void GUISystem::networkServerSetupMenu()  // sets up the networkServer instance
     }
 
     changeActiveMenu(NETWORKSERVER);
-    MyGUI::InputManager::getInstance().setKeyFocusWidget(serverIPAddressBox);
+    MyGUI::InputManager::getInstance().setKeyFocusWidget(serverIPAddressBox.get());
 
 }
 
@@ -524,21 +527,25 @@ void GUISystem::courtSelected()  // processes court selection
 //    gameS->setSelectedCourtDataInstance(courtSelectBox->getIndexSelected());
 //    gameS->setActiveCourtInstance(courtSelectBox->getIndexSelected());
     getGameS()->setActiveCourtInstance(courtSelectBox->getIndexSelected());
-
+//    exit(0);
     teamSelectionMenu();
 }
 
 void GUISystem::teamsSelected()  // processes team selection
 {
     //gameState *gameS = gameState::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+    boost::shared_ptr<conversion> convert = conversion::Instance();
     
     std::vector<size_t> teamID;
     teamID.push_back(team0SelectBox->getIndexSelected());
     teamID.push_back(team1SelectBox->getIndexSelected());
 //    gameS->setTeamID(teamID);
+    logMsg("team0SelectBox->getIndexSelected() == " +convert->toString(team0SelectBox->getIndexSelected()));
+    logMsg("teamID[0] == " +convert->toString(teamID[0]));
+
     getGameS()->setTeamIDS(teamID);
     logMsg("Teams selected");
+//    exit(0);
 }
 
 void GUISystem::playerStartSelected()  // process player start selection
@@ -791,14 +798,14 @@ void GUISystem::playerStartSelected()  // process player start selection
 
 void GUISystem::gameSetupAwaySelected()  // processes away team selectdion on game setup menu
 {
-    MyGUI::InputManager::getInstance().setKeyFocusWidget(team1SelectBox);
+    MyGUI::InputManager::getInstance().setKeyFocusWidget(team1SelectBox.get());
     gameSetupMenuAwaySelected = true;
     gameSetupMenuHomeSelected = false;
 }
 
 void GUISystem::gameSetupHomeSelected()  // process home team selection on game setup menu
 {
-    MyGUI::InputManager::getInstance().setKeyFocusWidget(team0SelectBox);
+    MyGUI::InputManager::getInstance().setKeyFocusWidget(team0SelectBox.get());
     gameSetupMenuHomeSelected = true;
     gameSetupMenuAwaySelected = false;
 }

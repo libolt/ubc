@@ -294,7 +294,7 @@ void GUISystem::processNetworkMenuKeyPress(std::string keyPressed)  // processes
 
 void GUISystem::processNetworkServerMenuKeyPress(std::string keyPressed)  // process network server menu key input
 {
-    if (MyGUI::InputManager::getInstance().getKeyFocusWidget() == serverIPAddressBox)
+    if (MyGUI::InputManager::getInstance().getKeyFocusWidget() == serverIPAddressBox.get())
     {
         logMsg("keypress = " +keyPressed);
 //        exit(0);
@@ -368,7 +368,7 @@ void GUISystem::processNetworkServerMenuKeyPress(std::string keyPressed)  // pro
 
 void GUISystem::processNetworkClientMenuKeyPress(std::string keyPressed)  // processes network menu key input
 {
-    if (MyGUI::InputManager::getInstance().getKeyFocusWidget() == clientIPAddressBox)
+    if (MyGUI::InputManager::getInstance().getKeyFocusWidget() == clientIPAddressBox.get())
     {
 //        logMsg("clientIPAddressBox is focus!");
 //        exit(0);
@@ -525,9 +525,11 @@ void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed)  // process
             networkServerSetupMenu();
         }
     }
-    else if (keyPressed == "t")
+    // FIXME!
+    else if (keyPressed == "l")
     {
 //        exit(0);
+        logMsg("yarp");
         teamsSelected();
         playerStartSelectionMenu();
     }
@@ -665,6 +667,7 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed)  // pro
     }
     else if (keyPressed == "t")
     {
+        logMsg("yarp");
         teamsSelected();
         playerStartSelectionMenu();
 //        exit(0);

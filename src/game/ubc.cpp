@@ -92,48 +92,17 @@ bool UBC::setupState()  // sets up the UBC game state
 //    exit(0);
     bool stateSetup = true;
 //    exit(0);
-    if (gui->initMyGUI()) // Initializes MyGUI
+    
+    if (gui->setup())  // sets up the game GUI
     {
-        logMsg ("MyGUI initialized successfully!");
-        logMsg("is the main menu created?");
-//        exit(0);
-        if (!gui->getMainMenuCreated())
-        {
-            logMsg("mainMenu not created yet!");
-//            exit(0);
-            if (gui->createMainMenuGUI()) // creates the main menu gui.
-            {
-                logMsg("Main Menu created successfully!");
-//                exit(0);
-            }
-            else
-            {
-                logMsg("Unable to create Main Menu!");
-                stateSetup = false;
-            }
-        }
-        if (!gui->getBackButtonsCreated())
-        {
-            logMsg("Back buttons not created yet!");
-            if (gui->createBackButtons()) // creates the back buttons.
-            {
-                logMsg("Back Buttons created successfully!");
-//                exit(0);
-            }
-            else
-            {
-                logMsg("Unable to create Bsck Buttons!");
-                stateSetup = false;
-            }
-        }
-        gui->showMainMenuWidgets();
-//        getGameE()->setNetwork(getGameE()->getNetworkE());
-    } 
+        gui->setSetupComplete(true);
+        gui->mainMenu();
+    }
     else
     {
-
+        logMsg("Unable to setup GUI!");
+        exit(0);
     }
-
     
     return (stateSetup);
 }

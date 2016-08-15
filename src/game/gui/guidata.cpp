@@ -509,7 +509,15 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     std::vector<boost::shared_ptr<teamState> > teamInstance; // = gameS->getTeamDataInstance();
 
     teamInstance = load->loadTeams();
-    getGameS()->setTeamInstance(teamInstance);
+    if (teamInstance.size() > 0)
+    {
+        getGameS()->setTeamInstance(teamInstance);
+    }
+    else
+    {
+        logMsg("Unable to load Team data!");
+        return (false);
+    }
     logMsg("GUI ADD TEAMteamInstance.size() == " +convert->toString(teamInstance.size()));
     logMsg("GUI ADD TEAM teamInstance[4]->getID() ID == " +convert->toString(teamInstance[4]->getID()));
     logMsg("GUI ADD TEAM getGameS()->getTeamInstance()[4]->getID() ID == " +convert->toString(getGameS()->getTeamInstance()[4]->getID()));

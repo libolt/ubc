@@ -71,7 +71,9 @@ GUISystem::GUISystem()  // Initialmizes the GUISystem class
 //    mEditorGuiSheet =m
 //    Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 //    QuickGUI::registerScriptParser()m;
+    setupComplete = false;
     mainMenuCreated = false;
+    backButtonsCreated = false;
     networkSetupMenuCreated = false;
     networkServerSetupMenuCreated = false;
     networkClientSetupMenuCreated = false;
@@ -102,76 +104,86 @@ GUISystem::~GUISystem()
 
 
 /*boost::shared_ptr<networkEngimmnmne> GUISystem::getNetworkG()  // retrieves the value of network
-{mmm
+{
     return (networkG);
-}yb
+}
 void GUISystem::setNetworkG(boost::shared_ptr<networkEngine> set)  // sets the value of network
 {
     networkG = set;
 }
 
 boost::shared_ptr<renderEngine> GUISystem::getRenderE()  // retrieves the value of render
-{mnnnnbnkkm|okkkmnmn.hbn
+{
     return (render);
 }
 void GUISystem::setRender(boost::shared_ptr<renderEngine> set)  // sets the value of render
 {
-    render = svmet;
+    render = set;
 }
 */
+
+
+bool GUISystem::getSetupComplete()  // retrieves the value of setupComplete
+{
+    return (setupComplete);
+}
+void GUISystem::setSetupComplete(bool set)  // sets the value of setupComplete
+{
+    setupComplete = set;
+}
 
 bool GUISystem::getMainMenuCreated()  // retrieves the value of mainMenuCreated
 {
     return (mainMenuCreated);
 }
-void GUISystem::setMainMenuCreated(bool created)  // sets the value of mainMenuCreated
+void GUISystem::setMainMenuCreated(bool set)  // sets the value of mainMenuCreated
 {
-    mainMenuCreated = created;
+    mainMenuCreated = set;
 }
 
 bool GUISystem::getBackButtonsCreated()  // retrieves the value of backButtonsCreated
 {
 	return (backButtonsCreated);
 }
-void GUISystem::setBackButtonsCreated(bool created)  // sets the value of backButtonsCreated
+void GUISystem::setBackButtonsCreated(bool set)  // sets the value of backButtonsCreated
 {
-	backButtonsCreated = created;
+	backButtonsCreated = set;
 }
 
 bool GUISystem::getNetworkSetupMenuCreated()  // retrieves the value of networkSetupMenuCreated
 {
     return (networkSetupMenuCreated);
 }
-void GUISystem::setNetworkSetupMenuCreated(bool created)  // sets the value of networkSetupMenuCreated
+void GUISystem::setNetworkSetupMenuCreated(bool set)  // sets the value of networkSetupMenuCreated
 {
-    networkSetupMenuCreated = created;
+    networkSetupMenuCreated = set;
 }
 
 bool GUISystem::getOptionsMenuCreated()  // retrieves the value of optionsMenuCreated
 {
 	return (optionsMenuCreated);
 }
-void GUISystem::setOptionsMenuCreated(bool created)  // sets the value of optionsMenuCreated
+void GUISystem::setOptionsMenuCreated(bool set)  // sets the value of optionsMenuCreated
 {
-	optionsMenuCreated = created;
+	optionsMenuCreated = set;
 }
 
 bool GUISystem::getDisplaySetupMenuCreated()  // retrieves the value of displaySettingsMenuCreated
 {
 	return (displaySetupMenuCreated);
 }
-void GUISystem::setDisplaySetupMenuCreated(bool created)  // sets the value of displaySettingsMenuCreated
+void GUISystem::setDisplaySetupMenuCreated(bool set)  // sets the value of displaySettingsMenuCreated
 {
-	displaySetupMenuCreated = created;
+	displaySetupMenuCreated = set;
 }
 
 bool GUISystem::getInputSetupMenuCreated()  // retrieves the value of inputSettingsMenuCreated
 {
 	return (inputSetupMenuCreated);
 }
-void GUISystem::setInputSetupMenuCreated(bool created)  // sets the value of inputSettingsMenuCreated
+void GUISystem::setInputSetupMenuCreated(bool set)  // sets the value of inputSettingsMenuCreated
 {
-	inputSetupMenuCreated = created;
+	inputSetupMenuCreated = set;
 }
 
 bool GUISystem::getAuduoSetupMenuCreated()  // retrieves the value of audioSettingsMenuCreated
@@ -179,80 +191,80 @@ bool GUISystem::getAuduoSetupMenuCreated()  // retrieves the value of audioSetti
 	return (audioSetupMenuCreated);
 }
 
-void GUISystem::setAudioSetupMenuCreated(bool created)  // sets the value of audioSettingsMenuCreated
+void GUISystem::setAudioSetupMenuCreated(bool set)  // sets the value of audioSettingsMenuCreated
 {
-	audioSetupMenuCreated = created;
+	audioSetupMenuCreated = set;
 }
 
 bool GUISystem::getGameSetupMenuCreated()  // retrieves the value of gameSetupMenuCreated
 {
 	return (gameSetupMenuCreated);
 }
-void GUISystem::setGameSetupMenuCreated(bool created)  // sets the value of gameSetupMenuCreated
+void GUISystem::setGameSetupMenuCreated(bool set)  // sets the value of gameSetupMenuCreated
 {
-	gameSetupMenuCreated = created;
+	gameSetupMenuCreated = set;
 }
 
 bool GUISystem::getPlayerStartSelectionMenuCreated()  // retrieves the value of playerStartSelectionMenuCreated
 {
     return (playerStartSelectionMenuCreated);
 }
-void GUISystem::setPlayerStartSelectionMenuCreated(bool created)  // sets the value of playerStartSelectionMenuCreated
+void GUISystem::setPlayerStartSelectionMenuCreated(bool set)  // sets the value of playerStartSelectionMenuCreated
 {
-    playerStartSelectionMenuCreated = created;
+    playerStartSelectionMenuCreated = set;
 }
 
 bool GUISystem::getTeamSelectionMenuCreated()  // retrieves the value of teamSelectionMenuCreated
 {
     return (teamSelectionMenuCreated);
 }
-void GUISystem::setTeamSelectionMenuCreated(bool created)  // sets the value of teamSelectionMenuCreated
+void GUISystem::setTeamSelectionMenuCreated(bool set)  // sets the value of teamSelectionMenuCreated
 {
-    teamSelectionMenuCreated = created;
+    teamSelectionMenuCreated = set;
 }
 
 bool GUISystem::getCourtSelectionMenuCreated()  // retrieves the value of courtSelectionMenuCreated
 {
 	return (courtSelectionMenuCreated);
 }
-void GUISystem::setCourtSelectionMenuCreated(bool created)  // sets the value of courtSelectionMenuCreated
+void GUISystem::setCourtSelectionMenuCreated(bool set)  // sets the value of courtSelectionMenuCreated
 {
-	courtSelectionMenuCreated = created;
+	courtSelectionMenuCreated = set;
 }
 
 bool GUISystem::getCourtSelectionDataLoaded()  // retrieves the value of courtSelectionEntriesLoaded
 {
     return (courtSelectionDataLoaded);
 }
-void GUISystem::setCourtSelectionDataLoaded(bool loaded)  // sets the value of courtSelectionEntriesLoaded
+void GUISystem::setCourtSelectionDataLoaded(bool set)  // sets the value of courtSelectionEntriesLoaded
 {
-    courtSelectionDataLoaded = loaded;
+    courtSelectionDataLoaded = set;
 }
 
 bool GUISystem::getMenuActive()  // retrieves the value of menuActive
 {
 	return (menuActive);
 }
-void GUISystem::setMenuActive(bool active)  // sets the value of menuActive
+void GUISystem::setMenuActive(bool set)  // sets the value of menuActive
 {
-	menuActive = active;
+	menuActive = set;
 }
 activeMenus GUISystem::getActiveMenu()  // retrieves the value of activeMenu
 {
 	return (activeMenu);
 }
-void GUISystem::setActiveMenu(activeMenus menu)  // sets the value of activeMenu
+void GUISystem::setActiveMenu(activeMenus set)  // sets the value of activeMenu
 {
-	activeMenu = menu;
+	activeMenu = set;
 }
 
 activeMenus GUISystem::getPreviousActiveMenu()  // retrieves the value of previousActiveMenu
 {
 	return (previousActiveMenu);
 }
-void GUISystem::setPreviousActiveMenu(activeMenus menu)  // sets the value of previousActiveMenu
+void GUISystem::setPreviousActiveMenu(activeMenus set)  // sets the value of previousActiveMenu
 {
-	previousActiveMenu = menu;
+	previousActiveMenu = set;
 }
 
 
@@ -273,6 +285,22 @@ void GUISystem::setViewPort(const Ogre::Viewport &set)  // sets the value of vie
 {
     *viewPort = set;
 }*/
+
+bool GUISystem::setup()  // sets up the in game gui
+{
+    if (initMyGUI()) // Initializes MyGUI
+    {
+        logMsg ("MyGUI initialized successfully!");
+        logMsg("is the main menu created?");
+//        exit(0);
+    }
+    else
+    {
+        logMsg("Unable to initialize MyGUI!");
+        exit(0);
+    }
+    return (true);
+}
 
 bool GUISystem::initMyGUI()  // Initializes MyGUI
 {
@@ -300,6 +328,56 @@ bool GUISystem::initMyGUI()  // Initializes MyGUI
     mGUI->initialise();
     logMsg("*** MyGUI Initialized ***");
     return true;
+}
+
+void GUISystem::mainMenu()  // msin in game menu
+{
+    if (!mainMenuCreated)
+    {
+        logMsg("mainMenu not created yet!");
+//            exit(0);
+        if (createMainMenuGUI()) // creates the main menu gui.
+        {
+            logMsg("Main Menu created successfully!");
+            mainMenuCreated = true;
+//                exit(0);
+        }
+        else
+        {
+            logMsg("Unable to create Main Menu!");
+            exit(0);
+        }
+    }
+    else
+    {
+        
+    }
+    showMainMenuWidgets();  // displays main menu
+    activeMenu = MAIN;
+//    exit(0);
+}
+
+void GUISystem::backButtons()  // handles the back buttons
+{
+    if (!backButtonsCreated)
+    {
+        logMsg("Back buttons not created yet!");
+        if (createBackButtons()) // creates the back buttons.
+        {
+            logMsg("Back Buttons created successfully!");
+            backButtonsCreated = true;
+//                exit(0);
+        }
+        else
+        {
+            logMsg("Unable to create Bsck Buttons!");
+            return (false);
+        }
+    }
+    else
+    {
+        
+    }
 }
 
 void GUISystem::startSinglePlayerGame()  // starts single player game
@@ -399,9 +477,20 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
 
     if (!teamSelectionMenuCreated)
     {
-        createTeamSelectionMenuGUI();
-        addTeamStartSelectionMenuData();
-        teamSelectionMenuCreated = true;
+        logMsg("Fraaaap!");
+//        exit(0);
+        if (createTeamSelectionMenuGUI())
+        {
+            if (addTeamStartSelectionMenuData())
+            {
+                teamSelectionMenuCreated = true;
+            }
+            else 
+            {
+                logMsg("unable to create Team Selection Menus!");
+                exit(0);
+            }
+        }
     }
 //    exit(0);
     hideCourtSelectionMenuWidgets();

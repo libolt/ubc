@@ -72,13 +72,13 @@ bool GUISystem::createMainMenuGUI()  // creates the main menu gui
     MyGUI::InputManager::getInstance().setKeyFocusWidget(startSingleGameButton.get());
     startSingleGameButton->setPosition((0.3 *getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.1 *getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
     startSingleGameButton->setSize((0.4 *getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
-
+    startSingleGameButton->setVisible(false);
     startMultiGameButton = boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("startMultiGameButton"));
 //    exit(0);
     startMultiGameButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::startMultiGameButtonClicked);
     startMultiGameButton->setPosition((0.3 *getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.14 *getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
     startMultiGameButton->setSize((0.4 *getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
-
+    startMultiGameButton->setVisible(false);
 //  optionsButton =    mGUI->createWidget<MyGUI::Button>("Button", 362, 125, 300, 26, MyGUI::Align::Default, "Main");
 //  optionsButton->setCaption(",?ik.??..?llmmmmllml.....l.m. onOptions");
     optionsButton = boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("optionsButton"));
@@ -86,7 +86,7 @@ bool GUISystem::createMainMenuGUI()  // creates the main menu gui
     optionsButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::optionsButtonClicked);
     optionsButton->setPosition((0.3 *getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.18 *getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
     optionsButton->setSize((0.4 *getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
-
+    optionsButton->setVisible(false);
 //  exitButton = mGUI->createWidget<MyGUI::Button>("Button", 362, 150, 300, 26, MyGUI::Align::Default, "Main");
 //  exitButton->setCaption("Exit");mlklkklllmmmmmmm mmllm
     exitButton = boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("exitButton"));
@@ -94,11 +94,11 @@ bool GUISystem::createMainMenuGUI()  // creates the main menu gui
     exitButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::exitButtonClicked);
     exitButton->setPosition((0.3 *getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.22 *getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
     exitButton->setSize((0.4 *getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
- 
+    exitButton->setVisible(false);
     mainMenuCreated = true;
     menuActive = true;
     activeMenu = MAIN;
-
+//    exit(0);
     return true;
 }
 

@@ -80,50 +80,53 @@ public:
     void setRender(boost::shared_ptr<renderEngine> set);  // sets the value of render
 */
 
+    bool getSetupComplete();  // retrieves the value of setupComplete
+    void setSetupComplete(bool set);  // sets the value of setupComplete
+    
     bool getMainMenuCreated();   // retrieves the value of mainMenuCreated
-    void setMainMenuCreated(bool created); // sets the value of mainMenuCreated
+    void setMainMenuCreated(bool set); // sets the value of mainMenuCreated
 
     bool getBackButtonsCreated(); // retrieves the value of backButtonsCreated
-    void setBackButtonsCreated(bool created); // sets the value of backButtonsCreated
+    void setBackButtonsCreated(bool set); // sets the value of backButtonsCreated
 
     bool getNetworkSetupMenuCreated();  // retrieves the value of networkSetupMenuCreated
-    void setNetworkSetupMenuCreated(bool created);  // sets the value of networkSetupMenuCreated
+    void setNetworkSetupMenuCreated(bool set);  // sets the value of networkSetupMenuCreated
 
     bool getOptionsMenuCreated();  // retrieves the value of optionsMenuCreated
-    void setOptionsMenuCreated(bool created);  // sets the value of optionsMenuCreated
+    void setOptionsMenuCreated(bool set);  // sets the value of optionsMenuCreated
 
     bool getDisplaySetupMenuCreated();  // retrieves the value of displaySettingsMenuCreated
-    void setDisplaySetupMenuCreated(bool created);  // sets the value of displaySettingsMenuCreated
+    void setDisplaySetupMenuCreated(bool set);  // sets the value of displaySettingsMenuCreated
 
     bool getInputSetupMenuCreated();  // retrieves the value of inputSettingsMenuCreated
-    void setInputSetupMenuCreated(bool created);  // sets the value of inputSettingsMenuCreated
+    void setInputSetupMenuCreated(bool set);  // sets the value of inputSettingsMenuCreated
 
     bool getAuduoSetupMenuCreated();  // retrieves the value of audioSettingsMenuCreated
-    void setAudioSetupMenuCreated(bool created);  // sets the value of audioSettingsMenuCreated
+    void setAudioSetupMenuCreated(bool set);  // sets the value of audioSettingsMenuCreated
 
     bool getGameSetupMenuCreated();  // retrieves the value of gameSetupMenuCreated
-    void setGameSetupMenuCreated(bool created);  // sets the value of gameSetupMenuCreated
+    void setGameSetupMenuCreated(bool set);  // sets the value of gameSetupMenuCreated
 
     bool getPlayerStartSelectionMenuCreated();  // retrieves the value of playerStartSelectionMenuCreated
-    void setPlayerStartSelectionMenuCreated(bool created);  // sets the value of playerStartSelectionMenuCreated
+    void setPlayerStartSelectionMenuCreated(bool set);  // sets the value of playerStartSelectionMenuCreated
 
     bool getTeamSelectionMenuCreated();  // retrieves the value of teamSelectionMenuCreated
-    void setTeamSelectionMenuCreated(bool created);  // sets the value of teamSelectionMenuCreated
+    void setTeamSelectionMenuCreated(bool set);  // sets the value of teamSelectionMenuCreated
 
     bool getCourtSelectionMenuCreated();  // retrieves the value of courtSelectionMenuCreated
-    void setCourtSelectionMenuCreated(bool created);  // sets the value of courtSelectionMenuCreated	
+    void setCourtSelectionMenuCreated(bool set);  // sets the value of courtSelectionMenuCreated	
 
     bool getCourtSelectionDataLoaded();  // retrieves the value of courtSelectionEntriesLoaded
-    void setCourtSelectionDataLoaded(bool loaded);  // sets the value of courtSelectionEntriesLoaded
+    void setCourtSelectionDataLoaded(bool set);  // sets the value of courtSelectionEntriesLoaded
 	
     bool getMenuActive(); // retrieves the value of menuActive
-    void setMenuActive(bool active); // sets the value of menuActive
+    void setMenuActive(bool set); // sets the value of menuActive
 
     activeMenus getActiveMenu(); // retrieves the value of activeMenu
-    void setActiveMenu(activeMenus menu); // sets the value of activeMenu
+    void setActiveMenu(activeMenus set); // sets the value of activeMenu
 
     activeMenus getPreviousActiveMenu(); // retrieves the value of previousActiveMenu
-    void setPreviousActiveMenu(activeMenus menu); // sets the value of previousActiveMenu
+    void setPreviousActiveMenu(activeMenus set); // sets the value of previousActiveMenu
 
     boost::shared_ptr<MyGUI::Gui> getMGUI();  // retrieves the value of mGUI
     void setMGUI(boost::shared_ptr<MyGUI::Gui> set);  // sets the value of mGUI
@@ -132,6 +135,7 @@ public:
     void setViewPort(const Ogre::Viewport &set);  // sets the value of viewPort
 */
 
+    bool setup();  // sets up the in game gui
     bool initMyGUI();  // Initializes MyGUI
     bool createMainMenuGUI();  // creates GUI gor main menu screen.
     bool createNetworkSetupGUI();  // creates GUI for network setup screen.
@@ -161,6 +165,8 @@ public:
     void processTeamSelectionMenuKeyPress(std::string keyPressed);  // process team selection menu key input
     void processCourtSelectionMenuKeyPress(std::string keyPressed);  // process court selection menu key input
 	
+    void mainMenu();  // msin in game menu
+    void backButtons();  // handles the back buttons
     void startSinglePlayerGame();  // starts single player game
     void startMultiPlayerGame();  // starts multiplayer game
     void optionsMenu();  // displays options menu
@@ -387,7 +393,9 @@ private:
 */
 
 	// booleans
+    bool setupComplete;  // determinrs if the gui has been properly setup.
     static bool mainMenuCreated;   // determines whether the main menu gui has been created
+    bool backButtonsCreated;  // determines whether the back buttons have been created
     bool networkSetupMenuCreated;   // determines whether the network setup gui has been created
     bool networkServerSetupMenuCreated;   // determines whether the network server setup gui has been created
     bool networkClientSetupMenuCreated;   // determines whether the network client setup gui has been created
@@ -399,7 +407,6 @@ private:
     bool playerStartSelectionMenuCreated;  // determines whether the player start selection menu gui has been created
     bool teamSelectionMenuCreated;  // determines whether the team selection menu gui has been created
     bool courtSelectionMenuCreated;  // deteemines whether the court selection menu has been created;
-    bool backButtonsCreated;  // determines the back buttons have been created
     bool menuActive;  // stores whether a menu is being diplayed
     bool gameSetupMenuAwaySelected;  // determines whether the away team listbox is selected;
     bool gameSetupMenuHomeSelected;  // determines whether the home team listbox is selected;

@@ -488,7 +488,7 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
 
     if (teamSelectionMenuCreated)
     {
-        if (teamSelectionMenuDataAdded))
+        if (teamSelectionMenuDataAdded)
         {
             logMsg("Team Selection Menu Data Added already!");
             changeMenu = true;

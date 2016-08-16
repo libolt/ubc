@@ -508,25 +508,40 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
 
     std::vector<boost::shared_ptr<teamState> > teamInstance; // = gameS->getTeamDataInstance();
 
+/*    if (!getGameS()->getTeamInstancesCreated())
+    {
+        logMsg("Team Instances not Created!");
+        exit(0);
+    }
+
     teamInstance = load->loadTeams();
     if (teamInstance.size() > 0)
     {
-        getGameS()->setTeamInstance(teamInstance);
+        getGameS()->setTdeamInstance(teamInstance);
     }
     else
     {
         logMsg("Unable to load Team data!");
         return (false);
     }
+*/
     logMsg("GUI ADD TEAMteamInstance.size() == " +convert->toString(teamInstance.size()));
     logMsg("GUI ADD TEAM teamInstance[4]->getID() ID == " +convert->toString(teamInstance[4]->getID()));
     logMsg("GUI ADD TEAM getGameS()->getTeamInstance()[4]->getID() ID == " +convert->toString(getGameS()->getTeamInstance()[4]->getID()));
 //    exit(0);
-/*    if (getGameS()->getTeamInstancesCreated())
+    if (getGameS()->getTeamInstancesCreated())
     {        
-        teamInstance = getGameS()->getTeamInstance();
-        logMsg("teamInstance.size() == " +convert->toString(getGameS()->getTeamInstance().size()));
-        exit(0);
+        if (getGameS()->getTeamInstance().size() > 0)
+        {
+            teamInstance = getGameS()->getTeamInstance();
+            logMsg("teamInstance.size() == " +convert->toString(getGameS()->getTeamInstance().size()));
+        }
+        else
+        {
+            logMsg("getGameS()->getTeamInstance() is EMPTY!");
+            return (false);           
+        }
+//        exit(0);
     }
     else
     {    
@@ -534,15 +549,15 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
         {
              logMsg("teamInstance.size() == " +convert->toString(getGameS()->getTeamInstance().size()));
 //            exit(0);
-            if (getGameS()->getTeamInstance().size() == 0)
+            if (getGameS()->getTeamInstance().size() > 0)
             {
-                exit(0);
+                teamInstance = getGameS()->getTeamInstance();
+                logMsg("teamInstance.size() == " +convert->toString(getGameS()->getTeamInstance().size()));             
             }
             else
             {
-                teamInstance = getGameS()->getTeamInstance();
-                logMsg("teamInstance.size() == " +convert->toString(getGameS()->getTeamInstance().size()));
-//                exit(0);
+                logMsg("getGameS()->getTeamInstance() is EMPTY!");
+                return (false);                               
             }
 
         }
@@ -553,9 +568,9 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
         }
         
     }
-*/
+
     
-/*
+
 //    gameS->setTeamDataInstance(teamDataInstance);
 //
 //    teamInstance = gameS->getTeamInstance();
@@ -586,6 +601,6 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     }
     team0SelectBox->setIndexSelected(0);
     team1SelectBox->setIndexSelected(1);
-*/
-    return (false);
+
+    return (true);
 }

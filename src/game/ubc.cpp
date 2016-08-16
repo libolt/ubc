@@ -97,6 +97,7 @@ bool UBC::setupState()  // sets up the UBC game state
     {
         gui->setSetupComplete(true);
         gui->mainMenu();
+        gui->backButtons();
     }
     else
     {

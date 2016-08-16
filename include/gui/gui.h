@@ -113,6 +113,9 @@ public:
     bool getTeamSelectionMenuCreated();  // retrieves the value of teamSelectionMenuCreated
     void setTeamSelectionMenuCreated(bool set);  // sets the value of teamSelectionMenuCreated
 
+    bool getTeamSelectionMenuDataAdded();  // retrieves the value of teamSelectionMenuDataAdded
+    void setTeamSelectionMenuDataAdded(bool set);  // sets the value of teamSelectionDataAdded
+
     bool getCourtSelectionMenuCreated();  // retrieves the value of courtSelectionMenuCreated
     void setCourtSelectionMenuCreated(bool set);  // sets the value of courtSelectionMenuCreated	
 
@@ -406,6 +409,7 @@ private:
     bool gameSetupMenuCreated;  // determines whether the game setup menu gui has been created
     bool playerStartSelectionMenuCreated;  // determines whether the player start selection menu gui has been created
     bool teamSelectionMenuCreated;  // determines whether the team selection menu gui has been created
+    bool teamSelectionMenuDataAdded;  // determines whether teeam data has been added to the the team selection menu
     bool courtSelectionMenuCreated;  // deteemines whether the court selection menu has been created;
     bool menuActive;  // stores whether a menu is being diplayed
     bool gameSetupMenuAwaySelected;  // determines whether the away team listbox is selected;

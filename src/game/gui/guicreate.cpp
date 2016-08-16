@@ -235,7 +235,7 @@ bool GUISystem::createBackButtons()  // creates the back buttons for the menus
 {
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
-
+//    exit(0);
     MyGUI::LayoutManager::getInstance().loadLayout("BackButtons.layout");
 
     backMainMenuButton = boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("backMainMenuButton"));  // loads Back to Main Menu Button

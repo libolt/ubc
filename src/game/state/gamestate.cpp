@@ -304,6 +304,7 @@ bool gameState::createBasketballInstances()  // creates basketball Instances
 
 bool gameState::createTeamInstances()  // creates team Instances
 {
+    logMsg("gameState::createTeamInstances()");
 //    exit(0);
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<loader> load = loader::Instance();

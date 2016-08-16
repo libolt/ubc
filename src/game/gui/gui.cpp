@@ -86,6 +86,7 @@ GUISystem::GUISystem()  // Initialmizes the GUISystem class
     gameSetupMenuHomeSelected = false;
     playerStartSelectionMenuCreated = false;
     teamSelectionMenuCreated = false;
+    teamSelectionMenuDataAdded = false;
     courtSelectionMenuCreated = false;
     courtSelectionDataLoaded = false;
     
@@ -221,6 +222,15 @@ bool GUISystem::getTeamSelectionMenuCreated()  // retrieves the value of teamSel
 void GUISystem::setTeamSelectionMenuCreated(bool set)  // sets the value of teamSelectionMenuCreated
 {
     teamSelectionMenuCreated = set;
+}
+
+bool GUISystem::getTeamSelectionMenuDataAdded()  // retrieves the value of teamSelectionMenuDataAdded
+{
+    return (teamSelectionMenuDataAdded);
+}
+void GUISystem::setTeamSelectionMenuDataAdded(bool set)  // sets the value of teamSelectionDataAdded
+{
+    teamSelectionMenuDataAdded = set;
 }
 
 bool GUISystem::getCourtSelectionMenuCreated()  // retrieves the value of courtSelectionMenuCreated
@@ -459,7 +469,7 @@ void GUISystem::playerStartSelectionMenu()  // displays player start selection m
     {
         createPlayerStartSelectionMenuGUI();	
         addPlayerStartSelectionMenuData();
-		exit(0);
+//        exit(0);
         playerStartSelectionMenuCreated = true;
     }
     setSelectedIndexes();
@@ -469,32 +479,68 @@ void GUISystem::playerStartSelectionMenu()  // displays player start selection m
 void GUISystem::teamSelectionMenu()  // displays team selection menu
 {
     boost::shared_ptr<loader> load = loader::Instance();
-
-    std::vector<boost::shared_ptr<teamState> > teamInstance; // = gameS->getTeamDataInstance();
+    bool changeMenu = false;  // determinrs if menu is to be changed
+//    std::vector<boost::shared_ptr<teamState> > teamInstance; // = gameS->getTeamDataInstance();
 
     logMsg("teamSelectionMenu");
+    
 //    teamInstance = load->loadTeams();
 
-    if (!teamSelectionMenuCreated)
+    if (teamSelectionMenuCreated)
     {
-        logMsg("Fraaaap!");
-//        exit(0);
-        if (createTeamSelectionMenuGUI())
+        if (teamSelectionMenuDataAdded))
+        {
+            logMsg("Team Selection Menu Data Added already!");
+            changeMenu = true;
+        }
+        else
         {
             if (addTeamStartSelectionMenuData())
             {
-                teamSelectionMenuCreated = true;
+                teamSelectionMenuDataAdded = true;
+                changeMenu = true;
             }
-            else 
+            else
             {
-                logMsg("unable to create Team Selection Menus!");
+                logMsg("unable to add data to Team Selection Menus!");
                 exit(0);
             }
         }
     }
-//    exit(0);
-    hideCourtSelectionMenuWidgets();
-    changeActiveMenu(TEAMSELECT);
+    else
+    {
+        if (createTeamSelectionMenuGUI())
+        
+            teamSelectionMenuCreated = true;
+            if (addTeamStartSelectionMenuData())
+            {
+                teamSelectionMenuDataAdded = true;
+                changeMenu = true;
+            }
+            else 
+            {
+                logMsg("unable to add data to Team Selection Menus!");
+                exit(0);
+            }
+        }
+        else
+        {
+            logMsg("Unable to create Team Selection Menu!");
+        }
+    }
+    
+//    hideCourtSelectionMenuWidgets();
+    if (changeMenu = true)
+    {
+        logMsg("Changing activeMenu to TEAMSELECT!")
+        changeActiveMenu(TEAMSELECT);
+    }
+    else
+    {
+        logMsg("Failed to change activeMenu to TEAMSELECT!");
+        exit(0);
+    }
+    exit(0);
 }
 
 void GUISystem::courtSelectionMenu() // displays court selection menu
@@ -617,7 +663,8 @@ void GUISystem::courtSelected()  // processes court selection
 //    gameS->setActiveCourtInstance(courtSelectBox->getIndexSelected());
     getGameS()->setActiveCourtInstance(courtSelectBox->getIndexSelected());
 //    exit(0);
-    teamSelectionMenu();
+//    changeActiveMenu(TEAMSELECT);
+//    teamSelectionMenu();
 }
 
 void GUISystem::teamsSelected()  // processes team selection

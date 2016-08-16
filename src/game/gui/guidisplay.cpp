@@ -409,7 +409,7 @@ void GUISystem::showTeamSelectionMenuWidgets()  // show all widgets tied to the 
 //    exit(0);
     team0SelectBox->setVisible(true);
     team0SelectBox->setPosition((0.1 *getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.10 *getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
-
+//    exit(0);
     team1SelectBox->setVisible(true);
     team1SelectBox->setPosition((0.5*getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.10 *getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
@@ -435,14 +435,14 @@ void GUISystem::hideCourtSelectionMenuWidgets()  // hides all widgets tied to th
     courtNameTxtBox->setVisible(false);
     courtPreviewImgBox->setVisible(false);
     courtSelectButton->setVisible(false);
-//    exit(0);
+    exit(0);
 }
 void GUISystem::showCourtSelectionMenuWidgets()  // show all widgets tied to the Court Selection Menu
 {
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
     boost::shared_ptr<conversion> convert = conversion::Instance();
-
+    
     displayCount += 1;
     logMsg("court displayCount == " +convert->toString(displayCount));
     
@@ -451,7 +451,7 @@ void GUISystem::showCourtSelectionMenuWidgets()  // show all widgets tied to the
 
     courtSelectBox->setVisible(true);
     courtSelectBox->setPosition((0.25 *getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.31 *getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
-
+    
     courtNameTxtBox->setVisible(true);
     courtPreviewImgBox->setVisible(true);
     courtSelectButton->setVisible(true);

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   .opyright (C) 1999 - 2015 by Mike McLean                              *
+ *   .opyright (C) 1999 - 2016 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -237,7 +237,7 @@ void GUISystem::menuReceiveKeyPress(std::string keyPressed)  // processes key in
                 break;
             case TEAMSELECT:
                 processTeamSelectionMenuKeyPress(keyPressed);
-    //            exit(0);
+//                exit(0);
                 break;
             case COURTSELECT:
                 processCourtSelectionMenuKeyPress(keyPressed);
@@ -763,6 +763,7 @@ void GUISystem::processCourtSelectionMenuKeyPress(std::string keyPressed)  // pr
     else if (keyPressed == "s")
     {
         courtSelected();
+        teamSelectionMenu();
         
     }
 }

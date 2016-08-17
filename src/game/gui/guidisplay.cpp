@@ -407,6 +407,7 @@ void GUISystem::showTeamSelectionMenuWidgets()  // show all widgets tied to the 
     logMsg("Blipblop");
     logMsg("Blip");
 //    exit(0);
+    
     team0SelectBox->setVisible(true);
     team0SelectBox->setPosition((0.1 *getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.10 *getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 //    exit(0);
@@ -435,7 +436,7 @@ void GUISystem::hideCourtSelectionMenuWidgets()  // hides all widgets tied to th
     courtNameTxtBox->setVisible(false);
     courtPreviewImgBox->setVisible(false);
     courtSelectButton->setVisible(false);
-    exit(0);
+//    exit(0);
 }
 void GUISystem::showCourtSelectionMenuWidgets()  // show all widgets tied to the Court Selection Menu
 {
@@ -497,7 +498,9 @@ void GUISystem::hideActiveMenuWidgets()  // hides active menus widgets
             hideTeamSelectionMenuWidgets();
             break;
         case COURTSELECT:
+//            exit(0);
             hideCourtSelectionMenuWidgets();
+            
             break;
         default:
             break;
@@ -542,7 +545,7 @@ void GUISystem::showActiveMenuWidgets()  // shows active menus widgets
         case TEAMSELECT:
             logMsg("TEAMSELECT");
 //            exit(0);
-            showTeamSelectionMenuWidgets();
+//            showTeamSelectionMenuWidgets();
             break;
         case COURTSELECT:
             showCourtSelectionMenuWidgets();

@@ -478,16 +478,21 @@ void GUISystem::playerStartSelectionMenu()  // displays player start selection m
 
 void GUISystem::teamSelectionMenu()  // displays team selection menu
 {
+    hideCourtSelectionMenuWidgets();
+    createTeamSelectionMenuGUI();
+    showTeamSelectionMenuWidgets();
+//    changeActiveMenu(TEAMSELECT);
     boost::shared_ptr<loader> load = loader::Instance();
     bool changeMenu = false;  // determinrs if menu is to be changed
 //    std::vector<boost::shared_ptr<teamState> > teamInstance; // = gameS->getTeamDataInstance();
 
     logMsg("teamSelectionMenu");
-    
+
 //    teamInstance = load->loadTeams();
 
     if (teamSelectionMenuCreated)
     {
+        
         if (teamSelectionMenuDataAdded)
         {
             logMsg("Team Selection Menu Data Added already!");
@@ -509,11 +514,12 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
     }
     else
     {
-        if (createTeamSelectionMenuGUI())
-        
+/*        if (createTeamSelectionMenuGUI())
+        {            
             teamSelectionMenuCreated = true;
             if (addTeamStartSelectionMenuData())
             {
+                
                 teamSelectionMenuDataAdded = true;
                 changeMenu = true;
             }
@@ -526,13 +532,14 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
         else
         {
             logMsg("Unable to create Team Selection Menu!");
-        }
+        }*/
     }
-    
+/*    
 //    hideCourtSelectionMenuWidgets();
     if (changeMenu = true)
     {
-        logMsg("Changing activeMenu to TEAMSELECT!")
+        logMsg("Changing activeMenu to TEAMSELECT!");
+//        exit(0);
         changeActiveMenu(TEAMSELECT);
     }
     else
@@ -540,7 +547,8 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
         logMsg("Failed to change activeMenu to TEAMSELECT!");
         exit(0);
     }
-    exit(0);
+*/
+//    exit(0);
 }
 
 void GUISystem::courtSelectionMenu() // displays court selection menu

@@ -381,7 +381,8 @@ void GUISystem::backButtons()  // handles the back buttons
         else
         {
             logMsg("Unable to create Bsck Buttons!");
-            return (false);
+//            return (false);
+            exit(0);
         }
     }
     else

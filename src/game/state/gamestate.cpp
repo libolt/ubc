@@ -311,11 +311,11 @@ bool gameState::createTeamInstances()  // creates team Instances
     
     std::vector<boost::shared_ptr<teamState> > tInstance;
     tInstance = load->loadTeams();
-    logMsg("tInstance size == " +convert->toString(tInstance.size()));
+/*    logMsg("tInstance size == " +convert->toString(tInstance.size()));
 //    exit(0);
-/*    logMsg("teamID.size() == " +convert->toString(getTeamIDS().size()));
-    logMsg("tInstance size = " +convert->toString(tInstance.size()));
-    logMsg("tInstance city 0 = " +tInstance[0]->getCity());
+//    logMsg("teamID.size() == " +convert->toString(getTeamIDS().size()));
+//    logMsg("tInstance size = " +convert->toString(tInstance.size()));
+//    logMsg("tInstance city 0 = " +tInstance[0]->getCity());
 
 //    exit(0);
 ///    teamInstance[0].setTeamID(teamID[0]);
@@ -333,7 +333,7 @@ bool gameState::createTeamInstances()  // creates team Instances
 //    teamInstance[0].setupState();
 //    teamInstance[1].setupState();
 //    exit(0);
-*/
+
     if (tInstance.size() > 0)
     {
         setTeamInstance(tInstance);
@@ -346,7 +346,7 @@ bool gameState::createTeamInstances()  // creates team Instances
         logMsg("Failed to create Team Instances!");
         return (false);
     }
-    
+    */
     return (true);
 }
 

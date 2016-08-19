@@ -323,6 +323,7 @@ std::vector<boost::shared_ptr<teamState> > loader::loadTeams()  // load teams fr
         teams.push_back(loadTeamFile(findFile("teams/" + *it)));
 #endif
     }
+    
     logMsg("teams[4]->getID() ID == " +convert->toString(teams[4]->getID()));
     logMsg("loadTeams() 4 ID == " +convert->toString(teams[4]->getID()));
     logMsg("dah");
@@ -427,10 +428,13 @@ boost::shared_ptr<teamState> loader::loadTeamFile(std::string fileName)  // load
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 //    std::vector<boost::shared_ptr<teamState> > teamInstance = gameS->getTeamInstance();
-    static boost::shared_ptr<teamState> teamInstance (new teamState);
-/*    teamState *tempTeamObj = new teamState;
-    tInstance = boost::shared_ptr<teamState>(tempTeamObj);
-*/
+  
+    boost::shared_ptr<teamState> tInstance; //(new teamState);
+//    teamInstance.reset(new teamState);
+    teamState *tempTeamObj;
+//    tempTeamObj = new teamState;
+/*    teamInstance = boost::shared_ptr<teamState>(tempTeamObj);
+
     static size_t ID;
     std::string City;
     std::string Name;
@@ -444,6 +448,7 @@ boost::shared_ptr<teamState> loader::loadTeamFile(std::string fileName)  // load
     std::string fileContents;
     tinyxml2::XMLDocument doc;
     char *contents = NULL;
+    
     readFile(fileName.c_str(), &contents);
     fileContents = convert->toString(contents);
     doc.Parse(contents);
@@ -513,7 +518,7 @@ boost::shared_ptr<teamState> loader::loadTeamFile(std::string fileName)  // load
         Logo = pElem->GetText();
         logMsg("Logo == " +Logo);
     }
-    
+     
     logMsg("ID == " +convert->toString(ID));
 //    exit(0);
     teamInstance->setID(ID);
@@ -529,8 +534,8 @@ boost::shared_ptr<teamState> loader::loadTeamFile(std::string fileName)  // load
 //   teamInstance.push_back(teamInstance);
 //   gameS->setteamInstance(teamInstance);
 //    exit(0);
-
-    return (teamInstance);
+*/
+    return (tInstance);
 }
 
 std::vector<boost::shared_ptr<playerState> > loader::loadPlayers()  // loads the players

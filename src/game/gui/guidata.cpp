@@ -549,7 +549,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
         {
              logMsg("teamInstance.size() == " +convert->toString(getGameS()->getTeamInstance().size()));
 //            exit(0);
-            if (getGameS()->getTeamInstance().size() > 0)
+           /* if (getGameS()->getTeamInstance().size() > 0)
             {
                 teamInstance = getGameS()->getTeamInstance();
                 logMsg("teamInstance.size() == " +convert->toString(getGameS()->getTeamInstance().size()));             
@@ -558,17 +558,17 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
             {
                 logMsg("getGameS()->getTeamInstance() is EMPTY!");
                 return (false);                               
-            }
+            }*/
 
         }
-        else
+/*        else
         {
             logMsg("Failed to create teamSelectioMenuGUI");
             return (false);
         }
-        
+        */
     }
-
+/*
     
 
 //    gameS->setTeamDataInstance(teamDataInstance);
@@ -601,6 +601,6 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     }
     team0SelectBox->setIndexSelected(0);
     team1SelectBox->setIndexSelected(1);
-
+*/
     return (true);
 }

@@ -503,14 +503,14 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
         {
             if (addTeamStartSelectionMenuData())
             {
-                teamSelectionMenuDataAdded = true;
-                changeMenu = true;
+//                teamSelectionMenuDataAdded = true;
+//                changeMenu = true;
             }
-            else
+           /* else
             {
                 logMsg("unable to add data to Team Selection Menus!");
                 exit(0);
-            }
+            }*/
         }
     }
     else

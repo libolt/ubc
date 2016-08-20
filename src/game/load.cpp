@@ -43,17 +43,19 @@
 #include "android.h"
 #endif
 
+// static variables
+boost::shared_ptr<loader> loader::pInstance;
+std::vector<boost::shared_ptr<teamState> > loader::tInstance;
+
 
 loader::loader()  // constructor
 {
+    
 
 //        pathArray = pathSplit(dataPath);
 //      cout << pathArray[2] << endl;
 //      exit(0);
 }
-
-
-boost::shared_ptr<loader> loader::pInstance;
 
 boost::shared_ptr<loader> loader::Instance()
 {
@@ -118,6 +120,15 @@ std::vector<std::string> loader::getUserInputFiles()   // retrieves the value of
 void loader::setUserInputFiles(std::vector<std::string> set)  // sets the value of userInputFiles
 {
     userInputFiles = set;
+}
+
+std::vector<boost::shared_ptr<teamState> > loader::getTInstance()  // retrieves the value of tInstance
+{
+    return(tInstance);
+}
+void loader::setTInstance(std::vector<boost::shared_ptr<teamState> > set)  // sets the value of tInstance
+{
+    tInstance = set;
 }
 
 int loader::readFile(const char *sourceFile, char **destination)  // loads an xml file using SDL so that it can be passed to TinyXML
@@ -318,9 +329,11 @@ std::vector<boost::shared_ptr<teamState> > loader::loadTeams()  // load teams fr
         logMsg("teamFile = " +*it);
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-        teams.push_back(loadTeamFile("data/teams/" + *it));
+//        teams.push_back(loadTeamFile("data/teams/" + *it));
+          loadTeamFile("data/teams/" + *it);
 #else
-        teams.push_back(loadTeamFile(findFile("teams/" + *it)));
+//        teams.push_back(loadTeamFile(findFile("teams/" + *it)));
+          loadTeamFile(findFile("teams/" + *it));
 #endif
     }
     
@@ -422,19 +435,19 @@ std::vector<std::string> loader::loadTeamListFile(std::string fileName)  // load
     return (files);
 }
 
-boost::shared_ptr<teamState> loader::loadTeamFile(std::string fileName)  // loads the team file
+bool loader::loadTeamFile(std::string fileName)  // loads the team file
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 //    std::vector<boost::shared_ptr<teamState> > teamInstance = gameS->getTeamInstance();
   
-    boost::shared_ptr<teamState> tInstance; //(new teamState);
+//    tInstance = boost::shared_ptr<teamState> tempInstance(new teamState);
+//    tInstance = boost::shared_ptr<teamState>(new teamState);
 //    teamInstance.reset(new teamState);
-    teamState *tempTeamObj;
+    teamState tempTeam; // = new teamState;
 //    tempTeamObj = new teamState;
-/*    teamInstance = boost::shared_ptr<teamState>(tempTeamObj);
-
+//    tInstance = tempInstance;
     static size_t ID;
     std::string City;
     std::string Name;
@@ -521,21 +534,21 @@ boost::shared_ptr<teamState> loader::loadTeamFile(std::string fileName)  // load
      
     logMsg("ID == " +convert->toString(ID));
 //    exit(0);
-    teamInstance->setID(ID);
-    teamInstance->setCity(City);
-    teamInstance->setName(Name);
-    teamInstance->setCoach(Coach);
-    teamInstance->setInits(Initials);
-    teamInstance->setLogoFile(Logo);
+    tempTeam.setID(ID);
+    tempTeam.setCity(City);
+    tempTeam.setName(Name);
+    tempTeam.setCoach(Coach);
+    tempTeam.setInits(Initials);
+    tempTeam.setLogoFile(Logo);
     logMsg("ID == " +convert->toString(ID));
-    logMsg("Load Teaminstance ID == " +convert->toString(teamInstance->getID()));
-    logMsg("teamInstance->getID() == " +convert->toString(teamInstance->getID()));
+    logMsg("Load Teaminstance ID == " +convert->toString(tempTeam.getID()));
+    logMsg("teamInstance->getID() == " +convert->toString(tempTeam.getID()));
 //    team->setTeamArray(teamInstance);
 //   teamInstance.push_back(teamInstance);
 //   gameS->setteamInstance(teamInstance);
 //    exit(0);
-*/
-    return (tInstance);
+
+    return (true);
 }
 
 std::vector<boost::shared_ptr<playerState> > loader::loadPlayers()  // loads the players

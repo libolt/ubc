@@ -87,7 +87,7 @@ inputEngine::inputEngine()  // constructor
     inputType = INNOTYPE;
 //    inputGamePadMap = INGP_NONE;
     textInputStarted = false;
-    setup();
+//    setup();
 }
 
 inputEngine::~inputEngine()  // destructor

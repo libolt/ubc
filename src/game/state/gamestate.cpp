@@ -310,6 +310,8 @@ bool gameState::createTeamInstances()  // creates team Instances
     boost::shared_ptr<loader> load = loader::Instance();
     
     std::vector<boost::shared_ptr<teamState> > tInstance;
+    
+    load->setTInstance(tInstance);
     tInstance = load->loadTeams();
 /*    logMsg("tInstance size == " +convert->toString(tInstance.size()));
 //    exit(0);

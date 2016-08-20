@@ -77,6 +77,9 @@ public:
     std::vector<std::string> getUserInputFiles();  // retrieves the value of userInputFiles
     void setUserInputFiles(std::vector<std::string> set);  // sets the value of userInputFiles
 
+    std::vector<boost::shared_ptr<teamState> > getTInstance();  // retrieves the value of tInstance
+    void setTInstance(std::vector<boost::shared_ptr<teamState> > set);  // sets the value of tInstance
+    
     bool loadXMLFile(std::string fileName);
 
     int readFile(const char *sourceFile, char **destination);  // reads in the XML file
@@ -87,7 +90,7 @@ public:
     // Teams
     std::vector<boost::shared_ptr<teamState> > loadTeams();  // loads team data from XML files
     std::vector<std::string> loadTeamListFile(std::string fileName);  // loads list of team files from teams.xml
-    boost::shared_ptr<teamState> loadTeamFile(std::string fileName);  // loads data from the team XML files
+    bool loadTeamFile(std::string fileName);  // loads data from the team XML files
 
     // Players
     std::vector<boost::shared_ptr<playerState> > loadPlayers();  // loads player data from XML files
@@ -121,6 +124,7 @@ protected:
 
 private:
     static boost::shared_ptr<loader> pInstance;
+    static std::vector<boost::shared_ptr<teamState> > tInstance;
 
     std::vector<std::string> playerFiles;  // stores list of player xml files
     std::vector<std::string> teamFiles;	 // stores list of team xml files

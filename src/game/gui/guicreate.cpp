@@ -1,4 +1,3 @@
-
 /***************************************************************************
  *   Copyright (C) 1999 - 2016 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
@@ -30,6 +29,7 @@
 #include "load.h"
 #include "logging.h"
 #include "engine/renderengine.h"
+#include "state/courtstate.h"
 #include "state/teamstate.h"
 
 #ifdef __ANDROID__
@@ -179,6 +179,7 @@ bool GUISystem::createCourtSelectionMenuGUI()  // creates GUI for court selectio
 {
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
+    boost::shared_ptr<courtState> courtInst(new courtState);
 
     MyGUI::LayoutManager::getInstance().loadLayout("CourtSelectionMenu.layout");
 

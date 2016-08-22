@@ -493,29 +493,61 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
 
     if (teamSelectionMenuCreated)
     {
-        
-        if (teamSelectionMenuDataAdded)
+        if (getGameS()->getTeamInstancesCreated())
         {
-            logMsg("Team Selection Menu Data Added already!");
-            changeMenu = true;
+            if (teamSelectionMenuDataAdded)
+            {
+                logMsg("Team Selection Menu Data Added already!");
+                changeMenu = true;
+            }
+            else
+            {
+                if (addTeamStartSelectionMenuData())
+                {
+                    teamSelectionMenuDataAdded = true;
+                   changeMenu = true;
+                }
+                else
+                {
+                    logMsg("unable to add data to Team Selection Menus!");
+                    exit(0);
+                }
+            }
         }
         else
         {
-            if (addTeamStartSelectionMenuData())
+            if (getGameS()->createTeamInstances())
             {
-//                teamSelectionMenuDataAdded = true;
-//                changeMenu = true;
+                getGameS()->setTeamInstancesCreated(true);
+                if (teamSelectionMenuDataAdded)
+                {
+                    logMsg("Team Selection Menu Data Added already!");
+                    changeMenu = true;
+                }
+                else
+                {
+                    if (addTeamStartSelectionMenuData())
+                    {
+                        teamSelectionMenuDataAdded = true;
+                        changeMenu = true;
+                    }
+                    else
+                    {
+                        logMsg("unable to add data to Team Selection Menus!");
+                        exit(0);
+                    }
+                }
             }
-           /* else
+            else
             {
-                logMsg("unable to add data to Team Selection Menus!");
+                logMsg("feeerrrrappp!");         
                 exit(0);
-            }*/
+            }
         }
     }
     else
     {
-/*        if (createTeamSelectionMenuGUI())
+        if (createTeamSelectionMenuGUI())
         {            
             teamSelectionMenuCreated = true;
             if (addTeamStartSelectionMenuData())
@@ -529,13 +561,14 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
                 logMsg("unable to add data to Team Selection Menus!");
                 exit(0);
             }
+
         }
         else
         {
             logMsg("Unable to create Team Selection Menu!");
-        }*/
+        }
     }
-/*    
+    
 //    hideCourtSelectionMenuWidgets();
     if (changeMenu = true)
     {
@@ -548,7 +581,7 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
         logMsg("Failed to change activeMenu to TEAMSELECT!");
         exit(0);
     }
-*/
+
 //    exit(0);
 }
 

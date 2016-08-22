@@ -216,7 +216,7 @@ bool gameState::createInstances()  // creates object instances
         }
     }
 //    exit(0);
-/*    if (!getTeamInstancesCreated())
+    if (!getTeamInstancesCreated())
     {
         logMsg("Creating Team Instances!");
 //        exit(0);
@@ -278,7 +278,7 @@ bool gameState::createInstances()  // creates object instances
             logMsg("Failed to create basketballInstances!");
             returnType = false;
         }
-    }*/
+    }
 //    exit(0);
     return (returnType);
 }
@@ -313,8 +313,18 @@ bool gameState::createTeamInstances()  // creates team Instances
     
     load->setTInstance(tInstance);
     tInstance = load->loadTeams();
+    if (tInstance.size() >0)
+    {
+        logMsg("tInstance Loaded!");
+    }
+    else
+    {
+        logMsg("tInstance NOT Loaded!");
+    }
+    logMsg("tInstance.size() == " +convert->toString(tInstance.size())
+    exit(0);
 /*    logMsg("tInstance size == " +convert->toString(tInstance.size()));
-//    exit(0);
+   
 //    logMsg("teamID.size() == " +convert->toString(getTeamIDS().size()));
 //    logMsg("tInstance size = " +convert->toString(tInstance.size()));
 //    logMsg("tInstance city 0 = " +tInstance[0]->getCity());

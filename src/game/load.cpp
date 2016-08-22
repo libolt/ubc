@@ -339,15 +339,18 @@ std::vector<boost::shared_ptr<teamState> > loader::loadTeams()  // load teams fr
     
     logMsg("teams[4]->getID() ID == " +convert->toString(teams[4]->getID()));
     logMsg("loadTeams() 4 ID == " +convert->toString(teams[4]->getID()));
+//    logMsg("loadTeams() 4 Name == " +tInstance[4]->getName());
+    logMsg("loadTeams() tInstance.size() == " +convert->toString(tInstance.size()));
+
     logMsg("dah");
 //    exit(0);
     if (teams.size() == 0)
     {
         logMsg("teams.size() == " +teams.size());
-        exit(0);
+//        exit(0);
     }
     
-    return (teams);
+    return (tInstance);
 }
 
 std::vector<std::string> loader::loadTeamListFile(std::string fileName)  // loads the team list file
@@ -442,10 +445,11 @@ bool loader::loadTeamFile(std::string fileName)  // loads the team file
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 //    std::vector<boost::shared_ptr<teamState> > teamInstance = gameS->getTeamInstance();
   
-//    tInstance = boost::shared_ptr<teamState> tempInstance(new teamState);
+    boost::shared_ptr<teamState> tempInstance(new teamState);
 //    tInstance = boost::shared_ptr<teamState>(new teamState);
 //    teamInstance.reset(new teamState);
     teamState tempTeam; // = new teamState;
+    teamState *tempInst = new teamState;
 //    tempTeamObj = new teamState;
 //    tInstance = tempInstance;
     static size_t ID;
@@ -534,15 +538,19 @@ bool loader::loadTeamFile(std::string fileName)  // loads the team file
      
     logMsg("ID == " +convert->toString(ID));
 //    exit(0);
-    tempTeam.setID(ID);
-    tempTeam.setCity(City);
-    tempTeam.setName(Name);
-    tempTeam.setCoach(Coach);
-    tempTeam.setInits(Initials);
-    tempTeam.setLogoFile(Logo);
+    tempInst->setID(ID);
+    tempInst->setCity(City);
+    tempInst->setName(Name);
+    tempInst->setCoach(Coach);
+    tempInst->setInits(Initials);
+    tempInst->setLogoFile(Logo);
     logMsg("ID == " +convert->toString(ID));
-    logMsg("Load Teaminstance ID == " +convert->toString(tempTeam.getID()));
-    logMsg("teamInstance->getID() == " +convert->toString(tempTeam.getID()));
+    logMsg("Load Teaminstance ID == " +convert->toString(tempInst->getID()));
+    logMsg("teamInstance->getID() == " +convert->toString(tempInst->getID()));
+//    tempInst = &tempTeam;
+    logMsg("Load Teaminstance Name == " +tempInst->getName());
+    logMsg("lawwl");
+    tInstance.push_back(boost::shared_ptr<teamState>(tempInst));
 //    team->setTeamArray(teamInstance);
 //   teamInstance.push_back(teamInstance);
 //   gameS->setteamInstance(teamInstance);

@@ -445,6 +445,8 @@ void GUISystem::showCourtSelectionMenuWidgets()  // show all widgets tied to the
     boost::shared_ptr<conversion> convert = conversion::Instance();
     
     displayCount += 1;
+//    teamSelectionMenu();
+
     logMsg("court displayCount == " +convert->toString(displayCount));
     
     backMainMenuButton->setVisible(true);

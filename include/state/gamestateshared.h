@@ -155,7 +155,7 @@ class gameStateShared
         static bool courtInstancesNeedCreated;  // stores whether or not to create court instances
         static bool hoopInstancesCreated;  // stores whether hoop instances have been created
         static bool hoopInstancesNeedCreated;  // stores whether or not to create hoop instances
-        bool playerInstanceCreated;  // stores whether player instances have been created
+        static bool playerInstanceCreated;  // stores whether player instances have been created
         static bool playerInstanceNeedCreated;  // stores whether or not to create player instances
         static bool teamInstancesCreated;  // stores whether team instances have been created
         static bool teamInstancesNeedCreated;  // stores whether or not to create team instances

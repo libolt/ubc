@@ -532,7 +532,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     if (getGameS()->getTeamInstancesCreated())
     {        
         logMsg("Woot!");
-        exit(0);
+//        exit(0);
         if (getGameS()->getTeamInstance().size() > 0)
         {
             teamInstance = getGameS()->getTeamInstance();

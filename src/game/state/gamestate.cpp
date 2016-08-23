@@ -305,24 +305,40 @@ bool gameState::createBasketballInstances()  // creates basketball Instances
 bool gameState::createTeamInstances()  // creates team Instances
 {
     logMsg("gameState::createTeamInstances()");
-//    exit(0);
+    
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<loader> load = loader::Instance();
     
     std::vector<boost::shared_ptr<teamState> > tInstance;
     
-    load->setTInstance(tInstance);
-    tInstance = load->loadTeams();
-    if (tInstance.size() >0)
+    logMsg("gameState::createTeamInstances() loadTeams");
+    if (load->checkIfTeamsLoaded())
     {
-        logMsg("tInstance Loaded!");
+        tInstance = load->getTInstance();
+        if (tInstance.size() > 0)
+        {
+            logMsg("gameState::createTeamInstances() tInstance Loaded!");
+        }
+        else
+        {
+            logMsg("gameState::createTeamInstances() tInstance NOT Loaded!");
+        }
     }
     else
     {
-        logMsg("tInstance NOT Loaded!");
+        logMsg("gameState::createTeamInstances() loading of teams failed!");
+        return (false);
     }
-    logMsg("tInstance.size() == " +convert->toString(tInstance.size())
-    exit(0);
+    
+
+//    exit(0);
+    logMsg("gameState::createTeamInstances() uno");
+    
+
+    logMsg("gameState::createTeamInstances() tInstance.size() == " +convert->toString(tInstance.size()));
+    logMsg("gameState::createTeamInstances() too");
+    
+//    exit(0);
 /*    logMsg("tInstance size == " +convert->toString(tInstance.size()));
    
 //    logMsg("teamID.size() == " +convert->toString(getTeamIDS().size()));
@@ -412,13 +428,42 @@ bool gameState::createHoopInstances()  // creates hoop Instances
 }
 bool gameState::createPlayerInstances()  // creates player instances
 {
+    logMsg("gameState::createTeamInstances()");
+    
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<loader> load = loader::Instance();
-    boost::shared_ptr<playerState> playerStateSharedPtr(new playerState);
-//    gameS = tempGameStateSharedPtr;
+    
+    std::vector<boost::shared_ptr<playerState> > pInstance;
+    
+    logMsg("gameState::createPlayerInstances() loadPlayers");
+    if (load->checkIfPlayersLoaded())
+    {
+        pInstance = load->getPInstance();
+        if (pInstance.size() > 0)
+        {
+            logMsg("gameState::createPlayerInstances() pInstance Loaded!");
+        }
+        else
+        {
+            logMsg("gameState::createPlayerInstances() pInstance NOT Loaded!");
+        }
+    }
+    else
+    {
+        logMsg("gameState::createPlayerInstances() loading of playerss failed!");
+        return (false);
+    }
+    
 
-//    boost::shared_ptr<playerState> pState(new playerState);
-    setPlayerInstances(load->loadPlayers());
+//    exit(0);
+    logMsg("gameState::createPlayerInstances() uno");
+    
+
+    logMsg("gameState::createPlayerInstances() pInstance.size() == " +convert->toString(pInstance.size()));
+    logMsg("gameState::createPlayerInstances() too");
+//    setPlayerInstances(load->loadPlayers());
+    setPlayerInstances(pInstance);
+
     if (getPlayerInstance().size() > 0)
     {
         logMsg("playerInstance size == " +convert->toString(getPlayerInstance().size()));

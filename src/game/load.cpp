@@ -44,13 +44,25 @@
 #endif
 
 // static variables
-boost::shared_ptr<loader> loader::pInstance;
+std::vector<boost::shared_ptr<playerState> > loader::pInstance;
 std::vector<boost::shared_ptr<teamState> > loader::tInstance;
+bool loader::basketballFilesLoaded;
+bool loader::courtFilesLoaded;
+bool loader::offensePlayFilesLoaded;
+bool loader::playerFilesLoaded;
+bool loader::teamFilesLoaded;
+bool loader::userInputFilesLoaded;
 
 
 loader::loader()  // constructor
 {
-    
+    basketballFilesLoaded = false;
+    courtFilesLoaded = false;
+    offensePlayFilesLoaded = false;
+    playerFilesLoaded = false;
+    teamFilesLoaded = false;
+    userInputFilesLoaded = false;
+
 
 //        pathArray = pathSplit(dataPath);
 //      cout << pathArray[2] << endl;
@@ -66,33 +78,6 @@ boost::shared_ptr<loader> loader::Instance()
 
     }
     return pInstance; // address of sole instance
-}
-
-std::vector<std::string> loader::getPlayerFiles()  // retrieves the value of playerFiles
-{
-    return(playerFiles);
-}
-void loader::setPlayerFiles(std::vector<std::string> set)  // sets the value of playerFiles
-{
-    playerFiles = set;
-}
-
-std::vector<std::string> loader::getTeamFiles()  // retrieves the value of teamFiles
-{
-    return(teamFiles);
-}
-void loader::setTeamFiles(std::vector<std::string> set)  // sets the value of teamFiles
-{
-    teamFiles = set;
-}
-
-std::vector<std::string> loader::getOffensePlayFiles()  // retrieves the value of offensePlayFiles
-{
-    return (offensePlayFiles);
-}
-void loader::setOffensePlayFiles(std::vector<std::string> set)  // sets the value of offensePlayFiles
-{
-    offensePlayFiles = set;
 }
 
 std::vector<std::string> loader::getBasketballFiles()  // retrieves the value of basketballFiles
@@ -113,6 +98,34 @@ void loader::setCourtFiles(std::vector<std::string> set)  // sets the value of c
     courtFiles = set;
 }
 
+std::vector<std::string> loader::getOffensePlayFiles()  // retrieves the value of offensePlayFiles
+{
+    return (offensePlayFiles);
+}
+void loader::setOffensePlayFiles(std::vector<std::string> set)  // sets the value of offensePlayFiles
+{
+    offensePlayFiles = set;
+}
+
+std::vector<std::string> loader::getPlayerFiles()  // retrieves the value of playerFiles
+{
+    return(playerFiles);
+}
+void loader::setPlayerFiles(std::vector<std::string> set)  // sets the value of playerFiles
+{
+    playerFiles = set;
+}
+
+std::vector<std::string> loader::getTeamFiles()  // retrieves the value of teamFiles
+{
+    return(teamFiles);
+}
+void loader::setTeamFiles(std::vector<std::string> set)  // sets the value of teamFiles
+{
+    teamFiles = set;
+}
+
+
 std::vector<std::string> loader::getUserInputFiles()   // retrieves the value of userInputFiles
 {
     return (userInputFiles);
@@ -122,6 +135,15 @@ void loader::setUserInputFiles(std::vector<std::string> set)  // sets the value 
     userInputFiles = set;
 }
 
+std::vector<boost::shared_ptr<playerState> > loader::getPInstance()  // retrieves the value of pInstance
+{
+    return(pInstance);
+}
+void loader::setPInstance(std::vector<boost::shared_ptr<playerState> > set)  // sets the value of pInstance
+{
+    pInstance = set;
+}
+
 std::vector<boost::shared_ptr<teamState> > loader::getTInstance()  // retrieves the value of tInstance
 {
     return(tInstance);
@@ -129,6 +151,59 @@ std::vector<boost::shared_ptr<teamState> > loader::getTInstance()  // retrieves 
 void loader::setTInstance(std::vector<boost::shared_ptr<teamState> > set)  // sets the value of tInstance
 {
     tInstance = set;
+}
+
+bool loader::getBasketballFilesLoaded()  // retrieves the value of basketballFilesLoaded
+{
+    return (basketballFilesLoaded);
+}
+void loader::setBasketballFilesLoaded(bool set)  // sets the value of basketballFilesLoaded
+{
+    basketballFilesLoaded = set;
+}
+
+bool loader::getCourtFilesLoaded()  // retrieves the value of courtFilesLoaded
+{
+    return (courtFilesLoaded);
+}
+void loader::setCourtFilesLoaded(bool set)  // sets the value of courtFilesLoaded
+{
+    courtFilesLoaded = set;
+}
+bool loader::getOffensePlayFilesLoaded()  // retrieves the value of offensePlayFilesLoaded
+{
+    return (offensePlayFilesLoaded);
+}
+void loader::setOffensePlayFilesLoaded(bool set)  // sets the value of offensePlayFilesLoaded
+{
+    offensePlayFilesLoaded = set;
+}
+
+bool loader::getPlayerFilesLoaded()  // retrieves the value of playerFilesLoaded
+{
+    return (playerFilesLoaded);
+}
+void loader::setPlayerFilesLoaded(bool set)  // sets the value of playerFilesLoaded
+{
+    playerFilesLoaded = set;
+}
+
+bool loader::getTeamFilesLoaded()  // retrieves the value of teamFilesLoaded
+{
+    return (teamFilesLoaded);
+}
+void loader::setTeamFilesLoaded(bool set)  // sets the value of teamFilesLoaded
+{
+    teamFilesLoaded = set;
+}
+
+bool loader::getUserInputFilesLoaded()  // retrieves the value of userInputFilesLoaded
+{
+    return (userInputFilesLoaded);
+}
+void loader::setUserInputFilesLoaded(bool set)  // sets the value of userInputFilesLoaded  
+{
+    userInputFilesLoaded = set;
 }
 
 int loader::readFile(const char *sourceFile, char **destination)  // loads an xml file using SDL so that it can be passed to TinyXML
@@ -291,6 +366,140 @@ std::string loader::findFile(std::string fileName)  // finds the location of a f
     }
 #endif
     return ("");
+}
+
+bool loader::checkIfTeamsLoaded()  // checks if teams have been loaded into tInstance
+{
+    if (teamFilesLoaded)
+    {
+        logMsg("loader::checkIfTeamsLoaded() getTeamFilesLoaded");
+
+        if (tInstance.size() > 0)
+        {
+            logMsg("loader::checkIfTeamsLoaded() Team Files Loaded!");
+            return(true);
+        }
+        else
+        {
+            logMsg("loader::checkIfTeamsLoaded() Team Files not yet Loaded!");
+
+            teamFilesLoaded = false;
+            tInstance = loadTeams();
+            if (tInstance.size() > 0)
+            {
+                logMsg("loader::checkIfTeamsLoaded() > 0!");
+
+//                load->setTInstance(tInstance);
+                teamFilesLoaded = true;
+                return(true);
+            }
+            else
+            {
+                logMsg("loader::checkIfTeamsLoaded() Failed to load Team Files! IF");
+                exit(0);
+            }
+        }
+    }
+    else 
+    {
+        logMsg("loader::checkIfTeamsLoaded() ELSE");
+
+        if (tInstance.size() > 0)
+        {
+            logMsg("loader::checkIfTeamsLoaded() load->getTInstance().size() > 0! ELSE");
+//            load->setTInstance(tInstance);
+            teamFilesLoaded = true;
+            return(true);
+        }
+        else
+        {
+            logMsg("loader::checkIfTeamsLoaded() ELSE ELSE!");
+
+            tInstance = loadTeams();
+            logMsg("loader::checkIfTeamsLoaded()");
+            if (tInstance.size() > 0)
+            {
+                logMsg("loader::checkIfTeamsLoaded() load->getTInstance().size() > 0! ELSE ELSE");
+
+//                load->setTInstance(tInstance);
+                teamFilesLoaded = true;
+                return(true);
+            }
+            else
+            {
+                logMsg("loader::checkIfTeamsLoaded() Failed to load Team Files!");
+                return(false);
+            }
+        }
+    }
+    return (false);
+}
+
+bool loader::checkIfPlayersLoaded()  // checks if players have been loaded into pInstance
+{
+    if (playerFilesLoaded)
+    {
+        logMsg("loader::checkIfPlayersLoaded() getPlayerFilesLoaded");
+
+        if (pInstance.size() > 0)
+        {
+            logMsg("loader::checkIfPlayersLoaded() Player Files Loaded!");
+            return(true);
+        }
+        else
+        {
+            logMsg("loader::checkIfPlayersLoaded() Player Files not yet Loaded!");
+
+            playerFilesLoaded = false;
+            pInstance = loadTeams();
+            if (pInstance.size() > 0)
+            {
+                logMsg("loader::checkIfPlayersLoaded() > 0!");
+
+//                load->setTInstance(tInstance);
+                playerFilesLoaded = true;
+                return(true);
+            }
+            else
+            {
+                logMsg("loader::checkIfPlayersLoaded() Failed to load Player Files! IF");
+                exit(0);
+            }
+        }
+    }
+    else 
+    {
+        logMsg("loader::checkIfPlayersLoaded() ELSE");
+
+        if (pInstance.size() > 0)
+        {
+            logMsg("loader::checkIfPlayersLoaded() load->getPInstance().size() > 0! ELSE");
+//            load->setTInstance(tInstance);
+            playerFilesLoaded = true;
+            return(true);
+        }
+        else
+        {
+            logMsg("loader::checkIfPlayersLoaded() ELSE ELSE!");
+
+            pInstance = loadPlayers();
+            logMsg("loader::checkIfPlayersLoaded()");
+            if (pInstance.size() > 0)
+            {
+                logMsg("loader::checkIfPlayersLoaded() load->getPInstance().size() > 0! ELSE ELSE");
+
+//                load->setTInstance(tInstance);
+                playerFilesLoaded = true;
+                return(true);
+            }
+            else
+            {
+                logMsg("loader::checkIfPlayersLoaded() Failed to load Player Files!");
+                return(false);
+            }
+        }
+    }
+    return (false);
 }
 
 std::vector<boost::shared_ptr<teamState> > loader::loadTeams()  // load teams from XML files

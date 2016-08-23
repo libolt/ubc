@@ -34,7 +34,7 @@ bool gameStateShared::courtInstancesCreated;  // stores whether court instances 
 bool gameStateShared::courtInstancesNeedCreated;  // stores whether or not to create court instances
 bool gameStateShared::hoopInstancesCreated;  // stores whether hoop instances have been created
 bool gameStateShared::hoopInstancesNeedCreated;  // stores whether or not to create hoop instances
-//bool gameStateShared::playerInstanceCreated;  // stores whether player instances have been created
+bool gameStateShared::playerInstanceCreated;  // stores whether player instances have been created
 bool gameStateShared::playerInstanceNeedCreated;  // stores whether or not to create player instances
 bool gameStateShared::teamInstancesCreated;  // stores whether team instances have been created
 bool gameStateShared::teamInstancesNeedCreated;  // stores whether or not to create team instances

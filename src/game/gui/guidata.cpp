@@ -100,7 +100,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
-    boost::shared_ptr<loader> load = loader::Instance();
+    boost::shared_ptr<loader> load;
 
 //    playerInstance = load->loadPlayers();
 //    playerInstance = gameS->getPlayerInstance();
@@ -504,7 +504,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 
-    boost::shared_ptr<loader> load = loader::Instance();
+    boost::shared_ptr<loader> load;
 
     std::vector<boost::shared_ptr<teamState> > teamInstance; // = gameS->getTeamDataInstance();
 

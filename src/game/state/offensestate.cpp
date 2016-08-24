@@ -217,7 +217,7 @@ void offenseState::updateState(teamTypes teamType)	// updates the state of the o
 
 void offenseState::loadPlays()	// loads offense plays from file
 {
-    boost::shared_ptr<loader> load = loader::Instance();
+    boost::shared_ptr<loader> load;
     plays = load->loadOffensePlays();
 }
 

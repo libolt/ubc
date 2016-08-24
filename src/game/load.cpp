@@ -46,6 +46,14 @@
 // static variables
 std::vector<boost::shared_ptr<playerState> > loader::pInstance;
 std::vector<boost::shared_ptr<teamState> > loader::tInstance;
+
+std::vector<std::string> loader::basketballFiles;  // stores list of basketball xml files
+std::vector<std::string> loader::courtFiles;  // stores list of court xml files
+std::vector<std::string> loader::offensePlayFiles;  // stores list of offense play xml files
+std::vector<std::string> loader::playerFiles;  // stores list of player xml files
+std::vector<std::string> loader::teamFiles;  // stores list of team xml files
+std::vector<std::string> loader::userInputFiles; 
+
 bool loader::basketballFilesLoaded;
 bool loader::courtFilesLoaded;
 bool loader::offensePlayFilesLoaded;
@@ -67,17 +75,6 @@ loader::loader()  // constructor
 //        pathArray = pathSplit(dataPath);
 //      cout << pathArray[2] << endl;
 //      exit(0);
-}
-
-boost::shared_ptr<loader> loader::Instance()
-{
-    if (pInstance == 0)  // is it the first call?
-    {
-        boost::shared_ptr<loader> tInstance(new loader);
-        pInstance = tInstance;
-
-    }
-    return pInstance; // address of sole instance
 }
 
 std::vector<std::string> loader::getBasketballFiles()  // retrieves the value of basketballFiles
@@ -151,6 +148,15 @@ std::vector<boost::shared_ptr<teamState> > loader::getTInstance()  // retrieves 
 void loader::setTInstance(std::vector<boost::shared_ptr<teamState> > set)  // sets the value of tInstance
 {
     tInstance = set;
+}
+
+std::vector<boost::shared_ptr<userInput> > loader::getUIInstance()  // retrieves the value of uoInstance
+{
+    return(uiInstance);
+}
+void loader::setUIInstance(std::vector<boost::shared_ptr<userInput> > set)  // sets the value of uiInstance
+{
+    uiInstance = set;
 }
 
 bool loader::getBasketballFilesLoaded()  // retrieves the value of basketballFilesLoaded
@@ -368,6 +374,73 @@ std::string loader::findFile(std::string fileName)  // finds the location of a f
     return ("");
 }
 
+bool loader::checkIfPlayersLoaded()  // checks if players have been loaded into pInstance
+{
+    if (playerFilesLoaded)
+    {
+        logMsg("loader::checkIfPlayersLoaded() getPlayerFilesLoaded");
+
+        if (pInstance.size() > 0)
+        {
+            logMsg("loader::checkIfPlayersLoaded() Player Files Loaded!");
+            return(true);
+        }
+        else
+        {
+            logMsg("loader::checkIfPlayersLoaded() Player Files not yet Loaded!");
+
+            playerFilesLoaded = false;
+            pInstance = loadPlayers();
+            if (pInstance.size() > 0)
+            {
+                logMsg("loader::checkIfPlayersLoaded() > 0!");
+
+//                load->setTInstance(tInstance);
+                playerFilesLoaded = true;
+                return(true);
+            }
+            else
+            {
+                logMsg("loader::checkIfPlayersLoaded() Failed to load Player Files! IF");
+                exit(0);
+            }
+        }
+    }
+    else 
+    {
+        logMsg("loader::checkIfPlayersLoaded() ELSE");
+
+        if (pInstance.size() > 0)
+        {
+            logMsg("loader::checkIfPlayersLoaded() load->getPInstance().size() > 0! ELSE");
+//            load->setTInstance(tInstance);
+            playerFilesLoaded = true;
+            return(true);
+        }
+        else
+        {
+            logMsg("loader::checkIfPlayersLoaded() ELSE ELSE!");
+
+            pInstance = loadPlayers();
+            logMsg("loader::checkIfPlayersLoaded()");
+            if (pInstance.size() > 0)
+            {
+                logMsg("loader::checkIfPlayersLoaded() load->getPInstance().size() > 0! ELSE ELSE");
+
+//                load->setTInstance(tInstance);
+                playerFilesLoaded = true;
+                return(true);
+            }
+            else
+            {
+                logMsg("loader::checkIfPlayersLoaded() Failed to load Player Files!");
+                return(false);
+            }
+        }
+    }
+    return (false);
+}
+
 bool loader::checkIfTeamsLoaded()  // checks if teams have been loaded into tInstance
 {
     if (teamFilesLoaded)
@@ -435,66 +508,66 @@ bool loader::checkIfTeamsLoaded()  // checks if teams have been loaded into tIns
     return (false);
 }
 
-bool loader::checkIfPlayersLoaded()  // checks if players have been loaded into pInstance
+bool loader::checkIfUserInputsLoaded()  // checks if user inputs have been loaded into pInstance
 {
-    if (playerFilesLoaded)
+    if (userInputFilesLoaded)
     {
-        logMsg("loader::checkIfPlayersLoaded() getPlayerFilesLoaded");
+        logMsg("loader::checkIfUserInputsLoaded() getUserInputFilesLoaded");
 
-        if (pInstance.size() > 0)
+        if (uiInstance.size() > 0)
         {
-            logMsg("loader::checkIfPlayersLoaded() Player Files Loaded!");
+            logMsg("loader::checkIfUserInputsLoaded() User Input Files Loaded!");
             return(true);
         }
         else
         {
-            logMsg("loader::checkIfPlayersLoaded() Player Files not yet Loaded!");
+            logMsg("loader::checkIfUserInputsLoaded() User Input Files not yet Loaded!");
 
-            playerFilesLoaded = false;
-            pInstance = loadTeams();
-            if (pInstance.size() > 0)
+            userInputFilesLoaded = false;
+            uiInstance = loadUserInputs();
+            if (uiInstance.size() > 0)
             {
-                logMsg("loader::checkIfPlayersLoaded() > 0!");
+                logMsg("loader::checkIfUserInputsLoaded() > 0!");
 
 //                load->setTInstance(tInstance);
-                playerFilesLoaded = true;
+                userInputFilesLoaded = true;
                 return(true);
             }
             else
             {
-                logMsg("loader::checkIfPlayersLoaded() Failed to load Player Files! IF");
+                logMsg("loader::checkIfUserInputsLoaded() Failed to load User Input Files! IF");
                 exit(0);
             }
         }
     }
     else 
     {
-        logMsg("loader::checkIfPlayersLoaded() ELSE");
+        logMsg("loader::checkIfUserInputsLoaded() ELSE");
 
-        if (pInstance.size() > 0)
+        if (uiInstance.size() > 0)
         {
-            logMsg("loader::checkIfPlayersLoaded() load->getPInstance().size() > 0! ELSE");
+            logMsg("loader::checkIfUserInputsLoaded() load->getPInstance().size() > 0! ELSE");
 //            load->setTInstance(tInstance);
-            playerFilesLoaded = true;
+            userInputFilesLoaded = true;
             return(true);
         }
         else
         {
-            logMsg("loader::checkIfPlayersLoaded() ELSE ELSE!");
+            logMsg("loader::checkIfUserInputsLoaded() ELSE ELSE!");
 
-            pInstance = loadPlayers();
-            logMsg("loader::checkIfPlayersLoaded()");
-            if (pInstance.size() > 0)
+            uiInstance = loadUserInputs();
+            logMsg("loader::checkIfUserInputsLoaded()");
+            if (uiInstance.size() > 0)
             {
-                logMsg("loader::checkIfPlayersLoaded() load->getPInstance().size() > 0! ELSE ELSE");
+                logMsg("loader::checkIfUserInputsLoaded() load->getPInstance().size() > 0! ELSE ELSE");
 
 //                load->setTInstance(tInstance);
-                playerFilesLoaded = true;
+                userInputFilesLoaded = true;
                 return(true);
             }
             else
             {
-                logMsg("loader::checkIfPlayersLoaded() Failed to load Player Files!");
+                logMsg("loader::checkIfUserInputsLoaded() Failed to load User Input Files!");
                 return(false);
             }
         }
@@ -2099,9 +2172,10 @@ std::vector<userInput> loader::loadUserInputs()  // load user input settings fro
 #else
     userInputList = findFile("users/inputlist.xml");
 #endif
+//    exit(0);
     userInputFiles = loadUserInputListFile(userInputList);
 //    std::vector<std::string> playerFiles = load->getPlayerFiles();
-
+//    exit(0);
     std::vector<std::string>::iterator it;
     for (it = userInputFiles.begin(); it != userInputFiles.end(); ++it)
     {
@@ -2128,7 +2202,7 @@ std::vector<std::string> loader::loadUserInputListFile(std::string fileName)  //
     char *contents = NULL;
     readFile(fileName.c_str(), &contents);
     fileContents = convert->toString(contents);
-
+    
     doc.Parse(contents);
     if (doc.Error())
     {
@@ -2138,7 +2212,8 @@ std::vector<std::string> loader::loadUserInputListFile(std::string fileName)  //
         logMsg(convert->toString(doc.GetErrorStr2()));
         exit(0);
     }
-
+    
+    
     tinyxml2::XMLHandle hDoc(&doc);
     tinyxml2::XMLElement *pElem;
     tinyxml2::XMLHandle hRoot(0);
@@ -2150,7 +2225,7 @@ std::vector<std::string> loader::loadUserInputListFile(std::string fileName)  //
     {
         logMsg("Unable to find avalid root for user input list file!");
     } 
-
+    
     // save this for later
     hRoot=tinyxml2::XMLHandle(pElem);
 
@@ -2163,7 +2238,8 @@ std::vector<std::string> loader::loadUserInputListFile(std::string fileName)  //
 	    logMsg("pText == " +pText);
         uInputFiles.push_back(pText);
     }
-    
+    logMsg("uInputFiles.size() == " +convert->toString(uInputFiles.size()));
+//    exit(0);
 //    setUserInputFiles(userInputFile);
 //    return true;
     return (uInputFiles);

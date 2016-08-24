@@ -483,7 +483,7 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
     createTeamSelectionMenuGUI();
     showTeamSelectionMenuWidgets();
 //    changeActiveMenu(TEAMSELECT);
-    boost::shared_ptr<loader> load = loader::Instance();
+    boost::shared_ptr<loader> load; // = loader::Instance();
     bool changeMenu = false;  // determinrs if menu is to be changed
 //    std::vector<boost::shared_ptr<teamState> > teamInstance; // = gameS->getTeamDataInstance();
 
@@ -589,7 +589,7 @@ void GUISystem::courtSelectionMenu() // displays court selection menu
 {
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<loader> load = loader::Instance();
+    boost::shared_ptr<loader> load; // = loader::Instance();
 
     if (!courtSelectionMenuCreated)
     {

@@ -52,7 +52,7 @@ class loader
 {
 public:
     //static loader *Instance();
-    static boost::shared_ptr<loader> Instance();
+//    static boost::shared_ptr<loader> Instance();
 
     std::vector<std::string> pathSplit(const std::string paths);
     std::string findFile(std::string fileName);
@@ -82,6 +82,9 @@ public:
     std::vector<boost::shared_ptr<teamState> > getTInstance();  // retrieves the value of tInstance
     void setTInstance(std::vector<boost::shared_ptr<teamState> > set);  // sets the value of tInstance
     
+    std::vector<boost::shared_ptr<userInput> > getUIInstance();  // retrieves the value of uiInstance
+    void setUIInstance(std::vector<boost::shared_ptr<userInput> > set);  // sets the value of uiInstance
+    
     static bool getBasketballFilesLoaded();  // retrieves the value of basketballFilesLoaded
     void setBasketballFilesLoaded(bool set);  // sets the value of basketballFilesLoaded
     
@@ -105,11 +108,11 @@ public:
     int readFile(const char *sourceFile, char **destination);  // reads in the XML file
 
     SDL_RWops *readBinaryFile(const char *sourceFile);
-
-    bool checkIfTeamsLoaded();  // checks if teams have been loaded into tInstance
     
     bool checkIfPlayersLoaded();  // checks if players have been loaded into pInstance
-    
+    bool checkIfTeamsLoaded();  // checks if teams have been loaded into tInstance
+    bool checkIfUserInputsLoaded();  // checks if uset inputs have been loaded into uiInstance
+
     // Teams
     std::vector<boost::shared_ptr<teamState> > loadTeams();  // loads team data from XML files
     std::vector<std::string> loadTeamListFile(std::string fileName);  // loads list of team files from teams.xml
@@ -149,13 +152,14 @@ protected:
 private:
     static std::vector<boost::shared_ptr<playerState> > pInstance;
     static std::vector<boost::shared_ptr<teamState> > tInstance;
+    static std::vector<boost::shared_ptr<userInput> > uiInstance;
 
-    std::vector<std::string> basketballFiles;  // stores list of basketball xml files
-    std::vector<std::string> courtFiles;  // stores list of court xml files
-    std::vector<std::string> offensePlayFiles;  // stores list of offense play xml files
-    std::vector<std::string> playerFiles;  // stores list of player xml files
-    std::vector<std::string> teamFiles;	 // stores list of team xml files
-    std::vector<std::string> userInputFiles;  // stores list of court xml files
+    static std::vector<std::string> basketballFiles;  // stores list of basketball xml files
+    static std::vector<std::string> courtFiles;  // stores list of court xml files
+    static std::vector<std::string> offensePlayFiles;  // stores list of offense play xml files
+    static std::vector<std::string> playerFiles;  // stores list of player xml files
+    static std::vector<std::string> teamFiles;	 // stores list of team xml files
+    static std::vector<std::string> userInputFiles;  // stores list of court xml files
 
     // determines whether files have been loaded successfully
     static bool basketballFilesLoaded;

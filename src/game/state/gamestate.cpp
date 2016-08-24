@@ -307,7 +307,7 @@ bool gameState::createTeamInstances()  // creates team Instances
     logMsg("gameState::createTeamInstances()");
     
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<loader> load = loader::Instance();
+    boost::shared_ptr<loader> load;
     
     std::vector<boost::shared_ptr<teamState> > tInstance;
     
@@ -387,7 +387,7 @@ bool gameState::createTeamInstances()  // creates team Instances
 
 bool gameState::createCourtInstances()  // creates court Instances
 {
-    boost::shared_ptr<loader> load = loader::Instance();
+    boost::shared_ptr<loader> load;
 
 //    courtState cInstance;  // creates an instance of the courtState class
 //    cInstance.setModelFileName("court.mesh");
@@ -431,7 +431,7 @@ bool gameState::createPlayerInstances()  // creates player instances
     logMsg("gameState::createTeamInstances()");
     
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<loader> load = loader::Instance();
+    boost::shared_ptr<loader> load;
     
     std::vector<boost::shared_ptr<playerState> > pInstance;
     

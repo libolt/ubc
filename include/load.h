@@ -139,9 +139,9 @@ public:
     courtState loadCourtFile(std::string fileName);  // loads data from the court XML files.
 
     // User input
-    std::vector<userInput> loadUserInputs();  // load user input XML files
+    std::vector<boost::shared_ptr<userInput> > loadUserInputs();  // load user input XML files
     std::vector<std::string> loadUserInputListFile(std::string fileName);  // load the list of user input configs from userinputs.xml
-    userInput loadUserInputFile(std::string fileName);  // loads data from the user input XML files.
+    boost::shared_ptr<userInput> loadUserInputFile(std::string fileName);  // loads data from the user input XML files.
 
     
 protected:

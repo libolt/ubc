@@ -1930,3 +1930,35 @@ inputKeyMaps conversion::toInputKey(const std::string &data)  // converts from s
     
     return (inputKey);
 }
+
+inputGamePadMaps conversion::toInputGP(const std::string &data)  // converts from string to inputGamePadMaps
+{
+    inputGamePadMaps GPMap;
+    // FIXME! Mapping is only stubbed out
+/*        AXISUP0, 
+        AXISDOWN0, 
+        AXISLEFT0, 
+        AXISRIGHT0, 
+        AXISUPLEFT0, 
+        AXISUPRIGHT0, 
+        AXISDOWNLEFT0,
+        AXISUP1, 
+        AXISDOWN1, 
+        AXISLEFT1, 
+        AXISRIGHT1, 
+        AXISUPLEFT1, 
+        AXISUPRIGHT1, 
+        AXISDOWNLEFT1,
+        BUTTON0,
+        BUTTON1,
+        BUTTON2,
+        BUTTON3,
+        BUTTON4,
+        BUTTON5,
+        BUTTON6,
+        BUTTON7,
+        BUTTON8,
+        INGP_NONE
+*/
+    return (GPMap); 
+}

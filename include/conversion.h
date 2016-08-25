@@ -269,8 +269,9 @@ class conversion  // class for conversion between data types
         Ogre::Vector3 toOgreVector3(const btVector3 &vect); // converts from btVector3 to Ogre::Vector3
 
         
-        // inputKeyMaps conversion
-        inputKeyMaps toInputKey(const std::string &data);  // converts from string to inputKey
+        // inputKm Maps conversion
+        inputKeyMaps toInputKey(const std::string &data);  // converts from string to inputKeyMaps
+        inputGamePadMaps toInputGP(const std::string &data);  // converts from string to inputGamePadMaps
         
     protected:
     conversion();

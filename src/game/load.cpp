@@ -46,6 +46,8 @@
 // static variables
 std::vector<boost::shared_ptr<playerState> > loader::pInstance;
 std::vector<boost::shared_ptr<teamState> > loader::tInstance;
+std::vector<boost::shared_ptr<userInput> > loader::uiInstance;
+
 
 std::vector<std::string> loader::basketballFiles;  // stores list of basketball xml files
 std::vector<std::string> loader::courtFiles;  // stores list of court xml files
@@ -2162,9 +2164,9 @@ courtState loader::loadCourtFile(std::string fileName)  // loads data from the o
 }
 
 // User input
-std::vector<userInput> loader::loadUserInputs()  // load user input settings from XML files
+std::vector<boost::shared_ptr<userInput> > loader::loadUserInputs()  // load user input settings from XML files
 {
-    std::vector<userInput> userInputs;
+    std::vector<boost::shared_ptr<userInput> > userInputs;
     std::string userInputList;
     
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
@@ -2245,12 +2247,12 @@ std::vector<std::string> loader::loadUserInputListFile(std::string fileName)  //
     return (uInputFiles);
 }
 
-userInput loader::loadUserInputFile(std::string fileName)  // loads data from the user input files
+boost::shared_ptr<userInput> loader::loadUserInputFile(std::string fileName)  // loads data from the user input files
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     
     logMsg("Load UserInput File");
-    userInput uInput;
+    boost::shared_ptr<userInput> uInput;
     std::string inputName;
     std::string type;
     std::string up;
@@ -2393,34 +2395,36 @@ userInput loader::loadUserInputFile(std::string fileName)  // loads data from th
 //            logMsg("modelName = " +modelName);
             if (type == "Keyboard")
             {
-                uInput.setKeyUp(convert->toInputKey(up));
-                uInput.setKeyDown(convert->toInputKey(down));
-                uInput.setKeyLeft(convert->toInputKey(left));
-                uInput.setKeyRight(convert->toInputKey(right));
-                uInput.setKeyUpLeft(convert->toInputKey(upLeft));
-                uInput.setKeyUpRight(convert->toInputKey(upRight));
-                uInput.setKeyDownLeft(convert->toInputKey(downLeft));
-                uInput.setKeyDownRight(convert->toInputKey(downRight));
-                uInput.setKeyShootBlock(convert->toInputKey(shootBlock));
-                uInput.setKeyPassSteal(convert->toInputKey(passSteal));
-                uInput.setKeyPause(convert->toInputKey(pause));
-                uInput.setKeyStartSelect(convert->toInputKey(startSelect));
-                uInput.setKeyQuit(convert->toInputKey(quit));
+                uInput->setKeyUp(convert->toInputKey(up));
+                uInput->setKeyDown(convert->toInputKey(down));
+                uInput->setKeyLeft(convert->toInputKey(left));
+                uInput->setKeyRight(convert->toInputKey(right));
+                uInput->setKeyUpLeft(convert->toInputKey(upLeft));
+                uInput->setKeyUpRight(convert->toInputKey(upRight));
+                uInput->setKeyDownLeft(convert->toInputKey(downLeft));
+                uInput->setKeyDownRight(convert->toInputKey(downRight));
+                uInput->setKeyShootBlock(convert->toInputKey(shootBlock));
+                uInput->setKeyPassSteal(convert->toInputKey(passSteal));
+                uInput->setKeyPause(convert->toInputKey(pause));
+                uInput->setKeyStartSelect(convert->toInputKey(startSelect));
+                uInput->setKeyQuit(convert->toInputKey(quit));
             }
-            else if (type == "Joystick")
+            else if (type == "Joystick" || type == "Gamepad")
             {
-                uInput.setJoyUp(up);
-                uInput.setJoyDown(down);
-                uInput.setJoyLeft(left);
-                uInput.setJoyRight(right);
-                uInput.setJoyUpLeft(upLeft);
-                uInput.setJoyUpRight(upRight);
-                uInput.setJoyDownLeft(downLeft);
-                uInput.setJoyDownRight(downRight);
-                uInput.setJoyShootBlock(shootBlock);
-                uInput.setJoyPassSteal(passSteal);
-                uInput.setJoyPause(pause);
-                uInput.setJoyStartSelect(startSelect);
+                // FIXME! mapping needs to be implemented
+/*                uInput->setGPUp(up);
+                uInput->setGPDown(down);
+                uInput->setGPLeft(left);
+                uInput->setGPRight(right);
+                uInput->setGPUpLeft(upLeft);
+                uInput->setGPUpRight(upRight);
+                uInput->setGPDownLeft(downLeft);
+                uInput->setGPDownRight(downRight);
+                uInput->setGPShootBlock(shootBlock);
+                uInput->setGPPassSteal(passSteal);
+                uInput->setGPPause(pause);
+                uInput->setGPStartSelect(startSelect);
+*/
             }
             else
             {

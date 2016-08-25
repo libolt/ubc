@@ -45,21 +45,21 @@ class inputState : public state
     boost::shared_ptr<inputEngine> getInputE();  // retrieves the value of gameE
     void setInputE(boost::shared_ptr<inputEngine> set);  // sets the value of gameE
     
-    std::vector<userInput> getUInput();  // retrieves the value of uInput
-    void setUInput(std::vector<userInput> set);  // sets the value of uInput
+    std::vector<boost::shared_ptr<userInput> > getUInput();  // retrieves the value of uInput
+    void setUInput(std::vector<boost::shared_ptr<userInput> > set);  // sets the value of uInput
     
-    bool mapInput();  // maps value of the received input string to inputInGameMaps
-	inputInGameMaps mapKeyInput(inputKeyMaps inKeyMap);  // maps value of the keyPressed string to inputInGameMaps
-	
     inputInGameWorkQueues getInputInGameWorkQueue();  // retrieves the value of inputInGameWorkQueue
     void setInputInGameWorkQueue(inputInGameWorkQueues set);  // sets the value of inputInGameWorkQueue
     
+    bool mapInput();  // maps value of the received input string to inputInGameMaps
+	inputInGameMaps mapKeyInput(inputKeyMaps inKeyMap, boost::shared_ptr<userInput> input);  // maps value of the keyPressed string to inputInGameMaps
+	
     bool process();  // processes input
     
     private:
     
     static boost::shared_ptr<inputEngine> inputE;  // the inputEngine object
-    std::vector<userInput> uInput;  // stores user input mapping
+    std::vector<boost::shared_ptr<userInput> > uInput;  // stores user input mapping
     static inputInGameWorkQueues inputInGameWorkQueue;  // stores work queue for in game processing
     
 };

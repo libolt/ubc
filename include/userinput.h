@@ -71,41 +71,41 @@ class userInput
         inputKeyMaps getKeyQuit();  // retrieves the value of keyStartSelect
         void setKeyQuit(inputKeyMaps set);  // sets the value of keyStartSelect
 
-        std::string getJoyUp();  // retrieves the value of joyUp
-        void setJoyUp(std::string set);  // sets the value of joyUp
+        inputGamePadMaps getGPUp();  // retrieves the value of GPUp
+        void setGPUp(inputGamePadMaps set);  // sets the value of GPUp
 
-        std::string getJoyDown();  // retrieves the value of joyDown
-        void setJoyDown(std::string set);  // sets the value of joyDown
+        inputGamePadMaps getGPDown();  // retrieves the value of GPDown
+        void setGPDown(inputGamePadMaps set);  // sets the value of GPDown
         
-        std::string getJoyLeft();  // retrieves the value of joyLeft
-        void setJoyLeft(std::string set);  // sets the value of joyLeft
+        inputGamePadMaps getGPLeft();  // retrieves the value of GPLeft
+        void setGPLeft(inputGamePadMaps set);  // sets the value of GPLeft
 
-        std::string getJoyRight();  // retrieves the value of joyRight
-        void setJoyRight(std::string set);  // sets the value of joyRight
+        inputGamePadMaps getGPPRight();  // retrieves the value of jLGPRight
+        void setGPRight(inputGamePadMaps set);  // sets the value of GPRight
 
-        std::string getJoyUpLeft();  // retrieves the value of joyUpLeft
-        void setJoyUpLeft(std::string set);  // sets the value of joyUpLeft
+        inputGamePadMaps getGPUpLeft();  // retrieves the value of GPUpLeft
+        void setGPUpLeft(inputGamePadMaps set);  // sets the value of GPUpLeft
 
-        std::string getJoyUpRight();  // retrieves the value of joyUpRight
-        void setJoyUpRight(std::string set);  // sets the value of joyUpRight
+        inputGamePadMaps getGPUpRight();  // retrieves the value of GPUpRight
+        void setGPUpRight(inputGamePadMaps set);  // sets the value of GPUpRight
 
-        std::string getJoyDownLeft();  // retrieves the value of joyDownLeft
-        void setJoyDownLeft(std::string set);  // sets the value of joyDownLeft
+        inputGamePadMaps getGPDownLeft();  // retrieves the value of GPDownLeft
+        void setGPDownLeft(inputGamePadMaps set);  // sets the value of GPDownLeft
 
-        std::string getJoyDownRight();  // retrieves the value of joyDownRight
-        void setJoyDownRight(std::string set);  // sets the value of joyDownRight
+        inputGamePadMaps getGPDownRight();  // retrieves the value of GPDownRight
+        void setGPDownRight(inputGamePadMaps set);  // sets the value of GPDownRight
 
-        std::string getJoyShootBlock();  // retrieves the value of joyShootBlock
-        void setJoyShootBlock(std::string set);  // sets the value of joyShootBlock
+        inputGamePadMaps getGPShootBlock();  // retrieves the value of GPShootBlock
+        void setGPShootBlock(inputGamePadMaps set);  // sets the value of GPShootBlock
 
-        std::string getJoyPassSteal();  // retrieves the value of joyPassSteal
-        void setJoyPassSteal(std::string set);  // sets the value of joyPassSteal
+        inputGamePadMaps getGPPassSteal();  // retrieves the value of GPPassSteal
+        void setGPPassSteal(inputGamePadMaps set);  // sets the value of GPPassSteal
 
-        std::string getJoyPause();  // retrieves the value of joyPause
-        void setJoyPause(std::string set);  // sets the value of joyPause
+        inputGamePadMaps getGPPause();  // retrieves the value of GPPause
+        void setGPPause(inputGamePadMaps set);  // sets the value of GPPause
 
-        std::string getJoyStartSelect();  // retrieves the value of joyStartSelect
-        void setJoyStartSelect(std::string set);  // sets the value of joyStartSelect
+        inputGamePadMaps getGPStartSelect();  // retrieves the value of GPStartSelect
+        void setGPStartSelect(inputGamePadMaps set);  // sets the value of GPStartSelect
 
         bool getActive();  // retrieves the value of active
         void setActive(bool set);  // sets the value of active
@@ -114,33 +114,33 @@ class userInput
     private:
 
     // key input strings
-    inputKeyMaps keyUp;
-    inputKeyMaps keyDown;
-    inputKeyMaps keyLeft;
-    inputKeyMaps keyRight;
-    inputKeyMaps keyUpLeft;
-    inputKeyMaps keyUpRight;
-    inputKeyMaps keyDownLeft;
-    inputKeyMaps keyDownRight;
-    inputKeyMaps keyShootBlock;
-    inputKeyMaps keyPassSteal;
-    inputKeyMaps keyPause;
-    inputKeyMaps keyStartSelect;
-    inputKeyMaps keyQuit;
+    static inputKeyMaps keyUp;
+    static inputKeyMaps keyDown;
+    static inputKeyMaps keyLeft;
+    static inputKeyMaps keyRight;
+    static inputKeyMaps keyUpLeft;
+    static inputKeyMaps keyUpRight;
+    static inputKeyMaps keyDownLeft;
+    static inputKeyMaps keyDownRight;
+    static inputKeyMaps keyShootBlock;
+    static inputKeyMaps keyPassSteal;
+    static inputKeyMaps keyPause;
+    static inputKeyMaps keyStartSelect;
+    static inputKeyMaps keyQuit;
     
     // joystick input strings
-    std::string joyUp;
-    std::string joyDown;
-    std::string joyLeft;
-    std::string joyRight;
-    std::string joyUpLeft;
-    std::string joyUpRight;
-    std::string joyDownLeft;
-    std::string joyDownRight;
-    std::string joyShootBlock;
-    std::string joyPassSteal;
-    std::string joyPause;
-    std::string joyStartSelect;
+    static inputGamePadMaps GPUp;
+    static inputGamePadMaps GPDown;
+    static inputGamePadMaps GPLeft;
+    static inputGamePadMaps GPRight;
+    static inputGamePadMaps GPUpLeft;
+    static inputGamePadMaps GPUpRight;
+    static inputGamePadMaps GPDownLeft;
+    static inputGamePadMaps GPDownRight;
+    static inputGamePadMaps GPShootBlock;
+    static inputGamePadMaps GPPassSteal;
+    static inputGamePadMaps GPPause;
+    static inputGamePadMaps GPStartSelect;
 
     bool active;  // determines whether this input map is being used.
     

@@ -54,10 +54,10 @@ inputState::inputState()  // constructor
     else
     {
         logMsg("inputState::inputState() loading of User Inout failed!");
-        return (false);
+        exit(false);
     }
     
-    uInput[0].setActive(true);
+//    uInput[0].setActive(true);
 
 }
 inputState::~inputState()  // destructor
@@ -74,11 +74,11 @@ void inputState::setInputE(boost::shared_ptr<inputEngine> set)  // sets the valu
 //    inputE = set;
 }
 
-std::vector<userInput> inputState::getUInput()  // retrieves the value of uInput
+std::vector<boost::shared_ptr<userInput> > inputState::getUInput()  // retrieves the value of uInput
 {
     return (uInput);
 }
-void inputState::setUInput(std::vector<userInput> set)  // sets the value of uInput
+void inputState::setUInput(std::vector<boost::shared_ptr<userInput> > set)  // sets the value of uInput
 {
     uInput = set;
 }
@@ -108,7 +108,8 @@ bool inputState::mapInput()  // maps value of keyPressed string to inputMap
         logMsg("inputKeyWorkQueue.size() = " +convert->toString(inputKeyWorkQueue.size()));
         while (x < inputKeyWorkQueue.size())
         {
-            inputInGameWorkQueue.push_back(mapKeyInput(inputKeyWorkQueue[x]));
+            // FIXME! uInput shoulnobe hard coded
+            inputInGameWorkQueue.push_back(mapKeyInput(inputKeyWorkQueue[x], uInput[0]));
             ++x;
         }
     }
@@ -123,7 +124,7 @@ bool inputState::mapInput()  // maps value of keyPressed string to inputMap
 return (true);
 }
 
-inputInGameMaps inputState::mapKeyInput(inputKeyMaps inKeyMap)  // maps value of the keyPressed string to inputInGameMaps
+inputInGameMaps inputState::mapKeyInput(inputKeyMaps inKeyMap, boost::shared_ptr<userInput> input)  // maps value of the keyPressed string to inputInGameMaps
 {
     int x = 0;
 //    while (x < uInput.size())
@@ -131,60 +132,60 @@ inputInGameMaps inputState::mapKeyInput(inputKeyMaps inKeyMap)  // maps value of
 //    exit(0);
     
     logMsg("mapKeyInput");
-    if (inKeyMap == uInput[0].getKeyUp())
+    if (inKeyMap == input->getKeyUp())
     {
 //        exit(0);
         return(INUP);
     }
 //    exit(0);
     
-    else if (inKeyMap == uInput[0].getKeyDown())
+    else if (inKeyMap == input->getKeyDown())
     {
         return(INDOWN);
     }
-    else if (inKeyMap == uInput[0].getKeyLeft())
+    else if (inKeyMap == input->getKeyLeft())
     {
         return(INLEFT);
     }
-    else if (inKeyMap == uInput[0].getKeyRight())
+    else if (inKeyMap == input->getKeyRight())
     {
         return(INRIGHT);
     }
-    else if (inKeyMap == uInput[0].getKeyUpLeft())
+    else if (inKeyMap == input->getKeyUpLeft())
     {
         return(INUPLEFT);
     }
-    else if (inKeyMap == uInput[0].getKeyUpRight())
+    else if (inKeyMap == input->getKeyUpRight())
     {
         return(INUPRIGHT);
     }
-    else if (inKeyMap == uInput[0].getKeyDownLeft())
+    else if (inKeyMap == input->getKeyDownLeft())
     {
         return(INDOWNLEFT);
     }
-    else if (inKeyMap == uInput[0].getKeyDownRight())
+    else if (inKeyMap == input->getKeyDownRight())
     {
         return(INDOWNRIGHT);
     }
-    else if (inKeyMap == uInput[0].getKeyPassSteal())
+    else if (inKeyMap == input->getKeyPassSteal())
     {
         return(INPASSSTEAL);
     }
-    else if (inKeyMap == uInput[0].getKeyShootBlock())
+    else if (inKeyMap == input->getKeyShootBlock())
     {
         return(INSHOOTBLOCK);
     }
-    else if (inKeyMap == uInput[0].getKeyPause())
+    else if (inKeyMap == input->getKeyPause())
     {
         return(INPAUSE);
     }
-    else if (inKeyMap == uInput[0].getKeyStartSelect())
+    else if (inKeyMap == input->getKeyStartSelect())
     {
         return(INSTARTSELECT);
     }
-    else if (inKeyMap == uInput[0].getKeyQuit())
+    else if (inKeyMap == input->getKeyQuit())
     {
-        logMsg("keyQuit = " +uInput[0].getKeyQuit());
+        logMsg("keyQuit = " +input->getKeyQuit());
     return(INQUIT);
     }
     else
@@ -205,7 +206,7 @@ bool inputState::process()  // processes input
         inputKeyWorkQueues inputKeyWorkQueue = inputE->getInputKeyWorkQueue();
         while (x < inputKeyWorkQueue.size())
         {
-            inputInGameWorkQueue.push_back(mapKeyInput(inputKeyWorkQueue[x]));
+            inputInGameWorkQueue.push_back(mapKeyInput(inputKeyWorkQueue[x], uInput[0]));
             x++;                            
         }
     }

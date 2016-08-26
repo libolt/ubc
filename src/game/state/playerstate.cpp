@@ -793,8 +793,8 @@ void playerState::updateState()
             {
                 logMsg("playerID == " +convert->toString(getID()));
                 int activeBBallInstance = getActiveBBallInstance();
-                std::vector<basketballState> bballInstance = getBasketballInstance();
-                bballInstance[activeBBallInstance].setMovement(true);
+                std::vector<boost::shared_ptr<basketballState> > bballInstance = getBasketballInstance();
+                bballInstance[activeBBallInstance]->setMovement(true);
                 
 //                exit(0);
             }
@@ -908,7 +908,7 @@ void playerState::updateDirection()
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
     std::vector<boost::shared_ptr<teamState> > activeTeamInstance = getActiveTeamInstance();
-    std::vector<basketballState> bballInstance = getBasketballInstance();
+    std::vector<boost::shared_ptr<basketballState> > bballInstance = getBasketballInstance();
     size_t activeBBallInstance = getActiveBBallInstance();
     size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
 
@@ -1012,8 +1012,8 @@ void playerState::updateDirection()
     if (getID() == playerWithBallID)
     {
 //        exit(0);
-        bballInstance[activeBBallInstance].setDirectChange(true);
-        bballInstance[activeBBallInstance].setDirection(direction);
+        bballInstance[activeBBallInstance]->setDirectChange(true);
+        bballInstance[activeBBallInstance]->setDirection(direction);
 
         setBasketballInstance(bballInstance);
     }
@@ -1026,7 +1026,7 @@ void playerState::updateMovement()	// updates movement status of the player
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
     std::vector<boost::shared_ptr<teamState> > activeTeamInstance = getActiveTeamInstance();
-    std::vector<basketballState> bballInstance = getBasketballInstance();
+    std::vector<boost::shared_ptr<basketballState> > bballInstance = getBasketballInstance();
     size_t activeBBallInstance = getActiveBBallInstance();
     size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
 
@@ -1071,7 +1071,7 @@ void playerState::updateMovement()	// updates movement status of the player
 
         if (getID() == playerWithBallID)
         {
-            bballInstance[activeBBallInstance].setMovement(true);
+            bballInstance[activeBBallInstance]->setMovement(true);
             setBasketballInstance(bballInstance);
 
         }

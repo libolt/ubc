@@ -44,6 +44,10 @@
 #endif
 
 // static variables
+
+std::vector<boost::shared_ptr<basketballState> > loader::bInstance;
+std::vector<boost::shared_ptr<courtState> > loader::cInstance;
+std::vector<boost::shared_ptr<offensePlays> > loader::opInstance;
 std::vector<boost::shared_ptr<playerState> > loader::pInstance;
 std::vector<boost::shared_ptr<teamState> > loader::tInstance;
 std::vector<boost::shared_ptr<userInput> > loader::uiInstance;
@@ -124,7 +128,6 @@ void loader::setTeamFiles(std::vector<std::string> set)  // sets the value of te
     teamFiles = set;
 }
 
-
 std::vector<std::string> loader::getUserInputFiles()   // retrieves the value of userInputFiles
 {
     return (userInputFiles);
@@ -132,6 +135,33 @@ std::vector<std::string> loader::getUserInputFiles()   // retrieves the value of
 void loader::setUserInputFiles(std::vector<std::string> set)  // sets the value of userInputFiles
 {
     userInputFiles = set;
+}
+
+std::vector<boost::shared_ptr<basketballState> > loader::getBInstance()  // retrieves the value of bInstance
+{
+    return (bInstance);
+}
+void loader::setBInstance(std::vector<boost::shared_ptr<basketballState> > set)  // sets the value of bInstance
+{
+    bInstance = set;
+}
+
+std::vector<boost::shared_ptr<courtState> > loader::getCInstance()  // retrieves the value of cInstance
+{
+    return (cInstance);
+}
+void loader::setCInstance(std::vector<boost::shared_ptr<courtState> > set)  // sets the value of cInstance
+{
+    cInstance = set;
+}
+
+std::vector<boost::shared_ptr<offensePlays> > loader::getOPInstance()  // retrieves the value of opInstance
+{
+    return (opInstance);
+}
+void loader::setOPInstance(std::vector<boost::shared_ptr<offensePlays> > set)  // sets the value of opInstance
+{
+    opInstance = set;
 }
 
 std::vector<boost::shared_ptr<playerState> > loader::getPInstance()  // retrieves the value of pInstance
@@ -376,6 +406,207 @@ std::string loader::findFile(std::string fileName)  // finds the location of a f
     return ("");
 }
 
+bool loader::checkIfBasketballsLoaded()  // checks if basketballs have been loaded into bInstance
+{
+    if (basketballFilesLoaded)
+    {
+        logMsg("loader::checkBasketballsLoaded() getBasketballFilesLoaded");
+
+        if (bInstance.size() > 0)
+        {
+            logMsg("loader::checkBasketballsLoaded() Basketball Files Loaded!");
+            return(true);
+        }
+        else
+        {
+            logMsg("loader::checkBasketballsLoaded() Basketball Files not yet Loaded!");
+
+            basketballFilesLoaded = false;
+            bInstance = loadBasketballs();
+            if (bInstance.size() > 0)
+            {
+                logMsg("loader::checkBasketballsLoaded() > 0!");
+
+//                load->setTInstance(tInstance);
+                basketballFilesLoaded = true;
+                return(true);
+            }
+            else
+            {
+                logMsg("loader::checkBasketballsLoaded() Failed to load Basketball Files! IF");
+                exit(0);
+            }
+        }
+    }
+    else 
+    {
+        logMsg("loader::checkBasketballsLoaded() ELSE");
+
+        if (bInstance.size() > 0)
+        {
+            logMsg("loader::checkBasketballsLoaded() load->getBInstance().size() > 0! ELSE");
+//            load->setTInstance(tInstance);
+            basketballFilesLoaded = true;
+            return(true);
+        }
+        else
+        {
+            logMsg("loader::checkBasketballsLoaded() ELSE ELSE!");
+
+            bInstance = loadBasketballs();
+            logMsg("loader::checkBasketballsLoaded()");
+            if (bInstance.size() > 0)
+            {
+                logMsg("loader::checkBasketballsLoaded() load->getBInstance().size() > 0! ELSE ELSE");
+
+//                load->setTInstance(tInstance);
+                basketballFilesLoaded = true;
+                return(true);
+            }
+            else
+            {
+                logMsg("loader::checkBasketballsLoaded() Failed to load Basketball Files!");
+                return(false);
+            }
+        }
+    }
+    return (false);
+}
+
+bool loader::checkIfCourtsLoaded()  // checks if courts have been loaded into cInstance
+{
+    if (courtFilesLoaded)
+    {
+        logMsg("loader::checkIfCourtsLoaded() getCourtFilesLoaded");
+
+        if (cInstance.size() > 0)
+        {
+            logMsg("loader::checkIfCourtsLoaded() Court Files Loaded!");
+            return(true);
+        }
+        else
+        {
+            logMsg("loader::checkIfCourtsLoaded() Court Files not yet Loaded!");
+
+            courtFilesLoaded = false;
+            cInstance = loadCourts();
+            if (cInstance.size() > 0)
+            {
+                logMsg("loader::checkIfCourtsLoaded() > 0!");
+
+//                load->setTInstance(tInstance);
+                courtFilesLoaded = true;
+                return(true);
+            }
+            else
+            {
+                logMsg("loader::checkIfCourtsLoaded() Failed to load Court Files! IF");
+                exit(0);
+            }
+        }
+    }
+    else 
+    {
+        logMsg("loader::checkIfCourtsLoaded() ELSE");
+
+        if (cInstance.size() > 0)
+        {
+            logMsg("loader::checkIfCourtsLoaded() load->getCInstance().size() > 0! ELSE");
+//            load->setTInstance(tInstance);
+            courtFilesLoaded = true;
+            return(true);
+        }
+        else
+        {
+            logMsg("loader::checkIfCourtsLoaded() ELSE ELSE!");
+
+            cInstance = loadCourts();
+            logMsg("loader::checkIfCourtsLoaded()");
+            if (cInstance.size() > 0)
+            {
+                logMsg("loader::checkIfCourtsLoaded() load->getCInstance().size() > 0! ELSE ELSE");
+
+//                load->setTInstance(tInstance);
+                courtFilesLoaded = true;
+                return(true);
+            }
+            else
+            {
+                logMsg("loader::checkIfCourtsLoaded() Failed to load Court Files!");
+                return(false);
+            }
+        }
+    }
+    return (false);
+}
+
+bool loader::checkIfOffensePlaysLoaded()  // checks if offense plays have been loaded into opInstance
+{
+    if (offensePlayFilesLoaded)
+    {
+        logMsg("loader::checkIfOffensePlaysLoaded() getOffensePlayFilesLoaded");
+
+        if (opInstance.size() > 0)
+        {
+            logMsg("loader::checkIfOffensePlaysLoaded() Offense Play Files Loaded!");
+            return(true);
+        }
+        else
+        {
+            logMsg("loader::checkIfOffensePlaysLoaded() Offense Plays Files not yet Loaded!");
+
+            offensePlayFilesLoaded = false;
+            opInstance = loadOffensePlays();
+            if (opInstance.size() > 0)
+            {
+                logMsg("loader::checkIfOffensePlaysLoaded() > 0!");
+
+//                load->setTInstance(tInstance);
+                offensePlayFilesLoaded = true;
+                return(true);
+            }
+            else
+            {
+                logMsg("loader::checkIfOffensePlaysLoaded() Failed to load Offense Play Files! IF");
+                exit(0);
+            }
+        }
+    }
+    else 
+    {
+        logMsg("loader::checkIfOffensePlaysLoaded() ELSE");
+
+        if (opInstance.size() > 0)
+        {
+            logMsg("loader::checkIfOffensePlaysLoaded() load->getOPInstance().size() > 0! ELSE");
+//            load->setTInstance(tInstance);
+            offensePlayFilesLoaded = true;
+            return(true);
+        }
+        else
+        {
+            logMsg("loader::checkIfOffensePlaysLoaded() ELSE ELSE!");
+
+            opInstance = loadOffensePlays();
+            logMsg("loader::checkIfOffensePlaysLoaded()");
+            if (opInstance.size() > 0)
+            {
+                logMsg("loader::checkIfOffensePlaysLoaded() load->getOPInstance().size() > 0! ELSE ELSE");
+
+//                load->setTInstance(tInstance);
+                offensePlayFilesLoaded = true;
+                return(true);
+            }
+            else
+            {
+                logMsg("loader::checkIfOffensePlaysLoaded() Failed to load Offense Play Files!");
+                return(false);
+            }
+        }
+    }
+    return (false);
+}
+
 bool loader::checkIfPlayersLoaded()  // checks if players have been loaded into pInstance
 {
     if (playerFilesLoaded)
@@ -577,100 +808,477 @@ bool loader::checkIfUserInputsLoaded()  // checks if user inputs have been loade
     return (false);
 }
 
-std::vector<boost::shared_ptr<teamState> > loader::loadTeams()  // load teams from XML files
+// Basketballs
+std::vector<boost::shared_ptr<basketballState> > loader::loadBasketballs()  // load basketball settings from XML files
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-    std::vector<boost::shared_ptr<teamState> > teams;
-
-    std::string teamList;
-//    boost::shared_ptr<teamState> tempTeamSharedPtr(new teamState);
+    std::vector<boost::shared_ptr<basketballState> > basketballs;
+    std::string basketballList;
     
-/*    teamState *tempTeamObj = new teamState;
-    boost::shared_ptr<teamState> tempTeamSharedPtr = boost::shared_ptr<teamState>(tempTeamObj);
-    std::vector<boost::shared_ptr<teamState> > tempTeams;
-    tempTeams.push_back(tempTeamSharedPtr);
-*/
-
-
-    //teams = tempTeams;
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-    teamList = "data/teams/teams.xml";
+    basketballList = "data/basketballs/basketballs.xml";
 #else
-    teamList = findFile("teams/teams.xml");
+    basketballList = findFile("basketballs/basketballs.xml");
 #endif
-
-
-//    logMsg("Bleeep!");
-    teamFiles = loadTeamListFile(teamList);
+    basketballFiles = loadBasketballListFile(basketballList);
 //    std::vector<std::string> playerFiles = load->getPlayerFiles();
-    logMsg("teamFiles.size() = " +convert->toString(teamFiles.size()));
 
-//    exit(0);
     std::vector<std::string>::iterator it;
-
-    for (it = teamFiles.begin(); it != teamFiles.end(); ++it)
+    for (it = basketballFiles.begin(); it != basketballFiles.end(); ++it)
     {
-        logMsg("teamFile = " +*it);
-
+        logMsg("basketballFile = " +*it);
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-//        teams.push_back(loadTeamFile("data/teams/" + *it));
-          loadTeamFile("data/teams/" + *it);
+        basketballs.push_back(loadBasketballFile("data/basketballs/" + *it));
 #else
-//        teams.push_back(loadTeamFile(findFile("teams/" + *it)));
-          loadTeamFile(findFile("teams/" + *it));
+        basketballs.push_back(loadBasketballFile(findFile("basketballs/" + *it)));
 #endif
     }
-    
-    logMsg("teams[4]->getID() ID == " +convert->toString(teams[4]->getID()));
-    logMsg("loadTeams() 4 ID == " +convert->toString(teams[4]->getID()));
-//    logMsg("loadTeams() 4 Name == " +tInstance[4]->getName());
-    logMsg("loadTeams() tInstance.size() == " +convert->toString(tInstance.size()));
-
-    logMsg("dah");
-//    exit(0);
-    if (teams.size() == 0)
-    {
-        logMsg("teams.size() == " +teams.size());
-//        exit(0);
-    }
-    
-    return (tInstance);
+    return (basketballs);
 }
 
-std::vector<std::string> loader::loadTeamListFile(std::string fileName)  // loads the team list file
+std::vector<std::string> loader::loadBasketballListFile(std::string fileName) // loads the list of baskteball list file
+{
+    boost::shared_ptr<conversion> convert = conversion::Instance();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+    std::vector<std::string> bballFiles;
+
+    std::string fileContents;
+    tinyxml2::XMLDocument doc;
+
+    logMsg(fileName);
+    char *contents = NULL;
+    readFile(fileName.c_str(), &contents);
+    fileContents = convert->toString(contents);
+    logMsg("fileContents = " +fileContents);
+
+    doc.Parse(contents);
+    if (doc.Error())
+    {
+        logMsg("Unable to parse basketballs.xml file");
+        logMsg("Error ID = " +convert->toString(doc.ErrorID()));
+        logMsg(convert->toString(doc.GetErrorStr1()));
+        logMsg(convert->toString(doc.GetErrorStr2()));
+        exit(0);
+    }
+
+    tinyxml2::XMLHandle hDoc(&doc);
+    tinyxml2::XMLElement *pElem;
+    tinyxml2::XMLHandle hRoot(0);
+    pElem=hDoc.FirstChildElement().ToElement();
+    // should always have a valid root but handle gracefully if it does
+    if (!pElem)
+    {
+        logMsg("Unable to find a valid basketball list root!");
+    }
+
+    // save this for later
+    hRoot=tinyxml2::XMLHandle(pElem);
+
+    pElem=hRoot.FirstChild().ToElement();
+    for( pElem; pElem; pElem=pElem->NextSiblingElement())
+    {
+        std::string pKey=pElem->Value();
+        std::string pText=pElem->GetText();
+        bballFiles.push_back(pText);
+    }
+
+//    setBasketballFiles(basketballFile);
+//    return true;
+    return (bballFiles);
+}
+
+boost::shared_ptr<basketballState> loader::loadBasketballFile(std::string fileName)  // loads data from the basketball XML files
+{
+    boost::shared_ptr<conversion> convert = conversion::Instance();
+
+    boost::shared_ptr<basketballState> basketballInstance;
+    basketballState *basketball = new basketballState;
+    std::string name;
+    std::string modelName;
+
+    std::string fileContents;
+    tinyxml2::XMLDocument doc;
+
+    char *contents = NULL;
+    readFile(fileName.c_str(), &contents);
+    fileContents = convert->toString(contents);
+
+    doc.Parse(contents);
+    if (doc.Error())
+    {
+        logMsg("Unable to parse basketball xml file");
+        logMsg("Error ID = " +convert->toString(doc.ErrorID()));
+        logMsg(convert->toString(doc.GetErrorStr1()));
+        logMsg(convert->toString(doc.GetErrorStr2()));
+        exit(0);
+    }
+
+    tinyxml2::XMLHandle hDoc(&doc);
+    tinyxml2::XMLElement *rootElement;
+    tinyxml2::XMLElement *child;
+    tinyxml2::XMLHandle hRoot(0);
+
+    rootElement = doc.FirstChildElement()->ToElement();
+    // should always have a valid root but handle gracefully if it does
+    if (!rootElement)
+    {
+        logMsg("Unable to load basketball element");
+        //exit(0);
+    }
+
+    child = rootElement->FirstChild()->ToElement();
+    if (child)
+    {
+        std::string cKey = child->Value();
+        if (cKey == "Name")
+        {
+            name = child->GetText();
+            logMsg("name = " +name);
+        }
+        child = child->NextSiblingElement()->ToElement();
+        if (child)
+        {
+            modelName = child->GetText();
+            logMsg("modelName = " +modelName);
+        }
+
+    }
+
+    basketball->setName(name);
+    basketball->setModelFileName(modelName);
+
+    basketballInstance = boost::shared_ptr<basketballState>(basketball);
+    
+    return (basketballInstance);
+}
+
+// Courts
+std::vector<boost::shared_ptr<courtState> > loader::loadCourts()  // load court settings from XML files
+{
+//    exit(0);
+    std::vector<boost::shared_ptr<courtState> > courts;
+    std::string courtList;
+    
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+    courtList = "data/courts/courts.xml";
+#else
+    courtList = findFile("courts/courts.xml");
+#endif
+    courtFiles = loadCourtListFile(courtList);
+//    std::vector<std::string> playerFiles = load->getPlayerFiles();
+
+    std::vector<std::string>::iterator it;
+    for (it = courtFiles.begin(); it != courtFiles.end(); ++it)
+    {
+        logMsg("courtFile = " +*it);
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+        courts.push_back(loadCourtFile("data/courts/" + *it));
+#else
+        courts.push_back(loadCourtFile(findFile("courts/" + *it)));
+#endif
+    }
+
+    return (courts);
+}
+
+std::vector<std::string> loader::loadCourtListFile(std::string fileName)    // loads the list of court list file
+{
+    boost::shared_ptr<conversion> convert = conversion::Instance();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+    std::vector<std::string> cFiles;
+
+    std::string fileContents;
+    tinyxml2::XMLDocument doc;
+
+    logMsg(fileName);
+    char *contents = NULL;
+    readFile(fileName.c_str(), &contents);
+    fileContents = convert->toString(contents);
+    logMsg("fileContents = " +fileContents);
+
+    doc.Parse(contents);
+    if (doc.Error())
+    {
+        logMsg("Unable to parse courts.xml file");
+        logMsg("Error ID = " +convert->toString(doc.ErrorID()));
+        logMsg(convert->toString(doc.GetErrorStr1()));
+        logMsg(convert->toString(doc.GetErrorStr2()));
+        exit(0);
+    }
+
+    tinyxml2::XMLHandle hDoc(&doc);
+    tinyxml2::XMLElement *pElem;
+    tinyxml2::XMLHandle hRoot(0);
+
+    pElem=hDoc.FirstChildElement().ToElement();
+    // should always have a valid root but handle gracefully if it does
+    if (!pElem)
+    {
+        logMsg("Unable to find a vlid court list root!");
+    } 
+
+    // save this for later
+    hRoot=tinyxml2::XMLHandle(pElem);
+
+    pElem=hRoot.FirstChild().ToElement();
+    for( pElem; pElem; pElem=pElem->NextSiblingElement())
+    {
+        std::string pKey=pElem->Value();
+        std::string pText=pElem->GetText();
+        cFiles.push_back(pText);
+    }
+
+//    setCourtFiles(courtFile);
+//    return true;
+    return (cFiles);
+}
+
+boost::shared_ptr<courtState> loader::loadCourtFile(std::string fileName)  // loads data from the offense play XML files
+{
+    boost::shared_ptr<conversion> convert = conversion::Instance();
+    
+    boost::shared_ptr<courtState> courtInstance;
+    courtState *court = new courtState;
+    std::string name;
+    std::string modelName;
+    float length = 0;
+    float width = 0;
+    float boundaryLength = 0;
+    float boundaryWidth = 0;
+    float boundaryXPos = 0;
+    float boundaryZPos = 0;
+    float centerCourt = 0;
+    float centerJumpRadius = 0;
+    float keyLength = 0;
+    float keyWidth = 0;
+    float keyJumpRadius = 0;
+    float threePointSideLength = 0;
+    float threePointSideZPos = 0;
+    float threePointArcRadius = 0;
+    float baselineInboundXPos = 0;
+    float baselineInboundZPos = 0;
+    float sidelineInboundXPos = 0;
+    float sidelineInboundZPos = 0;
+
+    std::string fileContents;
+    tinyxml2::XMLDocument doc;
+
+    char *contents = NULL;
+    readFile(fileName.c_str(), &contents);
+    fileContents = convert->toString(contents);
+    
+    doc.Parse(contents);
+    if (doc.Error())
+    {
+        logMsg("Unable to parse court xml file");
+        logMsg("Error ID = " +convert->toString(doc.ErrorID()));
+        logMsg(convert->toString(doc.GetErrorStr1()));
+        logMsg(convert->toString(doc.GetErrorStr2()));
+        exit(0);
+    }
+
+    tinyxml2::XMLHandle hDoc(&doc);
+    tinyxml2::XMLElement *rootElement;
+    tinyxml2::XMLElement *child;
+    tinyxml2::XMLHandle hRoot(0);
+
+    rootElement = doc.FirstChildElement()->ToElement();
+    // should always have a valid root but handle gracefully if it does
+    if (!rootElement)
+    {
+        logMsg("Unable to load court element");
+        //exit(0);
+    }
+
+    child = rootElement->FirstChild()->ToElement();
+    if (child)
+    {
+        std::string cKey = child->Value();
+        if (cKey == "Name")
+        {
+            name = child->GetText();
+            logMsg("name = " +name);
+        }
+        child = child->NextSiblingElement()->ToElement();
+        if (child)
+        {
+            modelName = child->GetText();
+            logMsg("modelName = " +modelName);
+        }
+        child = child->NextSiblingElement()->ToElement();
+    if (child)
+        {
+            length = convert->toFloat(child->GetText());
+            logMsg("Length = " +convert->toString(length));
+        } 
+        child = child->NextSiblingElement()->ToElement();
+    if (child)
+        {
+            length = convert->toFloat(child->GetText());
+            logMsg("Width = " +convert->toString(width));
+        }
+        child = child->NextSiblingElement()->ToElement();
+    if (child)
+        {
+            boundaryLength = convert->toFloat(child->GetText());
+            logMsg("Boundary Length = " +convert->toString(boundaryLength));
+        }
+        child = child->NextSiblingElement()->ToElement();
+        if (child)
+        {
+            boundaryWidth = convert->toFloat(child->GetText());
+            logMsg("Boundary Width = " +convert->toString(boundaryWidth));
+        }
+        child = child->NextSiblingElement()->ToElement();
+    if (child)
+        {
+            boundaryXPos = convert->toFloat(child->GetText());
+            logMsg("Boundary X Pos = " +convert->toString(boundaryXPos));
+        }
+        child = child->NextSiblingElement()->ToElement();
+    if (child)
+        {
+            boundaryZPos = convert->toFloat(child->GetText());
+            logMsg("Boundary Z Pos = " +convert->toString(boundaryZPos));
+        }
+        child = child->NextSiblingElement()->ToElement();
+    if (child)
+        {
+            centerCourt = convert->toFloat(child->GetText());
+            logMsg("Center Court = " +convert->toString(centerCourt));
+        }
+        child = child->NextSiblingElement()->ToElement();
+    if (child)
+        {
+            centerJumpRadius = convert->toFloat(child->GetText());
+            logMsg("Center Jump Radius = " +convert->toString(centerJumpRadius));
+        }
+        child = child->NextSiblingElement()->ToElement();
+    if (child)
+        {
+            keyLength = convert->toFloat(child->GetText());
+            logMsg("Key Length = " +convert->toString(keyLength));
+        }
+        child = child->NextSiblingElement()->ToElement();
+    if (child)
+        {
+            keyWidth = convert->toFloat(child->GetText());
+            logMsg("Key Width = " +convert->toString(keyWidth));
+        }
+        child = child->NextSiblingElement()->ToElement();
+    if (child)
+        {
+            keyJumpRadius = convert->toFloat(child->GetText());
+            logMsg("Key Jump RAdius = " +convert->toString(keyJumpRadius));
+        }
+        child = child->NextSiblingElement()->ToElement();
+    if (child)
+        {
+            threePointSideLength = convert->toFloat(child->GetText());
+            logMsg("Three Point Side Length = " +convert->toString(threePointSideLength));
+        }
+        child = child->NextSiblingElement()->ToElement();
+    if (child)
+        {
+            threePointSideZPos = convert->toFloat(child->GetText());
+            logMsg("Three Point Side Z Pos = " +convert->toString(threePointSideZPos));
+        }
+        child = child->NextSiblingElement()->ToElement();
+    if (child)
+        {
+            threePointArcRadius = convert->toFloat(child->GetText());
+            logMsg("Three Point Arc Radius = " +convert->toString(threePointArcRadius));
+        }
+        child = child->NextSiblingElement()->ToElement();
+    if (child)
+        {
+            baselineInboundXPos = convert->toFloat(child->GetText());
+            logMsg("Baseline Inbound X Pos = " +convert->toString(baselineInboundXPos));
+        }
+        child = child->NextSiblingElement()->ToElement();
+    if (child)
+        {
+            baselineInboundZPos = convert->toFloat(child->GetText());
+            logMsg("Baseline Inbound Z Pos = " +convert->toString(baselineInboundZPos));
+        }
+        child = child->NextSiblingElement()->ToElement();
+    if (child)
+        {
+            sidelineInboundXPos = convert->toFloat(child->GetText());
+            logMsg("Sideline Inbound X Pos = " +convert->toString(sidelineInboundXPos));
+        }
+        child = child->NextSiblingElement()->ToElement();
+    if (child)
+        {
+            sidelineInboundZPos = convert->toFloat(child->GetText());
+            logMsg("Sideline Inbound Z Pos = " +convert->toString(sidelineInboundZPos));
+        }
+    }
+
+    Ogre::Vector2 boundary = Ogre::Vector2(length,width);
+    Ogre::Vector2 boundaryPos = Ogre::Vector2(boundaryXPos,boundaryZPos);
+    Ogre::Vector2 keyDimensions = Ogre::Vector2(keyLength,keyWidth);
+    Ogre::Vector2 baselineInboundPos = Ogre::Vector2(baselineInboundXPos,baselineInboundZPos);
+    Ogre::Vector2 sidelineInboundPos = Ogre::Vector2(sidelineInboundXPos,sidelineInboundZPos);
+
+    court->setName(name);
+    court->setModelFileName(modelName);
+    court->setBoundary(boundary);
+    court->setBoundaryPos(boundaryPos);
+    court->setCenterCourt(centerCourt);
+    court->setCenterJumpRadius(centerJumpRadius);
+    court->setKeyDimensions(keyDimensions);
+    court->setKeyJumpRadius(keyJumpRadius);
+    court->setThreePointSideLength(threePointSideLength);
+    court->setThreePointZPos(threePointSideZPos);
+    court->setThreePointArcRadius(threePointArcRadius);
+    court->setBaselineInboundPos(baselineInboundPos);
+    court->setSidelineInboundPos(sidelineInboundPos);
+
+    courtInstance = boost::shared_ptr<courtState>(court);
+    return (courtInstance);
+}
+
+//Offense
+std::vector<boost::shared_ptr<offensePlays> > loader::loadOffensePlays()  // load offense plays from XML files
+{
+    std::vector<boost::shared_ptr<offensePlays> > plays;
+    std::string playList;
+    
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+    playList = "data/offense/plays/plays.xml";
+#else
+    playList = findFile("offense/plays/plays.xml");
+#endif
+    offensePlayFiles = loadOffensePlayListFile(playList);
+//    std::vector<std::string> playerFiles = load->getPlayerFiles();
+
+    std::vector<std::string>::iterator it;
+    for (it = offensePlayFiles.begin(); it != offensePlayFiles.end(); ++it)
+    {
+        logMsg("offensePlayFile = " +*it);
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+        plays.push_back(loadOffensePlayFile("data/offense/plays/" + *it));
+#else
+        plays.push_back(loadOffensePlayFile(findFile("offense/plays/" + *it)));
+#endif
+    }
+    return (plays);
+}
+
+std::vector<std::string> loader::loadOffensePlayListFile(std::string fileName)  // loads the play list file
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
-    std::vector<std::string> teamName;
-    std::vector<std::string> files;
+    std::vector<std::string> playFiles;
 
-//	players::playerData player;
-//#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-//    const char *file = "teams.xml";
-//#else
-//	const char *file = fileName.c_str();
-//#endif 
-
-//	char *fileContents = NULL;
     std::string fileContents;
     tinyxml2::XMLDocument doc;
     logMsg(fileName);
-    logMsg("bate");
-//#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-//	Ogre::DataStreamPtr fileData = render->openAPKFile(fileName);
-//	fileContents = fileData->getAsString();
-//#else
     char *contents = NULL;
     readFile(fileName.c_str(), &contents);
-//	logMsg("read contents = " +contents);
-//	exit(0);
     fileContents = convert->toString(contents);
-//#endif
-//    readFile(fileName.c_str(), &fileContents);
-    logMsg("barf");
-    logMsg("fileContents == " +fileContents);
-    static const char* xml = "<element/>";
+
     doc.Parse(contents);
     if (doc.Error())
     {
@@ -680,167 +1288,334 @@ std::vector<std::string> loader::loadTeamListFile(std::string fileName)  // load
         logMsg(convert->toString(doc.GetErrorStr2()));
         exit(0);
     }
+
     tinyxml2::XMLHandle hDoc(&doc);
+
     tinyxml2::XMLElement *pElem;
+
     tinyxml2::XMLHandle hRoot(0);
-    //tinyxml2::XMLText *textNode = doc.FirstChildElement("Teams")->FirstChildElement("TeamFile")->ToText();
-    //logMsg("first element = " +convert->toString(textNode->Value()));
+
     pElem=hDoc.FirstChildElement().ToElement();
     // should always have a valid root but handle gracefully if it does
     if (!pElem)
     {
-        logMsg("Unable to find a valid teamListFile root!");
+        logMsg("Unable to find a valid offense play list file root!");
         exit(0);
-    } 
-
+    }
+    
     // save this for later
-    //hRoot=TiXmlHandle(pElem);
     hRoot = tinyxml2::XMLHandle(pElem);
-    
-    //pElem=hRoot.FirstChild("TeamFile").Element();
-    pElem=hRoot.FirstChild().ToElement();
-    
+    pElem=hRoot.FirstChildElement().ToElement();
     for( pElem; pElem; pElem=pElem->NextSiblingElement())
     {
-//      string pText=pElem->GetText();
-        files.push_back(pElem->GetText());
-        logMsg("teamFile = " +convert->toString(pElem->GetText()));
+        std::string pKey=pElem->Value();
+        std::string pText=pElem->GetText();
+        playFiles.push_back(pText);
     }
 
-    std::vector<std::string>::iterator it;
-    for (it = files.begin(); it != files.end(); ++it)
-    {
-        logMsg("team file = " +*it);
-    }
-
-    logMsg("files.size() = " +convert->toString(files.size()));
-//    teamFiles = files;  // sets teamFiles = to the std::vector data in files
-
-//    setTeamFiles(teamFiles);
-
+//    setOffensePlayFiles(playFiles);
 //    return true;
-    return (files);
+    return (playFiles);
 }
 
-bool loader::loadTeamFile(std::string fileName)  // loads the team file
+boost::shared_ptr<offensePlays> loader::loadOffensePlayFile(std::string fileName)  // loads data from the offense play XML files
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
-//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
-//    std::vector<boost::shared_ptr<teamState> > teamInstance = gameS->getTeamInstance();
-  
-    boost::shared_ptr<teamState> tempInstance(new teamState);
-//    tInstance = boost::shared_ptr<teamState>(new teamState);
-//    teamInstance.reset(new teamState);
-    teamState tempTeam; // = new teamState;
-    teamState *tempInst = new teamState;
-//    tempTeamObj = new teamState;
-//    tInstance = tempInstance;
-    static size_t ID;
-    std::string City;
-    std::string Name;
-    std::string Coach;
-    std::string Initials;
-    std::string Logo;
+    
+    boost::shared_ptr<offensePlays> playInstance;
+    offensePlays *play = new offensePlays;
+    std::string playName;
+    int variation;
+    std::string title;
+    std::vector<playerPositions> playerPosition;
+    std::vector<std::string> type;
+    std::vector<float> xCoord;
+    std::vector<float> yCoord;
+    std::vector<float> zCoord;
+    std::vector<Ogre::Vector3> startCoords;
+    std::vector< std::vector<Ogre::Vector3> > executeCoords;
+    std::vector<offensePlays::playerDirectives> playerDirective;
 
-//    TiXmlDocument doc(fileName.c_str());
-//    if (!doc.LoadFile()) return(false);
-//	const char *fileContents = NULL;
+    // stores values read from XML files
+    std::string pPlayName;
+    int pVariation;
+    std::string pTitle;
+    std::string pPlayerPosition;
+    std::string pType;
+    float pXCoord;
+    float pYCoord;
+    float pZCoord;
+    Ogre::Vector3 pCoords;
+    std::vector<Ogre::Vector3> pExecuteCoords;
+    offensePlays::playerDirectives pPlayerDirective;
+    playerPositions pPlayerDirectivePosition;
+
     std::string fileContents;
     tinyxml2::XMLDocument doc;
     char *contents = NULL;
-    
     readFile(fileName.c_str(), &contents);
     fileContents = convert->toString(contents);
+
     doc.Parse(contents);
     if (doc.Error())
     {
-        logMsg("Unable to parse team file");
+        logMsg("Unable to parse offense play file");
         logMsg("Error ID = " +convert->toString(doc.ErrorID()));
         logMsg(convert->toString(doc.GetErrorStr1()));
         logMsg(convert->toString(doc.GetErrorStr2()));
         exit(0);
     }
+
     tinyxml2::XMLHandle hDoc(&doc);
+
+    tinyxml2::XMLElement *rootElement;
+
     tinyxml2::XMLElement *pElem;
-    
+
+    tinyxml2::XMLElement *child;
+
+    tinyxml2::XMLNode *rootNode;
+
+    tinyxml2::XMLNode *childNode;
+
     tinyxml2::XMLHandle hRoot(0);
-    
-    pElem=hDoc.FirstChildElement().ToElement();
-    
+
+    rootElement=hDoc.FirstChildElement().ToElement();
+
     // should always have a valid root but handle gracefully if it does
-    if (!pElem)
+    if (!rootElement)
     {
-        logMsg("Unable to find valid root. Exiting!");
+        logMsg("Unable to load offense play element");
         exit(0);
-    } 
+    }
 
-    // save this for later
-    hRoot = tinyxml2::XMLHandle(pElem);
+    child = rootElement->FirstChildElement()->ToElement();
+    if (child)
+    {
+        std::string cKey = child->Value();
+        if (cKey == "PlayName")
+        {
+            pPlayName = child->GetText();
+            logMsg("pPlayName = " +playName);
+            playName = pPlayName;
+        }
+        child = child->NextSiblingElement()->ToElement();
+    if (child)
+        {
+            pVariation = convert->toInt(child->GetText());
+            logMsg("pVariation = " +convert->toString(pVariation));
+            variation = pVariation;
+        } 
+        child = child->NextSiblingElement()->ToElement(); 
+    if (child)
+        {
+            pTitle = child->GetText();
+            logMsg("pTitle = " +pTitle);
+            title = pTitle;
+        }
+        int numPlayers = 0;
+        for (tinyxml2::XMLElement *e = child->NextSiblingElement(); e != NULL; e = e->NextSiblingElement())
+    {
+        tinyxml2::XMLElement *f;
+
+            logMsg ("nums = " +convert->toString(numPlayers));
+            numPlayers += 1;
+            f = e->FirstChildElement()->ToElement();
+        if (f)
+            {
+                pPlayerPosition = f->GetText();
+                logMsg("name = " +pPlayerPosition);
+//                playerName.push_back(pPlayerName);
+
+                if (pPlayerPosition == "PG")
+                {
+                    playerPosition.push_back(PG);
+                    pPlayerDirectivePosition = PG;
+                }
+                else if (pPlayerPosition == "SG")
+                {
+                    playerPosition.push_back(SG);
+                    pPlayerDirectivePosition = SG;
+                }
+                else if (pPlayerPosition == "SF")
+                {
+                    playerPosition.push_back(SF);
+                    pPlayerDirectivePosition = SF;
+                }
+                else if (pPlayerPosition == "PF")
+                {
+                    playerPosition.push_back(PF);
+                    pPlayerDirectivePosition = PF;
+                }
+                else if (pPlayerPosition == "C")
+                {
+                    playerPosition.push_back(C);
+                    pPlayerDirectivePosition = C;
+                }
+                else
+                {
+
+                }
+            }
+            f = f->NextSiblingElement()->ToElement();
+            if (f)
+            {
+                int numPos = 0;
+                pExecuteCoords.clear();  // clears the vector for each player
+                for (tinyxml2::XMLElement *g = f->FirstChildElement(); g != NULL; g = g->NextSiblingElement())
+                {
+                    logMsg("numPos = " +convert->toString(numPos));
+                    numPos += 1;
+                   tinyxml2::XMLElement *h;
+
+                    h = g->FirstChildElement()->ToElement();
+                    if (h)
+                    {
+                        pType = h->GetText();
+                        logMsg("pType = " +pType);
+                        type.push_back(pType);
+                    }
+                    h = h->NextSiblingElement()->ToElement();
+                    if (h)
+                    {
+                        pXCoord = convert->toFloat(h->GetText());
+                        logMsg("pXCoord = " +convert->toString(pXCoord));
+                        xCoord.push_back(pXCoord);
+                    }
+                    h = h->NextSiblingElement()->ToElement();
+                    if (h)
+                    {
+                        pYCoord = convert->toFloat(h->GetText());
+                        logMsg("pYCoord = " +convert->toString(pYCoord));
+                        yCoord.push_back(pYCoord);
+                    }
+                    h = h->NextSiblingElement()->ToElement();
+                    if (h)
+                    {
+                        pZCoord = convert->toFloat(h->GetText());
+                        logMsg("pZCoord = " +convert->toString(pZCoord));
+                        zCoord.push_back(pZCoord);
+                    }
+
+                    pCoords.x = pXCoord;
+                    pCoords.y = pYCoord;
+                    pCoords.z = pZCoord;
+
+                    if (pType == "Start")
+                    {
+                        startCoords.push_back(pCoords);
+                    }
+                    else
+                    {
+                        pExecuteCoords.push_back(pCoords);
+                        logMsg("pExecuteCoords.size = " +convert->toString(pExecuteCoords.size()));
+                    }
+                }
+                // checks if there are execute coords and puts them in the vector
+                if (pExecuteCoords.size() > 0)
+                {
+                    executeCoords.push_back(pExecuteCoords);
+                }
+            }
+            f = f->NextSiblingElement()->ToElement();
+            if (f)
+            {
+                int numDirectives = 0;
+                for (tinyxml2::XMLElement *g = f->FirstChildElement(); g != NULL; g = g->NextSiblingElement())
+                {
+                    numDirectives += 1;
+                    tinyxml2::XMLElement *h;
+                    pPlayerDirective.setPlayerPosition(pPlayerDirectivePosition);
+                    h = g->FirstChildElement()->ToElement();
+                    if (h)
+                    {
+                        std::string hKey = h->GetText();
+                        logMsg("hKey = " +hKey);
+                        if (hKey == "Wait")
+                        {
+                            pPlayerDirective.setType(WAIT);
+                            h = h->NextSiblingElement()->ToElement();
+                            if (h)
+                            {
+                                logMsg("WaitFor");
+                                hKey = h->GetText();
+                                if (hKey == "PlayerPositionSet")
+                                {
+                                    pPlayerDirective.setWaitFor(PLAYERPOSITIONSET);
+                                    logMsg("PlayerPositionSet");
+
+                                    h = h->NextSiblingElement()->ToElement();
+                                    if (h)
+                                    {
+                                        hKey = h->GetText();
+                                        logMsg("PlayerSet = " +hKey);
+
+                                        if (hKey == "PG")
+                                        {
+                                            pPlayerDirective.setPlayerSet(PG);
+                                        }
+                                        if (hKey == "SG")
+                                        {
+                                            pPlayerDirective.setPlayerSet(SG);
+                                        }
+                                        if (hKey == "SF")
+                                        {
+                                            pPlayerDirective.setPlayerSet(SF);
+                                        }
+                                        if (hKey == "PF")
+                                        {
+                                            pPlayerDirective.setPlayerSet(PF);
+                                        }
+                                        if (hKey == "C")
+                                        {
+                                            pPlayerDirective.setPlayerSet(C);
+                                        }
+                                    }
+                                    h = h->NextSiblingElement()->ToElement();
+                                    if (h)
+                                    {
+                                        logMsg("PositionType");
+                                        hKey = h->GetText();
+                                        if (hKey == "Start")
+                                        {
+                                            logMsg("Start");
+                                            pPlayerDirective.setPositionType(START);
+                                        }
+                                        else if (hKey == "Execute")
+                                        {
+                                            logMsg("Execute");
+                                            pPlayerDirective.setPositionType(EXECUTE);
+
+                                            h = h->NextSiblingElement("Position");
+                                            if (h)
+                                            {
+                                                logMsg("Position");
+                                                hKey = h->GetText();
+                                                pPlayerDirective.setPosition(convert->toInt(hKey.c_str()));
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                playerDirective.push_back(pPlayerDirective);
+                logMsg("numDirectives = " +convert->toString(numDirectives));
+            }
+        }
+    }
+
+    play->setPlayName(playName);
+    play->setVariation(variation);
+    play->setTitle(title);
+    play->setPlayerPosition(playerPosition);
+    play->setStartPositions(startCoords);
+    play->setExecutePositions(executeCoords);
+    play->setPlayerDirective(playerDirective);
     
-    pElem=hRoot.FirstChild().ToElement();
-    if (pElem)
-    {
-        ID = convert->toInt(pElem->GetText());
-        logMsg("Team ID == " +convert->toString(ID));
-    }
-
-    pElem=pElem->NextSiblingElement()->ToElement();
-    if (pElem)
-    {
-        City = pElem->GetText();
-        logMsg("City == " +City);
-    }
-
-    pElem=pElem->NextSiblingElement()->ToElement();
-    if (pElem)
-    {
-        Name = pElem->GetText();
-        logMsg("Name == " +Name);
-    }
-
-    pElem=pElem->NextSiblingElement()->ToElement();
-    if (pElem)
-    {
-        Coach = pElem->GetText();
-        logMsg("Coach == " +Coach);
-    }
-
-    pElem=pElem->NextSiblingElement()->ToElement();
-    if (pElem)
-    {
-        Initials = pElem->GetText();
-        logMsg("Initials == " +Initials);
-    }
-
-    pElem=pElem->NextSiblingElement()->ToElement();
-    if (pElem)
-    {
-        Logo = pElem->GetText();
-        logMsg("Logo == " +Logo);
-    }
-     
-    logMsg("ID == " +convert->toString(ID));
-//    exit(0);
-    tempInst->setID(ID);
-    tempInst->setCity(City);
-    tempInst->setName(Name);
-    tempInst->setCoach(Coach);
-    tempInst->setInits(Initials);
-    tempInst->setLogoFile(Logo);
-    logMsg("ID == " +convert->toString(ID));
-    logMsg("Load Teaminstance ID == " +convert->toString(tempInst->getID()));
-    logMsg("teamInstance->getID() == " +convert->toString(tempInst->getID()));
-//    tempInst = &tempTeam;
-    logMsg("Load Teaminstance Name == " +tempInst->getName());
-    logMsg("lawwl");
-    tInstance.push_back(boost::shared_ptr<teamState>(tempInst));
-//    team->setTeamArray(teamInstance);
-//   teamInstance.push_back(teamInstance);
-//   gameS->setteamInstance(teamInstance);
-//    exit(0);
-
-    return (true);
+    playInstance = boost::shared_ptr<offensePlays>(play);
+    return (playInstance);
 }
 
 std::vector<boost::shared_ptr<playerState> > loader::loadPlayers()  // loads the players
@@ -934,17 +1709,12 @@ boost::shared_ptr<playerState> loader::loadPlayerFile(std::string fileName)  // 
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
-    boost::shared_ptr<playerState> player(new playerState);
-    //playerState *tempPlayerObj = new playerState;
-    //player = boost::shared_ptr<playerState>(tempPlayerObj);
-//    playerState *tempPlayerObj; // = new playerState;
-//    tempPlayerObj = new playerState;
-//    boost::shared_ptr<playerState> tempPlayerSharedPtr = boost::shared_ptr<playerState>(tempPlayerObj);
-//    player = tempPlayerSharedPtr;
-//    std::vector<boost::shared_ptr<playerState> > playerInstance = gameS->getPlayerInstance();
-/*    string firstName;
-    string lastName;
-    string modelName;
+    boost::shared_ptr<playerState> playerInstance;
+    playerState *player = new playerState;
+    
+    std::string firstName;
+    std::string lastName;
+    std::string modelName;
     playerPositions primaryPosition;
     playerPositions secondaryPosition;
     int ID = 0;
@@ -1034,7 +1804,7 @@ boost::shared_ptr<playerState> loader::loadPlayerFile(std::string fileName)  // 
     if(pElem)
     {
         childElement=pElem->FirstChildElement()->ToElement();
-        string pKey=childElement->Value();
+        std::string pKey=childElement->Value();
         if (pKey == "First")
         {
             firstName = childElement->GetText();
@@ -1351,56 +2121,107 @@ boost::shared_ptr<playerState> loader::loadPlayerFile(std::string fileName)  // 
     player->setDemeanor(demeanor);
     player->setImprovability(improvability);
     player->calculateOverallRating();
-///    playerInstance.push_back(player);
+
+    playerInstance = boost::shared_ptr<playerState>(player);
     logMsg("player First Name == "+player->getFirstName());
-    //gameS->setPlayerDataInstances(playerDataInstance);
-    //	vector<players::playerData> playerN = playerG->getPlayer();
-//    exit(0);
-    */
-    return (player);
+ 
+    return (playerInstance);
 }
 
-//Offense
-std::vector<offensePlays> loader::loadOffensePlays()  // load offense plays from XML files
+std::vector<boost::shared_ptr<teamState> > loader::loadTeams()  // load teams from XML files
 {
-    std::vector<offensePlays> plays;
-    std::string playList;
-    
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-    playList = "data/offense/plays/plays.xml";
-#else
-    playList = findFile("offense/plays/plays.xml");
-#endif
-    offensePlayFiles = loadOffensePlayListFile(playList);
-//    std::vector<std::string> playerFiles = load->getPlayerFiles();
+    boost::shared_ptr<conversion> convert = conversion::Instance();
+    std::vector<boost::shared_ptr<teamState> > teams;
 
-    std::vector<std::string>::iterator it;
-    for (it = offensePlayFiles.begin(); it != offensePlayFiles.end(); ++it)
-    {
-        logMsg("offensePlayFile = " +*it);
+    std::string teamList;
+//    boost::shared_ptr<teamState> tempTeamSharedPtr(new teamState);
+    
+/*    teamState *tempTeamObj = new teamState;
+    boost::shared_ptr<teamState> tempTeamSharedPtr = boost::shared_ptr<teamState>(tempTeamObj);
+    std::vector<boost::shared_ptr<teamState> > tempTeams;
+    tempTeams.push_back(tempTeamSharedPtr);
+*/
+
+
+    //teams = tempTeams;
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-        plays.push_back(loadOffensePlayFile("data/offense/plays/" + *it));
+    teamList = "data/teams/teams.xml";
 #else
-        plays.push_back(loadOffensePlayFile(findFile("offense/plays/" + *it)));
+    teamList = findFile("teams/teams.xml");
+#endif
+
+
+//    logMsg("Bleeep!");
+    teamFiles = loadTeamListFile(teamList);
+//    std::vector<std::string> playerFiles = load->getPlayerFiles();
+    logMsg("teamFiles.size() = " +convert->toString(teamFiles.size()));
+
+//    exit(0);
+    std::vector<std::string>::iterator it;
+
+    for (it = teamFiles.begin(); it != teamFiles.end(); ++it)
+    {
+        logMsg("teamFile = " +*it);
+
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+//        teams.push_back(loadTeamFile("data/teams/" + *it));
+          loadTeamFile("data/teams/" + *it);
+#else
+//        teams.push_back(loadTeamFile(findFile("teams/" + *it)));
+          loadTeamFile(findFile("teams/" + *it));
 #endif
     }
-    return (plays);
+    
+    logMsg("teams[4]->getID() ID == " +convert->toString(teams[4]->getID()));
+    logMsg("loadTeams() 4 ID == " +convert->toString(teams[4]->getID()));
+//    logMsg("loadTeams() 4 Name == " +tInstance[4]->getName());
+    logMsg("loadTeams() tInstance.size() == " +convert->toString(tInstance.size()));
+
+    logMsg("dah");
+//    exit(0);
+    if (teams.size() == 0)
+    {
+        logMsg("teams.size() == " +teams.size());
+//        exit(0);
+    }
+    
+    return (tInstance);
 }
 
-std::vector<std::string> loader::loadOffensePlayListFile(std::string fileName)  // loads the play list file
+std::vector<std::string> loader::loadTeamListFile(std::string fileName)  // loads the team list file
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
-    std::vector<std::string> playFiles;
+    std::vector<std::string> teamName;
+    std::vector<std::string> files;
 
+//	players::playerData player;
+//#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+//    const char *file = "teams.xml";
+//#else
+//	const char *file = fileName.c_str();
+//#endif 
+
+//	char *fileContents = NULL;
     std::string fileContents;
     tinyxml2::XMLDocument doc;
     logMsg(fileName);
+    logMsg("bate");
+//#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+//	Ogre::DataStreamPtr fileData = render->openAPKFile(fileName);
+//	fileContents = fileData->getAsString();
+//#else
     char *contents = NULL;
     readFile(fileName.c_str(), &contents);
+//	logMsg("read contents = " +contents);
+//	exit(0);
     fileContents = convert->toString(contents);
-
+//#endif
+//    readFile(fileName.c_str(), &fileContents);
+    logMsg("barf");
+    logMsg("fileContents == " +fileContents);
+    static const char* xml = "<element/>";
     doc.Parse(contents);
     if (doc.Error())
     {
@@ -1410,757 +2231,167 @@ std::vector<std::string> loader::loadOffensePlayListFile(std::string fileName)  
         logMsg(convert->toString(doc.GetErrorStr2()));
         exit(0);
     }
-
     tinyxml2::XMLHandle hDoc(&doc);
-
     tinyxml2::XMLElement *pElem;
-
     tinyxml2::XMLHandle hRoot(0);
-
+    //tinyxml2::XMLText *textNode = doc.FirstChildElement("Teams")->FirstChildElement("TeamFile")->ToText();
+    //logMsg("first element = " +convert->toString(textNode->Value()));
     pElem=hDoc.FirstChildElement().ToElement();
     // should always have a valid root but handle gracefully if it does
     if (!pElem)
     {
-        logMsg("Unable to find a valid offense play list file root!");
+        logMsg("Unable to find a valid teamListFile root!");
         exit(0);
-    }
-    
-    // save this for later
-    hRoot = tinyxml2::XMLHandle(pElem);
-    pElem=hRoot.FirstChildElement().ToElement();
-    for( pElem; pElem; pElem=pElem->NextSiblingElement())
-    {
-        std::string pKey=pElem->Value();
-        std::string pText=pElem->GetText();
-        playFiles.push_back(pText);
-    }
-
-//    setOffensePlayFiles(playFiles);
-//    return true;
-    return (playFiles);
-}
-
-offensePlays loader::loadOffensePlayFile(std::string fileName)  // loads data from the offense play XML files
-{
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-    
-    offensePlays play;
-    std::string playName;
-    int variation;
-    std::string title;
-    std::vector<playerPositions> playerPosition;
-    std::vector<std::string> type;
-    std::vector<float> xCoord;
-    std::vector<float> yCoord;
-    std::vector<float> zCoord;
-    std::vector<Ogre::Vector3> startCoords;
-    std::vector< std::vector<Ogre::Vector3> > executeCoords;
-    std::vector<offensePlays::playerDirectives> playerDirective;
-
-    // stores values read from XML files
-    std::string pPlayName;
-    int pVariation;
-    std::string pTitle;
-    std::string pPlayerPosition;
-    std::string pType;
-    float pXCoord;
-    float pYCoord;
-    float pZCoord;
-    Ogre::Vector3 pCoords;
-    std::vector<Ogre::Vector3> pExecuteCoords;
-    offensePlays::playerDirectives pPlayerDirective;
-    playerPositions pPlayerDirectivePosition;
-
-    std::string fileContents;
-    tinyxml2::XMLDocument doc;
-    char *contents = NULL;
-    readFile(fileName.c_str(), &contents);
-    fileContents = convert->toString(contents);
-
-    doc.Parse(contents);
-    if (doc.Error())
-    {
-        logMsg("Unable to parse offense play file");
-        logMsg("Error ID = " +convert->toString(doc.ErrorID()));
-        logMsg(convert->toString(doc.GetErrorStr1()));
-        logMsg(convert->toString(doc.GetErrorStr2()));
-        exit(0);
-    }
-
-    tinyxml2::XMLHandle hDoc(&doc);
-
-    tinyxml2::XMLElement *rootElement;
-
-    tinyxml2::XMLElement *pElem;
-
-    tinyxml2::XMLElement *child;
-
-    tinyxml2::XMLNode *rootNode;
-
-    tinyxml2::XMLNode *childNode;
-
-    tinyxml2::XMLHandle hRoot(0);
-
-    rootElement=hDoc.FirstChildElement().ToElement();
-
-    // should always have a valid root but handle gracefully if it does
-    if (!rootElement)
-    {
-    	logMsg("Unable to load offense play element");
-    	exit(0);
-    }
-
-    child = rootElement->FirstChildElement()->ToElement();
-    if (child)
-    {
-        std::string cKey = child->Value();
-        if (cKey == "PlayName")
-        {
-            pPlayName = child->GetText();
-            logMsg("pPlayName = " +playName);
-            playName = pPlayName;
-        }
-        child = child->NextSiblingElement()->ToElement();
-	if (child)
-        {
-            pVariation = convert->toInt(child->GetText());
-            logMsg("pVariation = " +convert->toString(pVariation));
-            variation = pVariation;
-        } 
-        child = child->NextSiblingElement()->ToElement(); 
-	if (child)
-        {
-            pTitle = child->GetText();
-            logMsg("pTitle = " +pTitle);
-            title = pTitle;
-        }
-        int numPlayers = 0;
-        for (tinyxml2::XMLElement *e = child->NextSiblingElement(); e != NULL; e = e->NextSiblingElement())
-	{
-	    tinyxml2::XMLElement *f;
-
-            logMsg ("nums = " +convert->toString(numPlayers));
-            numPlayers += 1;
-            f = e->FirstChildElement()->ToElement();
-	    if (f)
-            {
-                pPlayerPosition = f->GetText();
-                logMsg("name = " +pPlayerPosition);
-//                playerName.push_back(pPlayerName);
-
-                if (pPlayerPosition == "PG")
-                {
-                    playerPosition.push_back(PG);
-                    pPlayerDirectivePosition = PG;
-                }
-                else if (pPlayerPosition == "SG")
-                {
-                    playerPosition.push_back(SG);
-                    pPlayerDirectivePosition = SG;
-                }
-                else if (pPlayerPosition == "SF")
-                {
-                    playerPosition.push_back(SF);
-                    pPlayerDirectivePosition = SF;
-                }
-                else if (pPlayerPosition == "PF")
-                {
-                    playerPosition.push_back(PF);
-                    pPlayerDirectivePosition = PF;
-                }
-                else if (pPlayerPosition == "C")
-                {
-                    playerPosition.push_back(C);
-                    pPlayerDirectivePosition = C;
-                }
-                else
-                {
-
-                }
-            }
-            f = f->NextSiblingElement()->ToElement();
-            if (f)
-            {
-                int numPos = 0;
-                pExecuteCoords.clear();  // clears the vector for each player
-                for (tinyxml2::XMLElement *g = f->FirstChildElement(); g != NULL; g = g->NextSiblingElement())
-                {
-                    logMsg("numPos = " +convert->toString(numPos));
-                    numPos += 1;
-		           tinyxml2::XMLElement *h;
-
-                    h = g->FirstChildElement()->ToElement();
-                    if (h)
-                    {
-                        pType = h->GetText();
-                        logMsg("pType = " +pType);
-                        type.push_back(pType);
-                    }
-                    h = h->NextSiblingElement()->ToElement();
-                    if (h)
-                    {
-                        pXCoord = convert->toFloat(h->GetText());
-                        logMsg("pXCoord = " +convert->toString(pXCoord));
-                        xCoord.push_back(pXCoord);
-                    }
-                    h = h->NextSiblingElement()->ToElement();
-                    if (h)
-                    {
-                        pYCoord = convert->toFloat(h->GetText());
-                        logMsg("pYCoord = " +convert->toString(pYCoord));
-                        yCoord.push_back(pYCoord);
-                    }
-                    h = h->NextSiblingElement()->ToElement();
-                    if (h)
-                    {
-                        pZCoord = convert->toFloat(h->GetText());
-                        logMsg("pZCoord = " +convert->toString(pZCoord));
-                        zCoord.push_back(pZCoord);
-                    }
-
-                    pCoords.x = pXCoord;
-                    pCoords.y = pYCoord;
-                    pCoords.z = pZCoord;
-
-                    if (pType == "Start")
-                    {
-                        startCoords.push_back(pCoords);
-                    }
-                    else
-                    {
-                        pExecuteCoords.push_back(pCoords);
-                        logMsg("pExecuteCoords.size = " +convert->toString(pExecuteCoords.size()));
-                    }
-                }
-                // checks if there are execute coords and puts them in the vector
-                if (pExecuteCoords.size() > 0)
-                {
-                    executeCoords.push_back(pExecuteCoords);
-                }
-            }
-            f = f->NextSiblingElement()->ToElement();
-            if (f)
-            {
-                int numDirectives = 0;
-                for (tinyxml2::XMLElement *g = f->FirstChildElement(); g != NULL; g = g->NextSiblingElement())
-                {
-                    numDirectives += 1;
-                    tinyxml2::XMLElement *h;
-                    pPlayerDirective.setPlayerPosition(pPlayerDirectivePosition);
-                    h = g->FirstChildElement()->ToElement();
-                    if (h)
-                    {
-                        std::string hKey = h->GetText();
-                        logMsg("hKey = " +hKey);
-                        if (hKey == "Wait")
-                        {
-                            pPlayerDirective.setType(WAIT);
-                            h = h->NextSiblingElement()->ToElement();
-                            if (h)
-                            {
-                                logMsg("WaitFor");
-                                hKey = h->GetText();
-                                if (hKey == "PlayerPositionSet")
-                                {
-                                    pPlayerDirective.setWaitFor(PLAYERPOSITIONSET);
-                                    logMsg("PlayerPositionSet");
-
-                                    h = h->NextSiblingElement()->ToElement();
-                                    if (h)
-                                    {
-                                        hKey = h->GetText();
-                                        logMsg("PlayerSet = " +hKey);
-
-                                        if (hKey == "PG")
-                                        {
-                                            pPlayerDirective.setPlayerSet(PG);
-                                        }
-                                        if (hKey == "SG")
-                                        {
-                                            pPlayerDirective.setPlayerSet(SG);
-                                        }
-                                        if (hKey == "SF")
-                                        {
-                                            pPlayerDirective.setPlayerSet(SF);
-                                        }
-                                        if (hKey == "PF")
-                                        {
-                                            pPlayerDirective.setPlayerSet(PF);
-                                        }
-                                        if (hKey == "C")
-                                        {
-                                            pPlayerDirective.setPlayerSet(C);
-                                        }
-                                    }
-                                    h = h->NextSiblingElement()->ToElement();
-				                    if (h)
-                                    {
-                                        logMsg("PositionType");
-                                        hKey = h->GetText();
-                                        if (hKey == "Start")
-                                        {
-                                            logMsg("Start");
-                                            pPlayerDirective.setPositionType(START);
-                                        }
-                                        else if (hKey == "Execute")
-                                        {
-                                            logMsg("Execute");
-                                            pPlayerDirective.setPositionType(EXECUTE);
-
-                                            h = h->NextSiblingElement("Position");
-                                            if (h)
-                                            {
-                                                logMsg("Position");
-                                                hKey = h->GetText();
-                                                pPlayerDirective.setPosition(convert->toInt(hKey.c_str()));
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                playerDirective.push_back(pPlayerDirective);
-                logMsg("numDirectives = " +convert->toString(numDirectives));
-            }
-        }
-    }
-
-    play.setPlayName(playName);
-    play.setVariation(variation);
-    play.setTitle(title);
-    play.setPlayerPosition(playerPosition);
-    play.setStartPositions(startCoords);
-    play.setExecutePositions(executeCoords);
-    play.setPlayerDirective(playerDirective);
-
-    return (play);
-}
-
-// Basketballs
-std::vector<basketballState> loader::loadBasketballs()  // load basketball settings from XML files
-{
-    std::vector<basketballState> basketballs;
-    std::string basketballList;
-    
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-    basketballList = "data/basketballs/basketballs.xml";
-#else
-    basketballList = findFile("basketballs/basketballs.xml");
-#endif
-    basketballFiles = loadBasketballListFile(basketballList);
-//    std::vector<std::string> playerFiles = load->getPlayerFiles();
-
-    std::vector<std::string>::iterator it;
-    for (it = basketballFiles.begin(); it != basketballFiles.end(); ++it)
-    {
-        logMsg("basketballFile = " +*it);
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-        basketballs.push_back(loadBasketballFile("data/basketballs/" + *it));
-#else
-        basketballs.push_back(loadBasketballFile(findFile("basketballs/" + *it)));
-#endif
-    }
-    return (basketballs);
-}
-
-std::vector<std::string> loader::loadBasketballListFile(std::string fileName) // loads the list of baskteball list file
-{
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
-    std::vector<std::string> bballFiles;
-
-    std::string fileContents;
-    tinyxml2::XMLDocument doc;
-
-    logMsg(fileName);
-    char *contents = NULL;
-    readFile(fileName.c_str(), &contents);
-    fileContents = convert->toString(contents);
-    logMsg("fileContents = " +fileContents);
-
-    doc.Parse(contents);
-    if (doc.Error())
-    {
-        logMsg("Unable to parse basketballs.xml file");
-        logMsg("Error ID = " +convert->toString(doc.ErrorID()));
-        logMsg(convert->toString(doc.GetErrorStr1()));
-        logMsg(convert->toString(doc.GetErrorStr2()));
-        exit(0);
-    }
-
-    tinyxml2::XMLHandle hDoc(&doc);
-    tinyxml2::XMLElement *pElem;
-    tinyxml2::XMLHandle hRoot(0);
-    pElem=hDoc.FirstChildElement().ToElement();
-    // should always have a valid root but handle gracefully if it does
-    if (!pElem)
-    {
-        logMsg("Unable to find a valid basketball list root!");
-    }
-
-    // save this for later
-    hRoot=tinyxml2::XMLHandle(pElem);
-
-    pElem=hRoot.FirstChild().ToElement();
-    for( pElem; pElem; pElem=pElem->NextSiblingElement())
-    {
-        std::string pKey=pElem->Value();
-        std::string pText=pElem->GetText();
-        bballFiles.push_back(pText);
-    }
-
-//    setBasketballFiles(basketballFile);
-//    return true;
-    return (bballFiles);
-}
-
-basketballState loader::loadBasketballFile(std::string fileName)  // loads data from the basketball XML files
-{
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-
-    basketballState basketball;
-    std::string name;
-    std::string modelName;
-
-    std::string fileContents;
-    tinyxml2::XMLDocument doc;
-
-    char *contents = NULL;
-    readFile(fileName.c_str(), &contents);
-    fileContents = convert->toString(contents);
-
-    doc.Parse(contents);
-    if (doc.Error())
-    {
-        logMsg("Unable to parse basketball xml file");
-        logMsg("Error ID = " +convert->toString(doc.ErrorID()));
-        logMsg(convert->toString(doc.GetErrorStr1()));
-        logMsg(convert->toString(doc.GetErrorStr2()));
-        exit(0);
-    }
-
-    tinyxml2::XMLHandle hDoc(&doc);
-    tinyxml2::XMLElement *rootElement;
-    tinyxml2::XMLElement *child;
-    tinyxml2::XMLHandle hRoot(0);
-
-    rootElement = doc.FirstChildElement()->ToElement();
-    // should always have a valid root but handle gracefully if it does
-    if (!rootElement)
-    {
-        logMsg("Unable to load basketball element");
-        //exit(0);
-    }
-
-    child = rootElement->FirstChild()->ToElement();
-    if (child)
-    {
-        std::string cKey = child->Value();
-        if (cKey == "Name")
-        {
-            name = child->GetText();
-            logMsg("name = " +name);
-        }
-        child = child->NextSiblingElement()->ToElement();
-        if (child)
-        {
-            modelName = child->GetText();
-            logMsg("modelName = " +modelName);
-        }
-
-    }
-
-    basketball.setName(name);
-    basketball.setModelFileName(modelName);
-
-    return (basketball);
-}
-
-// Courts
-std::vector<courtState> loader::loadCourts()  // load court settings from XML files
-{
-//    exit(0);
-    std::vector<courtState> courts;
-    std::string courtList;
-    
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-    courtList = "data/courts/courts.xml";
-#else
-    courtList = findFile("courts/courts.xml");
-#endif
-    courtFiles = loadCourtListFile(courtList);
-//    std::vector<std::string> playerFiles = load->getPlayerFiles();
-
-    std::vector<std::string>::iterator it;
-    for (it = courtFiles.begin(); it != courtFiles.end(); ++it)
-    {
-        logMsg("courtFile = " +*it);
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-        courts.push_back(loadCourtFile("data/courts/" + *it));
-#else
-        courts.push_back(loadCourtFile(findFile("courts/" + *it)));
-#endif
-    }
-
-    return (courts);
-}
-
-std::vector<std::string> loader::loadCourtListFile(std::string fileName)	// loads the list of court list file
-{
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
-    std::vector<std::string> cFiles;
-
-    std::string fileContents;
-    tinyxml2::XMLDocument doc;
-
-    logMsg(fileName);
-    char *contents = NULL;
-    readFile(fileName.c_str(), &contents);
-    fileContents = convert->toString(contents);
-    logMsg("fileContents = " +fileContents);
-
-    doc.Parse(contents);
-    if (doc.Error())
-    {
-        logMsg("Unable to parse courts.xml file");
-        logMsg("Error ID = " +convert->toString(doc.ErrorID()));
-        logMsg(convert->toString(doc.GetErrorStr1()));
-        logMsg(convert->toString(doc.GetErrorStr2()));
-        exit(0);
-    }
-
-    tinyxml2::XMLHandle hDoc(&doc);
-    tinyxml2::XMLElement *pElem;
-    tinyxml2::XMLHandle hRoot(0);
-
-    pElem=hDoc.FirstChildElement().ToElement();
-    // should always have a valid root but handle gracefully if it does
-    if (!pElem)
-    {
-        logMsg("Unable to find a vlid court list root!");
     } 
 
     // save this for later
-    hRoot=tinyxml2::XMLHandle(pElem);
-
+    //hRoot=TiXmlHandle(pElem);
+    hRoot = tinyxml2::XMLHandle(pElem);
+    
+    //pElem=hRoot.FirstChild("TeamFile").Element();
     pElem=hRoot.FirstChild().ToElement();
+    
     for( pElem; pElem; pElem=pElem->NextSiblingElement())
     {
-        std::string pKey=pElem->Value();
-        std::string pText=pElem->GetText();
-        cFiles.push_back(pText);
+//      string pText=pElem->GetText();
+        files.push_back(pElem->GetText());
+        logMsg("teamFile = " +convert->toString(pElem->GetText()));
     }
 
-//    setCourtFiles(courtFile);
+    std::vector<std::string>::iterator it;
+    for (it = files.begin(); it != files.end(); ++it)
+    {
+        logMsg("team file = " +*it);
+    }
+
+    logMsg("files.size() = " +convert->toString(files.size()));
+//    teamFiles = files;  // sets teamFiles = to the std::vector data in files
+
+//    setTeamFiles(teamFiles);
+
 //    return true;
-    return (cFiles);
+    return (files);
 }
 
-courtState loader::loadCourtFile(std::string fileName)  // loads data from the offense play XML files
+bool loader::loadTeamFile(std::string fileName)  // loads the team file
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    
-    courtState court;
-    std::string name;
-    std::string modelName;
-    float length = 0;
-    float width = 0;
-    float boundaryLength = 0;
-    float boundaryWidth = 0;
-    float boundaryXPos = 0;
-    float boundaryZPos = 0;
-    float centerCourt = 0;
-    float centerJumpRadius = 0;
-    float keyLength = 0;
-    float keyWidth = 0;
-    float keyJumpRadius = 0;
-    float threePointSideLength = 0;
-    float threePointSideZPos = 0;
-    float threePointArcRadius = 0;
-    float baselineInboundXPos = 0;
-    float baselineInboundZPos = 0;
-    float sidelineInboundXPos = 0;
-    float sidelineInboundZPos = 0;
+//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    std::vector<boost::shared_ptr<teamState> > teamInstance = gameS->getTeamInstance();
+  
+    boost::shared_ptr<teamState> tempInstance(new teamState);
+//    tInstance = boost::shared_ptr<teamState>(new teamState);
+//    teamInstance.reset(new teamState);
+    teamState tempTeam; // = new teamState;
+    teamState *tempInst = new teamState;
+//    tempTeamObj = new teamState;
+//    tInstance = tempInstance;
+    static size_t ID;
+    std::string City;
+    std::string Name;
+    std::string Coach;
+    std::string Initials;
+    std::string Logo;
 
+//    TiXmlDocument doc(fileName.c_str());
+//    if (!doc.LoadFile()) return(false);
+//	const char *fileContents = NULL;
     std::string fileContents;
     tinyxml2::XMLDocument doc;
-
     char *contents = NULL;
+    
     readFile(fileName.c_str(), &contents);
     fileContents = convert->toString(contents);
-    
     doc.Parse(contents);
     if (doc.Error())
     {
-        logMsg("Unable to parse court xml file");
+        logMsg("Unable to parse team file");
         logMsg("Error ID = " +convert->toString(doc.ErrorID()));
         logMsg(convert->toString(doc.GetErrorStr1()));
         logMsg(convert->toString(doc.GetErrorStr2()));
         exit(0);
     }
-
     tinyxml2::XMLHandle hDoc(&doc);
-    tinyxml2::XMLElement *rootElement;
-    tinyxml2::XMLElement *child;
+    tinyxml2::XMLElement *pElem;
+    
     tinyxml2::XMLHandle hRoot(0);
-
-    rootElement = doc.FirstChildElement()->ToElement();
+    
+    pElem=hDoc.FirstChildElement().ToElement();
+    
     // should always have a valid root but handle gracefully if it does
-    if (!rootElement)
+    if (!pElem)
     {
-        logMsg("Unable to load court element");
-        //exit(0);
+        logMsg("Unable to find valid root. Exiting!");
+        exit(0);
+    } 
+
+    // save this for later
+    hRoot = tinyxml2::XMLHandle(pElem);
+    
+    pElem=hRoot.FirstChild().ToElement();
+    if (pElem)
+    {
+        ID = convert->toInt(pElem->GetText());
+        logMsg("Team ID == " +convert->toString(ID));
     }
 
-    child = rootElement->FirstChild()->ToElement();
-    if (child)
+    pElem=pElem->NextSiblingElement()->ToElement();
+    if (pElem)
     {
-        std::string cKey = child->Value();
-        if (cKey == "Name")
-        {
-            name = child->GetText();
-            logMsg("name = " +name);
-        }
-        child = child->NextSiblingElement()->ToElement();
-        if (child)
-        {
-            modelName = child->GetText();
-            logMsg("modelName = " +modelName);
-        }
-        child = child->NextSiblingElement()->ToElement();
-	if (child)
-        {
-            length = convert->toFloat(child->GetText());
-            logMsg("Length = " +convert->toString(length));
-        } 
-        child = child->NextSiblingElement()->ToElement();
-	if (child)
-        {
-            length = convert->toFloat(child->GetText());
-            logMsg("Width = " +convert->toString(width));
-        }
-        child = child->NextSiblingElement()->ToElement();
-	if (child)
-        {
-            boundaryLength = convert->toFloat(child->GetText());
-            logMsg("Boundary Length = " +convert->toString(boundaryLength));
-        }
-        child = child->NextSiblingElement()->ToElement();
-       	if (child)
-        {
-            boundaryWidth = convert->toFloat(child->GetText());
-            logMsg("Boundary Width = " +convert->toString(boundaryWidth));
-        }
-        child = child->NextSiblingElement()->ToElement();
-	if (child)
-        {
-            boundaryXPos = convert->toFloat(child->GetText());
-            logMsg("Boundary X Pos = " +convert->toString(boundaryXPos));
-        }
-        child = child->NextSiblingElement()->ToElement();
-	if (child)
-        {
-            boundaryZPos = convert->toFloat(child->GetText());
-            logMsg("Boundary Z Pos = " +convert->toString(boundaryZPos));
-        }
-        child = child->NextSiblingElement()->ToElement();
-	if (child)
-        {
-            centerCourt = convert->toFloat(child->GetText());
-            logMsg("Center Court = " +convert->toString(centerCourt));
-        }
-        child = child->NextSiblingElement()->ToElement();
-	if (child)
-        {
-            centerJumpRadius = convert->toFloat(child->GetText());
-            logMsg("Center Jump Radius = " +convert->toString(centerJumpRadius));
-        }
-        child = child->NextSiblingElement()->ToElement();
-	if (child)
-        {
-            keyLength = convert->toFloat(child->GetText());
-            logMsg("Key Length = " +convert->toString(keyLength));
-        }
-        child = child->NextSiblingElement()->ToElement();
-	if (child)
-        {
-            keyWidth = convert->toFloat(child->GetText());
-            logMsg("Key Width = " +convert->toString(keyWidth));
-        }
-        child = child->NextSiblingElement()->ToElement();
-	if (child)
-        {
-            keyJumpRadius = convert->toFloat(child->GetText());
-            logMsg("Key Jump RAdius = " +convert->toString(keyJumpRadius));
-        }
-        child = child->NextSiblingElement()->ToElement();
-	if (child)
-        {
-            threePointSideLength = convert->toFloat(child->GetText());
-            logMsg("Three Point Side Length = " +convert->toString(threePointSideLength));
-        }
-        child = child->NextSiblingElement()->ToElement();
-	if (child)
-        {
-            threePointSideZPos = convert->toFloat(child->GetText());
-            logMsg("Three Point Side Z Pos = " +convert->toString(threePointSideZPos));
-        }
-        child = child->NextSiblingElement()->ToElement();
-	if (child)
-        {
-            threePointArcRadius = convert->toFloat(child->GetText());
-            logMsg("Three Point Arc Radius = " +convert->toString(threePointArcRadius));
-        }
-        child = child->NextSiblingElement()->ToElement();
-	if (child)
-        {
-            baselineInboundXPos = convert->toFloat(child->GetText());
-            logMsg("Baseline Inbound X Pos = " +convert->toString(baselineInboundXPos));
-        }
-        child = child->NextSiblingElement()->ToElement();
-	if (child)
-        {
-            baselineInboundZPos = convert->toFloat(child->GetText());
-            logMsg("Baseline Inbound Z Pos = " +convert->toString(baselineInboundZPos));
-        }
-        child = child->NextSiblingElement()->ToElement();
-	if (child)
-        {
-            sidelineInboundXPos = convert->toFloat(child->GetText());
-            logMsg("Sideline Inbound X Pos = " +convert->toString(sidelineInboundXPos));
-        }
-        child = child->NextSiblingElement()->ToElement();
-	if (child)
-        {
-            sidelineInboundZPos = convert->toFloat(child->GetText());
-            logMsg("Sideline Inbound Z Pos = " +convert->toString(sidelineInboundZPos));
-        }
+        City = pElem->GetText();
+        logMsg("City == " +City);
     }
 
-    Ogre::Vector2 boundary = Ogre::Vector2(length,width);
-    Ogre::Vector2 boundaryPos = Ogre::Vector2(boundaryXPos,boundaryZPos);
-    Ogre::Vector2 keyDimensions = Ogre::Vector2(keyLength,keyWidth);
-    Ogre::Vector2 baselineInboundPos = Ogre::Vector2(baselineInboundXPos,baselineInboundZPos);
-    Ogre::Vector2 sidelineInboundPos = Ogre::Vector2(sidelineInboundXPos,sidelineInboundZPos);
+    pElem=pElem->NextSiblingElement()->ToElement();
+    if (pElem)
+    {
+        Name = pElem->GetText();
+        logMsg("Name == " +Name);
+    }
 
-    court.setName(name);
-    court.setModelFileName(modelName);
-    court.setBoundary(boundary);
-    court.setBoundaryPos(boundaryPos);
-    court.setCenterCourt(centerCourt);
-    court.setCenterJumpRadius(centerJumpRadius);
-    court.setKeyDimensions(keyDimensions);
-    court.setKeyJumpRadius(keyJumpRadius);
-    court.setThreePointSideLength(threePointSideLength);
-    court.setThreePointZPos(threePointSideZPos);
-    court.setThreePointArcRadius(threePointArcRadius);
-    court.setBaselineInboundPos(baselineInboundPos);
-    court.setSidelineInboundPos(sidelineInboundPos);
+    pElem=pElem->NextSiblingElement()->ToElement();
+    if (pElem)
+    {
+        Coach = pElem->GetText();
+        logMsg("Coach == " +Coach);
+    }
 
-    return (court);
+    pElem=pElem->NextSiblingElement()->ToElement();
+    if (pElem)
+    {
+        Initials = pElem->GetText();
+        logMsg("Initials == " +Initials);
+    }
+
+    pElem=pElem->NextSiblingElement()->ToElement();
+    if (pElem)
+    {
+        Logo = pElem->GetText();
+        logMsg("Logo == " +Logo);
+    }
+     
+    logMsg("ID == " +convert->toString(ID));
+//    exit(0);
+    tempInst->setID(ID);
+    tempInst->setCity(City);
+    tempInst->setName(Name);
+    tempInst->setCoach(Coach);
+    tempInst->setInits(Initials);
+    tempInst->setLogoFile(Logo);
+    logMsg("ID == " +convert->toString(ID));
+    logMsg("Load Teaminstance ID == " +convert->toString(tempInst->getID()));
+    logMsg("teamInstance->getID() == " +convert->toString(tempInst->getID()));
+//    tempInst = &tempTeam;
+    logMsg("Load Teaminstance Name == " +tempInst->getName());
+    logMsg("lawwl");
+    tInstance.push_back(boost::shared_ptr<teamState>(tempInst));
+//    team->setTeamArray(teamInstance);
+//   teamInstance.push_back(teamInstance);
+//   gameS->setteamInstance(teamInstance);
+//    exit(0);
+
+    return (true);
 }
 
 // User input

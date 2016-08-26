@@ -119,7 +119,7 @@ void playerSteerPlugin::open(void)
 
 
 	// create the court bounding box based off the meshes bbox
-    Ogre::AxisAlignedBox cbox = getCourtInstance()[0].getModel()->getBoundingBox();
+    Ogre::AxisAlignedBox cbox = getCourtInstance()[0]->getModel()->getBoundingBox();
     Ogre::Vector3 cboxMin = cbox.getMinimum();
     Ogre::Vector3 cboxMax = cbox.getMaximum();
 

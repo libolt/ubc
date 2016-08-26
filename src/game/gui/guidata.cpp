@@ -44,7 +44,7 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
     
-    std::vector<courtState> courtInstance;
+    std::vector<boost::shared_ptr<courtState> > courtInstance;
     std::vector<std::string> courtName;
 //    if (!gameS->getCourtInstancesCreated())
     
@@ -74,7 +74,7 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
 
     for (size_t x=0;x<courtInstance.size();++x)
     {
-        courtName.push_back(courtInstance[x].getName());
+        courtName.push_back(courtInstance[x]->getName());
     }
     if (courtInstance.size() == 0)
     {
@@ -540,7 +540,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
         }
         else
         {
-            logMsg("getGameS()->getTeamInstance() is EMPTY!");
+            logMsg("getGameS()->getTeamInstance() is EMPTY! IF");
             return (false);           
         }
 //        exit(0);
@@ -558,7 +558,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
             }
             else
             {
-                logMsg("getGameS()->getTeamInstance() is EMPTY!");
+                logMsg("getGameS()->getTeamInstance() is EMPTY! ELSE");
                 return (false);                               
             }
 

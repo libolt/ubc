@@ -110,11 +110,11 @@ void offenseState::setExecute(bool set)  // sets the value of the execute variab
     execute = set;
 }
 
-std::vector<offensePlays> offenseState::getPlays()  // returns the value of plays
+std::vector<boost::shared_ptr<offensePlays> > offenseState::getPlays()  // returns the value of plays
 {
     return (plays);
 }
-void offenseState::setPlays(std::vector<offensePlays> set)  // sets the value of plays
+void offenseState::setPlays(std::vector<boost::shared_ptr<offensePlays> > set)  // sets the value of plays
 {
     plays = set;
 }
@@ -218,7 +218,15 @@ void offenseState::updateState(teamTypes teamType)	// updates the state of the o
 void offenseState::loadPlays()	// loads offense plays from file
 {
     boost::shared_ptr<loader> load;
-    plays = load->loadOffensePlays();
+    if (load->checkIfOffensePlaysLoaded())
+    {
+        plays = load->loadOffensePlays();
+    }
+    else
+    {
+        logMsg("Unable to load offense plays!");
+        exit(0);
+    }
 }
 
 void offenseState::setupOffense()  // sets up box offense
@@ -283,13 +291,13 @@ void offenseState::setupOffense()  // sets up box offense
     logMsg("plays.size() = " +convert->toString(plays.size()));
     for (size_t x=0;x<plays.size();++x)
     {
-        if (plays[x].getPlayName() == playName)  // sets up the offense
+        if (plays[x]->getPlayName() == playName)  // sets up the offense
         {
-            if (plays[x].getTitle() == playTitle) 
+            if (plays[x]->getTitle() == playTitle) 
             {
-                startPositions = plays[x].getStartPositions();
-                executePositions = plays[x].getExecutePositions();
-                playerDirective = plays[x].getPlayerDirective();
+                startPositions = plays[x]->getStartPositions();
+                executePositions = plays[x]->getExecutePositions();
+                playerDirective = plays[x]->getPlayerDirective();
             }
             else
             {
@@ -372,7 +380,7 @@ void offenseState::executeOffense() // executes box offense
                 if (!startPositionReached[x])  // checks if each player has reached the start position
                 {
                     logMsg("startPosition " +convert->toString(x) +" not reached!");
-                    std::vector<Ogre::Vector3> steerCoords = plays[0].getStartPositions();
+                    std::vector<Ogre::Vector3> steerCoords = plays[0]->getStartPositions();
                     OpenSteer::Vec3 coords = convert->toOpenSteerVec3(startPositions[x]);
                     pSteer->setSteerCoords(coords);
                     pSteer->setExecute(true);

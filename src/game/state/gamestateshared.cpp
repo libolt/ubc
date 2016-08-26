@@ -53,9 +53,9 @@ teamTypes gameStateShared::teamWithBall;  // store which team has the basketball
 std::vector<boost::shared_ptr<teamState> > gameStateShared::activeTeamInstance;  // stores active team instance
 size_t gameStateShared::activeBBallInstance;  // stores which instance of the baskteball class is active
 size_t gameStateShared::activeCourtInstance;  // stores which instance of the court is active
-std::vector <basketballState> gameStateShared::basketballInstance;  // creates instance of the basketballs class
-std::vector<courtState> gameStateShared::courtInstance;  // stores the court instance
-std::vector <hoopState> gameStateShared::hoopInstance;  // creates instance of the hoop class
+std::vector <boost::shared_ptr<basketballState> > gameStateShared::basketballInstance;  // creates instance of the basketballs class
+std::vector<boost::shared_ptr<courtState> > gameStateShared::courtInstance;  // stores the court instance
+std::vector <boost::shared_ptr<hoopState> > gameStateShared::hoopInstance;  // creates instance of the hoop class
 std::vector<boost::shared_ptr<playerState> > gameStateShared::playerInstance;  // stores the vector of the players loaded from the xml files
 std::vector <boost::shared_ptr<teamState> >  gameStateShared::teamInstance;  // creates instance of the teamState class
 boost::shared_ptr<jumpBalls> gameStateShared::jumpBall; // instance that is used for jumpBall functions.
@@ -326,29 +326,29 @@ void gameStateShared::setActiveCourtInstance(size_t set)  // sets the value of a
     activeCourtInstance = set;
 }
 
-std::vector <basketballState> gameStateShared::getBasketballInstance()  // retrieves the value of basketballInstance
+std::vector <boost::shared_ptr<basketballState> > gameStateShared::getBasketballInstance()  // retrieves the value of basketballInstance
 {
     return (basketballInstance);
 }
-void gameStateShared::setBasketballInstance(std::vector<basketballState> set)  // sets the value of basketballInstance
+void gameStateShared::setBasketballInstance(std::vector<boost::shared_ptr<basketballState> > set)  // sets the value of basketballInstance
 {
     basketballInstance = set;
 }
 
-std::vector<courtState> gameStateShared::getCourtInstance()  // retrieves the value of courtInstance
+std::vector<boost::shared_ptr<courtState> > gameStateShared::getCourtInstance()  // retrieves the value of courtInstance
 {
     return (courtInstance);
 }
-void gameStateShared::setCourtInstance(std::vector<courtState> set)  // sets the value of courtInstance
+void gameStateShared::setCourtInstance(std::vector<boost::shared_ptr<courtState> > set)  // sets the value of courtInstance
 {
     courtInstance = set;
 }
 
-std::vector <hoopState> gameStateShared::getHoopInstance()  // retrieves the value of hoopInstance
+std::vector <boost::shared_ptr<hoopState> > gameStateShared::getHoopInstance()  // retrieves the value of hoopInstance
 {
     return (hoopInstance);
 }
-void gameStateShared::setHoopInstance(std::vector<hoopState> set)  // sets the value of hoopInstance
+void gameStateShared::setHoopInstance(std::vector<boost::shared_ptr<hoopState> > set)  // sets the value of hoopInstance
 {
     hoopInstance = set;
 }

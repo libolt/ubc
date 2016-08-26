@@ -478,7 +478,7 @@ void teamState::updateState()	// updates the state of the object
 //	logMsg("Updating team state " +convert->toString(teamNumber));
     if (getGameS()->getBasketballInstanceCreated() && getGameS()->getPlayerInstanceCreated())
 	{
-        std::vector<basketballState> basketballInstance = getGameS()->getBasketballInstance();
+        std::vector<boost::shared_ptr<basketballState> > basketballInstance = getGameS()->getBasketballInstance();
 
 //		exit(0);
 
@@ -544,10 +544,10 @@ void teamState::updateState()	// updates the state of the object
                         activePlayerInstance[instanceWithBall]->calculatePass();
 
 						//sets the basketball Height;
-						bballPos = basketballInstance[activeBBallInstance].getNode()->getPosition();
+						bballPos = basketballInstance[activeBBallInstance]->getNode()->getPosition();
                         playerPos = activePlayerInstance[instanceWithBall]->getNode()->getPosition();
 						bballPos[1] = playerPos[1];
-						basketballInstance[activeBBallInstance].getNode()->setPosition(bballPos);
+						basketballInstance[activeBBallInstance]->getNode()->setPosition(bballPos);
 
 					}
                     else if (activePlayerInstance[playerWithBallInstance]->getPassCalculated())
@@ -788,9 +788,9 @@ void teamState::setPlayerStartPositions()	// sets the initial coordinates for th
         }
     }*/
 
-    std::vector<courtState> courtInstance = getGameS()->getCourtInstance();
+    std::vector<boost::shared_ptr<courtState> > courtInstance = getGameS()->getCourtInstance();
 
-    Ogre::Vector3 courtPos = courtInstance[0].getNodePosition();
+    Ogre::Vector3 courtPos = courtInstance[0]->getNodePosition();
 //    exit(0);
     logMsg("courtPos.y == " +convert->toString(courtPos.y));
     float yOffset = courtPos.y + 5.0;
@@ -989,7 +989,7 @@ void teamState::updatePlayerDirections()
 //    std::vector<playerState> pInstance = getPlayerInstance();
  //   std::vector<size_t> playerDirection = player->getPlayerDirection(); // stores contents of playerDirectdion from players class in local variable
 //    std::vector<size_t> oldPlayerDirection = player->getOldPlayerDirection();   // stores contents of oldPlayerDirection form players in local variable
-    std::vector<basketballState> basketballInstance = getGameS()->getBasketballInstance();
+    std::vector<boost::shared_ptr<basketballState> > basketballInstance = getGameS()->getBasketballInstance();
     std::vector<Ogre::SceneNode>::iterator playersIT;
 
     std::string playerID = convert->toString(playerInstance[4]->getID());
@@ -1195,11 +1195,11 @@ void teamState::executePass()		// executes the pass between players
     size_t activeBBallInstance = getGameS()->getActiveBBallInstance();
 
     size_t passToPlayer = activePlayerInstance[playerWithBallInstance]->getPassToPlayer();
-    std::vector<basketballState> basketballInstance = getGameS()->getBasketballInstance();
+    std::vector<boost::shared_ptr<basketballState> > basketballInstance = getGameS()->getBasketballInstance();
     Ogre::Vector3 playerWithBallCoords = activePlayerInstance[playerWithBallInstance]->getNode()->getPosition();
     Ogre::Vector3 passToPlayerCoords = activePlayerInstance[passToPlayer]->getNode()->getPosition();
 //	exit(0);
-	Ogre::Vector3 bballCoords = basketballInstance[activeBBallInstance].getNode()->getPosition();
+	Ogre::Vector3 bballCoords = basketballInstance[activeBBallInstance]->getNode()->getPosition();
 	btVector3 bballPosChange;
 	btVector3 bballPhysCoords;
 	btTransform transform;
@@ -1210,10 +1210,10 @@ void teamState::executePass()		// executes the pass between players
     if (bballCoords[1] != passToPlayerCoords[1])
     {
     	bballCoords[1] = passToPlayerCoords[1];
-    	basketballInstance[activeBBallInstance].getNode()->setPosition(bballCoords);
+    	basketballInstance[activeBBallInstance]->getNode()->setPosition(bballCoords);
 		bballPhysCoords = BtOgre::Convert::toBullet(bballCoords); // converts from Ogre::Vector3 to btVector3
 		transform.setOrigin(bballPhysCoords);
-		basketballInstance[activeBBallInstance].getPhysBody()->setWorldTransform(transform);
+		basketballInstance[activeBBallInstance]->getPhysBody()->setWorldTransform(transform);
 
 
     }
@@ -1260,7 +1260,7 @@ void teamState::executePass()		// executes the pass between players
 	{
 	}
 
-	basketballInstance[activeBBallInstance].getPhysBody()->setLinearVelocity(btVector3(bballPosChange));
+	basketballInstance[activeBBallInstance]->getPhysBody()->setLinearVelocity(btVector3(bballPosChange));
 
 
     getGameS()->setBasketballInstance(basketballInstance);		// saves changes to the basketballInstance object

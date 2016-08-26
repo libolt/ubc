@@ -76,6 +76,15 @@ public:
     std::vector<std::string> getUserInputFiles();  // retrieves the value of userInputFiles
     void setUserInputFiles(std::vector<std::string> set);  // sets the value of userInputFiles
 
+    std::vector<boost::shared_ptr<basketballState> > getBInstance();  // retrieves the value of bInstance
+    void setBInstance(std::vector<boost::shared_ptr<basketballState> > set);  // sets the value of bInstance
+    
+    std::vector<boost::shared_ptr<courtState> > getCInstance();  // retrieves the value of cInstance
+    void setCInstance(std::vector<boost::shared_ptr<courtState> > set);  // sets the value of cInstance
+  
+    std::vector<boost::shared_ptr<offensePlays> > getOPInstance();  // retrieves the value of opInstance
+    void setOPInstance(std::vector<boost::shared_ptr<offensePlays> > set);  // sets the value of opInstance
+    
     std::vector<boost::shared_ptr<playerState> > getPInstance();  // retrieves the value of pInstance
     void setPInstance(std::vector<boost::shared_ptr<playerState> > set);  // sets the value of pInstance
     
@@ -109,34 +118,37 @@ public:
 
     SDL_RWops *readBinaryFile(const char *sourceFile);
     
+    bool checkIfBasketballsLoaded();  // checks if basketballs have been loaded into bInstance
+    bool checkIfCourtsLoaded();  // checks if courts have been loaded into cInstance
+    bool checkIfOffensePlaysLoaded();  // checks if offense plays have been loaded into opInstance
     bool checkIfPlayersLoaded();  // checks if players have been loaded into pInstance
     bool checkIfTeamsLoaded();  // checks if teams have been loaded into tInstance
     bool checkIfUserInputsLoaded();  // checks if uset inputs have been loaded into uiInstance
+    
+    // Basketballs
+    std::vector<boost::shared_ptr<basketballState> > loadBasketballs();  // load basketball XML files
+    std::vector<std::string> loadBasketballListFile(std::string fileName);  // load the list of basketballs from basketballs.xml
+    boost::shared_ptr<basketballState> loadBasketballFile(std::string fileName);  // loads data from the basketball XML files.
+
+    // Courts
+    std::vector<boost::shared_ptr<courtState> > loadCourts();  // load court XML files
+    std::vector<std::string> loadCourtListFile(std::string fileName);  // load the list of courts from courts.xml
+    boost::shared_ptr<courtState> loadCourtFile(std::string fileName);  // loads data from the court XML files.
+
+    //Offense
+    std::vector<boost::shared_ptr<offensePlays> > loadOffensePlays();  // load offense plays from XML files
+    std::vector<std::string> loadOffensePlayListFile(std::string fileName);  // loads the list of offense play files from plays.xml
+    boost::shared_ptr<offensePlays> loadOffensePlayFile(std::string fileName); // loads data from the offense play XML files
+
+   // Players
+    std::vector<boost::shared_ptr<playerState> > loadPlayers();  // loads player data from XML files
+    std::vector<std::string> loadPlayerListFile(std::string fileName);  // loads list of player files from players.xml
+    boost::shared_ptr<playerState> loadPlayerFile(std::string fileName);  // loads data from the player XML files
 
     // Teams
     std::vector<boost::shared_ptr<teamState> > loadTeams();  // loads team data from XML files
     std::vector<std::string> loadTeamListFile(std::string fileName);  // loads list of team files from teams.xml
     bool loadTeamFile(std::string fileName);  // loads data from the team XML files
-
-    // Players
-    std::vector<boost::shared_ptr<playerState> > loadPlayers();  // loads player data from XML files
-    std::vector<std::string> loadPlayerListFile(std::string fileName);  // loads list of player files from players.xml
-    boost::shared_ptr<playerState> loadPlayerFile(std::string fileName);  // loads data from the player XML files
-
-    //Offense
-    std::vector<offensePlays> loadOffensePlays();  // load offense plays from XML files
-    std::vector<std::string> loadOffensePlayListFile(std::string fileName);  // loads the list of offense play files from plays.xml
-    offensePlays loadOffensePlayFile(std::string fileName);	// loads data from the offense play XML files
-
-    // Basketballs
-    std::vector<basketballState> loadBasketballs();  // load basketball XML files
-    std::vector<std::string> loadBasketballListFile(std::string fileName);  // load the list of basketballs from basketballs.xml
-    basketballState loadBasketballFile(std::string fileName);  // loads data from the basketball XML files.
-
-    // Courts
-    std::vector<courtState> loadCourts();  // load court XML files
-    std::vector<std::string> loadCourtListFile(std::string fileName);  // load the list of courts from courts.xml
-    courtState loadCourtFile(std::string fileName);  // loads data from the court XML files.
 
     // User input
     std::vector<boost::shared_ptr<userInput> > loadUserInputs();  // load user input XML files
@@ -146,10 +158,13 @@ public:
     
 protected:
     loader();
-    loader(const loader&);
-    loader& operator= (const loader&);
+//    loader(const loader&);
+//    loader& operator= (const loader&);
 
 private:
+    static std::vector<boost::shared_ptr<basketballState> > bInstance;
+    static std::vector<boost::shared_ptr<courtState> > cInstance;
+    static std::vector<boost::shared_ptr<offensePlays> > opInstance;
     static std::vector<boost::shared_ptr<playerState> > pInstance;
     static std::vector<boost::shared_ptr<teamState> > tInstance;
     static std::vector<boost::shared_ptr<userInput> > uiInstance;

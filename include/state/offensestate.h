@@ -50,8 +50,8 @@ public:
     bool getExecute();	// retrieves the value of execute variable
     void setExecute(bool set);	// sets the value of the execute variable
 
-    std::vector<offensePlays> getPlays();  // retrieves the value of plays
-    void setPlays(std::vector<offensePlays> set);  // sets the value of plays
+    std::vector<boost::shared_ptr<offensePlays> > getPlays();  // retrieves the value of plays
+    void setPlays(std::vector<boost::shared_ptr<offensePlays> > set);  // sets the value of plays
 
     std::vector<Ogre::Vector3> getStartPositions();  // retrieves the value of the startPositions variable
     void setStartPositions(std::vector<Ogre::Vector3> set);  // sets the value startPositions variable
@@ -110,7 +110,7 @@ private:
     
     std::vector< std::vector<bool> > executePositionReached; // stores whether player is at execute position
 
-    std::vector<offensePlays> plays;	// stores the plays for the offense to run
+    std::vector<boost::shared_ptr<offensePlays> > plays;	// stores the plays for the offense to run
     std::vector<offensePlays::playerDirectives> playerDirective;  // stores values of the playerDirectives class associated with the play being run
 	
     // offense type variables

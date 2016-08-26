@@ -285,19 +285,20 @@ bool gameState::createInstances()  // creates object instances
 bool gameState::createBasketballInstances()  // creates basketball Instances
 {
     logMsg("creating temporary baskteball instance");
-    basketballState bballInstance;  // creates an instance of the basketballs class
+    boost::shared_ptr<basketballState> bballInstance;  // creates an instance of the basketballs class
     logMsg("setting model name");
-    bballInstance.setEntityModelFileName("bball.mesh");
-    bballInstance.setEntityName(bballInstance.getModelFileName());
-    bballInstance.setEntityNodeName(bballInstance.getModelFileName());
+//  FIXME! these are currently hard coded
+    bballInstance->setEntityModelFileName("bball.mesh");
+    bballInstance->setEntityName(bballInstance->getModelFileName());
+    bballInstance->setEntityNodeName(bballInstance->getModelFileName());
 
     logMsg("creating steer object");
     basketballSteer *bballSteer = new basketballSteer;  // steer instance
-    bballInstance.setSteer(boost::shared_ptr<basketballSteer>(bballSteer));
+    bballInstance->setSteer(boost::shared_ptr<basketballSteer>(bballSteer));
     logMsg("setting instance number");
-    bballInstance.setNumber(0);
-    bballInstance.setNumberSet(true);
-//    bballInstance.setModelNeedsLoaded(true);
+    bballInstance->setNumber(0);
+    bballInstance->setNumberSet(true);
+//    bballInstance->setModelNeedsLoaded(true);
     getBasketballInstance().push_back(bballInstance);
     return (true);
 }
@@ -392,10 +393,10 @@ bool gameState::createCourtInstances()  // creates court Instances
 //    courtState cInstance;  // creates an instance of the courtState class
 //    cInstance.setModelFileName("court.mesh");
 //    cInstance.setModelFileName("Court.mesh");
-    setCourtInstance(load->loadCourts());
-
-    if (getCourtInstance().size() > 0)
+    
+    if (load->checkIfCourtsLoaded())
     {
+        setCourtInstance(load->getCInstance());
         logMsg("Court Instances SET!");
         return (true);
     }
@@ -411,18 +412,20 @@ bool gameState::createCourtInstances()  // creates court Instances
 
 bool gameState::createHoopInstances()  // creates hoop Instances
 {
-    hoopState *hInstance = new hoopState[2];  // creates an instance of the hoopState class
+    boost::shared_ptr<hoopState> hInstance0(new hoopState);  // creates an instance of the hoopState class
+    boost::shared_ptr<hoopState> hInstance1(new hoopState);  // creates an instance of the hoopState class
+
 //    cInstance.setModelFileName("court.mesh");
-    hInstance[0].setEntityName("hoop1");
-    hInstance[0].setEntityModelFileName("Hoop.mesh");
-    hInstance[0].setEntityNodeName("hoopNode1");
+    hInstance0->setEntityName("hoop1");
+    hInstance0->setEntityModelFileName("Hoop.mesh");
+    hInstance0->setEntityNodeName("hoopNode1");
 
-    hInstance[1].setEntityName("hoop2");
-    hInstance[1].setEntityModelFileName("Hoop.mesh");
-    hInstance[1].setEntityNodeName("hoopNode2");
+    hInstance1->setEntityName("hoop2");
+    hInstance1->setEntityModelFileName("Hoop.mesh");
+    hInstance1->setEntityNodeName("hoopNode2");
 
-    getHoopInstance().push_back(hInstance[0]);  // loads the first hoop
-    getHoopInstance().push_back(hInstance[1]);  // loads the second hoop
+    getHoopInstance().push_back(hInstance0);  // loads the first hoop
+    getHoopInstance().push_back(hInstance1);  // loads the second hoop
 
     return (true);
 }
@@ -523,15 +526,15 @@ bool gameState::loadBasketballModel()  // loads selected basketball model
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     size_t activeBBallInstance = getActiveBBallInstance();
-    std::vector<basketballState> basketballInstance = getBasketballInstance();
+    std::vector<boost::shared_ptr<basketballState> > basketballInstance = getBasketballInstance();
     logMsg("loading bball");
     logMsg("activeBBallInstance == " +convert->toString(activeBBallInstance));
-    logMsg("loading model " +basketballInstance[activeBBallInstance].getEntityModelFileName());
-    if (basketballInstance[activeBBallInstance].loadModel())
+    logMsg("loading model " +basketballInstance[activeBBallInstance]->getEntityModelFileName());
+    if (basketballInstance[activeBBallInstance]->loadModel())
     {
-        basketballInstance[activeBBallInstance].setModelNeedsLoaded(false);
-        basketballInstance[activeBBallInstance].setModelLoaded(true);
-        basketballInstance[activeBBallInstance].setupPhysicsObject();
+        basketballInstance[activeBBallInstance]->setModelNeedsLoaded(false);
+        basketballInstance[activeBBallInstance]->setModelLoaded(true);
+        basketballInstance[activeBBallInstance]->setupPhysicsObject();
         setBasketballInstance(basketballInstance);
         return (true);
     }
@@ -544,16 +547,16 @@ bool gameState::loadBasketballModel()  // loads selected basketball model
 
 bool gameState::loadCourtModel()  // loads selected court model
 {
-    std::vector<courtState> courtInstance = getCourtInstance();
+    std::vector<boost::shared_ptr<courtState> > courtInstance = getCourtInstance();
     size_t activeCourtInstance = getActiveCourtInstance();
-    logMsg("Model Name = " +courtInstance[activeCourtInstance].getModelFileName());
+    logMsg("Model Name = " +courtInstance[activeCourtInstance]->getModelFileName());
 
-    courtInstance[activeCourtInstance].setEntityModelFileName(courtInstance[activeCourtInstance].getModelFileName());
-    courtInstance[activeCourtInstance].setEntityNodeName(courtInstance[activeCourtInstance].getModelFileName());
-    courtInstance[activeCourtInstance].setEntityName(courtInstance[activeCourtInstance].getModelFileName());
-    if (courtInstance[activeCourtInstance].loadModel())
+    courtInstance[activeCourtInstance]->setEntityModelFileName(courtInstance[activeCourtInstance]->getModelFileName());
+    courtInstance[activeCourtInstance]->setEntityNodeName(courtInstance[activeCourtInstance]->getModelFileName());
+    courtInstance[activeCourtInstance]->setEntityName(courtInstance[activeCourtInstance]->getModelFileName());
+    if (courtInstance[activeCourtInstance]->loadModel())
     {
-        courtInstance[activeCourtInstance].getNode()->setScale(1.0f,1.0f,1.0f);
+        courtInstance[activeCourtInstance]->getNode()->setScale(1.0f,1.0f,1.0f);
         setCourtInstance(courtInstance);
         return (true);
     }
@@ -568,20 +571,20 @@ bool gameState::loadHoopModel()  // loads selected hoop model
 {
     bool returnType = true;
 
-    std::vector<hoopState> hoopInstance = getHoopInstance();
+    std::vector<boost::shared_ptr<hoopState> > hoopInstance = getHoopInstance();
 
-    if (hoopInstance[0].loadModel())
+    if (hoopInstance[0]->loadModel())
     {
-        hoopInstance[0].getNode()->setScale(0.8f,0.8f,0.8f);
+        hoopInstance[0]->getNode()->setScale(0.8f,0.8f,0.8f);
     }
     else
     {
         logMsg("Unable to load model for hoopInstance[0]");
         returnType = false;
     }
-    if (hoopInstance[1].loadModel())
+    if (hoopInstance[1]->loadModel())
     {
-        hoopInstance[1].getNode()->setScale(0.8f,0.8f,0.8f);
+        hoopInstance[1]->getNode()->setScale(0.8f,0.8f,0.8f);
     }
     else
     {
@@ -652,15 +655,15 @@ void gameState::setBasketballStartPositions()  // sets the initial coordinates f
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     size_t activeBBallInstance = getActiveBBallInstance();
-    std::vector<basketballState> basketballInstance = getBasketballInstance();
+    std::vector<boost::shared_ptr<basketballState> > basketballInstance = getBasketballInstance();
 
     logMsg("activeBBallInstance == " +convert->toString(activeBBallInstance));
     
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     exit(0);
-    basketballInstance[activeBBallInstance].getNode()->setPosition(0.8f,10.0f,352.0f);
+    basketballInstance[activeBBallInstance]->getNode()->setPosition(0.8f,10.0f,352.0f);
 #else
-    basketballInstance[activeBBallInstance].getNode()->setPosition(0.8f,-5.0f,352.0f);
+    basketballInstance[activeBBallInstance]->getNode()->setPosition(0.8f,-5.0f,352.0f);
 //    exit(0);
 #endif
     setBasketballInstance(basketballInstance);
@@ -669,11 +672,11 @@ void gameState::setBasketballStartPositions()  // sets the initial coordinates f
 void gameState::setCourtStartPositions()  // sets the initial coordinates for the basketball(s)
 {
 
-    std::vector<courtState> courtInstance = getCourtInstance();
+    std::vector<boost::shared_ptr<courtState> > courtInstance = getCourtInstance();
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-    courtInstance[0].getNode()->setPosition(0.0f,-6.5f,360.0f);
-    courtInstance[0].setNodePosition(Ogre::Vector3(0.0f,-6.5f,360.0f));
+    courtInstance[0]->getNode()->setPosition(0.0f,-6.5f,360.0f);
+    courtInstance[0]->setNodePosition(Ogre::Vector3(0.0f,-6.5f,360.0f));
     logMsg("courtPosition");
 //exit(0);
 #else
@@ -687,21 +690,21 @@ void gameState::setCourtStartPositions()  // sets the initial coordinates for th
 void gameState::setHoopStartPositions()  // sets the initial coordinates for the basketball(s)
 {
 
-    std::vector<hoopState> hoopInstance = getHoopInstance();
+    std::vector<boost::shared_ptr<hoopState> > hoopInstance = getHoopInstance();
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-    hoopInstance[0].getNode()->setPosition(45.0f,-6.5f,370.0f);
-    hoopInstance[1].getNode()->setPosition(-45.0f,-6.5f,370.0f);
+    hoopInstance[0]->getNode()->setPosition(45.0f,-6.5f,370.0f);
+    hoopInstance[1]->getNode()->setPosition(-45.0f,-6.5f,370.0f);
 #else
     hoopInstance[0].getNode()->setPosition(45.0f,-23.5f,370.0f);
    hoopInstance[1].getNode()->setPosition(-45.0f,-23.5f,370.0f);
 #endif
 
     Ogre::Quaternion hoop0Rotation(Ogre::Degree(-90), Ogre::Vector3::UNIT_Y);
-    hoopInstance[0].getNode()->rotate(hoop0Rotation);
+    hoopInstance[0]->getNode()->rotate(hoop0Rotation);
 
     Ogre::Quaternion hoop1Rotation(Ogre::Degree(90), Ogre::Vector3::UNIT_Y);
-    hoopInstance[1].getNode()->rotate(hoop1Rotation);
+    hoopInstance[1]->getNode()->rotate(hoop1Rotation);
 
     setHoopInstance(hoopInstance);
 }
@@ -1094,7 +1097,7 @@ bool gameState::processInput()  // processes input received from the inputState 
                         logMsg("inputInGameWorkQueue.size = " +convert->toString(inputInGameWorkQueue.size()));
                         x = 0;
                         int activeBBallInstance = getActiveBBallInstance();
-                        std::vector<basketballState> bballInstance = getBasketballInstance();
+                        std::vector<boost::shared_ptr<basketballState> > bballInstance = getBasketballInstance();
                         logMsg("humanInstance.size() == " +convert->toString(humanInstance));
                         if (humanInstance < 11) // makes sure that the humanInstance is a valid number
                         {
@@ -1193,14 +1196,14 @@ bool gameState::processInput()  // processes input received from the inputState 
                                 logMsg("ball playerID == " +convert->toString(getActiveTeamInstance()[inputIterator]->getPlayerWithBallID()));
                                 if (activePlayerInstance[humanInstance]->getID() == getActiveTeamInstance()[inputIterator]->getPlayerWithBallID())
                                 {
-                                    bballInstance[activeBBallInstance].setMovement(true);
+                                    bballInstance[activeBBallInstance]->setMovement(true);
                                     setBasketballInstance(bballInstance);
                                 }
                             }
                         }
                         if (getBasketballInstance().size() > 0)
                         {
-                            logMsg("basketballmoved == " +convert->toString(bballInstance[activeBBallInstance].getMovement()));
+                            logMsg("basketballmoved == " +convert->toString(bballInstance[activeBBallInstance]->getMovement()));
                         }
 //                        getGameS()->setActiveTeamInstance(activeTeamInstance);
 

@@ -209,7 +209,7 @@ void playerPhysics::updatePosition()  // updates the position of player objecgts
 
     std::vector<boost::shared_ptr<teamState> > activeTeamInstance = getActiveTeamInstance();
     std::vector <std::vector<boost::shared_ptr<playerState> > > activePlayerInstance;
-    std::vector<basketballState> basketballInstance = getBasketballInstance();
+    std::vector<boost::shared_ptr<basketballState> > basketballInstance = getBasketballInstance();
 
     // checks to see if player positions need updated
     size_t z = 0;
@@ -264,7 +264,7 @@ bool playerPhysics::jump(teamTypes teamType, int playerID)  // calculates and ex
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 
-    std::vector<courtState> courtInstance = getCourtInstance();
+    std::vector<boost::shared_ptr<courtState> > courtInstance = getCourtInstance();
     std::vector<boost::shared_ptr<teamState> > activeTeamInstance = getActiveTeamInstance();
     std::vector<boost::shared_ptr<playerState> > activePlayerInstance = getActiveTeamInstance()[teamType]->getActivePlayerInstance();
     std::vector<size_t> activePlayerID = activeTeamInstance[teamType]->getActivePlayerID();
@@ -307,7 +307,7 @@ bool playerPhysics::jump(teamTypes teamType, int playerID)  // calculates and ex
             }
             else
             {
-                btTransform courtTransform = courtInstance[0].getPhysBody()->getWorldTransform();
+                btTransform courtTransform = courtInstance[0]->getPhysBody()->getWorldTransform();
                 btVector3 courtPos = courtTransform.getOrigin();
                 btTransform playerTransform = activePlayerInstance[x]->getPhysBody()->getWorldTransform();
                 btVector3 playerPos = playerTransform.getOrigin();

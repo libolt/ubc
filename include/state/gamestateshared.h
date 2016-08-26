@@ -123,14 +123,14 @@ class gameStateShared
         size_t getActiveCourtInstance();  // retrieves the value of activeCourtInstance
         void setActiveCourtInstance(size_t set);  // sets the value of activeCourtInstance
 
-        std::vector <basketballState> getBasketballInstance();  // retrieves the value of basketballInstance
-        void setBasketballInstance(std::vector<basketballState> set);  // sets the value of basketballInstance
+        std::vector <boost::shared_ptr<basketballState> > getBasketballInstance();  // retrieves the value of basketballInstance
+        void setBasketballInstance(std::vector<boost::shared_ptr<basketballState> > set);  // sets the value of basketballInstance
 
-        std::vector<courtState> getCourtInstance();  // retrieves the value of courtInstance
-        void setCourtInstance(std::vector<courtState> set);  // sets the value of courtInstance
+        std::vector<boost::shared_ptr<courtState> > getCourtInstance();  // retrieves the value of courtInstance
+        void setCourtInstance(std::vector<boost::shared_ptr<courtState> > set);  // sets the value of courtInstance
 
-        std::vector <hoopState> getHoopInstance();  // retrieves the value of hoopInstance
-        void setHoopInstance(std::vector<hoopState> set);  // sets the value of hoopInstance
+        std::vector <boost::shared_ptr<hoopState> > getHoopInstance();  // retrieves the value of hoopInstance
+        void setHoopInstance(std::vector<boost::shared_ptr<hoopState> > set);  // sets the value of hoopInstance
 
         static std::vector<boost::shared_ptr<playerState> > getPlayerInstance();  // retrieves the value of playerInstance
         void setPlayerInstances(std::vector<boost::shared_ptr<playerState> > set);  // sets the value of playerInstance;
@@ -174,9 +174,9 @@ class gameStateShared
         static std::vector<boost::shared_ptr<teamState> > activeTeamInstance;  // stores active team instance
         static size_t activeBBallInstance;  // stores which instance of the baskteball class is active
         static size_t activeCourtInstance;  // stores which instance of the court is active
-        static std::vector <basketballState> basketballInstance;  // creates instance of the basketballs class
-        static std::vector<courtState> courtInstance;  // stores the court instance
-        static std::vector <hoopState> hoopInstance;  // creates instance of the hoop class
+        static std::vector <boost::shared_ptr<basketballState> > basketballInstance;  // creates instance of the basketballs class
+        static std::vector<boost::shared_ptr<courtState> > courtInstance;  // stores the court instance
+        static std::vector <boost::shared_ptr<hoopState> > hoopInstance;  // creates instance of the hoop class
         static std::vector<boost::shared_ptr<playerState> > playerInstance;  // stores the vector of the players loaded from the xml files
         static std::vector <boost::shared_ptr<teamState> >  teamInstance;  // creates instance of the teamState class
 

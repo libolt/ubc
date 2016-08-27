@@ -26,7 +26,7 @@
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
 #include "state/gamestate.h"
-#include "state/hoopstate.h".
+#include "state/hoopstate.h"
 #include "state/playerstate.h"
 #include "state/teamstate.h"
 #include "engine/gameengine.h"
@@ -680,8 +680,8 @@ void gameState::setCourtStartPositions()  // sets the initial coordinates for th
     logMsg("courtPosition");
 //exit(0);
 #else
-	courtInstance[0].getNode()->setPosition(0.0f,-27.5f,360.0f);
-    courtInstance[0].setNodePosition(Ogre::Vector3(0.0f,-27.5f,360.0f));
+    courtInstance[0]->getNode()->setPosition(0.0f,-27.5f,360.0f);
+    courtInstance[0]->setNodePosition(Ogre::Vector3(0.0f,-27.5f,360.0f));
 #endif
 
     setCourtInstance(courtInstance);
@@ -696,8 +696,8 @@ void gameState::setHoopStartPositions()  // sets the initial coordinates for the
     hoopInstance[0]->getNode()->setPosition(45.0f,-6.5f,370.0f);
     hoopInstance[1]->getNode()->setPosition(-45.0f,-6.5f,370.0f);
 #else
-    hoopInstance[0].getNode()->setPosition(45.0f,-23.5f,370.0f);
-   hoopInstance[1].getNode()->setPosition(-45.0f,-23.5f,370.0f);
+    hoopInstance[0]->getNode()->setPosition(45.0f,-23.5f,370.0f);
+   hoopInstance[1]->getNode()->setPosition(-45.0f,-23.5f,370.0f);
 #endif
 
     Ogre::Quaternion hoop0Rotation(Ogre::Degree(-90), Ogre::Vector3::UNIT_Y);

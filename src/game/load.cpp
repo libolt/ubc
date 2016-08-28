@@ -890,8 +890,8 @@ boost::shared_ptr<basketballState> loader::loadBasketballFile(std::string fileNa
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 
-    boost::shared_ptr<basketballState> basketballInstance;
-    basketballState *basketball = new basketballState;
+    boost::shared_ptr<basketballState> basketballInstance(new basketballState);
+//    basketballState *basketball = new basketballState;
     std::string name;
     std::string modelName;
 
@@ -943,10 +943,10 @@ boost::shared_ptr<basketballState> loader::loadBasketballFile(std::string fileNa
 
     }
 
-    basketball->setName(name);
-    basketball->setModelFileName(modelName);
+    basketballInstance->setName(name);
+    basketballInstance->setModelFileName(modelName);
 
-    basketballInstance = boost::shared_ptr<basketballState>(basketball);
+//    basketballInstance = boost::shared_ptr<basketballState>(basketball);
     
     return (basketballInstance);
 }
@@ -1036,8 +1036,8 @@ boost::shared_ptr<courtState> loader::loadCourtFile(std::string fileName)  // lo
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     
-    boost::shared_ptr<courtState> courtInstance;
-    courtState *court = new courtState;
+    boost::shared_ptr<courtState> courtInstance(new courtState);
+//    courtState *court = new courtState;
     std::string name;
     std::string modelName;
     float length = 0;
@@ -1220,21 +1220,21 @@ boost::shared_ptr<courtState> loader::loadCourtFile(std::string fileName)  // lo
     Ogre::Vector2 baselineInboundPos = Ogre::Vector2(baselineInboundXPos,baselineInboundZPos);
     Ogre::Vector2 sidelineInboundPos = Ogre::Vector2(sidelineInboundXPos,sidelineInboundZPos);
 
-    court->setName(name);
-    court->setModelFileName(modelName);
-    court->setBoundary(boundary);
-    court->setBoundaryPos(boundaryPos);
-    court->setCenterCourt(centerCourt);
-    court->setCenterJumpRadius(centerJumpRadius);
-    court->setKeyDimensions(keyDimensions);
-    court->setKeyJumpRadius(keyJumpRadius);
-    court->setThreePointSideLength(threePointSideLength);
-    court->setThreePointZPos(threePointSideZPos);
-    court->setThreePointArcRadius(threePointArcRadius);
-    court->setBaselineInboundPos(baselineInboundPos);
-    court->setSidelineInboundPos(sidelineInboundPos);
+    courtInstance->setName(name);
+    courtInstance->setModelFileName(modelName);
+    courtInstance->setBoundary(boundary);
+    courtInstance->setBoundaryPos(boundaryPos);
+    courtInstance->setCenterCourt(centerCourt);
+    courtInstance->setCenterJumpRadius(centerJumpRadius);
+    courtInstance->setKeyDimensions(keyDimensions);
+    courtInstance->setKeyJumpRadius(keyJumpRadius);
+    courtInstance->setThreePointSideLength(threePointSideLength);
+    courtInstance->setThreePointZPos(threePointSideZPos);
+    courtInstance->setThreePointArcRadius(threePointArcRadius);
+    courtInstance->setBaselineInboundPos(baselineInboundPos);
+    courtInstance->setSidelineInboundPos(sidelineInboundPos);
 
-    courtInstance = boost::shared_ptr<courtState>(court);
+//    courtInstance = boost::shared_ptr<courtState>(court);
     return (courtInstance);
 }
 
@@ -1322,8 +1322,8 @@ boost::shared_ptr<offensePlays> loader::loadOffensePlayFile(std::string fileName
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     
-    boost::shared_ptr<offensePlays> playInstance;
-    offensePlays *play = new offensePlays;
+    boost::shared_ptr<offensePlays> playInstance(new offensePlays);
+//    offensePlays *play = new offensePlays;
     std::string playName;
     int variation;
     std::string title;
@@ -1606,15 +1606,15 @@ boost::shared_ptr<offensePlays> loader::loadOffensePlayFile(std::string fileName
         }
     }
 
-    play->setPlayName(playName);
-    play->setVariation(variation);
-    play->setTitle(title);
-    play->setPlayerPosition(playerPosition);
-    play->setStartPositions(startCoords);
-    play->setExecutePositions(executeCoords);
-    play->setPlayerDirective(playerDirective);
+    playInstance->setPlayName(playName);
+    playInstance->setVariation(variation);
+    playInstance->setTitle(title);
+    playInstance->setPlayerPosition(playerPosition);
+    playInstance->setStartPositions(startCoords);
+    playInstance->setExecutePositions(executeCoords);
+    playInstance->setPlayerDirective(playerDirective);
     
-    playInstance = boost::shared_ptr<offensePlays>(play);
+//    playInstance = boost::shared_ptr<offensePlays>(play);
     return (playInstance);
 }
 
@@ -1709,8 +1709,8 @@ boost::shared_ptr<playerState> loader::loadPlayerFile(std::string fileName)  // 
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
-    boost::shared_ptr<playerState> playerInstance;
-    playerState *player = new playerState;
+    boost::shared_ptr<playerState> playerInstance(new playerState);
+//    playerState *player = new playerState;
     
     std::string firstName;
     std::string lastName;
@@ -2081,49 +2081,49 @@ boost::shared_ptr<playerState> loader::loadPlayerFile(std::string fileName)  // 
         improvability = convert->toInt(pElem->GetText());
     }
     
-    player->setFirstName(firstName);
+    playerInstance->setFirstName(firstName);
 //    exit(0);
-    player->setLastName(lastName);
-    player->setPlayerName(firstName +" " +lastName);
-    player->setAge(age);
-    player->setHeight(height);
-    player->setWeight(weight);
-    player->setID(ID);
-    player->setTeamID(teamID);
-    player->setEntityModelFileName(modelName);
-    player->setPrimaryPosition(primaryPosition);
-    player->setSecondaryPosition(secondaryPosition);
-    player->setShooting(shooting);
-    player->setFreeThrow(freeThrow);
-    player->setLayup(layup);
-    player->setDunk(dunk);
-    player->setInside(inside);
-    player->setMidRange(midRange);
-    player->setThreePoint(threePoint);
-    player->setBallHandling(ballHandling);
-    player->setBallSecurity(ballSecurity);
-    player->setPassing(passing);
-    player->setPickSetting(pickSetting);
-    player->setOffenseAwareness(offenseAwareness);
-    player->setDefenseAwareness(defenseAwareness);
-    player->setOffenseRebound(offenseRebound);
-    player->setDefenseRebound(defenseRebound);
-    player->setBlocking(blocking);
-    player->setStealing(stealing);
-    player->setInteriorDefense(interiorDefense);
-    player->setMidRangeDefense(midRangeDefense);
-    player->setPerimeterDefense(perimeterDefense);
-    player->setHustle(hustle);
-    player->setSpeed(speed);
-    player->setQuickness(quickness);
-    player->setFatigue(fatigue);
-    player->setDurability(durability);
-    player->setDemeanor(demeanor);
-    player->setImprovability(improvability);
-    player->calculateOverallRating();
+    playerInstance->setLastName(lastName);
+    playerInstance->setPlayerName(firstName +" " +lastName);
+    playerInstance->setAge(age);
+    playerInstance->setHeight(height);
+    playerInstance->setWeight(weight);
+    playerInstance->setID(ID);
+    playerInstance->setTeamID(teamID);
+    playerInstance->setEntityModelFileName(modelName);
+    playerInstance->setPrimaryPosition(primaryPosition);
+    playerInstance->setSecondaryPosition(secondaryPosition);
+    playerInstance->setShooting(shooting);
+    playerInstance->setFreeThrow(freeThrow);
+    playerInstance->setLayup(layup);
+    playerInstance->setDunk(dunk);
+    playerInstance->setInside(inside);
+    playerInstance->setMidRange(midRange);
+    playerInstance->setThreePoint(threePoint);
+    playerInstance->setBallHandling(ballHandling);
+    playerInstance->setBallSecurity(ballSecurity);
+    playerInstance->setPassing(passing);
+    playerInstance->setPickSetting(pickSetting);
+    playerInstance->setOffenseAwareness(offenseAwareness);
+    playerInstance->setDefenseAwareness(defenseAwareness);
+    playerInstance->setOffenseRebound(offenseRebound);
+    playerInstance->setDefenseRebound(defenseRebound);
+    playerInstance->setBlocking(blocking);
+    playerInstance->setStealing(stealing);
+    playerInstance->setInteriorDefense(interiorDefense);
+    playerInstance->setMidRangeDefense(midRangeDefense);
+    playerInstance->setPerimeterDefense(perimeterDefense);
+    playerInstance->setHustle(hustle);
+    playerInstance->setSpeed(speed);
+    playerInstance->setQuickness(quickness);
+    playerInstance->setFatigue(fatigue);
+    playerInstance->setDurability(durability);
+    playerInstance->setDemeanor(demeanor);
+    playerInstance->setImprovability(improvability);
+    playerInstance->calculateOverallRating();
 
-    playerInstance = boost::shared_ptr<playerState>(player);
-    logMsg("player First Name == "+player->getFirstName());
+//    playerInstance = boost::shared_ptr<playerState>(player);
+    logMsg("player First Name == "+playerInstance->getFirstName());
  
     return (playerInstance);
 }
@@ -2280,11 +2280,11 @@ bool loader::loadTeamFile(std::string fileName)  // loads the team file
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 //    std::vector<boost::shared_ptr<teamState> > teamInstance = gameS->getTeamInstance();
   
-    boost::shared_ptr<teamState> tempInstance(new teamState);
+    boost::shared_ptr<teamState> teamInstance(new teamState);
 //    tInstance = boost::shared_ptr<teamState>(new teamState);
 //    teamInstance.reset(new teamState);
-    teamState tempTeam; // = new teamState;
-    teamState *tempInst = new teamState;
+//    teamState tempTeam; // = new teamState;
+//    teamState *tempInst = new teamState;
 //    tempTeamObj = new teamState;
 //    tInstance = tempInstance;
     static size_t ID;
@@ -2373,19 +2373,19 @@ bool loader::loadTeamFile(std::string fileName)  // loads the team file
      
     logMsg("ID == " +convert->toString(ID));
 //    exit(0);
-    tempInst->setID(ID);
-    tempInst->setCity(City);
-    tempInst->setName(Name);
-    tempInst->setCoach(Coach);
-    tempInst->setInits(Initials);
-    tempInst->setLogoFile(Logo);
+    teamInstance->setID(ID);
+    teamInstance->setCity(City);
+    teamInstance->setName(Name);
+    teamInstance->setCoach(Coach);
+    teamInstance->setInits(Initials);
+    teamInstance->setLogoFile(Logo);
     logMsg("ID == " +convert->toString(ID));
-    logMsg("Load Teaminstance ID == " +convert->toString(tempInst->getID()));
-    logMsg("teamInstance->getID() == " +convert->toString(tempInst->getID()));
+    logMsg("Load Teaminstance ID == " +convert->toString(teamInstance->getID()));
+    logMsg("teamInstance->getID() == " +convert->toString(teamInstance->getID()));
 //    tempInst = &tempTeam;
-    logMsg("Load Teaminstance Name == " +tempInst->getName());
+    logMsg("Load Teaminstance Name == " +teamInstance->getName());
     logMsg("lawwl");
-    tInstance.push_back(boost::shared_ptr<teamState>(tempInst));
+    tInstance.push_back(teamInstance);
 //    team->setTeamArray(teamInstance);
 //   teamInstance.push_back(teamInstance);
 //   gameS->setteamInstance(teamInstance);
@@ -2483,7 +2483,7 @@ boost::shared_ptr<userInput> loader::loadUserInputFile(std::string fileName)  //
     boost::shared_ptr<conversion> convert = conversion::Instance();
     
     logMsg("Load UserInput File");
-    boost::shared_ptr<userInput> uInput;
+    boost::shared_ptr<userInput> uInput(new userInput);
     std::string inputName;
     std::string type;
     std::string up;

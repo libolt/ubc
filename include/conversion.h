@@ -67,7 +67,8 @@ class conversion  // class for conversion between data types
         std::string toString(const playerPositions &data); // converts playerPositions data to string
         std::string toString(const teamTypes &data); // converts teamTypes data to string
         std::string toString(const bool &data); // converts bool data to string
-        std::string toString(const inputKeyMaps &data); // converts bool data to string
+        std::string toString(const inputKeyMaps &data); // converts inputKeyMaps data to string
+        std::string toString(const activeMenus &data); // converts activeMenus data to string
         
         // convert to char
         char toChar(const std::string &data);  // converts from std::string to char

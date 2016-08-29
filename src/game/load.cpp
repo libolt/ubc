@@ -932,13 +932,13 @@ boost::shared_ptr<basketballState> loader::loadBasketballFile(std::string fileNa
         if (cKey == "Name")
         {
             name = child->GetText();
-            logMsg("name = " +name);
+//            logMsg("name = " +name);
         }
         child = child->NextSiblingElement()->ToElement();
         if (child)
         {
             modelName = child->GetText();
-            logMsg("modelName = " +modelName);
+//            logMsg("modelName = " +modelName);
         }
 
     }
@@ -1096,121 +1096,121 @@ boost::shared_ptr<courtState> loader::loadCourtFile(std::string fileName)  // lo
         if (cKey == "Name")
         {
             name = child->GetText();
-            logMsg("name = " +name);
+//            logMsg("name = " +name);
         }
         child = child->NextSiblingElement()->ToElement();
         if (child)
         {
             modelName = child->GetText();
-            logMsg("modelName = " +modelName);
+//            logMsg("modelName = " +modelName);
         }
         child = child->NextSiblingElement()->ToElement();
-    if (child)
+        if (child)
         {
             length = convert->toFloat(child->GetText());
-            logMsg("Length = " +convert->toString(length));
+//            logMsg("Length = " +convert->toString(length));
         } 
         child = child->NextSiblingElement()->ToElement();
-    if (child)
+        if (child)
         {
             length = convert->toFloat(child->GetText());
-            logMsg("Width = " +convert->toString(width));
+//            logMsg("Width = " +convert->toString(width));
         }
         child = child->NextSiblingElement()->ToElement();
-    if (child)
+        if (child)
         {
             boundaryLength = convert->toFloat(child->GetText());
-            logMsg("Boundary Length = " +convert->toString(boundaryLength));
+//            logMsg("Boundary Length = " +convert->toString(boundaryLength));
         }
         child = child->NextSiblingElement()->ToElement();
         if (child)
         {
             boundaryWidth = convert->toFloat(child->GetText());
-            logMsg("Boundary Width = " +convert->toString(boundaryWidth));
+//            logMsg("Boundary Width = " +convert->toString(boundaryWidth));
         }
         child = child->NextSiblingElement()->ToElement();
-    if (child)
+        if (child)
         {
             boundaryXPos = convert->toFloat(child->GetText());
-            logMsg("Boundary X Pos = " +convert->toString(boundaryXPos));
+//            logMsg("Boundary X Pos = " +convert->toString(boundaryXPos));
         }
         child = child->NextSiblingElement()->ToElement();
-    if (child)
+        if (child)
         {
             boundaryZPos = convert->toFloat(child->GetText());
-            logMsg("Boundary Z Pos = " +convert->toString(boundaryZPos));
+//            logMsg("Boundary Z Pos = " +convert->toString(boundaryZPos));
         }
         child = child->NextSiblingElement()->ToElement();
-    if (child)
+        if (child)
         {
             centerCourt = convert->toFloat(child->GetText());
-            logMsg("Center Court = " +convert->toString(centerCourt));
+//            logMsg("Center Court = " +convert->toString(centerCourt));
         }
         child = child->NextSiblingElement()->ToElement();
-    if (child)
+        if (child)
         {
             centerJumpRadius = convert->toFloat(child->GetText());
-            logMsg("Center Jump Radius = " +convert->toString(centerJumpRadius));
+//            logMsg("Center Jump Radius = " +convert->toString(centerJumpRadius));
         }
         child = child->NextSiblingElement()->ToElement();
-    if (child)
+        if (child)
         {
             keyLength = convert->toFloat(child->GetText());
-            logMsg("Key Length = " +convert->toString(keyLength));
+//            logMsg("Key Length = " +convert->toString(keyLength));
         }
         child = child->NextSiblingElement()->ToElement();
-    if (child)
+        if (child)
         {
             keyWidth = convert->toFloat(child->GetText());
-            logMsg("Key Width = " +convert->toString(keyWidth));
+//            logMsg("Key Width = " +convert->toString(keyWidth));
         }
         child = child->NextSiblingElement()->ToElement();
-    if (child)
+        if (child)
         {
             keyJumpRadius = convert->toFloat(child->GetText());
-            logMsg("Key Jump RAdius = " +convert->toString(keyJumpRadius));
+//            logMsg("Key Jump RAdius = " +convert->toString(keyJumpRadius));
         }
         child = child->NextSiblingElement()->ToElement();
-    if (child)
+        if (child)
         {
             threePointSideLength = convert->toFloat(child->GetText());
-            logMsg("Three Point Side Length = " +convert->toString(threePointSideLength));
+//            logMsg("Three Point Side Length = " +convert->toString(threePointSideLength));
         }
         child = child->NextSiblingElement()->ToElement();
-    if (child)
+        if (child)
         {
             threePointSideZPos = convert->toFloat(child->GetText());
-            logMsg("Three Point Side Z Pos = " +convert->toString(threePointSideZPos));
+//            logMsg("Three Point Side Z Pos = " +convert->toString(threePointSideZPos));
         }
         child = child->NextSiblingElement()->ToElement();
-    if (child)
+        if (child)
         {
             threePointArcRadius = convert->toFloat(child->GetText());
-            logMsg("Three Point Arc Radius = " +convert->toString(threePointArcRadius));
+//            logMsg("Three Point Arc Radius = " +convert->toString(threePointArcRadius));
         }
         child = child->NextSiblingElement()->ToElement();
-    if (child)
+        if (child)
         {
             baselineInboundXPos = convert->toFloat(child->GetText());
-            logMsg("Baseline Inbound X Pos = " +convert->toString(baselineInboundXPos));
+//            logMsg("Baseline Inbound X Pos = " +convert->toString(baselineInboundXPos));
         }
         child = child->NextSiblingElement()->ToElement();
-    if (child)
+        if (child)
         {
             baselineInboundZPos = convert->toFloat(child->GetText());
-            logMsg("Baseline Inbound Z Pos = " +convert->toString(baselineInboundZPos));
+//            logMsg("Baseline Inbound Z Pos = " +convert->toString(baselineInboundZPos));
         }
         child = child->NextSiblingElement()->ToElement();
-    if (child)
+        if (child)
         {
             sidelineInboundXPos = convert->toFloat(child->GetText());
-            logMsg("Sideline Inbound X Pos = " +convert->toString(sidelineInboundXPos));
+//            logMsg("Sideline Inbound X Pos = " +convert->toString(sidelineInboundXPos));
         }
         child = child->NextSiblingElement()->ToElement();
-    if (child)
+        if (child)
         {
             sidelineInboundZPos = convert->toFloat(child->GetText());
-            logMsg("Sideline Inbound Z Pos = " +convert->toString(sidelineInboundZPos));
+//            logMsg("Sideline Inbound Z Pos = " +convert->toString(sidelineInboundZPos));
         }
     }
 
@@ -1396,35 +1396,35 @@ boost::shared_ptr<offensePlays> loader::loadOffensePlayFile(std::string fileName
         if (cKey == "PlayName")
         {
             pPlayName = child->GetText();
-            logMsg("pPlayName = " +playName);
+//            logMsg("pPlayName = " +playName);
             playName = pPlayName;
         }
         child = child->NextSiblingElement()->ToElement();
     if (child)
         {
             pVariation = convert->toInt(child->GetText());
-            logMsg("pVariation = " +convert->toString(pVariation));
+//            logMsg("pVariation = " +convert->toString(pVariation));
             variation = pVariation;
         } 
         child = child->NextSiblingElement()->ToElement(); 
     if (child)
         {
             pTitle = child->GetText();
-            logMsg("pTitle = " +pTitle);
+//            logMsg("pTitle = " +pTitle);
             title = pTitle;
         }
         int numPlayers = 0;
         for (tinyxml2::XMLElement *e = child->NextSiblingElement(); e != NULL; e = e->NextSiblingElement())
-    {
+        {
         tinyxml2::XMLElement *f;
 
-            logMsg ("nums = " +convert->toString(numPlayers));
+//            logMsg ("nums = " +convert->toString(numPlayers));
             numPlayers += 1;
             f = e->FirstChildElement()->ToElement();
         if (f)
             {
                 pPlayerPosition = f->GetText();
-                logMsg("name = " +pPlayerPosition);
+//                logMsg("name = " +pPlayerPosition);
 //                playerName.push_back(pPlayerName);
 
                 if (pPlayerPosition == "PG")
@@ -1464,7 +1464,7 @@ boost::shared_ptr<offensePlays> loader::loadOffensePlayFile(std::string fileName
                 pExecuteCoords.clear();  // clears the vector for each player
                 for (tinyxml2::XMLElement *g = f->FirstChildElement(); g != NULL; g = g->NextSiblingElement())
                 {
-                    logMsg("numPos = " +convert->toString(numPos));
+//                    logMsg("numPos = " +convert->toString(numPos));
                     numPos += 1;
                    tinyxml2::XMLElement *h;
 
@@ -1472,28 +1472,28 @@ boost::shared_ptr<offensePlays> loader::loadOffensePlayFile(std::string fileName
                     if (h)
                     {
                         pType = h->GetText();
-                        logMsg("pType = " +pType);
+//                        logMsg("pType = " +pType);
                         type.push_back(pType);
                     }
                     h = h->NextSiblingElement()->ToElement();
                     if (h)
                     {
                         pXCoord = convert->toFloat(h->GetText());
-                        logMsg("pXCoord = " +convert->toString(pXCoord));
+//                        logMsg("pXCoord = " +convert->toString(pXCoord));
                         xCoord.push_back(pXCoord);
                     }
                     h = h->NextSiblingElement()->ToElement();
                     if (h)
                     {
                         pYCoord = convert->toFloat(h->GetText());
-                        logMsg("pYCoord = " +convert->toString(pYCoord));
+//                        logMsg("pYCoord = " +convert->toString(pYCoord));
                         yCoord.push_back(pYCoord);
                     }
                     h = h->NextSiblingElement()->ToElement();
                     if (h)
                     {
                         pZCoord = convert->toFloat(h->GetText());
-                        logMsg("pZCoord = " +convert->toString(pZCoord));
+//                        logMsg("pZCoord = " +convert->toString(pZCoord));
                         zCoord.push_back(pZCoord);
                     }
 
@@ -1508,7 +1508,7 @@ boost::shared_ptr<offensePlays> loader::loadOffensePlayFile(std::string fileName
                     else
                     {
                         pExecuteCoords.push_back(pCoords);
-                        logMsg("pExecuteCoords.size = " +convert->toString(pExecuteCoords.size()));
+//                        logMsg("pExecuteCoords.size = " +convert->toString(pExecuteCoords.size()));
                     }
                 }
                 // checks if there are execute coords and puts them in the vector
@@ -1530,25 +1530,25 @@ boost::shared_ptr<offensePlays> loader::loadOffensePlayFile(std::string fileName
                     if (h)
                     {
                         std::string hKey = h->GetText();
-                        logMsg("hKey = " +hKey);
+//                        logMsg("hKey = " +hKey);
                         if (hKey == "Wait")
                         {
                             pPlayerDirective.setType(WAIT);
                             h = h->NextSiblingElement()->ToElement();
                             if (h)
                             {
-                                logMsg("WaitFor");
+//                                logMsg("WaitFor");
                                 hKey = h->GetText();
                                 if (hKey == "PlayerPositionSet")
                                 {
                                     pPlayerDirective.setWaitFor(PLAYERPOSITIONSET);
-                                    logMsg("PlayerPositionSet");
+//                                    logMsg("PlayerPositionSet");
 
                                     h = h->NextSiblingElement()->ToElement();
                                     if (h)
                                     {
                                         hKey = h->GetText();
-                                        logMsg("PlayerSet = " +hKey);
+//                                        logMsg("PlayerSet = " +hKey);
 
                                         if (hKey == "PG")
                                         {
@@ -1574,22 +1574,22 @@ boost::shared_ptr<offensePlays> loader::loadOffensePlayFile(std::string fileName
                                     h = h->NextSiblingElement()->ToElement();
                                     if (h)
                                     {
-                                        logMsg("PositionType");
+//                                        logMsg("PositionType");
                                         hKey = h->GetText();
                                         if (hKey == "Start")
                                         {
-                                            logMsg("Start");
+//                                            logMsg("Start");
                                             pPlayerDirective.setPositionType(START);
                                         }
                                         else if (hKey == "Execute")
                                         {
-                                            logMsg("Execute");
+//                                            logMsg("Execute");
                                             pPlayerDirective.setPositionType(EXECUTE);
 
                                             h = h->NextSiblingElement("Position");
                                             if (h)
                                             {
-                                                logMsg("Position");
+//                                                logMsg("Position");
                                                 hKey = h->GetText();
                                                 pPlayerDirective.setPosition(convert->toInt(hKey.c_str()));
                                             }
@@ -1601,7 +1601,7 @@ boost::shared_ptr<offensePlays> loader::loadOffensePlayFile(std::string fileName
                     }
                 }
                 playerDirective.push_back(pPlayerDirective);
-                logMsg("numDirectives = " +convert->toString(numDirectives));
+//                logMsg("numDirectives = " +convert->toString(numDirectives));
             }
         }
     }
@@ -1790,16 +1790,16 @@ boost::shared_ptr<playerState> loader::loadPlayerFile(std::string fileName)  // 
     if(pElem)
     {
         ID = convert->toInt(pElem->GetText());
-        logMsg("PlayerID == " +convert->toString(ID));
+//        logMsg("PlayerID == " +convert->toString(ID));
     }
 
     pElem=pElem->NextSiblingElement()->ToElement();
     if (pElem)
     {
         teamID = convert->toInt(pElem->GetText());
-        logMsg("teamID == " +convert->toString(teamID));
+//        logMsg("teamID == " +convert->toString(teamID));
     }
-    logMsg("pElem.Name() = " +convert->toString(pElem->GetText()));
+//    logMsg("pElem.Name() = " +convert->toString(pElem->GetText()));
     pElem=pElem->NextSiblingElement()->ToElement();
     if(pElem)
     {
@@ -1808,7 +1808,7 @@ boost::shared_ptr<playerState> loader::loadPlayerFile(std::string fileName)  // 
         if (pKey == "First")
         {
             firstName = childElement->GetText();
-            logMsg("First Name: " +firstName);
+//            logMsg("First Name: " +firstName);
 //            exit(0);
         }
         childElement=childElement->NextSiblingElement()->ToElement();
@@ -1816,7 +1816,7 @@ boost::shared_ptr<playerState> loader::loadPlayerFile(std::string fileName)  // 
         if (pKey == "Last")
         {
             lastName = childElement->GetText();
-            logMsg("Last Name: " +lastName);
+//            logMsg("Last Name: " +lastName);
         }
 
     }
@@ -1825,28 +1825,28 @@ boost::shared_ptr<playerState> loader::loadPlayerFile(std::string fileName)  // 
     if (pElem)
     {
         age = convert->toInt(pElem->GetText());
-        logMsg("Age = " +convert->toString(age));
+//        logMsg("Age = " +convert->toString(age));
     }
 
     pElem=pElem->NextSiblingElement()->ToElement();
     if (pElem)
     {
         height = convert->toInt(pElem->GetText());
-        logMsg("Height = " +convert->toString(height));
+//        logMsg("Height = " +convert->toString(height));
     }
 
     pElem=pElem->NextSiblingElement()->ToElement();
     if (pElem)
     {
         weight = convert->toInt(pElem->GetText());
-        logMsg("Weight = " +convert->toString(weight));
+//        logMsg("Weight = " +convert->toString(weight));
     }
 
     pElem=pElem->NextSiblingElement()->ToElement();
     if (pElem)
     {
         modelName = pElem->GetText();
-        logMsg("Model = " +modelName);
+//        logMsg("Model = " +modelName);
     }
 
     pElem=pElem->NextSiblingElement()->ToElement();
@@ -1881,7 +1881,7 @@ boost::shared_ptr<playerState> loader::loadPlayerFile(std::string fileName)  // 
         {
             primaryPosition = NONE;
         }
-        logMsg("primaryPosition = " +position);
+//        logMsg("primaryPosition = " +position);
     }
 
     pElem=pElem->NextSiblingElement()->ToElement();
@@ -1916,13 +1916,13 @@ boost::shared_ptr<playerState> loader::loadPlayerFile(std::string fileName)  // 
         {
             secondaryPosition = NONE;
         }
-        logMsg("secondaryPosition = " +position);
+//        logMsg("secondaryPosition = " +position);
     }
     pElem=pElem->NextSiblingElement()->ToElement();
     if (pElem)
     {
         shooting = convert->toInt(pElem->GetText());
-        logMsg("shooting = " +convert->toString(shooting));
+//        logMsg("shooting = " +convert->toString(shooting));
     }
 
     pElem=pElem->NextSiblingElement()->ToElement();
@@ -2123,7 +2123,7 @@ boost::shared_ptr<playerState> loader::loadPlayerFile(std::string fileName)  // 
     playerInstance->calculateOverallRating();
 
 //    playerInstance = boost::shared_ptr<playerState>(player);
-    logMsg("player First Name == "+playerInstance->getFirstName());
+//    logMsg("player First Name == "+playerInstance->getFirstName());
  
     return (playerInstance);
 }
@@ -2333,45 +2333,45 @@ bool loader::loadTeamFile(std::string fileName)  // loads the team file
     if (pElem)
     {
         ID = convert->toInt(pElem->GetText());
-        logMsg("Team ID == " +convert->toString(ID));
+//        logMsg("Team ID == " +convert->toString(ID));
     }
 
     pElem=pElem->NextSiblingElement()->ToElement();
     if (pElem)
     {
         City = pElem->GetText();
-        logMsg("City == " +City);
+//        logMsg("City == " +City);
     }
 
     pElem=pElem->NextSiblingElement()->ToElement();
     if (pElem)
     {
         Name = pElem->GetText();
-        logMsg("Name == " +Name);
+//        logMsg("Name == " +Name);
     }
 
     pElem=pElem->NextSiblingElement()->ToElement();
     if (pElem)
     {
         Coach = pElem->GetText();
-        logMsg("Coach == " +Coach);
+//        logMsg("Coach == " +Coach);
     }
 
     pElem=pElem->NextSiblingElement()->ToElement();
     if (pElem)
     {
         Initials = pElem->GetText();
-        logMsg("Initials == " +Initials);
+//        logMsg("Initials == " +Initials);
     }
 
     pElem=pElem->NextSiblingElement()->ToElement();
     if (pElem)
     {
         Logo = pElem->GetText();
-        logMsg("Logo == " +Logo);
+//        logMsg("Logo == " +Logo);
     }
      
-    logMsg("ID == " +convert->toString(ID));
+//    logMsg("ID == " +convert->toString(ID));
 //    exit(0);
     teamInstance->setID(ID);
     teamInstance->setCity(City);
@@ -2379,12 +2379,12 @@ bool loader::loadTeamFile(std::string fileName)  // loads the team file
     teamInstance->setCoach(Coach);
     teamInstance->setInits(Initials);
     teamInstance->setLogoFile(Logo);
-    logMsg("ID == " +convert->toString(ID));
-    logMsg("Load Teaminstance ID == " +convert->toString(teamInstance->getID()));
+//    logMsg("ID == " +convert->toString(ID));
+//    logMsg("Load Teaminstance ID == " +convert->toString(teamInstance->getID()));
     logMsg("teamInstance->getID() == " +convert->toString(teamInstance->getID()));
 //    tempInst = &tempTeam;
-    logMsg("Load Teaminstance Name == " +teamInstance->getName());
-    logMsg("lawwl");
+//    logMsg("Load Teaminstance Name == " +teamInstance->getName());
+//    logMsg("lawwl");
     tInstance.push_back(teamInstance);
 //    team->setTeamArray(teamInstance);
 //   teamInstance.push_back(teamInstance);
@@ -2538,7 +2538,7 @@ boost::shared_ptr<userInput> loader::loadUserInputFile(std::string fileName)  //
         if (cKey == "Name")
         {
             inputName = child->GetText();
-            logMsg("name = " +inputName);
+//            logMsg("name = " +inputName);
         }
         
         bool inputTag = false;
@@ -2552,18 +2552,18 @@ boost::shared_ptr<userInput> loader::loadUserInputFile(std::string fileName)  //
                 for( nextChild; nextChild; nextChild=nextChild->NextSiblingElement())
                 {
                     std::string pKey=nextChild->Value();
-                    logMsg("pKey = " +pKey);
+//                    logMsg("pKey = " +pKey);
 //                    exit(0);
                     if (pKey == "Type")
                     {
                         type = nextChild->GetText();
-                        logMsg("type = " +type);
+//                        logMsg("type = " +type);
 //                        exit(0);
                     }
                     if (pKey == "Up")
                     {
                         up = nextChild->GetText();
-                        logMsg("up = " +up);
+//                        logMsg("up = " +up);
 
                     }
                     if (pKey == "Down")

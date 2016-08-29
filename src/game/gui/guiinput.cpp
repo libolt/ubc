@@ -135,6 +135,7 @@ void GUISystem::team1SelectButtonClicked(MyGUI::Widget *_sender)  // handles tea
 
 void GUISystem::teamsSelectedButtonClicked(MyGUI::Widget *_sender)  // handles teamsSelectButton click event
 {
+    logMsg("teamsSelectedButtonClicked");
     teamsSelected();
     playerStartSelectionMenu();
 
@@ -526,10 +527,10 @@ void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed)  // process
         }
     }
     // FIXME!
-    else if (keyPressed == "l")
-    {
-//        exit(0);
-        logMsg("yarp");
+    else if (keyPressed == "t")
+    {        
+        logMsg("teamsSelected!");
+        exit(0);
         teamsSelected();
         playerStartSelectionMenu();
     }

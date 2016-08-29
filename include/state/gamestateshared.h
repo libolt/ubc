@@ -135,7 +135,7 @@ class gameStateShared
         static std::vector<boost::shared_ptr<playerState> > getPlayerInstance();  // retrieves the value of playerInstance
         void setPlayerInstances(std::vector<boost::shared_ptr<playerState> > set);  // sets the value of playerInstance;
 
-        std::vector<boost::shared_ptr<teamState> > getTeamInstance();  // retireves the value of teamInstance
+        static std::vector<boost::shared_ptr<teamState> > getTeamInstance();  // retireves the value of teamInstance
         void setTeamInstance(std::vector<boost::shared_ptr<teamState> > set);  // sets the value of teamInstance
 
         boost::shared_ptr<jumpBalls> getJumpBall();  // retrieves the value of jumpBall

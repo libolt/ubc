@@ -115,9 +115,9 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     logMsg("getGameS()->getTeamIDS().size() == " +convert->toString(getGameS()->getTeamIDS().size()));
     logMsg("getGameS()->getTeamIDS()[0] == " +convert->toString(getGameS()->getTeamIDS()[0]));
     
-    logMsg("teamIDs[0] == " +convert->toString(teamIDs[0]));
+    logMsg("teamIDS[0] == " +convert->toString(teamIDs[0]));
     logMsg("blah");
-    exit(0);
+//    exit(0);
     
 /*
     if (!getGameS()->getPlayerInstanceCreated())
@@ -570,7 +570,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
         }
         
     }
-/*
+
     
 
 //    gameS->setTeamDataInstance(teamDataInstance);
@@ -603,6 +603,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     }
     team0SelectBox->setIndexSelected(0);
     team1SelectBox->setIndexSelected(1);
-*/
+    logMsg("End of addTeamStartSelectionMenuData!");
+//    exit(0);
     return (true);
 }

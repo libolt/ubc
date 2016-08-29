@@ -404,8 +404,8 @@ void GUISystem::showTeamSelectionMenuWidgets()  // show all widgets tied to the 
 {
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
-    logMsg("Blipblop");
-    logMsg("Blip");
+    logMsg("GUISystem::showTeamSelectionMenuWidgets");
+//    logMsg("Blip");
 //    exit(0);
     
     team0SelectBox->setVisible(true);
@@ -547,7 +547,7 @@ void GUISystem::showActiveMenuWidgets()  // shows active menus widgets
         case TEAMSELECT:
             logMsg("TEAMSELECT");
 //            exit(0);
-//            showTeamSelectionMenuWidgets();
+            showTeamSelectionMenuWidgets();
             break;
         case COURTSELECT:
             showCourtSelectionMenuWidgets();

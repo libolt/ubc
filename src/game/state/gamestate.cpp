@@ -319,6 +319,7 @@ bool gameState::createTeamInstances()  // creates team Instances
         if (tInstance.size() > 0)
         {
             logMsg("gameState::createTeamInstances() tInstance Loaded!");
+            setTeamInstance(tInstance);
         }
         else
         {
@@ -660,7 +661,7 @@ void gameState::setBasketballStartPositions()  // sets the initial coordinates f
     logMsg("activeBBallInstance == " +convert->toString(activeBBallInstance));
     
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-    exit(0);
+//    exit(0);
     basketballInstance[activeBBallInstance]->getNode()->setPosition(0.8f,10.0f,352.0f);
 #else
     basketballInstance[activeBBallInstance]->getNode()->setPosition(0.8f,-5.0f,352.0f);

@@ -714,13 +714,14 @@ void GUISystem::teamsSelected()  // processes team selection
     //gameState *gameS = gameState::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
     
+    logMsg("GUISystem::teamsSelected()");
     std::vector<size_t> teamID;
     teamID.push_back(team0SelectBox->getIndexSelected());
     teamID.push_back(team1SelectBox->getIndexSelected());
 //    gameS->setTeamID(teamID);
     logMsg("team0SelectBox->getIndexSelected() == " +convert->toString(team0SelectBox->getIndexSelected()));
     logMsg("teamID[0] == " +convert->toString(teamID[0]));
-
+//    exit(0);
     getGameS()->setTeamIDS(teamID);
     logMsg("Teams selected");
 //    exit(0);

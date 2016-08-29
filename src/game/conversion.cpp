@@ -563,6 +563,12 @@ std::string conversion::toString(const inputKeyMaps &data) // converts bool data
     return (strData);
 }
 
+std::string conversion::toString(const activeMenus &data) // converts activeMenus data to string
+{
+    std::string strData;
+    return (strData);
+}
+
 // convert to char
 char conversion::toChar(const std::string &data)  // converts from std::string to char
 {

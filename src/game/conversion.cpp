@@ -14,7 +14,7 @@
  *                                                                         *
  *   You should have received a copy of the GNU General Public License     *
  *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
+ *   Free Software bFoundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
@@ -566,6 +566,53 @@ std::string conversion::toString(const inputKeyMaps &data) // converts bool data
 std::string conversion::toString(const activeMenus &data) // converts activeMenus data to string
 {
     std::string strData;
+    
+    switch (data)
+    {
+        case NOACTIVEMENU:
+            strData = "NOACTIVEMENU";
+        break;
+        case MAIN:
+            strData = "MAIN";
+        break;
+        case NETWORK:
+            strData = "NETWORK";
+        break;
+        case NETWORKCLIENT:
+            strData = "NETWORKCLIENT";
+        break;
+        case NETWORKSERVER:
+            strData = "NETWORKSERVER";
+        break;
+        case OPTIONS:
+            strData = "OPTIONS";
+        break;
+        case DISPLAY:
+            strData = "DISPLAY";
+        break;
+        case INPUTMENU:
+            strData = "INPUTMENU";
+        break;
+        case AUDIO:
+            strData = "AUDIO";
+        break;
+        case GAMESETUP:
+            strData = "GAMESETUP";
+        break;
+        case PLAYERSTART:
+            strData = "PLAYERSTART";
+        break;
+        case TEAMSELECT:
+            strData = "TEAMSELECT";
+        break;
+        case COURTSELECT:
+            strData = "COURTSELECT";
+        break;
+        default:
+            strData = "";
+        break;
+    }
+    
     return (strData);
 }
 

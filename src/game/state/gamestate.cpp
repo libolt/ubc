@@ -467,7 +467,7 @@ bool gameState::createPlayerInstances()  // creates player instances
     logMsg("gameState::createPlayerInstances() too");
 //    setPlayerInstances(load->loadPlayers());
     setPlayerInstances(pInstance);
-
+    setPlayerInstanceCreated(true);
     if (getPlayerInstance().size() > 0)
     {
         logMsg("playerInstance size == " +convert->toString(getPlayerInstance().size()));
@@ -1221,6 +1221,43 @@ bool gameState::processInput()  // processes input received from the inputState 
             }
         }
 }
+
+// These functions check if an object has been created and attmpt to do so if not
+bool gameState::checkIfPlayerInstanceCreated()  // check if playerInstance object has been created and loaded
+{
+    if (getPlayerInstanceCreated())
+    {
+        if (getPlayerInstance().size() > 0)
+        {
+            logMsg("getPlayerInstance().size() == " +convert->toString(getPlayerInstance().size()));
+            return (true);
+        }
+        else
+        {
+            logMsg("player instances not yet created!");
+            if (getGameS()->createPlayerInstances())
+            {
+            
+                logMsg("player instances created!");
+            
+                getGameS()->setPlayerInstanceCreated(true);
+//            exit(0);
+            }
+            else
+            {
+                logMsg("player instances not created!");
+                exit(0);
+            }
+        }
+//        exit(0);
+    }
+    else
+    {
+        return (false);
+    }
+    return (true);
+}
+
 void gameState::updateDirectionsAndMovements()
 {
     //conversion *convert = conversion::Instance();

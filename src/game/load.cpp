@@ -288,10 +288,10 @@ int loader::readFile(const char *sourceFile, char **destination)  // loads an xm
     int n_blocks = SDL_RWread(file, (*destination), 1, fileLength+1);
     logMsg("contents = " +convert->toString(contents));
     (*destination)[fileLength] = '\0';
-    logMsg("destination = " +convert->toString((*destination)));
+//    logMsg("destination = " +convert->toString((*destination)));
 //    exit(0);
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-    logMsg("destination = " +convert->toString(destination));
+//    logMsg("destination = " +convert->toString(destination));
 #endif
 
     // BLOCK_SIZE = 8, MAX_BLOCKS = 1024
@@ -848,7 +848,7 @@ std::vector<std::string> loader::loadBasketballListFile(std::string fileName) //
     char *contents = NULL;
     readFile(fileName.c_str(), &contents);
     fileContents = convert->toString(contents);
-    logMsg("fileContents = " +fileContents);
+//    logMsg("fileContents = " +fileContents);
 
     doc.Parse(contents);
     if (doc.Error())
@@ -993,7 +993,7 @@ std::vector<std::string> loader::loadCourtListFile(std::string fileName)    // l
     char *contents = NULL;
     readFile(fileName.c_str(), &contents);
     fileContents = convert->toString(contents);
-    logMsg("fileContents = " +fileContents);
+//    logMsg("fileContents = " +fileContents);
 
     doc.Parse(contents);
     if (doc.Error())
@@ -1757,7 +1757,7 @@ boost::shared_ptr<playerState> loader::loadPlayerFile(std::string fileName)  // 
     readFile(fileName.c_str(), &contents);
     logMsg("loading: "+fileName);
     fileContents = convert->toString(contents);
-    logMsg("fileContents = " +fileContents);
+//    logMsg("fileContents = " +fileContents);
     
     doc.Parse(contents);
     if (doc.Error())
@@ -2219,8 +2219,8 @@ std::vector<std::string> loader::loadTeamListFile(std::string fileName)  // load
     fileContents = convert->toString(contents);
 //#endif
 //    readFile(fileName.c_str(), &fileContents);
-    logMsg("barf");
-    logMsg("fileContents == " +fileContents);
+//    logMsg("barf");
+//    logMsg("fileContents == " +fileContents);
     static const char* xml = "<element/>";
     doc.Parse(contents);
     if (doc.Error())

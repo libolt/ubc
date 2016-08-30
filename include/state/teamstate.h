@@ -46,8 +46,8 @@ class teamState : public state, public teamData, public UBCBase
 {
 public:
 
-    teamState();
-    ~teamState();
+    teamState();  // constructor
+    ~teamState();  // destructor
 
 /*    int getTeamNumber();	// retrieves the value of teamNumber
     void setTeamNumber(int set);  // sets the value of teamNumber
@@ -210,7 +210,7 @@ private:
     size_t freeThrowsMade;  // stores the total number of free throws made.
 
     std::vector<size_t> playerID;  // stores the player IDs from the teams class
-    std::vector<size_t> activePlayerID;  // stores which players are currently on the court.
+    static std::vector<size_t> activePlayerID;  // stores which players are currently on the court.
 //        std::vector<int> activeID;
     std::vector<size_t> starterID;  // stores the IDs of which players are listed as starters.
 

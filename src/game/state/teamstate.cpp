@@ -36,8 +36,10 @@
 #include "ubcbase.h"
 
 // static declarations
+    std::vector<size_t> teamState::activePlayerID; 
 //static size_t teamState::teamID; 
-teamState::teamState()
+    
+teamState::teamState()  // constructor
 {
 
     //teamNumber = -1;
@@ -75,7 +77,7 @@ teamState::teamState()
 */
 }
 
-teamState::~teamState()
+teamState::~teamState()  // destructor
 {
 }
 
@@ -643,13 +645,17 @@ bool teamState::createPlayerInstances()
       
     logMsg("Creating players");
     
-    if (!getGameS()->getPlayerInstanceCreated())
+    if (getGameS()->getPlayerInstanceCreated())
+    {
+        logMsg("teamGamePlayerInstance created!");
+        logMsg("gamePlayerInstance size = " +convert->toString(gamePlayerInstance.size()));
+    }
+    else
     {
         logMsg("teamGamePlayerInstance not created!");
-        exit(0);
+        return (false);
     }
-    logMsg("gamePlayerInstance size = " +convert->toString(gamePlayerInstance.size()));
-    exit(0);
+//        exit(0);
 //    for (playerIT = playerInstance.begin(); playerIT != playerInstance.end(); ++playerIT)   // loops through playerID std::vector
     size_t id = -1; // stores id for steer
     size_t i = 0;
@@ -705,13 +711,14 @@ bool teamState::createPlayerInstances()
 //        logMsg("ID " +convert->toString(i) +" = " +convert->toString(playerID));
     logMsg("activePlayerID.size() = " +convert->toString(activePlayerID.size()));
 //    logMsg("playerID = " +convert->toString(activePlayerID[i]));
+    exit(0);
     size_t x = 0;
 
     logMsg("activePlayerInstance.size() = " +convert->toString(playerInstance.size()));
 
     bool IDMatch = false;
 //            for (size_t j=0;j<playerInstance.size();++j)
-    while (x<playerInstance.size())
+    while (x < playerInstance.size())
     {
         size_t i = 0;
 //        while (!IDMatch && x < playerInstance.size())

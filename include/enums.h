@@ -147,7 +147,7 @@
     enum courtSide_t {NOSIDE, RIGHTSIDE, LEFTSIDE };	// defines which side of the court the offensive team is on
 
     // GUI
-    enum activeMenus { MAIN, NETWORK, NETWORKCLIENT, NETWORKSERVER, OPTIONS, DISPLAY, INPUTMENU, AUDIO, GAMESETUP, PLAYERSTART, TEAMSELECT, COURTSELECT }; // stores which menu is set to active
+    enum activeMenus { NOACTIVEMENU, MAIN, NETWORK, NETWORKCLIENT, NETWORKSERVER, OPTIONS, DISPLAY, INPUTMENU, AUDIO, GAMESETUP, PLAYERSTART, TEAMSELECT, COURTSELECT }; // stores which menu is set to active
 
     // jump ball
     enum jumpBallLocations_t { NOLOCATION, CENTERCIRCLE, RIGHTKEYCIRCLE, LEFTKEYCIRCLE };

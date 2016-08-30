@@ -736,8 +736,8 @@ void GUISystem::playerStartSelected()  // process player start selection
 
 //    std::vector<boost::shared_ptr<teamState> >  activeTeamInstance = gameS->getActiveTeamInstance();
 
-    logMsg("S");
-//        exit(0);
+    logMsg("GUISystem::playerStartSelected");
+        exit(0);
     std::vector<std::string> team0Starters;
     std::vector<std::string> team1Starters;
     std::vector<size_t> starters; // used for initial creatio  of teamStarterID vector
@@ -843,7 +843,7 @@ void GUISystem::playerStartSelected()  // process player start selection
         activePlayerID.push_back(teamStarterID[0][x]);
         logMsg("activePlayerID = " +convert->toString(activePlayerID[x]));
     }
-    
+    exit(0);
     getGameS()->getActiveTeamInstance()[0]->setActivePlayerID(activePlayerID);
     if (!getGameS()->getActiveTeamInstance()[0]->getPlayerInstancesCreated())    // checks if playerInstances have been created
     {

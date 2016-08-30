@@ -139,38 +139,47 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         getGameS()->setTeamInstance(teamInstance);
     }
 */
-    logMsg ("addPlayerStartSelectionMenuData");
+//    logMsg ("addPlayerStartSelectionMenuData");
 //    exit(0);
-    if (!getGameS()->getPlayerInstanceCreated())
+
+    if (getGameS()->checkIfPlayerInstaneCreated())
     {
-        logMsg("player instances not yet created!");
-        if (getGameS()->createPlayerInstances())
-        {
-            
-            logMsg("player instances created!");
-            
-            getGameS()->setPlayerInstanceCreated(true);
-//            exit(0);
-       }
-        else
-        {
-            logMsg("player instances not created!");
-        }
-//        exit(0);
+        logMsg("gameS PlayerInstance Created!");
     }
+    else
+    {
+        logMsg("gameS PlayerInstance NOT Created!");
+        exit(0);
+    }
+    exit(0);
+ 
 //    exit(0);
     logMsg("teamInstance.size() == " +convert->toString(teamInstance.size()));
-//    exit(0);
+    
     logMsg("Team 0 player instances created ==  " +convert->toString(teamInstance[teamIDs[0]]->getPlayerInstancesCreated()));
-    if (!teamInstance[teamIDs[0]]->getPlayerInstancesCreated())
+//    exit(0);
+    if (teamInstance[teamIDs[0]]->getPlayerInstancesCreated())
+    {
+        logMsg("Team 0 player instances created!");
+    }
+    else
     {
         logMsg("Creating Team 0 player instances!");
 //        exit(0);
-        teamInstance[teamIDs[0]]->createPlayerInstances();
-//        exit(0);
-        getGameS()->setTeamInstance(teamInstance);
+        if (teamInstance[teamIDs[0]]->createPlayerInstances())
+        {
+//            exit(0);
+            logMsg("Team 0 player instances created successfully!");
+
+            getGameS()->setTeamInstance(teamInstance);
+        }
+        else
+        {
+            logMsg("Unable to createTeam 0 player instances!");
+            exit(0);
+        }
     }
-//    exit(0);
+    exit(0);
     if (!teamInstance[teamIDs[1]]->getPlayerInstancesCreated())
     {
         teamInstance[teamIDs[1]]->createPlayerInstances();
@@ -526,8 +535,13 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     }
 */
     logMsg("GUI ADD TEAMteamInstance.size() == " +convert->toString(teamInstance.size()));
-    logMsg("GUI ADD TEAM teamInstance[4]->getID() ID == " +convert->toString(teamInstance[4]->getID()));
-    logMsg("GUI ADD TEAM getGameS()->getTeamInstance()[4]->getID() ID == " +convert->toString(getGameS()->getTeamInstance()[4]->getID()));
+    int x = 0;
+    while (x < teamInstance.size())
+    {
+        logMsg("GUI ADD TEAM teamInstance[" +convert->toString(x) +"]->getID() ID == " +convert->toString(teamInstance[x]->getID()));
+        ++x;
+    }
+     logMsg("GUI ADD TEAM getGameS()->getTeamInstance()[4]->getID() ID == " +convert->toString(getGameS()->getTeamInstance()[4]->getID()));
 //    exit(0);
     if (getGameS()->getTeamInstancesCreated())
     {        

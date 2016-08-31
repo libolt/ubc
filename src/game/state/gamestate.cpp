@@ -1225,6 +1225,8 @@ bool gameState::processInput()  // processes input received from the inputState 
 // These functions check if an object has been created and attmpt to do so if not
 bool gameState::checkIfPlayerInstanceCreated()  // check if playerInstance object has been created and loaded
 {
+    boost::shared_ptr<conversion> convert = conversion::Instance();
+
     if (getPlayerInstanceCreated())
     {
         if (getPlayerInstance().size() > 0)
@@ -1235,12 +1237,13 @@ bool gameState::checkIfPlayerInstanceCreated()  // check if playerInstance objec
         else
         {
             logMsg("player instances not yet created!");
-            if (getGameS()->createPlayerInstances())
+            if (createPlayerInstances())
             {
             
                 logMsg("player instances created!");
             
-                getGameS()->setPlayerInstanceCreated(true);
+                setPlayerInstanceCreated(true);
+                return (true);
 //            exit(0);
             }
             else
@@ -1253,7 +1256,22 @@ bool gameState::checkIfPlayerInstanceCreated()  // check if playerInstance objec
     }
     else
     {
-        return (false);
+        logMsg("player instances not yet created!");
+        if (createPlayerInstances())
+        {
+
+            logMsg("player instances created!");
+
+            setPlayerInstanceCreated(true);
+            return (true);
+//            exit(0);
+        }
+        else
+        {
+            logMsg("player instances not created!");
+            exit(0);
+        }
+//        return (false);
     }
     return (true);
 }

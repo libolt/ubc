@@ -53,8 +53,6 @@ UBC::UBC()  // constructor
 //    GUISystem *tempGUIObj = new GUISystem;
     boost::shared_ptr<GUISystem> tempGUISharedPtr(new GUISystem);
     gui = tempGUISharedPtr;
-    
-    
 }
 
 UBC::~UBC()  // destructor
@@ -115,17 +113,18 @@ void UBC::executeState()  // executes the UBC game code
 void UBC::run()  // runs the game
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-
-    
+    exit(0);
+    boost::shared_ptr<renderEngine> renderTemp = getGameE()->getRenderE();
+    exit(0);
     getGameE()->getRenderE()->initSDL(); // Initializes the SDL Subsystem
-//    exit(0);
+    exit(0);
     getGameE()->getRenderE()->initOgre(); // Initializes the Ogre Subsystem
 //    exit(0);
     getGameE()->getRenderE()->createScene(); // creates rendering scene.
 
 //    boost::shared_ptr<entity> gameStateSharedPtr(new entity);
 
-//    exit(0);
+    exit(0);
 
     logMsg("pre setupState!");
     if (setupState())  // sets up the game state
@@ -592,14 +591,14 @@ int main(int argc, char *argv[])
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<UBC> ubc;
-    boost::shared_ptr<UBC> ubc(new UBC);
+    boost::shared_ptr<UBC> ubc; //(new UBC);
 //    boost::shared_ptr<renderEngine> render = ubc.getRenderE();
 //    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 //    boost::shared_ptr<GUISystem> gui = ubc.getGui();
-
+//    exit(0);
     ubc->run();
-
+    exit(0);
     logMsg("End Game!");
 
 //    atexit(SDL_Quit);

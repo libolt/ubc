@@ -328,6 +328,7 @@ Ogre::DataStreamPtr renderEngine::openAPKFile(const Ogre::String& fileName)
 
 bool renderEngine::initSDL() // Initializes SDL Subsystem
 {
+    exit(0);
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
 	{
         fprintf(stderr,

@@ -142,7 +142,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 //    logMsg ("addPlayerStartSelectionMenuData");
 //    exit(0);
 
-    if (getGameS()->checkIfPlayerInstaneCreated())
+    if (getGameS()->checkIfPlayerInstanceCreated())
     {
         logMsg("gameS PlayerInstance Created!");
     }

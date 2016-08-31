@@ -88,7 +88,7 @@ public:
     void setYOffset(float set);  // sets the value of yOffset
 
     
-    boost::shared_ptr<renderEngine> getRenderE();  // retrieves the value of render
+    static boost::shared_ptr<renderEngine> getRenderE();  // retrieves the value of render
     void setRenderE(boost::shared_ptr<renderEngine> set);  // sets the value of render
     
     boost::shared_ptr<inputEngine> getInputE();  // retrieves the value of input
@@ -115,7 +115,7 @@ private:
     //static gameEngine *pInstance;
 //    static boost::shared_ptr<gameEngine> pInstance;
 
-     boost::shared_ptr<renderEngine> renderE;  // render object
+     static boost::shared_ptr<renderEngine> renderE;  // render object
      boost::shared_ptr<inputEngine> inputE;  // input object
      boost::shared_ptr<networkEngine> networkE;  // network object    
 

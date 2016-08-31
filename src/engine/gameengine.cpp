@@ -59,6 +59,9 @@ boost::shared_ptr<gameEngine> gameEngine::Instance()
 }
 */
 
+// static declarations
+boost::shared_ptr<renderEngine> gameEngine::renderE;
+
 gameEngine::gameEngine()  // constructor
 //    : player[0](0),
  // playerNode[0](0)
@@ -100,6 +103,7 @@ gameEngine::gameEngine()  // constructor
     boost::shared_ptr<inputEngine> tempInputSharedPtr(new inputEngine);
     inputE = tempInputSharedPtr;
 
+//    exit(0);
 
 }
 

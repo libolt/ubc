@@ -591,7 +591,7 @@ int main(int argc, char *argv[])
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<UBC> ubc;
-    static boost::shared_ptr<UBC> ubc;
+    static boost::shared_ptr<UBC> ubc(new UBC);
 //    boost::shared_ptr<renderEngine> render = ubc.getRenderE();
 //    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();

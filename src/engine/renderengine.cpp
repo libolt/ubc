@@ -38,20 +38,11 @@
 #include "OgreDDSCodec.h"
 #include "OgreFreeImageCodec.h"
 
+#include "OgreRenderWindow.h"
 
 #ifndef OGRE_PLUGIN_DIR
 #define OGRE_PLUGIN_DIRr
 #endif
-/*renderEngine* renderEngine::pInstance = 0;
-renderEngine* renderEngine::Instance()
-{
-    if (pInstance == 0)  // is it the first call?
-    {
-        pInstance = new renderEngine; // create sole instance
-    }
-    return pInstance; // address of sole instance
-}
-*/
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     android_app *renderEngine::app;
@@ -59,6 +50,8 @@ renderEngine* renderEngine::Instance()
     AConfiguration *renderEngine::config;
 #endif
 
+
+// static declarations
 int renderEngine::instance;
 SDL_Window *renderEngine::sdlWindow;
 SDL_SysWMinfo renderEngine::sysInfo; 
@@ -97,10 +90,11 @@ renderEngine::renderEngine()
 	mAssetMgr = NULL;
 	mSceneMgr = NULL;
 #endif
-   mWindow = NULL;
-   RERoot = NULL;
+//    boost::shared_ptr<Ogre::RenderWindow> tempWindow(new Ogre::RenderWindow);
+    mWindow = NULL;
+    RERoot = NULL;
    
-   instance = 0;
+    instance = 0;
 //   windowWidth = 0;
 //   windowHeight = 0;
 }
@@ -594,7 +588,7 @@ bool renderEngine::createScene()
 //    exit(0);
 	logMsg("Hello??");
 //    exit(0);
-    mWindow =  RERoot->createRenderWindow("Ultimate Basketball Challenge", 0, 0, false, &misc);
+    mWindow = RERoot->createRenderWindow("Ultimate Basketball Challenge", 0, 0, false, &misc);
 
 //    exit(0);
     logMsg("renderWindow created!");

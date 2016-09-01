@@ -452,8 +452,8 @@ bool GUISystem::initMyGUI()  // Initializes MyGUI
 //#endif
 
     logMsg("Crash??");
-    boost::shared_ptr<MyGUI::Gui> tempGUI(new MyGUI::Gui());
-    mGUI = tempGUI;
+//    boost::shared_ptr<MyGUI::Gui> tempGUI(new MyGUI::Gui());
+//    mGUI = tempGUI;
     logMsg("Crash???");
     mGUI->initialise();
     logMsg("*** MyGUI Initialized ***");

@@ -32,7 +32,7 @@ inputInGameWorkQueues inputState::inputInGameWorkQueue;
 
 inputState::inputState()  // constructor
 {
-    boost::shared_ptr<loader> load;
+    boost::shared_ptr<loader> load(new loader);
 
     boost::shared_ptr<inputEngine> tempInputSharedPtr(new inputEngine);
     inputE = tempInputSharedPtr;

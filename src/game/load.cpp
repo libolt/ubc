@@ -83,6 +83,10 @@ loader::loader()  // constructor
 //      exit(0);
 }
 
+loader::~loader()  // destructor
+{
+}
+
 std::vector<std::string> loader::getBasketballFiles()  // retrieves the value of basketballFiles
 {
     return (basketballFiles);

@@ -51,9 +51,9 @@ class userInput;
 class loader
 {
 public:
-    //static loader *Instance();
-//    static boost::shared_ptr<loader> Instance();
 
+    loader();  // constructor
+    ~loader(); // destructor   
     std::vector<std::string> pathSplit(const std::string paths);
     std::string findFile(std::string fileName);
 //	string * pathArray;
@@ -157,7 +157,7 @@ public:
 
     
 protected:
-    loader();
+//    loader();
 //    loader(const loader&);
 //    loader& operator= (const loader&);
 

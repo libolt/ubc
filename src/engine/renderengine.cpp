@@ -402,6 +402,8 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 	//    GUISystem *gui = GUISystem::Instance();
 	//    SoundSystem *sound = SoundSystem::Instance();
 
+    boost::shared_ptr<conversion> convert = conversion::Instance();
+
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
     winHandle = Ogre::StringConverter::toString((unsigned long int)sysInfo.info.win.window);
 #elif OGRE_PLATFORM == OGRE_PLATFORM_LINUX
@@ -459,7 +461,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 	RERoot->loadPlugin("RenderSystem_GL");
 #else
     RERoot->loadPlugin(pluginDir + "/RenderSystem_GL_d");
-	RERoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager");
+    RERoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager");
 #endif
 //    exit(0);
 
@@ -486,7 +488,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 		c++; // <-- oh how clever
 		logMsg(Ogre::StringConverter::toString(c++));
 	}
-
+//    exit(0);
 	//we found it, we might as well use it!
     RERoot->setRenderSystem(selectedRenderSystem);
 #endif
@@ -504,15 +506,20 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 
     logMsg("OGRE initialized successfully!");
 //    exit(0);
-	return true;
+
+/*    logMsg("winHandle = " +winHandle);
+
+    //    exit(0);
+                misc["externalWindowHandle"] = winHandle;
+                //      misc["externalGLContext"] = Ogre::StringConverter::toString((unsigned long)SDL_GL_GetCurrentContext());
+                //    exit(0);
+                        logMsg("Hello??");
+                        //    exit(0);
+                            mWindow = RERoot->createRenderWindow("Ultimate Basketball Challenge", 0, 0, false, &misc);
+    exit(0);
+*/
+    return true;
 }
-
-bool renderEngine::createWindow()
-{
-	return true;
-}
-
-
 
 bool renderEngine::createScene()
 {
@@ -817,6 +824,11 @@ bool renderEngine::createScene()
   //  gameE->startGame();
 return (true);
 }
+
+//bool renderEngine::createScene()
+//{
+//    return (true);
+//}
 
 bool renderEngine::renderFrame()  // renders a frame to the screen
 {

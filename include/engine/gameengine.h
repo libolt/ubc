@@ -88,7 +88,7 @@ public:
     void setYOffset(float set);  // sets the value of yOffset
 
     
-    static boost::shared_ptr<renderEngine> getRenderE();  // retrieves the value of render
+    boost::shared_ptr<renderEngine> getRenderE();  // retrieves the value of render
     void setRenderE(boost::shared_ptr<renderEngine> set);  // sets the value of render
     
     boost::shared_ptr<inputEngine> getInputE();  // retrieves the value of input

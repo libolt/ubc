@@ -216,7 +216,7 @@ boost::shared_ptr<renderEngine> gameEngine::getRenderE()  // retrieves the value
 }
 void gameEngine::setRenderE(boost::shared_ptr<renderEngine> set)  // sets the value of renderE
 {
-    renderE = set;
+//    renderE = set;
 }
 boost::shared_ptr<inputEngine> gameEngine::getInputE()  // retrieves the value of inputE
 {

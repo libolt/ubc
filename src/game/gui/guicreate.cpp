@@ -44,7 +44,7 @@ bool GUISystem::createMainMenuGUI()  // creates the main menu gui
 {
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
-
+    
     if (getGameE()->getRenderE()->getViewPort()->getActualHeight() >= 1000)
     {
         logMsg("Height greater than 1000!");
@@ -56,6 +56,7 @@ bool GUISystem::createMainMenuGUI()  // creates the main menu gui
         MyGUI::FontManager::getInstance().setDefaultFont("LuxiBoldFont_16");
 
     }
+    
 //    exit(0);
     
     logMsg("Loading MainMenu layout");
@@ -69,10 +70,13 @@ bool GUISystem::createMainMenuGUI()  // creates the main menu gui
     startSingleGameButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::startSingleGameButtonClicked);
 //    exit(0);
     startSingleGameButton->setStateSelected(true);
+//    exit(0);
     MyGUI::InputManager::getInstance().setKeyFocusWidget(startSingleGameButton.get());
+//    exit(0);
     startSingleGameButton->setPosition((0.3 *getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.1 *getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
     startSingleGameButton->setSize((0.4 *getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
     startSingleGameButton->setVisible(false);
+//    exit(0);
     startMultiGameButton = boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("startMultiGameButton"));
 //    exit(0);
     startMultiGameButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::startMultiGameButtonClicked);
@@ -95,8 +99,11 @@ bool GUISystem::createMainMenuGUI()  // creates the main menu gui
     exitButton->setPosition((0.3 *getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.22 *getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
     exitButton->setSize((0.4 *getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
     exitButton->setVisible(false);
+//    exit(0);
     mainMenuCreated = true;
+//    exit(0);
     menuActive = true;
+//    exit(0);
     activeMenu = MAIN;
 //    exit(0);
     return true;

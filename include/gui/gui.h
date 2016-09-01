@@ -296,96 +296,96 @@ private:
     static boost::shared_ptr<MyGUI::OgrePlatform> mPlatform;  // The MyGUI Platform object
 
     // button widgets
-    boost::shared_ptr<MyGUI::Button> exitButton;
+    static boost::shared_ptr<MyGUI::Button> exitButton;
     static boost::shared_ptr<MyGUI::Button> startSingleGameButton;
-    boost::shared_ptr<MyGUI::Button> startMultiGameButton;
-    boost::shared_ptr<MyGUI::Button> optionsButton;
-    boost::shared_ptr<MyGUI::Button> serverButton;
-    boost::shared_ptr<MyGUI::Button> clientButton;
+    static boost::shared_ptr<MyGUI::Button> startMultiGameButton;
+    static boost::shared_ptr<MyGUI::Button> optionsButton;
+    static boost::shared_ptr<MyGUI::Button> serverButton;
+    static boost::shared_ptr<MyGUI::Button> clientButton;
     
-    boost::shared_ptr<MyGUI::Button> backMainMenuButton;
-    boost::shared_ptr<MyGUI::Button> backNetworkSetupButton;
-    boost::shared_ptr<MyGUI::Button> displayButton;
-    boost::shared_ptr<MyGUI::Button> inputButton;
-    boost::shared_ptr<MyGUI::Button> audioButton;
-    boost::shared_ptr<MyGUI::Button> team0SelectButton;
-    boost::shared_ptr<MyGUI::Button> team1SelectButton;
-    boost::shared_ptr<MyGUI::Button> startGameButton;
-    boost::shared_ptr<MyGUI::Button> backNetworkClientButton;
-    boost::shared_ptr<MyGUI::Button> changeResolutionButton;
-    boost::shared_ptr<MyGUI::Button> changeInputTypeButton;
-    boost::shared_ptr<MyGUI::Button> enableAudioButton;
-    boost::shared_ptr<MyGUI::Button> disableAudioButton;
-    boost::shared_ptr<MyGUI::Button> backOptionsMenuButton;
-    boost::shared_ptr<MyGUI::Button> backGameSetupMenuButton;
-    boost::shared_ptr<MyGUI::Button> backTeamSelectionMenuButton;
-    boost::shared_ptr<MyGUI::Button> backCourtSelectionMenuButton;
-    boost::shared_ptr<MyGUI::Button> teamsSelectedButton;
+    static boost::shared_ptr<MyGUI::Button> backMainMenuButton;
+    static boost::shared_ptr<MyGUI::Button> backNetworkSetupButton;
+    static boost::shared_ptr<MyGUI::Button> displayButton;
+    static boost::shared_ptr<MyGUI::Button> inputButton;
+    static boost::shared_ptr<MyGUI::Button> audioButton;
+    static boost::shared_ptr<MyGUI::Button> team0SelectButton;
+    static boost::shared_ptr<MyGUI::Button> team1SelectButton;
+    static boost::shared_ptr<MyGUI::Button> startGameButton;
+    static boost::shared_ptr<MyGUI::Button> backNetworkClientButton;
+    static boost::shared_ptr<MyGUI::Button> changeResolutionButton;
+    static boost::shared_ptr<MyGUI::Button> changeInputTypeButton;
+    static boost::shared_ptr<MyGUI::Button> enableAudioButton;
+    static boost::shared_ptr<MyGUI::Button> disableAudioButton;
+    static boost::shared_ptr<MyGUI::Button> backOptionsMenuButton;
+    static boost::shared_ptr<MyGUI::Button> backGameSetupMenuButton;
+    static boost::shared_ptr<MyGUI::Button> backTeamSelectionMenuButton;
+    static boost::shared_ptr<MyGUI::Button> backCourtSelectionMenuButton;
+    static boost::shared_ptr<MyGUI::Button> teamsSelectedButton;
     
     // Player Start Selection Menu
-    boost::shared_ptr<MyGUI::Button> team0StartingLineupSetButton;
-    boost::shared_ptr<MyGUI::Button> team1StartingLineupSetButton;
-    boost::shared_ptr<MyGUI::Button> startingLineupsSetButton;
+    static boost::shared_ptr<MyGUI::Button> team0StartingLineupSetButton;
+    static boost::shared_ptr<MyGUI::Button> team1StartingLineupSetButton;
+    static boost::shared_ptr<MyGUI::Button> startingLineupsSetButton;
     
     // listbox widgets
-    boost::shared_ptr<MyGUI::ListBox> team0SelectBox;
-    boost::shared_ptr<MyGUI::ListBox> team1SelectBox;
+    static boost::shared_ptr<MyGUI::ListBox> team0SelectBox;
+    static boost::shared_ptr<MyGUI::ListBox> team1SelectBox;
 
     // Network Server Setup Widgets
-    boost::shared_ptr<MyGUI::ListBox> numClientsSelectBox;  // allows you to select the number of network players
-    boost::shared_ptr<MyGUI::Button> serverHostButton;
-    boost::shared_ptr<MyGUI::EditBox> serverIPAddressBox;
+    static boost::shared_ptr<MyGUI::ListBox> numClientsSelectBox;  // allows you to select the number of network players
+    static boost::shared_ptr<MyGUI::Button> serverHostButton;
+    static boost::shared_ptr<MyGUI::EditBox> serverIPAddressBox;
     
     // Network Client Setup Widgets
-    boost::shared_ptr<MyGUI::EditBox> clientIPAddressBox;
-    boost::shared_ptr<MyGUI::Button> clientConnectButton;
+    static boost::shared_ptr<MyGUI::EditBox> clientIPAddressBox;
+    static boost::shared_ptr<MyGUI::Button> clientConnectButton;
     
-    boost::shared_ptr<MyGUI::ListBox> team0Player1SelectBox;
-    boost::shared_ptr<MyGUI::ListBox> team0Player2SelectBox;
-    boost::shared_ptr<MyGUI::ListBox> team0Player3SelectBox;
-    boost::shared_ptr<MyGUI::ListBox> team0Player4SelectBox;
-    boost::shared_ptr<MyGUI::ListBox> team0Player5SelectBox;
-    boost::shared_ptr<MyGUI::ListBox> team1Player1SelectBox;
-    boost::shared_ptr<MyGUI::ListBox> team1Player2SelectBox;
-    boost::shared_ptr<MyGUI::ListBox> team1Player3SelectBox;
-    boost::shared_ptr<MyGUI::ListBox> team1Player4SelectBox;
-    boost::shared_ptr<MyGUI::ListBox> team1Player5SelectBox;
+    static boost::shared_ptr<MyGUI::ListBox> team0Player1SelectBox;
+    static boost::shared_ptr<MyGUI::ListBox> team0Player2SelectBox;
+    static boost::shared_ptr<MyGUI::ListBox> team0Player3SelectBox;
+    static boost::shared_ptr<MyGUI::ListBox> team0Player4SelectBox;
+    static boost::shared_ptr<MyGUI::ListBox> team0Player5SelectBox;
+    static boost::shared_ptr<MyGUI::ListBox> team1Player1SelectBox;
+    static boost::shared_ptr<MyGUI::ListBox> team1Player2SelectBox;
+    static boost::shared_ptr<MyGUI::ListBox> team1Player3SelectBox;
+    static boost::shared_ptr<MyGUI::ListBox> team1Player4SelectBox;
+    static boost::shared_ptr<MyGUI::ListBox> team1Player5SelectBox;
     
     
     // Player Selection Menu widgets
-    boost::shared_ptr<MyGUI::ListBox> team0PGSelectBox;
-    boost::shared_ptr<MyGUI::ListBox> team0SGSelectBox;
-    boost::shared_ptr<MyGUI::ListBox> team0SFSelectBox;
-    boost::shared_ptr<MyGUI::ListBox> team0PFSelectBox;
-    boost::shared_ptr<MyGUI::ListBox> team0CSelectBox;
+    static boost::shared_ptr<MyGUI::ListBox> team0PGSelectBox;
+    static boost::shared_ptr<MyGUI::ListBox> team0SGSelectBox;
+    static boost::shared_ptr<MyGUI::ListBox> team0SFSelectBox;
+    static boost::shared_ptr<MyGUI::ListBox> team0PFSelectBox;
+    static boost::shared_ptr<MyGUI::ListBox> team0CSelectBox;
 
-    boost::shared_ptr<MyGUI::ListBox> team1PGSelectBox;
-    boost::shared_ptr<MyGUI::ListBox> team1SGSelectBox;
-    boost::shared_ptr<MyGUI::ListBox> team1SFSelectBox;
-    boost::shared_ptr<MyGUI::ListBox> team1PFSelectBox;
-    boost::shared_ptr<MyGUI::ListBox> team1CSelectBox;
+    static boost::shared_ptr<MyGUI::ListBox> team1PGSelectBox;
+    static boost::shared_ptr<MyGUI::ListBox> team1SGSelectBox;
+    static boost::shared_ptr<MyGUI::ListBox> team1SFSelectBox;
+    static boost::shared_ptr<MyGUI::ListBox> team1PFSelectBox;
+    static boost::shared_ptr<MyGUI::ListBox> team1CSelectBox;
 
-    boost::shared_ptr<MyGUI::TextBox> team0PGRating;
-    boost::shared_ptr<MyGUI::TextBox> team0SGRating;
-    boost::shared_ptr<MyGUI::TextBox> team0SFRating;
-    boost::shared_ptr<MyGUI::TextBox> team0PFRating;
-    boost::shared_ptr<MyGUI::TextBox> team0CRating;
+    static boost::shared_ptr<MyGUI::TextBox> team0PGRating;
+    static boost::shared_ptr<MyGUI::TextBox> team0SGRating;
+    static boost::shared_ptr<MyGUI::TextBox> team0SFRating;
+    static boost::shared_ptr<MyGUI::TextBox> team0PFRating;
+    static boost::shared_ptr<MyGUI::TextBox> team0CRating;
 
-    boost::shared_ptr<MyGUI::TextBox> team1PGRating;
-    boost::shared_ptr<MyGUI::TextBox> team1SGRating;
-    boost::shared_ptr<MyGUI::TextBox> team1SFRating;
-    boost::shared_ptr<MyGUI::TextBox> team1PFRating;
-    boost::shared_ptr<MyGUI::TextBox> team1CRating;
+    static boost::shared_ptr<MyGUI::TextBox> team1PGRating;
+    static boost::shared_ptr<MyGUI::TextBox> team1SGRating;
+    static boost::shared_ptr<MyGUI::TextBox> team1SFRating;
+    static boost::shared_ptr<MyGUI::TextBox> team1PFRating;
+    static boost::shared_ptr<MyGUI::TextBox> team1CRating;
 
-    boost::shared_ptr<MyGUI::ImageBox> team0Logo;
-    boost::shared_ptr<MyGUI::ImageBox> team1Logo;
+    static boost::shared_ptr<MyGUI::ImageBox> team0Logo;
+    static boost::shared_ptr<MyGUI::ImageBox> team1Logo;
 	
     // Court selection menu widgets
-    boost::shared_ptr<MyGUI::Button> backPlayerStartSelectionMenuButton;
-    boost::shared_ptr<MyGUI::Button> courtSelectButton;
-    boost::shared_ptr<MyGUI::ListBox> courtSelectBox;  
-    boost::shared_ptr<MyGUI::ImageBox> courtPreviewImgBox;
-    boost::shared_ptr<MyGUI::TextBox> courtNameTxtBox;
+    static boost::shared_ptr<MyGUI::Button> backPlayerStartSelectionMenuButton;
+    static boost::shared_ptr<MyGUI::Button> courtSelectButton;
+    static boost::shared_ptr<MyGUI::ListBox> courtSelectBox;  
+    static boost::shared_ptr<MyGUI::ImageBox> courtPreviewImgBox;
+    static boost::shared_ptr<MyGUI::TextBox> courtNameTxtBox;
 
     // OGRE specific code
 /*    boost::shared_ptr<renderEngine> render;  // stores a copy of the render object for use in the gui
@@ -396,37 +396,37 @@ private:
 */
 
 	// booleans
-    bool setupComplete;  // determinrs if the gui has been properly setup.
+    static bool setupComplete;  // determinrs if the gui has been properly setup.
     static bool mainMenuCreated;   // determines whether the main menu gui has been created
-    bool backButtonsCreated;  // determines whether the back buttons have been created
-    bool networkSetupMenuCreated;   // determines whether the network setup gui has been created
-    bool networkServerSetupMenuCreated;   // determines whether the network server setup gui has been created
-    bool networkClientSetupMenuCreated;   // determines whether the network client setup gui has been created
-    bool optionsMenuCreated;   // determines whether the options menu gui has been created
-    bool displaySetupMenuCreated;   // determines whether the display settings menu gui has been created
-    bool inputSetupMenuCreated;   // determines whether the input settings menu gui has been created
-    bool audioSetupMenuCreated;   // determines whether the audio settings menu gui has been created
-    bool gameSetupMenuCreated;  // determines whether the game setup menu gui has been created
-    bool playerStartSelectionMenuCreated;  // determines whether the player start selection menu gui has been created
-    bool teamSelectionMenuCreated;  // determines whether the team selection menu gui has been created
-    bool teamSelectionMenuDataAdded;  // determines whether teeam data has been added to the the team selection menu
-    bool courtSelectionMenuCreated;  // deteemines whether the court selection menu has been created;
-    bool menuActive;  // stores whether a menu is being diplayed
-    bool gameSetupMenuAwaySelected;  // determines whether the away team listbox is selected;
-    bool gameSetupMenuHomeSelected;  // determines whether the home team listbox is selected;
-    bool courtSelectionDataLoaded;  // determines whether court names have been added to the select box
+    static bool backButtonsCreated;  // determines whether the back buttons have been created
+    static bool networkSetupMenuCreated;   // determines whether the network setup gui has been created
+    static bool networkServerSetupMenuCreated;   // determines whether the network server setup gui has been created
+    static bool networkClientSetupMenuCreated;   // determines whether the network client setup gui has been created
+    static bool optionsMenuCreated;   // determines whether the options menu gui has been created
+    static bool displaySetupMenuCreated;   // determines whether the display settings menu gui has been created
+    static bool inputSetupMenuCreated;   // determines whether the input settings menu gui has been created
+    static bool audioSetupMenuCreated;   // determines whether the audio settings menu gui has been created
+    static bool gameSetupMenuCreated;  // determines whether the game setup menu gui has been created
+    static bool playerStartSelectionMenuCreated;  // determines whether the player start selection menu gui has been created
+    static bool teamSelectionMenuCreated;  // determines whether the team selection menu gui has been created
+    static bool teamSelectionMenuDataAdded;  // determines whether teeam data has been added to the the team selection menu
+    static bool courtSelectionMenuCreated;  // deteemines whether the court selection menu has been created;
+    static bool menuActive;  // stores whether a menu is being diplayed
+    static bool gameSetupMenuAwaySelected;  // determines whether the away team listbox is selected;
+    static bool gameSetupMenuHomeSelected;  // determines whether the home team listbox is selected;
+    static bool courtSelectionDataLoaded;  // determines whether court names have been added to the select box
     
-    activeMenus activeMenu;  // stores which menu is being displayed
-    activeMenus previousActiveMenu;  // stores which menu was last displayed
+    static activeMenus activeMenu;  // stores which menu is being displayed
+    static activeMenus previousActiveMenu;  // stores which menu was last displayed
 
-    std::vector< std::vector<std::string> > playerNames;
-    std::vector< std::vector<std::string> > playerPositionsPlayed;
-    std::vector< std::vector<size_t> > playerIDs;  // stores player IDs for each team
-    std::vector< std::vector<size_t> > team0IDs;
-    std::vector< std::vector<size_t> > team1IDs;
-    std::vector< std::vector<size_t> > teamStarterID; // stores the selected starters for each team 
+    static std::vector< std::vector<std::string> > playerNames;
+    static std::vector< std::vector<std::string> > playerPositionsPlayed;
+    static std::vector< std::vector<size_t> > playerIDs;  // stores player IDs for each team
+    static std::vector< std::vector<size_t> > team0IDs;
+    static std::vector< std::vector<size_t> > team1IDs;
+    static std::vector< std::vector<size_t> > teamStarterID; // stores the selected starters for each team 
 
-    size_t displayCount;
+    static size_t displayCount;
 };
 
 #endif // GUI_H_INCLUDED

@@ -437,7 +437,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
     RERoot->loadPlugin("RenderSystem_GL");
 #else
     RERoot->loadPlugin(pluginDir + "/RenderSystem_GL_d");
-    RERoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager");
+//    RERoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager");
 #endif
 //    exit(0);
 
@@ -456,7 +456,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
     {
         selectedRenderSystem = rsList.at(c);
         std::string rname = selectedRenderSystem->getName();
-        if (rname.compare("OpenGL Rendering Subsystem") == 0)
+	if (rname.compare("OpenGL Rendering Subsystem") == 0)
         {
             foundit = true;
             break;
@@ -466,12 +466,27 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
     }
 //    exit(0);
 	//we found it, we might as well use it!
-    RERoot->setRenderSystem(selectedRenderSystem);
+    if (foundit)
+    {
+        RERoot->setRenderSystem(selectedRenderSystem);
+    }
+    else
+    {
+        logMsg("renersystem not found!");
+	exit(0);
+    }
 #endif
     
     
-    mWindow = RERoot->initialise(false, "Ultimate Basketball Challenge");
+    mWindow = RERoot->initialise(false);
+
+    misc["externalWindowHandle"] = winHandle;
+//    misc["externalGLContext"] = convert->toString((unsigned long)SDL_GL_GetCurrentContext());
 //    exit(0);
+    logMsg("Hello??");
+//    exit(0);
+    mWindow = RERoot->createRenderWindow("Ultimate Basketball Challenge", 0, 0, false, &misc);
+    exit(0);
     Ogre::DDSCodec::startup();
     
     Ogre::FreeImageCodec::startup();

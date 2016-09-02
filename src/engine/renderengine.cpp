@@ -280,7 +280,7 @@ void renderEngine::setWindowHeight(uint32_t set)  // sets the value of windowHei
 */
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-Ogre::DataStreamPtr renderEngine::openAPKFile(const Ogre::String& fileName)
+Ogre::DataStreamPtr renderEngine::openAPKFile(const std::string& fileName)
 {
     struct android_app* app;
 	Ogre::DataStreamPtr stream;
@@ -322,17 +322,15 @@ Ogre::DataStreamPtr renderEngine::openAPKFile(const Ogre::String& fileName)
 
 bool renderEngine::initSDL() // Initializes SDL Subsystem
 {
+    boost::shared_ptr<conversion> convert = conversion::Instance();
 //    exit(0);
-	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
-	{
-        fprintf(stderr,
-                "\nUnable to initialize SDL:  %s\n",
-                SDL_GetError()
-               );
+    if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
+    {
+        logMsg("Unable to initialize SDL: " +convert->toString(SDL_GetError()));
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 
 //        __android_log_print(ANDROID_LOG_DEBUG, "com.libolt.ubc", "SDL Error = %s", SDL_GetError());
-        Ogre::String msg = "SDL Error = " +Ogre::StringConverter::toString(SDL_GetError());
+	std::string msg = "SDL Error = " +convert->toString(SDL_GetError());
         logMsg(msg);
 #endif
 
@@ -378,36 +376,14 @@ bool renderEngine::initSDL() // Initializes SDL Subsystem
 	return true;
 }
 
-/*    sdlWindow = SDL_CreateWindow("Ultimate Basketball Challenge",
-                               SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 0, 0, 0);
-*/
-//    winHandle =  Ogre::StringConverter::toString((unsigned long)native_window);
-//    sdlWindow = SDL_CreateWindowFrom(app->window);
-
-/*    sdlWindow = SDL_CreateWindow("Ultimate Basketball Challenge", SDL_WINDOWPOS_UNDEFINED,
-                                 SDL_WINDOWPOS_UNDEFINED, 0, 0, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN);
-
-
-    sdlWindow = SDL_CreateWindow("Ultimate Basketball Challenge", SDL_WINDOWPOS_UNDEFINED,
-                                 SDL_WINDOWPOS_UNDEFINED, 0, 0, SDL_WINDOW_INPUT_GRABBED | SDL_WINDOW_OPENGL | SDL_WINDOW_INPUT_FOCUS | SDL_WINDOW_MOUSE_FOCUS | SDL_WINDOW_SHOWN);
-*/
-//  sdlGLContext = SDL_GL_CreateContext(sdlWindow);
-//    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 0);
-
-//    SDL_SetWindowGrab(sdlWindow, SDL_TRUE);
-//    SDL_SetRelativeMouseMode(SDL_TRUE);
-
 bool renderEngine::initOgre() // Initializes Ogre Subsystem
 {
-	//    GUISystem *gui = GUISystem::Instance();
-	//    SoundSystem *sound = SoundSystem::Instance();
-
     boost::shared_ptr<conversion> convert = conversion::Instance();
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
-    winHandle = Ogre::StringConverter::toString((unsigned long int)sysInfo.info.win.window);
+    winHandle = convert->toString((unsigned long int)sysInfo.info.win.window);
 #elif OGRE_PLATFORM == OGRE_PLATFORM_LINUX
-    winHandle = Ogre::StringConverter::toString((unsigned long)sysInfo.info.x11.window);
+    winHandle = convert->toString((unsigned long)sysInfo.info.x11.window);
 #elif OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     JNIEnv* env = (JNIEnv*)SDL_AndroidGetJNIEnv();
 
@@ -415,22 +391,22 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
     jmethodID method_get_native_surface = env->GetStaticMethodID(class_sdl_activity, "getNativeSurface", "()Landroid/view/Surface;");
     jobject raw_surface = env->CallStaticObjectMethod(class_sdl_activity, method_get_native_surface);
     ANativeWindow* native_window = ANativeWindow_fromSurface(env, raw_surface);
-//    winHandle = Ogre::StringConverter::toString((unsigned long)sysInfo.info.android.window);
-//    winHandle =  Ogre::StringConverter::toString((unsigned long)SDL_GetWindowID(sdlWindow));
-	winHandle =  Ogre::StringConverter::toString((int)native_window);
-	logMsg("winHandle = " +winHandle);
+//    winHandle = convert->toString((unsigned long)sysInfo.info.android.window);
+//    winHandle =  convert->toString((unsigned long)SDL_GetWindowID(sdlWindow));
+    winHandle =  convert->toString((int)native_window);
+    logMsg("winHandle = " +winHandle);
 //    exit(0);
 //	logMsg("winHandle2 = " +winHandle2);
 	
-//	logMsg("grabbed = " +Ogre::StringConverter::toString(SDL_GetWindowGrab(sdlWindow)));
+//	logMsg("grabbed = " +convert->toString(SDL_GetWindowGrab(sdlWindow)));
 #else
 	// Error, both can't be defined or undefined same time
 #endif
 
 //    exit(0);
 	//std::cout << "winHandle = " << winHandle << std::endl;
-	RERoot = new Ogre::Root("", "", "Ogre.log");
-	const Ogre::String pluginDir = OGRE_PLUGIN_DIR;
+    RERoot = new Ogre::Root("", "", "Ogre.log");
+    const std::string pluginDir = OGRE_PLUGIN_DIR;
     logMsg("winHandle for Ogre = " +winHandle);
 //    exit(0);
 //#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
@@ -438,27 +414,27 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 //	inputSystem *input = inputSystem::Instance();
 //#endif
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
-	const Ogre::String buildType = BUILD_TYPE;
+    const std::string buildType = BUILD_TYPE;
 
-	if (buildType == "Debug")
-	{
+    if (buildType == "Debug")
+    {
         RERoot->loadPlugin(pluginDir + "/RenderSystem_GL_d.dll");
-//		RERoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager_d");
-	}
-	else
-	{
+//        RERoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager_d");
+    }
+    else
+    {
         RERoot->loadPlugin(pluginDir + "/RenderSystem_GL");
-//		RERoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager");
-	}
+//        RERoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager");
+    }
 #elif OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 	//	    RERoot->loadPlugin();
 #ifdef OGRE_STATIC_LIB
-	gStaticPluginLoader = new Ogre::StaticPluginLoader();
-	gStaticPluginLoader->load();
+    gStaticPluginLoader = new Ogre::StaticPluginLoader();
+    gStaticPluginLoader->load();
 //    exit(0);
 #endif
 #elif OGRE_PLATFORM == OGRE_PLATFORM_APPLE
-	RERoot->loadPlugin("RenderSystem_GL");
+    RERoot->loadPlugin("RenderSystem_GL");
 #else
     RERoot->loadPlugin(pluginDir + "/RenderSystem_GL_d");
     RERoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager");
@@ -466,28 +442,28 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 //    exit(0);
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-	RERoot->setRenderSystem(RERoot->getAvailableRenderers().at(0));
+    RERoot->setRenderSystem(RERoot->getAvailableRenderers().at(0));
 //    RERoot->initialise(false);
 //    RERoot->init = true;
 //    exit(0);
 #else
-	Ogre::RenderSystemList rsList = RERoot->getAvailableRenderers();
+    Ogre::RenderSystemList rsList = RERoot->getAvailableRenderers();
 
-	int c = 0;
-	bool foundit = false;
-	Ogre::RenderSystem *selectedRenderSystem = 0;
-	while (c < (int)rsList.size())
-	{
-		selectedRenderSystem = rsList.at(c);
-		Ogre::String rname = selectedRenderSystem->getName();
-		if (rname.compare("OpenGL Rendering Subsystem") == 0)
-		{
-			foundit = true;
-			break;
-		}
-		c++; // <-- oh how clever
-		logMsg(Ogre::StringConverter::toString(c++));
-	}
+    int c = 0;
+    bool foundit = false;
+    Ogre::RenderSystem *selectedRenderSystem = 0;
+    while (c < (int)rsList.size())
+    {
+        selectedRenderSystem = rsList.at(c);
+        std::string rname = selectedRenderSystem->getName();
+        if (rname.compare("OpenGL Rendering Subsystem") == 0)
+        {
+            foundit = true;
+            break;
+        }
+        c++; // <-- oh how clever
+        logMsg(convert->toString(c++));
+    }
 //    exit(0);
 	//we found it, we might as well use it!
     RERoot->setRenderSystem(selectedRenderSystem);
@@ -511,7 +487,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 
     //    exit(0);
                 misc["externalWindowHandle"] = winHandle;
-                //      misc["externalGLContext"] = Ogre::StringConverter::toString((unsigned long)SDL_GL_GetCurrentContext());
+                //      misc["externalGLContext"] = convert->toString((unsigned long)SDL_GL_GetCurrentContext());
                 //    exit(0);
                         logMsg("Hello??");
                         //    exit(0);
@@ -523,35 +499,35 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 
 bool renderEngine::createScene()
 {
-    
+    boost::shared_ptr<conversion> convert = conversion::Instance(); 
     instance += 1;
 //    exit(0);
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     logMsg("Hello");
-	config = AConfiguration_new();
-	logMsg("Mello");
+    config = AConfiguration_new();
+    logMsg("Mello");
 //    exit(0);
 //	AConfiguration_fromAssetManager(config, app->activity->assetManager);
 //	mAssetMgr = app->activity->assetManager;
     JNIEnv* env = (JNIEnv*)SDL_AndroidGetJNIEnv();
-    
+
     jclass class_sdl_activity   = env->FindClass("com/libolt/ubc/UBCActivity");
     jmethodID method_get_native_surface = env->GetStaticMethodID(class_sdl_activity, "getNativeSurface", "()Landroid/view/Surface;");
     jobject raw_surface = env->CallStaticObjectMethod(class_sdl_activity, method_get_native_surface);
     ANativeWindow* native_window = ANativeWindow_fromSurface(env, raw_surface);
     
     if ( !native_window )
-	{
-		logMsg("No Window, Goodbye!");
+    {
+        logMsg("No Window, Goodbye!");
         return(0);
-	}
+    }
     
-    jclass class_activity       = env->FindClass("com/libolt/ubc/UBCActivity");
-    jclass class_resources      = env->FindClass("android/content/res/Resources");
-    jmethodID method_get_resources      = env->GetMethodID(class_activity, "getResources", "()Landroid/content/res/Resources;");
-    jmethodID method_get_assets         = env->GetMethodID(class_resources, "getAssets", "()Landroid/content/res/AssetManager;");
+    jclass class_activity = env->FindClass("com/libolt/ubc/UBCActivity");
+    jclass class_resources = env->FindClass("android/content/res/Resources");
+    jmethodID method_get_resources = env->GetMethodID(class_activity, "getResources", "()Landroid/content/res/Resources;");
+    jmethodID method_get_assets = env->GetMethodID(class_resources, "getAssets", "()Landroid/content/res/AssetManager;");
     jobject raw_activity = (jobject)SDL_AndroidGetActivity();
-	jobject raw_resources = env->CallObjectMethod(raw_activity, method_get_resources);
+    jobject raw_resources = env->CallObjectMethod(raw_activity, method_get_resources);
     jobject raw_asset_manager = env->CallObjectMethod(raw_resources, method_get_assets);
 //    jobject raw_surface = env->CallStaticObjectMethod(class_sdl_activity, method_get_native_surface);
 
@@ -560,52 +536,52 @@ bool renderEngine::createScene()
     uint32_t w = ANativeWindow_getWidth(native_window);
     uint32_t h = ANativeWindow_getHeight(native_window);
 
-    logMsg("Width = " +Ogre::StringConverter::toString(w));
-    logMsg("Height = " +Ogre::StringConverter::toString(h));
+    logMsg("Width = " +convert->toString(w));
+    logMsg("Height = " +convert->toString(h));
     
     setWindowWidth(w);
     setWindowHeight(h);
     
     mAssetMgr = AAssetManager_fromJava(env, raw_asset_manager);
-	logMsg("Yello");
+    logMsg("Yello");
     AConfiguration_fromAssetManager(config, mAssetMgr);
-	logMsg("Bello");
+    logMsg("Bello");
 //	mAssetMgr = app->activity->assetManager;
 
     Ogre::ArchiveManager::getSingleton().addArchiveFactory( new Ogre::APKFileSystemArchiveFactory(mAssetMgr) );
     Ogre::ArchiveManager::getSingleton().addArchiveFactory( new Ogre::APKZipArchiveFactory(mAssetMgr) );
-	logMsg("Hello?");
+    logMsg("Hello?");
 //    exit(0);
 #endif
 	//  AConfiguration_fromAssetManager(config, app->activity->assetManager);
 	//gAssetMgr = app->activity->assetManager;
 //	misc["currentGLContext"] = "true";
-//	misc["androidConfig"] = Ogre::StringConverter::toString((int)config);
-	//    misc["externalWindowHandle"] = Ogre::StringConverter::toString((int)app->window);
+//	misc["androidConfig"] = convert->toString((int)config);
+	//    misc["externalWindowHandle"] = convert->toString((int)app->window);
 
 //	misc["currentGLContext"]     = "true";
-//    misc["externalGLContext"]    = Ogre::StringConverter::toString((int)sdlWindow);
-//    winHandle = Ogre::StringConverter::toString((unsigned long)sysInfo.info.android.window);
+//    misc["externalGLContext"]    = convert->toString((int)sdlWindow);
+//    winHandle = convert->toString((unsigned long)sysInfo.info.android.window);
 //    exit(0);
     logMsg("winHandle = " +winHandle);
 
 //    exit(0);
-	misc["externalWindowHandle"] = winHandle;
-//	misc["externalGLContext"] = Ogre::StringConverter::toString((unsigned long)SDL_GL_GetCurrentContext());
+    misc["externalWindowHandle"] = winHandle;
+//	misc["externalGLContext"] = convert->toString((unsigned long)SDL_GL_GetCurrentContext());
 //    exit(0);
-	logMsg("Hello??");
+    logMsg("Hello??");
 //    exit(0);
     mWindow = RERoot->createRenderWindow("Ultimate Basketball Challenge", 0, 0, false, &misc);
 
 //    exit(0);
     logMsg("renderWindow created!");
-	unsigned long handle = 0;
-	mWindow->getCustomAttribute("WINDOW", &handle);
-	logMsg("mWindow handle = " +Ogre::StringConverter::toString(handle));
+    unsigned long handle = 0;
+    mWindow->getCustomAttribute("WINDOW", &handle);
+    logMsg("mWindow handle = " +convert->toString(handle));
 //exit(0);
     logMsg("Dead");
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-	sdlWindow = SDL_CreateWindowFrom(mWindow);
+    sdlWindow = SDL_CreateWindowFrom(mWindow);
 //    exit(0);
 #endif
      if (mWindow == NULL)
@@ -619,10 +595,10 @@ bool renderEngine::createScene()
     Ogre::WindowEventUtilities::messagePump();
     w = mWindow->getViewport(0)->getActualWidth();
     h = mWindow->getViewport(0)->getActualHeight();
-    logMsg("Width = " +Ogre::StringConverter::toString(w));
-    logMsg("Height = " +Ogre::StringConverter::toString(h));
+    logMsg("Width = " +convert->toString(w));
+    logMsg("Height = " +convert->toString(h));
 //    exit(0);
-    logMsg("window ID = " +Ogre::StringConverter::toString(SDL_GetWindowID(sdlWindow)));
+    logMsg("window ID = " +convert->toString(SDL_GetWindowID(sdlWindow)));
 	SDL_ShowWindow(sdlWindow);
 	SDL_SetWindowGrab(sdlWindow,SDL_TRUE);
 	SDL_MaximizeWindow(sdlWindow);
@@ -630,57 +606,57 @@ bool renderEngine::createScene()
 
 //#endif
 
-	mResourceGroup = "UBCData";
+    mResourceGroup = "UBCData";
 //	Ogre::ResourceGroupManager *rsm
     rsm = Ogre::ResourceGroupManager::getSingletonPtr();
-	rsm->createResourceGroup(mResourceGroup);
+    rsm->createResourceGroup(mResourceGroup);
 
     Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-	Ogre::ConfigFile cf;
-	cf.load(openAPKFile("resources.cfg"));
+    Ogre::ConfigFile cf;
+    cf.load(openAPKFile("resources.cfg"));
     logMsg("or");
-	Ogre::ConfigFile::SectionIterator seci = cf.getSectionIterator();
+    Ogre::ConfigFile::SectionIterator seci = cf.getSectionIterator();
 //exit(0);
-	while (seci.hasMoreElements())
-	{
-		Ogre::String sec, type, arch;
-		sec = seci.peekNextKey();
-		Ogre::ConfigFile::SettingsMultiMap* settings = seci.getNext();
-		Ogre::ConfigFile::SettingsMultiMap::iterator i;
+    while (seci.hasMoreElements())
+    {
+        std::string sec, type, arch;
+        sec = seci.peekNextKey();
+        Ogre::ConfigFile::SettingsMultiMap* settings = seci.getNext();
+        Ogre::ConfigFile::SettingsMultiMap::iterator i;
 
-		for (i = settings->begin(); i != settings->end(); i++)
-		{
-			type = i->first;
-			arch = i->second;
+        for (i = settings->begin(); i != settings->end(); i++)
+        {
+            type = i->first;
+            arch = i->second;
 //			Ogre::ResourceGroupManager::getSingleton().addResourceLocation(arch, type, sec);
-			rsm->addResourceLocation(arch, type, mResourceGroup);
-		}
-	}
+            rsm->addResourceLocation(arch, type, mResourceGroup);
+        }
+    }
 
 //	Ogre::ResourceGroupManager::getSingletonPtr()->initialiseResourceGroup(Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 
-	Ogre::RTShader::ShaderGenerator::initialize();
+    Ogre::RTShader::ShaderGenerator::initialize();
      // The Shader generator instance
-      Ogre::RTShader::ShaderGenerator* shaderGen = Ogre::RTShader::ShaderGenerator::getSingletonPtr();
+    Ogre::RTShader::ShaderGenerator* shaderGen = Ogre::RTShader::ShaderGenerator::getSingletonPtr();
 	//Ogre::RTShader::ShaderGenerator::getSingletonPtr()->setTargetLanguage("glsles");
     shaderGen->setTargetLanguage("glsles");
-	if (mMatListener == NULL)
+    if (mMatListener == NULL)
     {
         mMatListener = new Ogre::ShaderGeneratorTechniqueResolverListener();
-	    Ogre::MaterialManager::getSingleton().addListener(mMatListener);
+        Ogre::MaterialManager::getSingleton().addListener(mMatListener);
     }
 //    shaderGen->addSceneManager(mSceneMgr);
 #else
 
 	// logMsg("Rendering!");
-	misc["externalWindowHandle"] = winHandle; //
+    misc["externalWindowHandle"] = winHandle; //
 
 //    mWindow = RERoot->createRenderWindow("Ultimate Basketball Challenge", 0, 0, false, &misc);
 
 	//    exit(0);
-	mWindow->setVisible(true);
+    mWindow->setVisible(true);
 #endif
     logMsg("Alive?");
 
@@ -690,24 +666,24 @@ bool renderEngine::createScene()
     std::string dataPath = UBC_DATADIR;
 
 
-	// load the basic resource location(s)
-	rsm->addResourceLocation(dataPath + "/Media", "FileSystem", mResourceGroup);
-	rsm->addResourceLocation(dataPath + "/Media/fonts", "FileSystem", mResourceGroup);
-	rsm->addResourceLocation(dataPath + "/Media/gui", "FileSystem", mResourceGroup);
-	rsm->addResourceLocation(dataPath + "/Media/MyGUI_Media", "FileSystem", mResourceGroup);
-	rsm->addResourceLocation(dataPath + "/Media/models", "FileSystem", mResourceGroup);
-	rsm->addResourceLocation(dataPath + "/Media/materials/textures", "FileSystem", mResourceGroup);
-	rsm->addResourceLocation(dataPath + "/Media/materials/programs", "FileSystem", mResourceGroup);
-	rsm->addResourceLocation(dataPath + "/Media/materialss/scripts", "FileSystem", mResourceGroup);
-	rsm->addResourceLocation(dataPath + "/Media/materials", "FileSystem", mResourceGroup);
-	rsm->addResourceLocation(dataPath + "/Media/overlays", "FileSystem", mResourceGroup);
-	rsm->addResourceLocation(dataPath + "/Media/packs", "FileSystem", mResourceGroup);
-	rsm->addResourceLocation(dataPath + "/Media/skins", "FileSystem", mResourceGroup);
-	rsm->addResourceLocation(dataPath + "/Media/skins/qgui", "FileSystem", mResourceGroup);
-	rsm->addResourceLocation(dataPath + "/Media/Audio", "FileSystem", mResourceGroup);
+    // load the basic resource location(s)
+    rsm->addResourceLocation(dataPath + "/Media", "FileSystem", mResourceGroup);
+    rsm->addResourceLocation(dataPath + "/Media/fonts", "FileSystem", mResourceGroup);
+    rsm->addResourceLocation(dataPath + "/Media/gui", "FileSystem", mResourceGroup);
+    rsm->addResourceLocation(dataPath + "/Media/MyGUI_Media", "FileSystem", mResourceGroup);
+    rsm->addResourceLocation(dataPath + "/Media/models", "FileSystem", mResourceGroup);
+    rsm->addResourceLocation(dataPath + "/Media/materials/textures", "FileSystem", mResourceGroup);
+    rsm->addResourceLocation(dataPath + "/Media/materials/programs", "FileSystem", mResourceGroup);
+    rsm->addResourceLocation(dataPath + "/Media/materialss/scripts", "FileSystem", mResourceGroup);
+    rsm->addResourceLocation(dataPath + "/Media/materials", "FileSystem", mResourceGroup);
+    rsm->addResourceLocation(dataPath + "/Media/overlays", "FileSystem", mResourceGroup);
+    rsm->addResourceLocation(dataPath + "/Media/packs", "FileSystem", mResourceGroup);
+    rsm->addResourceLocation(dataPath + "/Media/skins", "FileSystem", mResourceGroup);
+    rsm->addResourceLocation(dataPath + "/Media/skins/qgui", "FileSystem", mResourceGroup);
+    rsm->addResourceLocation(dataPath + "/Media/Audio", "FileSystem", mResourceGroup);
 #endif
 
-	rsm->initialiseResourceGroup(mResourceGroup);
+    rsm->initialiseResourceGroup(mResourceGroup);
 //  exit(0);
     mSceneMgr = RERoot->createSceneManager(Ogre::ST_GENERIC); // creates the scene manager
 //    mSceneMgr = RERoot->createSceneManager("DefaultSceneManager"); // creates the scene manager
@@ -744,7 +720,7 @@ bool renderEngine::createScene()
     viewPort->setOverlaysEnabled(true);	// sets overlays true so that MyGUI can render
 
     bool overlayEnabled = viewPort->getOverlaysEnabled();
-    logMsg("overlayEnabled = " +Ogre::StringConverter::toString(overlayEnabled));
+    logMsg("overlayEnabled = " +convert->toString(overlayEnabled));
 //.0.236	exit(0);
     mCamera->setAspectRatio((Ogre::Real)1.333333);
 
@@ -756,10 +732,10 @@ bool renderEngine::createScene()
     l->setPosition(20,80,56);
 
  
-     if (mWindow == NULL)
-     {
-         logMsg("createScene mWindow 2 == NULL!");
-     }
+    if (mWindow == NULL)
+    {
+        logMsg("createScene mWindow 2 == NULL!");
+    }
 //     exit(0);
 	//	    Ogre::LogManager::getSingletonPtr()->logMessage("winHandle = " +winHandle);
 

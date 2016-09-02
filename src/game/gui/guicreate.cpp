@@ -44,7 +44,7 @@ bool GUISystem::createMainMenuGUI()  // creates the main menu gui
 {
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
-    
+    exit(0); 
     if (getGameE()->getRenderE()->getViewPort()->getActualHeight() >= 1000)
     {
         logMsg("Height greater than 1000!");

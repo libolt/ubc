@@ -454,25 +454,28 @@ bool GUISystem::initMyGUI()  // Initializes MyGUI
 //    exit(0);
     logMsg("Crash??");
     boost::shared_ptr<MyGUI::Gui> tempGUI(new MyGUI::Gui());
+//    exit(0);
     mGUI = tempGUI;
+//    exit(0);
     logMsg("Crash???");
     mGUI->initialise();
-//    exit(0);
+    exit(0);
     logMsg("*** MyGUI Initialized ***");
     return true;
 }
 
 void GUISystem::mainMenu()  // msin in game menu
 {
+    exit(0);
     if (!mainMenuCreated)
     {
         logMsg("mainMenu not created yet!");
-//            exit(0);
+        exit(0);
         if (createMainMenuGUI()) // creates the main menu gui.
         {
             logMsg("Main Menu created successfully!");
             mainMenuCreated = true;
-//                exit(0);
+                exit(0);
         }
         else
         {

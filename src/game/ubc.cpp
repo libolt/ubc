@@ -89,13 +89,14 @@ bool UBC::setupState()  // sets up the UBC game state
     logMsg("blah!");
 //    exit(0);
     bool stateSetup = true;
-//    exit(0);
     
     if (gui->setup())  // sets up the game GUI
     {
+        exit(0);
         gui->setSetupComplete(true);
 	exit(0);
         gui->mainMenu();
+	exit(0);
         gui->backButtons();
     }
     else
@@ -103,7 +104,7 @@ bool UBC::setupState()  // sets up the UBC game state
         logMsg("Unable to setup GUI!");
         exit(0);
     }
-    
+    exit(0); 
     return (stateSetup);
 }
 

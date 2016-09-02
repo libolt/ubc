@@ -480,13 +480,14 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
     
     mWindow = RERoot->initialise(false);
 
-    misc["externalWindowHandle"] = winHandle;
+/*    misc["externalWindowHandle"] = winHandle;
 //    misc["externalGLContext"] = convert->toString((unsigned long)SDL_GL_GetCurrentContext());
 //    exit(0);
     logMsg("Hello??");
 //    exit(0);
     mWindow = RERoot->createRenderWindow("Ultimate Basketball Challenge", 0, 0, false, &misc);
     exit(0);
+*/
     Ogre::DDSCodec::startup();
     
     Ogre::FreeImageCodec::startup();
@@ -811,7 +812,7 @@ bool renderEngine::createScene()
 	}
 */
 //	load->loadPlayerFile(
-//	exit(0);
+//    exit(0);
   //  gameE->startGame();
 return (true);
 }

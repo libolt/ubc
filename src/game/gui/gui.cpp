@@ -418,6 +418,7 @@ void GUISystem::setViewPort(const Ogre::Viewport &set)  // sets the value of vie
 
 bool GUISystem::setup()  // sets up the in game gui
 {
+//    exit(0);
     if (initMyGUI()) // Initializes MyGUI
     {
         logMsg ("MyGUI initialized successfully!");
@@ -443,19 +444,20 @@ bool GUISystem::initMyGUI()  // Initializes MyGUI
     boost::shared_ptr<MyGUI::OgrePlatform> tempPlatform(new MyGUI::OgrePlatform());
     mPlatform = tempPlatform;
     logMsg("Crash?");
-
+//    exit(0);
 /*#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     mPlatform->initialise(mWindow, mSceneMgr, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 #else
 */
     mPlatform->initialise(getGameE()->getRenderE()->getMWindow(), getGameE()->getRenderE()->getMSceneMgr(), "UBCData"); // mWindow is Ogre::RenderWindow*, mSceneManager is Ogre::SceneManager*
 //#endif
-
+//    exit(0);
     logMsg("Crash??");
-//    boost::shared_ptr<MyGUI::Gui> tempGUI(new MyGUI::Gui());
-//    mGUI = tempGUI;
+    boost::shared_ptr<MyGUI::Gui> tempGUI(new MyGUI::Gui());
+    mGUI = tempGUI;
     logMsg("Crash???");
     mGUI->initialise();
+//    exit(0);
     logMsg("*** MyGUI Initialized ***");
     return true;
 }

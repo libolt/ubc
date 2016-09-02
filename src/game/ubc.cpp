@@ -94,6 +94,7 @@ bool UBC::setupState()  // sets up the UBC game state
     if (gui->setup())  // sets up the game GUI
     {
         gui->setSetupComplete(true);
+	exit(0);
         gui->mainMenu();
         gui->backButtons();
     }
@@ -136,7 +137,7 @@ void UBC::run()  // runs the game
         logMsg("Unable to setup UBC state!");
 //        return (false);
     }
-
+    exit(0);
 //    getGameS()->createInstances();  // creates object instances
 //    boost::shared_ptr<entity> gameStateSharedPtr(new entity);
 

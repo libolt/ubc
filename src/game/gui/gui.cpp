@@ -62,21 +62,21 @@ bool GUISystem::setupComplete;
 bool GUISystem::mainMenuCreated; 
 bool GUISystem::menuActive;  // stores whether a menu is being diplayed
 bool GUISystem::backButtonsCreated;  // determines whether the back buttons have been created
-    bool GUISystem::networkSetupMenuCreated;   // determines whether the network setup gui has been created
-    bool GUISystem::networkServerSetupMenuCreated;   // determines whether the network server setup gui has been created
-    bool GUISystem::networkClientSetupMenuCreated;   // determines whether the network client setup gui has been created
-    bool GUISystem::optionsMenuCreated;   // determines whether the options menu gui has been created
-    bool GUISystem::displaySetupMenuCreated;   // determines whether the display settings menu gui has been created
-    bool GUISystem::inputSetupMenuCreated;   // determines whether the input settings menu gui has been created
-    bool GUISystem::audioSetupMenuCreated;   // determines whether the audio settings menu gui has been created
-    bool GUISystem::gameSetupMenuCreated;  // determines whether the game setup menu gui has been created
-    bool GUISystem::playerStartSelectionMenuCreated;  // determines whether the player start selection menu gui has been created
-    bool GUISystem::teamSelectionMenuCreated;  // determines whether the team selection menu gui has been created
-    bool GUISystem::teamSelectionMenuDataAdded;  // determines whether teeam data has been added to the the team selection menu
-    bool GUISystem::courtSelectionMenuCreated;  // deteemines whether the court selection menu has been created;
-    bool GUISystem::gameSetupMenuAwaySelected;  // determines whether the away team listbox is selected;
-    bool GUISystem::gameSetupMenuHomeSelected;  // determines whether the home team listbox is selected;
-    bool GUISystem::courtSelectionDataLoaded;  // determines whether court names have been added to the select box
+bool GUISystem::networkSetupMenuCreated;   // determines whether the network setup gui has been created
+bool GUISystem::networkServerSetupMenuCreated;   // determines whether the network server setup gui has been created
+bool GUISystem::networkClientSetupMenuCreated;   // determines whether the network client setup gui has been created
+bool GUISystem::optionsMenuCreated;   // determines whether the options menu gui has been created
+bool GUISystem::displaySetupMenuCreated;   // determines whether the display settings menu gui has been created
+bool GUISystem::inputSetupMenuCreated;   // determines whether the input settings menu gui has been created
+bool GUISystem::audioSetupMenuCreated;   // determines whether the audio settings menu gui has been created
+bool GUISystem::gameSetupMenuCreated;  // determines whether the game setup menu gui has been created
+bool GUISystem::playerStartSelectionMenuCreated;  // determines whether the player start selection menu gui has been created
+bool GUISystem::teamSelectionMenuCreated;  // determines whether the team selection menu gui has been created
+bool GUISystem::teamSelectionMenuDataAdded;  // determines whether teeam data has been added to the the team selection menu
+bool GUISystem::courtSelectionMenuCreated;  // deteemines whether the court selection menu has been created;
+bool GUISystem::gameSetupMenuAwaySelected;  // determines whether the away team listbox is selected;
+bool GUISystem::gameSetupMenuHomeSelected;  // determines whether the home team listbox is selected;
+bool GUISystem::courtSelectionDataLoaded;  // determines whether court names have been added to the select box
 
 activeMenus GUISystem::activeMenu;  // stores which menu is being displayed
 activeMenus GUISystem::previousActiveMenu;  // stores which menu was last displayed
@@ -90,97 +90,93 @@ boost::shared_ptr<MyGUI::Button> GUISystem::optionsButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::serverButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::clientButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::backMainMenuButton;
-    boost::shared_ptr<MyGUI::Button> GUISystem::backNetworkSetupButton;
-    boost::shared_ptr<MyGUI::Button> GUISystem::displayButton;
-    boost::shared_ptr<MyGUI::Button> GUISystem::inputButton;
-    boost::shared_ptr<MyGUI::Button> GUISystem::audioButton;
-    boost::shared_ptr<MyGUI::Button> GUISystem::team0SelectButton;
-    boost::shared_ptr<MyGUI::Button> GUISystem::team1SelectButton;
-    boost::shared_ptr<MyGUI::Button> GUISystem::startGameButton;
-    boost::shared_ptr<MyGUI::Button> GUISystem::backNetworkClientButton;
-    boost::shared_ptr<MyGUI::Button> GUISystem::changeResolutionButton;
-    boost::shared_ptr<MyGUI::Button> GUISystem::changeInputTypeButton;
-    boost::shared_ptr<MyGUI::Button> GUISystem::enableAudioButton;
-    boost::shared_ptr<MyGUI::Button> GUISystem::disableAudioButton;
-    boost::shared_ptr<MyGUI::Button> GUISystem::backOptionsMenuButton;
-    boost::shared_ptr<MyGUI::Button> GUISystem::backGameSetupMenuButton;
-    boost::shared_ptr<MyGUI::Button> GUISystem::backTeamSelectionMenuButton;
-    boost::shared_ptr<MyGUI::Button> GUISystem::backCourtSelectionMenuButton;
-    boost::shared_ptr<MyGUI::Button> GUISystem::teamsSelectedButton;
+boost::shared_ptr<MyGUI::Button> GUISystem::backNetworkSetupButton;
+boost::shared_ptr<MyGUI::Button> GUISystem::displayButton;
+boost::shared_ptr<MyGUI::Button> GUISystem::inputButton;
+boost::shared_ptr<MyGUI::Button> GUISystem::audioButton;
+boost::shared_ptr<MyGUI::Button> GUISystem::team0SelectButton;
+boost::shared_ptr<MyGUI::Button> GUISystem::team1SelectButton;
+boost::shared_ptr<MyGUI::Button> GUISystem::startGameButton;
+boost::shared_ptr<MyGUI::Button> GUISystem::backNetworkClientButton;
+boost::shared_ptr<MyGUI::Button> GUISystem::changeResolutionButton;
+boost::shared_ptr<MyGUI::Button> GUISystem::changeInputTypeButton;
+boost::shared_ptr<MyGUI::Button> GUISystem::enableAudioButton;
+boost::shared_ptr<MyGUI::Button> GUISystem::disableAudioButton;
+boost::shared_ptr<MyGUI::Button> GUISystem::backOptionsMenuButton;
+boost::shared_ptr<MyGUI::Button> GUISystem::backGameSetupMenuButton;
+boost::shared_ptr<MyGUI::Button> GUISystem::backTeamSelectionMenuButton;
+boost::shared_ptr<MyGUI::Button> GUISystem::backCourtSelectionMenuButton;
+boost::shared_ptr<MyGUI::Button> GUISystem::teamsSelectedButton;
     
-    // Player Start Selection Menu
-    boost::shared_ptr<MyGUI::Button> GUISystem::team0StartingLineupSetButton;
-    boost::shared_ptr<MyGUI::Button> GUISystem::team1StartingLineupSetButton;
-    boost::shared_ptr<MyGUI::Button> GUISystem::startingLineupsSetButton;
+// Player Start Selection Menu
+boost::shared_ptr<MyGUI::Button> GUISystem::team0StartingLineupSetButton;
+boost::shared_ptr<MyGUI::Button> GUISystem::team1StartingLineupSetButton;
+boost::shared_ptr<MyGUI::Button> GUISystem::startingLineupsSetButton;
     
-    // listbox widgets
-    boost::shared_ptr<MyGUI::ListBox> GUISystem::team0SelectBox;
-    boost::shared_ptr<MyGUI::ListBox> GUISystem::team1SelectBox;
+// listbox widgets
+boost::shared_ptr<MyGUI::ListBox> GUISystem::team0SelectBox;
+boost::shared_ptr<MyGUI::ListBox> GUISystem::team1SelectBox;
 
-    // Network Server Setup Widgets
-    boost::shared_ptr<MyGUI::ListBox> GUISystem::numClientsSelectBox;  // allows you to select the number of network players
-    boost::shared_ptr<MyGUI::Button> GUISystem::serverHostButton;
-    boost::shared_ptr<MyGUI::EditBox> GUISystem::serverIPAddressBox;
+// Network Server Setup Widgets
+boost::shared_ptr<MyGUI::ListBox> GUISystem::numClientsSelectBox;  // allows you to select the number of network players
+boost::shared_ptr<MyGUI::Button> GUISystem::serverHostButton;
+boost::shared_ptr<MyGUI::EditBox> GUISystem::serverIPAddressBox;
     
-    // Network Client Setup Widgets
-    boost::shared_ptr<MyGUI::EditBox> GUISystem::clientIPAddressBox;
-    boost::shared_ptr<MyGUI::Button> GUISystem::clientConnectButton;
+// Network Client Setup Widgets
+boost::shared_ptr<MyGUI::EditBox> GUISystem::clientIPAddressBox;
+boost::shared_ptr<MyGUI::Button> GUISystem::clientConnectButton;
     
-    boost::shared_ptr<MyGUI::ListBox> GUISystem::team0Player1SelectBox;
-    boost::shared_ptr<MyGUI::ListBox> GUISystem::team0Player2SelectBox;
-    boost::shared_ptr<MyGUI::ListBox> GUISystem::team0Player3SelectBox;
-    boost::shared_ptr<MyGUI::ListBox> GUISystem::team0Player4SelectBox;
-    boost::shared_ptr<MyGUI::ListBox> GUISystem::team0Player5SelectBox;
-    boost::shared_ptr<MyGUI::ListBox> GUISystem::team1Player1SelectBox;
-    boost::shared_ptr<MyGUI::ListBox> GUISystem::team1Player2SelectBox;
-    boost::shared_ptr<MyGUI::ListBox> GUISystem::team1Player3SelectBox;
-    boost::shared_ptr<MyGUI::ListBox> GUISystem::team1Player4SelectBox;
-    boost::shared_ptr<MyGUI::ListBox> GUISystem::team1Player5SelectBox;
+boost::shared_ptr<MyGUI::ListBox> GUISystem::team0Player1SelectBox;
+boost::shared_ptr<MyGUI::ListBox> GUISystem::team0Player2SelectBox;
+boost::shared_ptr<MyGUI::ListBox> GUISystem::team0Player3SelectBox;
+boost::shared_ptr<MyGUI::ListBox> GUISystem::team0Player4SelectBox;
+boost::shared_ptr<MyGUI::ListBox> GUISystem::team0Player5SelectBox;
+boost::shared_ptr<MyGUI::ListBox> GUISystem::team1Player1SelectBox;
+boost::shared_ptr<MyGUI::ListBox> GUISystem::team1Player2SelectBox;
+boost::shared_ptr<MyGUI::ListBox> GUISystem::team1Player3SelectBox;
+boost::shared_ptr<MyGUI::ListBox> GUISystem::team1Player4SelectBox;
+boost::shared_ptr<MyGUI::ListBox> GUISystem::team1Player5SelectBox;
     
     
-    // Player Selection Menu widgets
-    boost::shared_ptr<MyGUI::ListBox> GUISystem::team0PGSelectBox;
-    boost::shared_ptr<MyGUI::ListBox> GUISystem::team0SGSelectBox;
-    boost::shared_ptr<MyGUI::ListBox> GUISystem::team0SFSelectBox;
-    boost::shared_ptr<MyGUI::ListBox> GUISystem::team0PFSelectBox;
-    boost::shared_ptr<MyGUI::ListBox> GUISystem::team0CSelectBox;
-
-    boost::shared_ptr<MyGUI::ListBox> GUISystem::team1PGSelectBox;
-    boost::shared_ptr<MyGUI::ListBox> GUISystem::team1SGSelectBox;
-    boost::shared_ptr<MyGUI::ListBox> GUISystem::team1SFSelectBox;
-    boost::shared_ptr<MyGUI::ListBox> GUISystem::team1PFSelectBox;
-    boost::shared_ptr<MyGUI::ListBox> GUISystem::team1CSelectBox;
-
-    boost::shared_ptr<MyGUI::TextBox> GUISystem::team0PGRating;
-    boost::shared_ptr<MyGUI::TextBox> GUISystem::team0SGRating;
-    boost::shared_ptr<MyGUI::TextBox> GUISystem::team0SFRating;
-    boost::shared_ptr<MyGUI::TextBox> GUISystem::team0PFRating;
-    boost::shared_ptr<MyGUI::TextBox> GUISystem::team0CRating;
-
-    boost::shared_ptr<MyGUI::TextBox> GUISystem::team1PGRating;
-    boost::shared_ptr<MyGUI::TextBox> GUISystem::team1SGRating;
-    boost::shared_ptr<MyGUI::TextBox> GUISystem::team1SFRating;
-    boost::shared_ptr<MyGUI::TextBox> GUISystem::team1PFRating;
-    boost::shared_ptr<MyGUI::TextBox> GUISystem::team1CRating;
-
-    boost::shared_ptr<MyGUI::ImageBox> GUISystem::team0Logo;
-    boost::shared_ptr<MyGUI::ImageBox> GUISystem::team1Logo;
+// Player Selection Menu widgets
+boost::shared_ptr<MyGUI::ListBox> GUISystem::team0PGSelectBox;
+boost::shared_ptr<MyGUI::ListBox> GUISystem::team0SGSelectBox;
+boost::shared_ptr<MyGUI::ListBox> GUISystem::team0SFSelectBox;
+boost::shared_ptr<MyGUI::ListBox> GUISystem::team0PFSelectBox;
+boost::shared_ptr<MyGUI::ListBox> GUISystem::team0CSelectBox;
+boost::shared_ptr<MyGUI::ListBox> GUISystem::team1PGSelectBox;
+boost::shared_ptr<MyGUI::ListBox> GUISystem::team1SGSelectBox;
+boost::shared_ptr<MyGUI::ListBox> GUISystem::team1SFSelectBox;
+boost::shared_ptr<MyGUI::ListBox> GUISystem::team1PFSelectBox;
+boost::shared_ptr<MyGUI::ListBox> GUISystem::team1CSelectBox;
+boost::shared_ptr<MyGUI::TextBox> GUISystem::team0PGRating;
+boost::shared_ptr<MyGUI::TextBox> GUISystem::team0SGRating;
+boost::shared_ptr<MyGUI::TextBox> GUISystem::team0SFRating;
+boost::shared_ptr<MyGUI::TextBox> GUISystem::team0PFRating;
+boost::shared_ptr<MyGUI::TextBox> GUISystem::team0CRating;
+boost::shared_ptr<MyGUI::TextBox> GUISystem::team1PGRating;
+boost::shared_ptr<MyGUI::TextBox> GUISystem::team1SGRating;
+boost::shared_ptr<MyGUI::TextBox> GUISystem::team1SFRating;
+boost::shared_ptr<MyGUI::TextBox> GUISystem::team1PFRating;
+boost::shared_ptr<MyGUI::TextBox> GUISystem::team1CRating;
+boost::shared_ptr<MyGUI::ImageBox> GUISystem::team0Logo;
+boost::shared_ptr<MyGUI::ImageBox> GUISystem::team1Logo;
     
-    // Court selection menu widgets
-    boost::shared_ptr<MyGUI::Button> GUISystem::backPlayerStartSelectionMenuButton;
-    boost::shared_ptr<MyGUI::Button> GUISystem::courtSelectButton;
-    boost::shared_ptr<MyGUI::ListBox> GUISystem::courtSelectBox;  
-    boost::shared_ptr<MyGUI::ImageBox> GUISystem::courtPreviewImgBox;
-    boost::shared_ptr<MyGUI::TextBox> GUISystem::courtNameTxtBox;
+// Court selection menu widgets
+boost::shared_ptr<MyGUI::Button> GUISystem::backPlayerStartSelectionMenuButton;
+boost::shared_ptr<MyGUI::Button> GUISystem::courtSelectButton;
+boost::shared_ptr<MyGUI::ListBox> GUISystem::courtSelectBox;  
+boost::shared_ptr<MyGUI::ImageBox> GUISystem::courtPreviewImgBox;
+boost::shared_ptr<MyGUI::TextBox> GUISystem::courtNameTxtBox;
 
-    std::vector< std::vector<std::string> > GUISystem::playerNames;
-    std::vector< std::vector<std::string> > GUISystem::playerPositionsPlayed;
-    std::vector< std::vector<size_t> > GUISystem::playerIDs;  // stores player IDs for each team
-    std::vector< std::vector<size_t> > GUISystem::team0IDs;
-    std::vector< std::vector<size_t> > GUISystem::team1IDs;
-    std::vector< std::vector<size_t> > GUISystem::teamStarterID; // stores the selected starters for each team 
+std::vector< std::vector<std::string> > GUISystem::playerNames;
+std::vector< std::vector<std::string> > GUISystem::playerPositionsPlayed;
+std::vector< std::vector<size_t> > GUISystem::playerIDs;  // stores player IDs for each team
+std::vector< std::vector<size_t> > GUISystem::team0IDs;
+std::vector< std::vector<size_t> > GUISystem::team1IDs;
+std::vector< std::vector<size_t> > GUISystem::teamStarterID; // stores the selected starters for each team 
 
-    size_t GUISystem::displayCount;
+size_t GUISystem::displayCount;
 
 //void GUISystem::startSingleGameButtonClicked(MyGUI::Widget *_sender);
 
@@ -459,23 +455,23 @@ bool GUISystem::initMyGUI()  // Initializes MyGUI
 //    exit(0);
     logMsg("Crash???");
     mGUI->initialise();
-    exit(0);
+//    exit(0);
     logMsg("*** MyGUI Initialized ***");
     return true;
 }
 
 void GUISystem::mainMenu()  // msin in game menu
 {
-    exit(0);
+//    exit(0);
     if (!mainMenuCreated)
     {
         logMsg("mainMenu not created yet!");
-        exit(0);
+//        exit(0);
         if (createMainMenuGUI()) // creates the main menu gui.
         {
             logMsg("Main Menu created successfully!");
             mainMenuCreated = true;
-                exit(0);
+//            exit(0);
         }
         else
         {
@@ -643,7 +639,7 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
         {
             if (getGameS()->createTeamInstances())
             {
-                getGameS()->setTeamInstancesCreated(true);
+/*                getGameS()->setTeamInstancesCreated(true);
                 if (teamSelectionMenuDataAdded)
                 {
                     logMsg("Team Selection Menu Data Added already!");
@@ -661,7 +657,7 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
                         logMsg("unable to add data to Team Selection Menus!");
                         exit(0);
                     }
-                }
+                }*/
             }
             else
             {
@@ -670,7 +666,7 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
             }
         }
     }
-    else
+/*    else
     {
         if (createTeamSelectionMenuGUI())
         {            
@@ -686,13 +682,12 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
                 logMsg("unable to add data to Team Selection Menus!");
                 exit(0);
             }
-
         }
         else
         {
             logMsg("Unable to create Team Selection Menu!");
         }
-    }
+    }*/
     
 //    hideCourtSelectionMenuWidgets();
     if (changeMenu = true)

@@ -516,24 +516,24 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     boost::shared_ptr<loader> load;
 
     std::vector<boost::shared_ptr<teamState> > teamInstance; // = gameS->getTeamDataInstance();
+/*
+//    if (!getGameS()->getTeamInstancesCreated())
+//    {
+//        logMsg("Team Instances not Created!");
+//        exit(0);
+//    }
 
-/*    if (!getGameS()->getTeamInstancesCreated())
-    {
-        logMsg("Team Instances not Created!");
-        exit(0);
-    }
+//    teamInstance = load->loadTeams();
+//    if (teamInstance.size() > 0)
+//    {
+//        getGameS()->setTeamInstance(teamInstance);
+//    }
+//    else
+//    {
+//        logMsg("Unable to load Team data!");
+//        return (false);
+//    }
 
-    teamInstance = load->loadTeams();
-    if (teamInstance.size() > 0)
-    {
-        getGameS()->setTeamInstance(teamInstance);
-    }
-    else
-    {
-        logMsg("Unable to load Team data!");
-        return (false);
-    }
-*/
     logMsg("GUI ADD TEAMteamInstance.size() == " +convert->toString(teamInstance.size()));
     int x = 0;
     while (x < teamInstance.size())
@@ -619,5 +619,6 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     team1SelectBox->setIndexSelected(1);
     logMsg("End of addTeamStartSelectionMenuData!");
 //    exit(0);
+*/
     return (true);
 }

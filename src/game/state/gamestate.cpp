@@ -315,7 +315,7 @@ bool gameState::createTeamInstances()  // creates team Instances
     logMsg("gameState::createTeamInstances() loadTeams");
     if (load->checkIfTeamsLoaded())
     {
-        tInstance = load->getTInstance();
+/*        tInstance = load->getTInstance();
         if (tInstance.size() > 0)
         {
             logMsg("gameState::createTeamInstances() tInstance Loaded!");
@@ -324,7 +324,7 @@ bool gameState::createTeamInstances()  // creates team Instances
         else
         {
             logMsg("gameState::createTeamInstances() tInstance NOT Loaded!");
-        }
+        }*/
     }
     else
     {

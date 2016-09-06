@@ -726,7 +726,7 @@ bool loader::checkIfTeamsLoaded()  // checks if teams have been loaded into tIns
             logMsg("loader::checkIfTeamsLoaded() ELSE ELSE!");
 
             tInstance = loadTeams();
-            logMsg("loader::checkIfTeamsLoaded()");
+/*            logMsg("loader::checkIfTeamsLoaded()");
             if (tInstance.size() > 0)
             {
                 logMsg("loader::checkIfTeamsLoaded() load->getTInstance().size() > 0! ELSE ELSE");
@@ -739,10 +739,10 @@ bool loader::checkIfTeamsLoaded()  // checks if teams have been loaded into tIns
             {
                 logMsg("loader::checkIfTeamsLoaded() Failed to load Team Files!");
                 return(false);
-            }
+            */
         }
     }
-    return (false);
+    return (true);
 }
 
 bool loader::checkIfUserInputsLoaded()  // checks if user inputs have been loaded into pInstance
@@ -2182,7 +2182,7 @@ std::vector<boost::shared_ptr<teamState> > loader::loadTeams()  // load teams fr
     logMsg("loadTeams() tInstance.size() == " +convert->toString(tInstance.size()));
 
     logMsg("dah");
-//    exit(0);
+    exit(0);
     if (teams.size() == 0)
     {
         logMsg("teams.size() == " +teams.size());

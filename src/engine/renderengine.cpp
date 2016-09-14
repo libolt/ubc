@@ -324,8 +324,9 @@ bool renderEngine::initSDL() // Initializes SDL Subsystem
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    exit(0);
-    if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
+    if (SDL_Init(SDL_INIT_VIDEO|SDL_INIT_EVENTS|SDL_INIT_GAMECONTROLLER) != 0)
     {
+//        exit(0);
         logMsg("Unable to initialize SDL: " +convert->toString(SDL_GetError()));
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 
@@ -337,6 +338,8 @@ bool renderEngine::initSDL() // Initializes SDL Subsystem
         return 1;
     }
 
+//    exit(0);
+    
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     SDL_DisplayMode mode;
 	SDL_GetDesktopDisplayMode(0,&mode);

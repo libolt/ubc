@@ -1,7 +1,7 @@
 /*
     SDL_android_main.c, placed in the public domain by Sam Lantinga  3/13/14
 */
-//#include "../../SDL_internal.h"
+//#include "SDL_internal.h"
 
 #ifdef __ANDROID__
 
@@ -15,6 +15,9 @@
 
 /* Called before SDL_main() to initialize JNI bindings in SDL library */
 extern "C" { void SDL_Android_Init(JNIEnv* env, jclass cls); }
+
+/* This prototype is needed to prevent a warning about the missing prototype for global function below */
+extern "C" { JNIEXPORT int JNICALL Java_org_libsdl_app_SDLActivity_nativeInit(JNIEnv* env, jclass cls, jobject array); }
 
 /* Start up the SDL app */
 extern "C" {
@@ -36,9 +39,9 @@ JNIEXPORT int JNICALL Java_org_libsdl_app_SDLActivity_nativeInit(JNIEnv* env, jc
 /*    len = (*env)->GetArrayLength(env, array);
     argv = SDL_stack_alloc(char*, 1 + len + 1);
     argc = 0;
-    // Use the name "app_process" so PHYSFS_platformCalcBaseDir() works.
-    //   https://bitbucket.org/MartinFelis/love-android-sdl2/issue/23/release-build-crash-on-start
-     
+    /// Use the name "app_process" so PHYSFS_platformCalcBaseDir() works.
+       https://bitbucket.org/MartinFelis/love-android-sdl2/issue/23/release-build-crash-on-start
+     ///
     argv[argc++] = SDL_strdup("app_process");
     for (i = 0; i < len; ++i) {
         const char* utf;
@@ -75,8 +78,8 @@ JNIEXPORT int JNICALL Java_org_libsdl_app_SDLActivity_nativeInit(JNIEnv* env, jc
 
     return status;
 }
-
 }
+
 #endif /* __ANDROID__ */
 
 /* vi: set ts=4 sw=4 expandtab: */

@@ -109,7 +109,7 @@ public:
     bool destroy(); // destroys the Input system and related objects
 
     bool processInput();	// processes all input
-    bool processKeyInput(bool textInput);	// reads in key presses
+    bool processKeyInput();	// reads in key presses
     bool processTextInput();  // reads in text input
     bool processMouseInput();	// reads in mouse input
     bool processTouchInput(); // reads in touch input

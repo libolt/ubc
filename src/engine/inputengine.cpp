@@ -310,7 +310,7 @@ bool inputEngine::processInput()  // processes all input
 //            exit(0);
             case SDL_FINGERMOTION:
                 logMsg("Motion!");
-                exit(0);
+//                exit(0);
                 // processes touch input
                 if (processTouchInput())
                 {
@@ -321,7 +321,7 @@ bool inputEngine::processInput()  // processes all input
                 logMsg("Finger Down!");
 //                logMsg("tfinger.x = " +convert->toString(inputEvent.tfinger.x*render->getWindowWidth()));
                 logMsg("tfinger.y = " +convert->toString(inputEvent.tfinger.y));
-                exit(0);
+//                exit(0);
                 // processes touch input
                 if (processTouchInput() == false)
                 {
@@ -330,7 +330,7 @@ bool inputEngine::processInput()  // processes all input
             break;
             case SDL_FINGERUP:
                 logMsg("Finger Up!");
-                exit(0);
+//                exit(0);
                 // processes touch input
                 if (processTouchInput() == false)
                 {
@@ -339,7 +339,7 @@ bool inputEngine::processInput()  // processes all input
             break;
             case SDL_MULTIGESTURE:
                 logMsg("Multigesture!");
-                exit(0);
+//                exit(0);
                 // processes touch input
                 if (processTouchInput() == false)
                 {
@@ -348,12 +348,9 @@ bool inputEngine::processInput()  // processes all input
             break;
             case SDL_KEYDOWN:
                 logMsg("KeyDown");
-                if (processKeyInput(true))
+                if (processKeyInput())
                 {
-                    inputProcessed = true;
-                    inputTypeQueue.push_back(KEYBOARD);
-                    inputKeyWorkQueue.push_back(keyPressed);
-                    keyInputReceived = true;
+                    inputProcessed = true;                  
 //                    inputType = KEYBOARD;
 //                    inputKeyMaps inputMap = keyMap();
 //                    exit(0);
@@ -368,17 +365,23 @@ bool inputEngine::processInput()  // processes all input
                 inputText = "";
                 
                 inputText = inputEvent.text.text;
-                logMsg("Key Pressed! == " +keyPressed);
+                logMsg("inputText! == " +inputText);
 //                exit(0);
                 if (inputText != "")
                 {
-                    logMsg("keyPressed == " +keyPressed);
+                    logMsg("inputText == " +convert->toString(keyPressed));
+                    if (processTextInput())
+                    {
+                        inputProcessed = true;
+                    }
 //                    exit(0);
 //                    inputMaps inputMap = keyMap();
-                    exit(0);
+//                    exit(0);
 //                    inputWorkQueue.push_back(inputMap);
                 }
-                exit(0);
+//                logMsg("Blareep!");
+//                logMsg("input keyPressed == " +keyPressed);
+//                exit(0);
             break;
 
             case SDL_MOUSEMOTION:
@@ -391,7 +394,7 @@ bool inputEngine::processInput()  // processes all input
                 {
                     return false;
                 }
-                exit(0);
+//                exit(0);
             break;
             case SDL_CONTROLLERAXISMOTION:
             case SDL_CONTROLLERBUTTONDOWN:
@@ -405,7 +408,7 @@ bool inputEngine::processInput()  // processes all input
                 {
                     return false;
                 }
-                exit(0);
+//                exit(0);
             break;
             case SDL_QUIT:
                 exit(0);
@@ -421,7 +424,7 @@ bool inputEngine::processInput()  // processes all input
     return (inputProcessed);
 }
 
-bool inputEngine::processKeyInput(bool textInput)  // processes unbuffered keyboard input
+bool inputEngine::processKeyInput()  // processes unbuffered keyboard input
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<GUISystem> gui = GUISystem::Instance();
@@ -435,7 +438,21 @@ bool inputEngine::processKeyInput(bool textInput)  // processes unbuffered keybo
         logMsg("Crash?");
 //        exit(0);
 //      keyPressed = "";
-        switch (inputEvent.key.keysym.scancode)
+        
+    keyPressed = convert->toInputKey(inputEvent);
+    
+    if (keyPressed != INKEY_NONE)
+    {
+        inputTypeQueue.push_back(KEYBOARD);
+        inputKeyWorkQueue.push_back(keyPressed);
+        keyInputReceived = true;
+    }
+    else
+    {
+        logMsg("Unable to match text input to a recognized key! ");
+        return (false);
+    }
+/*        switch (inputEvent.key.keysym.scancode)
         {
             case SDL_SCANCODE_A:
                 keyPressed = INKEY_A;
@@ -777,7 +794,7 @@ bool inputEngine::processKeyInput(bool textInput)  // processes unbuffered keybo
             logMsg("break");
             //    MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Enum(inputEvent.key.keysym.sym), inputEvent.key.keysym.sym);
             break;
-        }
+        } */
 //        logMsg("scancode = " +convert->toString(inputEvent.key.keysym.scancode));
 //        switch (inputEvent.key.keysym.sym)
 //        {
@@ -819,7 +836,24 @@ bool inputEngine::processKeyInput(bool textInput)  // processes unbuffered keybo
 
 bool inputEngine::processTextInput()  // reads in text input
 {
+    boost::shared_ptr<conversion> convert = conversion::Instance();
+
     logMsg("textInput!");
+//    exit(0);
+    keyPressed = convert->toInputKey(inputEvent.text.text);
+    
+    if (keyPressed != INKEY_NONE)
+    {
+        inputTypeQueue.push_back(KEYBOARD);
+        inputKeyWorkQueue.push_back(keyPressed);
+        keyInputReceived = true;
+//        exit(0);
+    }
+    else
+    {
+        logMsg("Unable to match text input to a recognized key! ");
+        return (false);
+    }
 //    exit(0);
     return (true);
 }

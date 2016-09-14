@@ -662,7 +662,7 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
             else
             {
                 logMsg("feeerrrrappp!");         
-                exit(0);
+//                exit(0);
             }
         }
     }

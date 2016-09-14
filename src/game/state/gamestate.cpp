@@ -315,7 +315,9 @@ bool gameState::createTeamInstances()  // creates team Instances
     logMsg("gameState::createTeamInstances() loadTeams");
     if (load->checkIfTeamsLoaded())
     {
-/*        tInstance = load->getTInstance();
+        logMsg("gameState::createTeamInstances() load->getTInstance().size() == " +convert->toString(load->getTInstance().size()));
+//        exit(0);
+        tInstance = load->getTInstance();
         if (tInstance.size() > 0)
         {
             logMsg("gameState::createTeamInstances() tInstance Loaded!");
@@ -324,7 +326,7 @@ bool gameState::createTeamInstances()  // creates team Instances
         else
         {
             logMsg("gameState::createTeamInstances() tInstance NOT Loaded!");
-        }*/
+        }
     }
     else
     {
@@ -341,14 +343,14 @@ bool gameState::createTeamInstances()  // creates team Instances
     logMsg("gameState::createTeamInstances() too");
     
 //    exit(0);
-/*    logMsg("tInstance size == " +convert->toString(tInstance.size()));
+    logMsg("tInstance size == " +convert->toString(tInstance.size()));
    
 //    logMsg("teamID.size() == " +convert->toString(getTeamIDS().size()));
 //    logMsg("tInstance size = " +convert->toString(tInstance.size()));
 //    logMsg("tInstance city 0 = " +tInstance[0]->getCity());
 
 //    exit(0);
-///    teamInstance[0].setTeamID(teamID[0]);
+    getTeamInstance()[0]->setID(tInstance[0]->getID());
 ///    teamInstance[1].setTeamID(teamID[1]);
 ///    exit(0);
 ///    teamInstance[0].setTeamType(HOMETEAM);
@@ -376,7 +378,7 @@ bool gameState::createTeamInstances()  // creates team Instances
         logMsg("Failed to create Team Instances!");
         return (false);
     }
-    */
+   
     return (true);
 }
 

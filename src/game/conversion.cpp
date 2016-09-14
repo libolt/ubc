@@ -1980,10 +1980,364 @@ inputKeyMaps conversion::toInputKey(const std::string &data)  // converts from s
     {
         inputKey = INKEY_9;
     }
+    else 
+    {
+        inputKey = INKEY_NONE;
+    }
     
     return (inputKey);
 }
 
+inputKeyMaps conversion::toInputKey(const SDL_Event &data)  // converts from SDL Key Scancode to inputKeyMaps
+{
+    inputKeyMaps inputKey;
+    
+    switch (data.key.keysym.scancode)
+    {
+        case SDL_SCANCODE_A:
+            inputKey = INKEY_A;
+//                logMsg("keyPressedScan === " +keyPressed);
+//                exit(0);
+        break;
+        case SDL_SCANCODE_B:
+            inputKey = INKEY_B;
+//                exit(0);
+        break;
+        case SDL_SCANCODE_C:
+            inputKey = INKEY_C;
+//                exit(0);
+        break;
+        case SDL_SCANCODE_D:
+            inputKey = INKEY_D;
+//                exit(0);
+        break;
+        case SDL_SCANCODE_E:
+            inputKey = INKEY_E;
+//                exit(0);
+        break;
+        case SDL_SCANCODE_F:
+            inputKey = INKEY_F;
+            logMsg("F pressed!");
+//                exit(0);
+        break;  
+        case SDL_SCANCODE_G:
+            inputKey = INKEY_G;
+//                exit(0);
+        break;
+        case SDL_SCANCODE_H:
+            inputKey = INKEY_H;
+//                exit(0);
+        break;
+        case SDL_SCANCODE_I:
+            inputKey = INKEY_I;
+//                exit(0);
+        break;
+        case SDL_SCANCODE_J:
+             inputKey = INKEY_J;
+//                exit(0);
+        break;   
+        case SDL_SCANCODE_K:
+            inputKey = INKEY_K;
+//                exit(0);
+        break;
+        case SDL_SCANCODE_L:
+            inputKey = INKEY_L;
+//                exit(0);
+        break;
+        case SDL_SCANCODE_M:
+            inputKey = INKEY_M;
+//                exit(0);
+        break;
+        case SDL_SCANCODE_N:
+            inputKey = INKEY_N;
+//                exit(0);
+        break;
+        case SDL_SCANCODE_O:
+            inputKey = INKEY_O;
+//                exit(0);
+        break;
+        case SDL_SCANCODE_P:
+            inputKey = INKEY_P;
+//                exit(0);
+        break;
+        case SDL_SCANCODE_Q:
+            inputKey = INKEY_Q;
+//                exit(0);
+        break;
+        case SDL_SCANCODE_R:
+            inputKey = INKEY_R;
+//                exit(0);
+        break;
+        case SDL_SCANCODE_S:
+             inputKey = INKEY_S;
+             logMsg("key == s!");
+             logMsg("keyPressed == " +toString(inputKey));
+//                exit(0);
+        break;
+        case SDL_SCANCODE_T:
+            inputKey = INKEY_T;
+//                exit(0);
+        break;
+        case SDL_SCANCODE_U:
+             inputKey = INKEY_U;
+//                exit(0);
+        break;
+        case SDL_SCANCODE_V:
+            inputKey = INKEY_V;
+//                exit(0);
+        break;
+        case SDL_SCANCODE_W:
+            inputKey = INKEY_W;
+//                exit(0);
+        break;
+        case SDL_SCANCODE_X:
+             inputKey = INKEY_X;
+//                exit(0);
+        break;
+        case SDL_SCANCODE_Y:
+            inputKey = INKEY_Y;
+//                exit(0);
+        break;
+        case SDL_SCANCODE_Z:
+            inputKey = INKEY_Z;
+//                exit(0);
+        break;                     
+        case SDL_SCANCODE_RETURN:
+//            case SDLK_AC_BACK:
+            logMsg("Return!");
+            inputKey = INKEY_RETURN;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Return, MyGUI::KeyCode::Return);
+        break;
+        case SDL_SCANCODE_BACKSPACE:
+            logMsg("Backspace!");
+//                 exit(0);
+            inputKey = INKEY_BACKSPACE;
+//                gui->menuReceiveKeyPress(keyPressed); // sends input to menu key input processing function
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Backspace, 0);
+        break;
+        case SDL_SCANCODE_ESCAPE:
+            logMsg("Escape!");
+            inputKey = INKEY_ESCAPE;
+//              exit(0);
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Escape, 0);
+        break;
+        case SDL_SCANCODE_TAB:
+            logMsg("Tab!");
+            inputKey = INKEY_TAB;
+//                exit(0);
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Tab, 0);
+        break;
+        case SDL_SCANCODE_SPACE:
+            logMsg("Space!");
+            inputKey = INKEY_SPACE;
+//              MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Space, ' ');
+        break;
+        case SDL_SCANCODE_LSHIFT:
+            inputKey = INKEY_LSHIFT;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::LeftShift, 0);
+        break;
+        case SDL_SCANCODE_LCTRL:
+            inputKey = INKEY_LCTRL;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::LeftControl, 0);
+        break;
+        case SDL_SCANCODE_LALT:
+            inputKey = INKEY_LALT;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::LeftAlt, 0);
+        break;
+        case SDL_SCANCODE_LGUI:
+            inputKey = INKEY_LGUI;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::LeftWindows, 0);
+        break;
+        case SDL_SCANCODE_RSHIFT:
+            inputKey = INKEY_RSHIFT;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::RightShift, 0);
+        break;
+        case SDL_SCANCODE_RCTRL:
+            inputKey = INKEY_RCTRL;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::RightControl, 0);
+        break;
+        case SDL_SCANCODE_RALT:
+            inputKey = INKEY_RALT;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::RightAlt, 0);
+        break;
+        case SDL_SCANCODE_RGUI:
+            inputKey = INKEY_RGUI;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::RightWindows, 0);
+        break;
+        case SDL_SCANCODE_MENU:
+            inputKey = INKEY_MENU;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::RightWindow, 0);
+        break;
+        case SDL_SCANCODE_CAPSLOCK:
+            inputKey = INKEY_CAPSLOCK;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Capital, 0);
+        break;
+        case SDL_SCANCODE_F1:
+            inputKey = INKEY_F1;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F1, 0);
+        break;
+        case SDL_SCANCODE_F2:
+            inputKey = INKEY_F2;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F2, 0);
+        break;
+        case SDL_SCANCODE_F3:
+            inputKey = INKEY_F3;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F3, 0);
+        break;
+        case SDL_SCANCODE_F4:
+            inputKey = INKEY_F4;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F4, 0);
+        break;
+        case SDL_SCANCODE_F5:
+            inputKey = INKEY_F5;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F5, 0);
+        break;
+        case SDL_SCANCODE_F6:
+            inputKey = INKEY_F6;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F6, 0);
+        break;
+        case SDL_SCANCODE_F7:
+            inputKey = INKEY_F7;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F7, 0);
+        break;
+        case SDL_SCANCODE_F8:
+            inputKey = INKEY_F8;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F8, 0);
+        break;
+        case SDL_SCANCODE_F9:
+            inputKey = INKEY_F9;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F9, 0);
+        break;
+        case SDL_SCANCODE_F10:
+            inputKey = INKEY_F10;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F10, 0);
+        break;
+        case SDL_SCANCODE_F11:
+            inputKey = INKEY_F11;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F11, 0);
+        break;
+        case SDL_SCANCODE_F12:
+            inputKey = INKEY_F12;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::F12, 0);
+        break;
+        case SDL_SCANCODE_UP:
+            inputKey = INKEY_UP;
+//                logMsg("Up!");
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::ArrowUp, 0);
+        break;
+        case SDL_SCANCODE_DOWN:
+            inputKey = INKEY_DOWN;
+//                 MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::ArrowDown, 0);
+        break;
+        case SDL_SCANCODE_LEFT:
+            inputKey = INKEY_LEFT;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::ArrowLeft, 0);
+        break;
+        case SDL_SCANCODE_RIGHT:
+            inputKey = INKEY_RIGHT;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::ArrowRight, 0);
+        break;
+        case SDL_SCANCODE_SCROLLLOCK:
+            inputKey = INKEY_SCROLLLOCK;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::ScrollLock, 0);
+        break;
+        case SDL_SCANCODE_HOME:
+            inputKey = INKEY_HOME;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Home, 0);
+        break;
+        case SDL_SCANCODE_PAUSE:
+            inputKey = INKEY_PAUSE_BREAK;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Pause, 0);
+        break;
+        case SDL_SCANCODE_INSERT:
+            inputKey = INKEY_INSERT;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Insert, 0);
+        break;
+        case SDL_SCANCODE_PAGEUP:
+            inputKey = INKEY_PAGEUP;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::PageUp, 0);
+        break;
+        case SDL_SCANCODE_DELETE:
+            inputKey = INKEY_DELETE;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Delete, 0);
+        break;
+        case SDL_SCANCODE_END:
+             inputKey = INKEY_END;
+//            MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::End, 0);
+        break;
+        case SDL_SCANCODE_PAGEDOWN:
+            inputKey = INKEY_PAGEDOWN;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::PageDown, 0);
+        break;
+        case SDL_SCANCODE_NUMLOCKCLEAR:
+            inputKey = INKEY_NUMLOCK;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::NumLock, 0);
+        break;
+        case SDL_SCANCODE_KP_DIVIDE:
+            inputKey = INKEY_DIVIDE;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Divide, 0);
+        break;
+        case SDL_SCANCODE_KP_MULTIPLY:
+            inputKey = INKEY_MULTIPLY;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Multiply, 0);
+        break;
+        case SDL_SCANCODE_KP_MINUS:
+            inputKey = INKEY_MINUS;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Minus, 0);
+        break;
+        case SDL_SCANCODE_KP_ENTER:
+             inputKey = INKEY_ENTER;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::NumpadEnter, 0);
+        break;
+        case SDL_SCANCODE_KP_0:
+            inputKey = INKEY_0;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Numpad0, '0');
+        break;
+        case SDL_SCANCODE_KP_1:
+            inputKey = INKEY_1;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Numpad1, '1');
+        break;
+        case SDL_SCANCODE_KP_2:
+            inputKey = INKEY_2;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Numpad2, '2');
+        break;
+        case SDL_SCANCODE_KP_3:
+            inputKey = INKEY_3;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Numpad3, '3');
+        break;
+        case SDL_SCANCODE_KP_4:
+            inputKey = INKEY_4;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Numpad4, '4');
+        break;
+        case SDL_SCANCODE_KP_5:
+            inputKey = INKEY_5;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Numpad5, '5');
+        break;
+        case SDL_SCANCODE_KP_6:
+            inputKey = INKEY_6;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Numpad6, '6');
+        break;
+        case SDL_SCANCODE_KP_7:
+            inputKey = INKEY_7;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Numpad7, '7');
+        break;
+        case SDL_SCANCODE_KP_8:
+            inputKey = INKEY_8;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Numpad8, '8');
+        break;
+        case SDL_SCANCODE_KP_9:
+            inputKey = INKEY_9;
+//                MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Numpad9, '9');
+        break;           
+        default:
+            logMsg("break");
+            inputKey = INKEY_NONE;
+            //    MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Enum(inputEvent.key.keysym.sym), inputEvent.key.keysym.sym);
+        break;
+    }
+    
+    return (inputKey);
+}
 inputGamePadMaps conversion::toInputGP(const std::string &data)  // converts from string to inputGamePadMaps
 {
     inputGamePadMaps GPMap;

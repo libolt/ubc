@@ -35,7 +35,7 @@
 #include "Ogre.h"
 #include "OgreVector3.h"
 #include "LinearMath/btVector3.h"
-
+#include "SDL.h"
 #include "ai/steering.h"
 #include "enums.h"
 
@@ -272,6 +272,8 @@ class conversion  // class for conversion between data types
         
         // inputKm Maps conversion
         inputKeyMaps toInputKey(const std::string &data);  // converts from string to inputKeyMaps
+        inputKeyMaps toInputKey(const SDL_Event &data);  // converts from SDL Key Scancode to inputKeyMaps
+        
         inputGamePadMaps toInputGP(const std::string &data);  // converts from string to inputGamePadMaps
         
     protected:

@@ -67,6 +67,7 @@ bool loader::playerFilesLoaded;
 bool loader::teamFilesLoaded;
 bool loader::userInputFilesLoaded;
 
+int loader::count;
 
 loader::loader()  // constructor
 {
@@ -680,6 +681,13 @@ bool loader::checkIfPlayersLoaded()  // checks if players have been loaded into 
 
 bool loader::checkIfTeamsLoaded()  // checks if teams have been loaded into tInstance
 {
+    boost::shared_ptr<conversion> convert = conversion::Instance();
+    std::vector<teamState> tempT;
+    
+//    exit(0);
+    std::vector<boost::shared_ptr<teamState> > tempTInstance;
+    tInstance = tempTInstance;
+//    exit(0);
     if (teamFilesLoaded)
     {
         logMsg("loader::checkIfTeamsLoaded() getTeamFilesLoaded");
@@ -726,7 +734,9 @@ bool loader::checkIfTeamsLoaded()  // checks if teams have been loaded into tIns
             logMsg("loader::checkIfTeamsLoaded() ELSE ELSE!");
 
             tInstance = loadTeams();
-/*            logMsg("loader::checkIfTeamsLoaded()");
+            logMsg("loader::checkIfTeamsLoaded() tInstance.size() == " +convert->toString(tInstance.size()));
+//            exit(0);
+            logMsg("loader::checkIfTeamsLoaded()");
             if (tInstance.size() > 0)
             {
                 logMsg("loader::checkIfTeamsLoaded() load->getTInstance().size() > 0! ELSE ELSE");
@@ -739,7 +749,7 @@ bool loader::checkIfTeamsLoaded()  // checks if teams have been loaded into tIns
             {
                 logMsg("loader::checkIfTeamsLoaded() Failed to load Team Files!");
                 return(false);
-            */
+            }
         }
     }
     return (true);
@@ -2182,7 +2192,7 @@ std::vector<boost::shared_ptr<teamState> > loader::loadTeams()  // load teams fr
     logMsg("loadTeams() tInstance.size() == " +convert->toString(tInstance.size()));
 
     logMsg("dah");
-    exit(0);
+//    exit(0);
     if (teams.size() == 0)
     {
         logMsg("teams.size() == " +teams.size());

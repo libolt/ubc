@@ -88,7 +88,7 @@ public:
     std::vector<boost::shared_ptr<playerState> > getPInstance();  // retrieves the value of pInstance
     void setPInstance(std::vector<boost::shared_ptr<playerState> > set);  // sets the value of pInstance
     
-    std::vector<boost::shared_ptr<teamState> > getTInstance();  // retrieves the value of tInstance
+    static std::vector<boost::shared_ptr<teamState> > getTInstance();  // retrieves the value of tInstance
     void setTInstance(std::vector<boost::shared_ptr<teamState> > set);  // sets the value of tInstance
     
     std::vector<boost::shared_ptr<userInput> > getUIInstance();  // retrieves the value of uiInstance
@@ -183,7 +183,7 @@ private:
     static bool playerFilesLoaded;
     static bool teamFilesLoaded;
     static bool userInputFilesLoaded;
-    
+    static int count;  // counts number of times a function has been called
 };
 
 

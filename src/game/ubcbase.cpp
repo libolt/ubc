@@ -32,6 +32,7 @@ boost::shared_ptr<inputState> UBCBase::inputS;  // the inputState object
 
 UBCBase::UBCBase()  // constructor
 {
+
 //    gameEngine *tempGameEObj = new gameEngine;
     boost::shared_ptr<gameEngine> tempGameESharedPtr(new gameEngine);
     gameE = tempGameESharedPtr;

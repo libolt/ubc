@@ -210,7 +210,7 @@ bool jumpBalls::jumpBallExecute(std::vector<boost::shared_ptr<basketballState> >
     while (x < activeTeamInstance.size())
     {
         //activePlayerInstance.clear();
-        activePlayerInstance.push_back(activeTeamInstance[x]->getActivePlayerInstance());
+//TS        activePlayerInstance.push_back(activeTeamInstance[x]->getActivePlayerInstance());
 //        activePlayerInstance->( activeTeamInstance[x]->getActivePlayerInstance();
         
         size_t i = 0;
@@ -250,7 +250,7 @@ bool jumpBalls::jumpBallExecute(std::vector<boost::shared_ptr<basketballState> >
     boost::shared_ptr<playerState> activePInstance;
     while (y < activeTeamInstance.size())
     {
-        switch(activeTeamInstance[y]->getTeamType())
+/*TS        switch(activeTeamInstance[y]->getTeamType())
         {
             case HOMETEAM:
                 activePInstance = activePlayerInstance[0][jumpPlayerInstance[0]];
@@ -279,6 +279,7 @@ bool jumpBalls::jumpBallExecute(std::vector<boost::shared_ptr<basketballState> >
         {
         
         }
+TS*/
 /*        logMsg("Team " +convert->toString(teamType) +" playerInstance " +convert->toString(jumpPlayerInstance[0]) +" collCheck == " +convert->toString(collCheck));
         teamType = activeTeamInstance[1].getTeamType();
         collCheck = physEngine.collisionCheck(basketballInstance[activeBBallInstance].getPhysBody(), activePlayerInstance[1][jumpPlayerInstance[1]].getPhysBody());
@@ -326,7 +327,7 @@ bool jumpBalls::tipToPlayer(std::vector<boost::shared_ptr<basketballState> > bas
 //    quarters quarter = gameS->getQuarter();
 //    size_t activeBBallInstance = gameS->getActiveBBallInstance();
 
-    activePlayerInstance = activeTeamInstance[ballTippedToTeam]->getActivePlayerInstance();
+//TS    activePlayerInstance = activeTeamInstance[ballTippedToTeam]->getActivePlayerInstance();
     
     size_t y = 0;
     while (y < activePlayerInstance.size())
@@ -421,7 +422,7 @@ bool jumpBalls::tipToPlayer(std::vector<boost::shared_ptr<basketballState> > bas
  //               exit(0);
 ///                gameS->setTeamWithBall(ballTippedToTeam);
                 logMsg("ballTippedToPlayerID == " +convert->toString(ballTippedToPlayerID));
-                activeTeamInstance[ballTippedToTeam]->setPlayerWithBallID(ballTippedToPlayerID);
+/*TS                activeTeamInstance[ballTippedToTeam]->setPlayerWithBallID(ballTippedToPlayerID);
                 activeTeamInstance[ballTippedToTeam]->setPlayerWithBallInstance(ballTippedToPlayerInstance);
                 physEngine.setBasketballVelocitySet(false);
                 activeTeamInstance[ballTippedToTeam]->setPlayerWithBallDribbling(true);
@@ -447,6 +448,7 @@ bool jumpBalls::tipToPlayer(std::vector<boost::shared_ptr<basketballState> > bas
                     default:
                     break;
                 }
+TS*/
 ///                gameS->setActiveTeamInstance(activeTeamInstance);
 
                 return(true);

@@ -208,7 +208,7 @@ void playerSteer::update (const float currentTime, float elapsedTime)
     size_t z = 0;
     while (z < getActiveTeamInstance().size())
     {
-        activePlayerInstance.push_back(getActiveTeamInstance()[z]->getActivePlayerInstance());
+//TS        activePlayerInstance.push_back(getActiveTeamInstance()[z]->getActivePlayerInstance());
         std::vector<int> activeID;
         activePlayerID.push_back(activeID);
         size_t x = 0;
@@ -443,7 +443,7 @@ void playerSteer::checkCourtPosition()  // checks if the player's position has c
     Ogre::Vector3 *offenseStartPositions;
     OpenSteer::Vec3 startPosition;
     OpenSteer::Vec3 seekTarget;
-    
+/*TS    
     size_t z = 0;
     while (z < getActiveTeamInstance().size())
     {
@@ -491,6 +491,7 @@ void playerSteer::checkCourtPosition()  // checks if the player's position has c
     {
         logMsg("SteerChanged!!");
     }
+    TS*/
 }
 
 void playerSteer::updateOffense(const float currentTime, const float elapsedTime)  // updates the offense steering sim
@@ -502,10 +503,10 @@ void playerSteer::updateOffense(const float currentTime, const float elapsedTime
     //std::vector<playerState> team0ActivePlayerInstance = activeTeamInstance[0].getActivePlayerInstance();
     //std::vector<playerState> team1ActivePlayerInstance = activeTeamInstance[1].getActivePlayerInstance();
     std::vector<std::vector<boost::shared_ptr<playerState> > > activePlayerInstance;
-    std::vector<size_t> team0ActivePlayerID = getActiveTeamInstance()[0]->getActivePlayerID();
-    std::vector<size_t> team1ActivePlayerID = getActiveTeamInstance()[1]->getActivePlayerID();
+//TS    std::vector<size_t> team0ActivePlayerID = getActiveTeamInstance()[0]->getActivePlayerID();
+//TS    std::vector<size_t> team1ActivePlayerID = getActiveTeamInstance()[1]->getActivePlayerID();
 
-    std::vector<bool> startPositionReached = getActiveTeamInstance()[teamType]->getOffenseInstance()->getStartPositionReached();
+//TS    std::vector<bool> startPositionReached = getActiveTeamInstance()[teamType]->getOffenseInstance()->getStartPositionReached();
 
     OpenSteer::Vec3 seekTarget;
     distToPosition = OpenSteer::Vec3::distance (steerCoords, position());	
@@ -513,7 +514,7 @@ void playerSteer::updateOffense(const float currentTime, const float elapsedTime
     size_t z = 0;
     while (z < getActiveTeamInstance().size())
     {
-        activePlayerInstance.push_back(getActiveTeamInstance()[z]->getActivePlayerInstance());
+//TS        activePlayerInstance.push_back(getActiveTeamInstance()[z]->getActivePlayerInstance());
         ++z;
     }
 	if (distToPosition >= 3)
@@ -667,7 +668,7 @@ void playerSteer::updateDefense(const float currentTime, const float elapsedTime
     size_t z = 0;
     while (z < getActiveTeamInstance().size())
     {
-        activePlayerInstance.push_back(getActiveTeamInstance()[z]->getActivePlayerInstance());
+//TS        activePlayerInstance.push_back(getActiveTeamInstance()[z]->getActivePlayerInstance());
         size_t x = 0;
         while (x < activePlayerInstance[z].size())
         {

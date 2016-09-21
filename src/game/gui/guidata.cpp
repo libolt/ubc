@@ -119,7 +119,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     logMsg("blah");
 //    exit(0);
     
-/*
+/*TS
     if (!getGameS()->getPlayerInstanceCreated())
     {
         logMsg("player instances not yet created!");
@@ -138,7 +138,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         teamInstance[teamIDs[0]]->createPlayerInstances();
         getGameS()->setTeamInstance(teamInstance);
     }
-*/
+
 //    logMsg ("addPlayerStartSelectionMenuData");
 //    exit(0);
 
@@ -196,7 +196,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     playerInstance.push_back(teamInstance[teamIDs[0]]->getPlayerInstance());
     exit(0);
     playerInstance.push_back(teamInstance[teamIDs[1]]->getPlayerInstance());
-
+TS*/
     exit(0);
     std::vector<size_t> overAllRatings;
     

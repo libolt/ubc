@@ -190,8 +190,8 @@ void gameState::setInputInGameWorkQueue(inputInGameWorkQueues set)  // sets the 
 
 bool gameState::assignHoopToTeams()  // assigns which hoop belongs to each team
 {
-    getActiveTeamInstance()[0]->setHoop(1);
-    getActiveTeamInstance()[1]->setHoop(0);
+//TS    getActiveTeamInstance()[0]->setHoop(1);
+//TS    getActiveTeamInstance()[1]->setHoop(0);
     return (true);
 }
 
@@ -311,13 +311,23 @@ bool gameState::createTeamInstances()  // creates team Instances
     boost::shared_ptr<loader> load;
     
     std::vector<boost::shared_ptr<teamState> > tInstance;
+    std::vector<boost::shared_ptr<teamState> > tInstance2;
+    boost::shared_ptr<teamState> tempInstance(new teamState);
+    
+    tempInstance->setID(1);
+    tempInstance->setCity("tempCity");
+    tempInstance->setName("tempTeam");
+    tempInstance->setCoach("tempCoach|");
+    tempInstance->setTeamType(HOMETEAM);
+
+    tInstance2.push_back(tempInstance);
     
     logMsg("gameState::createTeamInstances() loadTeams");
     if (load->checkIfTeamsLoaded())
     {
         logMsg("gameState::createTeamInstances() load->getTInstance().size() == " +convert->toString(load->getTInstance().size()));
 //        exit(0);
-        tInstance = load->getTInstance();
+//        tInstance = tInstance2; // load->getTInstance();
         if (tInstance.size() > 0)
         {
             logMsg("gameState::createTeamInstances() tInstance Loaded!");
@@ -344,13 +354,14 @@ bool gameState::createTeamInstances()  // creates team Instances
     
 //    exit(0);
     logMsg("tInstance size == " +convert->toString(tInstance.size()));
-   
+/*
+
 //    logMsg("teamID.size() == " +convert->toString(getTeamIDS().size()));
 //    logMsg("tInstance size = " +convert->toString(tInstance.size()));
 //    logMsg("tInstance city 0 = " +tInstance[0]->getCity());
 
 //    exit(0);
-    getTeamInstance()[0]->setID(tInstance[0]->getID());
+///    getTeamInstance()[0]->setID(tInstance[0]->getID());
 ///    teamInstance[1].setTeamID(teamID[1]);
 ///    exit(0);
 ///    teamInstance[0].setTeamType(HOMETEAM);
@@ -366,7 +377,7 @@ bool gameState::createTeamInstances()  // creates team Instances
 //    teamInstance[1].setupState();
 //    exit(0);
 
-    if (tInstance.size() > 0)
+/*    if (tInstance.size() > 0)
     {
         setTeamInstance(tInstance);
         setTeamInstancesCreated(true);
@@ -378,7 +389,7 @@ bool gameState::createTeamInstances()  // creates team Instances
         logMsg("Failed to create Team Instances!");
         return (false);
     }
-   
+*/
     return (true);
 }
 
@@ -491,21 +502,21 @@ bool gameState::createActiveTeamInstances()  // creates the active team instance
     activeTeamInstance.push_back(tInstance);  // adds empty teamState to activeTeamInstance vector
     activeTeamInstance.push_back(tInstance);  // adds empty teamState to activeTeamInstance vector
 
-    activeTeamInstance[0] = teamInstance[teamIDS[0]];
+/*TS    activeTeamInstance[0] = teamInstance[teamIDS[0]];
     activeTeamInstance[1] = teamInstance[teamIDS[1]];
     activeTeamInstance[0]->setID(teamIDS[0]);
     activeTeamInstance[1]->setID(teamIDS[1]);
     activeTeamInstance[0]->setTeamType(HOMETEAM);
-    activeTeamInstance[1]->setTeamType(AWAYTEAM);
+    activeTeamInstance[1]->se0tTeamType(AWAYTEAM);
     activeTeamInstance[0]->setHumanControlled(true);
     activeTeamInstance[1]->setHumanControlled(false);
     activeTeamInstance[0]->setTeamColObject(COL_TEAM1);
     activeTeamInstance[1]->setTeamColObject(COL_TEAM2);
-    activeTeamInstance[0]->setTeamCollidesWith(COL_COURT /* | COL_BBALL | COL_TEAM2;   determines what team0 collides with*/);
-    activeTeamInstance[1]->setTeamCollidesWith(COL_COURT /* | COL_BBALL | COL_TEAM2;   determines what team1 collides with*/);
+    activeTeamInstance[0]->setTeamCollidesWith(COL_COURT); // | COL_BBALL | COL_TEAM2;   determines what team0 collides with
+    activeTeamInstance[1]->setTeamCollidesWith(COL_COURT); // | COL_BBALL | COL_TEAM2;   determines what team1 collides with
     activeTeamInstance[0]->setupState();
     activeTeamInstance[1]->setupState();
-
+TS*/
     setActiveTeamInstance(activeTeamInstance);
     return (true);
 }
@@ -1069,7 +1080,7 @@ bool gameState::processInput()  // processes input received from the inputState 
             size_t inputIterator = 0;
             while (inputIterator < getActiveTeamInstance().size())
             {
-                if (getActiveTeamInstance()[inputIterator]->getPlayerInstancesCreated())
+/*TS                if (getActiveTeamInstance()[inputIterator]->getPlayerInstancesCreated())
                 {
                     std::vector<boost::shared_ptr<playerState> > activePlayerInstance = getActiveTeamInstance()[inputIterator]->getActivePlayerInstance();
                     if (getActiveTeamInstance()[inputIterator]->getHumanControlled())
@@ -1220,7 +1231,8 @@ bool gameState::processInput()  // processes input received from the inputState 
                     }
                     ++inputIterator;
                 }
-            }
+TS*/                
+            }            
         }
 }
 

@@ -70,15 +70,15 @@ void defenseState::updateState(teamTypes teamOnDefense)	// updates the state of 
     teamTypes teamWithBall = getTeamWithBall();
 
     std::vector<boost::shared_ptr<teamState> > activeTeamInstance = getActiveTeamInstance();
-    std::vector<boost::shared_ptr<playerState> > playerDInstance = activeTeamInstance[teamOnDefense]->getActivePlayerInstance();
-    std::vector<boost::shared_ptr<playerState> > playerOInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
-    std::vector<size_t> activeDID = activeTeamInstance[teamOnDefense]->getActivePlayerID();
-    std::vector<size_t> activeOID = activeTeamInstance[teamWithBall]->getActivePlayerID();
+//TS    std::vector<boost::shared_ptr<playerState> > playerDInstance = activeTeamInstance[teamOnDefense]->getActivePlayerInstance();
+//TS    std::vector<boost::shared_ptr<playerState> > playerOInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
+//TS    std::vector<size_t> activeDID = activeTeamInstance[teamOnDefense]->getActivePlayerID();
+//TS    std::vector<size_t> activeOID = activeTeamInstance[teamWithBall]->getActivePlayerID();
     std::vector<Ogre::Vector3> playerOPos;  // stores positions of offensive players
     std::vector<Ogre::Vector3> playerDPos;  // stores positions of defensive players
 
-    int humanPlayer = activeTeamInstance[teamOnDefense]->getHumanPlayer();
-    int numPlayers = activeDID.size(); // stores the number of players on the court per team
+//TS    int humanPlayer = activeTeamInstance[teamOnDefense]->getHumanPlayer();
+//TS    int numPlayers = activeDID.size(); // stores the number of players on the court per team
 //	exit(0);
 	if (execute)
 	{
@@ -95,7 +95,7 @@ void defenseState::updateState(teamTypes teamOnDefense)	// updates the state of 
 */
 //        activePlayerInstance = activeTeamInstance[1].getPlayerInstance();
         size_t x = 0;
-        while (x<playerOInstance.size())
+/*TS        while (x<playerOInstance.size())
         {
             size_t i = 0;
             while (i<activeOID.size())
@@ -333,6 +333,7 @@ void defenseState::updateState(teamTypes teamOnDefense)	// updates the state of 
             }
             x++;
         }
+TS*/
 /*        
 			    if (x != humanPlayer && !playerDInstance[x].getDefenseSet())
 			    {
@@ -484,7 +485,7 @@ void defenseState::updateState(teamTypes teamOnDefense)	// updates the state of 
 //		}
 	}
 
-    activeTeamInstance[teamOnDefense]->setActivePlayerInstance(playerDInstance);
+//TS    activeTeamInstance[teamOnDefense]->setActivePlayerInstance(playerDInstance);
     setActiveTeamInstance(activeTeamInstance);
 
 }

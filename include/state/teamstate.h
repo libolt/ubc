@@ -33,7 +33,8 @@
 #include "state/state.h"
 #include "state/gamestateshared.h"
 #include "data/teamdata.h"
-#include "ubcbase.h"
+//#include "ubcbase.h"
+class UBCBase;
 class offenseState;
 class defenseState;
 class basketballState;
@@ -41,7 +42,7 @@ class playerState;
 //class state;
 //class teamData;
 
-class teamState : public state, public teamData, public UBCBase
+class teamState : public state, public teamData
 
 {
 public:
@@ -49,12 +50,16 @@ public:
     teamState();  // constructor
     ~teamState();  // destructor
 
-/*    int getTeamNumber();	// retrieves the value of teamNumber
-    void setTeamNumber(int set);  // sets the value of teamNumber
-*/
-/*    static size_t getID();	 // retrieves the value of teamID
-    void setTeamID(size_t set);	 // sets the value of teamID
-*/
+    boost::shared_ptr<UBCBase> getBase();  // retrieves the value of base
+    void setBase(boost::shared_ptr<UBCBase> set);  // sets the value of base
+    
+
+///    int getTeamNumber();	// retrieves the value of teamNumber
+///    void setTeamNumber(int set);  // sets the value of teamNumber
+
+///    static size_t getID();	 // retrieves the value of teamID
+///    void setTeamID(size_t set);	 // sets the value of teamID
+
     teamTypes getTeamType();  // retrieves the value of teamType
     void setTeamType(teamTypes set);  // sets the value of teamType
 
@@ -162,7 +167,7 @@ public:
     
     size_t getTeamCollidesWith();  // retrieves the value of teamCollidesWith
     void setTeamCollidesWith(size_t set); // sets the value of teamCollidesWith
-    
+
 //    bool getStateSet();  // retrieves the value of stateSet
 //    void setStateSet(bool set);  // sets the value of stateSet
 
@@ -182,11 +187,12 @@ public:
 
     void setupState();  // sets up the state for teamState object
     void updateState();  // updates the state of the teamState object
-        
+
         
 protected:
 private:
 
+    static boost::shared_ptr<UBCBase> base;  // static copy of base class
     size_t teamNumber;  // stores which team number the object is
     teamTypes teamType;  // stores which type of team this object is
 //    static size_t teamID;  // stores the ID number of the team;
@@ -210,7 +216,7 @@ private:
     size_t freeThrowsMade;  // stores the total number of free throws made.
 
     std::vector<size_t> playerID;  // stores the player IDs from the teams class
-    static std::vector<size_t> activePlayerID;  // stores which players are currently on the court.
+    std::vector<size_t> activePlayerID;  // stores which players are currently on the court.
 //        std::vector<int> activeID;
     std::vector<size_t> starterID;  // stores the IDs of which players are listed as starters.
 
@@ -238,6 +244,7 @@ private:
     size_t teamCollidesWith;   // stores what team players collides with
 
 //    bool stateSet;  // stores whether or not the class state has been setup correctly
+
 };
 
 #endif // _TEAMSATE_H_

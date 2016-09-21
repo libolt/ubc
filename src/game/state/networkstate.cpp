@@ -56,7 +56,7 @@ void networkState::processLocalInput(std::vector<boost::shared_ptr<teamState> > 
     networkPlayerStateObject netPStateObj;
     
 //    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
-    int humanControlled = activeTeamInstance[getNetworkE()->getTeamType()]->getHumanControlled();
+/*TS    int humanControlled = activeTeamInstance[getNetworkE()->getTeamType()]->getHumanControlled();
     int humanPlayer = activeTeamInstance[getNetworkE()->getTeamType()]->getHumanPlayer();
 
 //                              logMsg("INPUT MAP ======== "  +toString(inputMap));
@@ -173,14 +173,14 @@ void networkState::processLocalInput(std::vector<boost::shared_ptr<teamState> > 
                 //exit(0);
             break;
             default:
-            /*
-                netPStateObj.setPacketType(3);
-                netPStateObj.setTeamID(teamType);
-                netPStateObj.setPlayerID(1);
-                std::stringstream ss;
-                ss << netPStateObj;
-                packetData = ss.str();
-            */
+            
+///                netPStateObj.setPacketType(3);
+///                netPStateObj.setTeamID(teamType);
+///                netPStateObj.setPlayerID(1);
+///                std::stringstream ss;
+///                ss << netPStateObj;
+///                packetData = ss.str();
+            
                 packetData = "";
             break;
         }
@@ -191,7 +191,7 @@ void networkState::processLocalInput(std::vector<boost::shared_ptr<teamState> > 
         ++x;
     }
     inputQueue.clear();
-    
+TS*/
 /*    if (gameS->getGameType() == MULTI && clientRunning && packetData != "") // checks if game is running in client mode
     {
         logMsg("client packetData = " +packetData);
@@ -227,7 +227,7 @@ void networkState::processNetworkEvents(std::vector<boost::shared_ptr<teamState>
     }
 
 //	std::vector<teamState> teamInstance = teamInstance();
-    activeTeamInstance[0]->setPlayerType("human");  // sets playerType for activeTeamInstance 0 to human
+/*TS    activeTeamInstance[0]->setPlayerType("human");  // sets playerType for activeTeamInstance 0 to human
 
     // checks if this instance is a server and whether activeTeamInstance 1 is set to be controlled by network player
     if (getNetworkE()->getServerReceivedConnection() && activeTeamInstance[1]->getPlayerType() != "network")
@@ -239,6 +239,7 @@ void networkState::processNetworkEvents(std::vector<boost::shared_ptr<teamState>
     {
         activeTeamInstance[0]->setPlayerType("network");
     }
+TS*/
 ///    setActiveTeamInstance(activeTeamInstance);
 }
 
@@ -266,12 +267,12 @@ void networkState::processNetworkPlayerEvents(std::vector<boost::shared_ptr<team
     if (getNetworkE()->getIsClient())
     {
         logMsg("is client");
-        activePlayerInstance = activeTeamInstance[1]->getActivePlayerInstance();
+//TS        activePlayerInstance = activeTeamInstance[1]->getActivePlayerInstance();
     }
     else if (getNetworkE()->getIsServer())
     {
         logMsg("is server");
-        activePlayerInstance = activeTeamInstance[0]->getActivePlayerInstance();
+//TS        activePlayerInstance = activeTeamInstance[0]->getActivePlayerInstance();
     }
     else
     {
@@ -334,11 +335,11 @@ void networkState::processNetworkPlayerEvents(std::vector<boost::shared_ptr<team
             }
             if (getNetworkE()->getIsClient())
             {
-                activeTeamInstance[1]->setActivePlayerInstance(activePlayerInstance);
+//TS                activeTeamInstance[1]->setActivePlayerInstance(activePlayerInstance);
             }
             else if (getNetworkE()->getIsServer())
             {
-                activeTeamInstance[0]->setActivePlayerInstance(activePlayerInstance);
+//TS                activeTeamInstance[0]->setActivePlayerInstance(activePlayerInstance);
             }
         }
         else if (netPStateObj.getShootBlock())

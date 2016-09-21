@@ -2186,8 +2186,8 @@ std::vector<boost::shared_ptr<teamState> > loader::loadTeams()  // load teams fr
 #endif
     }
     
-    logMsg("teams[4]->getID() ID == " +convert->toString(teams[4]->getID()));
-    logMsg("loadTeams() 4 ID == " +convert->toString(teams[4]->getID()));
+//TS    logMsg("teams[4]->getID() ID == " +convert->toString(teams[4]->getID()));
+//TS    logMsg("loadTeams() 4 ID == " +convert->toString(teams[4]->getID()));
 //    logMsg("loadTeams() 4 Name == " +tInstance[4]->getName());
     logMsg("loadTeams() tInstance.size() == " +convert->toString(tInstance.size()));
 
@@ -2387,7 +2387,7 @@ bool loader::loadTeamFile(std::string fileName)  // loads the team file
      
 //    logMsg("ID == " +convert->toString(ID));
 //    exit(0);
-    teamInstance->setID(ID);
+/*TS    teamInstance->setID(ID);
     teamInstance->setCity(City);
     teamInstance->setName(Name);
     teamInstance->setCoach(Coach);
@@ -2404,7 +2404,7 @@ bool loader::loadTeamFile(std::string fileName)  // loads the team file
 //   teamInstance.push_back(teamInstance);
 //   gameS->setteamInstance(teamInstance);
 //    exit(0);
-
+TS*/
     return (true);
 }
 

@@ -201,7 +201,7 @@ void offenseState::updateState(teamTypes teamType)	// updates the state of the o
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 //    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
     std::vector<boost::shared_ptr<teamState> > activeTeamInstance = getActiveTeamInstance();
-    std::vector<boost::shared_ptr<playerState> > activePlayerInstance = activeTeamInstance[teamType]->getActivePlayerInstance();
+//TS    std::vector<boost::shared_ptr<playerState> > activePlayerInstance = activeTeamInstance[teamType]->getActivePlayerInstance();
 
     if (!offenseSetup)
     {
@@ -211,7 +211,7 @@ void offenseState::updateState(teamTypes teamType)	// updates the state of the o
     {
         executeOffense();
     }
-    activeTeamInstance[teamType]->setActivePlayerInstance(activePlayerInstance);
+//TS    activeTeamInstance[teamType]->setActivePlayerInstance(activePlayerInstance);
     setActiveTeamInstance(activeTeamInstance);
 }
 
@@ -352,7 +352,7 @@ void offenseState::executeOffense() // executes box offense
     teamTypes teamWithBall = getTeamWithBall();
 
     std::vector<boost::shared_ptr<teamState> > activeTeamInstance = getActiveTeamInstance();
-    std::vector<boost::shared_ptr<playerState> > activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
+/*TS    std::vector<boost::shared_ptr<playerState> > activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
 
     size_t playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();
     size_t playerWithBallID = activeTeamInstance[teamWithBall]->getPlayerWithBallID();
@@ -486,6 +486,7 @@ void offenseState::executeOffense() // executes box offense
         }
 //          exit(0);
     }
+TS*/
 }
 
 bool offenseState::checkForDirective(playerPositions playerPosition)  // checks if a directive needs to be completed before execution

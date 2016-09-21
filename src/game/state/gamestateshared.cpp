@@ -24,7 +24,7 @@
 #include "state/hoopstate.h"
 #include "state/teamstate.h"
 
-// vars
+// static declarations
 
 bool gameStateShared::activeTeamInstancesCreated;  // stores whether the active team instances have been created
 bool gameStateShared::activeTeamInstancesNeedCreated;  // stores whether or not to create active team instances

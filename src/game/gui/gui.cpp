@@ -964,7 +964,7 @@ void GUISystem::playerStartSelected()  // process player start selection
         logMsg("activePlayerID = " +convert->toString(activePlayerID[x]));
     }
     exit(0);
-    getGameS()->getActiveTeamInstance()[0]->setActivePlayerID(activePlayerID);
+/*TS    getGameS()->getActiveTeamInstance()[0]->setActivePlayerID(activePlayerID);
     if (!getGameS()->getActiveTeamInstance()[0]->getPlayerInstancesCreated())    // checks if playerInstances have been created
     {
         logMsg("player instances created!");
@@ -1084,7 +1084,7 @@ void GUISystem::playerStartSelected()  // process player start selection
         logMsg("Team Instances NOT created!");
         exit(0);
     }
-
+TS*/
     logMsg("team 0 C selectbox id = " +convert->toString(teamStarterID[0][1]));
     logMsg("team 0 starter 0 = " +convert->toString(teamStarterID[0][0]));
     logMsg("team  0 starter 0 = " +team0Starters[0]);

@@ -215,7 +215,7 @@ void playerPhysics::updatePosition()  // updates the position of player objecgts
     size_t z = 0;
     while (z < getActiveTeamInstance().size())
     {
-        activePlayerInstance.push_back(activeTeamInstance[z]->getActivePlayerInstance());
+/*TS        activePlayerInstance.push_back(activeTeamInstance[z]->getActivePlayerInstance());
         size_t y = 0;
         while (y < activePlayerInstance[z].size())
         {
@@ -254,6 +254,7 @@ void playerPhysics::updatePosition()  // updates the position of player objecgts
             ++y;
         }
         activeTeamInstance[z]->setActivePlayerInstance(activePlayerInstance[z]);
+TS*/
     ++z;
     }
     setActiveTeamInstance(activeTeamInstance);
@@ -266,7 +267,7 @@ bool playerPhysics::jump(teamTypes teamType, int playerID)  // calculates and ex
 
     std::vector<boost::shared_ptr<courtState> > courtInstance = getCourtInstance();
     std::vector<boost::shared_ptr<teamState> > activeTeamInstance = getActiveTeamInstance();
-    std::vector<boost::shared_ptr<playerState> > activePlayerInstance = getActiveTeamInstance()[teamType]->getActivePlayerInstance();
+/*TS    std::vector<boost::shared_ptr<playerState> > activePlayerInstance = getActiveTeamInstance()[teamType]->getActivePlayerInstance();
     std::vector<size_t> activePlayerID = activeTeamInstance[teamType]->getActivePlayerID();
     btVector3 playerJumpBeginPos;
     btVector3 playerJumpEndPos;
@@ -296,7 +297,7 @@ bool playerPhysics::jump(teamTypes teamType, int playerID)  // calculates and ex
                     playerJumpEndPos = BtOgre::Convert::toBullet(activePlayerInstance[x]->getJumpEndPos());
                 // activePlayerInstance[x].getPhysBody()->setLinearVelocity(btVector3(-35,0,0));
                     activePlayerInstance[x]->getPhysBody()->forceActivationState(ACTIVE_TAG);
-                    activePlayerInstance[x]->getPhysBody()->translate(btVector3(0,0.5,0)/*, btVector3(-35,0,0)*/);
+                    activePlayerInstance[x]->getPhysBody()->translate(btVector3(0,0.5,0));//, btVector3(-35,0,0));
                 }
                 btTransform transform = activePlayerInstance[x]->getPhysBody()->getWorldTransform();
                 btVector3 playerCurrentPos = transform.getOrigin();
@@ -347,6 +348,7 @@ bool playerPhysics::jump(teamTypes teamType, int playerID)  // calculates and ex
     activeTeamInstance[teamType]->setActivePlayerInstance(activePlayerInstance);
     setActiveTeamInstance(activeTeamInstance);
     getActiveTeamInstance()[teamType]->getActivePlayerInstance()[playerID]->getPhysBody()->setLinearVelocity(btVector3(15,-15,0));
+TS*/
     return (true);
 }
 

@@ -29,7 +29,7 @@
 
 //#include "engine/networkengine.h"
 
-#include "ubcbase.h"
+//#include "ubcbase.h"
 #include "SDL.h"
 #include "SDL_syswm.h"
 #include "SDL_test_common.h"
@@ -45,15 +45,18 @@
 #include "gui/gui.h"
 //class GUISystem;
 class gameEngine;
+class UBCBase;
 
 
-
-class UBC : public UBCBase
+class UBC 
 {
 public: 
     UBC(); // constructor
     ~UBC();	// destructor
 
+    boost::shared_ptr<UBCBase> getBase();  // retrieves the value of base
+    void setBase(boost::shared_ptr<UBCBase> set);  // sets the value of base
+ 
     boost::shared_ptr<GUISystem> getGui();  // retrieves the value of gui
     void setGui(boost::shared_ptr<GUISystem> set);  // sets the value of gui
 
@@ -78,6 +81,8 @@ public:
 protected:
   
 private:
+
+    static boost::shared_ptr<UBCBase> base;  // static copy of base class
 
     static boost::shared_ptr<GUISystem> gui;  // the GUI object.
         

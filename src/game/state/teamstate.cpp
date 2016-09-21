@@ -36,12 +36,18 @@
 #include "ubcbase.h"
 
 // static declarations
-    std::vector<size_t> teamState::activePlayerID; 
+
+boost::shared_ptr<UBCBase> teamState::base;  // static copy of base class
+
+//    std::vector<size_t> teamState::activePlayerID; 
 //static size_t teamState::teamID; 
-    
+
 teamState::teamState()  // constructor
 {
 
+    boost::shared_ptr<UBCBase> tempBaseSharedPtr(new UBCBase);
+//    base = tempBaseSharedPtr;
+    
     //teamNumber = -1;
 //    teamID = 0;
     teamType = NOTEAM;
@@ -69,36 +75,45 @@ teamState::teamState()  // constructor
 
     hoop = -1;
 
-/*    //teamCollidesWith = COL_COURT; // | COL_BBALL | COL_TEAM2;  // determines what team1 collides with
+//    teamCollidesWith = COL_COURT; // | COL_BBALL | COL_TEAM2;  // determines what team1 collides with
 
 //    stateSet = false;
 //    setupState();
 
-*/
 }
 
 teamState::~teamState()  // destructor
 {
 }
 
-/*teamTypes teamState::getTeamType()	// retrieves the value of teamType
+boost::shared_ptr<UBCBase> teamState::getBase()  // retrieves the value of base
 {
-    return (teamType);
+    return (base);
 }
-void teamState::setTeamType(teamTypes set)	// sets the value of the teamType
+void teamState::setBase(boost::shared_ptr<UBCBase> set)  // sets the value of base
 {
-    teamType = set;
+    base = set;
 }
-*/
-/*size_t teamState::getID()	// retrieves the value of teamID
-{
-    return (teamID);
-}
-void teamState::setTeamID(size_t set)	// sets the value of teamID
-{
-    teamID = set;
-}
-*/
+
+
+///teamTypes teamState::getTeamType()	// retrieves the value of teamType
+///{
+///    return (teamType);
+///}
+////void teamState::setTeamType(teamTypes set)	// sets the value of the teamType
+///{
+///    teamType = set;
+///}
+
+///size_t teamState::getID()	// retrieves the value of teamID
+///{
+///    return (teamID);
+///}
+///void teamState::setTeamID(size_t set)	// sets the value of teamID
+///{
+///    teamID = set;
+///}
+
 teamTypes teamState::getTeamType()  // retrieves the value of teamType
 {
  return (teamType);
@@ -423,15 +438,15 @@ void teamState::setTeamCollidesWith(size_t set) // sets the value of teamCollide
     teamCollidesWith = set;
 }
 
-/*bool teamState::getStateSet() // retrieves the value of stateSet
-{
-    return (stateSet);
-}
-void teamState::setStateSet(bool set) // sets the value of stateSet
-{
-    stateSet = set;
-}
-*/
+/// &abool teamState::getStateSet() // retrieves the value of stateSet
+/// {
+///    return (stateSet);
+///}
+/// void teamState::setStateSet(bool set) // sets the value of stateSet
+/// {
+///    stateSet = set;
+///}
+
 
 void teamState::setupState()	// sets up the state of the object
 {
@@ -440,24 +455,24 @@ void teamState::setupState()	// sets up the state of the object
     {
         logMsg("Setting state");
 //	    boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
-/*        if (!playerInstancesCreated)	// checks if playerInstances have been created
-        {
-    	    if (createPlayerInstances()) // creates the player instances based on playerIDS
-		    {m
-                logMsg("Player instances created!");
-                playerInstancesCreated = true;
+///        if (!playerInstancesCreated)	// checks if playerInstances have been created
+///        {
+///    	    if (createPlayerInstances()) // creates the player instances based on playerIDS
+///		    {
+///                logMsg("Player instances created!");
+///                playerInstancesCreated = true;
 //        	exit(0);
-		    }
-        }
-*/
+///		    }
+///        }
+
 //        setPlayerStartPositions();	// sets starting positions for the players
         logMsg("Player start positions set");
 //    playerWithBall = 3; // FIXME! Temporarily ahrd code player controlling ball
 //    humanPlayer = 3;	// sets the human controlled player to the center for tip off
-/*    player->mAnimationState2 =  activePlayerInstance[5].getModel()->getAnimationState("Walk");
-    player->mAnimationState2->setLoop(true);
-    player->mAnimationState2->setEnabled(true);
-*/
+///    player->mAnimationState2 =  activePlayerInstance[5].getModel()->getAnimationState("Walk");
+///    player->mAnimationState2->setLoop(true);
+///    player->mAnimationState2->setEnabled(true);
+
     stateSet = true;
     }
 }
@@ -473,48 +488,46 @@ void teamState::updateState()	// updates the state of the object
 //	boost::shared_ptr<gameState> gameS = gameState::Instance();
     ///boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
-    boost::shared_ptr<jumpBalls> jumpBall = getGameS()->getJumpBall();
+    boost::shared_ptr<jumpBalls> jumpBall = base->getGameS()->getJumpBall();
 
-    size_t activeBBallInstance = getGameS()->getActiveBBallInstance();
+    size_t activeBBallInstance = base->getGameS()->getActiveBBallInstance();
 
 //	logMsg("Updating team state " +convert->toString(teamNumber));
-    if (getGameS()->getBasketballInstanceCreated() && getGameS()->getPlayerInstanceCreated())
+    if (base->getGameS()->getBasketballInstanceCreated() && base->getGameS()->getPlayerInstanceCreated())
 	{
-        std::vector<boost::shared_ptr<basketballState> > basketballInstance = getGameS()->getBasketballInstance();
-
+        std::vector<boost::shared_ptr<basketballState> > basketballInstance = base->getGameS()->getBasketballInstance();
 //		exit(0);
-
-		// checks whether to execute offense or defense logic
-		if (offense == true && defense == false)
-		{
-			offenseInstance->setExecute(true);
-			defenseInstance->setExecute(false);
+        // checks whether to execute offense or defense logic
+        if (offense == true && defense == false)
+        {
+            offenseInstance->setExecute(true);
+            defenseInstance->setExecute(false);
             if (offenseInstance->getTeamType() !=  teamType)  // sets type of team for offense
             {
                 offenseInstance->setTeamType(teamType);
             }
-		}
-		else if (defense == true && offense == false)
-		{
-			offenseInstance->setExecute(false);
-			defenseInstance->setExecute(true);
+        }
+        else if (defense == true && offense == false)
+        {
+            offenseInstance->setExecute(false);
+            defenseInstance->setExecute(true);
             if (defenseInstance->getTeamType() !=  teamType)  // sets type of team for defense
             {
                 defenseInstance->setTeamType(teamType);
             }
-		}
-		else
-		{
+        }
+        else
+        {
 
-		}
+        }
 
-        if (getGameS()->getTipOffComplete())
+        if (base->getGameS()->getTipOffComplete())
 		{
 //			exit(0);
-//			logMsg("Team with ball ==  "  +convert->toString(gameS->getTeamWithBall()));
+//			logMsg("hTeam with ball ==  "  +convert->toStringi(gameS->getTeamWithBall()));
 //			logMsg("Player with ball ==  "  +convert->toString(playerWithBall));
 
-            if (getGameS()->getTeamWithBall() == teamType) // checks if the team has the basketball
+            if (base->getGameS()->getTeamWithBall() == teamType) // checks if the team has the basketball
 			{
                 logMsg("tipoffcomplete playerWithBallInstance == " +convert->toString(playerWithBallInstance));
 
@@ -590,16 +603,16 @@ void teamState::updateState()	// updates the state of the object
 //		exit(0);
 
 
-/*		if (physEngine.getPlayerPhysicsSetup())	// makes sure player physics are setup before modifying physics positions
-		{
-			updatePositions();
+///        if (physEngine.getPlayerPhysicsSetup())	// makes sure player physics are setup before modifying physics positions
+///        {
+///            updatePositions();
 //            exit(0);
-		}
-		else
-		{
-		}
-*/
-//	logMsg("Team ==  "  +toString(teamType));
+///        }
+///        else
+///        {
+///        }
+
+//    logMsg("Team ==  "  +toString(teamType));
 
 		//		exit(0);
 	}
@@ -608,11 +621,11 @@ void teamState::updateState()	// updates the state of the object
 	}
 //	exit(0);
 
-    if (getGameS()->getTipOffComplete())
+    if (base->getGameS()->getTipOffComplete())
 	{
         logMsg("tipOff Complete!");
 //        exit(0);
-        if (getGameS()->getTeamWithBall() == teamType)
+        if (base->getGameS()->getTeamWithBall() == teamType)
 	    {
             offenseInstance->updateState(teamType);	// updates the state of the offenseInstance object
 	    }
@@ -620,12 +633,13 @@ void teamState::updateState()	// updates the state of the object
 	    {
             defenseInstance->updateState(teamType); // updates the state of the defenseInstance object
 	    }
+
 	}
 	else
 	{
 	}
 
-
+    
 //   logMsg("team state updated = " +convert->toString(teamType));
 }
 
@@ -635,8 +649,8 @@ bool teamState::createPlayerInstances()
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 
-    std::vector< std::vector<size_t> > teamStarterID = getGameS()->getTeamStarterID();
-    std::vector<boost::shared_ptr<playerState> > gamePlayerInstance = getGameS()->getPlayerInstance();
+    std::vector< std::vector<size_t> > teamStarterID = base->getGameS()->getTeamStarterID();
+    std::vector<boost::shared_ptr<playerState> > gamePlayerInstance = base->getGameS()->getPlayerInstance();
 //	size_t x = 0;
 	//	size_t playerID =
 //    std::vector <playerData> playerN = player->getPlayer(); // copies Player values to playerN
@@ -645,7 +659,7 @@ bool teamState::createPlayerInstances()
       
     logMsg("Creating players");
     
-    if (getGameS()->getPlayerInstanceCreated())
+    if (base->getGameS()->getPlayerInstanceCreated())
     {
         logMsg("teamGamePlayerInstance created!");
         logMsg("gamePlayerInstance size = " +convert->toString(gamePlayerInstance.size()));
@@ -769,6 +783,7 @@ bool teamState::createPlayerInstances()
         }
         x++;
     }
+
 //    exit(0);
     return true;
 }
@@ -780,22 +795,22 @@ void teamState::setPlayerStartPositions()	// sets the initial coordinates for th
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 //    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
 
-    std::vector< std::vector<size_t> > teamStarterID = getGameS()->getTeamStarterID();
+    std::vector< std::vector<size_t> > teamStarterID = base->getGameS()->getTeamStarterID();
 
     std::vector<Ogre::Vector3> startingPos;
     directions playerDirection; // stores the direction players face at start
 
-/*    if (!gameS->getCourtInstanceCreated())
-    {
-        if (gameS->createCourtInstances())
-        {
-            gameS->setCourtInstanceCreated(true);
-            gameS->setCourdModelLoaded(true);
-            gameS->setCourtStartPositions();
-        }
-    }*/
+///    if (!gameS->getCourtInstanceCreated())
+///    {
+///        if (gameS->createCourtInstances())
+///        {
+///            gameS->setCourtInstanceCreated(true);
+///            gameS->setCourdModelLoaded(true);
+///            gameS->setCourtStartPositions();
+///        }
+///    }
 
-    std::vector<boost::shared_ptr<courtState> > courtInstance = getGameS()->getCourtInstance();
+    std::vector<boost::shared_ptr<courtState> > courtInstance = base->getGameS()->getCourtInstance();
 
     Ogre::Vector3 courtPos = courtInstance[0]->getNodePosition();
 //    exit(0);
@@ -819,7 +834,7 @@ void teamState::setPlayerStartPositions()	// sets the initial coordinates for th
         
 
 //        yOffset = y;
-        getGameS()->setYOffset(y);
+       base->getGameS()->setYOffset(y);
         
         
         startingPos.push_back(Ogre::Vector3(14.4f,yOffset,352.0f));
@@ -922,21 +937,22 @@ void teamState::setPlayerStartPositions()	// sets the initial coordinates for th
             }
 //            }
             x++;            
-        }      
+        }    
+
 //	    exit(0);
 	}
 
     size_t x = 0;
-    /*
-    while (x < activePlayerInstance.size())
-    {
+    
+///    while (x < activePlayerInstance.size())
+///    {
         
-        logMsg("Team " +convert->toString(teamType) +" PlayerSteerNode" +convert->toString(x) +" Position == " +convert->toString(activePlayerInstance[x]->getNode()->getPosition()));
+///        logMsg("Team " +convert->toString(teamType) +" PlayerSteerNode" +convert->toString(x) +" Position == " +convert->toString(activePlayerInstance[x]->getNode()->getPosition()));
 //        exit(0);
-        logMsg("Team " +convert->toString(teamType) +" PlayerSteer " +convert->toString(x) +" Position ==  " +convert->toString(activePlayerInstance[x]->getSteer()->position()));
-        ++x;
-    }
-    */
+///        logMsg("Team " +convert->toString(teamType) +" PlayerSteer " +convert->toString(x) +" Position ==  " +convert->toString(activePlayerInstance[x]->getSteer()->position()));
+///        ++x;
+///    }
+    
 //    exit(0);
 }
 
@@ -962,7 +978,7 @@ void teamState::setPlayerStartActivePositions() // sets the position the players
         activePlayerInstance[x]->getSteer()->setID(x);
         ++x;
     }
-    
+
 }
 
 void teamState::updatePlayerStates()  // updates the states of active players
@@ -996,7 +1012,7 @@ void teamState::updatePlayerDirections()
 //    std::vector<playerState> pInstance = getPlayerInstance();
  //   std::vector<size_t> playerDirection = player->getPlayerDirection(); // stores contents of playerDirectdion from players class in local variable
 //    std::vector<size_t> oldPlayerDirection = player->getOldPlayerDirection();   // stores contents of oldPlayerDirection form players in local variable
-    std::vector<boost::shared_ptr<basketballState> > basketballInstance = getGameS()->getBasketballInstance();
+    std::vector<boost::shared_ptr<basketballState> > basketballInstance = base->getGameS()->getBasketballInstance();
     std::vector<Ogre::SceneNode>::iterator playersIT;
 
     std::string playerID = convert->toString(playerInstance[4]->getID());
@@ -1015,16 +1031,16 @@ void teamState::updatePlayerDirections()
         if (oldPlayerDirection != playerDirection)
         {
             
-            /*
-            std::string oldPlayerDirect = Ogre::SingConverter::toString(oldPlayerDirection[i]);
-            std::string playerDirect = toString(playerDirection[i]);
-            std::string bballPlayer = toString(basketballInstance[activeBBallInstance].getPlayer());
-            logMsg("oldPlayerDirection = " + oldPlayerDirect);
-            logMsg("playerDirection = " + playerDirect);
-            logMsg("bball player = " + bballPlayer);
-            playerInstance[basketballInstance[activeBBallInstance]->getPlayer()] = playerInstance[i];
+            
+///            std::string oldPlayerDirect = Ogre::SingConverter::toString(oldPlayerDirection[i]);
+///            std::string playerDirect = toString(playerDirection[i]);
+///            std::string bballPlayer = toString(basketballInstance[activeBBallInstance].getPlayer());
+///            logMsg("oldPlayerDirection = " + oldPlayerDirect);
+///            logMsg("playerDirection = " + playerDirect);
+///            logMsg("bball player = " + bballPlayer);
+///            playerInstance[basketballInstance[activeBBallInstance]->getPlayer()] = playerInstance[i];
 //            playerNodes.at(basketballInstance[activeBBallInstance]->getPlayer()) = playerNodes.at(i);  // sets the current player node
-            */
+            
             switch (oldPlayerDirection)
             {
                 case UP:
@@ -1106,12 +1122,13 @@ void teamState::updatePlayerDirections()
         else
         {
         }
-/*            }
-            ++y;
-        }
-*/
+///            }
+///            ++y;
+///        }
+
         ++x;
     }
+
 }
 
 
@@ -1199,10 +1216,10 @@ void teamState::executePass()		// executes the pass between players
 
     logMsg("In executePass function");
 
-    size_t activeBBallInstance = getGameS()->getActiveBBallInstance();
+    size_t activeBBallInstance = base->getGameS()->getActiveBBallInstance();
 
     size_t passToPlayer = activePlayerInstance[playerWithBallInstance]->getPassToPlayer();
-    std::vector<boost::shared_ptr<basketballState> > basketballInstance = getGameS()->getBasketballInstance();
+    std::vector<boost::shared_ptr<basketballState> > basketballInstance = base->getGameS()->getBasketballInstance();
     Ogre::Vector3 playerWithBallCoords = activePlayerInstance[playerWithBallInstance]->getNode()->getPosition();
     Ogre::Vector3 passToPlayerCoords = activePlayerInstance[passToPlayer]->getNode()->getPosition();
 //	exit(0);
@@ -1270,7 +1287,8 @@ void teamState::executePass()		// executes the pass between players
 	basketballInstance[activeBBallInstance]->getPhysBody()->setLinearVelocity(btVector3(bballPosChange));
 
 
-    getGameS()->setBasketballInstance(basketballInstance);		// saves changes to the basketballInstance object
+    base->getGameS()->setBasketballInstance(basketballInstance);		// saves changes to the basketballInstance object
+
 }
 
 

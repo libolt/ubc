@@ -216,7 +216,7 @@ UBC_DEPENDS_INC_PATH := $(UBC_DEPENDS_PATH)/include
 
 include $(CLEAR_VARS)
 LOCAL_SHARED_LIBRARIES := OpeanAL-Prebuilt 
-LOCAL_STATIC_LIBRARIES := Boost-System-Prebuilt MyGUIOgrePlatform-Prebuilt MyGUIEngine-Prebuilt TinyXML2-Prebuilt SDL2-Prebuilt
+LOCAL_STATIC_LIBRARIES := Boost-System-Prebuilt MyGUIOgrePlatform-Prebuilt MyGUIEngine-Prebuilt TinyXML2-Prebuilt SDL2-Prebuilt 
 LOCAL_STATIC_LIBRARIES += BtOgre-Prebuilt BulletDynamics-Prebuilt BulletCollision-Prebuilt BulletSoftbody-Prebuilt BulletLinearMath-Prebuilt
 LOCAL_STATIC_LIBRARIES += OgreRTShaderSystem-Prebuilt OgreRenderSystem_GLES2-Prebuilt OgreMain-Prebuilt OgreParticleFXPlugin-Prebuilt
 LOCAL_STATIC_LIBRARIES += OpenSteer-Prebuilt Boost-Thread-Prebuilt Boost-Chrono-Prebuilt FreeImage-Prebuilt ZZipLib-Prebuilt FreeType-Prebuilt

@@ -387,6 +387,7 @@ bool gameState::createTeamInstances()  // creates team Instances
     else 
     {
         logMsg("Failed to create Team Instances!");
+        exit(0);
         return (false);
     }
 

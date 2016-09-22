@@ -134,6 +134,7 @@ void UBC::run()  // runs the game
 //    exit(0);
 //    boost::shared_ptr<renderEngine> renderTemp = getGameE()->getRenderE();
 //    exit(0);
+    base->setup();
     base->getGameE()->getRenderE()->initSDL(); // Initializes the SDL Subsystem
 //    exit(0);
     base->getGameE()->getRenderE()->initOgre(); // Initializes the Ogre Subsystem

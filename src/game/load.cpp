@@ -2164,7 +2164,7 @@ std::vector<boost::shared_ptr<teamState> > loader::loadTeams()  // load teams fr
     teamList = findFile("teams/teams.xml");
 #endif
 
-
+//    exit(0);
 //    logMsg("Bleeep!");
     teamFiles = loadTeamListFile(teamList);
 //    std::vector<std::string> playerFiles = load->getPlayerFiles();
@@ -2185,9 +2185,10 @@ std::vector<boost::shared_ptr<teamState> > loader::loadTeams()  // load teams fr
           loadTeamFile(findFile("teams/" + *it));
 #endif
     }
-    
-//TS    logMsg("teams[4]->getID() ID == " +convert->toString(teams[4]->getID()));
-//TS    logMsg("loadTeams() 4 ID == " +convert->toString(teams[4]->getID()));
+//    exit(0);
+//    logMsg("teams[0]->getID() ID == " +convert->toString(teams[0]->getID()));
+//    exit(0);
+//    logMsg("loadTeams() 4 ID == " +convert->toString(teams[4]->getID()));
 //    logMsg("loadTeams() 4 Name == " +tInstance[4]->getName());
     logMsg("loadTeams() tInstance.size() == " +convert->toString(tInstance.size()));
 
@@ -2387,7 +2388,7 @@ bool loader::loadTeamFile(std::string fileName)  // loads the team file
      
 //    logMsg("ID == " +convert->toString(ID));
 //    exit(0);
-/*TS    teamInstance->setID(ID);
+    teamInstance->setID(ID);
     teamInstance->setCity(City);
     teamInstance->setName(Name);
     teamInstance->setCoach(Coach);
@@ -2403,8 +2404,8 @@ bool loader::loadTeamFile(std::string fileName)  // loads the team file
 //    team->setTeamArray(teamInstance);
 //   teamInstance.push_back(teamInstance);
 //   gameS->setteamInstance(teamInstance);
-//    exit(0);
-TS*/
+//,    exit(0);
+
     return (true);
 }
 

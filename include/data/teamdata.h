@@ -48,7 +48,7 @@ class teamData
     std::vector<size_t> getStarters(void);  // retrieves the value of starters
     void setStarters(std::vector<size_t> set); // sets the value of starters
 
-    static size_t getID(void);  // retrieves the value of ID
+    size_t getID(void);  // retrieves the value of ID
     void setID(size_t set);  // sets the value of ID
 
     std::string getInits(void);  // retrieves the value of inits
@@ -64,7 +64,7 @@ private:
     std::string coach;  // stores team's coach name
     std::string inits;  // stores initials used for team
     std::string logoFile;  // stores the name of the file used for team logo
-    static size_t ID;  // stores the team's ID number
+    size_t ID;  // stores the team's ID number
 
     std::vector<size_t> roster;  // stores the list of player IDs associated with the team.
     size_t playerNum;  // stores total number of players on the team

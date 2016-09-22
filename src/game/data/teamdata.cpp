@@ -21,7 +21,7 @@
 #include "data/teamdata.h"
 
 // static declarations
-size_t teamData::ID; 
+//size_t teamData::ID; 
 
 // teamData constructor
 teamData::teamData()

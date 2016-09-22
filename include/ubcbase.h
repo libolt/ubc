@@ -47,6 +47,8 @@ class UBCBase
     boost::shared_ptr<inputState> getInputS();  // retrieves the value of inputS
     void setInputS(boost::shared_ptr<inputState> set);  // sets the value of inputS
 
+    bool setup();  // sets up the engine and states
+    
     private:
     
         static boost::shared_ptr<gameEngine> gameE;  // the gameEngine object

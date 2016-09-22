@@ -33,25 +33,6 @@ boost::shared_ptr<inputState> UBCBase::inputS;  // the inputState object
 UBCBase::UBCBase()  // constructor
 {
 
-//    gameEngine *tempGameEObj = new gameEngine;
-    boost::shared_ptr<gameEngine> tempGameESharedPtr(new gameEngine);
-    gameE = tempGameESharedPtr;
-//    gameE(new gameEngine);
-   
-//    gameState *tempGameStateObj = new gameState;
-    boost::shared_ptr<gameState> tempGameStateSharedPtr(new gameState);
-    gameS = tempGameStateSharedPtr;
-
-    
-//    exit(0);
-//    networkState *tempNetworkStateObj = new networkState;
-///    boost::shared_ptr<networkState> tempNetworkStateSharedPtr = boost::shared_ptr<networkState>(new networkState);
-///    networkS = tempNetworkStateSharedPtr;
-    boost::shared_ptr<inputState> tempInputStateSharedPtr(new inputState);
-    inputS = tempInputStateSharedPtr;
-
-    inputS->setInputE(gameE->getInputE());
-
 }
 
 UBCBase::~UBCBase()  // destructor
@@ -95,3 +76,28 @@ void UBCBase::setInputS(boost::shared_ptr<inputState> set)  // sets the value of
 {
     inputS = set;
 }
+
+bool UBCBase::setup()  // sets up the engine and states
+{
+    //    gameEngine *tempGameEObj = new gameEngine;
+    boost::shared_ptr<gameEngine> tempGameESharedPtr(new gameEngine);
+    gameE = tempGameESharedPtr;
+//    gameE(new gameEngine);
+   
+//    gameState *tempGameStateObj = new gameState;
+    boost::shared_ptr<gameState> tempGameStateSharedPtr(new gameState);
+    gameS = tempGameStateSharedPtr;
+
+    
+//    exit(0);
+//    networkState *tempNetworkStateObj = new networkState;
+///    boost::shared_ptr<networkState> tempNetworkStateSharedPtr = boost::shared_ptr<networkState>(new networkState);
+///    networkS = tempNetworkStateSharedPtr;
+    boost::shared_ptr<inputState> tempInputStateSharedPtr(new inputState);
+    inputS = tempInputStateSharedPtr;
+
+    inputS->setInputE(gameE->getInputE());
+
+    return (true);
+}
+

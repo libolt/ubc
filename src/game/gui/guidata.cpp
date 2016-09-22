@@ -119,7 +119,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     logMsg("blah");
 //    exit(0);
     
-/*TS
+
     if (!getGameS()->getPlayerInstanceCreated())
     {
         logMsg("player instances not yet created!");
@@ -196,7 +196,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     playerInstance.push_back(teamInstance[teamIDs[0]]->getPlayerInstance());
     exit(0);
     playerInstance.push_back(teamInstance[teamIDs[1]]->getPlayerInstance());
-TS*/
+
     exit(0);
     std::vector<size_t> overAllRatings;
     
@@ -516,7 +516,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     boost::shared_ptr<loader> load;
 
     std::vector<boost::shared_ptr<teamState> > teamInstance; // = gameS->getTeamDataInstance();
-/*
+
 //    if (!getGameS()->getTeamInstancesCreated())
 //    {
 //        logMsg("Team Instances not Created!");
@@ -618,7 +618,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     team0SelectBox->setIndexSelected(0);
     team1SelectBox->setIndexSelected(1);
     logMsg("End of addTeamStartSelectionMenuData!");
-//    exit(0);
-*/
+    exit(0);
+
     return (true);
 }

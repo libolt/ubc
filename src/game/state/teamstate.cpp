@@ -45,7 +45,7 @@ boost::shared_ptr<UBCBase> teamState::base;  // static copy of base class
 teamState::teamState()  // constructor
 {
 
-    boost::shared_ptr<UBCBase> tempBaseSharedPtr(new UBCBase);
+    boost::shared_ptr<UBCBase> tempBaseSharedPtr; //(new UBCBase);
 //    base = tempBaseSharedPtr;
     
     //teamNumber = -1;
@@ -475,6 +475,7 @@ void teamState::setupState()	// sets up the state of the object
 
     stateSet = true;
     }
+    
 }
 void teamState::updateState()	// updates the state of the object
 {
@@ -713,6 +714,7 @@ bool teamState::createPlayerInstances()
         else
         {
         }
+        
         i++;
     }
     

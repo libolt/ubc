@@ -586,12 +586,16 @@ void GUISystem::gameSetupMenu()  // displays game setup menu
 
 void GUISystem::playerStartSelectionMenu()  // displays player start selection menu
 {
+    logMsg("playerStartSelectionMenu");
 //    exit(0);
     if (!playerStartSelectionMenuCreated)
     {
+        logMsg("!playerStartSelectionMenuCreated");
+//         exit(0);
         createPlayerStartSelectionMenuGUI();	
+        logMsg("createPlayerStartSelectionMenuGUI!");
         addPlayerStartSelectionMenuData();
-//        exit(0);
+        exit(0);
         playerStartSelectionMenuCreated = true;
     }
     setSelectedIndexes();

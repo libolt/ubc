@@ -151,9 +151,10 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         logMsg("gameS PlayerInstance NOT Created!");
         exit(0);
     }
-    exit(0);
+    
+    logMsg("Bleert!");
  
-//    exit(0);
+    exit(0);
     logMsg("teamInstance.size() == " +convert->toString(teamInstance.size()));
     
     logMsg("Team 0 player instances created ==  " +convert->toString(teamInstance[teamIDs[0]]->getPlayerInstancesCreated()));
@@ -505,7 +506,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     logMsg("C1 == " +team1CSelectBox->getItemNameAt(0));
     logMsg("C1 ID == " +convert->toString(team1IDs[4][0]));
 
-    exit(0);
+//    exit(0);
 
 }
 
@@ -546,7 +547,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
         logMsg("GUI ADD TEAM teamInstance[" +convert->toString(x) +"]->getID() ID == " +convert->toString(teamInstance[x]->getID()));
         ++x;
     }
-     logMsg("GUI ADD TEAM getGameS()->getTeamInstance()[4]->getID() ID == " +convert->toString(getGameS()->getTeamInstance()[4]->getID()));
+     logMsg("GUI ADD TEAM getGameS()->getTeamInstance()[3]->getID() ID == " +convert->toString(getGameS()->getTeamInstance()[3]->getID()));
 //    exit(0);
     if (getGameS()->getTeamInstancesCreated())
     {        

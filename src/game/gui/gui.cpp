@@ -648,8 +648,8 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
             {
                 logMsg("createTeamInstances");
 
-                exit(0);
-/*                getGameS()->setTeamInstancesCreated(true);
+//                exit(0);
+                getGameS()->setTeamInstancesCreated(true);
                 if (teamSelectionMenuDataAdded)
                 {
                     logMsg("Team Selection Menu Data Added already!");
@@ -667,7 +667,7 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
                         logMsg("unable to add data to Team Selection Menus!");
                         exit(0);
                     }
-                }*/
+                }
             }
             else
             {
@@ -678,7 +678,7 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
     }
     else
     {
-        exit(0);
+//        exit(0);
         if (createTeamSelectionMenuGUI())
         {            
             teamSelectionMenuCreated = true;

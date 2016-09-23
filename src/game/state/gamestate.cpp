@@ -311,7 +311,7 @@ bool gameState::createTeamInstances()  // creates team Instances
     boost::shared_ptr<loader> load;
     
     std::vector<boost::shared_ptr<teamState> > tInstance;
-    std::vector<boost::shared_ptr<teamState> > tInstance2;
+/*    std::vector<boost::shared_ptr<teamState> > tInstance2;
     boost::shared_ptr<teamState> tempInstance(new teamState);
 //    teamState *tempInstance = new teamState;
     tempInstance->setID(1);
@@ -321,13 +321,13 @@ bool gameState::createTeamInstances()  // creates team Instances
     tempInstance->setTeamType(HOMETEAM);
 
     tInstance2.push_back(tempInstance);
-    
+*/
     logMsg("gameState::createTeamInstances() loadTeams");
     if (load->checkIfTeamsLoaded())
     {
         logMsg("gameState::createTeamInstances() load->getTInstance().size() == " +convert->toString(load->getTInstance().size()));
 //        exit(0);
-//        tInstance = tInstance2; // load->getTInstance();
+        tInstance = load->getTInstance();
         if (tInstance.size() > 0)
         {
             logMsg("gameState::createTeamInstances() tInstance Loaded!");

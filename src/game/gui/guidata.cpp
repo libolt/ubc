@@ -534,6 +534,11 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
 //        return (false);
 //    }
 
+    if (load->checkIfTeamsLoaded())
+    {
+        teamInstance = load->getTInstance();
+    }
+    
     logMsg("GUI ADD TEAMteamInstance.size() == " +convert->toString(teamInstance.size()));
     int x = 0;
     while (x < teamInstance.size())
@@ -564,7 +569,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
         if (getGameS()->createTeamInstances())
         {
              logMsg("teamInstance.size() == " +convert->toString(getGameS()->getTeamInstance().size()));
-//            exit(0);
+            exit(0);
             if (getGameS()->getTeamInstance().size() > 0)
             {
                 teamInstance = getGameS()->getTeamInstance();
@@ -618,7 +623,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     team0SelectBox->setIndexSelected(0);
     team1SelectBox->setIndexSelected(1);
     logMsg("End of addTeamStartSelectionMenuData!");
-    exit(0);
+//    exit(0);
 
     return (true);
 }

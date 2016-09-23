@@ -80,29 +80,6 @@ gameEngine::gameEngine()  // constructor
     renderScene = false;
     movePlayer = false;
 
-    // initialize subclasses
-
-    // renderEngine
-//    renderEngine *tempRenderObj = new renderEngine;
-    boost::shared_ptr<renderEngine> tempRenderSharedPtr(new renderEngine);
-    renderE = tempRenderSharedPtr;
-
-    // networkEngine
-//    networkEngine *tempNetworkObj = new networkEngine;
-    boost::shared_ptr<networkEngine> tempNetworkSharedPtr(new networkEngine);
-    networkE = tempNetworkSharedPtr;
-
-///    // physicsEngine
-///    physicsEngine *tempPhysicsObj = new physicsEngine;
-///    boost::shared_ptr<physicsEngine> tempPhysicsSharedPtr(new physicsEngine);
-///    set(tempPhysicsSharedPtr);
-
-    // inputEngine
-//    inputEngine *tempInputObj = new inputEngine;
-
-    boost::shared_ptr<inputEngine> tempInputSharedPtr(new inputEngine);
-    inputE = tempInputSharedPtr;
-
 //    exit(0);
 
 }
@@ -236,6 +213,35 @@ void gameEngine::setNetworkE(boost::shared_ptr<networkEngine> set)  // sets the 
     networkE = set;
 }
 
+bool gameEngine::setup()  // sets up engine state
+{
+// initialize subclasses
+
+// renderEngine
+//    renderEngine *tempRenderObj = new renderEngine;
+boost::shared_ptr<renderEngine> tempRenderSharedPtr(new renderEngine);
+renderE = tempRenderSharedPtr;
+
+// networkEngine
+//    networkEngine *tempNetworkObj = new networkEngine;
+boost::shared_ptr<networkEngine> tempNetworkSharedPtr(new networkEngine);
+networkE = tempNetworkSharedPtr;
+networkE->initialize();
+
+///    // physicsEngine
+///    physicsEngine *tempPhysicsObj = new physicsEngine;
+///    boost::shared_ptr<physicsEngine> tempPhysicsSharedPtr(new physicsEngine);
+///    set(tempPhysicsSharedPtr);
+///    physE->setup();
+
+// inputEngine
+//    inputEngine *tempInputObj = new inputEngine;
+
+boost::shared_ptr<inputEngine> tempInputSharedPtr(new inputEngine);
+inputE = tempInputSharedPtr;
+
+    return (true);
+}
 /*bool gameEngine::startGame()  // starts the game
 {
     boost::shared_ptr<gameState> gameS = gameState::Instance();

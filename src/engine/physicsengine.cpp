@@ -53,33 +53,7 @@
 physicsEngine::physicsEngine()  // contructor
 {
     
-    // Bullet initialisation.
-//      broadPhase = new btAxisSweep3(btVector3(-10000,-10000,-10000), btVector3(10000,10000,10000), 1024);
-    //broadPhase = new btDbvtBroadphase();
-    btBroadphaseInterface *tempBroadPhase = new btDbvtBroadphase;
-    broadPhase = boost::shared_ptr<btBroadphaseInterface>(tempBroadPhase);
-//    collisionConfig = new btDefaultCollisionConfiguration();
-    btDefaultCollisionConfiguration *tempCollisionConfig = new btDefaultCollisionConfiguration;
-    collisionConfig = boost::shared_ptr<btDefaultCollisionConfiguration>(tempCollisionConfig);
-//    dispatcher = new btCollisionDispatcher(collisionConfig);
-    btCollisionDispatcher *tempDispatcher = new btCollisionDispatcher(collisionConfig.get());
-    dispatcher = boost::shared_ptr<btCollisionDispatcher>(tempDispatcher);
-//    solver = new btSequentialImpulseConstraintSolver();
-    btSequentialImpulseConstraintSolver *tempSolver = new btSequentialImpulseConstraintSolver();
-    solver = boost::shared_ptr<btSequentialImpulseConstraintSolver>(tempSolver);
-//    world = new btDiscreteDynamicsWorld(dispatcher, broadPhase, solver, collisionConfig);
-//    world->setGravity(btVector3(0,-9.8,0));
-    btDynamicsWorld *tempWorld = new btDiscreteDynamicsWorld(dispatcher.get(), broadPhase.get(), solver.get(), collisionConfig.get());
-//    tempWorld->setGravity(btVector3(0,-9.8,0));
-    world = boost::shared_ptr<btDynamicsWorld>(tempWorld);
-    world->setGravity(btVector3(0,-9.8,0));
 
-    contactInfo = world->getSolverInfo();
-    contactInfo.m_restingContactRestitutionThreshold = 1e30;
-    contactInfo.m_restitution = 1.3f;
-    contactInfo.m_friction = 1.5f;
-    //FIXME: Hack to set total number of players for physics to 10, set this to be dynamic
-//    btRigidBody *body;
     changeInTime = 0;
     oldTime = 0;
 
@@ -245,6 +219,38 @@ void physicsEngine::setTeam2CollidesWith(size_t set) // k the vslue of team2Coll
     team2CollidesWith = set;
 }
 */
+
+bool physicsEngine::setup()  // sets up the physicsEngine object
+{
+    // Bullet initialisation.
+//      broadPhase = new btAxisSweep3(btVector3(-10000,-10000,-10000), btVector3(10000,10000,10000), 1024);
+    //broadPhase = new btDbvtBroadphase();
+    btBroadphaseInterface *tempBroadPhase = new btDbvtBroadphase;
+    broadPhase = boost::shared_ptr<btBroadphaseInterface>(tempBroadPhase);
+//    collisionConfig = new btDefaultCollisionConfiguration();
+    btDefaultCollisionConfiguration *tempCollisionConfig = new btDefaultCollisionConfiguration;
+    collisionConfig = boost::shared_ptr<btDefaultCollisionConfiguration>(tempCollisionConfig);
+//    dispatcher = new btCollisionDispatcher(collisionConfig);
+    btCollisionDispatcher *tempDispatcher = new btCollisionDispatcher(collisionConfig.get());
+    dispatcher = boost::shared_ptr<btCollisionDispatcher>(tempDispatcher);
+//    solver = new btSequentialImpulseConstraintSolver();
+    btSequentialImpulseConstraintSolver *tempSolver = new btSequentialImpulseConstraintSolver();
+    solver = boost::shared_ptr<btSequentialImpulseConstraintSolver>(tempSolver);
+//    world = new btDiscreteDynamicsWorld(dispatcher, broadPhase, solver, collisionConfig);
+//    world->setGravity(btVector3(0,-9.8,0));
+    btDynamicsWorld *tempWorld = new btDiscreteDynamicsWorld(dispatcher.get(), broadPhase.get(), solver.get(), collisionConfig.get());
+//    tempWorld->setGravity(btVector3(0,-9.8,0));
+    world = boost::shared_ptr<btDynamicsWorld>(tempWorld);
+    world->setGravity(btVector3(0,-9.8,0));
+
+    contactInfo = world->getSolverInfo();
+    contactInfo.m_restingContactRestitutionThreshold = 1e30;
+    contactInfo.m_restitution = 1.3f;
+    contactInfo.m_friction = 1.5f;
+    //FIXME: Hack to set total number of players for physics to 10, set this to be dynamic
+//    btRigidBody *body;
+    return (true);
+}
 
 void physicsEngine::setupState(boost::shared_ptr<renderEngine> render)  // sets up the state of the physics engine
 {

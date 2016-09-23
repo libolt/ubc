@@ -72,6 +72,7 @@ std::string inputEngine::inputText;
 inputTypes inputEngine::inputType; 
 bool inputEngine::textInputStarted;
 inputKeyMaps inputEngine::keyPressed;
+
 inputEngine::inputEngine()  // constructor
 {
     keyInputReceived = false;

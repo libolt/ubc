@@ -31,34 +31,8 @@ inputInGameWorkQueues inputState::inputInGameWorkQueue;
 
 
 inputState::inputState()  // constructor
-{
-    boost::shared_ptr<loader> load(new loader);
-
-    boost::shared_ptr<inputEngine> tempInputSharedPtr(new inputEngine);
-    inputE = tempInputSharedPtr;
-//    uInput = load->loadUserInputs();  // loads user defined input from file.
-        logMsg("gameState::createTeamInstances() loadTeams");
-    
-    if (load->checkIfUserInputsLoaded())
-    {
-        uInput = load->getUIInstance();
-        if (uInput.size() > 0)
-        {
-            logMsg("inputState::inputState() uInput Loaded!");
-        }
-        else
-        {
-            logMsg("inputState::inputState() uInput NOT Loaded!");
-        }
-    }
-    else
-    {
-        logMsg("inputState::inputState() loading of User Inout failed!");
-        exit(false);
-    }
-    
+{   
 //    uInput[0].setActive(true);
-
 }
 inputState::~inputState()  // destructor
 {
@@ -90,6 +64,36 @@ inputInGameWorkQueues inputState::getInputInGameWorkQueue()  // retrieves the va
 void inputState::setInputInGameWorkQueue(inputInGameWorkQueues set)  // sets the value of inputInGameWorkQueue
 {
     inputInGameWorkQueue = set;
+}
+
+bool inputState::setup()  // sets up the input state
+{
+    boost::shared_ptr<loader> load(new loader);
+
+    boost::shared_ptr<inputEngine> tempInputSharedPtr(new inputEngine);
+    inputE = tempInputSharedPtr;
+//    uInput = load->loadUserInputs();  // loads user defined input from file.
+        logMsg("gameState::createTeamInstances() loadTeams");
+
+    if (load->checkIfUserInputsLoaded())
+    {
+        uInput = load->getUIInstance();
+        if (uInput.size() > 0)
+        {
+            logMsg("inputState::inputState() uInput Loaded!");
+        }
+        else
+        {
+            logMsg("inputState::inputState() uInput NOT Loaded!");
+        }
+    }
+    else
+    {
+        logMsg("inputState::inputState() loading of User Inout failed!");
+        exit(false);
+    }
+
+    return (true);
 }
 
 bool inputState::mapInput()  // maps value of keyPressed string to inputMap

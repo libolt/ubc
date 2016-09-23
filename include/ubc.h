@@ -65,6 +65,8 @@ public:
     void setQuitGame(bool quit);  // sets the value of quitGame
 */
 
+    bool setup();  // sets up UBC object
+
     bool setupState();  // sets up the UBC game state
     void executeState();  // executes the UBC game code
 

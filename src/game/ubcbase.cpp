@@ -83,7 +83,8 @@ bool UBCBase::setup()  // sets up the engine and states
     boost::shared_ptr<gameEngine> tempGameESharedPtr(new gameEngine);
     gameE = tempGameESharedPtr;
 //    gameE(new gameEngine);
-   
+    gameE->setup();  // sets up the game engine
+
 //    gameState *tempGameStateObj = new gameState;
     boost::shared_ptr<gameState> tempGameStateSharedPtr(new gameState);
     gameS = tempGameStateSharedPtr;
@@ -97,6 +98,7 @@ bool UBCBase::setup()  // sets up the engine and states
     inputS = tempInputStateSharedPtr;
 
     inputS->setInputE(gameE->getInputE());
+    inputS->setup();  // sets up the inputState object
 
     return (true);
 }

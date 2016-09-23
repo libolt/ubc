@@ -33,7 +33,6 @@
 
 networkEngine::networkEngine()
 {
-    initialize();
     counter = 0;
     clientID = 0;
     teamType = NOTEAM;

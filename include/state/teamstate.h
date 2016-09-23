@@ -156,11 +156,11 @@ public:
     size_t getHoop();  // retrieves the value of hoop
     void setHoop(size_t set);  // sets the value of hoop
 
-    offenseState *getOffenseInstance();  // retrievers the value of offenseInstance
-    void setOffenseInstance(offenseState *set);	 // sets the value of offenseInstance
+    boost::shared_ptr<offenseState> getOffenseInstance();  // retrievers the value of offenseInstance
+    void setOffenseInstance(boost::shared_ptr<offenseState> set);	 // sets the value of offenseInstance
 
-    defenseState *getDefenseInstance();	 // retrieves the value of defenseInstance
-    void setDefenseInstance(defenseState *set);	 // sets the value of defenseInstance
+    boost::shared_ptr<defenseState> getDefenseInstance();	 // retrieves the value of defenseInstance
+    void setDefenseInstance(boost::shared_ptr<defenseState> set);	 // sets the value of defenseInstance
 
     size_t getTeamColObject();  // retrieves the value of teamColObject
     void setTeamColObject(size_t set); // sets the value of teamColObject
@@ -237,8 +237,8 @@ private:
     size_t humanPlayer;  // stores which player is human controlled
 
     size_t hoop;  // holds which hoop the team is shooting on
-    offenseState *offenseInstance;  // stores the offenseState instance
-    defenseState *defenseInstance;  // stores the defenseState instance
+    boost::shared_ptr<offenseState> offenseInstance;  // stores the offenseState instance
+    boost::shared_ptr<defenseState> defenseInstance;  // stores the defenseState instance
 
     size_t teamColObject;  // stores the object that collides with others
     size_t teamCollidesWith;   // stores what team players collides with

@@ -45,7 +45,7 @@ boost::shared_ptr<UBCBase> teamState::base;  // static copy of base class
 teamState::teamState()  // constructor
 {
 
-    boost::shared_ptr<UBCBase> tempBaseSharedPtr; //(new UBCBase);
+//    boost::shared_ptr<UBCBase> tempBaseSharedPtr; //(new UBCBase);
 //    base = tempBaseSharedPtr;
     
     //teamNumber = -1;
@@ -61,8 +61,7 @@ teamState::teamState()  // constructor
     timeouts = 0;
 
 //    activePlayerID = new size_t[5];
-    offenseInstance = new offenseState;
-    defenseInstance = new defenseState;
+
 
 	playerInstancesCreated = false;
     playerInstanceCreatedCount = 0;
@@ -403,19 +402,19 @@ void teamState::setHoop(size_t set)  // sets the value of hoop
     hoop = set;
 }
 
-offenseState *teamState::getOffenseInstance()	// retrievers the value of offenseInstance
+boost::shared_ptr<offenseState> teamState::getOffenseInstance()	// retrievers the value of offenseInstance
 {
 	return (offenseInstance);
 }
-void teamState::setOffenseInstance(offenseState *set)	// sets the value of offenseInstance
+void teamState::setOffenseInstance(boost::shared_ptr<offenseState> set)	// sets the value of offenseInstance
 {
 	offenseInstance = set;
 }
-defenseState *teamState::getDefenseInstance()	// retrieves the value of defenseInstance
+boost::shared_ptr<defenseState> teamState::getDefenseInstance()	// retrieves the value of defenseInstance
 {
 	return (defenseInstance);
 }
-void teamState::setDefenseInstance(defenseState *set)	// sets the value of defenseInstance
+void teamState::setDefenseInstance(boost::shared_ptr<defenseState> set)	// sets the value of defenseInstance
 {
 	defenseInstance = set;
 }
@@ -451,6 +450,11 @@ void teamState::setTeamCollidesWith(size_t set) // sets the value of teamCollide
 void teamState::setupState()	// sets up the state of the object
 {
     bool stateSet = this->getStateSet();
+    boost::shared_ptr<offenseState> tempOffenseInst(new offenseState);
+    offenseInstance = tempOffenseInst;
+
+    boost::shared_ptr<defenseState> tempDefenseInst(new defenseState);
+    defenseInstance = tempDefenseInst;
     if (!stateSet)
     {
         logMsg("Setting state");
@@ -683,7 +687,7 @@ bool teamState::createPlayerInstances()
         
         playerSteer *pSteer = new playerSteer; // steer instance
         
-        playerPhysics *pPhysics = new playerPhysics;
+        boost::shared_ptr<playerPhysics> pPhysics(new playerPhysics);
         
         logMsg("Player Team ID = " +convert->toString(gamePlayerInstance[i]->getTeamID()));
 //        exit(0);

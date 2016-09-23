@@ -49,17 +49,7 @@ boost::shared_ptr<GUISystem> UBC::gui;  // the GUI object.
 UBC::UBC()  // constructor
 {
 //    quitGame = false;
-/*    gameEngine *tempGameEObj = new gameEngine;
-    boost::shared_ptr<gameEngine> tempGameESharedPtr = boost::shared_ptr<gameEngine>(tempGameEObj);
-    setGameE(tempGameESharedPtr);
-*/
 
-    boost::shared_ptr<UBCBase> tempBaseSharedPtr(new UBCBase);
-    base = tempBaseSharedPtr;
-
-//    GUISystem *tempGUIObj = new GUISystem;
-    boost::shared_ptr<GUISystem> tempGUISharedPtr(new GUISystem);
-    gui = tempGUISharedPtr;
 }
 
 UBC::~UBC()  // destructor
@@ -96,7 +86,20 @@ void UBC::setQuitGame(bool set)  // sets the value of quitGame
     quitGame = set;
 }*/
 
+bool UBC::setup()  // sets up UBC object
+{
+    /*    gameEngine *tempGameEObj = new gameEngine;
+        boost::shared_ptr<gameEngine> tempGameESharedPtr = boost::shared_ptr<gameEngine>(tempGameEObj);
+        setGameE(tempGameESharedPtr);
+    */
 
+        boost::shared_ptr<UBCBase> tempBaseSharedPtr(new UBCBase);
+        base = tempBaseSharedPtr;
+
+    //    GUISystem *tempGUIObj = new GUISystem;
+        boost::shared_ptr<GUISystem> tempGUISharedPtr(new GUISystem);
+        gui = tempGUISharedPtr;
+}
 
 bool UBC::setupState()  // sets up the UBC game state
 {
@@ -616,6 +619,7 @@ int main(int argc, char *argv[])
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 //    boost::shared_ptr<GUISystem> gui = ubc.getGui();
 //    exit(0);
+    ubc->setup();
     ubc->run();
 //    exit(0);
     logMsg("End Game!");

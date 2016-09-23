@@ -97,6 +97,7 @@ public:
     boost::shared_ptr<networkEngine> getNetworkE();  // retrieves the value of input
     void setNetworkE(boost::shared_ptr<networkEngine> set);  // sets the value of input
 
+    bool setup();  // sets up the engine state
     bool startGame();  // starts a game
 
     void quit();  // quits the entire game

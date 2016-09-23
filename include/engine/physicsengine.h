@@ -80,6 +80,7 @@ public:
     size_t getTeam2CollidesWith();  // retrieves the value of team2CollidesWith
     void setTeam2CollidesWith(size_t set); // sets the vslue of team2CollidesWith
 */
+    bool setup();  // sets up the physicsEngine object
 
     void setupState(boost::shared_ptr<renderEngine> render);  // sets up state of physics engine.
 

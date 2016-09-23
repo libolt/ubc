@@ -51,6 +51,7 @@ class inputState : public state
     inputInGameWorkQueues getInputInGameWorkQueue();  // retrieves the value of inputInGameWorkQueue
     void setInputInGameWorkQueue(inputInGameWorkQueues set);  // sets the value of inputInGameWorkQueue
     
+    bool setup();  // sets up the input state
     bool mapInput();  // maps value of the received input string to inputInGameMaps
 	inputInGameMaps mapKeyInput(inputKeyMaps inKeyMap, boost::shared_ptr<userInput> input);  // maps value of the keyPressed string to inputInGameMaps
 	

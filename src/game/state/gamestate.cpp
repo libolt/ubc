@@ -197,11 +197,13 @@ bool gameState::assignHoopToTeams()  // assigns which hoop belongs to each team
 
 bool gameState::createInstances()  // creates object instances
 {
+    /*
     bool returnType = true;
     logMsg("gameState creating instances!");
     if (!getPlayerInstanceCreated())
     {
         logMsg("player Instances not created!");
+//        exit(0);
         if (createPlayerInstances())  // create player instances
         {
             logMsg("Player instances created!");
@@ -280,7 +282,7 @@ bool gameState::createInstances()  // creates object instances
         }
     }
 //    exit(0);
-    return (returnType);
+    return (returnType);*/
 }
 bool gameState::createBasketballInstances()  // creates basketball Instances
 {
@@ -446,16 +448,19 @@ bool gameState::createHoopInstances()  // creates hoop Instances
 }
 bool gameState::createPlayerInstances()  // creates player instances
 {
-    logMsg("gameState::createTeamInstances()");
+//    logMsg("gameState::createTeamInstances()");
     
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<loader> load;
     
     std::vector<boost::shared_ptr<playerState> > pInstance;
     
-    logMsg("gameState::createPlayerInstances() loadPlayers");
+    logMsg("gameState::createPlayerInstances() checkIfPlayersLoaded");
+//    exit(0);
     if (load->checkIfPlayersLoaded())
     {
+        logMsg("gameState::createPlayerInstances() checkIfPlayersLoaded true");
+
         pInstance = load->getPInstance();
         if (pInstance.size() > 0)
         {
@@ -475,16 +480,16 @@ bool gameState::createPlayerInstances()  // creates player instances
 
 //    exit(0);
     logMsg("gameState::createPlayerInstances() uno");
-    
 
     logMsg("gameState::createPlayerInstances() pInstance.size() == " +convert->toString(pInstance.size()));
     logMsg("gameState::createPlayerInstances() too");
 //    setPlayerInstances(load->loadPlayers());
+//   exit(0);
     setPlayerInstances(pInstance);
     setPlayerInstanceCreated(true);
     if (getPlayerInstance().size() > 0)
     {
-        logMsg("playerInstance size == " +convert->toString(getPlayerInstance().size()));
+        logMsg("gameState::createPlayerInstances() playerInstance size == " +convert->toString(getPlayerInstance().size()));
 //        logMsg("player name = " +getPlayerInstance()[0]->getPlayerName());
 //        exit(0);
         return (true);
@@ -1251,12 +1256,13 @@ bool gameState::checkIfPlayerInstanceCreated()  // check if playerInstance objec
         }
         else
         {
-            logMsg("player instances not yet created!");
+            logMsg("gameState::checkIfPlayerInstanceCreated() player instances not yet created!");
+ //           exit(0);
             if (createPlayerInstances())
             {
             
                 logMsg("player instances created!");
-            
+//                exit(0);
                 setPlayerInstanceCreated(true);
                 return (true);
 //            exit(0);

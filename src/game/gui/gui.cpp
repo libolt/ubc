@@ -595,11 +595,13 @@ void GUISystem::playerStartSelectionMenu()  // displays player start selection m
         createPlayerStartSelectionMenuGUI();	
         logMsg("createPlayerStartSelectionMenuGUI!");
         addPlayerStartSelectionMenuData();
-        exit(0);
+//        exit(0);
         playerStartSelectionMenuCreated = true;
     }
     setSelectedIndexes();
     changeActiveMenu(PLAYERSTART);
+    logMsg("playerStartSelectionMenu");
+//    exit(0);
 }
 
 void GUISystem::teamSelectionMenu()  // displays team selection menu
@@ -623,7 +625,7 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
         if (getGameS()->getTeamInstancesCreated())
         {
             logMsg("getTeamInstancesCreated");
-            exit(0);
+//            exit(0);
             if (teamSelectionMenuDataAdded)
             {
                 logMsg("Team Selection Menu Data Added already!");
@@ -634,7 +636,7 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
                 if (addTeamStartSelectionMenuData())
                 {
                     teamSelectionMenuDataAdded = true;
-                   changeMenu = true;
+                    changeMenu = true;
                    
                 }
                 else
@@ -978,7 +980,7 @@ void GUISystem::playerStartSelected()  // process player start selection
         activePlayerID.push_back(teamStarterID[0][x]);
         logMsg("activePlayerID = " +convert->toString(activePlayerID[x]));
     }
-    exit(0);
+//    exit(0);
     getGameS()->getActiveTeamInstance()[0]->setActivePlayerID(activePlayerID);
     if (!getGameS()->getActiveTeamInstance()[0]->getPlayerInstancesCreated())    // checks if playerInstances have been created
     {
@@ -1043,7 +1045,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     if (!getGameS()->getActiveTeamInstance()[1]->getPlayerInstancesCreated())  // checks if playerInstances have been created
     {
         logMsg("Creating team 1 player instances");
-//            exit(0);
+            exit(0);
         if (getGameS()->getActiveTeamInstance()[1]->createPlayerInstances())  // creates the player instances based on playerIDS
         {
 //            exit(0);

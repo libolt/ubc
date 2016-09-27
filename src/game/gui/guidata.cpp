@@ -119,17 +119,17 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     logMsg("blah");
 //    exit(0);
     
-
+/*
     if (!getGameS()->getPlayerInstanceCreated())
     {
-        logMsg("player instances not yet created!");
+        logMsg("GUISystem::addPlayerStartSelectionMenuData() player instances not yet created!");
         if (getGameS()->createPlayerInstances())
         {
-            logMsg("player instances created!");
+            logMsg("GUISystem::addPlayerStartSelectionMenuData() player instances created!");
         }
         else
         {
-            logMsg("player instances not created!");
+            logMsg("GUISystem::addPlayerStartSelectionMenuData() player instances not created!");
         }
 //        exit(0);
     }
@@ -138,13 +138,14 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         teamInstance[teamIDs[0]]->createPlayerInstances();
         getGameS()->setTeamInstance(teamInstance);
     }
-
-//    logMsg ("addPlayerStartSelectionMenuData");
-//    exit(0);
+*/
+    logMsg ("addPlayerStartSelectionMenuData");
+ 
 
     if (getGameS()->checkIfPlayerInstanceCreated())
     {
         logMsg("gameS PlayerInstance Created!");
+//        exit(0);
     }
     else
     {
@@ -152,8 +153,16 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         exit(0);
     }
     
-    logMsg("Bleert!");
+    
  
+    if (!teamInstance[teamIDs[0]]->getPlayerInstancesCreated())
+    {
+        teamInstance[teamIDs[0]]->createPlayerInstances();
+        getGameS()->setTeamInstance(teamInstance);
+    }
+    
+    logMsg("Bleert!");
+    
     exit(0);
     logMsg("teamInstance.size() == " +convert->toString(teamInstance.size()));
     

@@ -34,6 +34,7 @@ class playerSteer : public steering, public gameStateShared
 //	playerSteer(std::vector<playerSteer*> others, std::vector<playerSteer*> allplayers, /*Ball* ball,*/ bool isTeamA, int id);
     playerSteer()
     {
+/*        
         std::vector<boost::shared_ptr<playerSteer> > others;
         std::vector<boost::shared_ptr<playerSteer> > allplayers;
 //	    bool isTeamA;
@@ -53,16 +54,16 @@ class playerSteer : public steering, public gameStateShared
         execute = false;
 		
         m_home = OpenSteer::Vec3::zero;
-//	steering::reset (); // reset the vehicle
+//	      steering::reset (); // reset the vehicle
         reset();
         setPosition(OpenSteer::Vec3(0,0,0));
         setRadius (0.5f);
         setMass(10.0f);
-	/*    setSpeed (0.0f);         // speed along Forward direction.
-    setMaxForce (3000.7f);      // steering force is clipped to this magnitude
-    setMaxSpeed (10);         // velocity is clipped to this magnitude
-    setRadius(1.0f);
-    setMass(1.0f);
+///        setSpeed (0.0f);         // speed along Forward direction.
+///        setMaxForce (3000.7f);      // steering force is clipped to this magnitude
+///        setMaxSpeed (10);         // velocity is clipped to this magnitude
+///        setRadius(1.0f);
+///        setMass(1.0f);
 */
     }
     

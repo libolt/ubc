@@ -215,18 +215,19 @@ void gameEngine::setNetworkE(boost::shared_ptr<networkEngine> set)  // sets the 
 
 bool gameEngine::setup()  // sets up engine state
 {
-// initialize subclasses
+    
+    // initialize subclasses
 
-// renderEngine
-//    renderEngine *tempRenderObj = new renderEngine;
-boost::shared_ptr<renderEngine> tempRenderSharedPtr(new renderEngine);
-renderE = tempRenderSharedPtr;
+    // renderEngine
+    //    renderEngine *tempRenderObj = new renderEngine;
+    boost::shared_ptr<renderEngine> tempRenderSharedPtr(new renderEngine);
+    renderE = tempRenderSharedPtr;
 
-// networkEngine
-//    networkEngine *tempNetworkObj = new networkEngine;
-boost::shared_ptr<networkEngine> tempNetworkSharedPtr(new networkEngine);
-networkE = tempNetworkSharedPtr;
-networkE->initialize();
+    // networkEngine
+    //    networkEngine *tempNetworkObj = new networkEngine;
+    boost::shared_ptr<networkEngine> tempNetworkSharedPtr(new networkEngine);
+    networkE = tempNetworkSharedPtr;
+    networkE->initialize();
 
 ///    // physicsEngine
 ///    physicsEngine *tempPhysicsObj = new physicsEngine;
@@ -237,8 +238,8 @@ networkE->initialize();
 // inputEngine
 //    inputEngine *tempInputObj = new inputEngine;
 
-boost::shared_ptr<inputEngine> tempInputSharedPtr(new inputEngine);
-inputE = tempInputSharedPtr;
+    boost::shared_ptr<inputEngine> tempInputSharedPtr(new inputEngine);
+    inputE = tempInputSharedPtr;
 
     return (true);
 }

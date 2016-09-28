@@ -44,7 +44,7 @@ AISystem::AISystem()
 {
     selectedVehicle = NULL;
     oldTime = 0.0f;
-    playerSteerPluginInstance = new playerSteerPlugin;
+//    playerSteerPluginInstance = new playerSteerPlugin;
 
 }
 AISystem::~AISystem()
@@ -52,20 +52,20 @@ AISystem::~AISystem()
 
 }
 
-OpenSteer::AbstractVehicle* AISystem::getSelectedVehicle()  // retrieves the value of selectedVehicle
+boost::shared_ptr<OpenSteer::AbstractVehicle> AISystem::getSelectedVehicle()  // retrieves the value of selectedVehicle
 {
     return (selectedVehicle);
 }
-void AISystem::setSelectedVehicle(OpenSteer::AbstractVehicle* set)  // sets the value of selectedVehicle
+void AISystem::setSelectedVehicle(boost::shared_ptr<OpenSteer::AbstractVehicle> set)  // sets the value of selectedVehicle
 {
     selectedVehicle = set;
 }
 
-std::vector<playerSteer*> AISystem::getAllPlayerSteers()  // retrieves the value of allPlayerSteers
+std::vector<boost::shared_ptr<playerSteer> > AISystem::getAllPlayerSteers()  // retrieves the value of allPlayerSteers
 {
     return (allPlayerSteers);
 }
-void AISystem::setAllPlayerSteers( std::vector<playerSteer*> set)  // sets the value of allPlayerSteers
+void AISystem::setAllPlayerSteers( std::vector<boost::shared_ptr<playerSteer> > set)  // sets the value of allPlayerSteers
 {
     allPlayerSteers = set;
 }
@@ -84,6 +84,9 @@ void printPlugIn (OpenSteer::PlugIn& pi);
 // initial setup of AI state
 bool AISystem::setup(void)
 {
+    boost::shared_ptr<playerSteerPlugin> tempPlugin(new playerSteerPlugin);
+    playerSteerPluginInstance = tempPlugin;
+
     // select the default PlugIn
     selectDefaultPlugIn ();
     {
@@ -125,19 +128,19 @@ void printPlugIn (OpenSteer::PlugIn& pi)
 void AISystem::selectDefaultPlugIn (void)  // selects the default plugin
 {
     OpenSteer::PlugIn::sortBySelectionOrder ();
-    selectedPlugIn = OpenSteer::PlugIn::findDefault ();
+    selectedPlugIn = boost::shared_ptr<OpenSteer::PlugIn>(OpenSteer::PlugIn::findDefault());
 }
 
 void AISystem::selectNextPlugIn (void)  // select the "next" plug-in, cycling through "plug-in selection order"
 {
     closeSelectedPlugIn ();
-    selectedPlugIn = selectedPlugIn->next ();
+    selectedPlugIn = boost::shared_ptr<OpenSteer::PlugIn>(selectedPlugIn->next());
     openSelectedPlugIn ();
 }
 
-const char* AISystem::nameOfSelectedPlugIn (void)  // return name of currently selected plug-in
+const boost::shared_ptr<char> AISystem::nameOfSelectedPlugIn (void)  // return name of currently selected plug-in
 {
-    return (selectedPlugIn ? selectedPlugIn->name() : "no PlugIn");
+    return (boost::shared_ptr<char>(boost::shared_ptr<OpenSteer::PlugIn>(selectedPlugIn) ? boost::shared_ptr<OpenSteer::PlugIn>(selectedPlugIn)->name() : "no PlugIn"));
 }
 
 void AISystem::openSelectedPlugIn (void)  // open the currently selected plug-in
@@ -159,7 +162,7 @@ void AISystem::updateSelectedPlugIn (const float currentTime, const float elapse
     if (selectedVehicle == NULL)
     {
         const OpenSteer::AVGroup& vehicles = allVehiclesOfSelectedPlugIn();
-        if (vehicles.size() > 0) selectedVehicle = vehicles.front();
+        if (vehicles.size() > 0) selectedVehicle = boost::shared_ptr<OpenSteer::AbstractVehicle>(vehicles.front());
     }
 
     // invoke selected PlugIn's Update method
@@ -199,15 +202,24 @@ void AISystem::selectNextVehicle (void)  // select the "next" vehicle: the one l
         const OpenSteer::AVIterator last = all.end();
 
         // find selected vehicle in container
-        const OpenSteer::AVIterator s = std::find (first, last, selectedVehicle);
+        OpenSteer::AVIterator s = std::find (first, last, selectedVehicle);
 
         // normally select the next vehicle in container
-        selectedVehicle = *(s+1);
+        OpenSteer::AbstractVehicle *tempSelectedVehicle;
+        tempSelectedVehicle = *(s+1);
 
+        selectedVehicle = boost::shared_ptr<OpenSteer::AbstractVehicle>(tempSelectedVehicle);
+        
         // if we are at the end of the container, select the first vehicle
-        if (s == last-1) selectedVehicle = *first;
-
+        if (s == last-1) 
+        {
+            tempSelectedVehicle = *first;
+            selectedVehicle = boost::shared_ptr<OpenSteer::AbstractVehicle>(tempSelectedVehicle);
+        }
         // if the search failed, use NULL
-        if (s == last) selectedVehicle = NULL;
+        if (s == last) 
+        {
+            selectedVehicle = NULL;
+        }
     }
 }

@@ -34,8 +34,8 @@ class playerSteer : public steering, public gameStateShared
 //	playerSteer(std::vector<playerSteer*> others, std::vector<playerSteer*> allplayers, /*Ball* ball,*/ bool isTeamA, int id);
     playerSteer()
     {
-        std::vector<playerSteer*> others;
-        std::vector<playerSteer*> allplayers;
+        std::vector<boost::shared_ptr<playerSteer> > others;
+        std::vector<boost::shared_ptr<playerSteer> > allplayers;
 //	    bool isTeamA;
         int id = 0;
         m_others = others;
@@ -99,8 +99,8 @@ class playerSteer : public steering, public gameStateShared
     private:
 
     int counter;
-    std::vector<playerSteer*> m_others;  // stores steering object of other players
-    std::vector<playerSteer*> m_AllPlayers;  // stores steering objects of all players
+    std::vector<boost::shared_ptr<playerSteer> > m_others;  // stores steering object of other players
+    std::vector<boost::shared_ptr<playerSteer> > m_AllPlayers;  // stores steering objects of all players
     OpenSteer::Vec3 m_home;  // home point to stear to
     //Ball*	m_Ball;
     teamTypes teamType;  // stores which team the player belongs to

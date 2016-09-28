@@ -52,44 +52,11 @@ class playerState : public state, public playerEntity, public playerData
         playerState();
         ~playerState();
 
-//        Ogre::Vector3 getNodePosition();  // retrieves the position of player node
-
-//        size_t getPlayerID();  // retrieves the value of playerID
-//        void setPlayerID(size_t set);  // sets the value of playerID
-
         teamTypes getTeamType();  // retrieves the value of teamType
         void setTeamType(teamTypes set);  // sets the value of teamType
         
         bool getNetworkControlled();  // retrieves the value of networkControlled
         void setNetworkControlled(bool set);  // sets the value of networkControlled
-
-/*        std::string getFirstName(void);  // retrieves the value of firstName
-        void setFirstName(std::string set);  // sets the value of firstName
-
-        std::string getLastName(void);  // retrieves the value of lastName
-        void setLastName(std::string set);  // sets the value of lastName
-
-        std::string getPlayerName(void);  // retrieves the value of playerName
-        void setPlayerName(std::string set);  // sets the value of playerName
-
-        size_t getAge(void);  // retrieves the value of age
-        void setAge(size_t set); // sets the value of age
-
-        size_t getHeight(void);  // retrieves the value of height
-        void setHeight(size_t set);  // sets the value of height
-
-        size_t getWeight(void);  // retrieves the value of weight
-        void setWeight(size_t set);  // sets the value of weight
-
-        playerPositions getPrimaryPosition();  // retrieves the value of primaryPosition
-        void setPrimaryPosition(playerPositions set);  // sets the value of primaryPosition
-
-        playerPositions getSecondaryPosition();  // retrieves the value of secondaryPosition
-        void setSecondaryPosition(playerPositions set);  // sets the value of secondaryPosition
-
-        bool getModelLoaded();  // retrieves the value of modelLoaded
-        void setModelLoaded(bool set);  // sets the value of modelLoaded
-*/
         
         playerPositions getActivePosition();  // retrieves the value of activePosition
         void setActivePosition(playerPositions set);  // sets the value of activePosition
@@ -157,25 +124,6 @@ class playerState : public state, public playerEntity, public playerData
         size_t getFreeThrowsMade();  // retrieves the value of freeThrowsMade
         void setFreeThrowsMade(size_t set);  // sest the value of freeThrowsMade
 
-/*
-        std::string getModelName();  // retrieves the value of modelName
-        void setModelName(std::string set);  // sets the value of modelName
-
-        Ogre::Entity *getModel();  // retrieves the value of model
-        void setModel(Ogre::Entity *set);  // sets the value of model
-
-        Ogre::SceneNode *getNode();  // retrieves the value of node
-        void setNode(Ogre::SceneNode *set); // sets the value of node
-
-        btRigidBody *getPhysBody();  // retrieves the value of physBody
-        void setPhysBody(btRigidBody *set);  // sets the value of physBody
-
-        playerPhysics getPhysics();  // retrieves the value of physics
-        void setPhysics(playerPhysics set);  // sets the value of physics 
-        
-        playerSteer *getSteer(); // retrieves the steering instance
-        void setSteer(playerSteer *set); // sets the steering instance
-*/
         bool getMovement();  // retrieves the value of movement
         void setMovement(bool set);  // sets the value of movement
 
@@ -375,16 +323,6 @@ class playerState : public state, public playerEntity, public playerData
         bool offenseSet;  // tracks state of player's offense
         bool defenseSet;  // tracks state of player's defense
 
-/*        Ogre::Entity *model;  // Stores the 3D model that represents the player
-
-        Ogre::SceneNode *node;  // stores the Scene Node that represents the player
-
-        btRigidBody *physBody;  // stores the physics object that represents the player
-
-        playerPhysics physics;  // stores the playerPhysics object
-        
-        playerSteer *steer;  // stores the steering objerct that represents the player
-*/
         Ogre::Vector3 courtPosition;  // stores the position of the player on the court in an Ogre::Vector3
 
         Ogre::Vector3 newCourtPosition;  // stores the upfated position of the player on the court in an Ogre::Vector3

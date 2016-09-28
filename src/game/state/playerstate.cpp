@@ -95,16 +95,6 @@ playerState::~playerState() // destructor
 {
 }
 
-/*size_t playerState::getPlayerID()  // retrieves the value of playerID
-{
-    return(playerID);
-}
-void playerState::setPlayerID(size_t set)  // sets the value of playerID
-{
-    playerID = set;
-}
-*/
-
 teamTypes playerState::getTeamType()  // retrieves the value of teamType
 {
     return (teamType);
@@ -113,96 +103,6 @@ void playerState::setTeamType(teamTypes set)  // sets the value of teamType
 {
     teamType = set;
 }
-
-/*bool playerState::getNetworkControlled()  // retrieves the value of networkControlled
-{
-	return (networkControlled);
-}
-void playerState::setNetworkControlled(bool set)  // sets the value of networkControlled
-{
-	networkControlled = set;
-}
-
-std::string playerState::getFirstName()  // retrieves the value of firstName
-{
-    return(firstName);
-}
-void playerState::setFirstName(std::string set)  // sets the value of firstName
-{
-    firstName = set;
-}
-
-std::string playerState::getLastName()  // retrieves the value of lastName
-{
-    return(lastName);
-}
-void playerState::setLastName(std::string set)  // sets the value of lastName
-{
-    lastName = set;
-}
-
-std::string playerState::getPlayerName()  // retrieves the value of playerName
-{
-    return(playerName);
-}
-void playerState::setPlayerName(std::string set)  // sets the value of playerName
-{
-    playerName = set;
-}
-
-size_t playerState::getAge()  // retrieves the value of age
-{
-    return(age);
-}
-void playerState::setAge(size_t set)  // sets the value of age 
-{
-    age = set;
-}
-
-size_t playerState::getHeight()  // retrieves the value of height
-{
-    return(height);
-}
-void playerState::setHeight(size_t set)  // sets the value of height
-{
-    height = set;
-}
-
-size_t playerState::getWeight()  // retrieves the value of weight
-{
-    return(weight);
-}
-void playerState::setWeight(size_t set)  // sets the value of weight
-{
-    weight = set;
-}
-
-playerPositions playerState::getPrimaryPosition()  // retrieves the value of primaryPosition
-{
-    return(primaryPosition);
-}
-void playerState::setPrimaryPosition(playerPositions set)  // sets the value of primaryPosition
-{
-    primaryPosition = set;
-}
-
-playerPositions playerState::getSecondaryPosition()  // retrieves the value of secondaryPosition
-{
-    return (secondaryPosition);
-}
-void playerState::setSecondaryPosition(playerPositions set)  // sets the value of secondaryPosition
-{
-    secondaryPosition = set;
-}
-
-bool playerState::getModelLoaded()  // retrieves the value of modelLoaded
-{
-    return (modelLoaded);
-}
-void playerState::setModelLoaded(bool set) // sets the value of modelLoaded
-{
-    modelLoaded = set;
-}*/
 
 playerPositions playerState::getActivePosition()  // retrieves the value of activePosition
 {
@@ -221,8 +121,6 @@ void playerState::setIsActive(bool set) // sets the value of isActive
 {
     isActive = set;
 }
-
-
 
 size_t playerState::getOffDef()  // retrieves the value of offDef
 {
@@ -404,61 +302,6 @@ void playerState::setFreeThrowsMade(size_t set)  // sets the value of freeThrows
     freeThrowsMade = set;
 }
 
-/*
-string playerState::getModelName()  // retrieves the value of modelName
-{
-    return (modelName);
-}
-void playerState::setModelName(string set)  // sets the value of modelName
-{
-    modelName = set;
-}
-
-Ogre::Entity *playerState::getModel()  // retrieves the value of model
-{
-    return (model);
-}
-void playerState::setModel(Ogre::Entity *set)  // sets the value of model
-{
-    model = set;
-}
-
-Ogre::SceneNode *playerState::getNode()  // retrieves the value of node
-{
-    return (node);
-}
-void playerState::setNode(Ogre::SceneNode *set)  // sets the value of node
-{
-    node = set;
-}
-
-btRigidBody *playerState::getPhysBody()	 // retrieves the value of physBody
-{
-    return (physBody);
-}
-void playerState::setPhysBody(btRigidBody *set)  // sets the value of physBody
-{
-    physBody = set;
-}
-
-playerPhysics playerState::getPhysics()  // retrieves the value of physics
-{
-    return (physics);
-}
-void playerState::setPhysics(playerPhysics set)  // sets the value of physics
-{
-    physics = set;
-}
-
-playerSteer *playerState::getSteer() // retrieves the value of steer
-{
-    return (steer);
-}
-void playerState::setSteer(playerSteer *set)  // sets the value of steer
-{
-    steer = set;
-}
-*/
 bool playerState::getMovement()	 // retrieves the value of movement
 {
     return (movement);
@@ -677,16 +520,6 @@ void playerState::setCourtPositionChangedType(positionChangedTypes set)  // sets
     courtPositionChangedType = set;
 }
 
-/*bool playerState::getStateSet()  // retrieves the value of stateSet
-{
-    return (stateSet);
-}
-void playerState::setStateSet(bool set)  // sets the value of stateSet
-{
-    stateSet = set;
-}
-*/
-
 bool playerState::getInitialized()  // retreives the value of initialized
 {
     return (initialized);
@@ -697,29 +530,6 @@ void playerState::setInitialized(bool set)  // sets the value of initialized
     initialized = set;
 }
 
-/*bool playerState::loadModel()  // loads the player's 3D model from the file specified in modelName
-{
-
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
-
-    logMsg("playerName == " +playerName);
-    // creates and instantiates the playerNode object
-    node = render->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(playerName);
-    // sets the player model
-    logMsg("modelName = " + modelName);
-    model = render->getMSceneMgr()->createEntity(playerName, modelName);
-
-    // attaches the model to the playerNode
-    node->attachObject(model);
-    // sets the size of playerNode
-    node->setScale(0.28f,0.28f,0.28f);
-    // sets the direction of playerNode
-    node->yaw (Ogre::Degree(-270));
-
-    initialized = true;
-    return true;
-}
-*/
 void playerState::updateState()
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
@@ -785,7 +595,7 @@ void playerState::updateState()
         updateMovement();
         oldDirection = direction;
         std::vector<boost::shared_ptr<teamState> > activeTeamInstance = getActiveTeamInstance();
-/*TS        size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
+        size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
         if (teamType == getTeamWithBall() && getTipOffComplete())
         {
             logMsg("dplayerWithBallID == " +convert->toString(playerWithBallID));
@@ -798,8 +608,7 @@ void playerState::updateState()
                 
 //                exit(0);
             }
-        }
-TS*/        
+        }        
         direction = NODIRECT;
     }
 
@@ -911,7 +720,7 @@ void playerState::updateDirection()
     std::vector<boost::shared_ptr<teamState> > activeTeamInstance = getActiveTeamInstance();
     std::vector<boost::shared_ptr<basketballState> > bballInstance = getBasketballInstance();
     size_t activeBBallInstance = getActiveBBallInstance();
-/*TS    size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
+    size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
 
     if (direction != oldDirection)
     {
@@ -1020,7 +829,7 @@ void playerState::updateDirection()
     }
     //oldDirection = direction;
     //direction = NODIRECT;
-TS*/
+
 }
 
 void playerState::updateMovement()	// updates movement status of the player
@@ -1030,7 +839,7 @@ void playerState::updateMovement()	// updates movement status of the player
     std::vector<boost::shared_ptr<teamState> > activeTeamInstance = getActiveTeamInstance();
     std::vector<boost::shared_ptr<basketballState> > bballInstance = getBasketballInstance();
     size_t activeBBallInstance = getActiveBBallInstance();
-/*TS    size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
+    size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
 
     Ogre::Vector3 posChange;	// stores change in position
     posChange = Ogre::Vector3(0.0f, 0.0f, 0.0f);
@@ -1090,7 +899,7 @@ void playerState::updateMovement()	// updates movement status of the player
         courtPositionChangedType = INPUTCHANGE;
         movement = false;
     }
-TS*/
+
 //	exit(0);
 }
 
@@ -1103,7 +912,7 @@ void playerState::calculatePass()	// calculates which player to pass the ball to
 
     std::vector<boost::shared_ptr<teamState> > activeTeamInstance = getActiveTeamInstance();
     size_t teamWithBall = getTeamWithBall();
-/*TS    size_t playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();
+    size_t playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();
 //    if (playerWithBall < 5)  // checks if the player belongs to the first team
 //    {
         if (playerWithBallInstance +1 < 5)  // checks if the player + 1 is still on the first team
@@ -1114,7 +923,7 @@ void playerState::calculatePass()	// calculates which player to pass the ball to
         {
             passToPlayer = 0;
         }
-TS*/        
+        
 //        }
 /*
     else if (playerWithBall > 4)  // checks if the player belongs to the second team

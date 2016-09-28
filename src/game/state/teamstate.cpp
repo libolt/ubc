@@ -685,9 +685,9 @@ bool teamState::createPlayerInstances()
 
         boost::shared_ptr<playerState> pInstance;  // creates a new instance of playerState
         
-        playerSteer *pSteer = new playerSteer; // steer instance
+        boost::shared_ptr<playerSteer> pSteer(new playerSteer); // steer instance
         
-        boost::shared_ptr<playerPhysics> pPhysics(new playerPhysics);
+/*        boost::shared_ptr<playerPhysics> pPhysics(new playerPhysics);
         
         logMsg("Player Team ID = " +convert->toString(gamePlayerInstance[i]->getTeamID()));
 //        exit(0);
@@ -711,6 +711,7 @@ bool teamState::createPlayerInstances()
             logMsg("pInstance->setSteer(boost::shared_ptr<playerSteer>(pSteer);");
 
             pInstance->setSteer(boost::shared_ptr<playerSteer>(pSteer));
+            
             logMsg("playerInstance.push_back(pInstance);");
 
             playerInstance.push_back(pInstance);    // adds pInstance to the playerInstance std::vector.
@@ -729,14 +730,18 @@ bool teamState::createPlayerInstances()
         else
         {
         }
-        
+*/        
         i++;
+        logMsg("teamState::createPlayerInstances() i == " +convert->toString(i));
     }
+    logMsg("teamState::createPlayerInstances() i final == " +convert->toString(i));
+
     logMsg("BAAAART!");
 //    exit(0);
 //    std::vector <playerState>::iterator pInstanceIT;
 
     logMsg("teamState::createPlayerInstances() before playerID");
+    exit(0);
 //        size_t playerID = teamStarterID[teamType][i];
 //        size_t playerID = activePlayerID[i];
 //        logMsg("ID " +convert->toString(i) +" = " +convert->toString(playerID));
@@ -744,7 +749,11 @@ bool teamState::createPlayerInstances()
 //    logMsg("playerID = " +convert->toString(activePlayerID[i]));
 //    exit(0);
     size_t x = 0;
-
+    if (activePlayerID.size() == 0)
+    {
+        logMsg("activePlayerID.size() == 0");
+        exit(0);
+    }
     logMsg("teamState::createPlayerInstances() activePlayerInstance.size() = " +convert->toString(playerInstance.size()));
 
     bool IDMatch = false;

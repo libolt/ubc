@@ -55,7 +55,7 @@ void playerSteerPlugin::open(void)
     while (x < getActiveTeamInstance().size())
     {
 
-//TS        activePlayerInstance.push_back(getActiveTeamInstance()[x]->getActivePlayerInstance());
+        activePlayerInstance.push_back(getActiveTeamInstance()[x]->getActivePlayerInstance());
         size_t y = 0;
         while (y < activePlayerInstance[x].size())
         {
@@ -191,7 +191,7 @@ void playerSteerPlugin::update(const float currentTime, const float elapsedTime)
     size_t x = 0;
     while (x < getActiveTeamInstance().size())
     {
-/*TS        activePlayerInstance.push_back(getActiveTeamInstance()[x]->getActivePlayerInstance());
+        activePlayerInstance.push_back(getActiveTeamInstance()[x]->getActivePlayerInstance());
         size_t y = 0;
         while (y < activePlayerInstance[x].size())
         {
@@ -203,7 +203,7 @@ void playerSteerPlugin::update(const float currentTime, const float elapsedTime)
             }
             ++y;
         }
-        TS*/
+        
         ++x;
     }
     

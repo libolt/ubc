@@ -69,7 +69,7 @@ public:
     void selectNextPlugIn (void);
 
 	// return name of currently selected plug-in
-    const boost::shared_ptr<char> nameOfSelectedPlugIn (void);
+    const char *nameOfSelectedPlugIn (void);
 
 	// open the currently selected plug-in
     void openSelectedPlugIn (void);

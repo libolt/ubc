@@ -138,9 +138,9 @@ void AISystem::selectNextPlugIn (void)  // select the "next" plug-in, cycling th
     openSelectedPlugIn ();
 }
 
-const boost::shared_ptr<char> AISystem::nameOfSelectedPlugIn (void)  // return name of currently selected plug-in
+const char *AISystem::nameOfSelectedPlugIn (void)  // return name of currently selected plug-in
 {
-    return (boost::shared_ptr<char>(boost::shared_ptr<OpenSteer::PlugIn>(selectedPlugIn) ? boost::shared_ptr<OpenSteer::PlugIn>(selectedPlugIn)->name() : "no PlugIn"));
+    return (boost::shared_ptr<OpenSteer::PlugIn>(selectedPlugIn) ? boost::shared_ptr<OpenSteer::PlugIn>(selectedPlugIn)->name() : "no PlugIn");
 }
 
 void AISystem::openSelectedPlugIn (void)  // open the currently selected plug-in
@@ -202,7 +202,7 @@ void AISystem::selectNextVehicle (void)  // select the "next" vehicle: the one l
         const OpenSteer::AVIterator last = all.end();
 
         // find selected vehicle in container
-        OpenSteer::AVIterator s = std::find (first, last, selectedVehicle);
+        OpenSteer::AVIterator s = std::find (first, last, selectedVehicle.get());
 
         // normally select the next vehicle in container
         OpenSteer::AbstractVehicle *tempSelectedVehicle;

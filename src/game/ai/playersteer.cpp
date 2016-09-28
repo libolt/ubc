@@ -197,11 +197,11 @@ void playerSteer::update (const float currentTime, float elapsedTime)
     std::vector<std::vector<int> > activePlayerID;
 
 //	std::vector<playerSteer*> playerSteerInstance;
-	std::vector<playerSteer*> pSteer = ai->getAllPlayerSteers();
+	std::vector<boost::shared_ptr<playerSteer> > pSteer = ai->getAllPlayerSteers();
     //std::vector<playerSteer*> team0Steers;
     //std::vector<playerSteer*> team1Steers;
-    std::vector<playerSteer *> teamSteer;
-    std::vector<std::vector<playerSteer*> > teamSteers;
+    std::vector<boost::shared_ptr<playerSteer> > teamSteer;
+    std::vector<std::vector<boost::shared_ptr<playerSteer> > > teamSteers;
     logMsg("Updating playerSteer state");
 
 
@@ -214,7 +214,7 @@ void playerSteer::update (const float currentTime, float elapsedTime)
         size_t x = 0;
         while (x < activePlayerInstance[z].size())
         {
-            teamSteer.push_back(activePlayerInstance[z][x]->getSteer().get());
+            teamSteer.push_back(activePlayerInstance[z][x]->getSteer());
             ++x;
         }
         teamSteers.push_back(teamSteer);

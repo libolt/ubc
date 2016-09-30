@@ -33,7 +33,42 @@
 #include "offenseplays.h"
 #include "comparison.h"
 
-playerSteer::~playerSteer()
+playerSteer::playerSteer()  // constructor
+{
+    std::vector<boost::shared_ptr<playerSteer> > others;
+    std::vector<boost::shared_ptr<playerSteer> > allplayers;
+//    bool isTeamA;
+    int id = 0;
+    m_others = others;
+    m_AllPlayers = allplayers;
+//    m_Ball(ball),
+//    b_ImTeamA = isTeamA;
+//    m_MyID = 0;
+    m_MyID = id;
+
+//    b_ImTeamA = true;
+    teamType = NOTEAM;
+    ID = -1;
+    counter = 0;
+    distToPosition = -1.0f;
+    execute = false;
+    m_home = OpenSteer::Vec3::zero;
+//    steering::reset ();  // reset the vehicle
+    
+    reset();
+   
+/*    setPosition(OpenSteer::Vec3(0,0,0));
+    setRadius (0.5f);
+    setMass(10.0f);
+///    setSpeed (0.0f);  // speed along Forward direction.
+///    setMaxForce (3000.7f);  // steering force is clipped to this magnitude
+///    setMaxSpeed (10);  // velocity is clipped to this magnitude
+///    setRadius(1.0f);
+///    setMass(1.0f);
+*/
+    }
+
+playerSteer::~playerSteer()  // destructor
 {
 
 }
@@ -114,7 +149,7 @@ void playerSteer::reset()    // reset state
     logMsg("steer alive?4");
 //    setMaxSpeed (10);         // velocity is clipped to this magnitude
     setMaxSpeed (20.0f);  // velocity is clipped to this magnitude
-    logMsg("steer alive?5");
+/*    logMsg("steer alive?5");
     if (teamType != NOTEAM)
     {
 //        exit(0);
@@ -134,22 +169,22 @@ void playerSteer::reset()    // reset state
 //	        if (gameS->getTipOffComplete())
 //	        {
 //		        playerSteerPos = toOpenSteerVec3(activePlayerInstance[ID].getNodePosition());
-/*	        }
-	        else
-	        {
-	        	exit(0);
-*/
+///        }
+///	        else
+///        {
+///             exit(0);
+
                 // sets the start steering positions to that of the player's node
-/*                for (size_t x = 0; x<5; ++x)
-                {
-                    logMsg("teamStarterSteerID = " +convert->toString(teamStarterID[teamType][x]));
-                }
-*/
+///                for (size_t x = 0; x<5; ++x)
+///                {
+///                    logMsg("teamStarterSteerID = " +convert->toString(teamStarterID[teamType][x]));
+///                }
+///
                 playerSteerPos.x = 0.0;
                 playerSteerPos.y = 0.0;
                 playerSteerPos.z = 0.0;
-/*	        }
-*/
+///	        }
+
     // Place me on my part of the field, looking at oponnents goal
 //    setPosition(b_ImTeamA ? OpenSteer::frandom01()*20 : -OpenSteer::frandom01()*20, 0, (OpenSteer::frandom01()-0.5f)*20);
 
@@ -157,14 +192,14 @@ void playerSteer::reset()    // reset state
 //		{
 
             setPosition(playerSteerPos);
-/*		}
-        else
-		{
-            setPosition(OpenSteer::Vec3(-playerSteerPos.x, playerSteerPos.y, playerSteerPos.z));
-		}
-*/
+///	    }
+///        else
+///        {
+//i            setPosition(OpenSteer::Vec3(-playerSteerPos.x, playerSteerPos.y, playerSteerPos.z));
+///		}
+
         }
-        /*OpenSteer::Vec3*/
+        
         m_home = playerSteerPos;
 //		exit(0);
     }
@@ -173,6 +208,7 @@ void playerSteer::reset()    // reset state
  //   AnnotationMixin::clearTrailHistory ();    // prevent long streaks due to teleportation
 //    OpenSteer::clearTrailHistory ();
 //    setTrailParameters (10, 60);
+*/
 }
 
 void playerSteer::update (const float currentTime, float elapsedTime)

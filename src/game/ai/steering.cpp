@@ -23,7 +23,7 @@
 #include <algorithm>
 
 int steering::serialNumberCounter = 0;
-
+//float steering::_maxSpeed;
 
 // ----------------------------------------------------------------------------
 // constructor
@@ -31,6 +31,14 @@ int steering::serialNumberCounter = 0;
 
 steering::steering (void)
 {
+    _mass = 0.0f;
+    _radius = 0.0f;
+    _speed = 0.0f;
+    _maxForce = 0.0f;
+    _maxSpeed = 0.0f;
+    _curvature = 0.0f;
+    _smoothedCurvature = 0.0f;
+    
     // set inital state
     reset ();
 
@@ -47,7 +55,111 @@ steering::~steering (void)
 {
 }
 
+    // get/set mass
+    float steering::mass (void) const {return _mass;}
+    float steering::setMass (float m) {return _mass = m;}
 
+    // get velocity of vehicle
+    OpenSteer::Vec3 steering::velocity (void) const {return forward() * _speed;}
+
+    // get/set speed of vehicle  (may be faster than taking mag of velocity)
+    float steering::speed (void) const {return _speed;}
+    float steering::setSpeed (float s) {return _speed = s;}
+
+    // size of bounding sphere, for obstacle avoidance, etc.
+    float steering::radius (void) const {return _radius;}
+    float steering::setRadius (float m) {return _radius = m;}
+
+    // get/set maxForce
+    float steering::maxForce (void) const {return _maxForce;}
+    float steering::setMaxForce (float mf) {return _maxForce = mf;}
+
+    // get/set maxSpeed
+    float steering::maxSpeed (void) const {return _maxSpeed;}
+    float steering::setMaxSpeed (const float ms) {return _maxSpeed = ms;}
+
+
+    // apply a given steering force to our momentum,
+    // adjusting our orientation to maintain velocity-alignment.
+    void steering::applySteeringForce (const OpenSteer::Vec3& force, const float deltaTime);
+
+    // the default version: keep FORWARD parallel to velocity, change
+    // UP as little as possible.
+    void steering::regenerateLocalSpace (const OpenSteer::Vec3& newVelocity,
+                                       const float elapsedTime);
+
+    // alternate version: keep FORWARD parallel to velocity, adjust UP
+    // according to a no-basis-in-reality "banking" behavior, something
+    // like what birds and airplanes do.  (XXX experimental cwr 6-5-03)
+    void steering::regenerateLocalSpaceForBanking (const OpenSteer::Vec3& newVelocity,
+                                         const float elapsedTime);
+
+    // adjust the steering force passed to applySteeringForce.
+    // allows a specific vehicle class to redefine this adjustment.
+    // default is to disallow backward-facing steering at low speed.
+    // xxx experimental 8-20-02
+    OpenSteer::Vec3 steering::adjustRawSteeringForce (const OpenSteer::Vec3& force,
+                                         const float deltaTime);
+
+    // apply a given braking force (for a given dt) to our momentum.
+    // xxx experimental 9-6-02
+    void steering::applyBrakingForce (const float rate, const float deltaTime);
+
+    // predict position of this vehicle at some time in the future
+    // (assumes velocity remains constant)
+    OpenSteer::Vec3 steering::predictFuturePosition (const float predictionTime) const;
+
+    // get instantaneous curvature (since last update)
+    float steering::curvature (void) {return _curvature;}
+
+    // get/reset smoothedCurvature, smoothedAcceleration and smoothedPosition
+    float steering::smoothedCurvature (void) {return _smoothedCurvature;}
+    float steering::resetSmoothedCurvature (float value = 0)
+    {
+        _lastForward = OpenSteer::Vec3::zero;
+        _lastPosition = OpenSteer::Vec3::zero;
+        return _smoothedCurvature = _curvature = value;
+    }
+    OpenSteer::Vec3 steering::smoothedAcceleration (void) {return _smoothedAcceleration;}
+    OpenSteer::Vec3 steering::resetSmoothedAcceleration (const OpenSteer::Vec3& value = OpenSteer::Vec3::zero)
+    {
+        return _smoothedAcceleration = value;
+    }
+    OpenSteer::Vec3 steering::smoothedPosition (void) {return _smoothedPosition;}
+    OpenSteer::Vec3 steering::resetSmoothedPosition (const OpenSteer::Vec3& value = OpenSteer::Vec3::zero)
+    {
+        return _smoothedPosition = value;
+	}
+
+void steering::randomizeHeadingOnXZPlane (void)
+    {
+        setUp (OpenSteer::Vec3::up);
+        setForward (OpenSteer::RandomUnitVectorOnXZPlane ());
+        setSide (localRotateForwardToSide (forward()));
+	}
+    
+void steering::reset(void)
+    {
+        // reset LocalSpace state
+        resetLocalSpace();
+
+        // reset SteerLibraryMixin state
+        // (XXX this seems really fragile, needs to be redesigned XXX)
+        steering_2::reset();
+
+        setMass(1);          // mass (defaults to 1 so acceleration=force)
+        setSpeed (0);         // speed along Forward direction.
+
+        setRadius (0.5f);     // size of bounding sphere
+
+        setMaxForce (0.1f);   // steering force is clipped to this magnitude
+        setMaxSpeed (1.0f);   // velocity is clipped to this magnitude
+
+        // reset bookkeeping to do running averages of these quanities
+        resetSmoothedPosition ();
+        resetSmoothedCurvature ();
+        resetSmoothedAcceleration ();
+	}
 // ----------------------------------------------------------------------------
 // adjust the steering force passed to applySteeringForce.
 //

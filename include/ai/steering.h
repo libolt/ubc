@@ -80,18 +80,17 @@ public:
         OpenSteer::Vec3 m_min;
         OpenSteer::Vec3 m_max;
     };
-	// constructor
-	steering();
 
-	// destructor
-	~steering();
+	steering();	 // constructor
+
+	~steering();  // destructor
 
 	// sets up steering state
 	void setup(void);
 
 	// reset vehicle state
-	void reset(void)
-	{
+	void reset(void);
+	/*{
 		// reset LocalSpace state
 		resetLocalSpace();
 
@@ -112,13 +111,13 @@ public:
 		resetSmoothedCurvature ();
 		resetSmoothedAcceleration ();
 	}
-
+*/
 	// get/set mass
-	float mass (void) const {return _mass;}
-	float setMass (float m) {return _mass = m;}
+	float mass (void); // const {return _mass;}
+	float setMass (float m); // {return _mass = m;}
 
 	// get velocity of vehicle
-	OpenSteer::Vec3 velocity (void) const {return forward() * _speed;}
+	OpenSteer::Vec3 velocity (void); // const {return forward() * _speed;}
 
 	// get/set speed of vehicle  (may be faster than taking mag of velocity)
 	float speed (void) const {return _speed;}
@@ -134,7 +133,7 @@ public:
 
 	// get/set maxSpeed
 	float maxSpeed (void) const {return _maxSpeed;}
-	float setMaxSpeed (float ms) {return _maxSpeed = ms;}
+	float setMaxSpeed (const float ms) {return _maxSpeed = ms;}
 
 
 	// apply a given steering force to our momentum,

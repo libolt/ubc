@@ -32,42 +32,9 @@ class playerSteer : public steering, public gameStateShared
     public:
 
 //	playerSteer(std::vector<playerSteer*> others, std::vector<playerSteer*> allplayers, /*Ball* ball,*/ bool isTeamA, int id);
-    playerSteer()
-    {
-/*        
-        std::vector<boost::shared_ptr<playerSteer> > others;
-        std::vector<boost::shared_ptr<playerSteer> > allplayers;
-//	    bool isTeamA;
-        int id = 0;
-        m_others = others;
-        m_AllPlayers = allplayers;
-	    //m_Ball(ball),
-//	    b_ImTeamA = isTeamA;
-//        m_MyID = 0;
-        m_MyID = id;
-
-//    b_ImTeamA = true;
-        teamType = NOTEAM;
-        ID = -1;
-        counter = 0;
-        distToPosition = -1.0f;
-        execute = false;
-		
-        m_home = OpenSteer::Vec3::zero;
-//	      steering::reset (); // reset the vehicle
-        reset();
-        setPosition(OpenSteer::Vec3(0,0,0));
-        setRadius (0.5f);
-        setMass(10.0f);
-///        setSpeed (0.0f);         // speed along Forward direction.
-///        setMaxForce (3000.7f);      // steering force is clipped to this magnitude
-///        setMaxSpeed (10);         // velocity is clipped to this magnitude
-///        setRadius(1.0f);
-///        setMass(1.0f);
-*/
-    }
     
-    ~playerSteer();
+    playerSteer();  // constructor
+    ~playerSteer();  // destructor
 
     teamTypes getTeamType();  // retrieves the value of teamType
     void setTeamType(teamTypes set);  // sets the value of teamType

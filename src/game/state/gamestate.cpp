@@ -76,7 +76,7 @@ gameState::gameState()  // constructor
     tipOffSetupComplete = false;
 //    tipOffComplete = false;
     selectedCourtDataInstance = -1;
-	sceneCreated = false;
+    sceneCreated = false;
 //    activeBBallInstance = -1;
 //    activeCourtInstance = -1;
 
@@ -98,9 +98,9 @@ gameState::~gameState()  // destructor
 {
 }
 
-std::vector<courtData>	gameState::getCourtDataInstance()  // retrieves the value of courtDataInstance
+std::vector<courtData>  gameState::getCourtDataInstance()  // retrieves the value of courtDataInstance
 {
-	return (courtDataInstance);
+    return (courtDataInstance);
 }
 void gameState::setCourtDataInstance(std::vector<courtData> set)  // sets the value of courtDataInstance
 {
@@ -824,7 +824,7 @@ bool gameState::setupState()  // sets up the game condition
 
 ///FIXME    physEngine.setupState();  // sets up the Physics Engine state
 //    exit(0);
-	ai->setup();
+    ai->setup();
 
 //        Ogre::Entity *ent;
 //        ent = player->getModel(0);
@@ -838,16 +838,16 @@ bool gameState::setupState()  // sets up the game condition
 //    offset[0] = 2.0f;
 //    offset[1] = 2.0f;
 //    offset[2] = 2.0f;
-//	bball->setAutoTracking(true,playerNode[0],playerNode[0]->getPosition(),offset);
-//	bball->setPosition(playerPos[0] +2.0f, playerPos[1] + 4.0f, playerPos[2] - 1.0f);
+//  bball->setAutoTracking(true,playerNode[0],playerNode[0]->getPosition(),offset);
+//  bball->setPosition(playerPos[0] +2.0f, playerPos[1] + 4.0f, playerPos[2] - 1.0f);
 //    exit(0);
 
     if (!setupEnvironmentCompleted)  // checks if environment has been setup
     {
-    	if(setupEnvironment())	// sets up environment
-    	{
+        if(setupEnvironment())  // sets up environment
+        {
             setupEnvironmentCompleted = true;
-    	}
+        }
     }
 //    loads("../../data/players/players.xml");
 
@@ -955,7 +955,7 @@ bool gameState::updateState()  // updates the game state
 
         if (network->getPacketReceived())  // checks if a packet was received by network engine
         {
-        	processNetworkEvents();	 // processes data received from the network
+            processNetworkEvents();  // processes data received from the network
         }
         else
         {
@@ -983,9 +983,9 @@ bool gameState::updateState()  // updates the game state
         
         if (teamWithBall != NOTEAM)
         {
-//		    logMsg("teamWithBall is " +convert->toString(teamWithBall));
+//          logMsg("teamWithBall is " +convert->toString(teamWithBall));
 //          logMsg("playetWithBall is " +convert->toString(teamInstance[teamWithBall].getPlayerWithBall()));
-//		    float currentTime = static_cast<float>(gameE->getLoopTime().getMilliseconds()/100);
+//          float currentTime = static_cast<float>(gameE->getLoopTime().getMilliseconds()/100);
             long currentTime = timer.getLoopTimeMill().count();
             float oldTime = ai->getOldTime();
             float changeInTime = currentTime - oldTime;
@@ -1011,14 +1011,14 @@ bool gameState::updateState()  // updates the game state
         }
 
         logMsg("Physics");
-        physEngine.updateState();	// updates the state of the physics simulation
+        physEngine.updateState();   // updates the state of the physics simulation
         logMsg("stepWorld");
 //        exit(0);
         physEngine.stepWorld(getTimer());  // steps the physics simulation
 ///    logMsg("DirectionsAndMovement");
 ///    updateDirectionsAndMovements();
 
-//	  exit(0);
+//    exit(0);
 
         // updates the basketball(s) state
         logMsg("Updated basketball state!");
@@ -1036,7 +1036,7 @@ bool gameState::updateState()  // updates the game state
 //        std::vector<size_t> oldPlayerDirection = player->getOldPlayerDirection();   // stores contents of oldPlayerDirection form players in local variable
 
         // Initiates offense or defense for a team depending on value of teamWithBall
-        if (teamWithBall == 0)	// if 0 puts team 0 on offense and team 1 on defense
+        if (teamWithBall == 0)  // if 0 puts team 0 on offense and team 1 on defense
         {
             activeTeamInstance[0].setOffense(true);
             activeTeamInstance[0].setDefense(false);
@@ -1062,7 +1062,7 @@ bool gameState::updateState()  // updates the game state
             //FIXME crash in updateState code
             activeTeamInstance[0].updateState();
             activeTeamInstance[1].updateState();
-//    	    exit(0);
+//          exit(0);
         }
         else
         {
@@ -1070,7 +1070,7 @@ bool gameState::updateState()  // updates the game state
 
     }
 
-//	logMsg("gameState logic updated");
+//  logMsg("gameState logic updated");
 //    exit(0);
 */
     return true;
@@ -1306,9 +1306,9 @@ void gameState::updateDirectionsAndMovements()
 
     if (getTeamWithBall() >= 0) // && playerHasBasketball)
     {
-//		logMsg("teamWithBall ios " +convert->toString(teamWithBall));
-//		logMsg("playetWithBall is " +convert->toString(activeTeamInstance[teamWithBall].getPlayerWithBall()));
-//        updateBasketballMovements();	// updates the movement of basketball objec(s)
+//      logMsg("teamWithBall ios " +convert->toString(teamWithBall));
+//      logMsg("playetWithBall is " +convert->toString(activeTeamInstance[teamWithBall].getPlayerWithBall()));
+//        updateBasketballMovements();  // updates the movement of basketball objec(s)
         //updateBasketballDirections(); // updates direction of basketball object(s)
     }
     else

@@ -81,7 +81,7 @@ btRigidBody *hoopState::getPhysBody()  // retrieves physBody variable
     return (physBody);
 }
 
-void hoopState::setPhysBody(btRigidBody *set)	// sets physBody variable
+void hoopState::setPhysBody(btRigidBody *set)   // sets physBody variable
 {
     physBody = set;
 }

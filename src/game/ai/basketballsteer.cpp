@@ -26,13 +26,12 @@
 #include "state/playerstate.h"
 #include "state/teamstate.h"
 
-basketballSteer::basketballSteer()
+basketballSteer::basketballSteer()  // constructor
 {
 	ID = -1;
-
 }
 
-basketballSteer::~basketballSteer()
+basketballSteer::~basketballSteer()  // destructor
 {
 
 }

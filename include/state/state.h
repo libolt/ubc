@@ -34,7 +34,7 @@ class state //: public UBCBase
     bool getStateSet();  // retrieves the value of stateSet
     void setStateSet(bool set);  // sets the value of stateSet
 
-    bool setupState();		// sets up initial state of the object
+    bool setupState();	// sets up initial state of the object
 
     bool updateState();  // updates the state of the object
 

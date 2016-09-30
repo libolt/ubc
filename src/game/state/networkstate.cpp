@@ -56,7 +56,7 @@ void networkState::processLocalInput(std::vector<boost::shared_ptr<teamState> > 
     networkPlayerStateObject netPStateObj;
     
 //    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
-/*TS    int humanControlled = activeTeamInstance[getNetworkE()->getTeamType()]->getHumanControlled();
+    int humanControlled = activeTeamInstance[getNetworkE()->getTeamType()]->getHumanControlled();
     int humanPlayer = activeTeamInstance[getNetworkE()->getTeamType()]->getHumanPlayer();
 
 //                              logMsg("INPUT MAP ======== "  +toString(inputMap));
@@ -191,7 +191,6 @@ void networkState::processLocalInput(std::vector<boost::shared_ptr<teamState> > 
         ++x;
     }
     inputQueue.clear();
-TS*/
 /*    if (gameS->getGameType() == MULTI && clientRunning && packetData != "") // checks if game is running in client mode
     {
         logMsg("client packetData = " +packetData);
@@ -218,7 +217,7 @@ void networkState::processNetworkEvents(std::vector<boost::shared_ptr<teamState>
 //    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = getActiveTeamInstance();
     //    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
 
-//	std::vector <playerState> playerInstance = gameS->getPlayerInstance();
+//  std::vector <playerState> playerInstance = gameS->getPlayerInstance();
 
     if(Ogre::StringUtil::startsWith(getNetworkE()->getReceivedData(), "3" ))
     {
@@ -226,7 +225,7 @@ void networkState::processNetworkEvents(std::vector<boost::shared_ptr<teamState>
         processNetworkPlayerEvents(activeTeamInstance);
     }
 
-//	std::vector<teamState> teamInstance = teamInstance();
+//  std::vector<teamState> teamInstance = teamInstance();
 /*TS    activeTeamInstance[0]->setPlayerType("human");  // sets playerType for activeTeamInstance 0 to human
 
     // checks if this instance is a server and whether activeTeamInstance 1 is set to be controlled by network player
@@ -278,14 +277,14 @@ void networkState::processNetworkPlayerEvents(std::vector<boost::shared_ptr<team
     {
     }
     logMsg("activePlayerInstance size == " +convert->toString(activePlayerInstance.size()));
-/*	for (iterator = 0; iterator < 5; ++iterator)
+/*  for (iterator = 0; iterator < 5; ++iterator)
     {
-        std::string searchString;	// stores search String
+        std::string searchString;   // stores search String
         std::string searchIterator = convert->toString(iterator); // converts iterator to a string
-        searchString = "*" +searchIterator + "*";	// creates search string
-        if (Ogre::StringUtil::match(receivedData,searchString))	// checks for a match
+        searchString = "*" +searchIterator + "*";   // creates search string
+        if (Ogre::StringUtil::match(receivedData,searchString)) // checks for a match
         {
-            playerNumber = iterator;	// sets playerNumber to value of iterator
+            playerNumber = iterator;    // sets playerNumber to value of iterator
         }
     }
     logMsg("alive????");

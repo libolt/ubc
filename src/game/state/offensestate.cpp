@@ -32,23 +32,23 @@
 
 offenseState::offenseState()  // constructor
 {
-	teamType = NOTEAM;
+    teamType = NOTEAM;
     selectedOffense = -1; // sets the default offense to box
     execute = false;
     offenseSet = false;
-/*	startPositions = new Ogre::Vector3[5];
+/*  startPositions = new Ogre::Vector3[5];
 
-	for (int x=0; x<5; ++x)
-	{
-		startPositions[x]	= Ogre::Vector3(0.0f,0.0f,0.0f);
+    for (int x=0; x<5; ++x)
+    {
+        startPositions[x]   = Ogre::Vector3(0.0f,0.0f,0.0f);
 
-	}
+    }
 */
-//    startPositions[4]	= Ogre::Vector3(3000.0f,-1300.5f,3780.0f);
+//    startPositions[4] = Ogre::Vector3(3000.0f,-1300.5f,3780.0f);
 
-//	executePositions = new std::vector<Ogre::Vector3>[5];
-//	executePositions[0] = new std::vector<Ogre::Vector3>;
-//	exit(0);
+//  executePositions = new std::vector<Ogre::Vector3>[5];
+//  executePositions[0] = new std::vector<Ogre::Vector3>;
+//  exit(0);
 
     executePositions.resize(5);
 
@@ -67,7 +67,7 @@ offenseState::offenseState()  // constructor
         startYPosSet[x] = false;
         startZPosSet[x] = false;
         startPositionReached.push_back(false);
-//		executePositionSet[x] = false;
+//      executePositionSet[x] = false;
     }
     numStartPositionsReached = 0;
     offenseSetup = false;
@@ -101,7 +101,7 @@ void offenseState::setSelectedOffense(int set)  // sets the value of selectedOff
     selectedOffense = set;
 }
 
-bool offenseState::getExecute()	 // retrieves the value of execute variable
+bool offenseState::getExecute()  // retrieves the value of execute variable
 {
     return (execute);
 }
@@ -196,7 +196,7 @@ void offenseState::setupState()  // sets up initial state of the object
 //    startPositions[0] = Ogre::Vector3(5.0f,-13.5f,380.0f);
 }
 
-void offenseState::updateState(teamTypes teamType)	// updates the state of the object
+void offenseState::updateState(teamTypes teamType)  // updates the state of the object
 {
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 //    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
@@ -205,7 +205,7 @@ void offenseState::updateState(teamTypes teamType)	// updates the state of the o
 
     if (!offenseSetup)
     {
-    	setupOffense();
+        setupOffense();
     }
     else
     {
@@ -215,7 +215,7 @@ void offenseState::updateState(teamTypes teamType)	// updates the state of the o
     setActiveTeamInstance(activeTeamInstance);
 }
 
-void offenseState::loadPlays()	// loads offense plays from file
+void offenseState::loadPlays()  // loads offense plays from file
 {
     boost::shared_ptr<loader> load;
     if (load->checkIfOffensePlaysLoaded())
@@ -317,7 +317,7 @@ void offenseState::setupOffense()  // sets up box offense
             logMsg("Y = " +convert->toString(y));
                     executePositionReached[x][y] = false;
         }
-	}
+    }
         size_t z = 0;
         while (z < startPositions.size())
         {
@@ -325,7 +325,7 @@ void offenseState::setupOffense()  // sets up box offense
             logMsg("Start Position Z for player[" +convert->toString(z) +"] " +convert->toString(startPositions[z].z));
             ++z;
         }
-	
+    
     // checks for a Y Offset so that players dont fall through the court
   
     float yOffset = getYOffset();
@@ -385,13 +385,13 @@ void offenseState::executeOffense() // executes box offense
                     pSteer->setSteerCoords(coords);
                     pSteer->setExecute(true);
                 }
-                else	// increments the counter
+                else    // increments the counter
                 {
 //                  numStartPositionsReached += 1;
                     pSteer->setExecute(false);
                 }
 
-                if (numStartPositionsReached == 4)	// FIXME: hard coded for a human player
+                if (numStartPositionsReached == 4)  // FIXME: hard coded for a human player
                 {
 //              exit(0);
                     allStartPositionsReached = true;
@@ -407,8 +407,8 @@ void offenseState::executeOffense() // executes box offense
             ++x;
         }
     }
-	else
-	{
+    else
+    {
 //      exit(0);
         if (!allExecutePositionsReached)
         {
@@ -446,7 +446,7 @@ void offenseState::executeOffense() // executes box offense
 //                                      break;
                                     }
                                     else //if (!executePositionReached[ID][x])
-					                {
+                                    {
                                         logMsg("Team " +convert->toString(teamWithBall) +" Player " +convert->toString(ID) +" Seeking Offense Execute Position!");
                                         OpenSteer::Vec3 executePosition = convert->toOpenSteerVec3(executePositions[ID][x]);
                                         pSteer->setSteerCoords(executePosition);
@@ -537,7 +537,7 @@ bool offenseState::checkForDirective(playerPositions playerPosition)  // checks 
                                 break;
                             }
                             //return (true);
-//							exit(0);
+//                          exit(0);
                         break;
                         case TIME:
                         break;

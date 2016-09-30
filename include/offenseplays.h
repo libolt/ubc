@@ -25,7 +25,7 @@
 
 #include "enums.h"
 
-class offensePlays	// class that contains the information to run each play
+class offensePlays  // class that contains the information to run each play
 {
 public:
 
@@ -36,7 +36,7 @@ public:
             playerPositions getPlayerPosition();  // retrieves the value of playerPosition
             void setPlayerPosition(playerPositions set);  // sets the value of playerPosition
             
-	    directiveTypes getType();  // retrieves the value of type
+            directiveTypes getType();  // retrieves the value of type
             void setType(directiveTypes set);  // sets the value of type
 
             offenseWaitFor getWaitFor();  // retrieves the value of waitFor
@@ -58,7 +58,7 @@ public:
             playerPositions playerSet;  // stores which player position sets
             positionTypes positionType;  // stores position types
             int position;
-	};
+    };
 
         std::string getPlayName();  // retrieves the value of playName;
         void setPlayName(std::string set);  // sets the value of playName
@@ -66,7 +66,7 @@ public:
         int getVariation();  // retrieves the value of variation
         void setVariation(int set);  // sets the value of variation
 
-        std::string getTitle();	 // retrieves the value of title
+        std::string getTitle();  // retrieves the value of title
         void setTitle(std::string set);  // sets the value of title
 
         std::vector<playerPositions> getPlayerPosition();  // retrieves the value of playerPosition
@@ -75,8 +75,8 @@ public:
         std::vector<Ogre::Vector3> getStartPositions();  // retrieves the value of startPositions 
         void setStartPositions(std::vector<Ogre::Vector3> set);  // sets the value of startPositions 
 
-        std::vector <std::vector<Ogre::Vector3> > getExecutePositions();	// retrieves the value of executePositions 
-        void setExecutePositions(std::vector< std::vector<Ogre::Vector3> > set);	// sets the value of executePositions
+        std::vector <std::vector<Ogre::Vector3> > getExecutePositions();    // retrieves the value of executePositions 
+        void setExecutePositions(std::vector< std::vector<Ogre::Vector3> > set);    // sets the value of executePositions
 
         std::vector<bool> getStartPositionSet();  // retrieves the value of startPositionSet
         void setStartPositionSet(std::vector<bool> set);  // sets the value of startPositionSet

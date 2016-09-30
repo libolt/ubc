@@ -302,7 +302,7 @@ void playerState::setFreeThrowsMade(size_t set)  // sets the value of freeThrows
     freeThrowsMade = set;
 }
 
-bool playerState::getMovement()	 // retrieves the value of movement
+bool playerState::getMovement()  // retrieves the value of movement
 {
     return (movement);
 }
@@ -315,7 +315,7 @@ directions playerState::getDirection()  // retrieves the value of direction
 {
     return (direction);
 }
-void playerState::setDirection(directions set)	// sets the value of direction
+void playerState::setDirection(directions set)  // sets the value of direction
 {
     direction = set;
 }
@@ -466,20 +466,20 @@ void playerState::setJumpComplete(bool set)  // sets the value of jumpComplete
 
 bool playerState::getOffenseSet()  // retrieves the value of offenseSet
 {
-	return (offenseSet);
+    return (offenseSet);
 }
 void playerState::setOffenseSet(bool set)  // sets the value of offenseSet
 {
-	offenseSet = set;
+    offenseSet = set;
 }
 
 bool playerState::getDefenseSet()  // retrieves the value of defenseSet
 {
-	return (defenseSet);
+    return (defenseSet);
 }
 void playerState::setDefenseSet(bool set)  // sets the value of defenseSet
 {
-	defenseSet = set;
+    defenseSet = set;
 }
 
 Ogre::Vector3 playerState::getCourtPosition()  // retrieves the value of courtPosition
@@ -698,18 +698,18 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
     }
     
 /*    logMsg("posChange = " +convert->toString(posChange));
-//	cout << "posChange = " << posChange << endl;
+//  cout << "posChange = " << posChange << endl;
     node->translate(posChange);
-	btVector3 change = btVector3(0,0,0);
-	change = BtOgre::Convert::toBullet(posChange);  // converts from Ogre::Vector3 to btVector3
-//	logMsg("playerPhysicsSetup = " +convert->toString(physEngine.getPlayerPhysicsSetup()));
+    btVector3 change = btVector3(0,0,0);
+    change = BtOgre::Convert::toBullet(posChange);  // converts from Ogre::Vector3 to btVector3
+//  logMsg("playerPhysicsSetup = " +convert->toString(physEngine.getPlayerPhysicsSetup()));
 
-	physBody->translate(change);  // moves physics body in unison with the model
-//	exit(0);
-//	physBody->translate(btVector3(0,0,0));
-//	logMsg("player position updated.");
+    physBody->translate(change);  // moves physics body in unison with the model
+//  exit(0);
+//  physBody->translate(btVector3(0,0,0));
+//  logMsg("player position updated.");
 */
-	return true;
+    return true;
 }
 
 
@@ -832,7 +832,7 @@ void playerState::updateDirection()
 
 }
 
-void playerState::updateMovement()	// updates movement status of the player
+void playerState::updateMovement()  // updates movement status of the player
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
@@ -841,13 +841,13 @@ void playerState::updateMovement()	// updates movement status of the player
     size_t activeBBallInstance = getActiveBBallInstance();
     size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
 
-    Ogre::Vector3 posChange;	// stores change in position
+    Ogre::Vector3 posChange;    // stores change in position
     posChange = Ogre::Vector3(0.0f, 0.0f, 0.0f);
 
     logMsg("playerTeamType == " +convert->toString(teamType));
     logMsg("passSteal ==  " +convert->toString(passSteal));
 
-    if (movement)	// if true sets coordinate change accordingly
+    if (movement)   // if true sets coordinate change accordingly
     {
 //        exit(0);
         switch (direction)
@@ -900,10 +900,10 @@ void playerState::updateMovement()	// updates movement status of the player
         movement = false;
     }
 
-//	exit(0);
+//  exit(0);
 }
 
-void playerState::calculatePass()	// calculates which player to pass the ball to
+void playerState::calculatePass()   // calculates which player to pass the ball to
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
@@ -964,7 +964,7 @@ void playerState::shotLogic(Ogre::Vector3 playerPos)
     {
 
         basketballInstance[activeBBallInstance].setDribbling(false);
-//    		basketballInstance[activeBBallInstance].getNode()->setParent(mSceneMgr->getRootSceneNode());
+//          basketballInstance[activeBBallInstance].getNode()->setParent(mSceneMgr->getRootSceneNode());
         Ogre::Vector3 pos = basketballInstance[activeBBallInstance].getNode()->getPosition();
         basketballInstance[activeBBallInstance].setMaxHeight(pos[1] + 10.0f);
         basketballInstance[activeBBallInstance].setMinHeight(pos[1] - 10.0f);
@@ -983,7 +983,7 @@ void playerState::shotLogic(Ogre::Vector3 playerPos)
         setShotComplete(false);
         basketballInstance[activeBBallInstance].setMaxHeightReached(false);
         basketballInstance[activeBBallInstance].setMinHeightReached(false);
-    //		basketballInstance[activeBBallInstance].setPlayer(-1);
+    //      basketballInstance[activeBBallInstance].setPlayer(-1);
     }
 
     if (getShotComplete())

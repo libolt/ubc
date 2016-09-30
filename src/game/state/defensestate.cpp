@@ -27,8 +27,8 @@
 
 defenseState::defenseState() // constructor
 {
-	teamType = NOTEAM;
-	courtSide = NOSIDE;
+    teamType = NOTEAM;
+    courtSide = NOSIDE;
     execute = false;
 }
 
@@ -50,20 +50,20 @@ void defenseState::setCourtSide(courtSide_t set)  // sets the value of courtSide
     courtSide = set;
 }
 
-bool defenseState::getExecute()	// retrieves the value of execute variable
+bool defenseState::getExecute() // retrieves the value of execute variable
 {
     return (execute);
 }
-void defenseState::setExecute(bool ex)	// sets the value of the execute variable
+void defenseState::setExecute(bool ex)  // sets the value of the execute variable
 {
     execute = ex;
 }
 
-void defenseState::setupState()		// sets up initial state of the object
+void defenseState::setupState()  // sets up initial state of the object
 {
 
 }
-void defenseState::updateState(teamTypes teamOnDefense)	// updates the state of the object
+void defenseState::updateState(teamTypes teamOnDefense) // updates the state of the object
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
@@ -79,9 +79,9 @@ void defenseState::updateState(teamTypes teamOnDefense)	// updates the state of 
 
 //TS    int humanPlayer = activeTeamInstance[teamOnDefense]->getHumanPlayer();
 //TS    int numPlayers = activeDID.size(); // stores the number of players on the court per team
-//	exit(0);
-	if (execute)
-	{
+//  exit(0);
+    if (execute)
+    {
 /*
         for (int x=0;x<playerOInstance.size();++x)
         {
@@ -129,7 +129,7 @@ void defenseState::updateState(teamTypes teamOnDefense)	// updates the state of 
         }
 //        exit(0);
         x = 0;
-//	    for (int x=0;x<playerDInstance.size();++x)
+//      for (int x=0;x<playerDInstance.size();++x)
         std::vector<int> activeDNum; // stores the position in the playerDInstance vector that a player belongs to
         std::vector<int> activeONum; // stores the position in the playerOInstance vector that a player belongs to
 
@@ -140,7 +140,7 @@ void defenseState::updateState(teamTypes teamOnDefense)	// updates the state of 
             activeONum.push_back(z);
         }
         while (x<playerDInstance.size())
-		{
+        {
             size_t i = 0;
             while (i<activeDID.size())
             {
@@ -335,22 +335,22 @@ void defenseState::updateState(teamTypes teamOnDefense)	// updates the state of 
         }
 TS*/
 /*        
-			    if (x != humanPlayer && !playerDInstance[x].getDefenseSet())
-			    {
+                if (x != humanPlayer && !playerDInstance[x].getDefenseSet())
+                {
                     logMsg("playerO " +convert->toString(x) +"X Pos = " +convert->toString(playerOPos[x][0]));
                     logMsg("playerD " +convert->toString(x) +"X Pos = " +convert->toString(playerDPos[x][0]));
                     logMsg("playerO " +convert->toString(x) +"Z Pos = " +convert->toString(playerOPos[x][2]));
                     logMsg("playerD " +convert->toString(x) +"Z Pos = " +convert->toString(playerDPos[x][2]));
-	                directions playerDirection = playerOInstance[x].getDirection();
-	                switch (playerDirection)
-	                {
-	                case LEFT:
-	            	    if (playerDPos[x][0] >= (playerOPos[x][0] + 4.0f))
-	            	    {
+                    directions playerDirection = playerOInstance[x].getDirection();
+                    switch (playerDirection)
+                    {
+                    case LEFT:
+                        if (playerDPos[x][0] >= (playerOPos[x][0] + 4.0f))
+                        {
       
                             playerDInstance[x].setMovement(true);
                             playerDInstance[x].setDirection(LEFT);
-	            	    }
+                        }
                         else if (playerDPos[x][0] <= (playerOPos[x][0] - 4.0f))
                         {
                             playerDInstance[x].setMovement(true);
@@ -386,7 +386,7 @@ TS*/
                         {
                             playerDInstance[x].setMovement(true);
                             playerDInstance[x].setDirection(DOWN);
-	            	    }
+                        }
                         else if (playerDPos[x][2] >= (playerOPos[x][2] - 1.0f))
                         {
                             playerDInstance[x].setMovement(true);
@@ -416,7 +416,7 @@ TS*/
                             playerDInstance[x].setMovement(true);
                             playerDInstance[x].setDirection(DOWNLEFT);
                         }
-	            	break;
+                    break;
                     case DOWNLEFT:
                         if (playerDPos[x][2] <= (playerOPos[x][2] + 1.0f) && playerDPos[x][0] >= (playerOPos[x][0] + 4.0f))
                         {
@@ -448,42 +448,42 @@ TS*/
             }
 */
 /*
-	            // checks to see if its the defense is in position
+                // checks to see if its the defense is in position
                 if (playerDPos[x][0] > (playerOPos[x][0] -4.0f) || playerDPos[x][0] < (playerOPos[x][0] +4.0f))
-		        {
-//					exit(0);
-			        if (playerDPos[x][0] > (playerOPos[x][0] -4.0f))
-					{
-//						exit(0);
-			            Ogre::LogManager::getSingletonPtr()->logMessage("DEEEEE");
+                {
+//                  exit(0);
+                    if (playerDPos[x][0] > (playerOPos[x][0] -4.0f))
+                    {
+//                      exit(0);
+                        Ogre::LogManager::getSingletonPtr()->logMessage("DEEEEE");
 
-						playerDInstance[x].setMovement(true);
-						playerDInstance[x].setDirection(LEFT);
-					}
-					else if (playerDPos[x][0] < (playerOPos[x][0] +4.0f))
-					{
-//						exit(0);
-						playerDInstance[x].setMovement(true);
-						playerDInstance[x].setDirection(RIGHT);
-					}
-					else
-					{
-						playerDInstance[x].setMovement(false);
-					}
-		        }
-		        else if (playerDPos[x][0] >= (playerOPos[x][0] -4.0f) && playerDPos[x][0] <= (playerOPos[x][0] +4.0f))
-		        {
-//					exit(0);
-			        playerDInstance[x].setDefenseSet(true);
-		        }
+                        playerDInstance[x].setMovement(true);
+                        playerDInstance[x].setDirection(LEFT);
+                    }
+                    else if (playerDPos[x][0] < (playerOPos[x][0] +4.0f))
+                    {
+//                      exit(0);
+                        playerDInstance[x].setMovement(true);
+                        playerDInstance[x].setDirection(RIGHT);
+                    }
+                    else
+                    {
+                        playerDInstance[x].setMovement(false);
+                    }
+                }
+                else if (playerDPos[x][0] >= (playerOPos[x][0] -4.0f) && playerDPos[x][0] <= (playerOPos[x][0] +4.0f))
+                {
+//                  exit(0);
+                    playerDInstance[x].setDefenseSet(true);
+                }
 
-			}
-			else
-			{
-			}
+            }
+            else
+            {
+            }
             */
-//		}
-	}
+//      }
+    }
 
 //TS    activeTeamInstance[teamOnDefense]->setActivePlayerInstance(playerDInstance);
     setActiveTeamInstance(activeTeamInstance);

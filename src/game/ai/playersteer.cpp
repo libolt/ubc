@@ -145,12 +145,12 @@ void playerSteer::reset()    // reset state
     setSpeed (0.0f);  // speed along Forward direction.
 //    setMaxForce (3000.7f);      // steering force is clipped to this magnitude
     logMsg("steer alive?3");
-    setMaxForce (30.0f);  // steering force is clipped to this magnitude
+    setMaxForce (300.01f);  // steering force is clipped to this magnitude
     logMsg("steer alive?4");
 //    setMaxSpeed (10);         // velocity is clipped to this magnitude
-    setMaxSpeed (20.0f);  // velocity is clipped to this magnitude
-/*    logMsg("steer alive?5");
-    if (teamType != NOTEAM)
+    setMaxSpeed (20.0001f);  // velocity is clipped to this magnitude
+    logMsg("steer alive?5");
+/*    if (teamType != NOTEAM)
     {
 //        exit(0);
         logMsg("teamType steer!");
@@ -203,12 +203,12 @@ void playerSteer::reset()    // reset state
         m_home = playerSteerPos;
 //		exit(0);
     }
+*/
     logMsg("steer alive??");
 //    m_home = position();
  //   AnnotationMixin::clearTrailHistory ();    // prevent long streaks due to teleportation
 //    OpenSteer::clearTrailHistory ();
-//    setTrailParameters (10, 60);
-*/
+//    setTrailParameters (10, 60)j
 }
 
 void playerSteer::update (const float currentTime, float elapsedTime)

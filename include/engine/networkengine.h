@@ -41,6 +41,7 @@
 // #include "engine/inputengine.h"
 #include "engine.h"
 
+#include "typedefs.h"
 
 class inputEngine;
 
@@ -88,8 +89,8 @@ class networkEngine : public engine
     ENetAddress getServerAddress();  // retrieves the value of serverAddress 
     void setServerAddress(ENetAddress set);  // sets the value of serverAddress 
 
-    boost::shared_ptr<ENetHost> getClient();  // retrieves the value of client
-    void setClient(boost::shared_ptr<ENetHost> set);  // sets the value of client
+    ENetHostSharedPtr getClient();  // retrieves the value of client
+    void setClient(ENetHostSharedPtr set);  // sets the value of client
 
     ENetEvent getEvent();  // retrieves the value of event 
     void setEvent(ENetEvent set);  // sets event 
@@ -97,8 +98,8 @@ class networkEngine : public engine
     boost::shared_ptr<ENetPeer> getPeer();  // retrieves the value of peer
     void setPeer(boost::shared_ptr<ENetPeer> set);  // sets the value of peer
 
-    boost::shared_ptr<ENetHost> getServer();  // retrieves the value of server
-    void setServer(boost::shared_ptr<ENetHost> set);  // sets the value of server
+    ENetHostSharedPtr getServer();  // retrieves the value of server
+    void setServer(ENetHostSharedPtr set);  // sets the value of server
 
     int initialize();  // initialize networkEngine code
     bool clientConnect();  // setup client connection.
@@ -129,10 +130,10 @@ class networkEngine : public engine
     // ENET related code
     ENetAddress listenAddress;
     ENetAddress serverAddress;
-    boost::shared_ptr<ENetHost> client;
+    ENetHostSharedPtr client;
     ENetEvent event;
     boost::shared_ptr<ENetPeer> peer;
-    boost::shared_ptr<ENetHost> server;
+    ENetHostSharedPtr server;
     boost::shared_ptr<ENetPacket> packet;
 
     netGameTypes netGameType;  // stores what type of network game this instance is

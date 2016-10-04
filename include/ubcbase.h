@@ -23,6 +23,8 @@
 
 #include <boost/shared_ptr.hpp>
 
+#include "typedefs.h"
+
 class gameEngine;
 class gameState;
 class networkState;
@@ -32,29 +34,29 @@ class UBCBase
 {
     public:
     
-    UBCBase();  // constructor
-    ~UBCBase();  // destructor
+        UBCBase();  // constructor
+        ~UBCBase();  // destructor
     
-    boost::shared_ptr<gameEngine> getGameE();  // retrieves the value of gameE
-    void setGameE(boost::shared_ptr<gameEngine> set);  // sets the value of gameE
+        gameEngineSharedPtr getGameE();  // retrieves the value of gameE
+        void setGameE(gameEngineSharedPtr set);  // sets the value of gameE
     
-    boost::shared_ptr<gameState> getGameS();  // retrieves the value of gameS
-    void setGameS(boost::shared_ptr<gameState> set);  // sets the value of gameS
+        gameStateSharedPtr getGameS();  // retrieves the value of gameS
+        void setGameS(gameStateSharedPtr set);  // sets the value of gameS
     
-    boost::shared_ptr<networkState> getNetworkS();  // retrieves the value of networkS
-    void setNetworkS(boost::shared_ptr<networkState> set);  // sets the value of networkS
+        networkStateSharedPtr getNetworkS();  // retrieves the value of networkS
+        void setNetworkS(networkStateSharedPtr set);  // sets the value of networkS
     
-    boost::shared_ptr<inputState> getInputS();  // retrieves the value of inputS
-    void setInputS(boost::shared_ptr<inputState> set);  // sets the value of inputS
+        inputStateSharedPtr getInputS();  // retrieves the value of inputS
+        void setInputS(inputStateSharedPtr set);  // sets the value of inputS
 
-    bool setup();  // sets up the engine and states
+        bool setup();  // sets up the engine and states
     
     private:
     
-        static boost::shared_ptr<gameEngine> gameE;  // the gameEngine object
-        static boost::shared_ptr<gameState> gameS;  // the gameState object
-        static boost::shared_ptr<networkState> networkS;  // the gameState object
-        static boost::shared_ptr<inputState> inputS;  // the gameState object
+        static gameEngineSharedPtr gameE;  // the gameEngine object
+        static gameStateSharedPtr gameS;  // the gameState object
+        static networkStateSharedPtr networkS;  // the gameState object
+        static inputStateSharedPtr inputS;  // the gameState object
         
 };
 

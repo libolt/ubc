@@ -24,13 +24,15 @@
 #include <string>
 #include "boost/shared_ptr.hpp"
 
+#include "typedefs.h"
+
 class logging
 {
 public:
 
 	~logging();
 //    static logging *Instance();
-    static boost::shared_ptr<logging> Instance();
+    static loggingSharedPtr Instance();
 
     bool getOgreRootInitialized();  // retrieves the value of ogreRootInitialized
     void setOgreRootInitialized(bool set);  // sets the value of ogreRootInitialized
@@ -43,7 +45,7 @@ protected:
     logging& operator= (const logging&);
 private:
 //    static logging *pInstance;
-    static boost::shared_ptr<logging> pInstance;
+    static loggingSharedPtr pInstance;
 	 
 };
  

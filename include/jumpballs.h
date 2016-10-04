@@ -25,6 +25,7 @@
 #include "LinearMath/btVector3.h"
 
 #include "enums.h"
+#include "typedefs.h"
 
 // forward declarations
 class basketballState;
@@ -66,11 +67,11 @@ class jumpBalls
     btVector3 getBBallVelocity();  // retrieves the value of bballVelocity
     void setBBallVelocity(const btVector3 &set);  // sets the value of bballVelocity
 
-    bool updateState(teamTypes teamWithBall, size_t activeBBallInstance, std::vector<boost::shared_ptr<basketballState> > basketballInstance, std::vector<boost::shared_ptr<teamState> > activeTeamInstance, quarters quarter);  // updates state of the jumpBalls instance until jump ball has completed
+    bool updateState(teamTypes teamWithBall, size_t activeBBallInstance, std::vector<basketballStateSharedPtr > basketballInstance, std::vector<boost::shared_ptr<teamState> > activeTeamInstance, quarters quarter);  // updates state of the jumpBalls instance until jump ball has completed
 
-    bool jumpBallExecute(std::vector<boost::shared_ptr<basketballState> > basketballInstance, size_t activeBBallInstance, std::vector<boost::shared_ptr<teamState> > activeTeamInstance); // initiates jump ball from jump ball circle
+    bool jumpBallExecute(std::vector<basketballStateSharedPtr > basketballInstance, size_t activeBBallInstance, std::vector<boost::shared_ptr<teamState> > activeTeamInstance); // initiates jump ball from jump ball circle
 
-    bool tipToPlayer(std::vector<boost::shared_ptr<basketballState> > basketballInstance, size_t activeBBallInstance, std::vector<boost::shared_ptr<teamState> > activeTeamInstance, quarters quarter);  // tips the basketball to the appropriate player
+    bool tipToPlayer(std::vector<basketballStateSharedPtr > basketballInstance, size_t activeBBallInstance, std::vector<boost::shared_ptr<teamState> > activeTeamInstance, quarters quarter);  // tips the basketball to the appropriate player
 
     private:
 

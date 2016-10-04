@@ -46,8 +46,8 @@
 //class GUISystem;
 class gameEngine;
 class UBCBase;
+#include "typedefs.h"
 
-typedef boost::shared_ptr<UBCBase> UBCBaseSharedPtr;
 
 class UBC 
 {
@@ -58,8 +58,8 @@ public:
     UBCBaseSharedPtr getBase();  // retrieves the value of base
     void setBase(UBCBaseSharedPtr set);  // sets the value of base
  
-    boost::shared_ptr<GUISystem> getGui();  // retrieves the value of gui
-    void setGui(boost::shared_ptr<GUISystem> set);  // sets the value of gui
+    GUISystemSharedPtr getGui();  // retrieves the value of gui
+    void setGui(GUISystemSharedPtr set);  // sets the value of gui
 
 
 /*    bool getQuitGame();  // retrieves the value of quitGame
@@ -87,7 +87,7 @@ private:
 
     static UBCBaseSharedPtr base;  // static copy of base class
 
-    static boost::shared_ptr<GUISystem> gui;  // the GUI object.
+    static GUISystemSharedPtr gui;  // the GUI object.
         
     float inputXPos;  // stores the x coordinate of input
     float inputYPos;  // stores the y coordinate of input

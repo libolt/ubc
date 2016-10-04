@@ -35,8 +35,8 @@
 
 playerSteer::playerSteer()  // constructor
 {
-    std::vector<boost::shared_ptr<playerSteer> > others;
-    std::vector<boost::shared_ptr<playerSteer> > allplayers;
+    std::vector<playerSteer*> others;
+    std::vector<playerSteer*> allplayers;
 //    bool isTeamA;
     int id = 0;
     m_others = others;
@@ -145,10 +145,10 @@ void playerSteer::reset()    // reset state
     setSpeed (0.0f);  // speed along Forward direction.
 //    setMaxForce (3000.7f);      // steering force is clipped to this magnitude
     logMsg("steer alive?3");
-    setMaxForce (300.01f);  // steering force is clipped to this magnitude
+    setMaxForce (300/*op.01f*/);  // steering force is clipped to this magnitude
     logMsg("steer alive?4");
 //    setMaxSpeed (10);         // velocity is clipped to this magnitude
-    setMaxSpeed (20.0001f);  // velocity is clipped to this magnitude
+    setMaxSpeed (20.0f);  // velocity is clipped to this magnitude
     logMsg("steer alive?5");
 /*    if (teamType != NOTEAM)
     {
@@ -233,11 +233,11 @@ void playerSteer::update (const float currentTime, float elapsedTime)
     std::vector<std::vector<int> > activePlayerID;
 
 //	std::vector<playerSteer*> playerSteerInstance;
-	std::vector<boost::shared_ptr<playerSteer> > pSteer = ai->getAllPlayerSteers();
+	std::vector<playerSteer*> pSteer = ai->getAllPlayerSteers();
     //std::vector<playerSteer*> team0Steers;
     //std::vector<playerSteer*> team1Steers;
-    std::vector<boost::shared_ptr<playerSteer> > teamSteer;
-    std::vector<std::vector<boost::shared_ptr<playerSteer> > > teamSteers;
+    std::vector<playerSteer *> teamSteer;
+    std::vector<std::vector<playerSteer *> > *teamSteers;
     logMsg("Updating playerSteer state");
 
 
@@ -253,7 +253,7 @@ void playerSteer::update (const float currentTime, float elapsedTime)
             teamSteer.push_back(activePlayerInstance[z][x]->getSteer());
             ++x;
         }
-        teamSteers.push_back(teamSteer);
+        teamSteers->push_back(teamSteer);
         ++z;
    }
 
@@ -698,7 +698,7 @@ void playerSteer::updateDefense(const float currentTime, const float elapsedTime
 
 	//std::vector<playerSteer*> team0Steers;
 	//std::vector<playerSteer*> team1Steers;
-    std::vector<playerSteer *> teamSteer;
+    std::vector<playerSteer*> teamSteer;
     std::vector<std::vector<playerSteer*> > teamSteers;
 
     size_t z = 0;
@@ -708,7 +708,7 @@ void playerSteer::updateDefense(const float currentTime, const float elapsedTime
         size_t x = 0;
         while (x < activePlayerInstance[z].size())
         {
-            teamSteer.push_back(activePlayerInstance[z][x]->getSteer().get());
+            teamSteer.push_back(activePlayerInstance[z][x]->getSteer());
             ++x;
         }
         teamSteers.push_back(teamSteer);

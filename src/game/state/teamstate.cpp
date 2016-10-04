@@ -685,7 +685,7 @@ bool teamState::createPlayerInstances()
 
         boost::shared_ptr<playerState> pInstance;  // creates a new instance of playerState
         
-        boost::shared_ptr<playerSteer> pSteer(new playerSteer); // steer instance
+        playerSteer *pSteer = new playerSteer; // steer instance
         
 /*        boost::shared_ptr<playerPhysics> pPhysics(new playerPhysics);
         

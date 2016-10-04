@@ -96,6 +96,7 @@ public:
 
     float maxForce (void) const;  // retrieves the value of _maxForce
     float setMaxForce (float mf);  // sets the value of _maxForce
+    float setMaxForces (float mf);  // sets the value of _maxForce
 
     float maxSpeed (void) const;  // retrieves the value of _maxSpeed
     float setMaxSpeed (const float ms);  // sets the value of _maxSpeed
@@ -164,9 +165,10 @@ private:
     float _speed;  // speed along Forward direction.  Because local space
                        // is velocity-aligned, velocity = Forward * Speed
 
-    float _maxForce;  // the maximum steering force this vehicle can apply
+    static float _maxForce;  // the maximum steering force this vehicle can apply
                        // (steering force is clipped to this magnitude)
-
+    float _maxForces;
+    
     float _maxSpeed;  // the maximum speed this vehicle is allowed to move
                        // (velocity is clipped to this magnitude)
 

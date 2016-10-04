@@ -22,8 +22,10 @@
 #include "ai/steering.h"
 #include <algorithm>
 
+// Static Declarations
+
 int steering::serialNumberCounter = 0;
-//float steering::_maxSpeed;
+float steering::_maxForce;
 
 steering::steering (void)  // constructor
 {
@@ -86,6 +88,10 @@ float steering::maxForce (void) const  // retrieves the value of _maxForce
 float steering::setMaxForce (float mf)  // sets the value of _maxForce 
 {
     return (_maxForce = mf);
+}
+float steering::setMaxForces (float mf)  // sets the value of _maxForce 
+{
+    return (_maxForces = mf);
 }
 
 float steering::maxSpeed (void) const  // retrieves the value of _maxSpeed

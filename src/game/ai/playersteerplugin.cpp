@@ -45,7 +45,7 @@ void playerSteerPlugin::open(void)
 */
     std::vector<std::vector<boost::shared_ptr<playerState> > > activePlayerInstance;
     
-    std::vector<boost::shared_ptr<playerSteer> > allPlayerSteers = ai->getAllPlayerSteers();
+    std::vector<playerSteer*> allPlayerSteers = ai->getAllPlayerSteers();
 
     logMsg("Opening playerSteer plugin");
 
@@ -59,7 +59,7 @@ void playerSteerPlugin::open(void)
         size_t y = 0;
         while (y < activePlayerInstance[x].size())
         {
-            boost::shared_ptr<playerSteer> steer = activePlayerInstance[x][y]->getSteer();
+            playerSteer *steer = activePlayerInstance[x][y]->getSteer();
         //      logMsg("Alive1");
             logMsg("y = " +convert->toString(y));
             logMsg("player position = " +convert->toString(activePlayerInstance[x][y]->getCourtPosition()));
@@ -69,7 +69,7 @@ void playerSteerPlugin::open(void)
 
         //      steer->setID(x);
             ai->selectedVehicle = steer;
-            activePlayerInstance[x][y]->setSteer(boost::shared_ptr<playerSteer>(steer));
+            activePlayerInstance[x][y]->setSteer(steer);
             allPlayerSteers.push_back(activePlayerInstance[x][y]->getSteer());
             ++y;
         }

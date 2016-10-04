@@ -21,6 +21,9 @@
 #include "entity/playerentity.h"
 #include "logging.h"
 
+// static declarations
+playerSteer *playerEntity::steer; 
+
 playerEntity::playerEntity()  // constructor
 {
 //    physics = new playerPhysics;
@@ -39,11 +42,11 @@ void playerEntity::setPhysics(playerPhysics *set)  // sets the value of physics
     physics = set;
 }*/
 
-boost::shared_ptr<playerSteer> playerEntity::getSteer() // retrieves the value of steer
+playerSteer *playerEntity::getSteer() // retrieves the value of steer
 {
     return (steer);
 }
-void playerEntity::setSteer(boost::shared_ptr<playerSteer> set)  // sets the value of steer
+void playerEntity::setSteer(playerSteer *set)  // sets the value of steer
 {
     steer = set;
 }

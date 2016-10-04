@@ -52,20 +52,20 @@ AISystem::~AISystem()
 
 }
 
-boost::shared_ptr<OpenSteer::AbstractVehicle> AISystem::getSelectedVehicle()  // retrieves the value of selectedVehicle
+OpenSteer::AbstractVehicle* AISystem::getSelectedVehicle()  // retrieves the value of selectedVehicle
 {
     return (selectedVehicle);
 }
-void AISystem::setSelectedVehicle(boost::shared_ptr<OpenSteer::AbstractVehicle> set)  // sets the value of selectedVehicle
+void AISystem::setSelectedVehicle(OpenSteer::AbstractVehicle* set)  // sets the value of selectedVehicle
 {
     selectedVehicle = set;
 }
 
-std::vector<boost::shared_ptr<playerSteer> > AISystem::getAllPlayerSteers()  // retrieves the value of allPlayerSteers
+std::vector<playerSteer*> AISystem::getAllPlayerSteers()  // retrieves the value of allPlayerSteers
 {
     return (allPlayerSteers);
 }
-void AISystem::setAllPlayerSteers( std::vector<boost::shared_ptr<playerSteer> > set)  // sets the value of allPlayerSteers
+void AISystem::setAllPlayerSteers(std::vector<playerSteer*> set)  // sets the value of allPlayerSteers
 {
     allPlayerSteers = set;
 }
@@ -84,7 +84,7 @@ void printPlugIn (OpenSteer::PlugIn& pi);
 // initial setup of AI state
 bool AISystem::setup(void)
 {
-    boost::shared_ptr<playerSteerPlugin> tempPlugin(new playerSteerPlugin);
+    playerSteerPlugin* tempPlugin = new playerSteerPlugin;
     playerSteerPluginInstance = tempPlugin;
 
     // select the default PlugIn
@@ -128,13 +128,13 @@ void printPlugIn (OpenSteer::PlugIn& pi)
 void AISystem::selectDefaultPlugIn (void)  // selects the default plugin
 {
     OpenSteer::PlugIn::sortBySelectionOrder ();
-    selectedPlugIn = boost::shared_ptr<OpenSteer::PlugIn>(OpenSteer::PlugIn::findDefault());
+    selectedPlugIn = OpenSteer::PlugIn::findDefault();
 }
 
 void AISystem::selectNextPlugIn (void)  // select the "next" plug-in, cycling through "plug-in selection order"
 {
     closeSelectedPlugIn ();
-    selectedPlugIn = boost::shared_ptr<OpenSteer::PlugIn>(selectedPlugIn->next());
+    selectedPlugIn = selectedPlugIn->next();
     openSelectedPlugIn ();
 }
 
@@ -162,7 +162,7 @@ void AISystem::updateSelectedPlugIn (const float currentTime, const float elapse
     if (selectedVehicle == NULL)
     {
         const OpenSteer::AVGroup& vehicles = allVehiclesOfSelectedPlugIn();
-        if (vehicles.size() > 0) selectedVehicle = boost::shared_ptr<OpenSteer::AbstractVehicle>(vehicles.front());
+        if (vehicles.size() > 0) selectedVehicle = vehicles.front();
     }
 
     // invoke selected PlugIn's Update method
@@ -202,24 +202,15 @@ void AISystem::selectNextVehicle (void)  // select the "next" vehicle: the one l
         const OpenSteer::AVIterator last = all.end();
 
         // find selected vehicle in container
-        OpenSteer::AVIterator s = std::find (first, last, selectedVehicle.get());
+        const OpenSteer::AVIterator s = std::find (first, last, selectedVehicle);
 
         // normally select the next vehicle in container
-        OpenSteer::AbstractVehicle *tempSelectedVehicle;
-        tempSelectedVehicle = *(s+1);
+        selectedVehicle = *(s+1);
 
-        selectedVehicle = boost::shared_ptr<OpenSteer::AbstractVehicle>(tempSelectedVehicle);
-        
         // if we are at the end of the container, select the first vehicle
-        if (s == last-1) 
-        {
-            tempSelectedVehicle = *first;
-            selectedVehicle = boost::shared_ptr<OpenSteer::AbstractVehicle>(tempSelectedVehicle);
-        }
+        if (s == last-1) selectedVehicle = *first;
+
         // if the search failed, use NULL
-        if (s == last) 
-        {
-            selectedVehicle = NULL;
-        }
+        if (s == last) selectedVehicle = NULL;
     }
 }

@@ -47,6 +47,7 @@
 class gameEngine;
 class UBCBase;
 
+typedef boost::shared_ptr<UBCBase> UBCBaseSharedPtr;
 
 class UBC 
 {
@@ -54,8 +55,8 @@ public:
     UBC(); // constructor
     ~UBC();	// destructor
 
-    boost::shared_ptr<UBCBase> getBase();  // retrieves the value of base
-    void setBase(boost::shared_ptr<UBCBase> set);  // sets the value of base
+    UBCBaseSharedPtr getBase();  // retrieves the value of base
+    void setBase(UBCBaseSharedPtr set);  // sets the value of base
  
     boost::shared_ptr<GUISystem> getGui();  // retrieves the value of gui
     void setGui(boost::shared_ptr<GUISystem> set);  // sets the value of gui
@@ -84,7 +85,7 @@ protected:
   
 private:
 
-    static boost::shared_ptr<UBCBase> base;  // static copy of base class
+    static UBCBaseSharedPtr base;  // static copy of base class
 
     static boost::shared_ptr<GUISystem> gui;  // the GUI object.
         

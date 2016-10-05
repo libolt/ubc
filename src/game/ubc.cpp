@@ -93,12 +93,13 @@ bool UBC::setup()  // sets up UBC object
         setGameE(tempGameESharedPtr);
     */
 
-        boost::shared_ptr<UBCBase> tempBaseSharedPtr(new UBCBase);
+        UBCBaseSharedPtr tempBaseSharedPtr(new UBCBase);
         base = tempBaseSharedPtr;
 
     //    GUISystem *tempGUIObj = new GUISystem;
-        boost::shared_ptr<GUISystem> tempGUISharedPtr(new GUISystem);
+        GUISystemSharedPtr tempGUISharedPtr(new GUISystem);
         gui = tempGUISharedPtr;
+        gui->getBase()->setGameS(base->getGameS());
 }
 
 bool UBC::setupState()  // sets up the UBC game state
@@ -135,7 +136,7 @@ void UBC::run()  // runs the game
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    exit(0);
-//    boost::shared_ptr<renderEngine> renderTemp = getGameE()->getRenderE();
+//    boost::shared_ptr<renderEngine> renderTemp = base->getGameE()->getRenderE();
 //    exit(0);
     base->setup();
     base->getGameE()->getRenderE()->initSDL(); // Initializes the SDL Subsystem
@@ -159,7 +160,7 @@ void UBC::run()  // runs the game
 //        return (false);
     }
 //    exit(0);
-//    getGameS()->createInstances();  // creates object instances
+//    base->getGameS()->createInstances();  // creates object instances
 //    boost::shared_ptr<entity> gameStateSharedPtr(new entity);
 
     if (base->getGameE()->getRenderE()->getMWindow() == NULL)
@@ -179,7 +180,7 @@ void UBC::run()  // runs the game
 //    boost::shared_ptr<inputSystem> input = getInputE();
 //    exit(0);
 
-//    bool quitGame = getGameE()->getQuitGame();
+//    bool quitGame = base->getGameE()->getQuitGame();
  
     gameLoop();
 
@@ -227,36 +228,36 @@ void UBC::processInput()  // processes game input
         
     }
     
-/*    if (getGameE()->getInputE()->processInput())
+/*    if (base->getGameE()->getInputE()->processInput())
     {
-        if (getGameE()->getInputE()->getInputProcessed())
+        if (base->getGameE()->getInputE()->getInputProcessed())
         {
             logMsg("Input Processed");
 //            exit(0);
-            if (getGameE()->getMenuActive())
+            if (base->getGameE()->getMenuActive())
             {
                 logMsg("Input Processed menuActive");
 //                exit(0);
-                logMsg("menuReceiveKeyPress == " +convert->toString(getGameE()->getInputE()->getKeyPressed()));
+                logMsg("menuReceiveKeyPress == " +convert->toString(base->getGameE()->getInputE()->getKeyPressed()));
 //                exit(0);
-//                getInputS()->setGameE(getGameE());
+//                getInputS()->setGameE(base->getGameE());
 //                exit(0);
-//                getGameE()->getInputE()->setKeyPressed(INKEY_M);
+//                base->getGameE()->getInputE()->setKeyPressed(INKEY_M);
 //                exit(0);
                 getInputS()->process();
 //                 getInputS()->getInputE()->setKeyPressed(INKEY_P);
-                logMsg("menuReceiveKeyPressAgain == " +convert->toString(getGameE()->getInputE()->getKeyPressed()));
+                logMsg("menuReceiveKeyPressAgain == " +convert->toString(base->getGameE()->getInputE()->getKeyPressed()));
 //                exit(0);
-                gui->menuReceiveKeyPress(convert->toString(getGameE()->getInputE()->getKeyPressed())); // sends input to menu key input processing function
+                gui->menuReceiveKeyPress(convert->toString(base->getGameE()->getInputE()->getKeyPressed())); // sends input to menu key input processing function
 //                exit(0);
-                if (getGameE()->getInputE()->getKeyPressed() == INKEY_T)
+                if (base->getGameE()->getInputE()->getKeyPressed() == INKEY_T)
                 {
 //                    exit(0);
                 }
-                getGameE()->getInputE()->setKeyPressed(INKEY_NONE);
+                base->getGameE()->getInputE()->setKeyPressed(INKEY_NONE);
             }
         }
-        if (getGameS()->getActiveTeamInstancesCreated())
+        if (base->getGameS()->getActiveTeamInstancesCreated())
         {
 //            exit(0);
             size_t inputIterator = 0;
@@ -270,7 +271,7 @@ void UBC::processInput()  // processes game input
                         int humanPlayer = activeTeamInstance[inputIterator]->getHumanPlayer();
                         logMsg("inputHumanPlayer == " +convert->toString(humanPlayer));
                         //inputMaps inputMap = input->keyMap();
-                        inputWorkQueues inputQueue = getGameE()->getInputE()->getInputWorkQueue();
+                        inputWorkQueues inputQueue = base->getGameE()->getInputE()->getInputWorkQueue();
         //                              logMsg("INPUT MAP ======== "  +toString(inputMap));
                         std::stringstream ss;
 //                      exit(0);
@@ -292,8 +293,8 @@ void UBC::processInput()  // processes game input
                         logMsg("inputHumanPlayer == " +convert->toString(humanPlayer));
                         logMsg("inputQueue.size = " +convert->toString(inputQueue.size()));
                         x = 0;
-                        int activeBBallInstance = getGameS()->getActiveBBallInstance();
-                        basketballStateVec bballInstance = getGameS()->getBasketballInstance();
+                        int activeBBallInstance = base->getGameS()->getActiveBBallInstance();
+                        basketballStateVec bballInstance = base->getGameS()->getBasketballInstance();
                         logMsg("humanInstance.size() == " +convert->toString(humanInstance));
                         if (humanInstance < 11) // makes sure that the humanInstance is a valid number
                         {
@@ -307,66 +308,66 @@ void UBC::processInput()  // processes game input
                                         activePlayerInstance[humanInstance]->setMovement(true);
                                         activePlayerInstance[humanInstance]->setDirection(UP);
                                         activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
-                                        getGameS()->setActiveTeamInstance(activeTeamInstance);
+                                        base->getGameS()->setActiveTeamInstance(activeTeamInstance);
 //                                        exit(0);
                                     break;
                                     case INDOWN:
                                         activePlayerInstance[humanInstance]->setMovement(true);
                                         activePlayerInstance[humanInstance]->setDirection(DOWN);
                                         activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
-                                        getGameS()->setActiveTeamInstance(activeTeamInstance);
+                                        base->getGameS()->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INLEFT:
                                         activePlayerInstance[humanInstance]->setMovement(true);
                                         activePlayerInstance[humanInstance]->setDirection(LEFT);
                                         activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
-                                        getGameS()->setActiveTeamInstance(activeTeamInstance);
+                                        base->getGameS()->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INRIGHT:
                                         activePlayerInstance[humanInstance]->setMovement(true);
                                         activePlayerInstance[humanInstance]->setDirection(RIGHT);
                                         activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
-                                        getGameS()->setActiveTeamInstance(activeTeamInstance);
+                                        base->getGameS()->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INUPLEFT:
                                         activePlayerInstance[humanInstance]->setMovement(true);
                                         activePlayerInstance[humanInstance]->setDirection(UPLEFT);
                                         activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
-                                        getGameS()->setActiveTeamInstance(activeTeamInstance);
+                                        base->getGameS()->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INUPRIGHT:
                                         activePlayerInstance[humanInstance]->setMovement(true);
                                         activePlayerInstance[humanInstance]->setDirection(UPRIGHT);
                                         activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
-                                        getGameS()->setActiveTeamInstance(activeTeamInstance);
+                                        base->getGameS()->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INDOWNLEFT:
                                         activePlayerInstance[humanInstance]->setMovement(true);
                                         activePlayerInstance[humanInstance]->setDirection(DOWNLEFT);
                                         activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
-                                        getGameS()->setActiveTeamInstance(activeTeamInstance);
+                                        base->getGameS()->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INDOWNRIGHT:
                                         activePlayerInstance[humanInstance]->setMovement(true);
                                         activePlayerInstance[humanInstance]->setDirection(DOWNRIGHT);
                                         activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
-                                        getGameS()->setActiveTeamInstance(activeTeamInstance);
+                                        base->getGameS()->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INSHOOTBLOCK:
                                         activePlayerInstance[humanInstance]->setMovement(false);
                                         activePlayerInstance[humanInstance]->setShootBlock(true);
                                         activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
-                                        getGameS()->setActiveTeamInstance(activeTeamInstance);
+                                        base->getGameS()->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INPASSSTEAL:
                                         activePlayerInstance[humanInstance]->setMovement(false);
                                         activePlayerInstance[humanInstance]->setPassSteal(true);
                                         activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
-                                        getGameS()->setActiveTeamInstance(activeTeamInstance);
+                                        base->getGameS()->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INQUIT:
                                         logMsg("Quitting!");
-                                        getGameE()->setQuitGame(true);
+                                        base->getGameE()->setQuitGame(true);
                                         exit(0);
                                     break;
                                     default:
@@ -375,7 +376,7 @@ void UBC::processInput()  // processes game input
                                 ++x;
                             }
                         }
-                        teamStateVecSharedPtr tInstance = getGameS()->getActiveTeamInstance();
+                        teamStateVecSharedPtr tInstance = base->getGameS()->getActiveTeamInstance();
                         playerStateVecSharedPtr activePInstance = tInstance[inputIterator]->getActivePlayerInstance();
                         logMsg("humanInstance == " +convert->toString(humanInstance));
                         //logMsg("inPassSteal == " +convert->toString(activePInstance[humanInstance]->getPassSteal()));
@@ -383,7 +384,7 @@ void UBC::processInput()  // processes game input
 
                         /// FIXME! This if statement should be adapted to work correctly instead of relying on the i variable
                         int i = 0;
-                        if (getGameS()->getTeamWithBall() == i)
+                        if (base->getGameS()->getTeamWithBall() == i)
                         {
                             if (activePlayerInstance[humanInstance]->getMovement())
                             {
@@ -393,22 +394,22 @@ void UBC::processInput()  // processes game input
                                 if (activePlayerInstance[humanInstance]->getID() == activeTeamInstance[inputIterator]->getPlayerWithBallID())
                                 {
                                     bballInstance[activeBBallInstance].setMovement(true);
-                                    getGameS()->setBasketballInstance(bballInstance);
+                                    base->getGameS()->setBasketballInstance(bballInstance);
                                 }
                             }
                         }
-                        if (getGameS()->getBasketballInstance().size() > 0)
+                        if (base->getGameS()->getBasketballInstance().size() > 0)
                         {
                             logMsg("basketballmoved == " +convert->toString(bballInstance[activeBBallInstance].getMovement()));
                         }
-                        getGameS()->setActiveTeamInstance(activeTeamInstance);
+                        base->getGameS()->setActiveTeamInstance(activeTeamInstance);
 
-                        if (getGameS()->getGameType() == MULTI)
+                        if (base->getGameS()->getGameType() == MULTI)
                         {
-                            getNetworkS()->processLocalInput(getGameS()->getActiveTeamInstance());
+                            getNetworkS()->processLocalInput(base->getGameS()->getActiveTeamInstance());
                         }
                         inputQueue.clear();
-                        getGameE()->getInputE()->setInputWorkQueue(inputQueue);
+                        base->getGameE()->getInputE()->setInputWorkQueue(inputQueue);
                     }
                     ++inputIterator;
                 }
@@ -451,7 +452,7 @@ void UBC::gameLoop()  // Main Game Loop
 
     int x = 0;
     SDL_StartTextInput();
-//    getGameE()->gameEngine();
+//    base->getGameE()->gameEngine();
     bool quitGame = base->getGameE()->getQuitGame();
 //    exit(0);
 //    while (!getQuitGame())

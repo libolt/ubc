@@ -47,22 +47,24 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
     courtStateVecSharedPtr courtInstance;
     stdStringVec courtName;
 //    if (!gameS->getCourtInstancesCreated())
-    
-    if (getGameS()->getCourtInstancesCreated())
+//    exit(0);
+    if (base->getGameS()->getCourtInstancesCreated())
     {
-        courtInstance = getGameS()->getCourtInstance();
+        exit(0);
+
+        courtInstance = base->getGameS()->getCourtInstance();
 //        exit(0);
-        getGameS()->setCourtInstancesNeedCreated(true);
+        base->getGameS()->setCourtInstancesNeedCreated(true);
 //        exit(0);
 
     }
     else
     {
-        if (getGameS()->createCourtInstances())
+        if (base->getGameS()->createCourtInstances())
         {
 //            exit(0);7
-            courtInstance = getGameS()->getCourtInstance();
-            getGameS()->setCourtInstancesCreated(true);
+            courtInstance = base->getGameS()->getCourtInstance();
+            base->getGameS()->setCourtInstancesCreated(true);
         }
         else
         {
@@ -105,25 +107,25 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 //    playerInstance = load->loadPlayers();
 //    playerInstance = gameS->getPlayerInstance();
 //    gameS->setPlayerInstances(playerInstance);
-    sizeTVec teamIDs = getGameS()->getTeamIDS();
-    teamStateVecSharedPtr teamInstance = getGameS()->getTeamInstance();
+    sizeTVec teamIDs = base->getGameS()->getTeamIDS();
+    teamStateVecSharedPtr teamInstance = base->getGameS()->getTeamInstance();
     std::vector<playerStateVecSharedPtr > playerInstance;
 //    std::vector <boost::shared_ptr<playerState> > pInstance;
 //    pInstance = teamInstance[teamIDs[0]]->getPlayerInstance();
     size_t x = 0;
     logMsg("addPlayerStartSelectionMenuData");
-    logMsg("getGameS()->getTeamIDS().size() == " +convert->toString(getGameS()->getTeamIDS().size()));
-    logMsg("getGameS()->getTeamIDS()[0] == " +convert->toString(getGameS()->getTeamIDS()[0]));
+    logMsg("getGameS()->getTeamIDS().size() == " +convert->toString(base->getGameS()->getTeamIDS().size()));
+    logMsg("getGameS()->getTeamIDS()[0] == " +convert->toString(base->getGameS()->getTeamIDS()[0]));
     
     logMsg("teamIDS[0] == " +convert->toString(teamIDs[0]));
     logMsg("blah");
 //    exit(0);
     
 /*
-    if (!getGameS()->getPlayerInstanceCreated())
+    if (!base->getGameS()->getPlayerInstanceCreated())
     {
         logMsg("GUISystem::addPlayerStartSelectionMenuData() player instances not yet created!");
-        if (getGameS()->createPlayerInstances())
+        if (base->getGameS()->createPlayerInstances())
         {
             logMsg("GUISystem::addPlayerStartSelectionMenuData() player instances created!");
         }
@@ -136,13 +138,13 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     if (!teamInstance[teamIDs[0]]->getPlayerInstancesCreated())
     {
         teamInstance[teamIDs[0]]->createPlayerInstances();
-        getGameS()->setTeamInstance(teamInstance);
+        base->getGameS()->setTeamInstance(teamInstance);
     }
 */
     logMsg ("addPlayerStartSelectionMenuData");
  
 
-    if (getGameS()->checkIfPlayerInstanceCreated())
+    if (base->getGameS()->checkIfPlayerInstanceCreated())
     {
         logMsg("gameS PlayerInstance Created!");
 //        exit(0);
@@ -158,7 +160,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     if (!teamInstance[teamIDs[0]]->getPlayerInstancesCreated())
     {
         teamInstance[teamIDs[0]]->createPlayerInstances();
-        getGameS()->setTeamInstance(teamInstance);
+        base->getGameS()->setTeamInstance(teamInstance);
     }
     
     logMsg("Bleert!");
@@ -181,7 +183,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 //            exit(0);
             logMsg("Team 0 player instances created successfully!");
 
-            getGameS()->setTeamInstance(teamInstance);
+            base->getGameS()->setTeamInstance(teamInstance);
         }
         else
         {
@@ -193,7 +195,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     if (!teamInstance[teamIDs[1]]->getPlayerInstancesCreated())
     {
         teamInstance[teamIDs[1]]->createPlayerInstances();
-        getGameS()->setTeamInstance(teamInstance);
+        base->getGameS()->setTeamInstance(teamInstance);
     }
 //    exit(0);
     logMsg("Team 0");
@@ -235,9 +237,9 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     overallRatings.push_back(overall);
     overallRatings.push_back(overall);
 
-    if (!getGameS()->getPlayerInstanceCreated())
+    if (!base->getGameS()->getPlayerInstanceCreated())
     {
-//        getGameS()->createPlayerInstance();
+//        base->getGameS()->createPlayerInstance();
     }
     logMsg("Player Instance Size = " +convert->toString(playerInstance.size()));
 //    exit(0);
@@ -250,22 +252,22 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 //        logMsg("pDTeam = " +convert->toString(playerInstance[i][0]->getTeamID()));
         logMsg("pDTeam = " +convert->toString(playerInstance[i][0]->getTeamID()));
 //        logMsg("teamID == " +convert->toString(gameS->getTeamID()[1]));
-        logMsg("teamID == " +convert->toString(getGameS()->getTeamIDS()[1]));
+        logMsg("teamID == " +convert->toString(base->getGameS()->getTeamIDS()[1]));
         exit(0);
 //        if (playerInstance[i]->getTeamID() == gameS->getTeamID()[0])
-       if (getGameS()->getPlayerInstance()[i]->getTeamID() == getGameS()->getTeamIDS()[0])
+       if (base->getGameS()->getPlayerInstance()[i]->getTeamID() == base->getGameS()->getTeamIDS()[0])
 
         {
 //            size_t overallRating = playerInstance[i]->getOverallRating();
-            size_t overallRating = getGameS()->getPlayerInstance()[i]->getOverallRating();
+            size_t overallRating = base->getGameS()->getPlayerInstance()[i]->getOverallRating();
             std::string playerOverallRating = convert->toString(overallRating);
 //            std::string playerName = playerInstance[i]->getFirstName() +" " +playerInstance[i]->getLastName() +" " +convert->toString(playerInstance[i]->getPrimaryPosition()); // +"            "; // +playerOverallRating;
-            std::string playerName = getGameS()->getPlayerInstance()[i]->getFirstName() +" " +getGameS()->getPlayerInstance()[i]->getLastName() +" " +convert->toString(getGameS()->getPlayerInstance()[i]->getPrimaryPosition()); // +"            "; // +playerOverallRating;
+            std::string playerName = base->getGameS()->getPlayerInstance()[i]->getFirstName() +" " +base->getGameS()->getPlayerInstance()[i]->getLastName() +" " +convert->toString(base->getGameS()->getPlayerInstance()[i]->getPrimaryPosition()); // +"            "; // +playerOverallRating;
 //            std::string playerName = getPlayerInstance()[i]->getFirstName() +" " +getPlayerInstance()([i]->getLastName() +" " +convert->toString(getPlayerInstance()[i]->getPrimaryPosition()); // +"            "; // +playerOverallRating;
 //            std::string playerPosition = convert->toString(playerInstance[i]->getPrimaryPosition());
-            std::string playerPosition = convert->toString(getGameS()->getPlayerInstance()[i]->getPrimaryPosition());
+            std::string playerPosition = convert->toString(base->getGameS()->getPlayerInstance()[i]->getPrimaryPosition());
 //            size_t playerID = getPlayerInstance()[i]->getID();
-            size_t playerID = getGameS()->getPlayerInstance()[i]->getID();
+            size_t playerID = base->getGameS()->getPlayerInstance()[i]->getID();
 
             playerNames[0].push_back(playerName);
             playerPositionsPlayed[0].push_back(playerPosition);
@@ -273,14 +275,14 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
             overallRatings[0].push_back(overallRating);
         }
 
-        if (getGameS()->getPlayerInstance()[i]->getTeamID() == getGameS()->getTeamIDS()[1])
+        if (base->getGameS()->getPlayerInstance()[i]->getTeamID() == base->getGameS()->getTeamIDS()[1])
         {
-            size_t overallRating = getGameS()->getPlayerInstance()[i]->getOverallRating();
+            size_t overallRating = base->getGameS()->getPlayerInstance()[i]->getOverallRating();
             std::string playerOverallRating = convert->toString(overallRating);
-            std::string playerName = getGameS()->getPlayerInstance()[i]->getFirstName() +" " +getGameS()->getPlayerInstance()[i]->getLastName() +" " +convert->toString(getGameS()->getPlayerInstance()[i]->getPrimaryPosition()); // +"            "; // +playerOverallRating;
+            std::string playerName = base->getGameS()->getPlayerInstance()[i]->getFirstName() +" " +base->getGameS()->getPlayerInstance()[i]->getLastName() +" " +convert->toString(base->getGameS()->getPlayerInstance()[i]->getPrimaryPosition()); // +"            "; // +playerOverallRating;
             bool playerNameLengthReached = false;
-            std::string playerPosition = convert->toString(getGameS()->getPlayerInstance()[i]->getPrimaryPosition());
-            size_t playerID = getGameS()->getPlayerInstance()[i]->getID();
+            std::string playerPosition = convert->toString(base->getGameS()->getPlayerInstance()[i]->getPrimaryPosition());
+            size_t playerID = base->getGameS()->getPlayerInstance()[i]->getID();
 
             playerNames[1].push_back(playerName);
             playerPositionsPlayed[1].push_back(playerPosition);
@@ -527,7 +529,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
 
     teamStateVecSharedPtr teamInstance; // = gameS->getTeamDataInstance();
 
-//    if (!getGameS()->getTeamInstancesCreated())
+//    if (!base->getGameS()->getTeamInstancesCreated())
 //    {
 //        logMsg("Team Instances not Created!");
 //        exit(0);
@@ -536,7 +538,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
 //    teamInstance = load->loadTeams();
 //    if (teamInstance.size() > 0)
 //    {
-//        getGameS()->setTeamInstance(teamInstance);
+//        base->getGameS()->setTeamInstance(teamInstance);
 //    }
 //    else
 //    {
@@ -556,16 +558,16 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
         logMsg("GUI ADD TEAM teamInstance[" +convert->toString(x) +"]->getID() ID == " +convert->toString(teamInstance[x]->getID()));
         ++x;
     }
-     logMsg("GUI ADD TEAM getGameS()->getTeamInstance()[3]->getID() ID == " +convert->toString(getGameS()->getTeamInstance()[3]->getID()));
+     logMsg("GUI ADD TEAM base->getGameS()->getTeamInstance()[3]->getID() ID == " +convert->toString(base->getGameS()->getTeamInstance()[3]->getID()));
 //    exit(0);
-    if (getGameS()->getTeamInstancesCreated())
+    if (base->getGameS()->getTeamInstancesCreated())
     {        
         logMsg("Woot!");
 //        exit(0);
-        if (getGameS()->getTeamInstance().size() > 0)
+        if (base->getGameS()->getTeamInstance().size() > 0)
         {
-            teamInstance = getGameS()->getTeamInstance();
-            logMsg("teamInstance.size() == " +convert->toString(getGameS()->getTeamInstance().size()));
+            teamInstance = base->getGameS()->getTeamInstance();
+            logMsg("teamInstance.size() == " +convert->toString(base->getGameS()->getTeamInstance().size()));
         }
         else
         {
@@ -576,14 +578,14 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     }
     else
     {    
-        if (getGameS()->createTeamInstances())
+        if (base->getGameS()->createTeamInstances())
         {
-             logMsg("teamInstance.size() == " +convert->toString(getGameS()->getTeamInstance().size()));
+             logMsg("teamInstance.size() == " +convert->toString(base->getGameS()->getTeamInstance().size()));
             exit(0);
-            if (getGameS()->getTeamInstance().size() > 0)
+            if (base->getGameS()->getTeamInstance().size() > 0)
             {
-                teamInstance = getGameS()->getTeamInstance();
-                logMsg("teamInstance.size() == " +convert->toString(getGameS()->getTeamInstance().size()));             
+                teamInstance = base->getGameS()->getTeamInstance();
+                logMsg("teamInstance.size() == " +convert->toString(base->getGameS()->getTeamInstance().size()));
             }
             else
             {
@@ -605,7 +607,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
 //    gameS->setTeamDataInstance(teamDataInstance);
 //
 //    teamInstance = gameS->getTeamInstance();
-    logMsg("teamInstance.size() == " +convert->toString(getGameS()->getTeamInstance().size()));
+    logMsg("teamInstance.size() == " +convert->toString(base->getGameS()->getTeamInstance().size()));
     logMsg("BLEEET!");
     if (teamInstance.size() == 0)
     {

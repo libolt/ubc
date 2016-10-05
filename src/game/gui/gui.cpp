@@ -58,6 +58,8 @@ boost::shared_ptr<GUISystem> GUISystem::Instance()
 
 // static declarations
 
+UBCBaseSharedPtr GUISystem::base;
+
 bool GUISystem::setupComplete;
 bool GUISystem::mainMenuCreated; 
 bool GUISystem::menuActive;  // stores whether a menu is being diplayed
@@ -219,6 +221,15 @@ GUISystem::~GUISystem()
 
 }
 
+
+UBCBaseSharedPtr GUISystem::getBase()  // retrieves the value of base
+{
+    return(base);
+}
+void GUISystem::setBase(UBCBaseSharedPtr set)  // sets the value of base
+{
+    base = set;
+}
 
 /*boost::shared_ptr<networkEngimmnmne> GUISystem::getNetworkG()  // retrieves the value of network
 {
@@ -415,6 +426,10 @@ void GUISystem::setViewPort(const Ogre::Viewport &set)  // sets the value of vie
 bool GUISystem::setup()  // sets up the in game gui
 {
 //    exit(0);
+    if (base->getGameS() == NULL)
+    {
+        exit(0);
+    }
     if (initMyGUI()) // Initializes MyGUI
     {
         logMsg ("MyGUI initialized successfully!");
@@ -445,7 +460,7 @@ bool GUISystem::initMyGUI()  // Initializes MyGUI
     mPlatform->initialise(mWindow, mSceneMgr, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 #else
 */
-    mPlatform->initialise(getGameE()->getRenderE()->getMWindow(), getGameE()->getRenderE()->getMSceneMgr(), "UBCData"); // mWindow is Ogre::RenderWindow*, mSceneManager is Ogre::SceneManager*
+    mPlatform->initialise(base->getGameE()->getRenderE()->getMWindow(), base->getGameE()->getRenderE()->getMSceneMgr(), "UBCData"); // mWindow is Ogre::RenderWindow*, mSceneManager is Ogre::SceneManager*
 //#endif
 //    exit(0);
     logMsg("Crash??");
@@ -515,9 +530,10 @@ void GUISystem::backButtons()  // handles the back buttons
 void GUISystem::startSinglePlayerGame()  // starts single player game
 {
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
-
+//    exit(0);
 //    gameS->setGameType(SINGLE);
-    getGameS()->setGameType(SINGLE);
+    base->getGameS()->setGameType(SINGLE);
+//    exit(0);
 //	hideMainMenuWidgets();	// Hides the widgets from the main menu
     courtSelectionMenu();   // displays the menu for selecting which court to use
     //   gameSetupMenu();
@@ -622,7 +638,7 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
     if (teamSelectionMenuCreated)
     {      
         
-        if (getGameS()->getTeamInstancesCreated())
+        if (base->getGameS()->getTeamInstancesCreated())
         {
             logMsg("getTeamInstancesCreated");
 //            exit(0);
@@ -650,12 +666,12 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
         {
             logMsg("!getTeamInstancesCreated");
 //            exit(0);
-            if (getGameS()->createTeamInstances())
+            if (base->getGameS()->createTeamInstances())
             {
                 logMsg("createTeamInstances");
 
 //                exit(0);
-                getGameS()->setTeamInstancesCreated(true);
+                base->getGameS()->setTeamInstancesCreated(true);
                 if (teamSelectionMenuDataAdded)
                 {
                     logMsg("Team Selection Menu Data Added already!");
@@ -727,16 +743,16 @@ void GUISystem::courtSelectionMenu() // displays court selection menu
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<loader> load; // = loader::Instance();
-
     if (!courtSelectionMenuCreated)
     {
         createCourtSelectionMenuGUI();
     }
-    
+//    exit(0);
     if (!courtSelectionDataLoaded)
     {
-        logMsg("addCourtSelectionMenuData = " +convert->toString(addCourtSelectionMenuData()));
 //        exit(0);
+        logMsg("addCourtSelectionMenuData = " +convert->toString(addCourtSelectionMenuData()));
+        exit(0);
         if (addCourtSelectionMenuData())
         {
 //            exit(0);
@@ -746,7 +762,8 @@ void GUISystem::courtSelectionMenu() // displays court selection menu
 //        exit(0);
     }
     changeActiveMenu(COURTSELECT);
-    
+    exit(0);
+
 }
 
 
@@ -797,14 +814,14 @@ void GUISystem::networkServer()  // sets up  game as a network server
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 
 //    gameS->setGameType(MULTI);
-    getGameS()->setGameType(MULTI);
+    base->getGameS()->setGameType(MULTI);
 //   hideNetworkSetupWidgets();  // Hides Network Setup Menu widgets
     menuActive = false;
-    getGameE()->getNetworkE()->setIPAddress(serverIPAddressBox->getCaption());  // sets the neworkEngine's ipAddress string to that of the caption
-    logMsg("server ip = " +getGameE()->getNetworkE()->getIPAddress());
-    if (getGameE()->getNetworkE()->serverSetup())  // attempts to setup as a network server
+    base->getGameE()->getNetworkE()->setIPAddress(serverIPAddressBox->getCaption());  // sets the neworkEngine's ipAddress string to that of the caption
+    logMsg("server ip = " +base->getGameE()->getNetworkE()->getIPAddress());
+    if (base->getGameE()->getNetworkE()->serverSetup())  // attempts to setup as a network server
     {
-        getGameE()->getNetworkE()->setIsServer(true);  // if successful sets isServer to true
+        base->getGameE()->getNetworkE()->setIsServer(true);  // if successful sets isServer to true
     }
 
 //    gameE->setCreateScene(true); // sets variable true that tells gameEngine to start rendering the scene
@@ -817,14 +834,14 @@ void GUISystem::networkClient()  // sets up game as a network client
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 
 //    gameS->setGameType(MULTI);
-    getGameS()->setGameType(MULTI);
+    base->getGameS()->setGameType(MULTI);
 //    hideNetworkSetupWidgets();  // Hides Network Setup Menu widgets
     menuActive = false;
-    getGameE()->getNetworkE()->setIPAddress(clientIPAddressBox->getCaption());  // sets the neworkEngine's ipAddress string to that of the caption
+    base->getGameE()->getNetworkE()->setIPAddress(clientIPAddressBox->getCaption());  // sets the neworkEngine's ipAddress string to that of the caption
 //    network->networkClient();
-    if (getGameE()->getNetworkE()->clientConnect()) // attempts to connect to the remote server
+    if (base->getGameE()->getNetworkE()->clientConnect()) // attempts to connect to the remote server
     {
-        getGameE()->getNetworkE()->setIsClient(true);  // if successful sets isClient to true
+        base->getGameE()->getNetworkE()->setIsClient(true);  // if successful sets isClient to true
     }
 //    gameE->setCreateScene(true); // sets variable true that tells gameEngine to start rendering the scenetop
 
@@ -840,7 +857,7 @@ void GUISystem::courtSelected()  // processes court selection
     logMsg("Selected Court #" +convert->toString(courtSelectBox->getIndexSelected()));
 //    gameS->setSelectedCourtDataInstance(courtSelectBox->getIndexSelected());
 //    gameS->setActiveCourtInstance(courtSelectBox->getIndexSelected());
-    getGameS()->setActiveCourtInstance(courtSelectBox->getIndexSelected());
+    base->getGameS()->setActiveCourtInstance(courtSelectBox->getIndexSelected());
 //    exit(0);
 //    changeActiveMenu(TEAMSELECT);
 //    teamSelectionMenu();
@@ -859,7 +876,7 @@ void GUISystem::teamsSelected()  // processes team selection
     logMsg("team0SelectBox->getIndexSelected() == " +convert->toString(team0SelectBox->getIndexSelected()));
     logMsg("teamID[0] == " +convert->toString(teamID[0]));
 //    exit(0);
-    getGameS()->setTeamIDS(teamID);
+    base->getGameS()->setTeamIDS(teamID);
     logMsg("Teams selected");
 //    exit(0);
 }
@@ -971,7 +988,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     logMsg("teamStarterID[1][4] = " +convert->toString(teamStarterID[1][4]));
 
 //    gameS->setTeamStarterID(teamStarterID); // sets the selected starters for both teams in gameState class
-    getGameS()->setTeamStarterID(teamStarterID); // sets the selected starters for both teams in gameState class
+    base->getGameS()->setTeamStarterID(teamStarterID); // sets the selected starters for both teams in gameState class
     
     sizeTVec activePlayerID;
 
@@ -981,21 +998,21 @@ void GUISystem::playerStartSelected()  // process player start selection
         logMsg("activePlayerID = " +convert->toString(activePlayerID[x]));
     }
 //    exit(0);
-    getGameS()->getActiveTeamInstance()[0]->setActivePlayerID(activePlayerID);
-    if (!getGameS()->getActiveTeamInstance()[0]->getPlayerInstancesCreated())    // checks if playerInstances have been created
+    base->getGameS()->getActiveTeamInstance()[0]->setActivePlayerID(activePlayerID);
+    if (!base->getGameS()->getActiveTeamInstance()[0]->getPlayerInstancesCreated())    // checks if playerInstances have been created
     {
         logMsg("player instances created!");
         
-        if (getGameS()->getActiveTeamInstance()[0]->createPlayerInstances()) // creates the player instances based on playerIDS
+        if (base->getGameS()->getActiveTeamInstance()[0]->createPlayerInstances()) // creates the player instances based on playerIDS
         {
             logMsg("Team 0 Player instances created!");
-            getGameS()->getActiveTeamInstance()[0]->setPlayerInstancesCreated(true);
+            base->getGameS()->getActiveTeamInstance()[0]->setPlayerInstancesCreated(true);
 //          exit(0);
         }
     }
     playerInstance.clear();
     activePlayerInstance.clear();
-    playerInstance = getGameS()->getActiveTeamInstance()[0]->getPlayerInstance();
+    playerInstance = base->getGameS()->getActiveTeamInstance()[0]->getPlayerInstance();
     size_t y = 0;
     logMsg("GUI playerInstance.size() = " +convert->toString(playerInstance.size()));
     
@@ -1016,21 +1033,21 @@ void GUISystem::playerStartSelected()  // process player start selection
     }
 //    exit(0);
     logMsg("GUI activePlayerInstance.size() = " +convert->toString(activePlayerInstance.size()));
-    getGameS()->getActiveTeamInstance()[0]->setActivePlayerInstance(activePlayerInstance);
-    getGameS()->getActiveTeamInstance()[0]->setPlayerStartActivePositions();
+    base->getGameS()->getActiveTeamInstance()[0]->setActivePlayerInstance(activePlayerInstance);
+    base->getGameS()->getActiveTeamInstance()[0]->setPlayerStartActivePositions();
     
-    getGameS()->getActiveTeamInstance()[0]->setPlayerStartPositions();
+    base->getGameS()->getActiveTeamInstance()[0]->setPlayerStartPositions();
 //    logMsg("Team 0 player start positions set");
 //    exit(0);
     size_t i = 0;
     //playerStateVec playerInstance;
     playerInstance.clear();
-    playerInstance = getGameS()->getActiveTeamInstance()[0]->getPlayerInstance();
+    playerInstance = base->getGameS()->getActiveTeamInstance()[0]->getPlayerInstance();
     while (i<playerInstance.size())
     {
         if (activePlayerID[4] == playerInstance[i]->getID())
         {
-            getGameS()->getActiveTeamInstance()[0]->setHumanPlayer(i);
+            base->getGameS()->getActiveTeamInstance()[0]->setHumanPlayer(i);
             logMsg("human player set!");
         }
         i++;
@@ -1041,24 +1058,24 @@ void GUISystem::playerStartSelected()  // process player start selection
         activePlayerID.push_back(teamStarterID[1][x]);
     }
 
-    getGameS()->getActiveTeamInstance()[1]->setActivePlayerID(activePlayerID);
-    if (!getGameS()->getActiveTeamInstance()[1]->getPlayerInstancesCreated())  // checks if playerInstances have been created
+    base->getGameS()->getActiveTeamInstance()[1]->setActivePlayerID(activePlayerID);
+    if (!base->getGameS()->getActiveTeamInstance()[1]->getPlayerInstancesCreated())  // checks if playerInstances have been created
     {
         logMsg("Creating team 1 player instances");
             exit(0);
-        if (getGameS()->getActiveTeamInstance()[1]->createPlayerInstances())  // creates the player instances based on playerIDS
+        if (base->getGameS()->getActiveTeamInstance()[1]->createPlayerInstances())  // creates the player instances based on playerIDS
         {
 //            exit(0);
 
             logMsg("Player instances created!");
-            getGameS()->getActiveTeamInstance()[1]->setPlayerInstancesCreated(true);
+            base->getGameS()->getActiveTeamInstance()[1]->setPlayerInstancesCreated(true);
 //          exit(0);
         }
 //.        exit(0);
 
     }
     playerInstance.clear();
-    playerInstance = getGameS()->getActiveTeamInstance()[1]->getPlayerInstance();
+    playerInstance = base->getGameS()->getActiveTeamInstance()[1]->getPlayerInstance();
     activePlayerInstance.clear();
     y = 0;
     while (y < playerInstance.size())
@@ -1075,26 +1092,26 @@ void GUISystem::playerStartSelected()  // process player start selection
         ++y;
     }
 
-    getGameS()->getActiveTeamInstance()[1]->setActivePlayerInstance(activePlayerInstance);
-    getGameS()->getActiveTeamInstance()[1]->setPlayerStartActivePositions();
-    getGameS()->getActiveTeamInstance()[1]->setPlayerStartPositions();
+    base->getGameS()->getActiveTeamInstance()[1]->setActivePlayerInstance(activePlayerInstance);
+    base->getGameS()->getActiveTeamInstance()[1]->setPlayerStartActivePositions();
+    base->getGameS()->getActiveTeamInstance()[1]->setPlayerStartPositions();
     logMsg("Team 1 player start positions set");
-    playerInstance = getGameS()->getActiveTeamInstance()[1]->getPlayerInstance();
+    playerInstance = base->getGameS()->getActiveTeamInstance()[1]->getPlayerInstance();
     while (i<playerInstance.size())
     {
         if (activePlayerID[4] == playerInstance[i]->getID())
         {
-            getGameS()->getActiveTeamInstance()[1]->setHumanPlayer(i);
+            base->getGameS()->getActiveTeamInstance()[1]->setHumanPlayer(i);
             logMsg("human player set!");
         }
         i++;
     }
 
-    if (getGameS()->getActiveTeamInstance()[0]->getPlayerInstancesCreated() && getGameS()->getActiveTeamInstance()[1]->getPlayerInstancesCreated())
+    if (base->getGameS()->getActiveTeamInstance()[0]->getPlayerInstancesCreated() && base->getGameS()->getActiveTeamInstance()[1]->getPlayerInstancesCreated())
     {
-///        getGameS()->setActiveTeamInstance(activeTeamInstance);  // sets the activeTeamInstance vector
-//        getGameS()->setGameSetupComplete(true);
-        getGameS()->setGameSetupComplete(true);
+///        base->getGameS()->setActiveTeamInstance(activeTeamInstance);  // sets the activeTeamInstance vector
+//        base->getGameS()->setGameSetupComplete(true);
+        base->getGameS()->setGameSetupComplete(true);
     }
     else
     {
@@ -1147,9 +1164,9 @@ bool GUISystem::checkTeamInstancesCreated()  // Checks if team instances have be
     //gameState *gameS = gameState::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 
-    if (!getGameS()->getActiveTeamInstancesCreated())
+    if (!base->getGameS()->getActiveTeamInstancesCreated())
     {
-        getGameS()->setActiveTeamInstancesNeedCreated(true);
+        base->getGameS()->setActiveTeamInstancesNeedCreated(true);
 /*        logMsg("Creating active team instances!");
         gameS->createActiveTeamInstances();
         gameS->setActiveTeamInstancesCreated(true);

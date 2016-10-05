@@ -80,13 +80,13 @@ void UBCBase::setInputS(boost::shared_ptr<inputState> set)  // sets the value of
 bool UBCBase::setup()  // sets up the engine and states
 {
     //    gameEngine *tempGameEObj = new gameEngine;
-    boost::shared_ptr<gameEngine> tempGameESharedPtr(new gameEngine);
+    gameEngineSharedPtr tempGameESharedPtr(new gameEngine);
     gameE = tempGameESharedPtr;
 //    gameE(new gameEngine);
     gameE->setup();  // sets up the game engine
 
 //    gameState *tempGameStateObj = new gameState;
-    boost::shared_ptr<gameState> tempGameStateSharedPtr(new gameState);
+    gameStateSharedPtr tempGameStateSharedPtr(new gameState);
     gameS = tempGameStateSharedPtr;
 
     
@@ -94,7 +94,7 @@ bool UBCBase::setup()  // sets up the engine and states
 //    networkState *tempNetworkStateObj = new networkState;
 ///    boost::shared_ptr<networkState> tempNetworkStateSharedPtr = boost::shared_ptr<networkState>(new networkState);
 ///    networkS = tempNetworkStateSharedPtr;
-    boost::shared_ptr<inputState> tempInputStateSharedPtr(new inputState);
+    inputStateSharedPtr tempInputStateSharedPtr(new inputState);
     inputS = tempInputStateSharedPtr;
 
     inputS->setInputE(gameE->getInputE());

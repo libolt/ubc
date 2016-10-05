@@ -50,7 +50,7 @@
 #include "MyGUI_OgreRenderManager.h"
 */
 
-#include "ubcbase.h"
+//#include "ubcbase.h"
 #include "enums.h"
 #include "state/gamestateshared.h"
 //#include "input.h" 
@@ -62,9 +62,9 @@
 //class renderEngine;
 //class gameEngine;
 
-//class UBC;
+class UBCBase;
 
-class GUISystem : public UBCBase //: public UBC //: public renderEngine //, inputSystem
+class GUISystem //: public UBCBase //: public UBC //: public renderEngine //, inputSystem
 {
 public:
     GUISystem();  // constructor
@@ -79,6 +79,9 @@ public:
     boost::shared_ptr<renderEngine> getRenderE();  // retrieves the value of render
     void setRender(boost::shared_ptr<renderEngine> set);  // sets the value of render
 */
+
+    UBCBaseSharedPtr getBase();  // retrieves the value of base
+    void setBase(UBCBaseSharedPtr set);  // sets the value of base
 
     bool getSetupComplete();  // retrieves the value of setupComplete
     void setSetupComplete(bool set);  // sets the value of setupComplete
@@ -292,6 +295,7 @@ private:
 //    static MyGUI::Gui *mGUI;
 //    static MyGUI::OgrePlatform *mPlatform;
     
+    static UBCBaseSharedPtr base;
     static boost::shared_ptr<MyGUI::Gui> mGUI;  // The MyGUI object
     static boost::shared_ptr<MyGUI::OgrePlatform> mPlatform;  // The MyGUI Platform object
 

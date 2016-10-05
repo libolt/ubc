@@ -47,47 +47,47 @@ void offensePlays::setTitle(std::string set)	// sets the value of title
     title = set;
 }
 
-std::vector<playerPositions> offensePlays::getPlayerPosition()	// retrieves the value of playerPosition
+playerPositionsVec offensePlays::getPlayerPosition()	// retrieves the value of playerPosition
 {
     return (playerPosition);
 }
-void offensePlays::setPlayerPosition(std::vector<playerPositions> set)  // sets the value of playerPosition
+void offensePlays::setPlayerPosition(playerPositionsVec set)  // sets the value of playerPosition
 {
     playerPosition = set;
 }
 
-std::vector<Ogre::Vector3> offensePlays::getStartPositions()  // retrieves the value of startPositions 
+OgreVector3Vec offensePlays::getStartPositions()  // retrieves the value of startPositions 
 {
     return (startPositions);
 }
-void offensePlays::setStartPositions(std::vector<Ogre::Vector3> set)  // sets the value of startPositions
+void offensePlays::setStartPositions(OgreVector3Vec set)  // sets the value of startPositions
 {
     startPositions = set;
 }
 
-std::vector< std::vector<Ogre::Vector3> > offensePlays::getExecutePositions()  // retrieves the value of startPositions 
+std::vector< OgreVector3Vec > offensePlays::getExecutePositions()  // retrieves the value of startPositions 
 {
     return (executePositions);
 }
-void offensePlays::setExecutePositions(std::vector< std::vector<Ogre::Vector3> > set)  // sets the value of startPositions
+void offensePlays::setExecutePositions(std::vector< OgreVector3Vec > set)  // sets the value of startPositions
 {
     executePositions = set;
 }
 
-std::vector<bool> offensePlays::getStartPositionSet()  // returns the value of startPositionSet
+boolVec offensePlays::getStartPositionSet()  // returns the value of startPositionSet
 {
     return (startPositionSet);
 }
-void offensePlays::setStartPositionSet(std::vector<bool> set) // sets the value of startPositionSet
+void offensePlays::setStartPositionSet(boolVec set) // sets the value of startPositionSet
 {
     startPositionSet = set;
 }
 
-std::vector< std::vector<bool> > offensePlays::getExecutePositionReached()  // returns the value of executePositionSet
+std::vector< boolVec > offensePlays::getExecutePositionReached()  // returns the value of executePositionSet
 {
     return (executePositionReached);
 }
-void offensePlays::setExecutePositionReached(std::vector< std::vector<bool> > set)  // sets the value of executePositionSet
+void offensePlays::setExecutePositionReached(std::vector< boolVec > set)  // sets the value of executePositionSet
 {
     executePositionReached = set;
 }

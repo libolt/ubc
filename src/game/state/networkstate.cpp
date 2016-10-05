@@ -47,7 +47,7 @@ void networkState::setNetwork(boost::shared_ptr<networkEngine> set)  // sets the
     network = set;
 }
 
-void networkState::processLocalInput(std::vector<boost::shared_ptr<teamState> > activeTeamInstance)  // processes local input for sending to remote system
+void networkState::processLocalInput(teamStateVecSharedPtr activeTeamInstance)  // processes local input for sending to remote system
 {
 //    boost::shared_ptr<inputSystem> input = inputSystem::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
@@ -55,7 +55,7 @@ void networkState::processLocalInput(std::vector<boost::shared_ptr<teamState> > 
     inputInGameWorkQueues inputQueue;
     networkPlayerStateObject netPStateObj;
     
-//    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
+//    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
     int humanControlled = activeTeamInstance[getNetworkE()->getTeamType()]->getHumanControlled();
     int humanPlayer = activeTeamInstance[getNetworkE()->getTeamType()]->getHumanPlayer();
 
@@ -212,9 +212,9 @@ void networkState::processRemoteInput() // processes input received from a remot
     
 }
 
-void networkState::processNetworkEvents(std::vector<boost::shared_ptr<teamState> > activeTeamInstance)  // processes events from network code
+void networkState::processNetworkEvents(teamStateVecSharedPtr activeTeamInstance)  // processes events from network code
 {
-//    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = getActiveTeamInstance();
+//    teamStateVecSharedPtr activeTeamInstance = getActiveTeamInstance();
     //    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
 
 //  std::vector <playerState> playerInstance = gameS->getPlayerInstance();
@@ -225,7 +225,7 @@ void networkState::processNetworkEvents(std::vector<boost::shared_ptr<teamState>
         processNetworkPlayerEvents(activeTeamInstance);
     }
 
-//  std::vector<teamState> teamInstance = teamInstance();
+//  teamStateVec teamInstance = teamInstance();
 /*TS    activeTeamInstance[0]->setPlayerType("human");  // sets playerType for activeTeamInstance 0 to human
 
     // checks if this instance is a server and whether activeTeamInstance 1 is set to be controlled by network player
@@ -242,16 +242,16 @@ TS*/
 ///    setActiveTeamInstance(activeTeamInstance);
 }
 
-void networkState::processNetworkPlayerEvents(std::vector<boost::shared_ptr<teamState> > activeTeamInstance)  // processes player events from network code
+void networkState::processNetworkPlayerEvents(teamStateVecSharedPtr activeTeamInstance)  // processes player events from network code
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
 
-//    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = getActiveTeamInstance();
+//    teamStateVecSharedPtr activeTeamInstance = getActiveTeamInstance();
 
     networkPlayerStateObject netPStateObj;
     std::stringstream strStream;
-    std::vector<boost::shared_ptr<playerState> > activePlayerInstance;
+    playerStateVecSharedPtr activePlayerInstance;
     std::string receivedData = getNetworkE()->getReceivedData();  // stores receivedData value
     size_t playerNumber = -1;  // stores which player the data is for
     size_t iterator;  // iterator for match loop

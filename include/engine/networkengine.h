@@ -95,8 +95,8 @@ class networkEngine : public engine
     ENetEvent getEvent();  // retrieves the value of event 
     void setEvent(ENetEvent set);  // sets event 
 
-    boost::shared_ptr<ENetPeer> getPeer();  // retrieves the value of peer
-    void setPeer(boost::shared_ptr<ENetPeer> set);  // sets the value of peer
+    ENetPeerSharedPtr getPeer();  // retrieves the value of peer
+    void setPeer(ENetPeerSharedPtr set);  // sets the value of peer
 
     ENetHostSharedPtr getServer();  // retrieves the value of server
     void setServer(ENetHostSharedPtr set);  // sets the value of server
@@ -132,7 +132,7 @@ class networkEngine : public engine
     ENetAddress serverAddress;
     ENetHostSharedPtr client;
     ENetEvent event;
-    boost::shared_ptr<ENetPeer> peer;
+    ENetPeerSharedPtr peer;
     ENetHostSharedPtr server;
     boost::shared_ptr<ENetPacket> packet;
 

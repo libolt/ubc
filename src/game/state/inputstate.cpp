@@ -48,11 +48,11 @@ void inputState::setInputE(boost::shared_ptr<inputEngine> set)  // sets the valu
 //    inputE = set;
 }
 
-std::vector<boost::shared_ptr<userInput> > inputState::getUInput()  // retrieves the value of uInput
+userInputVecSharedPtr inputState::getUInput()  // retrieves the value of uInput
 {
     return (uInput);
 }
-void inputState::setUInput(std::vector<boost::shared_ptr<userInput> > set)  // sets the value of uInput
+void inputState::setUInput(userInputVecSharedPtr set)  // sets the value of uInput
 {
     uInput = set;
 }

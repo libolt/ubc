@@ -56,45 +56,45 @@ public:
 
     loader();  // constructor
     ~loader(); // destructor   
-    std::vector<std::string> pathSplit(const std::string paths);
+    stdStringVec pathSplit(const std::string paths);
     std::string findFile(std::string fileName);
 //	string * pathArray;
 
-    std::vector<std::string> getBasketballFiles();  // retrieves the value of basketballFiles
-    void setBasketballFiles(std::vector<std::string> set);  // sets the value of basketballFiles
+    stdStringVec getBasketballFiles();  // retrieves the value of basketballFiles
+    void setBasketballFiles(stdStringVec set);  // sets the value of basketballFiles
 
-    std::vector<std::string> getCourtFiles();  // retrieves the value of courtFiles
-    void setCourtFiles(std::vector<std::string> set);  // sets the value of courtFiles
+    stdStringVec getCourtFiles();  // retrieves the value of courtFiles
+    void setCourtFiles(stdStringVec set);  // sets the value of courtFiles
 
-    std::vector<std::string> getOffensePlayFiles();  // retrieves the value of offensePlayFiles
-    void setOffensePlayFiles(std::vector<std::string> set);  // sets the value of offensePlayFiles
+    stdStringVec getOffensePlayFiles();  // retrieves the value of offensePlayFiles
+    void setOffensePlayFiles(stdStringVec set);  // sets the value of offensePlayFiles
     
-    std::vector<std::string> getPlayerFiles();  // retrieves the value of playerFiles
-    void setPlayerFiles(std::vector<std::string> set);  // sets the value of playerFiles
+    stdStringVec getPlayerFiles();  // retrieves the value of playerFiles
+    void setPlayerFiles(stdStringVec set);  // sets the value of playerFiles
 
-    std::vector<std::string> getTeamFiles();  // retrieves the value of teamFiles
-    void setTeamFiles(std::vector<std::string> set);  // sets the value of teamFiles
+    stdStringVec getTeamFiles();  // retrieves the value of teamFiles
+    void setTeamFiles(stdStringVec set);  // sets the value of teamFiles
 
-    std::vector<std::string> getUserInputFiles();  // retrieves the value of userInputFiles
-    void setUserInputFiles(std::vector<std::string> set);  // sets the value of userInputFiles
+    stdStringVec getUserInputFiles();  // retrieves the value of userInputFiles
+    void setUserInputFiles(stdStringVec set);  // sets the value of userInputFiles
 
-    std::vector<basketballStateSharedPtr > getBInstance();  // retrieves the value of bInstance
-    void setBInstance(std::vector<basketballStateSharedPtr > set);  // sets the value of bInstance
+    basketballStateVecSharedPtr getBInstance();  // retrieves the value of bInstance
+    void setBInstance(basketballStateVecSharedPtr set);  // sets the value of bInstance
     
-    std::vector<courtStateSharedPtr > getCInstance();  // retrieves the value of cInstance
-    void setCInstance(std::vector<courtStateSharedPtr > set);  // sets the value of cInstance
+    courtStateVecSharedPtr getCInstance();  // retrieves the value of cInstance
+    void setCInstance(courtStateVecSharedPtr set);  // sets the value of cInstance
   
-    std::vector<offensePlaysSharedPtr> getOPInstance();  // retrieves the value of opInstance
-    void setOPInstance(std::vector<offensePlaysSharedPtr> set);  // sets the value of opInstance
+    offensePlaysVecSharedPtr getOPInstance();  // retrieves the value of opInstance
+    void setOPInstance(offensePlaysVecSharedPtr set);  // sets the value of opInstance
     
-    std::vector<playerStateSharedPtr > getPInstance();  // retrieves the value of pInstance
-    void setPInstance(std::vector<playerStateSharedPtr > set);  // sets the value of pInstance
+    playerStateVecSharedPtr getPInstance();  // retrieves the value of pInstance
+    void setPInstance(playerStateVecSharedPtr set);  // sets the value of pInstance
     
-    static std::vector<teamStateSharedPtr > getTInstance();  // retrieves the value of tInstance
-    void setTInstance(std::vector<teamStateSharedPtr > set);  // sets the value of tInstance
+    static teamStateVecSharedPtr getTInstance();  // retrieves the value of tInstance
+    void setTInstance(teamStateVecSharedPtr set);  // sets the value of tInstance
     
-    std::vector<userInputSharedPtr > getUIInstance();  // retrieves the value of uiInstance
-    void setUIInstance(std::vector<userInputSharedPtr > set);  // sets the value of uiInstance
+    userInputVecSharedPtr getUIInstance();  // retrieves the value of uiInstance
+    void setUIInstance(userInputVecSharedPtr set);  // sets the value of uiInstance
     
     static bool getBasketballFilesLoaded();  // retrieves the value of basketballFilesLoaded
     void setBasketballFilesLoaded(bool set);  // sets the value of basketballFilesLoaded
@@ -128,33 +128,33 @@ public:
     bool checkIfUserInputsLoaded();  // checks if uset inputs have been loaded into uiInstance
     
     // Basketballs
-    std::vector<basketballStateSharedPtr > loadBasketballs();  // load basketball XML files
-    std::vector<std::string> loadBasketballListFile(std::string fileName);  // load the list of basketballs from basketballs.xml
+    basketballStateVecSharedPtr loadBasketballs();  // load basketball XML files
+    stdStringVec loadBasketballListFile(std::string fileName);  // load the list of basketballs from basketballs.xml
     basketballStateSharedPtr loadBasketballFile(std::string fileName);  // loads data from the basketball XML files.
 
     // Courts
-    std::vector<courtStateSharedPtr > loadCourts();  // load court XML files
-    std::vector<std::string> loadCourtListFile(std::string fileName);  // load the list of courts from courts.xml
+    courtStateVecSharedPtr loadCourts();  // load court XML files
+    stdStringVec loadCourtListFile(std::string fileName);  // load the list of courts from courts.xml
     courtStateSharedPtr loadCourtFile(std::string fileName);  // loads data from the court XML files.
 
     //Offense
-    std::vector<offensePlaysSharedPtr> loadOffensePlays();  // load offense plays from XML files
-    std::vector<std::string> loadOffensePlayListFile(std::string fileName);  // loads the list of offense play files from plays.xml
+    offensePlaysVecSharedPtr loadOffensePlays();  // load offense plays from XML files
+    stdStringVec loadOffensePlayListFile(std::string fileName);  // loads the list of offense play files from plays.xml
     offensePlaysSharedPtr loadOffensePlayFile(std::string fileName); // loads data from the offense play XML files
 
    // Players
-    std::vector<playerStateSharedPtr > loadPlayers();  // loads player data from XML files
-    std::vector<std::string> loadPlayerListFile(std::string fileName);  // loads list of player files from players.xml
+    playerStateVecSharedPtr loadPlayers();  // loads player data from XML files
+    stdStringVec loadPlayerListFile(std::string fileName);  // loads list of player files from players.xml
     playerStateSharedPtr loadPlayerFile(std::string fileName);  // loads data from the player XML files
 
     // Teams
-    std::vector<teamStateSharedPtr > loadTeams();  // loads team data from XML files
-    std::vector<std::string> loadTeamListFile(std::string fileName);  // loads list of team files from teams.xml
+    teamStateVecSharedPtr loadTeams();  // loads team data from XML files
+    stdStringVec loadTeamListFile(std::string fileName);  // loads list of team files from teams.xml
     bool loadTeamFile(std::string fileName);  // loads data from the team XML files
 
     // User input
-    std::vector<userInputSharedPtr > loadUserInputs();  // load user input XML files
-    std::vector<std::string> loadUserInputListFile(std::string fileName);  // load the list of user input configs from userinputs.xml
+    userInputVecSharedPtr loadUserInputs();  // load user input XML files
+    stdStringVec loadUserInputListFile(std::string fileName);  // load the list of user input configs from userinputs.xml
     userInputSharedPtr loadUserInputFile(std::string fileName);  // loads data from the user input XML files.
 
     
@@ -164,19 +164,19 @@ protected:
 //    loader& operator= (const loader&);
 
 private:
-    static std::vector<basketballStateSharedPtr> bInstance;
-    static std::vector<courtStateSharedPtr> cInstance;
-    static std::vector<offensePlaysSharedPtr> opInstance;
-    static std::vector<playerStateSharedPtr> pInstance;
-    static std::vector<teamStateSharedPtr > tInstance;
-    static std::vector<userInputSharedPtr > uiInstance;
+    static basketballStateVecSharedPtr bInstance;
+    static courtStateVecSharedPtr cInstance;
+    static offensePlaysVecSharedPtr opInstance;
+    static playerStateVecSharedPtr pInstance;
+    static teamStateVecSharedPtr tInstance;
+    static userInputVecSharedPtr uiInstance;
 
-    static std::vector<std::string> basketballFiles;  // stores list of basketball xml files
-    static std::vector<std::string> courtFiles;  // stores list of court xml files
-    static std::vector<std::string> offensePlayFiles;  // stores list of offense play xml files
-    static std::vector<std::string> playerFiles;  // stores list of player xml files
-    static std::vector<std::string> teamFiles;	 // stores list of team xml files
-    static std::vector<std::string> userInputFiles;  // stores list of court xml files
+    static stdStringVec basketballFiles;  // stores list of basketball xml files
+    static stdStringVec courtFiles;  // stores list of court xml files
+    static stdStringVec offensePlayFiles;  // stores list of offense play xml files
+    static stdStringVec playerFiles;  // stores list of player xml files
+    static stdStringVec teamFiles;	 // stores list of team xml files
+    static stdStringVec userInputFiles;  // stores list of court xml files
 
     // determines whether files have been loaded successfully
     static bool basketballFilesLoaded;

@@ -202,7 +202,7 @@ void UBC::processInput()  // processes game input
 //    boost::shared_ptr<GUISystem> gui = GUISystem::Instance();
 //    boost::shared_ptr<inputSystem> input = inputSystem::Instance();
 //    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
-    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = base->getGameS()->getActiveTeamInstance();
+    teamStateVecSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
     networkPlayerStateObject netPStateObj;
 
     logMsg("inputProcess!");
@@ -264,7 +264,7 @@ void UBC::processInput()  // processes game input
             {
                 if (activeTeamInstance[inputIterator]->getPlayerInstancesCreated())
                 {
-                    std::vector<boost::shared_ptr<playerState> > activePlayerInstance = activeTeamInstance[inputIterator]->getActivePlayerInstance();
+                    playerStateVecSharedPtr activePlayerInstance = activeTeamInstance[inputIterator]->getActivePlayerInstance();
                     if (activeTeamInstance[inputIterator]->getHumanControlled())
                     {
                         int humanPlayer = activeTeamInstance[inputIterator]->getHumanPlayer();
@@ -293,7 +293,7 @@ void UBC::processInput()  // processes game input
                         logMsg("inputQueue.size = " +convert->toString(inputQueue.size()));
                         x = 0;
                         int activeBBallInstance = getGameS()->getActiveBBallInstance();
-                        std::vector<basketballState> bballInstance = getGameS()->getBasketballInstance();
+                        basketballStateVec bballInstance = getGameS()->getBasketballInstance();
                         logMsg("humanInstance.size() == " +convert->toString(humanInstance));
                         if (humanInstance < 11) // makes sure that the humanInstance is a valid number
                         {
@@ -375,8 +375,8 @@ void UBC::processInput()  // processes game input
                                 ++x;
                             }
                         }
-                        std::vector<boost::shared_ptr<teamState> > tInstance = getGameS()->getActiveTeamInstance();
-                        std::vector<boost::shared_ptr<playerState> > activePInstance = tInstance[inputIterator]->getActivePlayerInstance();
+                        teamStateVecSharedPtr tInstance = getGameS()->getActiveTeamInstance();
+                        playerStateVecSharedPtr activePInstance = tInstance[inputIterator]->getActivePlayerInstance();
                         logMsg("humanInstance == " +convert->toString(humanInstance));
                         //logMsg("inPassSteal == " +convert->toString(activePInstance[humanInstance]->getPassSteal()));
                         //exit(0);

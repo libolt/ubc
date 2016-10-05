@@ -169,12 +169,12 @@ boost::shared_ptr<MyGUI::ListBox> GUISystem::courtSelectBox;
 boost::shared_ptr<MyGUI::ImageBox> GUISystem::courtPreviewImgBox;
 boost::shared_ptr<MyGUI::TextBox> GUISystem::courtNameTxtBox;
 
-std::vector< std::vector<std::string> > GUISystem::playerNames;
-std::vector< std::vector<std::string> > GUISystem::playerPositionsPlayed;
-std::vector< std::vector<size_t> > GUISystem::playerIDs;  // stores player IDs for each team
-std::vector< std::vector<size_t> > GUISystem::team0IDs;
-std::vector< std::vector<size_t> > GUISystem::team1IDs;
-std::vector< std::vector<size_t> > GUISystem::teamStarterID; // stores the selected starters for each team 
+std::vector< stdStringVec > GUISystem::playerNames;
+std::vector< stdStringVec > GUISystem::playerPositionsPlayed;
+std::vector< sizeTVec > GUISystem::playerIDs;  // stores player IDs for each team
+std::vector< sizeTVec > GUISystem::team0IDs;
+std::vector< sizeTVec > GUISystem::team1IDs;
+std::vector< sizeTVec > GUISystem::teamStarterID; // stores the selected starters for each team 
 
 size_t GUISystem::displayCount;
 
@@ -613,7 +613,7 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
 //    changeActiveMenu(TEAMSELECT);
     boost::shared_ptr<loader> load; // = loader::Instance();
     bool changeMenu = false;  // determinrs if menu is to be changed
-//    std::vector<boost::shared_ptr<teamState> > teamInstance; // = gameS->getTeamDataInstance();
+//    teamStateVecSharedPtr teamInstance; // = gameS->getTeamDataInstance();
 
     logMsg("teamSelectionMenu");
 
@@ -852,7 +852,7 @@ void GUISystem::teamsSelected()  // processes team selection
     boost::shared_ptr<conversion> convert = conversion::Instance();
     
     logMsg("GUISystem::teamsSelected()");
-    std::vector<size_t> teamID;
+    sizeTVec teamID;
     teamID.push_back(team0SelectBox->getIndexSelected());
     teamID.push_back(team1SelectBox->getIndexSelected());
 //    gameS->setTeamID(teamID);
@@ -871,15 +871,15 @@ void GUISystem::playerStartSelected()  // process player start selection
     //gameState *gameS = gameState::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 
-//    std::vector<boost::shared_ptr<teamState> >  activeTeamInstance = gameS->getActiveTeamInstance();
+//    teamStateVecSharedPtr  activeTeamInstance = gameS->getActiveTeamInstance();
 
     logMsg("GUISystem::playerStartSelected");
         exit(0);
-    std::vector<std::string> team0Starters;
-    std::vector<std::string> team1Starters;
-    std::vector<size_t> starters; // used for initial creatio  of teamStarterID vector
-    std::vector<boost::shared_ptr<playerState> > playerInstance;
-    std::vector<boost::shared_ptr<playerState> > activePlayerInstance;
+    stdStringVec team0Starters;
+    stdStringVec team1Starters;
+    sizeTVec starters; // used for initial creatio  of teamStarterID vector
+    playerStateVecSharedPtr playerInstance;
+    playerStateVecSharedPtr activePlayerInstance;
 
     size_t IDs = 0;
     while (teamStarterID.size() < 2)
@@ -973,7 +973,7 @@ void GUISystem::playerStartSelected()  // process player start selection
 //    gameS->setTeamStarterID(teamStarterID); // sets the selected starters for both teams in gameState class
     getGameS()->setTeamStarterID(teamStarterID); // sets the selected starters for both teams in gameState class
     
-    std::vector<size_t> activePlayerID;
+    sizeTVec activePlayerID;
 
     for (size_t x=0;x<5;++x)
     {
@@ -1023,7 +1023,7 @@ void GUISystem::playerStartSelected()  // process player start selection
 //    logMsg("Team 0 player start positions set");
 //    exit(0);
     size_t i = 0;
-    //std::vector<playerState> playerInstance;
+    //playerStateVec playerInstance;
     playerInstance.clear();
     playerInstance = getGameS()->getActiveTeamInstance()[0]->getPlayerInstance();
     while (i<playerInstance.size())

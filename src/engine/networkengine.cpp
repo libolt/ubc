@@ -184,11 +184,11 @@ void networkEngine::setEvent(ENetEvent set)  // sets the value of event
     event = set;
 }
 
-boost::shared_ptr<ENetPeer> networkEngine::getPeer()  // retrieves the value of peer
+ENetPeerSharedPtr networkEngine::getPeer()  // retrieves the value of peer
 {
     return (peer);
 }
-void networkEngine::setPeer(boost::shared_ptr<ENetPeer> set)  // sets the value of peer
+void networkEngine::setPeer(ENetPeerSharedPtr set)  // sets the value of peer
 {
     peer = set;
 }
@@ -251,7 +251,7 @@ bool networkEngine::clientConnect()  // performs a client connection to the serv
         /* Initiate the connection, allocating the two channels 0 and 1. */
 //        peer = enet_host_connect (client.get(), & serverAddress, 2, 0);
         ENetPeer *tempPeer = enet_host_connect (client.get(), & serverAddress, 2, 0);
-        peer = boost::shared_ptr<ENetPeer>(tempPeer);
+        peer = ENetPeerSharedPtr(tempPeer);
         if (peer == NULL)
         {
             logMsg("No available peers for initiating an ENet connection.");
@@ -411,7 +411,7 @@ void networkEngine::networkServer()  // executes the network server code
             case ENET_EVENT_TYPE_CONNECT:
 //                peer = event.peer;  // stores the peer connection for later use.
                 tempPeer = event.peer;
-                peer = boost::shared_ptr<ENetPeer>(tempPeer);
+                peer = ENetPeerSharedPtr(tempPeer);
                 serverReceivedConnection = true;  // Tells code that a client has connected
 //           	exit(0);
 //                logMsg("Peer == " +convert->toString(addressHost));

@@ -22,43 +22,48 @@
 #define _OFFENSEPLAYS_H_
 
 #include "Ogre.h"
-
 #include "enums.h"
+#include "typedefs.h"
+
+
+typedef std::vector<playerPositions> playerPositionsVec;
+typedef std::vector<Ogre::Vector3> OgreVector3Vec;
 
 class offensePlays  // class that contains the information to run each play
 {
-public:
+    public:
 
-    class playerDirectives
-    {
-        public:
+        class playerDirectives
+        {
+            public:
 
-            playerPositions getPlayerPosition();  // retrieves the value of playerPosition
-            void setPlayerPosition(playerPositions set);  // sets the value of playerPosition
-            
-            directiveTypes getType();  // retrieves the value of type
-            void setType(directiveTypes set);  // sets the value of type
+                playerPositions getPlayerPosition();  // retrieves the value of playerPosition
+                void setPlayerPosition(playerPositions set);  // sets the value of playerPosition
 
-            offenseWaitFor getWaitFor();  // retrieves the value of waitFor
-            void setWaitFor(offenseWaitFor set);  // sets the value of waitFor
+                directiveTypes getType();  // retrieves the value of type
+                void setType(directiveTypes set);  // sets the value of type
 
-            playerPositions getPlayerSet();  // retrieves the value of playerSet
-            void setPlayerSet(playerPositions set);  // sets the value of playerSet
+                offenseWaitFor getWaitFor();  // retrieves the value of waitFor
+                void setWaitFor(offenseWaitFor set);  // sets the value of waitFor
 
-            positionTypes getPositionType();  // retrieves the value of positionType
-            void setPositionType(positionTypes set);  // sets the value of positionType
+                playerPositions getPlayerSet();  // retrieves the value of playerSet
+                void setPlayerSet(playerPositions set);  // sets the value of playerSet
 
-            int getPosition();  // retrieves the value of position
-            void setPosition(int set);  // sets the value of position
+                positionTypes getPositionType();  // retrieves the value of positionType
+                void setPositionType(positionTypes set);  // sets the value of positionType
 
-        private:
-            playerPositions playerPosition;  // stores which position the directive belongs to
-            directiveTypes type;  // stores type of directive given
-            offenseWaitFor waitFor;  // stores what to wait for if anything
-            playerPositions playerSet;  // stores which player position sets
-            positionTypes positionType;  // stores position types
-            int position;
-    };
+                int getPosition();  // retrieves the value of position
+                void setPosition(int set);  // sets the value of position
+
+            private:
+                playerPositions playerPosition;  // stores which position the directive belongs to
+                directiveTypes type;  // stores type of directive given
+                offenseWaitFor waitFor;  // stores what to wait for if anything
+                playerPositions playerSet;  // stores which player position sets
+                positionTypes positionType;  // stores position types
+                int position;
+        };
+        typedef std::vector<offensePlays::playerDirectives> playerDirectivesVec;
 
         std::string getPlayName();  // retrieves the value of playName;
         void setPlayName(std::string set);  // sets the value of playName
@@ -69,34 +74,37 @@ public:
         std::string getTitle();  // retrieves the value of title
         void setTitle(std::string set);  // sets the value of title
 
-        std::vector<playerPositions> getPlayerPosition();  // retrieves the value of playerPosition
-        void setPlayerPosition(std::vector<playerPositions> set);  // sets the value of playerPosition
+        playerPositionsVec getPlayerPosition();  // retrieves the value of playerPosition
+        void setPlayerPosition(playerPositionsVec set);  // sets the value of playerPosition
 
-        std::vector<Ogre::Vector3> getStartPositions();  // retrieves the value of startPositions 
-        void setStartPositions(std::vector<Ogre::Vector3> set);  // sets the value of startPositions 
+        OgreVector3Vec getStartPositions();  // retrieves the value of startPositions
+        void setStartPositions(OgreVector3Vec set);  // sets the value of startPositions
 
-        std::vector <std::vector<Ogre::Vector3> > getExecutePositions();    // retrieves the value of executePositions 
-        void setExecutePositions(std::vector< std::vector<Ogre::Vector3> > set);    // sets the value of executePositions
+        std::vector <OgreVector3Vec > getExecutePositions();    // retrieves the value of executePositions
+        void setExecutePositions(std::vector< OgreVector3Vec > set);    // sets the value of executePositions
 
-        std::vector<bool> getStartPositionSet();  // retrieves the value of startPositionSet
-        void setStartPositionSet(std::vector<bool> set);  // sets the value of startPositionSet
+        boolVec getStartPositionSet();  // retrieves the value of startPositionSet
+        void setStartPositionSet(boolVec set);  // sets the value of startPositionSet
 
-        std::vector< std::vector<bool> > getExecutePositionReached();  // retrieves the value of executePositionSet
-        void setExecutePositionReached(std::vector< std::vector<bool> > set);  // sets the value of executePositionSet
+        std::vector< boolVec > getExecutePositionReached();  // retrieves the value of executePositionSet
+        void setExecutePositionReached(std::vector< boolVec > set);  // sets the value of executePositionSet
 
-        std::vector<playerDirectives> getPlayerDirective();  // returns the value of playerDirective
-        void setPlayerDirective(std::vector<playerDirectives> set);  // sets the value of playerDirective
+        playerDirectivesVec getPlayerDirective();  // returns the value of playerDirective
+        void setPlayerDirective(playerDirectivesVec set);  // sets the value of playerDirective
 
 private:
     std::string playName;  // stores the name of the play
     int variation;  // store sthe name of the variation of the play
     std::string title;  // stores title of the play
-    std::vector<playerPositions> playerPosition;  // stores player positions
-    std::vector<Ogre::Vector3> startPositions;  // stores the positions for players get to in order to execute offense
-    std::vector< std::vector<Ogre::Vector3> > executePositions;  // stores the positions where players move when executing offense
-    std::vector<playerDirectives> playerDirective;  // stores directives for each player
-    std::vector<bool> startPositionSet;  // stores whether player is at start position
-    std::vector< std::vector<bool> > executePositionReached;  // stores whether player is at execute position
+    playerPositionsVec playerPosition;  // stores player positions
+    OgreVector3Vec startPositions;  // stores the positions for players get to in order to execute offense
+    std::vector< OgreVector3Vec > executePositions;  // stores the positions where players move when executing offense
+    playerDirectivesVec playerDirective;  // stores directives for each player
+    boolVec startPositionSet;  // stores whether player is at start position
+    std::vector< boolVec > executePositionReached;  // stores whether player is at execute position
 
 };
+
+typedef std::vector<offensePlays::playerDirectives> playerDirectivesVec;
+
 #endif

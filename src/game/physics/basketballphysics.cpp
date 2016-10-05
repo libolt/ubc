@@ -103,7 +103,7 @@ bool basketballPhysics::setup()  // sets up physics for the basketball
     boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
 
-    std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
+    basketballStateVec basketballInstance = gameS->getBasketballInstance();
     size_t activeBBallInstance = gameS->getActiveBBallInstance();
     btScalar mass = 0.62f;
     btVector3 inertia, inertia2;
@@ -191,9 +191,9 @@ void basketballPhysics::ballDribbling(Ogre::Vector3 bballPos, btRigidBody *court
     physicsEngine physEngine;
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 
-//    std::vector<playerState> pInstance = gameS->getPlayerInstance();
-//    std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
-//    std::vector<courtState> courtInstance = gameS->getCourtInstance();
+//    playerStateVec pInstance = gameS->getPlayerInstance();
+//    basketballStateVec basketballInstance = gameS->getBasketballInstance();
+//    courtStateVec courtInstance = gameS->getCourtInstance();
 
 //    int activeBBallInstance = gameS->getActiveBBallInstance();
 
@@ -295,7 +295,7 @@ void basketballPhysics::updatePosition()  // updates the position of basketball 
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 
 //    size_t activeBBallInstance = gameS->getActiveBBallInstance();
-//    std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
+//    basketballStateVec basketballInstance = gameS->getBasketballInstance();
 
     if (getBasketballVelocitySet())
     {

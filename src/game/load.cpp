@@ -37,6 +37,7 @@
 #include "state/playerstate.h"
 #include "state/teamstate.h"
 #include "offenseplays.h"
+#include "typedefs.h"
 #include "userinput.h"
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
@@ -45,20 +46,20 @@
 
 // static variables
 
-std::vector<boost::shared_ptr<basketballState> > loader::bInstance;
-std::vector<boost::shared_ptr<courtState> > loader::cInstance;
-std::vector<boost::shared_ptr<offensePlays> > loader::opInstance;
-std::vector<boost::shared_ptr<playerState> > loader::pInstance;
-std::vector<boost::shared_ptr<teamState> > loader::tInstance;
-std::vector<boost::shared_ptr<userInput> > loader::uiInstance;
+basketballStateVecSharedPtr loader::bInstance;
+courtStateVecSharedPtr loader::cInstance;
+offensePlaysVecSharedPtr loader::opInstance;
+playerStateVecSharedPtr loader::pInstance;
+teamStateVecSharedPtr loader::tInstance;
+userInputVecSharedPtr loader::uiInstance;
 
 
-std::vector<std::string> loader::basketballFiles;  // stores list of basketball xml files
-std::vector<std::string> loader::courtFiles;  // stores list of court xml files
-std::vector<std::string> loader::offensePlayFiles;  // stores list of offense play xml files
-std::vector<std::string> loader::playerFiles;  // stores list of player xml files
-std::vector<std::string> loader::teamFiles;  // stores list of team xml files
-std::vector<std::string> loader::userInputFiles; 
+stdStringVec loader::basketballFiles;  // stores list of basketball xml files
+stdStringVec loader::courtFiles;  // stores list of court xml files
+stdStringVec loader::offensePlayFiles;  // stores list of offense play xml files
+stdStringVec loader::playerFiles;  // stores list of player xml files
+stdStringVec loader::teamFiles;  // stores list of team xml files
+stdStringVec loader::userInputFiles; 
 
 bool loader::basketballFilesLoaded;
 bool loader::courtFilesLoaded;
@@ -88,110 +89,110 @@ loader::~loader()  // destructor
 {
 }
 
-std::vector<std::string> loader::getBasketballFiles()  // retrieves the value of basketballFiles
+stdStringVec loader::getBasketballFiles()  // retrieves the value of basketballFiles
 {
     return (basketballFiles);
 }
-void loader::setBasketballFiles(std::vector<std::string> set)  // sets the value of basketballFiles
+void loader::setBasketballFiles(stdStringVec set)  // sets the value of basketballFiles
 {
     basketballFiles = set;
 }
 
-std::vector<std::string> loader::getCourtFiles()   // retrieves the value of courtFiles
+stdStringVec loader::getCourtFiles()   // retrieves the value of courtFiles
 {
     return (courtFiles);
 }
-void loader::setCourtFiles(std::vector<std::string> set)  // sets the value of courtFiles
+void loader::setCourtFiles(stdStringVec set)  // sets the value of courtFiles
 {
     courtFiles = set;
 }
 
-std::vector<std::string> loader::getOffensePlayFiles()  // retrieves the value of offensePlayFiles
+stdStringVec loader::getOffensePlayFiles()  // retrieves the value of offensePlayFiles
 {
     return (offensePlayFiles);
 }
-void loader::setOffensePlayFiles(std::vector<std::string> set)  // sets the value of offensePlayFiles
+void loader::setOffensePlayFiles(stdStringVec set)  // sets the value of offensePlayFiles
 {
     offensePlayFiles = set;
 }
 
-std::vector<std::string> loader::getPlayerFiles()  // retrieves the value of playerFiles
+stdStringVec loader::getPlayerFiles()  // retrieves the value of playerFiles
 {
     return(playerFiles);
 }
-void loader::setPlayerFiles(std::vector<std::string> set)  // sets the value of playerFiles
+void loader::setPlayerFiles(stdStringVec set)  // sets the value of playerFiles
 {
     playerFiles = set;
 }
 
-std::vector<std::string> loader::getTeamFiles()  // retrieves the value of teamFiles
+stdStringVec loader::getTeamFiles()  // retrieves the value of teamFiles
 {
     return(teamFiles);
 }
-void loader::setTeamFiles(std::vector<std::string> set)  // sets the value of teamFiles
+void loader::setTeamFiles(stdStringVec set)  // sets the value of teamFiles
 {
     teamFiles = set;
 }
 
-std::vector<std::string> loader::getUserInputFiles()   // retrieves the value of userInputFiles
+stdStringVec loader::getUserInputFiles()   // retrieves the value of userInputFiles
 {
     return (userInputFiles);
 }
-void loader::setUserInputFiles(std::vector<std::string> set)  // sets the value of userInputFiles
+void loader::setUserInputFiles(stdStringVec set)  // sets the value of userInputFiles
 {
     userInputFiles = set;
 }
 
-std::vector<boost::shared_ptr<basketballState> > loader::getBInstance()  // retrieves the value of bInstance
+basketballStateVecSharedPtr loader::getBInstance()  // retrieves the value of bInstance
 {
     return (bInstance);
 }
-void loader::setBInstance(std::vector<boost::shared_ptr<basketballState> > set)  // sets the value of bInstance
+void loader::setBInstance(basketballStateVecSharedPtr set)  // sets the value of bInstance
 {
     bInstance = set;
 }
 
-std::vector<boost::shared_ptr<courtState> > loader::getCInstance()  // retrieves the value of cInstance
+courtStateVecSharedPtr loader::getCInstance()  // retrieves the value of cInstance
 {
     return (cInstance);
 }
-void loader::setCInstance(std::vector<boost::shared_ptr<courtState> > set)  // sets the value of cInstance
+void loader::setCInstance(courtStateVecSharedPtr set)  // sets the value of cInstance
 {
     cInstance = set;
 }
 
-std::vector<boost::shared_ptr<offensePlays> > loader::getOPInstance()  // retrieves the value of opInstance
+offensePlaysVecSharedPtr loader::getOPInstance()  // retrieves the value of opInstance
 {
     return (opInstance);
 }
-void loader::setOPInstance(std::vector<boost::shared_ptr<offensePlays> > set)  // sets the value of opInstance
+void loader::setOPInstance(offensePlaysVecSharedPtr set)  // sets the value of opInstance
 {
     opInstance = set;
 }
 
-std::vector<boost::shared_ptr<playerState> > loader::getPInstance()  // retrieves the value of pInstance
+playerStateVecSharedPtr loader::getPInstance()  // retrieves the value of pInstance
 {
     return(pInstance);
 }
-void loader::setPInstance(std::vector<boost::shared_ptr<playerState> > set)  // sets the value of pInstance
+void loader::setPInstance(playerStateVecSharedPtr set)  // sets the value of pInstance
 {
     pInstance = set;
 }
 
-std::vector<boost::shared_ptr<teamState> > loader::getTInstance()  // retrieves the value of tInstance
+teamStateVecSharedPtr loader::getTInstance()  // retrieves the value of tInstance
 {
     return(tInstance);
 }
-void loader::setTInstance(std::vector<boost::shared_ptr<teamState> > set)  // sets the value of tInstance
+void loader::setTInstance(teamStateVecSharedPtr set)  // sets the value of tInstance
 {
     tInstance = set;
 }
 
-std::vector<boost::shared_ptr<userInput> > loader::getUIInstance()  // retrieves the value of uoInstance
+userInputVecSharedPtr loader::getUIInstance()  // retrieves the value of uoInstance
 {
     return(uiInstance);
 }
-void loader::setUIInstance(std::vector<boost::shared_ptr<userInput> > set)  // sets the value of uiInstance
+void loader::setUIInstance(userInputVecSharedPtr set)  // sets the value of uiInstance
 {
     uiInstance = set;
 }
@@ -321,19 +322,19 @@ SDL_RWops *loader::readBinaryFile(const char *sourceFile)  // reads in a binary 
     return (file);
 }
 
-std::vector<std::string> loader::pathSplit(const std::string paths)  // splits the path data into separate strings
+stdStringVec loader::pathSplit(const std::string paths)  // splits the path data into separate strings
 {
     int x = 0;
-    std::vector<std::string> stringArray;
+    stdStringVec stringArray;
     const char delim = ':';
     std::string::const_iterator p = paths.begin(), q;
-    std::vector<std::string>::iterator it;
+    stdStringVec::iterator it;
 
     while (true)
     {
         q = find(p, paths.end(), delim);
         stringArray.push_back(paths.substr(p - paths.begin(), q - p));
-        std::vector<std::string> tempArray;
+        stdStringVec tempArray;
         for (it = stringArray.begin(); it != stringArray.end(); ++it)
         {
             tempArray.push_back(*it);
@@ -351,7 +352,7 @@ std::string loader::findFile(std::string fileName)  // finds the location of a f
     // tries to load file from locations specified in the pathArray
     bool fileLoaded = false;
     std::string filePath = "";        // stores path to a file
-    std::vector<std::string> pathArray;
+    stdStringVec pathArray;
     std::string dataPath;
     
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
@@ -682,10 +683,10 @@ bool loader::checkIfPlayersLoaded()  // checks if players have been loaded into 
 bool loader::checkIfTeamsLoaded()  // checks if teams have been loaded into tInstance
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    std::vector<teamState> tempT;
+    teamStateVec tempT;
     
 //    exit(0);
-    std::vector<boost::shared_ptr<teamState> > tempTInstance;
+    teamStateVecSharedPtr tempTInstance;
     tInstance = tempTInstance;
 //    exit(0);
     if (teamFilesLoaded)
@@ -823,9 +824,9 @@ bool loader::checkIfUserInputsLoaded()  // checks if user inputs have been loade
 }
 
 // Basketballs
-std::vector<boost::shared_ptr<basketballState> > loader::loadBasketballs()  // load basketball settings from XML files
+basketballStateVecSharedPtr loader::loadBasketballs()  // load basketball settings from XML files
 {
-    std::vector<boost::shared_ptr<basketballState> > basketballs;
+    basketballStateVecSharedPtr basketballs;
     std::string basketballList;
     
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
@@ -834,9 +835,9 @@ std::vector<boost::shared_ptr<basketballState> > loader::loadBasketballs()  // l
     basketballList = findFile("basketballs/basketballs.xml");
 #endif
     basketballFiles = loadBasketballListFile(basketballList);
-//    std::vector<std::string> playerFiles = load->getPlayerFiles();
+//    stdStringVec playerFiles = load->getPlayerFiles();
 
-    std::vector<std::string>::iterator it;
+    stdStringVec::iterator it;
     for (it = basketballFiles.begin(); it != basketballFiles.end(); ++it)
     {
         logMsg("basketballFile = " +*it);
@@ -849,11 +850,11 @@ std::vector<boost::shared_ptr<basketballState> > loader::loadBasketballs()  // l
     return (basketballs);
 }
 
-std::vector<std::string> loader::loadBasketballListFile(std::string fileName) // loads the list of baskteball list file
+stdStringVec loader::loadBasketballListFile(std::string fileName) // loads the list of baskteball list file
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
-    std::vector<std::string> bballFiles;
+    stdStringVec bballFiles;
 
     std::string fileContents;
     tinyxml2::XMLDocument doc;
@@ -966,10 +967,10 @@ boost::shared_ptr<basketballState> loader::loadBasketballFile(std::string fileNa
 }
 
 // Courts
-std::vector<boost::shared_ptr<courtState> > loader::loadCourts()  // load court settings from XML files
+courtStateVecSharedPtr loader::loadCourts()  // load court settings from XML files
 {
 //    exit(0);
-    std::vector<boost::shared_ptr<courtState> > courts;
+    courtStateVecSharedPtr courts;
     std::string courtList;
     
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
@@ -978,9 +979,9 @@ std::vector<boost::shared_ptr<courtState> > loader::loadCourts()  // load court 
     courtList = findFile("courts/courts.xml");
 #endif
     courtFiles = loadCourtListFile(courtList);
-//    std::vector<std::string> playerFiles = load->getPlayerFiles();
+//    stdStringVec playerFiles = load->getPlayerFiles();
 
-    std::vector<std::string>::iterator it;
+    stdStringVec::iterator it;
     for (it = courtFiles.begin(); it != courtFiles.end(); ++it)
     {
         logMsg("courtFile = " +*it);
@@ -994,11 +995,11 @@ std::vector<boost::shared_ptr<courtState> > loader::loadCourts()  // load court 
     return (courts);
 }
 
-std::vector<std::string> loader::loadCourtListFile(std::string fileName)    // loads the list of court list file
+stdStringVec loader::loadCourtListFile(std::string fileName)    // loads the list of court list file
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
-    std::vector<std::string> cFiles;
+    stdStringVec cFiles;
 
     std::string fileContents;
     tinyxml2::XMLDocument doc;
@@ -1253,9 +1254,9 @@ boost::shared_ptr<courtState> loader::loadCourtFile(std::string fileName)  // lo
 }
 
 //Offense
-std::vector<boost::shared_ptr<offensePlays> > loader::loadOffensePlays()  // load offense plays from XML files
+offensePlaysVecSharedPtr loader::loadOffensePlays()  // load offense plays from XML files
 {
-    std::vector<boost::shared_ptr<offensePlays> > plays;
+    offensePlaysVecSharedPtr plays;
     std::string playList;
     
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
@@ -1264,9 +1265,9 @@ std::vector<boost::shared_ptr<offensePlays> > loader::loadOffensePlays()  // loa
     playList = findFile("offense/plays/plays.xml");
 #endif
     offensePlayFiles = loadOffensePlayListFile(playList);
-//    std::vector<std::string> playerFiles = load->getPlayerFiles();
+//    stdStringVec playerFiles = load->getPlayerFiles();
 
-    std::vector<std::string>::iterator it;
+    stdStringVec::iterator it;
     for (it = offensePlayFiles.begin(); it != offensePlayFiles.end(); ++it)
     {
         logMsg("offensePlayFile = " +*it);
@@ -1279,12 +1280,12 @@ std::vector<boost::shared_ptr<offensePlays> > loader::loadOffensePlays()  // loa
     return (plays);
 }
 
-std::vector<std::string> loader::loadOffensePlayListFile(std::string fileName)  // loads the play list file
+stdStringVec loader::loadOffensePlayListFile(std::string fileName)  // loads the play list file
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
-    std::vector<std::string> playFiles;
+    stdStringVec playFiles;
 
     std::string fileContents;
     tinyxml2::XMLDocument doc;
@@ -1336,19 +1337,19 @@ boost::shared_ptr<offensePlays> loader::loadOffensePlayFile(std::string fileName
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     
-    boost::shared_ptr<offensePlays> playInstance(new offensePlays);
+    offensePlaysSharedPtr playInstance(new offensePlays);
 //    offensePlays *play = new offensePlays;
     std::string playName;
     int variation;
     std::string title;
-    std::vector<playerPositions> playerPosition;
-    std::vector<std::string> type;
+    playerPositionsVec playerPosition;
+    stdStringVec type;
     std::vector<float> xCoord;
     std::vector<float> yCoord;
     std::vector<float> zCoord;
-    std::vector<Ogre::Vector3> startCoords;
-    std::vector< std::vector<Ogre::Vector3> > executeCoords;
-    std::vector<offensePlays::playerDirectives> playerDirective;
+    OgreVector3Vec startCoords;
+    std::vector< OgreVector3Vec > executeCoords;
+    playerDirectivesVec playerDirective;
 
     // stores values read from XML files
     std::string pPlayName;
@@ -1360,7 +1361,7 @@ boost::shared_ptr<offensePlays> loader::loadOffensePlayFile(std::string fileName
     float pYCoord;
     float pZCoord;
     Ogre::Vector3 pCoords;
-    std::vector<Ogre::Vector3> pExecuteCoords;
+    OgreVector3Vec pExecuteCoords;
     offensePlays::playerDirectives pPlayerDirective;
     playerPositions pPlayerDirectivePosition;
 
@@ -1632,9 +1633,9 @@ boost::shared_ptr<offensePlays> loader::loadOffensePlayFile(std::string fileName
     return (playInstance);
 }
 
-std::vector<boost::shared_ptr<playerState> > loader::loadPlayers()  // loads the players
+playerStateVecSharedPtr loader::loadPlayers()  // loads the players
 {
-    std::vector<boost::shared_ptr<playerState> > players;
+    playerStateVecSharedPtr players;
     std::string playerList;
     
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
@@ -1643,9 +1644,9 @@ std::vector<boost::shared_ptr<playerState> > loader::loadPlayers()  // loads the
     playerList = findFile("players/players.xml");
 #endif
     playerFiles = loadPlayerListFile(playerList);
-//    std::vector<std::string> playerFiles = load->getPlayerFiles();
+//    stdStringVec playerFiles = load->getPlayerFiles();
 
-    std::vector<std::string>::iterator it;
+    stdStringVec::iterator it;
     for (it = playerFiles.begin(); it != playerFiles.end(); ++it)
     {
        
@@ -1660,11 +1661,11 @@ std::vector<boost::shared_ptr<playerState> > loader::loadPlayers()  // loads the
     return (players);
 }
 
-std::vector<std::string> loader::loadPlayerListFile(std::string fileName)  // loads the player list file
+stdStringVec loader::loadPlayerListFile(std::string fileName)  // loads the player list file
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
   //   boost::shared_ptr<renderEngine> render = renderEngine::Instance();
-    std::vector<std::string> pFiles;
+    stdStringVec pFiles;
     std::string fileContents;
     tinyxml2::XMLDocument doc;
     logMsg(fileName);
@@ -1705,7 +1706,7 @@ std::vector<std::string> loader::loadPlayerListFile(std::string fileName)  // lo
         pFiles.push_back(pText);
     }
 
-/*    std::vector<std::string>::iterator it;
+/*    stdStringVec::iterator it;
     for (it = playerFiles.begin(); it != playerFiles.end(); ++it)
     {
         cout << *it << endl;
@@ -2142,17 +2143,17 @@ boost::shared_ptr<playerState> loader::loadPlayerFile(std::string fileName)  // 
     return (playerInstance);
 }
 
-std::vector<boost::shared_ptr<teamState> > loader::loadTeams()  // load teams from XML files
+teamStateVecSharedPtr loader::loadTeams()  // load teams from XML files
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    std::vector<boost::shared_ptr<teamState> > teams;
+    teamStateVecSharedPtr teams;
 
     std::string teamList;
 //    boost::shared_ptr<teamState> tempTeamSharedPtr(new teamState);
     
 /*    teamState *tempTeamObj = new teamState;
     boost::shared_ptr<teamState> tempTeamSharedPtr = boost::shared_ptr<teamState>(tempTeamObj);
-    std::vector<boost::shared_ptr<teamState> > tempTeams;
+    teamStateVecSharedPtr tempTeams;
     tempTeams.push_back(tempTeamSharedPtr);
 */
 
@@ -2167,11 +2168,11 @@ std::vector<boost::shared_ptr<teamState> > loader::loadTeams()  // load teams fr
 //    exit(0);
 //    logMsg("Bleeep!");
     teamFiles = loadTeamListFile(teamList);
-//    std::vector<std::string> playerFiles = load->getPlayerFiles();
+//    stdStringVec playerFiles = load->getPlayerFiles();
     logMsg("teamFiles.size() = " +convert->toString(teamFiles.size()));
 
 //    exit(0);
-    std::vector<std::string>::iterator it;
+    stdStringVec::iterator it;
 
     for (it = teamFiles.begin(); it != teamFiles.end(); ++it)
     {
@@ -2203,13 +2204,13 @@ std::vector<boost::shared_ptr<teamState> > loader::loadTeams()  // load teams fr
     return (tInstance);
 }
 
-std::vector<std::string> loader::loadTeamListFile(std::string fileName)  // loads the team list file
+stdStringVec loader::loadTeamListFile(std::string fileName)  // loads the team list file
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
-    std::vector<std::string> teamName;
-    std::vector<std::string> files;
+    stdStringVec teamName;
+    stdStringVec files;
 
 //	players::playerData player;
 //#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
@@ -2273,7 +2274,7 @@ std::vector<std::string> loader::loadTeamListFile(std::string fileName)  // load
         logMsg("teamFile = " +convert->toString(pElem->GetText()));
     }
 
-    std::vector<std::string>::iterator it;
+    stdStringVec::iterator it;
     for (it = files.begin(); it != files.end(); ++it)
     {
         logMsg("team file = " +*it);
@@ -2293,7 +2294,7 @@ bool loader::loadTeamFile(std::string fileName)  // loads the team file
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
-//    std::vector<boost::shared_ptr<teamState> > teamInstance = gameS->getTeamInstance();
+//    teamStateVecSharedPtr teamInstance = gameS->getTeamInstance();
   
     boost::shared_ptr<teamState> teamInstance(new teamState);
 //    tInstance = boost::shared_ptr<teamState>(new teamState);
@@ -2410,9 +2411,9 @@ bool loader::loadTeamFile(std::string fileName)  // loads the team file
 }
 
 // User input
-std::vector<boost::shared_ptr<userInput> > loader::loadUserInputs()  // load user input settings from XML files
+userInputVecSharedPtr loader::loadUserInputs()  // load user input settings from XML files
 {
-    std::vector<boost::shared_ptr<userInput> > userInputs;
+    userInputVecSharedPtr userInputs;
     std::string userInputList;
     
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
@@ -2422,9 +2423,9 @@ std::vector<boost::shared_ptr<userInput> > loader::loadUserInputs()  // load use
 #endif
 //    exit(0);
     userInputFiles = loadUserInputListFile(userInputList);
-//    std::vector<std::string> playerFiles = load->getPlayerFiles();
+//    stdStringVec playerFiles = load->getPlayerFiles();
 //    exit(0);
-    std::vector<std::string>::iterator it;
+    stdStringVec::iterator it;
     for (it = userInputFiles.begin(); it != userInputFiles.end(); ++it)
     {
         logMsg("userInputFile = " +*it);
@@ -2437,11 +2438,11 @@ std::vector<boost::shared_ptr<userInput> > loader::loadUserInputs()  // load use
     return (userInputs);
 }
 
-std::vector<std::string> loader::loadUserInputListFile(std::string fileName)  // loads the user input list file
+stdStringVec loader::loadUserInputListFile(std::string fileName)  // loads the user input list file
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
-    std::vector<std::string> uInputFiles;
+    stdStringVec uInputFiles;
 
     std::string fileContents;
     tinyxml2::XMLDocument doc;

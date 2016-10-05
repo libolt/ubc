@@ -50,14 +50,14 @@ public:
     bool getExecute();	// retrieves the value of execute variable
     void setExecute(bool set);	// sets the value of the execute variable
 
-    std::vector<boost::shared_ptr<offensePlays> > getPlays();  // retrieves the value of plays
-    void setPlays(std::vector<boost::shared_ptr<offensePlays> > set);  // sets the value of plays
+    offensePlaysVecSharedPtr getPlays();  // retrieves the value of plays
+    void setPlays(offensePlaysVecSharedPtr set);  // sets the value of plays
 
-    std::vector<Ogre::Vector3> getStartPositions();  // retrieves the value of the startPositions variable
-    void setStartPositions(std::vector<Ogre::Vector3> set);  // sets the value startPositions variable
+    OgreVector3Vec getStartPositions();  // retrieves the value of the startPositions variable
+    void setStartPositions(OgreVector3Vec set);  // sets the value startPositions variable
 
-    std::vector <std::vector<Ogre::Vector3> > getExecutePositions();  // retrieves the value of the executePositions variable
-    void setExecutePositions(std::vector< std::vector<Ogre::Vector3> > set);  // sets the value executePositions variable
+    std::vector <OgreVector3Vec > getExecutePositions();  // retrieves the value of the executePositions variable
+    void setExecutePositions(std::vector< OgreVector3Vec > set);  // sets the value executePositions variable
 
     bool getStartXPosSet();  // retrieves the value of startXPosSet
     void setStartXPosSet(bool *set);  // sets the value of startXPosSet
@@ -68,14 +68,14 @@ public:
     bool getStartZPosSet();  // retrieves the value of startZPosSet
     void setStartZPosSet(bool *set);  // sets the value of startZPosSet
 
-    std::vector<bool> getStartPositionReached();  // retrieves the value of startPositionReached
-    void setStartPositionReached(std::vector<bool> set);  // sets the value of startPositionReached
+    boolVec getStartPositionReached();  // retrieves the value of startPositionReached
+    void setStartPositionReached(boolVec set);  // sets the value of startPositionReached
 
     bool getAllStartPositionsReached();  // retrieves the value of allStartPositionsSet
     void setAllStartPositionsReached(bool set);  // sets the value of allStartPositionsSet
 
-    std::vector< std::vector<bool> > getExecutePositionReached();  // returns the value of executePositionSet
-    void setExecutePositionReached(std::vector< std::vector<bool> > set);  // sets the value of executePositionSet
+    std::vector< boolVec > getExecutePositionReached();  // returns the value of executePositionSet
+    void setExecutePositionReached(std::vector< boolVec > set);  // sets the value of executePositionSet
 
     void setupState();  // sets up initial state of the object
 
@@ -97,20 +97,20 @@ private:
     bool offenseSet; // if true then run offense
     bool execute;	// If set then execute the offense logic
 
-    std::vector<Ogre::Vector3> startPositions;		// stores the positions for players get to in order to execute offense
-    std::vector< std::vector<Ogre::Vector3> > executePositions;    // stores the positions where players move when executing offense
+    OgreVector3Vec startPositions;		// stores the positions for players get to in order to execute offense
+    std::vector< OgreVector3Vec > executePositions;    // stores the positions where players move when executing offense
     bool *startXPosSet; // stores whether player is at start X position
     bool *startYPosSet; // stores whether player is at start Y position
     bool *startZPosSet; // stores whether player is at start Z position
-    std::vector<bool> startPositionReached; // stores whether player is at start position
+    boolVec startPositionReached; // stores whether player is at start position
     int numStartPositionsReached;  // stores how many startPositions have been set.
 
     bool allStartPositionsReached;  // stores whether all player start positions have been reached
     bool allExecutePositionsReached;  // stores whether all player execute positions have been reached
     
-    std::vector< std::vector<bool> > executePositionReached; // stores whether player is at execute position
+    std::vector< boolVec > executePositionReached; // stores whether player is at execute position
 
-    std::vector<boost::shared_ptr<offensePlays> > plays;	// stores the plays for the offense to run
+    offensePlaysVecSharedPtr plays;	// stores the plays for the offense to run
     std::vector<offensePlays::playerDirectives> playerDirective;  // stores values of the playerDirectives class associated with the play being run
 	
     // offense type variables

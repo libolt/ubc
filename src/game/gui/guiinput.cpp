@@ -501,7 +501,7 @@ void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed)  // process
 {
     //gameState *gameS = gameState::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
-//    std::vector<boost::shared_ptr<teamState> > teamInstance = gameS->getTeamInstance();
+//    teamStateVecSharedPtr teamInstance = gameS->getTeamInstance();
     logMsg("processGameSetupMenuKeyPress");
     if (keyPressed == "a" && !gameSetupMenuAwaySelected)
     {
@@ -638,7 +638,7 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed)  // pro
     //gameState *gameS = gameState::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
     
-//    std::vector<boost::shared_ptr<teamState> > teamInstance = gameS->getTeamInstance();
+//    teamStateVecSharedPtr teamInstance = gameS->getTeamInstance();
     logMsg("processGameSetupMenuKeyPress");
     if (keyPressed == "a" && !gameSetupMenuAwaySelected)
     {

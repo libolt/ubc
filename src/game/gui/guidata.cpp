@@ -44,8 +44,8 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
     
-    std::vector<boost::shared_ptr<courtState> > courtInstance;
-    std::vector<std::string> courtName;
+    courtStateVecSharedPtr courtInstance;
+    stdStringVec courtName;
 //    if (!gameS->getCourtInstancesCreated())
     
     if (getGameS()->getCourtInstancesCreated())
@@ -105,9 +105,9 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 //    playerInstance = load->loadPlayers();
 //    playerInstance = gameS->getPlayerInstance();
 //    gameS->setPlayerInstances(playerInstance);
-    std::vector<size_t> teamIDs = getGameS()->getTeamIDS();
-    std::vector<boost::shared_ptr<teamState> > teamInstance = getGameS()->getTeamInstance();
-    std::vector<std::vector<boost::shared_ptr<playerState> > > playerInstance;
+    sizeTVec teamIDs = getGameS()->getTeamIDS();
+    teamStateVecSharedPtr teamInstance = getGameS()->getTeamInstance();
+    std::vector<playerStateVecSharedPtr > playerInstance;
 //    std::vector <boost::shared_ptr<playerState> > pInstance;
 //    pInstance = teamInstance[teamIDs[0]]->getPlayerInstance();
     size_t x = 0;
@@ -208,13 +208,13 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     playerInstance.push_back(teamInstance[teamIDs[1]]->getPlayerInstance());
 
     exit(0);
-    std::vector<size_t> overAllRatings;
+    sizeTVec overAllRatings;
     
-    std::vector<std::string> pNames;
-    std::vector<std::string> pPositions;
-    std::vector<size_t> pIDs;
-    std::vector< std::vector<size_t> > overallRatings;
-    std::vector<size_t> overall;
+    stdStringVec pNames;
+    stdStringVec pPositions;
+    sizeTVec pIDs;
+    std::vector< sizeTVec > overallRatings;
+    sizeTVec overall;
     exit(0);
     size_t overallRatingsSize = 0;
     size_t flag = 1;
@@ -366,7 +366,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     }
     logMsg("overallRating after = " +convert->toString(overallRatings[1][0]));
 
-    std::vector<size_t> starters; // used for initial creatio  of teamStarterID vector
+    sizeTVec starters; // used for initial creatio  of teamStarterID vector
 //    starters.push_back(1);
     for (size_t i=0;i<5;++i)
     {
@@ -525,7 +525,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
 
     boost::shared_ptr<loader> load;
 
-    std::vector<boost::shared_ptr<teamState> > teamInstance; // = gameS->getTeamDataInstance();
+    teamStateVecSharedPtr teamInstance; // = gameS->getTeamDataInstance();
 
 //    if (!getGameS()->getTeamInstancesCreated())
 //    {

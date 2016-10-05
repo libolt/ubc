@@ -69,13 +69,13 @@ void defenseState::updateState(teamTypes teamOnDefense) // updates the state of 
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
     teamTypes teamWithBall = getTeamWithBall();
 
-    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = getActiveTeamInstance();
-//TS    std::vector<boost::shared_ptr<playerState> > playerDInstance = activeTeamInstance[teamOnDefense]->getActivePlayerInstance();
-//TS    std::vector<boost::shared_ptr<playerState> > playerOInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
-//TS    std::vector<size_t> activeDID = activeTeamInstance[teamOnDefense]->getActivePlayerID();
-//TS    std::vector<size_t> activeOID = activeTeamInstance[teamWithBall]->getActivePlayerID();
-    std::vector<Ogre::Vector3> playerOPos;  // stores positions of offensive players
-    std::vector<Ogre::Vector3> playerDPos;  // stores positions of defensive players
+    teamStateVecSharedPtr activeTeamInstance = getActiveTeamInstance();
+//TS    playerStateVecSharedPtr playerDInstance = activeTeamInstance[teamOnDefense]->getActivePlayerInstance();
+//TS    playerStateVecSharedPtr playerOInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
+//TS    sizeTVec activeDID = activeTeamInstance[teamOnDefense]->getActivePlayerID();
+//TS    sizeTVec activeOID = activeTeamInstance[teamWithBall]->getActivePlayerID();
+    OgreVector3Vec playerOPos;  // stores positions of offensive players
+    OgreVector3Vec playerDPos;  // stores positions of defensive players
 
 //TS    int humanPlayer = activeTeamInstance[teamOnDefense]->getHumanPlayer();
 //TS    int numPlayers = activeDID.size(); // stores the number of players on the court per team

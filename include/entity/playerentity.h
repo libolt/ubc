@@ -41,8 +41,8 @@ class playerEntity : public entity , public playerPhysics
     void setPhysics(playerPhysics *set);  // sets the value of physics
 */
   
-    static playerSteer *getSteer(); // retrieves the steering instance
-    void setSteer(playerSteer *set); // sets the steering instance
+    static playerSteerSharedPtr getSteer(); // retrieves the steering instance
+    void setSteer(playerSteerSharedPtr set); // sets the steering instance
 
     bool setupPhysicsObject();  // sets up the physics object
  
@@ -50,7 +50,7 @@ class playerEntity : public entity , public playerPhysics
 
 //    playerPhysics *physics;  // stores the playerPhysics object
 
-    static playerSteer *steer;  // stores the steering objerct that represents the player
+    static playerSteerSharedPtr steer;  // stores the steering objerct that represents the player
 };
 
 #endif // _PLAYERENTITY_H_

@@ -34,17 +34,14 @@
 
 #include "enums.h"
 
+#include "typedefs.h"
+
 //#include "engine/renderengine.h"
 //#include "gui/gui.h"
 
 #include "engine.h"
 
 #define EVENT_BUF_SIZE 256
-
-typedef std::vector<inputKeyMaps>   inputKeyWorkQueues;
-typedef std::vector<inputGamePadMaps>   inputGamePadWorkQueues;
-typedef std::vector<inputInGameMaps> inputInGameWorkQueues;  // stores types of input processed by the engine
-typedef std::vector<inputTypes> inputTypeQueues;  // stores types of input processed by the engine
 
 //class GUISystem;
 class renderEngine;

@@ -41,10 +41,10 @@ class networkState : public state
         boost::shared_ptr<networkEngine> getNetworkE();  // retrieves the value of network
         void setNetwork(boost::shared_ptr<networkEngine> set);  // sets the value of network
 
-        void processLocalInput(std::vector<boost::shared_ptr<teamState> > activeTeamInstance);  // processes local input for sending to remote system
+        void processLocalInput(teamStateVecSharedPtr activeTeamInstance);  // processes local input for sending to remote system
         void processRemoteInput();  // processes input received from a remote system
-        void processNetworkEvents(std::vector<boost::shared_ptr<teamState> > activeTeamInstance);  // processes events received from network connection.
-        void processNetworkPlayerEvents(std::vector<boost::shared_ptr<teamState> > activeTeamInstance);  // processes player evernts received from network connection
+        void processNetworkEvents(teamStateVecSharedPtr activeTeamInstance);  // processes events received from network connection.
+        void processNetworkPlayerEvents(teamStateVecSharedPtr activeTeamInstance);  // processes player evernts received from network connection
 
     
     private:

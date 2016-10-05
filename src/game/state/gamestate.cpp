@@ -98,11 +98,11 @@ gameState::~gameState()  // destructor
 {
 }
 
-std::vector<courtData>  gameState::getCourtDataInstance()  // retrieves the value of courtDataInstance
+courtDataVec  gameState::getCourtDataInstance()  // retrieves the value of courtDataInstance
 {
     return (courtDataInstance);
 }
-void gameState::setCourtDataInstance(std::vector<courtData> set)  // sets the value of courtDataInstance
+void gameState::setCourtDataInstance(courtDataVec set)  // sets the value of courtDataInstance
 {
     courtDataInstance = set;
 }
@@ -116,11 +116,11 @@ void gameState::setSelectedCourtDataInstance(size_t set)  // sets the value of s
     selectedCourtDataInstance = set;
 }
 
-std::vector<size_t> gameState::getPlayerID()  // retrieves the value of playerID
+sizeTVec gameState::getPlayerID()  // retrieves the value of playerID
 {
     return (playerID);
 }
-void gameState::setPlayerID(std::vector<size_t> set)  // sets the value of playerID
+void gameState::setPlayerID(sizeTVec set)  // sets the value of playerID
 {
     playerID = set;
 }
@@ -312,8 +312,8 @@ bool gameState::createTeamInstances()  // creates team Instances
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<loader> load;
     
-    std::vector<boost::shared_ptr<teamState> > tInstance;
-/*    std::vector<boost::shared_ptr<teamState> > tInstance2;
+    teamStateVecSharedPtr tInstance;
+/*    teamStateVecSharedPtr tInstance2;
     boost::shared_ptr<teamState> tempInstance(new teamState);
 //    teamState *tempInstance = new teamState;
     tempInstance->setID(1);
@@ -453,7 +453,7 @@ bool gameState::createPlayerInstances()  // creates player instances
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<loader> load;
     
-    std::vector<boost::shared_ptr<playerState> > pInstance;
+    playerStateVecSharedPtr pInstance;
     
     logMsg("gameState::createPlayerInstances() checkIfPlayersLoaded");
 //    exit(0);
@@ -500,9 +500,9 @@ bool gameState::createPlayerInstances()  // creates player instances
 bool gameState::createActiveTeamInstances()  // creates the active team instances
 {
     boost::shared_ptr<teamState> tInstance;
-    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = getActiveTeamInstance();
-    std::vector<boost::shared_ptr<teamState> > teamInstance = getTeamInstance();
-    std::vector<size_t> teamIDS = getTeamIDS();
+    teamStateVecSharedPtr activeTeamInstance = getActiveTeamInstance();
+    teamStateVecSharedPtr teamInstance = getTeamInstance();
+    sizeTVec teamIDS = getTeamIDS();
 //    exit(0);
 
     activeTeamInstance.push_back(tInstance);  // adds empty teamState to activeTeamInstance vector
@@ -546,7 +546,7 @@ bool gameState::loadBasketballModel()  // loads selected basketball model
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     size_t activeBBallInstance = getActiveBBallInstance();
-    std::vector<boost::shared_ptr<basketballState> > basketballInstance = getBasketballInstance();
+    basketballStateVecSharedPtr basketballInstance = getBasketballInstance();
     logMsg("loading bball");
     logMsg("activeBBallInstance == " +convert->toString(activeBBallInstance));
     logMsg("loading model " +basketballInstance[activeBBallInstance]->getEntityModelFileName());
@@ -567,7 +567,7 @@ bool gameState::loadBasketballModel()  // loads selected basketball model
 
 bool gameState::loadCourtModel()  // loads selected court model
 {
-    std::vector<boost::shared_ptr<courtState> > courtInstance = getCourtInstance();
+    courtStateVecSharedPtr courtInstance = getCourtInstance();
     size_t activeCourtInstance = getActiveCourtInstance();
     logMsg("Model Name = " +courtInstance[activeCourtInstance]->getModelFileName());
 
@@ -591,7 +591,7 @@ bool gameState::loadHoopModel()  // loads selected hoop model
 {
     bool returnType = true;
 
-    std::vector<boost::shared_ptr<hoopState> > hoopInstance = getHoopInstance();
+    hoopStateVecSharedPtr hoopInstance = getHoopInstance();
 
     if (hoopInstance[0]->loadModel())
     {
@@ -675,7 +675,7 @@ void gameState::setBasketballStartPositions()  // sets the initial coordinates f
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     size_t activeBBallInstance = getActiveBBallInstance();
-    std::vector<boost::shared_ptr<basketballState> > basketballInstance = getBasketballInstance();
+    basketballStateVecSharedPtr basketballInstance = getBasketballInstance();
 
     logMsg("activeBBallInstance == " +convert->toString(activeBBallInstance));
     
@@ -692,7 +692,7 @@ void gameState::setBasketballStartPositions()  // sets the initial coordinates f
 void gameState::setCourtStartPositions()  // sets the initial coordinates for the basketball(s)
 {
 
-    std::vector<boost::shared_ptr<courtState> > courtInstance = getCourtInstance();
+    courtStateVecSharedPtr courtInstance = getCourtInstance();
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     courtInstance[0]->getNode()->setPosition(0.0f,-6.5f,360.0f);
@@ -710,7 +710,7 @@ void gameState::setCourtStartPositions()  // sets the initial coordinates for th
 void gameState::setHoopStartPositions()  // sets the initial coordinates for the basketball(s)
 {
 
-    std::vector<boost::shared_ptr<hoopState> > hoopInstance = getHoopInstance();
+    hoopStateVecSharedPtr hoopInstance = getHoopInstance();
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     hoopInstance[0]->getNode()->setPosition(45.0f,-6.5f,370.0f);
@@ -731,11 +731,11 @@ void gameState::setHoopStartPositions()  // sets the initial coordinates for the
 
 bool gameState::setupTipOff()  // sets up tip off conditions
 {
-    boost::shared_ptr<jumpBalls> jumpBall = getJumpBall();
+    jumpBallsSharedPtr jumpBall = getJumpBall();
 
     teamTypes currentTeam = jumpBall->getBallTippedToTeam();
 
-    std::vector<playerPositions> jumpBallPlayer = jumpBall->getJumpBallPlayer();
+    playerPositionsVec jumpBallPlayer = jumpBall->getJumpBallPlayer();
     if (getTeamWithBall() == NOTEAM && getActiveTeamInstancesCreated())
     {
         if (!jumpBall->getSetupComplete())
@@ -776,7 +776,7 @@ bool gameState::executeTipOff()  // executes tip off
 bool gameState::setupState()  // sets up the game condition
 {
 /*
-    boost::shared_ptr<AISystem> ai = AISystem::Instance();
+    AISystemSharedPtr ai = AISystem::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     boost::shared_ptr<loader> load = loader::Instance();
     //boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
@@ -831,7 +831,7 @@ bool gameState::setupState()  // sets up the game condition
 //        player->mAnimationState2 = ent->getAnimationState("Walk");
 //        std::vector<Ogre::Entity*> playerModels = player->getModel();
 //        std::vector<Ogre::SceneNode*> playerNodes = player->getNode();
-//    std::vector<playerState> pInstance = getPlayerInstance();
+//    playerStateVec pInstance = getPlayerInstance();
 //        player->setModel(playerModels);
 //    Ogre::Vector3 playerPos = playerNodes.at(0)->getPosition();
 //    Ogre::Vector3 offset;
@@ -868,7 +868,7 @@ bool gameState::updateState()  // updates the game state
 //    logMsg("Updating gameState Logic");
 
 // BEGINING OF TEST COMMENT
-/*    boost::shared_ptr<AISystem> ai = AISystem::Instance();
+/*    AISystemSharedPtr ai = AISystem::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
 //    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
@@ -1032,8 +1032,8 @@ bool gameState::updateState()  // updates the game state
 //        cout << "Calced Pos change = " << basketballInstance[activeBBallInstance].calculatePositionChange() << endl;
 //        basketballInstance[activeBBallInstance].nodeChangePosition(basketballInstance[activeBBallInstance].calculatePositionChange());
 
-//        std::vector<size_t> playerDirection = player->getPlayerDirection(); // stores contents of playerDirectdion from players class in local variable
-//        std::vector<size_t> oldPlayerDirection = player->getOldPlayerDirection();   // stores contents of oldPlayerDirection form players in local variable
+//        sizeTVec playerDirection = player->getPlayerDirection(); // stores contents of playerDirectdion from players class in local variable
+//        sizeTVec oldPlayerDirection = player->getOldPlayerDirection();   // stores contents of oldPlayerDirection form players in local variable
 
         // Initiates offense or defense for a team depending on value of teamWithBall
         if (teamWithBall == 0)  // if 0 puts team 0 on offense and team 1 on defense
@@ -1088,7 +1088,7 @@ bool gameState::processInput()  // processes input received from the inputState 
             {
 /*TS                if (getActiveTeamInstance()[inputIterator]->getPlayerInstancesCreated())
                 {
-                    std::vector<boost::shared_ptr<playerState> > activePlayerInstance = getActiveTeamInstance()[inputIterator]->getActivePlayerInstance();
+                    playerStateVecSharedPtr activePlayerInstance = getActiveTeamInstance()[inputIterator]->getActivePlayerInstance();
                     if (getActiveTeamInstance()[inputIterator]->getHumanControlled())
                     {
                         int humanPlayer = getActiveTeamInstance()[inputIterator]->getHumanPlayer();
@@ -1117,7 +1117,7 @@ bool gameState::processInput()  // processes input received from the inputState 
                         logMsg("inputInGameWorkQueue.size = " +convert->toString(inputInGameWorkQueue.size()));
                         x = 0;
                         int activeBBallInstance = getActiveBBallInstance();
-                        std::vector<boost::shared_ptr<basketballState> > bballInstance = getBasketballInstance();
+                        basketballStateVecSharedPtr bballInstance = getBasketballInstance();
                         logMsg("humanInstance.size() == " +convert->toString(humanInstance));
                         if (humanInstance < 11) // makes sure that the humanInstance is a valid number
                         {
@@ -1199,8 +1199,8 @@ bool gameState::processInput()  // processes input received from the inputState 
                                 ++x;
                             }
                         }
-//                        std::vector<boost::shared_ptr<teamState> > tInstance = getGameS()->getActiveTeamInstance();
-                        std::vector<boost::shared_ptr<playerState> > activePInstance = getTeamInstance()[inputIterator]->getActivePlayerInstance();
+//                        teamStateVecSharedPtr tInstance = getGameS()->getActiveTeamInstance();
+                        playerStateVecSharedPtr activePInstance = getTeamInstance()[inputIterator]->getActivePlayerInstance();
                         logMsg("humanInstance == " +convert->toString(humanInstance));
                         //logMsg("inPassSteal == " +convert->toString(activePInstance[humanInstance]->getPassSteal()));
                         //exit(0);

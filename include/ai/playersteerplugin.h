@@ -54,12 +54,12 @@ class playerSteerPlugin : public OpenSteer::PlugIn, steering, public gameStateSh
 
     unsigned int m_PlayerCountA;  // counts number of players on Team A
     unsigned int m_PlayerCountB;  // counts number of playres on Team B
-    std::vector<playerSteer*> TeamA;  // stores steering objects for Team A
-    std::vector<playerSteer*> TeamB;  // stores teering objects for Team B
-    std::vector<playerSteer*> m_AllPlayers;  // stores steering objects for all players
+    playerSteerVecSharedPtr TeamA;  // stores steering objects for Team A
+    playerSteerVecSharedPtr TeamB;  // stores teering objects for Team B
+    playerSteerVecSharedPtr m_AllPlayers;  // stores steering objects for all players
 
 //        Ball	*m_Ball;
-    steering::AABBox *courtBBox;  // Axis Aligned Bounding Box for the court
+    steeringAABBoxSharedPtr courtBBox;  // Axis Aligned Bounding Box for the court
 /*        AABBox	*m_TeamAGoal;
         AABBox	*m_TeamBGoal;
 

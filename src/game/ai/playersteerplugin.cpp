@@ -32,20 +32,20 @@
 
 void playerSteerPlugin::open(void)
 {
-    boost::shared_ptr<AISystem> ai = AISystem::Instance();
+    AISystemSharedPtr ai = AISystem::Instance();
 	boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 
-//    std::vector<courtState> courtInstance = gameS->getCourtInstance();
-//    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
-    /*std::vector<playerState> team0ActivePlayerInstance = activeTeamInstance[0].getActivePlayerInstance();
-    std::vector<playerState> team1ActivePlayerInstance = activeTeamInstance[1].getActivePlayerInstance();
+//    courtStateVec courtInstance = gameS->getCourtInstance();
+//    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
+    /*playerStateVec team0ActivePlayerInstance = activeTeamInstance[0].getActivePlayerInstance();
+    playerStateVec team1ActivePlayerInstance = activeTeamInstance[1].getActivePlayerInstance();
     std::vector<int> team0ActivePlayerID = activeTeamInstance[0].getActivePlayerID();
     std::vector<int> team1ActivePlayerID = activeTeamInstance[1].getActivePlayerID();
 */
-    std::vector<std::vector<boost::shared_ptr<playerState> > > activePlayerInstance;
+    std::vector<playerStateVecSharedPtr > activePlayerInstance;
     
-    std::vector<playerSteer*> allPlayerSteers = ai->getAllPlayerSteers();
+    playerSteerVecSharedPtr allPlayerSteers = ai->getAllPlayerSteers();
 
     logMsg("Opening playerSteer plugin");
 
@@ -59,7 +59,7 @@ void playerSteerPlugin::open(void)
         size_t y = 0;
         while (y < activePlayerInstance[x].size())
         {
-            playerSteer *steer = activePlayerInstance[x][y]->getSteer();
+            playerSteerSharedPtr steer = activePlayerInstance[x][y]->getSteer();
         //      logMsg("Alive1");
             logMsg("y = " +convert->toString(y));
             logMsg("player position = " +convert->toString(activePlayerInstance[x][y]->getCourtPosition()));
@@ -126,7 +126,7 @@ void playerSteerPlugin::open(void)
     OpenSteer::Vec3 courtBoxMin = convert->toOpenSteerVec3(cboxMin);
     OpenSteer::Vec3 courtBoxMax = convert->toOpenSteerVec3(cboxMax);
 
-    courtBBox = new steering::AABBox( OpenSteer::Vec3(0,0,0), OpenSteer::Vec3(0,0,0));
+    courtBBox = steeringAABBoxSharedPtr(new steering::AABBox( OpenSteer::Vec3(0,0,0), OpenSteer::Vec3(0,0,0)));
     courtBBox->setMin(courtBoxMin);
 
  /*           // Red goal
@@ -173,13 +173,13 @@ void playerSteerPlugin::update(const float currentTime, const float elapsedTime)
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
     
-//    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
-//    std::vector<playerState> team0ActivePlayerInstance = activeTeamInstance[0].getActivePlayerInstance();
-//    std::vector<playerState> team1ActivePlayerInstance = activeTeamInstance[1].getActivePlayerInstance();
+//    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
+//    playerStateVec team0ActivePlayerInstance = activeTeamInstance[0].getActivePlayerInstance();
+//    playerStateVec team1ActivePlayerInstance = activeTeamInstance[1].getActivePlayerInstance();
 //    std::vector<int> team0ActivePlayerID = activeTeamInstance[0].getActivePlayerID();
 //    std::vector<int> team1ActivePlayerID = activeTeamInstance[1].getActivePlayerID();
 
-    std::vector<std::vector<boost::shared_ptr<playerState> > > activePlayerInstance;
+    std::vector<playerStateVecSharedPtr > activePlayerInstance;
 //	exit(0);
     // update simulation of test vehicle
 //    logMsg("team 0 activePlayerInstance size =  " +convert->toString(team0ActivePlayerInstance.size()));
@@ -291,7 +291,7 @@ void playerSteerPlugin::redraw (const float currentTime, const float elapsedTime
 
 void playerSteerPlugin::close (void)
 {
-    for(unsigned int i=0; i < m_PlayerCountA ; i++)
+/*    for(unsigned int i=0; i < m_PlayerCountA ; i++)
     {
         delete TeamA[i];
     }
@@ -302,6 +302,7 @@ void playerSteerPlugin::close (void)
     }
     TeamB.clear ();
     m_AllPlayers.clear();
+*/
 }
 
 void playerSteerPlugin::reset (void)

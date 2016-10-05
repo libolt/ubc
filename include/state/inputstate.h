@@ -45,8 +45,8 @@ class inputState : public state
     boost::shared_ptr<inputEngine> getInputE();  // retrieves the value of gameE
     void setInputE(boost::shared_ptr<inputEngine> set);  // sets the value of gameE
     
-    std::vector<boost::shared_ptr<userInput> > getUInput();  // retrieves the value of uInput
-    void setUInput(std::vector<boost::shared_ptr<userInput> > set);  // sets the value of uInput
+    userInputVecSharedPtr getUInput();  // retrieves the value of uInput
+    void setUInput(userInputVecSharedPtr set);  // sets the value of uInput
     
     inputInGameWorkQueues getInputInGameWorkQueue();  // retrieves the value of inputInGameWorkQueue
     void setInputInGameWorkQueue(inputInGameWorkQueues set);  // sets the value of inputInGameWorkQueue
@@ -60,7 +60,7 @@ class inputState : public state
     private:
     
     static boost::shared_ptr<inputEngine> inputE;  // the inputEngine object
-    std::vector<boost::shared_ptr<userInput> > uInput;  // stores user input mapping
+    userInputVecSharedPtr uInput;  // stores user input mapping
     static inputInGameWorkQueues inputInGameWorkQueue;  // stores work queue for in game processing
     
 };

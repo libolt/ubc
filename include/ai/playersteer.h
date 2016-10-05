@@ -31,7 +31,7 @@ class playerSteer : public steering, public gameStateShared
 {
     public:
 
-//	playerSteer(std::vector<playerSteer*> others, std::vector<playerSteer*> allplayers, /*Ball* ball,*/ bool isTeamA, int id);
+//	playerSteer(playerSteerVecSharedPtr others, playerSteerVecSharedPtr allplayers, /*Ball* ball,*/ bool isTeamA, int id);
     
     playerSteer();  // constructor
     ~playerSteer();  // destructor
@@ -54,8 +54,8 @@ class playerSteer : public steering, public gameStateShared
     OpenSteer::Vec3 getSteerCoords();  // retrieves the value of steerCoords
     void setSteerCoords(OpenSteer::Vec3 coords);  // sets the value of steerCoords
 	
-    std::vector<bool> getPositionReached();  // retrieves the value of positionReached
-    void setPositionReached(std::vector<bool> reached);  // sets the value of positionReached
+    boolVec getPositionReached();  // retrieves the value of positionReached
+    void setPositionReached(boolVec reached);  // sets the value of positionReached
 	
     void reset();  // resets the state
     void update (const float currentTime, const float elapsedTime);  // update steering sim every frame
@@ -67,8 +67,8 @@ class playerSteer : public steering, public gameStateShared
     private:
 
     int counter;
-    std::vector<playerSteer*> m_others;  // stores steering object of other players
-    std::vector<playerSteer*> m_AllPlayers;  // stores steering objects of all players
+    playerSteerVecSharedPtr m_others;  // stores steering object of other players
+    playerSteerVecSharedPtr m_AllPlayers;  // stores steering objects of all players
     OpenSteer::Vec3 m_home;  // home point to stear to
     //Ball*	m_Ball;
     teamTypes teamType;  // stores which team the player belongs to
@@ -81,7 +81,7 @@ class playerSteer : public steering, public gameStateShared
 	
     OpenSteer::Vec3 steerCoords;  // stores the steering coordinates
 	
-    std::vector<bool> positionReached;  // stores whether or not positions have been reached
+    boolVec positionReached;  // stores whether or not positions have been reached
 };
 
 #endif

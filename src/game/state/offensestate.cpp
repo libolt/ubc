@@ -46,8 +46,8 @@ offenseState::offenseState()  // constructor
 */
 //    startPositions[4] = Ogre::Vector3(3000.0f,-1300.5f,3780.0f);
 
-//  executePositions = new std::vector<Ogre::Vector3>[5];
-//  executePositions[0] = new std::vector<Ogre::Vector3>;
+//  executePositions = new OgreVector3Vec[5];
+//  executePositions[0] = new OgreVector3Vec;
 //  exit(0);
 
     executePositions.resize(5);
@@ -110,29 +110,29 @@ void offenseState::setExecute(bool set)  // sets the value of the execute variab
     execute = set;
 }
 
-std::vector<boost::shared_ptr<offensePlays> > offenseState::getPlays()  // returns the value of plays
+offensePlaysVecSharedPtr offenseState::getPlays()  // returns the value of plays
 {
     return (plays);
 }
-void offenseState::setPlays(std::vector<boost::shared_ptr<offensePlays> > set)  // sets the value of plays
+void offenseState::setPlays(offensePlaysVecSharedPtr set)  // sets the value of plays
 {
     plays = set;
 }
 
-std::vector<Ogre::Vector3> offenseState::getStartPositions()  // retrieves the value of startPositions
+OgreVector3Vec offenseState::getStartPositions()  // retrieves the value of startPositions
 {
     return (startPositions);
 }
-void offenseState::setStartPositions(std::vector<Ogre::Vector3> set)  // sets the value of startPositions
+void offenseState::setStartPositions(OgreVector3Vec set)  // sets the value of startPositions
 {
     startPositions = set;
 }
 
-std::vector< std::vector<Ogre::Vector3> > offenseState::getExecutePositions()  // retrieves the value of startPositions 
+std::vector< OgreVector3Vec > offenseState::getExecutePositions()  // retrieves the value of startPositions 
 {
     return (executePositions);
 }
-void offenseState::setExecutePositions(std::vector< std::vector<Ogre::Vector3> > set)  // sets the value of startPositions
+void offenseState::setExecutePositions(std::vector< OgreVector3Vec > set)  // sets the value of startPositions
 {
     executePositions = set;
 }
@@ -164,11 +164,11 @@ void offenseState::setStartZPosSet(bool *set)  // sets the value of startZPosSet
     startZPosSet = set;
 }
 
-std::vector<bool> offenseState::getStartPositionReached()  // returns the value of startPositionReached
+boolVec offenseState::getStartPositionReached()  // returns the value of startPositionReached
 {
     return (startPositionReached);
 }
-void offenseState::setStartPositionReached(std::vector<bool> set) // sets the value of startPositionReached
+void offenseState::setStartPositionReached(boolVec set) // sets the value of startPositionReached
 {
     startPositionReached = set;
 }
@@ -182,11 +182,11 @@ void offenseState::setAllStartPositionsReached(bool set)  // sets the value of a
     allStartPositionsReached = set;
 }
 
-std::vector< std::vector<bool> > offenseState::getExecutePositionReached()  // returns the value of executePositionSet
+std::vector< boolVec > offenseState::getExecutePositionReached()  // returns the value of executePositionSet
 {
     return (executePositionReached);
 }
-void offenseState::setExecutePositionReached(std::vector< std::vector<bool> > set) // sets the value of executePositionSet
+void offenseState::setExecutePositionReached(std::vector< boolVec > set) // sets the value of executePositionSet
 {
     executePositionReached = set;
 }
@@ -199,9 +199,9 @@ void offenseState::setupState()  // sets up initial state of the object
 void offenseState::updateState(teamTypes teamType)  // updates the state of the object
 {
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
-//    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = gameS->getActiveTeamInstance();
-    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = getActiveTeamInstance();
-//TS    std::vector<boost::shared_ptr<playerState> > activePlayerInstance = activeTeamInstance[teamType]->getActivePlayerInstance();
+//    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
+    teamStateVecSharedPtr activeTeamInstance = getActiveTeamInstance();
+//TS    playerStateVecSharedPtr activePlayerInstance = activeTeamInstance[teamType]->getActivePlayerInstance();
 
     if (!offenseSetup)
     {
@@ -351,8 +351,8 @@ void offenseState::executeOffense() // executes box offense
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
     teamTypes teamWithBall = getTeamWithBall();
 
-    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = getActiveTeamInstance();
-/*TS    std::vector<boost::shared_ptr<playerState> > activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
+    teamStateVecSharedPtr activeTeamInstance = getActiveTeamInstance();
+/*TS    playerStateVecSharedPtr activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
 
     size_t playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();
     size_t playerWithBallID = activeTeamInstance[teamWithBall]->getPlayerWithBallID();
@@ -370,7 +370,7 @@ void offenseState::executeOffense() // executes box offense
             {
                 logMsg("activeSteerInstanceID == " +convert->toString(activePlayerInstance[x]->getID()));
                 pSteer = activePlayerInstance[x]->getSteer().get();
-                std::vector<bool> positionReached = pSteer->getPositionReached();
+                boolVec positionReached = pSteer->getPositionReached();
                 if (positionReached.size() != 1)
                 {
                     positionReached.push_back(false);
@@ -380,7 +380,7 @@ void offenseState::executeOffense() // executes box offense
                 if (!startPositionReached[x])  // checks if each player has reached the start position
                 {
                     logMsg("startPosition " +convert->toString(x) +" not reached!");
-                    std::vector<Ogre::Vector3> steerCoords = plays[0]->getStartPositions();
+                    OgreVector3Vec steerCoords = plays[0]->getStartPositions();
                     OpenSteer::Vec3 coords = convert->toOpenSteerVec3(startPositions[x]);
                     pSteer->setSteerCoords(coords);
                     pSteer->setExecute(true);
@@ -481,7 +481,7 @@ void offenseState::executeOffense() // executes box offense
             {
                 pSteer = activePlayerInstance[x]->getSteer().get();
                 pSteer->setExecute(false);
-                activePlayerInstance[x]->setSteer(boost::shared_ptr<playerSteer>(pSteer));
+                activePlayerInstance[x]->setSteer(playerSteerSharedPtr(pSteer));
             }
         }
 //          exit(0);

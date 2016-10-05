@@ -46,19 +46,19 @@ bool gameStateShared::tipOffComplete;  // Determines whether or not game Tip Off
 
 gameTypes gameStateShared::gameType;  // Indicates whether a single or multi player game is being played.
 quarters gameStateShared::quarter;  // stores the quarter currently being played
-std::vector<size_t> gameStateShared::teamIDS;  // std::vector that stores the IDs of the 2 teams currently playing
-std::vector< std::vector<size_t> > gameStateShared::teamStarterID;  // stores the selected starters for each team
+sizeTVec gameStateShared::teamIDS;  // std::vector that stores the IDs of the 2 teams currently playing
+std::vector< sizeTVec > gameStateShared::teamStarterID;  // stores the selected starters for each team
 Ogre::Vector3 gameStateShared::bballNodePosition;  // stores a copy of the basketball node position
 teamTypes gameStateShared::teamWithBall;  // store which team has the basketball
-std::vector<boost::shared_ptr<teamState> > gameStateShared::activeTeamInstance;  // stores active team instance
+teamStateVecSharedPtr gameStateShared::activeTeamInstance;  // stores active team instance
 size_t gameStateShared::activeBBallInstance;  // stores which instance of the baskteball class is active
 size_t gameStateShared::activeCourtInstance;  // stores which instance of the court is active
-std::vector <boost::shared_ptr<basketballState> > gameStateShared::basketballInstance;  // creates instance of the basketballs class
-std::vector<boost::shared_ptr<courtState> > gameStateShared::courtInstance;  // stores the court instance
-std::vector <boost::shared_ptr<hoopState> > gameStateShared::hoopInstance;  // creates instance of the hoop class
-std::vector<boost::shared_ptr<playerState> > gameStateShared::playerInstance;  // stores the vector of the players loaded from the xml files
+basketballStateVecSharedPtr gameStateShared::basketballInstance;  // creates instance of the basketballs class
+courtStateVecSharedPtr gameStateShared::courtInstance;  // stores the court instance
+hoopStateVecSharedPtr gameStateShared::hoopInstance;  // creates instance of the hoop class
+playerStateVecSharedPtr gameStateShared::playerInstance;  // stores the vector of the players loaded from the xml files
 std::vector <boost::shared_ptr<teamState> >  gameStateShared::teamInstance;  // creates instance of the teamState class
-boost::shared_ptr<jumpBalls> gameStateShared::jumpBall; // instance that is used for jumpBall functions.
+jumpBallsSharedPtr gameStateShared::jumpBall; // instance that is used for jumpBall functions.
 float gameStateShared::yOffset; // stores the y offset for objects on the screen
 
 
@@ -118,20 +118,20 @@ void gameStateShared::setQuarter(quarters set)  // sets he value of quarter
 }
 
 
-std::vector<size_t> gameStateShared::getTeamIDS()  // retrieves the value of teamIDS
+sizeTVec gameStateShared::getTeamIDS()  // retrieves the value of teamIDS
 {
     return (teamIDS);
 }
-void gameStateShared::setTeamIDS(std::vector<size_t> set)  // sets the value of teamIDS
+void gameStateShared::setTeamIDS(sizeTVec set)  // sets the value of teamIDS
 {
     teamIDS = set;
 }
 
-std::vector< std::vector<size_t> > gameStateShared::getTeamStarterID()  // retrieves value of teamStarterID
+std::vector< sizeTVec > gameStateShared::getTeamStarterID()  // retrieves value of teamStarterID
 {
     return (teamStarterID);
 }
-void gameStateShared::setTeamStarterID(std::vector< std::vector<size_t> > set)  // sets the value of teamStarterID
+void gameStateShared::setTeamStarterID(std::vector< sizeTVec > set)  // sets the value of teamStarterID
 {
     teamStarterID = set;
 }
@@ -299,11 +299,11 @@ void gameStateShared::setTeamWithBall(teamTypes set)  // sets the value of teamW
     teamWithBall = set;
 }
 
-std::vector<boost::shared_ptr<teamState> > gameStateShared::getActiveTeamInstance()  // retrieves the value of activeTeamInstance
+teamStateVecSharedPtr gameStateShared::getActiveTeamInstance()  // retrieves the value of activeTeamInstance
 {
     return (activeTeamInstance);
 }
-void gameStateShared::setActiveTeamInstance(std::vector<boost::shared_ptr<teamState> > set)  // sets the value of activeTeamInstance
+void gameStateShared::setActiveTeamInstance(teamStateVecSharedPtr set)  // sets the value of activeTeamInstance
 {
     activeTeamInstance = set;
 }
@@ -326,56 +326,56 @@ void gameStateShared::setActiveCourtInstance(size_t set)  // sets the value of a
     activeCourtInstance = set;
 }
 
-std::vector <boost::shared_ptr<basketballState> > gameStateShared::getBasketballInstance()  // retrieves the value of basketballInstance
+basketballStateVecSharedPtr gameStateShared::getBasketballInstance()  // retrieves the value of basketballInstance
 {
     return (basketballInstance);
 }
-void gameStateShared::setBasketballInstance(std::vector<boost::shared_ptr<basketballState> > set)  // sets the value of basketballInstance
+void gameStateShared::setBasketballInstance(basketballStateVecSharedPtr set)  // sets the value of basketballInstance
 {
     basketballInstance = set;
 }
 
-std::vector<boost::shared_ptr<courtState> > gameStateShared::getCourtInstance()  // retrieves the value of courtInstance
+courtStateVecSharedPtr gameStateShared::getCourtInstance()  // retrieves the value of courtInstance
 {
     return (courtInstance);
 }
-void gameStateShared::setCourtInstance(std::vector<boost::shared_ptr<courtState> > set)  // sets the value of courtInstance
+void gameStateShared::setCourtInstance(courtStateVecSharedPtr set)  // sets the value of courtInstance
 {
     courtInstance = set;
 }
 
-std::vector <boost::shared_ptr<hoopState> > gameStateShared::getHoopInstance()  // retrieves the value of hoopInstance
+hoopStateVecSharedPtr gameStateShared::getHoopInstance()  // retrieves the value of hoopInstance
 {
     return (hoopInstance);
 }
-void gameStateShared::setHoopInstance(std::vector<boost::shared_ptr<hoopState> > set)  // sets the value of hoopInstance
+void gameStateShared::setHoopInstance(hoopStateVecSharedPtr set)  // sets the value of hoopInstance
 {
     hoopInstance = set;
 }
 
-std::vector<boost::shared_ptr<playerState> > gameStateShared::getPlayerInstance()  // retrieves the value of playerInstance
+playerStateVecSharedPtr gameStateShared::getPlayerInstance()  // retrieves the value of playerInstance
 {
     return (playerInstance);
 }
-void gameStateShared::setPlayerInstances(std::vector<boost::shared_ptr<playerState> > set)  // sets the value of playerInstance
+void gameStateShared::setPlayerInstances(playerStateVecSharedPtr set)  // sets the value of playerInstance
 {
     playerInstance = set;
 }
 
-std::vector<boost::shared_ptr<teamState> > gameStateShared::getTeamInstance()  // retrieves the value of teamInstance
+teamStateVecSharedPtr gameStateShared::getTeamInstance()  // retrieves the value of teamInstance
 {
     return (teamInstance);
 }
-void gameStateShared::setTeamInstance(std::vector<boost::shared_ptr<teamState> > set)  // sets the value of teamInstance
+void gameStateShared::setTeamInstance(teamStateVecSharedPtr set)  // sets the value of teamInstance
 {
     teamInstance = set;
 }
 
-boost::shared_ptr<jumpBalls> gameStateShared::getJumpBall()  // retrieves the value of jumpBall
+jumpBallsSharedPtr gameStateShared::getJumpBall()  // retrieves the value of jumpBall
 {
     return (jumpBall);
 }
-void gameStateShared::setJumpBall(boost::shared_ptr<jumpBalls> set)  // sets the value of jumpBall
+void gameStateShared::setJumpBall(jumpBallsSharedPtr set)  // sets the value of jumpBall
 {
     jumpBall = set;
     

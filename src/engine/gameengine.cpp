@@ -268,7 +268,7 @@ void gameEngine::quit()  // quits the game
 //    boost::shared_ptr<inputSystem> input = inputSystem::Instance();
 //    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
 
-    std::vector<teamState> activeTeamInstance = gameS->getActiveTeamInstance();
+    teamStateVec activeTeamInstance = gameS->getActiveTeamInstance();
     networkPlayerStateObject netPStateObj;
 
     logMsg("inputProcess!");
@@ -282,7 +282,7 @@ void gameEngine::quit()  // quits the game
             {
                 if (activeTeamInstance[inputIterator].getPlayerInstancesCreated())
                 {
-                    std::vector<playerState> activePlayerInstance = activeTeamInstance[inputIterator].getActivePlayerInstance();
+                    playerStateVec activePlayerInstance = activeTeamInstance[inputIterator].getActivePlayerInstance();
                     if (activeTeamInstance[inputIterator].getHumanControlled())
                     {
                         int humanPlayer = activeTeamInstance[inputIterator].getHumanPlayer();
@@ -310,7 +310,7 @@ void gameEngine::quit()  // quits the game
                         logMsg("inputQueue.size = " +convert->toString(inputQueue.size()));
                         x = 0;
                         int activeBBallInstance = gameS->getActiveBBallInstance();
-                        std::vector<basketballState> bballInstance = gameS->getBasketballInstance();
+                        basketballStateVec bballInstance = gameS->getBasketballInstance();
                         logMsg("humanInstance.size() == " +convert->toString(humanInstance));
                         if (humanInstance < 11) // makes sure that the humanInstance is a valid number
                         {
@@ -392,8 +392,8 @@ void gameEngine::quit()  // quits the game
                                 ++x;
                             }
                         }
-                        std::vector<teamState> tInstance = gameS->getActiveTeamInstance();
-                        std::vector<playerState> activePInstance = tInstance[inputIterator].getActivePlayerInstance();
+                        teamStateVec tInstance = gameS->getActiveTeamInstance();
+                        playerStateVec activePInstance = tInstance[inputIterator].getActivePlayerInstance();
                         logMsg("humanInstance == " +convert->toString(humanInstance));
                         //logMsg("inPassSteal == " +convert->toString(activePInstance[humanInstance].getPassSteal()));
                         //exit(0);

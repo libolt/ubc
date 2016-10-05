@@ -40,8 +40,8 @@ class jumpBalls
     jumpBallLocations_t getJumpBallLocation();  // retrieves the value of jumpBallLocation
     void setJumpBallLocation(jumpBallLocations_t set);  // sets the value of jumpBallLocation
 
-    std::vector<playerPositions> getJumpBallPlayer();  // retrieves the value of jumpBallPlayer
-    void setJumpBallPlayer(std::vector<playerPositions> set);  // sets the value of jumpBallPlayer
+    playerPositionsVec getJumpBallPlayer();  // retrieves the value of jumpBallPlayer
+    void setJumpBallPlayer(playerPositionsVec set);  // sets the value of jumpBallPlayer
 
     bool getBallTipped();  // retrieves the value of the ballTipped
     void setBallTipped(bool tipped);  // sets the value of the ballTipped
@@ -67,17 +67,17 @@ class jumpBalls
     btVector3 getBBallVelocity();  // retrieves the value of bballVelocity
     void setBBallVelocity(const btVector3 &set);  // sets the value of bballVelocity
 
-    bool updateState(teamTypes teamWithBall, size_t activeBBallInstance, std::vector<basketballStateSharedPtr > basketballInstance, std::vector<boost::shared_ptr<teamState> > activeTeamInstance, quarters quarter);  // updates state of the jumpBalls instance until jump ball has completed
+    bool updateState(teamTypes teamWithBall, size_t activeBBallInstance, basketballStateVecSharedPtr basketballInstance, teamStateVecSharedPtr activeTeamInstance, quarters quarter);  // updates state of the jumpBalls instance until jump ball has completed
 
-    bool jumpBallExecute(std::vector<basketballStateSharedPtr > basketballInstance, size_t activeBBallInstance, std::vector<boost::shared_ptr<teamState> > activeTeamInstance); // initiates jump ball from jump ball circle
+    bool jumpBallExecute(basketballStateVecSharedPtr basketballInstance, size_t activeBBallInstance, teamStateVecSharedPtr activeTeamInstance); // initiates jump ball from jump ball circle
 
-    bool tipToPlayer(std::vector<basketballStateSharedPtr > basketballInstance, size_t activeBBallInstance, std::vector<boost::shared_ptr<teamState> > activeTeamInstance, quarters quarter);  // tips the basketball to the appropriate player
+    bool tipToPlayer(basketballStateVecSharedPtr basketballInstance, size_t activeBBallInstance, teamStateVecSharedPtr activeTeamInstance, quarters quarter);  // tips the basketball to the appropriate player
 
     private:
 
     
     jumpBallLocations_t jumpBallLocation;  // sets where the jump ball is to be held
-    std::vector<playerPositions> jumpBallPlayer;  // stores which two players will be jumping for the ball
+    playerPositionsVec jumpBallPlayer;  // stores which two players will be jumping for the ball
     bool ballTipped;  //	stores whether or not the ball has been tipped
     bool ballTipForceApplied;// stores whether or not force has been applied to tipped ball
     bool playerHasBasketball;  // stores whether or not a player has control of the basketball

@@ -24,6 +24,8 @@
 #include <string>
 #include <vector>
 
+#include "typedefs.h"
+
 class teamData
 {
     public:
@@ -39,14 +41,14 @@ class teamData
     std::string getCoach(void);  // retrieves the value of coach
     void setCoach(std::string set);  // sets the value of coach
 
-    std::vector<size_t> getRoster(void);  // retrieves the value of roster
-    void setRoster(std::vector<size_t> set);  // sets the value of roster
+    sizeTVec getRoster(void);  // retrieves the value of roster
+    void setRoster(sizeTVec set);  // sets the value of roster
 
     size_t getPlayerNum(void);  // retrieves the value of playerNum
     void setPlayerNum(size_t set);  // sets the value of playerNum
 
-    std::vector<size_t> getStarters(void);  // retrieves the value of starters
-    void setStarters(std::vector<size_t> set); // sets the value of starters
+    sizeTVec getStarters(void);  // retrieves the value of starters
+    void setStarters(sizeTVec set); // sets the value of starters
 
     size_t getID(void);  // retrieves the value of ID
     void setID(size_t set);  // sets the value of ID
@@ -66,10 +68,10 @@ private:
     std::string logoFile;  // stores the name of the file used for team logo
     size_t ID;  // stores the team's ID number
 
-    std::vector<size_t> roster;  // stores the list of player IDs associated with the team.
+    sizeTVec roster;  // stores the list of player IDs associated with the team.
     size_t playerNum;  // stores total number of players on the team
 
-    std::vector<size_t> starters;  // store the IDs of the starting players
+    sizeTVec starters;  // store the IDs of the starting players
 
 };
 

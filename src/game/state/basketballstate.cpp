@@ -562,9 +562,9 @@ void basketballState::updateMovement()  // updates the basketball(s) movements
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
-    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = getActiveTeamInstance();
+    teamStateVecSharedPtr activeTeamInstance = getActiveTeamInstance();
     size_t teamWithBall = getTeamWithBall();
-/*TS    std::vector<boost::shared_ptr<playerState> > activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
+/*TS    playerStateVecSharedPtr activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
     size_t playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();
     size_t playerWithBallID = activeTeamInstance[teamWithBall]->getPlayerWithBallID();
 TS*/
@@ -632,16 +632,16 @@ void basketballState::updateDirection()  // updates basketball direction(s)
     //conversion *convert = conversion::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
-    std::vector<boost::shared_ptr<teamState> > activeTeamInstance = getActiveTeamInstance();
+    teamStateVecSharedPtr activeTeamInstance = getActiveTeamInstance();
     size_t teamWithBall = getTeamWithBall();
-/*TS    std::vector<boost::shared_ptr<playerState> > activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
-    std::vector<size_t> activePlayerID = activeTeamInstance[teamWithBall]->getActivePlayerID();
+/*TS    playerStateVecSharedPtr activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
+    sizeTVec activePlayerID = activeTeamInstance[teamWithBall]->getActivePlayerID();
     
     size_t playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();
     size_t playerWithBallID = activeTeamInstance[teamWithBall]->getPlayerWithBallID();
 TS*/
 
-    boost::shared_ptr<jumpBalls> jumpBall = getJumpBall();
+    jumpBallsSharedPtr jumpBall = getJumpBall();
 
 //TS    logMsg("directplayerwithballInstance == " +convert->toString(playerWithBallInstance));
     bool tipOffComplete = getTipOffComplete();

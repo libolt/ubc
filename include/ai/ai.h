@@ -25,6 +25,7 @@
 #include "OpenSteer/Clock.h"
 #include <boost/shared_ptr.hpp>
 
+#include "typedefs.h"
 
 //#include "ai/playersteerplugin.h"
 
@@ -40,17 +41,17 @@ public:
 	~AISystem();
 
 //    OpenSteer::AbstractVehicle* getSelectedVehicle(); // retrieves the value of selectedVehicle
-    OpenSteer::AbstractVehicle*  getSelectedVehicle(); // retrieves the value of selectedVehicle
+    OpenSteerAbstractVehicleSharedPtr getSelectedVehicle(); // retrieves the value of selectedVehicle
 
-    void setSelectedVehicle(OpenSteer::AbstractVehicle* vehicle);  // sets the value of selectedVehicle
+    void setSelectedVehicle(OpenSteerAbstractVehicleSharedPtr vehicle);  // sets the value of selectedVehicle
 //    void setSelectedVehicle(OpenSteer::AbstractVehicle vehicle);  // sets the value of selectedVehicle
 
     
-//    std::vector<playerSteer*> getAllPlayerSteers();	// retrieves the value of allPlayerSteers
-//    void setAllPlayerSteers(const std::vector<playerSteer*> steers);	// sets the value of allPlayerSteers
+//    playerSteerVecSharedPtr getAllPlayerSteers();	// retrieves the value of allPlayerSteers
+//    void setAllPlayerSteers(const playerSteerVecSharedPtr steers);	// sets the value of allPlayerSteers
 
-    std::vector<playerSteer*> getAllPlayerSteers(); // retrieves the value of allPlayerSteers
-    void setAllPlayerSteers(const std::vector<playerSteer*> steers);    // sets the value of allPlayerSteers
+    playerSteerVecSharedPtr getAllPlayerSteers(); // retrieves the value of allPlayerSteers
+    void setAllPlayerSteers(const playerSteerVecSharedPtr steers);    // sets the value of allPlayerSteers
 
     float getOldTime(); // returns the value of oldTime
     void setOldTime(float time); // sets the value of oldTime
@@ -91,10 +92,10 @@ public:
 
 	// currently selected vehicle
 //    OpenSteer::AbstractVehicle* selectedVehicle;
-    OpenSteer::AbstractVehicle* selectedVehicle;
+    OpenSteerAbstractVehicleSharedPtr selectedVehicle;
 
 //	playerSteerPlugin *playerSteerPluginInstance;
-    playerSteerPlugin* playerSteerPluginInstance;
+    playerSteerPluginSharedPtr playerSteerPluginInstance;
     
 protected:
     AISystem();
@@ -102,12 +103,12 @@ protected:
     AISystem& operator= (const AISystem&);
 private:
     //static AISystem *pInstance;
-    static AISystem pInstance;
+    static boost::shared_ptr<AISystem> pInstance;
     
 	// currently selected plug-in (user can choose or cycle through them)
 //    OpenSteer::PlugIn* selectedPlugIn;
-    OpenSteer::PlugIn* selectedPlugIn;
-	std::vector<playerSteer*> allPlayerSteers;
+    OpenSteerPluginSharedPtr selectedPlugIn;
+    playerSteerVecSharedPtr allPlayerSteers;
 
 	// TIMER
 	OpenSteer::Clock aiTimer;

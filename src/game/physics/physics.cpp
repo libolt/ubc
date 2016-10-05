@@ -119,7 +119,7 @@ bool physics::setupPhysics(Ogre::Entity **model, Ogre::SceneNode **node, btRigid
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 //    boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
 
-//    std::vector<basketballState> basketballInstance = gameS->getBasketballInstance();
+//    basketballStateVec basketballInstance = gameS->getBasketballInstance();
 //    size_t activeBBallInstance = gameS->getActiveBBallInstance();
 
 //    Ogre::SceneNode *tempNode = node;

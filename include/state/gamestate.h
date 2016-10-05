@@ -74,8 +74,8 @@ public:
     bool getGameStarted(void);  // retrieves the gameStarted value
     void setGameStarted(bool set);  // sets gameStarted value
 
-/*    boost::shared_ptr<jumpBalls> getJumpBall();  // retrieves the value of jumpBall
-    void setJumpBall(boost::shared_ptr<jumpBalls> set);  // sets the value of jumpBall
+/*    jumpBallsSharedPtr getJumpBall();  // retrieves the value of jumpBall
+    void setJumpBall(jumpBallsSharedPtr set);  // sets the value of jumpBall
 */
 
 //    teamTypes getTeamWithBall(void);  // retrieves teamWithBall value
@@ -123,15 +123,8 @@ public:
     bool getModelsLoaded();  // retrieves the value of modelsLoaded
     void setModelsLoaded(bool set);  // sets the value of modelsLoaded
 
-/*    std::vector<teamData> getTeamDataInstance();  // retrieves the value of teamDataInstance
-    void setTeamDataInstance(std::vector<teamData> set);  // sets the value of teamDataInstance;
-*/
-
-/*    std::vector<boost::shared_ptr<playerState> > getPlayerInstance();  // retrieves the value of playerInstance
-    void setPlayerInstances(std::vector<boost::shared_ptr<playerState> > set);  // sets the value of playerInstance;
-*/
-    std::vector<courtData> getCourtDataInstance();  // retrieves the value of courtDataInstance
-    void setCourtDataInstance(std::vector<courtData> set);  // sets the value of courtDataInstance
+    courtDataVec getCourtDataInstance();  // retrieves the value of courtDataInstance
+    void setCourtDataInstance(courtDataVec set);  // sets the value of courtDataInstance
 
 /*    size_t getActiveBBallInstance();  // retrieves the value of activeBBallInstance
     void setActiveBBallInstance(size_t set);  // sets the value of activeBBallInstance
@@ -141,42 +134,17 @@ public:
     void setActiveCourtInstance(size_t set);  // sets the value of activeCourtInstance
 */
 
-/*    std::vector<size_t> getTeamID(void);  // retrieves the value of teamID
-    void setTeamID(std::vector<size_t> set);  // sets the value of teamID
+/*    sizeTVec getTeamID(void);  // retrieves the value of teamID
+    void setTeamID(sizeTVec set);  // sets the value of teamID
 */
 
-    std::vector<size_t> getPlayerID(void);  // retrieves the value of playerID
-    void setPlayerID(std::vector<size_t> set);  // sets the value of playerID
+    sizeTVec getPlayerID(void);  // retrieves the value of playerID
+    void setPlayerID(sizeTVec set);  // sets the value of playerID
 
-/*    std::vector< std::vector<size_t> > getTeamStarterID();  // retrieves value of teamStarterID
-    void setTeamStarterID(std::vector< std::vector<size_t> > set);  // sets the value of teamStarterID
-*/
-
-/*    std::vector <basketballState> getBasketballInstance();  // retrieves the value of basketballInstance
-    void setBasketballInstance(std::vector<basketballState> set);  // sets the value of basketballInstance
-*/
-
-/*    std::vector<boost::shared_ptr<teamState> > getTeamInstance();  // retireves the value of teamInstance
-    void setTeamInstance(std::vector<boost::shared_ptr<teamState> > set);  // sets the value of teamInstance
-*/
-
-//    std::vector <courtState> getCourtInstance();  // retrieves the value of courtInstance
-//    void setCourtInstance(std::vector<courtState> set);  // sets the value of courtInstance
-
-/*    std::vector <hoopState> getHoopInstance();  // retrieves the value of hoopInstance
-    void setHoopInstance(std::vector<hoopState> set);  // sets the value of hoopInstance
-*/
-//    std::vector <boost::shared_ptr<teamState> > getActiveTeamInstance();  // retireves the value of activeTeamInstance
-//    void setActiveTeamInstance(std::vector<boost::shared_ptr<teamState> > set);  // sets the value of activeTeamInstance
 
     bool getTipOffSetupComplete();  // retrieves the value of tipOffSetupComplete
     void setTipOffSetupComplete(bool set);  // sets the value of tipOffSetupComplete
 
-//    bool getTipOffComplete();  // retrieves the value of tipOffComplete
-//    void setTipOffComplete(bool set);  // sets the value of tipOffComplete
-
-//    bool getStateSet();  // retrieves the value of stateSet
-//    void setStateSet(bool set);  // sets the value of stateSet
 
     bool getInputReceived();  // retrieves the value of inputReceived
     void setInputReceived(bool set);  // sets the value of inputReceived
@@ -232,52 +200,22 @@ protected:
 //    gameState &operator = (const gameState&);
 
 private:
-    //static gameState *pInstance;
-//    static boost::shared_ptr<gameState> pInstance;
-
-//    gameTypes gameType;  // Indicates whether a single or multi player game is being played.
-//    quarters quarter;  // stores the quarter currently being played
-
-//    bool gameSetupComplete;  // indicates whether initial game setup is complete.
 
     float gameTimeLeft;  // Indicates the time left in the game
     float quarterTimeLeft;  // incates the time left in the current quarter
 
     bool finished;  // indicates whether a game is finished.
 
-//    std::vector<teamData> teamDataInstance;	 // stores the vector of teams loaded from the xml files
-//    std::vector<playerData> playerDataInstance;  // stores the vector of the players loaded from the xml files
-//c    std::vector<boost::shared_ptr<playerState> > playerInstance;  // stores the vector of the players loaded from the xml files
-    
-    std::vector<courtData> courtDataInstance;  // stores the vector the courts loaded from the xml files
+    courtDataVec courtDataInstance;  // stores the vector the courts loaded from the xml files
 
     size_t selectedCourtDataInstance;  // stores which court should be loaded by courtInstance
     
-//    std::vector<size_t> teamID;  // std::vector that stores the IDs of the 2 teams currently playing
-    std::vector<size_t> playerID;  // std::vector that stores the IDs of the players currently being used.
+    sizeTVec playerID;  // std::vector that stores the IDs of the players currently being used.
 
-    std::vector< std::vector<size_t> > teamStarterID;  // stores the selected starters for each team
-
-    // stores all instances of the objects
-//    std::vector <basketballState> basketballInstance;  // creates instance of the basketballs class
-//    std::vector <courtState> courtInstance;  // creates instance of the courtState class
-//    std::vector <hoopState> hoopInstance;  // creates instance of the hoop class
-//    std::vector < boost::shared_ptr<teamState> >  teamInstance;  // creates instance of the teamState class
-
-    // stores active instances of objects
-//    std::vector<boost::shared_ptr<teamState> > activeTeamInstance;  // stores the active team instances
-
-//    size_t activeBBallInstance;  // stores which instance of the baskteball class is active
-//    size_t activeCourtInstance;  // stores which instance of the court is active
+    std::vector< sizeTVec > teamStarterID;  // stores the selected starters for each team
 
     bool setupEnvironmentCompleted;  // stores whether environment has been setup
     bool courtDataLoaded;  // stores whether or not the court data has been loaded from file
-//    bool basketballInstancesCreated;  // stores whether basketball instance(s) have been created
-//    bool courtInstancesCreated;  // stores whether team instances have been created
-//    bool hoopInstancesCreated;  // stores whether team instances have been created
-//    bool playerInstancesCreated;  // stores whether player instances have been created
-//    bool teamInstancesCreated;  // stores whether team instances have been created
-//    bool activeTeamInstancesCreated;  // stores whether the active team instances have been created
     bool basketballModelLoaded;  // stores whether basketball model has been loaded
     bool courtModelLoaded;  // stores whether court model has been loaded
     bool hoopModelLoaded;  // stores whether the hoop model has been loaded
@@ -286,20 +224,11 @@ private:
     bool gameStarted;  // Determines whether or not a basketball game has been started
     bool tipOffSetupComplete;  // Determines whether or not game Tip Off has been setup
 
-    bool inputReceived;  // if true process input
-    
+    bool inputReceived;  // if true process input    
     
     inputInGameWorkQueues inputInGameWorkQueue;  // queue of input events for game
     
-//    bool tipOffComplete;  // Determines whether or not game Tip Off has completed
-
-//    boost::shared_ptr<jumpBalls> jumpBall; // instance that is used for jumpBall functions.
-
-//    teamTypes teamWithBall;  // stores which team has control of the basketball, valid values are 0 or 1
-
     size_t bballBounce;  // stores which direction the ball is bouncing;
-
-//    bool stateSet;  // if true then the game state has been set
 
 };
 

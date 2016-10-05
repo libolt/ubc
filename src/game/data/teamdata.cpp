@@ -78,12 +78,12 @@ void teamData::setCoach(std::string set)
     coach = set;
 }
 
-std::vector<size_t> teamData::getRoster(void)
+sizeTVec teamData::getRoster(void)
 {
     return(roster);
 }
 
-void teamData::setRoster(std::vector<size_t> set)
+void teamData::setRoster(sizeTVec set)
 {
     roster = set;
 }
@@ -98,12 +98,12 @@ void teamData::setPlayerNum(size_t set)
     playerNum = set;
 }
 
-std::vector<size_t> teamData::getStarters(void)
+sizeTVec teamData::getStarters(void)
 {
     return(starters);
 }
 
-void teamData::setStarters(std::vector<size_t> set)
+void teamData::setStarters(sizeTVec set)
 {
     starters = set;
 }

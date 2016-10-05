@@ -114,14 +114,14 @@ public:
     size_t getFreeThrowsMade();  // retrieves the value of freeThrowsMade
     void setFreeThrowsMade(size_t set);  // sets the value of freeThrowsMade
 
-    std::vector<size_t> getPlayerID();  // retrieves the value of playerID
-    void setPlayerID(std::vector<size_t> set);  // sets the value of playerID
+    sizeTVec getPlayerID();  // retrieves the value of playerID
+    void setPlayerID(sizeTVec set);  // sets the value of playerID
 
-    std::vector<size_t> getActivePlayerID();  // retrieves the value of activePlayerID
-    void setActivePlayerID(std::vector<size_t> set);  // sets the value of activePlayerID
+    sizeTVec getActivePlayerID();  // retrieves the value of activePlayerID
+    void setActivePlayerID(sizeTVec set);  // sets the value of activePlayerID
 
-    std::vector<size_t> getStarterID();  // retrieves the value of starterID
-    void setStarterID(std::vector<size_t> set);  // sets the value of starterID
+    sizeTVec getStarterID();  // retrieves the value of starterID
+    void setStarterID(sizeTVec set);  // sets the value of starterID
 
     bool getOffense();	// retrieves the value of offense
     void setOffense(bool set);  // sets the value of offense
@@ -215,10 +215,9 @@ private:
     size_t freeThrowsAttempted;  // stores the total number of free throws attempted.
     size_t freeThrowsMade;  // stores the total number of free throws made.
 
-    std::vector<size_t> playerID;  // stores the player IDs from the teams class
-    std::vector<size_t> activePlayerID;  // stores which players are currently on the court.
-//        std::vector<int> activeID;
-    std::vector<size_t> starterID;  // stores the IDs of which players are listed as starters.
+    sizeTVec playerID;  // stores the player IDs from the teams class
+    sizeTVec activePlayerID;  // stores which players are currently on the court.
+    sizeTVec starterID;  // stores the IDs of which players are listed as starters.
 
     bool offense;  // if set then the team is on offense
     bool defense;  // if set then the team is on defense

@@ -22,7 +22,7 @@
 #include "logging.h"
 
 // static declarations
-playerSteer *playerEntity::steer; 
+playerSteerSharedPtr playerEntity::steer;
 
 playerEntity::playerEntity()  // constructor
 {
@@ -42,11 +42,11 @@ void playerEntity::setPhysics(playerPhysics *set)  // sets the value of physics
     physics = set;
 }*/
 
-playerSteer *playerEntity::getSteer() // retrieves the value of steer
+playerSteerSharedPtr playerEntity::getSteer() // retrieves the value of steer
 {
     return (steer);
 }
-void playerEntity::setSteer(playerSteer *set)  // sets the value of steer
+void playerEntity::setSteer(playerSteerSharedPtr set)  // sets the value of steer
 {
     steer = set;
 }

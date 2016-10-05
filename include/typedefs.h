@@ -21,6 +21,11 @@
 #ifndef _TYPEDEFS_H_
 #define _TYPEDEFS_H_
 
+#ifndef _ENET_ISINCLUDED_
+#define _ENET_ISINCLUDED_
+#include "enet/enet.h"
+#endif 
+
 // forward declarations
 class UBCBase;
 class GUISystem;

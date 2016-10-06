@@ -56,10 +56,11 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
         logMsg("Base NOT STATE SETUP!!!");
         exit(0);
     }
-
+    base->setup();
+//    exit(0);
     if (base->getGameS()->getCourtInstancesCreated())
     {
-        exit(0);
+//        exit(0);
 
         courtInstance = base->getGameS()->getCourtInstance();
 //        exit(0);
@@ -69,9 +70,10 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
     }
     else
     {
+//        exit(0);
         if (base->getGameS()->createCourtInstances())
         {
-//            exit(0);7
+//            exit(0);
             courtInstance = base->getGameS()->getCourtInstance();
             base->getGameS()->setCourtInstancesCreated(true);
         }

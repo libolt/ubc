@@ -405,25 +405,27 @@ bool gameState::createTeamInstances()  // creates team Instances
 
 bool gameState::createCourtInstances()  // creates court Instances
 {
-    boost::shared_ptr<loader> load;
-
+    boost::shared_ptr<loader> load(new loader);
+//    exit(0);
 //    courtState cInstance;  // creates an instance of the courtState class
 //    cInstance.setModelFileName("court.mesh");
 //    cInstance.setModelFileName("Court.mesh");
-    
+//    exit(0);
     if (load->checkIfCourtsLoaded())
     {
+ //       exit(0);
         setCourtInstance(load->getCInstance());
         logMsg("Court Instances SET!");
         return (true);
     }
     else
     {
-        logMsg("Court Instances NOT SET!!");
+//        exit(0);
+//        logMsg("Court Instances NOT SET!!");
 //        exit(0);
         return (false);
     }
-
+//    exit(0);
     return (true);
 }
 

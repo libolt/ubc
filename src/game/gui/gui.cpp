@@ -752,7 +752,7 @@ void GUISystem::courtSelectionMenu() // displays court selection menu
     {
 //        exit(0);
         logMsg("addCourtSelectionMenuData = " +convert->toString(addCourtSelectionMenuData()));
-        exit(0);
+//        exit(0);
         if (addCourtSelectionMenuData())
         {
 //            exit(0);
@@ -762,7 +762,7 @@ void GUISystem::courtSelectionMenu() // displays court selection menu
 //        exit(0);
     }
     changeActiveMenu(COURTSELECT);
-    exit(0);
+//    exit(0);
 
 }
 

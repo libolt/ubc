@@ -481,10 +481,11 @@ bool loader::checkIfBasketballsLoaded()  // checks if basketballs have been load
 
 bool loader::checkIfCourtsLoaded()  // checks if courts have been loaded into cInstance
 {
+//    exit(0);
     if (courtFilesLoaded)
     {
         logMsg("loader::checkIfCourtsLoaded() getCourtFilesLoaded");
-
+        exit(0);
         if (cInstance.size() > 0)
         {
             logMsg("loader::checkIfCourtsLoaded() Court Files Loaded!");
@@ -514,7 +515,7 @@ bool loader::checkIfCourtsLoaded()  // checks if courts have been loaded into cI
     else 
     {
         logMsg("loader::checkIfCourtsLoaded() ELSE");
-
+        exit(0);
         if (cInstance.size() > 0)
         {
             logMsg("loader::checkIfCourtsLoaded() load->getCInstance().size() > 0! ELSE");
@@ -543,6 +544,7 @@ bool loader::checkIfCourtsLoaded()  // checks if courts have been loaded into cI
             }
         }
     }
+//    exit(0);
     return (false);
 }
 

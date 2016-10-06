@@ -25,6 +25,7 @@
 #include "state/inputstate.h"
 
 // Static Declarations
+bool UBCBase::stateSetup;
 boost::shared_ptr<gameEngine> UBCBase::gameE;  // the gameEngine object
 boost::shared_ptr<gameState> UBCBase::gameS;  // the gameState object
 boost::shared_ptr<networkState> UBCBase::networkS;  // the networkState object
@@ -32,12 +33,22 @@ boost::shared_ptr<inputState> UBCBase::inputS;  // the inputState object
 
 UBCBase::UBCBase()  // constructor
 {
-
+    stateSetup = false;
 }
 
 UBCBase::~UBCBase()  // destructor
 {
     
+}
+
+bool UBCBase::getStateSetup()  // retrieves the value of stateSetup
+{
+    return (stateSetup);
+}
+
+void UBCBase::setStateSetup(bool set)  // sets the value of stateSetup
+{
+    stateSetup = set;
 }
 
 boost::shared_ptr<gameEngine> UBCBase::getGameE()  // retrieves the value of gameE

@@ -47,7 +47,16 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
     courtStateVecSharedPtr courtInstance;
     stdStringVec courtName;
 //    if (!gameS->getCourtInstancesCreated())
-//    exit(0);
+    if (base->getStateSetup())
+    {
+        logMsg("WOOT Base STATE SETUP!");
+    }
+    else
+    {
+        logMsg("Base NOT STATE SETUP!!!");
+        exit(0);
+    }
+
     if (base->getGameS()->getCourtInstancesCreated())
     {
         exit(0);

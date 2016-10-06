@@ -80,7 +80,7 @@ public:
     void setRender(boost::shared_ptr<renderEngine> set);  // sets the value of render
 */
 
-    UBCBaseSharedPtr getBase();  // retrieves the value of base
+    static UBCBaseSharedPtr getBase();  // retrieves the value of base
     void setBase(UBCBaseSharedPtr set);  // sets the value of base
 
     bool getSetupComplete();  // retrieves the value of setupComplete

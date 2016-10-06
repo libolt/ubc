@@ -36,6 +36,9 @@ class UBCBase
     
         UBCBase();  // constructor
         ~UBCBase();  // destructor
+
+        bool getStateSetup();  // retrieves the value of stateSetup
+        void setStateSetup(bool set);  // sets the value of stateSetup
     
         gameEngineSharedPtr getGameE();  // retrieves the value of gameE
         void setGameE(gameEngineSharedPtr set);  // sets the value of gameE
@@ -52,7 +55,7 @@ class UBCBase
         bool setup();  // sets up the engine and states
     
     private:
-    
+        static bool stateSetup;  // stores whether or not the initial state setup has completed
         static gameEngineSharedPtr gameE;  // the gameEngine object
         static gameStateSharedPtr gameS;  // the gameState object
         static networkStateSharedPtr networkS;  // the gameState object

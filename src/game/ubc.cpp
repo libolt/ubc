@@ -95,11 +95,22 @@ bool UBC::setup()  // sets up UBC object
 
         UBCBaseSharedPtr tempBaseSharedPtr(new UBCBase);
         base = tempBaseSharedPtr;
-
+        if (!base->getStateSetup())
+        {
+            if (base->setup())
+            {
+                base->setStateSetup(true);
+            }
+//            exit(0);
+        }
+//    exit(0);
     //    GUISystem *tempGUIObj = new GUISystem;
         GUISystemSharedPtr tempGUISharedPtr(new GUISystem);
         gui = tempGUISharedPtr;
-        gui->getBase()->setGameS(base->getGameS());
+        gui->setBase(base);
+//        exit(0);
+//        gui->getBase()->setGameS(base->getGameS());
+//        exit(0);
 }
 
 bool UBC::setupState()  // sets up the UBC game state
@@ -615,12 +626,14 @@ int main(int argc, char *argv[])
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<UBC> ubc;
     boost::shared_ptr<UBC> ubc(new UBC);
+//    exit(0);
 //    boost::shared_ptr<renderEngine> render = ubc.getRenderE();
 //    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 //    boost::shared_ptr<GUISystem> gui = ubc.getGui();
 //    exit(0);
     ubc->setup();
+//    exit(0);
     ubc->run();
 //    exit(0);
     logMsg("End Game!");

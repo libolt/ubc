@@ -534,7 +534,7 @@ void GUISystem::startSinglePlayerGame()  // starts single player game
 //    gameS->setGameType(SINGLE);
     base->getGameS()->setGameType(SINGLE);
 //    exit(0);
-//	hideMainMenuWidgets();	// Hides the widgets from the main menu
+//    hideMainMenuWidgets();	// Hides the widgets from the main menu
     courtSelectionMenu();   // displays the menu for selecting which court to use
     //   gameSetupMenu();
 //	menuActive = false;
@@ -622,22 +622,23 @@ void GUISystem::playerStartSelectionMenu()  // displays player start selection m
 
 void GUISystem::teamSelectionMenu()  // displays team selection menu
 {
-    
+/*    exit(0);
     hideCourtSelectionMenuWidgets();
     createTeamSelectionMenuGUI();
     showTeamSelectionMenuWidgets();
 //    changeActiveMenu(TEAMSELECT);
     boost::shared_ptr<loader> load; // = loader::Instance();
+*/
     bool changeMenu = false;  // determinrs if menu is to be changed
 //    teamStateVecSharedPtr teamInstance; // = gameS->getTeamDataInstance();
 
     logMsg("teamSelectionMenu");
 
 //    teamInstance = load->loadTeams();
-
+//    exit(0);
     if (teamSelectionMenuCreated)
     {      
-        
+//        exit(0);
         if (base->getGameS()->getTeamInstancesCreated())
         {
             logMsg("getTeamInstancesCreated");
@@ -700,13 +701,13 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
     }
     else
     {
-//        exit(0);
         if (createTeamSelectionMenuGUI())
         {            
             teamSelectionMenuCreated = true;
+//            exit(0);
             if (addTeamStartSelectionMenuData())
             {
-                
+                exit(0);
                 teamSelectionMenuDataAdded = true;
                 changeMenu = true;
             }
@@ -719,6 +720,7 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
         else
         {
             logMsg("Unable to create Team Selection Menu!");
+            exit(0);
         }
     }
     
@@ -742,7 +744,7 @@ void GUISystem::courtSelectionMenu() // displays court selection menu
 {
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<loader> load; // = loader::Instance();
+//    boost::shared_ptr<loader> load; // = loader::Instance();
     if (!courtSelectionMenuCreated)
     {
         createCourtSelectionMenuGUI();
@@ -758,6 +760,11 @@ void GUISystem::courtSelectionMenu() // displays court selection menu
 //            exit(0);
             courtSelectBox->setIndexSelected(0);
             courtSelectionDataLoaded = true;
+        }
+        else
+        {
+            exit(0);
+
         }
 //        exit(0);
     }

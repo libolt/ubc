@@ -515,7 +515,7 @@ bool loader::checkIfCourtsLoaded()  // checks if courts have been loaded into cI
     else 
     {
         logMsg("loader::checkIfCourtsLoaded() ELSE");
-        exit(0);
+//        exit(0);
         if (cInstance.size() > 0)
         {
             logMsg("loader::checkIfCourtsLoaded() load->getCInstance().size() > 0! ELSE");

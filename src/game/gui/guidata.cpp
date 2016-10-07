@@ -43,7 +43,7 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
 {
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    
+
     courtStateVecSharedPtr courtInstance;
     stdStringVec courtName;
 //    if (!gameS->getCourtInstancesCreated())
@@ -54,9 +54,10 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
     else
     {
         logMsg("Base NOT STATE SETUP!!!");
-        exit(0);
+        base->setup();
+//        exit(0);
     }
-    base->setup();
+
 //    exit(0);
     if (base->getGameS()->getCourtInstancesCreated())
     {
@@ -82,7 +83,9 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
             logMsg("Court Instances NOT Created!");
         }
     }
+
 //    exit(0);
+
 //    courtInstance = gameS->getCourtInstance();
 
     for (size_t x=0;x<courtInstance.size();++x)
@@ -94,7 +97,8 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
         logMsg("courtInstane.size == " +convert->toString(courtInstance.size()));
 //        exit(0);
     }
-    
+//    exit(0);
+
     logMsg("courtName = " +courtName[0]);
     logMsg("courtName size = " +convert->toString(courtName.size()));
 //    exit(0);u
@@ -104,6 +108,7 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
         courtSelectBox->addItem(courtName[i]);
         ++i;
     }
+
     logMsg("Court names added!");
 //    exit(0);
     return (true);
@@ -536,7 +541,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 
-    boost::shared_ptr<loader> load;
+    boost::shared_ptr<loader> load(new loader);
 
     teamStateVecSharedPtr teamInstance; // = gameS->getTeamDataInstance();
 
@@ -561,7 +566,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     {
         teamInstance = load->getTInstance();
     }
-    
+    base->getGameS()->setTeamInstance(teamInstance);
     logMsg("GUI ADD TEAMteamInstance.size() == " +convert->toString(teamInstance.size()));
     int x = 0;
     while (x < teamInstance.size())
@@ -569,8 +574,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
         logMsg("GUI ADD TEAM teamInstance[" +convert->toString(x) +"]->getID() ID == " +convert->toString(teamInstance[x]->getID()));
         ++x;
     }
-     logMsg("GUI ADD TEAM base->getGameS()->getTeamInstance()[3]->getID() ID == " +convert->toString(base->getGameS()->getTeamInstance()[3]->getID()));
-//    exit(0);
+     logMsg("GUI ADD TEAM base->getGameS()->getTeamInstance()[3]->getID() ID == " +convert->toString(base->getGameS()->getTeamInstance()[0]->getID()));
     if (base->getGameS()->getTeamInstancesCreated())
     {        
         logMsg("Woot!");
@@ -613,7 +617,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
         
     }
 
-    
+/*
 
 //    gameS->setTeamDataInstance(teamDataInstance);
 //
@@ -647,6 +651,6 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     team1SelectBox->setIndexSelected(1);
     logMsg("End of addTeamStartSelectionMenuData!");
 //    exit(0);
-
+*/
     return (true);
 }

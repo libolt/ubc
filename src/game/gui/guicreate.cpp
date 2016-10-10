@@ -350,7 +350,7 @@ bool GUISystem::createGameSetupMenuGUI()    // creates GUI for game setup menu s
     boost::shared_ptr<conversion> convert = conversion::Instance();
     //gameState *gameS = gameState::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
-    boost::shared_ptr<loader> load;
+//    boost::shared_ptr<loader> load(new loader);
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
 

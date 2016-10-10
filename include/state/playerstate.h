@@ -202,6 +202,8 @@ class playerState : public state, public playerEntity, public playerData
         bool getInitialized(void);  // retreives the value of initialized
         void setInitialized(bool set);  // sets the value of initialized
 
+        bool setup();  // initializes the state of the object
+        
         void updateState();  // updates the state of the object
 
 //        bool loadModel();  // loads the 3D model from file specified in modelName

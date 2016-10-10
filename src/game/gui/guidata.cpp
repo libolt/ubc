@@ -118,7 +118,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
-    boost::shared_ptr<loader> load;
+    boost::shared_ptr<loader> load(new loader);
 
 //    playerInstance = load->loadPlayers();
 //    playerInstance = gameS->getPlayerInstance();
@@ -567,7 +567,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
         teamInstance = load->getTInstance();
     }
     base->getGameS()->setTeamInstance(teamInstance);
-    logMsg("GUI ADD TEAMteamInstance.size() == " +convert->toString(teamInstance.size()));
+    logMsg("GUI ADD TEAM 0 teamInstance.size() == " +convert->toString(teamInstance.size()));
     int x = 0;
     while (x < teamInstance.size())
     {
@@ -582,7 +582,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
         if (base->getGameS()->getTeamInstance().size() > 0)
         {
             teamInstance = base->getGameS()->getTeamInstance();
-            logMsg("teamInstance.size() == " +convert->toString(base->getGameS()->getTeamInstance().size()));
+            logMsg("GUI ADD TEAM 1 teamInstance.size() == " +convert->toString(base->getGameS()->getTeamInstance().size()));
         }
         else
         {
@@ -595,12 +595,12 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     {    
         if (base->getGameS()->createTeamInstances())
         {
-             logMsg("teamInstance.size() == " +convert->toString(base->getGameS()->getTeamInstance().size()));
-            exit(0);
+             logMsg("GUI ADD TEAM 2 teamInstance.size() == " +convert->toString(base->getGameS()->getTeamInstance().size()));
+//            exit(0);
             if (base->getGameS()->getTeamInstance().size() > 0)
             {
                 teamInstance = base->getGameS()->getTeamInstance();
-                logMsg("teamInstance.size() == " +convert->toString(base->getGameS()->getTeamInstance().size()));
+                logMsg("GUI ADD TEAM 3 teamInstance.size() == " +convert->toString(base->getGameS()->getTeamInstance().size()));
             }
             else
             {
@@ -617,7 +617,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
         
     }
 
-/*
+
 
 //    gameS->setTeamDataInstance(teamDataInstance);
 //
@@ -626,13 +626,15 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     logMsg("BLEEET!");
     if (teamInstance.size() == 0)
     {
+        logMsg("teamInstance is empty!");
         exit(0);
     }
     logMsg(convert->toString(teamInstance.size()));
     logMsg("Team City == a" +teamInstance[0]->getCity() +"b");
-    logMsg("Team City == a" +teamInstance[0]->getCity() +"b");
-    logMsg("Team City == a" +teamInstance[0]->getCity() +"b");
-    logMsg("Team City == a" +teamInstance[0]->getCity() +"b");
+    logMsg("Team City == a" +teamInstance[1]->getCity() +"b");
+    logMsg("Team City == a" +teamInstance[2]->getCity() +"b");
+    logMsg("Team City == a" +teamInstance[3]->getCity() +"b");
+
 
 //    exit(0);
     for (size_t x=0;x<teamInstance.size(); ++x)
@@ -651,6 +653,6 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     team1SelectBox->setIndexSelected(1);
     logMsg("End of addTeamStartSelectionMenuData!");
 //    exit(0);
-*/
+
     return (true);
 }

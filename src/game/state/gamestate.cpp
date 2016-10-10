@@ -310,7 +310,7 @@ bool gameState::createTeamInstances()  // creates team Instances
     logMsg("gameState::createTeamInstances()");
     
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<loader> load;
+    boost::shared_ptr<loader> load(new loader);
     
     teamStateVecSharedPtr tInstance;
 /*    teamStateVecSharedPtr tInstance2;
@@ -453,7 +453,7 @@ bool gameState::createPlayerInstances()  // creates player instances
 //    logMsg("gameState::createTeamInstances()");
     
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<loader> load;
+    boost::shared_ptr<loader> load(new loader);
     
     playerStateVecSharedPtr pInstance;
     

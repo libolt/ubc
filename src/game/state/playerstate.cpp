@@ -530,6 +530,24 @@ void playerState::setInitialized(bool set)  // sets the value of initialized
     initialized = set;
 }
 
+bool playerState::setup()  // initializes the state of the object
+{
+    
+    playerSteerSharedPtr tempSteer(new playerSteer);
+    setSteer(tempSteer);
+    
+    logMsg("steer->setTeamType(teamType);");
+    
+    getSteer()->setTeamType(teamType);
+    logMsg("psteer->reset();");
+    getSteer()->reset();
+//    logMsg("pInstance->setSteer(playerSteerSharedPtr(pSteer);");
+
+//    pInstance->setSteer(playerSteerSharedPtr(pSteer));
+
+    return (true);
+}
+
 void playerState::updateState()
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();

@@ -707,7 +707,9 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
 //            exit(0);
             if (addTeamStartSelectionMenuData())
             {
-                exit(0);
+                
+                logMsg("GUI teamSelectionMenu() addTeamStartSelectionMenuData()!");
+//                exit(0);
                 teamSelectionMenuDataAdded = true;
                 changeMenu = true;
             }

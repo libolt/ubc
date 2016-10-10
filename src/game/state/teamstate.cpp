@@ -683,11 +683,11 @@ bool teamState::createPlayerInstances()
     while (i<gamePlayerInstance.size())
     {
 
-        boost::shared_ptr<playerState> pInstance;  // creates a new instance of playerState
+        playerStateSharedPtr pInstance;  // creates a new instance of playerState
         
-        playerSteer *pSteer = new playerSteer; // steer instance
+//        playerSteerSharedPtr pSteer(new playerSteer); // steer instance
         
-/*        boost::shared_ptr<playerPhysics> pPhysics(new playerPhysics);
+//        boost::shared_ptr<playerPhysics> pPhysics(new playerPhysics);
         
         logMsg("Player Team ID = " +convert->toString(gamePlayerInstance[i]->getTeamID()));
 //        exit(0);
@@ -703,7 +703,8 @@ bool teamState::createPlayerInstances()
             logMsg("pInstance->setTeamType(teamType);");
 
             pInstance->setTeamType(teamType);  // sets the team number the player belongs to            
-            logMsg("pSteer->setTeamType(teamType);");
+
+/*            logMsg("pSteer->setTeamType(teamType);");
 
             pSteer->setTeamType(teamType);
             logMsg("pSteer->reset();");
@@ -711,7 +712,7 @@ bool teamState::createPlayerInstances()
             logMsg("pInstance->setSteer(playerSteerSharedPtr(pSteer);");
 
             pInstance->setSteer(playerSteerSharedPtr(pSteer));
-            
+*/            
             logMsg("playerInstance.push_back(pInstance);");
 
             playerInstance.push_back(pInstance);    // adds pInstance to the playerInstance std::vector.
@@ -730,7 +731,7 @@ bool teamState::createPlayerInstances()
         else
         {
         }
-*/        
+        
         i++;
         logMsg("teamState::createPlayerInstances() i == " +convert->toString(i));
     }
@@ -741,7 +742,7 @@ bool teamState::createPlayerInstances()
 //    std::vector <playerState>::iterator pInstanceIT;
 
     logMsg("teamState::createPlayerInstances() before playerID");
-    exit(0);
+//    exit(0);
 //        size_t playerID = teamStarterID[teamType][i];
 //        size_t playerID = activePlayerID[i];
 //        logMsg("ID " +convert->toString(i) +" = " +convert->toString(playerID));

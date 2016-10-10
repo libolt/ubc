@@ -28,6 +28,8 @@
 
 #include <vector>
 
+#include <boost/shared_ptr.hpp>
+
 #include "BtOgrePG.h"
 #include "BtOgreGP.h"
 #include "BtOgreExtras.h"

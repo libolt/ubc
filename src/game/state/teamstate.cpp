@@ -661,7 +661,9 @@ bool teamState::createPlayerInstances()
 //    std::vector <playerData> playerN = player->getPlayer(); // copies Player values to playerN
     std::vector <playerState>::iterator playerIT;
 //    std::vector <playerState>::iterator pInstanceIT;
-      
+    
+    logMsg("teamState::createPlayerInstances() team ID = " +convert->toString(getID()));
+    //exit(0);
     logMsg("Creating players");
     
     if (base->getGameS()->getPlayerInstanceCreated())
@@ -695,7 +697,7 @@ bool teamState::createPlayerInstances()
 //        exit(0);
         if (gamePlayerInstance[i]->getTeamID() == getID())  // checks if player is assigned to this team
         {
-            logMsg("i ==== " +convert->toString(i));
+//            logMsg("i ==== " +convert->toString(i));
 //            exit(0);
             
             logMsg("pInstance = gamePlayerInstance[i];");
@@ -733,7 +735,7 @@ bool teamState::createPlayerInstances()
         }
         
         i++;
-        logMsg("teamState::createPlayerInstances() i == " +convert->toString(i));
+        logMsg("teamState::createPlayerInstances() team ID = " +convert->toString(getID()) +" i == " +convert->toString(i));
     }
     logMsg("teamState::createPlayerInstances() i final == " +convert->toString(i));
 
@@ -753,7 +755,7 @@ bool teamState::createPlayerInstances()
     if (activePlayerID.size() == 0)
     {
         logMsg("activePlayerID.size() == 0");
-        exit(0);
+//        exit(0);
     }
     logMsg("teamState::createPlayerInstances() activePlayerInstance.size() = " +convert->toString(playerInstance.size()));
 
@@ -812,6 +814,7 @@ bool teamState::createPlayerInstances()
         x++;
     }
 
+    logMsg("End of teamState::createPlayerInstances()!");
 //    exit(0);
     return true;
 }

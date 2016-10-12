@@ -133,7 +133,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     logMsg("getGameS()->getTeamIDS().size() == " +convert->toString(base->getGameS()->getTeamIDS().size()));
     logMsg("getGameS()->getTeamIDS()[0] == " +convert->toString(base->getGameS()->getTeamIDS()[0]));
     
-    logMsg("teamIDS[0] == " +convert->toString(teamIDs[0]));
+//    logMsg("teamIDS[0] == " +convert->toString(teamIDs[0]));
     logMsg("blah");
 //    exit(0);
     
@@ -171,24 +171,36 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         exit(0);
     }
     
-    
- 
-    if (!teamInstance[teamIDs[0]]->getPlayerInstancesCreated())
+    //FIXME! This should not be hardcoded!
+    x = 0;
+    while (x < 2)
     {
-        teamInstance[teamIDs[0]]->createPlayerInstances();
-        base->getGameS()->setTeamInstance(teamInstance);
+        logMsg("yabadaba");
+        if (teamInstance[teamIDs[x]]->getPlayerInstancesCreated())
+        {
+            logMsg("Team " +convert->toString(x) +" player instances created!");
+        }
+        else
+        {
+            if (teamInstance[teamIDs[x]]->createPlayerInstances())
+            {
+                teamInstance[teamIDs[x]]->setPlayerInstancesCreated(true);
+                base->getGameS()->setTeamInstance(teamInstance);
+            }
+       }  
+       ++x;
     }
-    
     logMsg("Bleert!");
     
-    exit(0);
+//    exit(0);
     logMsg("teamInstance.size() == " +convert->toString(teamInstance.size()));
-    
+/*    exit(0);
     logMsg("Team 0 player instances created ==  " +convert->toString(teamInstance[teamIDs[0]]->getPlayerInstancesCreated()));
 //    exit(0);
     if (teamInstance[teamIDs[0]]->getPlayerInstancesCreated())
     {
         logMsg("Team 0 player instances created!");
+//        exit(0);
     }
     else
     {
@@ -198,8 +210,9 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         {
 //            exit(0);
             logMsg("Team 0 player instances created successfully!");
-
+            teamInstance[teamIDs[0]]->setPlayerInstancesCreated(true);
             base->getGameS()->setTeamInstance(teamInstance);
+//            exit(0);
         }
         else
         {
@@ -207,8 +220,10 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
             exit(0);
         }
     }
-    exit(0);
-    if (!teamInstance[teamIDs[1]]->getPlayerInstancesCreated())
+*/
+    logMsg("Bleeamb!");
+//    exit(0);
+/*    if (!teamInstance[teamIDs[1]]->getPlayerInstancesCreated())
     {
         teamInstance[teamIDs[1]]->createPlayerInstances();
         base->getGameS()->setTeamInstance(teamInstance);
@@ -220,12 +235,14 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 
     logMsg("Team 0 playerInstance size == " +convert->toString(teamInstance[0]->getPlayerInstance().size()));
     logMsg("teamIDs[0] == " +convert->toString(teamIDs[0]));
-    exit(0);
+//    exit(0);
+*/
     playerInstance.push_back(teamInstance[teamIDs[0]]->getPlayerInstance());
-    exit(0);
+//    exit(0);
+
     playerInstance.push_back(teamInstance[teamIDs[1]]->getPlayerInstance());
 
-    exit(0);
+//    exit(0);
     sizeTVec overAllRatings;
     
     stdStringVec pNames;
@@ -233,7 +250,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     sizeTVec pIDs;
     std::vector< sizeTVec > overallRatings;
     sizeTVec overall;
-    exit(0);
+//    exit(0);
     size_t overallRatingsSize = 0;
     size_t flag = 1;
     size_t temp = 0;
@@ -258,7 +275,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 //        base->getGameS()->createPlayerInstance();
     }
     logMsg("Player Instance Size = " +convert->toString(playerInstance.size()));
-//    exit(0);
+    exit(0);
 //    for (size_t i = 0;i < playerInstance.size(); ++i)
     size_t i = 0;
     while (i < playerInstance.size())

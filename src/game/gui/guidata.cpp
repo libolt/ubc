@@ -275,7 +275,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 //        base->getGameS()->createPlayerInstance();
     }
     logMsg("Player Instance Size = " +convert->toString(playerInstance.size()));
-    exit(0);
+//    exit(0);
 //    for (size_t i = 0;i < playerInstance.size(); ++i)
     size_t i = 0;
     while (i < playerInstance.size())
@@ -286,7 +286,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         logMsg("pDTeam = " +convert->toString(playerInstance[i][0]->getTeamID()));
 //        logMsg("teamID == " +convert->toString(gameS->getTeamID()[1]));
         logMsg("teamID == " +convert->toString(base->getGameS()->getTeamIDS()[1]));
-        exit(0);
+//        exit(0);
 //        if (playerInstance[i]->getTeamID() == gameS->getTeamID()[0])
        if (base->getGameS()->getPlayerInstance()[i]->getTeamID() == base->getGameS()->getTeamIDS()[0])
 
@@ -334,11 +334,13 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     tempName.clear();
     tempPosition.clear();
     logMsg("overallRating before = " +convert->toString(overallRatings[0][0]));
-    exit(0);
-    for (size_t l=0; l<overallRatingsSize && flag; ++l)
+//    exit(0);
+    size_t l = 0; 
+    while (l<overallRatingsSize && flag)
     {
         flag = 0;
-        for (size_t j=0; j < (overallRatingsSize -1); ++j)
+        size_t j = 0;
+        while (j < (overallRatingsSize -1))
         {
             if (overallRatings[0][j+1] > overallRatings[0][j])  // ascending order simply changes to <
             {
@@ -359,8 +361,9 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 
                 flag = 1;               // indicates that a swap occurred.
             }
+            ++j;
         }
-
+        ++l;
     }
 
     logMsg("overallRating after = " +convert->toString(overallRatings[0][0]));
@@ -372,10 +375,13 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     tempName.clear();
     tempPosition.clear();
     logMsg("overallRating before = " +convert->toString(overallRatings[1][0]));
-    for (size_t l=0; l<overallRatingsSize && flag; ++l)
+    l = 0;
+    while (l<overallRatingsSize && flag)
     {
         flag = 0;
-        for (size_t j=0; j < (overallRatingsSize -1); ++j)
+        
+        size_t j = 0;
+        while (j < (overallRatingsSize -1))
         {
             if (overallRatings[1][j+1] > overallRatings[1][j])  // ascending order simply changes to <
             {
@@ -396,21 +402,27 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 
                 flag = 1;  // indicates that a swap occurred.
             }
+            ++j;
         }
-
+        ++l;
     }
     logMsg("overallRating after = " +convert->toString(overallRatings[1][0]));
 
     sizeTVec starters; // used for initial creatio  of teamStarterID vector
 //    starters.push_back(1);
-    for (size_t i=0;i<5;++i)
+    i = 0;
+    while (i < 5)
     {
         team0IDs.push_back(starters);
         team1IDs.push_back(starters);
+        ++i;
     }
 
     size_t startID = 0;
-    for (size_t i = 0;i < playerNames[0].size(); ++i)
+    logMsg("playerNames[0].size() == " +convert->toString(playerNames[0].size()));
+    
+    i = 0;
+    while (i < playerNames[0].size())
     {
        bool playerNameLengthReached = false;
         while (!playerNameLengthReached)
@@ -422,7 +434,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
             else
             {
                 playerNames[0][i] += " ";
-            }
+            }          
         }
         playerNames[0][i] += " " +convert->toString(overallRatings[0][i]);
         logMsg("playerNames[0][i] == " +playerNames[0][i]);
@@ -458,11 +470,14 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         {
 
         }
+        ++i;
     }
-
-    for (size_t i=0;i<playerIDs[0].size();++i)
+//    exit(0);
+    i = 0;
+    while (i<playerIDs[0].size())
     {
         logMsg("PlayerIDs == " +convert->toString(playerIDs[0][i]));
+        ++i;
     }
 
 //    exit(0);
@@ -479,8 +494,9 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     logMsg("C == " +team0CSelectBox->getItemNameAt(0));
     logMsg("C ID == " +convert->toString(team0IDs[4][0]));
 //    exit(0);
-
-    for (size_t i = 0;i < playerNames[1].size(); ++i)
+    
+    i = 0;
+    while (i < playerNames[1].size())
     {
        bool playerNameLengthReached = false;
         while (!playerNameLengthReached)
@@ -533,6 +549,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         {
 
         }
+        ++i;
     }
 
     logMsg("PG1 == " +team1PGSelectBox->getItemNameAt(0));

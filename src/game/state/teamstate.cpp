@@ -461,7 +461,7 @@ void teamState::setupState()    // sets up the state of the object
 //      boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
 ///        if (!playerInstancesCreated) // checks if playerInstances have been created
 ///        {
-///         if (createPlayerInstances()) // creates the player instances based on playerIDS
+///         if (createPlayerInstances()) // creates the ttances based on playerIDS
 ///         {
 ///                logMsg("Player instances created!");
 ///                playerInstancesCreated = true;

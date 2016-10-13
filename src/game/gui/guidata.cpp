@@ -275,7 +275,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 //        base->getGameS()->createPlayerInstance();
     }
     logMsg("Player Instance Size = " +convert->toString(playerInstance.size()));
-//    exit(0);
+    exit(0);
 //    for (size_t i = 0;i < playerInstance.size(); ++i)
     size_t i = 0;
     while (i < playerInstance.size())
@@ -424,7 +424,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     i = 0;
     while (i < playerNames[0].size())
     {
-       bool playerNameLengthReached = false;
+        bool playerNameLengthReached = false;
         while (!playerNameLengthReached)
         {
             if (playerNames[0][i].length() >= 18)
@@ -448,6 +448,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         }
         else if (playerPositionsPlayed[0][i] == "SG")
         {
+            logMsg("SG++");
             team0SGSelectBox->addItem(playerNames[0][i]);
             team0IDs[1].push_back(playerIDs[0][i]);
        }
@@ -480,20 +481,21 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         ++i;
     }
 
-//    exit(0);
+    exit(0);
 
     logMsg("PG == " +team0PGSelectBox->getItemNameAt(0));
     logMsg("PG ID == " +convert->toString(team0IDs[0][0]));
 //    exit(0);
     logMsg("SG == " +team0SGSelectBox->getItemNameAt(0));
     logMsg("SG ID == " +convert->toString(team0IDs[1][0]));
+    exit(0);
     logMsg("SF == " +team0SFSelectBox->getItemNameAt(0));
     logMsg("SF ID == " +convert->toString(team0IDs[2][0]));
     logMsg("PF == " +team0PFSelectBox->getItemNameAt(0));
     logMsg("PF ID == " +convert->toString(team0IDs[3][0]));
     logMsg("C == " +team0CSelectBox->getItemNameAt(0));
     logMsg("C ID == " +convert->toString(team0IDs[4][0]));
-//    exit(0);
+    exit(0);
     
     i = 0;
     while (i < playerNames[1].size())

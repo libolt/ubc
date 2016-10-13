@@ -1000,11 +1000,13 @@ void GUISystem::playerStartSelected()  // process player start selection
     base->getGameS()->setTeamStarterID(teamStarterID); // sets the selected starters for both teams in gameState class
     
     sizeTVec activePlayerID;
-
-    for (size_t x=0;x<5;++x)
+    size_t x = 0;
+    logMsg("activePlayerID!");
+    while (x < 5)
     {
         activePlayerID.push_back(teamStarterID[0][x]);
         logMsg("activePlayerID = " +convert->toString(activePlayerID[x]));
+        ++x;
     }
 //    exit(0);
     base->getGameS()->getActiveTeamInstance()[0]->setActivePlayerID(activePlayerID);

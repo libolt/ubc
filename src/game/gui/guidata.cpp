@@ -130,11 +130,11 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 //    pInstance = teamInstance[teamIDs[0]]->getPlayerInstance();
     size_t x = 0;
     logMsg("addPlayerStartSelectionMenuData");
-    logMsg("getGameS()->getTeamIDS().size() == " +convert->toString(base->getGameS()->getTeamIDS().size()));
-    logMsg("getGameS()->getTeamIDS()[0] == " +convert->toString(base->getGameS()->getTeamIDS()[0]));
+    logMsg("addPlayerStartSelectionMenuData getGameS()->getTeamIDS().size() == " +convert->toString(base->getGameS()->getTeamIDS().size()));
+    logMsg("addPlayerStartSelectionMenuData getGameS()->getTeamIDS()[0] == " +convert->toString(base->getGameS()->getTeamIDS()[0]));
     
 //    logMsg("teamIDS[0] == " +convert->toString(teamIDs[0]));
-    logMsg("blah");
+    logMsg("addPlayerStartSelectionMenuData blah");
 //    exit(0);
     
 /*
@@ -157,17 +157,17 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         base->getGameS()->setTeamInstance(teamInstance);
     }
 */
-    logMsg ("addPlayerStartSelectionMenuData");
+//    logMsg ("addPlayerStartSelectionMenuData");
  
 
     if (base->getGameS()->checkIfPlayerInstanceCreated())
     {
-        logMsg("gameS PlayerInstance Created!");
+        logMsg("addPlayerStartSelectionMenuData gameS PlayerInstance Created!");
 //        exit(0);
     }
     else
     {
-        logMsg("gameS PlayerInstance NOT Created!");
+        logMsg("addPlayerStartSelectionMenuData gameS PlayerInstance NOT Created!");
         exit(0);
     }
     
@@ -175,13 +175,15 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     x = 0;
     while (x < 2)
     {
-        logMsg("yabadaba");
+        logMsg("addPlayerStartSelectionMenuData yabadaba");
         if (teamInstance[teamIDs[x]]->getPlayerInstancesCreated())
         {
-            logMsg("Team " +convert->toString(x) +" player instances created!");
+            logMsg("addPlayerStartSelectionMenuData teamInstance[teamIDs[" +convert->toString(x) +"]] playerInstances crested!");
+            logMsg("addPlayerStartSelectionMenuData Team " +convert->toString(x) +" player instances created!");
         }
         else
         {
+            logMsg("addPlayerStartSelectionMenuData creating team " +convert->toString(x) +" playerInstances!");
             if (teamInstance[teamIDs[x]]->createPlayerInstances())
             {
                 teamInstance[teamIDs[x]]->setPlayerInstancesCreated(true);
@@ -190,10 +192,10 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
        }  
        ++x;
     }
-    logMsg("Bleert!");
+    logMsg("addPlayerStartSelectionMenuData Bleert!");
     
-//    exit(0);
-    logMsg("teamInstance.size() == " +convert->toString(teamInstance.size()));
+    exit(0);
+    logMsg("addPlayerStartSelectionMenuData teamInstance.size() == " +convert->toString(teamInstance.size()));
 /*    exit(0);
     logMsg("Team 0 player instances created ==  " +convert->toString(teamInstance[teamIDs[0]]->getPlayerInstancesCreated()));
 //    exit(0);
@@ -221,7 +223,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         }
     }
 */
-    logMsg("Bleeamb!");
+    logMsg("addPlayerStartSelectionMenuData Bleeamb!");
 //    exit(0);
 /*    if (!teamInstance[teamIDs[1]]->getPlayerInstancesCreated())
     {
@@ -274,18 +276,20 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     {
 //        base->getGameS()->createPlayerInstance();
     }
-    logMsg("Player Instance Size = " +convert->toString(playerInstance.size()));
+        logMsg("addPlayerStartSelectionMenuData Player Instance Size = " +convert->toString(playerInstance.size()));
+//        logMsg("Player Instance 0 Size = " +convert->toString(playerInstance[0].size()));
+    
     exit(0);
 //    for (size_t i = 0;i < playerInstance.size(); ++i)
     size_t i = 0;
     while (i < playerInstance.size())
     {
         
-        logMsg("Player Instance[i] Size = " +convert->toString(playerInstance[i].size()));
+        logMsg("addPlayerStartSelectionMenuData Player Instance[i] Size = " +convert->toString(playerInstance[i].size()));
 //        logMsg("pDTeam = " +convert->toString(playerInstance[i][0]->getTeamID()));
-        logMsg("pDTeam = " +convert->toString(playerInstance[i][0]->getTeamID()));
+        logMsg("addPlayerStartSelectionMenuData pDTeam = " +convert->toString(playerInstance[i][0]->getTeamID()));
 //        logMsg("teamID == " +convert->toString(gameS->getTeamID()[1]));
-        logMsg("teamID == " +convert->toString(base->getGameS()->getTeamIDS()[1]));
+        logMsg("addPlayerStartSelectionMenuData teamID == " +convert->toString(base->getGameS()->getTeamIDS()[1]));
 //        exit(0);
 //        if (playerInstance[i]->getTeamID() == gameS->getTeamID()[0])
        if (base->getGameS()->getPlayerInstance()[i]->getTeamID() == base->getGameS()->getTeamIDS()[0])
@@ -333,7 +337,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     tempID = 0;
     tempName.clear();
     tempPosition.clear();
-    logMsg("overallRating before = " +convert->toString(overallRatings[0][0]));
+    logMsg("addPlayerStartSelectionMenuData overallRating before = " +convert->toString(overallRatings[0][0]));
 //    exit(0);
     size_t l = 0; 
     while (l<overallRatingsSize && flag)
@@ -366,7 +370,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         ++l;
     }
 
-    logMsg("overallRating after = " +convert->toString(overallRatings[0][0]));
+    logMsg("addPlayerStartSelectionMenuData overallRating after = " +convert->toString(overallRatings[0][0]));
 
     overallRatingsSize = overallRatings[1].size();
     flag = 1;
@@ -374,7 +378,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     tempID = 0;
     tempName.clear();
     tempPosition.clear();
-    logMsg("overallRating before = " +convert->toString(overallRatings[1][0]));
+    logMsg("addPlayerStartSelectionMenuData overallRating before = " +convert->toString(overallRatings[1][0]));
     l = 0;
     while (l<overallRatingsSize && flag)
     {
@@ -406,7 +410,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         }
         ++l;
     }
-    logMsg("overallRating after = " +convert->toString(overallRatings[1][0]));
+    logMsg("addPlayerStartSelectionMenuData overallRating after = " +convert->toString(overallRatings[1][0]));
 
     sizeTVec starters; // used for initial creatio  of teamStarterID vector
 //    starters.push_back(1);
@@ -419,7 +423,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     }
 
     size_t startID = 0;
-    logMsg("playerNames[0].size() == " +convert->toString(playerNames[0].size()));
+    logMsg("addPlayerStartSelectionMenuData playerNames[0].size() == " +convert->toString(playerNames[0].size()));
     
     i = 0;
     while (i < playerNames[0].size())
@@ -437,7 +441,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
             }          
         }
         playerNames[0][i] += " " +convert->toString(overallRatings[0][i]);
-        logMsg("playerNames[0][i] == " +playerNames[0][i]);
+        logMsg("addPlayerStartSelectionMenuData playerNames[0][i] == " +playerNames[0][i]);
 
         std::string PName;
         if (playerPositionsPlayed[0][i] == "PG")
@@ -448,7 +452,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         }
         else if (playerPositionsPlayed[0][i] == "SG")
         {
-            logMsg("SG++");
+            logMsg("addPlayerStartSelectionMenuData SG++");
             team0SGSelectBox->addItem(playerNames[0][i]);
             team0IDs[1].push_back(playerIDs[0][i]);
        }
@@ -477,7 +481,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     i = 0;
     while (i<playerIDs[0].size())
     {
-        logMsg("PlayerIDs == " +convert->toString(playerIDs[0][i]));
+        logMsg("addPlayerStartSelectionMenuData PlayerIDs == " +convert->toString(playerIDs[0][i]));
         ++i;
     }
 

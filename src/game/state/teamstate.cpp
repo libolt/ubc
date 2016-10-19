@@ -38,7 +38,7 @@
 // static declarations
 
 boost::shared_ptr<UBCBase> teamState::base;  // static copy of base class
-
+std::vector <boost::shared_ptr<playerState> > teamState::playerInstance;  
 //    sizeTVec teamState::activePlayerID; 
 //static size_t teamState::teamID; 
 
@@ -662,149 +662,153 @@ bool teamState::createPlayerInstances()
     std::vector <playerState>::iterator playerIT;
 //    std::vector <playerState>::iterator pInstanceIT;
     
-    logMsg("teamState::createPlayerInstances() team ID = " +convert->toString(getID()));
+    std::string func = "teamState::createPlayerInstances()";
+    
+    logMsg(func +" team ID = " +convert->toString(getID()));
     //exit(0);
-    logMsg("Creating players");
+    logMsg(func +" Creating players");
     
     if (base->getGameS()->getPlayerInstanceCreated())
     {
-        logMsg("teamGamePlayerInstance created!");
-        logMsg("gamePlayerInstance size = " +convert->toString(gamePlayerInstance.size()));
+        logMsg(func +" GamePlayerInstance created!");
+        logMsg(func +" gamePlayerInstance size = " +convert->toString(gamePlayerInstance.size()));
     }
     else
     {
-        logMsg("teamGamePlayerInstance not created!");
+        logMsg(func + " teamGamePlayerInstance not created!");
         return (false);
     }
 //        exit(0);
 //    for (playerIT = playerInstance.begin(); playerIT != playerInstance.end(); ++playerIT)   // loops through playerID std::vector
-    size_t id = -1; // stores id for steer
-    size_t i = 0;
-    
+//    size_t id = -1; // stores id for steer
+    auto i = 0;
+    auto inc = 0;
     //    for (size_t i = 0;i < playerInstance.size(); ++i)
     while (i<gamePlayerInstance.size())
     {
-
+        
+        if (getID() != 0)
+        {
+            logMsg("inc flam");
+            ++inc;
+            logMsg("inc == " +convert->toString(inc));
+//            exit(0);         
+        }
         playerStateSharedPtr pInstance;  // creates a new instance of playerState
         
 //        playerSteerSharedPtr pSteer(new playerSteer); // steer instance
         
 //        boost::shared_ptr<playerPhysics> pPhysics(new playerPhysics);
         
-        logMsg("Player Team ID = " +convert->toString(gamePlayerInstance[i]->getTeamID()));
+        logMsg(func +" Player Team ID = " +convert->toString(gamePlayerInstance[i]->getTeamID()));
 //        exit(0);
-        logMsg("Team ID = " +convert->toString(getID()));      
+        logMsg(func +" Team ID = " +convert->toString(getID()));      
 //        exit(0);
         if (gamePlayerInstance[i]->getTeamID() == getID())  // checks if player is assigned to this team
         {
+/*            
 //            logMsg("i ==== " +convert->toString(i));
 //            exit(0);
             
-            logMsg("pInstance = gamePlayerInstance[i];");
+            logMsg(func +" pInstance = gamePlayerInstance[i];");
             pInstance = gamePlayerInstance[i];
-            logMsg("pInstance->setTeamType(teamType);");
+            logMsg(func +" pInstance->setTeamType(teamType);");
 
-            pInstance->setTeamType(teamType);  // sets the team number the player belongs to            
+//            pInstance->setTeamType(teamType);  // sets the team number the player belongs to            
 
-/*            logMsg("pSteer->setTeamType(teamType);");
-
-            pSteer->setTeamType(teamType);
-            logMsg("pSteer->reset();");
-            pSteer->reset();
-            logMsg("pInstance->setSteer(playerSteerSharedPtr(pSteer);");
-
-            pInstance->setSteer(playerSteerSharedPtr(pSteer));
-*/            
-            logMsg("playerInstance.push_back(pInstance);");
+            logMsg(func +" playerInstance.push_back(pInstance);");
 
             playerInstance.push_back(pInstance);    // adds pInstance to the playerInstance std::vector.
 
-            logMsg("teamState::createPlayerInstances() Player Model Name == " +gamePlayerInstance[i]->getEntityModelFileName());
+            logMsg(func +" Player Model Name == " +gamePlayerInstance[i]->getEntityModelFileName());
 //            exit(0);
-            logMsg("teamState::createPlayerInstances() teamID!!!!");
-            logMsg("teamState::createPlayerInstances() pInstance set!");
+            logMsg(func +" teamID!!!!");
+            logMsg(func +" pInstance set!");
 //            logMsg("steerID = " +convert->toString(gamePlayerInstance[i].getSteer()->getID()));
-            logMsg("teamState::createPlayerInstances() player name = " +gamePlayerInstance[i]->getPlayerName());
+            logMsg(func +" player name = " +gamePlayerInstance[i]->getPlayerName());
 
 //            exit(0);
             id += 1;
-
+*/
         }
         else
         {
         }
         
         i++;
-        logMsg("teamState::createPlayerInstances() team ID = " +convert->toString(getID()) +" i == " +convert->toString(i));
-    }
-    logMsg("teamState::createPlayerInstances() i final == " +convert->toString(i));
+        logMsg("i ==== " +convert->toString(i));
 
-    logMsg("BAAAART!");
+        logMsg(func +" team ID = " +convert->toString(getID()) +" i == " +convert->toString(i));
+    }
+    logMsg(func +" i final == " +convert->toString(i));
+    logMsg(func +" inc == " +convert->toString(inc));
+ 
+    logMsg(func +" BAAAART!");
 //    exit(0);
 //    std::vector <playerState>::iterator pInstanceIT;
 
-    logMsg("teamState::createPlayerInstances() before playerID");
+    logMsg(func +" before playerID");
 //    exit(0);
 //        size_t playerID = teamStarterID[teamType][i];
 //        size_t playerID = activePlayerID[i];
 //        logMsg("ID " +convert->toString(i) +" = " +convert->toString(playerID));
-    logMsg("teamState::createPlayerInstances() activePlayerID.size() = " +convert->toString(activePlayerID.size()));
+    logMsg(func +" activePlayerID.size() = " +convert->toString(activePlayerID.size()));
 //    logMsg("playerID = " +convert->toString(activePlayerID[i]));
 //    exit(0);
-    size_t x = 0;
+    auto x = 0;
     if (activePlayerID.size() == 0)
     {
         logMsg("activePlayerID.size() == 0");
 //        exit(0);
     }
-    logMsg("teamState::createPlayerInstances() activePlayerInstance.size() = " +convert->toString(playerInstance.size()));
+    logMsg(func +" activePlayerInstance.size() = " +convert->toString(playerInstance.size()));
 
     bool IDMatch = false;
 //            for (size_t j=0;j<playerInstance.size();++j)
     while (x < playerInstance.size())
     {
-        size_t i = 0;
+        auto i = 0;
 //        while (!IDMatch && x < playerInstance.size())
-        logMsg("teamState::createPlayerInstances() activePlayerID.size() == " +convert->toString(activePlayerID.size()));
+        logMsg(func +" activePlayerID.size() == " +convert->toString(activePlayerID.size()));
         while (i<activePlayerID.size())
         {
 
-            logMsg("teamState::createPlayerInstances() playerInstance[x]->getID()() = " +convert->toString(playerInstance[x]->getID()));
+            logMsg(func +" playerInstance[x]->getID()() = " +convert->toString(playerInstance[x]->getID()));
             if (activePlayerID[i] == playerInstance[x]->getID())
             {
-                logMsg("teamState::createPlayerInstances() I am here!");
+                logMsg(func +" I am here!");
 //                exit(0);
 //                IDMatch = true;
-                logMsg("teamState::createPlayerInstances() Success!");
+                logMsg(func +" Success!");
 //                exit(0);
                 if (!playerInstance[x]->getModelLoaded())
                 {
-                    logMsg("teamState::createPlayerInstances() Here as well!");
+                    logMsg(func +" Here as well!");
 //                    exit(0);
                     playerInstance[x]->setEntityName(playerInstance[x]->getPlayerName());
                     playerInstance[x]->setEntityNodeName(playerInstance[x]->getPlayerName());
                     if (playerInstance[x]->loadModel())
                     {
-                        logMsg("teamState::createPlayerInstances() Loading Model");
+                        logMsg(func +" Loading Model");
 //                        exit(0);
                         playerInstance[x]->setModelLoaded(true);
                     }
                     else
                     {
-                        logMsg("Failed to load model " +playerInstance[x]->getPlayerName());
+                        logMsg(func +" Failed to load model " +playerInstance[x]->getPlayerName());
                         exit(0);
                     }
                 }
                 if (playerInstance[x]->setupPhysicsObject())
                 {
-                    logMsg("teamState::createPlayerInstances() player setupPhysics!");
+                    logMsg(func +" player setupPhysics!");
                     //exit(0);
                     playerInstance[x]->setPhysicsSetup(true);
                     playerInstance[x]->setCollidesWith(teamCollidesWith);
                 }
                 else
                 {
-                    logMsg("Unable to setup Player Physics!");
+                    logMsg(func +" Unable to setup Player Physics!");
                     exit(0);
                 }
 //                    exit(0);

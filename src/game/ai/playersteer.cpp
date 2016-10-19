@@ -55,7 +55,7 @@ playerSteer::playerSteer()  // constructor
     m_home = OpenSteer::Vec3::zero;
 //    steering::reset ();  // reset the vehicle
     
-    reset();
+///    reset();
    
 /*    setPosition(OpenSteer::Vec3(0,0,0));
     setRadius (0.5f);
@@ -138,19 +138,19 @@ void playerSteer::setPositionReached(boolVec reached)  // sets the value of posi
 
 void playerSteer::reset()    // reset state
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+/*    boost::shared_ptr<conversion> convert = conversion::Instance();
     logMsg("steer alive?");
     steering::reset ();  // reset the vehicle
    logMsg("steer alive?2");
     setSpeed (0.0f);  // speed along Forward direction.
 //    setMaxForce (3000.7f);      // steering force is clipped to this magnitude
     logMsg("steer alive?3");
-    setMaxForce (300/*op.01f*/);  // steering force is clipped to this magnitude
+    setMaxForce (300.01f);  // steering force is clipped to this magnitude
     logMsg("steer alive?4");
 //    setMaxSpeed (10);         // velocity is clipped to this magnitude
     setMaxSpeed (20.0f);  // velocity is clipped to this magnitude
     logMsg("steer alive?5");
-/*    if (teamType != NOTEAM)
+    if (teamType != NOTEAM)
     {
 //        exit(0);
         logMsg("teamType steer!");

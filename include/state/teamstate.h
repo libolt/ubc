@@ -33,6 +33,8 @@
 #include "state/state.h"
 #include "state/gamestateshared.h"
 #include "data/teamdata.h"
+#include "typedefs.h"
+
 //#include "ubcbase.h"
 class UBCBase;
 class offenseState;
@@ -129,8 +131,8 @@ public:
     bool getDefense();  // retrieves the value of defense
     void setDefense(bool set);  // sets the value of defense
 
-    std::vector <boost::shared_ptr<playerState> > getPlayerInstance();  // retrieves the value of playerInstance
-    void setPlayerInstance(std::vector <boost::shared_ptr<playerState> > set);  // sets the value of  playerInstance
+    std::map <playerStateVecSharedPtr instance, size_t ID> getPlayerInstance();  // retrieves the value of playerInstance
+    void setPlayerInstance(std::map <playerStateVecSharedPtr instance, size_t ID> set);  // sets the value of  playerInstance
 
     std::vector <boost::shared_ptr<playerState> > getActivePlayerInstance();  // retrieves the value of activePlayerInstance
     void setActivePlayerInstance(std::vector <boost::shared_ptr<playerState> > set);  // sets the value of activePlayerInstance
@@ -222,7 +224,7 @@ private:
     bool offense;  // if set then the team is on offense
     bool defense;  // if set then the team is on defense
 
-    std::vector <boost::shared_ptr<playerState> > playerInstance;  // stores instance of the playerState class containing all team players
+    static std::map <playerStateVecSharedPtr instance, size_t ID> playerInstance;  // stores instance of the playerState class containing all team players
     std::vector <boost::shared_ptr<playerState> > activePlayerInstance;  // stores instance of the playerState class containing the active players
 
     std::vector <std::string> playerModelsLoaded;  // creates a vector of strings that holds the models which are loaded

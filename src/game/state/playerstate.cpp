@@ -533,7 +533,7 @@ void playerState::setInitialized(bool set)  // sets the value of initialized
 bool playerState::setup()  // initializes the state of the object
 {
     
-    playerSteerSharedPtr tempSteer(new playerSteer);
+/*    playerSteerSharedPtr tempSteer(new playerSteer);
     setSteer(tempSteer);
     
     logMsg("steer->setTeamType(teamType);");
@@ -544,7 +544,7 @@ bool playerState::setup()  // initializes the state of the object
 //    logMsg("pInstance->setSteer(playerSteerSharedPtr(pSteer);");
 
 //    pInstance->setSteer(playerSteerSharedPtr(pSteer));
-
+*/
     return (true);
 }
 

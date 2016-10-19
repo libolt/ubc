@@ -227,7 +227,7 @@ void playerSteer::update (const float currentTime, float elapsedTime)
 //    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
 //    playerStateVec team0ActivePlayerInstance = activeTeamInstance[0].getActivePlayerInstance();
 //    playerStateVec team1ActivePlayerInstance = activeTeamInstance[1].getActivePlayerInstance();
-    std::vector<playerStateVecSharedPtr > activePlayerInstance;
+    std::map <size_t, playerStateVecSharedPtr> activePlayerInstance;
 //    std::vector<int> team0ActivePlayerID = activeTeamInstance[0].getActivePlayerID();
 //    std::vector<int> team1ActivePlayerID = activeTeamInstance[1].getActivePlayerID();
     std::vector<sizeTVec> activePlayerID;
@@ -242,10 +242,14 @@ void playerSteer::update (const float currentTime, float elapsedTime)
 
 
     size_t z = 0;
+
+    // FIXME! Needs updated for std::map work
+/*
     while (z < getActiveTeamInstance().size())
     {
-        activePlayerInstance.push_back(getActiveTeamInstance()[z]->getActivePlayerInstance());
-        sizeTVec activeID;
+//        activePlayerInstance.push_back(getActiveTeamInstance()[z]->getActivePlayerInstance());
+        activePlayerInstance.insert(std::pair<size_t,playerStateVecSharedPtr>(z,getActiveTeamInstance()[z]->getActivePlayerInstance()));
+          sizeTVec activeID;
         activePlayerID.push_back(activeID);
         size_t x = 0;
         while (x < activePlayerInstance[z].size())
@@ -256,7 +260,7 @@ void playerSteer::update (const float currentTime, float elapsedTime)
         teamSteers->push_back(teamSteer);
         ++z;
    }
-
+*/
 //    logMsg("Player = " +convert->toString(ID));
 //	logMsg("Node position = " +convert->toString(activeTeamInstance[teamType].getActivePlayerInstance()[ID].getNodePosition()));
 //	logMsg("Steer position = " +convert->toString(toOgreVector3(position())));
@@ -469,7 +473,7 @@ void playerSteer::checkCourtPosition()  // checks if the player's position has c
 //    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
     //playerStateVec team0ActivePlayerInstance = activeTeamInstance[0].getActivePlayerInstance();
     //playerStateVec team1ActivePlayerInstance = activeTeamInstance[1].getActivePlayerInstance();
-    std::vector<playerStateVecSharedPtr > activePlayerInstance;
+    std::vector<std::map <size_t, playerStateVecSharedPtr> > activePlayerInstance;
     // moves the player model and physics body
     btVector3 physBodyChange; // = btVector3(0,0,0);
     btTransform physBodyTransform;
@@ -483,7 +487,7 @@ void playerSteer::checkCourtPosition()  // checks if the player's position has c
     size_t z = 0;
     while (z < getActiveTeamInstance().size())
     {
-        activePlayerInstance.push_back(getActiveTeamInstance()[z]->getActivePlayerInstance());
+        activePlayerInstance.push_back(std::pair<size_t,playerStateVecSharedPtr>(z,getActiveTeamInstance()[z]->getActivePlayerInstance()));
         ++z;
     }
     int humanPlayer = getActiveTeamInstance()[teamType]->getHumanPlayer();

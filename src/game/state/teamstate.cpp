@@ -320,20 +320,20 @@ void teamState::setDefense(bool set)    // sets the value of defense
     defense = set;
 }
 
-std::vector <boost::shared_ptr<playerState> > teamState::getPlayerInstance()  // retrieves the value of playerInstance
+std::map <size_t, playerStateVecSharedPtr> teamState::getPlayerInstance()  // retrieves the value of playerInstance
 {
     return (playerInstance);
 }
-void teamState::setPlayerInstance(std::vector <boost::shared_ptr<playerState> > set)  // sets the value of playerInstance
+void teamState::setPlayerInstance(size_t ID, playerStateVecSharedPtr set)  // sets the value of playerInstance
 {
     playerInstance = set;
 }
 
-std::vector <boost::shared_ptr<playerState> > teamState::getActivePlayerInstance()  // retrieves the value of activePlayerInstance
+std::map <size_t, playerStateVecSharedPtr> teamState::getActivePlayerInstance()  // retrieves the value of activePlayerInstance
 {
     return (activePlayerInstance);
 }
-void teamState::setActivePlayerInstance(std::vector <boost::shared_ptr<playerState> > set) // sets the value of activePlayerInstance
+void teamState::setActivePlayerInstance(size_t ID, playerStateVecSharedPtr set) // sets the value of activePlayerInstance
 {
     activePlayerInstance = set;
 }

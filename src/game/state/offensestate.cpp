@@ -200,7 +200,7 @@ void offenseState::updateState(teamTypes teamType)  // updates the state of the 
 {
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 //    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
-    teamStateVecSharedPtr activeTeamInstance = getActiveTeamInstance();
+    std::map <size_t, teamStateSharedPtr> activeTeamInstance = getActiveTeamInstance();
 //TS    playerStateVecSharedPtr activePlayerInstance = activeTeamInstance[teamType]->getActivePlayerInstance();
 
     if (!offenseSetup)
@@ -351,7 +351,7 @@ void offenseState::executeOffense() // executes box offense
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
     teamTypes teamWithBall = getTeamWithBall();
 
-    teamStateVecSharedPtr activeTeamInstance = getActiveTeamInstance();
+    std::map <size_t, teamStateSharedPtr> activeTeamInstance = getActiveTeamInstance();
 /*TS    playerStateVecSharedPtr activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
 
     size_t playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();

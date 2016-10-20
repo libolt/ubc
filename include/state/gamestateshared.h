@@ -116,8 +116,8 @@ class gameStateShared
         teamTypes getTeamWithBall();  // retrieves the value of teamWithBall
         void setTeamWithBall(teamTypes set);  // sets the value of teamWithBall
         
-        teamStateVecSharedPtr getActiveTeamInstance();  // retrieves the value of activeTeamInstance
-        void setActiveTeamInstance(teamStateVecSharedPtr set);  // sets the value of activeTeamInstance
+        std::map <size_t, teamStateSharedPtr> getActiveTeamInstance();  // retrieves the value of activeTeamInstance
+        void setActiveTeamInstance(std::map <size_t, teamStateSharedPtr> set);  // sets the value of activeTeamInstance
         
         size_t getActiveBBallInstance();  // retrieves the value of activeBBallInstance
         void setActiveBBallInstance(size_t set);  // sets the value of activeBBallInstance
@@ -137,8 +137,8 @@ class gameStateShared
         std::map <size_t, playerStateSharedPtr> getPlayerInstance();  // retrieves the value of playerInstance
         void setPlayerInstance(std::map <size_t, playerStateSharedPtr> set);  // sets the value of  playerInstance
 
-        static teamStateVecSharedPtr getTeamInstance();  // retireves the value of teamInstance
-        void setTeamInstance(teamStateVecSharedPtr set);  // sets the value of teamInstance
+        static std::map <size_t, teamStateSharedPtr> getTeamInstance();  // retireves the value of teamInstance
+        void setTeamInstance(std::map <size_t, teamStateSharedPtr> set);  // sets the value of teamInstance
 
         jumpBallsSharedPtr getJumpBall();  // retrieves the value of jumpBall
         void setJumpBall(jumpBallsSharedPtr set);  // sets the value of jumpBall
@@ -173,14 +173,14 @@ class gameStateShared
         static std::vector< sizeTVec > teamStarterID;  // stores the selected starters for each team
         static Ogre::Vector3 bballNodePosition;  // stores a copy of the basketball node position
         static teamTypes teamWithBall;  // store which team has the basketball
-        static teamStateVecSharedPtr activeTeamInstance;  // stores active team instance
+        static std::map <size_t, teamStateSharedPtr> activeTeamInstance;  // stores active team instance
         static size_t activeBBallInstance;  // stores which instance of the baskteball class is active
         static size_t activeCourtInstance;  // stores which instance of the court is active
         static basketballStateVecSharedPtr basketballInstance;  // creates instance of the basketballs class
         static courtStateVecSharedPtr courtInstance;  // stores the court instance
         static hoopStateVecSharedPtr hoopInstance;  // creates instance of the hoop class
         static std::map <size_t, playerStateSharedPtr> playerInstance;  // stores the map of the players loaded from the xml files
-        static teamStateVecSharedPtr  teamInstance;  // creates instance of the teamState class
+        static std::map <size_t, teamStateSharedPtr>  teamInstance;  // creates instance of the teamState class
 
         static jumpBallsSharedPtr jumpBall; // instance that is used for jumpBall functions.
 

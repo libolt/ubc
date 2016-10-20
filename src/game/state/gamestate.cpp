@@ -312,7 +312,7 @@ bool gameState::createTeamInstances()  // creates team Instances
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<loader> load(new loader);
     
-    teamStateVecSharedPtr tInstance;
+    std::map <size_t, teamStateSharedPtr> tInstance;
 /*    teamStateVecSharedPtr tInstance2;
     boost::shared_ptr<teamState> tempInstance(new teamState);
 //    teamState *tempInstance = new teamState;
@@ -501,14 +501,14 @@ bool gameState::createPlayerInstances()  // creates player instances
 
 bool gameState::createActiveTeamInstances()  // creates the active team instances
 {
-    boost::shared_ptr<teamState> tInstance;
-    teamStateVecSharedPtr activeTeamInstance = getActiveTeamInstance();
-    teamStateVecSharedPtr teamInstance = getTeamInstance();
+    teamStateSharedPtr tInstance;
+    std::map <size_t, teamStateSharedPtr> activeTeamInstance = getActiveTeamInstance();
+    std::map <size_t, teamStateSharedPtr> teamInstance = getTeamInstance();
     sizeTVec teamIDS = getTeamIDS();
 //    exit(0);
 
-    activeTeamInstance.push_back(tInstance);  // adds empty teamState to activeTeamInstance vector
-    activeTeamInstance.push_back(tInstance);  // adds empty teamState to activeTeamInstance vector
+    activeTeamInstance.insert(std::pair<size_t, teamStateSharedPtr>(0, tInstance));  // adds empty teamState to activeTeamInstance vector
+    activeTeamInstance.insert(std::pair<size_t, teamStateSharedPtr>(1, tInstance));  // adds empty teamState to activeTeamInstance vector
 
 /*TS    activeTeamInstance[0] = teamInstance[teamIDS[0]];
     activeTeamInstance[1] = teamInstance[teamIDS[1]];

@@ -519,7 +519,7 @@ void playerSteer::checkCourtPosition()  // checks if the player's position has c
 
 //    gameS->setActiveTeamInstance(getActiveTeamInstance());
 //    teamStateVecSharedPtr teamI = gameS->getActiveTeamInstance();
-    teamStateVecSharedPtr teamI = getActiveTeamInstance();
+    std::map <size_t, teamStateSharedPtr> teamI = getActiveTeamInstance();
 
     std::vector<std::map <size_t, playerStateSharedPtr> > activePlayerI;
     size_t w = 0;

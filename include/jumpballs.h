@@ -67,11 +67,11 @@ class jumpBalls
     btVector3 getBBallVelocity();  // retrieves the value of bballVelocity
     void setBBallVelocity(const btVector3 &set);  // sets the value of bballVelocity
 
-    bool updateState(teamTypes teamWithBall, size_t activeBBallInstance, basketballStateVecSharedPtr basketballInstance, teamStateVecSharedPtr activeTeamInstance, quarters quarter);  // updates state of the jumpBalls instance until jump ball has completed
+    bool updateState(teamTypes teamWithBall, size_t activeBBallInstance, basketballStateVecSharedPtr basketballInstance, std::map <size_t, teamStateSharedPtr> activeTeamInstance, quarters quarter);  // updates state of the jumpBalls instance until jump ball has completed
 
-    bool jumpBallExecute(basketballStateVecSharedPtr basketballInstance, size_t activeBBallInstance, teamStateVecSharedPtr activeTeamInstance); // initiates jump ball from jump ball circle
+    bool jumpBallExecute(basketballStateVecSharedPtr basketballInstance, size_t activeBBallInstance, std::map <size_t, teamStateSharedPtr> activeTeamInstance); // initiates jump ball from jump ball circle
 
-    bool tipToPlayer(basketballStateVecSharedPtr basketballInstance, size_t activeBBallInstance, teamStateVecSharedPtr activeTeamInstance, quarters quarter);  // tips the basketball to the appropriate player
+    bool tipToPlayer(basketballStateVecSharedPtr basketballInstance, size_t activeBBallInstance, std::map <size_t, teamStateSharedPtr> activeTeamInstance, quarters quarter);  // tips the basketball to the appropriate player
 
     private:
 

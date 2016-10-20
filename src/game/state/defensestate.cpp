@@ -69,7 +69,7 @@ void defenseState::updateState(teamTypes teamOnDefense) // updates the state of 
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
     teamTypes teamWithBall = getTeamWithBall();
 
-    teamStateVecSharedPtr activeTeamInstance = getActiveTeamInstance();
+    std::map <size_t, teamStateSharedPtr> activeTeamInstance = getActiveTeamInstance();
 //TS    playerStateVecSharedPtr playerDInstance = activeTeamInstance[teamOnDefense]->getActivePlayerInstance();
 //TS    playerStateVecSharedPtr playerOInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
 //TS    sizeTVec activeDID = activeTeamInstance[teamOnDefense]->getActivePlayerID();

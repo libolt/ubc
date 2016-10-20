@@ -612,7 +612,7 @@ void playerState::updateState()
         updateDirection();
         updateMovement();
         oldDirection = direction;
-        teamStateVecSharedPtr activeTeamInstance = getActiveTeamInstance();
+        std::map <size_t, teamStateSharedPtr> activeTeamInstance = getActiveTeamInstance();
         size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
         if (teamType == getTeamWithBall() && getTipOffComplete())
         {
@@ -735,7 +735,7 @@ void playerState::updateDirection()
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
-    teamStateVecSharedPtr activeTeamInstance = getActiveTeamInstance();
+    std::map <size_t, teamStateSharedPtr> activeTeamInstance = getActiveTeamInstance();
     basketballStateVecSharedPtr bballInstance = getBasketballInstance();
     size_t activeBBallInstance = getActiveBBallInstance();
     size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
@@ -854,7 +854,7 @@ void playerState::updateMovement()  // updates movement status of the player
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
-    teamStateVecSharedPtr activeTeamInstance = getActiveTeamInstance();
+    std::map <size_t, teamStateSharedPtr> activeTeamInstance = getActiveTeamInstance();
     basketballStateVecSharedPtr bballInstance = getBasketballInstance();
     size_t activeBBallInstance = getActiveBBallInstance();
     size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
@@ -928,7 +928,7 @@ void playerState::calculatePass()   // calculates which player to pass the ball 
     
     logMsg("In calculatePass function");
 
-    teamStateVecSharedPtr activeTeamInstance = getActiveTeamInstance();
+    std::map <size_t, teamStateSharedPtr> activeTeamInstance = getActiveTeamInstance();
     size_t teamWithBall = getTeamWithBall();
     size_t playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();
 //    if (playerWithBall < 5)  // checks if the player belongs to the first team

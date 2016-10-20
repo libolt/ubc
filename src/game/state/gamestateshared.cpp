@@ -50,14 +50,14 @@ sizeTVec gameStateShared::teamIDS;  // std::vector that stores the IDs of the 2 
 std::vector< sizeTVec > gameStateShared::teamStarterID;  // stores the selected starters for each team
 Ogre::Vector3 gameStateShared::bballNodePosition;  // stores a copy of the basketball node position
 teamTypes gameStateShared::teamWithBall;  // store which team has the basketball
-teamStateVecSharedPtr gameStateShared::activeTeamInstance;  // stores active team instance
+std::map <size_t, teamStateSharedPtr> gameStateShared::activeTeamInstance;  // stores active team instance
 size_t gameStateShared::activeBBallInstance;  // stores which instance of the baskteball class is active
 size_t gameStateShared::activeCourtInstance;  // stores which instance of the court is active
 basketballStateVecSharedPtr gameStateShared::basketballInstance;  // creates instance of the basketballs class
 courtStateVecSharedPtr gameStateShared::courtInstance;  // stores the court instance
 hoopStateVecSharedPtr gameStateShared::hoopInstance;  // creates instance of the hoop class
 std::map<size_t, playerStateSharedPtr> gameStateShared::playerInstance;  // stores the vector of the players loaded from the xml files
-std::vector <boost::shared_ptr<teamState> >  gameStateShared::teamInstance;  // creates instance of the teamState class
+std::map <size_t, teamStateSharedPtr>  gameStateShared::teamInstance;  // creates instance of the teamState class
 jumpBallsSharedPtr gameStateShared::jumpBall; // instance that is used for jumpBall functions.
 float gameStateShared::yOffset; // stores the y offset for objects on the screen
 
@@ -299,11 +299,11 @@ void gameStateShared::setTeamWithBall(teamTypes set)  // sets the value of teamW
     teamWithBall = set;
 }
 
-teamStateVecSharedPtr gameStateShared::getActiveTeamInstance()  // retrieves the value of activeTeamInstance
+std::map<size_t, teamStateSharedPtr> gameStateShared::getActiveTeamInstance()  // retrieves the value of activeTeamInstance
 {
     return (activeTeamInstance);
 }
-void gameStateShared::setActiveTeamInstance(teamStateVecSharedPtr set)  // sets the value of activeTeamInstance
+void gameStateShared::setActiveTeamInstance(std::map<size_t, teamStateSharedPtr> set)  // sets the value of activeTeamInstance
 {
     activeTeamInstance = set;
 }
@@ -362,11 +362,11 @@ void gameStateShared::setPlayerInstance(std::map <size_t, playerStateSharedPtr> 
     playerInstance = set;
 }
 
-teamStateVecSharedPtr gameStateShared::getTeamInstance()  // retrieves the value of teamInstance
+std::map<size_t, teamStateSharedPtr> gameStateShared::getTeamInstance()  // retrieves the value of teamInstance
 {
     return (teamInstance);
 }
-void gameStateShared::setTeamInstance(teamStateVecSharedPtr set)  // sets the value of teamInstance
+void gameStateShared::setTeamInstance(std::map<size_t, teamStateSharedPtr> set)  // sets the value of teamInstance
 {
     teamInstance = set;
 }

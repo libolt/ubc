@@ -50,7 +50,7 @@ basketballStateVecSharedPtr loader::bInstance;
 courtStateVecSharedPtr loader::cInstance;
 offensePlaysVecSharedPtr loader::opInstance;
 std::map <size_t, playerStateSharedPtr> loader::pInstance;
-teamStateVecSharedPtr loader::tInstance;
+std::map <size_t, teamStateSharedPtr> loader::tInstance;
 userInputVecSharedPtr loader::uiInstance;
 
 
@@ -179,11 +179,11 @@ void loader::setPInstance(std::map<size_t, playerStateSharedPtr> set)  // sets t
     pInstance = set;
 }
 
-teamStateVecSharedPtr loader::getTInstance()  // retrieves the value of tInstance
+std::map<size_t, teamStateSharedPtr> loader::getTInstance()  // retrieves the value of tInstance
 {
     return(tInstance);
 }
-void loader::setTInstance(teamStateVecSharedPtr set)  // sets the value of tInstance
+void loader::setTInstance(std::map<size_t, teamStateSharedPtr> set)  // sets the value of tInstance
 {
     tInstance = set;
 }
@@ -688,7 +688,7 @@ bool loader::checkIfTeamsLoaded()  // checks if teams have been loaded into tIns
     teamStateVec tempT;
     
 //    exit(0);
-    teamStateVecSharedPtr tempTInstance;
+    std::map <size_t, teamStateSharedPtr> tempTInstance;
     tInstance = tempTInstance;
 //    exit(0);
     if (teamFilesLoaded)
@@ -1727,7 +1727,7 @@ playerStateSharedPtr loader::loadPlayerFile(std::string fileName)  // loads the 
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
-    boost::shared_ptr<playerState> playerInstance(new playerState);
+    playerStateSharedPtr playerInstance(new playerState);
 //    playerState *player = new playerState;
     
     std::string firstName;
@@ -2146,10 +2146,10 @@ playerStateSharedPtr loader::loadPlayerFile(std::string fileName)  // loads the 
     return (playerInstance);
 }
 
-teamStateVecSharedPtr loader::loadTeams()  // load teams from XML files
+std::map<size_t, teamStateSharedPtr> loader::loadTeams()  // load teams from XML files
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    teamStateVecSharedPtr teams;
+    std::map <size_t, teamStateSharedPtr> teams;
 
     std::string teamList;
 //    boost::shared_ptr<teamState> tempTeamSharedPtr(new teamState);
@@ -2292,7 +2292,7 @@ stdStringVec loader::loadTeamListFile(std::string fileName)  // loads the team l
     return (files);
 }
 
-bool loader::loadTeamFile(std::string fileName)  // loads the team file
+teamStateSharedPtr loader::loadTeamFile(std::string fileName)  // loads the team file
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
@@ -2404,13 +2404,13 @@ bool loader::loadTeamFile(std::string fileName)  // loads the team file
 //    tempInst = &tempTeam;
 //    logMsg("Load Teaminstance Name == " +teamInstance->getName());
 //    logMsg("lawwl");
-    tInstance.push_back(teamInstance);
+//    tInstance.push_back(teamInstance);
 //    team->setTeamArray(teamInstance);
 //   teamInstance.push_back(teamInstance);
 //   gameS->setteamInstance(teamInstance);
 //,    exit(0);
 
-    return (true);
+    return (teamInstance);
 }
 
 // User input

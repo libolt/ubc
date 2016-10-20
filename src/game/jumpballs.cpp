@@ -136,7 +136,7 @@ void jumpBalls::setBBallVelocity(const btVector3 &set)  // sets the value of bba
     bballVelocity = set;
 }
 
-bool jumpBalls::updateState(teamTypes teamWithBall, size_t activeBBallInstance, basketballStateVecSharedPtr basketballInstance, teamStateVecSharedPtr activeTeamInstance, quarters quarter)  // updates state of the jumpBalls instance
+bool jumpBalls::updateState(teamTypes teamWithBall, size_t activeBBallInstance, basketballStateVecSharedPtr basketballInstance, std::map<size_t, teamStateSharedPtr> activeTeamInstance, quarters quarter)  // updates state of the jumpBalls instance
 {
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
@@ -191,7 +191,7 @@ bool jumpBalls::updateState(teamTypes teamWithBall, size_t activeBBallInstance, 
     return (false);  // returns false until jump ball has completed
 }
 
-bool jumpBalls::jumpBallExecute(basketballStateVecSharedPtr basketballInstance, size_t activeBBallInstance, teamStateVecSharedPtr activeTeamInstance)  // initiates jump ball from jump ball circle
+bool jumpBalls::jumpBallExecute(basketballStateVecSharedPtr basketballInstance, size_t activeBBallInstance, std::map<size_t, teamStateSharedPtr> activeTeamInstance)  // initiates jump ball from jump ball circle
 {
 //    exit(0);
     boost::shared_ptr<conversion> convert = conversion::Instance();
@@ -312,7 +312,7 @@ TS*/
     return (false);  // executeJumpBall has not completed
 }
 
-bool jumpBalls::tipToPlayer(basketballStateVecSharedPtr basketballInstance, size_t activeBBallInstance, teamStateVecSharedPtr activeTeamInstance, quarters quarter)  // tips the basketball to the appropriate player
+bool jumpBalls::tipToPlayer(basketballStateVecSharedPtr basketballInstance, size_t activeBBallInstance, std::map<size_t, teamStateSharedPtr> activeTeamInstance, quarters quarter)  // tips the basketball to the appropriate player
 {
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
@@ -329,7 +329,7 @@ bool jumpBalls::tipToPlayer(basketballStateVecSharedPtr basketballInstance, size
 
 //TS    activePlayerInstance = activeTeamInstance[ballTippedToTeam]->getActivePlayerInstance();
     
-    size_t y = 0;
+    auto y = 0;
     while (y < activePlayerInstance.size())
     {
         if (activePlayerInstance[y]->getActivePosition() == ballTippedToPosition)

@@ -47,7 +47,7 @@
 // static variables
 
 basketballStateVecSharedPtr loader::bInstance;
-courtStateVecSharedPtr loader::cInstance;
+std::map <size_t, courtStateSharedPtr>  loader::cInstance;
 offensePlaysVecSharedPtr loader::opInstance;
 std::map <size_t, playerStateSharedPtr> loader::pInstance;
 std::map <size_t, teamStateSharedPtr> loader::tInstance;
@@ -152,11 +152,11 @@ void loader::setBInstance(basketballStateVecSharedPtr set)  // sets the value of
     bInstance = set;
 }
 
-courtStateVecSharedPtr loader::getCInstance()  // retrieves the value of cInstance
+std::map<size_t, courtStateSharedPtr> loader::getCInstance()  // retrieves the value of cInstance
 {
     return (cInstance);
 }
-void loader::setCInstance(courtStateVecSharedPtr set)  // sets the value of cInstance
+void loader::setCInstance(std::map<size_t, courtStateSharedPtr> set)  // sets the value of cInstance
 {
     cInstance = set;
 }
@@ -969,10 +969,10 @@ boost::shared_ptr<basketballState> loader::loadBasketballFile(std::string fileNa
 }
 
 // Courts
-courtStateVecSharedPtr loader::loadCourts()  // load court settings from XML files
+std::map<size_t, courtStateSharedPtr> loader::loadCourts()  // load court settings from XML files
 {
 //    exit(0);
-    courtStateVecSharedPtr courts;
+    std::map <size_t, courtStateSharedPtr>  courts;
     std::string courtList;
     
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
@@ -983,14 +983,16 @@ courtStateVecSharedPtr loader::loadCourts()  // load court settings from XML fil
     courtFiles = loadCourtListFile(courtList);
 //    stdStringVec playerFiles = load->getPlayerFiles();
 
-    stdStringVec::iterator it;
-    for (it = courtFiles.begin(); it != courtFiles.end(); ++it)
+//    stdStringVec::iterator it;
+    auto it = 0;
+//    for (it = courtFiles.begin(); it != courtFiles.end(); ++it)
+    for (it=0;it<courtFiles.size();++it)
     {
-        logMsg("courtFile = " +*it);
+//        logMsg("courtFile = " +*it);
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-        courts.push_back(loadCourtFile("data/courts/" + *it));
+        courts.insert(std::pair<size_t, courtStateSharedPtr>(it, loadCourtFile("data/courts/" + courtFiles[it])));
 #else
-        courts.push_back(loadCourtFile(findFile("courts/" + *it)));
+        courts.insert(std::pair<size_t, courtStateSharedPtr>(it, loadCourtFile(findFile("courts/" + courtFiles[it]))));
 #endif
     }
 

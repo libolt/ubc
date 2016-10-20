@@ -265,7 +265,7 @@ bool playerPhysics::jump(teamTypes teamType, int playerID)  // calculates and ex
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 
-    courtStateVecSharedPtr courtInstance = getCourtInstance();
+    std::map <size_t, courtStateSharedPtr>  courtInstance = getCourtInstance();
     std::map <size_t, teamStateSharedPtr> activeTeamInstance = getActiveTeamInstance();
 /*TS    playerStateVecSharedPtr activePlayerInstance = getActiveTeamInstance()[teamType]->getActivePlayerInstance();
     sizeTVec activePlayerID = activeTeamInstance[teamType]->getActivePlayerID();

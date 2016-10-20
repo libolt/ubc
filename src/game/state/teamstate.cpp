@@ -845,7 +845,7 @@ void teamState::setPlayerStartPositions()   // sets the initial coordinates for 
 ///        }
 ///    }
 
-    courtStateVecSharedPtr courtInstance = base->getGameS()->getCourtInstance();
+    std::map <size_t, courtStateSharedPtr> courtInstance = base->getGameS()->getCourtInstance();
 
     Ogre::Vector3 courtPos = courtInstance[0]->getNodePosition();
 //    exit(0);

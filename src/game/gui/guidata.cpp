@@ -44,7 +44,7 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
 
-    courtStateVecSharedPtr courtInstance;
+    std::map <size_t, courtStateSharedPtr>  courtInstance;
     stdStringVec courtName;
 //    if (!gameS->getCourtInstancesCreated())
     if (base->getStateSetup())

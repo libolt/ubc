@@ -569,7 +569,7 @@ bool gameState::loadBasketballModel()  // loads selected basketball model
 
 bool gameState::loadCourtModel()  // loads selected court model
 {
-    courtStateVecSharedPtr courtInstance = getCourtInstance();
+    static std::map <size_t, courtStateSharedPtr> courtInstance = getCourtInstance();
     size_t activeCourtInstance = getActiveCourtInstance();
     logMsg("Model Name = " +courtInstance[activeCourtInstance]->getModelFileName());
 
@@ -694,7 +694,7 @@ void gameState::setBasketballStartPositions()  // sets the initial coordinates f
 void gameState::setCourtStartPositions()  // sets the initial coordinates for the basketball(s)
 {
 
-    courtStateVecSharedPtr courtInstance = getCourtInstance();
+    static std::map <size_t, courtStateSharedPtr> courtInstance = getCourtInstance();
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     courtInstance[0]->getNode()->setPosition(0.0f,-6.5f,360.0f);

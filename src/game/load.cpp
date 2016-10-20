@@ -49,7 +49,7 @@
 basketballStateVecSharedPtr loader::bInstance;
 courtStateVecSharedPtr loader::cInstance;
 offensePlaysVecSharedPtr loader::opInstance;
-playerStateVecSharedPtr loader::pInstance;
+std::map <size_t, playerStateSharedPtr> loader::pInstance;
 teamStateVecSharedPtr loader::tInstance;
 userInputVecSharedPtr loader::uiInstance;
 
@@ -170,11 +170,11 @@ void loader::setOPInstance(offensePlaysVecSharedPtr set)  // sets the value of o
     opInstance = set;
 }
 
-playerStateVecSharedPtr loader::getPInstance()  // retrieves the value of pInstance
+std::map<size_t, playerStateSharedPtr> loader::getPInstance()  // retrieves the value of pInstance
 {
     return(pInstance);
 }
-void loader::setPInstance(playerStateVecSharedPtr set)  // sets the value of pInstance
+void loader::setPInstance(std::map<size_t, playerStateSharedPtr> set)  // sets the value of pInstance
 {
     pInstance = set;
 }
@@ -1635,9 +1635,9 @@ boost::shared_ptr<offensePlays> loader::loadOffensePlayFile(std::string fileName
     return (playInstance);
 }
 
-playerStateVecSharedPtr loader::loadPlayers()  // loads the players
+std::map<size_t, playerStateSharedPtr> loader::loadPlayers()  // loads the players
 {
-    playerStateVecSharedPtr players;
+    std::map<size_t, playerStateSharedPtr> players;
     std::string playerList;
     
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
@@ -1649,14 +1649,15 @@ playerStateVecSharedPtr loader::loadPlayers()  // loads the players
 //    stdStringVec playerFiles = load->getPlayerFiles();
 
     stdStringVec::iterator it;
-    for (it = playerFiles.begin(); it != playerFiles.end(); ++it)
+//    for (it = playerFiles.begin(); it != playerFiles.end(); ++it)
+    for (size_t it=0;it<playerFiles.size();++it)
     {
        
-        logMsg("playerFile = " +*it);
+        logMsg("playerFile = " +playerFiles[it]);
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-        players.push_back(loadPlayerFile("data/players/" + *it));
+        players.insert(std::pair<size_t, playreStateSharedPtr>(it, loadPlayerFile("data/players/" + playerFiles[it)]));
 #else
-        players.push_back(loadPlayerFile(findFile("players/" + *it)));
+        players.insert(std::pair<size_t, playerStateSharedPtr>(it, loadPlayerFile(findFile("players/" + playerFiles[it]))));
 #endif 
 //    exit(0);
     }
@@ -1720,7 +1721,7 @@ stdStringVec loader::loadPlayerListFile(std::string fileName)  // loads the play
     return (pFiles);
 }
 
-boost::shared_ptr<playerState> loader::loadPlayerFile(std::string fileName)  // loads the player file
+playerStateSharedPtr loader::loadPlayerFile(std::string fileName)  // loads the player file
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();

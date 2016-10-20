@@ -202,7 +202,7 @@ bool jumpBalls::jumpBallExecute(basketballStateVecSharedPtr basketballInstance, 
 //    size_t activeBBallInstance = gameS->getActiveBBallInstance();
 
 //    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
-    std::vector<playerStateVecSharedPtr > activePlayerInstance;
+    std::vector<std::map <size_t, playerStateSharedPtr> > activePlayerInstance;
 
     sizeTVec jumpPlayerInstance;  // stores playerID of players jumping for the ball
     

@@ -455,7 +455,7 @@ bool gameState::createPlayerInstances()  // creates player instances
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<loader> load(new loader);
     
-    playerStateVecSharedPtr pInstance;
+    std::map<size_t, playerStateSharedPtr> pInstance;
     
     logMsg("gameState::createPlayerInstances() checkIfPlayersLoaded");
 //    exit(0);
@@ -487,7 +487,7 @@ bool gameState::createPlayerInstances()  // creates player instances
     logMsg("gameState::createPlayerInstances() too");
 //    setPlayerInstances(load->loadPlayers());
 //   exit(0);
-    setPlayerInstances(pInstance);
+    setPlayerInstance(pInstance);
     setPlayerInstanceCreated(true);
     if (getPlayerInstance().size() > 0)
     {

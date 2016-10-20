@@ -208,7 +208,7 @@ void playerPhysics::updatePosition()  // updates the position of player objecgts
     int playerWithBall;
 
     teamStateVecSharedPtr activeTeamInstance = getActiveTeamInstance();
-    std::vector <playerStateVecSharedPtr > activePlayerInstance;
+    std::vector <std::map <size_t, playerStateSharedPtr> > activePlayerInstance;
     basketballStateVecSharedPtr basketballInstance = getBasketballInstance();
 
     // checks to see if player positions need updated

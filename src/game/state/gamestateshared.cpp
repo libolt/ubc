@@ -56,7 +56,7 @@ size_t gameStateShared::activeCourtInstance;  // stores which instance of the co
 basketballStateVecSharedPtr gameStateShared::basketballInstance;  // creates instance of the basketballs class
 courtStateVecSharedPtr gameStateShared::courtInstance;  // stores the court instance
 hoopStateVecSharedPtr gameStateShared::hoopInstance;  // creates instance of the hoop class
-playerStateVecSharedPtr gameStateShared::playerInstance;  // stores the vector of the players loaded from the xml files
+std::map<size_t, playerStateSharedPtr> gameStateShared::playerInstance;  // stores the vector of the players loaded from the xml files
 std::vector <boost::shared_ptr<teamState> >  gameStateShared::teamInstance;  // creates instance of the teamState class
 jumpBallsSharedPtr gameStateShared::jumpBall; // instance that is used for jumpBall functions.
 float gameStateShared::yOffset; // stores the y offset for objects on the screen
@@ -353,11 +353,11 @@ void gameStateShared::setHoopInstance(hoopStateVecSharedPtr set)  // sets the va
     hoopInstance = set;
 }
 
-playerStateVecSharedPtr gameStateShared::getPlayerInstance()  // retrieves the value of playerInstance
+std::map <size_t, playerStateSharedPtr> gameStateShared::getPlayerInstance()  // retrieves the value of playerInstance
 {
     return (playerInstance);
 }
-void gameStateShared::setPlayerInstances(playerStateVecSharedPtr set)  // sets the value of playerInstance
+void gameStateShared::setPlayerInstance(std::map <size_t, playerStateSharedPtr> set)  // sets the value of playerInstance
 {
     playerInstance = set;
 }

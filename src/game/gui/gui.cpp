@@ -904,8 +904,8 @@ void GUISystem::playerStartSelected()  // process player start selection
     stdStringVec team0Starters;
     stdStringVec team1Starters;
     sizeTVec starters; // used for initial creatio  of teamStarterID vector
-    std::map <size_t, playerStateVecSharedPtr> playerInstance;
-    playerStateVecSharedPtr activePlayerInstance;
+    std::map <size_t, playerStateSharedPtr> playerInstance;
+    std::map <size_t, playerStateSharedPtr> activePlayerInstance;
 
     size_t IDs = 0;
     while (teamStarterID.size() < 2)
@@ -1024,17 +1024,17 @@ void GUISystem::playerStartSelected()  // process player start selection
     playerInstance.clear();
     activePlayerInstance.clear();
     playerInstance = base->getGameS()->getActiveTeamInstance()[0]->getPlayerInstance();
-    size_t y = 0;
+    auto y = 0;
     logMsg("GUI playerInstance.size() = " +convert->toString(playerInstance.size()));
     
     while (y < playerInstance.size())
     {
-        size_t z = 0;
+        auto z = 0;
         while (z < activePlayerID.size())
         {
-            if (playerInstance[0][y].get()->getID() == activePlayerID[z])
+            if (playerInstance[y].get()->getID() == activePlayerID[z])
             {
-                activePlayerInstance.push_back(playerInstance[y]);
+                activePlayerInstance.insert(std::pair<size_t, playerStateSharedPtr>(y,playerInstance[y]));
                 logMsg("GUI playerInstance[y] ID  = " +convert->toString(playerInstance[y]->getID()));
     
             }
@@ -1096,7 +1096,7 @@ void GUISystem::playerStartSelected()  // process player start selection
         {
             if (playerInstance[y]->getID() == activePlayerID[z])
             {
-                activePlayerInstance.push_back(playerInstance[y]);
+                activePlayerInstance.insert(std::pair<size_t, playerStateSharedPtr>(y, playerInstance[y]));
             }
             ++z;
         }

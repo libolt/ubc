@@ -1655,7 +1655,7 @@ std::map<size_t, playerStateSharedPtr> loader::loadPlayers()  // loads the playe
        
         logMsg("playerFile = " +playerFiles[it]);
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-        players.insert(std::pair<size_t, playreStateSharedPtr>(it, loadPlayerFile("data/players/" + playerFiles[it)]));
+        players.insert(std::pair<size_t, playerStateSharedPtr>(it, loadPlayerFile("data/players/" + playerFiles[it])));
 #else
         players.insert(std::pair<size_t, playerStateSharedPtr>(it, loadPlayerFile(findFile("players/" + playerFiles[it]))));
 #endif 

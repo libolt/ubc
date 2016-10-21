@@ -2188,11 +2188,13 @@ std::map<size_t, teamStateSharedPtr> loader::loadTeams()  // load teams from XML
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 //        teams.push_back(loadTeamFile("data/teams/" + *it));
 //          loadTeamFile("data/teams/" + *it);
-          teams.insert(std::pair<size_t, teamStateSharedPtr>(it, loadTeamFile("data/teams/" + teamFiles[it])));
+        teams.insert(std::pair<size_t, teamStateSharedPtr>(it, loadTeamFile("data/teams/" + teamFiles[it])));
 
 #else
 //        teams.push_back(loadTeamFile(findFile("teams/" + *it)));
-          loadTeamFile(findFile("teams/" + *it));
+//          loadTeamFile(findFile("teams/" + *it));
+        teams.insert(std::pair<size_t, teamStateSharedPtr>(it, loadTeamFile(findFile("teams/" + teamFiles[it]))));
+
 #endif
     }
 //    exit(0);

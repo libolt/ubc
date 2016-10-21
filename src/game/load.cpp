@@ -2177,15 +2177,19 @@ std::map<size_t, teamStateSharedPtr> loader::loadTeams()  // load teams from XML
     logMsg("teamFiles.size() = " +convert->toString(teamFiles.size()));
 
 //    exit(0);
-    stdStringVec::iterator it;
+//    stdStringVec::iterator it;
 
-    for (it = teamFiles.begin(); it != teamFiles.end(); ++it)
+    auto it = 0;
+//    for (it = teamFiles.begin(); it != teamFiles.end(); ++it)
+    for (it=0;it<teamFiles.size();++it)
     {
-        logMsg("teamFile = " +*it);
+//        logMsg("teamFile = " +*it);
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 //        teams.push_back(loadTeamFile("data/teams/" + *it));
-          loadTeamFile("data/teams/" + *it);
+//          loadTeamFile("data/teams/" + *it);
+          teams.insert(std::pair<size_t, teamStateSharedPtr>(it, loadTeamFile("data/teams/" + teamFiles[it])));
+
 #else
 //        teams.push_back(loadTeamFile(findFile("teams/" + *it)));
           loadTeamFile(findFile("teams/" + *it));
@@ -2196,7 +2200,7 @@ std::map<size_t, teamStateSharedPtr> loader::loadTeams()  // load teams from XML
 //    exit(0);
 //    logMsg("loadTeams() 4 ID == " +convert->toString(teams[4]->getID()));
 //    logMsg("loadTeams() 4 Name == " +tInstance[4]->getName());
-    logMsg("loadTeams() tInstance.size() == " +convert->toString(tInstance.size()));
+    logMsg("loadTeams() teams.size() == " +convert->toString(teams.size()));
 
     logMsg("dah");
 //    exit(0);
@@ -2206,7 +2210,7 @@ std::map<size_t, teamStateSharedPtr> loader::loadTeams()  // load teams from XML
 //        exit(0);
     }
     
-    return (tInstance);
+    return (teams);
 }
 
 stdStringVec loader::loadTeamListFile(std::string fileName)  // loads the team list file

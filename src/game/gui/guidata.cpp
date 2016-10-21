@@ -610,7 +610,8 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     }
     base->getGameS()->setTeamInstance(teamInstance);
     logMsg("GUI ADD TEAM 0 teamInstance.size() == " +convert->toString(teamInstance.size()));
-    int x = 0;
+//    exit(0);
+    auto x = 0;
     while (x < teamInstance.size())
     {
         logMsg("GUI ADD TEAM teamInstance[" +convert->toString(x) +"]->getID() ID == " +convert->toString(teamInstance[x]->getID()));

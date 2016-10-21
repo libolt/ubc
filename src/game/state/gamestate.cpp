@@ -431,8 +431,8 @@ bool gameState::createCourtInstances()  // creates court Instances
 
 bool gameState::createHoopInstances()  // creates hoop Instances
 {
-    boost::shared_ptr<hoopState> hInstance0(new hoopState);  // creates an instance of the hoopState class
-    boost::shared_ptr<hoopState> hInstance1(new hoopState);  // creates an instance of the hoopState class
+    hoopStateSharedPtr hInstance0(new hoopState);  // creates an instance of the hoopState class
+    hoopStateSharedPtr hInstance1(new hoopState);  // creates an instance of the hoopState class
 
 //    cInstance.setModelFileName("court.mesh");
     hInstance0->setEntityName("hoop1");
@@ -443,8 +443,8 @@ bool gameState::createHoopInstances()  // creates hoop Instances
     hInstance1->setEntityModelFileName("Hoop.mesh");
     hInstance1->setEntityNodeName("hoopNode2");
 
-    getHoopInstance().push_back(hInstance0);  // loads the first hoop
-    getHoopInstance().push_back(hInstance1);  // loads the second hoop
+    getHoopInstance().insert(std::pair<size_t, hoopStateSharedPtr>(0, hInstance0));  // loads the first hoop
+    getHoopInstance().insert(std::pair<size_t, hoopStateSharedPtr>(1, hInstance1));  // loads the second hoop
 
     return (true);
 }
@@ -593,7 +593,7 @@ bool gameState::loadHoopModel()  // loads selected hoop model
 {
     bool returnType = true;
 
-    hoopStateVecSharedPtr hoopInstance = getHoopInstance();
+    std::map <size_t, hoopStateSharedPtr> hoopInstance = getHoopInstance();
 
     if (hoopInstance[0]->loadModel())
     {
@@ -712,7 +712,7 @@ void gameState::setCourtStartPositions()  // sets the initial coordinates for th
 void gameState::setHoopStartPositions()  // sets the initial coordinates for the basketball(s)
 {
 
-    hoopStateVecSharedPtr hoopInstance = getHoopInstance();
+    std::map <size_t, hoopStateSharedPtr> hoopInstance = getHoopInstance();
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     hoopInstance[0]->getNode()->setPosition(45.0f,-6.5f,370.0f);

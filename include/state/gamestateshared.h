@@ -131,8 +131,8 @@ class gameStateShared
         std::map <size_t, courtStateSharedPtr>  getCourtInstance();  // retrieves the value of courtInstance
         void setCourtInstance(std::map <size_t, courtStateSharedPtr>  set);  // sets the value of courtInstance
 
-        hoopStateVecSharedPtr getHoopInstance();  // retrieves the value of hoopInstance
-        void setHoopInstance(hoopStateVecSharedPtr set);  // sets the value of hoopInstance
+        std::map <size_t, hoopStateSharedPtr> getHoopInstance();  // retrieves the value of hoopInstance
+        void setHoopInstance(std::map <size_t, hoopStateSharedPtr> set);  // sets the value of hoopInstance
 
         std::map <size_t, playerStateSharedPtr> getPlayerInstance();  // retrieves the value of playerInstance
         void setPlayerInstance(std::map <size_t, playerStateSharedPtr> set);  // sets the value of  playerInstance
@@ -178,7 +178,7 @@ class gameStateShared
         static size_t activeCourtInstance;  // stores which instance of the court is active
         static basketballStateVecSharedPtr basketballInstance;  // creates instance of the basketballs class
         static std::map <size_t, courtStateSharedPtr> courtInstance;  // stores the court instance
-        static hoopStateVecSharedPtr hoopInstance;  // creates instance of the hoop class
+        static std::map <size_t, hoopStateSharedPtr> hoopInstance;  // creates instance of the hoop class
         static std::map <size_t, playerStateSharedPtr> playerInstance;  // stores the map of the players loaded from the xml files
         static std::map <size_t, teamStateSharedPtr>  teamInstance;  // creates instance of the teamState class
 

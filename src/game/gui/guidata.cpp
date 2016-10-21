@@ -87,11 +87,15 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
 //    exit(0);
 
 //    courtInstance = gameS->getCourtInstance();
-
-    for (size_t x=0;x<courtInstance.size();++x)
+    auto evenCount = 0;
+    for (auto x=0;x<courtInstance.size();++x)
+//    for_each(courtInstance.begin(), courtInstance.end(), [&evenCount] (size_t n)
     {
         courtName.push_back(courtInstance[x]->getName());
     }
+
+//    courtInstance.courtNameFunc(getName());
+    logMsg("GUISystem::addCourtSelectionMenuData() courtName.size() == " +convert->toString(courtName.size()));
     if (courtInstance.size() == 0)
     {
         logMsg("courtInstane.size == " +convert->toString(courtInstance.size()));
@@ -102,7 +106,7 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
     logMsg("courtName = " +courtName[0]);
     logMsg("courtName size = " +convert->toString(courtName.size()));
 //    exit(0);u
-    size_t i = 0;
+    auto i = 0;
     while (i<courtName.size())
     {
         courtSelectBox->addItem(courtName[i]);
@@ -128,7 +132,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     std::vector<std::map <size_t, playerStateSharedPtr> > playerInstance;
 //    std::vector <boost::shared_ptr<playerState> > pInstance;
 //    pInstance = teamInstance[teamIDs[0]]->getPlayerInstance();
-    size_t x = 0;
+    auto x = 0;
     
     std::string func = "addPlayerStartSelectionMenuData";
     logMsg(func);

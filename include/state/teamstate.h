@@ -225,7 +225,7 @@ private:
     bool defense;  // if set then the team is on defense
 
     static std::map <size_t, playerStateSharedPtr> playerInstance;  // stores instance of the playerState class containing all team players
-   std::map <size_t, playerStateSharedPtr> activePlayerInstance;  // stores instance of the playerState class containing the active players
+    std::map <size_t, playerStateSharedPtr> activePlayerInstance;  // stores instance of the playerState class containing the active players
 
     std::vector <std::string> playerModelsLoaded;  // creates a vector of strings that holds the models which are loaded
     bool playerInstancesCreated;  // stores whether player instances have been created

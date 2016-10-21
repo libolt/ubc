@@ -41,6 +41,15 @@ class courtState : public state, public courtEntity, public courtData
         courtState();   // constructor
         ~courtState();  // destructor
 
+/*        void courtNameFunc(std::vector<std::string> &courtName)
+        {
+            std::for_each (courtName.begin(), courtName.end(), [](std::vector<std::string>))
+            {
+                courtName.push_back(courtInstance[n]->getName());
+            }
+        }
+*/
+
 /*        std::string getModelName();  // retrieves the value of modelName
         void setModelName(std::string set);  // sets the value of modelName
 

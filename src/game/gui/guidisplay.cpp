@@ -193,8 +193,8 @@ void GUISystem::hideGameSetupMenuWidgets()  // hides all widgets tied to the Gam
     //conversion *convert = conversion::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
 
-    team0SelectBox->setVisible(false);
-    team1SelectBox->setVisible(false);
+    teamSelectBox[0]->setVisible(false);
+    teamSelectBox[1]->setVisible(false);
     team0SelectButton->setVisible(false);
     team1SelectButton->setVisible(false);
     teamsSelectedButton->setVisible(false);
@@ -219,11 +219,11 @@ void GUISystem::showGameSetupMenuWidgets()  // shows all widgets tied to the Gam
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
 
-    team0SelectBox->setVisible(true);
-    team0SelectBox->setPosition((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.10 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamSelectBox[0]->setVisible(true);
+    teamSelectBox[0]->setPosition((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.10 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
-    team1SelectBox->setVisible(true);
-    team1SelectBox->setPosition((0.5*base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.10 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamSelectBox[1]->setVisible(true);
+    teamSelectBox[1]->setPosition((0.5*base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.10 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
     team0SelectButton->setVisible(true);
     team0SelectButton->setPosition((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.14 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
@@ -391,8 +391,8 @@ void GUISystem::hideTeamSelectionMenuWidgets()  // hides all widgets tied to the
     //conversion *convert = conversion::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
 
-    team0SelectBox->setVisible(false);
-    team1SelectBox->setVisible(false);
+    teamSelectBox[0]->setVisible(false);
+    teamSelectBox[1]->setVisible(false);
     team0SelectButton->setVisible(false);
     team1SelectButton->setVisible(false);
     teamsSelectedButton->setVisible(false);
@@ -409,11 +409,11 @@ void GUISystem::showTeamSelectionMenuWidgets()  // show all widgets tied to the 
 //    logMsg("Blip");
 //    exit(0);
     
-    team0SelectBox->setVisible(true);
-    team0SelectBox->setPosition((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.10 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamSelectBox[0]->setVisible(true);
+    teamSelectBox[0]->setPosition((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.10 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 //    exit(0);
-    team1SelectBox->setVisible(true);
-    team1SelectBox->setPosition((0.5*base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.10 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamSelectBox[1]->setVisible(true);
+    teamSelectBox[1]->setPosition((0.5*base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.10 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
     team0SelectButton->setVisible(true);
     team0SelectButton->setPosition((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.19 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );

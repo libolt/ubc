@@ -540,30 +540,30 @@ void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed)  // process
     {
         if (gameSetupMenuAwaySelected)
         {
-            int x = team1SelectBox->getIndexSelected() +1;
+            auto x = teamSelectBox[1]->getIndexSelected() +1;
             if (x < base->getGameS()->getTeamInstance().size())
             {
-                team1SelectBox->setIndexSelected(x);
-                team1SelectBox->beginToItemAt(x);
+                teamSelectBox[1]->setIndexSelected(x);
+                teamSelectBox[1]->beginToItemAt(x);
             }
             else
             {
-                team1SelectBox->setIndexSelected(0);
-                team1SelectBox->beginToItemAt(0);
+                teamSelectBox[1]->setIndexSelected(0);
+                teamSelectBox[1]->beginToItemAt(0);
             }
         }
         else if (gameSetupMenuHomeSelected)
         {
-            int x = team0SelectBox->getIndexSelected() +1;
+            auto x = teamSelectBox[0]->getIndexSelected() +1;
             if (x < base->getGameS()->getTeamInstance().size())
             {
-                team0SelectBox->setIndexSelected(x);
-                team0SelectBox->beginToItemAt(x);
+                teamSelectBox[0]->setIndexSelected(x);
+                teamSelectBox[0]->beginToItemAt(x);
             }
             else
             {
-                team0SelectBox->setIndexSelected(0);
-                team0SelectBox->beginToItemAt(0);
+                teamSelectBox[0]->setIndexSelected(0);
+                teamSelectBox[0]->beginToItemAt(0);
             }
         }
         else
@@ -575,31 +575,31 @@ void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed)  // process
     {
         if (gameSetupMenuAwaySelected)
         {
-            int x = team1SelectBox->getIndexSelected() -1;
+            auto x = teamSelectBox[1]->getIndexSelected() -1;
             if (x < 0)
             {
-                team1SelectBox->setIndexSelected(base->getGameS()->getTeamInstance().size() -1);
-                team1SelectBox->beginToItemAt(base->getGameS()->getTeamInstance().size() -1);
+                teamSelectBox[1]->setIndexSelected(base->getGameS()->getTeamInstance().size() -1);
+                teamSelectBox[1]->beginToItemAt(base->getGameS()->getTeamInstance().size() -1);
             }
             else
             {
                 //exit(0);
-                team1SelectBox->setIndexSelected(x);
-                team1SelectBox->beginToItemAt(x);
+                teamSelectBox[1]->setIndexSelected(x);
+                teamSelectBox[1]->beginToItemAt(x);
             }
         }
         else if (gameSetupMenuHomeSelected)
         {
-            int x = team0SelectBox->getIndexSelected() -1;
+            auto x = teamSelectBox[0]->getIndexSelected() -1;
             if (x < 0)
             {
-                team0SelectBox->setIndexSelected(base->getGameS()->getTeamInstance().size() -1);
-                team0SelectBox->beginToItemAt(base->getGameS()->getTeamInstance().size() -1);
+                teamSelectBox[0]->setIndexSelected(base->getGameS()->getTeamInstance().size() -1);
+                teamSelectBox[0]->beginToItemAt(base->getGameS()->getTeamInstance().size() -1);
             }
             else
             {
-                team0SelectBox->setIndexSelected(x);
-                team0SelectBox->beginToItemAt(x);
+                teamSelectBox[0]->setIndexSelected(x);
+                teamSelectBox[0]->beginToItemAt(x);
             }
         }
         else
@@ -679,30 +679,30 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed)  // pro
     {
         if (gameSetupMenuAwaySelected)
         {
-            int x = team1SelectBox->getIndexSelected() +1;
+            auto x = teamSelectBox[1]->getIndexSelected() +1;
             if (x < base->getGameS()->getTeamInstance().size())
             {
-                team1SelectBox->setIndexSelected(x);
-                team1SelectBox->beginToItemAt(x);
+                teamSelectBox[1]->setIndexSelected(x);
+                teamSelectBox[1]->beginToItemAt(x);
             }
             else
             {
-                team1SelectBox->setIndexSelected(0);
-                team1SelectBox->beginToItemAt(0);
+                teamSelectBox[1]->setIndexSelected(0);
+                teamSelectBox[1]->beginToItemAt(0);
             }
         }
         else if (gameSetupMenuHomeSelected)
         {
-            int x = team0SelectBox->getIndexSelected() +1;
+            auto x = teamSelectBox[0]->getIndexSelected() +1;
             if (x < base->getGameS()->getTeamInstance().size())
             {
-                team0SelectBox->setIndexSelected(x);
-                team0SelectBox->beginToItemAt(x);
+                teamSelectBox[0]->setIndexSelected(x);
+                teamSelectBox[0]->beginToItemAt(x);
             }
             else
             {
-                team0SelectBox->setIndexSelected(0);
-                team0SelectBox->beginToItemAt(0);
+                teamSelectBox[0]->setIndexSelected(0);
+                teamSelectBox[0]->beginToItemAt(0);
             }
         }
         else
@@ -714,31 +714,31 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed)  // pro
     {
         if (gameSetupMenuAwaySelected)
         {
-            int x = team1SelectBox->getIndexSelected() -1;
+            auto x = teamSelectBox[1]->getIndexSelected() -1;
             if (x < 0)
             {
-                team1SelectBox->setIndexSelected(base->getGameS()->getTeamInstance().size() -1);
-                team1SelectBox->beginToItemAt(base->getGameS()->getTeamInstance().size() -1);
+                teamSelectBox[1]->setIndexSelected(base->getGameS()->getTeamInstance().size() -1);
+                teamSelectBox[1]->beginToItemAt(base->getGameS()->getTeamInstance().size() -1);
             }
             else
             {
                 //exit(0);
-                team1SelectBox->setIndexSelected(x);
-                team1SelectBox->beginToItemAt(x);
+                teamSelectBox[1]->setIndexSelected(x);
+                teamSelectBox[1]->beginToItemAt(x);
             }
         }
         else if (gameSetupMenuHomeSelected)
         {
-            int x = team0SelectBox->getIndexSelected() -1;
+            auto x = teamSelectBox[0]->getIndexSelected() -1;
             if (x < 0)
             {
-                team0SelectBox->setIndexSelected(base->getGameS()->getTeamInstance().size() -1);
-                team0SelectBox->beginToItemAt(base->getGameS()->getTeamInstance().size() -1);
+                teamSelectBox[0]->setIndexSelected(base->getGameS()->getTeamInstance().size() -1);
+                teamSelectBox[0]->beginToItemAt(base->getGameS()->getTeamInstance().size() -1);
             }
             else
             {
-                team0SelectBox->setIndexSelected(x);
-                team0SelectBox->beginToItemAt(x);
+                teamSelectBox[0]->setIndexSelected(x);
+                teamSelectBox[0]->beginToItemAt(x);
             }
         }
         else

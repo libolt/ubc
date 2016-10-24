@@ -331,9 +331,10 @@ private:
     static boost::shared_ptr<MyGUI::Button> team1StartingLineupSetButton;
     static boost::shared_ptr<MyGUI::Button> startingLineupsSetButton;
     
-    // listbox widgets
-    static boost::shared_ptr<MyGUI::ListBox> team0SelectBox;
-    static boost::shared_ptr<MyGUI::ListBox> team1SelectBox;
+    // Team selection listbox widgets
+//    static boost::shared_ptr<MyGUI::ListBox> team0SelectBox;
+//    static boost::shared_ptr<MyGUI::ListBox> team1SelectBox;
+    static std::map<size_t, boost::shared_ptr<MyGUI::ListBox> > teamSelectBox;
 
     // Network Server Setup Widgets
     static boost::shared_ptr<MyGUI::ListBox> numClientsSelectBox;  // allows you to select the number of network players
@@ -344,7 +345,10 @@ private:
     static boost::shared_ptr<MyGUI::EditBox> clientIPAddressBox;
     static boost::shared_ptr<MyGUI::Button> clientConnectButton;
     
-    static boost::shared_ptr<MyGUI::ListBox> team0Player1SelectBox;
+    static std::vector<std::map <std::string, boost::shared_ptr<MyGUI::ListBox> > > teamPlayerPosSelectBox;
+
+    
+/*    static boost::shared_ptr<MyGUI::ListBox> team0Player1SelectBox;
     static boost::shared_ptr<MyGUI::ListBox> team0Player2SelectBox;
     static boost::shared_ptr<MyGUI::ListBox> team0Player3SelectBox;
     static boost::shared_ptr<MyGUI::ListBox> team0Player4SelectBox;
@@ -354,7 +358,7 @@ private:
     static boost::shared_ptr<MyGUI::ListBox> team1Player3SelectBox;
     static boost::shared_ptr<MyGUI::ListBox> team1Player4SelectBox;
     static boost::shared_ptr<MyGUI::ListBox> team1Player5SelectBox;
-    
+
     
     // Player Selection Menu widgets
     static boost::shared_ptr<MyGUI::ListBox> team0PGSelectBox;
@@ -368,6 +372,7 @@ private:
     static boost::shared_ptr<MyGUI::ListBox> team1SFSelectBox;
     static boost::shared_ptr<MyGUI::ListBox> team1PFSelectBox;
     static boost::shared_ptr<MyGUI::ListBox> team1CSelectBox;
+*/
 
     static boost::shared_ptr<MyGUI::TextBox> team0PGRating;
     static boost::shared_ptr<MyGUI::TextBox> team0SGRating;

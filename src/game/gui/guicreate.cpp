@@ -371,10 +371,11 @@ bool GUISystem::createPlayerStartSelectionMenuGUI()  // creates GUI for player s
 //    exit(0);
     MyGUI::LayoutManager::getInstance().loadLayout("PlayerStartSelection.layout");
 
-    team0PGSelectBox = boost::shared_ptr<MyGUI::ListBox>(mGUI->findWidget<MyGUI::ListBox>("team0PGSelectBox"));  // loads team0PGSelectBox
-    team0PGSelectBox->setVisible(false);
+    teamPlayerPosSelectBox[0].insert(std::pair<std::string, boost::shared_ptr<MyGUI::ListBox> >("PG", boost::shared_ptr<MyGUI::ListBox>(mGUI->findWidget<MyGUI::ListBox>("team0PGSelectBox"))));  // loads team0PGSelectBox
+    teamPlayerPosSelectBox[0]["PG"]->setVisible(false);
 //    team0PGSelectBox->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    team0PGSelectBox->setSize((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[0]["PG"]->setSize((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    
     team0SGSelectBox = boost::shared_ptr<MyGUI::ListBox>(mGUI->findWidget<MyGUI::ListBox>("team0SGSelectBox"));  // loads team0SGSelectBox
     team0SGSelectBox->setVisible(false);
 //    team0SGSelectBox->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
@@ -500,13 +501,13 @@ bool GUISystem::createTeamSelectionMenuGUI()  // creates GUI for team selection 
     float vpWidth = base->getGameE()->getRenderE()->getViewPort()->getActualWidth();  // stores view ports width
     float vpHeight = base->getGameE()->getRenderE()->getViewPort()->getActualHeight();  // stores view ports height
     
-    team0SelectBox = boost::shared_ptr<MyGUI::ListBox>(mGUI->findWidget<MyGUI::ListBox>("team0SelectBox"));  // loads team 0 ListBox
-    team0SelectBox->setVisible(false);
-    team0SelectBox->setSize((0.4 *vpWidth), (0.04 *vpHeight));
+    teamSelectBox.insert(std::pair<size_t, boost::shared_ptr<MyGUI::ListBox> > (0, boost::shared_ptr<MyGUI::ListBox>(mGUI->findWidget<MyGUI::ListBox>("team0SelectBox"))));  // loads team 0 ListBox
+    teamSelectBox[0]->setVisible(false);
+    teamSelectBox[0]->setSize((0.4 *vpWidth), (0.04 *vpHeight));
     
-    team1SelectBox = boost::shared_ptr<MyGUI::ListBox>(mGUI->findWidget<MyGUI::ListBox>("team1SelectBox"));  // loads team 1 ListBox
-    team1SelectBox->setVisible(false);
-    team1SelectBox->setSize((0.4 *vpWidth), (0.04 *vpHeight));
+    teamSelectBox.insert(std::pair<size_t, boost::shared_ptr<MyGUI::ListBox> > (1, boost::shared_ptr<MyGUI::ListBox>(mGUI->findWidget<MyGUI::ListBox>("team1SelectBox"))));  // loads team 1 ListBox
+    teamSelectBox[1]->setVisible(false);
+    teamSelectBox[1]->setSize((0.4 *vpWidth), (0.04 *vpHeight));
 
     team0SelectButton = boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("team0SelectButton"));  // loads team 0 Select Button
     team0SelectButton->setVisible(false);

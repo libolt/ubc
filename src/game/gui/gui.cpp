@@ -116,8 +116,9 @@ boost::shared_ptr<MyGUI::Button> GUISystem::team1StartingLineupSetButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::startingLineupsSetButton;
     
 // listbox widgets
-boost::shared_ptr<MyGUI::ListBox> GUISystem::team0SelectBox;
-boost::shared_ptr<MyGUI::ListBox> GUISystem::team1SelectBox;
+//boost::shared_ptr<MyGUI::ListBox> GUISystem::team0SelectBox;
+//boost::shared_ptr<MyGUI::ListBox> GUISystem::team1SelectBox;
+std::map<size_t, boost::shared_ptr<MyGUI::ListBox> > GUISystem::teamSelectBox;
 
 // Network Server Setup Widgets
 boost::shared_ptr<MyGUI::ListBox> GUISystem::numClientsSelectBox;  // allows you to select the number of network players
@@ -128,7 +129,10 @@ boost::shared_ptr<MyGUI::EditBox> GUISystem::serverIPAddressBox;
 boost::shared_ptr<MyGUI::EditBox> GUISystem::clientIPAddressBox;
 boost::shared_ptr<MyGUI::Button> GUISystem::clientConnectButton;
     
-boost::shared_ptr<MyGUI::ListBox> GUISystem::team0Player1SelectBox;
+std::vector<std::map <std::string, boost::shared_ptr<MyGUI::ListBox> > > GUISystem::teamPlayerPosSelectBox;
+
+
+/*    boost::shared_ptr<MyGUI::ListBox> GUISystem::team0Player1SelectBox;
 boost::shared_ptr<MyGUI::ListBox> GUISystem::team0Player2SelectBox;
 boost::shared_ptr<MyGUI::ListBox> GUISystem::team0Player3SelectBox;
 boost::shared_ptr<MyGUI::ListBox> GUISystem::team0Player4SelectBox;
@@ -138,7 +142,7 @@ boost::shared_ptr<MyGUI::ListBox> GUISystem::team1Player2SelectBox;
 boost::shared_ptr<MyGUI::ListBox> GUISystem::team1Player3SelectBox;
 boost::shared_ptr<MyGUI::ListBox> GUISystem::team1Player4SelectBox;
 boost::shared_ptr<MyGUI::ListBox> GUISystem::team1Player5SelectBox;
-    
+
     
 // Player Selection Menu widgets
 boost::shared_ptr<MyGUI::ListBox> GUISystem::team0PGSelectBox;
@@ -151,6 +155,8 @@ boost::shared_ptr<MyGUI::ListBox> GUISystem::team1SGSelectBox;
 boost::shared_ptr<MyGUI::ListBox> GUISystem::team1SFSelectBox;
 boost::shared_ptr<MyGUI::ListBox> GUISystem::team1PFSelectBox;
 boost::shared_ptr<MyGUI::ListBox> GUISystem::team1CSelectBox;
+*/
+
 boost::shared_ptr<MyGUI::TextBox> GUISystem::team0PGRating;
 boost::shared_ptr<MyGUI::TextBox> GUISystem::team0SGRating;
 boost::shared_ptr<MyGUI::TextBox> GUISystem::team0SFRating;
@@ -778,16 +784,16 @@ void GUISystem::courtSelectionMenu() // displays court selection menu
 
 void GUISystem::setSelectedIndexes()  // sets all player listbox indexes to zero
 {
-    team0PGSelectBox->setIndexSelected(0);
-    team0SGSelectBox->setIndexSelected(0);
-    team0SFSelectBox->setIndexSelected(0);
-    team0PFSelectBox->setIndexSelected(0);
-    team0CSelectBox->setIndexSelected(0);
-    team1PGSelectBox->setIndexSelected(0);
-    team1SGSelectBox->setIndexSelected(0);
-    team1SFSelectBox->setIndexSelected(0);
-    team1PFSelectBox->setIndexSelected(0);
-    team1CSelectBox->setIndexSelected(0);
+    teamPlayerPosSelectBox[0]["PG"]->setIndexSelected(0);
+    teamPlayerPosSelectBox[0]["SG"]->setIndexSelected(0);
+    teamPlayerPosSelectBox[0]["SF"]->setIndexSelected(0);
+    teamPlayerPosSelectBox[0]["PF"]->setIndexSelected(0);
+    teamPlayerPosSelectBox[0]["C"]->setIndexSelected(0);
+    teamPlayerPosSelectBox[1]["PG"]->setIndexSelected(0);
+    teamPlayerPosSelectBox[1]["SG"]->setIndexSelected(0);
+    teamPlayerPosSelectBox[1]["SF"]->setIndexSelected(0);
+    teamPlayerPosSelectBox[1]["PF"]->setIndexSelected(0);
+    teamPlayerPosSelectBox[1]["C"]->setIndexSelected(0);
 }
 
 void GUISystem::networkClientSetupMenu() // sets up the client connection
@@ -879,10 +885,10 @@ void GUISystem::teamsSelected()  // processes team selection
     
     logMsg("GUISystem::teamsSelected()");
     sizeTVec teamID;
-    teamID.push_back(team0SelectBox->getIndexSelected());
-    teamID.push_back(team1SelectBox->getIndexSelected());
+    teamID.push_back(teamSelectBox[0]->getIndexSelected());
+    teamID.push_back(teamSelectBox[1]->getIndexSelected());
 //    gameS->setTeamID(teamID);
-    logMsg("team0SelectBox->getIndexSelected() == " +convert->toString(team0SelectBox->getIndexSelected()));
+    logMsg("teamSelectBox[0]->getIndexSelected() == " +convert->toString(teamSelectBox[0]->getIndexSelected()));
     logMsg("teamID[0] == " +convert->toString(teamID[0]));
 //    exit(0);
     base->getGameS()->setTeamIDS(teamID);
@@ -922,78 +928,80 @@ void GUISystem::playerStartSelected()  // process player start selection
     }
     
     // checks to make sure that all player selectBoxes have a valid index value
-    if (team0PGSelectBox->getIndexSelected() < 0 || team0PGSelectBox->getIndexSelected() > team0PGSelectBox->getItemCount())
+    if (teamPlayerPosSelectBox[0]["PG"]->getIndexSelected() < 0 || teamPlayerPosSelectBox[0]["PG"]->getIndexSelected() > teamPlayerPosSelectBox[0]["PG"]->getItemCount())
     {
-        team0PGSelectBox->setIndexSelected(0);
+        teamPlayerPosSelectBox[0]["PG"]->setIndexSelected(0);
     }
-    if (team0SGSelectBox->getIndexSelected() < 0 || team0SGSelectBox->getIndexSelected() > team0SGSelectBox->getItemCount())
+    if (teamPlayerPosSelectBox[0]["SG"]->getIndexSelected() < 0 || teamPlayerPosSelectBox[0]["SG"]->getIndexSelected() > teamPlayerPosSelectBox[0]["SG"]->getItemCount())
     {
-        team0SGSelectBox->setIndexSelected(0);
+        teamPlayerPosSelectBox[0]["SG"]->setIndexSelected(0);
     }
-    if (team0SFSelectBox->getIndexSelected() < 0 || team0SFSelectBox->getIndexSelected() > team0SFSelectBox->getItemCount())
+    if (teamPlayerPosSelectBox[0]["SF"]->getIndexSelected() < 0 || teamPlayerPosSelectBox[0]["SF"]->getIndexSelected() > teamPlayerPosSelectBox[0]["SF"]->getItemCount())
     {
-        team0SFSelectBox->setIndexSelected(0);
+        teamPlayerPosSelectBox[0]["SF"]->setIndexSelected(0);
     }
-    if (team0PFSelectBox->getIndexSelected() < 0 || team0PFSelectBox->getIndexSelected() > team0PFSelectBox->getItemCount())
+    if (teamPlayerPosSelectBox[0]["PF"]->getIndexSelected() < 0 || teamPlayerPosSelectBox[0]["PF"]->getIndexSelected() > teamPlayerPosSelectBox[0]["PF"]->getItemCount())
     {
-        team0PFSelectBox->setIndexSelected(0);
+        teamPlayerPosSelectBox[0]["PF"]->setIndexSelected(0);
     }
-    if (team0CSelectBox->getIndexSelected() < 0 || team0CSelectBox->getIndexSelected() > team0CSelectBox->getItemCount())
+    if (teamPlayerPosSelectBox[0]["C"]->getIndexSelected() < 0 || teamPlayerPosSelectBox[0]["C"]->getIndexSelected() > teamPlayerPosSelectBox[0]["C"]->getItemCount())
     {
-        team0CSelectBox->setIndexSelected(0);
+        teamPlayerPosSelectBox[0]["C"]->setIndexSelected(0);
     }
-    if (team1PGSelectBox->getIndexSelected() < 0 || team1PGSelectBox->getIndexSelected() > team1PGSelectBox->getItemCount())
+    if (teamPlayerPosSelectBox[1]["PG"]->getIndexSelected() < 0 || teamPlayerPosSelectBox[1]["PG"]->getIndexSelected() > teamPlayerPosSelectBox[1]["PG"]->getItemCount())
     {
-        team1PGSelectBox->setIndexSelected(0);
+        teamPlayerPosSelectBox[1]["PG"]->setIndexSelected(0);
     }
-    if (team1SGSelectBox->getIndexSelected() < 0 || team1SGSelectBox->getIndexSelected() > team1SGSelectBox->getItemCount())
+    if (teamPlayerPosSelectBox[1]["SG"]->getIndexSelected() < 0 || teamPlayerPosSelectBox[1]["SG"]->getIndexSelected() > teamPlayerPosSelectBox[1]["SG"]->getItemCount())
     {
-        team1SGSelectBox->setIndexSelected(0);
+        teamPlayerPosSelectBox[1]["SG"]->setIndexSelected(0);
     }
-    if (team1SFSelectBox->getIndexSelected() < 0 || team1SFSelectBox->getIndexSelected() > team1SFSelectBox->getItemCount())
+    if (teamPlayerPosSelectBox[1]["SF"]->getIndexSelected() < 0 || teamPlayerPosSelectBox[1]["SF"]->getIndexSelected() > teamPlayerPosSelectBox[1]["SF"]->getItemCount())
     {
-        team1SFSelectBox->setIndexSelected(0);
+        teamPlayerPosSelectBox[1]["SF"]->setIndexSelected(0);
     }
-    if (team1PFSelectBox->getIndexSelected() < 0 || team1PFSelectBox->getIndexSelected() > team1PFSelectBox->getItemCount())
+    if (teamPlayerPosSelectBox[1]["PF"]->getIndexSelected() < 0 || teamPlayerPosSelectBox[1]["PF"]->getIndexSelected() > teamPlayerPosSelectBox[1]["PF"]->getItemCount())
     {
-        team1PFSelectBox->setIndexSelected(0);
+        teamPlayerPosSelectBox[1]["PF"]->setIndexSelected(0);
     }
-    if (team1CSelectBox->getIndexSelected() < 0 || team1CSelectBox->getIndexSelected() > team1CSelectBox->getItemCount())
+    if (teamPlayerPosSelectBox[1]["C"]->getIndexSelected() < 0 || teamPlayerPosSelectBox[1]["C"]->getIndexSelected() > teamPlayerPosSelectBox[1]["C"]->getItemCount())
     {
-        team1CSelectBox->setIndexSelected(0);
+        teamPlayerPosSelectBox[1]["C"]->setIndexSelected(0);
     }
+    
+    //FIXME! Should be converted into a loop to iterate 
     
 //    teamStarterID[0][0] = team0IDs[0][team0PGSelectBox->getIndexSelected()];
-    team0Starters.push_back(team0PGSelectBox->getItemNameAt(team0PGSelectBox->getIndexSelected()));
-    teamStarterID[0][0] = team0IDs[0][team0PGSelectBox->getIndexSelected()];
+    team0Starters.push_back(teamPlayerPosSelectBox[0]["PG"]->getItemNameAt(teamPlayerPosSelectBox[0]["PG"]->getIndexSelected()));
+    teamStarterID[0][0] = team0IDs[0][teamPlayerPosSelectBox[0]["PG"]->getIndexSelected()];
     logMsg("teamStarterID[0][0] = " +convert->toString(teamStarterID[0][0]));
-    team0Starters.push_back(team0SGSelectBox->getItemNameAt(team0SGSelectBox->getIndexSelected()));
-    teamStarterID[0][1] = team0IDs[1][team0SGSelectBox->getIndexSelected()];
+    team0Starters.push_back(teamPlayerPosSelectBox[0]["SG"]->getItemNameAt(teamPlayerPosSelectBox[0]["SG"]->getIndexSelected()));
+    teamStarterID[0][1] = team0IDs[1][teamPlayerPosSelectBox[0]["SG"]->getIndexSelected()];
     logMsg("teamStarterID[0][1] = " +convert->toString(teamStarterID[0][1]));
-    team0Starters.push_back(team0SFSelectBox->getItemNameAt(team0SFSelectBox->getIndexSelected()));
-    teamStarterID[0][2] = team0IDs[2][team0SFSelectBox->getIndexSelected()];
+    team0Starters.push_back(teamPlayerPosSelectBox[0]["SF"]->getItemNameAt(teamPlayerPosSelectBox[0]["SF"]->getIndexSelected()));
+    teamStarterID[0][2] = team0IDs[2][teamPlayerPosSelectBox[0]["SF"]->getIndexSelected()];
     logMsg("teamStarterID[0][2] = " +convert->toString(teamStarterID[0][2]));
-    team0Starters.push_back(team0PFSelectBox->getItemNameAt(team0PFSelectBox->getIndexSelected()));
-    teamStarterID[0][3] = team0IDs[3][team0PFSelectBox->getIndexSelected()];
+    team0Starters.push_back(teamPlayerPosSelectBox[0]["PF"]->getItemNameAt(teamPlayerPosSelectBox[0]["PF"]->getIndexSelected()));
+    teamStarterID[0][3] = team0IDs[3][teamPlayerPosSelectBox[0]["SF"]->getIndexSelected()];
     logMsg("teamStarterID[0][3] = " +convert->toString(teamStarterID[0][3]));
-    team0Starters.push_back(team0CSelectBox->getItemNameAt(team0CSelectBox->getIndexSelected()));
-    teamStarterID[0][4] = team0IDs[4][team0CSelectBox->getIndexSelected()];
+    team0Starters.push_back(teamPlayerPosSelectBox[0]["C"]->getItemNameAt(teamPlayerPosSelectBox[0]["C"]->getIndexSelected()));
+    teamStarterID[0][4] = team0IDs[4][teamPlayerPosSelectBox[0]["C"]->getIndexSelected()];
     logMsg("teamStarterID[0][4] = " +convert->toString(teamStarterID[0][4]));
-    team1Starters.push_back(team1PGSelectBox->getItemNameAt(team1PGSelectBox->getIndexSelected()));
-    teamStarterID[1][0] = team1IDs[0][team1PGSelectBox->getIndexSelected()];
+    team1Starters.push_back(teamPlayerPosSelectBox[1]["PG"]->getItemNameAt(teamPlayerPosSelectBox[1]["PG"]->getIndexSelected()));
+    teamStarterID[1][0] = team1IDs[0][teamPlayerPosSelectBox[1]["PG"]->getIndexSelected()];
     logMsg("teamStarterID[1][0] = " +convert->toString(teamStarterID[1][0]));
-    team1Starters.push_back(team1SGSelectBox->getItemNameAt(team1SGSelectBox->getIndexSelected()));
-    teamStarterID[1][1] = team1IDs[1][team1SGSelectBox->getIndexSelected()];
+    team1Starters.push_back(teamPlayerPosSelectBox[1]["SG"]->getItemNameAt(teamPlayerPosSelectBox[1]["SG"]->getIndexSelected()));
+    teamStarterID[1][1] = team1IDs[1][teamPlayerPosSelectBox[1]["SG"]->getIndexSelected()];
     logMsg("teamStarterID[1][1] = " +convert->toString(teamStarterID[1][1]));
-    team1Starters.push_back(team1SFSelectBox->getItemNameAt(team0SFSelectBox->getIndexSelected()));
-    teamStarterID[1][2] = team1IDs[2][team1SFSelectBox->getIndexSelected()];
+    team1Starters.push_back(teamPlayerPosSelectBox[1]["SF"]->getItemNameAt(teamPlayerPosSelectBox[1]["SF"]->getIndexSelected()));
+    teamStarterID[1][2] = team1IDs[2][teamPlayerPosSelectBox[1]["SF"]->getIndexSelected()];
     logMsg("teamStarterID[1][2] = " +convert->toString(teamStarterID[1][2]));
-    team1Starters.push_back(team1PFSelectBox->getItemNameAt(team1PFSelectBox->getIndexSelected()));
-    teamStarterID[1][3] = team1IDs[3][team1PFSelectBox->getIndexSelected()];
+    team1Starters.push_back(teamPlayerPosSelectBox[1]["PF"]->getItemNameAt(teamPlayerPosSelectBox[1]["PF"]->getIndexSelected()));
+    teamStarterID[1][3] = team1IDs[3][teamPlayerPosSelectBox[1]["PF"]->getIndexSelected()];
     
     logMsg("teamStarterID[1][3] = " +convert->toString(teamStarterID[1][3]));
-    team1Starters.push_back(team1CSelectBox->getItemNameAt(team1CSelectBox->getIndexSelected()));
-    teamStarterID[1][4] = team1IDs[4][team1CSelectBox->getIndexSelected()];
+    team1Starters.push_back(teamPlayerPosSelectBox[1]["C"]->getItemNameAt(teamPlayerPosSelectBox[1]["C"]->getIndexSelected()));
+    teamStarterID[1][4] = team1IDs[4][teamPlayerPosSelectBox[1]["C"]->getIndexSelected()];
     logMsg("teamStarterID[1][4] = " +convert->toString(teamStarterID[1][4]));
 
 //    gameS->setTeamStarterID(teamStarterID); // sets the selected starters for both teams in gameState class
@@ -1142,14 +1150,14 @@ void GUISystem::playerStartSelected()  // process player start selection
 
 void GUISystem::gameSetupAwaySelected()  // processes away team selectdion on game setup menu
 {
-    MyGUI::InputManager::getInstance().setKeyFocusWidget(team1SelectBox.get());
+    MyGUI::InputManager::getInstance().setKeyFocusWidget(teamSelectBox[1].get());
     gameSetupMenuAwaySelected = true;
     gameSetupMenuHomeSelected = false;
 }
 
 void GUISystem::gameSetupHomeSelected()  // process home team selection on game setup menu
 {
-    MyGUI::InputManager::getInstance().setKeyFocusWidget(team0SelectBox.get());
+    MyGUI::InputManager::getInstance().setKeyFocusWidget(teamSelectBox[1].get());
     gameSetupMenuHomeSelected = true;
     gameSetupMenuAwaySelected = false;
 }

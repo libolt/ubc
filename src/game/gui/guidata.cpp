@@ -693,11 +693,11 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
         }
         std::string teamName = teamInstance[x]->getCity() + " " +teamInstance[x]->getName();
 
-        team0SelectBox->addItem(teamName);
-        team1SelectBox->addItem(teamName);
+        teamSelectBox[0]->addItem(teamName);
+        teamSelectBox[1]->addItem(teamName);
     }
-    team0SelectBox->setIndexSelected(0);
-    team1SelectBox->setIndexSelected(1);
+    teamSelectBox[0]->setIndexSelected(0);
+    teamSelectBox[1]->setIndexSelected(1);
     logMsg("End of addTeamStartSelectionMenuData!");
 //    exit(0);
 

@@ -374,118 +374,118 @@ bool GUISystem::createPlayerStartSelectionMenuGUI()  // creates GUI for player s
     teamPlayerPosSelectBox[0].insert(std::pair<std::string, boost::shared_ptr<MyGUI::ListBox> >("PG", boost::shared_ptr<MyGUI::ListBox>(mGUI->findWidget<MyGUI::ListBox>("team0PGSelectBox"))));  // loads team0PGSelectBox
     teamPlayerPosSelectBox[0]["PG"]->setVisible(false);
 //    team0PGSelectBox->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    teamPlayerPosSelectBox[0]["PG"]->setSize((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[0]["PG"]->setSize((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
     
-    team0SGSelectBox = boost::shared_ptr<MyGUI::ListBox>(mGUI->findWidget<MyGUI::ListBox>("team0SGSelectBox"));  // loads team0SGSelectBox
-    team0SGSelectBox->setVisible(false);
+    teamPlayerPosSelectBox[0].insert(std::pair<std::string, boost::shared_ptr<MyGUI::ListBox> >("SG", boost::shared_ptr<MyGUI::ListBox>(mGUI->findWidget<MyGUI::ListBox>("team0SGSelectBox"))));  // loads team0SGSelectBox
+    teamPlayerPosSelectBox[0]["SG"]->setVisible(false);
 //    team0SGSelectBox->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    team0SGSelectBox->setSize((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[0]["SG"]->setSize((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
 
-    team0SFSelectBox = boost::shared_ptr<MyGUI::ListBox>(mGUI->findWidget<MyGUI::ListBox>("team0SFSelectBox"));  // loads team0SFSelectBox
-    team0SFSelectBox->setVisible(false);
+    teamPlayerPosSelectBox[0].insert(std::pair<std::string, boost::shared_ptr<MyGUI::ListBox> >("SF", boost::shared_ptr<MyGUI::ListBox>(mGUI->findWidget<MyGUI::ListBox>("team0SFSelectBox"))));  // loads team0SFSelectBox
+    teamPlayerPosSelectBox[0]["SF"]->setVisible(false);
 //    team0SFSelectBox->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    team0SFSelectBox->setSize((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[0]["SF"]->setSize((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
 
-    team0PFSelectBox = boost::shared_ptr<MyGUI::ListBox>(mGUI->findWidget<MyGUI::ListBox>("team0PFSelectBox"));  // loads team0PFSelectBox
-    team0PFSelectBox->setVisible(false);
+    teamPlayerPosSelectBox[0].insert(std::pair<std::string, boost::shared_ptr<MyGUI::ListBox> >("PF", boost::shared_ptr<MyGUI::ListBox>(mGUI->findWidget<MyGUI::ListBox>("team0PFSelectBox"))));  // loads team0PFSelectBox
+    teamPlayerPosSelectBox[0]["PF"]->setVisible(false);
 //    team0PFSelectBox->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    team0PFSelectBox->setSize((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[0]["PF"]->setSize((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
 
-    team0CSelectBox = boost::shared_ptr<MyGUI::ListBox>(mGUI->findWidget<MyGUI::ListBox>("team0CSelectBox"));  // loads team0CSelectBox
-    team0CSelectBox->setVisible(false);
+    teamPlayerPosSelectBox[0].insert(std::pair<std::string, boost::shared_ptr<MyGUI::ListBox> >("C", boost::shared_ptr<MyGUI::ListBox>(mGUI->findWidget<MyGUI::ListBox>("team0CSelectBox"))));  // loads team0CSelectBox
+    teamPlayerPosSelectBox[0]["C"]->setVisible(false);
 //    team0CSelectBox->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    team0CSelectBox->setSize((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[0]["C"]->setSize((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
 
-    team1PGSelectBox = boost::shared_ptr<MyGUI::ListBox>(mGUI->findWidget<MyGUI::ListBox>("team1PGSelectBox"));  // loads team1PGSelectBox
-    team1PGSelectBox->setVisible(false);
+    teamPlayerPosSelectBox[1].insert(std::pair<std::string, boost::shared_ptr<MyGUI::ListBox> >("PG", boost::shared_ptr<MyGUI::ListBox>(mGUI->findWidget<MyGUI::ListBox>("team1PGSelectBox"))));  // loads team1PGSelectBox
+    teamPlayerPosSelectBox[1]["PG"]->setVisible(false);
 //    team1PGSelectBox->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    team1PGSelectBox->setSize((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[1]["PG"]->setSize((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
 
-    team1SGSelectBox = boost::shared_ptr<MyGUI::ListBox>(mGUI->findWidget<MyGUI::ListBox>("team1SGSelectBox"));  // loads team1SGSelectBox
-    team1SGSelectBox->setVisible(false);
+    teamPlayerPosSelectBox[1].insert(std::pair<std::string, boost::shared_ptr<MyGUI::ListBox> >("SG", boost::shared_ptr<MyGUI::ListBox>(mGUI->findWidget<MyGUI::ListBox>("team1SGSelectBox"))));  // loads team1SGSelectBox
+    teamPlayerPosSelectBox[1]["SG"]->setVisible(false);
 //    team1SGSelectBox->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    team1SGSelectBox->setSize((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[1]["SG"]->setSize((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
 
-    team1SFSelectBox = boost::shared_ptr<MyGUI::ListBox>(mGUI->findWidget<MyGUI::ListBox>("team1SFSelectBox"));  // loads team1SFSelectBox
-    team1SFSelectBox->setVisible(false);
+    teamPlayerPosSelectBox[1].insert(std::pair<std::string, boost::shared_ptr<MyGUI::ListBox> >("SF", boost::shared_ptr<MyGUI::ListBox>(mGUI->findWidget<MyGUI::ListBox>("team1SFSelectBox"))));  // loads team1SFSelectBox
+    teamPlayerPosSelectBox[1]["SF"]->setVisible(false);
 //    team1SFSelectBox->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    team1SFSelectBox->setSize((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[1]["SF"]->setSize((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
 
-    team1PFSelectBox = boost::shared_ptr<MyGUI::ListBox>(mGUI->findWidget<MyGUI::ListBox>("team1PFSelectBox"));  // loads team0PFSelectBox
-    team1PFSelectBox->setVisible(false);
+    teamPlayerPosSelectBox[1].insert(std::pair<std::string, boost::shared_ptr<MyGUI::ListBox> >("PF", boost::shared_ptr<MyGUI::ListBox>(mGUI->findWidget<MyGUI::ListBox>("team1PFSelectBox"))));  // loads team0PFSelectBox
+    teamPlayerPosSelectBox[1]["PF"]->setVisible(false);
 //    team1PFSelectBox->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    team1PFSelectBox->setSize((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[1]["PF"]->setSize((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
 
-    team1CSelectBox = boost::shared_ptr<MyGUI::ListBox>(mGUI->findWidget<MyGUI::ListBox>("team1CSelectBox"));  // loads team1CSelectBox
-    team1CSelectBox->setVisible(false);
+    teamPlayerPosSelectBox[1].insert(std::pair<std::string, boost::shared_ptr<MyGUI::ListBox> >("C", boost::shared_ptr<MyGUI::ListBox>(mGUI->findWidget<MyGUI::ListBox>("team1CSelectBox"))));  // loads team1CSelectBox
+    teamPlayerPosSelectBox[1]["C"]->setVisible(false);
 //    team1CSelectBox->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    team1CSelectBox->setSize((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[1]["C"]->setSize((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
 
     team0PGRating = boost::shared_ptr<MyGUI::TextBox>(mGUI->findWidget<MyGUI::TextBox>("team0PGRating"));  // loads team0PGRatimg
     team0PGRating->setVisible(false);
 //    team0PGRating->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    team0PGRating->setSize((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    team0PGRating->setSize((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
 
     team0SGRating = boost::shared_ptr<MyGUI::TextBox>(mGUI->findWidget<MyGUI::TextBox>("team0SGRating"));  // loads team0SGRatimg
     team0SGRating->setVisible(false);
 //    team0SGRating->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    team0SGRating->setSize((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    team0SGRating->setSize((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
 
     team0SFRating = boost::shared_ptr<MyGUI::TextBox>(mGUI->findWidget<MyGUI::TextBox>("team0SFRating"));  // loads team0SFRatimg
     team0SFRating->setVisible(false);
 //    team0SFRating->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    team0SFRating->setSize((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    team0SFRating->setSize((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
 
     team0PFRating = boost::shared_ptr<MyGUI::TextBox>(mGUI->findWidget<MyGUI::TextBox>("team0PFRating"));  // loads team0PFRatimg
     team0PFRating->setVisible(false);
 //    team0PFRating->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    team0PFRating->setSize((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    team0PFRating->setSize((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
 
     team0CRating = boost::shared_ptr<MyGUI::TextBox>(mGUI->findWidget<MyGUI::TextBox>("team0CRating"));  // loads team0CRatimg
     team0CRating->setVisible(false);
 //    team0CRating->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    team0CRating->setSize((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    team0CRating->setSize((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
 
     team1PGRating = boost::shared_ptr<MyGUI::TextBox>(mGUI->findWidget<MyGUI::TextBox>("team1PGRating"));  // loads team1PGRatimg
     team1PGRating->setVisible(false);
 //    team1PGRating->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    team1PGRating->setSize((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    team1PGRating->setSize((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
 
     team1SGRating = boost::shared_ptr<MyGUI::TextBox>(mGUI->findWidget<MyGUI::TextBox>("team1SGRating"));  // loads team1SGRatimg
     team1SGRating->setVisible(false);
 //    team1SGRating->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    team1SGRating->setSize((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    team1SGRating->setSize((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
 
     team1SFRating = boost::shared_ptr<MyGUI::TextBox>(mGUI->findWidget<MyGUI::TextBox>("team1SFRating"));  // loads team1SFRatimg
     team1SFRating->setVisible(false);
 //    team1SFRating->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    team1SFRating->setSize((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    team1SFRating->setSize((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
 
     team1PFRating = boost::shared_ptr<MyGUI::TextBox>(mGUI->findWidget<MyGUI::TextBox>("team1PFRating"));  // loads team1PFRatimg
     team1PFRating->setVisible(false);
 //    team1PFRating->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    team1PFRating->setSize((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    team1PFRating->setSize((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
 
     team1CRating = boost::shared_ptr<MyGUI::TextBox>(mGUI->findWidget<MyGUI::TextBox>("team1CRating"));  // loads team1CRatimg
     team1CRating->setVisible(false);
 //    team1CRating->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    team1CRating->setSize((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    team1CRating->setSize((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
 
 
     team0StartingLineupSetButton = boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("team0StartingLineupSetButton"));  // loads team0StartingLineupSetButton
     team0StartingLineupSetButton->setVisible(false);
     team0StartingLineupSetButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::team0StartingLineupSetButtonClicked);
-    team0StartingLineupSetButton->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    team0StartingLineupSetButton->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
 
     team1StartingLineupSetButton = boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("team1StartinglineupSetButton"));  // loads team1StartingLineupSetButton
     team1StartingLineupSetButton->setVisible(false);
     team1StartingLineupSetButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::team1StartingLineupSetButtonClicked);
-    team1StartingLineupSetButton->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    team1StartingLineupSetButton->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
 
     startingLineupsSetButton = boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("startingLineupsSetButton"));  // loads team1StartingLineupSetButton
     startingLineupsSetButton->setVisible(false);
     startingLineupsSetButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::startingLineupSetButtonClicked);
-    startingLineupsSetButton->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    startingLineupsSetButton->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
 
     playerStartSelectionMenuCreated = true;
 

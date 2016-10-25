@@ -452,29 +452,29 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         std::string PName;
         if (playerPositionsPlayed[0][i] == "PG")
         {
-            team0PGSelectBox->addItem(playerNames[0][i]);
+            teamPlayerPosSelectBox[0]["PG"]->addItem(playerNames[0][i]);
             team0IDs[0].push_back(playerIDs[0][i]);
 //            exit(0);
         }
         else if (playerPositionsPlayed[0][i] == "SG")
         {
             logMsg(func +" ++");
-            team0SGSelectBox->addItem(playerNames[0][i]);
+            teamPlayerPosSelectBox[0]["SG"]->addItem(playerNames[0][i]);
             team0IDs[1].push_back(playerIDs[0][i]);
        }
         else if (playerPositionsPlayed[0][i] == "SF")
         {
-            team0SFSelectBox->addItem(playerNames[0][i]);
+            teamPlayerPosSelectBox[0]["SF"]->addItem(playerNames[0][i]);
             team0IDs[2].push_back(playerIDs[0][i]);
         }
         else if (playerPositionsPlayed[0][i] == "PF")
         {
-            team0PFSelectBox->addItem(playerNames[0][i]);
+            teamPlayerPosSelectBox[0]["PF"]->addItem(playerNames[0][i]);
             team0IDs[3].push_back(playerIDs[0][i]);
        }
         else if (playerPositionsPlayed[0][i] == "C")
         {
-            team0CSelectBox->addItem(playerNames[0][i]);
+            teamPlayerPosSelectBox[0]["C"]->addItem(playerNames[0][i]);
             team0IDs[4].push_back(playerIDs[0][i]);
        }
         else
@@ -493,17 +493,17 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 
     exit(0);
 
-    logMsg(func +" PG == " +team0PGSelectBox->getItemNameAt(0));
+    logMsg(func +" PG == " +teamPlayerPosSelectBox[0]["PG"]->getItemNameAt(0));
     logMsg(func +" PG ID == " +convert->toString(team0IDs[0][0]));
 //    exit(0);
-    logMsg(func +" SG == " +team0SGSelectBox->getItemNameAt(0));
+    logMsg(func +" SG == " +teamPlayerPosSelectBox[0]["SG"]->getItemNameAt(0));
     logMsg(func +" SG ID == " +convert->toString(team0IDs[1][0]));
     exit(0);
-    logMsg(func +" SF == " +team0SFSelectBox->getItemNameAt(0));
+    logMsg(func +" SF == " +teamPlayerPosSelectBox[0]["SF"]->getItemNameAt(0));
     logMsg(func +" SF ID == " +convert->toString(team0IDs[2][0]));
-    logMsg(func +" PF == " +team0PFSelectBox->getItemNameAt(0));
+    logMsg(func +" PF == " +teamPlayerPosSelectBox[0]["PF"]->getItemNameAt(0));
     logMsg(func +" PF ID == " +convert->toString(team0IDs[3][0]));
-    logMsg(func +" C == " +team0CSelectBox->getItemNameAt(0));
+    logMsg(func +" C == " +teamPlayerPosSelectBox[0]["C"]->getItemNameAt(0));
     logMsg(func +" C ID == " +convert->toString(team0IDs[4][0]));
     exit(0);
     
@@ -529,31 +529,31 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 
         if (playerPositionsPlayed[1][i] == "PG")
         {
-            team1PGSelectBox->addItem(playerNames[1][i]);
+            teamPlayerPosSelectBox[1]["PG"]->addItem(playerNames[1][i]);
             team1IDs[0].push_back(playerIDs[1][i]);
             logMsg(func +" Adding PG1");
         }
         else if (playerPositionsPlayed[1][i] == "SG")
         {
-            team1SGSelectBox->addItem(playerNames[1][i]);
+            teamPlayerPosSelectBox[1]["SG"]->addItem(playerNames[1][i]);
             team1IDs[1].push_back(playerIDs[1][i]);
             logMsg(func +" Adding SG1");
         }
         else if (playerPositionsPlayed[1][i] == "SF")
         {
-            team1SFSelectBox->addItem(playerNames[1][i]);
+            teamPlayerPosSelectBox[1]["SF"]->addItem(playerNames[1][i]);
             team1IDs[2].push_back(playerIDs[1][i]);
             logMsg(func +" Adding SF1");
         }
         else if (playerPositionsPlayed[1][i] == "PF")
         {
-            team1PFSelectBox->addItem(playerNames[1][i]);
+            teamPlayerPosSelectBox[1]["PF"]->addItem(playerNames[1][i]);
             team1IDs[3].push_back(playerIDs[1][i]);
             logMsg(func +" Adding PF1");
         }
         else if (playerPositionsPlayed[1][i] == "C")
         {
-            team1CSelectBox->addItem(playerNames[1][i]);
+            teamPlayerPosSelectBox[2]["C"]->addItem(playerNames[1][i]);
             team1IDs[4].push_back(playerIDs[1][i]);
             logMsg(func +" Adding C1");
         }
@@ -564,19 +564,19 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         ++i;
     }
 
-    logMsg(func +" PG1 == " +team1PGSelectBox->getItemNameAt(0));
+    logMsg(func +" PG1 == " +teamPlayerPosSelectBox[1]["PG"]->getItemNameAt(0));
     logMsg(func +" PG1 ID == " +convert->toString(team1IDs[0][0]));
 
-    logMsg(func +" SG1 == " +team1SGSelectBox->getItemNameAt(0));
+    logMsg(func +" SG1 == " +teamPlayerPosSelectBox[1]["SG"]->getItemNameAt(0));
     logMsg(func +" SG1 ID == " +convert->toString(team1IDs[1][0]));
 
-    logMsg(func +" SF1 == " +team1SFSelectBox->getItemNameAt(0));
+    logMsg(func +" SF1 == " +teamPlayerPosSelectBox[1]["SF"]->getItemNameAt(0));
     logMsg(func +" SF1 ID == " +convert->toString(team1IDs[2][0]));
 
-    logMsg(func +" PF1 == " +team1PFSelectBox->getItemNameAt(0));
+    logMsg(func +" PF1 == " +teamPlayerPosSelectBox[1]["PF"]->getItemNameAt(0));
     logMsg(func +" PF1 ID == " +convert->toString(team1IDs[3][0]));
 
-    logMsg(func +" C1 == " +team1CSelectBox->getItemNameAt(0));
+    logMsg(func +" C1 == " +teamPlayerPosSelectBox[1]["C"]->getItemNameAt(0));
     logMsg(func +" C1 ID == " +convert->toString(team1IDs[4][0]));
 
 //    exit(0);

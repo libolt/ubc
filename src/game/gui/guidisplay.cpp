@@ -255,11 +255,11 @@ void GUISystem::hidePlayerStartSelectionMenuWidgets()  // hides all widgets tied
 {
 
     // Team 0 widgets
-    team0PGSelectBox->setVisible(false);
-    team0SGSelectBox->setVisible(false);
-    team0SFSelectBox->setVisible(false);
-    team0PFSelectBox->setVisible(false);
-    team0CSelectBox->setVisible(false);
+    teamPlayerPosSelectBox[0]["PG"]->setVisible(false);
+    teamPlayerPosSelectBox[0]["SG"]->setVisible(false);
+    teamPlayerPosSelectBox[0]["SF"]->setVisible(false);
+    teamPlayerPosSelectBox[0]["PF"]->setVisible(false);
+    teamPlayerPosSelectBox[0]["C"]->setVisible(false);
 
     team0PGRating->setVisible(false);
     team0SGRating->setVisible(false);
@@ -273,11 +273,11 @@ void GUISystem::hidePlayerStartSelectionMenuWidgets()  // hides all widgets tied
     team0StartingLineupSetButton->setVisible(false);
 
     // Team 1 widgets
-    team1PGSelectBox->setVisible(false);
-    team1SGSelectBox->setVisible(false);
-    team1SFSelectBox->setVisible(false);
-    team1PFSelectBox->setVisible(false);
-    team1CSelectBox->setVisible(false);
+    teamPlayerPosSelectBox[1]["PG"]->setVisible(false);
+    teamPlayerPosSelectBox[1]["SG"]->setVisible(false);
+    teamPlayerPosSelectBox[1]["SF"]->setVisible(false);
+    teamPlayerPosSelectBox[1]["PF"]->setVisible(false);
+    teamPlayerPosSelectBox[1]["C"]->setVisible(false);
 
     team1PGRating->setVisible(false);
     team1SGRating->setVisible(false);
@@ -301,20 +301,20 @@ void GUISystem::showPlayerStartSelectionMenuWidgets()  // shows all widgets tied
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
 
     // Team 0 widgets
-    team0PGSelectBox->setVisible(true);
-    team0PGSelectBox->setPosition((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.05 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[0]["PG"]->setVisible(true);
+    teamPlayerPosSelectBox[0]["PG"]->setPosition((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.05 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
-    team0SGSelectBox->setVisible(true);
-    team0SGSelectBox->setPosition((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.09 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[0]["SG"]->setVisible(true);
+    teamPlayerPosSelectBox[0]["SG"]->setPosition((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.09 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
-    team0SFSelectBox->setVisible(true);
-    team0SFSelectBox->setPosition((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.13 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[0]["SF"]->setVisible(true);
+    teamPlayerPosSelectBox[0]["SF"]->setPosition((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.13 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
-    team0PFSelectBox->setVisible(true);
-    team0PFSelectBox->setPosition((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.17 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[0]["PF"]->setVisible(true);
+    teamPlayerPosSelectBox[0]["PF"]->setPosition((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.17 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
-    team0CSelectBox->setVisible(true);
-    team0CSelectBox->setPosition((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.21 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[0]["C"]->setVisible(true);
+    teamPlayerPosSelectBox[0]["C"]->setPosition((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.21 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
     team0PGRating->setVisible(true);
     team0PGRating->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.05 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
@@ -341,20 +341,20 @@ void GUISystem::showPlayerStartSelectionMenuWidgets()  // shows all widgets tied
     team0StartingLineupSetButton->setPosition((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.31 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
     // Team 1 widgets
-    team1PGSelectBox->setVisible(true);
-    team1PGSelectBox->setPosition((0.5 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.05 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[1]["PG"]->setVisible(true);
+    teamPlayerPosSelectBox[1]["PG"]->setPosition((0.5 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.05 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
-    team1SGSelectBox->setVisible(true);
-    team1SGSelectBox->setPosition((0.5 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.09 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[1]["SG"]->setVisible(true);
+    teamPlayerPosSelectBox[1]["SG"]->setPosition((0.5 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.09 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
-    team1SFSelectBox->setVisible(true);
-    team1SFSelectBox->setPosition((0.5 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.13 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[1]["SF"]->setVisible(true);
+    teamPlayerPosSelectBox[1]["SF"]->setPosition((0.5 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.13 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
-    team1PFSelectBox->setVisible(true);
-    team1PFSelectBox->setPosition((0.5 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.17 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[1]["PF"]->setVisible(true);
+    teamPlayerPosSelectBox[1]["PF"]->setPosition((0.5 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.17 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
-    team1CSelectBox->setVisible(true);
-    team1CSelectBox->setPosition((0.5 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.21 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[1]["C"]->setVisible(true);
+    teamPlayerPosSelectBox[1]["C"]->setPosition((0.5 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.21 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
     team1PGRating->setVisible(true);
     team1PGRating->setPosition((0.8 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.21 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );

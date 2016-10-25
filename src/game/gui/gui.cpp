@@ -85,12 +85,15 @@ activeMenus GUISystem::previousActiveMenu;  // stores which menu was last displa
 
 boost::shared_ptr<MyGUI::Gui> GUISystem::mGUI;
 boost::shared_ptr<MyGUI::OgrePlatform> GUISystem::mPlatform;
-boost::shared_ptr<MyGUI::Button> GUISystem::exitButton;
+
+std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::mainMenuButtons;
+/*boost::shared_ptr<MyGUI::Button> uexitButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::startSingleGameButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::startMultiGameButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::optionsButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::serverButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::clientButton;
+*/
 boost::shared_ptr<MyGUI::Button> GUISystem::backMainMenuButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::backNetworkSetupButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::displayButton;
@@ -157,6 +160,10 @@ boost::shared_ptr<MyGUI::ListBox> GUISystem::team1PFSelectBox;
 boost::shared_ptr<MyGUI::ListBox> GUISystem::team1CSelectBox;
 */
 
+std::vector<std::map<std::string, boost::shared_ptr<MyGUI::TextBox> > > GUISystem::teamPlayerRating;
+std::map<std::string, boost::shared_ptr<MyGUI::ImageBox> > GUISystem::teamLogo;
+
+/*
 boost::shared_ptr<MyGUI::TextBox> GUISystem::team0PGRating;
 boost::shared_ptr<MyGUI::TextBox> GUISystem::team0SGRating;
 boost::shared_ptr<MyGUI::TextBox> GUISystem::team0SFRating;
@@ -169,7 +176,8 @@ boost::shared_ptr<MyGUI::TextBox> GUISystem::team1PFRating;
 boost::shared_ptr<MyGUI::TextBox> GUISystem::team1CRating;
 boost::shared_ptr<MyGUI::ImageBox> GUISystem::team0Logo;
 boost::shared_ptr<MyGUI::ImageBox> GUISystem::team1Logo;
-    
+*/
+
 // Court selection menu widgets
 boost::shared_ptr<MyGUI::Button> GUISystem::backPlayerStartSelectionMenuButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::courtSelectButton;

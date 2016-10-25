@@ -300,13 +300,17 @@ private:
     static boost::shared_ptr<MyGUI::OgrePlatform> mPlatform;  // The MyGUI Platform object
 
     // button widgets
-    static boost::shared_ptr<MyGUI::Button> exitButton;
+    
+    // Main Menu
+    static std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > mainMenuButtons;
+/*    static boost::shared_ptr<MyGUI::Button> exitButton;
     static boost::shared_ptr<MyGUI::Button> startSingleGameButton;
     static boost::shared_ptr<MyGUI::Button> startMultiGameButton;
     static boost::shared_ptr<MyGUI::Button> optionsButton;
     static boost::shared_ptr<MyGUI::Button> serverButton;
     static boost::shared_ptr<MyGUI::Button> clientButton;
-    
+*/
+     
     static boost::shared_ptr<MyGUI::Button> backMainMenuButton;
     static boost::shared_ptr<MyGUI::Button> backNetworkSetupButton;
     static boost::shared_ptr<MyGUI::Button> displayButton;
@@ -374,7 +378,10 @@ private:
     static boost::shared_ptr<MyGUI::ListBox> team1CSelectBox;
 */
 
-    static boost::shared_ptr<MyGUI::TextBox> team0PGRating;
+    static std::vector<std::map<std::string, boost::shared_ptr<MyGUI::TextBox> > > teamPlayerRating;
+
+
+/*    static boost::shared_ptr<MyGUI::TextBox> team0PGRating;
     static boost::shared_ptr<MyGUI::TextBox> team0SGRating;
     static boost::shared_ptr<MyGUI::TextBox> team0SFRating;
     static boost::shared_ptr<MyGUI::TextBox> team0PFRating;
@@ -385,9 +392,12 @@ private:
     static boost::shared_ptr<MyGUI::TextBox> team1SFRating;
     static boost::shared_ptr<MyGUI::TextBox> team1PFRating;
     static boost::shared_ptr<MyGUI::TextBox> team1CRating;
+*/
 
-    static boost::shared_ptr<MyGUI::ImageBox> team0Logo;
-    static boost::shared_ptr<MyGUI::ImageBox> team1Logo;
+    static std::map<std::string, boost::shared_ptr<MyGUI::ImageBox> > teamLogo;
+
+//    static boost::shared_ptr<MyGUI::ImageBox> team0Logo;
+//    static boost::shared_ptr<MyGUI::ImageBox> team1Logo;
 	
     // Court selection menu widgets
     static boost::shared_ptr<MyGUI::Button> backPlayerStartSelectionMenuButton;

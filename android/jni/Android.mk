@@ -279,7 +279,7 @@ LOCAL_SRC_FILES := \
 LOCAL_LDLIBS	:= -landroid -lc -lm -ldl -llog -lEGL -lGLESv1_CM -lGLESv2 
 
 LOCAL_CFLAGS := -w -fno-lto -fPIC -frtti -fexceptions -fpermissive -x c++ -D___ANDROID___ -DANDROID -DZZIP_OMIT_CONFIG_H -std=c++11  $(COMMON_FLAGS_LIST) 
-LOCAL_CPPFLAGS := -fno-lto
+LOCAL_CPPFLAGS := -fno-lto -std=c++11
 LOCAL_LDFLAGS := -fno-lto
 APP_CFLAGS := -fno-lto
 APP_CPPFLAGS := -fno-lto

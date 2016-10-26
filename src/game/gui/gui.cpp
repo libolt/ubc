@@ -87,6 +87,9 @@ boost::shared_ptr<MyGUI::Gui> GUISystem::mGUI;
 boost::shared_ptr<MyGUI::OgrePlatform> GUISystem::mPlatform;
 
 std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::mainMenuButtons;
+
+std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::networkMenuButtons;
+
 /*boost::shared_ptr<MyGUI::Button> uexitButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::startSingleGameButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::startMultiGameButton;

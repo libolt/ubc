@@ -118,17 +118,17 @@ bool GUISystem::createNetworkSetupGUI()  // loads the GUI for the network setup 
 
     MyGUI::LayoutManager::getInstance().loadLayout("NetworkSetupMenu.layout");
 
-    serverButton = boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("serverButton")); // loads Server Button
-    serverButton->setVisible(false);
-    serverButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::serverButtonClicked);
-    serverButton->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.14 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
-    serverButton->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    networkMenuButtons.insert(std::pair<std::string, boost::shared_ptr<MyGUI::Button> >("serverButton", boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("serverButton")))); // loads Server Button
+    networkMenuButtons["serverButton"]->setVisible(false);
+    networkMenuButtons["serverButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::serverButtonClicked);
+    networkMenuButtons["serverButton"]->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.14 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    networkMenuButtons["serverButton"]->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
-    clientButton = boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("clientButton")); // loads Client Button
-    clientButton->setVisible(false);
-    clientButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::clientButtonClicked);
-    clientButton->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.18 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
-    clientButton->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    networkMenuButtons.insert(std::pair<std::string, boost::shared_ptr<MyGUI::Button> >("clientButton", boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("clientButton")))); // loads Client Button
+    networkMenuButtons["clientButton"]->setVisible(false);
+    networkMenuButtons["clientButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::clientButtonClicked);q
+    networkMenuButtons["clientButton"]->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.18 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    networkMenuButtons["clientButton"]->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
     
     networkSetupMenuCreated = true;

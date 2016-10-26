@@ -310,7 +310,8 @@ private:
     static boost::shared_ptr<MyGUI::Button> serverButton;
     static boost::shared_ptr<MyGUI::Button> clientButton;
 */
-     
+     static std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > networkMenuButtons;
+
     static boost::shared_ptr<MyGUI::Button> backMainMenuButton;
     static boost::shared_ptr<MyGUI::Button> backNetworkSetupButton;
     static boost::shared_ptr<MyGUI::Button> displayButton;

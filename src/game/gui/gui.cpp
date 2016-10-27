@@ -90,6 +90,7 @@ std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISyste
 
 std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::networkMenuButtons;
 
+std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::playerStartSelectionMenuButtons;
 /*boost::shared_ptr<MyGUI::Button> uexitButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::startSingleGameButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::startMultiGameButton;
@@ -117,14 +118,15 @@ boost::shared_ptr<MyGUI::Button> GUISystem::backCourtSelectionMenuButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::teamsSelectedButton;
     
 // Player Start Selection Menu
-boost::shared_ptr<MyGUI::Button> GUISystem::team0StartingLineupSetButton;
+/*boost::shared_ptr<MyGUI::Button> GUISystem::team0StartingLineupSetButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::team1StartingLineupSetButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::startingLineupsSetButton;
-    
+*/
+
 // listbox widgets
 //boost::shared_ptr<MyGUI::ListBox> GUISystem::team0SelectBox;
 //boost::shared_ptr<MyGUI::ListBox> GUISystem::team1SelectBox;
-std::map<size_t, boost::shared_ptr<MyGUI::ListBox> > GUISystem::teamSelectBox;
+std::tr1::unordered_map<size_t, boost::shared_ptr<MyGUI::ListBox> > GUISystem::teamSelectBox;
 
 // Network Server Setup Widgets
 boost::shared_ptr<MyGUI::ListBox> GUISystem::numClientsSelectBox;  // allows you to select the number of network players
@@ -135,7 +137,7 @@ boost::shared_ptr<MyGUI::EditBox> GUISystem::serverIPAddressBox;
 boost::shared_ptr<MyGUI::EditBox> GUISystem::clientIPAddressBox;
 boost::shared_ptr<MyGUI::Button> GUISystem::clientConnectButton;
     
-std::vector<std::map <std::string, boost::shared_ptr<MyGUI::ListBox> > > GUISystem::teamPlayerPosSelectBox;
+std::vector<std::tr1::unordered_map <std::string, boost::shared_ptr<MyGUI::ListBox> > > GUISystem::teamPlayerPosSelectBox;
 
 
 /*    boost::shared_ptr<MyGUI::ListBox> GUISystem::team0Player1SelectBox;
@@ -164,7 +166,7 @@ boost::shared_ptr<MyGUI::ListBox> GUISystem::team1CSelectBox;
 */
 
 std::vector<std::map<std::string, boost::shared_ptr<MyGUI::TextBox> > > GUISystem::teamPlayerRating;
-std::map<std::string, boost::shared_ptr<MyGUI::ImageBox> > GUISystem::teamLogo;
+std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::ImageBox> > GUISystem::teamLogo;
 
 /*
 boost::shared_ptr<MyGUI::TextBox> GUISystem::team0PGRating;

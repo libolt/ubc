@@ -126,7 +126,7 @@ bool GUISystem::createNetworkSetupGUI()  // loads the GUI for the network setup 
 
     networkMenuButtons.insert(std::pair<std::string, boost::shared_ptr<MyGUI::Button> >("clientButton", boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("clientButton")))); // loads Client Button
     networkMenuButtons["clientButton"]->setVisible(false);
-    networkMenuButtons["clientButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::clientButtonClicked);q
+    networkMenuButtons["clientButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::clientButtonClicked);
     networkMenuButtons["clientButton"]->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.18 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
     networkMenuButtons["clientButton"]->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
@@ -375,7 +375,7 @@ bool GUISystem::createPlayerStartSelectionMenuGUI()  // creates GUI for player s
 
     if (teamPlayerPosSelectBox.size() == 0)
     {
-        std::map <std::string, boost::shared_ptr<MyGUI::ListBox> > playerPosSelectBox;
+        std::tr1::unordered_map <std::string, boost::shared_ptr<MyGUI::ListBox> > playerPosSelectBox;
         teamPlayerPosSelectBox.push_back(playerPosSelectBox);
         teamPlayerPosSelectBox.push_back(playerPosSelectBox);
     }
@@ -490,20 +490,20 @@ bool GUISystem::createPlayerStartSelectionMenuGUI()  // creates GUI for player s
     teamPlayerRating[1]["C"]->setSize((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
 
 
-    team0StartingLineupSetButton = boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("team0StartingLineupSetButton"));  // loads team0StartingLineupSetButton
-    team0StartingLineupSetButton->setVisible(false);
-    team0StartingLineupSetButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::team0StartingLineupSetButtonClicked);
-    team0StartingLineupSetButton->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
+    playerStartSelectionMenuButtons.insert(std::pair<std::string, boost::shared_ptr<MyGUI::Button> >("team0StartingLineupSetButton", boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("team0StartingLineupSetButton"))));  // loads team0StartingLineupSetButton
+    playerStartSelectionMenuButtons["team0StartingLineupSetButton"]->setVisible(false);
+    playerStartSelectionMenuButtons["team0StartingLineupSetButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::team0StartingLineupSetButtonClicked);
+    playerStartSelectionMenuButtons["team0StartingLineupSetButton"]->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
 
-    team1StartingLineupSetButton = boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("team1StartinglineupSetButton"));  // loads team1StartingLineupSetButton
-    team1StartingLineupSetButton->setVisible(false);
-    team1StartingLineupSetButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::team1StartingLineupSetButtonClicked);
-    team1StartingLineupSetButton->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
+    playerStartSelectionMenuButtons.insert(std::pair<std::string, boost::shared_ptr<MyGUI::Button> >("team1StartingLineupSetButton", boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("team1StartinglineupSetButton"))));  // loads team1StartingLineupSetButton
+    playerStartSelectionMenuButtons["team1StartingLineupSetButton"]->setVisible(false);
+    playerStartSelectionMenuButtons["team1StartingLineupSetButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::team1StartingLineupSetButtonClicked);
+    playerStartSelectionMenuButtons["team1StartingLineupSetButton"]->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
 
-    startingLineupsSetButton = boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("startingLineupsSetButton"));  // loads team1StartingLineupSetButton
-    startingLineupsSetButton->setVisible(false);
-    startingLineupsSetButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::startingLineupSetButtonClicked);
-    startingLineupsSetButton->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
+    playerStartSelectionMenuButtons.insert(std::pair<std::string, boost::shared_ptr<MyGUI::Button> >("startingLineupsSetButton", boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("startingLineupsSetButton"))));  // loads team1StartingLineupSetButton
+    playerStartSelectionMenuButtons["startingLineupsSetButton"]->setVisible(false);
+    playerStartSelectionMenuButtons["startingLineupsSetButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::startingLineupSetButtonClicked);
+    playerStartSelectionMenuButtons["startingLineupsSetButton"]->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
 
     playerStartSelectionMenuCreated = true;
 

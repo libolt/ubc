@@ -332,14 +332,16 @@ private:
     static boost::shared_ptr<MyGUI::Button> teamsSelectedButton;
     
     // Player Start Selection Menu
-    static boost::shared_ptr<MyGUI::Button> team0StartingLineupSetButton;
+/*    static boost::shared_ptr<MyGUI::Button> team0StartingLineupSetButton;
     static boost::shared_ptr<MyGUI::Button> team1StartingLineupSetButton;
     static boost::shared_ptr<MyGUI::Button> startingLineupsSetButton;
-    
+*/
+    static std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > playerStartSelectionMenuButtons;
+
     // Team selection listbox widgets
 //    static boost::shared_ptr<MyGUI::ListBox> team0SelectBox;
 //    static boost::shared_ptr<MyGUI::ListBox> team1SelectBox;
-    static std::map<size_t, boost::shared_ptr<MyGUI::ListBox> > teamSelectBox;
+    static std::tr1::unordered_map<size_t, boost::shared_ptr<MyGUI::ListBox> > teamSelectBox;
 
     // Network Server Setup Widgets
     static boost::shared_ptr<MyGUI::ListBox> numClientsSelectBox;  // allows you to select the number of network players
@@ -350,7 +352,7 @@ private:
     static boost::shared_ptr<MyGUI::EditBox> clientIPAddressBox;
     static boost::shared_ptr<MyGUI::Button> clientConnectButton;
     
-    static std::vector<std::map <std::string, boost::shared_ptr<MyGUI::ListBox> > > teamPlayerPosSelectBox;
+    static std::vector<std::tr1::unordered_map <std::string, boost::shared_ptr<MyGUI::ListBox> > > teamPlayerPosSelectBox;
 
     
 /*    static boost::shared_ptr<MyGUI::ListBox> team0Player1SelectBox;
@@ -395,7 +397,7 @@ private:
     static boost::shared_ptr<MyGUI::TextBox> team1CRating;
 */
 
-    static std::map<std::string, boost::shared_ptr<MyGUI::ImageBox> > teamLogo;
+    static std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::ImageBox> > teamLogo;
 
 //    static boost::shared_ptr<MyGUI::ImageBox> team0Logo;
 //    static boost::shared_ptr<MyGUI::ImageBox> team1Logo;

@@ -39,29 +39,29 @@
 
 void GUISystem::hideMainMenuWidgets()  // hides the widgets tied to the Main Menu
 {
-    startSingleGameButton->setVisible(false);
-    startMultiGameButton->setVisible(false);
-    optionsButton->setVisible(false);
-    exitButton->setVisible(false);
-    startSingleGameButton->setStateSelected(false);
+    mainMenuButtons["startSingleGameButton"]->setVisible(false);
+    mainMenuButtons["startMultiGameButton"]->setVisible(false);
+    mainMenuButtons["optionsButton"]->setVisible(false);
+    mainMenuButtons["exitButton"]->setVisible(false);
+    mainMenuButtons["startSingleGameButton"]->setStateSelected(false);
 }
 void GUISystem::showMainMenuWidgets()  // shows all widgets tied to the Main Menu
 {
     logMsg("showMainMenuWidgets");
 //    exit(0);
-    startSingleGameButton->setVisible(true);
-    startMultiGameButton->setVisible(true);
-    optionsButton->setVisible(true);
-    exitButton->setVisible(true);
-    startSingleGameButton->setStateSelected(true);
-    MyGUI::InputManager::getInstance().setKeyFocusWidget(startSingleGameButton.get());
+    mainMenuButtons["startSingleGameButton"]->setVisible(true);
+    mainMenuButtons["startMultiGameButton"]->setVisible(true);
+    mainMenuButtons["optionsButton"]->setVisible(true);
+    mainMenuButtons["exitButton"]->setVisible(true);
+    mainMenuButtons["startSingleGameButton"]->setStateSelected(true);
+    MyGUI::InputManager::getInstance().setKeyFocusWidget(mainMenuButtons["startSingleGameButton"].get());
     base->getGameE()->setMenuActive(true);
 }
 void GUISystem::hideNetworkSetupWidgets()  // hides the widgets tied to the Network Setup Menu
 {
 //  ipAddressBox->setVisible(false);
-    serverButton->setVisible(false);
-    clientButton->setVisible(false);
+    networkMenuButtons["serverButton"]->setVisible(false);
+    networkMenuButtons["clientButton"]->setVisible(false);
     backMainMenuButton->setVisible(false);
 }
 void GUISystem::showNetworkSetupWidgets()  // shows all widgets tied to the Network Setup Menu
@@ -70,8 +70,8 @@ void GUISystem::showNetworkSetupWidgets()  // shows all widgets tied to the Netw
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getgetRenderE()->getViewPort()();
 
 //    ipAddressBox->setVisible(true);
-    serverButton->setVisible(true);
-    clientButton->setVisible(true);
+    networkMenuButtons["serverButton"]->setVisible(true);
+    networkMenuButtons["clientButton"]->setVisible(true);
 
     backMainMenuButton->setVisible(true);
     backMainMenuButton->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.22 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
@@ -270,7 +270,7 @@ void GUISystem::hidePlayerStartSelectionMenuWidgets()  // hides all widgets tied
 // FIXME! need to fix image loading
 //    team0Logo->setVisible(false);
 
-    team0StartingLineupSetButton->setVisible(false);
+    playerStartSelectionMenuButtons["team0StartingLineupSetButton"]->setVisible(false);
 
     // Team 1 widgets
     teamPlayerPosSelectBox[1]["PG"]->setVisible(false);
@@ -288,9 +288,9 @@ void GUISystem::hidePlayerStartSelectionMenuWidgets()  // hides all widgets tied
 // FIXME! need to fix image loading
 //    team1Logo->setVisible(false);
 
-    team1StartingLineupSetButton->setVisible(false);
+    playerStartSelectionMenuButtons["team1StartingLineupSetButton"]->setVisible(false);
 
-    startingLineupsSetButton->setVisible(false);
+    playerStartSelectionMenuButtons["startingLineupsSetButton"]->setVisible(false);
     backTeamSelectionMenuButton->setVisible(false);
 
 }
@@ -337,8 +337,8 @@ void GUISystem::showPlayerStartSelectionMenuWidgets()  // shows all widgets tied
 // FIXME! needs image loaded to work
 //    team0Logo->setVisible(true);
 
-    team0StartingLineupSetButton->setVisible(true);
-    team0StartingLineupSetButton->setPosition((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.31 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    playerStartSelectionMenuButtons["team0StartingLineupSetButton"]->setVisible(true);
+    playerStartSelectionMenuButtons["team0StartingLineupSetButton"]->setPosition((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.31 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
     // Team 1 widgets
     teamPlayerPosSelectBox[1]["PG"]->setVisible(true);
@@ -374,12 +374,12 @@ void GUISystem::showPlayerStartSelectionMenuWidgets()  // shows all widgets tied
 // FIXME! needs image loaded to work
 //    team1Logo->setVisible(true);
 
-    team1StartingLineupSetButton->setVisible(true);
-    team1StartingLineupSetButton->setPosition((0.5 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.31 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    playerStartSelectionMenuButtons["team1StartingLineupSetButton"]->setVisible(true);
+    playerStartSelectionMenuButtons["team1StartingLineupSetButton"]->setPosition((0.5 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.31 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
 
-    startingLineupsSetButton->setVisible(true);
-    startingLineupsSetButton->setPosition((0.25 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.38 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    playerStartSelectionMenuButtons["startingLineupsSetButton"]->setVisible(true);
+    playerStartSelectionMenuButtons["startingLineupsSetButton"]->setPosition((0.25 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.38 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
     backTeamSelectionMenuButton->setVisible(true);
     backTeamSelectionMenuButton->setPosition((0.25 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.43 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );

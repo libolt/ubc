@@ -3,7 +3,16 @@
     <Widget type="Button" skin="Button" position="362 250 300 26" align="Default" layer="Main" name="backNetworkSetupButton">
         <Property key="Caption" value="(B)ack to Network Setup"/>
     </Widget>
-    <Widget type="Button" skin="Button" position="362 250 300 26" align="Default" layer="Main" name="backMainMenuButton">
+    <Widget type="Button" skin="Button" position="362 250 300 26" align="Default" layer="Main" name="networkBackMainMenuButton">
+        <Property key="Caption" value="(B)ack to Main Menu"/>
+    </Widget>
+    <Widget type="Button" skin="Button" position="362 250 300 26" align="Default" layer="Main" name="singleBackMainMenuButton">
+        <Property key="Caption" value="(B)ack to Main Menu"/>
+    </Widget>
+    <Widget type="Button" skin="Button" position="362 250 300 26" align="Default" layer="Main" name="optionsBackMainMenuButton">
+        <Property key="Caption" value="(B)ack to Main Menu"/>
+    </Widget>
+    <Widget type="Button" skin="Button" position="362 250 300 26" align="Default" layer="Main" name="teamSelectionBackMainMenuButton">
         <Property key="Caption" value="(B)ack to Main Menu"/>
     </Widget>
     <Widget type="Button" skin="Button" position="200 400 300 26" align="Default" layer="Main" name="backNetworkClientButton">

@@ -312,13 +312,14 @@ private:
 */
      static std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > networkMenuButtons;
 
-    static boost::shared_ptr<MyGUI::Button> backMainMenuButton;
+//    static boost::shared_ptr<MyGUI::Button> backMainMenuButton;
     static boost::shared_ptr<MyGUI::Button> backNetworkSetupButton;
-    static boost::shared_ptr<MyGUI::Button> displayButton;
+    
+    static std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > optionsMenuButtons;
+/*    static boost::shared_ptr<MyGUI::Button> displayButton;
     static boost::shared_ptr<MyGUI::Button> inputButton;
     static boost::shared_ptr<MyGUI::Button> audioButton;
-    static boost::shared_ptr<MyGUI::Button> team0SelectButton;
-    static boost::shared_ptr<MyGUI::Button> team1SelectButton;
+*/
     static boost::shared_ptr<MyGUI::Button> startGameButton;
     static boost::shared_ptr<MyGUI::Button> backNetworkClientButton;
     static boost::shared_ptr<MyGUI::Button> changeResolutionButton;
@@ -329,8 +330,14 @@ private:
     static boost::shared_ptr<MyGUI::Button> backGameSetupMenuButton;
     static boost::shared_ptr<MyGUI::Button> backTeamSelectionMenuButton;
     static boost::shared_ptr<MyGUI::Button> backCourtSelectionMenuButton;
-    static boost::shared_ptr<MyGUI::Button> teamsSelectedButton;
     
+    // Team Selection Menu
+    static std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > teamSelectionMenuButtons;
+
+/*    static boost::shared_ptr<MyGUI::Button> team0SelectButton;
+    static boost::shared_ptr<MyGUI::Button> team1SelectButton;
+    static boost::shared_ptr<MyGUI::Button> teamsSelectedButton;
+*/
     // Player Start Selection Menu
 /*    static boost::shared_ptr<MyGUI::Button> team0StartingLineupSetButton;
     static boost::shared_ptr<MyGUI::Button> team1StartingLineupSetButton;
@@ -381,7 +388,7 @@ private:
     static boost::shared_ptr<MyGUI::ListBox> team1CSelectBox;
 */
 
-    static std::vector<std::map<std::string, boost::shared_ptr<MyGUI::TextBox> > > teamPlayerRating;
+    static std::vector<std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::TextBox> > > teamPlayerRating;
 
 
 /*    static boost::shared_ptr<MyGUI::TextBox> team0PGRating;
@@ -403,8 +410,10 @@ private:
 //    static boost::shared_ptr<MyGUI::ImageBox> team1Logo;
 	
     // Court selection menu widgets
-    static boost::shared_ptr<MyGUI::Button> backPlayerStartSelectionMenuButton;
-    static boost::shared_ptr<MyGUI::Button> courtSelectButton;
+    static std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > courtSelectionMenuButtons;
+
+//    static boost::shared_ptr<MyGUI::Button> backPlayerStartSelectionMenuButton;
+//    static boost::shared_ptr<MyGUI::Button> courtSelectButton;
     static boost::shared_ptr<MyGUI::ListBox> courtSelectBox;  
     static boost::shared_ptr<MyGUI::ImageBox> courtPreviewImgBox;
     static boost::shared_ptr<MyGUI::TextBox> courtNameTxtBox;

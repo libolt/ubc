@@ -97,14 +97,16 @@ boost::shared_ptr<MyGUI::Button> GUISystem::startMultiGameButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::optionsButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::serverButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::clientButton;
-*/
 boost::shared_ptr<MyGUI::Button> GUISystem::backMainMenuButton;
+*/
 boost::shared_ptr<MyGUI::Button> GUISystem::backNetworkSetupButton;
-boost::shared_ptr<MyGUI::Button> GUISystem::displayButton;
+
+std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::optionsMenuButtons;
+/*boost::shared_ptr<MyGUI::Button> GUISystem::displayButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::inputButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::audioButton;
-boost::shared_ptr<MyGUI::Button> GUISystem::team0SelectButton;
-boost::shared_ptr<MyGUI::Button> GUISystem::team1SelectButton;
+*/
+
 boost::shared_ptr<MyGUI::Button> GUISystem::startGameButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::backNetworkClientButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::changeResolutionButton;
@@ -115,8 +117,15 @@ boost::shared_ptr<MyGUI::Button> GUISystem::backOptionsMenuButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::backGameSetupMenuButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::backTeamSelectionMenuButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::backCourtSelectionMenuButton;
-boost::shared_ptr<MyGUI::Button> GUISystem::teamsSelectedButton;
-    
+
+// Team Selection Menu
+std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::teamSelectionMenuButtons;
+
+/*boost::shared_ptr<MyGUI::Button> GUISystem::teamsSelectedButton;
+boost::shared_ptr<MyGUI::Button> GUISystem::team0SelectButton;
+boost::shared_ptr<MyGUI::Button> GUISystem::team1SelectButton;
+*/
+
 // Player Start Selection Menu
 /*boost::shared_ptr<MyGUI::Button> GUISystem::team0StartingLineupSetButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::team1StartingLineupSetButton;
@@ -165,7 +174,7 @@ boost::shared_ptr<MyGUI::ListBox> GUISystem::team1PFSelectBox;
 boost::shared_ptr<MyGUI::ListBox> GUISystem::team1CSelectBox;
 */
 
-std::vector<std::map<std::string, boost::shared_ptr<MyGUI::TextBox> > > GUISystem::teamPlayerRating;
+std::vector<std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::TextBox> > > GUISystem::teamPlayerRating;
 std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::ImageBox> > GUISystem::teamLogo;
 
 /*
@@ -184,8 +193,9 @@ boost::shared_ptr<MyGUI::ImageBox> GUISystem::team1Logo;
 */
 
 // Court selection menu widgets
-boost::shared_ptr<MyGUI::Button> GUISystem::backPlayerStartSelectionMenuButton;
-boost::shared_ptr<MyGUI::Button> GUISystem::courtSelectButton;
+std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::courtSelectionMenuButtons;
+//boost::shared_ptr<MyGUI::Button> GUISystem::backPlayerStartSelectionMenuButton;
+//boost::shared_ptr<MyGUI::Button> GUISystem::courtSelectButton;
 boost::shared_ptr<MyGUI::ListBox> GUISystem::courtSelectBox;  
 boost::shared_ptr<MyGUI::ImageBox> GUISystem::courtPreviewImgBox;
 boost::shared_ptr<MyGUI::TextBox> GUISystem::courtNameTxtBox;

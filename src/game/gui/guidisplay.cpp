@@ -292,7 +292,9 @@ void GUISystem::hidePlayerStartSelectionMenuWidgets()  // hides all widgets tied
     playerStartSelectionMenuButtons["team1StartingLineupSetButton"]->setVisible(false);
 
     playerStartSelectionMenuButtons["startingLineupsSetButton"]->setVisible(false);
-    backTeamSelectionMenuButton->setVisible(false);
+    playerStartSelectionMenuButtons["backTeamSelectionMenuButton"]->setVisible(false);
+
+//    backTeamSelectionMenuButton->setVisible(false);
 
 }
 void GUISystem::showPlayerStartSelectionMenuWidgets()  // shows all widgets tied to the Player Start Selection Menu
@@ -382,8 +384,8 @@ void GUISystem::showPlayerStartSelectionMenuWidgets()  // shows all widgets tied
     playerStartSelectionMenuButtons["startingLineupsSetButton"]->setVisible(true);
     playerStartSelectionMenuButtons["startingLineupsSetButton"]->setPosition((0.25 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.38 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
-    backTeamSelectionMenuButton->setVisible(true);
-    backTeamSelectionMenuButton->setPosition((0.25 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.43 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    playerStartSelectionMenuButtons["backTeamSelectionMenuButton"]->setVisible(true);
+    playerStartSelectionMenuButtons["backTeamSelectionMenuButton"]->setPosition((0.25 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.43 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
 }
 
@@ -398,10 +400,11 @@ void GUISystem::hideTeamSelectionMenuWidgets()  // hides all widgets tied to the
     teamSelectionMenuButtons["team1SelectButton"]->setVisible(false);
     teamSelectionMenuButtons["teamsSelectedButton"]->setVisible(false);
     teamSelectionMenuButtons["backMainMenuButton"]->setVisible(false);
+    teamSelectionMenuButtons["backCourtSelectionMenuButton"]->setVisible(false);
 
     logMsg("previousActiveMenu = " +convert->toString(previousActiveMenu));
 
-    backCourtSelectionMenuButton->setVisible(false);
+//    backCourtSelectionMenuButton->setVisible(false);
 }
 
 void GUISystem::showTeamSelectionMenuWidgets()  // show all widgets tied to the Team Selection Menu
@@ -455,7 +458,7 @@ void GUISystem::showCourtSelectionMenuWidgets()  // show all widgets tied to the
     
     courtSelectionMenuButtons["backMainMenuButton"]->setVisible(true);
     courtSelectionMenuButtons["backMainMenuButton"]->setPosition((0.25 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
-
+//    exit(0);
     courtSelectBox->setVisible(true);
     courtSelectBox->setPosition((0.25 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.31 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
     

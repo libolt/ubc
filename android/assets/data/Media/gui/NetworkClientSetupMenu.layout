@@ -11,4 +11,7 @@
     <Widget type="Button" skin="Button" position="362 200  300 26" align="Default" layer="Main" name="clientConnectButton">
             <Property key="Caption" value="(C)onnect"/>
     </Widget>
+    <Widget type="Button" skin="Button" position="362 250 300 26" align="Default" layer="Main" name="backNetworkSetupButton">
+        <Property key="Caption" value="(B)ack to Network Setup"/>
+    </Widget>
 </MyGUI>

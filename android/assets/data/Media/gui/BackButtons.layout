@@ -1,37 +1,19 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <MyGUI type="Layout" version="3.2.0">
-    <Widget type="Button" skin="Button" position="362 250 300 26" align="Default" layer="Main" name="backNetworkSetupButton">
-        <Property key="Caption" value="(B)ack to Network Setup"/>
-    </Widget>
-    <Widget type="Button" skin="Button" position="362 250 300 26" align="Default" layer="Main" name="networkBackMainMenuButton">
-        <Property key="Caption" value="(B)ack to Main Menu"/>
-    </Widget>
-    <Widget type="Button" skin="Button" position="362 250 300 26" align="Default" layer="Main" name="singleBackMainMenuButton">
-        <Property key="Caption" value="(B)ack to Main Menu"/>
-    </Widget>
-    <Widget type="Button" skin="Button" position="362 250 300 26" align="Default" layer="Main" name="optionsBackMainMenuButton">
-        <Property key="Caption" value="(B)ack to Main Menu"/>
-    </Widget>
-    <Widget type="Button" skin="Button" position="362 250 300 26" align="Default" layer="Main" name="teamSelectionBackMainMenuButton">
-        <Property key="Caption" value="(B)ack to Main Menu"/>
-    </Widget>
+    
+    
+    
     <Widget type="Button" skin="Button" position="200 400 300 26" align="Default" layer="Main" name="backNetworkClientButton">
         <Property key="Caption" value="(B)ack to Network Client Setup"/>
     </Widget>
-    <Widget type="Button" skin="Button" position="200 400 300 26" align="Default" layer="Main" name="backOptionsMenuButton">
-        <Property key="Caption" value="(B)ack to Options Menu"/>
-    </Widget>
+    
     <Widget type="Button" skin="Button" position="250 490 300 26" layer="Main" name="backGameSetupMenuButton">
         <Property key="Caption" value="(B)ack to Game Setup Menu"/>
     </Widget>
     <Widget type="Button" skin="Button" position="250 490 300 26" layer="Main" name="backPlayerStartSelectionMenuButton">
         <Property key="Caption" value="(B)ack to Player Start Selection Menu"/>
     </Widget>
-    <Widget type="Button" skin="Button" position="250 490 300 26" layer="Main" name="backTeamSelectionMenuButton">
-        <Property key="Caption" value="(B)ack to Team Selection Menu"/>
-    </Widget>
-    <Widget type="Button" skin="Button" position="250 490 300 26" layer="Main" name="backCourtSelectionMenuButton">
-        <Property key="Caption" value="(B)ack to Court Selection Menu"/>
-    </Widget>
+    
+    
     <CodeGeneratorSettings/>
 </MyGUI>

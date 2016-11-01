@@ -327,9 +327,9 @@ private:
     static boost::shared_ptr<MyGUI::Button> enableAudioButton;
     static boost::shared_ptr<MyGUI::Button> disableAudioButton;
     static boost::shared_ptr<MyGUI::Button> backOptionsMenuButton;
-    static boost::shared_ptr<MyGUI::Button> backGameSetupMenuButton;
-    static boost::shared_ptr<MyGUI::Button> backTeamSelectionMenuButton;
-    static boost::shared_ptr<MyGUI::Button> backCourtSelectionMenuButton;
+//    static boost::shared_ptr<MyGUI::Button> backGameSetupMenuButton;
+//    static boost::shared_ptr<MyGUI::Button> backTeamSelectionMenuButton;
+//    static boost::shared_ptr<MyGUI::Button> backCourtSelectionMenuButton;
     
     // Team Selection Menu
     static std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > teamSelectionMenuButtons;

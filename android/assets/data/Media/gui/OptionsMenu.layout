@@ -9,5 +9,8 @@
     <Widget type="Button" skin="Button" position="362 250 300 26" align="Default" layer="Main" name="audioButton">
             <Property key="Caption" value="(A)udio Settings"/>
     </Widget>
+    <Widget type="Button" skin="Button" position="362 250 300 26" align="Default" layer="Main" name="optionsBackMainMenuButton">
+        <Property key="Caption" value="(B)ack to Main Menu"/>
+    </Widget>
     <CodeGeneratorSettings/>
 </MyGUI>

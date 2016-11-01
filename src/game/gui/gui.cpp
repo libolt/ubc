@@ -114,9 +114,9 @@ boost::shared_ptr<MyGUI::Button> GUISystem::changeInputTypeButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::enableAudioButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::disableAudioButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::backOptionsMenuButton;
-boost::shared_ptr<MyGUI::Button> GUISystem::backGameSetupMenuButton;
-boost::shared_ptr<MyGUI::Button> GUISystem::backTeamSelectionMenuButton;
-boost::shared_ptr<MyGUI::Button> GUISystem::backCourtSelectionMenuButton;
+//boost::shared_ptr<MyGUI::Button> GUISystem::backGameSetupMenuButton;
+//boost::shared_ptr<MyGUI::Button> GUISystem::backTeamSelectionMenuButton;
+//boost::shared_ptr<MyGUI::Button> GUISystem::backCourtSelectionMenuButton;
 
 // Team Selection Menu
 std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::teamSelectionMenuButtons;
@@ -534,10 +534,11 @@ void GUISystem::mainMenu()  // msin in game menu
 
 void GUISystem::backButtons()  // handles the back buttons
 {
+
     if (!backButtonsCreated)
     {
         logMsg("Back buttons not created yet!");
-        if (createBackButtons()) // creates the back buttons.
+/*        if (createBackButtons()) // creates the back buttons.
         {
             logMsg("Back Buttons created successfully!");
             backButtonsCreated = true;
@@ -548,12 +549,13 @@ void GUISystem::backButtons()  // handles the back buttons
             logMsg("Unable to create Bsck Buttons!");
 //            return (false);
             exit(0);
-        }
+        }*/
     }
     else
     {
         
     }
+
 }
 
 void GUISystem::startSinglePlayerGame()  // starts single player game

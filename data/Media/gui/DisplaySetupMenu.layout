@@ -3,5 +3,8 @@
     <Widget type="Button" skin="Button" position="100 300  300 26" align="Default" layer="Main" name="changeResolutionButton">
             <Property key="Caption" value="(C)hange Resolution"/>
     </Widget>
+    <Widget type="Button" skin="Button" position="200 400 300 26" align="Default" layer="Main" name="backOptionsMenuButton">
+        <Property key="Caption" value="(B)ack to Options Menu"/>
+    </Widget>
     <CodeGeneratorSettings/>
 </MyGUI>

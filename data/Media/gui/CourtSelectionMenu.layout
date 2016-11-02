@@ -13,5 +13,8 @@
     <Widget type="Button" skin="Button" position="310 630 260 52" layer="Main" name="courtSelectButton">
         <Property key="Caption" value="(S)elect Court"/>
     </Widget>
+    <Widget type="Button" skin="Button" position="362 250 300 26" align="Default" layer="Main" name="courtBackMainMenuButton">
+        <Property key="Caption" value="(B)ack to Main Menu"/>
+    </Widget>
     <CodeGeneratorSettings/>
 </MyGUI>

@@ -25,5 +25,11 @@
     <Widget type="Button" skin="Button" position="300 325 300 26" align="Default" layer="Main" name="teamsSelectedButton">
             <Property key="Caption" value="(T)eams selected"/>
     </Widget>
+    <Widget type="Button" skin="Button" position="362 250 300 26" align="Default" layer="Main" name="teamSelectionBackMainMenuButton">
+        <Property key="Caption" value="(B)ack to Main Menu"/>
+    </Widget>
+    <Widget type="Button" skin="Button" position="250 490 300 26" layer="Main" name="backCourtSelectionMenuButton">
+        <Property key="Caption" value="(B)ack to Court Selection Menu"/>
+    </Widget>
     <CodeGeneratorSettings/>
 </MyGUI>

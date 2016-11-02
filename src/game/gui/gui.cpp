@@ -99,7 +99,7 @@ boost::shared_ptr<MyGUI::Button> GUISystem::serverButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::clientButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::backMainMenuButton;
 */
-boost::shared_ptr<MyGUI::Button> GUISystem::backNetworkSetupButton;
+//boost::shared_ptr<MyGUI::Button> GUISystem::backNetworkSetupButton;
 
 std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::optionsMenuButtons;
 /*boost::shared_ptr<MyGUI::Button> GUISystem::displayButton;
@@ -107,16 +107,21 @@ boost::shared_ptr<MyGUI::Button> GUISystem::inputButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::audioButton;
 */
 
-boost::shared_ptr<MyGUI::Button> GUISystem::startGameButton;
-boost::shared_ptr<MyGUI::Button> GUISystem::backNetworkClientButton;
-boost::shared_ptr<MyGUI::Button> GUISystem::changeResolutionButton;
-boost::shared_ptr<MyGUI::Button> GUISystem::changeInputTypeButton;
-boost::shared_ptr<MyGUI::Button> GUISystem::enableAudioButton;
-boost::shared_ptr<MyGUI::Button> GUISystem::disableAudioButton;
-boost::shared_ptr<MyGUI::Button> GUISystem::backOptionsMenuButton;
+//boost::shared_ptr<MyGUI::Button> GUISystem::startGameButton;
+//boost::shared_ptr<MyGUI::Button> GUISystem::backNetworkClientButton;
+//boost::shared_ptr<MyGUI::Button> GUISystem::changeResolutionButton;
+//boost::shared_ptr<MyGUI::Button> GUISystem::changeInputTypeButton;
+//boost::shared_ptr<MyGUI::Button> GUISystem::enableAudioButton;
+//boost::shared_ptr<MyGUI::Button> GUISystem::disableAudioButton;
+//boost::shared_ptr<MyGUI::Button> GUISystem::backOptionsMenuButton;
 //boost::shared_ptr<MyGUI::Button> GUISystem::backGameSetupMenuButton;
 //boost::shared_ptr<MyGUI::Button> GUISystem::backTeamSelectionMenuButton;
 //boost::shared_ptr<MyGUI::Button> GUISystem::backCourtSelectionMenuButton;
+
+std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::displayMenuButtons;
+std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::inputMenuButtons;
+std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::audioMenuButtons;
+
 
 // Team Selection Menu
 std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::teamSelectionMenuButtons;
@@ -139,15 +144,16 @@ std::tr1::unordered_map<size_t, boost::shared_ptr<MyGUI::ListBox> > GUISystem::t
 
 // Network Server Setup Widgets
 boost::shared_ptr<MyGUI::ListBox> GUISystem::numClientsSelectBox;  // allows you to select the number of network players
-boost::shared_ptr<MyGUI::Button> GUISystem::serverHostButton;
+//boost::shared_ptr<MyGUI::Button> GUISystem::serverHostButton;
 boost::shared_ptr<MyGUI::EditBox> GUISystem::serverIPAddressBox;
+std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::networkServerSetupMenuButtons;
     
 // Network Client Setup Widgets
 boost::shared_ptr<MyGUI::EditBox> GUISystem::clientIPAddressBox;
-boost::shared_ptr<MyGUI::Button> GUISystem::clientConnectButton;
+//boost::shared_ptr<MyGUI::Button> GUISystem::clientConnectButton;
+std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::networkClientSetupMenuButtons;
     
 std::vector<std::tr1::unordered_map <std::string, boost::shared_ptr<MyGUI::ListBox> > > GUISystem::teamPlayerPosSelectBox;
-
 
 /*    boost::shared_ptr<MyGUI::ListBox> GUISystem::team0Player1SelectBox;
 boost::shared_ptr<MyGUI::ListBox> GUISystem::team0Player2SelectBox;

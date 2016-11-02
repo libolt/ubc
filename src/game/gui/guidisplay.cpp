@@ -94,8 +94,8 @@ void GUISystem::hideNetworkServerSetupWidgets()  // hides all widgets tied to th
     team1Player5SelectBox->setVisible(false);
 */
     serverIPAddressBox->setVisible(false);
-    serverHostButton->setVisible(false);
-    backNetworkSetupButton->setVisible(false);
+    networkServerSetupMenuButtons["serverHostButton"]->setVisible(false);
+    networkServerSetupMenuButtons["backNetworkSetupButton"]->setVisible(false);
     
     
 }
@@ -109,18 +109,18 @@ void GUISystem::showNetworkServerSetupWidgets()  // shows all widgets tied to th
     serverIPAddressBox->setVisible(true);
     serverIPAddressBox->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.10 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
-    serverHostButton->setVisible(true);
-    serverHostButton->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.14 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    networkServerSetupMenuButtons["serverHostButton"]->setVisible(true);
+    networkServerSetupMenuButtons["serverHostButton"]->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.14 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
     
-    backNetworkSetupButton->setVisible(true);
-    backNetworkSetupButton->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.18 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    networkServerSetupMenuButtons["backNetworkSetupButton"]->setVisible(true);
+    networkServerSetupMenuButtons["backNetworkSetupButton"]->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.18 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 }
 
 void GUISystem::hideNetworkClientSetupWidgets()  // hides the widgets tied to the Network Setup Menu
 {
     clientIPAddressBox->setVisible(false);
-    clientConnectButton->setVisible(false);
-    backNetworkSetupButton->setVisible(false);
+    networkClientSetupMenuButtons["clientConnectButton"]->setVisible(false);
+    networkClientSetupMenuButtons["backNetworkSetupButton"]->setVisible(false);
 }
 void GUISystem::showNetworkClientSetupWidgets()  // shows all widgets tied to the Network Setup Menu
 {
@@ -130,11 +130,11 @@ void GUISystem::showNetworkClientSetupWidgets()  // shows all widgets tied to th
     clientIPAddressBox->setVisible(true);
     clientIPAddressBox->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.10 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
-    clientConnectButton->setVisible(true);
-    clientConnectButton->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.14 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    networkClientSetupMenuButtons["clientConnectButton"]->setVisible(true);
+    networkClientSetupMenuButtons["clientConnectButton"]->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.14 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
-    backNetworkSetupButton->setVisible(true);
-    backNetworkSetupButton->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.18 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    networkClientSetupMenuButtons["backNetworkSetupButton"]->setVisible(true);
+    networkClientSetupMenuButtons["backNetworkSetupButton"]->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.18 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
 }
 
@@ -160,39 +160,51 @@ void GUISystem::showOptionsMenuWidgets()  // shows all widgets tied to the Optio
 
 void GUISystem::hideDisplayMenuWidgets()  // hides all widgets tied to the Display Menu
 {
-    changeResolutionButton->setVisible(false);
+    displayMenuButtons["changeResolutionButton"]->setVisible(false);
+    displayMenuButtons["backOptionsMenuButton"]->setVisible(false);
+
 
 }
 void GUISystem::showDisplayMenuWidgets()  // shows all widgets tied to the Display Menu
 {
-    changeResolutionButton->setVisible(true);
+    displayMenuButtons["changeResolutionButton"]->setVisible(true);
+    displayMenuButtons["backOptionsMenuButton"]->setVisible(true);
+
 }
 
 void GUISystem::hideInputMenuWidgets()  // hides all widgets tied to the Input Menu
 {
-    changeInputTypeButton->setVisible(false);
+    inputMenuButtons["changeInputTypeButton"]->setVisible(false);
+    inputMenuButtons["backOptionsMenuButton"]->setVisible(false);
+
 }
 void GUISystem::showInputMenuWidgets()  // shows all widgets tied to the Input Menu
 {
-    changeInputTypeButton->setVisible(true);
+    inputMenuButtons["changeInputTypeButton"]->setVisible(true);
+    inputMenuButtons["backOptionsMenuButton"]->setVisible(true);
+
 }
 
 void GUISystem::hideAudioMenuWidgets()  // hides all widgets tied to the Audio Menu
 {
-    enableAudioButton->setVisible(false);
-    disableAudioButton->setVisible(false);
+    audioMenuButtons["enableAudioButton"]->setVisible(false);
+    audioMenuButtons["disableAudioButton"]->setVisible(false);
+    audioMenuButtons["backOptionsMenuButton"]->setVisible(false);
+
 }
 void GUISystem::showAudioMenuWidgets()  // shows all widgets tied to the Main Menu
 {
-    enableAudioButton->setVisible(true);
-    disableAudioButton->setVisible(true);
+    audioMenuButtons["enableAudioButton"]->setVisible(true);
+    audioMenuButtons["disableAudioButton"]->setVisible(true);
+    audioMenuButtons["backOptionsMenuButton"]->setVisible(false);
+
 }
 
 void GUISystem::hideGameSetupMenuWidgets()  // hides all widgets tied to the Game Setup Menu
 {
     //conversion *convert = conversion::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
-
+/*
     teamSelectBox[0]->setVisible(false);
     teamSelectBox[1]->setVisible(false);
     teamSelectionMenuButtons["team0SelectButton"]->setVisible(false);
@@ -213,12 +225,13 @@ void GUISystem::hideGameSetupMenuWidgets()  // hides all widgets tied to the Gam
         backNetworkSetupButton->setVisible(false);
 
     }
+    */
 }
 void GUISystem::showGameSetupMenuWidgets()  // shows all widgets tied to the Game Setup Menu
 {
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
-
+/*
     teamSelectBox[0]->setVisible(true);
     teamSelectBox[0]->setPosition((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.10 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
@@ -250,6 +263,7 @@ void GUISystem::showGameSetupMenuWidgets()  // shows all widgets tied to the Gam
         backNetworkSetupButton->setVisible(true);
         backNetworkSetupButton->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.22 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
     }
+    */
 }
 
 void GUISystem::hidePlayerStartSelectionMenuWidgets()  // hides all widgets tied to the Player Start Selection Menu

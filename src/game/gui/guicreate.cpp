@@ -156,11 +156,17 @@ bool GUISystem::createNetworkClientSetupGUI()  // creates GUI for network client
     clientIPAddressBox->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.10 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
     clientIPAddressBox->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
-    clientConnectButton = boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("clientConnectButton"));  // loads Court Selection Button
-    clientConnectButton->setVisible(false);
-    clientConnectButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::clientConnectButtonClicked);
-    clientConnectButton->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    networkClientSetupMenuButtons.insert(std::pair<std::string, boost::shared_ptr<MyGUI::Button> >("clientConnectButton", boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("clientConnectButton"))));  // loads Court Selection Button
+    networkClientSetupMenuButtons["clientConnectButton"]->setVisible(false);
+    networkClientSetupMenuButtons["clientConnectButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::clientConnectButtonClicked);
+    networkClientSetupMenuButtons["clientConnectButton"]->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth()), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
 
+    networkClientSetupMenuButtons.insert(std::pair<std::string, boost::shared_ptr<MyGUI::Button> >("backNetworkSetupButton", boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("serverHostButton"))));  // loads Court Selection Button
+    networkClientSetupMenuButtons["backNetworkSetupButton"]->setVisible(false);
+    networkClientSetupMenuButtons["backNetworkSetupButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::serverHostButtonClicked);
+    networkClientSetupMenuButtons["backNetworkSetupButton"]->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth()), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
+
+    
     networkClientSetupMenuCreated = true;
     
     return true;
@@ -181,11 +187,17 @@ bool GUISystem::createNetworkServerSetupGUI()  // creates GUI for network server
     serverIPAddressBox->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.10 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
     serverIPAddressBox->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
-    serverHostButton = boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("serverHostButton"));  // loads Court Selection Button
-    serverHostButton->setVisible(false);
-    serverHostButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::serverHostButtonClicked);
-    serverHostButton->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    networkServerSetupMenuButtons.insert(std::pair<std::string, boost::shared_ptr<MyGUI::Button> >("serverHostButton", boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("serverHostButton"))));  // loads Court Selection Button
+    networkServerSetupMenuButtons["serverHostButton"]->setVisible(false);
+    networkServerSetupMenuButtons["serverHostButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::serverHostButtonClicked);
+    networkServerSetupMenuButtons["serverHostButton"]->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
 
+    networkServerSetupMenuButtons.insert(std::pair<std::string, boost::shared_ptr<MyGUI::Button> >("backNetworkSetupButton", boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("serverHostButton"))));  // loads Court Selection Button
+    networkServerSetupMenuButtons["backNetworkSetupButton"]->setVisible(false);
+    networkServerSetupMenuButtons["backNetworkSetupButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::serverHostButtonClicked);
+    networkServerSetupMenuButtons["backNetworkSetupButton"]->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
+
+    
     networkServerSetupMenuCreated = true;
     return true;
 }
@@ -262,48 +274,48 @@ bool GUISystem::createBackButtons()  // creates the back buttons for the menus
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
 //    exit(0);
-/*    MyGUI::LayoutManager::getInstance().loadLayout("BackButtons.layout");
+    MyGUI::LayoutManager::getInstance().loadLayout("BackButtons.layout");
 
 ///    backMainMenuButton = boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("backMainMenuButton"));  // loads Back to Main Menu Button
 ///    backMainMenuButton->setVisible(false);
 ///    backMainMenuButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::backMainMenuButtonClicked);
 ///    backMainMenuButton->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
-    backNetworkSetupButton = boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("backNetworkSetupButton"));  // loads Back to Network Setup Button
-    backNetworkSetupButton->setVisible(false);
-    backNetworkSetupButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::backNetworkSetupButtonClicked);
-    backNetworkSetupButton->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+///    backNetworkSetupButton = boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("backNetworkSetupButton"));  // loads Back to Network Setup Button
+///    backNetworkSetupButton->setVisible(false);
+///    backNetworkSetupButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::backNetworkSetupButtonClicked);
+///    backNetworkSetupButton->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
-    backNetworkClientButton = boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("backNetworkClientButton"));  // loads Back to Network Client Button
-    backNetworkClientButton->setVisible(false);
-    backNetworkClientButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::backNetworkClientButtonClicked);
-    backNetworkClientButton->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+///    backNetworkClientButton = boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("backNetworkClientButton"));  // loads Back to Network Client Button
+///    backNetworkClientButton->setVisible(false);
+///    backNetworkClientButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::backNetworkClientButtonClicked);
+///    backNetworkClientButton->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
-    backOptionsMenuButton = boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("backOptionsMenuButton"));  // loads Back to Options Menu Button
-    backOptionsMenuButton->setVisible(false);
-    backOptionsMenuButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::backOptionsMenuButtonClicked);
-    backOptionsMenuButton->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+///    backOptionsMenuButton = boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("backOptionsMenuButton"));  // loads Back to Options Menu Button
+///    backOptionsMenuButton->setVisible(false);
+///    backOptionsMenuButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::backOptionsMenuButtonClicked);
+///    backOptionsMenuButton->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
 ///    backCourtSelectionMenuButton = boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("backCourtSelectionMenuButton"));  // loads Back to Team Selection Menu Button
 ///    backCourtSelectionMenuButton->setVisible(false);
 ///    backCourtSelectionMenuButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::backCourtSelectionMenuButtonClicked);
 ///    backCourtSelectionMenuButton->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
-    backTeamSelectionMenuButton = boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("backTeamSelectionMenuButton"));  // loads Back to Team Selection Menu Button
-    backTeamSelectionMenuButton->setVisible(false);
-    backTeamSelectionMenuButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::backTeamSelectionMenuButtonClicked);
-    backTeamSelectionMenuButton->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+///    backTeamSelectionMenuButton = boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("backTeamSelectionMenuButton"));  // loads Back to Team Selection Menu Button
+///    backTeamSelectionMenuButton->setVisible(false);
+///    backTeamSelectionMenuButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::backTeamSelectionMenuButtonClicked);
+///    backTeamSelectionMenuButton->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
     
 ///    backPlayerStartSelectionMenuButton = boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("backPlayerStartSelectionMenuButton"));  // loads Back to Player Start Selection Menu Button
 ///    backPlayerStartSelectionMenuButton->setVisible(false);
 ///    backPlayerStartSelectionMenuButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::backPlayerStartSelectionMenuButtonClicked);
 ///    backPlayerStartSelectionMenuButton->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
-    backGameSetupMenuButton = boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("backGameSetupMenuButton"));  // loads Back to Game Setup Menu Button
-    backGameSetupMenuButton->setVisible(false);
-    backGameSetupMenuButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::backGameSetupMenuButtonClicked);
-    backGameSetupMenuButton->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
-*/
+///    backGameSetupMenuButton = boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("backGameSetupMenuButton"));  // loads Back to Game Setup Menu Button
+///    backGameSetupMenuButton->setVisible(false);
+///    backGameSetupMenuButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::backGameSetupMenuButtonClicked);
+///    backGameSetupMenuButton->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+
     backButtonsCreated = true;
 
     return (true);
@@ -316,9 +328,13 @@ bool GUISystem::createDisplaySetupGUI()  // creates GUI for display settings scr
 
     MyGUI::LayoutManager::getInstance().loadLayout("DispkaySetupMenu.layout");
 
-    changeResolutionButton = boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("changeResolutionButton"));  // loads team 1 Button
-    changeResolutionButton->setVisible(false);
-    changeResolutionButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
+    displayMenuButtons.insert(std::pair<std::string, boost::shared_ptr<MyGUI::Button> >("changeResolutionButton", boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("changeResolutionButton"))));  // loads team 1 Button
+    displayMenuButtons["changeResolutionButton"]->setVisible(false);
+    displayMenuButtons["changeResolutionButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
+
+    displayMenuButtons.insert(std::pair<std::string, boost::shared_ptr<MyGUI::Button> >("backOptionsMenuButton", boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("changeInputTypeButton"))));  // loads team 1 Button
+    displayMenuButtons["backOptionsMenuButton"]->setVisible(false);
+    displayMenuButtons["backOptionsMenuButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeInputTypeButtonClicked);
 
     displaySetupMenuCreated = true;
 
@@ -332,9 +348,13 @@ bool GUISystem::createInputSetupGUI()  // creates GUI for input settings screen.
 
     MyGUI::LayoutManager::getInstance().loadLayout("InputSetupMenu.layout");
 
-    changeInputTypeButton = boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("changeInputTypeButton"));  // loads team 1 Button
-    changeInputTypeButton->setVisible(false);
-    changeInputTypeButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeInputTypeButtonClicked);
+    inputMenuButtons.insert(std::pair<std::string, boost::shared_ptr<MyGUI::Button> >("changeInputTypeButton", boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("changeInputTypeButton"))));  // loads team 1 Button
+    inputMenuButtons["changeInputTypeButton"]->setVisible(false);
+    inputMenuButtons["changeInputTypeButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeInputTypeButtonClicked);
+
+    inputMenuButtons.insert(std::pair<std::string, boost::shared_ptr<MyGUI::Button> >("backOptionsMenuButton", boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("changeInputTypeButton"))));  // loads team 1 Button
+    inputMenuButtons["backOptionsMenuButton"]->setVisible(false);
+    inputMenuButtons["backOptionsMenuButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeInputTypeButtonClicked);
 
     inputSetupMenuCreated = true;
 
@@ -348,14 +368,18 @@ bool GUISystem::createAudioSetupGUI()  // creates GUI for audo settings screen.
 
     MyGUI::LayoutManager::getInstance().loadLayout("AudioSetupMenu.layout");
 
-    enableAudioButton = boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("enableAudioButton"));  // loads team 1 Button
-    enableAudioButton->setVisible(false);
-    enableAudioButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::enableAudioButtonClicked);
+    audioMenuButtons.insert(std::pair<std::string, boost::shared_ptr<MyGUI::Button> >("enableAudioButton", boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("enableAudioButton"))));  // loads team 1 Button
+    audioMenuButtons["enableAudioButton"]->setVisible(false);
+    audioMenuButtons["enableAudioButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::enableAudioButtonClicked);
 
-    disableAudioButton = boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("disableAudioButton")); // loads team 1 Button
-    disableAudioButton->setVisible(false);
-    disableAudioButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::disableAudioButtonClicked);
+    audioMenuButtons.insert(std::pair<std::string, boost::shared_ptr<MyGUI::Button> >("disableAudioButton", boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("disableAudioButton")))); // loads team 1 Button
+    audioMenuButtons["disableAudioButton"]->setVisible(false);
+    audioMenuButtons["disableAudioButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::disableAudioButtonClicked);
 
+    audioMenuButtons.insert(std::pair<std::string, boost::shared_ptr<MyGUI::Button> >("backOptionsMenuButton", boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("changeInputTypeButton"))));  // loads team 1 Button
+    audioMenuButtons["backOptionsMenuButton"]->setVisible(false);
+    audioMenuButtons["backOptionsMenuButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeInputTypeButtonClicked);
+    
     audioSetupMenuCreated = true;
 
     return (true);
@@ -521,6 +545,11 @@ bool GUISystem::createPlayerStartSelectionMenuGUI()  // creates GUI for player s
     playerStartSelectionMenuButtons["startingLineupsSetButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::startingLineupSetButtonClicked);
     playerStartSelectionMenuButtons["startingLineupsSetButton"]->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
 
+    playerStartSelectionMenuButtons.insert(std::pair<std::string, boost::shared_ptr<MyGUI::Button> >("backTeamSelectionMenuButton", boost::shared_ptr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("backTeamSelectionMenuButton"))));  // loads Back to Team Selection Menu Button
+    playerStartSelectionMenuButtons["backTeamSelectionMenuButton"]->setVisible(false);
+    playerStartSelectionMenuButtons["backTeamSelectionMenuButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::backTeamSelectionMenuButtonClicked);
+    playerStartSelectionMenuButtons["backTeamSelectionMenuButton"]->setSize((0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.04 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    
     playerStartSelectionMenuCreated = true;
 
     return (true);

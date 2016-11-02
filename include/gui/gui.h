@@ -313,20 +313,30 @@ private:
      static std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > networkMenuButtons;
 
 //    static boost::shared_ptr<MyGUI::Button> backMainMenuButton;
-    static boost::shared_ptr<MyGUI::Button> backNetworkSetupButton;
+//    static boost::shared_ptr<MyGUI::Button> backNetworkSetupButton;
     
     static std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > optionsMenuButtons;
 /*    static boost::shared_ptr<MyGUI::Button> displayButton;
     static boost::shared_ptr<MyGUI::Button> inputButton;
     static boost::shared_ptr<MyGUI::Button> audioButton;
 */
-    static boost::shared_ptr<MyGUI::Button> startGameButton;
-    static boost::shared_ptr<MyGUI::Button> backNetworkClientButton;
-    static boost::shared_ptr<MyGUI::Button> changeResolutionButton;
-    static boost::shared_ptr<MyGUI::Button> changeInputTypeButton;
-    static boost::shared_ptr<MyGUI::Button> enableAudioButton;
-    static boost::shared_ptr<MyGUI::Button> disableAudioButton;
-    static boost::shared_ptr<MyGUI::Button> backOptionsMenuButton;
+//    static boost::shared_ptr<MyGUI::Button> startGameButton;
+//    static boost::shared_ptr<MyGUI::Button> backNetworkClientButton;
+//    static boost::shared_ptr<MyGUI::Button> changeResolutionButton;
+
+    static std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > displayMenuButtons;
+
+//    static boost::shared_ptr<MyGUI::Button> changeInputTypeButton;
+    
+    static std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > inputMenuButtons;
+
+//    static boost::shared_ptr<MyGUI::Button> enableAudioButton;
+//    static boost::shared_ptr<MyGUI::Button> disableAudioButton;
+    
+    static std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > audioMenuButtons;
+
+//    static boost::shared_ptr<MyGUI::Button> backOptionsMenuButton;
+    
 //    static boost::shared_ptr<MyGUI::Button> backGameSetupMenuButton;
 //    static boost::shared_ptr<MyGUI::Button> backTeamSelectionMenuButton;
 //    static boost::shared_ptr<MyGUI::Button> backCourtSelectionMenuButton;
@@ -352,15 +362,18 @@ private:
 
     // Network Server Setup Widgets
     static boost::shared_ptr<MyGUI::ListBox> numClientsSelectBox;  // allows you to select the number of network players
-    static boost::shared_ptr<MyGUI::Button> serverHostButton;
+//    static boost::shared_ptr<MyGUI::Button> serverHostButton;
     static boost::shared_ptr<MyGUI::EditBox> serverIPAddressBox;
+    
+    static std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > networkServerSetupMenuButtons;
     
     // Network Client Setup Widgets
     static boost::shared_ptr<MyGUI::EditBox> clientIPAddressBox;
-    static boost::shared_ptr<MyGUI::Button> clientConnectButton;
+//    static boost::shared_ptr<MyGUI::Button> clientConnectButton;
+    
+    static std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > networkClientSetupMenuButtons;
     
     static std::vector<std::tr1::unordered_map <std::string, boost::shared_ptr<MyGUI::ListBox> > > teamPlayerPosSelectBox;
-
     
 /*    static boost::shared_ptr<MyGUI::ListBox> team0Player1SelectBox;
     static boost::shared_ptr<MyGUI::ListBox> team0Player2SelectBox;

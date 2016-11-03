@@ -335,38 +335,38 @@ void gameStateShared::setBasketballInstance(basketballStateVecSharedPtr set)  //
     basketballInstance = set;
 }
 
-std::map<size_t, courtStateSharedPtr> gameStateShared::getCourtInstance()  // retrieves the value of courtInstance
+std::tr1::unordered_map<size_t, courtStateSharedPtr> gameStateShared::getCourtInstance()  // retrieves the value of courtInstance
 {
     return (courtInstance);
 }
-void gameStateShared::setCourtInstance(std::map<size_t, courtStateSharedPtr> set)  // sets the value of courtInstance
+void gameStateShared::setCourtInstance(std::tr1::unordered_map<size_t, courtStateSharedPtr> set)  // sets the value of courtInstance
 {
     courtInstance = set;
 }
 
-std::map<size_t, hoopStateSharedPtr> gameStateShared::getHoopInstance()  // retrieves the value of hoopInstance
+std::tr1::unordered_map<size_t, hoopStateSharedPtr> gameStateShared::getHoopInstance()  // retrieves the value of hoopInstance
 {
     return (hoopInstance);
 }
-void gameStateShared::setHoopInstance(std::map<size_t, hoopStateSharedPtr> set)  // sets the value of hoopInstance
+void gameStateShared::setHoopInstance(std::tr1::unordered_map<size_t, hoopStateSharedPtr> set)  // sets the value of hoopInstance
 {
     hoopInstance = set;
 }
 
-std::map <size_t, playerStateSharedPtr> gameStateShared::getPlayerInstance()  // retrieves the value of playerInstance
+std::tr1::unordered_map <size_t, playerStateSharedPtr> gameStateShared::getPlayerInstance()  // retrieves the value of playerInstance
 {
     return (playerInstance);
 }
-void gameStateShared::setPlayerInstance(std::map <size_t, playerStateSharedPtr> set)  // sets the value of playerInstance
+void gameStateShared::setPlayerInstance(std::tr1::unordered_map <size_t, playerStateSharedPtr> set)  // sets the value of playerInstance
 {
     playerInstance = set;
 }
 
-std::map<size_t, teamStateSharedPtr> gameStateShared::getTeamInstance()  // retrieves the value of teamInstance
+std::tr1::unordered_map<size_t, teamStateSharedPtr> gameStateShared::getTeamInstance()  // retrieves the value of teamInstance
 {
     return (teamInstance);
 }
-void gameStateShared::setTeamInstance(std::map<size_t, teamStateSharedPtr> set)  // sets the value of teamInstance
+void gameStateShared::setTeamInstance(std::tr1::unordered_map<size_t, teamStateSharedPtr> set)  // sets the value of teamInstance
 {
     teamInstance = set;
 }

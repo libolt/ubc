@@ -128,7 +128,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 //    playerInstance = gameS->getPlayerInstance();
 //    gameS->setPlayerInstances(playerInstance);
     sizeTVec teamIDs = base->getGameS()->getTeamIDS();
-    std::map <size_t, teamStateSharedPtr> teamInstance = base->getGameS()->getTeamInstance();
+    std::map <size_t, teamStateSharedPtr> teamInstance = base->getGameS()->getActiveTeamInstance();
     std::vector<std::map <size_t, playerStateSharedPtr> > playerInstance;
 //    std::vector <boost::shared_ptr<playerState> > pInstance;
 //    pInstance = teamInstance[teamIDs[0]]->getPlayerInstance();

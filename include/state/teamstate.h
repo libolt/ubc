@@ -131,11 +131,11 @@ public:
     bool getDefense();  // retrieves the value of defense
     void setDefense(bool set);  // sets the value of defense
 
-    std::map <size_t, playerStateSharedPtr> getPlayerInstance();  // retrieves the value of playerInstance
-    void setPlayerInstance(std::map<size_t, playerStateSharedPtr> set);  // sets the value of  playerInstance
+    std::tr1::unordered_map <size_t, playerStateSharedPtr> getPlayerInstance();  // retrieves the value of playerInstance
+    void setPlayerInstance(std::tr1::unordered_map<size_t, playerStateSharedPtr> set);  // sets the value of  playerInstance
 
     std::map <size_t, playerStateSharedPtr> getActivePlayerInstance();  // retrieves the value of activePlayerInstance
-    void setActivePlayerInstance(std::map <size_t, playerStateSharedPtr> set);  // sets the value of activePlayerInstance
+    void setActivePlayerInstance(std::tr1::unordered_map <size_t, playerStateSharedPtr> set);  // sets the value of activePlayerInstance
 
     bool getPlayerInstancesCreated();  // retrieves the value of the playerInstancesCreated
     void setPlayerInstancesCreated(bool set);  // sets the value of the playerInstancesCreated
@@ -224,8 +224,8 @@ private:
     bool offense;  // if set then the team is on offense
     bool defense;  // if set then the team is on defense
 
-    static std::map <size_t, playerStateSharedPtr> playerInstance;  // stores instance of the playerState class containing all team players
-    std::map <size_t, playerStateSharedPtr> activePlayerInstance;  // stores instance of the playerState class containing the active players
+    static std::tr1::unordered_map <size_t, playerStateSharedPtr> playerInstance;  // stores instance of the playerState class containing all team players
+    std::tr1::unordered_map <size_t, playerStateSharedPtr> activePlayerInstance;  // stores instance of the playerState class containing the active players
 
     std::vector <std::string> playerModelsLoaded;  // creates a vector of strings that holds the models which are loaded
     bool playerInstancesCreated;  // stores whether player instances have been created

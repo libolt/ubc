@@ -941,8 +941,8 @@ void GUISystem::playerStartSelected()  // process player start selection
     stdStringVec team0Starters;
     stdStringVec team1Starters;
     sizeTVec starters; // used for initial creatio  of teamStarterID vector
-    std::map <size_t, playerStateSharedPtr> playerInstance;
-    std::map <size_t, playerStateSharedPtr> activePlayerInstance;
+    std::tr1::unordered_map <size_t, playerStateSharedPtr> playerInstance;
+    std::tr1::unordered_map <size_t, playerStateSharedPtr> activePlayerInstance;
 
     size_t IDs = 0;
     while (teamStarterID.size() < 2)

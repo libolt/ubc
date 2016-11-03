@@ -923,7 +923,7 @@ void GUISystem::teamsSelected()  // processes team selection
     sizeTVec teamID;
     teamID.push_back(teamSelectBox[0]->getIndexSelected());
     teamID.push_back(teamSelectBox[1]->getIndexSelected());
-    activeTeamInstance.insert(std::make_pair<size_t, teamStateSharedPtr>(0, teamInstance[0].get()));
+    activeTeamInstance.insert(std::pair<size_t, teamStateSharedPtr>(0, teamInstance[0].get()));
 //    gameS->setTeamID(teamID);
     logMsg("teamSelectBox[0]->getIndexSelected() == " +convert->toString(teamSelectBox[0]->getIndexSelected()));
     logMsg("teamID[0] == " +convert->toString(teamID[0]));

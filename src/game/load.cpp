@@ -870,11 +870,12 @@ stdStringVec loader::loadBasketballListFile(std::string fileName) // loads the l
     doc.Parse(contents);
     if (doc.Error())
     {
-        logMsg("Unable to parse basketballs.xml file");
+/*        logMsg("Unable to parse basketballs.xml file");
         logMsg("Error ID = " +convert->toString(doc.ErrorID()));
         logMsg(convert->toString(doc.GetErrorStr1()));
         logMsg(convert->toString(doc.GetErrorStr2()));
         exit(0);
+*/
     }
 
     tinyxml2::XMLHandle hDoc(&doc);
@@ -922,11 +923,12 @@ boost::shared_ptr<basketballState> loader::loadBasketballFile(std::string fileNa
     doc.Parse(contents);
     if (doc.Error())
     {
-        logMsg("Unable to parse basketball xml file");
+ /*       logMsg("Unable to parse basketball xml file");
         logMsg("Error ID = " +convert->toString(doc.ErrorID()));
         logMsg(convert->toString(doc.GetErrorStr1()));
         logMsg(convert->toString(doc.GetErrorStr2()));
         exit(0);
+*/
     }
 
     tinyxml2::XMLHandle hDoc(&doc);
@@ -1017,11 +1019,12 @@ stdStringVec loader::loadCourtListFile(std::string fileName)    // loads the lis
     doc.Parse(contents);
     if (doc.Error())
     {
-        logMsg("Unable to parse courts.xml file");
+/*        logMsg("Unable to parse courts.xml file");
         logMsg("Error ID = " +convert->toString(doc.ErrorID()));
         logMsg(convert->toString(doc.GetErrorStr1()));
         logMsg(convert->toString(doc.GetErrorStr2()));
         exit(0);
+*/
     }
 
     tinyxml2::XMLHandle hDoc(&doc);
@@ -1088,11 +1091,12 @@ boost::shared_ptr<courtState> loader::loadCourtFile(std::string fileName)  // lo
     doc.Parse(contents);
     if (doc.Error())
     {
-        logMsg("Unable to parse court xml file");
+/*        logMsg("Unable to parse court xml file");
         logMsg("Error ID = " +convert->toString(doc.ErrorID()));
         logMsg(convert->toString(doc.GetErrorStr1()));
         logMsg(convert->toString(doc.GetErrorStr2()));
         exit(0);
+*/
     }
 
     tinyxml2::XMLHandle hDoc(&doc);
@@ -1301,11 +1305,12 @@ stdStringVec loader::loadOffensePlayListFile(std::string fileName)  // loads the
     doc.Parse(contents);
     if (doc.Error())
     {
-        logMsg("Unable to parse teams.xml file");
+/*        logMsg("Unable to parse teams.xml file");
         logMsg("Error ID = " +convert->toString(doc.ErrorID()));
         logMsg(convert->toString(doc.GetErrorStr1()));
         logMsg(convert->toString(doc.GetErrorStr2()));
         exit(0);
+*/
     }
 
     tinyxml2::XMLHandle hDoc(&doc);
@@ -1378,11 +1383,12 @@ boost::shared_ptr<offensePlays> loader::loadOffensePlayFile(std::string fileName
     doc.Parse(contents);
     if (doc.Error())
     {
-        logMsg("Unable to parse offense play file");
+/*        logMsg("Unable to parse offense play file");
         logMsg("Error ID = " +convert->toString(doc.ErrorID()));
         logMsg(convert->toString(doc.GetErrorStr1()));
         logMsg(convert->toString(doc.GetErrorStr2()));
         exit(0);
+*/
     }
 
     tinyxml2::XMLHandle hDoc(&doc);
@@ -1681,11 +1687,12 @@ stdStringVec loader::loadPlayerListFile(std::string fileName)  // loads the play
     doc.Parse(contents);
     if (doc.Error())
     {
-        logMsg("Unable to parse teams.xml file");
+/*        logMsg("Unable to parse teams.xml file");
         logMsg("Error ID = " +convert->toString(doc.ErrorID()));
         logMsg(convert->toString(doc.GetErrorStr1()));
         logMsg(convert->toString(doc.GetErrorStr2()));
         exit(0);
+*/
     }
     tinyxml2::XMLHandle hDoc(&doc);
 
@@ -1782,11 +1789,12 @@ playerStateSharedPtr loader::loadPlayerFile(std::string fileName)  // loads the 
     doc.Parse(contents);
     if (doc.Error())
     { 
-        logMsg("Unable to parse player file");
+/*        logMsg("Unable to parse player file");
         logMsg("Error ID = " +convert->toString(doc.ErrorID()));
         logMsg(convert->toString(doc.GetErrorStr1()));
         logMsg(convert->toString(doc.GetErrorStr2()));
         exit(0);
+*/
     }
     tinyxml2::XMLHandle hDoc(&doc);
     
@@ -2252,11 +2260,12 @@ stdStringVec loader::loadTeamListFile(std::string fileName)  // loads the team l
     doc.Parse(contents);
     if (doc.Error())
     {
-        logMsg("Unable to parse teams.xml file");
+/*        logMsg("Unable to parse teams.xml file");
         logMsg("Error ID = " +convert->toString(doc.ErrorID()));
         logMsg(convert->toString(doc.GetErrorStr1()));
         logMsg(convert->toString(doc.GetErrorStr2()));
         exit(0);
+*/
     }
     tinyxml2::XMLHandle hDoc(&doc);
     tinyxml2::XMLElement *pElem;
@@ -2333,11 +2342,12 @@ teamStateSharedPtr loader::loadTeamFile(std::string fileName)  // loads the team
     doc.Parse(contents);
     if (doc.Error())
     {
-        logMsg("Unable to parse team file");
+/*        logMsg("Unable to parse team file");
         logMsg("Error ID = " +convert->toString(doc.ErrorID()));
         logMsg(convert->toString(doc.GetErrorStr1()));
         logMsg(convert->toString(doc.GetErrorStr2()));
         exit(0);
+*/
     }
     tinyxml2::XMLHandle hDoc(&doc);
     tinyxml2::XMLElement *pElem;
@@ -2466,11 +2476,12 @@ stdStringVec loader::loadUserInputListFile(std::string fileName)  // loads the u
     doc.Parse(contents);
     if (doc.Error())
     {
-        logMsg("Unable to parse inputlist.xml file");
+/*        logMsg("Unable to parse inputlist.xml file");
         logMsg("Error ID = " +convert->toString(doc.ErrorID()));
         logMsg(convert->toString(doc.GetErrorStr1()));
         logMsg(convert->toString(doc.GetErrorStr2()));
         exit(0);
+*/
     }
     
     
@@ -2537,12 +2548,13 @@ boost::shared_ptr<userInput> loader::loadUserInputFile(std::string fileName)  //
     doc.Parse(contents);
     if (doc.Error())
     {
-        logMsg("Unable to parse user input file");
+/*        logMsg("Unable to parse user input file");
         logMsg("Error ID = " +convert->toString(doc.ErrorID()));
         logMsg(convert->toString(doc.GetErrorStr1()));
         logMsg(convert->toString(doc.GetErrorStr2()));
         exit(0);
-    }   
+*/
+  }
     
     tinyxml2::XMLHandle hDoc(&doc);
     tinyxml2::XMLElement *rootElement;

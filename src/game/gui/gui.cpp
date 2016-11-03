@@ -923,15 +923,18 @@ void GUISystem::teamsSelected()  // processes team selection
     sizeTVec teamID;
     teamID.push_back(teamSelectBox[0]->getIndexSelected());
     teamID.push_back(teamSelectBox[1]->getIndexSelected());
-    activeTeamInstance.insert(std::pair<size_t, teamStateSharedPtr>(0, teamInstance[0].get()));
-//    gameS->setTeamID(teamID);
+    activeTeamInstance.insert(std::pair<size_t, teamStateSharedPtr>(teamID[0], teamInstance[teamID[0]]));
+    activeTeamInstance.insert(std::pair<size_t, teamStateSharedPtr>(teamID[1], teamInstance[teamID[1]]));
+
+    
+    //    gameS->setTeamID(teamID);
     logMsg("teamSelectBox[0]->getIndexSelected() == " +convert->toString(teamSelectBox[0]->getIndexSelected()));
     logMsg("teamID[0] == " +convert->toString(teamID[0]));
 //    exit(0);
     base->getGameS()->setTeamIDS(teamID);
-    
+    base->getGameS()->setActiveTeamInstance(activeTeamInstance);
     logMsg("Teams selected");
-//    exit(0);
+    exit(0);
 }
 
 void GUISystem::playerStartSelected()  // process player start selection

@@ -312,7 +312,7 @@ bool gameState::createTeamInstances()  // creates team Instances
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<loader> load(new loader);
     
-    std::map <size_t, teamStateSharedPtr> tInstance;
+    std::tr1::unordered_map <size_t, teamStateSharedPtr> tInstance;
 /*    teamStateVecSharedPtr tInstance2;
     boost::shared_ptr<teamState> tempInstance(new teamState);
 //    teamState *tempInstance = new teamState;
@@ -455,7 +455,7 @@ bool gameState::createPlayerInstances()  // creates player instances
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<loader> load(new loader);
     
-    std::map<size_t, playerStateSharedPtr> pInstance;
+    std::tr1::unordered_map<size_t, playerStateSharedPtr> pInstance;
     
     logMsg("gameState::createPlayerInstances() checkIfPlayersLoaded");
 //    exit(0);
@@ -502,8 +502,8 @@ bool gameState::createPlayerInstances()  // creates player instances
 bool gameState::createActiveTeamInstances()  // creates the active team instances
 {
     teamStateSharedPtr tInstance;
-    std::map <size_t, teamStateSharedPtr> activeTeamInstance = getActiveTeamInstance();
-    std::map <size_t, teamStateSharedPtr> teamInstance = getTeamInstance();
+    std::tr1::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance = getActiveTeamInstance();
+    std::tr1::unordered_map <size_t, teamStateSharedPtr> teamInstance = getTeamInstance();
     sizeTVec teamIDS = getTeamIDS();
 //    exit(0);
 
@@ -569,7 +569,7 @@ bool gameState::loadBasketballModel()  // loads selected basketball model
 
 bool gameState::loadCourtModel()  // loads selected court model
 {
-    static std::map <size_t, courtStateSharedPtr> courtInstance = getCourtInstance();
+    static std::tr1::unordered_map <size_t, courtStateSharedPtr> courtInstance = getCourtInstance();
     size_t activeCourtInstance = getActiveCourtInstance();
     logMsg("Model Name = " +courtInstance[activeCourtInstance]->getModelFileName());
 
@@ -593,7 +593,7 @@ bool gameState::loadHoopModel()  // loads selected hoop model
 {
     bool returnType = true;
 
-    std::map <size_t, hoopStateSharedPtr> hoopInstance = getHoopInstance();
+    std::tr1::unordered_map <size_t, hoopStateSharedPtr> hoopInstance = getHoopInstance();
 
     if (hoopInstance[0]->loadModel())
     {
@@ -694,7 +694,7 @@ void gameState::setBasketballStartPositions()  // sets the initial coordinates f
 void gameState::setCourtStartPositions()  // sets the initial coordinates for the basketball(s)
 {
 
-    static std::map <size_t, courtStateSharedPtr> courtInstance = getCourtInstance();
+    static std::tr1::unordered_map <size_t, courtStateSharedPtr> courtInstance = getCourtInstance();
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     courtInstance[0]->getNode()->setPosition(0.0f,-6.5f,360.0f);
@@ -712,7 +712,7 @@ void gameState::setCourtStartPositions()  // sets the initial coordinates for th
 void gameState::setHoopStartPositions()  // sets the initial coordinates for the basketball(s)
 {
 
-    std::map <size_t, hoopStateSharedPtr> hoopInstance = getHoopInstance();
+    std::tr1::unordered_map <size_t, hoopStateSharedPtr> hoopInstance = getHoopInstance();
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     hoopInstance[0]->getNode()->setPosition(45.0f,-6.5f,370.0f);

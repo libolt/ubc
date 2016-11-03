@@ -50,14 +50,14 @@ sizeTVec gameStateShared::teamIDS;  // std::vector that stores the IDs of the 2 
 std::vector< sizeTVec > gameStateShared::teamStarterID;  // stores the selected starters for each team
 Ogre::Vector3 gameStateShared::bballNodePosition;  // stores a copy of the basketball node position
 teamTypes gameStateShared::teamWithBall;  // store which team has the basketball
-std::map <size_t, teamStateSharedPtr> gameStateShared::activeTeamInstance;  // stores active team instance
+std::tr1::unordered_map <size_t, teamStateSharedPtr> gameStateShared::activeTeamInstance;  // stores active team instance
 size_t gameStateShared::activeBBallInstance;  // stores which instance of the baskteball class is active
 size_t gameStateShared::activeCourtInstance;  // stores which instance of the court is active
 basketballStateVecSharedPtr gameStateShared::basketballInstance;  // creates instance of the basketballs class
-std::map <size_t, courtStateSharedPtr> gameStateShared::courtInstance;  // stores the court instance
-std::map <size_t, hoopStateSharedPtr> gameStateShared::hoopInstance;  // creates instance of the hoop class
-std::map<size_t, playerStateSharedPtr> gameStateShared::playerInstance;  // stores the vector of the players loaded from the xml files
-std::map <size_t, teamStateSharedPtr>  gameStateShared::teamInstance;  // creates instance of the teamState class
+std::tr1::unordered_map <size_t, courtStateSharedPtr> gameStateShared::courtInstance;  // stores the court instance
+std::tr1::unordered_map <size_t, hoopStateSharedPtr> gameStateShared::hoopInstance;  // creates instance of the hoop class
+std::tr1::unordered_map<size_t, playerStateSharedPtr> gameStateShared::playerInstance;  // stores the vector of the players loaded from the xml files
+std::tr1::unordered_map <size_t, teamStateSharedPtr>  gameStateShared::teamInstance;  // creates instance of the teamState class
 jumpBallsSharedPtr gameStateShared::jumpBall; // instance that is used for jumpBall functions.
 float gameStateShared::yOffset; // stores the y offset for objects on the screen
 
@@ -299,11 +299,11 @@ void gameStateShared::setTeamWithBall(teamTypes set)  // sets the value of teamW
     teamWithBall = set;
 }
 
-std::map<size_t, teamStateSharedPtr> gameStateShared::getActiveTeamInstance()  // retrieves the value of activeTeamInstance
+std::tr1::unordered_map<size_t, teamStateSharedPtr> gameStateShared::getActiveTeamInstance()  // retrieves the value of activeTeamInstance
 {
     return (activeTeamInstance);
 }
-void gameStateShared::setActiveTeamInstance(std::map<size_t, teamStateSharedPtr> set)  // sets the value of activeTeamInstance
+void gameStateShared::setActiveTeamInstance(std::tr1::unordered_map<size_t, teamStateSharedPtr> set)  // sets the value of activeTeamInstance
 {
     activeTeamInstance = set;
 }

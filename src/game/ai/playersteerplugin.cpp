@@ -43,7 +43,7 @@ void playerSteerPlugin::open(void)
     std::vector<int> team0ActivePlayerID = activeTeamInstance[0].getActivePlayerID();
     std::vector<int> team1ActivePlayerID = activeTeamInstance[1].getActivePlayerID();
 */
-    std::vector <std::map <size_t, playerStateSharedPtr> > activePlayerInstance;
+    std::vector <std::tr1::unordered_map <size_t, playerStateSharedPtr> > activePlayerInstance;
     
     playerSteerVecSharedPtr allPlayerSteers = ai->getAllPlayerSteers();
 
@@ -179,7 +179,7 @@ void playerSteerPlugin::update(const float currentTime, const float elapsedTime)
 //    std::vector<int> team0ActivePlayerID = activeTeamInstance[0].getActivePlayerID();
 //    std::vector<int> team1ActivePlayerID = activeTeamInstance[1].getActivePlayerID();
 
-    std::vector<std::map <size_t, playerStateSharedPtr> > activePlayerInstance;
+    std::vector<std::tr1::unordered_map <size_t, playerStateSharedPtr> > activePlayerInstance;
 //	exit(0);
     // update simulation of test vehicle
 //    logMsg("team 0 activePlayerInstance size =  " +convert->toString(team0ActivePlayerInstance.size()));

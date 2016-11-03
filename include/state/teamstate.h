@@ -134,7 +134,7 @@ public:
     std::tr1::unordered_map <size_t, playerStateSharedPtr> getPlayerInstance();  // retrieves the value of playerInstance
     void setPlayerInstance(std::tr1::unordered_map<size_t, playerStateSharedPtr> set);  // sets the value of  playerInstance
 
-    std::map <size_t, playerStateSharedPtr> getActivePlayerInstance();  // retrieves the value of activePlayerInstance
+    std::tr1::unordered_map <size_t, playerStateSharedPtr> getActivePlayerInstance();  // retrieves the value of activePlayerInstance
     void setActivePlayerInstance(std::tr1::unordered_map <size_t, playerStateSharedPtr> set);  // sets the value of activePlayerInstance
 
     bool getPlayerInstancesCreated();  // retrieves the value of the playerInstancesCreated

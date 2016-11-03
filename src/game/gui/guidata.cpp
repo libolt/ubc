@@ -44,7 +44,7 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
 
-    std::map <size_t, courtStateSharedPtr>  courtInstance;
+    std::tr1::unordered_map <size_t, courtStateSharedPtr>  courtInstance;
     stdStringVec courtName;
 //    if (!gameS->getCourtInstancesCreated())
     if (base->getStateSetup())
@@ -128,8 +128,8 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 //    playerInstance = gameS->getPlayerInstance();
 //    gameS->setPlayerInstances(playerInstance);
     sizeTVec teamIDs = base->getGameS()->getTeamIDS();
-    std::map <size_t, teamStateSharedPtr> teamInstance = base->getGameS()->getActiveTeamInstance();
-    std::vector<std::map <size_t, playerStateSharedPtr> > playerInstance;
+    std::tr1::unordered_map <size_t, teamStateSharedPtr> teamInstance = base->getGameS()->getActiveTeamInstance();
+    std::vector<std::tr1::unordered_map <size_t, playerStateSharedPtr> > playerInstance;
 //    std::vector <boost::shared_ptr<playerState> > pInstance;
 //    pInstance = teamInstance[teamIDs[0]]->getPlayerInstance();
     auto x = 0;
@@ -589,7 +589,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
 
     boost::shared_ptr<loader> load(new loader);
 
-    std::map <size_t, teamStateSharedPtr> teamInstance; // = gameS->getTeamDataInstance();
+    std::tr1::unordered_map <size_t, teamStateSharedPtr> teamInstance; // = gameS->getTeamDataInstance();
 
 //    if (!base->getGameS()->getTeamInstancesCreated())
 //    {

@@ -177,6 +177,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         exit(0);
     }
     
+    logMsg(func + " teamInstance.size() = " +convert->toString(teamInstance.size()));
     //FIXME! This should not be hardcoded!
     x = 0;
     while (x < 2)

@@ -914,15 +914,22 @@ void GUISystem::teamsSelected()  // processes team selection
     //gameState *gameS = gameState::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
     
+    std::tr1::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance;
+    std::tr1::unordered_map <size_t, teamStateSharedPtr> teamInstance;
+    
+    teamInstance = base->getGameS()->getTeamInstance();
+    
     logMsg("GUISystem::teamsSelected()");
     sizeTVec teamID;
     teamID.push_back(teamSelectBox[0]->getIndexSelected());
     teamID.push_back(teamSelectBox[1]->getIndexSelected());
+    activeTeamInstance.insert(std::make_pair<size_t, teamStateSharedPtr>(0, teamInstance[0].get()));
 //    gameS->setTeamID(teamID);
     logMsg("teamSelectBox[0]->getIndexSelected() == " +convert->toString(teamSelectBox[0]->getIndexSelected()));
     logMsg("teamID[0] == " +convert->toString(teamID[0]));
 //    exit(0);
     base->getGameS()->setTeamIDS(teamID);
+    
     logMsg("Teams selected");
 //    exit(0);
 }

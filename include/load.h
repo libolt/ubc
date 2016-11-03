@@ -81,17 +81,17 @@ public:
     basketballStateVecSharedPtr getBInstance();  // retrieves the value of bInstance
     void setBInstance(basketballStateVecSharedPtr set);  // sets the value of bInstance
     
-    std::unordered_map <size_t, courtStateSharedPtr>  getCInstance();  // retrieves the value of cInstance
-    void setCInstance(std::unordered_map <size_t, courtStateSharedPtr>  set);  // sets the value of cInstance
+    std::tr1::unordered_map <size_t, courtStateSharedPtr>  getCInstance();  // retrieves the value of cInstance
+    void setCInstance(std::tr1::unordered_map <size_t, courtStateSharedPtr>  set);  // sets the value of cInstance
   
     offensePlaysVecSharedPtr getOPInstance();  // retrieves the value of opInstance
     void setOPInstance(offensePlaysVecSharedPtr set);  // sets the value of opInstance
     
-    std::unordered_map <size_t, playerStateSharedPtr> getPInstance();  // retrieves the value of pInstance
-    void setPInstance(std::unordered_map <size_t, playerStateSharedPtr> set);  // sets the value of pInstance
+    std::tr1::unordered_map <size_t, playerStateSharedPtr> getPInstance();  // retrieves the value of pInstance
+    void setPInstance(std::tr1::unordered_map <size_t, playerStateSharedPtr> set);  // sets the value of pInstance
     
-    static std::unordered_map <size_t, teamStateSharedPtr> getTInstance();  // retrieves the value of tInstance
-    void setTInstance(std::unordered_map <size_t, teamStateSharedPtr> set);  // sets the value of tInstance
+    static std::tr1::unordered_map <size_t, teamStateSharedPtr> getTInstance();  // retrieves the value of tInstance
+    void setTInstance(std::tr1::unordered_map <size_t, teamStateSharedPtr> set);  // sets the value of tInstance
     
     userInputVecSharedPtr getUIInstance();  // retrieves the value of uiInstance
     void setUIInstance(userInputVecSharedPtr set);  // sets the value of uiInstance
@@ -133,7 +133,7 @@ public:
     basketballStateSharedPtr loadBasketballFile(std::string fileName);  // loads data from the basketball XML files.
 
     // Courts
-    std::unordered_map <size_t, courtStateSharedPtr>  loadCourts();  // load court XML files
+    std::tr1::unordered_map <size_t, courtStateSharedPtr>  loadCourts();  // load court XML files
     stdStringVec loadCourtListFile(std::string fileName);  // load the list of courts from courts.xml
     courtStateSharedPtr loadCourtFile(std::string fileName);  // loads data from the court XML files.
 
@@ -143,12 +143,12 @@ public:
     offensePlaysSharedPtr loadOffensePlayFile(std::string fileName); // loads data from the offense play XML files
 
    // Players
-    std::unordered_map<size_t, playerStateSharedPtr> loadPlayers();  // loads player data from XML files
+    std::tr1::unordered_map<size_t, playerStateSharedPtr> loadPlayers();  // loads player data from XML files
     stdStringVec loadPlayerListFile(std::string fileName);  // loads list of player files from players.xml
     playerStateSharedPtr loadPlayerFile(std::string fileName);  // loads data from the player XML files
 
     // Teams
-    std::unordered_map <size_t, teamStateSharedPtr> loadTeams();  // loads team data from XML files
+    std::tr1::unordered_map <size_t, teamStateSharedPtr> loadTeams();  // loads team data from XML files
     stdStringVec loadTeamListFile(std::string fileName);  // loads list of team files from teams.xml
     teamStateSharedPtr loadTeamFile(std::string fileName);  // loads data from the team XML files
 
@@ -165,10 +165,10 @@ protected:
 
 private:
     static basketballStateVecSharedPtr bInstance;
-    static std::unordered_map <size_t, courtStateSharedPtr>  cInstance;
+    static std::tr1::unordered_map <size_t, courtStateSharedPtr>  cInstance;
     static offensePlaysVecSharedPtr opInstance;
-    static std::unordered_map <size_t, playerStateSharedPtr> pInstance;
-    static std::unordered_map <size_t, teamStateSharedPtr> tInstance;
+    static std::tr1::unordered_map <size_t, playerStateSharedPtr> pInstance;
+    static std::tr1::unordered_map <size_t, teamStateSharedPtr> tInstance;
     static userInputVecSharedPtr uiInstance;
 
     static stdStringVec basketballFiles;  // stores list of basketball xml files

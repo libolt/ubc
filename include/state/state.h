@@ -31,6 +31,9 @@ class state //: public UBCBase
     
     state();  // constructor
     
+    bool getInitialized();  // retrieves the value of initialized
+    void setInitialized(bool set);  // sets the value of initialized
+    
     bool getStateSet();  // retrieves the value of stateSet
     void setStateSet(bool set);  // sets the value of stateSet
 
@@ -41,7 +44,10 @@ class state //: public UBCBase
     bool resetState();  // resets the state of the object
     
     private:
-    bool stateSet;  // if true then the basketball state is set
+    
+    bool initialized;  // if true then tbe object has been initialized
+    
+    bool stateSet;  // if true then the state is set
 
 };
 #endif

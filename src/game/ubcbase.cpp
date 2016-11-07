@@ -100,7 +100,7 @@ bool UBCBase::setup()  // sets up the engine and states
 //    gameState *tempGameStateObj = new gameState;
     gameStateSharedPtr tempGameStateSharedPtr(new gameState);
     gameS = tempGameStateSharedPtr;
-
+    gameS->setInitialized(true);
     
 //    exit(0);
 //    networkState *tempNetworkStateObj = new networkState;

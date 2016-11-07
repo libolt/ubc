@@ -665,10 +665,27 @@ bool teamState::createPlayerInstances()
     }
     exit(0);
 */
+
+    logMsg("teamState::createPlayerInstances()!");
+//    exit(0);
+    if (base->getGameS()->getInitialized())
+    {
+        logMsg("teamState::createPlayerInstances() gameS initalized == true!");
+        exit(0);
+    }
+    else
+    {
+        logMsg("teamState::createPlayerInstances() gameS initalized == false!");
+        exit(0);
+    }
+    
     UBCBaseSharedPtr tempBase = base;
+    
     exit(0);
     gameStateSharedPtr gameS = base->getGameS();
     exit(0);
+    
+
     std::vector< sizeTVec > teamStarterID = base->getGameS()->getTeamStarterID();
     exit(0);
     std::tr1::unordered_map <size_t, playerStateSharedPtr> gamePlayerInstance = base->getGameS()->getPlayerInstance();

@@ -195,7 +195,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
             logMsg(func +" creating team " +convert->toString(x) +" playerInstances!");
             if (teamInstance[teamIDs[x]]->createPlayerInstances())
             {
-                exit(0);
+//                exit(0);
                 teamInstance[teamIDs[x]]->setPlayerInstancesCreated(true);
                 base->getGameS()->setTeamInstance(teamInstance);
             }
@@ -204,7 +204,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     }
     logMsg(func +" Bleert!");
     
-    exit(0);
+//    exit(0);
     logMsg(func +" teamInstance.size() == " +convert->toString(teamInstance.size()));
 /*    exit(0);
     logMsg("Team 0 player instances created ==  " +convert->toString(teamInstance[teamIDs[0]]->getPlayerInstancesCreated()));
@@ -289,7 +289,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         logMsg(func +" Player Instance Size = " +convert->toString(playerInstance.size()));
 //        logMsg("Player Instance 0 Size = " +convert->toString(playerInstance[0].size()));
     
-    exit(0);
+//    exit(0);
 //    for (size_t i = 0;i < playerInstance.size(); ++i)
     size_t i = 0;
     while (i < playerInstance.size())

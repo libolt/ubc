@@ -22,7 +22,17 @@
  
 state::state()  // constructor
 {
+    initialized = false;
 //    stateSet = false;
+}
+
+bool state::getInitialized()  // retrieves the value of initialized
+{
+    return (initialized);
+}
+void state::setInitialized(bool set)  // sets the value of initialized
+{
+    initialized = set;
 }
  
 bool state::getStateSet()  // retrieves the value of stateSet

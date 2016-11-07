@@ -53,6 +53,7 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
     }
     else
     {
+//        exit(0);
         logMsg("Base NOT STATE SETUP!!!");
         base->setup();
 //        exit(0);
@@ -133,7 +134,6 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 //    std::vector <boost::shared_ptr<playerState> > pInstance;
 //    pInstance = teamInstance[teamIDs[0]]->getPlayerInstance();
     auto x = 0;
-    
     std::string func = "addPlayerStartSelectionMenuData";
     logMsg(func);
     logMsg(func +" getGameS()->getTeamIDS().size() == " +convert->toString(base->getGameS()->getTeamIDS().size()));
@@ -176,7 +176,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         logMsg(func +" gameS PlayerInstance NOT Created!");
         exit(0);
     }
-    
+//    exit(0);
     logMsg(func + " teamInstance.size() = " +convert->toString(teamInstance.size()));
     //FIXME! This should not be hardcoded!
     x = 0;
@@ -185,14 +185,17 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         logMsg(func +" yabadaba");
         if (teamInstance[teamIDs[x]]->getPlayerInstancesCreated())
         {
+//            exit(0);
             logMsg(func +" teamInstance[teamIDs[" +convert->toString(x) +"]] playerInstances crested!");
             logMsg(func +" Team " +convert->toString(x) +" player instances created!");
         }
         else
         {
+//            exit(0);
             logMsg(func +" creating team " +convert->toString(x) +" playerInstances!");
             if (teamInstance[teamIDs[x]]->createPlayerInstances())
             {
+                exit(0);
                 teamInstance[teamIDs[x]]->setPlayerInstancesCreated(true);
                 base->getGameS()->setTeamInstance(teamInstance);
             }

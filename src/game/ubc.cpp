@@ -92,22 +92,32 @@ bool UBC::setup()  // sets up UBC object
         boost::shared_ptr<gameEngine> tempGameESharedPtr = boost::shared_ptr<gameEngine>(tempGameEObj);
         setGameE(tempGameESharedPtr);
     */
-
+//    exit(0);
         UBCBaseSharedPtr tempBaseSharedPtr(new UBCBase);
         base = tempBaseSharedPtr;
         if (!base->getStateSetup())
         {
             if (base->setup())
             {
+                GUISystemSharedPtr tempGUISharedPtr(new GUISystem);
+                gui = tempGUISharedPtr;
+                gui->setBase(base);
                 base->setStateSetup(true);
             }
-//            exit(0);
+            else
+            {
+                logMsg("Unable to setup base!");
+                exit(0);
+            }
         }
+        else
+        {
 //    exit(0);
     //    GUISystem *tempGUIObj = new GUISystem;
-        GUISystemSharedPtr tempGUISharedPtr(new GUISystem);
-        gui = tempGUISharedPtr;
-        gui->setBase(base);
+            GUISystemSharedPtr tempGUISharedPtr(new GUISystem);
+            gui = tempGUISharedPtr;
+            gui->setBase(base);
+        }
 //        exit(0);
 //        gui->getBase()->setGameS(base->getGameS());
 //        exit(0);

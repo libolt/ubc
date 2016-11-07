@@ -90,6 +90,7 @@ void UBCBase::setInputS(boost::shared_ptr<inputState> set)  // sets the value of
 
 bool UBCBase::setup()  // sets up the engine and states
 {
+//    exit(0);
     //    gameEngine *tempGameEObj = new gameEngine;
     gameEngineSharedPtr tempGameESharedPtr(new gameEngine);
     gameE = tempGameESharedPtr;

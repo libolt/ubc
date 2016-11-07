@@ -532,7 +532,7 @@ void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed)  // process
     else if (keyPressed == "t")
     {        
         logMsg("teamsSelected!");
-        exit(0);
+//        exit(0);
         teamsSelected();
         playerStartSelectionMenu();
     }
@@ -641,7 +641,8 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed)  // pro
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
     
 //    teamStateVecSharedPtr teamInstance = gameS->getTeamInstance();
-    logMsg("processGameSetupMenuKeyPress");
+    logMsg("processTeamSelectionMenuKeyPress");
+//    exit(0);
     if (keyPressed == "a" && !gameSetupMenuAwaySelected)
     {
         gameSetupAwaySelected();
@@ -671,6 +672,7 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed)  // pro
     else if (keyPressed == "t")
     {
         logMsg("yarp");
+//        exit(0);
         teamsSelected();
         playerStartSelectionMenu();
 //        exit(0);

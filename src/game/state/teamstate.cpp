@@ -446,7 +446,6 @@ void teamState::setTeamCollidesWith(size_t set) // sets the value of teamCollide
 ///    stateSet = set;
 ///}
 
-
 void teamState::setupState()    // sets up the state of the object
 {
     bool stateSet = this->getStateSet();
@@ -650,11 +649,28 @@ void teamState::updateState()   // updates the state of the object
 
 bool teamState::createPlayerInstances()
 {
-    
+//    exit(0);
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
+/*    gameStateSharedPtr gameS;
+    gameStateSharedPtr tempGameStateSharedPtr(new gameState);
+    base->setGameS(tempGameStateSharedPtr);
 
+    UBCBaseSharedPtr tempBaseSharedPtr(new UBCBase);
+    base = tempBaseSharedPtr;
+//    exit(0);
+    if (!base->getStateSetup())
+    {
+        exit(0);
+    }
+    exit(0);
+*/
+    UBCBaseSharedPtr tempBase = base;
+    exit(0);
+    gameStateSharedPtr gameS = base->getGameS();
+    exit(0);
     std::vector< sizeTVec > teamStarterID = base->getGameS()->getTeamStarterID();
+    exit(0);
     std::tr1::unordered_map <size_t, playerStateSharedPtr> gamePlayerInstance = base->getGameS()->getPlayerInstance();
 //  size_t x = 0;
     //  size_t playerID =
@@ -665,7 +681,7 @@ bool teamState::createPlayerInstances()
     std::string func = "teamState::createPlayerInstances()";
     
     logMsg(func +" team ID = " +convert->toString(getID()));
-    //exit(0);
+    exit(0);
     logMsg(func +" Creating players");
     
     if (base->getGameS()->getPlayerInstanceCreated())

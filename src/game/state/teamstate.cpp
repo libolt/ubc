@@ -665,13 +665,21 @@ bool teamState::createPlayerInstances()
     }
     exit(0);
 */
+    auto i = 0;
+    auto inc = 0;
+    std::string func = "teamState::createPlayerInstances()";
+    
+    std::vector< sizeTVec > teamStarterID = base->getGameS()->getTeamStarterID();
 
+    std::tr1::unordered_map <size_t, playerStateSharedPtr> gamePlayerInstance = base->getGameS()->getPlayerInstance();
+
+    
     logMsg("teamState::createPlayerInstances()!");
 //    exit(0);
     if (base->getGameS()->getInitialized())
     {
         logMsg("teamState::createPlayerInstances() gameS initalized == true!");
-        exit(0);
+//        exit(0);
     }
     else
     {
@@ -681,24 +689,31 @@ bool teamState::createPlayerInstances()
     
     UBCBaseSharedPtr tempBase = base;
     
-    exit(0);
+/*    exit(0);
     gameStateSharedPtr gameS = base->getGameS();
     exit(0);
-    
+*/    
 
-    std::vector< sizeTVec > teamStarterID = base->getGameS()->getTeamStarterID();
-    exit(0);
-    std::tr1::unordered_map <size_t, playerStateSharedPtr> gamePlayerInstance = base->getGameS()->getPlayerInstance();
-//  size_t x = 0;
+ /*    if (teamStarterID.size() > 0)
+    {
+        logMsg("teamState::createPlayerInstances() teamStarterID.size() == " +convert->toString(teamStarterID.size()));
+    }
+    else
+    {
+        logMsg("teamState::createPlayerInstances() teamStarterID.size() == 0");
+        exit(0);
+    }*/
+    
+//    exit(0);
+ //  size_t x = 0;
     //  size_t playerID =
 //    std::vector <playerData> playerN = player->getPlayer(); // copies Player values to playerN
     std::vector <playerState>::iterator playerIT;
 //    std::vector <playerState>::iterator pInstanceIT;
     
-    std::string func = "teamState::createPlayerInstances()";
     
     logMsg(func +" team ID = " +convert->toString(getID()));
-    exit(0);
+    
     logMsg(func +" Creating players");
     
     if (base->getGameS()->getPlayerInstanceCreated())
@@ -709,36 +724,37 @@ bool teamState::createPlayerInstances()
     else
     {
         logMsg(func + " teamGamePlayerInstance not created!");
-        return (false);
+//        return (false);
     }
-//        exit(0);
+    
+//    exit(0);
 //    for (playerIT = playerInstance.begin(); playerIT != playerInstance.end(); ++playerIT)   // loops through playerID std::vector
 //    size_t id = -1; // stores id for steer
-    auto i = 0;
-    auto inc = 0;
+    
     //    for (size_t i = 0;i < playerInstance.size(); ++i)
-   logMsg("gamePlayerInstance.size() i ==" +convert->toString(gamePlayerInstance.size()));
+    logMsg("gamePlayerInstance.size() i ==" +convert->toString(gamePlayerInstance.size()));
+    playerStateSharedPtr pInstance;
     while (i<gamePlayerInstance.size())
     {
         
-/*        if (getID() != 0)
+        if (getID() != 0)
         {
             logMsg("inc flam");
             ++inc;
             logMsg("inc == " +convert->toString(inc));
 //            exit(0);         
         }
-        playerStateSharedPtr pInstance;  // creates a new instance of playerState
+//        playerStateSharedPtr pInstance;  // creates a new instance of playerState
         
 //        playerSteerSharedPtr pSteer(new playerSteer); // steer instance
         
 //        boost::shared_ptr<playerPhysics> pPhysics(new playerPhysics);
         
         logMsg(func +" Player Team ID = " +convert->toString(gamePlayerInstance[i]->getTeamID()));
-//        exit(0);
+        exit(0);
         logMsg(func +" Team ID = " +convert->toString(getID()));      
 //        exit(0);
-        if (gamePlayerInstance[i]->getTeamID() == getID())  // checks if player is assigned to this team
+/*        if (gamePlayerInstance[i]->getTeamID() == getID())  // checks if player is assigned to this team
         {
             
 //            logMsg("i ==== " +convert->toString(i));
@@ -752,7 +768,7 @@ bool teamState::createPlayerInstances()
 
             logMsg(func +" playerInstance.push_back(pInstance);");
 
-            playerInstance.push_back(pInstance);    // adds pInstance to the playerInstance std::vector.
+            playerInstance.insert(std::pair<size_t, playerStateSharedPtr>(pInstance->getID(), pInstance));    // adds pInstance to the playerInstance std::vector.
 
             logMsg(func +" Player Model Name == " +gamePlayerInstance[i]->getEntityModelFileName());
 //            exit(0);
@@ -762,13 +778,13 @@ bool teamState::createPlayerInstances()
             logMsg(func +" player name = " +gamePlayerInstance[i]->getPlayerName());
 
 //            exit(0);
-            id += 1;
+//            id += 1;
 
         }
         else
         {
         }
-        */
+*/
         i++;
         logMsg("i ==== " +convert->toString(i));
 
@@ -778,6 +794,7 @@ bool teamState::createPlayerInstances()
     logMsg(func +" inc == " +convert->toString(inc));
  
     logMsg(func +" BAAAART!");
+    
 //    exit(0);
 //    std::vector <playerState>::iterator pInstanceIT;
 

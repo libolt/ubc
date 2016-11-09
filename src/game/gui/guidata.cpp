@@ -84,7 +84,7 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
             logMsg("Court Instances NOT Created!");
         }
     }
-
+    logMsg("fleeart!");
 //    exit(0);
 
 //    courtInstance = gameS->getCourtInstance();
@@ -340,7 +340,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     }
 
 //    exit(0);
-
+    
     overallRatingsSize = overallRatings[0].size();
     flag = 1;
     temp = 0;
@@ -438,6 +438,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     i = 0;
     while (i < playerNames[0].size())
     {
+        
         bool playerNameLengthReached = false;
         while (!playerNameLengthReached)
         {
@@ -458,6 +459,10 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         {
             teamPlayerPosSelectBox[0]["PG"]->addItem(playerNames[0][i]);
             team0IDs[0].push_back(playerIDs[0][i]);
+            logMsg(func +"dasdah");
+            exit(0);
+            logMsg(func +" PG == " +teamPlayerPosSelectBox[0]["PG"]->getItemNameAt(0));
+
 //            exit(0);
         }
         else if (playerPositionsPlayed[0][i] == "SG")
@@ -495,7 +500,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         ++i;
     }
 
-    exit(0);
+//    exit(0);
 
     logMsg(func +" PG == " +teamPlayerPosSelectBox[0]["PG"]->getItemNameAt(0));
     logMsg(func +" PG ID == " +convert->toString(team0IDs[0][0]));

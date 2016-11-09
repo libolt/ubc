@@ -734,27 +734,33 @@ bool teamState::createPlayerInstances()
     //    for (size_t i = 0;i < playerInstance.size(); ++i)
     logMsg("gamePlayerInstance.size() i ==" +convert->toString(gamePlayerInstance.size()));
     playerStateSharedPtr pInstance;
+    
+//    if (getID() == 1)
+//    {
     while (i<gamePlayerInstance.size())
-    {
+    {              
         
-        if (getID() != 0)
-        {
-            logMsg("inc flam");
-            ++inc;
-            logMsg("inc == " +convert->toString(inc));
+        logMsg("inc flam");
+        ++inc;
+//        logMsg("ID != 0 inc == " +convert->toString(inc));
+
 //            exit(0);         
-        }
+        
 //        playerStateSharedPtr pInstance;  // creates a new instance of playerState
         
 //        playerSteerSharedPtr pSteer(new playerSteer); // steer instance
         
 //        boost::shared_ptr<playerPhysics> pPhysics(new playerPhysics);
         
+        logMsg(func +" Player Name = " +gamePlayerInstance[i]->getFirstName() +" " +gamePlayerInstance[i]->getLastName());
+
         logMsg(func +" Player Team ID = " +convert->toString(gamePlayerInstance[i]->getTeamID()));
-        exit(0);
-        logMsg(func +" Team ID = " +convert->toString(getID()));      
 //        exit(0);
-/*        if (gamePlayerInstance[i]->getTeamID() == getID())  // checks if player is assigned to this team
+        logMsg(func +" Team ID = " +convert->toString(getID()));   
+        logMsg(func +" Player ID = " +convert->toString(gamePlayerInstance[i]->getID()));
+
+//        exit(0);
+        if (gamePlayerInstance[i]->getTeamID() == getID())  // checks if player is assigned to this team
         {
             
 //            logMsg("i ==== " +convert->toString(i));
@@ -784,12 +790,15 @@ bool teamState::createPlayerInstances()
         else
         {
         }
-*/
+
         i++;
         logMsg("i ==== " +convert->toString(i));
-
+        
+        
 //        logMsg(func +" team ID = " +convert->toString(getID()) +" i == " +convert->toString(i));
     }
+//    }
+    
     logMsg(func +" i final == " +convert->toString(i));
     logMsg(func +" inc == " +convert->toString(inc));
  

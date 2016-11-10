@@ -734,7 +734,7 @@ bool teamState::createPlayerInstances()
     
     //    for (size_t i = 0;i < playerInstance.size(); ++i)
     logMsg("gamePlayerInstance.size() i ==" +convert->toString(gamePlayerInstance.size()));
-    playerStateSharedPtr pInstance;
+//    playerStateSharedPtr pInstance;
     
 //    if (getID() == 1)
 //    {
@@ -752,14 +752,14 @@ bool teamState::createPlayerInstances()
 //        playerSteerSharedPtr pSteer(new playerSteer); // steer instance
         
 //        boost::shared_ptr<playerPhysics> pPhysics(new playerPhysics);
-        
+/*        
         logMsg(func +" Player Name = " +gamePlayerInstance[i]->getFirstName() +" " +gamePlayerInstance[i]->getLastName());
 
         logMsg(func +" Player Team ID = " +convert->toString(gamePlayerInstance[i]->getTeamID()));
 //        exit(0);
         logMsg(func +" Team ID = " +convert->toString(getID()));   
         logMsg(func +" Player ID = " +convert->toString(gamePlayerInstance[i]->getID()));
-
+*/
 //        exit(0);
         if (gamePlayerInstance[i]->getTeamID() == getID())  // checks if player is assigned to this team
         {
@@ -767,16 +767,16 @@ bool teamState::createPlayerInstances()
 //            logMsg("i ==== " +convert->toString(i));
 //            exit(0);
             
-            logMsg(func +" pInstance = gamePlayerInstance[i];");
-            pInstance = gamePlayerInstance[i];
+//            logMsg(func +" pInstance = gamePlayerInstance[i];");
+//            pInstance = gamePlayerInstance[i];
             logMsg(func +" pInstance->setTeamType(teamType);");
 
 //            pInstance->setTeamType(teamType);  // sets the team number the player belongs to            
 
             logMsg(func +" playerInstance.push_back(pInstance);");
 
-            playerInstance.insert(std::pair<size_t, playerStateSharedPtr>(pInstance->getID(), pInstance));    // adds pInstance to the playerInstance std::vector.
-
+            playerInstance.insert(std::pair<size_t, playerStateSharedPtr>(gamePlayerInstance[i]->getID(), gamePlayerInstance[i]));    // adds pInstance to the playerInstance std::vector.
+/*
             logMsg(func +" Player Model Name == " +gamePlayerInstance[i]->getEntityModelFileName());
 //            exit(0);
             logMsg(func +" teamID!!!!");
@@ -786,7 +786,7 @@ bool teamState::createPlayerInstances()
 
 //            exit(0);
 //            id += 1;
-
+*/
         }
         else
         {

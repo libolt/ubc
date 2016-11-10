@@ -300,9 +300,15 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     
 //    exit(0);
 //    for (size_t i = 0;i < playerInstance.size(); ++i)
-    size_t i = 0;
+    auto i = 0;
     while (i < playerInstance.size())
     {
+        auto j = 0;
+        while (j < playerInstance[i].size())
+        {
+            logMsg(func +" j === ");
+            logMsg(func +" j === " +convert->toString(j));
+            
         
         logMsg(func +" Player Instance[i] Size = " +convert->toString(playerInstance[i].size()));
 //        logMsg("pDTeam = " +convert->toString(playerInstance[i][0]->getTeamID()));
@@ -311,9 +317,9 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         logMsg(func +" teamID == " +convert->toString(base->getGameS()->getTeamIDS()[1]));
 //        exit(0);
 //        if (playerInstance[i]->getTeamID() == gameS->getTeamID()[0])
-       if (base->getGameS()->getPlayerInstance()[i]->getTeamID() == base->getGameS()->getTeamIDS()[0])
-
+        if (base->getGameS()->getPlayerInstance()[i]->getTeamID() == base->getGameS()->getTeamIDS()[0])
         {
+            
 //            size_t overallRating = playerInstance[i]->getOverallRating();
             size_t overallRating = base->getGameS()->getPlayerInstance()[i]->getOverallRating();
             std::string playerOverallRating = convert->toString(overallRating);
@@ -329,6 +335,8 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
             playerPositionsPlayed[0].push_back(playerPosition);
             playerIDs[0].push_back(playerID);
             overallRatings[0].push_back(overallRating);
+            logMsg("playerPositionsPlayed[0].size() == " +convert->toString(playerPositionsPlayed[0].size()));
+            
         }
 
         if (base->getGameS()->getPlayerInstance()[i]->getTeamID() == base->getGameS()->getTeamIDS()[1])
@@ -345,10 +353,12 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
             playerIDs[1].push_back(playerID);
             overallRatings[1].push_back(overallRating);
         }
+        ++j;
+        }
         ++i;
     }
-
-//    exit(0);
+    
+    exit(0);
     
     overallRatingsSize = overallRatings[0].size();
     flag = 1;
@@ -443,7 +453,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 
     size_t startID = 0;
     logMsg(func +" playerNames[0].size() == " +convert->toString(playerNames[0].size()));
-    
+//    exit(0);
     i = 0;
     while (i < playerNames[0].size())
     {
@@ -464,6 +474,8 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         logMsg(func +" playerNames[0][i] == " +playerNames[0][i]);
 
         std::string PName;
+//        logMsg("playerPositionsPlayed[0].size() == " +convert->toString(playerPositionsPlayed[0].size()));
+        logMsg("playerPositionsPlayed[0][i] == " +playerPositionsPlayed[0][i]);
         if (playerPositionsPlayed[0][i] == "PG")
         {
             teamPlayerPosSelectBox[0]["PG"]->addItem(playerNames[0][i]);
@@ -476,6 +488,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         }
         else if (playerPositionsPlayed[0][i] == "SG")
         {
+            exit(0);
             logMsg(func +" ++");
             teamPlayerPosSelectBox[0]["SG"]->addItem(playerNames[0][i]);
             team0IDs[1].push_back(playerIDs[0][i]);

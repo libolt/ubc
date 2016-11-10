@@ -665,14 +665,15 @@ bool teamState::createPlayerInstances()
     }
     exit(0);
 */
+//    exit(0);
     auto i = 0;
     auto inc = 0;
     std::string func = "teamState::createPlayerInstances()";
     
     std::vector< sizeTVec > teamStarterID = base->getGameS()->getTeamStarterID();
-
+//    exit(0);
     std::tr1::unordered_map <size_t, playerStateSharedPtr> gamePlayerInstance = base->getGameS()->getPlayerInstance();
-
+//    exit(0);
     
     logMsg("teamState::createPlayerInstances()!");
 //    exit(0);

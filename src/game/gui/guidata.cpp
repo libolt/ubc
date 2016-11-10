@@ -33,6 +33,8 @@
 #include "engine/renderengine.h"
 #include "data/teamdata.h"
 
+#include "easylogging++.h"
+
 #ifdef __ANDROID__
 #include "android-config.h"
 #else
@@ -178,13 +180,18 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     }
 //    exit(0);
     logMsg(func + " teamInstance.size() = " +convert->toString(teamInstance.size()));
+     LOG(INFO) << func + " teamInstance.size() = " +convert->toString(teamInstance.size());
     //FIXME! This should not be hardcoded!
     x = 0;
-    exit(0);
+//    exit(0);
     while (x < 2)
     {
         logMsg(func +" yabadaba");
-        if (teamInstance[teamIDs[x]]->getPlayerInstancesCreated())
+        LOG(INFO) << convert->toString(teamIDs.size());
+        LOG(INFO) << convert->toString(teamInstance[x]->getPlayerInstancesCreated());
+//        exit(0);
+//        if (teamInstance[teamIDs[x]]->getPlayerInstancesCreated())
+        if (teamInstance[x]->getPlayerInstancesCreated())
         {
 //            exit(0);
             logMsg(func +" teamInstance[teamIDs[" +convert->toString(x) +"]] playerInstances crested!");
@@ -194,7 +201,8 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         {
 //            exit(0);
             logMsg(func +" creating team " +convert->toString(x) +" playerInstances!");
-            if (teamInstance[teamIDs[x]]->createPlayerInstances())
+//            teamInstance[x]->setBase(base);
+            if (teamInstance[x]->createPlayerInstances())
             {
 //                exit(0);
                 teamInstance[teamIDs[x]]->setPlayerInstancesCreated(true);
@@ -205,7 +213,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     }
     logMsg(func +" Bleert!");
     
-    exit(0);
+//    exit(0);
     logMsg(func +" teamInstance.size() == " +convert->toString(teamInstance.size()));
 /*    exit(0);
     logMsg("Team 0 player instances created ==  " +convert->toString(teamInstance[teamIDs[0]]->getPlayerInstancesCreated()));
@@ -461,7 +469,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
             teamPlayerPosSelectBox[0]["PG"]->addItem(playerNames[0][i]);
             team0IDs[0].push_back(playerIDs[0][i]);
             logMsg(func +"dasdah");
-            exit(0);
+//            exit(0);
             logMsg(func +" PG == " +teamPlayerPosSelectBox[0]["PG"]->getItemNameAt(0));
 
 //            exit(0);

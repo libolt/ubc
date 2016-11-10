@@ -25,7 +25,8 @@
 
 #include "Ogre.h"
 #include "engine/renderengine.h"
- 
+#include "easylogging++.h"
+
 boost::shared_ptr<logging> logging::pInstance;
 
 boost::shared_ptr<logging> logging::Instance()
@@ -66,10 +67,12 @@ void logging::logMessage(std::string msg)  // logs a message to appropriate outp
     __android_log_print(ANDROID_LOG_DEBUG, "com.libolt.ubc", msg.c_str());
 #else
 
-    if (ogreRootInitialized)
+/*    if (ogreRootInitialized)
     {
         Ogre::LogManager::getSingletonPtr()->logMessage(msg);
     }
+*/
+    LOG(INFO) << msg;
 #endif
 
 }

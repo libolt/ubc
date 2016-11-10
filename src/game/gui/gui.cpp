@@ -928,7 +928,9 @@ void GUISystem::teamsSelected()  // processes team selection
     teamID.push_back(teamSelectBox[1]->getIndexSelected());
     activeTeamInstance.insert(std::pair<size_t, teamStateSharedPtr>(teamID[0], teamInstance[teamID[0]]));
     activeTeamInstance.insert(std::pair<size_t, teamStateSharedPtr>(teamID[1], teamInstance[teamID[1]]));
-
+    // sets the base class of the teamInstance objects to the same as the GUI which avoids crashes due to uninitialized boost::shared_ptrs
+    activeTeamInstance[0]->setBase(base);
+    activeTeamInstance[1]->setBase(base);
     
     //    gameS->setTeamID(teamID);
     logMsg("teamSelectBox[0]->getIndexSelected() == " +convert->toString(teamSelectBox[0]->getIndexSelected()));

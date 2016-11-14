@@ -724,8 +724,16 @@ bool teamState::createPlayerInstances()
     }
     else
     {
-        logMsg(func + " teamGamePlayerInstance not created!");
-//        return (false);
+        if (base->getGameS()->createPlayerInstances())
+        {
+            logMsg(func + "teamGamePlayerInstance created!!!");
+        }
+        else
+        {
+            logMsg(func + " teamGamePlayerInstance not created!");
+            return (false);
+
+        }
     }
     
 //    exit(0);

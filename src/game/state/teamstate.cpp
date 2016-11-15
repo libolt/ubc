@@ -672,7 +672,7 @@ bool teamState::createPlayerInstances()
     
     std::vector< sizeTVec > teamStarterID = base->getGameS()->getTeamStarterID();
 //    exit(0);
-    std::tr1::unordered_map <size_t, playerStateSharedPtr> gamePlayerInstance = base->getGameS()->getPlayerInstance();
+    std::tr1::unordered_map <size_t, playerStateSharedPtr> gamePlayerInstance;
 //    exit(0);
     
     logMsg("teamState::createPlayerInstances()!");
@@ -719,14 +719,22 @@ bool teamState::createPlayerInstances()
     
     if (base->getGameS()->getPlayerInstanceCreated())
     {
+        gamePlayerInstance = base->getGameS()->getPlayerInstance();
+
         logMsg(func +" GamePlayerInstance created!");
         logMsg(func +" gamePlayerInstance size = " +convert->toString(gamePlayerInstance.size()));
+//        exit(0);
     }
     else
     {
         if (base->getGameS()->createPlayerInstances())
         {
+            gamePlayerInstance = base->getGameS()->getPlayerInstance();
+
             logMsg(func + "teamGamePlayerInstance created!!!");
+            logMsg(func +" gamePlayerInstance size = " +convert->toString(gamePlayerInstance.size()));
+
+//            exit(0);
         }
         else
         {
@@ -741,14 +749,15 @@ bool teamState::createPlayerInstances()
 //    size_t id = -1; // stores id for steer
     
     //    for (size_t i = 0;i < playerInstance.size(); ++i)
-    logMsg("gamePlayerInstance.size() i ==" +convert->toString(gamePlayerInstance.size()));
+    logMsg("gamePlayerInstance.size() i == " +convert->toString(gamePlayerInstance.size()));
+//    exit(0);
 //    playerStateSharedPtr pInstance;
     
 //    if (getID() == 1)
 //    {
     while (i<gamePlayerInstance.size())
     {              
-        
+        auto ID = 0;
         logMsg("inc flam");
         ++inc;
 //        logMsg("ID != 0 inc == " +convert->toString(inc));
@@ -769,9 +778,16 @@ bool teamState::createPlayerInstances()
         logMsg(func +" Player ID = " +convert->toString(gamePlayerInstance[i]->getID()));
 */
 //        exit(0);
+//        logMsg(func +" Player Team ID == " +convert->toString(gamePlayerInstance[i]->getTeamID()));
+
+//        logMsg(func +" Team ID == " +convert->toString(getID()));   
+ 
         if (gamePlayerInstance[i]->getTeamID() == getID())  // checks if player is assigned to this team
         {
-            
+            logMsg(func +" Player Team ID == " +convert->toString(gamePlayerInstance[i]->getTeamID()));
+
+            logMsg(func +" Team ID == " +convert->toString(getID()));   
+
 //            logMsg("i ==== " +convert->toString(i));
 //            exit(0);
             
@@ -782,8 +798,9 @@ bool teamState::createPlayerInstances()
 //            pInstance->setTeamType(teamType);  // sets the team number the player belongs to            
 
             logMsg(func +" playerInstance.push_back(pInstance);");
-
-            playerInstance.insert(std::pair<size_t, playerStateSharedPtr>(gamePlayerInstance[i]->getID(), gamePlayerInstance[i]));    // adds pInstance to the playerInstance std::vector.
+            playerInstance.insert(std::pair<size_t, playerStateSharedPtr>(ID, gamePlayerInstance[i]));    // adds pInstance to the playerInstance std::vector.
+            logMsg(func +"Team ID == " +convert->toString(getID()) +" playerInstance[" +convert->toString(ID) +"]->getFirstName() == " +playerInstance[ID]->getFirstName());
+            ++ID;
 /*
             logMsg(func +" Player Model Name == " +gamePlayerInstance[i]->getEntityModelFileName());
 //            exit(0);
@@ -800,17 +817,17 @@ bool teamState::createPlayerInstances()
         {
         }
 
-        i++;
+        ++i;
         logMsg("i ==== " +convert->toString(i));
         
         
 //        logMsg(func +" team ID = " +convert->toString(getID()) +" i == " +convert->toString(i));
     }
 //    }
-    
+//    exit(0);
     logMsg(func +" i final == " +convert->toString(i));
     logMsg(func +" inc == " +convert->toString(inc));
- 
+
     logMsg(func +" BAAAART!");
     
 //    exit(0);
@@ -830,8 +847,16 @@ bool teamState::createPlayerInstances()
         logMsg("activePlayerID.size() == 0");
 //        exit(0);
     }
-    logMsg(func +" activePlayerInstance.size() = " +convert->toString(playerInstance.size()));
+    logMsg(func +" playerInstance.size() = " +convert->toString(playerInstance.size()));
+    auto s = 0;
+    while (s < gamePlayerInstance.size())
+    {
+        logMsg(func +" gamePlayerInstance[" +convert->toString(s) +"]->getFirstName() = " +gamePlayerInstance[s]->getFirstName());
+        ++s;
+    }
+//    logMsg(func +" playerInstance[1]->getFirstName() = " +playerInstance[1]->getFirstName());
 
+//    exit(0);
     bool IDMatch = false;
 //            for (size_t j=0;j<playerInstance.size();++j)
     while (x < playerInstance.size())

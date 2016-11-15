@@ -150,6 +150,9 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 //            teamInstance[x]->setBase(base);
             if (activeTeamInstance[x]->createPlayerInstances())
             {
+                logMsg("activeTeamInstance[x]->createPlayerInstances()");
+                logMsg("activeTeamInstance[x]->getPlayerInstance().size() == " +convert->toString(activeTeamInstance[x]->getPlayerInstance().size()));
+//                exit(0);
                 activeTeamInstance[teamIDs[x]]->setPlayerInstancesCreated(true);
                 base->getGameS()->setActiveTeamInstance(activeTeamInstance);
             }
@@ -163,27 +166,37 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 
        ++x;
     }
+    logMsg("playerInstance.size() == " +convert->toString(playerInstance.size()));
+    logMsg("playerInstance[0].size() == " +convert->toString(playerInstance[0].size()));
 
+//    exit(0);
     auto i = 0;
     while (i < playerInstance.size())
     {
         auto j = 0;
         while (j < playerInstance[i].size())
         {
+            logMsg("j == " +convert->toString(j));
             std::string playerName = playerInstance[i][j]->getFirstName() +" " +playerInstance[i][j]->getLastName() +" " +convert->toString(playerInstance[i][i]->getPrimaryPosition()); // +"            "; // +playerOverallRating;
-            exit(0);
+            logMsg("playerName == " +playerName);
+//            exit(0);
             switch (playerInstance[i][j]->getPrimaryPosition())
             {
                 case PG:
-                teamPlayerPosSelectBox[i]["PG"]->addItem(playerName);
-                logMsg("playerName == " +playerName);
-                exit(0);
+                    teamPlayerPosSelectBox[i]["PG"]->addItem(playerName);
+                    logMsg("PG playerName == " +playerName);
+                break;
+                case SG:
+                    teamPlayerPosSelectBox[i]["SG"]->addItem(playerName);                
+                    logMsg("SG playerName == " +playerName);
+                break;
+//                exit(0);
             }
-
 
 //            teamPlayerPosSelectBox.insert(i,playerInstance[i].)
             ++j;
         }
+        exit(0);
         ++i;
     }
 }

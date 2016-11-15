@@ -179,28 +179,52 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
             logMsg("j == " +convert->toString(j));
             std::string playerName = playerInstance[i][j]->getFirstName() +" " +playerInstance[i][j]->getLastName() +" " +convert->toString(playerInstance[i][j]->getPrimaryPosition()); // +"            "; // +playerOverallRating;
             logMsg("playerName == " +playerName);
+                            
+//            size_t overallRating = base->getGameS()->getPlayerInstance()[i]->getOverallRating();
+            std::string playerOverallRating = convert->toString(playerInstance[i][j]->getOverallRating());
+            bool playerNameLengthReached = false;
+            std::string playerPosition = convert->toString(playerInstance[i][j]->getPrimaryPosition());
+            size_t playerID = playerInstance[i][j]->getID();
+
+//            playerNames[1].push_back(playerName);
+//            playerPositionsPlayed[1].push_back(playerPosition);
+//            playerIDs[1].push_back(playerID);
+//            overallRatings[1].push_back(overallRating);
+  
 //            exit(0);
             switch (playerInstance[i][j]->getPrimaryPosition())
             {
                 case PG:
                     teamPlayerPosSelectBox[i]["PG"]->addItem(playerName);
+//                    teamPlayerRating[i]["PG"]->setCaption(playerOverallRating);
                     logMsg("PG playerName == " +playerName);
+                    logMsg("PG playerRating == " +playerOverallRating);
                 break;
                 case SG:
-                    teamPlayerPosSelectBox[i]["SG"]->addItem(playerName);                
+                    teamPlayerPosSelectBox[i]["SG"]->addItem(playerName);         
+//                    teamPlayerRating[i]["SG"]->setCaption(playerOverallRating);
                     logMsg("SG playerName == " +playerName);
+                    logMsg("SG playerRating == " +playerOverallRating);
+ 
                 break;
                 case SF:
                     teamPlayerPosSelectBox[i]["SF"]->addItem(playerName);
+//                    teamPlayerRating[i]["SF"]->addItem(playerOverallRating);
                     logMsg("SF playerName == " +playerName);
+                    logMsg("SF playerRating == " +playerOverallRating);
                 break;
                 case PF:
                     teamPlayerPosSelectBox[i]["PF"]->addItem(playerName);
+//                    teamPlayerRating[i]["PF"]->addItem(playerOverallRating);
                     logMsg("PF playerName == " +playerName);
+                    logMsg("PF playerRating == " +playerOverallRating);
+  
                 break;
                 case C:
                     teamPlayerPosSelectBox[i]["C"]->addItem(playerName);
+//                    teamPlayerRating[i]["C"]->addItem(playerOverallRating);
                     logMsg("C playerName == " +playerName);
+                    logMsg("C playerRating == " +playerOverallRating);
                 break;
 //                exit(0);
             }
@@ -398,7 +422,7 @@ void GUISystem::addPlayerStartSelectionMenuData_old()  // adds data to Player St
         auto j = 0;
         while (j < playerInstance[i].size())
         {
-/*            logMsg("playerInstance[i][j].getFirstName() == " +playerInstance[i][j]->getFirstName());
+            logMsg("playerInstance[i][j].getFirstName() == " +playerInstance[i][j]->getFirstName());
             logMsg(func +" j === ");
             logMsg(func +" j === " +convert->toString(j));
             
@@ -432,8 +456,8 @@ void GUISystem::addPlayerStartSelectionMenuData_old()  // adds data to Player St
                 logMsg("playerPositionsPlayed[0].size() == " +convert->toString(playerPositionsPlayed[0].size()));
 
             }
-*/
-/*            if (base->getGameS()->getPlayerInstance()[i]->getTeamID() == base->getGameS()->getTeamIDS()[1])
+
+            if (base->getGameS()->getPlayerInstance()[i]->getTeamID() == base->getGameS()->getTeamIDS()[1])
             {
                 size_t overallRating = base->getGameS()->getPlayerInstance()[i]->getOverallRating();
                 std::string playerOverallRating = convert->toString(overallRating);
@@ -446,7 +470,7 @@ void GUISystem::addPlayerStartSelectionMenuData_old()  // adds data to Player St
                 playerPositionsPlayed[1].push_back(playerPosition);
                 playerIDs[1].push_back(playerID);
                 overallRatings[1].push_back(overallRating);
-            }*/
+            }
             ++j;
         }
         ++i;

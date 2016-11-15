@@ -649,14 +649,14 @@ void GUISystem::playerStartSelectionMenu()  // displays player start selection m
 //        exit(0);
         logMsg("createPlayerStartSelectionMenuGUI!");
         addPlayerStartSelectionMenuData();
-        exit(0);
+//        exit(0);
         playerStartSelectionMenuCreated = true;
     }
-    exit(0);
+//    exit(0);
     setSelectedIndexes();
     changeActiveMenu(PLAYERSTART);
     logMsg("playerStartSelectionMenu");
-    exit(0);
+//    exit(0);
 }
 
 void GUISystem::teamSelectionMenu()  // displays team selection menu
@@ -952,7 +952,7 @@ void GUISystem::playerStartSelected()  // process player start selection
 //    teamStateVecSharedPtr  activeTeamInstance = gameS->getActiveTeamInstance();
 
     logMsg("GUISystem::playerStartSelected");
-        exit(0);
+//        exit(0);
     stdStringVec team0Starters;
     stdStringVec team1Starters;
     sizeTVec starters; // used for initial creatio  of teamStarterID vector
@@ -1014,7 +1014,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     {
         teamPlayerPosSelectBox[1]["C"]->setIndexSelected(0);
     }
-    
+    exit(0);
     //FIXME! Should be converted into a loop to iterate 
     
 //    teamStarterID[0][0] = team0IDs[0][team0PGSelectBox->getIndexSelected()];
@@ -1192,7 +1192,7 @@ void GUISystem::playerStartSelected()  // process player start selection
 //        exit(0);
     hideActiveMenuWidgets();
     menuActive = false;
-//    exit(0);
+    exit(0);
 
 }
 

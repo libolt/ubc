@@ -333,7 +333,7 @@ void GUISystem::showPlayerStartSelectionMenuWidgets()  // shows all widgets tied
     teamPlayerPosSelectBox[0]["C"]->setVisible(true);
     teamPlayerPosSelectBox[0]["C"]->setPosition((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.21 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
-    teamPlayerPosSelectBox[0]["PG"]->setVisible(true);
+/*    teamPlayerPosSelectBox[0]["PG"]->setVisible(true);
     teamPlayerPosSelectBox[0]["PG"]->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.05 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 //    teamPlayerPosSelectBox[0]["PG"]->setTextColour(MyGUI::Colour("Red"));
 //    teamPlayerPosSelectBox[0]["PG"]->setCaption("99");
@@ -349,7 +349,7 @@ void GUISystem::showPlayerStartSelectionMenuWidgets()  // shows all widgets tied
 
     teamPlayerPosSelectBox[0]["PG"]->setVisible(true);
     teamPlayerPosSelectBox[0]["PG"]->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.21 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
-
+*/
 
 // FIXME! needs image loaded to work
 //    team0Logo->setVisible(true);
@@ -373,7 +373,7 @@ void GUISystem::showPlayerStartSelectionMenuWidgets()  // shows all widgets tied
     teamPlayerPosSelectBox[1]["C"]->setVisible(true);
     teamPlayerPosSelectBox[1]["C"]->setPosition((0.5 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.21 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
-    teamPlayerPosSelectBox[1]["PG"]->setVisible(true);
+/*    teamPlayerPosSelectBox[1]["PG"]->setVisible(true);
     teamPlayerPosSelectBox[1]["PG"]->setPosition((0.8 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.21 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
 
     teamPlayerPosSelectBox[1]["SG"]->setVisible(true);
@@ -387,7 +387,7 @@ void GUISystem::showPlayerStartSelectionMenuWidgets()  // shows all widgets tied
 
     teamPlayerPosSelectBox[1]["C"]->setVisible(true);
     teamPlayerPosSelectBox[1]["C"]->setPosition((0.8 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.21 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
-
+*/
 // FIXME! needs image loaded to work
 //    team1Logo->setVisible(true);
 

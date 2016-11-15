@@ -956,10 +956,21 @@ void GUISystem::playerStartSelected()  // process player start selection
     stdStringVec team0Starters;
     stdStringVec team1Starters;
     sizeTVec starters; // used for initial creatio  of teamStarterID vector
-    std::tr1::unordered_map <size_t, playerStateSharedPtr> playerInstance;
+    std::tr1::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance = base->getGameS()->getActiveTeamInstance();
+  
+    std::vector<std::tr1::unordered_map <size_t, playerStateSharedPtr> > playerInstance;
     std::tr1::unordered_map <size_t, playerStateSharedPtr> activePlayerInstance;
-
     size_t IDs = 0;
+    
+    auto x = 0;
+    while (x < activeTeamInstance.size())
+    {
+        playerInstance.push_back(activeTeamInstance[x]->getPlayerInstance());
+        ++x;
+    }
+//    playerInstance = base->getGameS()->getActiveTeamInstance()[0]->getPlayerInstance();
+
+    
     while (teamStarterID.size() < 2)
     {
         teamStarterID.push_back(starters);
@@ -1014,12 +1025,26 @@ void GUISystem::playerStartSelected()  // process player start selection
     {
         teamPlayerPosSelectBox[1]["C"]->setIndexSelected(0);
     }
-    exit(0);
+    
     //FIXME! Should be converted into a loop to iterate 
     
 //    teamStarterID[0][0] = team0IDs[0][team0PGSelectBox->getIndexSelected()];
-    team0Starters.push_back(teamPlayerPosSelectBox[0]["PG"]->getItemNameAt(teamPlayerPosSelectBox[0]["PG"]->getIndexSelected()));
-    teamStarterID[0][0] = team0IDs[0][teamPlayerPosSelectBox[0]["PG"]->getIndexSelected()];
+    team0Starters.push_back(teamPlayerPosSelectBox[0]["PG"]->getItemNameAt(teamPlayerPosSelectBox[0]["PG"]->getIndexSelected()));  
+    logMsg("team0Starters[0] == " +team0Starters[0]);
+    x = 0;
+    while (x < playerInstance[0].size())
+    {
+        std::string playerName = playerInstance[0][x]->getFirstName() +" " +playerInstance[0][x]->getLastName();
+        if (playerName == team0Starters[0])
+        {
+            logMsg("playerName == " +playerName);
+        }
+        ++x;
+    }
+    
+    //    teamStarterID[0][0] = [
+                          //team0IDs[0][teamPlayerPosSelectBox[0]["PG"]->getIndexSelected()];
+    exit(0);
     logMsg("teamStarterID[0][0] = " +convert->toString(teamStarterID[0][0]));
     team0Starters.push_back(teamPlayerPosSelectBox[0]["SG"]->getItemNameAt(teamPlayerPosSelectBox[0]["SG"]->getIndexSelected()));
     teamStarterID[0][1] = team0IDs[1][teamPlayerPosSelectBox[0]["SG"]->getIndexSelected()];
@@ -1044,17 +1069,16 @@ void GUISystem::playerStartSelected()  // process player start selection
     logMsg("teamStarterID[1][2] = " +convert->toString(teamStarterID[1][2]));
     team1Starters.push_back(teamPlayerPosSelectBox[1]["PF"]->getItemNameAt(teamPlayerPosSelectBox[1]["PF"]->getIndexSelected()));
     teamStarterID[1][3] = team1IDs[3][teamPlayerPosSelectBox[1]["PF"]->getIndexSelected()];
-    
     logMsg("teamStarterID[1][3] = " +convert->toString(teamStarterID[1][3]));
     team1Starters.push_back(teamPlayerPosSelectBox[1]["C"]->getItemNameAt(teamPlayerPosSelectBox[1]["C"]->getIndexSelected()));
     teamStarterID[1][4] = team1IDs[4][teamPlayerPosSelectBox[1]["C"]->getIndexSelected()];
     logMsg("teamStarterID[1][4] = " +convert->toString(teamStarterID[1][4]));
-
+    exit(0);
 //    gameS->setTeamStarterID(teamStarterID); // sets the selected starters for both teams in gameState class
     base->getGameS()->setTeamStarterID(teamStarterID); // sets the selected starters for both teams in gameState class
     
     sizeTVec activePlayerID;
-    size_t x = 0;
+    x = 0;
     logMsg("activePlayerID!");
     while (x < 5)
     {
@@ -1077,7 +1101,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     }
     playerInstance.clear();
     activePlayerInstance.clear();
-    playerInstance = base->getGameS()->getActiveTeamInstance()[0]->getPlayerInstance();
+/*    playerInstance = base->getGameS()->getActiveTeamInstance()[0]->getPlayerInstance();
     auto y = 0;
     logMsg("GUI playerInstance.size() = " +convert->toString(playerInstance.size()));
     
@@ -1117,6 +1141,7 @@ void GUISystem::playerStartSelected()  // process player start selection
         }
         i++;
     }
+    
     activePlayerID.clear();
     for (size_t x=0;x<5;++x)
     {
@@ -1173,7 +1198,7 @@ void GUISystem::playerStartSelected()  // process player start selection
         }
         i++;
     }
-
+    */
     if (base->getGameS()->getActiveTeamInstance()[0]->getPlayerInstancesCreated() && base->getGameS()->getActiveTeamInstance()[1]->getPlayerInstancesCreated())
     {
 ///        base->getGameS()->setActiveTeamInstance(activeTeamInstance);  // sets the activeTeamInstance vector

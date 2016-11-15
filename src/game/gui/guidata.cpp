@@ -177,7 +177,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         while (j < playerInstance[i].size())
         {
             logMsg("j == " +convert->toString(j));
-            std::string playerName = playerInstance[i][j]->getFirstName() +" " +playerInstance[i][j]->getLastName() +" " +convert->toString(playerInstance[i][j]->getPrimaryPosition()); // +"            "; // +playerOverallRating;
+            std::string playerName = playerInstance[i][j]->getFirstName() +" " +playerInstance[i][j]->getLastName(); // +"            "; // +playerOverallRating;
             logMsg("playerName == " +playerName);
                             
 //            size_t overallRating = base->getGameS()->getPlayerInstance()[i]->getOverallRating();

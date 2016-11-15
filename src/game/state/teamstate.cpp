@@ -755,9 +755,10 @@ bool teamState::createPlayerInstances()
     
 //    if (getID() == 1)
 //    {
+    auto ID = 0;
+
     while (i<gamePlayerInstance.size())
     {              
-        auto ID = 0;
         logMsg("inc flam");
         ++inc;
 //        logMsg("ID != 0 inc == " +convert->toString(inc));
@@ -787,7 +788,7 @@ bool teamState::createPlayerInstances()
             logMsg(func +" Player Team ID == " +convert->toString(gamePlayerInstance[i]->getTeamID()));
 
             logMsg(func +" Team ID == " +convert->toString(getID()));   
-
+            logMsg(func +"ID === " +convert->toString(ID));
 //            logMsg("i ==== " +convert->toString(i));
 //            exit(0);
             
@@ -848,6 +849,7 @@ bool teamState::createPlayerInstances()
 //        exit(0);
     }
     logMsg(func +" playerInstance.size() = " +convert->toString(playerInstance.size()));
+//    exit(0);
     auto s = 0;
     while (s < gamePlayerInstance.size())
     {

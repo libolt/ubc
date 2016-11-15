@@ -177,7 +177,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         while (j < playerInstance[i].size())
         {
             logMsg("j == " +convert->toString(j));
-            std::string playerName = playerInstance[i][j]->getFirstName() +" " +playerInstance[i][j]->getLastName() +" " +convert->toString(playerInstance[i][i]->getPrimaryPosition()); // +"            "; // +playerOverallRating;
+            std::string playerName = playerInstance[i][j]->getFirstName() +" " +playerInstance[i][j]->getLastName() +" " +convert->toString(playerInstance[i][j]->getPrimaryPosition()); // +"            "; // +playerOverallRating;
             logMsg("playerName == " +playerName);
 //            exit(0);
             switch (playerInstance[i][j]->getPrimaryPosition())
@@ -190,15 +190,27 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
                     teamPlayerPosSelectBox[i]["SG"]->addItem(playerName);                
                     logMsg("SG playerName == " +playerName);
                 break;
+                case SF:
+                    teamPlayerPosSelectBox[i]["SF"]->addItem(playerName);
+                    logMsg("SF playerName == " +playerName);
+                break;
+                case PF:
+                    teamPlayerPosSelectBox[i]["PF"]->addItem(playerName);
+                    logMsg("PF playerName == " +playerName);
+                break;
+                case C:
+                    teamPlayerPosSelectBox[i]["C"]->addItem(playerName);
+                    logMsg("C playerName == " +playerName);
+                break;
 //                exit(0);
             }
 
 //            teamPlayerPosSelectBox.insert(i,playerInstance[i].)
             ++j;
         }
-        exit(0);
         ++i;
     }
+//    exit(0);
 }
 
 void GUISystem::addPlayerStartSelectionMenuData_old()  // adds data to Player Start Selection Menu widgets

@@ -41,10 +41,6 @@
 #include "SDL_main.h"
 #endif
 
-#include "easylogging++.h"
-
-INITIALIZE_EASYLOGGINGPP
-
 // static declarations 
 boost::shared_ptr<UBCBase> UBC::base;  // static copy of base class
 
@@ -647,7 +643,6 @@ int main(int argc, char *argv[])
 //    boost::shared_ptr<GUISystem> gui = ubc.getGui();
 //    exit(0);
 
-    LOG(INFO) << "My first info log using default logger";
 //    exit(0);
     ubc->setup();
 //    exit(0);

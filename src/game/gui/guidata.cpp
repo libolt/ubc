@@ -33,7 +33,7 @@
 #include "engine/renderengine.h"
 #include "data/teamdata.h"
 
-#include "easylogging++.h"
+//#include "easylogging++.h"
 
 #ifdef __ANDROID__
 #include "android-config.h"
@@ -296,15 +296,14 @@ void GUISystem::addPlayerStartSelectionMenuData_old()  // adds data to Player St
     }
 //    exit(0);
     logMsg(func + " teamInstance.size() = " +convert->toString(teamInstance.size()));
-     LOG(INFO) << func + " teamInstance.size() = " +convert->toString(teamInstance.size());
     //FIXME! This should not be hardcoded!
     x = 0;
 //    exit(0);
     while (x < 2)
     {
         logMsg(func +" yabadaba");
-        LOG(INFO) << convert->toString(teamIDs.size());
-        LOG(INFO) << convert->toString(teamInstance[x]->getPlayerInstancesCreated());
+        logMsg(convert->toString(teamIDs.size()));
+        logMsg(convert->toString(teamInstance[x]->getPlayerInstancesCreated()));
 //        exit(0);
 //        if (teamInstance[teamIDs[x]]->getPlayerInstancesCreated())
         if (teamInstance[x]->getPlayerInstancesCreated())

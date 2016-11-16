@@ -211,7 +211,7 @@ std::vector< stdStringVec > GUISystem::playerPositionsPlayed;
 std::vector< sizeTVec > GUISystem::playerIDs;  // stores player IDs for each team
 std::vector< sizeTVec > GUISystem::team0IDs;
 std::vector< sizeTVec > GUISystem::team1IDs;
-std::vector< sizeTVec > GUISystem::teamStarterID; // stores the selected starters for each team 
+std::vector<std::tr1::unordered_map<playerPositions, size_t> > GUISystem::teamStarterID; // stores the selected starters for each team 
 
 size_t GUISystem::displayCount;
 
@@ -971,7 +971,7 @@ void GUISystem::playerStartSelected()  // process player start selection
 //    playerInstance = base->getGameS()->getActiveTeamInstance()[0]->getPlayerInstance();
 
     
-    while (teamStarterID.size() < 2)
+/*    while (teamStarterID.size() < 2)
     {
         teamStarterID.push_back(starters);
     }
@@ -983,7 +983,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     {
         teamStarterID[1].push_back(IDs);
     }
-    
+*/
     // checks to make sure that all player selectBoxes have a valid index value
     if (teamPlayerPosSelectBox[0]["PG"]->getIndexSelected() < 0 || teamPlayerPosSelectBox[0]["PG"]->getIndexSelected() > teamPlayerPosSelectBox[0]["PG"]->getItemCount())
     {
@@ -1038,6 +1038,7 @@ void GUISystem::playerStartSelected()  // process player start selection
         if (playerName == team0Starters[0])
         {
             logMsg("playerName == " +playerName);
+            teamStarterID[0].insert(std::pair<playerPositions, size_t>(playerInstance[0][x]->getPrimaryPosition(), playerInstance[0][x]->getID()));
         }
         ++x;
     }

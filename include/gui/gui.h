@@ -464,12 +464,12 @@ private:
     static activeMenus activeMenu;  // stores which menu is being displayed
     static activeMenus previousActiveMenu;  // stores which menu was last displayed
 
-    static std::vector< stdStringVec > playerNames;
-    static std::vector< stdStringVec > playerPositionsPlayed;
-    static std::vector< sizeTVec > playerIDs;  // stores player IDs for each team
-    static std::vector< sizeTVec > team0IDs;
-    static std::vector< sizeTVec > team1IDs;
-    static std::vector< sizeTVec > teamStarterID; // stores the selected starters for each team 
+    static std::vector<stdStringVec> playerNames;
+    static std::vector<stdStringVec> playerPositionsPlayed;
+    static std::vector<sizeTVec> playerIDs;  // stores player IDs for each team
+    static std::vector<sizeTVec> team0IDs;
+    static std::vector<sizeTVec> team1IDs;
+    static std::vector<std::tr1::unordered_map<playerPositions, size_t> > teamStarterID; // stores the selected starters for each team 
 
     static size_t displayCount;
 };

@@ -47,7 +47,7 @@ bool gameStateShared::tipOffComplete;  // Determines whether or not game Tip Off
 gameTypes gameStateShared::gameType;  // Indicates whether a single or multi player game is being played.
 quarters gameStateShared::quarter;  // stores the quarter currently being played
 sizeTVec gameStateShared::teamIDS;  // std::vector that stores the IDs of the 2 teams currently playing
-std::vector< sizeTVec > gameStateShared::teamStarterID;  // stores the selected starters for each team
+std::vector<std::tr1::unordered_map<playerPositions, size_t> > gameStateShared::teamStarterID;  // stores the selected starters for each team
 Ogre::Vector3 gameStateShared::bballNodePosition;  // stores a copy of the basketball node position
 teamTypes gameStateShared::teamWithBall;  // store which team has the basketball
 std::tr1::unordered_map <size_t, teamStateSharedPtr> gameStateShared::activeTeamInstance;  // stores active team instance
@@ -127,11 +127,11 @@ void gameStateShared::setTeamIDS(sizeTVec set)  // sets the value of teamIDS
     teamIDS = set;
 }
 
-std::vector< sizeTVec > gameStateShared::getTeamStarterID()  // retrieves value of teamStarterID
+std::vector<std::tr1::unordered_map<playerPositions, size_t> > gameStateShared::getTeamStarterID()  // retrieves value of teamStarterID
 {
     return (teamStarterID);
 }
-void gameStateShared::setTeamStarterID(std::vector< sizeTVec > set)  // sets the value of teamStarterID
+void gameStateShared::setTeamStarterID(std::vector<std::tr1::unordered_map<playerPositions, size_t> > set)  // sets the value of teamStarterID
 {
     teamStarterID = set;
 }

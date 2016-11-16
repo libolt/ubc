@@ -239,9 +239,9 @@ class playerState : public state, public playerEntity, public playerData
 
 //        size_t ID;  // stores the unique ID of the player.
 
-        playerPositions primaryPosition;  // stores the primary position of the player
+//        playerPositions primaryPosition;  // stores the primary position of the player
         
-        playerPositions secondaryPosition;  // stores the secondary position of the player
+//        playerPositions secondaryPosition;  // stores the secondary position of the player
 
         playerPositions activePosition;  // stores the active position of the player
 

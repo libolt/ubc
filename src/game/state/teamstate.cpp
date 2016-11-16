@@ -670,7 +670,7 @@ bool teamState::createPlayerInstances()
     auto inc = 0;
     std::string func = "teamState::createPlayerInstances()";
     
-    std::vector<std::tr1::unordered_map<playerPositions, size_t> > teamStarterID = base->getGameS()->getTeamStarterID();
+    std::vector<std::tr1::unordered_map<std::string, size_t> > teamStarterID = base->getGameS()->getTeamStarterID();
 //    exit(0);
     std::tr1::unordered_map <size_t, playerStateSharedPtr> gamePlayerInstance;
 //    exit(0);
@@ -926,7 +926,7 @@ void teamState::setPlayerStartPositions()   // sets the initial coordinates for 
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 //    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
 
-    std::vector<std::tr1::unordered_map<playerPositions, size_t> > teamStarterID = base->getGameS()->getTeamStarterID();
+    std::vector<std::tr1::unordered_map<std::string, size_t> > teamStarterID = base->getGameS()->getTeamStarterID();
 
     OgreVector3Vec startingPos;
     directions playerDirection; // stores the direction players face at start

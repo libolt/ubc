@@ -33,6 +33,7 @@
 #include "logging.h"
 #include "engine/renderengine.h"
 #include "data/teamdata.h"
+#include "enums.h"
 
 #ifdef __ANDROID__
 #include "android-config.h"
@@ -211,7 +212,7 @@ std::vector< stdStringVec > GUISystem::playerPositionsPlayed;
 std::vector< sizeTVec > GUISystem::playerIDs;  // stores player IDs for each team
 std::vector< sizeTVec > GUISystem::team0IDs;
 std::vector< sizeTVec > GUISystem::team1IDs;
-std::vector<std::tr1::unordered_map<playerPositions, size_t> > GUISystem::teamStarterID; // stores the selected starters for each team 
+std::vector<std::tr1::unordered_map<std::string, size_t> > GUISystem::teamStarterID; // stores the selected starters for each team 
 
 size_t GUISystem::displayCount;
 
@@ -1038,7 +1039,7 @@ void GUISystem::playerStartSelected()  // process player start selection
         if (playerName == team0Starters[0])
         {
             logMsg("playerName == " +playerName);
-            teamStarterID[0].insert(std::pair<playerPositions, size_t>(playerInstance[0][x]->getPrimaryPosition(), playerInstance[0][x]->getID()));
+            teamStarterID[0].insert(std::pair<std::string, size_t>(convert->toString(playerInstance[0][x]->getPrimaryPosition()), playerInstance[0][x]->getID()));
         }
         ++x;
     }
@@ -1046,8 +1047,8 @@ void GUISystem::playerStartSelected()  // process player start selection
     //    teamStarterID[0][0] = [
                           //team0IDs[0][teamPlayerPosSelectBox[0]["PG"]->getIndexSelected()];
     exit(0);
-    logMsg("teamStarterID[0][0] = " +convert->toString(teamStarterID[0][PG]));
-    team0Starters.push_back(teamPlayerPosSelectBox[0]["SG"]->getItemNameAt(teamPlayerPosSelectBox[0]["SG"]->getIndexSelected()));
+    logMsg("teamStarterID[0][0] = " +convert->toString(teamStarterID[0]["PG"]));
+/*    team0Starters.push_back(teamPlayerPosSelectBox[0]["SG"]->getItemNameAt(teamPlayerPosSelectBox[0]["SG"]->getIndexSelected()));
     teamStarterID[0][1] = team0IDs[1][teamPlayerPosSelectBox[0]["SG"]->getIndexSelected()];
     logMsg("teamStarterID[0][1] = " +convert->toString(teamStarterID[0][1]));
     team0Starters.push_back(teamPlayerPosSelectBox[0]["SF"]->getItemNameAt(teamPlayerPosSelectBox[0]["SF"]->getIndexSelected()));
@@ -1074,6 +1075,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     team1Starters.push_back(teamPlayerPosSelectBox[1]["C"]->getItemNameAt(teamPlayerPosSelectBox[1]["C"]->getIndexSelected()));
     teamStarterID[1][4] = team1IDs[4][teamPlayerPosSelectBox[1]["C"]->getIndexSelected()];
     logMsg("teamStarterID[1][4] = " +convert->toString(teamStarterID[1][4]));
+*/
     exit(0);
 //    gameS->setTeamStarterID(teamStarterID); // sets the selected starters for both teams in gameState class
     base->getGameS()->setTeamStarterID(teamStarterID); // sets the selected starters for both teams in gameState class
@@ -1081,12 +1083,13 @@ void GUISystem::playerStartSelected()  // process player start selection
     sizeTVec activePlayerID;
     x = 0;
     logMsg("activePlayerID!");
-    while (x < 5)
+/*    while (x < 5)
     {
         activePlayerID.push_back(teamStarterID[0][x]);
         logMsg("activePlayerID = " +convert->toString(activePlayerID[x]));
         ++x;
     }
+*/
 //    exit(0);
     base->getGameS()->getActiveTeamInstance()[0]->setActivePlayerID(activePlayerID);
     if (!base->getGameS()->getActiveTeamInstance()[0]->getPlayerInstancesCreated())    // checks if playerInstances have been created
@@ -1212,9 +1215,10 @@ void GUISystem::playerStartSelected()  // process player start selection
         exit(0);
     }
 
-    logMsg("team 0 C selectbox id = " +convert->toString(teamStarterID[0][1]));
+/*    logMsg("team 0 C selectbox id = " +convert->toString(teamStarterID[0][1]));
     logMsg("team 0 starter 0 = " +convert->toString(teamStarterID[0][0]));
     logMsg("team  0 starter 0 = " +team0Starters[0]);
+*/
 //        exit(0);
     hideActiveMenuWidgets();
     menuActive = false;

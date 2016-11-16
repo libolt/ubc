@@ -1046,7 +1046,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     //    teamStarterID[0][0] = [
                           //team0IDs[0][teamPlayerPosSelectBox[0]["PG"]->getIndexSelected()];
     exit(0);
-    logMsg("teamStarterID[0][0] = " +convert->toString(teamStarterID[0][0]));
+    logMsg("teamStarterID[0][0] = " +convert->toString(teamStarterID[0][PG]));
     team0Starters.push_back(teamPlayerPosSelectBox[0]["SG"]->getItemNameAt(teamPlayerPosSelectBox[0]["SG"]->getIndexSelected()));
     teamStarterID[0][1] = team0IDs[1][teamPlayerPosSelectBox[0]["SG"]->getIndexSelected()];
     logMsg("teamStarterID[0][1] = " +convert->toString(teamStarterID[0][1]));

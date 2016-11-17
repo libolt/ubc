@@ -954,8 +954,10 @@ void GUISystem::playerStartSelected()  // process player start selection
 
     logMsg("GUISystem::playerStartSelected");
 //        exit(0);
-    stdStringVec team0Starters;
-    stdStringVec team1Starters;
+    std::vector<std::tr1::unordered_map <std::string, std::string> > teamStarters;
+    std::tr1::unordered_map <std::string, std::string> tempStarters;
+    teamStarters.push_back(tempStarters);
+    teamStarters.push_back(tempStarters);
     sizeTVec starters; // used for initial creatio  of teamStarterID vector
     std::tr1::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance = base->getGameS()->getActiveTeamInstance();
   
@@ -1030,24 +1032,82 @@ void GUISystem::playerStartSelected()  // process player start selection
     //FIXME! Should be converted into a loop to iterate 
     
 //    teamStarterID[0][0] = team0IDs[0][team0PGSelectBox->getIndexSelected()];
-    team0Starters.push_back(teamPlayerPosSelectBox[0]["PG"]->getItemNameAt(teamPlayerPosSelectBox[0]["PG"]->getIndexSelected()));  
-    logMsg("team0Starters[0] == " +team0Starters[0]);
-    x = 0;
-    while (x < playerInstance[0].size())
+    auto w = 0;
+    while (w < teamStarters.size())
     {
-        std::string playerName = playerInstance[0][x]->getFirstName() +" " +playerInstance[0][x]->getLastName();
-        if (playerName == team0Starters[0])
-        {
-            logMsg("playerName == " +playerName);
-            teamStarterID[0].insert(std::pair<std::string, size_t>(convert->toString(playerInstance[0][x]->getPrimaryPosition()), playerInstance[0][x]->getID()));
-        }
-        ++x;
+        teamStarters[w].insert(std::pair<std::string, std::string>("PG", teamPlayerPosSelectBox[w]["PG"]->getItemNameAt(teamPlayerPosSelectBox[w]["PG"]->getIndexSelected())));  
+        teamStarters[w].insert(std::pair<std::string, std::string>("SG", teamPlayerPosSelectBox[w]["SG"]->getItemNameAt(teamPlayerPosSelectBox[w]["SG"]->getIndexSelected())));  
+        teamStarters[w].insert(std::pair<std::string, std::string>("SF", teamPlayerPosSelectBox[w]["SF"]->getItemNameAt(teamPlayerPosSelectBox[w]["SF"]->getIndexSelected())));  
+        teamStarters[w].insert(std::pair<std::string, std::string>("PF", teamPlayerPosSelectBox[w]["PF"]->getItemNameAt(teamPlayerPosSelectBox[w]["PF"]->getIndexSelected())));  
+        teamStarters[w].insert(std::pair<std::string, std::string>("C", teamPlayerPosSelectBox[w]["C"]->getItemNameAt(teamPlayerPosSelectBox[w]["C"]->getIndexSelected())));  
+        ++w;
     }
-    
+    logMsg("teamStarters[0][SF] == " +teamStarters[0]["SF"]);
+//    exit(0);
+    std::tr1::unordered_map<std::string, size_t> tempStarterID;
+
+    while (teamStarterID.size() < 2)
+    {
+        teamStarterID.push_back(tempStarterID);
+    }
+    w = 0;
+    while (w < teamStarterID.size())
+    {
+        while (x < playerInstance[w].size())
+        {
+            std::string playerName = playerInstance[w][x]->getFirstName() +" " +playerInstance[w][x]->getLastName();
+            logMsg("playerName == " +playerName);
+            logMsg("Primary Position == " +convert->toString(playerInstance[w][x]->getPrimaryPosition()));
+            logMsg("Player ID == " +convert->toString( playerInstance[w][x]->getID()));
+            if (playerName == "Brian Darlford")
+            {
+                logMsg("teamStarters[0][SF] == " +teamStarters[0]["SG"]);
+                logMsg("Woot!");
+                exit(0);
+            }
+            auto y = 0;
+            if (playerName == teamStarters[w]["PG"])
+            {
+                logMsg("PG Player ID == " +convert->toString(playerInstance[w][x]->getID()));
+                teamStarterID[w].insert(std::pair<std::string, size_t>("PG", playerInstance[w][x]->getID()));               
+            }
+            else if (playerName == teamStarters[w]["SG"])
+            {
+                logMsg("SG Player ID == " +convert->toString(playerInstance[w][x]->getID()));
+                
+                teamStarterID[w].insert(std::pair<std::string, size_t>("SG", playerInstance[w][x]->getID()));    
+//                logMsg("teamStarterID[w][SG] Player ID == " +convert->toString(teamStarterID[w][SG]));
+          
+            }
+            else if (playerName == teamStarters[w]["SF"])
+            {
+                logMsg("SF Player ID == " +convert->toString(playerInstance[w][x]->getID()));  
+                teamStarterID[w].insert(std::pair<std::string, size_t>("SF", playerInstance[w][x]->getID()));               
+            }
+            else if (playerName == teamStarters[w]["PF"])
+            {
+                logMsg("PF Player ID == " +convert->toString(playerInstance[w][x]->getID()));
+                teamStarterID[w].insert(std::pair<std::string, size_t>("PF", playerInstance[w][x]->getID()));               
+            }
+            else if (playerName == teamStarters[w]["C"])
+            {
+                logMsg("C Player ID == " +convert->toString(playerInstance[w][x]->getID()));
+                teamStarterID[w].insert(std::pair<std::string, size_t>("C", playerInstance[w][x]->getID()));               
+            }
+            ++x;
+        }
+        ++w;
+    }
     //    teamStarterID[0][0] = [
                           //team0IDs[0][teamPlayerPosSelectBox[0]["PG"]->getIndexSelected()];
+    
+    logMsg("teamStarterID[0][PG] = " +convert->toString(teamStarterID[0]["PG"]));
+    logMsg("teamStarterID[0][SG] = " +convert->toString(teamStarterID[0]["SG"]));
+    logMsg("teamStarterID[0][SF] = " +convert->toString(teamStarterID[0]["SF"]));
+    logMsg("teamStarterID[0][PF] = " +convert->toString(teamStarterID[0]["PF"]));
+    logMsg("teamStarterID[0][C] = " +convert->toString(teamStarterID[0]["C"]));
+
     exit(0);
-    logMsg("teamStarterID[0][0] = " +convert->toString(teamStarterID[0]["PG"]));
 /*    team0Starters.push_back(teamPlayerPosSelectBox[0]["SG"]->getItemNameAt(teamPlayerPosSelectBox[0]["SG"]->getIndexSelected()));
     teamStarterID[0][1] = team0IDs[1][teamPlayerPosSelectBox[0]["SG"]->getIndexSelected()];
     logMsg("teamStarterID[0][1] = " +convert->toString(teamStarterID[0][1]));

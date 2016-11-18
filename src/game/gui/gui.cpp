@@ -1056,12 +1056,12 @@ void GUISystem::playerStartSelected()  // process player start selection
         while (x < playerInstance[w].size())
         {
             std::string playerName = playerInstance[w][x]->getFirstName() +" " +playerInstance[w][x]->getLastName();
-            logMsg("playerName == " +playerName);
+            logMsg("playerInstance playerName == " +playerName);
             logMsg("Primary Position == " +convert->toString(playerInstance[w][x]->getPrimaryPosition()));
             logMsg("Player ID == " +convert->toString( playerInstance[w][x]->getID()));
             if (playerName == "Brian Darlford")
             {
-                logMsg("teamStarters[0][SF] == " +teamStarters[0]["SG"]);
+                logMsg("teamStarters[0][SF] == " +teamStarters[0]["SF"]);
                 logMsg("Woot!");
                 exit(0);
             }

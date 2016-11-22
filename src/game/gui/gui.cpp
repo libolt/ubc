@@ -969,8 +969,15 @@ void GUISystem::playerStartSelected()  // process player start selection
     while (x < activeTeamInstance.size())
     {
         playerInstance.push_back(activeTeamInstance[x]->getPlayerInstance());
+        auto y = 0;
+        while (y < activeTeamInstance[1]->getPlayerInstance().size())
+        {
+            logMsg(activeTeamInstance[1]->getPlayerInstance()[y]->getFirstName() +" " +activeTeamInstance[x]->getPlayerInstance()[y]->getLastName());
+            ++y;
+        }
         ++x;
     }
+    exit(0);
 //    playerInstance = base->getGameS()->getActiveTeamInstance()[0]->getPlayerInstance();
 
     

@@ -861,8 +861,16 @@ bool teamState::createPlayerInstances()
 //    exit(0);
     bool IDMatch = false;
 //            for (size_t j=0;j<playerInstance.size();++j)
+    x = 0;
     while (x < playerInstance.size())
     {
+        logMsg("ts::cp Team ID == " +convert->toString(ID) +" playerName == " +playerInstance[x]->getFirstName() +" " +playerInstance[x]->getLastName());
+        ++x;
+    }
+    x = 0;
+    while (x < playerInstance.size())
+    {
+        
         auto i = 0;
 //        while (!IDMatch && x < playerInstance.size())
         logMsg(func +" activePlayerID.size() == " +convert->toString(activePlayerID.size()));

@@ -38,7 +38,7 @@
 #include <android/asset_manager.h>
 #include <android/asset_manager_jni.h>
 
-#include "Android/OgreAndroidEGLWindow.h"
+//#include "Android/OgreAndroidEGLWindow.h"
 #include "Android/OgreAPKFileSystemArchive.h"
 #include "Android/OgreAPKZipArchive.h"
 

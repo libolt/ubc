@@ -743,7 +743,15 @@ bool teamState::createPlayerInstances()
 
         }
     }
-    
+    i = 0;
+    while (i<gamePlayerInstance.size())
+    {            
+        if (gamePlayerInstance[i]->getTeamID() == 0)
+        {
+            logMsg("gamePlayerInstance Team ID = " +convert->toString(gamePlayerInstance[i]->getTeamID()) + "PLAYERNAME == " +gamePlayerInstance[i]->getFirstName() +" " +gamePlayerInstance[i]->getLastName());
+        }
+        ++i;
+    }
 //    exit(0);
 //    for (playerIT = playerInstance.begin(); playerIT != playerInstance.end(); ++playerIT)   // loops through playerID std::vector
 //    size_t id = -1; // stores id for steer
@@ -756,7 +764,7 @@ bool teamState::createPlayerInstances()
 //    if (getID() == 1)
 //    {
     auto ID = 0;
-
+    i = 0;
     while (i<gamePlayerInstance.size())
     {              
         logMsg("inc flam");
@@ -780,9 +788,9 @@ bool teamState::createPlayerInstances()
 */
 //        exit(0);
 //        logMsg(func +" Player Team ID == " +convert->toString(gamePlayerInstance[i]->getTeamID()));
+        
 
-//        logMsg(func +" Team ID == " +convert->toString(getID()));   
- 
+        
         if (gamePlayerInstance[i]->getTeamID() == getID())  // checks if player is assigned to this team
         {
             logMsg(func +" Player Team ID == " +convert->toString(gamePlayerInstance[i]->getTeamID()));
@@ -791,7 +799,11 @@ bool teamState::createPlayerInstances()
             logMsg(func +"ID === " +convert->toString(ID));
 //            logMsg("i ==== " +convert->toString(i));
 //            exit(0);
-            
+            if (getID() == 1)
+            {
+                logMsg("ts::cp Team ID == " +convert->toString(getID()));   
+//               exit (0);
+            }
 //            logMsg(func +" pInstance = gamePlayerInstance[i];");
 //            pInstance = gamePlayerInstance[i];
             logMsg(func +" pInstance->setTeamType(teamType);");
@@ -824,6 +836,18 @@ bool teamState::createPlayerInstances()
         
 //        logMsg(func +" team ID = " +convert->toString(getID()) +" i == " +convert->toString(i));
     }
+    
+    if (getID() == 1)
+    {
+        i = 0;
+        while (i<playerInstance.size())
+        {            
+          logMsg("playerInstance Team ID = " +convert->toString(playerInstance[i]->getTeamID()) + "PLAYERNAME == " +playerInstance[i]->getFirstName() +" " +playerInstance[i]->getLastName());
+           ++i;
+        }
+        exit(0);
+    }
+//    exit (0);
 //    }
 //    exit(0);
     logMsg(func +" i final == " +convert->toString(i));
@@ -861,11 +885,15 @@ bool teamState::createPlayerInstances()
 //    exit(0);
     bool IDMatch = false;
 //            for (size_t j=0;j<playerInstance.size();++j)
-    x = 0;
-    while (x < playerInstance.size())
+    if (getID() == 1)
     {
-        logMsg("ts::cp Team ID == " +convert->toString(ID) +" playerName == " +playerInstance[x]->getFirstName() +" " +playerInstance[x]->getLastName());
-        ++x;
+        x = 0;
+       while (x < playerInstance.size())
+       {
+            logMsg("ts::cp Team ID == " +convert->toString(getID()) +" playerName == " +playerInstance[x]->getFirstName() +" " +playerInstance[x]->getLastName());
+            ++x;
+       }
+       exit(0);
     }
     x = 0;
     while (x < playerInstance.size())

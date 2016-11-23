@@ -33,7 +33,7 @@
 #include "OgreRenderWindow.h"
 #include "OgreStringConverter.h"
 #include "RTShaderHelper.h"
-#include "Android/OgreAndroidEGLWindow.h"
+//#include "Android/OgreAndroidEGLWindow.h"
 #include "Android/OgreAPKFileSystemArchive.h"
 #include "Android/OgreAPKZipArchive.h"
 

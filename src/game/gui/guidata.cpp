@@ -132,6 +132,13 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     auto x = 0;
     while (x < activeTeamInstance.size())
     {
+        logMsg("activeTeamInstance[" +convert->toString(x) +"] ID == " +convert->toString(activeTeamInstance[x]->getID()));
+        ++x;
+    }
+//    exit(0);
+    x = 0;
+    while (x < activeTeamInstance.size())
+    {
         logMsg(func +" yabadaba");
         logMsg(convert->toString(teamIDs.size()));
         logMsg(convert->toString(activeTeamInstance[x]->getPlayerInstancesCreated()));
@@ -153,7 +160,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
                 logMsg("activeTeamInstance[x]->createPlayerInstances()");
                 logMsg("activeTeamInstance[x]->getPlayerInstance().size() == " +convert->toString(activeTeamInstance[x]->getPlayerInstance().size()));
 //                exit(0);
-                activeTeamInstance[teamIDs[x]]->setPlayerInstancesCreated(true);
+                activeTeamInstance[x]->setPlayerInstancesCreated(true);
                 base->getGameS()->setActiveTeamInstance(activeTeamInstance);
             }
             else

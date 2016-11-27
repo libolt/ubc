@@ -649,6 +649,50 @@ void teamState::updateState()   // updates the state of the object
 
 bool teamState::createPlayerInstances()
 {
+    boost::shared_ptr<conversion> convert = conversion::Instance();
+    std::tr1::unordered_map <size_t, playerStateSharedPtr> gamePlayerInstance;
+    std::string func = "teamState::createPlayerInstances()";
+
+    if (base->getGameS()->getInitialized())
+    {
+        logMsg("teamState::createPlayerInstances() gameS initalized == true!");
+//        exit(0);
+    }
+    else
+    {
+        logMsg("teamState::createPlayerInstances() gameS initalized == false!");
+        exit(0);
+    }
+    if (base->getGameS()->checkIfPlayerInstanceCreated())
+    {
+        logMsg(func +"game player instances created!");
+        gamePlayerInstance = base->getGameS()->getPlayerInstance();
+    }
+    else
+    {
+        logMsg(func +"game player instances not created!");
+        exit(0);
+    }
+    auto i = 0;
+    auto ID = 0;
+
+    while (i<gamePlayerInstance.size())
+    {
+        if (gamePlayerInstance[i]->getTeamID() == getID())  // checks if player is assigned to this team
+        {
+            logMsg(func + " Team " +convert->toString(getID()) + " GPI Name == " +gamePlayerInstance[i]->getFirstName() +" " +gamePlayerInstance[i]->getLastName());
+            playerInstance.insert(std::pair<size_t, playerStateSharedPtr>(i, gamePlayerInstance[i]));    // adds pInstance to the playerInstance std::vector.
+            logMsg(func +"Team ID == " +convert->toString(getID()) +" playerInstance[" +convert->toString(i) +"]->getFirstName() == " +playerInstance[i]->getFirstName());
+            ++ID;
+        }
+        ++i;
+    }
+//    exit(0);
+    return (true);
+}
+
+bool teamState::createPlayerInstances_old()
+{
 //    exit(0);
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
@@ -688,6 +732,7 @@ bool teamState::createPlayerInstances()
         exit(0);
     }
     
+
     UBCBaseSharedPtr tempBase = base;
     
 /*    exit(0);

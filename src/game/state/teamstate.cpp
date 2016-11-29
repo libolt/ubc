@@ -675,19 +675,28 @@ bool teamState::createPlayerInstances()
     }
     auto i = 0;
     auto ID = 0;
-
-    while (i<gamePlayerInstance.size())
+    playerInstance.clear();
+//    while (i<gamePlayerInstance.size())
+    for (auto it : gamePlayerInstance)
     {
-        if (gamePlayerInstance[i]->getTeamID() == getID())  // checks if player is assigned to this team
+        if (it.second->getTeamID() == getID())  // checks if player is assigned to this team
         {
-            logMsg(func + " Team " +convert->toString(getID()) + " GPI Name == " +gamePlayerInstance[i]->getFirstName() +" " +gamePlayerInstance[i]->getLastName());
-            playerInstance.insert(std::pair<size_t, playerStateSharedPtr>(i, gamePlayerInstance[i]));    // adds pInstance to the playerInstance std::vector.
-            logMsg(func +"Team ID == " +convert->toString(getID()) +" playerInstance[" +convert->toString(i) +"]->getFirstName() == " +playerInstance[i]->getFirstName());
+
+            logMsg(func + " Team " +convert->toString(getID()) + " GPI Name == " +it.second->getFirstName() +" " +it.second->getLastName());           
+            playerInstance.insert(std::pair<size_t, playerStateSharedPtr>(it.first, it.second));    // adds pInstance to the playerInstance std::vector.
+            logMsg(func +"Team ID == " +convert->toString(getID()) +" playerInstance[" +convert->toString(it.first) +"]->getFirstName() == " +playerInstance[it.first]->getFirstName());
             ++ID;
         }
-        ++i;
+//        ++i;
     }
 //    exit(0);
+/*    if (getID() == 1)
+    {
+        logMsg(func +"playerInstance.size() == " +convert->toString(playerInstance.size()));
+        logMsg(func +" ID Count == " +convert->toString(ID));
+//        exit(0);
+    }
+*/
     return (true);
 }
 

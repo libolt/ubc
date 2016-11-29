@@ -952,7 +952,6 @@ void GUISystem::playerStartSelected()  // process player start selection
 
 //    teamStateVecSharedPtr  activeTeamInstance = gameS->getActiveTeamInstance();
 
-    logMsg("GUISystem::playerStartSelected");
 //        exit(0);
     std::vector<std::tr1::unordered_map <std::string, std::string> > teamStarters;
     std::tr1::unordered_map <std::string, std::string> tempStarters;
@@ -964,16 +963,18 @@ void GUISystem::playerStartSelected()  // process player start selection
     std::vector<std::tr1::unordered_map <size_t, playerStateSharedPtr> > playerInstance;
     std::tr1::unordered_map <size_t, playerStateSharedPtr> activePlayerInstance;
     size_t IDs = 0;
-    
+    std::string func = "GUISystem::playerStartSelected";
+
     auto x = 0;
     while (x < activeTeamInstance.size())
     {
         playerInstance.push_back(activeTeamInstance[x]->getPlayerInstance());
-        auto y = 0;
-        while (y < activeTeamInstance[1]->getPlayerInstance().size())
+//        auto y = 0;
+//        while (y < activeTeamInstance[1]->getPlayerInstance().size())
+        for (auto it : activeTeamInstance[x]->getPlayerInstance())
         {
-            logMsg(activeTeamInstance[1]->getPlayerInstance()[y]->getFirstName() +" " +activeTeamInstance[x]->getPlayerInstance()[y]->getLastName());
-            ++y;
+            logMsg(func +" team " +convert->toString(x) +" " +it.second->getFirstName() +" " +it.second->getLastName());
+//            ++y;
         }
         ++x;
     }

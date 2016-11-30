@@ -38,7 +38,7 @@
 // static declarations
 
 boost::shared_ptr<UBCBase> teamState::base;  // static copy of base class
-std::tr1::unordered_map <size_t, playerStateSharedPtr> teamState::playerInstance;
+//std::tr1::unordered_map <size_t, playerStateSharedPtr> teamState::playerInstance;
 //    sizeTVec teamState::activePlayerID; 
 //static size_t teamState::teamID; 
 

@@ -137,30 +137,31 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     }
 //    exit(0);
     x = 0;
-    while (x < activeTeamInstance.size())
+//    while (x < activeTeamInstance.size())
+    for (auto ATIIT : activeTeamInstance)
     {
         logMsg(func +" yabadaba");
         logMsg(convert->toString(teamIDs.size()));
-        logMsg(convert->toString(activeTeamInstance[x]->getPlayerInstancesCreated()));
+        logMsg(convert->toString(ATIIT.second->getPlayerInstancesCreated()));
 //        exit(0);
 //        if (teamInstance[teamIDs[x]]->getPlayerInstancesCreated())
-        if (activeTeamInstance[x]->getPlayerInstancesCreated())
+        if (ATIIT.second->getPlayerInstancesCreated())
         {
 //            exit(0);
-            logMsg(func +" teamInstance[teamIDs[" +convert->toString(x) +"]] playerInstances crested!");
-            logMsg(func +" Team " +convert->toString(x) +" player instances created!");
+            logMsg(func +" teamInstance[teamIDs[" +convert->toString(ATIIT.first) +"]] playerInstances crested!");
+            logMsg(func +" Team " +convert->toString(ATIIT.first) +" player instances created!");
         }
         else
         {
 //            exit(0);
-            logMsg(func +" creating team " +convert->toString(x) +" playerInstances!");
+            logMsg(func +" creating team " +convert->toString(ATIIT.first) +" playerInstances!");
 //            teamInstance[x]->setBase(base);
-            if (activeTeamInstance[x]->createPlayerInstances())
+            if (ATIIT.second->createPlayerInstances())
             {
-                logMsg("activeTeamInstance[" +convert->toString(x) +"]->createPlayerInstances()");
-                logMsg("activeTeamInstance[" +convert->toString(x) +"]->getPlayerInstance().size() == " +convert->toString(activeTeamInstance[x]->getPlayerInstance().size()));
+                logMsg("activeTeamInstance[" +convert->toString(ATIIT.first) +"]->createPlayerInstances()");
+                logMsg("activeTeamInstance[" +convert->toString(ATIIT.first) +"]->getPlayerInstance().size() == " +convert->toString(ATIIT.second->getPlayerInstance().size()));
 //                exit(0);
-                activeTeamInstance[x]->setPlayerInstancesCreated(true);
+                ATIIT.second->setPlayerInstancesCreated(true);
                 base->getGameS()->setActiveTeamInstance(activeTeamInstance);
             }
             else
@@ -169,34 +170,36 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
                 exit(0);
             }
         }
-        playerInstance.push_back(activeTeamInstance[x]->getPlayerInstance());
+        playerInstance.push_back(ATIIT.second->getPlayerInstance());
 
        ++x;
     }
     logMsg("playerInstance.size() == " +convert->toString(playerInstance.size()));
     logMsg("playerInstance[0].size() == " +convert->toString(playerInstance[0].size()));
     logMsg("playerInstance[1].size() == " +convert->toString(playerInstance[1].size()));
-
-    for (auto pInstanceIT : activeTeamInstance[0]->getPlayerInstance())
+//    exit(0);
+/*    for (auto pInstanceIT : activeTeamInstance[0]->getPlayerInstance())
     {
 //            std::string playerName = playerInstance[i][1]->getFirstName() +" " +playerInstance[i][1]->getLastName(); // +"            "; // +playerOverallRating;
         std::string playerName = pInstanceIT.second->getFirstName() +" " +pInstanceIT.second->getLastName();
         logMsg(func +" team " +convert->toString(0) + " playerName == " +playerName);
     }
-    exit(0);
-    auto it = 0;
-    while (it < playerInstance.size())
-//    for (auto it : playerInstance)
+*/
+//    exit(0);
+    std::vector<std::tr1::unordered_map <size_t, playerStateSharedPtr> >::iterator it;
+    auto itx = 0;
+//    while (it < playerInstance.size())
+    for (it = playerInstance.begin(); it != playerInstance.end(); ++it)
     {
-        logMsg(func +" it == " +convert->toString(it));
+        logMsg(func +" itx == " +convert->toString(itx));
 //        logMsg(func +" playerInstance[" +convert->toString(it.first) +"].size() == " +convert->toString(playerInstance[i].size()));
 //        auto j = 0;
 //        while (j < playerInstance[i].size())
-        for (auto pInstanceIT : playerInstance[it])
+        for (auto pInstanceIT : *it)
         {
 //            std::string playerName = playerInstance[i][1]->getFirstName() +" " +playerInstance[i][1]->getLastName(); // +"            "; // +playerOverallRating;
             std::string playerName = pInstanceIT.second->getFirstName() +" " +pInstanceIT.second->getLastName();
-            logMsg(func +" team " +convert->toString(it) + " playerName == " +playerName);
+            logMsg(func +" team " +convert->toString(itx) + " playerName == " +playerName);
 
 //            logMsg(func +" j == " +convert->toString(j));
 //            size_t overallRating = base->getGameS()->getPlayerInstance()[i]->getOverallRating();
@@ -252,10 +255,10 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
             
 //            ++j;
         }
-        ++it;
+        ++itx;
     }
     logMsg(func + " end");
-    exit(0);
+//    exit(0);
 }
 
 void GUISystem::addPlayerStartSelectionMenuData_old()  // adds data to Player Start Selection Menu widgets

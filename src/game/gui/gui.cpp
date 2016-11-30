@@ -966,25 +966,33 @@ void GUISystem::playerStartSelected()  // process player start selection
     std::string func = "GUISystem::playerStartSelected";
 
     auto x = 0;
-    while (x < activeTeamInstance.size())
+//    teamStateVec
+//    while (x < activeTeamInstance.size())
+    for (auto ATIIT : activeTeamInstance)
     {
-        for (auto it : activeTeamInstance[0]->getPlayerInstance())
+        for (auto it : activeTeamInstance[ATIIT.first]->getPlayerInstance())
         {
-            logMsg(func +" team " +convert->toString(0) +" " +it.second->getFirstName() +" " +it.second->getLastName());
+            logMsg(func +" team dee " +convert->toString(ATIIT.first) +" " +it.second->getFirstName() +" " +it.second->getLastName());
     //            ++y;
         }
-        playerInstance.push_back(activeTeamInstance[0]->getPlayerInstance());
+        playerInstance.push_back(activeTeamInstance[ATIIT.first]->getPlayerInstance());
 //        auto y = 0;
 //        while (y < activeTeamInstance[1]->getPlayerInstance().size())
+//        ++x;
+    }
+    
+    std::vector<std::tr1::unordered_map <size_t, playerStateSharedPtr> >::iterator PIIT;
+    x = 0;
+    for (PIIT = playerInstance.begin(); PIIT != playerInstance.end(); ++PIIT)
+    {
+        for (auto it : *PIIT)
+        {
+            logMsg(func +" team dah " +convert->toString(x) +" " +it.second->getFirstName() +" " +it.second->getLastName());
+//            ++y;
+        }
         ++x;
     }
-
-    for (auto it : playerInstance[0])
-    {
-        logMsg(func +" team " +convert->toString(0) +" " +it.second->getFirstName() +" " +it.second->getLastName());
-//            ++y;
-    }
-    exit(0);
+//    exit(0);
 //    playerInstance = base->getGameS()->getActiveTeamInstance()[0]->getPlayerInstance();
 
     
@@ -1047,6 +1055,9 @@ void GUISystem::playerStartSelected()  // process player start selection
     
 //    teamStarterID[0][0] = team0IDs[0][team0PGSelectBox->getIndexSelected()];
     auto w = 0;
+//    std::vector<std::tr1::unordered_map <std::string, std::string> >::iterator TSIT;
+//    for (TSIT = teamStarters.begin(); TSIT != teamStarters.end(); ++TSIT)
+
     while (w < teamStarters.size())
     {
         teamStarters[w].insert(std::pair<std::string, std::string>("PG", teamPlayerPosSelectBox[w]["PG"]->getItemNameAt(teamPlayerPosSelectBox[w]["PG"]->getIndexSelected())));  
@@ -1067,48 +1078,49 @@ void GUISystem::playerStartSelected()  // process player start selection
     w = 0;
     while (w < teamStarterID.size())
     {
-        while (x < playerInstance[w].size())
+//        while (x < playerInstance[w].size())
+        for (auto it : playerInstance[w])
         {
-            std::string playerName = playerInstance[w][x]->getFirstName() +" " +playerInstance[w][x]->getLastName();
+            std::string playerName = it.second->getFirstName() +" " +it.second->getLastName();
             logMsg("playerInstance playerName == " +playerName);
-            logMsg("Primary Position == " +convert->toString(playerInstance[w][x]->getPrimaryPosition()));
-            logMsg("Player ID == " +convert->toString( playerInstance[w][x]->getID()));
+            logMsg("Primary Position == " +convert->toString(it.second->getPrimaryPosition()));
+            logMsg("Player ID == " +convert->toString(it.second->getID()));
             if (playerName == "Brian Darlford")
             {
                 logMsg("teamStarters[0][SF] == " +teamStarters[0]["SF"]);
                 logMsg("Woot!");
-                exit(0);
+//                exit(0);
             }
             auto y = 0;
             if (playerName == teamStarters[w]["PG"])
             {
-                logMsg("PG Player ID == " +convert->toString(playerInstance[w][x]->getID()));
-                teamStarterID[w].insert(std::pair<std::string, size_t>("PG", playerInstance[w][x]->getID()));               
+                logMsg("PG Player ID == " +convert->toString(it.second->getID()));
+                teamStarterID[w].insert(std::pair<std::string, size_t>("PG", it.second->getID()));               
             }
             else if (playerName == teamStarters[w]["SG"])
             {
-                logMsg("SG Player ID == " +convert->toString(playerInstance[w][x]->getID()));
+                logMsg("SG Player ID == " +convert->toString(it.second->getID()));
                 
-                teamStarterID[w].insert(std::pair<std::string, size_t>("SG", playerInstance[w][x]->getID()));    
+                teamStarterID[w].insert(std::pair<std::string, size_t>("SG", it.second->getID()));    
 //                logMsg("teamStarterID[w][SG] Player ID == " +convert->toString(teamStarterID[w][SG]));
           
             }
             else if (playerName == teamStarters[w]["SF"])
             {
-                logMsg("SF Player ID == " +convert->toString(playerInstance[w][x]->getID()));  
-                teamStarterID[w].insert(std::pair<std::string, size_t>("SF", playerInstance[w][x]->getID()));               
+                logMsg("SF Player ID == " +convert->toString(it.second->getID()));  
+                teamStarterID[w].insert(std::pair<std::string, size_t>("SF", it.second->getID()));               
             }
             else if (playerName == teamStarters[w]["PF"])
             {
-                logMsg("PF Player ID == " +convert->toString(playerInstance[w][x]->getID()));
-                teamStarterID[w].insert(std::pair<std::string, size_t>("PF", playerInstance[w][x]->getID()));               
+                logMsg("PF Player ID == " +convert->toString(it.second->getID()));
+                teamStarterID[w].insert(std::pair<std::string, size_t>("PF", it.second->getID()));               
             }
             else if (playerName == teamStarters[w]["C"])
             {
-                logMsg("C Player ID == " +convert->toString(playerInstance[w][x]->getID()));
-                teamStarterID[w].insert(std::pair<std::string, size_t>("C", playerInstance[w][x]->getID()));               
+                logMsg("C Player ID == " +convert->toString(it.second->getID()));
+                teamStarterID[w].insert(std::pair<std::string, size_t>("C", it.second->getID()));               
             }
-            ++x;
+//            ++x;
         }
         ++w;
     }
@@ -1121,7 +1133,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     logMsg("teamStarterID[0][PF] = " +convert->toString(teamStarterID[0]["PF"]));
     logMsg("teamStarterID[0][C] = " +convert->toString(teamStarterID[0]["C"]));
 
-    exit(0);
+//    exit(0);
 /*    team0Starters.push_back(teamPlayerPosSelectBox[0]["SG"]->getItemNameAt(teamPlayerPosSelectBox[0]["SG"]->getIndexSelected()));
     teamStarterID[0][1] = team0IDs[1][teamPlayerPosSelectBox[0]["SG"]->getIndexSelected()];
     logMsg("teamStarterID[0][1] = " +convert->toString(teamStarterID[0][1]));
@@ -1150,7 +1162,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     teamStarterID[1][4] = team1IDs[4][teamPlayerPosSelectBox[1]["C"]->getIndexSelected()];
     logMsg("teamStarterID[1][4] = " +convert->toString(teamStarterID[1][4]));
 */
-    exit(0);
+//    exit(0);
 //    gameS->setTeamStarterID(teamStarterID); // sets the selected starters for both teams in gameState class
     base->getGameS()->setTeamStarterID(teamStarterID); // sets the selected starters for both teams in gameState class
     
@@ -1296,7 +1308,7 @@ void GUISystem::playerStartSelected()  // process player start selection
 //        exit(0);
     hideActiveMenuWidgets();
     menuActive = false;
-    exit(0);
+//    exit(0);
 
 }
 

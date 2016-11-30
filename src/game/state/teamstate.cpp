@@ -684,10 +684,15 @@ bool teamState::createPlayerInstances()
 
             logMsg(func + " Team " +convert->toString(getID()) + " GPI Name == " +it.second->getFirstName() +" " +it.second->getLastName());           
             playerInstance.insert(std::pair<size_t, playerStateSharedPtr>(it.first, it.second));    // adds pInstance to the playerInstance std::vector.
-            logMsg(func +"Team ID == " +convert->toString(getID()) +" playerInstance[" +convert->toString(it.first) +"]->getFirstName() == " +playerInstance[it.first]->getFirstName());
+//            logMsg(func +"Team ID == " +convert->toString(getID()) +" playerInstance[" +convert->toString(it.first) +"]->getFirstName() == " +playerInstance[it.first]->getFirstName());
             ++ID;
         }
 //        ++i;
+    }
+    for (auto it : playerInstance)
+    {
+        logMsg(func +"Team ID == " +convert->toString(getID()) +" playerInstance[" +convert->toString(it.first) +"]->getFirstName() == " +it.second->getFirstName());
+
     }
 //    exit(0);
 /*    if (getID() == 1)

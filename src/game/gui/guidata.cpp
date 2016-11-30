@@ -177,7 +177,13 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     logMsg("playerInstance[0].size() == " +convert->toString(playerInstance[0].size()));
     logMsg("playerInstance[1].size() == " +convert->toString(playerInstance[1].size()));
 
-//    exit(0);
+    for (auto pInstanceIT : activeTeamInstance[0]->getPlayerInstance())
+    {
+//            std::string playerName = playerInstance[i][1]->getFirstName() +" " +playerInstance[i][1]->getLastName(); // +"            "; // +playerOverallRating;
+        std::string playerName = pInstanceIT.second->getFirstName() +" " +pInstanceIT.second->getLastName();
+        logMsg(func +" team " +convert->toString(0) + " playerName == " +playerName);
+    }
+    exit(0);
     auto it = 0;
     while (it < playerInstance.size())
 //    for (auto it : playerInstance)
@@ -249,7 +255,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         ++it;
     }
     logMsg(func + " end");
-//    exit(0);
+    exit(0);
 }
 
 void GUISystem::addPlayerStartSelectionMenuData_old()  // adds data to Player Start Selection Menu widgets

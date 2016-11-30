@@ -968,15 +968,21 @@ void GUISystem::playerStartSelected()  // process player start selection
     auto x = 0;
     while (x < activeTeamInstance.size())
     {
-        playerInstance.push_back(activeTeamInstance[x]->getPlayerInstance());
+        for (auto it : activeTeamInstance[0]->getPlayerInstance())
+        {
+            logMsg(func +" team " +convert->toString(0) +" " +it.second->getFirstName() +" " +it.second->getLastName());
+    //            ++y;
+        }
+        playerInstance.push_back(activeTeamInstance[0]->getPlayerInstance());
 //        auto y = 0;
 //        while (y < activeTeamInstance[1]->getPlayerInstance().size())
-        for (auto it : activeTeamInstance[x]->getPlayerInstance())
-        {
-            logMsg(func +" team " +convert->toString(x) +" " +it.second->getFirstName() +" " +it.second->getLastName());
-//            ++y;
-        }
         ++x;
+    }
+
+    for (auto it : playerInstance[0])
+    {
+        logMsg(func +" team " +convert->toString(0) +" " +it.second->getFirstName() +" " +it.second->getLastName());
+//            ++y;
     }
     exit(0);
 //    playerInstance = base->getGameS()->getActiveTeamInstance()[0]->getPlayerInstance();

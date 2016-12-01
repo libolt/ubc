@@ -207,7 +207,8 @@ bool jumpBalls::jumpBallExecute(basketballStateVecSharedPtr basketballInstance, 
     sizeTVec jumpPlayerInstance;  // stores playerID of players jumping for the ball
     
     size_t x = 0;
-    while (x < activeTeamInstance.size())
+//    while (x < activeTeamInstance.size())
+    for (auto ATIIT : activeTeamInstance)
     {
         //activePlayerInstance.clear();
 //TS        activePlayerInstance.push_back(activeTeamInstance[x]->getActivePlayerInstance());
@@ -215,30 +216,31 @@ bool jumpBalls::jumpBallExecute(basketballStateVecSharedPtr basketballInstance, 
         
         size_t i = 0;
         logMsg("active player instance size =" +convert->toString(activePlayerInstance[x].size()));
-        while (i < activePlayerInstance[x].size()) // loops until the activePlayerInstance is found that is currently playing center
+//        while (i < activePlayerInstance[x].size()) // loops until the activePlayerInstance is found that is currently playing center
+        for (auto APIIT : activePlayerInstance[ATIIT.first])
         {
             
 //            exit(0);
-            logMsg("jump i == " +convert->toString(i));
-            if (activePlayerInstance[x][i]->getActivePosition() == C)
+            logMsg("jump i == " +convert->toString(APIIT.first));
+            if (APIIT.second->getActivePosition() == C)
             {
-                logMsg("jumpPlayerInstance = " +convert->toString(i));
+                logMsg("jumpPlayerInstance = " +convert->toString(APIIT.first));
                  // logMsg("PlayerName = " +activePlayerInstance[x][i].getPlayerName());
-                logMsg("ModelLoaded = " +convert->toString(activePlayerInstance[x][i]->getModelLoaded()));
+                logMsg("ModelLoaded = " +convert->toString(APIIT.second->getModelLoaded()));
     //                    exit(0);
                 //jumpPlayerID.push_back(activePlayerInstance[i].getPlayerID());
-                jumpPlayerInstance.push_back(i);
+                jumpPlayerInstance.push_back(APIIT.first);
             }
             else
             {
             }
-            i++;
+//            i++;
               //teamTypes teamType = activeTeamInstance[x].getTeamType();
                 //size_t player = 4;
                 //bool collCheck = collisionCheck(basketballInstance[activeBBallInstance].getPhysBody(), activePlayerInstance[centerID].getPhysBody());
                 //logMsg("Team " +convert->toString(teamType) +" player " +convert->toString(player) +" collCheck == " +convert->toString(collCheck));
         }
-        ++x;
+//        ++x;
     }
 //    exit(0);
     logMsg("jumpPlayerID.size() = " +convert->toString(jumpPlayerInstance.size()));
@@ -246,11 +248,12 @@ bool jumpBalls::jumpBallExecute(basketballStateVecSharedPtr basketballInstance, 
 //    teamTypes teamType = activeTeamInstance[0].getTeamType();
     bool collCheck = false;
 //    collCheck = /*physEngine.*/ collisionCheck(basketballInstance[activeBBallInstance].getPhysBody(), activePlayerInstance[0][jumpPlayerInstance[0]].getPhysBody());
-    size_t y = 0;
+//    size_t y = 0;
     boost::shared_ptr<playerState> activePInstance;
-    while (y < activeTeamInstance.size())
+//    while (y < activeTeamInstance.size())
+    for (auto ATIIT : activeTeamInstance)
     {
-/*TS        switch(activeTeamInstance[y]->getTeamType())
+/*TS        switch(ATIIT.second->getTeamType())
         {
             case HOMETEAM:
                 activePInstance = activePlayerInstance[0][jumpPlayerInstance[0]];
@@ -270,7 +273,7 @@ bool jumpBalls::jumpBallExecute(basketballStateVecSharedPtr basketballInstance, 
         if (physEngine.collisionCheck(basketballInstance[activeBBallInstance]->getPhysBody().get(), activePInstance->getPhysBody().get()))
         {
             logMsg("team " +convert->toString(y) +" center collided with ball");
-            ballTippedToTeam = activeTeamInstance[y]->getTeamType();
+            ballTippedToTeam = ATIIT.second->getTeamType();
             ballTippedToPosition = PG;
 //            exit(0);
         
@@ -293,7 +296,7 @@ TS*/
         {
         
         }*/
-        ++y;
+//        ++y;
     }
 //    logMsg("Team " +convert->toString(teamType) +" playerInstance " +convert->toString(jumpPlayerInstance[1]) +" collCheck == " +convert->toString(collCheck));
 
@@ -331,6 +334,8 @@ bool jumpBalls::tipToPlayer(basketballStateVecSharedPtr basketballInstance, size
     
     auto y = 0;
     while (y < activePlayerInstance.size())
+//    playerStateVecSharedPtr::iterator APIIT;
+//    for (APIIT = activePlayerInstance.begin(); APIIT != activePlayerInstance.end(); ++APIIT)
     {
         if (activePlayerInstance[y]->getActivePosition() == ballTippedToPosition)
         {

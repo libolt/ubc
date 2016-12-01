@@ -53,6 +53,7 @@ void networkState::processLocalInput(teamStateVecSharedPtr activeTeamInstance)  
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
     
     inputInGameWorkQueues inputQueue;
+    inputInGameWorkQueues::iterator IQITT;
     networkPlayerStateObject netPStateObj;
     
 //    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();

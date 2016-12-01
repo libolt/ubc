@@ -51,29 +51,30 @@ void playerSteerPlugin::open(void)
 
 	// builds team 0 steering instances
 //	for (size_t x=0;x<team0ActivePlayerInstance.size();++x)
-    size_t x = 0;
-    while (x < getActiveTeamInstance().size())
+//    size_t x = 0;
+//    while (x < getActiveTeamInstance().size())
+    for (auto ATIIT : getActiveTeamInstance())
     {
-
-        activePlayerInstance.push_back(getActiveTeamInstance()[x]->getActivePlayerInstance());
-        size_t y = 0;
-        while (y < activePlayerInstance[x].size())
+        activePlayerInstance.push_back(ATIIT.second->getActivePlayerInstance());
+//        size_t y = 0;
+//        while (y < activePlayerInstance[x].size())
+        for (auto APIIT : activePlayerInstance[ATIIT.first])
         {
-            playerSteerSharedPtr steer = activePlayerInstance[x][y]->getSteer();
+            playerSteerSharedPtr steer = APIIT.second->getSteer();
         //      logMsg("Alive1");
-            logMsg("y = " +convert->toString(y));
-            logMsg("player position = " +convert->toString(activePlayerInstance[x][y]->getCourtPosition()));
-            steer->setPosition(convert->toOpenSteerVec3(activePlayerInstance[x][y]->getCourtPosition()));
+            logMsg("APIIT.first = " +convert->toString(APIIT.first));
+            logMsg("player position = " +convert->toString(APIIT.second->getCourtPosition()));
+            steer->setPosition(convert->toOpenSteerVec3(APIIT.second->getCourtPosition()));
         //      steer.setPosition(OpenSteer::Vec3(0,0,0));
         //      logMsg("Alive2");
 
         //      steer->setID(x);
             ai->selectedVehicle = steer;
-            activePlayerInstance[x][y]->setSteer(steer);
-            allPlayerSteers.push_back(activePlayerInstance[x][y]->getSteer());
-            ++y;
+            APIIT.second->setSteer(steer);
+            allPlayerSteers.push_back(APIIT.second->getSteer());
+//            ++y;
         }
-        ++x;
+//        ++x;
     }
 
 /*	while (x<team0ActivePlayerInstance.size())
@@ -189,19 +190,22 @@ void playerSteerPlugin::update(const float currentTime, const float elapsedTime)
 //    team1ActivePlayerInstance[3].getSteer()->update(currentTime, elapsedTime);
 
     size_t x = 0;
-    while (x < getActiveTeamInstance().size())
+//    while (x < getActiveTeamInstance().size())
+    for (auto ATIIT : getActiveTeamInstance())
+
     {
-        activePlayerInstance.push_back(getActiveTeamInstance()[x]->getActivePlayerInstance());
-        size_t y = 0;
-        while (y < activePlayerInstance[x].size())
+        activePlayerInstance.push_back(ATIIT.second->getActivePlayerInstance());
+//        size_t y = 0;
+//        while (y < activePlayerInstance[x].size())
+        for (auto APIIT : activePlayerInstance[ATIIT.first])
         {
-            if (y != getActiveTeamInstance()[x]->getHumanPlayer() && activePlayerInstance[x][y]->getModelLoaded())
+            if (APIIT.first != ATIIT.second->getHumanPlayer() && APIIT.second->getModelLoaded())
             {
 //                exit(0);
-                logMsg("x = " +convert->toString(x) +"y = " +convert->toString(y));
-                activePlayerInstance[x][y]->getSteer()->update(currentTime, elapsedTime);
+                logMsg("ATIIT.first = " +convert->toString(ATIIT.first) +"APIIT.first = " +convert->toString(APIIT.first));
+                APIIT.second->getSteer()->update(currentTime, elapsedTime);
             }
-            ++y;
+//            ++y;
         }
         
         ++x;

@@ -106,15 +106,17 @@ bool inputState::mapInput()  // maps value of keyPressed string to inputMap
     
     if (inputE->getKeyInputReceived())
     {
-        int x = 0;
+//        int x = 0;
         inputKeyWorkQueues inputKeyWorkQueue = inputE->getInputKeyWorkQueue();
+        inputKeyWorkQueues::iterator IKWQIIT;
         logMsg("inputKey!");
         logMsg("inputKeyWorkQueue.size() = " +convert->toString(inputKeyWorkQueue.size()));
-        while (x < inputKeyWorkQueue.size())
+//        while (x < inputKeyWorkQueue.size())
+        for (IKWQIIT = inputKeyWorkQueue.begin(); IKWQIIT != inputKeyWorkQueue.end(); ++IKWQIIT)
         {
             // FIXME! uInput shoulnobe hard coded
-            inputInGameWorkQueue.push_back(mapKeyInput(inputKeyWorkQueue[x], uInput[0]));
-            ++x;
+            inputInGameWorkQueue.push_back(mapKeyInput(*IKWQIIT, uInput[0]));
+//            ++x;
         }
     }
         
@@ -205,15 +207,25 @@ bool inputState::process()  // processes input
     logMsg("inoutState::process");
     if (inputE->processInput())
     {
-        int x = 0;
+//        int x = 0;
         inputTypeQueues inputTypeQueue = inputE->getInputTypeQueue();
         inputKeyWorkQueues inputKeyWorkQueue = inputE->getInputKeyWorkQueue();
-        while (x < inputKeyWorkQueue.size())
+        inputKeyWorkQueues::iterator IKWQIIT;
+
+/*        while (x < inputKeyWorkQueue.size())
         {
             inputInGameWorkQueue.push_back(mapKeyInput(inputKeyWorkQueue[x], uInput[0]));
             x++;                            
+        }*/
+        for (IKWQIIT = inputKeyWorkQueue.begin(); IKWQIIT != inputKeyWorkQueue.end(); ++IKWQIIT)
+        {
+            // FIXME! uInput shoulnobe hard coded
+            inputInGameWorkQueue.push_back(mapKeyInput(*IKWQIIT, uInput[0]));
+//            ++x;
         }
+
     }
+    
 //        exit(0);
 
     return (true);

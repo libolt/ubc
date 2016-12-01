@@ -777,6 +777,7 @@ bool gameState::executeTipOff()  // executes tip off
 // sets up the game condition
 bool gameState::setupState()  // sets up the game condition
 {
+//    exit(0);
 /*
     AISystemSharedPtr ai = AISystem::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
@@ -866,7 +867,7 @@ bool gameState::updateState()  // updates the game state
     boost::shared_ptr<conversion> convert = conversion::Instance();
 
     
-    
+//    exit(0);
 //    logMsg("Updating gameState Logic");
 
 // BEGINING OF TEST COMMENT
@@ -1086,7 +1087,8 @@ bool gameState::processInput()  // processes input received from the inputState 
         {
 //            exit(0);
             size_t inputIterator = 0;
-            while (inputIterator < getActiveTeamInstance().size())
+//            while (inputIterator < getActiveTeamInstance().size())
+            for (auto ATIIT : getActiveTeamInstance())
             {
 /*TS                if (getActiveTeamInstance()[inputIterator]->getPlayerInstancesCreated())
                 {

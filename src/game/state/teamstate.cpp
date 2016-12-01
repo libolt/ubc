@@ -537,15 +537,16 @@ void teamState::updateState()   // updates the state of the object
 
                 size_t x = 0;
                 size_t instanceWithBall = -1;
-                while (x < activePlayerInstance.size())
+//                while (x < activePlayerInstance.size())
+                for (auto APIIT : activePlayerInstance)
                 {
-                    if (activePlayerInstance[x]->getID() == playerWithBallID)
+                    if (APIIT.second->getID() == playerWithBallID)
                     {
-                        instanceWithBall = x;
+                        instanceWithBall = APIIT.first;
                         break;
                     }
 
-                    ++x;
+//                    ++x;
                 }
                 if (!activePlayerInstance[instanceWithBall]->getPassBall()) // checks if the player with ball is passing it.
                 {
@@ -803,15 +804,16 @@ bool teamState::createPlayerInstances_old()
         }
     }
     i = 0;
-    while (i<gamePlayerInstance.size())
+//    while (i<gamePlayerInstance.size())
+    for (auto GPIIT : gamePlayerInstance)
     {            
-        if (gamePlayerInstance[i]->getTeamID() == 0)
+        if (GPIIT.second->getTeamID() == 0)
         {
-            logMsg("gamePlayerInstance Team ID = " +convert->toString(gamePlayerInstance[i]->getTeamID()) + "PLAYERNAME == " +gamePlayerInstance[i]->getFirstName() +" " +gamePlayerInstance[i]->getLastName());
+            logMsg("gamePlayerInstance Team ID = " +convert->toString(GPIIT.second->getTeamID()) + "PLAYERNAME == " +GPIIT.second->getFirstName() +" " +GPIIT.second->getLastName());
         }
-        ++i;
+//        ++i;
     }
-//    exit(0);
+    exit(0);
 //    for (playerIT = playerInstance.begin(); playerIT != playerInstance.end(); ++playerIT)   // loops through playerID std::vector
 //    size_t id = -1; // stores id for steer
     
@@ -824,7 +826,7 @@ bool teamState::createPlayerInstances_old()
 //    {
     auto ID = 0;
     i = 0;
-    while (i<gamePlayerInstance.size())
+///    while (i<gamePlayerInstance.size())
     {              
         logMsg("inc flam");
         ++inc;
@@ -899,7 +901,7 @@ bool teamState::createPlayerInstances_old()
     if (getID() == 1)
     {
         i = 0;
-        while (i<playerInstance.size())
+///        while (i<playerInstance.size())
         {            
           logMsg("playerInstance Team ID = " +convert->toString(playerInstance[i]->getTeamID()) + "PLAYERNAME == " +playerInstance[i]->getFirstName() +" " +playerInstance[i]->getLastName());
            ++i;
@@ -934,7 +936,7 @@ bool teamState::createPlayerInstances_old()
     logMsg(func +" playerInstance.size() = " +convert->toString(playerInstance.size()));
 //    exit(0);
     auto s = 0;
-    while (s < gamePlayerInstance.size())
+///    while (s < gamePlayerInstance.size())
     {
         logMsg(func +" gamePlayerInstance[" +convert->toString(s) +"]->getFirstName() = " +gamePlayerInstance[s]->getFirstName());
         ++s;
@@ -947,7 +949,7 @@ bool teamState::createPlayerInstances_old()
     if (getID() == 1)
     {
         x = 0;
-       while (x < playerInstance.size())
+///       while (x < playerInstance.size())
        {
             logMsg("ts::cp Team ID == " +convert->toString(getID()) +" playerName == " +playerInstance[x]->getFirstName() +" " +playerInstance[x]->getLastName());
             ++x;
@@ -955,13 +957,13 @@ bool teamState::createPlayerInstances_old()
        exit(0);
     }
     x = 0;
-    while (x < playerInstance.size())
+///    while (x < playerInstance.size())
     {
         
         auto i = 0;
 //        while (!IDMatch && x < playerInstance.size())
         logMsg(func +" activePlayerID.size() == " +convert->toString(activePlayerID.size()));
-        while (i<activePlayerID.size())
+///        while (i<activePlayerID.size())
         {
 
             logMsg(func +" playerInstance[x]->getID()() = " +convert->toString(playerInstance[x]->getID()));
@@ -1099,70 +1101,71 @@ void teamState::setPlayerStartPositions()   // sets the initial coordinates for 
         size_t i = 0;
 
         size_t x = 0;
-        while (x < activePlayerInstance.size()) //&& playerID != playerInstance[x].getPlayerID())
+//        while (x < activePlayerInstance.size()) //&& playerID != playerInstance[x].getPlayerID())
+        for (auto APIIT : activePlayerInstance)
         {
             logMsg("activePlayerInstance.size > 0!");
  //           exit(0);
-            if (activePlayerInstance[x]->getActivePosition() == PG)
+            if (APIIT.second->getActivePosition() == PG)
             {
                 //activePlayerInstance[x]->getNode()->setPosition(startingPos[0]);
-                activePlayerInstance[x]->setCourtPositionChanged(true);
-                activePlayerInstance[x]->setCourtPositionChangedType(STARTCHANGE);
-                activePlayerInstance[x]->setNewCourtPosition(startingPos[0]);
+                APIIT.second->setCourtPositionChanged(true);
+                APIIT.second->setCourtPositionChangedType(STARTCHANGE);
+                APIIT.second->setNewCourtPosition(startingPos[0]);
                 
-                activePlayerInstance[x]->setDirection(playerDirection);
-                activePlayerInstance[x]->getSteer()->setPlayerPosition(PG);
+                APIIT.second->setDirection(playerDirection);
+                APIIT.second->getSteer()->setPlayerPosition(PG);
                 //activePlayerInstance[x]->getSteer()->setPosition(convert->toOpenSteerVec3(startingPos[0]));               
             }
-            else if (activePlayerInstance[x]->getActivePosition() == SG)
+            else if (APIIT.second->getActivePosition() == SG)
             {
                 //activePlayerInstance[x]->getNode()->setPosition(startingPos[1]);
-                activePlayerInstance[x]->setCourtPositionChanged(true);
-                activePlayerInstance[x]->setCourtPositionChangedType(STARTCHANGE);
-                activePlayerInstance[x]->setNewCourtPosition(startingPos[1]);
+                APIIT.second->setCourtPositionChanged(true);
+                APIIT.second->setCourtPositionChangedType(STARTCHANGE);
+                APIIT.second->setNewCourtPosition(startingPos[1]);
 
-                activePlayerInstance[x]->setDirection(playerDirection);
-                activePlayerInstance[x]->getSteer()->setPlayerPosition(SG);
+                APIIT.second->setDirection(playerDirection);
+                APIIT.second->getSteer()->setPlayerPosition(SG);
                 //activePlayerInstance[x]->getSteer()->setPosition(convert->toOpenSteerVec3(startingPos[1]-5));
             }
-            else if (activePlayerInstance[x]->getActivePosition() == SF)
+            else if (APIIT.second->getActivePosition() == SF)
             {
                 //activePlayerInstance[x]->getNode()->setPosition(startingPos[2]);
-                activePlayerInstance[x]->setCourtPositionChanged(true);
-                activePlayerInstance[x]->setCourtPositionChangedType(STARTCHANGE);
-                activePlayerInstance[x]->setNewCourtPosition(startingPos[2]);
+                APIIT.second->setCourtPositionChanged(true);
+                APIIT.second->setCourtPositionChangedType(STARTCHANGE);
+                APIIT.second->setNewCourtPosition(startingPos[2]);
 
-                activePlayerInstance[x]->setDirection(playerDirection);
-                activePlayerInstance[x]->getSteer()->setPlayerPosition(SF);
+                APIIT.second->setDirection(playerDirection);
+                APIIT.second->getSteer()->setPlayerPosition(SF);
                 //activePlayerInstance[x]->getSteer()->setPosition(convert->toOpenSteerVec3(startingPos[2]));
             }
-            else if (activePlayerInstance[x]->getActivePosition() == PF)
+            else if (APIIT.second->getActivePosition() == PF)
             {
                 //activePlayerInstance[x]->getNode()->setPosition(startingPos[3]);
-                activePlayerInstance[x]->setCourtPositionChanged(true);
-                activePlayerInstance[x]->setCourtPositionChangedType(STARTCHANGE);
-                activePlayerInstance[x]->setNewCourtPosition(startingPos[3]);
+                APIIT.second->setCourtPositionChanged(true);
+                APIIT.second->setCourtPositionChangedType(STARTCHANGE);
+                APIIT.second->setNewCourtPosition(startingPos[3]);
 
-                activePlayerInstance[x]->setDirection(playerDirection);
-                activePlayerInstance[x]->getSteer()->setPlayerPosition(PF);
+                APIIT.second->setDirection(playerDirection);
+                APIIT.second->getSteer()->setPlayerPosition(PF);
                 //activePlayerInstance[x]->getSteer()->setPosition(convert->toOpenSteerVec3(startingPos[3]));
             }
-            else if (activePlayerInstance[x]->getActivePosition() == C)
+            else if (APIIT.second->getActivePosition() == C)
             {
                // activePlayerInstance[x]->getNode()->setPosition(startingPos[4]);
-                activePlayerInstance[x]->setCourtPositionChanged(true);
-                activePlayerInstance[x]->setCourtPositionChangedType(STARTCHANGE);
-                activePlayerInstance[x]->setNewCourtPosition(startingPos[4]);
+                APIIT.second->setCourtPositionChanged(true);
+                APIIT.second->setCourtPositionChangedType(STARTCHANGE);
+                APIIT.second->setNewCourtPosition(startingPos[4]);
 
-                activePlayerInstance[x]->setDirection(playerDirection);
-                activePlayerInstance[x]->getSteer()->setPlayerPosition(C);
+                APIIT.second->setDirection(playerDirection);
+                APIIT.second->getSteer()->setPlayerPosition(C);
                // activePlayerInstance[x]->getSteer()->setPosition(convert->toOpenSteerVec3(startingPos[4]));
             }
             else
             {
             }
 //            }
-            x++;            
+//            x++;            
         }    
 
 //      exit(0);
@@ -1197,12 +1200,13 @@ void teamState::setPlayerStartActivePositions() // sets the position the players
     }
     // set steer IDs
     size_t x = 0;
-    while (x < activePlayerInstance.size())
+//    while (x < activePlayerInstance.size())
+    for (auto APIIT : activePlayerInstance)
     {
         //playerSteer *pSteer = activePlayerInstance[x]->getSteer();
        // pSteer->setID(x);
-        activePlayerInstance[x]->getSteer()->setID(x);
-        ++x;
+        APIIT.second->getSteer()->setID(x);
+//        ++x;
     }
 
 }
@@ -1213,17 +1217,19 @@ void teamState::updatePlayerStates()  // updates the states of active players
 
     size_t x = 0;
     
-    while (x<activePlayerInstance.size())
+//    while (x<activePlayerInstance.size())
+    for (auto APIIT : activePlayerInstance)
     {
-        activePlayerInstance[x]->updateState();
-        ++x;
+        APIIT.second->updateState();
+/*        ++x;
     }
     
     x = 0;
     while (x < activePlayerInstance.size())
     {
-        logMsg("PlayerSteerNode Position == " +convert->toString(activePlayerInstance[x]->getNode()->getPosition()));
-        logMsg("PlayerSteer Position == " +convert->toString(activePlayerInstance[x]->getSteer()->position()));
+*/        
+        logMsg("PlayerSteerNode Position == " +convert->toString(APIIT.second->getNode()->getPosition()));
+        logMsg("PlayerSteer Position == " +convert->toString(APIIT.second->getSteer()->position()));
         ++x;
     }
 
@@ -1250,10 +1256,11 @@ void teamState::updatePlayerDirections()
     size_t x = 0;
     size_t y = 0;
 //    for (size_t i = 0; i < playerInstance.size(); ++i)
-    while (x<activePlayerInstance.size())
+//    while (x<activePlayerInstance.size())
+    for (auto APIIT : activePlayerInstance)
     {
-        playerDirection = activePlayerInstance[x]->getDirection();
-        oldPlayerDirection = activePlayerInstance[x]->getOldDirection();
+        playerDirection = APIIT.second->getDirection();
+        oldPlayerDirection = APIIT.second->getOldDirection();
         if (oldPlayerDirection != playerDirection)
         {
             
@@ -1273,13 +1280,13 @@ void teamState::updatePlayerDirections()
                     switch (playerDirection)
                     {
                         case DOWN:
-                            activePlayerInstance[x]->getNode()->yaw(Ogre::Degree (180));
+                            APIIT.second->getNode()->yaw(Ogre::Degree (180));
                             break;
                         case LEFT:
-                            activePlayerInstance[x]->getNode()->yaw(Ogre::Degree (270));
+                            APIIT.second->getNode()->yaw(Ogre::Degree (270));
                             break;
                         case RIGHT:
-                            activePlayerInstance[x]->getNode()->yaw(Ogre::Degree (90));
+                            APIIT.second->getNode()->yaw(Ogre::Degree (90));
 //                            exit(0);
                             break;
                         default:
@@ -1290,13 +1297,13 @@ void teamState::updatePlayerDirections()
                     switch (playerDirection)
                     {
                         case UP:
-                            activePlayerInstance[x]->getNode()->yaw(Ogre::Degree (180));
+                            APIIT.second->getNode()->yaw(Ogre::Degree (180));
                             break;
                         case LEFT:
-                            activePlayerInstance[x]->getNode()->yaw(Ogre::Degree (90));
+                            APIIT.second->getNode()->yaw(Ogre::Degree (90));
                             break;
                         case RIGHT:
-                            activePlayerInstance[x]->getNode()->yaw(Ogre::Degree (270));
+                            APIIT.second->getNode()->yaw(Ogre::Degree (270));
                             break;
                         default:
                             break;
@@ -1306,13 +1313,13 @@ void teamState::updatePlayerDirections()
                         switch (playerDirection)
                         {
                             case UP:
-                                activePlayerInstance[x]->getNode()->yaw(Ogre::Degree (90));
+                                APIIT.second->getNode()->yaw(Ogre::Degree (90));
                                 break;
                             case DOWN:
-                                activePlayerInstance[x]->getNode()->yaw(Ogre::Degree (270));
+                                APIIT.second->getNode()->yaw(Ogre::Degree (270));
                                 break;
                             case RIGHT:
-                                activePlayerInstance[x]->getNode()->yaw(Ogre::Degree (180));
+                                APIIT.second->getNode()->yaw(Ogre::Degree (180));
                                 break;
                             default:
                                 break;
@@ -1322,13 +1329,13 @@ void teamState::updatePlayerDirections()
                         switch (playerDirection)
                         {
                             case UP:
-                                activePlayerInstance[x]->getNode()->yaw(Ogre::Degree (270));
+                                APIIT.second->getNode()->yaw(Ogre::Degree (270));
                                 break;
                             case DOWN:
-                                activePlayerInstance[x]->getNode()->yaw(Ogre::Degree (90));
+                                APIIT.second->getNode()->yaw(Ogre::Degree (90));
                                 break;
                             case LEFT:
-                                activePlayerInstance[x]->getNode()->yaw(Ogre::Degree (180));
+                                APIIT.second->getNode()->yaw(Ogre::Degree (180));
                                 break;
                             default:
                                 break;
@@ -1338,12 +1345,12 @@ void teamState::updatePlayerDirections()
                     break;
             }
         }
-        logMsg("directPlayerID == " +convert->toString(activePlayerInstance[x]->getID()));
+        logMsg("directPlayerID == " +convert->toString(APIIT.second->getID()));
         logMsg("directPlayerWithBallInstance == " +convert->toString(playerWithBallInstance));
-        if (activePlayerInstance[x]->getID() != playerWithBallID)
+        if (APIIT.second->getID() != playerWithBallID)
         {
             oldPlayerDirection = playerDirection;
-            activePlayerInstance[x]->setOldDirection(oldPlayerDirection);  // copies contents of oldPlayerDirection to the oldDirection variable
+            APIIT.second->setOldDirection(oldPlayerDirection);  // copies contents of oldPlayerDirection to the oldDirection variable
         }
         else
         {
@@ -1352,7 +1359,7 @@ void teamState::updatePlayerDirections()
 ///            ++y;
 ///        }
 
-        ++x;
+//        ++x;
     }
 
 }
@@ -1369,63 +1376,64 @@ void teamState::updatePlayerMovements() // updates player movements
     size_t x = 0;
     size_t y = 0;
 //  for (size_t i = 0; i < playerInstance.size(); ++i)
-    while(x<activePlayerInstance.size())
+//    while(x<activePlayerInstance.size())
+    for (auto APIIT : activePlayerInstance)
     {
-        if (activePlayerInstance[x]->getMovement()) // if true sets coordinate change accordingly
+        if (APIIT.second->getMovement()) // if true sets coordinate change accordingly
         {
 //                    exit(0);
-            if (activePlayerInstance[x]->getDirection() == UP)
+            if (APIIT.second->getDirection() == UP)
             {
                 posChange = Ogre::Vector3(0.0f, 0.0f, -0.400f);
                 logMsg("UP!");
 //              exit(0);
             }
-            else if (activePlayerInstance[x]->getDirection() == DOWN)
+            else if (APIIT.second->getDirection() == DOWN)
             {
                 posChange = Ogre::Vector3(0.0f, 0.0f, 0.400f);
             }
-            else if (activePlayerInstance[x]->getDirection() == LEFT)
+            else if (APIIT.second->getDirection() == LEFT)
             {
 //              exit(0);
 
                 posChange = Ogre::Vector3(-0.400f, 0.0f, 0.0f);
 //              playerInstance[i]->getPhysBody()->setLinearVelocity(btVector3(0.4,0,0));
             }
-            else if (activePlayerInstance[x]->getDirection() == RIGHT)
+            else if (APIIT.second->getDirection() == RIGHT)
             {
                 posChange = Ogre::Vector3(0.400f, 0.0f, 0.0f);
             }
-            else if (activePlayerInstance[x]->getDirection() == UPLEFT)
+            else if (APIIT.second->getDirection() == UPLEFT)
             {
                 posChange = Ogre::Vector3(-0.400f, 0.0f, -0.400f);
             }
-            else if (activePlayerInstance[x]->getDirection() == UPRIGHT)
+            else if (APIIT.second->getDirection() == UPRIGHT)
             {
                 posChange = Ogre::Vector3(0.400f, 0.0f, -0.400f);
             }
-            else if (activePlayerInstance[x]->getDirection() == DOWNLEFT)
+            else if (APIIT.second->getDirection() == DOWNLEFT)
             {
                 posChange = Ogre::Vector3(-0.400f, 0.0f, 0.400f);
             }
-            else if (activePlayerInstance[x]->getDirection() == DOWNRIGHT)
+            else if (APIIT.second->getDirection() == DOWNRIGHT)
             {
                 posChange = Ogre::Vector3(0.400f, 0.0f, 0.400f);
             }
 
         }
-        else if (!activePlayerInstance[x]->getMovement())   // if false then sets their coordinate changes to 0.0
+        else if (!APIIT.second->getMovement())   // if false then sets their coordinate changes to 0.0
         {
             posChange = Ogre::Vector3(0.0f, 0.0f, 0.0f);
         }
 
         if (posChange.x != 0 || posChange.y != 0 || posChange.z != 0)
         {
-            activePlayerInstance[x]->setNewCourtPosition(posChange);    // sets the newCourtPosition for current playerInstance
-            activePlayerInstance[x]->setCourtPositionChanged(true);
-            activePlayerInstance[x]->setCourtPositionChangedType(INPUTCHANGE);
-            activePlayerInstance[x]->setMovement(false);
+            APIIT.second->setNewCourtPosition(posChange);    // sets the newCourtPosition for current playerInstance
+            APIIT.second->setCourtPositionChanged(true);
+            APIIT.second->setCourtPositionChangedType(INPUTCHANGE);
+            APIIT.second->setMovement(false);
         }       
-        ++x;
+//        ++x;
     }
 
 //  exit(0);
@@ -1523,14 +1531,15 @@ void teamState::updatePositions()
     //conversion *convert = conversion::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
     
-    size_t x = 0;
+//    size_t x = 0;
     // updates the player positions on the court
-    while (x<activePlayerInstance.size())
+//    while (x<activePlayerInstance.size())
+    for (auto APIIT : activePlayerInstance)
     {
         exit(0);
 //      logMsg("updatePositions X = " +convert->toString(x));
-        activePlayerInstance[x]->updateCourtPosition();
-        x++;
+        APIIT.second->updateCourtPosition();
+//        x++;
     }
     logMsg("courtPosition updated!!");
 

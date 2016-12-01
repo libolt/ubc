@@ -130,11 +130,12 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     sizeTVec teamIDs = base->getGameS()->getTeamIDS();
 
     auto x = 0;
-    while (x < activeTeamInstance.size())
+/*    while (x < activeTeamInstance.size())
     {
         logMsg("activeTeamInstance[" +convert->toString(x) +"] ID == " +convert->toString(activeTeamInstance[x]->getID()));
         ++x;
     }
+*/
 //    exit(0);
     x = 0;
 //    while (x < activeTeamInstance.size())
@@ -217,33 +218,33 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
             switch (pInstanceIT.second->getPrimaryPosition())
             {
                 case PG:
-                    teamPlayerPosSelectBox[it]["PG"]->addItem(playerName);
+                    teamPlayerPosSelectBox[itx]["PG"]->addItem(playerName);
 //                    teamPlayerRating[i]["PG"]->setCaption(playerOverallRating);
                     logMsg("PG playerName == " +playerName);
                     logMsg("PG playerRating == " +playerOverallRating);
                 break;
                 case SG:
-                    teamPlayerPosSelectBox[it]["SG"]->addItem(playerName);         
+                    teamPlayerPosSelectBox[itx]["SG"]->addItem(playerName);         
 //                    teamPlayerRating[i]["SG"]->setCaption(playerOverallRating);
                     logMsg("SG playerName == " +playerName);
                     logMsg("SG playerRating == " +playerOverallRating);
  
                 break;
                 case SF:
-                    teamPlayerPosSelectBox[it]["SF"]->addItem(playerName);
+                    teamPlayerPosSelectBox[itx]["SF"]->addItem(playerName);
 //                    teamPlayerRating[i]["SF"]->addItem(playerOverallRating);
                     logMsg("SF playerName == " +playerName);
                     logMsg("SF playerRating == " +playerOverallRating);
                 break;
                 case PF:
-                    teamPlayerPosSelectBox[it]["PF"]->addItem(playerName);
+                    teamPlayerPosSelectBox[itx]["PF"]->addItem(playerName);
 //                    teamPlayerRating[i]["PF"]->addItem(playerOverallRating);
                     logMsg("PF playerName == " +playerName);
                     logMsg("PF playerRating == " +playerOverallRating);
   
                 break;
                 case C:
-                    teamPlayerPosSelectBox[it]["C"]->addItem(playerName);
+                    teamPlayerPosSelectBox[itx]["C"]->addItem(playerName);
 //                    teamPlayerRating[i]["C"]->addItem(playerOverallRating);
                     logMsg("C playerName == " +playerName);
                     logMsg("C playerRating == " +playerOverallRating);
@@ -323,36 +324,38 @@ void GUISystem::addPlayerStartSelectionMenuData_old()  // adds data to Player St
     //FIXME! This should not be hardcoded!
     x = 0;
 //    exit(0);
-    while (x < 2)
+//    while (x < 2)
+    for (auto TIIT : teamInstance)
     {
         logMsg(func +" yabadaba");
         logMsg(convert->toString(teamIDs.size()));
-        logMsg(convert->toString(teamInstance[x]->getPlayerInstancesCreated()));
+        logMsg(convert->toString(TIIT.second->getPlayerInstancesCreated()));
 //        exit(0);
 //        if (teamInstance[teamIDs[x]]->getPlayerInstancesCreated())
-        if (teamInstance[x]->getPlayerInstancesCreated())
+        if (TIIT.second->getPlayerInstancesCreated())
         {
 //            exit(0);
-            logMsg(func +" teamInstance[teamIDs[" +convert->toString(x) +"]] playerInstances crested!");
-            logMsg(func +" Team " +convert->toString(x) +" player instances created!");
+            logMsg(func +" teamInstance[teamIDs[" +convert->toString(TIIT.first) +"]] playerInstances crested!");
+            logMsg(func +" Team " +convert->toString(TIIT.first) +" player instances created!");
         }
         else
         {
 //            exit(0);
-            logMsg(func +" creating team " +convert->toString(x) +" playerInstances!");
+            logMsg(func +" creating team " +convert->toString(TIIT.first) +" playerInstances!");
 //            teamInstance[x]->setBase(base);
-            if (teamInstance[x]->createPlayerInstances())
+            if (TIIT.second->createPlayerInstances())
             {
 //                exit(0);
-                teamInstance[teamIDs[x]]->setPlayerInstancesCreated(true);
-                base->getGameS()->setTeamInstance(teamInstance);
+                TIIT.second->setPlayerInstancesCreated(true);
+//                base->getGameS()->setTeamInstance(teamInstance);
             }
        }  
        ++x;
     }
+    base->getGameS()->setTeamInstance(teamInstance);
     logMsg(func +" Bleert!");
     
-//    exit(0);
+    exit(0);
     logMsg(func +" teamInstance.size() == " +convert->toString(teamInstance.size()));
 /*    exit(0);
     logMsg("Team 0 player instances created ==  " +convert->toString(teamInstance[teamIDs[0]]->getPlayerInstancesCreated()));
@@ -788,11 +791,13 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     logMsg("GUI ADD TEAM 0 teamInstance.size() == " +convert->toString(teamInstance.size()));
 //    exit(0);
     auto x = 0;
-    while (x < teamInstance.size())
+//    while (x < teamInstance.size())
+    for (auto TIIT : teamInstance)
     {
-        logMsg("GUI ADD TEAM teamInstance[" +convert->toString(x) +"]->getID() ID == " +convert->toString(teamInstance[x]->getID()));
-        ++x;
+        logMsg("GUI ADD TEAM teamInstance[" +convert->toString(TIIT.first) +"]->getID() ID == " +convert->toString(TIIT.second->getID()));
+//        ++x;
     }
+//    exit(0);
      logMsg("GUI ADD TEAM base->getGameS()->getTeamInstance()[3]->getID() ID == " +convert->toString(base->getGameS()->getTeamInstance()[0]->getID()));
     if (base->getGameS()->getTeamInstancesCreated())
     {        

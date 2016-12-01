@@ -289,7 +289,9 @@ void offenseState::setupOffense()  // sets up box offense
     }
 
     logMsg("plays.size() = " +convert->toString(plays.size()));
+    offensePlaysVecSharedPtr::iterator PIT;
     for (size_t x=0;x<plays.size();++x)
+//    for (PIT = plays.begin(); PIT != plays.end(); ++PIT)
     {
         if (plays[x]->getPlayName() == playName)  // sets up the offense
         {

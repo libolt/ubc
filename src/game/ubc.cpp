@@ -442,7 +442,54 @@ void UBC::processInput()  // processes game input
 //    exit(0);
     
 }
-void UBC::gameLoop()  // Main Game Loop
+
+bool UBC::gameLoop()  // Main Game Loop
+{
+    boost::shared_ptr<conversion> convert = conversion::Instance();
+
+    bool quitGame = base->getGameE()->getQuitGame();
+
+    SDL_StartTextInput();
+    
+    while (!quitGame)
+    {
+        processInput();
+        if (base->getGameS()->getGameSetupComplete())  // checks to make sure game setup is complete before continuing
+        {
+            
+            if (!base->getGameE()->getSceneCreated())
+            {
+                exit(0);
+                if (base->getGameS()->getGameType() == SINGLE)
+                {
+                    base->getGameE()->setCreateScene(true);
+                    exit(0);
+                }
+                else if (base->getGameS()->getGameType() == MULTI)
+                {
+                    if (base->getGameE()->getNetworkE()->getServerReceivedConnection() || base->getGameE()->getNetworkE()->getClientEstablishedConnection())  // checks if server and client are connected
+                    {
+                        base->getGameE()->setCreateScene(true);
+                    }
+    //             exit(0);
+                }
+            }
+        }
+        if (startGame())
+        {
+            base->getGameE()->setStart(false);
+            base->getGameE()->setRenderScene(true);
+        }
+        if (!base->getGameE()->getRenderE()->renderFrame())
+        {
+            logMsg("Unable to render frame!");
+            exit(0);
+        }
+    }
+    return (true);
+}
+
+void UBC::gameLoop_old()  // Main Game Loop
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 /*    boost::shared_ptr<gameState> gameS = gameState::Instance();
@@ -497,11 +544,14 @@ void UBC::gameLoop()  // Main Game Loop
 
         if (base->getGameS()->getGameSetupComplete())  // checks to make sure game setup is complete before continuing
         {
+//            exit(0);
             if (!base->getGameE()->getSceneCreated())
             {
+                
                 if (base->getGameS()->getGameType() == SINGLE)
                 {
                     base->getGameE()->setCreateScene(true);
+                    exit(0);
                 }
                 else if (base->getGameS()->getGameType() == MULTI)
                 {
@@ -513,7 +563,7 @@ void UBC::gameLoop()  // Main Game Loop
                 }
             }
         }
-        
+//        exit(0);
         if (base->getGameE()->getCreateScene())  // checks if the scene should be created
         {
 //            exit(0);
@@ -526,15 +576,15 @@ void UBC::gameLoop()  // Main Game Loop
 //            }
         }
 //        exit(0);
-        if (base->getGameE()->getStart())  // checks if it's time to start the game
-        {
+//        if (base->getGameE()->getStart())  // checks if it's time to start the game
+//        {
 //            exit(0);
             if (startGame())
             {
                 base->getGameE()->setStart(false);
                 base->getGameE()->setRenderScene(true);
             }
-        }
+ //       }
 //        exit(0);
 //        lastFPS = getRenderE()->getMWindow()->getLastFPS();
 //        exit(0);

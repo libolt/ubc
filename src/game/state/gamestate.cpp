@@ -58,7 +58,7 @@ boost::shared_ptr<gameState> gameState::Instance()
 gameState::gameState()  // constructor
 {
     inputReceived = true;
-/*    
+    
 //    basketballInstancesCreated = false;
 //    courtInstancesCreated = false;
 //    hoopInstancesCreated = false;
@@ -91,7 +91,7 @@ gameState::gameState()  // constructor
     finished = false;
 
 //    stateSet = false;
-    */
+    
 }
 
 gameState::~gameState()  // destructor
@@ -549,8 +549,11 @@ bool gameState::loadBasketballModel()  // loads selected basketball model
     boost::shared_ptr<conversion> convert = conversion::Instance();
     size_t activeBBallInstance = getActiveBBallInstance();
     basketballStateVecSharedPtr basketballInstance = getBasketballInstance();
+   
+    std::string func = "gameState::loadBasketballModel()";
     logMsg("loading bball");
-    logMsg("activeBBallInstance == " +convert->toString(activeBBallInstance));
+    logMsg(func +" activeBBallInstance == " +convert->toString(activeBBallInstance));
+    
     logMsg("loading model " +basketballInstance[activeBBallInstance]->getEntityModelFileName());
     if (basketballInstance[activeBBallInstance]->loadModel())
     {
@@ -679,7 +682,8 @@ void gameState::setBasketballStartPositions()  // sets the initial coordinates f
     size_t activeBBallInstance = getActiveBBallInstance();
     basketballStateVecSharedPtr basketballInstance = getBasketballInstance();
 
-    logMsg("activeBBallInstance == " +convert->toString(activeBBallInstance));
+    std::string func = "gameState::setBasketballStartPositions()";
+    logMsg(func +" activeBBallInstance == " +convert->toString(activeBBallInstance));
     
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 //    exit(0);
@@ -778,10 +782,10 @@ bool gameState::executeTipOff()  // executes tip off
 bool gameState::setupState()  // sets up the game condition
 {
 //    exit(0);
-/*
+
     AISystemSharedPtr ai = AISystem::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
-    boost::shared_ptr<loader> load = loader::Instance();
+//    boost::shared_ptr<loader> load = loader::Instance();
     //boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
     boost::shared_ptr<conversion> convert = conversion::Instance();
@@ -790,6 +794,7 @@ bool gameState::setupState()  // sets up the game condition
 
     if (!modelsLoaded)
     {
+//        exit(0);
         if (loadModels())
         {
             modelsLoaded = true;
@@ -808,7 +813,7 @@ bool gameState::setupState()  // sets up the game condition
     setCourtStartPositions();  // sets starting positions for all courts that are instantiated
     setHoopStartPositions();  // sets starting positions for all hoops that are instantiated
 
-    logMsg("court y == " +convert->toString(getCourtInstance()[0].getNode()->getPosition().y));
+//    logMsg("court y == " +convert->toString(getCourtInstance()[0].getNode()->getPosition().y));
 //    exit(0);
     if (!getTeamInstancesCreated())  // checks if teamInstances have been created
     {
@@ -858,7 +863,7 @@ bool gameState::setupState()  // sets up the game condition
     {
         tipOffSetupComplete = setupTipOff();  // sets up tip off conditions
     }
-*/
+
     return true;
 }
 
@@ -867,7 +872,7 @@ bool gameState::updateState()  // updates the game state
     boost::shared_ptr<conversion> convert = conversion::Instance();
 
     
-//    exit(0);
+    exit(0);
 //    logMsg("Updating gameState Logic");
 
 // BEGINING OF TEST COMMENT

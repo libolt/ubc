@@ -77,7 +77,9 @@ public:
 
     void processInput();  // processes game input
 	
-    void gameLoop();  // runs the Main loop for the game
+    bool gameLoop();  // runs the Main loop for the game
+
+    void gameLoop_old();  // runs the Main loop for the game
 
     bool updateGUI();  // updates the gui based on received events
     

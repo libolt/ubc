@@ -547,14 +547,26 @@ bool gameState::setupEnvironment()
 bool gameState::loadBasketballModel()  // loads selected basketball model
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
+    boost::shared_ptr<loader> load(new loader);
+
     size_t activeBBallInstance = getActiveBBallInstance();
     basketballStateVecSharedPtr basketballInstance = getBasketballInstance();
    
     std::string func = "gameState::loadBasketballModel()";
     logMsg("loading bball");
     logMsg(func +" activeBBallInstance == " +convert->toString(activeBBallInstance));
+    logMsg(func +" basketballInstance.size() == " +convert->toString(basketballInstance.size()));
+    if (load->checkIfBasketballsLoaded())
+    {
+        basketballInstance = load->getBInstance();
+    }
+    else
+    {
+        logMsg(func +" Failed to load Basketball Instances!");
+        exit(0);
+    }
     
-    logMsg("loading model " +basketballInstance[activeBBallInstance]->getEntityModelFileName());
+    logMsg(func +" loading model " +basketballInstance[activeBBallInstance]->getEntityModelFileName());
     if (basketballInstance[activeBBallInstance]->loadModel())
     {
         basketballInstance[activeBBallInstance]->setModelNeedsLoaded(false);

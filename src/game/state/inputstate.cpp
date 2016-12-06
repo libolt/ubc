@@ -73,23 +73,25 @@ bool inputState::setup()  // sets up the input state
     boost::shared_ptr<inputEngine> tempInputSharedPtr(new inputEngine);
     inputE = tempInputSharedPtr;
 //    uInput = load->loadUserInputs();  // loads user defined input from file.
-        logMsg("gameState::createTeamInstances() loadTeams");
+    std::string func = "inputState::setup()";
+    
+    logMsg(func +" load->checkIfUserInputsLoaded()");
 
     if (load->checkIfUserInputsLoaded())
     {
         uInput = load->getUIInstance();
         if (uInput.size() > 0)
         {
-            logMsg("inputState::inputState() uInput Loaded!");
+            logMsg(func +" uInput Loaded!");
         }
         else
         {
-            logMsg("inputState::inputState() uInput NOT Loaded!");
+            logMsg(func +" uInput NOT Loaded!");
         }
     }
     else
     {
-        logMsg("inputState::inputState() loading of User Inout failed!");
+        logMsg(func +" loading of User Inout failed!");
         exit(false);
     }
 

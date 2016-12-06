@@ -414,24 +414,27 @@ std::string loader::findFile(std::string fileName)  // finds the location of a f
 
 bool loader::checkIfBasketballsLoaded()  // checks if basketballs have been loaded into bInstance
 {
+    boost::shared_ptr<conversion> convert = conversion::Instance();
+    std::string func = "loader::checkBasketballsLoaded()";
+    
     if (basketballFilesLoaded)
     {
-        logMsg("loader::checkBasketballsLoaded() getBasketballFilesLoaded");
+        logMsg(func +" getBasketballFilesLoaded");
 
         if (bInstance.size() > 0)
         {
-            logMsg("loader::checkBasketballsLoaded() Basketball Files Loaded!");
+            logMsg(func +" Basketball Files Loaded!");
             return(true);
         }
         else
         {
-            logMsg("loader::checkBasketballsLoaded() Basketball Files not yet Loaded!");
+            logMsg(func +" Basketball Files not yet Loaded!");
 
             basketballFilesLoaded = false;
             bInstance = loadBasketballs();
             if (bInstance.size() > 0)
             {
-                logMsg("loader::checkBasketballsLoaded() > 0!");
+                logMsg(func +" > 0!");
 
 //                load->setTInstance(tInstance);
                 basketballFilesLoaded = true;
@@ -439,31 +442,34 @@ bool loader::checkIfBasketballsLoaded()  // checks if basketballs have been load
             }
             else
             {
-                logMsg("loader::checkBasketballsLoaded() Failed to load Basketball Files! IF");
+                logMsg(func +" Failed to load Basketball Files! IF");
                 exit(0);
             }
         }
     }
     else 
     {
-        logMsg("loader::checkBasketballsLoaded() ELSE");
+        logMsg(func +" ELSE");
 
         if (bInstance.size() > 0)
         {
-            logMsg("loader::checkBasketballsLoaded() load->getBInstance().size() > 0! ELSE");
+            logMsg(func +" load->getBInstance().size() > 0! ELSE");
 //            load->setTInstance(tInstance);
             basketballFilesLoaded = true;
             return(true);
         }
         else
         {
-            logMsg("loader::checkBasketballsLoaded() ELSE ELSE!");
-
+            logMsg(func +" ELSE ELSE!");
             bInstance = loadBasketballs();
-            logMsg("loader::checkBasketballsLoaded()");
+            logMsg(func +" blah");
+
+            logMsg(func +" bInstance.size() == " +convert->toString(bInstance.size()));
+
+//            logMsg("loader::checkBasketballsLoaded()");
             if (bInstance.size() > 0)
             {
-                logMsg("loader::checkBasketballsLoaded() load->getBInstance().size() > 0! ELSE ELSE");
+                logMsg(func +" load->getBInstance().size() > 0! ELSE ELSE");
 
 //                load->setTInstance(tInstance);
                 basketballFilesLoaded = true;
@@ -471,7 +477,7 @@ bool loader::checkIfBasketballsLoaded()  // checks if basketballs have been load
             }
             else
             {
-                logMsg("loader::checkBasketballsLoaded() Failed to load Basketball Files!");
+                logMsg(func +" Failed to load Basketball Files!");
                 return(false);
             }
         }
@@ -828,8 +834,12 @@ bool loader::checkIfUserInputsLoaded()  // checks if user inputs have been loade
 // Basketballs
 basketballStateVecSharedPtr loader::loadBasketballs()  // load basketball settings from XML files
 {
+//    exit(0);
     basketballStateVecSharedPtr basketballs;
     std::string basketballList;
+    std::string func = "loader::loadBasketballs()";
+    
+    logMsg(func +" beginning");
     
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     basketballList = "data/basketballs/basketballs.xml";
@@ -849,6 +859,7 @@ basketballStateVecSharedPtr loader::loadBasketballs()  // load basketball settin
         basketballs.push_back(loadBasketballFile(findFile("basketballs/" + *it)));
 #endif
     }
+    logMsg(func +" end");
     return (basketballs);
 }
 
@@ -857,9 +868,11 @@ stdStringVec loader::loadBasketballListFile(std::string fileName) // loads the l
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     stdStringVec bballFiles;
-
     std::string fileContents;
     tinyxml2::XMLDocument doc;
+    std::string func = "loader::loadBasketballListFile()";
+    
+    logMsg(func +" beginning");
 
     logMsg(fileName);
     char *contents = NULL;
@@ -901,6 +914,7 @@ stdStringVec loader::loadBasketballListFile(std::string fileName) // loads the l
 
 //    setBasketballFiles(basketballFile);
 //    return true;
+    logMsg(func +" end");
     return (bballFiles);
 }
 
@@ -912,61 +926,75 @@ boost::shared_ptr<basketballState> loader::loadBasketballFile(std::string fileNa
 //    basketballState *basketball = new basketballState;
     std::string name;
     std::string modelName;
-
     std::string fileContents;
     tinyxml2::XMLDocument doc;
-
     char *contents = NULL;
+    std::string func = "loader::loadBasketballFile()";
+    
+    logMsg(func +" beginning");
+    logMsg(func +" fileName == " +fileName);
+    
     readFile(fileName.c_str(), &contents);
     fileContents = convert->toString(contents);
-
+//    logMsg(func +" fileContents == " +fileContents);
+    
     doc.Parse(contents);
-    if (doc.Error())
+/*    if (doc.Error())
     {
- /*       logMsg("Unable to parse basketball xml file");
+        logMsg("Unable to parse basketball xml file");
         logMsg("Error ID = " +convert->toString(doc.ErrorID()));
         logMsg(convert->toString(doc.GetErrorStr1()));
         logMsg(convert->toString(doc.GetErrorStr2()));
         exit(0);
-*/
-    }
 
+    }
+*/
     tinyxml2::XMLHandle hDoc(&doc);
     tinyxml2::XMLElement *rootElement;
     tinyxml2::XMLElement *child;
     tinyxml2::XMLHandle hRoot(0);
 
-    rootElement = doc.FirstChildElement()->ToElement();
+    logMsg(func +" daaa");
+//    rootElement = doc.FirstChildElement().ToElement();
+    rootElement = hDoc.FirstChildElement().ToElement();
+    logMsg(func +" diii");
     // should always have a valid root but handle gracefully if it does
     if (!rootElement)
     {
-        logMsg("Unable to load basketball element");
+        logMsg(func +" Unable to load basketball element");
         //exit(0);
     }
-
-    child = rootElement->FirstChild()->ToElement();
+    hRoot = tinyxml2::XMLHandle(rootElement);
+    logMsg(func +" dee");
+    child=hRoot.FirstChild().ToElement();
+//    child = rootElement->FirstChild()->ToElement();
+    logMsg(func +" " +child->Value());
     if (child)
     {
+        logMsg(func +" dyyy");
+        logMsg(func +" rootElement->FirstChild()");
         std::string cKey = child->Value();
         if (cKey == "Name")
         {
+            logMsg(func +"name!");
             name = child->GetText();
-//            logMsg("name = " +name);
+            logMsg(func +" name = " +name);
         }
         child = child->NextSiblingElement()->ToElement();
         if (child)
         {
             modelName = child->GetText();
-//            logMsg("modelName = " +modelName);
+            logMsg(func +" modelName = " +modelName);
         }
 
     }
-
+    logMsg(func +" dah");
     basketballInstance->setName(name);
     basketballInstance->setModelFileName(modelName);
 
 //    basketballInstance = boost::shared_ptr<basketballState>(basketball);
-    
+    logMsg(func +" end");
+
     return (basketballInstance);
 }
 
@@ -2162,6 +2190,10 @@ std::tr1::unordered_map<size_t, teamStateSharedPtr> loader::loadTeams()  // load
     std::tr1::unordered_map <size_t, teamStateSharedPtr> teams;
 
     std::string teamList;
+    std::string func = "loader::loadTeams";
+    
+    logMsg(func +" beginning");
+
 //    boost::shared_ptr<teamState> tempTeamSharedPtr(new teamState);
     
 /*    teamState *tempTeamObj = new teamState;
@@ -2220,6 +2252,8 @@ std::tr1::unordered_map<size_t, teamStateSharedPtr> loader::loadTeams()  // load
 //        exit(0);
     }
     
+    logMsg(func +" end");
+    
     return (teams);
 }
 
@@ -2241,6 +2275,11 @@ stdStringVec loader::loadTeamListFile(std::string fileName)  // loads the team l
 //	char *fileContents = NULL;
     std::string fileContents;
     tinyxml2::XMLDocument doc;
+    std::string func = "loader::loadTeamListFile";
+    
+    logMsg(func +" beginning");
+
+    
     logMsg(fileName);
     logMsg("bate");
 //#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
@@ -2305,6 +2344,7 @@ stdStringVec loader::loadTeamListFile(std::string fileName)  // loads the team l
 
 //    setTeamFiles(teamFiles);
 
+    logMsg(func +" end");
 //    return true;
     return (files);
 }
@@ -2336,7 +2376,9 @@ teamStateSharedPtr loader::loadTeamFile(std::string fileName)  // loads the team
     std::string fileContents;
     tinyxml2::XMLDocument doc;
     char *contents = NULL;
+    std::string func = "loader::loadTeamFile";
     
+    logMsg(func +" beginning");
     readFile(fileName.c_str(), &contents);
     fileContents = convert->toString(contents);
     doc.Parse(contents);
@@ -2427,6 +2469,8 @@ teamStateSharedPtr loader::loadTeamFile(std::string fileName)  // loads the team
 //   teamInstance.push_back(teamInstance);
 //   gameS->setteamInstance(teamInstance);
 //,    exit(0);
+
+    logMsg(func +" end");
 
     return (teamInstance);
 }

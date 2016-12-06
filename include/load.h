@@ -131,7 +131,9 @@ public:
     basketballStateVecSharedPtr loadBasketballs();  // load basketball XML files
     stdStringVec loadBasketballListFile(std::string fileName);  // load the list of basketballs from basketballs.xml
     basketballStateSharedPtr loadBasketballFile(std::string fileName);  // loads data from the basketball XML files.
+    basketballStateSharedPtr loadBasketballFile_old(std::string fileName);  // loads data from the basketball XML files.
 
+    
     // Courts
     std::tr1::unordered_map <size_t, courtStateSharedPtr>  loadCourts();  // load court XML files
     stdStringVec loadCourtListFile(std::string fileName);  // load the list of courts from courts.xml

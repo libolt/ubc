@@ -921,8 +921,68 @@ stdStringVec loader::loadBasketballListFile(std::string fileName) // loads the l
 boost::shared_ptr<basketballState> loader::loadBasketballFile(std::string fileName)  // loads data from the basketball XML files
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-
     boost::shared_ptr<basketballState> basketballInstance(new basketballState);
+    
+//    basketballState *basketball = new basketballState;
+    std::string name;
+    std::string modelName;
+    std::string fileContents;
+    tinyxml2::XMLDocument doc;
+    char *contents = NULL;
+    std::string func = "loader::loadBasketballFile()";
+    
+    logMsg(func +" beginning");
+
+    readFile(fileName.c_str(), &contents);
+    fileContents = convert->toString(contents);
+    logMsg(func +" fileContents == " +fileContents);
+
+    doc.Parse(contents);
+    if (doc.Error())
+    {
+        logMsg(func +" Unable to parse court xml file");
+        logMsg(func +" Error ID = " +convert->toString(doc.ErrorID()));
+        logMsg(func +" " +convert->toString(doc.GetErrorStr1()));
+        logMsg(func +" " +convert->toString(doc.GetErrorStr2()));
+        exit(0);
+
+    }
+
+    tinyxml2::XMLHandle hDoc(&doc);
+    tinyxml2::XMLElement *rootElement;
+    tinyxml2::XMLElement *child;
+    tinyxml2::XMLHandle hRoot(0);
+   
+    logMsg(func + " rootElement?");
+
+    rootElement = hDoc.FirstChildElement().ToElement();
+    
+    logMsg(func + " rootElement!");
+    logMsg("rootElement = " + convert->toString(rootElement));
+
+    // should always have a valid root but handle gracefully if it does
+    if (!rootElement)
+    {
+        logMsg(func +" Unable to load basketball element");
+        exit(0);
+    }
+
+    logMsg(func + " child?");
+    child = rootElement->FirstChild()->ToElement();
+    if (child)
+    {
+        logMsg(func +" WOOT!");
+    }
+    
+    
+return (basketballInstance);
+}
+
+boost::shared_ptr<basketballState> loader::loadBasketballFile_old(std::string fileName)  // loads data from the basketball XML files
+{
+    boost::shared_ptr<conversion> convert = conversion::Instance();
+    boost::shared_ptr<basketballState> basketballInstance(new basketballState);
+    
 //    basketballState *basketball = new basketballState;
     std::string name;
     std::string modelName;
@@ -962,13 +1022,15 @@ boost::shared_ptr<basketballState> loader::loadBasketballFile(std::string fileNa
     if (!rootElement)
     {
         logMsg(func +" Unable to load basketball element");
-        //exit(0);
+        exit(0);
     }
     hRoot = tinyxml2::XMLHandle(rootElement);
     logMsg(func +" dee");
-    child=hRoot.FirstChild().ToElement();
-//    child = rootElement->FirstChild()->ToElement();
+//    child=hRoot.FirstChild().ToElement();
+    child = rootElement->FirstChild()->ToElement();
+    logMsg("child = " + convert->toString(child));
     logMsg(func +" " +child->Value());
+   
     if (child)
     {
         logMsg(func +" dyyy");
@@ -1322,7 +1384,7 @@ stdStringVec loader::loadOffensePlayListFile(std::string fileName)  // loads the
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
 
     stdStringVec playFiles;
-
+    std::string func = "loader::loadOffensePlayListFile()";
     std::string fileContents;
     tinyxml2::XMLDocument doc;
     logMsg(fileName);
@@ -1333,12 +1395,12 @@ stdStringVec loader::loadOffensePlayListFile(std::string fileName)  // loads the
     doc.Parse(contents);
     if (doc.Error())
     {
-/*        logMsg("Unable to parse teams.xml file");
-        logMsg("Error ID = " +convert->toString(doc.ErrorID()));
-        logMsg(convert->toString(doc.GetErrorStr1()));
-        logMsg(convert->toString(doc.GetErrorStr2()));
+        logMsg(func +" Unable to parse teams.xml file");
+        logMsg(func +" Error ID = " +convert->toString(doc.ErrorID()));
+        logMsg(func + " " +convert->toString(doc.GetErrorStr1()));
+        logMsg(func + " " +convert->toString(doc.GetErrorStr2()));
         exit(0);
-*/
+
     }
 
     tinyxml2::XMLHandle hDoc(&doc);

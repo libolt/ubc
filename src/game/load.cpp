@@ -937,15 +937,15 @@ boost::shared_ptr<basketballState> loader::loadBasketballFile(std::string fileNa
     fileContents = convert->toString(contents);
     logMsg(func +" fileContents == " +fileContents);
 
-    doc.Parse(contents);
+    doc.Parse(fileContents.c_str(),fileContents.size());
     if (doc.Error())
     {
-        logMsg(func +" Unable to parse court xml file");
+/*        logMsg(func +" Unable to parse court xml file");
         logMsg(func +" Error ID = " +convert->toString(doc.ErrorID()));
         logMsg(func +" " +convert->toString(doc.GetErrorStr1()));
         logMsg(func +" " +convert->toString(doc.GetErrorStr2()));
         exit(0);
-
+*/
     }
 
     tinyxml2::XMLHandle hDoc(&doc);
@@ -1393,7 +1393,7 @@ stdStringVec loader::loadOffensePlayListFile(std::string fileName)  // loads the
     fileContents = convert->toString(contents);
 
     doc.Parse(contents);
-    if (doc.Error())
+/*    if (doc.Error())
     {
         logMsg(func +" Unable to parse teams.xml file");
         logMsg(func +" Error ID = " +convert->toString(doc.ErrorID()));
@@ -1402,7 +1402,7 @@ stdStringVec loader::loadOffensePlayListFile(std::string fileName)  // loads the
         exit(0);
 
     }
-
+*/
     tinyxml2::XMLHandle hDoc(&doc);
 
     tinyxml2::XMLElement *pElem;

@@ -25,6 +25,8 @@ physics::physics()  // constructor
 {
 //    physicsSetup = false;
 
+    colObject = 999999;
+    collidesWith = 999999;
     physObjNumber = 999999;
 
 }
@@ -127,7 +129,10 @@ bool physics::setupPhysics(Ogre::Entity **model, Ogre::SceneNode **node, btRigid
     btVector3 inertia, inertia2;
     inertia = btVector3(0,0,0);
     btRigidBody *physBody;
-
+    btCollisionShape *tempShape; 
+    std::string func = "physics::setupPhysics()";
+    
+    logMsg(func +" beginning");
     
     //Create the basketball shape.
 /*    if (getNumber() != 999999 && basketballInstance[getNumber()].getModelLoaded()) //&& gameS->getBasketballInstancesCreated())
@@ -136,19 +141,25 @@ bool physics::setupPhysics(Ogre::Entity **model, Ogre::SceneNode **node, btRigid
 //        exit(0);
 */
         BtOgre::StaticMeshToShapeConverter converter(*model);
-        btCollisionShape *tempShape; 
+        
+        logMsg(func +" BtOgre::StaticMeshToShapeConverter");
+        
         switch (getShapeType())
         {
             case CAPSULE:
                 tempShape = converter.createCapsule();
+                logMsg(func +" CAPSULE");
             break;
             case BOX:
                 tempShape = converter.createBox();
+                logMsg(func +" BOX");
             break;
             case CYLINDER:
+                logMsg(func +" CYLINDER");
             break;
             case SPHERE:
                 tempShape= converter.createSphere();
+                logMsg(func +" SPHERE");
             break;
             default:
             break;
@@ -156,14 +167,26 @@ bool physics::setupPhysics(Ogre::Entity **model, Ogre::SceneNode **node, btRigid
 //        setShape(converter.createSphere());
         
         tempShape->calculateLocalInertia(mass, inertia);
+        logMsg(func +" tempShape->calculateLocalInertia(mass, inertia);");
+
         shape = boost::shared_ptr<btCollisionShape>(tempShape);
+        logMsg(func +" shape = boost::shared_ptr<btCollisionShape>(tempShape);");
+
 //        exit(0);
 
         BtOgre::RigidBodyState *tempBodyState = new BtOgre::RigidBodyState(*node);
+        logMsg(func +" BtOgre::RigidBodyState *tempBodyState = new BtOgre::RigidBodyState(*node);");
+
         bodyState =  boost::shared_ptr<BtOgre::RigidBodyState>(tempBodyState);
+        logMsg(func +" bodyState =  boost::shared_ptr<BtOgre::RigidBodyState>(tempBodyState);");
+
 //    exit(0);
         btRigidBody::btRigidBodyConstructionInfo info(mass,bodyState.get(),shape.get(),inertia);  //motion state would actually be non-null in most real usages
+        logMsg(func +" btRigidBody::btRigidBodyConstructionInfo info(mass,bodyState.get(),shape.get(),inertia);");
+
         info.m_restitution = 0.85f;
+        logMsg(func +" info.m_restitution = 0.85f;");
+
 //    info.m_friction = 2.0f;
 //    exit(0);
     //Create MotionState (no need for BtOgre here, you can use it if you want to though).
@@ -174,15 +197,27 @@ bool physics::setupPhysics(Ogre::Entity **model, Ogre::SceneNode **node, btRigid
     //Create the Body.
 //    bballBody = new btRigidBody(mass, basketballBodyState, basketballShape, inertia);
         *body = new btRigidBody(info);
+        logMsg(func +" *body = new btRigidBody(info);");
+
 //    bballBody->setActivationState(DISABLE_DEACTIVATION);
     //    bballBody->setCollisionFlags(bballBody->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
 //        *physBody = body;
 
 //        static btDynamicsWorld *world = getWorld();
         boost::shared_ptr<btDynamicsWorld> world = getWorld();
+        logMsg(func +" boost::shared_ptr<btDynamicsWorld> world = getWorld();");
+
+        logMsg(func +" getColObject() == " +convert->toString(getColObject()));
+        logMsg(func +" getCollidesWith() == " +convert->toString(getCollidesWith()));
+
         world->addRigidBody(*body, getColObject(), getCollidesWith());
+        logMsg(func +" world->addRigidBody(*body, getColObject(), getCollidesWith());");
+
         setWorld(world);
+        logMsg(func +" setWorld(world);");
+
         physBody = *body;
+        logMsg(func +" physBody = *body;");
 
         logMsg("body is in world == " +convert->toString(physBody->isInWorld()));
 //    world->addRigidBody(basketballInstance[activeBBallInstance].getPhysBody());
@@ -198,6 +233,8 @@ bool physics::setupPhysics(Ogre::Entity **model, Ogre::SceneNode **node, btRigid
 //        exit(0);
     }
     */
+    logMsg(func +" end");
+ 
     return (true);
 }
 

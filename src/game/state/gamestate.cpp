@@ -551,8 +551,10 @@ bool gameState::loadBasketballModel()  // loads selected basketball model
 
     size_t activeBBallInstance = getActiveBBallInstance();
     basketballStateVecSharedPtr basketballInstance = getBasketballInstance();
-   
     std::string func = "gameState::loadBasketballModel()";
+    
+    logMsg(func +" beginning");
+    
     logMsg("loading bball");
     logMsg(func +" activeBBallInstance == " +convert->toString(activeBBallInstance));
     logMsg(func +" basketballInstance.size() == " +convert->toString(basketballInstance.size()));
@@ -565,14 +567,20 @@ bool gameState::loadBasketballModel()  // loads selected basketball model
         logMsg(func +" Failed to load Basketball Instances!");
         exit(0);
     }
-    
-    logMsg(func +" loading model " +basketballInstance[activeBBallInstance]->getEntityModelFileName());
+    logMsg(func +" basketballInstance.size() == " +convert->toString(basketballInstance.size()));
+
+    logMsg(func +" loading model == " +basketballInstance[activeBBallInstance]->getEntityModelFileName());
     if (basketballInstance[activeBBallInstance]->loadModel())
     {
+        logMsg(func +" blee!");
         basketballInstance[activeBBallInstance]->setModelNeedsLoaded(false);
+        logMsg(func +" blaa!");
         basketballInstance[activeBBallInstance]->setModelLoaded(true);
+        logMsg(func +" blii!");
         basketballInstance[activeBBallInstance]->setupPhysicsObject();
+        logMsg(func +" bluu!");
         setBasketballInstance(basketballInstance);
+        logMsg(func +" Basketball Model Loaded!");
         return (true);
     }
     else
@@ -653,6 +661,7 @@ bool gameState::loadModels()  // loads all game object models excluding the play
         // FIXEME! this should not be hard coded
     }
 
+    exit(0);
     if (!courtModelLoaded)  // Checks if the court model has been loaded
     {
         logMsg("Loading court model!");

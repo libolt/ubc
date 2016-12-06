@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "entity/basketballentity.h"
+#include "logging.h"
 
 basketballEntity::basketballEntity()  // constructor
 {
@@ -49,15 +50,23 @@ void basketballEntity::setSteer(boost::shared_ptr<basketballSteer> set)  // sets
 
 bool basketballEntity::setupPhysicsObject()  // sets up the physics object
 {
+    std::string func = "basketballEntity::setupPhysicsObject()";
     Ogre::Entity *tempModel = getModel().get();
     Ogre::SceneNode *tempNode = getNode().get();
     btRigidBody *tempPhysBody = getPhysBody().get();
+    
+    logMsg(func +" beginning");
+    
     setShapeType(SPHERE);
+    logMsg(func +" setShapeType!");
     setColObject(COL_BBALL);
+    logMsg(func +" setColObject!");
     setCollidesWith(COL_COURT);
+    logMsg(func +" setCollidesWith!");
 
     if (setupPhysics(&tempModel, &tempNode, &tempPhysBody))
     {
+        logMsg(func +" setupPhysics!");
         setPhysicsSetup(true);
         
         setModel(boost::shared_ptr<Ogre::Entity>(tempModel));

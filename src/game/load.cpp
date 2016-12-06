@@ -987,9 +987,9 @@ boost::shared_ptr<basketballState> loader::loadBasketballFile(std::string fileNa
     }
     basketballInstance->setName(name);
     basketballInstance->setModelFileName(modelName);
-
+    basketballInstance->setEntityModelFileName(modelName);
     
-return (basketballInstance);
+    return (basketballInstance);
 }
 
 // Courts

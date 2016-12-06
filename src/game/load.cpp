@@ -971,70 +971,6 @@ boost::shared_ptr<basketballState> loader::loadBasketballFile(std::string fileNa
     child = rootElement->FirstChild()->ToElement();
     if (child)
     {
-        logMsg(func +" WOOT!");
-    }
-    
-    
-return (basketballInstance);
-}
-
-boost::shared_ptr<basketballState> loader::loadBasketballFile_old(std::string fileName)  // loads data from the basketball XML files
-{
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<basketballState> basketballInstance(new basketballState);
-    
-//    basketballState *basketball = new basketballState;
-    std::string name;
-    std::string modelName;
-    std::string fileContents;
-    tinyxml2::XMLDocument doc;
-    char *contents = NULL;
-    std::string func = "loader::loadBasketballFile()";
-    
-    logMsg(func +" beginning");
-    logMsg(func +" fileName == " +fileName);
-    
-    readFile(fileName.c_str(), &contents);
-    fileContents = convert->toString(contents);
-//    logMsg(func +" fileContents == " +fileContents);
-    
-    doc.Parse(contents);
-/*    if (doc.Error())
-    {
-        logMsg("Unable to parse basketball xml file");
-        logMsg("Error ID = " +convert->toString(doc.ErrorID()));
-        logMsg(convert->toString(doc.GetErrorStr1()));
-        logMsg(convert->toString(doc.GetErrorStr2()));
-        exit(0);
-
-    }
-*/
-    tinyxml2::XMLHandle hDoc(&doc);
-    tinyxml2::XMLElement *rootElement;
-    tinyxml2::XMLElement *child;
-    tinyxml2::XMLHandle hRoot(0);
-
-    logMsg(func +" daaa");
-//    rootElement = doc.FirstChildElement().ToElement();
-    rootElement = hDoc.FirstChildElement().ToElement();
-    logMsg(func +" diii");
-    // should always have a valid root but handle gracefully if it does
-    if (!rootElement)
-    {
-        logMsg(func +" Unable to load basketball element");
-        exit(0);
-    }
-    hRoot = tinyxml2::XMLHandle(rootElement);
-    logMsg(func +" dee");
-//    child=hRoot.FirstChild().ToElement();
-    child = rootElement->FirstChild()->ToElement();
-    logMsg("child = " + convert->toString(child));
-    logMsg(func +" " +child->Value());
-   
-    if (child)
-    {
-        logMsg(func +" dyyy");
-        logMsg(func +" rootElement->FirstChild()");
         std::string cKey = child->Value();
         if (cKey == "Name")
         {
@@ -1048,16 +984,12 @@ boost::shared_ptr<basketballState> loader::loadBasketballFile_old(std::string fi
             modelName = child->GetText();
             logMsg(func +" modelName = " +modelName);
         }
-
     }
-    logMsg(func +" dah");
     basketballInstance->setName(name);
     basketballInstance->setModelFileName(modelName);
 
-//    basketballInstance = boost::shared_ptr<basketballState>(basketball);
-    logMsg(func +" end");
-
-    return (basketballInstance);
+    
+return (basketballInstance);
 }
 
 // Courts

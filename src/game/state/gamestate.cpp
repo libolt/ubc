@@ -92,6 +92,8 @@ gameState::gameState()  // constructor
     quarterTimeLeft = 0.0f;
     finished = false;
 
+    numActiveHoops = 2;
+    
 //    stateSet = false;
     
 }
@@ -468,49 +470,95 @@ bool gameState::createPlayerInstances()  // creates player instances
     
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<loader> load(new loader);
-    
     std::tr1::unordered_map<size_t, playerStateSharedPtr> pInstance;
+    std::string func = "gameState::createPlayerInstances()";
     
-    logMsg("gameState::createPlayerInstances() checkIfPlayersLoaded");
+    logMsg(func +" checkIfPlayersLoaded");
 //    exit(0);
     if (load->checkIfPlayersLoaded())
     {
-        logMsg("gameState::createPlayerInstances() checkIfPlayersLoaded true");
+        logMsg(func +" checkIfPlayersLoaded true");
 
         pInstance = load->getPInstance();
         if (pInstance.size() > 0)
         {
-            logMsg("gameState::createPlayerInstances() pInstance Loaded!");
+            logMsg(func +" pInstance Loaded!");
         }
         else
         {
-            logMsg("gameState::createPlayerInstances() pInstance NOT Loaded!");
+            logMsg(func +" pInstance NOT Loaded!");
         }
     }
     else
     {
-        logMsg("gameState::createPlayerInstances() loading of playerss failed!");
+        logMsg(func +" loading of playerss failed!");
         return (false);
     }
     
 
 //    exit(0);
-    logMsg("gameState::createPlayerInstances() uno");
+    logMsg(func +" uno");
 
-    logMsg("gameState::createPlayerInstances() pInstance.size() == " +convert->toString(pInstance.size()));
-    logMsg("gameState::createPlayerInstances() too");
+    logMsg(func +" pInstance.size() == " +convert->toString(pInstance.size()));
+    logMsg(func +" too");
 //    setPlayerInstances(load->loadPlayers());
 //   exit(0);
     setPlayerInstance(pInstance);
     setPlayerInstanceCreated(true);
     if (getPlayerInstance().size() > 0)
     {
-        logMsg("gameState::createPlayerInstances() playerInstance size == " +convert->toString(getPlayerInstance().size()));
+        logMsg(func +" playerInstance size == " +convert->toString(getPlayerInstance().size()));
 //        logMsg("player name = " +getPlayerInstance()[0]->getPlayerName());
 //        exit(0);
         return (true);
     }
     return (false);
+}
+
+bool gameState::createActiveHoopInstances()  // creates the active hoop instances
+{
+    boost::shared_ptr<conversion> convert = conversion::Instance();
+    boost::shared_ptr<loader> load(new loader);
+    std::tr1::unordered_map <size_t, hoopStateSharedPtr> hoopInstance = getHoopInstance();
+    std::tr1::unordered_map <size_t, hoopStateSharedPtr> activeHoopInstance = getActiveHoopInstance();
+    std::string func = "gameState::createActiveHoopInstances()";
+
+    logMsg(func +" beginning");
+    
+    if (hoopInstance.size() == 0)
+    {
+        if (load->checkIfHoopsLoaded())
+        {
+            logMsg(func + " abada!");
+            hoopInstance = load->getHInstance();
+            logMsg(func + " abadeeee!");
+        }
+        else
+        {
+            logMsg(func +" Failed to load Hoop Instances!");
+            exit(0);
+        }
+    }
+    else
+    {
+
+    }
+    
+    for (auto x=0;x<numActiveHoops; ++x)
+    {
+        activeHoopInstance.insert(std::pair<size_t, hoopStateSharedPtr>(x, hoopInstance[0]));
+    }
+    
+    for (auto AHIIT : activeHoopInstance)
+    {
+        AHIIT.second->setEntityName("hoop" +convert->toString(AHIIT.first));
+
+        logMsg("entityName == " +AHIIT.second->getEntityName());
+    }
+//    exit(0);
+    setActiveHoopInstance(activeHoopInstance);
+    
+    return (true);
 }
 
 bool gameState::createActiveTeamInstances()  // creates the active team instances
@@ -670,54 +718,63 @@ bool gameState::loadCourtModel()  // loads selected court model
 bool gameState::loadHoopModel()  // loads selected hoop model
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    std::tr1::unordered_map <size_t, hoopStateSharedPtr> hoopInstance = getHoopInstance();
+    std::tr1::unordered_map <size_t, hoopStateSharedPtr> activeHoopInstance = getActiveHoopInstance();
     boost::shared_ptr<loader> load(new loader);
     std::string func = "gameState::loadHoopModel()";
     bool returnType = true;
 
     logMsg(func +" beginning");
 
-    if (hoopInstance.size() == 0)
+    if (activeHoopInstance.size() == 0)
     {
-        if (load->checkIfHoopsLoaded())
+        if (createActiveHoopInstances())
         {
-            logMsg(func + " abada!");
-            hoopInstance = load->getHInstance();
-            logMsg(func + " abadeeee!");
+            logMsg(func +" Active Hoop Instances created!");
         }
         else
         {
-            logMsg(func +" Failed to load Hoop Instances!");
+            logMsg(func +" Unable to create Active Hoop Instances!");
             exit(0);
         }
     }
     else
     {
-
+        
     }
-    logMsg(func +" hoopInstance.size() == " +convert->toString(hoopInstance.size()));
+    
+    logMsg(func +" activeHoopInstance.size() == " +convert->toString(activeHoopInstance.size()));
 //    logMsg(func + " activeCourtInstance == " +convert->toString(activeCourtInstance));
-    logMsg(func +" Model Name = " +hoopInstance[0]->getEntityModelFileName());
-
-    if (hoopInstance[0]->loadModel())
+    
+    for (auto AHIIT : activeHoopInstance)
     {
-        hoopInstance[0]->getNode()->setScale(0.8f,0.8f,0.8f);
+        logMsg(func +" Model Name = " +AHIIT.second->getEntityModelFileName());
+        std::string name = "hoop" +convert->toString(AHIIT.first);
+        std:: string nodeName = name +"node";
+        logMsg(func +" nodeName == " +nodeName);
+        AHIIT.second->setEntityName(name);
+        AHIIT.second->setEntityNodeName(nodeName);
+        if (AHIIT.second->loadModel())
+        {
+            logMsg(func +" Model loaded successfully!");
+            AHIIT.second->getNode()->setScale(0.8f,0.8f,0.8f);
+        }
+        else
+        {
+            logMsg(func +" Unable to load model for activeHoopInstance[" +convert->toString(AHIIT.first) +"]");
+            returnType = false;
+        }
     }
-    else
-    {
-        logMsg("Unable to load model for hoopInstance[0]");
-        returnType = false;
-    }
-    if (hoopInstance[1]->loadModel())
+/*    if (hoopInstance[1]->loadModel())
     {
         hoopInstance[1]->getNode()->setScale(0.8f,0.8f,0.8f);
     }
     else
     {
-        logMsg("Unable to load model for hoopInstance[1]");
+        logMsg(func +" Unable to load model for hoopInstance[1]");
         returnType = false;
     }
-    setHoopInstance(hoopInstance);
+    */
+    setActiveHoopInstance(activeHoopInstance);
 
     logMsg(func +" end");
 
@@ -896,9 +953,27 @@ bool gameState::setupState()  // sets up the game condition
     //boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
     boost::shared_ptr<conversion> convert = conversion::Instance();
+    std::string func = "gameState::setupState()";
+   
+    logMsg(func +" beginning");
 
-    logMsg("Setting up state!");
-
+    if (!getActiveHoopInstancesCreated())
+    {
+        if (createActiveHoopInstances())
+        {
+            setActiveHoopInstancesCreated(true);
+        }
+        else
+        {
+            logMsg(func +" Unable to create Active Hoop Instances!");
+            exit(0);
+        }
+    }
+    else
+    {
+        
+    }
+    
     if (!modelsLoaded)
     {
 //        exit(0);
@@ -970,6 +1045,8 @@ bool gameState::setupState()  // sets up the game condition
     {
         tipOffSetupComplete = setupTipOff();  // sets up tip off conditions
     }
+
+    logMsg(func +" end");
 
     return true;
 }

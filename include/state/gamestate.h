@@ -188,6 +188,8 @@ public:
 
     bool createPlayerInstances();  // creates player instances
     
+    bool createActiveHoopInstances();  // creates the active hoop instances
+
     bool createActiveTeamInstances();  // creates the active team instances
 
     bool loadBasketballModel();  // loads selected basketball model
@@ -235,6 +237,7 @@ private:
     
     size_t bballBounce;  // stores which direction the ball is bouncing;
 
+    size_t numActiveHoops;  // stores the nimber of active hoop instances
 };
 
 

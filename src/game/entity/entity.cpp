@@ -193,6 +193,13 @@ bool entity::loadModel()  // loads the 3D model
     logMsg(func +" Entity Created!");
     // creates and instantiates the node object
 //    node = getRenderE()->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName);
+    if (entityNodeName == "")
+    {
+        entityNodeName = entityName +"node";
+//        entityNodeName = "das";
+    }
+    logMsg("entityNodeName == " +entityNodeName);
+
     Ogre::SceneNode *tempNode = base->getGameE()->getRenderE()->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName);
     tempNode->attachObject(model.get());
     logMsg(func +" node attached!");

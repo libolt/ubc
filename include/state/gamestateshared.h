@@ -56,6 +56,9 @@ class gameStateShared
         std::vector<std::tr1::unordered_map<std::string, size_t> > getTeamStarterID();  // retrieves value of teamStarterID
         void setTeamStarterID(std::vector<std::tr1::unordered_map<std::string, size_t> > set);  // sets the value of teamStarterID
 
+        bool getActiveHoopInstancesCreated();    // retrieves the value of activeHoopInstancesCreated
+        void setActiveHoopInstancesCreated(bool set);    // sets the value of activeHoolInstancesCreated
+
         bool getActiveTeamInstancesCreated();    // retrieves the value of activeTeamInstancesCreated
         void setActiveTeamInstancesCreated(bool set);    // sets the value of activeTeamInstancesCreated
 
@@ -119,6 +122,9 @@ class gameStateShared
         std::tr1::unordered_map <size_t, teamStateSharedPtr> getActiveTeamInstance();  // retrieves the value of activeTeamInstance
         void setActiveTeamInstance(std::tr1::unordered_map <size_t, teamStateSharedPtr> set);  // sets the value of activeTeamInstance
         
+        std::tr1::unordered_map <size_t, hoopStateSharedPtr> getActiveHoopInstance();  // retrieves the value of activeHoopInstance
+        void setActiveHoopInstance(std::tr1::unordered_map <size_t, hoopStateSharedPtr> set);  // sets the value of activeHoopInstance
+       
         size_t getActiveBBallInstance();  // retrieves the value of activeBBallInstance
         void setActiveBBallInstance(size_t set);  // sets the value of activeBBallInstance
 
@@ -149,6 +155,8 @@ class gameStateShared
     private:
 
         // used to determine if calling class needs to uldate its copy of the variable
+        static bool activeHoopInstancesCreated;  // stores whether the active team instances have been created
+
         static bool activeTeamInstancesCreated;  // stores whether the active team instances have been created
         static bool activeTeamInstancesNeedCreated;  // stores whether or not to create active team instances
         static bool basketballInstanceCreated;  // stores whether basketball instance(s) have been created
@@ -174,6 +182,8 @@ class gameStateShared
         static Ogre::Vector3 bballNodePosition;  // stores a copy of the basketball node position
         static teamTypes teamWithBall;  // store which team has the basketball
         static std::tr1::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance;  // stores active team instance
+        static std::tr1::unordered_map <size_t, hoopStateSharedPtr> activeHoopInstance;  // creates instance of the hoop class
+
         static size_t activeBBallInstance;  // stores which instance of the baskteball class is active
         static size_t activeCourtInstance;  // stores which instance of the court is active
         static basketballStateVecSharedPtr basketballInstance;  // creates instance of the basketballs class

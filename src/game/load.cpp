@@ -65,6 +65,7 @@ stdStringVec loader::userInputFiles;
 
 bool loader::basketballFilesLoaded;
 bool loader::courtFilesLoaded;
+bool loader::hoopFilesLoaded;
 bool loader::offensePlayFilesLoaded;
 bool loader::playerFilesLoaded;
 bool loader::teamFilesLoaded;
@@ -570,6 +571,69 @@ bool loader::checkIfCourtsLoaded()  // checks if courts have been loaded into cI
 bool loader::checkIfHoopsLoaded()  // checks if the hooops have been loaded into hInstance
 {
 
+    std::string func = "loader::checkIfHoopsLoaded()";
+    if (hoopFilesLoaded)
+    {
+        logMsg(func + " getHoooFilesLoaded");
+//        exit(0);
+        if (hInstance.size() > 0)
+        {
+            logMsg(func + " Hoop Files Loaded!");
+            return(true);
+        }
+        else
+        {
+            logMsg(func + " Hoop Files not yet Loaded!");
+
+            hoopFilesLoaded = false;
+            hInstance = loadHoops();
+            if (hInstance.size() > 0)
+            {
+                logMsg(func + "  > 0!");
+
+//                load->setTInstance(tInstance);
+                hoopFilesLoaded = true;
+                return(true);
+            }
+            else
+            {
+                logMsg(func + " Failed to load Hoop Files! IF");
+                exit(0);
+            }
+        }
+    }
+    else 
+    {
+        logMsg(func + " ELSE");
+//        exit(0);
+        if (hInstance.size() > 0)
+        {
+            logMsg(func + " load->getHInstance().size() > 0! ELSE");
+//            load->setTInstance(tInstance);
+            hoopFilesLoaded = true;
+            return(true);
+        }
+        else
+        {
+            logMsg(func + " ELSE ELSE!");
+
+            hInstance = loadHoops();
+            logMsg(func);
+            if (hInstance.size() > 0)
+            {
+                logMsg(func + " load->getHInstance().size() > 0! ELSE ELSE");
+
+//                load->setTInstance(tInstance);
+                hoopFilesLoaded = true;
+                return(true);
+            }
+            else
+            {
+                logMsg(func + " Failed to load Hop Files!");
+                return(false);
+            }
+        }
+    }
     return (false);
 }
 
@@ -1336,7 +1400,7 @@ std::tr1::unordered_map <size_t, hoopStateSharedPtr>  loader::loadHoops()  // lo
     {
 //        logMsg("hoopFile = " +*it);
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-        hoopss.insert(std::pair<size_t, hoopStateSharedPtr>(it, loadHoopFile("data/hoops/" + hoopFiles[it])));
+        hoops.insert(std::pair<size_t, hoopStateSharedPtr>(it, loadHoopFile("data/hoops/" + hoopFiles[it])));
 #else
         hoops.insert(std::pair<size_t, hoopStateSharedPtr>(it, loadHoopFile(findFile("hoops/" + hoopFiles[it]))));
 #endif
@@ -1473,6 +1537,7 @@ hoopStateSharedPtr loader::loadHoopFile(std::string fileName)  // loads data fro
     }
     hoopInstance->setName(name);
 //    hoopInstance->setModelFileName(modelName);
+//    hoopInstance->setEntityName(name);
     hoopInstance->setEntityModelFileName(modelName);
 
     return (hoopInstance);

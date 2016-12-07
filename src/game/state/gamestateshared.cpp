@@ -88,7 +88,7 @@ gameStateShared::gameStateShared()  // constructor
     teamWithBall = NOTEAM;
     tipOffComplete = false;
     activeBBallInstance = -1;
-    activeCourtInstance = -1;
+    activeCourtInstance = 0;
     gameType = NOGAME;
 
 }

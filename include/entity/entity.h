@@ -85,7 +85,7 @@ class entity // : public UBCBase // base class for entity objects
     
     private:
     
-    boost::shared_ptr<UBCBase> base;  // base class object
+    static boost::shared_ptr<UBCBase> base;  // base class object
     bool baseInitialized;  // stores whether or not the base class has been initialized.
 
     std::string entityModelFileName;  // stores the file name of the 3d model

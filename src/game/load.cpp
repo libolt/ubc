@@ -48,6 +48,7 @@
 
 basketballStateVecSharedPtr loader::bInstance;
 std::tr1::unordered_map <size_t, courtStateSharedPtr>  loader::cInstance;
+std::tr1::unordered_map <size_t, hoopStateSharedPtr>  loader::hInstance;
 offensePlaysVecSharedPtr loader::opInstance;
 std::tr1::unordered_map <size_t, playerStateSharedPtr> loader::pInstance;
 std::tr1::unordered_map <size_t, teamStateSharedPtr> loader::tInstance;
@@ -56,6 +57,7 @@ userInputVecSharedPtr loader::uiInstance;
 
 stdStringVec loader::basketballFiles;  // stores list of basketball xml files
 stdStringVec loader::courtFiles;  // stores list of court xml files
+stdStringVec loader::hoopFiles;  // stores list of hoop xml files
 stdStringVec loader::offensePlayFiles;  // stores list of offense play xml files
 stdStringVec loader::playerFiles;  // stores list of player xml files
 stdStringVec loader::teamFiles;  // stores list of team xml files
@@ -159,6 +161,15 @@ std::tr1::unordered_map<size_t, courtStateSharedPtr> loader::getCInstance()  // 
 void loader::setCInstance(std::tr1::unordered_map<size_t, courtStateSharedPtr> set)  // sets the value of cInstance
 {
     cInstance = set;
+}
+
+std::tr1::unordered_map<size_t, hoopStateSharedPtr> loader::getHInstance()  // retrieves the value of hInstance
+{
+    return (hInstance);
+}
+void loader::setHInstance(std::tr1::unordered_map<size_t, hoopStateSharedPtr> set)  // sets the value of hInstance
+{
+    hInstance = set;
 }
 
 offensePlaysVecSharedPtr loader::getOPInstance()  // retrieves the value of opInstance
@@ -488,24 +499,26 @@ bool loader::checkIfBasketballsLoaded()  // checks if basketballs have been load
 bool loader::checkIfCourtsLoaded()  // checks if courts have been loaded into cInstance
 {
 //    exit(0);
+
+    std::string func = "loader::checkIfCourtsLoaded()";
     if (courtFilesLoaded)
     {
-        logMsg("loader::checkIfCourtsLoaded() getCourtFilesLoaded");
+        logMsg(func + " getCourtFilesLoaded");
         exit(0);
         if (cInstance.size() > 0)
         {
-            logMsg("loader::checkIfCourtsLoaded() Court Files Loaded!");
+            logMsg(func + " Court Files Loaded!");
             return(true);
         }
         else
         {
-            logMsg("loader::checkIfCourtsLoaded() Court Files not yet Loaded!");
+            logMsg(func + " Court Files not yet Loaded!");
 
             courtFilesLoaded = false;
             cInstance = loadCourts();
             if (cInstance.size() > 0)
             {
-                logMsg("loader::checkIfCourtsLoaded() > 0!");
+                logMsg(func + "  > 0!");
 
 //                load->setTInstance(tInstance);
                 courtFilesLoaded = true;
@@ -513,31 +526,31 @@ bool loader::checkIfCourtsLoaded()  // checks if courts have been loaded into cI
             }
             else
             {
-                logMsg("loader::checkIfCourtsLoaded() Failed to load Court Files! IF");
+                logMsg(func + " Failed to load Court Files! IF");
                 exit(0);
             }
         }
     }
     else 
     {
-        logMsg("loader::checkIfCourtsLoaded() ELSE");
+        logMsg(func + " ELSE");
 //        exit(0);
         if (cInstance.size() > 0)
         {
-            logMsg("loader::checkIfCourtsLoaded() load->getCInstance().size() > 0! ELSE");
+            logMsg(func + " load->getCInstance().size() > 0! ELSE");
 //            load->setTInstance(tInstance);
             courtFilesLoaded = true;
             return(true);
         }
         else
         {
-            logMsg("loader::checkIfCourtsLoaded() ELSE ELSE!");
+            logMsg(func + " ELSE ELSE!");
 
             cInstance = loadCourts();
-            logMsg("loader::checkIfCourtsLoaded()");
+            logMsg(func);
             if (cInstance.size() > 0)
             {
-                logMsg("loader::checkIfCourtsLoaded() load->getCInstance().size() > 0! ELSE ELSE");
+                logMsg(func + " load->getCInstance().size() > 0! ELSE ELSE");
 
 //                load->setTInstance(tInstance);
                 courtFilesLoaded = true;
@@ -545,12 +558,18 @@ bool loader::checkIfCourtsLoaded()  // checks if courts have been loaded into cI
             }
             else
             {
-                logMsg("loader::checkIfCourtsLoaded() Failed to load Court Files!");
+                logMsg(func + " Failed to load Court Files!");
                 return(false);
             }
         }
     }
 //    exit(0);
+    return (false);
+}
+
+bool loader::checkIfHoopsLoaded()  // checks if the hooops have been loaded into hInstance
+{
+
     return (false);
 }
 
@@ -958,7 +977,7 @@ boost::shared_ptr<basketballState> loader::loadBasketballFile(std::string fileNa
     rootElement = hDoc.FirstChildElement().ToElement();
     
     logMsg(func + " rootElement!");
-    logMsg("rootElement = " + convert->toString(rootElement));
+    logMsg(func + " rootElement = " + convert->toString(rootElement));
 
     // should always have a valid root but handle gracefully if it does
     if (!rootElement)
@@ -998,7 +1017,10 @@ std::tr1::unordered_map<size_t, courtStateSharedPtr> loader::loadCourts()  // lo
 //    exit(0);
     std::tr1::unordered_map <size_t, courtStateSharedPtr>  courts;
     std::string courtList;
-    
+    std::string func = "loader::loadCourts()";
+
+    logMsg(func + " beginning");
+
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     courtList = "data/courts/courts.xml";
 #else
@@ -1020,6 +1042,8 @@ std::tr1::unordered_map<size_t, courtStateSharedPtr> loader::loadCourts()  // lo
 #endif
     }
 
+    logMsg(func + " end");
+
     return (courts);
 }
 
@@ -1028,11 +1052,13 @@ stdStringVec loader::loadCourtListFile(std::string fileName)    // loads the lis
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
     stdStringVec cFiles;
-
     std::string fileContents;
     tinyxml2::XMLDocument doc;
+    std::string func = "loader::loadCourtListFile()";
 
-    logMsg(fileName);
+    logMsg(func + " beginning");
+
+    logMsg(func + " " +fileName);
     char *contents = NULL;
     readFile(fileName.c_str(), &contents);
     fileContents = convert->toString(contents);
@@ -1071,6 +1097,8 @@ stdStringVec loader::loadCourtListFile(std::string fileName)    // loads the lis
         cFiles.push_back(pText);
     }
 
+    logMsg(func + " end");
+
 //    setCourtFiles(courtFile);
 //    return true;
     return (cFiles);
@@ -1079,7 +1107,6 @@ stdStringVec loader::loadCourtListFile(std::string fileName)    // loads the lis
 boost::shared_ptr<courtState> loader::loadCourtFile(std::string fileName)  // loads data from the offense play XML files
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    
     boost::shared_ptr<courtState> courtInstance(new courtState);
 //    courtState *court = new courtState;
     std::string name;
@@ -1102,11 +1129,14 @@ boost::shared_ptr<courtState> loader::loadCourtFile(std::string fileName)  // lo
     float baselineInboundZPos = 0;
     float sidelineInboundXPos = 0;
     float sidelineInboundZPos = 0;
-
     std::string fileContents;
     tinyxml2::XMLDocument doc;
-
     char *contents = NULL;
+    std::string func = "loader::loadCourtFile()";
+
+    logMsg(func + " beginning");
+
+
     readFile(fileName.c_str(), &contents);
     fileContents = convert->toString(contents);
     
@@ -1126,7 +1156,7 @@ boost::shared_ptr<courtState> loader::loadCourtFile(std::string fileName)  // lo
     tinyxml2::XMLElement *child;
     tinyxml2::XMLHandle hRoot(0);
 
-    rootElement = doc.FirstChildElement()->ToElement();
+    rootElement = hDoc.FirstChildElement().ToElement();
     // should always have a valid root but handle gracefully if it does
     if (!rootElement)
     {
@@ -1279,10 +1309,174 @@ boost::shared_ptr<courtState> loader::loadCourtFile(std::string fileName)  // lo
     courtInstance->setBaselineInboundPos(baselineInboundPos);
     courtInstance->setSidelineInboundPos(sidelineInboundPos);
 
+    logMsg(func + " end");
 //    courtInstance = boost::shared_ptr<courtState>(court);
     return (courtInstance);
 }
 
+// Hoops
+std::tr1::unordered_map <size_t, hoopStateSharedPtr>  loader::loadHoops()  // load hoop XML files
+{
+//    exit(0);
+    std::tr1::unordered_map <size_t, hoopStateSharedPtr>  hoops;
+    std::string hoopList;
+    std::string func = "loader::loadHoops()";
+
+    logMsg(func + " beginning");
+
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+    hoopList = "data/hoops/hoops.xml";
+#else
+    hoopList = findFile("hoops/hoops.xml");
+#endif
+    hoopFiles = loadHoopListFile(hoopList);
+    auto it = 0;
+//    for (it = courtFiles.begin(); it != courtFiles.end(); ++it)
+    for (it=0;it<hoopFiles.size();++it)
+    {
+//        logMsg("hoopFile = " +*it);
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+        hoopss.insert(std::pair<size_t, hoopStateSharedPtr>(it, loadHoopFile("data/hoops/" + hoopFiles[it])));
+#else
+        hoops.insert(std::pair<size_t, hoopStateSharedPtr>(it, loadHoopFile(findFile("hoops/" + hoopFiles[it]))));
+#endif
+    }
+
+    logMsg(func + " end");
+
+    return (hoops);
+}
+
+stdStringVec loader::loadHoopListFile(std::string fileName)  // load the list of hoops from hoops.xml
+{
+    boost::shared_ptr<conversion> convert = conversion::Instance();
+//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+    stdStringVec hFiles;
+    std::string fileContents;
+    tinyxml2::XMLDocument doc;
+    std::string func = "loader::loadHoopListFile()";
+
+    logMsg(func + " beginning");
+
+    logMsg(func + " " +fileName);
+    char *contents = NULL;
+    readFile(fileName.c_str(), &contents);
+    fileContents = convert->toString(contents);
+//    logMsg("fileContents = " +fileContents);
+
+    doc.Parse(contents);
+    if (doc.Error())
+    {
+/*        logMsg("Unable to parse courts.xml file");
+        logMsg("Error ID = " +convert->toString(doc.ErrorID()));
+        logMsg(convert->toString(doc.GetErrorStr1()));
+        logMsg(convert->toString(doc.GetErrorStr2()));
+        exit(0);
+*/
+    }
+
+    tinyxml2::XMLHandle hDoc(&doc);
+    tinyxml2::XMLElement *pElem;
+    tinyxml2::XMLHandle hRoot(0);
+
+    pElem=hDoc.FirstChildElement().ToElement();
+    // should always have a valid root but handle gracefully if it does
+    if (!pElem)
+    {
+        logMsg("Unable to find a vlid court list root!");
+    }
+
+    // save this for later
+    hRoot=tinyxml2::XMLHandle(pElem);
+
+    pElem=hRoot.FirstChild().ToElement();
+    for( pElem; pElem; pElem=pElem->NextSiblingElement())
+    {
+        std::string pKey=pElem->Value();
+        std::string pText=pElem->GetText();
+        hFiles.push_back(pText);
+    }
+
+    logMsg(func + " end");
+
+//    setCourtFiles(courtFile);
+//    return true;
+    return (hFiles);
+}
+
+hoopStateSharedPtr loader::loadHoopFile(std::string fileName)  // loads data from the hoop XML files.
+{
+    boost::shared_ptr<conversion> convert = conversion::Instance();
+    boost::shared_ptr<hoopState> hoopInstance(new hoopState);
+
+//    basketballState *basketball = new basketballState;
+    std::string name;
+    std::string modelName;
+    std::string fileContents;
+    tinyxml2::XMLDocument doc;
+    char *contents = NULL;
+    std::string func = "loader::loadHoopFile()";
+
+    logMsg(func +" beginning");
+
+    readFile(fileName.c_str(), &contents);
+    fileContents = convert->toString(contents);
+    logMsg(func +" fileContents == " +fileContents);
+
+    doc.Parse(fileContents.c_str(),fileContents.size());
+    if (doc.Error())
+    {
+/*        logMsg(func +" Unable to parse court xml file");
+        logMsg(func +" Error ID = " +convert->toString(doc.ErrorID()));
+        logMsg(func +" " +convert->toString(doc.GetErrorStr1()));
+        logMsg(func +" " +convert->toString(doc.GetErrorStr2()));
+        exit(0);
+*/
+    }
+
+    tinyxml2::XMLHandle hDoc(&doc);
+    tinyxml2::XMLElement *rootElement;
+    tinyxml2::XMLElement *child;
+    tinyxml2::XMLHandle hRoot(0);
+
+    logMsg(func + " rootElement?");
+
+    rootElement = hDoc.FirstChildElement().ToElement();
+
+    logMsg(func + " rootElement!");
+    logMsg(func + " rootElement = " + convert->toString(rootElement));
+
+    // should always have a valid root but handle gracefully if it does
+    if (!rootElement)
+    {
+        logMsg(func +" Unable to load basketball element");
+        exit(0);
+    }
+
+    logMsg(func + " child?");
+    child = rootElement->FirstChild()->ToElement();
+    if (child)
+    {
+        std::string cKey = child->Value();
+        if (cKey == "Name")
+        {
+            logMsg(func +"name!");
+            name = child->GetText();
+            logMsg(func +" name = " +name);
+        }
+        child = child->NextSiblingElement()->ToElement();
+        if (child)
+        {
+            modelName = child->GetText();
+            logMsg(func +" modelName = " +modelName);
+        }
+    }
+    hoopInstance->setName(name);
+//    hoopInstance->setModelFileName(modelName);
+    hoopInstance->setEntityModelFileName(modelName);
+
+    return (hoopInstance);
+}
 //Offense
 offensePlaysVecSharedPtr loader::loadOffensePlays()  // load offense plays from XML files
 {

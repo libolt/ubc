@@ -572,14 +572,21 @@ bool gameState::loadBasketballModel()  // loads selected basketball model
     logMsg("loading bball");
     logMsg(func +" activeBBallInstance == " +convert->toString(activeBBallInstance));
     logMsg(func +" basketballInstance.size() == " +convert->toString(basketballInstance.size()));
-    if (load->checkIfBasketballsLoaded())
+    if (basketballInstance.size() == 0)
     {
-        basketballInstance = load->getBInstance();
+        if (load->checkIfBasketballsLoaded())
+        {
+            basketballInstance = load->getBInstance();
+        }
+        else
+        {
+            logMsg(func +" Failed to load Basketball Instances!");
+            exit(0);
+        }
     }
     else
     {
-        logMsg(func +" Failed to load Basketball Instances!");
-        exit(0);
+
     }
     logMsg(func +" basketballInstance.size() == " +convert->toString(basketballInstance.size()));
     if (!basketballInstance[activeBBallInstance]->getBaseInitialized()) // checks to see if the base object for basketballInstance[activeBBallIntance has been initialized
@@ -613,9 +620,36 @@ bool gameState::loadBasketballModel()  // loads selected basketball model
 
 bool gameState::loadCourtModel()  // loads selected court model
 {
-    static std::tr1::unordered_map <size_t, courtStateSharedPtr> courtInstance = getCourtInstance();
+    boost::shared_ptr<conversion> convert = conversion::Instance();
+    boost::shared_ptr<loader> load(new loader);
+    std::tr1::unordered_map <size_t, courtStateSharedPtr> courtInstance = getCourtInstance();
     size_t activeCourtInstance = getActiveCourtInstance();
-    logMsg("Model Name = " +courtInstance[activeCourtInstance]->getModelFileName());
+
+    std::string func = "gameState::loadCourtModel()";
+
+    logMsg(func +" beginning");
+
+    if (courtInstance.size() == 0)
+    {
+        if (load->checkIfCourtsLoaded())
+        {
+            logMsg(func + " abada!");
+            courtInstance = load->getCInstance();
+            logMsg(func + " abadeeee!");
+        }
+        else
+        {
+            logMsg(func +" Failed to load Court Instances!");
+            exit(0);
+        }
+    }
+    else
+    {
+
+    }
+    logMsg(func +" courtInstance.size() == " +convert->toString(courtInstance.size()));
+    logMsg(func + " activeCourtInstance == " +convert->toString(activeCourtInstance));
+    logMsg(func +" Model Name = " +courtInstance[activeCourtInstance]->getModelFileName());
 
     courtInstance[activeCourtInstance]->setEntityModelFileName(courtInstance[activeCourtInstance]->getModelFileName());
     courtInstance[activeCourtInstance]->setEntityNodeName(courtInstance[activeCourtInstance]->getModelFileName());
@@ -628,16 +662,42 @@ bool gameState::loadCourtModel()  // loads selected court model
     }
     else
     {
-        logMsg("Court model not loaded!");
+        logMsg(func +" Court model not loaded!");
     }
     return (false);
 }
 
 bool gameState::loadHoopModel()  // loads selected hoop model
 {
+    boost::shared_ptr<conversion> convert = conversion::Instance();
+    std::tr1::unordered_map <size_t, hoopStateSharedPtr> hoopInstance = getHoopInstance();
+    boost::shared_ptr<loader> load(new loader);
+    std::string func = "gameState::loadHoopModel()";
     bool returnType = true;
 
-    std::tr1::unordered_map <size_t, hoopStateSharedPtr> hoopInstance = getHoopInstance();
+    logMsg(func +" beginning");
+
+    if (hoopInstance.size() == 0)
+    {
+        if (load->checkIfHoopsLoaded())
+        {
+            logMsg(func + " abada!");
+            hoopInstance = load->getHInstance();
+            logMsg(func + " abadeeee!");
+        }
+        else
+        {
+            logMsg(func +" Failed to load Hoop Instances!");
+            exit(0);
+        }
+    }
+    else
+    {
+
+    }
+    logMsg(func +" hoopInstance.size() == " +convert->toString(hoopInstance.size()));
+//    logMsg(func + " activeCourtInstance == " +convert->toString(activeCourtInstance));
+    logMsg(func +" Model Name = " +hoopInstance[0]->getEntityModelFileName());
 
     if (hoopInstance[0]->loadModel())
     {
@@ -658,6 +718,9 @@ bool gameState::loadHoopModel()  // loads selected hoop model
         returnType = false;
     }
     setHoopInstance(hoopInstance);
+
+    logMsg(func +" end");
+
     return (returnType);
 }
 

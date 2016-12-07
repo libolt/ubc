@@ -41,6 +41,9 @@ class hoopState : public state, public hoopEntity, public hoopPhysics
     hoopState(); // constructor
     ~hoopState();  // destructor
 
+    std::string getName();  // retrieves the value of name
+    void setName(std::string set);  // sets the value of name
+
 /*    std::string getModelName();  // retrieves the value of modelName
     void setModelName(std::string set);  // sets the value of modelName
 
@@ -66,6 +69,7 @@ class hoopState : public state, public hoopEntity, public hoopPhysics
 */
     private:
 
+    std::string name;  // stores the object name
 /*    std::string modelName;  // stores the file name of the 3D Model
     std::string entityName;  // stores the name of the model object in the scene
     std::string nodeName;  // stores the name of the scene node

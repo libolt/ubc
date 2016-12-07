@@ -30,6 +30,17 @@ hoopState::~hoopState()  // destructor
 {
 }
 
+
+std::string hoopState::getName()  // retrieves the value of name
+{
+    return (name);
+}
+
+void hoopState::setName(std::string set)  // sets the value of name
+{
+    name = set;
+}
+
 /*
 std::string hoopState::getModelName()  // retrieves the value of modelName
 {

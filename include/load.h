@@ -84,6 +84,9 @@ public:
     std::tr1::unordered_map <size_t, courtStateSharedPtr>  getCInstance();  // retrieves the value of cInstance
     void setCInstance(std::tr1::unordered_map <size_t, courtStateSharedPtr>  set);  // sets the value of cInstance
   
+    std::tr1::unordered_map <size_t, hoopStateSharedPtr>  getHInstance();  // retrieves the value of hInstance
+    void setHInstance(std::tr1::unordered_map <size_t, hoopStateSharedPtr>  set);  // sets the value of hInstance
+
     offensePlaysVecSharedPtr getOPInstance();  // retrieves the value of opInstance
     void setOPInstance(offensePlaysVecSharedPtr set);  // sets the value of opInstance
     
@@ -122,6 +125,7 @@ public:
     
     bool checkIfBasketballsLoaded();  // checks if basketballs have been loaded into bInstance
     bool checkIfCourtsLoaded();  // checks if courts have been loaded into cInstance
+    bool checkIfHoopsLoaded();  // checks if the hooops have been loaded into hInstance
     bool checkIfOffensePlaysLoaded();  // checks if offense plays have been loaded into opInstance
     bool checkIfPlayersLoaded();  // checks if players have been loaded into pInstance
     bool checkIfTeamsLoaded();  // checks if teams have been loaded into tInstance
@@ -136,6 +140,11 @@ public:
     std::tr1::unordered_map <size_t, courtStateSharedPtr>  loadCourts();  // load court XML files
     stdStringVec loadCourtListFile(std::string fileName);  // load the list of courts from courts.xml
     courtStateSharedPtr loadCourtFile(std::string fileName);  // loads data from the court XML files.
+
+    // Hoops
+    std::tr1::unordered_map <size_t, hoopStateSharedPtr>  loadHoops();  // load hoop XML files
+    stdStringVec loadHoopListFile(std::string fileName);  // load the list of hoops from hoops.xml
+    hoopStateSharedPtr loadHoopFile(std::string fileName);  // loads data from the hoop XML files.
 
     //Offense
     offensePlaysVecSharedPtr loadOffensePlays();  // load offense plays from XML files
@@ -166,6 +175,7 @@ protected:
 private:
     static basketballStateVecSharedPtr bInstance;
     static std::tr1::unordered_map <size_t, courtStateSharedPtr>  cInstance;
+    static std::tr1::unordered_map <size_t, hoopStateSharedPtr>  hInstance;
     static offensePlaysVecSharedPtr opInstance;
     static std::tr1::unordered_map <size_t, playerStateSharedPtr> pInstance;
     static std::tr1::unordered_map <size_t, teamStateSharedPtr> tInstance;
@@ -173,6 +183,7 @@ private:
 
     static stdStringVec basketballFiles;  // stores list of basketball xml files
     static stdStringVec courtFiles;  // stores list of court xml files
+    static stdStringVec hoopFiles;  // stores list of hoop xml files
     static stdStringVec offensePlayFiles;  // stores list of offense play xml files
     static stdStringVec playerFiles;  // stores list of player xml files
     static stdStringVec teamFiles;	 // stores list of team xml files
@@ -181,6 +192,7 @@ private:
     // determines whether files have been loaded successfully
     static bool basketballFilesLoaded;
     static bool courtFilesLoaded;
+    static bool hoopFilesLoaded;
     static bool offensePlayFilesLoaded;
     static bool playerFilesLoaded;
     static bool teamFilesLoaded;

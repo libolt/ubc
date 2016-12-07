@@ -27,6 +27,7 @@
 #include "logging.h"
 #include "network/networkplayerstateobject.h"
 #include "engine/renderengine.h"
+#include "engine/physicsengine.h"
 //#include "engine/sound/soundengine.h"
 
 /*boost::shared_ptr<renderEngine> gameEngine::render; 
@@ -229,10 +230,10 @@ bool gameEngine::setup()  // sets up engine state
     networkE = tempNetworkSharedPtr;
     networkE->initialize();
 
-///    // physicsEngine
-///    physicsEngine *tempPhysicsObj = new physicsEngine;
-///    boost::shared_ptr<physicsEngine> tempPhysicsSharedPtr(new physicsEngine);
-///    set(tempPhysicsSharedPtr);
+    // physicsEngine
+    boost::shared_ptr<physicsEngine> tempPhysicsSharedPtr(new physicsEngine);
+    physE = tempPhysicsSharedPtr;
+    physE->setup();
 ///    physE->setup();
 
 // inputEngine

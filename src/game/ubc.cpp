@@ -213,6 +213,7 @@ bool UBC::startGame()  // starts the game
 
     logMsg("startGame()");
 
+    base->getGameS()->setBase(base);
     base->getGameS()->setupState();
     return (true);
 }

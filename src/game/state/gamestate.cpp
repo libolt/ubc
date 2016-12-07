@@ -55,6 +55,8 @@ boost::shared_ptr<gameState> gameState::Instance()
 }
 */
 
+// static declarations
+boost::shared_ptr<UBCBase> gameState::base;  // static copy of base class
 gameState::gameState()  // constructor
 {
     inputReceived = true;
@@ -96,6 +98,15 @@ gameState::gameState()  // constructor
 
 gameState::~gameState()  // destructor
 {
+}
+
+boost::shared_ptr<UBCBase> gameState::getBase()  // retrieves the value of base
+{
+    return (base);
+}
+void gameState::setBase(boost::shared_ptr<UBCBase> set)  // sets the value of base
+{
+    base = set;
 }
 
 courtDataVec  gameState::getCourtDataInstance()  // retrieves the value of courtDataInstance
@@ -293,7 +304,10 @@ bool gameState::createBasketballInstances()  // creates basketball Instances
     bballInstance->setEntityModelFileName("bball.mesh");
     bballInstance->setEntityName(bballInstance->getModelFileName());
     bballInstance->setEntityNodeName(bballInstance->getModelFileName());
-
+    if (!bballInstance->getBaseInitialized())
+    {
+        bballInstance->setBase(getBase());
+    }
     logMsg("creating steer object");
     basketballSteer *bballSteer = new basketballSteer;  // steer instance
     bballInstance->setSteer(boost::shared_ptr<basketballSteer>(bballSteer));
@@ -568,7 +582,14 @@ bool gameState::loadBasketballModel()  // loads selected basketball model
         exit(0);
     }
     logMsg(func +" basketballInstance.size() == " +convert->toString(basketballInstance.size()));
-
+    if (!basketballInstance[activeBBallInstance]->getBaseInitialized()) // checks to see if the base object for basketballInstance[activeBBallIntance has been initialized
+    {
+        logMsg(func +" Initializing base!");
+        if (!basketballInstance[activeBBallInstance]->getBaseInitialized())
+        {
+            basketballInstance[activeBBallInstance]->setBase(base);
+        }
+    }
     logMsg(func +" loading model == " +basketballInstance[activeBBallInstance]->getEntityModelFileName());
     if (basketballInstance[activeBBallInstance]->loadModel())
     {
@@ -643,6 +664,9 @@ bool gameState::loadHoopModel()  // loads selected hoop model
 bool gameState::loadModels()  // loads all game object models excluding the players
 {
     bool returnType = true;
+    std::string func = "gameState::loadModels()";
+    logMsg(func +" beginning");
+
     if (!basketballModelLoaded)  // Checks if basketball model has been loaded
     {
         setActiveBBallInstance(0);  // Sets the active basketball instance
@@ -654,17 +678,17 @@ bool gameState::loadModels()  // loads all game object models excluding the play
         }
         else
         {
-            logMsg("Unable to load basketball model!");
+            logMsg(func +" Unable to load basketball model!");
             returnType = false;
         }
 
         // FIXEME! this should not be hard coded
     }
-
-    exit(0);
+    logMsg(func +" weeee");
+//    exit(0);
     if (!courtModelLoaded)  // Checks if the court model has been loaded
     {
-        logMsg("Loading court model!");
+        logMsg(func +" Loading court model!");
         if (loadCourtModel())  // load the court model
         {
             courtModelLoaded = true;
@@ -672,7 +696,7 @@ bool gameState::loadModels()  // loads all game object models excluding the play
         }
         else
         {
-            logMsg("Unable to load the court model!");
+            logMsg(func +" Unable to load the court model!");
             returnType = false;
         }
     }
@@ -680,7 +704,7 @@ bool gameState::loadModels()  // loads all game object models excluding the play
 
     if (!hoopModelLoaded)  // Checks if the hoop model(s) have been loaded
     {
-        logMsg("Loading hoop model(s)!");
+        logMsg(func +" Loading hoop model(s)!");
         if (loadHoopModel())  // Creates the hoop instances
         {
             hoopModelLoaded = true;
@@ -688,11 +712,10 @@ bool gameState::loadModels()  // loads all game object models excluding the play
         }
         else
         {
-            logMsg("Unable to load the hoop model(s)!");
+            logMsg(func +" Unable to load the hoop model(s)!");
             returnType = false;
         }
     }
-
 
     return (returnType);
 }

@@ -29,6 +29,7 @@
 #include "BtOgreGP.h"
 #include "BtOgreExtras.h"
 #include "BulletDynamics/Dynamics/btRigidBody.h"
+#include "BulletDynamics/Dynamics/btDynamicsWorld.h"
 #include <boost/shared_ptr.hpp>
 
 #include "enums.h"
@@ -80,6 +81,7 @@ public:
     size_t getTeam2CollidesWith();  // retrieves the value of team2CollidesWith
     void setTeam2CollidesWith(size_t set); // sets the vslue of team2CollidesWith
 */
+
     bool setup();  // sets up the physicsEngine object
 
     void setupState(boost::shared_ptr<renderEngine> render);  // sets up state of physics engine.
@@ -113,19 +115,19 @@ private:
     //static physicsEngine *pInstance;
 ///    static boost::shared_ptr<physicsEngine> pInstance;
 
-    boost::shared_ptr<btDynamicsWorld> world;  // stores the physics world
-    boost::shared_ptr<BtOgre::DebugDrawer> debugDraw;  // used to draw debug shapes for objects
+    static boost::shared_ptr<btDynamicsWorld> world;  // stores the physics world
+    static boost::shared_ptr<BtOgre::DebugDrawer> debugDraw;  // used to draw debug shapes for objects
 //    btAxisSweep3 *broadPhase;
-    boost::shared_ptr<btBroadphaseInterface> broadPhase;
-    boost::shared_ptr<btDefaultCollisionConfiguration> collisionConfig;
-    boost::shared_ptr<btCollisionDispatcher> dispatcher;
-    boost::shared_ptr<btSequentialImpulseConstraintSolver> solver;
-    btContactSolverInfo contactInfo;
+    static boost::shared_ptr<btBroadphaseInterface> broadPhase;
+    static boost::shared_ptr<btDefaultCollisionConfiguration> collisionConfig;
+    static boost::shared_ptr<btCollisionDispatcher> dispatcher;
+    static boost::shared_ptr<btSequentialImpulseConstraintSolver> solver;
+    static btContactSolverInfo contactInfo;
 
 
-    btCollisionShape *courtShape;  // stores the shape of the court object
+    static btCollisionShape *courtShape;  // stores the shape of the court object
 //	btDefaultMotionState *courtBodyState;
-    BtOgre::RigidBodyState *courtBodyState; // stores state of the court object
+    static BtOgre::RigidBodyState *courtBodyState; // stores state of the court object
 	
 	// hoop
 //	btCollisionShape *hoopShape;

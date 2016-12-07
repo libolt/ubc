@@ -50,6 +50,17 @@
 }
 */
 
+// static declarations
+boost::shared_ptr<btDynamicsWorld> physicsEngine::world;  // stores the physics world
+boost::shared_ptr<BtOgre::DebugDrawer> physicsEngine::debugDraw;  // used to draw debug shapes for objects
+boost::shared_ptr<btBroadphaseInterface> physicsEngine::broadPhase;
+boost::shared_ptr<btDefaultCollisionConfiguration> physicsEngine::collisionConfig;
+boost::shared_ptr<btCollisionDispatcher> physicsEngine::dispatcher;
+boost::shared_ptr<btSequentialImpulseConstraintSolver> physicsEngine::solver;
+btContactSolverInfo physicsEngine::contactInfo;
+btCollisionShape *physicsEngine::courtShape;  // stores the shape of the court object
+BtOgre::RigidBodyState *physicsEngine::courtBodyState; // stores state of the
+
 physicsEngine::physicsEngine()  // contructor
 {
     

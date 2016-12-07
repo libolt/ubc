@@ -38,6 +38,7 @@
 #include "engine/inputengine.h"
 class basketballState;
 class UBC;
+class UBCBase;
 class courtData;
 class courtState;
 class hoopState;
@@ -57,6 +58,9 @@ public:
 
     gameState(); // constructor
     ~gameState();  // destructor
+
+    boost::shared_ptr<UBCBase> getBase();  // retrieves the value of base
+    void setBase(boost::shared_ptr<UBCBase> set);  // sets the value of base
 
 /*    gameTypes getGameType();  // retrieves the value of gameType
     void setGameType(gameTypes set);  // sets the value of gameType
@@ -201,7 +205,7 @@ protected:
 //    gameState &operator = (const gameState&);
 
 private:
-
+    static boost::shared_ptr<UBCBase> base;  // static copy of base class
     float gameTimeLeft;  // Indicates the time left in the game
     float quarterTimeLeft;  // incates the time left in the current quarter
 

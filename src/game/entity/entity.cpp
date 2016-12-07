@@ -25,6 +25,8 @@
 
 entity::entity()  // constructor
 {
+    baseInitialized = false;
+
     physicsSetup = false;
     modelNeedsLoaded = false;
     modelLoaded = false;
@@ -33,6 +35,24 @@ entity::entity()  // constructor
 entity::~entity()  // destructor
 {
     
+}
+
+boost::shared_ptr<UBCBase> entity::getBase()  // retrieves the value of base
+{
+    return (base);
+}
+void entity::setBase(boost::shared_ptr<UBCBase> set)  // sets the value of base
+{
+    base = set;
+}
+
+bool entity::getBaseInitialized()  // retrieves the value of baseInitialized
+{
+    return (baseInitialized);
+}
+void entity::setBaseInitialized(bool set)  // sets the value of baseInitialized
+{
+    baseInitialized = set;
 }
 
 std::string entity::getEntityModelFileName()  // retrieves the value of entityModelName
@@ -121,53 +141,54 @@ bool entity::loadModel()  // loads the 3D model
 {
 //    exit(0);
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+    std::string func = "entity::loadModel()";
+    logMsg(func +" beginning");
     boost::shared_ptr<renderEngine> render = base->getGameE()->getRenderE();
-    logMsg("entity::loadModel");
-    logMsg("entityName == " +entityName);
-    logMsg("entityModelFileName == " +entityModelFileName);
+    logMsg(func +" entityName == " +entityName);
+    logMsg(func +" entityModelFileName == " +entityModelFileName);
     Ogre::SceneManager *mSceneMgr = render->getMSceneMgr();
-    logMsg("Model");
+    logMsg(func +" Model");
     Ogre::ResourceGroupManager &rsm = Ogre::ResourceGroupManager::getSingleton();
     
     if (rsm.resourceGroupExists("UBCData"))
     {
-        logMsg("UBData exists!");
+        logMsg(func +" UBData exists!");
         if (rsm.resourceExists("UBCData", entityModelFileName))
         {
-            logMsg(entityModelFileName +" exists!");
+            logMsg(func +" " +entityModelFileName +" exists!");
         }
         else
         {
-            logMsg(entityModelFileName +" doesn't exist!");
+            logMsg(func +" " +entityModelFileName +" doesn't exist!");
         }
     }
     else
     {
-        logMsg("UBData doesnt exist!");
+        logMsg(func +" UBData doesnt exist!");
 
     }
     
     if (base->getGameE()->getRenderE().get()->getMSceneMgr()->hasCamera("camera"))
     {
-        logMsg("mSceneMgr has camera!");
+        logMsg(func +" mSceneMgr has camera!");
     }
     else
     {
-        logMsg("mSceneMgr does not have camera!");
+        logMsg(func +" mSceneMgr does not have camera!");
     }
 //    model = render->getMSceneMgr()->createEntity(entityName, entityModelFileName);  // loads the model
     Ogre::Entity *tempModel = base->getGameE()->getRenderE()->getMSceneMgr()->createEntity(entityName, entityModelFileName, "UBCData");  // loads the model
-    logMsg("tempModel loaded!");
+    logMsg(func +" tempModel loaded!");
 //    render->getMSceneMgr()->
 //    Ogre::Entity *tempModel = render->getMSceneMgr()->createEntity("dah!", "Player.mesh");
     
     model = boost::shared_ptr<Ogre::Entity>(tempModel);
-    logMsg("Entity Created!");
+    logMsg(func +" Entity Created!");
     // creates and instantiates the node object
 //    node = getRenderE()->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName);
     Ogre::SceneNode *tempNode = base->getGameE()->getRenderE()->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName);
     tempNode->attachObject(model.get());
-    logMsg("node attached!");
+    logMsg(func +" node attached!");
     // attaches 3D model to the node
 //    node->attachObject(model);
     // sets the size of the bball node

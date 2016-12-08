@@ -56,7 +56,7 @@ std::tr1::unordered_map <size_t, basketballStateSharedPtr> gameStateShared::acti
 std::tr1::unordered_map <size_t, hoopStateSharedPtr> gameStateShared::activeHoopInstance;  // stores active hoop instance
 std::tr1::unordered_map <size_t, teamStateSharedPtr> gameStateShared::activeTeamInstance;  // stores active team instance
 
-size_t gameStateShared::activeBBallInstance;  // stores which instance of the baskteball class is active
+//size_t gameStateShared::activeBBallInstance;  // stores which instance of the baskteball class is active
 size_t gameStateShared::activeCourtInstance;  // stores which instance of the court is active
 basketballStateVecSharedPtr gameStateShared::basketballInstance;  // creates instance of the basketballs class
 std::tr1::unordered_map <size_t, courtStateSharedPtr> gameStateShared::courtInstance;  // stores the court instance
@@ -70,6 +70,7 @@ float gameStateShared::yOffset; // stores the y offset for objects on the screen
 
 gameStateShared::gameStateShared()  // constructor
 {
+    activeBasketballInstancesCreated = false;
     activeHoopInstancesCreated = false;
     activeTeamInstancesCreated = false;
     activeTeamInstancesNeedCreated = false;
@@ -92,7 +93,7 @@ gameStateShared::gameStateShared()  // constructor
     yOffset = 0.0;
     teamWithBall = NOTEAM;
     tipOffComplete = false;
-    activeBBallInstance = -1;
+//    activeBBallInstance = -1;
     activeCourtInstance = 0;
     gameType = NOGAME;
 
@@ -349,14 +350,14 @@ void gameStateShared::setActiveTeamInstance(std::tr1::unordered_map<size_t, team
     activeTeamInstance = set;
 }
 
-size_t gameStateShared::getActiveBBallInstance()  // retrieves the value of activeBBallInstance
+/*size_t gameStateShared::getActiveBBallInstance()  // retrieves the value of activeBBallInstance
 {
     return (activeBBallInstance);
 }
 void gameStateShared::setActiveBBallInstance(size_t set)  // sets the value of activeBBallInstance
 {
     activeBBallInstance = set;
-}
+}*/
 
 size_t gameStateShared::getActiveCourtInstance()  // retrieves the value of activeCourtInstance
 {

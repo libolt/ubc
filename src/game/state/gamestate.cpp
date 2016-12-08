@@ -515,6 +515,41 @@ bool gameState::createPlayerInstances()  // creates player instances
     return (false);
 }
 
+bool gameState::createActiveBasketballInstances()  // creates the active basketball instances
+{
+    boost::shared_ptr<conversion> convert = conversion::Instance();
+    boost::shared_ptr<loader> load(new loader);
+    basketballStateVecSharedPtr basketballInstance = getBasketballInstance();
+    std::tr1::unordered_map<size_t, basketballStateSharedPtr> activeBasketballInstance = getActiveBasketballInstance();
+
+    std::string func = "gameState::createActiveBasketballInstances()";
+
+    
+    logMsg(func +" basketballInstance.size() == " +convert->toString(basketballInstance.size()));
+    if (basketballInstance.size() == 0)
+    {
+        if (load->checkIfBasketballsLoaded())
+        {
+            basketballInstance = load->getBInstance();
+        }
+        else
+        {
+            logMsg(func +" Failed to load Basketball Instances!");
+            exit(0);
+        }
+    }
+    else
+    {
+
+    }
+    
+    //FIXME! should not be hard coded
+    activeBasketballInstance.insert(std::pair<size_t, basketballStateSharedPtr>(0, basketballInstance[0]));
+    setBasketballInstance(basketballInstance);
+    setActiveBasketballInstance(activeBasketballInstance);
+    return (true);
+}
+
 bool gameState::createActiveHoopInstances()  // creates the active hoop instances
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
@@ -610,59 +645,69 @@ bool gameState::loadBasketballModel()  // loads selected basketball model
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<loader> load(new loader);
-
-    size_t activeBBallInstance = getActiveBBallInstance();
+    std::tr1::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance = getActiveBasketballInstance();
+    bool activeBasketballInstancesCreated = getActiveBasketballInstancesCreated();
+//    size_t activeBBallInstance = getActiveBBallInstance();
     basketballStateVecSharedPtr basketballInstance = getBasketballInstance();
     std::string func = "gameState::loadBasketballModel()";
     
     logMsg(func +" beginning");
     
-    logMsg("loading bball");
-    logMsg(func +" activeBBallInstance == " +convert->toString(activeBBallInstance));
-    logMsg(func +" basketballInstance.size() == " +convert->toString(basketballInstance.size()));
-    if (basketballInstance.size() == 0)
+    
+    if (!activeBasketballInstancesCreated && activeBasketballInstance.size() == 0)
     {
-        if (load->checkIfBasketballsLoaded())
+        if (createActiveBasketballInstances())
         {
-            basketballInstance = load->getBInstance();
+            logMsg(func +" Active Basketball Instances Created!");
+            activeBasketballInstancesCreated = true;
         }
         else
         {
-            logMsg(func +" Failed to load Basketball Instances!");
+            logMsg(func +" Unable to create Active Basketball Instances!");
             exit(0);
         }
     }
     else
     {
-
+        
     }
-    logMsg(func +" basketballInstance.size() == " +convert->toString(basketballInstance.size()));
-    if (!basketballInstance[activeBBallInstance]->getBaseInitialized()) // checks to see if the base object for basketballInstance[activeBBallIntance has been initialized
+    logMsg(func +" activeBasketballInstance.size() == " +convert->toString(activeBasketballInstance.size()));
+
+    for (auto ABIIT : activeBasketballInstance)
     {
-        logMsg(func +" Initializing base!");
-        if (!basketballInstance[activeBBallInstance]->getBaseInitialized())
+        logMsg(func +" activeBasketballInstance == " +convert->toString(ABIIT.first));
+    
+
+        if (!activeBasketballInstance[0]->getBaseInitialized()) // checks to see if the base object for basketballInstance[activeBBallIntance has been initialized
         {
-            basketballInstance[activeBBallInstance]->setBase(base);
+            logMsg(func +" Initializing base!");
+            if (!ABIIT.second->getBaseInitialized())
+            {
+                ABIIT.second->setBase(base);
+            }
+        }
+        logMsg(func +" loading model == " +ABIIT.second->getEntityModelFileName());
+        if (ABIIT.second->loadModel())
+        {
+            logMsg(func +" blee!");
+            ABIIT.second->setModelNeedsLoaded(false);
+            logMsg(func +" blaa!");
+            ABIIT.second->setModelLoaded(true);
+            logMsg(func +" blii!");
+            ABIIT.second->setupPhysicsObject();
+            logMsg(func +" bluu!");
+            setActiveBasketballInstance(activeBasketballInstance);
+            logMsg(func +" Basketball Model Loaded!");
+            return (true);
+        }
+        else
+        {
+            logMsg("Failed to load the basketball model!");
         }
     }
-    logMsg(func +" loading model == " +basketballInstance[activeBBallInstance]->getEntityModelFileName());
-    if (basketballInstance[activeBBallInstance]->loadModel())
-    {
-        logMsg(func +" blee!");
-        basketballInstance[activeBBallInstance]->setModelNeedsLoaded(false);
-        logMsg(func +" blaa!");
-        basketballInstance[activeBBallInstance]->setModelLoaded(true);
-        logMsg(func +" blii!");
-        basketballInstance[activeBBallInstance]->setupPhysicsObject();
-        logMsg(func +" bluu!");
-        setBasketballInstance(basketballInstance);
-        logMsg(func +" Basketball Model Loaded!");
-        return (true);
-    }
-    else
-    {
-        logMsg("Failed to load the basketball model!");
-    }
+    setActiveBasketballInstance(activeBasketballInstance);
+    setActiveBasketballInstancesCreated(activeBasketballInstancesCreated);
+    
     return (false);
 }
 
@@ -789,7 +834,7 @@ bool gameState::loadModels()  // loads all game object models excluding the play
 
     if (!basketballModelLoaded)  // Checks if basketball model has been loaded
     {
-        setActiveBBallInstance(0);  // Sets the active basketball instance
+//        setActiveBBallInstance(0);  // Sets the active basketball instance
         logMsg("Loading basketball Model!");
         if (loadBasketballModel())  // Loads the basketball model
         {
@@ -843,20 +888,25 @@ bool gameState::loadModels()  // loads all game object models excluding the play
 void gameState::setBasketballStartPositions()  // sets the initial coordinates for the basketball(s)
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    size_t activeBBallInstance = getActiveBBallInstance();
-    basketballStateVecSharedPtr basketballInstance = getBasketballInstance();
-
+//    size_t activeBBallInstance = getActiveBBallInstance();
+//    basketballStateVecSharedPtr basketballInstance = getBasketballInstance();
+    std::tr1::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance = getActiveBasketballInstance();
     std::string func = "gameState::setBasketballStartPositions()";
-    logMsg(func +" activeBBallInstance == " +convert->toString(activeBBallInstance));
+    
+    for (auto ABIIT : activeBasketballInstance)
+    {
+        
+        logMsg(func +" activeBasketballInstance == " +convert->toString(ABIIT.first));
     
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 //    exit(0);
-    basketballInstance[activeBBallInstance]->getNode()->setPosition(0.8f,10.0f,352.0f);
+        ABIIT.second->getNode()->setPosition(0.8f,10.0f,352.0f);
 #else
-    basketballInstance[activeBBallInstance]->getNode()->setPosition(0.8f,-5.0f,352.0f);
+        ABIIT.second->getNode()->setPosition(0.8f,-5.0f,352.0f);
 //    exit(0);
 #endif
-    setBasketballInstance(basketballInstance);
+    }
+    setActiveBasketballInstance(activeBasketballInstance);
 }
 
 void gameState::setCourtStartPositions()  // sets the initial coordinates for the basketball(s)
@@ -930,7 +980,9 @@ bool gameState::setupTipOff()  // sets up tip off conditions
 
 bool gameState::executeTipOff()  // executes tip off
 {
-    if (!getJumpBall()->updateState(getTeamWithBall(), getActiveBBallInstance(), getBasketballInstance(), getActiveTeamInstance(),getQuarter()))
+    std::tr1::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance = getActiveBasketballInstance();
+
+    if (!getJumpBall()->updateState(getTeamWithBall(), activeBasketballInstance, getActiveTeamInstance(),getQuarter()))
     {
         logMsg("tipOff not complete!");
 //        exit(0);
@@ -957,6 +1009,23 @@ bool gameState::setupState()  // sets up the game condition
    
     logMsg(func +" beginning");
 
+    if (!getActiveBasketballInstancesCreated())
+    {
+        if (createActiveBasketballInstances())
+        {
+            setActiveBasketballInstancesCreated(true);
+        }
+        else
+        {
+            logMsg(func +" Unable to create Active Basketball Instances!");
+            exit(0);
+        }
+    }
+    else
+    {
+        
+    }
+    
     if (!getActiveHoopInstancesCreated())
     {
         if (createActiveHoopInstances())

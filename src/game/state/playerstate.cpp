@@ -620,10 +620,12 @@ void playerState::updateState()
             if (getID() == playerWithBallID && getID() >= 0)
             {
                 logMsg("playerID == " +convert->toString(getID()));
-                int activeBBallInstance = getActiveBBallInstance();
-                basketballStateVecSharedPtr bballInstance = getBasketballInstance();
-                bballInstance[activeBBallInstance]->setMovement(true);
+//                int activeBBallInstance = getActiveBBallInstance();
+                std::tr1::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance = getActiveBasketballInstance();
                 
+                //FIXME! HARDCODED VALUE!
+                activeBasketballInstance[0]->setMovement(true);
+                setActiveBasketballInstance(activeBasketballInstance);
 //                exit(0);
             }
         }        
@@ -736,8 +738,8 @@ void playerState::updateDirection()
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
     std::tr1::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance = getActiveTeamInstance();
-    basketballStateVecSharedPtr bballInstance = getBasketballInstance();
-    size_t activeBBallInstance = getActiveBBallInstance();
+    std::tr1::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance = getActiveBasketballInstance();
+//    size_t activeBBallInstance = getActiveBBallInstance();
     size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
 
     if (direction != oldDirection)
@@ -840,10 +842,11 @@ void playerState::updateDirection()
     if (getID() == playerWithBallID)
     {
 //        exit(0);
-        bballInstance[activeBBallInstance]->setDirectChange(true);
-        bballInstance[activeBBallInstance]->setDirection(direction);
+        // FIXME! HARDCODED VALUES!
+        activeBasketballInstance[0]->setDirectChange(true);
+        activeBasketballInstance[0]->setDirection(direction);
 
-        setBasketballInstance(bballInstance);
+        setActiveBasketballInstance(activeBasketballInstance);
     }
     //oldDirection = direction;
     //direction = NODIRECT;
@@ -855,8 +858,9 @@ void playerState::updateMovement()  // updates movement status of the player
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
     std::tr1::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance = getActiveTeamInstance();
-    basketballStateVecSharedPtr bballInstance = getBasketballInstance();
-    size_t activeBBallInstance = getActiveBBallInstance();
+/*    basketballStateVecSharedPtr bballInstance = getBasketballInstance();
+    std::tr1::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance = getActiveBasketballInstance();
+//    size_t activeBBallInstance = getActiveBBallInstance();
     size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
 
     Ogre::Vector3 posChange;    // stores change in position
@@ -900,8 +904,9 @@ void playerState::updateMovement()  // updates movement status of the player
 
         if (getID() == playerWithBallID)
         {
-            bballInstance[activeBBallInstance]->setMovement(true);
-            setBasketballInstance(bballInstance);
+            // FIXME! HARDCODED VALUE
+            activeBasketballInstance[0]->setMovement(true);
+            setActiveBasketballInstance(activeBasketballInstance);
 
         }
     }

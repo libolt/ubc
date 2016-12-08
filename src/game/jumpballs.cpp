@@ -136,62 +136,66 @@ void jumpBalls::setBBallVelocity(const btVector3 &set)  // sets the value of bba
     bballVelocity = set;
 }
 
-bool jumpBalls::updateState(teamTypes teamWithBall, size_t activeBBallInstance, basketballStateVecSharedPtr basketballInstance, std::tr1::unordered_map<size_t, teamStateSharedPtr> activeTeamInstance, quarters quarter)  // updates state of the jumpBalls instance
+bool jumpBalls::updateState(teamTypes teamWithBall, std::tr1::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance, std::tr1::unordered_map<size_t, teamStateSharedPtr> activeTeamInstance, quarters quarter)  // updates state of the jumpBalls instance
 {
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    logMsg("updating jumpBall state!");
-    logMsg("teamWithBall == " +convert->toString(teamWithBall));
+    std::string func = "jumpBalls::updateState()";
+    
+    logMsg(func +" updating jumpBall state!");
+    logMsg(func +" teamWithBall == " +convert->toString(teamWithBall));
 
 //    size_t activeBBallInstance = gameS->getActiveBBallInstance();
 //    basketballStateVec basketBallInstance = gameS->getBasketballInstance();
-    bool bballPhysicsSetup = basketballInstance[activeBBallInstance]->getPhysicsSetup();
+   // FIXME! Do NOT hard code activeBasketballInstance in the future
+    bool bballPhysicsSetup = activeBasketballInstance[0]->getPhysicsSetup();
     if (teamWithBall == NOTEAM && bballPhysicsSetup) //&& gameS->getActiveTeamInstancesCreated())
     {
 
-        logMsg("teamWithBall = NOTEAM");
+        logMsg(func +" teamWithBall = NOTEAM");
 //        exit(0);
-        logMsg("jumpBallComplete == " +convert->toString(jumpBallComplete));
+        logMsg(func +" jumpBallComplete == " +convert->toString(jumpBallComplete));
         if (!jumpBallComplete)
         {
 //            exit(0);
-            logMsg("jump ball not complete");
-            logMsg("not complete ballTipped == " +convert->toString(ballTipped));
+            logMsg(func +" jump ball not complete");
+            logMsg(func +" not complete ballTipped == " +convert->toString(ballTipped));
 //            tipoff complete!exit(0);
             if (!ballTipped)
             {
-                ballTipped = jumpBallExecute(basketballInstance, activeBBallInstance, activeTeamInstance);  // executes jump ball until ball is tipped
-                logMsg ("Ball Tippped? " +convert->toString(ballTipped));
+                ballTipped = jumpBallExecute(activeBasketballInstance, activeTeamInstance);  // executes jump ball until ball is tipped
+                logMsg (func +" Ball Tippped? " +convert->toString(ballTipped));
 //                exit(0);
             }
             else
             {
 //                exit(0);
-                jumpBallComplete = tipToPlayer(basketballInstance, activeBBallInstance, activeTeamInstance, quarter);
+                jumpBallComplete = tipToPlayer(activeBasketballInstance, activeTeamInstance, quarter);
 
-                logMsg("jumpBallComplete == " +convert->toString(jumpBallComplete));
+                logMsg(func +" jumpBallComplete == " +convert->toString(jumpBallComplete));
 //                exit(0);
             }
         }
         else
         {
-            logMsg("teamWithBall = " +convert->toString(teamWithBall));
+            logMsg(func +" teamWithBall = " +convert->toString(teamWithBall));
 //            exit(0);
         }
-        logMsg("ballTipped == " +convert->toString(ballTipped));
-        logMsg("ballTippedToTeam == " +convert->toString(ballTippedToTeam));
+        logMsg(func +" ballTipped == " +convert->toString(ballTipped));
+        logMsg(func +" ballTippedToTeam == " +convert->toString(ballTippedToTeam));
     }
     else
     {
-        logMsg("teamWithBall == " +convert->toString(teamWithBall));
+        logMsg(func +" teamWithBall == " +convert->toString(teamWithBall));
         return (true);
     }
     
-    logMsg("jumpBall return(false)");
+    logMsg(func +" jumpBall return(false)");
+    
     return (false);  // returns false until jump ball has completed
 }
 
-bool jumpBalls::jumpBallExecute(basketballStateVecSharedPtr basketballInstance, size_t activeBBallInstance, std::tr1::unordered_map<size_t, teamStateSharedPtr> activeTeamInstance)  // initiates jump ball from jump ball circle
+bool jumpBalls::jumpBallExecute(std::tr1::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance, std::tr1::unordered_map<size_t, teamStateSharedPtr> activeTeamInstance)  // initiates jump ball from jump ball circle
 {
 //    exit(0);
     boost::shared_ptr<conversion> convert = conversion::Instance();
@@ -315,7 +319,7 @@ TS*/
     return (false);  // executeJumpBall has not completed
 }
 
-bool jumpBalls::tipToPlayer(basketballStateVecSharedPtr basketballInstance, size_t activeBBallInstance, std::tr1::unordered_map<size_t, teamStateSharedPtr> activeTeamInstance, quarters quarter)  // tips the basketball to the appropriate player
+bool jumpBalls::tipToPlayer(std::tr1::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance, std::tr1::unordered_map<size_t, teamStateSharedPtr> activeTeamInstance, quarters quarter)  // tips the basketball to the appropriate player
 {
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
@@ -422,7 +426,8 @@ bool jumpBalls::tipToPlayer(basketballStateVecSharedPtr basketballInstance, size
         {
             logMsg("ballTippedToPlayerInstance == " +convert->toString(ballTippedToPlayerInstance));
 
-            if (physEngine.collisionCheck(basketballInstance[activeBBallInstance]->getPhysBody().get(), activePlayerInstance[ballTippedToPlayerInstance]->getPhysBody().get()))
+            // FIXME! Do NOT hardcode activeBasketballInstance
+            if (physEngine.collisionCheck(activeBasketballInstance[0]->getPhysBody().get(), activePlayerInstance[ballTippedToPlayerInstance]->getPhysBody().get()))
             {
  //               exit(0);
 ///                gameS->setTeamWithBall(ballTippedToTeam);

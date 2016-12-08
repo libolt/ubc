@@ -131,8 +131,8 @@ class gameStateShared
         std::tr1::unordered_map <size_t, teamStateSharedPtr> getActiveTeamInstance();  // retrieves the value of activeTeamInstance
         void setActiveTeamInstance(std::tr1::unordered_map <size_t, teamStateSharedPtr> set);  // sets the value of activeTeamInstance     
                
-        size_t getActiveBBallInstance();  // retrieves the value of activeBBallInstance
-        void setActiveBBallInstance(size_t set);  // sets the value of activeBBallInstance
+//        size_t getActiveBBallInstance();  // retrieves the value of activeBBallInstance
+//        void setActiveBBallInstance(size_t set);  // sets the value of activeBBallInstance
 
         size_t getActiveCourtInstance();  // retrieves the value of activeCourtInstance
         void setActiveCourtInstance(size_t set);  // sets the value of activeCourtInstance
@@ -191,7 +191,7 @@ class gameStateShared
         static std::tr1::unordered_map <size_t, hoopStateSharedPtr> activeHoopInstance;  // creates instance of the hoopState class
         static std::tr1::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance;  // stores active team instance
         
-        static size_t activeBBallInstance;  // stores which instance of the baskteball class is active
+//        static size_t activeBBallInstance;  // stores which instance of the baskteball class is active
         static size_t activeCourtInstance;  // stores which instance of the court is active
         static basketballStateVecSharedPtr basketballInstance;  // creates instance of the basketballs class
         static std::tr1::unordered_map <size_t, courtStateSharedPtr> courtInstance;  // stores the court instance

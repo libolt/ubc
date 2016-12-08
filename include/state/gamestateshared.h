@@ -56,8 +56,11 @@ class gameStateShared
         std::vector<std::tr1::unordered_map<std::string, size_t> > getTeamStarterID();  // retrieves value of teamStarterID
         void setTeamStarterID(std::vector<std::tr1::unordered_map<std::string, size_t> > set);  // sets the value of teamStarterID
 
+        bool getActiveBasketballInstancesCreated();    // retrieves the value of activeBasketballInstancesCreated
+        void setActiveBasketballInstancesCreated(bool set);    // sets the value of activeBasketballInstancesCreated
+
         bool getActiveHoopInstancesCreated();    // retrieves the value of activeHoopInstancesCreated
-        void setActiveHoopInstancesCreated(bool set);    // sets the value of activeHoolInstancesCreated
+        void setActiveHoopInstancesCreated(bool set);    // sets the value of activeHoopInstancesCreated
 
         bool getActiveTeamInstancesCreated();    // retrieves the value of activeTeamInstancesCreated
         void setActiveTeamInstancesCreated(bool set);    // sets the value of activeTeamInstancesCreated

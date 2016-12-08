@@ -141,11 +141,21 @@ void gameStateShared::setTeamStarterID(std::vector<std::tr1::unordered_map<std::
     teamStarterID = set;
 }
 
-bool gameStateShared::eesCreated()    // retrieves the value of activeHoopInstancesCreated
+bool gameStateShared::getActiveBasketballInstancesCreated()  // retrieves the value of activeBasketballInstancesCreated
+{
+    return (activeBasketballInstancesCreated);
+}
+
+void gameStateShared::setActiveBasketballInstancesCreated(bool set)  // sets the value of activeBasketballInstancesCreated
+{
+    activeBasketballInstancesCreated = set;
+}
+
+bool gameStateShared::getActiveHoopInstancesCreated()    // retrieves the value of activeHoopInstancesCreated
 {
     return (activeHoopInstancesCreated);
 }
-void gameStateShared::setActiveHoopInstancesCreated(bool set)    // sets the value of activeHoolInstancesCreated
+void gameStateShared::setActiveHoopInstancesCreated(bool set)    // sets the value of activeHoopInstancesCreated
 {
     activeHoopInstancesCreated = set;
 }
@@ -312,7 +322,7 @@ void gameStateShared::setTeamWithBall(teamTypes set)  // sets the value of teamW
     teamWithBall = set;
 }
 
-std::tr1::unordered_map <size_t, basketballStateSharedPtr> gameStateShared::getActiveBasketballInstance();  // retrieves the value of activeBasketballInstance
+std::tr1::unordered_map <size_t, basketballStateSharedPtr> gameStateShared::getActiveBasketballInstance()  // retrieves the value of activeBasketballInstance
 {
     return (activeBasketballInstance);
 }

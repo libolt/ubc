@@ -45,8 +45,8 @@ class entity // : public UBCBase // base class for entity objects
     entity();  // constructor
     ~entity();  // destructor
     
-    boost::shared_ptr<UBCBase> getBase();  // retrieves the value of base
-    void setBase(boost::shared_ptr<UBCBase> set);  // sets the value of base
+    UBCBaseSharedPtr getBase();  // retrieves the value of base
+    void setBase(UBCBaseSharedPtr set);  // sets the value of base
 
     bool getBaseInitialized();  // retrieves the value of baseInitialized
     void setBaseInitialized(bool set);  // sets the value of baseInitialized
@@ -60,11 +60,11 @@ class entity // : public UBCBase // base class for entity objects
     std::string getEntityNodeName();  // retrieves the value of nodeName
     void setEntityNodeName(std::string set);  // sets the value of nodeName
 
-    boost::shared_ptr<Ogre::Entity> getModel();  // retrieves the value of model
-    void setModel(boost::shared_ptr<Ogre::Entity> set);  // sets the value of model
+    OgreEntitySharedPtr getModel();  // retrieves the value of model
+    void setModel(OgreEntitySharedPtr set);  // sets the value of model
 
-    boost::shared_ptr<Ogre::SceneNode> getNode();  // retrieves the value of node
-    void setNode(boost::shared_ptr<Ogre::SceneNode> set);  // sets the value of node
+    OgreSceneNodeSharedPtr getNode();  // retrieves the value of node
+    void setNode(OgreSceneNodeSharedPtr set);  // sets the value of node
 
 
     bool getPhysicsSetup();  // retrieves the value of physicsSetup
@@ -85,7 +85,7 @@ class entity // : public UBCBase // base class for entity objects
     
     private:
     
-    static boost::shared_ptr<UBCBase> base;  // base class object
+    static UBCBaseSharedPtr base;  // base class object
     bool baseInitialized;  // stores whether or not the base class has been initialized.
 
     std::string entityModelFileName;  // stores the file name of the 3d model
@@ -94,9 +94,9 @@ class entity // : public UBCBase // base class for entity objects
 
     std::string entityNodeName;  // stores the name of the scene node
 
-    boost::shared_ptr<Ogre::Entity> model;  // stores 3d model
+    OgreEntitySharedPtr model;  // stores 3d model
 
-    boost::shared_ptr<Ogre::SceneNode> node;  // stores node 3d model is attached to
+    OgreSceneNodeSharedPtr node;  // stores node 3d model is attached to
 
     Ogre::Vector3 nodePosition;  // stores the position of the node
 

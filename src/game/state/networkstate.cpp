@@ -37,12 +37,12 @@ networkState::~networkState()  // destructor
 
 }
 
-boost::shared_ptr<networkEngine> networkState::getNetworkE()  // retrieves the value of network
+networkEngineSharedPtr networkState::getNetworkE()  // retrieves the value of network
 {
     return (network);
 }
 
-void networkState::setNetwork(boost::shared_ptr<networkEngine> set)  // sets the value of network
+void networkState::setNetwork(networkEngineSharedPtr set)  // sets the value of network
 {
     network = set;
 }
@@ -216,7 +216,7 @@ void networkState::processRemoteInput() // processes input received from a remot
 void networkState::processNetworkEvents(teamStateVecSharedPtr activeTeamInstance)  // processes events from network code
 {
 //    teamStateVecSharedPtr activeTeamInstance = getActiveTeamInstance();
-    //    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
+    //    networkEngineSharedPtr network = networkEngine::Instance();
 
 //  std::vector <playerState> playerInstance = gameS->getPlayerInstance();
 
@@ -246,7 +246,7 @@ TS*/
 void networkState::processNetworkPlayerEvents(teamStateVecSharedPtr activeTeamInstance)  // processes player events from network code
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
+//    networkEngineSharedPtr network = networkEngine::Instance();
 
 //    teamStateVecSharedPtr activeTeamInstance = getActiveTeamInstance();
 

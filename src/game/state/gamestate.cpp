@@ -57,7 +57,7 @@ boost::shared_ptr<gameState> gameState::Instance()
 */
 
 // static declarations
-boost::shared_ptr<UBCBase> gameState::base;  // static copy of base class
+UBCBaseSharedPtr gameState::base;  // static copy of base class
 gameState::gameState()  // constructor
 {
     inputReceived = true;
@@ -103,11 +103,11 @@ gameState::~gameState()  // destructor
 {
 }
 
-boost::shared_ptr<UBCBase> gameState::getBase()  // retrieves the value of base
+UBCBaseSharedPtr gameState::getBase()  // retrieves the value of base
 {
     return (base);
 }
-void gameState::setBase(boost::shared_ptr<UBCBase> set)  // sets the value of base
+void gameState::setBase(UBCBaseSharedPtr set)  // sets the value of base
 {
     base = set;
 }
@@ -313,7 +313,7 @@ bool gameState::createBasketballInstances()  // creates basketball Instances
     }
     logMsg("creating steer object");
     basketballSteer *bballSteer = new basketballSteer;  // steer instance
-    bballInstance->setSteer(boost::shared_ptr<basketballSteer>(bballSteer));
+    bballInstance->setSteer(basketballSteerSharedPtr(bballSteer));
     logMsg("setting instance number");
     bballInstance->setNumber(0);
     bballInstance->setNumberSet(true);
@@ -329,9 +329,9 @@ bool gameState::createTeamInstances()  // creates team Instances
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<loader> load(new loader);
     
-    std::unordered_map <size_t, teamStateSharedPtr> tInstance;
+    teamStateUMSharedPtr tInstance;
 /*    teamStateVecSharedPtr tInstance2;
-    boost::shared_ptr<teamState> tempInstance(new teamState);
+    teamStateSharedPtr tempInstance(new teamState);
 //    teamState *tempInstance = new teamState;
     tempInstance->setID(1);
     tempInstance->setCity("tempCity");
@@ -471,7 +471,7 @@ bool gameState::createPlayerInstances()  // creates player instances
     
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<loader> load(new loader);
-    std::unordered_map<size_t, playerStateSharedPtr> pInstance;
+    playerStateUMSharedPtr pInstance;
     std::string func = "gameState::createPlayerInstances()";
     
     logMsg(func +" checkIfPlayersLoaded");
@@ -594,8 +594,8 @@ bool gameState::createActiveHoopInstances()  // creates the active hoop instance
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<loader> load(new loader);
-    std::unordered_map <size_t, hoopStateSharedPtr> hoopInstance = getHoopInstance();
-    std::unordered_map <size_t, hoopStateSharedPtr> activeHoopInstance = getActiveHoopInstance();
+    hoopStateUMSharedPtr hoopInstance = getHoopInstance();
+    hoopStateUMSharedPtr activeHoopInstance = getActiveHoopInstance();
     std::string func = "gameState::createActiveHoopInstances()";
 
     logMsg(func +" beginning");
@@ -639,8 +639,8 @@ bool gameState::createActiveHoopInstances()  // creates the active hoop instance
 bool gameState::createActiveTeamInstances()  // creates the active team instances
 {
     teamStateSharedPtr tInstance;
-    std::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance = getActiveTeamInstance();
-    std::unordered_map <size_t, teamStateSharedPtr> teamInstance = getTeamInstance();
+    teamStateUMSharedPtr activeTeamInstance = getActiveTeamInstance();
+    teamStateUMSharedPtr teamInstance = getTeamInstance();
     sizeTVec teamIDS = getTeamIDS();
     std::string func = "gameState::createActiveTeamInstances()";
 
@@ -687,7 +687,7 @@ bool gameState::loadBasketballModel()  // loads selected basketball model
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<loader> load(new loader);
-    std::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance = getActiveBasketballInstance();
+    basketballStateUMSharedPtr activeBasketballInstance = getActiveBasketballInstance();
     bool activeBasketballInstancesCreated = getActiveBasketballInstancesCreated();
 //    size_t activeBBallInstance = getActiveBBallInstance();
     basketballStateVecSharedPtr basketballInstance = getBasketballInstance();
@@ -758,8 +758,8 @@ bool gameState::loadCourtModel()  // loads selected court model
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<loader> load(new loader);
-    std::unordered_map <size_t, courtStateSharedPtr> courtInstance = getCourtInstance();
-    std::unordered_map <size_t, courtStateSharedPtr> activeCourtInstance = getActiveCourtInstance();
+    courtStateUMSharedPtr courtInstance = getCourtInstance();
+    courtStateUMSharedPtr activeCourtInstance = getActiveCourtInstance();
     bool activeCourtInstancesCreated = getActiveCourtInstancesCreated();
     std::string func = "gameState::loadCourtModel()";
 
@@ -813,7 +813,7 @@ bool gameState::loadCourtModel()  // loads selected court model
 bool gameState::loadHoopModel()  // loads selected hoop model
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    std::unordered_map <size_t, hoopStateSharedPtr> activeHoopInstance = getActiveHoopInstance();
+    hoopStateUMSharedPtr activeHoopInstance = getActiveHoopInstance();
     boost::shared_ptr<loader> load(new loader);
     std::string func = "gameState::loadHoopModel()";
     bool returnType = true;
@@ -940,7 +940,7 @@ void gameState::setBasketballStartPositions()  // sets the initial coordinates f
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    size_t activeBBallInstance = getActiveBBallInstance();
 //    basketballStateVecSharedPtr basketballInstance = getBasketballInstance();
-    std::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance = getActiveBasketballInstance();
+    basketballStateUMSharedPtr activeBasketballInstance = getActiveBasketballInstance();
     std::string func = "gameState::setBasketballStartPositions()";
     
     logMsg(func +" beginning");
@@ -965,7 +965,7 @@ void gameState::setBasketballStartPositions()  // sets the initial coordinates f
 void gameState::setCourtStartPositions()  // sets the initial coordinates for the basketball(s)
 {
 
-    std::unordered_map <size_t, courtStateSharedPtr> courtInstance = getCourtInstance();
+    courtStateUMSharedPtr courtInstance = getCourtInstance();
     std::string func = "gameState::setCourtStartPositions()";
 
     logMsg(func +" beginning");
@@ -986,7 +986,7 @@ void gameState::setCourtStartPositions()  // sets the initial coordinates for th
 void gameState::setHoopStartPositions()  // sets the initial coordinates for the basketball(s)
 {
 
-    std::unordered_map <size_t, hoopStateSharedPtr> activeHoopInstance = getActiveHoopInstance();
+    hoopStateUMSharedPtr activeHoopInstance = getActiveHoopInstance();
     std::string func = "gameState::setHoopStartPositions()";
 
     logMsg(func +" beginning");
@@ -1039,7 +1039,7 @@ bool gameState::setupTipOff()  // sets up tip off conditions
 
 bool gameState::executeTipOff()  // executes tip off
 {
-    std::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance = getActiveBasketballInstance();
+    basketballStateUMSharedPtr activeBasketballInstance = getActiveBasketballInstance();
 
     if (!getJumpBall()->updateState(getTeamWithBall(), activeBasketballInstance, getActiveTeamInstance(),getQuarter()))
     {
@@ -1208,7 +1208,7 @@ bool gameState::updateState()  // updates the game state
 /*    AISystemSharedPtr ai = AISystem::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
-//    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
+//    networkEngineSharedPtr network = networkEngine::Instance();
     //boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
     

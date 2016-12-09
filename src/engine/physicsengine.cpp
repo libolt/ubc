@@ -338,7 +338,7 @@ void physicsEngine::updateState()  // updates the state for the physics engine
     logMsg("Updating Physics Engine State");
 
     teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
-    std::vector std::unordered_map <size_t, playerStateSharedPtr> > activePlayerInstance;
+    std::vector playerStateUMSharedPtr > activePlayerInstance;
     basketballStateVec basketballInstance = gameS->getBasketballInstance();
 
 //    exit(0);
@@ -518,7 +518,7 @@ void physicsEngine::updatePlayerPositions()  // updates the position of player o
     int playerWithBall;
 
     teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
-    std::vector std::unordered_map <size_t, playerStateSharedPtr> > activePlayerInstance;
+    std::vector playerStateUMSharedPtr > activePlayerInstance;
     basketballStateVec basketballInstance = gameS->getBasketballInstance();
 
     // checks to see if player positions need updated

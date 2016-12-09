@@ -39,11 +39,11 @@ void basketballEntity::setPhysics(basketballPhysics *set)  // sets the value of 
     physics = set;
 }*/
 
-boost::shared_ptr<basketballSteer> basketballEntity::getSteer()  // retrieves the value of steer
+basketballSteerSharedPtr basketballEntity::getSteer()  // retrieves the value of steer
 {
     return (steer);
 }
-void basketballEntity::setSteer(boost::shared_ptr<basketballSteer> set)  // sets the value of steer
+void basketballEntity::setSteer(basketballSteerSharedPtr set)  // sets the value of steer
 {
     steer = set;
 }
@@ -69,9 +69,9 @@ bool basketballEntity::setupPhysicsObject()  // sets up the physics object
         logMsg(func +" setupPhysics!");
         setPhysicsSetup(true);
         
-        setModel(boost::shared_ptr<Ogre::Entity>(tempModel));
-        setNode(boost::shared_ptr<Ogre::SceneNode>(tempNode));
-        setPhysBody(boost::shared_ptr<btRigidBody>(tempPhysBody));
+        setModel(OgreEntitySharedPtr(tempModel));
+        setNode(OgreSceneNodeSharedPtr(tempNode));
+        setPhysBody(btRigidBodySharedPtr(tempPhysBody));
 //        exit(0);
         return (true);
     }

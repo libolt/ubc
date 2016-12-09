@@ -73,8 +73,8 @@ public:
     //static GUISystem *Instance();
 //    static boost::shared_ptr<GUISystem> Instance();
 
-/*    boost::shared_ptr<networkEngine> getNetworkG();  // retrieves the value of networkG
-    void setNetworkG(boost::shared_ptr<networkEngine> set);  // sets the value of networkG
+/*    networkEngineSharedPtr getNetworkG();  // retrieves the value of networkG
+    void setNetworkG(networkEngineSharedPtr set);  // sets the value of networkG
 
     boost::shared_ptr<renderEngine> getRenderE();  // retrieves the value of render
     void setRender(boost::shared_ptr<renderEngine> set);  // sets the value of render
@@ -134,8 +134,8 @@ public:
     activeMenus getPreviousActiveMenu(); // retrieves the value of previousActiveMenu
     void setPreviousActiveMenu(activeMenus set); // sets the value of previousActiveMenu
 
-    boost::shared_ptr<MyGUI::Gui> getMGUI();  // retrieves the value of mGUI
-    void setMGUI(boost::shared_ptr<MyGUI::Gui> set);  // sets the value of mGUI
+    MyGUIGuiSharedPtr getMGUI();  // retrieves the value of mGUI
+    void setMGUI(MyGUIGuiSharedPtr set);  // sets the value of mGUI
     
 /*    Ogre::Viewport *getViewPort();  // retrieves the value of viewPort
     void setViewPort(const Ogre::Viewport &set);  // sets the value of viewPort
@@ -297,13 +297,13 @@ private:
 //    static MyGUI::OgrePlatform *mPlatform;
     
     static UBCBaseSharedPtr base;
-    static boost::shared_ptr<MyGUI::Gui> mGUI;  // The MyGUI object
-    static boost::shared_ptr<MyGUI::OgrePlatform> mPlatform;  // The MyGUI Platform object
+    static MyGUIGuiSharedPtr mGUI;  // The MyGUI object
+    static MyGUIOgrePlatformSharedPtr mPlatform;  // The MyGUI Platform object
 
     // button widgets
     
     // Main Menu
-    static std::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > mainMenuButtons;
+    static MyGUIButtonUMSharedPtr mainMenuButtons;
 /*    static boost::shared_ptr<MyGUI::Button> exitButton;
     static boost::shared_ptr<MyGUI::Button> startSingleGameButton;
     static boost::shared_ptr<MyGUI::Button> startMultiGameButton;
@@ -311,12 +311,12 @@ private:
     static boost::shared_ptr<MyGUI::Button> serverButton;
     static boost::shared_ptr<MyGUI::Button> clientButton;
 */
-     static std::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > networkMenuButtons;
+     static MyGUIButtonUMSharedPtr networkMenuButtons;
 
 //    static boost::shared_ptr<MyGUI::Button> backMainMenuButton;
 //    static boost::shared_ptr<MyGUI::Button> backNetworkSetupButton;
     
-    static std::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > optionsMenuButtons;
+    static MyGUIButtonUMSharedPtr optionsMenuButtons;
 /*    static boost::shared_ptr<MyGUI::Button> displayButton;
     static boost::shared_ptr<MyGUI::Button> inputButton;
     static boost::shared_ptr<MyGUI::Button> audioButton;
@@ -325,16 +325,16 @@ private:
 //    static boost::shared_ptr<MyGUI::Button> backNetworkClientButton;
 //    static boost::shared_ptr<MyGUI::Button> changeResolutionButton;
 
-    static std::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > displayMenuButtons;
+    static MyGUIButtonUMSharedPtr displayMenuButtons;
 
 //    static boost::shared_ptr<MyGUI::Button> changeInputTypeButton;
     
-    static std::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > inputMenuButtons;
+    static MyGUIButtonUMSharedPtr inputMenuButtons;
 
 //    static boost::shared_ptr<MyGUI::Button> enableAudioButton;
 //    static boost::shared_ptr<MyGUI::Button> disableAudioButton;
     
-    static std::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > audioMenuButtons;
+    static MyGUIButtonUMSharedPtr audioMenuButtons;
 
 //    static boost::shared_ptr<MyGUI::Button> backOptionsMenuButton;
     
@@ -343,7 +343,7 @@ private:
 //    static boost::shared_ptr<MyGUI::Button> backCourtSelectionMenuButton;
     
     // Team Selection Menu
-    static std::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > teamSelectionMenuButtons;
+    static MyGUIButtonUMSharedPtr teamSelectionMenuButtons;
 
 /*    static boost::shared_ptr<MyGUI::Button> team0SelectButton;
     static boost::shared_ptr<MyGUI::Button> team1SelectButton;
@@ -354,90 +354,90 @@ private:
     static boost::shared_ptr<MyGUI::Button> team1StartingLineupSetButton;
     static boost::shared_ptr<MyGUI::Button> startingLineupsSetButton;
 */
-    static std::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > playerStartSelectionMenuButtons;
+    static MyGUIButtonUMSharedPtr playerStartSelectionMenuButtons;
 
     // Team selection listbox widgets
-//    static boost::shared_ptr<MyGUI::ListBox> team0SelectBox;
-//    static boost::shared_ptr<MyGUI::ListBox> team1SelectBox;
-    static std::unordered_map<size_t, boost::shared_ptr<MyGUI::ListBox> > teamSelectBox;
+//    static MyGUIListBoxSharedPtr team0SelectBox;
+//    static MyGUIListBoxSharedPtr team1SelectBox;
+    static MyGUIListBoxUMSharedPtr teamSelectBox;
 
     // Network Server Setup Widgets
-    static boost::shared_ptr<MyGUI::ListBox> numClientsSelectBox;  // allows you to select the number of network players
+    static MyGUIListBoxSharedPtr numClientsSelectBox;  // allows you to select the number of network players
 //    static boost::shared_ptr<MyGUI::Button> serverHostButton;
     static boost::shared_ptr<MyGUI::EditBox> serverIPAddressBox;
     
-    static std::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > networkServerSetupMenuButtons;
+    static MyGUIButtonUMSharedPtr networkServerSetupMenuButtons;
     
     // Network Client Setup Widgets
     static boost::shared_ptr<MyGUI::EditBox> clientIPAddressBox;
 //    static boost::shared_ptr<MyGUI::Button> clientConnectButton;
     
-    static std::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > networkClientSetupMenuButtons;
+    static MyGUIButtonUMSharedPtr networkClientSetupMenuButtons;
     
-    static std::vector<std::unordered_map <std::string, boost::shared_ptr<MyGUI::ListBox> > > teamPlayerPosSelectBox;
+    static MyGUIListBoxVecUMSharedPtr teamPlayerPosSelectBox;
     
-/*    static boost::shared_ptr<MyGUI::ListBox> team0Player1SelectBox;
-    static boost::shared_ptr<MyGUI::ListBox> team0Player2SelectBox;
-    static boost::shared_ptr<MyGUI::ListBox> team0Player3SelectBox;
-    static boost::shared_ptr<MyGUI::ListBox> team0Player4SelectBox;
-    static boost::shared_ptr<MyGUI::ListBox> team0Player5SelectBox;
-    static boost::shared_ptr<MyGUI::ListBox> team1Player1SelectBox;
-    static boost::shared_ptr<MyGUI::ListBox> team1Player2SelectBox;
-    static boost::shared_ptr<MyGUI::ListBox> team1Player3SelectBox;
-    static boost::shared_ptr<MyGUI::ListBox> team1Player4SelectBox;
-    static boost::shared_ptr<MyGUI::ListBox> team1Player5SelectBox;
+/*    static MyGUIListBoxSharedPtr team0Player1SelectBox;
+    static MyGUIListBoxSharedPtr team0Player2SelectBox;
+    static MyGUIListBoxSharedPtr team0Player3SelectBox;
+    static MyGUIListBoxSharedPtr team0Player4SelectBox;
+    static MyGUIListBoxSharedPtr team0Player5SelectBox;
+    static MyGUIListBoxSharedPtr team1Player1SelectBox;
+    static MyGUIListBoxSharedPtr team1Player2SelectBox;
+    static MyGUIListBoxSharedPtr team1Player3SelectBox;
+    static MyGUIListBoxSharedPtr team1Player4SelectBox;
+    static MyGUIListBoxSharedPtr team1Player5SelectBox;
 
     
     // Player Selection Menu widgets
-    static boost::shared_ptr<MyGUI::ListBox> team0PGSelectBox;
-    static boost::shared_ptr<MyGUI::ListBox> team0SGSelectBox;
-    static boost::shared_ptr<MyGUI::ListBox> team0SFSelectBox;
-    static boost::shared_ptr<MyGUI::ListBox> team0PFSelectBox;
-    static boost::shared_ptr<MyGUI::ListBox> team0CSelectBox;
+    static MyGUIListBoxSharedPtr team0PGSelectBox;
+    static MyGUIListBoxSharedPtr team0SGSelectBox;
+    static MyGUIListBoxSharedPtr team0SFSelectBox;
+    static MyGUIListBoxSharedPtr team0PFSelectBox;
+    static MyGUIListBoxSharedPtr team0CSelectBox;
 
-    static boost::shared_ptr<MyGUI::ListBox> team1PGSelectBox;
-    static boost::shared_ptr<MyGUI::ListBox> team1SGSelectBox;
-    static boost::shared_ptr<MyGUI::ListBox> team1SFSelectBox;
-    static boost::shared_ptr<MyGUI::ListBox> team1PFSelectBox;
-    static boost::shared_ptr<MyGUI::ListBox> team1CSelectBox;
+    static MyGUIListBoxSharedPtr team1PGSelectBox;
+    static MyGUIListBoxSharedPtr team1SGSelectBox;
+    static MyGUIListBoxSharedPtr team1SFSelectBox;
+    static MyGUIListBoxSharedPtr team1PFSelectBox;
+    static MyGUIListBoxSharedPtr team1CSelectBox;
 */
 
-    static std::vector<std::unordered_map<std::string, boost::shared_ptr<MyGUI::TextBox> > > teamPlayerRating;
+    static MyGUITextBoxVecUMSharedPtr teamPlayerRating;
 
 
-/*    static boost::shared_ptr<MyGUI::TextBox> team0PGRating;
-    static boost::shared_ptr<MyGUI::TextBox> team0SGRating;
-    static boost::shared_ptr<MyGUI::TextBox> team0SFRating;
-    static boost::shared_ptr<MyGUI::TextBox> team0PFRating;
-    static boost::shared_ptr<MyGUI::TextBox> team0CRating;
+/*    static MyGUITextBoxSharedPtr> team0PGRating;
+    static MyGUITextBoxSharedPtr> team0SGRating;
+    static MyGUITextBoxSharedPtr> team0SFRating;
+    static MyGUITextBoxSharedPtr> team0PFRating;
+    static MyGUITextBoxSharedPtr> team0CRating;
 
-    static boost::shared_ptr<MyGUI::TextBox> team1PGRating;
-    static boost::shared_ptr<MyGUI::TextBox> team1SGRating;
-    static boost::shared_ptr<MyGUI::TextBox> team1SFRating;
-    static boost::shared_ptr<MyGUI::TextBox> team1PFRating;
-    static boost::shared_ptr<MyGUI::TextBox> team1CRating;
+    static MyGUITextBoxSharedPtr> team1PGRating;
+    static MyGUITextBoxSharedPtr> team1SGRating;
+    static MyGUITextBoxSharedPtr> team1SFRating;
+    static MyGUITextBoxSharedPtr> team1PFRating;
+    static MyGUITextBoxSharedPtr> team1CRating;
 */
 
-    static std::unordered_map<std::string, boost::shared_ptr<MyGUI::ImageBox> > teamLogo;
+    static MyGUIImageBoxUMSharedPtr teamLogo;
 
-//    static boost::shared_ptr<MyGUI::ImageBox> team0Logo;
-//    static boost::shared_ptr<MyGUI::ImageBox> team1Logo;
+//    static MyGUIImageBoxSharedPtr team0Logo;
+//    static MyGUIImageBoxSharedPtr team1Logo;
 	
     // Court selection menu widgets
-    static std::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > courtSelectionMenuButtons;
+    static MyGUIButtonUMSharedPtr courtSelectionMenuButtons;
 
 //    static boost::shared_ptr<MyGUI::Button> backPlayerStartSelectionMenuButton;
 //    static boost::shared_ptr<MyGUI::Button> courtSelectButton;
-    static boost::shared_ptr<MyGUI::ListBox> courtSelectBox;  
-    static boost::shared_ptr<MyGUI::ImageBox> courtPreviewImgBox;
-    static boost::shared_ptr<MyGUI::TextBox> courtNameTxtBox;
+    static MyGUIListBoxSharedPtr courtSelectBox;
+    static MyGUIImageBoxSharedPtr courtPreviewImgBox;
+    static MyGUITextBoxSharedPtr courtNameTxtBox;
 
     // OGRE specific code
 /*    boost::shared_ptr<renderEngine> render;  // stores a copy of the render object for use in the gui
     Ogre::Viewport *viewPort; // stores the view port for mygui
 
     // network engine
-    boost::shared_ptr<networkEngine> networkG;  // stores a copy of the network object for use in the gui
+    networkEngineSharedPtr networkG;  // stores a copy of the network object for use in the gui
 */
 
 	// booleans

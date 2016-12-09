@@ -112,11 +112,11 @@ public:
     bool getPlayerControlled();  // retrieves the value of player controlled
     void setPlayerControlled(bool set);  // sets the value of playerControlled
     
-    boost::shared_ptr<playerState> getPlayerWithBall();  // retrieves the value of playerWithBall
-    void setPlayerWithBall(boost::shared_ptr<playerState> set);  // sets the value of playerWithBall
+    playerStateSharedPtr getPlayerWithBall();  // retrieves the value of playerWithBall
+    void setPlayerWithBall(playerStateSharedPtr set);  // sets the value of playerWithBall
     
-    boost::shared_ptr<courtState> getCourtInstance();  // retrieves the value of courtInstance
-    void setCourtInstance(boost::shared_ptr<courtState> set);  // sets the value of courtInstance
+    courtStateSharedPtr getCourtInstance();  // retrieves the value of courtInstance
+    void setCourtInstance(courtStateSharedPtr set);  // sets the value of courtInstance
     
     directions getDirection();  // retrieves the value of direction
     void setDirection(directions set);  // sets the value of direction 
@@ -243,9 +243,9 @@ private:
 
     bool playerControlled;  // set to true if human or cpu player has the ball
     
-    boost::shared_ptr<playerState> playerWithBall;  // stores copy of player that controls ball
+    playerStateSharedPtr playerWithBall;  // stores copy of player that controls ball
     
-    boost::shared_ptr<courtState> courtInstance;  // storee the active courtInstance
+    courtStateSharedPtr courtInstance;  // storee the active courtInstance
     
     directions direction;  // stores direction the ball has been moved
     directions oldDirection;  // stores the previous direction of the ball

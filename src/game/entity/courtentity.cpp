@@ -52,9 +52,9 @@ bool courtEntity::setupPhysicsObject()  // sets up the physics object
     if (setupPhysics(&tempModel, &tempNode, &tempPhysBody))
     {
         setPhysicsSetup(true);
-        setModel(boost::shared_ptr<Ogre::Entity>(tempModel));
-        setNode(boost::shared_ptr<Ogre::SceneNode>(tempNode));
-        setPhysBody(boost::shared_ptr<btRigidBody>(tempPhysBody));
+        setModel(OgreEntitySharedPtr(tempModel));
+        setNode(OgreSceneNodeSharedPtr(tempNode));
+        setPhysBody(btRigidBodySharedPtr(tempPhysBody));
         return (true);
     }
     else

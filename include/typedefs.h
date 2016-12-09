@@ -27,7 +27,7 @@
 #endif 
 
 #include <vector>
-
+#include <unordered_map>
 #include <boost/shared_ptr.hpp>
 
 #include "BtOgrePG.h"
@@ -39,6 +39,16 @@
 
 #include "ai/steering.h"
 //#include "offenseplays.h"
+
+#include "MyGUI_Gui.h"
+#include "MyGUI_OgrePlatform.h"
+#include "MyGUI_IItemContainer.h"
+#include "MyGUI_ListBox.h"
+#include "MyGUI_InputManager.h"
+#include "MyGUI_EditBox.h"
+#include "MyGUI_FontManager.h"
+#include "MyGUI_LayoutManager.h"
+#include "MyGUI_ImageBox.h"
 
 // forward declarations
 
@@ -54,10 +64,12 @@ class renderEngine;
 
 class basketballState;
 class courtState;
+class defenseState;
 class gameState;
 class hoopState;
 class inputState;
 class networkState;
+class offenseState;
 class playerState;
 class teamState;
 
@@ -67,6 +79,7 @@ class logging;
 class userInput;
 
 class AISystem;
+class basketballSteer;
 class playerSteer;
 class playerSteerPlugin;
 //class steering;
@@ -103,6 +116,8 @@ typedef boost::shared_ptr<basketballState> basketballStateSharedPtr;
 
 typedef boost::shared_ptr<courtState> courtStateSharedPtr;
 
+typedef boost::shared_ptr<defenseState> defenseStateSharedPtr;
+
 typedef boost::shared_ptr<gameState> gameStateSharedPtr;
 
 typedef boost::shared_ptr<hoopState> hoopStateSharedPtr;
@@ -111,6 +126,8 @@ typedef boost::shared_ptr<inputState> inputStateSharedPtr;
 
 typedef boost::shared_ptr<networkState> networkStateSharedPtr;
 
+typedef boost::shared_ptr<offenseState> offenseStateSharedPtr;
+
 typedef boost::shared_ptr<playerState> playerStateSharedPtr;
 
 typedef boost::shared_ptr<teamState> teamStateSharedPtr;
@@ -118,6 +135,8 @@ typedef boost::shared_ptr<teamState> teamStateSharedPtr;
 typedef boost::shared_ptr<jumpBalls> jumpBallsSharedPtr;
 
 typedef boost::shared_ptr<AISystem> AISystemSharedPtr;
+
+typedef boost::shared_ptr<basketballSteer> basketballSteerSharedPtr;
 
 typedef boost::shared_ptr<playerSteer> playerSteerSharedPtr;
 
@@ -141,9 +160,34 @@ typedef boost::shared_ptr<ENetPeer> ENetPeerSharedPtr;
 
 typedef boost::shared_ptr<ENetPacket> ENetPacketSharedPtr;
 
+// OGRE Shared Ptr
+
+typedef boost::shared_ptr<Ogre::Entity> OgreEntitySharedPtr;
+
+typedef boost::shared_ptr<Ogre::SceneNode> OgreSceneNodeSharedPtr;
+
+
+// MyGUI Shared Ptr
+
+typedef boost::shared_ptr<MyGUI::Gui> MyGUIGuiSharedPtr;
+
+typedef boost::shared_ptr<MyGUI::OgrePlatform> MyGUIOgrePlatformSharedPtr;
+
+typedef boost::shared_ptr<MyGUI::ListBox> MyGUIListBoxSharedPtr;
+
+typedef boost::shared_ptr<MyGUI::ImageBox> MyGUIImageBoxSharedPtr;
+
+typedef boost::shared_ptr<MyGUI::TextBox> MyGUITextBoxSharedPtr;
+
 // physics
 
 typedef boost::shared_ptr<btDynamicsWorld> btDynamicsWorldSharedPtr;
+
+typedef boost::shared_ptr<btCollisionShape> btCollisionShapeSharedPtr;
+
+typedef boost::shared_ptr<BtOgre::RigidBodyState> BtOgreRigidBodyStateSharedPtr;
+
+typedef boost::shared_ptr<btRigidBody> btRigidBodySharedPtr;
 
 // vector typedefs
 
@@ -196,4 +240,26 @@ typedef std::vector<size_t> sizeTVec;
 
 typedef std::vector<Ogre::Vector3> OgreVector3Vec;
 
+// Unordered_map shared pointers
+
+typedef std::unordered_map <size_t, basketballStateSharedPtr> basketballStateUMSharedPtr;
+typedef std::unordered_map <size_t, courtStateSharedPtr> courtStateUMSharedPtr;
+
+typedef std::unordered_map <size_t, hoopStateSharedPtr> hoopStateUMSharedPtr;
+
+typedef std::unordered_map <size_t, playerStateSharedPtr> playerStateUMSharedPtr;
+
+typedef std::unordered_map <size_t, teamStateSharedPtr> teamStateUMSharedPtr;
+
+typedef std::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > MyGUIButtonUMSharedPtr;
+
+typedef std::unordered_map<size_t, boost::shared_ptr<MyGUI::ListBox> > MyGUIListBoxUMSharedPtr;
+
+typedef std::unordered_map<std::string, boost::shared_ptr<MyGUI::ImageBox> > MyGUIImageBoxUMSharedPtr;
+
+// Vector Unordered_map shared pointers
+
+typedef std::vector<std::unordered_map <std::string, boost::shared_ptr<MyGUI::ListBox> > > MyGUIListBoxVecUMSharedPtr;
+
+typedef std::vector<std::unordered_map<std::string, boost::shared_ptr<MyGUI::TextBox> > > MyGUITextBoxVecUMSharedPtr;
 #endif

@@ -25,7 +25,7 @@
 #include "ubc.h"
 
 // static declarations
-boost::shared_ptr<UBCBase> entity::base;  // base class object
+UBCBaseSharedPtr entity::base;  // base class object
 
 entity::entity()  // constructor
 {
@@ -41,11 +41,11 @@ entity::~entity()  // destructor
     
 }
 
-boost::shared_ptr<UBCBase> entity::getBase()  // retrieves the value of base
+UBCBaseSharedPtr entity::getBase()  // retrieves the value of base
 {
     return (base);
 }
-void entity::setBase(boost::shared_ptr<UBCBase> set)  // sets the value of base
+void entity::setBase(UBCBaseSharedPtr set)  // sets the value of base
 {
     base = set;
 }
@@ -86,21 +86,21 @@ void entity::setEntityNodeName(std::string set)  // sets the value of entityNode
     entityNodeName = set;
 }
 
-boost::shared_ptr<Ogre::Entity> entity::getModel()  // retrieves the value of model
+OgreEntitySharedPtr entity::getModel()  // retrieves the value of model
 {
     return (model);
 }
- void entity::setModel(boost::shared_ptr<Ogre::Entity> set)  // sets the value of model
+ void entity::setModel(OgreEntitySharedPtr set)  // sets the value of model
 {
     logMsg("die here?");
     model = set;
 }
 
-boost::shared_ptr<Ogre::SceneNode> entity::getNode()  // retrieves the value of node
+OgreSceneNodeSharedPtr entity::getNode()  // retrieves the value of node
 {
     return (node);
 }
-void entity::setNode(boost::shared_ptr<Ogre::SceneNode> set)  // sets the value of node
+void entity::setNode(OgreSceneNodeSharedPtr set)  // sets the value of node
 {
     node = set;
 }
@@ -189,7 +189,7 @@ bool entity::loadModel()  // loads the 3D model
 //    render->getMSceneMgr()->
 //    Ogre::Entity *tempModel = render->getMSceneMgr()->createEntity("dah!", "Player.mesh");
     
-    model = boost::shared_ptr<Ogre::Entity>(tempModel);
+    model = OgreEntitySharedPtr(tempModel);
     logMsg(func +" Entity Created!");
     // creates and instantiates the node object
 //    node = getRenderE()->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName);
@@ -209,7 +209,7 @@ bool entity::loadModel()  // loads the 3D model
     tempNode->setScale(0.25f,0.25f,0.25f);
     tempNode->setPosition(0.0f,0.0f,0.0f);
 
-    node = boost::shared_ptr<Ogre::SceneNode>(tempNode);
+    node = OgreSceneNodeSharedPtr(tempNode);
 /*    logMsg("scene node created!");
     node->attachObject(model);
     logMsg("node attached!");

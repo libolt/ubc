@@ -223,20 +223,20 @@ void basketballState::setPlayerControlled(bool set)  // sets the value of player
     playerControlled = set;
 }
 
-boost::shared_ptr<playerState> basketballState::getPlayerWithBall()  // retrieves the value of playerWithBall
+playerStateSharedPtr basketballState::getPlayerWithBall()  // retrieves the value of playerWithBall
 {
     return (playerWithBall);
 }
-void basketballState::setPlayerWithBall(boost::shared_ptr<playerState> set)  // sets the value of playerWithBall
+void basketballState::setPlayerWithBall(playerStateSharedPtr set)  // sets the value of playerWithBall
 {
     playerWithBall = set;
 }
 
-boost::shared_ptr<courtState> basketballState::getCourtInstance()  // retrieves the value of courtInstance
+courtStateSharedPtr basketballState::getCourtInstance()  // retrieves the value of courtInstance
 {
     return (courtInstance);
 }
-void basketballState::setCourtInstance(boost::shared_ptr<courtState>set)  // sets the value of courtInstance
+void basketballState::setCourtInstance(courtStateSharedPtr set)  // sets the value of courtInstance
 {
     courtInstance = set;
 }
@@ -562,7 +562,7 @@ void basketballState::updateMovement()  // updates the basketball(s) movements
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
-    std::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance = getActiveTeamInstance();
+    teamStateUMSharedPtr activeTeamInstance = getActiveTeamInstance();
     size_t teamWithBall = getTeamWithBall();
 /*TS    playerStateVecSharedPtr activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
     size_t playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();
@@ -632,7 +632,7 @@ void basketballState::updateDirection()  // updates basketball direction(s)
     //conversion *convert = conversion::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
-    std::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance = getActiveTeamInstance();
+    teamStateUMSharedPtr activeTeamInstance = getActiveTeamInstance();
     size_t teamWithBall = getTeamWithBall();
 /*TS    playerStateVecSharedPtr activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
     sizeTVec activePlayerID = activeTeamInstance[teamWithBall]->getActivePlayerID();

@@ -55,7 +55,7 @@ public:
     ~inputEngine();  // destructor
     
     //static inputEngine *Instance();
-//    static boost::shared_ptr<inputEngine> Instance();
+//    static inputEngineSharedPtr Instance();
 
 /*    boost::shared_ptr<GUISystem> getGui();  // retrieves the value of gui
     void setGui(boost::shared_ptr<GUISystem> set);  // sets the value of gui
@@ -137,7 +137,7 @@ private:
     static bool textInputStarted;  // determines if text input has started
     
     //static inputEngine *pInstance;
-//    static boost::shared_ptr<inputEngine> pInstance;
+//    static inputEngineSharedPtr pInstance;
 
 //    boost::shared_ptr<GUISystem> gui;  // stores the copy of the gui object
     static bool keyInputReceived;  // stores whether a key has been pressed

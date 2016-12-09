@@ -84,14 +84,14 @@ bool GUISystem::courtSelectionDataLoaded;  // determines whether court names hav
 activeMenus GUISystem::activeMenu;  // stores which menu is being displayed
 activeMenus GUISystem::previousActiveMenu;  // stores which menu was last displayed
 
-boost::shared_ptr<MyGUI::Gui> GUISystem::mGUI;
-boost::shared_ptr<MyGUI::OgrePlatform> GUISystem::mPlatform;
+MyGUIGuiSharedPtr GUISystem::mGUI;
+MyGUIOgrePlatformSharedPtr GUISystem::mPlatform;
 
-std::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::mainMenuButtons;
+MyGUIButtonUMSharedPtr GUISystem::mainMenuButtons;
 
-std::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::networkMenuButtons;
+MyGUIButtonUMSharedPtr GUISystem::networkMenuButtons;
 
-std::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::playerStartSelectionMenuButtons;
+MyGUIButtonUMSharedPtr GUISystem::playerStartSelectionMenuButtons;
 /*boost::shared_ptr<MyGUI::Button> uexitButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::startSingleGameButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::startMultiGameButton;
@@ -102,7 +102,7 @@ boost::shared_ptr<MyGUI::Button> GUISystem::backMainMenuButton;
 */
 //boost::shared_ptr<MyGUI::Button> GUISystem::backNetworkSetupButton;
 
-std::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::optionsMenuButtons;
+MyGUIButtonUMSharedPtr GUISystem::optionsMenuButtons;
 /*boost::shared_ptr<MyGUI::Button> GUISystem::displayButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::inputButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::audioButton;
@@ -119,13 +119,13 @@ boost::shared_ptr<MyGUI::Button> GUISystem::audioButton;
 //boost::shared_ptr<MyGUI::Button> GUISystem::backTeamSelectionMenuButton;
 //boost::shared_ptr<MyGUI::Button> GUISystem::backCourtSelectionMenuButton;
 
-std::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::displayMenuButtons;
-std::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::inputMenuButtons;
-std::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::audioMenuButtons;
+MyGUIButtonUMSharedPtr GUISystem::displayMenuButtons;
+MyGUIButtonUMSharedPtr GUISystem::inputMenuButtons;
+MyGUIButtonUMSharedPtr GUISystem::audioMenuButtons;
 
 
 // Team Selection Menu
-std::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::teamSelectionMenuButtons;
+MyGUIButtonUMSharedPtr GUISystem::teamSelectionMenuButtons;
 
 /*boost::shared_ptr<MyGUI::Button> GUISystem::teamsSelectedButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::team0SelectButton;
@@ -139,73 +139,73 @@ boost::shared_ptr<MyGUI::Button> GUISystem::startingLineupsSetButton;
 */
 
 // listbox widgets
-//boost::shared_ptr<MyGUI::ListBox> GUISystem::team0SelectBox;
-//boost::shared_ptr<MyGUI::ListBox> GUISystem::team1SelectBox;
-std::unordered_map<size_t, boost::shared_ptr<MyGUI::ListBox> > GUISystem::teamSelectBox;
+//MyGUIListBoxSharedPtr GUISystem::team0SelectBox;
+//MyGUIListBoxSharedPtr GUISystem::team1SelectBox;
+MyGUIListBoxUMSharedPtr GUISystem::teamSelectBox;
 
 // Network Server Setup Widgets
-boost::shared_ptr<MyGUI::ListBox> GUISystem::numClientsSelectBox;  // allows you to select the number of network players
+MyGUIListBoxSharedPtr GUISystem::numClientsSelectBox;  // allows you to select the number of network players
 //boost::shared_ptr<MyGUI::Button> GUISystem::serverHostButton;
 boost::shared_ptr<MyGUI::EditBox> GUISystem::serverIPAddressBox;
-std::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::networkServerSetupMenuButtons;
+MyGUIButtonUMSharedPtr GUISystem::networkServerSetupMenuButtons;
     
 // Network Client Setup Widgets
 boost::shared_ptr<MyGUI::EditBox> GUISystem::clientIPAddressBox;
 //boost::shared_ptr<MyGUI::Button> GUISystem::clientConnectButton;
-std::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::networkClientSetupMenuButtons;
+MyGUIButtonUMSharedPtr GUISystem::networkClientSetupMenuButtons;
     
-std::vector<std::unordered_map <std::string, boost::shared_ptr<MyGUI::ListBox> > > GUISystem::teamPlayerPosSelectBox;
+MyGUIListBoxVecUMSharedPtr GUISystem::teamPlayerPosSelectBox;
 
-/*    boost::shared_ptr<MyGUI::ListBox> GUISystem::team0Player1SelectBox;
-boost::shared_ptr<MyGUI::ListBox> GUISystem::team0Player2SelectBox;
-boost::shared_ptr<MyGUI::ListBox> GUISystem::team0Player3SelectBox;
-boost::shared_ptr<MyGUI::ListBox> GUISystem::team0Player4SelectBox;
-boost::shared_ptr<MyGUI::ListBox> GUISystem::team0Player5SelectBox;
-boost::shared_ptr<MyGUI::ListBox> GUISystem::team1Player1SelectBox;
-boost::shared_ptr<MyGUI::ListBox> GUISystem::team1Player2SelectBox;
-boost::shared_ptr<MyGUI::ListBox> GUISystem::team1Player3SelectBox;
-boost::shared_ptr<MyGUI::ListBox> GUISystem::team1Player4SelectBox;
-boost::shared_ptr<MyGUI::ListBox> GUISystem::team1Player5SelectBox;
+/*    MyGUIListBoxSharedPtr GUISystem::team0Player1SelectBox;
+MyGUIListBoxSharedPtr GUISystem::team0Player2SelectBox;
+MyGUIListBoxSharedPtr GUISystem::team0Player3SelectBox;
+MyGUIListBoxSharedPtr GUISystem::team0Player4SelectBox;
+MyGUIListBoxSharedPtr GUISystem::team0Player5SelectBox;
+MyGUIListBoxSharedPtr GUISystem::team1Player1SelectBox;
+MyGUIListBoxSharedPtr GUISystem::team1Player2SelectBox;
+MyGUIListBoxSharedPtr GUISystem::team1Player3SelectBox;
+MyGUIListBoxSharedPtr GUISystem::team1Player4SelectBox;
+MyGUIListBoxSharedPtr GUISystem::team1Player5SelectBox;
 
     
 // Player Selection Menu widgets
-boost::shared_ptr<MyGUI::ListBox> GUISystem::team0PGSelectBox;
-boost::shared_ptr<MyGUI::ListBox> GUISystem::team0SGSelectBox;
-boost::shared_ptr<MyGUI::ListBox> GUISystem::team0SFSelectBox;
-boost::shared_ptr<MyGUI::ListBox> GUISystem::team0PFSelectBox;
-boost::shared_ptr<MyGUI::ListBox> GUISystem::team0CSelectBox;
-boost::shared_ptr<MyGUI::ListBox> GUISystem::team1PGSelectBox;
-boost::shared_ptr<MyGUI::ListBox> GUISystem::team1SGSelectBox;
-boost::shared_ptr<MyGUI::ListBox> GUISystem::team1SFSelectBox;
-boost::shared_ptr<MyGUI::ListBox> GUISystem::team1PFSelectBox;
-boost::shared_ptr<MyGUI::ListBox> GUISystem::team1CSelectBox;
+MyGUIListBoxSharedPtr GUISystem::team0PGSelectBox;
+MyGUIListBoxSharedPtr GUISystem::team0SGSelectBox;
+MyGUIListBoxSharedPtr GUISystem::team0SFSelectBox;
+MyGUIListBoxSharedPtr GUISystem::team0PFSelectBox;
+MyGUIListBoxSharedPtr GUISystem::team0CSelectBox;
+MyGUIListBoxSharedPtr GUISystem::team1PGSelectBox;
+MyGUIListBoxSharedPtr GUISystem::team1SGSelectBox;
+MyGUIListBoxSharedPtr GUISystem::team1SFSelectBox;
+MyGUIListBoxSharedPtr GUISystem::team1PFSelectBox;
+MyGUIListBoxSharedPtr GUISystem::team1CSelectBox;
 */
 
-std::vector<std::unordered_map<std::string, boost::shared_ptr<MyGUI::TextBox> > > GUISystem::teamPlayerRating;
-std::unordered_map<std::string, boost::shared_ptr<MyGUI::ImageBox> > GUISystem::teamLogo;
+MyGUITextBoxVecUMSharedPtr GUISystem::teamPlayerRating;
+MyGUIImageBoxUMSharedPtr GUISystem::teamLogo;
 
 /*
-boost::shared_ptr<MyGUI::TextBox> GUISystem::team0PGRating;
-boost::shared_ptr<MyGUI::TextBox> GUISystem::team0SGRating;
-boost::shared_ptr<MyGUI::TextBox> GUISystem::team0SFRating;
-boost::shared_ptr<MyGUI::TextBox> GUISystem::team0PFRating;
-boost::shared_ptr<MyGUI::TextBox> GUISystem::team0CRating;
-boost::shared_ptr<MyGUI::TextBox> GUISystem::team1PGRating;
-boost::shared_ptr<MyGUI::TextBox> GUISystem::team1SGRating;
-boost::shared_ptr<MyGUI::TextBox> GUISystem::team1SFRating;
-boost::shared_ptr<MyGUI::TextBox> GUISystem::team1PFRating;
-boost::shared_ptr<MyGUI::TextBox> GUISystem::team1CRating;
-boost::shared_ptr<MyGUI::ImageBox> GUISystem::team0Logo;
-boost::shared_ptr<MyGUI::ImageBox> GUISystem::team1Logo;
+MyGUITextBoxSharedPtr> GUISystem::team0PGRating;
+MyGUITextBoxSharedPtr> GUISystem::team0SGRating;
+MyGUITextBoxSharedPtr> GUISystem::team0SFRating;
+MyGUITextBoxSharedPtr> GUISystem::team0PFRating;
+MyGUITextBoxSharedPtr> GUISystem::team0CRating;
+MyGUITextBoxSharedPtr> GUISystem::team1PGRating;
+MyGUITextBoxSharedPtr> GUISystem::team1SGRating;
+MyGUITextBoxSharedPtr> GUISystem::team1SFRating;
+MyGUITextBoxSharedPtr> GUISystem::team1PFRating;
+MyGUITextBoxSharedPtr> GUISystem::team1CRating;
+MyGUIImageBoxSharedPtr GUISystem::team0Logo;
+MyGUIImageBoxSharedPtr GUISystem::team1Logo;
 */
 
 // Court selection menu widgets
-std::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::courtSelectionMenuButtons;
+MyGUIButtonUMSharedPtr GUISystem::courtSelectionMenuButtons;
 //boost::shared_ptr<MyGUI::Button> GUISystem::backPlayerStartSelectionMenuButton;
 //boost::shared_ptr<MyGUI::Button> GUISystem::courtSelectButton;
-boost::shared_ptr<MyGUI::ListBox> GUISystem::courtSelectBox;  
-boost::shared_ptr<MyGUI::ImageBox> GUISystem::courtPreviewImgBox;
-boost::shared_ptr<MyGUI::TextBox> GUISystem::courtNameTxtBox;
+MyGUIListBoxSharedPtr GUISystem::courtSelectBox;  
+MyGUIImageBoxSharedPtr GUISystem::courtPreviewImgBox;
+MyGUITextBoxSharedPtr GUISystem::courtNameTxtBox;
 
 std::vector< stdStringVec > GUISystem::playerNames;
 std::vector< stdStringVec > GUISystem::playerPositionsPlayed;
@@ -271,7 +271,7 @@ void GUISystem::setBase(UBCBaseSharedPtr set)  // sets the value of base
 {
     return (networkG);
 }
-void GUISystem::setNetworkG(boost::shared_ptr<networkEngine> set)  // sets the value of network
+void GUISystem::setNetworkG(networkEngineSharedPtr set)  // sets the value of network
 {
     networkG = set;
 }
@@ -441,11 +441,11 @@ void GUISystem::setPreviousActiveMenu(activeMenus set)  // sets the value of pre
 }
 
 
-boost::shared_ptr<MyGUI::Gui> GUISystem::getMGUI()  // retrieves the value of mGUI
+MyGUIGuiSharedPtr GUISystem::getMGUI()  // retrieves the value of mGUI
 {
     return (mGUI);
 }
-void GUISystem::setMGUI(boost::shared_ptr<MyGUI::Gui> set)  // sets the value of mGUI
+void GUISystem::setMGUI(MyGUIGuiSharedPtr set)  // sets the value of mGUI
 {
     mGUI = set;
 }
@@ -488,7 +488,7 @@ bool GUISystem::initMyGUI()  // Initializes MyGUI
 //    Ogre::SceneManager *mSceneMgr = render->getMSceneMgr();
 
     logMsg("*** Initializing MyGUI ***");
-    boost::shared_ptr<MyGUI::OgrePlatform> tempPlatform(new MyGUI::OgrePlatform());
+    MyGUIOgrePlatformSharedPtr tempPlatform(new MyGUI::OgrePlatform());
     mPlatform = tempPlatform;
     logMsg("Crash?");
 //    exit(0);
@@ -500,7 +500,7 @@ bool GUISystem::initMyGUI()  // Initializes MyGUI
 //#endif
 //    exit(0);
     logMsg("Crash??");
-    boost::shared_ptr<MyGUI::Gui> tempGUI(new MyGUI::Gui());
+    MyGUIGuiSharedPtr tempGUI(new MyGUI::Gui());
 //    exit(0);
     mGUI = tempGUI;
 //    exit(0);
@@ -856,7 +856,7 @@ void GUISystem::networkServerSetupMenu()  // sets up the networkServer instance
 void GUISystem::networkServer()  // sets up  game as a network server
 {
     //networkEngine * network = networkEngine::Instance();
-//    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
+//    networkEngineSharedPtr network = networkEngine::Instance();
     //gameEngine * gameE = gameEngine::Instance();
 //    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
     //gameState *gameS = gameState::Instance();
@@ -878,7 +878,7 @@ void GUISystem::networkServer()  // sets up  game as a network server
 }
 void GUISystem::networkClient()  // sets up game as a network client
 {
-//    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
+//    networkEngineSharedPtr network = networkEngine::Instance();
 //    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 
@@ -919,8 +919,8 @@ void GUISystem::teamsSelected()  // processes team selection
     //gameState *gameS = gameState::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
     
-    std::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance;
-    std::unordered_map <size_t, teamStateSharedPtr> teamInstance;
+    teamStateUMSharedPtr activeTeamInstance;
+    teamStateUMSharedPtr teamInstance;
     
     teamInstance = base->getGameS()->getTeamInstance();
     
@@ -959,10 +959,10 @@ void GUISystem::playerStartSelected()  // process player start selection
     teamStarters.push_back(tempStarters);
     teamStarters.push_back(tempStarters);
     sizeTVec starters; // used for initial creatio  of teamStarterID vector
-    std::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance = base->getGameS()->getActiveTeamInstance();
+    teamStateUMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
   
-    std::vector<std::unordered_map <size_t, playerStateSharedPtr> > playerInstance;
-    std::unordered_map <size_t, playerStateSharedPtr> activePlayerInstance;
+    std::vector<playerStateUMSharedPtr > playerInstance;
+    playerStateUMSharedPtr activePlayerInstance;
     size_t IDs = 0;
     std::string func = "GUISystem::playerStartSelected";
 
@@ -982,7 +982,7 @@ void GUISystem::playerStartSelected()  // process player start selection
 //        ++x;
     }
     
-    std::vector<std::unordered_map <size_t, playerStateSharedPtr> >::iterator PIIT;
+    std::vector<playerStateUMSharedPtr >::iterator PIIT;
     x = 0;
     for (PIIT = playerInstance.begin(); PIIT != playerInstance.end(); ++PIIT)
     {

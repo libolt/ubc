@@ -127,18 +127,18 @@ class gameStateShared
         teamTypes getTeamWithBall();  // retrieves the value of teamWithBall
         void setTeamWithBall(teamTypes set);  // sets the value of teamWithBall
         
-        std::unordered_map <size_t, basketballStateSharedPtr> getActiveBasketballInstance();  // retrieves the value of activeBasketballInstance
-        void setActiveBasketballInstance(std::unordered_map <size_t, basketballStateSharedPtr> set);  // sets the value of activeBasketballInstance
+        basketballStateUMSharedPtr getActiveBasketballInstance();  // retrieves the value of activeBasketballInstance
+        void setActiveBasketballInstance(basketballStateUMSharedPtr set);  // sets the value of activeBasketballInstance
 
 
-        std::unordered_map <size_t, courtStateSharedPtr> getActiveCourtInstance();  // retrieves the value of activeCourtInstance
-        void setActiveCourtInstance(std::unordered_map <size_t, courtStateSharedPtr> set);  // sets the value of activeCourtInstance
+        courtStateUMSharedPtr getActiveCourtInstance();  // retrieves the value of activeCourtInstance
+        void setActiveCourtInstance(courtStateUMSharedPtr set);  // sets the value of activeCourtInstance
 
-        std::unordered_map <size_t, hoopStateSharedPtr> getActiveHoopInstance();  // retrieves the value of activeHoopInstance
-        void setActiveHoopInstance(std::unordered_map <size_t, hoopStateSharedPtr> set);  // sets the value of activeHoopInstance
+        hoopStateUMSharedPtr getActiveHoopInstance();  // retrieves the value of activeHoopInstance
+        void setActiveHoopInstance(hoopStateUMSharedPtr set);  // sets the value of activeHoopInstance
 
-        std::unordered_map <size_t, teamStateSharedPtr> getActiveTeamInstance();  // retrieves the value of activeTeamInstance
-        void setActiveTeamInstance(std::unordered_map <size_t, teamStateSharedPtr> set);  // sets the value of activeTeamInstance     
+        teamStateUMSharedPtr getActiveTeamInstance();  // retrieves the value of activeTeamInstance
+        void setActiveTeamInstance(teamStateUMSharedPtr set);  // sets the value of activeTeamInstance
                
 //        size_t getActiveBBallInstance();  // retrieves the value of activeBBallInstance
 //        void setActiveBBallInstance(size_t set);  // sets the value of activeBBallInstance
@@ -147,17 +147,17 @@ class gameStateShared
         basketballStateVecSharedPtr getBasketballInstance();  // retrieves the value of basketballInstance
         void setBasketballInstance(basketballStateVecSharedPtr set);  // sets the value of basketballInstance
 
-        std::unordered_map <size_t, courtStateSharedPtr>  getCourtInstance();  // retrieves the value of courtInstance
-        void setCourtInstance(std::unordered_map <size_t, courtStateSharedPtr>  set);  // sets the value of courtInstance
+        courtStateUMSharedPtr  getCourtInstance();  // retrieves the value of courtInstance
+        void setCourtInstance(courtStateUMSharedPtr  set);  // sets the value of courtInstance
 
-        std::unordered_map <size_t, hoopStateSharedPtr> getHoopInstance();  // retrieves the value of hoopInstance
-        void setHoopInstance(std::unordered_map <size_t, hoopStateSharedPtr> set);  // sets the value of hoopInstance
+        hoopStateUMSharedPtr getHoopInstance();  // retrieves the value of hoopInstance
+        void setHoopInstance(hoopStateUMSharedPtr set);  // sets the value of hoopInstance
 
-        std::unordered_map <size_t, playerStateSharedPtr> getPlayerInstance();  // retrieves the value of playerInstance
-        void setPlayerInstance(std::unordered_map <size_t, playerStateSharedPtr> set);  // sets the value of  playerInstance
+        playerStateUMSharedPtr getPlayerInstance();  // retrieves the value of playerInstance
+        void setPlayerInstance(playerStateUMSharedPtr set);  // sets the value of  playerInstance
 
-        static std::unordered_map <size_t, teamStateSharedPtr> getTeamInstance();  // retireves the value of teamInstance
-        void setTeamInstance(std::unordered_map <size_t, teamStateSharedPtr> set);  // sets the value of teamInstance
+        static teamStateUMSharedPtr getTeamInstance();  // retireves the value of teamInstance
+        void setTeamInstance(teamStateUMSharedPtr set);  // sets the value of teamInstance
 
         jumpBallsSharedPtr getJumpBall();  // retrieves the value of jumpBall
         void setJumpBall(jumpBallsSharedPtr set);  // sets the value of jumpBall
@@ -170,7 +170,7 @@ class gameStateShared
         // used to determine if calling class needs to uldate its copy of the variable
         static bool activeBasketballInstancesCreated;  // stores whether the active basketball instances have been created
         static bool activeCourtInstancesCreated;  // stores whether the active court instances have been created
-	static bool activeHoopInstancesCreated;  // stores whether the active hoop instances have been created
+        static bool activeHoopInstancesCreated;  // stores whether the active hoop instances have been created
         static bool activeTeamInstancesCreated;  // stores whether the active team instances have been created
         static bool activeTeamInstancesNeedCreated;  // stores whether or not to create active team instances
         static bool basketballInstanceCreated;  // stores whether basketball instance(s) have been created
@@ -195,17 +195,17 @@ class gameStateShared
         static std::vector<std::unordered_map<std::string, size_t> > teamStarterID;  // stores the selected starters for each team
         static Ogre::Vector3 bballNodePosition;  // stores a copy of the basketball node position
         static teamTypes teamWithBall;  // store which team has the basketball
-        static std::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance;  // creates instance of the basketballState class
-        static std::unordered_map <size_t, courtStateSharedPtr> activeCourtInstance;  // stores the active court instance
-	static std::unordered_map <size_t, hoopStateSharedPtr> activeHoopInstance;  // creates instance of the hoopState class
-        static std::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance;  // stores active team instance
+        static basketballStateUMSharedPtr activeBasketballInstance;  // creates instance of the basketballState class
+        static courtStateUMSharedPtr activeCourtInstance;  // stores the active court instance
+        static hoopStateUMSharedPtr activeHoopInstance;  // creates instance of the hoopState class
+        static teamStateUMSharedPtr activeTeamInstance;  // stores active team instance
         
 //        static size_t activeBBallInstance;  // stores which instance of the baskteball class is active
         static basketballStateVecSharedPtr basketballInstance;  // creates instance of the basketballs class
-        static std::unordered_map <size_t, courtStateSharedPtr> courtInstance;  // stores the court instance
-        static std::unordered_map <size_t, hoopStateSharedPtr> hoopInstance;  // creates instance of the hoop class
-        static std::unordered_map <size_t, playerStateSharedPtr> playerInstance;  // stores the map of the players loaded from the xml files
-        static std::unordered_map <size_t, teamStateSharedPtr>  teamInstance;  // creates instance of the teamState class
+        static courtStateUMSharedPtr courtInstance;  // stores the court instance
+        static hoopStateUMSharedPtr hoopInstance;  // creates instance of the hoop class
+        static playerStateUMSharedPtr playerInstance;  // stores the map of the players loaded from the xml files
+        static teamStateUMSharedPtr  teamInstance;  // creates instance of the teamState class
 
         static jumpBallsSharedPtr jumpBall; // instance that is used for jumpBall functions.
 

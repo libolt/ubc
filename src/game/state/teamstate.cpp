@@ -37,15 +37,15 @@
 
 // static declarations
 
-boost::shared_ptr<UBCBase> teamState::base;  // static copy of base class
-//std::unordered_map <size_t, playerStateSharedPtr> teamState::playerInstance;
+UBCBaseSharedPtr teamState::base;  // static copy of base class
+//playerStateUMSharedPtr teamState::playerInstance;
 //    sizeTVec teamState::activePlayerID; 
 //static size_t teamState::teamID; 
 
 teamState::teamState()  // constructor
 {
 
-//    boost::shared_ptr<UBCBase> tempBaseSharedPtr; //(new UBCBase);
+//    UBCBaseSharedPtr tempBaseSharedPtr; //(new UBCBase);
 //    base = tempBaseSharedPtr;
     
     //teamNumber = -1;
@@ -85,11 +85,11 @@ teamState::~teamState()  // destructor
 {
 }
 
-boost::shared_ptr<UBCBase> teamState::getBase()  // retrieves the value of base
+UBCBaseSharedPtr teamState::getBase()  // retrieves the value of base
 {
     return (base);
 }
-void teamState::setBase(boost::shared_ptr<UBCBase> set)  // sets the value of base
+void teamState::setBase(UBCBaseSharedPtr set)  // sets the value of base
 {
     base = set;
 }
@@ -320,20 +320,20 @@ void teamState::setDefense(bool set)    // sets the value of defense
     defense = set;
 }
 
-std::unordered_map<size_t, playerStateSharedPtr> teamState::getPlayerInstance()  // retrieves the value of playerInstance
+playerStateUMSharedPtr teamState::getPlayerInstance()  // retrieves the value of playerInstance
 {
     return (playerInstance);
 }
-void teamState::setPlayerInstance(std::unordered_map <size_t, playerStateSharedPtr> set)  // sets the value of playerInstance
+void teamState::setPlayerInstance(playerStateUMSharedPtr set)  // sets the value of playerInstance
 {
     playerInstance = set;
 }
 
-std::unordered_map<size_t, playerStateSharedPtr> teamState::getActivePlayerInstance()  // retrieves the value of activePlayerInstance
+playerStateUMSharedPtr teamState::getActivePlayerInstance()  // retrieves the value of activePlayerInstance
 {
     return (activePlayerInstance);
 }
-void teamState::setActivePlayerInstance(std::unordered_map<size_t, playerStateSharedPtr> set) // sets the value of activePlayerInstance
+void teamState::setActivePlayerInstance(playerStateUMSharedPtr set) // sets the value of activePlayerInstance
 {
     activePlayerInstance = set;
 }
@@ -402,19 +402,19 @@ void teamState::setHoop(size_t set)  // sets the value of hoop
     hoop = set;
 }
 
-boost::shared_ptr<offenseState> teamState::getOffenseInstance() // retrievers the value of offenseInstance
+offenseStateSharedPtr teamState::getOffenseInstance() // retrievers the value of offenseInstance
 {
     return (offenseInstance);
 }
-void teamState::setOffenseInstance(boost::shared_ptr<offenseState> set) // sets the value of offenseInstance
+void teamState::setOffenseInstance(offenseStateSharedPtr set) // sets the value of offenseInstance
 {
     offenseInstance = set;
 }
-boost::shared_ptr<defenseState> teamState::getDefenseInstance() // retrieves the value of defenseInstance
+defenseStateSharedPtr teamState::getDefenseInstance() // retrieves the value of defenseInstance
 {
     return (defenseInstance);
 }
-void teamState::setDefenseInstance(boost::shared_ptr<defenseState> set) // sets the value of defenseInstance
+void teamState::setDefenseInstance(defenseStateSharedPtr set) // sets the value of defenseInstance
 {
     defenseInstance = set;
 }
@@ -449,10 +449,10 @@ void teamState::setTeamCollidesWith(size_t set) // sets the value of teamCollide
 void teamState::setupState()    // sets up the state of the object
 {
     bool stateSet = this->getStateSet();
-    boost::shared_ptr<offenseState> tempOffenseInst(new offenseState);
+    offenseStateSharedPtr tempOffenseInst(new offenseState);
     offenseInstance = tempOffenseInst;
 
-    boost::shared_ptr<defenseState> tempDefenseInst(new defenseState);
+    defenseStateSharedPtr tempDefenseInst(new defenseState);
     defenseInstance = tempDefenseInst;
     if (!stateSet)
     {
@@ -499,7 +499,7 @@ void teamState::updateState()   // updates the state of the object
 //  logMsg("Updating team state " +convert->toString(teamNumber));
     if (base->getGameS()->getBasketballInstanceCreated() && base->getGameS()->getPlayerInstanceCreated())
     {
-        std::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();
+        basketballStateUMSharedPtr activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();
 //      exit(0);
         // checks whether to execute offense or defense logic
         if (offense == true && defense == false)
@@ -653,7 +653,7 @@ void teamState::updateState()   // updates the state of the object
 bool teamState::createPlayerInstances()
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    std::unordered_map <size_t, playerStateSharedPtr> gamePlayerInstance;
+    playerStateUMSharedPtr gamePlayerInstance;
     std::string func = "teamState::createPlayerInstances()";
 
     if (base->getGameS()->getInitialized())
@@ -733,7 +733,7 @@ bool teamState::createPlayerInstances_old()
     
     std::vector<std::unordered_map<std::string, size_t> > teamStarterID = base->getGameS()->getTeamStarterID();
 //    exit(0);
-    std::unordered_map <size_t, playerStateSharedPtr> gamePlayerInstance;
+    playerStateUMSharedPtr gamePlayerInstance;
 //    exit(0);
     
     logMsg("teamState::createPlayerInstances()!");
@@ -1040,7 +1040,7 @@ void teamState::setPlayerStartPositions()   // sets the initial coordinates for 
 ///        }
 ///    }
 
-    std::unordered_map <size_t, courtStateSharedPtr> courtInstance = base->getGameS()->getCourtInstance();
+    courtStateUMSharedPtr courtInstance = base->getGameS()->getCourtInstance();
 
     Ogre::Vector3 courtPos = courtInstance[0]->getNodePosition();
 //    exit(0);
@@ -1452,7 +1452,7 @@ void teamState::executePass()       // executes the pass between players
 //    size_t activeBBallInstance = base->getGameS()->getActiveBBallInstance();
     size_t passToPlayer = activePlayerInstance[playerWithBallInstance]->getPassToPlayer();
 //    basketballStateVecSharedPtr basketballInstance = base->getGameS()->getBasketballInstance();
-    std::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();
+    basketballStateUMSharedPtr activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();
     Ogre::Vector3 playerWithBallCoords = activePlayerInstance[playerWithBallInstance]->getNode()->getPosition();
     Ogre::Vector3 passToPlayerCoords = activePlayerInstance[passToPlayer]->getNode()->getPosition();
 //  exit(0);

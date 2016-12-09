@@ -31,8 +31,8 @@
 //#include "engine/sound/soundengine.h"
 
 /*boost::shared_ptr<renderEngine> gameEngine::render; 
-boost::shared_ptr<inputEngine> gameEngine::input;
-boost::shared_ptr<networkEngine> gameEngine::network;
+inputEngineSharedPtr gameEngine::input;
+networkEngineSharedPtr gameEngine::network;
 */
 bool gameEngine::userInputLoaded;
 bool gameEngine::menuActive;
@@ -196,20 +196,20 @@ void gameEngine::setRenderE(boost::shared_ptr<renderEngine> set)  // sets the va
 {
 //    renderE = set;
 }
-boost::shared_ptr<inputEngine> gameEngine::getInputE()  // retrieves the value of inputE
+inputEngineSharedPtr gameEngine::getInputE()  // retrieves the value of inputE
 {
     return (inputE);
 }
-void gameEngine::setInputE(boost::shared_ptr<inputEngine> set)  // sets the value of inputE
+void gameEngine::setInputE(inputEngineSharedPtr set)  // sets the value of inputE
 {
     inputE = set;
 }
 
-boost::shared_ptr<networkEngine> gameEngine::getNetworkE()  // retrieves the value of networkE
+networkEngineSharedPtr gameEngine::getNetworkE()  // retrieves the value of networkE
 {
     return (networkE);
 }
-void gameEngine::setNetworkE(boost::shared_ptr<networkEngine> set)  // sets the value of networkE
+void gameEngine::setNetworkE(networkEngineSharedPtr set)  // sets the value of networkE
 {
     networkE = set;
 }
@@ -226,7 +226,7 @@ bool gameEngine::setup()  // sets up engine state
 
     // networkEngine
     //    networkEngine *tempNetworkObj = new networkEngine;
-    boost::shared_ptr<networkEngine> tempNetworkSharedPtr(new networkEngine);
+    networkEngineSharedPtr tempNetworkSharedPtr(new networkEngine);
     networkE = tempNetworkSharedPtr;
     networkE->initialize();
 
@@ -239,7 +239,7 @@ bool gameEngine::setup()  // sets up engine state
 // inputEngine
 //    inputEngine *tempInputObj = new inputEngine;
 
-    boost::shared_ptr<inputEngine> tempInputSharedPtr(new inputEngine);
+    inputEngineSharedPtr tempInputSharedPtr(new inputEngine);
     inputE = tempInputSharedPtr;
 
     return (true);
@@ -267,7 +267,7 @@ void gameEngine::quit()  // quits the game
     boost::shared_ptr<gameState> gameS = gameState::Instance();
 //    boost::shared_ptr<GUISystem> gui = GUISystem::Instance();
 //    boost::shared_ptr<inputSystem> input = inputSystem::Instance();
-//    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
+//    networkEngineSharedPtr network = networkEngine::Instance();
 
     teamStateVec activeTeamInstance = gameS->getActiveTeamInstance();
     networkPlayerStateObject netPStateObj;
@@ -443,7 +443,7 @@ void gameEngine::gameLoop()  // Main Game Loop
 //    boost::shared_ptr<GUISystem> gui = GUISystem::Instance();
 //    boost::shared_ptr<inputSystem> input = inputSystem::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
-//    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
+//    networkEngineSharedPtr network = networkEngine::Instance();
     boost::shared_ptr<soundEngine> sound = soundEngine::Instance();
 
     networkPlayerStateObject netPStateObj;

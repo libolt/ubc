@@ -42,14 +42,14 @@
 //#include "engine/renderengine.h"
 
 
-/*boost::shared_ptr<inputEngine> inputEngine::pInstance;
+/*inputEngineSharedPtr inputEngine::pInstance;
 
-boost::shared_ptr<inputEngine> inputEngine::Instance()
+inputEngineSharedPtr inputEngine::Instance()
 {
     if (pInstance == 0)  // is it the first call?
     {
         //pInstance = new inputEngine; // create sole instance
-        boost::shared_ptr<inputEngine> tInstance(new inputEngine);
+        inputEngineSharedPtr tInstance(new inputEngine);
         pInstance = tInstance;
     }
     return pInstance; // address of sole instance

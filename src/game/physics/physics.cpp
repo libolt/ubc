@@ -35,21 +35,21 @@ physics::~physics()  // destructor
 
 }
 
-boost::shared_ptr<btCollisionShape> physics::getShape()  // retrieves the value of shape
+btCollisionShapeSharedPtr physics::getShape()  // retrieves the value of shape
 {
     return (shape);
 }
-void physics::setShape(boost::shared_ptr<btCollisionShape> set)  // sets the value of shape
+void physics::setShape(btCollisionShapeSharedPtr set)  // sets the value of shape
 {
     shape = set;
 }
 
-boost::shared_ptr<BtOgre::RigidBodyState> physics::getBodyState()  // retrieves the value of bodyState
+BtOgreRigidBodyStateSharedPtr physics::getBodyState()  // retrieves the value of bodyState
 {
     return (bodyState);
 }
 
-void physics::setBodyState(boost::shared_ptr<BtOgre::RigidBodyState> set)  // sets the value of bodyState
+void physics::setBodyState(BtOgreRigidBodyStateSharedPtr set)  // sets the value of bodyState
 {
     bodyState = set;
 }
@@ -63,12 +63,12 @@ void physics::setShapeType(physicsShapes set)  // sets the value of shapeType
     shapeType = set;
 }
 
-boost::shared_ptr<btRigidBody> physics::getPhysBody()  // retrieves physBody variable
+btRigidBodySharedPtr physics::getPhysBody()  // retrieves physBody variable
 {
     return (physBody);
 }
 
-void physics::setPhysBody(boost::shared_ptr<btRigidBody> set)  // sets physBody variable
+void physics::setPhysBody(btRigidBodySharedPtr set)  // sets physBody variable
 {
     physBody = set;
 }
@@ -169,16 +169,16 @@ bool physics::setupPhysics(Ogre::Entity **model, Ogre::SceneNode **node, btRigid
         tempShape->calculateLocalInertia(mass, inertia);
         logMsg(func +" tempShape->calculateLocalInertia(mass, inertia);");
 
-        shape = boost::shared_ptr<btCollisionShape>(tempShape);
-        logMsg(func +" shape = boost::shared_ptr<btCollisionShape>(tempShape);");
+        shape = btCollisionShapeSharedPtr(tempShape);
+        logMsg(func +" shape = btCollisionShapeSharedPtr(tempShape);");
 
 //        exit(0);
 
         BtOgre::RigidBodyState *tempBodyState = new BtOgre::RigidBodyState(*node);
         logMsg(func +" BtOgre::RigidBodyState *tempBodyState = new BtOgre::RigidBodyState(*node);");
 
-        bodyState =  boost::shared_ptr<BtOgre::RigidBodyState>(tempBodyState);
-        logMsg(func +" bodyState =  boost::shared_ptr<BtOgre::RigidBodyState>(tempBodyState);");
+        bodyState =  BtOgreRigidBodyStateSharedPtr(tempBodyState);
+        logMsg(func +" bodyState =  BtOgreRigidBodyStateSharedPtr(tempBodyState);");
 
 //    exit(0);
         btRigidBody::btRigidBodyConstructionInfo info(mass,bodyState.get(),shape.get(),inertia);  //motion state would actually be non-null in most real usages

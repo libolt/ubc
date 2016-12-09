@@ -37,17 +37,17 @@ class physics : public physicsEngine //, public gameStateShared
         physics();  // constructor
         ~physics();  // destructor
 
-        boost::shared_ptr<btCollisionShape> getShape();  // retrieves the value of shape
-        void setShape(boost::shared_ptr<btCollisionShape> set);  // sets the value of shape
+        btCollisionShapeSharedPtr getShape();  // retrieves the value of shape
+        void setShape(btCollisionShapeSharedPtr set);  // sets the value of shape
 
-        boost::shared_ptr<BtOgre::RigidBodyState> getBodyState();  // retrieves the value of bodyState
-        void setBodyState(boost::shared_ptr<BtOgre::RigidBodyState> set);  // sets the value of bodyState
+        BtOgreRigidBodyStateSharedPtr getBodyState();  // retrieves the value of bodyState
+        void setBodyState(BtOgreRigidBodyStateSharedPtr set);  // sets the value of bodyState
 
         physicsShapes getShapeType();  // retrieves the value of shapeType
         void setShapeType(physicsShapes set);  // sets the value of shapeType
  
-        boost::shared_ptr<btRigidBody> getPhysBody();  // retrieves the value of physBody
-        void setPhysBody(boost::shared_ptr<btRigidBody> set);  // sets the value of physBody
+        btRigidBodySharedPtr getPhysBody();  // retrieves the value of physBody
+        void setPhysBody(btRigidBodySharedPtr set);  // sets the value of physBody
 
         int getColObject();  // retrieves the value of colObject
         void setColObject(int set);  // sets the value of colObject
@@ -70,12 +70,12 @@ class physics : public physicsEngine //, public gameStateShared
 
     private:
 
-        boost::shared_ptr<btCollisionShape> shape;  // stores the shape of the object shape
-        boost::shared_ptr<BtOgre::RigidBodyState> bodyState;  // stores the state of the body objectt
+        btCollisionShapeSharedPtr shape;  // stores the shape of the object shape
+        BtOgreRigidBodyStateSharedPtr bodyState;  // stores the state of the body objectt
 
         physicsShapes shapeType;  // stores what type of shape to create 
         
-        boost::shared_ptr<btRigidBody> physBody;  // stores the physics object that represents the player
+        btRigidBodySharedPtr physBody;  // stores the physics object that represents the player
     
         size_t entityInstance;  // stores which instance of the entity object(s) to use for shape
         

@@ -52,8 +52,8 @@ public:
     teamState();  // constructor
     ~teamState();  // destructor
 
-    boost::shared_ptr<UBCBase> getBase();  // retrieves the value of base
-    void setBase(boost::shared_ptr<UBCBase> set);  // sets the value of base
+    UBCBaseSharedPtr getBase();  // retrieves the value of base
+    void setBase(UBCBaseSharedPtr set);  // sets the value of base
     
 
 ///    int getTeamNumber();	// retrieves the value of teamNumber
@@ -131,11 +131,11 @@ public:
     bool getDefense();  // retrieves the value of defense
     void setDefense(bool set);  // sets the value of defense
 
-    std::unordered_map <size_t, playerStateSharedPtr> getPlayerInstance();  // retrieves the value of playerInstance
-    void setPlayerInstance(std::unordered_map<size_t, playerStateSharedPtr> set);  // sets the value of  playerInstance
+    playerStateUMSharedPtr getPlayerInstance();  // retrieves the value of playerInstance
+    void setPlayerInstance(playerStateUMSharedPtr set);  // sets the value of  playerInstance
 
-    std::unordered_map <size_t, playerStateSharedPtr> getActivePlayerInstance();  // retrieves the value of activePlayerInstance
-    void setActivePlayerInstance(std::unordered_map <size_t, playerStateSharedPtr> set);  // sets the value of activePlayerInstance
+    playerStateUMSharedPtr getActivePlayerInstance();  // retrieves the value of activePlayerInstance
+    void setActivePlayerInstance(playerStateUMSharedPtr set);  // sets the value of activePlayerInstance
 
     bool getPlayerInstancesCreated();  // retrieves the value of the playerInstancesCreated
     void setPlayerInstancesCreated(bool set);  // sets the value of the playerInstancesCreated
@@ -158,11 +158,11 @@ public:
     size_t getHoop();  // retrieves the value of hoop
     void setHoop(size_t set);  // sets the value of hoop
 
-    boost::shared_ptr<offenseState> getOffenseInstance();  // retrievers the value of offenseInstance
-    void setOffenseInstance(boost::shared_ptr<offenseState> set);	 // sets the value of offenseInstance
+    offenseStateSharedPtr getOffenseInstance();  // retrievers the value of offenseInstance
+    void setOffenseInstance(offenseStateSharedPtr set);	 // sets the value of offenseInstance
 
-    boost::shared_ptr<defenseState> getDefenseInstance();	 // retrieves the value of defenseInstance
-    void setDefenseInstance(boost::shared_ptr<defenseState> set);	 // sets the value of defenseInstance
+    defenseStateSharedPtr getDefenseInstance();	 // retrieves the value of defenseInstance
+    void setDefenseInstance(defenseStateSharedPtr set);	 // sets the value of defenseInstance
 
     size_t getTeamColObject();  // retrieves the value of teamColObject
     void setTeamColObject(size_t set); // sets the value of teamColObject
@@ -195,7 +195,7 @@ public:
 protected:
 private:
 
-    static boost::shared_ptr<UBCBase> base;  // static copy of base class
+    static UBCBaseSharedPtr base;  // static copy of base class
     size_t teamNumber;  // stores which team number the object is
     teamTypes teamType;  // stores which type of team this object is
 //    static size_t teamID;  // stores the ID number of the team;
@@ -225,8 +225,8 @@ private:
     bool offense;  // if set then the team is on offense
     bool defense;  // if set then the team is on defense
 
-    std::unordered_map <size_t, playerStateSharedPtr> playerInstance;  // stores instance of the playerState class containing all team players
-    std::unordered_map <size_t, playerStateSharedPtr> activePlayerInstance;  // stores instance of the playerState class containing the active players
+    playerStateUMSharedPtr playerInstance;  // stores instance of the playerState class containing all team players
+    playerStateUMSharedPtr activePlayerInstance;  // stores instance of the playerState class containing the active players
 
     std::vector <std::string> playerModelsLoaded;  // creates a vector of strings that holds the models which are loaded
     bool playerInstancesCreated;  // stores whether player instances have been created
@@ -239,8 +239,8 @@ private:
     size_t humanPlayer;  // stores which player is human controlled
 
     size_t hoop;  // holds which hoop the team is shooting on
-    boost::shared_ptr<offenseState> offenseInstance;  // stores the offenseState instance
-    boost::shared_ptr<defenseState> defenseInstance;  // stores the defenseState instance
+    offenseStateSharedPtr offenseInstance;  // stores the offenseState instance
+    defenseStateSharedPtr defenseInstance;  // stores the defenseState instance
 
     size_t teamColObject;  // stores the object that collides with others
     size_t teamCollidesWith;   // stores what team players collides with

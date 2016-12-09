@@ -26,7 +26,7 @@
 #include "load.h"
 
 // static declarations
-boost::shared_ptr<inputEngine> inputState::inputE;  // the inputEngine object
+inputEngineSharedPtr inputState::inputE;  // the inputEngine object
 inputInGameWorkQueues inputState::inputInGameWorkQueue; 
 
 
@@ -39,11 +39,11 @@ inputState::~inputState()  // destructor
     
 }
 
-boost::shared_ptr<inputEngine> inputState::getInputE()  // retrieves the value of inputE
+inputEngineSharedPtr inputState::getInputE()  // retrieves the value of inputE
 {
     return (inputE);
 }
-void inputState::setInputE(boost::shared_ptr<inputEngine> set)  // sets the value of inputE
+void inputState::setInputE(inputEngineSharedPtr set)  // sets the value of inputE
 {
 //    inputE = set;
 }
@@ -70,7 +70,7 @@ bool inputState::setup()  // sets up the input state
 {
     boost::shared_ptr<loader> load(new loader);
 
-    boost::shared_ptr<inputEngine> tempInputSharedPtr(new inputEngine);
+    inputEngineSharedPtr tempInputSharedPtr(new inputEngine);
     inputE = tempInputSharedPtr;
 //    uInput = load->loadUserInputs();  // loads user defined input from file.
     std::string func = "inputState::setup()";

@@ -42,7 +42,7 @@
 #endif
 
 // static declarations 
-boost::shared_ptr<UBCBase> UBC::base;  // static copy of base class
+UBCBaseSharedPtr UBC::base;  // static copy of base class
 
 boost::shared_ptr<GUISystem> UBC::gui;  // the GUI object.
 
@@ -57,11 +57,11 @@ UBC::~UBC()  // destructor
 
 }
 
-boost::shared_ptr<UBCBase> UBC::getBase()  // retrieves the value of base
+UBCBaseSharedPtr UBC::getBase()  // retrieves the value of base
 {
     return (base);
 }
-void UBC::setBase(boost::shared_ptr<UBCBase> set)  // sets the value of base
+void UBC::setBase(UBCBaseSharedPtr set)  // sets the value of base
 {
     base = set;
 }
@@ -224,8 +224,8 @@ void UBC::processInput()  // processes game input
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 //    boost::shared_ptr<GUISystem> gui = GUISystem::Instance();
 //    boost::shared_ptr<inputSystem> input = inputSystem::Instance();
-//    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
-    std::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance = base->getGameS()->getActiveTeamInstance();
+//    networkEngineSharedPtr network = networkEngine::Instance();
+    teamStateUMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
     networkPlayerStateObject netPStateObj;
 
     logMsg("inputProcess!");
@@ -497,7 +497,7 @@ void UBC::gameLoop_old()  // Main Game Loop
 //    boost::shared_ptr<GUISystem> gui = GUISystem::Instance();
 //    boost::shared_ptr<inputSystem> input = inputSystem::Instance();
 //    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
-//    boost::shared_ptr<networkEngine> network = networkEngine::Instance();
+//    networkEngineSharedPtr network = networkEngine::Instance();
 //    boost::shared_ptr<soundEngine> sound = soundEngine::Instance();
 
 //    networkPlayerStateObject netPStateObj;

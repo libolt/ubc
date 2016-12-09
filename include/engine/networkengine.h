@@ -50,7 +50,7 @@ class networkEngine : public engine
     public:
 
     //static networkEngine *Instance();
-//    static boost::shared_ptr<networkEngine> Instance();
+//    static networkEngineSharedPtr Instance();
 
 
     networkEngine();  // constructor
@@ -119,7 +119,7 @@ class networkEngine : public engine
 
     int counter;
     //static networkEngine *pInstance;
-//    static boost::shared_ptr<networkEngine> pInstance;
+//    static networkEngineSharedPtr pInstance;
 
 
     int clientID;  // defines the client ID number used to identify which client is communicating with the server

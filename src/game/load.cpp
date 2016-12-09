@@ -47,11 +47,11 @@
 // static variables
 
 basketballStateVecSharedPtr loader::bInstance;
-std::tr1::unordered_map <size_t, courtStateSharedPtr>  loader::cInstance;
-std::tr1::unordered_map <size_t, hoopStateSharedPtr>  loader::hInstance;
+std::unordered_map <size_t, courtStateSharedPtr>  loader::cInstance;
+std::unordered_map <size_t, hoopStateSharedPtr>  loader::hInstance;
 offensePlaysVecSharedPtr loader::opInstance;
-std::tr1::unordered_map <size_t, playerStateSharedPtr> loader::pInstance;
-std::tr1::unordered_map <size_t, teamStateSharedPtr> loader::tInstance;
+std::unordered_map <size_t, playerStateSharedPtr> loader::pInstance;
+std::unordered_map <size_t, teamStateSharedPtr> loader::tInstance;
 userInputVecSharedPtr loader::uiInstance;
 
 
@@ -155,20 +155,20 @@ void loader::setBInstance(basketballStateVecSharedPtr set)  // sets the value of
     bInstance = set;
 }
 
-std::tr1::unordered_map<size_t, courtStateSharedPtr> loader::getCInstance()  // retrieves the value of cInstance
+std::unordered_map<size_t, courtStateSharedPtr> loader::getCInstance()  // retrieves the value of cInstance
 {
     return (cInstance);
 }
-void loader::setCInstance(std::tr1::unordered_map<size_t, courtStateSharedPtr> set)  // sets the value of cInstance
+void loader::setCInstance(std::unordered_map<size_t, courtStateSharedPtr> set)  // sets the value of cInstance
 {
     cInstance = set;
 }
 
-std::tr1::unordered_map<size_t, hoopStateSharedPtr> loader::getHInstance()  // retrieves the value of hInstance
+std::unordered_map<size_t, hoopStateSharedPtr> loader::getHInstance()  // retrieves the value of hInstance
 {
     return (hInstance);
 }
-void loader::setHInstance(std::tr1::unordered_map<size_t, hoopStateSharedPtr> set)  // sets the value of hInstance
+void loader::setHInstance(std::unordered_map<size_t, hoopStateSharedPtr> set)  // sets the value of hInstance
 {
     hInstance = set;
 }
@@ -182,20 +182,20 @@ void loader::setOPInstance(offensePlaysVecSharedPtr set)  // sets the value of o
     opInstance = set;
 }
 
-std::tr1::unordered_map<size_t, playerStateSharedPtr> loader::getPInstance()  // retrieves the value of pInstance
+std::unordered_map<size_t, playerStateSharedPtr> loader::getPInstance()  // retrieves the value of pInstance
 {
     return(pInstance);
 }
-void loader::setPInstance(std::tr1::unordered_map<size_t, playerStateSharedPtr> set)  // sets the value of pInstance
+void loader::setPInstance(std::unordered_map<size_t, playerStateSharedPtr> set)  // sets the value of pInstance
 {
     pInstance = set;
 }
 
-std::tr1::unordered_map<size_t, teamStateSharedPtr> loader::getTInstance()  // retrieves the value of tInstance
+std::unordered_map<size_t, teamStateSharedPtr> loader::getTInstance()  // retrieves the value of tInstance
 {
     return(tInstance);
 }
-void loader::setTInstance(std::tr1::unordered_map<size_t, teamStateSharedPtr> set)  // sets the value of tInstance
+void loader::setTInstance(std::unordered_map<size_t, teamStateSharedPtr> set)  // sets the value of tInstance
 {
     tInstance = set;
 }
@@ -777,7 +777,7 @@ bool loader::checkIfTeamsLoaded()  // checks if teams have been loaded into tIns
     teamStateVec tempT;
     
 //    exit(0);
-    std::tr1::unordered_map <size_t, teamStateSharedPtr> tempTInstance;
+    std::unordered_map <size_t, teamStateSharedPtr> tempTInstance;
     tInstance = tempTInstance;
 //    exit(0);
     if (teamFilesLoaded)
@@ -1076,10 +1076,10 @@ boost::shared_ptr<basketballState> loader::loadBasketballFile(std::string fileNa
 }
 
 // Courts
-std::tr1::unordered_map<size_t, courtStateSharedPtr> loader::loadCourts()  // load court settings from XML files
+std::unordered_map<size_t, courtStateSharedPtr> loader::loadCourts()  // load court settings from XML files
 {
 //    exit(0);
-    std::tr1::unordered_map <size_t, courtStateSharedPtr>  courts;
+    std::unordered_map <size_t, courtStateSharedPtr>  courts;
     std::string courtList;
     std::string func = "loader::loadCourts()";
 
@@ -1379,10 +1379,10 @@ boost::shared_ptr<courtState> loader::loadCourtFile(std::string fileName)  // lo
 }
 
 // Hoops
-std::tr1::unordered_map <size_t, hoopStateSharedPtr>  loader::loadHoops()  // load hoop XML files
+std::unordered_map <size_t, hoopStateSharedPtr>  loader::loadHoops()  // load hoop XML files
 {
 //    exit(0);
-    std::tr1::unordered_map <size_t, hoopStateSharedPtr>  hoops;
+    std::unordered_map <size_t, hoopStateSharedPtr>  hoops;
     std::string hoopList;
     std::string func = "loader::loadHoops()";
 
@@ -1924,9 +1924,9 @@ boost::shared_ptr<offensePlays> loader::loadOffensePlayFile(std::string fileName
     return (playInstance);
 }
 
-std::tr1::unordered_map<size_t, playerStateSharedPtr> loader::loadPlayers()  // loads the players
+std::unordered_map<size_t, playerStateSharedPtr> loader::loadPlayers()  // loads the players
 {
-    std::tr1::unordered_map<size_t, playerStateSharedPtr> players;
+    std::unordered_map<size_t, playerStateSharedPtr> players;
     std::string playerList;
     
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
@@ -2437,10 +2437,10 @@ playerStateSharedPtr loader::loadPlayerFile(std::string fileName)  // loads the 
     return (playerInstance);
 }
 
-std::tr1::unordered_map<size_t, teamStateSharedPtr> loader::loadTeams()  // load teams from XML files
+std::unordered_map<size_t, teamStateSharedPtr> loader::loadTeams()  // load teams from XML files
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    std::tr1::unordered_map <size_t, teamStateSharedPtr> teams;
+    std::unordered_map <size_t, teamStateSharedPtr> teams;
 
     std::string teamList;
     std::string func = "loader::loadTeams";

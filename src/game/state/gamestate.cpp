@@ -18,6 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
+#include <unordered_map>
 //#include "boost/shared_array.hpp"
 #include "engine/networkengine.h"
 #include "ai/ai.h"
@@ -328,7 +329,7 @@ bool gameState::createTeamInstances()  // creates team Instances
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<loader> load(new loader);
     
-    std::tr1::unordered_map <size_t, teamStateSharedPtr> tInstance;
+    std::unordered_map <size_t, teamStateSharedPtr> tInstance;
 /*    teamStateVecSharedPtr tInstance2;
     boost::shared_ptr<teamState> tempInstance(new teamState);
 //    teamState *tempInstance = new teamState;
@@ -470,7 +471,7 @@ bool gameState::createPlayerInstances()  // creates player instances
     
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<loader> load(new loader);
-    std::tr1::unordered_map<size_t, playerStateSharedPtr> pInstance;
+    std::unordered_map<size_t, playerStateSharedPtr> pInstance;
     std::string func = "gameState::createPlayerInstances()";
     
     logMsg(func +" checkIfPlayersLoaded");
@@ -520,11 +521,11 @@ bool gameState::createActiveBasketballInstances()  // creates the active basketb
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<loader> load(new loader);
     basketballStateVecSharedPtr basketballInstance = getBasketballInstance();
-    std::tr1::unordered_map<size_t, basketballStateSharedPtr> activeBasketballInstance = getActiveBasketballInstance();
-
+    std::unordered_map<size_t, basketballStateSharedPtr> activeBasketballInstance = getActiveBasketballInstance();
     std::string func = "gameState::createActiveBasketballInstances()";
-
     
+    logMsg(func +" beginning");
+
     logMsg(func +" basketballInstance.size() == " +convert->toString(basketballInstance.size()));
     if (basketballInstance.size() == 0)
     {
@@ -547,6 +548,45 @@ bool gameState::createActiveBasketballInstances()  // creates the active basketb
     activeBasketballInstance.insert(std::pair<size_t, basketballStateSharedPtr>(0, basketballInstance[0]));
     setBasketballInstance(basketballInstance);
     setActiveBasketballInstance(activeBasketballInstance);
+    logMsg(func +" end");
+    return (true);
+}
+
+bool gameState::createActiveCourtInstances()  // creates the active court instances
+{
+    boost::shared_ptr<conversion> convert = conversion::Instance();
+    boost::shared_ptr<loader> load(new loader);
+    std::unordered_map<size_t, courtStateSharedPtr> courtInstance = getCourtInstance();
+    std::unordered_map<size_t, courtStateSharedPtr> activeCourtInstance = getActiveCourtInstance();
+    std::string func = "gameState::createActiveCourtInstances()";
+    
+    logMsg(func + " beginning");
+    
+    logMsg(func +" courtInstance.size() == " +convert->toString(courtInstance.size()));
+    if (courtInstance.size() == 0)
+    {
+        if (load->checkIfCourtsLoaded())
+        {
+            courtInstance = load->getCInstance();
+        }
+        else
+        {
+            logMsg(func +" Failed to load Court Instances!");
+            exit(0);
+        }
+    }
+    else
+    {
+
+    }
+
+    logMsg(func +" courtInstance.size() == " +convert->toString(courtInstance.size()));
+    //FIXME! should not be hard coded
+    activeCourtInstance.insert(std::pair<size_t, courtStateSharedPtr>(0, courtInstance[0]));
+    setCourtInstance(courtInstance);
+    setActiveCourtInstance(activeCourtInstance);
+    logMsg(func +" getCourtInstance.size() == " +convert->toString(getCourtInstance().size()));
+    logMsg(func +" end");
     return (true);
 }
 
@@ -554,8 +594,8 @@ bool gameState::createActiveHoopInstances()  // creates the active hoop instance
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<loader> load(new loader);
-    std::tr1::unordered_map <size_t, hoopStateSharedPtr> hoopInstance = getHoopInstance();
-    std::tr1::unordered_map <size_t, hoopStateSharedPtr> activeHoopInstance = getActiveHoopInstance();
+    std::unordered_map <size_t, hoopStateSharedPtr> hoopInstance = getHoopInstance();
+    std::unordered_map <size_t, hoopStateSharedPtr> activeHoopInstance = getActiveHoopInstance();
     std::string func = "gameState::createActiveHoopInstances()";
 
     logMsg(func +" beginning");
@@ -592,18 +632,19 @@ bool gameState::createActiveHoopInstances()  // creates the active hoop instance
     }
 //    exit(0);
     setActiveHoopInstance(activeHoopInstance);
-    
+    logMsg(func +" end");
     return (true);
 }
 
 bool gameState::createActiveTeamInstances()  // creates the active team instances
 {
     teamStateSharedPtr tInstance;
-    std::tr1::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance = getActiveTeamInstance();
-    std::tr1::unordered_map <size_t, teamStateSharedPtr> teamInstance = getTeamInstance();
+    std::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance = getActiveTeamInstance();
+    std::unordered_map <size_t, teamStateSharedPtr> teamInstance = getTeamInstance();
     sizeTVec teamIDS = getTeamIDS();
-//    exit(0);
+    std::string func = "gameState::createActiveTeamInstances()";
 
+    logMsg(func +" beginning");
     activeTeamInstance.insert(std::pair<size_t, teamStateSharedPtr>(0, tInstance));  // adds empty teamState to activeTeamInstance vector
     activeTeamInstance.insert(std::pair<size_t, teamStateSharedPtr>(1, tInstance));  // adds empty teamState to activeTeamInstance vector
 
@@ -623,6 +664,7 @@ bool gameState::createActiveTeamInstances()  // creates the active team instance
     activeTeamInstance[1]->setupState();
 TS*/
     setActiveTeamInstance(activeTeamInstance);
+    logMsg(func +" end");
     return (true);
 }
 
@@ -645,7 +687,7 @@ bool gameState::loadBasketballModel()  // loads selected basketball model
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<loader> load(new loader);
-    std::tr1::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance = getActiveBasketballInstance();
+    std::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance = getActiveBasketballInstance();
     bool activeBasketballInstancesCreated = getActiveBasketballInstancesCreated();
 //    size_t activeBBallInstance = getActiveBBallInstance();
     basketballStateVecSharedPtr basketballInstance = getBasketballInstance();
@@ -671,6 +713,7 @@ bool gameState::loadBasketballModel()  // loads selected basketball model
     {
         
     }
+
     logMsg(func +" activeBasketballInstance.size() == " +convert->toString(activeBasketballInstance.size()));
 
     for (auto ABIIT : activeBasketballInstance)
@@ -715,24 +758,23 @@ bool gameState::loadCourtModel()  // loads selected court model
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<loader> load(new loader);
-    std::tr1::unordered_map <size_t, courtStateSharedPtr> courtInstance = getCourtInstance();
-    size_t activeCourtInstance = getActiveCourtInstance();
-
+    std::unordered_map <size_t, courtStateSharedPtr> courtInstance = getCourtInstance();
+    std::unordered_map <size_t, courtStateSharedPtr> activeCourtInstance = getActiveCourtInstance();
+    bool activeCourtInstancesCreated = getActiveCourtInstancesCreated();
     std::string func = "gameState::loadCourtModel()";
 
     logMsg(func +" beginning");
 
-    if (courtInstance.size() == 0)
+    if (!activeCourtInstancesCreated && activeCourtInstance.size() == 0)
     {
-        if (load->checkIfCourtsLoaded())
+        if (createActiveCourtInstances())
         {
-            logMsg(func + " abada!");
-            courtInstance = load->getCInstance();
-            logMsg(func + " abadeeee!");
+            logMsg(func +" Active Court Instances Created!");
+            activeCourtInstancesCreated = true;
         }
         else
         {
-            logMsg(func +" Failed to load Court Instances!");
+            logMsg(func +" Unable to create Active Court Instances!");
             exit(0);
         }
     }
@@ -740,30 +782,38 @@ bool gameState::loadCourtModel()  // loads selected court model
     {
 
     }
-    logMsg(func +" courtInstance.size() == " +convert->toString(courtInstance.size()));
-    logMsg(func + " activeCourtInstance == " +convert->toString(activeCourtInstance));
-    logMsg(func +" Model Name = " +courtInstance[activeCourtInstance]->getModelFileName());
 
-    courtInstance[activeCourtInstance]->setEntityModelFileName(courtInstance[activeCourtInstance]->getModelFileName());
-    courtInstance[activeCourtInstance]->setEntityNodeName(courtInstance[activeCourtInstance]->getModelFileName());
-    courtInstance[activeCourtInstance]->setEntityName(courtInstance[activeCourtInstance]->getModelFileName());
-    if (courtInstance[activeCourtInstance]->loadModel())
+
+
+    logMsg(func +" courtInstance.size() == " +convert->toString(courtInstance.size()));
+    logMsg(func + " activeCourtInstance.size() == " +convert->toString(activeCourtInstance.size()));
+    logMsg(func +" Model Name = " +activeCourtInstance[0]->getModelFileName());
+
+    activeCourtInstance[0]->setEntityModelFileName(activeCourtInstance[0]->getModelFileName());
+    activeCourtInstance[0]->setEntityNodeName(activeCourtInstance[0]->getModelFileName());
+    activeCourtInstance[0]->setEntityName(activeCourtInstance[0]->getModelFileName());
+    if (activeCourtInstance[0]->loadModel())
     {
-        courtInstance[activeCourtInstance]->getNode()->setScale(1.0f,1.0f,1.0f);
-        setCourtInstance(courtInstance);
+        activeCourtInstance[0]->getNode()->setScale(1.0f,1.0f,1.0f);
+        setActiveCourtInstance(activeCourtInstance);
         return (true);
     }
     else
     {
         logMsg(func +" Court model not loaded!");
     }
+
+    setActiveCourtInstancesCreated(activeCourtInstancesCreated);
+
+    logMsg(func +" end");
+
     return (false);
 }
 
 bool gameState::loadHoopModel()  // loads selected hoop model
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    std::tr1::unordered_map <size_t, hoopStateSharedPtr> activeHoopInstance = getActiveHoopInstance();
+    std::unordered_map <size_t, hoopStateSharedPtr> activeHoopInstance = getActiveHoopInstance();
     boost::shared_ptr<loader> load(new loader);
     std::string func = "gameState::loadHoopModel()";
     bool returnType = true;
@@ -890,9 +940,11 @@ void gameState::setBasketballStartPositions()  // sets the initial coordinates f
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    size_t activeBBallInstance = getActiveBBallInstance();
 //    basketballStateVecSharedPtr basketballInstance = getBasketballInstance();
-    std::tr1::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance = getActiveBasketballInstance();
+    std::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance = getActiveBasketballInstance();
     std::string func = "gameState::setBasketballStartPositions()";
     
+    logMsg(func +" beginning");
+
     for (auto ABIIT : activeBasketballInstance)
     {
         
@@ -907,17 +959,20 @@ void gameState::setBasketballStartPositions()  // sets the initial coordinates f
 #endif
     }
     setActiveBasketballInstance(activeBasketballInstance);
+    logMsg(func +" end");
 }
 
 void gameState::setCourtStartPositions()  // sets the initial coordinates for the basketball(s)
 {
 
-    static std::tr1::unordered_map <size_t, courtStateSharedPtr> courtInstance = getCourtInstance();
+    std::unordered_map <size_t, courtStateSharedPtr> courtInstance = getCourtInstance();
+    std::string func = "gameState::setCourtStartPositions()";
 
+    logMsg(func +" beginning");
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     courtInstance[0]->getNode()->setPosition(0.0f,-6.5f,360.0f);
     courtInstance[0]->setNodePosition(Ogre::Vector3(0.0f,-6.5f,360.0f));
-    logMsg("courtPosition");
+    logMsg(func +" courtPosition");
 //exit(0);
 #else
     courtInstance[0]->getNode()->setPosition(0.0f,-27.5f,360.0f);
@@ -925,28 +980,32 @@ void gameState::setCourtStartPositions()  // sets the initial coordinates for th
 #endif
 
     setCourtInstance(courtInstance);
+    logMsg(func +" end");
 }
 
 void gameState::setHoopStartPositions()  // sets the initial coordinates for the basketball(s)
 {
 
-    std::tr1::unordered_map <size_t, hoopStateSharedPtr> hoopInstance = getHoopInstance();
+    std::unordered_map <size_t, hoopStateSharedPtr> activeHoopInstance = getActiveHoopInstance();
+    std::string func = "gameState::setHoopStartPositions()";
 
+    logMsg(func +" beginning");
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-    hoopInstance[0]->getNode()->setPosition(45.0f,-6.5f,370.0f);
-    hoopInstance[1]->getNode()->setPosition(-45.0f,-6.5f,370.0f);
+    activeHoopInstance[0]->getNode()->setPosition(45.0f,-6.5f,370.0f);
+    activeHoopInstance[1]->getNode()->setPosition(-45.0f,-6.5f,370.0f);
 #else
-    hoopInstance[0]->getNode()->setPosition(45.0f,-23.5f,370.0f);
-   hoopInstance[1]->getNode()->setPosition(-45.0f,-23.5f,370.0f);
+    activeHoopInstance[0]->getNode()->setPosition(45.0f,-23.5f,370.0f);
+    activeHoopInstance[1]->getNode()->setPosition(-45.0f,-23.5f,370.0f);
 #endif
 
     Ogre::Quaternion hoop0Rotation(Ogre::Degree(-90), Ogre::Vector3::UNIT_Y);
-    hoopInstance[0]->getNode()->rotate(hoop0Rotation);
+    activeHoopInstance[0]->getNode()->rotate(hoop0Rotation);
 
     Ogre::Quaternion hoop1Rotation(Ogre::Degree(90), Ogre::Vector3::UNIT_Y);
-    hoopInstance[1]->getNode()->rotate(hoop1Rotation);
+    activeHoopInstance[1]->getNode()->rotate(hoop1Rotation);
 
-    setHoopInstance(hoopInstance);
+    setActiveHoopInstance(activeHoopInstance);
+    logMsg(func +" end");
 }
 
 bool gameState::setupTipOff()  // sets up tip off conditions
@@ -980,7 +1039,7 @@ bool gameState::setupTipOff()  // sets up tip off conditions
 
 bool gameState::executeTipOff()  // executes tip off
 {
-    std::tr1::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance = getActiveBasketballInstance();
+    std::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance = getActiveBasketballInstance();
 
     if (!getJumpBall()->updateState(getTeamWithBall(), activeBasketballInstance, getActiveTeamInstance(),getQuarter()))
     {
@@ -1024,6 +1083,23 @@ bool gameState::setupState()  // sets up the game condition
     else
     {
         
+    }
+
+    if (!getActiveCourtInstancesCreated())
+    {
+        if (createActiveCourtInstances())
+        {
+            setActiveCourtInstancesCreated(true);
+        }
+        else
+        {
+            logMsg(func +" Unable to create Active Basketball Instances!");
+            exit(0);
+        }
+    }
+    else
+    {
+
     }
     
     if (!getActiveHoopInstancesCreated())

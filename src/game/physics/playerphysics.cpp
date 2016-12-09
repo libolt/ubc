@@ -207,8 +207,8 @@ void playerPhysics::updatePosition()  // updates the position of player objecgts
 //    teamTypes teamWithBall = gameS->getTeamWithBall();
     int playerWithBall;
 
-    std::tr1::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance = getActiveTeamInstance();
-    std::vector <std::tr1::unordered_map <size_t, playerStateSharedPtr> > activePlayerInstance;
+    std::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance = getActiveTeamInstance();
+    std::vector <std::unordered_map <size_t, playerStateSharedPtr> > activePlayerInstance;
     basketballStateVecSharedPtr basketballInstance = getBasketballInstance();
 
     // checks to see if player positions need updated
@@ -265,8 +265,8 @@ bool playerPhysics::jump(teamTypes teamType, int playerID)  // calculates and ex
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 
-    std::tr1::unordered_map <size_t, courtStateSharedPtr>  courtInstance = getCourtInstance();
-    std::tr1::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance = getActiveTeamInstance();
+    std::unordered_map <size_t, courtStateSharedPtr>  courtInstance = getCourtInstance();
+    std::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance = getActiveTeamInstance();
 /*TS    playerStateVecSharedPtr activePlayerInstance = getActiveTeamInstance()[teamType]->getActivePlayerInstance();
     sizeTVec activePlayerID = activeTeamInstance[teamType]->getActivePlayerID();
     btVector3 playerJumpBeginPos;

@@ -612,7 +612,7 @@ void playerState::updateState()
         updateDirection();
         updateMovement();
         oldDirection = direction;
-        std::tr1::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance = getActiveTeamInstance();
+        std::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance = getActiveTeamInstance();
         size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
         if (teamType == getTeamWithBall() && getTipOffComplete())
         {
@@ -621,7 +621,7 @@ void playerState::updateState()
             {
                 logMsg("playerID == " +convert->toString(getID()));
 //                int activeBBallInstance = getActiveBBallInstance();
-                std::tr1::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance = getActiveBasketballInstance();
+                std::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance = getActiveBasketballInstance();
                 
                 //FIXME! HARDCODED VALUE!
                 activeBasketballInstance[0]->setMovement(true);
@@ -737,8 +737,8 @@ void playerState::updateDirection()
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
-    std::tr1::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance = getActiveTeamInstance();
-    std::tr1::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance = getActiveBasketballInstance();
+    std::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance = getActiveTeamInstance();
+    std::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance = getActiveBasketballInstance();
 //    size_t activeBBallInstance = getActiveBBallInstance();
     size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
 
@@ -857,9 +857,9 @@ void playerState::updateMovement()  // updates movement status of the player
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
-    std::tr1::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance = getActiveTeamInstance();
-/*    basketballStateVecSharedPtr bballInstance = getBasketballInstance();
-    std::tr1::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance = getActiveBasketballInstance();
+    std::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance = getActiveTeamInstance();
+//    basketballStateVecSharedPtr bballInstance = getBasketballInstance();
+    std::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance = getActiveBasketballInstance();
 //    size_t activeBBallInstance = getActiveBBallInstance();
     size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
 
@@ -933,7 +933,7 @@ void playerState::calculatePass()   // calculates which player to pass the ball 
     
     logMsg("In calculatePass function");
 
-    std::tr1::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance = getActiveTeamInstance();
+    std::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance = getActiveTeamInstance();
     size_t teamWithBall = getTeamWithBall();
     size_t playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();
 //    if (playerWithBall < 5)  // checks if the player belongs to the first team

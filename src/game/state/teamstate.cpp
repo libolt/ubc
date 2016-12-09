@@ -38,7 +38,7 @@
 // static declarations
 
 boost::shared_ptr<UBCBase> teamState::base;  // static copy of base class
-//std::tr1::unordered_map <size_t, playerStateSharedPtr> teamState::playerInstance;
+//std::unordered_map <size_t, playerStateSharedPtr> teamState::playerInstance;
 //    sizeTVec teamState::activePlayerID; 
 //static size_t teamState::teamID; 
 
@@ -320,20 +320,20 @@ void teamState::setDefense(bool set)    // sets the value of defense
     defense = set;
 }
 
-std::tr1::unordered_map<size_t, playerStateSharedPtr> teamState::getPlayerInstance()  // retrieves the value of playerInstance
+std::unordered_map<size_t, playerStateSharedPtr> teamState::getPlayerInstance()  // retrieves the value of playerInstance
 {
     return (playerInstance);
 }
-void teamState::setPlayerInstance(std::tr1::unordered_map <size_t, playerStateSharedPtr> set)  // sets the value of playerInstance
+void teamState::setPlayerInstance(std::unordered_map <size_t, playerStateSharedPtr> set)  // sets the value of playerInstance
 {
     playerInstance = set;
 }
 
-std::tr1::unordered_map<size_t, playerStateSharedPtr> teamState::getActivePlayerInstance()  // retrieves the value of activePlayerInstance
+std::unordered_map<size_t, playerStateSharedPtr> teamState::getActivePlayerInstance()  // retrieves the value of activePlayerInstance
 {
     return (activePlayerInstance);
 }
-void teamState::setActivePlayerInstance(std::tr1::unordered_map<size_t, playerStateSharedPtr> set) // sets the value of activePlayerInstance
+void teamState::setActivePlayerInstance(std::unordered_map<size_t, playerStateSharedPtr> set) // sets the value of activePlayerInstance
 {
     activePlayerInstance = set;
 }
@@ -499,7 +499,7 @@ void teamState::updateState()   // updates the state of the object
 //  logMsg("Updating team state " +convert->toString(teamNumber));
     if (base->getGameS()->getBasketballInstanceCreated() && base->getGameS()->getPlayerInstanceCreated())
     {
-        std::tr1::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();
+        std::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();
 //      exit(0);
         // checks whether to execute offense or defense logic
         if (offense == true && defense == false)
@@ -653,7 +653,7 @@ void teamState::updateState()   // updates the state of the object
 bool teamState::createPlayerInstances()
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-    std::tr1::unordered_map <size_t, playerStateSharedPtr> gamePlayerInstance;
+    std::unordered_map <size_t, playerStateSharedPtr> gamePlayerInstance;
     std::string func = "teamState::createPlayerInstances()";
 
     if (base->getGameS()->getInitialized())
@@ -731,9 +731,9 @@ bool teamState::createPlayerInstances_old()
     auto inc = 0;
     std::string func = "teamState::createPlayerInstances()";
     
-    std::vector<std::tr1::unordered_map<std::string, size_t> > teamStarterID = base->getGameS()->getTeamStarterID();
+    std::vector<std::unordered_map<std::string, size_t> > teamStarterID = base->getGameS()->getTeamStarterID();
 //    exit(0);
-    std::tr1::unordered_map <size_t, playerStateSharedPtr> gamePlayerInstance;
+    std::unordered_map <size_t, playerStateSharedPtr> gamePlayerInstance;
 //    exit(0);
     
     logMsg("teamState::createPlayerInstances()!");
@@ -1025,7 +1025,7 @@ void teamState::setPlayerStartPositions()   // sets the initial coordinates for 
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 //    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
 
-    std::vector<std::tr1::unordered_map<std::string, size_t> > teamStarterID = base->getGameS()->getTeamStarterID();
+    std::vector<std::unordered_map<std::string, size_t> > teamStarterID = base->getGameS()->getTeamStarterID();
 
     OgreVector3Vec startingPos;
     directions playerDirection; // stores the direction players face at start
@@ -1040,7 +1040,7 @@ void teamState::setPlayerStartPositions()   // sets the initial coordinates for 
 ///        }
 ///    }
 
-    std::tr1::unordered_map <size_t, courtStateSharedPtr> courtInstance = base->getGameS()->getCourtInstance();
+    std::unordered_map <size_t, courtStateSharedPtr> courtInstance = base->getGameS()->getCourtInstance();
 
     Ogre::Vector3 courtPos = courtInstance[0]->getNodePosition();
 //    exit(0);
@@ -1452,7 +1452,7 @@ void teamState::executePass()       // executes the pass between players
 //    size_t activeBBallInstance = base->getGameS()->getActiveBBallInstance();
     size_t passToPlayer = activePlayerInstance[playerWithBallInstance]->getPassToPlayer();
 //    basketballStateVecSharedPtr basketballInstance = base->getGameS()->getBasketballInstance();
-    std::tr1::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();
+    std::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();
     Ogre::Vector3 playerWithBallCoords = activePlayerInstance[playerWithBallInstance]->getNode()->getPosition();
     Ogre::Vector3 passToPlayerCoords = activePlayerInstance[passToPlayer]->getNode()->getPosition();
 //  exit(0);

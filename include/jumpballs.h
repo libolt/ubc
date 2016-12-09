@@ -22,6 +22,8 @@
 #define _JUMPBALLS_H_
 
 #include <vector>
+#include <unordered_map>
+
 #include "LinearMath/btVector3.h"
 
 #include "enums.h"
@@ -67,11 +69,11 @@ class jumpBalls
     btVector3 getBBallVelocity();  // retrieves the value of bballVelocity
     void setBBallVelocity(const btVector3 &set);  // sets the value of bballVelocity
 
-    bool updateState(teamTypes teamWithBall, std::tr1::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance, std::tr1::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance, quarters quarter);  // updates state of the jumpBalls instance until jump ball has completed
+    bool updateState(teamTypes teamWithBall, std::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance, std::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance, quarters quarter);  // updates state of the jumpBalls instance until jump ball has completed
 
-    bool jumpBallExecute(std::tr1::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance, std::tr1::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance); // initiates jump ball from jump ball circle
+    bool jumpBallExecute(std::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance, std::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance); // initiates jump ball from jump ball circle
 
-    bool tipToPlayer(std::tr1::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance, std::tr1::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance, quarters quarter);  // tips the basketball to the appropriate player
+    bool tipToPlayer(std::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance, std::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance, quarters quarter);  // tips the basketball to the appropriate player
 
     private:
 

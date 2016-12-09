@@ -87,11 +87,11 @@ activeMenus GUISystem::previousActiveMenu;  // stores which menu was last displa
 boost::shared_ptr<MyGUI::Gui> GUISystem::mGUI;
 boost::shared_ptr<MyGUI::OgrePlatform> GUISystem::mPlatform;
 
-std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::mainMenuButtons;
+std::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::mainMenuButtons;
 
-std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::networkMenuButtons;
+std::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::networkMenuButtons;
 
-std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::playerStartSelectionMenuButtons;
+std::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::playerStartSelectionMenuButtons;
 /*boost::shared_ptr<MyGUI::Button> uexitButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::startSingleGameButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::startMultiGameButton;
@@ -102,7 +102,7 @@ boost::shared_ptr<MyGUI::Button> GUISystem::backMainMenuButton;
 */
 //boost::shared_ptr<MyGUI::Button> GUISystem::backNetworkSetupButton;
 
-std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::optionsMenuButtons;
+std::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::optionsMenuButtons;
 /*boost::shared_ptr<MyGUI::Button> GUISystem::displayButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::inputButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::audioButton;
@@ -119,13 +119,13 @@ boost::shared_ptr<MyGUI::Button> GUISystem::audioButton;
 //boost::shared_ptr<MyGUI::Button> GUISystem::backTeamSelectionMenuButton;
 //boost::shared_ptr<MyGUI::Button> GUISystem::backCourtSelectionMenuButton;
 
-std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::displayMenuButtons;
-std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::inputMenuButtons;
-std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::audioMenuButtons;
+std::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::displayMenuButtons;
+std::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::inputMenuButtons;
+std::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::audioMenuButtons;
 
 
 // Team Selection Menu
-std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::teamSelectionMenuButtons;
+std::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::teamSelectionMenuButtons;
 
 /*boost::shared_ptr<MyGUI::Button> GUISystem::teamsSelectedButton;
 boost::shared_ptr<MyGUI::Button> GUISystem::team0SelectButton;
@@ -141,20 +141,20 @@ boost::shared_ptr<MyGUI::Button> GUISystem::startingLineupsSetButton;
 // listbox widgets
 //boost::shared_ptr<MyGUI::ListBox> GUISystem::team0SelectBox;
 //boost::shared_ptr<MyGUI::ListBox> GUISystem::team1SelectBox;
-std::tr1::unordered_map<size_t, boost::shared_ptr<MyGUI::ListBox> > GUISystem::teamSelectBox;
+std::unordered_map<size_t, boost::shared_ptr<MyGUI::ListBox> > GUISystem::teamSelectBox;
 
 // Network Server Setup Widgets
 boost::shared_ptr<MyGUI::ListBox> GUISystem::numClientsSelectBox;  // allows you to select the number of network players
 //boost::shared_ptr<MyGUI::Button> GUISystem::serverHostButton;
 boost::shared_ptr<MyGUI::EditBox> GUISystem::serverIPAddressBox;
-std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::networkServerSetupMenuButtons;
+std::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::networkServerSetupMenuButtons;
     
 // Network Client Setup Widgets
 boost::shared_ptr<MyGUI::EditBox> GUISystem::clientIPAddressBox;
 //boost::shared_ptr<MyGUI::Button> GUISystem::clientConnectButton;
-std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::networkClientSetupMenuButtons;
+std::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::networkClientSetupMenuButtons;
     
-std::vector<std::tr1::unordered_map <std::string, boost::shared_ptr<MyGUI::ListBox> > > GUISystem::teamPlayerPosSelectBox;
+std::vector<std::unordered_map <std::string, boost::shared_ptr<MyGUI::ListBox> > > GUISystem::teamPlayerPosSelectBox;
 
 /*    boost::shared_ptr<MyGUI::ListBox> GUISystem::team0Player1SelectBox;
 boost::shared_ptr<MyGUI::ListBox> GUISystem::team0Player2SelectBox;
@@ -181,8 +181,8 @@ boost::shared_ptr<MyGUI::ListBox> GUISystem::team1PFSelectBox;
 boost::shared_ptr<MyGUI::ListBox> GUISystem::team1CSelectBox;
 */
 
-std::vector<std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::TextBox> > > GUISystem::teamPlayerRating;
-std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::ImageBox> > GUISystem::teamLogo;
+std::vector<std::unordered_map<std::string, boost::shared_ptr<MyGUI::TextBox> > > GUISystem::teamPlayerRating;
+std::unordered_map<std::string, boost::shared_ptr<MyGUI::ImageBox> > GUISystem::teamLogo;
 
 /*
 boost::shared_ptr<MyGUI::TextBox> GUISystem::team0PGRating;
@@ -200,7 +200,7 @@ boost::shared_ptr<MyGUI::ImageBox> GUISystem::team1Logo;
 */
 
 // Court selection menu widgets
-std::tr1::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::courtSelectionMenuButtons;
+std::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > GUISystem::courtSelectionMenuButtons;
 //boost::shared_ptr<MyGUI::Button> GUISystem::backPlayerStartSelectionMenuButton;
 //boost::shared_ptr<MyGUI::Button> GUISystem::courtSelectButton;
 boost::shared_ptr<MyGUI::ListBox> GUISystem::courtSelectBox;  
@@ -212,7 +212,7 @@ std::vector< stdStringVec > GUISystem::playerPositionsPlayed;
 std::vector< sizeTVec > GUISystem::playerIDs;  // stores player IDs for each team
 std::vector< sizeTVec > GUISystem::team0IDs;
 std::vector< sizeTVec > GUISystem::team1IDs;
-std::vector<std::tr1::unordered_map<std::string, size_t> > GUISystem::teamStarterID; // stores the selected starters for each team 
+std::vector<std::unordered_map<std::string, size_t> > GUISystem::teamStarterID; // stores the selected starters for each team 
 
 size_t GUISystem::displayCount;
 
@@ -906,7 +906,8 @@ void GUISystem::courtSelected()  // processes court selection
     logMsg("Selected Court #" +convert->toString(courtSelectBox->getIndexSelected()));
 //    gameS->setSelectedCourtDataInstance(courtSelectBox->getIndexSelected());
 //    gameS->setActiveCourtInstance(courtSelectBox->getIndexSelected());
-    base->getGameS()->setActiveCourtInstance(courtSelectBox->getIndexSelected());
+    //FIXME! needs reworked!
+///    base->getGameS()->setActiveCourtInstance(courtSelectBox->getIndexSelected());
 //    exit(0);
 //    changeActiveMenu(TEAMSELECT);
 //    teamSelectionMenu();
@@ -918,8 +919,8 @@ void GUISystem::teamsSelected()  // processes team selection
     //gameState *gameS = gameState::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
     
-    std::tr1::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance;
-    std::tr1::unordered_map <size_t, teamStateSharedPtr> teamInstance;
+    std::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance;
+    std::unordered_map <size_t, teamStateSharedPtr> teamInstance;
     
     teamInstance = base->getGameS()->getTeamInstance();
     
@@ -953,15 +954,15 @@ void GUISystem::playerStartSelected()  // process player start selection
 //    teamStateVecSharedPtr  activeTeamInstance = gameS->getActiveTeamInstance();
 
 //        exit(0);
-    std::vector<std::tr1::unordered_map <std::string, std::string> > teamStarters;
-    std::tr1::unordered_map <std::string, std::string> tempStarters;
+    std::vector<std::unordered_map <std::string, std::string> > teamStarters;
+    std::unordered_map <std::string, std::string> tempStarters;
     teamStarters.push_back(tempStarters);
     teamStarters.push_back(tempStarters);
     sizeTVec starters; // used for initial creatio  of teamStarterID vector
-    std::tr1::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance = base->getGameS()->getActiveTeamInstance();
+    std::unordered_map <size_t, teamStateSharedPtr> activeTeamInstance = base->getGameS()->getActiveTeamInstance();
   
-    std::vector<std::tr1::unordered_map <size_t, playerStateSharedPtr> > playerInstance;
-    std::tr1::unordered_map <size_t, playerStateSharedPtr> activePlayerInstance;
+    std::vector<std::unordered_map <size_t, playerStateSharedPtr> > playerInstance;
+    std::unordered_map <size_t, playerStateSharedPtr> activePlayerInstance;
     size_t IDs = 0;
     std::string func = "GUISystem::playerStartSelected";
 
@@ -981,7 +982,7 @@ void GUISystem::playerStartSelected()  // process player start selection
 //        ++x;
     }
     
-    std::vector<std::tr1::unordered_map <size_t, playerStateSharedPtr> >::iterator PIIT;
+    std::vector<std::unordered_map <size_t, playerStateSharedPtr> >::iterator PIIT;
     x = 0;
     for (PIIT = playerInstance.begin(); PIIT != playerInstance.end(); ++PIIT)
     {
@@ -1055,7 +1056,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     
 //    teamStarterID[0][0] = team0IDs[0][team0PGSelectBox->getIndexSelected()];
     auto w = 0;
-//    std::vector<std::tr1::unordered_map <std::string, std::string> >::iterator TSIT;
+//    std::vector<std::unordered_map <std::string, std::string> >::iterator TSIT;
 //    for (TSIT = teamStarters.begin(); TSIT != teamStarters.end(); ++TSIT)
 
     while (w < teamStarters.size())
@@ -1069,7 +1070,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     }
     logMsg("teamStarters[0][SF] == " +teamStarters[0]["SF"]);
 //    exit(0);
-    std::tr1::unordered_map<std::string, size_t> tempStarterID;
+    std::unordered_map<std::string, size_t> tempStarterID;
 
     while (teamStarterID.size() < 2)
     {

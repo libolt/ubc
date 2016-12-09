@@ -190,6 +190,8 @@ public:
     
     bool createActiveBasketballInstances();  // creates the active basketball instances
 
+    bool createActiveCourtInstances();  // creates the active court instances
+
     bool createActiveHoopInstances();  // creates the active hoop instances
 
     bool createActiveTeamInstances();  // creates the active team instances

@@ -136,7 +136,7 @@ void jumpBalls::setBBallVelocity(const btVector3 &set)  // sets the value of bba
     bballVelocity = set;
 }
 
-bool jumpBalls::updateState(teamTypes teamWithBall, std::tr1::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance, std::tr1::unordered_map<size_t, teamStateSharedPtr> activeTeamInstance, quarters quarter)  // updates state of the jumpBalls instance
+bool jumpBalls::updateState(teamTypes teamWithBall, std::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance, std::unordered_map<size_t, teamStateSharedPtr> activeTeamInstance, quarters quarter)  // updates state of the jumpBalls instance
 {
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();
@@ -195,7 +195,7 @@ bool jumpBalls::updateState(teamTypes teamWithBall, std::tr1::unordered_map <siz
     return (false);  // returns false until jump ball has completed
 }
 
-bool jumpBalls::jumpBallExecute(std::tr1::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance, std::tr1::unordered_map<size_t, teamStateSharedPtr> activeTeamInstance)  // initiates jump ball from jump ball circle
+bool jumpBalls::jumpBallExecute(std::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance, std::unordered_map<size_t, teamStateSharedPtr> activeTeamInstance)  // initiates jump ball from jump ball circle
 {
 //    exit(0);
     boost::shared_ptr<conversion> convert = conversion::Instance();
@@ -206,7 +206,7 @@ bool jumpBalls::jumpBallExecute(std::tr1::unordered_map <size_t, basketballState
 //    size_t activeBBallInstance = gameS->getActiveBBallInstance();
 
 //    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
-    std::vector<std::tr1::unordered_map <size_t, playerStateSharedPtr> > activePlayerInstance;
+    std::vector<std::unordered_map <size_t, playerStateSharedPtr> > activePlayerInstance;
 
     sizeTVec jumpPlayerInstance;  // stores playerID of players jumping for the ball
     
@@ -319,7 +319,7 @@ TS*/
     return (false);  // executeJumpBall has not completed
 }
 
-bool jumpBalls::tipToPlayer(std::tr1::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance, std::tr1::unordered_map<size_t, teamStateSharedPtr> activeTeamInstance, quarters quarter)  // tips the basketball to the appropriate player
+bool jumpBalls::tipToPlayer(std::unordered_map <size_t, basketballStateSharedPtr> activeBasketballInstance, std::unordered_map<size_t, teamStateSharedPtr> activeTeamInstance, quarters quarter)  // tips the basketball to the appropriate player
 {
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
     boost::shared_ptr<conversion> convert = conversion::Instance();

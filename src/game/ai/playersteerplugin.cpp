@@ -30,7 +30,7 @@
 #include "state/teamstate.h"
 #include "state/playerstate.h"
 
-void playerSteerPlugin::open(void)
+void playerSteerPlugin::open()
 {
     AISystemSharedPtr ai = AISystem::Instance();
 	boost::shared_ptr<conversion> convert = conversion::Instance();
@@ -44,10 +44,10 @@ void playerSteerPlugin::open(void)
     std::vector<int> team1ActivePlayerID = activeTeamInstance[1].getActivePlayerID();
 */
     std::vector <playerStateUMSharedPtr > activePlayerInstance;
-    
     playerSteerVecSharedPtr allPlayerSteers = ai->getAllPlayerSteers();
-
-    logMsg("Opening playerSteer plugin");
+    std::string func = "playerSteerPlugin::open()";
+    logMsg(func +" beginning");
+    logMsg(func +" Opening playerSteer plugin");
 
 	// builds team 0 steering instances
 //	for (size_t x=0;x<team0ActivePlayerInstance.size();++x)
@@ -55,6 +55,7 @@ void playerSteerPlugin::open(void)
 //    while (x < getActiveTeamInstance().size())
     for (auto ATIIT : getActiveTeamInstance())
     {
+        logMsg(func +" for (auto ATIIT : getActiveTeamInstance())");
         activePlayerInstance.push_back(ATIIT.second->getActivePlayerInstance());
 //        size_t y = 0;
 //        while (y < activePlayerInstance[x].size())
@@ -167,6 +168,7 @@ void playerSteerPlugin::open(void)
             m_redScore = 0;
             m_blueScore = 0;
 */
+    logMsg(func +" end");
 }
 
 void playerSteerPlugin::update(const float currentTime, const float elapsedTime)
@@ -293,7 +295,7 @@ void playerSteerPlugin::redraw (const float currentTime, const float elapsedTime
 */
 }
 
-void playerSteerPlugin::close (void)
+void playerSteerPlugin::close ()
 {
 /*    for(unsigned int i=0; i < m_PlayerCountA ; i++)
     {
@@ -309,7 +311,7 @@ void playerSteerPlugin::close (void)
 */
 }
 
-void playerSteerPlugin::reset (void)
+void playerSteerPlugin::reset ()
 {
     // reset vehicle
     for(unsigned int i=0; i < m_PlayerCountA ; i++)

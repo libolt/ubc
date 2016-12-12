@@ -1175,12 +1175,15 @@ bool gameState::setupState()  // sets up the game condition
 //    offset[2] = 2.0f;
 //  bball->setAutoTracking(true,playerNode[0],playerNode[0]->getPosition(),offset);
 //  bball->setPosition(playerPos[0] +2.0f, playerPos[1] + 4.0f, playerPos[2] - 1.0f);
-//    exit(0);
+    logMsg(func +" dahdah");
+    exit(0);
 
     if (!setupEnvironmentCompleted)  // checks if environment has been setup
     {
+        logMsg(func +" !setupEnvironmentCompleted");
         if(setupEnvironment())  // sets up environment
         {
+            logMsg(func +" Environment setup successfully!");
             setupEnvironmentCompleted = true;
         }
     }
@@ -1188,7 +1191,12 @@ bool gameState::setupState()  // sets up the game condition
 
     if (!tipOffSetupComplete)
     {
-        tipOffSetupComplete = setupTipOff();  // sets up tip off conditions
+        logMsg(func +" !tipOffSetupComplete");
+        if (setupTipOff())
+        {
+            logMsg(func + " Tip Off Setup Complete!");
+            tipOffSetupComplete = true;  // sets up tip off conditions
+        }
     }
 
     logMsg(func +" end");

@@ -81,11 +81,14 @@ void AISystem::setOldTime(float set)  // sets the value of oldTime
     oldTime = set;
 }
 
-void printPlugIn (OpenSteer::PlugIn& pi);
+void printPlugIn(OpenSteer::PlugIn& pi);
 
 // initial setup of AI state
-bool AISystem::setup(void)
+bool AISystem::setup()
 {
+    std::string func = "AISystem::setup()";
+
+    logMsg(func +" beginning");
     playerSteerPluginSharedPtr tempPlugin(new playerSteerPlugin);
     playerSteerPluginInstance = tempPlugin;
 
@@ -110,50 +113,76 @@ bool AISystem::setup(void)
     }
 
     // initialize the default PlugIn
-    openSelectedPlugIn ();
+    openSelectedPlugIn();
+
+    logMsg(func +" end");
+
 	return true;
 }
 
 
 void AISystem::update(const float currentTime, const float elapsedTime) // updates AI state
 {
+    std::string func = "AISystem::update()";
+
+    logMsg(func +" beginning");
 	aiTimer.update();
 //	updateSelectedPlugIn( currentTime, elapsedTime);
-	updateSelectedPlugIn(aiTimer.getTotalSimulationTime (), aiTimer.getElapsedSimulationTime ());
+    updateSelectedPlugIn(aiTimer.getTotalSimulationTime(), aiTimer.getElapsedSimulationTime());
+    logMsg(func +" end");
 }
 
-void printPlugIn (OpenSteer::PlugIn& pi)
+void printPlugIn(OpenSteer::PlugIn& pi)
 {
 //	Ogre::LogManager::getSingletonPtr()->logMessage(" " << toString(pi));
 } // anonymous namespace
 
-void AISystem::selectDefaultPlugIn (void)  // selects the default plugin
+void AISystem::selectDefaultPlugIn()  // selects the default plugin
 {
-    OpenSteer::PlugIn::sortBySelectionOrder ();
+    std::string func = "AISystem::selectDefaultPlugIn()";
+
+    logMsg(func +" beginning");
+    OpenSteer::PlugIn::sortBySelectionOrder();
     selectedPlugIn = OpenSteerPluginSharedPtr(OpenSteer::PlugIn::findDefault());
+    logMsg(func +" end");
 }
 
-void AISystem::selectNextPlugIn (void)  // select the "next" plug-in, cycling through "plug-in selection order"
+void AISystem::selectNextPlugIn()  // select the "next" plug-in, cycling through "plug-in selection order"
 {
-    closeSelectedPlugIn ();
+    std::string func = "AISystem::selectNextPlugIn()";
+
+    logMsg(func +" beginning");
+    closeSelectedPlugIn();
     selectedPlugIn = OpenSteerPluginSharedPtr(selectedPlugIn->next());
-    openSelectedPlugIn ();
+    openSelectedPlugIn();
+    logMsg(func +" end");
 }
 
-const char *AISystem::nameOfSelectedPlugIn (void)  // return name of currently selected plug-in
+const char *AISystem::nameOfSelectedPlugIn()  // return name of currently selected plug-in
 {
+    std::string func = "AISystem::nameOfSelectedPlugIn()";
+
+    logMsg(func +" beginning");
+    logMsg(func +" end");
     return (OpenSteerPluginSharedPtr(selectedPlugIn) ? OpenSteerPluginSharedPtr(selectedPlugIn)->name() : "no PlugIn");
 }
 
-void AISystem::openSelectedPlugIn (void)  // open the currently selected plug-in
+void AISystem::openSelectedPlugIn()  // open the currently selected plug-in
 {
+    std::string func = "AISystem::openSelectedPlugIn()";
+
+    logMsg(func +" beginning");
 //    camera.reset ();
     selectedVehicle = NULL;
-    selectedPlugIn->open ();
+    selectedPlugIn->open();
+    logMsg(func +" end");
 }
 
-void AISystem::updateSelectedPlugIn (const float currentTime, const float elapsedTime)  // do a simulation update for the currently selected plug-in
+void AISystem::updateSelectedPlugIn(const float currentTime, const float elapsedTime)  // do a simulation update for the currently selected plug-in
 {
+    std::string func = "AISystem::updateSelectedPlugIn()";
+
+    logMsg(func +" beginning");
     // switch to Update phase
 //    pushPhase (updatePhase);
 
@@ -171,34 +200,46 @@ void AISystem::updateSelectedPlugIn (const float currentTime, const float elapse
     }
 
     // invoke selected PlugIn's Update method
-    selectedPlugIn->update (currentTime, elapsedTime);
+    selectedPlugIn->update(currentTime, elapsedTime);
+    logMsg(func +" end");
 
     // return to previous phase
 //    popPhase ();
 }
 
-void AISystem::closeSelectedPlugIn (void)  // close the currently selected plug-in
+void AISystem::closeSelectedPlugIn()  // close the currently selected plug-in
 {
-    selectedPlugIn->close ();
+    std::string func = "AISystem::closeSelectedPlugIn()";
+
+    logMsg(func +" beginning");
+    selectedPlugIn->close();
     selectedVehicle = NULL;
+    logMsg(func +" end");
 }
 
-void AISystem::resetSelectedPlugIn (void)  // reset the currently selected plug-in
+void AISystem::resetSelectedPlugIn()  // reset the currently selected plug-in
 {
-    selectedPlugIn->reset ();
+    std::string func = "AISystem::resetSelectedPlugIn()";
+
+    logMsg(func +" beginning");
+    selectedPlugIn->reset();
+    logMsg(func +" end");
 }
 
-
-
-const OpenSteer::AVGroup& AISystem::allVehiclesOfSelectedPlugIn (void)  // return a group (an STL vector of AbstractVehicle pointers) of all
+const OpenSteer::AVGroup& AISystem::allVehiclesOfSelectedPlugIn(void)  // return a group (an STL vector of AbstractVehicle pointers) of all
 {                                                                       // vehicles(/agents/characters) defined by the currently selected PlugIn
-    return selectedPlugIn->allVehicles ();
+    std::string func = "AISystem::allVehiclesOfSelectedPlugIn()";
+
+    logMsg(func +" beginning");
+    logMsg(func +" end");
+    return selectedPlugIn->allVehicles();
 }
 
-
-
-void AISystem::selectNextVehicle (void)  // select the "next" vehicle: the one listed after the currently selected one
+void AISystem::selectNextVehicle()  // select the "next" vehicle: the one listed after the currently selected one
 {                                        // in allVehiclesOfSelectedPlugIn
+    std::string func = "AISystem::selectNextVehicle()";
+
+    logMsg(func +" beginning");
     if (selectedVehicle != NULL)
     {
         // get a container of all vehicles
@@ -207,7 +248,7 @@ void AISystem::selectNextVehicle (void)  // select the "next" vehicle: the one l
         const OpenSteer::AVIterator last = all.end();
 
         // find selected vehicle in container
-        const OpenSteer::AVIterator s = std::find (first, last, selectedVehicle.get());
+        const OpenSteer::AVIterator s = std::find(first, last, selectedVehicle.get());
 
         // normally select the next vehicle in container
         selectedVehicle = OpenSteerAbstractVehicleSharedPtr(*(s+1));
@@ -223,4 +264,5 @@ void AISystem::selectNextVehicle (void)  // select the "next" vehicle: the one l
             selectedVehicle = NULL;
         }
     }
+    logMsg(func +" end");
 }

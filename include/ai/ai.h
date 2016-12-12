@@ -57,7 +57,7 @@ public:
     void setOldTime(float time); // sets the value of oldTime
 
     // initial setup of AI state
-    bool setup(void);
+    bool setup();
 
 	// updates AI state
 	void update(const float currentTime, const float elapsedTime);
@@ -65,28 +65,28 @@ public:
 	void printPlugIn (OpenSteer::PlugIn& pi);
 
 	// select the default PlugIn
-    void selectDefaultPlugIn (void);
+    void selectDefaultPlugIn ();
 
 	// select the "next" plug-in, cycling through "plug-in selection order"
-    void selectNextPlugIn (void);
+    void selectNextPlugIn ();
 
 	// return name of currently selected plug-in
-    const char *nameOfSelectedPlugIn (void);
+    const char *nameOfSelectedPlugIn ();
 
 	// open the currently selected plug-in
-    void openSelectedPlugIn (void);
+    void openSelectedPlugIn ();
 
 	// do a simulation update for the currently selected plug-in
     void updateSelectedPlugIn (const float currentTime, const float elapsedTime);
 
 	// close the currently selected plug-in
-    void closeSelectedPlugIn (void);
+    void closeSelectedPlugIn ();
 
     // reset the currently selected plug-in
-    void resetSelectedPlugIn (void);
+    void resetSelectedPlugIn ();
 
     // select the "next" vehicle: cycle through the registry
-    void selectNextVehicle (void);
+    void selectNextVehicle ();
 
     const OpenSteer::AVGroup& allVehiclesOfSelectedPlugIn(void);
 

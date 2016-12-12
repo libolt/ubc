@@ -39,18 +39,18 @@ class playerSteerPlugin : public OpenSteer::PlugIn, steering, public gameStateSh
     // be more "nice" to avoid a compiler warning
     ~playerSteerPlugin() {}
 
-    void open(void);  // opens the plugin
+    void open();  // opens the plugin
 
     void update (const float currentTime, const float elapsedTime);  // updates the plugin state
 
     void redraw (const float currentTime, const float elapsedTime);
 
-    void close (void);  // closes the plugin
+    void close ();  // closes the plugin
 
-    void reset (void);  // resets the plugin
+    void reset ();  // resets the plugin
 
 
-    OpenSteer::AVGroup& allVehicles (void) {return (OpenSteer::AVGroup&) TeamA;} // returns list of all 'vehicles' in the game
+    OpenSteer::AVGroup& allVehicles () {return (OpenSteer::AVGroup&) TeamA;} // returns list of all 'vehicles' in the game
 
     unsigned int m_PlayerCountA;  // counts number of players on Team A
     unsigned int m_PlayerCountB;  // counts number of playres on Team B

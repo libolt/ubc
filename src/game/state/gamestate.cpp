@@ -1038,30 +1038,41 @@ void gameState::setHoopStartPositions()  // sets the initial coordinates for the
 
 bool gameState::setupTipOff()  // sets up tip off conditions
 {
+    boost::shared_ptr<conversion> convert = conversion::Instance();
     std::string func = "gameState::setupTipOff()";
+    jumpBallsSharedPtr jBall;
 
     logMsg(func +" beginning");
 
-    jumpBallsSharedPtr jumpBall = getJumpBall();
+    if (checkifJumpBallCreated())
+    {
+        jBall = getJumpBall();
+    }
+    else
+    {
+        logMsg("Unable to create Jump Ball!");
+        exit(0);
+    }
     logMsg(func +" jumpBall");
-    teamTypes currentTeam = jumpBall->getBallTippedToTeam();
+    logMsg(func +"current Team == " +convert->toString(jBall->getBallTippedToTeam()));
+    teamTypes currentTeam = jBall->getBallTippedToTeam();
     logMsg(func +" currentTeam");
 
-    playerPositionsVec jumpBallPlayer = jumpBall->getJumpBallPlayer();
+    playerPositionsVec jumpBallPlayer = jBall->getJumpBallPlayer();
     logMsg(func +" jumpBallPlayer");
 
     if (getTeamWithBall() == NOTEAM && getActiveTeamInstancesCreated())
     {
-        if (!jumpBall->getSetupComplete())
+        if (!jBall->getSetupComplete())
         {
-            jumpBall->setJumpBallLocation(CENTERCIRCLE);
+            jBall->setJumpBallLocation(CENTERCIRCLE);
             jumpBallPlayer.clear();
             jumpBallPlayer.push_back(C);
             jumpBallPlayer.push_back(C);
-            jumpBall->setJumpBallPlayer(jumpBallPlayer);
-            jumpBall->setSetupComplete(true);
-            jumpBall->setExecuteJumpBall(true);
-            setJumpBall(jumpBall);
+            jBall->setJumpBallPlayer(jumpBallPlayer);
+            jBall->setSetupComplete(true);
+            jBall->setExecuteJumpBall(true);
+            setJumpBall(jBall);
             return (true);
         }
         else
@@ -1651,7 +1662,6 @@ TS*/
 bool gameState::checkIfPlayerInstanceCreated()  // check if playerInstance object has been created and loaded
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-
     std::string func = "gameState::checkIfPlayerInstanceCreated()";
 
     logMsg(func +" beginning");
@@ -1709,6 +1719,35 @@ bool gameState::checkIfPlayerInstanceCreated()  // check if playerInstance objec
 
     
     return (true);
+}
+
+bool gameState::checkifJumpBallCreated()  // checks if jumpBall object has been created
+{
+    boost::shared_ptr<conversion> convert = conversion::Instance();
+    std::string func = "gameState::checkifJumpBallCreated()";
+
+    logMsg(func +" beginning");
+
+    if (getJumpBallCreated())
+    {
+        return (true);
+    }
+    else
+    {
+        boost::shared_ptr<jumpBalls> tempJumpBall(new jumpBalls);
+        setJumpBall(tempJumpBall);
+        setJumpBallCreated(true);
+        if (tempJumpBall != nullptr)
+        {
+            return (true);
+
+        }
+    }
+
+
+    logMsg(func +" end");
+
+    return (false);
 }
 
 void gameState::updateDirectionsAndMovements()

@@ -115,6 +115,9 @@ class gameStateShared
         bool getGameSetupComplete();  // retrieves the value of gameSetupComplete
         void setGameSetupComplete(bool set);  // sets the value of gameSetupComplete
 
+        bool getJumpBallCreated();  // retrieves the value of jumpBallCreated
+        void setJumpBallCreated(bool set);  // sets the value of jumpBallCreated
+
         bool getTipOffComplete();  // retrieves the value of tipOffComplete
         void setTipOffComplete(bool set);  // sets the value of tipOffComplet
 
@@ -187,6 +190,7 @@ class gameStateShared
         static bool teamWithBallChanged;  // stores whether team with ball has changed
         static bool activeTeamInstanceChanged;  // stores whether activeTeamInstance has changed
         static bool gameSetupComplete;  // indicates whether initial game setup is complete.
+        static bool jumpBallCreated;  // indicates whether jumpBall object has been created.
         static bool tipOffComplete;  // Determines whether or not game Tip Off has completed
 
         static gameTypes gameType;  // Indicates whether a single or multi player game is being played.

@@ -160,6 +160,7 @@ public:
     // These functions check if an object has been created and attmpt to do so if not
     bool checkIfPlayerInstanceCreated();  // check if playerInstance object has been created and loaded
     
+    bool checkifJumpBallCreated();  // checks if jumpBall object has been created
 //    void processNetworkEvents();  // processes events received from network connection.
 //    void processNetworkPlayerEvents();  // processes player evernts received from network connection
     void updateDirectionsAndMovements();  // updates the movement and directions of game world objecxts

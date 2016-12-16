@@ -45,6 +45,7 @@ bool gameStateShared::bballNodePositionChanged;  // stores whether basketball no
 bool gameStateShared::teamWithBallChanged;  // stores whether team with ball has changed
 bool gameStateShared::activeTeamInstanceChanged;  // stores whether activeTeamInstance has changed
 bool gameStateShared::gameSetupComplete;  // indicates whether initial game setup is complete.
+bool gameStateShared::jumpBallCreated;  // indicates whether jumpBall object has been created.
 bool gameStateShared::tipOffComplete;  // Determines whether or not game Tip Off has completed
 
 gameTypes gameStateShared::gameType;  // Indicates whether a single or multi player game is being played.
@@ -94,6 +95,7 @@ gameStateShared::gameStateShared()  // constructor
     quarter = NOQUARTER;
     yOffset = 0.0;
     teamWithBall = NOTEAM;
+    jumpBallCreated = false;
     tipOffComplete = false;
 //    activeBBallInstance = -1;
     gameType = NOGAME;
@@ -304,6 +306,16 @@ bool gameStateShared::getGameSetupComplete()  // retrieves the value of gameSetu
 void gameStateShared::setGameSetupComplete(bool set)  // sets the value of gameSetupComplete
 {
     gameSetupComplete = set;
+}
+
+bool gameStateShared::getJumpBallCreated()  // retrieves the value of jumpBallCreated
+{
+    return (jumpBallCreated);
+}
+
+void gameStateShared::setJumpBallCreated(bool set)  // sets the value of jumpBallCreated
+{
+    jumpBallCreated = set;
 }
 
 bool gameStateShared::getTipOffComplete()  // retrieves the value of tipOffComplete

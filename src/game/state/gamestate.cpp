@@ -300,9 +300,13 @@ bool gameState::createInstances()  // creates object instances
 }
 bool gameState::createBasketballInstances()  // creates basketball Instances
 {
-    logMsg("creating temporary baskteball instance");
     boost::shared_ptr<basketballState> bballInstance;  // creates an instance of the basketballs class
-    logMsg("setting model name");
+    std::string func = "gameState::createTeamInstances()";
+    
+    logMsg(func +" beginning");
+
+    logMsg(func +" creating temporary baskteball instance");
+    logMsg(func +" setting model name");
 //  FIXME! these are currently hard coded
     bballInstance->setEntityModelFileName("bball.mesh");
     bballInstance->setEntityName(bballInstance->getModelFileName());
@@ -311,24 +315,28 @@ bool gameState::createBasketballInstances()  // creates basketball Instances
     {
         bballInstance->setBase(getBase());
     }
-    logMsg("creating steer object");
+    logMsg(func +" creating steer object");
     basketballSteer *bballSteer = new basketballSteer;  // steer instance
     bballInstance->setSteer(basketballSteerSharedPtr(bballSteer));
-    logMsg("setting instance number");
+    logMsg(func +" setting instance number");
     bballInstance->setNumber(0);
     bballInstance->setNumberSet(true);
 //    bballInstance->setModelNeedsLoaded(true);
     getBasketballInstance().push_back(bballInstance);
+    
+    logMsg(func +" end");
+    
     return (true);
 }
 
 bool gameState::createTeamInstances()  // creates team Instances
 {
-    logMsg("gameState::createTeamInstances()");
-    
     boost::shared_ptr<conversion> convert = conversion::Instance();
     boost::shared_ptr<loader> load(new loader);
+    std::string func = "gameState::createTeamInstances()";
     
+    logMsg(func +" beginning");
+
     teamStateUMSharedPtr tInstance;
 /*    teamStateVecSharedPtr tInstance2;
     teamStateSharedPtr tempInstance(new teamState);
@@ -341,35 +349,35 @@ bool gameState::createTeamInstances()  // creates team Instances
 
     tInstance2.push_back(tempInstance);
 */
-    logMsg("gameState::createTeamInstances() loadTeams");
+    logMsg(func +" loadTeams");
     if (load->checkIfTeamsLoaded())
     {
-        logMsg("gameState::createTeamInstances() load->getTInstance().size() == " +convert->toString(load->getTInstance().size()));
+        logMsg(func +" load->getTInstance().size() == " +convert->toString(load->getTInstance().size()));
 //        exit(0);
         tInstance = load->getTInstance();
         if (tInstance.size() > 0)
         {
-            logMsg("gameState::createTeamInstances() tInstance Loaded!");
+            logMsg(func +" tInstance Loaded!");
             setTeamInstance(tInstance);
         }
         else
         {
-            logMsg("gameState::createTeamInstances() tInstance NOT Loaded!");
+            logMsg(func +" tInstance NOT Loaded!");
         }
     }
     else
     {
-        logMsg("gameState::createTeamInstances() loading of teams failed!");
+        logMsg(func +" loading of teams failed!");
         return (false);
     }
     
 
 //    exit(0);
-    logMsg("gameState::createTeamInstances() uno");
+    logMsg(func +" uno");
     
 
-    logMsg("gameState::createTeamInstances() tInstance.size() == " +convert->toString(tInstance.size()));
-    logMsg("gameState::createTeamInstances() too");
+    logMsg(func +" tInstance.size() == " +convert->toString(tInstance.size()));
+    logMsg(func +" too");
     
 //    exit(0);
     logMsg("tInstance size == " +convert->toString(tInstance.size()));
@@ -400,16 +408,18 @@ bool gameState::createTeamInstances()  // creates team Instances
     {
         setTeamInstance(tInstance);
         setTeamInstancesCreated(true);
-        logMsg("teamInstance CREATED!!");
+        logMsg(func +" teamInstance CREATED!!");
 //        exit(0);
     }
     else 
     {
-        logMsg("Failed to create Team Instances!");
+        logMsg(func +" Failed to create Team Instances!");
         exit(0);
         return (false);
     }
 
+    logMsg(func +" end");
+    
     return (true);
 }
 
@@ -423,6 +433,10 @@ bool gameState::createTeamInstances()  // creates team Instances
 bool gameState::createCourtInstances()  // creates court Instances
 {
     boost::shared_ptr<loader> load(new loader);
+    std::string func = "gameState::createCourtInstances()";
+    
+    logMsg(func +" beginning");
+
 //    exit(0);
 //    courtState cInstance;  // creates an instance of the courtState class
 //    cInstance.setModelFileName("court.mesh");
@@ -432,7 +446,7 @@ bool gameState::createCourtInstances()  // creates court Instances
     {
  //       exit(0);
         setCourtInstance(load->getCInstance());
-        logMsg("Court Instances SET!");
+        logMsg(func +" Court Instances SET!");
         return (true);
     }
     else
@@ -443,11 +457,19 @@ bool gameState::createCourtInstances()  // creates court Instances
         return (false);
     }
 //    exit(0);
+    
+    logMsg(func +" end");
+
+    
     return (true);
 }
 
 bool gameState::createHoopInstances()  // creates hoop Instances
 {
+    std::string func = "gameState::createHoopInstances()";
+    
+    logMsg(func +" beginning");
+
     hoopStateSharedPtr hInstance0(new hoopState);  // creates an instance of the hoopState class
     hoopStateSharedPtr hInstance1(new hoopState);  // creates an instance of the hoopState class
 
@@ -463,6 +485,8 @@ bool gameState::createHoopInstances()  // creates hoop Instances
     getHoopInstance().insert(std::pair<size_t, hoopStateSharedPtr>(0, hInstance0));  // loads the first hoop
     getHoopInstance().insert(std::pair<size_t, hoopStateSharedPtr>(1, hInstance1));  // loads the second hoop
 
+    logMsg(func +" end");
+
     return (true);
 }
 bool gameState::createPlayerInstances()  // creates player instances
@@ -474,6 +498,7 @@ bool gameState::createPlayerInstances()  // creates player instances
     playerStateUMSharedPtr pInstance;
     std::string func = "gameState::createPlayerInstances()";
     
+    logMsg(func +" beginning");
     logMsg(func +" checkIfPlayersLoaded");
 //    exit(0);
     if (load->checkIfPlayersLoaded())
@@ -513,6 +538,9 @@ bool gameState::createPlayerInstances()  // creates player instances
 //        exit(0);
         return (true);
     }
+    
+    logMsg(func +" end");
+    
     return (false);
 }
 
@@ -1010,11 +1038,18 @@ void gameState::setHoopStartPositions()  // sets the initial coordinates for the
 
 bool gameState::setupTipOff()  // sets up tip off conditions
 {
-    jumpBallsSharedPtr jumpBall = getJumpBall();
+    std::string func = "gameState::setupTipOff()";
 
+    logMsg(func +" beginning");
+
+    jumpBallsSharedPtr jumpBall = getJumpBall();
+    logMsg(func +" jumpBall");
     teamTypes currentTeam = jumpBall->getBallTippedToTeam();
+    logMsg(func +" currentTeam");
 
     playerPositionsVec jumpBallPlayer = jumpBall->getJumpBallPlayer();
+    logMsg(func +" jumpBallPlayer");
+
     if (getTeamWithBall() == NOTEAM && getActiveTeamInstancesCreated())
     {
         if (!jumpBall->getSetupComplete())
@@ -1034,13 +1069,20 @@ bool gameState::setupTipOff()  // sets up tip off conditions
             
         }
     }
+    
+    logMsg(func +" end");
+    
     return (false);
 }
 
 bool gameState::executeTipOff()  // executes tip off
 {
     basketballStateUMSharedPtr activeBasketballInstance = getActiveBasketballInstance();
+    std::string func = "gameState::executeTipOff()";
 
+    logMsg(func +" beginning");
+
+    
     if (!getJumpBall()->updateState(getTeamWithBall(), activeBasketballInstance, getActiveTeamInstance(),getQuarter()))
     {
         logMsg("tipOff not complete!");
@@ -1050,6 +1092,9 @@ bool gameState::executeTipOff()  // executes tip off
     {
         return (true);
     }
+    
+    logMsg(func +" end");
+
     return (false);
 }
 
@@ -1128,7 +1173,7 @@ bool gameState::setupState()  // sets up the game condition
         }
         else
         {
-            logMsg("Unable to load all models!");
+            logMsg(func +" Unable to load all models!");
         }
     }
     else
@@ -1146,7 +1191,7 @@ bool gameState::setupState()  // sets up the game condition
     {
         if(createTeamInstances())  // creates the team instances
         {
-            logMsg("TIC!");
+            logMsg(func +" TIC!");
             setTeamInstancesCreated(true);
 //            assignHoopToTeams();  // assigns proper hoop to the teams that were created.
         }
@@ -1176,7 +1221,7 @@ bool gameState::setupState()  // sets up the game condition
 //  bball->setAutoTracking(true,playerNode[0],playerNode[0]->getPosition(),offset);
 //  bball->setPosition(playerPos[0] +2.0f, playerPos[1] + 4.0f, playerPos[2] - 1.0f);
     logMsg(func +" dahdah");
-    exit(0);
+    
 
     if (!setupEnvironmentCompleted)  // checks if environment has been setup
     {
@@ -1188,7 +1233,7 @@ bool gameState::setupState()  // sets up the game condition
         }
     }
 //    loads("../../data/players/players.xml");
-
+    
     if (!tipOffSetupComplete)
     {
         logMsg(func +" !tipOffSetupComplete");
@@ -1198,7 +1243,7 @@ bool gameState::setupState()  // sets up the game condition
             tipOffSetupComplete = true;  // sets up tip off conditions
         }
     }
-
+    
     logMsg(func +" end");
 
     return true;
@@ -1208,7 +1253,11 @@ bool gameState::updateState()  // updates the game state
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 
-    
+    std::string func = "gameState::updateState()";
+
+    logMsg(func +" beginning");
+
+
     exit(0);
 //    logMsg("Updating gameState Logic");
 
@@ -1418,12 +1467,20 @@ bool gameState::updateState()  // updates the game state
 //  logMsg("gameState logic updated");
 //    exit(0);
 */
+
+    logMsg(func +" end");
+
     return true;
 }
 
 bool gameState::processInput()  // processes input received from the inputState object
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
+
+    std::string func = "gameState::processInput()";
+
+    logMsg(func +" beginning");
+
 
         if (getActiveTeamInstancesCreated())
         {
@@ -1586,6 +1643,8 @@ bool gameState::processInput()  // processes input received from the inputState 
 TS*/                
             }            
         }
+    logMsg(func +" end");
+
 }
 
 // These functions check if an object has been created and attmpt to do so if not
@@ -1593,21 +1652,26 @@ bool gameState::checkIfPlayerInstanceCreated()  // check if playerInstance objec
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 
+    std::string func = "gameState::checkIfPlayerInstanceCreated()";
+
+    logMsg(func +" beginning");
+
+
     if (getPlayerInstanceCreated())
     {
         if (getPlayerInstance().size() > 0)
         {
-            logMsg("getPlayerInstance().size() == " +convert->toString(getPlayerInstance().size()));
+            logMsg(func +" getPlayerInstance().size() == " +convert->toString(getPlayerInstance().size()));
             return (true);
         }
         else
         {
-            logMsg("gameState::checkIfPlayerInstanceCreated() player instances not yet created!");
+            logMsg(func +" gameState::checkIfPlayerInstanceCreated() player instances not yet created!");
  //           exit(0);
             if (createPlayerInstances())
             {
             
-                logMsg("player instances created!");
+                logMsg(func +" player instances created!");
 //                exit(0);
                 setPlayerInstanceCreated(true);
                 return (true);
@@ -1615,7 +1679,7 @@ bool gameState::checkIfPlayerInstanceCreated()  // check if playerInstance objec
             }
             else
             {
-                logMsg("player instances not created!");
+                logMsg(func +" player instances not created!");
                 exit(0);
             }
         }
@@ -1623,11 +1687,11 @@ bool gameState::checkIfPlayerInstanceCreated()  // check if playerInstance objec
     }
     else
     {
-        logMsg("player instances not yet created!");
+        logMsg(func +" player instances not yet created!");
         if (createPlayerInstances())
         {
 
-            logMsg("player instances created!");
+            logMsg(func +" player instances created!");
 
             setPlayerInstanceCreated(true);
             return (true);
@@ -1635,11 +1699,15 @@ bool gameState::checkIfPlayerInstanceCreated()  // check if playerInstance objec
         }
         else
         {
-            logMsg("player instances not created!");
+            logMsg(func +" player instances not created!");
             exit(0);
         }
 //        return (false);
     }
+    
+    logMsg(func +" end");
+
+    
     return (true);
 }
 
@@ -1649,6 +1717,11 @@ void gameState::updateDirectionsAndMovements()
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    directions playerDirection, oldPlayerDirection;
 //   logMsg("Updating Directions and Movements");
+
+    std::string func = "gameState::updateDirectionsAndMovements()";
+
+    logMsg(func +" beginning");
+
 
     if (getTeamWithBall() >= 0) // && playerHasBasketball)
     {
@@ -1660,6 +1733,10 @@ void gameState::updateDirectionsAndMovements()
     else
     {
     }
+    
+    logMsg(func +" end");
+
+    
 }
 
 

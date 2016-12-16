@@ -153,7 +153,7 @@ bool entity::loadModel()  // loads the 3D model
     boost::shared_ptr<renderEngine> render = base->getGameE()->getRenderE();
     logMsg(func +" entityName == " +entityName);
     logMsg(func +" entityModelFileName == " +entityModelFileName);
-    Ogre::SceneManager *mSceneMgr = render->getMSceneMgr();
+    boost::shared_ptr<Ogre::SceneManager> mSceneMgr = render->getMSceneMgr();
     logMsg(func +" Model");
     Ogre::ResourceGroupManager &rsm = Ogre::ResourceGroupManager::getSingleton();
     

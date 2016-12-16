@@ -93,31 +93,38 @@ bool UBC::setup()  // sets up UBC object
         setGameE(tempGameESharedPtr);
     */
 //    exit(0);
-        UBCBaseSharedPtr tempBaseSharedPtr(new UBCBase);
-        base = tempBaseSharedPtr;
-        if (!base->getStateSetup())
+    UBCBaseSharedPtr tempBaseSharedPtr(new UBCBase);
+    base = tempBaseSharedPtr;
+    std::string func = "UBC::setup()";
+
+    logMsg(func +" beginning");
+
+    if (!base->getStateSetup())
+    {
+        if (base->setup())
         {
-            if (base->setup())
-            {
-                GUISystemSharedPtr tempGUISharedPtr(new GUISystem);
-                gui = tempGUISharedPtr;
-                gui->setBase(base);
-                base->setStateSetup(true);
-            }
-            else
-            {
-                logMsg("Unable to setup base!");
-                exit(0);
-            }
-        }
-        else
-        {
-//    exit(0);
-    //    GUISystem *tempGUIObj = new GUISystem;
             GUISystemSharedPtr tempGUISharedPtr(new GUISystem);
             gui = tempGUISharedPtr;
             gui->setBase(base);
+            base->setStateSetup(true);
         }
+        else
+        {
+            logMsg(func +" Unable to setup base!");
+            exit(0);
+        }
+    }
+    else
+    {
+//    exit(0);
+    //    GUISystem *tempGUIObj = new GUISystem;
+        GUISystemSharedPtr tempGUISharedPtr(new GUISystem);
+        gui = tempGUISharedPtr;
+        gui->setBase(base);
+    }
+    
+    logMsg(func +" end");
+    
 //        exit(0);
 //        gui->getBase()->setGameS(base->getGameS());
 //        exit(0);
@@ -127,10 +134,12 @@ bool UBC::setupState()  // sets up the UBC game state
 {
 //    Ogre::Viewport *vp = getRenderE()->getViewPort();
 //    setViewPort(*vp);  // sets the viewPort for MyGUI
-    logMsg("blah!");
 //    exit(0);
     bool stateSetup = true;
-    
+    std::string func = "UBC::setupState()";
+
+    logMsg(func +" beginning");
+
     if (gui->setup())  // sets up the game GUI
     {
 //        exit(0);
@@ -142,10 +151,13 @@ bool UBC::setupState()  // sets up the UBC game state
     }
     else
     {
-        logMsg("Unable to setup GUI!");
+        logMsg(func +" Unable to setup GUI!");
         exit(0);
     }
 //    exit(0); 
+    
+    logMsg(func +" end");
+
     return (stateSetup);
 }
 
@@ -159,6 +171,10 @@ void UBC::run()  // runs the game
 //    exit(0);
 //    boost::shared_ptr<renderEngine> renderTemp = base->getGameE()->getRenderE();
 //    exit(0);
+    std::string func = "UBC::executeState()";
+
+    logMsg(func +" beginning");
+
     base->setup();
     base->getGameE()->getRenderE()->initSDL(); // Initializes the SDL Subsystem
 //    exit(0);
@@ -170,14 +186,14 @@ void UBC::run()  // runs the game
 
 //    exit(0);
 
-    logMsg("pre setupState!");
+    logMsg(func +" pre setupState!");
     if (setupState())  // sets up the game state
     {
-        logMsg("UBC state setup successfully!");
+        logMsg(func +" UBC state setup successfully!");
     }
     else
     {
-        logMsg("Unable to setup UBC state!");
+        logMsg(func +" Unable to setup UBC state!");
 //        return (false);
     }
 //    exit(0);
@@ -186,17 +202,17 @@ void UBC::run()  // runs the game
 
     if (base->getGameE()->getRenderE()->getMWindow() == NULL)
     {
-        logMsg("mWindow == NULL!");
+        logMsg(func +" mWindow == NULL!");
 //        exit(0);
     }
 //    exit(0);
 //    setupState();  // sets up the game state
 
-    Ogre::Viewport *vp = base->getGameE()->getRenderE()->getViewPort();
+    boost::shared_ptr<Ogre::Viewport> vp = base->getGameE()->getRenderE()->getViewPort();
 //    setViewPort(*vp);  // sets the viewPort for MyGUI
 
 //    exit(0);
-    logMsg("Initializing Input");
+    logMsg(func +" Initializing Input");
     //inputSystem *input = inputSystem::Instance();
 //    boost::shared_ptr<inputSystem> input = getInputE();
 //    exit(0);
@@ -205,16 +221,22 @@ void UBC::run()  // runs the game
  
     gameLoop();
 
+    logMsg(func +" end");
+
 }
 
 bool UBC::startGame()  // starts the game
 {
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
+    std::string func = "UBC::startGame()";
 
-    logMsg("startGame()");
+    logMsg(func +" beginning");
 
     base->getGameS()->setBase(base);
     base->getGameS()->setupState();
+    
+    logMsg(func +" end");
+
     return (true);
 }
 
@@ -227,8 +249,10 @@ void UBC::processInput()  // processes game input
 //    networkEngineSharedPtr network = networkEngine::Instance();
     teamStateUMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
     networkPlayerStateObject netPStateObj;
+    std::string func = "UBC::processInput()";
 
-    logMsg("inputProcess!");
+    logMsg(func +" beginning");
+    
 //    exit(0);
     
     if (base->getInputS()->process())
@@ -441,15 +465,18 @@ void UBC::processInput()  // processes game input
     }   
 */
 //    exit(0);
-    
+    logMsg(func +" end");
+
 }
 
 bool UBC::gameLoop()  // Main Game Loop
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-
     bool quitGame = base->getGameE()->getQuitGame();
+    std::string func = "UBC::gameLoop()";
 
+    logMsg(func +" beginning");
+    
     SDL_StartTextInput();
     
     while (!quitGame)
@@ -460,11 +487,13 @@ bool UBC::gameLoop()  // Main Game Loop
             
             if (!base->getGameE()->getSceneCreated())
             {
-                exit(0);
+                logMsg(func +" Scene Not Created!");
+//                exit(0);
                 if (base->getGameS()->getGameType() == SINGLE)
                 {
+                    logMsg(func +" getGameType() == SINGLE");
                     base->getGameE()->setCreateScene(true);
-                    exit(0);
+//                    exit(0);
                 }
                 else if (base->getGameS()->getGameType() == MULTI)
                 {
@@ -483,10 +512,12 @@ bool UBC::gameLoop()  // Main Game Loop
         }
         if (!base->getGameE()->getRenderE()->renderFrame())
         {
-            logMsg("Unable to render frame!");
+            logMsg(func +" Unable to render frame!");
             exit(0);
         }
     }
+    logMsg(func +" end");
+
     return (true);
 }
 
@@ -667,9 +698,13 @@ void UBC::gameLoop_old()  // Main Game Loop
 
 bool UBC::updateGUI()  // updates the gui based on received events
 {
+    std::string func = "UBC::updateGUI()";
+
+    logMsg(func +" beginning");
+
     if (base->getGameE()->getInputE()->getMouseClicked())
     {
-        logMsg("updateGUI Mouse Clicked!");
+        logMsg(func +" updateGUI Mouse Clicked!");
         exit(0);
         gui->getMGUI()->injectMousePress(base->getGameE()->getInputE()->getMouseX(), base->getGameE()->getInputE()->getMouseY(), MyGUI::MouseButton::Enum(0));
     }
@@ -678,6 +713,8 @@ bool UBC::updateGUI()  // updates the gui based on received events
         gui->getMGUI()->injectMouseRelease(base->getGameE()->getInputE()->getMouseX(), base->getGameE()->getInputE()->getMouseY(), MyGUI::MouseButton::Enum(0));
     }
     
+    logMsg(func +" end");
+
     return (true);
 }
 
@@ -692,14 +729,18 @@ int main(int argc, char *argv[])
 //    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
 //    boost::shared_ptr<GUISystem> gui = ubc.getGui();
-//    exit(0);
+//    exit(0);   
+    std::string func = "main()";
+
+    logMsg(func +" beginning");
 
 //    exit(0);
     ubc->setup();
 //    exit(0);
     ubc->run();
 //    exit(0);
-    logMsg("End Game!");
+    logMsg(func +" end");
+
 
 //    atexit(SDL_Quit);
 

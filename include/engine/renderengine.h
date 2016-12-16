@@ -69,20 +69,20 @@ class renderEngine : public engine
 
     renderEngine();  // constructor 
     
-    Ogre::Root *getRERoot();  // retrieves the value of mRoot
-    void setRERoot(Ogre::Root *set);  // sets the value of mRoot
+    boost::shared_ptr<Ogre::Root> getRERoot();  // retrieves the value of mRoot
+    void setRERoot(boost::shared_ptr<Ogre::Root> set);  // sets the value of mRoot
 
-    Ogre::Camera *getMCamera();  // retrieves the value of mCamera
-    void setMCamera(Ogre::Camera *set);  // sets the value of mCamera
+    boost::shared_ptr<Ogre::Camera> getMCamera();  // retrieves the value of mCamera
+    void setMCamera(boost::shared_ptr<Ogre::Camera> set);  // sets the value of mCamera
 
-    Ogre::SceneManager *getMSceneMgr();  // retrieves the value of mSceneMgr
-    void setMSceneMgr(Ogre::SceneManager *set);  // sets the value of mSceneMgr
+    boost::shared_ptr<Ogre::SceneManager> getMSceneMgr();  // retrieves the value of mSceneMgr
+    void setMSceneMgr(boost::shared_ptr<Ogre::SceneManager> set);  // sets the value of mSceneMgr
 
-    Ogre::RenderWindow *getMWindow();  // retrieves the value of mWindow
-    void setMWindow(Ogre::RenderWindow *set);  // sets the value of mWindow
+    boost::shared_ptr<Ogre::RenderWindow> getMWindow();  // retrieves the value of mWindow
+    void setMWindow(boost::shared_ptr<Ogre::RenderWindow> set);  // sets the value of mWindow
 
-    Ogre::Viewport *getViewPort(); // retrieves the value of viewPort
-    void setViewPort(Ogre::Viewport *set); // sets the value of viewPort
+    boost::shared_ptr<Ogre::Viewport> getViewPort(); // retrieves the value of viewPort
+    void setViewPort(boost::shared_ptr<Ogre::Viewport> set); // sets the value of viewPort
 	
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     Ogre::DataStreamPtr openAPKFile(const std::string &set);  // opens APK file
@@ -164,13 +164,13 @@ class renderEngine : public engine
     SDLTest_CommonState *state;  // stores the state
 
     // Ogre code
-    static Ogre::Root *RERoot;  // stores the OGRE Root
-    static Ogre::Camera *mCamera;  // stores the camera used by OGRE
-    static Ogre::SceneManager *mSceneMgr;  // store the OGRE Scene Manager
-    static Ogre::RenderWindow *mWindow;  // stores the OGRE Render Window
-    static Ogre::Viewport *viewPort;  // stores the OGRE View Port
-    static Ogre::Light *l;  // stores the vslue of light
-    static Ogre::ResourceGroupManager *rsm;  // stores resources
+    static boost::shared_ptr<Ogre::Root> RERoot;  // stores the OGRE Root
+    static boost::shared_ptr<Ogre::Camera> mCamera;  // stores the camera used by OGRE
+    static boost::shared_ptr<Ogre::SceneManager> mSceneMgr;  // store the OGRE Scene Manager
+    static boost::shared_ptr<Ogre::RenderWindow> mWindow;  // stores the OGRE Render Window
+    static boost::shared_ptr<Ogre::Viewport> viewPort;  // stores the OGRE View Port
+    static boost::shared_ptr<Ogre::Light> l;  // stores the vslue of light
+    static boost::shared_ptr<Ogre::ResourceGroupManager> rsm;  // stores resources
     static std::string mResourceGroup;  // stores resource locations
     static Ogre::NameValuePairList misc;  // options to pass to mWindow during creation
     static std::string winHandle;  // window handle

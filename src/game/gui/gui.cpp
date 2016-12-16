@@ -496,7 +496,7 @@ bool GUISystem::initMyGUI()  // Initializes MyGUI
     mPlatform->initialise(mWindow, mSceneMgr, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 #else
 */
-    mPlatform->initialise(base->getGameE()->getRenderE()->getMWindow(), base->getGameE()->getRenderE()->getMSceneMgr(), "UBCData"); // mWindow is Ogre::RenderWindow*, mSceneManager is Ogre::SceneManager*
+    mPlatform->initialise(base->getGameE()->getRenderE()->getMWindow().get(), base->getGameE()->getRenderE()->getMSceneMgr().get(), "UBCData"); // mWindow is Ogre::RenderWindow*, mSceneManager is Ogre::SceneManager*
 //#endif
 //    exit(0);
     logMsg("Crash??");

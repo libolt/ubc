@@ -51,6 +51,9 @@ class entity // : public UBCBase // base class for entity objects
     bool getBaseInitialized();  // retrieves the value of baseInitialized
     void setBaseInitialized(bool set);  // sets the value of baseInitialized
 
+    size_t getEntityID();  // retrieves the value of entityID
+    void setEntityID(size_t set);  // sets the value of entityID
+    
     std::string getEntityModelFileName();  // retrieves the value of modelName
     void setEntityModelFileName(std::string set);  // sets the value of modelName
 
@@ -65,7 +68,6 @@ class entity // : public UBCBase // base class for entity objects
 
     OgreSceneNodeSharedPtr getNode();  // retrieves the value of node
     void setNode(OgreSceneNodeSharedPtr set);  // sets the value of node
-
 
     bool getPhysicsSetup();  // retrieves the value of physicsSetup
     void setPhysicsSetup(bool set);  // sets the value of physicsSetup
@@ -88,6 +90,8 @@ class entity // : public UBCBase // base class for entity objects
     static UBCBaseSharedPtr base;  // base class object
     bool baseInitialized;  // stores whether or not the base class has been initialized.
 
+    size_t entityID;  // stores the entity ID number to distinguish between entities
+    
     std::string entityModelFileName;  // stores the file name of the 3d model
 
     std::string entityName;  // stores the name of the model object in the scene

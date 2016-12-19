@@ -26,11 +26,13 @@
 
 // static declarations
 UBCBaseSharedPtr entity::base;  // base class object
+//std::string entity::entityNodeName;  // stores the name of the scene node
 
 entity::entity()  // constructor
 {
     baseInitialized = false;
 
+    entityID = 0;
     physicsSetup = false;
     modelNeedsLoaded = false;
     modelLoaded = false;
@@ -57,6 +59,15 @@ bool entity::getBaseInitialized()  // retrieves the value of baseInitialized
 void entity::setBaseInitialized(bool set)  // sets the value of baseInitialized
 {
     baseInitialized = set;
+}
+
+size_t entity::getEntityID()  // retrieves the value of ID
+{
+    return (entityID);
+}
+void entity::setEntityID(size_t set)  // sets the value of ID
+{
+    entityID = set;
 }
 
 std::string entity::getEntityModelFileName()  // retrieves the value of entityModelName
@@ -193,14 +204,16 @@ bool entity::loadModel()  // loads the 3D model
     logMsg(func +" Entity Created!");
     // creates and instantiates the node object
 //    node = getRenderE()->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName);
-    if (entityNodeName == "")
+/*    if (entityNodeName == "")
     {
         entityNodeName = entityName +"node";
 //        entityNodeName = "das";
     }
-    logMsg("entityNodeName == " +entityNodeName);
-
+*/
+    logMsg(func +" entityNodeName == " +entityNodeName);
+//    exit(0);
     Ogre::SceneNode *tempNode = base->getGameE()->getRenderE()->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName);
+//    tempNode->setName(entityNodeName);
     tempNode->attachObject(model.get());
     logMsg(func +" node attached!");
     // attaches 3D model to the node
@@ -208,7 +221,7 @@ bool entity::loadModel()  // loads the 3D model
     // sets the size of the bball node
     tempNode->setScale(0.25f,0.25f,0.25f);
     tempNode->setPosition(0.0f,0.0f,0.0f);
-
+    
     node = OgreSceneNodeSharedPtr(tempNode);
 /*    logMsg("scene node created!");
     node->attachObject(model);

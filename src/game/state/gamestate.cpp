@@ -739,9 +739,9 @@ bool gameState::loadBasketballModel()  // loads selected basketball model
 //    size_t activeBBallInstance = getActiveBBallInstance();
     basketballStateVecSharedPtr basketballInstance = getBasketballInstance();
     std::string func = "gameState::loadBasketballModel()";
+    bool returnType = false;
     
     logMsg(func +" beginning");
-    
     
     if (!activeBasketballInstancesCreated && activeBasketballInstance.size() == 0)
     {
@@ -781,24 +781,27 @@ bool gameState::loadBasketballModel()  // loads selected basketball model
         {
             logMsg(func +" blee!");
             ABIIT.second->setModelNeedsLoaded(false);
-            logMsg(func +" blaa!");
+/*            logMsg(func +" blaa!");
             ABIIT.second->setModelLoaded(true);
             logMsg(func +" blii!");
             ABIIT.second->setupPhysicsObject();
             logMsg(func +" bluu!");
             setActiveBasketballInstance(activeBasketballInstance);
             logMsg(func +" Basketball Model Loaded!");
-            return (true);
+            returnType = true;
+            */
         }
         else
         {
             logMsg("Failed to load the basketball model!");
         }
+        
     }
     setActiveBasketballInstance(activeBasketballInstance);
     setActiveBasketballInstancesCreated(activeBasketballInstancesCreated);
-    
-    return (false);
+
+    logMsg(func + " end");
+    return (returnType);
 }
 
 bool gameState::loadCourtModel()  // loads selected court model
@@ -977,6 +980,7 @@ bool gameState::loadModels()  // loads all game object models excluding the play
     }
     logMsg(func +" weeee");
 //    exit(0);
+
     if (!courtModelLoaded)  // Checks if the court model has been loaded
     {
         logMsg(func +" Loading court model!");
@@ -1008,7 +1012,7 @@ bool gameState::loadModels()  // loads all game object models excluding the play
         }
     }
 
-    
+    logMsg(func +" end");
 //    exit(0);
     
     return (returnType);

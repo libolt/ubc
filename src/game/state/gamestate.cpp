@@ -646,21 +646,39 @@ bool gameState::createActiveHoopInstances()  // creates the active hoop instance
     {
 
     }
-    
-    for (auto x=0;x<numActiveHoops; ++x)
+//    logMsg(func + "name 0 == " +hoopInstance[0]->getName());
+//    logMsg(func + "name 1 == " +hoopInstance[1]->getName());
+
+//    exit(0);
+    for (x=0;x<numActiveHoops; ++x)
     {
-        activeHoopInstance.insert(std::pair<size_t, hoopStateSharedPtr>(x, hoopInstance[0]));
+        activeHoopInstance.insert(std::pair<size_t, hoopStateSharedPtr>(x, hoopInstance[x]));
+        logMsg(func +" glee!");
+        logMsg(func + "name == " +hoopInstance[x]->getName());
     }
-    
-    for (auto AHIIT : activeHoopInstance)
+    x = 0;
+/*    for (auto AHIIT : activeHoopInstance)
     {
+        
+        logMsg(func +" flee!");
+        logMsg(func + " AHIIT name == " +AHIIT.second->getName());
+
         AHIIT.second->setEntityID(x);
-        AHIIT.second->setEntityName("hoop" +convert->toString(AHIIT.second->getEntityID()));      
+        AHIIT.second->setEntityName("hoop" +AHIIT.second->getName());      
         ++x;
         logMsg(func +" entityName == " +AHIIT.second->getEntityName());
+
     }
+*/   
 //    exit(0);
     setActiveHoopInstance(activeHoopInstance);
+/*    for (auto AHIIT : getActiveHoopInstance())
+    {
+        logMsg(func + " AHIIT name == " +AHIIT.second->getName());
+        logMsg(func + " AHIIT index == " +convert->toString(AHIIT.first));
+    }
+*/
+//    exit(0);
     logMsg(func +" end");
     return (true);
 }
@@ -849,7 +867,7 @@ bool gameState::loadHoopModel()  // loads selected hoop model
 
     logMsg(func +" beginning");
 
-    if (activeHoopInstance.size() == 0)
+/*    if (activeHoopInstance.size() == 0)
     {
         if (createActiveHoopInstances())
         {
@@ -865,19 +883,36 @@ bool gameState::loadHoopModel()  // loads selected hoop model
     {
         
     }
-    
+*/
     logMsg(func +" activeHoopInstance.size() == " +convert->toString(activeHoopInstance.size()));
 //    logMsg(func + " activeCourtInstance == " +convert->toString(activeCourtInstance));
+    for (auto AHIIT : getActiveHoopInstance())
+    {
+        logMsg(func + " AHIIT index == " +convert->toString(AHIIT.first));
+        std::string name = AHIIT.second->getName();
+        std:: string nodeName = name +"node";
+        logMsg(func +" blnodeName == " +nodeName);
+
+    }
+    
     
     for (auto AHIIT : activeHoopInstance)
     {
+        logMsg(func + " wAHIIT index == " +convert->toString(AHIIT.first));
+        logMsg(func + " Name == " +AHIIT.second->getName());
+        logMsg(func +" Model Name = " +AHIIT.second->getEntityModelFileName());
+
+/*        logMsg(func + "Name == " +AHIIT.second->getName());
         logMsg(func +" Model Name = " +AHIIT.second->getEntityModelFileName());
         logMsg("AHIIT index == " +convert->toString(AHIIT.second->getEntityID()));
-        std::string name = "hoop" +convert->toString(AHIIT.first);
+*/
+        std::string name = AHIIT.second->getName();
         std:: string nodeName = name +"node";
-        logMsg(func +" nodeName == " +nodeName);
+        logMsg(func +" blnodeName == " +nodeName);
         AHIIT.second->setEntityName(name);
         AHIIT.second->setEntityNodeName(nodeName);
+        logMsg("AHIIT.second->loadModel()");
+        
         if (AHIIT.second->loadModel())
         {
             logMsg(func +" Model loaded successfully!");
@@ -885,9 +920,11 @@ bool gameState::loadHoopModel()  // loads selected hoop model
         }
         else
         {
+            
             logMsg(func +" Unable to load model for activeHoopInstance[" +convert->toString(AHIIT.first) +"]");
             returnType = false;
         }
+        
     }
 /*    if (hoopInstance[1]->loadModel())
     {
@@ -902,12 +939,14 @@ bool gameState::loadHoopModel()  // loads selected hoop model
     setActiveHoopInstance(activeHoopInstance);
     for (auto AHIIT : getActiveHoopInstance())
     {
-        logMsg ("hoop " +convert->toString(AHIIT.first) +" nodename === " +AHIIT.second->getNode()->getName());
-        logMsg ("hoop " +convert->toString(AHIIT.first) +" entityID === " +convert->toString(AHIIT.second->getEntityID()));
+//        logMsg ("blhoop " +convert->toString(AHIIT.first) +" name === " +AHIIT.second->getEntityName());
+
+        logMsg ("blhoop " +convert->toString(AHIIT.first) +" nodename === " +AHIIT.second->getNode()->getName());
+        logMsg ("blhoop " +convert->toString(AHIIT.first) +" entityID === " +convert->toString(AHIIT.second->getEntityID()));
 
     }
     logMsg(func +" end");
-    exit(0);
+//    exit(0);
     
     return (returnType);
 }
@@ -970,7 +1009,7 @@ bool gameState::loadModels()  // loads all game object models excluding the play
     }
 
     
-    exit(0);
+//    exit(0);
     
     return (returnType);
 }

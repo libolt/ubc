@@ -573,7 +573,12 @@ bool gameState::createActiveBasketballInstances()  // creates the active basketb
     }
     
     //FIXME! should not be hard coded
-    activeBasketballInstance.insert(std::pair<size_t, basketballStateSharedPtr>(0, basketballInstance[0]));
+    setNumActiveBasketballs(1);
+    logMsg("Creating Active Basketball Instances!");
+    for (auto x=0; x<getNumActiveBasketballs(); ++x)
+    {
+        activeBasketballInstance.insert(std::pair<size_t, basketballStateSharedPtr>(x, basketballInstance[x]));
+    }
     setBasketballInstance(basketballInstance);
     setActiveBasketballInstance(activeBasketballInstance);
     logMsg(func +" end");
@@ -776,20 +781,29 @@ bool gameState::loadBasketballModel()  // loads selected basketball model
                 ABIIT.second->setBase(base);
             }
         }
+        if (ABIIT.second->getEntityNodeName() == "")
+        {
+            std::string nodeName = ABIIT.second->getName() +"node";
+            ABIIT.second->setEntityNodeName(nodeName);
+        }
+        logMsg(func +" basketball name == " +ABIIT.second->getName());
+        logMsg(func + " basketball node name == " +ABIIT.second->getEntityNodeName());
+//        exit(0);
         logMsg(func +" loading model == " +ABIIT.second->getEntityModelFileName());
         if (ABIIT.second->loadModel())
         {
             logMsg(func +" blee!");
             ABIIT.second->setModelNeedsLoaded(false);
-/*            logMsg(func +" blaa!");
+            logMsg(func +" blaa!");
             ABIIT.second->setModelLoaded(true);
             logMsg(func +" blii!");
             ABIIT.second->setupPhysicsObject();
-            logMsg(func +" bluu!");
+/*            logMsg(func +" bluu!");
             setActiveBasketballInstance(activeBasketballInstance);
             logMsg(func +" Basketball Model Loaded!");
+*/
             returnType = true;
-            */
+
         }
         else
         {
@@ -797,9 +811,11 @@ bool gameState::loadBasketballModel()  // loads selected basketball model
         }
         
     }
+    logMsg(func +" alive?");
     setActiveBasketballInstance(activeBasketballInstance);
+    logMsg(func +" still alive?");
     setActiveBasketballInstancesCreated(activeBasketballInstancesCreated);
-
+//    exit(0);
     logMsg(func + " end");
     return (returnType);
 }

@@ -232,7 +232,8 @@ bool entity::loadModel()  // loads the 3D model
     node->setScale(0.25f,0.25f,0.25f);
     node->setPosition(0.0f,0.0f,0.0f);
 */
-   return true;
+    logMsg(func +" end");
+    return true;
 }
 
 /*bool entity::setupPhysics()  // sets up the physics object

@@ -50,6 +50,7 @@ bool gameStateShared::tipOffComplete;  // Determines whether or not game Tip Off
 
 gameTypes gameStateShared::gameType;  // Indicates whether a single or multi player game is being played.
 quarters gameStateShared::quarter;  // stores the quarter currently being played
+size_t gameStateShared::numActiveBasketballs;  // stores the number of active basketballs in the game.
 sizeTVec gameStateShared::teamIDS;  // std::vector that stores the IDs of the 2 teams currently playing
 std::vector<std::unordered_map<std::string, size_t> > gameStateShared::teamStarterID;  // stores the selected starters for each team
 Ogre::Vector3 gameStateShared::bballNodePosition;  // stores a copy of the basketball node position
@@ -93,6 +94,7 @@ gameStateShared::gameStateShared()  // constructor
     activeTeamInstanceChanged = false;
     gameSetupComplete = false;
     quarter = NOQUARTER;
+    numActiveBasketballs = 0;
     yOffset = 0.0;
     teamWithBall = NOTEAM;
     jumpBallCreated = false;
@@ -121,11 +123,19 @@ quarters gameStateShared::getQuarter()  // retrieves the value of quarter
 {
     return (quarter);
 }
-void gameStateShared::setQuarter(quarters set)  // sets he value of quarter
+void gameStateShared::setQuarter(quarters set)  // sets the value of quarter
 {
     quarter = set;
 }
 
+size_t gameStateShared::getNumActiveBasketballs()  // retrieves the value of numActiveBasketballs
+{
+    return (numActiveBasketballs);
+}
+void gameStateShared::setNumActiveBasketballs(size_t set)  // sets the value of numActiveBasketballs
+{
+    numActiveBasketballs = set;
+}
 
 sizeTVec gameStateShared::getTeamIDS()  // retrieves the value of teamIDS
 {

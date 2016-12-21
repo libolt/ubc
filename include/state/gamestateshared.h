@@ -122,7 +122,10 @@ class gameStateShared
         void setTipOffComplete(bool set);  // sets the value of tipOffComplet
 
         quarters getQuarter();  // retrieves the value of quarter
-        void setQuarter(quarters set);  // sets he value of quarter
+        void setQuarter(quarters set);  // sets the value of quarter
+
+        size_t getNumActiveBasketballs();  // retrieves the value of numActiveBasketballs
+        void setNumActiveBasketballs(size_t set);  // sets the value of numActiveBasketballs
 
         Ogre::Vector3 getBBallNodePosition();  // retrieves the value of bballNodePosition
         void setBBallNodePosition(Ogre::Vector3 set);  // sets the value of bballNodePosition
@@ -132,7 +135,6 @@ class gameStateShared
         
         basketballStateUMSharedPtr getActiveBasketballInstance();  // retrieves the value of activeBasketballInstance
         void setActiveBasketballInstance(basketballStateUMSharedPtr set);  // sets the value of activeBasketballInstance
-
 
         courtStateUMSharedPtr getActiveCourtInstance();  // retrieves the value of activeCourtInstance
         void setActiveCourtInstance(courtStateUMSharedPtr set);  // sets the value of activeCourtInstance
@@ -195,6 +197,7 @@ class gameStateShared
 
         static gameTypes gameType;  // Indicates whether a single or multi player game is being played.
         static quarters quarter;  // stores the quarter currently being played
+        static size_t numActiveBasketballs;  // stores the number of active basketballs in the game.
         static sizeTVec teamIDS;  // std::vector that stores the IDs of the 2 teams currently playing
         static std::vector<std::unordered_map<std::string, size_t> > teamStarterID;  // stores the selected starters for each team
         static Ogre::Vector3 bballNodePosition;  // stores a copy of the basketball node position

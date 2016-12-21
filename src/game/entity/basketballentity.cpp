@@ -1,4 +1,4 @@
-/**************************************p*************************************
+/***************************************************************************
  *   Copyright (C) 1999 - 2016 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "entity/basketballentity.h"
+#include "conversion.h"
 #include "logging.h"
 
 basketballEntity::basketballEntity()  // constructor
@@ -50,13 +51,14 @@ void basketballEntity::setSteer(basketballSteerSharedPtr set)  // sets the value
 
 bool basketballEntity::setupPhysicsObject()  // sets up the physics object
 {
+    boost::shared_ptr<conversion> convert = conversion::Instance();
     std::string func = "basketballEntity::setupPhysicsObject()";
     Ogre::Entity *tempModel = getModel().get();
     Ogre::SceneNode *tempNode = getNode().get();
     btRigidBody *tempPhysBody = getPhysBody().get();
-    
+    bool returnType = false;
     logMsg(func +" beginning");
-    
+    logMsg("tempNode->getName() == " +tempNode->getName());
     setShapeType(SPHERE);
     logMsg(func +" setShapeType!");
     setColObject(COL_BBALL);
@@ -68,16 +70,19 @@ bool basketballEntity::setupPhysicsObject()  // sets up the physics object
     {
         logMsg(func +" setupPhysics!");
         setPhysicsSetup(true);
-        
+
         setModel(OgreEntitySharedPtr(tempModel));
         setNode(OgreSceneNodeSharedPtr(tempNode));
-        setPhysBody(btRigidBodySharedPtr(tempPhysBody));
+/*        setPhysBody(btRigidBodySharedPtr(tempPhysBody));
 //        exit(0);
-        return (true);
+        returnType = true;;
+*/
     }
     else
     {
     }
 
-    return (false);
+    logMsg(func +"end");
+
+    return (returnType);
 }

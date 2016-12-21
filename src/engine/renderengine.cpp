@@ -430,11 +430,13 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 
     if (buildType == "Debug")
     {
+        logMsg(func +" Loading GL Debug RenderSystem!");
         RERoot->loadPlugin(pluginDir + "/RenderSystem_GL_d.dll");
 //        RERoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager_d");
     }
     else
     {
+        logMsg(func +" Loading GL Release RenderSystem!");
         RERoot->loadPlugin(pluginDir + "/RenderSystem_GL");
 //        RERoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager");
     }

@@ -116,6 +116,7 @@ bool physics::setup()  // sets up the state of the object
 
 bool physics::setupPhysics(Ogre::Entity **model, Ogre::SceneNode **node, btRigidBody **body)  // sets up physics for the object
 {
+    
 //    setCollidesWith(COL_COURT);  // collides with the court
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
@@ -130,16 +131,17 @@ bool physics::setupPhysics(Ogre::Entity **model, Ogre::SceneNode **node, btRigid
     inertia = btVector3(0,0,0);
     btRigidBody *physBody;
     btCollisionShape *tempShape; 
+    
     std::string func = "physics::setupPhysics()";
     
     logMsg(func +" beginning");
     
     //Create the basketball shape.
-/*    if (getNumber() != 999999 && basketballInstance[getNumber()].getModelLoaded()) //&& gameS->getBasketballInstancesCreated())
-    {
-        logMsg("bball number == " +convert->toString(getNumber()));
+///    if (getNumber() != 999999 && basketballInstance[getNumber()].getModelLoaded()) //&& gameS->getBasketballInstancesCreated())
+///    {
+///        logMsg("bball number == " +convert->toString(getNumber()));
 //        exit(0);
-*/
+
         BtOgre::StaticMeshToShapeConverter converter(*model);
         
         logMsg(func +" BtOgre::StaticMeshToShapeConverter");
@@ -224,15 +226,15 @@ bool physics::setupPhysics(Ogre::Entity **model, Ogre::SceneNode **node, btRigid
 
 //        gameS->setBasketballInstance(basketballInstance);
         return (true);
-/*    }
-    else
-    {
-        basketballInstance[getNumber()].setModelNeedsLoaded(true);
-        gameS->setBasketballInstance(basketballInstance);
-        logMsg("Model Needs Loaded!");
+///    }
+///    else
+///    {
+///        basketballInstance[getNumber()].setModelNeedsLoaded(true);
+///        gameS->setBasketballInstance(basketballInstance);
+///        logMsg("Model Needs Loaded!");
 //        exit(0);
-    }
-    */
+///    }
+
     logMsg(func +" end");
  
     return (true);

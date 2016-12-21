@@ -57,8 +57,10 @@ bool basketballEntity::setupPhysicsObject()  // sets up the physics object
     Ogre::SceneNode *tempNode = getNode().get();
     btRigidBody *tempPhysBody = getPhysBody().get();
     bool returnType = false;
+    
     logMsg(func +" beginning");
-    logMsg("tempNode->getName() == " +tempNode->getName());
+    
+/*    logMsg("tempNode->getName() == " +tempNode->getName());
     setShapeType(SPHERE);
     logMsg(func +" setShapeType!");
     setColObject(COL_BBALL);
@@ -68,20 +70,25 @@ bool basketballEntity::setupPhysicsObject()  // sets up the physics object
 
     if (setupPhysics(&tempModel, &tempNode, &tempPhysBody))
     {
+*/        
         logMsg(func +" setupPhysics!");
         setPhysicsSetup(true);
 
-        setModel(OgreEntitySharedPtr(tempModel));
-        setNode(OgreSceneNodeSharedPtr(tempNode));
-/*        setPhysBody(btRigidBodySharedPtr(tempPhysBody));
+        logMsg(func +" modelName == " +tempModel->getName());
+        logMsg(func +" nodeName == " +tempNode->getName());
+
+//        exit(0);
+//        setModel(OgreEntitySharedPtr(tempModel));
+//        setNode(OgreSceneNodeSharedPtr(tempNode));
+        setPhysBody(btRigidBodySharedPtr(tempPhysBody));
 //        exit(0);
         returnType = true;;
-*/
-    }
+
+/*    }
     else
     {
     }
-
+*/
     logMsg(func +"end");
 
     return (returnType);

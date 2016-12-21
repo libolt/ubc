@@ -143,6 +143,7 @@ void AISystem::selectDefaultPlugIn()  // selects the default plugin
 
     logMsg(func +" beginning");
     OpenSteer::PlugIn::sortBySelectionOrder();
+    logMsg(func +" alive?");
     selectedPlugIn = OpenSteerPluginSharedPtr(OpenSteer::PlugIn::findDefault());
     logMsg(func +" end");
 }

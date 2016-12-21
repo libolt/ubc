@@ -781,6 +781,14 @@ bool gameState::loadBasketballModel()  // loads selected basketball model
                 ABIIT.second->setBase(base);
             }
         }
+        
+        if (ABIIT.second->getEntityName() == "")
+        {
+            std::string name = ABIIT.second->getName();
+            ABIIT.second->setEntityName(name);
+        }
+        logMsg(func +" entityName == " +ABIIT.second->getEntityName());
+//        exit(0);
         if (ABIIT.second->getEntityNodeName() == "")
         {
             std::string nodeName = ABIIT.second->getName() +"node";
@@ -792,7 +800,10 @@ bool gameState::loadBasketballModel()  // loads selected basketball model
         logMsg(func +" loading model == " +ABIIT.second->getEntityModelFileName());
         if (ABIIT.second->loadModel())
         {
-            logMsg(func +" blee!");
+            logMsg(func +" modelName == " +ABIIT.second->getModel()->getName());
+            logMsg(func +" nodeName == " +ABIIT.second->getNode()->getName());
+ 
+//            exit(0);
             ABIIT.second->setModelNeedsLoaded(false);
             logMsg(func +" blaa!");
             ABIIT.second->setModelLoaded(true);
@@ -1284,9 +1295,12 @@ bool gameState::setupState()  // sets up the game condition
 //    basketballInstance[activeBBallInstance].getNode()->setPosition(1.4f,5.0f,366.0f);
 
 
-///FIXME    physEngine.setupState();  // sets up the Physics Engine state
+/// FIXME    physEngine.setupState();  // sets up the Physics Engine state
 //    exit(0);
-    ai->setup();
+    
+/// FIXME! AI code disabled!
+    
+///    ai->setup();
 
 //        Ogre::Entity *ent;
 //        ent = player->getModel(0);

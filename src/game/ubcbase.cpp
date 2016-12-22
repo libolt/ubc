@@ -26,6 +26,7 @@
 
 // Static Declarations
 bool UBCBase::stateSetup;
+bool UBCBase::startActiveGame;  // stores whether to begin an active game instance
 boost::shared_ptr<gameEngine> UBCBase::gameE;  // the gameEngine object
 boost::shared_ptr<gameState> UBCBase::gameS;  // the gameState object
 boost::shared_ptr<networkState> UBCBase::networkS;  // the networkState object
@@ -34,6 +35,7 @@ boost::shared_ptr<inputState> UBCBase::inputS;  // the inputState object
 UBCBase::UBCBase()  // constructor
 {
     stateSetup = false;
+    startActiveGame = false;
 }
 
 UBCBase::~UBCBase()  // destructor
@@ -49,6 +51,15 @@ bool UBCBase::getStateSetup()  // retrieves the value of stateSetup
 void UBCBase::setStateSetup(bool set)  // sets the value of stateSetup
 {
     stateSetup = set;
+}
+
+bool UBCBase::getStartActiveGame()  // retrieves the value of startActiveGame
+{
+    return (startActiveGame);
+}
+void UBCBase::setStartActiveGame(bool set)  // sets the value of startActiveGame
+{
+    startActiveGame = set;
 }
 
 boost::shared_ptr<gameEngine> UBCBase::getGameE()  // retrieves the value of gameE

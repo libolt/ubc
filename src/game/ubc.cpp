@@ -505,10 +505,19 @@ bool UBC::gameLoop()  // Main Game Loop
                 }
             }
         }
-        if (startGame())
+        if (base->getStartActiveGame())
         {
-            base->getGameE()->setStart(false);
-            base->getGameE()->setRenderScene(true);
+            if (startGame())
+            {
+                base->getGameE()->setStart(false);
+                base->getGameE()->setRenderScene(true);
+                base->setStartActiveGame(false);
+            }
+            else
+            {
+                logMsg(func + " Unable to Start Active Game Instance!");
+                exit(0);
+            }
         }
         if (!base->getGameE()->getRenderE()->renderFrame())
         {

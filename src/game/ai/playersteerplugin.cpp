@@ -77,7 +77,7 @@ void playerSteerPlugin::open()
         }
 //        ++x;
     }
-
+    exit(0);
 /*	while (x<team0ActivePlayerInstance.size())
 	{
 //		logMsg("Alive0");

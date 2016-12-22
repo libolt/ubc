@@ -1298,9 +1298,7 @@ bool gameState::setupState()  // sets up the game condition
 /// FIXME    physEngine.setupState();  // sets up the Physics Engine state
 //    exit(0);
     
-/// FIXME! AI code disabled!
-    
-///    ai->setup();
+    ai->setup();
 
 //        Ogre::Entity *ent;
 //        ent = player->getModel(0);

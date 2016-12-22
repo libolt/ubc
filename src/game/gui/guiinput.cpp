@@ -1,5 +1,5 @@
 /***************************************************************************
- *   .opyright (C) 1999 - 2016 by Mike McLean                              *
+ *   Copyright (C) 1999 - 2016 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -156,6 +156,7 @@ void GUISystem::startingLineupSetButtonClicked(MyGUI::Widget *_sender)  // handl
 {
     checkTeamInstancesCreated();
     playerStartSelected();
+    base->setStartActiveGame(true);
 //    exit(0);
 }
 
@@ -626,6 +627,8 @@ void GUISystem::processPlayerStartSelectionMenuKeyPress(std::string keyPressed) 
         logMsg("processPlayerStart KeyPressed == " +keyPressed);
 //        exit(0);
         playerStartSelected();
+        base->setStartActiveGame(true);
+
     }
     else if (keyPressed == "b")
     {

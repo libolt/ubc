@@ -467,8 +467,7 @@ void playerSteer::checkCourtPosition()  // checks if the player's position has c
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
 //    boost::shared_ptr<gameState> gameS = gameState::Instance();
-    logMsg("checkCourtAlive!");
-
+    
     comparison compare;
 //    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
     //playerStateVec team0ActivePlayerInstance = activeTeamInstance[0].getActivePlayerInstance();
@@ -483,18 +482,30 @@ void playerSteer::checkCourtPosition()  // checks if the player's position has c
     Ogre::Vector3 *offenseStartPositions;
     OpenSteer::Vec3 startPosition;
     OpenSteer::Vec3 seekTarget;
-    
+    std::string func = "playerSteer::checkCourtPosition()"; 
+    std::string humanPlayer = getActiveTeamInstance()[teamType]->getHumanPlayer();
 //    size_t z = 0;
 //    while (z < getActiveTeamInstance().size())
     for (auto ATIIT : getActiveTeamInstance())
     {
         activePlayerInstance.push_back(ATIIT.second->getActivePlayerInstance());
+	for (auto APIIT : activePlayerInstance[ATIIT.first])
+	{
+            if (convert->toString(APIIT.second->getActivePosition()) != humanPlayer)  // makes sure to not steer human player
+            {
+                logMsg(func +" activePosition != humanPlayer");
+            }	    
+            else
+            {
+                logMsg(func +" activePositoin == humanPlayer!");
+            }
+	}
 //        ++z;
     }
-    std::string humanPlayer = getActiveTeamInstance()[teamType]->getHumanPlayer();
-    logMsg("steer Human Player = " +humanPlayer);
+    exit(0);
+    logMsg(func +" steer Human Player = " +humanPlayer);
 //    playerStateVecSharedPtr tempPlayerInstance = activePlayerInstance[teamType][ID];
-    if (convert->toString(activePlayerInstance[teamType][ID]->getActivePosition()) != humanPlayer)  // makes sure to not steer human player
+/*    if (convert->toString(activePlayerInstance[teamType][ID]->getActivePosition()) != humanPlayer)  // makes sure to not steer human player
     {
         if (activePlayerInstance[teamType][ID]->getInitialized())
         {
@@ -516,6 +527,7 @@ void playerSteer::checkCourtPosition()  // checks if the player's position has c
     {
         
     }
+    */
     getActiveTeamInstance()[teamType]->setActivePlayerInstance(activePlayerInstance[teamType]);
 
 //    gameS->setActiveTeamInstance(getActiveTeamInstance());
@@ -530,11 +542,11 @@ void playerSteer::checkCourtPosition()  // checks if the player's position has c
         activePlayerI.push_back(ATIIT.second->getActivePlayerInstance());
 //        ++w;
     }
-    if (activePlayerI[teamType][ID]->getCourtPositionChangedType() == STEERCHANGE)
+/*    if (activePlayerI[teamType][ID]->getCourtPositionChangedType() == STEERCHANGE)
     {
-        logMsg("SteerChanged!!");
+        logMsg(func +" SteerChanged!!");
     }
-    
+*/  
 }
 
 void playerSteer::updateOffense(const float currentTime, const float elapsedTime)  // updates the offense steering sim

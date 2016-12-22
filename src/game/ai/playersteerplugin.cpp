@@ -53,14 +53,21 @@ void playerSteerPlugin::open()
 //	for (size_t x=0;x<team0ActivePlayerInstance.size();++x)
 //    size_t x = 0;
 //    while (x < getActiveTeamInstance().size())
+    logMsg(func +"getActiveTeamInstance().size() == " +convert->toString(getActiveTeamInstance().size()));
+//    exit(0);
     for (auto ATIIT : getActiveTeamInstance())
     {
+        if (ATIIT.second->getActivePlayerInstancesCreated())
         logMsg(func +" for (auto ATIIT : getActiveTeamInstance())");
         activePlayerInstance.push_back(ATIIT.second->getActivePlayerInstance());
+        logMsg(func +" activePlayerInstance.size() == " +convert->toString(activePlayerInstance.size()));
 //        size_t y = 0;
 //        while (y < activePlayerInstance[x].size())
+        logMsg(func +"AIIT.first == " +convert->toString(ATIIT.first));
+        logMsg(func +"activePlayerInstance[ATIIT.first].size() == " +convert->toString(activePlayerInstance[ATIIT.first].size()));
         for (auto APIIT : activePlayerInstance[ATIIT.first])
         {
+            logMsg(func +" for (auto APIIT : activePlayerInstance[ATIIT.first])");
             playerSteerSharedPtr steer = APIIT.second->getSteer();
         //      logMsg("Alive1");
             logMsg("APIIT.first = " +convert->toString(APIIT.first));

@@ -137,6 +137,9 @@ public:
     playerStateUMSharedPtr getActivePlayerInstance();  // retrieves the value of activePlayerInstance
     void setActivePlayerInstance(playerStateUMSharedPtr set);  // sets the value of activePlayerInstance
 
+    bool getActivePlayerInstancesCreated();  // retrieves the value of activePlayerInstancesCreated
+    void setActivePlayerInstancesCreated(bool set);  // sets the value of activePlayerInstancesCreated
+
     bool getPlayerInstancesCreated();  // retrieves the value of the playerInstancesCreated
     void setPlayerInstancesCreated(bool set);  // sets the value of the playerInstancesCreated
 
@@ -229,6 +232,9 @@ private:
     playerStateUMSharedPtr activePlayerInstance;  // stores instance of the playerState class containing the active players
 
     std::vector <std::string> playerModelsLoaded;  // creates a vector of strings that holds the models which are loaded
+
+    bool activePlayerInstancesCreated;  // stores whether the active player instances have been created
+
     bool playerInstancesCreated;  // stores whether player instances have been created
     size_t playerInstanceCreatedCount;  // stores number of playerInstances that have been created
     size_t playerWithBallID;  // stores the ID of the player that has the ball

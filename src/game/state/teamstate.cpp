@@ -62,6 +62,7 @@ teamState::teamState()  // constructor
 
 //    activePlayerID = new size_t[5];
 
+    activePlayerInstancesCreated = false;
 
     playerInstancesCreated = false;
     playerInstanceCreatedCount = 0;
@@ -336,6 +337,15 @@ playerStateUMSharedPtr teamState::getActivePlayerInstance()  // retrieves the va
 void teamState::setActivePlayerInstance(playerStateUMSharedPtr set) // sets the value of activePlayerInstance
 {
     activePlayerInstance = set;
+}
+
+bool teamState::getActivePlayerInstancesCreated()  // retrieves the value of activePlayerInstancesCreated
+{
+    return (activePlayerInstancesCreated);
+}
+void teamState::setActivePlayerInstancesCreated(bool set)  // sets the value of activePlayerInstancesCreated
+{
+    activePlayerInstancesCreated = set;
 }
 
 bool teamState::getPlayerInstancesCreated() // retrieves the value of playerInstancesCreated

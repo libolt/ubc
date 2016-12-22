@@ -43,7 +43,7 @@ void playerSteerPlugin::open()
     std::vector<int> team0ActivePlayerID = activeTeamInstance[0].getActivePlayerID();
     std::vector<int> team1ActivePlayerID = activeTeamInstance[1].getActivePlayerID();
 */
-    std::vector <playerStateUMSharedPtr > activePlayerInstance;
+    std::vector <std::unordered_map<std::string, playerStateSharedPtr> > activePlayerInstance;
     playerSteerVecSharedPtr allPlayerSteers = ai->getAllPlayerSteers();
     std::string func = "playerSteerPlugin::open()";
     logMsg(func +" beginning");
@@ -70,7 +70,7 @@ void playerSteerPlugin::open()
             logMsg(func +" for (auto APIIT : activePlayerInstance[ATIIT.first])");
             playerSteerSharedPtr steer = APIIT.second->getSteer();
         //      logMsg("Alive1");
-            logMsg("APIIT.first = " +convert->toString(APIIT.first));
+            logMsg("APIIT.first = " +APIIT.first);
             logMsg("player position = " +convert->toString(APIIT.second->getCourtPosition()));
             steer->setPosition(convert->toOpenSteerVec3(APIIT.second->getCourtPosition()));
         //      steer.setPosition(OpenSteer::Vec3(0,0,0));
@@ -189,7 +189,7 @@ void playerSteerPlugin::update(const float currentTime, const float elapsedTime)
 //    std::vector<int> team0ActivePlayerID = activeTeamInstance[0].getActivePlayerID();
 //    std::vector<int> team1ActivePlayerID = activeTeamInstance[1].getActivePlayerID();
 
-    std::vector<playerStateUMSharedPtr > activePlayerInstance;
+    std::vector<std::unordered_map<std::string, playerStateSharedPtr> > activePlayerInstance;
 //	exit(0);
     // update simulation of test vehicle
 //    logMsg("team 0 activePlayerInstance size =  " +convert->toString(team0ActivePlayerInstance.size()));
@@ -211,7 +211,7 @@ void playerSteerPlugin::update(const float currentTime, const float elapsedTime)
             if (APIIT.first != ATIIT.second->getHumanPlayer() && APIIT.second->getModelLoaded())
             {
 //                exit(0);
-                logMsg("ATIIT.first = " +convert->toString(ATIIT.first) +"APIIT.first = " +convert->toString(APIIT.first));
+//                logMsg("ATIIT.first = " +ATIIT.first +"APIIT.first = " +APIIT.first);
                 APIIT.second->getSteer()->update(currentTime, elapsedTime);
             }
 //            ++y;

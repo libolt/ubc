@@ -1068,8 +1068,8 @@ void GUISystem::playerStartSelected()  // process player start selection
         teamStarters[w].insert(std::pair<std::string, std::string>("C", teamPlayerPosSelectBox[w]["C"]->getItemNameAt(teamPlayerPosSelectBox[w]["C"]->getIndexSelected())));  
         ++w;
     }
-    logMsg(func +" teamStarters[0][SF] == " +teamStarters[0]["SF"]);
-//    exit(0);
+    logMsg(func +" teamStarters[0][PG] == " +teamStarters[0]["PG"]);
+    exit(0);
     std::unordered_map<std::string, size_t> tempStarterID;
 
     while (teamStarterID.size() < 2)
@@ -1134,7 +1134,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     logMsg(func +" teamStarterID[0][PF] = " +convert->toString(teamStarterID[0]["PF"]));
     logMsg(func +" teamStarterID[0][C] = " +convert->toString(teamStarterID[0]["C"]));
 
-//    exit(0);
+    exit(0);
 /*    team0Starters.push_back(teamPlayerPosSelectBox[0]["SG"]->getItemNameAt(teamPlayerPosSelectBox[0]["SG"]->getIndexSelected()));
     teamStarterID[0][1] = team0IDs[1][teamPlayerPosSelectBox[0]["SG"]->getIndexSelected()];
     logMsg("teamStarterID[0][1] = " +convert->toString(teamStarterID[0][1]));
@@ -1209,7 +1209,24 @@ void GUISystem::playerStartSelected()  // process player start selection
 */
         }
     }
-//    exit(0);
+    
+    // create active player Instancea
+    for (auto ATIIT : activeTeamInstance)
+    {
+        logMsg(func +" ATIIT.first == " +convert->toString(ATIIT.first));
+        for (auto PIIT : ATIIT.second->getPlayerInstance())
+        {
+            logMsg(func +" ATIIT.first == " +convert->toString(ATIIT.first) +" PIIT.second->getID() == " +convert->toString(PIIT.second->getID()));
+            std::string teamStarterIDPG = convert->toString(teamStarterID[1]["PG"]);
+            logMsg("teamStarterID[ATIIT.first][PG] == " +teamStarterIDPG);
+  
+            if (PIIT.second->getID() == teamStarterID[ATIIT.first]["PG"])
+            {
+                logMsg(func +" WOOT!");
+            }
+        }
+    }
+    exit(0);
     playerInstance.clear();
     activePlayerInstance.clear();
 /*    playerInstance = base->getGameS()->getActiveTeamInstance()[0]->getPlayerInstance();

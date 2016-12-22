@@ -330,11 +330,11 @@ void teamState::setPlayerInstance(playerStateUMSharedPtr set)  // sets the value
     playerInstance = set;
 }
 
-playerStateUMSharedPtr teamState::getActivePlayerInstance()  // retrieves the value of activePlayerInstance
+std::unordered_map<std::string, playerStateSharedPtr> teamState::getActivePlayerInstance()  // retrieves the value of activePlayerInstance
 {
     return (activePlayerInstance);
 }
-void teamState::setActivePlayerInstance(playerStateUMSharedPtr set) // sets the value of activePlayerInstance
+void teamState::setActivePlayerInstance(std::unordered_map<std::string, playerStateSharedPtr> set) // sets the value of activePlayerInstance
 {
     activePlayerInstance = set;
 }
@@ -393,11 +393,11 @@ void teamState::setHumanControlled(bool set)        // sets the value of humanCo
     humanControlled = set;
 }
 
-size_t teamState::getHumanPlayer()      // retrieves the value of the humanPlayer
+std::string teamState::getHumanPlayer()      // retrieves the value of the humanPlayer
 {
     return (humanPlayer);
 }
-void teamState::setHumanPlayer(size_t set)      // sets the value of human player
+void teamState::setHumanPlayer(std::string set)      // sets the value of human player
 {
     humanPlayer = set;
 }
@@ -546,7 +546,7 @@ void teamState::updateState()   // updates the state of the object
                 logMsg("tipoffcomplete playerWithBallInstance == " +convert->toString(playerWithBallInstance));
 
                 size_t x = 0;
-                size_t instanceWithBall = -1;
+                std::string instanceWithBall;
 //                while (x < activePlayerInstance.size())
                 for (auto APIIT : activePlayerInstance)
                 {
@@ -566,7 +566,7 @@ void teamState::updateState()   // updates the state of the object
                 {
                     logMsg("Calculating Pass");
     //              exit(0);
-                    if (!playerInstance[instanceWithBall]->getPassCalculated())
+                    if (!activePlayerInstance[instanceWithBall]->getPassCalculated())
                     {
     //                  exit(0);
                         Ogre::Vector3 bballPos;
@@ -612,7 +612,7 @@ void teamState::updateState()   // updates the state of the object
         }
         logMsg("Team type = " +convert->toString(teamType));
 
-        logMsg("Human player = " +convert->toString(humanPlayer));
+        logMsg("Human player = " +humanPlayer);
                                         
         updatePlayerStates();
         //updatePlayerMovements();  // updates movement of player objects

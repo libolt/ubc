@@ -134,8 +134,8 @@ public:
     playerStateUMSharedPtr getPlayerInstance();  // retrieves the value of playerInstance
     void setPlayerInstance(playerStateUMSharedPtr set);  // sets the value of  playerInstance
 
-    playerStateUMSharedPtr getActivePlayerInstance();  // retrieves the value of activePlayerInstance
-    void setActivePlayerInstance(playerStateUMSharedPtr set);  // sets the value of activePlayerInstance
+    std::unordered_map<std::string, playerStateSharedPtr> getActivePlayerInstance();  // retrieves the value of activePlayerInstance
+    void setActivePlayerInstance(std::unordered_map<std::string, playerStateSharedPtr> set);  // sets the value of activePlayerInstance
 
     bool getActivePlayerInstancesCreated();  // retrieves the value of activePlayerInstancesCreated
     void setActivePlayerInstancesCreated(bool set);  // sets the value of activePlayerInstancesCreated
@@ -155,8 +155,8 @@ public:
     bool getHumanControlled();  // retrieves the value of the humanControlled
     void setHumanControlled(bool set);  // sets the value of the humanControlled
 
-    size_t getHumanPlayer();  // retrieves the value of the humanPlayer
-    void setHumanPlayer(size_t set);  // sets the value of the human player
+    std::string getHumanPlayer();  // retrieves the value of the humanPlayer
+    void setHumanPlayer(std::string set);  // sets the value of the human player
 
     size_t getHoop();  // retrieves the value of hoop
     void setHoop(size_t set);  // sets the value of hoop
@@ -229,7 +229,7 @@ private:
     bool defense;  // if set then the team is on defense
 
     playerStateUMSharedPtr playerInstance;  // stores instance of the playerState class containing all team players
-    playerStateUMSharedPtr activePlayerInstance;  // stores instance of the playerState class containing the active players
+    std::unordered_map<std::string, playerStateSharedPtr> activePlayerInstance;  // stores instance of the playerState class containing the active players
 
     std::vector <std::string> playerModelsLoaded;  // creates a vector of strings that holds the models which are loaded
 
@@ -242,7 +242,7 @@ private:
     bool playerWithBallDribbling;  // stores whether the player with the ball is dribbling
 
     bool humanControlled;  // stores whether the team object is controlled by a human player;
-    size_t humanPlayer;  // stores which player is human controlled
+    std::string humanPlayer;  // stores which player is human controlled
 
     size_t hoop;  // holds which hoop the team is shooting on
     offenseStateSharedPtr offenseInstance;  // stores the offenseState instance

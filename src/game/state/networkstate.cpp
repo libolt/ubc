@@ -58,7 +58,7 @@ void networkState::processLocalInput(teamStateVecSharedPtr activeTeamInstance)  
     
 //    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
     int humanControlled = activeTeamInstance[getNetworkE()->getTeamType()]->getHumanControlled();
-    int humanPlayer = activeTeamInstance[getNetworkE()->getTeamType()]->getHumanPlayer();
+    std::string humanPlayer = activeTeamInstance[getNetworkE()->getTeamType()]->getHumanPlayer();
 
 //                              logMsg("INPUT MAP ======== "  +toString(inputMap));
     std::string packetData;
@@ -74,7 +74,7 @@ void networkState::processLocalInput(teamStateVecSharedPtr activeTeamInstance)  
 //                                      packetData = "player0up";
                 netPStateObj.setPacketType(3);
                 netPStateObj.setTeamID(getNetworkE()->getTeamType());
-                netPStateObj.setPlayerID(humanPlayer);
+//                netPStateObj.setPlayerID(humanPlayer);
                 netPStateObj.setMovement(true);
                 netPStateObj.setDirection(0);
                 ss << netPStateObj;
@@ -84,7 +84,7 @@ void networkState::processLocalInput(teamStateVecSharedPtr activeTeamInstance)  
 //                                      packetData = "player0down";
                 netPStateObj.setPacketType(3);
                 netPStateObj.setTeamID(getNetworkE()->getTeamType());
-                netPStateObj.setPlayerID(humanPlayer);
+//                netPStateObj.setPlayerID(humanPlayer);
                 netPStateObj.setMovement(true);
                 netPStateObj.setDirection(1);
                 ss << netPStateObj;
@@ -94,7 +94,7 @@ void networkState::processLocalInput(teamStateVecSharedPtr activeTeamInstance)  
 //                                      packetData = "player0left";
                 netPStateObj.setPacketType(3);
                 netPStateObj.setTeamID(getNetworkE()->getTeamType());
-                netPStateObj.setPlayerID(humanPlayer);
+//                netPStateObj.setPlayerID(humanPlayer);
                 netPStateObj.setMovement(true);
                 netPStateObj.setDirection(2);
                 ss << netPStateObj;
@@ -104,7 +104,7 @@ void networkState::processLocalInput(teamStateVecSharedPtr activeTeamInstance)  
 //                                      packetData = "player0right";
                 netPStateObj.setPacketType(3);
                 netPStateObj.setTeamID(getNetworkE()->getTeamType());
-                netPStateObj.setPlayerID(humanPlayer);
+//                netPStateObj.setPlayerID(humanPlayer);
                 netPStateObj.setMovement(true);
                 netPStateObj.setDirection(3);
                 ss << netPStateObj;
@@ -114,7 +114,7 @@ void networkState::processLocalInput(teamStateVecSharedPtr activeTeamInstance)  
 //                                      packetData = "player0upleft";
                 netPStateObj.setPacketType(3);
                 netPStateObj.setTeamID(getNetworkE()->getTeamType());
-                netPStateObj.setPlayerID(humanPlayer);
+//                netPStateObj.setPlayerID(humanPlayer);
                 netPStateObj.setMovement(true);
                 netPStateObj.setDirection(4);
                 ss << netPStateObj;
@@ -124,7 +124,7 @@ void networkState::processLocalInput(teamStateVecSharedPtr activeTeamInstance)  
 //                                      packetData = "player0upright";
                 netPStateObj.setPacketType(3);
                 netPStateObj.setTeamID(getNetworkE()->getTeamType());
-                netPStateObj.setPlayerID(humanPlayer);
+//                netPStateObj.setPlayerID(humanPlayer);
                 netPStateObj.setMovement(true);
                 netPStateObj.setDirection(5);
                 ss << netPStateObj;
@@ -134,7 +134,7 @@ void networkState::processLocalInput(teamStateVecSharedPtr activeTeamInstance)  
 //                                      packetData = "player0downleft";
                 netPStateObj.setPacketType(3);
                 netPStateObj.setTeamID(getNetworkE()->getTeamType());
-                netPStateObj.setPlayerID(humanPlayer);
+//                netPStateObj.setPlayerID(humanPlayer);
                 netPStateObj.setMovement(true);
                 netPStateObj.setDirection(6);
                 ss << netPStateObj;
@@ -144,7 +144,7 @@ void networkState::processLocalInput(teamStateVecSharedPtr activeTeamInstance)  
 //                                      packetData = "player0downright";
                 netPStateObj.setPacketType(3);
                 netPStateObj.setTeamID(getNetworkE()->getTeamType());
-                netPStateObj.setPlayerID(humanPlayer);
+//                netPStateObj.setPlayerID(humanPlayer);
                 netPStateObj.setMovement(true);
                 netPStateObj.setDirection(7);
                 ss << netPStateObj;
@@ -153,7 +153,7 @@ void networkState::processLocalInput(teamStateVecSharedPtr activeTeamInstance)  
             case INSHOOTBLOCK:
                 netPStateObj.setPacketType(3);
                 netPStateObj.setTeamID(getNetworkE()->getTeamType());
-                netPStateObj.setPlayerID(humanPlayer);
+//                netPStateObj.setPlayerID(humanPlayer);
                 netPStateObj.setMovement(false);
                 netPStateObj.setShootBlock(true);
                 ss << netPStateObj;
@@ -162,7 +162,7 @@ void networkState::processLocalInput(teamStateVecSharedPtr activeTeamInstance)  
             case INPASSSTEAL:
                 netPStateObj.setPacketType(3);
                 netPStateObj.setTeamID(getNetworkE()->getTeamType());
-                netPStateObj.setPlayerID(humanPlayer);
+//                netPStateObj.setPlayerID(humanPlayer);
                 netPStateObj.setMovement(false);
                 netPStateObj.setPassSteal(true);
                 ss << netPStateObj;

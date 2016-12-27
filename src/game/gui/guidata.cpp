@@ -139,6 +139,8 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 //    exit(0);
     x = 0;
 //    while (x < activeTeamInstance.size())
+    logMsg("activeTeamInstance.size() == " +convert->toString(activeTeamInstance.size()));
+//    exit(0);
     for (auto ATIIT : activeTeamInstance)
     {
         logMsg(func +" yabadaba");
@@ -171,8 +173,8 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
                 exit(0);
             }
         }
-        playerInstance.push_back(ATIIT.second->getPlayerInstance());
-
+//        playerInstance.push_back(ATIIT.second->getPlayerInstance());
+        playerInstance.insert(playerInstance.begin(), ATIIT.second->getPlayerInstance());
        ++x;
     }
     logMsg("playerInstance.size() == " +convert->toString(playerInstance.size()));
@@ -197,6 +199,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 //        auto j = 0;
 //        while (j < playerInstance[i].size())
         for (auto pInstanceIT : *it)
+//        for (auto pInstanceIT : playerInstance[1])
         {
 //            std::string playerName = playerInstance[i][1]->getFirstName() +" " +playerInstance[i][1]->getLastName(); // +"            "; // +playerOverallRating;
             std::string playerName = pInstanceIT.second->getFirstName() +" " +pInstanceIT.second->getLastName();

@@ -976,7 +976,7 @@ void GUISystem::playerStartSelected()  // process player start selection
             logMsg(func +" team dee " +convert->toString(ATIIT.first) +" " +it.second->getFirstName() +" " +it.second->getLastName());
     //            ++y;
         }
-        playerInstance.push_back(activeTeamInstance[ATIIT.first]->getPlayerInstance());
+        playerInstance.insert(playerInstance.begin(), activeTeamInstance[ATIIT.first]->getPlayerInstance());
 //        auto y = 0;
 //        while (y < activeTeamInstance[1]->getPlayerInstance().size())
 //        ++x;
@@ -1069,7 +1069,7 @@ void GUISystem::playerStartSelected()  // process player start selection
         ++w;
     }
     logMsg(func +" teamStarters[0][PG] == " +teamStarters[0]["PG"]);
-    exit(0);
+//    exit(0);
     std::unordered_map<std::string, size_t> tempStarterID;
 
     while (teamStarterID.size() < 2)

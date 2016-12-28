@@ -75,13 +75,13 @@ public:
     void setBlocks(size_t set);  // sets the value of blocks
 
     size_t getFouls();  // retrieves the value of fouls
-    void setFouls(size_t set);   // sets the value of fouls
+    void setFouls(size_t set);  // sets the value of fouls
 
     size_t getRebounds();  // retrieves the value of rebounds
     void setRebounds(size_t set);  // sets the value of rebounds
 
     size_t getOffensiveRebounds();  // retrieves the value of offensiveRebounds
-    void setOffensiveRebounds(size_t set);   // sets the value of offensiveRebounds
+    void setOffensiveRebounds(size_t set);  // sets the value of offensiveRebounds
 
     size_t getDefensiveRebounds();  // retrieves the value of defensiveRebounds
     void setDefensiveRebounds(size_t set);  // sets the value of defensiveRebounds
@@ -146,8 +146,8 @@ public:
     size_t getPlayerWithBallID();  // retrieves the value of the playerWithBallID
     void setPlayerWithBallID(size_t set);  // sets the value of the playerWithBallID
 
-    size_t getPlayerWithBallInstance();	 // retrieves the value of the playerWithBall
-    void setPlayerWithBallInstance(size_t set);	 // sets the value of the playerWithBall
+    playerPositions getPlayerWithBallInstance();  // retrieves the value of the playerWithBall
+    void setPlayerWithBallInstance(playerPositions set);  // sets the value of the playerWithBall
 
     bool getPlayerWithBallDribbling();  // retrieves the value of the playerWithBallDribbling
     void setPlayerWithBallDribbling(bool set);  // sets the value of the playerWithBallDribbling
@@ -178,7 +178,6 @@ public:
 
     // creates player Instances
     bool createPlayerInstances();  // creates the player instances
-    bool createPlayerInstances_old();  // creates the player instances
 
     void setPlayerStartPositions();	 // sets the initial coordinates for the players.
     void setPlayerStartActivePositions();  // sets the position the players will play at the start of the game
@@ -189,7 +188,7 @@ public:
 
     void executePass();  // executes the pass between players
 
-    void updatePositions();  // updates the positions of game world objects
+    void updatePositions();  // updates player on court positionss
 
     void setupState();  // sets up the state for teamState object
     void updateState();  // updates the state of the teamState object
@@ -238,7 +237,7 @@ private:
     bool playerInstancesCreated;  // stores whether player instances have been created
     size_t playerInstanceCreatedCount;  // stores number of playerInstances that have been created
     size_t playerWithBallID;  // stores the ID of the player that has the ball
-    size_t playerWithBallInstance;  // stores which player has control of the basketball, valid values are 0 - 4
+    playerPositions playerWithBallInstance;  // stores which player has control of the basketball, valid values are 0 - 4
     bool playerWithBallDribbling;  // stores whether the player with the ball is dribbling
 
     bool humanControlled;  // stores whether the team object is controlled by a human player;

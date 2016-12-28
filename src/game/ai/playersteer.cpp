@@ -317,7 +317,7 @@ void playerSteer::update (const float currentTime, float elapsedTime)
 */
     OpenSteer::Vec3 playerSteerPos;
 //    playerSteerPos = convert->toOpenSteerVec3(activePlayerInstance[teamType][ID].getCourtPosition());
-    logMsg(convert->toString(activePlayerInstance[teamType][ID]->getCourtPosition()));
+    logMsg(convert->toString(activePlayerInstance[teamType][playerPosition]->getCourtPosition()));
 //    exit(0);
     /*
     size_t z = 0;
@@ -763,7 +763,7 @@ void playerSteer::updateDefense(const float currentTime, const float elapsedTime
                 ++x;
             }
             */
-            playerOPos = convert->toOpenSteerVec3(activePlayerInstance[1][ID]->getCourtPosition());
+            playerOPos = convert->toOpenSteerVec3(activePlayerInstance[1][convert->toString(playerPosition)]->getCourtPosition());
         break;
         case AWAYTEAM:
             /*logMsg("activeID size = " +convert->toString((team1ActivePlayerID.size())));
@@ -778,7 +778,7 @@ void playerSteer::updateDefense(const float currentTime, const float elapsedTime
                 }
                 ++x;
             }*/
-            playerOPos = convert->toOpenSteerVec3(activePlayerInstance[0][ID]->getCourtPosition());
+            playerOPos = convert->toOpenSteerVec3(activePlayerInstance[0][convert->toString(playerPosition)]->getCourtPosition());
         break;
         default:
         break;

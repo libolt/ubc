@@ -73,7 +73,7 @@ playerState::playerState()
     passSteal = false;
     passBall = false;
     passCalculated = false;
-    passToPlayer = -1;
+    passToPlayer = NONE;
     shotTaken = false;
     shotSet = false;
     shotComplete = false;
@@ -392,11 +392,11 @@ void playerState::setPassCompleted(bool set)  // sets the value of passCompleted
     passCompleted = set;
 }
 
-size_t playerState::getPassToPlayer()  // retrieves the value of passToPlayer
+playerPositions playerState::getPassToPlayer()  // retrieves the value of passToPlayer
 {
     return (passToPlayer);
 }
-void playerState::setPassToPlayer(size_t set)  // sets the value of passToPlayer
+void playerState::setPassToPlayer(playerPositions set)  // sets the value of passToPlayer
 {
     passToPlayer = set;
 }
@@ -929,49 +929,26 @@ void playerState::updateMovement()  // updates movement status of the player
 void playerState::calculatePass()   // calculates which player to pass the ball to
 {
     boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
-    
-    logMsg("In calculatePass function");
+    std::string func = "playerState::calculatepass()";
+
+    logMsg(func +" beginning");
+/*    logMsg("In calculatePass function");
 
     teamStateUMSharedPtr activeTeamInstance = getActiveTeamInstance();
     size_t teamWithBall = getTeamWithBall();
-    size_t playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();
-//    if (playerWithBall < 5)  // checks if the player belongs to the first team
-//    {
-        if (playerWithBallInstance +1 < 5)  // checks if the player + 1 is still on the first team
-        {
-            passToPlayer = playerWithBallInstance +1;
-        }
-        else
-        {
-            passToPlayer = 0;
-        }
-        
-//        }
-/*
-    else if (playerWithBall > 4)  // checks if the player belongs to the second team
-    {
-        if (playerWithBall + 1 < 10)  // checks if the player + 1 is still on the second team
-        {
-            passToPlayer = playerWithBall +1;
-        }
-        else
-        {
-            passToPlayer = 5;
-        }
-    }
-    else
-    {
-    }
-*/
+    playerPositions playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();
+    passToPlayer = playerWithBallInstance++;
+
 
     logMsg("Pass to player is now = " +convert->toString(passToPlayer));
 
 
     passCalculated = true;
 //    logMsg("Player to pass to =   " +convert->toString(passToPlayer));
-
+*/
 //    exit(0);
+
+    logMsg(func +" end");
 }
 
 void playerState::shotLogic(Ogre::Vector3 playerPos)

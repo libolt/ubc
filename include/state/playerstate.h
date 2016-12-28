@@ -154,8 +154,8 @@ class playerState : public state, public playerEntity, public playerData
         bool getPassCompleted();  // retrieves the value of passCompleted
         void setPassCompleted(bool set);  // sets the value of passCompleted
 
-        size_t getPassToPlayer();  // retrieves the value of passToPlayer
-        void setPassToPlayer(size_t set);  // sets the value of passToPlayer
+        playerPositions getPassToPlayer();  // retrieves the value of passToPlayer
+        void setPassToPlayer(playerPositions set);  // sets the value of passToPlayer
 
         bool getShotTaken();  // retrieves the value of shotTaken
         void setShotTaken(bool set);  // sets the value of shotTaken
@@ -309,7 +309,7 @@ class playerState : public state, public playerEntity, public playerData
         bool passBall;  // stores whether a player is to pass the ball to another player or not.
         bool passCalculated;  // stores whether or not the player to pass ball to has been calculated
         bool passCompleted;  // stores whether or not the pass has been completed
-        int passToPlayer;  // stores the value of the player to be passed to.
+        playerPositions passToPlayer;  // stores the value of the player to be passed to.
 
         // Shooting variables
         bool shotTaken;	 // Determines whether or not a player has shot the ball

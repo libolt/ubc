@@ -73,7 +73,7 @@ class playerSteer : public steering, public gameStateShared
     //Ball*	m_Ball;
     teamTypes teamType;  // stores which team the player belongs to
     int	m_MyID;
-    int ID; // Stores which player on the team the instance associates with
+    size_t ID; // Stores which player on the team the instance associates with
     playerPositions playerPosition;  // stores which position the player is playing
     float distToPosition; // stores the distance player is from target position
 	

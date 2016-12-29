@@ -1298,8 +1298,28 @@ bool gameState::setupState()  // sets up the game condition
 /// FIXME    physEngine.setupState();  // sets up the Physics Engine state
 //    exit(0);
     
+    for (auto ATIIT : getActiveTeamInstance())
+    {
+        if (ATIIT.second->getActivePlayerInstancesCreated())
+        {
+            logMsg(func +" activePlayerInstances Created!");
+//            exit(0);
+        }
+        else
+        {
+            logMsg(func + " activePlayerInstances NOT Created!!");
+            exit(0);
+        }
+        logMsg(func +" team name == " +ATIIT.second->getName());
+        logMsg(func +" ATIIT.second->getActivePlayerInstance().size() == " +convert->toString(ATIIT.second->getActivePlayerInstance().size()));
+    }
+    exit(0);
     ai->setup();
-
+    if (!ai->getBaseInitialized())
+    {
+        ai->setBase(getBase());
+        ai->setBaseInitialized(true);
+    }
 //        Ogre::Entity *ent;
 //        ent = player->getModel(0);
 //        player->mAnimationState2 = ent->getAnimationState("Walk");

@@ -29,8 +29,10 @@
 
 //#include "ai/playersteerplugin.h"
 
+// forward declarations
 class playerSteerPlugin;
 class playerSteer;
+class UBCBase;
 
 class AISystem
 {
@@ -40,6 +42,13 @@ public:
     static sharedPtr<AISystem> Instance();
 	~AISystem();
 
+    UBCBaseSharedPtr getBase();  // retrieves the value of base
+    void setBase(UBCBaseSharedPtr set);  // sets the value of base
+
+    bool getBaseInitialized();  // retrieves the value of baseInitialized
+    void setBaseInitialized(bool set);  // sets the value of baseInitialized
+    
+    
 //    OpenSteer::AbstractVehicle* getSelectedVehicle(); // retrieves the value of selectedVehicle
     OpenSteerAbstractVehicleSharedPtr getSelectedVehicle(); // retrieves the value of selectedVehicle
 
@@ -104,6 +113,10 @@ protected:
 private:
     //static AISystem *pInstance;
     static sharedPtr<AISystem> pInstance;
+    
+    static UBCBaseSharedPtr base;  // stores copy of base object
+    
+    bool baseInitialized;  // stores whether the base object has been initialized
     
 	// currently selected plug-in (user can choose or cycle through them)
 //    OpenSteer::PlugIn* selectedPlugIn;

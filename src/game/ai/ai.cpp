@@ -27,6 +27,9 @@
 
 #include <ctime>
 
+// static declarations
+UBCBaseSharedPtr AISystem::base;  // stores copy of base object
+
 //AISystem* AISystem::pInstance = 0;
 AISystemSharedPtr AISystem::pInstance;
 
@@ -44,6 +47,7 @@ AISystemSharedPtr AISystem::Instance()
 
 AISystem::AISystem()
 {
+    baseInitialized = false;
     selectedVehicle = NULL;
     oldTime = 0.0f;
 //    playerSteerPluginInstance = new playerSteerPlugin;
@@ -52,6 +56,24 @@ AISystem::AISystem()
 AISystem::~AISystem()
 {
 
+}
+
+UBCBaseSharedPtr AISystem::getBase()  // retrieves the value of base
+{
+    return (base);
+}
+void AISystem::setBase(UBCBaseSharedPtr set)  // sets the value of base
+{
+    base = set;
+}
+
+bool AISystem::getBaseInitialized()  // retrieves the value of baseInitialized
+{
+    return (baseInitialized);
+}
+void AISystem::setBaseInitialized(bool set)  // sets the value of baseInitialized
+{
+    baseInitialized = set;
 }
 
 OpenSteerAbstractVehicleSharedPtr AISystem::getSelectedVehicle()  // retrieves the value of selectedVehicle
@@ -175,6 +197,11 @@ void AISystem::openSelectedPlugIn()  // open the currently selected plug-in
     logMsg(func +" beginning");
 //    camera.reset ();
     selectedVehicle = NULL;
+/*    if (!selectedPlugIn->getBaseInitialized())
+    {
+        logMsg(func + " selectedPlugIn base not initialized!");
+        exit(0);
+    }*/
     selectedPlugIn->open();
     logMsg(func +" end");
 }

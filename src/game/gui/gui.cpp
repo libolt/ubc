@@ -1255,12 +1255,14 @@ void GUISystem::playerStartSelected()  // process player start selection
         }
         ATIIT.second->setActivePlayerInstance(activePlayerInstance);
         ATIIT.second->setActivePlayerInstancesCreated(true);
+        logMsg(func +" team name == " +ATIIT.second->getName());
+
         logMsg(func +" activePlayerInstance.size() == " +convert->toString(activePlayerInstance.size()));
     }
     base->getGameS()->setActiveTeamInstance(activeTeamInstance);
 //    exit(0);
-    playerInstance.clear();
-    activePlayerInstance.clear();
+//    playerInstance.clear();
+//    activePlayerInstance.clear();
 /*    playerInstance = base->getGameS()->getActiveTeamInstance()[0]->getPlayerInstance();
     auto y = 0;
     logMsg("GUI playerInstance.size() = " +convert->toString(playerInstance.size()));

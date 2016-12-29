@@ -25,6 +25,10 @@
 #include "ai/playersteer.h"
 #include "state/gamestateshared.h"
 
+// Forward declarations
+class UBCBase;
+
+
 // PlugIn for OpenSteerDemo
 class playerSteerPlugin : public OpenSteer::PlugIn, steering, public gameStateShared
 {
@@ -36,9 +40,15 @@ class playerSteerPlugin : public OpenSteer::PlugIn, steering, public gameStateSh
 
     // bool requestInitialSelection() { return true;}
 
-    // be more "nice" to avoid a compiler warning
-    ~playerSteerPlugin() {}
+    playerSteerPlugin();  // constructor
+    ~playerSteerPlugin();  // destructor
 
+    UBCBaseSharedPtr getBase();  // retrieves the value of base
+    void setBase(UBCBaseSharedPtr set);  // sets the value of base
+
+    bool getBaseInitialized();  // retrieves the value of baseInitialized
+    void setBaseInitialized(bool set);  // sets the value of baseInitialized
+    
     void open();  // opens the plugin
 
     void update (const float currentTime, const float elapsedTime);  // updates the plugin state
@@ -52,6 +62,12 @@ class playerSteerPlugin : public OpenSteer::PlugIn, steering, public gameStateSh
 
     OpenSteer::AVGroup& allVehicles () {return (OpenSteer::AVGroup&) TeamA;} // returns list of all 'vehicles' in the game
 
+    private: 
+  
+    static UBCBaseSharedPtr base;  // stores copy of base object
+    
+    bool baseInitialized;  // stores whether the base object has been initialized
+    
     unsigned int m_PlayerCountA;  // counts number of players on Team A
     unsigned int m_PlayerCountB;  // counts number of playres on Team B
     playerSteerVecSharedPtr TeamA;  // stores steering objects for Team A

@@ -36,8 +36,9 @@
 #include "ubcbase.h"
 
 // static declarations
-
 UBCBaseSharedPtr teamState::base;  // static copy of base class
+std::unordered_map<std::string, playerStateSharedPtr> teamState::activePlayerInstance;  // stores instance of the playerState class containing the active players
+
 //playerStateUMSharedPtr teamState::playerInstance;
 //    sizeTVec teamState::activePlayerID; 
 //static size_t teamState::teamID; 

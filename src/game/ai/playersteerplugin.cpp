@@ -26,9 +26,40 @@
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
 #include "state/gamestate.h"
-#include "logging.h"
 #include "state/teamstate.h"
 #include "state/playerstate.h"
+#include "logging.h"
+#include "ubcbase.h"
+
+// static declarations
+UBCBaseSharedPtr playerSteerPlugin::base;  // stores copy of base object
+
+playerSteerPlugin::playerSteerPlugin()  // constructor
+{
+    baseInitialized = false;
+}
+playerSteerPlugin::~playerSteerPlugin()  // destructor
+{
+    
+}
+
+UBCBaseSharedPtr playerSteerPlugin::getBase()  // retrieves the value of base
+{
+    return (base);
+}
+void playerSteerPlugin::setBase(UBCBaseSharedPtr set)  // sets the value of base
+{
+    base = set;
+}
+
+bool playerSteerPlugin::getBaseInitialized()  // retrieves the value of baseInitialized
+{
+    return (baseInitialized);
+}
+void playerSteerPlugin::setBaseInitialized(bool set)  // sets the value of baseInitialized
+{
+    baseInitialized = set;
+}
 
 void playerSteerPlugin::open()
 {
@@ -49,25 +80,33 @@ void playerSteerPlugin::open()
     logMsg(func +" beginning");
     logMsg(func +" Opening playerSteer plugin");
 
+    if (!baseInitialized)
+    {
+        base = getBase();
+        baseInitialized = true;
+    }
 	// builds team 0 steering instances
 //	for (size_t x=0;x<team0ActivePlayerInstance.size();++x)
 //    size_t x = 0;
 //    while (x < getActiveTeamInstance().size())
     logMsg(func +"getActiveTeamInstance().size() == " +convert->toString(getActiveTeamInstance().size()));
 //    exit(0);
-    for (auto ATIIT : getActiveTeamInstance())
+    for (auto ATIIT : base->getGameS()->getActiveTeamInstance())
     {
         if (ATIIT.second->getActivePlayerInstancesCreated())
         {
             logMsg(func +" activePlayerInstances Created!");
+//            exit(0);
         }
         else
         {
             logMsg(func + " activePlayerInstances NOT Created!!");
             exit(0);
         }
+        logMsg(func +" team name == " +ATIIT.second->getName());
+//        exit(0);
         logMsg(func +" for (auto ATIIT : getActiveTeamInstance())");
-        activePlayerInstance.push_back(ATIIT.second->getActivePlayerInstance());
+        activePlayerInstance.insert(activePlayerInstance.begin(), ATIIT.second->getActivePlayerInstance());
         logMsg(func +" activePlayerInstance.size() == " +convert->toString(activePlayerInstance.size()));
 //        size_t y = 0;
 //        while (y < activePlayerInstance[x].size())

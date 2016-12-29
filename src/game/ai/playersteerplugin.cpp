@@ -74,7 +74,9 @@ void playerSteerPlugin::open()
     std::vector<int> team0ActivePlayerID = activeTeamInstance[0].getActivePlayerID();
     std::vector<int> team1ActivePlayerID = activeTeamInstance[1].getActivePlayerID();
 */
-    std::vector <std::unordered_map<std::string, playerStateSharedPtr> > activePlayerInstance;
+//    std::vector <std::unordered_map<std::string, playerStateSharedPtr> > activePlayerInstance;
+    std::unordered_map<std::string, playerStateSharedPtr> activePlayerInstance;
+//    std::vector <std::unordered_map<std::string, playerStateSharedPtr> >::iterator activePlayerInstanceIT;
     playerSteerVecSharedPtr allPlayerSteers = ai->getAllPlayerSteers();
     std::string func = "playerSteerPlugin::open()";
     logMsg(func +" beginning");
@@ -82,7 +84,7 @@ void playerSteerPlugin::open()
 
     if (!baseInitialized)
     {
-        base = getBase();
+        base = ai->getBase();
         baseInitialized = true;
     }
 	// builds team 0 steering instances
@@ -103,19 +105,31 @@ void playerSteerPlugin::open()
             logMsg(func + " activePlayerInstances NOT Created!!");
             exit(0);
         }
+        activePlayerInstance = ATIIT.second->getActivePlayerInstance();
         logMsg(func +" team name == " +ATIIT.second->getName());
+        logMsg(func +" ATIIT.second->getActivePlayerInstance().size() == " +convert->toString(ATIIT.second->getActivePlayerInstance().size()));
+
 //        exit(0);
         logMsg(func +" for (auto ATIIT : getActiveTeamInstance())");
-        activePlayerInstance.insert(activePlayerInstance.begin(), ATIIT.second->getActivePlayerInstance());
+/*        activePlayerInstance.insert(activePlayerInstance.begin(), ATIIT.second->getActivePlayerInstance());
         logMsg(func +" activePlayerInstance.size() == " +convert->toString(activePlayerInstance.size()));
 //        size_t y = 0;
 //        while (y < activePlayerInstance[x].size())
         logMsg(func +" AIIT.first == " +convert->toString(ATIIT.first));
-        logMsg(func +" activePlayerInstance[ATIIT.first].size() == " +convert->toString(activePlayerInstance[ATIIT.first].size()));
-        for (auto APIIT : activePlayerInstance[ATIIT.first])
+        logMsg(func +" activePlayerInstance[ATIIT.first].size() == " +convert->toString(activePlayerInstance[1].size()));
+*/
+
+        for (auto APIIT : activePlayerInstance)
         {
             logMsg(func +" for (auto APIIT : activePlayerInstance[ATIIT.first])");
             playerSteerSharedPtr steer = APIIT.second->getSteer();
+            bool steerInitialized = APIIT.second->getSteerInitialized();
+            if (!steerInitialized)
+            {
+                playerSteerSharedPtr tempSteer(new playerSteer);
+                steer = tempSteer;
+                steerInitialized = true;
+            }
         //      logMsg("Alive1");
             logMsg(" APIIT.first = " +APIIT.first);
             logMsg(" player position = " +convert->toString(APIIT.second->getCourtPosition()));
@@ -124,14 +138,23 @@ void playerSteerPlugin::open()
         //      logMsg("Alive2");
 
         //      steer->setID(x);
+            logMsg(func +" ai->selectedVehicle = steer");
             ai->selectedVehicle = steer;
+            logMsg(func +" APIIT.second->setSteer(steer);");
             APIIT.second->setSteer(steer);
+            logMsg(func + " allPlayerSteers.push_back(APIIT.second->getSteer());");
             allPlayerSteers.push_back(APIIT.second->getSteer());
-//            ++y;
+    //            ++y;
+            logMsg(func +" allPlayerSteers.push_back(APIIT.second->getSteer());");
+            APIIT.second->setSteer(steer);
+            logMsg(func +" APIIT.second->setSteerInitialized(steerInitialized);");
+            APIIT.second->setSteerInitialized(steerInitialized);
         }
+        logMsg(func +" ATIIT.second->setActivePlayerInstance(activePlayerInstance);");
+        ATIIT.second->setActivePlayerInstance(activePlayerInstance);
 //        ++x;
     }
-    exit(0);
+//    exit(0);
 /*	while (x<team0ActivePlayerInstance.size())
 	{
 //		logMsg("Alive0");

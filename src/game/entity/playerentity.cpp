@@ -23,9 +23,11 @@
 
 // static declarations
 playerSteerSharedPtr playerEntity::steer;
+bool playerEntity::steerInitialized;
 
 playerEntity::playerEntity()  // constructor
 {
+    steerInitialized = false;
 //    physics = new playerPhysics;
 }
 playerEntity::~playerEntity()  // destructor
@@ -42,13 +44,22 @@ void playerEntity::setPhysics(playerPhysics *set)  // sets the value of physics
     physics = set;
 }*/
 
-playerSteerSharedPtr playerEntity::getSteer() // retrieves the value of steer
+playerSteerSharedPtr playerEntity::getSteer()  // retrieves the value of steer
 {
     return (steer);
 }
 void playerEntity::setSteer(playerSteerSharedPtr set)  // sets the value of steer
 {
     steer = set;
+}
+
+bool playerEntity::getSteerInitialized()  // retrieves the value of steerInitialized
+{
+    return (steerInitialized);
+}
+void playerEntity::setSteerInitialized(bool set)  // sets the value of steerInitialized
+{
+    steerInitialized = set;
 }
 
 bool playerEntity::setupPhysicsObject()  // sets up the physics object

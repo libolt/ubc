@@ -1086,12 +1086,6 @@ void GUISystem::playerStartSelected()  // process player start selection
             logMsg(func +" playerInstance playerName == " +playerName);
             logMsg(func +" Primary Position == " +convert->toString(it.second->getPrimaryPosition()));
             logMsg(func +" Player ID == " +convert->toString(it.second->getID()));
-            if (playerName == "Brian Darlford")
-            {
-                logMsg(func +" teamStarters[0][SF] == " +teamStarters[0]["SF"]);
-                logMsg(func +" Woot!");
-//                exit(0);
-            }
             auto y = 0;
             if (playerName == teamStarters[w]["PG"])
             {

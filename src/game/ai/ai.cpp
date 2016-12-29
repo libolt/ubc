@@ -24,7 +24,9 @@
 #include "state/courtstate.h"
 #include "logging.h"
 #include "typedefs.h"
-
+#include "conversion.h"
+#include "state/gamestate.h"
+#include "state/teamstate.h"
 #include <ctime>
 
 // static declarations
@@ -108,12 +110,30 @@ void printPlugIn(OpenSteer::PlugIn& pi);
 // initial setup of AI state
 bool AISystem::setup()
 {
+    sharedPtr<conversion> convert = conversion::Instance();
+
     std::string func = "AISystem::setup()";
 
     logMsg(func +" beginning");
     playerSteerPluginSharedPtr tempPlugin(new playerSteerPlugin);
     playerSteerPluginInstance = tempPlugin;
 
+    for (auto ATIIT : base->getGameS()->getActiveTeamInstance())
+    {
+        if (ATIIT.second->getActivePlayerInstancesCreated())
+        {
+            logMsg(func +" activePlayerInstances Created!");
+//            exit(0);
+        }
+        else
+        {
+            logMsg(func + " activePlayerInstances NOT Created!!");
+            exit(0);
+        }
+        logMsg(func +" team name == " +ATIIT.second->getName());
+        logMsg(func +" ATIIT.second->getActivePlayerInstance().size() == " +convert->toString(ATIIT.second->getActivePlayerInstance().size()));
+    }
+//    exit(0);
     // select the default PlugIn
     selectDefaultPlugIn ();
     {

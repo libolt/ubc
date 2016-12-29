@@ -439,7 +439,7 @@ void teamState::setupState()  // sets up the state of the object
     if (!stateSet)
     {
         logMsg("Setting state");
-//      boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
+//      sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
 ///        if (!playerInstancesCreated) // checks if playerInstances have been created
 ///        {
 ///         if (createPlayerInstances()) // creates the ttances based on playerIDS
@@ -467,12 +467,12 @@ void teamState::updateState()  // updates the state of the object
 
 //  exit(0);
     //conversion *convert = conversion::Instance();
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     //gameEngine *gameE = gameEngine::Instance();
-//    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
+//    sharedPtr<gameEngine> gameE = gameEngine::Instance();
     //gameState *gameS = gameState::Instance();
-//  boost::shared_ptr<gameState> gameS = gameState::Instance();
-    ///boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
+//  sharedPtr<gameState> gameS = gameState::Instance();
+    ///sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
     jumpBallsSharedPtr jumpBall = base->getGameS()->getJumpBall();
 
@@ -634,7 +634,7 @@ void teamState::updateState()  // updates the state of the object
 
 bool teamState::createPlayerInstances()  // creates the player instances
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     playerStateUMSharedPtr gamePlayerInstance;
     std::string func = "teamState::createPlayerInstances()";
 
@@ -693,9 +693,9 @@ bool teamState::createPlayerInstances()  // creates the player instances
 void teamState::setPlayerStartPositions()  // sets the initial coordinates for the players.
 {
     logMsg("setPlayerStartPositions!");
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
-//    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
+//    sharedPtr<gameEngine> gameE = gameEngine::Instance();
 
     std::vector<std::unordered_map<std::string, size_t> > teamStarterID = base->getGameS()->getTeamStarterID();
 
@@ -861,7 +861,7 @@ void teamState::setPlayerStartPositions()  // sets the initial coordinates for t
 
 void teamState::setPlayerStartActivePositions()  // sets the position the players will play at the start of the game
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
 
     logMsg("activePlayerInstance.size() =" +convert->toString(activePlayerInstance.size()));
     if (activePlayerInstance.size() > 0) // checks that activePlayerInstance has data before executing
@@ -887,7 +887,7 @@ void teamState::setPlayerStartActivePositions()  // sets the position the player
 
 void teamState::updatePlayerStates()  // updates the states of active players
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
 
     size_t x = 0;
     
@@ -911,8 +911,8 @@ void teamState::updatePlayerStates()  // updates the states of active players
 
 void teamState::updatePlayerDirections()  // updates the direction players are facing
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
 
     directions playerDirection, oldPlayerDirection;
 //    playerStateVec pInstance = getPlayerInstance();
@@ -1042,7 +1042,7 @@ void teamState::updatePlayerDirections()  // updates the direction players are f
 void teamState::updatePlayerMovements()  // updates player movements
 {
     //conversion *convert = conversion::Instance();
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     
     Ogre::Vector3 posChange;    // stores change in position
     posChange = Ogre::Vector3(0.0f, 0.0f, 0.0f);
@@ -1118,9 +1118,9 @@ void teamState::updatePlayerMovements()  // updates player movements
 void teamState::executePass()  // executes the pass between players
 {
     //conversion *convert = conversion::Instance();
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     //gameState *gameS = gameState::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
 //    size_t activeBBallInstance = base->getGameS()->getActiveBBallInstance();
     playerPositions passToPlayer = activePlayerInstance[convert->toString(playerWithBallInstance)]->getPassToPlayer();
 //    basketballStateVecSharedPtr basketballInstance = base->getGameS()->getBasketballInstance();
@@ -1207,7 +1207,7 @@ void teamState::executePass()  // executes the pass between players
 void teamState::updatePositions()  // updates player on court positions
 {
     //conversion *convert = conversion::Instance();
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     
 //    size_t x = 0;
     // updates the player positions on the court

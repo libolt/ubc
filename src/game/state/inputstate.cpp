@@ -68,7 +68,7 @@ void inputState::setInputInGameWorkQueue(inputInGameWorkQueues set)  // sets the
 
 bool inputState::setup()  // sets up the input state
 {
-    boost::shared_ptr<loader> load(new loader);
+    sharedPtr<loader> load(new loader);
 
     inputEngineSharedPtr tempInputSharedPtr(new inputEngine);
     inputE = tempInputSharedPtr;
@@ -101,7 +101,7 @@ bool inputState::setup()  // sets up the input state
 bool inputState::mapInput()  // maps value of keyPressed string to inputMap
 {
     
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     
     logMsg("Dah");
 //    exit(0);
@@ -132,7 +132,7 @@ bool inputState::mapInput()  // maps value of keyPressed string to inputMap
 return (true);
 }
 
-inputInGameMaps inputState::mapKeyInput(inputKeyMaps inKeyMap, boost::shared_ptr<userInput> input)  // maps value of the keyPressed string to inputInGameMaps
+inputInGameMaps inputState::mapKeyInput(inputKeyMaps inKeyMap, sharedPtr<userInput> input)  // maps value of the keyPressed string to inputInGameMaps
 {
     int x = 0;
 //    while (x < uInput.size())
@@ -205,7 +205,7 @@ inputInGameMaps inputState::mapKeyInput(inputKeyMaps inKeyMap, boost::shared_ptr
 
 bool inputState::process()  // processes input
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     logMsg("inoutState::process");
     if (inputE->processInput())
     {

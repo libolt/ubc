@@ -399,7 +399,7 @@ void basketballs::setStateSet(bool set)  // sets the value of stateSet
 
 bool basketballs::loadModel()  // loads the 3D model
 {
-    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+    sharedPtr<renderEngine> render = renderEngine::Instance();
 
     model = render->getMSceneMgr()->createEntity("basketball", modelName);	// loads the basketball model
 
@@ -419,7 +419,7 @@ bool basketballs::loadModel()  // loads the 3D model
 // calculates change in position along the x,y,z axes
 Ogre::Vector3 basketballState::calculatePositionChange()
 {
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
 
     Ogre::Vector3 changeInPosition;	// stores the calculated change in position
     Ogre::Vector3 pos = getNode()->getPosition();	// stores the basketball nodes position
@@ -471,7 +471,7 @@ void basketballState::updateState()  // updates the state of the basketball
 
 void basketballState::updatePosition() // updates the position of the basketball
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     comparison compare;
     Ogre::Vector3 changePos;
     btVector3 physChange = btVector3(0,0,0);
@@ -560,8 +560,8 @@ void basketballState::updatePosition() // updates the position of the basketball
 
 void basketballState::updateMovement()  // updates the basketball(s) movements
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
     teamStateUMSharedPtr activeTeamInstance = getActiveTeamInstance();
     size_t teamWithBall = getTeamWithBall();
 /*TS    playerStateVecSharedPtr activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
@@ -630,8 +630,8 @@ TS*/
 void basketballState::updateDirection()  // updates basketball direction(s)
 {
     //conversion *convert = conversion::Instance();
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
     teamStateUMSharedPtr activeTeamInstance = getActiveTeamInstance();
     size_t teamWithBall = getTeamWithBall();
 /*TS    playerStateVecSharedPtr activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();

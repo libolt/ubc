@@ -33,8 +33,8 @@
 void playerSteerPlugin::open()
 {
     AISystemSharedPtr ai = AISystem::Instance();
-	boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+	sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
 
 //    courtStateVec courtInstance = gameS->getCourtInstance();
 //    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
@@ -58,20 +58,28 @@ void playerSteerPlugin::open()
     for (auto ATIIT : getActiveTeamInstance())
     {
         if (ATIIT.second->getActivePlayerInstancesCreated())
+        {
+            logMsg(func +" activePlayerInstances Created!");
+        }
+        else
+        {
+            logMsg(func + " activePlayerInstances NOT Created!!");
+            exit(0);
+        }
         logMsg(func +" for (auto ATIIT : getActiveTeamInstance())");
         activePlayerInstance.push_back(ATIIT.second->getActivePlayerInstance());
         logMsg(func +" activePlayerInstance.size() == " +convert->toString(activePlayerInstance.size()));
 //        size_t y = 0;
 //        while (y < activePlayerInstance[x].size())
-        logMsg(func +"AIIT.first == " +convert->toString(ATIIT.first));
-        logMsg(func +"activePlayerInstance[ATIIT.first].size() == " +convert->toString(activePlayerInstance[ATIIT.first].size()));
+        logMsg(func +" AIIT.first == " +convert->toString(ATIIT.first));
+        logMsg(func +" activePlayerInstance[ATIIT.first].size() == " +convert->toString(activePlayerInstance[ATIIT.first].size()));
         for (auto APIIT : activePlayerInstance[ATIIT.first])
         {
             logMsg(func +" for (auto APIIT : activePlayerInstance[ATIIT.first])");
             playerSteerSharedPtr steer = APIIT.second->getSteer();
         //      logMsg("Alive1");
-            logMsg("APIIT.first = " +APIIT.first);
-            logMsg("player position = " +convert->toString(APIIT.second->getCourtPosition()));
+            logMsg(" APIIT.first = " +APIIT.first);
+            logMsg(" player position = " +convert->toString(APIIT.second->getCourtPosition()));
             steer->setPosition(convert->toOpenSteerVec3(APIIT.second->getCourtPosition()));
         //      steer.setPosition(OpenSteer::Vec3(0,0,0));
         //      logMsg("Alive2");
@@ -180,8 +188,8 @@ void playerSteerPlugin::open()
 
 void playerSteerPlugin::update(const float currentTime, const float elapsedTime)
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
     
 //    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
 //    playerStateVec team0ActivePlayerInstance = activeTeamInstance[0].getActivePlayerInstance();

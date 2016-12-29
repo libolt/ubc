@@ -49,8 +49,8 @@ void networkState::setNetwork(networkEngineSharedPtr set)  // sets the value of 
 
 void networkState::processLocalInput(teamStateVecSharedPtr activeTeamInstance)  // processes local input for sending to remote system
 {
-//    boost::shared_ptr<inputSystem> input = inputSystem::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    sharedPtr<inputSystem> input = inputSystem::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
     
     inputInGameWorkQueues inputQueue;
     inputInGameWorkQueues::iterator IQITT;
@@ -245,7 +245,7 @@ TS*/
 
 void networkState::processNetworkPlayerEvents(teamStateVecSharedPtr activeTeamInstance)  // processes player events from network code
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
 //    networkEngineSharedPtr network = networkEngine::Instance();
 
 //    teamStateVecSharedPtr activeTeamInstance = getActiveTeamInstance();

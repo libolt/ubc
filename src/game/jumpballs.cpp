@@ -153,8 +153,8 @@ void jumpBalls::setBBallVelocity(const btVector3 &set)  // sets the value of bba
 
 bool jumpBalls::updateState(teamTypes teamWithBall, basketballStateUMSharedPtr activeBasketballInstance, std::unordered_map<size_t, teamStateSharedPtr> activeTeamInstance, quarters quarter)  // updates state of the jumpBalls instance
 {
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     std::string func = "jumpBalls::updateState()";
     
     logMsg(func +" updating jumpBall state!");
@@ -213,9 +213,9 @@ bool jumpBalls::updateState(teamTypes teamWithBall, basketballStateUMSharedPtr a
 bool jumpBalls::jumpBallExecute(basketballStateUMSharedPtr activeBasketballInstance, std::unordered_map<size_t, teamStateSharedPtr> activeTeamInstance)  // initiates jump ball from jump ball circle
 {
 //    exit(0);
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
-///    boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
+///    sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
 //    basketballStateVec basketballInstance = gameS->getBasketballInstance();
 //    size_t activeBBallInstance = gameS->getActiveBBallInstance();
@@ -336,9 +336,9 @@ TS*/
 
 bool jumpBalls::tipToPlayer(basketballStateUMSharedPtr activeBasketballInstance, std::unordered_map<size_t, teamStateSharedPtr> activeTeamInstance, quarters quarter)  // tips the basketball to the appropriate player
 {
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
 
     physicsEngine physEngine;
 //    basketballStateVec basketballInstance = gameS->getBasketballInstance();

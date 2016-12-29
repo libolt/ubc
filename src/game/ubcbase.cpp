@@ -27,10 +27,10 @@
 // Static Declarations
 bool UBCBase::stateSetup;
 bool UBCBase::startActiveGame;  // stores whether to begin an active game instance
-boost::shared_ptr<gameEngine> UBCBase::gameE;  // the gameEngine object
-boost::shared_ptr<gameState> UBCBase::gameS;  // the gameState object
-boost::shared_ptr<networkState> UBCBase::networkS;  // the networkState object
-boost::shared_ptr<inputState> UBCBase::inputS;  // the inputState object
+sharedPtr<gameEngine> UBCBase::gameE;  // the gameEngine object
+sharedPtr<gameState> UBCBase::gameS;  // the gameState object
+sharedPtr<networkState> UBCBase::networkS;  // the networkState object
+sharedPtr<inputState> UBCBase::inputS;  // the inputState object
 
 UBCBase::UBCBase()  // constructor
 {
@@ -62,39 +62,39 @@ void UBCBase::setStartActiveGame(bool set)  // sets the value of startActiveGame
     startActiveGame = set;
 }
 
-boost::shared_ptr<gameEngine> UBCBase::getGameE()  // retrieves the value of gameE
+sharedPtr<gameEngine> UBCBase::getGameE()  // retrieves the value of gameE
 {
     return (gameE);
 }
-void UBCBase::setGameE(boost::shared_ptr<gameEngine> set)  // sets the value of gameE
+void UBCBase::setGameE(sharedPtr<gameEngine> set)  // sets the value of gameE
 {
     gameE = set;
 }
 
-boost::shared_ptr<gameState> UBCBase::getGameS()  // retrieves the value of gameS
+sharedPtr<gameState> UBCBase::getGameS()  // retrieves the value of gameS
 {
     return (gameS);
 }
-void UBCBase::setGameS(boost::shared_ptr<gameState> set)  // sets the value of gameS
+void UBCBase::setGameS(sharedPtr<gameState> set)  // sets the value of gameS
 {
     gameS = set;
 }
 
-boost::shared_ptr<networkState> UBCBase::getNetworkS()  // retrieves the value of networkS
+sharedPtr<networkState> UBCBase::getNetworkS()  // retrieves the value of networkS
 {
     return (networkS);
 }
-void UBCBase::setNetworkS(boost::shared_ptr<networkState> set)  // sets the value of networkS
+void UBCBase::setNetworkS(sharedPtr<networkState> set)  // sets the value of networkS
 {
     networkS = set;
 }
 
-boost::shared_ptr<inputState> UBCBase::getInputS()  // retrieves the value of inputS
+sharedPtr<inputState> UBCBase::getInputS()  // retrieves the value of inputS
 {
     return (inputS);
 }
 
-void UBCBase::setInputS(boost::shared_ptr<inputState> set)  // sets the value of inputS
+void UBCBase::setInputS(sharedPtr<inputState> set)  // sets the value of inputS
 {
     inputS = set;
 }
@@ -115,7 +115,7 @@ bool UBCBase::setup()  // sets up the engine and states
     
 //    exit(0);
 //    networkState *tempNetworkStateObj = new networkState;
-///    boost::shared_ptr<networkState> tempNetworkStateSharedPtr = boost::shared_ptr<networkState>(new networkState);
+///    sharedPtr<networkState> tempNetworkStateSharedPtr = sharedPtr<networkState>(new networkState);
 ///    networkS = tempNetworkStateSharedPtr;
     inputStateSharedPtr tempInputStateSharedPtr(new inputState);
     inputS = tempInputStateSharedPtr;

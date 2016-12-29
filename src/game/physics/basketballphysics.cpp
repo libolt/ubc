@@ -99,9 +99,9 @@ bool basketballPhysics::setup()  // sets up physics for the basketball
 {
 /*    exit(0);
     setCollidesWith(COL_COURT);  // collides with the court
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
-    boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+    sharedPtr<gameState> gameS = gameState::Instance();
+    sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
 
     basketballStateVec basketballInstance = gameS->getBasketballInstance();
     size_t activeBBallInstance = gameS->getActiveBBallInstance();
@@ -187,9 +187,9 @@ void basketballPhysics::updateState()  // updates basketball physics state
 
 void basketballPhysics::ballDribbling(Ogre::Vector3 bballPos, btRigidBody *courtPhysBody, Ogre::Vector3 courtPos)  // simulates basketball dribble
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     physicsEngine physEngine;
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
 
 //    playerStateVec pInstance = gameS->getPlayerInstance();
 //    basketballStateVec basketballInstance = gameS->getBasketballInstance();
@@ -292,7 +292,7 @@ void basketballPhysics::ballDribbling(Ogre::Vector3 bballPos, btRigidBody *court
 
 void basketballPhysics::updatePosition()  // updates the position of basketball object(s)
 {
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
 
 //    size_t activeBBallInstance = gameS->getActiveBBallInstance();
 //    basketballStateVec basketballInstance = gameS->getBasketballInstance();

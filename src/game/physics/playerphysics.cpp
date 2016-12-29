@@ -90,9 +90,9 @@ void playerPhysics::updateState()  // updates the state of player physics
 bool playerPhysics::setupPhysics()  // sets up playerPhysics
 {
 //    exit(0);
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
-    boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+    sharedPtr<gameState> gameS = gameState::Instance();
+    sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
 
     teamStateVec activeTeamInstance = gameS->getActiveTeamInstance();
     btDynamicsWorld *world;
@@ -197,8 +197,8 @@ bool playerPhysics::setupPhysics()  // sets up playerPhysics
 
 void playerPhysics::updatePosition()  // updates the position of player objecgts
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
 
     comparison compare;
 
@@ -262,8 +262,8 @@ TS*/
 
 bool playerPhysics::jump(teamTypes teamType, int playerID)  // calculates and executes player jumping in the air
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
 
     courtStateUMSharedPtr  courtInstance = getCourtInstance();
     teamStateUMSharedPtr activeTeamInstance = getActiveTeamInstance();
@@ -356,8 +356,8 @@ bool playerPhysics::shootBasketball(teamTypes teamType, int playerID)  // calcul
 {
 
     // FIXME! Disabled until I can do a proper rewrite
-/*    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+/*    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
 
     comparison compare;
     courtStateVec courtInstance = getCourtInstance();

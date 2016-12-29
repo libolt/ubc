@@ -42,14 +42,14 @@
 #include "jumpballs.h"
 
 /*
-boost::shared_ptr<gameState> gameState::pInstance;
+sharedPtr<gameState> gameState::pInstance;
 
-boost::shared_ptr<gameState> gameState::Instance()
+sharedPtr<gameState> gameState::Instance()
 {
     if (pInstance == 0)  // is it the first call?
     {
         
-        boost::shared_ptr<gameState> tInstance(new gameState);
+        sharedPtr<gameState> tInstance(new gameState);
         pInstance = tInstance;
     }
     return pInstance; // address of sole instance
@@ -300,7 +300,7 @@ bool gameState::createInstances()  // creates object instances
 }
 bool gameState::createBasketballInstances()  // creates basketball Instances
 {
-    boost::shared_ptr<basketballState> bballInstance;  // creates an instance of the basketballs class
+    sharedPtr<basketballState> bballInstance;  // creates an instance of the basketballs class
     std::string func = "gameState::createTeamInstances()";
     
     logMsg(func +" beginning");
@@ -331,8 +331,8 @@ bool gameState::createBasketballInstances()  // creates basketball Instances
 
 bool gameState::createTeamInstances()  // creates team Instances
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<loader> load(new loader);
+    sharedPtr<conversion> convert = conversion::Instance();
+    sharedPtr<loader> load(new loader);
     std::string func = "gameState::createTeamInstances()";
     
     logMsg(func +" beginning");
@@ -425,14 +425,14 @@ bool gameState::createTeamInstances()  // creates team Instances
 
 /*bool gameState::createCourtDataInstances()  // creates instances of court data
 {
-    boost::shared_ptr<loader> load = loader::Instance();
+    sharedPtr<loader> load = loader::Instance();
     courtDataInstance = load->loadCourts();
     return (true);
 }*/
 
 bool gameState::createCourtInstances()  // creates court Instances
 {
-    boost::shared_ptr<loader> load(new loader);
+    sharedPtr<loader> load(new loader);
     std::string func = "gameState::createCourtInstances()";
     
     logMsg(func +" beginning");
@@ -493,8 +493,8 @@ bool gameState::createPlayerInstances()  // creates player instances
 {
 //    logMsg("gameState::createTeamInstances()");
     
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<loader> load(new loader);
+    sharedPtr<conversion> convert = conversion::Instance();
+    sharedPtr<loader> load(new loader);
     playerStateUMSharedPtr pInstance;
     std::string func = "gameState::createPlayerInstances()";
     
@@ -546,8 +546,8 @@ bool gameState::createPlayerInstances()  // creates player instances
 
 bool gameState::createActiveBasketballInstances()  // creates the active basketball instances
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<loader> load(new loader);
+    sharedPtr<conversion> convert = conversion::Instance();
+    sharedPtr<loader> load(new loader);
     basketballStateVecSharedPtr basketballInstance = getBasketballInstance();
     std::unordered_map<size_t, basketballStateSharedPtr> activeBasketballInstance = getActiveBasketballInstance();
     std::string func = "gameState::createActiveBasketballInstances()";
@@ -587,8 +587,8 @@ bool gameState::createActiveBasketballInstances()  // creates the active basketb
 
 bool gameState::createActiveCourtInstances()  // creates the active court instances
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<loader> load(new loader);
+    sharedPtr<conversion> convert = conversion::Instance();
+    sharedPtr<loader> load(new loader);
     std::unordered_map<size_t, courtStateSharedPtr> courtInstance = getCourtInstance();
     std::unordered_map<size_t, courtStateSharedPtr> activeCourtInstance = getActiveCourtInstance();
     std::string func = "gameState::createActiveCourtInstances()";
@@ -625,8 +625,8 @@ bool gameState::createActiveCourtInstances()  // creates the active court instan
 
 bool gameState::createActiveHoopInstances()  // creates the active hoop instances
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<loader> load(new loader);
+    sharedPtr<conversion> convert = conversion::Instance();
+    sharedPtr<loader> load(new loader);
     hoopStateUMSharedPtr hoopInstance = getHoopInstance();
     hoopStateUMSharedPtr activeHoopInstance = getActiveHoopInstance();
     std::string func = "gameState::createActiveHoopInstances()";
@@ -722,7 +722,7 @@ TS*/
 
 bool gameState::setupEnvironment()
 {
-//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    sharedPtr<renderEngine> render = renderEngine::Instance();
     
 /*
     // Set ambient light
@@ -737,8 +737,8 @@ bool gameState::setupEnvironment()
 }
 bool gameState::loadBasketballModel()  // loads selected basketball model
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<loader> load(new loader);
+    sharedPtr<conversion> convert = conversion::Instance();
+    sharedPtr<loader> load(new loader);
     basketballStateUMSharedPtr activeBasketballInstance = getActiveBasketballInstance();
     bool activeBasketballInstancesCreated = getActiveBasketballInstancesCreated();
 //    size_t activeBBallInstance = getActiveBBallInstance();
@@ -833,8 +833,8 @@ bool gameState::loadBasketballModel()  // loads selected basketball model
 
 bool gameState::loadCourtModel()  // loads selected court model
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<loader> load(new loader);
+    sharedPtr<conversion> convert = conversion::Instance();
+    sharedPtr<loader> load(new loader);
     courtStateUMSharedPtr courtInstance = getCourtInstance();
     courtStateUMSharedPtr activeCourtInstance = getActiveCourtInstance();
     bool activeCourtInstancesCreated = getActiveCourtInstancesCreated();
@@ -889,9 +889,9 @@ bool gameState::loadCourtModel()  // loads selected court model
 
 bool gameState::loadHoopModel()  // loads selected hoop model
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     hoopStateUMSharedPtr activeHoopInstance = getActiveHoopInstance();
-    boost::shared_ptr<loader> load(new loader);
+    sharedPtr<loader> load(new loader);
     std::string func = "gameState::loadHoopModel()";
     bool returnType = true;
 
@@ -983,7 +983,7 @@ bool gameState::loadHoopModel()  // loads selected hoop model
 
 bool gameState::loadModels()  // loads all game object models excluding the players
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     bool returnType = true;
     std::string func = "gameState::loadModels()";
     logMsg(func +" beginning");
@@ -1047,7 +1047,7 @@ bool gameState::loadModels()  // loads all game object models excluding the play
 
 void gameState::setBasketballStartPositions()  // sets the initial coordinates for the basketball(s)
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
 //    size_t activeBBallInstance = getActiveBBallInstance();
 //    basketballStateVecSharedPtr basketballInstance = getBasketballInstance();
     basketballStateUMSharedPtr activeBasketballInstance = getActiveBasketballInstance();
@@ -1120,7 +1120,7 @@ void gameState::setHoopStartPositions()  // sets the initial coordinates for the
 
 bool gameState::setupTipOff()  // sets up tip off conditions
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     std::string func = "gameState::setupTipOff()";
     jumpBallsSharedPtr jBall;
 
@@ -1197,11 +1197,11 @@ bool gameState::setupState()  // sets up the game condition
 //    exit(0);
 
     AISystemSharedPtr ai = AISystem::Instance();
-//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
-//    boost::shared_ptr<loader> load = loader::Instance();
-    //boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
+//    sharedPtr<renderEngine> render = renderEngine::Instance();
+//    sharedPtr<loader> load = loader::Instance();
+    //sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     std::string func = "gameState::setupState()";
    
     logMsg(func +" beginning");
@@ -1345,7 +1345,7 @@ bool gameState::setupState()  // sets up the game condition
 
 bool gameState::updateState()  // updates the game state
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
 
     std::string func = "gameState::updateState()";
 
@@ -1357,10 +1357,10 @@ bool gameState::updateState()  // updates the game state
 
 // BEGINING OF TEST COMMENT
 /*    AISystemSharedPtr ai = AISystem::Instance();
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<gameEngine> gameE = gameEngine::Instance();
 //    networkEngineSharedPtr network = networkEngine::Instance();
-    //boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
+    //sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
     
     if (!getBasketballInstanceCreated() && getBasketballInstanceNeedCreated())
@@ -1569,7 +1569,7 @@ bool gameState::updateState()  // updates the game state
 
 bool gameState::processInput()  // processes input received from the inputState object
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
 
     std::string func = "gameState::processInput()";
 
@@ -1744,7 +1744,7 @@ TS*/
 // These functions check if an object has been created and attmpt to do so if not
 bool gameState::checkIfPlayerInstanceCreated()  // check if playerInstance object has been created and loaded
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     std::string func = "gameState::checkIfPlayerInstanceCreated()";
 
     logMsg(func +" beginning");
@@ -1806,7 +1806,7 @@ bool gameState::checkIfPlayerInstanceCreated()  // check if playerInstance objec
 
 bool gameState::checkifJumpBallCreated()  // checks if jumpBall object has been created
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     std::string func = "gameState::checkifJumpBallCreated()";
 
     logMsg(func +" beginning");
@@ -1817,7 +1817,7 @@ bool gameState::checkifJumpBallCreated()  // checks if jumpBall object has been 
     }
     else
     {
-        boost::shared_ptr<jumpBalls> tempJumpBall(new jumpBalls);
+        sharedPtr<jumpBalls> tempJumpBall(new jumpBalls);
         setJumpBall(tempJumpBall);
         setJumpBallCreated(true);
         if (tempJumpBall != nullptr)
@@ -1836,7 +1836,7 @@ bool gameState::checkifJumpBallCreated()  // checks if jumpBall object has been 
 void gameState::updateDirectionsAndMovements()
 {
     //conversion *convert = conversion::Instance();
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
 //    directions playerDirection, oldPlayerDirection;
 //   logMsg("Updating Directions and Movements");
 

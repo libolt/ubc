@@ -27,13 +27,13 @@
 #include "Ogre.h"
 #include "engine/renderengine.h"
 INITIALIZE_EASYLOGGINGPP
-boost::shared_ptr<logging> logging::pInstance;
+sharedPtr<logging> logging::pInstance;
 
-boost::shared_ptr<logging> logging::Instance()
+sharedPtr<logging> logging::Instance()
 {
     if (pInstance == 0)  // is it the first call?
     {
-        boost::shared_ptr<logging> tInstance(new logging);
+        sharedPtr<logging> tInstance(new logging);
         pInstance = tInstance;
 
     }
@@ -61,7 +61,7 @@ void logging::setOgreRootInitialized(bool set)  // sets the value of ogreRootIni
  
 void logging::logMessage(std::string msg)  // logs a message to appropriate output
 {
-//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    sharedPtr<renderEngine> render = renderEngine::Instance();
 
 #ifdef __ANDROID__
     __android_log_print(ANDROID_LOG_DEBUG, "com.libolt.ubc", msg.c_str());

@@ -37,7 +37,7 @@ class AISystem
 public:
 
     //static AISystem *Instance();
-    static boost::shared_ptr<AISystem> Instance();
+    static sharedPtr<AISystem> Instance();
 	~AISystem();
 
 //    OpenSteer::AbstractVehicle* getSelectedVehicle(); // retrieves the value of selectedVehicle
@@ -103,7 +103,7 @@ protected:
     AISystem& operator= (const AISystem&);
 private:
     //static AISystem *pInstance;
-    static boost::shared_ptr<AISystem> pInstance;
+    static sharedPtr<AISystem> pInstance;
     
 	// currently selected plug-in (user can choose or cycle through them)
 //    OpenSteer::PlugIn* selectedPlugIn;

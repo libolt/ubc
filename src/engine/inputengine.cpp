@@ -95,11 +95,11 @@ inputEngine::~inputEngine()  // destructor
 {
 }
 
-/*boost::shared_ptr<GUISystem> inputEngine::getGui()  // retrieves the value of gui
+/*sharedPtr<GUISystem> inputEngine::getGui()  // retrieves the value of gui
 {
   return (gui);
 }
-void inputEngine::setGui(boost::shared_ptr<GUISystem> set)  // sets the value of gui
+void inputEngine::setGui(sharedPtr<GUISystem> set)  // sets the value of gui
 {
     gui = set;
 }*/
@@ -247,8 +247,8 @@ bool inputEngine::destroy()  // destroys the OIS Input System and related object
 
 bool inputEngine::processInput()  // processes all input
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<renderEngine> render = renderEngine::Instance();
     
 //    keyPressed = "";  // resets value of keyPressed
 
@@ -427,8 +427,8 @@ bool inputEngine::processInput()  // processes all input
 
 bool inputEngine::processKeyInput()  // processes unbuffered keyboard input
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<GUISystem> gui = GUISystem::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<GUISystem> gui = GUISystem::Instance();
 //	logMsg("Processing keyboard input");
 
     logMsg("key == " +convert->toString(inputEvent.key.keysym.sym));
@@ -837,7 +837,7 @@ bool inputEngine::processKeyInput()  // processes unbuffered keyboard input
 
 bool inputEngine::processTextInput()  // reads in text input
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
 
     logMsg("textInput!");
 //    exit(0);
@@ -860,8 +860,8 @@ bool inputEngine::processTextInput()  // reads in text input
 }
 bool inputEngine::processMouseInput()  // processes the unbuffered mouse input
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<renderEngine> render = renderEngine::Instance();
 
     int x, y;
     int state = -1;
@@ -916,8 +916,8 @@ bool inputEngine::processMouseInput()  // processes the unbuffered mouse input
 
 bool inputEngine::processTouchInput() // processes the unbuffered touch input
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<renderEngine> render = renderEngine::Instance();
 
     int state = -1;
     SDL_TouchFingerEvent touchMotion;

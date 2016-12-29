@@ -154,17 +154,17 @@ void entity::setNodePosition(Ogre::Vector3 set)  // sets the value of nodePositi
 
 bool entity::loadModel()  // loads the 3D model
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
 
 //    exit(0);
-//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    sharedPtr<renderEngine> render = renderEngine::Instance();
     std::string func = "entity::loadModel()";
     logMsg(func +" beginning");
     logMsg(func +" baseInitialized == " +convert->toString(baseInitialized));
-    boost::shared_ptr<renderEngine> render = base->getGameE()->getRenderE();
+    sharedPtr<renderEngine> render = base->getGameE()->getRenderE();
     logMsg(func +" entityName == " +entityName);
     logMsg(func +" entityModelFileName == " +entityModelFileName);
-    boost::shared_ptr<Ogre::SceneManager> mSceneMgr = render->getMSceneMgr();
+    sharedPtr<Ogre::SceneManager> mSceneMgr = render->getMSceneMgr();
     logMsg(func +" Model");
     Ogre::ResourceGroupManager &rsm = Ogre::ResourceGroupManager::getSingleton();
     

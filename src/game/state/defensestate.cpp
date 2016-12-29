@@ -65,8 +65,8 @@ void defenseState::setupState()  // sets up initial state of the object
 }
 void defenseState::updateState(teamTypes teamOnDefense) // updates the state of the object
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
     teamTypes teamWithBall = getTeamWithBall();
 
     teamStateUMSharedPtr activeTeamInstance = getActiveTeamInstance();

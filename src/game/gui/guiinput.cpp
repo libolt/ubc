@@ -198,7 +198,7 @@ void GUISystem::courtSelectButtonClicked(MyGUI::Widget *_sender)  // handles cou
 
 void GUISystem::menuReceiveKeyPress(std::string keyPressed)  // processes key input
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
 
     logMsg("menuReceiveKeyKeyPress!");
     logMsg("activeMenu == " +convert->toString(activeMenu));
@@ -503,7 +503,7 @@ void GUISystem::processAudioMenuKeyPress(std::string keyPressed)  // processes a
 void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed)  // processes game setup menu key input
 {
     //gameState *gameS = gameState::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
 //    teamStateVecSharedPtr teamInstance = gameS->getTeamInstance();
     logMsg("processGameSetupMenuKeyPress");
     if (keyPressed == "a" && !gameSetupMenuAwaySelected)
@@ -614,8 +614,8 @@ void GUISystem::processPlayerStartSelectionMenuKeyPress(std::string keyPressed) 
 {
 
     //gameState *gameS = gameState::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
-    boost::shared_ptr<loader> load(new loader);
+//    sharedPtr<gameState> gameS = gameState::Instance();
+    sharedPtr<loader> load(new loader);
 
     checkTeamInstancesCreated();
 //    teamState testState;
@@ -641,7 +641,7 @@ void GUISystem::processPlayerStartSelectionMenuKeyPress(std::string keyPressed) 
 void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed)  // process team selection menu key input
 {
     //gameState *gameS = gameState::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
     
 //    teamStateVecSharedPtr teamInstance = gameS->getTeamInstance();
     logMsg("processTeamSelectionMenuKeyPress");
@@ -758,7 +758,7 @@ void GUISystem::processCourtSelectionMenuKeyPress(std::string keyPressed)  // pr
 {
 //    exit(0);
     //gameState *gameS = gameState::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
 
     if (keyPressed == "b")
     {

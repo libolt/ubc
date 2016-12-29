@@ -44,7 +44,7 @@ class physicsEngine : public engine
 {
 public:
     //static physicsEngine *Instance();
-///    static boost::shared_ptr<physicsEngine> Instance();
+///    static sharedPtr<physicsEngine> Instance();
 
     physicsEngine();  // constructor
     ~physicsEngine();	// destructor
@@ -71,8 +71,8 @@ public:
     bool getBasketballVelocitySet();  // retrieves the value of basketballVelocitySet
     void setBasketballVelocitySet(bool set);  // sets the value of basketballVelocitySet
 
-    boost::shared_ptr<btDynamicsWorld> getWorld();  // retrieves the value of world
-    void setWorld(boost::shared_ptr<btDynamicsWorld> set);  // sets the value of world
+    sharedPtr<btDynamicsWorld> getWorld();  // retrieves the value of world
+    void setWorld(sharedPtr<btDynamicsWorld> set);  // sets the value of world
 
 
 /*    size_t getTeam1CollidesWith();  // retrieves the value of team1CollidesWith
@@ -84,7 +84,7 @@ public:
 
     bool setup();  // sets up the physicsEngine object
 
-    void setupState(boost::shared_ptr<renderEngine> render);  // sets up state of physics engine.
+    void setupState(sharedPtr<renderEngine> render);  // sets up state of physics engine.
 
     // sets up object physics
 //    bool setupCourtPhysics();  // sets up court physics
@@ -113,15 +113,15 @@ protected:
 private:
 
     //static physicsEngine *pInstance;
-///    static boost::shared_ptr<physicsEngine> pInstance;
+///    static sharedPtr<physicsEngine> pInstance;
 
-    static boost::shared_ptr<btDynamicsWorld> world;  // stores the physics world
-    static boost::shared_ptr<BtOgre::DebugDrawer> debugDraw;  // used to draw debug shapes for objects
+    static sharedPtr<btDynamicsWorld> world;  // stores the physics world
+    static sharedPtr<BtOgre::DebugDrawer> debugDraw;  // used to draw debug shapes for objects
 //    btAxisSweep3 *broadPhase;
-    static boost::shared_ptr<btBroadphaseInterface> broadPhase;
-    static boost::shared_ptr<btDefaultCollisionConfiguration> collisionConfig;
-    static boost::shared_ptr<btCollisionDispatcher> dispatcher;
-    static boost::shared_ptr<btSequentialImpulseConstraintSolver> solver;
+    static sharedPtr<btBroadphaseInterface> broadPhase;
+    static sharedPtr<btDefaultCollisionConfiguration> collisionConfig;
+    static sharedPtr<btCollisionDispatcher> dispatcher;
+    static sharedPtr<btSequentialImpulseConstraintSolver> solver;
     static btContactSolverInfo contactInfo;
 
 

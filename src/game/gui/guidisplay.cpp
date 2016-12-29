@@ -66,7 +66,7 @@ void GUISystem::hideNetworkSetupWidgets()  // hides the widgets tied to the Netw
 }
 void GUISystem::showNetworkSetupWidgets()  // shows all widgets tied to the Network Setup Menu
 {
-//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    sharedPtr<renderEngine> render = renderEngine::Instance();
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getgetRenderE()->getViewPort()();
 
 //    ipAddressBox->setVisible(true);
@@ -101,7 +101,7 @@ void GUISystem::hideNetworkServerSetupWidgets()  // hides all widgets tied to th
 }
 void GUISystem::showNetworkServerSetupWidgets()  // shows all widgets tied to the Network Server Setup Menu
 {
-//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    sharedPtr<renderEngine> render = renderEngine::Instance();
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
 
     numClientsSelectBox->setVisible(true);
@@ -124,7 +124,7 @@ void GUISystem::hideNetworkClientSetupWidgets()  // hides the widgets tied to th
 }
 void GUISystem::showNetworkClientSetupWidgets()  // shows all widgets tied to the Network Setup Menu
 {
-//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    sharedPtr<renderEngine> render = renderEngine::Instance();
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
 
     clientIPAddressBox->setVisible(true);
@@ -147,7 +147,7 @@ void GUISystem::hideOptionsMenuWidgets()  // hides all widgets tied to the Optio
 }
 void GUISystem::showOptionsMenuWidgets()  // shows all widgets tied to the Options Menu
 {
-//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    sharedPtr<renderEngine> render = renderEngine::Instance();
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
 
     optionsMenuButtons["displayButton"]->setVisible(true);
@@ -203,7 +203,7 @@ void GUISystem::showAudioMenuWidgets()  // shows all widgets tied to the Main Me
 void GUISystem::hideGameSetupMenuWidgets()  // hides all widgets tied to the Game Setup Menu
 {
     //conversion *convert = conversion::Instance();
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
 /*
     teamSelectBox[0]->setVisible(false);
     teamSelectBox[1]->setVisible(false);
@@ -229,7 +229,7 @@ void GUISystem::hideGameSetupMenuWidgets()  // hides all widgets tied to the Gam
 }
 void GUISystem::showGameSetupMenuWidgets()  // shows all widgets tied to the Game Setup Menu
 {
-//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    sharedPtr<renderEngine> render = renderEngine::Instance();
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
 /*
     teamSelectBox[0]->setVisible(true);
@@ -314,7 +314,7 @@ void GUISystem::hidePlayerStartSelectionMenuWidgets()  // hides all widgets tied
 void GUISystem::showPlayerStartSelectionMenuWidgets()  // shows all widgets tied to the Player Start Selection Menu
 {
 
-//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    sharedPtr<renderEngine> render = renderEngine::Instance();
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
 
     // Team 0 widgets
@@ -406,7 +406,7 @@ void GUISystem::showPlayerStartSelectionMenuWidgets()  // shows all widgets tied
 void GUISystem::hideTeamSelectionMenuWidgets()  // hides all widgets tied to the Team Selection Menu
 {
     //conversion *convert = conversion::Instance();
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
 
     teamSelectBox[0]->setVisible(false);
     teamSelectBox[1]->setVisible(false);
@@ -423,7 +423,7 @@ void GUISystem::hideTeamSelectionMenuWidgets()  // hides all widgets tied to the
 
 void GUISystem::showTeamSelectionMenuWidgets()  // show all widgets tied to the Team Selection Menu
 {
-//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    sharedPtr<renderEngine> render = renderEngine::Instance();
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
     logMsg("GUISystem::showTeamSelectionMenuWidgets");
 //    logMsg("Blip");
@@ -461,9 +461,9 @@ void GUISystem::hideCourtSelectionMenuWidgets()  // hides all widgets tied to th
 }
 void GUISystem::showCourtSelectionMenuWidgets()  // show all widgets tied to the Court Selection Menu
 {
-//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    sharedPtr<renderEngine> render = renderEngine::Instance();
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     
     displayCount += 1;
 //    teamSelectionMenu();

@@ -42,15 +42,15 @@
 #endif
 
 /*
-boost::shared_ptr<GUISystem> GUISystem::pInstance;
+sharedPtr<GUISystem> GUISystem::pInstance;
 i
-boost::shared_ptr<GUISystem> GUISystem::Instance()
+sharedPtr<GUISystem> GUISystem::Instance()
 {
     if (pInstance == 0)  // is it the first call?
     {
         //pInstance = new GUISystkem; // cn sole instance
         
-        boost::shared_ptr<GUISystem> tInstance(new GUISystem);
+        sharedPtr<GUISystem> tInstance(new GUISystem);
         pInstance = tInstance;
     }kmmmmkkkkko|mm
     return pInstance; // address of sole instance
@@ -92,32 +92,32 @@ MyGUIButtonUMSharedPtr GUISystem::mainMenuButtons;
 MyGUIButtonUMSharedPtr GUISystem::networkMenuButtons;
 
 MyGUIButtonUMSharedPtr GUISystem::playerStartSelectionMenuButtons;
-/*boost::shared_ptr<MyGUI::Button> uexitButton;
-boost::shared_ptr<MyGUI::Button> GUISystem::startSingleGameButton;
-boost::shared_ptr<MyGUI::Button> GUISystem::startMultiGameButton;
-boost::shared_ptr<MyGUI::Button> GUISystem::optionsButton;
-boost::shared_ptr<MyGUI::Button> GUISystem::serverButton;
-boost::shared_ptr<MyGUI::Button> GUISystem::clientButton;
-boost::shared_ptr<MyGUI::Button> GUISystem::backMainMenuButton;
+/*sharedPtr<MyGUI::Button> uexitButton;
+sharedPtr<MyGUI::Button> GUISystem::startSingleGameButton;
+sharedPtr<MyGUI::Button> GUISystem::startMultiGameButton;
+sharedPtr<MyGUI::Button> GUISystem::optionsButton;
+sharedPtr<MyGUI::Button> GUISystem::serverButton;
+sharedPtr<MyGUI::Button> GUISystem::clientButton;
+sharedPtr<MyGUI::Button> GUISystem::backMainMenuButton;
 */
-//boost::shared_ptr<MyGUI::Button> GUISystem::backNetworkSetupButton;
+//sharedPtr<MyGUI::Button> GUISystem::backNetworkSetupButton;
 
 MyGUIButtonUMSharedPtr GUISystem::optionsMenuButtons;
-/*boost::shared_ptr<MyGUI::Button> GUISystem::displayButton;
-boost::shared_ptr<MyGUI::Button> GUISystem::inputButton;
-boost::shared_ptr<MyGUI::Button> GUISystem::audioButton;
+/*sharedPtr<MyGUI::Button> GUISystem::displayButton;
+sharedPtr<MyGUI::Button> GUISystem::inputButton;
+sharedPtr<MyGUI::Button> GUISystem::audioButton;
 */
 
-//boost::shared_ptr<MyGUI::Button> GUISystem::startGameButton;
-//boost::shared_ptr<MyGUI::Button> GUISystem::backNetworkClientButton;
-//boost::shared_ptr<MyGUI::Button> GUISystem::changeResolutionButton;
-//boost::shared_ptr<MyGUI::Button> GUISystem::changeInputTypeButton;
-//boost::shared_ptr<MyGUI::Button> GUISystem::enableAudioButton;
-//boost::shared_ptr<MyGUI::Button> GUISystem::disableAudioButton;
-//boost::shared_ptr<MyGUI::Button> GUISystem::backOptionsMenuButton;
-//boost::shared_ptr<MyGUI::Button> GUISystem::backGameSetupMenuButton;
-//boost::shared_ptr<MyGUI::Button> GUISystem::backTeamSelectionMenuButton;
-//boost::shared_ptr<MyGUI::Button> GUISystem::backCourtSelectionMenuButton;
+//sharedPtr<MyGUI::Button> GUISystem::startGameButton;
+//sharedPtr<MyGUI::Button> GUISystem::backNetworkClientButton;
+//sharedPtr<MyGUI::Button> GUISystem::changeResolutionButton;
+//sharedPtr<MyGUI::Button> GUISystem::changeInputTypeButton;
+//sharedPtr<MyGUI::Button> GUISystem::enableAudioButton;
+//sharedPtr<MyGUI::Button> GUISystem::disableAudioButton;
+//sharedPtr<MyGUI::Button> GUISystem::backOptionsMenuButton;
+//sharedPtr<MyGUI::Button> GUISystem::backGameSetupMenuButton;
+//sharedPtr<MyGUI::Button> GUISystem::backTeamSelectionMenuButton;
+//sharedPtr<MyGUI::Button> GUISystem::backCourtSelectionMenuButton;
 
 MyGUIButtonUMSharedPtr GUISystem::displayMenuButtons;
 MyGUIButtonUMSharedPtr GUISystem::inputMenuButtons;
@@ -127,15 +127,15 @@ MyGUIButtonUMSharedPtr GUISystem::audioMenuButtons;
 // Team Selection Menu
 MyGUIButtonUMSharedPtr GUISystem::teamSelectionMenuButtons;
 
-/*boost::shared_ptr<MyGUI::Button> GUISystem::teamsSelectedButton;
-boost::shared_ptr<MyGUI::Button> GUISystem::team0SelectButton;
-boost::shared_ptr<MyGUI::Button> GUISystem::team1SelectButton;
+/*sharedPtr<MyGUI::Button> GUISystem::teamsSelectedButton;
+sharedPtr<MyGUI::Button> GUISystem::team0SelectButton;
+sharedPtr<MyGUI::Button> GUISystem::team1SelectButton;
 */
 
 // Player Start Selection Menu
-/*boost::shared_ptr<MyGUI::Button> GUISystem::team0StartingLineupSetButton;
-boost::shared_ptr<MyGUI::Button> GUISystem::team1StartingLineupSetButton;
-boost::shared_ptr<MyGUI::Button> GUISystem::startingLineupsSetButton;
+/*sharedPtr<MyGUI::Button> GUISystem::team0StartingLineupSetButton;
+sharedPtr<MyGUI::Button> GUISystem::team1StartingLineupSetButton;
+sharedPtr<MyGUI::Button> GUISystem::startingLineupsSetButton;
 */
 
 // listbox widgets
@@ -145,13 +145,13 @@ MyGUIListBoxUMSharedPtr GUISystem::teamSelectBox;
 
 // Network Server Setup Widgets
 MyGUIListBoxSharedPtr GUISystem::numClientsSelectBox;  // allows you to select the number of network players
-//boost::shared_ptr<MyGUI::Button> GUISystem::serverHostButton;
-boost::shared_ptr<MyGUI::EditBox> GUISystem::serverIPAddressBox;
+//sharedPtr<MyGUI::Button> GUISystem::serverHostButton;
+sharedPtr<MyGUI::EditBox> GUISystem::serverIPAddressBox;
 MyGUIButtonUMSharedPtr GUISystem::networkServerSetupMenuButtons;
     
 // Network Client Setup Widgets
-boost::shared_ptr<MyGUI::EditBox> GUISystem::clientIPAddressBox;
-//boost::shared_ptr<MyGUI::Button> GUISystem::clientConnectButton;
+sharedPtr<MyGUI::EditBox> GUISystem::clientIPAddressBox;
+//sharedPtr<MyGUI::Button> GUISystem::clientConnectButton;
 MyGUIButtonUMSharedPtr GUISystem::networkClientSetupMenuButtons;
     
 MyGUIListBoxVecUMSharedPtr GUISystem::teamPlayerPosSelectBox;
@@ -201,8 +201,8 @@ MyGUIImageBoxSharedPtr GUISystem::team1Logo;
 
 // Court selection menu widgets
 MyGUIButtonUMSharedPtr GUISystem::courtSelectionMenuButtons;
-//boost::shared_ptr<MyGUI::Button> GUISystem::backPlayerStartSelectionMenuButton;
-//boost::shared_ptr<MyGUI::Button> GUISystem::courtSelectButton;
+//sharedPtr<MyGUI::Button> GUISystem::backPlayerStartSelectionMenuButton;
+//sharedPtr<MyGUI::Button> GUISystem::courtSelectButton;
 MyGUIListBoxSharedPtr GUISystem::courtSelectBox;  
 MyGUIImageBoxSharedPtr GUISystem::courtPreviewImgBox;
 MyGUITextBoxSharedPtr GUISystem::courtNameTxtBox;
@@ -267,7 +267,7 @@ void GUISystem::setBase(UBCBaseSharedPtr set)  // sets the value of base
     base = set;
 }
 
-/*boost::shared_ptr<networkEngimmnmne> GUISystem::getNetworkG()  // retrieves the value of network
+/*sharedPtr<networkEngimmnmne> GUISystem::getNetworkG()  // retrieves the value of network
 {
     return (networkG);
 }
@@ -276,11 +276,11 @@ void GUISystem::setNetworkG(networkEngineSharedPtr set)  // sets the value of ne
     networkG = set;
 }
 
-boost::shared_ptr<renderEngine> GUISystem::getRenderE()  // retrieves the value of render
+sharedPtr<renderEngine> GUISystem::getRenderE()  // retrieves the value of render
 {
     return (render);
 }
-void GUISystem::setRender(boost::shared_ptr<renderEngine> set)  // sets the value of render
+void GUISystem::setRender(sharedPtr<renderEngine> set)  // sets the value of render
 {
     render = set;
 }
@@ -483,7 +483,7 @@ bool GUISystem::setup()  // sets up the in game gui
 bool GUISystem::initMyGUI()  // Initializes MyGUI
 {
 //    exit(0);
-//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    sharedPtr<renderEngine> render = renderEngine::Instance();
 //    Ogre::RenderWindow *mWindow = render->getMWindow();
 //    Ogre::SceneManager *mSceneMgr = render->getMSceneMgr();
 
@@ -567,7 +567,7 @@ void GUISystem::backButtons()  // handles the back buttons
 
 void GUISystem::startSinglePlayerGame()  // starts single player game
 {
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
 //    exit(0);
 //    gameS->setGameType(SINGLE);
     base->getGameS()->setGameType(SINGLE);
@@ -667,7 +667,7 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
     createTeamSelectionMenuGUI();
     showTeamSelectionMenuWidgets();
 //    changeActiveMenu(TEAMSELECT);
-    boost::shared_ptr<loader> load; // = loader::Instance();
+    sharedPtr<loader> load; // = loader::Instance();
 */
     bool changeMenu = false;  // determinrs if menu is to be changed
 //    teamStateVecSharedPtr teamInstance; // = gameS->getTeamDataInstance();
@@ -784,9 +784,9 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
 
 void GUISystem::courtSelectionMenu() // displays court selection menu
 {
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<loader> load; // = loader::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<loader> load; // = loader::Instance();
     if (!courtSelectionMenuCreated)
     {
         createCourtSelectionMenuGUI();
@@ -858,9 +858,9 @@ void GUISystem::networkServer()  // sets up  game as a network server
     //networkEngine * network = networkEngine::Instance();
 //    networkEngineSharedPtr network = networkEngine::Instance();
     //gameEngine * gameE = gameEngine::Instance();
-//    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
+//    sharedPtr<gameEngine> gameE = gameEngine::Instance();
     //gameState *gameS = gameState::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
 
 //    gameS->setGameType(MULTI);
     base->getGameS()->setGameType(MULTI);
@@ -879,8 +879,8 @@ void GUISystem::networkServer()  // sets up  game as a network server
 void GUISystem::networkClient()  // sets up game as a network client
 {
 //    networkEngineSharedPtr network = networkEngine::Instance();
-//    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    sharedPtr<gameEngine> gameE = gameEngine::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
 
 //    gameS->setGameType(MULTI);
     base->getGameS()->setGameType(MULTI);
@@ -899,9 +899,9 @@ void GUISystem::networkClient()  // sets up game as a network client
 void GUISystem::courtSelected()  // processes court selection
 {
     //conversion *convert = conversion::Instance();
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     //gameState *gameS = gameState::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
     
     logMsg("Selected Court #" +convert->toString(courtSelectBox->getIndexSelected()));
 //    gameS->setSelectedCourtDataInstance(courtSelectBox->getIndexSelected());
@@ -917,7 +917,7 @@ void GUISystem::teamsSelected()  // processes team selection
 {
 //    exit(0);
     //gameState *gameS = gameState::Instance();
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     
     teamStateUMSharedPtr activeTeamInstance;
     teamStateUMSharedPtr teamInstance;
@@ -930,7 +930,7 @@ void GUISystem::teamsSelected()  // processes team selection
     teamID.push_back(teamSelectBox[1]->getIndexSelected());
     activeTeamInstance.insert(std::pair<size_t, teamStateSharedPtr>(teamID[0], teamInstance[teamID[0]]));
     activeTeamInstance.insert(std::pair<size_t, teamStateSharedPtr>(teamID[1], teamInstance[teamID[1]]));
-    // sets the base class of the teamInstance objects to the same as the GUI which avoids crashes due to uninitialized boost::shared_ptrs
+    // sets the base class of the teamInstance objects to the same as the GUI which avoids crashes due to uninitialized sharedPtrs
     activeTeamInstance[0]->setBase(base);
     activeTeamInstance[1]->setBase(base);
     
@@ -947,9 +947,9 @@ void GUISystem::teamsSelected()  // processes team selection
 void GUISystem::playerStartSelected()  // process player start selection
 {
     //conversion *convert = conversion::Instance();
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     //gameState *gameS = gameState::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
 
 //    teamStateVecSharedPtr  activeTeamInstance = gameS->getActiveTeamInstance();
 
@@ -962,7 +962,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     teamStateUMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
   
     std::vector<playerStateUMSharedPtr > playerInstance;
-    playerStateUMSharedPtr activePlayerInstance;
+    std::unordered_map<std::string, playerStateSharedPtr> activePlayerInstance;
     size_t IDs = 0;
     std::string func = "GUISystem::playerStartSelected";
 
@@ -1134,7 +1134,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     logMsg(func +" teamStarterID[0][PF] = " +convert->toString(teamStarterID[0]["PF"]));
     logMsg(func +" teamStarterID[0][C] = " +convert->toString(teamStarterID[0]["C"]));
 
-    exit(0);
+//    exit(0);
 /*    team0Starters.push_back(teamPlayerPosSelectBox[0]["SG"]->getItemNameAt(teamPlayerPosSelectBox[0]["SG"]->getIndexSelected()));
     teamStarterID[0][1] = team0IDs[1][teamPlayerPosSelectBox[0]["SG"]->getIndexSelected()];
     logMsg("teamStarterID[0][1] = " +convert->toString(teamStarterID[0][1]));
@@ -1214,19 +1214,51 @@ void GUISystem::playerStartSelected()  // process player start selection
     for (auto ATIIT : activeTeamInstance)
     {
         logMsg(func +" ATIIT.first == " +convert->toString(ATIIT.first));
+        activePlayerInstance.clear();
+
         for (auto PIIT : ATIIT.second->getPlayerInstance())
         {
-            logMsg(func +" ATIIT.first == " +convert->toString(ATIIT.first) +" PIIT.second->getID() == " +convert->toString(PIIT.second->getID()));
+            logMsg(func +" ATIIT.first == " +convert->toString(ATIIT.first) +" PIIT.second->getID() == " +convert->toString(PIIT.second->getID()) +" primaryPosition == " +convert->toString(PIIT.second->getPrimaryPosition()));
             std::string teamStarterIDPG = convert->toString(teamStarterID[1]["PG"]);
-            logMsg("teamStarterID[ATIIT.first][PG] == " +teamStarterIDPG);
+//            logMsg("teamStarterID[ATIIT.first][PG] == " +teamStarterIDPG);
   
             if (PIIT.second->getID() == teamStarterID[ATIIT.first]["PG"])
             {
-                logMsg(func +" WOOT!");
+                activePlayerInstance.insert(std::pair<std::string, playerStateSharedPtr>("PG", PIIT.second));
+                activePlayerInstance["PG"]->setActivePosition(PG);
+                logMsg(func +" WOOT PG!");
+            }
+            else if (PIIT.second->getID() == teamStarterID[ATIIT.first]["SG"])
+            {
+                activePlayerInstance.insert(std::pair<std::string, playerStateSharedPtr>("SG", PIIT.second));
+                activePlayerInstance["SG"]->setActivePosition(SG);
+                logMsg(func +" WOOT SG!");
+            }
+            else if (PIIT.second->getID() == teamStarterID[ATIIT.first]["SF"])
+            {
+                activePlayerInstance.insert(std::pair<std::string, playerStateSharedPtr>("SF", PIIT.second));
+                activePlayerInstance["SF"]->setActivePosition(SF);
+                logMsg(func +" WOOT SF!");
+            }
+            else if (PIIT.second->getID() == teamStarterID[ATIIT.first]["PF"])
+            {
+                activePlayerInstance.insert(std::pair<std::string, playerStateSharedPtr>("PF", PIIT.second));
+                activePlayerInstance["PF"]->setActivePosition(PF);
+                logMsg(func +" WOOT PF!");
+            }
+            else if (PIIT.second->getID() == teamStarterID[ATIIT.first]["C"])
+            {
+                activePlayerInstance.insert(std::pair<std::string, playerStateSharedPtr>("C", PIIT.second));
+                activePlayerInstance["C"]->setActivePosition(C);
+                logMsg(func +" WOOT C!");
             }
         }
+        ATIIT.second->setActivePlayerInstance(activePlayerInstance);
+        ATIIT.second->setActivePlayerInstancesCreated(true);
+        logMsg(func +" activePlayerInstance.size() == " +convert->toString(activePlayerInstance.size()));
     }
-    exit(0);
+    base->getGameS()->setActiveTeamInstance(activeTeamInstance);
+//    exit(0);
     playerInstance.clear();
     activePlayerInstance.clear();
 /*    playerInstance = base->getGameS()->getActiveTeamInstance()[0]->getPlayerInstance();
@@ -1383,7 +1415,7 @@ bool GUISystem::checkTeamInstancesCreated()  // Checks if team instances have be
 {
 //    exit(0);
     //gameState *gameS = gameState::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
 
     if (!base->getGameS()->getActiveTeamInstancesCreated())
     {

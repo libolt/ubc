@@ -134,7 +134,7 @@ class networkEngine : public engine
     ENetEvent event;
     ENetPeerSharedPtr peer;
     ENetHostSharedPtr server;
-    boost::shared_ptr<ENetPacket> packet;
+    sharedPtr<ENetPacket> packet;
 
     netGameTypes netGameType;  // stores what type of network game this instance is
     teamTypes teamType;  // stores which team the network player is on

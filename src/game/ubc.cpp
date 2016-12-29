@@ -44,7 +44,7 @@
 // static declarations 
 UBCBaseSharedPtr UBC::base;  // static copy of base class
 
-boost::shared_ptr<GUISystem> UBC::gui;  // the GUI object.
+sharedPtr<GUISystem> UBC::gui;  // the GUI object.
 
 UBC::UBC()  // constructor
 {
@@ -66,11 +66,11 @@ void UBC::setBase(UBCBaseSharedPtr set)  // sets the value of base
     base = set;
 }
 
-boost::shared_ptr<GUISystem> UBC::getGui()  // retrieves the value of gui
+sharedPtr<GUISystem> UBC::getGui()  // retrieves the value of gui
 {
     return (gui);
 }
-void UBC::setGui(boost::shared_ptr<GUISystem> set)  // sets the value of gui
+void UBC::setGui(sharedPtr<GUISystem> set)  // sets the value of gui
 {
     gui = set;
 }
@@ -89,7 +89,7 @@ void UBC::setQuitGame(bool set)  // sets the value of quitGame
 bool UBC::setup()  // sets up UBC object
 {
     /*    gameEngine *tempGameEObj = new gameEngine;
-        boost::shared_ptr<gameEngine> tempGameESharedPtr = boost::shared_ptr<gameEngine>(tempGameEObj);
+        sharedPtr<gameEngine> tempGameESharedPtr = sharedPtr<gameEngine>(tempGameEObj);
         setGameE(tempGameESharedPtr);
     */
 //    exit(0);
@@ -167,9 +167,9 @@ void UBC::executeState()  // executes the UBC game code
 
 void UBC::run()  // runs the game
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
 //    exit(0);
-//    boost::shared_ptr<renderEngine> renderTemp = base->getGameE()->getRenderE();
+//    sharedPtr<renderEngine> renderTemp = base->getGameE()->getRenderE();
 //    exit(0);
     std::string func = "UBC::executeState()";
 
@@ -182,7 +182,7 @@ void UBC::run()  // runs the game
 //    exit(0);
     base->getGameE()->getRenderE()->createScene(); // creates rendering scene.
 
-//    boost::shared_ptr<entity> gameStateSharedPtr(new entity);
+//    sharedPtr<entity> gameStateSharedPtr(new entity);
 
 //    exit(0);
 
@@ -198,7 +198,7 @@ void UBC::run()  // runs the game
     }
 //    exit(0);
 //    base->getGameS()->createInstances();  // creates object instances
-//    boost::shared_ptr<entity> gameStateSharedPtr(new entity);
+//    sharedPtr<entity> gameStateSharedPtr(new entity);
 
     if (base->getGameE()->getRenderE()->getMWindow() == NULL)
     {
@@ -208,13 +208,13 @@ void UBC::run()  // runs the game
 //    exit(0);
 //    setupState();  // sets up the game state
 
-    boost::shared_ptr<Ogre::Viewport> vp = base->getGameE()->getRenderE()->getViewPort();
+    sharedPtr<Ogre::Viewport> vp = base->getGameE()->getRenderE()->getViewPort();
 //    setViewPort(*vp);  // sets the viewPort for MyGUI
 
 //    exit(0);
     logMsg(func +" Initializing Input");
     //inputSystem *input = inputSystem::Instance();
-//    boost::shared_ptr<inputSystem> input = getInputE();
+//    sharedPtr<inputSystem> input = getInputE();
 //    exit(0);
 
 //    bool quitGame = base->getGameE()->getQuitGame();
@@ -227,7 +227,7 @@ void UBC::run()  // runs the game
 
 bool UBC::startGame()  // starts the game
 {
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
     std::string func = "UBC::startGame()";
 
     logMsg(func +" beginning");
@@ -242,10 +242,10 @@ bool UBC::startGame()  // starts the game
 
 void UBC::processInput()  // processes game input
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
-//    boost::shared_ptr<GUISystem> gui = GUISystem::Instance();
-//    boost::shared_ptr<inputSystem> input = inputSystem::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
+//    sharedPtr<GUISystem> gui = GUISystem::Instance();
+//    sharedPtr<inputSystem> input = inputSystem::Instance();
 //    networkEngineSharedPtr network = networkEngine::Instance();
     teamStateUMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
     networkPlayerStateObject netPStateObj;
@@ -471,7 +471,7 @@ void UBC::processInput()  // processes game input
 
 bool UBC::gameLoop()  // Main Game Loop
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     bool quitGame = base->getGameE()->getQuitGame();
     std::string func = "UBC::gameLoop()";
 
@@ -532,13 +532,13 @@ bool UBC::gameLoop()  // Main Game Loop
 
 void UBC::gameLoop_old()  // Main Game Loop
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-/*    boost::shared_ptr<gameState> gameS = gameState::Instance();
-//    boost::shared_ptr<GUISystem> gui = GUISystem::Instance();
-//    boost::shared_ptr<inputSystem> input = inputSystem::Instance();
-//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+/*    sharedPtr<gameState> gameS = gameState::Instance();
+//    sharedPtr<GUISystem> gui = GUISystem::Instance();
+//    sharedPtr<inputSystem> input = inputSystem::Instance();
+//    sharedPtr<renderEngine> render = renderEngine::Instance();
 //    networkEngineSharedPtr network = networkEngine::Instance();
-//    boost::shared_ptr<soundEngine> sound = soundEngine::Instance();
+//    sharedPtr<soundEngine> sound = soundEngine::Instance();
 
 //    networkPlayerStateObject netPStateObj;
 
@@ -730,14 +730,14 @@ bool UBC::updateGUI()  // updates the gui based on received events
 
 int main(int argc, char *argv[])
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<UBC> ubc;
-    boost::shared_ptr<UBC> ubc(new UBC);
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<UBC> ubc;
+    sharedPtr<UBC> ubc(new UBC);
 //    exit(0);
-//    boost::shared_ptr<renderEngine> render = ubc.getRenderE();
-//    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
-//    boost::shared_ptr<GUISystem> gui = ubc.getGui();
+//    sharedPtr<renderEngine> render = ubc.getRenderE();
+//    sharedPtr<gameEngine> gameE = gameEngine::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
+//    sharedPtr<GUISystem> gui = ubc.getGui();
 //    exit(0);   
     std::string func = "main()";
 

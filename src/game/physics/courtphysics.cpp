@@ -33,7 +33,7 @@ courtPhysics::~courtPhysics()  // destructor
 /*
 bool physicsEngine::setupCourtPhysics()
 {
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+    sharedPtr<gameState> gameS = gameState::Instance();
 
     courtStateVec courtInstance = gameS->getCourtInstance();
     btRigidBody *courtBody;
@@ -74,7 +74,7 @@ bool physicsEngine::setupHoopPhysics()  // sets up physics for the hoop
 {
 //    courtState *courtS = courtState::Instance();
     //gameState *gameS = gameState::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+    sharedPtr<gameState> gameS = gameState::Instance();
 
     hoopStateVec hoopInstance = gameS->getHoopInstance();
     btRigidBody *hoopBody;

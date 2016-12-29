@@ -550,9 +550,9 @@ bool playerState::setup()  // initializes the state of the object
 
 void playerState::updateState()
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
-///    boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
+///    sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
     jumpBallsSharedPtr jumpBall = getJumpBall();
     Ogre::Vector3 playerPos;
@@ -638,8 +638,8 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
 {
     logMsg("playerState::updateCourtPosition");
 
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-    ///boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+    ///sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
 
         comparison compare;
@@ -735,8 +735,8 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
 
 void playerState::updateDirection()
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
     teamStateUMSharedPtr activeTeamInstance = getActiveTeamInstance();
     basketballStateUMSharedPtr activeBasketballInstance = getActiveBasketballInstance();
 //    size_t activeBBallInstance = getActiveBBallInstance();
@@ -855,8 +855,8 @@ void playerState::updateDirection()
 
 void playerState::updateMovement()  // updates movement status of the player
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
     teamStateUMSharedPtr activeTeamInstance = getActiveTeamInstance();
 //    basketballStateVecSharedPtr bballInstance = getBasketballInstance();
     basketballStateUMSharedPtr activeBasketballInstance = getActiveBasketballInstance();
@@ -928,7 +928,7 @@ void playerState::updateMovement()  // updates movement status of the player
 
 void playerState::calculatePass()   // calculates which player to pass the ball to
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     std::string func = "playerState::calculatepass()";
 
     logMsg(func +" beginning");

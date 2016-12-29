@@ -24,13 +24,13 @@
 #include "load.h"
 
 /*
-boost::shared_ptr<soundEngine> soundEngine::pInstance;
+sharedPtr<soundEngine> soundEngine::pInstance;
 
-boost::shared_ptr<soundEngine> soundEngine::Instance()
+sharedPtr<soundEngine> soundEngine::Instance()
 {
     if (pInstance == 0)  // is it the first call?
     {
-        boost::shared_ptr<soundEngine> tInstance(new soundEngine);
+        sharedPtr<soundEngine> tInstance(new soundEngine);
         pInstance = tInstance;
 
     }
@@ -53,7 +53,7 @@ soundEngine::~soundEngine()  // destructor
 
 void soundEngine::Internal_SoundFinished_CallbackIntercept(ALint which_channel, ALuint al_source, ALmixer_Data* almixer_data, ALboolean finished_naturally, void* user_data)
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     logMsg("Channel " +convert->toString(which_channel) +" finished\n");
     g_PlayingAudio[which_channel] = AL_FALSE;
 }
@@ -70,8 +70,8 @@ void soundEngine::setSetupComplete(bool set)  // sets the value of setupComplete
 
 bool soundEngine::loadSound(std::string sound)  // loads sounds from media file
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<loader> load = loader::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+    sharedPtr<loader> load = loader::Instance();
 
     ALmixer_Data *sample;
 //    if(!(sample=ALmixer_LoadAll( "roar.wav", AL_FALSE) ))
@@ -104,7 +104,7 @@ bool soundEngine::loadSound(std::string sound)  // loads sounds from media file
 bool soundEngine::setup()  // sets up the sound engine
 {
     //conversion *convert = conversion::Instance();
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
 
     logMsg("Sound Engine Setup!");
     

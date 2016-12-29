@@ -30,7 +30,7 @@
 #include "engine/physicsengine.h"
 //#include "engine/sound/soundengine.h"
 
-/*boost::shared_ptr<renderEngine> gameEngine::render; 
+/*sharedPtr<renderEngine> gameEngine::render; 
 inputEngineSharedPtr gameEngine::input;
 networkEngineSharedPtr gameEngine::network;
 */
@@ -45,14 +45,14 @@ bool gameEngine::sceneCreated;
 bool gameEngine::renderScene;
 bool gameEngine::movePlayer;
 timing gameEngine::timer;
-/*boost::shared_ptr<gameEngine> gameEngine::pInstance;
+/*sharedPtr<gameEngine> gameEngine::pInstance;
 
-boost::shared_ptr<gameEngine> gameEngine::Instance()
+sharedPtr<gameEngine> gameEngine::Instance()
 {
     if (pInstance == 0)  // is it the first call?
     {
         //pInstance = new AISystem; // create sole instance
-        boost::shared_ptr<gameEngine> tInstance(new gameEngine);
+        sharedPtr<gameEngine> tInstance(new gameEngine);
         pInstance = tInstance;
         //return tInstance; // address of sole instance
     }
@@ -61,7 +61,7 @@ boost::shared_ptr<gameEngine> gameEngine::Instance()
 */
 
 // static declarations
-boost::shared_ptr<renderEngine> gameEngine::renderE;
+sharedPtr<renderEngine> gameEngine::renderE;
 
 gameEngine::gameEngine()  // constructor
 //    : player[0](0),
@@ -188,11 +188,11 @@ void gameEngine::setYOffset(float set)  // sets the value of yOffset
     yOffset = set;
 }
 
-boost::shared_ptr<renderEngine> gameEngine::getRenderE()  // retrieves the value of renderE
+sharedPtr<renderEngine> gameEngine::getRenderE()  // retrieves the value of renderE
 {
     return (renderE);
 }
-void gameEngine::setRenderE(boost::shared_ptr<renderEngine> set)  // sets the value of renderE
+void gameEngine::setRenderE(sharedPtr<renderEngine> set)  // sets the value of renderE
 {
 //    renderE = set;
 }
@@ -221,7 +221,7 @@ bool gameEngine::setup()  // sets up engine state
 
     // renderEngine
     //    renderEngine *tempRenderObj = new renderEngine;
-    boost::shared_ptr<renderEngine> tempRenderSharedPtr(new renderEngine);
+    sharedPtr<renderEngine> tempRenderSharedPtr(new renderEngine);
     renderE = tempRenderSharedPtr;
 
     // networkEngine
@@ -231,7 +231,7 @@ bool gameEngine::setup()  // sets up engine state
     networkE->initialize();
 
     // physicsEngine
-    boost::shared_ptr<physicsEngine> tempPhysicsSharedPtr(new physicsEngine);
+    sharedPtr<physicsEngine> tempPhysicsSharedPtr(new physicsEngine);
     physE = tempPhysicsSharedPtr;
     physE->setup();
 ///    physE->setup();
@@ -246,7 +246,7 @@ bool gameEngine::setup()  // sets up engine state
 }
 /*bool gameEngine::startGame()  // starts the game
 {
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+    sharedPtr<gameState> gameS = gameState::Instance();
     
     logMsg("startGame()");
 
@@ -256,7 +256,7 @@ bool gameEngine::setup()  // sets up engine state
 
 void gameEngine::quit()  // quits the game
 {
-//    boost::shared_ptr<inputSystem> input = inputSystem::Instance();
+//    sharedPtr<inputSystem> input = inputSystem::Instance();
 
     inputE->destroy();
 

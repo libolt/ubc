@@ -166,11 +166,11 @@ void networkEngine::setServerAddress(ENetAddress set)  // sets the value of serv
     serverAddress = set;
 }
 
-boost::shared_ptr<ENetHost> networkEngine::getClient()  // retrieves the value of client
+sharedPtr<ENetHost> networkEngine::getClient()  // retrieves the value of client
 {
     return (client);
 }
-void networkEngine::setClient(boost::shared_ptr<ENetHost> set)  // sets the value of client
+void networkEngine::setClient(sharedPtr<ENetHost> set)  // sets the value of client
 {
     client = set;
 }
@@ -193,11 +193,11 @@ void networkEngine::setPeer(ENetPeerSharedPtr set)  // sets the value of peer
     peer = set;
 }
 
-boost::shared_ptr<ENetHost> networkEngine::getServer()  // retrieves the value of server
+sharedPtr<ENetHost> networkEngine::getServer()  // retrieves the value of server
 {
     return (server);
 }
-void networkEngine::setServer(boost::shared_ptr<ENetHost> set)  // sets the value of server
+void networkEngine::setServer(sharedPtr<ENetHost> set)  // sets the value of server
 {
     server = set;
 }
@@ -216,7 +216,7 @@ int networkEngine::initialize()  // initializes the network engine
 
 bool networkEngine::clientConnect()  // performs a client connection to the server
 {
-//    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
+//    sharedPtr<gameEngine> gameE = gameEngine::Instance();
 
     if (!clientEstablishedConnection)
     {
@@ -232,7 +232,7 @@ bool networkEngine::clientConnect()  // performs a client connection to the serv
                                                           2  /* allow up to 2 channels to be used, 0 and 1*/,
                                                           0  /* 56K modem with 56 Kbps downstream bandwidth */,
                                                           0  /* 56K modem with 14 Kbps upstream bandwidth */);
-        client = boost::shared_ptr<ENetHost>(tempClient);
+        client = sharedPtr<ENetHost>(tempClient);
         if (client.get() == NULL)
         {
             logMsg("An error occurred while trying to create an ENet client host.");
@@ -339,7 +339,7 @@ void networkEngine::networkClient()
 
 bool networkEngine::serverSetup()  // sets up the network server
 {
-//    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
+//    sharedPtr<gameEngine> gameE = gameEngine::Instance();
     
 /* Bind the server to the default localhost.     */
 /* A specific host address can be specified by   */
@@ -367,7 +367,7 @@ bool networkEngine::serverSetup()  // sets up the network server
                                              2  /* allows up to 2 channels, 0, 1*/,
                                              0  /* assume any amount of incoming bandwidth */,
                                              0  /* assume any amount of outgoing bandwidth */);
-    server = boost::shared_ptr<ENetHost>(tempServer);
+    server = sharedPtr<ENetHost>(tempServer);
     if (server == NULL)
     {
         logMsg("An error occurred while trying to create an ENet server host.");
@@ -379,8 +379,8 @@ bool networkEngine::serverSetup()  // sets up the network server
 
 void networkEngine::networkServer()  // executes the network server code
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<gameEngine> gameE = gameEngine::Instance();
     
     char *host; 
     std::string addressHost, addressPort, packetData, packetDataLength, packetPeer, packetChannelID;
@@ -457,8 +457,8 @@ void networkEngine::networkServer()  // executes the network server code
 
 void networkEngine::sendPacket(std::string packetData)  // sends a packet to remote system
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<gameEngine> gameE = gameEngine::Instance();
 
 //    if (gameE->getServerRunning())
     if (isServer)
@@ -480,7 +480,7 @@ void networkEngine::sendPacket(std::string packetData)  // sends a packet to rem
     exit(0);
     //packet = enet_packet_create(packetData.c_str(),strlen(packetData.c_str())+1,ENET_PACKET_FLAG_RELIABLE);
     ENetPacket *tempPacket = enet_packet_create(packetData.c_str(),strlen(packetData.c_str())+1,ENET_PACKET_FLAG_RELIABLE);
-    packet = boost::shared_ptr<ENetPacket>(tempPacket);
+    packet = sharedPtr<ENetPacket>(tempPacket);
     enet_peer_send (peer.get(), 0, packet.get());
 }
 

@@ -51,7 +51,7 @@ public:
     ~gameEngine();  // destructor
     
     //static gameEngine *Instance();
-//    static boost::shared_ptr<gameEngine> Instance();
+//    static sharedPtr<gameEngine> Instance();
     
     timing getTimer();  // retrieves the value of timer
     void setTimer(timing set);  // sets the value of timer
@@ -114,7 +114,7 @@ protected:
 private:
 
     //static gameEngine *pInstance;
-//    static boost::shared_ptr<gameEngine> pInstance;
+//    static sharedPtr<gameEngine> pInstance;
 
     static renderEngineSharedPtr renderE;  // render object
     inputEngineSharedPtr inputE;  // input object

@@ -36,14 +36,14 @@
 
 //btDynamicsWorld *physicsEngine::world;  // stores the physics world
 
-///boost::shared_ptr<physicsEngine> physicsEngine::pInstance;
+///sharedPtr<physicsEngine> physicsEngine::pInstance;
 
-/*boost::shared_ptr<physicsEngine> physicsEngine::Instance()
+/*sharedPtr<physicsEngine> physicsEngine::Instance()
 {
     if (pInstance == 0)  // is it the first call?
     {
         //pInstance = new physicsEngine; // create sole instance
-        boost::shared_ptr<physicsEngine> tInstance(new physicsEngine);
+        sharedPtr<physicsEngine> tInstance(new physicsEngine);
         pInstance = tInstance;
     }
     return pInstance;  // address of sole instance
@@ -51,12 +51,12 @@
 */
 
 // static declarations
-boost::shared_ptr<btDynamicsWorld> physicsEngine::world;  // stores the physics world
-boost::shared_ptr<BtOgre::DebugDrawer> physicsEngine::debugDraw;  // used to draw debug shapes for objects
-boost::shared_ptr<btBroadphaseInterface> physicsEngine::broadPhase;
-boost::shared_ptr<btDefaultCollisionConfiguration> physicsEngine::collisionConfig;
-boost::shared_ptr<btCollisionDispatcher> physicsEngine::dispatcher;
-boost::shared_ptr<btSequentialImpulseConstraintSolver> physicsEngine::solver;
+sharedPtr<btDynamicsWorld> physicsEngine::world;  // stores the physics world
+sharedPtr<BtOgre::DebugDrawer> physicsEngine::debugDraw;  // used to draw debug shapes for objects
+sharedPtr<btBroadphaseInterface> physicsEngine::broadPhase;
+sharedPtr<btDefaultCollisionConfiguration> physicsEngine::collisionConfig;
+sharedPtr<btCollisionDispatcher> physicsEngine::dispatcher;
+sharedPtr<btSequentialImpulseConstraintSolver> physicsEngine::solver;
 btContactSolverInfo physicsEngine::contactInfo;
 btCollisionShape *physicsEngine::courtShape;  // stores the shape of the court object
 BtOgre::RigidBodyState *physicsEngine::courtBodyState; // stores state of the
@@ -202,11 +202,11 @@ void physicsEngine::setBasketballVelocitySet(bool set)  // sets the value of bas
     basketballVelocitySet = set;
 }
 
-boost::shared_ptr<btDynamicsWorld> physicsEngine::getWorld()  // retrieves the value of world
+sharedPtr<btDynamicsWorld> physicsEngine::getWorld()  // retrieves the value of world
 {
     return (world);
 }
-void physicsEngine::setWorld(boost::shared_ptr<btDynamicsWorld> set)  // sets the value of world
+void physicsEngine::setWorld(sharedPtr<btDynamicsWorld> set)  // sets the value of world
 {
     world = set;
 }
@@ -237,21 +237,21 @@ bool physicsEngine::setup()  // sets up the physicsEngine object
 //      broadPhase = new btAxisSweep3(btVector3(-10000,-10000,-10000), btVector3(10000,10000,10000), 1024);
     //broadPhase = new btDbvtBroadphase();
     btBroadphaseInterface *tempBroadPhase = new btDbvtBroadphase;
-    broadPhase = boost::shared_ptr<btBroadphaseInterface>(tempBroadPhase);
+    broadPhase = sharedPtr<btBroadphaseInterface>(tempBroadPhase);
 //    collisionConfig = new btDefaultCollisionConfiguration();
     btDefaultCollisionConfiguration *tempCollisionConfig = new btDefaultCollisionConfiguration;
-    collisionConfig = boost::shared_ptr<btDefaultCollisionConfiguration>(tempCollisionConfig);
+    collisionConfig = sharedPtr<btDefaultCollisionConfiguration>(tempCollisionConfig);
 //    dispatcher = new btCollisionDispatcher(collisionConfig);
     btCollisionDispatcher *tempDispatcher = new btCollisionDispatcher(collisionConfig.get());
-    dispatcher = boost::shared_ptr<btCollisionDispatcher>(tempDispatcher);
+    dispatcher = sharedPtr<btCollisionDispatcher>(tempDispatcher);
 //    solver = new btSequentialImpulseConstraintSolver();
     btSequentialImpulseConstraintSolver *tempSolver = new btSequentialImpulseConstraintSolver();
-    solver = boost::shared_ptr<btSequentialImpulseConstraintSolver>(tempSolver);
+    solver = sharedPtr<btSequentialImpulseConstraintSolver>(tempSolver);
 //    world = new btDiscreteDynamicsWorld(dispatcher, broadPhase, solver, collisionConfig);
 //    world->setGravity(btVector3(0,-9.8,0));
     btDynamicsWorld *tempWorld = new btDiscreteDynamicsWorld(dispatcher.get(), broadPhase.get(), solver.get(), collisionConfig.get());
 //    tempWorld->setGravity(btVector3(0,-9.8,0));
-    world = boost::shared_ptr<btDynamicsWorld>(tempWorld);
+    world = sharedPtr<btDynamicsWorld>(tempWorld);
     world->setGravity(btVector3(0,-9.8,0));
 
     contactInfo = world->getSolverInfo();
@@ -263,14 +263,14 @@ bool physicsEngine::setup()  // sets up the physicsEngine object
     return (true);
 }
 
-void physicsEngine::setupState(boost::shared_ptr<renderEngine> render)  // sets up the state of the physics engine
+void physicsEngine::setupState(sharedPtr<renderEngine> render)  // sets up the state of the physics engine
 {
-//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+//    sharedPtr<renderEngine> render = renderEngine::Instance();
 
     // Debug drawing!
     //debugDraw = new BtOgre::DebugDrawer(render->getMSceneMgr()->getRootSceneNode(), world.get());
     BtOgre::DebugDrawer *tempDebugDraw = new BtOgre::DebugDrawer(render->getMSceneMgr()->getRootSceneNode(), world.get());
-    debugDraw = boost::shared_ptr<BtOgre::DebugDrawer>(tempDebugDraw);
+    debugDraw = sharedPtr<BtOgre::DebugDrawer>(tempDebugDraw);
     world->setDebugDrawer(debugDraw.get());
 
 /*    if (!playerPhysicsSetup)
@@ -322,10 +322,10 @@ void physicsEngine::setupState(boost::shared_ptr<renderEngine> render)  // sets 
 void physicsEngine::updateState()  // updates the state for the physics engine
 {
 /*
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
-//    boost::shared_ptr<inputSystem> input = inputSystem::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<gameEngine> gameE = gameEngine::Instance();
+    sharedPtr<gameState> gameS = gameState::Instance();
+//    sharedPtr<inputSystem> input = inputSystem::Instance();
 
     comparison compare;
     
@@ -488,7 +488,7 @@ void physicsEngine::updatePositions()  // updates thr position of objects
 /*
 void physicsEngine::updateBasketballPosition()  // updates the position of basketball object(s)
 {
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+    sharedPtr<gameState> gameS = gameState::Instance();
 
     size_t activeBBallInstance = gameS->getActiveBBallInstance();
     basketballStateVec basketballInstance = gameS->getBasketballInstance();
@@ -507,8 +507,8 @@ void physicsEngine::updateBasketballPosition()  // updates the position of baske
 
 void physicsEngine::updatePlayerPositions()  // updates the position of player objecgts
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
 
     comparison compare;
 
@@ -572,8 +572,8 @@ void physicsEngine::updatePlayerPositions()  // updates the position of player o
 
 void physicsEngine::stepWorld(timing timer)  // steps the world of the physics simulation
 {
-//    boost::shared_ptr<gameEngine> gameE = gameEngine::Instance();
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+//    sharedPtr<gameEngine> gameE = gameEngine::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
 
     btScalar currentTime;
     btScalar fixedTimeStep;
@@ -610,8 +610,8 @@ void physicsEngine::stepWorld(timing timer)  // steps the world of the physics s
 
 /*void physicsEngine::ballDribbling()  // simulates basketball dribble
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+    sharedPtr<gameState> gameS = gameState::Instance();
 
 //    playerStateVec pInstance = gameS->getPlayerInstance();
     basketballStateVec basketballInstance = gameS->getBasketballInstance();
@@ -708,7 +708,7 @@ void physicsEngine::stepWorld(timing timer)  // steps the world of the physics s
 
 bool physicsEngine::collisionCheck(btRigidBody *objectA, btRigidBody *objectB)  // tests whther or not two objects have collided
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     MyContactResultCallback collisionResult;
 
     world->contactPairTest(objectA, objectB, collisionResult);
@@ -726,9 +726,9 @@ void physicsEngine::passCollisionCheck()  // checks whether the ball has collide
     /*
 //  exit(0);
     //conversion *convert = conversion::Instance();
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     //gameState *gameS = gameState::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+    sharedPtr<gameState> gameS = gameState::Instance();
 
     teamTypes teamWithBall = gameS->getTeamWithBall();
     teamStateVecSharedPtr  activeTeamInstance = gameS->getActiveTeamInstance();
@@ -764,8 +764,8 @@ void physicsEngine::passCollisionCheck()  // checks whether the ball has collide
 /*
 bool physicsEngine::playerJump(teamTypes teamType, int playerID)  // calculates and executes player jumping in the air
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+    sharedPtr<gameState> gameS = gameState::Instance();
 
     courtStateVec courtInstance = gameS->getCourtInstance();
     teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
@@ -855,8 +855,8 @@ bool physicsEngine::playerJump(teamTypes teamType, int playerID)  // calculates 
 
 bool physicsEngine::shootBasketball(teamTypes teamType, int playerID)  // calculates and executes basketball being shot
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<gameState> gameS = gameState::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+    sharedPtr<gameState> gameS = gameState::Instance();
 
     comparison compare;
     courtStateVec courtInstance = gameS->getCourtInstance();

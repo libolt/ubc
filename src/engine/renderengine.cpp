@@ -57,13 +57,13 @@ SDL_Window *renderEngine::sdlWindow;
 SDL_SysWMinfo renderEngine::sysInfo; 
 
 
-boost::shared_ptr<Ogre::Root> renderEngine::RERoot;  // stores the OGRE Root
-boost::shared_ptr<Ogre::SceneManager> renderEngine::mSceneMgr;  // static declaration of mSceneMgr
-boost::shared_ptr<Ogre::Camera> renderEngine::mCamera;  // static declaration of mSceneMgr
-boost::shared_ptr<Ogre::RenderWindow> renderEngine::mWindow;  // static declaration of mSceneMgr
-boost::shared_ptr<Ogre::Viewport> renderEngine::viewPort;  // static declaration of mSceneMgr
-boost::shared_ptr<Ogre::Light> renderEngine::l;  // static declaration of l
-boost::shared_ptr<Ogre::ResourceGroupManager> renderEngine::rsm; // static declaration of rsm
+sharedPtr<Ogre::Root> renderEngine::RERoot;  // stores the OGRE Root
+sharedPtr<Ogre::SceneManager> renderEngine::mSceneMgr;  // static declaration of mSceneMgr
+sharedPtr<Ogre::Camera> renderEngine::mCamera;  // static declaration of mSceneMgr
+sharedPtr<Ogre::RenderWindow> renderEngine::mWindow;  // static declaration of mSceneMgr
+sharedPtr<Ogre::Viewport> renderEngine::viewPort;  // static declaration of mSceneMgr
+sharedPtr<Ogre::Light> renderEngine::l;  // static declaration of l
+sharedPtr<Ogre::ResourceGroupManager> renderEngine::rsm; // static declaration of rsm
 Ogre::NameValuePairList renderEngine::misc; 
 Ogre::ShaderGeneratorTechniqueResolverListener *renderEngine::mMatListener; 
 Ogre::RenderSystem *renderEngine::selectedRenderSystem;
@@ -90,7 +90,7 @@ renderEngine::renderEngine()
 	mAssetMgr = NULL;
 	mSceneMgr = NULL;
 #endif
-//    boost::shared_ptr<Ogre::RenderWindow> tempWindow(new Ogre::RenderWindow);
+//    sharedPtr<Ogre::RenderWindow> tempWindow(new Ogre::RenderWindow);
     mWindow = NULL;
     RERoot = NULL;
    
@@ -111,47 +111,47 @@ bool renderEngine::frameEnded()
 {
 	return true;
 }
-boost::shared_ptr<Ogre::Root> renderEngine::getRERoot()
+sharedPtr<Ogre::Root> renderEngine::getRERoot()
 {
 	return (RERoot);
 }
-void renderEngine::setRERoot(boost::shared_ptr<Ogre::Root> set)
+void renderEngine::setRERoot(sharedPtr<Ogre::Root> set)
 {
 	RERoot = set;
 }
 
-boost::shared_ptr<Ogre::Camera> renderEngine::getMCamera()
+sharedPtr<Ogre::Camera> renderEngine::getMCamera()
 {
 	return (mCamera);
 }
-void renderEngine::setMCamera(boost::shared_ptr<Ogre::Camera> set)
+void renderEngine::setMCamera(sharedPtr<Ogre::Camera> set)
 {
 	mCamera = set;
 }
 
-boost::shared_ptr<Ogre::SceneManager> renderEngine::getMSceneMgr()
+sharedPtr<Ogre::SceneManager> renderEngine::getMSceneMgr()
 {
 	return (mSceneMgr);
 }
-void renderEngine::setMSceneMgr(boost::shared_ptr<Ogre::SceneManager> set)
+void renderEngine::setMSceneMgr(sharedPtr<Ogre::SceneManager> set)
 {
 	mSceneMgr = set;
 }
 
-boost::shared_ptr<Ogre::RenderWindow> renderEngine::getMWindow()
+sharedPtr<Ogre::RenderWindow> renderEngine::getMWindow()
 {
 	return (mWindow);
 }
-void renderEngine::setMWindow(boost::shared_ptr<Ogre::RenderWindow> set)
+void renderEngine::setMWindow(sharedPtr<Ogre::RenderWindow> set)
 {
 	mWindow = set;
 }
 
-boost::shared_ptr<Ogre::Viewport> renderEngine::getViewPort() // retrieves the value of viewPort
+sharedPtr<Ogre::Viewport> renderEngine::getViewPort() // retrieves the value of viewPort
 {
 	return (viewPort);
 }
-void renderEngine::setViewPort(boost::shared_ptr<Ogre::Viewport> set) // sets the value of viewPort
+void renderEngine::setViewPort(sharedPtr<Ogre::Viewport> set) // sets the value of viewPort
 {
 	viewPort = set;
 }
@@ -322,7 +322,7 @@ Ogre::DataStreamPtr renderEngine::openAPKFile(const std::string& fileName)
 
 bool renderEngine::initSDL() // Initializes SDL Subsystem
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     std::string func = "renderEngine::initSDL()";
     
     logMsg(func +" beginning");
@@ -387,7 +387,7 @@ bool renderEngine::initSDL() // Initializes SDL Subsystem
 
 bool renderEngine::initOgre() // Initializes Ogre Subsystem
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     std::string func = "renderEngine::initOgre()";
     
     logMsg(func +" beginning");
@@ -417,7 +417,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 
 //    exit(0);
 	//std::cout << "winHandle = " << winHandle << std::endl;
-    RERoot = boost::shared_ptr<Ogre::Root>(new Ogre::Root("", "", "Ogre.log"));
+    RERoot = sharedPtr<Ogre::Root>(new Ogre::Root("", "", "Ogre.log"));
     const std::string pluginDir = OGRE_PLUGIN_DIR;
     logMsg(func +" winHandle for Ogre = " +winHandle);
 //    exit(0);
@@ -492,7 +492,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 #endif
     
     
-    mWindow = boost::shared_ptr<Ogre::RenderWindow>(RERoot->initialise(false));
+    mWindow = sharedPtr<Ogre::RenderWindow>(RERoot->initialise(false));
 
 /*    misc["externalWindowHandle"] = winHandle;
 //    misc["externalGLContext"] = convert->toString((unsigned long)SDL_GL_GetCurrentContext());
@@ -532,7 +532,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 
 bool renderEngine::createScene()
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance(); 
+    sharedPtr<conversion> convert = conversion::Instance(); 
     std::string func = "renderEngine::createScene()";
     
     logMsg(func +" beginning");
@@ -608,7 +608,7 @@ bool renderEngine::createScene()
 //    exit(0);
     logMsg(func +" Hello??");
 //    exit(0);
-    mWindow = boost::shared_ptr<Ogre::RenderWindow>(RERoot->createRenderWindow("Ultimate Basketball Challenge", 0, 0, false, &misc));
+    mWindow = sharedPtr<Ogre::RenderWindow>(RERoot->createRenderWindow("Ultimate Basketball Challenge", 0, 0, false, &misc));
 
 //    exit(0);
     logMsg(func +" renderWindow created!");
@@ -645,7 +645,7 @@ bool renderEngine::createScene()
 
     mResourceGroup = "UBCData";
 //	Ogre::ResourceGroupManager *rsm
-    rsm = boost::shared_ptr<Ogre::ResourceGroupManager>(Ogre::ResourceGroupManager::getSingletonPtr());
+    rsm = sharedPtr<Ogre::ResourceGroupManager>(Ogre::ResourceGroupManager::getSingletonPtr());
     rsm->createResourceGroup(mResourceGroup);
 
     Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
@@ -722,10 +722,10 @@ bool renderEngine::createScene()
 
     rsm->initialiseResourceGroup(mResourceGroup);
 //  exit(0);
-    mSceneMgr = boost::shared_ptr<Ogre::SceneManager>(RERoot->createSceneManager(Ogre::ST_GENERIC)); // creates the scene manager
+    mSceneMgr = sharedPtr<Ogre::SceneManager>(RERoot->createSceneManager(Ogre::ST_GENERIC)); // creates the scene manager
 //    mSceneMgr = RERoot->createSceneManager("DefaultSceneManager"); // creates the scene manager
 
-    mCamera = boost::shared_ptr<Ogre::Camera>(mSceneMgr->createCamera("camera"));
+    mCamera = sharedPtr<Ogre::Camera>(mSceneMgr->createCamera("camera"));
 
 /*
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
@@ -744,7 +744,7 @@ bool renderEngine::createScene()
 
     mCamera->setNearClipDistance(5);
     mCamera->setFarClipDistance(5000);
-    viewPort = boost::shared_ptr<Ogre::Viewport>(mWindow->addViewport(mCamera.get()));
+    viewPort = sharedPtr<Ogre::Viewport>(mWindow->addViewport(mCamera.get()));
     viewPort->setBackgroundColour(Ogre::ColourValue(0, 0, 0));
 
     mCamera->setAspectRatio(Ogre::Real(viewPort->getActualWidth()) / Ogre::Real(viewPort->getActualHeight()));
@@ -765,7 +765,7 @@ bool renderEngine::createScene()
     mSceneMgr->setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5));
 
     // Create a light
-    l = boost::shared_ptr<Ogre::Light>(mSceneMgr->createLight("MainLight"));
+    l = sharedPtr<Ogre::Light>(mSceneMgr->createLight("MainLight"));
     l->setPosition(20,80,56);
 
  
@@ -849,7 +849,7 @@ return (true);
 
 bool renderEngine::renderFrame()  // renders a frame to the screen
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     std::string func = "renderEngine::renderFrame()";
     
     logMsg(func +" beginning");

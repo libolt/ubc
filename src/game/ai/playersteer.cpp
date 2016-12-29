@@ -138,7 +138,7 @@ void playerSteer::setPositionReached(boolVec reached)  // sets the value of posi
 
 void playerSteer::reset()    // reset state
 {
-/*    boost::shared_ptr<conversion> convert = conversion::Instance();
+/*    sharedPtr<conversion> convert = conversion::Instance();
     logMsg("steer alive?");
     steering::reset ();  // reset the vehicle
    logMsg("steer alive?2");
@@ -155,7 +155,7 @@ void playerSteer::reset()    // reset state
 //        exit(0);
         logMsg("teamType steer!");
 	    //gameState *gameS = gameState::Instance();
-//        boost::shared_ptr<gameState> gameS = gameState::Instance();
+//        sharedPtr<gameState> gameS = gameState::Instance();
 //        exit(0);
 //        teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
         logMsg("teamType == " +convert->toString(teamType));
@@ -214,8 +214,8 @@ void playerSteer::reset()    // reset state
 void playerSteer::update (const float currentTime, float elapsedTime)
 {
     AISystemSharedPtr ai = AISystem::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
 
 //	exit(0);
 	counter += 1;
@@ -465,8 +465,8 @@ void playerSteer::update (const float currentTime, float elapsedTime)
 
 void playerSteer::checkCourtPosition()  // checks if the player's position has changed
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
     
     comparison compare;
 //    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
@@ -551,8 +551,8 @@ void playerSteer::checkCourtPosition()  // checks if the player's position has c
 
 void playerSteer::updateOffense(const float currentTime, const float elapsedTime)  // updates the offense steering sim
 {
-	boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+	sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
 
 //    teamStateVecSharedPtr getActiveTeamInstance = gameS->getActiveTeamInstance();
     //playerStateVec team0ActivePlayerInstance = activeTeamInstance[0].getActivePlayerInstance();
@@ -705,8 +705,8 @@ void playerSteer::updateOffense(const float currentTime, const float elapsedTime
 
 void playerSteer::updateDefense(const float currentTime, const float elapsedTime)  // updates the defense steering sim
 {
-	boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
+	sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
 
 //    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
 

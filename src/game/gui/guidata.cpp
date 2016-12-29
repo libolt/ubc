@@ -43,8 +43,8 @@
 
 bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Selection Menu widgets
 {
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
 
     courtStateUMSharedPtr  courtInstance;
     stdStringVec courtName;
@@ -123,7 +123,7 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
 
 void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start Selection Menu widgets
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     teamStateUMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
     std::vector<playerStateUMSharedPtr > playerInstance;
     std::string func = "addPlayerStartSelectionMenuData";
@@ -267,9 +267,9 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 
 void GUISystem::addPlayerStartSelectionMenuData_old()  // adds data to Player Start Selection Menu widgets
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
-    boost::shared_ptr<loader> load(new loader);
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
+    sharedPtr<loader> load(new loader);
 
 //    playerInstance = load->loadPlayers();
 //    playerInstance = gameS->getPlayerInstance();
@@ -763,9 +763,9 @@ void GUISystem::addPlayerStartSelectionMenuData_old()  // adds data to Player St
 
 bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Selection Menu
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
 
-    boost::shared_ptr<loader> load(new loader);
+    sharedPtr<loader> load(new loader);
 
     teamStateUMSharedPtr teamInstance; // = gameS->getTeamDataInstance();
 

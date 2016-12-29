@@ -71,13 +71,13 @@ public:
     ~GUISystem();  // destructor
 
     //static GUISystem *Instance();
-//    static boost::shared_ptr<GUISystem> Instance();
+//    static sharedPtr<GUISystem> Instance();
 
 /*    networkEngineSharedPtr getNetworkG();  // retrieves the value of networkG
     void setNetworkG(networkEngineSharedPtr set);  // sets the value of networkG
 
-    boost::shared_ptr<renderEngine> getRenderE();  // retrieves the value of render
-    void setRender(boost::shared_ptr<renderEngine> set);  // sets the value of render
+    sharedPtr<renderEngine> getRenderE();  // retrieves the value of render
+    void setRender(sharedPtr<renderEngine> set);  // sets the value of render
 */
 
     static UBCBaseSharedPtr getBase();  // retrieves the value of base
@@ -291,7 +291,7 @@ public:
 private:
 
     //static GUISystem *pInstance;
-//    static boost::shared_ptr<GUISystem> pInstance;
+//    static sharedPtr<GUISystem> pInstance;
     
 //    static MyGUI::Gui *mGUI;
 //    static MyGUI::OgrePlatform *mPlatform;
@@ -304,55 +304,55 @@ private:
     
     // Main Menu
     static MyGUIButtonUMSharedPtr mainMenuButtons;
-/*    static boost::shared_ptr<MyGUI::Button> exitButton;
-    static boost::shared_ptr<MyGUI::Button> startSingleGameButton;
-    static boost::shared_ptr<MyGUI::Button> startMultiGameButton;
-    static boost::shared_ptr<MyGUI::Button> optionsButton;
-    static boost::shared_ptr<MyGUI::Button> serverButton;
-    static boost::shared_ptr<MyGUI::Button> clientButton;
+/*    static sharedPtr<MyGUI::Button> exitButton;
+    static sharedPtr<MyGUI::Button> startSingleGameButton;
+    static sharedPtr<MyGUI::Button> startMultiGameButton;
+    static sharedPtr<MyGUI::Button> optionsButton;
+    static sharedPtr<MyGUI::Button> serverButton;
+    static sharedPtr<MyGUI::Button> clientButton;
 */
      static MyGUIButtonUMSharedPtr networkMenuButtons;
 
-//    static boost::shared_ptr<MyGUI::Button> backMainMenuButton;
-//    static boost::shared_ptr<MyGUI::Button> backNetworkSetupButton;
+//    static sharedPtr<MyGUI::Button> backMainMenuButton;
+//    static sharedPtr<MyGUI::Button> backNetworkSetupButton;
     
     static MyGUIButtonUMSharedPtr optionsMenuButtons;
-/*    static boost::shared_ptr<MyGUI::Button> displayButton;
-    static boost::shared_ptr<MyGUI::Button> inputButton;
-    static boost::shared_ptr<MyGUI::Button> audioButton;
+/*    static sharedPtr<MyGUI::Button> displayButton;
+    static sharedPtr<MyGUI::Button> inputButton;
+    static sharedPtr<MyGUI::Button> audioButton;
 */
-//    static boost::shared_ptr<MyGUI::Button> startGameButton;
-//    static boost::shared_ptr<MyGUI::Button> backNetworkClientButton;
-//    static boost::shared_ptr<MyGUI::Button> changeResolutionButton;
+//    static sharedPtr<MyGUI::Button> startGameButton;
+//    static sharedPtr<MyGUI::Button> backNetworkClientButton;
+//    static sharedPtr<MyGUI::Button> changeResolutionButton;
 
     static MyGUIButtonUMSharedPtr displayMenuButtons;
 
-//    static boost::shared_ptr<MyGUI::Button> changeInputTypeButton;
+//    static sharedPtr<MyGUI::Button> changeInputTypeButton;
     
     static MyGUIButtonUMSharedPtr inputMenuButtons;
 
-//    static boost::shared_ptr<MyGUI::Button> enableAudioButton;
-//    static boost::shared_ptr<MyGUI::Button> disableAudioButton;
+//    static sharedPtr<MyGUI::Button> enableAudioButton;
+//    static sharedPtr<MyGUI::Button> disableAudioButton;
     
     static MyGUIButtonUMSharedPtr audioMenuButtons;
 
-//    static boost::shared_ptr<MyGUI::Button> backOptionsMenuButton;
+//    static sharedPtr<MyGUI::Button> backOptionsMenuButton;
     
-//    static boost::shared_ptr<MyGUI::Button> backGameSetupMenuButton;
-//    static boost::shared_ptr<MyGUI::Button> backTeamSelectionMenuButton;
-//    static boost::shared_ptr<MyGUI::Button> backCourtSelectionMenuButton;
+//    static sharedPtr<MyGUI::Button> backGameSetupMenuButton;
+//    static sharedPtr<MyGUI::Button> backTeamSelectionMenuButton;
+//    static sharedPtr<MyGUI::Button> backCourtSelectionMenuButton;
     
     // Team Selection Menu
     static MyGUIButtonUMSharedPtr teamSelectionMenuButtons;
 
-/*    static boost::shared_ptr<MyGUI::Button> team0SelectButton;
-    static boost::shared_ptr<MyGUI::Button> team1SelectButton;
-    static boost::shared_ptr<MyGUI::Button> teamsSelectedButton;
+/*    static sharedPtr<MyGUI::Button> team0SelectButton;
+    static sharedPtr<MyGUI::Button> team1SelectButton;
+    static sharedPtr<MyGUI::Button> teamsSelectedButton;
 */
     // Player Start Selection Menu
-/*    static boost::shared_ptr<MyGUI::Button> team0StartingLineupSetButton;
-    static boost::shared_ptr<MyGUI::Button> team1StartingLineupSetButton;
-    static boost::shared_ptr<MyGUI::Button> startingLineupsSetButton;
+/*    static sharedPtr<MyGUI::Button> team0StartingLineupSetButton;
+    static sharedPtr<MyGUI::Button> team1StartingLineupSetButton;
+    static sharedPtr<MyGUI::Button> startingLineupsSetButton;
 */
     static MyGUIButtonUMSharedPtr playerStartSelectionMenuButtons;
 
@@ -363,14 +363,14 @@ private:
 
     // Network Server Setup Widgets
     static MyGUIListBoxSharedPtr numClientsSelectBox;  // allows you to select the number of network players
-//    static boost::shared_ptr<MyGUI::Button> serverHostButton;
-    static boost::shared_ptr<MyGUI::EditBox> serverIPAddressBox;
+//    static sharedPtr<MyGUI::Button> serverHostButton;
+    static sharedPtr<MyGUI::EditBox> serverIPAddressBox;
     
     static MyGUIButtonUMSharedPtr networkServerSetupMenuButtons;
     
     // Network Client Setup Widgets
-    static boost::shared_ptr<MyGUI::EditBox> clientIPAddressBox;
-//    static boost::shared_ptr<MyGUI::Button> clientConnectButton;
+    static sharedPtr<MyGUI::EditBox> clientIPAddressBox;
+//    static sharedPtr<MyGUI::Button> clientConnectButton;
     
     static MyGUIButtonUMSharedPtr networkClientSetupMenuButtons;
     
@@ -426,14 +426,14 @@ private:
     // Court selection menu widgets
     static MyGUIButtonUMSharedPtr courtSelectionMenuButtons;
 
-//    static boost::shared_ptr<MyGUI::Button> backPlayerStartSelectionMenuButton;
-//    static boost::shared_ptr<MyGUI::Button> courtSelectButton;
+//    static sharedPtr<MyGUI::Button> backPlayerStartSelectionMenuButton;
+//    static sharedPtr<MyGUI::Button> courtSelectButton;
     static MyGUIListBoxSharedPtr courtSelectBox;
     static MyGUIImageBoxSharedPtr courtPreviewImgBox;
     static MyGUITextBoxSharedPtr courtNameTxtBox;
 
     // OGRE specific code
-/*    boost::shared_ptr<renderEngine> render;  // stores a copy of the render object for use in the gui
+/*    sharedPtr<renderEngine> render;  // stores a copy of the render object for use in the gui
     Ogre::Viewport *viewPort; // stores the view port for mygui
 
     // network engine

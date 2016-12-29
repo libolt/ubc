@@ -264,8 +264,8 @@ void loader::setUserInputFilesLoaded(bool set)  // sets the value of userInputFi
 
 int loader::readFile(const char *sourceFile, char **destination)  // loads an xml file using SDL so that it can be passed to TinyXML
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<renderEngine> render = renderEngine::Instance();
     int BLOCK_SIZE = 8;
     int MAX_BLOCKS = 1024;
 
@@ -321,7 +321,7 @@ int loader::readFile(const char *sourceFile, char **destination)  // loads an xm
 SDL_RWops *loader::readBinaryFile(const char *sourceFile)  // reads in a binary file
 {
     //conversion *convert = conversion::Instance();
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     
     int BLOCK_SIZE = 8;
     int MAX_BLOCKS = 1024;
@@ -426,7 +426,7 @@ std::string loader::findFile(std::string fileName)  // finds the location of a f
 
 bool loader::checkIfBasketballsLoaded()  // checks if basketballs have been loaded into bInstance
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     std::string func = "loader::checkBasketballsLoaded()";
     
     if (basketballFilesLoaded)
@@ -773,7 +773,7 @@ bool loader::checkIfPlayersLoaded()  // checks if players have been loaded into 
 
 bool loader::checkIfTeamsLoaded()  // checks if teams have been loaded into tInstance
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     teamStateVec tempT;
     
 //    exit(0);
@@ -948,8 +948,8 @@ basketballStateVecSharedPtr loader::loadBasketballs()  // load basketball settin
 
 stdStringVec loader::loadBasketballListFile(std::string fileName) // loads the list of baskteball list file
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<renderEngine> render = renderEngine::Instance();
     stdStringVec bballFiles;
     std::string fileContents;
     tinyxml2::XMLDocument doc;
@@ -1001,10 +1001,10 @@ stdStringVec loader::loadBasketballListFile(std::string fileName) // loads the l
     return (bballFiles);
 }
 
-boost::shared_ptr<basketballState> loader::loadBasketballFile(std::string fileName)  // loads data from the basketball XML files
+sharedPtr<basketballState> loader::loadBasketballFile(std::string fileName)  // loads data from the basketball XML files
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<basketballState> basketballInstance(new basketballState);
+    sharedPtr<conversion> convert = conversion::Instance();
+    sharedPtr<basketballState> basketballInstance(new basketballState);
     
 //    basketballState *basketball = new basketballState;
     std::string name;
@@ -1113,8 +1113,8 @@ std::unordered_map<size_t, courtStateSharedPtr> loader::loadCourts()  // load co
 
 stdStringVec loader::loadCourtListFile(std::string fileName)    // loads the list of court list file
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<renderEngine> render = renderEngine::Instance();
     stdStringVec cFiles;
     std::string fileContents;
     tinyxml2::XMLDocument doc;
@@ -1170,7 +1170,7 @@ stdStringVec loader::loadCourtListFile(std::string fileName)    // loads the lis
 
 courtStateSharedPtr loader::loadCourtFile(std::string fileName)  // loads data from the offense play XML files
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     courtStateSharedPtr courtInstance(new courtState);
 //    courtState *court = new courtState;
     std::string name;
@@ -1413,8 +1413,8 @@ hoopStateUMSharedPtr  loader::loadHoops()  // load hoop XML files
 
 stdStringVec loader::loadHoopListFile(std::string fileName)  // load the list of hoops from hoops.xml
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<renderEngine> render = renderEngine::Instance();
     stdStringVec hFiles;
     std::string fileContents;
     tinyxml2::XMLDocument doc;
@@ -1470,8 +1470,8 @@ stdStringVec loader::loadHoopListFile(std::string fileName)  // load the list of
 
 hoopStateSharedPtr loader::loadHoopFile(std::string fileName)  // loads data from the hoop XML files.
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-    boost::shared_ptr<hoopState> hoopInstance(new hoopState);
+    sharedPtr<conversion> convert = conversion::Instance();
+    sharedPtr<hoopState> hoopInstance(new hoopState);
 
 //    basketballState *basketball = new basketballState;
     std::string name;
@@ -1571,8 +1571,8 @@ offensePlaysVecSharedPtr loader::loadOffensePlays()  // load offense plays from 
 
 stdStringVec loader::loadOffensePlayListFile(std::string fileName)  // loads the play list file
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<renderEngine> render = renderEngine::Instance();
 
     stdStringVec playFiles;
     std::string func = "loader::loadOffensePlayListFile()";
@@ -1623,9 +1623,9 @@ stdStringVec loader::loadOffensePlayListFile(std::string fileName)  // loads the
     return (playFiles);
 }
 
-boost::shared_ptr<offensePlays> loader::loadOffensePlayFile(std::string fileName)  // loads data from the offense play XML files
+sharedPtr<offensePlays> loader::loadOffensePlayFile(std::string fileName)  // loads data from the offense play XML files
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     
     offensePlaysSharedPtr playInstance(new offensePlays);
 //    offensePlays *play = new offensePlays;
@@ -1920,7 +1920,7 @@ boost::shared_ptr<offensePlays> loader::loadOffensePlayFile(std::string fileName
     playInstance->setExecutePositions(executeCoords);
     playInstance->setPlayerDirective(playerDirective);
     
-//    playInstance = boost::shared_ptr<offensePlays>(play);
+//    playInstance = sharedPtr<offensePlays>(play);
     return (playInstance);
 }
 
@@ -1955,8 +1955,8 @@ playerStateUMSharedPtr loader::loadPlayers()  // loads the players
 
 stdStringVec loader::loadPlayerListFile(std::string fileName)  // loads the player list file
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-  //   boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+  //   sharedPtr<renderEngine> render = renderEngine::Instance();
     stdStringVec pFiles;
     std::string fileContents;
     tinyxml2::XMLDocument doc;
@@ -2013,9 +2013,9 @@ stdStringVec loader::loadPlayerListFile(std::string fileName)  // loads the play
 
 playerStateSharedPtr loader::loadPlayerFile(std::string fileName)  // loads the player file
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
-//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
+//    sharedPtr<renderEngine> render = renderEngine::Instance();
 
     playerStateSharedPtr playerInstance(new playerState);
 //    playerState *player = new playerState;
@@ -2439,7 +2439,7 @@ playerStateSharedPtr loader::loadPlayerFile(std::string fileName)  // loads the 
 
 std::unordered_map<size_t, teamStateSharedPtr> loader::loadTeams()  // load teams from XML files
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     teamStateUMSharedPtr teams;
 
     std::string teamList;
@@ -2512,8 +2512,8 @@ std::unordered_map<size_t, teamStateSharedPtr> loader::loadTeams()  // load team
 
 stdStringVec loader::loadTeamListFile(std::string fileName)  // loads the team list file
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<renderEngine> render = renderEngine::Instance();
 
     stdStringVec teamName;
     stdStringVec files;
@@ -2604,9 +2604,9 @@ stdStringVec loader::loadTeamListFile(std::string fileName)  // loads the team l
 
 teamStateSharedPtr loader::loadTeamFile(std::string fileName)  // loads the team file
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
-//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
+//    sharedPtr<renderEngine> render = renderEngine::Instance();
 //    teamStateVecSharedPtr teamInstance = gameS->getTeamInstance();
   
     teamStateSharedPtr teamInstance(new teamState);
@@ -2758,8 +2758,8 @@ userInputVecSharedPtr loader::loadUserInputs()  // load user input settings from
 
 stdStringVec loader::loadUserInputListFile(std::string fileName)  // loads the user input list file
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<renderEngine> render = renderEngine::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<renderEngine> render = renderEngine::Instance();
     stdStringVec uInputFiles;
 
     std::string fileContents;
@@ -2813,12 +2813,12 @@ stdStringVec loader::loadUserInputListFile(std::string fileName)  // loads the u
     return (uInputFiles);
 }
 
-boost::shared_ptr<userInput> loader::loadUserInputFile(std::string fileName)  // loads data from the user input files
+sharedPtr<userInput> loader::loadUserInputFile(std::string fileName)  // loads data from the user input files
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     
     logMsg("Load UserInput File");
-    boost::shared_ptr<userInput> uInput(new userInput);
+    sharedPtr<userInput> uInput(new userInput);
     std::string inputName;
     std::string type;
     std::string up;

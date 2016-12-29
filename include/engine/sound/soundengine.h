@@ -66,7 +66,7 @@ class soundEngine
         ~soundEngine();
 
         //static soundEngine *Instance();
-        static boost::shared_ptr<soundEngine> Instance();
+        static sharedPtr<soundEngine> Instance();
 
         void Internal_SoundFinished_CallbackIntercept(ALint which_channel, ALuint al_source, ALmixer_Data* almixer_data, ALboolean finished_naturally, void* user_data);
 
@@ -93,7 +93,7 @@ class soundEngine
 
     private:
         //static soundEngine *pInstance;
-        static boost::shared_ptr<soundEngine> pInstance;
+        static sharedPtr<soundEngine> pInstance;
 
         ALboolean g_PlayingAudio[MAX_SOURCES];
         ALboolean still_playing;

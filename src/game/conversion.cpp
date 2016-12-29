@@ -21,13 +21,13 @@
 #include "conversion.h"
 #include "logging.h"
 
-boost::shared_ptr<conversion> conversion::pInstance;
+sharedPtr<conversion> conversion::pInstance;
 
-boost::shared_ptr<conversion> conversion::Instance()
+sharedPtr<conversion> conversion::Instance()
 {
     if (pInstance == 0)  // is it the first call?
     {
-        boost::shared_ptr<conversion> tInstance(new conversion);
+        sharedPtr<conversion> tInstance(new conversion);
         pInstance = tInstance;
     }
     return pInstance; // returns the value of pInstance

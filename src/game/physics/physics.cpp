@@ -118,9 +118,9 @@ bool physics::setupPhysics(Ogre::Entity **model, Ogre::SceneNode **node, btRigid
 {
     
 //    setCollidesWith(COL_COURT);  // collides with the court
-    boost::shared_ptr<conversion> convert = conversion::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
-//    boost::shared_ptr<physicsEngine> physEngine = physicsEngine::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
+//    sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
 
 //    basketballStateVec basketballInstance = gameS->getBasketballInstance();
 //    size_t activeBBallInstance = gameS->getActiveBBallInstance();
@@ -206,8 +206,8 @@ bool physics::setupPhysics(Ogre::Entity **model, Ogre::SceneNode **node, btRigid
 //        *physBody = body;
 
 //        static btDynamicsWorld *world = getWorld();
-        boost::shared_ptr<btDynamicsWorld> world = getWorld();
-        logMsg(func +" boost::shared_ptr<btDynamicsWorld> world = getWorld();");
+        sharedPtr<btDynamicsWorld> world = getWorld();
+        logMsg(func +" sharedPtr<btDynamicsWorld> world = getWorld();");
 
         logMsg(func +" getColObject() == " +convert->toString(getColObject()));
         logMsg(func +" getCollidesWith() == " +convert->toString(getCollidesWith()));

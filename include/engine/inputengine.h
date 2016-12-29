@@ -57,8 +57,8 @@ public:
     //static inputEngine *Instance();
 //    static inputEngineSharedPtr Instance();
 
-/*    boost::shared_ptr<GUISystem> getGui();  // retrieves the value of gui
-    void setGui(boost::shared_ptr<GUISystem> set);  // sets the value of gui
+/*    sharedPtr<GUISystem> getGui();  // retrieves the value of gui
+    void setGui(sharedPtr<GUISystem> set);  // sets the value of gui
 */
     bool getKeyInputReceived();  // retrieves the value of keyInputReceived
     void setKeyInputReceived(bool set);  // sets the value of keyInputReceived
@@ -139,7 +139,7 @@ private:
     //static inputEngine *pInstance;
 //    static inputEngineSharedPtr pInstance;
 
-//    boost::shared_ptr<GUISystem> gui;  // stores the copy of the gui object
+//    sharedPtr<GUISystem> gui;  // stores the copy of the gui object
     static bool keyInputReceived;  // stores whether a key has been pressed
     static inputKeyMaps keyPressed; // stores which key was pressed
 

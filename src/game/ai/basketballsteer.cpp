@@ -49,8 +49,8 @@ void basketballSteer::setID(int id) // sets the value of ID
 void basketballSteer::reset(Ogre::Vector3 nodePosition)
 {
     // gameState *gameS = gameState::Instance();
-//    boost::shared_ptr<gameState> gameS = gameState::Instance();
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+//    sharedPtr<gameState> gameS = gameState::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
 
     steering::reset (); // reset the vehicle
     setSpeed (0.0f);         // speed along Forward direction.

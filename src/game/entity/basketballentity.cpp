@@ -51,7 +51,7 @@ void basketballEntity::setSteer(basketballSteerSharedPtr set)  // sets the value
 
 bool basketballEntity::setupPhysicsObject()  // sets up the physics object
 {
-    boost::shared_ptr<conversion> convert = conversion::Instance();
+    sharedPtr<conversion> convert = conversion::Instance();
     std::string func = "basketballEntity::setupPhysicsObject()";
     Ogre::Entity *tempModel = getModel().get();
     Ogre::SceneNode *tempNode = getNode().get();

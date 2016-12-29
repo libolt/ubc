@@ -54,7 +54,7 @@ class gameState : public state, public gameStateShared
 public:
 
     //static gameState *Instance();
-//    static boost::shared_ptr<gameState> Instance();
+//    static sharedPtr<gameState> Instance();
 
     gameState(); // constructor
     ~gameState();  // destructor

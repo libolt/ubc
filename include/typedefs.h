@@ -93,117 +93,122 @@ class jumpBalls;
 //class ENetHost;
 
 
+#ifndef sharedPtr
+#define sharedPtr boost::shared_ptr
+#endif
+
 // typedefs
-typedef boost::shared_ptr<UBCBase> UBCBaseSharedPtr;
 
-typedef boost::shared_ptr<GUISystem> GUISystemSharedPtr;
+typedef sharedPtr<UBCBase> UBCBaseSharedPtr;
 
-typedef boost::shared_ptr<conversion> conversionSharedPtr; 
+typedef sharedPtr<GUISystem> GUISystemSharedPtr;
 
-
-typedef boost::shared_ptr<gameEngine> gameEngineSharedPtr;
-
-typedef boost::shared_ptr<inputEngine> inputEngineSharedPtr;
-
-typedef boost::shared_ptr<networkEngine> networkEngineSharedPtr;
-
-typedef boost::shared_ptr<physicsEngine> physicsEngineSharedPtr;
-
-typedef boost::shared_ptr<renderEngine> renderEngineSharedPtr;
+typedef sharedPtr<conversion> conversionSharedPtr;
 
 
-typedef boost::shared_ptr<basketballState> basketballStateSharedPtr;
+typedef sharedPtr<gameEngine> gameEngineSharedPtr;
 
-typedef boost::shared_ptr<courtState> courtStateSharedPtr;
+typedef sharedPtr<inputEngine> inputEngineSharedPtr;
 
-typedef boost::shared_ptr<defenseState> defenseStateSharedPtr;
+typedef sharedPtr<networkEngine> networkEngineSharedPtr;
 
-typedef boost::shared_ptr<gameState> gameStateSharedPtr;
+typedef sharedPtr<physicsEngine> physicsEngineSharedPtr;
 
-typedef boost::shared_ptr<hoopState> hoopStateSharedPtr;
-
-typedef boost::shared_ptr<inputState> inputStateSharedPtr;
-
-typedef boost::shared_ptr<networkState> networkStateSharedPtr;
-
-typedef boost::shared_ptr<offenseState> offenseStateSharedPtr;
-
-typedef boost::shared_ptr<playerState> playerStateSharedPtr;
-
-typedef boost::shared_ptr<teamState> teamStateSharedPtr;
-
-typedef boost::shared_ptr<jumpBalls> jumpBallsSharedPtr;
-
-typedef boost::shared_ptr<AISystem> AISystemSharedPtr;
-
-typedef boost::shared_ptr<basketballSteer> basketballSteerSharedPtr;
-
-typedef boost::shared_ptr<playerSteer> playerSteerSharedPtr;
-
-typedef boost::shared_ptr<playerSteerPlugin> playerSteerPluginSharedPtr;
-
-typedef boost::shared_ptr<steering::AABBox> steeringAABBoxSharedPtr;
-
-typedef boost::shared_ptr<OpenSteer::AbstractVehicle> OpenSteerAbstractVehicleSharedPtr;
-
-typedef boost::shared_ptr<OpenSteer::PlugIn> OpenSteerPluginSharedPtr;
-typedef boost::shared_ptr<logging> loggingSharedPtr;
-
-typedef boost::shared_ptr<offensePlays> offensePlaysSharedPtr;
-
-typedef boost::shared_ptr<userInput> userInputSharedPtr;
+typedef sharedPtr<renderEngine> renderEngineSharedPtr;
 
 
-typedef boost::shared_ptr<ENetHost> ENetHostSharedPtr;
+typedef sharedPtr<basketballState> basketballStateSharedPtr;
 
-typedef boost::shared_ptr<ENetPeer> ENetPeerSharedPtr;
+typedef sharedPtr<courtState> courtStateSharedPtr;
 
-typedef boost::shared_ptr<ENetPacket> ENetPacketSharedPtr;
+typedef sharedPtr<defenseState> defenseStateSharedPtr;
+
+typedef sharedPtr<gameState> gameStateSharedPtr;
+
+typedef sharedPtr<hoopState> hoopStateSharedPtr;
+
+typedef sharedPtr<inputState> inputStateSharedPtr;
+
+typedef sharedPtr<networkState> networkStateSharedPtr;
+
+typedef sharedPtr<offenseState> offenseStateSharedPtr;
+
+typedef sharedPtr<playerState> playerStateSharedPtr;
+
+typedef sharedPtr<teamState> teamStateSharedPtr;
+
+typedef sharedPtr<jumpBalls> jumpBallsSharedPtr;
+
+typedef sharedPtr<AISystem> AISystemSharedPtr;
+
+typedef sharedPtr<basketballSteer> basketballSteerSharedPtr;
+
+typedef sharedPtr<playerSteer> playerSteerSharedPtr;
+
+typedef sharedPtr<playerSteerPlugin> playerSteerPluginSharedPtr;
+
+typedef sharedPtr<steering::AABBox> steeringAABBoxSharedPtr;
+
+typedef sharedPtr<OpenSteer::AbstractVehicle> OpenSteerAbstractVehicleSharedPtr;
+
+typedef sharedPtr<OpenSteer::PlugIn> OpenSteerPluginSharedPtr;
+typedef sharedPtr<logging> loggingSharedPtr;
+
+typedef sharedPtr<offensePlays> offensePlaysSharedPtr;
+
+typedef sharedPtr<userInput> userInputSharedPtr;
+
+
+typedef sharedPtr<ENetHost> ENetHostSharedPtr;
+
+typedef sharedPtr<ENetPeer> ENetPeerSharedPtr;
+
+typedef sharedPtr<ENetPacket> ENetPacketSharedPtr;
 
 // OGRE Shared Ptr
 
-typedef boost::shared_ptr<Ogre::Entity> OgreEntitySharedPtr;
+typedef sharedPtr<Ogre::Entity> OgreEntitySharedPtr;
 
-typedef boost::shared_ptr<Ogre::SceneNode> OgreSceneNodeSharedPtr;
+typedef sharedPtr<Ogre::SceneNode> OgreSceneNodeSharedPtr;
 
 
 // MyGUI Shared Ptr
 
-typedef boost::shared_ptr<MyGUI::Gui> MyGUIGuiSharedPtr;
+typedef sharedPtr<MyGUI::Gui> MyGUIGuiSharedPtr;
 
-typedef boost::shared_ptr<MyGUI::OgrePlatform> MyGUIOgrePlatformSharedPtr;
+typedef sharedPtr<MyGUI::OgrePlatform> MyGUIOgrePlatformSharedPtr;
 
-typedef boost::shared_ptr<MyGUI::ListBox> MyGUIListBoxSharedPtr;
+typedef sharedPtr<MyGUI::ListBox> MyGUIListBoxSharedPtr;
 
-typedef boost::shared_ptr<MyGUI::ImageBox> MyGUIImageBoxSharedPtr;
+typedef sharedPtr<MyGUI::ImageBox> MyGUIImageBoxSharedPtr;
 
-typedef boost::shared_ptr<MyGUI::TextBox> MyGUITextBoxSharedPtr;
+typedef sharedPtr<MyGUI::TextBox> MyGUITextBoxSharedPtr;
 
 // physics
 
-typedef boost::shared_ptr<btDynamicsWorld> btDynamicsWorldSharedPtr;
+typedef sharedPtr<btDynamicsWorld> btDynamicsWorldSharedPtr;
 
-typedef boost::shared_ptr<btCollisionShape> btCollisionShapeSharedPtr;
+typedef sharedPtr<btCollisionShape> btCollisionShapeSharedPtr;
 
-typedef boost::shared_ptr<BtOgre::RigidBodyState> BtOgreRigidBodyStateSharedPtr;
+typedef sharedPtr<BtOgre::RigidBodyState> BtOgreRigidBodyStateSharedPtr;
 
-typedef boost::shared_ptr<btRigidBody> btRigidBodySharedPtr;
+typedef sharedPtr<btRigidBody> btRigidBodySharedPtr;
 
 // vector typedefs
 
-typedef std::vector<boost::shared_ptr<playerSteer> > playerSteerVecSharedPtr;
+typedef std::vector<sharedPtr<playerSteer> > playerSteerVecSharedPtr;
 
-typedef std::vector<boost::shared_ptr<basketballState> > basketballStateVecSharedPtr;
+typedef std::vector<sharedPtr<basketballState> > basketballStateVecSharedPtr;
 
-typedef std::vector<boost::shared_ptr<hoopState> > hoopStateVecSharedPtr;
+typedef std::vector<sharedPtr<hoopState> > hoopStateVecSharedPtr;
 
-typedef std::vector<boost::shared_ptr<playerState> > playerStateVecSharedPtr;
+typedef std::vector<sharedPtr<playerState> > playerStateVecSharedPtr;
 
-typedef std::vector<boost::shared_ptr<teamState> > teamStateVecSharedPtr;
+typedef std::vector<sharedPtr<teamState> > teamStateVecSharedPtr;
 
-typedef std::vector<boost::shared_ptr<courtState> > courtStateVecSharedPtr;
+typedef std::vector<sharedPtr<courtState> > courtStateVecSharedPtr;
 
-typedef std::vector<boost::shared_ptr<offensePlays> > offensePlaysVecSharedPtr;
+typedef std::vector<sharedPtr<offensePlays> > offensePlaysVecSharedPtr;
 
 typedef std::vector<playerPositions> playerPositionsVec;
 
@@ -217,7 +222,7 @@ typedef std::vector<inputInGameMaps> inputInGameWorkQueues;  // stores types of 
 typedef std::vector<inputTypes> inputTypeQueues;  // stores types of input processed by the engine
 
 
-typedef std::vector<boost::shared_ptr<userInput> > userInputVecSharedPtr;
+typedef std::vector<sharedPtr<userInput> > userInputVecSharedPtr;
 
 typedef std::vector<basketballState> basketballStateVec;
 
@@ -251,15 +256,15 @@ typedef std::unordered_map <size_t, playerStateSharedPtr> playerStateUMSharedPtr
 
 typedef std::unordered_map <size_t, teamStateSharedPtr> teamStateUMSharedPtr;
 
-typedef std::unordered_map<std::string, boost::shared_ptr<MyGUI::Button> > MyGUIButtonUMSharedPtr;
+typedef std::unordered_map<std::string, sharedPtr<MyGUI::Button> > MyGUIButtonUMSharedPtr;
 
-typedef std::unordered_map<size_t, boost::shared_ptr<MyGUI::ListBox> > MyGUIListBoxUMSharedPtr;
+typedef std::unordered_map<size_t, sharedPtr<MyGUI::ListBox> > MyGUIListBoxUMSharedPtr;
 
-typedef std::unordered_map<std::string, boost::shared_ptr<MyGUI::ImageBox> > MyGUIImageBoxUMSharedPtr;
+typedef std::unordered_map<std::string, sharedPtr<MyGUI::ImageBox> > MyGUIImageBoxUMSharedPtr;
 
 // Vector Unordered_map shared pointers
 
-typedef std::vector<std::unordered_map <std::string, boost::shared_ptr<MyGUI::ListBox> > > MyGUIListBoxVecUMSharedPtr;
+typedef std::vector<std::unordered_map <std::string, sharedPtr<MyGUI::ListBox> > > MyGUIListBoxVecUMSharedPtr;
 
-typedef std::vector<std::unordered_map<std::string, boost::shared_ptr<MyGUI::TextBox> > > MyGUITextBoxVecUMSharedPtr;
+typedef std::vector<std::unordered_map<std::string, sharedPtr<MyGUI::TextBox> > > MyGUITextBoxVecUMSharedPtr;
 #endif

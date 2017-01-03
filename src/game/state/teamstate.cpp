@@ -466,7 +466,6 @@ void teamState::setupState()  // sets up the state of the object
 void teamState::updateState()  // updates the state of the object
 {
 
-//  exit(0);
     //conversion *convert = conversion::Instance();
     sharedPtr<conversion> convert = conversion::Instance();
     //gameEngine *gameE = gameEngine::Instance();
@@ -476,6 +475,10 @@ void teamState::updateState()  // updates the state of the object
     ///sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
     jumpBallsSharedPtr jumpBall = base->getGameS()->getJumpBall();
+    std::string func = "teamState::updateState()";
+
+    logMsg(func +" beginning");
+//    exit(0);
 
 //    size_t activeBBallInstance = base->getGameS()->getActiveBBallInstance();
 

@@ -77,6 +77,8 @@ public:
 
     void processInput();  // processes game input
 	
+    void processNetworkEvents();  // processes events in the network subsyatem
+    
     bool gameLoop();  // runs the Main loop for the game
 
     void gameLoop_old();  // runs the Main loop for the game

@@ -863,7 +863,7 @@ void GUISystem::networkServer()  // sets up  game as a network server
 //    sharedPtr<gameState> gameS = gameState::Instance();
 
 //    gameS->setGameType(MULTI);
-    base->getGameS()->setGameType(MULTI);
+    base->getGameS()->setGameType(MULTINET);
 //   hideNetworkSetupWidgets();  // Hides Network Setup Menu widgets
     menuActive = false;
     base->getGameE()->getNetworkE()->setIPAddress(serverIPAddressBox->getCaption());  // sets the neworkEngine's ipAddress string to that of the caption
@@ -883,7 +883,7 @@ void GUISystem::networkClient()  // sets up game as a network client
 //    sharedPtr<gameState> gameS = gameState::Instance();
 
 //    gameS->setGameType(MULTI);
-    base->getGameS()->setGameType(MULTI);
+    base->getGameS()->setGameType(MULTINET);
 //    hideNetworkSetupWidgets();  // Hides Network Setup Menu widgets
     menuActive = false;
     base->getGameE()->getNetworkE()->setIPAddress(clientIPAddressBox->getCaption());  // sets the neworkEngine's ipAddress string to that of the caption

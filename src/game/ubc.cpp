@@ -171,10 +171,11 @@ void UBC::run()  // runs the game
 //    exit(0);
 //    sharedPtr<renderEngine> renderTemp = base->getGameE()->getRenderE();
 //    exit(0);
-    std::string func = "UBC::executeState()";
+    std::string func = "UBC::run()";
 
     logMsg(func +" beginning");
 
+//    exit(0);
     base->setup();
     base->getGameE()->getRenderE()->initSDL(); // Initializes the SDL Subsystem
 //    exit(0);
@@ -469,12 +470,29 @@ void UBC::processInput()  // processes game input
 
 }
 
+void UBC::processNetworkEvents()  // processes events in the network subsyatem
+{
+    if (base->getGameE()->getServerRunning())
+    {
+        base->getGameE()->getNetworkE()->networkServer();   // Runs network server code              
+    }
+    if (base->getGameE()->getClientRunning())
+    {
+        base->getGameE()->getNetworkE()->networkClient();   // runs network client code
+    }
+}
+
 bool UBC::gameLoop()  // Main Game Loop
 {
     sharedPtr<conversion> convert = conversion::Instance();
     bool quitGame = base->getGameE()->getQuitGame();
+    unsigned long changeInTime = 0;
+    unsigned long CITmic = 0;
+    unsigned long CITmil = 0;
     std::string func = "UBC::gameLoop()";
-
+    boost::chrono::microseconds changeInTimeMicro;
+    boost::chrono::milliseconds changeInTimeMill;
+ 
     logMsg(func +" beginning");
     
     SDL_StartTextInput();
@@ -482,7 +500,7 @@ bool UBC::gameLoop()  // Main Game Loop
     while (!quitGame)
     {
         processInput();
-        if (base->getGameS()->getGameSetupComplete())  // checks to make sure game setup is complete before continuing
+/*        if (base->getGameS()->getGameSetupComplete())  // checks to make sure game setup is complete before continuing
         {
             
             if (!base->getGameE()->getSceneCreated())
@@ -493,10 +511,18 @@ bool UBC::gameLoop()  // Main Game Loop
                 {
                     logMsg(func +" getGameType() == SINGLE");
                     base->getGameE()->setCreateScene(true);
+                    exit(0);
+                }
+                else if (base->getGameS()->getGameType() == MULTILOCAL)
+                {
+                    logMsg(func +" getGameType() == MULTILOCAL");
+                    base->getGameE()->setCreateScene(true);
 //                    exit(0);
                 }
-                else if (base->getGameS()->getGameType() == MULTI)
+                else if (base->getGameS()->getGameType() == MULTINET)
                 {
+                    logMsg(func +" getGameType() == MULTINET");
+
                     if (base->getGameE()->getNetworkE()->getServerReceivedConnection() || base->getGameE()->getNetworkE()->getClientEstablishedConnection())  // checks if server and client are connected
                     {
                         base->getGameE()->setCreateScene(true);
@@ -505,6 +531,7 @@ bool UBC::gameLoop()  // Main Game Loop
                 }
             }
         }
+*/        
         if (base->getStartActiveGame())
         {
             if (startGame())
@@ -519,6 +546,36 @@ bool UBC::gameLoop()  // Main Game Loop
                 exit(0);
             }
         }
+        changeInTimeMicro = base->getGameE()->getTimer().calcChangeInTimeMicro();
+        changeInTimeMill = base->getGameE()->getTimer().calcChangeInTimeMill();
+        CITmic = changeInTimeMicro.count();
+        CITmil = changeInTimeMill.count();
+
+        logMsg ("changeInTimeMicro = " +convert->toString(CITmic));
+        logMsg ("changeInTimeMill = " +convert->toString(CITmil));
+        changeInTime = base->getGameE()->getTimer().getChangeInTimeMill().count();
+        logMsg ("loopchange = " +convert->toString(changeInTime));
+//        exit(0);
+        if (changeInTime >= 10)
+        {
+            logMsg(func +"changeInTime > 10!");
+            exit(0);
+            if (base->getGameS()->getGameType() == MULTINET)
+            {
+                processNetworkEvents();             
+            }
+
+//            logMsg("changeInTime = " +toString(changeInTime));
+            if (base->getGameE()->getRenderScene())
+            {
+                logMsg(func +" gameS->getRenderScene()");
+                exit(0);
+                base->getGameS()->updateState();  // updates the state of the game instance
+            }
+            base->getGameE()->getTimer().setPreviousTime(boost::chrono::system_clock::now());
+        }
+//        exit(0);
+        
         if (!base->getGameE()->getRenderE()->renderFrame())
         {
             logMsg(func +" Unable to render frame!");
@@ -594,7 +651,7 @@ void UBC::gameLoop_old()  // Main Game Loop
                     base->getGameE()->setCreateScene(true);
                     exit(0);
                 }
-                else if (base->getGameS()->getGameType() == MULTI)
+                else if (base->getGameS()->getGameType() == MULTINET)
                 {
                     if (base->getGameE()->getNetworkE()->getServerReceivedConnection() || base->getGameE()->getNetworkE()->getClientEstablishedConnection())  // checks if server and client are connected
                     {
@@ -646,7 +703,7 @@ void UBC::gameLoop_old()  // Main Game Loop
             base->getGameE()->getNetworkE()->setIsClient(true);
         }
 
-        if (base->getGameS()->getGameType() == MULTI && base->getGameE()->getNetworkE()->getTeamType() == NOTEAM)
+        if (base->getGameS()->getGameType() == MULTINET && base->getGameE()->getNetworkE()->getTeamType() == NOTEAM)
         {
             if (base->getGameE()->getNetworkE()->getIsServer())
             {

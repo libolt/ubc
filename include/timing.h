@@ -49,7 +49,7 @@ class timing
     boost::chrono::system_clock::time_point previousTime;  // stores the previous time
     boost::chrono::nanoseconds changeInTimeNano;  // stores the change in time in nanoseconds
     boost::chrono::microseconds changeInTimeMicro;  // stores the change in time in microseconds
-    boost::chrono::milliseconds changeInTimeMill;  // stores the change in time in milliseconds
+    static boost::chrono::milliseconds changeInTimeMill;  // stores the change in time in milliseconds
     boost::chrono::milliseconds loopTimeMill;  // stores the loop time in milliseconds
     boost::chrono::milliseconds previousTimeMill;  // stores the previous time in milliseconds
 };

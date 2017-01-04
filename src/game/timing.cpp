@@ -20,6 +20,9 @@
 
  #include "timing.h"
  
+ // static declarations
+boost::chrono::milliseconds timing::changeInTimeMill;  // stores the change in time in milliseconds
+
 timing::timing()
 {
     startTime = boost::chrono::system_clock::now();

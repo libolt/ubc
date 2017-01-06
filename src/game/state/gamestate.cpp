@@ -1395,7 +1395,7 @@ bool gameState::updateState()  // updates the game state
     }
     
     setActiveBasketballInstance(activeBasketballInstance);
-    if (getBase()->getGameS()->getGameType() == SINGLE)
+    if (base->getGameS()->getGameType() == SINGLE)
     {
         logMsg(func +"gameType == SINGLE");
     }

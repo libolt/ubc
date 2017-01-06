@@ -643,6 +643,8 @@ bool teamState::createPlayerInstances()  // creates the player instances
     playerStateUMSharedPtr gamePlayerInstance;
     std::string func = "teamState::createPlayerInstances()";
 
+    logMsg(func +" beginning");
+   
     if (base->getGameS()->getInitialized())
     {
         logMsg("teamState::createPlayerInstances() gameS initalized == true!");
@@ -652,7 +654,17 @@ bool teamState::createPlayerInstances()  // creates the player instances
     {
         logMsg("teamState::createPlayerInstances() gameS initalized == false!");
         exit(0);
+    }*/
+    
+    if (base->getGameS()->getGameType() == SINGLE)
+    {
+        logMsg(func +" gameType == SINGLE");
     }
+    else if (getBase()->getGameS()->getGameType() == NOGAME)
+    {
+        logMsg(func +" gameType == NOGAME");
+    }         
+    
     if (base->getGameS()->checkIfPlayerInstanceCreated())
     {
         logMsg(func +"game player instances created!");

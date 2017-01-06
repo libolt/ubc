@@ -45,9 +45,9 @@ class state //: public UBCBase
     
     private:
     
-    bool initialized;  // if true then tbe object has been initialized
-    
-    bool stateSet;  // if true then the state is set
+    static bool initialized;  // if true then tbe object has been initialized
+
+    static bool stateSet;  // if true then the state is set
 
 };
 #endif

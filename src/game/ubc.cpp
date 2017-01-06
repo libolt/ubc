@@ -106,6 +106,7 @@ bool UBC::setup()  // sets up UBC object
             GUISystemSharedPtr tempGUISharedPtr(new GUISystem);
             gui = tempGUISharedPtr;
             gui->setBase(base);
+            base->getGameS()->setBase(base);
             base->setStateSetup(true);
         }
         else

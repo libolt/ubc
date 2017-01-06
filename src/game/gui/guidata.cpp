@@ -129,6 +129,8 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     std::string func = "addPlayerStartSelectionMenuData";
     sizeTVec teamIDs = base->getGameS()->getTeamIDS();
 
+    logMsg(func +" beginning");
+    
     auto x = 0;
 /*    while (x < activeTeamInstance.size())
     {
@@ -139,7 +141,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 //    exit(0);
     x = 0;
 //    while (x < activeTeamInstance.size())
-    logMsg("activeTeamInstance.size() == " +convert->toString(activeTeamInstance.size()));
+    logMsg(func +" activeTeamInstance.size() == " +convert->toString(activeTeamInstance.size()));
 //    exit(0);
     for (auto ATIIT : activeTeamInstance)
     {
@@ -148,6 +150,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         logMsg(convert->toString(ATIIT.second->getPlayerInstancesCreated()));
 //        exit(0);
 //        if (teamInstance[teamIDs[x]]->getPlayerInstancesCreated())
+
         if (ATIIT.second->getPlayerInstancesCreated())
         {
 //            exit(0);
@@ -156,20 +159,29 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         }
         else
         {
+
 //            exit(0);
             logMsg(func +" creating team " +convert->toString(ATIIT.first) +" playerInstances!");
 //            teamInstance[x]->setBase(base);
             if (ATIIT.second->createPlayerInstances())
             {
-                logMsg("activeTeamInstance[" +convert->toString(ATIIT.first) +"]->createPlayerInstances()");
-                logMsg("activeTeamInstance[" +convert->toString(ATIIT.first) +"]->getPlayerInstance().size() == " +convert->toString(ATIIT.second->getPlayerInstance().size()));
+                logMsg(func +" activeTeamInstance[" +convert->toString(ATIIT.first) +"]->createPlayerInstances()");
+                logMsg(func +" activeTeamInstance[" +convert->toString(ATIIT.first) +"]->getPlayerInstance().size() == " +convert->toString(ATIIT.second->getPlayerInstance().size()));
 //                exit(0);
-                ATIIT.second->setPlayerInstancesCreated(true);
+    if (base->getGameS()->getGameType() == SINGLE)
+    {
+        logMsg(func +" gameType == SINGLE");
+    }
+    else if (getBase()->getGameS()->getGameType() == NOGAME)
+    {
+        logMsg(func +" gameType == NOGAME");
+    }            
+                ATIIT.second->setPlayerInstancesCreated(true);   
                 base->getGameS()->setActiveTeamInstance(activeTeamInstance);
             }
             else
             {
-                logMsg("Unable to create active team [" +convert->toString(x) +"] playerInstances");
+                logMsg(func +" Unable to create active team [" +convert->toString(x) +"] playerInstances");
                 exit(0);
             }
         }
@@ -177,9 +189,10 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         playerInstance.insert(playerInstance.begin(), ATIIT.second->getPlayerInstance());
        ++x;
     }
-    logMsg("playerInstance.size() == " +convert->toString(playerInstance.size()));
-    logMsg("playerInstance[0].size() == " +convert->toString(playerInstance[0].size()));
-    logMsg("playerInstance[1].size() == " +convert->toString(playerInstance[1].size()));
+    
+    logMsg(func +" playerInstance.size() == " +convert->toString(playerInstance.size()));
+    logMsg(func +" playerInstance[0].size() == " +convert->toString(playerInstance[0].size()));
+    logMsg(func +" playerInstance[1].size() == " +convert->toString(playerInstance[1].size()));
 //    exit(0);
 /*    for (auto pInstanceIT : activeTeamInstance[0]->getPlayerInstance())
     {
@@ -223,34 +236,34 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
                 case PG:
                     teamPlayerPosSelectBox[itx]["PG"]->addItem(playerName);
 //                    teamPlayerRating[i]["PG"]->setCaption(playerOverallRating);
-                    logMsg("PG playerName == " +playerName);
-                    logMsg("PG playerRating == " +playerOverallRating);
+                    logMsg(func +" PG playerName == " +playerName);
+                    logMsg(func +" PG playerRating == " +playerOverallRating);
                 break;
                 case SG:
                     teamPlayerPosSelectBox[itx]["SG"]->addItem(playerName);         
 //                    teamPlayerRating[i]["SG"]->setCaption(playerOverallRating);
-                    logMsg("SG playerName == " +playerName);
-                    logMsg("SG playerRating == " +playerOverallRating);
+                    logMsg(func +" SG playerName == " +playerName);
+                    logMsg(func +" SG playerRating == " +playerOverallRating);
  
                 break;
                 case SF:
                     teamPlayerPosSelectBox[itx]["SF"]->addItem(playerName);
 //                    teamPlayerRating[i]["SF"]->addItem(playerOverallRating);
-                    logMsg("SF playerName == " +playerName);
-                    logMsg("SF playerRating == " +playerOverallRating);
+                    logMsg(func +" SF playerName == " +playerName);
+                    logMsg(func +" SF playerRating == " +playerOverallRating);
                 break;
                 case PF:
                     teamPlayerPosSelectBox[itx]["PF"]->addItem(playerName);
 //                    teamPlayerRating[i]["PF"]->addItem(playerOverallRating);
-                    logMsg("PF playerName == " +playerName);
-                    logMsg("PF playerRating == " +playerOverallRating);
+                    logMsg(func +" PF playerName == " +playerName);
+                    logMsg(func +" PF playerRating == " +playerOverallRating);
   
                 break;
                 case C:
                     teamPlayerPosSelectBox[itx]["C"]->addItem(playerName);
 //                    teamPlayerRating[i]["C"]->addItem(playerOverallRating);
-                    logMsg("C playerName == " +playerName);
-                    logMsg("C playerRating == " +playerOverallRating);
+                    logMsg(func +" C playerName == " +playerName);
+                    logMsg(func +" C playerRating == " +playerOverallRating);
                 break;
 //                exit(0);
             }

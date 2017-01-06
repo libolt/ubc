@@ -640,23 +640,45 @@ void GUISystem::gameSetupMenu()  // displays game setup menu
 
 void GUISystem::playerStartSelectionMenu()  // displays player start selection menu
 {
-    logMsg("playerStartSelectionMenu");
+    std::string func = "GUISystem::playerStartSelectionMenu()";
+    
+    logMsg(func +" beginning");
 //    exit(0);
+
     if (!playerStartSelectionMenuCreated)
     {
-        logMsg("!playerStartSelectionMenuCreated");
+        logMsg(func +" !playerStartSelectionMenuCreated");
 //         exit(0);
         createPlayerStartSelectionMenuGUI();	
 //        exit(0);
-        logMsg("createPlayerStartSelectionMenuGUI!");
+
+        logMsg(func +" createPlayerStartSelectionMenuGUI!");
         addPlayerStartSelectionMenuData();
+    if (base->getGameS()->getGameType() == SINGLE)
+    {
+        logMsg(func +"gameType == SINGLE");
+    }
+    else if (getBase()->getGameS()->getGameType() == NOGAME)
+    {
+        logMsg(func +"gameType == NOGAME");
+    }
 //        exit(0);
         playerStartSelectionMenuCreated = true;
     }
 //    exit(0);
+    if (base->getGameS()->getGameType() == SINGLE)
+    {
+        logMsg(func +"gameType == SINGLE");
+    }
+    else if (getBase()->getGameS()->getGameType() == NOGAME)
+    {
+        logMsg(func +"gameType == NOGAME");
+    }
+    logMsg(func +" blah");
+    exit(0);
     setSelectedIndexes();
     changeActiveMenu(PLAYERSTART);
-    logMsg("playerStartSelectionMenu");
+    logMsg(func +" end");
 //    exit(0);
 }
 
@@ -787,6 +809,8 @@ void GUISystem::courtSelectionMenu() // displays court selection menu
 //    sharedPtr<gameState> gameS = gameState::Instance();
     sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<loader> load; // = loader::Instance();
+    std::string func = "GUISystem::courtSelectionMenu()";
+    
     if (!courtSelectionMenuCreated)
     {
         createCourtSelectionMenuGUI();
@@ -810,6 +834,7 @@ void GUISystem::courtSelectionMenu() // displays court selection menu
         }
 //        exit(0);
     }
+
     changeActiveMenu(COURTSELECT);
 //    exit(0);
 
@@ -902,8 +927,11 @@ void GUISystem::courtSelected()  // processes court selection
     sharedPtr<conversion> convert = conversion::Instance();
     //gameState *gameS = gameState::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
+    std::string func = "GUISystem::courtSelected()";
     
-    logMsg("Selected Court #" +convert->toString(courtSelectBox->getIndexSelected()));
+    logMsg(func +" beginning");
+
+    logMsg(func +" Selected Court #" +convert->toString(courtSelectBox->getIndexSelected()));
 //    gameS->setSelectedCourtDataInstance(courtSelectBox->getIndexSelected());
 //    gameS->setActiveCourtInstance(courtSelectBox->getIndexSelected());
     //FIXME! needs reworked!
@@ -911,6 +939,8 @@ void GUISystem::courtSelected()  // processes court selection
 //    exit(0);
 //    changeActiveMenu(TEAMSELECT);
 //    teamSelectionMenu();
+    logMsg(func +" end");
+
 }
 
 void GUISystem::teamsSelected()  // processes team selection
@@ -918,13 +948,13 @@ void GUISystem::teamsSelected()  // processes team selection
 //    exit(0);
     //gameState *gameS = gameState::Instance();
     sharedPtr<conversion> convert = conversion::Instance();
-    
     teamStateUMSharedPtr activeTeamInstance;
     teamStateUMSharedPtr teamInstance;
-    
+    std::string func = "GUISystem::teamsSelected()";
+  
     teamInstance = base->getGameS()->getTeamInstance();
     
-    logMsg("GUISystem::teamsSelected()");
+    logMsg(func +" beginning");
     sizeTVec teamID;
     teamID.push_back(teamSelectBox[0]->getIndexSelected());
     teamID.push_back(teamSelectBox[1]->getIndexSelected());
@@ -935,12 +965,15 @@ void GUISystem::teamsSelected()  // processes team selection
     activeTeamInstance[1]->setBase(base);
     
     //    gameS->setTeamID(teamID);
-    logMsg("teamSelectBox[0]->getIndexSelected() == " +convert->toString(teamSelectBox[0]->getIndexSelected()));
-    logMsg("teamID[0] == " +convert->toString(teamID[0]));
+    logMsg(func +" teamSelectBox[0]->getIndexSelected() == " +convert->toString(teamSelectBox[0]->getIndexSelected()));
+    logMsg(func +" teamID[0] == " +convert->toString(teamID[0]));
 //    exit(0);
     base->getGameS()->setTeamIDS(teamID);
     base->getGameS()->setActiveTeamInstance(activeTeamInstance);
-    logMsg("Teams selected");
+
+    logMsg(func +" Teams selected");
+    logMsg(func +" end");
+
 //    exit(0);
 }
 
@@ -1373,6 +1406,16 @@ void GUISystem::playerStartSelected()  // process player start selection
     logMsg("team  0 starter 0 = " +team0Starters[0]);
 */
 //        exit(0);
+    if (base->getGameS()->getGameType() == SINGLE)
+    {
+        logMsg(func +"gameType == SINGLE");
+    }
+    else if (getBase()->getGameS()->getGameType() == NOGAME)
+    {
+        logMsg(func +"gameType == NOGAME");
+    }
+    logMsg(func +" blah");
+    exit(0);
     hideActiveMenuWidgets();
     menuActive = false;
 //    exit(0);

@@ -204,6 +204,7 @@ public:
 
     bool setupState();  // sets up the game condition
     bool updateState();  // updates the state of the game
+    bool updateActiveTeamInstances();  // updates all active team instances
     bool processInput();  // processes input received from the inputState object
 
 protected:

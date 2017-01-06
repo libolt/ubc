@@ -51,7 +51,7 @@ class gameStateShared
         gameTypes getGameType();  // retrieves the value of gameType
         void setGameType(gameTypes set);  // sets the value of gameType
 
-        static sizeTVec getTeamIDS(void);  // retrieves the value of teamIDS
+        sizeTVec getTeamIDS(void);  // retrieves the value of teamIDS
         void setTeamIDS(sizeTVec set);  // sets the value of teamIDS
         
         std::vector<std::unordered_map<std::string, size_t> > getTeamStarterID();  // retrieves value of teamStarterID
@@ -148,7 +148,6 @@ class gameStateShared
 //        size_t getActiveBBallInstance();  // retrieves the value of activeBBallInstance
 //        void setActiveBBallInstance(size_t set);  // sets the value of activeBBallInstance
 
-
         basketballStateVecSharedPtr getBasketballInstance();  // retrieves the value of basketballInstance
         void setBasketballInstance(basketballStateVecSharedPtr set);  // sets the value of basketballInstance
 
@@ -161,7 +160,7 @@ class gameStateShared
         playerStateUMSharedPtr getPlayerInstance();  // retrieves the value of playerInstance
         void setPlayerInstance(playerStateUMSharedPtr set);  // sets the value of  playerInstance
 
-        static teamStateUMSharedPtr getTeamInstance();  // retireves the value of teamInstance
+        teamStateUMSharedPtr getTeamInstance();  // retireves the value of teamInstance
         void setTeamInstance(teamStateUMSharedPtr set);  // sets the value of teamInstance
 
         jumpBallsSharedPtr getJumpBall();  // retrieves the value of jumpBall

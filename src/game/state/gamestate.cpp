@@ -28,6 +28,7 @@
 #include "state/courtstate.h"
 #include "state/gamestate.h"
 #include "state/hoopstate.h"
+#include "state/networkstate.h"
 #include "state/playerstate.h"
 #include "state/teamstate.h"
 #include "engine/gameengine.h"
@@ -1367,117 +1368,65 @@ bool gameState::setupState()  // sets up the game condition
 bool gameState::updateState()  // updates the game state
 {
     sharedPtr<conversion> convert = conversion::Instance();
-
+    AISystemSharedPtr ai = AISystem::Instance();
+    timing timer = getBase()->getGameE()->getTimer();
+    Ogre::Vector3 playerPos;
+    basketballStateUMSharedPtr activeBasketballInstance = getActiveBasketballInstance();
+//    teamStateUMSharedPtr activeTeamInstance = getActiveTeamInstance();
     std::string func = "gameState::updateState()";
 
     logMsg(func +" beginning");
 
-
-    exit(0);
+//    exit(0);
 //    logMsg("Updating gameState Logic");
 
 // BEGINING OF TEST COMMENT
-/*    AISystemSharedPtr ai = AISystem::Instance();
-    sharedPtr<conversion> convert = conversion::Instance();
+    
+//    sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<gameEngine> gameE = gameEngine::Instance();
 //    networkEngineSharedPtr network = networkEngine::Instance();
     //sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
-    physicsEngine physEngine;
+//    physicsEngine physEngine;
     
-    if (!getBasketballInstanceCreated() && getBasketballInstanceNeedCreated())
+    for (auto ABIIT : activeBasketballInstance)
     {
-        logMsg("Creating Basketball Instances!");
-        if (createBasketballInstances())
-        {
-            setBasketballInstanceCreated(true);
-            setBasketballInstanceNeedCreated(false);
-//            assignHoopToTeams();
-            logMsg("Basketball Instances Created!");
-        }
-        else
-        {
-            logMsg("Unable to Create Basketball Instances!");
-            exit(0);
-        }
+        ABIIT.second->updateState();
+        ABIIT.second->setPlayer(5);
     }
     
-    if (!getCourtInstancesCreated() && getCourtInstancesNeedCreated())
+    setActiveBasketballInstance(activeBasketballInstance);
+    if (getBase()->getGameS()->getGameType() == SINGLE)
     {
-        logMsg("Creating Cpurt Instances!");
-        if (createBasketballInstances())
-        {
-            setCourtInstancesCreated(true);
-            setCourtInstancesNeedCreated(false);
-//            assignHoopToTeams();
-            logMsg("Court Instances Created!");
-        }
-        else
-        {
-            logMsg("Unable to Create Cpurt Instances!");
-            exit(0);
-        }
+        logMsg(func +"gameType == SINGLE");
     }
-    
-    if (!getHoopInstanceCreated() && getHoopInstanceNeedCreated())
+    else if (getBase()->getGameS()->getGameType() == NOGAME)
     {
-        logMsg("Creating Hoop Instances!");
-        if (createHoopInstances())
-        {
-            setHoopInstanceCreated(true);
-            setHoopInstanceNeedCreated(false);
-//            assignHoopToTeams();
-            logMsg("Hoop Instances Created!");
-        }
-        else
-        {
-            logMsg("Unable to Create Hoop Instances!");
-            exit(0);
-        }
+        logMsg(func +"gameType == NOGAME");
     }
-    
-    if (!getActiveTeamInstancesCreated() && getActiveTeamInstancesNeedCreated())
-    {
-        logMsg("Creating active team instances!");
-        if (createActiveTeamInstances())
-        {
-            setActiveTeamInstancesCreated(true);
-            assignHoopToTeams();
-            logMsg("Team instances created!");
-        }
-        else
-        {
-            logMsg("Unable to create Active Team Instances!");
-            exit(0);
-        }
-    }
-*/
-// END OF TEST COMMENT    
-/*    timing timer = gameE->getTimer();
-    Ogre::Vector3 playerPos;
-
-    basketballInstance[activeBBallInstance].updateState();
-
-    basketballInstance[activeBBallInstance].setPlayer(5);
-
-    if (gameSetupComplete)
+    logMsg(func +" blah");
+    exit(0);
+    if (getGameSetupComplete())
     {
 
-        if (network->getPacketReceived())  // checks if a packet was received by network engine
+        logMsg(func + " Game Setup Complete!");
+        exit(0);
+//       FIXME!        
+/*        if (getBase()->getNetworkS()->getPacketReceived())  // checks if a packet was received by network engine
         {
-            processNetworkEvents();  // processes data received from the network
+            getBase()->getNetworkS()->processNetworkEvents(getAcyiveTeamInstance());  // processes data received from the network
         }
         else
         {
             
         }
-        
-        logMsg("network events processed");
+ */     
+        logMsg(func +" network events processed");
 
-        if (!tipOffComplete)  // calls tip off execution
+        if (!getTipOffComplete())  // calls tip off execution
         {
             if (executeTipOff())
             {
-                tipOffComplete = true;
+                setTipOffComplete(true);
 //                exit(0);
             }
             else
@@ -1490,7 +1439,7 @@ bool gameState::updateState()  // updates the game state
             
         }
         
-        if (teamWithBall != NOTEAM)
+        if (getTeamWithBall() != NOTEAM)
         {
 //          logMsg("teamWithBall is " +convert->toString(teamWithBall));
 //          logMsg("playetWithBall is " +convert->toString(teamInstance[teamWithBall].getPlayerWithBall()));
@@ -1518,19 +1467,28 @@ bool gameState::updateState()  // updates the game state
         {
             
         }
-
-        logMsg("Physics");
-        physEngine.updateState();   // updates the state of the physics simulation
-        logMsg("stepWorld");
+        if (updateActiveTeamInstances())
+        {
+            logMsg(func +" active team instances updated!");
+        }
+        else
+        {
+            logMsg(func +" active team instances NOT updated!");          
+        }
+        
+        logMsg(func +" Physics");
+//      FIXME! physics engine needs some reworking
+//        physEngine.updateState();   // updates the state of the physics simulation
+        logMsg(func +" stepWorld");
 //        exit(0);
-        physEngine.stepWorld(getTimer());  // steps the physics simulation
+//        physEngine.stepWorld(getTimer());  // steps the physics simulation
 ///    logMsg("DirectionsAndMovement");
 ///    updateDirectionsAndMovements();
 
 //    exit(0);
 
         // updates the basketball(s) state
-        logMsg("Updated basketball state!");
+//        logMsg("Updated basketball state!");
 //        exit(0);
 //        renderBall();
 //        SceneNode *bball = basketballInstance[activeBBallInstance].getNode();
@@ -1545,47 +1503,64 @@ bool gameState::updateState()  // updates the game state
 //        sizeTVec oldPlayerDirection = player->getOldPlayerDirection();   // stores contents of oldPlayerDirection form players in local variable
 
         // Initiates offense or defense for a team depending on value of teamWithBall
-        if (teamWithBall == 0)  // if 0 puts team 0 on offense and team 1 on defense
-        {
-            activeTeamInstance[0].setOffense(true);
-            activeTeamInstance[0].setDefense(false);
-
-            activeTeamInstance[1].setOffense(false);
-            activeTeamInstance[1].setDefense(true);
-        }
-        else if (teamWithBall == 1)  // if 1 puts team 1 on offense and team 0 on defense
-        {
-            activeTeamInstance[0].setOffense(false);
-            activeTeamInstance[0].setDefense(true);
-
-            activeTeamInstance[1].setOffense(true);
-            activeTeamInstance[1].setDefense(false);
-        }
-        else
-        {
-        }
-
-        // updates the state of each team
-        if (activeTeamInstancesCreated)
-        {
-            //FIXME crash in updateState code
-            activeTeamInstance[0].updateState();
-            activeTeamInstance[1].updateState();
-//          exit(0);
-        }
-        else
-        {
-        }
 
     }
 
 //  logMsg("gameState logic updated");
 //    exit(0);
-*/
 
     logMsg(func +" end");
 
     return true;
+}
+
+bool gameState::updateActiveTeamInstances()  // updates all active team instances
+{
+    teamStateUMSharedPtr activeTeamInstance = getActiveTeamInstance();
+
+    if (getTeamWithBallChanged())
+    {
+        if (getTeamWithBall() == HOMETEAM)  // if 0 puts team 0 on offense and team 1 on defense
+        {
+            activeTeamInstance[HOMETEAM]->setOffense(true);
+            activeTeamInstance[HOMETEAM]->setDefense(false);
+
+            activeTeamInstance[AWAYTEAM]->setOffense(false);
+            activeTeamInstance[AWAYTEAM]->setDefense(true);
+        }
+        else if (getTeamWithBall() == AWAYTEAM)  // if 1 puts team 1 on offense and team 0 on defense
+        {
+            activeTeamInstance[HOMETEAM]->setOffense(false);
+            activeTeamInstance[HOMETEAM]->setDefense(true);
+
+            activeTeamInstance[AWAYTEAM]->setOffense(true);
+            activeTeamInstance[AWAYTEAM]->setDefense(false);
+        }
+        else
+        {
+        }
+    }
+    else
+    {     
+    }
+    
+    // updates the state of each team
+    if (getActiveTeamInstancesCreated())
+    {
+        //FIXME crash in updateState code
+        for (auto ATIIT : activeTeamInstance)
+        {
+            ATIIT.second->updateState();
+        }
+//          exit(0);
+    }
+    else
+    {
+    }
+    
+    setActiveTeamInstance(activeTeamInstance);
+    
+    return (true);
 }
 
 bool gameState::processInput()  // processes input received from the inputState object

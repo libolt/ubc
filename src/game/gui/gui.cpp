@@ -1360,6 +1360,7 @@ void GUISystem::playerStartSelected()  // process player start selection
 ///        base->getGameS()->setActiveTeamInstance(activeTeamInstance);  // sets the activeTeamInstance vector
 //        base->getGameS()->setGameSetupComplete(true);
         base->getGameS()->setGameSetupComplete(true);
+        
     }
     else
     {

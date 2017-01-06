@@ -88,7 +88,7 @@ public:
     void setYOffset(float set);  // sets the value of yOffset
 
     
-    static renderEngineSharedPtr getRenderE();  // retrieves the value of render
+    renderEngineSharedPtr getRenderE();  // retrieves the value of render
     void setRenderE(renderEngineSharedPtr set);  // sets the value of render
     
     inputEngineSharedPtr getInputE();  // retrieves the value of input

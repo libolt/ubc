@@ -559,7 +559,7 @@ bool UBC::gameLoop()  // Main Game Loop
         if (changeInTime >= 10)
         {
             logMsg(func +"changeInTime > 10!");
-            exit(0);
+//            exit(0);
             if (base->getGameS()->getGameType() == MULTINET)
             {
                 processNetworkEvents();             
@@ -569,7 +569,7 @@ bool UBC::gameLoop()  // Main Game Loop
             if (base->getGameE()->getRenderScene())
             {
                 logMsg(func +" gameS->getRenderScene()");
-                exit(0);
+//                exit(0);
                 base->getGameS()->updateState();  // updates the state of the game instance
             }
             base->getGameE()->getTimer().setPreviousTime(boost::chrono::system_clock::now());

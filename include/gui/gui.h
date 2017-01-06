@@ -80,7 +80,7 @@ public:
     void setRender(sharedPtr<renderEngine> set);  // sets the value of render
 */
 
-    static UBCBaseSharedPtr getBase();  // retrieves the value of base
+    UBCBaseSharedPtr getBase();  // retrieves the value of base
     void setBase(UBCBaseSharedPtr set);  // sets the value of base
 
     bool getSetupComplete();  // retrieves the value of setupComplete

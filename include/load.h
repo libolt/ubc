@@ -94,28 +94,28 @@ public:
     playerStateUMSharedPtr getPInstance();  // retrieves the value of pInstance
     void setPInstance(playerStateUMSharedPtr set);  // sets the value of pInstance
     
-    static teamStateUMSharedPtr getTInstance();  // retrieves the value of tInstance
+    teamStateUMSharedPtr getTInstance();  // retrieves the value of tInstance
     void setTInstance(teamStateUMSharedPtr set);  // sets the value of tInstance
     
     userInputVecSharedPtr getUIInstance();  // retrieves the value of uiInstance
     void setUIInstance(userInputVecSharedPtr set);  // sets the value of uiInstance
     
-    static bool getBasketballFilesLoaded();  // retrieves the value of basketballFilesLoaded
+    bool getBasketballFilesLoaded();  // retrieves the value of basketballFilesLoaded
     void setBasketballFilesLoaded(bool set);  // sets the value of basketballFilesLoaded
     
-    static bool getCourtFilesLoaded();  // retrieves the value of courtFilesLoaded
+    bool getCourtFilesLoaded();  // retrieves the value of courtFilesLoaded
     void setCourtFilesLoaded(bool set);  // sets the value of courtFilesLoaded
     
-    static bool getOffensePlayFilesLoaded();  // retrieves the value of offensePlaFilesLoaded
+    bool getOffensePlayFilesLoaded();  // retrieves the value of offensePlaFilesLoaded
     void setOffensePlayFilesLoaded(bool set);  // sets the value of offensePlayFilesLoaded
     
-    static bool getPlayerFilesLoaded();  // retrieves the value of playerFilesLoaded
+    bool getPlayerFilesLoaded();  // retrieves the value of playerFilesLoaded
     void setPlayerFilesLoaded(bool set);  // sets the value of playerFilesLoaded
     
-    static bool getTeamFilesLoaded();  // retrieves the value of teamFilesLoaded
+    bool getTeamFilesLoaded();  // retrieves the value of teamFilesLoaded
     void setTeamFilesLoaded(bool set);  // sets the value of teamFilesLoaded
     
-    static bool getUserInputFilesLoaded();  // retrieves the value of userInputFilesLoaded
+    bool getUserInputFilesLoaded();  // retrieves the value of userInputFilesLoaded
     void setUserInputFilesLoaded(bool set);  // sets the value of userInputFilesLoaded  
 
     bool loadXMLFile(std::string fileName);

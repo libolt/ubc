@@ -55,7 +55,7 @@ public:
     UBC(); // constructor
     ~UBC();	// destructor
 
-    static UBCBaseSharedPtr getBase();  // retrieves the value of base
+    UBCBaseSharedPtr getBase();  // retrieves the value of base
     void setBase(UBCBaseSharedPtr set);  // sets the value of base
  
     GUISystemSharedPtr getGui();  // retrieves the value of gui

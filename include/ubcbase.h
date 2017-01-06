@@ -46,7 +46,7 @@ class UBCBase
         gameEngineSharedPtr getGameE();  // retrieves the value of gameE
         void setGameE(gameEngineSharedPtr set);  // sets the value of gameE
     
-        static gameStateSharedPtr getGameS();  // retrieves the value of gameS
+        gameStateSharedPtr getGameS();  // retrieves the value of gameS
         void setGameS(gameStateSharedPtr set);  // sets the value of gameS
     
         networkStateSharedPtr getNetworkS();  // retrieves the value of networkS

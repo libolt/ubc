@@ -654,7 +654,7 @@ bool teamState::createPlayerInstances()  // creates the player instances
     {
         logMsg("teamState::createPlayerInstances() gameS initalized == false!");
         exit(0);
-    }*/
+    }
     
     if (base->getGameS()->getGameType() == SINGLE)
     {

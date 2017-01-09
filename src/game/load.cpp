@@ -268,6 +268,9 @@ int loader::readFile(const char *sourceFile, char **destination)  // loads an xm
 //    sharedPtr<renderEngine> render = renderEngine::Instance();
     int BLOCK_SIZE = 8;
     int MAX_BLOCKS = 1024;
+    std::string func = "loader::readFile()";
+
+    logMsg(func +" beginning");
 
 ///#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 //	Ogre::DataStreamPtr fileData = render->openAPKFile("teamInstance.xml");
@@ -280,7 +283,7 @@ int loader::readFile(const char *sourceFile, char **destination)  // loads an xm
 //#endif
     // Open the file
 //    SDL_RWops *file;
-    logMsg("sourceFile = " +convert->toString(sourceFile));
+    logMsg(func +" sourceFile = " +convert->toString(sourceFile));
 //	logMsg(SDL_AndroidGetInternalStoragePath());
 //    file = SDL_RWFromFile("teamInstance.xml", "rb");
 
@@ -294,7 +297,7 @@ int loader::readFile(const char *sourceFile, char **destination)  // loads an xm
                 SDL_GetError()
                );
 	}*/
-    logMsg("Seek to beginning of file");
+    logMsg(func +" Seek to beginning of file");
     size_t fileLength = SDL_RWseek(file, 0, SEEK_END);
     (*destination) = new char[fileLength + 1]; // allow an extra characterfor '\0'
 
@@ -304,7 +307,7 @@ int loader::readFile(const char *sourceFile, char **destination)  // loads an xm
     // Read text from file
     std::string *contents = new std::string;
     int n_blocks = SDL_RWread(file, (*destination), 1, fileLength+1);
-    logMsg("contents = " +convert->toString(contents));
+    logMsg(func +" contents = " +convert->toString(contents));
     (*destination)[fileLength] = '\0';
 //    logMsg("destination = " +convert->toString((*destination)));
 //    exit(0);
@@ -314,6 +317,8 @@ int loader::readFile(const char *sourceFile, char **destination)  // loads an xm
 
     // BLOCK_SIZE = 8, MAX_BLOCKS = 1024
     SDL_RWclose(file);
+
+    logMsg(func +" end");
 
     return EXIT_SUCCESS;
 }
@@ -849,24 +854,28 @@ bool loader::checkIfTeamsLoaded()  // checks if teams have been loaded into tIns
 
 bool loader::checkIfUserInputsLoaded()  // checks if user inputs have been loaded into pInstance
 {
+    std::string func = "loader::checkIfUserInputsLoaded()";
+
+    logMsg(func +" beginning");
+
     if (userInputFilesLoaded)
     {
-        logMsg("loader::checkIfUserInputsLoaded() getUserInputFilesLoaded");
+        logMsg(func +" getUserInputFilesLoaded");
 
         if (uiInstance.size() > 0)
         {
-            logMsg("loader::checkIfUserInputsLoaded() User Input Files Loaded!");
+            logMsg(func +" User Input Files Loaded!");
             return(true);
         }
         else
         {
-            logMsg("loader::checkIfUserInputsLoaded() User Input Files not yet Loaded!");
+            logMsg(func +" User Input Files not yet Loaded!");
 
             userInputFilesLoaded = false;
             uiInstance = loadUserInputs();
             if (uiInstance.size() > 0)
             {
-                logMsg("loader::checkIfUserInputsLoaded() > 0!");
+                logMsg(func +"  > 0!");
 
 //                load->setTInstance(tInstance);
                 userInputFilesLoaded = true;
@@ -874,31 +883,31 @@ bool loader::checkIfUserInputsLoaded()  // checks if user inputs have been loade
             }
             else
             {
-                logMsg("loader::checkIfUserInputsLoaded() Failed to load User Input Files! IF");
+                logMsg(func +" Failed to load User Input Files! IF");
                 exit(0);
             }
         }
     }
     else 
     {
-        logMsg("loader::checkIfUserInputsLoaded() ELSE");
+        logMsg(func +" ELSE");
 
         if (uiInstance.size() > 0)
         {
-            logMsg("loader::checkIfUserInputsLoaded() load->getPInstance().size() > 0! ELSE");
+            logMsg(func +" load->getPInstance().size() > 0! ELSE");
 //            load->setTInstance(tInstance);
             userInputFilesLoaded = true;
             return(true);
         }
         else
         {
-            logMsg("loader::checkIfUserInputsLoaded() ELSE ELSE!");
+            logMsg(func +" ELSE ELSE!");
 
             uiInstance = loadUserInputs();
             logMsg("loader::checkIfUserInputsLoaded()");
             if (uiInstance.size() > 0)
             {
-                logMsg("loader::checkIfUserInputsLoaded() load->getPInstance().size() > 0! ELSE ELSE");
+                logMsg(func +" load->getPInstance().size() > 0! ELSE ELSE");
 
 //                load->setTInstance(tInstance);
                 userInputFilesLoaded = true;
@@ -906,11 +915,14 @@ bool loader::checkIfUserInputsLoaded()  // checks if user inputs have been loade
             }
             else
             {
-                logMsg("loader::checkIfUserInputsLoaded() Failed to load User Input Files!");
+                logMsg(func +" Failed to load User Input Files!");
                 return(false);
             }
         }
     }
+
+    logMsg(func +" end");
+
     return (false);
 }
 
@@ -2733,7 +2745,10 @@ userInputVecSharedPtr loader::loadUserInputs()  // load user input settings from
 {
     userInputVecSharedPtr userInputs;
     std::string userInputList;
-    
+    std::string func = "loader::loadUserInputs()";
+
+    logMsg(func +" beginning");
+
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     userInputList = "data/users/inputlist.xml";
 #else
@@ -2746,13 +2761,15 @@ userInputVecSharedPtr loader::loadUserInputs()  // load user input settings from
     stdStringVec::iterator it;
     for (it = userInputFiles.begin(); it != userInputFiles.end(); ++it)
     {
-        logMsg("userInputFile = " +*it);
+        logMsg(func +" userInputFile = " +*it);
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
         userInputs.push_back(loadUserInputFile("data/users/" + *it));
 #else
         userInputs.push_back(loadUserInputFile(findFile("users/" + *it)));
 #endif
     }
+
+    logMsg(func +" end");
     return (userInputs);
 }
 
@@ -2761,11 +2778,13 @@ stdStringVec loader::loadUserInputListFile(std::string fileName)  // loads the u
     sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<renderEngine> render = renderEngine::Instance();
     stdStringVec uInputFiles;
-
     std::string fileContents;
     tinyxml2::XMLDocument doc;
+    std::string func = "loader::loadUserInputListFile()";
 
-    logMsg(fileName);
+    logMsg(func +" beginning");
+
+    logMsg(func + " " +fileName);
     char *contents = NULL;
     readFile(fileName.c_str(), &contents);
     fileContents = convert->toString(contents);
@@ -2791,7 +2810,7 @@ stdStringVec loader::loadUserInputListFile(std::string fileName)  // loads the u
     // should always have a valid root but handle gracefully if it does
     if (!pElem)
     {
-        logMsg("Unable to find avalid root for user input list file!");
+        logMsg(func +" Unable to find avalid root for user input list file!");
     } 
     
     // save this for later
@@ -2801,23 +2820,23 @@ stdStringVec loader::loadUserInputListFile(std::string fileName)  // loads the u
     for( pElem; pElem; pElem=pElem->NextSiblingElement())
     {
         std::string pKey=pElem->Value();
-        logMsg("pKey == " +pKey);
+        logMsg(func +" pKey == " +pKey);
 	    std::string pText=pElem->GetText();
-	    logMsg("pText == " +pText);
+        logMsg(func +" pText == " +pText);
         uInputFiles.push_back(pText);
     }
-    logMsg("uInputFiles.size() == " +convert->toString(uInputFiles.size()));
+    logMsg(func +" uInputFiles.size() == " +convert->toString(uInputFiles.size()));
 //    exit(0);
 //    setUserInputFiles(userInputFile);
 //    return true;
+
+    logMsg(func +" end");
     return (uInputFiles);
 }
 
 sharedPtr<userInput> loader::loadUserInputFile(std::string fileName)  // loads data from the user input files
 {
     sharedPtr<conversion> convert = conversion::Instance();
-    
-    logMsg("Load UserInput File");
     sharedPtr<userInput> uInput(new userInput);
     std::string inputName;
     std::string type;
@@ -2834,19 +2853,25 @@ sharedPtr<userInput> loader::loadUserInputFile(std::string fileName)  // loads d
     std::string pause;
     std::string startSelect;
     std::string quit;
-    
     std::string fileContents;
     tinyxml2::XMLDocument doc;
     char *contents = NULL;
+    std::string func = "loader::loadUserInputFile()";
+
+    logMsg(func +" beginning");
+    logMsg(func +" Load UserInput File");
    
     readFile(fileName.c_str(), &contents);
+    logMsg(func +" readFile successful!");
+
     fileContents = convert->toString(contents);
+    logMsg(func +" fileContents = " +fileContents);
 
     doc.Parse(contents);
     if (doc.Error())
     {
-/*        logMsg("Unable to parse user input file");
-        logMsg("Error ID = " +convert->toString(doc.ErrorID()));
+        logMsg(func +" Unable to parse user input file");
+/*        logMsg("Error ID = " +convert->toString(doc.ErrorID()));
         logMsg(convert->toString(doc.GetErrorStr1()));
         logMsg(convert->toString(doc.GetErrorStr2()));
         exit(0);
@@ -2859,18 +2884,23 @@ sharedPtr<userInput> loader::loadUserInputFile(std::string fileName)  // loads d
     tinyxml2::XMLElement *nextChild;
     tinyxml2::XMLHandle hRoot(0);
 
+    logMsg(func +" rootElement=hDoc.FirstChildElement().ToElement()");
+
     rootElement=hDoc.FirstChildElement().ToElement();   
     // should always have a valid root but handle gracefully if it does
     if (!rootElement)
     {
-        logMsg("Unable to load user input element");
+        logMsg(func +" Unable to load user input element");
         exit(0);
     }
-    
+
+    logMsg(func +" child = rootElement->FirstChild()->ToElement()");
+
     child = rootElement->FirstChild()->ToElement();
     if (child)
     {
         std::string cKey = child->Value();
+        logMsg(func +" if (cKey == 'Name')");
         if (cKey == "Name")
         {
             inputName = child->GetText();
@@ -2878,13 +2908,17 @@ sharedPtr<userInput> loader::loadUserInputFile(std::string fileName)  // loads d
         }
         
         bool inputTag = false;
+        logMsg(func +"while (!inputTag)");
         while (!inputTag)
         {
+            logMsg(func +" child = child->NextSiblingElement()->ToElement()");
             child = child->NextSiblingElement()->ToElement();
             if (child)
             {
+                logMsg(func +" nextChild = child->FirstChildElement()->ToElement()");
                 nextChild = child->FirstChildElement()->ToElement();
                 inputTag = true;
+                logMsg(func +" for( nextChild; nextChild; nextChild=nextChild->NextSiblingElement())");
                 for( nextChild; nextChild; nextChild=nextChild->NextSiblingElement())
                 {
                     std::string pKey=nextChild->Value();
@@ -2998,5 +3032,8 @@ sharedPtr<userInput> loader::loadUserInputFile(std::string fileName)  // loads d
             }
         }
     }
+
+    logMsg(func +" end");
+
     return (uInput);
 }

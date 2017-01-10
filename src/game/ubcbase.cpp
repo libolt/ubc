@@ -128,6 +128,8 @@ bool UBCBase::setup()  // sets up the engine and states
     inputS->setInputE(gameE->getInputE());
     inputS->setup();  // sets up the inputState object
 
+    stateSetup = true;
+    
     logMsg(func +" end");
     
     return (true);

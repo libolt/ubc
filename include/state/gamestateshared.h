@@ -48,6 +48,9 @@ class gameStateShared
 
         // getters and setters
            
+        bool getInitialized();  // retrieves the value of initialized
+        void setInitialized(bool set);  // sets the value of initialized
+
         gameTypes getGameType();  // retrieves the value of gameType
         void setGameType(gameTypes set);  // sets the value of gameType
 
@@ -172,6 +175,7 @@ class gameStateShared
     private:
 
         // used to determine if calling class needs to uldate its copy of the variable
+        static bool initialized;  // if true then tbe object has been initialized
         static bool activeBasketballInstancesCreated;  // stores whether the active basketball instances have been created
         static bool activeCourtInstancesCreated;  // stores whether the active court instances have been created
         static bool activeHoopInstancesCreated;  // stores whether the active hoop instances have been created

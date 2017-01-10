@@ -31,8 +31,8 @@ class state //: public UBCBase
     
     state();  // constructor
     
-    bool getInitialized();  // retrieves the value of initialized
-    void setInitialized(bool set);  // sets the value of initialized
+//    bool getInitialized();  // retrieves the value of initialized
+//    void setInitialized(bool set);  // sets the value of initialized
     
     bool getStateSet();  // retrieves the value of stateSet
     void setStateSet(bool set);  // sets the value of stateSet
@@ -45,7 +45,7 @@ class state //: public UBCBase
     
     private:
     
-    static bool initialized;  // if true then tbe object has been initialized
+//    static bool initialized;  // if true then tbe object has been initialized
 
     static bool stateSet;  // if true then the state is set
 

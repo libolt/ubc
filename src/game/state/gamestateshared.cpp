@@ -25,7 +25,7 @@
 #include "state/teamstate.h"
 
 // static declarations
-
+bool gameStateShared::initialized;  // if true then tbe object has been initialized
 bool gameStateShared::activeBasketballInstancesCreated;  // stores whether the active basketball instances have been created
 bool gameStateShared::activeCourtInstancesCreated;  // stores whether the active court instances have been created.
 bool gameStateShared::activeHoopInstancesCreated;  // stores whether the active hoop instances have been created
@@ -73,6 +73,7 @@ float gameStateShared::yOffset; // stores the y offset for objects on the screen
 
 gameStateShared::gameStateShared()  // constructor
 {
+    initialized = false;
     activeBasketballInstancesCreated = false;
     activeCourtInstancesCreated = false;
     activeHoopInstancesCreated = false;
@@ -110,6 +111,16 @@ gameStateShared::~gameStateShared()  // destructor
 }
         
 // getters and setters
+
+bool gameStateShared::getInitialized()  // retrieves the value of initialized
+{
+    return (initialized);
+}
+void gameStateShared::setInitialized(bool set)  // sets the value of initialized
+{
+    initialized = set;
+}
+
 gameTypes gameStateShared::getGameType()  // retrieves the value of gameType
 {
     return(gameType);

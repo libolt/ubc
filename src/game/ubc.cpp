@@ -104,20 +104,12 @@ bool UBC::setup()  // sets up UBC object
         if (base->setup())
         {
 //            base->getGameS()->setInitialized(true);
-    if (base->getGameS()->getInitialized())
-    {
-        logMsg(func + " gameS Initialized!");
-    }
-    else
-    {
-        logMsg(func + " gameS NOT Initialized!");
-    }
-    exit(0);
+
             GUISystemSharedPtr tempGUISharedPtr(new GUISystem);
             gui = tempGUISharedPtr;
             gui->setBase(base);
             base->getGameS()->setBase(base);
-            base->setStateSetup(true);
+//            base->setStateSetup(true);
 
         }
         else
@@ -137,7 +129,7 @@ bool UBC::setup()  // sets up UBC object
         base->setStateSetup(true);
 
     }
-    
+
     logMsg(func +" end");
     
 //        exit(0);
@@ -235,7 +227,7 @@ void UBC::run()  // runs the game
 //    exit(0);
 
 //    bool quitGame = base->getGameE()->getQuitGame();
- 
+       
     gameLoop();
 
     logMsg(func +" end");

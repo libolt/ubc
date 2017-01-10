@@ -518,6 +518,7 @@ void GUISystem::mainMenu()  // msin in game menu
     
     logMsg(func + " beginning");
     
+
     if (!mainMenuCreated)
     {
         logMsg("mainMenu not created yet!");
@@ -540,7 +541,7 @@ void GUISystem::mainMenu()  // msin in game menu
     }
     showMainMenuWidgets();  // displays main menu
     logMsg(func +" beginning");
-    
+
     activeMenu = MAIN;
     
     logMsg(func + " end");
@@ -581,8 +582,9 @@ void GUISystem::startSinglePlayerGame()  // starts single player game
 //    gameS->setGameType(SINGLE);
     
     std::string func = "GUISystem::startSinglePlayerGame()";
-    
+
     base->getGameS()->setGameType(SINGLE);
+
 //    exit(0);
 //    hideMainMenuWidgets();	// Hides the widgets from the main menu
     courtSelectionMenu();   // displays the menu for selecting which court to use
@@ -689,7 +691,27 @@ void GUISystem::playerStartSelectionMenu()  // displays player start selection m
         logMsg(func +"gameType == NOGAME");
     }
     logMsg(func +" blah");
+    if (base->getGameS()->getInitialized())
+    {
+        logMsg("teamState::createPlayerInstances() gameS initalized == true!");
+//        exit(0);
+    }
+    else
+    {
+        logMsg("teamState::createPlayerInstances() gameS initalized == false!");
+        exit(0);
+    }
+    
+    if (base->getGameS()->getGameType() == SINGLE)
+    {
+        logMsg(func +" gameType == SINGLE");
+    }
+    else if (getBase()->getGameS()->getGameType() == NOGAME)
+    {
+        logMsg(func +" gameType == NOGAME");
+    }         
     exit(0);
+//    exit(0);
     setSelectedIndexes();
     changeActiveMenu(PLAYERSTART);
     logMsg(func +" end");
@@ -825,6 +847,9 @@ void GUISystem::courtSelectionMenu() // displays court selection menu
 //    sharedPtr<loader> load; // = loader::Instance();
     std::string func = "GUISystem::courtSelectionMenu()";
     
+    logMsg(func +" beginning");
+    
+    
     if (!courtSelectionMenuCreated)
     {
         createCourtSelectionMenuGUI();
@@ -851,7 +876,8 @@ void GUISystem::courtSelectionMenu() // displays court selection menu
 
     changeActiveMenu(COURTSELECT);
 //    exit(0);
-
+    
+    logMsg(func +" end");
 }
 
 
@@ -953,7 +979,7 @@ void GUISystem::courtSelected()  // processes court selection
 //    exit(0);
 //    changeActiveMenu(TEAMSELECT);
 //    teamSelectionMenu();
-    
+
     logMsg(func +" end");
 
 }
@@ -1421,6 +1447,16 @@ void GUISystem::playerStartSelected()  // process player start selection
     logMsg("team  0 starter 0 = " +team0Starters[0]);
 */
 //        exit(0);
+    if (base->getGameS()->getInitialized())
+//    if (base->getStateSetup())
+    {
+        logMsg(func + " gameS Initialized!");
+    }
+    else
+    {
+        logMsg(func + " gameS NOT Initialized!");
+    }
+    exit(0);
     if (base->getGameS()->getGameType() == SINGLE)
     {
         logMsg(func +"gameType == SINGLE");

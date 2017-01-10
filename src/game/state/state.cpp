@@ -21,23 +21,23 @@
 #include "state/state.h"
  
 // static declarations
-bool state::initialized;  // if true then tbe object has been initialized
+//bool state::initialized;  // if true then tbe object has been initialized
 bool state::stateSet;  // if true then the state is set
 
 state::state()  // constructor
 {
-    initialized = false;
+//    initialized = false;
 //    stateSet = false;
 }
 
-bool state::getInitialized()  // retrieves the value of initialized
+/*bool state::getInitialized()  // retrieves the value of initialized
 {
     return (initialized);
 }
 void state::setInitialized(bool set)  // sets the value of initialized
 {
     initialized = set;
-}
+}*/
  
 bool state::getStateSet()  // retrieves the value of stateSet
 {

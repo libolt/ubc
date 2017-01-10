@@ -61,7 +61,7 @@ class UBCBase
         static bool stateSetup;  // stores whether or not the initial state setup has completed
         static bool startActiveGame;  // stores whether to begin an active game instance
         static gameEngineSharedPtr gameE;  // the gameEngine object
-        static gameStateSharedPtr gameS;  // the gameState object
+        gameStateSharedPtr gameS;  // the gameState object
         static networkStateSharedPtr networkS;  // the gameState object
         static inputStateSharedPtr inputS;  // the gameState object
         

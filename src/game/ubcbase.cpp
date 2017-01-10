@@ -23,12 +23,13 @@
 #include "state/gamestate.h"
 #include "state/networkstate.h"
 #include "state/inputstate.h"
+#include "logging.h"
 
 // Static Declarations
 bool UBCBase::stateSetup;
 bool UBCBase::startActiveGame;  // stores whether to begin an active game instance
 sharedPtr<gameEngine> UBCBase::gameE;  // the gameEngine object
-sharedPtr<gameState> UBCBase::gameS;  // the gameState object
+//sharedPtr<gameState> UBCBase::gameS;  // the gameState object
 sharedPtr<networkState> UBCBase::networkS;  // the networkState object
 sharedPtr<inputState> UBCBase::inputS;  // the inputState object
 
@@ -102,6 +103,10 @@ void UBCBase::setInputS(sharedPtr<inputState> set)  // sets the value of inputS
 bool UBCBase::setup()  // sets up the engine and states
 {
 //    exit(0);
+    std::string func = "UBCBase::setup()";
+    
+    logMsg(func +" beginning");
+    
     //    gameEngine *tempGameEObj = new gameEngine;
     gameEngineSharedPtr tempGameESharedPtr(new gameEngine);
     gameE = tempGameESharedPtr;
@@ -111,7 +116,7 @@ bool UBCBase::setup()  // sets up the engine and states
 //    gameState *tempGameStateObj = new gameState;
     gameStateSharedPtr tempGameStateSharedPtr(new gameState);
     gameS = tempGameStateSharedPtr;
-    gameS->setInitialized(true);
+    getGameS()->setInitialized(true);
     
 //    exit(0);
 //    networkState *tempNetworkStateObj = new networkState;
@@ -123,6 +128,8 @@ bool UBCBase::setup()  // sets up the engine and states
     inputS->setInputE(gameE->getInputE());
     inputS->setup();  // sets up the inputState object
 
+    logMsg(func +" end");
+    
     return (true);
 }
 

@@ -514,6 +514,10 @@ bool GUISystem::initMyGUI()  // Initializes MyGUI
 void GUISystem::mainMenu()  // msin in game menu
 {
 //    exit(0);
+    std::string func = "GUISystem::mainMenu()";
+    
+    logMsg(func + " beginning");
+    
     if (!mainMenuCreated)
     {
         logMsg("mainMenu not created yet!");
@@ -535,7 +539,12 @@ void GUISystem::mainMenu()  // msin in game menu
         
     }
     showMainMenuWidgets();  // displays main menu
+    logMsg(func +" beginning");
+    
     activeMenu = MAIN;
+    
+    logMsg(func + " end");
+    
 //    exit(0);
 }
 
@@ -570,12 +579,17 @@ void GUISystem::startSinglePlayerGame()  // starts single player game
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    exit(0);
 //    gameS->setGameType(SINGLE);
+    
+    std::string func = "GUISystem::startSinglePlayerGame()";
+    
     base->getGameS()->setGameType(SINGLE);
 //    exit(0);
 //    hideMainMenuWidgets();	// Hides the widgets from the main menu
     courtSelectionMenu();   // displays the menu for selecting which court to use
     //   gameSetupMenu();
 //	menuActive = false;
+    
+    logMsg(func +" end");
 }
 
 void GUISystem::startMultiPlayerGame()  // starts multiplayer game
@@ -939,6 +953,7 @@ void GUISystem::courtSelected()  // processes court selection
 //    exit(0);
 //    changeActiveMenu(TEAMSELECT);
 //    teamSelectionMenu();
+    
     logMsg(func +" end");
 
 }
@@ -970,7 +985,7 @@ void GUISystem::teamsSelected()  // processes team selection
 //    exit(0);
     base->getGameS()->setTeamIDS(teamID);
     base->getGameS()->setActiveTeamInstance(activeTeamInstance);
-
+   
     logMsg(func +" Teams selected");
     logMsg(func +" end");
 

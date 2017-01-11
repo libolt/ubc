@@ -131,6 +131,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 
     logMsg(func +" beginning");
     
+    
     auto x = 0;
 /*    while (x < activeTeamInstance.size())
     {
@@ -163,11 +164,13 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 //            exit(0);
             logMsg(func +" creating team " +convert->toString(ATIIT.first) +" playerInstances!");
 //            teamInstance[x]->setBase(base);
+
             if (ATIIT.second->createPlayerInstances())
             {
                 logMsg(func +" activeTeamInstance[" +convert->toString(ATIIT.first) +"]->createPlayerInstances()");
                 logMsg(func +" activeTeamInstance[" +convert->toString(ATIIT.first) +"]->getPlayerInstance().size() == " +convert->toString(ATIIT.second->getPlayerInstance().size()));
 //                exit(0);
+
     if (base->getGameS()->getGameType() == SINGLE)
     {
         logMsg(func +" gameType == SINGLE");

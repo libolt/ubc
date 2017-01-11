@@ -434,6 +434,8 @@ bool loader::checkIfBasketballsLoaded()  // checks if basketballs have been load
     sharedPtr<conversion> convert = conversion::Instance();
     std::string func = "loader::checkBasketballsLoaded()";
     
+    logMsg(func + " beginning");
+    
     if (basketballFilesLoaded)
     {
         logMsg(func +" getBasketballFilesLoaded");
@@ -499,6 +501,8 @@ bool loader::checkIfBasketballsLoaded()  // checks if basketballs have been load
             }
         }
     }
+    
+    logMsg(func + " end");
     return (false);
 }
 
@@ -507,6 +511,9 @@ bool loader::checkIfCourtsLoaded()  // checks if courts have been loaded into cI
 //    exit(0);
 
     std::string func = "loader::checkIfCourtsLoaded()";
+        
+    logMsg(func + " beginning");
+    
     if (courtFilesLoaded)
     {
         logMsg(func + " getCourtFilesLoaded");
@@ -570,6 +577,9 @@ bool loader::checkIfCourtsLoaded()  // checks if courts have been loaded into cI
         }
     }
 //    exit(0);
+    
+    logMsg(func + " end");
+    
     return (false);
 }
 
@@ -577,6 +587,8 @@ bool loader::checkIfHoopsLoaded()  // checks if the hooops have been loaded into
 {
 
     std::string func = "loader::checkIfHoopsLoaded()";
+    logMsg(func + " beginning");
+    
     if (hoopFilesLoaded)
     {
         logMsg(func + " getHoooFilesLoaded");
@@ -639,29 +651,35 @@ bool loader::checkIfHoopsLoaded()  // checks if the hooops have been loaded into
             }
         }
     }
+    
+    logMsg(func + " end");
+    
     return (false);
 }
 
 bool loader::checkIfOffensePlaysLoaded()  // checks if offense plays have been loaded into opInstance
 {
+    std::string func = "loader::checkIfOffensePlaysLoaded()";
+    
+    logMsg(func + " beginning");
     if (offensePlayFilesLoaded)
     {
-        logMsg("loader::checkIfOffensePlaysLoaded() getOffensePlayFilesLoaded");
+        logMsg(func + " getOffensePlayFilesLoaded");
 
         if (opInstance.size() > 0)
         {
-            logMsg("loader::checkIfOffensePlaysLoaded() Offense Play Files Loaded!");
+            logMsg(func + " Offense Play Files Loaded!");
             return(true);
         }
         else
         {
-            logMsg("loader::checkIfOffensePlaysLoaded() Offense Plays Files not yet Loaded!");
+            logMsg(func + " Offense Plays Files not yet Loaded!");
 
             offensePlayFilesLoaded = false;
             opInstance = loadOffensePlays();
             if (opInstance.size() > 0)
             {
-                logMsg("loader::checkIfOffensePlaysLoaded() > 0!");
+                logMsg(func + " > 0!");
 
 //                load->setTInstance(tInstance);
                 offensePlayFilesLoaded = true;
@@ -669,31 +687,30 @@ bool loader::checkIfOffensePlaysLoaded()  // checks if offense plays have been l
             }
             else
             {
-                logMsg("loader::checkIfOffensePlaysLoaded() Failed to load Offense Play Files! IF");
+                logMsg(func + " Failed to load Offense Play Files! IF");
                 exit(0);
             }
         }
     }
     else 
     {
-        logMsg("loader::checkIfOffensePlaysLoaded() ELSE");
+        logMsg(func + " ELSE");
 
         if (opInstance.size() > 0)
         {
-            logMsg("loader::checkIfOffensePlaysLoaded() load->getOPInstance().size() > 0! ELSE");
+            logMsg(func + " load->getOPInstance().size() > 0! ELSE");
 //            load->setTInstance(tInstance);
             offensePlayFilesLoaded = true;
             return(true);
         }
         else
         {
-            logMsg("loader::checkIfOffensePlaysLoaded() ELSE ELSE!");
+            logMsg(func + " ELSE ELSE!");
 
             opInstance = loadOffensePlays();
-            logMsg("loader::checkIfOffensePlaysLoaded()");
             if (opInstance.size() > 0)
             {
-                logMsg("loader::checkIfOffensePlaysLoaded() load->getOPInstance().size() > 0! ELSE ELSE");
+                logMsg(func + " load->getOPInstance().size() > 0! ELSE ELSE");
 
 //                load->setTInstance(tInstance);
                 offensePlayFilesLoaded = true;
@@ -701,34 +718,42 @@ bool loader::checkIfOffensePlaysLoaded()  // checks if offense plays have been l
             }
             else
             {
-                logMsg("loader::checkIfOffensePlaysLoaded() Failed to load Offense Play Files!");
+                logMsg(func + " Failed to load Offense Play Files!");
                 return(false);
             }
         }
     }
+    
+
+    logMsg(func + " end");
+
     return (false);
 }
 
 bool loader::checkIfPlayersLoaded()  // checks if players have been loaded into pInstance
 {
+    std::string func = "loader::checkIfPlayersLoaded()";
+    
+    logMsg(func + " beginning");
+
     if (playerFilesLoaded)
     {
-        logMsg("loader::checkIfPlayersLoaded() getPlayerFilesLoaded");
+        logMsg(func + " getPlayerFilesLoaded");
 
         if (pInstance.size() > 0)
         {
-            logMsg("loader::checkIfPlayersLoaded() Player Files Loaded!");
+            logMsg(func + " Player Files Loaded!");
             return(true);
         }
         else
         {
-            logMsg("loader::checkIfPlayersLoaded() Player Files not yet Loaded!");
+            logMsg(func + " Player Files not yet Loaded!");
 
             playerFilesLoaded = false;
             pInstance = loadPlayers();
             if (pInstance.size() > 0)
             {
-                logMsg("loader::checkIfPlayersLoaded() > 0!");
+                logMsg(func + " > 0!");
 
 //                load->setTInstance(tInstance);
                 playerFilesLoaded = true;
@@ -736,31 +761,31 @@ bool loader::checkIfPlayersLoaded()  // checks if players have been loaded into 
             }
             else
             {
-                logMsg("loader::checkIfPlayersLoaded() Failed to load Player Files! IF");
+                logMsg(func + " Failed to load Player Files! IF");
                 exit(0);
             }
         }
     }
     else 
     {
-        logMsg("loader::checkIfPlayersLoaded() ELSE");
+        logMsg(func + " ELSE");
 
         if (pInstance.size() > 0)
         {
-            logMsg("loader::checkIfPlayersLoaded() load->getPInstance().size() > 0! ELSE");
+            logMsg(func + " load->getPInstance().size() > 0! ELSE");
 //            load->setTInstance(tInstance);
             playerFilesLoaded = true;
             return(true);
         }
         else
         {
-            logMsg("loader::checkIfPlayersLoaded() ELSE ELSE!");
+            logMsg(func + " ELSE ELSE!");
 
             pInstance = loadPlayers();
-            logMsg("loader::checkIfPlayersLoaded()");
+
             if (pInstance.size() > 0)
             {
-                logMsg("loader::checkIfPlayersLoaded() load->getPInstance().size() > 0! ELSE ELSE");
+                logMsg(func + " load->getPInstance().size() > 0! ELSE ELSE");
 
 //                load->setTInstance(tInstance);
                 playerFilesLoaded = true;
@@ -768,11 +793,14 @@ bool loader::checkIfPlayersLoaded()  // checks if players have been loaded into 
             }
             else
             {
-                logMsg("loader::checkIfPlayersLoaded() Failed to load Player Files!");
+                logMsg(func + " Failed to load Player Files!");
                 return(false);
             }
         }
     }
+    
+    logMsg(func + " end");
+
     return (false);
 }
 
@@ -780,29 +808,30 @@ bool loader::checkIfTeamsLoaded()  // checks if teams have been loaded into tIns
 {
     sharedPtr<conversion> convert = conversion::Instance();
     teamStateVec tempT;
-    
-//    exit(0);
     teamStateUMSharedPtr tempTInstance;
     tInstance = tempTInstance;
-//    exit(0);
+    std::string func = "loader::checkIfTeamsLoaded()";
+    
+    logMsg(func + " beginning");
+
     if (teamFilesLoaded)
     {
-        logMsg("loader::checkIfTeamsLoaded() getTeamFilesLoaded");
+        logMsg(func + " getTeamFilesLoaded");
 
         if (tInstance.size() > 0)
         {
-            logMsg("loader::checkIfTeamsLoaded() Team Files Loaded!");
+            logMsg(func + " Team Files Loaded!");
             return(true);
         }
         else
         {
-            logMsg("loader::checkIfTeamsLoaded() Team Files not yet Loaded!");
+            logMsg(func + " Team Files not yet Loaded!");
 
             teamFilesLoaded = false;
             tInstance = loadTeams();
             if (tInstance.size() > 0)
             {
-                logMsg("loader::checkIfTeamsLoaded() > 0!");
+                logMsg(func + " > 0!");
 
 //                load->setTInstance(tInstance);
                 teamFilesLoaded = true;
@@ -810,33 +839,32 @@ bool loader::checkIfTeamsLoaded()  // checks if teams have been loaded into tIns
             }
             else
             {
-                logMsg("loader::checkIfTeamsLoaded() Failed to load Team Files! IF");
+                logMsg(func + " Failed to load Team Files! IF");
                 exit(0);
             }
         }
     }
     else 
     {
-        logMsg("loader::checkIfTeamsLoaded() ELSE");
+        logMsg(func + " ELSE");
 
         if (tInstance.size() > 0)
         {
-            logMsg("loader::checkIfTeamsLoaded() load->getTInstance().size() > 0! ELSE");
+            logMsg(func + " load->getTInstance().size() > 0! ELSE");
 //            load->setTInstance(tInstance);
             teamFilesLoaded = true;
             return(true);
         }
         else
         {
-            logMsg("loader::checkIfTeamsLoaded() ELSE ELSE!");
+            logMsg(func + " ELSE ELSE!");
 
             tInstance = loadTeams();
-            logMsg("loader::checkIfTeamsLoaded() tInstance.size() == " +convert->toString(tInstance.size()));
+            logMsg(func + " tInstance.size() == " +convert->toString(tInstance.size()));
 //            exit(0);
-            logMsg("loader::checkIfTeamsLoaded()");
             if (tInstance.size() > 0)
             {
-                logMsg("loader::checkIfTeamsLoaded() load->getTInstance().size() > 0! ELSE ELSE");
+                logMsg(func + " load->getTInstance().size() > 0! ELSE ELSE");
 
 //                load->setTInstance(tInstance);
                 teamFilesLoaded = true;
@@ -844,11 +872,14 @@ bool loader::checkIfTeamsLoaded()  // checks if teams have been loaded into tIns
             }
             else
             {
-                logMsg("loader::checkIfTeamsLoaded() Failed to load Team Files!");
+                logMsg(func + " Failed to load Team Files!");
                 return(false);
             }
         }
     }
+    
+    logMsg(func + " end");
+    
     return (true);
 }
 

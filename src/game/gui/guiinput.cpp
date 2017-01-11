@@ -505,7 +505,9 @@ void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed)  // process
     //gameState *gameS = gameState::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    teamStateVecSharedPtr teamInstance = gameS->getTeamInstance();
-    logMsg("processGameSetupMenuKeyPress");
+    std::string func = "GUISystem::processGameSetupMenuKeyPress()";
+    
+    logMsg(func +" beginning");
     if (keyPressed == "a" && !gameSetupMenuAwaySelected)
     {
         gameSetupAwaySelected();
@@ -535,6 +537,8 @@ void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed)  // process
         logMsg("teamsSelected!");
 //        exit(0);
         teamsSelected();
+
+    exit(0);
         playerStartSelectionMenu();
     }
     else if (keyPressed == "x")
@@ -644,7 +648,9 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed)  // pro
 //    sharedPtr<gameState> gameS = gameState::Instance();
     
 //    teamStateVecSharedPtr teamInstance = gameS->getTeamInstance();
-    logMsg("processTeamSelectionMenuKeyPress");
+    std::string func = "GUISystem::processTeamSelectionMenuKeyPress()";
+    
+    logMsg(func +" beginning");
 //    exit(0);
     if (keyPressed == "a" && !gameSetupMenuAwaySelected)
     {
@@ -677,6 +683,7 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed)  // pro
         logMsg("yarp");
 //        exit(0);
         teamsSelected();
+    
         playerStartSelectionMenu();
 //        exit(0);
     }

@@ -667,9 +667,10 @@ void GUISystem::playerStartSelectionMenu()  // displays player start selection m
 //         exit(0);
         createPlayerStartSelectionMenuGUI();	
 //        exit(0);
-
+    
         logMsg(func +" createPlayerStartSelectionMenuGUI!");
         addPlayerStartSelectionMenuData();
+
     if (base->getGameS()->getGameType() == SINGLE)
     {
         logMsg(func +"gameType == SINGLE");
@@ -691,17 +692,7 @@ void GUISystem::playerStartSelectionMenu()  // displays player start selection m
         logMsg(func +"gameType == NOGAME");
     }
     logMsg(func +" blah");
-    if (base->getGameS()->getInitialized())
-    {
-        logMsg("teamState::createPlayerInstances() gameS initalized == true!");
-//        exit(0);
-    }
-    else
-    {
-        logMsg("teamState::createPlayerInstances() gameS initalized == false!");
-        exit(0);
-    }
-    
+
     if (base->getGameS()->getGameType() == SINGLE)
     {
         logMsg(func +" gameType == SINGLE");
@@ -709,7 +700,8 @@ void GUISystem::playerStartSelectionMenu()  // displays player start selection m
     else if (getBase()->getGameS()->getGameType() == NOGAME)
     {
         logMsg(func +" gameType == NOGAME");
-    }         
+    }   
+
     exit(0);
 //    exit(0);
     setSelectedIndexes();
@@ -996,6 +988,7 @@ void GUISystem::teamsSelected()  // processes team selection
     teamInstance = base->getGameS()->getTeamInstance();
     
     logMsg(func +" beginning");
+
     sizeTVec teamID;
     teamID.push_back(teamSelectBox[0]->getIndexSelected());
     teamID.push_back(teamSelectBox[1]->getIndexSelected());
@@ -1013,6 +1006,7 @@ void GUISystem::teamsSelected()  // processes team selection
     base->getGameS()->setActiveTeamInstance(activeTeamInstance);
    
     logMsg(func +" Teams selected");
+    
     logMsg(func +" end");
 
 //    exit(0);

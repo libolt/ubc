@@ -644,9 +644,10 @@ bool teamState::createPlayerInstances()  // creates the player instances
     std::string func = "teamState::createPlayerInstances()";
 
     logMsg(func +" beginning");
-    
+
     if (base->getGameS()->checkIfPlayerInstanceCreated())
     {
+    
         logMsg(func +"game player instances created!");
         gamePlayerInstance = base->getGameS()->getPlayerInstance();
     }
@@ -655,6 +656,7 @@ bool teamState::createPlayerInstances()  // creates the player instances
         logMsg(func +"game player instances not created!");
         exit(0);
     }
+
     auto i = 0;
     auto ID = 0;
     playerInstance.clear();

@@ -500,12 +500,22 @@ bool gameState::createPlayerInstances()  // creates player instances
     std::string func = "gameState::createPlayerInstances()";
     
     logMsg(func +" beginning");
+     
     logMsg(func +" checkIfPlayersLoaded");
 //    exit(0);
     if (load->checkIfPlayersLoaded())
     {
-        logMsg(func +" checkIfPlayersLoaded true");
-
+        logMsg(func +" checkIfPlayersLoaded True");
+    if (base->getGameS()->getInitialized())
+    {
+        logMsg("gameS Initialized == True!");
+    }
+    else
+    {
+        logMsg("gameS Initialized == False!");
+    }
+    exit(0);
+    
         pInstance = load->getPInstance();
         if (pInstance.size() > 0)
         {
@@ -522,7 +532,6 @@ bool gameState::createPlayerInstances()  // creates player instances
         return (false);
     }
     
-
 //    exit(0);
     logMsg(func +" uno");
 
@@ -1741,17 +1750,17 @@ TS*/
 bool gameState::checkIfPlayerInstanceCreated()  // check if playerInstance object has been created and loaded
 {
     sharedPtr<conversion> convert = conversion::Instance();
+    bool returnType = false;
     std::string func = "gameState::checkIfPlayerInstanceCreated()";
-
+    
     logMsg(func +" beginning");
-
 
     if (getPlayerInstanceCreated())
     {
         if (getPlayerInstance().size() > 0)
         {
             logMsg(func +" getPlayerInstance().size() == " +convert->toString(getPlayerInstance().size()));
-            return (true);
+            returnType = true;
         }
         else
         {
@@ -1763,7 +1772,7 @@ bool gameState::checkIfPlayerInstanceCreated()  // check if playerInstance objec
                 logMsg(func +" player instances created!");
 //                exit(0);
                 setPlayerInstanceCreated(true);
-                return (true);
+                returnType = true;
 //            exit(0);
             }
             else
@@ -1783,7 +1792,7 @@ bool gameState::checkIfPlayerInstanceCreated()  // check if playerInstance objec
             logMsg(func +" player instances created!");
 
             setPlayerInstanceCreated(true);
-            return (true);
+            returnType = true;
 //            exit(0);
         }
         else
@@ -1793,11 +1802,10 @@ bool gameState::checkIfPlayerInstanceCreated()  // check if playerInstance objec
         }
 //        return (false);
     }
-    
     logMsg(func +" end");
 
     
-    return (true);
+    return (returnType);
 }
 
 bool gameState::checkifJumpBallCreated()  // checks if jumpBall object has been created

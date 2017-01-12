@@ -32,6 +32,7 @@ sharedPtr<gameEngine> UBCBase::gameE;  // the gameEngine object
 //sharedPtr<gameState> UBCBase::gameS;  // the gameState object
 sharedPtr<networkState> UBCBase::networkS;  // the networkState object
 sharedPtr<inputState> UBCBase::inputS;  // the inputState object
+loaderSharedPtr UBCBase::load;  // the loader object
 
 UBCBase::UBCBase()  // constructor
 {
@@ -98,6 +99,15 @@ sharedPtr<inputState> UBCBase::getInputS()  // retrieves the value of inputS
 void UBCBase::setInputS(sharedPtr<inputState> set)  // sets the value of inputS
 {
     inputS = set;
+}
+
+loaderSharedPtr UBCBase::getLoad()  // retrieves the value of load
+{
+    return (load);
+}
+void UBCBase::setLoad(loaderSharedPtr set)  // sets the value of load
+{
+    load = set;
 }
 
 bool UBCBase::setup()  // sets up the engine and states

@@ -75,6 +75,7 @@ class teamState;
 
 class courtData;
 
+class loader;
 class logging;
 class userInput;
 
@@ -152,6 +153,9 @@ typedef sharedPtr<steering::AABBox> steeringAABBoxSharedPtr;
 typedef sharedPtr<OpenSteer::AbstractVehicle> OpenSteerAbstractVehicleSharedPtr;
 
 typedef sharedPtr<OpenSteer::PlugIn> OpenSteerPluginSharedPtr;
+
+typedef sharedPtr<loader> loaderSharedPtr;
+
 typedef sharedPtr<logging> loggingSharedPtr;
 
 typedef sharedPtr<offensePlays> offensePlaysSharedPtr;

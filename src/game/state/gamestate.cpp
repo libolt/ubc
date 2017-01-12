@@ -495,7 +495,7 @@ bool gameState::createPlayerInstances()  // creates player instances
 //    logMsg("gameState::createTeamInstances()");
     
     sharedPtr<conversion> convert = conversion::Instance();
-    sharedPtr<loader> load(new loader);
+    sharedPtr<loader> load = base->getLoad();
     playerStateUMSharedPtr pInstance;
     std::string func = "gameState::createPlayerInstances()";
     

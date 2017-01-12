@@ -29,6 +29,7 @@ class gameEngine;
 class gameState;
 class networkState;
 class inputState;
+class loader;
 
 class UBCBase
 {
@@ -55,6 +56,9 @@ class UBCBase
         inputStateSharedPtr getInputS();  // retrieves the value of inputS
         void setInputS(inputStateSharedPtr set);  // sets the value of inputS
 
+        loaderSharedPtr getLoad();  // retrieves the value of load
+        void setLoad(loaderSharedPtr set);  // sets the value of load
+        
         bool setup();  // sets up the engine and states
     
     private:
@@ -64,7 +68,7 @@ class UBCBase
         gameStateSharedPtr gameS;  // the gameState object
         static networkStateSharedPtr networkS;  // the gameState object
         static inputStateSharedPtr inputS;  // the gameState object
-        
+        static loaderSharedPtr load;  // the loader object
 };
 
 #endif

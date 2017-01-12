@@ -68,8 +68,8 @@ void inputState::setInputInGameWorkQueue(inputInGameWorkQueues set)  // sets the
 
 bool inputState::setup()  // sets up the input state
 {
-    sharedPtr<loader> load(new loader);
 
+    loaderSharedPtr load = base->getLoad();
     inputEngineSharedPtr tempInputSharedPtr(new inputEngine);
     inputE = tempInputSharedPtr;
 //    uInput = load->loadUserInputs();  // loads user defined input from file.

@@ -217,7 +217,7 @@ void offenseState::updateState(teamTypes teamType)  // updates the state of the 
 
 void offenseState::loadPlays()  // loads offense plays from file
 {
-    sharedPtr<loader> load(new loader);
+    loaderSharedPtr load = base->getLoad();
     if (load->checkIfOffensePlaysLoaded())
     {
         plays = load->loadOffensePlays();

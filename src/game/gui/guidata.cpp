@@ -286,8 +286,7 @@ void GUISystem::addPlayerStartSelectionMenuData_old()  // adds data to Player St
 {
     sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
-    sharedPtr<loader> load(new loader);
-
+    loaderSharedPtr load = base->getLoad();
 //    playerInstance = load->loadPlayers();
 //    playerInstance = gameS->getPlayerInstance();
 //    gameS->setPlayerInstances(playerInstance);
@@ -782,8 +781,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
 {
     sharedPtr<conversion> convert = conversion::Instance();
 
-    sharedPtr<loader> load(new loader);
-
+    loaderSharedPtr load = base->getLoad();
     teamStateUMSharedPtr teamInstance; // = gameS->getTeamDataInstance();
 
 //    if (!base->getGameS()->getTeamInstancesCreated())

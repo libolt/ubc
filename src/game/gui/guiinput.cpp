@@ -619,7 +619,6 @@ void GUISystem::processPlayerStartSelectionMenuKeyPress(std::string keyPressed) 
 
     //gameState *gameS = gameState::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
-    sharedPtr<loader> load(new loader);
 
     checkTeamInstancesCreated();
 //    teamState testState;

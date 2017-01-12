@@ -333,7 +333,7 @@ bool gameState::createBasketballInstances()  // creates basketball Instances
 bool gameState::createTeamInstances()  // creates team Instances
 {
     sharedPtr<conversion> convert = conversion::Instance();
-    sharedPtr<loader> load(new loader);
+    loaderSharedPtr load = base->getLoad();
     std::string func = "gameState::createTeamInstances()";
     
     logMsg(func +" beginning");
@@ -433,7 +433,7 @@ bool gameState::createTeamInstances()  // creates team Instances
 
 bool gameState::createCourtInstances()  // creates court Instances
 {
-    sharedPtr<loader> load(new loader);
+    loaderSharedPtr load = base->getLoad();
     std::string func = "gameState::createCourtInstances()";
     
     logMsg(func +" beginning");
@@ -495,7 +495,7 @@ bool gameState::createPlayerInstances()  // creates player instances
 //    logMsg("gameState::createTeamInstances()");
     
     sharedPtr<conversion> convert = conversion::Instance();
-    sharedPtr<loader> load = base->getLoad();
+    loaderSharedPtr load = base->getLoad();
     playerStateUMSharedPtr pInstance;
     std::string func = "gameState::createPlayerInstances()";
     
@@ -565,7 +565,7 @@ bool gameState::createPlayerInstances()  // creates player instances
 bool gameState::createActiveBasketballInstances()  // creates the active basketball instances
 {
     sharedPtr<conversion> convert = conversion::Instance();
-    sharedPtr<loader> load(new loader);
+    loaderSharedPtr load = base->getLoad();
     basketballStateVecSharedPtr basketballInstance = getBasketballInstance();
     std::unordered_map<size_t, basketballStateSharedPtr> activeBasketballInstance = getActiveBasketballInstance();
     std::string func = "gameState::createActiveBasketballInstances()";
@@ -606,7 +606,7 @@ bool gameState::createActiveBasketballInstances()  // creates the active basketb
 bool gameState::createActiveCourtInstances()  // creates the active court instances
 {
     sharedPtr<conversion> convert = conversion::Instance();
-    sharedPtr<loader> load(new loader);
+    loaderSharedPtr load = base->getLoad();
     std::unordered_map<size_t, courtStateSharedPtr> courtInstance = getCourtInstance();
     std::unordered_map<size_t, courtStateSharedPtr> activeCourtInstance = getActiveCourtInstance();
     std::string func = "gameState::createActiveCourtInstances()";
@@ -644,7 +644,7 @@ bool gameState::createActiveCourtInstances()  // creates the active court instan
 bool gameState::createActiveHoopInstances()  // creates the active hoop instances
 {
     sharedPtr<conversion> convert = conversion::Instance();
-    sharedPtr<loader> load(new loader);
+    loaderSharedPtr load = base->getLoad();
     hoopStateUMSharedPtr hoopInstance = getHoopInstance();
     hoopStateUMSharedPtr activeHoopInstance = getActiveHoopInstance();
     std::string func = "gameState::createActiveHoopInstances()";
@@ -756,7 +756,7 @@ bool gameState::setupEnvironment()
 bool gameState::loadBasketballModel()  // loads selected basketball model
 {
     sharedPtr<conversion> convert = conversion::Instance();
-    sharedPtr<loader> load(new loader);
+    loaderSharedPtr load = base->getLoad();
     basketballStateUMSharedPtr activeBasketballInstance = getActiveBasketballInstance();
     bool activeBasketballInstancesCreated = getActiveBasketballInstancesCreated();
 //    size_t activeBBallInstance = getActiveBBallInstance();
@@ -852,7 +852,7 @@ bool gameState::loadBasketballModel()  // loads selected basketball model
 bool gameState::loadCourtModel()  // loads selected court model
 {
     sharedPtr<conversion> convert = conversion::Instance();
-    sharedPtr<loader> load(new loader);
+    loaderSharedPtr load = base->getLoad();
     courtStateUMSharedPtr courtInstance = getCourtInstance();
     courtStateUMSharedPtr activeCourtInstance = getActiveCourtInstance();
     bool activeCourtInstancesCreated = getActiveCourtInstancesCreated();
@@ -909,7 +909,7 @@ bool gameState::loadHoopModel()  // loads selected hoop model
 {
     sharedPtr<conversion> convert = conversion::Instance();
     hoopStateUMSharedPtr activeHoopInstance = getActiveHoopInstance();
-    sharedPtr<loader> load(new loader);
+    loaderSharedPtr load = base->getLoad();
     std::string func = "gameState::loadHoopModel()";
     bool returnType = true;
 

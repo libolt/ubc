@@ -501,6 +501,14 @@ bool gameState::createPlayerInstances()  // creates player instances
     
     logMsg(func +" beginning");
      
+    if (base->getGameS()->getInitialized())
+    {
+        logMsg(func +" gameS Initialized == True!");
+    }
+    else
+    {
+        logMsg(func +" gameS Initialized == False!");
+    }
     logMsg(func +" checkIfPlayersLoaded");
 //    exit(0);
     if (load->checkIfPlayersLoaded())
@@ -508,11 +516,11 @@ bool gameState::createPlayerInstances()  // creates player instances
         logMsg(func +" checkIfPlayersLoaded True");
     if (base->getGameS()->getInitialized())
     {
-        logMsg("gameS Initialized == True!");
+        logMsg(func +" gameS Initialized == True!");
     }
     else
     {
-        logMsg("gameS Initialized == False!");
+        logMsg(func +" gameS Initialized == False!");
     }
     exit(0);
     

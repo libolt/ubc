@@ -766,7 +766,7 @@ bool loader::checkIfPlayersLoaded()  // checks if players have been loaded into 
             }
         }
     }
-    else 
+    else
     {
         logMsg(func + " ELSE");
 
@@ -782,7 +782,7 @@ bool loader::checkIfPlayersLoaded()  // checks if players have been loaded into 
             logMsg(func + " ELSE ELSE!");
 
             pInstance = loadPlayers();
-
+/*
             if (pInstance.size() > 0)
             {
                 logMsg(func + " load->getPInstance().size() > 0! ELSE ELSE");
@@ -795,13 +795,13 @@ bool loader::checkIfPlayersLoaded()  // checks if players have been loaded into 
             {
                 logMsg(func + " Failed to load Player Files!");
                 return(false);
-            }
+            }*/
         }
     }
     
     logMsg(func + " end");
 
-    return (false);
+    return (true);
 }
 
 bool loader::checkIfTeamsLoaded()  // checks if teams have been loaded into tInstance
@@ -1969,9 +1969,14 @@ sharedPtr<offensePlays> loader::loadOffensePlayFile(std::string fileName)  // lo
 
 playerStateUMSharedPtr loader::loadPlayers()  // loads the players
 {
+    sharedPtr<conversion> convert = conversion::Instance();
+
     playerStateUMSharedPtr players;
     std::string playerList;
-    
+    std::string func = "loader::loadPlayers()";
+
+    logMsg(func +" beginning");
+
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     playerList = "data/players/players.xml";
 #else
@@ -1980,19 +1985,25 @@ playerStateUMSharedPtr loader::loadPlayers()  // loads the players
     playerFiles = loadPlayerListFile(playerList);
 //    stdStringVec playerFiles = load->getPlayerFiles();
 
-    stdStringVec::iterator it;
+//    stdStringVec::iterator it;
 //    for (it = playerFiles.begin(); it != playerFiles.end(); ++it)
     for (size_t it=0;it<playerFiles.size();++it)
     {
-       
+       logMsg(func +" it == " +convert->toString(it));
         logMsg("playerFile = " +playerFiles[it]);
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
         players.insert(std::pair<size_t, playerStateSharedPtr>(it, loadPlayerFile("data/players/" + playerFiles[it])));
 #else
+/*        playerStateSharedPtr playerInstance; //(new playerState);
+
+        players.emplace(it, playerInstance);
+*/
         players.insert(std::pair<size_t, playerStateSharedPtr>(it, loadPlayerFile(findFile("players/" + playerFiles[it]))));
 #endif 
 //    exit(0);
     }
+
+    logMsg(func +" end");
     return (players);
 }
 
@@ -2060,9 +2071,9 @@ playerStateSharedPtr loader::loadPlayerFile(std::string fileName)  // loads the 
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    sharedPtr<renderEngine> render = renderEngine::Instance();
 
-    playerStateSharedPtr playerInstance(new playerState);
+    playerStateSharedPtr playerInstance; //(new playerState);
 //    playerState *player = new playerState;
-    
+    playerInstance.reset(new playerState);
     std::string firstName;
     std::string lastName;
     std::string modelName;
@@ -2113,12 +2124,11 @@ playerStateSharedPtr loader::loadPlayerFile(std::string fileName)  // loads the 
     doc.Parse(contents);
     if (doc.Error())
     { 
-/*        logMsg("Unable to parse player file");
-        logMsg("Error ID = " +convert->toString(doc.ErrorID()));
-        logMsg(convert->toString(doc.GetErrorStr1()));
-        logMsg(convert->toString(doc.GetErrorStr2()));
-        exit(0);
-*/
+///        logMsg("Unable to parse player file");
+///        logMsg("Error ID = " +convert->toString(doc.ErrorID()));
+///        logMsg(convert->toString(doc.GetErrorStr1()));
+///        logMsg(convert->toString(doc.GetErrorStr2()));
+///        exit(0);
     }
     tinyxml2::XMLHandle hDoc(&doc);
     
@@ -2476,7 +2486,7 @@ playerStateSharedPtr loader::loadPlayerFile(std::string fileName)  // loads the 
 
 //    playerInstance = playerStateSharedPtr(player);
 //    logMsg("player First Name == "+playerInstance->getFirstName());
- 
+
     return (playerInstance);
 }
 

@@ -539,8 +539,8 @@ bool gameState::createPlayerInstances()  // creates player instances
         logMsg(func +" loading of playerss failed!");
         return (false);
     }
-    
-//    exit(0);
+
+    exit(0);
     logMsg(func +" uno");
 
     logMsg(func +" pInstance.size() == " +convert->toString(pInstance.size()));

@@ -781,8 +781,8 @@ bool loader::checkIfPlayersLoaded()  // checks if players have been loaded into 
         {
             logMsg(func + " ELSE ELSE!");
 
-            pInstance = loadPlayers();
-/*
+           /* pInstance =*/ loadPlayers();
+
             if (pInstance.size() > 0)
             {
                 logMsg(func + " load->getPInstance().size() > 0! ELSE ELSE");
@@ -794,8 +794,8 @@ bool loader::checkIfPlayersLoaded()  // checks if players have been loaded into 
             else
             {
                 logMsg(func + " Failed to load Player Files!");
-                return(false);
-            }*/
+//                return(false);
+            }
         }
     }
     
@@ -1971,7 +1971,8 @@ playerStateUMSharedPtr loader::loadPlayers()  // loads the players
 {
     sharedPtr<conversion> convert = conversion::Instance();
 
-    playerStateUMSharedPtr players;
+    static playerStateUMSharedPtr players;
+    playerStateSharedPtr player(new playerState);
     std::string playerList;
     std::string func = "loader::loadPlayers()";
 
@@ -1992,13 +1993,15 @@ playerStateUMSharedPtr loader::loadPlayers()  // loads the players
        logMsg(func +" it == " +convert->toString(it));
         logMsg("playerFile = " +playerFiles[it]);
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-        players.insert(std::pair<size_t, playerStateSharedPtr>(it, loadPlayerFile("data/players/" + playerFiles[it])));
+//        players.insert(std::pair<size_t, playerStateSharedPtr>(it, loadPlayerFile("data/players/" + playerFiles[it])));
+        player = loadPlayerFile("data/players/" + playerFiles[it]);
 #else
-/*        playerStateSharedPtr playerInstance; //(new playerState);
+        playerStateSharedPtr playerInstance; //(new playerState);
 
-        players.emplace(it, playerInstance);
-*/
+//        players.emplace(it, playerInstance);
+
         players.insert(std::pair<size_t, playerStateSharedPtr>(it, loadPlayerFile(findFile("players/" + playerFiles[it]))));
+
 #endif 
 //    exit(0);
     }
@@ -2071,9 +2074,9 @@ playerStateSharedPtr loader::loadPlayerFile(std::string fileName)  // loads the 
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    sharedPtr<renderEngine> render = renderEngine::Instance();
 
-    playerStateSharedPtr playerInstance; //(new playerState);
+    playerStateSharedPtr playerInstance(new playerState);
 //    playerState *player = new playerState;
-    playerInstance.reset(new playerState);
+/*    playerInstance.reset(new playerState);
     std::string firstName;
     std::string lastName;
     std::string modelName;
@@ -2483,7 +2486,7 @@ playerStateSharedPtr loader::loadPlayerFile(std::string fileName)  // loads the 
     playerInstance->setDemeanor(demeanor);
     playerInstance->setImprovability(improvability);
     playerInstance->calculateOverallRating();
-
+*/
 //    playerInstance = playerStateSharedPtr(player);
 //    logMsg("player First Name == "+playerInstance->getFirstName());
 

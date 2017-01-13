@@ -38,6 +38,9 @@ public:
 
     offenseState(); // constructor
 
+    UBCBaseSharedPtr getBase();  // retrieves the value of base
+    void setBase(UBCBaseSharedPtr set);  // sets the value of base
+ 
     teamTypes getTeamType();  // retrieves the value of teamType
     void setTeamType(teamTypes set);  // sets the value of teamType
 
@@ -88,6 +91,8 @@ public:
     bool checkForDirective(playerPositions set);  // checks if a directive needs to be completed before execution
 
 private:
+
+    static UBCBaseSharedPtr base;  // static copy of base class
 
     teamTypes teamType;  // stores whether the offense is being run by the home or away team.
     courtSide_t courtSide;  // stores which side of the court the offense executes on.

@@ -23,6 +23,7 @@
 #include "state/gamestate.h"
 #include "state/networkstate.h"
 #include "state/inputstate.h"
+#include "load.h"
 #include "logging.h"
 
 // Static Declarations
@@ -128,6 +129,9 @@ bool UBCBase::setup()  // sets up the engine and states
     gameS = tempGameStateSharedPtr;
     getGameS()->setInitialized(true);
     
+    loaderSharedPtr tempLoaderSharedPtr(new loader);
+    load = tempLoaderSharedPtr;
+
 //    exit(0);
 //    networkState *tempNetworkStateObj = new networkState;
 ///    sharedPtr<networkState> tempNetworkStateSharedPtr = sharedPtr<networkState>(new networkState);

@@ -34,6 +34,7 @@
 // forward declarations
 //class inputEngine;
 class userInput;
+class UBCBase;
 
 class inputState : public state
 {
@@ -42,6 +43,9 @@ class inputState : public state
     inputState();  // constructor
     ~inputState();  // destructor
     
+    UBCBaseSharedPtr getBase();  // retrieves the value of base
+    void setBase(UBCBaseSharedPtr set);  // sets the value of base
+
     inputEngineSharedPtr getInputE();  // retrieves the value of gameE
     void setInputE(inputEngineSharedPtr set);  // sets the value of gameE
     
@@ -59,6 +63,7 @@ class inputState : public state
     
     private:
     
+    static UBCBaseSharedPtr base;  // static copy of base class
     static inputEngineSharedPtr inputE;  // the inputEngine object
     userInputVecSharedPtr uInput;  // stores user input mapping
     static inputInGameWorkQueues inputInGameWorkQueue;  // stores work queue for in game processing

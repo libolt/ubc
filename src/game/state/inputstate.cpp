@@ -24,8 +24,10 @@
 //#include "engine/gameengine.h"
 #include "userinput.h"
 #include "load.h"
+#include "ubcbase.h"
 
 // static declarations
+UBCBaseSharedPtr inputState::base;  // static copy of base class
 inputEngineSharedPtr inputState::inputE;  // the inputEngine object
 inputInGameWorkQueues inputState::inputInGameWorkQueue; 
 
@@ -37,6 +39,15 @@ inputState::inputState()  // constructor
 inputState::~inputState()  // destructor
 {
     
+}
+
+UBCBaseSharedPtr inputState::getBase()  // retrieves the value of base
+{
+    return (base);
+}
+void inputState::setBase(UBCBaseSharedPtr set)  // sets the value of base
+{
+    base = set;
 }
 
 inputEngineSharedPtr inputState::getInputE()  // retrieves the value of inputE

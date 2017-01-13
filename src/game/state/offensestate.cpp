@@ -30,6 +30,9 @@
 #include "ai/playersteer.h"
 #include "state/teamstate.h"
 
+// static declarations 
+UBCBaseSharedPtr offenseState::base;  // static copy of base class
+
 offenseState::offenseState()  // constructor
 {
     teamType = NOTEAM;
@@ -72,6 +75,15 @@ offenseState::offenseState()  // constructor
     numStartPositionsReached = 0;
     offenseSetup = false;
     loadPlays();
+}
+
+UBCBaseSharedPtr offenseState::getBase()  // retrieves the value of base
+{
+    return (base);
+}
+void offenseState::setBase(UBCBaseSharedPtr set)  // sets the value of base
+{
+    base = set;
 }
 
 teamTypes offenseState::getTeamType()  // retrieves the value of teamType

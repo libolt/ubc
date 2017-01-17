@@ -42,20 +42,20 @@ class playerData
         std::string getPlayerName(void);  // retrieves the value of playerName
         void setPlayerName(std::string set);  // sets the value of playerName
 
-        int getAge(void);  // retrieves the value of age
-        void setAge(int set);  // sets the value of  age
+        size_t getAge(void);  // retrieves the value of age
+        void setAge(size_t set);  // sets the value of  age
 
-        int getHeight(void);  // retrieves the value of height
-        void setHeight(int set);  // sets the value of height 
+        size_t getHeight(void);  // retrieves the value of height
+        void setHeight(size_t set);  // sets the value of height 
 
-        int getWeight(void);  // retrieves the value of weight
-        void setWeight(int set);  // sets the value of weight
+        size_t getWeight(void);  // retrieves the value of weight
+        void setWeight(size_t set);  // sets the value of weight
 
-        int getID(void);  // retrieves the value of ID
-        void setID(int set);  // sets the value of ID
+        size_t getID(void);  // retrieves the value of ID
+        void setID(size_t set);  // sets the value of ID
 
-        int getTeamID(void);  // retrieves the value of teamID
-        void setTeamID(int set);  // sets the value of teamID
+        size_t getTeamID(void);  // retrieves the value of teamID
+        void setTeamID(size_t set);  // sets the value of teamID
 
         playerPositions getPrimaryPosition();  // retrieves the value of primaryPosition
         void setPrimaryPosition(playerPositions set);  // sets the value of primaryPosition
@@ -70,89 +70,89 @@ class playerData
         void setModelFileName(string set);  // sets the value of modelName
 */
 
-        int getShooting();  // retrieves the value of shooting
-        void setShooting(int set);  // sets the value of shooting
+        size_t getShooting();  // retrieves the value of shooting
+        void setShooting(size_t set);  // sets the value of shooting
         
-        int getFreeThrow();  // retrieves the value of freeThrow
-        void setFreeThrow(int set);  // sets the value of freeThrow
+        size_t getFreeThrow();  // retrieves the value of freeThrow
+        void setFreeThrow(size_t set);  // sets the value of freeThrow
         
-        int getLayup();  // retrieves the value of layup
-        void setLayup(int set);  // sets the value of layup
+        size_t getLayup();  // retrieves the value of layup
+        void setLayup(size_t set);  // sets the value of layup
         
-        int getDunk();  // retrieves the value of dunk
-        void setDunk(int set);  // sets the value of dunk
+        size_t getDunk();  // retrieves the value of dunk
+        void setDunk(size_t set);  // sets the value of dunk
         
-        int getInside();  // retrieves the value of inside
-        void setInside(int set);  // sets the value of inside
+        size_t getInside();  // retrieves the value of inside
+        void setInside(size_t set);  // sets the value of inside
         
-        int getMidRange();  // retrieves the value of midRange
-        void setMidRange(int set);  // sets the value of midRange
+        size_t getMidRange();  // retrieves the value of midRange
+        void setMidRange(size_t set);  // sets the value of midRange
         
-        int getThreePoint();  // retrieves the value of threePoint
-        void setThreePoint(int set);  // sets the value of threePoint
+        size_t getThreePoint();  // retrieves the value of threePoint
+        void setThreePoint(size_t set);  // sets the value of threePoint
         
-        int getBallHandling();  // retrieves the value of ballHandling
-        void setBallHandling(int set);  // sets the value of ballHandling
+        size_t getBallHandling();  // retrieves the value of ballHandling
+        void setBallHandling(size_t set);  // sets the value of ballHandling
         
-        int getBallSecurity();  // retrieves the value of ballSecurity
-        void setBallSecurity(int set);  // sets the value of ballSecurity
+        size_t getBallSecurity();  // retrieves the value of ballSecurity
+        void setBallSecurity(size_t set);  // sets the value of ballSecurity
         
-        int getPassing();  // retrieves the value of passing
-        void setPassing(int set);  // sets the value of passing
+        size_t getPassing();  // retrieves the value of passing
+        void setPassing(size_t set);  // sets the value of passing
         
-        int getPickSetting();  // retrieves the value of pickSetting
-        void setPickSetting(int set);  // sets the value of pickSetting
+        size_t getPickSetting();  // retrieves the value of pickSetting
+        void setPickSetting(size_t set);  // sets the value of pickSetting
         
-        int getOffenseAwareness();  // retrieves the value of offenseAwareness
-        void setOffenseAwareness(int set);  // sets the value of offenseAwareness
+        size_t getOffenseAwareness();  // retrieves the value of offenseAwareness
+        void setOffenseAwareness(size_t set);  // sets the value of offenseAwareness
         
-        int getDefenseAwareness();  // retrieves the value of defenseAwareness
-        void setDefenseAwareness(int set);  // sets the value of defenseAwareness
+        size_t getDefenseAwareness();  // retrieves the value of defenseAwareness
+        void setDefenseAwareness(size_t set);  // sets the value of defenseAwareness
 
-        int getOffenseRebound();  // retrieves the value of offenseRebound
-        void setOffenseRebound(int set);  // sets the value of offenseRebound
+        size_t getOffenseRebound();  // retrieves the value of offenseRebound
+        void setOffenseRebound(size_t set);  // sets the value of offenseRebound
         
-        int getDefenseRebound();  // retrieves the value of defenseRebound
-        void setDefenseRebound(int set);  // sets the value of defenseRebound
+        size_t getDefenseRebound();  // retrieves the value of defenseRebound
+        void setDefenseRebound(size_t set);  // sets the value of defenseRebound
         
-        int getBlocking();  // retrieves the value of blocking
-        void setBlocking(int set);  // sets the value of blocking
+        size_t getBlocking();  // retrieves the value of blocking
+        void setBlocking(size_t set);  // sets the value of blocking
         
-        int getStealing();  // retrieves the value of stealing
-        void setStealing(int set);  // sets the value of stealing
+        size_t getStealing();  // retrieves the value of stealing
+        void setStealing(size_t set);  // sets the value of stealing
         
-        int getInteriorDefense();  // retrieves the value of interiorDefense
-        void setInteriorDefense(int set);  // sets the value of interiorDefense
+        size_t getInteriorDefense();  // retrieves the value of interiorDefense
+        void setInteriorDefense(size_t set);  // sets the value of interiorDefense
         
-        int getMidRangeDefense();  // retrieves the value of midRangeDefense
-        void setMidRangeDefense(int set);  // sets the value of midRangeDefense
+        size_t getMidRangeDefense();  // retrieves the value of midRangeDefense
+        void setMidRangeDefense(size_t set);  // sets the value of midRangeDefense
         
-        int getPerimeterDefense();  // retrieves the value of perimeterDefense
-        void setPerimeterDefense(int set);  // sets the value of perimeterDefense
+        size_t getPerimeterDefense();  // retrieves the value of perimeterDefense
+        void setPerimeterDefense(size_t set);  // sets the value of perimeterDefense
         
-        int getHustle();  // retrieves the value of hustle
-        void setHustle(int set);  // sets the value of hustle
+        size_t getHustle();  // retrieves the value of hustle
+        void setHustle(size_t set);  // sets the value of hustle
         
-        int getSpeed();  // retrieves the value of speed
-        void setSpeed(int set);  // sets the value of speed
+        size_t getSpeed();  // retrieves the value of speed
+        void setSpeed(size_t set);  // sets the value of speed
         
-        int getQuickness();  // retrieves the value of quickness
-        void setQuickness(int set);  // sets the value of quickness
+        size_t getQuickness();  // retrieves the value of quickness
+        void setQuickness(size_t set);  // sets the value of quickness
         
-        int getFatigue();  // retrieves the value of fatigue
-        void setFatigue(int set);  // sets the value of fatigue
+        size_t getFatigue();  // retrieves the value of fatigue
+        void setFatigue(size_t set);  // sets the value of fatigue
         
-        int getDurability();  // retrieves the value of durability
-        void setDurability(int set);  // sets the value of durability
+        size_t getDurability();  // retrieves the value of durability
+        void setDurability(size_t set);  // sets the value of durability
         
-        int getDemeanor();  // retrieves the value of demeanor
-        void setDemeanor(int set);  // sets the value of demeanor
+        size_t getDemeanor();  // retrieves the value of demeanor
+        void setDemeanor(size_t set);  // sets the value of demeanor
         
-        int getImprovability();  // retrieves the value of improvability
-        void setImprovability(int set);  // sets the value of improvability
+        size_t getImprovability();  // retrieves the value of improvability
+        void setImprovability(size_t set);  // sets the value of improvability
         
-        int getOverallRating();  // retrieves the value of overallRating
-        void setOverallRating(int set);  // sets the value of overallRating
+        size_t getOverallRating();  // retrieves the value of overallRating
+        void setOverallRating(size_t set);  // sets the value of overallRating
         
         void calculateOverallRating();  // calculates the value of overallRating
         
@@ -161,41 +161,41 @@ class playerData
         std::string firstName;  // stores the first name of the player
         std::string lastName;  // stores the last name of the player
         std::string playerName;  // stores the full player name
-        int age;  // stores the age of the player
-        int height;  // stores the height in centimeters of the player
-        int weight;  // stores the weight of the player in pounds.
-        int ID;  // stores the unique ID of the player.
-        int teamID;  // stores the unique ID of the team the player plays for.
+        size_t age;  // stores the age of the player
+        size_t height;  // stores the height in centimeters of the player
+        size_t weight;  // stores the weight of the player in pounds.
+        size_t ID;  // stores the unique ID of the player.
+        size_t teamID;  // stores the unique ID of the team the player plays for.
         playerPositions primaryPosition;  // stores the primary position of the player
         playerPositions secondaryPosition;  // stores the secondary position of the player
-        int shooting;  // stores the overall shooting proficiency
-        int freeThrow;  // storee freethrow shooting proficiency
-        int layup;  // storee layup shooting proficiencu
-        int dunk;  // stores dunking proficiency
-        int inside;  // stores scoring profiency in the paint
-        int midRange;  // stores mid range scoring proficiency
-        int threePoint;  // stores three point scoring proficiency
-        int ballHandling;  // stores ability to dribble the ball
-        int ballSecurity;  // stores ability to hang on to the ball when defended
-        int passing;  // stores ability to make passes accurately
-        int pickSetting;  // stores ability to set a pick
-        int offenseAwareness;  // stores awareness of what happens during offense execution
-        int defenseAwareness;  // stores awareness of what happens playing defense
-        int offenseRebound;  // stores ability to rebound missed shots on offense
-        int defenseRebound;  // stores ability to rebound missed shots on defense
-        int blocking;  // stores ability to block opposing players' shot
-        int stealing;  // stores ability to steal ball from opposing player
-        int interiorDefense;  // stores ability to defend the paint
-        int midRangeDefense;  // stores ability to defend between paint and three point linr
-        int perimeterDefense;  // stores ability to defend from three point line extended
-        int hustle;  // stores willingness to go after loose balls and rebounds
-        int speed;  // stores how fast player can run
-        int quickness;  // stores how quick player takes off on move
-        int fatigue;  // stores how quickly player tires
-        int durability;  // stores how healthy a player stays during game/season
-        int demeanor;  // stores how passive, excited, agressive a player is
-        int improvability;  // stores players ability to improve skills
-        int overallRating;  // stores overall rating which is the sum of all ratings/number of ratings
+        size_t shooting;  // stores the overall shooting proficiency
+        size_t freeThrow;  // storee freethrow shooting proficiency
+        size_t layup;  // storee layup shooting proficiencu
+        size_t dunk;  // stores dunking proficiency
+        size_t inside;  // stores scoring profiency in the paint
+        size_t midRange;  // stores mid range scoring proficiency
+        size_t threePoint;  // stores three point scoring proficiency
+        size_t ballHandling;  // stores ability to dribble the ball
+        size_t ballSecurity;  // stores ability to hang on to the ball when defended
+        size_t passing;  // stores ability to make passes accurately
+        size_t pickSetting;  // stores ability to set a pick
+        size_t offenseAwareness;  // stores awareness of what happens during offense execution
+        size_t defenseAwareness;  // stores awareness of what happens playing defense
+        size_t offenseRebound;  // stores ability to rebound missed shots on offense
+        size_t defenseRebound;  // stores ability to rebound missed shots on defense
+        size_t blocking;  // stores ability to block opposing players' shot
+        size_t stealing;  // stores ability to steal ball from opposing player
+        size_t interiorDefense;  // stores ability to defend the paint
+        size_t midRangeDefense;  // stores ability to defend between paint and three point linr
+        size_t perimeterDefense;  // stores ability to defend from three point line extended
+        size_t hustle;  // stores willingness to go after loose balls and rebounds
+        size_t speed;  // stores how fast player can run
+        size_t quickness;  // stores how quick player takes off on move
+        size_t fatigue;  // stores how quickly player tires
+        size_t durability;  // stores how healthy a player stays during game/season
+        size_t demeanor;  // stores how passive, excited, agressive a player is
+        size_t improvability;  // stores players ability to improve skills
+        size_t overallRating;  // stores overall rating which is the sum of all ratings/number of ratings
         
         // if player is playing this is true
         bool active;

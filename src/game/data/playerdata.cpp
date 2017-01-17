@@ -97,47 +97,47 @@ void playerData::setPlayerName(std::string set)  // sets the value of playerName
     playerName = set;
 }
 
-int playerData::getAge()  // retrieves the value of age
+size_t playerData::getAge()  // retrieves the value of age
 {
     return(age);
 }
-void playerData::setAge(int set)  // sets the value of age
+void playerData::setAge(size_t set)  // sets the value of age
 {
     age = set;
 }
 
-int playerData::getHeight()  // retrieves the value of height
+size_t playerData::getHeight()  // retrieves the value of height
 {
     return(height);
 }
-void playerData::setHeight(int set)  // sets the value of height
+void playerData::setHeight(size_t set)  // sets the value of height
 {
     height = set;
 }
 
-int playerData::getWeight()  // retrieves the value of weight
+size_t playerData::getWeight()  // retrieves the value of weight
 {
     return(weight);
 }
-void playerData::setWeight(int set)  // sets the value of weight
+void playerData::setWeight(size_t set)  // sets the value of weight
 {
     weight = set;
 }
 
-int playerData::getID()  // retrieves the value of ID
+size_t playerData::getID()  // retrieves the value of ID
 {
     return(ID);
 }
-void playerData::setID(int set)  // sets the value of ID
+void playerData::setID(size_t set)  // sets the value of ID
 {
     ID = set;
 }
 
-int playerData::getTeamID()  // retrieves the value of teamID
+size_t playerData::getTeamID()  // retrieves the value of teamID
 {
 	return (teamID);
 }
-void playerData::setTeamID(int set)  // sets the value of teamID
+void playerData::setTeamID(size_t set)  // sets the value of teamID
 {
 	teamID = set;
 }
@@ -180,253 +180,253 @@ void playerData::setModelFileName(string set)  // sets the value of model
 }
 */
 
-int playerData::getShooting()  // retrieves the value of shooting
+size_t playerData::getShooting()  // retrieves the value of shooting
 {
     return (shooting);
 }
-void playerData::setShooting(int set)  // sets the value of shooting
+void playerData::setShooting(size_t set)  // sets the value of shooting
 {
     shooting = set;
 }
 
-int playerData::getFreeThrow()  // retrieves the value of freeThrow
+size_t playerData::getFreeThrow()  // retrieves the value of freeThrow
 {
     return (freeThrow);
 }
-void playerData::setFreeThrow(int set)  // sets the value of freeThrow
+void playerData::setFreeThrow(size_t set)  // sets the value of freeThrow
 {
     freeThrow = set;
 }
 
-int playerData::getLayup()  // retrieves the value of layup
+size_t playerData::getLayup()  // retrieves the value of layup
 {
     return (layup);
 }
-void playerData::setLayup(int set)  // sets the value of layup
+void playerData::setLayup(size_t set)  // sets the value of layup
 {
     layup = set;
 }
 
-int playerData::getDunk()  // retrieves the value of dunk
+size_t playerData::getDunk()  // retrieves the value of dunk
 {
     return (dunk);
 }
-void playerData::setDunk(int set)  // sets the value of dunk
+void playerData::setDunk(size_t set)  // sets the value of dunk
 {
     dunk = set;
 }
 
-int playerData::getInside()  // retrieves the value of inside
+size_t playerData::getInside()  // retrieves the value of inside
 {
     return (inside);
 }
-void playerData::setInside(int set)  // sets the value of inside
+void playerData::setInside(size_t set)  // sets the value of inside
 {
     inside = set;
 }
 
-int playerData::getMidRange()  // retrieves the value of midRange
+size_t playerData::getMidRange()  // retrieves the value of midRange
 {
     return (midRange);
 }
-void playerData::setMidRange(int set)  // sets the value of midRange
+void playerData::setMidRange(size_t set)  // sets the value of midRange
 {
     midRange = set;
 }
 
-int playerData::getThreePoint()  // retrieves the value of threePoint
+size_t playerData::getThreePoint()  // retrieves the value of threePoint
 {
     return (threePoint);
 }
-void playerData::setThreePoint(int set)  // sets the value of threePoint
+void playerData::setThreePoint(size_t set)  // sets the value of threePoint
 {
     threePoint = set;
 }
 
-int playerData::getBallHandling()  // retrieves the value of ballHandling
+size_t playerData::getBallHandling()  // retrieves the value of ballHandling
 {
     return (ballHandling);
 }
-void playerData::setBallHandling(int set)  // sets the value of ballHandling
+void playerData::setBallHandling(size_t set)  // sets the value of ballHandling
 {
     ballHandling = set;
 }
-int playerData::getBallSecurity()  // retrieves the value of ballSecurity
+size_t playerData::getBallSecurity()  // retrieves the value of ballSecurity
 {
     return (ballSecurity);
 }
-void playerData::setBallSecurity(int set)  // sets the value of ballSecurity
+void playerData::setBallSecurity(size_t set)  // sets the value of ballSecurity
 {
     ballSecurity = set;
 }
 
-int playerData::getPassing()  // retrieves the value of passing
+size_t playerData::getPassing()  // retrieves the value of passing
 {
     return (passing);
 }
-void playerData::setPassing(int set)  // sets the value of passing
+void playerData::setPassing(size_t set)  // sets the value of passing
 {
     passing = set;
 }
 
-int playerData::getPickSetting()  // retrieves the value of pickSetting
+size_t playerData::getPickSetting()  // retrieves the value of pickSetting
 {
     return (pickSetting);
 }
-void playerData::setPickSetting(int set)  // sets the value of pickSetting
+void playerData::setPickSetting(size_t set)  // sets the value of pickSetting
 {
     pickSetting = set;
 }
 
-int playerData::getOffenseAwareness()  // retrieves the value of offenseAwareness
+size_t playerData::getOffenseAwareness()  // retrieves the value of offenseAwareness
 {
     return (offenseAwareness);
 }
-void playerData::setOffenseAwareness(int set)  // sets the value of offenseAwareness
+void playerData::setOffenseAwareness(size_t set)  // sets the value of offenseAwareness
 {
     offenseAwareness = set;
 }
 
-int playerData::getDefenseAwareness()  // retrieves the value of defenseAwareness
+size_t playerData::getDefenseAwareness()  // retrieves the value of defenseAwareness
 {
     return (defenseAwareness);
 }
-void playerData::setDefenseAwareness(int set)  // sets the value of defenseAwareness
+void playerData::setDefenseAwareness(size_t set)  // sets the value of defenseAwareness
 {
     defenseAwareness = set;
 }
 
-int playerData::getOffenseRebound()  // retrieves the value of offenseRebound
+size_t playerData::getOffenseRebound()  // retrieves the value of offenseRebound
 {
     return (offenseRebound);
 }
-void playerData::setOffenseRebound(int set)  // sets the value of offenseRebound
+void playerData::setOffenseRebound(size_t set)  // sets the value of offenseRebound
 {
     offenseRebound = set;
 }
 
-int playerData::getDefenseRebound()  // retrieves the value of defenseRebound
+size_t playerData::getDefenseRebound()  // retrieves the value of defenseRebound
 {
     return (defenseRebound);
 }
-void playerData::setDefenseRebound(int set)  // sets the value of defenseRebound
+void playerData::setDefenseRebound(size_t set)  // sets the value of defenseRebound
 {
     defenseRebound = set;
 }
 
-int playerData::getBlocking()  // retrieves the value of blocking
+size_t playerData::getBlocking()  // retrieves the value of blocking
 {
     return (blocking);
 }
-void playerData::setBlocking(int set)  // sets the value of blocking
+void playerData::setBlocking(size_t set)  // sets the value of blocking
 {
     blocking = set;
 }
 
-int playerData::getStealing()  // retrieves the value of stealing
+size_t playerData::getStealing()  // retrieves the value of stealing
 {
     return (stealing);
 }
-void playerData::setStealing(int set)  // sets the value of stealing
+void playerData::setStealing(size_t set)  // sets the value of stealing
 {
     stealing = set;
 }
 
-int playerData::getInteriorDefense()  // retrieves the value of interiorDefense
+size_t playerData::getInteriorDefense()  // retrieves the value of interiorDefense
 {
     return (interiorDefense);
 }
-void playerData::setInteriorDefense(int set)  // sets the value of interiorDefense
+void playerData::setInteriorDefense(size_t set)  // sets the value of interiorDefense
 {
     interiorDefense = set;
 }
 
-int playerData::getMidRangeDefense()  // retrieves the value of midRangeDefense
+size_t playerData::getMidRangeDefense()  // retrieves the value of midRangeDefense
 {
     return(midRangeDefense);
 }
-void playerData::setMidRangeDefense(int set)  // sets the value of midRangeDefense
+void playerData::setMidRangeDefense(size_t set)  // sets the value of midRangeDefense
 {
     midRangeDefense = set;
 }
 
-int playerData::getPerimeterDefense()  // retrieves the value of perimeterDefense
+size_t playerData::getPerimeterDefense()  // retrieves the value of perimeterDefense
 {
     return (perimeterDefense);
 }
-void playerData::setPerimeterDefense(int set)  // sets the value of perimeterDefense
+void playerData::setPerimeterDefense(size_t set)  // sets the value of perimeterDefense
 {
     perimeterDefense = set;
 }
 
-int playerData::getHustle()  // retrieves the value of hustle
+size_t playerData::getHustle()  // retrieves the value of hustle
 {
     return (hustle);
 }
-void playerData::setHustle(int set)  // sets the value of hustle
+void playerData::setHustle(size_t set)  // sets the value of hustle
 {
     hustle = set;
 }
 
-int playerData::getSpeed()  // retrieves the value of speed
+size_t playerData::getSpeed()  // retrieves the value of speed
 {
     return (speed);
 }
-void playerData::setSpeed(int set)  // sets the value of speed
+void playerData::setSpeed(size_t set)  // sets the value of speed
 {
     speed = set;
 }
 
-int playerData::getQuickness()  // retrieves the value of quickness
+size_t playerData::getQuickness()  // retrieves the value of quickness
 {
     return (quickness);
 }
-void playerData::setQuickness(int set)  // sets the value of quickness
+void playerData::setQuickness(size_t set)  // sets the value of quickness
 {
     quickness = set;
 }
 
-int playerData::getFatigue()  // retrieves the value of fatigue
+size_t playerData::getFatigue()  // retrieves the value of fatigue
 {
     return (fatigue);
 }
-void playerData::setFatigue(int set)  // sets the value of fatigue
+void playerData::setFatigue(size_t set)  // sets the value of fatigue
 {
     fatigue = set;
 }
 
-int playerData::getDurability()  // retrieves the value of durability
+size_t playerData::getDurability()  // retrieves the value of durability
 {
     return (durability);
 }
-void playerData::setDurability(int set)  // sets the value of durability
+void playerData::setDurability(size_t set)  // sets the value of durability
 {
     durability = set;
 }
 
-int playerData::getDemeanor()  // retrieves the value of demeanor
+size_t playerData::getDemeanor()  // retrieves the value of demeanor
 {
     return (demeanor);
 }
-void playerData::setDemeanor(int set)  // sets the value of demeanor
+void playerData::setDemeanor(size_t set)  // sets the value of demeanor
 {
     demeanor = set;
 }
 
-int playerData::getImprovability()  // retrieves the value of improvability
+size_t playerData::getImprovability()  // retrieves the value of improvability
 {
     return (improvability);
 }
-void playerData::setImprovability(int set)  // sets the value of improvability
+void playerData::setImprovability(size_t set)  // sets the value of improvability
 {
     improvability = set;
 }
 
-int playerData::getOverallRating()  // retrieves the value of overallRating
+size_t playerData::getOverallRating()  // retrieves the value of overallRating
 {
     return (overallRating);
 }
-void playerData::setOverallRating(int set)  // sets the value of overallRating
+void playerData::setOverallRating(size_t set)  // sets the value of overallRating
 {
     overallRating = set;
 }

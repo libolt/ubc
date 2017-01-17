@@ -95,7 +95,7 @@ class jumpBalls;
 
 
 #ifndef sharedPtr
-#define sharedPtr boost::shared_ptr
+#define sharedPtr std::shared_ptr
 #endif
 
 // typedefs

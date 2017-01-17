@@ -2074,9 +2074,11 @@ playerStateSharedPtr loader::loadPlayerFile(std::string fileName)  // loads the 
     sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    sharedPtr<renderEngine> render = renderEngine::Instance();
+    teamStateSharedPtr teamInstance(new teamState);
 
-    playerStateSharedPtr playerInstance;//(new playerState);
+    playerStateSharedPtr playerInstance(new playerState);
     std::allocator<playerState> psAlloc;
+//    playerInstance = std::allocate_shared<playerState>(psAlloc, new playerState);
 //    playerInstance.insert(new playerState);
 //    playerState *player = new playerState;
 //    playerInstance.reset(new playerState);

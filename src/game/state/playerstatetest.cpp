@@ -37,7 +37,7 @@
 //#include "jumpballs.h"
 
 playerStateTest::playerStateTest()
-{
+{/*
 //    playerID = 0;
     teamType = NOTEAM;
     isActive = false;
@@ -88,14 +88,14 @@ playerStateTest::playerStateTest()
     // hack
     posChangeAmount = 0;
     direction = NODIRECT;
-    oldDirection = NODIRECT;
+    oldDirection = NODIRECT;*/
 }
 
 playerStateTest::~playerStateTest() // destructor
 {
 }
 
-teamTypes playerStateTest::getTeamType()  // retrieves the value of teamType
+/*teamTypes playerStateTest::getTeamType()  // retrieves the value of teamType
 {
     return (teamType);
 }
@@ -533,18 +533,18 @@ void playerStateTest::setInitialized(bool set)  // sets the value of initialized
 bool playerStateTest::setup()  // initializes the state of the object
 {
     
-/*    playerSteerSharedPtr tempSteer(new playerSteer);
-    setSteer(tempSteer);
+///    playerSteerSharedPtr tempSteer(new playerSteer);
+///    setSteer(tempSteer);
     
-    logMsg("steer->setTeamType(teamType);");
+///    logMsg("steer->setTeamType(teamType);");
     
-    getSteer()->setTeamType(teamType);
-    logMsg("psteer->reset();");
-    getSteer()->reset();
+///    getSteer()->setTeamType(teamType);
+///    logMsg("psteer->reset();");
+///    getSteer()->reset();
 //    logMsg("pInstance->setSteer(playerSteerSharedPtr(pSteer);");
 
 //    pInstance->setSteer(playerSteerSharedPtr(pSteer));
-*/
+
     return (true);
 }
 
@@ -694,15 +694,15 @@ bool playerStateTest::updateCourtPosition()  // updates the XYZ coordinates of t
             break;
 
             case PHYSICSCHANGE:
-                /*  I have disabled this code until I can fix the conflict with the steering code
-                logMsg("Updating court position based on physics");
-                logMsg("courtPosition = " +convert->toString(courtPosition));
-                logMsg("newCourtPosition = " +convert->toString(newCourtPosition));
-                node->translate(newCourtPosition);
-                logMsg("node position updated");
-                steer->setPosition(convert->toOpenSteerVec3(newCourtPosition));
-                logMsg("steer position updated");
-                */
+///                  I have disabled this code until I can fix the conflict with the steering code
+///                logMsg("Updating court position based on physics");
+///                logMsg("courtPosition = " +convert->toString(courtPosition));
+///                logMsg("newCourtPosition = " +convert->toString(newCourtPosition));
+///                node->translate(newCourtPosition);
+///                logMsg("node position updated");
+///                steer->setPosition(convert->toOpenSteerVec3(newCourtPosition));
+///                logMsg("steer position updated");
+                
                 courtPositionChanged = false;
                 courtPositionChangedType = NOCHANGE;
                 courtPosition = getNode()->getPosition();
@@ -717,18 +717,18 @@ bool playerStateTest::updateCourtPosition()  // updates the XYZ coordinates of t
         
     }
     
-/*    logMsg("posChange = " +convert->toString(posChange));
+///    logMsg("posChange = " +convert->toString(posChange));
 //  cout << "posChange = " << posChange << endl;
-    node->translate(posChange);
-    btVector3 change = btVector3(0,0,0);
-    change = BtOgre::Convert::toBullet(posChange);  // converts from Ogre::Vector3 to btVector3
+///    node->translate(posChange);
+///    btVector3 change = btVector3(0,0,0);
+///    change = BtOgre::Convert::toBullet(posChange);  // converts from Ogre::Vector3 to btVector3
 //  logMsg("playerPhysicsSetup = " +convert->toString(physEngine.getPlayerPhysicsSetup()));
 
-    physBody->translate(change);  // moves physics body in unison with the model
+///    physBody->translate(change);  // moves physics body in unison with the model
 //  exit(0);
 //  physBody->translate(btVector3(0,0,0));
 //  logMsg("player position updated.");
-*/
+
     return true;
 }
 
@@ -932,20 +932,20 @@ void playerStateTest::calculatePass()   // calculates which player to pass the b
     std::string func = "playerStateTest::calculatepass()";
 
     logMsg(func +" beginning");
-/*    logMsg("In calculatePass function");
+///    logMsg("In calculatePass function");
 
-    teamStateUMSharedPtr activeTeamInstance = getActiveTeamInstance();
-    size_t teamWithBall = getTeamWithBall();
-    playerPositions playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();
-    passToPlayer = playerWithBallInstance++;
-
-
-    logMsg("Pass to player is now = " +convert->toString(passToPlayer));
+///    teamStateUMSharedPtr activeTeamInstance = getActiveTeamInstance();
+///    size_t teamWithBall = getTeamWithBall();
+///    playerPositions playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();
+///    passToPlayer = playerWithBallInstance++;
 
 
-    passCalculated = true;
+///    logMsg("Pass to player is now = " +convert->toString(passToPlayer));
+
+
+///    passCalculated = true;
 //    logMsg("Player to pass to =   " +convert->toString(passToPlayer));
-*/
+
 //    exit(0);
 
     logMsg(func +" end");
@@ -953,47 +953,47 @@ void playerStateTest::calculatePass()   // calculates which player to pass the b
 
 void playerStateTest::shotLogic(Ogre::Vector3 playerPos)
 {
-    /*S
+    
 
     //    Ogre::Vector3 playerPos;
-    std::vector<basketballs> basketballInstance = getBasketballInstance();
-    playerStateTestVec pInstance = getPlayerInstance();
+///    std::vector<basketballs> basketballInstance = getBasketballInstance();
+///    playerStateTestVec pInstance = getPlayerInstance();
 
     // checks if a player has taken a shot
-    if (getShotTaken())
-    {
+///    if (getShotTaken())
+///    {
 
-        basketballInstance[activeBBallInstance].setDribbling(false);
+///       basketballInstance[activeBBallInstance].setDribbling(false);
 //          basketballInstance[activeBBallInstance].getNode()->setParent(mSceneMgr->getRootSceneNode());
-        Ogre::Vector3 pos = basketballInstance[activeBBallInstance].getNode()->getPosition();
-        basketballInstance[activeBBallInstance].setMaxHeight(pos[1] + 10.0f);
-        basketballInstance[activeBBallInstance].setMinHeight(pos[1] - 10.0f);
-        Ogre::Vector3 velocity;
-        Ogre::Vector3 startCoords;
-        startCoords[0] = playerPos[0] + 1.0f;
-        startCoords[1] = playerPos[1] + 1.0f;
-        startCoords[2] = playerPos[2] + 1.0f;
-        velocity[0] = 0.90f;
-        velocity[1] = 0.80f;
-        velocity[2] = 0.0f;
-        basketballInstance[activeBBallInstance].setVelocity(velocity);
-        basketballInstance[activeBBallInstance].setStartCoords(startCoords);
-        basketballInstance[activeBBallInstance].getNode()->setPosition(startCoords);
-        setShotTaken(false);
-        setShotComplete(false);
-        basketballInstance[activeBBallInstance].setMaxHeightReached(false);
-        basketballInstance[activeBBallInstance].setMinHeightReached(false);
+///        Ogre::Vector3 pos = basketballInstance[activeBBallInstance].getNode()->getPosition();
+///        basketballInstance[activeBBallInstance].setMaxHeight(pos[1] + 10.0f);
+///        basketballInstance[activeBBallInstance].setMinHeight(pos[1] - 10.0f);
+///        Ogre::Vector3 velocity;
+///        Ogre::Vector3 startCoords;
+///        startCoords[0] = playerPos[0] + 1.0f;
+///        startCoords[1] = playerPos[1] + 1.0f;
+///        startCoords[2] = playerPos[2] + 1.0f;
+///        velocity[0] = 0.90f;
+///        velocity[1] = 0.80f;
+///        velocity[2] = 0.0f;
+///        basketballInstance[activeBBallInstance].setVelocity(velocity);
+///        basketballInstance[activeBBallInstance].setStartCoords(startCoords);
+///        basketballInstance[activeBBallInstance].getNode()->setPosition(startCoords);
+///        setShotTaken(false);
+///        setShotComplete(false);
+///        basketballInstance[activeBBallInstance].setMaxHeightReached(false);
+///        basketballInstance[activeBBallInstance].setMinHeightReached(false);
     //      basketballInstance[activeBBallInstance].setPlayer(-1);
-    }
+///    }
 
-    if (getShotComplete())
-    {
+///    if (getShotComplete())
+///    {
 
-        basketballInstance[activeBBallInstance].setPlayer(5);
-        basketballInstance[activeBBallInstance].setDribblingStart(true);
-        playerPos = pInstance[basketballInstance[activeBBallInstance].getPlayer()].getNode()->getPosition();
-        basketballInstance[activeBBallInstance].getNode()->setPosition(playerPos[0] +2.0f, playerPos[1] + 4.0f, playerPos[2] - 1.0f);
-        setShotComplete(false);
-    }
-*/
-}
+///        basketballInstance[activeBBallInstance].setPlayer(5);
+///        basketballInstance[activeBBallInstance].setDribblingStart(true);
+///        playerPos = pInstance[basketballInstance[activeBBallInstance].getPlayer()].getNode()->getPosition();
+///        basketballInstance[activeBBallInstance].getNode()->setPosition(playerPos[0] +2.0f, playerPos[1] + 4.0f, playerPos[2] - 1.0f);
+///        setShotComplete(false);
+///    }
+
+}*/

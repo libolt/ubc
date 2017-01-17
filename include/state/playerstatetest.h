@@ -45,14 +45,14 @@
 class playerSteer;
 class playerPhysics;
 
-class playerStateTest : public state, public playerEntity, public playerData
+class playerStateTest : public state//, public playerEntity//, public playerData
 {
     public:
 
         playerStateTest();
         ~playerStateTest();
 
-        teamTypes getTeamType();  // retrieves the value of teamType
+/*        teamTypes getTeamType();  // retrieves the value of teamType
         void setTeamType(teamTypes set);  // sets the value of teamType
         
         bool getNetworkControlled();  // retrieves the value of networkControlled
@@ -196,9 +196,9 @@ class playerStateTest : public state, public playerEntity, public playerData
         positionChangedTypes getCourtPositionChangedType();  // retrieves the value of courtPositionChangedType
         void setCourtPositionChangedType(positionChangedTypes set);  // sets the value of courtPositionChangedType
 
-/*        bool getStateSet();  // retrieves the value of stateSet
-        void setStateSet(bool set);  // sets the value of stateSet
-*/
+//        bool getStateSet();  // retrieves the value of stateSet
+//        void setStateSet(bool set);  // sets the value of stateSet
+
         bool getInitialized(void);  // retreives the value of initialized
         void setInitialized(bool set);  // sets the value of initialized
 
@@ -217,12 +217,12 @@ class playerStateTest : public state, public playerEntity, public playerData
         void calculatePass();  // calculates which player to pass the ball to
 
         void shotLogic(Ogre::Vector3 playerPos);  // carries out basketball shot logic
-
+*/
     private:
 
 //        size_t playerID;  // stores the ID of the player which is unique to each player in the game
 
-        teamTypes teamType;  // stores which of the two teams the player belongs to
+/*        teamTypes teamType;  // stores which of the two teams the player belongs to
         
         bool networkControlled;	// if true player is controlled by a network client.
 
@@ -339,6 +339,8 @@ class playerStateTest : public state, public playerEntity, public playerData
         
         // tempory hack to count the number of times player position changes
         size_t posChangeAmount;
+        */
+        sharedPtr<playerEntity> playerEnt;
 };
 
 

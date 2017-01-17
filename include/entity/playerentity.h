@@ -53,8 +53,8 @@ class playerEntity : public entity , public playerPhysics
 
 //    playerPhysics *physics;  // stores the playerPhysics object
 
-    static playerSteerSharedPtr steer;  // stores the steering objerct that represents the player
-    static bool steerInitialized; // stores whether the steer object has been initialized
+     playerSteerSharedPtr steer;  // stores the steering objerct that represents the player
+     bool steerInitialized; // stores whether the steer object has been initialized
 };
 
 #endif // _PLAYERENTITY_H_

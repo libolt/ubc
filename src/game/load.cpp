@@ -35,6 +35,7 @@
 #include "state/hoopstate.h"
 //#include "state/gamestate.h"
 #include "state/playerstate.h"
+#include "state/playerstatetest.h"
 #include "state/teamstate.h"
 #include "offenseplays.h"
 #include "typedefs.h"
@@ -2074,9 +2075,9 @@ playerStateSharedPtr loader::loadPlayerFile(std::string fileName)  // loads the 
     sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    sharedPtr<renderEngine> render = renderEngine::Instance();
-    teamStateSharedPtr teamInstance(new teamState);
+    sharedPtr<playerStateTest> pstInstance(new playerStateTest);
 
-    playerStateSharedPtr playerInstance(new playerState);
+    playerStateSharedPtr playerInstance;//(new playerState);
     std::allocator<playerState> psAlloc;
 //    playerInstance = std::allocate_shared<playerState>(psAlloc, new playerState);
 //    playerInstance.insert(new playerState);

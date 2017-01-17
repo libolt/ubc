@@ -1972,10 +1972,11 @@ playerStateUMSharedPtr loader::loadPlayers()  // loads the players
     sharedPtr<conversion> convert = conversion::Instance();
 
     static playerStateUMSharedPtr players;
-    playerStateSharedPtr player(new playerState);
-    std::string playerList;
     std::string func = "loader::loadPlayers()";
 
+    playerStateSharedPtr player;//(new playerState);
+    std::string playerList;
+    
     logMsg(func +" beginning");
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
@@ -2074,10 +2075,12 @@ playerStateSharedPtr loader::loadPlayerFile(std::string fileName)  // loads the 
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    sharedPtr<renderEngine> render = renderEngine::Instance();
 
-    playerStateSharedPtr playerInstance(new playerState);
+    playerStateSharedPtr playerInstance;//(new playerState);
+    std::allocator<playerState> psAlloc;
+//    playerInstance.insert(new playerState);
 //    playerState *player = new playerState;
-/*    playerInstance.reset(new playerState);
-    std::string firstName;
+//    playerInstance.reset(new playerState);
+/*    std::string firstName;
     std::string lastName;
     std::string modelName;
     playerPositions primaryPosition;

@@ -39,18 +39,22 @@
 //#include "ai/playersteer.h"
 //#include "physics/playerphysics.h"
 //#include "state/state.h"
-#include "entity/playerentity.h"
+//#include "entity/playerentity.h"
 #include "data/playerdata.h"
 
+class playerEntity;
 class playerSteer;
 class playerPhysics;
 
-class playerState : public state, public playerEntity, public playerData
+class playerState : public state, public playerData
 {
     public:
 
         playerState();
         ~playerState();
+
+        sharedPtr<playerEntity> getPlayerEnt();  // retrieves the value of playerEnt
+        void setPlayerEnt(sharedPtr<playerEntity> set);  // sets the value of playerEnt
 
         teamTypes getTeamType();  // retrieves the value of teamType
         void setTeamType(teamTypes set);  // sets the value of teamType
@@ -220,6 +224,7 @@ class playerState : public state, public playerEntity, public playerData
 
     private:
 
+        sharedPtr<playerEntity> playerEnt;  // instance of playerEntity object
 //        size_t playerID;  // stores the ID of the player which is unique to each player in the game
 
         teamTypes teamType;  // stores which of the two teams the player belongs to

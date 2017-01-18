@@ -23,6 +23,7 @@
 #include "ai/playersteer.h"
 #include "ai/ai.h"
 #include "conversion.h"
+#include "entity/playerentity.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
 #include "state/gamestate.h"
@@ -729,7 +730,7 @@ void playerSteer::updateDefense(const float currentTime, const float elapsedTime
 //        while (x < activePlayerInstance[z].size())
         for (auto APIIT : activePlayerInstance[ATIIT.first])
         {
-            teamSteer.push_back(APIIT.second->getSteer());
+            teamSteer.push_back(APIIT.second->getPlayerEnt()->getSteer());
             ++x;
         }
         teamSteers.push_back(teamSteer);

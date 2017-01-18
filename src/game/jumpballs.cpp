@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "conversion.h"
+#include "entity/playerentity.h"
 #include "state/basketballstate.h"
 //#include "state/gamestate.h"
 #include "state/courtstate.h"
@@ -245,7 +246,7 @@ bool jumpBalls::jumpBallExecute(basketballStateUMSharedPtr activeBasketballInsta
             {
                 logMsg("jumpPlayerInstance = " +convert->toString(APIIT.first));
                  // logMsg("PlayerName = " +activePlayerInstance[x][i].getPlayerName());
-                logMsg("ModelLoaded = " +convert->toString(APIIT.second->getModelLoaded()));
+                logMsg("ModelLoaded = " +convert->toString(APIIT.second->getPlayerEnt()->getModelLoaded()));
     //                    exit(0);
                 //jumpPlayerID.push_back(activePlayerInstance[i].getPlayerID());
                 jumpPlayerInstance.push_back(APIIT.first);
@@ -442,7 +443,7 @@ bool jumpBalls::tipToPlayer(basketballStateUMSharedPtr activeBasketballInstance,
             logMsg("ballTippedToPlayerInstance == " +convert->toString(ballTippedToPlayerInstance));
 
             // FIXME! Do NOT hardcode activeBasketballInstance
-            if (physEngine.collisionCheck(activeBasketballInstance[0]->getPhysBody().get(), activePlayerInstance[ballTippedToPlayerInstance]->getPhysBody().get()))
+            if (physEngine.collisionCheck(activeBasketballInstance[0]->getPhysBody().get(), activePlayerInstance[ballTippedToPlayerInstance]->getPlayerEnt()->getPhysBody().get()))
             {
  //               exit(0);
 ///                gameS->setTeamWithBall(ballTippedToTeam);

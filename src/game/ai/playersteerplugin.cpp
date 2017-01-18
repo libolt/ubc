@@ -23,6 +23,7 @@
 #include "Ogre.h"
 #include "ai/playersteerplugin.h"
 #include "ai/ai.h"
+#include "entity/playerentity.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
 #include "state/gamestate.h"
@@ -122,8 +123,8 @@ void playerSteerPlugin::open()
         for (auto APIIT : activePlayerInstance)
         {
             logMsg(func +" for (auto APIIT : activePlayerInstance[ATIIT.first])");
-            playerSteerSharedPtr steer = APIIT.second->getSteer();
-            bool steerInitialized = APIIT.second->getSteerInitialized();
+            playerSteerSharedPtr steer = APIIT.second->getPlayerEnt()->getSteer();
+            bool steerInitialized = APIIT.second->getPlayerEnt()->getSteerInitialized();
             if (!steerInitialized)
             {
                 playerSteerSharedPtr tempSteer(new playerSteer);
@@ -141,14 +142,14 @@ void playerSteerPlugin::open()
             logMsg(func +" ai->selectedVehicle = steer");
             ai->selectedVehicle = steer;
             logMsg(func +" APIIT.second->setSteer(steer);");
-            APIIT.second->setSteer(steer);
+            APIIT.second->getPlayerEnt()->setSteer(steer);
             logMsg(func + " allPlayerSteers.push_back(APIIT.second->getSteer());");
-            allPlayerSteers.push_back(APIIT.second->getSteer());
+            allPlayerSteers.push_back(APIIT.second->getPlayerEnt()->getSteer());
     //            ++y;
             logMsg(func +" allPlayerSteers.push_back(APIIT.second->getSteer());");
-            APIIT.second->setSteer(steer);
+            APIIT.second->getPlayerEnt()->setSteer(steer);
             logMsg(func +" APIIT.second->setSteerInitialized(steerInitialized);");
-            APIIT.second->setSteerInitialized(steerInitialized);
+            APIIT.second->getPlayerEnt()->setSteerInitialized(steerInitialized);
         }
         logMsg(func +" ATIIT.second->setActivePlayerInstance(activePlayerInstance);");
         ATIIT.second->setActivePlayerInstance(activePlayerInstance);
@@ -278,11 +279,11 @@ void playerSteerPlugin::update(const float currentTime, const float elapsedTime)
 //        while (y < activePlayerInstance[x].size())
         for (auto APIIT : activePlayerInstance[ATIIT.first])
         {
-            if (APIIT.first != ATIIT.second->getHumanPlayer() && APIIT.second->getModelLoaded())
+            if (APIIT.first != ATIIT.second->getHumanPlayer() && APIIT.second->getPlayerEnt()->getModelLoaded())
             {
 //                exit(0);
 //                logMsg("ATIIT.first = " +ATIIT.first +"APIIT.first = " +APIIT.first);
-                APIIT.second->getSteer()->update(currentTime, elapsedTime);
+                APIIT.second->getPlayerEnt()->getSteer()->update(currentTime, elapsedTime);
             }
 //            ++y;
         }

@@ -553,7 +553,7 @@ void teamState::updateState()  // updates the state of the object
                         //sets the basketball Height;
                         // FIXME! activeBasketballInstance HARDCODED
                         bballPos = activeBasketballInstance[0]->getNode()->getPosition();
-                        playerPos = activePlayerInstance[instanceWithBall]->getNode()->getPosition();
+                        playerPos = activePlayerInstance[instanceWithBall]->getPlayerEnt()->getNode()->getPosition();
                         bballPos[1] = playerPos[1];
                         // FIXME! activeBasketballInstance HARDCODED
                         activeBasketballInstance[0]->getNode()->setPosition(bballPos);
@@ -787,7 +787,7 @@ void teamState::setPlayerStartPositions()  // sets the initial coordinates for t
                 APIIT.second->setNewCourtPosition(startingPos[0]);
                 
                 APIIT.second->setDirection(playerDirection);
-                APIIT.second->getSteer()->setPlayerPosition(PG);
+                APIIT.second->getPlayerEnt()->getSteer()->setPlayerPosition(PG);
                 //activePlayerInstance[x]->getSteer()->setPosition(convert->toOpenSteerVec3(startingPos[0]));               
             }
             else if (APIIT.second->getActivePosition() == SG)
@@ -798,7 +798,7 @@ void teamState::setPlayerStartPositions()  // sets the initial coordinates for t
                 APIIT.second->setNewCourtPosition(startingPos[1]);
 
                 APIIT.second->setDirection(playerDirection);
-                APIIT.second->getSteer()->setPlayerPosition(SG);
+                APIIT.second->getPlayerEnt()->getSteer()->setPlayerPosition(SG);
                 //activePlayerInstance[x]->getSteer()->setPosition(convert->toOpenSteerVec3(startingPos[1]-5));
             }
             else if (APIIT.second->getActivePosition() == SF)

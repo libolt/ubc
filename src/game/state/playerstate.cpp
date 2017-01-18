@@ -27,6 +27,7 @@
 //#include "engine/renderengine.h"
 //#include "ai/steering.h"
 #include "ai/playersteer.h"
+#include "entity/playerentity.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
 #include "state/hoopstate.h"
@@ -93,6 +94,16 @@ playerState::playerState()
 
 playerState::~playerState() // destructor
 {
+}
+
+sharedPtr<playerEntity> playerState::getPlayerEnt()  // retrieves the value of playerEnt
+{
+    return (playerEnt);
+}
+
+void playerState::setPlayerEnt(sharedPtr<playerEntity> set)  // sets the value of playerEnt
+{
+    playerEnt = set;
 }
 
 teamTypes playerState::getTeamType()  // retrieves the value of teamType
@@ -554,10 +565,10 @@ void playerState::updateState()
 //    sharedPtr<gameState> gameS = gameState::Instance();
 ///    sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
-    jumpBallsSharedPtr jumpBall = getJumpBall();
+    jumpBallsSharedPtr jumpBall = playerEnt->getJumpBall();
     Ogre::Vector3 playerPos;
 
-    if (getPhysicsSetup())
+    if (playerEnt->getPhysicsSetup())
     {
         logMsg("playerState::updateState");
         updateCourtPosition();
@@ -569,7 +580,7 @@ void playerState::updateState()
     
     if (shootBlock)
     {
-        if (teamType == getTeamWithBall())
+        if (teamType == playerEnt->getTeamWithBall())
         {
 //            shotLogic(playerPos);
 //            exit(0);
@@ -577,12 +588,12 @@ void playerState::updateState()
             {
                 shotTaken = true;
             }
-            shootBasketball(teamType, getID());
+            playerEnt->shootBasketball(teamType, getID());
 
         }
         else
         {
-            jump(teamType, getID());
+            playerEnt->jump(teamType, getID());
         }
         
     }
@@ -591,9 +602,9 @@ void playerState::updateState()
     {
         logMsg("passSteal!!");
         logMsg("passSteal teamType == " +convert->toString(teamType));
-        logMsg("passSteal teamWithBall == " +convert->toString(getTeamWithBall()));
+        logMsg("passSteal teamWithBall == " +convert->toString(playerEnt->getTeamWithBall()));
         
-        if (teamType == getTeamWithBall())
+        if (teamType == playerEnt->getTeamWithBall())
         {
             calculatePass();
         }
@@ -612,20 +623,20 @@ void playerState::updateState()
         updateDirection();
         updateMovement();
         oldDirection = direction;
-        teamStateUMSharedPtr activeTeamInstance = getActiveTeamInstance();
+        teamStateUMSharedPtr activeTeamInstance = playerEnt->getActiveTeamInstance();
         size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
-        if (teamType == getTeamWithBall() && getTipOffComplete())
+        if (teamType == playerEnt->getTeamWithBall() && playerEnt->getTipOffComplete())
         {
             logMsg("dplayerWithBallID == " +convert->toString(playerWithBallID));
             if (getID() == playerWithBallID && getID() >= 0)
             {
                 logMsg("playerID == " +convert->toString(getID()));
 //                int activeBBallInstance = getActiveBBallInstance();
-                basketballStateUMSharedPtr activeBasketballInstance = getActiveBasketballInstance();
+                basketballStateUMSharedPtr activeBasketballInstance = playerEnt->getActiveBasketballInstance();
                 
                 //FIXME! HARDCODED VALUE!
                 activeBasketballInstance[0]->setMovement(true);
-                setActiveBasketballInstance(activeBasketballInstance);
+                playerEnt->setActiveBasketballInstance(activeBasketballInstance);
 //                exit(0);
             }
         }        
@@ -654,14 +665,14 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
         switch (courtPositionChangedType)
         {
             case STARTCHANGE:
-                getNode()->translate(newCourtPosition);
+                playerEnt->getNode()->translate(newCourtPosition);
                 physChange = BtOgre::Convert::toBullet(newCourtPosition);  // converts from Ogre::Vector3 to btVector3
-                getPhysBody()->translate(physChange); // moves physics body in unison with the model
-                getSteer()->setPosition(convert->toOpenSteerVec3(newCourtPosition));
+                playerEnt->getPhysBody()->translate(physChange); // moves physics body in unison with the model
+                playerEnt->getSteer()->setPosition(convert->toOpenSteerVec3(newCourtPosition));
                 courtPositionChanged = false;
                 courtPositionChangedType = NOCHANGE;
                 startPosReached = true;
-                courtPosition = getNode()->getPosition();
+                courtPosition = playerEnt->getNode()->getPosition();
                 logMsg("start change,");
 //                exit(0);
             break;
@@ -671,9 +682,9 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
                 //logMsg("Team " +convert->toString(teamType) + " Player " +convert->toString(playerID));
                 changePos = compare.OgreVector3ToOgreVector3Result(courtPosition, newCourtPosition);
                 //logMsg("change playerCourtPosition = " +convert->toString(changePos));
-                getNode()->translate(changePos);
+                playerEnt->getNode()->translate(changePos);
                 physChange = BtOgre::Convert::toBullet(changePos);  // converts from Ogre::Vector3 to btVector3
-                getPhysBody()->translate(physChange); // moves physics body in unison with the model
+                playerEnt->getPhysBody()->translate(physChange); // moves physics body in unison with the model
                 //exit(0);
                 
                 courtPositionChanged = false;
@@ -685,8 +696,8 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
                 //logMsg("Updating court position based on input");
                 getNode()->translate(newCourtPosition);
                 physChange = BtOgre::Convert::toBullet(newCourtPosition);  // converts from Ogre::Vector3 to btVector3
-                getPhysBody()->translate(physChange);  // moves physics body in unison with the model
-                getSteer()->setPosition(convert->toOpenSteerVec3(newCourtPosition));
+                playerEnt->getPhysBody()->translate(physChange);  // moves physics body in unison with the model
+                playerEnt->getSteer()->setPosition(convert->toOpenSteerVec3(newCourtPosition));
                 courtPositionChanged = false;
                 courtPositionChangedType = NOCHANGE;
                 //exit(0);
@@ -737,8 +748,8 @@ void playerState::updateDirection()
 {
     sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
-    teamStateUMSharedPtr activeTeamInstance = getActiveTeamInstance();
-    basketballStateUMSharedPtr activeBasketballInstance = getActiveBasketballInstance();
+    teamStateUMSharedPtr activeTeamInstance = playerEnt->getActiveTeamInstance();
+    basketballStateUMSharedPtr activeBasketballInstance = playerEnt->getActiveBasketballInstance();
 //    size_t activeBBallInstance = getActiveBBallInstance();
     size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
 
@@ -751,13 +762,13 @@ void playerState::updateDirection()
                 switch (direction)
                 {
                     case DOWN:
-                        getNode()->yaw(Ogre::Degree (180));
+                        playerEnt->getNode()->yaw(Ogre::Degree (180));
                     break;
                     case LEFT:
-                        getNode()->yaw(Ogre::Degree (270));
+                        playerEnt->getNode()->yaw(Ogre::Degree (270));
                     break;
                     case RIGHT:
-                        getNode()->yaw(Ogre::Degree (90));
+                        playerEnt->getNode()->yaw(Ogre::Degree (90));
 //                        exit(0);
                     break;
                     default:
@@ -769,13 +780,13 @@ void playerState::updateDirection()
                 switch (direction)
                 {
                     case UP:
-                        getNode()->yaw(Ogre::Degree (180));
+                        playerEnt->getNode()->yaw(Ogre::Degree (180));
                     break;
                     case LEFT:
-                        getNode()->yaw(Ogre::Degree (90));
+                        playerEnt->getNode()->yaw(Ogre::Degree (90));
                     break;
                     case RIGHT:
-                        getNode()->yaw(Ogre::Degree (270));
+                        playerEnt->getNode()->yaw(Ogre::Degree (270));
                     break;
                     default:
                     break;
@@ -785,13 +796,13 @@ void playerState::updateDirection()
                 switch (direction)
                 {
                     case UP:
-                        getNode()->yaw(Ogre::Degree (90));
+                        playerEnt->getNode()->yaw(Ogre::Degree (90));
                     break;
                     case DOWN:
-                        getNode()->yaw(Ogre::Degree (270));
+                        playerEnt->getNode()->yaw(Ogre::Degree (270));
                     break;
                     case RIGHT:
-                        getNode()->yaw(Ogre::Degree (180));
+                        playerEnt->getNode()->yaw(Ogre::Degree (180));
                     break;
                     default:
                     break;
@@ -801,13 +812,13 @@ void playerState::updateDirection()
                 switch (direction)
                 {
                     case UP:
-                        getNode()->yaw(Ogre::Degree (270));
+                        playerEnt->getNode()->yaw(Ogre::Degree (270));
                     break;
                     case DOWN:
-                        getNode()->yaw(Ogre::Degree (90));
+                        playerEnt->getNode()->yaw(Ogre::Degree (90));
                     break;
                     case LEFT:
-                        getNode()->yaw(Ogre::Degree (180));
+                        playerEnt->getNode()->yaw(Ogre::Degree (180));
                     break;
                     default:
                     break;
@@ -817,16 +828,16 @@ void playerState::updateDirection()
             switch (direction)
             {
                 case UP:
-                    getNode()->yaw(Ogre::Degree (270));
+                    playerEnt->getNode()->yaw(Ogre::Degree (270));
                 break;
                 case DOWN:
-                    getNode()->yaw(Ogre::Degree (90));
+                    playerEnt->getNode()->yaw(Ogre::Degree (90));
                 break;
                 case LEFT:
-                    getNode()->yaw(Ogre::Degree (0));
+                    playerEnt->getNode()->yaw(Ogre::Degree (0));
                 break;
                 case RIGHT:
-                    getNode()->yaw(Ogre::Degree (180));
+                    playerEnt->getNode()->yaw(Ogre::Degree (180));
                 break;
                 default:
                 break;
@@ -846,7 +857,7 @@ void playerState::updateDirection()
         activeBasketballInstance[0]->setDirectChange(true);
         activeBasketballInstance[0]->setDirection(direction);
 
-        setActiveBasketballInstance(activeBasketballInstance);
+        playerEnt->setActiveBasketballInstance(activeBasketballInstance);
     }
     //oldDirection = direction;
     //direction = NODIRECT;
@@ -857,9 +868,9 @@ void playerState::updateMovement()  // updates movement status of the player
 {
     sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
-    teamStateUMSharedPtr activeTeamInstance = getActiveTeamInstance();
+    teamStateUMSharedPtr activeTeamInstance = playerEnt->getActiveTeamInstance();
 //    basketballStateVecSharedPtr bballInstance = getBasketballInstance();
-    basketballStateUMSharedPtr activeBasketballInstance = getActiveBasketballInstance();
+    basketballStateUMSharedPtr activeBasketballInstance = playerEnt->getActiveBasketballInstance();
 //    size_t activeBBallInstance = getActiveBBallInstance();
     size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
 
@@ -906,7 +917,7 @@ void playerState::updateMovement()  // updates movement status of the player
         {
             // FIXME! HARDCODED VALUE
             activeBasketballInstance[0]->setMovement(true);
-            setActiveBasketballInstance(activeBasketballInstance);
+            playerEnt->setActiveBasketballInstance(activeBasketballInstance);
 
         }
     }

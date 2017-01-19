@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "conversion.h"
+#include "data/playerdata.h"
 #include "entity/playerentity.h"
 #include "state/basketballstate.h"
 //#include "state/gamestate.h"
@@ -359,7 +360,7 @@ bool jumpBalls::tipToPlayer(basketballStateUMSharedPtr activeBasketballInstance,
     {
         if (activePlayerInstance[y]->getActivePosition() == ballTippedToPosition)
         {
-            ballTippedToPlayerID = activePlayerInstance[y]->getID();
+            ballTippedToPlayerID = activePlayerInstance[y]->getData()->getID();
             ballTippedToPlayerInstance = y;
             break;
         }

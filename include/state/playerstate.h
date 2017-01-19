@@ -40,18 +40,21 @@
 //#include "physics/playerphysics.h"
 //#include "state/state.h"
 //#include "entity/playerentity.h"
-#include "data/playerdata.h"
 
+class playerData;
 class playerEntity;
 class playerSteer;
 class playerPhysics;
 
-class playerState : public state, public playerData
+class playerState //: public state
 {
     public:
 
         playerState();
         ~playerState();
+
+        sharedPtr<playerData> getData();  // retrieves the value of data
+        void setData(sharedPtr<playerData> set);  // sets the value of data
 
         sharedPtr<playerEntity> getPlayerEnt();  // retrieves the value of playerEnt
         void setPlayerEnt(sharedPtr<playerEntity> set);  // sets the value of playerEnt
@@ -224,7 +227,9 @@ class playerState : public state, public playerData
 
     private:
 
-        sharedPtr<playerEntity> playerEnt;  // instance of playerEntity object
+        static sharedPtr<playerData> data;  // instance of playerData object
+
+        static sharedPtr<playerEntity> playerEnt;  // instance of playerEntity object
 //        size_t playerID;  // stores the ID of the player which is unique to each player in the game
 
         teamTypes teamType;  // stores which of the two teams the player belongs to

@@ -30,6 +30,7 @@
 #include "logging.h"
 #include "data/playerdata.h"
 #include "engine/renderengine.h"
+#include "entity/playerEntity.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
 #include "state/hoopstate.h"
@@ -2075,15 +2076,14 @@ playerStateSharedPtr loader::loadPlayerFile(std::string fileName)  // loads the 
     sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    sharedPtr<renderEngine> render = renderEngine::Instance();
-    sharedPtr<playerStateTest> pstInstance(new playerStateTest);
 
-    playerStateSharedPtr playerInstance;//(new playerState);
+    playerStateSharedPtr playerInstance(new playerState);
     std::allocator<playerState> psAlloc;
 //    playerInstance = std::allocate_shared<playerState>(psAlloc, new playerState);
 //    playerInstance.insert(new playerState);
 //    playerState *player = new playerState;
 //    playerInstance.reset(new playerState);
-/*    std::string firstName;
+    std::string firstName;
     std::string lastName;
     std::string modelName;
     playerPositions primaryPosition;
@@ -2451,48 +2451,51 @@ playerStateSharedPtr loader::loadPlayerFile(std::string fileName)  // loads the 
     {
         improvability = convert->toInt(pElem->GetText());
     }
-    
-    playerInstance->setFirstName(firstName);
+//    sharedPtr<playerEntity> tempPEnt(new playerEntity);
+//    playerInstance->setPlayerEnt(tempPEnt);
+    playerInstance->setup();
+    playerInstance->getData()->setFirstName(firstName);
 //    exit(0);
-    playerInstance->setLastName(lastName);
-    playerInstance->setPlayerName(firstName +" " +lastName);
-    playerInstance->setAge(age);
-    playerInstance->setHeight(height);
-    playerInstance->setWeight(weight);
-    playerInstance->setID(ID);
-    playerInstance->setTeamID(teamID);
-    playerInstance->setEntityModelFileName(modelName);
-    playerInstance->setPrimaryPosition(primaryPosition);
-    playerInstance->setSecondaryPosition(secondaryPosition);
-    playerInstance->setShooting(shooting);
-    playerInstance->setFreeThrow(freeThrow);
-    playerInstance->setLayup(layup);
-    playerInstance->setDunk(dunk);
-    playerInstance->setInside(inside);
-    playerInstance->setMidRange(midRange);
-    playerInstance->setThreePoint(threePoint);
-    playerInstance->setBallHandling(ballHandling);
-    playerInstance->setBallSecurity(ballSecurity);
-    playerInstance->setPassing(passing);
-    playerInstance->setPickSetting(pickSetting);
-    playerInstance->setOffenseAwareness(offenseAwareness);
-    playerInstance->setDefenseAwareness(defenseAwareness);
-    playerInstance->setOffenseRebound(offenseRebound);
-    playerInstance->setDefenseRebound(defenseRebound);
-    playerInstance->setBlocking(blocking);
-    playerInstance->setStealing(stealing);
-    playerInstance->setInteriorDefense(interiorDefense);
-    playerInstance->setMidRangeDefense(midRangeDefense);
-    playerInstance->setPerimeterDefense(perimeterDefense);
-    playerInstance->setHustle(hustle);
-    playerInstance->setSpeed(speed);
-    playerInstance->setQuickness(quickness);
-    playerInstance->setFatigue(fatigue);
-    playerInstance->setDurability(durability);
-    playerInstance->setDemeanor(demeanor);
-    playerInstance->setImprovability(improvability);
-    playerInstance->calculateOverallRating();
-*/
+    
+    playerInstance->getData()->setLastName(lastName);
+    playerInstance->getData()->setPlayerName(firstName +" " +lastName);
+    playerInstance->getData()->setAge(age);
+    playerInstance->getData()->setHeight(height);
+    playerInstance->getData()->setWeight(weight);
+    playerInstance->getData()->setID(ID);
+    playerInstance->getData()->setTeamID(teamID);
+    playerInstance->getPlayerEnt()->setEntityModelFileName(modelName);
+    playerInstance->getData()->setPrimaryPosition(primaryPosition);
+    playerInstance->getData()->setSecondaryPosition(secondaryPosition);
+    playerInstance->getData()->setShooting(shooting);
+    playerInstance->getData()->setFreeThrow(freeThrow);
+    playerInstance->getData()->setLayup(layup);
+    playerInstance->getData()->setDunk(dunk);
+    playerInstance->getData()->setInside(inside);
+    playerInstance->getData()->setMidRange(midRange);
+    playerInstance->getData()->setThreePoint(threePoint);
+    playerInstance->getData()->setBallHandling(ballHandling);
+    playerInstance->getData()->setBallSecurity(ballSecurity);
+    playerInstance->getData()->setPassing(passing);
+    playerInstance->getData()->setPickSetting(pickSetting);
+    playerInstance->getData()->setOffenseAwareness(offenseAwareness);
+    playerInstance->getData()->setDefenseAwareness(defenseAwareness);
+    playerInstance->getData()->setOffenseRebound(offenseRebound);
+    playerInstance->getData()->setDefenseRebound(defenseRebound);
+    playerInstance->getData()->setBlocking(blocking);
+    playerInstance->getData()->setStealing(stealing);
+    playerInstance->getData()->setInteriorDefense(interiorDefense);
+    playerInstance->getData()->setMidRangeDefense(midRangeDefense);
+    playerInstance->getData()->setPerimeterDefense(perimeterDefense);
+    playerInstance->getData()->setHustle(hustle);
+    playerInstance->getData()->setSpeed(speed);
+    playerInstance->getData()->setQuickness(quickness);
+    playerInstance->getData()->setFatigue(fatigue);
+    playerInstance->getData()->setDurability(durability);
+    playerInstance->getData()->setDemeanor(demeanor);
+    playerInstance->getData()->setImprovability(improvability);
+    playerInstance->getData()->calculateOverallRating();
+
 //    playerInstance = playerStateSharedPtr(player);
 //    logMsg("player First Name == "+playerInstance->getFirstName());
 

@@ -88,6 +88,7 @@ class entity // : public UBCBase // base class for entity objects
     private:
     
     static UBCBaseSharedPtr base;  // base class object
+    
     bool baseInitialized;  // stores whether or not the base class has been initialized.
 
     size_t entityID;  // stores the entity ID number to distinguish between entities

@@ -23,6 +23,7 @@
 #include "gui/gui.h"
 #include "conversion.h"
 #include "data/courtdata.h"
+#include "data/playerdata.h"
 #include "engine/gameengine.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
@@ -1041,7 +1042,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     {
         for (auto it : activeTeamInstance[ATIIT.first]->getPlayerInstance())
         {
-            logMsg(func +" team dee " +convert->toString(ATIIT.first) +" " +it.second->getFirstName() +" " +it.second->getLastName());
+            logMsg(func +" team dee " +convert->toString(ATIIT.first) +" " +it.second->getData()->getFirstName() +" " +it.second->getData()->getLastName());
     //            ++y;
         }
         playerInstance.insert(playerInstance.begin(), activeTeamInstance[ATIIT.first]->getPlayerInstance());
@@ -1056,7 +1057,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     {
         for (auto it : *PIIT)
         {
-            logMsg(func +" team dah " +convert->toString(x) +" " +it.second->getFirstName() +" " +it.second->getLastName());
+            logMsg(func +" team dah " +convert->toString(x) +" " +it.second->getData()->getFirstName() +" " +it.second->getData()->getLastName());
 //            ++y;
         }
         ++x;
@@ -1150,38 +1151,38 @@ void GUISystem::playerStartSelected()  // process player start selection
 //        while (x < playerInstance[w].size())
         for (auto it : playerInstance[w])
         {
-            std::string playerName = it.second->getFirstName() +" " +it.second->getLastName();
+            std::string playerName = it.second->getData()->getFirstName() +" " +it.second->getData()->getLastName();
             logMsg(func +" playerInstance playerName == " +playerName);
-            logMsg(func +" Primary Position == " +convert->toString(it.second->getPrimaryPosition()));
-            logMsg(func +" Player ID == " +convert->toString(it.second->getID()));
+            logMsg(func +" Primary Position == " +convert->toString(it.second->getData()->getPrimaryPosition()));
+            logMsg(func +" Player ID == " +convert->toString(it.second->getData()->getID()));
             auto y = 0;
             if (playerName == teamStarters[w]["PG"])
             {
-                logMsg(func +" PG Player ID == " +convert->toString(it.second->getID()));
-                teamStarterID[w].insert(std::pair<std::string, size_t>("PG", it.second->getID()));               
+                logMsg(func +" PG Player ID == " +convert->toString(it.second->getData()->getID()));
+                teamStarterID[w].insert(std::pair<std::string, size_t>("PG", it.second->getData()->getID()));               
             }
             else if (playerName == teamStarters[w]["SG"])
             {
-                logMsg(func +" SG Player ID == " +convert->toString(it.second->getID()));
+                logMsg(func +" SG Player ID == " +convert->toString(it.second->getData()->getID()));
                 
-                teamStarterID[w].insert(std::pair<std::string, size_t>("SG", it.second->getID()));    
+                teamStarterID[w].insert(std::pair<std::string, size_t>("SG", it.second->getData()->getID()));    
 //                logMsg("teamStarterID[w][SG] Player ID == " +convert->toString(teamStarterID[w][SG]));
           
             }
             else if (playerName == teamStarters[w]["SF"])
             {
-                logMsg(func +" SF Player ID == " +convert->toString(it.second->getID()));
-                teamStarterID[w].insert(std::pair<std::string, size_t>("SF", it.second->getID()));               
+                logMsg(func +" SF Player ID == " +convert->toString(it.second->getData()->getID()));
+                teamStarterID[w].insert(std::pair<std::string, size_t>("SF", it.second->getData()->getID()));               
             }
             else if (playerName == teamStarters[w]["PF"])
             {
-                logMsg(func +" PF Player ID == " +convert->toString(it.second->getID()));
-                teamStarterID[w].insert(std::pair<std::string, size_t>("PF", it.second->getID()));               
+                logMsg(func +" PF Player ID == " +convert->toString(it.second->getData()->getID()));
+                teamStarterID[w].insert(std::pair<std::string, size_t>("PF", it.second->getData()->getID()));               
             }
             else if (playerName == teamStarters[w]["C"])
             {
-                logMsg(func +" C Player ID == " +convert->toString(it.second->getID()));
-                teamStarterID[w].insert(std::pair<std::string, size_t>("C", it.second->getID()));               
+                logMsg(func +" C Player ID == " +convert->toString(it.second->getData()->getID()));
+                teamStarterID[w].insert(std::pair<std::string, size_t>("C", it.second->getData()->getID()));               
             }
 //            ++x;
         }
@@ -1280,35 +1281,35 @@ void GUISystem::playerStartSelected()  // process player start selection
 
         for (auto PIIT : ATIIT.second->getPlayerInstance())
         {
-            logMsg(func +" ATIIT.first == " +convert->toString(ATIIT.first) +" PIIT.second->getID() == " +convert->toString(PIIT.second->getID()) +" primaryPosition == " +convert->toString(PIIT.second->getPrimaryPosition()));
+            logMsg(func +" ATIIT.first == " +convert->toString(ATIIT.first) +" PIIT.second->getData()->getID() == " +convert->toString(PIIT.second->getData()->getID()) +" primaryPosition == " +convert->toString(PIIT.second->getData()->getPrimaryPosition()));
             std::string teamStarterIDPG = convert->toString(teamStarterID[1]["PG"]);
 //            logMsg("teamStarterID[ATIIT.first][PG] == " +teamStarterIDPG);
   
-            if (PIIT.second->getID() == teamStarterID[ATIIT.first]["PG"])
+            if (PIIT.second->getData()->getID() == teamStarterID[ATIIT.first]["PG"])
             {
                 activePlayerInstance.insert(std::pair<std::string, playerStateSharedPtr>("PG", PIIT.second));
                 activePlayerInstance["PG"]->setActivePosition(PG);
                 logMsg(func +" WOOT PG!");
             }
-            else if (PIIT.second->getID() == teamStarterID[ATIIT.first]["SG"])
+            else if (PIIT.second->getData()->getID() == teamStarterID[ATIIT.first]["SG"])
             {
                 activePlayerInstance.insert(std::pair<std::string, playerStateSharedPtr>("SG", PIIT.second));
                 activePlayerInstance["SG"]->setActivePosition(SG);
                 logMsg(func +" WOOT SG!");
             }
-            else if (PIIT.second->getID() == teamStarterID[ATIIT.first]["SF"])
+            else if (PIIT.second->getData()->getID() == teamStarterID[ATIIT.first]["SF"])
             {
                 activePlayerInstance.insert(std::pair<std::string, playerStateSharedPtr>("SF", PIIT.second));
                 activePlayerInstance["SF"]->setActivePosition(SF);
                 logMsg(func +" WOOT SF!");
             }
-            else if (PIIT.second->getID() == teamStarterID[ATIIT.first]["PF"])
+            else if (PIIT.second->getData()->getID() == teamStarterID[ATIIT.first]["PF"])
             {
                 activePlayerInstance.insert(std::pair<std::string, playerStateSharedPtr>("PF", PIIT.second));
                 activePlayerInstance["PF"]->setActivePosition(PF);
                 logMsg(func +" WOOT PF!");
             }
-            else if (PIIT.second->getID() == teamStarterID[ATIIT.first]["C"])
+            else if (PIIT.second->getData()->getID() == teamStarterID[ATIIT.first]["C"])
             {
                 activePlayerInstance.insert(std::pair<std::string, playerStateSharedPtr>("C", PIIT.second));
                 activePlayerInstance["C"]->setActivePosition(C);

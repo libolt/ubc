@@ -27,6 +27,7 @@
 //#include "engine/renderengine.h"
 //#include "ai/steering.h"
 #include "ai/playersteer.h"
+#include "data/playerdata.h"
 #include "entity/playerentity.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
@@ -36,6 +37,11 @@
 #include "state/teamstate.h"
 #include "comparison.h"
 //#include "jumpballs.h"
+
+// static declarations
+sharedPtr<playerData> playerState::data;  // instance of playerData object
+sharedPtr<playerEntity> playerState::playerEnt;  // instance of playerEntity object
+
 
 playerState::playerState()
 {
@@ -96,11 +102,19 @@ playerState::~playerState() // destructor
 {
 }
 
+sharedPtr<playerData> playerState::getData()  // retrieves the value of playerEnt
+{
+    return (data);
+}
+void playerState::setData(sharedPtr<playerData> set)  // sets the value of playerEnt
+{
+    data = set;
+}
+
 sharedPtr<playerEntity> playerState::getPlayerEnt()  // retrieves the value of playerEnt
 {
     return (playerEnt);
 }
-
 void playerState::setPlayerEnt(sharedPtr<playerEntity> set)  // sets the value of playerEnt
 {
     playerEnt = set;
@@ -543,7 +557,11 @@ void playerState::setInitialized(bool set)  // sets the value of initialized
 
 bool playerState::setup()  // initializes the state of the object
 {
-    
+    sharedPtr<playerData> tempData(new playerData);
+    data = tempData;
+    sharedPtr<playerEntity> tempPEnt(new playerEntity);
+    playerEnt = tempPEnt;
+
 /*    playerSteerSharedPtr tempSteer(new playerSteer);
     setSteer(tempSteer);
     
@@ -588,12 +606,12 @@ void playerState::updateState()
             {
                 shotTaken = true;
             }
-            playerEnt->shootBasketball(teamType, getID());
+            playerEnt->shootBasketball(teamType, data->getID());
 
         }
         else
         {
-            playerEnt->jump(teamType, getID());
+            playerEnt->jump(teamType, data->getID());
         }
         
     }
@@ -628,9 +646,9 @@ void playerState::updateState()
         if (teamType == playerEnt->getTeamWithBall() && playerEnt->getTipOffComplete())
         {
             logMsg("dplayerWithBallID == " +convert->toString(playerWithBallID));
-            if (getID() == playerWithBallID && getID() >= 0)
+            if (data->getID() == playerWithBallID && data->getID() >= 0)
             {
-                logMsg("playerID == " +convert->toString(getID()));
+                logMsg("playerID == " +convert->toString(data->getID()));
 //                int activeBBallInstance = getActiveBBallInstance();
                 basketballStateUMSharedPtr activeBasketballInstance = playerEnt->getActiveBasketballInstance();
                 
@@ -689,19 +707,19 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
                 
                 courtPositionChanged = false;
                 courtPositionChangedType = NOCHANGE;
-                courtPosition = getNode()->getPosition();
+                courtPosition = playerEnt->getNode()->getPosition();
             break;   
 
             case INPUTCHANGE:
                 //logMsg("Updating court position based on input");
-                getNode()->translate(newCourtPosition);
+                playerEnt->getNode()->translate(newCourtPosition);
                 physChange = BtOgre::Convert::toBullet(newCourtPosition);  // converts from Ogre::Vector3 to btVector3
                 playerEnt->getPhysBody()->translate(physChange);  // moves physics body in unison with the model
                 playerEnt->getSteer()->setPosition(convert->toOpenSteerVec3(newCourtPosition));
                 courtPositionChanged = false;
                 courtPositionChangedType = NOCHANGE;
                 //exit(0);
-                courtPosition = getNode()->getPosition();
+                courtPosition = playerEnt->getNode()->getPosition();
             break;
 
             case PHYSICSCHANGE:
@@ -709,14 +727,14 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
                 logMsg("Updating court position based on physics");
                 logMsg("courtPosition = " +convert->toString(courtPosition));
                 logMsg("newCourtPosition = " +convert->toString(newCourtPosition));
-                node->translate(newCourtPosition);
+                playerEnt->getNode()->translate(newCourtPosition);
                 logMsg("node position updated");
-                steer->setPosition(convert->toOpenSteerVec3(newCourtPosition));
+                playerEnt->getSteer->setPosition(convert->toOpenSteerVec3(newCourtPosition));
                 logMsg("steer position updated");
                 */
                 courtPositionChanged = false;
                 courtPositionChangedType = NOCHANGE;
-                courtPosition = getNode()->getPosition();
+                courtPosition = playerEnt->getNode()->getPosition();
                 // exit(0);
             break;
 
@@ -724,13 +742,13 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
             break;
         }
         ++posChangeAmount;
-        logMsg("player ID " +convert->toString(getID()) +"change amount = " +convert->toString(posChangeAmount));
+        logMsg("player ID " +convert->toString(data->getID()) +"change amount = " +convert->toString(posChangeAmount));
         
     }
     
 /*    logMsg("posChange = " +convert->toString(posChange));
 //  cout << "posChange = " << posChange << endl;
-    node->translate(posChange);
+    playerEnt->getNode->translate(posChange);
     btVector3 change = btVector3(0,0,0);
     change = BtOgre::Convert::toBullet(posChange);  // converts from Ogre::Vector3 to btVector3
 //  logMsg("playerPhysicsSetup = " +convert->toString(physEngine.getPlayerPhysicsSetup()));
@@ -849,8 +867,8 @@ void playerState::updateDirection()
     }
     logMsg("player Team Type == " +convert->toString(teamType));
     logMsg("directplayerWithBallID == " +convert->toString(playerWithBallID));
-    logMsg("directplayerID == " +convert->toString(getID()));
-    if (getID() == playerWithBallID)
+    logMsg("directplayerID == " +convert->toString(data->getID()));
+    if (data->getID() == playerWithBallID)
     {
 //        exit(0);
         // FIXME! HARDCODED VALUES!
@@ -913,7 +931,7 @@ void playerState::updateMovement()  // updates movement status of the player
             break;
         }
 
-        if (getID() == playerWithBallID)
+        if (data->getID() == playerWithBallID)
         {
             // FIXME! HARDCODED VALUE
             activeBasketballInstance[0]->setMovement(true);

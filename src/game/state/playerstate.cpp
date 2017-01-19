@@ -31,6 +31,7 @@
 #include "entity/playerentity.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
+#include "state/gamestate.h"
 #include "state/hoopstate.h"
 //#include "state/gamestate.h"
 #include "state/playerstate.h"
@@ -41,7 +42,8 @@
 // static declarations
 sharedPtr<playerData> playerState::data;  // instance of playerData object
 sharedPtr<playerEntity> playerState::playerEnt;  // instance of playerEntity object
-
+//sharedPtr<playerPhysics> playerState::physics;  // instance of physics object
+UBCBaseSharedPtr playerState::base;  // base class object
 
 playerState::playerState()
 {
@@ -118,6 +120,24 @@ sharedPtr<playerEntity> playerState::getPlayerEnt()  // retrieves the value of p
 void playerState::setPlayerEnt(sharedPtr<playerEntity> set)  // sets the value of playerEnt
 {
     playerEnt = set;
+}
+
+UBCBaseSharedPtr playerState::getBase()  // retrieves the value of base
+{
+    return (base);
+}
+void playerState::setBase(UBCBaseSharedPtr set)  // sets the value of base
+{
+    base = set;
+}
+
+bool playerState::getBaseInitialized()  // retrieves the value of baseInitialized
+{
+    return (baseInitialized);
+}
+void playerState::setBaseInitialized(bool set)  // sets the value of baseInitialized
+{
+    baseInitialized = set;
 }
 
 teamTypes playerState::getTeamType()  // retrieves the value of teamType
@@ -561,8 +581,8 @@ bool playerState::setup()  // initializes the state of the object
     data = tempData;
     sharedPtr<playerEntity> tempPEnt(new playerEntity);
     playerEnt = tempPEnt;
-
-/*    playerSteerSharedPtr tempSteer(new playerSteer);
+/*
+    playerSteerSharedPtr tempSteer(new playerSteer);
     setSteer(tempSteer);
     
     logMsg("steer->setTeamType(teamType);");
@@ -583,7 +603,7 @@ void playerState::updateState()
 //    sharedPtr<gameState> gameS = gameState::Instance();
 ///    sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
-    jumpBallsSharedPtr jumpBall = playerEnt->getJumpBall();
+    jumpBallsSharedPtr jumpBall = base->getGameS()->getJumpBall();
     Ogre::Vector3 playerPos;
 
     if (playerEnt->getPhysicsSetup())
@@ -598,7 +618,7 @@ void playerState::updateState()
     
     if (shootBlock)
     {
-        if (teamType == playerEnt->getTeamWithBall())
+        if (teamType == base->getGameS()->getTeamWithBall())
         {
 //            shotLogic(playerPos);
 //            exit(0);
@@ -620,9 +640,9 @@ void playerState::updateState()
     {
         logMsg("passSteal!!");
         logMsg("passSteal teamType == " +convert->toString(teamType));
-        logMsg("passSteal teamWithBall == " +convert->toString(playerEnt->getTeamWithBall()));
+        logMsg("passSteal teamWithBall == " +convert->toString(base->getGameS()->getTeamWithBall()));
         
-        if (teamType == playerEnt->getTeamWithBall())
+        if (teamType == base->getGameS()->getTeamWithBall())
         {
             calculatePass();
         }
@@ -641,20 +661,20 @@ void playerState::updateState()
         updateDirection();
         updateMovement();
         oldDirection = direction;
-        teamStateUMSharedPtr activeTeamInstance = playerEnt->getActiveTeamInstance();
+        teamStateUMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
         size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
-        if (teamType == playerEnt->getTeamWithBall() && playerEnt->getTipOffComplete())
+        if (teamType == base->getGameS()->getTeamWithBall() && base->getGameS()->getTipOffComplete())
         {
             logMsg("dplayerWithBallID == " +convert->toString(playerWithBallID));
             if (data->getID() == playerWithBallID && data->getID() >= 0)
             {
                 logMsg("playerID == " +convert->toString(data->getID()));
 //                int activeBBallInstance = getActiveBBallInstance();
-                basketballStateUMSharedPtr activeBasketballInstance = playerEnt->getActiveBasketballInstance();
+                basketballStateUMSharedPtr activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();
                 
                 //FIXME! HARDCODED VALUE!
                 activeBasketballInstance[0]->setMovement(true);
-                playerEnt->setActiveBasketballInstance(activeBasketballInstance);
+                base->getGameS()->setActiveBasketballInstance(activeBasketballInstance);
 //                exit(0);
             }
         }        
@@ -766,8 +786,8 @@ void playerState::updateDirection()
 {
     sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
-    teamStateUMSharedPtr activeTeamInstance = playerEnt->getActiveTeamInstance();
-    basketballStateUMSharedPtr activeBasketballInstance = playerEnt->getActiveBasketballInstance();
+    teamStateUMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
+    basketballStateUMSharedPtr activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();
 //    size_t activeBBallInstance = getActiveBBallInstance();
     size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
 
@@ -875,7 +895,7 @@ void playerState::updateDirection()
         activeBasketballInstance[0]->setDirectChange(true);
         activeBasketballInstance[0]->setDirection(direction);
 
-        playerEnt->setActiveBasketballInstance(activeBasketballInstance);
+        base->getGameS()->setActiveBasketballInstance(activeBasketballInstance);
     }
     //oldDirection = direction;
     //direction = NODIRECT;
@@ -886,9 +906,9 @@ void playerState::updateMovement()  // updates movement status of the player
 {
     sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
-    teamStateUMSharedPtr activeTeamInstance = playerEnt->getActiveTeamInstance();
+    teamStateUMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
 //    basketballStateVecSharedPtr bballInstance = getBasketballInstance();
-    basketballStateUMSharedPtr activeBasketballInstance = playerEnt->getActiveBasketballInstance();
+    basketballStateUMSharedPtr activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();
 //    size_t activeBBallInstance = getActiveBBallInstance();
     size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
 
@@ -935,7 +955,7 @@ void playerState::updateMovement()  // updates movement status of the player
         {
             // FIXME! HARDCODED VALUE
             activeBasketballInstance[0]->setMovement(true);
-            playerEnt->setActiveBasketballInstance(activeBasketballInstance);
+            base->getGameS()->setActiveBasketballInstance(activeBasketballInstance);
 
         }
     }

@@ -59,6 +59,12 @@ class playerState //: public state
         sharedPtr<playerEntity> getPlayerEnt();  // retrieves the value of playerEnt
         void setPlayerEnt(sharedPtr<playerEntity> set);  // sets the value of playerEnt
 
+        UBCBaseSharedPtr getBase();  // retrieves the value of base
+        void setBase(UBCBaseSharedPtr set);  // sets the value of base
+
+        bool getBaseInitialized();  // retrieves the value of baseInitialized
+        void setBaseInitialized(bool set);  // sets the value of baseInitialized
+
         teamTypes getTeamType();  // retrieves the value of teamType
         void setTeamType(teamTypes set);  // sets the value of teamType
         
@@ -208,7 +214,7 @@ class playerState //: public state
 */
         bool getInitialized(void);  // retreives the value of initialized
         void setInitialized(bool set);  // sets the value of initialized
-
+        
         bool setup();  // initializes the state of the object
         
         void updateState();  // updates the state of the object
@@ -230,6 +236,11 @@ class playerState //: public state
         static sharedPtr<playerData> data;  // instance of playerData object
 
         static sharedPtr<playerEntity> playerEnt;  // instance of playerEntity object
+        
+        static UBCBaseSharedPtr base;  // base class object
+        
+        bool baseInitialized;  // stores whether or not the base class has been initialized.
+
 //        size_t playerID;  // stores the ID of the player which is unique to each player in the game
 
         teamTypes teamType;  // stores which of the two teams the player belongs to
@@ -346,7 +357,7 @@ class playerState //: public state
 //        bool stateSet;  // if true the playerState object has been set to initial state
         // temporary hack
         bool initialized;
-        
+                
         // tempory hack to count the number of times player position changes
         size_t posChangeAmount;
 };

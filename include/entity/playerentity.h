@@ -38,7 +38,9 @@ class playerEntity : public playerPhysics
 /*    playerPhysics *getPhysics();  // retrieves the value of physics
     void setPhysics(playerPhysics *set);  // sets the value of physics
 */
-  
+    sharedPtr<playerPhysics> getPhysics();  // retrieves the value of physics
+    void setPhysics(sharedPtr<playerPhysics> set);  // sets the value of physics
+
     playerSteerSharedPtr getSteer();  // retrieves the value of steer
     void setSteer(playerSteerSharedPtr set);  // sets the value of steer
 
@@ -88,6 +90,8 @@ class playerEntity : public playerPhysics
     private:
 
 //    playerPhysics *physics;  // stores the playerPhysics object
+
+    sharedPtr<playerPhysics> physics;  // instance of playerPhysics object
 
     playerSteerSharedPtr steer;  // stores the steering objerct that represents the player
     bool steerInitialized; // stores whether the steer object has been initialized

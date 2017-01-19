@@ -27,7 +27,6 @@
 
 
 // static declarations
-
 UBCBaseSharedPtr playerEntity::base;  // base class object
     
 //playerSteerSharedPtr playerEntity::steer;
@@ -49,14 +48,14 @@ playerEntity::~playerEntity()  // destructor
 
 }
 
-/*playerPhysics *playerEntity::getPhysics()  // retrieves the value of physics
+sharedPtr<playerPhysics> playerEntity::getPhysics()  // retrieves the value of physics
 {
     return (physics);
 }
-void playerEntity::setPhysics(playerPhysics *set)  // sets the value of physics
+void playerEntity::setPhysics(sharedPtr<playerPhysics> set)  // sets the value of physics
 {
     physics = set;
-}*/
+}
 
 playerSteerSharedPtr playerEntity::getSteer()  // retrieves the value of steer
 {

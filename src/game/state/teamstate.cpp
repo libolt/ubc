@@ -529,6 +529,26 @@ void teamState::updateState()  // updates the state of the object
 //                while (x < activePlayerInstance.size())
                 for (auto APIIT : activePlayerInstance)
                 {
+                    if (!APIIT.second->getBaseInitialized())
+                    {
+                        APIIT.second->setBase(base);
+                        APIIT.second->setBaseInitialized(true);
+                    }
+                    else
+                    {
+                        
+                    }
+                    
+                    if (!APIIT.second->getPlayerEnt()->getPhysicsSetup())
+                    {
+                        APIIT.second->getPlayerEnt()->getPhysics()->setGameS(base->getGameS());
+                        APIIT.second->getPlayerEnt()->setPhysicsSetup(true);
+                    }
+                    else
+                    {
+                        
+                    }
+                    
                     if (APIIT.second->getData()->getID() == playerWithBallID)
                     {
                         instanceWithBall = APIIT.first;

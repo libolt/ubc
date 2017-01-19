@@ -22,16 +22,21 @@
 #define _PLAYERPHYSICS_H_
 
 #include "physics/physics.h"
-#include "state/gamestateshared.h"
+#include "typedefs.h"
+//#include "state/gamestateshared.h"
 
 //class physics;
+class gameState;
 
-class playerPhysics : public physics, public gameStateShared
+class playerPhysics : public physics//, public gameStateShared
 {
     public:
         playerPhysics();  // constructor
         ~playerPhysics();  // destructor
     
+        gameStateSharedPtr getGameS();  // retrieves the value of gameS
+        void setGameS(gameStateSharedPtr set);  // sets the value of gameS
+        
 /*        bool getPhysicsSetup();  // retrieves the value of physicsSetup
         void setPhysicsSetup(bool set);  // sets the value of physicsSetup
         
@@ -52,6 +57,8 @@ class playerPhysics : public physics, public gameStateShared
     bool shootBasketball(teamTypes teamType, int playerID);  // calculates and executes basketball being shot
    
     private:
+    
+        static gameStateSharedPtr gameS;  // stores a copy of gameState object
 /*        bool physicsSetup;  // determines whether all players' physics bodies have been setup
         bool stateSet;  // if true then the player physics state has been set
 */

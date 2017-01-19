@@ -2454,7 +2454,7 @@ playerStateSharedPtr loader::loadPlayerFile(std::string fileName)  // loads the 
 //    sharedPtr<playerEntity> tempPEnt(new playerEntity);
 //    playerInstance->setPlayerEnt(tempPEnt);
     playerInstance->setup();
-    playerInstance->getData()->setFirstName(firstName);
+/*    playerInstance->getData()->setFirstName(firstName);
 //    exit(0);
     
     playerInstance->getData()->setLastName(lastName);
@@ -2495,7 +2495,7 @@ playerStateSharedPtr loader::loadPlayerFile(std::string fileName)  // loads the 
     playerInstance->getData()->setDemeanor(demeanor);
     playerInstance->getData()->setImprovability(improvability);
     playerInstance->getData()->calculateOverallRating();
-
+*/
 //    playerInstance = playerStateSharedPtr(player);
 //    logMsg("player First Name == "+playerInstance->getFirstName());
 

@@ -19,16 +19,19 @@
  ***************************************************************************/
 
 #include "conversion.h"
-//#include "state/gamestate.h"
-#include "state/basketballstate.h"
+#include "state/gamestate.h"
+/*#include "state/basketballstate.h"
 #include "state/courtstate.h"
 #include "state/hoopstate.h"
 #include "state/playerstate.h"
 #include "state/teamstate.h"
-#include "engine/physicsengine.h"
+#include "engine/physicsengine.h"*/
 #include "physics/playerphysics.h"
 #include "logging.h"
 #include "comparison.h"
+
+// static declarations
+gameStateSharedPtr playerPhysics::gameS;
 
 playerPhysics::playerPhysics()  // constructor
 {
@@ -38,6 +41,15 @@ playerPhysics::playerPhysics()  // constructor
 
 playerPhysics::~playerPhysics()  // destructor
 {
+}
+
+gameStateSharedPtr playerPhysics::getGameS()  // retrieves the value of gameS
+{
+    return (gameS);
+}
+void playerPhysics::setGameS(gameStateSharedPtr set)  // sets the value of gameS
+{
+    gameS = set;
 }
 
 /*bool playerPhysics::getPhysicsSetup()  // retrieves the value of physicsSetup
@@ -207,13 +219,13 @@ void playerPhysics::updatePosition()  // updates the position of player objecgts
 //    teamTypes teamWithBall = gameS->getTeamWithBall();
     int playerWithBall;
 
-    teamStateUMSharedPtr activeTeamInstance = getActiveTeamInstance();
+    teamStateUMSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
     std::vector <playerStateUMSharedPtr > activePlayerInstance;
-    basketballStateVecSharedPtr basketballInstance = getBasketballInstance();
+    basketballStateVecSharedPtr basketballInstance = gameS->getBasketballInstance();
 
     // checks to see if player positions need updated
     size_t z = 0;
-    while (z < getActiveTeamInstance().size())
+    while (z < activeTeamInstance.size())
     {
 /*TS        activePlayerInstance.push_back(activeTeamInstance[z]->getActivePlayerInstance());
         size_t y = 0;
@@ -257,7 +269,7 @@ void playerPhysics::updatePosition()  // updates the position of player objecgts
 TS*/
     ++z;
     }
-    setActiveTeamInstance(activeTeamInstance);
+    gameS->setActiveTeamInstance(activeTeamInstance);
 }
 
 bool playerPhysics::jump(teamTypes teamType, int playerID)  // calculates and executes player jumping in the air
@@ -265,8 +277,8 @@ bool playerPhysics::jump(teamTypes teamType, int playerID)  // calculates and ex
     sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 
-    courtStateUMSharedPtr  courtInstance = getCourtInstance();
-    teamStateUMSharedPtr activeTeamInstance = getActiveTeamInstance();
+    courtStateUMSharedPtr  courtInstance = gameS->getCourtInstance();
+    teamStateUMSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
 /*TS    playerStateVecSharedPtr activePlayerInstance = getActiveTeamInstance()[teamType]->getActivePlayerInstance();
     sizeTVec activePlayerID = activeTeamInstance[teamType]->getActivePlayerID();
     btVector3 playerJumpBeginPos;

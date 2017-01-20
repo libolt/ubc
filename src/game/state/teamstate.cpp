@@ -678,13 +678,17 @@ bool teamState::createPlayerInstances()  // creates the player instances
         logMsg(func +"game player instances not created!");
         exit(0);
     }
-
+    logMsg(func + " gamePlayerInstance.size() == " +convert->toString(gamePlayerInstance.size()));
+//    exit(0);
     auto i = 0;
     auto ID = 0;
     playerInstance.clear();
 //    while (i<gamePlayerInstance.size())
     for (auto it : gamePlayerInstance)
     {
+        logMsg(func +" gamePlayerInstance->getData()->getTeamID() == " +convert->toString(gamePlayerInstance[0]->getData()->getTeamID()));
+        logMsg(func +" getID() == " +convert->toString(getID()));
+
         if (it.second->getData()->getTeamID() == getID())  // checks if player is assigned to this team
         {
 
@@ -700,7 +704,7 @@ bool teamState::createPlayerInstances()  // creates the player instances
         logMsg(func +"Team ID == " +convert->toString(getID()) +" playerInstance[" +convert->toString(it.first) +"]->getData()->getFirstName() == " +it.second->getData()->getFirstName());
 
     }
-//    exit(0);
+    exit(0);
 /*    if (getID() == 1)
     {
         logMsg(func +"playerInstance.size() == " +convert->toString(playerInstance.size()));

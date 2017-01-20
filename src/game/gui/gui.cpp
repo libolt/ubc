@@ -660,50 +660,31 @@ void GUISystem::playerStartSelectionMenu()  // displays player start selection m
     std::string func = "GUISystem::playerStartSelectionMenu()";
     
     logMsg(func +" beginning");
-//    exit(0);
+    
 
     if (!playerStartSelectionMenuCreated)
     {
         logMsg(func +" !playerStartSelectionMenuCreated");
 //         exit(0);
-        createPlayerStartSelectionMenuGUI();	
+        
+        if (createPlayerStartSelectionMenuGUI())
+        {
+            logMsg(func +" createPlayerStartSelectionMenuGUI!");
+            playerStartSelectionMenuCreated = true;
+        }
+        else
+        {
+            logMsg(func +" Unable to create playerStartSelectionMenu!!");
+            exit(0);
+        }       
 //        exit(0);
+    }
+    else
+    {       
+    }
     
-        logMsg(func +" createPlayerStartSelectionMenuGUI!");
-        addPlayerStartSelectionMenuData();
+    addPlayerStartSelectionMenuData();
 
-    if (base->getGameS()->getGameType() == SINGLE)
-    {
-        logMsg(func +"gameType == SINGLE");
-    }
-    else if (getBase()->getGameS()->getGameType() == NOGAME)
-    {
-        logMsg(func +"gameType == NOGAME");
-    }
-//        exit(0);
-        playerStartSelectionMenuCreated = true;
-    }
-//    exit(0);
-    if (base->getGameS()->getGameType() == SINGLE)
-    {
-        logMsg(func +"gameType == SINGLE");
-    }
-    else if (getBase()->getGameS()->getGameType() == NOGAME)
-    {
-        logMsg(func +"gameType == NOGAME");
-    }
-    logMsg(func +" blah");
-
-    if (base->getGameS()->getGameType() == SINGLE)
-    {
-        logMsg(func +" gameType == SINGLE");
-    }
-    else if (getBase()->getGameS()->getGameType() == NOGAME)
-    {
-        logMsg(func +" gameType == NOGAME");
-    }   
-
-    exit(0);
 //    exit(0);
     setSelectedIndexes();
     changeActiveMenu(PLAYERSTART);
@@ -876,7 +857,13 @@ void GUISystem::courtSelectionMenu() // displays court selection menu
 
 void GUISystem::setSelectedIndexes()  // sets all player listbox indexes to zero
 {
+    std::string func = "GUISystem::setSelectedIndexes()";
+    
+    logMsg(func +" beginning");
+    
     teamPlayerPosSelectBox[0]["PG"]->setIndexSelected(0);
+    logMsg(func +" PG0");
+    
     teamPlayerPosSelectBox[0]["SG"]->setIndexSelected(0);
     teamPlayerPosSelectBox[0]["SF"]->setIndexSelected(0);
     teamPlayerPosSelectBox[0]["PF"]->setIndexSelected(0);
@@ -886,6 +873,9 @@ void GUISystem::setSelectedIndexes()  // sets all player listbox indexes to zero
     teamPlayerPosSelectBox[1]["SF"]->setIndexSelected(0);
     teamPlayerPosSelectBox[1]["PF"]->setIndexSelected(0);
     teamPlayerPosSelectBox[1]["C"]->setIndexSelected(0);
+    
+    logMsg(func +" end");
+
 }
 
 void GUISystem::networkClientSetupMenu() // sets up the client connection

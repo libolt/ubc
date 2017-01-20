@@ -514,16 +514,7 @@ bool gameState::createPlayerInstances()  // creates player instances
     if (load->checkIfPlayersLoaded())
     {
         logMsg(func +" checkIfPlayersLoaded True");
-    if (base->getGameS()->getInitialized())
-    {
-        logMsg(func +" gameS Initialized == True!");
-    }
-    else
-    {
-        logMsg(func +" gameS Initialized == False!");
-    }
-    exit(0);
-    
+
         pInstance = load->getPInstance();
         if (pInstance.size() > 0)
         {
@@ -540,6 +531,11 @@ bool gameState::createPlayerInstances()  // creates player instances
         return (false);
     }
 
+    for (auto PIIT : pInstance)
+    {
+        logMsg(func +" PIIT.second->getData()->getTeamID() == " +convert->toString(PIIT.second->getData()->getTeamID()));
+    }
+    
     exit(0);
     logMsg(func +" uno");
 

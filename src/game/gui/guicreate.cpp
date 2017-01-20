@@ -412,6 +412,10 @@ bool GUISystem::createPlayerStartSelectionMenuGUI()  // creates GUI for player s
 
 //    exit(0);
 
+    std::string func = "GUISystem::createPlayerStartSelectionMenuGUI()";
+    
+    logMsg(func + " beginning");
+    
     MyGUI::LayoutManager::getInstance().loadLayout("PlayerStartSelection.layout");
 
     if (teamPlayerPosSelectBox.size() == 0)

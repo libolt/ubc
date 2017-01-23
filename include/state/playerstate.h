@@ -233,9 +233,9 @@ class playerState //: public state
 
     private:
 
-        static sharedPtr<playerData> data;  // instance of playerData object
+        sharedPtr<playerData> data;  // instance of playerData object
 
-        static sharedPtr<playerEntity> playerEnt;  // instance of playerEntity object
+        sharedPtr<playerEntity> playerEnt;  // instance of playerEntity object
         
         static UBCBaseSharedPtr base;  // base class object
         

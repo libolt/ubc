@@ -40,8 +40,8 @@
 //#include "jumpballs.h"
 
 // static declarations
-sharedPtr<playerData> playerState::data;  // instance of playerData object
-sharedPtr<playerEntity> playerState::playerEnt;  // instance of playerEntity object
+//sharedPtr<playerData> playerState::data;  // instance of playerData object
+//sharedPtr<playerEntity> playerState::playerEnt;  // instance of playerEntity object
 //sharedPtr<playerPhysics> playerState::physics;  // instance of physics object
 UBCBaseSharedPtr playerState::base;  // base class object
 

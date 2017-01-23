@@ -1973,7 +1973,8 @@ playerStateUMSharedPtr loader::loadPlayers()  // loads the players
 {
     sharedPtr<conversion> convert = conversion::Instance();
 
-    static playerStateUMSharedPtr players;
+    playerStateUMSharedPtr players;
+    playerStateSharedPtr playerInstance; //(new playerState);
     std::string func = "loader::loadPlayers()";
 
     playerStateSharedPtr player;//(new playerState);
@@ -1993,21 +1994,33 @@ playerStateUMSharedPtr loader::loadPlayers()  // loads the players
 //    for (it = playerFiles.begin(); it != playerFiles.end(); ++it)
     for (size_t it=0;it<playerFiles.size();++it)
     {
-       logMsg(func +" it == " +convert->toString(it));
+        logMsg(func +" it == " +convert->toString(it));
         logMsg("playerFile = " +playerFiles[it]);
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+//        playerInstance = loadPlayerFile("data/players/" + playerFiles[it]);
         players.insert(std::pair<size_t, playerStateSharedPtr>(it, loadPlayerFile("data/players/" + playerFiles[it])));
+//        players.emplace(it, loadPlayerFile(findFile("data/players/" + playerFiles[it])));
+
 #else
-        playerStateSharedPtr playerInstance; //(new playerState);
+//        players.emplace(it, loadPlayerFile(findFile("players/" + playerFiles[it]));
 
-//        players.emplace(it, playerInstance);
-
+        
         players.insert(std::pair<size_t, playerStateSharedPtr>(it, loadPlayerFile(findFile("players/" + playerFiles[it]))));
 
 #endif 
+        logMsg(func +" Player " +players[it]->getData()->getFirstName() +" " +players[it]->getData()->getLastName() +" TeamID == " +convert->toString(players[it]->getData()->getTeamID()));
+
 //    exit(0);
     }
-
+    
+//    exit(0);
+    
+    for (auto PIIT : players)
+    {
+        logMsg(func +" Player " +PIIT.second->getData()->getFirstName() +" " +PIIT.second->getData()->getLastName() +" TeamID == " +convert->toString(PIIT.second->getData()->getTeamID()));
+    }
+    logMsg("players.size() == " +convert->toString(players.size()));
+//    exit(0);
     logMsg(func +" end");
     return (players);
 }
@@ -2491,7 +2504,7 @@ playerStateSharedPtr loader::loadPlayerFile(std::string fileName)  // loads the 
     playerInstance->getData()->calculateOverallRating();
 
 //    playerInstance = playerStateSharedPtr(player);
-    logMsg("player First Name == "+playerInstance->getData()->getFirstName());
+    logMsg("player Name == "+playerInstance->getData()->getFirstName() + " " +playerInstance->getData()->getLastName() +" TeamID == " +convert->toString(playerInstance->getData()->getTeamID()));
 //    exit(0);
     return (playerInstance);
 }
@@ -2554,8 +2567,12 @@ std::unordered_map<size_t, teamStateSharedPtr> loader::loadTeams()  // load team
 //    exit(0);
 //    logMsg("loadTeams() 4 ID == " +convert->toString(teams[4]->getID()));
 //    logMsg("loadTeams() 4 Name == " +tInstance[4]->getName());
+    for (auto TIIT : teams)
+    {
+        logMsg(func +" Team == " +TIIT.second->getCity() +" " +TIIT.second->getName());
+    }
     logMsg("loadTeams() teams.size() == " +convert->toString(teams.size()));
-
+//    exit(0);
     logMsg("dah");
 //    exit(0);
     if (teams.size() == 0)

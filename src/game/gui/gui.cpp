@@ -1023,7 +1023,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     std::vector<playerStateUMSharedPtr > playerInstance;
     std::unordered_map<std::string, playerStateSharedPtr> activePlayerInstance;
     size_t IDs = 0;
-    std::string func = "GUISystem::playerStartSelected";
+    std::string func = "GUISystem::playerStartSelected()";
 
     auto x = 0;
 //    teamStateVec
@@ -1432,26 +1432,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     logMsg("team  0 starter 0 = " +team0Starters[0]);
 */
 //        exit(0);
-    if (base->getGameS()->getInitialized())
-//    if (base->getStateSetup())
-    {
-        logMsg(func + " gameS Initialized!");
-    }
-    else
-    {
-        logMsg(func + " gameS NOT Initialized!");
-    }
-    exit(0);
-    if (base->getGameS()->getGameType() == SINGLE)
-    {
-        logMsg(func +"gameType == SINGLE");
-    }
-    else if (getBase()->getGameS()->getGameType() == NOGAME)
-    {
-        logMsg(func +"gameType == NOGAME");
-    }
-    logMsg(func +" blah");
-    exit(0);
+
     hideActiveMenuWidgets();
     menuActive = false;
 //    exit(0);

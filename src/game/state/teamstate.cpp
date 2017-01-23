@@ -704,7 +704,7 @@ bool teamState::createPlayerInstances()  // creates the player instances
         logMsg(func +"Team ID == " +convert->toString(getID()) +" playerInstance[" +convert->toString(it.first) +"]->getData()->getFirstName() == " +it.second->getData()->getFirstName());
 
     }
-    exit(0);
+//    exit(0);
 /*    if (getID() == 1)
     {
         logMsg(func +"playerInstance.size() == " +convert->toString(playerInstance.size()));

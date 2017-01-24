@@ -177,6 +177,7 @@ bool jumpBalls::updateState(teamTypes teamWithBall, basketballStateUMSharedPtr a
 //            exit(0);
             logMsg(func +" jump ball not complete");
             logMsg(func +" not complete ballTipped == " +convert->toString(ballTipped));
+            
 //            tipoff complete!exit(0);
             if (!ballTipped)
             {
@@ -192,6 +193,7 @@ bool jumpBalls::updateState(teamTypes teamWithBall, basketballStateUMSharedPtr a
                 logMsg(func +" jumpBallComplete == " +convert->toString(jumpBallComplete));
 //                exit(0);
             }
+            exit(0);
         }
         else
         {
@@ -224,10 +226,13 @@ bool jumpBalls::jumpBallExecute(basketballStateUMSharedPtr activeBasketballInsta
 
 //    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
     std::vector<playerStateUMSharedPtr > activePlayerInstance;
-
-    sizeTVec jumpPlayerInstance;  // stores playerID of players jumping for the ball
-    
+    std::unordered_map<std::string, playerStateSharedPtr> jumpPlayerInstance;  // stores playerID of players jumping for the ball
     size_t x = 0;
+    std::string func = "jumpBalls::jumpBallExecute()";
+    
+    logMsg (func +" beginning");
+    
+    logMsg (func +" activeTeamInstance.size() == " +convert->toString(activeTeamInstance.size()));
 //    while (x < activeTeamInstance.size())
     for (auto ATIIT : activeTeamInstance)
     {
@@ -236,21 +241,22 @@ bool jumpBalls::jumpBallExecute(basketballStateUMSharedPtr activeBasketballInsta
 //        activePlayerInstance->( activeTeamInstance[x]->getActivePlayerInstance();
         
         size_t i = 0;
-        logMsg("active player instance size =" +convert->toString(activePlayerInstance[x].size()));
+        logMsg(func +" ATIIT");
+        logMsg(func +" active player instance size =" +convert->toString(activePlayerInstance[x].size()));
 //        while (i < activePlayerInstance[x].size()) // loops until the activePlayerInstance is found that is currently playing center
-        for (auto APIIT : activePlayerInstance[ATIIT.first])
+        for (auto APIIT : ATIIT.second->getActivePlayerInstance())
         {
             
 //            exit(0);
-            logMsg("jump i == " +convert->toString(APIIT.first));
+            logMsg(func +" jump i == " +APIIT.first);
             if (APIIT.second->getActivePosition() == C)
             {
-                logMsg("jumpPlayerInstance = " +convert->toString(APIIT.first));
+                logMsg(func +" jumpPlayerInstance = " +APIIT.first);
                  // logMsg("PlayerName = " +activePlayerInstance[x][i].getPlayerName());
-                logMsg("ModelLoaded = " +convert->toString(APIIT.second->getPlayerEnt()->getModelLoaded()));
+                logMsg(func +" ModelLoaded = " +convert->toString(APIIT.second->getPlayerEnt()->getModelLoaded()));
     //                    exit(0);
                 //jumpPlayerID.push_back(activePlayerInstance[i].getPlayerID());
-                jumpPlayerInstance.push_back(APIIT.first);
+                jumpPlayerInstance.insert(std::pair<std::string, playerStateSharedPtr>(APIIT.first, APIIT.second));
             }
             else
             {
@@ -264,7 +270,7 @@ bool jumpBalls::jumpBallExecute(basketballStateUMSharedPtr activeBasketballInsta
 //        ++x;
     }
 //    exit(0);
-    logMsg("jumpPlayerID.size() = " +convert->toString(jumpPlayerInstance.size()));
+    logMsg(func +" jumpPlayerID.size() = " +convert->toString(jumpPlayerInstance.size()));
 //    exit(0);
 //    teamTypes teamType = activeTeamInstance[0].getTeamType();
     bool collCheck = false;
@@ -331,8 +337,10 @@ TS*/
 //        exit(0);
     }
     //        exit(0);
-    logMsg("Execute ballTippedToTeam == " +convert->toString(ballTippedToTeam));
-    logMsg("Execute ballTippedToPosition == " +convert->toString(ballTippedToPosition));
+    logMsg(func +" Execute ballTippedToTeam == " +convert->toString(ballTippedToTeam));
+    logMsg(func +" Execute ballTippedToPosition == " +convert->toString(ballTippedToPosition));
+    
+    logMsg (func +" beginning");
     return (false);  // executeJumpBall has not completed
 }
 

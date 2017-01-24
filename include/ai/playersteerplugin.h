@@ -30,7 +30,7 @@ class UBCBase;
 
 
 // PlugIn for OpenSteerDemo
-class playerSteerPlugin : public OpenSteer::PlugIn, steering, public gameStateShared
+class playerSteerPlugin : public OpenSteer::PlugIn, steering
 {
     public:
         

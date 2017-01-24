@@ -31,10 +31,11 @@
 #include "state/teamstate.h"
 
 // static declarations 
-UBCBaseSharedPtr offenseState::base;  // static copy of base class
+//UBCBaseSharedPtr offenseState::base;  // static copy of base class
 
 offenseState::offenseState()  // constructor
 {
+    gameSInitialized = false;
     teamType = NOTEAM;
     selectedOffense = -1; // sets the default offense to box
     execute = false;
@@ -75,6 +76,24 @@ offenseState::offenseState()  // constructor
     numStartPositionsReached = 0;
     offenseSetup = false;
     loadPlays();
+}
+
+gameStateSharedPtr offenseState::getGameS()  // retrieves the value of gameS
+{
+    return (gameS);
+}
+void offenseState::setGameS(gameStateSharedPtr set)  // sets the value of gameS
+{
+    gameS = set;
+}
+
+bool offenseState::getGameSInitialized()  // retrieves the value of gameSInitialized
+{
+    return (gameSInitialized);
+}
+void offenseState::setGameSInitialized(bool set)  // sets the value of gameSInitialized
+{
+    gameSInitialized = set;
 }
 
 UBCBaseSharedPtr offenseState::getBase()  // retrieves the value of base
@@ -212,7 +231,7 @@ void offenseState::updateState(teamTypes teamType)  // updates the state of the 
 {
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
-    teamStateUMSharedPtr activeTeamInstance = getActiveTeamInstance();
+    teamStateUMSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
 //TS    playerStateVecSharedPtr activePlayerInstance = activeTeamInstance[teamType]->getActivePlayerInstance();
 
     if (!offenseSetup)
@@ -224,7 +243,7 @@ void offenseState::updateState(teamTypes teamType)  // updates the state of the 
         executeOffense();
     }
 //TS    activeTeamInstance[teamType]->setActivePlayerInstance(activePlayerInstance);
-    setActiveTeamInstance(activeTeamInstance);
+    gameS->setActiveTeamInstance(activeTeamInstance);
 }
 
 void offenseState::loadPlays()  // loads offense plays from file
@@ -248,7 +267,7 @@ void offenseState::setupOffense()  // sets up box offense
 //    sharedPtr<gameState> gameS = gameState::Instance();
 
 //    quarters currentQuarter = gameS->getQuarter();  // gets the current quarter the game is in.
-    quarters currentQuarter = getQuarter();
+    quarters currentQuarter = gameS->getQuarter();
 
     switch (currentQuarter)
     {
@@ -342,7 +361,7 @@ void offenseState::setupOffense()  // sets up box offense
     
     // checks for a Y Offset so that players dont fall through the court
   
-    float yOffset = getYOffset();
+    float yOffset = gameS->getYOffset();
     for (size_t y=0;y < startPositions.size(); ++y)
     {
         startPositions[y].y = yOffset;
@@ -363,9 +382,9 @@ void offenseState::executeOffense() // executes box offense
 {
     sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
-    teamTypes teamWithBall = getTeamWithBall();
+    teamTypes teamWithBall = gameS->getTeamWithBall();
 
-    teamStateUMSharedPtr activeTeamInstance = getActiveTeamInstance();
+    teamStateUMSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
 /*TS    playerStateVecSharedPtr activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
 
     size_t playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();

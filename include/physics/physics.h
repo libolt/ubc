@@ -31,7 +31,7 @@
 
 //class physicsEngine;
 
-class physics : public physicsEngine //, public gameStateShared
+class physics : public physicsEngine
 {
     public:
         physics();  // constructor

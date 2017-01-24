@@ -27,7 +27,7 @@
 
 class playerState;
 
-class playerSteer : public steering, public gameStateShared
+class playerSteer : public steering
 {
     public:
 
@@ -35,6 +35,9 @@ class playerSteer : public steering, public gameStateShared
     
     playerSteer();  // constructor
     ~playerSteer();  // destructor
+
+    gameStateSharedPtr getGameS();  // retrieves the value of gameS
+    void setGameS(gameStateSharedPtr set);  // sets the value of gameS
 
     teamTypes getTeamType();  // retrieves the value of teamType
     void setTeamType(teamTypes set);  // sets the value of teamType
@@ -65,6 +68,8 @@ class playerSteer : public steering, public gameStateShared
     void updateDefense(const float currentTime, const float elapsedTime);  // updates the defense steering sim
 
     private:
+
+    gameStateSharedPtr gameS;  // the gameState object
 
     int counter;
     playerSteerVecSharedPtr m_others;  // stores steering object of other players

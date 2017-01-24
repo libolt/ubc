@@ -25,7 +25,7 @@
 #include "state/gamestateshared.h"
 #include "OgreVector3.h"
 
-class basketballSteer : public steering, public gameStateShared
+class basketballSteer : public steering
 {
     public:
  

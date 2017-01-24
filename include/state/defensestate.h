@@ -23,16 +23,24 @@
 
 #include "enums.h"
 #include "state/state.h"
-#include "state/gamestateshared.h"
+//#include "state/gamestateshared.h"
 
+// forward declaration 
+class gameState;
 //class state;
 
-class defenseState : public state, public gameStateShared
+class defenseState : public state
 {
 public:
 
     defenseState();	// constructor
 
+    gameStateSharedPtr getGameS();  // retrieves the value of gameS
+    void setGameS(gameStateSharedPtr set);  // sets the value of gameS
+
+    bool getGameSInitialized();  // retrieves the value of gameSInitialized
+    void setGameSInitialized(bool set);  // sets the value of gameSInitialized
+    
     teamTypes getTeamType();  // retrieves the value of teamType
     void setTeamType(teamTypes set);  // sets the value of teamType
     
@@ -48,6 +56,8 @@ public:
 
 private:
 
+    gameStateSharedPtr gameS;  // the gameState object
+    bool gameSInitialized;  // stores whether or not the gameState object has been initialized
     teamTypes teamType;  // stores the type of team on defense
     courtSide_t courtSide;  // stores which side of the court the defense executes on.
     bool execute;	// If set then execute the defense logic

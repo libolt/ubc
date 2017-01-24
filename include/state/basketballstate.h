@@ -52,13 +52,15 @@ class playerState;
 class courtState;
 //class basketballData;
 
-class basketballState : public state, public basketballEntity, public basketballData, public gameStateShared
+class basketballState : public state, public basketballEntity, public basketballData 
 {
 public:
 
     basketballState();
     ~basketballState();	// destructor
 
+    gameStateSharedPtr getGameS();  // retrieves the value of gameS
+    void setGameS(gameStateSharedPtr set);  // sets the value of gameS
 
 // declaration of functions which access/modify private variables in the class
 
@@ -193,6 +195,9 @@ protected:
 //    basketballs(const basketballs&);
 //    basketballs& operator= (const basketballs&);
 private:
+
+    gameStateSharedPtr gameS;  // the gameState object
+
 //    static basketballs *pInstance;
 
 /*    std::string modelName;  // stores the file name of the 3d model

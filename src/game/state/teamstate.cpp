@@ -643,10 +643,27 @@ void teamState::updateState()  // updates the state of the object
 //        exit(0);
         if (base->getGameS()->getTeamWithBall() == teamType)
         {
+            if (!offenseInstance->getGameSInitialized())
+            {
+                offenseInstance->setGameS(base->getGameS());
+                offenseInstance->setGameSInitialized(true);            
+            }
+            else
+            {              
+            }
             offenseInstance->updateState(teamType); // updates the state of the offenseInstance object
         }
         else
         {
+            if (!defenseInstance->getGameSInitialized())
+            {
+                defenseInstance->setGameS(base->getGameS());
+                defenseInstance->setGameSInitialized(true);            
+            }
+            else
+            {              
+            }
+            
             defenseInstance->updateState(teamType); // updates the state of the defenseInstance object
         }
 

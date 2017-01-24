@@ -92,7 +92,7 @@ void playerSteerPlugin::open()
 //	for (size_t x=0;x<team0ActivePlayerInstance.size();++x)
 //    size_t x = 0;
 //    while (x < getActiveTeamInstance().size())
-    logMsg(func +"getActiveTeamInstance().size() == " +convert->toString(getActiveTeamInstance().size()));
+    logMsg(func +"base->getGameS()->getActiveTeamInstance().size() == " +convert->toString(base->getGameS()->getActiveTeamInstance().size()));
 //    exit(0);
     for (auto ATIIT : base->getGameS()->getActiveTeamInstance())
     {
@@ -129,6 +129,7 @@ void playerSteerPlugin::open()
             {
                 playerSteerSharedPtr tempSteer(new playerSteer);
                 steer = tempSteer;
+                steer->setGameS(base->getGameS());
                 steerInitialized = true;
             }
         //      logMsg("Alive1");
@@ -199,7 +200,7 @@ void playerSteerPlugin::open()
 
 
 	// create the court bounding box based off the meshes bbox
-    Ogre::AxisAlignedBox cbox = getCourtInstance()[0]->getModel()->getBoundingBox();
+    Ogre::AxisAlignedBox cbox = base->getGameS()->getCourtInstance()[0]->getModel()->getBoundingBox();
     Ogre::Vector3 cboxMin = cbox.getMinimum();
     Ogre::Vector3 cboxMax = cbox.getMaximum();
 
@@ -271,7 +272,7 @@ void playerSteerPlugin::update(const float currentTime, const float elapsedTime)
 
     size_t x = 0;
 //    while (x < getActiveTeamInstance().size())
-    for (auto ATIIT : getActiveTeamInstance())
+    for (auto ATIIT : base->getGameS()->getActiveTeamInstance())
 
     {
         activePlayerInstance.push_back(ATIIT.second->getActivePlayerInstance());

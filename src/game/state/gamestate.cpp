@@ -592,6 +592,7 @@ bool gameState::createActiveBasketballInstances()  // creates the active basketb
     for (auto x=0; x<getNumActiveBasketballs(); ++x)
     {
         activeBasketballInstance.insert(std::pair<size_t, basketballStateSharedPtr>(x, basketballInstance[x]));
+        activeBasketballInstance[x]->setGameS(base->getGameS());
     }
     setBasketballInstance(basketballInstance);
     setActiveBasketballInstance(activeBasketballInstance);
@@ -1417,12 +1418,12 @@ bool gameState::updateState()  // updates the game state
         logMsg(func +"gameType == NOGAME");
     }
     logMsg(func +" blah");
-    exit(0);
+//    exit(0);
     if (getGameSetupComplete())
     {
 
         logMsg(func + " Game Setup Complete!");
-        exit(0);
+//        exit(0);
 //       FIXME!        
 /*        if (getBase()->getNetworkS()->getPacketReceived())  // checks if a packet was received by network engine
         {

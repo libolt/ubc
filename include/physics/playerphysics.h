@@ -28,7 +28,7 @@
 //class physics;
 class gameState;
 
-class playerPhysics : public physics//, public gameStateShared
+class playerPhysics : public physics
 {
     public:
         playerPhysics();  // constructor

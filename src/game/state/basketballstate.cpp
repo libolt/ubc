@@ -21,7 +21,7 @@
 #include "conversion.h"
 #include "ai/basketballsteer.h"
 #include "state/basketballstate.h"
-//#include "state/gamestate.h"
+#include "state/gamestate.h"
 #include "state/playerstate.h"
 #include "state/teamstate.h"
 #include "engine/renderengine.h"
@@ -81,6 +81,16 @@ basketballState::basketballState()  // constructor
 
 basketballState::~basketballState()  // destructor
 {
+}
+
+
+sharedPtr<gameState> basketballState::getGameS()  // retrieves the value of gameS
+{
+    return (gameS);
+}
+void basketballState::setGameS(sharedPtr<gameState> set)  // sets the value of gameS
+{
+    gameS = set;
 }
 
 /*Ogre::Vector3 basketballs::getNodePosition()  // retrieves position of basketball node
@@ -562,8 +572,8 @@ void basketballState::updateMovement()  // updates the basketball(s) movements
 {
     sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
-    teamStateUMSharedPtr activeTeamInstance = getActiveTeamInstance();
-    size_t teamWithBall = getTeamWithBall();
+    teamStateUMSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
+    size_t teamWithBall = gameS->getTeamWithBall();
 /*TS    playerStateVecSharedPtr activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
     size_t playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();
     size_t playerWithBallID = activeTeamInstance[teamWithBall]->getPlayerWithBallID();
@@ -632,8 +642,8 @@ void basketballState::updateDirection()  // updates basketball direction(s)
     //conversion *convert = conversion::Instance();
     sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
-    teamStateUMSharedPtr activeTeamInstance = getActiveTeamInstance();
-    size_t teamWithBall = getTeamWithBall();
+    teamStateUMSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
+    size_t teamWithBall = gameS->getTeamWithBall();
 /*TS    playerStateVecSharedPtr activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
     sizeTVec activePlayerID = activeTeamInstance[teamWithBall]->getActivePlayerID();
     
@@ -641,10 +651,10 @@ void basketballState::updateDirection()  // updates basketball direction(s)
     size_t playerWithBallID = activeTeamInstance[teamWithBall]->getPlayerWithBallID();
 TS*/
 
-    jumpBallsSharedPtr jumpBall = getJumpBall();
+    jumpBallsSharedPtr jumpBall = gameS->getJumpBall();
 
 //TS    logMsg("directplayerwithballInstance == " +convert->toString(playerWithBallInstance));
-    bool tipOffComplete = getTipOffComplete();
+    bool tipOffComplete = gameS->getTipOffComplete();
     size_t x = 0;
 
 /*TS    bool shotTaken = activePlayerInstance[playerWithBallInstance]->getShotTaken();
@@ -738,7 +748,7 @@ TS*/
 
     }
 TS*/
-    setJumpBall(jumpBall);
+    gameS->setJumpBall(jumpBall);
 }
 
 size_t basketballState::getPlayer()

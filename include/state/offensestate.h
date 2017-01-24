@@ -32,11 +32,17 @@
 //class offensePlays::playerDirectives;
 //class state;
 
-class offenseState : public state, public gameStateShared
+class offenseState : public state
 {
 public:
 
     offenseState(); // constructor
+
+    gameStateSharedPtr getGameS();  // retrieves the value of gameS
+    void setGameS(gameStateSharedPtr set);  // sets the value of gameS
+
+    bool getGameSInitialized();  // retrieves the value of gameSInitialized
+    void setGameSInitialized(bool set);  // sets the value of gameSInitialized
 
     UBCBaseSharedPtr getBase();  // retrieves the value of base
     void setBase(UBCBaseSharedPtr set);  // sets the value of base
@@ -92,7 +98,10 @@ public:
 
 private:
 
-    static UBCBaseSharedPtr base;  // static copy of base class
+    gameStateSharedPtr gameS;  // the gameState object
+    bool gameSInitialized;  // stores whether or not the gameState object has been initialized
+
+    UBCBaseSharedPtr base;  // static copy of base class
 
     teamTypes teamType;  // stores whether the offense is being run by the home or away team.
     courtSide_t courtSide;  // stores which side of the court the offense executes on.

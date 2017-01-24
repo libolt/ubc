@@ -27,9 +27,28 @@
 
 defenseState::defenseState() // constructor
 {
+    gameSInitialized = false;
     teamType = NOTEAM;
     courtSide = NOSIDE;
     execute = false;
+}
+
+gameStateSharedPtr defenseState::getGameS()  // retrieves the value of gameS
+{
+    return (gameS);
+}
+void defenseState::setGameS(gameStateSharedPtr set)  // sets the value of gameS
+{
+    gameS = set;
+}
+
+bool defenseState::getGameSInitialized()  // retrieves the value of gameSInitialized
+{
+    return (gameSInitialized);
+}
+void defenseState::setGameSInitialized(bool set)  // sets the value of gameSInitialized
+{
+    gameSInitialized = set;
 }
 
 teamTypes defenseState::getTeamType()  // retrieves the value of teamType
@@ -67,9 +86,9 @@ void defenseState::updateState(teamTypes teamOnDefense) // updates the state of 
 {
     sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
-    teamTypes teamWithBall = getTeamWithBall();
+    teamTypes teamWithBall = gameS->getTeamWithBall();
 
-    teamStateUMSharedPtr activeTeamInstance = getActiveTeamInstance();
+    teamStateUMSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
 //TS    playerStateVecSharedPtr playerDInstance = activeTeamInstance[teamOnDefense]->getActivePlayerInstance();
 //TS    playerStateVecSharedPtr playerOInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
 //TS    sizeTVec activeDID = activeTeamInstance[teamOnDefense]->getActivePlayerID();
@@ -486,6 +505,6 @@ TS*/
     }
 
 //TS    activeTeamInstance[teamOnDefense]->setActivePlayerInstance(playerDInstance);
-    setActiveTeamInstance(activeTeamInstance);
+    gameS->setActiveTeamInstance(activeTeamInstance);
 
 }

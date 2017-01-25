@@ -1,3 +1,7 @@
+precision highp float;
+precision highp int;
+precision lowp sampler2D;
+precision lowp samplerCube;
 /*
 -----------------------------------------------------------------------------
 This source file is part of OGRE
@@ -26,10 +30,10 @@ THE SOFTWARE.
 */
 
 //-----------------------------------------------------------------------------
-// Program Name: FFPLib_TextureStage
+// Program Name: FFPLib_Texturing
 // Program Desc: Texture functions of the FFP.
 // Program Type: Vertex/Pixel shader
-// Language: GLSL
+// Language: GLSL ES
 // Notes: Implements core functions for FFPTexturing class.
 // based on texturing operations needed by render system.
 // Implements texture coordinate processing:
@@ -37,7 +41,6 @@ THE SOFTWARE.
 // Implements texture blending operation:
 // see http://msdn.microsoft.com/en-us/library/bb206241.aspx
 //-----------------------------------------------------------------------------
-
 
 //-----------------------------------------------------------------------------
 void FFP_TransformTexCoord(in mat4 m, in vec2 v, out vec2 vOut)
@@ -93,23 +96,23 @@ void FFP_GenerateTexCoord_EnvMap_Sphere(in 	mat4 mWorld,
 	vec3 normal = normalize( (mWorldIT * vec4(vNormal,0.0)).xyz); 
 	vec3 eyedir =  normalize(worldview * vPos).xyz;
 	vec3 r = reflect(eyedir, normal);
-	float two_p = 2.0 * sqrt( r.x *  r.x +  r.y *  r.y +  (r.z + 1) *  (r.z + 1));
-	vOut = (mTexture * vec4(0.5 + r.x / two_p,0.5 - r.y / two_p,0,0)).xy;
+	float two_p = 2.0 * sqrt( r.x * r.x + r.y *  r.y + (r.z + 1.0) *  (r.z + 1.0));
+	vOut = (mTexture * vec4(0.5 + r.x / two_p, 0.5 - r.y / two_p, 0.0, 0.0)).xy;
 }
 //-----------------------------------------------------------------------------
-void FFP_GenerateTexCoord_EnvMap_Sphere(in 	mat4 mWorld,
-										in 	mat4 mView,
-										in 	mat4 mWorldIT,
-										in 	vec4 vPos,
-										in 	vec3 vNormal,
+void FFP_GenerateTexCoord_EnvMap_Sphere(in mat4 mWorld,
+										in mat4 mView,
+										in mat4 mWorldIT,
+										in vec4 vPos,
+										in vec3 vNormal,
 										out vec2 vOut)
 {
 	mat4 worldview = mView * mWorld;
 	vec3 normal = normalize( (mWorldIT * vec4(vNormal,0.0)).xyz); 
 	vec3 eyedir =  normalize(worldview * vPos).xyz;
 	vec3 r = reflect(eyedir, normal);
-	float two_p = 2.0 * sqrt( r.x *  r.x +  r.y *  r.y +  (r.z + 1) *  (r.z + 1));
-	vOut = vec2(0.5 + r.x / two_p,0.5 - r.y / two_p);
+	float two_p = 2.0 * sqrt( r.x * r.x + r.y * r.y + (r.z + 1.0) *  (r.z + 1.0));
+	vOut = vec2(0.5 + r.x / two_p, 0.5 - r.y / two_p);
 }
 
 //-----------------------------------------------------------------------------
@@ -120,12 +123,27 @@ void FFP_GenerateTexCoord_EnvMap_Reflect(in mat4 mWorld,
 						   in vec4 vPos,						  
 						   out vec3 vOut)
 {		
-	mView[0][2] = -mView[0][2];
-	mView[1][2] = -mView[1][2];
-	mView[2][2] = -mView[2][2];
-	mView[3][2] = -mView[3][2];
+	mat4 matViewT;
 	
-	mat4 matViewT = transpose(mView);
+	matViewT[0][0] = mView[0][0];
+	matViewT[1][0] = mView[0][1];
+	matViewT[2][0] = mView[0][2];
+	matViewT[3][0] = mView[0][3];
+	
+	matViewT[0][1] = mView[1][0];
+	matViewT[1][1] = mView[1][1];
+	matViewT[2][1] = mView[1][2];
+	matViewT[3][1] = mView[1][3];
+	
+	matViewT[0][2] = mView[2][0];
+	matViewT[1][2] = mView[2][1];
+	matViewT[2][2] = mView[2][2];
+	matViewT[3][2] = mView[2][3];
+	
+	matViewT[0][3] = mView[3][0];
+	matViewT[1][3] = mView[3][1];
+	matViewT[2][3] = mView[3][2];
+	matViewT[3][3] = mView[3][3];
 
 	vec3 vWorldNormal = (mat3(mWorldIT) * vNormal);
 	vec3 vViewNormal  = (mat3(mView) * vWorldNormal);
@@ -138,7 +156,6 @@ void FFP_GenerateTexCoord_EnvMap_Reflect(in mat4 mWorld,
  	matViewT[1][2] = -matViewT[1][2];
   	matViewT[2][2] = -matViewT[2][2];
  	vReflect = (mat3(matViewT) * vReflect);
-	vReflect.z = -vReflect.z; // Hack for gl 
 
 	vOut = vReflect;
 }
@@ -152,12 +169,26 @@ void FFP_GenerateTexCoord_EnvMap_Reflect(in mat4 mWorld,
 						   in vec4 vPos,						  
 						   out vec3 vOut)
 {		
-	mView[0][2] = -mView[0][2];
-	mView[1][2] = -mView[1][2];
-	mView[2][2] = -mView[2][2];
-	mView[3][2] = -mView[3][2];
+	mat4 matViewT;
+	matViewT[0][0] = mView[0][0];
+	matViewT[1][0] = mView[0][1];
+	matViewT[2][0] = mView[0][2];
+	matViewT[3][0] = mView[0][3];
 	
-	mat4 matViewT = transpose(mView);
+	matViewT[0][1] = mView[1][0];
+	matViewT[1][1] = mView[1][1];
+	matViewT[2][1] = mView[1][2];
+	matViewT[3][1] = mView[1][3];
+	
+	matViewT[0][2] = mView[2][0];
+	matViewT[1][2] = mView[2][1];
+	matViewT[2][2] = mView[2][2];
+	matViewT[3][2] = mView[2][3];
+	
+	matViewT[0][3] = mView[3][0];
+	matViewT[1][3] = mView[3][1];
+	matViewT[2][3] = mView[3][2];
+	matViewT[3][3] = mView[3][3];
 
 	vec3 vWorldNormal = (mat3(mWorldIT) * vNormal);
 	vec3 vViewNormal  = (mat3(mView) * vWorldNormal);
@@ -172,7 +203,6 @@ void FFP_GenerateTexCoord_EnvMap_Reflect(in mat4 mWorld,
  	vReflect = (mat3(matViewT) * vReflect);
 
  	vReflect = (mTexture * vec4(vReflect, 1.0)).xyz;
-	vReflect.z = -vReflect.z; // Hack for gl 
 
 	vOut = vReflect;
 }
@@ -190,11 +220,11 @@ void FFP_GenerateTexCoord_Projection(in mat4 mWorld,
 }
 
 //-----------------------------------------------------------------------------
-void FFP_SampleTexture(in sampler1D s, 
+void FFP_SampleTexture(in sampler2D s, 
 				   in float f,
 				   out vec4 t)
 {
-	t = texture(s, f);
+	t = texture2D(s, vec2(f));
 }
 
 //-----------------------------------------------------------------------------
@@ -202,14 +232,15 @@ void FFP_SampleTexture(in sampler2D s,
 				   in vec2 f,
 				   out vec4 t)
 {
-	t = texture (s, f);
+	t = texture2D(s, f);
 }
+
 //-----------------------------------------------------------------------------
 void FFP_SampleTexture(in sampler2D s, 
 				   in vec4 f,
 				   out vec4 t)
 {
-	t = texture (s, vec2(f.xy));
+	t = texture2D(s, vec2(f.xy));
 }
 
 //-----------------------------------------------------------------------------
@@ -217,7 +248,7 @@ void FFP_SampleTextureProj(in sampler2D s,
 				   in vec3 f,
 				   out vec4 t)
 {
-	t = texture(s, f.xy/f.z);
+	t = texture2D(s, f.xy/f.z);
 }
 
 //-----------------------------------------------------------------------------
@@ -225,7 +256,7 @@ void FFP_SampleTexture(in sampler3D s,
 				   in vec3 f,
 				   out vec4 t)
 {
-	t = texture(s, f);
+	t = texture3D(s, f);
 }
 
 //-----------------------------------------------------------------------------
@@ -233,7 +264,7 @@ void FFP_SampleTexture(in samplerCube s,
 				   in vec3 f,
 				   out vec4 t)
 {
-	t = texture(s, f);
+	t = textureCube(s, f);
 }
 
 
@@ -332,4 +363,3 @@ void FFP_AddSmooth(in vec4 vIn0, in vec4 vIn1, out vec4 vOut)
 {
 	vOut = vIn0 + vIn1 - (vIn0 * vIn1);
 }
-

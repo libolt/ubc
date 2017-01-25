@@ -193,7 +193,7 @@ bool jumpBalls::updateState(teamTypes teamWithBall, basketballStateUMSharedPtr a
                 logMsg(func +" jumpBallComplete == " +convert->toString(jumpBallComplete));
 //                exit(0);
             }
-            exit(0);
+//            exit(0);
         }
         else
         {
@@ -225,7 +225,7 @@ bool jumpBalls::jumpBallExecute(basketballStateUMSharedPtr activeBasketballInsta
 //    size_t activeBBallInstance = gameS->getActiveBBallInstance();
 
 //    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
-    std::vector<playerStateUMSharedPtr > activePlayerInstance;
+    std::unordered_map<std::string, playerStateSharedPtr> activePlayerInstance;
     std::unordered_map<std::string, playerStateSharedPtr> jumpPlayerInstance;  // stores playerID of players jumping for the ball
     size_t x = 0;
     std::string func = "jumpBalls::jumpBallExecute()";
@@ -236,15 +236,16 @@ bool jumpBalls::jumpBallExecute(basketballStateUMSharedPtr activeBasketballInsta
 //    while (x < activeTeamInstance.size())
     for (auto ATIIT : activeTeamInstance)
     {
-        //activePlayerInstance.clear();
+        activePlayerInstance.clear();
+        activePlayerInstance = ATIIT.second->getActivePlayerInstance();
 //TS        activePlayerInstance.push_back(activeTeamInstance[x]->getActivePlayerInstance());
 //        activePlayerInstance->( activeTeamInstance[x]->getActivePlayerInstance();
         
         size_t i = 0;
         logMsg(func +" ATIIT");
-        logMsg(func +" active player instance size =" +convert->toString(activePlayerInstance[x].size()));
+        logMsg(func +" active player instance size = " +convert->toString(activePlayerInstance.size()));
 //        while (i < activePlayerInstance[x].size()) // loops until the activePlayerInstance is found that is currently playing center
-        for (auto APIIT : ATIIT.second->getActivePlayerInstance())
+        for (auto APIIT : activePlayerInstance)
         {
             
 //            exit(0);

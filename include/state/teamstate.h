@@ -140,6 +140,9 @@ public:
     bool getActivePlayerInstancesCreated();  // retrieves the value of activePlayerInstancesCreated
     void setActivePlayerInstancesCreated(bool set);  // sets the value of activePlayerInstancesCreated
 
+    bool getActivePlayerInstancesSetup();  // retrieves the value of activePlayerInstancesSetup
+    void setActivePlayerInstancesSetup(bool set);  // sets the value of activePlayerInstancesSetup
+
     bool getPlayerInstancesCreated();  // retrieves the value of the playerInstancesCreated
     void setPlayerInstancesCreated(bool set);  // sets the value of the playerInstancesCreated
 
@@ -182,6 +185,8 @@ public:
     void setPlayerStartPositions();	 // sets the initial coordinates for the players.
     void setPlayerStartActivePositions();  // sets the position the players will play at the start of the game
 
+    bool setupActivePlayerInstances();  // sets up active player objects
+    
     void updatePlayerStates();  // updates the states of active players
     void updatePlayerDirections();  // updates the direction players are facing
     void updatePlayerMovements();	// updates the movement status of players
@@ -233,7 +238,8 @@ private:
     std::vector <std::string> playerModelsLoaded;  // creates a vector of strings that holds the models which are loaded
 
     bool activePlayerInstancesCreated;  // stores whether the active player instances have been created
-
+    bool activePlayerInstancesSetup;  // stores whether the active player instances have been configured
+    
     bool playerInstancesCreated;  // stores whether player instances have been created
     size_t playerInstanceCreatedCount;  // stores number of playerInstances that have been created
     size_t playerWithBallID;  // stores the ID of the player that has the ball

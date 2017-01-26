@@ -869,7 +869,7 @@ bool renderEngine::renderFrame()  // renders a frame to the screen
         mWindow->windowMovedOrResized();
 //        exit(0);
         logMsg(func +" windowMovedOrResized()");
-        logMsg("RERoot is initialized = " +convert->toString(RERoot->isInitialised()));
+        logMsg(func +" RERoot is initialized = " +convert->toString(RERoot->isInitialised()));
         RERoot->renderOneFrame();
 //        exit(0);
         logMsg(func +" Frame Rendered!");

@@ -23,6 +23,7 @@
 #include "engine/networkengine.h"
 #include "ai/ai.h"
 #include "ai/basketballsteer.h"
+#include "entity/playerentity.h"
 #include "conversion.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
@@ -1436,6 +1437,18 @@ bool gameState::updateState()  // updates the game state
  */     
         logMsg(func +" network events processed");
 
+        logMsg(func +" getActiveTeamInstance().size() == " +convert->toString(getActiveTeamInstance().size()));
+        for (auto ATIIT : getActiveTeamInstance())
+        {
+            logMsg(func +" getActivePlayerInstance().size() == " +convert->toString(ATIIT.second->getActivePlayerInstance().size()));
+            ATIIT.second->updateState();
+            for (auto APIIT : ATIIT.second->getActivePlayerInstance())
+            {
+                logMsg(func +" player model loaded == " +convert->toString(APIIT.second->getPlayerEnt()->getModelLoaded()));
+//                logMsg(func +"activePlayerInstance coords == " +convert->toString(APIIT.second->getPlayerEnt()->getNode()->getPosition()));
+            }
+        }
+        exit(0);
         if (!getTipOffComplete())  // calls tip off execution
         {
             if (executeTipOff())

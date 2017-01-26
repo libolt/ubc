@@ -190,7 +190,7 @@ bool playerEntity::loadModel()  // loads the 3D model
 
 //    exit(0);
 //    sharedPtr<renderEngine> render = renderEngine::Instance();
-    std::string func = "entity::loadModel()";
+    std::string func = "playerEntity::loadModel()";
     logMsg(func +" beginning");
     logMsg(func +" baseInitialized == " +convert->toString(baseInitialized));
     sharedPtr<renderEngine> render = base->getGameE()->getRenderE();
@@ -229,11 +229,13 @@ bool playerEntity::loadModel()  // loads the 3D model
 //    model = render->getMSceneMgr()->createEntity(entityName, entityModelFileName);  // loads the model
     Ogre::Entity *tempModel = base->getGameE()->getRenderE()->getMSceneMgr()->createEntity(entityName, entityModelFileName, "UBCData");  // loads the model
     logMsg(func +" tempModel loaded!");
+    
 //    render->getMSceneMgr()->
 //    Ogre::Entity *tempModel = render->getMSceneMgr()->createEntity("dah!", "Player.mesh");
     
     model = OgreEntitySharedPtr(tempModel);
     logMsg(func +" Entity Created!");
+    exit(0);
     // creates and instantiates the node object
 //    node = getRenderE()->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName);
 /*    if (entityNodeName == "")

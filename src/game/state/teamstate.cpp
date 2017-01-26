@@ -66,7 +66,7 @@ teamState::teamState()  // constructor
 //    activePlayerID = new size_t[5];
 
     activePlayerInstancesCreated = false;
-
+    activePlayerInstancesSetup = false;
     playerInstancesCreated = false;
     playerInstanceCreatedCount = 0;
     playerWithBallInstance = NONE;
@@ -323,6 +323,15 @@ void teamState::setActivePlayerInstance(std::unordered_map<std::string, playerSt
     activePlayerInstance = set;
 }
 
+bool teamState::getActivePlayerInstancesSetup()  // retrieves the value of activePlayerInstancesSetup
+{
+    return (activePlayerInstancesSetup);
+}
+void teamState::setActivePlayerInstancesSetup(bool set)  // sets the value of activePlayerInstancesSetup
+{
+    activePlayerInstancesSetup = set;
+}
+
 bool teamState::getActivePlayerInstancesCreated()  // retrieves the value of activePlayerInstancesCreated
 {
     return (activePlayerInstancesCreated);
@@ -485,8 +494,34 @@ void teamState::updateState()  // updates the state of the object
 //    size_t activeBBallInstance = base->getGameS()->getActiveBBallInstance();
 
 //  logMsg("Updating team state " +convert->toString(teamNumber));
+    if (activePlayerInstancesCreated)
+    {
+        
+        if (!activePlayerInstancesSetup)
+        {
+            if (setupActivePlayerInstances())
+            {
+                activePlayerInstancesSetup = true;
+            }
+            else 
+            {
+                logMsg(func +"Unable to setup playerInstances!");
+                exit(0);
+            }
+        }
+        else
+        {
+            
+        }
+    }
+    else
+    {
+        
+    }
+//    exit(0);
     if (base->getGameS()->getBasketballInstanceCreated() && base->getGameS()->getPlayerInstanceCreated())
     {
+        
         basketballStateUMSharedPtr activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();
 //      exit(0);
         // checks whether to execute offense or defense logic
@@ -539,6 +574,26 @@ void teamState::updateState()  // updates the state of the object
                         
                     }
                     
+                    if (!APIIT.second->getPlayerEnt()->getModelLoaded())
+                    {
+                        logMsg(func +" Model not loaded!");
+                        if (APIIT.second->getPlayerEnt()->loadModel())
+                        {
+                            logMsg(func + " Model loaded successfully!");
+                            APIIT.second->getPlayerEnt()->setModelLoaded(true);
+                        }
+                        else
+                        {
+                            logMsg(func + " Unable to load model!");
+                            exit(0);
+                        }
+                    }
+                    else
+                    {
+                        
+                    }
+                    exit(0);
+
                     if (!APIIT.second->getPlayerEnt()->getPhysicsSetup())
                     {
                         APIIT.second->getPlayerEnt()->getPhysics()->setGameS(base->getGameS());
@@ -734,16 +789,18 @@ bool teamState::createPlayerInstances()  // creates the player instances
 
 void teamState::setPlayerStartPositions()  // sets the initial coordinates for the players.
 {
-    logMsg("setPlayerStartPositions!");
+    
     sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    sharedPtr<gameEngine> gameE = gameEngine::Instance();
-
     std::vector<std::unordered_map<std::string, size_t> > teamStarterID = base->getGameS()->getTeamStarterID();
-
     OgreVector3Vec startingPos;
     directions playerDirection; // stores the direction players face at start
+    std::string func = "teamState::setPlayerStartPositions()";
+    courtStateUMSharedPtr courtInstance = base->getGameS()->getCourtInstance();
+    Ogre::Vector3 courtPos = courtInstance[0]->getNodePosition();
 
+    logMsg(func +" begining");
 ///    if (!gameS->getCourtInstanceCreated())
 ///    {
 ///        if (gameS->createCourtInstances())
@@ -754,15 +811,12 @@ void teamState::setPlayerStartPositions()  // sets the initial coordinates for t
 ///        }
 ///    }
 
-    courtStateUMSharedPtr courtInstance = base->getGameS()->getCourtInstance();
-
-    Ogre::Vector3 courtPos = courtInstance[0]->getNodePosition();
 //    exit(0);
-    logMsg("courtPos.y == " +convert->toString(courtPos.y));
+    logMsg(func +" courtPos.y == " +convert->toString(courtPos.y));
     float yOffset = courtPos.y + 5.0;
     float y = 0.0;
-    logMsg("courtpos.y == " +convert->toString(courtPos.y));
-    logMsg("yOffset == " +convert->toString(yOffset));
+    logMsg(func +" courtpos.y == " +convert->toString(courtPos.y));
+    logMsg(func +" yOffset == " +convert->toString(yOffset));
 
 //    exit(0);
     // set initial player coordinates for the tipoff
@@ -811,7 +865,7 @@ void teamState::setPlayerStartPositions()  // sets the initial coordinates for t
 
     if (startingPos.size() > 0)
     {
-        logMsg("startingPosition.size > 0");
+        logMsg(func +" startingPosition.size > 0");
 //        exit(0);
 //        for (size_t i=0;i<5;++i)
         size_t i = 0;
@@ -820,7 +874,7 @@ void teamState::setPlayerStartPositions()  // sets the initial coordinates for t
 //        while (x < activePlayerInstance.size()) //&& playerID != playerInstance[x].getPlayerID())
         for (auto APIIT : activePlayerInstance)
         {
-            logMsg("activePlayerInstance.size > 0!");
+            logMsg(func +" activePlayerInstance.size > 0!");
  //           exit(0);
             if (APIIT.second->getActivePosition() == PG)
             {
@@ -899,13 +953,15 @@ void teamState::setPlayerStartPositions()  // sets the initial coordinates for t
 ///    }
     
 //    exit(0);
+    logMsg(func +" end");
 }
 
 void teamState::setPlayerStartActivePositions()  // sets the position the players will play at the start of the game
 {
     sharedPtr<conversion> convert = conversion::Instance();
+    std::string func = "teamState::setPlayerStartActivePositions()";
 
-    logMsg("activePlayerInstance.size() =" +convert->toString(activePlayerInstance.size()));
+    logMsg(func + " activePlayerInstance.size() =" +convert->toString(activePlayerInstance.size()));
     if (activePlayerInstance.size() > 0) // checks that activePlayerInstance has data before executing
     {
         activePlayerInstance["PG"]->setActivePosition(PG);
@@ -924,7 +980,60 @@ void teamState::setPlayerStartActivePositions()  // sets the position the player
         APIIT.second->getPlayerEnt()->getSteer()->setID(x);
 //        ++x;
     }
+    logMsg(func +" end");
+}
 
+bool teamState::setupActivePlayerInstances()  // sets up active player objects
+{
+    sharedPtr<conversion> convert = conversion::Instance();
+    std::string func = "teamState::setupActivePlayerInstances()";
+    
+    logMsg(func +" beginning");
+    for (auto APIIT : activePlayerInstance)
+    {
+        if (!APIIT.second->getBaseInitialized())
+        {
+            APIIT.second->setBase(base);
+            APIIT.second->setBaseInitialized(true);
+        }
+        else
+        {
+                        
+        }
+                    
+        if (!APIIT.second->getPlayerEnt()->getModelLoaded())
+        {
+            logMsg(func +" Model not loaded!");
+            if (APIIT.second->getPlayerEnt()->loadModel())
+            {
+                logMsg(func + " Model loaded successfully!");
+                APIIT.second->getPlayerEnt()->setModelLoaded(true);
+            }
+            else
+            {
+                logMsg(func + " Unable to load model!");
+                exit(0);
+            }
+        }
+        else
+        {
+                        
+        }
+//        exit(0);
+
+        if (!APIIT.second->getPlayerEnt()->getPhysicsSetup())
+        {
+            APIIT.second->getPlayerEnt()->getPhysics()->setGameS(base->getGameS());
+            APIIT.second->getPlayerEnt()->setPhysicsSetup(true);
+        }
+        else
+        {
+                        
+        }
+    }
+    logMsg(func +" end");
+
+    return (true);
 }
 
 void teamState::updatePlayerStates()  // updates the states of active players

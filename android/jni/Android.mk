@@ -103,6 +103,11 @@ UBC_DEPENDS_INC_PATH := $(UBC_DEPENDS_PATH)/include
    include $(PREBUILT_STATIC_LIBRARY)
 
    include $(CLEAR_VARS)
+   LOCAL_MODULE := OgreGLSupport-Prebuilt
+   LOCAL_SRC_FILES := $(UBC_DEPENDS_LIB_PATH)/libOgreGLSupportStatic.a
+   include $(PREBUILT_STATIC_LIBRARY)
+
+   include $(CLEAR_VARS)
    LOCAL_MODULE := OgreRenderSystem_GLES2-Prebuilt
    LOCAL_SRC_FILES := $(UBC_DEPENDS_LIB_PATH)/OGRE/libRenderSystem_GLES2Static.a
    include $(PREBUILT_STATIC_LIBRARY)
@@ -218,7 +223,7 @@ include $(CLEAR_VARS)
 LOCAL_SHARED_LIBRARIES := OpeanAL-Prebuilt 
 LOCAL_STATIC_LIBRARIES := Boost-System-Prebuilt MyGUIOgrePlatform-Prebuilt MyGUIEngine-Prebuilt TinyXML2-Prebuilt SDL2-Prebuilt 
 LOCAL_STATIC_LIBRARIES += BtOgre-Prebuilt BulletDynamics-Prebuilt BulletCollision-Prebuilt BulletSoftbody-Prebuilt BulletLinearMath-Prebuilt
-LOCAL_STATIC_LIBRARIES += OgreRTShaderSystem-Prebuilt OgreRenderSystem_GLES2-Prebuilt OgreMain-Prebuilt OgreParticleFXPlugin-Prebuilt
+LOCAL_STATIC_LIBRARIES += OgreRTShaderSystem-Prebuilt OgreRenderSystem_GLES2-Prebuilt OgreGLSupport-Prebuilt OgreMain-Prebuilt OgreParticleFXPlugin-Prebuilt 
 LOCAL_STATIC_LIBRARIES += OpenSteer-Prebuilt Boost-Thread-Prebuilt Boost-Chrono-Prebuilt FreeImage-Prebuilt ZZipLib-Prebuilt FreeType-Prebuilt
 LOCAL_STATIC_LIBRARIES += ENet-Prebuilt Native-App-Glue-Prebuilt Cpu-Features-Prebuilt 
 LOCAL_STATIC_LIBRARIES += android_native_app_glue cpufeatures  gnustl_static supc++

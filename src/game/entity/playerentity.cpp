@@ -226,6 +226,11 @@ bool playerEntity::loadModel()  // loads the 3D model
     {
         logMsg(func +" mSceneMgr does not have camera!");
     }
+    
+    if (entityNodeName == "")
+    {
+        entityNodeName = entityName + "node";
+    }
 //    model = render->getMSceneMgr()->createEntity(entityName, entityModelFileName);  // loads the model
     Ogre::Entity *tempModel = base->getGameE()->getRenderE()->getMSceneMgr()->createEntity(entityName, entityModelFileName, "UBCData");  // loads the model
     logMsg(func +" tempModel loaded!");
@@ -235,7 +240,7 @@ bool playerEntity::loadModel()  // loads the 3D model
     
     model = OgreEntitySharedPtr(tempModel);
     logMsg(func +" Entity Created!");
-    exit(0);
+//    exit(0);
     // creates and instantiates the node object
 //    node = getRenderE()->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName);
 /*    if (entityNodeName == "")
@@ -250,6 +255,7 @@ bool playerEntity::loadModel()  // loads the 3D model
 //    tempNode->setName(entityNodeName);
     tempNode->attachObject(model.get());
     logMsg(func +" node attached!");
+    exit(0);
     // attaches 3D model to the node
 //    node->attachObject(model);
     // sets the size of the bball node

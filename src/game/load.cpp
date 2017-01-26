@@ -2471,6 +2471,7 @@ playerStateSharedPtr loader::loadPlayerFile(std::string fileName)  // loads the 
     playerInstance->getData()->setWeight(weight);
     playerInstance->getData()->setID(ID);
     playerInstance->getData()->setTeamID(teamID);
+    playerInstance->getPlayerEnt()->setEntityName(firstName + lastName);
     playerInstance->getPlayerEnt()->setEntityModelFileName(modelName);
     playerInstance->getData()->setPrimaryPosition(primaryPosition);
     playerInstance->getData()->setSecondaryPosition(secondaryPosition);

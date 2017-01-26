@@ -534,7 +534,7 @@ bool gameState::createPlayerInstances()  // creates player instances
 
     for (auto PIIT : pInstance)
     {
-        logMsg(func +" Player " +PIIT.second->getData()->getFirstName() +" " +PIIT.second->getData()->getLastName() +" TeamID == " +convert->toString(PIIT.second->getData()->getTeamID()));
+        logMsg(func +" Player " +PIIT.second->getData()->getFirstName() +" " +PIIT.second->getData()->getLastName() +" TeamID == " +convert->toString(PIIT.second->getData()->getTeamID()));       
     }
     
 //    exit(0);

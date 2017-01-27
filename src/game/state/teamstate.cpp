@@ -563,53 +563,12 @@ void teamState::updateState()  // updates the state of the object
                 std::string instanceWithBall;
 //                while (x < activePlayerInstance.size())
                 for (auto APIIT : activePlayerInstance)
-                {
-                    if (!APIIT.second->getBaseInitialized())
-                    {
-                        APIIT.second->setBase(base);
-                        APIIT.second->setBaseInitialized(true);
-                    }
-                    else
-                    {
-                        
-                    }
-                    
-                    if (!APIIT.second->getPlayerEnt()->getModelLoaded())
-                    {
-                        logMsg(func +" Model not loaded!");
-                        if (APIIT.second->getPlayerEnt()->loadModel())
-                        {
-                            logMsg(func + " Model loaded successfully!");
-                            APIIT.second->getPlayerEnt()->setModelLoaded(true);
-                        }
-                        else
-                        {
-                            logMsg(func + " Unable to load model!");
-                            exit(0);
-                        }
-                    }
-                    else
-                    {
-                        
-                    }
-                    exit(0);
-
-                    if (!APIIT.second->getPlayerEnt()->getPhysicsSetup())
-                    {
-                        APIIT.second->getPlayerEnt()->getPhysics()->setGameS(base->getGameS());
-                        APIIT.second->getPlayerEnt()->setPhysicsSetup(true);
-                    }
-                    else
-                    {
-                        
-                    }
-                    
+                {                    
                     if (APIIT.second->getData()->getID() == playerWithBallID)
                     {
                         instanceWithBall = APIIT.first;
                         break;
                     }
-
 //                    ++x;
                 }
                 if (!activePlayerInstance[instanceWithBall]->getPassBall()) // checks if the player with ball is passing it.
@@ -1039,24 +998,20 @@ bool teamState::setupActivePlayerInstances()  // sets up active player objects
 void teamState::updatePlayerStates()  // updates the states of active players
 {
     sharedPtr<conversion> convert = conversion::Instance();
-
+    std::string func = "teamState::updatePlayerStates()";
     size_t x = 0;
     
+    logMsg(func +" beginning");
 //    while (x<activePlayerInstance.size())
     for (auto APIIT : activePlayerInstance)
     {
         APIIT.second->updateState();
-/*        ++x;
-    }
-    
-    x = 0;
-    while (x < activePlayerInstance.size())
-    {
-*/        
+        logMsg(func +" APIIT.second->getPlayerEntity()->getNode()->getPosition() == " +convert->toString(APIIT.second->getPlayerEnt()->getNode()->getPosition()));       
         logMsg("PlayerSteerNode Position == " +convert->toString(APIIT.second->getPlayerEnt()->getNode()->getPosition()));
         logMsg("PlayerSteer Position == " +convert->toString(APIIT.second->getPlayerEnt()->getSteer()->position()));
         ++x;
     }
+    exit(0);
 
 }
 

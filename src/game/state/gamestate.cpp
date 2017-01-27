@@ -1448,7 +1448,7 @@ bool gameState::updateState()  // updates the game state
 //                logMsg(func +"activePlayerInstance coords == " +convert->toString(APIIT.second->getPlayerEnt()->getNode()->getPosition()));
             }
         }
-        exit(0);
+//        exit(0);
         if (!getTipOffComplete())  // calls tip off execution
         {
             if (executeTipOff())

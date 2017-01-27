@@ -255,7 +255,7 @@ bool playerEntity::loadModel()  // loads the 3D model
 //    tempNode->setName(entityNodeName);
     tempNode->attachObject(model.get());
     logMsg(func +" node attached!");
-    exit(0);
+    
     // attaches 3D model to the node
 //    node->attachObject(model);
     // sets the size of the bball node
@@ -273,6 +273,7 @@ bool playerEntity::loadModel()  // loads the 3D model
     node->setPosition(0.0f,0.0f,0.0f);
 */
     logMsg(func +" end");
+    
     return true;
 }
 

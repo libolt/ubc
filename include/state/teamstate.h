@@ -146,6 +146,9 @@ public:
     bool getPlayerInstancesCreated();  // retrieves the value of the playerInstancesCreated
     void setPlayerInstancesCreated(bool set);  // sets the value of the playerInstancesCreated
 
+    bool getPlayerStartPositionsSet();  // retrieves the value of the playerStartPositionsSet
+    void setPlayerStartPositionsSet(bool set);  // sets the value of the playerStartPositionsSet
+
     size_t getPlayerWithBallID();  // retrieves the value of the playerWithBallID
     void setPlayerWithBallID(size_t set);  // sets the value of the playerWithBallID
 
@@ -182,7 +185,7 @@ public:
     // creates player Instances
     bool createPlayerInstances();  // creates the player instances
 
-    void setPlayerStartPositions();	 // sets the initial coordinates for the players.
+    bool setPlayerStartPositions();	 // sets the initial coordinates for the players.
     void setPlayerStartActivePositions();  // sets the position the players will play at the start of the game
 
     bool setupActivePlayerInstances();  // sets up active player objects
@@ -239,8 +242,9 @@ private:
 
     bool activePlayerInstancesCreated;  // stores whether the active player instances have been created
     bool activePlayerInstancesSetup;  // stores whether the active player instances have been configured
+    bool playerInstancesCreated;  // storea whethet player instances have been created.
+    bool playerStartPositionsSet;  // stores whether player starting positions have been set
     
-    bool playerInstancesCreated;  // stores whether player instances have been created
     size_t playerInstanceCreatedCount;  // stores number of playerInstances that have been created
     size_t playerWithBallID;  // stores the ID of the player that has the ball
     playerPositions playerWithBallInstance;  // stores which player has control of the basketball, valid values are 0 - 4

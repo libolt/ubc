@@ -704,24 +704,25 @@ bool gameState::createActiveHoopInstances()  // creates the active hoop instance
     return (true);
 }
 
-bool gameState::createActiveTeamInstances()  // creates the active team instances
+bool gameState::setupActiveTeamInstances()  // sets up the active team instances
 {
     teamStateSharedPtr tInstance;
     teamStateUMSharedPtr activeTeamInstance = getActiveTeamInstance();
     teamStateUMSharedPtr teamInstance = getTeamInstance();
     sizeTVec teamIDS = getTeamIDS();
-    std::string func = "gameState::createActiveTeamInstances()";
+    std::string func = "gameState::setupActiveTeamInstances()";
 
     logMsg(func +" beginning");
-    activeTeamInstance.insert(std::pair<size_t, teamStateSharedPtr>(0, tInstance));  // adds empty teamState to activeTeamInstance vector
-    activeTeamInstance.insert(std::pair<size_t, teamStateSharedPtr>(1, tInstance));  // adds empty teamState to activeTeamInstance vector
-
+//    activeTeamInstance.insert(std::pair<size_t, teamStateSharedPtr>(0, tInstance));  // adds empty teamState to activeTeamInstance vector
+//    activeTeamInstance.insert(std::pair<size_t, teamStateSharedPtr>(1, tInstance));  // adds empty teamState to activeTeamInstance vector
+//    exit(0);
 /*TS    activeTeamInstance[0] = teamInstance[teamIDS[0]];
     activeTeamInstance[1] = teamInstance[teamIDS[1]];
     activeTeamInstance[0]->setID(teamIDS[0]);
     activeTeamInstance[1]->setID(teamIDS[1]);
+*/    
     activeTeamInstance[0]->setTeamType(HOMETEAM);
-    activeTeamInstance[1]->se0tTeamType(AWAYTEAM);
+    activeTeamInstance[1]->setTeamType(AWAYTEAM);
     activeTeamInstance[0]->setHumanControlled(true);
     activeTeamInstance[1]->setHumanControlled(false);
     activeTeamInstance[0]->setTeamColObject(COL_TEAM1);
@@ -730,7 +731,7 @@ bool gameState::createActiveTeamInstances()  // creates the active team instance
     activeTeamInstance[1]->setTeamCollidesWith(COL_COURT); // | COL_BBALL | COL_TEAM2;   determines what team1 collides with
     activeTeamInstance[0]->setupState();
     activeTeamInstance[1]->setupState();
-TS*/
+
     setActiveTeamInstance(activeTeamInstance);
     logMsg(func +" end");
     return (true);
@@ -1314,6 +1315,24 @@ bool gameState::setupState()  // sets up the game condition
 /// FIXME    physEngine.setupState();  // sets up the Physics Engine state
 //    exit(0);
     
+    if (!getActiveTeamInstancesSetup())
+    {
+        if (setupActiveTeamInstances())
+        {
+            logMsg(func +" Team instances setup!");
+            setActiveTeamInstancesSetup(true);
+        }
+        else
+        {
+            logMsg(func +" Unable to setup team instances!");
+            exit(0);
+        }
+    }
+    else
+    {
+        
+    }
+    
     for (auto ATIIT : getActiveTeamInstance())
     {
         if (ATIIT.second->getActivePlayerInstancesCreated())
@@ -1329,7 +1348,7 @@ bool gameState::setupState()  // sets up the game condition
         logMsg(func +" team name == " +ATIIT.second->getName());
         logMsg(func +" ATIIT.second->getActivePlayerInstance().size() == " +convert->toString(ATIIT.second->getActivePlayerInstance().size()));
     }
-//    exit(0);
+    exit(0);
     if (!ai->getBaseInitialized())
     {
         ai->setBase(getBase());

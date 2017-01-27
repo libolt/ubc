@@ -30,7 +30,7 @@ bool gameStateShared::activeBasketballInstancesCreated;  // stores whether the a
 bool gameStateShared::activeCourtInstancesCreated;  // stores whether the active court instances have been created.
 bool gameStateShared::activeHoopInstancesCreated;  // stores whether the active hoop instances have been created
 bool gameStateShared::activeTeamInstancesCreated;  // stores whether the active team instances have been created
-bool gameStateShared::activeTeamInstancesNeedCreated;  // stores whether or not to create active team instances
+bool gameStateShared::activeTeamInstancesSetup;  // stores whether or not to setup active team instances
 bool gameStateShared::basketballInstanceCreated;  // stores whether basketball instance(s) have been created
 bool gameStateShared::basketballInstanceNeedCreated;  // stores whether or not to create basketball instance(s)
 bool gameStateShared::courtInstancesCreated;  // stores whether court instances have been created
@@ -78,7 +78,7 @@ gameStateShared::gameStateShared()  // constructor
     activeCourtInstancesCreated = false;
     activeHoopInstancesCreated = false;
     activeTeamInstancesCreated = false;
-    activeTeamInstancesNeedCreated = false;
+    activeTeamInstancesSetup = false;
     basketballInstanceCreated = false;
     basketballInstanceNeedCreated = false;
     courtInstancesCreated = false;
@@ -203,13 +203,13 @@ void gameStateShared::setActiveTeamInstancesCreated(bool set)  // sets the value
     activeTeamInstancesCreated = set;
 }
 
-bool gameStateShared::getActiveTeamInstancesNeedCreated()  // retrieves the value of activeTeamInstancesNeedCreated
+bool gameStateShared::getActiveTeamInstancesSetup()  // retrieves the value of activeTeamInstancesSetup
 {
-    return (activeTeamInstancesNeedCreated);
+    return (activeTeamInstancesSetup);
 }
-void gameStateShared::setActiveTeamInstancesNeedCreated(bool set)  // sets the value of activeTeamInstancesNeedCreated
+void gameStateShared::setActiveTeamInstancesSetup(bool set)  // sets the value of activeTeamInstancesSetup
 {
-    activeTeamInstancesNeedCreated = set;
+    activeTeamInstancesSetup = set;
 }
 
 bool gameStateShared::getBasketballInstanceCreated()  // gets the value of basketballInstanceCreated

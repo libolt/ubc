@@ -995,7 +995,8 @@ void GUISystem::teamsSelected()  // processes team selection
 //    exit(0);
     base->getGameS()->setTeamIDS(teamID);
     base->getGameS()->setActiveTeamInstance(activeTeamInstance);
-   
+    base->getGameS()->setActiveTeamInstancesCreated(true);
+ 
     logMsg(func +" Teams selected");
     
     logMsg(func +" end");
@@ -1476,7 +1477,7 @@ bool GUISystem::checkTeamInstancesCreated()  // Checks if team instances have be
 
     if (!base->getGameS()->getActiveTeamInstancesCreated())
     {
-        base->getGameS()->setActiveTeamInstancesNeedCreated(true);
+//        base->getGameS()->setActiveTeamInstancesNeedCreated(true);
 /*        logMsg("Creating active team instances!");
         gameS->createActiveTeamInstances();
         gameS->setActiveTeamInstancesCreated(true);

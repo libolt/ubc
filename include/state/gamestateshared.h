@@ -73,8 +73,8 @@ class gameStateShared
         bool getActiveTeamInstancesCreated();  // retrieves the value of activeTeamInstancesCreated
         void setActiveTeamInstancesCreated(bool set);  // sets the value of activeTeamInstancesCreated
 
-        bool getActiveTeamInstancesNeedCreated();  // retrieves the value of activeTeamInstancesNeedCreated
-        void setActiveTeamInstancesNeedCreated(bool set);  // sets the value of activeTeamInstancesNeedCreated
+        bool getActiveTeamInstancesSetup();  // retrieves the value of activeTeamInstancesSetup
+        void setActiveTeamInstancesSetup(bool set);  // sets the value of activeTeamInstancesSetup
 
         bool getBasketballInstanceCreated();  // retrieves the value of basketballInstancesCreated
         void setBasketballInstanceCreated(bool set);  // sets the value of basketballInstancesCreated
@@ -180,7 +180,7 @@ class gameStateShared
         static bool activeCourtInstancesCreated;  // stores whether the active court instances have been created
         static bool activeHoopInstancesCreated;  // stores whether the active hoop instances have been created
         static bool activeTeamInstancesCreated;  // stores whether the active team instances have been created
-        static bool activeTeamInstancesNeedCreated;  // stores whether or not to create active team instances
+        static bool activeTeamInstancesSetup;  // stores whether or not to setup active team instances
         static bool basketballInstanceCreated;  // stores whether basketball instance(s) have been created
         static bool basketballInstanceNeedCreated;  // stores whether or not to create basketball instance(s)
         static bool courtInstancesCreated;  // stores whether court instances have been created

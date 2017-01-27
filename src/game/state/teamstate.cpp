@@ -68,6 +68,7 @@ teamState::teamState()  // constructor
     activePlayerInstancesCreated = false;
     activePlayerInstancesSetup = false;
     playerInstancesCreated = false;
+    playerStartPositionsSet = false;
     playerInstanceCreatedCount = 0;
     playerWithBallInstance = NONE;
     playerWithBallID = -1;
@@ -350,6 +351,15 @@ void teamState::setPlayerInstancesCreated(bool set)  // sets the value of player
     playerInstancesCreated = set;
 }
 
+bool teamState::getPlayerStartPositionsSet()  // retrieves the value of the playerStartPositionsSet
+{
+    return (playerStartPositionsSet);
+}
+void teamState::playerStartPositionsSet(bool set)  // sets the value of the playerStartPositionsSet
+{
+    playerStartPositionsSet = set;
+}
+
 size_t teamState::getPlayerWithBallID()  // retrieves the value of the playerWithBallID
 {
     return (playerWithBallID);
@@ -443,6 +453,10 @@ void teamState::setTeamCollidesWith(size_t set)  // sets the value of teamCollid
 void teamState::setupState()  // sets up the state of the object
 {
     bool stateSet = this->getStateSet();
+    std::string func = "teamState::setupState()";
+    
+    logMsg(func +" beginning");
+    
     offenseStateSharedPtr tempOffenseInst(new offenseState);
     offenseInstance = tempOffenseInst;
 
@@ -450,7 +464,7 @@ void teamState::setupState()  // sets up the state of the object
     defenseInstance = tempDefenseInst;
     if (!stateSet)
     {
-        logMsg("Setting state");
+        logMsg(func +" Setting state");
 //      sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
 ///        if (!playerInstancesCreated) // checks if playerInstances have been created
 ///        {
@@ -462,17 +476,16 @@ void teamState::setupState()  // sets up the state of the object
 ///         }
 ///        }
 
-//        setPlayerStartPositions();    // sets starting positions for the players
-        logMsg("Player start positions set");
 //    playerWithBall = 3; // FIXME! Temporarily ahrd code player controlling ball
 //    humanPlayer = 3;  // sets the human controlled player to the center for tip off
 ///    player->mAnimationState2 =  activePlayerInstance[5].getModel()->getAnimationState("Walk");
 ///    player->mAnimationState2->setLoop(true);
 ///    player->mAnimationState2->setEnabled(true);
 
-    stateSet = true;
+        stateSet = true;
     }
-    
+    logMsg(func +" end");
+
 }
 void teamState::updateState()  // updates the state of the object
 {
@@ -513,8 +526,11 @@ void teamState::updateState()  // updates the state of the object
         {
             
         }
-        updatePlayerStates();
+        setPlayerStartPositions();  // sets starting positions for the players
+        logMsg(func +" Player start positions set");
 
+        updatePlayerStates();
+        
     }
     else
     {
@@ -747,9 +763,8 @@ bool teamState::createPlayerInstances()  // creates the player instances
     return (true);
 }
 
-void teamState::setPlayerStartPositions()  // sets the initial coordinates for the players.
+bool teamState::setPlayerStartPositions()  // sets the initial coordinates for the players.
 {
-    
     sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    sharedPtr<gameEngine> gameE = gameEngine::Instance();
@@ -760,6 +775,7 @@ void teamState::setPlayerStartPositions()  // sets the initial coordinates for t
     courtStateUMSharedPtr courtInstance = base->getGameS()->getCourtInstance();
     Ogre::Vector3 courtPos = courtInstance[0]->getNodePosition();
 
+//    exit(0);
     logMsg(func +" begining");
 ///    if (!gameS->getCourtInstanceCreated())
 ///    {
@@ -914,6 +930,7 @@ void teamState::setPlayerStartPositions()  // sets the initial coordinates for t
     
 //    exit(0);
     logMsg(func +" end");
+    return (true);
 }
 
 void teamState::setPlayerStartActivePositions()  // sets the position the players will play at the start of the game
@@ -1007,7 +1024,7 @@ void teamState::updatePlayerStates()  // updates the states of active players
     for (auto APIIT : activePlayerInstance)
     {
         APIIT.second->updateState();
-        APIIT.second->getPlayerEnt()->getNode()->setPosition(Ogre::Vector3(20,20,20));
+//        APIIT.second->getPlayerEnt()->getNode()->setPosition(Ogre::Vector3(-20,15,400));
         logMsg(func +" APIIT.second->getPlayerEntity()->getNode()->getPosition() == " +convert->toString(APIIT.second->getPlayerEnt()->getNode()->getPosition()));       
         logMsg("PlayerSteerNode Position == " +convert->toString(APIIT.second->getPlayerEnt()->getNode()->getPosition()));
         logMsg("PlayerSteer Position == " +convert->toString(APIIT.second->getPlayerEnt()->getSteer()->position()));

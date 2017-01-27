@@ -513,6 +513,8 @@ void teamState::updateState()  // updates the state of the object
         {
             
         }
+        updatePlayerStates();
+
     }
     else
     {
@@ -627,7 +629,6 @@ void teamState::updateState()  // updates the state of the object
 
         logMsg("Human player = " +humanPlayer);
                                         
-        updatePlayerStates();
         //updatePlayerMovements();  // updates movement of player objects
         //updatePlayerDirections(); // updates the direction the players are facing
 //      exit(0);
@@ -1006,12 +1007,13 @@ void teamState::updatePlayerStates()  // updates the states of active players
     for (auto APIIT : activePlayerInstance)
     {
         APIIT.second->updateState();
+        APIIT.second->getPlayerEnt()->getNode()->setPosition(Ogre::Vector3(20,20,20));
         logMsg(func +" APIIT.second->getPlayerEntity()->getNode()->getPosition() == " +convert->toString(APIIT.second->getPlayerEnt()->getNode()->getPosition()));       
         logMsg("PlayerSteerNode Position == " +convert->toString(APIIT.second->getPlayerEnt()->getNode()->getPosition()));
         logMsg("PlayerSteer Position == " +convert->toString(APIIT.second->getPlayerEnt()->getSteer()->position()));
         ++x;
     }
-    exit(0);
+//    exit(0);
 
 }
 

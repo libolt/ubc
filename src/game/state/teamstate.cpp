@@ -355,7 +355,7 @@ bool teamState::getPlayerStartPositionsSet()  // retrieves the value of the play
 {
     return (playerStartPositionsSet);
 }
-void teamState::playerStartPositionsSet(bool set)  // sets the value of the playerStartPositionsSet
+void teamState::setPlayerStartPositionsSet(bool set)  // sets the value of the playerStartPositionsSet
 {
     playerStartPositionsSet = set;
 }

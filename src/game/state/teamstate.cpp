@@ -998,9 +998,12 @@ bool teamState::setupActivePlayerInstances()  // sets up active player objects
         }
 //        exit(0);
 
+        logMsg(func + " setting up Physics!");
         if (!APIIT.second->getPlayerEnt()->getPhysicsSetup())
         {
+            
             APIIT.second->getPlayerEnt()->getPhysics()->setGameS(base->getGameS());
+            APIIT.second->getPlayerEnt()->setupPhysicsObject();
             APIIT.second->getPlayerEnt()->setPhysicsSetup(true);
         }
         else

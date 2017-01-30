@@ -232,6 +232,7 @@ bool playerEntity::loadModel()  // loads the 3D model
         entityNodeName = entityName + "node";
     }
 //    model = render->getMSceneMgr()->createEntity(entityName, entityModelFileName);  // loads the model
+    logMsg(func +" Entity Name == " +entityName + " Model File Name == " +entityModelFileName);
     Ogre::Entity *tempModel = base->getGameE()->getRenderE()->getMSceneMgr()->createEntity(entityName, entityModelFileName, "UBCData");  // loads the model
     logMsg(func +" tempModel loaded!");
     
@@ -279,11 +280,13 @@ bool playerEntity::loadModel()  // loads the 3D model
 
 bool playerEntity::setupPhysicsObject()  // sets up the physics object
 {
-    logMsg("playerEntity!");
-//    exit(0);
+    std::string func = "playerEntity::setupPhysicsObject()!";
     Ogre::Entity *tempModel = getModel().get();
     Ogre::SceneNode *tempNode = getNode().get();
     btRigidBody *tempPhysBody = getPhysBody().get();
+    
+    logMsg(func +" beginning");
+//    exit(0);
     setShapeType(CAPSULE);
     setColObject(COL_BBALL);
 //    getPhysics()->setCollidesWith(COL_COURT);
@@ -301,5 +304,7 @@ bool playerEntity::setupPhysicsObject()  // sets up the physics object
     {
     }
 
+    logMsg(func +" end");
+    
     return (false);
 }

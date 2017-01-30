@@ -605,11 +605,14 @@ void playerState::updateState()
     physicsEngine physEngine;
     jumpBallsSharedPtr jumpBall = base->getGameS()->getJumpBall();
     Ogre::Vector3 playerPos;
-
+    std::string func = "playerState::updateState";
+    
+    logMsg(func +" beginning");
     if (playerEnt->getPhysicsSetup())
     {
-        logMsg("playerState::updateState");
+        logMsg(func +" Updating Court Position");
         updateCourtPosition();
+        logMsg(func +" Court Position Updated!");
 //        exit(0);
     }
 
@@ -638,9 +641,9 @@ void playerState::updateState()
     
     if (passSteal)
     {
-        logMsg("passSteal!!");
-        logMsg("passSteal teamType == " +convert->toString(teamType));
-        logMsg("passSteal teamWithBall == " +convert->toString(base->getGameS()->getTeamWithBall()));
+        logMsg(func +" passSteal!!");
+        logMsg(func +" passSteal teamType == " +convert->toString(teamType));
+        logMsg(func +" passSteal teamWithBall == " +convert->toString(base->getGameS()->getTeamWithBall()));
         
         if (teamType == base->getGameS()->getTeamWithBall())
         {
@@ -656,19 +659,22 @@ void playerState::updateState()
     {
     }
     
+    logMsg(func + " Direction?");
     if (direction != NODIRECT)  // updates the direction the player is facing if it has changed
     {
+        logMsg(func + " Updating Direction");
         updateDirection();
+        logMsg(func + " Updating Movement");
         updateMovement();
         oldDirection = direction;
         teamStateUMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
         size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
         if (teamType == base->getGameS()->getTeamWithBall() && base->getGameS()->getTipOffComplete())
         {
-            logMsg("dplayerWithBallID == " +convert->toString(playerWithBallID));
+            logMsg(func +" dplayerWithBallID == " +convert->toString(playerWithBallID));
             if (data->getID() == playerWithBallID && data->getID() >= 0)
             {
-                logMsg("playerID == " +convert->toString(data->getID()));
+                logMsg(func +" playerID == " +convert->toString(data->getID()));
 //                int activeBBallInstance = getActiveBBallInstance();
                 basketballStateUMSharedPtr activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();
                 
@@ -681,37 +687,41 @@ void playerState::updateState()
         direction = NODIRECT;
     }
 
+    logMsg(func +" end");
 }
 
 bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3D model
 {
-    logMsg("playerState::updateCourtPosition");
-
+    std::string func = "playerState::updateCourtPosition";
     sharedPtr<conversion> convert = conversion::Instance();
     ///sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
-
-        comparison compare;
+    comparison compare;
     btVector3 physChange = btVector3(0,0,0);
     Ogre::Vector3 changePos = Ogre::Vector3(0,0,0);
     
-    logMsg("updatePosChange == " +convert->toString(posChange));
-    logMsg("newCourtPosition == " +convert->toString(newCourtPosition));
+    logMsg(func + " beginning");
+    logMsg(func + " updatePosChange == " +convert->toString(posChange));
+    logMsg(func + " newCourtPosition == " +convert->toString(newCourtPosition));
     if (courtPositionChanged)
     {
         
         switch (courtPositionChangedType)
         {
             case STARTCHANGE:
+                logMsg(func + " STARTCHANGE");
+                logMsg(func + " Node Translate");     
                 playerEnt->getNode()->translate(newCourtPosition);
+                logMsg(func + " Convert to Bullet");
                 physChange = BtOgre::Convert::toBullet(newCourtPosition);  // converts from Ogre::Vector3 to btVector3
+                logMsg(func + " PhysBody Translate");
                 playerEnt->getPhysBody()->translate(physChange); // moves physics body in unison with the model
+                logMsg(func + " Steer set Position Changed");
                 playerEnt->getSteer()->setPosition(convert->toOpenSteerVec3(newCourtPosition));
                 courtPositionChanged = false;
                 courtPositionChangedType = NOCHANGE;
                 startPosReached = true;
                 courtPosition = playerEnt->getNode()->getPosition();
-                logMsg("start change,");
 //                exit(0);
             break;
             
@@ -762,7 +772,7 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
             break;
         }
         ++posChangeAmount;
-        logMsg("player ID " +convert->toString(data->getID()) +"change amount = " +convert->toString(posChangeAmount));
+        logMsg(func + " player ID " +convert->toString(data->getID()) +"change amount = " +convert->toString(posChangeAmount));
         
     }
     
@@ -778,19 +788,27 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
 //  physBody->translate(btVector3(0,0,0));
 //  logMsg("player position updated.");
 */
+
+    logMsg(func + " end");
+    
     return true;
 }
 
 
 void playerState::updateDirection()
 {
+    
     sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
     teamStateUMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
-    basketballStateUMSharedPtr activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();
+    basketballStateUMSharedPtr activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();   
 //    size_t activeBBallInstance = getActiveBBallInstance();
-    size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
-
+//    size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
+    logMsg("blah");
+//    exit(0);
+    std::string func = "playerState::updateDirection()";
+    
+    logMsg(func +" beginning");
     if (direction != oldDirection)
     {
             
@@ -885,10 +903,10 @@ void playerState::updateDirection()
             break;
         }
     }
-    logMsg("player Team Type == " +convert->toString(teamType));
-    logMsg("directplayerWithBallID == " +convert->toString(playerWithBallID));
-    logMsg("directplayerID == " +convert->toString(data->getID()));
-    if (data->getID() == playerWithBallID)
+    logMsg(func +" player Team Type == " +convert->toString(teamType));
+//    logMsg(func +" directplayerWithBallID == " +convert->toString(playerWithBallID));
+    logMsg(func +" directplayerID == " +convert->toString(data->getID()));
+/*    if (data->getID() == playerWithBallID)
     {
 //        exit(0);
         // FIXME! HARDCODED VALUES!
@@ -897,8 +915,10 @@ void playerState::updateDirection()
 
         base->getGameS()->setActiveBasketballInstance(activeBasketballInstance);
     }
+*/    
     //oldDirection = direction;
     //direction = NODIRECT;
+    logMsg(func +" end");
 
 }
 
@@ -910,13 +930,14 @@ void playerState::updateMovement()  // updates movement status of the player
 //    basketballStateVecSharedPtr bballInstance = getBasketballInstance();
     basketballStateUMSharedPtr activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();
 //    size_t activeBBallInstance = getActiveBBallInstance();
-    size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
-
+//    size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
     Ogre::Vector3 posChange;    // stores change in position
     posChange = Ogre::Vector3(0.0f, 0.0f, 0.0f);
-
-    logMsg("playerTeamType == " +convert->toString(teamType));
-    logMsg("passSteal ==  " +convert->toString(passSteal));
+    std::string func = "playerState::updateMovement()";
+    
+    logMsg(func +" beginning");
+    logMsg(func +" playerTeamType == " +convert->toString(teamType));
+    logMsg(func +" passSteal ==  " +convert->toString(passSteal));
 
     if (movement)   // if true sets coordinate change accordingly
     {
@@ -925,7 +946,7 @@ void playerState::updateMovement()  // updates movement status of the player
         {
             case UP:
                 posChange = Ogre::Vector3(0.0f, 0.0f, -0.400f);
-                logMsg("UP!");
+                logMsg(func +" UP!");
 //                exit(0);
             break;
             case DOWN:
@@ -951,13 +972,13 @@ void playerState::updateMovement()  // updates movement status of the player
             break;
         }
 
-        if (data->getID() == playerWithBallID)
+/*        if (data->getID() == playerWithBallID)
         {
             // FIXME! HARDCODED VALUE
             activeBasketballInstance[0]->setMovement(true);
             base->getGameS()->setActiveBasketballInstance(activeBasketballInstance);
 
-        }
+        }*/
     }
     else if (!movement)  // if false then sets their coordinate changes to 0.0
     {
@@ -971,6 +992,7 @@ void playerState::updateMovement()  // updates movement status of the player
         courtPositionChangedType = INPUTCHANGE;
         movement = false;
     }
+    logMsg(func +" beginning");
 
 //  exit(0);
 }

@@ -129,7 +129,7 @@ bool physics::setupPhysics(Ogre::Entity **model, Ogre::SceneNode **node, btRigid
     btScalar mass = 0.62f;
     btVector3 inertia, inertia2;
     inertia = btVector3(0,0,0);
-    btRigidBody *physBody;
+    btRigidBody *physBody ;
     btCollisionShape *tempShape; 
     
     std::string func = "physics::setupPhysics()";
@@ -176,7 +176,7 @@ bool physics::setupPhysics(Ogre::Entity **model, Ogre::SceneNode **node, btRigid
 
 //        exit(0);
 
-        BtOgre::RigidBodyState *tempBodyState = new BtOgre::RigidBodyState(*node);
+        BtOgreRigidBodyStateSharedPtr tempBodyState(new BtOgre::RigidBodyState(*node));
         logMsg(func +" BtOgre::RigidBodyState *tempBodyState = new BtOgre::RigidBodyState(*node);");
 
         bodyState =  BtOgreRigidBodyStateSharedPtr(tempBodyState);

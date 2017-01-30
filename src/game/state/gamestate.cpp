@@ -1348,7 +1348,7 @@ bool gameState::setupState()  // sets up the game condition
         logMsg(func +" team name == " +ATIIT.second->getName());
         logMsg(func +" ATIIT.second->getActivePlayerInstance().size() == " +convert->toString(ATIIT.second->getActivePlayerInstance().size()));
     }
-    exit(0);
+//    exit(0);
     if (!ai->getBaseInitialized())
     {
         ai->setBase(getBase());

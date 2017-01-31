@@ -45,6 +45,9 @@ class entity // : public UBCBase // base class for entity objects
     entity();  // constructor
     ~entity();  // destructor
     
+    bool getInitialized();  // retrieves the value of initialized
+    void setInitialized(bool set);  // sets the value of initialized
+    
     UBCBaseSharedPtr getBase();  // retrieves the value of base
     void setBase(UBCBaseSharedPtr set);  // sets the value of base
 
@@ -86,6 +89,8 @@ class entity // : public UBCBase // base class for entity objects
 //    bool setupPhysics();  // sets up the physics object
     
     private:
+    
+    bool initialized;  // stores whether entity object has been initialized
     
     static UBCBaseSharedPtr base;  // base class object
     

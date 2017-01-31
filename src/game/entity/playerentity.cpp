@@ -27,7 +27,7 @@
 
 
 // static declarations
-UBCBaseSharedPtr playerEntity::base;  // base class object
+//UBCBaseSharedPtr playerEntity::base;  // base class object
     
 //playerSteerSharedPtr playerEntity::steer;
 //bool playerEntity::steerInitialized;
@@ -35,12 +35,13 @@ UBCBaseSharedPtr playerEntity::base;  // base class object
 playerEntity::playerEntity()  // constructor
 {
     steerInitialized = false;
-    baseInitialized = false;
+/*    baseInitialized = false;
 
     entityID = 0;
     physicsSetup = false;
     modelNeedsLoaded = false;
     modelLoaded = false;
+    */
 //    physics = new playerPhysics;
 }
 playerEntity::~playerEntity()  // destructor
@@ -75,7 +76,7 @@ void playerEntity::setSteerInitialized(bool set)  // sets the value of steerInit
     steerInitialized = set;
 }
 
-UBCBaseSharedPtr playerEntity::getBase()  // retrieves the value of base
+/*UBCBaseSharedPtr playerEntity::getBase()  // retrieves the value of base
 {
     return (base);
 }
@@ -244,12 +245,12 @@ bool playerEntity::loadModel()  // loads the 3D model
 //    exit(0);
     // creates and instantiates the node object
 //    node = getRenderE()->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName);
-/*    if (entityNodeName == "")
-    {
-        entityNodeName = entityName +"node";
+///    if (entityNodeName == "")
+///    {
+///        entityNodeName = entityName +"node";
 //        entityNodeName = "das";
-    }
-*/
+///    }
+
     logMsg(func +" entityNodeName == " +entityNodeName);
 //    exit(0);
     Ogre::SceneNode *tempNode = base->getGameE()->getRenderE()->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName);
@@ -264,19 +265,20 @@ bool playerEntity::loadModel()  // loads the 3D model
     tempNode->setPosition(0.0f,0.0f,0.0f);
     
     node = OgreSceneNodeSharedPtr(tempNode);
-/*    logMsg("scene node created!");
-    node->attachObject(model);
-    logMsg("node attached!");
+///    logMsg("scene node created!");
+///    node->attachObject(model);
+///    logMsg("node attached!");
     // attaches 3D model to the node
 //    node->attachObject(model);
     // sets the size of the bball node
-    node->setScale(0.25f,0.25f,0.25f);
-    node->setPosition(0.0f,0.0f,0.0f);
-*/
+///    node->setScale(0.25f,0.25f,0.25f);
+///    node->setPosition(0.0f,0.0f,0.0f);
+
     logMsg(func +" end");
     
-    return true;
+    return (true);
 }
+*/
 
 bool playerEntity::setupPhysicsObject()  // sets up the physics object
 {

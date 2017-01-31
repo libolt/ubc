@@ -577,10 +577,14 @@ void playerState::setInitialized(bool set)  // sets the value of initialized
 
 bool playerState::setup()  // initializes the state of the object
 {
-    sharedPtr<playerData> tempData(new playerData);
+    std::string func = "playerState::setup()";
+    
+    logMsg(func +" beginning");
+        sharedPtr<playerData> tempData(new playerData);
     data = tempData;
     sharedPtr<playerEntity> tempPEnt(new playerEntity);
     playerEnt = tempPEnt;
+    playerEnt->setInitialized(true);
 /*
     playerSteerSharedPtr tempSteer(new playerSteer);
     setSteer(tempSteer);
@@ -594,6 +598,8 @@ bool playerState::setup()  // initializes the state of the object
 
 //    pInstance->setSteer(playerSteerSharedPtr(pSteer));
 */
+    logMsg(func +" end");
+
     return (true);
 }
 
@@ -666,15 +672,18 @@ void playerState::updateState()
         updateDirection();
         logMsg(func + " Updating Movement");
         updateMovement();
+        logMsg(func + " oldDirection = direction");
         oldDirection = direction;
+        logMsg(func + " activeTeamInstance = base->getGameS()->getActiveTeamInstance()");
         teamStateUMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
-        size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
+//        size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
+        logMsg(func + " Team Type == " +convert->toString(teamType));
         if (teamType == base->getGameS()->getTeamWithBall() && base->getGameS()->getTipOffComplete())
         {
-            logMsg(func +" dplayerWithBallID == " +convert->toString(playerWithBallID));
-            if (data->getID() == playerWithBallID && data->getID() >= 0)
+//            logMsg(func +" dplayerWithBallID == " +convert->toString(playerWithBallID));
+            if (/*data->getID() == playerWithBallID &&*/ data->getID() >= 0)
             {
-                logMsg(func +" playerID == " +convert->toString(data->getID()));
+//                logMsg(func +" playerID == " +convert->toString(data->getID()));
 //                int activeBBallInstance = getActiveBBallInstance();
                 basketballStateUMSharedPtr activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();
                 
@@ -709,7 +718,19 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
         switch (courtPositionChangedType)
         {
             case STARTCHANGE:
-                logMsg(func + " STARTCHANGE");
+                logMsg(func + " STARTCHANGE");              
+                logMsg(func +" Node Position == " +convert->toString(playerEnt->getNode()->getPosition()));
+                logMsg(func +" New Court Position == " +convert->toString(newCourtPosition));
+                logMsg(func + " Name == " +data->getFirstName() +" " +data->getLastName());
+                if (!playerEnt->getModelLoaded())
+                {
+                    logMsg(func +" Model NOT Loaded!");
+                }
+                else
+                {
+                    logMsg(func +" Model Loaded!");
+                }
+                logMsg(func + " Node Name == " +playerEnt->getNode()->getName());
                 logMsg(func + " Node Translate");     
                 playerEnt->getNode()->translate(newCourtPosition);
                 logMsg(func + " Convert to Bullet");
@@ -938,10 +959,11 @@ void playerState::updateMovement()  // updates movement status of the player
     logMsg(func +" beginning");
     logMsg(func +" playerTeamType == " +convert->toString(teamType));
     logMsg(func +" passSteal ==  " +convert->toString(passSteal));
-
+    
     if (movement)   // if true sets coordinate change accordingly
     {
-//        exit(0);
+        logMsg(func +" movement!");
+        exit(0);
         switch (direction)
         {
             case UP:
@@ -980,19 +1002,21 @@ void playerState::updateMovement()  // updates movement status of the player
 
         }*/
     }
-    else if (!movement)  // if false then sets their coordinate changes to 0.0
+    else // if false then sets their coordinate changes to 0.0
     {
+        logMsg(func +" No movement!");
         posChange = Ogre::Vector3(0.0f, 0.0f, 0.0f);
     }
 
     if (posChange.x != 0 || posChange.y != 0 || posChange.z != 0)
     {
+        logMsg(func +" Setting newCourtPosition!");
         newCourtPosition = posChange;  // sets the newCourtPosition for current playerInstance
         courtPositionChanged = true;
         courtPositionChangedType = INPUTCHANGE;
         movement = false;
     }
-    logMsg(func +" beginning");
+    logMsg(func +" end");
 
 //  exit(0);
 }

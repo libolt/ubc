@@ -2088,7 +2088,7 @@ playerStateSharedPtr loader::loadPlayerFile(std::string fileName)  // loads the 
     sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    sharedPtr<renderEngine> render = renderEngine::Instance();
-
+    std::string func = "loader::loadPlayerFile()";
     playerStateSharedPtr playerInstance(new playerState);
     std::string firstName;
     std::string lastName;
@@ -2127,13 +2127,13 @@ playerStateSharedPtr loader::loadPlayerFile(std::string fileName)  // loads the 
     int durability = 0;
     int demeanor = 0;
     int improvability = 0;
- 
     std::string fileContents;
     tinyxml2::XMLDocument doc;
-
     char *contents = NULL;
-    readFile(fileName.c_str(), &contents);
-    logMsg("loading: "+fileName);
+    
+    logMsg(func +" beginning");
+    readFile(fileName.c_str(), &contents);   
+    logMsg(func +" loading: "+fileName);
     fileContents = convert->toString(contents);
 //    logMsg("fileContents = " +fileContents);
     
@@ -2158,7 +2158,7 @@ playerStateSharedPtr loader::loadPlayerFile(std::string fileName)  // loads the 
     // should always have a valid root but handle gracefully if it does
     if (!pElem)
     {
-        logMsg("Unable to find a valid player file root!");
+        logMsg(func +" Unable to find a valid player file root!");
         exit(0);
     }
 
@@ -2460,7 +2460,18 @@ playerStateSharedPtr loader::loadPlayerFile(std::string fileName)  // loads the 
     }
 //    sharedPtr<playerEntity> tempPEnt(new playerEntity);
 //    playerInstance->setPlayerEnt(tempPEnt);
+    logMsg(func +" name == " +firstName +" " +lastName);
+
     playerInstance->setup();
+    if (playerInstance->getPlayerEnt()->getInitialized())
+    {
+        logMsg(func + " playerEnt Initialized!");
+    }
+    else
+    {
+        logMsg(func + " playerEnt Initialized!");
+    }
+    exit(0);
     playerInstance->getData()->setFirstName(firstName);
 //    exit(0);
     
@@ -2505,8 +2516,11 @@ playerStateSharedPtr loader::loadPlayerFile(std::string fileName)  // loads the 
     playerInstance->getData()->calculateOverallRating();
 
 //    playerInstance = playerStateSharedPtr(player);
-    logMsg("player Name == "+playerInstance->getData()->getFirstName() + " " +playerInstance->getData()->getLastName() +" TeamID == " +convert->toString(playerInstance->getData()->getTeamID()));
+    logMsg(func +" player Name == "+playerInstance->getData()->getFirstName() + " " +playerInstance->getData()->getLastName() +" TeamID == " +convert->toString(playerInstance->getData()->getTeamID()));
 //    exit(0);
+    
+    logMsg(func +" end");
+    
     return (playerInstance);
 }
 

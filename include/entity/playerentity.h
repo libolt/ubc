@@ -22,14 +22,14 @@
 #define _PLAYERENTITY_H_
 
 //#include "ai/playersteer.h"
-
+#include "entity/entity.h"
 #include "physics/playerphysics.h"
 //class entity;
 //class playerPhysics;
 
 class playerSteer;
 
-class playerEntity : public playerPhysics
+class playerEntity : public playerPhysics, public entity
 {
     public:
     playerEntity();  // constructor
@@ -47,7 +47,7 @@ class playerEntity : public playerPhysics
     bool getSteerInitialized();  // retrieves the value of steerInitialized
     void setSteerInitialized(bool set);  // sets the value of steerInitialized
 
-    UBCBaseSharedPtr getBase();  // retrieves the value of base
+/*    UBCBaseSharedPtr getBase();  // retrieves the value of base
     void setBase(UBCBaseSharedPtr set);  // sets the value of base
 
     bool getBaseInitialized();  // retrieves the value of baseInitialized
@@ -84,7 +84,7 @@ class playerEntity : public playerPhysics
     void setNodePosition(Ogre::Vector3 set);  // sets the value of nodePosition
 
     bool loadModel();  // loads the 3D model from file specified in modelName
-
+*/
     bool setupPhysicsObject();  // sets up the physics object
  
     private:
@@ -96,7 +96,7 @@ class playerEntity : public playerPhysics
     playerSteerSharedPtr steer;  // stores the steering objerct that represents the player
     bool steerInitialized; // stores whether the steer object has been initialized
 
-    static UBCBaseSharedPtr base;  // base class object
+/*    static UBCBaseSharedPtr base;  // base class object
     
     bool baseInitialized;  // stores whether or not the base class has been initialized.
 
@@ -119,7 +119,7 @@ class playerEntity : public playerPhysics
     bool modelNeedsLoaded;  // stores whether or not to load the model
 
     bool modelLoaded;  // stores whether the 3D model of the basketball has been loaded
-
+*/
 };
 
 #endif // _PLAYERENTITY_H_

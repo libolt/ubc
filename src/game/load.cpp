@@ -2462,15 +2462,19 @@ playerStateSharedPtr loader::loadPlayerFile(std::string fileName)  // loads the 
     logMsg(func +" name == " +firstName +" " +lastName);
 
     playerInstance->setup();
-    if (playerInstance->getPlayerEnt()->getInitialized())
+    if (firstName == "Xavier")
     {
-        logMsg(func + " playerEnt Initialized!");
+        if (playerInstance->getPlayerEnt()->getInitialized())
+        {
+            logMsg(func +" " +firstName +" " +lastName + " playerEnt Initialized!");
+        }
+        else
+        {
+            logMsg(func +" " +firstName +" " +lastName + " playerEnt NOT Initialized!");
+        }
+//        exit(0);
     }
-    else
-    {
-        logMsg(func + " playerEnt Initialized!");
-    }
-    exit(0);
+    
     playerInstance->getData()->setFirstName(firstName);
 //    exit(0);
     

@@ -27,6 +27,8 @@
 
 // static declarations
 UBCBaseSharedPtr entity::base;  // base class object
+OgreSceneNodeSharedPtr entity::node;  // stores node 3d model is attached to
+
 //std::string entity::entityNodeName;  // stores the name of the scene node
 
 entity::entity()  // constructor
@@ -166,19 +168,19 @@ void entity::setNodePosition(Ogre::Vector3 set)  // sets the value of nodePositi
 bool entity::loadModel()  // loads the 3D model
 {
     sharedPtr<conversion> convert = conversion::Instance();
-
-//    exit(0);
-//    sharedPtr<renderEngine> render = renderEngine::Instance();
     std::string func = "playerEntity::loadModel()";
+    sharedPtr<renderEngine> render = base->getGameE()->getRenderE();
+    sharedPtr<Ogre::SceneManager> mSceneMgr = render->getMSceneMgr();
+    Ogre::ResourceGroupManager &rsm = Ogre::ResourceGroupManager::getSingleton();
+    OgreEntitySharedPtr tempModel;
+    OgreSceneNodeSharedPtr tempNode; //(new Ogre::SceneNode);
+
     logMsg(func +" beginning");
     logMsg(func +" baseInitialized == " +convert->toString(baseInitialized));
-    sharedPtr<renderEngine> render = base->getGameE()->getRenderE();
     logMsg(func +" entityName == " +entityName);
     logMsg(func +" entityModelFileName == " +entityModelFileName);
-    sharedPtr<Ogre::SceneManager> mSceneMgr = render->getMSceneMgr();
     logMsg(func +" Model");
-    Ogre::ResourceGroupManager &rsm = Ogre::ResourceGroupManager::getSingleton();
-    
+        
     if (rsm.resourceGroupExists("UBCData"))
     {
         logMsg(func +" UBData exists!");
@@ -212,7 +214,7 @@ bool entity::loadModel()  // loads the 3D model
     }
 //    model = render->getMSceneMgr()->createEntity(entityName, entityModelFileName);  // loads the model
     logMsg(func +" Entity Name == " +entityName + " Model File Name == " +entityModelFileName);
-    Ogre::Entity *tempModel = base->getGameE()->getRenderE()->getMSceneMgr()->createEntity(entityName, entityModelFileName, "UBCData");  // loads the model
+    tempModel = OgreEntitySharedPtr(base->getGameE()->getRenderE()->getMSceneMgr()->createEntity(entityName, entityModelFileName, "UBCData"));  // loads the model
     logMsg(func +" tempModel loaded!");
     
 //    render->getMSceneMgr()->
@@ -231,7 +233,7 @@ bool entity::loadModel()  // loads the 3D model
 
     logMsg(func +" entityNodeName == " +entityNodeName);
 //    exit(0);
-    Ogre::SceneNode *tempNode = base->getGameE()->getRenderE()->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName);
+    tempNode = OgreSceneNodeSharedPtr(base->getGameE()->getRenderE()->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName));
 //    tempNode->setName(entityNodeName);
     tempNode->attachObject(model.get());
     logMsg(func +" node attached!");
@@ -242,7 +244,9 @@ bool entity::loadModel()  // loads the 3D model
     tempNode->setScale(0.25f,0.25f,0.25f);
     tempNode->setPosition(0.0f,0.0f,0.0f);
     
-    node = OgreSceneNodeSharedPtr(tempNode);
+    node = tempNode;
+    logMsg(func +" node position == " +convert->toString(node->getPosition()));
+//    exit(0);
 ///    logMsg("scene node created!");
 ///    node->attachObject(model);
 ///    logMsg("node attached!");

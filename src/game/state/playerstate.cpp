@@ -720,6 +720,8 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
             case STARTCHANGE:
                 logMsg(func + " STARTCHANGE");              
                 logMsg(func +" Node Position == " +convert->toString(playerEnt->getNode()->getPosition()));
+                logMsg(func +" Node Scale == " +convert->toString(playerEnt->getNode()->getScale()));
+
                 logMsg(func +" New Court Position == " +convert->toString(newCourtPosition));
                 logMsg(func + " Name == " +data->getFirstName() +" " +data->getLastName());
                 if (!playerEnt->getModelLoaded())
@@ -730,6 +732,8 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
                 {
                     logMsg(func +" Model Loaded!");
                 }
+                logMsg(func + "STARTCHANGE Entity Node Name == " +playerEnt->getEntityNodeName());
+           
                 logMsg(func + " Node Name == " +playerEnt->getNode()->getName());
                 logMsg(func + " Node Translate");     
                 playerEnt->getNode()->translate(newCourtPosition);

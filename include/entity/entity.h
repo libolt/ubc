@@ -106,7 +106,7 @@ class entity // : public UBCBase // base class for entity objects
 
     OgreEntitySharedPtr model;  // stores 3d model
 
-    OgreSceneNodeSharedPtr node;  // stores node 3d model is attached to
+    static OgreSceneNodeSharedPtr node;  // stores node 3d model is attached to
 
     Ogre::Vector3 nodePosition;  // stores the position of the node
 

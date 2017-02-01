@@ -4,7 +4,7 @@
 //  Easylogging++ v9.84
 //  Single-header only, cross-platform logging library for C++ applications
 //
-//  Copyright (c) 2016 muflihun.com
+//  Copyright (c) 2017 muflihun.com
 //
 //  This library is released under the MIT Licence.
 //  http://easylogging.muflihun.com/licence.php
@@ -6024,7 +6024,7 @@ el::base::type::ostream_t& operator<<(el::base::type::ostream_t& OutputStreamIns
         /// @brief Current version number
         static inline const std::string version(void) { return std::string("9.84"); }
         /// @brief Release date of current version
-        static inline const std::string releaseDate(void) { return std::string("29-07-2016 1221hrs"); }
+        static inline const std::string releaseDate(void) { return std::string("29-07-2017 1221hrs"); }
     };
 }  // namespace el
 #undef VLOG_IS_ON

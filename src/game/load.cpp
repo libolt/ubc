@@ -30,7 +30,7 @@
 #include "logging.h"
 #include "data/playerdata.h"
 #include "engine/renderengine.h"
-#include "entity/playerEntity.h"
+#include "entity/playerentity.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
 #include "state/hoopstate.h"

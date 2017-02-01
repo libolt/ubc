@@ -23,16 +23,7 @@
 
 #include "boost/shared_ptr.hpp"
 
-#include "engine/gameengine.h"
-
-#undef None
-#undef Button1
-#undef Button2
-#undef Button3
-#undef Button4
-#undef Button5
-#undef Button6
-#undef Button7
+#include "gui/guidefines.h"
 
 #include "MyGUI_Gui.h"
 #include "MyGUI_OgrePlatform.h"
@@ -43,7 +34,6 @@
 #include "MyGUI_FontManager.h"
 #include "MyGUI_LayoutManager.h"
 #include "MyGUI_ImageBox.h"
-#include "engine/gameengine.h"
 
 /* #include "MyGUI.h"
 #include "MyGUI_OgrePlatform.h"
@@ -52,7 +42,6 @@
 
 //#include "ubcbase.h"
 #include "enums.h"
-#include "state/gamestateshared.h"
 //#include "input.h" 
 //#include "engine/renderengine.h" 
 

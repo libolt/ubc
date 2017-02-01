@@ -28,6 +28,7 @@
 #include "state/gamestate.h"
 #include "load.h"
 #include "logging.h"
+#include "engine/gameengine.h"
 #include "engine/renderengine.h"
 #include "state/courtstate.h"
 #include "state/teamstate.h"

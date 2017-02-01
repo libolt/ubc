@@ -25,7 +25,8 @@
 #include "userinput.h"
 #include "load.h"
 #include "ubcbase.h"
-
+#include "gui/gui.h"
+#undef None
 // static declarations
 UBCBaseSharedPtr inputState::base;  // static copy of base class
 inputEngineSharedPtr inputState::inputE;  // the inputEngine object

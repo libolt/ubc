@@ -36,6 +36,7 @@
 //#include "input.h"
 
 #include "engine.h" 
+#include "typedefs.h"
 
 class inputEngine;
 //class inputSystem;

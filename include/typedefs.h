@@ -21,6 +21,7 @@
 #ifndef _TYPEDEFS_H_
 #define _TYPEDEFS_H_
 
+
 #ifndef _ENET_ISINCLUDED_
 #define _ENET_ISINCLUDED_
 #include "enet/enet.h"
@@ -39,6 +40,8 @@
 
 #include "ai/steering.h"
 //#include "offenseplays.h"
+
+#include "gui/guidefines.h"
 
 #include "MyGUI_Gui.h"
 #include "MyGUI_OgrePlatform.h"

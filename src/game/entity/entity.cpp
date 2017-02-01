@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "entity/entity.h"
+#include "engine/gameengine.h"
 #include "engine/renderengine.h"
 #include "conversion.h"
 #include "logging.h"

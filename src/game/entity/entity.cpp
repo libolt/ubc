@@ -27,7 +27,7 @@
 
 // static declarations
 UBCBaseSharedPtr entity::base;  // base class object
-OgreSceneNodeSharedPtr entity::node;  // stores node 3d model is attached to
+//OgreSceneNodeSharedPtr entity::node;  // stores node 3d model is attached to
 
 //std::string entity::entityNodeName;  // stores the name of the scene node
 
@@ -168,18 +168,19 @@ void entity::setNodePosition(Ogre::Vector3 set)  // sets the value of nodePositi
 bool entity::loadModel()  // loads the 3D model
 {
     sharedPtr<conversion> convert = conversion::Instance();
-    std::string func = "playerEntity::loadModel()";
+    std::string func = "entity::loadModel()";
     sharedPtr<renderEngine> render = base->getGameE()->getRenderE();
     sharedPtr<Ogre::SceneManager> mSceneMgr = render->getMSceneMgr();
     Ogre::ResourceGroupManager &rsm = Ogre::ResourceGroupManager::getSingleton();
     OgreEntitySharedPtr tempModel;
     OgreSceneNodeSharedPtr tempNode; //(new Ogre::SceneNode);
 
+    entityNodeName = entityName + "node";
     logMsg(func +" beginning");
     logMsg(func +" baseInitialized == " +convert->toString(baseInitialized));
-    logMsg(func +" entityName == " +entityName);
-    logMsg(func +" entityModelFileName == " +entityModelFileName);
-    logMsg(func +" Model");
+    logMsg(func +" ECB entityName == " +entityName);
+    logMsg(func +" ECB entityModelFileName == " +entityModelFileName);
+    logMsg(func +" ECB entityNodeName == " +entityNodeName);
         
     if (rsm.resourceGroupExists("UBCData"))
     {
@@ -208,11 +209,6 @@ bool entity::loadModel()  // loads the 3D model
         logMsg(func +" mSceneMgr does not have camera!");
     }
     
-    if (entityNodeName == "")
-    {
-        entityNodeName = entityName + "node";
-    }
-//    model = render->getMSceneMgr()->createEntity(entityName, entityModelFileName);  // loads the model
     logMsg(func +" Entity Name == " +entityName + " Model File Name == " +entityModelFileName);
     tempModel = OgreEntitySharedPtr(base->getGameE()->getRenderE()->getMSceneMgr()->createEntity(entityName, entityModelFileName, "UBCData"));  // loads the model
     logMsg(func +" tempModel loaded!");
@@ -245,6 +241,7 @@ bool entity::loadModel()  // loads the 3D model
     tempNode->setPosition(0.0f,0.0f,0.0f);
     
     node = tempNode;
+    logMsg(func +" ECB node name == " +node->getName());
     logMsg(func +" node position == " +convert->toString(node->getPosition()));
 //    exit(0);
 ///    logMsg("scene node created!");

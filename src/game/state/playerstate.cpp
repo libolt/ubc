@@ -611,15 +611,23 @@ void playerState::updateState()
     physicsEngine physEngine;
     jumpBallsSharedPtr jumpBall = base->getGameS()->getJumpBall();
     Ogre::Vector3 playerPos;
-    std::string func = "playerState::updateState";
+    std::string func = "playerState::updateState()";
     
     logMsg(func +" beginning");
+    logMsg(func +" " +data->getFirstName() + " " +data->getLastName() +" PSUPDATE!");
+    logMsg(func +" " +playerEnt->getEntityName() +" PSUPDATE!!");
+
     if (playerEnt->getPhysicsSetup())
     {
         logMsg(func +" Updating Court Position");
         updateCourtPosition();
         logMsg(func +" Court Position Updated!");
 //        exit(0);
+    }
+    else
+    {
+        logMsg(func +" " +data->getFirstName() + " " +data->getLastName() +" physics NOT SETUP!");
+
     }
 
 //    if (shotTaken && !shotComplete)  // checks if a player takes a shot
@@ -701,7 +709,7 @@ void playerState::updateState()
 
 bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3D model
 {
-    std::string func = "playerState::updateCourtPosition";
+    std::string func = "playerState::updateCourtPosition() ";
     sharedPtr<conversion> convert = conversion::Instance();
     ///sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
@@ -709,32 +717,26 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
     btVector3 physChange = btVector3(0,0,0);
     Ogre::Vector3 changePos = Ogre::Vector3(0,0,0);
     
-    logMsg(func + " beginning");
+/*    logMsg(func + " beginning");
     logMsg(func + " updatePosChange == " +convert->toString(posChange));
     logMsg(func + " newCourtPosition == " +convert->toString(newCourtPosition));
+*/
     if (courtPositionChanged)
     {
         
         switch (courtPositionChangedType)
         {
             case STARTCHANGE:
-                logMsg(func + " STARTCHANGE");              
+/*                logMsg(func + " STARTCHANGE");              
                 logMsg(func +" Node Position == " +convert->toString(playerEnt->getNode()->getPosition()));
                 logMsg(func +" Node Scale == " +convert->toString(playerEnt->getNode()->getScale()));
 
                 logMsg(func +" New Court Position == " +convert->toString(newCourtPosition));
+*/
                 logMsg(func + " Name == " +data->getFirstName() +" " +data->getLastName());
-                if (!playerEnt->getModelLoaded())
-                {
-                    logMsg(func +" Model NOT Loaded!");
-                }
-                else
-                {
-                    logMsg(func +" Model Loaded!");
-                }
-                logMsg(func + "STARTCHANGE Entity Node Name == " +playerEnt->getEntityNodeName());
-           
-                logMsg(func + " Node Name == " +playerEnt->getNode()->getName());
+                logMsg(func + " UC Entity Name == " +playerEnt->getEntityName());                           
+                logMsg(func + "Entity UC Node Name == " +playerEnt->getEntityNodeName());
+                logMsg(func + " UC Node Name == " +playerEnt->getNode()->getName());
                 logMsg(func + " Node Translate");     
                 playerEnt->getNode()->translate(newCourtPosition);
                 logMsg(func + " Convert to Bullet");
@@ -797,7 +799,7 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
             break;
         }
         ++posChangeAmount;
-        logMsg(func + " player ID " +convert->toString(data->getID()) +"change amount = " +convert->toString(posChangeAmount));
+//        logMsg(func + " player ID " +convert->toString(data->getID()) +"change amount = " +convert->toString(posChangeAmount));
         
     }
     

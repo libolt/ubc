@@ -1463,8 +1463,8 @@ bool gameState::updateState()  // updates the game state
             ATIIT.second->updateState();
             for (auto APIIT : ATIIT.second->getActivePlayerInstance())
             {
-                logMsg(func +" player model loaded == " +convert->toString(APIIT.second->getPlayerEnt()->getModelLoaded()));
-//                logMsg(func +"activePlayerInstance coords == " +convert->toString(APIIT.second->getPlayerEnt()->getNode()->getPosition()));
+                logMsg(func +" player model loaded == " +convert->toString(APIIT.second->getEntity()->getModelLoaded()));
+//                logMsg(func +"activePlayerInstance coords == " +convert->toString(APIIT.second->getEntity()->getNode()->getPosition()));
             }
         }
 //        exit(0);

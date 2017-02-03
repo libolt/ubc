@@ -123,8 +123,8 @@ void playerSteerPlugin::open()
         for (auto APIIT : activePlayerInstance)
         {
             logMsg(func +" for (auto APIIT : activePlayerInstance[ATIIT.first])");
-            playerSteerSharedPtr steer = APIIT.second->getPlayerEnt()->getSteer();
-            bool steerInitialized = APIIT.second->getPlayerEnt()->getSteerInitialized();
+            playerSteerSharedPtr steer = APIIT.second->getEntity()->getSteer();
+            bool steerInitialized = APIIT.second->getEntity()->getSteerInitialized();
             if (!steerInitialized)
             {
                 playerSteerSharedPtr tempSteer(new playerSteer);
@@ -143,14 +143,14 @@ void playerSteerPlugin::open()
             logMsg(func +" ai->selectedVehicle = steer");
             ai->selectedVehicle = steer;
             logMsg(func +" APIIT.second->setSteer(steer);");
-            APIIT.second->getPlayerEnt()->setSteer(steer);
+            APIIT.second->getEntity()->setSteer(steer);
             logMsg(func + " allPlayerSteers.push_back(APIIT.second->getSteer());");
-            allPlayerSteers.push_back(APIIT.second->getPlayerEnt()->getSteer());
+            allPlayerSteers.push_back(APIIT.second->getEntity()->getSteer());
     //            ++y;
             logMsg(func +" allPlayerSteers.push_back(APIIT.second->getSteer());");
-            APIIT.second->getPlayerEnt()->setSteer(steer);
+            APIIT.second->getEntity()->setSteer(steer);
             logMsg(func +" APIIT.second->setSteerInitialized(steerInitialized);");
-            APIIT.second->getPlayerEnt()->setSteerInitialized(steerInitialized);
+            APIIT.second->getEntity()->setSteerInitialized(steerInitialized);
         }
         logMsg(func +" ATIIT.second->setActivePlayerInstance(activePlayerInstance);");
         ATIIT.second->setActivePlayerInstance(activePlayerInstance);
@@ -280,11 +280,11 @@ void playerSteerPlugin::update(const float currentTime, const float elapsedTime)
 //        while (y < activePlayerInstance[x].size())
         for (auto APIIT : activePlayerInstance[ATIIT.first])
         {
-            if (APIIT.first != ATIIT.second->getHumanPlayer() && APIIT.second->getPlayerEnt()->getModelLoaded())
+            if (APIIT.first != ATIIT.second->getHumanPlayer() && APIIT.second->getEntity()->getModelLoaded())
             {
 //                exit(0);
 //                logMsg("ATIIT.first = " +ATIIT.first +"APIIT.first = " +APIIT.first);
-                APIIT.second->getPlayerEnt()->getSteer()->update(currentTime, elapsedTime);
+                APIIT.second->getEntity()->getSteer()->update(currentTime, elapsedTime);
             }
 //            ++y;
         }

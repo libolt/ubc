@@ -254,7 +254,7 @@ bool jumpBalls::jumpBallExecute(basketballStateUMSharedPtr activeBasketballInsta
             {
                 logMsg(func +" jumpPlayerInstance = " +APIIT.first);
                  // logMsg("PlayerName = " +activePlayerInstance[x][i].getPlayerName());
-                logMsg(func +" ModelLoaded = " +convert->toString(APIIT.second->getPlayerEnt()->getModelLoaded()));
+                logMsg(func +" ModelLoaded = " +convert->toString(APIIT.second->getEntity()->getModelLoaded()));
     //                    exit(0);
                 //jumpPlayerID.push_back(activePlayerInstance[i].getPlayerID());
                 jumpPlayerInstance.insert(std::pair<std::string, playerStateSharedPtr>(APIIT.first, APIIT.second));
@@ -453,7 +453,7 @@ bool jumpBalls::tipToPlayer(basketballStateUMSharedPtr activeBasketballInstance,
             logMsg("ballTippedToPlayerInstance == " +convert->toString(ballTippedToPlayerInstance));
 
             // FIXME! Do NOT hardcode activeBasketballInstance
-            if (physEngine.collisionCheck(activeBasketballInstance[0]->getPhysBody().get(), activePlayerInstance[ballTippedToPlayerInstance]->getPlayerEnt()->getPhysBody().get()))
+            if (physEngine.collisionCheck(activeBasketballInstance[0]->getPhysBody().get(), activePlayerInstance[ballTippedToPlayerInstance]->getEntity()->getPhysBody().get()))
             {
  //               exit(0);
 ///                gameS->setTeamWithBall(ballTippedToTeam);

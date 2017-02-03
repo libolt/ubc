@@ -739,7 +739,7 @@ void playerSteer::updateDefense(const float currentTime, const float elapsedTime
 //        while (x < activePlayerInstance[z].size())
         for (auto APIIT : activePlayerInstance[ATIIT.first])
         {
-            teamSteer.push_back(APIIT.second->getPlayerEnt()->getSteer());
+            teamSteer.push_back(APIIT.second->getEntity()->getSteer());
             ++x;
         }
         teamSteers.push_back(teamSteer);

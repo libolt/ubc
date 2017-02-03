@@ -56,8 +56,8 @@ class playerState //: public state
         sharedPtr<playerData> getData();  // retrieves the value of data
         void setData(sharedPtr<playerData> set);  // sets the value of data
 
-        sharedPtr<playerEntity> getPlayerEnt();  // retrieves the value of playerEnt
-        void setPlayerEnt(sharedPtr<playerEntity> set);  // sets the value of playerEnt
+        sharedPtr<playerEntity> getEntity();  // retrieves the value of playerEnt
+        void setEntity(sharedPtr<playerEntity> set);  // sets the value of playerEnt
 
         UBCBaseSharedPtr getBase();  // retrieves the value of base
         void setBase(UBCBaseSharedPtr set);  // sets the value of base
@@ -235,7 +235,7 @@ class playerState //: public state
 
         sharedPtr<playerData> data;  // instance of playerData object
 
-        sharedPtr<playerEntity> playerEnt;  // instance of playerEntity object
+        sharedPtr<playerEntity> entity;  // instance of playerEntity object
         
         static UBCBaseSharedPtr base;  // base class object
         

@@ -2458,13 +2458,13 @@ playerStateSharedPtr loader::loadPlayerFile(std::string fileName)  // loads the 
         improvability = convert->toInt(pElem->GetText());
     }
 //    sharedPtr<playerEntity> tempPEnt(new playerEntity);
-//    playerInstance->setPlayerEnt(tempPEnt);
+//    playerInstance->setEntity(tempPEnt);
     logMsg(func +" name == " +firstName +" " +lastName);
 
     playerInstance->setup();
     if (firstName == "Xavier")
     {
-        if (playerInstance->getPlayerEnt()->getInitialized())
+        if (playerInstance->getEntity()->getInitialized())
         {
             logMsg(func +" " +firstName +" " +lastName + " playerEnt Initialized!");
         }
@@ -2485,8 +2485,8 @@ playerStateSharedPtr loader::loadPlayerFile(std::string fileName)  // loads the 
     playerInstance->getData()->setWeight(weight);
     playerInstance->getData()->setID(ID);
     playerInstance->getData()->setTeamID(teamID);
-    playerInstance->getPlayerEnt()->setEntityName(firstName + lastName);
-    playerInstance->getPlayerEnt()->setEntityModelFileName(modelName);
+    playerInstance->getEntity()->setEntityName(firstName + lastName);
+    playerInstance->getEntity()->setEntityModelFileName(modelName);
     playerInstance->getData()->setPrimaryPosition(primaryPosition);
     playerInstance->getData()->setSecondaryPosition(secondaryPosition);
     playerInstance->getData()->setShooting(shooting);

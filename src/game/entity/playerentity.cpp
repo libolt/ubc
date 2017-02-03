@@ -84,6 +84,11 @@ bool playerEntity::setupPhysicsObject()  // sets up the physics object
     btRigidBody *tempPhysBody = getPhysBody().get();
     
     logMsg(func +" beginning");
+    if (!getPhysics()->getGameSInitialized())
+    {
+        getPhysics()->setGameS(getBase()->getGameS());
+        getPhysics()->setGameSInitialized(true);
+    }
 //    exit(0);
     setShapeType(CAPSULE);
     setColObject(COL_BBALL);

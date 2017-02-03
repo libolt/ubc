@@ -938,7 +938,7 @@ void teamState::setPlayerStartActivePositions()  // sets the position the player
     sharedPtr<conversion> convert = conversion::Instance();
     std::string func = "teamState::setPlayerStartActivePositions()";
 
-    logMsg(func + " activePlayerInstance.size() =" +convert->toString(activePlayerInstance.size()));
+    logMsg(func + " activePlayerInstance.size() == " +convert->toString(activePlayerInstance.size()));
     if (activePlayerInstance.size() > 0) // checks that activePlayerInstance has data before executing
     {
         activePlayerInstance["PG"]->setActivePosition(PG);
@@ -980,7 +980,7 @@ bool teamState::setupActivePlayerInstances()  // sets up active player objects
                     
         if (!APIIT.second->getEntity()->getModelLoaded())
         {
-            logMsg(func +" Model not loaded!");
+            logMsg(func +" Model not loaded yet!");
             if (APIIT.second->getEntity()->loadModel())
             {
                 logMsg(func + " Model loaded successfully!");
@@ -1004,13 +1004,20 @@ bool teamState::setupActivePlayerInstances()  // sets up active player objects
             
             APIIT.second->getEntity()->getPhysics()->setGameS(base->getGameS());
             APIIT.second->getEntity()->setupPhysicsObject();
-            APIIT.second->getEntity()->setPhysicsSetup(true);
+//            APIIT.second->getEntity()->setPhysicsSetup(true);
         }
         else
         {
                         
         }
     }
+    
+    for (auto APIIT : activePlayerInstance)
+    {
+        logMsg(func +" Entity Node Name == " +APIIT.second->getEntity()->getEntityNodeName());
+        logMsg(func +" Node Name == " +APIIT.second->getEntity()->getNode()->getName());
+    }
+    exit(0);
     logMsg(func +" end");
 
     return (true);
@@ -1026,12 +1033,20 @@ void teamState::updatePlayerStates()  // updates the states of active players
 //    while (x<activePlayerInstance.size())
     for (auto APIIT : activePlayerInstance)
     {
-        APIIT.second->updateState();
+        std::string xString = convert->toString(x);
+//        APIIT.second->updateState();
+        logMsg(func +" " +xString + " Name == " +APIIT.second->getData()->getFirstName() +" " +APIIT.second->getData()->getLastName());
+        logMsg(func +" " +xString + " Entity UC Name == " +APIIT.second->getEntity()->getEntityName());
+        logMsg(func +" " +xString + " Entity UC Node Name == " +APIIT.second->getEntity()->getEntityNodeName());
+        logMsg(func +" " +xString + " UC Node Name == " +APIIT.second->getEntity()->getNode()->getName());
+
 //        APIIT.second->getEntity()->getNode()->setPosition(Ogre::Vector3(-20,15,400));
-        logMsg(func +" APIIT.second->getPlayerEntity()->getNode()->getPosition() == " +convert->toString(APIIT.second->getEntity()->getNode()->getPosition()));       
+/*        logMsg(func +" APIIT.second->getPlayerEntity()->getNode()->getPosition() == " +convert->toString(APIIT.second->getEntity()->getNode()->getPosition()));       
         logMsg("PlayerSteerNode Position == " +convert->toString(APIIT.second->getEntity()->getNode()->getPosition()));
         logMsg("PlayerSteer Position == " +convert->toString(APIIT.second->getEntity()->getSteer()->position()));
+        */
         ++x;
+        
     }
 //    exit(0);
 

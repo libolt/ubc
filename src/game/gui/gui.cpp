@@ -1309,6 +1309,7 @@ void GUISystem::playerStartSelected()  // process player start selection
         }
         ATIIT.second->setActivePlayerInstance(activePlayerInstance);
         ATIIT.second->setActivePlayerInstancesCreated(true);
+//        ATIIT.second->setPlayerStartActivePositions();
         logMsg(func +" team name == " +ATIIT.second->getName());
 
         logMsg(func +" activePlayerInstance.size() == " +convert->toString(activePlayerInstance.size()));

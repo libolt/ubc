@@ -31,8 +31,7 @@
 #include "comparison.h"
 
 // static declarations
-gameStateSharedPtr playerPhysics::gameS;
-
+  
 playerPhysics::playerPhysics()  // constructor
 {
 //    physicsSetup = false;
@@ -41,15 +40,6 @@ playerPhysics::playerPhysics()  // constructor
 
 playerPhysics::~playerPhysics()  // destructor
 {
-}
-
-gameStateSharedPtr playerPhysics::getGameS()  // retrieves the value of gameS
-{
-    return (gameS);
-}
-void playerPhysics::setGameS(gameStateSharedPtr set)  // sets the value of gameS
-{
-    gameS = set;
 }
 
 /*bool playerPhysics::getPhysicsSetup()  // retrieves the value of physicsSetup

@@ -21,8 +21,14 @@
 #include "logging.h"
 #include "physics/physics.h"
 
+// static declarations
+gameStateSharedPtr playerPhysics::gameS;
+bool playerPhysics::gameSInitialized;  // stores whether the gameState object has been initialized
+
 physics::physics()  // constructor
 {
+    
+    gameSInitialized = false;
 //    physicsSetup = false;
 
     colObject = 999999;
@@ -33,6 +39,24 @@ physics::physics()  // constructor
 physics::~physics()  // destructor
 {
 
+}
+
+gameStateSharedPtr physics::getGameS()  // retrieves the value of gameS
+{
+    return (gameS);
+}
+void physics::setGameS(gameStateSharedPtr set)  // sets the value of gameS
+{
+    gameS = set;
+}
+
+bool physics::getGameSInitialized() // retrieves the value of gameSInitialized
+{
+    return (gameSInitialized);
+}
+void physics::setGameSInitialized(bool set)  // sets the value of gameSInitialized
+{
+    gameSInitialized = set;
 }
 
 btCollisionShapeSharedPtr physics::getShape()  // retrieves the value of shape

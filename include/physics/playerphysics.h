@@ -37,6 +37,9 @@ class playerPhysics : public physics
         gameStateSharedPtr getGameS();  // retrieves the value of gameS
         void setGameS(gameStateSharedPtr set);  // sets the value of gameS
         
+        bool getGameSInitialized(); // retrieves the value of gameSInitialized
+        void setGameSInitialized(bool set);  // sets the value of gameSInitialized
+        
 /*        bool getPhysicsSetup();  // retrieves the value of physicsSetup
         void setPhysicsSetup(bool set);  // sets the value of physicsSetup
         
@@ -59,6 +62,8 @@ class playerPhysics : public physics
     private:
     
         static gameStateSharedPtr gameS;  // stores a copy of gameState object
+        static bool gameSInitialized;  // stores whether the gameState object has been initialized
+        
 /*        bool physicsSetup;  // determines whether all players' physics bodies have been setup
         bool stateSet;  // if true then the player physics state has been set
 */

@@ -37,6 +37,12 @@ class physics : public physicsEngine
         physics();  // constructor
         ~physics();  // destructor
 
+        gameStateSharedPtr getGameS();  // retrieves the value of gameS
+        void setGameS(gameStateSharedPtr set);  // sets the value of gameS
+        
+        bool getGameSInitialized(); // retrieves the value of gameSInitialized
+        void setGameSInitialized(bool set);  // sets the value of gameSInitialized
+
         btCollisionShapeSharedPtr getShape();  // retrieves the value of shape
         void setShape(btCollisionShapeSharedPtr set);  // sets the value of shape
 
@@ -70,6 +76,9 @@ class physics : public physicsEngine
 
     private:
 
+        static gameStateSharedPtr gameS;  // stores a copy of gameState object
+        static bool gameSInitialized;  // stores whether the gameState object has been initialized
+ 
         btCollisionShapeSharedPtr shape;  // stores the shape of the object shape
         BtOgreRigidBodyStateSharedPtr bodyState;  // stores the state of the body objectt
 

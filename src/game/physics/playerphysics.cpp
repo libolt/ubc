@@ -96,7 +96,7 @@ bool playerPhysics::setupPhysics()  // sets up playerPhysics
     sharedPtr<gameState> gameS = gameState::Instance();
     sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
 
-    teamStateVec activeTeamInstance = gameS->getActiveTeamInstance();
+    teamStateVec activeTeamInstance = getGameS()->getActiveTeamInstance();
     btDynamicsWorld *world;
     for (size_t x=0; x<activeTeamInstance.size();++x)
     {
@@ -191,7 +191,7 @@ bool playerPhysics::setupPhysics()  // sets up playerPhysics
 
         logMsg("activePlayerInstance.size = " + convert->toString(activePlayerInstance.size()));
     }
-    gameS->setActiveTeamInstance(activeTeamInstance);   // stores all the changes to the activeTeamInstance
+    getGameS()->setActiveTeamInstance(activeTeamInstance);   // stores all the changes to the activeTeamInstance
 //    exit(0);
     return true;
 }
@@ -204,14 +204,14 @@ void playerPhysics::updatePosition()  // updates the position of player objecgts
 
     comparison compare;
 
-//    int activeBBallInstance = gameS->getActiveBBallInstance();
+//    int activeBBallInstance = getGameS()->getActiveBBallInstance();
 
-//    teamTypes teamWithBall = gameS->getTeamWithBall();
+//    teamTypes teamWithBall = getGameS()->getTeamWithBall();
     int playerWithBall;
 
-    teamStateUMSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
+    teamStateUMSharedPtr activeTeamInstance = getGameS()->getActiveTeamInstance();
     std::vector <playerStateUMSharedPtr > activePlayerInstance;
-    basketballStateVecSharedPtr basketballInstance = gameS->getBasketballInstance();
+    basketballStateVecSharedPtr basketballInstance = getGameS()->getBasketballInstance();
 
     // checks to see if player positions need updated
     size_t z = 0;
@@ -259,7 +259,7 @@ void playerPhysics::updatePosition()  // updates the position of player objecgts
 TS*/
     ++z;
     }
-    gameS->setActiveTeamInstance(activeTeamInstance);
+    getGameS()->setActiveTeamInstance(activeTeamInstance);
 }
 
 bool playerPhysics::jump(teamTypes teamType, int playerID)  // calculates and executes player jumping in the air
@@ -267,8 +267,8 @@ bool playerPhysics::jump(teamTypes teamType, int playerID)  // calculates and ex
     sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 
-    courtStateUMSharedPtr  courtInstance = gameS->getCourtInstance();
-    teamStateUMSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
+    courtStateUMSharedPtr  courtInstance = getGameS()->getCourtInstance();
+    teamStateUMSharedPtr activeTeamInstance = getGameS()->getActiveTeamInstance();
 /*TS    playerStateVecSharedPtr activePlayerInstance = getActiveTeamInstance()[teamType]->getActivePlayerInstance();
     sizeTVec activePlayerID = activeTeamInstance[teamType]->getActivePlayerID();
     btVector3 playerJumpBeginPos;
@@ -615,10 +615,10 @@ bool playerPhysics::shootBasketball(teamTypes teamType, int playerID)  // calcul
     }
     logMsg("playerdribble = " +convert->toString(activeTeamInstance[teamType]->getPlayerWithBallDribbling()));
     activeTeamInstance[teamType]->setActivePlayerInstance(activePlayerInstance);
-    gameS->setActiveTeamInstance(activeTeamInstance);
-   // gameS->getActiveTeamInstance()[teamType].getPlayerInstance()[playerID].getPhysBody()->setLinearVelocity(btVector3(15,-15,0));
+    getGameS()->setActiveTeamInstance(activeTeamInstance);
+   // getGameS()->getActiveTeamInstance()[teamType].getPlayerInstance()[playerID].getPhysBody()->setLinearVelocity(btVector3(15,-15,0));
   //  exit(0);
-    gameS->setBasketballInstance(basketballInstance);
+    getGameS()->setBasketballInstance(basketballInstance);
     */
     return (true);
 

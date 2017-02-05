@@ -22,8 +22,8 @@
 #include "physics/physics.h"
 
 // static declarations
-gameStateSharedPtr playerPhysics::gameS;
-bool playerPhysics::gameSInitialized;  // stores whether the gameState object has been initialized
+gameStateSharedPtr physics::gameS;
+bool physics::gameSInitialized;  // stores whether the gameState object has been initialized
 
 physics::physics()  // constructor
 {

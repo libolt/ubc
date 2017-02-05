@@ -55,7 +55,7 @@ IF (OpenSteer_FOUND)
         SET (OpenSteer_LIBRARIES ${OpenSteer_LIBRARY})
     ENDIF (WIN32)
 ELSE (OpenSteer_FOUND)
-    MESSAGE("TinyXML2 Not Found!")
+    MESSAGE("OpenSteer Not Found!")
 ENDIF (OpenSteer_FOUND)
 
 MARK_AS_ADVANCED(OpenSteer_LIBRARY OpenSteer_LIBRARIES OpenSteer_INCLUDE_DIRS)

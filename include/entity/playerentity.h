@@ -47,7 +47,9 @@ class playerEntity : public playerPhysics, public entity
     bool getSteerInitialized();  // retrieves the value of steerInitialized
     void setSteerInitialized(bool set);  // sets the value of steerInitialized
 
-
+/*    OgreSceneNodeSharedPtr getNode();  // retrieves the value of node
+    void setNode(OgreSceneNodeSharedPtr set);  // sets the value of node
+*/
     bool setupPhysicsObject();  // sets up the physics object
  
     private:
@@ -55,6 +57,7 @@ class playerEntity : public playerPhysics, public entity
 //    playerPhysics *physics;  // stores the playerPhysics object
 
     sharedPtr<playerPhysics> physics;  // instance of playerPhysics object
+//    OgreSceneNodeSharedPtr nodes;  // stores node 3d model is attached to
 
     playerSteerSharedPtr steer;  // stores the steering objerct that represents the player
     bool steerInitialized; // stores whether the steer object has been initialized

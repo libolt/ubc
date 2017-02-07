@@ -138,9 +138,9 @@ bool physics::setup()  // sets up the state of the object
     return (true);
 }
 
-bool physics::setupPhysics(Ogre::Entity **model, Ogre::SceneNode **node, btRigidBody **body)  // sets up physics for the object
+bool physics::setupPhysics(Ogre::Entity **model, OgreSceneNodeSharedPtr *node, btRigidBody **body)  // sets up physics for the object
 {
-    
+
 //    setCollidesWith(COL_COURT);  // collides with the court
     sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
@@ -200,7 +200,7 @@ bool physics::setupPhysics(Ogre::Entity **model, Ogre::SceneNode **node, btRigid
 
 //        exit(0);
 
-        BtOgreRigidBodyStateSharedPtr tempBodyState(new BtOgre::RigidBodyState(*node));
+        BtOgreRigidBodyStateSharedPtr tempBodyState(new BtOgre::RigidBodyState(node->get()));
         logMsg(func +" BtOgre::RigidBodyState *tempBodyState = new BtOgre::RigidBodyState(*node);");
 
         bodyState =  BtOgreRigidBodyStateSharedPtr(tempBodyState);

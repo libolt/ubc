@@ -76,11 +76,21 @@ void playerEntity::setSteerInitialized(bool set)  // sets the value of steerInit
     steerInitialized = set;
 }
 
+/*OgreSceneNodeSharedPtr playerEntity::getNode()  // retrieves the value of node
+{
+    return (nodes);
+}
+void playerEntity::setNode(OgreSceneNodeSharedPtr set)  // sets the value of node
+{
+    nodes = set;
+}
+*/
+
 bool playerEntity::setupPhysicsObject()  // sets up the physics object
 {
     std::string func = "playerEntity::setupPhysicsObject()!";
     Ogre::Entity *tempModel = getModel().get();
-    Ogre::SceneNode *tempNode = getNode().get();
+    OgreSceneNodeSharedPtr tempNode = getNode().get();
     btRigidBody *tempPhysBody = getPhysBody().get();
     
     logMsg(func +" beginning");
@@ -89,6 +99,7 @@ bool playerEntity::setupPhysicsObject()  // sets up the physics object
         getPhysics()->setGameS(getBase()->getGameS());
         getPhysics()->setGameSInitialized(true);
     }
+
 //    exit(0);
     setShapeType(CAPSULE);
     setColObject(COL_BBALL);
@@ -100,10 +111,12 @@ bool playerEntity::setupPhysicsObject()  // sets up the physics object
         logMsg(func +" setModel");
         setModel(OgreEntitySharedPtr(tempModel));
         logMsg(func +" setNode");
+        logMsg(func +" tempNode name == " +tempNode->getName());
         setNode(OgreSceneNodeSharedPtr(tempNode));
-        logMsg(func +" setPhysBody");
+/*        logMsg(func +" setPhysBody");
         setPhysBody(btRigidBodySharedPtr(tempPhysBody));
 //        exit(0);
+*/
         return (true);
     }
     else

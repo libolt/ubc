@@ -717,13 +717,14 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
     btVector3 physChange = btVector3(0,0,0);
     Ogre::Vector3 changePos = Ogre::Vector3(0,0,0);
     
-/*    logMsg(func + " beginning");
-    logMsg(func + " updatePosChange == " +convert->toString(posChange));
+    logMsg(func + " beginning");
+//    logMsg(func + " updatePosChange == " +convert->toString(posChange));
     logMsg(func + " newCourtPosition == " +convert->toString(newCourtPosition));
-*/
+//    exit(0);
     if (courtPositionChanged)
     {
-        
+        btTransform transform;
+        btVector3 physPos;
         switch (courtPositionChangedType)
         {
             case STARTCHANGE:
@@ -741,6 +742,11 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
                 entity->getNode()->translate(newCourtPosition);
                 logMsg(func + " Convert to Bullet");
                 physChange = BtOgre::Convert::toBullet(newCourtPosition);  // converts from Ogre::Vector3 to btVector3
+                logMsg("physChange == " +convert->toString(physChange));
+                transform = entity->getPhysBody()->getWorldTransform();
+                physPos = transform.getOrigin();
+                logMsg("physPos == " +convert->toString(physPos));
+
                 logMsg(func + " PhysBody Translate");
                 entity->getPhysBody()->translate(physChange); // moves physics body in unison with the model
                 logMsg(func + " Steer set Position Changed");

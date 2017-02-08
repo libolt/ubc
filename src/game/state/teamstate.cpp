@@ -526,7 +526,24 @@ void teamState::updateState()  // updates the state of the object
         {
             
         }
-        setPlayerStartPositions();  // sets starting positions for the players
+        if (!playerStartPositionsSet)
+        {
+            if (setPlayerStartPositions())  // sets starting positions for the players
+            {
+                playerStartPositionsSet = true;
+                logMsg("Player Start Positions set!");
+            } 
+            else
+            {
+                logMsg("Player Start Positions NOT set!");
+                exit(0);
+            }
+            
+        }
+        else
+        {
+            
+        }
         logMsg(func +" Player start positions set");
 
         updatePlayerStates();
@@ -1024,7 +1041,7 @@ bool teamState::setupActivePlayerInstances()  // sets up active player objects
         logMsg(func +" Entity Node Name == " +APIIT.second->getEntity()->getEntityNodeName());
         logMsg(func +" Node Name == " +APIIT.second->getEntity()->getNode()->getName());
     }
-    exit(0);
+//    exit(0);
     logMsg(func +" end");
 
     return (true);
@@ -1041,7 +1058,7 @@ void teamState::updatePlayerStates()  // updates the states of active players
     for (auto APIIT : activePlayerInstance)
     {
         std::string xString = convert->toString(x);
-//        APIIT.second->updateState();
+        APIIT.second->updateState();
         logMsg(func +" " +xString + " Name == " +APIIT.second->getData()->getFirstName() +" " +APIIT.second->getData()->getLastName());
         logMsg(func +" " +xString + " Entity UC Name == " +APIIT.second->getEntity()->getEntityName());
         logMsg(func +" " +xString + " Entity UC Node Name == " +APIIT.second->getEntity()->getEntityNodeName());

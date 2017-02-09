@@ -138,7 +138,7 @@ bool physics::setup()  // sets up the state of the object
     return (true);
 }
 
-bool physics::setupPhysics(OgreEntitySharedPtr *model, OgreSceneNodeSharedPtr *node, btRigidBodySharedPtr *body)  // sets up physics for the object
+bool physics::setupPhysics(OgreEntitySharedPtr *model, OgreSceneNodeSharedPtr *node, btRigidBody **body)  // sets up physics for the object
 {
 
 //    setCollidesWith(COL_COURT);  // collides with the court
@@ -238,7 +238,7 @@ bool physics::setupPhysics(OgreEntitySharedPtr *model, OgreSceneNodeSharedPtr *n
     logMsg(func +" getCollidesWith() == " +convert->toString(getCollidesWith()));
 
     world->addRigidBody(physBody, getColObject(), getCollidesWith());
-    *body = btRigidBodySharedPtr(physBody);
+    *body = physBody;
 
     logMsg(func +" world->addRigidBody(*body, getColObject(), getCollidesWith());");
 

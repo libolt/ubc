@@ -91,7 +91,7 @@ bool playerEntity::setupPhysicsObject()  // sets up the physics object
     std::string func = "playerEntity::setupPhysicsObject()!";
     OgreEntitySharedPtr tempModel = getModel();
     OgreSceneNodeSharedPtr tempNode = getNode();
-    btRigidBodySharedPtr tempPhysBody = getPhysBody();
+    btRigidBody *tempPhysBody = getPhysBody().get();
     
     logMsg(func +" beginning");
     if (!getPhysics()->getGameSInitialized())
@@ -113,10 +113,10 @@ bool playerEntity::setupPhysicsObject()  // sets up the physics object
         logMsg(func +" setNode");
         logMsg(func +" tempNode name == " +tempNode->getName());
         setNode(OgreSceneNodeSharedPtr(tempNode));
-/*        logMsg(func +" setPhysBody");
+        logMsg(func +" setPhysBody");
         setPhysBody(btRigidBodySharedPtr(tempPhysBody));
 //        exit(0);
-*/
+
         return (true);
     }
     else

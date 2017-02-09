@@ -42,7 +42,7 @@ bool courtEntity::setupPhysicsObject()  // sets up the physics object
 {
     OgreEntitySharedPtr tempModel = getModel();
     OgreSceneNodeSharedPtr tempNode = getNode();
-    btRigidBodySharedPtr tempPhysBody = getPhysBody();
+    btRigidBody *tempPhysBody = getPhysBody().get();
     
     int collides = COL_BBALL | COL_TEAM1 | COL_TEAM2;
     setShapeType(BOX);

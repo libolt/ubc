@@ -68,7 +68,7 @@ class physics : public physicsEngine
         void setSetupComplete(bool set);  // sets the value of physicsSetup
 */
 
-        bool setupPhysics(OgreEntitySharedPtr *model, OgreSceneNodeSharedPtr *node, btRigidBodySharedPtr *body);  // sets up object physics
+        bool setupPhysics(OgreEntitySharedPtr *model, OgreSceneNodeSharedPtr *node, btRigidBody **body);  // sets up object physics
 
         bool setup();  // sets up the object
 

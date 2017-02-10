@@ -36,9 +36,9 @@ class basketballEntity : public entity, public basketballPhysics
     basketballEntity();  // constructor
     ~basketballEntity();  // destructor
     
-/*    basketballPhysics *getPhysics();  // retrieves the value of physics
-    void setPhysics(basketballPhysics *set);  // sets the value of physics
-*/
+    sharedPtr<basketballPhysics> getPhysics();  // retrieves the value of physics
+    void setPhysics(sharedPtr<basketballPhysics> set);  // sets the value of physics
+
     basketballSteerSharedPtr getSteer();  // retrieves the value of steer
     void setSteer(basketballSteerSharedPtr set);  // sets the value of steer
 
@@ -46,7 +46,7 @@ class basketballEntity : public entity, public basketballPhysics
     
     private:
 
-//    basketballPhysics *physics;  // instanciates an object to handle the physics for the basketball
+    sharedPtr<basketballPhysics> physics;  // instanciates an object to handle the physics for the basketball
 
     basketballSteerSharedPtr steer;  // instance of the basketballSteer class
 

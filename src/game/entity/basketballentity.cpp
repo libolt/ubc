@@ -31,14 +31,14 @@ basketballEntity::~basketballEntity()  // destructor
     
 }
 
-/*basketballPhysics *basketballEntity::getPhysics()  // retrieves the value of physics
+sharedPtr<basketballPhysics> basketballEntity::getPhysics()  // retrieves the value of physics
 {
     return (physics);
 }
-void basketballEntity::setPhysics(basketballPhysics *set)  // sets the value of physics
+void basketballEntity::setPhysics(sharedPtr<basketballPhysics> set)  // sets the value of physics
 {
     physics = set;
-}*/
+}
 
 basketballSteerSharedPtr basketballEntity::getSteer()  // retrieves the value of steer
 {
@@ -53,14 +53,22 @@ bool basketballEntity::setupPhysicsObject()  // sets up the physics object
 {
     sharedPtr<conversion> convert = conversion::Instance();
     std::string func = "basketballEntity::setupPhysicsObject()";
-    Ogre::Entity *tempModel = getModel().get();
-    Ogre::SceneNode *tempNode = getNode().get();
+    OgreEntitySharedPtr tempModel = getModel();
+    OgreSceneNodeSharedPtr tempNode = getNode();
     btRigidBody *tempPhysBody = getPhysBody().get();
     bool returnType = false;
     
     logMsg(func +" beginning");
     
-/*    logMsg("tempNode->getName() == " +tempNode->getName());
+    if (!getPhysics()->getGameSInitialized())
+    {
+        getPhysics()->setGameS(getBase()->getGameS());
+        getPhysics()->setGameSInitialized(true);
+    }
+    
+    tempPhysBody->setMass(0.05f);
+    
+    logMsg("tempNode->getName() == " +tempNode->getName());
     setShapeType(SPHERE);
     logMsg(func +" setShapeType!");
     setColObject(COL_BBALL);
@@ -70,7 +78,7 @@ bool basketballEntity::setupPhysicsObject()  // sets up the physics object
 
     if (setupPhysics(&tempModel, &tempNode, &tempPhysBody))
     {
-*/        
+        
         logMsg(func +" setupPhysics!");
         setPhysicsSetup(true);
 
@@ -78,18 +86,19 @@ bool basketballEntity::setupPhysicsObject()  // sets up the physics object
         logMsg(func +" nodeName == " +tempNode->getName());
 
 //        exit(0);
-//        setModel(OgreEntitySharedPtr(tempModel));
-//        setNode(OgreSceneNodeSharedPtr(tempNode));
+        setModel(OgreEntitySharedPtr(tempModel));
+        setNode(OgreSceneNodeSharedPtr(tempNode));
         setPhysBody(btRigidBodySharedPtr(tempPhysBody));
 //        exit(0);
         returnType = true;;
 
-/*    }
+    }
     else
     {
     }
-*/
-    logMsg(func +"end");
 
+    logMsg(func +" end");
+
+//    exit(0);
     return (returnType);
 }

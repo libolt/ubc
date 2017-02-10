@@ -97,8 +97,10 @@ void basketballPhysics::setBounce(bballBounces set)  // sets the value of bounce
 
 bool basketballPhysics::setup()  // sets up physics for the basketball
 {
-/*    exit(0);
-    setCollidesWith(COL_COURT);  // collides with the court
+    std::string func = "basketballPhysics::setup()";
+    logMsg(func +" beginning");
+    exit(0);
+/*    setCollidesWith(COL_COURT);  // collides with the court
     sharedPtr<conversion> convert = conversion::Instance();
     sharedPtr<gameState> gameS = gameState::Instance();
     sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();

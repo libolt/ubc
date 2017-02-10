@@ -31,6 +31,8 @@ physics::physics()  // constructor
     gameSInitialized = false;
 //    physicsSetup = false;
 
+    mass = 0.0f;
+    inertia = btVector3(0,0,0);
     colObject = 999999;
     collidesWith = 999999;
     physObjNumber = 999999;
@@ -97,6 +99,24 @@ void physics::setPhysBody(btRigidBodySharedPtr set)  // sets physBody variable
     physBody = set;
 }
 
+btScalar physics::getMass()  // retrieves the value of mass
+{
+    return (mass);
+}
+void physics::setMass(btScalar set)  // sets the value of mass
+{
+    mass = set;
+}
+
+btVector3 physics::getInertia()  // retrieves the value of inertia
+{
+    return (inertia);
+}
+void physics::setInertia(btVector3 set)  // sets the value of inertia
+{
+    inertia = set;
+}
+
 int physics::getColObject()  // retrieves the value of colObject
 {
     return (colObject);
@@ -150,10 +170,10 @@ bool physics::setupPhysics(OgreEntitySharedPtr *model, OgreSceneNodeSharedPtr *n
 //    size_t activeBBallInstance = gameS->getActiveBBallInstance();
 
 //    Ogre::SceneNode *tempNode = node;
-    btScalar mass = 0.62f;
-    btVector3 inertia, inertia2;
+//    btScalar mass = 0.62f;
+//    btVector3 inertia, inertia2;
     btRigidBody *physBody;
-    inertia = btVector3(0,0,0);
+//    inertia = btVector3(0,0,0);
     
     btCollisionShape *tempShape; 
     

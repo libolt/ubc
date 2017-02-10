@@ -855,10 +855,11 @@ bool gameState::loadCourtModel()  // loads selected court model
     courtStateUMSharedPtr courtInstance = getCourtInstance();
     courtStateUMSharedPtr activeCourtInstance = getActiveCourtInstance();
     bool activeCourtInstancesCreated = getActiveCourtInstancesCreated();
+    bool returnType = false;
     std::string func = "gameState::loadCourtModel()";
 
     logMsg(func +" beginning");
-
+    
     if (!activeCourtInstancesCreated && activeCourtInstance.size() == 0)
     {
         if (createActiveCourtInstances())
@@ -890,18 +891,21 @@ bool gameState::loadCourtModel()  // loads selected court model
     {
         activeCourtInstance[0]->getNode()->setScale(1.0f,1.0f,1.0f);
         setActiveCourtInstance(activeCourtInstance);
-        return (true);
+        returnType = true;
     }
     else
     {
         logMsg(func +" Court model not loaded!");
     }
 
+    // sets up the physics object for the court instance
+    activeCourtInstance[0]->setupPhysicsObject();
+    
     setActiveCourtInstancesCreated(activeCourtInstancesCreated);
 
     logMsg(func +" end");
-
-    return (false);
+//    exit(0);
+    return (returnType);
 }
 
 bool gameState::loadHoopModel()  // loads selected hoop model

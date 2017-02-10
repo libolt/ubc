@@ -55,6 +55,12 @@ class physics : public physicsEngine
         btRigidBodySharedPtr getPhysBody();  // retrieves the value of physBody
         void setPhysBody(btRigidBodySharedPtr set);  // sets the value of physBody
 
+        btScalar getMass();  // retrieves the value of mass
+        void setMass(btScalar set);  // sets the value of mass
+        
+        btVector3 getInertia();  // retrieves the value of inertia
+        void setInertia(btVector3 set);  // sets the value of inertia
+        
         int getColObject();  // retrieves the value of colObject
         void setColObject(int set);  // sets the value of colObject
  
@@ -86,6 +92,10 @@ class physics : public physicsEngine
         
         btRigidBodySharedPtr physBody;  // stores the physics object that represents the player
     
+        btScalar mass;  // stores the mass of the object;
+        
+        btVector3 inertia;  // stores the inertia of the object  
+        
         size_t entityInstance;  // stores which instance of the entity object(s) to use for shape
         
         int colObject;  // stores the type of collision object

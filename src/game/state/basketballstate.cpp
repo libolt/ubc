@@ -444,9 +444,12 @@ Ogre::Vector3 basketballState::calculatePositionChange()
 void basketballState::updateState()  // updates the state of the basketball
 {
     bool modelNeedsLoaded = getModelNeedsLoaded();
+    std::string func = "basketballState::updateState()";
+    
+    logMsg(func + " beginning");
     if (getModelNeedsLoaded())
     {
-//        exit(0);
+        
         if (loadModel())
         {
             setModelNeedsLoaded(false);
@@ -461,22 +464,26 @@ void basketballState::updateState()  // updates the state of the basketball
     }
     if (directChange)
     {
-        logMsg("updating direction!");
+        logMsg(func +" updating direction!");
         updateDirection();
         directChange = false;
-        logMsg("direction updated!");
+        logMsg(func + " direction updated!");
     }
 
     if (movement)
     {
-        logMsg("updating movement!");
+        logMsg(func + " updating movement!");
         updateMovement();
         movement = false;
-        logMsg("movement updated!");
+        logMsg(func + " movement updated!");
     }
-    logMsg("updating position!");
+    logMsg(func + " updating position!");
     updatePosition();
-    logMsg("position updated!");
+    logMsg(func + " position updated!");
+   
+    logMsg(func + " end");
+    
+//    exit(0);
 }
 
 void basketballState::updatePosition() // updates the position of the basketball
@@ -485,14 +492,16 @@ void basketballState::updatePosition() // updates the position of the basketball
     comparison compare;
     Ogre::Vector3 changePos;
     btVector3 physChange = btVector3(0,0,0);
-    
+    std::string func = "basketballState::updatePosition()";
+
+    logMsg(func + " beginning");
     if (courtPositionChanged)
     {
         //exit(0);
         switch (courtPositionChangedType)
         {
             case STARTCHANGE:
-                logMsg("Updating basketball court position based on start position");
+                logMsg(func + " Updating basketball court position based on start position");
                 
                 getNode()->translate(newCourtPosition);
                 physChange = BtOgre::Convert::toBullet(newCourtPosition); // converts from Ogre::Vector3 to btVector3
@@ -503,7 +512,7 @@ void basketballState::updatePosition() // updates the position of the basketball
             break;
             
             case STEERCHANGE:
-                logMsg("Updating basketball court position based on steering");
+                logMsg(func + " Updating basketball court position based on steering");
                 //logMsg("Team " +convert->toString(teamNumber) + " Player " +convert->toString(playerID));
                 changePos = compare.OgreVector3ToOgreVector3Result(courtPosition, newCourtPosition);
                 getNode()->translate(changePos);
@@ -515,7 +524,7 @@ void basketballState::updatePosition() // updates the position of the basketball
             break;   
 
             case INPUTCHANGE:
-                logMsg("Updating court position based on input");
+                logMsg(func + " Updating court position based on input");
                 getNode()->translate(newCourtPosition);
                 physChange = BtOgre::Convert::toBullet(newCourtPosition); // converts from Ogre::Vector3 to btVector3
                 getPhysBody()->translate(physChange); // moves physics body in unison with the model
@@ -526,14 +535,14 @@ void basketballState::updatePosition() // updates the position of the basketball
             break;
 
             case PHYSICSCHANGE:
-                logMsg("Updating basketball court position based on physics");
+                logMsg(func + " Updating basketball court position based on physics");
                 //exit(0);
             break;
             case PLAYERMOVECHANGE:
-                logMsg("Updating basketball court position based on player movement");
+                logMsg(func + " Updating basketball court position based on player movement");
                 getNode()->translate(newCourtPosition);
-                logMsg("bball newCourtPosition = " +convert->toString(newCourtPosition));
-                logMsg("bball node position" +convert->toString((getNode()->getPosition())));
+                logMsg(func + " bball newCourtPosition = " +convert->toString(newCourtPosition));
+                logMsg(func + " bball node position" +convert->toString((getNode()->getPosition())));
                 //exit(0);
                 physChange = BtOgre::Convert::toBullet(newCourtPosition); // converts from Ogre::Vector3 to btVector3
                 getPhysBody()->translate(physChange); // moves physics body in unison with the model
@@ -543,10 +552,10 @@ void basketballState::updatePosition() // updates the position of the basketball
 //                exit(0);
             break;
             case PLAYERDIRECTCHANGE:
-                logMsg("Updating basketball court position based on player movement");
+                logMsg(func + " Updating basketball court position based on player movement");
                 getNode()->translate(newCourtPosition);
-                logMsg("bball newCourtPosition = " +convert->toString(newCourtPosition));
-                logMsg("bball node position" +convert->toString((getNode()->getPosition())));
+                logMsg(func + " bball newCourtPosition = " +convert->toString(newCourtPosition));
+                logMsg(func + " bball node position" +convert->toString((getNode()->getPosition())));
                 //exit(0);
                 physChange = BtOgre::Convert::toBullet(newCourtPosition); // converts from Ogre::Vector3 to btVector3
                 getPhysBody()->translate(physChange); // moves physics body in unison with the model
@@ -566,6 +575,7 @@ void basketballState::updatePosition() // updates the position of the basketball
 	change = BtOgre::Convert::toBullet(posChange); // converts from Ogre::Vector3 to btVector3
 	physBody->translate(change); // moves physics body in unison with the model
 */
+    logMsg(func + " end");
 }
 
 void basketballState::updateMovement()  // updates the basketball(s) movements
@@ -586,6 +596,9 @@ TS*/
     Ogre::Vector3 playerPos;
 //TS    logMsg("playerWithBallInstance == " +convert->toString(playerWithBallInstance));
 //TS logMsg("playerWithBallID == " +convert->toString(playerWithBallID));
+    std::string func = "basketballState::updateMovement()";
+
+    logMsg(func + " beginning");
 
     if (courtPosition.x == 0 && courtPosition.y == 0 && courtPosition.z == 0)
     {
@@ -598,7 +611,7 @@ TS*/
 //TS    playerPos = activePlayerInstance[playerWithBallInstance]->getCourtPosition();  // stores the current position of player with ball
     //bballPos = bballCurrentPos;
     bballPos = Ogre::Vector3(0,0,0);
-    logMsg("bballHere???");
+    logMsg(func + " bballHere???");
     switch (direction)
     {
         case UP:
@@ -625,16 +638,17 @@ TS*/
         break;
     }
 
-        logMsg("bballPos == " +convert->toString(bballPos));
-        logMsg("cbballPos == " +convert->toString(bballCurrentPos));
+    logMsg(func + " bballPos == " +convert->toString(bballPos));
+    logMsg(func + " cbballPos == " +convert->toString(bballCurrentPos));
 //TS        logMsg("pbballPos == " +convert->toString(activePlayerInstance[x]->getCourtPosition()));
-        logMsg("new bball court Position == " +convert->toString(bballPos));
-        newCourtPosition = bballPos;
-        courtPositionChanged = true;
-        courtPositionChangedType = PLAYERMOVECHANGE;
+    logMsg(func + " new bball court Position == " +convert->toString(bballPos));
+    newCourtPosition = bballPos;
+    courtPositionChanged = true;
+    courtPositionChangedType = PLAYERMOVECHANGE;
         //basketballInstance[activeBBallInstance].setMovement(false);
         //basketballInstance[activeBBallInstance] = bballInstance;
 
+    logMsg(func + " end");
 }
 
 void basketballState::updateDirection()  // updates basketball direction(s)
@@ -650,12 +664,14 @@ void basketballState::updateDirection()  // updates basketball direction(s)
     size_t playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();
     size_t playerWithBallID = activeTeamInstance[teamWithBall]->getPlayerWithBallID();
 TS*/
-
     jumpBallsSharedPtr jumpBall = gameS->getJumpBall();
 
 //TS    logMsg("directplayerwithballInstance == " +convert->toString(playerWithBallInstance));
     bool tipOffComplete = gameS->getTipOffComplete();
     size_t x = 0;
+    std::string func = "basketballState::updateDirection()";
+
+    logMsg(func + " beginning");
 
 /*TS    bool shotTaken = activePlayerInstance[playerWithBallInstance]->getShotTaken();
 
@@ -749,6 +765,9 @@ TS*/
     }
 TS*/
     gameS->setJumpBall(jumpBall);
+    
+    logMsg(func + " end");
+
 }
 
 size_t basketballState::getPlayer()

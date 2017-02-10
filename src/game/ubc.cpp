@@ -491,6 +491,11 @@ void UBC::processNetworkEvents()  // processes events in the network subsyatem
     }
 }
 
+void UBC::processPhysicsEvents()  // processes events in the physics subsyatem
+{
+    base->getGameE()->getPhysE()->stepWorld(base->getGameE()->getTimer());
+}
+
 bool UBC::gameLoop()  // Main Game Loop
 {
     sharedPtr<conversion> convert = conversion::Instance();
@@ -509,6 +514,7 @@ bool UBC::gameLoop()  // Main Game Loop
     while (!quitGame)
     {
         processInput();
+        processPhysicsEvents();
 /*        if (base->getGameS()->getGameSetupComplete())  // checks to make sure game setup is complete before continuing
         {
             

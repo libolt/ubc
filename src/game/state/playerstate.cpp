@@ -719,6 +719,7 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
     
     logMsg(func + " beginning");
 //    logMsg(func + " updatePosChange == " +convert->toString(posChange));
+    logMsg(func + " Name == " +data->getFirstName() + " " +data->getLastName());
     logMsg(func + " newCourtPosition == " +convert->toString(newCourtPosition));
 //    exit(0);
     if (courtPositionChanged)
@@ -766,7 +767,7 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
                 entity->getNode()->translate(changePos);
                 physChange = BtOgre::Convert::toBullet(changePos);  // converts from Ogre::Vector3 to btVector3
                 entity->getPhysBody()->translate(physChange); // moves physics body in unison with the model
-                //exit(0);
+                exit(0);
                 
                 courtPositionChanged = false;
                 courtPositionChangedType = NOCHANGE;
@@ -837,14 +838,14 @@ void playerState::updateDirection()
     basketballStateUMSharedPtr activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();   
 //    size_t activeBBallInstance = getActiveBBallInstance();
 //    size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
-    logMsg("blah");
+    
 //    exit(0);
     std::string func = "playerState::updateDirection()";
     
     logMsg(func +" beginning");
+    
     if (direction != oldDirection)
-    {
-            
+    {        
         switch (oldDirection)
         {
             case UP:
@@ -952,7 +953,7 @@ void playerState::updateDirection()
     //oldDirection = direction;
     //direction = NODIRECT;
     logMsg(func +" end");
-
+//    exit(0);
 }
 
 void playerState::updateMovement()  // updates movement status of the player

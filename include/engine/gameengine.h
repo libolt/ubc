@@ -89,14 +89,17 @@ public:
     void setYOffset(float set);  // sets the value of yOffset
 
     
-    renderEngineSharedPtr getRenderE();  // retrieves the value of render
-    void setRenderE(renderEngineSharedPtr set);  // sets the value of render
+    renderEngineSharedPtr getRenderE();  // retrieves the value of renderE
+    void setRenderE(renderEngineSharedPtr set);  // sets the value of renderE
     
-    inputEngineSharedPtr getInputE();  // retrieves the value of input
-    void setInputE(inputEngineSharedPtr set);  // sets the value of input
+    inputEngineSharedPtr getInputE();  // retrieves the value of inputE
+    void setInputE(inputEngineSharedPtr set);  // sets the value of inputE
     
-    networkEngineSharedPtr getNetworkE();  // retrieves the value of input
-    void setNetworkE(networkEngineSharedPtr set);  // sets the value of input
+    networkEngineSharedPtr getNetworkE();  // retrieves the value of networkE
+    void setNetworkE(networkEngineSharedPtr set);  // sets the value of networkE
+    
+    physicsEngineSharedPtr getPhysE();  // retrieves the value of physE
+    void setPhysE(physicsEngineSharedPtr set);  // sets the value of physE
 
     bool setup();  // sets up the engine state
     bool startGame();  // starts a game

@@ -44,11 +44,18 @@ bool courtEntity::setupPhysicsObject()  // sets up the physics object
     OgreSceneNodeSharedPtr tempNode = getNode();
     btRigidBody *tempPhysBody = getPhysBody().get();
     
+    if (!getPhysics()->getGameSInitialized())
+    {
+        getPhysics()->setGameS(getBase()->getGameS());
+        getPhysics()->setGameSInitialized(true);
+    }
+    
+    tempPhysBody->setMass(0.0f);
     int collides = COL_BBALL | COL_TEAM1 | COL_TEAM2;
     setShapeType(BOX);
     setColObject(COL_COURT);
     setCollidesWith(collides);
-
+//    exit(0);
     if (setupPhysics(&tempModel, &tempNode, &tempPhysBody))
     {
         setPhysicsSetup(true);
@@ -60,5 +67,7 @@ bool courtEntity::setupPhysicsObject()  // sets up the physics object
     else
     {
     } 
+    getPhysBody()->setActivationState(ACTIVE_TAG);
+
     return (false);
 }

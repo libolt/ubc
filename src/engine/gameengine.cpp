@@ -214,18 +214,28 @@ void gameEngine::setNetworkE(networkEngineSharedPtr set)  // sets the value of n
     networkE = set;
 }
 
+physicsEngineSharedPtr gameEngine::getPhysE()  // retrieves the value of physE
+{
+    return (physE);
+}
+void gameEngine::setPhysE(physicsEngineSharedPtr set)  // sets the value of physE
+{
+    physE = set;
+}
+
 bool gameEngine::setup()  // sets up engine state
 {
     
     // initialize subclasses
 
     // renderEngine
-    //    renderEngine *tempRenderObj = new renderEngine;
     sharedPtr<renderEngine> tempRenderSharedPtr(new renderEngine);
     renderE = tempRenderSharedPtr;
 
+    inputEngineSharedPtr tempInputSharedPtr(new inputEngine);
+    inputE = tempInputSharedPtr;
+
     // networkEngine
-    //    networkEngine *tempNetworkObj = new networkEngine;
     networkEngineSharedPtr tempNetworkSharedPtr(new networkEngine);
     networkE = tempNetworkSharedPtr;
     networkE->initialize();
@@ -238,9 +248,6 @@ bool gameEngine::setup()  // sets up engine state
 
 // inputEngine
 //    inputEngine *tempInputObj = new inputEngine;
-
-    inputEngineSharedPtr tempInputSharedPtr(new inputEngine);
-    inputE = tempInputSharedPtr;
 
     return (true);
 }

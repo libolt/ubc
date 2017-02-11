@@ -23,6 +23,7 @@
 #include "engine/gameengine.h"
 #include "engine/inputengine.h"
 #include "engine/renderengine.h"
+#include "engine/physicsengine.h"
 #include "state/basketballstate.h"
 #include "state/gamestate.h"
 #include "state/inputstate.h"

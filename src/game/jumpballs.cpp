@@ -21,6 +21,7 @@
 #include "conversion.h"
 #include "data/playerdata.h"
 #include "entity/playerentity.h"
+#include "physics/basketballphysics.h"
 #include "state/basketballstate.h"
 //#include "state/gamestate.h"
 #include "state/courtstate.h"
@@ -453,7 +454,7 @@ bool jumpBalls::tipToPlayer(basketballStateUMSharedPtr activeBasketballInstance,
             logMsg("ballTippedToPlayerInstance == " +convert->toString(ballTippedToPlayerInstance));
 
             // FIXME! Do NOT hardcode activeBasketballInstance
-            if (physEngine.collisionCheck(activeBasketballInstance[0]->getPhysBody().get(), activePlayerInstance[ballTippedToPlayerInstance]->getEntity()->getPhysBody().get()))
+            if (physEngine.collisionCheck(activeBasketballInstance[0]->getPhysics()->getPhysBody().get(), activePlayerInstance[ballTippedToPlayerInstance]->getEntity()->getPhysBody().get()))
             {
  //               exit(0);
 ///                gameS->setTeamWithBall(ballTippedToTeam);

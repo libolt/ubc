@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "entity/basketballentity.h"
+#include "physics/basketballphysics.h"
 #include "conversion.h"
 #include "logging.h"
 
@@ -66,7 +67,7 @@ bool basketballEntity::setupPhysicsObject()  // sets up the physics object
         getPhysics()->setGameSInitialized(true);
     }
     
-    tempPhysBody->setMass(0.05f);
+    getPhysics()->setMass(0.05f);
     
     logMsg("tempNode->getName() == " +tempNode->getName());
     setShapeType(SPHERE);

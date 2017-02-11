@@ -25,6 +25,7 @@
 #include "state/playerstate.h"
 #include "state/teamstate.h"
 #include "engine/renderengine.h"
+#include "physics/basketballphysics.h"
 #include "comparison.h"
 #include "logging.h"
 #include "jumpballs.h"
@@ -394,7 +395,7 @@ size_t basketballState::getNumber()  // retrieves the value of number
 void basketballState::setNumber(size_t set)  // sets the value of number
 {
     number = set;
-    setPhysObjNumber(set); // sets the physics number as well
+    getPhysics()->setPhysObjNumber(set); // sets the physics number as well
     numberSet = true;
 }
 

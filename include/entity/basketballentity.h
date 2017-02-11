@@ -22,14 +22,14 @@
 #define _BASKETBALLENTITY_H
 
 #include "entity/entity.h"
-#include "physics/basketballphysics.h"
+//#include "physics/basketballphysics.h"
 //#include "ai/basketballsteer.h"
 
 //class entity;
-//class basketballPhysics;
+class basketballPhysics;
 class basketballSteer;
 
-class basketballEntity : public entity, public basketballPhysics
+class basketballEntity : public entity
 {
     public:
     

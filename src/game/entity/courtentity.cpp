@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "entity/courtentity.h"
+#include "physics/courtphysics.h"
 
 courtEntity::courtEntity()  // constructor
 {
@@ -29,14 +30,14 @@ courtEntity::~courtEntity()  // destructor
 
 }
 
-/*courtPhysics *courtEntity::getPhysics()  // retrieves the value of physics
+sharedPtr<courtPhysics> courtEntity::getPhysics()  // retrieves the value of physics
 {
     return (physics);
 }
-void courtEntity::setPhysics(courtPhysics *set)  // sets the value of physics
+void courtEntity::setPhysics(sharedPtr<coudrPhysics> set)  // sets the value of physics
 {
     physics = set;
-}*/
+}
 
 bool courtEntity::setupPhysicsObject()  // sets up the physics object
 {
@@ -50,7 +51,7 @@ bool courtEntity::setupPhysicsObject()  // sets up the physics object
         getPhysics()->setGameSInitialized(true);
     }
     
-    tempPhysBody->setMass(0.0f);
+    getPhysics()->setMass(0.0f);
     int collides = COL_BBALL | COL_TEAM1 | COL_TEAM2;
     setShapeType(BOX);
     setColObject(COL_COURT);

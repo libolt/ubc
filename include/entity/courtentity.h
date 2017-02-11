@@ -22,24 +22,24 @@
 #define _COURTENTITY_H_
 
 #include "entity/entity.h"
-#include "physics/courtphysics.h"
+//#include "physics/courtphysics.h"
 
 //class entity;
-//class courtPhysics;
+class courtPhysics;
 
-class courtEntity : public entity, public courtPhysics
+class courtEntity : public entity
 {
     public:
         courtEntity();  // constructor
         ~courtEntity();  // destructor
 
-/*        courtPhysics *getPhysics();  // retrieves the value of physics
-        void setPhysics(courtPhysics *set);  // sets the value of physics
-*/
+        sharedPtr<courtPhysics> getPhysics();  // retrieves the value of physics
+        void setPhysics(sharedPtr<courtPhysics> set);  // sets the value of physics
+
         bool setupPhysicsObject();  // sets up the physics object
 
     private:
-//        courtPhysics *physics;  // instanciates an object to handle the physics for the court
+       sharedPtr<courtPhysics> physics;  // instanciates an object to handle the physics for the court
 };
 
 #endif // _COURTENTITY_H_

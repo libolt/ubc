@@ -34,9 +34,9 @@ class playerSteerPlugin : public OpenSteer::PlugIn, steering
 {
     public:
         
-    const char* name (void) {return "Player plugin";}
+    const char* name () {return "Player plugin";}
 
-    // float selectionOrderSortKey (void) {return 0.06f;}
+    // float selectionOrderSortKey () {return 0.06f;}
 
     // bool requestInitialSelection() { return true;}
 

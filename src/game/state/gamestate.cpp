@@ -25,6 +25,8 @@
 #include "ai/basketballsteer.h"
 #include "entity/playerentity.h"
 #include "conversion.h"
+#include "entity/basketballentity.h"
+#include "entity/courtentity.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
 #include "state/gamestate.h"
@@ -36,27 +38,14 @@
 #include "load.h"
 #include "logging.h"
 #include "network/networkplayerstateobject.h"
+#include "data/basketballdata.h"
+#include "data/courtdata.h"
 #include "data/playerdata.h"
 #include "engine/physicsengine.h"
 #include "engine/renderengine.h"
 #include "timing.h"
 #include "ubc.h"
 #include "jumpballs.h"
-
-/*
-sharedPtr<gameState> gameState::pInstance;
-
-sharedPtr<gameState> gameState::Instance()
-{
-    if (pInstance == 0)  // is it the first call?
-    {
-        
-        sharedPtr<gameState> tInstance(new gameState);
-        pInstance = tInstance;
-    }
-    return pInstance; // address of sole instance
-}
-*/
 
 // static declarations
 UBCBaseSharedPtr gameState::base;  // static copy of base class
@@ -310,16 +299,16 @@ bool gameState::createBasketballInstances()  // creates basketball Instances
     logMsg(func +" creating temporary baskteball instance");
     logMsg(func +" setting model name");
 //  FIXME! these are currently hard coded
-    bballInstance->setEntityModelFileName("bball.mesh");
-    bballInstance->setEntityName(bballInstance->getModelFileName());
-    bballInstance->setEntityNodeName(bballInstance->getModelFileName());
-    if (!bballInstance->getBaseInitialized())
+    bballInstance->getEntity()->setEntityModelFileName("bball.mesh");
+    bballInstance->getEntity()->setEntityName(bballInstance->getData()->getModelFileName());
+    bballInstance->getEntity()->setEntityNodeName(bballInstance->getData()->getModelFileName());
+    if (!bballInstance->getEntity()->getBaseInitialized())
     {
-        bballInstance->setBase(getBase());
+        bballInstance->getEntity()->setBase(getBase());
     }
     logMsg(func +" creating steer object");
     basketballSteer *bballSteer = new basketballSteer;  // steer instance
-    bballInstance->setSteer(basketballSteerSharedPtr(bballSteer));
+    bballInstance->getEntity()->setSteer(basketballSteerSharedPtr(bballSteer));
     logMsg(func +" setting instance number");
     bballInstance->setNumber(0);
     bballInstance->setNumberSet(true);
@@ -632,6 +621,18 @@ bool gameState::createActiveCourtInstances()  // creates the active court instan
     logMsg(func +" courtInstance.size() == " +convert->toString(courtInstance.size()));
     //FIXME! should not be hard coded
     activeCourtInstance.insert(std::pair<size_t, courtStateSharedPtr>(0, courtInstance[0]));
+    if (!activeCourtInstance[0]->getInitialized())
+    {
+        if (activeCourtInstance[0]->initialize())
+        {
+            activeCourtInstance[0]->setInitialized(true);
+        }
+        else
+        {
+            logMsg(func +" Unable to initialize activeCourtInstance!");
+            exit(0);
+        }
+    }
     setCourtInstance(courtInstance);
     setActiveCourtInstance(activeCourtInstance);
     logMsg(func +" getCourtInstance.size() == " +convert->toString(getCourtInstance().size()));
@@ -790,42 +791,42 @@ bool gameState::loadBasketballModel()  // loads selected basketball model
         logMsg(func +" activeBasketballInstance == " +convert->toString(ABIIT.first));
     
 
-        if (!activeBasketballInstance[0]->getBaseInitialized()) // checks to see if the base object for basketballInstance[activeBBallIntance has been initialized
+        if (!activeBasketballInstance[0]->getEntity()->getBaseInitialized()) // checks to see if the base object for basketballInstance[activeBBallIntance has been initialized
         {
             logMsg(func +" Initializing base!");
-            if (!ABIIT.second->getBaseInitialized())
+            if (!ABIIT.second->getEntity()->getBaseInitialized())
             {
-                ABIIT.second->setBase(base);
+                ABIIT.second->getEntity()->setBase(base);
             }
         }
         
-        if (ABIIT.second->getEntityName() == "")
+        if (ABIIT.second->getEntity()->getEntityName() == "")
         {
-            std::string name = ABIIT.second->getName();
-            ABIIT.second->setEntityName(name);
+            std::string name = ABIIT.second->getData()->getName();
+            ABIIT.second->getEntity()->setEntityName(name);
         }
-        logMsg(func +" entityName == " +ABIIT.second->getEntityName());
+        logMsg(func +" entityName == " +ABIIT.second->getEntity()->getEntityName());
 //        exit(0);
-        if (ABIIT.second->getEntityNodeName() == "")
+        if (ABIIT.second->getEntity()->getEntityNodeName() == "")
         {
-            std::string nodeName = ABIIT.second->getName() +"node";
-            ABIIT.second->setEntityNodeName(nodeName);
+            std::string nodeName = ABIIT.second->getData()->getName() +"node";
+            ABIIT.second->getEntity()->setEntityNodeName(nodeName);
         }
-        logMsg(func +" basketball name == " +ABIIT.second->getName());
-        logMsg(func + " basketball node name == " +ABIIT.second->getEntityNodeName());
+        logMsg(func +" basketball name == " +ABIIT.second->getData()->getName());
+        logMsg(func + " basketball node name == " +ABIIT.second->getEntity()->getEntityNodeName());
 //        exit(0);
-        logMsg(func +" loading model == " +ABIIT.second->getEntityModelFileName());
-        if (ABIIT.second->loadModel())
+        logMsg(func +" loading model == " +ABIIT.second->getEntity()->getEntityModelFileName());
+        if (ABIIT.second->getEntity()->loadModel())
         {
-            logMsg(func +" modelName == " +ABIIT.second->getModel()->getName());
-            logMsg(func +" nodeName == " +ABIIT.second->getNode()->getName());
+            logMsg(func +" modelName == " +ABIIT.second->getEntity()->getModel()->getName());
+            logMsg(func +" nodeName == " +ABIIT.second->getEntity()->getNode()->getName());
  
 //            exit(0);
-            ABIIT.second->setModelNeedsLoaded(false);
+            ABIIT.second->getEntity()->setModelNeedsLoaded(false);
             logMsg(func +" blaa!");
-            ABIIT.second->setModelLoaded(true);
+            ABIIT.second->getEntity()->setModelLoaded(true);
             logMsg(func +" blii!");
-            ABIIT.second->setupPhysicsObject();
+            ABIIT.second->getEntity()->setupPhysicsObject();
 /*            logMsg(func +" bluu!");
             setActiveBasketballInstance(activeBasketballInstance);
             logMsg(func +" Basketball Model Loaded!");
@@ -882,14 +883,14 @@ bool gameState::loadCourtModel()  // loads selected court model
 
     logMsg(func +" courtInstance.size() == " +convert->toString(courtInstance.size()));
     logMsg(func + " activeCourtInstance.size() == " +convert->toString(activeCourtInstance.size()));
-    logMsg(func +" Model Name = " +activeCourtInstance[0]->getModelFileName());
+    logMsg(func +" Model Name = " +activeCourtInstance[0]->getData()->getModelFileName());
 
-    activeCourtInstance[0]->setEntityModelFileName(activeCourtInstance[0]->getModelFileName());
-    activeCourtInstance[0]->setEntityNodeName(activeCourtInstance[0]->getModelFileName());
-    activeCourtInstance[0]->setEntityName(activeCourtInstance[0]->getModelFileName());
-    if (activeCourtInstance[0]->loadModel())
+    activeCourtInstance[0]->getEntity()->setEntityModelFileName(activeCourtInstance[0]->getData()->getModelFileName());
+    activeCourtInstance[0]->getEntity()->setEntityNodeName(activeCourtInstance[0]->getData()->getModelFileName());
+    activeCourtInstance[0]->getEntity()->setEntityName(activeCourtInstance[0]->getData()->getModelFileName());
+    if (activeCourtInstance[0]->getEntity()->loadModel())
     {
-        activeCourtInstance[0]->getNode()->setScale(1.0f,1.0f,1.0f);
+        activeCourtInstance[0]->getEntity()->getNode()->setScale(1.0f,1.0f,1.0f);
         setActiveCourtInstance(activeCourtInstance);
         returnType = true;
     }
@@ -899,7 +900,7 @@ bool gameState::loadCourtModel()  // loads selected court model
     }
 
     // sets up the physics object for the court instance
-    activeCourtInstance[0]->setupPhysicsObject();
+    activeCourtInstance[0]->getEntity()->setupPhysicsObject();
     
     setActiveCourtInstancesCreated(activeCourtInstancesCreated);
 
@@ -1085,7 +1086,7 @@ void gameState::setBasketballStartPositions()  // sets the initial coordinates f
 //    exit(0);
         ABIIT.second->getNode()->setPosition(0.8f,10.0f,352.0f);
 #else
-        ABIIT.second->getNode()->setPosition(0.8f,-5.0f,352.0f);
+        ABIIT.second->getEntity()->getNode()->setPosition(0.8f,-5.0f,352.0f);
 //    exit(0);
 #endif
     }
@@ -1106,8 +1107,8 @@ void gameState::setCourtStartPositions()  // sets the initial coordinates for th
     logMsg(func +" courtPosition");
 //exit(0);
 #else
-    courtInstance[0]->getNode()->setPosition(0.0f,-27.5f,360.0f);
-    courtInstance[0]->setNodePosition(Ogre::Vector3(0.0f,-27.5f,360.0f));
+    courtInstance[0]->getEntity()->getNode()->setPosition(0.0f,-27.5f,360.0f);
+    courtInstance[0]->getEntity()->setNodePosition(Ogre::Vector3(0.0f,-27.5f,360.0f));
 #endif
 
     setCourtInstance(courtInstance);

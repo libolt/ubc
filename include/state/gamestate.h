@@ -76,14 +76,14 @@ public:
     bool getPlayerHasBasketball();  // retrieves the value of playerHasBasketball
     void setPlayerHasBasketball(bool set);  // setd the value of playerHasBasketball
     
-    bool getGameStarted(void);  // retrieves the gameStarted value
+    bool getGameStarted();  // retrieves the gameStarted value
     void setGameStarted(bool set);  // sets gameStarted value
 
 /*    jumpBallsSharedPtr getJumpBall();  // retrieves the value of jumpBall
     void setJumpBall(jumpBallsSharedPtr set);  // sets the value of jumpBall
 */
 
-//    teamTypes getTeamWithBall(void);  // retrieves teamWithBall value
+//    teamTypes getTeamWithBall();  // retrieves teamWithBall value
 //    void setTeamWithBall(teamTypes set);	 // sets teamWithBall value
 
     size_t getBballBounce();  // retrieves the value of bballBounce
@@ -139,11 +139,11 @@ public:
     void setActiveCourtInstance(size_t set);  // sets the value of activeCourtInstance
 */
 
-/*    sizeTVec getTeamID(void);  // retrieves the value of teamID
+/*    sizeTVec getTeamID();  // retrieves the value of teamID
     void setTeamID(sizeTVec set);  // sets the value of teamID
 */
 
-    sizeTVec getPlayerID(void);  // retrieves the value of playerID
+    sizeTVec getPlayerID();  // retrieves the value of playerID
     void setPlayerID(sizeTVec set);  // sets the value of playerID
 
 

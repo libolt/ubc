@@ -35,7 +35,7 @@
 #include "BtOgreGP.h"
 #include "BtOgreExtras.h"
 
-#include "entity/basketballentity.h"
+//#include "entity/basketballentity.h"
 //#include "ai/basketballsteer.h"
 //#include "physics/basketballphysics.h"
 #include "enums.h"
@@ -43,51 +43,57 @@
 #include "state/gamestateshared.h"
 //#include "state/playerstate.h"
 //#include "state/courtstate.h"
-#include "data/basketballdata.h"
+//#include "data/basketballdata.h"
 
 //class basketballEntity;
+class basketballData;
+class basketballEntity;
 class basketballPhysics;
 class state;
 class playerState;
 class courtState;
-//class basketballData;
 
-class basketballState : public state, public basketballEntity, public basketballData 
+class basketballState : public state
 {
 public:
 
-    basketballState();
+    basketballState();  // constructor
     ~basketballState();	// destructor
 
     gameStateSharedPtr getGameS();  // retrieves the value of gameS
     void setGameS(gameStateSharedPtr set);  // sets the value of gameS
 
-// declaration of functions which access/modify private variables in the class
+    sharedPtr<basketballData> getData();  // retrievees the value of data
+    void setData(sharedPtr<basketballData> set);  // sets the value of data
 
-//    Ogre::Vector3 getNodePosition();  // the value of nodePosition
+    sharedPtr<basketballEntity> getEntity();  // retrieves the value of entity
+    void setEntity(sharedPtr<basketballEntity> set);  // sets the value of entity
 
-    float getMaxHeight(void);  //	retrieves the value of maxHeight
+    bool getInitialized();  // retrieves the value of initialized
+    void setInitialized(bool set);  // sets the value of initialized
+
+    float getMaxHeight();  //	retrieves the value of maxHeight
     void setMaxHeight(float set);  //	sets the value of maxHeight
 
-    bool getMaxHeightReached(void);  // retrieves the value of maxHeightReached
+    bool getMaxHeightReached();  // retrieves the value of maxHeightReached
     void setMaxHeightReached(bool set);  //	sets the value of maxHeightReached
 
-    float getMinHeight(void);  // retrieves the value of minHeight
+    float getMinHeight();  // retrieves the value of minHeight
     void setMinHeight(float set);	 //	sets the value of minHeight
 
-    bool getMinHeightReached(void);  // retrieves the value of minHeightReached
+    bool getMinHeightReached();  // retrieves the value of minHeightReached
     void setMinHeightReached(bool set);  // sets minHeightReached
 
-    size_t getRotate(void);  // retrieves the value of rotate
+    size_t getRotate();  // retrieves the value of rotate
     void setRotate(size_t set);	 // sets the value of rotate
 
-    size_t getTeamNumber(void);  // retrieves the value of teamNumber
+    size_t getTeamNumber();  // retrieves the value of teamNumber
     void setTeamNumber(size_t set);  // sets the value of teamNumber
 
-    size_t getPlayer(void);  // retrieves the value of player
+    size_t getPlayer();  // retrieves the value of player
     void setPlayer(size_t set);	 // sets the value of player
 
-    Ogre::Vector3 getVelocity(void);  // retrieves xVelocity value
+    Ogre::Vector3 getVelocity();  // retrieves xVelocity value
     void setVelocity(Ogre::Vector3 set);  // sets xVelocity value
 
     Ogre::Vector3 getStartCoords();	 // retreives the value of startCoords
@@ -126,31 +132,6 @@ public:
     directions getOldDirection();  // retrieves the value of oldDirection
     void setOldDirection(directions set);  // sets the value of oldDirection 
   
-/*    std::string getModelName();  // retrieves the value of modelName
-    void setModelName(std::string set);  // sets the value of modelName
-
-    Ogre::Entity *getModel();  // retrieves the value of model
-    void setModel(Ogre::Entity *set);  // sets the value of model
-
-    Ogre::SceneNode *getNode();  // retrieves the value of node
-    void setNode(Ogre::SceneNode *set);  // sets the value of node
-
-    btRigidBody *getPhysBody();	 // retrieves the value of physBody
-    void setPhysBody(btRigidBody *set);  // sets the value of physBody
-
-    basketballPhysics getPhysics();  // retrieves the value of physics
-    void setPhysics(basketballPhysics set);  // sets the value of physics
-
-    basketballSteer *getSteer();  // retrieves the value of steer
-    void setSteer(basketballSteer *set);  // sets the value of steer
-
-    bool getModelNeedsLoaded();  // retrieves the value of modelNeedsLoaded
-    void setModelNeedsLoaded(bool set);  // sets the value of modelNeedsLoaded
-
-    bool getModelLoaded();  // retrieves the value of modelLoaded
-    void setModelLoaded(bool set);  // sets the value of modelLoaded
-*/
-
     bool getNumberSet();  // retrieves the value of numberSet
     void setNumberSet(bool set);  // sets the value of numberSet
     
@@ -166,14 +147,11 @@ public:
     positionChangedTypes getCourtPositionChangedType();  // retrieves the value of courtPositionChangedType
     void setCourtPositionChangedType(positionChangedTypes set);  // sets the value of courtPositionChangedType
 
-//    bool getStateSet();  // retrieves the value of stateSet
-//    void setStateSet(bool set);  // sets the value of stateSet
-        
-    
     size_t getNumber();  // retrieves the value of number
     void setNumber(size_t set);  // sets the value of number
 
-//    bool loadModel();  // loads the 3D model from file specified in modelName
+
+    bool initialize();  // initializes the basketballState object
 
     void updateState();  // updates the state of the basketball
     
@@ -188,35 +166,18 @@ public:
     bool calculateShot();  // calculates the trajectory the basketball travels when shot
     bool shotLogic();  // handles the shot logic as the ball travels towards the hoop
 
-
-//    static basketballs *Instance();
-
 protected:
-//    basketballs(const basketballs&);
-//    basketballs& operator= (const basketballs&);
+
 private:
 
     gameStateSharedPtr gameS;  // the gameState object
 
-//    static basketballs *pInstance;
+    sharedPtr<basketballData> data;
 
-/*    std::string modelName;  // stores the file name of the 3d model
+    sharedPtr<basketballEntity> entity;
 
-    Ogre::Entity *model;  // stores 3d model
+    bool initialized;  // stores whether the basketball object has been initialized
 
-    Ogre::SceneNode *node;  // stores node 3d model is attached to
-
-    // stores the physics object that represents the player
-    btRigidBody *physBody;
-
-    basketballPhysics physics;  // instanciates an object to handle the physics for the basketball
-
-    basketballSteer *steer;  // instance of the basketballSteer class
-
-    bool modelNeedsLoaded;  // stores whether or not to load the model
-
-    bool modelLoaded;  // stores whether the 3D model of the basketball has been loaded
-*/
     bool numberSet;  // stores whether the the instance number had been set
     
     float maxHeight;  // stores the maximum height pf the basketball

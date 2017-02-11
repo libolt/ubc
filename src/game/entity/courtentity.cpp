@@ -34,16 +34,33 @@ sharedPtr<courtPhysics> courtEntity::getPhysics()  // retrieves the value of phy
 {
     return (physics);
 }
-void courtEntity::setPhysics(sharedPtr<coudrPhysics> set)  // sets the value of physics
+void courtEntity::setPhysics(sharedPtr<courtPhysics> set)  // sets the value of physics
 {
     physics = set;
+}
+
+bool courtEntity::getInitialized()  // retrieves the value of initialized
+{
+    return (initialized);
+}
+void courtEntity::setInitialized(bool set)  // sets the value of initialized
+{
+    initialized = set;
+}
+
+bool courtEntity::initialize()  // initializes the court entity object
+{
+    sharedPtr<courtPhysics> tempPhysics(new courtPhysics);
+    physics = tempPhysics;
+
+    return (true);
 }
 
 bool courtEntity::setupPhysicsObject()  // sets up the physics object
 {
     OgreEntitySharedPtr tempModel = getModel();
     OgreSceneNodeSharedPtr tempNode = getNode();
-    btRigidBody *tempPhysBody = getPhysBody().get();
+    btRigidBody *tempPhysBody = getPhysics()->getPhysBody().get();
     
     if (!getPhysics()->getGameSInitialized())
     {
@@ -53,22 +70,22 @@ bool courtEntity::setupPhysicsObject()  // sets up the physics object
     
     getPhysics()->setMass(0.0f);
     int collides = COL_BBALL | COL_TEAM1 | COL_TEAM2;
-    setShapeType(BOX);
-    setColObject(COL_COURT);
-    setCollidesWith(collides);
+    getPhysics()->setShapeType(BOX);
+    getPhysics()->setColObject(COL_COURT);
+    getPhysics()->setCollidesWith(collides);
 //    exit(0);
-    if (setupPhysics(&tempModel, &tempNode, &tempPhysBody))
+    if (getPhysics()->setupPhysics(&tempModel, &tempNode, &tempPhysBody))
     {
         setPhysicsSetup(true);
         setModel(OgreEntitySharedPtr(tempModel));
         setNode(OgreSceneNodeSharedPtr(tempNode));
-        setPhysBody(btRigidBodySharedPtr(tempPhysBody));
+        getPhysics()->setPhysBody(btRigidBodySharedPtr(tempPhysBody));
         return (true);
     }
     else
     {
     } 
-    getPhysBody()->setActivationState(ACTIVE_TAG);
+    getPhysics()->getPhysBody()->setActivationState(ACTIVE_TAG);
 
     return (false);
 }

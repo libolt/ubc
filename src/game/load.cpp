@@ -28,8 +28,11 @@
 #include "load.h"
 #include "load.h"
 #include "logging.h"
+#include "data/basketballdata.h"
+#include "data/courtdata.h"
 #include "data/playerdata.h"
 #include "engine/renderengine.h"
+#include "entity/basketballentity.h"
 #include "entity/playerentity.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
@@ -1112,9 +1115,22 @@ sharedPtr<basketballState> loader::loadBasketballFile(std::string fileName)  // 
             logMsg(func +" modelName = " +modelName);
         }
     }
-    basketballInstance->setName(name);
-    basketballInstance->setModelFileName(modelName);
-    basketballInstance->setEntityModelFileName(modelName);
+
+    if (!basketballInstance->getInitialized())
+    {
+        if (basketballInstance->initialize())
+        {
+            basketballInstance->setInitialized(true);
+        }
+        else
+        {
+//            logMsg(func +" Unable to initialize basketball instance!");
+            exit(0);
+        }
+    }
+    basketballInstance->getData()->setName(name);
+    basketballInstance->getData()->setModelFileName(modelName);
+    basketballInstance->getEntity()->setEntityModelFileName(modelName);
     
     return (basketballInstance);
 }
@@ -1403,19 +1419,31 @@ courtStateSharedPtr loader::loadCourtFile(std::string fileName)  // loads data f
     Ogre::Vector2 baselineInboundPos = Ogre::Vector2(baselineInboundXPos,baselineInboundZPos);
     Ogre::Vector2 sidelineInboundPos = Ogre::Vector2(sidelineInboundXPos,sidelineInboundZPos);
 
-    courtInstance->setName(name);
-    courtInstance->setModelFileName(modelName);
-    courtInstance->setBoundary(boundary);
-    courtInstance->setBoundaryPos(boundaryPos);
-    courtInstance->setCenterCourt(centerCourt);
-    courtInstance->setCenterJumpRadius(centerJumpRadius);
-    courtInstance->setKeyDimensions(keyDimensions);
-    courtInstance->setKeyJumpRadius(keyJumpRadius);
-    courtInstance->setThreePointSideLength(threePointSideLength);
-    courtInstance->setThreePointZPos(threePointSideZPos);
-    courtInstance->setThreePointArcRadius(threePointArcRadius);
-    courtInstance->setBaselineInboundPos(baselineInboundPos);
-    courtInstance->setSidelineInboundPos(sidelineInboundPos);
+    if (!courtInstance->getInitialized())
+    {
+        if (courtInstance->initialize())
+        {
+            courtInstance->setInitialized(true);
+        }
+        else
+        {
+            logMsg(func +" Unable to initalize courtInstance!");
+            exit(0);
+        }
+    }
+    courtInstance->getData()->setName(name);
+    courtInstance->getData()->setModelFileName(modelName);
+    courtInstance->getData()->setBoundary(boundary);
+    courtInstance->getData()->setBoundaryPos(boundaryPos);
+    courtInstance->getData()->setCenterCourt(centerCourt);
+    courtInstance->getData()->setCenterJumpRadius(centerJumpRadius);
+    courtInstance->getData()->setKeyDimensions(keyDimensions);
+    courtInstance->getData()->setKeyJumpRadius(keyJumpRadius);
+    courtInstance->getData()->setThreePointSideLength(threePointSideLength);
+    courtInstance->getData()->setThreePointZPos(threePointSideZPos);
+    courtInstance->getData()->setThreePointArcRadius(threePointArcRadius);
+    courtInstance->getData()->setBaselineInboundPos(baselineInboundPos);
+    courtInstance->getData()->setSidelineInboundPos(sidelineInboundPos);
 
     logMsg(func + " end");
 //    courtInstance = courtStateSharedPtr(court);

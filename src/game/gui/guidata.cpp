@@ -19,6 +19,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
+#include "ubcbase.h"
 #include "engine/networkengine.h"
 
 #include "gui/gui.h"
@@ -96,7 +97,7 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
     for (auto x=0;x<courtInstance.size();++x)
 //    for_each(courtInstance.begin(), courtInstance.end(), [&evenCount] (size_t n)
     {
-        courtName.push_back(courtInstance[x]->getName());
+        courtName.push_back(courtInstance[x]->getData()->getName());
     }
 
 //    courtInstance.courtNameFunc(getName());

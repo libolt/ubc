@@ -20,6 +20,7 @@
 
 #include "conversion.h"
 #include "data/playerdata.h"
+#include "entity/basketballentity.h"
 #include "entity/playerentity.h"
 #include "physics/basketballphysics.h"
 #include "state/basketballstate.h"
@@ -166,7 +167,7 @@ bool jumpBalls::updateState(teamTypes teamWithBall, basketballStateUMSharedPtr a
 //    size_t activeBBallInstance = gameS->getActiveBBallInstance();
 //    basketballStateVec basketBallInstance = gameS->getBasketballInstance();
    // FIXME! Do NOT hard code activeBasketballInstance in the future
-    bool bballPhysicsSetup = activeBasketballInstance[0]->getPhysicsSetup();
+    bool bballPhysicsSetup = activeBasketballInstance[0]->getEntity()->getPhysicsSetup();
     if (teamWithBall == NOTEAM && bballPhysicsSetup) //&& gameS->getActiveTeamInstancesCreated())
     {
 
@@ -454,7 +455,7 @@ bool jumpBalls::tipToPlayer(basketballStateUMSharedPtr activeBasketballInstance,
             logMsg("ballTippedToPlayerInstance == " +convert->toString(ballTippedToPlayerInstance));
 
             // FIXME! Do NOT hardcode activeBasketballInstance
-            if (physEngine.collisionCheck(activeBasketballInstance[0]->getPhysics()->getPhysBody().get(), activePlayerInstance[ballTippedToPlayerInstance]->getEntity()->getPhysBody().get()))
+            if (physEngine.collisionCheck(activeBasketballInstance[0]->getEntity()->getPhysics()->getPhysBody().get(), activePlayerInstance[ballTippedToPlayerInstance]->getEntity()->getPhysics()->getPhysBody().get()))
             {
  //               exit(0);
 ///                gameS->setTeamWithBall(ballTippedToTeam);

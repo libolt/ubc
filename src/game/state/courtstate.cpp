@@ -19,7 +19,10 @@
  ***************************************************************************/
 
 #include "state/courtstate.h"
+#include "data/courtdata.h"
+#include "entity/courtentity.h"
 #include "engine/renderengine.h"
+#include "logging.h"
 
 courtState::courtState()
 {
@@ -30,77 +33,52 @@ courtState::~courtState()
 {
 }
 
-/*
-std::string courtState::getModelName()  // retrieves the value of modelName
+sharedPtr<courtData> courtState::getData()  // retrieves the value of data
 {
-    return (modelName);
+    return (data);
 }
-void courtState::setModelName(std::string set)  // sets the value of modelName
+void courtState::setData(sharedPtr<courtData> set)  // sets the value of data
 {
-    modelName = set;
-}
-
-Ogre::Entity *courtState::getModel()  // retrieves the value of model
-{
-    return (model);
-}
-void courtState::setModel(Ogre::Entity *set)  // sets the value of model
-{
-    model = set;
+    data = set;
 }
 
-Ogre::SceneNode *courtState::getNode()  // retrieves the value of node
+sharedPtr<courtEntity> courtState::getEntity()  // retrieves the value of entity
 {
-    return (node);
+    return (entity);
 }
-void courtState::setNode(Ogre::SceneNode *set)  // sets the value of node
+void courtState::setEntity(sharedPtr<courtEntity> set)  // sets the value of entity
 {
-    node = set;
-}
-
-btRigidBody *courtState::getPhysBody()	// retrieves the value of physBody 
-{
-	return (physBody);
+    entity = set;
 }
 
-void courtState::setPhysBody(btRigidBody *set)	// sets the value of physBody 
+bool courtState::getInitialized()  // retrieves the value of initialized
 {
-	physBody = set;
+    return (initialized);
+}
+void courtState::setInitialized(bool set)  // sets the value of initialized
+{
+    initialized = set;
 }
 
-Ogre::Vector3 courtState::getNodePosition()  // retrieves the value of nodePosition
+bool courtState::initialize()  // initializes the courtState object
 {
-    return (nodePosition);
+    sharedPtr<courtData> tempData(new courtData);
+    data = tempData;
+
+    sharedPtr<courtEntity> temppEntity(new courtEntity);
+    entity = temppEntity;
+
+    if (!entity->getInitialized())
+    {
+        if (entity->initialize())
+        {
+            entity->setInitialized(true);
+        }
+        else
+        {
+            logMsg("Unable to initialize court entity!");
+            exit(0);
+        }
+    }
+    return (true);
 }
-void courtState::setNodePosition(Ogre::Vector3 set)  // sets the value of nodePosition
-{
-    nodePosition = set;
-}
-*/
-/*bool courtState::getStateSet()  // retrieves the value of stateSet
-{
-    return (stateSet);
-}
-void courtState::setStateSet(bool set)  // sets the value of stateSet
-{
-    stateSet = set;
-}
-*/
-
-/*bool courtState::loadModel()  // loads the 3D Model and attaches it to the node as well as sets coordinates
-{
-    sharedPtr<renderEngine> render = renderEngine::Instance();
-
-    model = render->getMSceneMgr()->createEntity("courtModel", modelName);  // loads the Court model
-
-    // creates the courtNode
-    node = render->getMSceneMgr()->getRootSceneNode()->createChildSceneNode("courtSceneNode");
-
-    // attaches the court model to the courtNode
-    node->attachObject(model);
-    // sets the position of courtNode
-//    node->setPosition(0.0f,-20.0f,400.0f);
-    node->setScale(1.0f,1.0f,1.0f);
-
-    return true;
-}*/

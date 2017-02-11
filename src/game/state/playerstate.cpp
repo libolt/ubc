@@ -643,12 +643,12 @@ void playerState::updateState()
             {
                 shotTaken = true;
             }
-            entity->shootBasketball(teamType, data->getID());
+            entity->getPhysics()->shootBasketball(teamType, data->getID());
 
         }
         else
         {
-            entity->jump(teamType, data->getID());
+            entity->getPhysics()->jump(teamType, data->getID());
         }
         
     }
@@ -744,12 +744,12 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
                 logMsg(func + " Convert to Bullet");
                 physChange = BtOgre::Convert::toBullet(newCourtPosition);  // converts from Ogre::Vector3 to btVector3
                 logMsg("physChange == " +convert->toString(physChange));
-                transform = entity->getPhysBody()->getWorldTransform();
+                transform = entity->getPhysics()->getPhysBody()->getWorldTransform();
                 physPos = transform.getOrigin();
                 logMsg("physPos == " +convert->toString(physPos));
 
                 logMsg(func + " PhysBody Translate");
-                entity->getPhysBody()->translate(physChange); // moves physics body in unison with the model
+                entity->getPhysics()->getPhysBody()->translate(physChange); // moves physics body in unison with the model
                 logMsg(func + " Steer set Position Changed");
                 entity->getSteer()->setPosition(convert->toOpenSteerVec3(newCourtPosition));
                 courtPositionChanged = false;
@@ -766,7 +766,7 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
                 //logMsg("change playerCourtPosition = " +convert->toString(changePos));
                 entity->getNode()->translate(changePos);
                 physChange = BtOgre::Convert::toBullet(changePos);  // converts from Ogre::Vector3 to btVector3
-                entity->getPhysBody()->translate(physChange); // moves physics body in unison with the model
+                entity->getPhysics()->getPhysBody()->translate(physChange); // moves physics body in unison with the model
                 exit(0);
                 
                 courtPositionChanged = false;
@@ -778,7 +778,7 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
                 //logMsg("Updating court position based on input");
                 entity->getNode()->translate(newCourtPosition);
                 physChange = BtOgre::Convert::toBullet(newCourtPosition);  // converts from Ogre::Vector3 to btVector3
-                entity->getPhysBody()->translate(physChange);  // moves physics body in unison with the model
+                entity->getPhysics()->getPhysBody()->translate(physChange);  // moves physics body in unison with the model
                 entity->getSteer()->setPosition(convert->toOpenSteerVec3(newCourtPosition));
                 courtPositionChanged = false;
                 courtPositionChangedType = NOCHANGE;

@@ -29,7 +29,7 @@
 
 class playerSteer;
 
-class playerEntity : public playerPhysics, public entity
+class playerEntity : public entity
 {
     public:
     playerEntity();  // constructor

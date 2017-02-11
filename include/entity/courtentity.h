@@ -36,10 +36,18 @@ class courtEntity : public entity
         sharedPtr<courtPhysics> getPhysics();  // retrieves the value of physics
         void setPhysics(sharedPtr<courtPhysics> set);  // sets the value of physics
 
+        bool getInitialized();  // retrieves the value of initialized
+        void setInitialized(bool set);  // sets the value of initialized
+
+        bool initialize();  // initializes the court entity object
+
         bool setupPhysicsObject();  // sets up the physics object
 
     private:
-       sharedPtr<courtPhysics> physics;  // instanciates an object to handle the physics for the court
+
+        bool initialized;  // stores whether the court entity object has been initialized
+
+        sharedPtr<courtPhysics> physics;  // instanciates an object to handle the physics for the court
 };
 
 #endif // _COURTENTITY_H_

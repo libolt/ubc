@@ -23,6 +23,7 @@
 #include "Ogre.h"
 #include "ai/playersteerplugin.h"
 #include "ai/ai.h"
+#include "entity/courtentity.h"
 #include "entity/playerentity.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
@@ -200,7 +201,7 @@ void playerSteerPlugin::open()
 
 
 	// create the court bounding box based off the meshes bbox
-    Ogre::AxisAlignedBox cbox = base->getGameS()->getCourtInstance()[0]->getModel()->getBoundingBox();
+    Ogre::AxisAlignedBox cbox = base->getGameS()->getCourtInstance()[0]->getEntity()->getModel()->getBoundingBox();
     Ogre::Vector3 cboxMin = cbox.getMinimum();
     Ogre::Vector3 cboxMax = cbox.getMaximum();
 

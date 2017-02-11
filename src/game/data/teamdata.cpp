@@ -48,7 +48,7 @@ teamData::~teamData()
 //	delete [] teamStarters;
 }
 
-std::string teamData::getCity(void)
+std::string teamData::getCity()
 {
     return(city);
 }
@@ -58,7 +58,7 @@ void teamData::setCity(std::string set)
     city = set;
 }
 
-std::string teamData::getName(void)
+std::string teamData::getName()
 {
     return(name);
 }
@@ -68,7 +68,7 @@ void teamData::setName(std::string set)
     name = set;
 }
 
-std::string teamData::getCoach(void)
+std::string teamData::getCoach()
 {
     return(coach);
 }
@@ -78,7 +78,7 @@ void teamData::setCoach(std::string set)
     coach = set;
 }
 
-sizeTVec teamData::getRoster(void)
+sizeTVec teamData::getRoster()
 {
     return(roster);
 }
@@ -88,7 +88,7 @@ void teamData::setRoster(sizeTVec set)
     roster = set;
 }
 
-size_t teamData::getPlayerNum(void)
+size_t teamData::getPlayerNum()
 {
     return(playerNum);
 }
@@ -98,7 +98,7 @@ void teamData::setPlayerNum(size_t set)
     playerNum = set;
 }
 
-sizeTVec teamData::getStarters(void)
+sizeTVec teamData::getStarters()
 {
     return(starters);
 }
@@ -108,7 +108,7 @@ void teamData::setStarters(sizeTVec set)
     starters = set;
 }
 
-size_t teamData::getID(void)
+size_t teamData::getID()
 {
     return(ID);
 }
@@ -117,7 +117,7 @@ void teamData::setID(size_t set)
     ID = set;
 }
 
-std::string teamData::getInits(void)
+std::string teamData::getInits()
 {
     return(inits);
 }
@@ -128,7 +128,7 @@ void teamData::setInits(std::string set)
 }
 
 // gets and sets file storing team logo
-std::string teamData::getLogoFile(void)
+std::string teamData::getLogoFile()
 {
     return(logoFile);
 }

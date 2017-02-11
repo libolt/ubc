@@ -42,9 +42,16 @@ class basketballEntity : public entity
     basketballSteerSharedPtr getSteer();  // retrieves the value of steer
     void setSteer(basketballSteerSharedPtr set);  // sets the value of steer
 
+    bool getInitialized();  // retrieves the value of initialized
+    void setInitialized(bool set);  // sets the value of initialized
+
+    bool initialize();  // initializes the basketball entity object
+
     bool setupPhysicsObject();  // sets up the physics object
     
     private:
+
+    bool initialized;  // stores whether the basketball entity object has been initialized
 
     sharedPtr<basketballPhysics> physics;  // instanciates an object to handle the physics for the basketball
 

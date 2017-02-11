@@ -27,65 +27,39 @@
 #include "BtOgreGP.h"
 #include "BtOgreExtras.h"
 #include "state/state.h"
-#include "entity/courtentity.h"
-#include "data/courtdata.h"
+#include "typedefs.h"
+//#include "entity/courtentity.h"
+//#include "data/courtdata.h"
 
 //class state;
-//class courtEntity;
-//class courtData;
+class courtEntity;
+class courtData;
 
-class courtState : public state, public courtEntity, public courtData
+class courtState : public state
 {
     public:
 
         courtState();   // constructor
         ~courtState();  // destructor
 
-/*        void courtNameFunc(std::vector<std::string> &courtName)
-        {
-            std::for_each (courtName.begin(), courtName.end(), [](std::vector<std::string>))
-            {
-                courtName.push_back(courtInstance[n]->getName());
-            }
-        }
-*/
 
-/*        std::string getModelName();  // retrieves the value of modelName
-        void setModelName(std::string set);  // sets the value of modelName
+        sharedPtr<courtData> getData();  // retrieves the value of data
+        void setData(sharedPtr<courtData> set);  // sets the value of data
 
-        Ogre::Entity *getModel();  // retrieves the value of model
-        void setModel(Ogre::Entity *set);  // sets the value of model
+        sharedPtr<courtEntity> getEntity();  // retrieves the value of entity
+        void setEntity(sharedPtr<courtEntity> set);  // sets the value of entity
 
-        Ogre::SceneNode *getNode();  // retrieves the value of node
-        void setNode(Ogre::SceneNode *set);  // sets the value of node
+        bool getInitialized();  // retrieves the value of initialized
+        void setInitialized(bool set);  // sets the value of initialized
 
-        btRigidBody *getPhysBody();	// retrieves the value of physBody
-        void setPhysBody(btRigidBody *set);	// sets the value physBody 
-
-        Ogre::Vector3 getNodePosition();  // retrieves the value of nodePosition
-        void setNodePosition(Ogre::Vector3 set);  // sets the value of nodePosition
-*/
-
-//        bool getStateSet();  // retrieves the value of stateSet
-//        void setStateSet(bool set);  // sets the value of stateSet
-        
-        // loads the 3D Model and attaches it to the node as well as sets coordinates
-//        bool loadModel();
+        bool initialize();  // initializes the courtState object
 
     private:
 
-/*        std::string modelName;   // stores the file name of the 3D Model
+        sharedPtr<courtData> data;  // stores the court data object
+        sharedPtr<courtEntity> entity;  // stores the court entity object
 
-        Ogre::Entity *model;    // stores the 3D Model representing the court
-
-        Ogre::SceneNode *node;  // stores the node the 3D Model is attached to
-
-        Ogre::Vector3 nodePosition;  // stores the position of the node
-        // stores the physics object that represents the player
-        btRigidBody *physBody;
-*/
-//        bool stateSet;  // if true then the basketball court state has been set
-
+        bool initialized;  // stores whether the courtState object has been initialized
 };
 
 #endif // COURTSTATE_H_INCLUDED

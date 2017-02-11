@@ -76,29 +76,29 @@ public:
     ~steering();  // destructor
 
     // sets up steering state
-    void setup(void);
+    void setup();
 
     // reset vehicle state
-    void reset(void);
+    void reset();
    
-    float mass (void) const;  // retrieves the value of _mass 
+    float mass () const;  // retrieves the value of _mass 
     float setMass (float m);  // sets the value of _mass 
 
-    OpenSteer::Vec3 velocity (void) const;  // retrieves the value of velocity 
+    OpenSteer::Vec3 velocity () const;  // retrieves the value of velocity 
 
     // get/set speed of vehicle  (may be faster than taking mag of velocity)
-    float speed (void) const;  // retrieves the value of _speed 
+    float speed () const;  // retrieves the value of _speed 
     float setSpeed (float s);  // sets the value of speed
 
     // size of bounding sphere, for obstacle avoidance, etc.
-    float radius (void) const;  // retrieves the value of _radius
+    float radius () const;  // retrieves the value of _radius
     float setRadius (float m);  // sets the value of _radius
 
-    float maxForce (void) const;  // retrieves the value of _maxForce
+    float maxForce () const;  // retrieves the value of _maxForce
     float setMaxForce (float mf);  // sets the value of _maxForce
     float setMaxForces (float mf);  // sets the value of _maxForce
 
-    float maxSpeed (void) const;  // retrieves the value of _maxSpeed
+    float maxSpeed () const;  // retrieves the value of _maxSpeed
     float setMaxSpeed (const float ms);  // sets the value of _maxSpeed
 
 
@@ -130,17 +130,17 @@ public:
     OpenSteer::Vec3 predictFuturePosition (const float predictionTime) const;
 
     // get instantaneous curvature (since last update)
-    float curvature (void); 
+    float curvature (); 
 
     // get/reset smoothedCurvature, smoothedAcceleration and smoothedPosition
     
-    float smoothedCurvature (void);  // retrieves the value of _smoothedCurvature
+    float smoothedCurvature ();  // retrieves the value of _smoothedCurvature
     float resetSmoothedCurvature (float value = 0);  // resets the value of _smoothedCurvature
     
-    OpenSteer::Vec3 smoothedAcceleration (void);  // retrieves the value of _smoothedAcceleration 
+    OpenSteer::Vec3 smoothedAcceleration ();  // retrieves the value of _smoothedAcceleration 
     OpenSteer::Vec3 resetSmoothedAcceleration (const OpenSteer::Vec3& value = OpenSteer::Vec3::zero);  // resets the value of _smoothedAcceleration
  
-    OpenSteer::Vec3 smoothedPosition (void);  // retrieves the value of _smoothedPosition
+    OpenSteer::Vec3 smoothedPosition ();  // retrieves the value of _smoothedPosition
     OpenSteer::Vec3 resetSmoothedPosition (const OpenSteer::Vec3& value = OpenSteer::Vec3::zero);  // resets the value of _smoothedPosition
 
     // give each vehicle a unique number
@@ -150,11 +150,11 @@ public:
     // draw lines from vehicle's position showing its velocity and acceleration
     void annotationVelocityAcceleration (float maxLengthA, float maxLengthV);
     void annotationVelocityAcceleration (float maxLength);
-    void annotationVelocityAcceleration (void);
+    void annotationVelocityAcceleration ();
 
     // set a random "2D" heading: set local Up to global Y, then effectively
     // rotate about it by a random angle (pick random forward, derive side).
-    void randomizeHeadingOnXZPlane (void);
+    void randomizeHeadingOnXZPlane ();
 
 private:
 

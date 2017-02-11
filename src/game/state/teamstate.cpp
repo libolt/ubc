@@ -20,7 +20,10 @@
 
 #include "conversion.h"
 #include "data/playerdata.h"
+#include "entity/basketballentity.h"
+#include "entity/courtentity.h"
 #include "entity/playerentity.h"
+#include "physics/basketballphysics.h"
 #include "state/teamstate.h"
 #include "engine/gameengine.h"
 #include "state/basketballstate.h"
@@ -117,7 +120,7 @@ void teamState::setPlayerType(std::string set)  // sets the value of playerType
     playerType = set;
 }
 
-size_t teamState::getAssists(void)  // retrieves the value of assists
+size_t teamState::getAssists()  // retrieves the value of assists
 {
     return (assists);
 }
@@ -126,7 +129,7 @@ void teamState::setAssists(size_t set)  // sets the value of assists
     assists = set;
 }
 
-size_t teamState::getBlocks(void)  // retrieves the value of blocks
+size_t teamState::getBlocks()  // retrieves the value of blocks
 {
     return (blocks);
 }
@@ -135,7 +138,7 @@ void teamState::setBlocks(size_t set)  // sets the value of blocks
     blocks = set;
 }
 
-size_t teamState::getFouls(void)  // retrieves the value of fouls
+size_t teamState::getFouls()  // retrieves the value of fouls
 {
     return (fouls);
 }
@@ -144,7 +147,7 @@ void teamState::setFouls(size_t set)  // sets the value of fouls
     fouls = set;
 }
 
-size_t teamState::getRebounds(void)  // retrieves the value of rebounds
+size_t teamState::getRebounds()  // retrieves the value of rebounds
 {
     return (rebounds);
 }
@@ -153,7 +156,7 @@ void teamState::setRebounds(size_t set)  // sets the value of rebounds
     rebounds = set;
 }
 
-size_t teamState::getOffensiveRebounds(void)  // retrieves the value of offensiveRebounds
+size_t teamState::getOffensiveRebounds()  // retrieves the value of offensiveRebounds
 {
     return (offensiveRebounds);
 }
@@ -162,7 +165,7 @@ void teamState::setOffensiveRebounds(size_t set)  // sets the value of offensive
     offensiveRebounds = set;
 }
 
-size_t teamState::getDefensiveRebounds(void)  // retrieves the value of defensiveRebounds
+size_t teamState::getDefensiveRebounds()  // retrieves the value of defensiveRebounds
 {
     return (defensiveRebounds);
 }
@@ -171,7 +174,7 @@ void teamState::setDefensiveRebounds(size_t set)  // sets the value of defensive
     defensiveRebounds = set;
 }
 
-size_t teamState::getSteals(void)  // retrieves the value of steals
+size_t teamState::getSteals()  // retrieves the value of steals
 {
     return (steals);
 }
@@ -180,7 +183,7 @@ void teamState::setSteals(size_t set)  // sets the value of steals
     steals = set;
 }
 
-size_t teamState::getTechnicals(void)  // retrieves the value of technicals
+size_t teamState::getTechnicals()  // retrieves the value of technicals
 {
     return (technicals);
 }
@@ -189,7 +192,7 @@ void teamState::setTechnicals(size_t set)  // sets the value of technicals
     technicals = set;
 }
 
-size_t teamState::getTimeouts(void)  // retrieves the value of timeouts
+size_t teamState::getTimeouts()  // retrieves the value of timeouts
 {
     return (timeouts);
 }
@@ -207,7 +210,7 @@ void teamState::setTurnovers(size_t set)  // sets the value of turnovers
     turnovers = set;
 }
 
-size_t teamState::getFieldGoalsAttempted(void)  // retrieves the value of fieldGoalsAttempted
+size_t teamState::getFieldGoalsAttempted()  // retrieves the value of fieldGoalsAttempted
 {
     return (fieldGoalsAttempted);
 }
@@ -216,7 +219,7 @@ void teamState::setFieldGoalsAttempted(size_t set)  // sets the value of fieldGo
     fieldGoalsAttempted = set;
 }
 
-size_t teamState::getFieldGoalsMade(void)  // retrieves the value of fieldGoalsMade
+size_t teamState::getFieldGoalsMade()  // retrieves the value of fieldGoalsMade
 {
     return (fieldGoalsMade);
 }
@@ -225,7 +228,7 @@ void teamState::setFieldGoalsMade(size_t set)  // sets the value of fieldGoalsMa
     fieldGoalsMade = set;
 }
 
-size_t teamState::getThreePointersAttempted(void)  // retrieves the value of threePointersAttempted
+size_t teamState::getThreePointersAttempted()  // retrieves the value of threePointersAttempted
 {
     return (threePointersAttempted);
 }
@@ -234,7 +237,7 @@ void teamState::setThreePointersAttempted(size_t set)  // sets the value of thre
     threePointersAttempted = set;
 }
 
-size_t teamState::getThreePointersMade(void)  // retrieves the value of threePointersMade
+size_t teamState::getThreePointersMade()  // retrieves the value of threePointersMade
 {
     return (threePointersMade);
 }
@@ -243,7 +246,7 @@ void teamState::setThreePointersMade(size_t set)  // sets the value of threePoin
     threePointersMade = set;
 }
 
-size_t teamState::getFreeThrowsAttempted(void)  // retrieves the value of freeThrowsAttempted
+size_t teamState::getFreeThrowsAttempted()  // retrieves the value of freeThrowsAttempted
 {
     return (freeThrowsAttempted);
 }
@@ -252,7 +255,7 @@ void teamState::setFreeThrowsAttempted(size_t set)  // sets the value of freeThr
     freeThrowsAttempted = set;
 }
 
-size_t teamState::getFreeThrowsMade(void)  // retrieves the value of freeThrowsMade
+size_t teamState::getFreeThrowsMade()  // retrieves the value of freeThrowsMade
 {
     return (freeThrowsMade);
 }
@@ -369,7 +372,7 @@ void teamState::setPlayerWithBallID(size_t set)  // sets the value of the player
     playerWithBallID = set;
 }
 
-playerPositions teamState::getPlayerWithBallInstance(void)  // retrives the value of playerWithBall
+playerPositions teamState::getPlayerWithBallInstance()  // retrives the value of playerWithBall
 {
     return (playerWithBallInstance);
 }
@@ -623,11 +626,11 @@ void teamState::updateState()  // updates the state of the object
 
                         //sets the basketball Height;
                         // FIXME! activeBasketballInstance HARDCODED
-                        bballPos = activeBasketballInstance[0]->getNode()->getPosition();
+                        bballPos = activeBasketballInstance[0]->getEntity()->getNode()->getPosition();
                         playerPos = activePlayerInstance[instanceWithBall]->getEntity()->getNode()->getPosition();
                         bballPos[1] = playerPos[1];
                         // FIXME! activeBasketballInstance HARDCODED
-                        activeBasketballInstance[0]->getNode()->setPosition(bballPos);
+                        activeBasketballInstance[0]->getEntity()->getNode()->setPosition(bballPos);
 
                     }
                     else if (activePlayerInstance[instanceWithBall]->getPassCalculated())
@@ -790,7 +793,7 @@ bool teamState::setPlayerStartPositions()  // sets the initial coordinates for t
     directions playerDirection; // stores the direction players face at start
     std::string func = "teamState::setPlayerStartPositions()";
     courtStateUMSharedPtr courtInstance = base->getGameS()->getCourtInstance();
-    Ogre::Vector3 courtPos = courtInstance[0]->getNodePosition();
+    Ogre::Vector3 courtPos = courtInstance[0]->getEntity()->getNodePosition();
 
 //    exit(0);
     logMsg(func +" begining");
@@ -1296,7 +1299,7 @@ void teamState::executePass()  // executes the pass between players
     Ogre::Vector3 passToPlayerCoords = activePlayerInstance[convert->toString(passToPlayer)]->getEntity()->getNode()->getPosition();
 //  exit(0);
     // FIXME! HARDCODED
-    Ogre::Vector3 bballCoords = activeBasketballInstance[0]->getNode()->getPosition();
+    Ogre::Vector3 bballCoords = activeBasketballInstance[0]->getEntity()->getNode()->getPosition();
     btVector3 bballPosChange;
     btVector3 bballPhysCoords;
     btTransform transform;
@@ -1312,11 +1315,11 @@ void teamState::executePass()  // executes the pass between players
     {
         bballCoords[1] = passToPlayerCoords[1];
         // FIXME! HARDCODED
-        activeBasketballInstance[0]->getNode()->setPosition(bballCoords);
+        activeBasketballInstance[0]->getEntity()->getNode()->setPosition(bballCoords);
         bballPhysCoords = BtOgre::Convert::toBullet(bballCoords); // converts from Ogre::Vector3 to btVector3
         transform.setOrigin(bballPhysCoords);
         // FIXME! HARDCODED
-        activeBasketballInstance[0]->getPhysBody()->setWorldTransform(transform);
+        activeBasketballInstance[0]->getEntity()->getPhysics()->getPhysBody()->setWorldTransform(transform);
 
 
     }
@@ -1363,7 +1366,7 @@ void teamState::executePass()  // executes the pass between players
     {
     }
 
-    activeBasketballInstance[0]->getPhysBody()->setLinearVelocity(btVector3(bballPosChange));
+    activeBasketballInstance[0]->getEntity()->getPhysics()->getPhysBody()->setLinearVelocity(btVector3(bballPosChange));
 
 
     base->getGameS()->setActiveBasketballInstance(activeBasketballInstance);        // saves changes to the basketballInstance object

@@ -32,31 +32,31 @@ class teamData
     teamData();  // constructor
     ~teamData();  // destructor
 
-    std::string getName(void);  // retrieves the value of name
+    std::string getName();  // retrieves the value of name
     void setName(std::string set);  // sets the value of name
 
-    std::string getCity(void);  // retrieves the value of city
+    std::string getCity();  // retrieves the value of city
     void setCity(std::string set);  // sets the value of city
 
-    std::string getCoach(void);  // retrieves the value of coach
+    std::string getCoach();  // retrieves the value of coach
     void setCoach(std::string set);  // sets the value of coach
 
-    sizeTVec getRoster(void);  // retrieves the value of roster
+    sizeTVec getRoster();  // retrieves the value of roster
     void setRoster(sizeTVec set);  // sets the value of roster
 
-    size_t getPlayerNum(void);  // retrieves the value of playerNum
+    size_t getPlayerNum();  // retrieves the value of playerNum
     void setPlayerNum(size_t set);  // sets the value of playerNum
 
-    sizeTVec getStarters(void);  // retrieves the value of starters
+    sizeTVec getStarters();  // retrieves the value of starters
     void setStarters(sizeTVec set); // sets the value of starters
 
-    size_t getID(void);  // retrieves the value of ID
+    size_t getID();  // retrieves the value of ID
     void setID(size_t set);  // sets the value of ID
 
-    std::string getInits(void);  // retrieves the value of inits
+    std::string getInits();  // retrieves the value of inits
     void setInits(std::string Inits);  // sets the vlaue of inits
 
-    std::string getLogoFile(void);  // retrieves the value of logoFile
+    std::string getLogoFile();  // retrieves the value of logoFile
     void setLogoFile(std::string set);  // sets the value of logoFile
 
 

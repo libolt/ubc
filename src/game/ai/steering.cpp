@@ -27,7 +27,7 @@
 int steering::serialNumberCounter = 0;
 float steering::_maxForce;
 
-steering::steering (void)  // constructor
+steering::steering ()  // constructor
 {
     _mass = 0.0f;
     _radius = 0.0f;
@@ -44,11 +44,11 @@ steering::steering (void)  // constructor
     serialNumber = serialNumberCounter++;
 }
 
-steering::~steering (void)  // destructor
+steering::~steering ()  // destructor
 {
 }
 
-float steering::mass (void) const // retrieves the value of _mass 
+float steering::mass () const // retrieves the value of _mass 
 {
     return (_mass);
 }
@@ -57,13 +57,13 @@ float steering::setMass (float m)  // sets the value of _mass
     return (_mass = m);
 }
 
-OpenSteer::Vec3 steering::velocity (void) const  // retrieves the value of steering velocity
+OpenSteer::Vec3 steering::velocity () const  // retrieves the value of steering velocity
 {
     return (forward() * _speed);
 }
 
 // get/set speed of vehicle  (may be faster than taking mag of velocity)
-float steering::speed (void) const  // retrieves the value of _speed
+float steering::speed () const  // retrieves the value of _speed
 {
     return (_speed);
 }
@@ -72,7 +72,7 @@ float steering::setSpeed (float s)  // sets the value of _speed
     return (_speed = s);
 }
 
-float steering::radius (void) const  // retrieves the value of _radius
+float steering::radius () const  // retrieves the value of _radius
 {
     return _radius;
 }
@@ -81,7 +81,7 @@ float steering::setRadius (float m)  // sets the value of radius
     return (_radius = m);
 }
 
-float steering::maxForce (void) const  // retrieves the value of _maxForce
+float steering::maxForce () const  // retrieves the value of _maxForce
 {
     return (_maxForce);
 }
@@ -94,7 +94,7 @@ float steering::setMaxForces (float mf)  // sets the value of _maxForce
     return (_maxForces = mf);
 }
 
-float steering::maxSpeed (void) const  // retrieves the value of _maxSpeed
+float steering::maxSpeed () const  // retrieves the value of _maxSpeed
 {
     return (_maxSpeed);
 }
@@ -104,12 +104,12 @@ float steering::setMaxSpeed (const float ms)  // sets the value of _maxSpeed
 }
     
 // get instantaneous curvature (since last update)
-float steering::curvature (void)
+float steering::curvature ()
 {
     return (_curvature);
 }
 
-float steering::smoothedCurvature (void)  // retrieves the value of _smoothedCurvature
+float steering::smoothedCurvature ()  // retrieves the value of _smoothedCurvature
 {
     return (_smoothedCurvature);
 }
@@ -120,7 +120,7 @@ float steering::resetSmoothedCurvature (float value/* = 0*/) // resets values of
     return _smoothedCurvature = _curvature = value;
 }
 
-OpenSteer::Vec3 steering::smoothedAcceleration (void)  // retrieves the value of _smoothedAcceleration
+OpenSteer::Vec3 steering::smoothedAcceleration ()  // retrieves the value of _smoothedAcceleration
 {
     return (_smoothedAcceleration);
 }
@@ -129,7 +129,7 @@ OpenSteer::Vec3 steering::resetSmoothedAcceleration (const OpenSteer::Vec3& valu
     return (_smoothedAcceleration = value);
 }
 
-OpenSteer::Vec3 steering::smoothedPosition (void)  // retrieves the value of _smoothedPosition
+OpenSteer::Vec3 steering::smoothedPosition ()  // retrieves the value of _smoothedPosition
 {
     return (_smoothedPosition);
 }
@@ -138,14 +138,14 @@ OpenSteer::Vec3 steering::resetSmoothedPosition (const OpenSteer::Vec3& value /*
     return _smoothedPosition = value;
 }
 
-void steering::randomizeHeadingOnXZPlane (void)
+void steering::randomizeHeadingOnXZPlane ()
 {
     setUp (OpenSteer::Vec3::up);
     setForward (OpenSteer::RandomUnitVectorOnXZPlane ());
     setSide (localRotateForwardToSide (forward()));
 }
     
-void steering::reset(void)
+void steering::reset()
 {
     // reset LocalSpace state
     resetLocalSpace();

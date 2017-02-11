@@ -33,28 +33,28 @@ class playerData
         playerData();
         ~playerData();
 
-        std::string getFirstName(void);  // retrieves the value of firstName
+        std::string getFirstName();  // retrieves the value of firstName
         void setFirstName(std::string set);  // sets the value of firstName
 
-        std::string getLastName(void);  // retrieves the value of lastName
+        std::string getLastName();  // retrieves the value of lastName
         void setLastName(std::string set);  // sets the value of lastName
 
-        std::string getPlayerName(void);  // retrieves the value of playerName
+        std::string getPlayerName();  // retrieves the value of playerName
         void setPlayerName(std::string set);  // sets the value of playerName
 
-        size_t getAge(void);  // retrieves the value of age
+        size_t getAge();  // retrieves the value of age
         void setAge(size_t set);  // sets the value of  age
 
-        size_t getHeight(void);  // retrieves the value of height
+        size_t getHeight();  // retrieves the value of height
         void setHeight(size_t set);  // sets the value of height 
 
-        size_t getWeight(void);  // retrieves the value of weight
+        size_t getWeight();  // retrieves the value of weight
         void setWeight(size_t set);  // sets the value of weight
 
-        size_t getID(void);  // retrieves the value of ID
+        size_t getID();  // retrieves the value of ID
         void setID(size_t set);  // sets the value of ID
 
-        size_t getTeamID(void);  // retrieves the value of teamID
+        size_t getTeamID();  // retrieves the value of teamID
         void setTeamID(size_t set);  // sets the value of teamID
 
         playerPositions getPrimaryPosition();  // retrieves the value of primaryPosition
@@ -63,7 +63,7 @@ class playerData
         playerPositions getSecondaryPosition();  // retrieves the value of secondaryPosition
         void setSecondaryPosition(playerPositions set);  // sets the value of secondaryPosition
 
-        bool getActive(void);  // retrieves the value of active
+        bool getActive();  // retrieves the value of active
         void setActive(bool set);  // sets the value of active
 
 /*        string getModelFileName();  // retrieves the value of modelName

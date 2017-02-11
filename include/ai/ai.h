@@ -97,7 +97,7 @@ public:
     // select the "next" vehicle: cycle through the registry
     void selectNextVehicle ();
 
-    const OpenSteer::AVGroup& allVehiclesOfSelectedPlugIn(void);
+    const OpenSteer::AVGroup& allVehiclesOfSelectedPlugIn();
 
 	// currently selected vehicle
 //    OpenSteer::AbstractVehicle* selectedVehicle;

@@ -18,6 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
+#include "ubcbase.h"
 #include "ai/ai.h"
 #include "ai/playersteerplugin.h"
 #include "state/basketballstate.h"
@@ -274,7 +275,7 @@ void AISystem::resetSelectedPlugIn()  // reset the currently selected plug-in
     logMsg(func +" end");
 }
 
-const OpenSteer::AVGroup& AISystem::allVehiclesOfSelectedPlugIn(void)  // return a group (an STL vector of AbstractVehicle pointers) of all
+const OpenSteer::AVGroup& AISystem::allVehiclesOfSelectedPlugIn()  // return a group (an STL vector of AbstractVehicle pointers) of all
 {                                                                       // vehicles(/agents/characters) defined by the currently selected PlugIn
     std::string func = "AISystem::allVehiclesOfSelectedPlugIn()";
 

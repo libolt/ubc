@@ -191,10 +191,10 @@ class playerState //: public state
         bool getJumpComplete();  // retrieves the value of jumpComplete
         void setJumpComplete(bool set);  // sets the value of jumpComplete
 
-        bool getOffenseSet(void);  // retrieves the value of offenseSet
+        bool getOffenseSet();  // retrieves the value of offenseSet
         void setOffenseSet(bool set);  // sets the value of offenseSet
 
-        bool getDefenseSet(void);  // retrieves the value of defenseSet
+        bool getDefenseSet();  // retrieves the value of defenseSet
         void setDefenseSet(bool set);  // sets the value of defenseSet
 
         Ogre::Vector3 getCourtPosition();  // retrieves the value of courtPosition
@@ -212,7 +212,7 @@ class playerState //: public state
 /*        bool getStateSet();  // retrieves the value of stateSet
         void setStateSet(bool set);  // sets the value of stateSet
 */
-        bool getInitialized(void);  // retreives the value of initialized
+        bool getInitialized();  // retreives the value of initialized
         void setInitialized(bool set);  // sets the value of initialized
         
         bool setup();  // initializes the state of the object

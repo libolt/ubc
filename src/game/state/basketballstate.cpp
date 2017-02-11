@@ -25,6 +25,8 @@
 #include "state/playerstate.h"
 #include "state/teamstate.h"
 #include "engine/renderengine.h"
+#include "entity/basketballentity.h"
+#include "data/basketballdata.h"
 #include "physics/basketballphysics.h"
 #include "comparison.h"
 #include "logging.h"
@@ -35,6 +37,7 @@
 basketballState::basketballState()  // constructor
 {
 //    playerControlBasketball = -1;
+    initialized = false;
     maxHeight = 0;
     maxHeightReached = false;
     minHeight = 0;
@@ -94,12 +97,34 @@ void basketballState::setGameS(sharedPtr<gameState> set)  // sets the value of g
     gameS = set;
 }
 
-/*Ogre::Vector3 basketballs::getNodePosition()  // retrieves position of basketball node
+sharedPtr<basketballData> basketballState::getData()  // retrievees the value of data
 {
-	return (node->getPosition());
+    return(data);
 }
-*/
-float basketballState::getMaxHeight(void)  // retrieves the value of maxHeight
+void basketballState::setData(sharedPtr<basketballData> set)  // sets the value of data
+{
+    data = set;
+}
+
+sharedPtr<basketballEntity> basketballState::getEntity()  // retrieves the value of entity
+{
+    return(entity);
+}
+void basketballState::setEntity(sharedPtr<basketballEntity> set)  // sets the value of entity
+{
+    entity = set;
+}
+
+bool basketballState::getInitialized()  // retrieves the value of initialized
+{
+    return (initialized);
+}
+void basketballState::setInitialized(bool set)  // sets the value of initialized
+{
+    initialized = set;
+}
+
+float basketballState::getMaxHeight()  // retrieves the value of maxHeight
 {
     return(maxHeight);
 }
@@ -108,7 +133,7 @@ void basketballState::setMaxHeight(float set)  // sets the value og maxHeight
     maxHeight = set;
 }
 
-bool basketballState::getMaxHeightReached(void)  // retrieves the value of maxHeightReached
+bool basketballState::getMaxHeightReached()  // retrieves the value of maxHeightReached
 {
     return(maxHeightReached);
 }
@@ -117,7 +142,7 @@ void basketballState::setMaxHeightReached(bool set)  // sets the value of maxHei
     maxHeightReached = set;
 }
 
-float basketballState::getMinHeight(void)  // retrieves the value minHeight
+float basketballState::getMinHeight()  // retrieves the value minHeight
 {
     return(minHeight);
 }
@@ -126,7 +151,7 @@ void basketballState::setMinHeight(float set)  // sets the value of minHeight
     minHeight = set;
 }
 
-bool basketballState::getMinHeightReached(void)  // retrieves the value of minHeightReached
+bool basketballState::getMinHeightReached()  // retrieves the value of minHeightReached
 {
     return(minHeightReached);
 }
@@ -135,7 +160,7 @@ void basketballState::setMinHeightReached(bool set)  // sets the value of minHei
     minHeightReached = set;
 }
 
-size_t basketballState::getRotate(void)  // retrieves the value of rotate
+size_t basketballState::getRotate()  // retrieves the value of rotate
 {
     return (rotate);
 }
@@ -144,7 +169,7 @@ void basketballState::setRotate(size_t set)  // sets the value of rotate
     rotate = set;
 }
 
-size_t basketballState::getTeamNumber(void)  // retrieves the value of teamNumber
+size_t basketballState::getTeamNumber()  // retrieves the value of teamNumber
 {
     return(teamNumber);
 }
@@ -153,7 +178,7 @@ void basketballState::setTeamNumber(size_t set)  // sets the value of teamNumber
     teamNumber = set;
 }
 
-Ogre::Vector3 basketballState::getVelocity(void)  // retrieves the value of velocity
+Ogre::Vector3 basketballState::getVelocity()  // retrieves the value of velocity
 {
     return(velocity);
 }
@@ -162,7 +187,7 @@ void basketballState::setVelocity(Ogre::Vector3 set)  // sets the value of veloc
     velocity = set;
 }
 
-Ogre::Vector3 basketballState::getStartCoords(void)  // retrieves the value of startCoords
+Ogre::Vector3 basketballState::getStartCoords()  // retrieves the value of startCoords
 {
     return(startCoords);
 }
@@ -189,7 +214,7 @@ void basketballState::setTipOff(bool set)  // sets the value of tipOff
     tipOff = set;
 }
 
-bool basketballState::getDribblingStart(void)  // retrieves the value of dribblingStart
+bool basketballState::getDribblingStart()  // retrieves the value of dribblingStart
 {
     return (dribblingStart);
 }
@@ -198,7 +223,7 @@ void basketballState::setDribblingStart(bool set)  // sets the value of dribblin
     dribblingStart = set;
 }
 
-bool basketballState::getDribbling(void)  // retrieves the value of dribbling
+bool basketballState::getDribbling()  // retrieves the value of dribbling
 {
     return (dribbling);
 }
@@ -269,80 +294,7 @@ void basketballState::setOldDirection(directions set)  // sets the value of oldD
 {
     oldDirection = set;
 }
-/*
-std::string basketballs::getModelName()  // retrieves the value of modelName
-{
-    return (modelName);
-}
-void basketballs::setModelName(string set)  // sets the value of modelName
-{
-    modelName = set;
-}
 
-Ogre::Entity *basketballs::getModel()  // retrieves the value of model
-{
-    return (model);
-}
- void basketballs::setModel(Ogre::Entity *set)  // sets the value of model
-{
-    model = set;
-}
-
-Ogre::SceneNode *basketballs::getNode()  // retrieves the value of node
-{
-    return (node);
-}
-void basketballs::setNode(Ogre::SceneNode *set)  // sets the value of node
-{
-    node = set;
-}
-
-btRigidBody *basketballs::getPhysBody()	 // retrieves physBody variable
-{
-    return (physBody);
-}
-
-void basketballs::setPhysBody(btRigidBody *set)  // sets physBody variable
-{
-    physBody = set;
-}
-
-basketballPhysics basketballs::getPhysics()  // retrieves the value of physics
-{
-    return (physics);
-}
-void basketballs::setPhysics(basketballPhysics set)  // sets the value of physics
-{
-    physics = set;
-}
-
-basketballSteer *basketballs::getSteer()  // retrieves the value of steer
-{
-    return (steer);
-}
-void basketballs::setSteer(basketballSteer *set)  // sets the value of steer
-{
-    steer = set;
-}
-
-bool basketballs::getModelNeedsLoaded()  // retrieves the value of modelNeedsLoaded
-{
-    return (modelNeedsLoaded);
-}
-void basketballs::setModelNeedsLoaded(bool set)  // sets the value of modelNeedsLoaded
-{
-    modelNeedsLoaded = set;
-}
-
-bool basketballs::getModelLoaded()  // retrieves the value of modelLoaded
-{
-    return (modelLoaded);
-}
-void basketballs::setModelLoaded(bool set)  // sets the value of modelLoaded
-{
-    modelLoaded = set;
-}
-*/
 bool basketballState::getNumberSet()  // retrieves the value of numberSet
 {
     return (numberSet);
@@ -395,37 +347,39 @@ size_t basketballState::getNumber()  // retrieves the value of number
 void basketballState::setNumber(size_t set)  // sets the value of number
 {
     number = set;
-    getPhysics()->setPhysObjNumber(set); // sets the physics number as well
+    getEntity()->getPhysics()->setPhysObjNumber(set); // sets the physics number as well
     numberSet = true;
 }
 
-/*bool basketballs::getStateSet()  // retrieves the value of stateSet
+bool basketballState::initialize()  // initializes the basketballState object
 {
-    return (stateSet);
+    std::string func = "basketballState::initialize()";
+
+    logMsg(func +" beginning");
+
+    sharedPtr<basketballData> tempData(new basketballData);
+    data = tempData;
+
+    sharedPtr<basketballEntity> tempEntity(new basketballEntity);
+    entity = tempEntity;
+
+    if (!entity->getInitialized())
+    {
+        if (entity->initialize())
+        {
+            entity->setInitialized(true);
+        }
+        else
+        {
+            logMsg(func +"Unable to initialize basketball entity object!");
+            exit(0);
+        }
+    }
+
+    logMsg(func +" end");
+
+    return (true);
 }
-void basketballs::setStateSet(bool set)  // sets the value of stateSet
-{
-    stateSet = set;
-}
-
-bool basketballs::loadModel()  // loads the 3D model
-{
-    sharedPtr<renderEngine> render = renderEngine::Instance();
-
-    model = render->getMSceneMgr()->createEntity("basketball", modelName);	// loads the basketball model
-
-    // creates and instantiates the node object
-    node = render->getMSceneMgr()->getRootSceneNode()->createChildSceneNode("basketball");
-
-    // attaches 3D model to the node
-    node->attachObject(model);
-    // sets the size of the bball node
-    node->setScale(0.25f,0.25f,0.25f);
-    node->setPosition(0.0f,0.0f,0.0f);
-
-   return true;
-}
-*/
 
 // calculates change in position along the x,y,z axes
 Ogre::Vector3 basketballState::calculatePositionChange()
@@ -433,7 +387,7 @@ Ogre::Vector3 basketballState::calculatePositionChange()
 //    sharedPtr<gameState> gameS = gameState::Instance();
 
     Ogre::Vector3 changeInPosition;	// stores the calculated change in position
-    Ogre::Vector3 pos = getNode()->getPosition();	// stores the basketball nodes position
+    Ogre::Vector3 pos = entity->getNode()->getPosition();	// stores the basketball nodes position
 
     // initializes the variable
     changeInPosition[0] = 0.0f;
@@ -444,24 +398,24 @@ Ogre::Vector3 basketballState::calculatePositionChange()
 
 void basketballState::updateState()  // updates the state of the basketball
 {
-    bool modelNeedsLoaded = getModelNeedsLoaded();
+    bool modelNeedsLoaded = entity->getModelNeedsLoaded();
     std::string func = "basketballState::updateState()";
     
     logMsg(func + " beginning");
-    if (getModelNeedsLoaded())
+    if (entity->getModelNeedsLoaded())
     {
         
-        if (loadModel())
+        if (entity->loadModel())
         {
-            setModelNeedsLoaded(false);
-            setModelLoaded(true);
+            entity->setModelNeedsLoaded(false);
+            entity->setModelLoaded(true);
             
         }
     }
 
     if (numberSet)  // runs the physics update code
     {
-        updatePhysObj();
+        entity->getPhysics()->updatePhysObj();
     }
     if (directChange)
     {
@@ -504,10 +458,10 @@ void basketballState::updatePosition() // updates the position of the basketball
             case STARTCHANGE:
                 logMsg(func + " Updating basketball court position based on start position");
                 
-                getNode()->translate(newCourtPosition);
+                entity->getNode()->translate(newCourtPosition);
                 physChange = BtOgre::Convert::toBullet(newCourtPosition); // converts from Ogre::Vector3 to btVector3
-                getPhysBody()->translate(physChange); // moves physics body in unison with the model
-                getSteer()->setPosition(convert->toOpenSteerVec3(newCourtPosition));
+                entity->getPhysics()->getPhysBody()->translate(physChange); // moves physics body in unison with the model
+                entity->getSteer()->setPosition(convert->toOpenSteerVec3(newCourtPosition));
                 courtPositionChanged = false;
                 courtPositionChangedType = NOCHANGE;
             break;
@@ -516,9 +470,9 @@ void basketballState::updatePosition() // updates the position of the basketball
                 logMsg(func + " Updating basketball court position based on steering");
                 //logMsg("Team " +convert->toString(teamNumber) + " Player " +convert->toString(playerID));
                 changePos = compare.OgreVector3ToOgreVector3Result(courtPosition, newCourtPosition);
-                getNode()->translate(changePos);
+                entity->getNode()->translate(changePos);
                 physChange = BtOgre::Convert::toBullet(changePos); // converts from Ogre::Vector3 to btVector3
-                getPhysBody()->translate(physChange); // moves physics body in unison with the model
+                entity->getPhysics()->getPhysBody()->translate(physChange); // moves physics body in unison with the model
                
                 courtPositionChanged = false;
                 courtPositionChangedType = NOCHANGE;
@@ -526,10 +480,10 @@ void basketballState::updatePosition() // updates the position of the basketball
 
             case INPUTCHANGE:
                 logMsg(func + " Updating court position based on input");
-                getNode()->translate(newCourtPosition);
+                entity->getNode()->translate(newCourtPosition);
                 physChange = BtOgre::Convert::toBullet(newCourtPosition); // converts from Ogre::Vector3 to btVector3
-                getPhysBody()->translate(physChange); // moves physics body in unison with the model
-                getSteer()->setPosition(convert->toOpenSteerVec3(newCourtPosition));
+                entity->getPhysics()->getPhysBody()->translate(physChange); // moves physics body in unison with the model
+                entity->getSteer()->setPosition(convert->toOpenSteerVec3(newCourtPosition));
                 courtPositionChanged = false;
                 courtPositionChangedType = NOCHANGE;
                 //exit(0);
@@ -541,12 +495,12 @@ void basketballState::updatePosition() // updates the position of the basketball
             break;
             case PLAYERMOVECHANGE:
                 logMsg(func + " Updating basketball court position based on player movement");
-                getNode()->translate(newCourtPosition);
+                entity->getNode()->translate(newCourtPosition);
                 logMsg(func + " bball newCourtPosition = " +convert->toString(newCourtPosition));
-                logMsg(func + " bball node position" +convert->toString((getNode()->getPosition())));
+                logMsg(func + " bball node position" +convert->toString((entity->getNode()->getPosition())));
                 //exit(0);
                 physChange = BtOgre::Convert::toBullet(newCourtPosition); // converts from Ogre::Vector3 to btVector3
-                getPhysBody()->translate(physChange); // moves physics body in unison with the model
+                entity->getPhysics()->getPhysBody()->translate(physChange); // moves physics body in unison with the model
                 //steer->setPosition(convert->toOpenSteerVec3(newCourtPosition));
                 courtPositionChanged = false;
                 courtPositionChangedType = NOCHANGE;
@@ -554,12 +508,12 @@ void basketballState::updatePosition() // updates the position of the basketball
             break;
             case PLAYERDIRECTCHANGE:
                 logMsg(func + " Updating basketball court position based on player movement");
-                getNode()->translate(newCourtPosition);
+                entity->getNode()->translate(newCourtPosition);
                 logMsg(func + " bball newCourtPosition = " +convert->toString(newCourtPosition));
-                logMsg(func + " bball node position" +convert->toString((getNode()->getPosition())));
+                logMsg(func + " bball node position" +convert->toString((entity->getNode()->getPosition())));
                 //exit(0);
                 physChange = BtOgre::Convert::toBullet(newCourtPosition); // converts from Ogre::Vector3 to btVector3
-                getPhysBody()->translate(physChange); // moves physics body in unison with the model
+                entity->getPhysics()->getPhysBody()->translate(physChange); // moves physics body in unison with the model
                 //steer->setPosition(convert->toOpenSteerVec3(newCourtPosition));
                 courtPositionChanged = false;
                 courtPositionChangedType = NOCHANGE;
@@ -567,7 +521,7 @@ void basketballState::updatePosition() // updates the position of the basketball
             default:
             break;
         }
-        courtPosition = getNode()->getPosition();
+        courtPosition = entity->getNode()->getPosition();
         
     }
     
@@ -603,7 +557,7 @@ TS*/
 
     if (courtPosition.x == 0 && courtPosition.y == 0 && courtPosition.z == 0)
     {
-        bballCurrentPos = getNode()->getPosition();
+        bballCurrentPos = entity->getNode()->getPosition();
     }
     else
     {

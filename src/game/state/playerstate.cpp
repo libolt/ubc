@@ -575,16 +575,16 @@ void playerState::setInitialized(bool set)  // sets the value of initialized
     initialized = set;
 }
 
-bool playerState::setup()  // initializes the state of the object
+bool playerState::initialize()  // initializes the state of the object
 {
-    std::string func = "playerState::setup()";
+    std::string func = "playerState::initialize()";
     
     logMsg(func +" beginning");
         sharedPtr<playerData> tempData(new playerData);
     data = tempData;
     sharedPtr<playerEntity> tempPEnt(new playerEntity);
     entity = tempPEnt;
-    entity->setInitialized(true);
+//    entity->setInitialized(true);
 /*
     playerSteerSharedPtr tempSteer(new playerSteer);
     setSteer(tempSteer);

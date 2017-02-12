@@ -995,9 +995,27 @@ bool teamState::setupActivePlayerInstances()  // sets up active player objects
         }
         else
         {
-                        
+            logMsg(func +" Unable to initialize base!");
+            exit(0);
         }
-                    
+        if (!APIIT.second->getEntity()->getInitialized())
+        {
+            logMsg("Player Entity not yet Initialized!");
+            if (APIIT.second->getEntity()->initialize())
+            {
+                APIIT.second->getEntity()->setInitialized(true);
+            }
+            else
+            {
+                logMsg(func + " Unable to initialize player entity!");
+                exit(0);
+            }
+        }
+        else
+        {
+
+        }
+
         if (!APIIT.second->getEntity()->getModelLoaded())
         {
             logMsg(func +" Model not loaded yet!");

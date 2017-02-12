@@ -215,7 +215,7 @@ class playerState //: public state
         bool getInitialized();  // retreives the value of initialized
         void setInitialized(bool set);  // sets the value of initialized
         
-        bool setup();  // initializes the state of the object
+        bool initialize();  // initializes the state of the object
         
         void updateState();  // updates the state of the object
 

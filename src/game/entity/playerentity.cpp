@@ -35,6 +35,7 @@
 playerEntity::playerEntity()  // constructor
 {
     steerInitialized = false;
+    initialized = false;
 /*    baseInitialized = false;
 
     entityID = 0;
@@ -76,15 +77,22 @@ void playerEntity::setSteerInitialized(bool set)  // sets the value of steerInit
     steerInitialized = set;
 }
 
-/*OgreSceneNodeSharedPtr playerEntity::getNode()  // retrieves the value of node
+bool playerEntity::getInitialized()  // retrieves the value of initialized
 {
-    return (nodes);
+    return (initialized);
 }
-void playerEntity::setNode(OgreSceneNodeSharedPtr set)  // sets the value of node
+void playerEntity::setInitialized(bool set)  // sets the value of initialized
 {
-    nodes = set;
+    initialized = set;
 }
-*/
+
+bool playerEntity::initialize()  // initializes the player entity object
+{
+    sharedPtr<playerPhysics> tempPhysics(new playerPhysics);
+    physics = tempPhysics;
+
+    return (true);
+}
 
 bool playerEntity::setupPhysicsObject()  // sets up the physics object
 {

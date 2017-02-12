@@ -2489,7 +2489,7 @@ playerStateSharedPtr loader::loadPlayerFile(std::string fileName)  // loads the 
 //    playerInstance->setEntity(tempPEnt);
     logMsg(func +" name == " +firstName +" " +lastName);
 
-    playerInstance->setup();
+    playerInstance->initialize();
     if (firstName == "Xavier")
     {
         if (playerInstance->getEntity()->getInitialized())

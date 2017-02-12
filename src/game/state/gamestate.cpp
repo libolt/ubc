@@ -1084,7 +1084,7 @@ void gameState::setBasketballStartPositions()  // sets the initial coordinates f
     
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 //    exit(0);
-        ABIIT.second->getNode()->setPosition(0.8f,10.0f,352.0f);
+        ABIIT.second->getEntity()->getNode()->setPosition(0.8f,10.0f,352.0f);
 #else
         ABIIT.second->getEntity()->getNode()->setPosition(0.8f,-5.0f,352.0f);
 //    exit(0);
@@ -1102,8 +1102,8 @@ void gameState::setCourtStartPositions()  // sets the initial coordinates for th
 
     logMsg(func +" beginning");
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-    courtInstance[0]->getNode()->setPosition(0.0f,-6.5f,360.0f);
-    courtInstance[0]->setNodePosition(Ogre::Vector3(0.0f,-6.5f,360.0f));
+    courtInstance[0]->getEntity()->getNode()->setPosition(0.0f,-6.5f,360.0f);
+    courtInstance[0]->getEntity()->setNodePosition(Ogre::Vector3(0.0f,-6.5f,360.0f));
     logMsg(func +" courtPosition");
 //exit(0);
 #else

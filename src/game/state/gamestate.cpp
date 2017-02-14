@@ -879,13 +879,13 @@ bool gameState::loadCourtModel()  // loads selected court model
 
     }
 
-
-
     logMsg(func +" courtInstance.size() == " +convert->toString(courtInstance.size()));
     logMsg(func + " activeCourtInstance.size() == " +convert->toString(activeCourtInstance.size()));
     logMsg(func +" Model Name = " +activeCourtInstance[0]->getData()->getModelFileName());
-
+    logMsg(func +" entity initialized == " +convert->toString(activeCourtInstance[0]->getEntity()->getInitialized()));
     activeCourtInstance[0]->getEntity()->setEntityModelFileName(activeCourtInstance[0]->getData()->getModelFileName());
+    logMsg(func +" Model Name = " +activeCourtInstance[0]->getEntity()->getEntityModelFileName());
+//    exit(0);
     activeCourtInstance[0]->getEntity()->setEntityNodeName(activeCourtInstance[0]->getData()->getModelFileName());
     activeCourtInstance[0]->getEntity()->setEntityName(activeCourtInstance[0]->getData()->getModelFileName());
     if (activeCourtInstance[0]->getEntity()->loadModel())

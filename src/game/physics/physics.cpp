@@ -23,7 +23,7 @@
 
 // static declarations
 gameStateSharedPtr physics::gameS;
-bool physics::gameSInitialized;  // stores whether the gameState object has been initialized
+//bool physics::gameSInitialized;  // stores whether the gameState object has been initialized
 
 physics::physics()  // constructor
 {
@@ -32,6 +32,8 @@ physics::physics()  // constructor
 //    physicsSetup = false;
 
     mass = 0.0f;
+    restitution = 0.0f
+    friction = 0.0f
     inertia = btVector3(0,0,0);
     colObject = 999999;
     collidesWith = 999999;
@@ -61,21 +63,21 @@ void physics::setGameSInitialized(bool set)  // sets the value of gameSInitializ
     gameSInitialized = set;
 }
 
-btCollisionShapeSharedPtr physics::getShape()  // retrieves the value of shape
+btCollisionShape *physics::getShape()  // retrieves the value of shape
 {
     return (shape);
 }
-void physics::setShape(btCollisionShapeSharedPtr set)  // sets the value of shape
+void physics::setShape(btCollisionShape *set)  // sets the value of shape
 {
     shape = set;
 }
 
-BtOgreRigidBodyStateSharedPtr physics::getBodyState()  // retrieves the value of bodyState
+BtOgre::RigidBodyState *physics::getBodyState()  // retrieves the value of bodyState
 {
     return (bodyState);
 }
 
-void physics::setBodyState(BtOgreRigidBodyStateSharedPtr set)  // sets the value of bodyState
+void physics::setBodyState(BtOgre::RigidBodyState *set)  // sets the value of bodyState
 {
     bodyState = set;
 }
@@ -89,12 +91,12 @@ void physics::setShapeType(physicsShapes set)  // sets the value of shapeType
     shapeType = set;
 }
 
-btRigidBodySharedPtr physics::getPhysBody()  // retrieves physBody variable
+btRigidBody *physics::getPhysBody()  // retrieves physBody variable
 {
     return (physBody);
 }
 
-void physics::setPhysBody(btRigidBodySharedPtr set)  // sets physBody variable
+void physics::setPhysBody(btRigidBody *set)  // sets physBody variable
 {
     physBody = set;
 }
@@ -108,6 +110,24 @@ void physics::setMass(btScalar set)  // sets the value of mass
     mass = set;
 }
 
+btScalar physics::getRestitution()  // retrieves the value of restitution
+{
+    return (restitution);
+}
+void physics::setRestitution(btScalar set)  // sets the value of restitution
+{
+    restitution = set;
+}
+
+btScalar physics::getFriction()  // retrieves the value of friction
+{
+    retutn (friction);
+}
+void physics::setFriction(btScalar set)  // sets the value of friction
+{
+    friction = set;
+}
+
 btVector3 physics::getInertia()  // retrieves the value of inertia
 {
     return (inertia);
@@ -117,20 +137,20 @@ void physics::setInertia(btVector3 set)  // sets the value of inertia
     inertia = set;
 }
 
-int physics::getColObject()  // retrieves the value of colObject
+size_t physics::getColObject()  // retrieves the value of colObject
 {
     return (colObject);
 }
-void physics::setColObject(int set)  // sets the value of colObject
+void physics::setColObject(size_t set)  // sets the value of colObject
 {
     colObject = set;
 }
 
-int physics::getCollidesWith()  // retrieves the value of collidesWith
+size_t physics::getCollidesWith()  // retrieves the value of collidesWith
 {
     return (collidesWith);
 }
-void physics::setCollidesWith(int set)  // sets the value of collidesWith
+void physics::setCollidesWith(size_t set)  // sets the value of collidesWith
 {
     collidesWith = set;
 }
@@ -144,21 +164,12 @@ void physics::setPhysObjNumber(size_t set)  // sets the value of number
     physObjNumber = set;
 }
 
-/*bool physics::getSetupComplete()  // retrieves the value of setupComplete
-{
-    return (setupComplete);
-}
-void physics::setSetupComplete(bool set)  // sets the value of setupComplete
-{
-    setupComplete = set;
-}*/
-
 bool physics::setup()  // sets up the state of the object
 {
     return (true);
 }
 
-bool physics::setupPhysics(OgreEntitySharedPtr *model, OgreSceneNodeSharedPtr *node, btRigidBody **body)  // sets up physics for the object
+bool physics::setupPhysics(OgreEntitySharedPtr *model, OgreSceneNodeSharedPtr *node, btRigidBody **body, btScalar restitution, btScalar friction)  // sets up physics for the object
 {
 
 //    setCollidesWith(COL_COURT);  // collides with the court
@@ -216,25 +227,25 @@ bool physics::setupPhysics(OgreEntitySharedPtr *model, OgreSceneNodeSharedPtr *n
     tempShape->calculateLocalInertia(mass, inertia);
     logMsg(func +" tempShape->calculateLocalInertia(mass, inertia);");
 
-    shape = btCollisionShapeSharedPtr(tempShape);
+    shape = tempShape;
     logMsg(func +" shape = btCollisionShapeSharedPtr(tempShape);");
 
 //        exit(0);
 
-    BtOgreRigidBodyStateSharedPtr tempBodyState(new BtOgre::RigidBodyState(node->get()));
+    BtOgre::RigidBodyState *tempBodyState = new BtOgre::RigidBodyState(node->get());
     logMsg(func +" BtOgre::RigidBodyState *tempBodyState = new BtOgre::RigidBodyState(*node);");
 
-    bodyState =  BtOgreRigidBodyStateSharedPtr(tempBodyState);
+    bodyState =  tempBodyState;
     logMsg(func +" bodyState =  BtOgreRigidBodyStateSharedPtr(tempBodyState);");
 
 //    exit(0);
-    btRigidBody::btRigidBodyConstructionInfo info(mass,bodyState.get(),shape.get(),inertia);  //motion state would actually be non-null in most real usages
+    btRigidBody::btRigidBodyConstructionInfo info(mass,bodyState,shape,inertia);  //motion state would actually be non-null in most real usages
     logMsg(func +" btRigidBody::btRigidBodyConstructionInfo info(mass,bodyState.get(),shape.get(),inertia);");
 
-    info.m_restitution = 0.85f;
-    logMsg(func +" info.m_restitution = 0.85f;");
+    info.m_restitution = restitution;
+    logMsg(func +" info.m_restitution");
 
-//    info.m_friction = 2.0f;
+    info.m_friction = friction;
 //    exit(0);
     //Create MotionState (no need for BtOgre here, you can use it if you want to though).
 //    basketballBodyState = new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(0,0,0)));

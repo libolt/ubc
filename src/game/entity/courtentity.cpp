@@ -23,6 +23,7 @@
 
 courtEntity::courtEntity()  // constructor
 {
+    initialized = false;
 //    physics = new courtPhysics;
 }
 courtEntity::~courtEntity()  // destructor
@@ -60,8 +61,10 @@ bool courtEntity::setupPhysicsObject()  // sets up the physics object
 {
     OgreEntitySharedPtr tempModel = getModel();
     OgreSceneNodeSharedPtr tempNode = getNode();
-    btRigidBody *tempPhysBody = getPhysics()->getPhysBody().get();
-    
+    btRigidBody *tempPhysBody = getPhysics()->getPhysBody();
+    btScalar restitution = 1.0f;
+    btScalar friction = 15.5f;
+
     if (!getPhysics()->getGameSInitialized())
     {
         getPhysics()->setGameS(getBase()->getGameS());
@@ -69,23 +72,26 @@ bool courtEntity::setupPhysicsObject()  // sets up the physics object
     }
     
     getPhysics()->setMass(0.0f);
-    int collides = COL_BBALL | COL_TEAM1 | COL_TEAM2;
+    getPhysics()->setRestitution(1.0f);
+    getPhysics()->setFriction(15.5f);
+    size_t collides = COL_BBALL | COL_PLAYER0 | COL_TEAM1 | COL_TEAM2;
     getPhysics()->setShapeType(BOX);
     getPhysics()->setColObject(COL_COURT);
     getPhysics()->setCollidesWith(collides);
 //    exit(0);
     if (getPhysics()->setupPhysics(&tempModel, &tempNode, &tempPhysBody))
     {
+//        tempPhysBody->setActivationState(DISABLE_SIMULATION);
         setPhysicsSetup(true);
         setModel(OgreEntitySharedPtr(tempModel));
         setNode(OgreSceneNodeSharedPtr(tempNode));
-        getPhysics()->setPhysBody(btRigidBodySharedPtr(tempPhysBody));
+        getPhysics()->setPhysBody(tempPhysBody);
         return (true);
     }
     else
     {
     } 
-    getPhysics()->getPhysBody()->setActivationState(ACTIVE_TAG);
+//    getPhysics()->getPhysBody()->setActivationState(ACTIVE_TAG);
 
     return (false);
 }

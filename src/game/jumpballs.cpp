@@ -455,7 +455,7 @@ bool jumpBalls::tipToPlayer(basketballStateUMSharedPtr activeBasketballInstance,
             logMsg("ballTippedToPlayerInstance == " +convert->toString(ballTippedToPlayerInstance));
 
             // FIXME! Do NOT hardcode activeBasketballInstance
-            if (physEngine.collisionCheck(activeBasketballInstance[0]->getEntity()->getPhysics()->getPhysBody().get(), activePlayerInstance[ballTippedToPlayerInstance]->getEntity()->getPhysics()->getPhysBody().get()))
+            if (physEngine.collisionCheck(activeBasketballInstance[0]->getEntity()->getPhysics()->getPhysBody(), activePlayerInstance[ballTippedToPlayerInstance]->getEntity()->getPhysics()->getPhysBody()))
             {
  //               exit(0);
 ///                gameS->setTeamWithBall(ballTippedToTeam);

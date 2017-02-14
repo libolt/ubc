@@ -26,6 +26,7 @@
 
 courtState::courtState()
 {
+    initialized = false;
 //    stateSet = false;
 }
 
@@ -79,6 +80,10 @@ bool courtState::initialize()  // initializes the courtState object
             logMsg("Unable to initialize court entity!");
             exit(0);
         }
+    }
+    else
+    {
+        
     }
     return (true);
 }

@@ -237,7 +237,7 @@ void basketballPhysics::ballDribbling(Ogre::Vector3 bballPos, btRigidBody *court
 //    btRigidBody *courtPhysBody = courtInstance[0].getPhysBody();
 //  bballPhysBody->checkCollideWith(courtPhysBody);
 //    physEngine.getWorld()->contactPairTest(getPhysBody(), courtPhysBody, courtCollisionResult);
-    bool bballCourtCollided = physEngine.collisionCheck(getPhysBody().get(), courtPhysBody);
+    bool bballCourtCollided = physEngine.collisionCheck(getPhysBody(), courtPhysBody);
     //    logMsg("court collision " +convert->toString(courtCollisionResult));
     int numManifolds = physEngine.getWorld()->getDispatcher()->getNumManifolds();
     for (int i = 0; i<numManifolds; i++)
@@ -262,7 +262,7 @@ void basketballPhysics::ballDribbling(Ogre::Vector3 bballPos, btRigidBody *court
                 const btVector3& ptB = pt.getPositionWorldOnB();
                 const btVector3& normalOnB = pt.m_normalWorldOnB;
                 // ZOMG A COLLISIONNNNNNNNNNN ...
-                if ((btRigidBody*)obA == getPhysBody().get() || (btRigidBody*)obB == courtPhysBody)
+                if ((btRigidBody*)obA == getPhysBody() || (btRigidBody*)obB == courtPhysBody)
                 {
                     logMsg("ball collided with court!");
                    // exit(0);

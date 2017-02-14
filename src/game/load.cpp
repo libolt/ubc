@@ -1263,8 +1263,9 @@ courtStateSharedPtr loader::loadCourtFile(std::string fileName)  // loads data f
 
     readFile(fileName.c_str(), &contents);
     fileContents = convert->toString(contents);
-    
+    logMsg(func +" fileContents == " +fileContents);
     doc.Parse(contents);
+    logMsg(func +" Contents parsed");
     if (doc.Error())
     {
 /*        logMsg("Unable to parse court xml file");
@@ -1274,6 +1275,7 @@ courtStateSharedPtr loader::loadCourtFile(std::string fileName)  // loads data f
         exit(0);
 */
     }
+    logMsg(func +" Root Element!");
 
     tinyxml2::XMLHandle hDoc(&doc);
     tinyxml2::XMLElement *rootElement;
@@ -1419,19 +1421,28 @@ courtStateSharedPtr loader::loadCourtFile(std::string fileName)  // loads data f
     Ogre::Vector2 baselineInboundPos = Ogre::Vector2(baselineInboundXPos,baselineInboundZPos);
     Ogre::Vector2 sidelineInboundPos = Ogre::Vector2(sidelineInboundXPos,sidelineInboundZPos);
 
+    
     if (!courtInstance->getInitialized())
     {
+        logMsg(func +" Initalizing courtInstance!");
         if (courtInstance->initialize())
         {
+            logMsg(func +" Court Initialized!");
             courtInstance->setInitialized(true);
         }
         else
         {
-            logMsg(func +" Unable to initalize courtInstance!");
+            logMsg(func +" Unable to initialize Court Instance!");
             exit(0);
         }
     }
+    else
+    {
+        logMsg(func +" courtInstance already Initialized!");
+    }
+    
     courtInstance->getData()->setName(name);
+//    logMsg(func +" dah");
     courtInstance->getData()->setModelFileName(modelName);
     courtInstance->getData()->setBoundary(boundary);
     courtInstance->getData()->setBoundaryPos(boundaryPos);

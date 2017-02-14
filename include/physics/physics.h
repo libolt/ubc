@@ -43,36 +43,38 @@ class physics : public physicsEngine
         bool getGameSInitialized(); // retrieves the value of gameSInitialized
         void setGameSInitialized(bool set);  // sets the value of gameSInitialized
 
-        btCollisionShapeSharedPtr getShape();  // retrieves the value of shape
-        void setShape(btCollisionShapeSharedPtr set);  // sets the value of shape
+        btCollisionShape *getShape();  // retrieves the value of shape
+        void setShape(btCollisionShape *set);  // sets the value of shape
 
-        BtOgreRigidBodyStateSharedPtr getBodyState();  // retrieves the value of bodyState
-        void setBodyState(BtOgreRigidBodyStateSharedPtr set);  // sets the value of bodyState
+        BtOgre::RigidBodyState *getBodyState();  // retrieves the value of bodyState
+        void setBodyState(BtOgre::RigidBodyState *set);  // sets the value of bodyState
 
         physicsShapes getShapeType();  // retrieves the value of shapeType
         void setShapeType(physicsShapes set);  // sets the value of shapeType
  
-        btRigidBodySharedPtr getPhysBody();  // retrieves the value of physBody
-        void setPhysBody(btRigidBodySharedPtr set);  // sets the value of physBody
+        btRigidBody *getPhysBody();  // retrieves the value of physBody
+        void setPhysBody(btRigidBody *set);  // sets the value of physBody
 
         btScalar getMass();  // retrieves the value of mass
         void setMass(btScalar set);  // sets the value of mass
         
+        btScalar getRestitution();  // retrieves the value of restitution
+        void setRestitution(btScalar set);  // sets the value of restitution
+
+        btScalar getFriction();  // retrieves the value of friction
+        void setFriction(btScalar set);  // sets the value of friction
+
         btVector3 getInertia();  // retrieves the value of inertia
         void setInertia(btVector3 set);  // sets the value of inertia
         
-        int getColObject();  // retrieves the value of colObject
-        void setColObject(int set);  // sets the value of colObject
+        size_t getColObject();  // retrieves the value of colObject
+        void setColObject(size_t set);  // sets the value of colObject
  
-        int getCollidesWith();  // retrieves the value of collidesWith
-        void setCollidesWith(int set);  // sets the value of collidesWith
+        size_t getCollidesWith();  // retrieves the value of collidesWith
+        void setCollidesWith(size_t set);  // sets the value of collidesWith
 
         size_t getPhysObjNumber();  // retrieves the value of number
         void setPhysObjNumber(size_t set);  // sets the value of number
-
-/*        bool getSetupComplete();  // retrieves the value of physicsSetup
-        void setSetupComplete(bool set);  // sets the value of physicsSetup
-*/
 
         bool setupPhysics(OgreEntitySharedPtr *model, OgreSceneNodeSharedPtr *node, btRigidBody **body);  // sets up object physics
 
@@ -83,24 +85,28 @@ class physics : public physicsEngine
     private:
 
         static gameStateSharedPtr gameS;  // stores a copy of gameState object
-        static bool gameSInitialized;  // stores whether the gameState object has been initialized
+        bool gameSInitialized;  // stores whether the gameState object has been initialized
  
-        btCollisionShapeSharedPtr shape;  // stores the shape of the object shape
-        BtOgreRigidBodyStateSharedPtr bodyState;  // stores the state of the body objectt
+        btCollisionShape *shape;  // stores the shape of the object shape
+        BtOgre::RigidBodyState *bodyState;  // stores the state of the body objectt
 
         physicsShapes shapeType;  // stores what type of shape to create 
         
-        btRigidBodySharedPtr physBody;  // stores the physics object that represents the player
+        btRigidBody *physBody;  // stores the physics object that represents the player
     
         btScalar mass;  // stores the mass of the object;
         
         btVector3 inertia;  // stores the inertia of the object  
         
+        btScalar restitution;  // stores the restitution of the object
+        
+        btScalar friction;  // stores the mass of the object
+        
         size_t entityInstance;  // stores which instance of the entity object(s) to use for shape
         
-        int colObject;  // stores the type of collision object
+        size_t colObject;  // stores the type of collision object
 
-        int collidesWith;	// determines what the object collides with
+        size_t collidesWith;	// determines what the object collides with
 
 //        bool setupComplete;  // stores whether the basketblal physics have been setup.
 

@@ -26,12 +26,12 @@
 #include "BtOgreExtras.h"
 #include "BulletDynamics/Dynamics/btRigidBody.h"
 #include "state/gamestateshared.h"
-#include "engine/physicsengine.h"
+
 #include "enums.h"
 
-//class physicsEngine;
+class physicsEngine;
 
-class physics : public physicsEngine
+class physics
 {
     public:
         physics();  // constructor
@@ -42,6 +42,12 @@ class physics : public physicsEngine
         
         bool getGameSInitialized(); // retrieves the value of gameSInitialized
         void setGameSInitialized(bool set);  // sets the value of gameSInitialized
+
+        physicsEngineSharedPtr getPhysE();  // retrieves the value of physE
+        void setPhysE(physicsEngineSharedPtr set);  // sets the value of physE
+
+        bool getPhysEInitialized(); // retrieves the value of physEInitialized
+        void setPhysEInitialized(bool set);  // sets the value of physEInitialized
 
         btCollisionShape *getShape();  // retrieves the value of shape
         void setShape(btCollisionShape *set);  // sets the value of shape
@@ -58,15 +64,21 @@ class physics : public physicsEngine
         btScalar getMass();  // retrieves the value of mass
         void setMass(btScalar set);  // sets the value of mass
         
+        btVector3 getInertia();  // retrieves the value of inertia
+        void setInertia(btVector3 set);  // sets the value of inertia
+  
         btScalar getRestitution();  // retrieves the value of restitution
         void setRestitution(btScalar set);  // sets the value of restitution
 
         btScalar getFriction();  // retrieves the value of friction
         void setFriction(btScalar set);  // sets the value of friction
-
-        btVector3 getInertia();  // retrieves the value of inertia
-        void setInertia(btVector3 set);  // sets the value of inertia
+      
+        btScalar getVelocity();  // retrieves the value of velocity
+        void setVelocity(btScalar set);  // sets the value of velocity
         
+        bool getVelocitySet();  // retrieves the value of velocitySet
+        void setVelocitySet(bool set);  // sets the value of velocitySet
+
         size_t getColObject();  // retrieves the value of colObject
         void setColObject(size_t set);  // sets the value of colObject
  
@@ -86,7 +98,11 @@ class physics : public physicsEngine
 
         static gameStateSharedPtr gameS;  // stores a copy of gameState object
         bool gameSInitialized;  // stores whether the gameState object has been initialized
- 
+
+        static physicsEngineSharedPtr physE;  // physics engine object
+
+        bool physEInitialized;  // stores whether the physics engine object has been initialized
+
         btCollisionShape *shape;  // stores the shape of the object shape
         BtOgre::RigidBodyState *bodyState;  // stores the state of the body objectt
 
@@ -101,6 +117,10 @@ class physics : public physicsEngine
         btScalar restitution;  // stores the restitution of the object
         
         btScalar friction;  // stores the mass of the object
+        
+        btScalar velocity;  // stores the velocity of the object 
+        
+        bool velocitySet;  // stores whether object velocity has been set
         
         size_t entityInstance;  // stores which instance of the entity object(s) to use for shape
         

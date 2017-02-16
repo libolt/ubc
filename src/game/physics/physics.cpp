@@ -20,21 +20,27 @@
 #include "conversion.h"
 #include "logging.h"
 #include "physics/physics.h"
+#include "engine/physicsengine.h"
 
 // static declarations
 gameStateSharedPtr physics::gameS;
+physicsEngineSharedPtr physics::physE;  // physics engine object
+
 //bool physics::gameSInitialized;  // stores whether the gameState object has been initialized
 
 physics::physics()  // constructor
 {
     
     gameSInitialized = false;
+    physEInitialized = false;
 //    physicsSetup = false;
 
     mass = 0.0f;
-    restitution = 0.0f
-    friction = 0.0f
     inertia = btVector3(0,0,0);
+    restitution = 0.0f;
+    friction = 0.0f;
+    velocity = 0.0f;
+    velocitySet = false;
     colObject = 999999;
     collidesWith = 999999;
     physObjNumber = 999999;
@@ -61,6 +67,24 @@ bool physics::getGameSInitialized() // retrieves the value of gameSInitialized
 void physics::setGameSInitialized(bool set)  // sets the value of gameSInitialized
 {
     gameSInitialized = set;
+}
+
+physicsEngineSharedPtr physics::getPhysE()  // retrieves the value of physE
+{
+    return (physE);
+}
+void physics::setPhysE(physicsEngineSharedPtr set)  // sets the value of physE
+{
+    physE = set;
+}
+
+bool physics::getPhysEInitialized() // retrieves the value of physEInitialized
+{
+    return (physEInitialized);
+}
+void physics::setPhysEInitialized(bool set)  // sets the value of physEInitialized
+{
+    physEInitialized = set;
 }
 
 btCollisionShape *physics::getShape()  // retrieves the value of shape
@@ -110,6 +134,15 @@ void physics::setMass(btScalar set)  // sets the value of mass
     mass = set;
 }
 
+btVector3 physics::getInertia()  // retrieves the value of inertia
+{
+    return (inertia);
+}
+void physics::setInertia(btVector3 set)  // sets the value of inertia
+{
+    inertia = set;
+}
+
 btScalar physics::getRestitution()  // retrieves the value of restitution
 {
     return (restitution);
@@ -121,20 +154,29 @@ void physics::setRestitution(btScalar set)  // sets the value of restitution
 
 btScalar physics::getFriction()  // retrieves the value of friction
 {
-    retutn (friction);
+    return (friction);
 }
 void physics::setFriction(btScalar set)  // sets the value of friction
 {
     friction = set;
 }
 
-btVector3 physics::getInertia()  // retrieves the value of inertia
+btScalar physics::getVelocity()  // retrieves the value of velocity
 {
-    return (inertia);
+    return (velocity);
 }
-void physics::setInertia(btVector3 set)  // sets the value of inertia
+void physics::setVelocity(btScalar set)  // sets the value of velocity
 {
-    inertia = set;
+    velocity = set;
+}
+
+bool physics::getVelocitySet()  // retrieves the value of velocitySet
+{
+    return (velocitySet);
+}
+void physics::setVelocitySet(bool set)  // sets the value of velocitySet
+{
+    velocitySet = set;
 }
 
 size_t physics::getColObject()  // retrieves the value of colObject
@@ -169,35 +211,16 @@ bool physics::setup()  // sets up the state of the object
     return (true);
 }
 
-bool physics::setupPhysics(OgreEntitySharedPtr *model, OgreSceneNodeSharedPtr *node, btRigidBody **body, btScalar restitution, btScalar friction)  // sets up physics for the object
+bool physics::setupPhysics(OgreEntitySharedPtr *model, OgreSceneNodeSharedPtr *node, btRigidBody **body)  // sets up physics for the object
 {
 
-//    setCollidesWith(COL_COURT);  // collides with the court
     sharedPtr<conversion> convert = conversion::Instance();
-//    sharedPtr<gameState> gameS = gameState::Instance();
-//    sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
-
-//    basketballStateVec basketballInstance = gameS->getBasketballInstance();
-//    size_t activeBBallInstance = gameS->getActiveBBallInstance();
-
-//    Ogre::SceneNode *tempNode = node;
-//    btScalar mass = 0.62f;
-//    btVector3 inertia, inertia2;
     btRigidBody *physBody;
-//    inertia = btVector3(0,0,0);
-    
     btCollisionShape *tempShape; 
-    
     std::string func = "physics::setupPhysics()";
     
     logMsg(func +" beginning");
     
-    //Create the basketball shape.
-///    if (getNumber() != 999999 && basketballInstance[getNumber()].getModelLoaded()) //&& gameS->getBasketballInstancesCreated())
-///    {
-///        logMsg("bball number == " +convert->toString(getNumber()));
-//        exit(0);
-
     BtOgre::StaticMeshToShapeConverter converter(model->get());
         
     logMsg(func +" BtOgre::StaticMeshToShapeConverter");
@@ -216,7 +239,7 @@ bool physics::setupPhysics(OgreEntitySharedPtr *model, OgreSceneNodeSharedPtr *n
             logMsg(func +" CYLINDER");
         break;
         case SPHERE:
-            tempShape= converter.createSphere();
+            tempShape = converter.createSphere();
             logMsg(func +" SPHERE");
         break;
         default:

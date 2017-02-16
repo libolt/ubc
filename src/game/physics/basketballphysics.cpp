@@ -299,7 +299,7 @@ void basketballPhysics::updatePosition()  // updates the position of basketball 
 //    size_t activeBBallInstance = gameS->getActiveBBallInstance();
 //    basketballStateVec basketballInstance = gameS->getBasketballInstance();
 
-    if (getBasketballVelocitySet())
+    if (getVelocitySet())
     {
 //        exit(0);
 ///        basketballInstance[activeBBallInstance].getPhysBody()->setLinearVelocity(basketballVelocity);

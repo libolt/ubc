@@ -438,8 +438,9 @@ bool jumpBalls::tipToPlayer(basketballStateUMSharedPtr activeBasketballInstance,
         }
         if (bballVelocity.getX() != 0 || bballVelocity.getY() != 0 || bballVelocity.getZ() != 0)
         {
-            physEngine.setBasketballVelocity(bballVelocity);
-            physEngine.setBasketballVelocitySet(true);
+            // FIXME! NEEDS moved to basketball physics code!
+///            physEngine.setBasketballVelocity(bballVelocity);
+///            physEngine.setBasketballVelocitySet(true);
             ballTipForceApplied = true;
 //            exit(0);
         }

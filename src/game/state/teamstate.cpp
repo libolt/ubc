@@ -809,8 +809,8 @@ bool teamState::setPlayerStartPositions()  // sets the initial coordinates for t
 
 //    exit(0);
     logMsg(func +" courtPos.y == " +convert->toString(courtPos.y));
-    float yOffset = courtPos.y + 5.0;
-    float y = 0.0;
+    float yOffset = courtPos.y + 6.0;
+    
     logMsg(func +" courtpos.y == " +convert->toString(courtPos.y));
     logMsg(func +" yOffset == " +convert->toString(yOffset));
 
@@ -820,15 +820,9 @@ bool teamState::setPlayerStartPositions()  // sets the initial coordinates for t
     if (teamType == HOMETEAM)   // assigns the positions and directions for team 1 players
     {
         // assign positions
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-        y = -0.0f;
-#else
-        y = -23.5f;
-#endif
-        
 
 //        yOffset = y;
-       base->getGameS()->setYOffset(y);
+       base->getGameS()->setYOffset(yOffset);
         
         
         startingPos.push_back(Ogre::Vector3(14.4f,yOffset,352.0f));
@@ -841,13 +835,8 @@ bool teamState::setPlayerStartPositions()  // sets the initial coordinates for t
     }
     else if (teamType == AWAYTEAM) // assigns the positions and directions for team 2 players
     {
-        float y = 0.0f;
+        
         // assign positions
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-        y = -0.0f;
-#else
-        y = -23.5f;
-#endif
 
         startingPos.push_back(Ogre::Vector3(-13.8f,yOffset,352.0f));
         startingPos.push_back(Ogre::Vector3(-0.8f,yOffset,347.6f));

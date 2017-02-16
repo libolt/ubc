@@ -43,21 +43,8 @@ class renderEngine;
 class physicsEngine : public engine
 {
 public:
-    //static physicsEngine *Instance();
-///    static sharedPtr<physicsEngine> Instance();
-
     physicsEngine();  // constructor
     ~physicsEngine();	// destructor
-
-    
-    bool getBasketballlPhysicsSetup();  // retrieves the value of playerPhysicsSetup 
-    void setBasketballPhysicsSetup(bool set);	 // sets the value of playerPhysicsSetup 
-
-    bool getCourtPhysicsSetup();  // retrieves the value of courtPhysicsSetup 
-    void setCourtPhysicsSetup(bool set);  // sets the value of courtPhysicsSetup 
-
-    bool getHoopPhysicsSetup();	 // retrieves the value of hoopPhysicsSetup 
-    void setHoopPhysicsSetup(bool set);  // sets the value of hoopPhysicsSetup 
 
     bool getPairCollided();	 // retrieves value of pairCollided 
     void setPairCollided(bool set);  // sets value of pairCollided 
@@ -65,99 +52,40 @@ public:
     bool getPassCollision();  // retrieves the value of passCollision 
     void setPassCollision(bool set);  // sets the value of passCollision 
 
-    btVector3 getBasketballVelocity();  // retrieves the value of basketballVelocity
-    void setBasketballVelocity(const btVector3 &set);  // sets the value of basketballVelocity
-
-    bool getBasketballVelocitySet();  // retrieves the value of basketballVelocitySet
-    void setBasketballVelocitySet(bool set);  // sets the value of basketballVelocitySet
-
     sharedPtr<btDynamicsWorld> getWorld();  // retrieves the value of world
     void setWorld(sharedPtr<btDynamicsWorld> set);  // sets the value of world
-
-
-/*    size_t getTeam1CollidesWith();  // retrieves the value of team1CollidesWith
-    void setTeam1CollidesWith(size_t set); // sets the vslue of team1CollidesWith
-    
-    size_t getTeam2CollidesWith();  // retrieves the value of team2CollidesWith
-    void setTeam2CollidesWith(size_t set); // sets the vslue of team2CollidesWith
-*/
 
     bool setup();  // sets up the physicsEngine object
 
     void setupState(sharedPtr<renderEngine> render);  // sets up state of physics engine.
 
-    // sets up object physics
-//    bool setupCourtPhysics();  // sets up court physics
-//    bool setupHoopPhysics();  // sets up hoop physics
-    
     void updateState();  // updates the state of the physics engine.
     void updatePositions();  // updates thr position of objects
-///    void updateBasketballPosition();  // updates the position of basketball object(s)
-///    void updatePlayerPositions();  // updates the position of player objecgts
     void stepWorld(timing time);  // steps the physics simulation
 
-
-//    void ballDribbling();  // simulates basketball dribble
     void passCollisionCheck();  // checks whether the ball has collided with the player being passed to
 
     bool collisionCheck(btRigidBody *objectA,btRigidBody *objectB);  // tests whther or not two objects have collided
 
-///    bool playerJump(teamTypes teamType, int playerID);  // calculates and executes player jumping in the air
-///    bool shootBasketball(teamTypes teamType, int playerID);  // calculates and executes basketball being shot
-   
 protected:
-
-///    physicsEngine(const physicsEngine&);
-///    physicsEngine &operator = (const physicsEngine&);
 
 private:
 
-    //static physicsEngine *pInstance;
-///    static sharedPtr<physicsEngine> pInstance;
-
     static sharedPtr<btDynamicsWorld> world;  // stores the physics world
     static sharedPtr<BtOgre::DebugDrawer> debugDraw;  // used to draw debug shapes for objects
-//    btAxisSweep3 *broadPhase;
     static sharedPtr<btBroadphaseInterface> broadPhase;
     static sharedPtr<btDefaultCollisionConfiguration> collisionConfig;
     static sharedPtr<btCollisionDispatcher> dispatcher;
     static sharedPtr<btSequentialImpulseConstraintSolver> solver;
     static btContactSolverInfo contactInfo;
 
-
-    static btCollisionShape *courtShape;  // stores the shape of the court object
-//	btDefaultMotionState *courtBodyState;
-    static BtOgre::RigidBodyState *courtBodyState; // stores state of the court object
-	
-	// hoop
-//	btCollisionShape *hoopShape;
-//	BtOgre::RigidBodyState *hoopBodyState;
-	
-    // basketball
-//    btRigidBody *basketballBody;
- //   btBvhTriangleMeshShape *basketballShape;
-
-    btVector3 basketballVelocity;  // stores the velocity of the basketball
-    bool basketballVelocitySet;  // stores whether the velocity of the basketball has been set
-
     // timer variables
     btScalar changeInTime;  // stores the change in time between loops
     btScalar oldTime;  // stores the previous loops time
 
-    bool basketballPhysicsSetup; // determines whether all basketballs' physics bodies have been setup
-    bool courtPhysicsSetup;  // determines whether the court's physics body has been setup
-	bool hoopPhysicsSetup;  // determines whether all hoop' physics bodies have been setup
     bool pairCollided;  // determines if a pair of objects have collided
 
     bool passCollision;	// stores whether a ball has collided with player during a pass
-    // contact result callback
-
-    // collisions
-    int courtCollidesWith;	// determines what the court collides with
-    int hoopCollidesWith;  // determines what the hoop collides with
-//    size_t team1CollidesWith;	// determines what team1 collides with
-//    size_t team2CollidesWith;  // | COL_BBALL | COL_TEAM1;	// determiens what team2 collides with
-
 
     // shooting variables
     btVector3 beginShotPos;  // stores position of ball at the beginning of a shot
@@ -178,38 +106,6 @@ private:
     bool endShotPosSet;  // determines if end position of shot has been set
     bool shotCalcComplete;  // determines if shot has been calculated
 };
-
-    // Collision Callback
-/*    struct MyContactResultCallback : public btCollisionWorld::ContactResultCallback
-    {
-//    	physicsEngine *physE = physicsEngine::Instance();
-    	bool collision;
-        MyContactResultCallback() : collision(false)
-    	{
-    	}
-    //	btScalar addSingleResult(btManifoldPoint& cp,   const btCollisionObject* colObj0,int partId0,int index0,const btCollisionObject* colObj1,int partId1,int index1)
-        btScalar addSingleResult(btManifoldPoint& cp,    const btCollisionObjectWrapper* colObj0Wrap,int partId0,int index0,const btCollisionObjectWrapper* colObj1Wrap,int partId1,int index1)
-    	{
-			
-			Ogre::LogManager::getSingletonPtr()->logMessage("Checking Collision!!");
-
-    		if (cp.getDistance()<=0)
-    		{
-				Ogre::LogManager::getSingletonPtr()->logMessage("Collision!!");
-				collision = true;
-
-//    			physE->setPairCollided(true);
-    //		    exit(0);
-    		}
-    		else
-    		{
-				Ogre::LogManager::getSingletonPtr()->logMessage("No Collision!!");
-				collision = false;
-//    			physE->setPairCollided(false);
-    		}
-    		return 1.f;
-    	}
-    };*/
 
 struct MyContactResultCallback : public btCollisionWorld::ContactResultCallback
 {

@@ -122,14 +122,17 @@ bool UBCBase::setup()  // sets up the engine and states
     gameEngineSharedPtr tempGameESharedPtr(new gameEngine);
     gameE = tempGameESharedPtr;
 //    gameE(new gameEngine);
+    logMsg(func +" gameE->setup()");
     gameE->setup();  // sets up the game engine
 
 //    gameState *tempGameStateObj = new gameState;
     gameStateSharedPtr tempGameStateSharedPtr(new gameState);
     gameS = tempGameStateSharedPtr;
+    logMsg(func +" getGameS()->setInitialized(true)");
     getGameS()->setInitialized(true);
     
     loaderSharedPtr tempLoaderSharedPtr(new loader);
+    logMsg(func +" load = tempLoaderSharedPtr");
     load = tempLoaderSharedPtr;
 
 //    exit(0);
@@ -140,6 +143,7 @@ bool UBCBase::setup()  // sets up the engine and states
     inputS = tempInputStateSharedPtr;
 
     inputS->setInputE(gameE->getInputE());
+    logMsg(func +" inputS->setup()");
     inputS->setup();  // sets up the inputState object
 
     stateSetup = true;

@@ -34,21 +34,6 @@
 #include "jumpballs.h"
 
 
-//btDynamicsWorld *physicsEngine::world;  // stores the physics world
-
-///sharedPtr<physicsEngine> physicsEngine::pInstance;
-
-/*sharedPtr<physicsEngine> physicsEngine::Instance()
-{
-    if (pInstance == 0)  // is it the first call?
-    {
-        //pInstance = new physicsEngine; // create sole instance
-        sharedPtr<physicsEngine> tInstance(new physicsEngine);
-        pInstance = tInstance;
-    }
-    return pInstance;  // address of sole instance
-}
-*/
 
 // static declarations
 sharedPtr<btDynamicsWorld> physicsEngine::world;  // stores the physics world
@@ -58,8 +43,6 @@ sharedPtr<btDefaultCollisionConfiguration> physicsEngine::collisionConfig;
 sharedPtr<btCollisionDispatcher> physicsEngine::dispatcher;
 sharedPtr<btSequentialImpulseConstraintSolver> physicsEngine::solver;
 btContactSolverInfo physicsEngine::contactInfo;
-btCollisionShape *physicsEngine::courtShape;  // stores the shape of the court object
-BtOgre::RigidBodyState *physicsEngine::courtBodyState; // stores state of the
 
 physicsEngine::physicsEngine()  // contructor
 {
@@ -68,23 +51,8 @@ physicsEngine::physicsEngine()  // contructor
     changeInTime = 0;
     oldTime = 0;
 
-//    btCollisionShape *shape;
-//    BtOgre::RigidBodyState *state;
-
-    courtCollidesWith = COL_BBALL | COL_TEAM1 | COL_TEAM2;  // determines what the court collides with
-//    bballCollidesWith = COL_COURT; // | COL_TEAM1 | COL_TEAM2;  // determines what the basketball collides with
-//    team1CollidesWith = COL_COURT; // | COL_BBALL | COL_TEAM2;  // determines what team1 collides with
-//    team2CollidesWith = COL_COURT; // | COL_BBALL | COL_TEAM1;  // determiens what team2 collides with
-
-    basketballPhysicsSetup = false;
-    courtPhysicsSetup = false;
-    hoopPhysicsSetup = false;
-
     pairCollided = false;
     passCollision = false;
-
-    basketballVelocitySet = false;
-    basketballVelocity = btVector3(0,0,0);
 
     beginShotPos = btVector3(0,0,0);
     beginShotDistance = btVector3(0,0,0);
@@ -108,61 +76,9 @@ physicsEngine::physicsEngine()  // contructor
 
 physicsEngine::~physicsEngine()  // destructor
 {
-    //Free rigid bodies
-
-    // FIXME!: Fix this so that it relies on a variable that stores total number of players
-/*    for (int i=0; i<10; ++i)
-    {
-//        world->removeRigidBody(*playerBody[i]);
-    }
-//    delete playerBody->getMotionState();
-//    delete playerBody;
-//    delete playerShape;
-
-//    world->removeRigidBody(courtBody);
-//    delete courtBody->getMotionState();
-//    delete courtBody;
-//    delete courtShape->getMeshInterface();
-    delete courtShape;
-
-    //Free Bullet stuff.
-    //delete debugDraw;
-    delete world;
-
-    delete solver;
-    delete dispatcher;
-    delete collisionConfig;
-    delete broadPhase;
-    */
 
 }
 
-bool physicsEngine::getBasketballlPhysicsSetup()  // retrieves the value of playerPhysicsSetup 
-{
-    return (basketballPhysicsSetup);
-}
-void physicsEngine::setBasketballPhysicsSetup(bool set)  // sets the value of the playerPhysicsSetup 
-{
-    basketballPhysicsSetup = set;
-}
-
-bool physicsEngine::getCourtPhysicsSetup()  // retrieves the value of courtPhysicsSetup 
-{
-    return (courtPhysicsSetup);
-}
-void physicsEngine::setCourtPhysicsSetup(bool set)  // sets the value of courtPhysicsSetup 
-{
-    courtPhysicsSetup = set;
-}
-
-bool physicsEngine::getHoopPhysicsSetup()  // retrieves the value of hoopPhysicsSetup 
-{
-    return (hoopPhysicsSetup);
-}
-void physicsEngine::setHoopPhysicsSetup(bool set) // sets the value of hoopPhysicsSetup 
-{
-    hoopPhysicsSetup = set;
-}
 
 bool physicsEngine::getPairCollided()  // retrieves value of pairCollided 
 {
@@ -182,26 +98,6 @@ void physicsEngine::setPassCollision(bool set)    // sets the value of passColli
     passCollision = set;
 }
 
-btVector3 physicsEngine::getBasketballVelocity()  // retrieves the value of basketballVelocity
-{
-    return (basketballVelocity);
-}
-void physicsEngine::setBasketballVelocity(const btVector3 &set)  // sets the value of basketballVelocity
-{
-    basketballVelocity = set;
-}
-
-
-bool physicsEngine::getBasketballVelocitySet()  // retrieves the value of basketballVelocitySet
-{
-    return (true);
-}
-
-void physicsEngine::setBasketballVelocitySet(bool set)  // sets the value of basketballVelocitySet
-{
-    basketballVelocitySet = set;
-}
-
 sharedPtr<btDynamicsWorld> physicsEngine::getWorld()  // retrieves the value of world
 {
     return (world);
@@ -211,25 +107,6 @@ void physicsEngine::setWorld(sharedPtr<btDynamicsWorld> set)  // sets the value 
     world = set;
 }
 
-/*
-size_t physicsEngine::getTeam1CollidesWith()  // retrieves the value of team1CollidesWith
-{
-    return (team1CollidesWith);
-}
-void physicsEngine::setTeam1CollidesWith(size_t set) // sets the vslue of team1CollidesWith
-{
-    team1CollidesWith = set;
-}
-
-size_t physicsEngine::getTeam2CollidesWith()  // retrieves the value of team2CollidesWith
-{
-    return (team2CollidesWith);
-}
-void physicsEngine::setTeam2CollidesWith(size_t set) // k the vslue of team2CollidesWith
-{
-    team2CollidesWith = set;
-}
-*/
 
 bool physicsEngine::setup()  // sets up the physicsEngine object
 {
@@ -251,6 +128,9 @@ bool physicsEngine::setup()  // sets up the physicsEngine object
 //    world->setGravity(btVector3(0,-9.8,0));
     btDynamicsWorld *tempWorld = new btDiscreteDynamicsWorld(dispatcher.get(), broadPhase.get(), solver.get(), collisionConfig.get());
 //    tempWorld->setGravity(btVector3(0,-9.8,0));
+    std::string func = "physicsEngine::setup()";
+    
+    logMsg(func +" beginning");
     world = sharedPtr<btDynamicsWorld>(tempWorld);
     world->setGravity(btVector3(0,-9.8,0));
 
@@ -260,6 +140,8 @@ bool physicsEngine::setup()  // sets up the physicsEngine object
     contactInfo.m_friction = 1.5f;
     //FIXME: Hack to set total number of players for physics to 10, set this to be dynamic
 //    btRigidBody *body;
+    logMsg(func +" end");
+    exit(0);
     return (true);
 }
 
@@ -273,49 +155,7 @@ void physicsEngine::setupState(sharedPtr<renderEngine> render)  // sets up the s
     debugDraw = sharedPtr<BtOgre::DebugDrawer>(tempDebugDraw);
     world->setDebugDrawer(debugDraw.get());
 
-/*    if (!playerPhysicsSetup)
-    {
-        if (setupPlayerPhysics()) // sets up physics state for players
-        {
-//            exit(0);
-            playerPhysicsSetup = true;
-        }
-        else
-        {
-        }
-    }
-    else
-    {
-    }
-    
-    if (!courtPhysicsSetup)
-    {
-        if (setupCourtPhysics()) // sets up physics state for court
-        {
-            courtPhysicsSetup = true;
-        }
-        else
-        {
-        }
-    }
-    else
-    {
-    }
 
-    if (!hoopPhysicsSetup)
-    {
-        if (setupHoopPhysics())  // sets up physics state for hoop
-        {
-            hoopPhysicsSetup = true;
-        }
-        else
-        {
-        }
-    }
-    else
-    {
-    }
-*/
 }
 
 

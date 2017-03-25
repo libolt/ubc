@@ -23,7 +23,7 @@
 #include "Ogre.h"
 
 #include "logging.h"
-//#include "engine/physicsengine.h"
+#include "engine/physicsengine.h"
 //#include "engine/renderengine.h"
 //#include "ai/steering.h"
 #include "ai/playersteer.h"

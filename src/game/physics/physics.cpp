@@ -285,7 +285,7 @@ bool physics::setupPhysics(OgreEntitySharedPtr *model, OgreSceneNodeSharedPtr *n
 //        *physBody = body;
 
 //        static btDynamicsWorld *world = getWorld();
-    sharedPtr<btDynamicsWorld> world = getWorld();
+    sharedPtr<btDynamicsWorld> world = physE->getWorld();
     logMsg(func +" sharedPtr<btDynamicsWorld> world = getWorld();");
 
     logMsg(func +" getColObject() == " +convert->toString(getColObject()));
@@ -296,7 +296,7 @@ bool physics::setupPhysics(OgreEntitySharedPtr *model, OgreSceneNodeSharedPtr *n
 
     logMsg(func +" world->addRigidBody(*body, getColObject(), getCollidesWith());");
 
-    setWorld(world);
+    physE->setWorld(world);
     logMsg(func +" setWorld(world);");
 
 //        physBody = *body;

@@ -21,8 +21,6 @@
 #include "engine/networkengine.h"
 #include "network/networkplayerstateobject.h"
 #include "engine/gameengine.h"
-//#include "state/gamestate.h"
-//#include "state/teamstate.h"
 #include "logging.h"
 #include "engine/inputengine.h"
 #include "conversion.h"
@@ -48,20 +46,6 @@ networkEngine::~networkEngine()
     enet_host_destroy(client.get());	// cleans up client
 
 }
-
-/*networkEngineSharedPtr networkEngine::pInstance;
-
-networkEngineSharedPtr networkEngine::Instance()
-{
-    if (pInstance == 0)  // is it the first call?
-    {
-        //pInstance = new networkEngine; // create sole instance
-        networkEngineSharedPtr tInstance(new networkEngine);
-        pInstance = tInstance;
-    }
-    return pInstance; // address of sole instance
-}
-*/
 
 teamTypes networkEngine::getTeamType()  // retrieves the value of teamType
 {

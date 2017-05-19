@@ -25,13 +25,10 @@
 #endif
 #include "conversion.h"
 #include "engine/gameengine.h"
-//#include "state/gamestate.h"
-//#include "gui/gui.h"
 #include "logging.h"
 #include "engine/physicsengine.h"
 #include "engine/renderengine.h"
 #include "engine/sound/soundengine.h"
-//#include "teams.h"
 
 #define FREEIMAGE_LIB
 #include "FreeImage.h"
@@ -55,8 +52,6 @@
 int renderEngine::instance;
 SDL_Window *renderEngine::sdlWindow;
 SDL_SysWMinfo renderEngine::sysInfo; 
-
-
 sharedPtr<Ogre::Root> renderEngine::RERoot;  // stores the OGRE Root
 sharedPtr<Ogre::SceneManager> renderEngine::mSceneMgr;  // static declaration of mSceneMgr
 sharedPtr<Ogre::Camera> renderEngine::mCamera;  // static declaration of mSceneMgr
@@ -111,38 +106,38 @@ bool renderEngine::frameEnded()
 {
 	return true;
 }
-sharedPtr<Ogre::Root> renderEngine::getRERoot()
+sharedPtr<Ogre::Root> renderEngine::getRERoot()  // retrieves the value of RERoot
 {
 	return (RERoot);
 }
-void renderEngine::setRERoot(sharedPtr<Ogre::Root> set)
+void renderEngine::setRERoot(sharedPtr<Ogre::Root> set)  // sets the value of RERoot
 {
 	RERoot = set;
 }
 
-sharedPtr<Ogre::Camera> renderEngine::getMCamera()
+sharedPtr<Ogre::Camera> renderEngine::getMCamera()  // retrieves the value of mCamera
 {
 	return (mCamera);
 }
-void renderEngine::setMCamera(sharedPtr<Ogre::Camera> set)
+void renderEngine::setMCamera(sharedPtr<Ogre::Camera> set)  // sets the value of mCamera
 {
 	mCamera = set;
 }
 
-sharedPtr<Ogre::SceneManager> renderEngine::getMSceneMgr()
+sharedPtr<Ogre::SceneManager> renderEngine::getMSceneMgr()  // retrieves the value of mSceneMgr
 {
 	return (mSceneMgr);
 }
-void renderEngine::setMSceneMgr(sharedPtr<Ogre::SceneManager> set)
+void renderEngine::setMSceneMgr(sharedPtr<Ogre::SceneManager> set)  // sets the value of mSceneMgr
 {
 	mSceneMgr = set;
 }
 
-sharedPtr<Ogre::RenderWindow> renderEngine::getMWindow()
+sharedPtr<Ogre::RenderWindow> renderEngine::getMWindow()  // retrieves the value of mWindow
 {
 	return (mWindow);
 }
-void renderEngine::setMWindow(sharedPtr<Ogre::RenderWindow> set)
+void renderEngine::setMWindow(sharedPtr<Ogre::RenderWindow> set)  // sets the value of mWindow
 {
 	mWindow = set;
 }
@@ -158,103 +153,101 @@ void renderEngine::setViewPort(sharedPtr<Ogre::Viewport> set) // sets the value 
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 
-AAssetManager *renderEngine::getMAssetMgr()
+AAssetManager *renderEngine::getMAssetMgr()  // retrieves the value of mAssetMgr
 {
 	return (mAssetMgr);
 }
-void renderEngine::setMAssetMgr(AAssetManager *asset)
+void renderEngine::setMAssetMgr(AAssetManager *set)  // sets the value of mAssetMgr
 {
-	mAssetMgr = asset;
+	mAssetMgr = set;
 }
-android_app *renderEngine::getApp()
+android_app *renderEngine::getApp()  // retrieves the value of app
 {
 	return (app);
 }
-void renderEngine::setApp(android_app *ap)
+void renderEngine::setApp(android_app *set)  // sets the value of app
 {
-	app = ap;
+	app = set;
 }
 #endif
 
-Ogre::Vector3 renderEngine::getMTranslateVector()
+Ogre::Vector3 renderEngine::getMTranslateVector()  // retrieves the value of mTranslateVector
 {
 	return (mTranslateVector);
 }
-void renderEngine::setMTranslateVector(Ogre::Vector3 vector)
+void renderEngine::setMTranslateVector(Ogre::Vector3 set)  // sets the value of mTranslateVector
 {
-	mTranslateVector = vector;
+	mTranslateVector = set;
 }
 
-Ogre::Radian renderEngine::getMRotX()
+Ogre::Radian renderEngine::getMRotX()  // retrieves the value of mRotX
 {
 	return (mRotX);
 }
-void renderEngine::setMRotX(Ogre::Radian rotX)
+void renderEngine::setMRotX(Ogre::Radian set)  // sets the value of mRotX
 {
-	mRotX = rotX;
+	mRotX = set;
 }
 
-Ogre::Radian renderEngine::getMRotY()
+Ogre::Radian renderEngine::getMRotY()  // retrieves the value of mRotY
 {
 	return (mRotY);
 }
-void renderEngine::setMRotY(Ogre::Radian rotY)
+void renderEngine::setMRotY(Ogre::Radian set)  // stes the value of mRotY
 {
-	mRotY = rotY;
+	mRotY = set;
 }
 
-Ogre::Real renderEngine::getMMoveSpeed()
+Ogre::Real renderEngine::getMMoveSpeed()  // retrieves the value of mMoveSpeed
 {
 	return (mMoveSpeed);
 }
-void renderEngine::setMMoveSpeed(Ogre::Real speed)
+void renderEngine::setMMoveSpeed(Ogre::Real set)  // sets the value of mMoveSpeed
 {
-	mMoveSpeed = speed;
+	mMoveSpeed = set;
 }
 
-Ogre::Degree renderEngine::getMRotateSpeed()
+Ogre::Degree renderEngine::getMRotateSpeed()  // retrieves the value of mRotateSpeed
 {
 	return (mRotateSpeed);
 }
-void renderEngine::setMRotateSpeed(Ogre::Degree speed)
+void renderEngine::setMRotateSpeed(Ogre::Degree set)  // sets the value of mRotateSpeed
 {
-	mRotateSpeed = speed;
+	mRotateSpeed = set;
 }
 
-float renderEngine::getMMoveScale()
+float renderEngine::getMMoveScale()  // retrieves the value of mMoveScale
 {
 	return (mMoveScale);
 }
-void renderEngine::setMMoveScale(float scale)
+void renderEngine::setMMoveScale(float set)  // sets the value of mMoveScale
 {
-	mMoveScale = scale;
+	mMoveScale = set;
 }
 
-Ogre::Degree renderEngine::getMRotScale()
+Ogre::Degree renderEngine::getMRotScale()  // retrieves the value of mRotScale
 {
 	return (mRotScale);
 }
-void renderEngine::setMRotScale(Ogre::Degree scale)
+void renderEngine::setMRotScale(Ogre::Degree set)  // sets the value of mRotScale
 {
-	mRotScale = scale;
+	mRotScale = set;
 }
 
-std::string renderEngine::getMResourceGroup()
+std::string renderEngine::getMResourceGroup()  // retrieves the value of mResourceGroup
 {
 	return (mResourceGroup);
 }
-
-void renderEngine::setMResourceGroup(std::string resource)
+void renderEngine::setMResourceGroup(std::string set)  // sets the value of mResourceGroup
 {
-	mResourceGroup = resource;
+	mResourceGroup = set;
 }
 
-SDL_Window *renderEngine::getSDLWindow()
+SDL_Window *renderEngine::getSDLWindow()  // retrieves the value of sdlWindow
 {
 	return (sdlWindow);
 }
-
-void renderEngine::setSDLWindow(SDL_Window *set)
+void renderEngine::setSDLWindow(SDL_Window *set)  // sets the value of sdlWindow
 {
 	sdlWindow = set;
 }
@@ -280,7 +273,7 @@ void renderEngine::setWindowHeight(uint32_t set)  // sets the value of windowHei
 */
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-Ogre::DataStreamPtr renderEngine::openAPKFile(const std::string& fileName)
+Ogre::DataStreamPtr renderEngine::openAPKFile(const std::string& fileName)  // Opens the UBC apk file
 {
     struct android_app* app;
 	Ogre::DataStreamPtr stream;

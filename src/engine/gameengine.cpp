@@ -21,8 +21,6 @@
 #include "conversion.h"
 
 #include "engine/gameengine.h"
-//#include "state/gamestate.h"
-//#include "gui/gui.h"
 #include "engine/inputengine.h"
 #include "logging.h"
 #include "network/networkplayerstateobject.h"
@@ -45,20 +43,6 @@ bool gameEngine::sceneCreated;
 bool gameEngine::renderScene;
 bool gameEngine::movePlayer;
 timing gameEngine::timer;
-/*sharedPtr<gameEngine> gameEngine::pInstance;
-
-sharedPtr<gameEngine> gameEngine::Instance()
-{
-    if (pInstance == 0)  // is it the first call?
-    {
-        //pInstance = new AISystem; // create sole instance
-        sharedPtr<gameEngine> tInstance(new gameEngine);
-        pInstance = tInstance;
-        //return tInstance; // address of sole instance
-    }
-    return pInstance; // returns the value of pInstance
-}
-*/
 
 // static declarations
 sharedPtr<renderEngine> gameEngine::renderE;
@@ -77,11 +61,9 @@ gameEngine::gameEngine()  // constructor
     serverRunning = false;
     clientRunning = false;
     sceneCreated = false;
-    createScene = false;    
+    createScene = false;
     renderScene = false;
     movePlayer = false;
-
-//    exit(0);
 
 }
 
@@ -104,7 +86,7 @@ bool gameEngine::getMenuActive()   // retrieves the value of menuActive
 }
 void gameEngine::setMenuActive(bool set)  // sets the value of menuActive
 {
-    
+ 
     menuActive = set;
 }
 
@@ -225,7 +207,6 @@ void gameEngine::setPhysE(physicsEngineSharedPtr set)  // sets the value of phys
 
 bool gameEngine::setup()  // sets up engine state
 {
-    
     // initialize subclasses
 
     // renderEngine
@@ -251,15 +232,6 @@ bool gameEngine::setup()  // sets up engine state
 
     return (true);
 }
-/*bool gameEngine::startGame()  // starts the game
-{
-    sharedPtr<gameState> gameS = gameState::Instance();
-    
-    logMsg("startGame()");
-
-    gameS->setupState();
-    return true;
-}*/
 
 void gameEngine::quit()  // quits the game
 {

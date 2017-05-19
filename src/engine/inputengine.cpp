@@ -30,31 +30,11 @@
 #undef Button5
 #undef Button6
 #undef Button7
-//#include "MyGUI.h"
 #include "MyGUI_OgrePlatform.h"
-
 #include "engine/inputengine.h"
 #include "engine/gameengine.h"
-//#include "state/gamestate.h"
-//#include "gui/gui.h"
 #include "load.h"
 #include "logging.h"
-//#include "engine/renderengine.h"
-
-
-/*inputEngineSharedPtr inputEngine::pInstance;
-
-inputEngineSharedPtr inputEngine::Instance()
-{
-    if (pInstance == 0)  // is it the first call?
-    {
-        //pInstance = new inputEngine; // create sole instance
-        inputEngineSharedPtr tInstance(new inputEngine);
-        pInstance = tInstance;
-    }
-    return pInstance; // address of sole instance
-}
-*/
 
 // static variables 
 
@@ -94,15 +74,6 @@ inputEngine::inputEngine()  // constructor
 inputEngine::~inputEngine()  // destructor
 {
 }
-
-/*sharedPtr<GUISystem> inputEngine::getGui()  // retrieves the value of gui
-{
-  return (gui);
-}
-void inputEngine::setGui(sharedPtr<GUISystem> set)  // sets the value of gui
-{
-    gui = set;
-}*/
 
 bool inputEngine::getKeyInputReceived()  // retrieves the value of keyInputReceived
 {

@@ -20,6 +20,7 @@
 
 #include "engine/engine.h"
 
+// static declarations
 float engine::windowWidth;
 float engine::windowHeight;
 

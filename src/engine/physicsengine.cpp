@@ -20,20 +20,12 @@
 
 #include "conversion.h"
 #include "engine/gameengine.h"
-//#include "state/gamestate.h"
 #include "engine/inputengine.h"
 #include "logging.h"
-//#include "state/basketballstate.h"
-//#include "state/courtstate.h"
-//#include "state/hoopstate.h"
-//#include "state/playerstate.h"
-//#include "state/teamstate.h"
 #include "engine/physicsengine.h"
 #include "engine/renderengine.h"
 #include "comparison.h"
 #include "jumpballs.h"
-
-
 
 // static declarations
 sharedPtr<btDynamicsWorld> physicsEngine::world;  // stores the physics world
@@ -78,7 +70,6 @@ physicsEngine::~physicsEngine()  // destructor
 {
 
 }
-
 
 bool physicsEngine::getPairCollided()  // retrieves value of pairCollided 
 {

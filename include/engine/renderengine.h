@@ -41,11 +41,6 @@
 //#include "Android/OgreAndroidEGLWindow.h"
 #include "Android/OgreAPKFileSystemArchive.h"
 #include "Android/OgreAPKZipArchive.h"
-
-
-/*#elif OGRE_PLATFORM == OGRE_PLATFORM_APPLE
-    #include "Ogre/OgreMemoryMacros.h"
-    #include "Ogre/Ogre.h" */
 #else
 #include "Ogre.h"
 #endif
@@ -142,11 +137,6 @@ class renderEngine : public engine
     bool renderFrame();  // renders a frame to the screen
     
     protected:
-/*
-    renderEngine();
-    renderEngine(const renderEngine&);
-    renderEngine& operator= (const renderEngine&);
-*/
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     static android_app *app;
     //static

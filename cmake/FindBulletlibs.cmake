@@ -1,11 +1,11 @@
-# - Try to find enet
+# - Try to find Bullet
 # Once done this will define
 #
-# BULLLET_FOUND - system has enet
-# BULLET_INCLUDE_DIRS - the enet include directory
-# BULLET_LIBRARIES - the libraries needed to use enet
+# BULLLET_FOUND - system has Bullet
+# BULLET_INCLUDE_DIRS - the Bullet include directory
+# BULLET_LIBRARIES - the libraries needed to use Bullet
 #
-# $BULLET_HOME is an environment variable used for finding enet.
+# $BULLET_HOME is an environment variable used for finding Bullet.
 #
 # Borrowed from The Mana World
 # http://themanaworld.org/
@@ -86,7 +86,7 @@ FIND_LIBRARY(BULLETLINEARMATH_LIBRARY_DBG
  make_library_set(BULLETCOLLISION_LIBRARY)
  make_library_set(BULLETLINEARMATH_LIBRARY)
 
-# handle the QUIETLY and REQUIRED arguments and set ENET_FOUND to TRUE if
+# handle the QUIETLY and REQUIRED arguments and set Bullet_FOUND to TRUE if
 # all listed variables are TRUE
 INCLUDE(FindPackageHandleStandardArgs)
 FIND_PACKAGE_HANDLE_STANDARD_ARGS(BulletDynamics DEFAULT_MSG BULLETDYNAMICS_LIBRARY BULLET_INCLUDE_DIRS)

@@ -1,7 +1,7 @@
-# - Try to find enet
+# - Try to find SDL_Mixer
 # Once done this will define
 #
-# SDL_Mixer_FOUND - system has enet
+# SDL_Mixer_FOUND - system has SDL_Mixer
 # SDL_Mixer_INCLUDE_DIRS - the SDL_Mixer include directory
 # TinyXML2_LIBRARIES - the libraries needed to use SDL_Mixer
 #

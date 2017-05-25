@@ -45,9 +45,9 @@ class playerPhysics : public physics
         bool setupPhysics();  // sets up player physics
 
         bool setupState();  // sets up state of player physics
-        
-        void updateState();  // updates the state of player physics
-*/        
+*/
+    void update();  // updates the player physics object
+
     void updatePosition();  // updates the position of player objecgts
 
     bool jump(teamTypes teamType, int playerID);  // calculates and executes player jumping in the air

@@ -132,7 +132,7 @@ bool physicsEngine::setup()  // sets up the physicsEngine object
     //FIXME: Hack to set total number of players for physics to 10, set this to be dynamic
 //    btRigidBody *body;
     logMsg(func +" end");
-    exit(0);
+//    exit(0);
     return (true);
 }
 
@@ -541,7 +541,7 @@ bool physicsEngine::collisionCheck(btRigidBody *objectA, btRigidBody *objectB)  
 {
     sharedPtr<conversion> convert = conversion::Instance();
     MyContactResultCallback collisionResult;
-
+    exit(0);
     world->contactPairTest(objectA, objectB, collisionResult);
     logMsg("collisionResult = " +convert->toString(collisionResult.m_connected));
     if (collisionResult.m_connected)

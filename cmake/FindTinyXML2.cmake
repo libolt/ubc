@@ -1,11 +1,11 @@
-# - Try to find enet
+# - Try to find TinyXML2
 # Once done this will define
 #
-# TINYXML2_FOUND - system has enet
+# TINYXML2_FOUND - system has TinyXML2
 # TinyXML2_INCLUDE_DIRS - the BtOgre include directory
-# TinyXML2_LIBRARIES - the libraries needed to use enet
+# TinyXML2_LIBRARIES - the libraries needed to use TinyXML2
 #
-# $TINYXML2_HOME is an environment variable used for finding enet.
+# $TINYXML2_HOME is an environment variable used for finding TinyXML2.
 #
 # Borrowed from The Mana World
 # http://themanaworld.org/

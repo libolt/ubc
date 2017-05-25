@@ -70,25 +70,6 @@ bool playerPhysics::setupState()  // sets up state of player physics
     return (false);
 }
 
-void playerPhysics::updateState()  // updates the state of player physics
-{
-    if (!physicsSetup)
-    {
-        if (setupPhysics()) // sets up physics state for players
-        {
-//            exit(0);
-            physicsSetup = true;
-        }
-        else
-        {
-        }
-    }
-    else
-    {
-        stateSet = true;
-    }
-}
-
 bool playerPhysics::setupPhysics()  // sets up playerPhysics
 {
 //    exit(0);
@@ -197,13 +178,23 @@ bool playerPhysics::setupPhysics()  // sets up playerPhysics
 }
 */
 
+void playerPhysics::update()  // updates the player physics object
+{
+    std::string func = "playerPhysics::update()";
+    logMsg(func +" beginning");
+
+    logMsg(func +"end");
+    exit(0);
+}
+
 void playerPhysics::updatePosition()  // updates the position of player objecgts
 {
     sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
-
     comparison compare;
-
+    std::string func = "playerPhysics::updatePosition()";
+    logMsg(func +" beginning");
+    exit(0);
 //    int activeBBallInstance = getGameS()->getActiveBBallInstance();
 
 //    teamTypes teamWithBall = getGameS()->getTeamWithBall();

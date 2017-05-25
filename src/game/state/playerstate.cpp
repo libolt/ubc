@@ -614,11 +614,15 @@ void playerState::updateState()
     std::string func = "playerState::updateState()";
     
     logMsg(func +" beginning");
+//    exit(0);
     logMsg(func +" " +data->getFirstName() + " " +data->getLastName() +" PSUPDATE!");
     logMsg(func +" " +entity->getEntityName() +" PSUPDATE!!");
 
     if (entity->getPhysicsSetup())
     {
+        logMsg(func + " Updating player physics");
+
+        entity->getPhysics()->update();
         logMsg(func +" Updating Court Position");
         updateCourtPosition();
         logMsg(func +" Court Position Updated!");

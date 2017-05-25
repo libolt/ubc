@@ -1,11 +1,11 @@
-# - Try to find enet
+# - Try to find BtOgre
 # Once done this will define
 #
-# BTOGRE_FOUND - system has enet
+# BTOGRE_FOUND - system has BtOgre
 # BtOgre_INCLUDE_DIRS - the BtOgre include directory
-# BtOgre_LIBRARIES - the libraries needed to use enet
+# BtOgre_LIBRARIES - the libraries needed to use BtOgre
 #
-# $BTOGRE_HOME is an environment variable used for finding enet.
+# $BTOGRE_HOME is an environment variable used for finding BtOgre.
 #
 # Borrowed from The Mana World
 # http://themanaworld.org/
@@ -46,7 +46,7 @@ ELSE (WIN32)
 	/usr
         )
 ENDIF (WIN32)
-# handle the QUIETLY and REQUIRED arguments and set ENET_FOUND to TRUE if
+# handle the QUIETLY and REQUIRED arguments and set BtOgre_FOUND to TRUE if
 # all listed variables are TRUE
 INCLUDE(FindPackageHandleStandardArgs)
 IF (WIN32)

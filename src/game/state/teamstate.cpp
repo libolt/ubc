@@ -727,6 +727,11 @@ void teamState::updateState()  // updates the state of the object
 //   logMsg("team state updated = " +convert->toString(teamType));
 }
 
+void updateActivePlayerSettings()  // updates the settings of active players
+{
+
+}
+
 bool teamState::createPlayerInstances()  // creates the player instances
 {
     sharedPtr<conversion> convert = conversion::Instance();

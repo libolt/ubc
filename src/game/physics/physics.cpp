@@ -125,6 +125,15 @@ void physics::setPhysBody(btRigidBody *set)  // sets physBody variable
     physBody = set;
 }
 
+std::unordered_map<std::string, btRigidBodySharedPtr> physics::getCollisionBodies()  // retrieves the value of collisionBodies
+{
+    return (collisionBodies);
+}
+void physics::setCollisionBodies(std::unordered_map<std::string, btRigidBodySharedPtr> set)  // sets the value of collisionBodies
+{
+    collisionBodies = set;
+}
+
 btScalar physics::getMass()  // retrieves the value of mass
 {
     return (mass);

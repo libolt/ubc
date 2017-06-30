@@ -200,7 +200,7 @@ public:
 
     void setupState();  // sets up the state for teamState object
     void updateState();  // updates the state of the teamState object
-
+    void updateActivePlayerSettings();  // updates the settings of active players
         
 protected:
 private:

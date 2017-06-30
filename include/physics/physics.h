@@ -61,6 +61,9 @@ class physics
         btRigidBody *getPhysBody();  // retrieves the value of physBody
         void setPhysBody(btRigidBody *set);  // sets the value of physBody
 
+        std::unordered_map<std::string, btRigidBodySharedPtr> getCollisionBodies();  // retrieves the value of collisionBodies
+        void setCollisionBodies(std::unordered_map<std::string, btRigidBodySharedPtr> set);  // sets the value of collisionBodies
+
         btScalar getMass();  // retrieves the value of mass
         void setMass(btScalar set);  // sets the value of mass
         
@@ -109,7 +112,9 @@ class physics
         physicsShapes shapeType;  // stores what type of shape to create 
         
         btRigidBody *physBody;  // stores the physics object that represents the player
-    
+
+        std::unordered_map<std::string, btRigidBodySharedPtr> collisionBodies;  // physical bodies to test for collisions with physBody
+
         btScalar mass;  // stores the mass of the object;
         
         btVector3 inertia;  // stores the inertia of the object  

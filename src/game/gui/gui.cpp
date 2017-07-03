@@ -1311,6 +1311,8 @@ void GUISystem::playerStartSelected()  // process player start selection
         }
         ATIIT.second->setActivePlayerInstance(activePlayerInstance);
         ATIIT.second->setActivePlayerInstancesCreated(true);
+        ATIIT.second->setActivePlayerInstancesChanged(true);
+
 //        ATIIT.second->setPlayerStartActivePositions();
         logMsg(func +" team name == " +ATIIT.second->getName());
 
@@ -1482,7 +1484,7 @@ bool GUISystem::checkTeamInstancesCreated()  // Checks if team instances have be
     {
 //        base->getGameS()->setActiveTeamInstancesNeedCreated(true);
 /*        logMsg("Creating active team instances!");
-        gameS->createActiveTeamInstances();
+        gameS->FFFcreateActiveTeamInstances();
         gameS->setActiveTeamInstancesCreated(true);
         gameS->assignHoopToTeams();
         logMsg("Team instances created!");

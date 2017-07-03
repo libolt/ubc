@@ -70,6 +70,7 @@ teamState::teamState()  // constructor
 
     activePlayerInstancesCreated = false;
     activePlayerInstancesSetup = false;
+    activePlayerInstancesChanged = false;
     playerInstancesCreated = false;
     playerStartPositionsSet = false;
     playerInstanceCreatedCount = 0;
@@ -334,6 +335,15 @@ bool teamState::getActivePlayerInstancesSetup()  // retrieves the value of activ
 void teamState::setActivePlayerInstancesSetup(bool set)  // sets the value of activePlayerInstancesSetup
 {
     activePlayerInstancesSetup = set;
+}
+
+bool teamState::getActivePlayerInstancesChanged()  // retrieves the value of activePlayerInstancesChanged
+{
+    return (activePlayerInstancesChanged);
+}
+void teamState::setActivePlayerInstancesChanged(bool set)  // sets the value of activePlayerInstancesChanged
+{
+    activePlayerInstancesChanged = set;
 }
 
 bool teamState::getActivePlayerInstancesCreated()  // retrieves the value of activePlayerInstancesCreated
@@ -1069,7 +1079,8 @@ void teamState::updatePlayerStates()  // updates the states of active players
     size_t x = 0;
     
     logMsg(func +" beginning");
-//    while (x<activePlayerInstance.size())
+    exit(0);
+    //    while (x<activePlayerInstance.size())
     for (auto APIIT : activePlayerInstance)
     {
         std::string xString = convert->toString(x);

@@ -172,6 +172,9 @@ class gameStateShared
         float getYOffset();  // retrieves the value of yOffset
         void setYOffset(float set);  // sets the value of yOffset
 
+        std::vector<bool> getTeamActivePlayersChanged();  // retrieves the value of teamActivePlayersChanged
+        void setTeamActivePlayersChanged(std::vector<bool> set);  // sets the value of teamActivePlayersChanged
+
     private:
 
         // used to determine if calling class needs to uldate its copy of the variable
@@ -221,7 +224,7 @@ class gameStateShared
 
         static float yOffset; // stores the y offset for objects on the screen
 
-
+        static std::vector<bool> teamActivePlayersChanged;  // stores whether the active players for each team have changed
 
 };
 

@@ -68,8 +68,7 @@ playerStateUMSharedPtr gameStateShared::playerInstance;  // stores the vector of
 teamStateUMSharedPtr  gameStateShared::teamInstance;  // creates instance of the teamState class
 jumpBallsSharedPtr gameStateShared::jumpBall; // instance that is used for jumpBall functions.
 float gameStateShared::yOffset; // stores the y offset for objects on the screen
-
-
+std::vector<bool> gameStateShared::teamActivePlayersChanged;  // stores whether the team's active player instances have changed
 
 gameStateShared::gameStateShared()  // constructor
 {
@@ -467,3 +466,11 @@ void gameStateShared::setYOffset(float set)  // sets the value of yOffset
     yOffset = set;
 }
 
+std::vector<bool> gameStateShared::getTeamActivePlayersChanged()  // retrieves the value of teamActivePlayersChanged
+{
+    return (teamActivePlayersChanged);
+}
+void gameStateShared::setTeamActivePlayersChanged(std::vector<bool> set)  // sets the value of teamActivePlayersChanged
+{
+    teamActivePlayersChanged = set;
+}

@@ -734,6 +734,14 @@ bool gameState::setupActiveTeamInstances()  // sets up the active team instances
     activeTeamInstance[1]->setupState();
 
     setActiveTeamInstance(activeTeamInstance);
+    std::vector<bool> teamActivePlayersChanged;
+    // hard coded.  Shood be changed
+
+    for (int x=0;x<activeTeamInstance.size();++x)
+    {
+        teamActivePlayersChanged.push_back(false);
+    }
+    setTeamActivePlayersChanged(teamActivePlayersChanged);
     logMsg(func +" end");
     return (true);
 }
@@ -1462,10 +1470,34 @@ bool gameState::updateState()  // updates the game state
         logMsg(func +" network events processed");
 
         logMsg(func +" getActiveTeamInstance().size() == " +convert->toString(getActiveTeamInstance().size()));
+
+        // Update Team Instances
         for (auto ATIIT : getActiveTeamInstance())
         {
             logMsg(func +" getActivePlayerInstance().size() == " +convert->toString(ATIIT.second->getActivePlayerInstance().size()));
             ATIIT.second->updateState();
+            // check if the active players have changed and update necessary variables
+            if (ATIIT.second->getActivePlayerInstancesChanged())
+            {
+                std::vector<bool> teamActivePlayersChanged = getTeamActivePlayersChanged();
+                if (ATIIT.second->getTeamType() == HOMETEAM)
+                {
+                    teamActivePlayersChanged[0] == true;
+                }
+                else if (ATIIT.second->getTeamType() == AWAYTEAM)
+                {
+                    teamActivePlayersChanged[1] == true;
+                }
+                else
+                {
+                }
+                setTeamActivePlayersChanged(teamActivePlayersChanged);
+            }
+            else
+            {
+
+            }
+            // Update Team Active Player Instances
             for (auto APIIT : ATIIT.second->getActivePlayerInstance())
             {
                 logMsg(func +" player model loaded == " +convert->toString(APIIT.second->getEntity()->getModelLoaded()));

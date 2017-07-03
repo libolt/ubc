@@ -143,6 +143,9 @@ public:
     bool getActivePlayerInstancesSetup();  // retrieves the value of activePlayerInstancesSetup
     void setActivePlayerInstancesSetup(bool set);  // sets the value of activePlayerInstancesSetup
 
+    bool getActivePlayerInstancesChanged();  // retrieves the value of activePlayerInstancesChanged
+    void setActivePlayerInstancesChanged(bool set);  // sets the value of activePlayerInstancesChanged
+
     bool getPlayerInstancesCreated();  // retrieves the value of the playerInstancesCreated
     void setPlayerInstancesCreated(bool set);  // sets the value of the playerInstancesCreated
 
@@ -242,6 +245,7 @@ private:
 
     bool activePlayerInstancesCreated;  // stores whether the active player instances have been created
     bool activePlayerInstancesSetup;  // stores whether the active player instances have been configured
+    bool activePlayerInstancesChanged;  // stores whether the active player instances have been changed
     bool playerInstancesCreated;  // storea whethet player instances have been created.
     bool playerStartPositionsSet;  // stores whether player starting positions have been set
     

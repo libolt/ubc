@@ -1079,7 +1079,7 @@ void teamState::updatePlayerStates()  // updates the states of active players
     size_t x = 0;
     
     logMsg(func +" beginning");
-    exit(0);
+//    exit(0);
     //    while (x<activePlayerInstance.size())
     for (auto APIIT : activePlayerInstance)
     {
@@ -1099,7 +1099,7 @@ void teamState::updatePlayerStates()  // updates the states of active players
         
     }
 //    exit(0);
-
+    logMsg(func +" end");
 }
 
 void teamState::updatePlayerDirections()  // updates the direction players are facing

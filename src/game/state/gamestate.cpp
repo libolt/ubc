@@ -1471,39 +1471,7 @@ bool gameState::updateState()  // updates the game state
 
         logMsg(func +" getActiveTeamInstance().size() == " +convert->toString(getActiveTeamInstance().size()));
 
-        // Update Team Instances
-        for (auto ATIIT : getActiveTeamInstance())
-        {
-            logMsg(func +" getActivePlayerInstance().size() == " +convert->toString(ATIIT.second->getActivePlayerInstance().size()));
-            ATIIT.second->updateState();
-            // check if the active players have changed and update necessary variables
-            if (ATIIT.second->getActivePlayerInstancesChanged())
-            {
-                std::vector<bool> teamActivePlayersChanged = getTeamActivePlayersChanged();
-                if (ATIIT.second->getTeamType() == HOMETEAM)
-                {
-                    teamActivePlayersChanged[0] == true;
-                }
-                else if (ATIIT.second->getTeamType() == AWAYTEAM)
-                {
-                    teamActivePlayersChanged[1] == true;
-                }
-                else
-                {
-                }
-                setTeamActivePlayersChanged(teamActivePlayersChanged);
-            }
-            else
-            {
 
-            }
-            // Update Team Active Player Instances
-            for (auto APIIT : ATIIT.second->getActivePlayerInstance())
-            {
-                logMsg(func +" player model loaded == " +convert->toString(APIIT.second->getEntity()->getModelLoaded()));
-//                logMsg(func +"activePlayerInstance coords == " +convert->toString(APIIT.second->getEntity()->getNode()->getPosition()));
-            }
-        }
 //        exit(0);
         if (!getTipOffComplete())  // calls tip off execution
         {
@@ -1600,6 +1568,11 @@ bool gameState::updateState()  // updates the game state
 bool gameState::updateActiveTeamInstances()  // updates all active team instances
 {
     teamStateUMSharedPtr activeTeamInstance = getActiveTeamInstance();
+    sharedPtr<conversion> convert = conversion::Instance();
+
+    std::string func = "gameState::updateActiveTeamInstances()";
+
+    logMsg(func +" beginning");
 
     if (getTeamWithBallChanged())
     {
@@ -1630,19 +1603,47 @@ bool gameState::updateActiveTeamInstances()  // updates all active team instance
     // updates the state of each team
     if (getActiveTeamInstancesCreated())
     {
-        //FIXME crash in updateState code
         for (auto ATIIT : activeTeamInstance)
         {
             ATIIT.second->updateState();
+            if (ATIIT.second->getActivePlayerInstancesChanged())
+            {
+                logMsg(func +" activePlayerInstancesChanged!");
+                exit(0);
+                std::vector<bool> teamActivePlayersChanged = getTeamActivePlayersChanged();
+                if (ATIIT.second->getTeamType() == HOMETEAM)
+                {
+                    teamActivePlayersChanged[0] == true;
+                }
+                else if (ATIIT.second->getTeamType() == AWAYTEAM)
+                {
+                    teamActivePlayersChanged[1] == true;
+                }
+                else
+                {
+                }
+                setTeamActivePlayersChanged(teamActivePlayersChanged);
+            }
+            else
+            {
+
+            }
+            // Update Team Active Player Instances
+            for (auto APIIT : ATIIT.second->getActivePlayerInstance())
+            {
+                logMsg(func +" player model loaded == " +convert->toString(APIIT.second->getEntity()->getModelLoaded()));
+    //                logMsg(func +"activePlayerInstance coords == " +convert->toString(APIIT.second->getEntity()->getNode()->getPosition()));
+            }
         }
 //          exit(0);
     }
     else
     {
     }
-    
     setActiveTeamInstance(activeTeamInstance);
     
+    logMsg(func +" end");
+
     return (true);
 }
 

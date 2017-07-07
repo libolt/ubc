@@ -23,6 +23,7 @@
 
 #include <vector>
 #include <boost/shared_ptr.hpp>
+#include "BulletDynamics/Dynamics/btRigidBody.h"
 
 //#include "state/basketballstate.h"
 //#include "data/courtdata.h"
@@ -204,7 +205,8 @@ public:
 
     bool setupState();  // sets up the game condition
     bool updateState();  // updates the state of the game
-    bool updateActiveTeamInstances();  // updates all active team instances
+    bool updateActiveTeamInstances();  // updates all active team instancesa
+    bool updatePlayerCollisionObjects();  // updates the player collision objects for a team instance
     bool processInput();  // processes input received from the inputState object
 
 protected:

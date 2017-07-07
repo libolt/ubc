@@ -1574,55 +1574,65 @@ bool gameState::updateActiveTeamInstances()  // updates all active team instance
 
     logMsg(func +" beginning");
 
-    if (getTeamWithBallChanged())
-    {
-        if (getTeamWithBall() == HOMETEAM)  // if 0 puts team 0 on offense and team 1 on defense
-        {
-            activeTeamInstance[HOMETEAM]->setOffense(true);
-            activeTeamInstance[HOMETEAM]->setDefense(false);
 
-            activeTeamInstance[AWAYTEAM]->setOffense(false);
-            activeTeamInstance[AWAYTEAM]->setDefense(true);
-        }
-        else if (getTeamWithBall() == AWAYTEAM)  // if 1 puts team 1 on offense and team 0 on defense
-        {
-            activeTeamInstance[HOMETEAM]->setOffense(false);
-            activeTeamInstance[HOMETEAM]->setDefense(true);
-
-            activeTeamInstance[AWAYTEAM]->setOffense(true);
-            activeTeamInstance[AWAYTEAM]->setDefense(false);
-        }
-        else
-        {
-        }
-    }
-    else
-    {     
-    }
     
     // updates the state of each team
     if (getActiveTeamInstancesCreated())
     {
+        if (getTeamWithBallChanged())
+        {
+            if (getTeamWithBall() == HOMETEAM)  // if 0 puts team 0 on offense and team 1 on defense
+            {
+                activeTeamInstance[HOMETEAM]->setOffense(true);
+                activeTeamInstance[HOMETEAM]->setDefense(false);
+
+                activeTeamInstance[AWAYTEAM]->setOffense(false);
+                activeTeamInstance[AWAYTEAM]->setDefense(true);
+            }
+            else if (getTeamWithBall() == AWAYTEAM)  // if 1 puts team 1 on offense and team 0 on defense
+            {
+                activeTeamInstance[HOMETEAM]->setOffense(false);
+                activeTeamInstance[HOMETEAM]->setDefense(true);
+
+                activeTeamInstance[AWAYTEAM]->setOffense(true);
+                activeTeamInstance[AWAYTEAM]->setDefense(false);
+            }
+            else
+            {
+            }
+        }
+        else
+        {
+        }
+        std::vector<bool> teamActivePlayersChanged = getTeamActivePlayersChanged();
+
         for (auto ATIIT : activeTeamInstance)
         {
             ATIIT.second->updateState();
+
             if (ATIIT.second->getActivePlayerInstancesChanged())
             {
                 logMsg(func +" activePlayerInstancesChanged!");
-                exit(0);
-                std::vector<bool> teamActivePlayersChanged = getTeamActivePlayersChanged();
+//                exit(0);
                 if (ATIIT.second->getTeamType() == HOMETEAM)
                 {
                     teamActivePlayersChanged[0] == true;
+                    logMsg(func +" HOMETEAM");
                 }
                 else if (ATIIT.second->getTeamType() == AWAYTEAM)
                 {
                     teamActivePlayersChanged[1] == true;
+                    logMsg(func +" AWAYTEAM");
+                    logMsg(func +" " +convert->toString(teamActivePlayersChanged[1]));
+
                 }
                 else
                 {
                 }
                 setTeamActivePlayersChanged(teamActivePlayersChanged);
+                std::vector<bool> activeChange = getTeamActivePlayersChanged();
+                logMsg(func +" " +convert->toString(activeChange[1]));
+                exit(0);
             }
             else
             {
@@ -1635,6 +1645,7 @@ bool gameState::updateActiveTeamInstances()  // updates all active team instance
     //                logMsg(func +"activePlayerInstance coords == " +convert->toString(APIIT.second->getEntity()->getNode()->getPosition()));
             }
         }
+        updatePlayerCollisionObjects();  // updates collision objects for each player
 //          exit(0);
     }
     else
@@ -1645,6 +1656,30 @@ bool gameState::updateActiveTeamInstances()  // updates all active team instance
     logMsg(func +" end");
 
     return (true);
+}
+
+bool gameState::updatePlayerCollisionObjects()  // updates the player collision objects for a team instance
+{
+        std::unordered_map<std::string, btRigidBodySharedPtr> collisionObjects;
+        std::vector<bool> teamActivePlayersChanged = getTeamActivePlayersChanged();
+        size_t teamNumber = 0;
+        std::string func = "gameState::updatePlayerCollisionObjects()";
+
+        logMsg(func +" beginning");
+        exit(0);
+        while (teamNumber < teamActivePlayersChanged.size())
+        {
+            if (teamActivePlayersChanged[teamNumber])
+            {
+                logMsg(func +" wahoo!");
+                exit(0);
+            }
+            ++teamNumber;
+        }
+
+        logMsg(func +" end");
+
+        return (true);
 }
 
 bool gameState::processInput()  // processes input received from the inputState object

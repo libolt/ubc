@@ -21,10 +21,9 @@
 #ifndef _TEAMSATE_H_
 #define _TEAMSATE_H_
 
-
-
 #include <vector>
 #include "OgreString.h"
+#include "BulletDynamics/Dynamics/btRigidBody.h"
 
 //#include "state/offensestate.h"
 //#include "state/defensestate.h"
@@ -182,6 +181,9 @@ public:
     size_t getTeamCollidesWith();  // retrieves the value of teamCollidesWith
     void setTeamCollidesWith(size_t set); // sets the value of teamCollidesWith
 
+    std::unordered_map<std::string, btRigidBodySharedPtr> getCollisionBodies();  // retrieves the value of collisionBodies
+    void setCollisionBodies(std::unordered_map<std::string, btRigidBodySharedPtr> set);  // sets the value of collisionBodies
+
 //    bool getStateSet();  // retrieves the value of stateSet
 //    void setStateSet(bool set);  // sets the value of stateSet
 
@@ -265,6 +267,7 @@ private:
     size_t teamCollidesWith;   // stores what team players collides with
 
 //    bool stateSet;  // stores whether or not the class state has been setup correctly
+    std::unordered_map<std::string, btRigidBodySharedPtr> collisionBodies;  // physical bodies to test for collisions with players physBody objects
 
 };
 

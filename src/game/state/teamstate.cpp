@@ -463,6 +463,15 @@ void teamState::setTeamCollidesWith(size_t set)  // sets the value of teamCollid
     teamCollidesWith = set;
 }
 
+std::unordered_map<std::string, btRigidBodySharedPtr> teamState::getCollisionBodies()  // retrieves the value of collisionBodies
+{
+    return (collisionBodies);
+}
+void teamState::setCollisionBodies(std::unordered_map<std::string, btRigidBodySharedPtr> set)  // sets the value of collisionBodies
+{
+    collisionBodies = set;
+}
+
 void teamState::setupState()  // sets up the state of the object
 {
     bool stateSet = this->getStateSet();

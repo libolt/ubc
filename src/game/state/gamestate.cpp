@@ -1574,7 +1574,9 @@ bool gameState::updateActiveTeamInstances()  // updates all active team instance
 
     logMsg(func +" beginning");
 
-
+    std::vector<bool> teamActivePlayersChanged; // = getTeamActivePlayersChanged();
+    teamActivePlayersChanged.push_back(false);
+    teamActivePlayersChanged.push_back(false);
     
     // updates the state of each team
     if (getActiveTeamInstancesCreated())
@@ -1604,7 +1606,6 @@ bool gameState::updateActiveTeamInstances()  // updates all active team instance
         else
         {
         }
-        std::vector<bool> teamActivePlayersChanged = getTeamActivePlayersChanged();
 
         for (auto ATIIT : activeTeamInstance)
         {

@@ -386,7 +386,11 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
     logMsg(func +" beginning");
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
-    winHandle = convert->toString((unsigned long int)sysInfo.info.win.window);
+    #ifdef _WIN64
+        winHandle = convert->toString((size_t)sysInfo.info.win.window);
+    #else
+        winHandle = convert->toString((unsigned long int)sysInfo.info.win.window);
+    #endif
 #elif OGRE_PLATFORM == OGRE_PLATFORM_LINUX
     winHandle = convert->toString((unsigned long)sysInfo.info.x11.window);
 #elif OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
@@ -605,14 +609,14 @@ bool renderEngine::createScene()
 
 //    exit(0);
     logMsg(func +" renderWindow created!");
-    unsigned long handle = 0;
+    size_t handle = 0;
     mWindow->getCustomAttribute("WINDOW", &handle);
     logMsg(func +" mWindow handle = " +convert->toString(handle));
-//exit(0);
+//    exit(0);
     logMsg(func +" Dead");
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     sdlWindow = SDL_CreateWindowFrom(mWindow.get());
-//    exit(0);
+    exit(0);
 #endif
      if (mWindow == NULL)
      {

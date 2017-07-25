@@ -1574,10 +1574,11 @@ bool gameState::updateActiveTeamInstances()  // updates all active team instance
 
     logMsg(func +" beginning");
 
-    std::vector<bool> teamActivePlayersChanged; // = getTeamActivePlayersChanged();
-    teamActivePlayersChanged.push_back(false);
-    teamActivePlayersChanged.push_back(false);
-    
+    std::vector<bool> tActivePlayersChanged = getTeamActivePlayersChanged();
+    bool activePlayersChanged = false;
+//    tActivePlayersChanged.assign();
+//    tActivePlayersChanged.insert(activePlayersChanged);
+
     // updates the state of each team
     if (getActiveTeamInstancesCreated())
     {
@@ -1617,23 +1618,28 @@ bool gameState::updateActiveTeamInstances()  // updates all active team instance
 //                exit(0);
                 if (ATIIT.second->getTeamType() == HOMETEAM)
                 {
-                    teamActivePlayersChanged[0] == true;
+                    tActivePlayersChanged[0] =  true;
                     logMsg(func +" HOMETEAM");
+                    logMsg(func +" " +convert->toString(tActivePlayersChanged[0]));
+
                 }
                 else if (ATIIT.second->getTeamType() == AWAYTEAM)
                 {
-                    teamActivePlayersChanged[1] == true;
+                    tActivePlayersChanged[1] = true;
+                    setTeamActivePlayersChanged(tActivePlayersChanged);
                     logMsg(func +" AWAYTEAM");
-                    logMsg(func +" " +convert->toString(teamActivePlayersChanged[1]));
+                    logMsg(func +" " +convert->toString(tActivePlayersChanged[1]));
 
                 }
                 else
                 {
                 }
-                setTeamActivePlayersChanged(teamActivePlayersChanged);
+                logMsg("dah");
+//                setTeamActivePlayersChanged(tActivePlayersChanged);
                 std::vector<bool> activeChange = getTeamActivePlayersChanged();
-                logMsg(func +" " +convert->toString(activeChange[1]));
-                exit(0);
+                logMsg(func +" h " +convert->toString(activeChange[0]));
+                logMsg(func +" a " +convert->toString(activeChange[1]));
+//                exit(0);
             }
             else
             {

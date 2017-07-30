@@ -1667,26 +1667,28 @@ bool gameState::updateActiveTeamInstances()  // updates all active team instance
 
 bool gameState::updatePlayerCollisionObjects()  // updates the player collision objects for a team instance
 {
-        std::unordered_map<std::string, btRigidBodySharedPtr> collisionObjects;
-        std::vector<bool> teamActivePlayersChanged = getTeamActivePlayersChanged();
-        size_t teamNumber = 0;
-        std::string func = "gameState::updatePlayerCollisionObjects()";
+    sharedPtr<conversion> convert = conversion::Instance();
+ 
+    std::unordered_map<std::string, btRigidBodySharedPtr> collisionObjects;
+    std::vector<bool> teamActivePlayersChanged = getTeamActivePlayersChanged();
+    size_t teamNumber = 0;
+    std::string func = "gameState::updatePlayerCollisionObjects()";
 
-        logMsg(func +" beginning");
-        exit(0);
-        while (teamNumber < teamActivePlayersChanged.size())
+    logMsg(func +" beginning");
+//        exit(0);
+    while (teamNumber < teamActivePlayersChanged.size())
+    {
+        if (teamActivePlayersChanged[teamNumber])
         {
-            if (teamActivePlayersChanged[teamNumber])
-            {
-                logMsg(func +" wahoo!");
-                exit(0);
-            }
-            ++teamNumber;
+            logMsg(func +"team " +convert->toString(teamNumber)+" wahoo!");
+            exit(0);
         }
+        ++teamNumber;
+    }
 
-        logMsg(func +" end");
+    logMsg(func +" end");
 
-        return (true);
+    return (true);
 }
 
 bool gameState::processInput()  // processes input received from the inputState object

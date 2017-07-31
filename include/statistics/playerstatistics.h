@@ -18,3 +18,15 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
+ #ifndef _PLAYERSTATISTICS_H_
+ #define _PLAYERSTATISTICS_H_
+ 
+ #include "statistics.h"
+ 
+ class playerStatistics : public statistics
+ {
+     public:
+     private:
+ };
+ 
+ #endif

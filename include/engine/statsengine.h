@@ -21,4 +21,9 @@
 #ifndef _STATSENGINE_H_
 #define _STATSENGINE_H_
 
+class statsEngine
+{
+    public:
+    private:
+};
 #endif // _STATSENGINE_H_

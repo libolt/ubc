@@ -18,3 +18,14 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
+ #ifndef _STATISTICS_H_
+ #define _STATISTICS_H_
+ 
+ #include "engine/statsengine.h"
+ 
+ class statistics : public statsEngine
+ {
+     public:
+     private:
+ };
+ #endif 

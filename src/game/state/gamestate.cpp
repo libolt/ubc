@@ -1667,9 +1667,11 @@ bool gameState::updateActiveTeamInstances()  // updates all active team instance
 
 bool gameState::updatePlayerCollisionObjects()  // updates the player collision objects for a team instance
 {
+    teamStateUMSharedPtr activeTeamInstance = getActiveTeamInstance();
     sharedPtr<conversion> convert = conversion::Instance();
  
-    std::unordered_map<std::string, btRigidBodySharedPtr> collisionObjects;
+    std::unordered_map<std::string, btRigidBodySharedPtr> collisionBodies;  // physical bodies to test for collisions with players physBody objects
+
     std::vector<bool> teamActivePlayersChanged = getTeamActivePlayersChanged();
     size_t teamNumber = 0;
     std::string func = "gameState::updatePlayerCollisionObjects()";
@@ -1680,7 +1682,24 @@ bool gameState::updatePlayerCollisionObjects()  // updates the player collision 
     {
         if (teamActivePlayersChanged[teamNumber])
         {
-            logMsg(func +"team " +convert->toString(teamNumber)+" wahoo!");
+            logMsg(func +" team " +convert->toString(teamNumber)+" wahoo!");
+            teamTypes teamType;
+            switch (teamNumber)
+            {
+                case 0:
+                    teamType = HOMETEAM;
+                break;
+                case 1:
+                    teamType = AWAYTEAM;
+                break;   
+            }
+            for (auto ATIIT : activeTeamInstance)
+            {
+                if (ATIIT.second->getTeamType() == teamType)
+                {
+                    logMsg(func +" woot woot!");
+                }
+            }
             exit(0);
         }
         ++teamNumber;

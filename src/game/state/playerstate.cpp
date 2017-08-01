@@ -36,6 +36,7 @@
 //#include "state/gamestate.h"
 #include "state/playerstate.h"
 #include "state/teamstate.h"
+#include "statistics/playerstatistics.h"
 #include "comparison.h"
 //#include "jumpballs.h"
 
@@ -59,22 +60,7 @@ playerState::playerState()
     activePosition = NONE;
     userControlled = false;
     user = -1;
-    points = 0;
-    fouls = 0;
-    offensiveRebounds = 0;
-    defensiveRebounds = 0;
-    totalRebounds = 0;
-    stamina = 0;
-    steals = 0;
-    blocks = 0;
-    turnovers = 0;
-    assists = 0;
-    fieldGoalsAttemped = 0;
-    fieldGoalsMade = 0;
-    threePointersAttempted = 0;
-    threePointersMade = 0;
-    freeThrowsAttempted = 0;
-    freeThrowsMade = 0;
+
     posChange = Ogre::Vector3(0.0f,0.0f,0.0f);
     movement = false;
     startPosReached = false;
@@ -120,6 +106,15 @@ sharedPtr<playerEntity> playerState::getEntity()  // retrieves the value of enti
 void playerState::setEntity(sharedPtr<playerEntity> set)  // sets the value of entity
 {
     entity = set;
+}
+
+sharedPtr<playerStatistics> playerState::getStatistics()  // retrieves the value of statistics
+{
+    return (statistics);
+}
+void playerState::setStatistics(sharedPtr<playerStatistics> set)  // sets the value of statistics
+{
+    statistics = set;
 }
 
 UBCBaseSharedPtr playerState::getBase()  // retrieves the value of base
@@ -203,6 +198,7 @@ void playerState::setUser(size_t set)  // sets the value of user
     user = set;
 }
 
+/*
 size_t playerState::getPoints()  // retrieves the value of points
 {
     return(points);
@@ -346,7 +342,7 @@ void playerState::setFreeThrowsMade(size_t set)  // sets the value of freeThrows
 {
     freeThrowsMade = set;
 }
-
+*/
 bool playerState::getMovement()  // retrieves the value of movement
 {
     return (movement);
@@ -580,10 +576,14 @@ bool playerState::initialize()  // initializes the state of the object
     std::string func = "playerState::initialize()";
     
     logMsg(func +" beginning");
-        sharedPtr<playerData> tempData(new playerData);
+    
+    sharedPtr<playerData> tempData(new playerData);
     data = tempData;
-    sharedPtr<playerEntity> tempPEnt(new playerEntity);
-    entity = tempPEnt;
+    sharedPtr<playerEntity> tempEnt(new playerEntity);
+    entity = tempEnt;
+    sharedPtr<playerStatistics> tempStats(new playerStatistics);
+    statistics = tempStats;
+    
 //    entity->setInitialized(true);
 /*
     playerSteerSharedPtr tempSteer(new playerSteer);

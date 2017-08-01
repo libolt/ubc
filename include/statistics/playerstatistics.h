@@ -21,7 +21,7 @@
  #ifndef _PLAYERSTATISTICS_H_
  #define _PLAYERSTATISTICS_H_
  
- #include "statistics.h"
+ #include "statistics/statistics.h"
  
  class playerStatistics : public statistics
  {

@@ -43,6 +43,7 @@
 
 class playerData;
 class playerEntity;
+class playerStatistics;
 class playerSteer;
 class playerPhysics;
 
@@ -56,8 +57,11 @@ class playerState //: public state
         sharedPtr<playerData> getData();  // retrieves the value of data
         void setData(sharedPtr<playerData> set);  // sets the value of data
 
-        sharedPtr<playerEntity> getEntity();  // retrieves the value of playerEnt
-        void setEntity(sharedPtr<playerEntity> set);  // sets the value of playerEnt
+        sharedPtr<playerEntity> getEntity();  // retrieves the value of entity
+        void setEntity(sharedPtr<playerEntity> set);  // sets the value of entity
+
+        sharedPtr<playerStatistics> getStatistics();  // retrieves the value of statistics
+        void setStatistics(sharedPtr<playerStatistics> set);  // sets the value of statistics
 
         UBCBaseSharedPtr getBase();  // retrieves the value of base
         void setBase(UBCBaseSharedPtr set);  // sets the value of base
@@ -89,7 +93,7 @@ class playerState //: public state
         size_t getUser();  // retrieves the value of user
         void setUser(size_t set);  // sets the value of user
 
-        size_t getPoints();  // gets the value of points
+/*        size_t getPoints();  // gets the value of points
         void setPoints(size_t set);  // sets the value of points
 
         size_t getFouls();  // retrieves the value of fouls
@@ -136,7 +140,7 @@ class playerState //: public state
 
         size_t getFreeThrowsMade();  // retrieves the value of freeThrowsMade
         void setFreeThrowsMade(size_t set);  // sest the value of freeThrowsMade
-
+*/
         bool getMovement();  // retrieves the value of movement
         void setMovement(bool set);  // sets the value of movement
 
@@ -237,6 +241,8 @@ class playerState //: public state
 
         sharedPtr<playerEntity> entity;  // instance of playerEntity object
         
+        sharedPtr<playerStatistics> statistics;  // instance of playerStatistics object
+ 
         static UBCBaseSharedPtr base;  // base class object
         
         bool baseInitialized;  // stores whether or not the base class has been initialized.
@@ -279,7 +285,7 @@ class playerState //: public state
 
         size_t user;  // Sets which player a user is controlled by if userControlled is set
 
-        size_t points;  // Tracks how many points the player has scored
+/*        size_t points;  // Tracks how many points the player has scored
 
         size_t fouls;  // Tracks how many fouls the player has
 
@@ -310,7 +316,7 @@ class playerState //: public state
         size_t freeThrowsAttempted;  // Tracks how many free throws the player has attempted
 
         size_t freeThrowsMade;  // Tracks how many fere throws the player has made
-
+*/
 //        std::string modelName;  // stores the name of the 3D model representing the player
 
         bool movement; // if true then player is moving

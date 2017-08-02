@@ -33,6 +33,7 @@
 #include "state/defensestate.h"
 #include "state/playerstate.h"
 #include "state/offensestate.h"
+#include "statistics/teamstatistics.h"
 #include "logging.h"
 #include "engine/physicsengine.h"
 #include "ai/playersteer.h"
@@ -58,14 +59,14 @@ teamState::teamState()  // constructor
 //    teamID = 0;
     teamType = NOTEAM;
     playerType = ' ';
-    assists = 0;
+/*    assists = 0;
     blocks = 0;
     fouls = 0;
     rebounds = 0;
     steals = 0;
     technicals = 0;
     timeouts = 0;
-
+*/
 //    activePlayerID = new size_t[5];
 
     activePlayerInstancesCreated = false;
@@ -92,6 +93,15 @@ teamState::teamState()  // constructor
 
 teamState::~teamState()  // destructor
 {
+}
+
+sharedPtr<teamStatistics> teamState::getStatistics()  // retrieves the value of statistics
+{
+    return (statistics);
+}
+void teamState::setStatistics(sharedPtr<teamStatistics> set)  // sets the value of statistics
+{
+    statistics = set;
 }
 
 UBCBaseSharedPtr teamState::getBase()  // retrieves the value of base
@@ -121,149 +131,6 @@ void teamState::setPlayerType(std::string set)  // sets the value of playerType
     playerType = set;
 }
 
-size_t teamState::getAssists()  // retrieves the value of assists
-{
-    return (assists);
-}
-void teamState::setAssists(size_t set)  // sets the value of assists
-{
-    assists = set;
-}
-
-size_t teamState::getBlocks()  // retrieves the value of blocks
-{
-    return (blocks);
-}
-void teamState::setBlocks(size_t set)  // sets the value of blocks
-{
-    blocks = set;
-}
-
-size_t teamState::getFouls()  // retrieves the value of fouls
-{
-    return (fouls);
-}
-void teamState::setFouls(size_t set)  // sets the value of fouls
-{
-    fouls = set;
-}
-
-size_t teamState::getRebounds()  // retrieves the value of rebounds
-{
-    return (rebounds);
-}
-void teamState::setRebounds(size_t set)  // sets the value of rebounds
-{
-    rebounds = set;
-}
-
-size_t teamState::getOffensiveRebounds()  // retrieves the value of offensiveRebounds
-{
-    return (offensiveRebounds);
-}
-void teamState::setOffensiveRebounds(size_t set)  // sets the value of offensiveRebounds
-{
-    offensiveRebounds = set;
-}
-
-size_t teamState::getDefensiveRebounds()  // retrieves the value of defensiveRebounds
-{
-    return (defensiveRebounds);
-}
-void teamState::setDefensiveRebounds(size_t set)  // sets the value of defensiveRebounds
-{
-    defensiveRebounds = set;
-}
-
-size_t teamState::getSteals()  // retrieves the value of steals
-{
-    return (steals);
-}
-void teamState::setSteals(size_t set)  // sets the value of steals
-{
-    steals = set;
-}
-
-size_t teamState::getTechnicals()  // retrieves the value of technicals
-{
-    return (technicals);
-}
-void teamState::setTechnicals(size_t set)  // sets the value of technicals
-{
-    technicals = set;
-}
-
-size_t teamState::getTimeouts()  // retrieves the value of timeouts
-{
-    return (timeouts);
-}
-void teamState::setTimeouts(size_t set)  // sets the value of timeouts
-{
-    timeouts = set;
-}
-
-size_t teamState::getTurnovers()  // retrieves the value of turnovers
-{
-    return (turnovers);
-}
-void teamState::setTurnovers(size_t set)  // sets the value of turnovers
-{
-    turnovers = set;
-}
-
-size_t teamState::getFieldGoalsAttempted()  // retrieves the value of fieldGoalsAttempted
-{
-    return (fieldGoalsAttempted);
-}
-void teamState::setFieldGoalsAttempted(size_t set)  // sets the value of fieldGoalsAttempted
-{
-    fieldGoalsAttempted = set;
-}
-
-size_t teamState::getFieldGoalsMade()  // retrieves the value of fieldGoalsMade
-{
-    return (fieldGoalsMade);
-}
-void teamState::setFieldGoalsMade(size_t set)  // sets the value of fieldGoalsMade
-{
-    fieldGoalsMade = set;
-}
-
-size_t teamState::getThreePointersAttempted()  // retrieves the value of threePointersAttempted
-{
-    return (threePointersAttempted);
-}
-void teamState::setThreePointersAttempted(size_t set)  // sets the value of threePointersAttempted
-{
-    threePointersAttempted = set;
-}
-
-size_t teamState::getThreePointersMade()  // retrieves the value of threePointersMade
-{
-    return (threePointersMade);
-}
-void teamState::setThreePointersMade(size_t set)  // sets the value of threePointersMade
-{
-    threePointersMade = set;
-}
-
-size_t teamState::getFreeThrowsAttempted()  // retrieves the value of freeThrowsAttempted
-{
-    return (freeThrowsAttempted);
-}
-void teamState::setFreeThrowsAttempted(size_t set)  // sets the value of freeThrowsAttempted
-{
-    freeThrowsAttempted = set;
-}
-
-size_t teamState::getFreeThrowsMade()  // retrieves the value of freeThrowsMade
-{
-    return (freeThrowsMade);
-}
-void teamState::setFreeThrowsMade(size_t set)  // sets the value of freeThrowsMade
-{
-    freeThrowsMade = set;
-}
 
 sizeTVec teamState::getPlayerID()  // retrieves the value of playerID
 {
@@ -422,7 +289,6 @@ size_t teamState::getHoop()  // retrieves the value of hoop
 {
     return (hoop);
 }
-
 void teamState::setHoop(size_t set)  // sets the value of hoop
 {
     hoop = set;
@@ -478,7 +344,10 @@ void teamState::setupState()  // sets up the state of the object
     std::string func = "teamState::setupState()";
     
     logMsg(func +" beginning");
-    
+
+    sharedPtr<teamStatistics> tempTeamStats(new teamStatistics);
+    statistics = tempTeamStats;
+
     offenseStateSharedPtr tempOffenseInst(new offenseState);
     offenseInstance = tempOffenseInst;
 

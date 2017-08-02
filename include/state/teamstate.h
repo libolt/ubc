@@ -40,6 +40,7 @@ class offenseState;
 class defenseState;
 class basketballState;
 class playerState;
+class teamStatistics;
 //class state;
 //class teamData;
 
@@ -51,9 +52,11 @@ public:
     teamState();  // constructor
     ~teamState();  // destructor
 
+    sharedPtr<teamStatistics> getStatistics();  // retrieves the value of statistics
+    void setStatistics(sharedPtr<teamStatistics> set);  // sets the value of statistics
+
     UBCBaseSharedPtr getBase();  // retrieves the value of base
     void setBase(UBCBaseSharedPtr set);  // sets the value of base
-    
 
 ///    int getTeamNumber();	// retrieves the value of teamNumber
 ///    void setTeamNumber(int set);  // sets the value of teamNumber
@@ -66,54 +69,6 @@ public:
 
     std::string getPlayerType();  // retrieves the value of playerType
     void setPlayerType(std::string set);  // sets the value of playerType
-
-    size_t getAssists();  // retrieves the value of assists
-    void setAssists(size_t set);  // sets the value of assists
-
-    size_t getBlocks();  // retrieves the value of blocks
-    void setBlocks(size_t set);  // sets the value of blocks
-
-    size_t getFouls();  // retrieves the value of fouls
-    void setFouls(size_t set);  // sets the value of fouls
-
-    size_t getRebounds();  // retrieves the value of rebounds
-    void setRebounds(size_t set);  // sets the value of rebounds
-
-    size_t getOffensiveRebounds();  // retrieves the value of offensiveRebounds
-    void setOffensiveRebounds(size_t set);  // sets the value of offensiveRebounds
-
-    size_t getDefensiveRebounds();  // retrieves the value of defensiveRebounds
-    void setDefensiveRebounds(size_t set);  // sets the value of defensiveRebounds
-
-    size_t getSteals();  // retrieves the value of steals
-    void setSteals(size_t set);  // sets the value of steals
-
-    size_t getTechnicals();  // retrieves the value of technicals
-    void setTechnicals(size_t set);  // sets the value of technicals
-
-    size_t getTimeouts();  // retrieves the value of timeouts
-    void setTimeouts(size_t set);  // sets the value of timeouts
-
-    size_t getTurnovers();  // retrieves the value of turnovers
-    void setTurnovers(size_t set);  // sets the value of turnovers
-
-    size_t getFieldGoalsAttempted();  // retrieves the value of fieldGoalsAttempted
-    void setFieldGoalsAttempted(size_t set);  // sets the value of fieldGoalsAttempted
-
-    size_t getFieldGoalsMade();  // retrieves the value of fieldGoalsMade
-    void setFieldGoalsMade(size_t set);  // sets the value of fieldGoalsMade
-
-    size_t getThreePointersAttempted();  // retrieves the value of threePointersAttempted
-    void setThreePointersAttempted(size_t set);  // sets the value of threePointersAttempted
-
-    size_t getThreePointersMade();  // retrieves the value of threePointersMade
-    void setThreePointersMade(size_t set);  // sets the value of threePointersMade
-
-    size_t getFreeThrowsAttempted();  // retrieves the value of freeThrowsAttempted
-    void setFreeThrowsAttempted(size_t set);  // sets the value of freeThrowsAttempted
-
-    size_t getFreeThrowsMade();  // retrieves the value of freeThrowsMade
-    void setFreeThrowsMade(size_t set);  // sets the value of freeThrowsMade
 
     sizeTVec getPlayerID();  // retrieves the value of playerID
     void setPlayerID(sizeTVec set);  // sets the value of playerID
@@ -210,13 +165,15 @@ public:
 protected:
 private:
 
+    sharedPtr<teamStatistics> statistics;  // instance of teamStatistics object
+
     static UBCBaseSharedPtr base;  // static copy of base class
     size_t teamNumber;  // stores which team number the object is
     teamTypes teamType;  // stores which type of team this object is
 //    static size_t teamID;  // stores the ID number of the team;
 
     std::string playerType;  // stores the type of player in control of the team (human,network,ai) are valid values
-    size_t assists;  // stores number of assists team has.
+/*    size_t assists;  // stores number of assists team has.
     size_t blocks;  // stores the total number of blocks.
     size_t fouls;  // stores the total number of fouls.
     size_t rebounds;  // stores the total number of rebounds.
@@ -232,7 +189,7 @@ private:
     size_t threePointersMade;  // stores the total number of 3 pointers made.
     size_t freeThrowsAttempted;  // stores the total number of free throws attempted.
     size_t freeThrowsMade;  // stores the total number of free throws made.
-
+*/
     sizeTVec playerID;  // stores the player IDs from the teams class
     sizeTVec activePlayerID;  // stores which players are currently on the court.
     sizeTVec starterID;  // stores the IDs of which players are listed as starters.

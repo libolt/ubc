@@ -56,9 +56,18 @@ size_t statistics::getFouls()  // retrieves the value of fouls
 {
     return(fouls);
 }
-void statistics::setFoulds(size_t set)  // sets the value of fouls
+void statistics::setFouls(size_t set)  // sets the value of fouls
 {
     fouls = set;
+}
+
+size_t statistics::getTechnicalFouls()  // retrieves the value of technicalFouls
+{
+    return (technicalFouls);
+}
+void statistics::setTechnicalFoulds(size_t set)  // sets the value of technicalFouls
+{
+    technicalFouls = set;
 }
 
 size_t statistics::getOffensiveRebounds()  // retrieves the value of offensiveRebounds

@@ -18,4 +18,21 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
- #include "statistics/teamstatistics.h"
+#include "statistics/teamstatistics.h"
+
+teamStatistics::teamStatistics()  // constructor
+{
+    timeOuts = 0;
+}
+teamStatistics::~teamStatistics()  // destructor
+{
+}
+
+size_t teamStatistics::getTimeOuts() // retrieves the value of timeOuts
+{
+    return (timeOuts);
+}
+void teamStatistics::setTimeOuts(size_t set)  // sets the value of timeOuts
+{
+    timeOuts = set;
+}

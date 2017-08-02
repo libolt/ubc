@@ -35,7 +35,10 @@
         void setPoints(size_t set);  // sets the value of points
 
         size_t getFouls();  // retrieves the value of fouls
-        void setFoulds(size_t set);  // sets the value of fouls;
+        void setFouls(size_t set);  // sets the value of fouls;
+
+        size_t getTechnicalFouls();  // retrieves the value of technicalFouls
+        void setTechnicalFoulds(size_t set);  // sets the value of technicalFouls
 
         size_t getOffensiveRebounds();  // retrieves the value of offensiveRebounds
         void setOffensiveRebounds(size_t set);  // sets the value of offensiveRebounds
@@ -78,35 +81,37 @@
 
     private:
     
-        size_t points;  // Tracks how many points the player has scored
+        size_t points;  // Tracks how many points have been scored
 
-        size_t fouls;  // Tracks how many fouls the player has
+        size_t fouls;  // Tracks how many fouls have been committed
 
-        size_t offensiveRebounds;  // Tracks how many rebounds the player has on offense
+        size_t technicalFouls;  // tracks how many technical fouls have been commit
 
-        size_t defensiveRebounds;  // Tracks how many rebounds the player has on defense
+        size_t offensiveRebounds;  // Tracks the amount of offensive rebounds
 
-        size_t totalRebounds;  // Tracks how many total rebounds the player has
+        size_t defensiveRebounds;  // Tracks the amount of defensive rebounds
+
+        size_t totalRebounds;  // Tracks the total number of rebounds
      
-        size_t steals;  // Tracks how many steals the player has
+        size_t steals;  // Tracks the amount of steals
 
-        size_t blocks;  // Tracks how many blocks the player has
+        size_t blocks;  // Tracks the amount of blocks
 
-        size_t turnovers;  // Tracks how many turnovers the player has
+        size_t turnovers;  // Tracks the amount of turnovers
 
-        size_t assists;  // Tracks how many assists the player has
+        size_t assists;  // Tracks the amount of assists
 
-        size_t fieldGoalsAttemped;  // Tracks how many field goals the player has attempted
+        size_t fieldGoalsAttemped;  // Tracks how many field goals have been attempted
 
-        size_t fieldGoalsMade;  // Tracks how many field goals the player has made
+        size_t fieldGoalsMade;  // Tracks how many field goals have been made
 
-        size_t threePointersAttempted;  // Tracks how many three pointers the player has attempted
+        size_t threePointersAttempted;  // Tracks how many three pointers have been attempted
 
-        size_t threePointersMade;  // Tracks how many three pointers the player has made
+        size_t threePointersMade;  // Tracks how many three pointers have been made
 
-        size_t freeThrowsAttempted;  // Tracks how many free throws the player has attempted
+        size_t freeThrowsAttempted;  // Tracks how many freethrows have been attempted
 
-        size_t freeThrowsMade;  // Tracks how many fere throws the player has made
+        size_t freeThrowsMade;  // Tracks how many freethrows have been made
 
  };
  #endif 

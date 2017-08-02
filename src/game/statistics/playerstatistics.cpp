@@ -18,4 +18,20 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
- #include "statistics/playerstatistics.h"
+#include "statistics/playerstatistics.h"
+
+playerStatistics::playerStatistics()  // constructor
+{
+}
+playerStatistics::~playerStatistics()  // destructor
+{
+}
+
+size_t playerStatistics::getStamina()  // retrieves the value of stamina
+{
+    return(stamina);
+}
+void playerStatistics::setStamina(size_t set)  // sets the value of stamina
+{
+    stamina = set;
+}

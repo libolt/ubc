@@ -22,6 +22,7 @@
  #define _STATISTICS_H_
  
  #include "engine/statsengine.h"
+ #include <cstdlib>
  
  class statistics : public statsEngine
  {

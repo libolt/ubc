@@ -27,7 +27,6 @@ statistics::statistics()
     offensiveRebounds = 0;
     defensiveRebounds = 0;
     totalRebounds = 0;
-    stamina = 0;
     steals = 0;
     blocks = 0;
     turnovers = 0;

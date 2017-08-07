@@ -1693,11 +1693,28 @@ bool gameState::updatePlayerCollisionObjects()  // updates the player collision 
                     teamType = AWAYTEAM;
                 break;   
             }
-            for (auto ATIIT : activeTeamInstance)
+            bool loopDone = false;
+            while (!loopDone)
             {
-                if (ATIIT.second->getTeamType() == teamType)
+                for (auto ATIIT : activeTeamInstance)
                 {
-                    logMsg(func +" woot woot!");
+                    if (ATIIT.second->getTeamType() == teamType)
+                    {
+                        logMsg(func +" woot woot!");
+                    }
+                    else
+                    {
+                        logMsg(func +" toot toot!");
+                        std::unordered_map<std::string, playerStateSharedPtr> activePlayerInstance;
+                        activePlayerInstance = ATIIT.second->getActivePlayerInstance();
+                        std::string position;
+                        for (auto APIIT : activePlayerInstance)
+                        {
+                            position = APIIT.first;
+                            logMsg(func +" position = " +position);
+                        }
+                        exit(0);
+                    }
                 }
             }
             exit(0);

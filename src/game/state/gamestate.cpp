@@ -1698,6 +1698,7 @@ bool gameState::updatePlayerCollisionObjects()  // updates the player collision 
             {
                 for (auto ATIIT : activeTeamInstance)
                 {
+                    std::unordered_map<std::string, btRigidBody *> collisionBodies;
                     if (ATIIT.second->getTeamType() == teamType)
                     {
                         logMsg(func +" woot woot!");
@@ -1708,9 +1709,13 @@ bool gameState::updatePlayerCollisionObjects()  // updates the player collision 
                         std::unordered_map<std::string, playerStateSharedPtr> activePlayerInstance;
                         activePlayerInstance = ATIIT.second->getActivePlayerInstance();
                         std::string position;
+                        btRigidBody * physBody;
                         for (auto APIIT : activePlayerInstance)
                         {
                             position = APIIT.first;
+                            physBody = APIIT.second->getEntity()->getPhysics()->getPhysBody();
+                            collisionBodies.insert(std::pair<std::string, btRigidBody *>(position, physBody));  // loads the second hoop
+
                             logMsg(func +" position = " +position);
                         }
                         exit(0);

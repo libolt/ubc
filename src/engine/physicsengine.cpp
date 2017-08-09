@@ -537,12 +537,12 @@ void physicsEngine::stepWorld(timing timer)  // steps the world of the physics s
 }*/
 
 
-bool physicsEngine::collisionCheck(btRigidBody *objectA, btRigidBody *objectB)  // tests whther or not two objects have collided
+bool physicsEngine::collisionCheck(btRigidBodySharedPtr objectA, btRigidBodySharedPtr objectB)  // tests whther or not two objects have collided
 {
     sharedPtr<conversion> convert = conversion::Instance();
     MyContactResultCallback collisionResult;
     exit(0);
-    world->contactPairTest(objectA, objectB, collisionResult);
+    world->contactPairTest(objectA.get(), objectB.get(), collisionResult);
     logMsg("collisionResult = " +convert->toString(collisionResult.m_connected));
     if (collisionResult.m_connected)
     {

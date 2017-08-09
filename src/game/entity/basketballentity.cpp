@@ -74,7 +74,7 @@ bool basketballEntity::setupPhysicsObject()  // sets up the physics object
     std::string func = "basketballEntity::setupPhysicsObject()";
     OgreEntitySharedPtr tempModel = getModel();
     OgreSceneNodeSharedPtr tempNode = getNode();
-    btRigidBody *tempPhysBody = getPhysics()->getPhysBody();
+    btRigidBody *tempPhysBody = getPhysics()->getPhysBody().get();
     bool returnType = false;
     
     logMsg(func +" beginning");
@@ -108,7 +108,7 @@ bool basketballEntity::setupPhysicsObject()  // sets up the physics object
 //        exit(0);
         setModel(OgreEntitySharedPtr(tempModel));
         setNode(OgreSceneNodeSharedPtr(tempNode));
-        getPhysics()->setPhysBody(tempPhysBody);
+        getPhysics()->setPhysBody(btRigidBodySharedPtr(tempPhysBody));
 //        exit(0);
         returnType = true;;
 

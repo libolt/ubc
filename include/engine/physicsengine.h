@@ -65,7 +65,7 @@ public:
 
     void passCollisionCheck();  // checks whether the ball has collided with the player being passed to
 
-    bool collisionCheck(btRigidBody *objectA,btRigidBody *objectB);  // tests whther or not two objects have collided
+    bool collisionCheck(btRigidBodySharedPtr objectA,btRigidBodySharedPtr objectB);  // tests whther or not two objects have collided
 
 protected:
 

@@ -115,12 +115,12 @@ void physics::setShapeType(physicsShapes set)  // sets the value of shapeType
     shapeType = set;
 }
 
-btRigidBody *physics::getPhysBody()  // retrieves physBody variable
+btRigidBodySharedPtr physics::getPhysBody()  // retrieves physBody variable
 {
     return (physBody);
 }
 
-void physics::setPhysBody(btRigidBody *set)  // sets physBody variable
+void physics::setPhysBody(btRigidBodySharedPtr set)  // sets physBody variable
 {
     physBody = set;
 }

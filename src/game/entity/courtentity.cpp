@@ -61,7 +61,7 @@ bool courtEntity::setupPhysicsObject()  // sets up the physics object
 {
     OgreEntitySharedPtr tempModel = getModel();
     OgreSceneNodeSharedPtr tempNode = getNode();
-    btRigidBody *tempPhysBody = getPhysics()->getPhysBody();
+    btRigidBody *tempPhysBody = getPhysics()->getPhysBody().get();
     btScalar restitution = 1.0f;
     btScalar friction = 15.5f;
 
@@ -85,7 +85,7 @@ bool courtEntity::setupPhysicsObject()  // sets up the physics object
         setPhysicsSetup(true);
         setModel(OgreEntitySharedPtr(tempModel));
         setNode(OgreSceneNodeSharedPtr(tempNode));
-        getPhysics()->setPhysBody(tempPhysBody);
+        getPhysics()->setPhysBody(btRigidBodySharedPtr(tempPhysBody));
         return (true);
     }
     else

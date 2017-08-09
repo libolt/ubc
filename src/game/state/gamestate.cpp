@@ -1,5 +1,5 @@
 /***************************************************************************
- *   . . opyright (C) 1999 - 2015 by Mike McLean                              *
+ *   Copyright (C) 1999 - 2017 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -1696,31 +1696,73 @@ bool gameState::updatePlayerCollisionObjects()  // updates the player collision 
             bool loopDone = false;
             while (!loopDone)
             {
+                std::unordered_map<std::string, playerStateSharedPtr> activePlayerInstance;
+                std::unordered_map<std::string, playerStateSharedPtr> collisionPlayerInstance;
+                std::unordered_map<std::string, btRigidBodySharedPtr> activeCollisionBodies;
+                std::unordered_map<std::string, btRigidBodySharedPtr> newCollisionBodies;
+
                 for (auto ATIIT : activeTeamInstance)
                 {
-                    std::unordered_map<std::string, btRigidBody *> collisionBodies;
                     if (ATIIT.second->getTeamType() == teamType)
                     {
                         logMsg(func +" woot woot!");
+                        activePlayerInstance = ATIIT.second->getActivePlayerInstance();
+                        activeCollisionBodies = ATIIT.second->getCollisionBodies();
+                        
                     }
                     else
                     {
                         logMsg(func +" toot toot!");
-                        std::unordered_map<std::string, playerStateSharedPtr> activePlayerInstance;
-                        activePlayerInstance = ATIIT.second->getActivePlayerInstance();
+                        collisionPlayerInstance = ATIIT.second->getActivePlayerInstance();
                         std::string position;
-                        btRigidBody * physBody;
-                        for (auto APIIT : activePlayerInstance)
+                        btRigidBodySharedPtr physBody;
+                        for (auto CPIIT : collisionPlayerInstance)
                         {
-                            position = APIIT.first;
-                            physBody = APIIT.second->getEntity()->getPhysics()->getPhysBody();
-                            collisionBodies.insert(std::pair<std::string, btRigidBody *>(position, physBody));  // loads the second hoop
+                            position = CPIIT.first;
+                            physBody = CPIIT.second->getEntity()->getPhysics()->getPhysBody();
+                            newCollisionBodies.insert(std::pair<std::string, btRigidBodySharedPtr>(position, physBody));  // loads the second hoop
 
                             logMsg(func +" position = " +position);
-                        }
-                        exit(0);
+                        }                      
                     }
                 }
+                std::string tempPos = "C";
+                btRigidBodySharedPtr tempBody;
+                activeCollisionBodies.insert(std::pair<std::string, btRigidBodySharedPtr>(tempPos, tempBody));  // loads the second hoop
+
+                if (activeCollisionBodies.size() > 0)
+                {    
+                    std::unordered_map<std::string, bool> ACBFound;  // stores whether an active collision body entry has been found
+                    
+                    for (auto ACBIT : activeCollisionBodies)
+                    {
+                        ACBFound.insert(std::pair<std::string, bool>(ACBIT.first, true));
+                        for (auto NCBIT : newCollisionBodies)
+                        {                           
+                            if (ACBIT.first == NCBIT.first)
+                            {
+                                ACBIT.second = NCBIT.second;
+//                                ACBIT.first = "CC";
+                            }
+                            else
+                            {
+                                
+                            }
+                        }
+
+                        logMsg(func +" ACB position = " +ACBIT.first);
+                    }
+                }
+                else
+                {
+                    logMsg(func +" activeCollisionBodies is empty!");
+                    activeCollisionBodies = newCollisionBodies;
+                }
+                for (auto NCBIT : newCollisionBodies)
+                {
+                    logMsg(func +" NCB position = " +NCBIT.first);
+                }
+                exit(0);
             }
             exit(0);
         }

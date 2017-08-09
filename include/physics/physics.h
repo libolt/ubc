@@ -58,8 +58,8 @@ class physics
         physicsShapes getShapeType();  // retrieves the value of shapeType
         void setShapeType(physicsShapes set);  // sets the value of shapeType
  
-        btRigidBody *getPhysBody();  // retrieves the value of physBody
-        void setPhysBody(btRigidBody *set);  // sets the value of physBody
+        btRigidBodySharedPtr getPhysBody();  // retrieves the value of physBody
+        void setPhysBody(btRigidBodySharedPtr set);  // sets the value of physBody
 
         std::unordered_map<std::string, btRigidBodySharedPtr> getCollisionBodies();  // retrieves the value of collisionBodies
         void setCollisionBodies(std::unordered_map<std::string, btRigidBodySharedPtr> set);  // sets the value of collisionBodies
@@ -111,7 +111,7 @@ class physics
 
         physicsShapes shapeType;  // stores what type of shape to create 
         
-        btRigidBody *physBody;  // stores the physics object that represents the player
+        btRigidBodySharedPtr physBody;  // stores the physics object that represents the player
 
         std::unordered_map<std::string, btRigidBodySharedPtr> collisionBodies;  // physical bodies to test for collisions with physBody
 

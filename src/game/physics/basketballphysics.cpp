@@ -187,7 +187,7 @@ void basketballPhysics::updateState()  // updates basketball physics state
 }
 */
 
-void basketballPhysics::ballDribbling(Ogre::Vector3 bballPos, btRigidBody *courtPhysBody, Ogre::Vector3 courtPos)  // simulates basketball dribble
+void basketballPhysics::ballDribbling(Ogre::Vector3 bballPos, btRigidBodySharedPtr courtPhysBody, Ogre::Vector3 courtPos)  // simulates basketball dribble
 {
     sharedPtr<conversion> convert = conversion::Instance();
     physicsEngine physEngine;
@@ -262,7 +262,7 @@ void basketballPhysics::ballDribbling(Ogre::Vector3 bballPos, btRigidBody *court
                 const btVector3& ptB = pt.getPositionWorldOnB();
                 const btVector3& normalOnB = pt.m_normalWorldOnB;
                 // ZOMG A COLLISIONNNNNNNNNNN ...
-                if ((btRigidBody*)obA == getPhysBody() || (btRigidBody*)obB == courtPhysBody)
+                if ((btRigidBody*)obA == getPhysBody().get() || (btRigidBody*)obB == courtPhysBody.get())
                 {
                     logMsg("ball collided with court!");
                    // exit(0);

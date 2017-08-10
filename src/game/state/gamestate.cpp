@@ -1700,7 +1700,7 @@ bool gameState::updatePlayerCollisionObjects()  // updates the player collision 
                 std::unordered_map<std::string, playerStateSharedPtr> collisionPlayerInstance;
                 std::unordered_map<std::string, btRigidBodySharedPtr> activeCollisionBodies;
                 std::unordered_map<std::string, btRigidBodySharedPtr> newCollisionBodies;
-
+//                std::unordered_map<std::string, btRigidBodySharedPtr> newCollisionBodies;
                 for (auto ATIIT : activeTeamInstance)
                 {
                     if (ATIIT.second->getTeamType() == teamType)
@@ -1737,11 +1737,13 @@ bool gameState::updatePlayerCollisionObjects()  // updates the player collision 
                     for (auto ACBIT : activeCollisionBodies)
                     {
                         ACBFound.insert(std::pair<std::string, bool>(ACBIT.first, true));
+                        logMsg(func +" newCollisionBodies.size() before = " +convert->toString(newCollisionBodies.size()));
                         for (auto NCBIT : newCollisionBodies)
                         {                           
                             if (ACBIT.first == NCBIT.first)
                             {
                                 ACBIT.second = NCBIT.second;
+                                newCollisionBodies.erase(NCBIT.first);
 //                                ACBIT.first = "CC";
                             }
                             else
@@ -1749,6 +1751,7 @@ bool gameState::updatePlayerCollisionObjects()  // updates the player collision 
                                 
                             }
                         }
+                        logMsg(func +" newCollisionBodies.size() after = " +convert->toString(newCollisionBodies.size()));
 
                         logMsg(func +" ACB position = " +ACBIT.first);
                     }

@@ -1701,6 +1701,7 @@ bool gameState::updatePlayerCollisionObjects()  // updates the player collision 
                 std::unordered_map<std::string, btRigidBodySharedPtr> activeCollisionBodies;
                 std::unordered_map<std::string, btRigidBodySharedPtr> newCollisionBodies;
 //                std::unordered_map<std::string, btRigidBodySharedPtr> newCollisionBodies;
+                btRigidBodySharedPtr tempBody;
                 for (auto ATIIT : activeTeamInstance)
                 {
                     if (ATIIT.second->getTeamType() == teamType)
@@ -1721,13 +1722,13 @@ bool gameState::updatePlayerCollisionObjects()  // updates the player collision 
                             position = CPIIT.first;
                             physBody = CPIIT.second->getEntity()->getPhysics()->getPhysBody();
                             newCollisionBodies.insert(std::pair<std::string, btRigidBodySharedPtr>(position, physBody));  // loads the second hoop
-
+                            tempBody = physBody;
                             logMsg(func +" position = " +position);
                         }                      
                     }
                 }
                 std::string tempPos = "C";
-                btRigidBodySharedPtr tempBody;
+
                 activeCollisionBodies.insert(std::pair<std::string, btRigidBodySharedPtr>(tempPos, tempBody));  // loads the second hoop
 
                 if (activeCollisionBodies.size() > 0)

@@ -168,6 +168,10 @@ class playerState //: public state
 /*        bool getStateSet();  // retrieves the value of stateSet
         void setStateSet(bool set);  // sets the value of stateSet
 */
+
+        bool getPhysBodyInitialized();  // retrieves the value of physBodyInitialized
+        void setPhysBodyInitialized(bool set);  // sets the value of physBodyInitialized
+
         bool getInitialized();  // retreives the value of initialized
         void setInitialized(bool set);  // sets the value of initialized
         
@@ -278,6 +282,7 @@ class playerState //: public state
 
         positionChangedTypes courtPositionChangedType;  // stores what subsystem changed the position of the player
 
+        bool physBodyInitialized;  // Determines whether or not the btRigidBody object has been initialized
 //        bool stateSet;  // if true the playerState object has been set to initial state
         // temporary hack
         bool initialized;

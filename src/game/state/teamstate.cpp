@@ -930,7 +930,10 @@ bool teamState::setupActivePlayerInstances()  // sets up active player objects
             {
                 
             }
-            APIIT.second->getEntity()->setupPhysicsObject();
+            if (APIIT.second->getEntity()->setupPhysicsObject())  // attempts to setup the physics object and sets physBodyInitialized to true if successful
+            {
+                APIIT.second->setPhysBodyInitialized(true);
+            }
 //            APIIT.second->getEntity()->setPhysicsSetup(true);
         }
         else

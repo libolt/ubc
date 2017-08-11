@@ -1709,6 +1709,7 @@ bool gameState::updatePlayerCollisionObjects()  // updates the player collision 
                         logMsg(func +" woot woot!");
                         activePlayerInstance = ATIIT.second->getActivePlayerInstance();
                         activeCollisionBodies = ATIIT.second->getCollisionBodies();
+
                         
                     }
                     else
@@ -1719,17 +1720,26 @@ bool gameState::updatePlayerCollisionObjects()  // updates the player collision 
                         btRigidBodySharedPtr physBody;
                         for (auto CPIIT : collisionPlayerInstance)
                         {
-                            position = CPIIT.first;
-                            physBody = CPIIT.second->getEntity()->getPhysics()->getPhysBody();
-                            newCollisionBodies.insert(std::pair<std::string, btRigidBodySharedPtr>(position, physBody));  // loads the second hoop
-                            tempBody = physBody;
-                            logMsg(func +" position = " +position);
+                            if (CPIIT.second->getPhysBodyInitialized())
+                            {
+                                logMsg(func +" physBody Initialized!");
+                                position = CPIIT.first;
+                                physBody = CPIIT.second->getEntity()->getPhysics()->getPhysBody();
+                                newCollisionBodies.insert(std::pair<std::string, btRigidBodySharedPtr>(position, physBody));  // loads the second hoop
+                                tempBody = physBody;
+                                logMsg(func +" position = " +position);
+                            }
+                            else
+                            {
+                                logMsg(func +" physBody Not Initialized!");
+                            }
                         }                      
                     }
                 }
                 std::string tempPos = "C";
 
                 activeCollisionBodies.insert(std::pair<std::string, btRigidBodySharedPtr>(tempPos, tempBody));  // loads the second hoop
+//                activeCollisionBodies.insert(std::pair<std::string, btRigidBodySharedPtr>("PG", tempBody));  // loads the second hoop
 
                 if (activeCollisionBodies.size() > 0)
                 {    
@@ -1738,6 +1748,7 @@ bool gameState::updatePlayerCollisionObjects()  // updates the player collision 
                     for (auto ACBIT : activeCollisionBodies)
                     {
                         ACBFound.insert(std::pair<std::string, bool>(ACBIT.first, true));
+
                         logMsg(func +" newCollisionBodies.size() before = " +convert->toString(newCollisionBodies.size()));
                         for (auto NCBIT : newCollisionBodies)
                         {                           

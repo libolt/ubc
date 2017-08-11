@@ -79,6 +79,7 @@ playerState::playerState()
     jumpComplete = false;
     courtPosition = Ogre::Vector3(0.0f,0.0f,0.0f);
     courtPositionChanged = false;
+    physBodyInitialized = false;
 //    stateSet = false;
     // hack
     posChangeAmount = 0;
@@ -198,151 +199,6 @@ void playerState::setUser(size_t set)  // sets the value of user
     user = set;
 }
 
-/*
-size_t playerState::getPoints()  // retrieves the value of points
-{
-    return(points);
-}
-void playerState::setPoints(size_t set)  // sets the vlaue of points
-{
-    points = set;
-}
-
-size_t playerState::getFouls()  // retrieves the value of fouls
-{
-    return(fouls);
-}
-void playerState::setFoulds(size_t set)  // sets the value of fouls
-{
-    fouls = set;
-}
-
-size_t playerState::getOffensiveRebounds()  // retrieves the value of offensiveRebounds
-{
-    return(offensiveRebounds);
-}
-void playerState::setOffensiveRebounds(size_t set)  // sets the value of offensiveRebounds
-{
-    offensiveRebounds = set;
-}
-
-size_t playerState::getDefensiveRebounds()  // retrieves the value of defensiveRebounds
-{
-    return(defensiveRebounds);
-}
-void playerState::setDefensiveRebounds(size_t set)  // sets the value of defensiveRebounds
-{
-    defensiveRebounds = set;
-}
-
-size_t playerState::getTotalRebounds()  // retrieves the value of totalRebounds
-{
-    return(totalRebounds);
-}
-void playerState::setTotalReboundS(size_t set)  // sets the value of totalRebounds
-{
-    totalRebounds = set;
-}
-
-size_t playerState::getStamina()  // retrieves the value of stamina
-{
-    return(stamina);
-}
-void playerState::setStamina(size_t set)  // sets the value of stamina
-{
-    stamina = set;
-}
-
-size_t playerState::getSteals()  // retrieves the value of steals
-{
-    return(steals);
-}
-void playerState::setSteals(size_t set)  // sets the value of steals
-{
-    steals = set;
-}
-
-size_t playerState::getBlocks()  // retrieves the value of blocks
-{
-    return(blocks);
-}
-void playerState::setBlocks(size_t set)  // sets the value of blocks
-{
-    blocks = set;
-}
-
-size_t playerState::getTurnovers()  // retrieves the value of turnovers
-{
-    return(turnovers);
-}
-void playerState::setTurnovers(size_t set)  // sets the value of turnovers
-{
-    turnovers = set;
-}
-
-size_t playerState::getAssists()  // retrieves the value of assist
-{
-    return(assists);
-}
-void playerState::setAssists(size_t set)  // sets the value of assists
-{
-    assists = set;
-}
-
-size_t playerState::getFieldGoalsAttemped()  // retrieves the value of fieldGoalsAttempted
-{
-    return(fieldGoalsAttemped);
-}
-void playerState::setFieldGoalsAttempted(size_t set)  // sets the value of fieldGoalsAttempted
-{
-    fieldGoalsAttemped = set;
-}
-
-size_t playerState::getFieldGoalsMade()  // retrieved the value of fieldGoalsMade
-{
-    return(fieldGoalsMade);
-}
-void playerState::setFieldGoalsmade(size_t set)  // sets the value of fieldGoalsMade
-{
-    fieldGoalsMade = set;
-}
-
-size_t playerState::getThreePointersAttempted()  // retrieves the value of threePointersAttempted
-{
-    return(threePointersAttempted);
-}
-void playerState::setThreePointersAttempted(size_t set)  // sets the value of threePointersAttempted
-{
-    threePointersAttempted = set;
-}
-
-size_t playerState::getThreePointersMade()  // retrieves the value of threePointersMade
-{
-    return(threePointersMade);
-}
-void playerState::setThreePointersMade(size_t set)  // sets the value of threePointersMade
-{
-    threePointersMade = set;
-}
-
-size_t playerState::getFreeThrowsAttempted()  // retrieves the value of freeThrowsAttempted
-{
-    return(freeThrowsAttempted);
-}
-void playerState::setFreeThrowsAttempted(size_t set)  // sets the value of freeThrowsAttempted
-{
-    freeThrowsAttempted = set;
-}
-
-size_t playerState::getFreeThrowsMade()  // retrieves the value of freeThrowsMade
-{
-    return(freeThrowsMade);
-}
-void playerState::setFreeThrowsMade(size_t set)  // sets the value of freeThrowsMade
-{
-    freeThrowsMade = set;
-}
-*/
 bool playerState::getMovement()  // retrieves the value of movement
 {
     return (movement);
@@ -559,6 +415,15 @@ positionChangedTypes playerState::getCourtPositionChangedType()  // retrieves th
 void playerState::setCourtPositionChangedType(positionChangedTypes set)  // sets the value of courtPositionChangedType
 {
     courtPositionChangedType = set;
+}
+
+bool playerState::getPhysBodyInitialized()  // retrieves the value of physBodyInitialized
+{
+    return (physBodyInitialized);
+}
+void playerState::setPhysBodyInitialized(bool set)  // sets the value of physBodyInitialized
+{
+    physBodyInitialized = set;
 }
 
 bool playerState::getInitialized()  // retreives the value of initialized

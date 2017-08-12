@@ -1718,15 +1718,15 @@ bool gameState::updatePlayerCollisionObjects()  // updates the player collision 
                         collisionPlayerInstance = ATIIT.second->getActivePlayerInstance();
                         std::string position;
                         btRigidBodySharedPtr physBody;
-                        for (auto CPIIT : collisionPlayerInstance)
+                        for (auto CPIIT : collisionPlayerInstance)  // loops through the other team's activePlayerInstance
                         {
-                            if (CPIIT.second->getPhysBodyInitialized())
-                            {
+                            if (CPIIT.second->getPhysBodyInitialized())  // verifies that each player's physBody has been initialized
+                            {  // inserts the player's position and their collisionBody into newCollisionBodies
                                 logMsg(func +" physBody Initialized!");
                                 position = CPIIT.first;
                                 physBody = CPIIT.second->getEntity()->getPhysics()->getPhysBody();
                                 newCollisionBodies.insert(std::pair<std::string, btRigidBodySharedPtr>(position, physBody));  // loads the second hoop
-                                tempBody = physBody;
+//                                tempBody = physBody;
                                 logMsg(func +" position = " +position);
                             }
                             else
@@ -1737,8 +1737,8 @@ bool gameState::updatePlayerCollisionObjects()  // updates the player collision 
                     }
                 }
                 std::string tempPos = "C";
-
-                activeCollisionBodies.insert(std::pair<std::string, btRigidBodySharedPtr>(tempPos, tempBody));  // loads the second hoop
+// Test code to verify that the code to change a collisionBody works
+//                activeCollisionBodies.insert(std::pair<std::string, btRigidBodySharedPtr>(tempPos, tempBody));  // loads the second hoop
 //                activeCollisionBodies.insert(std::pair<std::string, btRigidBodySharedPtr>("PG", tempBody));  // loads the second hoop
 
                 if (activeCollisionBodies.size() > 0)
@@ -1752,23 +1752,19 @@ bool gameState::updatePlayerCollisionObjects()  // updates the player collision 
                         logMsg(func +" newCollisionBodies.size() before = " +convert->toString(newCollisionBodies.size()));
                         for (auto NCBIT : newCollisionBodies)
                         {                           
-                            if (ACBIT.first == NCBIT.first)
+                            if (ACBIT.first == NCBIT.first)  // changes collision bodies that have the same string
                             {
                                 ACBIT.second = NCBIT.second;
                                 newCollisionBodies.erase(NCBIT.first);
-//                                ACBIT.first = "CC";
                             }
                             else
                             {
-                                
                             }
                         }
                         logMsg(func +" newCollisionBodies.size() after = " +convert->toString(newCollisionBodies.size()));
-                        
-                        logMsg(func +" ACB position = " +ACBIT.first);
                     }
                     size_t i = 0;
-                    for (auto NCBIT : newCollisionBodies)
+                    for (auto NCBIT : newCollisionBodies)  // inserts the remaining collision bodies
                     {   
                         activeCollisionBodies.insert(NCBIT);
                         ++i;
@@ -1784,9 +1780,18 @@ bool gameState::updatePlayerCollisionObjects()  // updates the player collision 
                 {
                     logMsg(func +" NCB position = " +NCBIT.first);
                 }
-                exit(0);
+                for (auto ATIIT : activeTeamInstance) // updates collisionBodies with the new data
+                {
+                    if (ATIIT.second->getTeamType() == teamType)
+                    {
+                        ATIIT.second->setCollisionBodies(activeCollisionBodies);
+                        loopDone = true;
+                    }
+                    else
+                    {
+                    }
+                }
             }
-            exit(0);
         }
         ++teamNumber;
     }

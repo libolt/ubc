@@ -1764,8 +1764,15 @@ bool gameState::updatePlayerCollisionObjects()  // updates the player collision 
                             }
                         }
                         logMsg(func +" newCollisionBodies.size() after = " +convert->toString(newCollisionBodies.size()));
-
+                        
                         logMsg(func +" ACB position = " +ACBIT.first);
+                    }
+                    size_t i = 0;
+                    for (auto NCBIT : newCollisionBodies)
+                    {   
+                        activeCollisionBodies.insert(NCBIT);
+                        ++i;
+                        logMsg(func +" activeCollisionBodies + " +convert->toString(i));
                     }
                 }
                 else

@@ -1,0 +1,57 @@
+/***************************************************************************
+ *   Copyright (C) 1999 - 2017 by Mike McLean                              *
+ *   libolt@libolt.net                                                     *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ *   This program is distributed in the hope that it will be useful,       *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+ *   GNU General Public License for more details.                          *
+ *                                                                         *
+ *   You should have received a copy of the GNU General Public License     *
+ *   along with this program; if not, write to the                         *
+ *   Free Software Foundation, Inc.,                                       *
+ *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
+ ***************************************************************************/
+
+#ifndef _STATEMACHINE_H_
+#define _STATEMACHINE_H_
+
+class eventData;
+
+class StateMachine 
+{
+public:
+    enum { EVENT_IGNORED = 0xFE, CANNOT_HAPPEN };
+
+    StateMachine(BYTE maxStates, BYTE initialState = 0);
+    virtual ~StateMachine() {}
+
+    BYTE GetCurrentState() { return m_currentState; }
+    
+protected:
+    void ExternalEvent(BYTE newState, const EventData* pData = NULL);
+    void InternalEvent(BYTE newState, const EventData* pData = NULL);
+    
+private:
+    const BYTE MAX_STATES;
+    BYTE m_currentState;
+    BYTE m_newState;
+    BOOL m_eventGenerated;
+    const EventData* m_pEventData;
+
+    virtual const StateMapRow* GetStateMap() = 0;
+    virtual const StateMapRowEx* GetStateMapEx() = 0;
+    
+    void SetCurrentState(BYTE newState) { m_currentState = newState; }
+
+    void StateEngine(void);     
+    void StateEngine(const StateMapRow* const pStateMap);
+    void StateEngine(const StateMapRowEx* const pStateMapEx);
+};
+
+#endif

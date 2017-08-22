@@ -18,15 +18,54 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef _EVENTDATA_H_
-#define _EVENTDATA_H_
+#ifndef _PLAYERSTATEMACHINE_H_
+#define _PLAYERSTATEMACHINE_H_
 
-class eventData
+#include "statemachine/statemachine.h"
+
+class playerSMData : public eventData
 {
 public:
-    virtual ~eventData() {}
-    //XALLOCATOR
+    INT speed;
+};
+
+class playerStateMachine : public stateMachine
+{
+public:
+    playerStateMachine();
+
+    // External events taken by this state machine
+    void setSpeed(playerSMData* data);
+    void halt();
+
+private:
+    INT m_currentSpeed; 
+
+    // State enumeration order must match the order of state method entries
+    // in the state map.
+    enum States
+    {
+        ST_IDLE,
+        ST_STOP,
+        ST_START,
+        ST_CHANGE_SPEED,
+        ST_MAX_STATES
+    };
+
+    // Define the state machine state functions with event data type
+    STATE_DECLARE(playerStateMachine,    Idle,           noEventData)
+    STATE_DECLARE(playerStateMachine,    Stop,           noEventData)
+    STATE_DECLARE(playerStateMachine,    Start,          playerSMData)
+    STATE_DECLARE(playerStateMachine,    ChangeSpeed,    playerSMData)
+
+    // State map to define state object order. Each state map entry defines a
+    // state object.
+    BEGIN_STATE_MAP
+        STATE_MAP_ENTRY(&Idle)
+        STATE_MAP_ENTRY(&Stop)
+        STATE_MAP_ENTRY(&Start)
+        STATE_MAP_ENTRY(&ChangeSpeed)
+    END_STATE_MAP   
 };
 
 #endif
-

@@ -31,10 +31,12 @@ playerStateMachine::playerStateMachine() :
 void playerStateMachine::setSpeed(playerSMData* data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (ST_START)                     // ST_IDLE
+        TRANSITION_MAP_ENTRY (ST_START_MOVEMENT)            // ST_IDLE
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STOP
         TRANSITION_MAP_ENTRY (ST_CHANGE_SPEED)              // ST_START
         TRANSITION_MAP_ENTRY (ST_CHANGE_SPEED)              // ST_CHANGE_SPEED
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_JUMP
+
     END_TRANSITION_MAP(data)
 }
 
@@ -44,8 +46,9 @@ void playerStateMachine::halt()
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_IDLE
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STOP
-        TRANSITION_MAP_ENTRY (ST_STOP)                      // ST_START
-        TRANSITION_MAP_ENTRY (ST_STOP)                      // ST_CHANGE_SPEED
+        TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_START
+        TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_CHANGE_SPEED
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_JUMP
     END_TRANSITION_MAP(NULL)
 }
 
@@ -56,7 +59,7 @@ STATE_DEFINE(playerStateMachine, Idle, noEventData)
 }
 
 // stop the motor 
-STATE_DEFINE(playerStateMachine, Stop, noEventData)
+STATE_DEFINE(playerStateMachine, StopMovement, noEventData)
 {
     logMsg("Motor::ST_Stop");
     m_currentSpeed = 0; 
@@ -67,7 +70,7 @@ STATE_DEFINE(playerStateMachine, Stop, noEventData)
 }
 
 // start the motor going
-STATE_DEFINE(playerStateMachine, Start, playerSMData)
+STATE_DEFINE(playerStateMachine, StartMovement, playerSMData)
 {
     logMsg("Motor::ST_Start : Speed is " +data->speed);
     m_currentSpeed = data->speed;
@@ -75,6 +78,13 @@ STATE_DEFINE(playerStateMachine, Start, playerSMData)
     // set initial motor speed processing here
 }
 
+STATE_DEFINE(playerStateMachine, Jump, playerSMData)
+{
+    logMsg("Motor::ST_Jump : Speed is " +data->speed);
+    m_currentSpeed = data->speed;
+
+    // set initial motor speed processing here
+}
 // changes the motor speed once the motor is moving
 STATE_DEFINE(playerStateMachine, ChangeSpeed, playerSMData)
 {

@@ -18,24 +18,24 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef _PLAYERSTATEMACHINE_H_
-#define _PLAYERSTATEMACHINE_H_
+#ifndef _BASKETBALLSTATEMACHINE_H_
+#define _BASKETBALLSTATEMACHINE_H_
 
 #include "statemachine/statemachine.h"
 
-class playerSMData : public eventData
+class basketballSMData : public eventData
 {
 public:
     INT speed;
 };
 
-class playerStateMachine : public stateMachine
+class basketballStateMachine : public stateMachine
 {
 public:
-    playerStateMachine();
+    basketballStateMachine();
 
     // External events taken by this state machine
-    void setSpeed(playerSMData* data);
+    void setSpeed(basketballSMData* data);
     void halt();
 
 private:
@@ -50,19 +50,15 @@ private:
         ST_START_MOVEMENT, 
         ST_CHANGE_SPEED,
         ST_JUMP,
-        ST_SHOOT,
-        ST_PASS,
         ST_MAX_STATES
     };
 
     // Define the state machine state functions with event data type
-    STATE_DECLARE(playerStateMachine,    Idle,           noEventData)
-    STATE_DECLARE(playerStateMachine,    StopMovement,   noEventData)
-    STATE_DECLARE(playerStateMachine,    StartMovement,  playerSMData)
-    STATE_DECLARE(playerStateMachine,    ChangeSpeed,    playerSMData)
-    STATE_DECLARE(playerStateMachine,    Jump,           playerSMData)
-    STATE_DECLARE(playerStateMachine,    Shoot,           playerSMData)
-    STATE_DECLARE(playerStateMachine,    Pass,           playerSMData)
+    STATE_DECLARE(basketballStateMachine,    Idle,           noEventData)
+    STATE_DECLARE(basketballStateMachine,    StopMovement,   noEventData)
+    STATE_DECLARE(basketballStateMachine,    StartMovement,  basketballSMData)
+    STATE_DECLARE(basketballStateMachine,    ChangeSpeed,    basketballSMData)
+    STATE_DECLARE(basketballStateMachine,    Jump,           basketballSMData)
 
     // State map to define state object order. Each state map entry defines a
     // state object.
@@ -72,8 +68,6 @@ private:
         STATE_MAP_ENTRY(&StartMovement)
         STATE_MAP_ENTRY(&ChangeSpeed)
         STATE_MAP_ENTRY(&Jump)
-        STATE_MAP_ENTRY(&Shoot)
-        STATE_MAP_ENTRY(&Pass)       
     END_STATE_MAP   
 };
 

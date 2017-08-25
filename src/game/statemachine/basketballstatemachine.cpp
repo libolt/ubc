@@ -18,17 +18,17 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "statemachine/playerstatemachine.h"
+#include "statemachine/basketballstatemachine.h"
 #include "logging.h"
 
-playerStateMachine::playerStateMachine() :
+basketballStateMachine::basketballStateMachine() :
     stateMachine(ST_MAX_STATES),
     m_currentSpeed(0)
 {
 }
     
 // set motor speed external event
-void playerStateMachine::setSpeed(playerSMData* data)
+void basketballStateMachine::setSpeed(basketballSMData* data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_START_MOVEMENT)            // ST_IDLE
@@ -36,13 +36,12 @@ void playerStateMachine::setSpeed(playerSMData* data)
         TRANSITION_MAP_ENTRY (ST_CHANGE_SPEED)              // ST_START
         TRANSITION_MAP_ENTRY (ST_CHANGE_SPEED)              // ST_CHANGE_SPEED
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_JUMP
-        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SHOOT
-        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_PASS
+
     END_TRANSITION_MAP(data)
 }
 
 // halt motor external event
-void playerStateMachine::halt()
+void basketballStateMachine::halt()
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_IDLE
@@ -50,19 +49,17 @@ void playerStateMachine::halt()
         TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_START
         TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_CHANGE_SPEED
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_JUMP
-        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SHOOT
-        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_PASS
     END_TRANSITION_MAP(NULL)
 }
 
 // state machine sits here when motor is not running
-STATE_DEFINE(playerStateMachine, Idle, noEventData)
+STATE_DEFINE(basketballStateMachine, Idle, noEventData)
 {
     logMsg("Motor::ST_Idle");
 }
 
 // stop the motor 
-STATE_DEFINE(playerStateMachine, StopMovement, noEventData)
+STATE_DEFINE(basketballStateMachine, StopMovement, noEventData)
 {
     logMsg("Motor::ST_Stop");
     m_currentSpeed = 0; 
@@ -73,7 +70,7 @@ STATE_DEFINE(playerStateMachine, StopMovement, noEventData)
 }
 
 // start the motor going
-STATE_DEFINE(playerStateMachine, StartMovement, playerSMData)
+STATE_DEFINE(basketballStateMachine, StartMovement, basketballSMData)
 {
     logMsg("Motor::ST_Start : Speed is " +data->speed);
     m_currentSpeed = data->speed;
@@ -82,7 +79,7 @@ STATE_DEFINE(playerStateMachine, StartMovement, playerSMData)
 }
 
 // changes the motor speed once the motor is moving
-STATE_DEFINE(playerStateMachine, ChangeSpeed, playerSMData)
+STATE_DEFINE(basketballStateMachine, ChangeSpeed, basketballSMData)
 {
     logMsg("Motor::ST_ChangeSpeed : Speed is " +data->speed);
     m_currentSpeed = data->speed;
@@ -90,25 +87,9 @@ STATE_DEFINE(playerStateMachine, ChangeSpeed, playerSMData)
     // perform the change motor speed to data->speed here
 }
 
-STATE_DEFINE(playerStateMachine, Jump, playerSMData)
+STATE_DEFINE(basketballStateMachine, Jump, basketballSMData)
 {
     logMsg("Motor::ST_Jump : Speed is " +data->speed);
-    m_currentSpeed = data->speed;
-
-    // set initial motor speed processing here
-}
-
-STATE_DEFINE(playerStateMachine, Shoot, playerSMData)
-{
-    logMsg("Motor::ST_Shoot : Speed is " +data->speed);
-    m_currentSpeed = data->speed;
-
-    // set initial motor speed processing here
-}
-
-STATE_DEFINE(playerStateMachine, Pass, playerSMData)
-{
-    logMsg("Motor::ST_Pass : Speed is " +data->speed);
     m_currentSpeed = data->speed;
 
     // set initial motor speed processing here

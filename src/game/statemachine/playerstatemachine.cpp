@@ -23,7 +23,8 @@
 
 playerStateMachine::playerStateMachine() :
     stateMachine(ST_MAX_STATES),
-    m_currentSpeed(0)
+    currentSpeed(0),
+    currentDirection(NODIRECT)
 {
 }
     
@@ -35,6 +36,7 @@ void playerStateMachine::setSpeed(playerSMData* data)
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STOP
         TRANSITION_MAP_ENTRY (ST_CHANGE_SPEED)              // ST_START
         TRANSITION_MAP_ENTRY (ST_CHANGE_SPEED)              // ST_CHANGE_SPEED
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_DIRECTION
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_JUMP
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SHOOT
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_PASS
@@ -49,67 +51,78 @@ void playerStateMachine::halt()
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STOP
         TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_START
         TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_CHANGE_SPEED
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_DIRECTION
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_JUMP
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SHOOT
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_PASS
     END_TRANSITION_MAP(NULL)
 }
 
-// state machine sits here when motor is not running
+// state machine sits here when player is not moving
 STATE_DEFINE(playerStateMachine, Idle, noEventData)
 {
-    logMsg("Motor::ST_Idle");
+    logMsg("playerStateMachine::ST_Idle");
 }
 
-// stop the motor 
+// stop the player
 STATE_DEFINE(playerStateMachine, StopMovement, noEventData)
 {
-    logMsg("Motor::ST_Stop");
-    m_currentSpeed = 0; 
+    logMsg("playerStateMachine::ST_Stop");
+    currentSpeed = 0; 
+    currentDirection = NODIRECT;
 
     // perform the stop motor processing here
     // transition to Idle via an internal event
     internalEvent(ST_IDLE);
 }
 
-// start the motor going
+// start the player moving
 STATE_DEFINE(playerStateMachine, StartMovement, playerSMData)
 {
-    logMsg("Motor::ST_Start : Speed is " +data->speed);
-    m_currentSpeed = data->speed;
+    logMsg("playerStateMachine::ST_Start : Speed is " +data->speed);
+    currentSpeed = data->speed;
 
-    // set initial motor speed processing here
+    // set initial player speed processing here
 }
 
-// changes the motor speed once the motor is moving
+// changes the player's speed once the player is moving
 STATE_DEFINE(playerStateMachine, ChangeSpeed, playerSMData)
 {
-    logMsg("Motor::ST_ChangeSpeed : Speed is " +data->speed);
-    m_currentSpeed = data->speed;
+    logMsg("playerStateMachine::ST_ChangeSpeed : Speed is " +data->speed);
+    currentSpeed = data->speed;
 
-    // perform the change motor speed to data->speed here
+    // perform the change player speed to data->speed here
+}
+
+// changes the player's direction once the player is moving
+STATE_DEFINE(playerStateMachine, ChangeDirection, playerSMData)
+{
+    logMsg("playerStateMachine::ST_ChangeDirection : Direction is " +data->direction);
+    currentSpeed = data->direction;
+
+    // perform the change player direction to data->direction here
 }
 
 STATE_DEFINE(playerStateMachine, Jump, playerSMData)
 {
-    logMsg("Motor::ST_Jump : Speed is " +data->speed);
-    m_currentSpeed = data->speed;
+    logMsg("playerStateMachine::ST_Jump : Speed is " +data->speed);
+    currentSpeed = data->speed;
 
-    // set initial motor speed processing here
+    // set initial player speed processing here
 }
 
 STATE_DEFINE(playerStateMachine, Shoot, playerSMData)
 {
-    logMsg("Motor::ST_Shoot : Speed is " +data->speed);
-    m_currentSpeed = data->speed;
+    logMsg("playerStateMachine::ST_Shoot : Speed is " +data->speed);
+    currentSpeed = data->speed;
 
-    // set initial motor speed processing here
+    // set initial player shoot processing here
 }
 
 STATE_DEFINE(playerStateMachine, Pass, playerSMData)
 {
-    logMsg("Motor::ST_Pass : Speed is " +data->speed);
-    m_currentSpeed = data->speed;
+    logMsg("playerStateMachine::ST_Pass : Speed is " +data->speed);
+    currentSpeed = data->speed;
 
-    // set initial motor speed processing here
+    // set initial player pass processing here
 }

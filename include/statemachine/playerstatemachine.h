@@ -21,12 +21,14 @@
 #ifndef _PLAYERSTATEMACHINE_H_
 #define _PLAYERSTATEMACHINE_H_
 
+#include <cstdio>
 #include "statemachine/statemachine.h"
-
+#include "enums.h"
 class playerSMData : public eventData
 {
 public:
-    INT speed;
+    size_t speed;
+    directions direction;
 };
 
 class playerStateMachine : public stateMachine
@@ -39,8 +41,9 @@ public:
     void halt();
 
 private:
-    INT m_currentSpeed; 
-
+    size_t currentSpeed; 
+    directions currentDirection;
+    
     // State enumeration order must match the order of state method entries
     // in the state map.
     enum States
@@ -49,6 +52,7 @@ private:
         ST_STOP_MOVEMENT,
         ST_START_MOVEMENT, 
         ST_CHANGE_SPEED,
+        ST_CHANGE_DIRECTION,
         ST_JUMP,
         ST_SHOOT,
         ST_PASS,
@@ -60,6 +64,7 @@ private:
     STATE_DECLARE(playerStateMachine,    StopMovement,   noEventData)
     STATE_DECLARE(playerStateMachine,    StartMovement,  playerSMData)
     STATE_DECLARE(playerStateMachine,    ChangeSpeed,    playerSMData)
+    STATE_DECLARE(playerStateMachine,    ChangeDirection,    playerSMData)
     STATE_DECLARE(playerStateMachine,    Jump,           playerSMData)
     STATE_DECLARE(playerStateMachine,    Shoot,           playerSMData)
     STATE_DECLARE(playerStateMachine,    Pass,           playerSMData)
@@ -71,6 +76,7 @@ private:
         STATE_MAP_ENTRY(&StopMovement)
         STATE_MAP_ENTRY(&StartMovement)
         STATE_MAP_ENTRY(&ChangeSpeed)
+        STATE_MAP_ENTRY(&ChangeDirection)
         STATE_MAP_ENTRY(&Jump)
         STATE_MAP_ENTRY(&Shoot)
         STATE_MAP_ENTRY(&Pass)       

@@ -175,6 +175,7 @@
     // physics
     enum physicsShapes {CAPSULE, BOX, CYLINDER, SPHERE };  // Defines what type of physics object to create
 
+    enum playerActions {NOACTION, MOVE, JUMP, SHOOT, PASS, STEAL, BLOCK};
     enum collisionTypes
     {
         COL_NOTHING = 0, //<Collide with nothing

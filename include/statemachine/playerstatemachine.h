@@ -29,6 +29,7 @@ class playerSMData : public eventData
 public:
     size_t speed;
     directions direction;
+    playerActions action;
 };
 
 class playerStateMachine : public stateMachine
@@ -43,6 +44,7 @@ public:
 private:
     size_t currentSpeed; 
     directions currentDirection;
+    playerActions currentAction;
     
     // State enumeration order must match the order of state method entries
     // in the state map.

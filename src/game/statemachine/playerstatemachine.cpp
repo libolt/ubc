@@ -24,7 +24,8 @@
 playerStateMachine::playerStateMachine() :
     stateMachine(ST_MAX_STATES),
     currentSpeed(0),
-    currentDirection(NODIRECT)
+    currentDirection(NODIRECT),
+    currentAction(NOACTION)
 {
 }
     

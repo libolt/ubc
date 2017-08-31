@@ -24,6 +24,8 @@
 #include <cstdio>
 #include "statemachine/statemachine.h"
 #include "enums.h"
+#include "typedefs.h"
+
 class playerSMData : public eventData
 {
 public:
@@ -38,7 +40,7 @@ public:
     playerStateMachine();
 
     // External events taken by this state machine
-    void setSpeed(playerSMData* data);
+    void setSpeed(playerSMData *data);
     void halt();
 
 private:

@@ -24,7 +24,7 @@
 #include "eventdata/datatypes.h"
 #include "eventdata/eventdata.h"
 #include "statemachine/fault.h"
-
+#include "typedefs.h"
 typedef eventData noEventData;
 
 class stateMachine;
@@ -37,7 +37,7 @@ public:
     /// exists and it evaluates to false, the state action will not execute.
     /// @param[in] sm - A state machine instance.
     /// @param[in] data - The event data.
-    virtual void invokeStateAction(stateMachine* sm, const eventData* data) const = 0;
+    virtual void invokeStateAction(stateMachine* sm, const eventData *data) const = 0;
 };
 
 /// @brief StateAction takes three template arguments: A state machine class,
@@ -48,7 +48,7 @@ class stateAction : public stateBase
 {
 public:
     /// @see StateBase::InvokeStateAction
-    virtual void invokeStateAction(stateMachine* sm, const eventData* data) const
+    virtual void invokeStateAction(stateMachine* sm, const eventData *data) const
     {
         // Downcast the state machine and event data to the correct derived type
         SM* derivedSM = static_cast<SM*>(sm);
@@ -79,7 +79,7 @@ public:
     /// @param[in] sm - A state machine instance.
     /// @param[in] data - The event data.
     /// @return Returns TRUE if no guard condition or the guard condition evaluates to TRUE.
-    virtual BOOL invokeGuardCondition(stateMachine* sm, const eventData* data) const = 0;
+    virtual BOOL invokeGuardCondition(stateMachine* sm, const eventData *data) const = 0;
 };
 
 /// @brief GuardCondition takes three template arguments: A state machine class,
@@ -89,7 +89,7 @@ template <class SM, class Data, BOOL (SM::*Func)(const Data*)>
 class guardCondition : public guardBase
 {
 public:
-    virtual BOOL invokeGuardCondition(stateMachine* sm, const eventData* data) const
+    virtual BOOL invokeGuardCondition(stateMachine* sm, const eventData *data) const
     {
         SM* derivedSM = static_cast<SM*>(sm);
         const Data* derivedData = dynamic_cast<const Data*>(data);
@@ -108,7 +108,7 @@ public:
     /// entering a state.
     /// @param[in] sm - A state machine instance.
     /// @param[in] data - The event data.
-    virtual void invokeEntryAction(stateMachine* sm, const eventData* data) const = 0;
+    virtual void invokeEntryAction(stateMachine* sm, const eventData *data) const = 0;
 };
 
 /// @brief EntryAction takes three template arguments: A state machine class,
@@ -118,7 +118,7 @@ template <class SM, class Data, void (SM::*Func)(const Data*)>
 class entryAction : public entryBase
 {
 public:
-    virtual void InvokeEntryAction(stateMachine* sm, const eventData* data) const
+    virtual void InvokeEntryAction(stateMachine* sm, const eventData *data) const
     {
         SM* derivedSM = static_cast<SM*>(sm);
         const Data* derivedData = dynamic_cast<const Data*>(data);
@@ -193,13 +193,13 @@ protected:
     /// External state machine event.
     /// @param[in] newState - the state machine state to transition to.
     /// @param[in] pData - the event data sent to the state.
-    void externalEvent(BYTE newState, const eventData* pData = NULL);
+    void externalEvent(BYTE newState, const eventData *pData = NULL);
 
     /// Internal state machine event. These events are generated while executing
     ///	within a state machine state.
     /// @param[in] newState - the state machine state to transition to.
     /// @param[in] pData - the event data sent to the state.
-    void internalEvent(BYTE newState, const eventData* pData = NULL);
+    void internalEvent(BYTE newState, const eventData *pData = NULL);
 
 private:
     /// The maximum number of state machine states.

@@ -28,7 +28,7 @@ basketballStateMachine::basketballStateMachine() :
 }
     
 // set motor speed external event
-void basketballStateMachine::setSpeed(basketballSMData* data)
+void basketballStateMachine::setSpeed(basketballSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_START_MOVEMENT)            // ST_IDLE

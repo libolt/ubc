@@ -35,7 +35,7 @@ public:
     basketballStateMachine();
 
     // External events taken by this state machine
-    void setSpeed(basketballSMData* data);
+    void setSpeed(basketballSMData *data);
     void halt();
 
 private:

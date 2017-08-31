@@ -30,13 +30,13 @@ playerStateMachine::playerStateMachine() :
 }
     
 // set motor speed external event
-void playerStateMachine::setSpeed(playerSMData* data)
+void playerStateMachine::setSpeed(playerSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_START_MOVEMENT)            // ST_IDLE
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STOP
         TRANSITION_MAP_ENTRY (ST_CHANGE_SPEED)              // ST_START
-        TRANSITION_MAP_ENTRY (ST_CHANGE_SPEED)              // ST_CHANGE_SPEED
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)              // ST_CHANGE_SPEED
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_DIRECTION
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_JUMP
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SHOOT
@@ -63,6 +63,7 @@ void playerStateMachine::halt()
 STATE_DEFINE(playerStateMachine, Idle, noEventData)
 {
     logMsg("playerStateMachine::ST_Idle");
+//    exit(0);
 }
 
 // stop the player
@@ -75,6 +76,7 @@ STATE_DEFINE(playerStateMachine, StopMovement, noEventData)
     // perform the stop motor processing here
     // transition to Idle via an internal event
     internalEvent(ST_IDLE);
+//    exit(0);
 }
 
 // start the player moving
@@ -82,7 +84,7 @@ STATE_DEFINE(playerStateMachine, StartMovement, playerSMData)
 {
     logMsg("playerStateMachine::ST_Start : Speed is " +data->speed);
     currentSpeed = data->speed;
-
+//    exit(0);
     // set initial player speed processing here
 }
 
@@ -91,7 +93,7 @@ STATE_DEFINE(playerStateMachine, ChangeSpeed, playerSMData)
 {
     logMsg("playerStateMachine::ST_ChangeSpeed : Speed is " +data->speed);
     currentSpeed = data->speed;
-
+//    exit(0);
     // perform the change player speed to data->speed here
 }
 
@@ -99,8 +101,8 @@ STATE_DEFINE(playerStateMachine, ChangeSpeed, playerSMData)
 STATE_DEFINE(playerStateMachine, ChangeDirection, playerSMData)
 {
     logMsg("playerStateMachine::ST_ChangeDirection : Direction is " +data->direction);
-    currentSpeed = data->direction;
-
+//    currentSpeed = data->direction;
+//    exit(0);
     // perform the change player direction to data->direction here
 }
 
@@ -108,7 +110,7 @@ STATE_DEFINE(playerStateMachine, Jump, playerSMData)
 {
     logMsg("playerStateMachine::ST_Jump : Speed is " +data->speed);
     currentSpeed = data->speed;
-
+//    exit(0);
     // set initial player speed processing here
 }
 
@@ -116,7 +118,7 @@ STATE_DEFINE(playerStateMachine, Shoot, playerSMData)
 {
     logMsg("playerStateMachine::ST_Shoot : Speed is " +data->speed);
     currentSpeed = data->speed;
-
+//    exit(0);
     // set initial player shoot processing here
 }
 
@@ -124,6 +126,6 @@ STATE_DEFINE(playerStateMachine, Pass, playerSMData)
 {
     logMsg("playerStateMachine::ST_Pass : Speed is " +data->speed);
     currentSpeed = data->speed;
-
+//    exit(0);
     // set initial player pass processing here
 }

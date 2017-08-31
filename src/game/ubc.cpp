@@ -34,7 +34,7 @@
 #include "ubc.h"
 #include "ubcbase.h"
 #include "network/networkplayerstateobject.h"
-
+#include "statemachine/playerstatemachine.h"
 #ifdef __ANDROID__
 //#if OGRE_PLATFORM == OGRE_PLATm.m...?mmmmFORM_ANDROID
 #include "android.h"
@@ -507,9 +507,16 @@ bool UBC::gameLoop()  // Main Game Loop
     std::string func = "UBC::gameLoop()";
     boost::chrono::microseconds changeInTimeMicro;
     boost::chrono::milliseconds changeInTimeMill;
- 
+    playerStateMachine playerSM;
+    sharedPtr<playerSMData> playerSMD;
+    playerSMData *tempSMD = new playerSMData;
+    playerSMD = sharedPtr<playerSMData>(tempSMD);
     logMsg(func +" beginning");
     
+    playerSMD->speed = 100;
+	playerSM.setSpeed(playerSMD.get());
+    playerSM.halt();
+    logMsg(func +" Wootio!");
     SDL_StartTextInput();
     
     while (!quitGame)

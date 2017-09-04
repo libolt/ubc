@@ -55,9 +55,9 @@ private:
         ST_IDLE,
         ST_STOP_MOVEMENT,
         ST_START_MOVEMENT, 
-        ST_CHANGE_SPEED,
-        ST_CHANGE_DIRECTION,
+        ST_CHANGE_SPEED,      
         ST_JUMP,
+        ST_CHANGE_DIRECTION,
         ST_SHOOT,
         ST_PASS,
         ST_MAX_STATES
@@ -68,8 +68,8 @@ private:
     STATE_DECLARE(playerStateMachine,    StopMovement,   noEventData)
     STATE_DECLARE(playerStateMachine,    StartMovement,  playerSMData)
     STATE_DECLARE(playerStateMachine,    ChangeSpeed,    playerSMData)
-    STATE_DECLARE(playerStateMachine,    ChangeDirection,    playerSMData)
     STATE_DECLARE(playerStateMachine,    Jump,           playerSMData)
+    STATE_DECLARE(playerStateMachine,    ChangeDirection,    playerSMData)
     STATE_DECLARE(playerStateMachine,    Shoot,           playerSMData)
     STATE_DECLARE(playerStateMachine,    Pass,           playerSMData)
 
@@ -80,8 +80,8 @@ private:
         STATE_MAP_ENTRY(&StopMovement)
         STATE_MAP_ENTRY(&StartMovement)
         STATE_MAP_ENTRY(&ChangeSpeed)
-        STATE_MAP_ENTRY(&ChangeDirection)
         STATE_MAP_ENTRY(&Jump)
+        STATE_MAP_ENTRY(&ChangeDirection)
         STATE_MAP_ENTRY(&Shoot)
         STATE_MAP_ENTRY(&Pass)       
     END_STATE_MAP   

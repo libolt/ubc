@@ -615,7 +615,45 @@ std::string conversion::toString(const activeMenus &data) // converts activeMenu
     
     return (strData);
 }
+std::string conversion::toString(const directions &data) // converts directions data to strin
+{
+   
+    std::string strData;
 
+    switch (data)
+    {
+        case NODIRECT:
+            strData = "NODIRECT";
+        break;
+        case UP:
+            strData = "UP";
+        break;
+        case DOWN:
+            strData = "DOWN";
+        break;
+        case LEFT:
+            strData = "LEFT";
+        break;
+        case RIGHT:
+            strData = "RIGHT";
+        break;
+        case UPLEFT:
+            strData = "UPLEFT";
+        break;
+        case UPRIGHT:
+            strData = "UPRIGHT";
+        break;
+        case DOWNLEFT:
+            strData = "DOWNLEFT";
+        break;
+        case DOWNRIGHT:
+            strData = "DOWNRIGHT";
+        break;
+        default:
+        break;
+    }
+    return (strData);
+}
 // convert to char
 char conversion::toChar(const std::string &data)  // converts from std::string to char
 {

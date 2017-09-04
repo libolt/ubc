@@ -37,11 +37,12 @@ void playerStateMachine::setSpeed(playerSMData *data)
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STOP
         TRANSITION_MAP_ENTRY (ST_CHANGE_SPEED)              // ST_START
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)              // ST_CHANGE_SPEED
-        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_DIRECTION
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_JUMP
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_CHANGE_DIRECTION
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SHOOT
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_PASS
     END_TRANSITION_MAP(data)
+    exit(0);
 }
 
 // halt motor external event
@@ -52,8 +53,8 @@ void playerStateMachine::halt()
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STOP
         TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_START
         TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_CHANGE_SPEED
-        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_DIRECTION
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_JUMP
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_CHANGE_DIRECTION
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SHOOT
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_PASS
     END_TRANSITION_MAP(NULL)

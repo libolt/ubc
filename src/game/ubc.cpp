@@ -514,7 +514,7 @@ bool UBC::gameLoop()  // Main Game Loop
     logMsg(func +" beginning");
     
     playerSMD->speed = 100;
-	playerSM.setSpeed(playerSMD.get());
+    playerSM.setSpeed(playerSMD.get());
     playerSM.halt();
     logMsg(func +" Wootio!");
     SDL_StartTextInput();

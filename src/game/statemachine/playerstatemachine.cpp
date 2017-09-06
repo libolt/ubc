@@ -94,7 +94,9 @@ STATE_DEFINE(playerStateMachine, StartMovement, playerSMData)
 // changes the player's speed once the player is moving
 STATE_DEFINE(playerStateMachine, ChangeSpeed, playerSMData)
 {
-    logMsg("playerStateMachine::ST_ChangeSpeed : Speed is " +data->speed);
+    sharedPtr<conversion> convert = conversion::Instance();
+
+    logMsg("playerStateMachine::ST_ChangeSpeed : Speed is " +convert->toString(data->speed));
     currentSpeed = data->speed;
 //    exit(0);
     // perform the change player speed to data->speed here

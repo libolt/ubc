@@ -42,7 +42,8 @@ public:
     // External events taken by this state machine
     void setSpeed(playerSMData *data);
     void halt();
-
+    void pJump(playerSMData *data);
+    
 private:
     size_t currentSpeed; 
     directions currentDirection;

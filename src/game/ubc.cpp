@@ -515,7 +515,7 @@ bool UBC::gameLoop()  // Main Game Loop
     
     playerSMD->speed = 100;
     playerSM.setSpeed(playerSMD.get());
-    playerSM.halt();
+    //playerSM.halt();
     playerSM.pJump(playerSMD.get());
     logMsg(func +" Wootio!");
     exit(0);

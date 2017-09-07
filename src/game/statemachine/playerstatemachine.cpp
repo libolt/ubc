@@ -55,10 +55,10 @@ void playerStateMachine::halt()
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STOP
         TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_START
         TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_CHANGE_SPEED
-        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_JUMP
-        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_DIRECTION
-        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SHOOT
-        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_PASS
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_JUMP
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_CHANGE_DIRECTION
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_SHOOT
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_PASS
     END_TRANSITION_MAP(NULL)
 }
     
@@ -67,16 +67,16 @@ void playerStateMachine::pJump(playerSMData *data)
 {
     
     BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (ST_START_MOVEMENT)            // ST_IDLE
-        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STOP
-        TRANSITION_MAP_ENTRY (ST_CHANGE_SPEED)              // ST_START
-        TRANSITION_MAP_ENTRY (EVENT_IGNORED)              // ST_CHANGE_SPEED
+        TRANSITION_MAP_ENTRY (ST_JUMP)            // ST_IDLE
+        TRANSITION_MAP_ENTRY (ST_JUMP)                // ST_STOP
+        TRANSITION_MAP_ENTRY (ST_JUMP)              // ST_START
+        TRANSITION_MAP_ENTRY (ST_JUMP)              // ST_CHANGE_SPEED
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_JUMP
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_DIRECTION
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SHOOT
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_PASS
-    END_TRANSITION_MAP(NULL)
-    exit(0);
+    END_TRANSITION_MAP(data)
+//    exit(0);
 }
 // state machine sits here when player is not moving
 STATE_DEFINE(playerStateMachine, Idle, noEventData)
@@ -112,6 +112,7 @@ STATE_DEFINE(playerStateMachine, StartMovement, playerSMData)
 // changes the player's speed once the player is moving
 STATE_DEFINE(playerStateMachine, ChangeSpeed, playerSMData)
 {
+//    exit(0);
     sharedPtr<conversion> convert = conversion::Instance();
 
     logMsg("playerStateMachine::ST_ChangeSpeed : Speed is " +convert->toString(data->speed));
@@ -127,18 +128,19 @@ STATE_DEFINE(playerStateMachine, ChangeDirection, playerSMData)
    
     logMsg("playerStateMachine::ST_ChangeDirection : Direction is " +convert->toString(data->direction));
 //    currentSpeed = data->direction;
-//    exit(0);
+    exit(0);
     // perform the change player direction to data->direction here
 }
 
 STATE_DEFINE(playerStateMachine, Jump, playerSMData)
 {
-    exit(0);
+//    exit(0)
+    logMsg("jump");
     sharedPtr<conversion> convert = conversion::Instance();
     
     logMsg("playerStateMachine::ST_Jump : Speed is " +convert->toString(data->speed));
     currentSpeed = data->speed;
-    exit(0);
+//    exit(0);
     // set initial player speed processing here
 }
 
@@ -148,7 +150,8 @@ STATE_DEFINE(playerStateMachine, Shoot, playerSMData)
 
     logMsg("playerStateMachine::ST_Shoot : Speed is " +convert->toString(data->speed));
     currentSpeed = data->speed;
-//    exit(0);
+    exit(0);
+
     // set initial player shoot processing here
 }
 
@@ -158,6 +161,6 @@ STATE_DEFINE(playerStateMachine, Pass, playerSMData)
 
     logMsg("playerStateMachine::ST_Pass : Speed is " +convert->toString(data->speed));
     currentSpeed = data->speed;
-//    exit(0);
+    exit(0);
     // set initial player pass processing here
 }

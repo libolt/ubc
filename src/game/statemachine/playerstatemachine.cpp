@@ -78,6 +78,24 @@ void playerStateMachine::pJump(playerSMData *data)
     END_TRANSITION_MAP(data)
 //    exit(0);
 }
+   
+// change direction player external event
+void playerStateMachine::pChangeDirection(playerSMData *data)
+{
+    
+    BEGIN_TRANSITION_MAP                                    // - Current State -
+        TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)            // ST_IDLE
+        TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)                // ST_STOP
+        TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)              // ST_START
+        TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)              // ST_CHANGE_SPEED
+        TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)                // ST_JUMP
+        TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)                // ST_CHANGE_DIRECTION
+        TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)                // ST_SHOOT
+        TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)                // ST_PASS
+    END_TRANSITION_MAP(data)
+//    exit(0);
+}
+    
 // state machine sits here when player is not moving
 STATE_DEFINE(playerStateMachine, Idle, noEventData)
 {
@@ -128,7 +146,7 @@ STATE_DEFINE(playerStateMachine, ChangeDirection, playerSMData)
    
     logMsg("playerStateMachine::ST_ChangeDirection : Direction is " +convert->toString(data->direction));
 //    currentSpeed = data->direction;
-    exit(0);
+//    exit(0);
     // perform the change player direction to data->direction here
 }
 
@@ -138,8 +156,8 @@ STATE_DEFINE(playerStateMachine, Jump, playerSMData)
     logMsg("jump");
     sharedPtr<conversion> convert = conversion::Instance();
     
-    logMsg("playerStateMachine::ST_Jump : Speed is " +convert->toString(data->speed));
-    currentSpeed = data->speed;
+//    logMsg("playerStateMachine::ST_Jump : Speed is " +convert->toString(data->speed));
+//    currentSpeed = data->speed;
 //    exit(0);
     // set initial player speed processing here
 }
@@ -150,7 +168,7 @@ STATE_DEFINE(playerStateMachine, Shoot, playerSMData)
 
     logMsg("playerStateMachine::ST_Shoot : Speed is " +convert->toString(data->speed));
     currentSpeed = data->speed;
-    exit(0);
+//    exit(0);
 
     // set initial player shoot processing here
 }
@@ -161,6 +179,6 @@ STATE_DEFINE(playerStateMachine, Pass, playerSMData)
 
     logMsg("playerStateMachine::ST_Pass : Speed is " +convert->toString(data->speed));
     currentSpeed = data->speed;
-    exit(0);
+//    exit(0);
     // set initial player pass processing here
 }

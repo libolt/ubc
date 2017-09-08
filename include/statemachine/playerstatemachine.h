@@ -43,6 +43,8 @@ public:
     void setSpeed(playerSMData *data);
     void halt();
     void pJump(playerSMData *data);
+    void pChangeDirection(playerSMData *data);
+
     
 private:
     size_t currentSpeed; 

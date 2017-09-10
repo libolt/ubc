@@ -510,6 +510,7 @@ bool UBC::gameLoop()  // Main Game Loop
     playerStateMachine playerSM;
     playerSMData *playerSMD = new playerSMData;
     playerSMData *playerSMD2 = new playerSMData;
+    playerSMData *playerSMD3 = new playerSMData;
 
     logMsg(func +" beginning");
     
@@ -519,7 +520,8 @@ bool UBC::gameLoop()  // Main Game Loop
     logMsg(func +" dah");
     playerSMD2->speed = 200;
     playerSM.pJump(playerSMD2);
-//    playerSM.pChangeDirection(playerSMD.get());
+    playerSMD3->direction = UP;
+    playerSM.pChangeDirection(playerSMD3);
     
     logMsg(func +" Wootio!");
     exit(0);

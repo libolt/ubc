@@ -159,6 +159,8 @@ STATE_DEFINE(playerStateMachine, Jump, playerSMData)
     sharedPtr<conversion> convert = conversion::Instance();
     
     logMsg("playerStateMachine::ST_Jump : Speed is " +convert->toString(data->speed));
+    internalEvent(ST_IDLE);
+
 //    currentSpeed = data->speed;
 //    exit(0);
     // set initial player speed processing here

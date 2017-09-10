@@ -36,7 +36,7 @@
 #include "network/networkplayerstateobject.h"
 #include "statemachine/playerstatemachine.h"
 #ifdef __ANDROID__
-//#if OGRE_PLATFORM == OGRE_PLATm.m...?mmmmFORM_ANDROID
+//#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 #include "android.h"
 #include "SDL.h"
 #include "SDL_main.h"
@@ -508,16 +508,18 @@ bool UBC::gameLoop()  // Main Game Loop
     boost::chrono::microseconds changeInTimeMicro;
     boost::chrono::milliseconds changeInTimeMill;
     playerStateMachine playerSM;
-    sharedPtr<playerSMData> playerSMD;
-    playerSMData *tempSMD = new playerSMData;
-    playerSMD = sharedPtr<playerSMData>(tempSMD);
+    playerSMData *playerSMD = new playerSMData;
+    playerSMData *playerSMD2 = new playerSMData;
+
     logMsg(func +" beginning");
     
     playerSMD->speed = 100;
-    playerSM.setSpeed(playerSMD.get());
+    playerSM.setSpeed(playerSMD);
     playerSM.halt();
-    playerSM.pJump(playerSMD.get());
-    playerSM.pChangeDirection(playerSMD.get());
+    logMsg(func +" dah");
+    playerSMD2->speed = 200;
+    playerSM.pJump(playerSMD2);
+//    playerSM.pChangeDirection(playerSMD.get());
     
     logMsg(func +" Wootio!");
     exit(0);

@@ -24,20 +24,20 @@
 #include "eventdata/eventdata.h"
 
 //----------------------------------------------------------------------------
-// StateMachine
+// stateMachine
 //----------------------------------------------------------------------------
-stateMachine::stateMachine(BYTE maxStates, BYTE initialState) :
-    MAX_STATES(maxStates),
-    m_currentState(initialState),
+stateMachine::stateMachine(BYTE maxstates, BYTE initialstate) :
+    MAX_STATES(maxstates),
+    m_currentState(initialstate),
     m_newState(FALSE),
     m_eventGenerated(FALSE),
-    m_pEventData(NULL)
+    m_peventData(NULL)
 {
     ASSERT_TRUE(MAX_STATES < EVENT_IGNORED);
 }
 
 //----------------------------------------------------------------------------
-// ExternalEvent
+// externalEvent
 //----------------------------------------------------------------------------
 void stateMachine::externalEvent(BYTE newState, const eventData* pData)
 {
@@ -55,7 +55,7 @@ void stateMachine::externalEvent(BYTE newState, const eventData* pData)
         // TODO - capture software lock here for thread-safety if necessary
 
 #ifdef EXTERNAL_EVENT_NO_HEAP_DATA
-        EventData data;
+        eventData data;
         if (pData == NULL)
             pData = &data;
 #endif
@@ -78,33 +78,33 @@ void stateMachine::internalEvent(BYTE newState, const eventData* pData)
     if (pData == NULL)
         pData = new noEventData();
 
-    m_pEventData = pData;
+    m_peventData = pData;
     m_eventGenerated = TRUE;
     m_newState = newState;
 }
 
 //----------------------------------------------------------------------------
-// StateEngine
+// stateEngine
 //----------------------------------------------------------------------------
 void stateMachine::stateEngine(void)
 {
-    const stateMapRow* pStateMap = getStateMap();
-    if (pStateMap != NULL)
-        stateEngine(pStateMap);
+    const stateMapRow* pstateMap = GetstateMap();
+    if (pstateMap != NULL)
+        stateEngine(pstateMap);
     else
     {
-        const stateMapRowEx* pStateMapEx = getStateMapEx();
-        if (pStateMapEx != NULL)
-            stateEngine(pStateMapEx);
+        const stateMapRowEx* pstateMapEx = GetstateMapEx();
+        if (pstateMapEx != NULL)
+            stateEngine(pstateMapEx);
         else
             ASSERT();
     }
 }
 
 //----------------------------------------------------------------------------
-// StateEngine
+// stateEngine
 //----------------------------------------------------------------------------
-void stateMachine::stateEngine(const stateMapRow* const pStateMap)
+void stateMachine::stateEngine(const stateMapRow* const pstateMap)
 {
 #if EXTERNAL_EVENT_NO_HEAP_DATA
     BOOL externalEvent = TRUE;
@@ -118,23 +118,23 @@ void stateMachine::stateEngine(const stateMapRow* const pStateMap)
         ASSERT_TRUE(m_newState < MAX_STATES);
 
         // Get the pointer from the state map
-        const stateBase* state = pStateMap[m_newState].state;
+        const stateBase* state = pstateMap[m_newState].state;
 
         // Copy of event data pointer
-        pDataTemp = m_pEventData;
+        pDataTemp = m_peventData;
 
         // Event data used up, reset the pointer
-        m_pEventData = NULL;
+        m_peventData = NULL;
 
         // Event used up, reset the flag
         m_eventGenerated = FALSE;
 
         // Switch to the new current state
-        setCurrentState(m_newState);
+        SetCurrentstate(m_newState);
 
         // Execute the state action passing in event data
         ASSERT_TRUE(state != NULL);
-        state->invokeStateAction(this, pDataTemp);
+        state->invokestateAction(this, pDataTemp);
 
         // If event data was used, then delete it
 #if EXTERNAL_EVENT_NO_HEAP_DATA
@@ -156,9 +156,9 @@ void stateMachine::stateEngine(const stateMapRow* const pStateMap)
 }
 
 //----------------------------------------------------------------------------
-// StateEngine
+// stateEngine
 //----------------------------------------------------------------------------
-void stateMachine::stateEngine(const stateMapRowEx* const pStateMapEx)
+void stateMachine::stateEngine(const stateMapRowEx* const pstateMapEx)
 {
 #if EXTERNAL_EVENT_NO_HEAP_DATA
     BOOL externalEvent = TRUE;
@@ -172,16 +172,16 @@ void stateMachine::stateEngine(const stateMapRowEx* const pStateMapEx)
         ASSERT_TRUE(m_newState < MAX_STATES);
 
         // Get the pointers from the state map
-        const stateBase* state = pStateMapEx[m_newState].state;
-        const guardBase* guard = pStateMapEx[m_newState].guard;
-        const entryBase* entry = pStateMapEx[m_newState].entry;
-        const exitBase* exit = pStateMapEx[m_currentState].exit;
+        const stateBase* state = pstateMapEx[m_newState].state;
+        const GuardBase* guard = pstateMapEx[m_newState].Guard;
+        const EntryBase* entry = pstateMapEx[m_newState].Entry;
+        const ExitBase* exit = pstateMapEx[m_currentState].Exit;
 
         // Copy of event data pointer
-        pDataTemp = m_pEventData;
+        pDataTemp = m_peventData;
 
         // Event data used up, reset the pointer
-        m_pEventData = NULL;
+        m_peventData = NULL;
 
         // Event used up, reset the flag
         m_eventGenerated = FALSE;
@@ -210,11 +210,11 @@ void stateMachine::stateEngine(const stateMapRowEx* const pStateMapEx)
             }
 
             // Switch to the new current state
-            setCurrentState(m_newState);
+            SetCurrentstate(m_newState);
 
             // Execute the state action passing in event data
             ASSERT_TRUE(state != NULL);
-            state->invokeStateAction(this, pDataTemp);
+            state->invokestateAction(this, pDataTemp);
         }
 
         // If event data was used, then delete it
@@ -235,4 +235,6 @@ void stateMachine::stateEngine(const stateMapRowEx* const pStateMapEx)
 #endif
     }
 }
+
+
 

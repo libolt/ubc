@@ -65,7 +65,7 @@ void playerStateMachine::halt()
 // jump player external event
 void playerStateMachine::pJump(playerSMData *data)
 {
-    
+    logMsg("daaa");
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_JUMP)            // ST_IDLE
         TRANSITION_MAP_ENTRY (ST_JUMP)                // ST_STOP
@@ -76,6 +76,7 @@ void playerStateMachine::pJump(playerSMData *data)
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SHOOT
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_PASS
     END_TRANSITION_MAP(data)
+    logMsg("dooo");
 //    exit(0);
 }
    
@@ -154,6 +155,7 @@ STATE_DEFINE(playerStateMachine, Jump, playerSMData)
 {
 //    exit(0)
     logMsg("jump");
+    logMsg("flee");
     sharedPtr<conversion> convert = conversion::Instance();
     
 //    logMsg("playerStateMachine::ST_Jump : Speed is " +convert->toString(data->speed));

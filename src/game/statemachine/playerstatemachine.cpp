@@ -158,7 +158,7 @@ STATE_DEFINE(playerStateMachine, Jump, playerSMData)
     logMsg("flee");
     sharedPtr<conversion> convert = conversion::Instance();
     
-//    logMsg("playerStateMachine::ST_Jump : Speed is " +convert->toString(data->speed));
+    logMsg("playerStateMachine::ST_Jump : Speed is " +convert->toString(data->speed));
 //    currentSpeed = data->speed;
 //    exit(0);
     // set initial player speed processing here

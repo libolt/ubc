@@ -54,7 +54,7 @@ basketballStateVecSharedPtr loader::bInstance;
 courtStateUMSharedPtr  loader::cInstance;
 hoopStateUMSharedPtr  loader::hInstance;
 offensePlaysVecSharedPtr loader::opInstance;
-playerStateUMSharedPtr loader::pInstance;
+playerEntityUMSharedPtr loader::pInstance;
 teamStateUMSharedPtr loader::tInstance;
 userInputVecSharedPtr loader::uiInstance;
 
@@ -186,11 +186,11 @@ void loader::setOPInstance(offensePlaysVecSharedPtr set)  // sets the value of o
     opInstance = set;
 }
 
-playerStateUMSharedPtr loader::getPInstance()  // retrieves the value of pInstance
+playerEntityUMSharedPtr loader::getPInstance()  // retrieves the value of pInstance
 {
     return(pInstance);
 }
-void loader::setPInstance(playerStateUMSharedPtr set)  // sets the value of pInstance
+void loader::setPInstance(playerEntityUMSharedPtr set)  // sets the value of pInstance
 {
     pInstance = set;
 }
@@ -2007,15 +2007,15 @@ sharedPtr<offensePlays> loader::loadOffensePlayFile(std::string fileName)  // lo
     return (playInstance);
 }
 
-playerStateUMSharedPtr loader::loadPlayers()  // loads the players
+playerEntityUMSharedPtr loader::loadPlayers()  // loads the players
 {
     sharedPtr<conversion> convert = conversion::Instance();
 
-    playerStateUMSharedPtr players;
-    playerStateSharedPtr playerInstance; //(new playerState);
+    playerEntityUMSharedPtr players;
+    playerEntitySharedPtr playerInstance; //(new playerState);
     std::string func = "loader::loadPlayers()";
 
-    playerStateSharedPtr player;//(new playerState);
+    playerEntitySharedPtr player;//(new playerState);
     std::string playerList;
     
     logMsg(func +" beginning");
@@ -2036,7 +2036,7 @@ playerStateUMSharedPtr loader::loadPlayers()  // loads the players
         logMsg("playerFile = " +playerFiles[it]);
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 //        playerInstance = loadPlayerFile("data/players/" + playerFiles[it]);
-        players.insert(std::pair<size_t, playerStateSharedPtr>(it, loadPlayerFile("data/players/" + playerFiles[it])));
+        players.insert(std::pair<size_t, playerEntitySharedPtr>(it, loadPlayerFile("data/players/" + playerFiles[it])));
 //        players.emplace(it, loadPlayerFile(findFile("data/players/" + playerFiles[it])));
 
 #else
@@ -2121,13 +2121,13 @@ stdStringVec loader::loadPlayerListFile(std::string fileName)  // loads the play
     return (pFiles);
 }
 
-playerStateSharedPtr loader::loadPlayerFile(std::string fileName)  // loads the player file
+playerEntitySharedPtr loader::loadPlayerFile(std::string fileName)  // loads the player file
 {
     sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    sharedPtr<renderEngine> render = renderEngine::Instance();
     std::string func = "loader::loadPlayerFile()";
-    playerStateSharedPtr playerInstance(new playerState);
+    playerEntitySharedPtr playerInstance(new playerEntity);
     std::string firstName;
     std::string lastName;
     std::string modelName;
@@ -2503,7 +2503,7 @@ playerStateSharedPtr loader::loadPlayerFile(std::string fileName)  // loads the 
     playerInstance->initialize();
     if (firstName == "Xavier")
     {
-        if (playerInstance->getEntity()->getInitialized())
+        if (playerInstance->getInitialized())
         {
             logMsg(func +" " +firstName +" " +lastName + " playerEnt Initialized!");
         }
@@ -2524,8 +2524,8 @@ playerStateSharedPtr loader::loadPlayerFile(std::string fileName)  // loads the 
     playerInstance->getData()->setWeight(weight);
     playerInstance->getData()->setID(ID);
     playerInstance->getData()->setTeamID(teamID);
-    playerInstance->getEntity()->setEntityName(firstName + lastName);
-    playerInstance->getEntity()->setEntityModelFileName(modelName);
+    playerInstance->setEntityName(firstName + lastName);
+    playerInstance->setEntityModelFileName(modelName);
     playerInstance->getData()->setPrimaryPosition(primaryPosition);
     playerInstance->getData()->setSecondaryPosition(secondaryPosition);
     playerInstance->getData()->setShooting(shooting);

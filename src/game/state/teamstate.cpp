@@ -177,20 +177,20 @@ void teamState::setDefense(bool set)  // sets the value of defense
     defense = set;
 }
 
-playerStateUMSharedPtr teamState::getPlayerInstance()  // retrieves the value of playerInstance
+playerEntityUMSharedPtr teamState::getPlayerInstance()  // retrieves the value of playerInstance
 {
     return (playerInstance);
 }
-void teamState::setPlayerInstance(playerStateUMSharedPtr set)  // sets the value of playerInstance
+void teamState::setPlayerInstance(playerEntityUMSharedPtr set)  // sets the value of playerInstance
 {
     playerInstance = set;
 }
 
-std::unordered_map<std::string, playerStateSharedPtr> teamState::getActivePlayerInstance()  // retrieves the value of activePlayerInstance
+playerEntityUMSharedPtr teamState::getActivePlayerInstance()  // retrieves the value of activePlayerInstance
 {
     return (activePlayerInstance);
 }
-void teamState::setActivePlayerInstance(std::unordered_map<std::string, playerStateSharedPtr> set)  // sets the value of activePlayerInstance
+void teamState::setActivePlayerInstance(playerEntityUMSharedPtr set)  // sets the value of activePlayerInstance
 {
     activePlayerInstance = set;
 }

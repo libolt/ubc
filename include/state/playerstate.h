@@ -54,11 +54,12 @@ class playerState //: public state
         playerState();
         ~playerState();
 
-        sharedPtr<playerData> getData();  // retrieves the value of data
+/*        sharedPtr<playerData> getData();  // retrieves the value of data
         void setData(sharedPtr<playerData> set);  // sets the value of data
 
         sharedPtr<playerEntity> getEntity();  // retrieves the value of entity
         void setEntity(sharedPtr<playerEntity> set);  // sets the value of entity
+*/
 
         sharedPtr<playerStatistics> getStatistics();  // retrieves the value of statistics
         void setStatistics(sharedPtr<playerStatistics> set);  // sets the value of statistics
@@ -75,8 +76,9 @@ class playerState //: public state
         bool getNetworkControlled();  // retrieves the value of networkControlled
         void setNetworkControlled(bool set);  // sets the value of networkControlled
         
-        playerPositions getActivePosition();  // retrieves the value of activePosition
+/*        playerPositions getActivePosition();  // retrieves the value of activePosition
         void setActivePosition(playerPositions set);  // sets the value of activePosition
+*/
 
         bool getIsActive();  // retrieves the value of isActive
         void setIsActive(bool set);  // sets the value of isActive
@@ -193,9 +195,9 @@ class playerState //: public state
 
     private:
 
-        sharedPtr<playerData> data;  // instance of playerData object
+//        sharedPtr<playerData> data;  // instance of playerData object
 
-        sharedPtr<playerEntity> entity;  // instance of playerEntity object
+//        sharedPtr<playerEntity> entity;  // instance of playerEntity object
         
         sharedPtr<playerStatistics> statistics;  // instance of playerStatistics object
  
@@ -226,7 +228,7 @@ class playerState //: public state
         
 //        playerPositions secondaryPosition;  // stores the secondary position of the player
 
-        playerPositions activePosition;  // stores the active position of the player
+//        playerPositions activePosition;  // stores the active position of the player
 
         bool isActive;  // stores whether or not the player is on the court.
 
@@ -274,7 +276,7 @@ class playerState //: public state
         bool offenseSet;  // tracks state of player's offense
         bool defenseSet;  // tracks state of player's defense
 
-        Ogre::Vector3 courtPosition;  // stores the position of the player on the court in an Ogre::Vector3
+//        Ogre::Vector3 courtPosition;  // stores the position of the player on the court in an Ogre::Vector3
 
         Ogre::Vector3 newCourtPosition;  // stores the upfated position of the player on the court in an Ogre::Vector3
         
@@ -285,7 +287,7 @@ class playerState //: public state
         bool physBodyInitialized;  // Determines whether or not the btRigidBody object has been initialized
 //        bool stateSet;  // if true the playerState object has been set to initial state
         // temporary hack
-        bool initialized;
+//        bool initialized;
                 
         // tempory hack to count the number of times player position changes
         size_t posChangeAmount;

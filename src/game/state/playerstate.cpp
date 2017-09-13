@@ -91,7 +91,7 @@ playerState::~playerState() // destructor
 {
 }
 
-sharedPtr<playerData> playerState::getData()  // retrieves the value of data
+/*sharedPtr<playerData> playerState::getData()  // retrieves the value of data
 {
     return (data);
 }
@@ -107,7 +107,7 @@ sharedPtr<playerEntity> playerState::getEntity()  // retrieves the value of enti
 void playerState::setEntity(sharedPtr<playerEntity> set)  // sets the value of entity
 {
     entity = set;
-}
+}*/
 
 sharedPtr<playerStatistics> playerState::getStatistics()  // retrieves the value of statistics
 {
@@ -145,14 +145,14 @@ void playerState::setTeamType(teamTypes set)  // sets the value of teamType
     teamType = set;
 }
 
-playerPositions playerState::getActivePosition()  // retrieves the value of activePosition
+/*playerPositions playerState::getActivePosition()  // retrieves the value of activePosition
 {
     return (activePosition);
 }
 void playerState::setActivePosition(playerPositions set)  // sets the value of activePosition
 {
     activePosition = set;
-}
+}*/
 
 bool playerState::getIsActive() // retrieves the value of isActive
 {

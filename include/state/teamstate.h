@@ -85,11 +85,11 @@ public:
     bool getDefense();  // retrieves the value of defense
     void setDefense(bool set);  // sets the value of defense
 
-    playerStateUMSharedPtr getPlayerInstance();  // retrieves the value of playerInstance
-    void setPlayerInstance(playerStateUMSharedPtr set);  // sets the value of  playerInstance
+    playerEntityUMSharedPtr getPlayerInstance();  // retrieves the value of playerInstance
+    void setPlayerInstance(playerEntityUMSharedPtr set);  // sets the value of  playerInstance
 
-    std::unordered_map<std::string, playerStateSharedPtr> getActivePlayerInstance();  // retrieves the value of activePlayerInstance
-    void setActivePlayerInstance(std::unordered_map<std::string, playerStateSharedPtr> set);  // sets the value of activePlayerInstance
+    playerEntityUMSharedPtr getActivePlayerInstance();  // retrieves the value of activePlayerInstance
+    void setActivePlayerInstance(playerEntityUMSharedPtr set);  // sets the value of activePlayerInstance
 
     bool getActivePlayerInstancesCreated();  // retrieves the value of activePlayerInstancesCreated
     void setActivePlayerInstancesCreated(bool set);  // sets the value of activePlayerInstancesCreated
@@ -197,8 +197,8 @@ private:
     bool offense;  // if set then the team is on offense
     bool defense;  // if set then the team is on defense
 
-    playerStateUMSharedPtr playerInstance;  // stores instance of the playerState class containing all team players
-    std::unordered_map<std::string, playerStateSharedPtr> activePlayerInstance;  // stores instance of the playerState class containing the active players
+    playerEntityUMSharedPtr playerInstance;  // stores instance of the playerState class containing all team players
+    playerEntityUMSharedPtr activePlayerInstance;  // stores instance of the playerState class containing the active players
 
     std::vector <std::string> playerModelsLoaded;  // creates a vector of strings that holds the models which are loaded
 

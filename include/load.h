@@ -91,8 +91,8 @@ public:
     offensePlaysVecSharedPtr getOPInstance();  // retrieves the value of opInstance
     void setOPInstance(offensePlaysVecSharedPtr set);  // sets the value of opInstance
     
-    playerStateUMSharedPtr getPInstance();  // retrieves the value of pInstance
-    void setPInstance(playerStateUMSharedPtr set);  // sets the value of pInstance
+    playerEntityUMSharedPtr getPInstance();  // retrieves the value of pInstance
+    void setPInstance(playerEntityUMSharedPtr set);  // sets the value of pInstance
     
     teamStateUMSharedPtr getTInstance();  // retrieves the value of tInstance
     void setTInstance(teamStateUMSharedPtr set);  // sets the value of tInstance
@@ -153,9 +153,9 @@ public:
     offensePlaysSharedPtr loadOffensePlayFile(std::string fileName); // loads data from the offense play XML files
 
    // Players
-    playerStateUMSharedPtr loadPlayers();  // loads player data from XML files
+    playerEntityUMSharedPtr loadPlayers();  // loads player data from XML files
     stdStringVec loadPlayerListFile(std::string fileName);  // loads list of player files from players.xml
-    playerStateSharedPtr loadPlayerFile(std::string fileName);  // loads data from the player XML files
+    playerEntitySharedPtr loadPlayerFile(std::string fileName);  // loads data from the player XML files
 
     // Teams
     teamStateUMSharedPtr loadTeams();  // loads team data from XML files
@@ -178,7 +178,7 @@ private:
     static courtStateUMSharedPtr  cInstance;
     static hoopStateUMSharedPtr  hInstance;
     static offensePlaysVecSharedPtr opInstance;
-    static playerStateUMSharedPtr pInstance;
+    static playerEntityUMSharedPtr pInstance;
     static teamStateUMSharedPtr tInstance;
     static userInputVecSharedPtr uiInstance;
 

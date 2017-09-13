@@ -227,8 +227,11 @@ bool jumpBalls::jumpBallExecute(basketballStateUMSharedPtr activeBasketballInsta
 //    size_t activeBBallInstance = gameS->getActiveBBallInstance();
 
 //    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
-    std::unordered_map<std::string, playerStateSharedPtr> activePlayerInstance;
-    std::unordered_map<std::string, playerStateSharedPtr> jumpPlayerInstance;  // stores playerID of players jumping for the ball
+//    std::unordered_map<std::string, playerStateSharedPtr> activePlayerInstance;
+//    std::unordered_map<std::string, playerStateSharedPtr> jumpPlayerInstance;  // stores playerID of players jumping for the ball
+    playerEntityUMSharedPtr activePlayerInstance;
+    playerEntityUMSharedPtr jumpPlayerInstance;  // stores playerID of players jumping for the ball
+
     size_t x = 0;
     std::string func = "jumpBalls::jumpBallExecute()";
     
@@ -251,15 +254,15 @@ bool jumpBalls::jumpBallExecute(basketballStateUMSharedPtr activeBasketballInsta
         {
             
 //            exit(0);
-            logMsg(func +" jump i == " +APIIT.first);
+            logMsg(func +" jump i == " +convert->toString(APIIT.first));
             if (APIIT.second->getActivePosition() == C)
             {
-                logMsg(func +" jumpPlayerInstance = " +APIIT.first);
+                logMsg(func +" jumpPlayerInstance = " +convert->toString(APIIT.first));
                  // logMsg("PlayerName = " +activePlayerInstance[x][i].getPlayerName());
-                logMsg(func +" ModelLoaded = " +convert->toString(APIIT.second->getEntity()->getModelLoaded()));
+                logMsg(func +" ModelLoaded = " +convert->toString(APIIT.second->getModelLoaded()));
     //                    exit(0);
                 //jumpPlayerID.push_back(activePlayerInstance[i].getPlayerID());
-                jumpPlayerInstance.insert(std::pair<std::string, playerStateSharedPtr>(APIIT.first, APIIT.second));
+                jumpPlayerInstance.insert(std::pair<size_t, playerEntitySharedPtr>(APIIT.first, APIIT.second));
             }
             else
             {
@@ -356,7 +359,8 @@ bool jumpBalls::tipToPlayer(basketballStateUMSharedPtr activeBasketballInstance,
     physicsEngine physEngine;
 //    basketballStateVec basketballInstance = gameS->getBasketballInstance();
 //    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
-    playerStateVecSharedPtr activePlayerInstance;
+//    playerStateVecSharedPtr activePlayerInstance;
+    playerEntityVecSharedPtr activePlayerInstance;
 //    jumpBalls jumpBall = gameS->getJumpBall();
 //    teamTypes ballTippedToTeam = jumpBall.getBallTippedToTeam();
 //    quarters quarter = gameS->getQuarter();
@@ -369,9 +373,9 @@ bool jumpBalls::tipToPlayer(basketballStateUMSharedPtr activeBasketballInstance,
 //    playerStateVecSharedPtr::iterator APIIT;
 //    for (APIIT = activePlayerInstance.begin(); APIIT != activePlayerInstance.end(); ++APIIT)
     {
-        if (activePlayerInstance[y]->getActivePosition() == ballTippedToPosition)
+        if (activePlayerInstance[y].getActivePosition() == ballTippedToPosition)
         {
-            ballTippedToPlayerID = activePlayerInstance[y]->getData()->getID();
+            ballTippedToPlayerID = activePlayerInstance[y].getData()->getID();
             ballTippedToPlayerInstance = y;
             break;
         }
@@ -456,7 +460,7 @@ bool jumpBalls::tipToPlayer(basketballStateUMSharedPtr activeBasketballInstance,
             logMsg("ballTippedToPlayerInstance == " +convert->toString(ballTippedToPlayerInstance));
 
             // FIXME! Do NOT hardcode activeBasketballInstance
-            if (physEngine.collisionCheck(activeBasketballInstance[0]->getEntity()->getPhysics()->getPhysBody(), activePlayerInstance[ballTippedToPlayerInstance]->getEntity()->getPhysics()->getPhysBody()))
+            if (physEngine.collisionCheck(activeBasketballInstance[0]->getEntity()->getPhysics()->getPhysBody(), activePlayerInstance[ballTippedToPlayerInstance].getPhysics()->getPhysBody()))
             {
  //               exit(0);
 ///                gameS->setTeamWithBall(ballTippedToTeam);

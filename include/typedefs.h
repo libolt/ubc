@@ -21,7 +21,6 @@
 #ifndef _TYPEDEFS_H_
 #define _TYPEDEFS_H_
 
-
 #ifndef _ENET_ISINCLUDED_
 #define _ENET_ISINCLUDED_
 #include "enet/enet.h"
@@ -64,6 +63,8 @@ class inputEngine;
 class networkEngine;
 class physicsEngine;
 class renderEngine;
+
+class playerEntity;
 
 class basketballState;
 class courtState;
@@ -109,7 +110,6 @@ typedef sharedPtr<GUISystem> GUISystemSharedPtr;
 
 typedef sharedPtr<conversion> conversionSharedPtr;
 
-
 typedef sharedPtr<gameEngine> gameEngineSharedPtr;
 
 typedef sharedPtr<inputEngine> inputEngineSharedPtr;
@@ -120,6 +120,7 @@ typedef sharedPtr<physicsEngine> physicsEngineSharedPtr;
 
 typedef sharedPtr<renderEngine> renderEngineSharedPtr;
 
+typedef sharedPtr<playerEntity> playerEntitySharedPtr;
 
 typedef sharedPtr<basketballState> basketballStateSharedPtr;
 
@@ -231,6 +232,9 @@ typedef std::vector<inputTypes> inputTypeQueues;  // stores types of input proce
 
 typedef std::vector<sharedPtr<userInput> > userInputVecSharedPtr;
 
+typedef std::vector<playerEntity> playerEntityVecSharedPtr;
+
+
 typedef std::vector<basketballState> basketballStateVec;
 
 typedef std::vector<courtState> courtStateVec;
@@ -254,6 +258,8 @@ typedef std::vector<Ogre::Vector3> OgreVector3Vec;
 
 // Unordered_map shared pointers
 
+typedef std::unordered_map <size_t, playerEntitySharedPtr> playerEntityUMSharedPtr;
+
 typedef std::unordered_map <size_t, basketballStateSharedPtr> basketballStateUMSharedPtr;
 typedef std::unordered_map <size_t, courtStateSharedPtr> courtStateUMSharedPtr;
 
@@ -274,4 +280,7 @@ typedef std::unordered_map<std::string, sharedPtr<MyGUI::ImageBox> > MyGUIImageB
 typedef std::vector<std::unordered_map <std::string, sharedPtr<MyGUI::ListBox> > > MyGUIListBoxVecUMSharedPtr;
 
 typedef std::vector<std::unordered_map<std::string, sharedPtr<MyGUI::TextBox> > > MyGUITextBoxVecUMSharedPtr;
+
+typedef std::vector<std::unordered_map <size_t, playerEntitySharedPtr> > playerEntityVecUMSharedPtr;
+
 #endif

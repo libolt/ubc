@@ -50,6 +50,24 @@ playerEntity::~playerEntity()  // destructor
 
 }
 
+sharedPtr<playerData> playerState::getData()  // retrieves the value of data
+{
+    return (data);
+}
+void playerState::setData(sharedPtr<playerData> set)  // sets the value of data
+{
+    data = set;
+}
+
+sharedPtr<playerStateMachine> playerEntity::getStateMachine()  // retrieves the value of stateMachine
+{
+    return (stateMachine);
+}
+void playerEntity::setStateMachine(sharedPtr<playerStateMachine> set)  // sets the value of stateMachine
+{
+    stateMachine = set;
+}
+
 sharedPtr<playerPhysics> playerEntity::getPhysics()  // retrieves the value of physics
 {
     return (physics);
@@ -84,6 +102,24 @@ bool playerEntity::getInitialized()  // retrieves the value of initialized
 void playerEntity::setInitialized(bool set)  // sets the value of initialized
 {
     initialized = set;
+}
+
+playerPositions playerEntity::getActivePosition()  // retrieves the value of activePosition
+{
+    return (activePosition);
+}
+void playerEntity::setActivePosition(playerPositions set)  // sets the value of activePosition
+{
+    activePosition = set;
+}
+
+Ogre::Vector3 playerEntity::getCourtPosition()  // retrieves the value of courtPosition
+{
+    return (courtPosition);
+}
+void playerEntity::setCourtPosition(Ogre::Vector3 set)  // sets the value of courtPosition
+{
+    courtPosition = set;
 }
 
 bool playerEntity::initialize()  // initializes the player entity object

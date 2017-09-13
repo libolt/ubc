@@ -27,7 +27,10 @@
 //class entity;
 //class playerPhysics;
 
+class playerData;
+class playerStateMachine;
 class playerSteer;
+
 
 class playerEntity : public entity
 {
@@ -35,6 +38,11 @@ class playerEntity : public entity
     playerEntity();  // constructor
     ~playerEntity();  // destructor
 
+    sharedPtr<playerStateMachine> getStateMachine();  // retrieves the value of stateMachine
+    void setStateMachine(sharedPtr<playerStateMachine> set);  // sets the value of stateMachine
+    
+    sharedPtr<playerData> getData();  // retrieves the value of data
+    void setData(sharedPtr<playerData> set);  // sets the value of data
 
     sharedPtr<playerPhysics> getPhysics();  // retrieves the value of physics
     void setPhysics(sharedPtr<playerPhysics> set);  // sets the value of physics
@@ -48,18 +56,31 @@ class playerEntity : public entity
     bool getInitialized();  // retrieves the value of initialized
     void setInitialized(bool set);  // sets the value of initialized
 
+    playerPositions getActivePosition();  // retrieves the value of activePosition
+    void setActivePosition(playerPositions set);  // sets the value of activePosition
+   
+    Ogre::Vector3 getCourtPosition();  // retrieves the value of courtPosition
+    void setCourtPosition(Ogre::Vector3 set);  // sets the value of courtPosition
+    
     bool initialize();  // initializes the court entity object
 
     bool setupPhysicsObject();  // sets up the physics object
  
     private:
 
+    sharedPtr<playerData> data;  // instance of playerData object
+
+    sharedPtr<playerStateMachine> stateMachine;  // instance of playerStateMachine object
 
     sharedPtr<playerPhysics> physics;  // instance of playerPhysics object
 
     playerSteerSharedPtr steer;  // stores the steering objerct that represents the player
     bool steerInitialized; // stores whether the steer object has been initialized
     bool initialized;  // stores whether the player entity object has been initialized
+
+    playerPositions activePosition;  // stores the active position of the player
+
+    Ogre::Vector3 courtPosition;  // stores the position of the player on the court in an Ogre::Vector3
 
 };
 

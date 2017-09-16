@@ -252,7 +252,7 @@ void networkState::processNetworkPlayerEvents(teamStateVecSharedPtr activeTeamIn
 
     networkPlayerStateObject netPStateObj;
     std::stringstream strStream;
-    playerStateVecSharedPtr activePlayerInstance;
+    playerEntityVecSharedPtr activePlayerInstance;
     std::string receivedData = getNetworkE()->getReceivedData();  // stores receivedData value
     size_t playerNumber = -1;  // stores which player the data is for
     size_t iterator;  // iterator for match loop
@@ -295,7 +295,8 @@ void networkState::processNetworkPlayerEvents(teamStateVecSharedPtr activeTeamIn
     {
         if (netPStateObj.getMovement())
         {
-            switch (netPStateObj.getDirection())
+//FIXME! Needs reworked once playerStateMachine is implemented
+/*            switch (netPStateObj.getDirection())
             {
                 case 0:  // move player up
                     activePlayerInstance[playerNumber]->setMovement(true);
@@ -333,6 +334,7 @@ void networkState::processNetworkPlayerEvents(teamStateVecSharedPtr activeTeamIn
                     activePlayerInstance[playerNumber]->setMovement(false);
                 break;
             }
+*/
             if (getNetworkE()->getIsClient())
             {
 //TS                activeTeamInstance[1]->setActivePlayerInstance(activePlayerInstance);

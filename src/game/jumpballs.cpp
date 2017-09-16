@@ -262,7 +262,7 @@ bool jumpBalls::jumpBallExecute(basketballStateUMSharedPtr activeBasketballInsta
                 logMsg(func +" ModelLoaded = " +convert->toString(APIIT.second->getModelLoaded()));
     //                    exit(0);
                 //jumpPlayerID.push_back(activePlayerInstance[i].getPlayerID());
-                jumpPlayerInstance.insert(std::pair<playerPositions, playerEntitySharedPtr>(APIIT.first, APIIT.second));
+                jumpPlayerInstance.insert(std::pair<size_t, playerEntitySharedPtr>(APIIT.first, APIIT.second));
             }
             else
             {

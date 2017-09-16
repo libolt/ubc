@@ -95,7 +95,7 @@ class playerState //: public state
         size_t getUser();  // retrieves the value of user
         void setUser(size_t set);  // sets the value of user
 
-        bool getMovement();  // retrieves the value of movement
+/*        bool getMovement();  // retrieves the value of movement
         void setMovement(bool set);  // sets the value of movement
 
         directions getDirection();  // retrieves the value of direction
@@ -155,9 +155,9 @@ class playerState //: public state
         bool getDefenseSet();  // retrieves the value of defenseSet
         void setDefenseSet(bool set);  // sets the value of defenseSet
 
-/*        Ogre::Vector3 getCourtPosition();  // retrieves the value of courtPosition
+        Ogre::Vector3 getCourtPosition();  // retrieves the value of courtPosition
         void setCourtPosition(Ogre::Vector3 set);  // sets the value of courtPosition
-*/
+
         Ogre::Vector3 getNewCourtPosition();  // retrieves the value of newCourtPosition
         void setNewCourtPosition(Ogre::Vector3 set);  // sets the value of newCourtPosition
 
@@ -167,16 +167,17 @@ class playerState //: public state
         positionChangedTypes getCourtPositionChangedType();  // retrieves the value of courtPositionChangedType
         void setCourtPositionChangedType(positionChangedTypes set);  // sets the value of courtPositionChangedType
 
-/*        bool getStateSet();  // retrieves the value of stateSet
+        bool getStateSet();  // retrieves the value of stateSet
         void setStateSet(bool set);  // sets the value of stateSet
+
+
+        bool getPhysBodyInitialized();  // retrieves the value of physBodyInitialized
+        void setPhysBodyInitialized(bool set);  // sets the value of physBodyInitialized
+
+        bool getInitialized();  // retreives the value of initialized
+        void setInitialized(bool set);  // sets the value of initialized
 */
 
-/*        bool getPhysBodyInitialized();  // retrieves the value of physBodyInitialized
-        void setPhysBodyInitialized(bool set);  // sets the value of physBodyInitialized
-*/
-/*        bool getInitialized();  // retreives the value of initialized
-        void setInitialized(bool set);  // sets the value of initialized
-*/        
         bool initialize();  // initializes the state of the object
         
         void updateState();  // updates the state of the object

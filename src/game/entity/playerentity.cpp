@@ -25,6 +25,7 @@
 #include "engine/gameengine.h"
 #include "engine/renderengine.h"
 #include "statistics/playerstatistics.h"
+#include "data/playerdata.h"
 
 // static declarations
 //UBCBaseSharedPtr playerEntity::base;  // base class object
@@ -48,7 +49,7 @@ playerEntity::playerEntity()  // constructor
     */
 //    physics = new playerPhysics;
         posChange = Ogre::Vector3(0.0f,0.0f,0.0f);
-//    movement = false;
+    movement = false;
     startPosReached = false;
     shootBlock = false;
     passSteal = false;
@@ -77,11 +78,11 @@ playerEntity::~playerEntity()  // destructor
 
 }
 
-sharedPtr<playerData> playerState::getData()  // retrieves the value of data
+sharedPtr<playerData> playerEntity::getData()  // retrieves the value of data
 {
     return (data);
 }
-void playerState::setData(sharedPtr<playerData> set)  // sets the value of data
+void playerEntity::setData(sharedPtr<playerData> set)  // sets the value of data
 {
     data = set;
 }
@@ -113,11 +114,11 @@ void playerEntity::setSteer(playerSteerSharedPtr set)  // sets the value of stee
     steer = set;
 }
 
-sharedPtr<playerStatistics> playerState::getStatistics()  // retrieves the value of statistics
+sharedPtr<playerStatistics> playerEntity::getStatistics()  // retrieves the value of statistics
 {
     return (statistics);
 }
-void playerState::setStatistics(sharedPtr<playerStatistics> set)  // sets the value of statistics
+void playerEntity::setStatistics(sharedPtr<playerStatistics> set)  // sets the value of statistics
 {
     statistics = set;
 }
@@ -167,6 +168,14 @@ void playerEntity::setPhysBodyInitialized(bool set)  // sets the value of physBo
     physBodyInitialized = set;
 }
 
+bool playerEntity::getMovement()  // retrieves the value of movement
+{
+    return (movement);
+}
+void playerEntity::setMovement(bool set)  // sets the value of movement
+{
+    movement = set;
+}
 
 directions playerEntity::getDirection()  // retrieves the value of direction
 {
@@ -383,8 +392,6 @@ bool playerEntity::initialize()  // initializes the player entity object
 
     sharedPtr<playerData> tempData(new playerData);
     data = tempData;
-    sharedPtr<playerEntity> tempEnt(new playerEntity);
-    entity = tempEnt;
     sharedPtr<playerStatistics> tempStats(new playerStatistics);
     statistics = tempStats;
     

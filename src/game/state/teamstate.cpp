@@ -486,7 +486,7 @@ void teamState::updateState()  // updates the state of the object
                 logMsg("tipoffcomplete playerWithBallInstance == " +convert->toString(playerWithBallInstance));
 
                 size_t x = 0;
-                playerPositions instanceWithBall;
+                size_t instanceWithBall;
 //                while (x < activePlayerInstance.size())
                 for (auto APIIT : activePlayerInstance)
                 {                    
@@ -515,7 +515,7 @@ void teamState::updateState()  // updates the state of the object
                         //sets the basketball Height;
                         // FIXME! activeBasketballInstance HARDCODED
                         bballPos = activeBasketballInstance[0]->getEntity()->getNode()->getPosition();
-                        playerPos = activePlayerInstance[instanceWithBall]->getEntity()->getNode()->getPosition();
+                        playerPos = activePlayerInstance[instanceWithBall]->getNode()->getPosition();
                         bballPos[1] = playerPos[1];
                         // FIXME! activeBasketballInstance HARDCODED
                         activeBasketballInstance[0]->getEntity()->getNode()->setPosition(bballPos);
@@ -654,7 +654,7 @@ bool teamState::createPlayerInstances()  // creates the player instances
         {
 
             logMsg(func + " Team " +convert->toString(getID()) + " GPI Name == " +it.second->getData()->getFirstName() +" " +it.second->getData()->getLastName());           
-            playerInstance.insert(std::pair<playerPositions, playerEntitySharedPtr>(it.first, it.second));    // adds pInstance to the playerInstance std::vector.
+            playerInstance.insert(std::pair<size_t, playerEntitySharedPtr>(it.first, it.second));    // adds pInstance to the playerInstance std::vector.
 //            logMsg(func +"Team ID == " +convert->toString(getID()) +" playerInstance[" +convert->toString(it.first) +"]->getFirstName() == " +playerInstance[it.first]->getFirstName());
             ++ID;
         }
@@ -762,7 +762,7 @@ bool teamState::setPlayerStartPositions()  // sets the initial coordinates for t
                 APIIT.second->setNewCourtPosition(startingPos[0]);
                 
                 APIIT.second->setDirection(playerDirection);
-                APIIT.second->getEntity()->getSteer()->setPlayerPosition(PG);
+                APIIT.second->getSteer()->setPlayerPosition(PG);
                 //activePlayerInstance[x]->getSteer()->setPosition(convert->toOpenSteerVec3(startingPos[0]));               
             }
             else if (APIIT.second->getActivePosition() == SG)
@@ -773,7 +773,7 @@ bool teamState::setPlayerStartPositions()  // sets the initial coordinates for t
                 APIIT.second->setNewCourtPosition(startingPos[1]);
 
                 APIIT.second->setDirection(playerDirection);
-                APIIT.second->getEntity()->getSteer()->setPlayerPosition(SG);
+                APIIT.second->getSteer()->setPlayerPosition(SG);
                 //activePlayerInstance[x]->getSteer()->setPosition(convert->toOpenSteerVec3(startingPos[1]-5));
             }
             else if (APIIT.second->getActivePosition() == SF)
@@ -784,7 +784,7 @@ bool teamState::setPlayerStartPositions()  // sets the initial coordinates for t
                 APIIT.second->setNewCourtPosition(startingPos[2]);
 
                 APIIT.second->setDirection(playerDirection);
-                APIIT.second->getEntity()->getSteer()->setPlayerPosition(SF);
+                APIIT.second->getSteer()->setPlayerPosition(SF);
                 //activePlayerInstance[x]->getSteer()->setPosition(convert->toOpenSteerVec3(startingPos[2]));
             }
             else if (APIIT.second->getActivePosition() == PF)
@@ -795,7 +795,7 @@ bool teamState::setPlayerStartPositions()  // sets the initial coordinates for t
                 APIIT.second->setNewCourtPosition(startingPos[3]);
 
                 APIIT.second->setDirection(playerDirection);
-                APIIT.second->getEntity()->getSteer()->setPlayerPosition(PF);
+                APIIT.second->getSteer()->setPlayerPosition(PF);
                 //activePlayerInstance[x]->getSteer()->setPosition(convert->toOpenSteerVec3(startingPos[3]));
             }
             else if (APIIT.second->getActivePosition() == C)
@@ -806,7 +806,7 @@ bool teamState::setPlayerStartPositions()  // sets the initial coordinates for t
                 APIIT.second->setNewCourtPosition(startingPos[4]);
 
                 APIIT.second->setDirection(playerDirection);
-                APIIT.second->getEntity()->getSteer()->setPlayerPosition(C);
+                APIIT.second->getSteer()->setPlayerPosition(C);
                // activePlayerInstance[x]->getSteer()->setPosition(convert->toOpenSteerVec3(startingPos[4]));
             }
             else
@@ -843,11 +843,11 @@ void teamState::setPlayerStartActivePositions()  // sets the position the player
     logMsg(func + " activePlayerInstance.size() == " +convert->toString(activePlayerInstance.size()));
     if (activePlayerInstance.size() > 0) // checks that activePlayerInstance has data before executing
     {
-        activePlayerInstance["PG"]->setActivePosition(PG);
-        activePlayerInstance["SG"]->setActivePosition(SG);
-        activePlayerInstance["SF"]->setActivePosition(SF);
-        activePlayerInstance["PF"]->setActivePosition(PF);
-        activePlayerInstance["C"]->setActivePosition(C);
+        activePlayerInstance[0]->setActivePosition(PG);
+        activePlayerInstance[1]->setActivePosition(SG);
+        activePlayerInstance[2]->setActivePosition(SF);
+        activePlayerInstance[3]->setActivePosition(PF);
+        activePlayerInstance[4]->setActivePosition(C);
     }
     // set steer IDs
     size_t x = 0;
@@ -856,7 +856,7 @@ void teamState::setPlayerStartActivePositions()  // sets the position the player
     {
         //playerSteer *pSteer = activePlayerInstance[x]->getSteer();
        // pSteer->setID(x);
-        APIIT.second->getEntity()->getSteer()->setID(x);
+        APIIT.second->getSteer()->setID(x);
 //        ++x;
     }
     logMsg(func +" end");
@@ -880,12 +880,12 @@ bool teamState::setupActivePlayerInstances()  // sets up active player objects
             logMsg(func +" Unable to initialize base!");
             exit(0);
         }
-        if (!APIIT.second->getEntity()->getInitialized())
+        if (!APIIT.second->getInitialized())
         {
             logMsg("Player Entity not yet Initialized!");
-            if (APIIT.second->getEntity()->initialize())
+            if (APIIT.second->initialize())
             {
-                APIIT.second->getEntity()->setInitialized(true);
+                APIIT.second->setInitialized(true);
             }
             else
             {
@@ -898,13 +898,13 @@ bool teamState::setupActivePlayerInstances()  // sets up active player objects
 
         }
 
-        if (!APIIT.second->getEntity()->getModelLoaded())
+        if (!APIIT.second->getModelLoaded())
         {
             logMsg(func +" Model not loaded yet!");
-            if (APIIT.second->getEntity()->loadModel())
+            if (APIIT.second->loadModel())
             {
                 logMsg(func + " Model loaded successfully!");
-                APIIT.second->getEntity()->setModelLoaded(true);
+                APIIT.second->setModelLoaded(true);
             }
             else
             {
@@ -919,22 +919,22 @@ bool teamState::setupActivePlayerInstances()  // sets up active player objects
 //        exit(0);
 
         logMsg(func + " setting up Physics!");
-        if (!APIIT.second->getEntity()->getPhysicsSetup())
+        if (!APIIT.second->getPhysicsSetup())
         {
-            if (!APIIT.second->getEntity()->getPhysics()->getGameSInitialized())
+            if (!APIIT.second->getPhysics()->getGameSInitialized())
             {
-                APIIT.second->getEntity()->getPhysics()->setGameS(base->getGameS());
-                APIIT.second->getEntity()->getPhysics()->setGameSInitialized(true);
+                APIIT.second->getPhysics()->setGameS(base->getGameS());
+                APIIT.second->getPhysics()->setGameSInitialized(true);
             }
             else
             {
                 
             }
-            if (APIIT.second->getEntity()->setupPhysicsObject())  // attempts to setup the physics object and sets physBodyInitialized to true if successful
+            if (APIIT.second->setupPhysicsObject())  // attempts to setup the physics object and sets physBodyInitialized to true if successful
             {
                 APIIT.second->setPhysBodyInitialized(true);
             }
-//            APIIT.second->getEntity()->setPhysicsSetup(true);
+//            APIIT.second->setPhysicsSetup(true);
         }
         else
         {
@@ -944,8 +944,8 @@ bool teamState::setupActivePlayerInstances()  // sets up active player objects
     
     for (auto APIIT : activePlayerInstance)
     {
-        logMsg(func +" Entity Node Name == " +APIIT.second->getEntity()->getEntityNodeName());
-        logMsg(func +" Node Name == " +APIIT.second->getEntity()->getNode()->getName());
+        logMsg(func +" Entity Node Name == " +APIIT.second->getEntityNodeName());
+        logMsg(func +" Node Name == " +APIIT.second->getNode()->getName());
     }
 //    exit(0);
     logMsg(func +" end");
@@ -955,7 +955,8 @@ bool teamState::setupActivePlayerInstances()  // sets up active player objects
 
 void teamState::updatePlayerStates()  // updates the states of active players
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+//FIXME! Needs refactored after playerStateMachine migration
+/*    sharedPtr<conversion> convert = conversion::Instance();
     std::string func = "teamState::updatePlayerStates()";
     size_t x = 0;
     
@@ -967,20 +968,24 @@ void teamState::updatePlayerStates()  // updates the states of active players
         std::string xString = convert->toString(x);
         APIIT.second->updateState();
         logMsg(func +" " +xString + " Name == " +APIIT.second->getData()->getFirstName() +" " +APIIT.second->getData()->getLastName());
-        logMsg(func +" " +xString + " Entity UC Name == " +APIIT.second->getEntity()->getEntityName());
-        logMsg(func +" " +xString + " Entity UC Node Name == " +APIIT.second->getEntity()->getEntityNodeName());
-        logMsg(func +" " +xString + " UC Node Name == " +APIIT.second->getEntity()->getNode()->getName());
+        logMsg(func +" " +xString + " Entity UC Name == " +APIIT.second->getEntityName());
+        logMsg(func +" " +xString + " Entity UC Node Name == " +APIIT.second->getEntityNodeName());
+        logMsg(func +" " +xString + " UC Node Name == " +APIIT.second->getNode()->getName());
 
-//        APIIT.second->getEntity()->getNode()->setPosition(Ogre::Vector3(-20,15,400));
-/*        logMsg(func +" APIIT.second->getPlayerEntity()->getNode()->getPosition() == " +convert->toString(APIIT.second->getEntity()->getNode()->getPosition()));       
-        logMsg("PlayerSteerNode Position == " +convert->toString(APIIT.second->getEntity()->getNode()->getPosition()));
-        logMsg("PlayerSteer Position == " +convert->toString(APIIT.second->getEntity()->getSteer()->position()));
-        */
+
+
+
+//        APIIT.second->getNode()->setPosition(Ogre::Vector3(-20,15,400));
+///        logMsg(func +" APIIT.second->getPlayerEntity()->getNode()->getPosition() == " +convert->toString(APIIT.second->getNode()->getPosition()));
+///        logMsg("PlayerSteerNode Position == " +convert->toString(APIIT.second->getNode()->getPosition()));
+///        logMsg("PlayerSteer Position == " +convert->toString(APIIT.second->getSteer()->position()));
         ++x;
         
     }
+
 //    exit(0);
     logMsg(func +" end");
+*/
 }
 
 void teamState::updatePlayerDirections()  // updates the direction players are facing
@@ -1028,13 +1033,13 @@ void teamState::updatePlayerDirections()  // updates the direction players are f
                     switch (playerDirection)
                     {
                         case DOWN:
-                            APIIT.second->getEntity()->getNode()->yaw(Ogre::Degree (180));
+                            APIIT.second->getNode()->yaw(Ogre::Degree (180));
                             break;
                         case LEFT:
-                            APIIT.second->getEntity()->getNode()->yaw(Ogre::Degree (270));
+                            APIIT.second->getNode()->yaw(Ogre::Degree (270));
                             break;
                         case RIGHT:
-                            APIIT.second->getEntity()->getNode()->yaw(Ogre::Degree (90));
+                            APIIT.second->getNode()->yaw(Ogre::Degree (90));
 //                            exit(0);
                             break;
                         default:
@@ -1045,13 +1050,13 @@ void teamState::updatePlayerDirections()  // updates the direction players are f
                     switch (playerDirection)
                     {
                         case UP:
-                            APIIT.second->getEntity()->getNode()->yaw(Ogre::Degree (180));
+                            APIIT.second->getNode()->yaw(Ogre::Degree (180));
                             break;
                         case LEFT:
-                            APIIT.second->getEntity()->getNode()->yaw(Ogre::Degree (90));
+                            APIIT.second->getNode()->yaw(Ogre::Degree (90));
                             break;
                         case RIGHT:
-                            APIIT.second->getEntity()->getNode()->yaw(Ogre::Degree (270));
+                            APIIT.second->getNode()->yaw(Ogre::Degree (270));
                             break;
                         default:
                             break;
@@ -1061,13 +1066,13 @@ void teamState::updatePlayerDirections()  // updates the direction players are f
                         switch (playerDirection)
                         {
                             case UP:
-                                APIIT.second->getEntity()->getNode()->yaw(Ogre::Degree (90));
+                                APIIT.second->getNode()->yaw(Ogre::Degree (90));
                                 break;
                             case DOWN:
-                                APIIT.second->getEntity()->getNode()->yaw(Ogre::Degree (270));
+                                APIIT.second->getNode()->yaw(Ogre::Degree (270));
                                 break;
                             case RIGHT:
-                                APIIT.second->getEntity()->getNode()->yaw(Ogre::Degree (180));
+                                APIIT.second->getNode()->yaw(Ogre::Degree (180));
                                 break;
                             default:
                                 break;
@@ -1077,13 +1082,13 @@ void teamState::updatePlayerDirections()  // updates the direction players are f
                         switch (playerDirection)
                         {
                             case UP:
-                                APIIT.second->getEntity()->getNode()->yaw(Ogre::Degree (270));
+                                APIIT.second->getNode()->yaw(Ogre::Degree (270));
                                 break;
                             case DOWN:
-                                APIIT.second->getEntity()->getNode()->yaw(Ogre::Degree (90));
+                                APIIT.second->getNode()->yaw(Ogre::Degree (90));
                                 break;
                             case LEFT:
-                                APIIT.second->getEntity()->getNode()->yaw(Ogre::Degree (180));
+                                APIIT.second->getNode()->yaw(Ogre::Degree (180));
                                 break;
                             default:
                                 break;
@@ -1191,6 +1196,9 @@ void teamState::updatePlayerMovements()  // updates player movements
 
 void teamState::executePass()  // executes the pass between players
 {
+
+//FIXME! Needs fixed after playerStateMachine is implemented
+/*
     //conversion *convert = conversion::Instance();
     sharedPtr<conversion> convert = conversion::Instance();
     //gameState *gameS = gameState::Instance();
@@ -1199,11 +1207,11 @@ void teamState::executePass()  // executes the pass between players
     playerPositions passToPlayer = activePlayerInstance[convert->toString(playerWithBallInstance)]->getPassToPlayer();
 //    basketballStateVecSharedPtr basketballInstance = base->getGameS()->getBasketballInstance();
     basketballStateUMSharedPtr activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();
-    Ogre::Vector3 playerWithBallCoords = activePlayerInstance[convert->toString(playerWithBallInstance)]->getEntity()->getNode()->getPosition();
-    Ogre::Vector3 passToPlayerCoords = activePlayerInstance[convert->toString(passToPlayer)]->getEntity()->getNode()->getPosition();
+    Ogre::Vector3 playerWithBallCoords = activePlayerInstance[convert->toString(playerWithBallInstance)]->getNode()->getPosition();
+    Ogre::Vector3 passToPlayerCoords = activePlayerInstance[convert->toString(passToPlayer)]->getNode()->getPosition();
 //  exit(0);
     // FIXME! HARDCODED
-    Ogre::Vector3 bballCoords = activeBasketballInstance[0]->getEntity()->getNode()->getPosition();
+    Ogre::Vector3 bballCoords = activeBasketballInstance[0]->getNode()->getPosition();
     btVector3 bballPosChange;
     btVector3 bballPhysCoords;
     btTransform transform;
@@ -1219,11 +1227,11 @@ void teamState::executePass()  // executes the pass between players
     {
         bballCoords[1] = passToPlayerCoords[1];
         // FIXME! HARDCODED
-        activeBasketballInstance[0]->getEntity()->getNode()->setPosition(bballCoords);
+        activeBasketballInstance[0]->getNode()->setPosition(bballCoords);
         bballPhysCoords = BtOgre::Convert::toBullet(bballCoords); // converts from Ogre::Vector3 to btVector3
         transform.setOrigin(bballPhysCoords);
         // FIXME! HARDCODED
-        activeBasketballInstance[0]->getEntity()->getPhysics()->getPhysBody()->setWorldTransform(transform);
+        activeBasketballInstance[0]->getPhysics()->getPhysBody()->setWorldTransform(transform);
 
 
     }
@@ -1270,16 +1278,18 @@ void teamState::executePass()  // executes the pass between players
     {
     }
 
-    activeBasketballInstance[0]->getEntity()->getPhysics()->getPhysBody()->setLinearVelocity(btVector3(bballPosChange));
+    activeBasketballInstance[0]->getPhysics()->getPhysBody()->setLinearVelocity(btVector3(bballPosChange));
 
 
     base->getGameS()->setActiveBasketballInstance(activeBasketballInstance);        // saves changes to the basketballInstance object
-
+*/
 }
 
 
 void teamState::updatePositions()  // updates player on court positions
 {
+//FIXME! Needs reworked after playerStateMachine migration
+/*
     //conversion *convert = conversion::Instance();
     sharedPtr<conversion> convert = conversion::Instance();
     
@@ -1294,7 +1304,7 @@ void teamState::updatePositions()  // updates player on court positions
 //        x++;
     }
     logMsg("courtPosition updated!!");
-
+*/
 }
 
 

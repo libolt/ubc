@@ -61,7 +61,7 @@ playerState::playerState()
     userControlled = false;
     user = -1;
 
-    posChange = Ogre::Vector3(0.0f,0.0f,0.0f);
+/*    posChange = Ogre::Vector3(0.0f,0.0f,0.0f);
 //    movement = false;
     startPosReached = false;
     shootBlock = false;
@@ -85,6 +85,7 @@ playerState::playerState()
     posChangeAmount = 0;
     direction = NODIRECT;
     oldDirection = NODIRECT;
+*/
 }
 
 playerState::~playerState() // destructor
@@ -199,7 +200,7 @@ void playerState::setUser(size_t set)  // sets the value of user
     user = set;
 }
 
-bool playerState::getMovement()  // retrieves the value of movement
+/*bool playerState::getMovement()  // retrieves the value of movement
 {
     return (movement);
 }
@@ -208,7 +209,7 @@ void playerState::setMovement(bool set)  // sets the value of movement
     movement = set;
 }
 
-/*directions playerState::getDirection()  // retrieves the value of direction
+directions playerState::getDirection()  // retrieves the value of direction
 {
     return (direction);
 }
@@ -828,7 +829,7 @@ void playerState::updateDirection()
 
 void playerState::updateMovement()  // updates movement status of the player
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+/*    sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
     teamStateUMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
 //    basketballStateVecSharedPtr bballInstance = getBasketballInstance();
@@ -877,13 +878,12 @@ void playerState::updateMovement()  // updates movement status of the player
             break;
         }
 
-/*        if (data->getID() == playerWithBallID)
+        if (data->getID() == playerWithBallID)
         {
             // FIXME! HARDCODED VALUE
             activeBasketballInstance[0]->setMovement(true);
             base->getGameS()->setActiveBasketballInstance(activeBasketballInstance);
 
-        }*/
     }
     else // if false then sets their coordinate changes to 0.0
     {
@@ -900,7 +900,7 @@ void playerState::updateMovement()  // updates movement status of the player
         movement = false;
     }
     logMsg(func +" end");
-
+*/
 //  exit(0);
 }
 

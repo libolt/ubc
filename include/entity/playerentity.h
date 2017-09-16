@@ -69,6 +69,79 @@ class playerEntity : public entity
     bool getPhysBodyInitialized();  // retrieves the value of physBodyInitialized
     void setPhysBodyInitialized(bool set);  // sets the value of physBodyInitialized
 
+    // playerState code that will likely be refactored
+    bool getMovement();  // retrieves the value of movement
+    void setMovement(bool set);  // sets the value of movement
+
+    directions getDirection();  // retrieves the value of direction
+    void setDirection(directions set);  // sets the value of direction
+
+    directions getOldDirection();  // retrieves the value of oldDirection
+    void setOldDirection(directions set);  // sets the value of oldDirection
+
+    Ogre::Vector3 getPosChange();  // retrieves the value of posChange
+    void setPosChange(Ogre::Vector3 set);  // sets the value of posChange
+
+    bool getStartPosReached();  // retrieves the value of startPosReached
+    void setStartPosReached(bool set);  // sets the value of startPosReached
+
+    bool getShootBlock();  // retrieves the value of shootBlock
+    void setShootBlock(bool set);  // sets the value of shootBlock
+
+    bool getPassSteal();  // retrieves the value of passSteal
+    void setPassSteal(bool set);  // sets the value of passSteal
+
+    bool getPassBall();  // retrieves the value of passBall
+    void setPassBall(bool set);  // sets the value of passBall
+
+    bool getPassCalculated();  // retrieves the value of passCalculated
+    void setPassCalculated(bool set);  // sets the value of passCalculated
+
+    bool getPassCompleted();  // retrieves the value of passCompleted
+    void setPassCompleted(bool set);  // sets the value of passCompleted
+
+    playerPositions getPassToPlayer();  // retrieves the value of passToPlayer
+    void setPassToPlayer(playerPositions set);  // sets the value of passToPlayer
+
+    bool getShotTaken();  // retrieves the value of shotTaken
+    void setShotTaken(bool set);  // sets the value of shotTaken
+
+    bool getShotSet();  // retrieves the value of shotSet
+    void setShotSet(bool set);  // sets the value of shotSet
+
+    bool getShotComplete();  // retrieves the value of shotComplete
+    void setShotComplete(bool set);  // sets the value of shotComplete
+
+    Ogre::Vector3 getJumpBeginPos();  // retrieves the value of playerJumpBeginPos
+    void setJumpBeginPos(Ogre::Vector3 set);  // sets the value of playerJumpBeginPos
+
+    Ogre::Vector3 getJumpEndPos();  // retrieves the value of playerJumpEndPos
+    void setJumpEndPos(Ogre::Vector3 set);  // sets the value of playerJumpEndPos
+
+    bool getJumpSet();  // retrieves the value of jumpSet
+    void setJumpSet(bool set);  // sets the value of jumpSet
+
+    bool getJumpComplete();  // retrieves the value of jumpComplete
+    void setJumpComplete(bool set);  // sets the value of jumpComplete
+
+    bool getOffenseSet();  // retrieves the value of offenseSet
+    void setOffenseSet(bool set);  // sets the value of offenseSet
+
+    bool getDefenseSet();  // retrieves the value of defenseSet
+    void setDefenseSet(bool set);  // sets the value of defenseSet
+
+/*        Ogre::Vector3 getCourtPosition();  // retrieves the value of courtPosition
+    void setCourtPosition(Ogre::Vector3 set);  // sets the value of courtPosition
+*/
+    Ogre::Vector3 getNewCourtPosition();  // retrieves the value of newCourtPosition
+    void setNewCourtPosition(Ogre::Vector3 set);  // sets the value of newCourtPosition
+
+    bool getCourtPositionChanged();  // retrieves the value of courtPositionChanged
+    void setCourtPositionChanged(bool set);  // sets the value of courtPositionChanged
+
+    positionChangedTypes getCourtPositionChangedType();  // retrieves the value of courtPositionChangedType
+    void setCourtPositionChangedType(positionChangedTypes set);  // sets the value of courtPositionChangedType
+
     bool initialize();  // initializes the court entity object
 
     bool setupPhysicsObject();  // sets up the physics object
@@ -91,8 +164,10 @@ class playerEntity : public entity
 
     Ogre::Vector3 courtPosition;  // stores the position of the player on the court in an Ogre::Vector3
     
-        // playerState data that will eventually be refactored
+    // playerState data that will eventually be refactored
   
+    bool movement; // if true then player is moving
+
     directions direction;  // stores direction player is moving
     directions oldDirection;  // stores the previous player direction.
 
@@ -132,7 +207,7 @@ class playerEntity : public entity
 
     positionChangedTypes courtPositionChangedType;  // stores what subsystem changed the position of the player
 
-//    bool physBodyInitialized;  // Determines whether or not the btRigidBody object has been initialized
+    bool physBodyInitialized;  // Determines whether or not the btRigidBody object has been initialized
 
 };
 

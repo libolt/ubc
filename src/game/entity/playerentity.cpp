@@ -24,7 +24,7 @@
 #include "ubcbase.h"
 #include "engine/gameengine.h"
 #include "engine/renderengine.h"
-
+#include "statistics/playerstatistics.h"
 
 // static declarations
 //UBCBaseSharedPtr playerEntity::base;  // base class object
@@ -36,6 +36,9 @@ playerEntity::playerEntity()  // constructor
 {
     steerInitialized = false;
     initialized = false;
+    activePosition = NONE;
+    courtPosition = Ogre::Vector3(0.0f,0.0f,0.0f);
+    physBodyInitialized = false;
 /*    baseInitialized = false;
 
     entityID = 0;
@@ -44,6 +47,30 @@ playerEntity::playerEntity()  // constructor
     modelLoaded = false;
     */
 //    physics = new playerPhysics;
+        posChange = Ogre::Vector3(0.0f,0.0f,0.0f);
+//    movement = false;
+    startPosReached = false;
+    shootBlock = false;
+    passSteal = false;
+    passBall = false;
+    passCalculated = false;
+    passToPlayer = NONE;
+    shotTaken = false;
+    shotSet = false;
+    shotComplete = false;
+    offenseSet = false;
+    defenseSet = false;
+//    initialized = false;
+    jumpSet = false;
+    jumpComplete = false;
+//    courtPosition = Ogre::Vector3(0.0f,0.0f,0.0f);
+    courtPositionChanged = false;
+//    physBodyInitialized = false;
+//    stateSet = false;
+    // hack
+  //  posChangeAmount = 0;
+    direction = NODIRECT;
+    oldDirection = NODIRECT;
 }
 playerEntity::~playerEntity()  // destructor
 {
@@ -86,6 +113,15 @@ void playerEntity::setSteer(playerSteerSharedPtr set)  // sets the value of stee
     steer = set;
 }
 
+sharedPtr<playerStatistics> playerState::getStatistics()  // retrieves the value of statistics
+{
+    return (statistics);
+}
+void playerState::setStatistics(sharedPtr<playerStatistics> set)  // sets the value of statistics
+{
+    statistics = set;
+}
+
 bool playerEntity::getSteerInitialized()  // retrieves the value of steerInitialized
 {
     return (steerInitialized);
@@ -122,11 +158,236 @@ void playerEntity::setCourtPosition(Ogre::Vector3 set)  // sets the value of cou
     courtPosition = set;
 }
 
+bool playerEntity::getPhysBodyInitialized()  // retrieves the value of physBodyInitialized
+{
+    return (physBodyInitialized);
+}
+void playerEntity::setPhysBodyInitialized(bool set)  // sets the value of physBodyInitialized
+{
+    physBodyInitialized = set;
+}
+
+
+directions playerEntity::getDirection()  // retrieves the value of direction
+{
+    return (direction);
+}
+void playerEntity::setDirection(directions set)  // sets the value of direction
+{
+    direction = set;
+}
+
+directions playerEntity::getOldDirection()  // retrieves the value of oldDirection
+{
+    return (oldDirection);
+}
+void playerEntity::setOldDirection(directions set)  // sets the value of oldDirection
+{
+    oldDirection = set;
+}
+
+Ogre::Vector3 playerEntity::getPosChange()  // retrieves the value of posChange
+{
+    return (posChange);
+}
+void playerEntity::setPosChange(Ogre::Vector3 set)  // sets the value of posChange
+{
+    posChange = set;
+}
+
+bool playerEntity::getStartPosReached()  // retrieves the value of startPosReached
+{
+    return (startPosReached);
+}
+void playerEntity::setStartPosReached(bool set)  // sets the value of startPosReached
+{
+    startPosReached = set;
+}
+
+bool playerEntity::getShootBlock()  // retrieves the value of shootBlock
+{
+    return (shootBlock);
+}
+void playerEntity::setShootBlock(bool set)   // sets the value of shootBlock
+{
+    shootBlock = set;
+}
+
+bool playerEntity::getPassSteal()  // retrieves the value of passSteal
+{
+    return (passSteal);
+}
+void playerEntity::setPassSteal(bool set)  // sets the value of passSteal
+{
+    passSteal = set;
+}
+
+bool playerEntity::getPassBall()  // retrieves the value of passBall
+{
+    return (passBall);
+}
+void playerEntity::setPassBall(bool set)  // sets the value of passBall
+{
+    passBall = set;
+}
+
+bool playerEntity::getPassCalculated()  // retrieves the value of passCalculated
+{
+    return (passCalculated);
+}
+void playerEntity::setPassCalculated(bool set)  // sets the value of passCalculated
+{
+    passCalculated = set;
+}
+
+bool playerEntity::getPassCompleted()  // retrieves the value of passCompleted
+{
+    return (passCompleted);
+}
+void playerEntity::setPassCompleted(bool set)  // sets the value of passCompleted
+{
+    passCompleted = set;
+}
+
+playerPositions playerEntity::getPassToPlayer()  // retrieves the value of passToPlayer
+{
+    return (passToPlayer);
+}
+void playerEntity::setPassToPlayer(playerPositions set)  // sets the value of passToPlayer
+{
+    passToPlayer = set;
+}
+
+bool playerEntity::getShotTaken()  // retrieves the value of shotTaken
+{
+    return (shotTaken);
+}
+void playerEntity::setShotTaken(bool set)  // sets the value of shotTaken
+{
+    shotTaken = set;
+}
+
+bool playerEntity::getShotSet()  // retrieves the value of shotSet
+{
+    return (shotSet);
+}
+void playerEntity::setShotSet(bool set)  // sets the value of shotSet
+{
+    shotSet = set;
+}
+
+bool playerEntity::getShotComplete()  // retrieves the value of shotComplete
+{
+    return (shotComplete);
+}
+void playerEntity::setShotComplete(bool set)  // sets the value of shotComplete
+{
+    shotComplete = set;
+}
+
+Ogre::Vector3 playerEntity::getJumpBeginPos()  // retrieves the value of playerJumpBeginPos
+{
+    return (jumpBeginPos);
+}
+void playerEntity::setJumpBeginPos(Ogre::Vector3 set)  // sets the value of playerJumpBeginPos
+{
+    jumpBeginPos = set;
+}
+
+Ogre::Vector3 playerEntity::getJumpEndPos()  // retrieves the value of playerJumpEndPos
+{
+    return (jumpEndPos);
+}
+void playerEntity::setJumpEndPos(Ogre::Vector3 set)  // sets the value of playerJumpEndPos
+{
+    jumpEndPos = set;
+}
+
+bool playerEntity::getJumpSet()  // retrieves the value of jumpSet
+{
+    return (jumpSet);
+}
+void playerEntity::setJumpSet(bool set)  // sets the value of jumpSet
+{
+    jumpSet = set;
+}
+
+bool playerEntity::getJumpComplete()  // retrieves the value of jumpComplete
+{
+    return (jumpComplete);
+}
+void playerEntity::setJumpComplete(bool set)  // sets the value of jumpComplete
+{
+    jumpComplete = set;
+}
+
+bool playerEntity::getOffenseSet()  // retrieves the value of offenseSet
+{
+    return (offenseSet);
+}
+void playerEntity::setOffenseSet(bool set)  // sets the value of offenseSet
+{
+    offenseSet = set;
+}
+
+bool playerEntity::getDefenseSet()  // retrieves the value of defenseSet
+{
+    return (defenseSet);
+}
+void playerEntity::setDefenseSet(bool set)  // sets the value of defenseSet
+{
+    defenseSet = set;
+}
+
+/*Ogre::Vector3 playerState::getCourtPosition()  // retrieves the value of courtPosition
+{
+//    courtPosition = Ogre::Vector3(1,1,1);
+    return (courtPosition);
+//    return (getNode()->getPosition());
+}
+void playerState::setCourtPosition(Ogre::Vector3 set)  // sets the value of courtPosition
+{
+    courtPosition = set;
+}*/
+
+Ogre::Vector3 playerEntity::getNewCourtPosition()  // retrieves the value of newCourtPosition
+{
+    return (newCourtPosition);
+}
+void playerEntity::setNewCourtPosition(Ogre::Vector3 set)  // sets the value of newCourtPosition
+{
+    newCourtPosition = set;
+}
+
+bool playerEntity::getCourtPositionChanged()  // retrieves the value of courtPositionChanged
+{
+    return (courtPositionChanged);
+}
+void playerEntity::setCourtPositionChanged(bool set)  // sets the value of courtPositionChanged
+{
+    courtPositionChanged = set;
+}
+
+positionChangedTypes playerEntity::getCourtPositionChangedType()  // retrieves the value of courtPositionChangedType
+{
+    return (courtPositionChangedType);
+}
+void playerEntity::setCourtPositionChangedType(positionChangedTypes set)  // sets the value of courtPositionChangedType
+{
+    courtPositionChangedType = set;
+}
 bool playerEntity::initialize()  // initializes the player entity object
 {
     sharedPtr<playerPhysics> tempPhysics(new playerPhysics);
     physics = tempPhysics;
 
+    sharedPtr<playerData> tempData(new playerData);
+    data = tempData;
+    sharedPtr<playerEntity> tempEnt(new playerEntity);
+    entity = tempEnt;
+    sharedPtr<playerStatistics> tempStats(new playerStatistics);
+    statistics = tempStats;
+    
     return (true);
 }
 

@@ -32,6 +32,7 @@
 #include "Ogre.h"
 #include "boost/shared_ptr.hpp"
 
+class playerEntity;
 class basketballState;
 class courtState;
 class hoopState;
@@ -160,8 +161,8 @@ class gameStateShared
         hoopStateUMSharedPtr getHoopInstance();  // retrieves the value of hoopInstance
         void setHoopInstance(hoopStateUMSharedPtr set);  // sets the value of hoopInstance
 
-        playerStateUMSharedPtr getPlayerInstance();  // retrieves the value of playerInstance
-        void setPlayerInstance(playerStateUMSharedPtr set);  // sets the value of  playerInstance
+        playerEntityUMSharedPtr getPlayerInstance();  // retrieves the value of playerInstance
+        void setPlayerInstance(playerEntityUMSharedPtr set);  // sets the value of  playerInstance
 
         teamStateUMSharedPtr getTeamInstance();  // retireves the value of teamInstance
         void setTeamInstance(teamStateUMSharedPtr set);  // sets the value of teamInstance
@@ -217,7 +218,7 @@ class gameStateShared
         static basketballStateVecSharedPtr basketballInstance;  // creates instance of the basketballs class
         static courtStateUMSharedPtr courtInstance;  // stores the court instance
         static hoopStateUMSharedPtr hoopInstance;  // creates instance of the hoop class
-        static playerStateUMSharedPtr playerInstance;  // stores the map of the players loaded from the xml files
+        static playerEntityUMSharedPtr playerInstance;  // stores the map of the players loaded from the xml files
         static teamStateUMSharedPtr  teamInstance;  // creates instance of the teamState class
 
         static jumpBallsSharedPtr jumpBall; // instance that is used for jumpBall functions.

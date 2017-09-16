@@ -486,7 +486,7 @@ bool gameState::createPlayerInstances()  // creates player instances
     
     sharedPtr<conversion> convert = conversion::Instance();
     loaderSharedPtr load = base->getLoad();
-    playerStateUMSharedPtr pInstance;
+    playerEntityUMSharedPtr pInstance;
     std::string func = "gameState::createPlayerInstances()";
     
     logMsg(func +" beginning");
@@ -1648,7 +1648,7 @@ bool gameState::updateActiveTeamInstances()  // updates all active team instance
             // Update Team Active Player Instances
             for (auto APIIT : ATIIT.second->getActivePlayerInstance())
             {
-                logMsg(func +" player model loaded == " +convert->toString(APIIT.second->getEntity()->getModelLoaded()));
+                logMsg(func +" player model loaded == " +convert->toString(APIIT.second->getModelLoaded()));
     //                logMsg(func +"activePlayerInstance coords == " +convert->toString(APIIT.second->getEntity()->getNode()->getPosition()));
             }
         }
@@ -1696,8 +1696,8 @@ bool gameState::updatePlayerCollisionObjects()  // updates the player collision 
             bool loopDone = false;
             while (!loopDone)
             {
-                std::unordered_map<std::string, playerStateSharedPtr> activePlayerInstance;
-                std::unordered_map<std::string, playerStateSharedPtr> collisionPlayerInstance;
+                playerEntityUMSharedPtr activePlayerInstance;
+                playerEntityUMSharedPtr collisionPlayerInstance;
                 std::unordered_map<std::string, btRigidBodySharedPtr> activeCollisionBodies;
                 std::unordered_map<std::string, btRigidBodySharedPtr> newCollisionBodies;
 //                std::unordered_map<std::string, btRigidBodySharedPtr> newCollisionBodies;
@@ -1724,7 +1724,7 @@ bool gameState::updatePlayerCollisionObjects()  // updates the player collision 
                             {  // inserts the player's position and their collisionBody into newCollisionBodies
                                 logMsg(func +" physBody Initialized!");
                                 position = CPIIT.first;
-                                physBody = CPIIT.second->getEntity()->getPhysics()->getPhysBody();
+                                physBody = CPIIT.second->getPhysics()->getPhysBody();
                                 newCollisionBodies.insert(std::pair<std::string, btRigidBodySharedPtr>(position, physBody));  // loads the second hoop
 //                                tempBody = physBody;
                                 logMsg(func +" position = " +position);

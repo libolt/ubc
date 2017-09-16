@@ -486,7 +486,7 @@ void teamState::updateState()  // updates the state of the object
                 logMsg("tipoffcomplete playerWithBallInstance == " +convert->toString(playerWithBallInstance));
 
                 size_t x = 0;
-                std::string instanceWithBall;
+                playerPositions instanceWithBall;
 //                while (x < activePlayerInstance.size())
                 for (auto APIIT : activePlayerInstance)
                 {                    
@@ -623,7 +623,7 @@ void updateActivePlayerSettings()  // updates the settings of active players
 bool teamState::createPlayerInstances()  // creates the player instances
 {
     sharedPtr<conversion> convert = conversion::Instance();
-    playerStateUMSharedPtr gamePlayerInstance;
+    playerEntityUMSharedPtr gamePlayerInstance;
     std::string func = "teamState::createPlayerInstances()";
 
     logMsg(func +" beginning");
@@ -654,7 +654,7 @@ bool teamState::createPlayerInstances()  // creates the player instances
         {
 
             logMsg(func + " Team " +convert->toString(getID()) + " GPI Name == " +it.second->getData()->getFirstName() +" " +it.second->getData()->getLastName());           
-            playerInstance.insert(std::pair<size_t, playerStateSharedPtr>(it.first, it.second));    // adds pInstance to the playerInstance std::vector.
+            playerInstance.insert(std::pair<playerPositions, playerEntitySharedPtr>(it.first, it.second));    // adds pInstance to the playerInstance std::vector.
 //            logMsg(func +"Team ID == " +convert->toString(getID()) +" playerInstance[" +convert->toString(it.first) +"]->getFirstName() == " +playerInstance[it.first]->getFirstName());
             ++ID;
         }

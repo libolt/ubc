@@ -18,6 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
+#include "entity/playerentity.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
 #include "state/gamestateshared.h"
@@ -64,7 +65,7 @@ teamStateUMSharedPtr gameStateShared::activeTeamInstance;  // stores active team
 basketballStateVecSharedPtr gameStateShared::basketballInstance;  // creates instance of the basketballs class
 courtStateUMSharedPtr gameStateShared::courtInstance;  // stores the court instance
 hoopStateUMSharedPtr gameStateShared::hoopInstance;  // creates instance of the hoop class
-playerStateUMSharedPtr gameStateShared::playerInstance;  // stores the vector of the players loaded from the xml files
+playerEntityUMSharedPtr gameStateShared::playerInstance;  // stores the vector of the players loaded from the xml files
 teamStateUMSharedPtr  gameStateShared::teamInstance;  // creates instance of the teamState class
 jumpBallsSharedPtr gameStateShared::jumpBall; // instance that is used for jumpBall functions.
 float gameStateShared::yOffset; // stores the y offset for objects on the screen
@@ -428,11 +429,11 @@ void gameStateShared::setHoopInstance(std::unordered_map<size_t, hoopStateShared
     hoopInstance = set;
 }
 
-playerStateUMSharedPtr gameStateShared::getPlayerInstance()  // retrieves the value of playerInstance
+playerEntityUMSharedPtr gameStateShared::getPlayerInstance()  // retrieves the value of playerInstance
 {
     return (playerInstance);
 }
-void gameStateShared::setPlayerInstance(playerStateUMSharedPtr set)  // sets the value of playerInstance
+void gameStateShared::setPlayerInstance(playerEntityUMSharedPtr set)  // sets the value of playerInstance
 {
     playerInstance = set;
 }

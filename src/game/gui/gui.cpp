@@ -27,6 +27,7 @@
 #include "data/courtdata.h"
 #include "data/playerdata.h"
 #include "engine/gameengine.h"
+#include "entity/playerentity.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
 #include "state/gamestate.h"
@@ -1023,8 +1024,11 @@ void GUISystem::playerStartSelected()  // process player start selection
     sizeTVec starters; // used for initial creatio  of teamStarterID vector
     teamStateUMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
   
-    std::vector<playerStateUMSharedPtr > playerInstance;
-    std::unordered_map<std::string, playerStateSharedPtr> activePlayerInstance;
+//    std::vector<playerStateUMSharedPtr > playerInstance;
+    playerEntityVecUMSharedPtr playerInstance;
+//    std::unordered_map<std::string, playerStateSharedPtr> activePlayerInstance;
+    playerEntityUMSharedPtr activePlayerInstance;
+//    std::unordered_map<playerPositions, playerEntitySharedPtr, std::hash<int> > activePlayerInstance;
     size_t IDs = 0;
     std::string func = "GUISystem::playerStartSelected()";
 
@@ -1044,7 +1048,9 @@ void GUISystem::playerStartSelected()  // process player start selection
 //        ++x;
     }
     
-    std::vector<playerStateUMSharedPtr >::iterator PIIT;
+//    std::vector<playerStateUMSharedPtr >::iterator PIIT;
+    playerEntityVecUMSharedPtr::iterator PIIT;
+    
     x = 0;
     for (PIIT = playerInstance.begin(); PIIT != playerInstance.end(); ++PIIT)
     {
@@ -1280,32 +1286,32 @@ void GUISystem::playerStartSelected()  // process player start selection
   
             if (PIIT.second->getData()->getID() == teamStarterID[ATIIT.first]["PG"])
             {
-                activePlayerInstance.insert(std::pair<std::string, playerStateSharedPtr>("PG", PIIT.second));
-                activePlayerInstance["PG"]->setActivePosition(PG);
+                activePlayerInstance.insert(std::pair<playerPositions, playerEntitySharedPtr>(PG, PIIT.second));
+                activePlayerInstance[PG]->setActivePosition(PG);
                 logMsg(func +" WOOT PG!");
             }
             else if (PIIT.second->getData()->getID() == teamStarterID[ATIIT.first]["SG"])
             {
-                activePlayerInstance.insert(std::pair<std::string, playerStateSharedPtr>("SG", PIIT.second));
-                activePlayerInstance["SG"]->setActivePosition(SG);
+                activePlayerInstance.insert(std::pair<playerPositions, playerEntitySharedPtr>(SG, PIIT.second));
+                activePlayerInstance[SG]->setActivePosition(SG);
                 logMsg(func +" WOOT SG!");
             }
             else if (PIIT.second->getData()->getID() == teamStarterID[ATIIT.first]["SF"])
             {
-                activePlayerInstance.insert(std::pair<std::string, playerStateSharedPtr>("SF", PIIT.second));
-                activePlayerInstance["SF"]->setActivePosition(SF);
+                activePlayerInstance.insert(std::pair<playerPositions, playerEntitySharedPtr>(SF, PIIT.second));
+                activePlayerInstance[SF]->setActivePosition(SF);
                 logMsg(func +" WOOT SF!");
             }
             else if (PIIT.second->getData()->getID() == teamStarterID[ATIIT.first]["PF"])
             {
-                activePlayerInstance.insert(std::pair<std::string, playerStateSharedPtr>("PF", PIIT.second));
-                activePlayerInstance["PF"]->setActivePosition(PF);
+                activePlayerInstance.insert(std::pair<playerPositions, playerEntitySharedPtr>(PF, PIIT.second));
+                activePlayerInstance[PF]->setActivePosition(PF);
                 logMsg(func +" WOOT PF!");
             }
             else if (PIIT.second->getData()->getID() == teamStarterID[ATIIT.first]["C"])
             {
-                activePlayerInstance.insert(std::pair<std::string, playerStateSharedPtr>("C", PIIT.second));
-                activePlayerInstance["C"]->setActivePosition(C);
+                activePlayerInstance.insert(std::pair<playerPositions, playerEntitySharedPtr>(C, PIIT.second));
+                activePlayerInstance[C]->setActivePosition(C);
                 logMsg(func +" WOOT C!");
             }
         }

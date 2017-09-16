@@ -27,6 +27,7 @@
 #include "data/courtdata.h"
 #include "data/playerdata.h"
 #include "engine/gameengine.h"
+#include "entity/playerentity.h"
 #include "state/courtstate.h"
 #include "state/gamestate.h"
 #include "state/playerstate.h"
@@ -128,7 +129,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 {
     sharedPtr<conversion> convert = conversion::Instance();
     teamStateUMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
-    std::vector<playerStateUMSharedPtr > playerInstance;
+    playerEntityVecUMSharedPtr playerInstance;
     std::string func = "addPlayerStartSelectionMenuData";
     sizeTVec teamIDs = base->getGameS()->getTeamIDS();
 
@@ -208,7 +209,8 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     }
 */
 //    exit(0);
-    std::vector<playerStateUMSharedPtr >::iterator it;
+    
+    playerEntityVecUMSharedPtr::iterator it;
     auto itx = 0;
 //    while (it < playerInstance.size())
     for (it = playerInstance.begin(); it != playerInstance.end(); ++it)
@@ -294,7 +296,7 @@ void GUISystem::addPlayerStartSelectionMenuData_old()  // adds data to Player St
 //    gameS->setPlayerInstances(playerInstance);
     sizeTVec teamIDs = base->getGameS()->getTeamIDS();
     teamStateUMSharedPtr teamInstance = base->getGameS()->getActiveTeamInstance();
-    std::vector<playerStateUMSharedPtr > playerInstance;
+    playerEntityVecUMSharedPtr playerInstance;
 //    playerStateVecSharedPtr pInstance;
 //    pInstance = teamInstance[teamIDs[0]]->getPlayerInstance();
     auto x = 0;

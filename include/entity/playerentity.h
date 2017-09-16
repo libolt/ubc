@@ -29,6 +29,7 @@
 
 class playerData;
 class playerStateMachine;
+class playerStatistics;
 class playerSteer;
 
 
@@ -50,6 +51,9 @@ class playerEntity : public entity
     playerSteerSharedPtr getSteer();  // retrieves the value of steer
     void setSteer(playerSteerSharedPtr set);  // sets the value of steer
 
+    sharedPtr<playerStatistics> getStatistics();  // retrieves the value of statistics
+    void setStatistics(sharedPtr<playerStatistics> set);  // sets the value of statistics
+
     bool getSteerInitialized();  // retrieves the value of steerInitialized
     void setSteerInitialized(bool set);  // sets the value of steerInitialized
 
@@ -62,6 +66,9 @@ class playerEntity : public entity
     Ogre::Vector3 getCourtPosition();  // retrieves the value of courtPosition
     void setCourtPosition(Ogre::Vector3 set);  // sets the value of courtPosition
     
+    bool getPhysBodyInitialized();  // retrieves the value of physBodyInitialized
+    void setPhysBodyInitialized(bool set);  // sets the value of physBodyInitialized
+
     bool initialize();  // initializes the court entity object
 
     bool setupPhysicsObject();  // sets up the physics object
@@ -74,6 +81,8 @@ class playerEntity : public entity
 
     sharedPtr<playerPhysics> physics;  // instance of playerPhysics object
 
+    sharedPtr<playerStatistics> statistics;  // instance of playerStatistics object
+
     playerSteerSharedPtr steer;  // stores the steering objerct that represents the player
     bool steerInitialized; // stores whether the steer object has been initialized
     bool initialized;  // stores whether the player entity object has been initialized
@@ -81,6 +90,49 @@ class playerEntity : public entity
     playerPositions activePosition;  // stores the active position of the player
 
     Ogre::Vector3 courtPosition;  // stores the position of the player on the court in an Ogre::Vector3
+    
+        // playerState data that will eventually be refactored
+  
+    directions direction;  // stores direction player is moving
+    directions oldDirection;  // stores the previous player direction.
+
+    Ogre::Vector3 posChange;  // stores value of players' position changes during logic updates
+
+    bool startPosReached;  // stores whether a player is in the starting position for tipoff
+       
+    // variables for offense and defense;
+    bool shootBlock;  // stores whether or not a player attempts to shoot or block a shot
+    bool passSteal;  // stores whether a player attempts to pass or steal the ball
+
+    // Passing variables
+    bool passBall;  // stores whether a player is to pass the ball to another player or not.
+    bool passCalculated;  // stores whether or not the player to pass ball to has been calculated
+    bool passCompleted;  // stores whether or not the pass has been completed
+    playerPositions passToPlayer;  // stores the value of the player to be passed to.
+
+    // Shooting variables
+    bool shotTaken;  // Determines whether or not a player has shot the ball
+    bool shotSet;  // Determines if shot has been setup
+    bool shotComplete;  // Determine whether or not a player's shot is complete
+
+    // player Jump variables
+    Ogre::Vector3 jumpBeginPos;  // stores the coordinates of the player at the beginning of the jump
+    Ogre::Vector3 jumpEndPos;  // stores the coordinates the player should reach at the end of the jump
+    bool jumpSet;  // determines whether or not the playerJumpBeginPos has been set
+    bool jumpComplete;  // determines whether or not the jump has been completed
+
+    bool offenseSet;  // tracks state of player's offense
+    bool defenseSet;  // tracks state of player's defense
+
+//        Ogre::Vector3 courtPosition;  // stores the position of the player on the court in an Ogre::Vector3
+
+    Ogre::Vector3 newCourtPosition;  // stores the upfated position of the player on the court in an Ogre::Vector3
+        
+    bool courtPositionChanged;  // if the court position has changed then this flag is set
+
+    positionChangedTypes courtPositionChangedType;  // stores what subsystem changed the position of the player
+
+//    bool physBodyInitialized;  // Determines whether or not the btRigidBody object has been initialized
 
 };
 

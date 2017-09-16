@@ -59,11 +59,11 @@ class playerState //: public state
 
         sharedPtr<playerEntity> getEntity();  // retrieves the value of entity
         void setEntity(sharedPtr<playerEntity> set);  // sets the value of entity
-*/
+
 
         sharedPtr<playerStatistics> getStatistics();  // retrieves the value of statistics
         void setStatistics(sharedPtr<playerStatistics> set);  // sets the value of statistics
-
+*/
         UBCBaseSharedPtr getBase();  // retrieves the value of base
         void setBase(UBCBaseSharedPtr set);  // sets the value of base
 
@@ -155,9 +155,9 @@ class playerState //: public state
         bool getDefenseSet();  // retrieves the value of defenseSet
         void setDefenseSet(bool set);  // sets the value of defenseSet
 
-        Ogre::Vector3 getCourtPosition();  // retrieves the value of courtPosition
+/*        Ogre::Vector3 getCourtPosition();  // retrieves the value of courtPosition
         void setCourtPosition(Ogre::Vector3 set);  // sets the value of courtPosition
-
+*/
         Ogre::Vector3 getNewCourtPosition();  // retrieves the value of newCourtPosition
         void setNewCourtPosition(Ogre::Vector3 set);  // sets the value of newCourtPosition
 
@@ -171,12 +171,12 @@ class playerState //: public state
         void setStateSet(bool set);  // sets the value of stateSet
 */
 
-        bool getPhysBodyInitialized();  // retrieves the value of physBodyInitialized
+/*        bool getPhysBodyInitialized();  // retrieves the value of physBodyInitialized
         void setPhysBodyInitialized(bool set);  // sets the value of physBodyInitialized
-
-        bool getInitialized();  // retreives the value of initialized
+*/
+/*        bool getInitialized();  // retreives the value of initialized
         void setInitialized(bool set);  // sets the value of initialized
-        
+*/        
         bool initialize();  // initializes the state of the object
         
         void updateState();  // updates the state of the object
@@ -199,7 +199,7 @@ class playerState //: public state
 
 //        sharedPtr<playerEntity> entity;  // instance of playerEntity object
         
-        sharedPtr<playerStatistics> statistics;  // instance of playerStatistics object
+//        sharedPtr<playerStatistics> statistics;  // instance of playerStatistics object
  
         static UBCBaseSharedPtr base;  // base class object
         
@@ -245,7 +245,7 @@ class playerState //: public state
 
         bool movement; // if true then player is moving
 
-        directions direction;  // stores direction player is moving
+/*        directions direction;  // stores direction player is moving
         directions oldDirection;  // stores the previous player direction.
 
         Ogre::Vector3 posChange;  // stores value of players' position changes during logic updates
@@ -285,6 +285,8 @@ class playerState //: public state
         positionChangedTypes courtPositionChangedType;  // stores what subsystem changed the position of the player
 
         bool physBodyInitialized;  // Determines whether or not the btRigidBody object has been initialized
+*/
+
 //        bool stateSet;  // if true the playerState object has been set to initial state
         // temporary hack
 //        bool initialized;

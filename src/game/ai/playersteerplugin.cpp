@@ -276,19 +276,18 @@ void playerSteerPlugin::update(const float currentTime, const float elapsedTime)
     size_t x = 0;
 //    while (x < getActiveTeamInstance().size())
     for (auto ATIIT : base->getGameS()->getActiveTeamInstance())
-
     {
         activePlayerInstance.push_back(ATIIT.second->getActivePlayerInstance());
 //        size_t y = 0;
 //        while (y < activePlayerInstance[x].size())
         for (auto APIIT : activePlayerInstance[ATIIT.first])
         {
-            if (APIIT.first != ATIIT.second->getHumanPlayer() && APIIT.second->getModelLoaded())
+/*FIXME!            if (APIIT.first != ATIIT.second->getHumanPlayer() && APIIT.second->getModelLoaded())
             {
 //                exit(0);
 //                logMsg("ATIIT.first = " +ATIIT.first +"APIIT.first = " +APIIT.first);
                 APIIT.second->getSteer()->update(currentTime, elapsedTime);
-            }
+            }*/
 //            ++y;
         }
         

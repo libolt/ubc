@@ -2036,7 +2036,7 @@ playerEntityUMSharedPtr loader::loadPlayers()  // loads the players
         logMsg("playerFile = " +playerFiles[it]);
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 //        playerInstance = loadPlayerFile("data/players/" + playerFiles[it]);
-        players.insert(std::pair<size_t, playerEntitySharedPtr>(it, loadPlayerFile("data/players/" + playerFiles[it])));
+        players.insert(std::pair<playerPositions, playerEntitySharedPtr>(it, loadPlayerFile("data/players/" + playerFiles[it])));
 //        players.emplace(it, loadPlayerFile(findFile("data/players/" + playerFiles[it])));
 
 #else

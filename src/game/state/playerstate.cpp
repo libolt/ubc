@@ -57,12 +57,12 @@ playerState::playerState()
     defending = -1;
 //    primaryPosition = NONE;
 //    secondaryPosition = NONE;
-    activePosition = NONE;
+//    activePosition = NONE;
     userControlled = false;
     user = -1;
 
     posChange = Ogre::Vector3(0.0f,0.0f,0.0f);
-    movement = false;
+//    movement = false;
     startPosReached = false;
     shootBlock = false;
     passSteal = false;
@@ -74,12 +74,12 @@ playerState::playerState()
     shotComplete = false;
     offenseSet = false;
     defenseSet = false;
-    initialized = false;
+//    initialized = false;
     jumpSet = false;
     jumpComplete = false;
-    courtPosition = Ogre::Vector3(0.0f,0.0f,0.0f);
+//    courtPosition = Ogre::Vector3(0.0f,0.0f,0.0f);
     courtPositionChanged = false;
-    physBodyInitialized = false;
+//    physBodyInitialized = false;
 //    stateSet = false;
     // hack
     posChangeAmount = 0;
@@ -107,7 +107,7 @@ sharedPtr<playerEntity> playerState::getEntity()  // retrieves the value of enti
 void playerState::setEntity(sharedPtr<playerEntity> set)  // sets the value of entity
 {
     entity = set;
-}*/
+}
 
 sharedPtr<playerStatistics> playerState::getStatistics()  // retrieves the value of statistics
 {
@@ -116,7 +116,7 @@ sharedPtr<playerStatistics> playerState::getStatistics()  // retrieves the value
 void playerState::setStatistics(sharedPtr<playerStatistics> set)  // sets the value of statistics
 {
     statistics = set;
-}
+}*/
 
 UBCBaseSharedPtr playerState::getBase()  // retrieves the value of base
 {
@@ -208,7 +208,7 @@ void playerState::setMovement(bool set)  // sets the value of movement
     movement = set;
 }
 
-directions playerState::getDirection()  // retrieves the value of direction
+/*directions playerState::getDirection()  // retrieves the value of direction
 {
     return (direction);
 }
@@ -415,26 +415,25 @@ positionChangedTypes playerState::getCourtPositionChangedType()  // retrieves th
 void playerState::setCourtPositionChangedType(positionChangedTypes set)  // sets the value of courtPositionChangedType
 {
     courtPositionChangedType = set;
-}
+}*/
 
-bool playerState::getPhysBodyInitialized()  // retrieves the value of physBodyInitialized
+/*bool playerState::getPhysBodyInitialized()  // retrieves the value of physBodyInitialized
 {
     return (physBodyInitialized);
 }
 void playerState::setPhysBodyInitialized(bool set)  // sets the value of physBodyInitialized
 {
     physBodyInitialized = set;
-}
+}*/
 
-bool playerState::getInitialized()  // retreives the value of initialized
+/*bool playerState::getInitialized()  // retreives the value of initialized
 {
     return (initialized);
 }
-
 void playerState::setInitialized(bool set)  // sets the value of initialized
 {
     initialized = set;
-}
+}*/
 
 bool playerState::initialize()  // initializes the state of the object
 {
@@ -443,12 +442,12 @@ bool playerState::initialize()  // initializes the state of the object
     logMsg(func +" beginning");
     
     sharedPtr<playerData> tempData(new playerData);
-    data = tempData;
+/*    data = tempData;
     sharedPtr<playerEntity> tempEnt(new playerEntity);
     entity = tempEnt;
     sharedPtr<playerStatistics> tempStats(new playerStatistics);
     statistics = tempStats;
-    
+*/
 //    entity->setInitialized(true);
 /*
     playerSteerSharedPtr tempSteer(new playerSteer);
@@ -470,7 +469,7 @@ bool playerState::initialize()  // initializes the state of the object
 
 void playerState::updateState()
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+/*    sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 ///    sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
@@ -558,7 +557,7 @@ void playerState::updateState()
         if (teamType == base->getGameS()->getTeamWithBall() && base->getGameS()->getTipOffComplete())
         {
 //            logMsg(func +" dplayerWithBallID == " +convert->toString(playerWithBallID));
-            if (/*data->getID() == playerWithBallID &&*/ data->getID() >= 0)
+            if (data->getID() == playerWithBallID && data->getID() >= 0)
             {
 //                logMsg(func +" playerID == " +convert->toString(data->getID()));
 //                int activeBBallInstance = getActiveBBallInstance();
@@ -574,11 +573,12 @@ void playerState::updateState()
     }
 
     logMsg(func +" end");
+*/
 }
 
 bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3D model
 {
-    std::string func = "playerState::updateCourtPosition() ";
+/*    std::string func = "playerState::updateCourtPosition() ";
     sharedPtr<conversion> convert = conversion::Instance();
     ///sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
@@ -588,7 +588,7 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
     
     logMsg(func + " beginning");
 //    logMsg(func + " updatePosChange == " +convert->toString(posChange));
-    logMsg(func + " Name == " +data->getFirstName() + " " +data->getLastName());
+//    logMsg(func + " Name == " +data->getFirstName() + " " +data->getLastName());
     logMsg(func + " newCourtPosition == " +convert->toString(newCourtPosition));
 //    exit(0);
     if (courtPositionChanged)
@@ -604,7 +604,7 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
 
                 logMsg(func +" New Court Position == " +convert->toString(newCourtPosition));
 */
-                logMsg(func + " Name == " +data->getFirstName() +" " +data->getLastName());
+/*                logMsg(func + " Name == " +data->getFirstName() +" " +data->getLastName());
                 logMsg(func + " UC Entity Name == " +entity->getEntityName());
                 logMsg(func + "Entity UC Node Name == " +entity->getEntityNodeName());
                 logMsg(func + " UC Node Name == " +entity->getNode()->getName());
@@ -656,7 +656,7 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
             break;
 
             case PHYSICSCHANGE:
-                /*  I have disabled this code until I can fix the conflict with the steering code
+                //  I have disabled this code until I can fix the conflict with the steering code
                 logMsg("Updating court position based on physics");
                 logMsg("courtPosition = " +convert->toString(courtPosition));
                 logMsg("newCourtPosition = " +convert->toString(newCourtPosition));
@@ -664,7 +664,7 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
                 logMsg("node position updated");
                 entity->getSteer->setPosition(convert->toOpenSteerVec3(newCourtPosition));
                 logMsg("steer position updated");
-                */
+                
                 courtPositionChanged = false;
                 courtPositionChangedType = NOCHANGE;
                 courtPosition = entity->getNode()->getPosition();
@@ -678,7 +678,7 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
 //        logMsg(func + " player ID " +convert->toString(data->getID()) +"change amount = " +convert->toString(posChangeAmount));
         
     }
-    
+*/
 /*    logMsg("posChange = " +convert->toString(posChange));
 //  cout << "posChange = " << posChange << endl;
     entity->getNode->translate(posChange);
@@ -692,7 +692,7 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
 //  logMsg("player position updated.");
 */
 
-    logMsg(func + " end");
+//    logMsg(func + " end");
     
     return true;
 }
@@ -701,7 +701,7 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
 void playerState::updateDirection()
 {
     
-    sharedPtr<conversion> convert = conversion::Instance();
+/*    sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
     teamStateUMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
     basketballStateUMSharedPtr activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();   
@@ -809,7 +809,7 @@ void playerState::updateDirection()
     logMsg(func +" player Team Type == " +convert->toString(teamType));
 //    logMsg(func +" directplayerWithBallID == " +convert->toString(playerWithBallID));
     logMsg(func +" directplayerID == " +convert->toString(data->getID()));
-/*    if (data->getID() == playerWithBallID)
+    if (data->getID() == playerWithBallID)
     {
 //        exit(0);
         // FIXME! HARDCODED VALUES!
@@ -818,10 +818,11 @@ void playerState::updateDirection()
 
         base->getGameS()->setActiveBasketballInstance(activeBasketballInstance);
     }
-*/    
+    
     //oldDirection = direction;
     //direction = NODIRECT;
     logMsg(func +" end");
+*/
 //    exit(0);
 }
 

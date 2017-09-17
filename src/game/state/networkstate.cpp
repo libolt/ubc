@@ -27,6 +27,7 @@
 #include "network/networkplayerstateobject.h"
 #include "engine/networkengine.h"
 #include "engine/inputengine.h"
+#include "entity/playerentity.h"
 
 networkState::networkState()  // constructor
 {

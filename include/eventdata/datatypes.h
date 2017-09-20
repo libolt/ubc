@@ -20,7 +20,7 @@
 	typedef unsigned short WORD;
 	typedef float FLOAT;
 	typedef double DOUBLE;
-	typedef int BOOL;
+	typedef bool BOOL;
 
 	#ifndef NULL
 	#ifdef __cplusplus

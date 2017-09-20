@@ -524,7 +524,8 @@ bool UBC::gameLoop()  // Main Game Loop
     playerSM.pChangeDirection(playerSMD3);
     
     logMsg(func +" Wootio!");
-    exit(0);
+//    exit(0);
+    
     SDL_StartTextInput();
     
     while (!quitGame)

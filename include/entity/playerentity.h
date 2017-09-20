@@ -29,6 +29,7 @@
 
 class playerData;
 class playerStateMachine;
+class playerSMData;
 class playerStatistics;
 class playerSteer;
 
@@ -69,6 +70,12 @@ class playerEntity : public entity
     bool getPhysBodyInitialized();  // retrieves the value of physBodyInitialized
     void setPhysBodyInitialized(bool set);  // sets the value of physBodyInitialized
 
+    bool getStateMachineInitialized();  // retrieves the value of stateMachineInitialized
+    void setStateMachineInitialized(bool set);  // sets the value of stateMachineInitialized
+    
+    bool getStateChanged();  // retrieves the value of stateChanged
+    void setStateChanged(bool set);  // sets the value if stateChanged
+    
     // playerState code that will likely be refactored
     bool getMovement();  // retrieves the value of movement
     void setMovement(bool set);  // sets the value of movement
@@ -146,9 +153,14 @@ class playerEntity : public entity
 
     bool setupPhysicsObject();  // sets up the physics object
  
+    bool initializeStateMachine();  // initializes the stateMachine object
+    
+    bool updateStateMachine(playerActions actionType, playerSMData *SMData);  // updates state machine with external input
+    
     private:
 
     sharedPtr<playerData> data;  // instance of playerData object
+    
 
     sharedPtr<playerStateMachine> stateMachine;  // instance of playerStateMachine object
 
@@ -209,6 +221,9 @@ class playerEntity : public entity
 
     bool physBodyInitialized;  // Determines whether or not the btRigidBody object has been initialized
 
+    bool stateMachineInitialized;   // Determines whether or not the stateMachine object has been initialized
+
+    bool stateChanged;  // determines if the stateMachine needs to be updated
 };
 
 #endif // _PLAYERENTITY_H_

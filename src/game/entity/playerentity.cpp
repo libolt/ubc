@@ -26,6 +26,7 @@
 #include "engine/renderengine.h"
 #include "statistics/playerstatistics.h"
 #include "data/playerdata.h"
+#include "statemachine/playerstatemachine.h"
 
 // static declarations
 //UBCBaseSharedPtr playerEntity::base;  // base class object
@@ -66,7 +67,11 @@ playerEntity::playerEntity()  // constructor
     jumpComplete = false;
 //    courtPosition = Ogre::Vector3(0.0f,0.0f,0.0f);
     courtPositionChanged = false;
-//    physBodyInitialized = false;
+    physBodyInitialized = false;
+    stateMachineInitialized = false;
+    
+    updateStateMachine = false;
+    
 //    stateSet = false;
     // hack
   //  posChangeAmount = 0;
@@ -166,6 +171,24 @@ bool playerEntity::getPhysBodyInitialized()  // retrieves the value of physBodyI
 void playerEntity::setPhysBodyInitialized(bool set)  // sets the value of physBodyInitialized
 {
     physBodyInitialized = set;
+}
+
+bool playerEntity::getStateMachineInitialized()  // retrieves the value of stateMachineInitialized
+{
+    return (stateMachineInitialized);
+}
+void playerEntity::setStateMachineInitialized(bool set)  // sets the value of stateMachineInitialized
+{
+    stateMachineInitialized = set;
+}
+
+bool playerEntity::getStateChanged()  // retrieves the value of stateChanged
+{
+    return (stateChanged);
+}
+void playerEntity::setStateChanged(bool set)  // sets the value if stateChanged
+{
+    stateChanged = set;
 }
 
 bool playerEntity::getMovement()  // retrieves the value of movement
@@ -392,8 +415,12 @@ bool playerEntity::initialize()  // initializes the player entity object
 
     sharedPtr<playerData> tempData(new playerData);
     data = tempData;
+    
     sharedPtr<playerStatistics> tempStats(new playerStatistics);
     statistics = tempStats;
+    
+    sharedPtr<playerStateMachine> tempStateMachine(new playerStateMachine);
+    stateMachine = tempStateMachine;
     
     return (true);
 }
@@ -444,4 +471,19 @@ bool playerEntity::setupPhysicsObject()  // sets up the physics object
     logMsg(func +" end");
     
     return (false);
+}
+
+bool playerEntity::initializeStateMachine()  // initializes the stateMachine object
+{
+    playerSMData *SMData = new playerSMData;
+    
+    SMData->speed = 100;
+    stateMachine->setSpeed(SMData);
+    stateMachine->halt();
+    return (true);
+}
+
+bool playerEntity::updateStateMachine(playerActions actionType, playerSMData *SMData)  // updates state machine with external input
+{
+    return (true);
 }

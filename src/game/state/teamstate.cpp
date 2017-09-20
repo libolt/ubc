@@ -627,7 +627,8 @@ bool teamState::createPlayerInstances()  // creates the player instances
     std::string func = "teamState::createPlayerInstances()";
 
     logMsg(func +" beginning");
-
+    
+    
     if (base->getGameS()->checkIfPlayerInstanceCreated())
     {
     
@@ -940,6 +941,24 @@ bool teamState::setupActivePlayerInstances()  // sets up active player objects
         {
                         
         }
+        
+        if (!APIIT.second->getStateMachineInitialized())
+        {
+            logMsg(func + " stateMachine not initialized!");
+            if (APIIT.second->initializeStateMachine())
+            {
+                logMsg(func + " stateMachine is now Initialized!");
+            }
+            else
+            {
+                logMsg(func + " Unable to initialize stateMachine !");
+            }
+        }
+        else
+        {
+            logMsg(func + " stateMachine initialized!");
+        }
+        exit(0);
     }
     
     for (auto APIIT : activePlayerInstance)

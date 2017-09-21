@@ -70,7 +70,7 @@ playerEntity::playerEntity()  // constructor
     physBodyInitialized = false;
     stateMachineInitialized = false;
     
-    stateMachineUpdated = false;
+    stateChanged = false;
     
 //    stateSet = false;
     // hack

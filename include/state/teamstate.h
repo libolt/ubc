@@ -150,7 +150,7 @@ public:
 
     bool setupActivePlayerInstances();  // sets up active player objects
     
-    void updatePlayerStates();  // updates the states of active players
+    void updateActivePlayers();  // updates the states of active players
     void updatePlayerDirections();  // updates the direction players are facing
     void updatePlayerMovements();	// updates the movement status of players
 

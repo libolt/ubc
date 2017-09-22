@@ -437,7 +437,7 @@ void teamState::updateState()  // updates the state of the object
         }
         logMsg(func +" Player start positions set");
 
-        updatePlayerStates();
+        updateActivePlayers();
         
     }
     else
@@ -761,6 +761,8 @@ bool teamState::setPlayerStartPositions()  // sets the initial coordinates for t
                 APIIT.second->setCourtPositionChanged(true);
                 APIIT.second->setCourtPositionChangedType(STARTCHANGE);
                 APIIT.second->setNewCourtPosition(startingPos[0]);
+                APIIT.second->setStateChanged(true);
+                APIIT.second->setStateAction(CHANGECOURTPOS);
                 
                 APIIT.second->setDirection(playerDirection);
                 APIIT.second->getSteer()->setPlayerPosition(PG);
@@ -972,8 +974,17 @@ bool teamState::setupActivePlayerInstances()  // sets up active player objects
     return (true);
 }
 
-void teamState::updatePlayerStates()  // updates the states of active players
+void teamState::updateActivePlayers()  // updates the states of active players
 {
+    sharedPtr<conversion> convert = conversion::Instance();
+    std::string func = "teamState::updateActivePlayers()";
+
+    logMsg(func +" beginning");
+    
+    for (auto APIIT : activePlayerInstance)  // executes updates to activePlayerInstances
+    {
+        APIIT.second->update();
+    }
 //FIXME! Needs refactored after playerStateMachine migration
 /*    sharedPtr<conversion> convert = conversion::Instance();
     std::string func = "teamState::updatePlayerStates()";

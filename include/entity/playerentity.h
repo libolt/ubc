@@ -74,7 +74,10 @@ class playerEntity : public entity
     void setStateMachineInitialized(bool set);  // sets the value of stateMachineInitialized
     
     bool getStateChanged();  // retrieves the value of stateChanged
-    void setStateChanged(bool set);  // sets the value if stateChanged
+    void setStateChanged(bool set);  // sets the value of stateChanged
+    
+    playerActions getStateAction();  // retrieves the value of stateAction
+    void setStateAction(playerActions set);  // sets the value of stateAction
     
     // playerState code that will likely be refactored
     bool getMovement();  // retrieves the value of movement
@@ -157,6 +160,7 @@ class playerEntity : public entity
     
     bool updateStateMachine(playerActions actionType, playerSMData *SMData);  // updates state machine with external input
     
+    bool update(); // executes any updates that need to be performed
     private:
 
     sharedPtr<playerData> data;  // instance of playerData object
@@ -224,6 +228,8 @@ class playerEntity : public entity
     bool stateMachineInitialized;   // Determines whether or not the stateMachine object has been initialized
 
     bool stateChanged;  // determines if the stateMachine needs to be updated
+    
+    playerActions stateAction;  // controls the action performed by stateMachine
 };
 
 #endif // _PLAYERENTITY_H_

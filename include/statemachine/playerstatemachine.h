@@ -32,6 +32,7 @@ public:
     size_t speed;
     directions direction;
     playerActions action;
+    Ogre::Vector3 position;
 };
 
 class playerStateMachine : public stateMachine
@@ -44,12 +45,14 @@ public:
     void halt();
     void pJump(playerSMData *data);
     void pChangeDirection(playerSMData *data);
+    void pChangePosition(playerSMData *data);
 
     
 private:
     size_t currentSpeed; 
     directions currentDirection;
     playerActions currentAction;
+    Ogre::Vector3 currentPosition;
     
     // State enumeration order must match the order of state method entries
     // in the state map.
@@ -57,8 +60,9 @@ private:
     {
         ST_IDLE,
         ST_STOP_MOVEMENT,
-        ST_START_MOVEMENT, 
-        ST_CHANGE_SPEED,      
+        ST_START_MOVEMENT,
+        ST_CHANGE_POSITION,  
+        ST_CHANGE_SPEED,
         ST_JUMP,
         ST_CHANGE_DIRECTION,
         ST_SHOOT,
@@ -70,6 +74,7 @@ private:
     STATE_DECLARE(playerStateMachine,    Idle,           noEventData)
     STATE_DECLARE(playerStateMachine,    StopMovement,   noEventData)
     STATE_DECLARE(playerStateMachine,    StartMovement,  playerSMData)
+    STATE_DECLARE(playerStateMachine,    ChangePosition,    playerSMData)
     STATE_DECLARE(playerStateMachine,    ChangeSpeed,    playerSMData)
     STATE_DECLARE(playerStateMachine,    Jump,           playerSMData)
     STATE_DECLARE(playerStateMachine,    ChangeDirection,    playerSMData)
@@ -82,6 +87,7 @@ private:
         STATE_MAP_ENTRY(&Idle)
         STATE_MAP_ENTRY(&StopMovement)
         STATE_MAP_ENTRY(&StartMovement)
+        STATE_MAP_ENTRY(&ChangePosition)
         STATE_MAP_ENTRY(&ChangeSpeed)
         STATE_MAP_ENTRY(&Jump)
         STATE_MAP_ENTRY(&ChangeDirection)

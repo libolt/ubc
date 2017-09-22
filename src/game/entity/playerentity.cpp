@@ -72,6 +72,8 @@ playerEntity::playerEntity()  // constructor
     
     stateChanged = false;
     
+    stateAction = NOACTION;
+    
 //    stateSet = false;
     // hack
   //  posChangeAmount = 0;
@@ -186,9 +188,18 @@ bool playerEntity::getStateChanged()  // retrieves the value of stateChanged
 {
     return (stateChanged);
 }
-void playerEntity::setStateChanged(bool set)  // sets the value if stateChanged
+void playerEntity::setStateChanged(bool set)  // sets the value of stateChanged
 {
     stateChanged = set;
+}
+
+playerActions playerEntity::getStateAction()  // retrieves the value of stateAction
+{
+    return (stateAction);
+}
+void playerEntity::setStateAction(playerActions set)  // sets the value of stateAction
+{
+    stateAction = set; 
 }
 
 bool playerEntity::getMovement()  // retrieves the value of movement
@@ -485,5 +496,20 @@ bool playerEntity::initializeStateMachine()  // initializes the stateMachine obj
 
 bool playerEntity::updateStateMachine(playerActions actionType, playerSMData *SMData)  // updates state machine with external input
 {
+    sharedPtr<conversion> convert = conversion::Instance();
+
+    std::string func = "playerEntity::updateStateMachine()";
+
+    logMsg(func + " beginning");
+    switch (stateAction)
+    {
+        case CHANGECOURTPOS:
+            logMsg(func + " CHANGECOURTPOS!");
+        break;
+    }
+    
+    logMsg(func + " end");
+    exit(0);
+    
     return (true);
 }

@@ -161,6 +161,7 @@ class playerEntity : public entity
     bool updateStateMachine(playerActions actionType, playerSMData *SMData);  // updates state machine with external input
     
     bool update(); // executes any updates that need to be performed
+
     private:
 
     sharedPtr<playerData> data;  // instance of playerData object

@@ -628,7 +628,6 @@ bool teamState::createPlayerInstances()  // creates the player instances
 
     logMsg(func +" beginning");
     
-    
     if (base->getGameS()->checkIfPlayerInstanceCreated())
     {
     
@@ -674,6 +673,8 @@ bool teamState::createPlayerInstances()  // creates the player instances
 //        exit(0);
     }
 */
+    logMsg(func +" end");
+
     return (true);
 }
 
@@ -960,7 +961,7 @@ bool teamState::setupActivePlayerInstances()  // sets up active player objects
         {
             logMsg(func + " stateMachine initialized!");
         }
-        exit(0);
+//        exit(0);
     }
     
     for (auto APIIT : activePlayerInstance)
@@ -985,6 +986,7 @@ void teamState::updateActivePlayers()  // updates the states of active players
     {
         APIIT.second->update();
     }
+    exit(0);
 //FIXME! Needs refactored after playerStateMachine migration
 /*    sharedPtr<conversion> convert = conversion::Instance();
     std::string func = "teamState::updatePlayerStates()";
@@ -1014,8 +1016,9 @@ void teamState::updateActivePlayers()  // updates the states of active players
     }
 
 //    exit(0);
-    logMsg(func +" end");
 */
+    logMsg(func +" end");
+
 }
 
 void teamState::updatePlayerDirections()  // updates the direction players are facing

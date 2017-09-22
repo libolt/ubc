@@ -157,8 +157,8 @@ STATE_DEFINE(playerStateMachine, ChangePosition, playerSMData)
 //    exit(0);
     sharedPtr<conversion> convert = conversion::Instance();
 
-    logMsg("playerStateMachine::ST_ChangePosition : Speed is " +convert->toString(data->speed));
-    currentSpeed = data->speed;
+    logMsg("playerStateMachine::ST_ChangePosition : court position is " +convert->toString(data->position));
+    currentPosition = data->position;
 //    exit(0);
     // perform the change player speed to data->speed here
 }

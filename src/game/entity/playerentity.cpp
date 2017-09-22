@@ -501,15 +501,32 @@ bool playerEntity::updateStateMachine(playerActions actionType, playerSMData *SM
     std::string func = "playerEntity::updateStateMachine()";
 
     logMsg(func + " beginning");
-    switch (stateAction)
-    {
-        case CHANGECOURTPOS:
-            logMsg(func + " CHANGECOURTPOS!");
-        break;
-    }
     
+    stateMachine->pChangePosition(SMData);
     logMsg(func + " end");
     exit(0);
     
     return (true);
+}
+
+bool playerEntity::update() // executes any updates that need to be performed
+{
+    std::string func = "playerEntity::update()";
+
+    logMsg(func +" beginning");
+
+    if (stateChanged)
+    {
+        switch (stateAction)
+        {
+            case CHANGECOURTPOS:
+                logMsg(func + " CHANGECOURTPOS!");
+                playerSMData *stateData = new playerSMData;
+                stateData->position = newCourtPosition;
+                updateStateMachine(stateAction,stateData);
+            break;
+        }
+    }
+
+    logMsg(func +" end");
 }

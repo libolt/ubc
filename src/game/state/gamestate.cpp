@@ -1574,6 +1574,13 @@ bool gameState::updateActiveTeamInstances()  // updates all active team instance
 
     logMsg(func +" beginning");
 
+    // temporary hack
+    for (auto ATIIT : activeTeamInstance)
+    {
+        ATIIT.second->updateState();
+    }
+//FIXME! Needs fixed for playerStateMachine refactoring
+/*
     std::vector<bool> tActivePlayersChanged = getTeamActivePlayersChanged();
     bool activePlayersChanged = false;
 //    tActivePlayersChanged.assign();
@@ -1659,7 +1666,7 @@ bool gameState::updateActiveTeamInstances()  // updates all active team instance
     {
     }
     setActiveTeamInstance(activeTeamInstance);
-    
+*/
     logMsg(func +" end");
 
     return (true);

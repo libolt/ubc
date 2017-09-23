@@ -32,11 +32,30 @@ playerStateMachine::playerStateMachine() :
     
 {
 }
-    
+
+void playerStateMachine::setPNodeModel(playerSMData *data) // sets the node and model to that of the entity parent object
+{
+    BEGIN_TRANSITION_MAP                                    // - Current State -
+        TRANSITION_MAP_ENTRY (ST_SET_NODEMODEL)                // ST_SET_NODEMODEL
+        TRANSITION_MAP_ENTRY (ST_SET_NODEMODEL)            // ST_IDLE
+        TRANSITION_MAP_ENTRY (ST_SET_NODEMODEL)                // ST_STOP
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)              // ST_START
+        TRANSITION_MAP_ENTRY (ST_SET_NODEMODEL)              // ST_CHANGE_POSITION
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_SPEED
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_JUMP
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_DIRECTION
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SHOOT
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_PASS
+    END_TRANSITION_MAP(data)
+
+}
+
+
 // set player speed external event
 void playerStateMachine::setSpeed(playerSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_SET_NODEMODEL
         TRANSITION_MAP_ENTRY (ST_START_MOVEMENT)            // ST_IDLE
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STOP
         TRANSITION_MAP_ENTRY (ST_CHANGE_SPEED)              // ST_START
@@ -54,6 +73,7 @@ void playerStateMachine::setSpeed(playerSMData *data)
 void playerStateMachine::halt()
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
+        TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_SET_NODEMODEL
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_IDLE
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STOP
         TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_START
@@ -71,6 +91,7 @@ void playerStateMachine::pJump(playerSMData *data)
 {
     logMsg("daaa");
     BEGIN_TRANSITION_MAP                                    // - Current State -
+        TRANSITION_MAP_ENTRY (ST_JUMP)                // ST_SET_NODEMODEL
         TRANSITION_MAP_ENTRY (ST_JUMP)                      // ST_IDLE
         TRANSITION_MAP_ENTRY (ST_JUMP)                      // ST_STOP
         TRANSITION_MAP_ENTRY (ST_JUMP)                      // ST_START
@@ -90,6 +111,7 @@ void playerStateMachine::pChangeDirection(playerSMData *data)
 {
     
     BEGIN_TRANSITION_MAP                                    // - Current State -
+        TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_SET_NODEMODEL
         TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_IDLE
         TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_STOP
         TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_START
@@ -108,6 +130,7 @@ void playerStateMachine::pChangePosition(playerSMData *data)
 {
     
     BEGIN_TRANSITION_MAP                                    // - Current State -
+        TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_SET_NODEMODEL
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_IDLE
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_STOP
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_START
@@ -120,6 +143,13 @@ void playerStateMachine::pChangePosition(playerSMData *data)
     END_TRANSITION_MAP(data)
 //    exit(0);
 }
+
+STATE_DEFINE(playerStateMachine, SetNodeModel, playerSMData)
+{
+    currentNode = data->node;
+    currentModel = data->model;
+}
+
 // state machine sits here when player is not moving
 STATE_DEFINE(playerStateMachine, Idle, noEventData)
 {

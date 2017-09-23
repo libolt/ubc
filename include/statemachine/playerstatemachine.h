@@ -33,6 +33,8 @@ public:
     directions direction;
     playerActions action;
     Ogre::Vector3 position;
+    OgreEntitySharedPtr model;  // stores 3d model
+    OgreSceneNodeSharedPtr node;  // stores node 3d model is attached to
 };
 
 class playerStateMachine : public stateMachine
@@ -41,6 +43,7 @@ public:
     playerStateMachine();
 
     // External events taken by this state machine
+    void setPNodeModel(playerSMData *data);  // sets the node and model to that of the entity parent object
     void setSpeed(playerSMData *data);
     void halt();
     void pJump(playerSMData *data);
@@ -53,11 +56,14 @@ private:
     directions currentDirection;
     playerActions currentAction;
     Ogre::Vector3 currentPosition;
-    
+    OgreEntitySharedPtr currentModel;  // stores 3d model
+    OgreSceneNodeSharedPtr currentNode;  // stores node 3d model is attached to
+
     // State enumeration order must match the order of state method entries
     // in the state map.
     enum States
     {
+        ST_SET_NODEMODEL,
         ST_IDLE,
         ST_STOP_MOVEMENT,
         ST_START_MOVEMENT,
@@ -71,19 +77,21 @@ private:
     };
 
     // Define the state machine state functions with event data type
-    STATE_DECLARE(playerStateMachine,    Idle,           noEventData)
-    STATE_DECLARE(playerStateMachine,    StopMovement,   noEventData)
-    STATE_DECLARE(playerStateMachine,    StartMovement,  playerSMData)
-    STATE_DECLARE(playerStateMachine,    ChangePosition,    playerSMData)
-    STATE_DECLARE(playerStateMachine,    ChangeSpeed,    playerSMData)
-    STATE_DECLARE(playerStateMachine,    Jump,           playerSMData)
-    STATE_DECLARE(playerStateMachine,    ChangeDirection,    playerSMData)
+    STATE_DECLARE(playerStateMachine,    SetNodeModel,    playerSMData)
+    STATE_DECLARE(playerStateMachine,    Idle,            noEventData)
+    STATE_DECLARE(playerStateMachine,    StopMovement,    noEventData)
+    STATE_DECLARE(playerStateMachine,    StartMovement,   playerSMData)
+    STATE_DECLARE(playerStateMachine,    ChangePosition,  playerSMData)
+    STATE_DECLARE(playerStateMachine,    ChangeSpeed,     playerSMData)
+    STATE_DECLARE(playerStateMachine,    Jump,            playerSMData)
+    STATE_DECLARE(playerStateMachine,    ChangeDirection, playerSMData)
     STATE_DECLARE(playerStateMachine,    Shoot,           playerSMData)
-    STATE_DECLARE(playerStateMachine,    Pass,           playerSMData)
+    STATE_DECLARE(playerStateMachine,    Pass,            playerSMData)
 
     // State map to define state object order. Each state map entry defines a
     // state object.
     BEGIN_STATE_MAP
+        STATE_MAP_ENTRY(&SetNodeModel)
         STATE_MAP_ENTRY(&Idle)
         STATE_MAP_ENTRY(&StopMovement)
         STATE_MAP_ENTRY(&StartMovement)

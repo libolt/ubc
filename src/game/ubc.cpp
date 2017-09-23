@@ -516,13 +516,13 @@ bool UBC::gameLoop()  // Main Game Loop
     
     playerSMD->speed = 100;
     playerSM.setSpeed(playerSMD);
-    playerSM.halt();
+/*    playerSM.halt();
     logMsg(func +" dah");
     playerSMD2->speed = 200;
     playerSM.pJump(playerSMD2);
     playerSMD3->direction = UP;
     playerSM.pChangeDirection(playerSMD3);
-    
+*/
     logMsg(func +" Wootio!");
 //    exit(0);
     

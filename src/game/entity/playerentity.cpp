@@ -488,7 +488,9 @@ bool playerEntity::initializeStateMachine()  // initializes the stateMachine obj
 {
     playerSMData *SMData = new playerSMData;
     
-    SMData->speed = 100;
+//    SMData->speed = 100;
+    SMData->model = getModel();  //
+    SMData->node = getNode();
     stateMachine->setSpeed(SMData);
     stateMachine->halt();
     return (true);

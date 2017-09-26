@@ -504,7 +504,15 @@ bool playerEntity::updateStateMachine(playerActions actionType, playerSMData *SM
 
     logMsg(func + " beginning");
     
-    stateMachine->pChangePosition(SMData);
+    switch (stateAction)
+    {
+        case CHANGECOURTPOS:
+            stateMachine->pChangePosition(SMData);
+        break;
+        case SETNODEMODEL:
+            stateMachine->setPNodeModel(SMData);
+        break;
+        
     logMsg(func + " end");
     exit(0);
     
@@ -514,7 +522,8 @@ bool playerEntity::updateStateMachine(playerActions actionType, playerSMData *SM
 bool playerEntity::update() // executes any updates that need to be performed
 {
     std::string func = "playerEntity::update()";
-
+    playerSMData *stateData
+    
     logMsg(func +" beginning");
 
     if (stateChanged)
@@ -523,9 +532,17 @@ bool playerEntity::update() // executes any updates that need to be performed
         {
             case CHANGECOURTPOS:
                 logMsg(func + " CHANGECOURTPOS!");
-                playerSMData *stateData = new playerSMData;
+                stateData = new playerSMData;
                 stateData->position = newCourtPosition;
                 updateStateMachine(stateAction,stateData);
+            break;
+            case SETNODEMODEL:
+                logMsg(func + " SETNODEMODEL!");
+                stateData = new playerSMData;
+                stateData->node = getNode();
+                stateData->model = getModel();  
+                updateStateMachine(stateAction,stateData);
+
             break;
         }
     }

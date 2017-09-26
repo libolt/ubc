@@ -55,7 +55,7 @@ void playerStateMachine::setPNodeModel(playerSMData *data) // sets the node and 
 void playerStateMachine::setSpeed(playerSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_SET_NODEMODEL
+        TRANSITION_MAP_ENTRY (ST_START_MOVEMENT)                // ST_SET_NODEMODEL
         TRANSITION_MAP_ENTRY (ST_START_MOVEMENT)            // ST_IDLE
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STOP
         TRANSITION_MAP_ENTRY (ST_CHANGE_SPEED)              // ST_START
@@ -189,6 +189,7 @@ STATE_DEFINE(playerStateMachine, ChangePosition, playerSMData)
 
     logMsg("playerStateMachine::ST_ChangePosition : court position is " +convert->toString(data->position));
     currentPosition = data->position;
+
 //    exit(0);
     // perform the change player speed to data->speed here
 }

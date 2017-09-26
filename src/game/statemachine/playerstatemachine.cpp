@@ -35,6 +35,10 @@ playerStateMachine::playerStateMachine() :
 
 void playerStateMachine::setPNodeModel(playerSMData *data) // sets the node and model to that of the entity parent object
 {
+    std:: string func = "playerStateMachine::setPNodeModel";
+
+    logMsg(func +" beginning");
+
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_SET_NODEMODEL)                // ST_SET_NODEMODEL
         TRANSITION_MAP_ENTRY (ST_SET_NODEMODEL)            // ST_IDLE
@@ -48,12 +52,18 @@ void playerStateMachine::setPNodeModel(playerSMData *data) // sets the node and 
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_PASS
     END_TRANSITION_MAP(data)
 
+    logMsg(func +" end");
+
 }
 
 
 // set player speed external event
 void playerStateMachine::setSpeed(playerSMData *data)
 {
+    std:: string func = "playerStateMachine::setSpeed";
+
+    logMsg(func +" beginning");
+
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_START_MOVEMENT)                // ST_SET_NODEMODEL
         TRANSITION_MAP_ENTRY (ST_START_MOVEMENT)            // ST_IDLE
@@ -66,12 +76,18 @@ void playerStateMachine::setSpeed(playerSMData *data)
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SHOOT
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_PASS
     END_TRANSITION_MAP(data)
-//    exit(0);
+
+    logMsg(func +" end");
+            //    exit(0);
 }
 
 // halt player external event
 void playerStateMachine::halt()
 {
+    std:: string func = "playerStateMachine::halt";
+
+    logMsg(func +" beginning");
+
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_SET_NODEMODEL
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_IDLE
@@ -84,12 +100,18 @@ void playerStateMachine::halt()
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_SHOOT
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_PASS
     END_TRANSITION_MAP(NULL)
+
+    logMsg(func +" end");
+
 }
     
 // jump player external event
 void playerStateMachine::pJump(playerSMData *data)
 {
-    logMsg("daaa");
+    std:: string func = "playerStateMachine::pJump";
+
+    logMsg(func +" beginning");
+
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_JUMP)                // ST_SET_NODEMODEL
         TRANSITION_MAP_ENTRY (ST_JUMP)                      // ST_IDLE
@@ -102,14 +124,17 @@ void playerStateMachine::pJump(playerSMData *data)
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SHOOT
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_PASS
     END_TRANSITION_MAP(data)
-    logMsg("dooo");
+    logMsg(func +" end");
 //    exit(0);
 }
    
 // change direction player external event
 void playerStateMachine::pChangeDirection(playerSMData *data)
 {
-    
+    std:: string func = "playerStateMachine::pChangeDirection";
+
+    logMsg(func +" beginning");
+
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_SET_NODEMODEL
         TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_IDLE
@@ -122,13 +147,19 @@ void playerStateMachine::pChangeDirection(playerSMData *data)
         TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_SHOOT
         TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_PASS
     END_TRANSITION_MAP(data)
-//    exit(0);
+
+    logMsg(func +" end");
+
+            //    exit(0);
 }
     
 // change  player position external event
 void playerStateMachine::pChangePosition(playerSMData *data)
 {
-    
+    std:: string func = "playerStateMachine::pChangePosition";
+
+    logMsg(func +" beginning");
+
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_SET_NODEMODEL
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_IDLE
@@ -141,25 +172,43 @@ void playerStateMachine::pChangePosition(playerSMData *data)
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_SHOOT
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_PASS
     END_TRANSITION_MAP(data)
+    logMsg(func +" end");
 //    exit(0);
 }
 
 STATE_DEFINE(playerStateMachine, SetNodeModel, playerSMData)
 {
+    std:: string func = "playerStateMachine::SetNodeModel";
+
+    logMsg(func +" beginning");
+
     currentNode = data->node;
     currentModel = data->model;
+
+    logMsg(func +" end");
+
 }
 
 // state machine sits here when player is not moving
 STATE_DEFINE(playerStateMachine, Idle, noEventData)
 {
+    std:: string func = "playerStateMachine::Idle";
+
+    logMsg(func +" beginning");
+
     logMsg("playerStateMachine::ST_Idle");
+    logMsg(func +" end");
+
 //    exit(0);
 }
 
 // stop the player
 STATE_DEFINE(playerStateMachine, StopMovement, noEventData)
 {
+    std:: string func = "playerStateMachine::StopMovement";
+
+    logMsg(func +" beginning");
+
     logMsg("playerStateMachine::ST_Stop");
     currentSpeed = 0; 
     currentDirection = NODIRECT;
@@ -168,17 +217,24 @@ STATE_DEFINE(playerStateMachine, StopMovement, noEventData)
     // transition to Idle via an internal event
     internalEvent(ST_IDLE);
 //    exit(0);
+    logMsg(func +" end");
+
 }
 
 // start the player moving
 STATE_DEFINE(playerStateMachine, StartMovement, playerSMData)
 {
     sharedPtr<conversion> convert = conversion::Instance();
+    std:: string func = "playerStateMachine::StartMovement";
+
+    logMsg(func +" beginning");
 
     logMsg("playerStateMachine::ST_Start : Speed is " +convert->toString(data->speed));
     currentSpeed = data->speed;
 //    exit(0);
     // set initial player speed processing here
+    logMsg(func +" end");
+
 }
 
 // changes the player's position on the court
@@ -186,22 +242,32 @@ STATE_DEFINE(playerStateMachine, ChangePosition, playerSMData)
 {
 //    exit(0);
     sharedPtr<conversion> convert = conversion::Instance();
+    std:: string func = "playerStateMachine::ChangePosition";
+
+    logMsg(func +" beginning");
 
     logMsg("playerStateMachine::ST_ChangePosition : court position is " +convert->toString(data->position));
     currentPosition = data->position;
 
+    logMsg(func +" end");
+
 //    exit(0);
-    // perform the change player speed to data->speed here
 }
 // changes the player's speed once the player is moving
 STATE_DEFINE(playerStateMachine, ChangeSpeed, playerSMData)
 {
 //    exit(0);
     sharedPtr<conversion> convert = conversion::Instance();
+    std:: string func = "playerStateMachine::ChangeSpeed";
+
+    logMsg(func +" beginning");
 
     logMsg("playerStateMachine::ST_ChangeSpeed : Speed is " +convert->toString(data->speed));
     currentSpeed = data->speed;
-//    exit(0);
+
+    logMsg(func +" end");
+
+    //    exit(0);
     // perform the change player speed to data->speed here
 }
 
@@ -209,8 +275,14 @@ STATE_DEFINE(playerStateMachine, ChangeSpeed, playerSMData)
 STATE_DEFINE(playerStateMachine, ChangeDirection, playerSMData)
 {
     sharedPtr<conversion> convert = conversion::Instance();
-   
+    std:: string func = "playerStateMachine::ChangeDirection";
+
+    logMsg(func +" beginning");
+
     logMsg("playerStateMachine::ST_ChangeDirection : Direction is " +convert->toString(data->direction));
+
+    logMsg(func +" end");
+
 //    currentSpeed = data->direction;
 //    exit(0);
     // perform the change player direction to data->direction here
@@ -218,13 +290,19 @@ STATE_DEFINE(playerStateMachine, ChangeDirection, playerSMData)
 
 STATE_DEFINE(playerStateMachine, Jump, playerSMData)
 {
+    std:: string func = "playerStateMachine::Jump";
 //    exit(0)
+
+    logMsg(func +" beginning");
+
     logMsg("jump");
     logMsg("flee");
     sharedPtr<conversion> convert = conversion::Instance();
     
     logMsg("playerStateMachine::ST_Jump : Speed is " +convert->toString(data->speed));
     internalEvent(ST_IDLE);
+
+    logMsg(func +" end");
 
 //    currentSpeed = data->speed;
 //    exit(0);
@@ -234,9 +312,15 @@ STATE_DEFINE(playerStateMachine, Jump, playerSMData)
 STATE_DEFINE(playerStateMachine, Shoot, playerSMData)
 {
     sharedPtr<conversion> convert = conversion::Instance();
+    std:: string func = "playerStateMachine::Shoot";
+
+    logMsg(func +" beginning");
 
     logMsg("playerStateMachine::ST_Shoot : Speed is " +convert->toString(data->speed));
     currentSpeed = data->speed;
+
+    logMsg(func +" end");
+
 //    exit(0);
 
     // set initial player shoot processing here
@@ -245,9 +329,16 @@ STATE_DEFINE(playerStateMachine, Shoot, playerSMData)
 STATE_DEFINE(playerStateMachine, Pass, playerSMData)
 {
     sharedPtr<conversion> convert = conversion::Instance();
+    std:: string func = "playerStateMachine::Pass";
+
+
+    logMsg(func +" beginning");
 
     logMsg("playerStateMachine::ST_Pass : Speed is " +convert->toString(data->speed));
     currentSpeed = data->speed;
+
+    logMsg(func +" end");
+
 //    exit(0);
     // set initial player pass processing here
 }

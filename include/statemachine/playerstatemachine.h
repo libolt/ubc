@@ -43,7 +43,8 @@ public:
     playerStateMachine();
 
     // External events taken by this state machine
-    void setPNodeModel(playerSMData *data);  // sets the node and model to that of the entity parent object
+    void setPNode(playerSMData *data);  // sets the node to that of the entity parent object
+    void setPModel(playerSMData *data);  // sets the model to that of the entity parent object
     void setSpeed(playerSMData *data);
     void halt();
     void pJump(playerSMData *data);
@@ -63,7 +64,8 @@ private:
     // in the state map.
     enum States
     {
-        ST_SET_NODEMODEL,
+        ST_SET_NODE,
+        ST_SET_MODEL,
         ST_IDLE,
         ST_STOP_MOVEMENT,
         ST_START_MOVEMENT,
@@ -77,7 +79,8 @@ private:
     };
 
     // Define the state machine state functions with event data type
-    STATE_DECLARE(playerStateMachine,    SetNodeModel,    playerSMData)
+    STATE_DECLARE(playerStateMachine,    SetNode,    playerSMData)
+    STATE_DECLARE(playerStateMachine,    SetModel,    playerSMData)
     STATE_DECLARE(playerStateMachine,    Idle,            noEventData)
     STATE_DECLARE(playerStateMachine,    StopMovement,    noEventData)
     STATE_DECLARE(playerStateMachine,    StartMovement,   playerSMData)
@@ -91,7 +94,8 @@ private:
     // State map to define state object order. Each state map entry defines a
     // state object.
     BEGIN_STATE_MAP
-        STATE_MAP_ENTRY(&SetNodeModel)
+        STATE_MAP_ENTRY(&SetNode)
+        STATE_MAP_ENTRY(&SetModel)
         STATE_MAP_ENTRY(&Idle)
         STATE_MAP_ENTRY(&StopMovement)
         STATE_MAP_ENTRY(&StartMovement)

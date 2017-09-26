@@ -504,17 +504,23 @@ bool playerEntity::updateStateMachine(playerActions actionType, playerSMData *SM
 
     logMsg(func + " beginning");
     
-    switch (stateAction)
+    switch (actionType)
     {
         case CHANGECOURTPOS:
+            logMsg(func + " CHANGECOURTPOS");
             stateMachine->pChangePosition(SMData);
         break;
-        case SETNODEMODEL:
-            stateMachine->setPNodeModel(SMData);
+        case SETNODE:
+            logMsg(func + " SETNODE");
+            stateMachine->setPNode(SMData);
+        break;
+        case SETMODEL:
+            logMsg(func + " SETMODEL");
+            stateMachine->setPModel(SMData);
         break;
     }
     logMsg(func + " end");
-    exit(0);
+//    exit(0);
     
     return (true);
 }
@@ -531,17 +537,18 @@ bool playerEntity::update() // executes any updates that need to be performed
         {
             case CHANGECOURTPOS:
                 logMsg(func + " CHANGECOURTPOS!");
-
                 stateData->position = newCourtPosition;
                 updateStateMachine(stateAction,stateData);
             break;
-            case SETNODEMODEL:
-                logMsg(func + " SETNODEMODEL!");
-//                stateData = new playerSMData;
+            case SETNODE:
+                logMsg(func + " SETNODE!");
                 stateData->node = getNode();
+                updateStateMachine(stateAction,stateData);
+            break;
+            case SETMODEL:
+                logMsg(func + " SETMODEL!");
                 stateData->model = getModel();  
                 updateStateMachine(stateAction,stateData);
-
             break;
         }
     }

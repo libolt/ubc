@@ -33,6 +33,7 @@
 #include "state/defensestate.h"
 #include "state/playerstate.h"
 #include "state/offensestate.h"
+#include "statemachine/playerstatemachine.h"
 #include "statistics/teamstatistics.h"
 #include "logging.h"
 #include "engine/physicsengine.h"
@@ -951,6 +952,12 @@ bool teamState::setupActivePlayerInstances()  // sets up active player objects
             if (APIIT.second->initializeStateMachine())
             {
                 logMsg(func + " stateMachine is now Initialized!");
+                
+                playerSMData *SMData = new playerSMData;
+                SMData->node = APIIT.second->getNode();
+                APIIT.second->setStateChanged(true);
+                APIIT.second->updateStateMachine(SETNODE, SMData);
+                exit(0);
             }
             else
             {
@@ -986,7 +993,7 @@ void teamState::updateActivePlayers()  // updates the states of active players
     {
         APIIT.second->update();
     }
-    exit(0);
+//    exit(0);
 //FIXME! Needs refactored after playerStateMachine migration
 /*    sharedPtr<conversion> convert = conversion::Instance();
     std::string func = "teamState::updatePlayerStates()";

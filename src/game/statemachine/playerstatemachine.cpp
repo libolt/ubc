@@ -294,7 +294,7 @@ STATE_DEFINE(playerStateMachine, ChangePosition, playerSMData)
 
     logMsg(func +" end");
 
-//    exit(0);
+    exit(0);
 }
 // changes the player's speed once the player is moving
 STATE_DEFINE(playerStateMachine, ChangeSpeed, playerSMData)

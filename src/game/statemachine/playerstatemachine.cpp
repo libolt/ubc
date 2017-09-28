@@ -54,7 +54,7 @@ void playerStateMachine::setPNode(playerSMData *data) // sets the node to that o
     END_TRANSITION_MAP(data)
 
     logMsg(func +" end");
-    exit(0);
+//    exit(0);
 
 }
 
@@ -79,7 +79,7 @@ void playerStateMachine::setPModel(playerSMData *data) // sets the model to that
     END_TRANSITION_MAP(data)
 
     logMsg(func +" end");
-    exit(0);
+//    exit(0);
 
 }
 // set player speed external event
@@ -291,10 +291,11 @@ STATE_DEFINE(playerStateMachine, ChangePosition, playerSMData)
 
     logMsg("playerStateMachine::ST_ChangePosition : court position is " +convert->toString(data->position));
     currentPosition = data->position;
-
+    currentNode->setPosition(currentPosition);
+    logMsg(func +" Node Position == " +convert->toString(currentNode->getPosition()));
     logMsg(func +" end");
 
-    exit(0);
+//    exit(0);
 }
 // changes the player's speed once the player is moving
 STATE_DEFINE(playerStateMachine, ChangeSpeed, playerSMData)

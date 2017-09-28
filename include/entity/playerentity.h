@@ -79,6 +79,12 @@ class playerEntity : public entity
     playerActions getStateAction();  // retrieves the value of stateAction
     void setStateAction(playerActions set);  // sets the value of stateAction
     
+    bool getSMNodeSet();  // retrieves the value of SMNodeSet
+    void setSMNodeSet(bool set);  // sets the value of SMNodeSet
+
+    bool getSMModelSet();  // retrieves the value of SMModelSet
+    void setSMModelSet(bool set);  // sets the value of SMModelSet
+
     // playerState code that will likely be refactored
     bool getMovement();  // retrieves the value of movement
     void setMovement(bool set);  // sets the value of movement
@@ -228,8 +234,11 @@ class playerEntity : public entity
 
     bool stateMachineInitialized;   // Determines whether or not the stateMachine object has been initialized
 
-    bool stateChanged;  // determines if the stateMachine needs to be updated
+    bool stateChanged;  // Determines if the stateMachine needs to be updated
     
+    bool SMNodeSet; // Determines if the stateMachine's node value has been set
+    bool SMModelSet; // Determines if the stateMachine's model value has been set
+
     playerActions stateAction;  // controls the action performed by stateMachine
 };
 

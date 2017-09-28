@@ -776,6 +776,8 @@ bool teamState::setPlayerStartPositions()  // sets the initial coordinates for t
                 APIIT.second->setCourtPositionChanged(true);
                 APIIT.second->setCourtPositionChangedType(STARTCHANGE);
                 APIIT.second->setNewCourtPosition(startingPos[1]);
+                APIIT.second->setStateChanged(true);
+                APIIT.second->setStateAction(CHANGECOURTPOS);
 
                 APIIT.second->setDirection(playerDirection);
                 APIIT.second->getSteer()->setPlayerPosition(SG);
@@ -787,6 +789,8 @@ bool teamState::setPlayerStartPositions()  // sets the initial coordinates for t
                 APIIT.second->setCourtPositionChanged(true);
                 APIIT.second->setCourtPositionChangedType(STARTCHANGE);
                 APIIT.second->setNewCourtPosition(startingPos[2]);
+                APIIT.second->setStateChanged(true);
+                APIIT.second->setStateAction(CHANGECOURTPOS);
 
                 APIIT.second->setDirection(playerDirection);
                 APIIT.second->getSteer()->setPlayerPosition(SF);
@@ -798,6 +802,8 @@ bool teamState::setPlayerStartPositions()  // sets the initial coordinates for t
                 APIIT.second->setCourtPositionChanged(true);
                 APIIT.second->setCourtPositionChangedType(STARTCHANGE);
                 APIIT.second->setNewCourtPosition(startingPos[3]);
+                APIIT.second->setStateChanged(true);
+                APIIT.second->setStateAction(CHANGECOURTPOS);
 
                 APIIT.second->setDirection(playerDirection);
                 APIIT.second->getSteer()->setPlayerPosition(PF);
@@ -809,6 +815,8 @@ bool teamState::setPlayerStartPositions()  // sets the initial coordinates for t
                 APIIT.second->setCourtPositionChanged(true);
                 APIIT.second->setCourtPositionChangedType(STARTCHANGE);
                 APIIT.second->setNewCourtPosition(startingPos[4]);
+                APIIT.second->setStateChanged(true);
+                APIIT.second->setStateAction(CHANGECOURTPOS);
 
                 APIIT.second->setDirection(playerDirection);
                 APIIT.second->getSteer()->setPlayerPosition(C);
@@ -953,11 +961,49 @@ bool teamState::setupActivePlayerInstances()  // sets up active player objects
             {
                 logMsg(func + " stateMachine is now Initialized!");
                 
-                playerSMData *SMData = new playerSMData;
-                SMData->node = APIIT.second->getNode();
-                APIIT.second->setStateChanged(true);
-                APIIT.second->updateStateMachine(SETNODE, SMData);
-                exit(0);
+                if (!APIIT.second->getSMNodeSet())  // sets the value of node if it has not been set already
+                {
+                    playerSMData *SMData = new playerSMData;
+                    SMData->node = APIIT.second->getNode();
+                    APIIT.second->setStateChanged(true);
+                    if (APIIT.second->updateStateMachine(SETNODE, SMData))
+                    {
+                        APIIT.second->setSMNodeSet(true);
+                        logMsg(func +" stateMachine node has been set!");
+                    }
+                    else
+                    {
+                        logMsg(func +" Unable to set stateMachine node");
+                        exit(0);
+                    }
+//                    exit(0);
+                }
+                else
+                {
+                    logMsg(func +" stateMachine node already set");
+                }
+
+                if (!APIIT.second->getSMModelSet())  // sets the value of model if it has not been set already
+                {
+                    playerSMData *SMData = new playerSMData;
+                    SMData->model = APIIT.second->getModel();
+                    APIIT.second->setStateChanged(true);
+                    if (APIIT.second->updateStateMachine(SETMODEL, SMData))
+                    {
+                        APIIT.second->setSMModelSet(true);
+                        logMsg(func +" stateMachine model has been set!");
+                    }
+                    else
+                    {
+                        logMsg(func +" Unable to set stateMachine model");
+                        exit(0);
+                    }
+//                    exit(0);
+                }
+                else
+                {
+                    logMsg(func +" stateMachine model already set");
+                }
             }
             else
             {
@@ -966,7 +1012,50 @@ bool teamState::setupActivePlayerInstances()  // sets up active player objects
         }
         else
         {
-            logMsg(func + " stateMachine initialized!");
+            logMsg(func + " stateMachine already Initialized!");
+            if (!APIIT.second->getSMNodeSet())  // sets the value of node if it has not been set already
+            {
+                playerSMData *SMData = new playerSMData;
+                SMData->node = APIIT.second->getNode();
+                APIIT.second->setStateChanged(true);
+                if (APIIT.second->updateStateMachine(SETNODE, SMData))
+                {
+                    APIIT.second->setSMNodeSet(true);
+                    logMsg(func +" stateMachine node has been set!");
+                }
+                else
+                {
+                    logMsg(func +" Unable to set stateMachine node");
+                    exit(0);
+                }
+//                    exit(0);
+            }
+            else
+            {
+                logMsg(func +" stateMachine node already set");
+            }
+
+            if (!APIIT.second->getSMModelSet())  // sets the value of model if it has not been set already
+            {
+                playerSMData *SMData = new playerSMData;
+                SMData->model = APIIT.second->getModel();
+                APIIT.second->setStateChanged(true);
+                if (APIIT.second->updateStateMachine(SETMODEL, SMData))
+                {
+                    APIIT.second->setSMModelSet(true);
+                    logMsg(func +" stateMachine model has been set!");
+                }
+                else
+                {
+                    logMsg(func +" Unable to set stateMachine model");
+                    exit(0);
+                }
+//                    exit(0);
+            }
+            else
+            {
+                logMsg(func +" stateMachine model already set");
+            }
         }
 //        exit(0);
     }

@@ -74,6 +74,9 @@ playerEntity::playerEntity()  // constructor
     
     stateAction = NOACTION;
     
+    SMNodeSet = false;
+    SMModelSet = false;
+
 //    stateSet = false;
     // hack
   //  posChangeAmount = 0;
@@ -200,6 +203,24 @@ playerActions playerEntity::getStateAction()  // retrieves the value of stateAct
 void playerEntity::setStateAction(playerActions set)  // sets the value of stateAction
 {
     stateAction = set; 
+}
+
+bool playerEntity::getSMNodeSet()  // retrieves the value of SMNodeSet
+{
+    return (SMNodeSet);
+}
+void playerEntity::setSMNodeSet(bool set)  // sets the value of SMNodeSet
+{
+    SMNodeSet = set;
+}
+
+bool playerEntity::getSMModelSet()  // retrieves the value of SMModelSet
+{
+    return (SMModelSet);
+}
+void playerEntity::setSMModelSet(bool set)  // sets the value of SMModelSet
+{
+    SMModelSet = set;
 }
 
 bool playerEntity::getMovement()  // retrieves the value of movement
@@ -511,12 +532,14 @@ bool playerEntity::updateStateMachine(playerActions actionType, playerSMData *SM
             stateMachine->pChangePosition(SMData);
         break;
         case SETNODE:
-            logMsg(func + " SETNODE");
+            logMsg(func +" SETNODE");
             stateMachine->setPNode(SMData);
+            logMsg(func +" NODESET");
         break;
         case SETMODEL:
-            logMsg(func + " SETMODEL");
+            logMsg(func +" SETMODEL");
             stateMachine->setPModel(SMData);
+            logMsg(func +" MODELSET");
         break;
     }
     logMsg(func + " end");
@@ -538,18 +561,23 @@ bool playerEntity::update() // executes any updates that need to be performed
             case CHANGECOURTPOS:
                 logMsg(func + " CHANGECOURTPOS!");
                 stateData->position = newCourtPosition;
-                updateStateMachine(stateAction,stateData);
             break;
             case SETNODE:
                 logMsg(func + " SETNODE!");
                 stateData->node = getNode();
-                updateStateMachine(stateAction,stateData);
             break;
             case SETMODEL:
                 logMsg(func + " SETMODEL!");
                 stateData->model = getModel();  
-                updateStateMachine(stateAction,stateData);
             break;
+        }
+        if(updateStateMachine(stateAction,stateData)) // attempts to update the stateMachine and returns true if successful
+        {
+//            stateChanged = false;  // sets stateChanged back to false now that hte stateMachine has been updated
+        }
+        else
+        {
+            logMsg(func +" Unable to update stateMachine!");
         }
     }
 

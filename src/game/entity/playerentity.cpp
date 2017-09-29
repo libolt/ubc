@@ -554,6 +554,23 @@ bool playerEntity::update() // executes any updates that need to be performed
     playerSMData *stateData = new playerSMData;
     logMsg(func +" beginning");
 
+    if (getPhysicsSetup())
+    {
+        logMsg(func + " Updating player physics");
+
+        getPhysics()->update();
+        logMsg(func +" Updating Court Position");
+//        updateCourtPosition();
+        logMsg(func +" Court Position Updated!");
+//        exit(0);
+    }
+    else
+    {
+        logMsg(func +" " +data->getFirstName() + " " +data->getLastName() +" physics NOT SETUP!");
+
+    }
+    exit(0);
+    
     if (stateChanged)
     {
         switch (stateAction)

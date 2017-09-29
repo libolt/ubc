@@ -1139,6 +1139,8 @@ void teamState::updatePlayerDirections()  // updates the direction players are f
     size_t y = 0;
 //    for (size_t i = 0; i < playerInstance.size(); ++i)
 //    while (x<activePlayerInstance.size())
+    
+    exit(0);
     for (auto APIIT : activePlayerInstance)
     {
         playerDirection = APIIT.second->getDirection();

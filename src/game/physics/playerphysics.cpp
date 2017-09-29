@@ -182,7 +182,7 @@ void playerPhysics::update()  // updates the player physics object
 {
     std::string func = "playerPhysics::update()";
     logMsg(func +" beginning");
-
+exit(0);
     logMsg(func +" end");
 //    exit(0);
 }

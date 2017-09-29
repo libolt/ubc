@@ -325,6 +325,96 @@ STATE_DEFINE(playerStateMachine, ChangeDirection, playerSMData)
 
     logMsg("playerStateMachine::ST_ChangeDirection : Direction is " +convert->toString(data->direction));
 
+    switch (currentDirection)
+    {
+        case UP:
+            switch (data->direction)
+            {
+                case DOWN:
+                    node->yaw(Ogre::Degree (180));
+                break;
+                case LEFT:
+                    node->yaw(Ogre::Degree (270));
+                break;
+                case RIGHT:
+                    node->yaw(Ogre::Degree (90));
+//                        exit(0);
+                break;
+                default:
+                break;
+            }
+//                exit(0);
+        break;
+        case DOWN:
+            switch (direction)
+            {
+                case UP:
+                    node->yaw(Ogre::Degree (180));
+                break;
+                case LEFT:
+                    node->yaw(Ogre::Degree (90));
+                break;
+                case RIGHT:
+                    node->yaw(Ogre::Degree (270));
+                break;
+                default:
+                break;
+            }
+        break;
+        case LEFT:
+            switch (direction)
+            {
+                case UP:
+                    node->yaw(Ogre::Degree (90));
+                break;
+                case DOWN:
+                    node->yaw(Ogre::Degree (270));
+                break;
+                case RIGHT:
+                    node->yaw(Ogre::Degree (180));
+                break;
+                default:
+                break;
+            }
+        break;
+        case RIGHT:
+            switch (direction)
+            {
+                case UP:
+                    node->yaw(Ogre::Degree (270));
+                break;
+                case DOWN:
+                    node->yaw(Ogre::Degree (90));
+                break;
+                case LEFT:
+                    node->yaw(Ogre::Degree (180));
+                break;
+                default:
+                break;
+            }
+        break;
+        case NODIRECT:
+            switch (direction)
+            {
+                case UP:
+                    node->yaw(Ogre::Degree (270));
+                break;
+                case DOWN:
+                    node->yaw(Ogre::Degree (90));
+                break;
+                case LEFT:
+                    node->yaw(Ogre::Degree (0));
+                break;
+                case RIGHT:
+                    node->yaw(Ogre::Degree (180));
+                break;
+                default:
+                break;
+            }
+            break;
+            default:
+        break;
+    }
     logMsg(func +" end");
 
 //    currentSpeed = data->direction;

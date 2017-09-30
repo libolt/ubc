@@ -148,6 +148,8 @@ public:
     bool setPlayerStartPositions();	 // sets the initial coordinates for the players.
     void setPlayerStartActivePositions();  // sets the position the players will play at the start of the game
 
+    bool setPlayerStartDirections();  // sets the initial directions for the players.
+
     bool setupActivePlayerInstances();  // sets up active player objects
     
     void updateActivePlayers();  // updates the states of active players
@@ -173,23 +175,7 @@ private:
 //    static size_t teamID;  // stores the ID number of the team;
 
     std::string playerType;  // stores the type of player in control of the team (human,network,ai) are valid values
-/*    size_t assists;  // stores number of assists team has.
-    size_t blocks;  // stores the total number of blocks.
-    size_t fouls;  // stores the total number of fouls.
-    size_t rebounds;  // stores the total number of rebounds.
-    size_t offensiveRebounds;  // stores the total number of offensive rebounds.
-    size_t defensiveRebounds;  // stores the total number of defensive rebounds.
-    size_t steals;  // stores the total number of steals.
-    size_t technicals;  // stores the total number of technical fouls commited.
-    size_t timeouts;  // stores the total number of timeouts available.
-    size_t turnovers;  // stores the total number turnovers.
-    size_t fieldGoalsAttempted;  // stores the total number of field goals attempted.
-    size_t fieldGoalsMade;  // stores the total number of field goals made.
-    size_t threePointersAttempted;  // stores the total number of 3 pointers attempted.
-    size_t threePointersMade;  // stores the total number of 3 pointers made.
-    size_t freeThrowsAttempted;  // stores the total number of free throws attempted.
-    size_t freeThrowsMade;  // stores the total number of free throws made.
-*/
+
     sizeTVec playerID;  // stores the player IDs from the teams class
     sizeTVec activePlayerID;  // stores which players are currently on the court.
     sizeTVec starterID;  // stores the IDs of which players are listed as starters.

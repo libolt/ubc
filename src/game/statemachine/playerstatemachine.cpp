@@ -331,13 +331,13 @@ STATE_DEFINE(playerStateMachine, ChangeDirection, playerSMData)
             switch (data->direction)
             {
                 case DOWN:
-                    node->yaw(Ogre::Degree (180));
+                    currentNode->yaw(Ogre::Degree (180));
                 break;
                 case LEFT:
-                    node->yaw(Ogre::Degree (270));
+                    currentNode->yaw(Ogre::Degree (270));
                 break;
                 case RIGHT:
-                    node->yaw(Ogre::Degree (90));
+                    currentNode->yaw(Ogre::Degree (90));
 //                        exit(0);
                 break;
                 default:
@@ -346,67 +346,67 @@ STATE_DEFINE(playerStateMachine, ChangeDirection, playerSMData)
 //                exit(0);
         break;
         case DOWN:
-            switch (direction)
+            switch (data->direction)
             {
                 case UP:
-                    node->yaw(Ogre::Degree (180));
+                    currentNode->yaw(Ogre::Degree (180));
                 break;
                 case LEFT:
-                    node->yaw(Ogre::Degree (90));
+                    currentNode->yaw(Ogre::Degree (90));
                 break;
                 case RIGHT:
-                    node->yaw(Ogre::Degree (270));
+                    currentNode->yaw(Ogre::Degree (270));
                 break;
                 default:
                 break;
             }
         break;
         case LEFT:
-            switch (direction)
+            switch (data->direction)
             {
                 case UP:
-                    node->yaw(Ogre::Degree (90));
+                    currentNode->yaw(Ogre::Degree (90));
                 break;
                 case DOWN:
-                    node->yaw(Ogre::Degree (270));
+                    currentNode->yaw(Ogre::Degree (270));
                 break;
                 case RIGHT:
-                    node->yaw(Ogre::Degree (180));
+                    currentNode->yaw(Ogre::Degree (180));
                 break;
                 default:
                 break;
             }
         break;
         case RIGHT:
-            switch (direction)
+            switch (data->direction)
             {
                 case UP:
-                    node->yaw(Ogre::Degree (270));
+                    currentNode->yaw(Ogre::Degree (270));
                 break;
                 case DOWN:
-                    node->yaw(Ogre::Degree (90));
+                    currentNode->yaw(Ogre::Degree (90));
                 break;
                 case LEFT:
-                    node->yaw(Ogre::Degree (180));
+                    currentNode->yaw(Ogre::Degree (180));
                 break;
                 default:
                 break;
             }
         break;
         case NODIRECT:
-            switch (direction)
+            switch (data->direction)
             {
                 case UP:
-                    node->yaw(Ogre::Degree (270));
+                    currentNode->yaw(Ogre::Degree (270));
                 break;
                 case DOWN:
-                    node->yaw(Ogre::Degree (90));
+                    currentNode->yaw(Ogre::Degree (90));
                 break;
                 case LEFT:
-                    node->yaw(Ogre::Degree (0));
+                    currentNode->yaw(Ogre::Degree (0));
                 break;
                 case RIGHT:
-                    node->yaw(Ogre::Degree (180));
+                    currentNode->yaw(Ogre::Degree (180));
                 break;
                 default:
                 break;

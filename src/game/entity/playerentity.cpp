@@ -531,6 +531,10 @@ bool playerEntity::updateStateMachine(playerActions actionType, playerSMData *SM
             logMsg(func + " CHANGECOURTPOS");
             stateMachine->pChangePosition(SMData);
         break;
+        case CHANGEDIRECTION:
+            logMsg(func + " CHANGEDIRECTION");
+            stateMachine->pChangeDirection(SMData);
+        break;
         case SETNODE:
             logMsg(func +" SETNODE");
             stateMachine->setPNode(SMData);
@@ -578,6 +582,10 @@ bool playerEntity::update() // executes any updates that need to be performed
             case CHANGECOURTPOS:
                 logMsg(func + " CHANGECOURTPOS!");
                 stateData->position = newCourtPosition;
+            break;
+            case CHANGEDIRECTION:
+                logMsg(func + " CHANGEDIRECTION!");
+                stateData->direction = direction;
             break;
             case SETNODE:
                 logMsg(func + " SETNODE!");

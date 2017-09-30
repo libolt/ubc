@@ -686,7 +686,7 @@ bool teamState::setPlayerStartPositions()  // sets the initial coordinates for t
 //    sharedPtr<gameEngine> gameE = gameEngine::Instance();
     std::vector<std::unordered_map<std::string, size_t> > teamStarterID = base->getGameS()->getTeamStarterID();
     OgreVector3Vec startingPos;
-    directions playerDirection; // stores the direction players face at start
+//    directions playerDirection; // stores the direction players face at start
     std::string func = "teamState::setPlayerStartPositions()";
     courtStateUMSharedPtr courtInstance = base->getGameS()->getCourtInstance();
     Ogre::Vector3 courtPos = courtInstance[0]->getEntity()->getNodePosition();
@@ -713,34 +713,25 @@ bool teamState::setPlayerStartPositions()  // sets the initial coordinates for t
 //    exit(0);
     // set initial player coordinates for the tipoff
 
-    if (teamType == HOMETEAM)   // assigns the positions and directions for team 1 players
+    switch (teamType)
     {
-        // assign positions
-
-//        yOffset = y;
-       base->getGameS()->setYOffset(yOffset);
-        
-        
-        startingPos.push_back(Ogre::Vector3(14.4f,yOffset,352.0f));
-        startingPos.push_back(Ogre::Vector3(2.0f,yOffset,347.6f));
-        startingPos.push_back(Ogre::Vector3(2.0f,yOffset,360.0f));
-        startingPos.push_back(Ogre::Vector3(5.2f,yOffset,351.6f));
-        startingPos.push_back(Ogre::Vector3(1.6f,yOffset,352.0f));
-        
-        playerDirection = LEFT;     
-    }
-    else if (teamType == AWAYTEAM) // assigns the positions and directions for team 2 players
-    {
-        
-        // assign positions
-
-        startingPos.push_back(Ogre::Vector3(-13.8f,yOffset,352.0f));
-        startingPos.push_back(Ogre::Vector3(-0.8f,yOffset,347.6f));
-        startingPos.push_back(Ogre::Vector3(-0.8f,yOffset,360.8f));
-        startingPos.push_back(Ogre::Vector3(4.4f,yOffset,348.8f));
-        startingPos.push_back(Ogre::Vector3(-0.4f,yOffset,352.0f));
-
-        playerDirection = RIGHT;        
+        case HOMETEAM:   // assigns the positions and directions for team 1 player
+            base->getGameS()->setYOffset(yOffset);
+            // assign positions
+            startingPos.push_back(Ogre::Vector3(14.4f,yOffset,352.0f));
+            startingPos.push_back(Ogre::Vector3(2.0f,yOffset,347.6f));
+            startingPos.push_back(Ogre::Vector3(2.0f,yOffset,360.0f));
+            startingPos.push_back(Ogre::Vector3(5.2f,yOffset,351.6f));
+            startingPos.push_back(Ogre::Vector3(1.6f,yOffset,352.0f));
+        break;
+        case AWAYTEAM: // assigns the positions and directions for team 2 players       
+            // assign positions
+            startingPos.push_back(Ogre::Vector3(-13.8f,yOffset,352.0f));
+            startingPos.push_back(Ogre::Vector3(-0.8f,yOffset,347.6f));
+            startingPos.push_back(Ogre::Vector3(-0.8f,yOffset,360.8f));
+            startingPos.push_back(Ogre::Vector3(4.4f,yOffset,348.8f));
+            startingPos.push_back(Ogre::Vector3(-0.4f,yOffset,352.0f));
+        break;
     }
 
 
@@ -757,79 +748,50 @@ bool teamState::setPlayerStartPositions()  // sets the initial coordinates for t
         {
             logMsg(func +" activePlayerInstance.size > 0!");
  //           exit(0);
-            if (APIIT.second->getActivePosition() == PG)
+            switch (APIIT.second->getActivePosition())
             {
-                //activePlayerInstance[x]->getNode()->setPosition(startingPos[0]);
-                APIIT.second->setCourtPositionChanged(true);
-                APIIT.second->setCourtPositionChangedType(STARTCHANGE);
-                APIIT.second->setNewCourtPosition(startingPos[0]);
-                APIIT.second->setStateChanged(true);
-                APIIT.second->setStateAction(CHANGECOURTPOS);
-                
-                APIIT.second->setDirection(playerDirection);
-                APIIT.second->getSteer()->setPlayerPosition(PG);
-                //activePlayerInstance[x]->getSteer()->setPosition(convert->toOpenSteerVec3(startingPos[0]));               
+                case PG:
+                    APIIT.second->setCourtPositionChanged(true);
+                    APIIT.second->setCourtPositionChangedType(STARTCHANGE);
+                    APIIT.second->setNewCourtPosition(startingPos[0]);
+                    APIIT.second->setStateChanged(true);
+                    APIIT.second->setStateAction(CHANGECOURTPOS);
+                    APIIT.second->getSteer()->setPlayerPosition(PG);
+                break;
+                case SG:          
+                    APIIT.second->setCourtPositionChanged(true);
+                    APIIT.second->setCourtPositionChangedType(STARTCHANGE);
+                    APIIT.second->setNewCourtPosition(startingPos[1]);
+                    APIIT.second->setStateChanged(true);
+                    APIIT.second->setStateAction(CHANGECOURTPOS);
+                    APIIT.second->getSteer()->setPlayerPosition(SG);
+                break;
+                case SF:           
+                    APIIT.second->setCourtPositionChanged(true);
+                    APIIT.second->setCourtPositionChangedType(STARTCHANGE);
+                    APIIT.second->setNewCourtPosition(startingPos[2]);
+                    APIIT.second->setStateChanged(true);
+                    APIIT.second->setStateAction(CHANGECOURTPOS);
+                    APIIT.second->getSteer()->setPlayerPosition(SF);
+                break;
+                case PF:            
+                    APIIT.second->setCourtPositionChanged(true);
+                    APIIT.second->setCourtPositionChangedType(STARTCHANGE);
+                    APIIT.second->setNewCourtPosition(startingPos[3]);
+                    APIIT.second->setStateChanged(true);
+                    APIIT.second->setStateAction(CHANGECOURTPOS);
+                    APIIT.second->getSteer()->setPlayerPosition(PF);
+                break;
+                case C:
+                    APIIT.second->setCourtPositionChanged(true);
+                    APIIT.second->setCourtPositionChangedType(STARTCHANGE);
+                    APIIT.second->setNewCourtPosition(startingPos[4]);
+                    APIIT.second->setStateChanged(true);
+                    APIIT.second->setStateAction(CHANGECOURTPOS);
+                    APIIT.second->getSteer()->setPlayerPosition(C);
+                break;
             }
-            else if (APIIT.second->getActivePosition() == SG)
-            {
-                //activePlayerInstance[x]->getNode()->setPosition(startingPos[1]);
-                APIIT.second->setCourtPositionChanged(true);
-                APIIT.second->setCourtPositionChangedType(STARTCHANGE);
-                APIIT.second->setNewCourtPosition(startingPos[1]);
-                APIIT.second->setStateChanged(true);
-                APIIT.second->setStateAction(CHANGECOURTPOS);
-
-                APIIT.second->setDirection(playerDirection);
-                APIIT.second->getSteer()->setPlayerPosition(SG);
-                //activePlayerInstance[x]->getSteer()->setPosition(convert->toOpenSteerVec3(startingPos[1]-5));
-            }
-            else if (APIIT.second->getActivePosition() == SF)
-            {
-                //activePlayerInstance[x]->getNode()->setPosition(startingPos[2]);
-                APIIT.second->setCourtPositionChanged(true);
-                APIIT.second->setCourtPositionChangedType(STARTCHANGE);
-                APIIT.second->setNewCourtPosition(startingPos[2]);
-                APIIT.second->setStateChanged(true);
-                APIIT.second->setStateAction(CHANGECOURTPOS);
-
-                APIIT.second->setDirection(playerDirection);
-                APIIT.second->getSteer()->setPlayerPosition(SF);
-                //activePlayerInstance[x]->getSteer()->setPosition(convert->toOpenSteerVec3(startingPos[2]));
-            }
-            else if (APIIT.second->getActivePosition() == PF)
-            {
-                //activePlayerInstance[x]->getNode()->setPosition(startingPos[3]);
-                APIIT.second->setCourtPositionChanged(true);
-                APIIT.second->setCourtPositionChangedType(STARTCHANGE);
-                APIIT.second->setNewCourtPosition(startingPos[3]);
-                APIIT.second->setStateChanged(true);
-                APIIT.second->setStateAction(CHANGECOURTPOS);
-
-                APIIT.second->setDirection(playerDirection);
-                APIIT.second->getSteer()->setPlayerPosition(PF);
-                //activePlayerInstance[x]->getSteer()->setPosition(convert->toOpenSteerVec3(startingPos[3]));
-            }
-            else if (APIIT.second->getActivePosition() == C)
-            {
-               // activePlayerInstance[x]->getNode()->setPosition(startingPos[4]);
-                APIIT.second->setCourtPositionChanged(true);
-                APIIT.second->setCourtPositionChangedType(STARTCHANGE);
-                APIIT.second->setNewCourtPosition(startingPos[4]);
-                APIIT.second->setStateChanged(true);
-                APIIT.second->setStateAction(CHANGECOURTPOS);
-
-                APIIT.second->setDirection(playerDirection);
-                APIIT.second->getSteer()->setPlayerPosition(C);
-               // activePlayerInstance[x]->getSteer()->setPosition(convert->toOpenSteerVec3(startingPos[4]));
-            }
-            else
-            {
-            }
-//            }
-//            x++;            
         }    
-
-//      exit(0);
     }
 
     size_t x = 0;
@@ -853,6 +815,8 @@ void teamState::setPlayerStartActivePositions()  // sets the position the player
     sharedPtr<conversion> convert = conversion::Instance();
     std::string func = "teamState::setPlayerStartActivePositions()";
 
+    logMsg(func +" beginning");
+    
     logMsg(func + " activePlayerInstance.size() == " +convert->toString(activePlayerInstance.size()));
     if (activePlayerInstance.size() > 0) // checks that activePlayerInstance has data before executing
     {
@@ -873,6 +837,48 @@ void teamState::setPlayerStartActivePositions()  // sets the position the player
 //        ++x;
     }
     logMsg(func +" end");
+}
+
+bool teamState::setPlayerStartDirections()  // sets the initial directions for the players.
+{
+    std::vector<directions> playerDirection; // stores the direction players face at start
+    
+    std::string func = "teamState::setPlayerStartDirections()";
+
+    logMsg(func +" beginning");
+    
+    switch (teamType)
+    {
+        case HOMETEAM:   // assigns the positions and directions for team 1 player
+            playerDirection.push_back(LEFT);  
+            playerDirection.push_back(LEFT);  
+            playerDirection.push_back(LEFT);  
+            playerDirection.push_back(LEFT);  
+            playerDirection.push_back(LEFT);  
+        break;
+        case AWAYTEAM:   // assigns the positions and directions for team 2 players       
+            playerDirection.push_back(RIGHT); 
+            playerDirection.push_back(RIGHT); 
+            playerDirection.push_back(RIGHT); 
+            playerDirection.push_back(RIGHT); 
+            playerDirection.push_back(RIGHT); 
+        break;
+    }
+    
+    for (auto APIIT : activePlayerInstance)
+        {
+            logMsg(func +" activePlayerInstance.size > 0!");
+ //           exit(0);
+            if (APIIT.second->getActivePosition() == PG)
+            {
+                APIIT.second->setDirection(playerDirection[0]);
+                APIIT.second->setStateChanged(true);
+                APIIT.second->setStateAction(CHANGEDIRECTION);                
+            }
+        }
+    logMsg(func +" end");
+    
+    return (true);
 }
 
 bool teamState::setupActivePlayerInstances()  // sets up active player objects

@@ -75,6 +75,7 @@ teamState::teamState()  // constructor
     activePlayerInstancesChanged = false;
     playerInstancesCreated = false;
     playerStartPositionsSet = false;
+    playerStartDirectionsSet = false;
     playerInstanceCreatedCount = 0;
     playerWithBallInstance = NONE;
     playerWithBallID = -1;
@@ -241,6 +242,15 @@ void teamState::setPlayerStartPositionsSet(bool set)  // sets the value of the p
     playerStartPositionsSet = set;
 }
 
+bool teamState::getPlayerStartDirectionsSet()  // retrieves the value of the playerStartDirectionsSet
+{
+    return (playerStartDirectionsSet);
+}
+void teamState::setPlayerStartDirectionsSet(bool set)  // sets the value of the playerStartDirectionsSet
+{
+    playerStartDirectionsSet = set;
+}
+
 size_t teamState::getPlayerWithBallID()  // retrieves the value of the playerWithBallID
 {
     return (playerWithBallID);
@@ -404,6 +414,8 @@ void teamState::updateState()  // updates the state of the object
         
         if (!activePlayerInstancesSetup)
         {
+            
+            
             if (setupActivePlayerInstances())
             {
                 activePlayerInstancesSetup = true;
@@ -418,6 +430,7 @@ void teamState::updateState()  // updates the state of the object
         {
             
         }
+        
         if (!playerStartPositionsSet)
         {
             if (setPlayerStartPositions())  // sets starting positions for the players
@@ -429,15 +442,31 @@ void teamState::updateState()  // updates the state of the object
             {
                 logMsg("Player Start Positions NOT set!");
                 exit(0);
-            }
-            
+            }          
         }
         else
         {
-            
+            logMsg(func +" Player start positions set");
         }
-        logMsg(func +" Player start positions set");
-
+        
+        if (!playerStartDirectionsSet)
+        {
+            if (setPlayerStartDirections())  // sets starting directions for the players
+            {
+                playerStartDirectionsSet = true;
+                logMsg("Player Start Directions set!");
+            } 
+            else
+            {
+                logMsg("Player Start Directions NOT set!");
+                exit(0);
+            }          
+        }
+        else
+        {
+            logMsg(func +" Player start directions set");
+        }
+        
         updateActivePlayers();
         
     }
@@ -747,7 +776,7 @@ bool teamState::setPlayerStartPositions()  // sets the initial coordinates for t
         for (auto APIIT : activePlayerInstance)
         {
             logMsg(func +" activePlayerInstance.size > 0!");
- //           exit(0);
+            
             switch (APIIT.second->getActivePosition())
             {
                 case PG:
@@ -757,6 +786,7 @@ bool teamState::setPlayerStartPositions()  // sets the initial coordinates for t
                     APIIT.second->setStateChanged(true);
                     APIIT.second->setStateAction(CHANGECOURTPOS);
                     APIIT.second->getSteer()->setPlayerPosition(PG);
+//                    exit(0);
                 break;
                 case SG:          
                     APIIT.second->setCourtPositionChanged(true);
@@ -791,7 +821,7 @@ bool teamState::setPlayerStartPositions()  // sets the initial coordinates for t
                     APIIT.second->getSteer()->setPlayerPosition(C);
                 break;
             }
-        }    
+        }
     }
 
     size_t x = 0;
@@ -867,41 +897,63 @@ bool teamState::setPlayerStartDirections()  // sets the initial directions for t
     
     for (auto APIIT : activePlayerInstance)
     {
+        playerSMData *SMData = new playerSMData;
+        
         logMsg(func +" activePlayerInstance.size > 0!");
 //           exit(0);
-        if (APIIT.second->getActivePosition() == PG)
+        switch (APIIT.second->getActivePosition())
         {
-            APIIT.second->setDirection(playerDirection[0]);
-            APIIT.second->setStateChanged(true);
-            APIIT.second->setStateAction(CHANGEDIRECTION);
+            case PG:
+                SMData->direction = playerDirection[0];
+                APIIT.second->setStateChanged(true);
+                APIIT.second->setStateAction(CHANGEDIRECTION);
+            break;
+        
+            case SG:
+                SMData->direction = playerDirection[1];
+                APIIT.second->setStateChanged(true);
+                APIIT.second->setStateAction(CHANGEDIRECTION);
+            break;
+            case SF:
+                SMData->direction = playerDirection[2];
+                APIIT.second->setStateChanged(true);
+                APIIT.second->setStateAction(CHANGEDIRECTION);
+            break;
+            case PF:
+                SMData->direction = playerDirection[3];
+                APIIT.second->setStateChanged(true);
+                APIIT.second->setStateAction(CHANGEDIRECTION);
+            break;
+            case C:
+                SMData->direction = playerDirection[4];
+                APIIT.second->setStateChanged(true);
+                APIIT.second->setStateAction(CHANGEDIRECTION);
+                break;
         }
-        else if (APIIT.second->getActivePosition() == SG)
-        {
-            APIIT.second->setDirection(playerDirection[1]);
+        
+        if (!APIIT.second->getSMStartDirectionSet())  // sets the start value of direction if it has not been set already
+        {                   
+//            SMData->node = APIIT.second->getNode();
             APIIT.second->setStateChanged(true);
-            APIIT.second->setStateAction(CHANGEDIRECTION);
+            if (APIIT.second->updateStateMachine(CHANGEDIRECTION, SMData))
+            {
+                APIIT.second->setSMStartDirectionSet(true);
+                logMsg(func +" stateMachine direction has been set!");
+            }
+            else
+            {
+                logMsg(func +" Unable to set stateMachine direction");
+                exit(0);
+            }
+//                    exit(0);
         }
-        else if (APIIT.second->getActivePosition() == SF)
+        else
         {
-            APIIT.second->setDirection(playerDirection[2]);
-            APIIT.second->setStateChanged(true);
-            APIIT.second->setStateAction(CHANGEDIRECTION);
-        }
-        else if (APIIT.second->getActivePosition() == PF)
-        {
-            APIIT.second->setDirection(playerDirection[3]);
-            APIIT.second->setStateChanged(true);
-            APIIT.second->setStateAction(CHANGEDIRECTION);
-        }
-        else if (APIIT.second->getActivePosition() == C)
-        {
-            APIIT.second->setDirection(playerDirection[4]);
-            APIIT.second->setStateChanged(true);
-            APIIT.second->setStateAction(CHANGEDIRECTION);
+            logMsg(func +" stateMachine direction already set");
         }
     }
     logMsg(func +" end");
-    exit(0);
+//    exit(0);
     return (true);
 }
 
@@ -961,7 +1013,8 @@ bool teamState::setupActivePlayerInstances()  // sets up active player objects
         }
 //        exit(0);
 
-        logMsg(func + " setting up Physics!");
+// FIXME! Broken by playerStateMachine work
+/*        logMsg(func + " setting up Physics!");
         if (!APIIT.second->getPhysicsSetup())
         {
             if (!APIIT.second->getPhysics()->getGameSInitialized())
@@ -982,7 +1035,7 @@ bool teamState::setupActivePlayerInstances()  // sets up active player objects
         else
         {
                         
-        }
+        }*/
         
         if (!APIIT.second->getStateMachineInitialized())
         {

@@ -76,7 +76,8 @@ playerEntity::playerEntity()  // constructor
     
     SMNodeSet = false;
     SMModelSet = false;
-
+    SMStartDirectionSet = false;
+    
 //    stateSet = false;
     // hack
   //  posChangeAmount = 0;
@@ -221,6 +222,15 @@ bool playerEntity::getSMModelSet()  // retrieves the value of SMModelSet
 void playerEntity::setSMModelSet(bool set)  // sets the value of SMModelSet
 {
     SMModelSet = set;
+}
+
+bool playerEntity::getSMStartDirectionSet()  // retrieves the value of SMStartDirectionSet
+{
+    return (SMStartDirectionSet);
+}
+void playerEntity::setSMStartDirectionSet(bool set)  // sets the value of SMStartDirectionSet
+{
+    SMStartDirectionSet = set;
 }
 
 bool playerEntity::getMovement()  // retrieves the value of movement
@@ -465,6 +475,7 @@ bool playerEntity::setupPhysicsObject()  // sets up the physics object
     btRigidBody *tempPhysBody = getPhysics()->getPhysBody().get();
     
     logMsg(func +" beginning");
+//    exit(0);
     
     if (!getPhysics()->getGameSInitialized())
     {
@@ -533,17 +544,19 @@ bool playerEntity::updateStateMachine(playerActions actionType, playerSMData *SM
         break;
         case CHANGEDIRECTION:
             logMsg(func + " CHANGEDIRECTION");
-            stateMachine->pChangeDirection(SMData);
+//            stateMachine->pChangeDirection(SMData);
         break;
         case SETNODE:
             logMsg(func +" SETNODE");
             stateMachine->setPNode(SMData);
             logMsg(func +" NODESET");
+            
         break;
         case SETMODEL:
             logMsg(func +" SETMODEL");
             stateMachine->setPModel(SMData);
             logMsg(func +" MODELSET");
+            
         break;
     }
     logMsg(func + " end");
@@ -558,7 +571,7 @@ bool playerEntity::update() // executes any updates that need to be performed
     playerSMData *stateData = new playerSMData;
     logMsg(func +" beginning");
 
-    if (getPhysicsSetup())
+/*    if (getPhysicsSetup())
     {
         logMsg(func + " Updating player physics");
 
@@ -572,8 +585,8 @@ bool playerEntity::update() // executes any updates that need to be performed
     {
         logMsg(func +" " +data->getFirstName() + " " +data->getLastName() +" physics NOT SETUP!");
 
-    }
-    exit(0);
+    }*/
+//    exit(0);
     
     if (stateChanged)
     {

@@ -85,6 +85,9 @@ class playerEntity : public entity
     bool getSMModelSet();  // retrieves the value of SMModelSet
     void setSMModelSet(bool set);  // sets the value of SMModelSet
 
+    bool getSMStartDirectionSet();  // retrieves the value of SMStartDirectionSet
+    void setSMStartDirectionSet(bool set);  // sets the value of SMStartDirectionSet
+    
     // playerState code that will likely be refactored
     bool getMovement();  // retrieves the value of movement
     void setMovement(bool set);  // sets the value of movement
@@ -238,7 +241,8 @@ class playerEntity : public entity
     
     bool SMNodeSet; // Determines if the stateMachine's node value has been set
     bool SMModelSet; // Determines if the stateMachine's model value has been set
-
+    bool SMStartDirectionSet;  // Determines if the stateMachine's direction value has been set for startvof game
+    
     playerActions stateAction;  // controls the action performed by stateMachine
 };
 

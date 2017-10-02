@@ -866,18 +866,42 @@ bool teamState::setPlayerStartDirections()  // sets the initial directions for t
     }
     
     for (auto APIIT : activePlayerInstance)
+    {
+        logMsg(func +" activePlayerInstance.size > 0!");
+//           exit(0);
+        if (APIIT.second->getActivePosition() == PG)
         {
-            logMsg(func +" activePlayerInstance.size > 0!");
- //           exit(0);
-            if (APIIT.second->getActivePosition() == PG)
-            {
-                APIIT.second->setDirection(playerDirection[0]);
-                APIIT.second->setStateChanged(true);
-                APIIT.second->setStateAction(CHANGEDIRECTION);                
-            }
+            APIIT.second->setDirection(playerDirection[0]);
+            APIIT.second->setStateChanged(true);
+            APIIT.second->setStateAction(CHANGEDIRECTION);
         }
+        else if (APIIT.second->getActivePosition() == SG)
+        {
+            APIIT.second->setDirection(playerDirection[1]);
+            APIIT.second->setStateChanged(true);
+            APIIT.second->setStateAction(CHANGEDIRECTION);
+        }
+        else if (APIIT.second->getActivePosition() == SF)
+        {
+            APIIT.second->setDirection(playerDirection[2]);
+            APIIT.second->setStateChanged(true);
+            APIIT.second->setStateAction(CHANGEDIRECTION);
+        }
+        else if (APIIT.second->getActivePosition() == PF)
+        {
+            APIIT.second->setDirection(playerDirection[3]);
+            APIIT.second->setStateChanged(true);
+            APIIT.second->setStateAction(CHANGEDIRECTION);
+        }
+        else if (APIIT.second->getActivePosition() == C)
+        {
+            APIIT.second->setDirection(playerDirection[4]);
+            APIIT.second->setStateChanged(true);
+            APIIT.second->setStateAction(CHANGEDIRECTION);
+        }
+    }
     logMsg(func +" end");
-    
+    exit(0);
     return (true);
 }
 

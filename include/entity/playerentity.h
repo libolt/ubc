@@ -76,8 +76,8 @@ class playerEntity : public entity
     bool getStateChanged();  // retrieves the value of stateChanged
     void setStateChanged(bool set);  // sets the value of stateChanged
     
-    playerActions getStateAction();  // retrieves the value of stateAction
-    void setStateAction(playerActions set);  // sets the value of stateAction
+    std::vector<playerActions> getStateAction();  // retrieves the value of stateAction
+    void setStateAction(std::vector<playerActions> set);  // sets the value of stateAction
     
     bool getSMNodeSet();  // retrieves the value of SMNodeSet
     void setSMNodeSet(bool set);  // sets the value of SMNodeSet
@@ -243,7 +243,7 @@ class playerEntity : public entity
     bool SMModelSet; // Determines if the stateMachine's model value has been set
     bool SMStartDirectionSet;  // Determines if the stateMachine's direction value has been set for startvof game
     
-    playerActions stateAction;  // controls the action performed by stateMachine
+    std::vector<playerActions> stateAction;  // controls the action performed by stateMachine
 };
 
 #endif // _PLAYERENTITY_H_

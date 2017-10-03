@@ -323,6 +323,7 @@ STATE_DEFINE(playerStateMachine, ChangeDirection, playerSMData)
 
     logMsg(func +" beginning");
 
+    exit(0);
     logMsg("playerStateMachine::ST_ChangeDirection : Direction is " +convert->toString(data->direction));
 
     switch (currentDirection)

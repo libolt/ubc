@@ -72,7 +72,7 @@ playerEntity::playerEntity()  // constructor
     
     stateChanged = false;
     
-    stateAction = NOACTION;
+//    stateAction = NOACTION;
     
     SMNodeSet = false;
     SMModelSet = false;
@@ -197,11 +197,11 @@ void playerEntity::setStateChanged(bool set)  // sets the value of stateChanged
     stateChanged = set;
 }
 
-playerActions playerEntity::getStateAction()  // retrieves the value of stateAction
+std::vector<playerActions> playerEntity::getStateAction()  // retrieves the value of stateAction
 {
     return (stateAction);
 }
-void playerEntity::setStateAction(playerActions set)  // sets the value of stateAction
+void playerEntity::setStateAction(std::vector<playerActions> set)  // sets the value of stateAction
 {
     stateAction = set; 
 }
@@ -567,8 +567,11 @@ bool playerEntity::updateStateMachine(playerActions actionType, playerSMData *SM
 
 bool playerEntity::update() // executes any updates that need to be performed
 {
+    sharedPtr<conversion> convert = conversion::Instance();
+
     std::string func = "playerEntity::update()";
     playerSMData *stateData = new playerSMData;
+    
     logMsg(func +" beginning");
 
 /*    if (getPhysicsSetup())
@@ -590,34 +593,46 @@ bool playerEntity::update() // executes any updates that need to be performed
     
     if (stateChanged)
     {
-        switch (stateAction)
+        logMsg(func +" stateAction.size() = " +convert->toString(stateAction.size()));
+        for (auto SAIT : stateAction)
         {
-            case CHANGECOURTPOS:
-                logMsg(func + " CHANGECOURTPOS!");
-                stateData->position = newCourtPosition;
-            break;
-            case CHANGEDIRECTION:
-                logMsg(func + " CHANGEDIRECTION!");
-                stateData->direction = direction;
-            break;
-            case SETNODE:
-                logMsg(func + " SETNODE!");
-                stateData->node = getNode();
-            break;
-            case SETMODEL:
-                logMsg(func + " SETMODEL!");
-                stateData->model = getModel();  
-            break;
+            switch (SAIT)
+            {
+                case CHANGECOURTPOS:
+                    logMsg(func + " CHANGECOURTPOS!");
+                    stateData->position = newCourtPosition;
+//                    exit(0);
+                break;
+                case CHANGEDIRECTION:
+                    logMsg(func + " CHANGEDIRECTION!");
+                    stateData->direction = direction;
+                break;
+                case SETNODE:
+                    logMsg(func + " SETNODE!");
+                    stateData->node = getNode();
+                break;
+                case SETMODEL:
+                    logMsg(func + " SETMODEL!");
+                    stateData->model = getModel();  
+                break;
+            }
+        
+            if(updateStateMachine(SAIT,stateData)) // attempts to update the stateMachine and returns true if successful
+            {
+//                stateChanged = false;  // sets stateChanged back to false now that hte stateMachine has been updated
+            }
+            else
+            {
+                logMsg(func +" Unable to update stateMachine!");
+            }
         }
-        if(updateStateMachine(stateAction,stateData)) // attempts to update the stateMachine and returns true if successful
-        {
-//            stateChanged = false;  // sets stateChanged back to false now that hte stateMachine has been updated
-        }
-        else
-        {
-            logMsg(func +" Unable to update stateMachine!");
-        }
+//        stateAction.clear();
+//        stateChanged = false;  // sets stateChanged back to false now that hte stateMachine has been updated
     }
-
+    else
+    {
+        
+    }
+    
     logMsg(func +" end");
 }

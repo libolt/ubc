@@ -437,7 +437,8 @@ void teamState::updateState()  // updates the state of the object
             {
                 playerStartPositionsSet = true;
                 logMsg("Player Start Positions set!");
-            } 
+//                exit(0);
+            }
             else
             {
                 logMsg("Player Start Positions NOT set!");
@@ -451,30 +452,23 @@ void teamState::updateState()  // updates the state of the object
     
 //        updateActivePlayers();
         
-        if (playerStartPositionsSet)
+        if (!playerStartDirectionsSet)
         {
-            if (!playerStartDirectionsSet)
+            if (setPlayerStartDirections())  // sets starting directions for the players
             {
-                if (setPlayerStartDirections())  // sets starting directions for the players
-                {
-                    playerStartDirectionsSet = true;
-                    logMsg("Player Start Directions set!");
+                playerStartDirectionsSet = true;
+                logMsg("Player Start Directions set!");
 //                    exit(0);
-                } 
-                else
-                {
-                    logMsg("Player Start Directions NOT set!");
-                    exit(0);
-                }          
             }
             else
             {
-                logMsg(func +" Player start directions set");
+                logMsg("Player Start Directions NOT set!");
+                exit(0);
             }
         }
         else
         {
-            
+            logMsg(func +" Player start directions set");
         }
         
 //        updateActivePlayers();

@@ -763,6 +763,7 @@ bool teamState::setPlayerStartPositions()  // sets the initial coordinates for t
             startingPos.push_back(Ogre::Vector3(5.2f,yOffset,351.6f));
             startingPos.push_back(Ogre::Vector3(1.6f,yOffset,352.0f));
         break;
+        
         case AWAYTEAM: // assigns the positions and directions for team 2 players       
             // assign positions
             startingPos.push_back(Ogre::Vector3(-13.8f,yOffset,352.0f));

@@ -1815,7 +1815,7 @@ bool gameState::processInput()  // processes input received from the inputState 
     std::string func = "gameState::processInput()";
 
     logMsg(func +" beginning");
-
+/*    exit(0);
 
         if (getActiveTeamInstancesCreated())
         {
@@ -1824,13 +1824,13 @@ bool gameState::processInput()  // processes input received from the inputState 
 //            while (inputIterator < getActiveTeamInstance().size())
             for (auto ATIIT : getActiveTeamInstance())
             {
-/*TS                if (getActiveTeamInstance()[inputIterator]->getPlayerInstancesCreated())
+               if (getActiveTeamInstance()[inputIterator]->getPlayerInstancesCreated())
                 {
-                    playerStateVecSharedPtr activePlayerInstance = getActiveTeamInstance()[inputIterator]->getActivePlayerInstance();
+                    playerEntityUMSharedPtr activePlayerInstance = getActiveTeamInstance()[inputIterator]->getActivePlayerInstance();
                     if (getActiveTeamInstance()[inputIterator]->getHumanControlled())
                     {
-                        int humanPlayer = getActiveTeamInstance()[inputIterator]->getHumanPlayer();
-                        logMsg("inputHumanPlayer == " +convert->toString(humanPlayer));
+                        std::string humanPlayer = getActiveTeamInstance()[inputIterator]->getHumanPlayer();
+                        logMsg("inputHumanPlayer == " +humanPlayer);
                         //inputMaps inputMap = input->keyMap();
 //                        inputWorkInGameQueues inputInGameQueue = base->getGameE()->getInputE()->getInputWorkQueue();
 //                      logMsg("INPUT MAP ======== "  +toString(inputMap));
@@ -1840,8 +1840,8 @@ bool gameState::processInput()  // processes input received from the inputState 
                         size_t humanInstance = 11;
                         while (x < activePlayerInstance.size())
                         {
-                            logMsg("GEPlayerID == " +convert->toString(activePlayerInstance[x]->getID()));
-                            logMsg("GEHumanPlayer == " +convert->toString(humanPlayer));
+//                            logMsg("GEPlayerID == " +convert->toString(activePlayerInstance[x]->getID()));
+                            logMsg("GEHumanPlayer == " +humanPlayer);
 
                             if (activePlayerInstance[x]->getID() == humanPlayer)
                             {
@@ -1851,10 +1851,10 @@ bool gameState::processInput()  // processes input received from the inputState 
                             ++x;
                         }
                         logMsg("humanInstance == " +convert->toString(humanInstance));
-                        logMsg("inputHumanPlayer == " +convert->toString(humanPlayer));
+                        logMsg("inputHumanPlayer == " +humanPlayer);
                         logMsg("inputInGameWorkQueue.size = " +convert->toString(inputInGameWorkQueue.size()));
                         x = 0;
-                        int activeBBallInstance = getActiveBBallInstance();
+//                        int activeBBallInstance = getActiveBBallInstance();
                         basketballStateVecSharedPtr bballInstance = getBasketballInstance();
                         logMsg("humanInstance.size() == " +convert->toString(humanInstance));
                         if (humanInstance < 11) // makes sure that the humanInstance is a valid number
@@ -1938,7 +1938,7 @@ bool gameState::processInput()  // processes input received from the inputState 
                             }
                         }
 //                        teamStateVecSharedPtr tInstance = base->getGameS()->getActiveTeamInstance();
-                        playerStateVecSharedPtr activePInstance = getTeamInstance()[inputIterator]->getActivePlayerInstance();
+                        playerEntityUMSharedPtr activePInstance = getTeamInstance()[inputIterator]->getActivePlayerInstance();
                         logMsg("humanInstance == " +convert->toString(humanInstance));
                         //logMsg("inPassSteal == " +convert->toString(activePInstance[humanInstance]->getPassSteal()));
                         //exit(0);
@@ -1949,10 +1949,10 @@ bool gameState::processInput()  // processes input received from the inputState 
                         {
                             if (activePlayerInstance[humanInstance]->getMovement())
                             {
-                                logMsg("human playerID == " +convert->toString(activePlayerInstance[humanInstance]->getID()));
+//                                logMsg("human playerID == " +convert->toString(activePlayerInstance[humanInstance]->getID()));
                                 logMsg("ball player == " +convert->toString(getActiveTeamInstance()[inputIterator]->getPlayerWithBallInstance()));
                                 logMsg("ball playerID == " +convert->toString(getActiveTeamInstance()[inputIterator]->getPlayerWithBallID()));
-                                if (activePlayerInstance[humanInstance]->getID() == getActiveTeamInstance()[inputIterator]->getPlayerWithBallID())
+//                                if (activePlayerInstance[humanInstance]->getID() == getActiveTeamInstance()[inputIterator]->getPlayerWithBallID())
                                 {
                                     bballInstance[activeBBallInstance]->setMovement(true);
                                     setBasketballInstance(bballInstance);
@@ -1970,14 +1970,15 @@ bool gameState::processInput()  // processes input received from the inputState 
 //  FIXME!                            
 ///                            getNetworkS()->processLocalInput(getActiveTeamInstance());
                         }
+
                         inputInGameWorkQueue.clear();
 ///                        base->getGameE()->getInputE()->setInputWorkQueue(inputQueue);
                     }
                     ++inputIterator;
                 }
-TS*/                
+            
             }            
-        }
+        }*/
     logMsg(func +" end");
 
 }

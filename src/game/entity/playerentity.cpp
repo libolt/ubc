@@ -626,8 +626,8 @@ bool playerEntity::update() // executes any updates that need to be performed
                 logMsg(func +" Unable to update stateMachine!");
             }
         }
-//        stateAction.clear();
-//        stateChanged = false;  // sets stateChanged back to false now that hte stateMachine has been updated
+        stateAction.clear();
+        stateChanged = false;  // sets stateChanged back to false now that hte stateMachine has been updated
     }
     else
     {

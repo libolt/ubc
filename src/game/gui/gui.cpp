@@ -1447,6 +1447,8 @@ void GUISystem::playerStartSelected()  // process player start selection
 
     hideActiveMenuWidgets();
     menuActive = false;
+    base->getGameE()->setMenuActive(false);
+
 //    exit(0);
 
 }

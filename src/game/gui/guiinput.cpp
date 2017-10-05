@@ -631,6 +631,7 @@ void GUISystem::processPlayerStartSelectionMenuKeyPress(std::string keyPressed) 
 //        exit(0);
         playerStartSelected();
         base->setStartActiveGame(true);
+        menuActive = false;
 
     }
     else if (keyPressed == "b")

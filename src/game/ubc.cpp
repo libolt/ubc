@@ -268,15 +268,19 @@ void UBC::processInput()  // processes game input
     
     if (base->getInputS()->process())
     {
+        
         if (base->getGameE()->getMenuActive())
         {
             gui->menuReceiveKeyPress(convert->toString(base->getGameE()->getInputE()->getKeyPressed())); // sends input to menu key input processing function
+//            exit(0);
         }
         else
         {
+//            exit(0);
             base->getGameS()->setInputReceived(true);
             
             base->getGameS()->setInputInGameWorkQueue(base->getInputS()->getInputInGameWorkQueue());
+            
         }
         base->getGameE()->getInputE()->setKeyPressed(INKEY_NONE);
     }
@@ -285,6 +289,8 @@ void UBC::processInput()  // processes game input
         
     }
     
+    logMsg("INQ Size = " +convert->toString(base->getGameS()->getInputInGameWorkQueue().size()));
+
 /*    if (base->getGameE()->getInputE()->processInput())
     {
         if (base->getGameE()->getInputE()->getInputProcessed())

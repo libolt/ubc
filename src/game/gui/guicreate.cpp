@@ -105,7 +105,7 @@ bool GUISystem::createMainMenuGUI()  // creates the main menu gui
 //    exit(0);
     mainMenuCreated = true;
 //    exit(0);
-    menuActive = true;
+//    menuActive = true;
 //    exit(0);
     activeMenu = MAIN;
 //    exit(0);

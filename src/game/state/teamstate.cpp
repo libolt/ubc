@@ -471,7 +471,7 @@ void teamState::updateState()  // updates the state of the object
             logMsg(func +" Player start directions set");
         }
         
-//        updateActivePlayers();
+        updateActivePlayers();
         
     }
     else
@@ -835,6 +835,12 @@ bool teamState::setPlayerStartPositions()  // sets the initial coordinates for t
         }
     }
 
+    for (auto APIIT : activePlayerInstance)
+    {
+        logMsg(func +" APIIT.second->getStateAction().size() = " +convert->toString(APIIT.second->getStateAction().size()));
+    }
+//    exit(0);
+        
     size_t x = 0;
     
 ///    while (x < activePlayerInstance.size())
@@ -882,11 +888,18 @@ void teamState::setPlayerStartActivePositions()  // sets the position the player
 
 bool teamState::setPlayerStartDirections()  // sets the initial directions for the players.
 {
+    sharedPtr<conversion> convert = conversion::Instance();
+
     std::vector<directions> playerDirection; // stores the direction players face at start
-    
     std::string func = "teamState::setPlayerStartDirections()";
 
     logMsg(func +" beginning");
+    
+    for (auto APIIT : activePlayerInstance)
+    {
+        logMsg(func +" APIIT.second->getStateAction().size() = " +convert->toString(APIIT.second->getStateAction().size()));
+    }
+//    exit(0);
     
     switch (teamType)
     {
@@ -948,6 +961,7 @@ bool teamState::setPlayerStartDirections()  // sets the initial directions for t
             break;
         }
         
+        
 /*        if (!APIIT.second->getSMStartDirectionSet())  // sets the start value of direction if it has not been set already
         {                   
 //            SMData->node = APIIT.second->getNode();
@@ -969,6 +983,12 @@ bool teamState::setPlayerStartDirections()  // sets the initial directions for t
             logMsg(func +" stateMachine direction already set");
         }*/
     }
+    
+    for (auto APIIT : activePlayerInstance)
+    {
+        logMsg(func +" APIIT.second->getStateAction().size() = " +convert->toString(APIIT.second->getStateAction().size()));
+    }
+    
     logMsg(func +" end");
 //    exit(0);
     return (true);
@@ -1177,6 +1197,12 @@ void teamState::updateActivePlayers()  // updates the states of active players
     std::string func = "teamState::updateActivePlayers()";
 
     logMsg(func +" beginning");
+    
+    for (auto APIIT : activePlayerInstance)
+    {
+        logMsg(func +" APIIT.second->getStateAction().size() = " +convert->toString(APIIT.second->getStateAction().size()));
+    }
+//    exit(0);
     
     for (auto APIIT : activePlayerInstance)  // executes updates to activePlayerInstances
     {

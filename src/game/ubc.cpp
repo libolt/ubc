@@ -290,6 +290,10 @@ void UBC::processInput()  // processes game input
     }
     
     logMsg("INQ Size = " +convert->toString(base->getGameS()->getInputInGameWorkQueue().size()));
+    for (auto IIGWQ : base->getGameS()->getInputInGameWorkQueue())
+    {
+        logMsg ("INQ = " +convert->toString(IIGWQ));
+    }
 
 /*    if (base->getGameE()->getInputE()->processInput())
     {

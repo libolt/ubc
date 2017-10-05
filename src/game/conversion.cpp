@@ -563,6 +563,59 @@ std::string conversion::toString(const inputKeyMaps &data) // converts bool data
     return (strData);
 }
 
+std::string conversion::toString(const inputInGameMaps &data) // converts inputInGameMaps data to string
+{
+    std::string strData;
+    
+    switch (data)
+    {
+        case INNO:
+            strData = "INNO";
+        break;
+        case INUP:
+            strData = "INUP";
+        break;
+        case INDOWN:
+            strData = "INDOWN";
+        break;
+        case INLEFT:
+            strData = "INLEFT";
+        break;
+        case INRIGHT:
+            strData = "INRIGHT";
+        break;
+        case INUPLEFT:
+            strData = "INUPLEFT";
+        break;
+        case INUPRIGHT:
+            strData = "INUPRIGHT";
+        break;
+        case INDOWNLEFT:
+            strData = "INDOWNLEFT";
+        break;
+        case INDOWNRIGHT:
+            strData = "INDOWNRIGHT";
+        break;
+        case INSHOOTBLOCK:
+            strData = "INSHOOTBLOCK";
+        break;
+        case INPASSSTEAL:
+            strData = "INPASSSTEAL";
+        break;
+        case INPAUSE:
+            strData = "INPAUSE";
+        break;
+        case INSTARTSELECT:
+            strData = "INSTARTSELECT";
+        break;
+        case INQUIT:
+            strData = "INQUIT";
+        break;
+
+    }
+   
+    return (strData);
+}
 std::string conversion::toString(const activeMenus &data) // converts activeMenus data to string
 {
     std::string strData;

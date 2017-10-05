@@ -51,7 +51,7 @@
 UBCBaseSharedPtr gameState::base;  // static copy of base class
 gameState::gameState()  // constructor
 {
-    inputReceived = true;
+    inputReceived = false;
     
 //    basketballInstancesCreated = false;
 //    courtInstancesCreated = false;
@@ -1424,6 +1424,15 @@ bool gameState::updateState()  // updates the game state
 
     logMsg(func +" beginning");
 
+    if (inputReceived)
+    {
+        logMsg(func +" received input!");
+        for (auto IIGWQ : base->getGameS()->getInputInGameWorkQueue())
+        {
+            logMsg (func +" INQ = " +convert->toString(IIGWQ));
+        }
+        exit(0);
+    }
 //    exit(0);
 //    logMsg("Updating gameState Logic");
 

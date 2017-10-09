@@ -24,6 +24,7 @@
 #include "state/gamestateshared.h"
 #include "state/hoopstate.h"
 #include "state/teamstate.h"
+#include "users/users.h"
 
 // static declarations
 bool gameStateShared::initialized;  // if true then tbe object has been initialized
@@ -70,6 +71,8 @@ teamStateUMSharedPtr  gameStateShared::teamInstance;  // creates instance of the
 jumpBallsSharedPtr gameStateShared::jumpBall; // instance that is used for jumpBall functions.
 float gameStateShared::yOffset; // stores the y offset for objects on the screen
 std::vector<bool> gameStateShared::teamActivePlayersChanged;  // stores whether the team's active player instances have changed
+size_t gameStateShared::numUsers;  // stores the number of users playing the game
+usersUMSharedPtr gameStateShared::userInstance; // stores the user object instances
 
 gameStateShared::gameStateShared()  // constructor
 {
@@ -103,6 +106,8 @@ gameStateShared::gameStateShared()  // constructor
 //    activeBBallInstance = -1;
     gameType = NOGAME;
 
+    numUsers = 0;
+    
 }
 
 gameStateShared::~gameStateShared()  // destructor
@@ -474,4 +479,22 @@ std::vector<bool> gameStateShared::getTeamActivePlayersChanged()  // retrieves t
 void gameStateShared::setTeamActivePlayersChanged(std::vector<bool> set)  // sets the value of teamActivePlayersChanged
 {
     teamActivePlayersChanged = set;
+}
+
+size_t gameStateShared::getNumUsers()  // retrieves the value of numUsers
+{
+    return (numUsers);
+}
+void gameStateShared::setNumUsers(size_t set)  // sets the value of numUsers
+{
+    numUsers = set;
+}
+
+usersUMSharedPtr gameStateShared::getUserInstance()  // retrieves the value of userInstance
+{
+    return (userInstance);
+}
+void gameStateShared::setUserInstance(usersUMSharedPtr set)  // sets the value of userInstance
+{
+    userInstance = set;
 }

@@ -96,7 +96,7 @@ class offensePlays;
 class jumpBalls;
 //class playerDirectives;
 //class ENetHost;
-
+class users;
 
 #ifndef sharedPtr
 #define sharedPtr std::shared_ptr
@@ -166,6 +166,7 @@ typedef sharedPtr<offensePlays> offensePlaysSharedPtr;
 
 typedef sharedPtr<userInput> userInputSharedPtr;
 
+typedef sharedPtr<users> usersSharedPtr;
 
 typedef sharedPtr<ENetHost> ENetHostSharedPtr;
 
@@ -268,6 +269,8 @@ typedef std::unordered_map <size_t, hoopStateSharedPtr> hoopStateUMSharedPtr;
 typedef std::unordered_map <size_t, playerStateSharedPtr> playerStateUMSharedPtr;
 
 typedef std::unordered_map <size_t, teamStateSharedPtr> teamStateUMSharedPtr;
+
+typedef std::unordered_map <size_t, usersSharedPtr> usersUMSharedPtr;
 
 typedef std::unordered_map<std::string, sharedPtr<MyGUI::Button> > MyGUIButtonUMSharedPtr;
 

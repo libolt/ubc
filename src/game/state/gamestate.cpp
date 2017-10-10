@@ -705,6 +705,17 @@ bool gameState::createActiveHoopInstances()  // creates the active hoop instance
     return (true);
 }
 
+bool gameState::createUserInstances()  // creates the user instances
+{
+    size_t x = 0;
+    for (x=0;x<getNumUsers();++x)
+    {
+       
+    }
+    
+    return (true);
+}
+
 bool gameState::setupActiveTeamInstances()  // sets up the active team instances
 {
     teamStateSharedPtr tInstance;
@@ -1236,6 +1247,25 @@ bool gameState::setupState()  // sets up the game condition
    
     logMsg(func +" beginning");
 
+    //FIXME! Hard coded until code is restructured
+    setNumUsers(1);
+    
+    if (!getUserInstancesCreated())
+    {
+        if (createUserInstances())
+        {
+            setUserInstancesCreated(true);
+        }
+        else
+        {
+            
+        }
+    }
+    else
+    {
+        
+    }
+    
     if (!getActiveBasketballInstancesCreated())
     {
         if (createActiveBasketballInstances())

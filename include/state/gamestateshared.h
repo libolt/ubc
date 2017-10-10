@@ -108,6 +108,9 @@ class gameStateShared
         bool getTeamInstancesNeedCreated();  // retrieves the value of teamInstancesNeedCreated
         void setTeamInstancesNeedCreated(bool set);  // sets the value of teamInstancesNeedCreated
 
+        bool getUserInstancesCreated();  // retrieves the value of userInstancesCreated
+        void setUserInstancesCreated(bool set);  // sets the value of userInstancesCreated
+
         bool getBBallNodePositionChanged();  // retrieves the value of bballNodePositionChanged
         void setBBallNodePositionChanged(bool set);  // sets the value of bballNodePositionChanged
         
@@ -202,6 +205,8 @@ class gameStateShared
         static bool playerInstanceNeedCreated;  // stores whether or not to create player instances
         static bool teamInstancesCreated;  // stores whether team instances have been created
         static bool teamInstancesNeedCreated;  // stores whether or not to create team instances
+        static bool userInstancesCreated;  // stores whether user instances have been created
+
         static bool bballNodePositionChanged;  // stores whether basketball node position has changed
         static bool teamWithBallChanged;  // stores whether team with ball has changed
         static bool activeTeamInstanceChanged;  // stores whether activeTeamInstance has changed

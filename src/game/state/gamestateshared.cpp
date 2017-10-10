@@ -43,6 +43,7 @@ bool gameStateShared::playerInstanceCreated;  // stores whether player instances
 bool gameStateShared::playerInstanceNeedCreated;  // stores whether or not to create player instances
 bool gameStateShared::teamInstancesCreated;  // stores whether team instances have been created
 bool gameStateShared::teamInstancesNeedCreated;  // stores whether or not to create team instances
+bool gameStateShared::userInstancesCreated;  // stores whether user instances have been created
 bool gameStateShared::bballNodePositionChanged;  // stores whether basketball node position has changed
 bool gameStateShared::teamWithBallChanged;  // stores whether team with ball has changed
 bool gameStateShared::activeTeamInstanceChanged;  // stores whether activeTeamInstance has changed
@@ -93,6 +94,7 @@ gameStateShared::gameStateShared()  // constructor
     playerInstanceNeedCreated = false;
     teamInstancesCreated = false;
     teamInstancesNeedCreated = false;
+    userInstancesCreated = false;
     bballNodePositionChanged = false;
     teamWithBallChanged = false;
     activeTeamInstanceChanged = false;
@@ -296,6 +298,15 @@ bool gameStateShared::getTeamInstancesCreated()  // gets the value of teamInstan
 void gameStateShared::setTeamInstancesCreated(bool set)  // sets the value of teamInstancesCreated
 {
     teamInstancesCreated = set;
+}
+
+bool gameStateShared::getUserInstancesCreated()  // retrieves the value of userInstancesCreated
+{
+    return (userInstancesCreated);
+}
+void gameStateShared::setUserInstancesCreated(bool set)  // sets the value of userInstancesCreated
+{
+    userInstancesCreated = set;
 }
 
 bool gameStateShared::getBBallNodePositionChanged()  // retrieves the value of bballNodePositionChanged

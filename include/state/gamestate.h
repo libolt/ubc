@@ -196,6 +196,8 @@ public:
 
     bool createActiveHoopInstances();  // creates the active hoop instances
 
+    bool createUserInstances();  // creates the user instances
+    
     bool setupActiveTeamInstances();  // sets up the active team instances
 
     bool loadBasketballModel();  // loads selected basketball model

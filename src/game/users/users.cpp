@@ -18,7 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "user/user.h"
+#include "users/users.h"
 
 users::users()  // constructor
 {
@@ -64,4 +64,13 @@ playerPositions users::getPlayer()  // retrieves the value of player
 void users::setPlayer(playerPositions set)  // sets the value of player
 {
     player = set;
+}
+
+userTypes users::getType()  // retrieves the value of type
+{
+    return (type);
+}
+void users::setType(userTypes set)  // sets the value of type
+{
+    type = set;
 }

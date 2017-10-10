@@ -43,12 +43,17 @@ class users
         playerPositions getPlayer();  // retrieves the value of player       
         void setPlayer(playerPositions set);  // sets the value of player
         
+        userTypes getType();  // retrieves the value of type
+        void setType(userTypes set);  // sets the value of type
+        
     private:
     
     std::string name;  // stores the user's name
     size_t ID;  // stores the user ID number
     teamTypes team;  // stores which team the user is part of
     playerPositions player;  // stores the player being controlled by the user
+    userTypes type;  // stores whether the user is local to the system or connected over a network
+
 };
 
 #endif

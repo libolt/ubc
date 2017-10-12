@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<UserInput>
+    <Name>User2</Name>
+    <Input>
+        <Type>Keyboard</Type>
+        <Up>Up</Up>
+        <Down>Down</Down>
+        <Left>Left</Left>
+        <Right>Right</Right>
+        <UpLeft>UpLeft</UpLeft>
+        <UpRight>UpRight</UpRight>
+        <DownLeft>DownLeft</DownLeft>
+        <DownRight>DownRight</DownRight>
+        <ShootBlock>RightCtrl</ShootBlock>
+        <PassSteal>RightAlt</PassSteal>
+        <Pause>Pause</Pause>
+        <StartSelect>Insert</StartSelect>
+        <Quit>End</Quit>
+    </Input>
+</UserInput>

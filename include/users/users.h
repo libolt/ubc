@@ -24,6 +24,8 @@
 #include "enums.h"
 #include <string>
 
+class usersInput;
+
 class users
 {
     public:
@@ -46,6 +48,9 @@ class users
         userTypes getType();  // retrieves the value of type
         void setType(userTypes set);  // sets the value of type
         
+        inputTypes getInputType();  // retrieves the value of inputType
+        void setInputType(inputTypes set);  // sets the value of inputType
+        
     private:
     
     std::string name;  // stores the user's name
@@ -53,7 +58,7 @@ class users
     teamTypes team;  // stores which team the user is part of
     playerPositions player;  // stores the player being controlled by the user
     userTypes type;  // stores whether the user is local to the system or connected over a network
-
+    inputTypes inputType;  // stores the type of input used by the user
 };
 
 #endif

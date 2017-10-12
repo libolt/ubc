@@ -19,18 +19,21 @@
  ***************************************************************************/
 
  
-#ifndef _USERINPUT_H_
-#define _USERINPUT_H_
+#ifndef _USERSINPUT_H_
+#define _USERSINPUT_H_
 
 #include <string>
 #include "enums.h"
 #include "conversion.h"
 
-class userInput
+class usersInput
 {
     public:
     
-        userInput();
+        usersInput();  // constructor
+        
+        ~usersInput();  // destructor
+        
 
         inputKeyMaps getKeyUp();  // retrieves the value of keyUp
         void setKeyUp(inputKeyMaps set);  // sets the value of keyUp

@@ -295,6 +295,7 @@ void UBC::processInput()  // processes game input
         logMsg ("INQ = " +convert->toString(IIGWQ));
     }
 
+//    exit(0);
 /*    if (base->getGameE()->getInputE()->processInput())
     {
         if (base->getGameE()->getInputE()->getInputProcessed())

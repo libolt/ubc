@@ -42,7 +42,7 @@
 #include "state/teamstate.h"
 #include "offenseplays.h"
 #include "typedefs.h"
-#include "userinput.h"
+#include "users/usersinput.h"
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 #include "android.h"
@@ -56,7 +56,7 @@ hoopStateUMSharedPtr  loader::hInstance;
 offensePlaysVecSharedPtr loader::opInstance;
 playerEntityUMSharedPtr loader::pInstance;
 teamStateUMSharedPtr loader::tInstance;
-userInputVecSharedPtr loader::uiInstance;
+usersInputVecSharedPtr loader::uiInstance;
 
 
 stdStringVec loader::basketballFiles;  // stores list of basketball xml files
@@ -65,7 +65,7 @@ stdStringVec loader::hoopFiles;  // stores list of hoop xml files
 stdStringVec loader::offensePlayFiles;  // stores list of offense play xml files
 stdStringVec loader::playerFiles;  // stores list of player xml files
 stdStringVec loader::teamFiles;  // stores list of team xml files
-stdStringVec loader::userInputFiles; 
+stdStringVec loader::usersInputFiles; 
 
 bool loader::basketballFilesLoaded;
 bool loader::courtFilesLoaded;
@@ -141,13 +141,13 @@ void loader::setTeamFiles(stdStringVec set)  // sets the value of teamFiles
     teamFiles = set;
 }
 
-stdStringVec loader::getUserInputFiles()   // retrieves the value of userInputFiles
+stdStringVec loader::getUsersInputFiles()   // retrieves the value of userInputFiles
 {
-    return (userInputFiles);
+    return (usersInputFiles);
 }
-void loader::setUserInputFiles(stdStringVec set)  // sets the value of userInputFiles
+void loader::setUsersInputFiles(stdStringVec set)  // sets the value of userInputFiles
 {
-    userInputFiles = set;
+    usersInputFiles = set;
 }
 
 basketballStateVecSharedPtr loader::getBInstance()  // retrieves the value of bInstance
@@ -204,11 +204,11 @@ void loader::setTInstance(std::unordered_map<size_t, teamStateSharedPtr> set)  /
     tInstance = set;
 }
 
-userInputVecSharedPtr loader::getUIInstance()  // retrieves the value of uoInstance
+usersInputVecSharedPtr loader::getUIInstance()  // retrieves the value of uoInstance
 {
     return(uiInstance);
 }
-void loader::setUIInstance(userInputVecSharedPtr set)  // sets the value of uiInstance
+void loader::setUIInstance(usersInputVecSharedPtr set)  // sets the value of uiInstance
 {
     uiInstance = set;
 }
@@ -257,11 +257,11 @@ void loader::setTeamFilesLoaded(bool set)  // sets the value of teamFilesLoaded
     teamFilesLoaded = set;
 }
 
-bool loader::getUserInputFilesLoaded()  // retrieves the value of userInputFilesLoaded
+bool loader::getUsersInputFilesLoaded()  // retrieves the value of userInputFilesLoaded
 {
     return (userInputFilesLoaded);
 }
-void loader::setUserInputFilesLoaded(bool set)  // sets the value of userInputFilesLoaded  
+void loader::setUsersInputFilesLoaded(bool set)  // sets the value of userInputFilesLoaded  
 {
     userInputFilesLoaded = set;
 }
@@ -887,7 +887,7 @@ bool loader::checkIfTeamsLoaded()  // checks if teams have been loaded into tIns
     return (true);
 }
 
-bool loader::checkIfUserInputsLoaded()  // checks if user inputs have been loaded into pInstance
+bool loader::checkIfUsersInputsLoaded()  // checks if user inputs have been loaded into pInstance
 {
     std::string func = "loader::checkIfUserInputsLoaded()";
 
@@ -907,7 +907,7 @@ bool loader::checkIfUserInputsLoaded()  // checks if user inputs have been loade
             logMsg(func +" User Input Files not yet Loaded!");
 
             userInputFilesLoaded = false;
-            uiInstance = loadUserInputs();
+            uiInstance = loadUsersInputs();
             if (uiInstance.size() > 0)
             {
                 logMsg(func +"  > 0!");
@@ -938,7 +938,7 @@ bool loader::checkIfUserInputsLoaded()  // checks if user inputs have been loade
         {
             logMsg(func +" ELSE ELSE!");
 
-            uiInstance = loadUserInputs();
+            uiInstance = loadUsersInputs();
             logMsg("loader::checkIfUserInputsLoaded()");
             if (uiInstance.size() > 0)
             {
@@ -2862,39 +2862,39 @@ teamStateSharedPtr loader::loadTeamFile(std::string fileName)  // loads the team
 }
 
 // User input
-userInputVecSharedPtr loader::loadUserInputs()  // load user input settings from XML files
+usersInputVecSharedPtr loader::loadUsersInputs()  // load user input settings from XML files
 {
-    userInputVecSharedPtr userInputs;
-    std::string userInputList;
+    usersInputVecSharedPtr usersInputs;
+    std::string usersInputList;
     std::string func = "loader::loadUserInputs()";
 
     logMsg(func +" beginning");
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-    userInputList = "data/users/inputlist.xml";
+    usersInputList = "data/users/inputlist.xml";
 #else
     userInputList = findFile("users/inputlist.xml");
 #endif
 //    exit(0);
-    userInputFiles = loadUserInputListFile(userInputList);
+    usersInputFiles = loadUsersInputListFile(usersInputList);
 //    stdStringVec playerFiles = load->getPlayerFiles();
 //    exit(0);
     stdStringVec::iterator it;
-    for (it = userInputFiles.begin(); it != userInputFiles.end(); ++it)
+    for (it = usersInputFiles.begin(); it != usersInputFiles.end(); ++it)
     {
         logMsg(func +" userInputFile = " +*it);
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-        userInputs.push_back(loadUserInputFile("data/users/" + *it));
+        usersInputs.push_back(loadUsersInputFile("data/users/" + *it));
 #else
-        userInputs.push_back(loadUserInputFile(findFile("users/" + *it)));
+        userInputs.push_back(loadUsersInputFile(findFile("users/" + *it)));
 #endif
     }
 
     logMsg(func +" end");
-    return (userInputs);
+    return (usersInputs);
 }
 
-stdStringVec loader::loadUserInputListFile(std::string fileName)  // loads the user input list file
+stdStringVec loader::loadUsersInputListFile(std::string fileName)  // loads the user input list file
 {
     sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<renderEngine> render = renderEngine::Instance();
@@ -2955,10 +2955,10 @@ stdStringVec loader::loadUserInputListFile(std::string fileName)  // loads the u
     return (uInputFiles);
 }
 
-sharedPtr<userInput> loader::loadUserInputFile(std::string fileName)  // loads data from the user input files
+sharedPtr<usersInput> loader::loadUsersInputFile(std::string fileName)  // loads data from the user input files
 {
     sharedPtr<conversion> convert = conversion::Instance();
-    sharedPtr<userInput> uInput(new userInput);
+    sharedPtr<usersInput> uInput(new usersInput);
     std::string inputName;
     std::string type;
     std::string up;

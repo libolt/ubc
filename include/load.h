@@ -17,7 +17,6 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-
  
 #ifndef _LOAD_H_
 #define _LOAD_H_
@@ -49,7 +48,7 @@ class gameState;
 class playerState;
 class teamState;
 class offensePlays;
-class userInput;
+class usersInput;
 
 class loader
 {
@@ -76,8 +75,8 @@ public:
     stdStringVec getTeamFiles();  // retrieves the value of teamFiles
     void setTeamFiles(stdStringVec set);  // sets the value of teamFiles
 
-    stdStringVec getUserInputFiles();  // retrieves the value of userInputFiles
-    void setUserInputFiles(stdStringVec set);  // sets the value of userInputFiles
+    stdStringVec getUsersInputFiles();  // retrieves the value of userInputFiles
+    void setUsersInputFiles(stdStringVec set);  // sets the value of userInputFiles
 
     basketballStateVecSharedPtr getBInstance();  // retrieves the value of bInstance
     void setBInstance(basketballStateVecSharedPtr set);  // sets the value of bInstance
@@ -97,8 +96,8 @@ public:
     teamStateUMSharedPtr getTInstance();  // retrieves the value of tInstance
     void setTInstance(teamStateUMSharedPtr set);  // sets the value of tInstance
     
-    userInputVecSharedPtr getUIInstance();  // retrieves the value of uiInstance
-    void setUIInstance(userInputVecSharedPtr set);  // sets the value of uiInstance
+    usersInputVecSharedPtr getUIInstance();  // retrieves the value of uiInstance
+    void setUIInstance(usersInputVecSharedPtr set);  // sets the value of uiInstance
     
     bool getBasketballFilesLoaded();  // retrieves the value of basketballFilesLoaded
     void setBasketballFilesLoaded(bool set);  // sets the value of basketballFilesLoaded
@@ -115,8 +114,8 @@ public:
     bool getTeamFilesLoaded();  // retrieves the value of teamFilesLoaded
     void setTeamFilesLoaded(bool set);  // sets the value of teamFilesLoaded
     
-    bool getUserInputFilesLoaded();  // retrieves the value of userInputFilesLoaded
-    void setUserInputFilesLoaded(bool set);  // sets the value of userInputFilesLoaded  
+    bool getUsersInputFilesLoaded();  // retrieves the value of userInputFilesLoaded
+    void setUsersInputFilesLoaded(bool set);  // sets the value of userInputFilesLoaded  
 
     bool loadXMLFile(std::string fileName);
 
@@ -130,7 +129,7 @@ public:
     bool checkIfOffensePlaysLoaded();  // checks if offense plays have been loaded into opInstance
     bool checkIfPlayersLoaded();  // checks if players have been loaded into pInstance
     bool checkIfTeamsLoaded();  // checks if teams have been loaded into tInstance
-    bool checkIfUserInputsLoaded();  // checks if uset inputs have been loaded into uiInstance
+    bool checkIfUsersInputsLoaded();  // checks if uset inputs have been loaded into uiInstance
     
     // Basketballs
     basketballStateVecSharedPtr loadBasketballs();  // load basketball XML files
@@ -163,9 +162,9 @@ public:
     teamStateSharedPtr loadTeamFile(std::string fileName);  // loads data from the team XML files
 
     // User input
-    userInputVecSharedPtr loadUserInputs();  // load user input XML files
-    stdStringVec loadUserInputListFile(std::string fileName);  // load the list of user input configs from userinputs.xml
-    userInputSharedPtr loadUserInputFile(std::string fileName);  // loads data from the user input XML files.
+    usersInputVecSharedPtr loadUsersInputs();  // load user input XML files
+    stdStringVec loadUsersInputListFile(std::string fileName);  // load the list of user input configs from userinputs.xml
+    usersInputSharedPtr loadUsersInputFile(std::string fileName);  // loads data from the user input XML files.
 
     
 protected:
@@ -180,7 +179,7 @@ private:
     static offensePlaysVecSharedPtr opInstance;
     static playerEntityUMSharedPtr pInstance;
     static teamStateUMSharedPtr tInstance;
-    static userInputVecSharedPtr uiInstance;
+    static usersInputVecSharedPtr uiInstance;
 
     static stdStringVec basketballFiles;  // stores list of basketball xml files
     static stdStringVec courtFiles;  // stores list of court xml files
@@ -188,7 +187,7 @@ private:
     static stdStringVec offensePlayFiles;  // stores list of offense play xml files
     static stdStringVec playerFiles;  // stores list of player xml files
     static stdStringVec teamFiles;	 // stores list of team xml files
-    static stdStringVec userInputFiles;  // stores list of court xml files
+    static stdStringVec usersInputFiles;  // stores list of court xml files
 
     // determines whether files have been loaded successfully
     static bool basketballFilesLoaded;

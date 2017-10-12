@@ -81,7 +81,7 @@ class courtData;
 
 class loader;
 class logging;
-class userInput;
+class usersInput;
 
 class AISystem;
 class basketballSteer;
@@ -164,7 +164,7 @@ typedef sharedPtr<logging> loggingSharedPtr;
 
 typedef sharedPtr<offensePlays> offensePlaysSharedPtr;
 
-typedef sharedPtr<userInput> userInputSharedPtr;
+typedef sharedPtr<usersInput> usersInputSharedPtr;
 
 typedef sharedPtr<users> usersSharedPtr;
 
@@ -231,7 +231,7 @@ typedef std::vector<inputInGameMaps> inputInGameWorkQueues;  // stores types of 
 typedef std::vector<inputTypes> inputTypeQueues;  // stores types of input processed by the engine
 
 
-typedef std::vector<sharedPtr<userInput> > userInputVecSharedPtr;
+typedef std::vector<usersInputSharedPtr> usersInputVecSharedPtr;
 
 typedef std::vector<playerEntity> playerEntityVecSharedPtr;
 

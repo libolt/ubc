@@ -46,6 +46,7 @@
 #include "timing.h"
 #include "ubc.h"
 #include "jumpballs.h"
+#include "users/users.h"
 
 // static declarations
 UBCBaseSharedPtr gameState::base;  // static copy of base class
@@ -707,12 +708,22 @@ bool gameState::createActiveHoopInstances()  // creates the active hoop instance
 
 bool gameState::createUserInstances()  // creates the user instances
 {
+    sharedPtr<conversion> convert = conversion::Instance();
+    usersUMSharedPtr tempUserInstance;
+    std::string func = "gameState::createUserInstances()";
+
+    logMsg(func +" beginning");
+    
     size_t x = 0;
+    
+    usersSharedPtr tempUsers(new users);
     for (x=0;x<getNumUsers();++x)
     {
-       
+       std::string userName = "player" +convert->toString(x);
+       logMsg(func +" " +userName);
+       tempUserInstance.insert(std::pair<size_t, usersSharedPtr>(x, tempUsers));
     }
-    
+//    exit(0);
     return (true);
 }
 
@@ -1461,7 +1472,7 @@ bool gameState::updateState()  // updates the game state
         {
             logMsg (func +" INQ = " +convert->toString(IIGWQ));
         }
-        exit(0);
+//        exit(0);
     }
 //    exit(0);
 //    logMsg("Updating gameState Logic");

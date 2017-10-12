@@ -24,7 +24,6 @@
 #include "state/gamestateshared.h"
 #include "state/hoopstate.h"
 #include "state/teamstate.h"
-#include "users/users.h"
 
 // static declarations
 bool gameStateShared::initialized;  // if true then tbe object has been initialized
@@ -43,7 +42,6 @@ bool gameStateShared::playerInstanceCreated;  // stores whether player instances
 bool gameStateShared::playerInstanceNeedCreated;  // stores whether or not to create player instances
 bool gameStateShared::teamInstancesCreated;  // stores whether team instances have been created
 bool gameStateShared::teamInstancesNeedCreated;  // stores whether or not to create team instances
-bool gameStateShared::userInstancesCreated;  // stores whether user instances have been created
 bool gameStateShared::bballNodePositionChanged;  // stores whether basketball node position has changed
 bool gameStateShared::teamWithBallChanged;  // stores whether team with ball has changed
 bool gameStateShared::activeTeamInstanceChanged;  // stores whether activeTeamInstance has changed
@@ -72,8 +70,6 @@ teamStateUMSharedPtr  gameStateShared::teamInstance;  // creates instance of the
 jumpBallsSharedPtr gameStateShared::jumpBall; // instance that is used for jumpBall functions.
 float gameStateShared::yOffset; // stores the y offset for objects on the screen
 std::vector<bool> gameStateShared::teamActivePlayersChanged;  // stores whether the team's active player instances have changed
-size_t gameStateShared::numUsers;  // stores the number of users playing the game
-usersUMSharedPtr gameStateShared::userInstance; // stores the user object instances
 
 gameStateShared::gameStateShared()  // constructor
 {
@@ -94,7 +90,6 @@ gameStateShared::gameStateShared()  // constructor
     playerInstanceNeedCreated = false;
     teamInstancesCreated = false;
     teamInstancesNeedCreated = false;
-    userInstancesCreated = false;
     bballNodePositionChanged = false;
     teamWithBallChanged = false;
     activeTeamInstanceChanged = false;
@@ -107,8 +102,6 @@ gameStateShared::gameStateShared()  // constructor
     tipOffComplete = false;
 //    activeBBallInstance = -1;
     gameType = NOGAME;
-
-    numUsers = 0;
     
 }
 
@@ -300,15 +293,6 @@ void gameStateShared::setTeamInstancesCreated(bool set)  // sets the value of te
     teamInstancesCreated = set;
 }
 
-bool gameStateShared::getUserInstancesCreated()  // retrieves the value of userInstancesCreated
-{
-    return (userInstancesCreated);
-}
-void gameStateShared::setUserInstancesCreated(bool set)  // sets the value of userInstancesCreated
-{
-    userInstancesCreated = set;
-}
-
 bool gameStateShared::getBBallNodePositionChanged()  // retrieves the value of bballNodePositionChanged
 {
     return (bballNodePositionChanged);
@@ -492,20 +476,4 @@ void gameStateShared::setTeamActivePlayersChanged(std::vector<bool> set)  // set
     teamActivePlayersChanged = set;
 }
 
-size_t gameStateShared::getNumUsers()  // retrieves the value of numUsers
-{
-    return (numUsers);
-}
-void gameStateShared::setNumUsers(size_t set)  // sets the value of numUsers
-{
-    numUsers = set;
-}
 
-usersUMSharedPtr gameStateShared::getUserInstance()  // retrieves the value of userInstance
-{
-    return (userInstance);
-}
-void gameStateShared::setUserInstance(usersUMSharedPtr set)  // sets the value of userInstance
-{
-    userInstance = set;
-}

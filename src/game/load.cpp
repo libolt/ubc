@@ -3115,6 +3115,9 @@ sharedPtr<usersInput> loader::loadUsersInputFile(std::string fileName)  // loads
             }
 //            modelName = child->GetText();
 //            logMsg("modelName = " +modelName);
+            
+            uInput->setName(inputName);
+            
             if (type == "Keyboard")
             {
                 uInput->setKeyUp(convert->toInputKey(up));

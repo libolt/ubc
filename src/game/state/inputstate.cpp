@@ -118,7 +118,7 @@ bool inputState::mapInput()  // maps value of keyPressed string to inputMap
     sharedPtr<conversion> convert = conversion::Instance();
     
     logMsg("Dah");
-//    exit(0);
+    exit(0);
     
     if (inputE->getKeyInputReceived())
     {
@@ -153,14 +153,13 @@ inputInGameMaps inputState::mapKeyInput(inputKeyMaps inKeyMap, sharedPtr<usersIn
 //    {
 //    exit(0);
     
+    logMsg("userInput name == " +input->getName());
+    exit(0);
     logMsg("mapKeyInput");
     if (inKeyMap == input->getKeyUp())
     {
-//        exit(0);
         return(INUP);
     }
-//    exit(0);
-    
     else if (inKeyMap == input->getKeyDown())
     {
         return(INDOWN);
@@ -208,7 +207,7 @@ inputInGameMaps inputState::mapKeyInput(inputKeyMaps inKeyMap, sharedPtr<usersIn
     else if (inKeyMap == input->getKeyQuit())
     {
         logMsg("keyQuit = " +input->getKeyQuit());
-    return(INQUIT);
+        return(INQUIT);
     }
     else
     {

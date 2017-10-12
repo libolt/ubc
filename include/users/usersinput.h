@@ -34,7 +34,9 @@ class usersInput
         
         ~usersInput();  // destructor
         
-
+        std::string getName();  // retrieves the value of name
+        void setName(std::string set);  // sets the value of name
+        
         inputKeyMaps getKeyUp();  // retrieves the value of keyUp
         void setKeyUp(inputKeyMaps set);  // sets the value of keyUp
 
@@ -116,6 +118,7 @@ class usersInput
 
     private:
 
+    std::string name;  // stores the name of the input map
     // key input strings
     static inputKeyMaps keyUp;
     static inputKeyMaps keyDown;

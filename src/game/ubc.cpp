@@ -30,6 +30,7 @@
 #include "state/networkstate.h"
 #include "state/playerstate.h"
 #include "state/teamstate.h"
+#include "users/users.h"
 #include "logging.h"
 #include "ubc.h"
 #include "ubcbase.h"
@@ -243,6 +244,25 @@ bool UBC::startGame()  // starts the game
 
     logMsg(func +" beginning");
 
+    //FIXME! Hard coded until code is restructured
+    base->setNumUsers(1);
+    
+    if (!base->getUsersInstancesCreated())
+    {
+        if (createUserInstances())
+        {
+            base->setUsersInstancesCreated(true);
+        }
+        else
+        {
+            
+        }
+    }
+    else
+    {
+        
+    }
+    exit(0);
     base->getGameS()->setBase(base);
     base->getGameS()->setupState();
     
@@ -827,6 +847,26 @@ bool UBC::updateGUI()  // updates the gui based on received events
     return (true);
 }
 
+bool UBC::createUserInstances()  // creates the user instances
+{
+    sharedPtr<conversion> convert = conversion::Instance();
+    usersUMSharedPtr tempUserInstance;
+    std::string func = "gameState::createUserInstances()";
+
+    logMsg(func +" beginning");
+    
+    size_t x = 0;
+    
+    usersSharedPtr tempUsers(new users);
+    for (x=0;x<base->getNumUsers();++x)
+    {
+       std::string userName = "player" +convert->toString(x);
+       logMsg(func +" " +userName);
+       tempUserInstance.insert(std::pair<size_t, usersSharedPtr>(x, tempUsers));
+    }
+//    exit(0);
+    return (true);
+}
 
 int main(int argc, char *argv[])
 {

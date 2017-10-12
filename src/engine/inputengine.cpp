@@ -219,6 +219,8 @@ bool inputEngine::destroy()  // destroys the OIS Input System and related object
 bool inputEngine::processInput()  // processes all input
 {
     sharedPtr<conversion> convert = conversion::Instance();
+    std::string func = "inputEngine::processInput()";
+    
 //    sharedPtr<renderEngine> render = renderEngine::Instance();
     
 //    keyPressed = "";  // resets value of keyPressed
@@ -254,14 +256,14 @@ bool inputEngine::processInput()  // processes all input
 */
 //    SDL_PumpEvents();
 //    exit(0);
-    int motion = SDL_EventState(SDL_FINGERMOTION, SDL_QUERY);
-    logMsg ("motion = " +convert->toString(motion));
+    size_t motion = SDL_EventState(SDL_FINGERMOTION, SDL_QUERY);
+    logMsg (func +" motion = " +convert->toString(motion));
 //    exit(0);
     if (!textInputStarted)
     {
         SDL_StartTextInput();
         textInputStarted = true;
-        logMsg ("textInput Started!");
+        logMsg (func +" textInput Started!");
     }
     else
     {
@@ -271,8 +273,8 @@ bool inputEngine::processInput()  // processes all input
     while (SDL_PollEvent(&inputEvent))
     {
 //        exit(0);
-        int numTouch = SDL_GetNumTouchDevices();
-        logMsg ("numTouch = " +convert->toString(numTouch));
+        size_t numTouch = SDL_GetNumTouchDevices();
+        logMsg (func +" numTouch = " +convert->toString(numTouch));
 //        exit(0);
 
 //          Ogre::LogManager::getSingletonPtr()->logMessage("Crash??");
@@ -281,7 +283,7 @@ bool inputEngine::processInput()  // processes all input
         {
 //            exit(0);
             case SDL_FINGERMOTION:
-                logMsg("Motion!");
+                logMsg(func +" Motion!");
 //                exit(0);
                 // processes touch input
                 if (processTouchInput())
@@ -290,9 +292,9 @@ bool inputEngine::processInput()  // processes all input
                 }
             break;
             case SDL_FINGERDOWN:
-                logMsg("Finger Down!");
+                logMsg(func +" Finger Down!");
 //                logMsg("tfinger.x = " +convert->toString(inputEvent.tfinger.x*render->getWindowWidth()));
-                logMsg("tfinger.y = " +convert->toString(inputEvent.tfinger.y));
+                logMsg(func +" tfinger.y = " +convert->toString(inputEvent.tfinger.y));
 //                exit(0);
                 // processes touch input
                 if (processTouchInput() == false)
@@ -301,7 +303,7 @@ bool inputEngine::processInput()  // processes all input
                 }
             break;
             case SDL_FINGERUP:
-                logMsg("Finger Up!");
+                logMsg(func +" Finger Up!");
 //                exit(0);
                 // processes touch input
                 if (processTouchInput() == false)
@@ -310,7 +312,7 @@ bool inputEngine::processInput()  // processes all input
                 }
             break;
             case SDL_MULTIGESTURE:
-                logMsg("Multigesture!");
+                logMsg(func +" Multigesture!");
 //                exit(0);
                 // processes touch input
                 if (processTouchInput() == false)
@@ -319,7 +321,7 @@ bool inputEngine::processInput()  // processes all input
                 }
             break;
             case SDL_KEYDOWN:
-                logMsg("KeyDown");
+                logMsg(func +" KeyDown");
                 if (processKeyInput())
                 {
                     inputProcessed = true;                  
@@ -330,18 +332,18 @@ bool inputEngine::processInput()  // processes all input
 
 //                    return false;
                 }
-                logMsg("keyDown key == " +keyPressed);
+//                logMsg(func +" keyDown key == " +keyPressed);
 //                exit(0);
             break; 
             case SDL_TEXTINPUT:
                 inputText = "";
                 
                 inputText = inputEvent.text.text;
-                logMsg("inputText! == " +inputText);
+                logMsg(func +" inputText! == " +inputText);
 //                exit(0);
                 if (inputText != "")
                 {
-                    logMsg("inputText == " +convert->toString(keyPressed));
+                    logMsg(func +" inputText == " +convert->toString(keyPressed));
                     if (processTextInput())
                     {
                         inputProcessed = true;
@@ -360,7 +362,7 @@ bool inputEngine::processInput()  // processes all input
             case SDL_MOUSEBUTTONDOWN:
             case SDL_MOUSEBUTTONUP:
             case SDL_MOUSEWHEEL:
-                logMsg("Mouse!");
+                logMsg(func +" Mouse!");
                 // processes mouse input
                 if (processMouseInput() == false)
                 {
@@ -374,7 +376,7 @@ bool inputEngine::processInput()  // processes all input
             case SDL_CONTROLLERDEVICEADDED:
             case SDL_CONTROLLERDEVICEREMOVED:
             case SDL_CONTROLLERDEVICEREMAPPED:
-                logMsg("Controller!");
+                logMsg(func +" Controller!");
                 // processes gamepad input
                 if (processGamepadInput() == false)
                 {
@@ -399,15 +401,16 @@ bool inputEngine::processInput()  // processes all input
 bool inputEngine::processKeyInput()  // processes unbuffered keyboard input
 {
     sharedPtr<conversion> convert = conversion::Instance();
+    std::string func = "inputEngine::processKeyInput()";
 //    sharedPtr<GUISystem> gui = GUISystem::Instance();
 //	logMsg("Processing keyboard input");
 
-    logMsg("key == " +convert->toString(inputEvent.key.keysym.sym));
-    logMsg("key = " +convert->toString(keyPressed));
+    logMsg(func +" key == " +convert->toString(inputEvent.key.keysym.sym));
+    logMsg(func +" key = " +convert->toString(keyPressed));
 //    exit(0);
 //    if (MyGUI::InputManager::getInstance().isFocusKey())	// checks if a MyGUI widget has key focus
 //    {
-        logMsg("Crash?");
+        logMsg(func +" Crash?");
 //        exit(0);
 //      keyPressed = "";
         
@@ -421,7 +424,7 @@ bool inputEngine::processKeyInput()  // processes unbuffered keyboard input
     }
     else
     {
-        logMsg("Unable to match text input to a recognized key! ");
+        logMsg(func +" Unable to match text input to a recognized key! ");
         return (false);
     }
 /*        switch (inputEvent.key.keysym.scancode)
@@ -809,8 +812,9 @@ bool inputEngine::processKeyInput()  // processes unbuffered keyboard input
 bool inputEngine::processTextInput()  // reads in text input
 {
     sharedPtr<conversion> convert = conversion::Instance();
-
-    logMsg("textInput!");
+    std::string func = "inputEngine::processTextInput()";
+    
+    logMsg(func +" textInput!");
 //    exit(0);
     keyPressed = convert->toInputKey(inputEvent.text.text);
     
@@ -823,7 +827,7 @@ bool inputEngine::processTextInput()  // reads in text input
     }
     else
     {
-        logMsg("Unable to match text input to a recognized key! ");
+        logMsg(func +" Unable to match text input to a recognized key! ");
         return (false);
     }
 //    exit(0);
@@ -889,19 +893,19 @@ bool inputEngine::processTouchInput() // processes the unbuffered touch input
 {
     sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<renderEngine> render = renderEngine::Instance();
-
+    std::string func = "inputEngine::processTouchInput()";
     int state = -1;
     SDL_TouchFingerEvent touchMotion;
 
     SDL_PumpEvents();
     int numDevs = SDL_GetNumTouchDevices();
-    logMsg("numTouchDevices = " +convert->toString(numDevs));
+    logMsg(func +" numTouchDevices = " +convert->toString(numDevs));
     int evtState = 0;
     evtState = SDL_EventState(SDL_FINGERMOTION, SDL_QUERY);
-    logMsg("evtState FINGERMOTION = " +convert->toString(evtState));
+    logMsg(func +" evtState FINGERMOTION = " +convert->toString(evtState));
     evtState = 0;
     evtState = SDL_EventState(SDL_FINGERDOWN, SDL_QUERY);
-    logMsg("evtState FINGERDOWN = " +convert->toString(evtState));
+    logMsg(func +" evtState FINGERDOWN = " +convert->toString(evtState));
     SDL_Finger *finger = SDL_GetTouchFinger(0,0);
 //    logMsg("Finger = " +convert->toString(finger));
 
@@ -909,15 +913,15 @@ bool inputEngine::processTouchInput() // processes the unbuffered touch input
     evtState = SDL_EventState(SDL_FINGERUP, SDL_QUERY);
     if (evtState > 0)
     {
-        logMsg("evtState FINGERUP = " +convert->toString(evtState));
+        logMsg(func +" evtState FINGERUP = " +convert->toString(evtState));
     //    exit(0);
     }
     
 //    exit(0);
     mouseX = inputEvent.tfinger.x*getWindowWidth();
     mouseY = inputEvent.tfinger.y*getWindowHeight();
-    logMsg("touch X == " +convert->toString(mouseX));
-    logMsg("touch Y == " +convert->toString(mouseY));
+    logMsg(func +" touch X == " +convert->toString(mouseX));
+    logMsg(func +" touch Y == " +convert->toString(mouseY));
 
 //    exit(0);
 //    if (MyGUI::InputManager::getInstance().isFocusMouse())

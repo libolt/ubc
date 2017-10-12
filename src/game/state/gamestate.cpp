@@ -706,27 +706,6 @@ bool gameState::createActiveHoopInstances()  // creates the active hoop instance
     return (true);
 }
 
-bool gameState::createUserInstances()  // creates the user instances
-{
-    sharedPtr<conversion> convert = conversion::Instance();
-    usersUMSharedPtr tempUserInstance;
-    std::string func = "gameState::createUserInstances()";
-
-    logMsg(func +" beginning");
-    
-    size_t x = 0;
-    
-    usersSharedPtr tempUsers(new users);
-    for (x=0;x<getNumUsers();++x)
-    {
-       std::string userName = "player" +convert->toString(x);
-       logMsg(func +" " +userName);
-       tempUserInstance.insert(std::pair<size_t, usersSharedPtr>(x, tempUsers));
-    }
-//    exit(0);
-    return (true);
-}
-
 bool gameState::setupActiveTeamInstances()  // sets up the active team instances
 {
     teamStateSharedPtr tInstance;
@@ -1257,25 +1236,6 @@ bool gameState::setupState()  // sets up the game condition
     std::string func = "gameState::setupState()";
    
     logMsg(func +" beginning");
-
-    //FIXME! Hard coded until code is restructured
-    setNumUsers(1);
-    
-    if (!getUserInstancesCreated())
-    {
-        if (createUserInstances())
-        {
-            setUserInstancesCreated(true);
-        }
-        else
-        {
-            
-        }
-    }
-    else
-    {
-        
-    }
     
     if (!getActiveBasketballInstancesCreated())
     {

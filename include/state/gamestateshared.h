@@ -39,7 +39,7 @@ class hoopState;
 class playerState;
 class teamState;
 class jumpBalls;
-class users;
+
 
 class gameStateShared
 {
@@ -107,10 +107,7 @@ class gameStateShared
 
         bool getTeamInstancesNeedCreated();  // retrieves the value of teamInstancesNeedCreated
         void setTeamInstancesNeedCreated(bool set);  // sets the value of teamInstancesNeedCreated
-
-        bool getUserInstancesCreated();  // retrieves the value of userInstancesCreated
-        void setUserInstancesCreated(bool set);  // sets the value of userInstancesCreated
-
+        
         bool getBBallNodePositionChanged();  // retrieves the value of bballNodePositionChanged
         void setBBallNodePositionChanged(bool set);  // sets the value of bballNodePositionChanged
         
@@ -180,11 +177,6 @@ class gameStateShared
         std::vector<bool> getTeamActivePlayersChanged();  // retrieves the value of teamActivePlayersChanged
         void setTeamActivePlayersChanged(std::vector<bool> set);  // sets the value of teamActivePlayersChanged
 
-        size_t getNumUsers();  // retrieves the value of numUsers
-        void setNumUsers(size_t set);  // sets the value of numUsers
-        
-        usersUMSharedPtr getUserInstance();  // retrieves the value of userInstance
-        void setUserInstance(usersUMSharedPtr set);  // sets the value of userInstance
         
     private:
 
@@ -205,8 +197,6 @@ class gameStateShared
         static bool playerInstanceNeedCreated;  // stores whether or not to create player instances
         static bool teamInstancesCreated;  // stores whether team instances have been created
         static bool teamInstancesNeedCreated;  // stores whether or not to create team instances
-        static bool userInstancesCreated;  // stores whether user instances have been created
-
         static bool bballNodePositionChanged;  // stores whether basketball node position has changed
         static bool teamWithBallChanged;  // stores whether team with ball has changed
         static bool activeTeamInstanceChanged;  // stores whether activeTeamInstance has changed
@@ -238,9 +228,7 @@ class gameStateShared
         static float yOffset; // stores the y offset for objects on the screen
 
         static std::vector<bool> teamActivePlayersChanged;  // stores whether the active players for each team have changed
-        static size_t numUsers; // stores number of users playing the game
-        static usersUMSharedPtr userInstance;  // stores the user object instances
-        
+                
 };
 
 #endif

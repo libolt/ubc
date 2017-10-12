@@ -30,6 +30,7 @@ class gameState;
 class networkState;
 class inputState;
 class loader;
+class users;
 
 class UBCBase
 {
@@ -44,6 +45,9 @@ class UBCBase
         bool getStartActiveGame();  // retrieves the value of startActiveGame
         void setStartActiveGame(bool set);  // sets the value of startActiveGame
         
+        bool getUsersInstancesCreated();  // retrieves the value of userInstancesCreated
+        void setUsersInstancesCreated(bool set);  // sets the value of userInstancesCreated
+
         gameEngineSharedPtr getGameE();  // retrieves the value of gameE
         void setGameE(gameEngineSharedPtr set);  // sets the value of gameE
     
@@ -59,16 +63,26 @@ class UBCBase
         loaderSharedPtr getLoad();  // retrieves the value of load
         void setLoad(loaderSharedPtr set);  // sets the value of load
         
+        size_t getNumUsers();  // retrieves the value of numUsers
+        void setNumUsers(size_t set);  // sets the value of numUsers
+        
+        usersUMSharedPtr getUserInstance();  // retrieves the value of usersInstance
+        void setUserInstance(usersUMSharedPtr set);  // sets the value of usersInstance
+
         bool setup();  // sets up the engine and states
     
     private:
         static bool stateSetup;  // stores whether or not the initial state setup has completed
         static bool startActiveGame;  // stores whether to begin an active game instance
+        static bool userInstancesCreated;  // stores whether user instances have been created
         static gameEngineSharedPtr gameE;  // the gameEngine object
         gameStateSharedPtr gameS;  // the gameState object
         static networkStateSharedPtr networkS;  // the gameState object
         static inputStateSharedPtr inputS;  // the gameState object
         static loaderSharedPtr load;  // the loader object
+        static usersUMSharedPtr userInstance;  // stores the user object instances
+        static size_t numUsers; // stores number of users playing the game
+
 };
 
 #endif

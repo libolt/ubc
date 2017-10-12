@@ -61,6 +61,15 @@ usersInput::~usersInput()
 
 }
 
+std::string usersInput::getName()  // retrieves the value of name
+{
+    return (name);
+}
+void usersInput::setName(std::string set)  // sets the value of name
+{
+    name = set;
+}
+
 inputKeyMaps usersInput::getKeyUp()  // retrieves the value of keyUp
 {
     return (keyUp);

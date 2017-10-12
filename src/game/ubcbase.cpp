@@ -25,20 +25,28 @@
 #include "state/inputstate.h"
 #include "load.h"
 #include "logging.h"
+#include "users/users.h"
 
 // Static Declarations
 bool UBCBase::stateSetup;
 bool UBCBase::startActiveGame;  // stores whether to begin an active game instance
+bool UBCBase::userInstancesCreated;  // stores whether user instances have been created
 sharedPtr<gameEngine> UBCBase::gameE;  // the gameEngine object
 //sharedPtr<gameState> UBCBase::gameS;  // the gameState object
 sharedPtr<networkState> UBCBase::networkS;  // the networkState object
 sharedPtr<inputState> UBCBase::inputS;  // the inputState object
 loaderSharedPtr UBCBase::load;  // the loader object
+size_t UBCBase::numUsers;  // stores the number of users playing the game
+usersUMSharedPtr UBCBase::userInstance; // stores the user object instances
 
 UBCBase::UBCBase()  // constructor
 {
     stateSetup = false;
     startActiveGame = false;
+    userInstancesCreated = false;
+    
+    numUsers = 0;
+
 }
 
 UBCBase::~UBCBase()  // destructor
@@ -54,6 +62,15 @@ bool UBCBase::getStateSetup()  // retrieves the value of stateSetup
 void UBCBase::setStateSetup(bool set)  // sets the value of stateSetup
 {
     stateSetup = set;
+}
+
+bool UBCBase::getUsersInstancesCreated()  // retrieves the value of userInstancesCreated
+{
+    return (userInstancesCreated);
+}
+void UBCBase::setUsersInstancesCreated(bool set)  // sets the value of userInstancesCreated
+{
+    userInstancesCreated = set;
 }
 
 bool UBCBase::getStartActiveGame()  // retrieves the value of startActiveGame
@@ -109,6 +126,24 @@ loaderSharedPtr UBCBase::getLoad()  // retrieves the value of load
 void UBCBase::setLoad(loaderSharedPtr set)  // sets the value of load
 {
     load = set;
+}
+
+size_t UBCBase::getNumUsers()  // retrieves the value of numUsers
+{
+    return (numUsers);
+}
+void UBCBase::setNumUsers(size_t set)  // sets the value of numUsers
+{
+    numUsers = set;
+}
+
+usersUMSharedPtr UBCBase::getUserInstance()  // retrieves the value of userInstance
+{
+    return (userInstance);
+}
+void UBCBase::setUserInstance(usersUMSharedPtr set)  // sets the value of userInstance
+{
+    userInstance = set;
 }
 
 bool UBCBase::setup()  // sets up the engine and states

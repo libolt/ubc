@@ -87,6 +87,8 @@ public:
 
     bool updateGUI();  // updates the gui based on received events
     
+    bool createUserInstances();  // creates the user instances
+
 protected:
   
 private:

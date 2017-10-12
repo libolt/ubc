@@ -1,4 +1,5 @@
 <?xml version="1.0" ?>
 <InputList>
     <UserInputFile>user1input.xml</UserInputFile>
+    <UserInputFile>user2input.xml</UserInputFile>
 </InputList>

@@ -2873,7 +2873,7 @@ usersInputVecSharedPtr loader::loadUsersInputs()  // load user input settings fr
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     usersInputList = "data/users/inputlist.xml";
 #else
-    userInputList = findFile("users/inputlist.xml");
+    usersInputList = findFile("users/inputlist.xml");
 #endif
 //    exit(0);
     usersInputFiles = loadUsersInputListFile(usersInputList);
@@ -2886,7 +2886,7 @@ usersInputVecSharedPtr loader::loadUsersInputs()  // load user input settings fr
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
         usersInputs.push_back(loadUsersInputFile("data/users/" + *it));
 #else
-        userInputs.push_back(loadUsersInputFile(findFile("users/" + *it)));
+        usersInputs.push_back(loadUsersInputFile(findFile("users/" + *it)));
 #endif
     }
 

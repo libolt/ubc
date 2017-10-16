@@ -262,7 +262,9 @@ bool UBC::startGame()  // starts the game
     {
         
     }
-    exit(0);
+    
+    
+//    exit(0);
     base->getGameS()->setBase(base);
     base->getGameS()->setupState();
     
@@ -864,7 +866,16 @@ bool UBC::createUserInstances()  // creates the user instances
        logMsg(func +" " +userName);
        tempUserInstance.insert(std::pair<size_t, usersSharedPtr>(x, tempUsers));
     }
-//    exit(0);
+    
+    logMsg(func +" end");
+    exit(0);
+    
+    return (true);
+}
+
+bool UBC::setupUserInstancesInput()  // sets up input mapping for each user
+{
+    
     return (true);
 }
 

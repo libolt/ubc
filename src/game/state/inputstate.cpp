@@ -89,6 +89,8 @@ bool inputState::setup()  // sets up the input state
 //    uInput = load->loadUserInputs();  // loads user defined input from file.
     std::string func = "inputState::setup()";
     
+/* FIXME! Remove once userInput is finished being reworked
+
     logMsg(func +" load->checkIfUserInputsLoaded()");
 
     if (load->checkIfUsersInputsLoaded())
@@ -108,16 +110,17 @@ bool inputState::setup()  // sets up the input state
         logMsg(func +" loading of User Inout failed!");
         exit(false);
     }
-
+*/
     return (true);
 }
 
 bool inputState::mapInput()  // maps value of keyPressed string to inputMap
 {
-    
+    std::string func = "inputState::mapInput()";
     sharedPtr<conversion> convert = conversion::Instance();
     
-    logMsg("Dah");
+    logMsg(func + " begin");
+    logMsg(func + " Dah");
     exit(0);
     
     if (inputE->getKeyInputReceived())
@@ -125,8 +128,8 @@ bool inputState::mapInput()  // maps value of keyPressed string to inputMap
 //        int x = 0;
         inputKeyWorkQueues inputKeyWorkQueue = inputE->getInputKeyWorkQueue();
         inputKeyWorkQueues::iterator IKWQIIT;
-        logMsg("inputKey!");
-        logMsg("inputKeyWorkQueue.size() = " +convert->toString(inputKeyWorkQueue.size()));
+        logMsg(func + " inputKey!");
+        logMsg(func + " inputKeyWorkQueue.size() = " +convert->toString(inputKeyWorkQueue.size()));
 //        while (x < inputKeyWorkQueue.size())
         for (IKWQIIT = inputKeyWorkQueue.begin(); IKWQIIT != inputKeyWorkQueue.end(); ++IKWQIIT)
         {
@@ -143,19 +146,23 @@ bool inputState::mapInput()  // maps value of keyPressed string to inputMap
         break;
     }
 */
+    logMsg(func + " end");
+    
 return (true);
 }
 
 inputInGameMaps inputState::mapKeyInput(inputKeyMaps inKeyMap, sharedPtr<usersInput> input)  // maps value of the keyPressed string to inputInGameMaps
 {
-    int x = 0;
+    sharedPtr<conversion> convert = conversion::Instance();
+    size_t x = 0;
+    std::string func = "inputState::mapKeyInput()";
 //    while (x < uInput.size())
 //    {
 //    exit(0);
-    
-    logMsg("userInput name == " +input->getName());
+    logMsg(func + " begin");
+    logMsg(func + " userInput name == " +input->getName());
     exit(0);
-    logMsg("mapKeyInput");
+    logMsg(func + " mapKeyInput");
     if (inKeyMap == input->getKeyUp())
     {
         return(INUP);
@@ -206,7 +213,7 @@ inputInGameMaps inputState::mapKeyInput(inputKeyMaps inKeyMap, sharedPtr<usersIn
     }
     else if (inKeyMap == input->getKeyQuit())
     {
-        logMsg("keyQuit = " +input->getKeyQuit());
+        logMsg(func +" keyQuit = " +convert->toString(input->getKeyQuit()));
         return(INQUIT);
     }
     else
@@ -214,12 +221,17 @@ inputInGameMaps inputState::mapKeyInput(inputKeyMaps inKeyMap, sharedPtr<usersIn
         return(INNO);
     }
 //    exit(0);
+    logMsg(func + " end");
 }
 
 bool inputState::process()  // processes input
 {
     sharedPtr<conversion> convert = conversion::Instance();
-    logMsg("inoutState::process");
+    std::string func = "inputState::process()";
+    
+    logMsg(func + " begin");
+//    exit(0);
+    
     if (inputE->processInput())
     {
 //        int x = 0;
@@ -242,6 +254,7 @@ bool inputState::process()  // processes input
     }
     
 //        exit(0);
-
+    logMsg(func + " end");
+//    exit(0);
     return (true);
 }

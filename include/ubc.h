@@ -89,6 +89,8 @@ public:
     
     bool createUserInstances();  // creates the user instances
 
+    bool setupUserInstancesInput();  // sets up input mapping for each user
+    
 protected:
   
 private:

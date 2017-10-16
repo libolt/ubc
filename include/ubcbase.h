@@ -66,8 +66,8 @@ class UBCBase
         size_t getNumUsers();  // retrieves the value of numUsers
         void setNumUsers(size_t set);  // sets the value of numUsers
         
-        usersUMSharedPtr getUserInstance();  // retrieves the value of usersInstance
-        void setUserInstance(usersUMSharedPtr set);  // sets the value of usersInstance
+        usersUMSharedPtr getUsersInstance();  // retrieves the value of usersInstance
+        void setUsersInstance(usersUMSharedPtr set);  // sets the value of usersInstance
 
         bool setup();  // sets up the engine and states
     
@@ -75,12 +75,14 @@ class UBCBase
         static bool stateSetup;  // stores whether or not the initial state setup has completed
         static bool startActiveGame;  // stores whether to begin an active game instance
         static bool userInstancesCreated;  // stores whether user instances have been created
+        static bool userInstancesInputSetup;  // stores status of input configuration for users
+        
         static gameEngineSharedPtr gameE;  // the gameEngine object
         gameStateSharedPtr gameS;  // the gameState object
         static networkStateSharedPtr networkS;  // the gameState object
         static inputStateSharedPtr inputS;  // the gameState object
         static loaderSharedPtr load;  // the loader object
-        static usersUMSharedPtr userInstance;  // stores the user object instances
+        static usersUMSharedPtr usersInstance;  // stores the user object instances
         static size_t numUsers; // stores number of users playing the game
 
 };

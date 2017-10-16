@@ -37,7 +37,7 @@ sharedPtr<networkState> UBCBase::networkS;  // the networkState object
 sharedPtr<inputState> UBCBase::inputS;  // the inputState object
 loaderSharedPtr UBCBase::load;  // the loader object
 size_t UBCBase::numUsers;  // stores the number of users playing the game
-usersUMSharedPtr UBCBase::userInstance; // stores the user object instances
+usersUMSharedPtr UBCBase::usersInstance; // stores the user object instances
 
 UBCBase::UBCBase()  // constructor
 {
@@ -137,13 +137,13 @@ void UBCBase::setNumUsers(size_t set)  // sets the value of numUsers
     numUsers = set;
 }
 
-usersUMSharedPtr UBCBase::getUserInstance()  // retrieves the value of userInstance
+usersUMSharedPtr UBCBase::getUsersInstance()  // retrieves the value of usersInstance
 {
-    return (userInstance);
+    return (usersInstance);
 }
-void UBCBase::setUserInstance(usersUMSharedPtr set)  // sets the value of userInstance
+void UBCBase::setUsersInstance(usersUMSharedPtr set)  // sets the value of usersInstance
 {
-    userInstance = set;
+    usersInstance = set;
 }
 
 bool UBCBase::setup()  // sets up the engine and states
@@ -170,6 +170,13 @@ bool UBCBase::setup()  // sets up the engine and states
     logMsg(func +" load = tempLoaderSharedPtr");
     load = tempLoaderSharedPtr;
 
+    //FIXME! should not be hard coded
+    numUsers = 1;
+    for (int x=0;x<numUsers;++x)
+    {
+        usersSharedPtr tempUser(new users);
+        usersInstance.insert(std::pair<size_t, usersSharedPtr>(x,tempUser));
+    }
 //    exit(0);
 //    networkState *tempNetworkStateObj = new networkState;
 ///    sharedPtr<networkState> tempNetworkStateSharedPtr = sharedPtr<networkState>(new networkState);

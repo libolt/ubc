@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "users/users.h"
+#include "users/usersinput.h"
 
 users::users()  // constructor
 {
@@ -73,4 +74,13 @@ userTypes users::getType()  // retrieves the value of type
 void users::setType(userTypes set)  // sets the value of type
 {
     type = set;
+}
+
+usersInputSharedPtr users::getUserInput()  // retrieves the value of userInput
+{
+    return (userInput);
+}
+void users::setUserInput(usersInputSharedPtr set)  // sets the value of userInput
+{
+    userInput = set;
 }

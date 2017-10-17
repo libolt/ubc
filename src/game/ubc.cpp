@@ -264,6 +264,21 @@ bool UBC::startGame()  // starts the game
     }
     
     
+    if (!base->getUserInstancesInputSetup())
+    {
+        if (setupUserInstancesInput())
+        {
+            base->setUserInstancesInputSetup(true);
+        }
+        else
+        {
+            
+        }
+    }
+    else
+    {
+        
+    }
 //    exit(0);
     base->getGameS()->setBase(base);
     base->getGameS()->setupState();
@@ -875,7 +890,32 @@ bool UBC::createUserInstances()  // creates the user instances
 
 bool UBC::setupUserInstancesInput()  // sets up input mapping for each user
 {
+    loaderSharedPtr load = base->getLoad();
+//    inputEngineSharedPtr tempInputSharedPtr(new inputEngine);
+-/    inputE = tempInputSharedPtr;
+//    uInput = load->loadUserInputs();  // loads user defined input from file.
+    std::string func = "UBC::setupUserInstancesInput()";
     
+    logMsg(func +" load->checkIfUserInputsLoaded()");
+
+    if (load->checkIfUsersInputsLoaded())
+    {
+        uInput = load->getUIInstance();
+        if (uInput.size() > 0)
+        {
+            logMsg(func +" uInput Loaded!");
+        }
+        else
+        {
+            logMsg(func +" uInput NOT Loaded!");
+        }
+    }
+    else
+    {
+        logMsg(func +" loading of User Inout failed!");
+        exit(false);
+    }
+
     return (true);
 }
 

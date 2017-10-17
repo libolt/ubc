@@ -22,6 +22,7 @@
 #define _USERS_H_
 
 #include "enums.h"
+#include "typedefs.h"
 #include <string>
 
 class usersInput;
@@ -51,6 +52,9 @@ class users
         inputTypes getInputType();  // retrieves the value of inputType
         void setInputType(inputTypes set);  // sets the value of inputType
         
+        usersInputSharedPtr getUserInput();  // retrieves the value of userInput
+        void setUserInput(usersInputSharedPtr set);  // sets the value of userInput
+        
     private:
     
     std::string name;  // stores the user's name
@@ -59,6 +63,7 @@ class users
     playerPositions player;  // stores the player being controlled by the user
     userTypes type;  // stores whether the user is local to the system or connected over a network
     inputTypes inputType;  // stores the type of input used by the user
+    usersInputSharedPtr userInput;  // stores the input mapping for user
 };
 
 #endif

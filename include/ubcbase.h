@@ -48,6 +48,9 @@ class UBCBase
         bool getUsersInstancesCreated();  // retrieves the value of userInstancesCreated
         void setUsersInstancesCreated(bool set);  // sets the value of userInstancesCreated
 
+        bool getUserInstancesInputSetup();  // retrieves the value of userInstancesInputSetup
+        void setUserInstancesInputSetup(bool set);  // sets the value of userInstancesInputSetup
+        
         gameEngineSharedPtr getGameE();  // retrieves the value of gameE
         void setGameE(gameEngineSharedPtr set);  // sets the value of gameE
     

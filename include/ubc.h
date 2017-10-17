@@ -91,6 +91,8 @@ public:
 
     bool setupUserInstancesInput();  // sets up input mapping for each user
     
+    bool setupInputSObjUserInput();  // sets up user input mapping for inputS object
+    
 protected:
   
 private:

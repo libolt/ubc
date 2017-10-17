@@ -32,6 +32,8 @@ bool UBCBase::stateSetup;
 bool UBCBase::startActiveGame;  // stores whether to begin an active game instance
 bool UBCBase::userInstancesCreated;  // stores whether user instances have been created
 bool UBCBase::userInstancesInputSetup;  // stores status of input configuration for users
+bool UBCBase::inputSUInputSetup;  // stores whether inputS UInput object has been set
+
 sharedPtr<gameEngine> UBCBase::gameE;  // the gameEngine object
 //sharedPtr<gameState> UBCBase::gameS;  // the gameState object
 sharedPtr<networkState> UBCBase::networkS;  // the networkState object
@@ -45,7 +47,8 @@ UBCBase::UBCBase()  // constructor
     stateSetup = false;
     startActiveGame = false;
     userInstancesCreated = false;
-    
+    userInstancesInputSetup = false;
+    inputSUInputSetup = false;
     numUsers = 0;
 
 }
@@ -81,6 +84,15 @@ bool UBCBase::getUserInstancesInputSetup()  // retrieves the value of userInstan
 void UBCBase::setUserInstancesInputSetup(bool set)  // sets the value of userInstancesInputSetup
 {
     userInstancesInputSetup = set;
+}
+
+bool UBCBase::getInputSUInputSetup()  // retrieves the value of inputSUInputSetup
+{
+    return (inputSUInputSetup);
+}
+void UBCBase::setInputSUInputSetup(bool set)  // sets the value of inputSUInputSetup
+{
+    inputSUInputSetup = set;
 }
 
 bool UBCBase::getStartActiveGame()  // retrieves the value of startActiveGame

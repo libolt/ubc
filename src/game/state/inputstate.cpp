@@ -134,7 +134,11 @@ bool inputState::mapInput()  // maps value of keyPressed string to inputMap
         for (IKWQIIT = inputKeyWorkQueue.begin(); IKWQIIT != inputKeyWorkQueue.end(); ++IKWQIIT)
         {
             // FIXME! uInput shoulnobe hard coded
-            inputInGameWorkQueue.push_back(mapKeyInput(*IKWQIIT, uInput[0]));
+            usersInputSharedPtr::iterator UIIT;
+            for (UIIT = uInput.begin(); UIIT != uInput.end(); ++UIIT)
+            {
+                inputInGameWorkQueue.push_back(mapKeyInput(*IKWQIIT, *UIIT));
+            }
 //            ++x;
         }
     }
@@ -161,8 +165,11 @@ inputInGameMaps inputState::mapKeyInput(inputKeyMaps inKeyMap, sharedPtr<usersIn
 //    exit(0);
     logMsg(func + " begin");
     logMsg(func + " userInput name == " +input->getName());
-    exit(0);
+//    exit(0);
     logMsg(func + " mapKeyInput");
+    logMsg(func + " inKeyMap = " +convert->toString(inKeyMap));
+    logMsg(func +" inKeyMap keyQuit = " +convert->toString(input->getKeyQuit()));
+
     if (inKeyMap == input->getKeyUp())
     {
         return(INUP);
@@ -214,6 +221,7 @@ inputInGameMaps inputState::mapKeyInput(inputKeyMaps inKeyMap, sharedPtr<usersIn
     else if (inKeyMap == input->getKeyQuit())
     {
         logMsg(func +" keyQuit = " +convert->toString(input->getKeyQuit()));
+        exit(0);
         return(INQUIT);
     }
     else

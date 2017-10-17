@@ -51,6 +51,9 @@ class UBCBase
         bool getUserInstancesInputSetup();  // retrieves the value of userInstancesInputSetup
         void setUserInstancesInputSetup(bool set);  // sets the value of userInstancesInputSetup
         
+        bool getInputSUInputSetup();  // retrieves the value of inputSUInputSetup
+        void setInputSUInputSetup(bool set);  // sets the value of inputSUInputSetup
+
         gameEngineSharedPtr getGameE();  // retrieves the value of gameE
         void setGameE(gameEngineSharedPtr set);  // sets the value of gameE
     
@@ -71,7 +74,7 @@ class UBCBase
         
         usersUMSharedPtr getUsersInstance();  // retrieves the value of usersInstance
         void setUsersInstance(usersUMSharedPtr set);  // sets the value of usersInstance
-
+        
         bool setup();  // sets up the engine and states
     
     private:
@@ -79,7 +82,7 @@ class UBCBase
         static bool startActiveGame;  // stores whether to begin an active game instance
         static bool userInstancesCreated;  // stores whether user instances have been created
         static bool userInstancesInputSetup;  // stores status of input configuration for users
-        
+        static bool inputSUInputSetup;  // stores whether inputS UInput object has been set
         static gameEngineSharedPtr gameE;  // the gameEngine object
         gameStateSharedPtr gameS;  // the gameState object
         static networkStateSharedPtr networkS;  // the gameState object

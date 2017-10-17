@@ -226,7 +226,62 @@ void UBC::run()  // runs the game
 //    setViewPort(*vp);  // sets the viewPort for MyGUI
 
 //    exit(0);
-    logMsg(func +" Initializing Input");
+    
+    //FIXME! Hard coded until code is restructured
+    base->setNumUsers(1);
+    
+    logMsg(func + " Creating Users Instances!");
+    if (!base->getUsersInstancesCreated())
+    {
+        if (createUserInstances())
+        {
+            base->setUsersInstancesCreated(true);
+        }
+        else
+        {
+            
+        }
+    }
+    else
+    {
+        
+    }
+    
+    logMsg(func + "Setting up Users Input");
+    // sets up users input
+    if (base->getUsersInstancesCreated() && !base->getUserInstancesInputSetup())
+    {
+        if (setupUserInstancesInput())
+        {
+            base->setUserInstancesInputSetup(true);
+        }
+        else
+        {
+            
+        }
+    }
+    else
+    {
+        
+    }
+    
+    logMsg(func +" Setting up  inputS objects user input mapping");
+    if (!base->getInputSUInputSetup())
+    {
+        if (setupInputSObjUserInput())
+        {
+            base->setInputSUInputSetup(true);
+        }
+        else
+        {
+            logMsg(func +" Unable to setup uInput!");
+            exit(0);
+        }
+    }
+    else
+    {
+        
+    }
     //inputSystem *input = inputSystem::Instance();
 //    sharedPtr<inputSystem> input = getInputE();
 //    exit(0);
@@ -246,47 +301,12 @@ bool UBC::startGame()  // starts the game
 
     logMsg(func +" beginning");
 
-    //FIXME! Hard coded until code is restructured
-    base->setNumUsers(1);
-    
-    if (!base->getUsersInstancesCreated())
-    {
-        if (createUserInstances())
-        {
-            base->setUsersInstancesCreated(true);
-        }
-        else
-        {
-            
-        }
-    }
-    else
-    {
-        
-    }
-    
-    
-    if (!base->getUserInstancesInputSetup())
-    {
-        if (setupUserInstancesInput())
-        {
-            base->setUserInstancesInputSetup(true);
-        }
-        else
-        {
-            
-        }
-    }
-    else
-    {
-        
-    }
 //    exit(0);
     base->getGameS()->setBase(base);
     base->getGameS()->setupState();
     
     logMsg(func +" end");
-
+//    exit(0);
     return (true);
 }
 
@@ -870,7 +890,7 @@ bool UBC::createUserInstances()  // creates the user instances
 {
     sharedPtr<conversion> convert = conversion::Instance();
     usersUMSharedPtr tempUserInstance;
-    std::string func = "gameState::createUserInstances()";
+    std::string func = "UBC::createUserInstances()";
 
     logMsg(func +" beginning");
     
@@ -885,7 +905,7 @@ bool UBC::createUserInstances()  // creates the user instances
     }
     
     logMsg(func +" end");
-    exit(0);
+//    exit(0);
     
     return (true);
 }
@@ -916,10 +936,39 @@ bool UBC::setupUserInstancesInput()  // sets up input mapping for each user
     }
     else
     {
-        logMsg(func +" loading of User Inout failed!");
+        logMsg(func +" loading of User Input failed!");
         exit(false);
     }
 
+    usersUMSharedPtr tempUsersInstance;
+    tempUsersInstance = base->getUsersInstance();
+    size_t x = 0;
+    // sets the default input for the users
+    for ( auto TUIIT : tempUsersInstance)
+    {
+        TUIIT.second->setUserInput(tempUserInput[x]);
+        ++x;
+    }
+    base->setUsersInstance(tempUsersInstance);
+    
+    return (true);
+}
+
+bool UBC::setupInputSObjUserInput()  // sets up user input mapping for inputS object
+{
+    usersUMSharedPtr tempUsersInstance;
+    usersInputVecSharedPtr tempUserInput;
+    
+    tempUsersInstance = base->getUsersInstance();
+
+    
+    for ( auto TUIIT : tempUsersInstance)
+    {
+        tempUserInput.push_back(TUIIT.second->getUserInput());
+    }
+    
+    base->getInputS()->setUInput(tempUserInput);
+    
     return (true);
 }
 

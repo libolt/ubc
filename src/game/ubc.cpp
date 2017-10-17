@@ -31,6 +31,8 @@
 #include "state/playerstate.h"
 #include "state/teamstate.h"
 #include "users/users.h"
+#include "users/usersinput.h"
+#include "load.h"
 #include "logging.h"
 #include "ubc.h"
 #include "ubcbase.h"
@@ -892,22 +894,24 @@ bool UBC::setupUserInstancesInput()  // sets up input mapping for each user
 {
     loaderSharedPtr load = base->getLoad();
 //    inputEngineSharedPtr tempInputSharedPtr(new inputEngine);
--/    inputE = tempInputSharedPtr;
-//    uInput = load->loadUserInputs();  // loads user defined input from file.
+//    inputE = tempInputSharedPtr;
+    usersInputVecSharedPtr tempUserInput;
+    
+    tempUserInput = load->loadUsersInputs();  // loads user defined input from file.
     std::string func = "UBC::setupUserInstancesInput()";
     
     logMsg(func +" load->checkIfUserInputsLoaded()");
 
     if (load->checkIfUsersInputsLoaded())
     {
-        uInput = load->getUIInstance();
-        if (uInput.size() > 0)
+        tempUserInput = load->getUIInstance();
+        if (tempUserInput.size() > 0)
         {
-            logMsg(func +" uInput Loaded!");
+            logMsg(func +" tempUserInput Loaded!");
         }
         else
         {
-            logMsg(func +" uInput NOT Loaded!");
+            logMsg(func +" tempUserInput NOT Loaded!");
         }
     }
     else

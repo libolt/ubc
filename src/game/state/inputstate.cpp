@@ -134,7 +134,7 @@ bool inputState::mapInput()  // maps value of keyPressed string to inputMap
         for (IKWQIIT = inputKeyWorkQueue.begin(); IKWQIIT != inputKeyWorkQueue.end(); ++IKWQIIT)
         {
             // FIXME! uInput shoulnobe hard coded
-            usersInputSharedPtr::iterator UIIT;
+            usersInputVecSharedPtr::iterator UIIT;
             for (UIIT = uInput.begin(); UIIT != uInput.end(); ++UIIT)
             {
                 inputInGameWorkQueue.push_back(mapKeyInput(*IKWQIIT, *UIIT));

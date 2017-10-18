@@ -289,6 +289,8 @@ LOCAL_SRC_FILES := \
                        $(wildcard $(LOCAL_PATH)/../../src/game/eventdata/*.cpp)) \
                    $(subst $(LOCAL_PATH)/,, \
                        $(wildcard $(LOCAL_PATH)/../../src/game/users/*.cpp)) \
+                   $(subst $(LOCAL_PATH)/,, \
+                       $(wildcard $(LOCAL_PATH)/../../src/game/load/*.cpp)) \
 
 
 LOCAL_LDLIBS	:= -landroid -lc -lm -ldl -llog -lEGL -lGLESv1_CM -lGLESv2 

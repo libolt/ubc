@@ -912,6 +912,7 @@ bool UBC::createUserInstances()  // creates the user instances
 
 bool UBC::setupUserInstancesInput()  // sets up input mapping for each user
 {
+    sharedPtr<conversion> convert = conversion::Instance();
     loaderSharedPtr load = base->getLoad();
 //    inputEngineSharedPtr tempInputSharedPtr(new inputEngine);
 //    inputE = tempInputSharedPtr;
@@ -949,6 +950,8 @@ bool UBC::setupUserInstancesInput()  // sets up input mapping for each user
         TUIIT.second->setUserInput(tempUserInput[x]);
         ++x;
     }
+    logMsg(func +" keyQuit == " +convert->toString(tempUserInput[0]->getKeyQuit()));
+    exit(0);
     base->setUsersInstance(tempUsersInstance);
     
     return (true);

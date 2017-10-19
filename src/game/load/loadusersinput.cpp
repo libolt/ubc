@@ -24,6 +24,8 @@
 #include "config.h"
 #endif
 
+#include "users/usersinput.h"
+
 #include "conversion.h"
 #include "load.h"
 #include "logging.h"

@@ -24,6 +24,7 @@
 #include "config.h"
 #endif
 
+#include "state/teamstate.h"
 #include "conversion.h"
 #include "load.h"
 #include "logging.h"
@@ -37,7 +38,6 @@
 
 
 #include "typedefs.h"
-#include "users/usersinput.h"
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 #include "android.h"

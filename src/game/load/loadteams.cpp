@@ -27,6 +27,7 @@
 #include "conversion.h"
 #include "load.h"
 #include "logging.h"
+#include "state/teamstate.h"
 
 std::unordered_map<size_t, teamStateSharedPtr> loader::loadTeams()  // load teams from XML files
 {

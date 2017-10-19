@@ -35,7 +35,6 @@
 
 //#include "state/gamestate.h"
 
-#include "state/teamstate.h"
 
 #include "typedefs.h"
 #include "users/usersinput.h"

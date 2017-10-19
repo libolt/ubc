@@ -27,6 +27,7 @@
 #include "conversion.h"
 #include "load.h"
 #include "logging.h"
+#include "state/hoopstate.h"
 
 hoopStateUMSharedPtr  loader::loadHoops()  // load hoop XML files
 {

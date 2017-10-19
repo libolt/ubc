@@ -27,6 +27,8 @@
 #include "conversion.h"
 #include "load.h"
 #include "logging.h"
+#include "data/courtdata.h"
+#include "state/courtstate.h"
 
 // Courts
 std::unordered_map<size_t, courtStateSharedPtr> loader::loadCourts()  // load court settings from XML files

@@ -27,6 +27,7 @@
 #include "conversion.h"
 #include "load.h"
 #include "logging.h"
+#include "offenseplays.h"
 
 //Offense
 offensePlaysVecSharedPtr loader::loadOffensePlays()  // load offense plays from XML files

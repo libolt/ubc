@@ -27,6 +27,9 @@
 #include "conversion.h"
 #include "load.h"
 #include "logging.h"
+#include "data/basketballdata.h"
+#include "entity/basketballentity.h"
+#include "state/basketballstate.h"
 
 // Basketballs
 basketballStateVecSharedPtr loader::loadBasketballs()  // load basketball settings from XML files

@@ -24,6 +24,10 @@
 #include "config.h"
 #endif
 
+#include "data/playerdata.h"
+#include "entity/playerentity.h"
+#include "state/playerstate.h"
+
 #include "conversion.h"
 #include "load.h"
 #include "logging.h"

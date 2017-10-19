@@ -27,19 +27,16 @@
 #include "conversion.h"
 #include "load.h"
 #include "logging.h"
-#include "data/basketballdata.h"
-#include "data/courtdata.h"
-#include "data/playerdata.h"
+
+
 #include "engine/renderengine.h"
-#include "entity/basketballentity.h"
-#include "entity/playerentity.h"
-#include "state/basketballstate.h"
-#include "state/courtstate.h"
-#include "state/hoopstate.h"
+
+
+
 //#include "state/gamestate.h"
-#include "state/playerstate.h"
+
 #include "state/teamstate.h"
-#include "offenseplays.h"
+
 #include "typedefs.h"
 #include "users/usersinput.h"
 

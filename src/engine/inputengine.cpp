@@ -33,7 +33,7 @@
 #include "MyGUI_OgrePlatform.h"
 #include "engine/inputengine.h"
 #include "engine/gameengine.h"
-#include "load.h"
+#include "load/load.h"
 #include "logging.h"
 
 // static variables 

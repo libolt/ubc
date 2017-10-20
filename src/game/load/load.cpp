@@ -26,10 +26,8 @@
 
 #include "state/teamstate.h"
 #include "conversion.h"
-#include "load.h"
+#include "load/load.h"
 #include "logging.h"
-
-
 #include "engine/renderengine.h"
 
 
@@ -43,9 +41,8 @@
 #include "android.h"
 #endif
 
-// static variables
+// static declarations
 
-basketballStateVecSharedPtr loader::bInstance;
 courtStateUMSharedPtr  loader::cInstance;
 hoopStateUMSharedPtr  loader::hInstance;
 offensePlaysVecSharedPtr loader::opInstance;
@@ -53,8 +50,6 @@ playerEntityUMSharedPtr loader::pInstance;
 teamStateUMSharedPtr loader::tInstance;
 usersInputVecSharedPtr loader::uiInstance;
 
-
-stdStringVec loader::basketballFiles;  // stores list of basketball xml files
 stdStringVec loader::courtFiles;  // stores list of court xml files
 stdStringVec loader::hoopFiles;  // stores list of hoop xml files
 stdStringVec loader::offensePlayFiles;  // stores list of offense play xml files
@@ -62,7 +57,6 @@ stdStringVec loader::playerFiles;  // stores list of player xml files
 stdStringVec loader::teamFiles;  // stores list of team xml files
 stdStringVec loader::usersInputFiles; 
 
-bool loader::basketballFilesLoaded;
 bool loader::courtFilesLoaded;
 bool loader::hoopFilesLoaded;
 bool loader::offensePlayFilesLoaded;
@@ -74,13 +68,11 @@ int loader::count;
 
 loader::loader()  // constructor
 {
-    basketballFilesLoaded = false;
     courtFilesLoaded = false;
     offensePlayFilesLoaded = false;
     playerFilesLoaded = false;
     teamFilesLoaded = false;
     userInputFilesLoaded = false;
-
 
 //        pathArray = pathSplit(dataPath);
 //      cout << pathArray[2] << endl;

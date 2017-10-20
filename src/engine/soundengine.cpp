@@ -21,7 +21,7 @@
  
 #include "engine/sound/soundengine.h"
 #include "conversion.h"
-#include "load.h"
+#include "load/load.h"
 
 /*
 sharedPtr<soundEngine> soundEngine::pInstance;

@@ -32,7 +32,7 @@
 #include "state/teamstate.h"
 #include "users/users.h"
 #include "users/usersinput.h"
-#include "load.h"
+#include "load/load.h"
 #include "logging.h"
 #include "ubc.h"
 #include "ubcbase.h"

@@ -25,14 +25,29 @@
 #endif
 
 #include "conversion.h"
-#include "load.h"
+#include "load/loadbasketballs.h"
 #include "logging.h"
 #include "data/basketballdata.h"
 #include "entity/basketballentity.h"
 #include "state/basketballstate.h"
 
+// static declarations
+
+basketballStateVecSharedPtr loadBasketballs::bInstance;
+stdStringVec loader::basketballFiles;  // stores list of basketball xml files
+bool loader::basketballFilesLoaded;
+
+loadBasketballs::loadBasketballs()  // constructor
+{
+    basketballFilesLoaded = false;
+}
+loadBasketballs::~loadBasketballs()  // destructor
+{
+    
+}
+
 // Basketballs
-basketballStateVecSharedPtr loader::loadBasketballs()  // load basketball settings from XML files
+basketballStateVecSharedPtr loadBasketballs::loadBasketballs()  // load basketball settings from XML files
 {
 //    exit(0);
     basketballStateVecSharedPtr basketballs;
@@ -63,7 +78,7 @@ basketballStateVecSharedPtr loader::loadBasketballs()  // load basketball settin
     return (basketballs);
 }
 
-stdStringVec loader::loadBasketballListFile(std::string fileName) // loads the list of baskteball list file
+stdStringVec loadBasketballs::loadBasketballListFile(std::string fileName) // loads the list of baskteball list file
 {
     sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<renderEngine> render = renderEngine::Instance();
@@ -118,7 +133,7 @@ stdStringVec loader::loadBasketballListFile(std::string fileName) // loads the l
     return (bballFiles);
 }
 
-sharedPtr<basketballState> loader::loadBasketballFile(std::string fileName)  // loads data from the basketball XML files
+sharedPtr<basketballState> loadBasketballs::loadBasketballFile(std::string fileName)  // loads data from the basketball XML files
 {
     sharedPtr<conversion> convert = conversion::Instance();
     sharedPtr<basketballState> basketballInstance(new basketballState);

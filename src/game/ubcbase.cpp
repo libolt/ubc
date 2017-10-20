@@ -23,7 +23,7 @@
 #include "state/gamestate.h"
 #include "state/networkstate.h"
 #include "state/inputstate.h"
-#include "load.h"
+#include "load/load.h"
 #include "logging.h"
 #include "users/users.h"
 

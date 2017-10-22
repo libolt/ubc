@@ -73,9 +73,6 @@ public:
 
     stdStringVec getUsersInputFiles();  // retrieves the value of userInputFiles
     void setUsersInputFiles(stdStringVec set);  // sets the value of userInputFiles
-
-    basketballStateVecSharedPtr getBInstance();  // retrieves the value of bInstance
-    void setBInstance(basketballStateVecSharedPtr set);  // sets the value of bInstance
     
     courtStateUMSharedPtr  getCInstance();  // retrieves the value of cInstance
     void setCInstance(courtStateUMSharedPtr  set);  // sets the value of cInstance

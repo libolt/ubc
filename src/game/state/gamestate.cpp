@@ -35,7 +35,8 @@
 #include "state/playerstate.h"
 #include "state/teamstate.h"
 #include "engine/gameengine.h"
-#include "load.h"
+#include "load/loadbasketballs.h"
+
 #include "logging.h"
 #include "network/networkplayerstateobject.h"
 #include "data/basketballdata.h"
@@ -552,7 +553,7 @@ bool gameState::createPlayerInstances()  // creates player instances
 bool gameState::createActiveBasketballInstances()  // creates the active basketball instances
 {
     sharedPtr<conversion> convert = conversion::Instance();
-    loaderSharedPtr load = base->getLoad();
+    loadBasketballsSharedPtr loadBasketball;  // = base->getLoad();
     basketballStateVecSharedPtr basketballInstance = getBasketballInstance();
     std::unordered_map<size_t, basketballStateSharedPtr> activeBasketballInstance = getActiveBasketballInstance();
     std::string func = "gameState::createActiveBasketballInstances()";
@@ -562,9 +563,9 @@ bool gameState::createActiveBasketballInstances()  // creates the active basketb
     logMsg(func +" basketballInstance.size() == " +convert->toString(basketballInstance.size()));
     if (basketballInstance.size() == 0)
     {
-        if (load->checkIfBasketballsLoaded())
+        if (loadBasketball->checkIfBasketballFilesLoaded())
         {
-            basketballInstance = load->getBInstance();
+            basketballInstance = loadBasketball->getBInstance();
         }
         else
         {

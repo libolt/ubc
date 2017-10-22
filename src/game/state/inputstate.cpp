@@ -23,7 +23,7 @@
 #include "engine/inputengine.h"
 //#include "engine/gameengine.h"
 #include "users/usersinput.h"
-#include "load.h"
+#include "load/load.h"
 #include "ubcbase.h"
 #include "gui/gui.h"
 #include "conversion.h"

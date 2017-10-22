@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2017 by Mike McLean                              *
+  *   Copyright (C) 1999 - 2017 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -21,7 +21,7 @@
 #include "ubcbase.h"
 #include "conversion.h"
 #include "engine/gameengine.h"
-#include "load.h"
+#include "load/load.h"
 #include "logging.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"

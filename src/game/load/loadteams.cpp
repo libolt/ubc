@@ -25,7 +25,7 @@
 #endif
 
 #include "conversion.h"
-#include "load.h"
+#include "load/load.h"
 #include "logging.h"
 #include "state/teamstate.h"
 

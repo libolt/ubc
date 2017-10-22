@@ -34,8 +34,8 @@
 // static declarations
 
 basketballStateVecSharedPtr loadBasketballs::bInstance;
-stdStringVec loader::basketballFiles;  // stores list of basketball xml files
-bool loader::basketballFilesLoaded;
+stdStringVec loadBasketballs::basketballFiles;  // stores list of basketball xml files
+bool loadBasketballs::basketballFilesLoaded;
 
 loadBasketballs::loadBasketballs()  // constructor
 {
@@ -46,8 +46,112 @@ loadBasketballs::~loadBasketballs()  // destructor
     
 }
 
+stdStringVec loadBasketballs::getBasketballFiles()  // retrieves the value of basketballFiles
+{
+    return (basketballFiles);
+}
+void loadBasketballs::setBasketballFiles(stdStringVec set)  // sets the value of basketballFiles
+{
+    basketballFiles = set;
+}
+
+basketballStateVecSharedPtr loadBasketballs::getBInstance()  // retrieves the value of bInstance
+{
+    return (bInstance);
+}
+void loadBasketballs::setBInstance(basketballStateVecSharedPtr set)  // sets the value of bInstance
+{
+    bInstance = set;
+}
+
+bool loadBasketballs::getBasketballFilesLoaded()  // retrieves the value of basketballFilesLoaded
+{
+    return (basketballFilesLoaded);
+}
+void loadBasketballs::setBasketballFilesLoaded(bool set)  // sets the value of basketballFilesLoaded
+{
+    basketballFilesLoaded = set;
+}
+
+bool loadBasketballs::checkIfBasketballFilesLoaded()  // checks if basketballs have been loaded into bInstance
+{
+    sharedPtr<conversion> convert = conversion::Instance();
+    std::string func = "loader::checkBasketballsLoaded()";
+    
+    logMsg(func + " beginning");
+    
+    if (basketballFilesLoaded)
+    {
+        logMsg(func +" getBasketballFilesLoaded");
+
+        if (bInstance.size() > 0)
+        {
+            logMsg(func +" Basketball Files Loaded!");
+            return(true);
+        }
+        else
+        {
+            logMsg(func +" Basketball Files not yet Loaded!");
+
+            basketballFilesLoaded = false;
+            bInstance = loadBasketballFiles();
+            if (bInstance.size() > 0)
+            {
+                logMsg(func +" > 0!");
+
+//                load->setTInstance(tInstance);
+                basketballFilesLoaded = true;
+                return(true);
+            }
+            else
+            {
+                logMsg(func +" Failed to load Basketball Files! IF");
+                exit(0);
+            }
+        }
+    }
+    else 
+    {
+        logMsg(func +" ELSE");
+
+        if (bInstance.size() > 0)
+        {
+            logMsg(func +" load->getBInstance().size() > 0! ELSE");
+//            load->setTInstance(tInstance);
+            basketballFilesLoaded = true;
+            return(true);
+        }
+        else
+        {
+            logMsg(func +" ELSE ELSE!");
+            bInstance = loadBasketballFiles();
+            logMsg(func +" blah");
+
+            logMsg(func +" bInstance.size() == " +convert->toString(bInstance.size()));
+
+//            logMsg("loader::checkBasketballsLoaded()");
+            if (bInstance.size() > 0)
+            {
+                logMsg(func +" load->getBInstance().size() > 0! ELSE ELSE");
+
+//                load->setTInstance(tInstance);
+                basketballFilesLoaded = true;
+                return(true);
+            }
+            else
+            {
+                logMsg(func +" Failed to load Basketball Files!");
+                return(false);
+            }
+        }
+    }
+    
+    logMsg(func + " end");
+    return (false);
+}
+
 // Basketballs
-basketballStateVecSharedPtr loadBasketballs::loadBasketballs()  // load basketball settings from XML files
+basketballStateVecSharedPtr loadBasketballs::loadBasketballFiles()  // load basketball settings from XML files
 {
 //    exit(0);
     basketballStateVecSharedPtr basketballs;

@@ -80,6 +80,11 @@ class teamState;
 class courtData;
 
 class loader;
+class loadBasketballs;
+class loadCourts;
+class loadHoops;
+class loadPlayers;
+class loadUsersInputs;
 class logging;
 class usersInput;
 
@@ -159,6 +164,8 @@ typedef sharedPtr<OpenSteer::AbstractVehicle> OpenSteerAbstractVehicleSharedPtr;
 typedef sharedPtr<OpenSteer::PlugIn> OpenSteerPluginSharedPtr;
 
 typedef sharedPtr<loader> loaderSharedPtr;
+
+typedef sharedPtr<loadBasketballs> loadBasketballsSharedPtr;
 
 typedef sharedPtr<logging> loggingSharedPtr;
 

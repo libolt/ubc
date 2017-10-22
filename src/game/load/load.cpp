@@ -83,15 +83,6 @@ loader::~loader()  // destructor
 {
 }
 
-stdStringVec loader::getBasketballFiles()  // retrieves the value of basketballFiles
-{
-    return (basketballFiles);
-}
-void loader::setBasketballFiles(stdStringVec set)  // sets the value of basketballFiles
-{
-    basketballFiles = set;
-}
-
 stdStringVec loader::getCourtFiles()   // retrieves the value of courtFiles
 {
     return (courtFiles);
@@ -135,15 +126,6 @@ stdStringVec loader::getUsersInputFiles()   // retrieves the value of userInputF
 void loader::setUsersInputFiles(stdStringVec set)  // sets the value of userInputFiles
 {
     usersInputFiles = set;
-}
-
-basketballStateVecSharedPtr loader::getBInstance()  // retrieves the value of bInstance
-{
-    return (bInstance);
-}
-void loader::setBInstance(basketballStateVecSharedPtr set)  // sets the value of bInstance
-{
-    bInstance = set;
 }
 
 std::unordered_map<size_t, courtStateSharedPtr> loader::getCInstance()  // retrieves the value of cInstance
@@ -198,15 +180,6 @@ usersInputVecSharedPtr loader::getUIInstance()  // retrieves the value of uoInst
 void loader::setUIInstance(usersInputVecSharedPtr set)  // sets the value of uiInstance
 {
     uiInstance = set;
-}
-
-bool loader::getBasketballFilesLoaded()  // retrieves the value of basketballFilesLoaded
-{
-    return (basketballFilesLoaded);
-}
-void loader::setBasketballFilesLoaded(bool set)  // sets the value of basketballFilesLoaded
-{
-    basketballFilesLoaded = set;
 }
 
 bool loader::getCourtFilesLoaded()  // retrieves the value of courtFilesLoaded
@@ -418,83 +391,6 @@ std::string loader::findFile(std::string fileName)  // finds the location of a f
     }
 #endif
     return ("");
-}
-
-bool loader::checkIfBasketballsLoaded()  // checks if basketballs have been loaded into bInstance
-{
-    sharedPtr<conversion> convert = conversion::Instance();
-    std::string func = "loader::checkBasketballsLoaded()";
-    
-    logMsg(func + " beginning");
-    
-    if (basketballFilesLoaded)
-    {
-        logMsg(func +" getBasketballFilesLoaded");
-
-        if (bInstance.size() > 0)
-        {
-            logMsg(func +" Basketball Files Loaded!");
-            return(true);
-        }
-        else
-        {
-            logMsg(func +" Basketball Files not yet Loaded!");
-
-            basketballFilesLoaded = false;
-            bInstance = loadBasketballs();
-            if (bInstance.size() > 0)
-            {
-                logMsg(func +" > 0!");
-
-//                load->setTInstance(tInstance);
-                basketballFilesLoaded = true;
-                return(true);
-            }
-            else
-            {
-                logMsg(func +" Failed to load Basketball Files! IF");
-                exit(0);
-            }
-        }
-    }
-    else 
-    {
-        logMsg(func +" ELSE");
-
-        if (bInstance.size() > 0)
-        {
-            logMsg(func +" load->getBInstance().size() > 0! ELSE");
-//            load->setTInstance(tInstance);
-            basketballFilesLoaded = true;
-            return(true);
-        }
-        else
-        {
-            logMsg(func +" ELSE ELSE!");
-            bInstance = loadBasketballs();
-            logMsg(func +" blah");
-
-            logMsg(func +" bInstance.size() == " +convert->toString(bInstance.size()));
-
-//            logMsg("loader::checkBasketballsLoaded()");
-            if (bInstance.size() > 0)
-            {
-                logMsg(func +" load->getBInstance().size() > 0! ELSE ELSE");
-
-//                load->setTInstance(tInstance);
-                basketballFilesLoaded = true;
-                return(true);
-            }
-            else
-            {
-                logMsg(func +" Failed to load Basketball Files!");
-                return(false);
-            }
-        }
-    }
-    
-    logMsg(func + " end");
-    return (false);
 }
 
 bool loader::checkIfCourtsLoaded()  // checks if courts have been loaded into cInstance

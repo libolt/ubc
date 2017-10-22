@@ -29,7 +29,7 @@
 #include "state/playerstate.h"
 
 #include "conversion.h"
-#include "load.h"
+#include "load/load.h"
 #include "logging.h"
 
 playerEntityUMSharedPtr loader::loadPlayers()  // loads the players

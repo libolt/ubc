@@ -84,6 +84,7 @@ class loadBasketballs;
 class loadCourts;
 class loadHoops;
 class loadPlayers;
+class loadTeams;
 class loadUsersInputs;
 class logging;
 class usersInput;
@@ -166,6 +167,16 @@ typedef sharedPtr<OpenSteer::PlugIn> OpenSteerPluginSharedPtr;
 typedef sharedPtr<loader> loaderSharedPtr;
 
 typedef sharedPtr<loadBasketballs> loadBasketballsSharedPtr;
+
+typedef sharedPtr<loadCourts> loadCourtsSharedPtr;
+
+typedef sharedPtr<loadHoops> loadHoopsSharedPtr;
+
+typedef sharedPtr<loadPlayers> loadPlayersSharedPtr;
+
+typedef sharedPtr<loadTeams> loadTeamsSharedPtr;
+
+typedef sharedPtr<loadUsersInputs> loadUsersInputsSharedPtr;
 
 typedef sharedPtr<logging> loggingSharedPtr;
 

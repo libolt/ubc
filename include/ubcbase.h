@@ -69,6 +69,12 @@ class UBCBase
         loaderSharedPtr getLoad();  // retrieves the value of load
         void setLoad(loaderSharedPtr set);  // sets the value of load
         
+        loadBasketballsSharedPtr getLoadBasketball();  // retrieves the value of loadBasketball
+        void setLoadBasketball(loadBasketballsSharedPtr set);  // sets the value of loadBasketball
+
+        loadCourtsSharedPtr getLoadCourt();  // retrieves the value of loadCourt
+        void setLoadCourt(loadCourtsSharedPtr set);  // sets the value of loadCourt
+
         size_t getNumUsers();  // retrieves the value of numUsers
         void setNumUsers(size_t set);  // sets the value of numUsers
         
@@ -88,6 +94,8 @@ class UBCBase
         static networkStateSharedPtr networkS;  // the gameState object
         static inputStateSharedPtr inputS;  // the gameState object
         static loaderSharedPtr load;  // the loader object
+        static loadBasketballsSharedPtr loadBasketball;  // the loadBasketballs object
+        static loadCourtsSharedPtr loadCourt;  // the loadCourts object
         static usersUMSharedPtr usersInstance;  // stores the user object instances
         static size_t numUsers; // stores number of users playing the game
 

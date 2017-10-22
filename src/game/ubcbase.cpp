@@ -39,6 +39,9 @@ sharedPtr<gameEngine> UBCBase::gameE;  // the gameEngine object
 sharedPtr<networkState> UBCBase::networkS;  // the networkState object
 sharedPtr<inputState> UBCBase::inputS;  // the inputState object
 loaderSharedPtr UBCBase::load;  // the loader object
+loadBasketballsSharedPtr UBCBase::loadBasketball;  // the loadBasketballs object
+loadCourtsSharedPtr UBCBase::loadCourt;  // the loadCourts object
+
 size_t UBCBase::numUsers;  // stores the number of users playing the game
 usersUMSharedPtr UBCBase::usersInstance; // stores the user object instances
 
@@ -148,6 +151,24 @@ loaderSharedPtr UBCBase::getLoad()  // retrieves the value of load
 void UBCBase::setLoad(loaderSharedPtr set)  // sets the value of load
 {
     load = set;
+}
+
+loadBasketballsSharedPtr UBCBase::getLoadBasketball()  // retrieves the value of loadBasketball
+{
+    return(loadBasketball);
+}
+void UBCBase::setLoadBasketball(loadBasketballsSharedPtr set)  // sets the value of loadBasketball
+{
+    loadBasketball = set;
+}
+
+loadCourtsSharedPtr UBCBase::getLoadCourt()  // retrieves the value of loadCourt
+{
+    return (loadCourt);
+}
+void UBCBase::setLoadCourt(loadCourtsSharedPtr set)  // sets the value of loadCourt
+{
+    loadCourt = set;
 }
 
 size_t UBCBase::getNumUsers()  // retrieves the value of numUsers

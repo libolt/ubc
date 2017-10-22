@@ -43,21 +43,18 @@
 
 // static declarations
 
-courtStateUMSharedPtr  loader::cInstance;
 hoopStateUMSharedPtr  loader::hInstance;
 offensePlaysVecSharedPtr loader::opInstance;
 playerEntityUMSharedPtr loader::pInstance;
 teamStateUMSharedPtr loader::tInstance;
 usersInputVecSharedPtr loader::uiInstance;
 
-stdStringVec loader::courtFiles;  // stores list of court xml files
 stdStringVec loader::hoopFiles;  // stores list of hoop xml files
 stdStringVec loader::offensePlayFiles;  // stores list of offense play xml files
 stdStringVec loader::playerFiles;  // stores list of player xml files
 stdStringVec loader::teamFiles;  // stores list of team xml files
 stdStringVec loader::usersInputFiles; 
 
-bool loader::courtFilesLoaded;
 bool loader::hoopFilesLoaded;
 bool loader::offensePlayFilesLoaded;
 bool loader::playerFilesLoaded;
@@ -68,7 +65,6 @@ int loader::count;
 
 loader::loader()  // constructor
 {
-    courtFilesLoaded = false;
     offensePlayFilesLoaded = false;
     playerFilesLoaded = false;
     teamFilesLoaded = false;
@@ -81,15 +77,6 @@ loader::loader()  // constructor
 
 loader::~loader()  // destructor
 {
-}
-
-stdStringVec loader::getCourtFiles()   // retrieves the value of courtFiles
-{
-    return (courtFiles);
-}
-void loader::setCourtFiles(stdStringVec set)  // sets the value of courtFiles
-{
-    courtFiles = set;
 }
 
 stdStringVec loader::getOffensePlayFiles()  // retrieves the value of offensePlayFiles
@@ -126,15 +113,6 @@ stdStringVec loader::getUsersInputFiles()   // retrieves the value of userInputF
 void loader::setUsersInputFiles(stdStringVec set)  // sets the value of userInputFiles
 {
     usersInputFiles = set;
-}
-
-std::unordered_map<size_t, courtStateSharedPtr> loader::getCInstance()  // retrieves the value of cInstance
-{
-    return (cInstance);
-}
-void loader::setCInstance(std::unordered_map<size_t, courtStateSharedPtr> set)  // sets the value of cInstance
-{
-    cInstance = set;
 }
 
 std::unordered_map<size_t, hoopStateSharedPtr> loader::getHInstance()  // retrieves the value of hInstance
@@ -182,14 +160,6 @@ void loader::setUIInstance(usersInputVecSharedPtr set)  // sets the value of uiI
     uiInstance = set;
 }
 
-bool loader::getCourtFilesLoaded()  // retrieves the value of courtFilesLoaded
-{
-    return (courtFilesLoaded);
-}
-void loader::setCourtFilesLoaded(bool set)  // sets the value of courtFilesLoaded
-{
-    courtFilesLoaded = set;
-}
 bool loader::getOffensePlayFilesLoaded()  // retrieves the value of offensePlayFilesLoaded
 {
     return (offensePlayFilesLoaded);
@@ -391,83 +361,6 @@ std::string loader::findFile(std::string fileName)  // finds the location of a f
     }
 #endif
     return ("");
-}
-
-bool loader::checkIfCourtsLoaded()  // checks if courts have been loaded into cInstance
-{
-//    exit(0);
-
-    std::string func = "loader::checkIfCourtsLoaded()";
-        
-    logMsg(func + " beginning");
-    
-    if (courtFilesLoaded)
-    {
-        logMsg(func + " getCourtFilesLoaded");
-        exit(0);
-        if (cInstance.size() > 0)
-        {
-            logMsg(func + " Court Files Loaded!");
-            return(true);
-        }
-        else
-        {
-            logMsg(func + " Court Files not yet Loaded!");
-
-            courtFilesLoaded = false;
-            cInstance = loadCourts();
-            if (cInstance.size() > 0)
-            {
-                logMsg(func + "  > 0!");
-
-//                load->setTInstance(tInstance);
-                courtFilesLoaded = true;
-                return(true);
-            }
-            else
-            {
-                logMsg(func + " Failed to load Court Files! IF");
-                exit(0);
-            }
-        }
-    }
-    else 
-    {
-        logMsg(func + " ELSE");
-//        exit(0);
-        if (cInstance.size() > 0)
-        {
-            logMsg(func + " load->getCInstance().size() > 0! ELSE");
-//            load->setTInstance(tInstance);
-            courtFilesLoaded = true;
-            return(true);
-        }
-        else
-        {
-            logMsg(func + " ELSE ELSE!");
-
-            cInstance = loadCourts();
-            logMsg(func);
-            if (cInstance.size() > 0)
-            {
-                logMsg(func + " load->getCInstance().size() > 0! ELSE ELSE");
-
-//                load->setTInstance(tInstance);
-                courtFilesLoaded = true;
-                return(true);
-            }
-            else
-            {
-                logMsg(func + " Failed to load Court Files!");
-                return(false);
-            }
-        }
-    }
-//    exit(0);
-    
-    logMsg(func + " end");
-    
-    return (false);
 }
 
 bool loader::checkIfHoopsLoaded()  // checks if the hooops have been loaded into hInstance

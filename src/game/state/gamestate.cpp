@@ -36,7 +36,7 @@
 #include "state/teamstate.h"
 #include "engine/gameengine.h"
 #include "load/loadbasketballs.h"
-
+#include "load/loadcourts.h"
 #include "logging.h"
 #include "network/networkplayerstateobject.h"
 #include "data/basketballdata.h"
@@ -425,7 +425,7 @@ bool gameState::createTeamInstances()  // creates team Instances
 
 bool gameState::createCourtInstances()  // creates court Instances
 {
-    loaderSharedPtr load = base->getLoad();
+    loadCourtsSharedPtr loadCourt = base->getLoadCourt();
     std::string func = "gameState::createCourtInstances()";
     
     logMsg(func +" beginning");
@@ -435,10 +435,10 @@ bool gameState::createCourtInstances()  // creates court Instances
 //    cInstance.setModelFileName("court.mesh");
 //    cInstance.setModelFileName("Court.mesh");
 //    exit(0);
-    if (load->checkIfCourtsLoaded())
+    if (loadCourt->checkIfCourtsLoaded())
     {
  //       exit(0);
-        setCourtInstance(load->getCInstance());
+        setCourtInstance(loadCourt->getCInstance());
         logMsg(func +" Court Instances SET!");
         return (true);
     }
@@ -595,7 +595,7 @@ bool gameState::createActiveBasketballInstances()  // creates the active basketb
 bool gameState::createActiveCourtInstances()  // creates the active court instances
 {
     sharedPtr<conversion> convert = conversion::Instance();
-    loaderSharedPtr load = base->getLoad();
+    loadCourtsSharedPtr loadCourt = base->getLoadCourt();
     std::unordered_map<size_t, courtStateSharedPtr> courtInstance = getCourtInstance();
     std::unordered_map<size_t, courtStateSharedPtr> activeCourtInstance = getActiveCourtInstance();
     std::string func = "gameState::createActiveCourtInstances()";
@@ -605,9 +605,9 @@ bool gameState::createActiveCourtInstances()  // creates the active court instan
     logMsg(func +" courtInstance.size() == " +convert->toString(courtInstance.size()));
     if (courtInstance.size() == 0)
     {
-        if (load->checkIfCourtsLoaded())
+        if (loadCourt->checkIfCourtsLoaded())
         {
-            courtInstance = load->getCInstance();
+            courtInstance = loadCourt->getCInstance();
         }
         else
         {

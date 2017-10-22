@@ -25,13 +25,131 @@
 #endif
 
 #include "conversion.h"
-#include "load/load.h"
+#include "load/loadcourts.h"
 #include "logging.h"
 #include "data/courtdata.h"
 #include "state/courtstate.h"
 
+courtStateUMSharedPtr loadCourts::cInstance;
+stdStringVec loadCourts::courtFiles;  // stores list of court xml files
+bool loadCourts::courtFilesLoaded;
+
+loadCourts::loadCourts()  // constructor
+{
+    courtFilesLoaded = false;
+
+}
+loadCourts::~loadCourts()  // destructor
+{
+
+}
+
+stdStringVec loadCourts::getCourtFiles()   // retrieves the value of courtFiles
+{
+    return (courtFiles);
+}
+void loadCourts::setCourtFiles(stdStringVec set)  // sets the value of courtFiles
+{
+    courtFiles = set;
+}
+
+std::unordered_map<size_t, courtStateSharedPtr> loadCourts::getCInstance()  // retrieves the value of cInstance
+{
+    return (cInstance);
+}
+void loadCourts::setCInstance(std::unordered_map<size_t, courtStateSharedPtr> set)  // sets the value of cInstance
+{
+    cInstance = set;
+}
+
+bool loadCourts::getCourtFilesLoaded()  // retrieves the value of courtFilesLoaded
+{
+    return (courtFilesLoaded);
+}
+void loadCourts::setCourtFilesLoaded(bool set)  // sets the value of courtFilesLoaded
+{
+    courtFilesLoaded = set;
+}
+
+bool loadCourts::checkIfCourtsLoaded()  // checks if courts have been loaded into cInstance
+{
+//    exit(0);
+
+    std::string func = "loader::checkIfCourtsLoaded()";
+
+    logMsg(func + " beginning");
+
+    if (courtFilesLoaded)
+    {
+        logMsg(func + " getCourtFilesLoaded");
+        exit(0);
+        if (cInstance.size() > 0)
+        {
+            logMsg(func + " Court Files Loaded!");
+            return(true);
+        }
+        else
+        {
+            logMsg(func + " Court Files not yet Loaded!");
+
+            courtFilesLoaded = false;
+            cInstance = loadCourtFiles();
+            if (cInstance.size() > 0)
+            {
+                logMsg(func + "  > 0!");
+
+//                load->setTInstance(tInstance);
+                courtFilesLoaded = true;
+                return(true);
+            }
+            else
+            {
+                logMsg(func + " Failed to load Court Files! IF");
+                exit(0);
+            }
+        }
+    }
+    else
+    {
+        logMsg(func + " ELSE");
+//        exit(0);
+        if (cInstance.size() > 0)
+        {
+            logMsg(func + " load->getCInstance().size() > 0! ELSE");
+//            load->setTInstance(tInstance);
+            courtFilesLoaded = true;
+            return(true);
+        }
+        else
+        {
+            logMsg(func + " ELSE ELSE!");
+
+            cInstance = loadCourtFiles();
+            logMsg(func);
+            if (cInstance.size() > 0)
+            {
+                logMsg(func + " load->getCInstance().size() > 0! ELSE ELSE");
+
+//                load->setTInstance(tInstance);
+                courtFilesLoaded = true;
+                return(true);
+            }
+            else
+            {
+                logMsg(func + " Failed to load Court Files!");
+                return(false);
+            }
+        }
+    }
+//    exit(0);
+
+    logMsg(func + " end");
+
+    return (false);
+}
+
 // Courts
-std::unordered_map<size_t, courtStateSharedPtr> loader::loadCourts()  // load court settings from XML files
+std::unordered_map<size_t, courtStateSharedPtr> loadCourts::loadCourtFiles()  // load court settings from XML files
 {
 //    exit(0);
     courtStateUMSharedPtr  courts;
@@ -66,7 +184,7 @@ std::unordered_map<size_t, courtStateSharedPtr> loader::loadCourts()  // load co
     return (courts);
 }
 
-stdStringVec loader::loadCourtListFile(std::string fileName)    // loads the list of court list file
+stdStringVec loadCourts::loadCourtListFile(std::string fileName)    // loads the list of court list file
 {
     sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<renderEngine> render = renderEngine::Instance();
@@ -123,7 +241,7 @@ stdStringVec loader::loadCourtListFile(std::string fileName)    // loads the lis
     return (cFiles);
 }
 
-courtStateSharedPtr loader::loadCourtFile(std::string fileName)  // loads data from the offense play XML files
+courtStateSharedPtr loadCourts::loadCourtFile(std::string fileName)  // loads data from the offense play XML files
 {
     sharedPtr<conversion> convert = conversion::Instance();
     courtStateSharedPtr courtInstance(new courtState);

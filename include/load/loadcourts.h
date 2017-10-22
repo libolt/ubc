@@ -32,6 +32,9 @@ class loadCourts : public loader
 {
     public:
     
+        loadCourts();  // constructor
+        ~loadCourts();  // destructor
+
         stdStringVec getCourtFiles();  // retrieves the value of courtFiles
         void setCourtFiles(stdStringVec set);  // sets the value of courtFiles
         
@@ -44,7 +47,7 @@ class loadCourts : public loader
         bool checkIfCourtsLoaded();  // checks if courts have been loaded into cInstance
 
         // Courts
-        courtStateUMSharedPtr  loadCourts();  // load court XML files
+        courtStateUMSharedPtr  loadCourtFiles();  // load court XML files
         stdStringVec loadCourtListFile(std::string fileName);  // load the list of courts from courts.xml
         courtStateSharedPtr loadCourtFile(std::string fileName);  // loads data from the court XML files.
 

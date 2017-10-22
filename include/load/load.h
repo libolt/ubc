@@ -55,12 +55,10 @@ public:
 
     loader();  // constructor
     ~loader(); // destructor   
+    
     stdStringVec pathSplit(const std::string paths);
     std::string findFile(std::string fileName);
 //	string * pathArray;
-
-    stdStringVec getCourtFiles();  // retrieves the value of courtFiles
-    void setCourtFiles(stdStringVec set);  // sets the value of courtFiles
 
     stdStringVec getOffensePlayFiles();  // retrieves the value of offensePlayFiles
     void setOffensePlayFiles(stdStringVec set);  // sets the value of offensePlayFiles
@@ -74,9 +72,6 @@ public:
     stdStringVec getUsersInputFiles();  // retrieves the value of userInputFiles
     void setUsersInputFiles(stdStringVec set);  // sets the value of userInputFiles
     
-    courtStateUMSharedPtr  getCInstance();  // retrieves the value of cInstance
-    void setCInstance(courtStateUMSharedPtr  set);  // sets the value of cInstance
-  
     hoopStateUMSharedPtr  getHInstance();  // retrieves the value of hInstance
     void setHInstance(hoopStateUMSharedPtr  set);  // sets the value of hInstance
 
@@ -91,10 +86,7 @@ public:
     
     usersInputVecSharedPtr getUIInstance();  // retrieves the value of uiInstance
     void setUIInstance(usersInputVecSharedPtr set);  // sets the value of uiInstance
-        
-    bool getCourtFilesLoaded();  // retrieves the value of courtFilesLoaded
-    void setCourtFilesLoaded(bool set);  // sets the value of courtFilesLoaded
-    
+              
     bool getOffensePlayFilesLoaded();  // retrieves the value of offensePlaFilesLoaded
     void setOffensePlayFilesLoaded(bool set);  // sets the value of offensePlayFilesLoaded
     
@@ -113,18 +105,12 @@ public:
 
     SDL_RWops *readBinaryFile(const char *sourceFile);
     
-    bool checkIfCourtsLoaded();  // checks if courts have been loaded into cInstance
     bool checkIfHoopsLoaded();  // checks if the hooops have been loaded into hInstance
     bool checkIfOffensePlaysLoaded();  // checks if offense plays have been loaded into opInstance
     bool checkIfPlayersLoaded();  // checks if players have been loaded into pInstance
     bool checkIfTeamsLoaded();  // checks if teams have been loaded into tInstance
     bool checkIfUsersInputsLoaded();  // checks if uset inputs have been loaded into uiInstance
         
-    // Courts
-    courtStateUMSharedPtr  loadCourts();  // load court XML files
-    stdStringVec loadCourtListFile(std::string fileName);  // load the list of courts from courts.xml
-    courtStateSharedPtr loadCourtFile(std::string fileName);  // loads data from the court XML files.
-
     // Hoops
     hoopStateUMSharedPtr  loadHoops();  // load hoop XML files
     stdStringVec loadHoopListFile(std::string fileName);  // load the list of hoops from hoops.xml
@@ -158,14 +144,12 @@ protected:
 
 private:
 
-    static courtStateUMSharedPtr  cInstance;
     static hoopStateUMSharedPtr  hInstance;
     static offensePlaysVecSharedPtr opInstance;
     static playerEntityUMSharedPtr pInstance;
     static teamStateUMSharedPtr tInstance;
     static usersInputVecSharedPtr uiInstance;
 
-    static stdStringVec courtFiles;  // stores list of court xml files
     static stdStringVec hoopFiles;  // stores list of hoop xml files
     static stdStringVec offensePlayFiles;  // stores list of offense play xml files
     static stdStringVec playerFiles;  // stores list of player xml files
@@ -173,7 +157,6 @@ private:
     static stdStringVec usersInputFiles;  // stores list of court xml files
 
     // determines whether files have been loaded successfully
-    static bool courtFilesLoaded;
     static bool hoopFilesLoaded;
     static bool offensePlayFilesLoaded;
     static bool playerFilesLoaded;

@@ -43,19 +43,16 @@
 
 // static declarations
 
-hoopStateUMSharedPtr  loader::hInstance;
 offensePlaysVecSharedPtr loader::opInstance;
 playerEntityUMSharedPtr loader::pInstance;
 teamStateUMSharedPtr loader::tInstance;
 usersInputVecSharedPtr loader::uiInstance;
 
-stdStringVec loader::hoopFiles;  // stores list of hoop xml files
 stdStringVec loader::offensePlayFiles;  // stores list of offense play xml files
 stdStringVec loader::playerFiles;  // stores list of player xml files
 stdStringVec loader::teamFiles;  // stores list of team xml files
 stdStringVec loader::usersInputFiles; 
 
-bool loader::hoopFilesLoaded;
 bool loader::offensePlayFilesLoaded;
 bool loader::playerFilesLoaded;
 bool loader::teamFilesLoaded;
@@ -113,15 +110,6 @@ stdStringVec loader::getUsersInputFiles()   // retrieves the value of userInputF
 void loader::setUsersInputFiles(stdStringVec set)  // sets the value of userInputFiles
 {
     usersInputFiles = set;
-}
-
-std::unordered_map<size_t, hoopStateSharedPtr> loader::getHInstance()  // retrieves the value of hInstance
-{
-    return (hInstance);
-}
-void loader::setHInstance(std::unordered_map<size_t, hoopStateSharedPtr> set)  // sets the value of hInstance
-{
-    hInstance = set;
 }
 
 offensePlaysVecSharedPtr loader::getOPInstance()  // retrieves the value of opInstance
@@ -361,80 +349,6 @@ std::string loader::findFile(std::string fileName)  // finds the location of a f
     }
 #endif
     return ("");
-}
-
-bool loader::checkIfHoopsLoaded()  // checks if the hooops have been loaded into hInstance
-{
-
-    std::string func = "loader::checkIfHoopsLoaded()";
-    logMsg(func + " beginning");
-    
-    if (hoopFilesLoaded)
-    {
-        logMsg(func + " getHoooFilesLoaded");
-//        exit(0);
-        if (hInstance.size() > 0)
-        {
-            logMsg(func + " Hoop Files Loaded!");
-            return(true);
-        }
-        else
-        {
-            logMsg(func + " Hoop Files not yet Loaded!");
-
-            hoopFilesLoaded = false;
-            hInstance = loadHoops();
-            if (hInstance.size() > 0)
-            {
-                logMsg(func + "  > 0!");
-
-//                load->setTInstance(tInstance);
-                hoopFilesLoaded = true;
-                return(true);
-            }
-            else
-            {
-                logMsg(func + " Failed to load Hoop Files! IF");
-                exit(0);
-            }
-        }
-    }
-    else 
-    {
-        logMsg(func + " ELSE");
-//        exit(0);
-        if (hInstance.size() > 0)
-        {
-            logMsg(func + " load->getHInstance().size() > 0! ELSE");
-//            load->setTInstance(tInstance);
-            hoopFilesLoaded = true;
-            return(true);
-        }
-        else
-        {
-            logMsg(func + " ELSE ELSE!");
-
-            hInstance = loadHoops();
-            logMsg(func);
-            if (hInstance.size() > 0)
-            {
-                logMsg(func + " load->getHInstance().size() > 0! ELSE ELSE");
-
-//                load->setTInstance(tInstance);
-                hoopFilesLoaded = true;
-                return(true);
-            }
-            else
-            {
-                logMsg(func + " Failed to load Hop Files!");
-                return(false);
-            }
-        }
-    }
-    
-    logMsg(func + " end");
-    
-    return (false);
 }
 
 bool loader::checkIfOffensePlaysLoaded()  // checks if offense plays have been loaded into opInstance

@@ -41,6 +41,7 @@ sharedPtr<inputState> UBCBase::inputS;  // the inputState object
 loaderSharedPtr UBCBase::load;  // the loader object
 loadBasketballsSharedPtr UBCBase::loadBasketball;  // the loadBasketballs object
 loadCourtsSharedPtr UBCBase::loadCourt;  // the loadCourts object
+loadHoopsSharedPtr UBCBase::loadHoop;  // the loadHoops object
 
 size_t UBCBase::numUsers;  // stores the number of users playing the game
 usersUMSharedPtr UBCBase::usersInstance; // stores the user object instances
@@ -169,6 +170,15 @@ loadCourtsSharedPtr UBCBase::getLoadCourt()  // retrieves the value of loadCourt
 void UBCBase::setLoadCourt(loadCourtsSharedPtr set)  // sets the value of loadCourt
 {
     loadCourt = set;
+}
+
+loadHoopsSharedPtr getLoadHoop()  // retrieves the value of loadHoop
+{
+    return (loadHoop);
+}
+void setLoadHoop(loadHoopsSharedPtr set)  // sets the value of loadHoop
+{
+    loadHoop = set;
 }
 
 size_t UBCBase::getNumUsers()  // retrieves the value of numUsers

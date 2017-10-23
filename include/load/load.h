@@ -30,7 +30,7 @@
 
 #include "tinyxml2.h"
 
-#include "typedefs.h"
+
 
 //#include "state/basketballstate.h"
 //#include "state/courtstate.h"
@@ -72,9 +72,6 @@ public:
     stdStringVec getUsersInputFiles();  // retrieves the value of userInputFiles
     void setUsersInputFiles(stdStringVec set);  // sets the value of userInputFiles
     
-    hoopStateUMSharedPtr  getHInstance();  // retrieves the value of hInstance
-    void setHInstance(hoopStateUMSharedPtr  set);  // sets the value of hInstance
-
     offensePlaysVecSharedPtr getOPInstance();  // retrieves the value of opInstance
     void setOPInstance(offensePlaysVecSharedPtr set);  // sets the value of opInstance
     
@@ -105,17 +102,11 @@ public:
 
     SDL_RWops *readBinaryFile(const char *sourceFile);
     
-    bool checkIfHoopsLoaded();  // checks if the hooops have been loaded into hInstance
     bool checkIfOffensePlaysLoaded();  // checks if offense plays have been loaded into opInstance
     bool checkIfPlayersLoaded();  // checks if players have been loaded into pInstance
     bool checkIfTeamsLoaded();  // checks if teams have been loaded into tInstance
     bool checkIfUsersInputsLoaded();  // checks if uset inputs have been loaded into uiInstance
         
-    // Hoops
-    hoopStateUMSharedPtr  loadHoops();  // load hoop XML files
-    stdStringVec loadHoopListFile(std::string fileName);  // load the list of hoops from hoops.xml
-    hoopStateSharedPtr loadHoopFile(std::string fileName);  // loads data from the hoop XML files.
-
     //Offense
     offensePlaysVecSharedPtr loadOffensePlays();  // load offense plays from XML files
     stdStringVec loadOffensePlayListFile(std::string fileName);  // loads the list of offense play files from plays.xml
@@ -144,20 +135,17 @@ protected:
 
 private:
 
-    static hoopStateUMSharedPtr  hInstance;
     static offensePlaysVecSharedPtr opInstance;
     static playerEntityUMSharedPtr pInstance;
     static teamStateUMSharedPtr tInstance;
     static usersInputVecSharedPtr uiInstance;
 
-    static stdStringVec hoopFiles;  // stores list of hoop xml files
     static stdStringVec offensePlayFiles;  // stores list of offense play xml files
     static stdStringVec playerFiles;  // stores list of player xml files
     static stdStringVec teamFiles;	 // stores list of team xml files
     static stdStringVec usersInputFiles;  // stores list of court xml files
 
     // determines whether files have been loaded successfully
-    static bool hoopFilesLoaded;
     static bool offensePlayFilesLoaded;
     static bool playerFilesLoaded;
     static bool teamFilesLoaded;

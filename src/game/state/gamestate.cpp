@@ -645,7 +645,7 @@ bool gameState::createActiveCourtInstances()  // creates the active court instan
 bool gameState::createActiveHoopInstances()  // creates the active hoop instances
 {
     sharedPtr<conversion> convert = conversion::Instance();
-    loaderSharedPtr load = base->getLoad();
+    loaderSharedPtr loadHoop = base->getLoadHoop1();
     hoopStateUMSharedPtr hoopInstance = getHoopInstance();
     hoopStateUMSharedPtr activeHoopInstance = getActiveHoopInstance();
     std::string func = "gameState::createActiveHoopInstances()";
@@ -654,10 +654,10 @@ bool gameState::createActiveHoopInstances()  // creates the active hoop instance
     
     if (hoopInstance.size() == 0)
     {
-        if (load->checkIfHoopsLoaded())
+        if (loadHoop->checkIfHoopsLoaded())
         {
             logMsg(func + " abada!");
-            hoopInstance = load->getHInstance();
+            hoopInstance = loadHoop->getHInstance();
             logMsg(func + " abadeeee!");
         }
         else

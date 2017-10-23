@@ -25,11 +25,107 @@
 #endif
 
 #include "conversion.h"
-#include "load/load.h"
+#include "load/loadhoops.h"
 #include "logging.h"
 #include "state/hoopstate.h"
 
-hoopStateUMSharedPtr  loader::loadHoops()  // load hoop XML files
+// static declarations
+hoopStateUMSharedPtr  loadHoops::hInstance;
+stdStringVec loadHoops::hoopFiles;  // stores list of hoop xml files
+
+loadHoops::loadHoops()  // constructor
+{
+    hoopFilesLoaded = false;
+
+}
+loadHoops::~loadHoops()  // destructor
+{
+}
+
+std::unordered_map<size_t, hoopStateSharedPtr> loadHoops::getHInstance()  // retrieves the value of hInstance
+{
+    return (hInstance);
+}
+void loadHoops::setHInstance(std::unordered_map<size_t, hoopStateSharedPtr> set)  // sets the value of hInstance
+{
+    hInstance = set;
+}
+
+bool loadHoops::checkIfHoopsLoaded()  // checks if the hooops have been loaded into hInstance
+{
+
+    std::string func = "loader::checkIfHoopsLoaded()";
+    logMsg(func + " beginning");
+    
+    if (hoopFilesLoaded)
+    {
+        logMsg(func + " getHoooFilesLoaded");
+//        exit(0);
+        if (hInstance.size() > 0)
+        {
+            logMsg(func + " Hoop Files Loaded!");
+            return(true);
+        }
+        else
+        {
+            logMsg(func + " Hoop Files not yet Loaded!");
+
+            hoopFilesLoaded = false;
+            hInstance = loadHoops();
+            if (hInstance.size() > 0)
+            {
+                logMsg(func + "  > 0!");
+
+//                load->setTInstance(tInstance);
+                hoopFilesLoaded = true;
+                return(true);
+            }
+            else
+            {
+                logMsg(func + " Failed to load Hoop Files! IF");
+                exit(0);
+            }
+        }
+    }
+    else 
+    {
+        logMsg(func + " ELSE");
+//        exit(0);
+        if (hInstance.size() > 0)
+        {
+            logMsg(func + " load->getHInstance().size() > 0! ELSE");
+//            load->setTInstance(tInstance);
+            hoopFilesLoaded = true;
+            return(true);
+        }
+        else
+        {
+            logMsg(func + " ELSE ELSE!");
+
+            hInstance = loadHoops();
+            logMsg(func);
+            if (hInstance.size() > 0)
+            {
+                logMsg(func + " load->getHInstance().size() > 0! ELSE ELSE");
+
+//                load->setTInstance(tInstance);
+                hoopFilesLoaded = true;
+                return(true);
+            }
+            else
+            {
+                logMsg(func + " Failed to load Hop Files!");
+                return(false);
+            }
+        }
+    }
+    
+    logMsg(func + " end");
+    
+    return (false);
+}
+
+hoopStateUMSharedPtr  loadHoops::loadHoops()  // load hoop XML files
 {
 //    exit(0);
     hoopStateUMSharedPtr  hoops;
@@ -118,7 +214,7 @@ stdStringVec loader::loadHoopListFile(std::string fileName)  // load the list of
     return (hFiles);
 }
 
-hoopStateSharedPtr loader::loadHoopFile(std::string fileName)  // loads data from the hoop XML files.
+hoopStateSharedPtr loadHoops::loadHoopFile(std::string fileName)  // loads data from the hoop XML files.
 {
     sharedPtr<conversion> convert = conversion::Instance();
     sharedPtr<hoopState> hoopInstance(new hoopState);

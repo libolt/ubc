@@ -21,7 +21,7 @@
 #include "ubcbase.h"
 #include "conversion.h"
 #include "engine/gameengine.h"
-#include "load/load.h"
+#include "load/loadoffenseplays.h"
 #include "logging.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
@@ -249,10 +249,10 @@ void offenseState::updateState(teamTypes teamType)  // updates the state of the 
 
 void offenseState::loadPlays()  // loads offense plays from file
 {
-    loaderSharedPtr load = base->getLoad();
-    if (load->checkIfOffensePlaysLoaded())
+    loadOffensePlaysSharedPtr loadOffensePlay = base->getLoadOffensePlay();
+    if (loadOffensePlay->checkIfOffensePlaysLoaded())
     {
-        plays = load->loadOffensePlays();
+        plays = loadOffensePlay->loadOffensePlayFiles();
     }
     else
     {

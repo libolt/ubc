@@ -83,6 +83,7 @@ class loader;
 class loadBasketballs;
 class loadCourts;
 class loadHoops;
+class loadOffensePlays;
 class loadPlayers;
 class loadTeams;
 class loadUsersInputs;
@@ -171,6 +172,8 @@ typedef sharedPtr<loadBasketballs> loadBasketballsSharedPtr;
 typedef sharedPtr<loadCourts> loadCourtsSharedPtr;
 
 typedef sharedPtr<loadHoops> loadHoopsSharedPtr;
+
+typedef sharedPtr<loadOffensePlays> loadOffensePlaysSharedPtr;
 
 typedef sharedPtr<loadPlayers> loadPlayersSharedPtr;
 

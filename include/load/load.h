@@ -59,9 +59,6 @@ public:
     stdStringVec pathSplit(const std::string paths);
     std::string findFile(std::string fileName);
 //	string * pathArray;
-
-    stdStringVec getOffensePlayFiles();  // retrieves the value of offensePlayFiles
-    void setOffensePlayFiles(stdStringVec set);  // sets the value of offensePlayFiles
     
     stdStringVec getPlayerFiles();  // retrieves the value of playerFiles
     void setPlayerFiles(stdStringVec set);  // sets the value of playerFiles
@@ -72,9 +69,6 @@ public:
     stdStringVec getUsersInputFiles();  // retrieves the value of userInputFiles
     void setUsersInputFiles(stdStringVec set);  // sets the value of userInputFiles
     
-    offensePlaysVecSharedPtr getOPInstance();  // retrieves the value of opInstance
-    void setOPInstance(offensePlaysVecSharedPtr set);  // sets the value of opInstance
-    
     playerEntityUMSharedPtr getPInstance();  // retrieves the value of pInstance
     void setPInstance(playerEntityUMSharedPtr set);  // sets the value of pInstance
     
@@ -84,9 +78,6 @@ public:
     usersInputVecSharedPtr getUIInstance();  // retrieves the value of uiInstance
     void setUIInstance(usersInputVecSharedPtr set);  // sets the value of uiInstance
               
-    bool getOffensePlayFilesLoaded();  // retrieves the value of offensePlaFilesLoaded
-    void setOffensePlayFilesLoaded(bool set);  // sets the value of offensePlayFilesLoaded
-    
     bool getPlayerFilesLoaded();  // retrieves the value of playerFilesLoaded
     void setPlayerFilesLoaded(bool set);  // sets the value of playerFilesLoaded
     
@@ -102,16 +93,10 @@ public:
 
     SDL_RWops *readBinaryFile(const char *sourceFile);
     
-    bool checkIfOffensePlaysLoaded();  // checks if offense plays have been loaded into opInstance
     bool checkIfPlayersLoaded();  // checks if players have been loaded into pInstance
     bool checkIfTeamsLoaded();  // checks if teams have been loaded into tInstance
     bool checkIfUsersInputsLoaded();  // checks if uset inputs have been loaded into uiInstance
         
-    //Offense
-    offensePlaysVecSharedPtr loadOffensePlays();  // load offense plays from XML files
-    stdStringVec loadOffensePlayListFile(std::string fileName);  // loads the list of offense play files from plays.xml
-    offensePlaysSharedPtr loadOffensePlayFile(std::string fileName); // loads data from the offense play XML files
-
    // Players
     playerEntityUMSharedPtr loadPlayers();  // loads player data from XML files
     stdStringVec loadPlayerListFile(std::string fileName);  // loads list of player files from players.xml
@@ -135,18 +120,15 @@ protected:
 
 private:
 
-    static offensePlaysVecSharedPtr opInstance;
     static playerEntityUMSharedPtr pInstance;
     static teamStateUMSharedPtr tInstance;
     static usersInputVecSharedPtr uiInstance;
 
-    static stdStringVec offensePlayFiles;  // stores list of offense play xml files
     static stdStringVec playerFiles;  // stores list of player xml files
     static stdStringVec teamFiles;	 // stores list of team xml files
     static stdStringVec usersInputFiles;  // stores list of court xml files
 
     // determines whether files have been loaded successfully
-    static bool offensePlayFilesLoaded;
     static bool playerFilesLoaded;
     static bool teamFilesLoaded;
     static bool userInputFilesLoaded;

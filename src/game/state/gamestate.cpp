@@ -37,6 +37,7 @@
 #include "engine/gameengine.h"
 #include "load/loadbasketballs.h"
 #include "load/loadcourts.h"
+#include "load/loadhoops.h"
 #include "logging.h"
 #include "network/networkplayerstateobject.h"
 #include "data/basketballdata.h"
@@ -645,7 +646,7 @@ bool gameState::createActiveCourtInstances()  // creates the active court instan
 bool gameState::createActiveHoopInstances()  // creates the active hoop instances
 {
     sharedPtr<conversion> convert = conversion::Instance();
-    loaderSharedPtr loadHoop = base->getLoadHoop1();
+    loadHoopsSharedPtr loadHoop = base->getLoadHoop();
     hoopStateUMSharedPtr hoopInstance = getHoopInstance();
     hoopStateUMSharedPtr activeHoopInstance = getActiveHoopInstance();
     std::string func = "gameState::createActiveHoopInstances()";

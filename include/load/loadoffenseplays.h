@@ -17,37 +17,46 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
- 
-#ifndef _LOAD_HOOPS_H_
-#define _LOAD_HOOPS_H_
+
+#ifndef _LOAD_OFFENSEPLAYS_H_
+#define _LOAD_OFFENSEPLAYS_H_
 
 #include <string>
 #include <vector>
 #include <unordered_map>
-#include "load/load.h"
 
-class loadHoops : public loader
+#include "load/load.h"
+#include "typedefs.h"
+
+class loadOffensePlays : public loader
 {
     public:
-    
-        loadHoops();  // constructor
-        ~loadHoops();  // destructor
 
-        hoopStateUMSharedPtr  getHInstance();  // retrieves the value of hInstance
-        void setHInstance(hoopStateUMSharedPtr  set);  // sets the value of hInstance
-        bool checkIfHoopsLoaded();  // checks if the hooops have been loaded into hInstance
+        loadOffensePlays();  // constructor
+        ~loadOffensePlays();  // destructor
 
-        // Hoops
-        hoopStateUMSharedPtr  loadHoopFiles();  // load hoop XML files
-        stdStringVec loadHoopListFile(std::string fileName);  // load the list of hoops from hoops.xml
-        hoopStateSharedPtr loadHoopFile(std::string fileName);  // loads data from the hoop XML files.
+        stdStringVec getOffensePlayFiles();  // retrieves the value of offensePlayFiles
+        void setOffensePlayFiles(stdStringVec set);  // sets the value of offensePlayFiles
+
+        offensePlaysVecSharedPtr getOPInstance();  // retrieves the value of opInstance
+        void setOPInstance(offensePlaysVecSharedPtr set);  // sets the value of opInstance
+
+        bool getOffensePlayFilesLoaded();  // retrieves the value of offensePlaFilesLoaded
+        void setOffensePlayFilesLoaded(bool set);  // sets the value of offensePlayFilesLoaded
+
+        bool checkIfOffensePlaysLoaded();  // checks if offense plays have been loaded into opInstance
+
+        //Offense
+        offensePlaysVecSharedPtr loadOffensePlayFiles();  // load offense plays from XML files
+        stdStringVec loadOffensePlayListFile(std::string fileName);  // loads the list of offense play files from plays.xml
+        offensePlaysSharedPtr loadOffensePlayFile(std::string fileName); // loads data from the offense play XML files
+
 
     private:
-    
-        static hoopStateUMSharedPtr  hInstance;
-        static stdStringVec hoopFiles;  // stores list of hoop xml files
-        static bool hoopFilesLoaded;
+
+        static offensePlaysVecSharedPtr opInstance;
+        static stdStringVec offensePlayFiles;  // stores list of offense play xml files
+        static bool offensePlayFilesLoaded;
 
 };
-
 #endif

@@ -78,6 +78,15 @@ class UBCBase
         loadHoopsSharedPtr getLoadHoop();  // retrieves the value of loadHoop
         void setLoadHoop(loadHoopsSharedPtr set);  // sets the value of loadHoop
 
+        loadOffensePlaysSharedPtr getLoadOffensePlay();  // retrieves the value of loadOffensePlay
+        void setLoadOffensePlay(loadOffensePlaysSharedPtr set);  // sets the value of loadOffensePlay
+
+        loadTeamsSharedPtr getLoadTeam();  // retrieves the value of loadTeam
+        void setLoadTeam(loadTeamsSharedPtr set);  // sets the value of loadTeam
+
+        loadUsersInputsSharedPtr getLoadUsersInput();  // retrieves the value of loadUsersInput
+        void setLoadUsersInput(loadUsersInputsSharedPtr set);  // sets the value of loadUsersInput
+
         size_t getNumUsers();  // retrieves the value of numUsers
         void setNumUsers(size_t set);  // sets the value of numUsers
         
@@ -100,6 +109,10 @@ class UBCBase
         static loadBasketballsSharedPtr loadBasketball;  // the loadBasketballs object
         static loadCourtsSharedPtr loadCourt;  // the loadCourts object
         static loadHoopsSharedPtr loadHoop;  // the loadHoops object
+        static loadOffensePlaysSharedPtr loadOffensePlay;  // the loadOffensePlays Object
+        static loadTeamsSharedPtr loadTeam;  // the loadTeams Object
+        static loadUsersInputsSharedPtr loadUsersInput;  // the loadUsersInputs Object
+
         static usersUMSharedPtr usersInstance;  // stores the user object instances
         static size_t numUsers; // stores number of users playing the game
 

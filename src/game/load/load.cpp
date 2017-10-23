@@ -43,17 +43,14 @@
 
 // static declarations
 
-offensePlaysVecSharedPtr loader::opInstance;
 playerEntityUMSharedPtr loader::pInstance;
 teamStateUMSharedPtr loader::tInstance;
 usersInputVecSharedPtr loader::uiInstance;
 
-stdStringVec loader::offensePlayFiles;  // stores list of offense play xml files
 stdStringVec loader::playerFiles;  // stores list of player xml files
 stdStringVec loader::teamFiles;  // stores list of team xml files
 stdStringVec loader::usersInputFiles; 
 
-bool loader::offensePlayFilesLoaded;
 bool loader::playerFilesLoaded;
 bool loader::teamFilesLoaded;
 bool loader::userInputFilesLoaded;
@@ -62,7 +59,6 @@ int loader::count;
 
 loader::loader()  // constructor
 {
-    offensePlayFilesLoaded = false;
     playerFilesLoaded = false;
     teamFilesLoaded = false;
     userInputFilesLoaded = false;
@@ -76,14 +72,6 @@ loader::~loader()  // destructor
 {
 }
 
-stdStringVec loader::getOffensePlayFiles()  // retrieves the value of offensePlayFiles
-{
-    return (offensePlayFiles);
-}
-void loader::setOffensePlayFiles(stdStringVec set)  // sets the value of offensePlayFiles
-{
-    offensePlayFiles = set;
-}
 
 stdStringVec loader::getPlayerFiles()  // retrieves the value of playerFiles
 {
@@ -112,15 +100,6 @@ void loader::setUsersInputFiles(stdStringVec set)  // sets the value of userInpu
     usersInputFiles = set;
 }
 
-offensePlaysVecSharedPtr loader::getOPInstance()  // retrieves the value of opInstance
-{
-    return (opInstance);
-}
-void loader::setOPInstance(offensePlaysVecSharedPtr set)  // sets the value of opInstance
-{
-    opInstance = set;
-}
-
 playerEntityUMSharedPtr loader::getPInstance()  // retrieves the value of pInstance
 {
     return(pInstance);
@@ -146,15 +125,6 @@ usersInputVecSharedPtr loader::getUIInstance()  // retrieves the value of uoInst
 void loader::setUIInstance(usersInputVecSharedPtr set)  // sets the value of uiInstance
 {
     uiInstance = set;
-}
-
-bool loader::getOffensePlayFilesLoaded()  // retrieves the value of offensePlayFilesLoaded
-{
-    return (offensePlayFilesLoaded);
-}
-void loader::setOffensePlayFilesLoaded(bool set)  // sets the value of offensePlayFilesLoaded
-{
-    offensePlayFilesLoaded = set;
 }
 
 bool loader::getPlayerFilesLoaded()  // retrieves the value of playerFilesLoaded
@@ -349,79 +319,6 @@ std::string loader::findFile(std::string fileName)  // finds the location of a f
     }
 #endif
     return ("");
-}
-
-bool loader::checkIfOffensePlaysLoaded()  // checks if offense plays have been loaded into opInstance
-{
-    std::string func = "loader::checkIfOffensePlaysLoaded()";
-    
-    logMsg(func + " beginning");
-    if (offensePlayFilesLoaded)
-    {
-        logMsg(func + " getOffensePlayFilesLoaded");
-
-        if (opInstance.size() > 0)
-        {
-            logMsg(func + " Offense Play Files Loaded!");
-            return(true);
-        }
-        else
-        {
-            logMsg(func + " Offense Plays Files not yet Loaded!");
-
-            offensePlayFilesLoaded = false;
-            opInstance = loadOffensePlays();
-            if (opInstance.size() > 0)
-            {
-                logMsg(func + " > 0!");
-
-//                load->setTInstance(tInstance);
-                offensePlayFilesLoaded = true;
-                return(true);
-            }
-            else
-            {
-                logMsg(func + " Failed to load Offense Play Files! IF");
-                exit(0);
-            }
-        }
-    }
-    else 
-    {
-        logMsg(func + " ELSE");
-
-        if (opInstance.size() > 0)
-        {
-            logMsg(func + " load->getOPInstance().size() > 0! ELSE");
-//            load->setTInstance(tInstance);
-            offensePlayFilesLoaded = true;
-            return(true);
-        }
-        else
-        {
-            logMsg(func + " ELSE ELSE!");
-
-            opInstance = loadOffensePlays();
-            if (opInstance.size() > 0)
-            {
-                logMsg(func + " load->getOPInstance().size() > 0! ELSE ELSE");
-
-//                load->setTInstance(tInstance);
-                offensePlayFilesLoaded = true;
-                return(true);
-            }
-            else
-            {
-                logMsg(func + " Failed to load Offense Play Files!");
-                return(false);
-            }
-        }
-    }
-    
-
-    logMsg(func + " end");
-
-    return (false);
 }
 
 bool loader::checkIfPlayersLoaded()  // checks if players have been loaded into pInstance

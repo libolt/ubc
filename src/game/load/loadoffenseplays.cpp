@@ -25,12 +25,127 @@
 #endif
 
 #include "conversion.h"
-#include "load/load.h"
+#include "load/loadoffenseplays.h"
 #include "logging.h"
 #include "offenseplays.h"
 
+// static declarations
+offensePlaysVecSharedPtr loadOffensePlays::opInstance;
+stdStringVec loadOffensePlays::offensePlayFiles;  // stores list of offense play xml files
+bool loadOffensePlays::offensePlayFilesLoaded;
+
+
+loadOffensePlays::loadOffensePlays()  // constructor
+{
+    offensePlayFilesLoaded = false;
+}
+loadOffensePlays::~loadOffensePlays()  // destructor
+{
+
+}
+
+stdStringVec loadOffensePlays::getOffensePlayFiles()  // retrieves the value of offensePlayFiles
+{
+    return (offensePlayFiles);
+}
+void loadOffensePlays::setOffensePlayFiles(stdStringVec set)  // sets the value of offensePlayFiles
+{
+    offensePlayFiles = set;
+}
+
+offensePlaysVecSharedPtr loadOffensePlays::getOPInstance()  // retrieves the value of opInstance
+{
+    return (opInstance);
+}
+void loadOffensePlays::setOPInstance(offensePlaysVecSharedPtr set)  // sets the value of opInstance
+{
+    opInstance = set;
+}
+
+bool loadOffensePlays::getOffensePlayFilesLoaded()  // retrieves the value of offensePlayFilesLoaded
+{
+    return (offensePlayFilesLoaded);
+}
+void loadOffensePlays::setOffensePlayFilesLoaded(bool set)  // sets the value of offensePlayFilesLoaded
+{
+    offensePlayFilesLoaded = set;
+}
+
+bool loadOffensePlays::checkIfOffensePlaysLoaded()  // checks if offense plays have been loaded into opInstance
+{
+    std::string func = "loader::checkIfOffensePlaysLoaded()";
+
+    logMsg(func + " beginning");
+    if (offensePlayFilesLoaded)
+    {
+        logMsg(func + " getOffensePlayFilesLoaded");
+
+        if (opInstance.size() > 0)
+        {
+            logMsg(func + " Offense Play Files Loaded!");
+            return(true);
+        }
+        else
+        {
+            logMsg(func + " Offense Plays Files not yet Loaded!");
+
+            offensePlayFilesLoaded = false;
+            opInstance = loadOffensePlayFiles();
+            if (opInstance.size() > 0)
+            {
+                logMsg(func + " > 0!");
+
+//                load->setTInstance(tInstance);
+                offensePlayFilesLoaded = true;
+                return(true);
+            }
+            else
+            {
+                logMsg(func + " Failed to load Offense Play Files! IF");
+                exit(0);
+            }
+        }
+    }
+    else
+    {
+        logMsg(func + " ELSE");
+
+        if (opInstance.size() > 0)
+        {
+            logMsg(func + " load->getOPInstance().size() > 0! ELSE");
+//            load->setTInstance(tInstance);
+            offensePlayFilesLoaded = true;
+            return(true);
+        }
+        else
+        {
+            logMsg(func + " ELSE ELSE!");
+
+            opInstance = loadOffensePlayFiles();
+            if (opInstance.size() > 0)
+            {
+                logMsg(func + " load->getOPInstance().size() > 0! ELSE ELSE");
+
+//                load->setTInstance(tInstance);
+                offensePlayFilesLoaded = true;
+                return(true);
+            }
+            else
+            {
+                logMsg(func + " Failed to load Offense Play Files!");
+                return(false);
+            }
+        }
+    }
+
+
+    logMsg(func + " end");
+
+    return (false);
+}
+
 //Offense
-offensePlaysVecSharedPtr loader::loadOffensePlays()  // load offense plays from XML files
+offensePlaysVecSharedPtr loadOffensePlays::loadOffensePlayFiles()  // load offense plays from XML files
 {
     offensePlaysVecSharedPtr plays;
     std::string playList;
@@ -56,7 +171,7 @@ offensePlaysVecSharedPtr loader::loadOffensePlays()  // load offense plays from 
     return (plays);
 }
 
-stdStringVec loader::loadOffensePlayListFile(std::string fileName)  // loads the play list file
+stdStringVec loadOffensePlays::loadOffensePlayListFile(std::string fileName)  // loads the play list file
 {
     sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<renderEngine> render = renderEngine::Instance();
@@ -110,7 +225,7 @@ stdStringVec loader::loadOffensePlayListFile(std::string fileName)  // loads the
     return (playFiles);
 }
 
-sharedPtr<offensePlays> loader::loadOffensePlayFile(std::string fileName)  // loads data from the offense play XML files
+sharedPtr<offensePlays> loadOffensePlays::loadOffensePlayFile(std::string fileName)  // loads data from the offense play XML files
 {
     sharedPtr<conversion> convert = conversion::Instance();
     

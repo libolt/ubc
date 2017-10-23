@@ -34,14 +34,17 @@ bool UBCBase::userInstancesCreated;  // stores whether user instances have been 
 bool UBCBase::userInstancesInputSetup;  // stores status of input configuration for users
 bool UBCBase::inputSUInputSetup;  // stores whether inputS UInput object has been set
 
-sharedPtr<gameEngine> UBCBase::gameE;  // the gameEngine object
+gameEngineSharedPtr UBCBase::gameE;  // the gameEngine object
 //sharedPtr<gameState> UBCBase::gameS;  // the gameState object
-sharedPtr<networkState> UBCBase::networkS;  // the networkState object
-sharedPtr<inputState> UBCBase::inputS;  // the inputState object
+networkStateSharedPtr UBCBase::networkS;  // the networkState object
+inputStateSharedPtr UBCBase::inputS;  // the inputState object
 loaderSharedPtr UBCBase::load;  // the loader object
 loadBasketballsSharedPtr UBCBase::loadBasketball;  // the loadBasketballs object
 loadCourtsSharedPtr UBCBase::loadCourt;  // the loadCourts object
 loadHoopsSharedPtr UBCBase::loadHoop;  // the loadHoops object
+loadOffensePlaysSharedPtr UBCBase::loadOffensePlay;  // the loadOffensePlays Object
+loadTeamsSharedPtr UBCBase::loadTeam;  // the loadTeams Object
+loadUsersInputsSharedPtr UBCBase::loadUsersInput;  // the loadUsersInputs Object
 
 size_t UBCBase::numUsers;  // stores the number of users playing the game
 usersUMSharedPtr UBCBase::usersInstance; // stores the user object instances
@@ -172,13 +175,40 @@ void UBCBase::setLoadCourt(loadCourtsSharedPtr set)  // sets the value of loadCo
     loadCourt = set;
 }
 
-loadHoopsSharedPtr getLoadHoop()  // retrieves the value of loadHoop
+loadHoopsSharedPtr UBCBase::getLoadHoop()  // retrieves the value of loadHoop
 {
     return (loadHoop);
 }
-void setLoadHoop(loadHoopsSharedPtr set)  // sets the value of loadHoop
+void UBCBase::setLoadHoop(loadHoopsSharedPtr set)  // sets the value of loadHoop
 {
     loadHoop = set;
+}
+
+loadOffensePlaysSharedPtr UBCBase::getLoadOffensePlay()  // retrieves the value of loadOffensePlay
+{
+    return (loadOffensePlay);
+}
+void UBCBase::setLoadOffensePlay(loadOffensePlaysSharedPtr set)  // sets the value of loadOffensePlay
+{
+    loadOffensePlay = set;
+}
+
+loadTeamsSharedPtr UBCBase::getLoadTeam()  // retrieves the value of loadTeam
+{
+    return (loadTeam);
+}
+void UBCBase::setLoadTeam(loadTeamsSharedPtr set)  // sets the value of loadTeam
+{
+    loadTeam = set;
+}
+
+loadUsersInputsSharedPtr UBCBase::getLoadUsersInput()  // retrieves the value of loadUsersInput
+{
+    return (loadUsersInput);
+}
+void UBCBase::setLoadUsersInput(loadUsersInputsSharedPtr set)  // sets the value of loadUsersInput
+{
+    loadUsersInput = set;
 }
 
 size_t UBCBase::getNumUsers()  // retrieves the value of numUsers

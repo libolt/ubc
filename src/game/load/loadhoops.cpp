@@ -32,6 +32,7 @@
 // static declarations
 hoopStateUMSharedPtr  loadHoops::hInstance;
 stdStringVec loadHoops::hoopFiles;  // stores list of hoop xml files
+bool loadHoops::hoopFilesLoaded;
 
 loadHoops::loadHoops()  // constructor
 {
@@ -71,7 +72,7 @@ bool loadHoops::checkIfHoopsLoaded()  // checks if the hooops have been loaded i
             logMsg(func + " Hoop Files not yet Loaded!");
 
             hoopFilesLoaded = false;
-            hInstance = loadHoops();
+            hInstance = loadHoopFiles();
             if (hInstance.size() > 0)
             {
                 logMsg(func + "  > 0!");
@@ -102,7 +103,7 @@ bool loadHoops::checkIfHoopsLoaded()  // checks if the hooops have been loaded i
         {
             logMsg(func + " ELSE ELSE!");
 
-            hInstance = loadHoops();
+            hInstance = loadHoopFiles();
             logMsg(func);
             if (hInstance.size() > 0)
             {
@@ -125,7 +126,7 @@ bool loadHoops::checkIfHoopsLoaded()  // checks if the hooops have been loaded i
     return (false);
 }
 
-hoopStateUMSharedPtr  loadHoops::loadHoops()  // load hoop XML files
+hoopStateUMSharedPtr  loadHoops::loadHoopFiles()  // load hoop XML files
 {
 //    exit(0);
     hoopStateUMSharedPtr  hoops;
@@ -157,7 +158,7 @@ hoopStateUMSharedPtr  loadHoops::loadHoops()  // load hoop XML files
     return (hoops);
 }
 
-stdStringVec loader::loadHoopListFile(std::string fileName)  // load the list of hoops from hoops.xml
+stdStringVec loadHoops::loadHoopListFile(std::string fileName)  // load the list of hoops from hoops.xml
 {
     sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<renderEngine> render = renderEngine::Instance();

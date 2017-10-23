@@ -32,7 +32,7 @@
 #include "state/gamestate.h"
 #include "state/playerstate.h"
 #include "state/teamstate.h"
-#include "load/load.h"
+#include "load/loadteams.h"
 #include "logging.h"
 #include "engine/renderengine.h"
 #include "data/teamdata.h"
@@ -785,7 +785,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
 {
     sharedPtr<conversion> convert = conversion::Instance();
 
-    loaderSharedPtr load = base->getLoad();
+    loadTeamsSharedPtr loadTeam = base->getLoadTeam();
     teamStateUMSharedPtr teamInstance; // = gameS->getTeamDataInstance();
 
 //    if (!base->getGameS()->getTeamInstancesCreated())
@@ -805,9 +805,9 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
 //        return (false);
 //    }
 
-    if (load->checkIfTeamsLoaded())
+    if (loadTeam->checkIfTeamsLoaded())
     {
-        teamInstance = load->getTInstance();
+        teamInstance = loadTeam->getTInstance();
     }
     base->getGameS()->setTeamInstance(teamInstance);
     logMsg("GUI ADD TEAM 0 teamInstance.size() == " +convert->toString(teamInstance.size()));

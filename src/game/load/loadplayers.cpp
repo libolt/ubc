@@ -29,10 +29,125 @@
 #include "state/playerstate.h"
 
 #include "conversion.h"
-#include "load/load.h"
+#include "load/loadplayers.h"
 #include "logging.h"
 
-playerEntityUMSharedPtr loader::loadPlayers()  // loads the players
+// static declarations
+playerEntityUMSharedPtr loadPlayers::pInstance;
+stdStringVec loadPlayers::playerFiles;  // stores list of player xml files
+bool loadPlayers::playerFilesLoaded;
+
+loadPlayers::loadPlayers()  // constructor
+{
+    playerFilesLoaded = false;
+}
+loadPlayers::~loadPlayers()  // destructor
+{
+    
+}
+
+stdStringVec loadPlayers::getPlayerFiles()  // retrieves the value of playerFiles
+{
+    return(playerFiles);
+}
+void loadPlayers::setPlayerFiles(stdStringVec set)  // sets the value of playerFiles
+{
+    playerFiles = set;
+}
+
+playerEntityUMSharedPtr loadPlayers::getPInstance()  // retrieves the value of pInstance
+{
+    return(pInstance);
+}
+void loadPlayers::setPInstance(playerEntityUMSharedPtr set)  // sets the value of pInstance
+{
+    pInstance = set;
+}
+
+bool loadPlayers::getPlayerFilesLoaded()  // retrieves the value of playerFilesLoaded
+{
+    return (playerFilesLoaded);
+}
+void loadPlayers::setPlayerFilesLoaded(bool set)  // sets the value of playerFilesLoaded
+{
+    playerFilesLoaded = set;
+}
+
+bool loadPlayers::checkIfPlayersLoaded()  // checks if players have been loaded into pInstance
+{
+    std::string func = "loadPlayers::checkIfPlayersLoaded()";
+    
+    logMsg(func + " beginning");
+
+    if (playerFilesLoaded)
+    {
+        logMsg(func + " getPlayerFilesLoaded");
+
+        if (pInstance.size() > 0)
+        {
+            logMsg(func + " Player Files Loaded!");
+            return(true);
+        }
+        else
+        {
+            logMsg(func + " Player Files not yet Loaded!");
+
+            playerFilesLoaded = false;
+            pInstance = loadPlayerFiles();
+            if (pInstance.size() > 0)
+            {
+                logMsg(func + " > 0!");
+
+//                load->setTInstance(tInstance);
+                playerFilesLoaded = true;
+                return(true);
+            }
+            else
+            {
+                logMsg(func + " Failed to load Player Files! IF");
+                exit(0);
+            }
+        }
+    }
+    else
+    {
+        logMsg(func + " ELSE");
+
+        if (pInstance.size() > 0)
+        {
+            logMsg(func + " load->getPInstance().size() > 0! ELSE");
+//            load->setTInstance(tInstance);
+            playerFilesLoaded = true;
+            return(true);
+        }
+        else
+        {
+            logMsg(func + " ELSE ELSE!");
+
+            pInstance = loadPlayerFiles();
+
+            if (pInstance.size() > 0)
+            {
+                logMsg(func + " load->getPInstance().size() > 0! ELSE ELSE");
+
+//                load->setTInstance(tInstance);
+                playerFilesLoaded = true;
+                return(true);
+            }
+            else
+            {
+                logMsg(func + " Failed to load Player Files!");
+//                return(false);
+            }
+        }
+    }
+//    exit(0);
+    logMsg(func + " end");
+
+    return (true);
+}
+
+playerEntityUMSharedPtr loadPlayers::loadPlayerFiles()  // loads the players
 {
     sharedPtr<conversion> convert = conversion::Instance();
 
@@ -88,7 +203,7 @@ playerEntityUMSharedPtr loader::loadPlayers()  // loads the players
     return (players);
 }
 
-stdStringVec loader::loadPlayerListFile(std::string fileName)  // loads the player list file
+stdStringVec loadPlayers::loadPlayerListFile(std::string fileName)  // loads the player list file
 {
     sharedPtr<conversion> convert = conversion::Instance();
   //   sharedPtr<renderEngine> render = renderEngine::Instance();
@@ -146,7 +261,7 @@ stdStringVec loader::loadPlayerListFile(std::string fileName)  // loads the play
     return (pFiles);
 }
 
-playerEntitySharedPtr loader::loadPlayerFile(std::string fileName)  // loads the player file
+playerEntitySharedPtr loadPlayers::loadPlayerFile(std::string fileName)  // loads the player file
 {
     sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();

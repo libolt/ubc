@@ -60,30 +60,12 @@ public:
     std::string findFile(std::string fileName);
 //	string * pathArray;
     
-    stdStringVec getPlayerFiles();  // retrieves the value of playerFiles
-    void setPlayerFiles(stdStringVec set);  // sets the value of playerFiles
-
-    stdStringVec getTeamFiles();  // retrieves the value of teamFiles
-    void setTeamFiles(stdStringVec set);  // sets the value of teamFiles
-
     stdStringVec getUsersInputFiles();  // retrieves the value of userInputFiles
     void setUsersInputFiles(stdStringVec set);  // sets the value of userInputFiles
-    
-    playerEntityUMSharedPtr getPInstance();  // retrieves the value of pInstance
-    void setPInstance(playerEntityUMSharedPtr set);  // sets the value of pInstance
-    
-    teamStateUMSharedPtr getTInstance();  // retrieves the value of tInstance
-    void setTInstance(teamStateUMSharedPtr set);  // sets the value of tInstance
-    
+        
     usersInputVecSharedPtr getUIInstance();  // retrieves the value of uiInstance
     void setUIInstance(usersInputVecSharedPtr set);  // sets the value of uiInstance
               
-    bool getPlayerFilesLoaded();  // retrieves the value of playerFilesLoaded
-    void setPlayerFilesLoaded(bool set);  // sets the value of playerFilesLoaded
-    
-    bool getTeamFilesLoaded();  // retrieves the value of teamFilesLoaded
-    void setTeamFilesLoaded(bool set);  // sets the value of teamFilesLoaded
-    
     bool getUsersInputFilesLoaded();  // retrieves the value of userInputFilesLoaded
     void setUsersInputFilesLoaded(bool set);  // sets the value of userInputFilesLoaded  
 
@@ -93,20 +75,8 @@ public:
 
     SDL_RWops *readBinaryFile(const char *sourceFile);
     
-    bool checkIfPlayersLoaded();  // checks if players have been loaded into pInstance
-    bool checkIfTeamsLoaded();  // checks if teams have been loaded into tInstance
-    bool checkIfUsersInputsLoaded();  // checks if uset inputs have been loaded into uiInstance
+        bool checkIfUsersInputsLoaded();  // checks if uset inputs have been loaded into uiInstance
         
-   // Players
-    playerEntityUMSharedPtr loadPlayers();  // loads player data from XML files
-    stdStringVec loadPlayerListFile(std::string fileName);  // loads list of player files from players.xml
-    playerEntitySharedPtr loadPlayerFile(std::string fileName);  // loads data from the player XML files
-
-    // Teams
-    teamStateUMSharedPtr loadTeams();  // loads team data from XML files
-    stdStringVec loadTeamListFile(std::string fileName);  // loads list of team files from teams.xml
-    teamStateSharedPtr loadTeamFile(std::string fileName);  // loads data from the team XML files
-
     // User input
     usersInputVecSharedPtr loadUsersInputs();  // load user input XML files
     stdStringVec loadUsersInputListFile(std::string fileName);  // load the list of user input configs from userinputs.xml
@@ -120,17 +90,12 @@ protected:
 
 private:
 
-    static playerEntityUMSharedPtr pInstance;
-    static teamStateUMSharedPtr tInstance;
     static usersInputVecSharedPtr uiInstance;
 
-    static stdStringVec playerFiles;  // stores list of player xml files
     static stdStringVec teamFiles;	 // stores list of team xml files
     static stdStringVec usersInputFiles;  // stores list of court xml files
 
     // determines whether files have been loaded successfully
-    static bool playerFilesLoaded;
-    static bool teamFilesLoaded;
     static bool userInputFilesLoaded;
     static int count;  // counts number of times a function has been called
 };

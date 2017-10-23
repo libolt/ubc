@@ -24,6 +24,8 @@
 #include "state/networkstate.h"
 #include "state/inputstate.h"
 #include "load/load.h"
+#include "load/loadplayers.h"
+
 #include "logging.h"
 #include "users/users.h"
 
@@ -43,6 +45,7 @@ loadBasketballsSharedPtr UBCBase::loadBasketball;  // the loadBasketballs object
 loadCourtsSharedPtr UBCBase::loadCourt;  // the loadCourts object
 loadHoopsSharedPtr UBCBase::loadHoop;  // the loadHoops object
 loadOffensePlaysSharedPtr UBCBase::loadOffensePlay;  // the loadOffensePlays Object
+loadPlayersSharedPtr UBCBase::loadPlayer;  // the loadPlayers Object
 loadTeamsSharedPtr UBCBase::loadTeam;  // the loadTeams Object
 loadUsersInputsSharedPtr UBCBase::loadUsersInput;  // the loadUsersInputs Object
 
@@ -191,6 +194,15 @@ loadOffensePlaysSharedPtr UBCBase::getLoadOffensePlay()  // retrieves the value 
 void UBCBase::setLoadOffensePlay(loadOffensePlaysSharedPtr set)  // sets the value of loadOffensePlay
 {
     loadOffensePlay = set;
+}
+
+loadPlayersSharedPtr UBCBase::getLoadPlayer()  // retrieves the value of loadPlayer
+{
+    return (loadPlayer);
+}
+void UBCBase::setLoadPlayer(loadPlayersSharedPtr set)  // sets the value of loadPlayer
+{
+    loadPlayer = set;
 }
 
 loadTeamsSharedPtr UBCBase::getLoadTeam()  // retrieves the value of loadTeam

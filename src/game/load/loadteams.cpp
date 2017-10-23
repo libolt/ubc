@@ -25,11 +25,131 @@
 #endif
 
 #include "conversion.h"
-#include "load/load.h"
+#include "load/loadteams.h"
 #include "logging.h"
 #include "state/teamstate.h"
 
-std::unordered_map<size_t, teamStateSharedPtr> loader::loadTeams()  // load teams from XML files
+// static declarations
+teamStateUMSharedPtr loadTeams::tInstance;
+stdStringVec loadTeams::teamFiles;  // stores list of team xml files
+bool loadTeams::teamFilesLoaded;
+
+loadTeams::loadTeams()  // constructor
+{
+    teamFilesLoaded = false;
+}
+loadTeams::~loadTeams()  // destructor
+{
+    
+}
+
+stdStringVec loadTeams::getTeamFiles()  // retrieves the value of teamFiles
+{
+    return(teamFiles);
+}
+void loadTeams::setTeamFiles(stdStringVec set)  // sets the value of teamFiles
+{
+    teamFiles = set;
+}
+
+bool loadTeams::getTeamFilesLoaded()  // retrieves the value of teamFilesLoaded
+{
+    return (teamFilesLoaded);
+}
+void loadTeams::setTeamFilesLoaded(bool set)  // sets the value of teamFilesLoaded
+{
+    teamFilesLoaded = set;
+}
+
+std::unordered_map<size_t, teamStateSharedPtr> loadTeams::getTInstance()  // retrieves the value of tInstance
+{
+    return(tInstance);
+}
+void loader::setTInstance(std::unordered_map<size_t, teamStateSharedPtr> set)  // sets the value of tInstance
+{
+    tInstance = set;
+}
+
+bool loadTeams::checkIfTeamsLoaded()  // checks if teams have been loaded into tInstance
+{
+    sharedPtr<conversion> convert = conversion::Instance();
+    teamStateVec tempT;
+    teamStateUMSharedPtr tempTInstance;
+    tInstance = tempTInstance;
+    std::string func = "loader::checkIfTeamsLoaded()";
+    
+    logMsg(func + " beginning");
+
+    if (teamFilesLoaded)
+    {
+        logMsg(func + " getTeamFilesLoaded");
+
+        if (tInstance.size() > 0)
+        {
+            logMsg(func + " Team Files Loaded!");
+            return(true);
+        }
+        else
+        {
+            logMsg(func + " Team Files not yet Loaded!");
+
+            teamFilesLoaded = false;
+            tInstance = loadTeams();
+            if (tInstance.size() > 0)
+            {
+                logMsg(func + " > 0!");
+
+//                load->setTInstance(tInstance);
+                teamFilesLoaded = true;
+                return(true);
+            }
+            else
+            {
+                logMsg(func + " Failed to load Team Files! IF");
+                exit(0);
+            }
+        }
+    }
+    else 
+    {
+        logMsg(func + " ELSE");
+
+        if (tInstance.size() > 0)
+        {
+            logMsg(func + " load->getTInstance().size() > 0! ELSE");
+//            load->setTInstance(tInstance);
+            teamFilesLoaded = true;
+            return(true);
+        }
+        else
+        {
+            logMsg(func + " ELSE ELSE!");
+
+            tInstance = loadTeams();
+            logMsg(func + " tInstance.size() == " +convert->toString(tInstance.size()));
+//            exit(0);
+            if (tInstance.size() > 0)
+            {
+                logMsg(func + " load->getTInstance().size() > 0! ELSE ELSE");
+
+//                load->setTInstance(tInstance);
+                teamFilesLoaded = true;
+                return(true);
+            }
+            else
+            {
+                logMsg(func + " Failed to load Team Files!");
+                return(false);
+            }
+        }
+    }
+    
+    logMsg(func + " end");
+    
+    return (true);
+}
+
+std::unordered_map<size_t, teamStateSharedPtr> loadTeams::loadTeamFiles()  // load teams from XML files
 {
     sharedPtr<conversion> convert = conversion::Instance();
     teamStateUMSharedPtr teams;
@@ -106,7 +226,7 @@ std::unordered_map<size_t, teamStateSharedPtr> loader::loadTeams()  // load team
     return (teams);
 }
 
-stdStringVec loader::loadTeamListFile(std::string fileName)  // loads the team list file
+stdStringVec loadTeams::loadTeamListFile(std::string fileName)  // loads the team list file
 {
     sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<renderEngine> render = renderEngine::Instance();
@@ -198,7 +318,7 @@ stdStringVec loader::loadTeamListFile(std::string fileName)  // loads the team l
     return (files);
 }
 
-teamStateSharedPtr loader::loadTeamFile(std::string fileName)  // loads the team file
+teamStateSharedPtr loadTeams::loadTeamFile(std::string fileName)  // loads the team file
 {
     sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();

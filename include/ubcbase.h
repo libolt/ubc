@@ -81,6 +81,9 @@ class UBCBase
         loadOffensePlaysSharedPtr getLoadOffensePlay();  // retrieves the value of loadOffensePlay
         void setLoadOffensePlay(loadOffensePlaysSharedPtr set);  // sets the value of loadOffensePlay
 
+        loadPlayersSharedPtr getLoadPlayer();  // retrieves the value of loadPlayer
+        void setLoadPlayer(loadPlayersSharedPtr set);  // sets the value of loadPlayer
+
         loadTeamsSharedPtr getLoadTeam();  // retrieves the value of loadTeam
         void setLoadTeam(loadTeamsSharedPtr set);  // sets the value of loadTeam
 
@@ -110,6 +113,7 @@ class UBCBase
         static loadCourtsSharedPtr loadCourt;  // the loadCourts object
         static loadHoopsSharedPtr loadHoop;  // the loadHoops object
         static loadOffensePlaysSharedPtr loadOffensePlay;  // the loadOffensePlays Object
+        static loadPlayersSharedPtr loadPlayer;  // the loadPlayers Object
         static loadTeamsSharedPtr loadTeam;  // the loadTeams Object
         static loadUsersInputsSharedPtr loadUsersInput;  // the loadUsersInputs Object
 

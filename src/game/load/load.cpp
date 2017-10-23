@@ -30,10 +30,7 @@
 #include "logging.h"
 #include "engine/renderengine.h"
 
-
-
 //#include "state/gamestate.h"
-
 
 #include "typedefs.h"
 
@@ -42,25 +39,15 @@
 #endif
 
 // static declarations
-
-playerEntityUMSharedPtr loader::pInstance;
-teamStateUMSharedPtr loader::tInstance;
 usersInputVecSharedPtr loader::uiInstance;
-
-stdStringVec loader::playerFiles;  // stores list of player xml files
-stdStringVec loader::teamFiles;  // stores list of team xml files
 stdStringVec loader::usersInputFiles; 
-
-bool loader::playerFilesLoaded;
-bool loader::teamFilesLoaded;
 bool loader::userInputFilesLoaded;
 
 int loader::count;
 
 loader::loader()  // constructor
 {
-    playerFilesLoaded = false;
-    teamFilesLoaded = false;
+
     userInputFilesLoaded = false;
 
 //        pathArray = pathSplit(dataPath);
@@ -72,25 +59,6 @@ loader::~loader()  // destructor
 {
 }
 
-
-stdStringVec loader::getPlayerFiles()  // retrieves the value of playerFiles
-{
-    return(playerFiles);
-}
-void loader::setPlayerFiles(stdStringVec set)  // sets the value of playerFiles
-{
-    playerFiles = set;
-}
-
-stdStringVec loader::getTeamFiles()  // retrieves the value of teamFiles
-{
-    return(teamFiles);
-}
-void loader::setTeamFiles(stdStringVec set)  // sets the value of teamFiles
-{
-    teamFiles = set;
-}
-
 stdStringVec loader::getUsersInputFiles()   // retrieves the value of userInputFiles
 {
     return (usersInputFiles);
@@ -100,23 +68,7 @@ void loader::setUsersInputFiles(stdStringVec set)  // sets the value of userInpu
     usersInputFiles = set;
 }
 
-playerEntityUMSharedPtr loader::getPInstance()  // retrieves the value of pInstance
-{
-    return(pInstance);
-}
-void loader::setPInstance(playerEntityUMSharedPtr set)  // sets the value of pInstance
-{
-    pInstance = set;
-}
 
-std::unordered_map<size_t, teamStateSharedPtr> loader::getTInstance()  // retrieves the value of tInstance
-{
-    return(tInstance);
-}
-void loader::setTInstance(std::unordered_map<size_t, teamStateSharedPtr> set)  // sets the value of tInstance
-{
-    tInstance = set;
-}
 
 usersInputVecSharedPtr loader::getUIInstance()  // retrieves the value of uoInstance
 {
@@ -125,24 +77,6 @@ usersInputVecSharedPtr loader::getUIInstance()  // retrieves the value of uoInst
 void loader::setUIInstance(usersInputVecSharedPtr set)  // sets the value of uiInstance
 {
     uiInstance = set;
-}
-
-bool loader::getPlayerFilesLoaded()  // retrieves the value of playerFilesLoaded
-{
-    return (playerFilesLoaded);
-}
-void loader::setPlayerFilesLoaded(bool set)  // sets the value of playerFilesLoaded
-{
-    playerFilesLoaded = set;
-}
-
-bool loader::getTeamFilesLoaded()  // retrieves the value of teamFilesLoaded
-{
-    return (teamFilesLoaded);
-}
-void loader::setTeamFilesLoaded(bool set)  // sets the value of teamFilesLoaded
-{
-    teamFilesLoaded = set;
 }
 
 bool loader::getUsersInputFilesLoaded()  // retrieves the value of userInputFilesLoaded
@@ -321,159 +255,6 @@ std::string loader::findFile(std::string fileName)  // finds the location of a f
     return ("");
 }
 
-bool loader::checkIfPlayersLoaded()  // checks if players have been loaded into pInstance
-{
-    std::string func = "loader::checkIfPlayersLoaded()";
-    
-    logMsg(func + " beginning");
-
-    if (playerFilesLoaded)
-    {
-        logMsg(func + " getPlayerFilesLoaded");
-
-        if (pInstance.size() > 0)
-        {
-            logMsg(func + " Player Files Loaded!");
-            return(true);
-        }
-        else
-        {
-            logMsg(func + " Player Files not yet Loaded!");
-
-            playerFilesLoaded = false;
-            pInstance = loadPlayers();
-            if (pInstance.size() > 0)
-            {
-                logMsg(func + " > 0!");
-
-//                load->setTInstance(tInstance);
-                playerFilesLoaded = true;
-                return(true);
-            }
-            else
-            {
-                logMsg(func + " Failed to load Player Files! IF");
-                exit(0);
-            }
-        }
-    }
-    else
-    {
-        logMsg(func + " ELSE");
-
-        if (pInstance.size() > 0)
-        {
-            logMsg(func + " load->getPInstance().size() > 0! ELSE");
-//            load->setTInstance(tInstance);
-            playerFilesLoaded = true;
-            return(true);
-        }
-        else
-        {
-            logMsg(func + " ELSE ELSE!");
-
-            pInstance = loadPlayers();
-
-            if (pInstance.size() > 0)
-            {
-                logMsg(func + " load->getPInstance().size() > 0! ELSE ELSE");
-
-//                load->setTInstance(tInstance);
-                playerFilesLoaded = true;
-                return(true);
-            }
-            else
-            {
-                logMsg(func + " Failed to load Player Files!");
-//                return(false);
-            }
-        }
-    }
-//    exit(0);
-    logMsg(func + " end");
-
-    return (true);
-}
-
-bool loader::checkIfTeamsLoaded()  // checks if teams have been loaded into tInstance
-{
-    sharedPtr<conversion> convert = conversion::Instance();
-    teamStateVec tempT;
-    teamStateUMSharedPtr tempTInstance;
-    tInstance = tempTInstance;
-    std::string func = "loader::checkIfTeamsLoaded()";
-    
-    logMsg(func + " beginning");
-
-    if (teamFilesLoaded)
-    {
-        logMsg(func + " getTeamFilesLoaded");
-
-        if (tInstance.size() > 0)
-        {
-            logMsg(func + " Team Files Loaded!");
-            return(true);
-        }
-        else
-        {
-            logMsg(func + " Team Files not yet Loaded!");
-
-            teamFilesLoaded = false;
-            tInstance = loadTeams();
-            if (tInstance.size() > 0)
-            {
-                logMsg(func + " > 0!");
-
-//                load->setTInstance(tInstance);
-                teamFilesLoaded = true;
-                return(true);
-            }
-            else
-            {
-                logMsg(func + " Failed to load Team Files! IF");
-                exit(0);
-            }
-        }
-    }
-    else 
-    {
-        logMsg(func + " ELSE");
-
-        if (tInstance.size() > 0)
-        {
-            logMsg(func + " load->getTInstance().size() > 0! ELSE");
-//            load->setTInstance(tInstance);
-            teamFilesLoaded = true;
-            return(true);
-        }
-        else
-        {
-            logMsg(func + " ELSE ELSE!");
-
-            tInstance = loadTeams();
-            logMsg(func + " tInstance.size() == " +convert->toString(tInstance.size()));
-//            exit(0);
-            if (tInstance.size() > 0)
-            {
-                logMsg(func + " load->getTInstance().size() > 0! ELSE ELSE");
-
-//                load->setTInstance(tInstance);
-                teamFilesLoaded = true;
-                return(true);
-            }
-            else
-            {
-                logMsg(func + " Failed to load Team Files!");
-                return(false);
-            }
-        }
-    }
-    
-    logMsg(func + " end");
-    
-    return (true);
-}
-
 bool loader::checkIfUsersInputsLoaded()  // checks if user inputs have been loaded into pInstance
 {
         sharedPtr<conversion> convert = conversion::Instance();
@@ -550,6 +331,4 @@ bool loader::checkIfUsersInputsLoaded()  // checks if user inputs have been load
     return (false);
 }
 
-
-// Hoops
 

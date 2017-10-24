@@ -74,7 +74,7 @@ void loadUsersInputs::setUsersInputFilesLoaded(bool set)  // sets the value of u
 bool loadUsersInputs::checkIfUsersInputsLoaded()  // checks if user inputs have been loaded into pInstance
 {
         sharedPtr<conversion> convert = conversion::Instance();
-    std::string func = "loader::checkIfUserInputsLoaded()";
+    std::string func = "loadUsersInputs::checkIfUserInputsLoaded()";
 
     logMsg(func +" beginning");
 
@@ -154,7 +154,7 @@ usersInputsVecSharedPtr loadUsersInputs::loadUsersInputFiles()  // load user inp
     usersInputsVecSharedPtr usersInputs;
     usersInputsSharedPtr input;
     std::string usersInputList;
-    std::string func = "loader::loadUserInputs()";
+    std::string func = "loadUsersInputs::loadUserInputs()";
 
     logMsg(func +" beginning");
 
@@ -181,7 +181,7 @@ usersInputsVecSharedPtr loadUsersInputs::loadUsersInputFiles()  // load user inp
 #endif
     }
     logMsg(func +" quit == " +convert->toString(usersInputs[0]->getKeyQuit()));
-    exit(0);
+//    exit(0);
     logMsg(func +" end");
     return (usersInputs);
 }
@@ -193,7 +193,7 @@ stdStringVec loadUsersInputs::loadUsersInputListFile(std::string fileName)  // l
     stdStringVec uInputFiles;
     std::string fileContents;
     tinyxml2::XMLDocument doc;
-    std::string func = "loader::loadUserInputListFile()";
+    std::string func = "loadUsersInputs::loadUserInputListFile()";
 
     logMsg(func +" beginning");
 
@@ -269,7 +269,7 @@ usersInputsSharedPtr loadUsersInputs::loadUsersInputFile(std::string fileName)  
     std::string fileContents;
     tinyxml2::XMLDocument doc;
     char *contents = NULL;
-    std::string func = "loader::loadUserInputFile()";
+    std::string func = "loadUsersInputs::loadUserInputFile()";
 
     logMsg(func +" beginning");
     logMsg(func +" Load UserInput File");

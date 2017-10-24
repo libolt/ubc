@@ -15,6 +15,6 @@
         <PassSteal>RightAlt</PassSteal>
         <Pause>Pause</Pause>
         <StartSelect>Insert</StartSelect>
-        <Quit>End</Quit>
+        <Quit>p</Quit>
     </Input>
 </UserInput>

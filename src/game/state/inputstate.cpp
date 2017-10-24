@@ -121,7 +121,7 @@ bool inputState::mapInput()  // maps value of keyPressed string to inputMap
     
     logMsg(func + " begin");
     logMsg(func + " Dah");
-    exit(0);
+//    exit(0);
     
     if (inputE->getKeyInputReceived())
     {
@@ -221,7 +221,7 @@ inputInGameMaps inputState::mapKeyInput(inputKeyMaps inKeyMap, usersInputsShared
     else if (inKeyMap == input->getKeyQuit())
     {
         logMsg(func +" keyQuit = " +convert->toString(input->getKeyQuit()));
-        exit(0);
+//        exit(0);
         return(INQUIT);
     }
     else
@@ -247,16 +247,26 @@ bool inputState::process()  // processes input
         inputKeyWorkQueues inputKeyWorkQueue = inputE->getInputKeyWorkQueue();
         inputKeyWorkQueues::iterator IKWQIIT;
 
+        logMsg(func + " uInput.size == " +convert->toString(uInput.size()));
+//        exit(0);
 /*        while (x < inputKeyWorkQueue.size())
         {
             inputInGameWorkQueue.push_back(mapKeyInput(inputKeyWorkQueue[x], uInput[0]));
             x++;                            
         }*/
-        for (IKWQIIT = inputKeyWorkQueue.begin(); IKWQIIT != inputKeyWorkQueue.end(); ++IKWQIIT)
+        for (size_t x=0;x<uInput.size();++x)  // loop through all user input queues
         {
-            // FIXME! uInput shoulnobe hard coded
-            inputInGameWorkQueue.push_back(mapKeyInput(*IKWQIIT, uInput[0]));
-//            ++x;
+            for (IKWQIIT = inputKeyWorkQueue.begin(); IKWQIIT != inputKeyWorkQueue.end(); ++IKWQIIT)  // loop through key input queue
+            {
+                // FIXME! uInput shoulnobe hard coded
+                if (mapKeyInput(*IKWQIIT, uInput[x]) != INNO)  // verifies that input has been received
+                {
+//                    exit(0);                
+                    inputInGameWorkQueue.push_back(mapKeyInput(*IKWQIIT, uInput[x]));  // compares each input key against current user input mapping              
+                                                                                       // an adds to inputInGameWorkQueue if there's a match
+                }       
+            }
+            ++x;
         }
 
     }

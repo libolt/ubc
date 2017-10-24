@@ -951,7 +951,7 @@ bool UBC::setupUserInstancesInput()  // sets up input mapping for each user
         ++x;
     }
     logMsg(func +" keyQuit == " +convert->toString(tempUserInput[0]->getKeyQuit()));
-    exit(0);
+//    exit(0);
     base->setUsersInstance(tempUsersInstance);
     
     return (true);

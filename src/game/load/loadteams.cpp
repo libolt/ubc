@@ -94,7 +94,7 @@ bool loadTeams::checkIfTeamsLoaded()  // checks if teams have been loaded into t
             logMsg(func + " Team Files not yet Loaded!");
 
             teamFilesLoaded = false;
-            tInstance = loadTeams();
+            tInstance = loadTeamFiles();
             if (tInstance.size() > 0)
             {
                 logMsg(func + " > 0!");
@@ -125,7 +125,7 @@ bool loadTeams::checkIfTeamsLoaded()  // checks if teams have been loaded into t
         {
             logMsg(func + " ELSE ELSE!");
 
-            tInstance = loadTeams();
+            tInstance = loadTeamFiles();
             logMsg(func + " tInstance.size() == " +convert->toString(tInstance.size()));
 //            exit(0);
             if (tInstance.size() > 0)

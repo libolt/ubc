@@ -26,13 +26,13 @@
 #include "enums.h"
 #include "conversion.h"
 
-class usersInput
+class usersInputs
 {
     public:
     
-        usersInput();  // constructor
+        usersInputs();  // constructor
         
-        ~usersInput();  // destructor
+        ~usersInputs();  // destructor
         
         std::string getName();  // retrieves the value of name
         void setName(std::string set);  // sets the value of name

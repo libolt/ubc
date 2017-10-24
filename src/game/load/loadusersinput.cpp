@@ -24,17 +24,135 @@
 #include "config.h"
 #endif
 
-#include "users/usersinput.h"
+#include "users/usersinputs.h"
 #include "conversion.h"
-#include "load/load.h"
+#include "load/loadusersinputs.h"
 #include "logging.h"
 
+// static declarations
+usersInputsVecSharedPtr loadUsersInputs::uiInstance;
+stdStringVec loadUsersInputs::usersInputFiles;
+bool loadUsersInputs::userInputFilesLoaded;
+
+loadUsersInputs::loadUsersInputs()  // constructor
+{
+    userInputFilesLoaded = false;
+
+}
+loadUsersInputs::~loadUsersInputs()  // destructor
+{
+
+}
+
+stdStringVec loadUsersInputs::getUsersInputFiles()   // retrieves the value of userInputFiles
+{
+    return (usersInputFiles);
+}
+void loadUsersInputs::setUsersInputFiles(stdStringVec set)  // sets the value of userInputFiles
+{
+    usersInputFiles = set;
+}
+
+usersInputsVecSharedPtr loadUsersInputs::getUIInstance()  // retrieves the value of uoInstance
+{
+    return(uiInstance);
+}
+void loadUsersInputs::setUIInstance(usersInputsVecSharedPtr set)  // sets the value of uiInstance
+{
+    uiInstance = set;
+}
+
+bool loadUsersInputs::getUsersInputFilesLoaded()  // retrieves the value of userInputFilesLoaded
+{
+    return (userInputFilesLoaded);
+}
+void loadUsersInputs::setUsersInputFilesLoaded(bool set)  // sets the value of userInputFilesLoaded
+{
+    userInputFilesLoaded = set;
+}
+
+bool loadUsersInputs::checkIfUsersInputsLoaded()  // checks if user inputs have been loaded into pInstance
+{
+        sharedPtr<conversion> convert = conversion::Instance();
+    std::string func = "loader::checkIfUserInputsLoaded()";
+
+    logMsg(func +" beginning");
+
+    if (userInputFilesLoaded)
+    {
+        logMsg(func +" getUserInputFilesLoaded");
+
+        if (uiInstance.size() > 0)
+        {
+            logMsg(func +" User Input Files Loaded!");
+            return(true);
+        }
+        else
+        {
+            logMsg(func +" User Input Files not yet Loaded!");
+
+            userInputFilesLoaded = false;
+            uiInstance = loadUsersInputFiles();
+            if (uiInstance.size() > 0)
+            {
+                logMsg(func +" uiInstance.size() ==" +convert->toString(uiInstance.size()));
+
+//                load->setTInstance(tInstance);
+                userInputFilesLoaded = true;
+                return(true);
+            }
+            else
+            {
+                logMsg(func +" Failed to load User Input Files! IF");
+                exit(0);
+            }
+        }
+    }
+    else
+    {
+        logMsg(func +" ELSE");
+
+        if (uiInstance.size() > 0)
+        {
+            logMsg(func +" uiInstance.size() ==" +convert->toString(uiInstance.size()));
+//            load->setTInstance(tInstance);
+            userInputFilesLoaded = true;
+            return(true);
+        }
+        else
+        {
+            logMsg(func +" ELSE ELSE!");
+
+            uiInstance = loadUsersInputFiles();
+            logMsg("loader::checkIfUserInputsLoaded()");
+            if (uiInstance.size() > 0)
+            {
+                logMsg(func +" uiInstance.size() ==" +convert->toString(uiInstance.size()));
+
+//                load->setTInstance(tInstance);
+                userInputFilesLoaded = true;
+                return(true);
+            }
+            else
+            {
+                logMsg(func +" Failed to load User Input Files!");
+                return(false);
+            }
+            exit(0);
+        }
+    }
+
+    logMsg(func +" end");
+
+    return (false);
+}
+
 // User input
-usersInputVecSharedPtr loader::loadUsersInputs()  // load user input settings from XML files
+usersInputsVecSharedPtr loadUsersInputs::loadUsersInputFiles()  // load user input settings from XML files
 {
     sharedPtr<conversion> convert = conversion::Instance();
-    usersInputVecSharedPtr usersInputs;
-    usersInputSharedPtr input;
+    usersInputsVecSharedPtr usersInputs;
+    usersInputsSharedPtr input;
     std::string usersInputList;
     std::string func = "loader::loadUserInputs()";
 
@@ -68,7 +186,7 @@ usersInputVecSharedPtr loader::loadUsersInputs()  // load user input settings fr
     return (usersInputs);
 }
 
-stdStringVec loader::loadUsersInputListFile(std::string fileName)  // loads the user input list file
+stdStringVec loadUsersInputs::loadUsersInputListFile(std::string fileName)  // loads the user input list file
 {
     sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<renderEngine> render = renderEngine::Instance();
@@ -129,10 +247,10 @@ stdStringVec loader::loadUsersInputListFile(std::string fileName)  // loads the 
     return (uInputFiles);
 }
 
-usersInputSharedPtr loader::loadUsersInputFile(std::string fileName)  // loads data from the user input files
+usersInputsSharedPtr loadUsersInputs::loadUsersInputFile(std::string fileName)  // loads data from the user input files
 {
     sharedPtr<conversion> convert = conversion::Instance();
-    const sharedPtr<usersInput> uInput(new usersInput);
+    const sharedPtr<usersInputs> uInput(new usersInputs);
     std::string inputName;
     std::string type;
     std::string up;

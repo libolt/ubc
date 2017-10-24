@@ -22,7 +22,7 @@
 #include "logging.h"
 #include "engine/inputengine.h"
 //#include "engine/gameengine.h"
-#include "users/usersinput.h"
+#include "users/usersinputs.h"
 #include "load/load.h"
 #include "ubcbase.h"
 #include "gui/gui.h"
@@ -62,11 +62,11 @@ void inputState::setInputE(inputEngineSharedPtr set)  // sets the value of input
 //    inputE = set;
 }
 
-usersInputVecSharedPtr inputState::getUInput()  // retrieves the value of uInput
+usersInputsVecSharedPtr inputState::getUInput()  // retrieves the value of uInput
 {
     return (uInput);
 }
-void inputState::setUInput(usersInputVecSharedPtr set)  // sets the value of uInput
+void inputState::setUInput(usersInputsVecSharedPtr set)  // sets the value of uInput
 {
     uInput = set;
 }
@@ -134,7 +134,7 @@ bool inputState::mapInput()  // maps value of keyPressed string to inputMap
         for (IKWQIIT = inputKeyWorkQueue.begin(); IKWQIIT != inputKeyWorkQueue.end(); ++IKWQIIT)
         {
             // FIXME! uInput shoulnobe hard coded
-            usersInputVecSharedPtr::iterator UIIT;
+            usersInputsVecSharedPtr::iterator UIIT;
             for (UIIT = uInput.begin(); UIIT != uInput.end(); ++UIIT)
             {
                 inputInGameWorkQueue.push_back(mapKeyInput(*IKWQIIT, *UIIT));
@@ -155,7 +155,7 @@ bool inputState::mapInput()  // maps value of keyPressed string to inputMap
 return (true);
 }
 
-inputInGameMaps inputState::mapKeyInput(inputKeyMaps inKeyMap, sharedPtr<usersInput> input)  // maps value of the keyPressed string to inputInGameMaps
+inputInGameMaps inputState::mapKeyInput(inputKeyMaps inKeyMap, usersInputsSharedPtr input)  // maps value of the keyPressed string to inputInGameMaps
 {
     sharedPtr<conversion> convert = conversion::Instance();
     size_t x = 0;

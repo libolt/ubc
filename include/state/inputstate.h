@@ -49,15 +49,15 @@ class inputState : public state
     inputEngineSharedPtr getInputE();  // retrieves the value of gameE
     void setInputE(inputEngineSharedPtr set);  // sets the value of gameE
     
-    usersInputVecSharedPtr getUInput();  // retrieves the value of uInput
-    void setUInput(usersInputVecSharedPtr set);  // sets the value of uInput
+    usersInputsVecSharedPtr getUInput();  // retrieves the value of uInput
+    void setUInput(usersInputsVecSharedPtr set);  // sets the value of uInput
     
     inputInGameWorkQueues getInputInGameWorkQueue();  // retrieves the value of inputInGameWorkQueue
     void setInputInGameWorkQueue(inputInGameWorkQueues set);  // sets the value of inputInGameWorkQueue
     
     bool setup();  // sets up the input state
     bool mapInput();  // maps value of the received input string to inputInGameMaps
-	inputInGameMaps mapKeyInput(inputKeyMaps inKeyMap, sharedPtr<usersInput> input);  // maps value of the keyPressed string to inputInGameMaps
+    inputInGameMaps mapKeyInput(inputKeyMaps inKeyMap, usersInputsSharedPtr input);  // maps value of the keyPressed string to inputInGameMaps
 	
     bool process();  // processes input
     
@@ -65,7 +65,7 @@ class inputState : public state
     
     static UBCBaseSharedPtr base;  // static copy of base class
     static inputEngineSharedPtr inputE;  // the inputEngine object
-    usersInputVecSharedPtr uInput;  // stores user input mapping
+    usersInputsVecSharedPtr uInput;  // stores user input mapping
     static inputInGameWorkQueues inputInGameWorkQueue;  // stores work queue for in game processing
     
 };

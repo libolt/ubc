@@ -17,60 +17,46 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
- 
-#ifndef _LOAD_H_
-#define _LOAD_H_
+
+#ifndef _LOAD_USERSINPUTS_H_
+#define _LOAD_USERSINPUTS_H_
 
 #include <string>
 #include <vector>
 #include <unordered_map>
 
-#include "Ogre.h"
-#include "SDL.h"
+#include "load/load.h"
+#include "typedefs.h"
 
-#include "tinyxml2.h"
-
-
-
-//#include "state/basketballstate.h"
-//#include "state/courtstate.h"
-//#include "state/hoopstate.h"
-//#include "state/gamestate.h"
-//#include "state/teamstate.h"
-//#include "offenseplays.h"
-//#include "userinput.h"
-
-class basketballState;
-class courtState;
-class hoopState;
-class gameState;
-class playerState;
-class teamState;
-class offensePlays;
-class usersInput;
-
-class loader
+class loadUsersInputs : public loader
 {
     public:
 
-        loader();  // constructor
-        ~loader(); // destructor
+        loadUsersInputs();  // constructor
+        ~loadUsersInputs();  // destructor
 
-        stdStringVec pathSplit(const std::string paths);
-        std::string findFile(std::string fileName);
-    //	string * pathArray;
+        stdStringVec getUsersInputFiles();  // retrieves the value of userInputFiles
+        void setUsersInputFiles(stdStringVec set);  // sets the value of userInputFiles
 
-        bool loadXMLFile(std::string fileName);
+        usersInputsVecSharedPtr getUIInstance();  // retrieves the value of uiInstance
+        void setUIInstance(usersInputsVecSharedPtr set);  // sets the value of uiInstance
 
-        int readFile(const char *sourceFile, char **destination);  // reads in the XML file
+        bool getUsersInputFilesLoaded();  // retrieves the value of userInputFilesLoaded
+        void setUsersInputFilesLoaded(bool set);  // sets the value of userInputFilesLoaded
 
-        SDL_RWops *readBinaryFile(const char *sourceFile);
+        bool checkIfUsersInputsLoaded();  // checks if uset inputs have been loaded into uiInstance
+
+        // User input
+        usersInputsVecSharedPtr loadUsersInputFiles();  // load user input XML files
+        stdStringVec loadUsersInputListFile(std::string fileName);  // load the list of user input configs from userinputs.xml
+        usersInputsSharedPtr loadUsersInputFile(std::string fileName);  // loads data from the user input XML files.
 
     private:
 
-        static int count;  // counts number of times a function has been called
+        static usersInputsVecSharedPtr uiInstance;
+        static stdStringVec usersInputFiles;  // stores list of court xml files
+        // determines whether files have been loaded successfully
+        static bool userInputFilesLoaded;
 };
 
-
-#endif
-
+#endif // _LOAD_USERSINPUTS_H_

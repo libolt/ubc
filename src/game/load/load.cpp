@@ -39,17 +39,10 @@
 #endif
 
 // static declarations
-usersInputVecSharedPtr loader::uiInstance;
-stdStringVec loader::usersInputFiles; 
-bool loader::userInputFilesLoaded;
-
 int loader::count;
 
 loader::loader()  // constructor
 {
-
-    userInputFilesLoaded = false;
-
 //        pathArray = pathSplit(dataPath);
 //      cout << pathArray[2] << endl;
 //      exit(0);
@@ -57,35 +50,6 @@ loader::loader()  // constructor
 
 loader::~loader()  // destructor
 {
-}
-
-stdStringVec loader::getUsersInputFiles()   // retrieves the value of userInputFiles
-{
-    return (usersInputFiles);
-}
-void loader::setUsersInputFiles(stdStringVec set)  // sets the value of userInputFiles
-{
-    usersInputFiles = set;
-}
-
-
-
-usersInputVecSharedPtr loader::getUIInstance()  // retrieves the value of uoInstance
-{
-    return(uiInstance);
-}
-void loader::setUIInstance(usersInputVecSharedPtr set)  // sets the value of uiInstance
-{
-    uiInstance = set;
-}
-
-bool loader::getUsersInputFilesLoaded()  // retrieves the value of userInputFilesLoaded
-{
-    return (userInputFilesLoaded);
-}
-void loader::setUsersInputFilesLoaded(bool set)  // sets the value of userInputFilesLoaded  
-{
-    userInputFilesLoaded = set;
 }
 
 int loader::readFile(const char *sourceFile, char **destination)  // loads an xml file using SDL so that it can be passed to TinyXML
@@ -254,81 +218,3 @@ std::string loader::findFile(std::string fileName)  // finds the location of a f
 #endif
     return ("");
 }
-
-bool loader::checkIfUsersInputsLoaded()  // checks if user inputs have been loaded into pInstance
-{
-        sharedPtr<conversion> convert = conversion::Instance();
-    std::string func = "loader::checkIfUserInputsLoaded()";
-
-    logMsg(func +" beginning");
-
-    if (userInputFilesLoaded)
-    {
-        logMsg(func +" getUserInputFilesLoaded");
-
-        if (uiInstance.size() > 0)
-        {
-            logMsg(func +" User Input Files Loaded!");
-            return(true);
-        }
-        else
-        {
-            logMsg(func +" User Input Files not yet Loaded!");
-
-            userInputFilesLoaded = false;
-            uiInstance = loadUsersInputs();
-            if (uiInstance.size() > 0)
-            {
-                logMsg(func +" uiInstance.size() ==" +convert->toString(uiInstance.size()));
-
-//                load->setTInstance(tInstance);
-                userInputFilesLoaded = true;
-                return(true);
-            }
-            else
-            {
-                logMsg(func +" Failed to load User Input Files! IF");
-                exit(0);
-            }
-        }
-    }
-    else 
-    {
-        logMsg(func +" ELSE");
-
-        if (uiInstance.size() > 0)
-        {
-            logMsg(func +" uiInstance.size() ==" +convert->toString(uiInstance.size()));
-//            load->setTInstance(tInstance);
-            userInputFilesLoaded = true;
-            return(true);
-        }
-        else
-        {
-            logMsg(func +" ELSE ELSE!");
-
-            uiInstance = loadUsersInputs();
-            logMsg("loader::checkIfUserInputsLoaded()");
-            if (uiInstance.size() > 0)
-            {
-                logMsg(func +" uiInstance.size() ==" +convert->toString(uiInstance.size()));
-
-//                load->setTInstance(tInstance);
-                userInputFilesLoaded = true;
-                return(true);
-            }
-            else
-            {
-                logMsg(func +" Failed to load User Input Files!");
-                return(false);
-            }
-            exit(0);
-        }
-    }
-
-    logMsg(func +" end");
-
-    return (false);
-}
-
-

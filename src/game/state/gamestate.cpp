@@ -39,6 +39,7 @@
 #include "load/loadcourts.h"
 #include "load/loadhoops.h"
 #include "load/loadplayers.h"
+#include "load/loadteams.h"
 #include "logging.h"
 #include "network/networkplayerstateobject.h"
 #include "data/basketballdata.h"
@@ -327,7 +328,7 @@ bool gameState::createBasketballInstances()  // creates basketball Instances
 bool gameState::createTeamInstances()  // creates team Instances
 {
     sharedPtr<conversion> convert = conversion::Instance();
-    loaderSharedPtr load = base->getLoad();
+    loadTeamsSharedPtr loadTeam = base->getLoadTeam();
     std::string func = "gameState::createTeamInstances()";
     
     logMsg(func +" beginning");
@@ -345,11 +346,11 @@ bool gameState::createTeamInstances()  // creates team Instances
     tInstance2.push_back(tempInstance);
 */
     logMsg(func +" loadTeams");
-    if (load->checkIfTeamsLoaded())
+    if (loadTeam->checkIfTeamsLoaded())
     {
-        logMsg(func +" load->getTInstance().size() == " +convert->toString(load->getTInstance().size()));
+        logMsg(func +" loadTeam->getTInstance().size() == " +convert->toString(loadTeam->getTInstance().size()));
 //        exit(0);
-        tInstance = load->getTInstance();
+        tInstance = loadTeam->getTInstance();
         if (tInstance.size() > 0)
         {
             logMsg(func +" tInstance Loaded!");

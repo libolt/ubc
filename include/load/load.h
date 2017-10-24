@@ -92,7 +92,6 @@ private:
 
     static usersInputVecSharedPtr uiInstance;
 
-    static stdStringVec teamFiles;	 // stores list of team xml files
     static stdStringVec usersInputFiles;  // stores list of court xml files
 
     // determines whether files have been loaded successfully

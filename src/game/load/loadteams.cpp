@@ -65,7 +65,7 @@ std::unordered_map<size_t, teamStateSharedPtr> loadTeams::getTInstance()  // ret
 {
     return(tInstance);
 }
-void loader::setTInstance(std::unordered_map<size_t, teamStateSharedPtr> set)  // sets the value of tInstance
+void loadTeams::setTInstance(std::unordered_map<size_t, teamStateSharedPtr> set)  // sets the value of tInstance
 {
     tInstance = set;
 }

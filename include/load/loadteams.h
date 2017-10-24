@@ -53,6 +53,7 @@ class loadTeams : public loader
     
         static teamStateUMSharedPtr tInstance;
         static bool teamFilesLoaded;
+        static stdStringVec teamFiles;   // stores list of team xml files
 
 };
 

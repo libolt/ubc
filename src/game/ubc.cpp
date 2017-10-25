@@ -26,7 +26,7 @@
 #include "engine/physicsengine.h"
 #include "state/basketballstate.h"
 #include "state/gamestate.h"
-#include "state/inputstate.h"
+#include "input/input.h"
 #include "state/networkstate.h"
 #include "state/playerstate.h"
 #include "state/teamstate.h"
@@ -323,9 +323,12 @@ void UBC::processInput()  // processes game input
 
     logMsg(func +" beginning");
     
-//    exit(0);
-    
-    if (base->getInputS()->process())
+    if (base->getUsersInstance()[0]->getInputType() == KEYBOARD)
+    {   
+        logMsg("Keyboard Input!");
+        exit(0);
+    }
+/*    if (base->getInputS()->process())
     {
         
         if (base->getGameE()->getMenuActive())
@@ -347,7 +350,7 @@ void UBC::processInput()  // processes game input
     {
         
     }
-    
+*/
     logMsg("INQ Size = " +convert->toString(base->getGameS()->getInputInGameWorkQueue().size()));
     for (auto IIGWQ : base->getGameS()->getInputInGameWorkQueue())
     {

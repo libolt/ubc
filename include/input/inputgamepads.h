@@ -18,57 +18,34 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
- 
-#ifndef _INPUTSTATE_H_
-#define _INPUTSTATE_H_q
+#ifndef _INPUTGAMEPADS_H_
+#define _INPUTGAMEPADS_H_
 
 #include <vector>
 
-#include "state/state.h"
+#include "input/input.h"
 #include "enums.h"
-#include <boost/shared_ptr.hpp>
-#include "engine/inputengine.h"
+//#include "engine/inputengine.h"
 
 // typedefs
 
 // forward declarations
 //class inputEngine;
-class usersInput;
-class UBCBase;
+//class usersInput;
+//class UBCBase;
 
-class inputState : public state
+class inputGamePads : public input
 {
     public:
     
-    inputState();  // constructor
-    ~inputState();  // destructor
-    
-    UBCBaseSharedPtr getBase();  // retrieves the value of base
-    void setBase(UBCBaseSharedPtr set);  // sets the value of base
+        inputGamePads();  // constructor
+        ~inputGamePads();  // destructor
 
-    inputEngineSharedPtr getInputE();  // retrieves the value of gameE
-    void setInputE(inputEngineSharedPtr set);  // sets the value of gameE
-    
-    usersInputsVecSharedPtr getUInput();  // retrieves the value of uInput
-    void setUInput(usersInputsVecSharedPtr set);  // sets the value of uInput
-    
-    inputInGameWorkQueues getInputInGameWorkQueue();  // retrieves the value of inputInGameWorkQueue
-    void setInputInGameWorkQueue(inputInGameWorkQueues set);  // sets the value of inputInGameWorkQueue
-    
-    bool setup();  // sets up the input state
-    bool mapInput();  // maps value of the received input string to inputInGameMaps
-    inputInGameMaps mapKeyInput(inputKeyMaps inKeyMap, usersInputsSharedPtr input);  // maps value of the keyPressed string to inputInGameMaps
-	
-    bool process();  // processes input
-    
+        inputInGameMaps mapInput(inputGamePadMaps inGamePadMap, usersInputsSharedPtr input);  // maps value of the keyPressed string to inputInGameMaps
+        bool process();  // processes input
+
     private:
     
-    static UBCBaseSharedPtr base;  // static copy of base class
-    static inputEngineSharedPtr inputE;  // the inputEngine object
-    usersInputsVecSharedPtr uInput;  // stores user input mapping
-    static inputInGameWorkQueues inputInGameWorkQueue;  // stores work queue for in game processing
-    
 };
+
 #endif
-
-

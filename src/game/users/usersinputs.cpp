@@ -213,7 +213,7 @@ void usersInputs::setGPLeft(inputGamePadMaps set)  // sets the value of GPLeft
     GPLeft = set;
 }
     
-inputGamePadMaps usersInputs::getGPPRight()  // retrieves the value of GPRight
+inputGamePadMaps usersInputs::getGPRight()  // retrieves the value of GPRight
 {
     return (GPRight);
 }
@@ -292,6 +292,15 @@ inputGamePadMaps usersInputs::getGPStartSelect()  // retrieves the value of GPSt
 void usersInputs::setGPStartSelect(inputGamePadMaps set)  // sets the value of GPStartSelect
 {
     GPStartSelect = set;
+}
+
+inputGamePadMaps usersInputs::getGPQuit()  // retrieves the value of GPQuit
+{
+    return (GPQuit);
+}
+void usersInputs::setGPQuit(inputGamePadMaps set)  // sets the value of GPQuit
+{
+    GPQuit = set;
 }
 
 bool usersInputs::getActive()  // retrieves the value of active

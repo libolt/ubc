@@ -22,7 +22,7 @@
 #include "engine/gameengine.h"
 #include "state/gamestate.h"
 #include "state/networkstate.h"
-#include "state/inputstate.h"
+#include "input/input.h"
 #include "load/load.h"
 #include "load/loadplayers.h"
 
@@ -39,7 +39,7 @@ bool UBCBase::inputSUInputSetup;  // stores whether inputS UInput object has bee
 gameEngineSharedPtr UBCBase::gameE;  // the gameEngine object
 //sharedPtr<gameState> UBCBase::gameS;  // the gameState object
 networkStateSharedPtr UBCBase::networkS;  // the networkState object
-inputStateSharedPtr UBCBase::inputS;  // the inputState object
+inputSharedPtr UBCBase::inputS;  // the input object
 loaderSharedPtr UBCBase::load;  // the loader object
 loadBasketballsSharedPtr UBCBase::loadBasketball;  // the loadBasketballs object
 loadCourtsSharedPtr UBCBase::loadCourt;  // the loadCourts object
@@ -141,12 +141,12 @@ void UBCBase::setNetworkS(sharedPtr<networkState> set)  // sets the value of net
     networkS = set;
 }
 
-sharedPtr<inputState> UBCBase::getInputS()  // retrieves the value of inputS
+inputSharedPtr UBCBase::getInputS()  // retrieves the value of inputS
 {
     return (inputS);
 }
 
-void UBCBase::setInputS(sharedPtr<inputState> set)  // sets the value of inputS
+void UBCBase::setInputS(inputSharedPtr set)  // sets the value of inputS
 {
     inputS = set;
 }
@@ -276,7 +276,7 @@ bool UBCBase::setup()  // sets up the engine and states
 //    networkState *tempNetworkStateObj = new networkState;
 ///    sharedPtr<networkState> tempNetworkStateSharedPtr = sharedPtr<networkState>(new networkState);
 ///    networkS = tempNetworkStateSharedPtr;
-    inputStateSharedPtr tempInputStateSharedPtr(new inputState);
+    inputSharedPtr tempInputStateSharedPtr(new input);
     inputS = tempInputStateSharedPtr;
 
     inputS->setInputE(gameE->getInputE());

@@ -28,7 +28,7 @@
 class gameEngine;
 class gameState;
 class networkState;
-class inputState;
+class input;
 class loader;
 class users;
 
@@ -63,8 +63,8 @@ class UBCBase
         networkStateSharedPtr getNetworkS();  // retrieves the value of networkS
         void setNetworkS(networkStateSharedPtr set);  // sets the value of networkS
     
-        inputStateSharedPtr getInputS();  // retrieves the value of inputS
-        void setInputS(inputStateSharedPtr set);  // sets the value of inputS
+        inputSharedPtr getInputS();  // retrieves the value of inputS
+        void setInputS(inputSharedPtr set);  // sets the value of inputS
 
         loaderSharedPtr getLoad();  // retrieves the value of load
         void setLoad(loaderSharedPtr set);  // sets the value of load
@@ -107,7 +107,7 @@ class UBCBase
         static gameEngineSharedPtr gameE;  // the gameEngine object
         gameStateSharedPtr gameS;  // the gameState object
         static networkStateSharedPtr networkS;  // the gameState object
-        static inputStateSharedPtr inputS;  // the gameState object
+        static inputSharedPtr inputS;  // the gameState object
         static loaderSharedPtr load;  // the loader object
         static loadBasketballsSharedPtr loadBasketball;  // the loadBasketballs object
         static loadCourtsSharedPtr loadCourt;  // the loadCourts object

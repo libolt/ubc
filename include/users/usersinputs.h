@@ -85,7 +85,7 @@ class usersInputs
         inputGamePadMaps getGPLeft();  // retrieves the value of GPLeft
         void setGPLeft(inputGamePadMaps set);  // sets the value of GPLeft
 
-        inputGamePadMaps getGPPRight();  // retrieves the value of jLGPRight
+        inputGamePadMaps getGPRight();  // retrieves the value of jLGPRight
         void setGPRight(inputGamePadMaps set);  // sets the value of GPRight
 
         inputGamePadMaps getGPUpLeft();  // retrieves the value of GPUpLeft
@@ -111,6 +111,9 @@ class usersInputs
 
         inputGamePadMaps getGPStartSelect();  // retrieves the value of GPStartSelect
         void setGPStartSelect(inputGamePadMaps set);  // sets the value of GPStartSelect
+        
+        inputGamePadMaps getGPQuit();  // retrieves the value of GPQuit
+        void setGPQuit(inputGamePadMaps set);  // sets the value of GPQuit
 
         bool getActive();  // retrieves the value of active
         void setActive(bool set);  // sets the value of active
@@ -147,6 +150,7 @@ class usersInputs
     static inputGamePadMaps GPPassSteal;
     static inputGamePadMaps GPPause;
     static inputGamePadMaps GPStartSelect;
+    static inputGamePadMaps GPQuit;
 
     bool active;  // determines whether this input map is being used.
     

@@ -44,7 +44,6 @@ class inputKeyboards : public input
         inputInGameMaps mapInput(inputKeyMaps inKeyMap, usersInputsSharedPtr input);  // maps value of the keyPressed string to inputInGameMaps
         bool process();  // processes input
     
-        inputKeyboards inputKeyboards::mapInput(inputKeyMaps inKeyMap, usersInputsSharedPtr uInput);  // maps value of the keyPressed string to inputInGameMaps
     private:
     
 };

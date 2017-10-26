@@ -49,6 +49,7 @@ inputGamePadMaps usersInputs::GPShootBlock;
 inputGamePadMaps usersInputs::GPPassSteal;
 inputGamePadMaps usersInputs::GPPause;
 inputGamePadMaps usersInputs::GPStartSelect;
+inputGamePadMaps usersInputs::GPQuit;
 
 usersInputs::usersInputs()
 {

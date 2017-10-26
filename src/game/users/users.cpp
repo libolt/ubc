@@ -84,3 +84,12 @@ void users::setUserInput(usersInputsSharedPtr set)  // sets the value of userInp
 {
     userInput = set;
 }
+
+inputTypes users::getInputType()  // retrieves the value of inputType
+{
+    return (inputType);
+}
+void users::setInputType(inputTypes set)  // sets the value of inputType
+{
+    inputType = set;
+}

@@ -20,8 +20,8 @@
 
 #include "entity/basketballentity.h"
 #include "physics/basketballphysics.h"
-#include "conversion.h"
-#include "logging.h"
+#include "utilities/conversion.h"
+#include "utilities/logging.h"
 
 basketballEntity::basketballEntity()  // constructor
 {

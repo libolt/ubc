@@ -22,8 +22,8 @@
 #define _OFFENSEPLAYS_H_
 
 #include "Ogre.h"
-#include "enums.h"
-#include "typedefs.h"
+#include "utilities/enums.h"
+#include "utilities/typedefs.h"
 
 
 typedef std::vector<playerPositions> playerPositionsVec;

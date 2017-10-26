@@ -18,8 +18,8 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "conversion.h"
-#include "logging.h"
+#include "utilities/conversion.h"
+#include "utilities/logging.h"
 
 sharedPtr<conversion> conversion::pInstance;
 
@@ -707,6 +707,35 @@ std::string conversion::toString(const directions &data) // converts directions 
     }
     return (strData);
 }
+
+std::string conversion::toString(const inputTypes &data) // converts inputTypes data to string
+{
+
+    std::string strData;
+
+    switch (data)
+    {
+        case KEYBOARD:
+            strData = "KEYBOARD";
+        break;
+        case MOUSE:
+            strData = "MOUSE";
+        break;
+        case GAMEPAD:
+            strData = "GAMEPAD";
+        break;
+        case TOUCH:
+            strData = "TOUCH";
+        break;
+        case INNOTYPE:
+            strData = "INNOTYPE";
+        break;
+
+    }
+
+    return (strData);
+}
+
 // convert to char
 char conversion::toChar(const std::string &data)  // converts from std::string to char
 {
@@ -2459,4 +2488,31 @@ inputGamePadMaps conversion::toInputGP(const std::string &data)  // converts fro
         INGP_NONE
 */
     return (GPMap); 
+}
+
+inputTypes conversion::toInputType(const std::string &data)  // converts from string to inputTypes
+{
+    inputTypes type;
+
+    if (data == "Keyboard")
+    {
+        type = KEYBOARD;
+    }
+    else if (data == "GamePad")
+    {
+        type = GAMEPAD;
+    }
+    else if (data == "Mouse")
+    {
+        type = MOUSE;
+    }
+    else if (data == "Touch")
+    {
+        type = TOUCH;
+    }
+    else
+    {
+
+    }
+    return (type);
 }

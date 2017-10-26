@@ -28,9 +28,9 @@
 #include "entity/playerentity.h"
 #include "state/playerstate.h"
 
-#include "conversion.h"
+#include "utilities/conversion.h"
 #include "load/loadplayers.h"
-#include "logging.h"
+#include "utilities/logging.h"
 
 // static declarations
 playerEntityUMSharedPtr loadPlayers::pInstance;

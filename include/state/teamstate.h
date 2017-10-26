@@ -32,9 +32,9 @@
 #include "state/state.h"
 #include "state/gamestateshared.h"
 #include "data/teamdata.h"
-#include "typedefs.h"
+#include "utilities/typedefs.h"
 
-//#include "ubcbase.h"
+//#include "ubc/ubcbase.h"
 class UBCBase;
 class offenseState;
 class defenseState;

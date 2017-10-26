@@ -26,8 +26,8 @@
 
 #include "LinearMath/btVector3.h"
 
-#include "enums.h"
-#include "typedefs.h"
+#include "utilities/enums.h"
+#include "utilities/typedefs.h"
 
 // forward declarations
 class basketballState;

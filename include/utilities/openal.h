@@ -16,7 +16,7 @@
 //#include "../../Utils/header/Logger.h"
 //#include "../../Utils/header/MyString.h"
 
-#include "logging.h"
+#include "utilities/logging.h"
 
 void CheckOpenALError(const char* stmt, const char* fname, int line);
 std::string GetOpenALErrorString(int errID);

@@ -46,7 +46,7 @@
 #endif
 
 #include <memory>
-#include "RTShaderHelper.h"
+#include "utilities/RTShaderHelper.h"
 
 #include "SDL.h"
 #include "SDL_syswm.h"

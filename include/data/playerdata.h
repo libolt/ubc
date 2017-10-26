@@ -23,7 +23,7 @@
 
 #include <string>
 
-#include "enums.h"
+#include "utilities/enums.h"
 
 class playerData
 {

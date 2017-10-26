@@ -35,7 +35,7 @@
 #include "BtOgreExtras.h"
 #include "BulletDynamics/Dynamics/btRigidBody.h"
 
-#include "enums.h"
+#include "utilities/enums.h"
 
 #include "ai/steering.h"
 //#include "offenseplays.h"

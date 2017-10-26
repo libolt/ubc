@@ -27,7 +27,7 @@
 #include "BtOgreGP.h"
 #include "BtOgreExtras.h"
 #include "state/state.h"
-#include "typedefs.h"
+#include "utilities/typedefs.h"
 //#include "entity/courtentity.h"
 //#include "data/courtdata.h"
 

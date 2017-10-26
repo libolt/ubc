@@ -19,11 +19,11 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "ubcbase.h"
+#include "ubc/ubcbase.h"
 #include "engine/networkengine.h"
 
 #include "gui/gui.h"
-#include "conversion.h"
+#include "utilities/conversion.h"
 #include "data/courtdata.h"
 #include "data/playerdata.h"
 #include "engine/gameengine.h"
@@ -33,11 +33,11 @@
 #include "state/playerstate.h"
 #include "state/teamstate.h"
 #include "load/loadteams.h"
-#include "logging.h"
+#include "utilities/logging.h"
 #include "engine/renderengine.h"
 #include "data/teamdata.h"
 
-//#include "easylogging++.h"
+//#include "utilities/easylogging++.h"
 
 #ifdef __ANDROID__
 #include "android-config.h"

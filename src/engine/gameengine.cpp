@@ -18,11 +18,11 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "conversion.h"
+#include "utilities/conversion.h"
 
 #include "engine/gameengine.h"
 #include "engine/inputengine.h"
-#include "logging.h"
+#include "utilities/logging.h"
 #include "network/networkplayerstateobject.h"
 #include "engine/renderengine.h"
 #include "engine/physicsengine.h"

@@ -22,7 +22,7 @@
 #define _NETWORKGAMESTATEOBJECT_H_
 
 #include <iostream>
-#include "enums.h"
+#include "utilities/enums.h"
 
 class networkGameStateObject 
 {

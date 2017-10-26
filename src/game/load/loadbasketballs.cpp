@@ -24,9 +24,9 @@
 #include "config.h"
 #endif
 
-#include "conversion.h"
+#include "utilities/conversion.h"
 #include "load/loadbasketballs.h"
-#include "logging.h"
+#include "utilities/logging.h"
 #include "data/basketballdata.h"
 #include "entity/basketballentity.h"
 #include "state/basketballstate.h"

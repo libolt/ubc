@@ -23,8 +23,8 @@
 
 //#include "state/courtstate.h"
 
-#include "enums.h"
-#include "typedefs.h"
+#include "utilities/enums.h"
+#include "utilities/typedefs.h"
 
 #include <vector>
 #include <cstddef>

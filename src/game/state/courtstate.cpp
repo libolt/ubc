@@ -22,7 +22,7 @@
 #include "data/courtdata.h"
 #include "entity/courtentity.h"
 #include "engine/renderengine.h"
-#include "logging.h"
+#include "utilities/logging.h"
 
 courtState::courtState()
 {

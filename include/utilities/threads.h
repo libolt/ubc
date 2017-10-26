@@ -29,7 +29,7 @@
 #include <boost/thread/condition_variable.hpp>
 #include <boost/thread/locks.hpp>
 
-#include "logging.h"
+#include "utilities/logging.h"
  
 //const int globalVariable;
 

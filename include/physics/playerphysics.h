@@ -22,7 +22,7 @@
 #define _PLAYERPHYSICS_H_
 
 #include "physics/physics.h"
-#include "typedefs.h"
+#include "utilities/typedefs.h"
 //#include "state/gamestateshared.h"
 
 //class physics;

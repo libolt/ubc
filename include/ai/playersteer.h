@@ -23,7 +23,7 @@
 
 #include "ai/steering.h"
 #include "state/gamestateshared.h"
-#include "enums.h"
+#include "utilities/enums.h"
 
 class playerState;
 

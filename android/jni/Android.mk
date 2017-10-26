@@ -263,8 +263,6 @@ LOCAL_SRC_FILES := \
                        $(wildcard $(LOCAL_PATH)/../../src/game/*.cpp)) \
                    $(subst $(LOCAL_PATH)/,, \
                        $(wildcard $(LOCAL_PATH)/../../src/game/*.c)) \
-		   $(subst $(LOCAL_PATH)/,, \
-                       $(wildcard $(LOCAL_PATH)/../../src/game/*.cc)) \
                    $(subst $(LOCAL_PATH)/,, \
                        $(wildcard $(LOCAL_PATH)/../../src/game/ai/*.cpp)) \
                    $(subst $(LOCAL_PATH)/,, \
@@ -293,6 +291,12 @@ LOCAL_SRC_FILES := \
                        $(wildcard $(LOCAL_PATH)/../../src/game/load/*.cpp)) \
                    $(subst $(LOCAL_PATH)/,, \
                        $(wildcard $(LOCAL_PATH)/../../src/game/input/*.cpp)) \
+                   $(subst $(LOCAL_PATH)/,, \
+                       $(wildcard $(LOCAL_PATH)/../../src/game/ubc/*.cpp)) \
+                   $(subst $(LOCAL_PATH)/,, \
+                       $(wildcard $(LOCAL_PATH)/../../src/game/utilities/*.cpp)) \
+
+
 
 
 LOCAL_LDLIBS	:= -landroid -lc -lm -ldl -llog -lEGL -lGLESv1_CM -lGLESv2 

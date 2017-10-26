@@ -22,17 +22,17 @@
 
 #include "ai/playersteer.h"
 #include "ai/ai.h"
-#include "conversion.h"
+#include "utilities/conversion.h"
 #include "entity/playerentity.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
 #include "state/gamestate.h"
-#include "logging.h"
+#include "utilities/logging.h"
 #include "state/offensestate.h"
 #include "state/playerstate.h"
 #include "state/teamstate.h"
 #include "offenseplays.h"
-#include "comparison.h"
+#include "utilities/comparison.h"
 
 playerSteer::playerSteer()  // constructor
 {

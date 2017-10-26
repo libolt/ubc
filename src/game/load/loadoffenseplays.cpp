@@ -24,9 +24,9 @@
 #include "config.h"
 #endif
 
-#include "conversion.h"
+#include "utilities/conversion.h"
 #include "load/loadoffenseplays.h"
-#include "logging.h"
+#include "utilities/logging.h"
 #include "offenseplays.h"
 
 // static declarations

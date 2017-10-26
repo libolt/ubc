@@ -25,7 +25,7 @@
 #include "OpenSteer/Clock.h"
 #include <boost/shared_ptr.hpp>
 
-#include "typedefs.h"
+#include "utilities/typedefs.h"
 
 //#include "ai/playersteerplugin.h"
 

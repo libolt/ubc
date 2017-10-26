@@ -18,9 +18,9 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "conversion.h"
-#include "enums.h"
-#include "logging.h"
+#include "utilities/conversion.h"
+#include "utilities/enums.h"
+#include "utilities/logging.h"
 #include "state/networkstate.h"
 #include "state/playerstate.h"
 #include "state/teamstate.h"

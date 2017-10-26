@@ -18,7 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "conversion.h"
+#include "utilities/conversion.h"
 #include "data/playerdata.h"
 #include "entity/basketballentity.h"
 #include "entity/courtentity.h"
@@ -35,12 +35,12 @@
 #include "state/offensestate.h"
 #include "statemachine/playerstatemachine.h"
 #include "statistics/teamstatistics.h"
-#include "logging.h"
+#include "utilities/logging.h"
 #include "engine/physicsengine.h"
 #include "ai/playersteer.h"
-#include "enums.h"
+#include "utilities/enums.h"
 #include "jumpballs.h"
-#include "ubcbase.h"
+#include "ubc/ubcbase.h"
 
 // static declarations
 UBCBaseSharedPtr teamState::base;  // static copy of base class

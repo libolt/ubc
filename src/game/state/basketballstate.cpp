@@ -18,7 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "conversion.h"
+#include "utilities/conversion.h"
 #include "ai/basketballsteer.h"
 #include "state/basketballstate.h"
 #include "state/gamestate.h"
@@ -28,8 +28,8 @@
 #include "entity/basketballentity.h"
 #include "data/basketballdata.h"
 #include "physics/basketballphysics.h"
-#include "comparison.h"
-#include "logging.h"
+#include "utilities/comparison.h"
+#include "utilities/logging.h"
 #include "jumpballs.h"
 
 #include <string>

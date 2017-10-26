@@ -19,7 +19,7 @@
  ***************************************************************************/
 
 #include "statemachine/teamstatemachine.h"
-#include "logging.h"
+#include "utilities/logging.h"
 
 teamStateMachine::teamStateMachine() :
     stateMachine(ST_MAX_STATES),

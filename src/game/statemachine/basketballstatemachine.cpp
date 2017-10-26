@@ -19,7 +19,7 @@
  ***************************************************************************/
 
 #include "statemachine/basketballstatemachine.h"
-#include "logging.h"
+#include "utilities/logging.h"
 
 basketballStateMachine::basketballStateMachine() :
     stateMachine(ST_MAX_STATES),

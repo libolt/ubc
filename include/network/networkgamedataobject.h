@@ -22,7 +22,7 @@
 #define _NETWORKGAMEDATAOBJECT_H_
 
 #include <iostream>
-#include "enums.h"
+#include "utilities/enums.h"
 
 class networkGameDataObject 
 {

@@ -37,7 +37,7 @@
 #include "LinearMath/btVector3.h"
 #include "SDL.h"
 #include "ai/steering.h"
-#include "enums.h"
+#include "utilities/enums.h"
 
 //template<class T, class TL>
 class conversion  // class for conversion between data types
@@ -71,6 +71,7 @@ class conversion  // class for conversion between data types
         std::string toString(const inputInGameMaps &data); // converts inputInGameMaps data to string
         std::string toString(const activeMenus &data); // converts activeMenus data to string
         std::string toString(const directions &data); // converts directions data to string
+        std::string toString(const inputTypes &data); // converts inputTypes data to string
 
         // convert to char
         char toChar(const std::string &data);  // converts from std::string to char
@@ -278,6 +279,8 @@ class conversion  // class for conversion between data types
         
         inputGamePadMaps toInputGP(const std::string &data);  // converts from string to inputGamePadMaps
         
+        inputTypes toInputType(const std::string &data);  // converts from string to inputTypes
+
     protected:
     conversion();
     conversion(const conversion&);

@@ -24,7 +24,7 @@
 #include <string>
 #include <vector>
 
-#include "typedefs.h"
+#include "utilities/typedefs.h"
 
 class teamData
 {

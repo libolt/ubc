@@ -17,7 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "conversion.h"
+#include "utilities/conversion.h"
 
 #include "ai/basketballsteer.h"
 #include "state/basketballstate.h"

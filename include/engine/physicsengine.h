@@ -32,9 +32,9 @@
 #include "BulletDynamics/Dynamics/btDynamicsWorld.h"
 #include <boost/shared_ptr.hpp>
 
-#include "enums.h"
+#include "utilities/enums.h"
 //#include "engine/renderengine.h"
-#include "timing.h"
+#include "utilities/timing.h"
 
 #include "engine.h"
 

@@ -18,11 +18,11 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "conversion.h"
+#include "utilities/conversion.h"
 
 #include "Ogre.h"
 
-#include "logging.h"
+#include "utilities/logging.h"
 #include "engine/physicsengine.h"
 //#include "engine/renderengine.h"
 //#include "ai/steering.h"
@@ -37,7 +37,7 @@
 #include "state/playerstate.h"
 #include "state/teamstate.h"
 #include "statistics/playerstatistics.h"
-#include "comparison.h"
+#include "utilities/comparison.h"
 //#include "jumpballs.h"
 
 // static declarations

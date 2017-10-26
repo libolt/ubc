@@ -18,8 +18,8 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "conversion.h"
-#include "threads.h"
+#include "utilities/conversion.h"
+#include "utilities/threads.h"
 #include "engine/gameengine.h" 
 #include <cstdlib>
 

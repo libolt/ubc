@@ -23,9 +23,9 @@
 #else
 #include "config.h"
 #endif
-#include "conversion.h"
+#include "utilities/conversion.h"
 #include "engine/gameengine.h"
-#include "logging.h"
+#include "utilities/logging.h"
 #include "engine/physicsengine.h"
 #include "engine/renderengine.h"
 #include "engine/sound/soundengine.h"

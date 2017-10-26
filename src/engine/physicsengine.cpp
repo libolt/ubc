@@ -18,13 +18,13 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "conversion.h"
+#include "utilities/conversion.h"
 #include "engine/gameengine.h"
 #include "engine/inputengine.h"
-#include "logging.h"
+#include "utilities/logging.h"
 #include "engine/physicsengine.h"
 #include "engine/renderengine.h"
-#include "comparison.h"
+#include "utilities/comparison.h"
 #include "jumpballs.h"
 
 // static declarations

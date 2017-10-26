@@ -42,9 +42,9 @@
 #include "SDL_timer.h"
 #include <boost/shared_ptr.hpp>
 
-#include "logging.h"
+#include "utilities/logging.h"
 
-#include "openal.h"
+#include "utilities/openal.h"
 
 #ifndef AL_CHECK
 #ifdef _DEBUG

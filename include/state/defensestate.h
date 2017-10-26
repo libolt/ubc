@@ -21,7 +21,7 @@
 #ifndef _DEFENSESTATE_H_
 #define _DEFENSESTATE_H_
 
-#include "enums.h"
+#include "utilities/enums.h"
 #include "state/state.h"
 //#include "state/gamestateshared.h"
 

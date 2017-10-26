@@ -18,7 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
- #include "timing.h"
+ #include "utilities/timing.h"
  
  // static declarations
 boost::chrono::milliseconds timing::changeInTimeMill;  // stores the change in time in milliseconds

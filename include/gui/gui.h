@@ -40,12 +40,13 @@
 #include "MyGUI_OgreRenderManager.h"
 */
 
-//#include "ubcbase.h"
-#include "enums.h"
+//#include "ubc/ubcbase.h"
+#include "utilities/enums.h"
+#include "utilities/typedefs.h"
 //#include "input.h" 
 //#include "engine/renderengine.h" 
 
-//#include "ubc.h"
+//#include "ubc/ubc.h"
 
 //class networkEngine;
 //class renderEngine;

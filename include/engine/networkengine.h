@@ -37,11 +37,11 @@
 #include "OgreStringConverter.h"
 #include "Ogre.h"
 */
-#include "enums.h"
+#include "utilities/enums.h"
 // #include "engine/inputengine.h"
 #include "engine.h"
 
-#include "typedefs.h"
+#include "utilities/typedefs.h"
 
 class inputEngine;
 

@@ -29,7 +29,7 @@
 
 //#include "engine/networkengine.h"
 
-//#include "ubcbase.h"
+//#include "ubc/ubcbase.h"
 #include "SDL.h"
 #include "SDL_syswm.h"
 #include "SDL_test_common.h"
@@ -46,7 +46,7 @@
 //class GUISystem;
 class gameEngine;
 class UBCBase;
-#include "typedefs.h"
+#include "utilities/typedefs.h"
 
 
 class UBC 

@@ -14,7 +14,7 @@
 //  http://muflihun.com
 //
 
-#include "easylogging++.h"
+#include "utilities/easylogging++.h"
 
 #if defined(AUTO_INITIALIZE_EASYLOGGINGPP)
 INITIALIZE_EASYLOGGINGPP

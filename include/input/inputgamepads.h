@@ -24,7 +24,7 @@
 #include <vector>
 
 #include "input/input.h"
-#include "enums.h"
+#include "utilities/enums.h"
 //#include "engine/inputengine.h"
 
 // typedefs

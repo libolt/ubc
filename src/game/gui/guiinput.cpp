@@ -20,16 +20,16 @@
 
 #include "engine/networkengine.h"
 
-#include "ubcbase.h"
+#include "ubc/ubcbase.h"
 #include "gui/gui.h"
 #include "data/courtdata.h"
 #include "engine/gameengine.h"
 #include "state/gamestate.h"
 #include "load/load.h"
-#include "logging.h"
+#include "utilities/logging.h"
 #include "engine/renderengine.h"
 #include "data/teamdata.h"
-#include "conversion.h"
+#include "utilities/conversion.h"
 
 #ifdef __ANDROID__
 #include "android-config.h"

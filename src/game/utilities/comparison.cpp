@@ -18,9 +18,9 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "conversion.h"
-#include "logging.h"
-#include "comparison.h"
+#include "utilities/conversion.h"
+#include "utilities/logging.h"
+#include "utilities/comparison.h"
 
 comparison::comparison()
 {

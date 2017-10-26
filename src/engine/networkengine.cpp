@@ -21,9 +21,9 @@
 #include "engine/networkengine.h"
 #include "network/networkplayerstateobject.h"
 #include "engine/gameengine.h"
-#include "logging.h"
+#include "utilities/logging.h"
 #include "engine/inputengine.h"
-#include "conversion.h"
+#include "utilities/conversion.h"
 
 #if _MSC_VER
 #define snprintf _snprintf

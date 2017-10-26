@@ -24,7 +24,7 @@
 #include "eventdata/datatypes.h"
 #include "eventdata/eventdata.h"
 #include "statemachine/fault.h"
-#include "typedefs.h"
+#include "utilities/typedefs.h"
 typedef eventData noEventData;
 
 class stateMachine;

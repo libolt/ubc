@@ -24,7 +24,7 @@
 #include <iostream>
 
 #include "Ogre.h"
-#include "enums.h"
+#include "utilities/enums.h"
 
 class networkPlayerStateObject // object that holde network state data for a player
 {

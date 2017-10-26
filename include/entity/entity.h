@@ -21,7 +21,7 @@
 #ifndef _ENTITY_H_
 #define _ENTITY_H_
 
-//#include "conversion.h"
+//#include "utilities/conversion.h"
 
 #include <string>
 #include "Ogre.h"
@@ -34,7 +34,7 @@
 //#include "engine/renderengine.h"
 
 
-#include "ubcbase.h"
+#include "ubc/ubcbase.h"
 
 //class UBC;
 

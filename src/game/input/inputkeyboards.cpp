@@ -20,9 +20,9 @@
  
 #include "input/inputkeyboards.h"
 #include "users/usersinputs.h"
-#include "logging.h"
-#include "conversion.h"
-#include "typedefs.h"
+#include "utilities/logging.h"
+#include "utilities/conversion.h"
+#include "utilities/typedefs.h"
 
 inputKeyboards::inputKeyboards()  // constructor
 {   

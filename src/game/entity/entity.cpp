@@ -21,9 +21,9 @@
 #include "entity/entity.h"
 #include "engine/gameengine.h"
 #include "engine/renderengine.h"
-#include "conversion.h"
-#include "logging.h"
-#include "ubc.h"
+#include "utilities/conversion.h"
+#include "utilities/logging.h"
+#include "ubc/ubc.h"
 
 // static declarations
 UBCBaseSharedPtr entity::base;  // base class object

@@ -23,8 +23,8 @@
 
 #include <cstdio>
 #include "statemachine/statemachine.h"
-#include "enums.h"
-#include "typedefs.h"
+#include "utilities/enums.h"
+#include "utilities/typedefs.h"
 
 class playerSMData : public eventData
 {

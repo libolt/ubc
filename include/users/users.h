@@ -21,8 +21,8 @@
 #ifndef _USERS_H_
 #define _USERS_H_
 
-#include "enums.h"
-#include "typedefs.h"
+#include "utilities/enums.h"
+#include "utilities/typedefs.h"
 #include <string>
 
 class usersInput;

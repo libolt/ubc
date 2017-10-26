@@ -22,7 +22,7 @@
 #define _NETWORKTEAMSTATEOBJECT_H_
 
 #include <iostream>
-#include "enums.h"
+#include "utilities/enums.h"
 
 class networkTeamStateObject 
 {

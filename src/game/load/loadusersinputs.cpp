@@ -25,9 +25,9 @@
 #endif
 
 #include "users/usersinputs.h"
-#include "conversion.h"
+#include "utilities/conversion.h"
 #include "load/loadusersinputs.h"
-#include "logging.h"
+#include "utilities/logging.h"
 
 // static declarations
 usersInputsVecSharedPtr loadUsersInputs::uiInstance;
@@ -410,44 +410,47 @@ usersInputsSharedPtr loadUsersInputs::loadUsersInputFile(std::string fileName)  
 //            logMsg("modelName = " +modelName);
             
             uInput->setName(inputName);
-            
-            if (type == "Keyboard")
+            uInput->setType(convert->toInputType(type));
+
+            switch (uInput->getType())
             {
-                uInput->setKeyUp(convert->toInputKey(up));
-                uInput->setKeyDown(convert->toInputKey(down));
-                uInput->setKeyLeft(convert->toInputKey(left));
-                uInput->setKeyRight(convert->toInputKey(right));
-                uInput->setKeyUpLeft(convert->toInputKey(upLeft));
-                uInput->setKeyUpRight(convert->toInputKey(upRight));
-                uInput->setKeyDownLeft(convert->toInputKey(downLeft));
-                uInput->setKeyDownRight(convert->toInputKey(downRight));
-                uInput->setKeyShootBlock(convert->toInputKey(shootBlock));
-                uInput->setKeyPassSteal(convert->toInputKey(passSteal));
-                uInput->setKeyPause(convert->toInputKey(pause));
-                uInput->setKeyStartSelect(convert->toInputKey(startSelect));
-                uInput->setKeyQuit(convert->toInputKey(quit));
-                logMsg(func +" quit == " +convert->toString(uInput->getKeyQuit()));
-//                exit(0);
-            }
-            else if (type == "Joystick" || type == "Gamepad")
-            {
+                case KEYBOARD:
+                    uInput->setKeyUp(convert->toInputKey(up));
+                    uInput->setKeyDown(convert->toInputKey(down));
+                    uInput->setKeyLeft(convert->toInputKey(left));
+                    uInput->setKeyRight(convert->toInputKey(right));
+                    uInput->setKeyUpLeft(convert->toInputKey(upLeft));
+                    uInput->setKeyUpRight(convert->toInputKey(upRight));
+                    uInput->setKeyDownLeft(convert->toInputKey(downLeft));
+                    uInput->setKeyDownRight(convert->toInputKey(downRight));
+                    uInput->setKeyShootBlock(convert->toInputKey(shootBlock));
+                    uInput->setKeyPassSteal(convert->toInputKey(passSteal));
+                    uInput->setKeyPause(convert->toInputKey(pause));
+                    uInput->setKeyStartSelect(convert->toInputKey(startSelect));
+                    uInput->setKeyQuit(convert->toInputKey(quit));
+                    logMsg(func +" quit == " +convert->toString(uInput->getKeyQuit()));
+    //                exit(0);
+                break;
+                case GAMEPAD:
                 // FIXME! mapping needs to be implemented
-/*                uInput->setGPUp(up);
-                uInput->setGPDown(down);
-                uInput->setGPLeft(left);
-                uInput->setGPRight(right);
-                uInput->setGPUpLeft(upLeft);
-                uInput->setGPUpRight(upRight);
-                uInput->setGPDownLeft(downLeft);
-                uInput->setGPDownRight(downRight);
-                uInput->setGPShootBlock(shootBlock);
-                uInput->setGPPassSteal(passSteal);
-                uInput->setGPPause(pause);
-                uInput->setGPStartSelect(startSelect);
-*/
-            }
-            else
-            {
+    /*                uInput->setGPUp(up);
+                    uInput->setGPDown(down);
+                    uInput->setGPLeft(left);
+                    uInput->setGPRight(right);
+                    uInput->setGPUpLeft(upLeft);
+                    uInput->setGPUpRight(upRight);
+                    uInput->setGPDownLeft(downLeft);
+                    uInput->setGPDownRight(downRight);
+                    uInput->setGPShootBlock(shootBlock);
+                    uInput->setGPPassSteal(passSteal);
+                    uInput->setGPPause(pause);
+                    uInput->setGPStartSelect(startSelect);
+    */
+                break;
+                case MOUSE:
+                break;
+                case TOUCH:
+                break;
             }
         }
     }

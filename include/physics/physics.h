@@ -27,7 +27,7 @@
 #include "BulletDynamics/Dynamics/btRigidBody.h"
 #include "state/gamestateshared.h"
 
-#include "enums.h"
+#include "utilities/enums.h"
 
 class physicsEngine;
 

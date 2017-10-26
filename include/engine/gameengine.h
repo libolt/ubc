@@ -30,13 +30,13 @@
 #include <boost/chrono/system_clocks.hpp>
 
 //#include "threads.h"
-#include "timing.h"
+#include "utilities/timing.h"
 
 //#include "engine/renderengine.h"
 //#include "input.h"
 
 #include "engine.h" 
-#include "typedefs.h"
+#include "utilities/typedefs.h"
 
 class inputEngine;
 //class inputSystem;

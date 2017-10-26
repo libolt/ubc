@@ -25,14 +25,14 @@
 #endif
 
 #include "state/teamstate.h"
-#include "conversion.h"
+#include "utilities/conversion.h"
 #include "load/load.h"
-#include "logging.h"
+#include "utilities/logging.h"
 #include "engine/renderengine.h"
 
 //#include "state/gamestate.h"
 
-#include "typedefs.h"
+#include "utilities/typedefs.h"
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 #include "android.h"

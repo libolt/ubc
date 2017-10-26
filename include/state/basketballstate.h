@@ -38,7 +38,7 @@
 //#include "entity/basketballentity.h"
 //#include "ai/basketballsteer.h"
 //#include "physics/basketballphysics.h"
-#include "enums.h"
+#include "utilities/enums.h"
 #include "state/state.h"
 #include "state/gamestateshared.h"
 //#include "state/playerstate.h"

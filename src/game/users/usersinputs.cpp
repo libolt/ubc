@@ -22,6 +22,7 @@
 #include "users/usersinputs.h"
 
 // static declarations
+inputTypes usersInputs::type;
 inputKeyMaps usersInputs::keyUp;
 inputKeyMaps usersInputs::keyDown;
 inputKeyMaps usersInputs::keyLeft;
@@ -36,7 +37,7 @@ inputKeyMaps usersInputs::keyPause;
 inputKeyMaps usersInputs::keyStartSelect;
 inputKeyMaps usersInputs::keyQuit;
     
-    // joystick input strings
+ // joystick input strings
 inputGamePadMaps usersInputs::GPUp;
 inputGamePadMaps usersInputs::GPDown;
 inputGamePadMaps usersInputs::GPLeft;
@@ -69,6 +70,15 @@ std::string usersInputs::getName()  // retrieves the value of name
 void usersInputs::setName(std::string set)  // sets the value of name
 {
     name = set;
+}
+
+inputTypes usersInputs::getType()  // retrieves the value of type
+{
+    return (type);
+}
+void usersInputs::setType(inputTypes set)  // sets the value of type
+{
+    type = set;
 }
 
 inputKeyMaps usersInputs::getKeyUp()  // retrieves the value of keyUp

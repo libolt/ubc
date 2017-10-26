@@ -23,8 +23,8 @@
 #define _USERSINPUT_H_
 
 #include <string>
-#include "enums.h"
-#include "conversion.h"
+#include "utilities/enums.h"
+#include "utilities/conversion.h"
 
 class usersInputs
 {
@@ -37,6 +37,9 @@ class usersInputs
         std::string getName();  // retrieves the value of name
         void setName(std::string set);  // sets the value of name
         
+        inputTypes getType();  // retrieves the value of type
+        void setType(inputTypes set);  // sets the value of type
+
         inputKeyMaps getKeyUp();  // retrieves the value of keyUp
         void setKeyUp(inputKeyMaps set);  // sets the value of keyUp
 
@@ -123,6 +126,7 @@ class usersInputs
 
     std::string name;  // stores the name of the input map
     // key input strings
+    static inputTypes type;  // stores the type of input
     static inputKeyMaps keyUp;
     static inputKeyMaps keyDown;
     static inputKeyMaps keyLeft;

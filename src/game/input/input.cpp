@@ -19,14 +19,14 @@
  ***************************************************************************/
  
 #include "input/input.h"
-#include "logging.h"
+#include "utilities/logging.h"
 #include "engine/inputengine.h"
 //#include "engine/gameengine.h"
 #include "users/usersinputs.h"
 #include "load/load.h"
-#include "ubcbase.h"
+#include "ubc/ubcbase.h"
 #include "gui/gui.h"
-#include "conversion.h"
+#include "utilities/conversion.h"
 #undef None
 
 // static declarations

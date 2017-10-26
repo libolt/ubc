@@ -32,9 +32,9 @@
 #include <boost/thread/condition_variable.hpp>
 #include <boost/thread/locks.hpp>
 
-#include "enums.h"
+#include "utilities/enums.h"
 
-#include "typedefs.h"
+#include "utilities/typedefs.h"
 
 //#include "engine/renderengine.h"
 //#include "gui/gui.h"

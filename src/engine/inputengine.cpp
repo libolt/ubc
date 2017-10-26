@@ -20,7 +20,7 @@
  
 // Input
 
-#include "conversion.h"
+#include "utilities/conversion.h"
 
 #undef None
 #undef Button1
@@ -34,7 +34,7 @@
 #include "engine/inputengine.h"
 #include "engine/gameengine.h"
 #include "load/load.h"
-#include "logging.h"
+#include "utilities/logging.h"
 
 // static variables 
 

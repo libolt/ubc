@@ -26,7 +26,7 @@
 #include <unordered_map>
 
 #include "load/load.h"
-#include "typedefs.h"
+#include "utilities/typedefs.h"
 
 class loadUsersInputs : public loader
 {

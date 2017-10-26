@@ -17,12 +17,12 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "easylogging++.h"
+#include "utilities/easylogging++.h"
 
 #include <boost/shared_ptr.hpp>
 
-#include "logging.h"
-#include "conversion.h"
+#include "utilities/logging.h"
+#include "utilities/conversion.h"
 
 #include "Ogre.h"
 #include "engine/renderengine.h"

@@ -18,11 +18,11 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "ubcbase.h"
-#include "conversion.h"
+#include "ubc/ubcbase.h"
+#include "utilities/conversion.h"
 #include "engine/gameengine.h"
 #include "load/loadoffenseplays.h"
-#include "logging.h"
+#include "utilities/logging.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
 #include "state/gamestate.h"

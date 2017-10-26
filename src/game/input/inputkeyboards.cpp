@@ -33,7 +33,7 @@ inputKeyboards::~inputKeyboards()  // destructor
     
 }
 
-inputKeyboards inputKeyboards::mapInput(inputKeyMaps inKeyMap, usersInputsSharedPtr uInput)  // maps value of the keyPressed string to inputInGameMaps
+inputKeyboards mapInput(inputKeyMaps inKeyMap, usersInputsSharedPtr uInput)  // maps value of the keyPressed string to inputInGameMaps
 {
     sharedPtr<conversion> convert = conversion::Instance();
     size_t x = 0;

@@ -17,6 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+
 #include "utilities/conversion.h"
 #include "OgrePrerequisites.h"
 #include "engine/gameengine.h"
@@ -35,17 +36,19 @@
 #include "utilities/logging.h"
 #include "ubc/ubc.h"
 #include "ubc/ubcbase.h"
+#include "ubc/ubcinput.h"
 #include "network/networkplayerstateobject.h"
 #include "statemachine/playerstatemachine.h"
+
 #ifdef __ANDROID__
-//#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-#include "android.h"
+#include "utilities/android.h"
 #include "SDL.h"
 #include "SDL_main.h"
 #endif
 
 // static declarations 
-UBCBaseSharedPtr UBC::base;  // static copy of base class
+UBCBaseSharedPtr UBC::base;  // static copy of UBCBase class
+UBCInputSharedPtr UBC::input;  // static copy of UBCInput class
 
 sharedPtr<GUISystem> UBC::gui;  // the GUI object.
 
@@ -67,6 +70,15 @@ UBCBaseSharedPtr UBC::getBase()  // retrieves the value of base
 void UBC::setBase(UBCBaseSharedPtr set)  // sets the value of base
 {
     base = set;
+}
+
+UBCInputSharedPtr UBC::getInput()  // retrieves the value of input
+{
+    return (input);
+}
+void UBC::setInput(UBCInputSharedPtr set)  // sets the value of input
+{
+    input = set;
 }
 
 sharedPtr<GUISystem> UBC::getGui()  // retrieves the value of gui
@@ -91,15 +103,11 @@ void UBC::setQuitGame(bool set)  // sets the value of quitGame
 
 bool UBC::setup()  // sets up UBC object
 {
-    /*    gameEngine *tempGameEObj = new gameEngine;
-        sharedPtr<gameEngine> tempGameESharedPtr = sharedPtr<gameEngine>(tempGameEObj);
-        setGameE(tempGameESharedPtr);
-    */
-//    exit(0);
-    UBCBaseSharedPtr tempBaseSharedPtr(new UBCBase);
-    base = tempBaseSharedPtr;
     std::string func = "UBC::setup()";
 
+    UBCBaseSharedPtr tempBaseSharedPtr(new UBCBase);
+    base = tempBaseSharedPtr;
+    
     logMsg(func +" beginning");
 
     if (!base->getStateSetup())
@@ -134,6 +142,11 @@ bool UBC::setup()  // sets up UBC object
 
     }
 
+    // setup input object
+    UBCInputSharedPtr tempInputSharedPtr(new UBCInput);
+    input = tempInputSharedPtr;
+    input->setBase(base);
+    
     logMsg(func +" end");
     
 //        exit(0);
@@ -360,7 +373,7 @@ bool UBC::gameLoop()  // Main Game Loop
     
     while (!quitGame)
     {
-        processInput();
+        input->process();
         processPhysicsEvents();
 /*        if (base->getGameS()->getGameSetupComplete())  // checks to make sure game setup is complete before continuing
         {
@@ -613,7 +626,7 @@ void UBC::gameLoop_old()  // Main Game Loop
             base->getGameE()->getTimer().setPreviousTime(boost::chrono::system_clock::now());
         }
 //        exit(0);
-        processInput();
+        input->process();
 //        exit(0);
         if (!base->getGameE()->getRenderE()->renderFrame())
         {

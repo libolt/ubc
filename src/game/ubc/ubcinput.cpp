@@ -20,6 +20,7 @@
 
 #include "ubc/ubc.h"
 #include "ubc/ubcbase.h"
+#include "ubc/ubcinput.h"
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
 #include "utilities/typedefs.h"
@@ -28,7 +29,29 @@
 #include "network/networkplayerstateobject.h"
 #include "users/users.h"
 
-void UBC::processInput()  // processes game input
+// static declarations
+UBCBaseSharedPtr UBCInput::base;  // static copy of base class
+
+
+UBCInput::UBCInput()  // constructor
+{
+    
+}
+UBCInput::~UBCInput()  // destructor
+{
+    
+}
+
+UBCBaseSharedPtr UBCInput::getBase()  // retrieves the value of base
+{
+    return (base);
+}
+void UBCInput::setBase(UBCBaseSharedPtr set)  // sets the value of base
+{
+    base = set;
+}
+
+void UBCInput::process()  // processes game input
 {
     conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
@@ -37,18 +60,39 @@ void UBC::processInput()  // processes game input
 //    networkEngineSharedPtr network = networkEngine::Instance();
     teamStateUMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
     networkPlayerStateObject netPStateObj;
-    std::string func = "UBC::processInput()";
+    std::string func = "UBCInput::process()";
 
     logMsg(func +" beginning");
 
     logMsg(func +" userInstance.size() == " +convert->toString(base->getUsersInstance().size()));
     logMsg(func +" user 0 inputType == " +convert->toString(base->getUsersInstance()[0]->getInputType()));
 //    exit(0);
-    if (base->getUsersInstance()[0]->getInputType() == KEYBOARD)
+    usersUMSharedPtr uInstance = base->getUsersInstance();
+    for (size_t x=0;x<uInstance.size();++x)
     {
-        logMsg("Keyboard Input!");
-        exit(0);
+        inputTypes inType = uInstance[x]->getInputType();       
+        switch (inType)
+        {
+            case KEYBOARD:
+                logMsg("Keyboard Input!");
+                processKeyboard();
+            break;
+            case GAMEPAD:
+                logMsg("GamePad Input!");
+                processGamePad();
+            break;
+            case MOUSE:
+                logMsg("Mouse Input!");
+                processMouse();
+            break;
+            case TOUCH:
+                logMsg("Touch Input!");
+                processTouch();
+            break;
+        }
     }
+    exit(0);
+        
 /*    if (base->getInputS()->process())
     {
 
@@ -272,4 +316,46 @@ void UBC::processInput()  // processes game input
 //    exit(0);
     logMsg(func +" end");
 
+}
+
+bool UBCInput::processKeyboard()  // process keyboard input
+{
+    if (base->getInputS()->process())
+    {
+
+        if (base->getGameE()->getMenuActive())
+        {
+            gui->menuReceiveKeyPress(convert->toString(base->getGameE()->getInputE()->getKeyPressed())); // sends input to menu key input processing function
+//            exit(0);
+        }
+        else
+        {
+//            exit(0);
+            base->getGameS()->setInputReceived(true);
+
+            base->getGameS()->setInputInGameWorkQueue(base->getInputS()->getInputInGameWorkQueue());
+
+        }
+        base->getGameE()->getInputE()->setKeyPressed(INKEY_NONE);
+    }
+    else
+    {
+
+    }
+    return (true);
+}
+
+bool UBCInput::processGamePad()  // process gamePad input
+{
+    return (true);
+}
+
+bool UBCInput::processMouse()  // process mouse input
+{
+    return (true);
+}
+
+bool UBCInput::processTouch()  // process touch input
+{
+    return (true);
 }

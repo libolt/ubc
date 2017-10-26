@@ -55,6 +55,7 @@
 // forward declarations
 
 class UBCBase;
+class UBCInput;
 class GUISystem;
 class conversion;
 
@@ -112,6 +113,8 @@ class users;
 // typedefs
 
 typedef sharedPtr<UBCBase> UBCBaseSharedPtr;
+
+typedef sharedPtr<UBCInput> UBCInputSharedPtr;
 
 typedef sharedPtr<GUISystem> GUISystemSharedPtr;
 

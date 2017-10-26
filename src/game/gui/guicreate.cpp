@@ -34,7 +34,7 @@
 #include "state/teamstate.h"
 
 #ifdef __ANDROID__
-#include "android-config.h"
+#include "utilities/android-config.h"
 #else
 #include "config.h"
 #endif

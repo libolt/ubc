@@ -19,7 +19,7 @@
  ***************************************************************************/
 
 #ifdef __ANDROID__
-#include "android-config.h"
+#include "utilities/android-config.h"
 #else
 #include "config.h"
 #endif
@@ -34,9 +34,7 @@
 
 #include "utilities/typedefs.h"
 
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-#include "android.h"
-#endif
+
 
 // static declarations
 int loader::count;

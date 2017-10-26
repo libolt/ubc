@@ -21,8 +21,6 @@
 #ifndef _UBCBASE_H_
 #define _UBCBASE_H_
 
-#include <boost/shared_ptr.hpp>
-
 #include "utilities/typedefs.h"
 
 class gameEngine;

@@ -22,7 +22,7 @@
 #define _UBC_H_
 
 #ifdef __ANDROID__
-#include "android-config.h"
+#include "utilities/android-config.h"
 #else
 #include "config.h"
 #endif
@@ -55,9 +55,12 @@ public:
     UBC(); // constructor
     ~UBC();	// destructor
 
-    UBCBaseSharedPtr getBase();  // retrieves the value of base
-    void setBase(UBCBaseSharedPtr set);  // sets the value of base
+    UBCBaseSharedPtr getBase();  // retrieves the value of UBCBase
+    void setBase(UBCBaseSharedPtr set);  // sets the value of UBCBase
  
+    UBCInputSharedPtr getInput();  // retrieves the value of UBCInput
+    void setInput(UBCInputSharedPtr set);  // sets the value of UBCInput
+
     GUISystemSharedPtr getGui();  // retrieves the value of gui
     void setGui(GUISystemSharedPtr set);  // sets the value of gui
 
@@ -75,8 +78,6 @@ public:
     
     bool startGame();  // starts a game
 
-    void processInput();  // processes game input
-	
     void processNetworkEvents();  // processes events in the network subsyatem
     
     void processPhysicsEvents();  // processes events in the physics subsyatem
@@ -98,6 +99,8 @@ protected:
 private:
 
     static UBCBaseSharedPtr base;  // static copy of base class
+
+    static UBCInputSharedPtr input;  // static copy of base class
 
     static GUISystemSharedPtr gui;  // the GUI object.
         

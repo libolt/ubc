@@ -126,7 +126,7 @@ bool inputKeyboards::process()  // processes input
         inputTypeQueues inputTypeQueue = inputE->getInputTypeQueue();
         inputKeyWorkQueues inputKeyWorkQueue = inputE->getInputKeyWorkQueue();
         inputKeyWorkQueues::iterator IKWQIIT;
-        inputInGameWorkQueues inputInGameWorkQueue = inputE->getInputInGameWorkQueue();
+        inputInGameWorkQueues inputInGameWorkQueue = getInputInGameWorkQueue();
 
         logMsg(func + " uInput.size == " +convert->toString(uInput.size()));
 //        exit(0);
@@ -149,7 +149,7 @@ bool inputKeyboards::process()  // processes input
             }
             ++x;
         }
-        inputE->setInputInGameWorkQueue(inputInGameWorkQueue);
+        setInputInGameWorkQueue(inputInGameWorkQueue);
 
     }
     

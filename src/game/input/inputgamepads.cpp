@@ -126,7 +126,7 @@ bool inputGamePads::process()  // processes input
         inputTypeQueues inputTypeQueue = inputE->getInputTypeQueue();
         inputGamePadWorkQueues inputGamePadWorkQueue = inputE->getInputGamePadWorkQueue();
         inputGamePadWorkQueues::iterator IGPWQIIT;
-        inputInGameWorkQueues inputInGameWorkQueue = inputE->getInputInGameWorkQueue();
+        inputInGameWorkQueues inputInGameWorkQueue = getInputInGameWorkQueue();
         
         logMsg(func + " uInput.size == " +convert->toString(uInput.size()));
 //        exit(0);
@@ -149,7 +149,7 @@ bool inputGamePads::process()  // processes input
             }
             ++x;
         }
-        inputE->setInputInGameWorkQueue(inputInGameWorkQueue);
+        setInputInGameWorkQueue(inputInGameWorkQueue);
     }
     
 //        exit(0);

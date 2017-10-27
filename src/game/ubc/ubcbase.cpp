@@ -140,15 +140,25 @@ void UBCBase::setNetworkS(sharedPtr<networkState> set)  // sets the value of net
 {
     networkS = set;
 }
-
-inputSharedPtr UBCBase::getInputS()  // retrieves the value of inputS
+        
+inputKeyboardsSharedPtr getInputKeyboard();  // retrieves the value of inputKeyboard
 {
-    return (inputS);
+    return (inputKeyboard);
 }
 
-void UBCBase::setInputS(inputSharedPtr set)  // sets the value of inputS
+void setInputKeyboard(inputKeyboardsSharedPtr set);  // sets the value of inputKeyboard
 {
-    inputS = set;
+    inputKeyboard = set;
+}
+
+inputGamePadsSharedPtr getInputGamePad();  // retrieves the value of inputGamePad
+{
+    return (rinputGamePad);
+}
+
+void setInputGamePad(inputGamePadsSharedPtr set);  // sets the value of inputGamePad
+{
+    inputGamePad = set;
 }
 
 loaderSharedPtr UBCBase::getLoad()  // retrieves the value of load

@@ -73,6 +73,8 @@ class defenseState;
 class gameState;
 class hoopState;
 class input;
+class inputKeyboards;
+class inputGamePads;
 class networkState;
 class offenseState;
 class playerState;
@@ -143,6 +145,10 @@ typedef sharedPtr<gameState> gameStateSharedPtr;
 typedef sharedPtr<hoopState> hoopStateSharedPtr;
 
 typedef sharedPtr<input> inputSharedPtr;
+
+typedef sharedPtr<inputKeyboards> inputKeyboardsSharedPtr;
+    
+typedef sharedPtr<inputGamePads> inputGamePadsSharedPtr;
 
 typedef sharedPtr<networkState> networkStateSharedPtr;
 

@@ -41,11 +41,24 @@ class inputGamePads : public input
         inputGamePads();  // constructor
         ~inputGamePads();  // destructor
 
+        inputSharedPtr getInputS();  // retrieves the value of inputS
+        void setInputS(inputSharedPtr set);  // sets the value of inputS
+
+        bool getSetupComplete();  // retrieves the value of setupComplete
+        void setSetupComplete(bool set);  // sets the value of setupComplete
+
         inputInGameMaps mapInput(inputGamePadMaps inGamePadMap, usersInputsSharedPtr input);  // maps value of the keyPressed string to inputInGameMaps
         bool process();  // processes input
 
+        bool setup();  // sets up the inputGamePads object
+
+
     private:
-    
+
+        static inputSharedPtr inputS;  // input object
+
+        bool setupComplete;  // stores whether setup has completed successfully
+
 };
 
 #endif

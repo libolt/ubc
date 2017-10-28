@@ -53,6 +53,12 @@ class input
     inputInGameWorkQueues getInputInGameWorkQueue();  // retrieves the value of inputInGameWorkQueue
     void setInputInGameWorkQueue(inputInGameWorkQueues set);  // sets the value of inputInGameWorkQueue
     
+    bool getSetupComplete();  // retrieves the value of setupComplete
+    void setSetupComplete(bool set);  // sets the value of setupComplete
+
+    bool getInputESet();  // retrieves the value of inputESet
+    void setInputESet(bool set);  // sets the value of inputESet
+
     bool setup();  // sets up the input state
     	      
     private:
@@ -61,6 +67,9 @@ class input
     static inputEngineSharedPtr inputE;  // the inputEngine object
     usersInputsVecSharedPtr uInput;  // stores user input mapping
     static inputInGameWorkQueues inputInGameWorkQueue;  // stores work queue for in game processing
+
+    bool setupComplete;  // stores whether setup has been completed
+    bool inputESet;  // stores whether inputE has been set
     
 };
 #endif

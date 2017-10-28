@@ -37,6 +37,18 @@ class UBCInput
         UBCBaseSharedPtr getBase();  // retrieves the value of UBCBase
         void setBase(UBCBaseSharedPtr set);  // sets the value of UBCBase
 
+        inputSharedPtr getInputS();  // retrieves the value of inputS
+        void setInputS(inputSharedPtr set);  // sets the value of inputS
+
+        inputGamePadsSharedPtr getInputGamePad();  // retrieves the value of inputGamePad
+        void setInputGamePad(inputGamePadsSharedPtr set);  // sets the value of inputGamePad
+
+        inputKeyboardsSharedPtr getInputKeyboard();  // retrieves the value of inputKeyboard
+        void setInputKeyboard(inputKeyboardsSharedPtr set);  // sets the value of inputKeyboard
+
+        bool getSetupComplete();  // retrieves the value of setupComplete
+        void setSetupComplete(bool set);  // sets the value of setupComplete
+
         void process();  // processes game input
 
         bool processKeyboard();  // process keyboard input
@@ -44,10 +56,16 @@ class UBCInput
         bool processMouse();  // process mouse input
         bool processTouch();  // process touch input
 
+        bool setup();  // sets up the UBCInput object
+
     private:
     
         static UBCBaseSharedPtr base;  // static copy of base class
+        static inputSharedPtr inputS;  // the base input object
+        static inputGamePadsSharedPtr inputGamePad;  // the inputGamePads object
+        static inputKeyboardsSharedPtr inputKeyboard;  // the inputKeyboards object
 
+        static bool setupComplete;  // stores whether setup has completed successfully
 };
 
 #endif

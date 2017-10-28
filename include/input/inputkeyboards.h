@@ -23,29 +23,39 @@
 
 #include <vector>
 
-#include "input/input.h"
+//#include "input/input.h"
 #include "utilities/enums.h"
+#include "utilities/typedefs.h"
 //#include "engine/inputengine.h"
 
 // typedefs
 
 // forward declarations
-//class inputEngine;
-//class usersInput;
-//class UBCBase;
+class input;
 
-class inputKeyboards : public input
+class inputKeyboards
 {
     public:
     
         inputKeyboards();  // constructor
         ~inputKeyboards();  // destructor
 
+        inputSharedPtr getInputS();  // retrieves the value of inputS
+        void setInputS(inputSharedPtr set);  // sets the value of inputS
+
+        bool getSetupComplete();  // retrieves the value of setupComplete
+        void setSetupComplete(bool set);  // sets the value of setupComplete
+
         inputInGameMaps mapInput(inputKeyMaps inKeyMap, usersInputsSharedPtr input);  // maps value of the keyPressed string to inputInGameMaps
         bool process();  // processes input
     
+        bool setup();  // sets up the inputKeyboards object
+
     private:
     
+        static inputSharedPtr inputS;  // input object
+
+        bool setupComplete;  // stores whether setup has completed successfully
 };
 
 #endif

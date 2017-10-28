@@ -61,10 +61,6 @@ public:
     UBCInputSharedPtr getInput();  // retrieves the value of UBCInput
     void setInput(UBCInputSharedPtr set);  // sets the value of UBCInput
 
-    GUISystemSharedPtr getGui();  // retrieves the value of gui
-    void setGui(GUISystemSharedPtr set);  // sets the value of gui
-
-
 /*    bool getQuitGame();  // retrieves the value of quitGame
     void setQuitGame(bool quit);  // sets the value of quitGame
 */
@@ -101,8 +97,6 @@ private:
     static UBCBaseSharedPtr base;  // static copy of base class
 
     static UBCInputSharedPtr input;  // static copy of base class
-
-    static GUISystemSharedPtr gui;  // the GUI object.
         
     float inputXPos;  // stores the x coordinate of input
     float inputYPos;  // stores the y coordinate of input

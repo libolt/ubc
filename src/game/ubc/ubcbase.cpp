@@ -22,10 +22,11 @@
 #include "engine/gameengine.h"
 #include "state/gamestate.h"
 #include "state/networkstate.h"
-#include "input/input.h"
+#include "input/inputkeyboards.h"
+#include "input/inputgamepads.h"
 #include "load/load.h"
 #include "load/loadplayers.h"
-
+#include "gui/gui.h"
 #include "utilities/logging.h"
 #include "users/users.h"
 
@@ -38,8 +39,8 @@ bool UBCBase::inputSUInputSetup;  // stores whether inputS UInput object has bee
 
 gameEngineSharedPtr UBCBase::gameE;  // the gameEngine object
 //sharedPtr<gameState> UBCBase::gameS;  // the gameState object
+GUISystemSharedPtr UBCBase::gui;  // the GUI object.
 networkStateSharedPtr UBCBase::networkS;  // the networkState object
-inputSharedPtr UBCBase::inputS;  // the input object
 loaderSharedPtr UBCBase::load;  // the loader object
 loadBasketballsSharedPtr UBCBase::loadBasketball;  // the loadBasketballs object
 loadCourtsSharedPtr UBCBase::loadCourt;  // the loadCourts object
@@ -114,53 +115,43 @@ void UBCBase::setStartActiveGame(bool set)  // sets the value of startActiveGame
     startActiveGame = set;
 }
 
-sharedPtr<gameEngine> UBCBase::getGameE()  // retrieves the value of gameE
+gameEngineSharedPtr UBCBase::getGameE()  // retrieves the value of gameE
 {
     return (gameE);
 }
-void UBCBase::setGameE(sharedPtr<gameEngine> set)  // sets the value of gameE
+void UBCBase::setGameE(gameEngineSharedPtr set)  // sets the value of gameE
 {
     gameE = set;
 }
 
-sharedPtr<gameState> UBCBase::getGameS()  // retrieves the value of gameS
+gameStateSharedPtr UBCBase::getGameS()  // retrieves the value of gameS
 {
     return (gameS);
 }
-void UBCBase::setGameS(sharedPtr<gameState> set)  // sets the value of gameS
+void UBCBase::setGameS(gameStateSharedPtr set)  // sets the value of gameS
 {
     gameS = set;
 }
 
-sharedPtr<networkState> UBCBase::getNetworkS()  // retrieves the value of networkS
+GUISystemSharedPtr UBCBase::getGui()  // retrieves the value of gui
+{
+    return (gui);
+}
+void UBCBase::setGui(GUISystemSharedPtr set)  // sets the value of gui
+{
+    gui = set;
+}
+
+
+networkStateSharedPtr UBCBase::getNetworkS()  // retrieves the value of networkS
 {
     return (networkS);
 }
-void UBCBase::setNetworkS(sharedPtr<networkState> set)  // sets the value of networkS
+void UBCBase::setNetworkS(networkStateSharedPtr set)  // sets the value of networkS
 {
     networkS = set;
 }
         
-inputKeyboardsSharedPtr getInputKeyboard();  // retrieves the value of inputKeyboard
-{
-    return (inputKeyboard);
-}
-
-void setInputKeyboard(inputKeyboardsSharedPtr set);  // sets the value of inputKeyboard
-{
-    inputKeyboard = set;
-}
-
-inputGamePadsSharedPtr getInputGamePad();  // retrieves the value of inputGamePad
-{
-    return (rinputGamePad);
-}
-
-void setInputGamePad(inputGamePadsSharedPtr set);  // sets the value of inputGamePad
-{
-    inputGamePad = set;
-}
-
 loaderSharedPtr UBCBase::getLoad()  // retrieves the value of load
 {
     return (load);
@@ -270,7 +261,10 @@ bool UBCBase::setup()  // sets up the engine and states
     gameS = tempGameStateSharedPtr;
     logMsg(func +" getGameS()->setInitialized(true)");
     getGameS()->setInitialized(true);
-    
+
+    GUISystemSharedPtr tempGUISharedPtr(new GUISystem);
+    gui = tempGUISharedPtr;
+
     loaderSharedPtr tempLoaderSharedPtr(new loader);
     logMsg(func +" load = tempLoaderSharedPtr");
     load = tempLoaderSharedPtr;
@@ -286,13 +280,13 @@ bool UBCBase::setup()  // sets up the engine and states
 //    networkState *tempNetworkStateObj = new networkState;
 ///    sharedPtr<networkState> tempNetworkStateSharedPtr = sharedPtr<networkState>(new networkState);
 ///    networkS = tempNetworkStateSharedPtr;
-    inputSharedPtr tempInputStateSharedPtr(new input);
+/*    inputSharedPtr tempInputStateSharedPtr(new input);
     inputS = tempInputStateSharedPtr;
 
     inputS->setInputE(gameE->getInputE());
     logMsg(func +" inputS->setup()");
     inputS->setup();  // sets up the inputState object
-
+*/
     stateSetup = true;
     
     logMsg(func +" end");

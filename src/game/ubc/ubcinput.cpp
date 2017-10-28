@@ -28,14 +28,22 @@
 #include "state/teamstate.h"
 #include "network/networkplayerstateobject.h"
 #include "users/users.h"
+#include "input/inputgamepads.h"
+#include "input/inputkeyboards.h"
+#include "input/input.h"
+#include "engine/gameengine.h"
 
 // static declarations
 UBCBaseSharedPtr UBCInput::base;  // static copy of base class
+inputSharedPtr UBCInput::inputS;  // the input object
+inputKeyboardsSharedPtr UBCInput::inputKeyboard;  // the inputKeyboards object
+inputGamePadsSharedPtr UBCInput::inputGamePad;  // the inputGamePads object
+bool UBCInput::setupComplete;  // stores whether setup has completed successfully
 
 
 UBCInput::UBCInput()  // constructor
 {
-    
+    setupComplete = false;
 }
 UBCInput::~UBCInput()  // destructor
 {
@@ -51,6 +59,42 @@ void UBCInput::setBase(UBCBaseSharedPtr set)  // sets the value of base
     base = set;
 }
 
+inputSharedPtr UBCInput::getInputS()  // retrieves the value of inputS
+{
+    return (inputS);
+}
+void UBCInput::setInputS(inputSharedPtr set)  // sets the value of inputS
+{
+    inputS = set;
+}
+
+inputGamePadsSharedPtr UBCInput::getInputGamePad()  // retrieves the value of inputGamePad
+{
+    return (inputGamePad);
+}
+void UBCInput::setInputGamePad(inputGamePadsSharedPtr set)  // sets the value of inputGamePad
+{
+    inputGamePad = set;
+}
+
+inputKeyboardsSharedPtr UBCInput::getInputKeyboard()  // retrieves the value of inputKeyboard
+{
+    return (inputKeyboard);
+}
+void UBCInput::setInputKeyboard(inputKeyboardsSharedPtr set)  // sets the value of inputKeyboard
+{
+    inputKeyboard = set;
+}
+
+bool UBCInput::getSetupComplete()  // retrieves the value of setupComplete
+{
+    return (setupComplete);
+}
+void UBCInput::setSetupComplete(bool set)  // sets the value of setupComplete
+{
+    setupComplete = set;
+}
+
 void UBCInput::process()  // processes game input
 {
     conversionSharedPtr convert = conversion::Instance();
@@ -62,7 +106,7 @@ void UBCInput::process()  // processes game input
     networkPlayerStateObject netPStateObj;
     std::string func = "UBCInput::process()";
 
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 
     logMsg(func +" userInstance.size() == " +convert->toString(base->getUsersInstance().size()));
     logMsg(func +" user 0 inputType == " +convert->toString(base->getUsersInstance()[0]->getInputType()));
@@ -74,24 +118,24 @@ void UBCInput::process()  // processes game input
         switch (inType)
         {
             case KEYBOARD:
-                logMsg("Keyboard Input!");
+                logMsg(func +" Keyboard Input!");
                 processKeyboard();
             break;
             case GAMEPAD:
-                logMsg("GamePad Input!");
+                logMsg(func +" GamePad Input!");
                 processGamePad();
             break;
             case MOUSE:
-                logMsg("Mouse Input!");
+                logMsg(func +" Mouse Input!");
                 processMouse();
             break;
             case TOUCH:
-                logMsg("Touch Input!");
+                logMsg(func +" Touch Input!");
                 processTouch();
             break;
         }
     }
-    exit(0);
+//    exit(0);
         
 /*    if (base->getInputS()->process())
     {
@@ -320,20 +364,29 @@ void UBCInput::process()  // processes game input
 
 bool UBCInput::processKeyboard()  // process keyboard input
 {
-    if (base->getInputS()->process())
-    {
+    conversionSharedPtr convert;
 
-        if (base->getGameE()->getMenuActive())
+    std::string func = "UBCInput::processKeyboard()";
+
+    logMsg(func +" begin");
+
+    if (inputKeyboard->process())
+    {
+        logMsg(func +" inputKeyboard->process()");
+
+        if (base->getGameE()->getMenuActive())  // sends key input to the GUI system if menu is active
         {
-            gui->menuReceiveKeyPress(convert->toString(base->getGameE()->getInputE()->getKeyPressed())); // sends input to menu key input processing function
-//            exit(0);
+            logMsg(func +" base->getGameE()->getMenuActive()");
+            base->getGui()->menuReceiveKeyPress(convert->toString(base->getGameE()->getInputE()->getKeyPressed())); // sends input to menu key input processing function
+            logMsg(func +" base->getGui");
+            //            exit(0);
         }
         else
         {
 //            exit(0);
             base->getGameS()->setInputReceived(true);
 
-            base->getGameS()->setInputInGameWorkQueue(base->getInputS()->getInputInGameWorkQueue());
+            base->getGameS()->setInputInGameWorkQueue(inputKeyboard->getInputS()->getInputInGameWorkQueue());
 
         }
         base->getGameE()->getInputE()->setKeyPressed(INKEY_NONE);
@@ -342,6 +395,7 @@ bool UBCInput::processKeyboard()  // process keyboard input
     {
 
     }
+    logMsg(func +" end");
     return (true);
 }
 
@@ -357,5 +411,72 @@ bool UBCInput::processMouse()  // process mouse input
 
 bool UBCInput::processTouch()  // process touch input
 {
+    return (true);
+}
+
+bool UBCInput::setup()  // sets up the UBCInput object
+{
+    std::string func = "UBCInput::setup()";
+
+    logMsg(func +" begin");
+
+//    exit(0);
+
+    // instantiate the inputS Object
+    inputSharedPtr tempInputS(new input);
+    inputS = tempInputS;
+    // instantiate the inputGamePad Object
+    inputGamePadsSharedPtr tempInputGPSharedPtr(new inputGamePads);
+    logMsg(func +" tempInputGPSharedPtr");
+
+    inputGamePad = tempInputGPSharedPtr;
+    logMsg(func +" inputGamePad");
+    inputGamePad->setInputS(inputS);
+    logMsg(func + " inputGamePad->setInputS(inputS)");
+
+    if (inputGamePad->setup())
+    {
+        logMsg(func +" inputGamePad->setup()");
+        inputGamePad->setSetupComplete(true);
+    }
+    else
+    {
+
+    }
+
+    inputKeyboardsSharedPtr tempinputKBSharedPtr(new inputKeyboards);
+    logMsg(func + " tempInputKBSharedPtr");
+
+    inputKeyboard = tempinputKBSharedPtr;
+    logMsg(func + " inputKeyboard");
+    inputKeyboard->setInputS(inputS);
+
+    logMsg(func + " inputKeyboard->setInputS(inputS)");
+
+    if (inputKeyboard->setup())
+    {
+        logMsg(func + " inputKeyboard->setup()");
+
+        inputKeyboard->setSetupComplete(true);
+    }
+    else
+    {
+
+    }
+
+
+
+/*    inputSharedPtr tempInputStateSharedPtr(new input);
+    inputS = tempInputStateSharedPtr;
+
+    inputS->setInputE(gameE->getInputE());
+
+    logMsg(func +" inputS->setup()");
+    inputS->setup();  // sets up the inputState object
+
+*/
+
+    logMsg(func + " end");
+
     return (true);
 }

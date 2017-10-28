@@ -19,18 +19,41 @@
  ***************************************************************************/
  
 #include "input/inputkeyboards.h"
+#include "input/input.h"
 #include "users/usersinputs.h"
 #include "utilities/logging.h"
 #include "utilities/conversion.h"
 #include "utilities/typedefs.h"
 
+// static declarations
+inputSharedPtr inputKeyboards::inputS;  // input object
+
+
 inputKeyboards::inputKeyboards()  // constructor
 {   
-
+    setupComplete = false;
 }
 inputKeyboards::~inputKeyboards()  // destructor
 {
     
+}
+
+inputSharedPtr inputKeyboards::getInputS()  // retrieves the value of inputS
+{
+    return (inputS);
+}
+void inputKeyboards::setInputS(inputSharedPtr set)  // sets the value of inputS
+{
+    inputS = set;
+}
+
+bool inputKeyboards::getSetupComplete()  // retrieves the value of setupComplete
+{
+    return (setupComplete);
+}
+void inputKeyboards::setSetupComplete(bool set)  // sets the value of setupComplete
+{
+    setupComplete = set;
 }
 
 inputInGameMaps inputKeyboards::mapInput(inputKeyMaps inKeyMap, usersInputsSharedPtr uInput)  // maps value of the keyPressed string to inputInGameMaps
@@ -113,8 +136,8 @@ inputInGameMaps inputKeyboards::mapInput(inputKeyMaps inKeyMap, usersInputsShare
 bool inputKeyboards::process()  // processes input
 {
     sharedPtr<conversion> convert = conversion::Instance();
-    inputEngineSharedPtr inputE = getInputE(); 
-    usersInputsVecSharedPtr uInput = getUInput();
+    inputEngineSharedPtr inputE = inputS->getInputE();
+    usersInputsVecSharedPtr uInput = inputS->getUInput();
     std::string func = "inputGamePads::process()";
     
     logMsg(func + " begin");
@@ -126,7 +149,7 @@ bool inputKeyboards::process()  // processes input
         inputTypeQueues inputTypeQueue = inputE->getInputTypeQueue();
         inputKeyWorkQueues inputKeyWorkQueue = inputE->getInputKeyWorkQueue();
         inputKeyWorkQueues::iterator IKWQIIT;
-        inputInGameWorkQueues inputInGameWorkQueue = getInputInGameWorkQueue();
+        inputInGameWorkQueues inputInGameWorkQueue = inputS->getInputInGameWorkQueue();
 
         logMsg(func + " uInput.size == " +convert->toString(uInput.size()));
 //        exit(0);
@@ -149,12 +172,33 @@ bool inputKeyboards::process()  // processes input
             }
             ++x;
         }
-        setInputInGameWorkQueue(inputInGameWorkQueue);
+        inputS->setInputInGameWorkQueue(inputInGameWorkQueue);
 
     }
     
 //        exit(0);
     logMsg(func + " end");
 //    exit(0);
+    return (true);
+}
+
+bool inputKeyboards::setup()  // sets up the inputGamePads object
+{
+    if (!inputS->getSetupComplete())
+    {
+        if (inputS->setup())
+        {
+            inputS->setSetupComplete(true);
+        }
+        else
+        {
+
+        }
+    }
+    else
+    {
+
+    }
+
     return (true);
 }

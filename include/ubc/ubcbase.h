@@ -58,15 +58,12 @@ class UBCBase
         gameStateSharedPtr getGameS();  // retrieves the value of gameS
         void setGameS(gameStateSharedPtr set);  // sets the value of gameS
     
+        GUISystemSharedPtr getGui();  // retrieves the value of gui
+        void setGui(GUISystemSharedPtr set);  // sets the value of gui
+
         networkStateSharedPtr getNetworkS();  // retrieves the value of networkS
         void setNetworkS(networkStateSharedPtr set);  // sets the value of networkS
     
-        inputKeyboardsSharedPtr getInputKeyboard();  // retrieves the value of inputKeyboard
-        void setInputKeyboard(inputKeyboardsSharedPtr set);  // sets the value of inputKeyboard
-
-        inputGamePadsSharedPtr getInputGamePad();  // retrieves the value of inputGamePad
-        void setInputGamePad(inputGamePadsSharedPtr set);  // sets the value of inputGamePad
-
         loaderSharedPtr getLoad();  // retrieves the value of load
         void setLoad(loaderSharedPtr set);  // sets the value of load
         
@@ -107,9 +104,8 @@ class UBCBase
         static bool inputSUInputSetup;  // stores whether inputS UInput object has been set
         static gameEngineSharedPtr gameE;  // the gameEngine object
         gameStateSharedPtr gameS;  // the gameState object
+        static GUISystemSharedPtr gui;  // the GUI object.
         static networkStateSharedPtr networkS;  // the gameState object
-        static inputKeyboardsSharedPtr inputKeyboard;  // the inputKeyboards object
-        static inputGamePadsSharedPtr inputGamePad;  // the inputGamePads object
         static loaderSharedPtr load;  // the loader object
         static loadBasketballsSharedPtr loadBasketball;  // the loadBasketballs object
         static loadCourtsSharedPtr loadCourt;  // the loadCourts object

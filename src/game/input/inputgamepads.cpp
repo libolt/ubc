@@ -24,13 +24,34 @@
 #include "utilities/conversion.h"
 #include "utilities/typedefs.h"
 
+// static declarations
+inputSharedPtr inputGamePads::inputS;  // input object
+
 inputGamePads::inputGamePads()  // constructor
 {   
-
+    setupComplete = false;
 }
 inputGamePads::~inputGamePads()  // destructor
 {
     
+}
+
+inputSharedPtr inputGamePads::getInputS()  // retrieves the value of inputS
+{
+    return (inputS);
+}
+void inputGamePads::setInputS(inputSharedPtr set)  // sets the value of inputS
+{
+    inputS = set;
+}
+
+bool inputGamePads::getSetupComplete()  // retrieves the value of setupComplete
+{
+    return (setupComplete);
+}
+void inputGamePads::setSetupComplete(bool set)  // sets the value of setupComplete
+{
+    setupComplete = set;
 }
 
 inputInGameMaps inputGamePads::mapInput(inputGamePadMaps inGamePadMap, usersInputsSharedPtr uInput)  // maps value of the gamePad string to inputInGameMaps
@@ -157,3 +178,32 @@ bool inputGamePads::process()  // processes input
 //    exit(0);
     return (true);
 }
+
+bool inputGamePads::setup()  // sets up the inputGamePads object
+{
+    std::string func = "inputGamePads::setup()";
+
+    logMsg(func +" begin");
+
+    if (!inputS->getSetupComplete())
+    {
+        logMsg(func +" !inputS->getSetupComplete()");
+        if (inputS->setup())
+        {
+            inputS->setSetupComplete(true);
+        }
+        else
+        {
+
+        }
+    }
+    else
+    {
+
+    }
+
+    logMsg(func +" end");
+
+    return (true);
+}
+

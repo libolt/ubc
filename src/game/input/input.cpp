@@ -38,6 +38,8 @@ inputInGameWorkQueues input::inputInGameWorkQueue;
 input::input()  // constructor
 {   
 //    uInput[0].setActive(true);
+    setupComplete = false;
+    inputESet = false;
 }
 input::~input()  // destructor
 {
@@ -80,14 +82,32 @@ void input::setInputInGameWorkQueue(inputInGameWorkQueues set)  // sets the valu
     inputInGameWorkQueue = set;
 }
 
+bool input::getSetupComplete()  // retrieves the value of setupComplete
+{
+    return (setupComplete);
+}
+void input::setSetupComplete(bool set)  // sets the value of setupComplete
+{
+    setupComplete = set;
+}
+
+bool input::getInputESet()  // retrieves the value of inputESet
+{
+    return (inputESet);
+}
+void input::setInputESet(bool set)  // sets the value of inputESet
+{
+    inputESet = set;
+}
+
 bool input::setup()  // sets up the input state
 {
 
     loaderSharedPtr load = base->getLoad();
-    inputEngineSharedPtr tempInputSharedPtr(new inputEngine);
-    inputE = tempInputSharedPtr;
+    inputEngineSharedPtr tempInputESharedPtr(new inputEngine);
+    inputE = tempInputESharedPtr;
 //    uInput = load->loadUserInputs();  // loads user defined input from file.
-    std::string func = "inputState::setup()";
+    std::string func = "input::setup()";
     
 /* FIXME! Remove once userInput is finished being reworked
 

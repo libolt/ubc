@@ -112,9 +112,9 @@ void UBCInput::process()  // processes game input
     logMsg(func +" user 0 inputType == " +convert->toString(base->getUsersInstance()[0]->getInputType()));
 //    exit(0);
     usersUMSharedPtr uInstance = base->getUsersInstance();
-    for (size_t x=0;x<uInstance.size();++x)
+    for (auto UIIT : uInstance)
     {
-        inputTypes inType = uInstance[x]->getInputType();       
+        inputTypes inType = UIIT.second->getInputType();       
         switch (inType)
         {
             case KEYBOARD:

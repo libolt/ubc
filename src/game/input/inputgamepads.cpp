@@ -137,7 +137,8 @@ bool inputGamePads::process()  // processes input
     inputEngineSharedPtr inputE = getInputE(); 
     usersInputsVecSharedPtr uInput = getUInput();
     std::string func = "inputGamePads::process()";
-    
+    usersInputsVecSharedPtr::iterator UIIT;
+
     logMsg(func + " begin");
 //    exit(0);
     
@@ -156,19 +157,19 @@ bool inputGamePads::process()  // processes input
             inputInGameWorkQueue.push_back(mapKeyInput(inputKeyWorkQueue[x], uInput[0]));
             x++;                            
         }*/
-        for (size_t x=0;x<uInput.size();++x)  // loop through all user input queues
+        for (UIIT = uInput.begin(); UIIT != uInput.end(); ++UIIT)  // loop through all user input queues
         {
             for (IGPWQIIT = inputGamePadWorkQueue.begin(); IGPWQIIT != inputGamePadWorkQueue.end(); ++IGPWQIIT)  // loop through key input queue
             {
                 // FIXME! uInput shoulnobe hard coded
-                if (mapInput(*IGPWQIIT, uInput[x]) != INNO)  // verifies that input has been received
+                if (mapInput(*IGPWQIIT, *UIIT) != INNO)  // verifies that input has been received
                 {
 //                    exit(0);                
-                    inputInGameWorkQueue.push_back(mapInput(*IGPWQIIT, uInput[x]));  // compares each input key against current user input mapping              
+                    inputInGameWorkQueue.push_back(mapInput(*IGPWQIIT, *UIIT));  // compares each input key against current user input mapping              
                                                                                     // an adds to inputInGameWorkQueue if there's a match
                 }       
             }
-            ++x;
+            
         }
         setInputInGameWorkQueue(inputInGameWorkQueue);
     }

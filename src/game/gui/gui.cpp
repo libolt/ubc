@@ -1123,18 +1123,20 @@ void GUISystem::playerStartSelected()  // process player start selection
     //FIXME! Should be converted into a loop to iterate 
     
 //    teamStarterID[0][0] = team0IDs[0][team0PGSelectBox->getIndexSelected()];
-    auto w = 0;
+//    auto w = 0;
 //    std::vector<std::unordered_map <std::string, std::string> >::iterator TSIT;
 //    for (TSIT = teamStarters.begin(); TSIT != teamStarters.end(); ++TSIT)
 
-    while (w < teamStarters.size())
+//    while (w < teamStarters.size())
+    std::vector<std::unordered_map <std::string, std::string> >::iterator TSVIT;
+    for (TSVIT = teamStarters.begin(); TSVIT != teamStarters.end(); ++TSVIT)
     {
-        teamStarters[w].insert(std::pair<std::string, std::string>("PG", teamPlayerPosSelectBox[w]["PG"]->getItemNameAt(teamPlayerPosSelectBox[w]["PG"]->getIndexSelected())));  
-        teamStarters[w].insert(std::pair<std::string, std::string>("SG", teamPlayerPosSelectBox[w]["SG"]->getItemNameAt(teamPlayerPosSelectBox[w]["SG"]->getIndexSelected())));  
-        teamStarters[w].insert(std::pair<std::string, std::string>("SF", teamPlayerPosSelectBox[w]["SF"]->getItemNameAt(teamPlayerPosSelectBox[w]["SF"]->getIndexSelected())));  
-        teamStarters[w].insert(std::pair<std::string, std::string>("PF", teamPlayerPosSelectBox[w]["PF"]->getItemNameAt(teamPlayerPosSelectBox[w]["PF"]->getIndexSelected())));  
-        teamStarters[w].insert(std::pair<std::string, std::string>("C", teamPlayerPosSelectBox[w]["C"]->getItemNameAt(teamPlayerPosSelectBox[w]["C"]->getIndexSelected())));  
-        ++w;
+        *TSVIT.push_back(std::pair<std::string, std::string>("PG", teamPlayerPosSelectBox[w]["PG"]->getItemNameAt(teamPlayerPosSelectBox[w]["PG"]->getIndexSelected())));  
+        *TSVIT.insert(std::pair<std::string, std::string>("SG", teamPlayerPosSelectBox[w]["SG"]->getItemNameAt(teamPlayerPosSelectBox[w]["SG"]->getIndexSelected())));  
+        *TSVIT.insert(std::pair<std::string, std::string>("SF", teamPlayerPosSelectBox[w]["SF"]->getItemNameAt(teamPlayerPosSelectBox[w]["SF"]->getIndexSelected())));  
+        *TSVIT.insert(std::pair<std::string, std::string>("PF", teamPlayerPosSelectBox[w]["PF"]->getItemNameAt(teamPlayerPosSelectBox[w]["PF"]->getIndexSelected())));  
+        *TSVIT.insert(std::pair<std::string, std::string>("C", teamPlayerPosSelectBox[w]["C"]->getItemNameAt(teamPlayerPosSelectBox[w]["C"]->getIndexSelected())));  
+        
     }
     logMsg(func +" teamStarters[0][PG] == " +teamStarters[0]["PG"]);
 //    exit(0);

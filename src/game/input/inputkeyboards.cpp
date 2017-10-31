@@ -61,9 +61,6 @@ inputInGameMaps inputKeyboards::mapInput(inputKeyMaps inKeyMap, usersInputsShare
     sharedPtr<conversion> convert = conversion::Instance();
     size_t x = 0;
     std::string func = "inputKeyboards::mapInput()";
-//    while (x < uInput.size())
-//    {
-//    exit(0);
     logMsg(func + " begin");
     logMsg(func + " userInput name == " +uInput->getName());
 //    exit(0);

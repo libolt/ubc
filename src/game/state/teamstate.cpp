@@ -521,7 +521,6 @@ void teamState::updateState()  // updates the state of the object
 
                 size_t x = 0;
                 size_t instanceWithBall;
-//                while (x < activePlayerInstance.size())
                 for (auto APIIT : activePlayerInstance)
                 {                    
                     if (APIIT.second->getData()->getID() == playerWithBallID)
@@ -678,7 +677,6 @@ bool teamState::createPlayerInstances()  // creates the player instances
     auto i = 0;
     auto ID = 0;
     playerInstance.clear();
-//    while (i<gamePlayerInstance.size())
     for (auto it : gamePlayerInstance)
     {
         logMsg(func +" gamePlayerInstance->getData()->getTeamID() == " +convert->toString(gamePlayerInstance[0]->getData()->getTeamID()));
@@ -777,7 +775,6 @@ bool teamState::setPlayerStartPositions()  // sets the initial coordinates for t
         size_t i = 0;
 
         size_t x = 0;
-//        while (x < activePlayerInstance.size()) //&& playerID != playerInstance[x].getPlayerID())
         for (auto APIIT : activePlayerInstance)
         {
             logMsg(func +" activePlayerInstance.size > 0!");
@@ -874,14 +871,11 @@ void teamState::setPlayerStartActivePositions()  // sets the position the player
         activePlayerInstance[4]->setActivePosition(C);
     }
     // set steer IDs
-    size_t x = 0;
-//    while (x < activePlayerInstance.size())
     for (auto APIIT : activePlayerInstance)
     {
         //playerSteer *pSteer = activePlayerInstance[x]->getSteer();
        // pSteer->setID(x);
-        APIIT.second->getSteer()->setID(x);
-//        ++x;
+//FIXME!        APIIT.second->getSteer()->setID(APIIT.second->getID());
     }
     logMsg(func +" end");
 }
@@ -1263,9 +1257,7 @@ void teamState::updatePlayerDirections()  // updates the direction players are f
 
     size_t x = 0;
     size_t y = 0;
-//    for (size_t i = 0; i < playerInstance.size(); ++i)
-//    while (x<activePlayerInstance.size())
-    
+
     exit(0);
     for (auto APIIT : activePlayerInstance)
     {
@@ -1383,10 +1375,6 @@ void teamState::updatePlayerMovements()  // updates player movements
     Ogre::Vector3 posChange;    // stores change in position
     posChange = Ogre::Vector3(0.0f, 0.0f, 0.0f);
 
-    size_t x = 0;
-    size_t y = 0;
-//  for (size_t i = 0; i < playerInstance.size(); ++i)
-//    while(x<activePlayerInstance.size())
     for (auto APIIT : activePlayerInstance)
     {
         if (APIIT.second->getMovement()) // if true sets coordinate change accordingly

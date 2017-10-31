@@ -164,6 +164,7 @@ std::unordered_map<size_t, courtStateSharedPtr> loadCourts::loadCourtFiles()  //
 #else
     courtList = findFile("courts/courts.xml");
 #endif
+    logMsg("courtList == " +courtList);
     courtFiles = loadCourtListFile(courtList);
 //    stdStringVec playerFiles = load->getPlayerFiles();
 

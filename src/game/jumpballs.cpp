@@ -238,7 +238,6 @@ bool jumpBalls::jumpBallExecute(basketballStateUMSharedPtr activeBasketballInsta
     logMsg (func +" beginning");
     
     logMsg (func +" activeTeamInstance.size() == " +convert->toString(activeTeamInstance.size()));
-//    while (x < activeTeamInstance.size())
     for (auto ATIIT : activeTeamInstance)
     {
         activePlayerInstance.clear();
@@ -283,7 +282,6 @@ bool jumpBalls::jumpBallExecute(basketballStateUMSharedPtr activeBasketballInsta
 //    collCheck = /*physEngine.*/ collisionCheck(basketballInstance[activeBBallInstance].getPhysBody(), activePlayerInstance[0][jumpPlayerInstance[0]].getPhysBody());
 //    size_t y = 0;
     playerStateSharedPtr activePInstance;
-//    while (y < activeTeamInstance.size())
     for (auto ATIIT : activeTeamInstance)
     {
 /*TS        switch(ATIIT.second->getTeamType())
@@ -361,6 +359,7 @@ bool jumpBalls::tipToPlayer(basketballStateUMSharedPtr activeBasketballInstance,
 //    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
 //    playerStateVecSharedPtr activePlayerInstance;
     playerEntityVecSharedPtr activePlayerInstance;
+    playerEntityVecSharedPtr::iterator APIIT;
 //    jumpBalls jumpBall = gameS->getJumpBall();
 //    teamTypes ballTippedToTeam = jumpBall.getBallTippedToTeam();
 //    quarters quarter = gameS->getQuarter();
@@ -369,14 +368,15 @@ bool jumpBalls::tipToPlayer(basketballStateUMSharedPtr activeBasketballInstance,
 //TS    activePlayerInstance = activeTeamInstance[ballTippedToTeam]->getActivePlayerInstance();
     
     auto y = 0;
-    while (y < activePlayerInstance.size())
+//    while (y < activePlayerInstance.size())
 //    playerStateVecSharedPtr::iterator APIIT;
 //    for (APIIT = activePlayerInstance.begin(); APIIT != activePlayerInstance.end(); ++APIIT)
+    for (APIIT = activePlayerInstance.begin(); APIIT != activePlayerInstance.end(); ++APIIT)
     {
-        if (activePlayerInstance[y].getActivePosition() == ballTippedToPosition)
+        if (APIIT->getActivePosition() == ballTippedToPosition)
         {
-            ballTippedToPlayerID = activePlayerInstance[y].getData()->getID();
-            ballTippedToPlayerInstance = y;
+            ballTippedToPlayerID = APIIT->getData()->getID();
+//FIXME!            ballTippedToPlayerInstance = *APIIT->;
             break;
         }
         ++y;

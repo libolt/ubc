@@ -137,17 +137,6 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 
     logMsg(func +" beginning");
     
-    
-    auto x = 0;
-/*    while (x < activeTeamInstance.size())
-    {
-        logMsg("activeTeamInstance[" +convert->toString(x) +"] ID == " +convert->toString(activeTeamInstance[x]->getID()));
-        ++x;
-    }
-*/
-//    exit(0);
-    x = 0;
-//    while (x < activeTeamInstance.size())
     logMsg(func +" activeTeamInstance.size() == " +convert->toString(activeTeamInstance.size()));
 //    exit(0);
     for (auto ATIIT : activeTeamInstance)
@@ -190,13 +179,13 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
             }
             else
             {
-                logMsg(func +" Unable to create active team [" +convert->toString(x) +"] playerInstances");
+//                logMsg(func +" Unable to create active team [" +convert->toString(x) +"] playerInstances");
                 exit(0);
             }
         }
 //        playerInstance.push_back(ATIIT.second->getPlayerInstance());
         playerInstance.insert(playerInstance.begin(), ATIIT.second->getPlayerInstance());
-       ++x;
+//       ++x;
     }
     
     logMsg(func +" playerInstance.size() == " +convert->toString(playerInstance.size()));
@@ -212,21 +201,19 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 */
 //    exit(0);
     
-    playerEntityVecUMSharedPtr::iterator it;
-    auto itx = 0;
-//    while (it < playerInstance.size())
-    for (it = playerInstance.begin(); it != playerInstance.end(); ++it)
+    playerEntityVecUMSharedPtr::iterator PEVUIT;
+//    auto itx = 0;
+    for (PEVUIT = playerInstance.begin(); PEVUIT != playerInstance.end(); ++PEVUIT)
     {
-        logMsg(func +" itx == " +convert->toString(itx));
+//        logMsg(func +" itx == " +convert->toString(itx));
 //        logMsg(func +" playerInstance[" +convert->toString(it.first) +"].size() == " +convert->toString(playerInstance[i].size()));
 //        auto j = 0;
-//        while (j < playerInstance[i].size())
-        for (auto pInstanceIT : *it)
+        for (auto pInstanceIT : *PEVUIT)
 //        for (auto pInstanceIT : playerInstance[1])
         {
 //            std::string playerName = playerInstance[i][1]->getFirstName() +" " +playerInstance[i][1]->getLastName(); // +"            "; // +playerOverallRating;
             std::string playerName = pInstanceIT.second->getData()->getFirstName() +" " +pInstanceIT.second->getData()->getLastName();
-            logMsg(func +" team " +convert->toString(itx) + " playerName == " +playerName);
+//FIXME!            logMsg(func +" team " +convert->toString(itx) + " playerName == " +playerName);
 
 //            logMsg(func +" j == " +convert->toString(j));
 //            size_t overallRating = base->getGameS()->getPlayerInstance()[i]->getOverallRating();
@@ -244,6 +231,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
             switch (pInstanceIT.second->getData()->getPrimaryPosition())
             {
                 case PG:
+                pInstanceIT.second->getTeamID();
                     teamPlayerPosSelectBox[itx]["PG"]->addItem(playerName);
 //                    teamPlayerRating[i]["PG"]->setCaption(playerOverallRating);
                     logMsg(func +" PG playerName == " +playerName);
@@ -282,7 +270,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
             
 //            ++j;
         }
-        ++itx;
+//        ++itx;
     }
     logMsg(func + " end");
 //    exit(0);

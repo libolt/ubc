@@ -91,9 +91,6 @@ void playerSteerPlugin::open()
         baseInitialized = true;
     }
 	// builds team 0 steering instances
-//	for (size_t x=0;x<team0ActivePlayerInstance.size();++x)
-//    size_t x = 0;
-//    while (x < getActiveTeamInstance().size())
     logMsg(func +"base->getGameS()->getActiveTeamInstance().size() == " +convert->toString(base->getGameS()->getActiveTeamInstance().size()));
 //    exit(0);
     for (auto ATIIT : base->getGameS()->getActiveTeamInstance())
@@ -273,13 +270,9 @@ void playerSteerPlugin::update(const float currentTime, const float elapsedTime)
 
 //    team1ActivePlayerInstance[3].getSteer()->update(currentTime, elapsedTime);
 
-    size_t x = 0;
-//    while (x < getActiveTeamInstance().size())
     for (auto ATIIT : base->getGameS()->getActiveTeamInstance())
     {
         activePlayerInstance.push_back(ATIIT.second->getActivePlayerInstance());
-//        size_t y = 0;
-//        while (y < activePlayerInstance[x].size())
         for (auto APIIT : activePlayerInstance[ATIIT.first])
         {
 /*FIXME!            if (APIIT.first != ATIIT.second->getHumanPlayer() && APIIT.second->getModelLoaded())
@@ -291,7 +284,7 @@ void playerSteerPlugin::update(const float currentTime, const float elapsedTime)
 //            ++y;
         }
         
-        ++x;
+//        ++x;
     }
     
 /*

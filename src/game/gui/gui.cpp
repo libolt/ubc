@@ -1009,19 +1009,11 @@ void GUISystem::teamsSelected()  // processes team selection
 
 void GUISystem::playerStartSelected()  // process player start selection
 {
-    //conversion *convert = conversion::Instance();
-    sharedPtr<conversion> convert = conversion::Instance();
-    //gameState *gameS = gameState::Instance();
-//    sharedPtr<gameState> gameS = gameState::Instance();
-
-//    teamStateVecSharedPtr  activeTeamInstance = gameS->getActiveTeamInstance();
-
-//        exit(0);
+    conversionSharedPtr convert = conversion::Instance();
     std::vector<std::unordered_map <std::string, std::string> > teamStarters;
     std::unordered_map <std::string, std::string> tempStarters;
-    teamStarters.push_back(tempStarters);
-    teamStarters.push_back(tempStarters);
-    sizeTVec starters; // used for initial creatio  of teamStarterID vector
+//    teamStarters.push_back(tempStarters);
+    std::unordered_map<std::string, size_t> tempStarterID; // used for initial creatio  of teamStarterID vector
     teamStateUMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
   
 //    std::vector<playerStateUMSharedPtr > playerInstance;
@@ -1032,33 +1024,26 @@ void GUISystem::playerStartSelected()  // process player start selection
     size_t IDs = 0;
     std::string func = "GUISystem::playerStartSelected()";
 
-    auto x = 0;
-//    teamStateVec
-    for (auto ATIIT : activeTeamInstance)
+
+    for (auto ATIIT : activeTeamInstance)  // loop through activeTeamInstance
     {
+        teamStarters.push_back(tempStarters);  // add empty entry to teamStarters
+
         for (auto it : activeTeamInstance[ATIIT.first]->getPlayerInstance())
         {
             logMsg(func +" team dee " +convert->toString(ATIIT.first) +" " +it.second->getData()->getFirstName() +" " +it.second->getData()->getLastName());
-    //            ++y;
         }
-        playerInstance.insert(playerInstance.begin(), activeTeamInstance[ATIIT.first]->getPlayerInstance());
-//        auto y = 0;
-//        while (y < activeTeamInstance[1]->getPlayerInstance().size())
-//        ++x;
+        playerInstance.insert(playerInstance.begin(), activeTeamInstance[ATIIT.first]->getPlayerInstance());  // add activeTeamInstances player instance to playerInstance
     }
     
-//    std::vector<playerStateUMSharedPtr >::iterator PIIT;
     playerEntityVecUMSharedPtr::iterator PIIT;
     
-    x = 0;
     for (PIIT = playerInstance.begin(); PIIT != playerInstance.end(); ++PIIT)
     {
         for (auto it : *PIIT)
         {
-            logMsg(func +" team dah " +convert->toString(x) +" " +it.second->getData()->getFirstName() +" " +it.second->getData()->getLastName());
-//            ++y;
+            logMsg(func +" team dah " +it.second->getData()->getFirstName() +" " +it.second->getData()->getLastName());
         }
-        ++x;
     }
 //    exit(0);
 //    playerInstance = base->getGameS()->getActiveTeamInstance()[0]->getPlayerInstance();
@@ -1156,10 +1141,52 @@ void GUISystem::playerStartSelected()  // process player start selection
 //        TSIDIT.insert(std::pair<std::string, size_t>("PG", PIIT.second->getData()->getID()));
 
     }
-    for (TSVIT = teamStarters.begin(); TSVIT != teamStarters.end(); ++ TSVIT)
+*/
+    for (TSVIT = teamStarters.begin(); TSVIT != teamStarters.end(); ++ TSVIT)  // loop that adds starting player IDs to teamStarterID
     {
-//        while (x < playerInstance[w].size())
         for (auto TSVUIT : *TSVIT)
+        {
+            teamStarterID.push_back(tempStarterID);  // add entry to tesmStarterID for every activeTeamInstance
+
+            for (auto ATIIT : activeTeamInstance)  // loop through activeTeamInstance
+            {
+                        
+                for (auto PIIT : ATIIT.second->getPlayerInstance())
+                {
+                    std::string playerName = PIIT.second->getData()->getFirstName() +" " +PIIT.second->getData()->getLastName();
+                    if (playerName == TSVUIT.second && TSVUIT.first == "PG")
+                    {
+                        logMsg(func +" PG Player ID == " +convert->toString(PIIT.second->getData()->getID()));
+///                    TSIDUIT.insert(std::pair<std::string, size_t>("PG", PIIT.second->getData()->getID()));
+                    }
+                    else if (playerName == TSVUIT.second && TSVUIT.first == "SG")
+                    {
+                        logMsg(func +" SG Player ID == " +convert->toString(PIIT.second->getData()->getID()));
+
+///                    teamStarterID[w].insert(std::pair<std::string, size_t>("SG", PIIT.second->getData()->getID()));
+    //                logMsg("teamStarterID[w][SG] Player ID == " +convert->toString(teamStarterID[w][SG]));
+
+                    }
+                    else if (playerName == TSVUIT.second && TSVUIT.first == "SF")
+                    {
+                        logMsg(func +" SF Player ID == " +convert->toString(PIIT.second->getData()->getID()));
+                        teamStarterID[w].insert(std::pair<std::string, size_t>("SF", PIIT.second->getData()->getID()));
+                    }
+                    else if (playerName == TSVUIT.second && TSVUIT.first == "PF")
+                    {
+                        logMsg(func +" PF Player ID == " +convert->toString(PIIT.second->getData()->getID()));
+                        teamStarterID[w].insert(std::pair<std::string, size_t>("PF", PIIT.second->getData()->getID()));
+                    }
+                    else if (playerName == TSVUIT.second && TSVUIT.first == "C")
+                    {
+                        logMsg(func +" C Player ID == " +convert->toString(PIIT.second->getData()->getID()));
+                        teamStarterID[w].insert(std::pair<std::string, size_t>("C", PIIT.second->getData()->getID()));
+                    }
+                }
+            }
+        }
+    }
+/*        for (auto TSVUIT : *TSVIT)
         {
             for (TSIDIT = teamStarterID.begin(); TSIDIT != teamStarterID.end(); ++TSIDIT)
             {
@@ -1209,6 +1236,7 @@ void GUISystem::playerStartSelected()  // process player start selection
         }
         ++w;
     }
+*/
     //    teamStarterID[0][0] = [
                           //team0IDs[0][teamPlayerPosSelectBox[0]["PG"]->getIndexSelected()];
     
@@ -1217,8 +1245,8 @@ void GUISystem::playerStartSelected()  // process player start selection
     logMsg(func +" teamStarterID[0][SF] = " +convert->toString(teamStarterID[0]["SF"]));
     logMsg(func +" teamStarterID[0][PF] = " +convert->toString(teamStarterID[0]["PF"]));
     logMsg(func +" teamStarterID[0][C] = " +convert->toString(teamStarterID[0]["C"]));
-*/
-//    exit(0);
+
+    exit(0);
 /*    team0Starters.push_back(teamPlayerPosSelectBox[0]["SG"]->getItemNameAt(teamPlayerPosSelectBox[0]["SG"]->getIndexSelected()));
     teamStarterID[0][1] = team0IDs[1][teamPlayerPosSelectBox[0]["SG"]->getIndexSelected()];
     logMsg("teamStarterID[0][1] = " +convert->toString(teamStarterID[0][1]));
@@ -1252,7 +1280,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     base->getGameS()->setTeamStarterID(teamStarterID); // sets the selected starters for both teams in gameState class
     
     sizeTVec activePlayerID;
-    x = 0;
+//    x = 0;
     logMsg(func +" activePlayerID!");
 /*    while (x < 5)
     {
@@ -1308,6 +1336,7 @@ void GUISystem::playerStartSelected()  // process player start selection
   
             if (PIIT.second->getData()->getID() == teamStarterID[ATIIT.first]["PG"])
             {
+                logMsg(func +" PG");
                 activePlayerInstance.insert(std::pair<playerPositions, playerEntitySharedPtr>(PG, PIIT.second));
                 activePlayerInstance[PG]->setActivePosition(PG);
                 logMsg(func +" WOOT PG!");
@@ -1336,6 +1365,7 @@ void GUISystem::playerStartSelected()  // process player start selection
                 activePlayerInstance[C]->setActivePosition(C);
                 logMsg(func +" WOOT C!");
             }
+            logMsg(func +" WOOT!");
         }
         ATIIT.second->setActivePlayerInstance(activePlayerInstance);
         ATIIT.second->setActivePlayerInstancesCreated(true);

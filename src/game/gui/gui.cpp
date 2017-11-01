@@ -1045,7 +1045,7 @@ void GUISystem::playerStartSelected()  // process player start selection
             logMsg(func +" team dah " +it.second->getData()->getFirstName() +" " +it.second->getData()->getLastName());
         }
     }
-//    exit(0);
+    exit(0);
 //    playerInstance = base->getGameS()->getActiveTeamInstance()[0]->getPlayerInstance();
 
     
@@ -1186,6 +1186,7 @@ void GUISystem::playerStartSelected()  // process player start selection
             }
         }
     }
+    exit(0);
 /*        for (auto TSVUIT : *TSVIT)
         {
             for (TSIDIT = teamStarterID.begin(); TSIDIT != teamStarterID.end(); ++TSIDIT)

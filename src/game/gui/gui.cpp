@@ -1045,7 +1045,7 @@ void GUISystem::playerStartSelected()  // process player start selection
             logMsg(func +" team dah " +it.second->getData()->getFirstName() +" " +it.second->getData()->getLastName());
         }
     }
-    exit(0);
+//    exit(0);
 //    playerInstance = base->getGameS()->getActiveTeamInstance()[0]->getPlayerInstance();
 
     
@@ -1142,50 +1142,61 @@ void GUISystem::playerStartSelected()  // process player start selection
 
     }
 */
-    for (TSVIT = teamStarters.begin(); TSVIT != teamStarters.end(); ++ TSVIT)  // loop that adds starting player IDs to teamStarterID
+    for (TSVIT = teamStarters.begin(); TSVIT != teamStarters.end(); ++TSVIT)  // loop that adds starting player IDs to teamStarterID
     {
+        logMsg(func +" TSVIT");
         for (auto TSVUIT : *TSVIT)
         {
-            teamStarterID.push_back(tempStarterID);  // add entry to tesmStarterID for every activeTeamInstance
-
+            
+            logMsg(func +" TSVUIT.first = " +TSVUIT.first);
             for (auto ATIIT : activeTeamInstance)  // loop through activeTeamInstance
             {
-                        
+                logMsg(func +" ATIIT");
+//                std::unordered_map<std::string, size_t> tempStarterID;
                 for (auto PIIT : ATIIT.second->getPlayerInstance())
                 {
+                    logMsg(func +" PIIT");
                     std::string playerName = PIIT.second->getData()->getFirstName() +" " +PIIT.second->getData()->getLastName();
                     if (playerName == TSVUIT.second && TSVUIT.first == "PG")
                     {
                         logMsg(func +" PG Player ID == " +convert->toString(PIIT.second->getData()->getID()));
-///                    TSIDUIT.insert(std::pair<std::string, size_t>("PG", PIIT.second->getData()->getID()));
+                        tempStarterID.insert(std::pair<std::string, size_t>("PG", PIIT.second->getData()->getID()));
                     }
                     else if (playerName == TSVUIT.second && TSVUIT.first == "SG")
                     {
                         logMsg(func +" SG Player ID == " +convert->toString(PIIT.second->getData()->getID()));
 
-///                    teamStarterID[w].insert(std::pair<std::string, size_t>("SG", PIIT.second->getData()->getID()));
+                        tempStarterID.insert(std::pair<std::string, size_t>("SG", PIIT.second->getData()->getID()));
     //                logMsg("teamStarterID[w][SG] Player ID == " +convert->toString(teamStarterID[w][SG]));
 
                     }
                     else if (playerName == TSVUIT.second && TSVUIT.first == "SF")
                     {
                         logMsg(func +" SF Player ID == " +convert->toString(PIIT.second->getData()->getID()));
-                        teamStarterID[w].insert(std::pair<std::string, size_t>("SF", PIIT.second->getData()->getID()));
+                        tempStarterID.insert(std::pair<std::string, size_t>("SF", PIIT.second->getData()->getID()));
                     }
                     else if (playerName == TSVUIT.second && TSVUIT.first == "PF")
                     {
                         logMsg(func +" PF Player ID == " +convert->toString(PIIT.second->getData()->getID()));
-                        teamStarterID[w].insert(std::pair<std::string, size_t>("PF", PIIT.second->getData()->getID()));
+                        tempStarterID.insert(std::pair<std::string, size_t>("PF", PIIT.second->getData()->getID()));
                     }
                     else if (playerName == TSVUIT.second && TSVUIT.first == "C")
                     {
                         logMsg(func +" C Player ID == " +convert->toString(PIIT.second->getData()->getID()));
-                        teamStarterID[w].insert(std::pair<std::string, size_t>("C", PIIT.second->getData()->getID()));
+                        tempStarterID.insert(std::pair<std::string, size_t>("C", PIIT.second->getData()->getID()));
                     }
                 }
+                
             }
+            logMsg(func +" tempStarterID.size() == " +convert->toString(tempStarterID.size()));
+//                exit(0);
+                teamStarterID.push_back(tempStarterID);  // add entry to tesmStarterID for every activeTeamInstance
+
         }
     }
+    logMsg(func +" teamStarterID.size() == " +convert->toString(teamStarterID.size()));
+
+    logMsg(func +" dgg");
     exit(0);
 /*        for (auto TSVUIT : *TSVIT)
         {

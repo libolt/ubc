@@ -28,6 +28,7 @@
 #include "data/playerdata.h"
 #include "engine/gameengine.h"
 #include "entity/playerentity.h"
+#include "game/gamesetups.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
 #include "state/gamestate.h"
@@ -1024,7 +1025,8 @@ void GUISystem::playerStartSelected()  // process player start selection
     size_t IDs = 0;
     std::string func = "GUISystem::playerStartSelected()";
 
-
+    gameSetupsSharedPtr gameSetup(new gameSetups);
+    
     for (auto ATIIT : activeTeamInstance)  // loop through activeTeamInstance
     {
         teamStarters.push_back(tempStarters);  // add empty entry to teamStarters
@@ -1112,6 +1114,7 @@ void GUISystem::playerStartSelected()  // process player start selection
 //    for (TSIT = teamStarters.begin(); TSIT != teamStarters.end(); ++TSIT)
 
     std::vector<std::unordered_map <std::string, std::string> >::iterator TSVIT;
+    
     for (TSVIT = teamStarters.begin(); TSVIT != teamStarters.end(); ++TSVIT)
     {
 

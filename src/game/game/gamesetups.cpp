@@ -19,7 +19,11 @@
  ***************************************************************************/
 
 #include "game/gamesetups.h"
-#include "utilities/conversions.h"
+#include "utilities/conversion.h"
+#include "state/teamstate.h"
+#include "entity/playerentity.h"
+#include "data/playerdata.h"
+#include "utilities/logging.h"
 
 gameSetups::gameSetups()  // constructor
 {
@@ -30,10 +34,86 @@ gameSetups::~gameSetups()  // destructor
     
 }
 
-bool gameSetups::setupStartingLineups(teamStateUMSharedPtr activeTeamInstance)  // sets starting lineups for each team
+std::vector<std::unordered_map <std::string, std::string> > gameSetups::createTeamStarters(teamStateUMSharedPtr activeTeamInstance)  // creates the teamStarters instance
+{
+    std::vector<std::unordered_map <std::string, std::string> > teamStarters;
+    std::unordered_map <std::string, std::string> tempStarters;  // temporary starters object
+
+    for (auto ATIIT : activeTeamInstance)  // loop through activeTeamInstance
+    {
+        teamStarters.push_back(tempStarters);  // add empty entry to teamStarters
+    }
+
+    return (teamStarters);
+}
+
+std::vector<std::unordered_map<std::string, size_t> > gameSetups::createTeamStarterID(std::vector<std::unordered_map <std::string, std::string> > teamStarters, teamStateUMSharedPtr activeTeamInstance)  // creates the object with each team's starter IDs
 {
     conversionSharedPtr convert = conversion::Instance();
-    std::vector<std::unordered_map <std::string, std::string> > teamStarters;
+    std::vector<std::unordered_map<std::string, size_t> > teamStarterID;
+    std::unordered_map<std::string, size_t> tempStarterID; // used for initial creatio  of teamStarterID vector
+    std::vector<std::unordered_map <std::string, std::string> >::iterator TSVIT;
+
+    std::string func = "gameSetups::createTeamStarterID()";
+    for (TSVIT = teamStarters.begin(); TSVIT != teamStarters.end(); ++TSVIT)  // loop that adds starting player IDs to teamStarterID
+    {
+        tempStarterID.clear();
+        logMsg(func +" TSVIT");
+        for (auto TSVUIT : *TSVIT)
+        {
+            logMsg(func +" TSVUIT.first = " +TSVUIT.first);
+            for (auto ATIIT : activeTeamInstance)  // loop through activeTeamInstance
+            {
+                logMsg(func +" ATIIT");
+//                std::unordered_map<std::string, size_t> tempStarterID;
+
+                for (auto PIIT : ATIIT.second->getPlayerInstance())
+                {
+                    logMsg(func +" PIIT");
+                    std::string playerName = PIIT.second->getData()->getFirstName() +" " +PIIT.second->getData()->getLastName();
+                    if (playerName == TSVUIT.second && TSVUIT.first == "PG")
+                    {
+                        logMsg(func +" PG Player ID == " +convert->toString(PIIT.second->getData()->getID()));
+                        tempStarterID.insert(std::pair<std::string, size_t>("PG", PIIT.second->getData()->getID()));
+                    }
+                    else if (playerName == TSVUIT.second && TSVUIT.first == "SG")
+                    {
+                        logMsg(func +" SG Player ID == " +convert->toString(PIIT.second->getData()->getID()));
+
+                        tempStarterID.insert(std::pair<std::string, size_t>("SG", PIIT.second->getData()->getID()));
+    //                logMsg("teamStarterID[w][SG] Player ID == " +convert->toString(teamStarterID[w][SG]));
+
+                    }
+                    else if (playerName == TSVUIT.second && TSVUIT.first == "SF")
+                    {
+                        logMsg(func +" SF Player ID == " +convert->toString(PIIT.second->getData()->getID()));
+                        tempStarterID.insert(std::pair<std::string, size_t>("SF", PIIT.second->getData()->getID()));
+                    }
+                    else if (playerName == TSVUIT.second && TSVUIT.first == "PF")
+                    {
+                        logMsg(func +" PF Player ID == " +convert->toString(PIIT.second->getData()->getID()));
+                        tempStarterID.insert(std::pair<std::string, size_t>("PF", PIIT.second->getData()->getID()));
+                    }
+                    else if (playerName == TSVUIT.second && TSVUIT.first == "C")
+                    {
+                        logMsg(func +" C Player ID == " +convert->toString(PIIT.second->getData()->getID()));
+                        tempStarterID.insert(std::pair<std::string, size_t>("C", PIIT.second->getData()->getID()));
+                    }
+                }
+            }
+        }
+        logMsg(func +" tempStarterID.size() == " +convert->toString(tempStarterID.size()));
+//                exit(0);
+        teamStarterID.push_back(tempStarterID);  // add entry to tesmStarterID for every activeTeamInstance
+    }
+
+    return (teamStarterID);
+}
+
+bool gameSetups::setupStartingLineups(teamStateUMSharedPtr activeTeamInstance, std::vector<std::unordered_map<std::string, std::string> > teamStarters, std::vector<std::unordered_map<std::string, size_t> > teamStarterID)  // sets starting lineups for each team
+{
+    conversionSharedPtr convert = conversion::Instance();
+//    std::vector<std::unordered_map <std::string, std::string> > teamStarters;
     std::unordered_map <std::string, std::string> tempStarters;
     std::unordered_map<std::string, size_t> tempStarterID; // used for initial creatio  of teamStarterID vector
     playerEntityVecUMSharedPtr playerInstance;
@@ -42,17 +122,17 @@ bool gameSetups::setupStartingLineups(teamStateUMSharedPtr activeTeamInstance)  
 
     std::string func = "gameSetups::setupStartingLineups()";
 
-    for (auto ATIIT : activeTeamInstance)  // loop through activeTeamInstance
+/*    for (auto ATIIT : activeTeamInstance)  // loop through activeTeamInstance
     {
         teamStarters.push_back(tempStarters);  // add empty entry to teamStarters
 
-        for (auto it : activeTeamInstance[ATIIT.first]->getPlayerInstance())
+        for (auto PIIT : activeTeamInstance[ATIIT.first]->getPlayerInstance())
         {
-            logMsg(func +" team dag " +convert->toString(ATIIT.first) +" " +it.second->getData()->getFirstName() +" " +it.second->getData()->getLastName());
+            logMsg(func +" team dag " +convert->toString(ATIIT.first) +" " +PIIT.second->getData()->getFirstName() +" " +PIIT.second->getData()->getLastName());
         }
         playerInstance.insert(playerInstance.begin(), activeTeamInstance[ATIIT.first]->getPlayerInstance());  // add activeTeamInstances player instance to playerInstance
     }
-    
+
     for (TSVIT = teamStarters.begin(); TSVIT != teamStarters.end(); ++TSVIT)  // loop that adds starting player IDs to teamStarterID
     {
         tempStarterID.clear();
@@ -104,7 +184,7 @@ bool gameSetups::setupStartingLineups(teamStateUMSharedPtr activeTeamInstance)  
 //                exit(0);
         teamStarterID.push_back(tempStarterID);  // add entry to tesmStarterID for every activeTeamInstance
     }
-    
+*/
     for (TSIDIT = teamStarterID.begin(); TSIDIT != teamStarterID.end(); ++TSIDIT)
     {
         for (auto TSIDUIT : *TSIDIT)
@@ -112,7 +192,77 @@ bool gameSetups::setupStartingLineups(teamStateUMSharedPtr activeTeamInstance)  
             logMsg(func +" TSIDUIT.first == " +TSIDUIT.first +" TSIDUIT.second == " +convert->toString(TSIDUIT.second));
         }
     }
+    logMsg(func +" dah teamStarterID.size() == " +convert->toString(teamStarters.size()));
+
+    exit(0);
+
+    for (TSVIT = teamStarters.begin(); TSVIT != teamStarters.end(); ++TSVIT)  // loop that adds starting player IDs to teamStarterID
+    {
+        tempStarterID.clear();
+        logMsg(func +" TSVIT");
+        for (auto TSVUIT : *TSVIT)
+        {
+
+            logMsg(func +" TSVUIT.first = " +TSVUIT.first);
+            for (auto ATIIT : activeTeamInstance)  // loop through activeTeamInstance
+            {
+                logMsg(func +" ATIIT");
+//                std::unordered_map<std::string, size_t> tempStarterID;
+
+                for (auto PIIT : ATIIT.second->getPlayerInstance())
+                {
+                    logMsg(func +" PIIT");
+                    std::string playerName = PIIT.second->getData()->getFirstName() +" " +PIIT.second->getData()->getLastName();
+                    if (playerName == TSVUIT.second && TSVUIT.first == "PG")
+                    {
+                        logMsg(func +" PG Player ID == " +convert->toString(PIIT.second->getData()->getID()));
+                        tempStarterID.insert(std::pair<std::string, size_t>("PG", PIIT.second->getData()->getID()));
+                    }
+                    else if (playerName == TSVUIT.second && TSVUIT.first == "SG")
+                    {
+                        logMsg(func +" SG Player ID == " +convert->toString(PIIT.second->getData()->getID()));
+
+                        tempStarterID.insert(std::pair<std::string, size_t>("SG", PIIT.second->getData()->getID()));
+    //                logMsg("teamStarterID[w][SG] Player ID == " +convert->toString(teamStarterID[w][SG]));
+
+                    }
+                    else if (playerName == TSVUIT.second && TSVUIT.first == "SF")
+                    {
+                        logMsg(func +" SF Player ID == " +convert->toString(PIIT.second->getData()->getID()));
+                        tempStarterID.insert(std::pair<std::string, size_t>("SF", PIIT.second->getData()->getID()));
+                    }
+                    else if (playerName == TSVUIT.second && TSVUIT.first == "PF")
+                    {
+                        logMsg(func +" PF Player ID == " +convert->toString(PIIT.second->getData()->getID()));
+                        tempStarterID.insert(std::pair<std::string, size_t>("PF", PIIT.second->getData()->getID()));
+                    }
+                    else if (playerName == TSVUIT.second && TSVUIT.first == "C")
+                    {
+                        logMsg(func +" C Player ID == " +convert->toString(PIIT.second->getData()->getID()));
+                        tempStarterID.insert(std::pair<std::string, size_t>("C", PIIT.second->getData()->getID()));
+                    }
+                }
+
+            }
+
+        }
+        logMsg(func +" tempStarterID.size() == " +convert->toString(tempStarterID.size()));
+                exit(0);
+        teamStarterID.push_back(tempStarterID);  // add entry to tesmStarterID for every activeTeamInstance
+
+    }
+//    std::vector<std::unordered_map<std::string, size_t> >::iterator TSIDIT;
+
+    for (TSIDIT = teamStarterID.begin(); TSIDIT != teamStarterID.end(); ++TSIDIT)
+    {
+        for (auto TSIDUIT : *TSIDIT)
+        {
+            logMsg(func +" TSIDUIT.first == " +TSIDUIT.first +" TSIDUIT.second == " +convert->toString(TSIDUIT.second));
+
+        }
+    }
     logMsg(func +" teamStarterID.size() == " +convert->toString(teamStarterID.size()));
 
+    exit(0);
     return (true);
 }

@@ -30,7 +30,10 @@ class gameSetups
         gameSetups();  // constructor
         ~gameSetups();  // destructor
         
-        bool setupStartingLineups(teamStateUMSharedPtr activeTeamInstance);  // sets starting lineups for each team
+        std::vector<std::unordered_map <std::string, std::string> > createTeamStarters(teamStateUMSharedPtr activeTeamInstance);  // creates the teamStarters instance
+        std::vector<std::unordered_map<std::string, size_t> > createTeamStarterID(std::vector<std::unordered_map <std::string, std::string> > teamStarters, teamStateUMSharedPtr activeTeamInstance);  // creates the object with each team's starter IDs
+
+        bool setupStartingLineups(teamStateUMSharedPtr activeTeamInstance, std::vector<std::unordered_map <std::string, std::string> > teamStarters, std::vector<std::unordered_map<std::string, size_t> > teamStarterID);  // sets starting lineups for each team
 
     private:
     

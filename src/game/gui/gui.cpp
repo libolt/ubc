@@ -1012,7 +1012,6 @@ void GUISystem::playerStartSelected()  // process player start selection
 {
     conversionSharedPtr convert = conversion::Instance();
     std::vector<std::unordered_map <std::string, std::string> > teamStarters;
-    std::unordered_map <std::string, std::string> tempStarters;
 //    teamStarters.push_back(tempStarters);
     std::unordered_map<std::string, size_t> tempStarterID; // used for initial creatio  of teamStarterID vector
     teamStateUMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
@@ -1027,7 +1026,12 @@ void GUISystem::playerStartSelected()  // process player start selection
 
     gameSetupsSharedPtr gameSetup(new gameSetups);
     
-    for (auto ATIIT : activeTeamInstance)  // loop through activeTeamInstance
+    logMsg(func +" begin");
+
+    teamStarters = gameSetup->createTeamStarters(activeTeamInstance);  // create the teamStarters instance
+
+///
+/*    for (auto ATIIT : activeTeamInstance)  // loop through activeTeamInstance
     {
         teamStarters.push_back(tempStarters);  // add empty entry to teamStarters
 
@@ -1036,9 +1040,14 @@ void GUISystem::playerStartSelected()  // process player start selection
             logMsg(func +" team dee " +convert->toString(ATIIT.first) +" " +it.second->getData()->getFirstName() +" " +it.second->getData()->getLastName());
         }
         playerInstance.insert(playerInstance.begin(), activeTeamInstance[ATIIT.first]->getPlayerInstance());  // add activeTeamInstances player instance to playerInstance
+
     }
-    
-    playerEntityVecUMSharedPtr::iterator PIIT;
+*/
+///
+    logMsg(func +" teamStarters.size() == " +convert->toString(teamStarters.size()));
+//    exit(0);
+
+/*    playerEntityVecUMSharedPtr::iterator PIIT;
     
     for (PIIT = playerInstance.begin(); PIIT != playerInstance.end(); ++PIIT)
     {
@@ -1047,6 +1056,8 @@ void GUISystem::playerStartSelected()  // process player start selection
             logMsg(func +" team dah " +it.second->getData()->getFirstName() +" " +it.second->getData()->getLastName());
         }
     }
+*/
+///
 //    exit(0);
 //    playerInstance = base->getGameS()->getActiveTeamInstance()[0]->getPlayerInstance();
 
@@ -1106,6 +1117,7 @@ void GUISystem::playerStartSelected()  // process player start selection
         teamPlayerPosSelectBox[1]["C"]->setIndexSelected(0);
     }
     
+    logMsg(func +" next");
     //FIXME! Should be converted into a loop to iterate 
     
 //    teamStarterID[0][0] = team0IDs[0][team0PGSelectBox->getIndexSelected()];
@@ -1114,19 +1126,27 @@ void GUISystem::playerStartSelected()  // process player start selection
 //    for (TSIT = teamStarters.begin(); TSIT != teamStarters.end(); ++TSIT)
 
     std::vector<std::unordered_map <std::string, std::string> >::iterator TSVIT;
-    
+    logMsg(func +" teamStareters.size() == " +convert->toString(teamStarters.size()));
+
     for (TSVIT = teamStarters.begin(); TSVIT != teamStarters.end(); ++TSVIT)
     {
-
+        logMsg(func + " TSVIT begin");
         TSVIT->insert(std::pair<std::string, std::string>("PG", teamPlayerPosSelectBox[w]["PG"]->getItemNameAt(teamPlayerPosSelectBox[w]["PG"]->getIndexSelected())));
         TSVIT->insert(std::pair<std::string, std::string>("SG", teamPlayerPosSelectBox[w]["SG"]->getItemNameAt(teamPlayerPosSelectBox[w]["SG"]->getIndexSelected())));
         TSVIT->insert(std::pair<std::string, std::string>("SF", teamPlayerPosSelectBox[w]["SF"]->getItemNameAt(teamPlayerPosSelectBox[w]["SF"]->getIndexSelected())));
         TSVIT->insert(std::pair<std::string, std::string>("PF", teamPlayerPosSelectBox[w]["PF"]->getItemNameAt(teamPlayerPosSelectBox[w]["PF"]->getIndexSelected())));
         TSVIT->insert(std::pair<std::string, std::string>("C", teamPlayerPosSelectBox[w]["C"]->getItemNameAt(teamPlayerPosSelectBox[w]["C"]->getIndexSelected())));
         ++w;
+        logMsg(func +" TSVIT end");
     }
+    logMsg(func +" woo woo");
+    logMsg(func +" teamStarters.size() == " +convert->toString(teamStarters.size()));
     logMsg(func +" teamStarters[0][PG] == " +teamStarters[0]["PG"]);
 //    exit(0);
+    teamStarterID = gameSetup->createTeamStarterID(teamStarters,activeTeamInstance);  // creates the object with the each team's starter IDs
+
+    logMsg(func +" teamStarterID.size() == " +convert->toString(teamStarterID.size()));
+    exit(0);
 /*    std::unordered_map<std::string, size_t> tempStarterID;
 
     while (teamStarterID.size() < 2)
@@ -1145,7 +1165,9 @@ void GUISystem::playerStartSelected()  // process player start selection
 
     }
 */
-    for (TSVIT = teamStarters.begin(); TSVIT != teamStarters.end(); ++TSVIT)  // loop that adds starting player IDs to teamStarterID
+
+///
+/*    for (TSVIT = teamStarters.begin(); TSVIT != teamStarters.end(); ++TSVIT)  // loop that adds starting player IDs to teamStarterID
     {
         tempStarterID.clear();
         logMsg(func +" TSVIT");
@@ -1211,7 +1233,8 @@ void GUISystem::playerStartSelected()  // process player start selection
         }
     }
     logMsg(func +" teamStarterID.size() == " +convert->toString(teamStarterID.size()));
-
+*/
+///
     logMsg(func +" dgg");
 //    exit(0);
 /*        for (auto TSVUIT : *TSVIT)

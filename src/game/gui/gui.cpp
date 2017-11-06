@@ -1146,7 +1146,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     teamStarterID = gameSetup->createTeamStarterID(teamStarters,activeTeamInstance);  // creates the object with the each team's starter IDs
 
     logMsg(func +" teamStarterID.size() == " +convert->toString(teamStarterID.size()));
-    exit(0);
+//    exit(0);
 /*    std::unordered_map<std::string, size_t> tempStarterID;
 
     while (teamStarterID.size() < 2)
@@ -1341,7 +1341,9 @@ void GUISystem::playerStartSelected()  // process player start selection
     }
 */
 //    exit(0);
-    base->getGameS()->getActiveTeamInstance()[0]->setActivePlayerID(activePlayerID);
+
+///
+/*    base->getGameS()->getActiveTeamInstance()[0]->setActivePlayerID(activePlayerID);
 
     logMsg(func +" activeTeamInstance.size() == " +convert->toString(activeTeamInstance.size()));
     for (auto ATIIT : activeTeamInstance)
@@ -1362,20 +1364,24 @@ void GUISystem::playerStartSelected()  // process player start selection
                 logMsg("activeTeamInstance " +convert->toString(ATIIT.first) + " Player Instances NOT CREATED!");
                 exit(0);
             }
-/*            base->getGameS()->getActiveTeamInstance()[0]->setBase(base);
-            if (base->getGameS()->getActiveTeamInstance()[0]->createPlayerInstances()) // creates the player instances based on playerIDS
-            {
-                logMsg(func +" Team 0 Player instances created!");
-                base->getGameS()->getActiveTeamInstance()[0]->setPlayerInstancesCreated(true);
+//            base->getGameS()->getActiveTeamInstance()[0]->setBase(base);
+//            if (base->getGameS()->getActiveTeamInstance()[0]->createPlayerInstances()) // creates the player instances based on playerIDS
+//            {
+//                logMsg(func +" Team 0 Player instances created!");
+//                base->getGameS()->getActiveTeamInstance()[0]->setPlayerInstancesCreated(true);
     //          exit(0);
-            }
-*/
+//            }
+
         }
     }
-    
+*/
+///
+    gameSetup->checkPlayerInstancesCreated(activeTeamInstance);
 //    exit(0);
     // create active player Instancea
-    for (auto ATIIT : activeTeamInstance)
+
+///
+/*    for (auto ATIIT : activeTeamInstance)
     {
         logMsg(func +" ATIIT.first == " +convert->toString(ATIIT.first));
 //        activePlayerInstance.clear();
@@ -1387,7 +1393,7 @@ void GUISystem::playerStartSelected()  // process player start selection
             logMsg("teamStarterID[ATIIT.first][PG] == " +teamStarterIDPG);
             logMsg("playerInstance ID == " +convert->toString(PIIT.second->getData()->getID()));
             
-/*            if (PIIT.second->getData()->getID() == teamStarterID[ATIIT.first]["PG"])
+            if (PIIT.second->getData()->getID() == teamStarterID[ATIIT.first]["PG"])
             {
                 logMsg(func +" PG");
                 activePlayerInstance.insert(std::pair<playerPositions, playerEntitySharedPtr>(PG, PIIT.second));
@@ -1420,7 +1426,7 @@ void GUISystem::playerStartSelected()  // process player start selection
             }
             logMsg(func +" WOOT!");
             logMsg(func +" loop activePlayerInstance.size() == " +convert->toString(activePlayerInstance.size()));
-*/
+
         }
 //        exit(0);
         ATIIT.second->setActivePlayerInstance(activePlayerInstance);
@@ -1431,7 +1437,10 @@ void GUISystem::playerStartSelected()  // process player start selection
         logMsg(func +" team name == " +ATIIT.second->getName());
 
         logMsg(func +" activePlayerInstance.size() == " +convert->toString(activePlayerInstance.size()));
-    }
+    }  */
+///    
+    activeTeamInstance = gameSetup->createActivePlayerInstances(activeTeamInstance, teamStarterID);
+    
     base->getGameS()->setActiveTeamInstance(activeTeamInstance);
     exit(0);
 //    playerInstance.clear();

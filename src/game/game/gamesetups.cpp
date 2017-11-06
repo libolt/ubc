@@ -110,6 +110,121 @@ std::vector<std::unordered_map<std::string, size_t> > gameSetups::createTeamStar
     return (teamStarterID);
 }
 
+bool gameSetups::checkPlayerInstancesCreated(teamStateUMSharedPtr activeTeamInstance)  // checks if player instances have been created
+{
+    conversionSharedPtr convert = conversion::Instance();
+    std::string func = "gameSetups::checkPlayerInstancesCreated()";
+
+    logMsg(func +" activeTeamInstance.size() == " +convert->toString(activeTeamInstance.size()));
+    for (auto ATIIT : activeTeamInstance)
+    {
+        logMsg("ATIIT.second->getPlayerInstancesCreated() == " +convert->toString(ATIIT.second->getPlayerInstancesCreated()));
+        if (!ATIIT.second->getPlayerInstancesCreated())    // checks if playerInstances have been created
+        {
+            logMsg(func +" activeTeamInstance " +convert->toString(ATIIT.first) +" Player Instances NOT Created!");
+//            exit(0);
+            if( ATIIT.second->createPlayerInstances())
+            {
+                ATIIT.second->setPlayerInstancesCreated(true);
+//                base->getGameS()->setActiveTeamInstance(activeTeamInstance);
+                logMsg("activeTeamInstance " +convert->toString(ATIIT.first) + " Player Instances Created Successfully!");
+            }
+            else
+            {
+                logMsg("activeTeamInstance " +convert->toString(ATIIT.first) + " Player Instances NOT CREATED!");
+                exit(0);
+            }
+/*            base->getGameS()->getActiveTeamInstance()[0]->setBase(base);
+            if (base->getGameS()->getActiveTeamInstance()[0]->createPlayerInstances()) // creates the player instances based on playerIDS
+            {
+                logMsg(func +" Team 0 Player instances created!");
+                base->getGameS()->getActiveTeamInstance()[0]->setPlayerInstancesCreated(true);
+    //          exit(0);
+            }
+*/
+        }
+    }
+    return (true);
+}
+
+teamStateUMSharedPtr gameSetups::createActivePlayerInstances(teamStateUMSharedPtr activeTeamInstance, std::vector<std::unordered_map<std::string, size_t> > teamStarterID)  // creates the active playerInstances
+{
+    conversionSharedPtr convert = conversion::Instance();
+    std::string func = "gameSetups::createActivePlayerInstances()";
+    playerEntityUMSharedPtr PI = activeTeamInstance[1]->getPlayerInstance();
+    
+    logMsg(func +" Team == " +activeTeamInstance[0]->getCity() + " " +activeTeamInstance[0]->getName());
+
+    for (auto TSIDIT : teamStarterID[0])
+    {
+        logMsg(func +" teamStarterID == " +convert->toString(TSIDIT.second));
+    }
+    for (auto PIIT : PI)
+    {
+        logMsg(func +" playerInstance ID == " +convert->toString(PIIT.second->getData()->getID()));
+    }
+    exit(0);
+    for (auto ATIIT : activeTeamInstance)
+    {
+        logMsg(func +" ATIIT.first == " +convert->toString(ATIIT.first));
+        logMsg(func +" Team == " +ATIIT.second->getCity() + " " +ATIIT.second->getName());
+//        activePlayerInstance.clear();
+        playerEntityUMSharedPtr activePlayerInstance;
+        
+        for (auto PIIT : ATIIT.second->getPlayerInstance())
+        {
+            logMsg(func +" ATIIT.first == " +convert->toString(ATIIT.first) +" PIIT.second->getData()->getID() == " +convert->toString(PIIT.second->getData()->getID()) +" primaryPosition == " +convert->toString(PIIT.second->getData()->getPrimaryPosition()));
+            std::string teamStarterIDPG = convert->toString(teamStarterID[0]["PG"]);
+            logMsg(func +" teamStarterID[ATIIT.first][PG] == " +teamStarterIDPG);
+            logMsg(func +" playerInstance ID == " +convert->toString(PIIT.second->getData()->getID()));
+            
+            if (PIIT.second->getData()->getID() == teamStarterID[ATIIT.first]["PG"])
+            {
+                logMsg(func +" PG");
+                activePlayerInstance.insert(std::pair<playerPositions, playerEntitySharedPtr>(PG, PIIT.second));
+                activePlayerInstance[PG]->setActivePosition(PG);
+                logMsg(func +" WOOT PG!");
+            }
+            else if (PIIT.second->getData()->getID() == teamStarterID[ATIIT.first]["SG"])
+            {
+                activePlayerInstance.insert(std::pair<playerPositions, playerEntitySharedPtr>(SG, PIIT.second));
+                activePlayerInstance[SG]->setActivePosition(SG);
+                logMsg(func +" WOOT SG!");
+            }
+            else if (PIIT.second->getData()->getID() == teamStarterID[ATIIT.first]["SF"])
+            {
+                activePlayerInstance.insert(std::pair<playerPositions, playerEntitySharedPtr>(SF, PIIT.second));
+                activePlayerInstance[SF]->setActivePosition(SF);
+                logMsg(func +" WOOT SF!");
+            }
+            else if (PIIT.second->getData()->getID() == teamStarterID[ATIIT.first]["PF"])
+            {
+                activePlayerInstance.insert(std::pair<playerPositions, playerEntitySharedPtr>(PF, PIIT.second));
+                activePlayerInstance[PF]->setActivePosition(PF);
+                logMsg(func +" WOOT PF!");
+            }
+            else if (PIIT.second->getData()->getID() == teamStarterID[ATIIT.first]["C"])
+            {
+                activePlayerInstance.insert(std::pair<playerPositions, playerEntitySharedPtr>(C, PIIT.second));
+                activePlayerInstance[C]->setActivePosition(C);
+                logMsg(func +" WOOT C!");
+            }
+            logMsg(func +" WOOT!");
+            logMsg(func +" loop activePlayerInstance.size() == " +convert->toString(activePlayerInstance.size()));
+
+        }
+//        exit(0);
+        ATIIT.second->setActivePlayerInstance(activePlayerInstance);
+        ATIIT.second->setActivePlayerInstancesCreated(true);
+        ATIIT.second->setActivePlayerInstancesChanged(true);
+
+//        ATIIT.second->setPlayerStartActivePositions();
+        logMsg(func +" team name == " +ATIIT.second->getName());
+
+        logMsg(func +" activePlayerInstance.size() == " +convert->toString(activePlayerInstance.size()));
+    }
+    return (activeTeamInstance);
+}
 bool gameSetups::setupStartingLineups(teamStateUMSharedPtr activeTeamInstance, std::vector<std::unordered_map<std::string, std::string> > teamStarters, std::vector<std::unordered_map<std::string, size_t> > teamStarterID)  // sets starting lineups for each team
 {
     conversionSharedPtr convert = conversion::Instance();

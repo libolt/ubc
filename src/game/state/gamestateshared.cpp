@@ -59,14 +59,14 @@ teamTypes gameStateShared::teamWithBall;  // store which team has the basketball
 basketballStateUMSharedPtr gameStateShared::activeBasketballInstance;  // stores active basketball instance
 courtStateUMSharedPtr gameStateShared::activeCourtInstance;  // stores active court instance
 hoopStateUMSharedPtr gameStateShared::activeHoopInstance;  // stores active hoop instance
-teamStateUMSharedPtr gameStateShared::activeTeamInstance;  // stores active team instance
+teamStateMSharedPtr gameStateShared::activeTeamInstance;  // stores active team instance
 
 //size_t gameStateShared::activeBBallInstance;  // stores which instance of the baskteball class is active
 basketballStateVecSharedPtr gameStateShared::basketballInstance;  // creates instance of the basketballs class
 courtStateUMSharedPtr gameStateShared::courtInstance;  // stores the court instance
 hoopStateUMSharedPtr gameStateShared::hoopInstance;  // creates instance of the hoop class
 playerEntityUMSharedPtr gameStateShared::playerInstance;  // stores the vector of the players loaded from the xml files
-teamStateUMSharedPtr  gameStateShared::teamInstance;  // creates instance of the teamState class
+teamStateMSharedPtr  gameStateShared::teamInstance;  // creates instance of the teamState class
 jumpBallsSharedPtr gameStateShared::jumpBall; // instance that is used for jumpBall functions.
 float gameStateShared::yOffset; // stores the y offset for objects on the screen
 std::vector<bool> gameStateShared::teamActivePlayersChanged;  // stores whether the team's active player instances have changed

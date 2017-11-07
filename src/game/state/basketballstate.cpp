@@ -537,7 +537,7 @@ void basketballState::updateMovement()  // updates the basketball(s) movements
 {
     sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
-    teamStateUMSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
+    teamStateMSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
     size_t teamWithBall = gameS->getTeamWithBall();
 /*TS    playerStateVecSharedPtr activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
     size_t playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();
@@ -611,7 +611,7 @@ void basketballState::updateDirection()  // updates basketball direction(s)
     //conversion *convert = conversion::Instance();
     sharedPtr<conversion> convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
-    teamStateUMSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
+    teamStateMSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
     size_t teamWithBall = gameS->getTeamWithBall();
 /*TS    playerStateVecSharedPtr activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
     sizeTVec activePlayerID = activeTeamInstance[teamWithBall]->getActivePlayerID();

@@ -976,8 +976,8 @@ void GUISystem::teamsSelected()  // processes team selection
 //    exit(0);
     //gameState *gameS = gameState::Instance();
     sharedPtr<conversion> convert = conversion::Instance();
-    teamStateUMSharedPtr activeTeamInstance;
-    teamStateUMSharedPtr teamInstance;
+    teamStateMSharedPtr activeTeamInstance;
+    teamStateMSharedPtr teamInstance;
     std::string func = "GUISystem::teamsSelected()";
   
     teamInstance = base->getGameS()->getTeamInstance();
@@ -1014,7 +1014,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     std::vector<std::unordered_map <std::string, std::string> > teamStarters;
 //    teamStarters.push_back(tempStarters);
     std::unordered_map<std::string, size_t> tempStarterID; // used for initial creatio  of teamStarterID vector
-    teamStateUMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
+    teamStateMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
   
 //    std::vector<playerStateUMSharedPtr > playerInstance;
     playerEntityVecUMSharedPtr playerInstance;

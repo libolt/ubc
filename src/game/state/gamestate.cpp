@@ -333,7 +333,7 @@ bool gameState::createTeamInstances()  // creates team Instances
     
     logMsg(func +" beginning");
 
-    teamStateUMSharedPtr tInstance;
+    teamStateMSharedPtr tInstance;
 /*    teamStateVecSharedPtr tInstance2;
     teamStateSharedPtr tempInstance(new teamState);
 //    teamState *tempInstance = new teamState;
@@ -713,8 +713,8 @@ bool gameState::createActiveHoopInstances()  // creates the active hoop instance
 bool gameState::setupActiveTeamInstances()  // sets up the active team instances
 {
     teamStateSharedPtr tInstance;
-    teamStateUMSharedPtr activeTeamInstance = getActiveTeamInstance();
-    teamStateUMSharedPtr teamInstance = getTeamInstance();
+    teamStateMSharedPtr activeTeamInstance = getActiveTeamInstance();
+    teamStateMSharedPtr teamInstance = getTeamInstance();
     sizeTVec teamIDS = getTeamIDS();
     std::string func = "gameState::setupActiveTeamInstances()";
 
@@ -1581,7 +1581,7 @@ bool gameState::updateState()  // updates the game state
 
 bool gameState::updateActiveTeamInstances()  // updates all active team instances
 {
-    teamStateUMSharedPtr activeTeamInstance = getActiveTeamInstance();
+    teamStateMSharedPtr activeTeamInstance = getActiveTeamInstance();
     sharedPtr<conversion> convert = conversion::Instance();
 
     std::string func = "gameState::updateActiveTeamInstances()";
@@ -1688,7 +1688,7 @@ bool gameState::updateActiveTeamInstances()  // updates all active team instance
 
 bool gameState::updatePlayerCollisionObjects()  // updates the player collision objects for a team instance
 {
-    teamStateUMSharedPtr activeTeamInstance = getActiveTeamInstance();
+    teamStateMSharedPtr activeTeamInstance = getActiveTeamInstance();
     sharedPtr<conversion> convert = conversion::Instance();
  
     std::unordered_map<std::string, btRigidBodySharedPtr> collisionBodies;  // physical bodies to test for collisions with players physBody objects

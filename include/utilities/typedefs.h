@@ -304,7 +304,7 @@ typedef std::unordered_map <size_t, hoopStateSharedPtr> hoopStateUMSharedPtr;
 
 typedef std::unordered_map <size_t, playerStateSharedPtr> playerStateUMSharedPtr;
 
-typedef std::unordered_map <size_t, teamStateSharedPtr> teamStateUMSharedPtr;
+typedef std::map <size_t, teamStateSharedPtr> teamStateMSharedPtr;
 
 typedef std::unordered_map <size_t, usersSharedPtr> usersUMSharedPtr;
 

@@ -130,7 +130,7 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
 void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start Selection Menu widgets
 {
     sharedPtr<conversion> convert = conversion::Instance();
-    teamStateUMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
+    teamStateMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
     playerEntityUMSharedPtr playerInstance;
     std::string func = "addPlayerStartSelectionMenuData";
     sizeTVec teamIDs = base->getGameS()->getTeamIDS();
@@ -314,7 +314,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     sharedPtr<conversion> convert = conversion::Instance();
 
     loadTeamsSharedPtr loadTeam = base->getLoadTeam();
-    teamStateUMSharedPtr teamInstance; // = gameS->getTeamDataInstance();
+    teamStateMSharedPtr teamInstance; // = gameS->getTeamDataInstance();
 
 //    if (!base->getGameS()->getTeamInstancesCreated())
 //    {

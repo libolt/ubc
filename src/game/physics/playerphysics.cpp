@@ -200,7 +200,7 @@ void playerPhysics::updatePosition()  // updates the position of player objecgts
 //    teamTypes teamWithBall = getGameS()->getTeamWithBall();
     int playerWithBall;
 
-    teamStateUMSharedPtr activeTeamInstance = getGameS()->getActiveTeamInstance();
+    teamStateMSharedPtr activeTeamInstance = getGameS()->getActiveTeamInstance();
     std::vector <playerStateUMSharedPtr > activePlayerInstance;
     basketballStateVecSharedPtr basketballInstance = getGameS()->getBasketballInstance();
 
@@ -259,7 +259,7 @@ bool playerPhysics::jump(teamTypes teamType, int playerID)  // calculates and ex
 //    sharedPtr<gameState> gameS = gameState::Instance();
 
     courtStateUMSharedPtr  courtInstance = getGameS()->getCourtInstance();
-    teamStateUMSharedPtr activeTeamInstance = getGameS()->getActiveTeamInstance();
+    teamStateMSharedPtr activeTeamInstance = getGameS()->getActiveTeamInstance();
 /*TS    playerStateVecSharedPtr activePlayerInstance = getActiveTeamInstance()[teamType]->getActivePlayerInstance();
     sizeTVec activePlayerID = activeTeamInstance[teamType]->getActivePlayerID();
     btVector3 playerJumpBeginPos;

@@ -541,7 +541,7 @@ void playerSteer::checkCourtPosition()  // checks if the player's position has c
 
 //    gameS->setActiveTeamInstance(getActiveTeamInstance());
 //    teamStateVecSharedPtr teamI = gameS->getActiveTeamInstance();
-    teamStateUMSharedPtr teamI = gameS->getActiveTeamInstance();
+    teamStateMSharedPtr teamI = gameS->getActiveTeamInstance();
 
     playerEntityVecUMSharedPtr activePlayerI;
 //    size_t w = 0;

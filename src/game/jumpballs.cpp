@@ -155,7 +155,7 @@ void jumpBalls::setBBallVelocity(const btVector3 &set)  // sets the value of bba
     bballVelocity = set;
 }
 
-bool jumpBalls::updateState(teamTypes teamWithBall, basketballStateUMSharedPtr activeBasketballInstance, std::unordered_map<size_t, teamStateSharedPtr> activeTeamInstance, quarters quarter)  // updates state of the jumpBalls instance
+bool jumpBalls::updateState(teamTypes teamWithBall, basketballStateUMSharedPtr activeBasketballInstance, teamStateMSharedPtr activeTeamInstance, quarters quarter)  // updates state of the jumpBalls instance
 {
 //    sharedPtr<gameState> gameS = gameState::Instance();
     sharedPtr<conversion> convert = conversion::Instance();
@@ -213,10 +213,10 @@ bool jumpBalls::updateState(teamTypes teamWithBall, basketballStateUMSharedPtr a
     
     logMsg(func +" jumpBall return(false)");
     
-    return (false);  // returns false until jump ball has completed
+    return (false);  // returns false until jump ball has com=pleted
 }
 
-bool jumpBalls::jumpBallExecute(basketballStateUMSharedPtr activeBasketballInstance, std::unordered_map<size_t, teamStateSharedPtr> activeTeamInstance)  // initiates jump ball from jump ball circle
+bool jumpBalls::jumpBallExecute(basketballStateUMSharedPtr activeBasketballInstance, teamStateMSharedPtr activeTeamInstance)  // initiates jump ball from jump ball circle
 {
 //    exit(0);
     sharedPtr<conversion> convert = conversion::Instance();
@@ -348,7 +348,7 @@ TS*/
     return (false);  // executeJumpBall has not completed
 }
 
-bool jumpBalls::tipToPlayer(basketballStateUMSharedPtr activeBasketballInstance, std::unordered_map<size_t, teamStateSharedPtr> activeTeamInstance, quarters quarter)  // tips the basketball to the appropriate player
+bool jumpBalls::tipToPlayer(basketballStateUMSharedPtr activeBasketballInstance, teamStateMSharedPtr activeTeamInstance, quarters quarter)  // tips the basketball to the appropriate player
 {
 //    sharedPtr<gameState> gameS = gameState::Instance();
     sharedPtr<conversion> convert = conversion::Instance();

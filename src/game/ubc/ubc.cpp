@@ -24,6 +24,7 @@
 #include "engine/inputengine.h"
 #include "engine/renderengine.h"
 #include "engine/physicsengine.h"
+#include "entity/playerentity.h"
 #include "state/basketballstate.h"
 #include "state/gamestate.h"
 #include "input/inputgamepads.h"
@@ -381,7 +382,8 @@ bool UBC::gameLoop()  // Main Game Loop
     while (!quitGame)
     {
         input->process();
-        processPhysicsEvents();
+//        processPhysicsEvents();
+        
 /*        if (base->getGameS()->getGameSetupComplete())  // checks to make sure game setup is complete before continuing
         {
             
@@ -412,8 +414,10 @@ bool UBC::gameLoop()  // Main Game Loop
     //             exit(0);
                 }
             }
-        }
-*/        
+        }*/
+        
+       // exit(0);
+
         if (base->getStartActiveGame())
         {
             if (startGame())

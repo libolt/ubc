@@ -108,7 +108,8 @@ class jumpBalls;
 //class ENetHost;
 class users;
 
-class gameSetups;
+class gameSetupLineups;
+class gameSetupTeams;
 
 #ifndef sharedPtr
 #define sharedPtr std::shared_ptr
@@ -235,9 +236,11 @@ typedef sharedPtr<BtOgre::RigidBodyState> BtOgreRigidBodyStateSharedPtr;
 
 typedef sharedPtr<btRigidBody> btRigidBodySharedPtr;
 
-// game classses
+// game setup classses
 
-typedef sharedPtr<gameSetups> gameSetupsSharedPtr;
+typedef sharedPtr<gameSetupLineups> gameSetupLineupsSharedPtr;
+
+typedef sharedPtr<gameSetupTeams> gameSetupTeamsSharedPtr;
 
 // vector typedefs
 

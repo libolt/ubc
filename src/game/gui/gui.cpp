@@ -28,7 +28,8 @@
 #include "data/playerdata.h"
 #include "engine/gameengine.h"
 #include "entity/playerentity.h"
-#include "game/gamesetups.h"
+#include "gamesetup/gamesetuplineups.h"
+#include "gamesetup/gamesetupteams.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
 #include "state/gamestate.h"
@@ -978,6 +979,7 @@ void GUISystem::teamsSelected()  // processes team selection
     sharedPtr<conversion> convert = conversion::Instance();
     teamStateMSharedPtr activeTeamInstance;
     teamStateMSharedPtr teamInstance;
+    gameSetupTeamsSharedPtr gameSetupTeam;
     std::string func = "GUISystem::teamsSelected()";
   
     teamInstance = base->getGameS()->getTeamInstance();
@@ -987,11 +989,14 @@ void GUISystem::teamsSelected()  // processes team selection
     sizeTVec teamID;
     teamID.push_back(teamSelectBox[0]->getIndexSelected());
     teamID.push_back(teamSelectBox[1]->getIndexSelected());
-    activeTeamInstance.insert(std::pair<size_t, teamStateSharedPtr>(teamID[0], teamInstance[teamID[0]]));
-    activeTeamInstance.insert(std::pair<size_t, teamStateSharedPtr>(teamID[1], teamInstance[teamID[1]]));
+
+    activeTeamInstance = gameSetupTeam->createActiveTeamInstances(teamInstance, teamID);
+
     // sets the base class of the teamInstance objects to the same as the GUI which avoids crashes due to uninitialized sharedPtrs
-    activeTeamInstance[0]->setBase(base);
-    activeTeamInstance[1]->setBase(base);
+    for (auto ATIIT : activeTeamInstance)
+    {
+        ATIIT.second->setBase(base);
+    }
     
     //    gameS->setTeamID(teamID);
     logMsg(func +" teamSelectBox[0]->getIndexSelected() == " +convert->toString(teamSelectBox[0]->getIndexSelected()));
@@ -1024,11 +1029,11 @@ void GUISystem::playerStartSelected()  // process player start selection
     size_t IDs = 0;
     std::string func = "GUISystem::playerStartSelected()";
 
-    gameSetupsSharedPtr gameSetup(new gameSetups);
+    gameSetupLineupsSharedPtr gameSetupLineup(new gameSetupLineups);
     
     logMsg(func +" begin");
 
-    teamStarters = gameSetup->createTeamStarters(activeTeamInstance);  // create the teamStarters instance
+    teamStarters = gameSetupLineup->createTeamStarters(activeTeamInstance);  // create the teamStarters instance
 
 ///
 /*    for (auto ATIIT : activeTeamInstance)  // loop through activeTeamInstance
@@ -1143,7 +1148,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     logMsg(func +" teamStarters.size() == " +convert->toString(teamStarters.size()));
     logMsg(func +" teamStarters[0][PG] == " +teamStarters[0]["PG"]);
 //    exit(0);
-    teamStarterID = gameSetup->createTeamStarterID(teamStarters,activeTeamInstance);  // creates the object with the each team's starter IDs
+    teamStarterID = gameSetupLineup->createTeamStarterID(teamStarters,activeTeamInstance);  // creates the object with the each team's starter IDs
 
     logMsg(func +" teamStarterID.size() == " +convert->toString(teamStarterID.size()));
 //    exit(0);
@@ -1376,7 +1381,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     }
 */
 ///
-    gameSetup->checkPlayerInstancesCreated(activeTeamInstance);
+    gameSetupLineup->checkPlayerInstancesCreated(activeTeamInstance);
 //    exit(0);
     // create active player Instancea
 
@@ -1439,7 +1444,7 @@ void GUISystem::playerStartSelected()  // process player start selection
         logMsg(func +" activePlayerInstance.size() == " +convert->toString(activePlayerInstance.size()));
     }  */
 ///    
-    activeTeamInstance = gameSetup->createActivePlayerInstances(activeTeamInstance, teamStarterID);
+    activeTeamInstance = gameSetupLineup->createActivePlayerInstances(activeTeamInstance, teamStarterID);
     
     base->getGameS()->setActiveTeamInstance(activeTeamInstance);
 //    exit(0);
@@ -1560,7 +1565,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     }*/
 ///
 
-    if (gameSetup->checkActivePlayerInstancesCreated(activeTeamInstance))
+    if (gameSetupLineup->checkActivePlayerInstancesCreated(activeTeamInstance))
     {
         logMsg("All active player instances created successfully!");
 //        exit(0);

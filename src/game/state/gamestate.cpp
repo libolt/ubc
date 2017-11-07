@@ -1485,7 +1485,27 @@ bool gameState::updateState()  // updates the game state
 
         logMsg(func +" getActiveTeamInstance().size() == " +convert->toString(getActiveTeamInstance().size()));
 
-
+        teamStateMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
+        if (activeTeamInstance.size() > 0)
+        {
+            logMsg(func + " activeTeamInstance.size() == " +convert->toString(activeTeamInstance.size()));
+            for (auto ATIIT : activeTeamInstance)
+            {
+                playerEntityMSharedPtr activePlayerInstance = ATIIT.second->getActivePlayerInstance();
+                if (ATIIT.second->getActivePlayerInstancesCreated())
+                {
+                    logMsg(func +" Wiot!");
+                    logMsg(func + " activePlayerInstance.size() == " +convert->toString(activePlayerInstance.size()));
+        
+                    for (auto APIIT : activePlayerInstance)
+                    {
+                        Ogre::Vector3 pos = APIIT.second->getNode()->getPosition();
+                        logMsg(func +" pos = " +convert->toString(pos));
+                    }
+                }
+            }
+            exit(0);
+        }
 //        exit(0);
         if (!getTipOffComplete())  // calls tip off execution
         {

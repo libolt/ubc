@@ -296,7 +296,7 @@ LOCAL_SRC_FILES := \
                    $(subst $(LOCAL_PATH)/,, \
                        $(wildcard $(LOCAL_PATH)/../../src/game/utilities/*.cpp)) \
                    $(subst $(LOCAL_PATH)/,, \
-                       $(wildcard $(LOCAL_PATH)/../../src/game/game/*.cpp)) \
+                       $(wildcard $(LOCAL_PATH)/../../src/game/gamesetup/*.cpp)) \
 
 
 

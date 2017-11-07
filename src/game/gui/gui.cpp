@@ -1019,7 +1019,7 @@ void GUISystem::playerStartSelected()  // process player start selection
 //    std::vector<playerStateUMSharedPtr > playerInstance;
     playerEntityVecUMSharedPtr playerInstance;
 //    std::unordered_map<std::string, playerStateSharedPtr> activePlayerInstance;
-    playerEntityUMSharedPtr activePlayerInstance;
+    playerEntityMSharedPtr activePlayerInstance;
 //    std::unordered_map<playerPositions, playerEntitySharedPtr, std::hash<int> > activePlayerInstance;
     size_t IDs = 0;
     std::string func = "GUISystem::playerStartSelected()";
@@ -1442,7 +1442,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     activeTeamInstance = gameSetup->createActivePlayerInstances(activeTeamInstance, teamStarterID);
     
     base->getGameS()->setActiveTeamInstance(activeTeamInstance);
-    exit(0);
+//    exit(0);
 //    playerInstance.clear();
 //    activePlayerInstance.clear();
 /*    playerInstance = base->getGameS()->getActiveTeamInstance()[0]->getPlayerInstance();
@@ -1543,7 +1543,10 @@ void GUISystem::playerStartSelected()  // process player start selection
         i++;
     }
     */
-    if (base->getGameS()->getActiveTeamInstance()[0]->getPlayerInstancesCreated() && base->getGameS()->getActiveTeamInstance()[1]->getPlayerInstancesCreated())
+
+
+///
+/*    if (base->getGameS()->getActiveTeamInstance()[0]->getPlayerInstancesCreated() && base->getGameS()->getActiveTeamInstance()[1]->getPlayerInstancesCreated())
     {
 ///        base->getGameS()->setActiveTeamInstance(activeTeamInstance);  // sets the activeTeamInstance vector
 //        base->getGameS()->setGameSetupComplete(true);
@@ -1554,8 +1557,19 @@ void GUISystem::playerStartSelected()  // process player start selection
     {
         logMsg("Team Instances NOT created!");
         exit(0);
-    }
+    }*/
+///
 
+    if (gameSetup->checkActivePlayerInstancesCreated(activeTeamInstance))
+    {
+        logMsg("All active player instances created successfully!");
+//        exit(0);
+    }
+    else
+    {
+        logMsg("Unable to create all active player instances!");
+        exit(0);
+    }
 /*    logMsg("team 0 C selectbox id = " +convert->toString(teamStarterID[0][1]));
     logMsg("team 0 starter 0 = " +convert->toString(teamStarterID[0][0]));
     logMsg("team  0 starter 0 = " +team0Starters[0]);

@@ -30,7 +30,7 @@
 #include "state/teamstate.h"
 
 // static declarations
-teamStateUMSharedPtr loadTeams::tInstance;
+teamStateMSharedPtr loadTeams::tInstance;
 stdStringVec loadTeams::teamFiles;  // stores list of team xml files
 bool loadTeams::teamFilesLoaded;
 
@@ -61,11 +61,11 @@ void loadTeams::setTeamFilesLoaded(bool set)  // sets the value of teamFilesLoad
     teamFilesLoaded = set;
 }
 
-std::unordered_map<size_t, teamStateSharedPtr> loadTeams::getTInstance()  // retrieves the value of tInstance
+teamStateMSharedPtr loadTeams::getTInstance()  // retrieves the value of tInstance
 {
     return(tInstance);
 }
-void loadTeams::setTInstance(std::unordered_map<size_t, teamStateSharedPtr> set)  // sets the value of tInstance
+void loadTeams::setTInstance(teamStateMSharedPtr set)  // sets the value of tInstance
 {
     tInstance = set;
 }
@@ -74,7 +74,7 @@ bool loadTeams::checkIfTeamsLoaded()  // checks if teams have been loaded into t
 {
     sharedPtr<conversion> convert = conversion::Instance();
     teamStateVec tempT;
-    teamStateUMSharedPtr tempTInstance;
+    teamStateMSharedPtr tempTInstance;
     tInstance = tempTInstance;
     std::string func = "loader::checkIfTeamsLoaded()";
     
@@ -149,10 +149,10 @@ bool loadTeams::checkIfTeamsLoaded()  // checks if teams have been loaded into t
     return (true);
 }
 
-std::unordered_map<size_t, teamStateSharedPtr> loadTeams::loadTeamFiles()  // load teams from XML files
+teamStateMSharedPtr loadTeams::loadTeamFiles()  // load teams from XML files
 {
     sharedPtr<conversion> convert = conversion::Instance();
-    teamStateUMSharedPtr teams;
+    teamStateMSharedPtr teams;
 
     std::string teamList;
     std::string func = "loader::loadTeams";

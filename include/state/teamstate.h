@@ -85,11 +85,11 @@ public:
     bool getDefense();  // retrieves the value of defense
     void setDefense(bool set);  // sets the value of defense
 
-    playerEntityUMSharedPtr getPlayerInstance();  // retrieves the value of playerInstance
-    void setPlayerInstance(playerEntityUMSharedPtr set);  // sets the value of  playerInstance
+    playerEntityMSharedPtr getPlayerInstance();  // retrieves the value of playerInstance
+    void setPlayerInstance(playerEntityMSharedPtr set);  // sets the value of  playerInstance
 
-    playerEntityUMSharedPtr getActivePlayerInstance();  // retrieves the value of activePlayerInstance
-    void setActivePlayerInstance(playerEntityUMSharedPtr set);  // sets the value of activePlayerInstance
+    playerEntityMSharedPtr getActivePlayerInstance();  // retrieves the value of activePlayerInstance
+    void setActivePlayerInstance(playerEntityMSharedPtr set);  // sets the value of activePlayerInstance
 
     bool getActivePlayerInstancesCreated();  // retrieves the value of activePlayerInstancesCreated
     void setActivePlayerInstancesCreated(bool set);  // sets the value of activePlayerInstancesCreated
@@ -186,8 +186,8 @@ private:
     bool offense;  // if set then the team is on offense
     bool defense;  // if set then the team is on defense
 
-    playerEntityUMSharedPtr playerInstance;  // stores instance of the playerState class containing all team players
-    playerEntityUMSharedPtr activePlayerInstance;  // stores instance of the playerState class containing the active players
+    playerEntityMSharedPtr playerInstance;  // stores instance of the playerState class containing all team players
+    playerEntityMSharedPtr activePlayerInstance;  // stores instance of the playerState class containing the active players
 
     std::vector <std::string> playerModelsLoaded;  // creates a vector of strings that holds the models which are loaded
 

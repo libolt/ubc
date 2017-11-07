@@ -35,6 +35,8 @@ class gameSetups
 
         bool checkPlayerInstancesCreated(teamStateMSharedPtr activeTeamInstance);  // checks if player instances have been created
         teamStateMSharedPtr createActivePlayerInstances(teamStateMSharedPtr activeTeamInstance, std::vector<std::unordered_map<std::string, size_t> > teamStarterID);  // creates the active playerInstances
+        bool checkActivePlayerInstancesCreated(teamStateMSharedPtr activeTeamInstance);
+
         bool setupStartingLineups(teamStateMSharedPtr activeTeamInstance, std::vector<std::unordered_map <std::string, std::string> > teamStarters, std::vector<std::unordered_map<std::string, size_t> > teamStarterID);  // sets starting lineups for each team
 
     private:

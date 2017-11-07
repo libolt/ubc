@@ -294,8 +294,8 @@ typedef std::vector<size_t> sizeTVec;
 typedef std::vector<Ogre::Vector3> OgreVector3Vec;
 
 // Unordered_map shared pointers
-typedef std::unordered_map<size_t, playerEntitySharedPtr, std::hash<int> > playerEntityUMSharedPtr;
-//typedef std::unordered_map <size_t, playerEntitySharedPtr> playerEntityUMSharedPtr;
+//typedef std::map<size_t, playerEntitySharedPtr, std::hash<int> > playerEntityMSharedPtr;
+typedef std::unordered_map <size_t, playerEntitySharedPtr> playerEntityMSharedPtr;
 
 typedef std::unordered_map <size_t, basketballStateSharedPtr> basketballStateUMSharedPtr;
 typedef std::unordered_map <size_t, courtStateSharedPtr> courtStateUMSharedPtr;
@@ -320,6 +320,6 @@ typedef std::vector<std::unordered_map <std::string, sharedPtr<MyGUI::ListBox> >
 
 typedef std::vector<std::unordered_map<std::string, sharedPtr<MyGUI::TextBox> > > MyGUITextBoxVecUMSharedPtr;
 
-typedef std::vector<playerEntityUMSharedPtr> playerEntityVecUMSharedPtr;
+typedef std::vector<playerEntityMSharedPtr> playerEntityVecUMSharedPtr;
 
 #endif

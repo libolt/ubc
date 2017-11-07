@@ -65,7 +65,7 @@ teamStateMSharedPtr gameStateShared::activeTeamInstance;  // stores active team 
 basketballStateVecSharedPtr gameStateShared::basketballInstance;  // creates instance of the basketballs class
 courtStateUMSharedPtr gameStateShared::courtInstance;  // stores the court instance
 hoopStateUMSharedPtr gameStateShared::hoopInstance;  // creates instance of the hoop class
-playerEntityUMSharedPtr gameStateShared::playerInstance;  // stores the vector of the players loaded from the xml files
+playerEntityMSharedPtr gameStateShared::playerInstance;  // stores the vector of the players loaded from the xml files
 teamStateMSharedPtr  gameStateShared::teamInstance;  // creates instance of the teamState class
 jumpBallsSharedPtr gameStateShared::jumpBall; // instance that is used for jumpBall functions.
 float gameStateShared::yOffset; // stores the y offset for objects on the screen
@@ -393,11 +393,11 @@ void gameStateShared::setActiveHoopInstance(hoopStateUMSharedPtr set)  // sets t
     activeHoopInstance = set;
 }
 
-std::unordered_map<size_t, teamStateSharedPtr> gameStateShared::getActiveTeamInstance()  // retrieves the value of activeTeamInstance
+teamStateMSharedPtr gameStateShared::getActiveTeamInstance()  // retrieves the value of activeTeamInstance
 {
     return (activeTeamInstance);
 }
-void gameStateShared::setActiveTeamInstance(std::unordered_map<size_t, teamStateSharedPtr> set)  // sets the value of activeTeamInstance
+void gameStateShared::setActiveTeamInstance(teamStateMSharedPtr set)  // sets the value of activeTeamInstance
 {
     activeTeamInstance = set;
 }
@@ -429,20 +429,20 @@ void gameStateShared::setHoopInstance(std::unordered_map<size_t, hoopStateShared
     hoopInstance = set;
 }
 
-playerEntityUMSharedPtr gameStateShared::getPlayerInstance()  // retrieves the value of playerInstance
+playerEntityMSharedPtr gameStateShared::getPlayerInstance()  // retrieves the value of playerInstance
 {
     return (playerInstance);
 }
-void gameStateShared::setPlayerInstance(playerEntityUMSharedPtr set)  // sets the value of playerInstance
+void gameStateShared::setPlayerInstance(playerEntityMSharedPtr set)  // sets the value of playerInstance
 {
     playerInstance = set;
 }
 
-std::unordered_map<size_t, teamStateSharedPtr> gameStateShared::getTeamInstance()  // retrieves the value of teamInstance
+teamStateMSharedPtr gameStateShared::getTeamInstance()  // retrieves the value of teamInstance
 {
     return (teamInstance);
 }
-void gameStateShared::setTeamInstance(std::unordered_map<size_t, teamStateSharedPtr> set)  // sets the value of teamInstance
+void gameStateShared::setTeamInstance(teamStateMSharedPtr set)  // sets the value of teamInstance
 {
     teamInstance = set;
 }

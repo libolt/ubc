@@ -33,7 +33,7 @@
 #include "utilities/logging.h"
 
 // static declarations
-playerEntityUMSharedPtr loadPlayers::pInstance;
+playerEntityMSharedPtr loadPlayers::pInstance;
 stdStringVec loadPlayers::playerFiles;  // stores list of player xml files
 bool loadPlayers::playerFilesLoaded;
 
@@ -55,11 +55,11 @@ void loadPlayers::setPlayerFiles(stdStringVec set)  // sets the value of playerF
     playerFiles = set;
 }
 
-playerEntityUMSharedPtr loadPlayers::getPInstance()  // retrieves the value of pInstance
+playerEntityMSharedPtr loadPlayers::getPInstance()  // retrieves the value of pInstance
 {
     return(pInstance);
 }
-void loadPlayers::setPInstance(playerEntityUMSharedPtr set)  // sets the value of pInstance
+void loadPlayers::setPInstance(playerEntityMSharedPtr set)  // sets the value of pInstance
 {
     pInstance = set;
 }
@@ -147,11 +147,11 @@ bool loadPlayers::checkIfPlayersLoaded()  // checks if players have been loaded 
     return (true);
 }
 
-playerEntityUMSharedPtr loadPlayers::loadPlayerFiles()  // loads the players
+playerEntityMSharedPtr loadPlayers::loadPlayerFiles()  // loads the players
 {
     sharedPtr<conversion> convert = conversion::Instance();
 
-    playerEntityUMSharedPtr players;
+    playerEntityMSharedPtr players;
     playerEntitySharedPtr playerInstance; //(new playerState);
     std::string func = "loader::loadPlayers()";
 

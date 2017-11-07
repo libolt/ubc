@@ -232,7 +232,7 @@ void offenseState::updateState(teamTypes teamType)  // updates the state of the 
 {
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
-    teamStateUMSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
+    teamStateMSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
 //TS    playerStateVecSharedPtr activePlayerInstance = activeTeamInstance[teamType]->getActivePlayerInstance();
 
     if (!offenseSetup)
@@ -385,7 +385,7 @@ void offenseState::executeOffense() // executes box offense
 //    sharedPtr<gameState> gameS = gameState::Instance();
     teamTypes teamWithBall = gameS->getTeamWithBall();
 
-    teamStateUMSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
+    teamStateMSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
 /*TS    playerStateVecSharedPtr activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
 
     size_t playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();

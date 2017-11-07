@@ -36,8 +36,8 @@ class loadPlayers : public loader
     stdStringVec getPlayerFiles();  // retrieves the value of playerFiles
     void setPlayerFiles(stdStringVec set);  // sets the value of playerFiles
 
-    playerEntityUMSharedPtr getPInstance();  // retrieves the value of pInstance
-    void setPInstance(playerEntityUMSharedPtr set);  // sets the value of pInstance
+    playerEntityMSharedPtr getPInstance();  // retrieves the value of pInstance
+    void setPInstance(playerEntityMSharedPtr set);  // sets the value of pInstance
 
     bool getPlayerFilesLoaded();  // retrieves the value of playerFilesLoaded
     void setPlayerFilesLoaded(bool set);  // sets the value of playerFilesLoaded
@@ -45,13 +45,13 @@ class loadPlayers : public loader
     bool checkIfPlayersLoaded();  // checks if players have been loaded into pInstance
 
     // Players
-    playerEntityUMSharedPtr loadPlayerFiles();  // loads player data from XML files
+    playerEntityMSharedPtr loadPlayerFiles();  // loads player data from XML files
     stdStringVec loadPlayerListFile(std::string fileName);  // loads list of player files from players.xml
     playerEntitySharedPtr loadPlayerFile(std::string fileName);  // loads data from the player XML files
 
     private:
     
-        static playerEntityUMSharedPtr pInstance;
+        static playerEntityMSharedPtr pInstance;
         static stdStringVec playerFiles;  // stores list of player xml files
         static bool playerFilesLoaded;
 

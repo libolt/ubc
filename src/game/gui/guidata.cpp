@@ -131,7 +131,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 {
     sharedPtr<conversion> convert = conversion::Instance();
     teamStateMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
-    playerEntityUMSharedPtr playerInstance;
+    playerEntityMSharedPtr playerInstance;
     std::string func = "addPlayerStartSelectionMenuData";
     sizeTVec teamIDs = base->getGameS()->getTeamIDS();
 

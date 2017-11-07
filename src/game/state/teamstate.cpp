@@ -179,20 +179,20 @@ void teamState::setDefense(bool set)  // sets the value of defense
     defense = set;
 }
 
-playerEntityUMSharedPtr teamState::getPlayerInstance()  // retrieves the value of playerInstance
+playerEntityMSharedPtr teamState::getPlayerInstance()  // retrieves the value of playerInstance
 {
     return (playerInstance);
 }
-void teamState::setPlayerInstance(playerEntityUMSharedPtr set)  // sets the value of playerInstance
+void teamState::setPlayerInstance(playerEntityMSharedPtr set)  // sets the value of playerInstance
 {
     playerInstance = set;
 }
 
-playerEntityUMSharedPtr teamState::getActivePlayerInstance()  // retrieves the value of activePlayerInstance
+playerEntityMSharedPtr teamState::getActivePlayerInstance()  // retrieves the value of activePlayerInstance
 {
     return (activePlayerInstance);
 }
-void teamState::setActivePlayerInstance(playerEntityUMSharedPtr set)  // sets the value of activePlayerInstance
+void teamState::setActivePlayerInstance(playerEntityMSharedPtr set)  // sets the value of activePlayerInstance
 {
     activePlayerInstance = set;
 }
@@ -656,7 +656,7 @@ void updateActivePlayerSettings()  // updates the settings of active players
 bool teamState::createPlayerInstances()  // creates the player instances
 {
     sharedPtr<conversion> convert = conversion::Instance();
-    playerEntityUMSharedPtr gamePlayerInstance;
+    playerEntityMSharedPtr gamePlayerInstance;
     std::string func = "teamState::createPlayerInstances()";
 
     logMsg(func +" beginning");

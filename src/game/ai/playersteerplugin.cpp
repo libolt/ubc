@@ -78,7 +78,7 @@ void playerSteerPlugin::open()
 */
 //    std::vector <std::unordered_map<std::string, playerStateSharedPtr> > activePlayerInstance;
 //    std::unordered_map<std::string, playerStateSharedPtr> activePlayerInstance;
-    playerEntityUMSharedPtr activePlayerInstance;
+    playerEntityMSharedPtr activePlayerInstance;
 //    std::vector <std::unordered_map<std::string, playerStateSharedPtr> >::iterator activePlayerInstanceIT;
     playerSteerVecSharedPtr allPlayerSteers = ai->getAllPlayerSteers();
     std::string func = "playerSteerPlugin::open()";

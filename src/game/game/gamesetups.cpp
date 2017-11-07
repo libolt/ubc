@@ -151,7 +151,7 @@ teamStateMSharedPtr gameSetups::createActivePlayerInstances(teamStateMSharedPtr 
 {
     conversionSharedPtr convert = conversion::Instance();
     std::string func = "gameSetups::createActivePlayerInstances()";
-    playerEntityUMSharedPtr PI = activeTeamInstance[1]->getPlayerInstance();
+/*    playerEntityMSharedPtr PI = activeTeamInstance[0]->getPlayerInstance();
     
     logMsg(func +" Team == " +activeTeamInstance[0]->getCity() + " " +activeTeamInstance[0]->getName());
 
@@ -162,14 +162,15 @@ teamStateMSharedPtr gameSetups::createActivePlayerInstances(teamStateMSharedPtr 
     for (auto PIIT : PI)
     {
         logMsg(func +" playerInstance ID == " +convert->toString(PIIT.second->getData()->getID()));
-    }
-    exit(0);
+    }*/
+//    exit(0);
+
     for (auto ATIIT : activeTeamInstance)
     {
         logMsg(func +" ATIIT.first == " +convert->toString(ATIIT.first));
         logMsg(func +" Team == " +ATIIT.second->getCity() + " " +ATIIT.second->getName());
 //        activePlayerInstance.clear();
-        playerEntityUMSharedPtr activePlayerInstance;
+        playerEntityMSharedPtr activePlayerInstance;
         
         for (auto PIIT : ATIIT.second->getPlayerInstance())
         {
@@ -225,6 +226,29 @@ teamStateMSharedPtr gameSetups::createActivePlayerInstances(teamStateMSharedPtr 
     }
     return (activeTeamInstance);
 }
+
+bool gameSetups::checkActivePlayerInstancesCreated(teamStateMSharedPtr activeTeamInstance)
+{
+    bool returnType = false;
+    size_t activePlayerInstancesCreated = 0;
+    for (auto ATIIT : activeTeamInstance)
+    {
+        if (ATIIT.second->getActivePlayerInstancesCreated())
+        {
+            ++activePlayerInstancesCreated;
+        }
+        else
+        {
+
+        }
+    }
+    if (activePlayerInstancesCreated == activeTeamInstance.size())
+    {
+        returnType = true;
+    }
+    return (returnType);
+}
+
 bool gameSetups::setupStartingLineups(teamStateMSharedPtr activeTeamInstance, std::vector<std::unordered_map<std::string, std::string> > teamStarters, std::vector<std::unordered_map<std::string, size_t> > teamStarterID)  // sets starting lineups for each team
 {
     conversionSharedPtr convert = conversion::Instance();

@@ -229,8 +229,8 @@ bool jumpBalls::jumpBallExecute(basketballStateUMSharedPtr activeBasketballInsta
 //    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
 //    std::unordered_map<std::string, playerStateSharedPtr> activePlayerInstance;
 //    std::unordered_map<std::string, playerStateSharedPtr> jumpPlayerInstance;  // stores playerID of players jumping for the ball
-    playerEntityUMSharedPtr activePlayerInstance;
-    playerEntityUMSharedPtr jumpPlayerInstance;  // stores playerID of players jumping for the ball
+    playerEntityMSharedPtr activePlayerInstance;
+    playerEntityMSharedPtr jumpPlayerInstance;  // stores playerID of players jumping for the ball
 
     size_t x = 0;
     std::string func = "jumpBalls::jumpBallExecute()";

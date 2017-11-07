@@ -491,7 +491,7 @@ bool gameState::createPlayerInstances()  // creates player instances
     
     sharedPtr<conversion> convert = conversion::Instance();
     loadPlayersSharedPtr loadPlayer = base->getLoadPlayer();
-    playerEntityUMSharedPtr pInstance;
+    playerEntityMSharedPtr pInstance;
     std::string func = "gameState::createPlayerInstances()";
     
     logMsg(func +" beginning");
@@ -1424,7 +1424,7 @@ bool gameState::updateState()  // updates the game state
     timing timer = getBase()->getGameE()->getTimer();
     Ogre::Vector3 playerPos;
     basketballStateUMSharedPtr activeBasketballInstance = getActiveBasketballInstance();
-//    teamStateUMSharedPtr activeTeamInstance = getActiveTeamInstance();
+//    teamStateMSharedPtr activeTeamInstance = getActiveTeamInstance();
     std::string func = "gameState::updateState()";
 
     logMsg(func +" beginning");
@@ -1717,8 +1717,8 @@ bool gameState::updatePlayerCollisionObjects()  // updates the player collision 
             bool loopDone = false;
             while (!loopDone)
             {
-                playerEntityUMSharedPtr activePlayerInstance;
-                playerEntityUMSharedPtr collisionPlayerInstance;
+                playerEntityMSharedPtr activePlayerInstance;
+                playerEntityMSharedPtr collisionPlayerInstance;
                 std::unordered_map<std::string, btRigidBodySharedPtr> activeCollisionBodies;
                 std::unordered_map<std::string, btRigidBodySharedPtr> newCollisionBodies;
 //                std::unordered_map<std::string, btRigidBodySharedPtr> newCollisionBodies;
@@ -1840,7 +1840,7 @@ bool gameState::processInput()  // processes input received from the inputState 
             {
                if (getActiveTeamInstance()[inputIterator]->getPlayerInstancesCreated())
                 {
-                    playerEntityUMSharedPtr activePlayerInstance = getActiveTeamInstance()[inputIterator]->getActivePlayerInstance();
+                    playerEntityMSharedPtr activePlayerInstance = getActiveTeamInstance()[inputIterator]->getActivePlayerInstance();
                     if (getActiveTeamInstance()[inputIterator]->getHumanControlled())
                     {
                         std::string humanPlayer = getActiveTeamInstance()[inputIterator]->getHumanPlayer();
@@ -1952,7 +1952,7 @@ bool gameState::processInput()  // processes input received from the inputState 
                             }
                         }
 //                        teamStateVecSharedPtr tInstance = base->getGameS()->getActiveTeamInstance();
-                        playerEntityUMSharedPtr activePInstance = getTeamInstance()[inputIterator]->getActivePlayerInstance();
+                        playerEntityMSharedPtr activePInstance = getTeamInstance()[inputIterator]->getActivePlayerInstance();
                         logMsg("humanInstance == " +convert->toString(humanInstance));
                         //logMsg("inPassSteal == " +convert->toString(activePInstance[humanInstance]->getPassSteal()));
                         //exit(0);

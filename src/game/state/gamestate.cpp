@@ -27,6 +27,7 @@
 #include "utilities/conversion.h"
 #include "entity/basketballentity.h"
 #include "entity/courtentity.h"
+#include "gamesetup/gamesetupteams.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
 #include "state/gamestate.h"
@@ -300,7 +301,7 @@ bool gameState::createBasketballInstances()  // creates basketball Instances
     std::string func = "gameState::createTeamInstances()";
     
     logMsg(func +" beginning");
-
+    exit(0);
     logMsg(func +" creating temporary baskteball instance");
     logMsg(func +" setting model name");
 //  FIXME! these are currently hard coded
@@ -325,26 +326,26 @@ bool gameState::createBasketballInstances()  // creates basketball Instances
     return (true);
 }
 
-bool gameState::createTeamInstances()  // creates team Instances
+/*bool gameState::createTeamInstances()  // creates team Instances
 {
     sharedPtr<conversion> convert = conversion::Instance();
     loadTeamsSharedPtr loadTeam = base->getLoadTeam();
     std::string func = "gameState::createTeamInstances()";
     
     logMsg(func +" beginning");
-
+    exit(0);
     teamStateMSharedPtr tInstance;
-/*    teamStateVecSharedPtr tInstance2;
-    teamStateSharedPtr tempInstance(new teamState);
+///    teamStateVecSharedPtr tInstance2;
+///    teamStateSharedPtr tempInstance(new teamState);
 //    teamState *tempInstance = new teamState;
-    tempInstance->setID(1);
-    tempInstance->setCity("tempCity");
-    tempInstance->setName("tempTeam");
-    tempInstance->setCoach("tempCoach|");
-    tempInstance->setTeamType(HOMETEAM);
+///    tempInstance->setID(1);
+///    tempInstance->setCity("tempCity");
+///    tempInstance->setName("tempTeam");
+///    tempInstance->setCoach("tempCoach|");
+///    tempInstance->setTeamType(HOMETEAM);
 
-    tInstance2.push_back(tempInstance);
-*/
+///    tInstance2.push_back(tempInstance);
+
     logMsg(func +" loadTeams");
     if (loadTeam->checkIfTeamsLoaded())
     {
@@ -417,7 +418,7 @@ bool gameState::createTeamInstances()  // creates team Instances
     logMsg(func +" end");
     
     return (true);
-}
+}*/
 
 /*bool gameState::createCourtDataInstances()  // creates instances of court data
 {
@@ -1237,6 +1238,7 @@ bool gameState::setupState()  // sets up the game condition
     //sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
     sharedPtr<conversion> convert = conversion::Instance();
+    gameSetupTeamsSharedPtr gameSetupTeam(new gameSetupTeams);
     std::string func = "gameState::setupState()";
    
     logMsg(func +" beginning");
@@ -1315,14 +1317,16 @@ bool gameState::setupState()  // sets up the game condition
 
 //    logMsg("court y == " +convert->toString(getCourtInstance()[0].getNode()->getPosition().y));
 //    exit(0);
-    if (!getTeamInstancesCreated())  // checks if teamInstances have been created
+    setTeamInstance(gameSetupTeam->createTeamInstances());  // creates team instances
+    if (getTeamInstance().size() > 0)
     {
-        if(createTeamInstances())  // creates the team instances
-        {
+        
+//        if(createTeamInstances())  // creates the team instances
+//        {
             logMsg(func +" TIC!");
             setTeamInstancesCreated(true);
 //            assignHoopToTeams();  // assigns proper hoop to the teams that were created.
-        }
+//        }
     }
 
     // sets the quarter being played to the first one.

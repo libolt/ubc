@@ -699,15 +699,9 @@ void GUISystem::playerStartSelectionMenu()  // displays player start selection m
 
 void GUISystem::teamSelectionMenu()  // displays team selection menu
 {
-/*    exit(0);
-    hideCourtSelectionMenuWidgets();
-    createTeamSelectionMenuGUI();
-    showTeamSelectionMenuWidgets();
-//    changeActiveMenu(TEAMSELECT);
-    sharedPtr<loader> load; // = loader::Instance();
-*/
+    gameSetupTeamsSharedPtr gameSetupTeam(new gameSetupTeams);
     bool changeMenu = false;  // determinrs if menu is to be changed
-//    teamStateVecSharedPtr teamInstance; // = gameS->getTeamDataInstance();
+    teamStateMSharedPtr teamInstance; // = gameS->getTeamDataInstance();
 
     logMsg("teamSelectionMenu");
 
@@ -744,7 +738,8 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
         {
             logMsg("!getTeamInstancesCreated");
 //            exit(0);
-            if (base->getGameS()->createTeamInstances())
+            teamInstance = gameSetupTeam->createTeamInstances();  // creates team instances
+            if (teamInstance.size() > 0)
             {
                 logMsg("createTeamInstances");
 

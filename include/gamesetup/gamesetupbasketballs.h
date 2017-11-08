@@ -18,23 +18,24 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef _GAMESETUPTEAMS_H_
-#define _GAMESETUPTEAMS_H_
+#ifndef _GAMESETUPBASKETBALLS_H_
+#define _GAMESETUPBASKETBALLS_H_
 
 #include "utilities/typedefs.h"
 
-class gameSetupTeams
+class gameSetupBasketballs
 {
     public:
     
-        gameSetupTeams();  // constructor
-        ~gameSetupTeams();  // destructor
+        gameSetupBasketballs();  // constructor
+        ~gameSetupBasketballs();  // destructor
         
-        teamStateMSharedPtr createTeamInstances();  // creates team Instances
-        teamStateMSharedPtr createActiveTeamInstances(teamStateMSharedPtr teamInstance, sizeTVec teamID);  // creates active team instances
-        
+        basketballStateMSharedPtr createBasketballInstances();  // creates basketball Instances
+        basketballStateMSharedPtr createActiveBasketballInstances(basketballStateMSharedPtr basketballInstance);  // creates active basketball instances
+  
     private:
     
 };
 
 #endif
+

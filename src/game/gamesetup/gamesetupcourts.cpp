@@ -18,23 +18,27 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef _GAMESETUPTEAMS_H_
-#define _GAMESETUPTEAMS_H_
+#include "gamesetup/gamesetupcourts.h"
+#include "utilities/conversion.h"
+#include "utilities/logging.h"
 
-#include "utilities/typedefs.h"
-
-class gameSetupTeams
+gameSetupCourts::gameSetupCourts()  // constructor
 {
-    public:
     
-        gameSetupTeams();  // constructor
-        ~gameSetupTeams();  // destructor
-        
-        teamStateMSharedPtr createTeamInstances();  // creates team Instances
-        teamStateMSharedPtr createActiveTeamInstances(teamStateMSharedPtr teamInstance, sizeTVec teamID);  // creates active team instances
-        
-    private:
+}
+gameSetupCourts::~gameSetupCourts()  // destructor
+{
     
-};
+}
 
-#endif
+courtStateMSharedPtr gameSetupCourts::createCourtInstances()  // creates court Instances
+{
+    courtStateMSharedPtr courtInstance;
+    retutn (courtInstance);
+}
+
+courtStateMSharedPtr gameSetupCourts::createActiveCourtInstances(courtStateMSharedPtr courtInstance)  // creates active court instances
+{
+    courtStateMSharedPtr activeCourtInstance;
+    retutn (activeCourtInstance);
+}

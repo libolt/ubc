@@ -296,33 +296,33 @@ typedef std::vector<size_t> sizeTVec;
 
 typedef std::vector<Ogre::Vector3> OgreVector3Vec;
 
-// Unordered_map shared pointers
+// Map shared pointers
 //typedef std::map<size_t, playerEntitySharedPtr, std::hash<int> > playerEntityMSharedPtr;
-typedef std::unordered_map <size_t, playerEntitySharedPtr> playerEntityMSharedPtr;
+typedef std::map <size_t, playerEntitySharedPtr> playerEntityMSharedPtr;
 
-typedef std::unordered_map <size_t, basketballStateSharedPtr> basketballStateUMSharedPtr;
-typedef std::unordered_map <size_t, courtStateSharedPtr> courtStateUMSharedPtr;
+typedef std::map <size_t, basketballStateSharedPtr> basketballStateMSharedPtr;
+typedef std::map <size_t, courtStateSharedPtr> courtStateMSharedPtr;
 
-typedef std::unordered_map <size_t, hoopStateSharedPtr> hoopStateUMSharedPtr;
+typedef std::map <size_t, hoopStateSharedPtr> hoopStateMSharedPtr;
 
-typedef std::unordered_map <size_t, playerStateSharedPtr> playerStateUMSharedPtr;
+typedef std::map <size_t, playerStateSharedPtr> playerStateMSharedPtr;
 
 typedef std::map <size_t, teamStateSharedPtr> teamStateMSharedPtr;
 
-typedef std::unordered_map <size_t, usersSharedPtr> usersUMSharedPtr;
+typedef std::map <size_t, usersSharedPtr> usersMSharedPtr;
 
-typedef std::unordered_map<std::string, sharedPtr<MyGUI::Button> > MyGUIButtonUMSharedPtr;
+typedef std::map<std::string, sharedPtr<MyGUI::Button> > MyGUIButtonUMSharedPtr;
 
-typedef std::unordered_map<size_t, sharedPtr<MyGUI::ListBox> > MyGUIListBoxUMSharedPtr;
+typedef std::map<size_t, sharedPtr<MyGUI::ListBox> > MyGUIListBoxUMSharedPtr;
 
-typedef std::unordered_map<std::string, sharedPtr<MyGUI::ImageBox> > MyGUIImageBoxUMSharedPtr;
+typedef std::map<std::string, sharedPtr<MyGUI::ImageBox> > MyGUIImageBoxUMSharedPtr;
 
 // Vector Unordered_map shared pointers
 
-typedef std::vector<std::unordered_map <std::string, sharedPtr<MyGUI::ListBox> > > MyGUIListBoxVecUMSharedPtr;
+typedef std::vector<std::map <std::string, sharedPtr<MyGUI::ListBox> > > MyGUIListBoxVecMSharedPtr;
 
-typedef std::vector<std::unordered_map<std::string, sharedPtr<MyGUI::TextBox> > > MyGUITextBoxVecUMSharedPtr;
+typedef std::vector<std::map<std::string, sharedPtr<MyGUI::TextBox> > > MyGUITextBoxVecMSharedPtr;
 
-typedef std::vector<playerEntityMSharedPtr> playerEntityVecUMSharedPtr;
+typedef std::vector<playerEntityMSharedPtr> playerEntityVecMSharedPtr;
 
 #endif

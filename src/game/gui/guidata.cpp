@@ -28,6 +28,7 @@
 #include "data/playerdata.h"
 #include "engine/gameengine.h"
 #include "entity/playerentity.h"
+#include "gamesetup/gamesetupteams.h"
 #include "state/courtstate.h"
 #include "state/gamestate.h"
 #include "state/playerstate.h"
@@ -311,8 +312,8 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 
 bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Selection Menu
 {
-    sharedPtr<conversion> convert = conversion::Instance();
-
+    conversionSharedPtr convert = conversion::Instance();
+    gameSetupTeamsSharedPtr gameSetupTeam(new gameSetupTeams);
     loadTeamsSharedPtr loadTeam = base->getLoadTeam();
     teamStateMSharedPtr teamInstance; // = gameS->getTeamDataInstance();
 
@@ -367,11 +368,12 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     }
     else
     {    
-        if (base->getGameS()->createTeamInstances())
+        teamInstance = gameSetupTeam->createTeamInstances();  // creates team instances
+        if (teamInstance.size() > 0)
         {
              logMsg("GUI ADD TEAM 2 teamInstance.size() == " +convert->toString(base->getGameS()->getTeamInstance().size()));
 //            exit(0);
-            if (base->getGameS()->getTeamInstance().size() > 0)
+/*            if (base->getGameS()->getTeamInstance().size() > 0)
             {
                 teamInstance = base->getGameS()->getTeamInstance();
                 logMsg("GUI ADD TEAM 3 teamInstance.size() == " +convert->toString(base->getGameS()->getTeamInstance().size()));
@@ -380,8 +382,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
             {
                 logMsg("getGameS()->getTeamInstance() is EMPTY! ELSE");
                 return (false);                               
-            }
-
+            }*/
         }
         else
         {

@@ -51,7 +51,7 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
 //    sharedPtr<gameState> gameS = gameState::Instance();
     sharedPtr<conversion> convert = conversion::Instance();
 
-    courtStateUMSharedPtr  courtInstance;
+    courtStateMSharedPtr  courtInstance;
     stdStringVec courtName;
     stdStringVec::iterator CNIT;
     

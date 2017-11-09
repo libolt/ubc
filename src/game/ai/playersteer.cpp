@@ -237,7 +237,7 @@ void playerSteer::update (const float currentTime, float elapsedTime)
 //    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
 //    playerStateVec team0ActivePlayerInstance = activeTeamInstance[0].getActivePlayerInstance();
 //    playerStateVec team1ActivePlayerInstance = activeTeamInstance[1].getActivePlayerInstance();
-    playerEntityVecUMSharedPtr activePlayerInstance;
+    playerEntityVecMSharedPtr activePlayerInstance;
 //    std::vector<int> team0ActivePlayerID = activeTeamInstance[0].getActivePlayerID();
 //    std::vector<int> team1ActivePlayerID = activeTeamInstance[1].getActivePlayerID();
     std::vector<sizeTVec> activePlayerID;
@@ -482,7 +482,7 @@ void playerSteer::checkCourtPosition()  // checks if the player's position has c
 //    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
     //playerStateVec team0ActivePlayerInstance = activeTeamInstance[0].getActivePlayerInstance();
     //playerStateVec team1ActivePlayerInstance = activeTeamInstance[1].getActivePlayerInstance();
-    playerEntityVecUMSharedPtr activePlayerInstance;
+    playerEntityVecMSharedPtr activePlayerInstance;
     // moves the player model and physics body
     btVector3 physBodyChange; // = btVector3(0,0,0);
     btTransform physBodyTransform;
@@ -543,7 +543,7 @@ void playerSteer::checkCourtPosition()  // checks if the player's position has c
 //    teamStateVecSharedPtr teamI = gameS->getActiveTeamInstance();
     teamStateMSharedPtr teamI = gameS->getActiveTeamInstance();
 
-    playerEntityVecUMSharedPtr activePlayerI;
+    playerEntityVecMSharedPtr activePlayerI;
 //    size_t w = 0;
     for (auto ATIIT : gameS->getActiveTeamInstance())
     {
@@ -566,7 +566,7 @@ void playerSteer::updateOffense(const float currentTime, const float elapsedTime
     //playerStateVec team0ActivePlayerInstance = activeTeamInstance[0].getActivePlayerInstance();
     //playerStateVec team1ActivePlayerInstance = activeTeamInstance[1].getActivePlayerInstance();
 //    std::vector<std::unordered_map<std::string, playerStateSharedPtr> > activePlayerInstance;
-    playerEntityVecUMSharedPtr activePlayerInstance;
+    playerEntityVecMSharedPtr activePlayerInstance;
     sizeTVec team0ActivePlayerID = gameS->getActiveTeamInstance()[0]->getActivePlayerID();
     sizeTVec team1ActivePlayerID = gameS->getActiveTeamInstance()[1]->getActivePlayerID();
 
@@ -720,7 +720,7 @@ void playerSteer::updateDefense(const float currentTime, const float elapsedTime
     //playerStateVec team0ActivePlayerInstance = activeTeamInstance[0].getActivePlayerInstance();
     //playerStateVec team1ActivePlayerInstance = activeTeamInstance[1].getActivePlayerInstance();
 //    std::vector <std::unordered_map<std::string, playerStateSharedPtr> > activePlayerInstance;
-    playerEntityVecUMSharedPtr activePlayerInstance;
+    playerEntityVecMSharedPtr activePlayerInstance;
     //std::vector<int> team0ActivePlayerID = activeTeamInstance[0].getActivePlayerID();
     //std::vector<int> team1ActivePlayerID = activeTeamInstance[1].getActivePlayerID();
 

@@ -421,14 +421,14 @@ bool GUISystem::createPlayerStartSelectionMenuGUI()  // creates GUI for player s
 
     if (teamPlayerPosSelectBox.size() == 0)
     {
-        std::unordered_map <std::string, MyGUIListBoxSharedPtr > playerPosSelectBox;
+        std::map <std::string, MyGUIListBoxSharedPtr > playerPosSelectBox;
         teamPlayerPosSelectBox.push_back(playerPosSelectBox);
         teamPlayerPosSelectBox.push_back(playerPosSelectBox);
     }
     
     if (teamPlayerRating.size() == 0)
     {
-        std::unordered_map <std::string, MyGUITextBoxSharedPtr > playerRating;
+        std::map <std::string, MyGUITextBoxSharedPtr > playerRating;
         teamPlayerRating.push_back(playerRating);
         teamPlayerRating.push_back(playerRating);
     }

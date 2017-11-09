@@ -261,7 +261,7 @@ void playerSteerPlugin::update(const float currentTime, const float elapsedTime)
 //    std::vector<int> team1ActivePlayerID = activeTeamInstance[1].getActivePlayerID();
 
 //    std::vector<std::unordered_map<std::string, playerStateSharedPtr> > activePlayerInstance;
-    playerEntityVecUMSharedPtr activePlayerInstance;
+    playerEntityVecMSharedPtr activePlayerInstance;
 //	exit(0);
     // update simulation of test vehicle
 //    logMsg("team 0 activePlayerInstance size =  " +convert->toString(team0ActivePlayerInstance.size()));

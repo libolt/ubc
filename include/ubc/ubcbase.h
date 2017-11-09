@@ -91,8 +91,8 @@ class UBCBase
         size_t getNumUsers();  // retrieves the value of numUsers
         void setNumUsers(size_t set);  // sets the value of numUsers
         
-        usersUMSharedPtr getUsersInstance();  // retrieves the value of usersInstance
-        void setUsersInstance(usersUMSharedPtr set);  // sets the value of usersInstance
+        usersMSharedPtr getUsersInstance();  // retrieves the value of usersInstance
+        void setUsersInstance(usersMSharedPtr set);  // sets the value of usersInstance
         
         bool setup();  // sets up the engine and states
     
@@ -115,7 +115,7 @@ class UBCBase
         static loadTeamsSharedPtr loadTeam;  // the loadTeams Object
         static loadUsersInputsSharedPtr loadUsersInput;  // the loadUsersInputs Object
 
-        static usersUMSharedPtr usersInstance;  // stores the user object instances
+        static usersMSharedPtr usersInstance;  // stores the user object instances
         static size_t numUsers; // stores number of users playing the game
 
 };

@@ -160,7 +160,7 @@ sharedPtr<MyGUI::EditBox> GUISystem::clientIPAddressBox;
 //sharedPtr<MyGUI::Button> GUISystem::clientConnectButton;
 MyGUIButtonUMSharedPtr GUISystem::networkClientSetupMenuButtons;
     
-MyGUIListBoxVecUMSharedPtr GUISystem::teamPlayerPosSelectBox;
+MyGUIListBoxVecMSharedPtr GUISystem::teamPlayerPosSelectBox;
 
 /*    MyGUIListBoxSharedPtr GUISystem::team0Player1SelectBox;
 MyGUIListBoxSharedPtr GUISystem::team0Player2SelectBox;
@@ -187,7 +187,7 @@ MyGUIListBoxSharedPtr GUISystem::team1PFSelectBox;
 MyGUIListBoxSharedPtr GUISystem::team1CSelectBox;
 */
 
-MyGUITextBoxVecUMSharedPtr GUISystem::teamPlayerRating;
+MyGUITextBoxVecMSharedPtr GUISystem::teamPlayerRating;
 MyGUIImageBoxUMSharedPtr GUISystem::teamLogo;
 
 /*
@@ -1017,7 +1017,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     teamStateMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
   
 //    std::vector<playerStateUMSharedPtr > playerInstance;
-    playerEntityVecUMSharedPtr playerInstance;
+    playerEntityVecMSharedPtr playerInstance;
 //    std::unordered_map<std::string, playerStateSharedPtr> activePlayerInstance;
     playerEntityMSharedPtr activePlayerInstance;
 //    std::unordered_map<playerPositions, playerEntitySharedPtr, std::hash<int> > activePlayerInstance;

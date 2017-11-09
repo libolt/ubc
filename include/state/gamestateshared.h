@@ -138,14 +138,14 @@ class gameStateShared
         teamTypes getTeamWithBall();  // retrieves the value of teamWithBall
         void setTeamWithBall(teamTypes set);  // sets the value of teamWithBall
         
-        basketballStateUMSharedPtr getActiveBasketballInstance();  // retrieves the value of activeBasketballInstance
-        void setActiveBasketballInstance(basketballStateUMSharedPtr set);  // sets the value of activeBasketballInstance
+        basketballStateMSharedPtr getActiveBasketballInstance();  // retrieves the value of activeBasketballInstance
+        void setActiveBasketballInstance(basketballStateMSharedPtr set);  // sets the value of activeBasketballInstance
 
-        courtStateUMSharedPtr getActiveCourtInstance();  // retrieves the value of activeCourtInstance
-        void setActiveCourtInstance(courtStateUMSharedPtr set);  // sets the value of activeCourtInstance
+        courtStateMSharedPtr getActiveCourtInstance();  // retrieves the value of activeCourtInstance
+        void setActiveCourtInstance(courtStateMSharedPtr set);  // sets the value of activeCourtInstance
 
-        hoopStateUMSharedPtr getActiveHoopInstance();  // retrieves the value of activeHoopInstance
-        void setActiveHoopInstance(hoopStateUMSharedPtr set);  // sets the value of activeHoopInstance
+        hoopStateMSharedPtr getActiveHoopInstance();  // retrieves the value of activeHoopInstance
+        void setActiveHoopInstance(hoopStateMSharedPtr set);  // sets the value of activeHoopInstance
 
         teamStateMSharedPtr getActiveTeamInstance();  // retrieves the value of activeTeamInstance
         void setActiveTeamInstance(teamStateMSharedPtr set);  // sets the value of activeTeamInstance
@@ -156,11 +156,11 @@ class gameStateShared
         basketballStateVecSharedPtr getBasketballInstance();  // retrieves the value of basketballInstance
         void setBasketballInstance(basketballStateVecSharedPtr set);  // sets the value of basketballInstance
 
-        courtStateUMSharedPtr  getCourtInstance();  // retrieves the value of courtInstance
-        void setCourtInstance(courtStateUMSharedPtr  set);  // sets the value of courtInstance
+        courtStateMSharedPtr  getCourtInstance();  // retrieves the value of courtInstance
+        void setCourtInstance(courtStateMSharedPtr  set);  // sets the value of courtInstance
 
-        hoopStateUMSharedPtr getHoopInstance();  // retrieves the value of hoopInstance
-        void setHoopInstance(hoopStateUMSharedPtr set);  // sets the value of hoopInstance
+        hoopStateMSharedPtr getHoopInstance();  // retrieves the value of hoopInstance
+        void setHoopInstance(hoopStateMSharedPtr set);  // sets the value of hoopInstance
 
         playerEntityMSharedPtr getPlayerInstance();  // retrieves the value of playerInstance
         void setPlayerInstance(playerEntityMSharedPtr set);  // sets the value of  playerInstance
@@ -211,15 +211,15 @@ class gameStateShared
         static std::vector<std::unordered_map<std::string, size_t> > teamStarterID;  // stores the selected starters for each team
         static Ogre::Vector3 bballNodePosition;  // stores a copy of the basketball node position
         static teamTypes teamWithBall;  // store which team has the basketball
-        static basketballStateUMSharedPtr activeBasketballInstance;  // creates instance of the basketballState class
-        static courtStateUMSharedPtr activeCourtInstance;  // stores the active court instance
-        static hoopStateUMSharedPtr activeHoopInstance;  // creates instance of the hoopState class
+        static basketballStateMSharedPtr activeBasketballInstance;  // creates instance of the basketballState class
+        static courtStateMSharedPtr activeCourtInstance;  // stores the active court instance
+        static hoopStateMSharedPtr activeHoopInstance;  // creates instance of the hoopState class
         static teamStateMSharedPtr activeTeamInstance;  // stores active team instance
         
 //        static size_t activeBBallInstance;  // stores which instance of the baskteball class is active
         static basketballStateVecSharedPtr basketballInstance;  // creates instance of the basketballs class
-        static courtStateUMSharedPtr courtInstance;  // stores the court instance
-        static hoopStateUMSharedPtr hoopInstance;  // creates instance of the hoop class
+        static courtStateMSharedPtr courtInstance;  // stores the court instance
+        static hoopStateMSharedPtr hoopInstance;  // creates instance of the hoop class
         static playerEntityMSharedPtr playerInstance;  // stores the map of the players loaded from the xml files
         static teamStateMSharedPtr  teamInstance;  // creates instance of the teamState class
 

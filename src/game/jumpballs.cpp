@@ -155,7 +155,7 @@ void jumpBalls::setBBallVelocity(const btVector3 &set)  // sets the value of bba
     bballVelocity = set;
 }
 
-bool jumpBalls::updateState(teamTypes teamWithBall, basketballStateUMSharedPtr activeBasketballInstance, teamStateMSharedPtr activeTeamInstance, quarters quarter)  // updates state of the jumpBalls instance
+bool jumpBalls::updateState(teamTypes teamWithBall, basketballStateMSharedPtr activeBasketballInstance, teamStateMSharedPtr activeTeamInstance, quarters quarter)  // updates state of the jumpBalls instance
 {
 //    sharedPtr<gameState> gameS = gameState::Instance();
     sharedPtr<conversion> convert = conversion::Instance();
@@ -216,7 +216,7 @@ bool jumpBalls::updateState(teamTypes teamWithBall, basketballStateUMSharedPtr a
     return (false);  // returns false until jump ball has com=pleted
 }
 
-bool jumpBalls::jumpBallExecute(basketballStateUMSharedPtr activeBasketballInstance, teamStateMSharedPtr activeTeamInstance)  // initiates jump ball from jump ball circle
+bool jumpBalls::jumpBallExecute(basketballStateMSharedPtr activeBasketballInstance, teamStateMSharedPtr activeTeamInstance)  // initiates jump ball from jump ball circle
 {
 //    exit(0);
     sharedPtr<conversion> convert = conversion::Instance();
@@ -348,7 +348,7 @@ TS*/
     return (false);  // executeJumpBall has not completed
 }
 
-bool jumpBalls::tipToPlayer(basketballStateUMSharedPtr activeBasketballInstance, teamStateMSharedPtr activeTeamInstance, quarters quarter)  // tips the basketball to the appropriate player
+bool jumpBalls::tipToPlayer(basketballStateMSharedPtr activeBasketballInstance, teamStateMSharedPtr activeTeamInstance, quarters quarter)  // tips the basketball to the appropriate player
 {
 //    sharedPtr<gameState> gameS = gameState::Instance();
     sharedPtr<conversion> convert = conversion::Instance();

@@ -364,7 +364,7 @@ private:
     
     static MyGUIButtonUMSharedPtr networkClientSetupMenuButtons;
     
-    static MyGUIListBoxVecUMSharedPtr teamPlayerPosSelectBox;
+    static MyGUIListBoxVecMSharedPtr teamPlayerPosSelectBox;
     
 /*    static MyGUIListBoxSharedPtr team0Player1SelectBox;
     static MyGUIListBoxSharedPtr team0Player2SelectBox;
@@ -392,7 +392,7 @@ private:
     static MyGUIListBoxSharedPtr team1CSelectBox;
 */
 
-    static MyGUITextBoxVecUMSharedPtr teamPlayerRating;
+    static MyGUITextBoxVecMSharedPtr teamPlayerRating;
 
 
 /*    static MyGUITextBoxSharedPtr> team0PGRating;

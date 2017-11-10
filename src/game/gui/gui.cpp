@@ -93,11 +93,11 @@ activeMenus GUISystem::previousActiveMenu;  // stores which menu was last displa
 MyGUIGuiSharedPtr GUISystem::mGUI;
 MyGUIOgrePlatformSharedPtr GUISystem::mPlatform;
 
-MyGUIButtonUMSharedPtr GUISystem::mainMenuButtons;
+MyGUIButtonMSharedPtr GUISystem::mainMenuButtons;
 
-MyGUIButtonUMSharedPtr GUISystem::networkMenuButtons;
+MyGUIButtonMSharedPtr GUISystem::networkMenuButtons;
 
-MyGUIButtonUMSharedPtr GUISystem::playerStartSelectionMenuButtons;
+MyGUIButtonMSharedPtr GUISystem::playerStartSelectionMenuButtons;
 /*sharedPtr<MyGUI::Button> uexitButton;
 sharedPtr<MyGUI::Button> GUISystem::startSingleGameButton;
 sharedPtr<MyGUI::Button> GUISystem::startMultiGameButton;
@@ -108,7 +108,7 @@ sharedPtr<MyGUI::Button> GUISystem::backMainMenuButton;
 */
 //sharedPtr<MyGUI::Button> GUISystem::backNetworkSetupButton;
 
-MyGUIButtonUMSharedPtr GUISystem::optionsMenuButtons;
+MyGUIButtonMSharedPtr GUISystem::optionsMenuButtons;
 /*sharedPtr<MyGUI::Button> GUISystem::displayButton;
 sharedPtr<MyGUI::Button> GUISystem::inputButton;
 sharedPtr<MyGUI::Button> GUISystem::audioButton;
@@ -125,13 +125,13 @@ sharedPtr<MyGUI::Button> GUISystem::audioButton;
 //sharedPtr<MyGUI::Button> GUISystem::backTeamSelectionMenuButton;
 //sharedPtr<MyGUI::Button> GUISystem::backCourtSelectionMenuButton;
 
-MyGUIButtonUMSharedPtr GUISystem::displayMenuButtons;
-MyGUIButtonUMSharedPtr GUISystem::inputMenuButtons;
-MyGUIButtonUMSharedPtr GUISystem::audioMenuButtons;
+MyGUIButtonMSharedPtr GUISystem::displayMenuButtons;
+MyGUIButtonMSharedPtr GUISystem::inputMenuButtons;
+MyGUIButtonMSharedPtr GUISystem::audioMenuButtons;
 
 
 // Team Selection Menu
-MyGUIButtonUMSharedPtr GUISystem::teamSelectionMenuButtons;
+MyGUIButtonMSharedPtr GUISystem::teamSelectionMenuButtons;
 
 /*sharedPtr<MyGUI::Button> GUISystem::teamsSelectedButton;
 sharedPtr<MyGUI::Button> GUISystem::team0SelectButton;
@@ -147,18 +147,18 @@ sharedPtr<MyGUI::Button> GUISystem::startingLineupsSetButton;
 // listbox widgets
 //MyGUIListBoxSharedPtr GUISystem::team0SelectBox;
 //MyGUIListBoxSharedPtr GUISystem::team1SelectBox;
-MyGUIListBoxUMSharedPtr GUISystem::teamSelectBox;
+MyGUIListBoxMSharedPtr GUISystem::teamSelectBox;
 
 // Network Server Setup Widgets
 MyGUIListBoxSharedPtr GUISystem::numClientsSelectBox;  // allows you to select the number of network players
 //sharedPtr<MyGUI::Button> GUISystem::serverHostButton;
 sharedPtr<MyGUI::EditBox> GUISystem::serverIPAddressBox;
-MyGUIButtonUMSharedPtr GUISystem::networkServerSetupMenuButtons;
+MyGUIButtonMSharedPtr GUISystem::networkServerSetupMenuButtons;
     
 // Network Client Setup Widgets
 sharedPtr<MyGUI::EditBox> GUISystem::clientIPAddressBox;
 //sharedPtr<MyGUI::Button> GUISystem::clientConnectButton;
-MyGUIButtonUMSharedPtr GUISystem::networkClientSetupMenuButtons;
+MyGUIButtonMSharedPtr GUISystem::networkClientSetupMenuButtons;
     
 MyGUIListBoxVecMSharedPtr GUISystem::teamPlayerPosSelectBox;
 
@@ -188,7 +188,7 @@ MyGUIListBoxSharedPtr GUISystem::team1CSelectBox;
 */
 
 MyGUITextBoxVecMSharedPtr GUISystem::teamPlayerRating;
-MyGUIImageBoxUMSharedPtr GUISystem::teamLogo;
+MyGUIImageBoxMSharedPtr GUISystem::teamLogo;
 
 /*
 MyGUITextBoxSharedPtr> GUISystem::team0PGRating;
@@ -206,7 +206,7 @@ MyGUIImageBoxSharedPtr GUISystem::team1Logo;
 */
 
 // Court selection menu widgets
-MyGUIButtonUMSharedPtr GUISystem::courtSelectionMenuButtons;
+MyGUIButtonMSharedPtr GUISystem::courtSelectionMenuButtons;
 //sharedPtr<MyGUI::Button> GUISystem::backPlayerStartSelectionMenuButton;
 //sharedPtr<MyGUI::Button> GUISystem::courtSelectButton;
 MyGUIListBoxSharedPtr GUISystem::courtSelectBox;  
@@ -817,7 +817,7 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
 void GUISystem::courtSelectionMenu() // displays court selection menu
 {
 //    sharedPtr<gameState> gameS = gameState::Instance();
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<loader> load; // = loader::Instance();
     std::string func = "GUISystem::courtSelectionMenu()";
     
@@ -947,7 +947,7 @@ void GUISystem::networkClient()  // sets up game as a network client
 void GUISystem::courtSelected()  // processes court selection
 {
     //conversion *convert = conversion::Instance();
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     //gameState *gameS = gameState::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
     std::string func = "GUISystem::courtSelected()";
@@ -971,7 +971,7 @@ void GUISystem::teamsSelected()  // processes team selection
 {
 //    exit(0);
     //gameState *gameS = gameState::Instance();
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     teamStateMSharedPtr activeTeamInstance;
     teamStateMSharedPtr teamInstance;
     gameSetupTeamsSharedPtr gameSetupTeam;
@@ -1016,7 +1016,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     std::unordered_map<std::string, size_t> tempStarterID; // used for initial creatio  of teamStarterID vector
     teamStateMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
   
-//    std::vector<playerStateUMSharedPtr > playerInstance;
+//    std::vector<playerStateMSharedPtr > playerInstance;
     playerEntityVecMSharedPtr playerInstance;
 //    std::unordered_map<std::string, playerStateSharedPtr> activePlayerInstance;
     playerEntityMSharedPtr activePlayerInstance;
@@ -1047,7 +1047,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     logMsg(func +" teamStarters.size() == " +convert->toString(teamStarters.size()));
 //    exit(0);
 
-/*    playerEntityVecUMSharedPtr::iterator PIIT;
+/*    playerEntityVecMSharedPtr::iterator PIIT;
     
     for (PIIT = playerInstance.begin(); PIIT != playerInstance.end(); ++PIIT)
     {

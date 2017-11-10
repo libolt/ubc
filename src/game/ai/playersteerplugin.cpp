@@ -66,7 +66,7 @@ void playerSteerPlugin::setBaseInitialized(bool set)  // sets the value of baseI
 void playerSteerPlugin::open()
 {
     AISystemSharedPtr ai = AISystem::Instance();
-	sharedPtr<conversion> convert = conversion::Instance();
+	conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 
 //    courtStateVec courtInstance = gameS->getCourtInstance();
@@ -251,7 +251,7 @@ void playerSteerPlugin::open()
 
 void playerSteerPlugin::update(const float currentTime, const float elapsedTime)
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
     
 //    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();

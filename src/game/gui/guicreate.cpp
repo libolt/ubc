@@ -390,7 +390,7 @@ bool GUISystem::createAudioSetupGUI()  // creates GUI for audo settings screen.
 bool GUISystem::createGameSetupMenuGUI()    // creates GUI for game setup menu screen.
 {
     //conversion *convert = conversion::Instance();
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     //gameState *gameS = gameState::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    sharedPtr<loader> load(new loader);
@@ -563,7 +563,7 @@ bool GUISystem::createPlayerStartSelectionMenuGUI()  // creates GUI for player s
 
 bool GUISystem::createTeamSelectionMenuGUI()  // creates GUI for team selection menu screen.
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     //
     MyGUI::LayoutManager::getInstance().loadLayout("TeamSelectionMenu.layout");
     

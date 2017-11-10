@@ -73,7 +73,7 @@ bool playerPhysics::setupState()  // sets up state of player physics
 bool playerPhysics::setupPhysics()  // sets up playerPhysics
 {
 //    exit(0);
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     sharedPtr<gameState> gameS = gameState::Instance();
     sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
 
@@ -189,7 +189,7 @@ void playerPhysics::update()  // updates the player physics object
 
 void playerPhysics::updatePosition()  // updates the position of player objecgts
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
     comparison compare;
     std::string func = "playerPhysics::updatePosition()";
@@ -201,8 +201,8 @@ void playerPhysics::updatePosition()  // updates the position of player objecgts
     int playerWithBall;
 
     teamStateMSharedPtr activeTeamInstance = getGameS()->getActiveTeamInstance();
-    std::vector <playerEntityMSharedPtr > activePlayerInstance;
-    basketballStateVecSharedPtr basketballInstance = getGameS()->getBasketballInstance();
+    playerEntityVecMSharedPtr activePlayerInstance;
+    basketballStateMSharedPtr basketballInstance = getGameS()->getBasketballInstance();
 
     // checks to see if player positions need updated
     size_t z = 0;
@@ -255,7 +255,7 @@ TS*/
 
 bool playerPhysics::jump(teamTypes teamType, int playerID)  // calculates and executes player jumping in the air
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 
     courtStateMSharedPtr  courtInstance = getGameS()->getCourtInstance();
@@ -349,7 +349,7 @@ bool playerPhysics::shootBasketball(teamTypes teamType, int playerID)  // calcul
 {
 
     // FIXME! Disabled until I can do a proper rewrite
-/*    sharedPtr<conversion> convert = conversion::Instance();
+/*    conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 
     comparison compare;

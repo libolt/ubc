@@ -72,7 +72,7 @@ void loadTeams::setTInstance(teamStateMSharedPtr set)  // sets the value of tIns
 
 bool loadTeams::checkIfTeamsLoaded()  // checks if teams have been loaded into tInstance
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     teamStateVec tempT;
     teamStateMSharedPtr tempTInstance;
     tInstance = tempTInstance;
@@ -151,7 +151,7 @@ bool loadTeams::checkIfTeamsLoaded()  // checks if teams have been loaded into t
 
 teamStateMSharedPtr loadTeams::loadTeamFiles()  // load teams from XML files
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     teamStateMSharedPtr teams;
 
     std::string teamList;
@@ -228,7 +228,7 @@ teamStateMSharedPtr loadTeams::loadTeamFiles()  // load teams from XML files
 
 stdStringVec loadTeams::loadTeamListFile(std::string fileName)  // loads the team list file
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<renderEngine> render = renderEngine::Instance();
 
     stdStringVec teamName;
@@ -320,7 +320,7 @@ stdStringVec loadTeams::loadTeamListFile(std::string fileName)  // loads the tea
 
 teamStateSharedPtr loadTeams::loadTeamFile(std::string fileName)  // loads the team file
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    sharedPtr<renderEngine> render = renderEngine::Instance();
 //    teamStateVecSharedPtr teamInstance = gameS->getTeamInstance();

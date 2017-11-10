@@ -19,6 +19,8 @@
  ***************************************************************************/
 
 #include "gamesetup/gamesetupcourts.h"
+#include "state/courtstate.h"
+#include "load/loadcourts.h"
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
 
@@ -34,11 +36,82 @@ gameSetupCourts::~gameSetupCourts()  // destructor
 courtStateMSharedPtr gameSetupCourts::createCourtInstances()  // creates court Instances
 {
     courtStateMSharedPtr courtInstance;
-    retutn (courtInstance);
+    loadCourtsSharedPtr loadCourt;
+    std::string func = "gameSetupCourts::createCourtInstances()";
+
+    logMsg(func +" beginning");
+
+//    exit(0);
+//    courtState cInstance;  // creates an instance of the courtState class
+//    cInstance.setModelFileName("court.mesh");
+//    cInstance.setModelFileName("Court.mesh");
+//    exit(0);
+    if (loadCourt->checkIfCourtsLoaded())
+    {
+ //       exit(0);
+//        setCourtInstance(loadCourt->getCInstance());
+        logMsg(func +" Court Instances Created!!");
+        courtInstance = loadCourt->getCInstance();
+    }
+    else
+    {
+        logMsg(func +" Court Instances Not Created!");
+    }
+//    exit(0);
+
+    logMsg(func +" end");
+
+
+    return (courtInstance);
 }
 
 courtStateMSharedPtr gameSetupCourts::createActiveCourtInstances(courtStateMSharedPtr courtInstance)  // creates active court instances
 {
     courtStateMSharedPtr activeCourtInstance;
-    retutn (activeCourtInstance);
+    conversionSharedPtr convert = conversion::Instance();
+    loadCourtsSharedPtr loadCourt(new loadCourts);
+//    courtStateMSharedPtr courtInstance = getCourtInstance();
+//    courtStateMSharedPtr activeCourtInstance = getActiveCourtInstance();
+    std::string func = "gameSetupCourts::createActiveCourtInstances()";
+
+    logMsg(func + " beginning");
+
+    logMsg(func +" courtInstance.size() == " +convert->toString(courtInstance.size()));
+    if (courtInstance.size() == 0)
+    {
+        if (loadCourt->checkIfCourtsLoaded())
+        {
+            courtInstance = loadCourt->getCInstance();
+        }
+        else
+        {
+            logMsg(func +" Failed to load Court Instances!");
+            exit(0);
+        }
+    }
+    else
+    {
+
+    }
+
+    logMsg(func +" courtInstance.size() == " +convert->toString(courtInstance.size()));
+    //FIXME! should not be hard coded
+    activeCourtInstance.insert(std::pair<size_t, courtStateSharedPtr>(0, courtInstance[0]));
+    if (!activeCourtInstance[0]->getInitialized())
+    {
+        if (activeCourtInstance[0]->initialize())
+        {
+            activeCourtInstance[0]->setInitialized(true);
+        }
+        else
+        {
+            logMsg(func +" Unable to initialize activeCourtInstance!");
+            exit(0);
+        }
+    }
+//    setCourtInstance(courtInstance);
+//    setActiveCourtInstance(activeCourtInstance);
+//    logMsg(func +" courtInstance.size() == " +convert->toString(courtInstance().size()));
+    logMsg(func +" end");
+    return (activeCourtInstance);
 }

@@ -30,7 +30,7 @@
 #include "state/hoopstate.h"
 
 // static declarations
-hoopStateUMSharedPtr  loadHoops::hInstance;
+hoopStateMSharedPtr  loadHoops::hInstance;
 stdStringVec loadHoops::hoopFiles;  // stores list of hoop xml files
 bool loadHoops::hoopFilesLoaded;
 
@@ -43,11 +43,11 @@ loadHoops::~loadHoops()  // destructor
 {
 }
 
-std::unordered_map<size_t, hoopStateSharedPtr> loadHoops::getHInstance()  // retrieves the value of hInstance
+hoopStateMSharedPtr loadHoops::getHInstance()  // retrieves the value of hInstance
 {
     return (hInstance);
 }
-void loadHoops::setHInstance(std::unordered_map<size_t, hoopStateSharedPtr> set)  // sets the value of hInstance
+void loadHoops::setHInstance(hoopStateMSharedPtr set)  // sets the value of hInstance
 {
     hInstance = set;
 }
@@ -126,10 +126,10 @@ bool loadHoops::checkIfHoopsLoaded()  // checks if the hooops have been loaded i
     return (false);
 }
 
-hoopStateUMSharedPtr  loadHoops::loadHoopFiles()  // load hoop XML files
+hoopStateMSharedPtr  loadHoops::loadHoopFiles()  // load hoop XML files
 {
 //    exit(0);
-    hoopStateUMSharedPtr  hoops;
+    hoopStateMSharedPtr  hoops;
     std::string hoopList;
     std::string func = "loader::loadHoops()";
 
@@ -160,7 +160,7 @@ hoopStateUMSharedPtr  loadHoops::loadHoopFiles()  // load hoop XML files
 
 stdStringVec loadHoops::loadHoopListFile(std::string fileName)  // load the list of hoops from hoops.xml
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<renderEngine> render = renderEngine::Instance();
     stdStringVec hFiles;
     std::string fileContents;
@@ -217,7 +217,7 @@ stdStringVec loadHoops::loadHoopListFile(std::string fileName)  // load the list
 
 hoopStateSharedPtr loadHoops::loadHoopFile(std::string fileName)  // loads data from the hoop XML files.
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     sharedPtr<hoopState> hoopInstance(new hoopState);
 
 //    basketballState *basketball = new basketballState;

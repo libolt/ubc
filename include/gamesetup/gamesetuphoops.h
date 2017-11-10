@@ -31,7 +31,7 @@ class gameSetupHoops
         ~gameSetupHoops();  // destructor
         
         hoopStateMSharedPtr createHoopInstances();  // creates hoop Instances
-        hoopStateMSharedPtr createActiveHoopInstances(hoopStateMSharedPtr hoopInstance);  // creates active hoop instances
+        hoopStateMSharedPtr createActiveHoopInstances(hoopStateMSharedPtr hoopInstance, size_t numActiveHoops);  // creates active hoop instances
 
     private:
     

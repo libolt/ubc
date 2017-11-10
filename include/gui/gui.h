@@ -293,7 +293,7 @@ private:
     // button widgets
     
     // Main Menu
-    static MyGUIButtonUMSharedPtr mainMenuButtons;
+    static MyGUIButtonMSharedPtr mainMenuButtons;
 /*    static sharedPtr<MyGUI::Button> exitButton;
     static sharedPtr<MyGUI::Button> startSingleGameButton;
     static sharedPtr<MyGUI::Button> startMultiGameButton;
@@ -301,12 +301,12 @@ private:
     static sharedPtr<MyGUI::Button> serverButton;
     static sharedPtr<MyGUI::Button> clientButton;
 */
-     static MyGUIButtonUMSharedPtr networkMenuButtons;
+     static MyGUIButtonMSharedPtr networkMenuButtons;
 
 //    static sharedPtr<MyGUI::Button> backMainMenuButton;
 //    static sharedPtr<MyGUI::Button> backNetworkSetupButton;
     
-    static MyGUIButtonUMSharedPtr optionsMenuButtons;
+    static MyGUIButtonMSharedPtr optionsMenuButtons;
 /*    static sharedPtr<MyGUI::Button> displayButton;
     static sharedPtr<MyGUI::Button> inputButton;
     static sharedPtr<MyGUI::Button> audioButton;
@@ -315,16 +315,16 @@ private:
 //    static sharedPtr<MyGUI::Button> backNetworkClientButton;
 //    static sharedPtr<MyGUI::Button> changeResolutionButton;
 
-    static MyGUIButtonUMSharedPtr displayMenuButtons;
+    static MyGUIButtonMSharedPtr displayMenuButtons;
 
 //    static sharedPtr<MyGUI::Button> changeInputTypeButton;
     
-    static MyGUIButtonUMSharedPtr inputMenuButtons;
+    static MyGUIButtonMSharedPtr inputMenuButtons;
 
 //    static sharedPtr<MyGUI::Button> enableAudioButton;
 //    static sharedPtr<MyGUI::Button> disableAudioButton;
     
-    static MyGUIButtonUMSharedPtr audioMenuButtons;
+    static MyGUIButtonMSharedPtr audioMenuButtons;
 
 //    static sharedPtr<MyGUI::Button> backOptionsMenuButton;
     
@@ -333,7 +333,7 @@ private:
 //    static sharedPtr<MyGUI::Button> backCourtSelectionMenuButton;
     
     // Team Selection Menu
-    static MyGUIButtonUMSharedPtr teamSelectionMenuButtons;
+    static MyGUIButtonMSharedPtr teamSelectionMenuButtons;
 
 /*    static sharedPtr<MyGUI::Button> team0SelectButton;
     static sharedPtr<MyGUI::Button> team1SelectButton;
@@ -344,25 +344,25 @@ private:
     static sharedPtr<MyGUI::Button> team1StartingLineupSetButton;
     static sharedPtr<MyGUI::Button> startingLineupsSetButton;
 */
-    static MyGUIButtonUMSharedPtr playerStartSelectionMenuButtons;
+    static MyGUIButtonMSharedPtr playerStartSelectionMenuButtons;
 
     // Team selection listbox widgets
 //    static MyGUIListBoxSharedPtr team0SelectBox;
 //    static MyGUIListBoxSharedPtr team1SelectBox;
-    static MyGUIListBoxUMSharedPtr teamSelectBox;
+    static MyGUIListBoxMSharedPtr teamSelectBox;
 
     // Network Server Setup Widgets
     static MyGUIListBoxSharedPtr numClientsSelectBox;  // allows you to select the number of network players
 //    static sharedPtr<MyGUI::Button> serverHostButton;
     static sharedPtr<MyGUI::EditBox> serverIPAddressBox;
     
-    static MyGUIButtonUMSharedPtr networkServerSetupMenuButtons;
+    static MyGUIButtonMSharedPtr networkServerSetupMenuButtons;
     
     // Network Client Setup Widgets
     static sharedPtr<MyGUI::EditBox> clientIPAddressBox;
 //    static sharedPtr<MyGUI::Button> clientConnectButton;
     
-    static MyGUIButtonUMSharedPtr networkClientSetupMenuButtons;
+    static MyGUIButtonMSharedPtr networkClientSetupMenuButtons;
     
     static MyGUIListBoxVecMSharedPtr teamPlayerPosSelectBox;
     
@@ -408,13 +408,13 @@ private:
     static MyGUITextBoxSharedPtr> team1CRating;
 */
 
-    static MyGUIImageBoxUMSharedPtr teamLogo;
+    static MyGUIImageBoxMSharedPtr teamLogo;
 
 //    static MyGUIImageBoxSharedPtr team0Logo;
 //    static MyGUIImageBoxSharedPtr team1Logo;
 	
     // Court selection menu widgets
-    static MyGUIButtonUMSharedPtr courtSelectionMenuButtons;
+    static MyGUIButtonMSharedPtr courtSelectionMenuButtons;
 
 //    static sharedPtr<MyGUI::Button> backPlayerStartSelectionMenuButton;
 //    static sharedPtr<MyGUI::Button> courtSelectButton;

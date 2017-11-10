@@ -178,23 +178,23 @@ public:
 
     bool createInstances();  // creates object instances
     
-    bool createBasketballInstances();  // creates the instances of the basketballs
+//    bool createBasketballInstances();  // creates the instances of the basketballs
 
     bool createTeamInstances();  // creates the instances of the teams
 
     bool createCourtDataInstances();  // creates instances of court data
 
-    bool createCourtInstances();  // creates court Instances
+//    bool createCourtInstances();  // creates court Instances
 
-    bool createHoopInstances();  // creates hoop Instances
+//    bool createHoopInstances();  // creates hoop Instances
 
     bool createPlayerInstances();  // creates player instances
     
-    bool createActiveBasketballInstances();  // creates the active basketball instances
+//    bool createActiveBasketballInstances();  // creates the active basketball instances
 
-    bool createActiveCourtInstances();  // creates the active court instances
+//    bool createActiveCourtInstances();  // creates the active court instances
 
-    bool createActiveHoopInstances();  // creates the active hoop instances
+//    bool createActiveHoopInstances();  // creates the active hoop instances
     
     bool setupActiveTeamInstances();  // sets up the active team instances
 

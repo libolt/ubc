@@ -33,7 +33,7 @@
 
 // static declarations
 
-basketballStateVecSharedPtr loadBasketballs::bInstance;
+basketballStateMSharedPtr loadBasketballs::bInstance;
 stdStringVec loadBasketballs::basketballFiles;  // stores list of basketball xml files
 bool loadBasketballs::basketballFilesLoaded;
 
@@ -55,11 +55,11 @@ void loadBasketballs::setBasketballFiles(stdStringVec set)  // sets the value of
     basketballFiles = set;
 }
 
-basketballStateVecSharedPtr loadBasketballs::getBInstance()  // retrieves the value of bInstance
+basketballStateMSharedPtr loadBasketballs::getBInstance()  // retrieves the value of bInstance
 {
     return (bInstance);
 }
-void loadBasketballs::setBInstance(basketballStateVecSharedPtr set)  // sets the value of bInstance
+void loadBasketballs::setBInstance(basketballStateMSharedPtr set)  // sets the value of bInstance
 {
     bInstance = set;
 }
@@ -75,7 +75,7 @@ void loadBasketballs::setBasketballFilesLoaded(bool set)  // sets the value of b
 
 bool loadBasketballs::checkIfBasketballFilesLoaded()  // checks if basketballs have been loaded into bInstance
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     std::string func = "loader::checkBasketballsLoaded()";
     
     logMsg(func + " beginning");
@@ -94,7 +94,7 @@ bool loadBasketballs::checkIfBasketballFilesLoaded()  // checks if basketballs h
             logMsg(func +" Basketball Files not yet Loaded!");
 
             basketballFilesLoaded = false;
-            bInstance = loadBasketballFiles();
+            bInstance = loadFiles();
             if (bInstance.size() > 0)
             {
                 logMsg(func +" > 0!");
@@ -124,7 +124,7 @@ bool loadBasketballs::checkIfBasketballFilesLoaded()  // checks if basketballs h
         else
         {
             logMsg(func +" ELSE ELSE!");
-            bInstance = loadBasketballFiles();
+            bInstance = loadFiles();
             logMsg(func +" blah");
 
             logMsg(func +" bInstance.size() == " +convert->toString(bInstance.size()));
@@ -151,10 +151,10 @@ bool loadBasketballs::checkIfBasketballFilesLoaded()  // checks if basketballs h
 }
 
 // Basketballs
-basketballStateVecSharedPtr loadBasketballs::loadBasketballFiles()  // load basketball settings from XML files
+basketballStateMSharedPtr loadBasketballs::loadFiles()  // load basketball settings from XML files
 {
 //    exit(0);
-    basketballStateVecSharedPtr basketballs;
+    basketballStateMSharedPtr basketballs;
     std::string basketballList;
     std::string func = "loader::loadBasketballs()";
     
@@ -165,31 +165,35 @@ basketballStateVecSharedPtr loadBasketballs::loadBasketballFiles()  // load bask
 #else
     basketballList = findFile("basketballs/basketballs.xml");
 #endif
-    basketballFiles = loadBasketballListFile(basketballList);
+    basketballFiles = loadListFile(basketballList);
 //    stdStringVec playerFiles = load->getPlayerFiles();
 
-    stdStringVec::iterator it;
-    for (it = basketballFiles.begin(); it != basketballFiles.end(); ++it)
+//    stdStringVec::iterator it;
+    auto it = 0;
+    //    for (it = basketballFiles.begin(); it != basketballFiles.end(); ++it)
     {
-        logMsg("basketballFile = " +*it);
+        logMsg("basketballFile = " +basketballFiles[it]);
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-        basketballs.push_back(loadBasketballFile("data/basketballs/" + *it));
+//        basketballs.push_back(loadFile("data/basketballs/" + *it));
+        basketballs.insert(std::pair<size_t, basketballStateSharedPtr>(it, loadFile("data/basketballs/" + basketballFiles[it])));
+
 #else
-        basketballs.push_back(loadBasketballFile(findFile("basketballs/" + *it)));
+//        basketballs.push_back(loadFile(findFile("basketballs/" + *it)));
+        basketballs.insert(std::pair<size_t, basketballStateSharedPtr>(it, loadFile(findFile("basketballs/" + basketballFiles[it]))));
 #endif
     }
     logMsg(func +" end");
     return (basketballs);
 }
 
-stdStringVec loadBasketballs::loadBasketballListFile(std::string fileName) // loads the list of baskteball list file
+stdStringVec loadBasketballs::loadListFile(std::string fileName) // loads the list of baskteball list file
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<renderEngine> render = renderEngine::Instance();
     stdStringVec bballFiles;
     std::string fileContents;
     tinyxml2::XMLDocument doc;
-    std::string func = "loader::loadBasketballListFile()";
+    std::string func = "loader::loadListFile()";
     
     logMsg(func +" beginning");
 
@@ -237,9 +241,9 @@ stdStringVec loadBasketballs::loadBasketballListFile(std::string fileName) // lo
     return (bballFiles);
 }
 
-sharedPtr<basketballState> loadBasketballs::loadBasketballFile(std::string fileName)  // loads data from the basketball XML files
+basketballStateSharedPtr loadBasketballs::loadFile(std::string fileName)  // loads data from the basketball XML files
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     sharedPtr<basketballState> basketballInstance(new basketballState);
     
 //    basketballState *basketball = new basketballState;
@@ -248,7 +252,7 @@ sharedPtr<basketballState> loadBasketballs::loadBasketballFile(std::string fileN
     std::string fileContents;
     tinyxml2::XMLDocument doc;
     char *contents = NULL;
-    std::string func = "loader::loadBasketballFile()";
+    std::string func = "loader::loadFile()";
     
     logMsg(func +" beginning");
 

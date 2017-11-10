@@ -21,13 +21,13 @@
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
 
-sharedPtr<conversion> conversion::pInstance;
+conversionSharedPtr conversion::pInstance;
 
-sharedPtr<conversion> conversion::Instance()
+conversionSharedPtr conversion::Instance()
 {
     if (pInstance == 0)  // is it the first call?
     {
-        sharedPtr<conversion> tInstance(new conversion);
+        conversionSharedPtr tInstance(new conversion);
         pInstance = tInstance;
     }
     return pInstance; // returns the value of pInstance

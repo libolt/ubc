@@ -184,7 +184,7 @@ void UBC::executeState()  // executes the UBC game code
 
 void UBC::run()  // runs the game
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
 //    exit(0);
 //    sharedPtr<renderEngine> renderTemp = base->getGameE()->getRenderE();
 //    exit(0);
@@ -350,7 +350,7 @@ void UBC::processPhysicsEvents()  // processes events in the physics subsyatem
 
 bool UBC::gameLoop()  // Main Game Loop
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     bool quitGame = base->getGameE()->getQuitGame();
     unsigned long changeInTime = 0;
     unsigned long CITmic = 0;
@@ -475,7 +475,7 @@ bool UBC::gameLoop()  // Main Game Loop
 
 void UBC::gameLoop_old()  // Main Game Loop
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
 /*    sharedPtr<gameState> gameS = gameState::Instance();
 //    sharedPtr<GUISystem> gui = GUISystem::Instance();
 //    sharedPtr<inputSystem> input = inputSystem::Instance();
@@ -674,8 +674,8 @@ bool UBC::updateGUI()  // updates the gui based on received events
 
 bool UBC::createUserInstances()  // creates the user instances
 {
-    sharedPtr<conversion> convert = conversion::Instance();
-    usersUMSharedPtr tempUserInstance;
+    conversionSharedPtr convert = conversion::Instance();
+    usersMSharedPtr tempUserInstance;
     std::string func = "UBC::createUserInstances()";
 
     logMsg(func +" beginning");
@@ -698,7 +698,7 @@ bool UBC::createUserInstances()  // creates the user instances
 
 bool UBC::setupUserInstancesInput()  // sets up input mapping for each user
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     loadUsersInputsSharedPtr loadUsersInput = base->getLoadUsersInput();
 //    inputEngineSharedPtr tempInputSharedPtr(new inputEngine);
 //    inputE = tempInputSharedPtr;
@@ -727,7 +727,7 @@ bool UBC::setupUserInstancesInput()  // sets up input mapping for each user
         exit(false);
     }
 
-    usersUMSharedPtr tempUsersInstance;
+    usersMSharedPtr tempUsersInstance;
     tempUsersInstance = base->getUsersInstance();
     size_t x = 0;
     // sets the default input for the users
@@ -746,7 +746,7 @@ bool UBC::setupUserInstancesInput()  // sets up input mapping for each user
 
 bool UBC::setupInputSObjUserInput()  // sets up user input mapping for inputS object
 {
-    usersUMSharedPtr tempUsersInstance;
+    usersMSharedPtr tempUsersInstance;
     usersInputsVecSharedPtr tempUserInput;
     
     tempUsersInstance = base->getUsersInstance();
@@ -765,7 +765,7 @@ bool UBC::setupInputSObjUserInput()  // sets up user input mapping for inputS ob
 
 int main(int argc, char *argv[])
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<UBC> ubc;
     sharedPtr<UBC> ubc(new UBC);
 //    exit(0);

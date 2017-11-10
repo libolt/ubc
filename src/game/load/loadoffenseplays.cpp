@@ -173,7 +173,7 @@ offensePlaysVecSharedPtr loadOffensePlays::loadOffensePlayFiles()  // load offen
 
 stdStringVec loadOffensePlays::loadOffensePlayListFile(std::string fileName)  // loads the play list file
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<renderEngine> render = renderEngine::Instance();
 
     stdStringVec playFiles;
@@ -227,7 +227,7 @@ stdStringVec loadOffensePlays::loadOffensePlayListFile(std::string fileName)  //
 
 sharedPtr<offensePlays> loadOffensePlays::loadOffensePlayFile(std::string fileName)  // loads data from the offense play XML files
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     
     offensePlaysSharedPtr playInstance(new offensePlays);
 //    offensePlays *play = new offensePlays;

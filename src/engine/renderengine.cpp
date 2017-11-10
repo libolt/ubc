@@ -315,7 +315,7 @@ Ogre::DataStreamPtr renderEngine::openAPKFile(const std::string& fileName)  // O
 
 bool renderEngine::initSDL() // Initializes SDL Subsystem
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     std::string func = "renderEngine::initSDL()";
     
     logMsg(func +" beginning");
@@ -380,7 +380,7 @@ bool renderEngine::initSDL() // Initializes SDL Subsystem
 
 bool renderEngine::initOgre() // Initializes Ogre Subsystem
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     std::string func = "renderEngine::initOgre()";
     
     logMsg(func +" beginning");
@@ -529,7 +529,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 
 bool renderEngine::createScene()
 {
-    sharedPtr<conversion> convert = conversion::Instance(); 
+    conversionSharedPtr convert = conversion::Instance(); 
     std::string func = "renderEngine::createScene()";
     
     logMsg(func +" beginning");
@@ -846,7 +846,7 @@ return (true);
 
 bool renderEngine::renderFrame()  // renders a frame to the screen
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     std::string func = "renderEngine::renderFrame()";
     
     logMsg(func +" beginning");

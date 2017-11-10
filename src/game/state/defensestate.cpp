@@ -84,7 +84,7 @@ void defenseState::setupState()  // sets up initial state of the object
 }
 void defenseState::updateState(teamTypes teamOnDefense) // updates the state of the object
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
     teamTypes teamWithBall = gameS->getTeamWithBall();
 

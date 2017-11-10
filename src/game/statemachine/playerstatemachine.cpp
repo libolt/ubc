@@ -267,7 +267,7 @@ STATE_DEFINE(playerStateMachine, StopMovement, noEventData)
 // start the player moving
 STATE_DEFINE(playerStateMachine, StartMovement, playerSMData)
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     std:: string func = "playerStateMachine::StartMovement";
 
     logMsg(func +" beginning");
@@ -284,7 +284,7 @@ STATE_DEFINE(playerStateMachine, StartMovement, playerSMData)
 STATE_DEFINE(playerStateMachine, ChangePosition, playerSMData)
 {
 //    exit(0);
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     std:: string func = "playerStateMachine::ChangePosition";
 
     logMsg(func +" beginning");
@@ -301,7 +301,7 @@ STATE_DEFINE(playerStateMachine, ChangePosition, playerSMData)
 STATE_DEFINE(playerStateMachine, ChangeSpeed, playerSMData)
 {
 //    exit(0);
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     std:: string func = "playerStateMachine::ChangeSpeed";
 
     logMsg(func +" beginning");
@@ -318,7 +318,7 @@ STATE_DEFINE(playerStateMachine, ChangeSpeed, playerSMData)
 // changes the player's direction once the player is moving
 STATE_DEFINE(playerStateMachine, ChangeDirection, playerSMData)
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     std:: string func = "playerStateMachine::ChangeDirection";
 
     logMsg(func +" beginning");
@@ -432,7 +432,7 @@ STATE_DEFINE(playerStateMachine, Jump, playerSMData)
 
     logMsg("jump");
     logMsg("flee");
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     
     logMsg("playerStateMachine::ST_Jump : Speed is " +convert->toString(data->speed));
     internalEvent(ST_IDLE);
@@ -446,7 +446,7 @@ STATE_DEFINE(playerStateMachine, Jump, playerSMData)
 
 STATE_DEFINE(playerStateMachine, Shoot, playerSMData)
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     std:: string func = "playerStateMachine::Shoot";
 
     logMsg(func +" beginning");
@@ -463,7 +463,7 @@ STATE_DEFINE(playerStateMachine, Shoot, playerSMData)
 
 STATE_DEFINE(playerStateMachine, Pass, playerSMData)
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     std:: string func = "playerStateMachine::Pass";
 
 

@@ -255,7 +255,7 @@ bool gameSetupLineups::setupStartingLineups(teamStateMSharedPtr activeTeamInstan
 //    std::vector<std::unordered_map <std::string, std::string> > teamStarters;
     std::unordered_map <std::string, std::string> tempStarters;
     std::unordered_map<std::string, size_t> tempStarterID; // used for initial creatio  of teamStarterID vector
-    playerEntityVecUMSharedPtr playerInstance;
+    playerEntityVecMSharedPtr playerInstance;
     std::vector<std::unordered_map <std::string, std::string> >::iterator TSVIT;
     std::vector<std::unordered_map<std::string, size_t> >::iterator TSIDIT;
 

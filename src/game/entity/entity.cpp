@@ -167,7 +167,7 @@ void entity::setNodePosition(Ogre::Vector3 set)  // sets the value of nodePositi
 
 bool entity::loadModel()  // loads the 3D model
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     std::string func = "entity::loadModel()";
     sharedPtr<renderEngine> render = base->getGameE()->getRenderE();
     sharedPtr<Ogre::SceneManager> mSceneMgr = render->getMSceneMgr();

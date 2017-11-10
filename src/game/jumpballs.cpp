@@ -158,7 +158,7 @@ void jumpBalls::setBBallVelocity(const btVector3 &set)  // sets the value of bba
 bool jumpBalls::updateState(teamTypes teamWithBall, basketballStateMSharedPtr activeBasketballInstance, teamStateMSharedPtr activeTeamInstance, quarters quarter)  // updates state of the jumpBalls instance
 {
 //    sharedPtr<gameState> gameS = gameState::Instance();
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     std::string func = "jumpBalls::updateState()";
     
     logMsg(func +" updating jumpBall state!");
@@ -219,7 +219,7 @@ bool jumpBalls::updateState(teamTypes teamWithBall, basketballStateMSharedPtr ac
 bool jumpBalls::jumpBallExecute(basketballStateMSharedPtr activeBasketballInstance, teamStateMSharedPtr activeTeamInstance)  // initiates jump ball from jump ball circle
 {
 //    exit(0);
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 ///    sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
@@ -351,7 +351,7 @@ TS*/
 bool jumpBalls::tipToPlayer(basketballStateMSharedPtr activeBasketballInstance, teamStateMSharedPtr activeTeamInstance, quarters quarter)  // tips the basketball to the appropriate player
 {
 //    sharedPtr<gameState> gameS = gameState::Instance();
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
 
     physicsEngine physEngine;

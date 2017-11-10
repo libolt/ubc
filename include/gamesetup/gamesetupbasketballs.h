@@ -31,7 +31,7 @@ class gameSetupBasketballs
         ~gameSetupBasketballs();  // destructor
         
         basketballStateMSharedPtr createBasketballInstances();  // creates basketball Instances
-        basketballStateMSharedPtr createActiveBasketballInstances(basketballStateMSharedPtr basketballInstance);  // creates active basketball instances
+        basketballStateMSharedPtr createActiveBasketballInstances(basketballStateMSharedPtr basketballInstance, size_t numActiveBasketballs);  // creates active basketball instances
   
     private:
     

@@ -35,7 +35,7 @@ gameSetupTeams::~gameSetupTeams()  // destructor
 
 teamStateMSharedPtr gameSetupTeams::createTeamInstances()  // creates team Instances
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     loadTeamsSharedPtr loadTeam; // = base->getLoadTeam();
     std::string func = "gameSetupTeams::createTeamInstances()";
     

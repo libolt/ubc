@@ -111,7 +111,7 @@ void printPlugIn(OpenSteer::PlugIn& pi);
 // initial setup of AI state
 bool AISystem::setup()
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
 
     std::string func = "AISystem::setup()";
 

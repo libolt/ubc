@@ -530,7 +530,7 @@ bool playerEntity::initializeStateMachine()  // initializes the stateMachine obj
 
 bool playerEntity::updateStateMachine(playerActions actionType, playerSMData *SMData)  // updates state machine with external input
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
 
     std::string func = "playerEntity::updateStateMachine()";
 
@@ -567,7 +567,7 @@ bool playerEntity::updateStateMachine(playerActions actionType, playerSMData *SM
 
 bool playerEntity::update() // executes any updates that need to be performed
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
 
     std::string func = "playerEntity::update()";
     playerSMData *stateData = new playerSMData;

@@ -46,7 +46,7 @@
 UBCBaseSharedPtr teamState::base;  // static copy of base class
 //std::unordered_map<std::string, playerStateSharedPtr> teamState::activePlayerInstance;  // stores instance of the playerState class containing the active players
 
-//playerStateUMSharedPtr teamState::playerInstance;
+//playerStateMSharedPtr teamState::playerInstance;
 //    sizeTVec teamState::activePlayerID; 
 //static size_t teamState::teamID; 
 
@@ -393,7 +393,7 @@ void teamState::updateState()  // updates the state of the object
 {
 
     //conversion *convert = conversion::Instance();
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     //gameEngine *gameE = gameEngine::Instance();
 //    sharedPtr<gameEngine> gameE = gameEngine::Instance();
     //gameState *gameS = gameState::Instance();
@@ -482,7 +482,7 @@ void teamState::updateState()  // updates the state of the object
     if (base->getGameS()->getBasketballInstanceCreated() && base->getGameS()->getPlayerInstanceCreated())
     {
         
-        basketballStateUMSharedPtr activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();
+        basketballStateMSharedPtr activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();
 //      exit(0);
         // checks whether to execute offense or defense logic
         if (offense == true && defense == false)
@@ -655,7 +655,7 @@ void updateActivePlayerSettings()  // updates the settings of active players
 
 bool teamState::createPlayerInstances()  // creates the player instances
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     playerEntityMSharedPtr gamePlayerInstance;
     std::string func = "teamState::createPlayerInstances()";
 
@@ -712,29 +712,19 @@ bool teamState::createPlayerInstances()  // creates the player instances
 
 bool teamState::setPlayerStartPositions()  // sets the initial coordinates for the players.
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    sharedPtr<gameEngine> gameE = gameEngine::Instance();
     std::vector<std::unordered_map<std::string, size_t> > teamStarterID = base->getGameS()->getTeamStarterID();
     OgreVector3Vec startingPos;
 //    directions playerDirection; // stores the direction players face at start
     std::string func = "teamState::setPlayerStartPositions()";
-    courtStateUMSharedPtr courtInstance = base->getGameS()->getCourtInstance();
+    courtStateMSharedPtr courtInstance = base->getGameS()->getCourtInstance();
     Ogre::Vector3 courtPos = courtInstance[0]->getEntity()->getNodePosition();
 
 //    exit(0);
     logMsg(func +" begining");
-///    if (!gameS->getCourtInstanceCreated())
-///    {
-///        if (gameS->createCourtInstances())
-///        {
-///            gameS->setCourtInstanceCreated(true);
-///            gameS->setCourdModelLoaded(true);
-///            gameS->setCourtStartPositions();
-///        }
-///    }
 
-//    exit(0);
     logMsg(func +" courtPos.y == " +convert->toString(courtPos.y));
     float yOffset = courtPos.y + 6.0;
     
@@ -856,7 +846,7 @@ bool teamState::setPlayerStartPositions()  // sets the initial coordinates for t
 
 void teamState::setPlayerStartActivePositions()  // sets the position the players will play at the start of the game
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     std::string func = "teamState::setPlayerStartActivePositions()";
 
     logMsg(func +" beginning");
@@ -882,7 +872,7 @@ void teamState::setPlayerStartActivePositions()  // sets the position the player
 
 bool teamState::setPlayerStartDirections()  // sets the initial directions for the players.
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
 
     std::vector<directions> playerDirection; // stores the direction players face at start
     std::string func = "teamState::setPlayerStartDirections()";
@@ -990,7 +980,7 @@ bool teamState::setPlayerStartDirections()  // sets the initial directions for t
 
 bool teamState::setupActivePlayerInstances()  // sets up active player objects
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     std::string func = "teamState::setupActivePlayerInstances()";
     
     logMsg(func +" beginning");
@@ -1187,7 +1177,7 @@ bool teamState::setupActivePlayerInstances()  // sets up active player objects
 
 void teamState::updateActivePlayers()  // updates the states of active players
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     std::string func = "teamState::updateActivePlayers()";
 
     logMsg(func +" beginning");
@@ -1204,7 +1194,7 @@ void teamState::updateActivePlayers()  // updates the states of active players
     }
 //    exit(0);
 //FIXME! Needs refactored after playerStateMachine migration
-/*    sharedPtr<conversion> convert = conversion::Instance();
+/*    conversionSharedPtr convert = conversion::Instance();
     std::string func = "teamState::updatePlayerStates()";
     size_t x = 0;
     
@@ -1239,14 +1229,14 @@ void teamState::updateActivePlayers()  // updates the states of active players
 
 void teamState::updatePlayerDirections()  // updates the direction players are facing
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 
     directions playerDirection, oldPlayerDirection;
 //    playerStateVec pInstance = getPlayerInstance();
  //   sizeTVec playerDirection = player->getPlayerDirection(); // stores contents of playerDirectdion from players class in local variable
 //    sizeTVec oldPlayerDirection = player->getOldPlayerDirection();   // stores contents of oldPlayerDirection form players in local variable
-    basketballStateVecSharedPtr basketballInstance = base->getGameS()->getBasketballInstance();
+    basketballStateMSharedPtr basketballInstance = base->getGameS()->getBasketballInstance();
     std::vector<Ogre::SceneNode>::iterator playersIT;
 
     std::string playerID = convert->toString(playerInstance[4]->getData()->getID());
@@ -1370,7 +1360,7 @@ void teamState::updatePlayerDirections()  // updates the direction players are f
 void teamState::updatePlayerMovements()  // updates player movements
 {
     //conversion *convert = conversion::Instance();
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     
     Ogre::Vector3 posChange;    // stores change in position
     posChange = Ogre::Vector3(0.0f, 0.0f, 0.0f);
@@ -1445,13 +1435,13 @@ void teamState::executePass()  // executes the pass between players
 //FIXME! Needs fixed after playerStateMachine is implemented
 /*
     //conversion *convert = conversion::Instance();
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     //gameState *gameS = gameState::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    size_t activeBBallInstance = base->getGameS()->getActiveBBallInstance();
     playerPositions passToPlayer = activePlayerInstance[convert->toString(playerWithBallInstance)]->getPassToPlayer();
 //    basketballStateVecSharedPtr basketballInstance = base->getGameS()->getBasketballInstance();
-    basketballStateUMSharedPtr activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();
+    basketballStateMSharedPtr activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();
     Ogre::Vector3 playerWithBallCoords = activePlayerInstance[convert->toString(playerWithBallInstance)]->getNode()->getPosition();
     Ogre::Vector3 passToPlayerCoords = activePlayerInstance[convert->toString(passToPlayer)]->getNode()->getPosition();
 //  exit(0);
@@ -1536,7 +1526,7 @@ void teamState::updatePositions()  // updates player on court positions
 //FIXME! Needs reworked after playerStateMachine migration
 /*
     //conversion *convert = conversion::Instance();
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     
 //    size_t x = 0;
     // updates the player positions on the court

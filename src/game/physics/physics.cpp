@@ -223,7 +223,7 @@ bool physics::setup()  // sets up the state of the object
 bool physics::setupPhysics(OgreEntitySharedPtr *model, OgreSceneNodeSharedPtr *node, btRigidBody **body)  // sets up physics for the object
 {
 
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     btRigidBody *physBody;
     btCollisionShape *tempShape; 
     std::string func = "physics::setupPhysics()";

@@ -153,7 +153,7 @@ void physicsEngine::setupState(sharedPtr<renderEngine> render)  // sets up the s
 void physicsEngine::updateState()  // updates the state for the physics engine
 {
 /*
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameEngine> gameE = gameEngine::Instance();
     sharedPtr<gameState> gameS = gameState::Instance();
 //    sharedPtr<inputSystem> input = inputSystem::Instance();
@@ -169,7 +169,7 @@ void physicsEngine::updateState()  // updates the state for the physics engine
     logMsg("Updating Physics Engine State");
 
     teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
-    std::vector playerStateUMSharedPtr > activePlayerInstance;
+    std::vector playerStateMSharedPtr > activePlayerInstance;
     basketballStateVec basketballInstance = gameS->getBasketballInstance();
 
 //    exit(0);
@@ -338,7 +338,7 @@ void physicsEngine::updateBasketballPosition()  // updates the position of baske
 
 void physicsEngine::updatePlayerPositions()  // updates the position of player objecgts
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 
     comparison compare;
@@ -349,7 +349,7 @@ void physicsEngine::updatePlayerPositions()  // updates the position of player o
     int playerWithBall;
 
     teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
-    std::vector playerStateUMSharedPtr > activePlayerInstance;
+    std::vector playerStateMSharedPtr > activePlayerInstance;
     basketballStateVec basketballInstance = gameS->getBasketballInstance();
 
     // checks to see if player positions need updated
@@ -404,7 +404,7 @@ void physicsEngine::updatePlayerPositions()  // updates the position of player o
 void physicsEngine::stepWorld(timing timer)  // steps the world of the physics simulation
 {
 //    sharedPtr<gameEngine> gameE = gameEngine::Instance();
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
 
     btScalar currentTime;
     btScalar fixedTimeStep;
@@ -441,7 +441,7 @@ void physicsEngine::stepWorld(timing timer)  // steps the world of the physics s
 
 /*void physicsEngine::ballDribbling()  // simulates basketball dribble
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     sharedPtr<gameState> gameS = gameState::Instance();
 
 //    playerStateVec pInstance = gameS->getPlayerInstance();
@@ -539,7 +539,7 @@ void physicsEngine::stepWorld(timing timer)  // steps the world of the physics s
 
 bool physicsEngine::collisionCheck(btRigidBodySharedPtr objectA, btRigidBodySharedPtr objectB)  // tests whther or not two objects have collided
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     MyContactResultCallback collisionResult;
     exit(0);
     world->contactPairTest(objectA.get(), objectB.get(), collisionResult);
@@ -557,7 +557,7 @@ void physicsEngine::passCollisionCheck()  // checks whether the ball has collide
     /*
 //  exit(0);
     //conversion *convert = conversion::Instance();
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     //gameState *gameS = gameState::Instance();
     sharedPtr<gameState> gameS = gameState::Instance();
 
@@ -595,7 +595,7 @@ void physicsEngine::passCollisionCheck()  // checks whether the ball has collide
 /*
 bool physicsEngine::playerJump(teamTypes teamType, int playerID)  // calculates and executes player jumping in the air
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     sharedPtr<gameState> gameS = gameState::Instance();
 
     courtStateVec courtInstance = gameS->getCourtInstance();
@@ -686,7 +686,7 @@ bool physicsEngine::playerJump(teamTypes teamType, int playerID)  // calculates 
 
 bool physicsEngine::shootBasketball(teamTypes teamType, int playerID)  // calculates and executes basketball being shot
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     sharedPtr<gameState> gameS = gameState::Instance();
 
     comparison compare;

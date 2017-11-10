@@ -56,15 +56,15 @@ sizeTVec gameStateShared::teamIDS;  // std::vector that stores the IDs of the 2 
 std::vector<std::unordered_map<std::string, size_t> > gameStateShared::teamStarterID;  // stores the selected starters for each team
 Ogre::Vector3 gameStateShared::bballNodePosition;  // stores a copy of the basketball node position
 teamTypes gameStateShared::teamWithBall;  // store which team has the basketball
-basketballStateUMSharedPtr gameStateShared::activeBasketballInstance;  // stores active basketball instance
-courtStateUMSharedPtr gameStateShared::activeCourtInstance;  // stores active court instance
-hoopStateUMSharedPtr gameStateShared::activeHoopInstance;  // stores active hoop instance
+basketballStateMSharedPtr gameStateShared::activeBasketballInstance;  // stores active basketball instance
+courtStateMSharedPtr gameStateShared::activeCourtInstance;  // stores active court instance
+hoopStateMSharedPtr gameStateShared::activeHoopInstance;  // stores active hoop instance
 teamStateMSharedPtr gameStateShared::activeTeamInstance;  // stores active team instance
 
 //size_t gameStateShared::activeBBallInstance;  // stores which instance of the baskteball class is active
-basketballStateVecSharedPtr gameStateShared::basketballInstance;  // creates instance of the basketballs class
-courtStateUMSharedPtr gameStateShared::courtInstance;  // stores the court instance
-hoopStateUMSharedPtr gameStateShared::hoopInstance;  // creates instance of the hoop class
+basketballStateMSharedPtr gameStateShared::basketballInstance;  // creates instance of the basketballs class
+courtStateMSharedPtr gameStateShared::courtInstance;  // stores the court instance
+hoopStateMSharedPtr gameStateShared::hoopInstance;  // creates instance of the hoop class
 playerEntityMSharedPtr gameStateShared::playerInstance;  // stores the vector of the players loaded from the xml files
 teamStateMSharedPtr  gameStateShared::teamInstance;  // creates instance of the teamState class
 jumpBallsSharedPtr gameStateShared::jumpBall; // instance that is used for jumpBall functions.
@@ -248,11 +248,11 @@ void gameStateShared::setCourtInstancesNeedCreated(bool set)  // sets the value 
     courtInstancesNeedCreated = set;
 }
 
-bool gameStateShared::getHoopInstanceCreated()  // retrieves the value of hoopInstancesCreated
+bool gameStateShared::getHoopInstancesCreated()  // retrieves the value of hoopInstancesCreated
 {
     return (hoopInstancesCreated);
 }
-void gameStateShared::setHoopInstanceCreated(bool set)  // sets the value of hoopInstancesCreated
+void gameStateShared::setHoopInstancesCreated(bool set)  // sets the value of hoopInstancesCreated
 {
     hoopInstancesCreated = set;
 }
@@ -366,29 +366,29 @@ void gameStateShared::setTeamWithBall(teamTypes set)  // sets the value of teamW
     teamWithBall = set;
 }
 
-basketballStateUMSharedPtr gameStateShared::getActiveBasketballInstance()  // retrieves the value of activeBasketballInstance
+basketballStateMSharedPtr gameStateShared::getActiveBasketballInstance()  // retrieves the value of activeBasketballInstance
 {
     return (activeBasketballInstance);
 }
-void gameStateShared::setActiveBasketballInstance(basketballStateUMSharedPtr set)  // sets the value of activeBasketballInstance
+void gameStateShared::setActiveBasketballInstance(basketballStateMSharedPtr set)  // sets the value of activeBasketballInstance
 {
     activeBasketballInstance = set;
 }
 
-courtStateUMSharedPtr gameStateShared::getActiveCourtInstance()  // retrieves the value of activeCourtInstance
+courtStateMSharedPtr gameStateShared::getActiveCourtInstance()  // retrieves the value of activeCourtInstance
 {
     return (activeCourtInstance);
 }
-void gameStateShared::setActiveCourtInstance(courtStateUMSharedPtr set)  // sets the value of activeCourtInstance
+void gameStateShared::setActiveCourtInstance(courtStateMSharedPtr set)  // sets the value of activeCourtInstance
 {
     activeCourtInstance = set;
 }
 
-hoopStateUMSharedPtr gameStateShared::getActiveHoopInstance()  // retrieves the value of activeHoopInstance
+hoopStateMSharedPtr gameStateShared::getActiveHoopInstance()  // retrieves the value of activeHoopInstance
 {
     return(activeHoopInstance);
 }
-void gameStateShared::setActiveHoopInstance(hoopStateUMSharedPtr set)  // sets the value of activeHoopInstance
+void gameStateShared::setActiveHoopInstance(hoopStateMSharedPtr set)  // sets the value of activeHoopInstance
 {
     activeHoopInstance = set;
 }
@@ -402,29 +402,29 @@ void gameStateShared::setActiveTeamInstance(teamStateMSharedPtr set)  // sets th
     activeTeamInstance = set;
 }
 
-basketballStateVecSharedPtr gameStateShared::getBasketballInstance()  // retrieves the value of basketballInstance
+basketballStateMSharedPtr gameStateShared::getBasketballInstance()  // retrieves the value of basketballInstance
 {
     return (basketballInstance);
 }
-void gameStateShared::setBasketballInstance(basketballStateVecSharedPtr set)  // sets the value of basketballInstance
+void gameStateShared::setBasketballInstance(basketballStateMSharedPtr set)  // sets the value of basketballInstance
 {
     basketballInstance = set;
 }
 
-std::unordered_map<size_t, courtStateSharedPtr> gameStateShared::getCourtInstance()  // retrieves the value of courtInstance
+courtStateMSharedPtr gameStateShared::getCourtInstance()  // retrieves the value of courtInstance
 {
     return (courtInstance);
 }
-void gameStateShared::setCourtInstance(std::unordered_map<size_t, courtStateSharedPtr> set)  // sets the value of courtInstance
+void gameStateShared::setCourtInstance(courtStateMSharedPtr set)  // sets the value of courtInstance
 {
     courtInstance = set;
 }
 
-std::unordered_map<size_t, hoopStateSharedPtr> gameStateShared::getHoopInstance()  // retrieves the value of hoopInstance
+hoopStateMSharedPtr gameStateShared::getHoopInstance()  // retrieves the value of hoopInstance
 {
     return (hoopInstance);
 }
-void gameStateShared::setHoopInstance(std::unordered_map<size_t, hoopStateSharedPtr> set)  // sets the value of hoopInstance
+void gameStateShared::setHoopInstance(hoopStateMSharedPtr set)  // sets the value of hoopInstance
 {
     hoopInstance = set;
 }

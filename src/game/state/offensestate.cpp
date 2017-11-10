@@ -263,7 +263,7 @@ void offenseState::loadPlays()  // loads offense plays from file
 
 void offenseState::setupOffense()  // sets up box offense
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameEngine> gameE = gameEngine::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 
@@ -381,7 +381,7 @@ void offenseState::setupOffense()  // sets up box offense
 
 void offenseState::executeOffense() // executes box offense
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
     teamTypes teamWithBall = gameS->getTeamWithBall();
 
@@ -525,7 +525,7 @@ TS*/
 
 bool offenseState::checkForDirective(playerPositions playerPosition)  // checks if a directive needs to be completed before execution
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     
     size_t x = 0;
     logMsg("playerDirective.size() == " +convert->toString(playerDirective.size()));

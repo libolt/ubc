@@ -51,7 +51,7 @@ loadTeamsSharedPtr UBCBase::loadTeam;  // the loadTeams Object
 loadUsersInputsSharedPtr UBCBase::loadUsersInput;  // the loadUsersInputs Object
 
 size_t UBCBase::numUsers;  // stores the number of users playing the game
-usersUMSharedPtr UBCBase::usersInstance; // stores the user object instances
+usersMSharedPtr UBCBase::usersInstance; // stores the user object instances
 
 UBCBase::UBCBase()  // constructor
 {
@@ -233,11 +233,11 @@ void UBCBase::setNumUsers(size_t set)  // sets the value of numUsers
     numUsers = set;
 }
 
-usersUMSharedPtr UBCBase::getUsersInstance()  // retrieves the value of usersInstance
+usersMSharedPtr UBCBase::getUsersInstance()  // retrieves the value of usersInstance
 {
     return (usersInstance);
 }
-void UBCBase::setUsersInstance(usersUMSharedPtr set)  // sets the value of usersInstance
+void UBCBase::setUsersInstance(usersMSharedPtr set)  // sets the value of usersInstance
 {
     usersInstance = set;
 }

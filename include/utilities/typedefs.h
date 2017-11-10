@@ -108,6 +108,9 @@ class jumpBalls;
 //class ENetHost;
 class users;
 
+class gameSetupBasketballs;
+class gameSetupCourts;
+class gameSetupHoops;
 class gameSetupLineups;
 class gameSetupTeams;
 
@@ -238,6 +241,12 @@ typedef sharedPtr<btRigidBody> btRigidBodySharedPtr;
 
 // game setup classses
 
+typedef sharedPtr<gameSetupBasketballs> gameSetupBasketballsSharedPtr;
+
+typedef sharedPtr<gameSetupCourts> gameSetupCourtsSharedPtr;
+
+typedef sharedPtr<gameSetupHoops> gameSetupHoopsSharedPtr;
+
 typedef sharedPtr<gameSetupLineups> gameSetupLineupsSharedPtr;
 
 typedef sharedPtr<gameSetupTeams> gameSetupTeamsSharedPtr;
@@ -246,7 +255,7 @@ typedef sharedPtr<gameSetupTeams> gameSetupTeamsSharedPtr;
 
 typedef std::vector<sharedPtr<playerSteer> > playerSteerVecSharedPtr;
 
-typedef std::vector<sharedPtr<basketballState> > basketballStateVecSharedPtr;
+typedef std::vector<basketballStateSharedPtr> basketballStateVecSharedPtr;
 
 typedef std::vector<sharedPtr<hoopState> > hoopStateVecSharedPtr;
 
@@ -311,17 +320,19 @@ typedef std::map <size_t, teamStateSharedPtr> teamStateMSharedPtr;
 
 typedef std::map <size_t, usersSharedPtr> usersMSharedPtr;
 
-typedef std::map<std::string, sharedPtr<MyGUI::Button> > MyGUIButtonUMSharedPtr;
+typedef std::map<std::string, sharedPtr<MyGUI::Button> > MyGUIButtonMSharedPtr;
 
-typedef std::map<size_t, sharedPtr<MyGUI::ListBox> > MyGUIListBoxUMSharedPtr;
+typedef std::map<size_t, sharedPtr<MyGUI::ListBox> > MyGUIListBoxMSharedPtr;
 
-typedef std::map<std::string, sharedPtr<MyGUI::ImageBox> > MyGUIImageBoxUMSharedPtr;
+typedef std::map<std::string, sharedPtr<MyGUI::ImageBox> > MyGUIImageBoxMSharedPtr;
 
 // Vector Unordered_map shared pointers
 
 typedef std::vector<std::map <std::string, sharedPtr<MyGUI::ListBox> > > MyGUIListBoxVecMSharedPtr;
 
 typedef std::vector<std::map<std::string, sharedPtr<MyGUI::TextBox> > > MyGUITextBoxVecMSharedPtr;
+
+typedef std::vector<basketballStateMSharedPtr> basketballStateVecMSharedPtr;
 
 typedef std::vector<playerEntityMSharedPtr> playerEntityVecMSharedPtr;
 

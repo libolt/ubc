@@ -470,7 +470,7 @@ bool playerState::initialize()  // initializes the state of the object
 
 void playerState::updateState()
 {
-/*    sharedPtr<conversion> convert = conversion::Instance();
+/*    conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 ///    sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
@@ -562,7 +562,7 @@ void playerState::updateState()
             {
 //                logMsg(func +" playerID == " +convert->toString(data->getID()));
 //                int activeBBallInstance = getActiveBBallInstance();
-                basketballStateUMSharedPtr activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();
+                basketballStateMSharedPtr activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();
                 
                 //FIXME! HARDCODED VALUE!
                 activeBasketballInstance[0]->setMovement(true);
@@ -580,7 +580,7 @@ void playerState::updateState()
 bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3D model
 {
 /*    std::string func = "playerState::updateCourtPosition() ";
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     ///sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
     comparison compare;
@@ -702,10 +702,10 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
 void playerState::updateDirection()
 {
     
-/*    sharedPtr<conversion> convert = conversion::Instance();
+/*    conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
     teamStateMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
-    basketballStateUMSharedPtr activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();   
+    basketballStateMSharedPtr activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();   
 //    size_t activeBBallInstance = getActiveBBallInstance();
 //    size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
     
@@ -829,11 +829,11 @@ void playerState::updateDirection()
 
 void playerState::updateMovement()  // updates movement status of the player
 {
-/*    sharedPtr<conversion> convert = conversion::Instance();
+/*    conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
     teamStateMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
 //    basketballStateVecSharedPtr bballInstance = getBasketballInstance();
-    basketballStateUMSharedPtr activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();
+    basketballStateMSharedPtr activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();
 //    size_t activeBBallInstance = getActiveBBallInstance();
 //    size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
     Ogre::Vector3 posChange;    // stores change in position
@@ -906,7 +906,7 @@ void playerState::updateMovement()  // updates movement status of the player
 
 void playerState::calculatePass()   // calculates which player to pass the ball to
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     std::string func = "playerState::calculatepass()";
 
     logMsg(func +" beginning");

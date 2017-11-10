@@ -203,7 +203,7 @@ void GUISystem::showAudioMenuWidgets()  // shows all widgets tied to the Main Me
 void GUISystem::hideGameSetupMenuWidgets()  // hides all widgets tied to the Game Setup Menu
 {
     //conversion *convert = conversion::Instance();
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
 /*
     teamSelectBox[0]->setVisible(false);
     teamSelectBox[1]->setVisible(false);
@@ -406,7 +406,7 @@ void GUISystem::showPlayerStartSelectionMenuWidgets()  // shows all widgets tied
 void GUISystem::hideTeamSelectionMenuWidgets()  // hides all widgets tied to the Team Selection Menu
 {
     //conversion *convert = conversion::Instance();
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
 
     teamSelectBox[0]->setVisible(false);
     teamSelectBox[1]->setVisible(false);
@@ -463,7 +463,7 @@ void GUISystem::showCourtSelectionMenuWidgets()  // show all widgets tied to the
 {
 //    sharedPtr<renderEngine> render = renderEngine::Instance();
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     
     displayCount += 1;
 //    teamSelectionMenu();

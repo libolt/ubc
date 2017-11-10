@@ -111,7 +111,7 @@ void UBCInput::process()  // processes game input
     logMsg(func +" userInstance.size() == " +convert->toString(base->getUsersInstance().size()));
     logMsg(func +" user 0 inputType == " +convert->toString(base->getUsersInstance()[0]->getInputType()));
 //    exit(0);
-    usersUMSharedPtr uInstance = base->getUsersInstance();
+    usersMSharedPtr uInstance = base->getUsersInstance();
     for (auto UIIT : uInstance)
     {
         inputTypes inType = UIIT.second->getInputType();       

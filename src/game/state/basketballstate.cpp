@@ -443,7 +443,7 @@ void basketballState::updateState()  // updates the state of the basketball
 
 void basketballState::updatePosition() // updates the position of the basketball
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     comparison compare;
     Ogre::Vector3 changePos;
     btVector3 physChange = btVector3(0,0,0);
@@ -535,7 +535,7 @@ void basketballState::updatePosition() // updates the position of the basketball
 
 void basketballState::updateMovement()  // updates the basketball(s) movements
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
     teamStateMSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
     size_t teamWithBall = gameS->getTeamWithBall();
@@ -609,7 +609,7 @@ TS*/
 void basketballState::updateDirection()  // updates basketball direction(s)
 {
     //conversion *convert = conversion::Instance();
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
     teamStateMSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
     size_t teamWithBall = gameS->getTeamWithBall();

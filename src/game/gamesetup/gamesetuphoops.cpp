@@ -19,6 +19,8 @@
  ***************************************************************************/
 
 #include "gamesetup/gamesetuphoops.h"
+#include "load/loadhoops.h"
+#include "state/hoopstate.h"
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
 
@@ -34,12 +36,102 @@ gameSetupHoops::~gameSetupHoops()  // destructor
 hoopStateMSharedPtr gameSetupHoops::createHoopInstances()  // creates hoop Instances
 {
     hoopStateMSharedPtr hoopInstance;
-    retutn (hoopInstance);
+    hoopStateSharedPtr hInstance;
+    loadHoopsSharedPtr loadHoop(new loadHoops);
+    std::string func = "gameSetupHoops::createHoopInstances()";
+
+    logMsg(func +" beginning");
+//    exit(0);
+
+    if(loadHoop->checkIfHoopsLoaded())
+    {
+        hoopInstance = loadHoop->getHInstance();
+    }
+/*
+    hoopStateSharedPtr hInstance0(new hoopState);  // creates an instance of the hoopState class
+    hoopStateSharedPtr hInstance1(new hoopState);  // creates an instance of the hoopState class
+
+//    cInstance.setModelFileName("court.mesh");
+    hInstance0->setEntityName("hoop1");
+    hInstance0->setEntityModelFileName("Hoop.mesh");
+    hInstance0->setEntityNodeName("hoopNode1");
+
+    hInstance1->setEntityName("hoop2");
+    hInstance1->setEntityModelFileName("Hoop.mesh");
+    hInstance1->setEntityNodeName("hoopNode2");
+
+    getHoopInstance().insert(std::pair<size_t, hoopStateSharedPtr>(0, hInstance0));  // loads the first hoop
+    getHoopInstance().insert(std::pair<size_t, hoopStateSharedPtr>(1, hInstance1));  // loads the second hoop
+*/
+    logMsg(func +" end");
+
+    return (hoopInstance);
 }
 
-hoopStateMSharedPtr gameSetupHoops::createActiveHoopInstances(hoopStateMSharedPtr hoopInstance)  // creates active hoop instances
+hoopStateMSharedPtr gameSetupHoops::createActiveHoopInstances(hoopStateMSharedPtr hoopInstance, size_t numActiveHoops)  // creates active hoop instances
 {
     hoopStateMSharedPtr activeHoopInstance;
-    retutn (activeHoopInstance);
+    conversionSharedPtr convert = conversion::Instance();
+    loadHoopsSharedPtr loadHoop(new loadHoops);
+
+//    hoopStateMSharedPtr hoopInstance = getHoopInstance();
+//    hoopStateMSharedPtr activeHoopInstance = getActiveHoopInstance();
+    std::string func = "gameSetupHoops::createActiveHoopInstances()";
+    size_t x = 0;
+    logMsg(func +" beginning");
+
+    if (hoopInstance.size() == 0)
+    {
+        if (loadHoop->checkIfHoopsLoaded())
+        {
+            logMsg(func + " abada!");
+            hoopInstance = loadHoop->getHInstance();
+            logMsg(func + " abadeeee!");
+        }
+        else
+        {
+            logMsg(func +" Failed to load Hoop Instances!");
+            exit(0);
+        }
+    }
+    else
+    {
+
+    }
+//    logMsg(func + "name 0 == " +hoopInstance[0]->getName());
+//    logMsg(func + "name 1 == " +hoopInstance[1]->getName());
+
+//    exit(0);
+    for (x=0;x<numActiveHoops; ++x)
+    {
+        activeHoopInstance.insert(std::pair<size_t, hoopStateSharedPtr>(x, hoopInstance[x]));
+        logMsg(func +" glee!");
+        logMsg(func + "name == " +hoopInstance[x]->getName());
+    }
+    x = 0;
+///    for (auto AHIIT : activeHoopInstance)
+///    {
+
+///        logMsg(func +" flee!");
+///        logMsg(func + " AHIIT name == " +AHIIT.second->getName());
+
+///        AHIIT.second->setEntityID(x);
+///        AHIIT.second->setEntityName("hoop" +AHIIT.second->getName());
+///        ++x;
+///        logMsg(func +" entityName == " +AHIIT.second->getEntityName());
+
+///    }
+
+//    exit(0);
+//    setActiveHoopInstance(activeHoopInstance);
+///    for (auto AHIIT : getActiveHoopInstance())
+///    {
+///        logMsg(func + " AHIIT name == " +AHIIT.second->getName());
+///        logMsg(func + " AHIIT index == " +convert->toString(AHIIT.first));
+///    }
+
+//    exit(0);
+    logMsg(func +" end");
+    return (activeHoopInstance);
 }
 

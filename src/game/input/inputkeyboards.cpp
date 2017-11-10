@@ -58,7 +58,7 @@ void inputKeyboards::setSetupComplete(bool set)  // sets the value of setupCompl
 
 inputInGameMaps inputKeyboards::mapInput(inputKeyMaps inKeyMap, usersInputsSharedPtr uInput)  // maps value of the keyPressed string to inputInGameMaps
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     size_t x = 0;
     std::string func = "inputKeyboards::mapInput()";
     logMsg(func + " begin");
@@ -132,7 +132,7 @@ inputInGameMaps inputKeyboards::mapInput(inputKeyMaps inKeyMap, usersInputsShare
 
 bool inputKeyboards::process()  // processes input
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     inputEngineSharedPtr inputE = inputS->getInputE();
     usersInputsVecSharedPtr uInput = inputS->getUInput();
     std::string func = "inputGamePads::process()";

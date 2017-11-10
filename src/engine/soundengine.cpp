@@ -53,7 +53,7 @@ soundEngine::~soundEngine()  // destructor
 
 void soundEngine::Internal_SoundFinished_CallbackIntercept(ALint which_channel, ALuint al_source, ALmixer_Data* almixer_data, ALboolean finished_naturally, void* user_data)
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     logMsg("Channel " +convert->toString(which_channel) +" finished\n");
     g_PlayingAudio[which_channel] = AL_FALSE;
 }
@@ -70,7 +70,7 @@ void soundEngine::setSetupComplete(bool set)  // sets the value of setupComplete
 
 bool soundEngine::loadSound(std::string sound)  // loads sounds from media file
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     sharedPtr<loader> load = loader::Instance();
 
     ALmixer_Data *sample;
@@ -104,7 +104,7 @@ bool soundEngine::loadSound(std::string sound)  // loads sounds from media file
 bool soundEngine::setup()  // sets up the sound engine
 {
     //conversion *convert = conversion::Instance();
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
 
     logMsg("Sound Engine Setup!");
     

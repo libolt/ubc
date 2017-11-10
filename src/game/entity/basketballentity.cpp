@@ -70,7 +70,7 @@ bool basketballEntity::initialize()  // initializes the basketball entity object
 
 bool basketballEntity::setupPhysicsObject()  // sets up the physics object
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     std::string func = "basketballEntity::setupPhysicsObject()";
     OgreEntitySharedPtr tempModel = getModel();
     OgreSceneNodeSharedPtr tempNode = getNode();

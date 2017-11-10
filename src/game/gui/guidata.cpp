@@ -28,6 +28,7 @@
 #include "data/playerdata.h"
 #include "engine/gameengine.h"
 #include "entity/playerentity.h"
+#include "gamesetup/gamesetupcourts.h"
 #include "gamesetup/gamesetupteams.h"
 #include "state/courtstate.h"
 #include "state/gamestate.h"
@@ -49,8 +50,8 @@
 bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Selection Menu widgets
 {
 //    sharedPtr<gameState> gameS = gameState::Instance();
-    sharedPtr<conversion> convert = conversion::Instance();
-
+    conversionSharedPtr convert = conversion::Instance();
+    gameSetupCourtsSharedPtr gameSetupCourt(new gameSetupCourts);
     courtStateMSharedPtr  courtInstance;
     stdStringVec courtName;
     stdStringVec::iterator CNIT;
@@ -82,15 +83,18 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
     else
     {
 //        exit(0);
-        if (base->getGameS()->createCourtInstances())
+        courtInstance = gameSetupCourt->createCourtInstances();
+        if (courtInstance.size() > 0)
         {
 //            exit(0);
-            courtInstance = base->getGameS()->getCourtInstance();
+            base->getGameS()->setCourtInstance(courtInstance);
             base->getGameS()->setCourtInstancesCreated(true);
+            logMsg("Court Instances Created!!");
         }
         else
         {
             logMsg("Court Instances NOT Created!");
+            exit(0);
         }
     }
     logMsg("fleeart!");
@@ -130,7 +134,7 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
 
 void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start Selection Menu widgets
 {
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     teamStateMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
     playerEntityMSharedPtr playerInstance;
     std::string func = "addPlayerStartSelectionMenuData";
@@ -234,7 +238,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     logMsg(func +" playerInstance[1].size() == " +convert->toString(playerInstance[1].size()));
 //    exit(0);
     
-    playerEntityVecUMSharedPtr::iterator PEVUIT;
+    playerEntityVecMSharedPtr::iterator PEVUIT;
 //    auto itx = 0;
     for (PEVUIT = playerInstance.begin(); PEVUIT != playerInstance.end(); ++PEVUIT)
     {

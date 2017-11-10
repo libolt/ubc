@@ -34,7 +34,7 @@ threads::threads()
 void threads::consumerThread()
 {
     //conversion *convert = conversion::Instance();
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     
     while (gRunning)
     {
@@ -72,7 +72,7 @@ void threads::consumerThread()
 void threads::producerThread()
 {
     //conversion *convert = conversion::Instance();
-    sharedPtr<conversion> convert = conversion::Instance();
+    conversionSharedPtr convert = conversion::Instance();
     
     long val = 0;
     while (gRunning)

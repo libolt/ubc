@@ -19,8 +19,13 @@
  ***************************************************************************/
 
 #include "gamesetup/gamesetupbasketballs.h"
+#include "entity/basketballentity.h"
+#include "data/basketballdata.h"
+#include "state/basketballstate.h"
+#include "ai/basketballsteer.h"
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
+#include "load/loadbasketballs.h"
 
 gameSetupBasketballs::gameSetupBasketballs()  // constructor
 {
@@ -34,11 +39,81 @@ gameSetupBasketballs::~gameSetupBasketballs()  // destructor
 basketballStateMSharedPtr gameSetupBasketballs::createBasketballInstances()  // creates basketball Instances
 {
     basketballStateMSharedPtr basketballInstance;
-    retutn (basketballInstance);
+    loadBasketballsSharedPtr loadBasketball(new loadBasketballs);
+    basketballInstance = loadBasketball->loadFiles();
+    std::string func = "gameSetupBasketballs::createBasketballInstance()";
+
+    logMsg(func +" beginning");
+//    exit(0);
+    logMsg(func +" creating temporary baskteball instance");
+    logMsg(func +" setting model name");
+//  FIXME! these are currently hard coded
+    size_t bballNum = 0;
+
+    for (auto BIIT : basketballInstance)  // loop
+    {
+        BIIT.second->getEntity()->setEntityModelFileName("bball.mesh");
+        BIIT.second->getEntity()->setEntityName(BIIT.second->getData()->getModelFileName());
+        BIIT.second->getEntity()->setEntityNodeName(BIIT.second->getData()->getModelFileName());
+        if (!BIIT.second->getEntity()->getBaseInitialized())
+        {
+//            BIIT.second->getEntity()->setBase(getBase());
+        }
+        logMsg(func +" creating steer object");
+        basketballSteer *bballSteer = new basketballSteer;  // steer instance
+        BIIT.second->getEntity()->setSteer(basketballSteerSharedPtr(bballSteer));
+        logMsg(func +" setting instance number");
+        BIIT.second->setNumber(bballNum);
+        BIIT.second->setNumberSet(true);
+        bballNum++;
+    }
+
+//    bballInstance->setModelNeedsLoaded(true);
+//    getBasketballInstance().push_back(bballInstance);
+
+    logMsg(func +" end");
+
+    return (basketballInstance);
 }
 
-basketballStateMSharedPtr gameSetupBasketballs::createActiveBasketballInstances(basketballStateMSharedPtr basketballInstance)  // creates active basketball instances
-{
-    basketballStateMSharedPtr activeBasketballInstance)
+basketballStateMSharedPtr gameSetupBasketballs::createActiveBasketballInstances(basketballStateMSharedPtr basketballInstance, size_t numActiveBasketballs)  // creates active basketball instances
+{    
+    conversionSharedPtr convert = conversion::Instance();
+    loadBasketballsSharedPtr loadBasketball;  // = base->getLoad();
+//    basketballStateMSharedPtr basketballInstance = getBasketballInstance();
+    basketballStateMSharedPtr activeBasketballInstance;
+    std::string func = "gameState::createActiveBasketballInstances()";
+
+    logMsg(func +" beginning");
+
+    logMsg(func +" basketballInstance.size() == " +convert->toString(basketballInstance.size()));
+    if (basketballInstance.size() == 0)
+    {
+        if (loadBasketball->checkIfBasketballFilesLoaded())
+        {
+            basketballInstance = loadBasketball->getBInstance();
+        }
+        else
+        {
+            logMsg(func +" Failed to load Basketball Instances!");
+            exit(0);
+        }
+    }
+    else
+    {
+
+    }
+
+    //FIXME! should not be hard coded
+//    setNumActiveBasketballs(1);
+    logMsg("Creating Active Basketball Instances!");
+    for (auto x=0; x<numActiveBasketballs; ++x)
+    {
+        activeBasketballInstance.insert(std::pair<size_t, basketballStateSharedPtr>(x, basketballInstance[x]));
+//        activeBasketballInstance[x]->setGameS(base->getGameS());
+    }
+//    setBasketballInstance(basketballInstance);
+//    setActiveBasketballInstance(activeBasketballInstance);
+    logMsg(func +" end");
     return (activeBasketballInstance);
 }

@@ -22,6 +22,8 @@
 #include "data/playerdata.h"
 #include "entity/playerentity.h"
 #include "load/loadplayers.h"
+#include "state/gamestate.h"
+#include "state/teamstate.h"
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
 
@@ -32,6 +34,127 @@ gameSetupPlayers::gameSetupPlayers()  // constructor
 gameSetupPlayers::~gameSetupPlayers()  // destructor
 {
 
+}
+
+bool gameSetupPlayers::checkIfGamePlayerInstancesCreated(gameStateSharedPtr gameS)  // checks if the gameState Objects Player Instances have been created
+{
+    conversionSharedPtr convert = conversion::Instance();
+    playerEntityMSharedPtr playerInstance = gameS->getPlayerInstance();
+    bool returnType = false;
+    std::string func = "gameSetupPlayers::checkIfGamePlayerInstanceCreated()";
+    
+    logMsg(func +" beginning");
+
+    if (gameS->getPlayerInstanceCreated())
+    {
+        if (playerInstance.size() > 0)
+        {
+            logMsg(func +" playerInstance.size() == " +convert->toString(gameS->getPlayerInstance().size()));
+            returnType = true;
+        }
+        else
+        {
+            logMsg(func +" gameState::checkIfPlayerInstanceCreated() player instances not yet created!");
+ //           exit(0);
+            playerInstance = createPlayerInstances();
+            if (playerInstance.size())
+            {
+            
+                logMsg(func +" Player Instances created!");
+//                exit(0);
+                gameS->setPlayerInstanceCreated(true);
+                gameS->setPlayerInstance(playerInstance);
+                returnType = true;
+//            exit(0);
+            }
+            else
+            {
+                logMsg(func +" player instances not created!");
+                exit(0);
+            }
+        }
+//        exit(0);
+    }
+    else
+    {
+        logMsg(func +" player instances not yet created!");
+        playerInstance = createPlayerInstances();
+        if (playerInstance.size())
+        {
+
+            logMsg(func +" Player Instances created!");
+
+            gameS->setPlayerInstanceCreated(true);
+            gameS->setPlayerInstance(playerInstance);
+            returnType = true;
+//            exit(0);
+        }
+        else
+        {
+            logMsg(func +" Player Instances not created!");
+            exit(0);
+        }
+//        return (false);
+    }
+    logMsg(func +" end");
+    return (returnType);
+}
+
+bool gameSetupPlayers::checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr gamePlayerInstance, teamStateMSharedPtr activeTeamInstance)  // checks if the gameState Objects Player Instances have been created
+{
+    conversionSharedPtr convert = conversion::Instance();
+    playerEntityMSharedPtr playerInstance; // = gameS->getPlayerInstance();
+    bool returnType = false;
+    std::string func = "gameSetupPlayers::checkIfTeamPlayerInstancesCreated()";
+  
+    for (auto ATIIT : activeTeamInstance)  // loop through activeTeamInstance
+    {
+//        logMsg(convert->toString(teamIDs.size()));
+        logMsg(convert->toString(ATIIT.second->getPlayerInstancesCreated()));
+//        exit(0);
+
+        if (ATIIT.second->getPlayerInstancesCreated())  // check if playerInstances created is true
+        {
+//            exit(0);
+            if (ATIIT.second->getPlayerInstance().size() > 0)
+            {
+                logMsg(func +" " +ATIIT.second->getCity() +" " +ATIIT.second->getName() + " Player Instances Created!");
+            }
+            else
+            {
+                
+                playerInstance = createTeamPlayerInstances(gamePlayerInstance, ATIIT.second->getID();
+                if (playerInstance.size() > 0)
+                {
+                    logMsg(func +" " +ATIIT.second->getCity() +" " +ATIIT.second->getName() + " Player Instances Created!");
+                    ATIIT.second->setPlayerInstancesCreated(true);
+                    ATIIT.second->setPlayerInstance(playerInstance);
+                    returnType = true;
+                }
+                else
+                {
+                    logMsg(func +" Unable to Create " +ATIIT.second->getCity() +" " +ATIIT.second->getName() + " Player Instances!");
+                }
+            }
+        }
+        else  // create team's player instances
+        {
+            playerInstance = createTeamPlayerInstances(gamePlayerInstance, ATIIT.second->getID();
+            if (playerInstance.size() > 0)
+            {
+                logMsg(func +" " +ATIIT.second->getCity() +" " +ATIIT.second->getName() + " Player Instances Created!");
+                ATIIT.second->setPlayerInstancesCreated(true);
+                ATIIT.second->setPlayerInstance(playerInstance);
+                returnType = true;
+            }
+            else
+            {
+                logMsg(func +" Unable to Create " +ATIIT.second->getCity() +" " +ATIIT.second->getName() + " Player Instances!");
+            }
+        }
+    }
+    
+    return (returnType);
 }
 
 playerEntityMSharedPtr gameSetupPlayers::createPlayerInstances()  // creates player Instances
@@ -124,7 +247,7 @@ playerEntityMSharedPtr gameSetupPlayers::createTeamPlayerInstances(playerEntityM
         logMsg(func +"Team ID == " +convert->toString(teamID) +" playerInstance[" +convert->toString(PIIT.first) +"]->getData()->getFirstName() == " +PIIT.second->getData()->getFirstName());
 
     }
-    exit(0);
+//    exit(0);
 ///    if (getID() == 1)
 ///    {
 ///        logMsg(func +"playerInstance.size() == " +convert->toString(playerInstance.size()));

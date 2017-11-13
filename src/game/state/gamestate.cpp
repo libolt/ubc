@@ -2106,7 +2106,7 @@ bool gameState::processInput()  // processes input received from the inputState 
 }
 
 // These functions check if an object has been created and attmpt to do so if not
-bool gameState::checkIfPlayerInstanceCreated()  // check if playerInstance object has been created and loaded
+/*bool gameState::checkIfPlayerInstanceCreated()  // check if playerInstance object has been created and loaded
 {
     conversionSharedPtr convert = conversion::Instance();
     gameSetupPlayersSharedPtr gameSetupPlayer(new gameSetupPlayers);
@@ -2171,7 +2171,7 @@ bool gameState::checkIfPlayerInstanceCreated()  // check if playerInstance objec
 
     
     return (returnType);
-}
+}*/
 
 bool gameState::checkifJumpBallCreated()  // checks if jumpBall object has been created
 {

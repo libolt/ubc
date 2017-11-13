@@ -1,6 +1,9 @@
 
 /***************************************************************************
- *   Copyright (C) 1999 - 2017 by Mike McLean                              *
+ *   Copyright (C) 1999 - 2017 by Mike McLean                         ????m?''''
+ 
+ 
+ *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -137,9 +140,11 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 {
     conversionSharedPtr convert = conversion::Instance();
     gameSetupPlayersSharedPtr gameSetupPlayer(new gameSetupPlayers);
-    teamStateMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
+    gameStateSharedPtr gameS = base->getGameS();
+    teamStateMSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
+    playerEntityMSharedPtr gamePlayerInstance;
     playerEntityMSharedPtr playerInstance;
-    std::string func = "addPlayerStartSelectionMenuData";
+    std::string func = "GUISystem::addPlayerStartSelectionMenuData";
     sizeTVec teamIDs = base->getGameS()->getTeamIDS();
 
     logMsg(func +" beginning");
@@ -147,20 +152,49 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     logMsg(func +" activeTeamInstance.size() == " +convert->toString(activeTeamInstance.size()));
 //    exit(0);
     size_t teamNum = 0;
+    
+    if (gameSetupPlayer->checkIfGamePlayerInstancesCreated(gameS))
+    {
+        logMsg(func + " gameState Player Instances Created!");
+        gamePlayerInstance = gameS->getPlayerInstance();
+    }
+    else
+    {
+        logMsg(func + " Unable to Create gameState Player Instances!");
+
+    }
+//    for (auto ATIIT : activeTeamInstance)  // loop through activeTeamInstance
+//    {
+        if (gameSetupPlayer->checkIfTeamPlayerInstancesCreated(gamePlayerInstance, activeTeamInstance))
+        {
+            logMsg(func + " Team Player Instances Created!");
+        }
+        else
+        {
+            logMsg(func + " Unable to Create Team Player Instances!");
+
+        }
+//    }*/
+    logMsg(func + " gameState Player Instance Size == " +convert->toString(gamePlayerInstance.size()));
     for (auto ATIIT : activeTeamInstance)
+    {
+        logMsg(func + " gameState Player Instance Size == " +convert->toString(ATIIT.second->getPlayerInstance().size()));
+    }
+    exit(0);
+    for (auto ATIIT : activeTeamInstance)  // loop through activeTeamInstance
     {
         logMsg(func +" yabadaba");
         logMsg(convert->toString(teamIDs.size()));
         logMsg(convert->toString(ATIIT.second->getPlayerInstancesCreated()));
 //        exit(0);
 
-        if (ATIIT.second->getPlayerInstancesCreated())
+        if (ATIIT.second->getPlayerInstancesCreated())  // check if playerInstances created is true
         {
 //            exit(0);
             logMsg(func +" teamInstance[teamIDs[" +convert->toString(ATIIT.first) +"]] playerInstances crested!");
             logMsg(func +" Team " +convert->toString(ATIIT.first) +" player instances created!");
         }
-        else
+        else  // create team's player instances
         {
 //            exit(0);
             logMsg(func +" creating team " +convert->toString(ATIIT.first) +" playerInstances!");

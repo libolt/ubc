@@ -188,7 +188,7 @@ public:
 
 //    bool createHoopInstances();  // creates hoop Instances
 
-    bool createPlayerInstances();  // creates player instances
+//    bool createPlayerInstances();  // creates player instances
     
 //    bool createActiveBasketballInstances();  // creates the active basketball instances
 

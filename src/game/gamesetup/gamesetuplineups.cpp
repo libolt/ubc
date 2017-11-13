@@ -19,8 +19,10 @@
  ***************************************************************************/
 
 #include "gamesetup/gamesetuplineups.h"
+#include "gamesetup/gamesetupplayers.h"
 #include "utilities/conversion.h"
 #include "state/teamstate.h"
+#include "state/gamestate.h"
 #include "entity/playerentity.h"
 #include "data/playerdata.h"
 #include "utilities/logging.h"
@@ -113,6 +115,7 @@ std::vector<std::unordered_map<std::string, size_t> > gameSetupLineups::createTe
 bool gameSetupLineups::checkPlayerInstancesCreated(teamStateMSharedPtr activeTeamInstance)  // checks if player instances have been created
 {
     conversionSharedPtr convert = conversion::Instance();
+    gameSetupPlayersSharedPtr gameSetupPlayer(new gameSetupPlayers);
     std::string func = "gameSetups::checkPlayerInstancesCreated()";
 
     logMsg(func +" activeTeamInstance.size() == " +convert->toString(activeTeamInstance.size()));
@@ -123,9 +126,13 @@ bool gameSetupLineups::checkPlayerInstancesCreated(teamStateMSharedPtr activeTea
         {
             logMsg(func +" activeTeamInstance " +convert->toString(ATIIT.first) +" Player Instances NOT Created!");
 //            exit(0);
-            if( ATIIT.second->createPlayerInstances())
+//            if( ATIIT.second->createPlayerInstances())
+            playerEntityMSharedPtr gamePlayerInstance = ATIIT.second->getBase()->getGameS()->getPlayerInstance();
+            playerEntityMSharedPtr playerInstance = gameSetupPlayer->createTeamPlayerInstances(gamePlayerInstance, ATIIT.second->getID());
+            if (playerInstance.size() > 0)
             {
                 ATIIT.second->setPlayerInstancesCreated(true);
+                ATIIT.second->setPlayerInstance(playerInstance);
 //                base->getGameS()->setActiveTeamInstance(activeTeamInstance);
                 logMsg("activeTeamInstance " +convert->toString(ATIIT.first) + " Player Instances Created Successfully!");
             }

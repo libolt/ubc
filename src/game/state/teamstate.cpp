@@ -653,7 +653,7 @@ void updateActivePlayerSettings()  // updates the settings of active players
 
 }
 
-bool teamState::createPlayerInstances()  // creates the player instances
+/*bool teamState::createPlayerInstances()  // creates the player instances
 {
     conversionSharedPtr convert = conversion::Instance();
     playerEntityMSharedPtr gamePlayerInstance;
@@ -677,38 +677,38 @@ bool teamState::createPlayerInstances()  // creates the player instances
     auto i = 0;
     auto ID = 0;
     playerInstance.clear();
-    for (auto it : gamePlayerInstance)
+    for (auto GPIIT : gamePlayerInstance)
     {
         logMsg(func +" gamePlayerInstance->getData()->getTeamID() == " +convert->toString(gamePlayerInstance[0]->getData()->getTeamID()));
         logMsg(func +" getID() == " +convert->toString(getID()));
 
-        if (it.second->getData()->getTeamID() == getID())  // checks if player is assigned to this team
+        if (GPIIT.second->getData()->getTeamID() == getID())  // checks if player is assigned to this team
         {
 
-            logMsg(func + " Team " +convert->toString(getID()) + " GPI Name == " +it.second->getData()->getFirstName() +" " +it.second->getData()->getLastName());           
-            playerInstance.insert(std::pair<size_t, playerEntitySharedPtr>(it.first, it.second));    // adds pInstance to the playerInstance std::vector.
+            logMsg(func + " Team " +convert->toString(getID()) + " GPI Name == " +GPIIT.second->getData()->getFirstName() +" " +GPIIT.second->getData()->getLastName());
+            playerInstance.insert(std::pair<size_t, playerEntitySharedPtr>(GPIIT.first, GPIIT.second));    // adds pInstance to the playerInstance std::vector.
 //            logMsg(func +"Team ID == " +convert->toString(getID()) +" playerInstance[" +convert->toString(it.first) +"]->getFirstName() == " +playerInstance[it.first]->getFirstName());
             ++ID;
         }
 //        ++i;
     }
-    for (auto it : playerInstance)
+    for (auto PIIT : playerInstance)
     {
-        logMsg(func +"Team ID == " +convert->toString(getID()) +" playerInstance[" +convert->toString(it.first) +"]->getData()->getFirstName() == " +it.second->getData()->getFirstName());
+        logMsg(func +"Team ID == " +convert->toString(getID()) +" playerInstance[" +convert->toString(PIIT.first) +"]->getData()->getFirstName() == " +PIIT.second->getData()->getFirstName());
 
     }
 //    exit(0);
-/*    if (getID() == 1)
-    {
-        logMsg(func +"playerInstance.size() == " +convert->toString(playerInstance.size()));
-        logMsg(func +" ID Count == " +convert->toString(ID));
+///    if (getID() == 1)
+///    {
+///        logMsg(func +"playerInstance.size() == " +convert->toString(playerInstance.size()));
+///        logMsg(func +" ID Count == " +convert->toString(ID));
 //        exit(0);
-    }
-*/
+///    }
+
     logMsg(func +" end");
 
     return (true);
-}
+}*/
 
 bool teamState::setPlayerStartPositions()  // sets the initial coordinates for the players.
 {

@@ -146,7 +146,7 @@ public:
 //    void setStateSet(bool set);  // sets the value of stateSet
 
     // creates player Instances
-    bool createPlayerInstances();  // creates the player instances
+//    bool createPlayerInstances();  // creates the player instances
 
     bool setPlayerStartPositions();	 // sets the initial coordinates for the players.
     void setPlayerStartActivePositions();  // sets the position the players will play at the start of the game

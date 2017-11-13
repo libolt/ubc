@@ -30,6 +30,7 @@
 #include "gamesetup/gamesetupbasketballs.h"
 #include "gamesetup/gamesetupcourts.h"
 #include "gamesetup/gamesetuphoops.h"
+#include "gamesetup/gamesetupplayers.h"
 #include "gamesetup/gamesetupteams.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
@@ -490,7 +491,7 @@ bool gameState::createInstances()  // creates object instances
     return (true);
 }*/
 
-bool gameState::createPlayerInstances()  // creates player instances
+/*bool gameState::createPlayerInstances()  // creates player instances
 {
 //    logMsg("gameState::createTeamInstances()");
     
@@ -556,7 +557,7 @@ bool gameState::createPlayerInstances()  // creates player instances
     logMsg(func +" end");
     
     return (false);
-}
+}*/
 
 /*bool gameState::createActiveBasketballInstances()  // creates the active basketball instances
 {
@@ -2108,6 +2109,8 @@ bool gameState::processInput()  // processes input received from the inputState 
 bool gameState::checkIfPlayerInstanceCreated()  // check if playerInstance object has been created and loaded
 {
     conversionSharedPtr convert = conversion::Instance();
+    gameSetupPlayersSharedPtr gameSetupPlayer(new gameSetupPlayers);
+    playerEntityMSharedPtr playerInstance = getPlayerInstance();
     bool returnType = false;
     std::string func = "gameState::checkIfPlayerInstanceCreated()";
     
@@ -2115,21 +2118,23 @@ bool gameState::checkIfPlayerInstanceCreated()  // check if playerInstance objec
 
     if (getPlayerInstanceCreated())
     {
-        if (getPlayerInstance().size() > 0)
+        if (playerInstance.size() > 0)
         {
-            logMsg(func +" getPlayerInstance().size() == " +convert->toString(getPlayerInstance().size()));
+            logMsg(func +" playerInstance.size() == " +convert->toString(getPlayerInstance().size()));
             returnType = true;
         }
         else
         {
             logMsg(func +" gameState::checkIfPlayerInstanceCreated() player instances not yet created!");
  //           exit(0);
-            if (createPlayerInstances())
+            playerInstance = gameSetupPlayer->createPlayerInstances();
+            if (playerInstance.size())
             {
             
-                logMsg(func +" player instances created!");
+                logMsg(func +" Player Instances created!");
 //                exit(0);
                 setPlayerInstanceCreated(true);
+                setPlayerInstance(playerInstance);
                 returnType = true;
 //            exit(0);
             }
@@ -2144,18 +2149,20 @@ bool gameState::checkIfPlayerInstanceCreated()  // check if playerInstance objec
     else
     {
         logMsg(func +" player instances not yet created!");
-        if (createPlayerInstances())
+        playerInstance = gameSetupPlayer->createPlayerInstances();
+        if (playerInstance.size())
         {
 
-            logMsg(func +" player instances created!");
+            logMsg(func +" Player Instances created!");
 
             setPlayerInstanceCreated(true);
+            setPlayerInstance(playerInstance);
             returnType = true;
 //            exit(0);
         }
         else
         {
-            logMsg(func +" player instances not created!");
+            logMsg(func +" Player Instances not created!");
             exit(0);
         }
 //        return (false);

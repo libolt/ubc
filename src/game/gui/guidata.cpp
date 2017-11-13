@@ -29,6 +29,7 @@
 #include "engine/gameengine.h"
 #include "entity/playerentity.h"
 #include "gamesetup/gamesetupcourts.h"
+#include "gamesetup/gamesetupplayers.h"
 #include "gamesetup/gamesetupteams.h"
 #include "state/courtstate.h"
 #include "state/gamestate.h"
@@ -135,6 +136,7 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
 void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start Selection Menu widgets
 {
     conversionSharedPtr convert = conversion::Instance();
+    gameSetupPlayersSharedPtr gameSetupPlayer(new gameSetupPlayers);
     teamStateMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
     playerEntityMSharedPtr playerInstance;
     std::string func = "addPlayerStartSelectionMenuData";
@@ -163,9 +165,12 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 //            exit(0);
             logMsg(func +" creating team " +convert->toString(ATIIT.first) +" playerInstances!");
 //            teamInstance[x]->setBase(base);
-
-            if (ATIIT.second->createPlayerInstances())
+            playerEntityMSharedPtr gamePlayerInstance = ATIIT.second->getBase()->getGameS()->getPlayerInstance();
+            playerEntityMSharedPtr playerInstance = gameSetupPlayer->createTeamPlayerInstances(gamePlayerInstance, ATIIT.second->getID());
+            if (playerInstance.size() > 0)
             {
+                ATIIT.second->setPlayerInstancesCreated(true);
+                ATIIT.second->setPlayerInstance(playerInstance);
                 logMsg(func +" activeTeamInstance[" +convert->toString(ATIIT.first) +"]->createPlayerInstances()");
                 logMsg(func +" activeTeamInstance[" +convert->toString(ATIIT.first) +"]->getPlayerInstance().size() == " +convert->toString(ATIIT.second->getPlayerInstance().size()));
 //                exit(0);

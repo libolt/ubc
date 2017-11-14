@@ -123,7 +123,7 @@ bool gameSetupPlayers::checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr 
             else
             {
                 
-                playerInstance = createTeamPlayerInstances(gamePlayerInstance, ATIIT.second->getID();
+                playerInstance = createTeamPlayerInstances(gamePlayerInstance, ATIIT.second->getID());
                 if (playerInstance.size() > 0)
                 {
                     logMsg(func +" " +ATIIT.second->getCity() +" " +ATIIT.second->getName() + " Player Instances Created!");
@@ -139,7 +139,7 @@ bool gameSetupPlayers::checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr 
         }
         else  // create team's player instances
         {
-            playerInstance = createTeamPlayerInstances(gamePlayerInstance, ATIIT.second->getID();
+            playerInstance = createTeamPlayerInstances(gamePlayerInstance, ATIIT.second->getID());
             if (playerInstance.size() > 0)
             {
                 logMsg(func +" " +ATIIT.second->getCity() +" " +ATIIT.second->getName() + " Player Instances Created!");

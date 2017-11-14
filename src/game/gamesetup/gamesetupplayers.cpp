@@ -162,7 +162,7 @@ playerEntityMSharedPtr gameSetupPlayers::createPlayerInstances()  // creates pla
     conversionSharedPtr convert = conversion::Instance();
     loadPlayersSharedPtr loadPlayer(new loadPlayers);
     playerEntityMSharedPtr playerInstance;
-    std::string func = "gameState::createPlayerInstances()";
+    std::string func = "gameSetupPlayers::createPlayerInstances()";
 
     logMsg(func +" beginning");
 
@@ -260,8 +260,56 @@ playerEntityMSharedPtr gameSetupPlayers::createTeamPlayerInstances(playerEntityM
     return (playerInstance);
 }
 
-playerEntityMSharedPtr gameSetupPlayers::createActivePlayerInstances(playerEntityMSharedPtr playerInstance)  // creates active court instances
+playerEntityMSharedPtr gameSetupPlayers::createActivePlayerInstances(playerEntityMSharedPtr playerInstance, std::unordered_map<std::string, size_t> activePlayerID)  // creates active court instances
 {
+    conversionSharedPtr convert = conversion::Instance();
+    std::string func = "gameSetupPlayers::createActivePlayerInstances()";
 
+    playerEntityMSharedPtr activePlayerInstance;
+    
+    for (auto PIIT : playerInstance)
+    {
+/*        logMsg(func +" ATIIT.first == " +convert->toString(ATIIT.first) +" PIIT.second->getData()->getID() == " +convert->toString(PIIT.second->getData()->getID()) +" primaryPosition == " +convert->toString(PIIT.second->getData()->getPrimaryPosition()));
+        std::string teamStarterIDPG = convert->toString(teamStarterID[0]["PG"]);
+        logMsg(func +" teamStarterID[ATIIT.first][PG] == " +teamStarterIDPG);
+        logMsg(func +" playerInstance ID == " +convert->toString(PIIT.second->getData()->getID()));
+*/           
+        if (PIIT.second->getData()->getID() == activePlayerID["PG"])
+        {
+            logMsg(func +" PG");
+            activePlayerInstance.insert(std::pair<playerPositions, playerEntitySharedPtr>(PG, PIIT.second));
+            activePlayerInstance[PG]->setActivePosition(PG);
+            logMsg(func +" WOOT PG!");
+        }
+        else if (PIIT.second->getData()->getID() == activePlayerID["SG"])
+        {
+            activePlayerInstance.insert(std::pair<playerPositions, playerEntitySharedPtr>(SG, PIIT.second));
+            activePlayerInstance[SG]->setActivePosition(SG);
+            logMsg(func +" WOOT SG!");
+        }
+        else if (PIIT.second->getData()->getID() == activePlayerID["SF"])
+        {
+            activePlayerInstance.insert(std::pair<playerPositions, playerEntitySharedPtr>(SF, PIIT.second));
+            activePlayerInstance[SF]->setActivePosition(SF);
+            logMsg(func +" WOOT SF!");
+        }
+        else if (PIIT.second->getData()->getID() == activePlayerID["PF"])
+        {
+            activePlayerInstance.insert(std::pair<playerPositions, playerEntitySharedPtr>(PF, PIIT.second));
+            activePlayerInstance[PF]->setActivePosition(PF);
+            logMsg(func +" WOOT PF!");
+        }
+        else if (PIIT.second->getData()->getID() == activePlayerID["C"])
+        {
+            activePlayerInstance.insert(std::pair<playerPositions, playerEntitySharedPtr>(C, PIIT.second));
+            activePlayerInstance[C]->setActivePosition(C);
+            logMsg(func +" WOOT C!");
+        }
+        logMsg(func +" WOOT!");
+        logMsg(func +" loop activePlayerInstance.size() == " +convert->toString(activePlayerInstance.size()));
+
+    }
+    
+    return (activePlayerInstance);
 }
 

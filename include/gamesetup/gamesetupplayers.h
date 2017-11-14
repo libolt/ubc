@@ -34,7 +34,7 @@ class gameSetupPlayers
         bool checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr gamePlayerInstance, teamStateMSharedPtr activeTeamInstance);  // checks if the gameState Objects Player Instances have been created
         playerEntityMSharedPtr createPlayerInstances();  // creates player Instances
         playerEntityMSharedPtr createTeamPlayerInstances(playerEntityMSharedPtr gamePlayerInstance, size_t teamID);  // creates player instances for a team
-        playerEntityMSharedPtr createActivePlayerInstances(playerEntityMSharedPtr playerInstance);  // creates active court instances
+        playerEntityMSharedPtr createActivePlayerInstances(playerEntityMSharedPtr playerInstance,std::unordered_map<std::string, size_t> activePlayerID);  // creates active court instances
 
     private:
 

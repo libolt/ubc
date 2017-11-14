@@ -977,7 +977,7 @@ bool teamState::setPlayerStartDirections()  // sets the initial directions for t
 //    exit(0);
     return (true);
 }
-
+            
 bool teamState::setupActivePlayerInstances()  // sets up active player objects
 {
     conversionSharedPtr convert = conversion::Instance();

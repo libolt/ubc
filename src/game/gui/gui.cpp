@@ -29,6 +29,7 @@
 #include "engine/gameengine.h"
 #include "entity/playerentity.h"
 #include "gamesetup/gamesetuplineups.h"
+#include "gamesetup/gamesetupplayers.h"
 #include "gamesetup/gamesetupteams.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
@@ -1017,6 +1018,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     teamStateMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
   
 //    std::vector<playerStateMSharedPtr > playerInstance;
+    playerEntityMSharedPtr gamePlayerInstance = base->getGameS()->getPlayerInstance();
     playerEntityVecMSharedPtr playerInstance;
 //    std::unordered_map<std::string, playerStateSharedPtr> activePlayerInstance;
     playerEntityMSharedPtr activePlayerInstance;
@@ -1025,7 +1027,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     std::string func = "GUISystem::playerStartSelected()";
 
     gameSetupLineupsSharedPtr gameSetupLineup(new gameSetupLineups);
-    
+    gameSetupPlayersSharedPtr gameSetupPlayer(new gameSetupPlayers);
     logMsg(func +" begin");
 
     teamStarters = gameSetupLineup->createTeamStarters(activeTeamInstance);  // create the teamStarters instance
@@ -1376,7 +1378,8 @@ void GUISystem::playerStartSelected()  // process player start selection
     }
 */
 ///
-    gameSetupLineup->checkPlayerInstancesCreated(activeTeamInstance);
+
+    gameSetupPlayer->checkIfTeamPlayerInstancesCreated(gamePlayerInstance, activeTeamInstance);
 //    exit(0);
     // create active player Instancea
 
@@ -1439,7 +1442,7 @@ void GUISystem::playerStartSelected()  // process player start selection
         logMsg(func +" activePlayerInstance.size() == " +convert->toString(activePlayerInstance.size()));
     }  */
 ///    
-    activeTeamInstance = gameSetupLineup->createActivePlayerInstances(activeTeamInstance, teamStarterID);
+    activeTeamInstance = gameSetupLineup->setupStartingLineups(activeTeamInstance, teamStarterID);
     
     base->getGameS()->setActiveTeamInstance(activeTeamInstance);
 //    exit(0);

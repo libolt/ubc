@@ -18,5 +18,26 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "gamesetup/gamesetuplineups.h"
+#include "gamesetup/gamesetupplayerpositions.h"
 
+gameSetupPlayerPositions::gameSetupPlayerPositions()  // constructor
+{
+    
+}
+gameSetupPlayerPositions::~gameSetupPlayerPositions()  // destructor
+{
+    
+}
+
+bool gameSetupPlayerPositions::setJumpBallPositions()  // sets player positions for jumpball
+{
+    return (true);
+}
+bool gameSetupPlayerPositions::setHalfTimePositions()  // sets player positions for start of the second half
+{
+    return (true);
+}
+bool gameSetupPlayerPositions::setTimeOutPositions()  // sets playerpositions coming out of timeout
+{
+    return (true);
+}

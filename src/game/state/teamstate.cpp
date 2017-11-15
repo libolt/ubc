@@ -23,6 +23,7 @@
 #include "entity/basketballentity.h"
 #include "entity/courtentity.h"
 #include "entity/playerentity.h"
+#include "gamesetup/gamesetupplayerpositions.h"
 #include "physics/basketballphysics.h"
 #include "state/teamstate.h"
 #include "engine/gameengine.h"
@@ -715,6 +716,7 @@ bool teamState::setPlayerStartPositions()  // sets the initial coordinates for t
     conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    sharedPtr<gameEngine> gameE = gameEngine::Instance();
+    gameSetupPlayerPositionsSharedPtr gameSetupPlayerPosition(new gameSetupPlayerPositions);
     std::vector<std::unordered_map<std::string, size_t> > teamStarterID = base->getGameS()->getTeamStarterID();
     OgreVector3Vec startingPos;
 //    directions playerDirection; // stores the direction players face at start
@@ -732,9 +734,11 @@ bool teamState::setPlayerStartPositions()  // sets the initial coordinates for t
     logMsg(func +" yOffset == " +convert->toString(yOffset));
 
 //    exit(0);
+
+    activePlayerInstance = gameSetupPlayerPosition->setJumpBallPositions(activePlayerInstance, teamType, courtPos);
     // set initial player coordinates for the tipoff
 
-    switch (teamType)
+/*    switch (teamType)
     {
         case HOMETEAM:   // assigns the positions and directions for team 1 player
             base->getGameS()->setYOffset(yOffset);
@@ -820,7 +824,7 @@ bool teamState::setPlayerStartPositions()  // sets the initial coordinates for t
                 break;
             }
         }
-    }
+    }*/
 
     for (auto APIIT : activePlayerInstance)
     {
@@ -977,7 +981,7 @@ bool teamState::setPlayerStartDirections()  // sets the initial directions for t
 //    exit(0);
     return (true);
 }
-            
+
 bool teamState::setupActivePlayerInstances()  // sets up active player objects
 {
     conversionSharedPtr convert = conversion::Instance();

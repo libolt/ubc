@@ -113,6 +113,7 @@ class gameSetupCourts;
 class gameSetupHoops;
 class gameSetupLineups;
 class gameSetupPlayers;
+class gameSetupPlayerPositions;
 class gameSetupTeams;
 
 #ifndef sharedPtr
@@ -251,6 +252,8 @@ typedef sharedPtr<gameSetupHoops> gameSetupHoopsSharedPtr;
 typedef sharedPtr<gameSetupLineups> gameSetupLineupsSharedPtr;
 
 typedef sharedPtr<gameSetupPlayers> gameSetupPlayersSharedPtr;
+
+typedef sharedPtr<gameSetupPlayerPositions> gameSetupPlayerPositionsSharedPtr;
 
 typedef sharedPtr<gameSetupTeams> gameSetupTeamsSharedPtr;
 

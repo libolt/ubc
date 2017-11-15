@@ -434,6 +434,7 @@ void teamState::updateState()  // updates the state of the object
         
         if (!playerStartPositionsSet)
         {
+            logMsg(func +" Player Start Positions Not Set!");
             if (setPlayerStartPositions())  // sets starting positions for the players
             {
                 playerStartPositionsSet = true;

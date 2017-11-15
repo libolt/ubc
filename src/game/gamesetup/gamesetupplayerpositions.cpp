@@ -144,6 +144,7 @@ playerEntityMSharedPtr gameSetupPlayerPositions::setJumpBallPositions(playerEnti
             }
         }
     }
+//    exit(0);
     return (activePlayerInstance);
 }
 bool gameSetupPlayerPositions::setHalfTimePositions()  // sets player positions for start of the second half

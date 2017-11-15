@@ -1516,7 +1516,7 @@ bool gameState::updateState()  // updates the game state
     std::string func = "gameState::updateState()";
 
     logMsg(func +" beginning");
-
+   
     if (inputReceived)
     {
         logMsg(func +" received input!");
@@ -1587,14 +1587,18 @@ bool gameState::updateState()  // updates the game state
         
                     for (auto APIIT : activePlayerInstance)
                     {
-                        Ogre::Vector3 pos = APIIT.second->getNode()->getPosition();
-                        logMsg(func +" pos = " +convert->toString(pos));
+                        if (APIIT.second->getSMNodeSet())
+                        {
+                            logMsg(func +" Wioooot!");
+                            Ogre::Vector3 pos = APIIT.second->getNode()->getPosition();
+                            logMsg(func +" pos = " +convert->toString(pos));
+                        }
                     }
                 }
             }
-            exit(0);
+            
         }
-//        exit(0);
+        exit(0);
         if (!getTipOffComplete())  // calls tip off execution
         {
             if (executeTipOff())
@@ -1695,7 +1699,7 @@ bool gameState::updateActiveTeamInstances()  // updates all active team instance
     std::string func = "gameState::updateActiveTeamInstances()";
 
     logMsg(func +" beginning");
-
+//    exit(0);
     // temporary hack
     for (auto ATIIT : activeTeamInstance)
     {

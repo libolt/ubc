@@ -535,7 +535,7 @@ bool playerEntity::updateStateMachine(playerActions actionType, playerSMData *SM
     std::string func = "playerEntity::updateStateMachine()";
 
     logMsg(func + " beginning");
-    
+//    exit(0);
     switch (actionType)
     {
         case CHANGECOURTPOS:

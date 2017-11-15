@@ -1566,6 +1566,8 @@ void GUISystem::playerStartSelected()  // process player start selection
     if (gameSetupLineup->checkActivePlayerInstancesCreated(activeTeamInstance))
     {
         logMsg("All active player instances created successfully!");
+        base->getGameS()->setGameSetupComplete(true);
+
 //        exit(0);
     }
     else

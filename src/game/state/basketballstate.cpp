@@ -522,9 +522,11 @@ void basketballState::updatePosition() // updates the position of the basketball
             break;
         }
         courtPosition = entity->getNode()->getPosition();
-        
+        logMsg("basketball position = " +convert->toString(courtPosition));
     }
     
+    logMsg("basketball position = " +convert->toString(courtPosition));
+
 /*    node->translate(posChange);
 	btVector3 change; // = btVector3(0,0,0);
 	change = BtOgre::Convert::toBullet(posChange); // converts from Ogre::Vector3 to btVector3

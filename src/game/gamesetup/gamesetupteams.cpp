@@ -130,17 +130,34 @@ teamStateMSharedPtr gameSetupTeams::createTeamInstances()  // creates team Insta
 
 teamStateMSharedPtr gameSetupTeams::createActiveTeamInstances(teamStateMSharedPtr teamInstance, sizeTVec teamID)  // creates active team instances
 {
+    conversionSharedPtr convert = conversion::Instance();
     teamStateMSharedPtr activeTeamInstance;
     std::string func = "gameSetupTeams::createActiveTeamInstances()";
        
     logMsg(func +" beginning");
     
     sizeTVec::iterator TIDIT;
-    for (TIDIT = teamID.begin(); TIDIT != teamID.end(); ++TIDIT)
+    for (TIDIT = teamID.begin(); TIDIT != teamID.end(); ++TIDIT)  // creates active team instances
     {
         activeTeamInstance.insert(std::pair<size_t, teamStateSharedPtr>(*TIDIT, teamInstance[*TIDIT]));
     }
     
+    teamTypes teamType;
+    
+    for (auto ATIIT : activeTeamInstance)  // sets team type
+    {
+        switch (ATIIT.first)
+        {
+            case 0:
+                teamType = HOMETEAM;
+            break;
+            case 1:
+                teamType = AWAYTEAM;
+            break;
+        }
+        ATIIT.second->setTeamType(teamType);
+    }
+//    exit(0);
     logMsg(func +" end");
     
     return (activeTeamInstance);

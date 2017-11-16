@@ -107,6 +107,8 @@ bool gameSetupPlayers::checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr 
     bool returnType = false;
     std::string func = "gameSetupPlayers::checkIfTeamPlayerInstancesCreated()";
   
+    logMsg(func +" beginning");
+    
     for (auto ATIIT : activeTeamInstance)  // loop through activeTeamInstance
     {
 //        logMsg(convert->toString(teamIDs.size()));
@@ -153,6 +155,8 @@ bool gameSetupPlayers::checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr 
             }
         }
     }
+    
+    logMsg(func +" end");
     
     return (returnType);
 }

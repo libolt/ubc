@@ -1598,7 +1598,7 @@ bool gameState::updateState()  // updates the game state
             }
             
         }
-        exit(0);
+//        exit(0);
         if (!getTipOffComplete())  // calls tip off execution
         {
             if (executeTipOff())

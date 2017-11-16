@@ -250,13 +250,15 @@ teamStateMSharedPtr gameSetupLineups::setupStartingLineups(teamStateMSharedPtr a
     gameSetupPlayersSharedPtr gameSetupPlayer(new gameSetupPlayers);
     conversionSharedPtr convert = conversion::Instance();
     std::string func = "gameSetupLineups::setupStartingLineups()";
-
+    size_t teamIDNum = 0;
+    
     for (auto ATIIT : activeTeamInstance)
     {
         logMsg(func +" ATIIT.first == " +convert->toString(ATIIT.first));
         logMsg(func +" Team == " +ATIIT.second->getCity() + " " +ATIIT.second->getName());
 //        activePlayerInstance.clear();
-        size_t teamIDNum = 0;
+        
+        logMsg(func + " Team Type == " +convert->toString(ATIIT.second->getTeamType()));
         switch (ATIIT.second->getTeamType())
         {
             case HOMETEAM:
@@ -266,6 +268,8 @@ teamStateMSharedPtr gameSetupLineups::setupStartingLineups(teamStateMSharedPtr a
                 teamIDNum = 1;
             break;
         }
+        
+        logMsg(func +" teamIDNum == " +convert->toString(teamIDNum));
         playerEntityMSharedPtr activePlayerInstance = gameSetupPlayer->createActivePlayerInstances(ATIIT.second->getPlayerInstance(), teamStarterID[teamIDNum]);
         
 
@@ -278,7 +282,15 @@ teamStateMSharedPtr gameSetupLineups::setupStartingLineups(teamStateMSharedPtr a
         logMsg(func +" team name == " +ATIIT.second->getName());
 
         logMsg(func +" activePlayerInstance.size() == " +convert->toString(activePlayerInstance.size()));
+        
     }
+//    exit(0);
+    
+    for (auto ATIIT : activeTeamInstance)  // loop through activeTeamInstance
+    {
+        logMsg(func + " activePlayerInstance size() == " +convert->toString(ATIIT.second->getActivePlayerInstance().size()));
+    }
+    
     return (activeTeamInstance);
 }
 
@@ -366,7 +378,7 @@ bool gameSetupLineups::setupStartingLineups_old(teamStateMSharedPtr activeTeamIn
     }
     logMsg(func +" dah teamStarterID.size() == " +convert->toString(teamStarters.size()));
 
-    exit(0);
+//    exit(0);
 
     for (TSVIT = teamStarters.begin(); TSVIT != teamStarters.end(); ++TSVIT)  // loop that adds starting player IDs to teamStarterID
     {
@@ -435,6 +447,6 @@ bool gameSetupLineups::setupStartingLineups_old(teamStateMSharedPtr activeTeamIn
     }
     logMsg(func +" teamStarterID.size() == " +convert->toString(teamStarterID.size()));
 
-    exit(0);
+//    exit(0);
     return (true);
 }

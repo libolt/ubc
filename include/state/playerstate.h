@@ -64,11 +64,11 @@ class playerState //: public state
         sharedPtr<playerStatistics> getStatistics();  // retrieves the value of statistics
         void setStatistics(sharedPtr<playerStatistics> set);  // sets the value of statistics
 */
-        UBCBaseSharedPtr getBase();  // retrieves the value of base
-        void setBase(UBCBaseSharedPtr set);  // sets the value of base
+//        UBCBaseSharedPtr getBase();  // retrieves the value of base
+//        void setBase(UBCBaseSharedPtr set);  // sets the value of base
 
-        bool getBaseInitialized();  // retrieves the value of baseInitialized
-        void setBaseInitialized(bool set);  // sets the value of baseInitialized
+//        bool getBaseInitialized();  // retrieves the value of baseInitialized
+//        void setBaseInitialized(bool set);  // sets the value of baseInitialized
 
         teamTypes getTeamType();  // retrieves the value of teamType
         void setTeamType(teamTypes set);  // sets the value of teamType
@@ -202,9 +202,9 @@ class playerState //: public state
         
 //        sharedPtr<playerStatistics> statistics;  // instance of playerStatistics object
  
-        static UBCBaseSharedPtr base;  // base class object
+//        static UBCBaseSharedPtr base;  // base class object
         
-        bool baseInitialized;  // stores whether or not the base class has been initialized.
+//        bool baseInitialized;  // stores whether or not the base class has been initialized.
 
 //        size_t playerID;  // stores the ID of the player which is unique to each player in the game
 

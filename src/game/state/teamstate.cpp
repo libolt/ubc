@@ -401,6 +401,7 @@ void teamState::updateState()  // updates the state of the object
 //  sharedPtr<gameState> gameS = gameState::Instance();
     ///sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
+    gameSetupPlayersSharedPtr gameSetupPlayer(new gameSetupPlayers);
     jumpBallsSharedPtr jumpBall = base->getGameS()->getJumpBall();
     std::string func = "teamState::updateState()";
 
@@ -415,8 +416,8 @@ void teamState::updateState()  // updates the state of the object
         
         if (!activePlayerInstancesSetup)
         {
-            
-            
+            // setup Active Player Instances
+            activePlayerInstance = gameSetupPlayer->setupActivePlayerInstances(activePlayerInstance);
             if (setupActivePlayerInstances())
             {
                 activePlayerInstancesSetup = true;

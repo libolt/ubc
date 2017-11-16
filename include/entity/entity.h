@@ -48,12 +48,12 @@ class entity // : public UBCBase // base class for entity objects
     bool getInitialized();  // retrieves the value of initialized
     void setInitialized(bool set);  // sets the value of initialized
     
-    UBCBaseSharedPtr getBase();  // retrieves the value of base
+/*    UBCBaseSharedPtr getBase();  // retrieves the value of base
     void setBase(UBCBaseSharedPtr set);  // sets the value of base
 
     bool getBaseInitialized();  // retrieves the value of baseInitialized
     void setBaseInitialized(bool set);  // sets the value of baseInitialized
-
+*/
     size_t getEntityID();  // retrieves the value of entityID
     void setEntityID(size_t set);  // sets the value of entityID
     

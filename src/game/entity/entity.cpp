@@ -26,7 +26,7 @@
 #include "ubc/ubc.h"
 
 // static declarations
-UBCBaseSharedPtr entity::base;  // base class object
+//UBCBaseSharedPtr entity::base;  // base class object
 //OgreSceneNodeSharedPtr entity::node;  // stores node 3d model is attached to
 
 //std::string entity::entityNodeName;  // stores the name of the scene node
@@ -34,7 +34,7 @@ UBCBaseSharedPtr entity::base;  // base class object
 entity::entity()  // constructor
 {
     initialized = false;
-    baseInitialized = false;
+//    baseInitialized = false;
 
     entityID = 0;
     physicsSetup = false;
@@ -56,7 +56,7 @@ void entity::setInitialized(bool set)  // sets the value of initialized
     initialized = set;
 }
 
-UBCBaseSharedPtr entity::getBase()  // retrieves the value of base
+/*UBCBaseSharedPtr entity::getBase()  // retrieves the value of base
 {
     return (base);
 }
@@ -72,7 +72,7 @@ bool entity::getBaseInitialized()  // retrieves the value of baseInitialized
 void entity::setBaseInitialized(bool set)  // sets the value of baseInitialized
 {
     baseInitialized = set;
-}
+}*/
 
 size_t entity::getEntityID()  // retrieves the value of ID
 {

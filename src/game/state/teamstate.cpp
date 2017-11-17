@@ -23,6 +23,7 @@
 #include "entity/basketballentity.h"
 #include "entity/courtentity.h"
 #include "entity/playerentity.h"
+#include "gamesetup/gamesetupplayers.h"
 #include "gamesetup/gamesetupplayerpositions.h"
 #include "physics/basketballphysics.h"
 #include "state/teamstate.h"
@@ -992,7 +993,7 @@ bool teamState::setupActivePlayerInstances()  // sets up active player objects
     logMsg(func +" beginning");
     for (auto APIIT : activePlayerInstance)
     {
-        if (!APIIT.second->getBaseInitialized())
+/*        if (!APIIT.second->getBaseInitialized())
         {
             APIIT.second->setBase(base);
             APIIT.second->setBaseInitialized(true);
@@ -1001,7 +1002,7 @@ bool teamState::setupActivePlayerInstances()  // sets up active player objects
         {
             logMsg(func +" Unable to initialize base!");
             exit(0);
-        }
+        }*/
         if (!APIIT.second->getInitialized())
         {
             logMsg("Player Entity not yet Initialized!");

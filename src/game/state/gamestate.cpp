@@ -816,14 +816,14 @@ bool gameState::loadBasketballModel()  // loads selected basketball model
         logMsg(func +" activeBasketballInstance == " +convert->toString(ABIIT.first));
     
 
-/*BASEREMOVAL */       if (!activeBasketballInstance[0]->getEntity()->getBaseInitialized()) // checks to see if the base object for basketballInstance[activeBBallIntance has been initialized
+/*        if (!activeBasketballInstance[0]->getEntity()->getBaseInitialized()) // checks to see if the base object for basketballInstance[activeBBallIntance has been initialized
         {
             logMsg(func +" Initializing base!");
             if (!ABIIT.second->getEntity()->getBaseInitialized())
             {
                 ABIIT.second->getEntity()->setBase(base);
             }
-        }
+        }*/
        
         if (ABIIT.second->getEntity()->getEntityName() == "")
         {

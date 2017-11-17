@@ -18,8 +18,8 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef _GAMESETUPPLAYERS_H_
-#define _GAMESETUPPLAYERS_H_
+#ifndef _GAMESETUPPLAYERPOSITIONS_H_
+#define _GAMESETUPPLAYERPOSITIONS_H_
 
 #include "utilities/typedefs.h"
 

@@ -67,7 +67,7 @@ bool courtEntity::setupPhysicsObject()  // sets up the physics object
 
     if (!getPhysics()->getGameSInitialized())
     {
-        getPhysics()->setGameS(getBase()->getGameS());
+//BASEREMOVAL        getPhysics()->setGameS(getBase()->getGameS());
         getPhysics()->setGameSInitialized(true);
     }
     

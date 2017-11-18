@@ -66,7 +66,7 @@ sharedPtr<GUISystem> GUISystem::Instance()
 
 // static declarations
 
-UBCBaseSharedPtr GUISystem::base;
+//UBCBaseSharedPtr GUISystem::base;
 
 bool GUISystem::setupComplete;
 bool GUISystem::mainMenuCreated; 
@@ -265,14 +265,14 @@ GUISystem::~GUISystem()
 }
 
 
-UBCBaseSharedPtr GUISystem::getBase()  // retrieves the value of base
+/*BASEREMOVAL UBCBaseSharedPtr GUISystem::getBase()  // retrieves the value of base
 {
     return(base);
 }
 void GUISystem::setBase(UBCBaseSharedPtr set)  // sets the value of base
 {
     base = set;
-}
+}*/
 
 /*sharedPtr<networkEngimmnmne> GUISystem::getNetworkG()  // retrieves the value of network
 {
@@ -419,6 +419,15 @@ bool GUISystem::getCourtSelectionDataLoaded()  // retrieves the value of courtSe
 void GUISystem::setCourtSelectionDataLoaded(bool set)  // sets the value of courtSelectionEntriesLoaded
 {
     courtSelectionDataLoaded = set;
+}
+
+teamStateMSharedPtr GUISystem::getTeamInstance()  // retrieves the value of teamInstance
+{
+    return (teamInstance);
+}
+void GUISystem::setTeamInstance(teamStateMSharedPtr set)  // sets the value of teamInstance
+{
+    teamInstance = set;
 }
 
 bool GUISystem::getMenuActive()  // retrieves the value of menuActive
@@ -978,7 +987,7 @@ void GUISystem::teamsSelected()  // processes team selection
     gameSetupTeamsSharedPtr gameSetupTeam;
     std::string func = "GUISystem::teamsSelected()";
   
-    teamInstance = base->getGameS()->getTeamInstance();
+//    teamInstance = base->getGameS()->getTeamInstance();
     
     logMsg(func +" beginning");
 

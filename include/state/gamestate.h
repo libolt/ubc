@@ -60,9 +60,9 @@ public:
     gameState(); // constructor
     ~gameState();  // destructor
 
-    UBCBaseSharedPtr getBase();  // retrieves the value of base
+/*BASEREMOVAL    UBCBaseSharedPtr getBase();  // retrieves the value of base
     void setBase(UBCBaseSharedPtr set);  // sets the value of base
-
+*/
 /*    gameTypes getGameType();  // retrieves the value of gameType
     void setGameType(gameTypes set);  // sets the value of gameType
 */
@@ -215,7 +215,7 @@ protected:
 //    gameState &operator = (const gameState&);
 
 private:
-    static UBCBaseSharedPtr base;  // static copy of base class
+//BASEREMOVAL    static UBCBaseSharedPtr base;  // static copy of base class
     float gameTimeLeft;  // Indicates the time left in the game
     float quarterTimeLeft;  // incates the time left in the current quarter
 

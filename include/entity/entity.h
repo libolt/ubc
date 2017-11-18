@@ -92,7 +92,7 @@ class entity // : public UBCBase // base class for entity objects
     
     bool initialized;  // stores whether entity object has been initialized
     
-    static UBCBaseSharedPtr base;  // base class object
+//    static UBCBaseSharedPtr base;  // base class object
     
     bool baseInitialized;  // stores whether or not the base class has been initialized.
 

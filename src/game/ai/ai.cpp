@@ -79,6 +79,52 @@ void AISystem::setBaseInitialized(bool set)  // sets the value of baseInitialize
     baseInitialized = set;
 }
 
+
+basketballStateMSharedPtr AISystem::getActiveBasketballInstance()  // retrieves the value of activeBasketballInstance
+{
+    return (activeBasketballInstance);
+}
+void AISystem::setActiveBasketballInstance(basketballStateMSharedPtr set)  // sets the value of activeBasketballInstance
+{
+    activeBasketballInstance = set;
+}
+
+courtStateMSharedPtr AISystem::getActiveCourtInstance()  // retrieves the value of activeCourtInstance
+{
+    return (activeCourtInstance);
+}
+void AISystem::setActiveCourtInstance(courtStateMSharedPtr set)  // sets the value of activeCourtInstance
+{
+    activeCourtInstance = set;
+}
+
+teamStateMSharedPtr AISystem::getActiveTeamInstance()  // retrieves the value of activeTeamInstance
+{
+    return (activeTeamInstance);
+}
+void AISystem::setActiveTeamInstance(teamStateMSharedPtr set)  // sets the value of activeTeamInstance
+{
+    activeTeamInstance = set;
+}
+
+teamTypes AISystem::getTeamWithBall()  // retrieves the value of teamWithBall
+{
+    return (teamWithBall);
+}
+void AISystem::setTeamWithBall(teamTypes set)  // sets the value of teamWithBall
+{
+    teamWithBall = set;
+}
+
+std::string AISystem::getHumanPlayer()  // retrieves the value of the humanPlayer
+{
+    return (humanPlayer);
+}
+void AISystem::setHumanPlayer(std::string set)  // sets the value of human player
+{
+    humanPlayer = set;
+}
+
 OpenSteerAbstractVehicleSharedPtr AISystem::getSelectedVehicle()  // retrieves the value of selectedVehicle
 {
     return (selectedVehicle);
@@ -109,17 +155,17 @@ void AISystem::setOldTime(float set)  // sets the value of oldTime
 void printPlugIn(OpenSteer::PlugIn& pi);
 
 // initial setup of AI state
-bool AISystem::setup()
+bool AISystem::setup(basketballStateMSharedPtr activeBasketballInstance, courtStateMSharedPtr activeCourtInstance, teamStateMSharedPtr activeTeamInstance, teamTypes teamWithBall, std::string humanPlayer)
 {
     conversionSharedPtr convert = conversion::Instance();
 
     std::string func = "AISystem::setup()";
-
+    setActiveTeamInstance(activeTeamInstance);
     logMsg(func +" beginning");
     playerSteerPluginSharedPtr tempPlugin(new playerSteerPlugin);
     playerSteerPluginInstance = tempPlugin;
 
-    for (auto ATIIT : base->getGameS()->getActiveTeamInstance())
+    for (auto ATIIT : activeTeamInstance)
     {
         if (ATIIT.second->getActivePlayerInstancesCreated())
         {
@@ -156,7 +202,7 @@ bool AISystem::setup()
     }
 
     // initialize the default PlugIn
-    openSelectedPlugIn();
+    openSelectedPlugIn(activeTeamInstance);
 
     logMsg(func +" end");
 
@@ -191,14 +237,14 @@ void AISystem::selectDefaultPlugIn()  // selects the default plugin
     logMsg(func +" end");
 }
 
-void AISystem::selectNextPlugIn()  // select the "next" plug-in, cycling through "plug-in selection order"
+void AISystem::selectNextPlugIn(teamStateMSharedPtr activeTeamInstance)  // select the "next" plug-in, cycling through "plug-in selection order"
 {
     std::string func = "AISystem::selectNextPlugIn()";
 
     logMsg(func +" beginning");
     closeSelectedPlugIn();
     selectedPlugIn = OpenSteerPluginSharedPtr(selectedPlugIn->next());
-    openSelectedPlugIn();
+    openSelectedPlugIn(activeTeamInstance);
     logMsg(func +" end");
 }
 
@@ -211,7 +257,7 @@ const char *AISystem::nameOfSelectedPlugIn()  // return name of currently select
     return (OpenSteerPluginSharedPtr(selectedPlugIn) ? OpenSteerPluginSharedPtr(selectedPlugIn)->name() : "no PlugIn");
 }
 
-void AISystem::openSelectedPlugIn()  // open the currently selected plug-in
+void AISystem::openSelectedPlugIn(teamStateMSharedPtr activeTeamInstance)  // open the currently selected plug-in
 {
     std::string func = "AISystem::openSelectedPlugIn()";
 
@@ -223,6 +269,7 @@ void AISystem::openSelectedPlugIn()  // open the currently selected plug-in
         logMsg(func + " selectedPlugIn base not initialized!");
         exit(0);
     }*/
+//    selectedPlugIn->setActiveTeamInstance(activeTeamInstance);
     selectedPlugIn->open();
     logMsg(func +" end");
 }

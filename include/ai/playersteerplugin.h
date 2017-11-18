@@ -22,11 +22,12 @@
 #define _PLAYERSTEERPLUGIN_H_
 
 #include "ai/steering.h"
-#include "ai/playersteer.h"
+//#include "ai/playersteer.h"
 #include "state/gamestateshared.h"
 
 // Forward declarations
 class UBCBase;
+class playerSteer;
 
 
 // PlugIn for OpenSteerDemo
@@ -48,7 +49,22 @@ class playerSteerPlugin : public OpenSteer::PlugIn, steering
 
     bool getBaseInitialized();  // retrieves the value of baseInitialized
     void setBaseInitialized(bool set);  // sets the value of baseInitialized
-    
+
+    basketballStateMSharedPtr getActiveBasketballInstance();  // retrieves the value of activeBasketballInstance
+    void setActiveBasketballInstance(basketballStateMSharedPtr set);  // sets the value of activeBasketballInstance
+
+    courtStateMSharedPtr getActiveCourtInstance();  // retrieves the value of activeCourtInstance
+    void setActiveCourtInstance(courtStateMSharedPtr set);  // sets the value of activeCourtInstance
+
+    teamStateMSharedPtr getActiveTeamInstance();  // retrieves the value of activeTeamInstance
+    void setActiveTeamInstance(teamStateMSharedPtr set);  // sets the value of activeTeamInstance
+
+    teamTypes getTeamWithBall();  // retrieves the value of teamWithBall
+    void setTeamWithBall(teamTypes set);  // sets the value of teamWithBall
+
+    std::string getHumanPlayer();  // retrieves the value of the humanPlayer
+    void setHumanPlayer(std::string set);  // sets the value of the human player
+
     void open();  // opens the plugin
 
     void update (const float currentTime, const float elapsedTime);  // updates the plugin state
@@ -76,6 +92,13 @@ class playerSteerPlugin : public OpenSteer::PlugIn, steering
 
 //        Ball	*m_Ball;
     steeringAABBoxSharedPtr courtBBox;  // Axis Aligned Bounding Box for the court
+
+    basketballStateMSharedPtr activeBasketballInstance;  // stores copy of activeBasketballInstance
+    courtStateMSharedPtr activeCourtInstance;  // stores copy of activeCourtInstance
+    teamStateMSharedPtr activeTeamInstance;  // stores copy of activeTeamInstance
+    teamTypes teamWithBall;
+    std::string humanPlayer;  // stores which player is human controlled
+
 /*        AABBox	*m_TeamAGoal;
         AABBox	*m_TeamBGoal;
 

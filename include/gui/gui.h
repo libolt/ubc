@@ -70,8 +70,9 @@ public:
     void setRender(sharedPtr<renderEngine> set);  // sets the value of render
 */
 
-    UBCBaseSharedPtr getBase();  // retrieves the value of base
+/*BASEREMOVAL    UBCBaseSharedPtr getBase();  // retrieves the value of base
     void setBase(UBCBaseSharedPtr set);  // sets the value of base
+*/
 
     bool getSetupComplete();  // retrieves the value of setupComplete
     void setSetupComplete(bool set);  // sets the value of setupComplete
@@ -286,7 +287,7 @@ private:
 //    static MyGUI::Gui *mGUI;
 //    static MyGUI::OgrePlatform *mPlatform;
     
-    static UBCBaseSharedPtr base;
+//    static UBCBaseSharedPtr base;
     static MyGUIGuiSharedPtr mGUI;  // The MyGUI object
     static MyGUIOgrePlatformSharedPtr mPlatform;  // The MyGUI Platform object
 
@@ -451,6 +452,8 @@ private:
     static bool gameSetupMenuHomeSelected;  // determines whether the home team listbox is selected;
     static bool courtSelectionDataLoaded;  // determines whether court names have been added to the select box
     
+    teamStateMSharedPtr teamInstance;  // stores a copy of the teamInstance
+
     static activeMenus activeMenu;  // stores which menu is being displayed
     static activeMenus previousActiveMenu;  // stores which menu was last displayed
 

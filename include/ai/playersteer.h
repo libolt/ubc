@@ -36,8 +36,8 @@ class playerSteer : public steering
     playerSteer();  // constructor
     ~playerSteer();  // destructor
 
-    gameStateSharedPtr getGameS();  // retrieves the value of gameS
-    void setGameS(gameStateSharedPtr set);  // sets the value of gameS
+//    gameStateSharedPtr getGameS();  // retrieves the value of gameS
+//    void setGameS(gameStateSharedPtr set);  // sets the value of gameS
 
     teamTypes getTeamType();  // retrieves the value of teamType
     void setTeamType(teamTypes set);  // sets the value of teamType
@@ -60,8 +60,23 @@ class playerSteer : public steering
     boolVec getPositionReached();  // retrieves the value of positionReached
     void setPositionReached(boolVec reached);  // sets the value of positionReached
 	
+    basketballStateMSharedPtr getActiveBasketballInstance();  // retrieves the value of activeBasketballInstance
+    void setActiveBasketballInstance(basketballStateMSharedPtr set);  // sets the value of activeBasketballInstance
+
+    courtStateMSharedPtr getActiveCourtInstance();  // retrieves the value of activeCourtInstance
+    void setActiveCourtInstance(courtStateMSharedPtr set);  // sets the value of activeCourtInstance
+
+    teamStateMSharedPtr getActiveTeamInstance();  // retrieves the value of activeTeamInstance
+    void setActiveTeamInstance(teamStateMSharedPtr set);  // sets the value of activeTeamInstance
+
+    teamTypes getTeamWithBall();  // retrieves the value of teamWithBall
+    void setTeamWithBall(teamTypes set);  // sets the value of teamWithBall
+
+    std::string getHumanPlayer();  // retrieves the value of the humanPlayer
+    void setHumanPlayer(std::string set);  // sets the value of the human player
+
     void reset();  // resets the state
-    void update (const float currentTime, const float elapsedTime);  // update steering sim every frame
+    void update(const float currentTime, const float elapsedTime);  // update steering sim every frame
 
     void checkCourtPosition();  // checks if the player's position has changed
     void updateOffense(const float currentTime, const float elapsedTime);  // updates the offense steering sim
@@ -69,14 +84,23 @@ class playerSteer : public steering
 
     private:
 
-    gameStateSharedPtr gameS;  // the gameState object
+//    gameStateSharedPtr gameS;  // the gameState object
 
     int counter;
     playerSteerVecSharedPtr m_others;  // stores steering object of other players
     playerSteerVecSharedPtr m_AllPlayers;  // stores steering objects of all players
     OpenSteer::Vec3 m_home;  // home point to stear to
     //Ball*	m_Ball;
+
+    basketballStateMSharedPtr activeBasketballInstance;  // stores copy of activeBasketballInstance
+    courtStateMSharedPtr activeCourtInstance;  // stores copy of activeCourtInstance
+    teamStateMSharedPtr activeTeamInstance;  // stores copy of activeTeamInstance
+
     teamTypes teamType;  // stores which team the player belongs to
+    teamTypes teamWithBall;  // stores copy of teamWithBall
+
+    std::string humanPlayer;  // stores which player is human controlled
+
     int	m_MyID;
     size_t ID; // Stores which player on the team the instance associates with
     playerPositions playerPosition;  // stores which position the player is playing

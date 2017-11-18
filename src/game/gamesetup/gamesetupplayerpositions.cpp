@@ -102,7 +102,7 @@ playerEntityMSharedPtr gameSetupPlayerPositions::setJumpBallPositions(playerEnti
                     APIIT.second->setStateChanged(true);
                     stateAction.push_back(CHANGECOURTPOS);
                     APIIT.second->setStateAction(stateAction);
-                    APIIT.second->getSteer()->setPlayerPosition(PG);
+//FIXME!AI                    APIIT.second->getSteer()->setPlayerPosition(PG);
 //                    exit(0);
                 break;
                 case SG:
@@ -112,7 +112,7 @@ playerEntityMSharedPtr gameSetupPlayerPositions::setJumpBallPositions(playerEnti
                     APIIT.second->setStateChanged(true);
                     stateAction.push_back(CHANGECOURTPOS);
                     APIIT.second->setStateAction(stateAction);
-                    APIIT.second->getSteer()->setPlayerPosition(SG);
+//FIXME!AI                    APIIT.second->getSteer()->setPlayerPosition(SG);
                 break;
                 case SF:
                     APIIT.second->setCourtPositionChanged(true);
@@ -121,7 +121,7 @@ playerEntityMSharedPtr gameSetupPlayerPositions::setJumpBallPositions(playerEnti
                     APIIT.second->setStateChanged(true);
                     stateAction.push_back(CHANGECOURTPOS);
                     APIIT.second->setStateAction(stateAction);
-                    APIIT.second->getSteer()->setPlayerPosition(SF);
+//FIXME!AI                    APIIT.second->getSteer()->setPlayerPosition(SF);
                 break;
                 case PF:
                     APIIT.second->setCourtPositionChanged(true);
@@ -130,7 +130,7 @@ playerEntityMSharedPtr gameSetupPlayerPositions::setJumpBallPositions(playerEnti
                     APIIT.second->setStateChanged(true);
                     stateAction.push_back(CHANGECOURTPOS);
                     APIIT.second->setStateAction(stateAction);
-                    APIIT.second->getSteer()->setPlayerPosition(PF);
+//FIXME!AI                    APIIT.second->getSteer()->setPlayerPosition(PF);
                 break;
                 case C:
                     APIIT.second->setCourtPositionChanged(true);
@@ -139,7 +139,7 @@ playerEntityMSharedPtr gameSetupPlayerPositions::setJumpBallPositions(playerEnti
                     APIIT.second->setStateChanged(true);
                     stateAction.push_back(CHANGECOURTPOS);
                     APIIT.second->setStateAction(stateAction);
-                    APIIT.second->getSteer()->setPlayerPosition(C);
+//FIXME!AI                    APIIT.second->getSteer()->setPlayerPosition(C);
                 break;
             }
         }

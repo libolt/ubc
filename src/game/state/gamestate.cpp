@@ -58,7 +58,7 @@
 #include "users/users.h"
 
 // static declarations
-UBCBaseSharedPtr gameState::base;  // static copy of base class
+//UBCBaseSharedPtr gameState::base;  // static copy of base class
 gameState::gameState()  // constructor
 {
     inputReceived = false;
@@ -104,14 +104,14 @@ gameState::~gameState()  // destructor
 {
 }
 
-UBCBaseSharedPtr gameState::getBase()  // retrieves the value of base
+/*BASEREMOVAL UBCBaseSharedPtr gameState::getBase()  // retrieves the value of base
 {
     return (base);
 }
 void gameState::setBase(UBCBaseSharedPtr set)  // sets the value of base
 {
     base = set;
-}
+}*/
 
 courtDataVec  gameState::getCourtDataInstance()  // retrieves the value of courtDataInstance
 {
@@ -775,7 +775,7 @@ bool gameState::setupEnvironment()
 bool gameState::loadBasketballModel()  // loads selected basketball model
 {
     conversionSharedPtr convert = conversion::Instance();
-    loaderSharedPtr load = base->getLoad();
+    loaderSharedPtr load(new loader);
     gameSetupBasketballsSharedPtr gameSetupBasketball;
     basketballStateMSharedPtr activeBasketballInstance = getActiveBasketballInstance();
     bool activeBasketballInstancesCreated = getActiveBasketballInstancesCreated();
@@ -877,7 +877,7 @@ bool gameState::loadBasketballModel()  // loads selected basketball model
 bool gameState::loadCourtModel()  // loads selected court model
 {
     conversionSharedPtr convert = conversion::Instance();
-    loaderSharedPtr load = base->getLoad();
+    loaderSharedPtr load(new loader);
     courtStateMSharedPtr courtInstance = getCourtInstance();
     courtStateMSharedPtr activeCourtInstance = getActiveCourtInstance();
     gameSetupCourtsSharedPtr gameSetupCourt(new gameSetupCourts);
@@ -941,7 +941,7 @@ bool gameState::loadHoopModel()  // loads selected hoop model
 {
     conversionSharedPtr convert = conversion::Instance();
     hoopStateMSharedPtr activeHoopInstance = getActiveHoopInstance();
-    loaderSharedPtr load = base->getLoad();
+    loaderSharedPtr load(new loader);
     std::string func = "gameState::loadHoopModel()";
     bool returnType = true;
 
@@ -1457,10 +1457,10 @@ bool gameState::setupState()  // sets up the game condition
 //    exit(0);
     if (!ai->getBaseInitialized())
     {
-        ai->setBase(getBase());
-        ai->setBaseInitialized(true);
+//BASEREMOVAL        ai->setBase(getBase());
+//BASEREMOVAL        ai->setBaseInitialized(true);
     }
-    ai->setup();
+//FIXME!AI    ai->setup(getActiveBasketballInstance(), getActiveCourtInstance(), getActiveTeamInstance(), getTeamWithBall(), getHumanPlayer());
 
 //        Ogre::Entity *ent;
 //        ent = player->getModel(0);
@@ -1509,7 +1509,7 @@ bool gameState::updateState()  // updates the game state
 {
     conversionSharedPtr convert = conversion::Instance();
     AISystemSharedPtr ai = AISystem::Instance();
-    timing timer = getBase()->getGameE()->getTimer();
+    timing timer;  //BASEREMOVAL = getBase()->getGameE()->getTimer();
     Ogre::Vector3 playerPos;
     basketballStateMSharedPtr activeBasketballInstance = getActiveBasketballInstance();
 //    teamStateMSharedPtr activeTeamInstance = getActiveTeamInstance();
@@ -1520,7 +1520,7 @@ bool gameState::updateState()  // updates the game state
     if (inputReceived)
     {
         logMsg(func +" received input!");
-        for (auto IIGWQ : base->getGameS()->getInputInGameWorkQueue())
+        for (auto IIGWQ : getInputInGameWorkQueue())
         {
             logMsg (func +" INQ = " +convert->toString(IIGWQ));
         }
@@ -1544,11 +1544,11 @@ bool gameState::updateState()  // updates the game state
     }
     
     setActiveBasketballInstance(activeBasketballInstance);
-    if (base->getGameS()->getGameType() == SINGLE)
+    if (getGameType() == SINGLE)
     {
         logMsg(func +"gameType == SINGLE");
     }
-    else if (getBase()->getGameS()->getGameType() == NOGAME)
+    else if (getGameType() == NOGAME)
     {
         logMsg(func +"gameType == NOGAME");
     }
@@ -1573,7 +1573,7 @@ bool gameState::updateState()  // updates the game state
 
         logMsg(func +" getActiveTeamInstance().size() == " +convert->toString(getActiveTeamInstance().size()));
 
-        teamStateMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
+        teamStateMSharedPtr activeTeamInstance = getActiveTeamInstance();
         if (activeTeamInstance.size() > 0)
         {
             logMsg(func + " activeTeamInstance.size() == " +convert->toString(activeTeamInstance.size()));
@@ -1616,7 +1616,7 @@ bool gameState::updateState()  // updates the game state
             
         }
         
-        if (getTeamWithBall() != NOTEAM)
+/*FIXME!AI        if (getTeamWithBall() != NOTEAM)
         {
 //          logMsg("teamWithBall is " +convert->toString(teamWithBall));
 //          logMsg("playetWithBall is " +convert->toString(teamInstance[teamWithBall].getPlayerWithBall()));
@@ -1643,7 +1643,8 @@ bool gameState::updateState()  // updates the game state
         else
         {
             
-        }
+        }*/
+
         if (updateActiveTeamInstances())
         {
             logMsg(func +" active team instances updated!");

@@ -491,7 +491,8 @@ void teamState::updateState()  // updates the state of the object
         // checks whether to execute offense or defense logic
         if (offense == true && defense == false)
         {
-            exit(0);
+            logMsg(func +" offense executing");
+//            exit(0);
             offenseInstance->setExecute(true);
             defenseInstance->setExecute(false);
             if (offenseInstance->getTeamType() !=  teamType)  // sets type of team for offense

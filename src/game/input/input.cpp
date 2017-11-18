@@ -103,7 +103,7 @@ void input::setInputESet(bool set)  // sets the value of inputESet
 bool input::setup()  // sets up the input state
 {
 
-    loaderSharedPtr load = base->getLoad();
+    loaderSharedPtr load(new loader);
     inputEngineSharedPtr tempInputESharedPtr(new inputEngine);
     inputE = tempInputESharedPtr;
 //    uInput = load->loadUserInputs();  // loads user defined input from file.

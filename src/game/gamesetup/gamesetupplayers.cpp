@@ -318,7 +318,7 @@ playerEntityMSharedPtr gameSetupPlayers::createActivePlayerInstances(playerEntit
     return (activePlayerInstance);
 }
 
-playerEntityMSharedPtr gameSetupPlayers::createActivePlayerInstances(playerEntityMSharedPtr activePlayerInstance)  // sets up active player instances
+playerEntityMSharedPtr gameSetupPlayers::setupActivePlayerInstances(playerEntityMSharedPtr activePlayerInstance)  // sets up active player instances
 {
     conversionSharedPtr convert = conversion::Instance();
     std::string func = "teamState::setupActivePlayerInstances()";
@@ -326,7 +326,7 @@ playerEntityMSharedPtr gameSetupPlayers::createActivePlayerInstances(playerEntit
     logMsg(func +" beginning");
     for (auto APIIT : activePlayerInstance)
     {
-        if (!APIIT.second->getBaseInitialized())
+/*BASEREMOVAL        if (!APIIT.second->getBaseInitialized())
         {
 //REMOVE?            APIIT.second->setBase(base);
             APIIT.second->setBaseInitialized(true);
@@ -336,6 +336,7 @@ playerEntityMSharedPtr gameSetupPlayers::createActivePlayerInstances(playerEntit
             logMsg(func +" Unable to initialize base!");
             exit(0);
         }
+*/
         if (!APIIT.second->getInitialized())
         {
             logMsg("Player Entity not yet Initialized!");

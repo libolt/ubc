@@ -169,7 +169,8 @@ bool entity::loadModel()  // loads the 3D model
 {
     conversionSharedPtr convert = conversion::Instance();
     std::string func = "entity::loadModel()";
-    sharedPtr<renderEngine> render = base->getGameE()->getRenderE();
+//BASEREMOVAL    sharedPtr<renderEngine> render = base->getGameE()->getRenderE();
+    renderEngineSharedPtr render;
     sharedPtr<Ogre::SceneManager> mSceneMgr = render->getMSceneMgr();
     Ogre::ResourceGroupManager &rsm = Ogre::ResourceGroupManager::getSingleton();
     OgreEntitySharedPtr tempModel;
@@ -200,7 +201,8 @@ bool entity::loadModel()  // loads the 3D model
 
     }
     
-    if (base->getGameE()->getRenderE().get()->getMSceneMgr()->hasCamera("camera"))
+//BASEREMOVAL    if (base->getGameE()->getRenderE().get()->getMSceneMgr()->hasCamera("camera"))
+    if (render.get()->getMSceneMgr()->hasCamera("camera"))
     {
         logMsg(func +" mSceneMgr has camera!");
     }
@@ -210,7 +212,9 @@ bool entity::loadModel()  // loads the 3D model
     }
     
     logMsg(func +" Entity Name == " +entityName + " Model File Name == " +entityModelFileName);
-    tempModel = OgreEntitySharedPtr(base->getGameE()->getRenderE()->getMSceneMgr()->createEntity(entityName, entityModelFileName, "UBCData"));  // loads the model
+//BASEREMOVAL    tempModel = OgreEntitySharedPtr(base->getGameE()->getRenderE()->getMSceneMgr()->createEntity(entityName, entityModelFileName, "UBCData"));  // loads the model
+    tempModel = OgreEntitySharedPtr(render->getMSceneMgr()->createEntity(entityName, entityModelFileName, "UBCData"));  // loads the model
+
     logMsg(func +" tempModel loaded!");
     
 //    render->getMSceneMgr()->
@@ -229,7 +233,9 @@ bool entity::loadModel()  // loads the 3D model
 
     logMsg(func +" entityNodeName == " +entityNodeName);
 //    exit(0);
-    tempNode = OgreSceneNodeSharedPtr(base->getGameE()->getRenderE()->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName));
+//BASEREMOVAL    tempNode = OgreSceneNodeSharedPtr(base->getGameE()->getRenderE()->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName));
+    tempNode = OgreSceneNodeSharedPtr(render->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName));
+
 //    tempNode->setName(entityNodeName);
     tempNode->attachObject(model.get());
     logMsg(func +" node attached!");

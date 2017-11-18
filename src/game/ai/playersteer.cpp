@@ -23,6 +23,7 @@
 #include "ai/playersteer.h"
 #include "ai/ai.h"
 #include "utilities/conversion.h"
+#include "entity/basketballentity.h"
 #include "entity/playerentity.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
@@ -74,14 +75,14 @@ playerSteer::~playerSteer()  // destructor
 
 }
 
-sharedPtr<gameState> playerSteer::getGameS()  // retrieves the value of gameS
+/*sharedPtr<gameState> playerSteer::getGameS()  // retrieves the value of gameS
 {
     return (gameS);
 }
 void playerSteer::setGameS(sharedPtr<gameState> set)  // sets the value of gameS
 {
     gameS = set;
-}
+}*/
 
 teamTypes playerSteer::getTeamType()  // retrieves the value of teamType
 {
@@ -144,6 +145,42 @@ boolVec playerSteer::getPositionReached()  // retrieves the value of positionRea
 void playerSteer::setPositionReached(boolVec reached)  // sets the value of positionReached
 {
     positionReached = reached;
+}
+
+basketballStateMSharedPtr playerSteer::getActiveBasketballInstance()  // retrieves the value of activeBasketballInstance
+{
+    return (activeBasketballInstance);
+}
+void playerSteer::setActiveBasketballInstance(basketballStateMSharedPtr set)  // sets the value of activeBasketballInstance
+{
+    activeBasketballInstance = set;
+}
+
+courtStateMSharedPtr playerSteer::getActiveCourtInstance()  // retrieves the value of activeCourtInstance
+{
+    return (activeCourtInstance);
+}
+void playerSteer::setActiveCourtInstance(courtStateMSharedPtr set)  // sets the value of activeCourtInstance
+{
+    activeCourtInstance = set;
+}
+
+teamStateMSharedPtr playerSteer::getActiveTeamInstance()  // retrieves the value of activeTeamInstance
+{
+    return (activeTeamInstance);
+}
+void playerSteer::setActiveTeamInstance(teamStateMSharedPtr set)  // sets the value of activeTeamInstance
+{
+    activeTeamInstance = set;
+}
+
+std::string playerSteer::getHumanPlayer()  // retrieves the value of the humanPlayer
+{
+    return (humanPlayer);
+}
+void playerSteer::setHumanPlayer(std::string set)  // sets the value of human player
+{
+    humanPlayer = set;
 }
 
 void playerSteer::reset()    // reset state
@@ -221,7 +258,7 @@ void playerSteer::reset()    // reset state
 //    setTrailParameters (10, 60)j
 }
 
-void playerSteer::update (const float currentTime, float elapsedTime)
+void playerSteer::update(const float currentTime, float elapsedTime)  // update steering sim every frame
 {
     AISystemSharedPtr ai = AISystem::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
@@ -387,8 +424,9 @@ void playerSteer::update (const float currentTime, float elapsedTime)
 
 	//OpenSteer::Vec3 m_home = playerSteerPos;
 //    OpenSteer::Vec3 bballSteerPos = convert->toOpenSteerVec3(basketball[0].getNodePosition());
-    OpenSteer::Vec3 bballSteerPos = convert->toOpenSteerVec3(gameS->getBBallNodePosition());
-    
+//GAMESREMOVAL    OpenSteer::Vec3 bballSteerPos = convert->toOpenSteerVec3(gameS->getBBallNodePosition());
+    OpenSteer::Vec3 bballSteerPos = convert->toOpenSteerVec3(activeBasketballInstance[0]->getEntity()->getNode()->getPosition());
+
     logMsg("upDie?????");
 // 	logMsg("playerSteerPos = " +convert->toString(toOgreVector3(playerSteerPos)));
 //	logMsg("basketballSteerPos = " +convert->toString(toOgreVector3(bballSteerPos)));
@@ -449,7 +487,7 @@ void playerSteer::update (const float currentTime, float elapsedTime)
 //		logMsg("m_home = " +convert->toString(toOgreVector3(m_home)));
 //		logMsg("distHomeToBall = " +convert->toString(distHomeToBall));
 //        if (teamType != gameS->getTeamWithBall())
-        if (teamType != gameS->getTeamWithBall())
+        if (teamType != teamWithBall)
         {
             logMsg("teamupdateSteer = " +convert->toString(teamType));
             logMsg("updateSteer ID = " +convert->toString(ID));
@@ -493,9 +531,9 @@ void playerSteer::checkCourtPosition()  // checks if the player's position has c
     OpenSteer::Vec3 startPosition;
     OpenSteer::Vec3 seekTarget;
     std::string func = "playerSteer::checkCourtPosition()"; 
-    std::string humanPlayer = gameS->getActiveTeamInstance()[teamType]->getHumanPlayer();
+//    std::string humanPlayer = gameS->getActiveTeamInstance()[teamType]->getHumanPlayer();
 
-    for (auto ATIIT : gameS->getActiveTeamInstance())
+    for (auto ATIIT : activeTeamInstance)
     {
         activePlayerInstance.push_back(ATIIT.second->getActivePlayerInstance());
 	for (auto APIIT : activePlayerInstance[ATIIT.first])
@@ -537,15 +575,15 @@ void playerSteer::checkCourtPosition()  // checks if the player's position has c
         
     }
     */
-    gameS->getActiveTeamInstance()[teamType]->setActivePlayerInstance(activePlayerInstance[teamType]);
+    activeTeamInstance[teamType]->setActivePlayerInstance(activePlayerInstance[teamType]);
 
 //    gameS->setActiveTeamInstance(getActiveTeamInstance());
 //    teamStateVecSharedPtr teamI = gameS->getActiveTeamInstance();
-    teamStateMSharedPtr teamI = gameS->getActiveTeamInstance();
+    teamStateMSharedPtr teamI = activeTeamInstance;
 
     playerEntityVecMSharedPtr activePlayerI;
 //    size_t w = 0;
-    for (auto ATIIT : gameS->getActiveTeamInstance())
+    for (auto ATIIT : activeTeamInstance)
     {
         activePlayerI.push_back(ATIIT.second->getActivePlayerInstance());
 //        ++w;
@@ -567,15 +605,15 @@ void playerSteer::updateOffense(const float currentTime, const float elapsedTime
     //playerStateVec team1ActivePlayerInstance = activeTeamInstance[1].getActivePlayerInstance();
 //    std::vector<std::unordered_map<std::string, playerStateSharedPtr> > activePlayerInstance;
     playerEntityVecMSharedPtr activePlayerInstance;
-    sizeTVec team0ActivePlayerID = gameS->getActiveTeamInstance()[0]->getActivePlayerID();
-    sizeTVec team1ActivePlayerID = gameS->getActiveTeamInstance()[1]->getActivePlayerID();
+    sizeTVec team0ActivePlayerID = activeTeamInstance[0]->getActivePlayerID();
+    sizeTVec team1ActivePlayerID = activeTeamInstance[1]->getActivePlayerID();
 
-    boolVec startPositionReached = gameS->getActiveTeamInstance()[teamType]->getOffenseInstance()->getStartPositionReached();
+    boolVec startPositionReached = activeTeamInstance[teamType]->getOffenseInstance()->getStartPositionReached();
 
     OpenSteer::Vec3 seekTarget;
     distToPosition = OpenSteer::Vec3::distance (steerCoords, position());	
 
-    for (auto ATIIT : gameS->getActiveTeamInstance())
+    for (auto ATIIT : activeTeamInstance)
     {
         activePlayerInstance.push_back(ATIIT.second->getActivePlayerInstance());
 //        ++z;
@@ -729,7 +767,7 @@ void playerSteer::updateDefense(const float currentTime, const float elapsedTime
     playerSteerVecSharedPtr teamSteer;
     std::vector<playerSteerVecSharedPtr > teamSteers;
 
-    for (auto ATIIT : gameS->getActiveTeamInstance())
+    for (auto ATIIT : activeTeamInstance)
     {
         activePlayerInstance.push_back(ATIIT.second->getActivePlayerInstance());
         for (auto APIIT : activePlayerInstance[ATIIT.first])

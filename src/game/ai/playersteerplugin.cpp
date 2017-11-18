@@ -30,6 +30,7 @@
 #include "state/gamestate.h"
 #include "state/teamstate.h"
 #include "state/playerstate.h"
+#include "ai/playersteer.h"
 #include "utilities/logging.h"
 #include "ubc/ubcbase.h"
 
@@ -63,7 +64,52 @@ void playerSteerPlugin::setBaseInitialized(bool set)  // sets the value of baseI
     baseInitialized = set;
 }
 
-void playerSteerPlugin::open()
+basketballStateMSharedPtr playerSteerPlugin::getActiveBasketballInstance()  // retrieves the value of activeBasketballInstance
+{
+    return (activeBasketballInstance);
+}
+void playerSteerPlugin::setActiveBasketballInstance(basketballStateMSharedPtr set)  // sets the value of activeBasketballInstance
+{
+    activeBasketballInstance = set;
+}
+
+courtStateMSharedPtr playerSteerPlugin::getActiveCourtInstance()  // retrieves the value of activeCourtInstance
+{
+    return (activeCourtInstance);
+}
+void playerSteerPlugin::setActiveCourtInstance(courtStateMSharedPtr set)  // sets the value of activeCourtInstance
+{
+    activeCourtInstance = set;
+}
+
+teamStateMSharedPtr playerSteerPlugin::getActiveTeamInstance()  // retrieves the value of activeTeamInstance
+{
+    return (activeTeamInstance);
+}
+void playerSteerPlugin::setActiveTeamInstance(teamStateMSharedPtr set)  // sets the value of activeTeamInstance
+{
+    activeTeamInstance = set;
+}
+
+teamTypes playerSteerPlugin::getTeamWithBall()  // retrieves the value of teamWithBall
+{
+    return (teamWithBall);
+}
+void playerSteerPlugin::setTeamWithBall(teamTypes set)  // sets the value of teamWithBall
+{
+    teamWithBall = set;
+}
+
+std::string playerSteerPlugin::getHumanPlayer()  // retrieves the value of the humanPlayer
+{
+    return (humanPlayer);
+}
+void playerSteerPlugin::setHumanPlayer(std::string set)  // sets the value of human player
+{
+    humanPlayer = set;
+}
+
+void playerSteerPlugin::open()  // opens the plugin
 {
     AISystemSharedPtr ai = AISystem::Instance();
 	conversionSharedPtr convert = conversion::Instance();
@@ -81,9 +127,16 @@ void playerSteerPlugin::open()
     playerEntityMSharedPtr activePlayerInstance;
 //    std::vector <std::unordered_map<std::string, playerStateSharedPtr> >::iterator activePlayerInstanceIT;
     playerSteerVecSharedPtr allPlayerSteers = ai->getAllPlayerSteers();
+//    teamTypes teamWithBall;
     std::string func = "playerSteerPlugin::open()";
     logMsg(func +" beginning");
     logMsg(func +" Opening playerSteer plugin");
+
+    activeBasketballInstance = ai->getActiveBasketballInstance();
+    activeCourtInstance = ai->getActiveCourtInstance();
+    activeTeamInstance = ai->getActiveTeamInstance();
+    teamWithBall = ai->getTeamWithBall();
+    humanPlayer = ai->getHumanPlayer();
 
     if (!baseInitialized)
     {
@@ -91,71 +144,74 @@ void playerSteerPlugin::open()
         baseInitialized = true;
     }
 	// builds team 0 steering instances
-    logMsg(func +"base->getGameS()->getActiveTeamInstance().size() == " +convert->toString(base->getGameS()->getActiveTeamInstance().size()));
+    logMsg(func +" activeTeamInstance.size() == " +convert->toString(activeTeamInstance.size()));
 //    exit(0);
-    for (auto ATIIT : base->getGameS()->getActiveTeamInstance())
+    if (activeTeamInstance.size() > 0)
     {
-        if (ATIIT.second->getActivePlayerInstancesCreated())
+        for (auto ATIIT : activeTeamInstance)
         {
-            logMsg(func +" activePlayerInstances Created!");
-//            exit(0);
-        }
-        else
-        {
-            logMsg(func + " activePlayerInstances NOT Created!!");
-            exit(0);
-        }
-        activePlayerInstance = ATIIT.second->getActivePlayerInstance();
-        logMsg(func +" team name == " +ATIIT.second->getName());
-        logMsg(func +" ATIIT.second->getActivePlayerInstance().size() == " +convert->toString(ATIIT.second->getActivePlayerInstance().size()));
-
-//        exit(0);
-        logMsg(func +" for (auto ATIIT : getActiveTeamInstance())");
-/*        activePlayerInstance.insert(activePlayerInstance.begin(), ATIIT.second->getActivePlayerInstance());
-        logMsg(func +" activePlayerInstance.size() == " +convert->toString(activePlayerInstance.size()));
-//        size_t y = 0;
-//        while (y < activePlayerInstance[x].size())
-        logMsg(func +" AIIT.first == " +convert->toString(ATIIT.first));
-        logMsg(func +" activePlayerInstance[ATIIT.first].size() == " +convert->toString(activePlayerInstance[1].size()));
-*/
-
-        for (auto APIIT : activePlayerInstance)
-        {
-            logMsg(func +" for (auto APIIT : activePlayerInstance[ATIIT.first])");
-            playerSteerSharedPtr steer = APIIT.second->getSteer();
-            bool steerInitialized = APIIT.second->getSteerInitialized();
-            if (!steerInitialized)
+            if (ATIIT.second->getActivePlayerInstancesCreated())
             {
-                playerSteerSharedPtr tempSteer(new playerSteer);
-                steer = tempSteer;
-                steer->setGameS(base->getGameS());
-                steerInitialized = true;
+                logMsg(func +" activePlayerInstances Created!");
+    //            exit(0);
             }
-        //      logMsg("Alive1");
-            logMsg(" APIIT.first = " +APIIT.first);
-            logMsg(" player position = " +convert->toString(APIIT.second->getCourtPosition()));
-            steer->setPosition(convert->toOpenSteerVec3(APIIT.second->getCourtPosition()));
-        //      steer.setPosition(OpenSteer::Vec3(0,0,0));
-        //      logMsg("Alive2");
+            else
+            {
+                logMsg(func + " activePlayerInstances NOT Created!!");
+                exit(0);
+            }
+            activePlayerInstance = ATIIT.second->getActivePlayerInstance();
+            logMsg(func +" team name == " +ATIIT.second->getName());
+            logMsg(func +" ATIIT.second->getActivePlayerInstance().size() == " +convert->toString(ATIIT.second->getActivePlayerInstance().size()));
 
-        //      steer->setID(x);
-            logMsg(func +" ai->selectedVehicle = steer");
-            ai->selectedVehicle = steer;
-            logMsg(func +" APIIT.second->setSteer(steer);");
-            APIIT.second->setSteer(steer);
-            logMsg(func + " allPlayerSteers.push_back(APIIT.second->getSteer());");
-            allPlayerSteers.push_back(APIIT.second->getSteer());
-    //            ++y;
-            logMsg(func +" allPlayerSteers.push_back(APIIT.second->getSteer());");
-            APIIT.second->setSteer(steer);
-            logMsg(func +" APIIT.second->setSteerInitialized(steerInitialized);");
-            APIIT.second->setSteerInitialized(steerInitialized);
+    //        exit(0);
+            logMsg(func +" for (auto ATIIT : getActiveTeamInstance())");
+    /*        activePlayerInstance.insert(activePlayerInstance.begin(), ATIIT.second->getActivePlayerInstance());
+            logMsg(func +" activePlayerInstance.size() == " +convert->toString(activePlayerInstance.size()));
+    //        size_t y = 0;
+    //        while (y < activePlayerInstance[x].size())
+            logMsg(func +" AIIT.first == " +convert->toString(ATIIT.first));
+            logMsg(func +" activePlayerInstance[ATIIT.first].size() == " +convert->toString(activePlayerInstance[1].size()));
+    */
+
+            for (auto APIIT : activePlayerInstance)
+            {
+                logMsg(func +" for (auto APIIT : activePlayerInstance[ATIIT.first])");
+                playerSteerSharedPtr steer = APIIT.second->getSteer();
+                bool steerInitialized = APIIT.second->getSteerInitialized();
+                if (!steerInitialized)
+                {
+                    playerSteerSharedPtr tempSteer(new playerSteer);
+                    steer = tempSteer;
+//BASEREMOVAL                    steer->setGameS(base->getGameS());
+                    steerInitialized = true;
+                }
+            //      logMsg("Alive1");
+                logMsg(" APIIT.first = " +APIIT.first);
+                logMsg(" player position = " +convert->toString(APIIT.second->getCourtPosition()));
+                steer->setPosition(convert->toOpenSteerVec3(APIIT.second->getCourtPosition()));
+            //      steer.setPosition(OpenSteer::Vec3(0,0,0));
+            //      logMsg("Alive2");
+
+            //      steer->setID(x);
+                logMsg(func +" ai->selectedVehicle = steer");
+                ai->selectedVehicle = steer;
+                logMsg(func +" APIIT.second->setSteer(steer);");
+                APIIT.second->setSteer(steer);
+                logMsg(func + " allPlayerSteers.push_back(APIIT.second->getSteer());");
+                allPlayerSteers.push_back(APIIT.second->getSteer());
+        //            ++y;
+                logMsg(func +" allPlayerSteers.push_back(APIIT.second->getSteer());");
+                APIIT.second->setSteer(steer);
+                logMsg(func +" APIIT.second->setSteerInitialized(steerInitialized);");
+                APIIT.second->setSteerInitialized(steerInitialized);
+            }
+            logMsg(func +" ATIIT.second->setActivePlayerInstance(activePlayerInstance);");
+            ATIIT.second->setActivePlayerInstance(activePlayerInstance);
+    //        ++x;
         }
-        logMsg(func +" ATIIT.second->setActivePlayerInstance(activePlayerInstance);");
-        ATIIT.second->setActivePlayerInstance(activePlayerInstance);
-//        ++x;
     }
-//    exit(0);
+        //    exit(0);
 /*	while (x<team0ActivePlayerInstance.size())
 	{
 //		logMsg("Alive0");

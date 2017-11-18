@@ -48,7 +48,21 @@ public:
     bool getBaseInitialized();  // retrieves the value of baseInitialized
     void setBaseInitialized(bool set);  // sets the value of baseInitialized
     
-    
+    basketballStateMSharedPtr getActiveBasketballInstance();  // retrieves the value of activeBasketballInstance
+    void setActiveBasketballInstance(basketballStateMSharedPtr set);  // sets the value of activeBasketballInstance
+
+    courtStateMSharedPtr getActiveCourtInstance();  // retrieves the value of activeCourtInstance
+    void setActiveCourtInstance(courtStateMSharedPtr set);  // sets the value of activeCourtInstance
+
+    teamStateMSharedPtr getActiveTeamInstance();  // retrieves the value of activeTeamInstance
+    void setActiveTeamInstance(teamStateMSharedPtr set);  // sets the value of activeTeamInstance
+
+    teamTypes getTeamWithBall();  // retrieves the value of teamWithBall
+    void setTeamWithBall(teamTypes set);  // sets the value of teamWithBall
+
+    std::string getHumanPlayer();  // retrieves the value of the humanPlayer
+    void setHumanPlayer(std::string set);  // sets the value of the human player
+
 //    OpenSteer::AbstractVehicle* getSelectedVehicle(); // retrieves the value of selectedVehicle
     OpenSteerAbstractVehicleSharedPtr getSelectedVehicle(); // retrieves the value of selectedVehicle
 
@@ -66,7 +80,7 @@ public:
     void setOldTime(float time); // sets the value of oldTime
 
     // initial setup of AI state
-    bool setup();
+    bool setup(basketballStateMSharedPtr activeBasketballInstance, courtStateMSharedPtr activeCourtInstance, teamStateMSharedPtr activeTeamInstance, teamTypes teamWithBall, std::string humanPlayer);
 
 	// updates AI state
 	void update(const float currentTime, const float elapsedTime);
@@ -77,13 +91,13 @@ public:
     void selectDefaultPlugIn ();
 
 	// select the "next" plug-in, cycling through "plug-in selection order"
-    void selectNextPlugIn ();
+    void selectNextPlugIn (teamStateMSharedPtr activeTeamInstance);
 
 	// return name of currently selected plug-in
     const char *nameOfSelectedPlugIn ();
 
 	// open the currently selected plug-in
-    void openSelectedPlugIn ();
+    void openSelectedPlugIn (teamStateMSharedPtr activeTeamInstance);
 
 	// do a simulation update for the currently selected plug-in
     void updateSelectedPlugIn (const float currentTime, const float elapsedTime);
@@ -122,6 +136,12 @@ private:
 //    OpenSteer::PlugIn* selectedPlugIn;
     OpenSteerPluginSharedPtr selectedPlugIn;
     playerSteerVecSharedPtr allPlayerSteers;
+
+    basketballStateMSharedPtr activeBasketballInstance;  // stores copy of activeBasketballInstance
+    courtStateMSharedPtr activeCourtInstance;  // stores copy of activeCourtInstance
+    teamStateMSharedPtr activeTeamInstance;  // stores copy of activeTeamInstance
+    teamTypes teamWithBall;  // stores copy of teamWithBall
+    std::string humanPlayer;  // stores which player is human controlled
 
 	// TIMER
 	OpenSteer::Clock aiTimer;

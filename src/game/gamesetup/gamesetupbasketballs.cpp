@@ -55,10 +55,11 @@ basketballStateMSharedPtr gameSetupBasketballs::createBasketballInstances()  // 
         BIIT.second->getEntity()->setEntityModelFileName("bball.mesh");
         BIIT.second->getEntity()->setEntityName(BIIT.second->getData()->getModelFileName());
         BIIT.second->getEntity()->setEntityNodeName(BIIT.second->getData()->getModelFileName());
-        if (!BIIT.second->getEntity()->getBaseInitialized())
+/*BASEREMOVAL        if (!BIIT.second->getEntity()->getBaseInitialized())
         {
 //            BIIT.second->getEntity()->setBase(getBase());
         }
+*/
         logMsg(func +" creating steer object");
         basketballSteer *bballSteer = new basketballSteer;  // steer instance
         BIIT.second->getEntity()->setSteer(basketballSteerSharedPtr(bballSteer));

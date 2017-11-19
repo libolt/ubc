@@ -461,6 +461,7 @@ private:
     static bool gameSetupMenuHomeSelected;  // determines whether the home team listbox is selected;
     static bool courtSelectionDataLoaded;  // determines whether court names have been added to the select box
     
+    
     gameStateSharedPtr gameInstance;  // stores a copy of the gameInstance
     teamStateMSharedPtr teamInstance;  // stores a copy of the teamInstance
     

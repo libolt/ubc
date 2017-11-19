@@ -116,6 +116,15 @@ public:
     bool getCourtSelectionDataLoaded();  // retrieves the value of courtSelectionEntriesLoaded
     void setCourtSelectionDataLoaded(bool set);  // sets the value of courtSelectionEntriesLoaded
 	
+    gameEngineSharedPtr getGamE();  // retrieves the value of gameE
+    void setGameE(gameEngineSharedPtr set);  // sets the value of gameE
+    
+    gameStateSharedPtr getGameInstance();  // retrieves the value of teamInstance
+    void setGameInstance(gameStateSharedPtr set);  // sets the value of teamInstance
+
+    teamStateMSharedPtr getTeamInstance();  // retrieves the value of teamInstance
+    void setTeamInstance(teamStateMSharedPtr set);  // sets the value of teamInstance
+
     bool getMenuActive(); // retrieves the value of menuActive
     void setMenuActive(bool set); // sets the value of menuActive
 
@@ -452,8 +461,11 @@ private:
     static bool gameSetupMenuHomeSelected;  // determines whether the home team listbox is selected;
     static bool courtSelectionDataLoaded;  // determines whether court names have been added to the select box
     
+    gameStateSharedPtr gameInstance;  // stores a copy of the gameInstance
     teamStateMSharedPtr teamInstance;  // stores a copy of the teamInstance
-
+    
+    gameEngineSharedPtr gameE; // stores a copy of gameE
+    
     static activeMenus activeMenu;  // stores which menu is being displayed
     static activeMenus previousActiveMenu;  // stores which menu was last displayed
 

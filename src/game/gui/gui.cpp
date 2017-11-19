@@ -430,6 +430,24 @@ void GUISystem::setTeamInstance(teamStateMSharedPtr set)  // sets the value of t
     teamInstance = set;
 }
 
+gameStateSharedPtr GUISystem::getGameInstance()  // retrieves the value of teamInstance
+{
+    return (gameInstance);
+}
+void GUISystem::setGameInstance(gameStateSharedPtr set)  // sets the value of teamInstance
+{
+    gameInstance = set;
+}
+
+gameEngineSharedPtr GUISystem::getGamE()  // retrieves the value of gameE
+{
+    return (gameE);
+}
+void GUISystem::setGameE(gameEngineSharedPtr set)  // sets the value of gameE
+{
+    gameE = set;
+}
+
 bool GUISystem::getMenuActive()  // retrieves the value of menuActive
 {
 	return (menuActive);
@@ -478,10 +496,10 @@ void GUISystem::setViewPort(const Ogre::Viewport &set)  // sets the value of vie
 bool GUISystem::setup()  // sets up the in game gui
 {
 //    exit(0);
-    if (base->getGameS() == NULL)
+/*    if (base->getGameS() == NULL)
     {
         exit(0);
-    }
+    }*/
     if (initMyGUI()) // Initializes MyGUI
     {
         logMsg ("MyGUI initialized successfully!");
@@ -499,7 +517,7 @@ bool GUISystem::setup()  // sets up the in game gui
 bool GUISystem::initMyGUI()  // Initializes MyGUI
 {
 //    exit(0);
-//    sharedPtr<renderEngine> render = renderEngine::Instance();
+    sharedPtr<renderEngine> render; // = renderEngine::Instance();
 //    Ogre::RenderWindow *mWindow = render->getMWindow();
 //    Ogre::SceneManager *mSceneMgr = render->getMSceneMgr();
 
@@ -512,7 +530,9 @@ bool GUISystem::initMyGUI()  // Initializes MyGUI
     mPlatform->initialise(mWindow, mSceneMgr, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 #else
 */
-    mPlatform->initialise(base->getGameE()->getRenderE()->getMWindow().get(), base->getGameE()->getRenderE()->getMSceneMgr().get(), "UBCData"); // mWindow is Ogre::RenderWindow*, mSceneManager is Ogre::SceneManager*
+//BASEREMOVAL    mPlatform->initialise(base->getGameE()->getRenderE()->getMWindow().get(), base->getGameE()->getRenderE()->getMSceneMgr().get(), "UBCData"); // mWindow is Ogre::RenderWindow*, mSceneManager is Ogre::SceneManager*
+mPlatform->initialise(render->getMWindow().get(), render->getMSceneMgr().get(), "UBCData"); // mWindow is Ogre::RenderWindow*, mSceneManager is Ogre::SceneManager*
+
 //#endif
 //    exit(0);
     logMsg("Crash??");
@@ -599,7 +619,7 @@ void GUISystem::startSinglePlayerGame()  // starts single player game
     
     std::string func = "GUISystem::startSinglePlayerGame()";
 
-    base->getGameS()->setGameType(SINGLE);
+    gameInstance->setGameType(SINGLE);
 
 //    exit(0);
 //    hideMainMenuWidgets();	// Hides the widgets from the main menu
@@ -720,7 +740,7 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
     if (teamSelectionMenuCreated)
     {      
 //        exit(0);
-        if (base->getGameS()->getTeamInstancesCreated())
+        if (gameInstance->getTeamInstancesCreated())
         {
             logMsg("getTeamInstancesCreated");
 //            exit(0);
@@ -754,7 +774,7 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
                 logMsg("createTeamInstances");
 
 //                exit(0);
-                base->getGameS()->setTeamInstancesCreated(true);
+                gameInstance->setTeamInstancesCreated(true);
                 if (teamSelectionMenuDataAdded)
                 {
                     logMsg("Team Selection Menu Data Added already!");
@@ -921,14 +941,14 @@ void GUISystem::networkServer()  // sets up  game as a network server
 //    sharedPtr<gameState> gameS = gameState::Instance();
 
 //    gameS->setGameType(MULTI);
-    base->getGameS()->setGameType(MULTINET);
+    gameInstance->setGameType(MULTINET);
 //   hideNetworkSetupWidgets();  // Hides Network Setup Menu widgets
     menuActive = false;
-    base->getGameE()->getNetworkE()->setIPAddress(serverIPAddressBox->getCaption());  // sets the neworkEngine's ipAddress string to that of the caption
-    logMsg("server ip = " +base->getGameE()->getNetworkE()->getIPAddress());
-    if (base->getGameE()->getNetworkE()->serverSetup())  // attempts to setup as a network server
+    gameE->getNetworkE()->setIPAddress(serverIPAddressBox->getCaption());  // sets the neworkEngine's ipAddress string to that of the caption
+    logMsg("server ip = " +gameE->getNetworkE()->getIPAddress());
+    if (gameE->getNetworkE()->serverSetup())  // attempts to setup as a network server
     {
-        base->getGameE()->getNetworkE()->setIsServer(true);  // if successful sets isServer to true
+        gameE->getNetworkE()->setIsServer(true);  // if successful sets isServer to true
     }
 
 //    gameE->setCreateScene(true); // sets variable true that tells gameEngine to start rendering the scene
@@ -941,14 +961,14 @@ void GUISystem::networkClient()  // sets up game as a network client
 //    sharedPtr<gameState> gameS = gameState::Instance();
 
 //    gameS->setGameType(MULTI);
-    base->getGameS()->setGameType(MULTINET);
+    gameInstance->setGameType(MULTINET);
 //    hideNetworkSetupWidgets();  // Hides Network Setup Menu widgets
     menuActive = false;
-    base->getGameE()->getNetworkE()->setIPAddress(clientIPAddressBox->getCaption());  // sets the neworkEngine's ipAddress string to that of the caption
+    gameE->getNetworkE()->setIPAddress(clientIPAddressBox->getCaption());  // sets the neworkEngine's ipAddress string to that of the caption
 //    network->networkClient();
-    if (base->getGameE()->getNetworkE()->clientConnect()) // attempts to connect to the remote server
+    if (gameE->getNetworkE()->clientConnect()) // attempts to connect to the remote server
     {
-        base->getGameE()->getNetworkE()->setIsClient(true);  // if successful sets isClient to true
+        gameE->getNetworkE()->setIsClient(true);  // if successful sets isClient to true
     }
 //    gameE->setCreateScene(true); // sets variable true that tells gameEngine to start rendering the scenetop
 
@@ -998,18 +1018,18 @@ void GUISystem::teamsSelected()  // processes team selection
     activeTeamInstance = gameSetupTeam->createActiveTeamInstances(teamInstance, teamID);
 
     // sets the base class of the teamInstance objects to the same as the GUI which avoids crashes due to uninitialized sharedPtrs
-    for (auto ATIIT : activeTeamInstance)
+/*BASEREMOVAL    for (auto ATIIT : activeTeamInstance)
     {
         ATIIT.second->setBase(base);
-    }
+    }*/
     
     //    gameS->setTeamID(teamID);
     logMsg(func +" teamSelectBox[0]->getIndexSelected() == " +convert->toString(teamSelectBox[0]->getIndexSelected()));
     logMsg(func +" teamID[0] == " +convert->toString(teamID[0]));
 //    exit(0);
-    base->getGameS()->setTeamIDS(teamID);
-    base->getGameS()->setActiveTeamInstance(activeTeamInstance);
-    base->getGameS()->setActiveTeamInstancesCreated(true);
+    gameInstance->setTeamIDS(teamID);
+    gameInstance->setActiveTeamInstance(activeTeamInstance);
+    gameInstance->setActiveTeamInstancesCreated(true);
  
     logMsg(func +" Teams selected");
     
@@ -1024,10 +1044,10 @@ void GUISystem::playerStartSelected()  // process player start selection
     std::vector<std::unordered_map <std::string, std::string> > teamStarters;
 //    teamStarters.push_back(tempStarters);
     std::unordered_map<std::string, size_t> tempStarterID; // used for initial creatio  of teamStarterID vector
-    teamStateMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
+    teamStateMSharedPtr activeTeamInstance = gameInstance->getActiveTeamInstance();
   
 //    std::vector<playerStateMSharedPtr > playerInstance;
-    playerEntityMSharedPtr gamePlayerInstance = base->getGameS()->getPlayerInstance();
+    playerEntityMSharedPtr gamePlayerInstance = gameInstance->getPlayerInstance();
     playerEntityVecMSharedPtr playerInstance;
 //    std::unordered_map<std::string, playerStateSharedPtr> activePlayerInstance;
     playerEntityMSharedPtr activePlayerInstance;
@@ -1339,7 +1359,7 @@ void GUISystem::playerStartSelected()  // process player start selection
 */
 //    exit(0);
 //    gameS->setTeamStarterID(teamStarterID); // sets the selected starters for both teams in gameState class
-    base->getGameS()->setTeamStarterID(teamStarterID); // sets the selected starters for both teams in gameState class
+    gameInstance->setTeamStarterID(teamStarterID); // sets the selected starters for both teams in gameState class
     
     sizeTVec activePlayerID;
 //    x = 0;
@@ -1453,7 +1473,7 @@ void GUISystem::playerStartSelected()  // process player start selection
 ///    
     activeTeamInstance = gameSetupLineup->setupStartingLineups(activeTeamInstance, teamStarterID);
     
-    base->getGameS()->setActiveTeamInstance(activeTeamInstance);
+    gameInstance->setActiveTeamInstance(activeTeamInstance);
 //    exit(0);
 //    playerInstance.clear();
 //    activePlayerInstance.clear();
@@ -1575,7 +1595,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     if (gameSetupLineup->checkActivePlayerInstancesCreated(activeTeamInstance))
     {
         logMsg("All active player instances created successfully!");
-        base->getGameS()->setGameSetupComplete(true);
+        gameInstance->setGameSetupComplete(true);
 
 //        exit(0);
     }
@@ -1592,7 +1612,7 @@ void GUISystem::playerStartSelected()  // process player start selection
 
     hideActiveMenuWidgets();
     menuActive = false;
-    base->getGameE()->setMenuActive(false);
+    gameE->setMenuActive(false);
 
 //    exit(0);
 
@@ -1633,7 +1653,7 @@ bool GUISystem::checkTeamInstancesCreated()  // Checks if team instances have be
     //gameState *gameS = gameState::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 
-    if (!base->getGameS()->getActiveTeamInstancesCreated())
+    if (!gameInstance->getActiveTeamInstancesCreated())
     {
 //        base->getGameS()->setActiveTeamInstancesNeedCreated(true);
 /*        logMsg("Creating active team instances!");

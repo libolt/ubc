@@ -55,7 +55,7 @@ void GUISystem::showMainMenuWidgets()  // shows all widgets tied to the Main Men
     mainMenuButtons["exitButton"]->setVisible(true);
     mainMenuButtons["startSingleGameButton"]->setStateSelected(true);
     MyGUI::InputManager::getInstance().setKeyFocusWidget(mainMenuButtons["startSingleGameButton"].get());
-    base->getGameE()->setMenuActive(true);
+    gameE->setMenuActive(true);
 }
 void GUISystem::hideNetworkSetupWidgets()  // hides the widgets tied to the Network Setup Menu
 {
@@ -66,7 +66,7 @@ void GUISystem::hideNetworkSetupWidgets()  // hides the widgets tied to the Netw
 }
 void GUISystem::showNetworkSetupWidgets()  // shows all widgets tied to the Network Setup Menu
 {
-//    sharedPtr<renderEngine> render = renderEngine::Instance();
+    sharedPtr<renderEngine> render;  // = renderEngine::Instance();
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getgetRenderE()->getViewPort()();
 
 //    ipAddressBox->setVisible(true);
@@ -74,7 +74,7 @@ void GUISystem::showNetworkSetupWidgets()  // shows all widgets tied to the Netw
     networkMenuButtons["clientButton"]->setVisible(true);
 
     networkMenuButtons["backMainMenuButton"]->setVisible(true);
-    networkMenuButtons["backMainMenuButton"]->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.22 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
+    networkMenuButtons["backMainMenuButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.22 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
 
 }
 

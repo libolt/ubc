@@ -61,7 +61,7 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
     stdStringVec::iterator CNIT;
     
 //    if (!gameS->getCourtInstancesCreated())
-    if (base->getStateSetup())
+/*BASEREMOVAL    if (base->getStateSetup())
     {
         logMsg("WOOT Base STATE SETUP!");
     }
@@ -72,15 +72,15 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
         base->setup();
 //        exit(0);
     }
-
+*/
 //    exit(0);
-    if (base->getGameS()->getCourtInstancesCreated())
+    if (gameInstance->getCourtInstancesCreated())
     {
 //        exit(0);
 
-        courtInstance = base->getGameS()->getCourtInstance();
+        courtInstance = gameInstance->getCourtInstance();
 //        exit(0);
-        base->getGameS()->setCourtInstancesNeedCreated(true);
+        gameInstance->setCourtInstancesNeedCreated(true);
 //        exit(0);
 
     }
@@ -91,8 +91,8 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
         if (courtInstance.size() > 0)
         {
 //            exit(0);
-            base->getGameS()->setCourtInstance(courtInstance);
-            base->getGameS()->setCourtInstancesCreated(true);
+            gameInstance->setCourtInstance(courtInstance);
+            gameInstance->setCourtInstancesCreated(true);
             logMsg("Court Instances Created!!");
         }
         else
@@ -140,12 +140,12 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 {
     conversionSharedPtr convert = conversion::Instance();
     gameSetupPlayersSharedPtr gameSetupPlayer(new gameSetupPlayers);
-    gameStateSharedPtr gameS = base->getGameS();
-    teamStateMSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
+//    gameStateSharedPtr gameS = base->getGameS();
+    teamStateMSharedPtr activeTeamInstance = gameInstance->getActiveTeamInstance();
     playerEntityMSharedPtr gamePlayerInstance;
     playerEntityMSharedPtr playerInstance;
     std::string func = "GUISystem::addPlayerStartSelectionMenuData";
-    sizeTVec teamIDs = base->getGameS()->getTeamIDS();
+    sizeTVec teamIDs = gameInstance->getTeamIDS();
 
     logMsg(func +" beginning");
     
@@ -153,10 +153,10 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 //    exit(0);
     size_t teamNum = 0;
     
-    if (gameSetupPlayer->checkIfGamePlayerInstancesCreated(gameS))
+    if (gameSetupPlayer->checkIfGamePlayerInstancesCreated(gameInstance))
     {
         logMsg(func + " gameState Player Instances Created!");
-        gamePlayerInstance = gameS->getPlayerInstance();
+        gamePlayerInstance = gameInstance->getPlayerInstance();
     }
     else
     {
@@ -317,7 +317,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
 {
     conversionSharedPtr convert = conversion::Instance();
     gameSetupTeamsSharedPtr gameSetupTeam(new gameSetupTeams);
-    loadTeamsSharedPtr loadTeam = base->getLoadTeam();
+    loadTeamsSharedPtr loadTeam; // = base->getLoadTeam();
     teamStateMSharedPtr teamInstance; // = gameS->getTeamDataInstance();
 
 //    if (!base->getGameS()->getTeamInstancesCreated())
@@ -341,7 +341,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     {
         teamInstance = loadTeam->getTInstance();
     }
-    base->getGameS()->setTeamInstance(teamInstance);
+    gameInstance->setTeamInstance(teamInstance);
     logMsg("GUI ADD TEAM 0 teamInstance.size() == " +convert->toString(teamInstance.size()));
 //    exit(0);
     auto x = 0;
@@ -352,15 +352,15 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
 //        ++x;
     }
 //    exit(0);
-     logMsg("GUI ADD TEAM base->getGameS()->getTeamInstance()[3]->getID() ID == " +convert->toString(base->getGameS()->getTeamInstance()[0]->getID()));
-    if (base->getGameS()->getTeamInstancesCreated())
+     logMsg("GUI ADD TEAM gameInstance->getTeamInstance()[3]->getID() ID == " +convert->toString(gameInstance->getTeamInstance()[0]->getID()));
+    if (gameInstance->getTeamInstancesCreated())
     {        
         logMsg("Woot!");
 //        exit(0);
-        if (base->getGameS()->getTeamInstance().size() > 0)
+        if (gameInstance->getTeamInstance().size() > 0)
         {
-            teamInstance = base->getGameS()->getTeamInstance();
-            logMsg("GUI ADD TEAM 1 teamInstance.size() == " +convert->toString(base->getGameS()->getTeamInstance().size()));
+            teamInstance = gameInstance->getTeamInstance();
+            logMsg("GUI ADD TEAM 1 teamInstance.size() == " +convert->toString(gameInstance->getTeamInstance().size()));
         }
         else
         {
@@ -374,12 +374,12 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
         teamInstance = gameSetupTeam->createTeamInstances();  // creates team instances
         if (teamInstance.size() > 0)
         {
-             logMsg("GUI ADD TEAM 2 teamInstance.size() == " +convert->toString(base->getGameS()->getTeamInstance().size()));
+             logMsg("GUI ADD TEAM 2 teamInstance.size() == " +convert->toString(gameInstance->getTeamInstance().size()));
 //            exit(0);
 /*            if (base->getGameS()->getTeamInstance().size() > 0)
             {
                 teamInstance = base->getGameS()->getTeamInstance();
-                logMsg("GUI ADD TEAM 3 teamInstance.size() == " +convert->toString(base->getGameS()->getTeamInstance().size()));
+                logMsg("GUI ADD TEAM 3 teamInstance.size() == " +convert->toString(gameInstance->getTeamInstance().size()));
             }
             else
             {
@@ -400,7 +400,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
 //    gameS->setTeamDataInstance(teamDataInstance);
 //
 //    teamInstance = gameS->getTeamInstance();
-    logMsg("teamInstance.size() == " +convert->toString(base->getGameS()->getTeamInstance().size()));
+    logMsg("teamInstance.size() == " +convert->toString(gameInstance->getTeamInstance().size()));
     logMsg("BLEEET!");
     if (teamInstance.size() == 0)
     {

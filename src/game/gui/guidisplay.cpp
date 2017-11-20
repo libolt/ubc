@@ -74,7 +74,7 @@ void GUISystem::showNetworkSetupWidgets()  // shows all widgets tied to the Netw
     networkMenuButtons["clientButton"]->setVisible(true);
 
     networkMenuButtons["backMainMenuButton"]->setVisible(true);
-    networkMenuButtons["backMainMenuButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.22 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()));
+    networkMenuButtons["backMainMenuButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.22 *render->getViewPort()->getActualHeight()));
 
 }
 
@@ -101,19 +101,19 @@ void GUISystem::hideNetworkServerSetupWidgets()  // hides all widgets tied to th
 }
 void GUISystem::showNetworkServerSetupWidgets()  // shows all widgets tied to the Network Server Setup Menu
 {
-//    sharedPtr<renderEngine> render = renderEngine::Instance();
+    sharedPtr<renderEngine> render; // = renderEngine::Instance();
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
 
     numClientsSelectBox->setVisible(true);
     
     serverIPAddressBox->setVisible(true);
-    serverIPAddressBox->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.10 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    serverIPAddressBox->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.10 *render->getViewPort()->getActualHeight()) );
 
     networkServerSetupMenuButtons["serverHostButton"]->setVisible(true);
-    networkServerSetupMenuButtons["serverHostButton"]->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.14 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    networkServerSetupMenuButtons["serverHostButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.14 *render->getViewPort()->getActualHeight()) );
     
     networkServerSetupMenuButtons["backNetworkSetupButton"]->setVisible(true);
-    networkServerSetupMenuButtons["backNetworkSetupButton"]->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.18 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    networkServerSetupMenuButtons["backNetworkSetupButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.18 *render->getViewPort()->getActualHeight()) );
 }
 
 void GUISystem::hideNetworkClientSetupWidgets()  // hides the widgets tied to the Network Setup Menu
@@ -124,17 +124,18 @@ void GUISystem::hideNetworkClientSetupWidgets()  // hides the widgets tied to th
 }
 void GUISystem::showNetworkClientSetupWidgets()  // shows all widgets tied to the Network Setup Menu
 {
-//    sharedPtr<renderEngine> render = renderEngine::Instance();
+    sharedPtr<renderEngine> render; // = renderEngine::Instance();
+
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
 
     clientIPAddressBox->setVisible(true);
-    clientIPAddressBox->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.10 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    clientIPAddressBox->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.10 *render->getViewPort()->getActualHeight()) );
 
     networkClientSetupMenuButtons["clientConnectButton"]->setVisible(true);
-    networkClientSetupMenuButtons["clientConnectButton"]->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.14 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    networkClientSetupMenuButtons["clientConnectButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.14 *render->getViewPort()->getActualHeight()) );
 
     networkClientSetupMenuButtons["backNetworkSetupButton"]->setVisible(true);
-    networkClientSetupMenuButtons["backNetworkSetupButton"]->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.18 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    networkClientSetupMenuButtons["backNetworkSetupButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.18 *render->getViewPort()->getActualHeight()) );
 
 }
 
@@ -147,7 +148,8 @@ void GUISystem::hideOptionsMenuWidgets()  // hides all widgets tied to the Optio
 }
 void GUISystem::showOptionsMenuWidgets()  // shows all widgets tied to the Options Menu
 {
-//    sharedPtr<renderEngine> render = renderEngine::Instance();
+    sharedPtr<renderEngine> render; // = renderEngine::Instance();
+
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
 
     optionsMenuButtons["displayButton"]->setVisible(true);
@@ -229,39 +231,40 @@ void GUISystem::hideGameSetupMenuWidgets()  // hides all widgets tied to the Gam
 }
 void GUISystem::showGameSetupMenuWidgets()  // shows all widgets tied to the Game Setup Menu
 {
-//    sharedPtr<renderEngine> render = renderEngine::Instance();
+    sharedPtr<renderEngine> render; // = renderEngine::Instance();
+
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
 /*
     teamSelectBox[0]->setVisible(true);
-    teamSelectBox[0]->setPosition((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.10 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamSelectBox[0]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.10 *render->getViewPort()->getActualHeight()) );
 
     teamSelectBox[1]->setVisible(true);
-    teamSelectBox[1]->setPosition((0.5*base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.10 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamSelectBox[1]->setPosition((0.5*render->getViewPort()->getActualWidth() ), (0.10 *render->getViewPort()->getActualHeight()) );
 
     teamSelectionMenuButtons["team0SelectButton"]->setVisible(true);
-    teamSelectionMenuButtons["team0SelectButton"]->setPosition((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.14 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamSelectionMenuButtons["team0SelectButton"]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.14 *render->getViewPort()->getActualHeight()) );
 
     teamSelectionMenuButtons["team1SelectButton"]->setVisible(true);
-    teamSelectionMenuButtons["team1SelectButton"]->setPosition((0.5 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.14 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamSelectionMenuButtons["team1SelectButton"]->setPosition((0.5 *render->getViewPort()->getActualWidth() ), (0.14 *render->getViewPort()->getActualHeight()) );
 
     teamSelectionMenuButtons["teamsSelectedButton"]->setVisible(true);
-    teamSelectionMenuButtons["teamsSelectedButton"]->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.18 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamSelectionMenuButtons["teamsSelectedButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.18 *render->getViewPort()->getActualHeight()) );
     
     if (previousActiveMenu == MAIN)
     {
         teamSelectionMenuButtons["backMainMenuButton"]->setVisible(true);
-        teamSelectionMenuButtons["backMainMenuButton"]->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.22 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+        teamSelectionMenuButtons["backMainMenuButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.22 *render->getViewPort()->getActualHeight()) );
 
     }
     else if (previousActiveMenu == NETWORKCLIENT)
     {
         backNetworkClientButton->setVisible(true);
-        backNetworkClientButton->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.22 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+        backNetworkClientButton->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.22 *render->getViewPort()->getActualHeight()) );
     }
     else if (previousActiveMenu == NETWORK)
     {
         backNetworkSetupButton->setVisible(true);
-        backNetworkSetupButton->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.22 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+        backNetworkSetupButton->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.22 *render->getViewPort()->getActualHeight()) );
     }
     */
 }
@@ -314,92 +317,93 @@ void GUISystem::hidePlayerStartSelectionMenuWidgets()  // hides all widgets tied
 void GUISystem::showPlayerStartSelectionMenuWidgets()  // shows all widgets tied to the Player Start Selection Menu
 {
 
-//    sharedPtr<renderEngine> render = renderEngine::Instance();
+    sharedPtr<renderEngine> render; // = renderEngine::Instance();
+
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
 
     // Team 0 widgets
     teamPlayerPosSelectBox[0]["PG"]->setVisible(true);
-    teamPlayerPosSelectBox[0]["PG"]->setPosition((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.05 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[0]["PG"]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.05 *render->getViewPort()->getActualHeight()) );
 
     teamPlayerPosSelectBox[0]["SG"]->setVisible(true);
-    teamPlayerPosSelectBox[0]["SG"]->setPosition((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.09 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[0]["SG"]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.09 *render->getViewPort()->getActualHeight()) );
 
     teamPlayerPosSelectBox[0]["SF"]->setVisible(true);
-    teamPlayerPosSelectBox[0]["SF"]->setPosition((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.13 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[0]["SF"]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.13 *render->getViewPort()->getActualHeight()) );
 
     teamPlayerPosSelectBox[0]["PF"]->setVisible(true);
-    teamPlayerPosSelectBox[0]["PF"]->setPosition((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.17 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[0]["PF"]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.17 *render->getViewPort()->getActualHeight()) );
 
     teamPlayerPosSelectBox[0]["C"]->setVisible(true);
-    teamPlayerPosSelectBox[0]["C"]->setPosition((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.21 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[0]["C"]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.21 *render->getViewPort()->getActualHeight()) );
 
 /*    teamPlayerPosSelectBox[0]["PG"]->setVisible(true);
-    teamPlayerPosSelectBox[0]["PG"]->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.05 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[0]["PG"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.05 *render->getViewPort()->getActualHeight()) );
 //    teamPlayerPosSelectBox[0]["PG"]->setTextColour(MyGUI::Colour("Red"));
 //    teamPlayerPosSelectBox[0]["PG"]->setCaption("99");
 
     teamPlayerPosSelectBox[0]["PG"]->setVisible(true);
-    teamPlayerPosSelectBox[0]["PG"]->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.21 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[0]["PG"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.21 *render->getViewPort()->getActualHeight()) );
 
     teamPlayerPosSelectBox[0]["PG"]->setVisible(true);
-    teamPlayerPosSelectBox[0]["PG"]->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.21 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[0]["PG"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.21 *render->getViewPort()->getActualHeight()) );
 
     teamPlayerPosSelectBox[0]["PG"]->setVisible(true);
-    teamPlayerPosSelectBox[0]["PG"]->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.21 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[0]["PG"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.21 *render->getViewPort()->getActualHeight()) );
 
     teamPlayerPosSelectBox[0]["PG"]->setVisible(true);
-    teamPlayerPosSelectBox[0]["PG"]->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.21 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[0]["PG"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.21 *render->getViewPort()->getActualHeight()) );
 */
 
 // FIXME! needs image loaded to work
 //    team0Logo->setVisible(true);
 
     playerStartSelectionMenuButtons["team0StartingLineupSetButton"]->setVisible(true);
-    playerStartSelectionMenuButtons["team0StartingLineupSetButton"]->setPosition((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.31 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    playerStartSelectionMenuButtons["team0StartingLineupSetButton"]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.31 *render->getViewPort()->getActualHeight()) );
 
     // Team 1 widgets
     teamPlayerPosSelectBox[1]["PG"]->setVisible(true);
-    teamPlayerPosSelectBox[1]["PG"]->setPosition((0.5 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.05 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[1]["PG"]->setPosition((0.5 *render->getViewPort()->getActualWidth() ), (0.05 *render->getViewPort()->getActualHeight()) );
 
     teamPlayerPosSelectBox[1]["SG"]->setVisible(true);
-    teamPlayerPosSelectBox[1]["SG"]->setPosition((0.5 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.09 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[1]["SG"]->setPosition((0.5 *render->getViewPort()->getActualWidth() ), (0.09 *render->getViewPort()->getActualHeight()) );
 
     teamPlayerPosSelectBox[1]["SF"]->setVisible(true);
-    teamPlayerPosSelectBox[1]["SF"]->setPosition((0.5 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.13 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[1]["SF"]->setPosition((0.5 *render->getViewPort()->getActualWidth() ), (0.13 *render->getViewPort()->getActualHeight()) );
 
     teamPlayerPosSelectBox[1]["PF"]->setVisible(true);
-    teamPlayerPosSelectBox[1]["PF"]->setPosition((0.5 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.17 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[1]["PF"]->setPosition((0.5 *render->getViewPort()->getActualWidth() ), (0.17 *render->getViewPort()->getActualHeight()) );
 
     teamPlayerPosSelectBox[1]["C"]->setVisible(true);
-    teamPlayerPosSelectBox[1]["C"]->setPosition((0.5 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.21 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[1]["C"]->setPosition((0.5 *render->getViewPort()->getActualWidth() ), (0.21 *render->getViewPort()->getActualHeight()) );
 
 /*    teamPlayerPosSelectBox[1]["PG"]->setVisible(true);
-    teamPlayerPosSelectBox[1]["PG"]->setPosition((0.8 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.21 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[1]["PG"]->setPosition((0.8 *render->getViewPort()->getActualWidth() ), (0.21 *render->getViewPort()->getActualHeight()) );
 
     teamPlayerPosSelectBox[1]["SG"]->setVisible(true);
-    teamPlayerPosSelectBox[1]["SG"]->setPosition((0.8 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.21 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[1]["SG"]->setPosition((0.8 *render->getViewPort()->getActualWidth() ), (0.21 *render->getViewPort()->getActualHeight()) );
 
     teamPlayerPosSelectBox[1]["SF"]->setVisible(true);
-    teamPlayerPosSelectBox[1]["SF"]->setPosition((0.8 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.21 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[1]["SF"]->setPosition((0.8 *render->getViewPort()->getActualWidth() ), (0.21 *render->getViewPort()->getActualHeight()) );
 
     teamPlayerPosSelectBox[1]["PF"]->setVisible(true);
-    teamPlayerPosSelectBox[1]["PF"]->setPosition((0.8 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.21 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[1]["PF"]->setPosition((0.8 *render->getViewPort()->getActualWidth() ), (0.21 *render->getViewPort()->getActualHeight()) );
 
     teamPlayerPosSelectBox[1]["C"]->setVisible(true);
-    teamPlayerPosSelectBox[1]["C"]->setPosition((0.8 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.21 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamPlayerPosSelectBox[1]["C"]->setPosition((0.8 *render->getViewPort()->getActualWidth() ), (0.21 *render->getViewPort()->getActualHeight()) );
 */
 // FIXME! needs image loaded to work
 //    team1Logo->setVisible(true);
 
     playerStartSelectionMenuButtons["team1StartingLineupSetButton"]->setVisible(true);
-    playerStartSelectionMenuButtons["team1StartingLineupSetButton"]->setPosition((0.5 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.31 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    playerStartSelectionMenuButtons["team1StartingLineupSetButton"]->setPosition((0.5 *render->getViewPort()->getActualWidth() ), (0.31 *render->getViewPort()->getActualHeight()) );
 
 
     playerStartSelectionMenuButtons["startingLineupsSetButton"]->setVisible(true);
-    playerStartSelectionMenuButtons["startingLineupsSetButton"]->setPosition((0.25 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.38 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    playerStartSelectionMenuButtons["startingLineupsSetButton"]->setPosition((0.25 *render->getViewPort()->getActualWidth() ), (0.38 *render->getViewPort()->getActualHeight()) );
 
     playerStartSelectionMenuButtons["backTeamSelectionMenuButton"]->setVisible(true);
-    playerStartSelectionMenuButtons["backTeamSelectionMenuButton"]->setPosition((0.25 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.43 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    playerStartSelectionMenuButtons["backTeamSelectionMenuButton"]->setPosition((0.25 *render->getViewPort()->getActualWidth() ), (0.43 *render->getViewPort()->getActualHeight()) );
 
 }
 
@@ -423,29 +427,30 @@ void GUISystem::hideTeamSelectionMenuWidgets()  // hides all widgets tied to the
 
 void GUISystem::showTeamSelectionMenuWidgets()  // show all widgets tied to the Team Selection Menu
 {
-//    sharedPtr<renderEngine> render = renderEngine::Instance();
+    sharedPtr<renderEngine> render; // = renderEngine::Instance();
+
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
     logMsg("GUISystem::showTeamSelectionMenuWidgets");
 //    logMsg("Blip");
 //    exit(0);
     
     teamSelectBox[0]->setVisible(true);
-    teamSelectBox[0]->setPosition((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.10 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamSelectBox[0]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.10 *render->getViewPort()->getActualHeight()) );
 //    exit(0);
     teamSelectBox[1]->setVisible(true);
-    teamSelectBox[1]->setPosition((0.5*base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.10 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamSelectBox[1]->setPosition((0.5*render->getViewPort()->getActualWidth() ), (0.10 *render->getViewPort()->getActualHeight()) );
 
     teamSelectionMenuButtons["team0SelectButton"]->setVisible(true);
-    teamSelectionMenuButtons["team0SelectButton"]->setPosition((0.1 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.19 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamSelectionMenuButtons["team0SelectButton"]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.19 *render->getViewPort()->getActualHeight()) );
 
     teamSelectionMenuButtons["team1SelectButton"]->setVisible(true);
-    teamSelectionMenuButtons["team1SelectButton"]->setPosition((0.5 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.19 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamSelectionMenuButtons["team1SelectButton"]->setPosition((0.5 *render->getViewPort()->getActualWidth() ), (0.19 *render->getViewPort()->getActualHeight()) );
 
     teamSelectionMenuButtons["teamsSelectedButton"]->setVisible(true);
-    teamSelectionMenuButtons["teamsSelectedButton"]->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.25 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamSelectionMenuButtons["teamsSelectedButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.25 *render->getViewPort()->getActualHeight()) );
     
     teamSelectionMenuButtons["backCourtSelectionMenuButton"]->setVisible(true);
-    teamSelectionMenuButtons["backCourtSelectionMenuButton"]->setPosition((0.3 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.30 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    teamSelectionMenuButtons["backCourtSelectionMenuButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.30 *render->getViewPort()->getActualHeight()) );
 
 //    exit(0);
 }
@@ -461,7 +466,8 @@ void GUISystem::hideCourtSelectionMenuWidgets()  // hides all widgets tied to th
 }
 void GUISystem::showCourtSelectionMenuWidgets()  // show all widgets tied to the Court Selection Menu
 {
-//    sharedPtr<renderEngine> render = renderEngine::Instance();
+    sharedPtr<renderEngine> render; // = renderEngine::Instance();
+
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
     conversionSharedPtr convert = conversion::Instance();
     
@@ -471,15 +477,15 @@ void GUISystem::showCourtSelectionMenuWidgets()  // show all widgets tied to the
     logMsg("court displayCount == " +convert->toString(displayCount));
     
     courtSelectionMenuButtons["backMainMenuButton"]->setVisible(true);
-    courtSelectionMenuButtons["backMainMenuButton"]->setPosition((0.25 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.4 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    courtSelectionMenuButtons["backMainMenuButton"]->setPosition((0.25 *render->getViewPort()->getActualWidth() ), (0.4 *render->getViewPort()->getActualHeight()) );
 //    exit(0);
     courtSelectBox->setVisible(true);
-    courtSelectBox->setPosition((0.25 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.31 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    courtSelectBox->setPosition((0.25 *render->getViewPort()->getActualWidth() ), (0.31 *render->getViewPort()->getActualHeight()) );
     
     courtNameTxtBox->setVisible(true);
     courtPreviewImgBox->setVisible(true);
     courtSelectionMenuButtons["courtSelectButton"]->setVisible(true);
-    courtSelectionMenuButtons["courtSelectButton"]->setPosition((0.25 *base->getGameE()->getRenderE()->getViewPort()->getActualWidth() ), (0.36 *base->getGameE()->getRenderE()->getViewPort()->getActualHeight()) );
+    courtSelectionMenuButtons["courtSelectButton"]->setPosition((0.25 *render->getViewPort()->getActualWidth() ), (0.36 *render->getViewPort()->getActualHeight()) );
 
 }
 
@@ -583,7 +589,7 @@ void GUISystem::changeActiveMenu(activeMenus menu)  // changes the actively disp
 //    exit(0);
     hideActiveMenuWidgets();
     menuActive = true;
-    base->getGameE()->setMenuActive(true);
+    gameE->setMenuActive(true);
     previousActiveMenu = activeMenu;
     activeMenu = menu;
     showActiveMenuWidgets();

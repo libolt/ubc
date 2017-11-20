@@ -108,7 +108,7 @@ bool UBC::setup()  // sets up UBC object
 
 //BASEREMOVAL            base->getGameS()->setBase(base);
 
-            base->getGui()->setBase(base);
+//            base->getGui()->setBase(base);
 
 //            base->setStateSetup(true);
 
@@ -125,7 +125,7 @@ bool UBC::setup()  // sets up UBC object
     //    GUISystem *tempGUIObj = new GUISystem;
         GUISystemSharedPtr tempGUISharedPtr(new GUISystem);
         base->setGui(tempGUISharedPtr);
-        base->getGui()->setBase(base);
+//BASEREMOVAL        base->getGui()->setBase(base);
 //BASEREMOVAL        base->getGameS()->setBase(base);
         base->setStateSetup(true);
 

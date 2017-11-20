@@ -55,6 +55,7 @@
 // forward declarations
 
 class UBCBase;
+class UBCGame;
 class UBCInput;
 class GUISystem;
 class conversion;
@@ -123,6 +124,8 @@ class gameSetupTeams;
 // typedefs
 
 typedef sharedPtr<UBCBase> UBCBaseSharedPtr;
+
+typedef sharedPtr<UBCGame> UBCGameSharedPtr;
 
 typedef sharedPtr<UBCInput> UBCInputSharedPtr;
 

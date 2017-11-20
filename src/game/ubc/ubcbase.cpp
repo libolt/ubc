@@ -106,15 +106,6 @@ void UBCBase::setInputSUInputSetup(bool set)  // sets the value of inputSUInputS
     inputSUInputSetup = set;
 }
 
-bool UBCBase::getStartActiveGame()  // retrieves the value of startActiveGame
-{
-    return (startActiveGame);
-}
-void UBCBase::setStartActiveGame(bool set)  // sets the value of startActiveGame
-{
-    startActiveGame = set;
-}
-
 gameEngineSharedPtr UBCBase::getGameE()  // retrieves the value of gameE
 {
     return (gameE);

@@ -21,6 +21,7 @@
 #include "engine/networkengine.h"
 
 #include "ubc/ubcbase.h"
+#include "ubc/ubcgame.h"
 #include "gui/gui.h"
 #include "data/courtdata.h"
 #include "engine/gameengine.h"
@@ -156,7 +157,7 @@ void GUISystem::startingLineupSetButtonClicked(MyGUI::Widget *_sender)  // handl
 {
     checkTeamInstancesCreated();
     playerStartSelected();
-    base->setStartActiveGame(true);
+    game->setStartActiveGame(true);
 //    exit(0);
 }
 
@@ -630,7 +631,7 @@ void GUISystem::processPlayerStartSelectionMenuKeyPress(std::string keyPressed) 
         logMsg("processPlayerStart KeyPressed == " +keyPressed);
 //        exit(0);
         playerStartSelected();
-        base->setStartActiveGame(true);
+        game->setStartActiveGame(true);
         menuActive = false;
 
     }

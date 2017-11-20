@@ -40,8 +40,6 @@ class UBCBase
         bool getStateSetup();  // retrieves the value of stateSetup
         void setStateSetup(bool set);  // sets the value of stateSetup
     
-        bool getStartActiveGame();  // retrieves the value of startActiveGame
-        void setStartActiveGame(bool set);  // sets the value of startActiveGame
         
         bool getUsersInstancesCreated();  // retrieves the value of userInstancesCreated
         void setUsersInstancesCreated(bool set);  // sets the value of userInstancesCreated
@@ -98,7 +96,6 @@ class UBCBase
     
     private:
         static bool stateSetup;  // stores whether or not the initial state setup has completed
-        static bool startActiveGame;  // stores whether to begin an active game instance
         static bool userInstancesCreated;  // stores whether user instances have been created
         static bool userInstancesInputSetup;  // stores status of input configuration for users
         static bool inputSUInputSetup;  // stores whether inputS UInput object has been set

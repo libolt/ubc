@@ -53,6 +53,7 @@
 //class gameEngine;
 
 class UBCBase;
+class UBCGame;
 
 class GUISystem //: public UBCBase //: public UBC //: public renderEngine //, inputSystem
 {
@@ -116,6 +117,9 @@ public:
     bool getCourtSelectionDataLoaded();  // retrieves the value of courtSelectionEntriesLoaded
     void setCourtSelectionDataLoaded(bool set);  // sets the value of courtSelectionEntriesLoaded
 	
+    UBCGameSharedPtr getGame();  // retrieves the value of game
+    void setGame(UBCGameSharedPtr set); // sets the value of game
+
     gameEngineSharedPtr getGamE();  // retrieves the value of gameE
     void setGameE(gameEngineSharedPtr set);  // sets the value of gameE
     
@@ -461,7 +465,7 @@ private:
     static bool gameSetupMenuHomeSelected;  // determines whether the home team listbox is selected;
     static bool courtSelectionDataLoaded;  // determines whether court names have been added to the select box
     
-    
+    UBCGameSharedPtr game;  // stores a copy of the game object
     gameStateSharedPtr gameInstance;  // stores a copy of the gameInstance
     teamStateMSharedPtr teamInstance;  // stores a copy of the teamInstance
     

@@ -72,6 +72,15 @@ void UBC::setBase(UBCBaseSharedPtr set)  // sets the value of base
     base = set;
 }
 
+UBCGameSharedPtr UBC:getGame()  // retrieves the value of game
+{
+    return (game);
+}
+void UBC:setGame(UBCGameSharedPtr set)  // sets the value of game
+{
+    game = set;
+}
+
 UBCInputSharedPtr UBC::getInput()  // retrieves the value of input
 {
     return (input);
@@ -130,6 +139,11 @@ bool UBC::setup()  // sets up UBC object
         base->setStateSetup(true);
 
     }
+
+    // setup game object
+    UBCGameSharedPtr tempGameSharedPtr(new UBCGame);
+
+    game = tempGameSharedPtr;
 
     // setup input object
     UBCInputSharedPtr tempInputSharedPtr(new UBCInput);

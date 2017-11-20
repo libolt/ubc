@@ -46,6 +46,8 @@
 //class GUISystem;
 class gameEngine;
 class UBCBase;
+class UBCGame;
+
 #include "utilities/typedefs.h"
 
 
@@ -55,11 +57,14 @@ public:
     UBC(); // constructor
     ~UBC();	// destructor
 
-    UBCBaseSharedPtr getBase();  // retrieves the value of UBCBase
-    void setBase(UBCBaseSharedPtr set);  // sets the value of UBCBase
+    UBCBaseSharedPtr getBase();  // retrieves the value of base
+    void setBase(UBCBaseSharedPtr set);  // sets the value of base
  
-    UBCInputSharedPtr getInput();  // retrieves the value of UBCInput
-    void setInput(UBCInputSharedPtr set);  // sets the value of UBCInput
+    UBCGameSharedPtr getGame();  // retrieves the value of game
+    void setGame(UBCGameSharedPtr set);  // sets the value of game
+
+    UBCInputSharedPtr getInput();  // retrieves the value of input
+    void setInput(UBCInputSharedPtr set);  // sets the value of input
 
 /*    bool getQuitGame();  // retrieves the value of quitGame
     void setQuitGame(bool quit);  // sets the value of quitGame
@@ -94,9 +99,13 @@ protected:
   
 private:
 
+    static bool startActiveGame;  // stores whether to begin an active game instance
+
     static UBCBaseSharedPtr base;  // static copy of base class
 
-    static UBCInputSharedPtr input;  // static copy of base class
+    static UBCGameSharedPtr game;  // static copy of game class
+
+    static UBCInputSharedPtr input;  // static copy of input class
         
     float inputXPos;  // stores the x coordinate of input
     float inputYPos;  // stores the y coordinate of input

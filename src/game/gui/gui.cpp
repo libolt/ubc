@@ -421,6 +421,15 @@ void GUISystem::setCourtSelectionDataLoaded(bool set)  // sets the value of cour
     courtSelectionDataLoaded = set;
 }
 
+UBCGameSharedPtr GUISystem::getGame()  // retrieves the value of game
+{
+    return (game);
+}
+void GUISystem::setGame(UBCGameSharedPtr set) // sets the value of game
+{
+    game = set;
+}
+
 teamStateMSharedPtr GUISystem::getTeamInstance()  // retrieves the value of teamInstance
 {
     return (teamInstance);

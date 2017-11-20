@@ -21,9 +21,15 @@
 #include "ubc/ubcgame.h"
 #include "utilities/conversion.h"
 
+// static declarations
+bool UBCGame::startActiveGame;  // stores whether to begin an active game instance
+bool UBCGame::userInstancesCreated;  // stores whether user instances have been created
+
 UBCGame::UBCGame()  // constructor
 {
 //    quitGame = false;
+    startActiveGame = false;
+    userInstancesCreated = false;
 
 }
 
@@ -39,4 +45,13 @@ bool UBCGame::getStartActiveGame()  // retrieves the value of startActiveGame
 void UBCGame::setStartActiveGame(bool set)  // sets the value of startActiveGame
 {
     startActiveGame = set;
+}
+
+bool UBCGame::getUsersInstancesCreated()  // retrieves the value of userInstancesCreated
+{
+    return (userInstancesCreated);
+}
+void UBCGame::setUsersInstancesCreated(bool set)  // sets the value of userInstancesCreated
+{
+    userInstancesCreated = set;
 }

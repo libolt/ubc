@@ -32,8 +32,6 @@
 
 // Static Declarations
 bool UBCBase::stateSetup;
-bool UBCBase::startActiveGame;  // stores whether to begin an active game instance
-bool UBCBase::userInstancesCreated;  // stores whether user instances have been created
 bool UBCBase::userInstancesInputSetup;  // stores status of input configuration for users
 bool UBCBase::inputSUInputSetup;  // stores whether inputS UInput object has been set
 
@@ -56,8 +54,7 @@ usersMSharedPtr UBCBase::usersInstance; // stores the user object instances
 UBCBase::UBCBase()  // constructor
 {
     stateSetup = false;
-    startActiveGame = false;
-    userInstancesCreated = false;
+
     userInstancesInputSetup = false;
     inputSUInputSetup = false;
     numUsers = 0;
@@ -77,15 +74,6 @@ bool UBCBase::getStateSetup()  // retrieves the value of stateSetup
 void UBCBase::setStateSetup(bool set)  // sets the value of stateSetup
 {
     stateSetup = set;
-}
-
-bool UBCBase::getUsersInstancesCreated()  // retrieves the value of userInstancesCreated
-{
-    return (userInstancesCreated);
-}
-void UBCBase::setUsersInstancesCreated(bool set)  // sets the value of userInstancesCreated
-{
-    userInstancesCreated = set;
 }
 
 bool UBCBase::getUserInstancesInputSetup()  // retrieves the value of userInstancesInputSetup

@@ -99,7 +99,6 @@ protected:
   
 private:
 
-    static bool startActiveGame;  // stores whether to begin an active game instance
 
     static UBCBaseSharedPtr base;  // static copy of base class
 

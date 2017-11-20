@@ -33,7 +33,13 @@ class UBCGame
         bool getStartActiveGame();  // retrieves the value of startActiveGame
         void setStartActiveGame(bool set);  // sets the value of startActiveGame
 
+        bool getUsersInstancesCreated();  // retrieves the value of userInstancesCreated
+        void setUsersInstancesCreated(bool set);  // sets the value of userInstancesCreated
+
     private:
+
+        static bool startActiveGame;  // stores whether to begin an active game instance
+        static bool userInstancesCreated;  // stores whether user instances have been created
 
 };
 #endif // _UBCGAME_H_

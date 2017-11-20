@@ -38,11 +38,7 @@ class UBCBase
         ~UBCBase();  // destructor
 
         bool getStateSetup();  // retrieves the value of stateSetup
-        void setStateSetup(bool set);  // sets the value of stateSetup
-    
-        
-        bool getUsersInstancesCreated();  // retrieves the value of userInstancesCreated
-        void setUsersInstancesCreated(bool set);  // sets the value of userInstancesCreated
+        void setStateSetup(bool set);  // sets the value of stateSetup        
 
         bool getUserInstancesInputSetup();  // retrieves the value of userInstancesInputSetup
         void setUserInstancesInputSetup(bool set);  // sets the value of userInstancesInputSetup
@@ -96,7 +92,6 @@ class UBCBase
     
     private:
         static bool stateSetup;  // stores whether or not the initial state setup has completed
-        static bool userInstancesCreated;  // stores whether user instances have been created
         static bool userInstancesInputSetup;  // stores status of input configuration for users
         static bool inputSUInputSetup;  // stores whether inputS UInput object has been set
         static gameEngineSharedPtr gameE;  // the gameEngine object

@@ -124,7 +124,7 @@ teamStateMSharedPtr gameSetupTeams::createTeamInstances()  // creates team Insta
     }
 
     logMsg(func +" end");
-    
+//    exit(0);
     return (tInstance);
 }
 
@@ -142,20 +142,28 @@ teamStateMSharedPtr gameSetupTeams::createActiveTeamInstances(teamStateMSharedPt
         activeTeamInstance.insert(std::pair<size_t, teamStateSharedPtr>(*TIDIT, teamInstance[*TIDIT]));
     }
     
+    logMsg(func +" teamID.size() == " +convert->toString(teamID.size()));
+    logMsg(func +" activeTeamInstance.size() == " +convert->toString(activeTeamInstance.size()));
+
     teamTypes teamType;
     
     for (auto ATIIT : activeTeamInstance)  // sets team type
     {
+        logMsg(func +" ATIIT.first == " +convert->toString(ATIIT.first));
+
         switch (ATIIT.first)
         {
             case 0:
-                teamType = HOMETEAM;
+//                teamType = HOMETEAM;
+                logMsg("HOMETEAM");
             break;
             case 1:
-                teamType = AWAYTEAM;
+                logMsg("AWAYTEAM");
+//                teamType = AWAYTEAM;
+                
             break;
         }
-        ATIIT.second->setTeamType(teamType);
+//        ATIIT.second->setTeamType(teamType);
     }
 //    exit(0);
     logMsg(func +" end");

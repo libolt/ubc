@@ -38,6 +38,7 @@
 #include "utilities/logging.h"
 #include "ubc/ubc.h"
 #include "ubc/ubcbase.h"
+#include "ubc/ubcgame.h"
 #include "ubc/ubcinput.h"
 #include "network/networkplayerstateobject.h"
 #include "statemachine/playerstatemachine.h"
@@ -50,6 +51,7 @@
 
 // static declarations 
 UBCBaseSharedPtr UBC::base;  // static copy of UBCBase class
+UBCGameSharedPtr UBC::game;  // static copy of UBCGame class
 UBCInputSharedPtr UBC::input;  // static copy of UBCInput class
 
 UBC::UBC()  // constructor
@@ -72,11 +74,11 @@ void UBC::setBase(UBCBaseSharedPtr set)  // sets the value of base
     base = set;
 }
 
-UBCGameSharedPtr UBC:getGame()  // retrieves the value of game
+UBCGameSharedPtr UBC::getGame()  // retrieves the value of game
 {
     return (game);
 }
-void UBC:setGame(UBCGameSharedPtr set)  // sets the value of game
+void UBC::setGame(UBCGameSharedPtr set)  // sets the value of game
 {
     game = set;
 }
@@ -249,11 +251,11 @@ void UBC::run()  // runs the game
     base->setNumUsers(1);
     
     logMsg(func + " Creating Users Instances!");
-    if (!base->getUsersInstancesCreated())
+    if (!game->getUsersInstancesCreated())
     {
         if (createUserInstances())
         {
-            base->setUsersInstancesCreated(true);
+            game->setUsersInstancesCreated(true);
         }
         else
         {
@@ -267,7 +269,7 @@ void UBC::run()  // runs the game
     
     logMsg(func + "Setting up Users Input");
     // sets up users input
-    if (base->getUsersInstancesCreated() && !base->getUserInstancesInputSetup())
+    if (game->getUsersInstancesCreated() && !base->getUserInstancesInputSetup())
     {
         if (setupUserInstancesInput())
         {
@@ -432,13 +434,13 @@ bool UBC::gameLoop()  // Main Game Loop
         
        // exit(0);
 
-        if (base->getStartActiveGame())
+        if (game->getStartActiveGame())
         {
             if (startGame())
             {
                 base->getGameE()->setStart(false);
                 base->getGameE()->setRenderScene(true);
-                base->setStartActiveGame(false);
+                game->setStartActiveGame(false);
             }
             else
             {

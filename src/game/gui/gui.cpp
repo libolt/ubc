@@ -738,6 +738,7 @@ void GUISystem::playerStartSelectionMenu()  // displays player start selection m
 
 void GUISystem::teamSelectionMenu()  // displays team selection menu
 {
+    conversionSharedPtr convert = conversion::Instance();
     gameSetupTeamsSharedPtr gameSetupTeam(new gameSetupTeams);
     bool changeMenu = false;  // determinrs if menu is to be changed
     teamStateMSharedPtr teamInstance; // = gameS->getTeamDataInstance();
@@ -817,11 +818,13 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
         if (createTeamSelectionMenuGUI())
         {            
             teamSelectionMenuCreated = true;
-//            exit(0);
+            
             if (addTeamStartSelectionMenuData())
             {
                 
                 logMsg(func +" addTeamStartSelectionMenuData()!");
+//                exit(0);
+                logMsg(func +" teamInstance.size() == " +convert->toString(gameInstance->getTeamInstance().size()));
 //                exit(0);
                 teamSelectionMenuDataAdded = true;
                 changeMenu = true;
@@ -854,7 +857,7 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
 
     logMsg(func +" end");
 
-    exit(0);
+//    exit(0);
 
 }
 
@@ -1017,7 +1020,7 @@ void GUISystem::teamsSelected()  // processes team selection
     //gameState *gameS = gameState::Instance();
     conversionSharedPtr convert = conversion::Instance();
     teamStateMSharedPtr activeTeamInstance;
-    teamStateMSharedPtr teamInstance;
+//    teamStateMSharedPtr teamInstance;
     gameSetupTeamsSharedPtr gameSetupTeam;
     std::string func = "GUISystem::teamsSelected()";
   
@@ -1029,7 +1032,7 @@ void GUISystem::teamsSelected()  // processes team selection
     teamID.push_back(teamSelectBox[0]->getIndexSelected());
     teamID.push_back(teamSelectBox[1]->getIndexSelected());
 
-    activeTeamInstance = gameSetupTeam->createActiveTeamInstances(teamInstance, teamID);
+    activeTeamInstance = gameSetupTeam->createActiveTeamInstances(gameInstance->getTeamInstance(), teamID);
 
     // sets the base class of the teamInstance objects to the same as the GUI which avoids crashes due to uninitialized sharedPtrs
 /*BASEREMOVAL    for (auto ATIIT : activeTeamInstance)

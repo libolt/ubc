@@ -341,7 +341,9 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     {
         teamInstance = loadTeam->getTInstance();
     }
-    gameInstance->setTeamInstance(teamInstance);
+    gameInstance->setTeamInstance(teamInstance);  // copies data to teamInstance object
+    gameInstance->setTeamInstancesCreated(true);
+    
     logMsg("GUI ADD TEAM 0 teamInstance.size() == " +convert->toString(teamInstance.size()));
 //    exit(0);
     auto x = 0;

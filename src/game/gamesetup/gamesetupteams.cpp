@@ -137,8 +137,12 @@ teamStateMSharedPtr gameSetupTeams::createActiveTeamInstances(teamStateMSharedPt
        
     logMsg(func +" beginning");
     gameStateSharedPtr gameInstance;
-    logMsg(func =" Team Instances created == " +convert->toString(gameInstance->getTeamInstancesCreated()));
-
+    logMsg(func +" Team Instances created == " +convert->toString(gameInstance->getTeamInstancesCreated()));
+    logMsg(func +" teamInstance size == " +convert->toString(teamInstance.size()));
+    logMsg(func +" gameInstance teamInstance size == " +convert->toString(gameInstance->getTeamInstance().size()));
+    
+//    exit(0);
+    logMsg(func +" teamI");
     sizeTVec::iterator TIDIT;
     for (TIDIT = teamID.begin(); TIDIT != teamID.end(); ++TIDIT)  // creates active team instances
     {

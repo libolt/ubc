@@ -364,7 +364,7 @@ void UBC::processPhysicsEvents()  // processes events in the physics subsyatem
     base->getGameE()->getPhysE()->stepWorld(base->getGameE()->getTimer());
 }
 
-bool UBC::gameLoop()  // Main Game Loop
+/*bool UBC::gameLoop()  // Main Game Loop
 {
     conversionSharedPtr convert = conversion::Instance();
     bool quitGame = base->getGameE()->getQuitGame();
@@ -381,15 +381,15 @@ bool UBC::gameLoop()  // Main Game Loop
 
     logMsg(func +" beginning");
     
-/*    playerSMD->speed = 100;
-    playerSM.setSpeed(playerSMD);
-    playerSM.halt();
-    logMsg(func +" dah");
-    playerSMD2->speed = 200;
-    playerSM.pJump(playerSMD2);
-    playerSMD3->direction = UP;
-    playerSM.pChangeDirection(playerSMD3);
-*/
+///    playerSMD->speed = 100;
+///    playerSM.setSpeed(playerSMD);
+///    playerSM.halt();
+///    logMsg(func +" dah");
+///    playerSMD2->speed = 200;
+///    playerSM.pJump(playerSMD2);
+///    playerSMD3->direction = UP;
+///    playerSM.pChangeDirection(playerSMD3);
+
     logMsg(func +" Wootio!");
 //    exit(0);
     
@@ -400,37 +400,37 @@ bool UBC::gameLoop()  // Main Game Loop
         input->process();
 //        processPhysicsEvents();
         
-/*        if (base->getGameS()->getGameSetupComplete())  // checks to make sure game setup is complete before continuing
-        {
+///        if (base->getGameS()->getGameSetupComplete())  // checks to make sure game setup is complete before continuing
+///        {
             
-            if (!base->getGameE()->getSceneCreated())
-            {
-                logMsg(func +" Scene Not Created!");
+///            if (!base->getGameE()->getSceneCreated())
+///            {
+///                logMsg(func +" Scene Not Created!");
 //                exit(0);
-                if (base->getGameS()->getGameType() == SINGLE)
-                {
-                    logMsg(func +" getGameType() == SINGLE");
-                    base->getGameE()->setCreateScene(true);
-                    exit(0);
-                }
-                else if (base->getGameS()->getGameType() == MULTILOCAL)
-                {
-                    logMsg(func +" getGameType() == MULTILOCAL");
-                    base->getGameE()->setCreateScene(true);
+///                if (base->getGameS()->getGameType() == SINGLE)
+///                {
+///                    logMsg(func +" getGameType() == SINGLE");
+///                    base->getGameE()->setCreateScene(true);
+///                    exit(0);
+///                }
+///                else if (base->getGameS()->getGameType() == MULTILOCAL)
+///                {
+///                    logMsg(func +" getGameType() == MULTILOCAL");
+///                    base->getGameE()->setCreateScene(true);
 //                    exit(0);
-                }
-                else if (base->getGameS()->getGameType() == MULTINET)
-                {
-                    logMsg(func +" getGameType() == MULTINET");
-
-                    if (base->getGameE()->getNetworkE()->getServerReceivedConnection() || base->getGameE()->getNetworkE()->getClientEstablishedConnection())  // checks if server and client are connected
-                    {
-                        base->getGameE()->setCreateScene(true);
-                    }
+///                }
+///                else if (base->getGameS()->getGameType() == MULTINET)
+///                {
+///                    logMsg(func +" getGameType() == MULTINET");
+///
+///                    if (base->getGameE()->getNetworkE()->getServerReceivedConnection() || base->getGameE()->getNetworkE()->getClientEstablishedConnection())  // checks if server and client are connected
+///                    {
+///                        base->getGameE()->setCreateScene(true);
+///                    }
     //             exit(0);
-                }
-            }
-        }*/
+///                }
+///            }
+///        }
         
        // exit(0);
 
@@ -487,7 +487,7 @@ bool UBC::gameLoop()  // Main Game Loop
     logMsg(func +" end");
 
     return (true);
-}
+}*/
 
 void UBC::gameLoop_old()  // Main Game Loop
 {

@@ -83,7 +83,7 @@ public:
     
     void processPhysicsEvents();  // processes events in the physics subsyatem
     
-    bool gameLoop();  // runs the Main loop for the game
+//    bool gameLoop();  // runs the Main loop for the game
 
     void gameLoop_old();  // runs the Main loop for the game
 

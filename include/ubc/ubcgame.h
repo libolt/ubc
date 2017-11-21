@@ -36,6 +36,8 @@ class UBCGame
         bool getUsersInstancesCreated();  // retrieves the value of userInstancesCreated
         void setUsersInstancesCreated(bool set);  // sets the value of userInstancesCreated
 
+        bool gameLoop();  // runs the Main loop for the game
+
     private:
 
         static bool startActiveGame;  // stores whether to begin an active game instance

@@ -55,3 +55,128 @@ void UBCGame::setUsersInstancesCreated(bool set)  // sets the value of userInsta
 {
     userInstancesCreated = set;
 }
+
+bool UBCGame::gameLoop()  // Main Game Loop
+{
+    conversionSharedPtr convert = conversion::Instance();
+    bool quitGame = base->getGameE()->getQuitGame();
+    unsigned long changeInTime = 0;
+    unsigned long CITmic = 0;
+    unsigned long CITmil = 0;
+    std::string func = "UBC::gameLoop()";
+    boost::chrono::microseconds changeInTimeMicro;
+    boost::chrono::milliseconds changeInTimeMill;
+    playerStateMachine playerSM;
+    playerSMData *playerSMD = new playerSMData;
+    playerSMData *playerSMD2 = new playerSMData;
+    playerSMData *playerSMD3 = new playerSMData;
+
+    logMsg(func +" beginning");
+    
+///    playerSMD->speed = 100;
+///    playerSM.setSpeed(playerSMD);
+///    playerSM.halt();
+///    logMsg(func +" dah");
+///    playerSMD2->speed = 200;
+///    playerSM.pJump(playerSMD2);
+///    playerSMD3->direction = UP;
+///    playerSM.pChangeDirection(playerSMD3);
+
+    logMsg(func +" Wootio!");
+//    exit(0);
+    
+    SDL_StartTextInput();
+    
+    while (!quitGame)
+    {
+        input->process();
+//        processPhysicsEvents();
+        
+///        if (base->getGameS()->getGameSetupComplete())  // checks to make sure game setup is complete before continuing
+///        {
+            
+///            if (!base->getGameE()->getSceneCreated())
+///            {
+///                logMsg(func +" Scene Not Created!");
+//                exit(0);
+///                if (base->getGameS()->getGameType() == SINGLE)
+///                {
+///                    logMsg(func +" getGameType() == SINGLE");
+///                    base->getGameE()->setCreateScene(true);
+///                    exit(0);
+///                }
+///                else if (base->getGameS()->getGameType() == MULTILOCAL)
+///                {
+///                    logMsg(func +" getGameType() == MULTILOCAL");
+///                    base->getGameE()->setCreateScene(true);
+//                    exit(0);
+///                }
+///                else if (base->getGameS()->getGameType() == MULTINET)
+///                {
+///                    logMsg(func +" getGameType() == MULTINET");
+///
+///                    if (base->getGameE()->getNetworkE()->getServerReceivedConnection() || base->getGameE()->getNetworkE()->getClientEstablishedConnection())  // checks if server and client are connected
+///                    {
+///                        base->getGameE()->setCreateScene(true);
+///                    }
+    //             exit(0);
+///                }
+///            }
+///        }
+        
+       // exit(0);
+
+        if (game->getStartActiveGame())
+        {
+            if (startGame())
+            {
+                base->getGameE()->setStart(false);
+                base->getGameE()->setRenderScene(true);
+                game->setStartActiveGame(false);
+            }
+            else
+            {
+                logMsg(func + " Unable to Start Active Game Instance!");
+                exit(0);
+            }
+        }
+        changeInTimeMicro = base->getGameE()->getTimer().calcChangeInTimeMicro();
+        changeInTimeMill = base->getGameE()->getTimer().calcChangeInTimeMill();
+        CITmic = changeInTimeMicro.count();
+        CITmil = changeInTimeMill.count();
+
+        logMsg ("changeInTimeMicro = " +convert->toString(CITmic));
+        logMsg ("changeInTimeMill = " +convert->toString(CITmil));
+        changeInTime = base->getGameE()->getTimer().getChangeInTimeMill().count();
+        logMsg ("loopchange = " +convert->toString(changeInTime));
+//        exit(0);
+        if (changeInTime >= 10)
+        {
+            logMsg(func +"changeInTime > 10!");
+//            exit(0);
+            if (base->getGameS()->getGameType() == MULTINET)
+            {
+                processNetworkEvents();             
+            }
+
+//            logMsg("changeInTime = " +toString(changeInTime));
+            if (base->getGameE()->getRenderScene())
+            {
+                logMsg(func +" gameS->getRenderScene()");
+                
+                base->getGameS()->updateState();  // updates the state of the game instance
+            }
+            base->getGameE()->getTimer().setPreviousTime(boost::chrono::system_clock::now());
+        }
+//        exit(0);
+        
+        if (!base->getGameE()->getRenderE()->renderFrame())
+        {
+            logMsg(func +" Unable to render frame!");
+            exit(0);
+        }
+    }
+    logMsg(func +" end");
+
+    return (true);
+}

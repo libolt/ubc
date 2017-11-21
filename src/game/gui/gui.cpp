@@ -741,21 +741,22 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
     gameSetupTeamsSharedPtr gameSetupTeam(new gameSetupTeams);
     bool changeMenu = false;  // determinrs if menu is to be changed
     teamStateMSharedPtr teamInstance; // = gameS->getTeamDataInstance();
-
-    logMsg("teamSelectionMenu");
+    std::string func = "GUISystem::teamSelectionMenu()";
+    logMsg(func +" beginning");
 
 //    teamInstance = load->loadTeams();
 //    exit(0);
     if (teamSelectionMenuCreated)
     {      
+        logMsg(func +"teamSelectionMenuCreated");
 //        exit(0);
         if (gameInstance->getTeamInstancesCreated())
         {
-            logMsg("getTeamInstancesCreated");
+            logMsg(func +" getTeamInstancesCreated");
 //            exit(0);
             if (teamSelectionMenuDataAdded)
             {
-                logMsg("Team Selection Menu Data Added already!");
+                logMsg(func +" Team Selection Menu Data Added already!");
                 changeMenu = true;
             }
             else
@@ -768,25 +769,25 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
                 }
                 else
                 {
-                    logMsg("unable to add data to Team Selection Menus!");
+                    logMsg(func +" Unable to add data to Team Selection Menus!");
                     exit(0);
                 }
             }
         }
         else
         {
-            logMsg("!getTeamInstancesCreated");
+            logMsg(func +" !getTeamInstancesCreated");
 //            exit(0);
             teamInstance = gameSetupTeam->createTeamInstances();  // creates team instances
             if (teamInstance.size() > 0)
             {
-                logMsg("createTeamInstances");
+                logMsg(func +" createTeamInstances");
 
 //                exit(0);
                 gameInstance->setTeamInstancesCreated(true);
                 if (teamSelectionMenuDataAdded)
                 {
-                    logMsg("Team Selection Menu Data Added already!");
+                    logMsg(func +" Team Selection Menu Data Added already!");
                     changeMenu = true;
                 }
                 else
@@ -798,20 +799,21 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
                     }
                     else
                     {
-                        logMsg("unable to add data to Team Selection Menus!");
+                        logMsg(func +" Unable to add data to Team Selection Menus!");
                         exit(0);
                     }
                 }
             }
             else
             {
-                logMsg("feeerrrrappp!");         
+                logMsg(func +" feeerrrrappp!");
                 exit(0);
             }
         }
     }
     else
     {
+        logMsg(func +" teamSelectionMenuGUI Not Yet Created!");
         if (createTeamSelectionMenuGUI())
         {            
             teamSelectionMenuCreated = true;
@@ -819,20 +821,20 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
             if (addTeamStartSelectionMenuData())
             {
                 
-                logMsg("GUI teamSelectionMenu() addTeamStartSelectionMenuData()!");
+                logMsg(func +" addTeamStartSelectionMenuData()!");
 //                exit(0);
                 teamSelectionMenuDataAdded = true;
                 changeMenu = true;
             }
             else 
             {
-                logMsg("unable to add data to Team Selection Menus!");
+                logMsg(func +" Unable to add data to Team Selection Menus!");
                 exit(0);
             }
         }
         else
         {
-            logMsg("Unable to create Team Selection Menu!");
+            logMsg(func +" Unable to create Team Selection Menu!");
             exit(0);
         }
     }
@@ -840,17 +842,20 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
 //    hideCourtSelectionMenuWidgets();
     if (changeMenu = true)
     {
-        logMsg("Changing activeMenu to TEAMSELECT!");
+        logMsg(func +" Changing activeMenu to TEAMSELECT!");
 //        exit(0);
         changeActiveMenu(TEAMSELECT);
     }
     else
     {
-        logMsg("Failed to change activeMenu to TEAMSELECT!");
+        logMsg(func +" Failed to change activeMenu to TEAMSELECT!");
         exit(0);
     }
 
-//    exit(0);
+    logMsg(func +" end");
+
+    exit(0);
+
 }
 
 void GUISystem::courtSelectionMenu() // displays court selection menu

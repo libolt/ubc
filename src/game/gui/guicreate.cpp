@@ -44,27 +44,30 @@
 bool GUISystem::createMainMenuGUI()  // creates the main menu gui
 {
     sharedPtr<renderEngine> render; // = renderEngine::Instance();
+    std::string func = "GUISystem::createMainMenuGUI()";
 //    Ogre::Viewport *viewPort = render->getViewPort();
 //    exit(0); 
 //    if (render->getViewPort()->getActualHeight() >= 1000)
+    logMsg(func +" begin");
     if (render->getViewPort()->getActualHeight() >= 1000)
     {
-        logMsg("Height greater than 1000!");
+        logMsg(func +" Height greater than 1000!");
 //        exit(0);
         MyGUI::FontManager::getInstance().setDefaultFont("LinBiolinum_aBL.16");
     }
     else
     {
+        logMsg(func +" Height less than 1000!");
         MyGUI::FontManager::getInstance().setDefaultFont("LuxiBoldFont_16");
 
     }
     
 //    exit(0);
     
-    logMsg("Loading MainMenu layout");
+    logMsg(func +" Loading MainMenu layout");
     MyGUI::LayoutManager::getInstance().loadLayout("MainMenu.layout");
 //    exit(0);
-    logMsg("MainMenu layout loaded");
+    logMsg(func +" MainMenu layout loaded");
 //  startGameButton = mGUI->createWidget<MyGUI::Button>("Button", 362, 100, 300, 26, MyGUI::Align::Default, "Main");
 //  startGameBu  tton->setCaption("Start Game");
     
@@ -110,13 +113,17 @@ bool GUISystem::createMainMenuGUI()  // creates the main menu gui
 //    exit(0);
     activeMenu = MAIN;
 //    exit(0);
-    return true;
+    logMsg(func +" end");
+    return (true);
 }
 
 bool GUISystem::createNetworkSetupGUI()  // loads the GUI for the network setup screen
 {
     sharedPtr<renderEngine> render; // = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
+    std::string func = "GUISystem::createNetworkSetupGUI()";
+
+    logMsg(func +" begin");
 
     MyGUI::LayoutManager::getInstance().loadLayout("NetworkSetupMenu.layout");
 
@@ -144,6 +151,7 @@ bool GUISystem::createNetworkSetupGUI()  // loads the GUI for the network setup 
     previousActiveMenu = activeMenu;
     activeMenu = NETWORK;
 */
+    logMsg(func +" end");
     return true;
 }
 
@@ -151,6 +159,9 @@ bool GUISystem::createNetworkClientSetupGUI()  // creates GUI for network client
 {
     sharedPtr<renderEngine> render; // = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
+    std::string func = "GUISystem::createNetworkClientSetupGUI()";
+
+    logMsg(func +" begin");
 
     MyGUI::LayoutManager::getInstance().loadLayout("NetworkClientSetupMenu.layout");
 
@@ -171,6 +182,7 @@ bool GUISystem::createNetworkClientSetupGUI()  // creates GUI for network client
     
     networkClientSetupMenuCreated = true;
     
+    logMsg(func +" end");
     return true;
 }
 
@@ -178,6 +190,10 @@ bool GUISystem::createNetworkServerSetupGUI()  // creates GUI for network server
 {
     sharedPtr<renderEngine> render; // = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
+
+    std::string func = "GUISystem::createNetworkServerSetupGUI()";
+
+    logMsg(func +" begin");
 
     MyGUI::LayoutManager::getInstance().loadLayout("NetworkServerSetupMenu.layout");
 
@@ -199,8 +215,10 @@ bool GUISystem::createNetworkServerSetupGUI()  // creates GUI for network server
     networkServerSetupMenuButtons["backNetworkSetupButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::serverHostButtonClicked);
     networkServerSetupMenuButtons["backNetworkSetupButton"]->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
 
-    
     networkServerSetupMenuCreated = true;
+
+    logMsg(func +" end");
+
     return true;
 }
 
@@ -209,6 +227,9 @@ bool GUISystem::createCourtSelectionMenuGUI()  // creates GUI for court selectio
     sharedPtr<renderEngine> render; // = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
     courtStateSharedPtr courtInst(new courtState);
+    std::string func = "GUISystem::createCourtSelectionMenuGUI()";
+
+    logMsg(func +" begin");
 
     MyGUI::LayoutManager::getInstance().loadLayout("CourtSelectionMenu.layout");
 
@@ -236,6 +257,9 @@ bool GUISystem::createCourtSelectionMenuGUI()  // creates GUI for court selectio
     courtPreviewImgBox->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()) );
 
     courtSelectionMenuCreated = true;
+
+    logMsg(func +" end");
+
     return true;
 }
 
@@ -243,6 +267,10 @@ bool GUISystem::createOptionsMenuGUI()  // creates GUI for options menu screen.
 {
     sharedPtr<renderEngine> render; // = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
+    std::string func = "GUISystem::createOptionsMenuGUI()";
+
+    logMsg(func +" begin");
+
 
     MyGUI::LayoutManager::getInstance().loadLayout("OptionsMenu.layout");
 
@@ -268,6 +296,8 @@ bool GUISystem::createOptionsMenuGUI()  // creates GUI for options menu screen.
     previousActiveMenu = activeMenu;
     activeMenu = OPTIONS;
 */
+    logMsg(func +" end");
+
     return (true);
 }
 
@@ -276,6 +306,11 @@ bool GUISystem::createBackButtons()  // creates the back buttons for the menus
 //    sharedPtr<renderEngine> render = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
 //    exit(0);
+    std::string func = "GUISystem::createBackButtons()";
+
+    logMsg(func +" begin");
+
+
     MyGUI::LayoutManager::getInstance().loadLayout("BackButtons.layout");
 
 ///    backMainMenuButton = sharedPtr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("backMainMenuButton"));  // loads Back to Main Menu Button
@@ -320,6 +355,8 @@ bool GUISystem::createBackButtons()  // creates the back buttons for the menus
 
     backButtonsCreated = true;
 
+    logMsg(func +" end");
+
     return (true);
 }
 
@@ -327,6 +364,10 @@ bool GUISystem::createDisplaySetupGUI()  // creates GUI for display settings scr
 {
 //    sharedPtr<renderEngine> render = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
+    std::string func = "GUISystem::createDisplaySetupGUI()";
+
+    logMsg(func +" begin");
+
 
     MyGUI::LayoutManager::getInstance().loadLayout("DispkaySetupMenu.layout");
 
@@ -340,6 +381,8 @@ bool GUISystem::createDisplaySetupGUI()  // creates GUI for display settings scr
 
     displaySetupMenuCreated = true;
 
+    logMsg(func +" end");
+
     return (true);
 }
 
@@ -347,6 +390,10 @@ bool GUISystem::createInputSetupGUI()  // creates GUI for input settings screen.
 {
 //    sharedPtr<renderEngine> render = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
+    std::string func = "GUISystem::createCourtInputSetupGUI()";
+
+    logMsg(func +" begin");
+
 
     MyGUI::LayoutManager::getInstance().loadLayout("InputSetupMenu.layout");
 
@@ -360,6 +407,7 @@ bool GUISystem::createInputSetupGUI()  // creates GUI for input settings screen.
 
     inputSetupMenuCreated = true;
 
+    logMsg(func + " end");
     return (true);
 }
 
@@ -367,6 +415,11 @@ bool GUISystem::createAudioSetupGUI()  // creates GUI for audo settings screen.
 {
 //    sharedPtr<renderEngine> render = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
+
+    std::string func = "GUISystem::createAudioSetupGUI()";
+
+    logMsg(func +" begin");
+
 
     MyGUI::LayoutManager::getInstance().loadLayout("AudioSetupMenu.layout");
 
@@ -384,6 +437,8 @@ bool GUISystem::createAudioSetupGUI()  // creates GUI for audo settings screen.
     
     audioSetupMenuCreated = true;
 
+    logMsg(func +" end");
+
     return (true);
 }
 
@@ -398,8 +453,15 @@ bool GUISystem::createGameSetupMenuGUI()    // creates GUI for game setup menu s
 //    sharedPtr<renderEngine> render = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
 
+    std::string func = "GUISystem::createCourtGameSetupMenuGUI()";
+
+    logMsg(func +" begin");
+
+
     MyGUI::LayoutManager::getInstance().loadLayout("GameSetupMenu.layout");
     gameSetupMenuCreated = true;
+
+    logMsg(func +" end");
 
     return (true);
 }
@@ -559,6 +621,8 @@ bool GUISystem::createPlayerStartSelectionMenuGUI()  // creates GUI for player s
     
     playerStartSelectionMenuCreated = true;
 
+    logMsg(func +" end");
+
     return (true);
 }
 
@@ -573,6 +637,11 @@ bool GUISystem::createTeamSelectionMenuGUI()  // creates GUI for team selection 
     float vpWidth = render->getViewPort()->getActualWidth();  // stores view ports width
     float vpHeight = render->getViewPort()->getActualHeight();  // stores view ports height
     
+    std::string func = "GUISystem::createTeamSelectionMenuGUI()";
+
+    logMsg(func +" begin");
+
+
     teamSelectBox.insert(std::pair<size_t, MyGUIListBoxSharedPtr > (0, MyGUIListBoxSharedPtr(mGUI->findWidget<MyGUI::ListBox>("team0SelectBox"))));  // loads team 0 ListBox
     teamSelectBox[0]->setVisible(false);
     teamSelectBox[0]->setSize((0.4 *vpWidth), (0.04 *vpHeight));
@@ -607,6 +676,9 @@ bool GUISystem::createTeamSelectionMenuGUI()  // creates GUI for team selection 
 
     teamSelectionMenuCreated = true;
 //    exit(0);
+
+    logMsg(func +" end");
+
     return (true);
 }
 

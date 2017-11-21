@@ -20,6 +20,7 @@
 
 #include "gamesetup/gamesetupteams.h"
 #include "utilities/conversion.h"
+#include "state/gamestate.h"
 #include "state/teamstate.h"
 #include "utilities/logging.h"
 #include "load/loadteams.h"
@@ -135,7 +136,9 @@ teamStateMSharedPtr gameSetupTeams::createActiveTeamInstances(teamStateMSharedPt
     std::string func = "gameSetupTeams::createActiveTeamInstances()";
        
     logMsg(func +" beginning");
-    
+    gameStateSharedPtr gameInstance;
+    logMsg(func =" Team Instances created == " +convert->toString(gameInstance->getTeamInstancesCreated()));
+
     sizeTVec::iterator TIDIT;
     for (TIDIT = teamID.begin(); TIDIT != teamID.end(); ++TIDIT)  // creates active team instances
     {
@@ -154,16 +157,16 @@ teamStateMSharedPtr gameSetupTeams::createActiveTeamInstances(teamStateMSharedPt
         switch (ATIIT.first)
         {
             case 0:
-//                teamType = HOMETEAM;
+                teamType = HOMETEAM;
                 logMsg("HOMETEAM");
             break;
             case 1:
                 logMsg("AWAYTEAM");
-//                teamType = AWAYTEAM;
+                teamType = AWAYTEAM;
                 
             break;
         }
-//        ATIIT.second->setTeamType(teamType);
+        ATIIT.second->setTeamType(teamType);
     }
 //    exit(0);
     logMsg(func +" end");

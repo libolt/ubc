@@ -168,7 +168,7 @@
     enum positionChangedTypes { NOCHANGE, STARTCHANGE, STEERCHANGE, INPUTCHANGE, PHYSICSCHANGE, PLAYERMOVECHANGE, PLAYERDIRECTCHANGE }; // Defines the type of position change that occured
 
     // Teams
-    enum teamTypes {HOMETEAM, AWAYTEAM, NOTEAM };  // Defines the type of team
+    enum teamTypes {NOTEAM, HOMETEAM, AWAYTEAM };  // Defines the type of team
     // Data Types
     //enum dataTypes { CHAR, INT, FLOAT, DOUBLE, OGREVEC3, OPENSTEERVEC3, BULLETVEC3 };  // Defines type of data being passed to function
     

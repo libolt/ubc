@@ -56,7 +56,7 @@ void UBCGame::setUsersInstancesCreated(bool set)  // sets the value of userInsta
     userInstancesCreated = set;
 }
 
-bool UBCGame::gameLoop()  // Main Game Loop
+bool UBCGame::loop()  // Main Game Loop
 {
     conversionSharedPtr convert = conversion::Instance();
     bool quitGame = base->getGameE()->getQuitGame();

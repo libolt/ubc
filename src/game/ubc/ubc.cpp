@@ -324,7 +324,7 @@ void UBC::run()  // runs the game
 
 //    bool quitGame = base->getGameE()->getQuitGame();
        
-    gameLoop();
+    game->Loop();
 
     logMsg(func +" end");
 

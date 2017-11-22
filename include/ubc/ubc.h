@@ -57,6 +57,9 @@ public:
     UBC(); // constructor
     ~UBC();	// destructor
 
+    gameEngineSharedPtr getGameE();  // retrieves the value of gameE
+    void setGameE(gameEngineSharedPtr set);  // sets the value of gameE
+
     UBCBaseSharedPtr getBase();  // retrieves the value of base
     void setBase(UBCBaseSharedPtr set);  // sets the value of base
  
@@ -99,6 +102,7 @@ protected:
   
 private:
 
+    static gameEngineSharedPtr gameE;  // the gameEngine object
 
     static UBCBaseSharedPtr base;  // static copy of base class
 

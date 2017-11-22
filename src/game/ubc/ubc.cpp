@@ -50,6 +50,7 @@
 #endif
 
 // static declarations 
+gameEngineSharedPtr UBC::gameE;  // the gameEngine object
 UBCBaseSharedPtr UBC::base;  // static copy of UBCBase class
 UBCGameSharedPtr UBC::game;  // static copy of UBCGame class
 UBCInputSharedPtr UBC::input;  // static copy of UBCInput class
@@ -63,6 +64,15 @@ UBC::UBC()  // constructor
 UBC::~UBC()  // destructor
 {
 
+}
+
+gameEngineSharedPtr UBC::getGameE()  // retrieves the value of gameE
+{
+    return (gameE);
+}
+void UBC::setGameE(gameEngineSharedPtr set)  // sets the value of gameE
+{
+    gameE = set;
 }
 
 UBCBaseSharedPtr UBC::getBase()  // retrieves the value of base
@@ -324,7 +334,7 @@ void UBC::run()  // runs the game
 
 //    bool quitGame = base->getGameE()->getQuitGame();
        
-    game->Loop();
+    game->loop(gameE);
 
     logMsg(func +" end");
 

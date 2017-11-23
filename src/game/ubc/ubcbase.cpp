@@ -93,15 +93,6 @@ void UBCBase::setInputSUInputSetup(bool set)  // sets the value of inputSUInputS
     inputSUInputSetup = set;
 }
 
-gameStateSharedPtr UBCBase::getGameS()  // retrieves the value of gameS
-{
-    return (gameS);
-}
-void UBCBase::setGameS(gameStateSharedPtr set)  // sets the value of gameS
-{
-    gameS = set;
-}
-
 GUISystemSharedPtr UBCBase::getGui()  // retrieves the value of gui
 {
     return (gui);
@@ -110,7 +101,6 @@ void UBCBase::setGui(GUISystemSharedPtr set)  // sets the value of gui
 {
     gui = set;
 }
-
 
 networkStateSharedPtr UBCBase::getNetworkS()  // retrieves the value of networkS
 {
@@ -218,18 +208,6 @@ bool UBCBase::setup()  // sets up the engine and states
     
     logMsg(func +" beginning");
     
-    //    gameEngine *tempGameEObj = new gameEngine;
-    gameEngineSharedPtr tempGameESharedPtr(new gameEngine);
-    gameE = tempGameESharedPtr;
-//    gameE(new gameEngine);
-    logMsg(func +" gameE->setup()");
-    gameE->setup();  // sets up the game engine
-
-//    gameState *tempGameStateObj = new gameState;
-    gameStateSharedPtr tempGameStateSharedPtr(new gameState);
-    gameS = tempGameStateSharedPtr;
-    logMsg(func +" getGameS()->setInitialized(true)");
-    getGameS()->setInitialized(true);
 
     GUISystemSharedPtr tempGUISharedPtr(new GUISystem);
     gui = tempGUISharedPtr;

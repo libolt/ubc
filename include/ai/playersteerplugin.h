@@ -44,6 +44,9 @@ class playerSteerPlugin : public OpenSteer::PlugIn, steering
     playerSteerPlugin();  // constructor
     ~playerSteerPlugin();  // destructor
 
+    gameStateSharedPtr getGameInstance();  // retrieves the value of gameInstance
+    void setGameInstance(gameStateSharedPtr set);  // sets the value of gameInstance
+
     UBCBaseSharedPtr getBase();  // retrieves the value of base
     void setBase(UBCBaseSharedPtr set);  // sets the value of base
 
@@ -93,6 +96,7 @@ class playerSteerPlugin : public OpenSteer::PlugIn, steering
 //        Ball	*m_Ball;
     steeringAABBoxSharedPtr courtBBox;  // Axis Aligned Bounding Box for the court
 
+    gameStateSharedPtr gameInstance;  // stores copy of gameInstance
     basketballStateMSharedPtr activeBasketballInstance;  // stores copy of activeBasketballInstance
     courtStateMSharedPtr activeCourtInstance;  // stores copy of activeCourtInstance
     teamStateMSharedPtr activeTeamInstance;  // stores copy of activeTeamInstance

@@ -42,6 +42,9 @@ public:
     static sharedPtr<AISystem> Instance();
 	~AISystem();
 
+    gameStateSharedPtr getGameInstance();  // retrieves the value of gameInstance
+    void setGameInstance(gameStateSharedPtr set);  // sets the value of gameInstance
+
     UBCBaseSharedPtr getBase();  // retrieves the value of base
     void setBase(UBCBaseSharedPtr set);  // sets the value of base
 
@@ -137,6 +140,7 @@ private:
     OpenSteerPluginSharedPtr selectedPlugIn;
     playerSteerVecSharedPtr allPlayerSteers;
 
+    gameStateSharedPtr gameInstance;  // stores copy of gameInstance
     basketballStateMSharedPtr activeBasketballInstance;  // stores copy of activeBasketballInstance
     courtStateMSharedPtr activeCourtInstance;  // stores copy of activeCourtInstance
     teamStateMSharedPtr activeTeamInstance;  // stores copy of activeTeamInstance

@@ -46,6 +46,15 @@ playerSteerPlugin::~playerSteerPlugin()  // destructor
     
 }
 
+gameStateSharedPtr playerSteerPlugin::getGameInstance()  // retrieves the value of gameInstance
+{
+    return (gameInstance);
+}
+void playerSteerPlugin::setGameInstance(gameStateSharedPtr set)  // sets the value of gameInstance
+{
+    gameInstance = set;
+}
+
 UBCBaseSharedPtr playerSteerPlugin::getBase()  // retrieves the value of base
 {
     return (base);
@@ -132,6 +141,7 @@ void playerSteerPlugin::open()  // opens the plugin
     logMsg(func +" beginning");
     logMsg(func +" Opening playerSteer plugin");
 
+    gameInstance = ai->getGameInstance();
     activeBasketballInstance = ai->getActiveBasketballInstance();
     activeCourtInstance = ai->getActiveCourtInstance();
     activeTeamInstance = ai->getActiveTeamInstance();
@@ -183,7 +193,7 @@ void playerSteerPlugin::open()  // opens the plugin
                 {
                     playerSteerSharedPtr tempSteer(new playerSteer);
                     steer = tempSteer;
-//BASEREMOVAL                    steer->setGameS(base->getGameS());
+//BASEREMOVAL                    steer->setGameS(gameInstan);
                     steerInitialized = true;
                 }
             //      logMsg("Alive1");
@@ -255,7 +265,7 @@ void playerSteerPlugin::open()  // opens the plugin
 
 
 	// create the court bounding box based off the meshes bbox
-    Ogre::AxisAlignedBox cbox = base->getGameS()->getCourtInstance()[0]->getEntity()->getModel()->getBoundingBox();
+    Ogre::AxisAlignedBox cbox = gameInstance->getCourtInstance()[0]->getEntity()->getModel()->getBoundingBox();
     Ogre::Vector3 cboxMin = cbox.getMinimum();
     Ogre::Vector3 cboxMax = cbox.getMaximum();
 
@@ -326,7 +336,7 @@ void playerSteerPlugin::update(const float currentTime, const float elapsedTime)
 
 //    team1ActivePlayerInstance[3].getSteer()->update(currentTime, elapsedTime);
 
-    for (auto ATIIT : base->getGameS()->getActiveTeamInstance())
+    for (auto ATIIT : gameInstance->getActiveTeamInstance())
     {
         activePlayerInstance.push_back(ATIIT.second->getActivePlayerInstance());
         for (auto APIIT : activePlayerInstance[ATIIT.first])

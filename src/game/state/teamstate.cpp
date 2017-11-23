@@ -391,7 +391,7 @@ void teamState::setupState()  // sets up the state of the object
     logMsg(func +" end");
 
 }
-void teamState::updateState()  // updates the state of the object
+void teamState::updateState(gameStateSharedPtr gameInstance)  // updates the state of the object
 {
 
     //conversion *convert = conversion::Instance();
@@ -403,13 +403,13 @@ void teamState::updateState()  // updates the state of the object
     ///sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
     gameSetupPlayersSharedPtr gameSetupPlayer(new gameSetupPlayers);
-    jumpBallsSharedPtr jumpBall = base->getGameS()->getJumpBall();
+    jumpBallsSharedPtr jumpBall = gameInstance->getJumpBall();
     std::string func = "teamState::updateState()";
 
     logMsg(func +" beginning");
 //    exit(0);
 
-//    size_t activeBBallInstance = base->getGameS()->getActiveBBallInstance();
+//    size_t activeBBallInstance = gameInstance->getActiveBBallInstance();
 
 //  logMsg("Updating team state " +convert->toString(teamNumber));
     if (activePlayerInstancesCreated)
@@ -483,10 +483,10 @@ void teamState::updateState()  // updates the state of the object
         
     }
 //    exit(0);
-    if (base->getGameS()->getBasketballInstanceCreated() && base->getGameS()->getPlayerInstanceCreated())
+    if (gameInstance->getBasketballInstanceCreated() && gameInstance->getPlayerInstanceCreated())
     {
         
-        basketballStateMSharedPtr activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();
+        basketballStateMSharedPtr activeBasketballInstance = gameInstance->getActiveBasketballInstance();
 //      exit(0);
         // checks whether to execute offense or defense logic
         if (offense == true && defense == false)
@@ -514,13 +514,13 @@ void teamState::updateState()  // updates the state of the object
 
         }
 
-        if (base->getGameS()->getTipOffComplete())
+        if (gameInstance->getTipOffComplete())
         {
 //          exit(0);
 //          logMsg("hTeam with ball ==  "  +convert->toStringi(gameS->getTeamWithBall()));
 //          logMsg("Player with ball ==  "  +convert->toString(playerWithBall));
 
-            if (base->getGameS()->getTeamWithBall() == teamType) // checks if the team has the basketball
+            if (gameInstance->getTeamWithBall() == teamType) // checks if the team has the basketball
             {
                 logMsg("tipoffcomplete playerWithBallInstance == " +convert->toString(playerWithBallInstance));
 
@@ -614,15 +614,15 @@ void teamState::updateState()  // updates the state of the object
     }
 //  exit(0);
 
-    if (base->getGameS()->getTipOffComplete())
+    if (gameInstance->getTipOffComplete())
     {
         logMsg("tipOff Complete!");
 //        exit(0);
-        if (base->getGameS()->getTeamWithBall() == teamType)
+        if (gameInstance->getTeamWithBall() == teamType)
         {
             if (!offenseInstance->getGameSInitialized())
             {
-                offenseInstance->setGameS(base->getGameS());
+                offenseInstance->setGameS(gameInstance);
                 offenseInstance->setGameSInitialized(true);            
             }
             else
@@ -634,7 +634,7 @@ void teamState::updateState()  // updates the state of the object
         {
             if (!defenseInstance->getGameSInitialized())
             {
-                defenseInstance->setGameS(base->getGameS());
+                defenseInstance->setGameS(gameInstance);
                 defenseInstance->setGameSInitialized(true);            
             }
             else
@@ -666,11 +666,11 @@ void updateActivePlayerSettings()  // updates the settings of active players
 
     logMsg(func +" beginning");
     
-    if (base->getGameS()->checkIfPlayerInstanceCreated())
+    if (gameInstance->checkIfPlayerInstanceCreated())
     {
     
         logMsg(func +"game player instances created!");
-        gamePlayerInstance = base->getGameS()->getPlayerInstance();
+        gamePlayerInstance = gameInstance->getPlayerInstance();
     }
     else
     {
@@ -715,17 +715,17 @@ void updateActivePlayerSettings()  // updates the settings of active players
     return (true);
 }*/
 
-bool teamState::setPlayerStartPositions()  // sets the initial coordinates for the players.
+bool teamState::setPlayerStartPositions(gameStateSharedPtr gameInstance)  // sets the initial coordinates for the players.
 {
     conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    sharedPtr<gameEngine> gameE = gameEngine::Instance();
     gameSetupPlayerPositionsSharedPtr gameSetupPlayerPosition(new gameSetupPlayerPositions);
-    std::vector<std::unordered_map<std::string, size_t> > teamStarterID = base->getGameS()->getTeamStarterID();
+    std::vector<std::unordered_map<std::string, size_t> > teamStarterID = gameInstance->getTeamStarterID();
     OgreVector3Vec startingPos;
 //    directions playerDirection; // stores the direction players face at start
     std::string func = "teamState::setPlayerStartPositions()";
-    courtStateMSharedPtr courtInstance = base->getGameS()->getCourtInstance();
+    courtStateMSharedPtr courtInstance = gameInstance->getCourtInstance();
     Ogre::Vector3 courtPos = courtInstance[0]->getEntity()->getNodePosition();
 
 //    exit(0);
@@ -745,7 +745,7 @@ bool teamState::setPlayerStartPositions()  // sets the initial coordinates for t
 /*    switch (teamType)
     {
         case HOMETEAM:   // assigns the positions and directions for team 1 player
-            base->getGameS()->setYOffset(yOffset);
+            gameInstance->setYOffset(yOffset);
             // assign positions
             startingPos.push_back(Ogre::Vector3(14.4f,yOffset,352.0f));
             startingPos.push_back(Ogre::Vector3(2.0f,yOffset,347.6f));
@@ -1048,7 +1048,7 @@ bool teamState::setupActivePlayerInstances()  // sets up active player objects
         {
             if (!APIIT.second->getPhysics()->getGameSInitialized())
             {
-                APIIT.second->getPhysics()->setGameS(base->getGameS());
+                APIIT.second->getPhysics()->setGameS(gameInstance);
                 APIIT.second->getPhysics()->setGameSInitialized(true);
             }
             else
@@ -1244,7 +1244,7 @@ void teamState::updatePlayerDirections()  // updates the direction players are f
 //    playerStateVec pInstance = getPlayerInstance();
  //   sizeTVec playerDirection = player->getPlayerDirection(); // stores contents of playerDirectdion from players class in local variable
 //    sizeTVec oldPlayerDirection = player->getOldPlayerDirection();   // stores contents of oldPlayerDirection form players in local variable
-    basketballStateMSharedPtr basketballInstance = base->getGameS()->getBasketballInstance();
+    basketballStateMSharedPtr basketballInstance = gameInstance->getBasketballInstance();
     std::vector<Ogre::SceneNode>::iterator playersIT;
 
     std::string playerID = convert->toString(playerInstance[4]->getData()->getID());
@@ -1446,10 +1446,10 @@ void teamState::executePass()  // executes the pass between players
     conversionSharedPtr convert = conversion::Instance();
     //gameState *gameS = gameState::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
-//    size_t activeBBallInstance = base->getGameS()->getActiveBBallInstance();
+//    size_t activeBBallInstance = gameInstance->getActiveBBallInstance();
     playerPositions passToPlayer = activePlayerInstance[convert->toString(playerWithBallInstance)]->getPassToPlayer();
-//    basketballStateVecSharedPtr basketballInstance = base->getGameS()->getBasketballInstance();
-    basketballStateMSharedPtr activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();
+//    basketballStateVecSharedPtr basketballInstance = gameInstance->getBasketballInstance();
+    basketballStateMSharedPtr activeBasketballInstance = gameInstance->getActiveBasketballInstance();
     Ogre::Vector3 playerWithBallCoords = activePlayerInstance[convert->toString(playerWithBallInstance)]->getNode()->getPosition();
     Ogre::Vector3 passToPlayerCoords = activePlayerInstance[convert->toString(passToPlayer)]->getNode()->getPosition();
 //  exit(0);
@@ -1524,7 +1524,7 @@ void teamState::executePass()  // executes the pass between players
     activeBasketballInstance[0]->getPhysics()->getPhysBody()->setLinearVelocity(btVector3(bballPosChange));
 
 
-    base->getGameS()->setActiveBasketballInstance(activeBasketballInstance);        // saves changes to the basketballInstance object
+    gameInstance->setActiveBasketballInstance(activeBasketballInstance);        // saves changes to the basketballInstance object
 */
 }
 

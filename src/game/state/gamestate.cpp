@@ -1704,7 +1704,7 @@ bool gameState::updateActiveTeamInstances()  // updates all active team instance
     // temporary hack
     for (auto ATIIT : activeTeamInstance)
     {
-        ATIIT.second->updateState();
+        ATIIT.second->updateState(this);
     }
 //FIXME! Needs fixed for playerStateMachine refactoring
 /*

@@ -116,6 +116,13 @@ bool UBC::setup()  // sets up UBC object
 {
     std::string func = "UBC::setup()";
 
+    //    gameEngine *tempGameEObj = new gameEngine;
+    gameEngineSharedPtr tempGameESharedPtr(new gameEngine);
+    gameE = tempGameESharedPtr;
+//    gameE(new gameEngine);
+    logMsg(func +" gameE->setup()");
+    gameE->setup();  // sets up the game engine
+
     UBCBaseSharedPtr tempBaseSharedPtr(new UBCBase);
     base = tempBaseSharedPtr;
     
@@ -212,7 +219,7 @@ void UBC::run()  // runs the game
 {
     conversionSharedPtr convert = conversion::Instance();
 //    exit(0);
-//    sharedPtr<renderEngine> renderTemp = base->getGameE()->getRenderE();
+//    sharedPtr<renderEngine> renderTemp = gameE->getRenderE();
 //    exit(0);
     std::string func = "UBC::run()";
 
@@ -220,11 +227,12 @@ void UBC::run()  // runs the game
 
 //    exit(0);
     base->setup();
-    base->getGameE()->getRenderE()->initSDL(); // Initializes the SDL Subsystem
+    game->setup();
+    gameE->getRenderE()->initSDL(); // Initializes the SDL Subsystem
 //    exit(0);
-    base->getGameE()->getRenderE()->initOgre(); // Initializes the Ogre Subsystem
+    gameE->getRenderE()->initOgre(); // Initializes the Ogre Subsystem
 //    exit(0);
-    base->getGameE()->getRenderE()->createScene(); // creates rendering scene.
+    gameE->getRenderE()->createScene(); // creates rendering scene.
 
 //    sharedPtr<entity> gameStateSharedPtr(new entity);
 
@@ -244,7 +252,7 @@ void UBC::run()  // runs the game
 //    base->getGameS()->createInstances();  // creates object instances
 //    sharedPtr<entity> gameStateSharedPtr(new entity);
 
-    if (base->getGameE()->getRenderE()->getMWindow() == NULL)
+    if (gameE->getRenderE()->getMWindow() == NULL)
     {
         logMsg(func +" mWindow == NULL!");
 //        exit(0);
@@ -252,7 +260,7 @@ void UBC::run()  // runs the game
 //    exit(0);
 //    setupState();  // sets up the game state
 
-    sharedPtr<Ogre::Viewport> vp = base->getGameE()->getRenderE()->getViewPort();
+    sharedPtr<Ogre::Viewport> vp = gameE->getRenderE()->getViewPort();
 //    setViewPort(*vp);  // sets the viewPort for MyGUI
 
 //    exit(0);
@@ -332,7 +340,7 @@ void UBC::run()  // runs the game
 //    sharedPtr<inputSystem> input = getInputE();
 //    exit(0);
 
-//    bool quitGame = base->getGameE()->getQuitGame();
+//    bool quitGame = gameE->getQuitGame();
        
     game->loop(gameE);
 
@@ -340,44 +348,27 @@ void UBC::run()  // runs the game
 
 }
 
-bool UBC::startGame()  // starts the game
-{
-//    sharedPtr<gameState> gameS = gameState::Instance();
-    std::string func = "UBC::startGame()";
-
-    logMsg(func +" beginning");
-
-//    exit(0);
-//BASEREMOVAL    base->getGameS()->setBase(base);
-    base->getGameS()->setupState();
-    
-    logMsg(func +" end");
-//    exit(0);
-    return (true);
-}
-
-
 void UBC::processNetworkEvents()  // processes events in the network subsyatem
 {
-    if (base->getGameE()->getServerRunning())
+    if (gameE->getServerRunning())
     {
-        base->getGameE()->getNetworkE()->networkServer();   // Runs network server code              
+        gameE->getNetworkE()->networkServer();   // Runs network server code
     }
-    if (base->getGameE()->getClientRunning())
+    if (gameE->getClientRunning())
     {
-        base->getGameE()->getNetworkE()->networkClient();   // runs network client code
+        gameE->getNetworkE()->networkClient();   // runs network client code
     }
 }
 
 void UBC::processPhysicsEvents()  // processes events in the physics subsyatem
 {
-    base->getGameE()->getPhysE()->stepWorld(base->getGameE()->getTimer());
+    gameE->getPhysE()->stepWorld(gameE->getTimer());
 }
 
 /*bool UBC::gameLoop()  // Main Game Loop
 {
     conversionSharedPtr convert = conversion::Instance();
-    bool quitGame = base->getGameE()->getQuitGame();
+    bool quitGame = gameE->getQuitGame();
     unsigned long changeInTime = 0;
     unsigned long CITmic = 0;
     unsigned long CITmil = 0;
@@ -413,29 +404,29 @@ void UBC::processPhysicsEvents()  // processes events in the physics subsyatem
 ///        if (base->getGameS()->getGameSetupComplete())  // checks to make sure game setup is complete before continuing
 ///        {
             
-///            if (!base->getGameE()->getSceneCreated())
+///            if (!gameE->getSceneCreated())
 ///            {
 ///                logMsg(func +" Scene Not Created!");
 //                exit(0);
 ///                if (base->getGameS()->getGameType() == SINGLE)
 ///                {
 ///                    logMsg(func +" getGameType() == SINGLE");
-///                    base->getGameE()->setCreateScene(true);
+///                    gameE->setCreateScene(true);
 ///                    exit(0);
 ///                }
 ///                else if (base->getGameS()->getGameType() == MULTILOCAL)
 ///                {
 ///                    logMsg(func +" getGameType() == MULTILOCAL");
-///                    base->getGameE()->setCreateScene(true);
+///                    gameE->setCreateScene(true);
 //                    exit(0);
 ///                }
 ///                else if (base->getGameS()->getGameType() == MULTINET)
 ///                {
 ///                    logMsg(func +" getGameType() == MULTINET");
 ///
-///                    if (base->getGameE()->getNetworkE()->getServerReceivedConnection() || base->getGameE()->getNetworkE()->getClientEstablishedConnection())  // checks if server and client are connected
+///                    if (gameE->getNetworkE()->getServerReceivedConnection() || gameE->getNetworkE()->getClientEstablishedConnection())  // checks if server and client are connected
 ///                    {
-///                        base->getGameE()->setCreateScene(true);
+///                        gameE->setCreateScene(true);
 ///                    }
     //             exit(0);
 ///                }
@@ -448,8 +439,8 @@ void UBC::processPhysicsEvents()  // processes events in the physics subsyatem
         {
             if (startGame())
             {
-                base->getGameE()->setStart(false);
-                base->getGameE()->setRenderScene(true);
+                gameE->setStart(false);
+                gameE->setRenderScene(true);
                 game->setStartActiveGame(false);
             }
             else
@@ -458,14 +449,14 @@ void UBC::processPhysicsEvents()  // processes events in the physics subsyatem
                 exit(0);
             }
         }
-        changeInTimeMicro = base->getGameE()->getTimer().calcChangeInTimeMicro();
-        changeInTimeMill = base->getGameE()->getTimer().calcChangeInTimeMill();
+        changeInTimeMicro = gameE->getTimer().calcChangeInTimeMicro();
+        changeInTimeMill = gameE->getTimer().calcChangeInTimeMill();
         CITmic = changeInTimeMicro.count();
         CITmil = changeInTimeMill.count();
 
         logMsg ("changeInTimeMicro = " +convert->toString(CITmic));
         logMsg ("changeInTimeMill = " +convert->toString(CITmil));
-        changeInTime = base->getGameE()->getTimer().getChangeInTimeMill().count();
+        changeInTime = gameE->getTimer().getChangeInTimeMill().count();
         logMsg ("loopchange = " +convert->toString(changeInTime));
 //        exit(0);
         if (changeInTime >= 10)
@@ -478,17 +469,17 @@ void UBC::processPhysicsEvents()  // processes events in the physics subsyatem
             }
 
 //            logMsg("changeInTime = " +toString(changeInTime));
-            if (base->getGameE()->getRenderScene())
+            if (gameE->getRenderScene())
             {
                 logMsg(func +" gameS->getRenderScene()");
                 
                 base->getGameS()->updateState();  // updates the state of the game instance
             }
-            base->getGameE()->getTimer().setPreviousTime(boost::chrono::system_clock::now());
+            gameE->getTimer().setPreviousTime(boost::chrono::system_clock::now());
         }
 //        exit(0);
         
-        if (!base->getGameE()->getRenderE()->renderFrame())
+        if (!gameE->getRenderE()->renderFrame())
         {
             logMsg(func +" Unable to render frame!");
             exit(0);
@@ -530,8 +521,8 @@ void UBC::gameLoop_old()  // Main Game Loop
 
     int x = 0;
     SDL_StartTextInput();
-//    base->getGameE()->gameEngine();
-    bool quitGame = base->getGameE()->getQuitGame();
+//    gameE->gameEngine();
+    bool quitGame = gameE->getQuitGame();
 //    exit(0);
 //    while (!getQuitGame())
     while (x < 1)
@@ -555,44 +546,44 @@ void UBC::gameLoop_old()  // Main Game Loop
         if (base->getGameS()->getGameSetupComplete())  // checks to make sure game setup is complete before continuing
         {
 //            exit(0);
-            if (!base->getGameE()->getSceneCreated())
+            if (!gameE->getSceneCreated())
             {
                 
                 if (base->getGameS()->getGameType() == SINGLE)
                 {
-                    base->getGameE()->setCreateScene(true);
+                    gameE->setCreateScene(true);
                     exit(0);
                 }
                 else if (base->getGameS()->getGameType() == MULTINET)
                 {
-                    if (base->getGameE()->getNetworkE()->getServerReceivedConnection() || base->getGameE()->getNetworkE()->getClientEstablishedConnection())  // checks if server and client are connected
+                    if (gameE->getNetworkE()->getServerReceivedConnection() || gameE->getNetworkE()->getClientEstablishedConnection())  // checks if server and client are connected
                     {
-                        base->getGameE()->setCreateScene(true);
+                        gameE->setCreateScene(true);
                     }
     //             exit(0);
                 }
             }
         }
 //        exit(0);
-        if (base->getGameE()->getCreateScene())  // checks if the scene should be created
+        if (gameE->getCreateScene())  // checks if the scene should be created
         {
 //            exit(0);
 //              if (render->createScene())
 //            {
-                base->getGameE()->setCreateScene(false);
-                base->getGameE()->setStart(true);
+                gameE->setCreateScene(false);
+                gameE->setStart(true);
 //                  renderScene = true;
-                base->getGameE()->setSceneCreated(true);
+                gameE->setSceneCreated(true);
 //            }
         }
 //        exit(0);
-//        if (base->getGameE()->getStart())  // checks if it's time to start the game
+//        if (gameE->getStart())  // checks if it's time to start the game
 //        {
 //            exit(0);
             if (startGame())
             {
-                base->getGameE()->setStart(false);
-                base->getGameE()->setRenderScene(true);
+                gameE->setStart(false);
+                gameE->setRenderScene(true);
             }
  //       }
 //        exit(0);
@@ -606,52 +597,52 @@ void UBC::gameLoop_old()  // Main Game Loop
 
 //          logMsg("changeInTime = " +toString(changeInTime));
         // updates game logic every 100 milliseconds
-        if (base->getGameE()->getServerRunning() && !base->getGameE()->getNetworkE()->getIsServer())
+        if (gameE->getServerRunning() && !gameE->getNetworkE()->getIsServer())
         {
-            base->getGameE()->getNetworkE()->setIsServer(true);
+            gameE->getNetworkE()->setIsServer(true);
         }
-        if (base->getGameE()->getClientRunning() && !base->getGameE()->getNetworkE()->getIsClient())
+        if (gameE->getClientRunning() && !gameE->getNetworkE()->getIsClient())
         {
-            base->getGameE()->getNetworkE()->setIsClient(true);
+            gameE->getNetworkE()->setIsClient(true);
         }
 
-        if (base->getGameS()->getGameType() == MULTINET && base->getGameE()->getNetworkE()->getTeamType() == NOTEAM)
+        if (base->getGameS()->getGameType() == MULTINET && gameE->getNetworkE()->getTeamType() == NOTEAM)
         {
-            if (base->getGameE()->getNetworkE()->getIsServer())
+            if (gameE->getNetworkE()->getIsServer())
             {
-                base->getGameE()->getNetworkE()->setTeamType(HOMETEAM);
+                gameE->getNetworkE()->setTeamType(HOMETEAM);
             }
             
-            if (base->getGameE()->getNetworkE()->getIsClient())
+            if (gameE->getNetworkE()->getIsClient())
             {
-                base->getGameE()->getNetworkE()->setTeamType(AWAYTEAM);
+                gameE->getNetworkE()->setTeamType(AWAYTEAM);
             }
         }
         
-        logMsg("serverRunning = " +base->getGameE()->getServerRunning());
-        logMsg("clientRunning = " +base->getGameE()->getClientRunning());
-        boost::chrono::microseconds changeInTimeMicro = base->getGameE()->getTimer().calcChangeInTimeMicro();
+        logMsg("serverRunning = " +gameE->getServerRunning());
+        logMsg("clientRunning = " +gameE->getClientRunning());
+        boost::chrono::microseconds changeInTimeMicro = gameE->getTimer().calcChangeInTimeMicro();
         
-        boost::chrono::milliseconds changeInTimeMill = base->getGameE()->getTimer().calcChangeInTimeMill();
-        changeInTime = base->getGameE()->getTimer().getChangeInTimeMill().count();
+        boost::chrono::milliseconds changeInTimeMill = gameE->getTimer().calcChangeInTimeMill();
+        changeInTime = gameE->getTimer().getChangeInTimeMill().count();
         logMsg ("loopchange = " +convert->toString(changeInTime));
 //        exit(0);
         if (changeInTime >= 10)
         {
 //              exit(0);
-            if (base->getGameE()->getServerRunning())
+            if (gameE->getServerRunning())
             {
-                base->getGameE()->getNetworkE()->networkServer();   // Runs network server code
+                gameE->getNetworkE()->networkServer();   // Runs network server code
                 
             }
-            if (base->getGameE()->getClientRunning())
+            if (gameE->getClientRunning())
             {
-                base->getGameE()->getNetworkE()->networkClient();   // runs network client code
+                gameE->getNetworkE()->networkClient();   // runs network client code
             }
 
 
 //            logMsg("changeInTime = " +toString(changeInTime));
-            if (base->getGameE()->getRenderScene())
+            if (gameE->getRenderScene())
             {
                 logMsg("gameS->updateState()");
                 base->getGameS()->updateState();  // updates the state of the game instance
@@ -660,12 +651,12 @@ void UBC::gameLoop_old()  // Main Game Loop
             //boost::chrono::system_clock::time_point newT = boost::chrono::system_clock::now();
             //boost::chrono::milliseconds milliSecs = boost::chrono::duration_cast<boost::chrono::milliseconds>(newT);
             //oldTime = milliSecs.count();
-            base->getGameE()->getTimer().setPreviousTime(boost::chrono::system_clock::now());
+            gameE->getTimer().setPreviousTime(boost::chrono::system_clock::now());
         }
 //        exit(0);
         input->process();
 //        exit(0);
-        if (!base->getGameE()->getRenderE()->renderFrame())
+        if (!gameE->getRenderE()->renderFrame())
         {
             logMsg("Unable to render frame!");
             exit(0);
@@ -681,15 +672,15 @@ bool UBC::updateGUI()  // updates the gui based on received events
     logMsg(func +" beginning");
 
     GUISystemSharedPtr gui = base->getGui();
-    if (base->getGameE()->getInputE()->getMouseClicked())
+    if (gameE->getInputE()->getMouseClicked())
     {
         logMsg(func +" updateGUI Mouse Clicked!");
         exit(0);
-        gui->getMGUI()->injectMousePress(base->getGameE()->getInputE()->getMouseX(), base->getGameE()->getInputE()->getMouseY(), MyGUI::MouseButton::Enum(0));
+        gui->getMGUI()->injectMousePress(gameE->getInputE()->getMouseX(), gameE->getInputE()->getMouseY(), MyGUI::MouseButton::Enum(0));
     }
     else
     {
-        gui->getMGUI()->injectMouseRelease(base->getGameE()->getInputE()->getMouseX(), base->getGameE()->getInputE()->getMouseY(), MyGUI::MouseButton::Enum(0));
+        gui->getMGUI()->injectMouseRelease(gameE->getInputE()->getMouseX(), gameE->getInputE()->getMouseY(), MyGUI::MouseButton::Enum(0));
     }
     base->setGui(gui);
 

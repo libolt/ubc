@@ -61,6 +61,15 @@ AISystem::~AISystem()
 
 }
 
+gameStateSharedPtr AISystem::getGameInstance()  // retrieves the value of gameInstance
+{
+    return (gameInstance);
+}
+void AISystem::setGameInstance(gameStateSharedPtr set)  // sets the value of gameInstance
+{
+    gameInstance = set;
+}
+
 UBCBaseSharedPtr AISystem::getBase()  // retrieves the value of base
 {
     return (base);

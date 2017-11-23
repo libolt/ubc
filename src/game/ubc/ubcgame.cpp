@@ -19,7 +19,10 @@
  ***************************************************************************/
 
 #include "ubc/ubcgame.h"
+#include "engine/gameengine.h"
+#include "ubc/ubcinput.h"
 #include "utilities/conversion.h"
+#include "utilities/logging.h"
 
 // static declarations
 bool UBCGame::startActiveGame;  // stores whether to begin an active game instance
@@ -36,6 +39,15 @@ UBCGame::UBCGame()  // constructor
 UBCGame::~UBCGame()  // destructor
 {
 
+}
+
+gameStateSharedPtr UBCGame::getGameS()  // retrieves the value of gameS
+{
+    return (gameS);
+}
+void UBCGame::setGameS(gameStateSharedPtr set)  // sets the value of gameS
+{
+    gameS = set;
 }
 
 bool UBCGame::getStartActiveGame()  // retrieves the value of startActiveGame
@@ -56,7 +68,19 @@ void UBCGame::setUsersInstancesCreated(bool set)  // sets the value of userInsta
     userInstancesCreated = set;
 }
 
-bool UBCGame::loop(gameEngineSharedPtr gamE)  // Main Game Loop
+bool UBCGame::setup()  // sets up a game instance
+{
+//    gameState *tempGameStateObj = new gameState;
+    gameStateSharedPtr tempGameStateSharedPtr(new gameState);
+    gameS = tempGameStateSharedPtr;
+    logMsg(func +" getGameS()->setInitialized(true)");
+    getGameS()->setInitialized(true);
+
+    return (true);
+}
+
+
+bool UBCGame::loop(gameEngineSharedPtr gameE, UBCInputSharedPtr input)  // Main Game Loop
 {
     conversionSharedPtr convert = conversion::Instance();
     bool quitGame = gameE->getQuitGame();
@@ -66,11 +90,11 @@ bool UBCGame::loop(gameEngineSharedPtr gamE)  // Main Game Loop
     std::string func = "UBC::gameLoop()";
     boost::chrono::microseconds changeInTimeMicro;
     boost::chrono::milliseconds changeInTimeMill;
-    playerStateMachine playerSM;
+/*    playerStateMachine playerSM;
     playerSMData *playerSMD = new playerSMData;
     playerSMData *playerSMD2 = new playerSMData;
     playerSMData *playerSMD3 = new playerSMData;
-
+*/
     logMsg(func +" beginning");
     
 ///    playerSMD->speed = 100;
@@ -89,35 +113,35 @@ bool UBCGame::loop(gameEngineSharedPtr gamE)  // Main Game Loop
     
     while (!quitGame)
     {
-        input->process();
+        input->process(gameE);
 //        processPhysicsEvents();
         
 ///        if (base->getGameS()->getGameSetupComplete())  // checks to make sure game setup is complete before continuing
 ///        {
             
-///            if (!base->getGameE()->getSceneCreated())
+///            if (!gameE->getSceneCreated())
 ///            {
 ///                logMsg(func +" Scene Not Created!");
 //                exit(0);
 ///                if (base->getGameS()->getGameType() == SINGLE)
 ///                {
 ///                    logMsg(func +" getGameType() == SINGLE");
-///                    base->getGameE()->setCreateScene(true);
+///                    gameE->setCreateScene(true);
 ///                    exit(0);
 ///                }
 ///                else if (base->getGameS()->getGameType() == MULTILOCAL)
 ///                {
 ///                    logMsg(func +" getGameType() == MULTILOCAL");
-///                    base->getGameE()->setCreateScene(true);
+///                    gameE->setCreateScene(true);
 //                    exit(0);
 ///                }
 ///                else if (base->getGameS()->getGameType() == MULTINET)
 ///                {
 ///                    logMsg(func +" getGameType() == MULTINET");
 ///
-///                    if (base->getGameE()->getNetworkE()->getServerReceivedConnection() || base->getGameE()->getNetworkE()->getClientEstablishedConnection())  // checks if server and client are connected
+///                    if (gameE->getNetworkE()->getServerReceivedConnection() || gameE->getNetworkE()->getClientEstablishedConnection())  // checks if server and client are connected
 ///                    {
-///                        base->getGameE()->setCreateScene(true);
+///                        gameE->setCreateScene(true);
 ///                    }
     //             exit(0);
 ///                }
@@ -126,13 +150,13 @@ bool UBCGame::loop(gameEngineSharedPtr gamE)  // Main Game Loop
         
        // exit(0);
 
-        if (game->getStartActiveGame())
+        if (startActiveGame)
         {
             if (startGame())
             {
-                base->getGameE()->setStart(false);
-                base->getGameE()->setRenderScene(true);
-                game->setStartActiveGame(false);
+                gameE->setStart(false);
+                gameE->setRenderScene(true);
+                startActiveGame = false;
             }
             else
             {
@@ -140,14 +164,14 @@ bool UBCGame::loop(gameEngineSharedPtr gamE)  // Main Game Loop
                 exit(0);
             }
         }
-        changeInTimeMicro = base->getGameE()->getTimer().calcChangeInTimeMicro();
-        changeInTimeMill = base->getGameE()->getTimer().calcChangeInTimeMill();
+        changeInTimeMicro = gameE->getTimer().calcChangeInTimeMicro();
+        changeInTimeMill = gameE->getTimer().calcChangeInTimeMill();
         CITmic = changeInTimeMicro.count();
         CITmil = changeInTimeMill.count();
 
         logMsg ("changeInTimeMicro = " +convert->toString(CITmic));
         logMsg ("changeInTimeMill = " +convert->toString(CITmil));
-        changeInTime = base->getGameE()->getTimer().getChangeInTimeMill().count();
+        changeInTime = gameE->getTimer().getChangeInTimeMill().count();
         logMsg ("loopchange = " +convert->toString(changeInTime));
 //        exit(0);
         if (changeInTime >= 10)
@@ -160,17 +184,17 @@ bool UBCGame::loop(gameEngineSharedPtr gamE)  // Main Game Loop
             }
 
 //            logMsg("changeInTime = " +toString(changeInTime));
-            if (base->getGameE()->getRenderScene())
+            if (gameE->getRenderScene())
             {
                 logMsg(func +" gameS->getRenderScene()");
                 
                 base->getGameS()->updateState();  // updates the state of the game instance
             }
-            base->getGameE()->getTimer().setPreviousTime(boost::chrono::system_clock::now());
+            gameE->getTimer().setPreviousTime(boost::chrono::system_clock::now());
         }
 //        exit(0);
         
-        if (!base->getGameE()->getRenderE()->renderFrame())
+        if (!gameE->getRenderE()->renderFrame())
         {
             logMsg(func +" Unable to render frame!");
             exit(0);
@@ -178,5 +202,21 @@ bool UBCGame::loop(gameEngineSharedPtr gamE)  // Main Game Loop
     }
     logMsg(func +" end");
 
+    return (true);
+}
+
+bool UBCGame::startGame()  // starts the game
+{
+//    sharedPtr<gameState> gameS = gameState::Instance();
+    std::string func = "UBC::startGame()";
+
+    logMsg(func +" beginning");
+
+//    exit(0);
+//BASEREMOVAL    base->getGameS()->setBase(base);
+    base->getGameS()->setupState();
+
+    logMsg(func +" end");
+//    exit(0);
     return (true);
 }

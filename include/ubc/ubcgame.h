@@ -30,15 +30,24 @@ class UBCGame
         UBCGame();  // constructor
         ~UBCGame();  // destructor
 
+        gameStateSharedPtr getGameInstance();  // retrieves the value of gameS
+        void setGameInstance(gameStateSharedPtr set);  // sets the value of gameS
+
         bool getStartActiveGame();  // retrieves the value of startActiveGame
         void setStartActiveGame(bool set);  // sets the value of startActiveGame
 
         bool getUsersInstancesCreated();  // retrieves the value of userInstancesCreated
         void setUsersInstancesCreated(bool set);  // sets the value of userInstancesCreated
 
-        bool loop(gameEngineSharedPtr game);  // runs the Main loop for the game
+        bool setup();  // sets up a game instance
+
+        bool loop(gameEngineSharedPtr gameE, UBCInputSharedPtr input);  // runs the Main loop for the game
+
+        bool startGame();  // starts a game
 
     private:
+
+        gameStateSharedPtr gameInstance;  // the gameState object
 
         static bool startActiveGame;  // stores whether to begin an active game instance
         static bool userInstancesCreated;  // stores whether user instances have been created

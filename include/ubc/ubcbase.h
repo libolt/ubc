@@ -45,11 +45,7 @@ class UBCBase
         
         bool getInputSUInputSetup();  // retrieves the value of inputSUInputSetup
         void setInputSUInputSetup(bool set);  // sets the value of inputSUInputSetup
-
-            
-        gameStateSharedPtr getGameS();  // retrieves the value of gameS
-        void setGameS(gameStateSharedPtr set);  // sets the value of gameS
-    
+                
         GUISystemSharedPtr getGui();  // retrieves the value of gui
         void setGui(GUISystemSharedPtr set);  // sets the value of gui
 
@@ -92,7 +88,6 @@ class UBCBase
         static bool stateSetup;  // stores whether or not the initial state setup has completed
         static bool userInstancesInputSetup;  // stores status of input configuration for users
         static bool inputSUInputSetup;  // stores whether inputS UInput object has been set
-        gameStateSharedPtr gameS;  // the gameState object
         static GUISystemSharedPtr gui;  // the GUI object.
         static networkStateSharedPtr networkS;  // the gameState object
         static loaderSharedPtr load;  // the loader object

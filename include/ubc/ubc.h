@@ -80,7 +80,6 @@ public:
 
     void run();  // runs the game
     
-    bool startGame();  // starts a game
 
     void processNetworkEvents();  // processes events in the network subsyatem
     

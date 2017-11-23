@@ -148,7 +148,7 @@ public:
     // creates player Instances
 //    bool createPlayerInstances();  // creates the player instances
 
-    bool setPlayerStartPositions();	 // sets the initial coordinates for the players.
+    bool setPlayerStartPositions(gameStateSharedPtr gameInstance);	 // sets the initial coordinates for the players.
     void setPlayerStartActivePositions();  // sets the position the players will play at the start of the game
 
     bool setPlayerStartDirections();  // sets the initial directions for the players.
@@ -164,7 +164,7 @@ public:
     void updatePositions();  // updates player on court positionss
 
     void setupState();  // sets up the state for teamState object
-    void updateState();  // updates the state of the teamState object
+    void updateState(gameStateSharedPtr gameInstance);  // updates the state of the teamState object
     void updateActivePlayerSettings();  // updates the settings of active players
         
 protected:

@@ -95,7 +95,7 @@ void UBCInput::setSetupComplete(bool set)  // sets the value of setupComplete
     setupComplete = set;
 }
 
-void UBCInput::process()  // processes game input
+void UBCInput::process(gameEngineSharedPtr gameE)  // processes game input
 {
     conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
@@ -140,9 +140,9 @@ void UBCInput::process()  // processes game input
 /*    if (base->getInputS()->process())
     {
 
-        if (base->getGameE()->getMenuActive())
+        if (gameE->getMenuActive())
         {
-            gui->menuReceiveKeyPress(convert->toString(base->getGameE()->getInputE()->getKeyPressed())); // sends input to menu key input processing function
+            gui->menuReceiveKeyPress(convert->toString(gameE->getInputE()->getKeyPressed())); // sends input to menu key input processing function
 //            exit(0);
         }
         else
@@ -153,7 +153,7 @@ void UBCInput::process()  // processes game input
             base->getGameS()->setInputInGameWorkQueue(base->getInputS()->getInputInGameWorkQueue());
 
         }
-        base->getGameE()->getInputE()->setKeyPressed(INKEY_NONE);
+        gameE->getInputE()->setKeyPressed(INKEY_NONE);
     }
     else
     {
@@ -167,33 +167,33 @@ void UBCInput::process()  // processes game input
     }
 
 //    exit(0);
-/*    if (base->getGameE()->getInputE()->processInput())
+/*    if (gameE->getInputE()->processInput())
     {
-        if (base->getGameE()->getInputE()->getInputProcessed())
+        if (gameE->getInputE()->getInputProcessed())
         {
             logMsg("Input Processed");
 //            exit(0);
-            if (base->getGameE()->getMenuActive())
+            if (gameE->getMenuActive())
             {
                 logMsg("Input Processed menuActive");
 //                exit(0);
-                logMsg("menuReceiveKeyPress == " +convert->toString(base->getGameE()->getInputE()->getKeyPressed()));
+                logMsg("menuReceiveKeyPress == " +convert->toString(gameE->getInputE()->getKeyPressed()));
 //                exit(0);
-//                getInputS()->setGameE(base->getGameE());
+//                getInputS()->setGameE(gameE);
 //                exit(0);
-//                base->getGameE()->getInputE()->setKeyPressed(INKEY_M);
+//                gameE->getInputE()->setKeyPressed(INKEY_M);
 //                exit(0);
                 getInputS()->process();
 //                 getInputS()->getInputE()->setKeyPressed(INKEY_P);
-                logMsg("menuReceiveKeyPressAgain == " +convert->toString(base->getGameE()->getInputE()->getKeyPressed()));
+                logMsg("menuReceiveKeyPressAgain == " +convert->toString(gameE->getInputE()->getKeyPressed()));
 //                exit(0);
-                gui->menuReceiveKeyPress(convert->toString(base->getGameE()->getInputE()->getKeyPressed())); // sends input to menu key input processing function
+                gui->menuReceiveKeyPress(convert->toString(gameE->getInputE()->getKeyPressed())); // sends input to menu key input processing function
 //                exit(0);
-                if (base->getGameE()->getInputE()->getKeyPressed() == INKEY_T)
+                if (gameE->getInputE()->getKeyPressed() == INKEY_T)
                 {
 //                    exit(0);
                 }
-                base->getGameE()->getInputE()->setKeyPressed(INKEY_NONE);
+                gameE->getInputE()->setKeyPressed(INKEY_NONE);
             }
         }
         if (base->getGameS()->getActiveTeamInstancesCreated())
@@ -210,7 +210,7 @@ void UBCInput::process()  // processes game input
                         int humanPlayer = activeTeamInstance[inputIterator]->getHumanPlayer();
                         logMsg("inputHumanPlayer == " +convert->toString(humanPlayer));
                         //inputMaps inputMap = input->keyMap();
-                        inputWorkQueues inputQueue = base->getGameE()->getInputE()->getInputWorkQueue();
+                        inputWorkQueues inputQueue = gameE->getInputE()->getInputWorkQueue();
         //                              logMsg("INPUT MAP ======== "  +toString(inputMap));
                         std::stringstream ss;
 //                      exit(0);
@@ -306,7 +306,7 @@ void UBCInput::process()  // processes game input
                                     break;
                                     case INQUIT:
                                         logMsg("Quitting!");
-                                        base->getGameE()->setQuitGame(true);
+                                        gameE->setQuitGame(true);
                                         exit(0);
                                     break;
                                     default:
@@ -348,7 +348,7 @@ void UBCInput::process()  // processes game input
                             getNetworkS()->processLocalInput(base->getGameS()->getActiveTeamInstance());
                         }
                         inputQueue.clear();
-                        base->getGameE()->getInputE()->setInputWorkQueue(inputQueue);
+                        gameE->getInputE()->setInputWorkQueue(inputQueue);
                     }
                     ++inputIterator;
                 }
@@ -362,7 +362,7 @@ void UBCInput::process()  // processes game input
 
 }
 
-bool UBCInput::processKeyboard()  // process keyboard input
+bool UBCInput::processKeyboard(gameEngineSharedPtr gameE)  // process keyboard input
 {
     conversionSharedPtr convert;
 
@@ -374,10 +374,10 @@ bool UBCInput::processKeyboard()  // process keyboard input
     {
         logMsg(func +" inputKeyboard->process()");
 
-        if (base->getGameE()->getMenuActive())  // sends key input to the GUI system if menu is active
+        if (gameE->getMenuActive())  // sends key input to the GUI system if menu is active
         {
-            logMsg(func +" base->getGameE()->getMenuActive()");
-            base->getGui()->menuReceiveKeyPress(convert->toString(base->getGameE()->getInputE()->getKeyPressed())); // sends input to menu key input processing function
+            logMsg(func +" gameE->getMenuActive()");
+            base->getGui()->menuReceiveKeyPress(convert->toString(gameE->getInputE()->getKeyPressed())); // sends input to menu key input processing function
             logMsg(func +" base->getGui");
             //            exit(0);
         }
@@ -389,7 +389,7 @@ bool UBCInput::processKeyboard()  // process keyboard input
             base->getGameS()->setInputInGameWorkQueue(inputKeyboard->getInputS()->getInputInGameWorkQueue());
 
         }
-        base->getGameE()->getInputE()->setKeyPressed(INKEY_NONE);
+        gameE->getInputE()->setKeyPressed(INKEY_NONE);
     }
     else
     {

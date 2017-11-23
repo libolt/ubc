@@ -49,9 +49,9 @@ class UBCInput
         bool getSetupComplete();  // retrieves the value of setupComplete
         void setSetupComplete(bool set);  // sets the value of setupComplete
 
-        void process();  // processes game input
+        void process(gameEngineSharedPtr gameE);  // processes game input
 
-        bool processKeyboard();  // process keyboard input
+        bool processKeyboard(gameEngineSharedPtr gameE);  // process keyboard input
         bool processGamePad();  // process gamePad input
         bool processMouse();  // process mouse input
         bool processTouch();  // process touch input

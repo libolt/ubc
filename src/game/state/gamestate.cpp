@@ -1696,7 +1696,7 @@ bool gameState::updateActiveTeamInstances()  // updates all active team instance
 {
     teamStateMSharedPtr activeTeamInstance = getActiveTeamInstance();
     conversionSharedPtr convert = conversion::Instance();
-
+    gameStateSharedPtr gameInstance;
     std::string func = "gameState::updateActiveTeamInstances()";
 
     logMsg(func +" beginning");
@@ -1704,7 +1704,7 @@ bool gameState::updateActiveTeamInstances()  // updates all active team instance
     // temporary hack
     for (auto ATIIT : activeTeamInstance)
     {
-        ATIIT.second->updateState(this);
+        ATIIT.second->updateState(gameInstance);
     }
 //FIXME! Needs fixed for playerStateMachine refactoring
 /*

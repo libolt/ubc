@@ -95,23 +95,23 @@ void UBCInput::setSetupComplete(bool set)  // sets the value of setupComplete
     setupComplete = set;
 }
 
-void UBCInput::process(gameEngineSharedPtr gameE)  // processes game input
+void UBCInput::process(gameEngineSharedPtr gameE, gameStateSharedPtr gameInstance, usersMSharedPtr usersInstance)  // processes game input
 {
     conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    sharedPtr<GUISystem> gui = GUISystem::Instance();
 //    sharedPtr<inputSystem> input = inputSystem::Instance();
 //    networkEngineSharedPtr network = networkEngine::Instance();
-    teamStateMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
+    teamStateMSharedPtr activeTeamInstance = gameInstance->getActiveTeamInstance();
     networkPlayerStateObject netPStateObj;
     std::string func = "UBCInput::process()";
 
     logMsg(func +" begin");
 
-    logMsg(func +" userInstance.size() == " +convert->toString(base->getUsersInstance().size()));
-    logMsg(func +" user 0 inputType == " +convert->toString(base->getUsersInstance()[0]->getInputType()));
+    logMsg(func +" userInstance.size() == " +convert->toString(usersInstance.size()));
+    logMsg(func +" user 0 inputType == " +convert->toString(usersInstance[0]->getInputType()));
 //    exit(0);
-    usersMSharedPtr uInstance = base->getUsersInstance();
+    usersMSharedPtr uInstance = usersInstance;
     for (auto UIIT : uInstance)
     {
         inputTypes inType = UIIT.second->getInputType();       
@@ -119,7 +119,7 @@ void UBCInput::process(gameEngineSharedPtr gameE)  // processes game input
         {
             case KEYBOARD:
                 logMsg(func +" Keyboard Input!");
-                processKeyboard();
+                processKeyboard(gameE, gameInstance);
             break;
             case GAMEPAD:
                 logMsg(func +" GamePad Input!");
@@ -148,9 +148,9 @@ void UBCInput::process(gameEngineSharedPtr gameE)  // processes game input
         else
         {
 //            exit(0);
-            base->getGameS()->setInputReceived(true);
+            gameInstance->setInputReceived(true);
 
-            base->getGameS()->setInputInGameWorkQueue(base->getInputS()->getInputInGameWorkQueue());
+            gameInstance->setInputInGameWorkQueue(base->getInputS()->getInputInGameWorkQueue());
 
         }
         gameE->getInputE()->setKeyPressed(INKEY_NONE);
@@ -160,8 +160,8 @@ void UBCInput::process(gameEngineSharedPtr gameE)  // processes game input
 
     }
 */
-    logMsg("INQ Size = " +convert->toString(base->getGameS()->getInputInGameWorkQueue().size()));
-    for (auto IIGWQ : base->getGameS()->getInputInGameWorkQueue())
+    logMsg("INQ Size = " +convert->toString(gameInstance->getInputInGameWorkQueue().size()));
+    for (auto IIGWQ : gameInstance->getInputInGameWorkQueue())
     {
         logMsg ("INQ = " +convert->toString(IIGWQ));
     }
@@ -196,7 +196,7 @@ void UBCInput::process(gameEngineSharedPtr gameE)  // processes game input
                 gameE->getInputE()->setKeyPressed(INKEY_NONE);
             }
         }
-        if (base->getGameS()->getActiveTeamInstancesCreated())
+        if (gameInstance->getActiveTeamInstancesCreated())
         {
 //            exit(0);
             size_t inputIterator = 0;
@@ -232,8 +232,8 @@ void UBCInput::process(gameEngineSharedPtr gameE)  // processes game input
                         logMsg("inputHumanPlayer == " +convert->toString(humanPlayer));
                         logMsg("inputQueue.size = " +convert->toString(inputQueue.size()));
                         x = 0;
-                        int activeBBallInstance = base->getGameS()->getActiveBBallInstance();
-                        basketballStateVec bballInstance = base->getGameS()->getBasketballInstance();
+                        int activeBBallInstance = gameInstance->getActiveBBallInstance();
+                        basketballStateVec bballInstance = gameInstance->getBasketballInstance();
                         logMsg("humanInstance.size() == " +convert->toString(humanInstance));
                         if (humanInstance < 11) // makes sure that the humanInstance is a valid number
                         {
@@ -247,62 +247,62 @@ void UBCInput::process(gameEngineSharedPtr gameE)  // processes game input
                                         activePlayerInstance[humanInstance]->setMovement(true);
                                         activePlayerInstance[humanInstance]->setDirection(UP);
                                         activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
-                                        base->getGameS()->setActiveTeamInstance(activeTeamInstance);
+                                        gameInstance->setActiveTeamInstance(activeTeamInstance);
 //                                        exit(0);
                                     break;
                                     case INDOWN:
                                         activePlayerInstance[humanInstance]->setMovement(true);
                                         activePlayerInstance[humanInstance]->setDirection(DOWN);
                                         activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
-                                        base->getGameS()->setActiveTeamInstance(activeTeamInstance);
+                                        gameInstance->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INLEFT:
                                         activePlayerInstance[humanInstance]->setMovement(true);
                                         activePlayerInstance[humanInstance]->setDirection(LEFT);
                                         activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
-                                        base->getGameS()->setActiveTeamInstance(activeTeamInstance);
+                                        gameInstance->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INRIGHT:
                                         activePlayerInstance[humanInstance]->setMovement(true);
                                         activePlayerInstance[humanInstance]->setDirection(RIGHT);
                                         activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
-                                        base->getGameS()->setActiveTeamInstance(activeTeamInstance);
+                                        gameInstance->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INUPLEFT:
                                         activePlayerInstance[humanInstance]->setMovement(true);
                                         activePlayerInstance[humanInstance]->setDirection(UPLEFT);
                                         activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
-                                        base->getGameS()->setActiveTeamInstance(activeTeamInstance);
+                                        gameInstance->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INUPRIGHT:
                                         activePlayerInstance[humanInstance]->setMovement(true);
                                         activePlayerInstance[humanInstance]->setDirection(UPRIGHT);
                                         activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
-                                        base->getGameS()->setActiveTeamInstance(activeTeamInstance);
+                                        gameInstance->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INDOWNLEFT:
                                         activePlayerInstance[humanInstance]->setMovement(true);
                                         activePlayerInstance[humanInstance]->setDirection(DOWNLEFT);
                                         activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
-                                        base->getGameS()->setActiveTeamInstance(activeTeamInstance);
+                                        gameInstance->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INDOWNRIGHT:
                                         activePlayerInstance[humanInstance]->setMovement(true);
                                         activePlayerInstance[humanInstance]->setDirection(DOWNRIGHT);
                                         activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
-                                        base->getGameS()->setActiveTeamInstance(activeTeamInstance);
+                                        gameInstance->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INSHOOTBLOCK:
                                         activePlayerInstance[humanInstance]->setMovement(false);
                                         activePlayerInstance[humanInstance]->setShootBlock(true);
                                         activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
-                                        base->getGameS()->setActiveTeamInstance(activeTeamInstance);
+                                        gameInstance->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INPASSSTEAL:
                                         activePlayerInstance[humanInstance]->setMovement(false);
                                         activePlayerInstance[humanInstance]->setPassSteal(true);
                                         activeTeamInstance[inputIterator]->setActivePlayerInstance(activePlayerInstance);
-                                        base->getGameS()->setActiveTeamInstance(activeTeamInstance);
+                                        gameInstance->setActiveTeamInstance(activeTeamInstance);
                                     break;
                                     case INQUIT:
                                         logMsg("Quitting!");
@@ -315,7 +315,7 @@ void UBCInput::process(gameEngineSharedPtr gameE)  // processes game input
                                 ++x;
                             }
                         }
-                        teamStateVecSharedPtr tInstance = base->getGameS()->getActiveTeamInstance();
+                        teamStateVecSharedPtr tInstance = gameInstance->getActiveTeamInstance();
                         playerStateVecSharedPtr activePInstance = tInstance[inputIterator]->getActivePlayerInstance();
                         logMsg("humanInstance == " +convert->toString(humanInstance));
                         //logMsg("inPassSteal == " +convert->toString(activePInstance[humanInstance]->getPassSteal()));
@@ -323,7 +323,7 @@ void UBCInput::process(gameEngineSharedPtr gameE)  // processes game input
 
                         /// FIXME! This if statement should be adapted to work correctly instead of relying on the i variable
                         int i = 0;
-                        if (base->getGameS()->getTeamWithBall() == i)
+                        if (gameInstance->getTeamWithBall() == i)
                         {
                             if (activePlayerInstance[humanInstance]->getMovement())
                             {
@@ -333,19 +333,19 @@ void UBCInput::process(gameEngineSharedPtr gameE)  // processes game input
                                 if (activePlayerInstance[humanInstance]->getID() == activeTeamInstance[inputIterator]->getPlayerWithBallID())
                                 {
                                     bballInstance[activeBBallInstance].setMovement(true);
-                                    base->getGameS()->setBasketballInstance(bballInstance);
+                                    gameInstance->setBasketballInstance(bballInstance);
                                 }
                             }
                         }
-                        if (base->getGameS()->getBasketballInstance().size() > 0)
+                        if (gameInstance->getBasketballInstance().size() > 0)
                         {
                             logMsg("basketballmoved == " +convert->toString(bballInstance[activeBBallInstance].getMovement()));
                         }
-                        base->getGameS()->setActiveTeamInstance(activeTeamInstance);
+                        gameInstance->setActiveTeamInstance(activeTeamInstance);
 
-                        if (base->getGameS()->getGameType() == MULTI)
+                        if (gameInstance->getGameType() == MULTI)
                         {
-                            getNetworkS()->processLocalInput(base->getGameS()->getActiveTeamInstance());
+                            getNetworkS()->processLocalInput(gameInstance->getActiveTeamInstance());
                         }
                         inputQueue.clear();
                         gameE->getInputE()->setInputWorkQueue(inputQueue);
@@ -362,7 +362,7 @@ void UBCInput::process(gameEngineSharedPtr gameE)  // processes game input
 
 }
 
-bool UBCInput::processKeyboard(gameEngineSharedPtr gameE)  // process keyboard input
+bool UBCInput::processKeyboard(gameEngineSharedPtr gameE, gameStateSharedPtr gameInstance)  // process keyboard input
 {
     conversionSharedPtr convert;
 
@@ -384,9 +384,9 @@ bool UBCInput::processKeyboard(gameEngineSharedPtr gameE)  // process keyboard i
         else
         {
 //            exit(0);
-            base->getGameS()->setInputReceived(true);
+            gameInstance->setInputReceived(true);
 
-            base->getGameS()->setInputInGameWorkQueue(inputKeyboard->getInputS()->getInputInGameWorkQueue());
+            gameInstance->setInputInGameWorkQueue(inputKeyboard->getInputS()->getInputInGameWorkQueue());
 
         }
         gameE->getInputE()->setKeyPressed(INKEY_NONE);

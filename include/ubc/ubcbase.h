@@ -40,8 +40,6 @@ class UBCBase
         bool getStateSetup();  // retrieves the value of stateSetup
         void setStateSetup(bool set);  // sets the value of stateSetup        
 
-        bool getUserInstancesInputSetup();  // retrieves the value of userInstancesInputSetup
-        void setUserInstancesInputSetup(bool set);  // sets the value of userInstancesInputSetup
         
         bool getInputSUInputSetup();  // retrieves the value of inputSUInputSetup
         void setInputSUInputSetup(bool set);  // sets the value of inputSUInputSetup
@@ -73,20 +71,12 @@ class UBCBase
         loadTeamsSharedPtr getLoadTeam();  // retrieves the value of loadTeam
         void setLoadTeam(loadTeamsSharedPtr set);  // sets the value of loadTeam
 
-        loadUsersInputsSharedPtr getLoadUsersInput();  // retrieves the value of loadUsersInput
-        void setLoadUsersInput(loadUsersInputsSharedPtr set);  // sets the value of loadUsersInput
-
-        size_t getNumUsers();  // retrieves the value of numUsers
-        void setNumUsers(size_t set);  // sets the value of numUsers
-        
-        usersMSharedPtr getUsersInstance();  // retrieves the value of usersInstance
-        void setUsersInstance(usersMSharedPtr set);  // sets the value of usersInstance
         
         bool setup();  // sets up the engine and states
-    
+
+
     private:
         static bool stateSetup;  // stores whether or not the initial state setup has completed
-        static bool userInstancesInputSetup;  // stores status of input configuration for users
         static bool inputSUInputSetup;  // stores whether inputS UInput object has been set
         static GUISystemSharedPtr gui;  // the GUI object.
         static networkStateSharedPtr networkS;  // the gameState object
@@ -97,10 +87,6 @@ class UBCBase
         static loadOffensePlaysSharedPtr loadOffensePlay;  // the loadOffensePlays Object
         static loadPlayersSharedPtr loadPlayer;  // the loadPlayers Object
         static loadTeamsSharedPtr loadTeam;  // the loadTeams Object
-        static loadUsersInputsSharedPtr loadUsersInput;  // the loadUsersInputs Object
-
-        static usersMSharedPtr usersInstance;  // stores the user object instances
-        static size_t numUsers; // stores number of users playing the game
 
 };
 

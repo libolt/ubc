@@ -39,11 +39,31 @@ class UBCGame
         bool getUsersInstancesCreated();  // retrieves the value of userInstancesCreated
         void setUsersInstancesCreated(bool set);  // sets the value of userInstancesCreated
 
+        loadUsersInputsSharedPtr getLoadUsersInput();  // retrieves the value of loadUsersInput
+        void setLoadUsersInput(loadUsersInputsSharedPtr set);  // sets the value of loadUsersInput
+
+        bool getUserInstancesInputSetup();  // retrieves the value of userInstancesInputSetup
+        void setUserInstancesInputSetup(bool set);  // sets the value of userInstancesInputSetup
+
+        usersMSharedPtr getUsersInstance();  // retrieves the value of usersInstance
+        void setUsersInstance(usersMSharedPtr set);  // sets the value of usersInstance
+
+        size_t getNumUsers();  // retrieves the value of numUsers
+        void setNumUsers(size_t set);  // sets the value of numUsers
+
         bool setup();  // sets up a game instance
 
         bool loop(gameEngineSharedPtr gameE, UBCInputSharedPtr input);  // runs the Main loop for the game
 
         bool startGame();  // starts a game
+
+        bool createUserInstances();  // creates the user instances
+
+        bool setupUserInstancesInput();  // sets up input mapping for each user
+
+        void processNetworkEvents(gameEngineSharedPtr gameE);  // processes events in the network subsyatem
+
+        void processPhysicsEvents(gameEngineSharedPtr gameE);  // processes events in the physics subsyatem
 
     private:
 
@@ -51,6 +71,10 @@ class UBCGame
 
         static bool startActiveGame;  // stores whether to begin an active game instance
         static bool userInstancesCreated;  // stores whether user instances have been created
+        static bool userInstancesInputSetup;  // stores status of input configuration for users
+        static size_t numUsers; // stores number of users playing the game
+        static loadUsersInputsSharedPtr loadUsersInput;  // the loadUsersInputs Object
+        static usersMSharedPtr usersInstance;  // stores the user object instances
 
 };
 #endif // _UBCGAME_H_

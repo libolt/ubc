@@ -79,21 +79,14 @@ public:
     void executeState();  // executes the UBC game code
 
     void run();  // runs the game
-    
-
-    void processNetworkEvents();  // processes events in the network subsyatem
-    
-    void processPhysicsEvents();  // processes events in the physics subsyatem
-    
+        
 //    bool gameLoop();  // runs the Main loop for the game
 
     void gameLoop_old();  // runs the Main loop for the game
 
     bool updateGUI();  // updates the gui based on received events
     
-    bool createUserInstances();  // creates the user instances
 
-    bool setupUserInstancesInput();  // sets up input mapping for each user
     
     bool setupInputSObjUserInput();  // sets up user input mapping for inputS object
     

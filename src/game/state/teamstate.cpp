@@ -437,7 +437,7 @@ void teamState::updateState(gameStateSharedPtr gameInstance)  // updates the sta
         if (!playerStartPositionsSet)
         {
             logMsg(func +" Player Start Positions Not Set!");
-            if (setPlayerStartPositions())  // sets starting positions for the players
+            if (setPlayerStartPositions(gameInstance))  // sets starting positions for the players
             {
                 playerStartPositionsSet = true;
                 logMsg("Player Start Positions set!");
@@ -1235,7 +1235,7 @@ void teamState::updateActivePlayers()  // updates the states of active players
 
 }
 
-void teamState::updatePlayerDirections()  // updates the direction players are facing
+void teamState::updatePlayerDirections(gameStateSharedPtr gameInstance)  // updates the direction players are facing
 {
     conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();

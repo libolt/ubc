@@ -50,7 +50,7 @@ class playerData;
 class jumpBalls;
 //class state;
 
-class gameState : public state, public gameStateShared
+class gameState : public state, public gameStateShared, public std::enable_shared_from_this<gameState>
 {
 public:
 

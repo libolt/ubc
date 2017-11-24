@@ -32,7 +32,6 @@
 
 // Static Declarations
 bool UBCBase::stateSetup;
-bool UBCBase::userInstancesInputSetup;  // stores status of input configuration for users
 bool UBCBase::inputSUInputSetup;  // stores whether inputS UInput object has been set
 
 //sharedPtr<gameState> UBCBase::gameS;  // the gameState object
@@ -45,18 +44,13 @@ loadHoopsSharedPtr UBCBase::loadHoop;  // the loadHoops object
 loadOffensePlaysSharedPtr UBCBase::loadOffensePlay;  // the loadOffensePlays Object
 loadPlayersSharedPtr UBCBase::loadPlayer;  // the loadPlayers Object
 loadTeamsSharedPtr UBCBase::loadTeam;  // the loadTeams Object
-loadUsersInputsSharedPtr UBCBase::loadUsersInput;  // the loadUsersInputs Object
 
-size_t UBCBase::numUsers;  // stores the number of users playing the game
-usersMSharedPtr UBCBase::usersInstance; // stores the user object instances
 
 UBCBase::UBCBase()  // constructor
 {
     stateSetup = false;
 
-    userInstancesInputSetup = false;
     inputSUInputSetup = false;
-    numUsers = 0;
 
 }
 
@@ -73,15 +67,6 @@ bool UBCBase::getStateSetup()  // retrieves the value of stateSetup
 void UBCBase::setStateSetup(bool set)  // sets the value of stateSetup
 {
     stateSetup = set;
-}
-
-bool UBCBase::getUserInstancesInputSetup()  // retrieves the value of userInstancesInputSetup
-{
-    return (userInstancesInputSetup);
-}
-void UBCBase::setUserInstancesInputSetup(bool set)  // sets the value of userInstancesInputSetup
-{
-    userInstancesInputSetup = set;
 }
 
 bool UBCBase::getInputSUInputSetup()  // retrieves the value of inputSUInputSetup
@@ -174,32 +159,7 @@ void UBCBase::setLoadTeam(loadTeamsSharedPtr set)  // sets the value of loadTeam
     loadTeam = set;
 }
 
-loadUsersInputsSharedPtr UBCBase::getLoadUsersInput()  // retrieves the value of loadUsersInput
-{
-    return (loadUsersInput);
-}
-void UBCBase::setLoadUsersInput(loadUsersInputsSharedPtr set)  // sets the value of loadUsersInput
-{
-    loadUsersInput = set;
-}
 
-size_t UBCBase::getNumUsers()  // retrieves the value of numUsers
-{
-    return (numUsers);
-}
-void UBCBase::setNumUsers(size_t set)  // sets the value of numUsers
-{
-    numUsers = set;
-}
-
-usersMSharedPtr UBCBase::getUsersInstance()  // retrieves the value of usersInstance
-{
-    return (usersInstance);
-}
-void UBCBase::setUsersInstance(usersMSharedPtr set)  // sets the value of usersInstance
-{
-    usersInstance = set;
-}
 
 bool UBCBase::setup()  // sets up the engine and states
 {
@@ -217,12 +177,7 @@ bool UBCBase::setup()  // sets up the engine and states
     load = tempLoaderSharedPtr;
 
     //FIXME! should not be hard coded
-    numUsers = 1;
-    for (int x=0;x<numUsers;++x)
-    {
-        usersSharedPtr tempUser(new users);
-        usersInstance.insert(std::pair<size_t, usersSharedPtr>(x,tempUser));
-    }
+//    numUsers = 1;
 //    exit(0);
 //    networkState *tempNetworkStateObj = new networkState;
 ///    sharedPtr<networkState> tempNetworkStateSharedPtr = sharedPtr<networkState>(new networkState);

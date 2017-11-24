@@ -132,9 +132,9 @@ bool UBC::setup()  // sets up UBC object
     {
         if (base->setup())
         {
-//            base->getGameS()->setInitialized(true);
+//            gameInstance->setInitialized(true);
 
-//BASEREMOVAL            base->getGameS()->setBase(base);
+//BASEREMOVAL            gameInstance->setBase(base);
 
 //            base->getGui()->setBase(base);
 
@@ -154,7 +154,7 @@ bool UBC::setup()  // sets up UBC object
         GUISystemSharedPtr tempGUISharedPtr(new GUISystem);
         base->setGui(tempGUISharedPtr);
 //BASEREMOVAL        base->getGui()->setBase(base);
-//BASEREMOVAL        base->getGameS()->setBase(base);
+//BASEREMOVAL        gameInstance->setBase(base);
         base->setStateSetup(true);
 
     }
@@ -173,7 +173,7 @@ bool UBC::setup()  // sets up UBC object
     logMsg(func +" end");
     
 //        exit(0);
-//        gui->getBase()->setGameS(base->getGameS());
+//        gui->getBase()->setGameS(gameInstance);
 //        exit(0);
 }
 
@@ -249,7 +249,7 @@ void UBC::run()  // runs the game
 //        return (false);
     }
 //    exit(0);
-//    base->getGameS()->createInstances();  // creates object instances
+//    gameInstance->createInstances();  // creates object instances
 //    sharedPtr<entity> gameStateSharedPtr(new entity);
 
     if (gameE->getRenderE()->getMWindow() == NULL)
@@ -266,12 +266,12 @@ void UBC::run()  // runs the game
 //    exit(0);
     
     //FIXME! Hard coded until code is restructured
-    base->setNumUsers(1);
+    game->setNumUsers(1);
     
     logMsg(func + " Creating Users Instances!");
     if (!game->getUsersInstancesCreated())
     {
-        if (createUserInstances())
+        if (game->createUserInstances())
         {
             game->setUsersInstancesCreated(true);
         }
@@ -287,11 +287,11 @@ void UBC::run()  // runs the game
     
     logMsg(func + "Setting up Users Input");
     // sets up users input
-    if (game->getUsersInstancesCreated() && !base->getUserInstancesInputSetup())
+    if (game->getUsersInstancesCreated() && !game->getUserInstancesInputSetup())
     {
-        if (setupUserInstancesInput())
+        if (game->setupUserInstancesInput())
         {
-            base->setUserInstancesInputSetup(true);
+            game->setUserInstancesInputSetup(true);
         }
         else
         {
@@ -342,28 +342,13 @@ void UBC::run()  // runs the game
 
 //    bool quitGame = gameE->getQuitGame();
        
-    game->loop(gameE);
+    game->loop(gameE, input);
 
     logMsg(func +" end");
 
 }
 
-void UBC::processNetworkEvents()  // processes events in the network subsyatem
-{
-    if (gameE->getServerRunning())
-    {
-        gameE->getNetworkE()->networkServer();   // Runs network server code
-    }
-    if (gameE->getClientRunning())
-    {
-        gameE->getNetworkE()->networkClient();   // runs network client code
-    }
-}
 
-void UBC::processPhysicsEvents()  // processes events in the physics subsyatem
-{
-    gameE->getPhysE()->stepWorld(gameE->getTimer());
-}
 
 /*bool UBC::gameLoop()  // Main Game Loop
 {
@@ -401,26 +386,26 @@ void UBC::processPhysicsEvents()  // processes events in the physics subsyatem
         input->process();
 //        processPhysicsEvents();
         
-///        if (base->getGameS()->getGameSetupComplete())  // checks to make sure game setup is complete before continuing
+///        if (gameInstance->getGameSetupComplete())  // checks to make sure game setup is complete before continuing
 ///        {
             
 ///            if (!gameE->getSceneCreated())
 ///            {
 ///                logMsg(func +" Scene Not Created!");
 //                exit(0);
-///                if (base->getGameS()->getGameType() == SINGLE)
+///                if (gameInstance->getGameType() == SINGLE)
 ///                {
 ///                    logMsg(func +" getGameType() == SINGLE");
 ///                    gameE->setCreateScene(true);
 ///                    exit(0);
 ///                }
-///                else if (base->getGameS()->getGameType() == MULTILOCAL)
+///                else if (gameInstance->getGameType() == MULTILOCAL)
 ///                {
 ///                    logMsg(func +" getGameType() == MULTILOCAL");
 ///                    gameE->setCreateScene(true);
 //                    exit(0);
 ///                }
-///                else if (base->getGameS()->getGameType() == MULTINET)
+///                else if (gameInstance->getGameType() == MULTINET)
 ///                {
 ///                    logMsg(func +" getGameType() == MULTINET");
 ///
@@ -463,7 +448,7 @@ void UBC::processPhysicsEvents()  // processes events in the physics subsyatem
         {
             logMsg(func +"changeInTime > 10!");
 //            exit(0);
-            if (base->getGameS()->getGameType() == MULTINET)
+            if (gameInstance->getGameType() == MULTINET)
             {
                 processNetworkEvents();             
             }
@@ -473,7 +458,7 @@ void UBC::processPhysicsEvents()  // processes events in the physics subsyatem
             {
                 logMsg(func +" gameS->getRenderScene()");
                 
-                base->getGameS()->updateState();  // updates the state of the game instance
+                gameInstance->updateState();  // updates the state of the game instance
             }
             gameE->getTimer().setPreviousTime(boost::chrono::system_clock::now());
         }
@@ -493,6 +478,8 @@ void UBC::processPhysicsEvents()  // processes events in the physics subsyatem
 void UBC::gameLoop_old()  // Main Game Loop
 {
     conversionSharedPtr convert = conversion::Instance();
+    gameStateSharedPtr gameInstance; // only done to fix build error
+    bool startGame;  // only done to fix build error
 /*    sharedPtr<gameState> gameS = gameState::Instance();
 //    sharedPtr<GUISystem> gui = GUISystem::Instance();
 //    sharedPtr<inputSystem> input = inputSystem::Instance();
@@ -543,18 +530,18 @@ void UBC::gameLoop_old()  // Main Game Loop
 ///            sound->loadSound("cbeep.wav");
 ///        }
 
-        if (base->getGameS()->getGameSetupComplete())  // checks to make sure game setup is complete before continuing
+        if (gameInstance->getGameSetupComplete())  // checks to make sure game setup is complete before continuing
         {
 //            exit(0);
             if (!gameE->getSceneCreated())
             {
                 
-                if (base->getGameS()->getGameType() == SINGLE)
+                if (gameInstance->getGameType() == SINGLE)
                 {
                     gameE->setCreateScene(true);
                     exit(0);
                 }
-                else if (base->getGameS()->getGameType() == MULTINET)
+                else if (gameInstance->getGameType() == MULTINET)
                 {
                     if (gameE->getNetworkE()->getServerReceivedConnection() || gameE->getNetworkE()->getClientEstablishedConnection())  // checks if server and client are connected
                     {
@@ -580,11 +567,12 @@ void UBC::gameLoop_old()  // Main Game Loop
 //        if (gameE->getStart())  // checks if it's time to start the game
 //        {
 //            exit(0);
-            if (startGame())
+/*            if (startGame())
             {
                 gameE->setStart(false);
                 gameE->setRenderScene(true);
             }
+*/
  //       }
 //        exit(0);
 //        lastFPS = getRenderE()->getMWindow()->getLastFPS();
@@ -606,7 +594,7 @@ void UBC::gameLoop_old()  // Main Game Loop
             gameE->getNetworkE()->setIsClient(true);
         }
 
-        if (base->getGameS()->getGameType() == MULTINET && gameE->getNetworkE()->getTeamType() == NOTEAM)
+        if (gameInstance->getGameType() == MULTINET && gameE->getNetworkE()->getTeamType() == NOTEAM)
         {
             if (gameE->getNetworkE()->getIsServer())
             {
@@ -645,7 +633,7 @@ void UBC::gameLoop_old()  // Main Game Loop
             if (gameE->getRenderScene())
             {
                 logMsg("gameS->updateState()");
-                base->getGameS()->updateState();  // updates the state of the game instance
+                gameInstance->updateState();  // updates the state of the game instance
             }
             
             //boost::chrono::system_clock::time_point newT = boost::chrono::system_clock::now();
@@ -654,7 +642,7 @@ void UBC::gameLoop_old()  // Main Game Loop
             gameE->getTimer().setPreviousTime(boost::chrono::system_clock::now());
         }
 //        exit(0);
-        input->process();
+//        input->process(gameE, gameInstance);
 //        exit(0);
         if (!gameE->getRenderE()->renderFrame())
         {
@@ -689,84 +677,14 @@ bool UBC::updateGUI()  // updates the gui based on received events
     return (true);
 }
 
-bool UBC::createUserInstances()  // creates the user instances
-{
-    conversionSharedPtr convert = conversion::Instance();
-    usersMSharedPtr tempUserInstance;
-    std::string func = "UBC::createUserInstances()";
 
-    logMsg(func +" beginning");
-    
-    size_t x = 0;
-    
-    usersSharedPtr tempUsers(new users);
-    for (x=0;x<base->getNumUsers();++x)
-    {
-       std::string userName = "player" +convert->toString(x);
-       logMsg(func +" " +userName);
-       tempUserInstance.insert(std::pair<size_t, usersSharedPtr>(x, tempUsers));
-    }
-    
-    logMsg(func +" end");
-//    exit(0);
-    
-    return (true);
-}
-
-bool UBC::setupUserInstancesInput()  // sets up input mapping for each user
-{
-    conversionSharedPtr convert = conversion::Instance();
-    loadUsersInputsSharedPtr loadUsersInput = base->getLoadUsersInput();
-//    inputEngineSharedPtr tempInputSharedPtr(new inputEngine);
-//    inputE = tempInputSharedPtr;
-    usersInputsVecSharedPtr tempUserInput;
-    
-    tempUserInput = loadUsersInput->loadUsersInputFiles();  // loads user defined input from file.
-    std::string func = "UBC::setupUserInstancesInput()";
-    
-    logMsg(func +" load->checkIfUserInputsLoaded()");
-
-    if (loadUsersInput->checkIfUsersInputsLoaded())
-    {
-        tempUserInput = loadUsersInput->getUIInstance();
-        if (tempUserInput.size() > 0)
-        {
-            logMsg(func +" tempUserInput Loaded!");
-        }
-        else
-        {
-            logMsg(func +" tempUserInput NOT Loaded!");
-        }
-    }
-    else
-    {
-        logMsg(func +" loading of User Input failed!");
-        exit(false);
-    }
-
-    usersMSharedPtr tempUsersInstance;
-    tempUsersInstance = base->getUsersInstance();
-    size_t x = 0;
-    // sets the default input for the users
-    for ( auto TUIIT : tempUsersInstance)
-    {
-        TUIIT.second->setUserInput(tempUserInput[x]);
-        TUIIT.second->setInputType(tempUserInput[x]->getType());
-        ++x;
-    }
-    logMsg(func +" keyQuit == " +convert->toString(tempUserInput[0]->getKeyQuit()));
-//    exit(0);
-    base->setUsersInstance(tempUsersInstance);
-    
-    return (true);
-}
 
 bool UBC::setupInputSObjUserInput()  // sets up user input mapping for inputS object
 {
     usersMSharedPtr tempUsersInstance;
     usersInputsVecSharedPtr tempUserInput;
     
-    tempUsersInstance = base->getUsersInstance();
+    tempUsersInstance = game->getUsersInstance();
 
     
     for ( auto TUIIT : tempUsersInstance)

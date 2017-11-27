@@ -60,8 +60,11 @@ public:
     gameEngineSharedPtr getGameE();  // retrieves the value of gameE
     void setGameE(gameEngineSharedPtr set);  // sets the value of gameE
 
-    UBCBaseSharedPtr getBase();  // retrieves the value of base
-    void setBase(UBCBaseSharedPtr set);  // sets the value of base
+    GUISystemSharedPtr getGui();  // retrieves the value of gui
+    void setGui(GUISystemSharedPtr set);  // sets the value of gui
+
+//    UBCBaseSharedPtr getBase();  // retrieves the value of base
+//    void setBase(UBCBaseSharedPtr set);  // sets the value of base
  
     UBCGameSharedPtr getGame();  // retrieves the value of game
     void setGame(UBCGameSharedPtr set);  // sets the value of game
@@ -96,7 +99,9 @@ private:
 
     static gameEngineSharedPtr gameE;  // the gameEngine object
 
-    static UBCBaseSharedPtr base;  // static copy of base class
+    static GUISystemSharedPtr gui;  // the GUI object.
+
+//    static UBCBaseSharedPtr base;  // static copy of base class
 
     static UBCGameSharedPtr game;  // static copy of game class
 

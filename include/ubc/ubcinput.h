@@ -34,11 +34,8 @@ class UBCInput
         UBCInput();  // constructor
         ~UBCInput();  // destructor
 
-        UBCBaseSharedPtr getBase();  // retrieves the value of UBCBase
-        void setBase(UBCBaseSharedPtr set);  // sets the value of UBCBase
-
-        inputSharedPtr getInputS();  // retrieves the value of inputS
-        void setInputS(inputSharedPtr set);  // sets the value of inputS
+        inputSharedPtr getInputInstance();  // retrieves the value of inputS
+        void setInputInstance(inputSharedPtr set);  // sets the value of inputS
 
         inputGamePadsSharedPtr getInputGamePad();  // retrieves the value of inputGamePad
         void setInputGamePad(inputGamePadsSharedPtr set);  // sets the value of inputGamePad
@@ -49,9 +46,9 @@ class UBCInput
         bool getSetupComplete();  // retrieves the value of setupComplete
         void setSetupComplete(bool set);  // sets the value of setupComplete
 
-        void process(gameEngineSharedPtr gameE, gameStateSharedPtr gameInstance, usersMSharedPtr usersInstance);  // processes game input
+        void process(gameEngineSharedPtr gameE, gameStateSharedPtr gameInstance, usersMSharedPtr usersInstance, GUISystemSharedPtr gui);  // processes game input
 
-        bool processKeyboard(gameEngineSharedPtr gameE, gameStateSharedPtr gameInstance);  // process keyboard input
+        bool processKeyboard(gameEngineSharedPtr gameE, gameStateSharedPtr gameInstance, GUISystemSharedPtr gui);  // process keyboard input
         bool processGamePad();  // process gamePad input
         bool processMouse();  // process mouse input
         bool processTouch();  // process touch input
@@ -60,8 +57,7 @@ class UBCInput
 
     private:
     
-        static UBCBaseSharedPtr base;  // static copy of base class
-        static inputSharedPtr inputS;  // the base input object
+        static inputSharedPtr inputInstance;  // the base input object
         static inputGamePadsSharedPtr inputGamePad;  // the inputGamePads object
         static inputKeyboardsSharedPtr inputKeyboard;  // the inputKeyboards object
 

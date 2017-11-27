@@ -38,11 +38,7 @@ class UBCBase
         ~UBCBase();  // destructor
 
         bool getStateSetup();  // retrieves the value of stateSetup
-        void setStateSetup(bool set);  // sets the value of stateSetup        
-
-        
-        bool getInputSUInputSetup();  // retrieves the value of inputSUInputSetup
-        void setInputSUInputSetup(bool set);  // sets the value of inputSUInputSetup
+        void setStateSetup(bool set);  // sets the value of stateSetup           
                 
         GUISystemSharedPtr getGui();  // retrieves the value of gui
         void setGui(GUISystemSharedPtr set);  // sets the value of gui
@@ -53,41 +49,13 @@ class UBCBase
         loaderSharedPtr getLoad();  // retrieves the value of load
         void setLoad(loaderSharedPtr set);  // sets the value of load
         
-        loadBasketballsSharedPtr getLoadBasketball();  // retrieves the value of loadBasketball
-        void setLoadBasketball(loadBasketballsSharedPtr set);  // sets the value of loadBasketball
-
-        loadCourtsSharedPtr getLoadCourt();  // retrieves the value of loadCourt
-        void setLoadCourt(loadCourtsSharedPtr set);  // sets the value of loadCourt
-
-        loadHoopsSharedPtr getLoadHoop();  // retrieves the value of loadHoop
-        void setLoadHoop(loadHoopsSharedPtr set);  // sets the value of loadHoop
-
-        loadOffensePlaysSharedPtr getLoadOffensePlay();  // retrieves the value of loadOffensePlay
-        void setLoadOffensePlay(loadOffensePlaysSharedPtr set);  // sets the value of loadOffensePlay
-
-        loadPlayersSharedPtr getLoadPlayer();  // retrieves the value of loadPlayer
-        void setLoadPlayer(loadPlayersSharedPtr set);  // sets the value of loadPlayer
-
-        loadTeamsSharedPtr getLoadTeam();  // retrieves the value of loadTeam
-        void setLoadTeam(loadTeamsSharedPtr set);  // sets the value of loadTeam
-
-        
         bool setup();  // sets up the engine and states
 
 
     private:
         static bool stateSetup;  // stores whether or not the initial state setup has completed
-        static bool inputSUInputSetup;  // stores whether inputS UInput object has been set
-        static GUISystemSharedPtr gui;  // the GUI object.
-        static networkStateSharedPtr networkS;  // the gameState object
-        static loaderSharedPtr load;  // the loader object
-        static loadBasketballsSharedPtr loadBasketball;  // the loadBasketballs object
-        static loadCourtsSharedPtr loadCourt;  // the loadCourts object
-        static loadHoopsSharedPtr loadHoop;  // the loadHoops object
-        static loadOffensePlaysSharedPtr loadOffensePlay;  // the loadOffensePlays Object
-        static loadPlayersSharedPtr loadPlayer;  // the loadPlayers Object
-        static loadTeamsSharedPtr loadTeam;  // the loadTeams Object
-
+                        static loaderSharedPtr load;  // the loader object
+        
 };
 
 #endif

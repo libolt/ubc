@@ -31,26 +31,18 @@
 #include "users/users.h"
 
 // Static Declarations
-bool UBCBase::stateSetup;
-bool UBCBase::inputSUInputSetup;  // stores whether inputS UInput object has been set
+//bool UBCBase::stateSetup;
+
 
 //sharedPtr<gameState> UBCBase::gameS;  // the gameState object
-GUISystemSharedPtr UBCBase::gui;  // the GUI object.
-networkStateSharedPtr UBCBase::networkS;  // the networkState object
-loaderSharedPtr UBCBase::load;  // the loader object
-loadBasketballsSharedPtr UBCBase::loadBasketball;  // the loadBasketballs object
-loadCourtsSharedPtr UBCBase::loadCourt;  // the loadCourts object
-loadHoopsSharedPtr UBCBase::loadHoop;  // the loadHoops object
-loadOffensePlaysSharedPtr UBCBase::loadOffensePlay;  // the loadOffensePlays Object
-loadPlayersSharedPtr UBCBase::loadPlayer;  // the loadPlayers Object
-loadTeamsSharedPtr UBCBase::loadTeam;  // the loadTeams Object
+//loaderSharedPtr UBCBase::load;  // the loader object
 
 
 UBCBase::UBCBase()  // constructor
 {
     stateSetup = false;
 
-    inputSUInputSetup = false;
+
 
 }
 
@@ -59,7 +51,7 @@ UBCBase::~UBCBase()  // destructor
     
 }
 
-bool UBCBase::getStateSetup()  // retrieves the value of stateSetup
+/*bool UBCBase::getStateSetup()  // retrieves the value of stateSetup
 {
     return (stateSetup);
 }
@@ -69,32 +61,7 @@ void UBCBase::setStateSetup(bool set)  // sets the value of stateSetup
     stateSetup = set;
 }
 
-bool UBCBase::getInputSUInputSetup()  // retrieves the value of inputSUInputSetup
-{
-    return (inputSUInputSetup);
-}
-void UBCBase::setInputSUInputSetup(bool set)  // sets the value of inputSUInputSetup
-{
-    inputSUInputSetup = set;
-}
 
-GUISystemSharedPtr UBCBase::getGui()  // retrieves the value of gui
-{
-    return (gui);
-}
-void UBCBase::setGui(GUISystemSharedPtr set)  // sets the value of gui
-{
-    gui = set;
-}
-
-networkStateSharedPtr UBCBase::getNetworkS()  // retrieves the value of networkS
-{
-    return (networkS);
-}
-void UBCBase::setNetworkS(networkStateSharedPtr set)  // sets the value of networkS
-{
-    networkS = set;
-}
         
 loaderSharedPtr UBCBase::getLoad()  // retrieves the value of load
 {
@@ -105,59 +72,6 @@ void UBCBase::setLoad(loaderSharedPtr set)  // sets the value of load
     load = set;
 }
 
-loadBasketballsSharedPtr UBCBase::getLoadBasketball()  // retrieves the value of loadBasketball
-{
-    return(loadBasketball);
-}
-void UBCBase::setLoadBasketball(loadBasketballsSharedPtr set)  // sets the value of loadBasketball
-{
-    loadBasketball = set;
-}
-
-loadCourtsSharedPtr UBCBase::getLoadCourt()  // retrieves the value of loadCourt
-{
-    return (loadCourt);
-}
-void UBCBase::setLoadCourt(loadCourtsSharedPtr set)  // sets the value of loadCourt
-{
-    loadCourt = set;
-}
-
-loadHoopsSharedPtr UBCBase::getLoadHoop()  // retrieves the value of loadHoop
-{
-    return (loadHoop);
-}
-void UBCBase::setLoadHoop(loadHoopsSharedPtr set)  // sets the value of loadHoop
-{
-    loadHoop = set;
-}
-
-loadOffensePlaysSharedPtr UBCBase::getLoadOffensePlay()  // retrieves the value of loadOffensePlay
-{
-    return (loadOffensePlay);
-}
-void UBCBase::setLoadOffensePlay(loadOffensePlaysSharedPtr set)  // sets the value of loadOffensePlay
-{
-    loadOffensePlay = set;
-}
-
-loadPlayersSharedPtr UBCBase::getLoadPlayer()  // retrieves the value of loadPlayer
-{
-    return (loadPlayer);
-}
-void UBCBase::setLoadPlayer(loadPlayersSharedPtr set)  // sets the value of loadPlayer
-{
-    loadPlayer = set;
-}
-
-loadTeamsSharedPtr UBCBase::getLoadTeam()  // retrieves the value of loadTeam
-{
-    return (loadTeam);
-}
-void UBCBase::setLoadTeam(loadTeamsSharedPtr set)  // sets the value of loadTeam
-{
-    loadTeam = set;
-}
 
 
 
@@ -182,17 +96,17 @@ bool UBCBase::setup()  // sets up the engine and states
 //    networkState *tempNetworkStateObj = new networkState;
 ///    sharedPtr<networkState> tempNetworkStateSharedPtr = sharedPtr<networkState>(new networkState);
 ///    networkS = tempNetworkStateSharedPtr;
-/*    inputSharedPtr tempInputStateSharedPtr(new input);
-    inputS = tempInputStateSharedPtr;
+///    inputSharedPtr tempInputStateSharedPtr(new input);
+///    inputS = tempInputStateSharedPtr;
 
-    inputS->setInputE(gameE->getInputE());
-    logMsg(func +" inputS->setup()");
-    inputS->setup();  // sets up the inputState object
-*/
+///    inputS->setInputE(gameE->getInputE());
+///    logMsg(func +" inputS->setup()");
+///    inputS->setup();  // sets up the inputState object
+
     stateSetup = true;
     
     logMsg(func +" end");
     
     return (true);
 }
-
+*/

@@ -25,7 +25,7 @@
 #include "utilities/typedefs.h"
 
 // static declarations
-inputSharedPtr inputGamePads::inputS;  // input object
+inputSharedPtr inputGamePads::inputInstance;  // input object
 
 inputGamePads::inputGamePads()  // constructor
 {   
@@ -36,13 +36,13 @@ inputGamePads::~inputGamePads()  // destructor
     
 }
 
-inputSharedPtr inputGamePads::getInputS()  // retrieves the value of inputS
+inputSharedPtr inputGamePads::getInputInstance()  // retrieves the value of inputInstance
 {
-    return (inputS);
+    return (inputInstance);
 }
-void inputGamePads::setInputS(inputSharedPtr set)  // sets the value of inputS
+void inputGamePads::setInputInstance(inputSharedPtr set)  // sets the value of inputInstance
 {
-    inputS = set;
+    inputInstance = set;
 }
 
 bool inputGamePads::getSetupComplete()  // retrieves the value of setupComplete
@@ -183,12 +183,12 @@ bool inputGamePads::setup()  // sets up the inputGamePads object
 
     logMsg(func +" begin");
 
-    if (!inputS->getSetupComplete())
+    if (!inputInstance->getSetupComplete())
     {
-        logMsg(func +" !inputS->getSetupComplete()");
-        if (inputS->setup())
+        logMsg(func +" !inputInstance->getSetupComplete()");
+        if (inputInstance->setup())
         {
-            inputS->setSetupComplete(true);
+            inputInstance->setSetupComplete(true);
         }
         else
         {

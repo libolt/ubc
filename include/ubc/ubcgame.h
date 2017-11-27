@@ -33,11 +33,32 @@ class UBCGame
         gameStateSharedPtr getGameInstance();  // retrieves the value of gameS
         void setGameInstance(gameStateSharedPtr set);  // sets the value of gameS
 
+        networkStateSharedPtr getNetworkS();  // retrieves the value of networkS
+        void setNetworkS(networkStateSharedPtr set);  // sets the value of networkS
+
         bool getStartActiveGame();  // retrieves the value of startActiveGame
         void setStartActiveGame(bool set);  // sets the value of startActiveGame
 
         bool getUsersInstancesCreated();  // retrieves the value of userInstancesCreated
         void setUsersInstancesCreated(bool set);  // sets the value of userInstancesCreated
+
+       loadBasketballsSharedPtr getLoadBasketball();  // retrieves the value of loadBasketball
+        void setLoadBasketball(loadBasketballsSharedPtr set);  // sets the value of loadBasketball
+
+        loadCourtsSharedPtr getLoadCourt();  // retrieves the value of loadCourt
+        void setLoadCourt(loadCourtsSharedPtr set);  // sets the value of loadCourt
+
+        loadHoopsSharedPtr getLoadHoop();  // retrieves the value of loadHoop
+        void setLoadHoop(loadHoopsSharedPtr set);  // sets the value of loadHoop
+
+        loadOffensePlaysSharedPtr getLoadOffensePlay();  // retrieves the value of loadOffensePlay
+        void setLoadOffensePlay(loadOffensePlaysSharedPtr set);  // sets the value of loadOffensePlay
+
+        loadPlayersSharedPtr getLoadPlayer();  // retrieves the value of loadPlayer
+        void setLoadPlayer(loadPlayersSharedPtr set);  // sets the value of loadPlayer
+
+        loadTeamsSharedPtr getLoadTeam();  // retrieves the value of loadTeam
+        void setLoadTeam(loadTeamsSharedPtr set);  // sets the value of loadTeam
 
         loadUsersInputsSharedPtr getLoadUsersInput();  // retrieves the value of loadUsersInput
         void setLoadUsersInput(loadUsersInputsSharedPtr set);  // sets the value of loadUsersInput
@@ -48,12 +69,15 @@ class UBCGame
         usersMSharedPtr getUsersInstance();  // retrieves the value of usersInstance
         void setUsersInstance(usersMSharedPtr set);  // sets the value of usersInstance
 
+        bool getInputSUInputSetup();  // retrieves the value of inputSUInputSetup
+        void setInputSUInputSetup(bool set);  // sets the value of inputSUInputSetup
+        
         size_t getNumUsers();  // retrieves the value of numUsers
         void setNumUsers(size_t set);  // sets the value of numUsers
 
         bool setup();  // sets up a game instance
 
-        bool loop(gameEngineSharedPtr gameE, UBCInputSharedPtr input);  // runs the Main loop for the game
+        bool loop(gameEngineSharedPtr gameE, UBCInputSharedPtr input, GUISystemSharedPtr gui);  // runs the Main loop for the game
 
         bool startGame();  // starts a game
 
@@ -68,11 +92,20 @@ class UBCGame
     private:
 
         gameStateSharedPtr gameInstance;  // the gameState object
+        static networkStateSharedPtr networkS;  // the gameState object
 
         static bool startActiveGame;  // stores whether to begin an active game instance
         static bool userInstancesCreated;  // stores whether user instances have been created
         static bool userInstancesInputSetup;  // stores status of input configuration for users
+        static bool inputSUInputSetup;  // stores whether inputS UInput object has been se
         static size_t numUsers; // stores number of users playing the game
+        static loadBasketballsSharedPtr loadBasketball;  // the loadBasketballs object
+        static loadCourtsSharedPtr loadCourt;  // the loadCourts object
+        static loadHoopsSharedPtr loadHoop;  // the loadHoops object
+        static loadOffensePlaysSharedPtr loadOffensePlay;  // the loadOffensePlays Object
+        static loadPlayersSharedPtr loadPlayer;  // the loadPlayers Object
+        static loadTeamsSharedPtr loadTeam;  // the loadTeams Object
+
         static loadUsersInputsSharedPtr loadUsersInput;  // the loadUsersInputs Object
         static usersMSharedPtr usersInstance;  // stores the user object instances
 

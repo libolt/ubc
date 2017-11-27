@@ -38,11 +38,11 @@ inputKeyboards::~inputKeyboards()  // destructor
     
 }
 
-inputSharedPtr inputKeyboards::getInputS()  // retrieves the value of inputS
+inputSharedPtr inputKeyboards::getInputInstance()  // retrieves the value of inputS
 {
     return (inputS);
 }
-void inputKeyboards::setInputS(inputSharedPtr set)  // sets the value of inputS
+void inputKeyboards::setInputInstance(inputSharedPtr set)  // sets the value of inputS
 {
     inputS = set;
 }

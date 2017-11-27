@@ -41,8 +41,8 @@ class inputGamePads : public input
         inputGamePads();  // constructor
         ~inputGamePads();  // destructor
 
-        inputSharedPtr getInputS();  // retrieves the value of inputS
-        void setInputS(inputSharedPtr set);  // sets the value of inputS
+        inputSharedPtr getInputInstance();  // retrieves the value of inputS
+        void setInputInstance(inputSharedPtr set);  // sets the value of inputS
 
         bool getSetupComplete();  // retrieves the value of setupComplete
         void setSetupComplete(bool set);  // sets the value of setupComplete
@@ -55,7 +55,7 @@ class inputGamePads : public input
 
     private:
 
-        static inputSharedPtr inputS;  // input object
+        static inputSharedPtr inputInstance;  // input object
 
         bool setupComplete;  // stores whether setup has completed successfully
 

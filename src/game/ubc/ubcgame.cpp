@@ -34,10 +34,17 @@
 bool UBCGame::startActiveGame;  // stores whether to begin an active game instance
 bool UBCGame::userInstancesCreated;  // stores whether user instances have been created
 bool UBCGame::userInstancesInputSetup;  // stores status of input configuration for users
+bool UBCGame::inputSUInputSetup;  // stores whether inputS UInput object has been set
 size_t UBCGame::numUsers;  // stores the number of users playing the game
 usersMSharedPtr UBCGame::usersInstance; // stores the user object instances
-
+loadBasketballsSharedPtr UBCGame::loadBasketball;  // the loadBasketballs object
+loadCourtsSharedPtr UBCGame::loadCourt;  // the loadCourts object
+loadHoopsSharedPtr UBCGame::loadHoop;  // the loadHoops object
+loadOffensePlaysSharedPtr UBCGame::loadOffensePlay;  // the loadOffensePlays Object
+loadPlayersSharedPtr UBCGame::loadPlayer;  // the loadPlayers Object
+loadTeamsSharedPtr UBCGame::loadTeam;  // the loadTeams Object
 loadUsersInputsSharedPtr UBCGame::loadUsersInput;  // the loadUsersInputs Object
+networkStateSharedPtr UBCGame::networkS;  // the networkState object
 
 UBCGame::UBCGame()  // constructor
 {
@@ -47,7 +54,7 @@ UBCGame::UBCGame()  // constructor
     numUsers = 0;
     userInstancesInputSetup = false;
 
-
+    inputSUInputSetup = false;
 }
 
 UBCGame::~UBCGame()  // destructor
@@ -62,6 +69,15 @@ gameStateSharedPtr UBCGame::getGameInstance()  // retrieves the value of gameS
 void UBCGame::setGameInstance(gameStateSharedPtr set)  // sets the value of gameS
 {
     gameInstance = set;
+}
+
+networkStateSharedPtr UBCGame::getNetworkS()  // retrieves the value of networkS
+{
+    return (networkS);
+}
+void UBCGame::setNetworkS(networkStateSharedPtr set)  // sets the value of networkS
+{
+    networkS = set;
 }
 
 bool UBCGame::getStartActiveGame()  // retrieves the value of startActiveGame
@@ -91,6 +107,60 @@ void UBCGame::setUserInstancesInputSetup(bool set)  // sets the value of userIns
     userInstancesInputSetup = set;
 }
 
+loadBasketballsSharedPtr UBCGame::getLoadBasketball()  // retrieves the value of loadBasketball
+{
+    return(loadBasketball);
+}
+void UBCGame::setLoadBasketball(loadBasketballsSharedPtr set)  // sets the value of loadBasketball
+{
+    loadBasketball = set;
+}
+
+loadCourtsSharedPtr UBCGame::getLoadCourt()  // retrieves the value of loadCourt
+{
+    return (loadCourt);
+}
+void UBCGame::setLoadCourt(loadCourtsSharedPtr set)  // sets the value of loadCourt
+{
+    loadCourt = set;
+}
+
+loadHoopsSharedPtr UBCGame::getLoadHoop()  // retrieves the value of loadHoop
+{
+    return (loadHoop);
+}
+void UBCGame::setLoadHoop(loadHoopsSharedPtr set)  // sets the value of loadHoop
+{
+    loadHoop = set;
+}
+
+loadOffensePlaysSharedPtr UBCGame::getLoadOffensePlay()  // retrieves the value of loadOffensePlay
+{
+    return (loadOffensePlay);
+}
+void UBCGame::setLoadOffensePlay(loadOffensePlaysSharedPtr set)  // sets the value of loadOffensePlay
+{
+    loadOffensePlay = set;
+}
+
+loadPlayersSharedPtr UBCGame::getLoadPlayer()  // retrieves the value of loadPlayer
+{
+    return (loadPlayer);
+}
+void UBCGame::setLoadPlayer(loadPlayersSharedPtr set)  // sets the value of loadPlayer
+{
+    loadPlayer = set;
+}
+
+loadTeamsSharedPtr UBCGame::getLoadTeam()  // retrieves the value of loadTeam
+{
+    return (loadTeam);
+}
+void UBCGame::setLoadTeam(loadTeamsSharedPtr set)  // sets the value of loadTeam
+{
+    loadTeam = set;
+}
+
 loadUsersInputsSharedPtr UBCGame::getLoadUsersInput()  // retrieves the value of loadUsersInput
 {
     return (loadUsersInput);
@@ -107,6 +177,15 @@ usersMSharedPtr UBCGame::getUsersInstance()  // retrieves the value of usersInst
 void UBCGame::setUsersInstance(usersMSharedPtr set)  // sets the value of usersInstance
 {
     usersInstance = set;
+}
+
+bool UBCGame::getInputSUInputSetup()  // retrieves the value of inputSUInputSetup
+{
+    return (inputSUInputSetup);
+}
+void UBCGame::setInputSUInputSetup(bool set)  // sets the value of inputSUInputSetup
+{
+    inputSUInputSetup = set;
 }
 
 size_t UBCGame::getNumUsers()  // retrieves the value of numUsers
@@ -210,7 +289,7 @@ bool UBCGame::setupUserInstancesInput()  // sets up input mapping for each user
     return (true);
 }
 
-bool UBCGame::loop(gameEngineSharedPtr gameE, UBCInputSharedPtr input)  // Main Game Loop
+bool UBCGame::loop(gameEngineSharedPtr gameE, UBCInputSharedPtr input, GUISystemSharedPtr gui)  // Main Game Loop
 {
     conversionSharedPtr convert = conversion::Instance();
     bool quitGame = gameE->getQuitGame();
@@ -243,7 +322,7 @@ bool UBCGame::loop(gameEngineSharedPtr gameE, UBCInputSharedPtr input)  // Main 
     
     while (!quitGame)
     {
-        input->process(gameE, gameInstance, usersInstance);
+        input->process(gameE, gameInstance, usersInstance, gui);
 //        processPhysicsEvents();
         
 ///        if (gameInstance->getGameSetupComplete())  // checks to make sure game setup is complete before continuing

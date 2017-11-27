@@ -51,7 +51,8 @@
 
 // static declarations 
 gameEngineSharedPtr UBC::gameE;  // the gameEngine object
-UBCBaseSharedPtr UBC::base;  // static copy of UBCBase class
+GUISystemSharedPtr UBC::gui;  // the GUI object.
+//UBCBaseSharedPtr UBC::base;  // static copy of UBCBase class
 UBCGameSharedPtr UBC::game;  // static copy of UBCGame class
 UBCInputSharedPtr UBC::input;  // static copy of UBCInput class
 
@@ -75,14 +76,23 @@ void UBC::setGameE(gameEngineSharedPtr set)  // sets the value of gameE
     gameE = set;
 }
 
-UBCBaseSharedPtr UBC::getBase()  // retrieves the value of base
+GUISystemSharedPtr UBC::getGui()  // retrieves the value of gui
+{
+    return (gui);
+}
+void UBC::setGui(GUISystemSharedPtr set)  // sets the value of gui
+{
+    gui = set;
+}
+
+/*UBCBaseSharedPtr UBC::getBase()  // retrieves the value of base
 {
     return (base);
 }
 void UBC::setBase(UBCBaseSharedPtr set)  // sets the value of base
 {
     base = set;
-}
+}*/
 
 UBCGameSharedPtr UBC::getGame()  // retrieves the value of game
 {
@@ -123,42 +133,15 @@ bool UBC::setup()  // sets up UBC object
     logMsg(func +" gameE->setup()");
     gameE->setup();  // sets up the game engine
 
+    
     UBCBaseSharedPtr tempBaseSharedPtr(new UBCBase);
-    base = tempBaseSharedPtr;
+//    base = tempBaseSharedPtr;
     
     logMsg(func +" beginning");
 
-    if (!base->getStateSetup())
-    {
-        if (base->setup())
-        {
-//            gameInstance->setInitialized(true);
-
-//BASEREMOVAL            gameInstance->setBase(base);
-
-//            base->getGui()->setBase(base);
-
-//            base->setStateSetup(true);
-
-        }
-        else
-        {
-            logMsg(func +" Unable to setup base!");
-            exit(0);
-        }
-    }
-    else
-    {
-//    exit(0);
-    //    GUISystem *tempGUIObj = new GUISystem;
-        GUISystemSharedPtr tempGUISharedPtr(new GUISystem);
-        base->setGui(tempGUISharedPtr);
-//BASEREMOVAL        base->getGui()->setBase(base);
-//BASEREMOVAL        gameInstance->setBase(base);
-        base->setStateSetup(true);
-
-    }
-
+    GUISystemSharedPtr tempGUISharedPtr(new GUISystem);
+    gui = tempGUISharedPtr;
+    
     // setup game object
     UBCGameSharedPtr tempGameSharedPtr(new UBCGame);
 
@@ -167,7 +150,7 @@ bool UBC::setup()  // sets up UBC object
     // setup input object
     UBCInputSharedPtr tempInputSharedPtr(new UBCInput);
     input = tempInputSharedPtr;
-    input->setBase(base);
+//    input->setBase(base);
 //    base->getInputKeyboard()->setBase(base);
 //    base->getInputGamePad()->setBase(base);
     logMsg(func +" end");
@@ -187,7 +170,7 @@ bool UBC::setupState()  // sets up the UBC game state
 
     logMsg(func +" beginning");
 
-    GUISystemSharedPtr gui = base->getGui();
+//    GUISystemSharedPtr gui = base->getGui();
     if (gui->setup())  // sets up the game GUI
     {
     
@@ -203,7 +186,7 @@ bool UBC::setupState()  // sets up the UBC game state
         logMsg(func +" Unable to setup GUI!");
         exit(0);
     }
-    base->setGui(gui);
+//    base->setGui(gui);
 //    exit(0); 
     
     logMsg(func +" end");
@@ -226,7 +209,7 @@ void UBC::run()  // runs the game
     logMsg(func +" beginning");
 
 //    exit(0);
-    base->setup();
+//    base->setup();
     game->setup();
     gameE->getRenderE()->initSDL(); // Initializes the SDL Subsystem
 //    exit(0);
@@ -342,7 +325,7 @@ void UBC::run()  // runs the game
 
 //    bool quitGame = gameE->getQuitGame();
        
-    game->loop(gameE, input);
+    game->loop(gameE, input, gui);
 
     logMsg(func +" end");
 
@@ -659,7 +642,7 @@ bool UBC::updateGUI()  // updates the gui based on received events
 
     logMsg(func +" beginning");
 
-    GUISystemSharedPtr gui = base->getGui();
+//    GUISystemSharedPtr gui = base->getGui();
     if (gameE->getInputE()->getMouseClicked())
     {
         logMsg(func +" updateGUI Mouse Clicked!");
@@ -670,7 +653,7 @@ bool UBC::updateGUI()  // updates the gui based on received events
     {
         gui->getMGUI()->injectMouseRelease(gameE->getInputE()->getMouseX(), gameE->getInputE()->getMouseY(), MyGUI::MouseButton::Enum(0));
     }
-    base->setGui(gui);
+//    base->setGui(gui);
 
     logMsg(func +" end");
 
@@ -692,8 +675,8 @@ bool UBC::setupInputSObjUserInput()  // sets up user input mapping for inputS ob
         tempUserInput.push_back(TUIIT.second->getUserInput());
     }
     
-    input->getInputGamePad()->getInputS()->setUInput(tempUserInput);
-    input->getInputKeyboard()->getInputS()->setUInput(tempUserInput);
+    input->getInputGamePad()->getInputInstance()->setUInput(tempUserInput);
+    input->getInputKeyboard()->getInputInstance()->setUInput(tempUserInput);
 
     return (true);
 }

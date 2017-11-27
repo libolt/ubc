@@ -40,8 +40,8 @@ class inputKeyboards
         inputKeyboards();  // constructor
         ~inputKeyboards();  // destructor
 
-        inputSharedPtr getInputS();  // retrieves the value of inputS
-        void setInputS(inputSharedPtr set);  // sets the value of inputS
+        inputSharedPtr getInputInstance();  // retrieves the value of inputS
+        void setInputInstance(inputSharedPtr set);  // sets the value of inputS
 
         bool getSetupComplete();  // retrieves the value of setupComplete
         void setSetupComplete(bool set);  // sets the value of setupComplete

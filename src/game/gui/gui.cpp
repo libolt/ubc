@@ -440,17 +440,17 @@ void GUISystem::mainMenu()  // msin in game menu
 
     if (!mainMenuCreated)
     {
-        logMsg("mainMenu not created yet!");
+        logMsg(func + " mainMenu not created yet!");
 //        exit(0);
         if (createMainMenuGUI()) // creates the main menu gui.
         {
-            logMsg("Main Menu created successfully!");
+            logMsg(func + " Main Menu created successfully!");
             mainMenuCreated = true;
 //            exit(0);
         }
         else
         {
-            logMsg("Unable to create Main Menu!");
+            logMsg(func + " Unable to create Main Menu!");
             exit(0);
         }
     }

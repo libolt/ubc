@@ -127,6 +127,8 @@ bool UBC::setup()  // sets up UBC object
     GUISystemSharedPtr tempGUISharedPtr(new GUISystem);
     gui = tempGUISharedPtr;
     
+    gui->setGameE(gameE);
+    
     // setup game object
     UBCGameSharedPtr tempGameSharedPtr(new UBCGame);
 

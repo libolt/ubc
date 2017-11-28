@@ -21,8 +21,8 @@
 #include "engine/engine.h"
 
 // static declarations
-float engine::windowWidth;
-float engine::windowHeight;
+//float engine::windowWidth;
+//float engine::windowHeight;
 
 engine::engine()  // constructor
 {

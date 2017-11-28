@@ -38,23 +38,33 @@
 
 void GUISystem::hideMainMenuWidgets()  // hides the widgets tied to the Main Menu
 {
+    std::string func = "GUISystem::hideMainMenuWidgets()";
+    
+    logMsg(func +" begin");
+    
     mainMenuButtons["startSingleGameButton"]->setVisible(false);
     mainMenuButtons["startMultiGameButton"]->setVisible(false);
     mainMenuButtons["optionsButton"]->setVisible(false);
     mainMenuButtons["exitButton"]->setVisible(false);
     mainMenuButtons["startSingleGameButton"]->setStateSelected(false);
+    logMsg(func +" end");
+    
 }
 void GUISystem::showMainMenuWidgets()  // shows all widgets tied to the Main Menu
 {
-    logMsg("showMainMenuWidgets");
-//    exit(0);
+    std::string func = "GUISystem::showMainMenuWidgets()";
+    
+    logMsg(func +" begin");
+
     mainMenuButtons["startSingleGameButton"]->setVisible(true);
     mainMenuButtons["startMultiGameButton"]->setVisible(true);
     mainMenuButtons["optionsButton"]->setVisible(true);
     mainMenuButtons["exitButton"]->setVisible(true);
     mainMenuButtons["startSingleGameButton"]->setStateSelected(true);
     MyGUI::InputManager::getInstance().setKeyFocusWidget(mainMenuButtons["startSingleGameButton"].get());
+    logMsg(func +"gameE->setMenuActive(true)");
     gameE->setMenuActive(true);
+    logMsg(func +" end");
 }
 void GUISystem::hideNetworkSetupWidgets()  // hides the widgets tied to the Network Setup Menu
 {

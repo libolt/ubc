@@ -28,11 +28,8 @@
 #include "engine/physicsengine.h"
 //#include "engine/sound/soundengine.h"
 
-/*sharedPtr<renderEngine> gameEngine::render; 
-inputEngineSharedPtr gameEngine::input;
-networkEngineSharedPtr gameEngine::network;
-*/
-bool gameEngine::userInputLoaded;
+
+/*bool gameEngine::userInputLoaded;
 bool gameEngine::menuActive;
 bool gameEngine::start;
 bool gameEngine::quitGame;
@@ -42,10 +39,10 @@ bool gameEngine::createScene;
 bool gameEngine::sceneCreated;
 bool gameEngine::renderScene;
 bool gameEngine::movePlayer;
-timing gameEngine::timer;
+timing gameEngine::timer;*/
 
 // static declarations
-sharedPtr<renderEngine> gameEngine::renderE;
+//sharedPtr<renderEngine> gameEngine::renderE;
 
 gameEngine::gameEngine()  // constructor
 //    : player[0](0),

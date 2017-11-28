@@ -36,8 +36,8 @@ class engine
    
     private:
     
-    static float windowWidth;  // stores the width of the game window
-    static float windowHeight;  // stores the height of the game window
+    float windowWidth;  // stores the width of the game window
+    float windowHeight;  // stores the height of the game window
     
 };
 

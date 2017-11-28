@@ -30,7 +30,7 @@
 #include "BtOgrePG.h"
 #include "BtOgreGP.h"
 #include "BtOgreExtras.h"
-
+#include "utilities/typedefs.h"
 
 class entity
 {

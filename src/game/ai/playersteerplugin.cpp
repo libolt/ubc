@@ -52,15 +52,6 @@ void playerSteerPlugin::setGameInstance(gameStateSharedPtr set)  // sets the val
     gameInstance = set;
 }
 
-bool playerSteerPlugin::getBaseInitialized()  // retrieves the value of baseInitialized
-{
-    return (baseInitialized);
-}
-void playerSteerPlugin::setBaseInitialized(bool set)  // sets the value of baseInitialized
-{
-    baseInitialized = set;
-}
-
 basketballStateMSharedPtr playerSteerPlugin::getActiveBasketballInstance()  // retrieves the value of activeBasketballInstance
 {
     return (activeBasketballInstance);

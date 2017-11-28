@@ -41,7 +41,7 @@
 */
 
 #include "utilities/enums.h"
-#include "utilitFFies/typedefs.h"
+#include "utilities/typedefs.h"
 //#include "input.h" 
 //#include "engine/renderengine.h" 
 
@@ -294,13 +294,13 @@ private:
 //    static MyGUI::Gui *mGUI;
 //    static MyGUI::OgrePlatform *mPlatform;
     
-    static MyGUIGuiSharedPtr mGUI;  // The MyGUI object
-    static MyGUIOgrePlatformSharedPtr mPlatform;  // The MyGUI Platform object
+    MyGUIGuiSharedPtr mGUI;  // The MyGUI object
+    MyGUIOgrePlatformSharedPtr mPlatform;  // The MyGUI Platform object
 
     // button widgets
     
     // Main Menu
-    static MyGUIButtonMSharedPtr mainMenuButtons;
+    MyGUIButtonMSharedPtr mainMenuButtons;
 /*    static sharedPtr<MyGUI::Button> exitButton;
     static sharedPtr<MyGUI::Button> startSingleGameButton;
     static sharedPtr<MyGUI::Button> startMultiGameButton;
@@ -308,12 +308,12 @@ private:
     static sharedPtr<MyGUI::Button> serverButton;
     static sharedPtr<MyGUI::Button> clientButton;
 */
-     static MyGUIButtonMSharedPtr networkMenuButtons;
+    MyGUIButtonMSharedPtr networkMenuButtons;
 
 //    static sharedPtr<MyGUI::Button> backMainMenuButton;
 //    static sharedPtr<MyGUI::Button> backNetworkSetupButton;
     
-    static MyGUIButtonMSharedPtr optionsMenuButtons;
+    MyGUIButtonMSharedPtr optionsMenuButtons;
 /*    static sharedPtr<MyGUI::Button> displayButton;
     static sharedPtr<MyGUI::Button> inputButton;
     static sharedPtr<MyGUI::Button> audioButton;
@@ -322,16 +322,16 @@ private:
 //    static sharedPtr<MyGUI::Button> backNetworkClientButton;
 //    static sharedPtr<MyGUI::Button> changeResolutionButton;
 
-    static MyGUIButtonMSharedPtr displayMenuButtons;
+    MyGUIButtonMSharedPtr displayMenuButtons;
 
 //    static sharedPtr<MyGUI::Button> changeInputTypeButton;
     
-    static MyGUIButtonMSharedPtr inputMenuButtons;
+    MyGUIButtonMSharedPtr inputMenuButtons;
 
 //    static sharedPtr<MyGUI::Button> enableAudioButton;
 //    static sharedPtr<MyGUI::Button> disableAudioButton;
     
-    static MyGUIButtonMSharedPtr audioMenuButtons;
+    MyGUIButtonMSharedPtr audioMenuButtons;
 
 //    static sharedPtr<MyGUI::Button> backOptionsMenuButton;
     
@@ -340,7 +340,7 @@ private:
 //    static sharedPtr<MyGUI::Button> backCourtSelectionMenuButton;
     
     // Team Selection Menu
-    static MyGUIButtonMSharedPtr teamSelectionMenuButtons;
+    MyGUIButtonMSharedPtr teamSelectionMenuButtons;
 
 /*    static sharedPtr<MyGUI::Button> team0SelectButton;
     static sharedPtr<MyGUI::Button> team1SelectButton;
@@ -351,27 +351,27 @@ private:
     static sharedPtr<MyGUI::Button> team1StartingLineupSetButton;
     static sharedPtr<MyGUI::Button> startingLineupsSetButton;
 */
-    static MyGUIButtonMSharedPtr playerStartSelectionMenuButtons;
+    MyGUIButtonMSharedPtr playerStartSelectionMenuButtons;
 
     // Team selection listbox widgets
 //    static MyGUIListBoxSharedPtr team0SelectBox;
 //    static MyGUIListBoxSharedPtr team1SelectBox;
-    static MyGUIListBoxMSharedPtr teamSelectBox;
+    MyGUIListBoxMSharedPtr teamSelectBox;
 
     // Network Server Setup Widgets
-    static MyGUIListBoxSharedPtr numClientsSelectBox;  // allows you to select the number of network players
+    MyGUIListBoxSharedPtr numClientsSelectBox;  // allows you to select the number of network players
 //    static sharedPtr<MyGUI::Button> serverHostButton;
-    static sharedPtr<MyGUI::EditBox> serverIPAddressBox;
+    sharedPtr<MyGUI::EditBox> serverIPAddressBox;
     
-    static MyGUIButtonMSharedPtr networkServerSetupMenuButtons;
+    MyGUIButtonMSharedPtr networkServerSetupMenuButtons;
     
     // Network Client Setup Widgets
-    static sharedPtr<MyGUI::EditBox> clientIPAddressBox;
+    sharedPtr<MyGUI::EditBox> clientIPAddressBox;
 //    static sharedPtr<MyGUI::Button> clientConnectButton;
     
-    static MyGUIButtonMSharedPtr networkClientSetupMenuButtons;
+    MyGUIButtonMSharedPtr networkClientSetupMenuButtons;
     
-    static MyGUIListBoxVecMSharedPtr teamPlayerPosSelectBox;
+    MyGUIListBoxVecMSharedPtr teamPlayerPosSelectBox;
     
 /*    static MyGUIListBoxSharedPtr team0Player1SelectBox;
     static MyGUIListBoxSharedPtr team0Player2SelectBox;
@@ -399,7 +399,7 @@ private:
     static MyGUIListBoxSharedPtr team1CSelectBox;
 */
 
-    static MyGUITextBoxVecMSharedPtr teamPlayerRating;
+    MyGUITextBoxVecMSharedPtr teamPlayerRating;
 
 
 /*    static MyGUITextBoxSharedPtr> team0PGRating;
@@ -415,19 +415,19 @@ private:
     static MyGUITextBoxSharedPtr> team1CRating;
 */
 
-    static MyGUIImageBoxMSharedPtr teamLogo;
+    MyGUIImageBoxMSharedPtr teamLogo;
 
 //    static MyGUIImageBoxSharedPtr team0Logo;
 //    static MyGUIImageBoxSharedPtr team1Logo;
 	
     // Court selection menu widgets
-    static MyGUIButtonMSharedPtr courtSelectionMenuButtons;
+    MyGUIButtonMSharedPtr courtSelectionMenuButtons;
 
 //    static sharedPtr<MyGUI::Button> backPlayerStartSelectionMenuButton;
 //    static sharedPtr<MyGUI::Button> courtSelectButton;
-    static MyGUIListBoxSharedPtr courtSelectBox;
-    static MyGUIImageBoxSharedPtr courtPreviewImgBox;
-    static MyGUITextBoxSharedPtr courtNameTxtBox;
+    MyGUIListBoxSharedPtr courtSelectBox;
+    MyGUIImageBoxSharedPtr courtPreviewImgBox;
+    MyGUITextBoxSharedPtr courtNameTxtBox;
 
     // OGRE specific code
 /*    sharedPtr<renderEngine> render;  // stores a copy of the render object for use in the gui
@@ -438,25 +438,25 @@ private:
 */
 
 	// booleans
-    static bool setupComplete;  // determinrs if the gui has been properly setup.
-    static bool mainMenuCreated;   // determines whether the main menu gui has been created
-    static bool backButtonsCreated;  // determines whether the back buttons have been created
-    static bool networkSetupMenuCreated;   // determines whether the network setup gui has been created
-    static bool networkServerSetupMenuCreated;   // determines whether the network server setup gui has been created
-    static bool networkClientSetupMenuCreated;   // determines whether the network client setup gui has been created
-    static bool optionsMenuCreated;   // determines whether the options menu gui has been created
-    static bool displaySetupMenuCreated;   // determines whether the display settings menu gui has been created
-    static bool inputSetupMenuCreated;   // determines whether the input settings menu gui has been created
-    static bool audioSetupMenuCreated;   // determines whether the audio settings menu gui has been created
-    static bool gameSetupMenuCreated;  // determines whether the game setup menu gui has been created
-    static bool playerStartSelectionMenuCreated;  // determines whether the player start selection menu gui has been created
-    static bool teamSelectionMenuCreated;  // determines whether the team selection menu gui has been created
-    static bool teamSelectionMenuDataAdded;  // determines whether teeam data has been added to the the team selection menu
-    static bool courtSelectionMenuCreated;  // deteemines whether the court selection menu has been created;
-    static bool menuActive;  // stores whether a menu is being diplayed
-    static bool gameSetupMenuAwaySelected;  // determines whether the away team listbox is selected;
-    static bool gameSetupMenuHomeSelected;  // determines whether the home team listbox is selected;
-    static bool courtSelectionDataLoaded;  // determines whether court names have been added to the select box
+    bool setupComplete;  // determinrs if the gui has been properly setup.
+    bool mainMenuCreated;   // determines whether the main menu gui has been created
+    bool backButtonsCreated;  // determines whether the back buttons have been created
+    bool networkSetupMenuCreated;   // determines whether the network setup gui has been created
+    bool networkServerSetupMenuCreated;   // determines whether the network server setup gui has been created
+    bool networkClientSetupMenuCreated;   // determines whether the network client setup gui has been created
+    bool optionsMenuCreated;   // determines whether the options menu gui has been created
+    bool displaySetupMenuCreated;   // determines whether the display settings menu gui has been created
+    bool inputSetupMenuCreated;   // determines whether the input settings menu gui has been created
+    bool audioSetupMenuCreated;   // determines whether the audio settings menu gui has been created
+    bool gameSetupMenuCreated;  // determines whether the game setup menu gui has been created
+    bool playerStartSelectionMenuCreated;  // determines whether the player start selection menu gui has been created
+    bool teamSelectionMenuCreated;  // determines whether the team selection menu gui has been created
+    bool teamSelectionMenuDataAdded;  // determines whether teeam data has been added to the the team selection menu
+    bool courtSelectionMenuCreated;  // deteemines whether the court selection menu has been created;
+    bool menuActive;  // stores whether a menu is being diplayed
+    bool gameSetupMenuAwaySelected;  // determines whether the away team listbox is selected;
+    bool gameSetupMenuHomeSelected;  // determines whether the home team listbox is selected;
+    bool courtSelectionDataLoaded;  // determines whether court names have been added to the select box
     
     UBCGameSharedPtr game;  // stores a copy of the game object
     gameStateSharedPtr gameInstance;  // stores a copy of the gameInstance
@@ -464,17 +464,17 @@ private:
     
     gameEngineSharedPtr gameE; // stores a copy of gameE
     
-    static activeMenus activeMenu;  // stores which menu is being displayed
-    static activeMenus previousActiveMenu;  // stores which menu was last displayed
+    activeMenus activeMenu;  // stores which menu is being displayed
+    activeMenus previousActiveMenu;  // stores which menu was last displayed
 
-    static std::vector<stdStringVec> playerNames;
-    static std::vector<stdStringVec> playerPositionsPlayed;
-    static std::vector<sizeTVec> playerIDs;  // stores player IDs for each team
-    static std::vector<sizeTVec> team0IDs;
-    static std::vector<sizeTVec> team1IDs;
-    static std::vector<std::unordered_map<std::string, size_t> > teamStarterID; // stores the selected starters for each team 
+    std::vector<stdStringVec> playerNames;
+    std::vector<stdStringVec> playerPositionsPlayed;
+    std::vector<sizeTVec> playerIDs;  // stores player IDs for each team
+    std::vector<sizeTVec> team0IDs;
+    std::vector<sizeTVec> team1IDs;
+    std::vector<std::unordered_map<std::string, size_t> > teamStarterID; // stores the selected starters for each team 
 
-    static size_t displayCount;
+    size_t displayCount;
 };
 
 #endif // GUI_H_INCLUDED

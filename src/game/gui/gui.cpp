@@ -47,24 +47,8 @@
 #include "config.h"
 #endif
 
-/*
-sharedPtr<GUISystem> GUISystem::pInstance;
-i
-sharedPtr<GUISystem> GUISystem::Instance()
-{
-    if (pInstance == 0)  // is it the first call?
-    {
-        //pInstance = new GUISystkem; // cn sole instance
-        
-        sharedPtr<GUISystem> tInstance(new GUISystem);
-        pInstance = tInstance;
-    }kmmmmkkkkko|mm
-    return pInstance; // address of sole instance
-}
-*/
-
 // static declarations
-
+/*
 bool GUISystem::setupComplete;
 bool GUISystem::mainMenuCreated; 
 bool GUISystem::menuActive;  // stores whether a menu is being diplayed
@@ -88,7 +72,7 @@ bool GUISystem::courtSelectionDataLoaded;  // determines whether court names hav
 activeMenus GUISystem::activeMenu;  // stores which menu is being displayed
 activeMenus GUISystem::previousActiveMenu;  // stores which menu was last displayed
 
-MyGUIGuiSharedPtr GUISystem::mGUI;
+//MyGUIGuiSharedPtr GUISystem::mGUI;
 MyGUIOgrePlatformSharedPtr GUISystem::mPlatform;
 
 MyGUIButtonMSharedPtr GUISystem::mainMenuButtons;
@@ -96,32 +80,9 @@ MyGUIButtonMSharedPtr GUISystem::mainMenuButtons;
 MyGUIButtonMSharedPtr GUISystem::networkMenuButtons;
 
 MyGUIButtonMSharedPtr GUISystem::playerStartSelectionMenuButtons;
-/*sharedPtr<MyGUI::Button> uexitButton;
-sharedPtr<MyGUI::Button> GUISystem::startSingleGameButton;
-sharedPtr<MyGUI::Button> GUISystem::startMultiGameButton;
-sharedPtr<MyGUI::Button> GUISystem::optionsButton;
-sharedPtr<MyGUI::Button> GUISystem::serverButton;
-sharedPtr<MyGUI::Button> GUISystem::clientButton;
-sharedPtr<MyGUI::Button> GUISystem::backMainMenuButton;
-*/
 //sharedPtr<MyGUI::Button> GUISystem::backNetworkSetupButton;
 
 MyGUIButtonMSharedPtr GUISystem::optionsMenuButtons;
-/*sharedPtr<MyGUI::Button> GUISystem::displayButton;
-sharedPtr<MyGUI::Button> GUISystem::inputButton;
-sharedPtr<MyGUI::Button> GUISystem::audioButton;
-*/
-
-//sharedPtr<MyGUI::Button> GUISystem::startGameButton;
-//sharedPtr<MyGUI::Button> GUISystem::backNetworkClientButton;
-//sharedPtr<MyGUI::Button> GUISystem::changeResolutionButton;
-//sharedPtr<MyGUI::Button> GUISystem::changeInputTypeButton;
-//sharedPtr<MyGUI::Button> GUISystem::enableAudioButton;
-//sharedPtr<MyGUI::Button> GUISystem::disableAudioButton;
-//sharedPtr<MyGUI::Button> GUISystem::backOptionsMenuButton;
-//sharedPtr<MyGUI::Button> GUISystem::backGameSetupMenuButton;
-//sharedPtr<MyGUI::Button> GUISystem::backTeamSelectionMenuButton;
-//sharedPtr<MyGUI::Button> GUISystem::backCourtSelectionMenuButton;
 
 MyGUIButtonMSharedPtr GUISystem::displayMenuButtons;
 MyGUIButtonMSharedPtr GUISystem::inputMenuButtons;
@@ -131,20 +92,6 @@ MyGUIButtonMSharedPtr GUISystem::audioMenuButtons;
 // Team Selection Menu
 MyGUIButtonMSharedPtr GUISystem::teamSelectionMenuButtons;
 
-/*sharedPtr<MyGUI::Button> GUISystem::teamsSelectedButton;
-sharedPtr<MyGUI::Button> GUISystem::team0SelectButton;
-sharedPtr<MyGUI::Button> GUISystem::team1SelectButton;
-*/
-
-// Player Start Selection Menu
-/*sharedPtr<MyGUI::Button> GUISystem::team0StartingLineupSetButton;
-sharedPtr<MyGUI::Button> GUISystem::team1StartingLineupSetButton;
-sharedPtr<MyGUI::Button> GUISystem::startingLineupsSetButton;
-*/
-
-// listbox widgets
-//MyGUIListBoxSharedPtr GUISystem::team0SelectBox;
-//MyGUIListBoxSharedPtr GUISystem::team1SelectBox;
 MyGUIListBoxMSharedPtr GUISystem::teamSelectBox;
 
 // Network Server Setup Widgets
@@ -160,48 +107,8 @@ MyGUIButtonMSharedPtr GUISystem::networkClientSetupMenuButtons;
     
 MyGUIListBoxVecMSharedPtr GUISystem::teamPlayerPosSelectBox;
 
-/*    MyGUIListBoxSharedPtr GUISystem::team0Player1SelectBox;
-MyGUIListBoxSharedPtr GUISystem::team0Player2SelectBox;
-MyGUIListBoxSharedPtr GUISystem::team0Player3SelectBox;
-MyGUIListBoxSharedPtr GUISystem::team0Player4SelectBox;
-MyGUIListBoxSharedPtr GUISystem::team0Player5SelectBox;
-MyGUIListBoxSharedPtr GUISystem::team1Player1SelectBox;
-MyGUIListBoxSharedPtr GUISystem::team1Player2SelectBox;
-MyGUIListBoxSharedPtr GUISystem::team1Player3SelectBox;
-MyGUIListBoxSharedPtr GUISystem::team1Player4SelectBox;
-MyGUIListBoxSharedPtr GUISystem::team1Player5SelectBox;
-
-    
-// Player Selection Menu widgets
-MyGUIListBoxSharedPtr GUISystem::team0PGSelectBox;
-MyGUIListBoxSharedPtr GUISystem::team0SGSelectBox;
-MyGUIListBoxSharedPtr GUISystem::team0SFSelectBox;
-MyGUIListBoxSharedPtr GUISystem::team0PFSelectBox;
-MyGUIListBoxSharedPtr GUISystem::team0CSelectBox;
-MyGUIListBoxSharedPtr GUISystem::team1PGSelectBox;
-MyGUIListBoxSharedPtr GUISystem::team1SGSelectBox;
-MyGUIListBoxSharedPtr GUISystem::team1SFSelectBox;
-MyGUIListBoxSharedPtr GUISystem::team1PFSelectBox;
-MyGUIListBoxSharedPtr GUISystem::team1CSelectBox;
-*/
-
 MyGUITextBoxVecMSharedPtr GUISystem::teamPlayerRating;
 MyGUIImageBoxMSharedPtr GUISystem::teamLogo;
-
-/*
-MyGUITextBoxSharedPtr> GUISystem::team0PGRating;
-MyGUITextBoxSharedPtr> GUISystem::team0SGRating;
-MyGUITextBoxSharedPtr> GUISystem::team0SFRating;
-MyGUITextBoxSharedPtr> GUISystem::team0PFRating;
-MyGUITextBoxSharedPtr> GUISystem::team0CRating;
-MyGUITextBoxSharedPtr> GUISystem::team1PGRating;
-MyGUITextBoxSharedPtr> GUISystem::team1SGRating;
-MyGUITextBoxSharedPtr> GUISystem::team1SFRating;
-MyGUITextBoxSharedPtr> GUISystem::team1PFRating;
-MyGUITextBoxSharedPtr> GUISystem::team1CRating;
-MyGUIImageBoxSharedPtr GUISystem::team0Logo;
-MyGUIImageBoxSharedPtr GUISystem::team1Logo;
-*/
 
 // Court selection menu widgets
 MyGUIButtonMSharedPtr GUISystem::courtSelectionMenuButtons;
@@ -219,7 +126,7 @@ std::vector< sizeTVec > GUISystem::team1IDs;
 std::vector<std::unordered_map<std::string, size_t> > GUISystem::teamStarterID; // stores the selected starters for each team 
 
 size_t GUISystem::displayCount;
-
+*/
 //void GUISystem::startSingleGameButtonClicked(MyGUI::Widget *_sender);
 
 GUISystem::GUISystem()  // Initialmizes the GUISystem class

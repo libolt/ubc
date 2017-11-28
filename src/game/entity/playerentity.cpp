@@ -21,7 +21,6 @@
 #include "entity/playerentity.h"
 #include "utilities/logging.h"
 #include "utilities/conversion.h"
-#include "ubc/ubcbase.h"
 #include "engine/gameengine.h"
 #include "engine/renderengine.h"
 #include "statistics/playerstatistics.h"
@@ -29,7 +28,6 @@
 #include "statemachine/playerstatemachine.h"
 
 // static declarations
-//UBCBaseSharedPtr playerEntity::base;  // base class object
     
 //playerSteerSharedPtr playerEntity::steer;
 //bool playerEntity::steerInitialized;

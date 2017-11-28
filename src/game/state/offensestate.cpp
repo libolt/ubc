@@ -18,7 +18,6 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "ubc/ubcbase.h"
 #include "utilities/conversion.h"
 #include "engine/gameengine.h"
 #include "load/loadoffenseplays.h"
@@ -32,7 +31,6 @@
 #include "state/teamstate.h"
 
 // static declarations 
-//UBCBaseSharedPtr offenseState::base;  // static copy of base class
 
 offenseState::offenseState()  // constructor
 {
@@ -95,15 +93,6 @@ bool offenseState::getGameSInitialized()  // retrieves the value of gameSInitial
 void offenseState::setGameSInitialized(bool set)  // sets the value of gameSInitialized
 {
     gameSInitialized = set;
-}
-
-UBCBaseSharedPtr offenseState::getBase()  // retrieves the value of base
-{
-    return (base);
-}
-void offenseState::setBase(UBCBaseSharedPtr set)  // sets the value of base
-{
-    base = set;
 }
 
 teamTypes offenseState::getTeamType()  // retrieves the value of teamType

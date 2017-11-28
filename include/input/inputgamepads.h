@@ -32,7 +32,6 @@
 // forward declarations
 //class inputEngine;
 //class usersInput;
-//class UBCBase;
 
 class inputGamePads : public input
 {

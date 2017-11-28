@@ -34,8 +34,6 @@
 #include "data/teamdata.h"
 #include "utilities/typedefs.h"
 
-//#include "ubc/ubcbase.h"
-class UBCBase;
 class offenseState;
 class defenseState;
 class basketballState;
@@ -54,9 +52,6 @@ public:
 
     sharedPtr<teamStatistics> getStatistics();  // retrieves the value of statistics
     void setStatistics(sharedPtr<teamStatistics> set);  // sets the value of statistics
-
-    UBCBaseSharedPtr getBase();  // retrieves the value of base
-    void setBase(UBCBaseSharedPtr set);  // sets the value of base
 
 ///    int getTeamNumber();	// retrieves the value of teamNumber
 ///    void setTeamNumber(int set);  // sets the value of teamNumber
@@ -172,7 +167,6 @@ private:
 
     sharedPtr<teamStatistics> statistics;  // instance of teamStatistics object
 
-    static UBCBaseSharedPtr base;  // static copy of base class
     size_t teamNumber;  // stores which team number the object is
     teamTypes teamType;  // stores which type of team this object is
 //    static size_t teamID;  // stores the ID number of the team;

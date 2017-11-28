@@ -18,7 +18,6 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "ubc/ubcbase.h"
 #include "ai/ai.h"
 #include "ai/playersteerplugin.h"
 #include "state/basketballstate.h"
@@ -31,7 +30,6 @@
 #include <ctime>
 
 // static declarations
-UBCBaseSharedPtr AISystem::base;  // stores copy of base object
 
 //AISystem* AISystem::pInstance = 0;
 AISystemSharedPtr AISystem::pInstance;
@@ -50,7 +48,7 @@ AISystemSharedPtr AISystem::Instance()
 
 AISystem::AISystem()
 {
-    baseInitialized = false;
+//    baseInitialized = false;
     selectedVehicle = NULL;
     oldTime = 0.0f;
 //    playerSteerPluginInstance = new playerSteerPlugin;
@@ -69,25 +67,6 @@ void AISystem::setGameInstance(gameStateSharedPtr set)  // sets the value of gam
 {
     gameInstance = set;
 }
-
-UBCBaseSharedPtr AISystem::getBase()  // retrieves the value of base
-{
-    return (base);
-}
-void AISystem::setBase(UBCBaseSharedPtr set)  // sets the value of base
-{
-    base = set;
-}
-
-bool AISystem::getBaseInitialized()  // retrieves the value of baseInitialized
-{
-    return (baseInitialized);
-}
-void AISystem::setBaseInitialized(bool set)  // sets the value of baseInitialized
-{
-    baseInitialized = set;
-}
-
 
 basketballStateMSharedPtr AISystem::getActiveBasketballInstance()  // retrieves the value of activeBasketballInstance
 {

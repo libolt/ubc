@@ -26,7 +26,6 @@
 #include "state/gamestateshared.h"
 
 // Forward declarations
-class UBCBase;
 class playerSteer;
 
 
@@ -46,12 +45,6 @@ class playerSteerPlugin : public OpenSteer::PlugIn, steering
 
     gameStateSharedPtr getGameInstance();  // retrieves the value of gameInstance
     void setGameInstance(gameStateSharedPtr set);  // sets the value of gameInstance
-
-    UBCBaseSharedPtr getBase();  // retrieves the value of base
-    void setBase(UBCBaseSharedPtr set);  // sets the value of base
-
-    bool getBaseInitialized();  // retrieves the value of baseInitialized
-    void setBaseInitialized(bool set);  // sets the value of baseInitialized
 
     basketballStateMSharedPtr getActiveBasketballInstance();  // retrieves the value of activeBasketballInstance
     void setActiveBasketballInstance(basketballStateMSharedPtr set);  // sets the value of activeBasketballInstance
@@ -82,9 +75,7 @@ class playerSteerPlugin : public OpenSteer::PlugIn, steering
     OpenSteer::AVGroup& allVehicles () {return (OpenSteer::AVGroup&) TeamA;} // returns list of all 'vehicles' in the game
 
     private: 
-  
-    static UBCBaseSharedPtr base;  // stores copy of base object
-    
+      
     bool baseInitialized;  // stores whether the base object has been initialized
     
     unsigned int m_PlayerCountA;  // counts number of players on Team A

@@ -40,9 +40,8 @@
 #include "MyGUI_OgreRenderManager.h"
 */
 
-//#include "ubc/ubcbase.h"
 #include "utilities/enums.h"
-#include "utilities/typedefs.h"
+#include "utilitFFies/typedefs.h"
 //#include "input.h" 
 //#include "engine/renderengine.h" 
 
@@ -52,10 +51,9 @@
 //class renderEngine;
 //class gameEngine;
 
-class UBCBase;
 class UBCGame;
 
-class GUISystem //: public UBCBase //: public UBC //: public renderEngine //, inputSystem
+class GUISystem
 {
 public:
     GUISystem();  // constructor
@@ -69,10 +67,6 @@ public:
 
     sharedPtr<renderEngine> getRenderE();  // retrieves the value of render
     void setRender(sharedPtr<renderEngine> set);  // sets the value of render
-*/
-
-/*BASEREMOVAL    UBCBaseSharedPtr getBase();  // retrieves the value of base
-    void setBase(UBCBaseSharedPtr set);  // sets the value of base
 */
 
     bool getSetupComplete();  // retrieves the value of setupComplete
@@ -300,7 +294,6 @@ private:
 //    static MyGUI::Gui *mGUI;
 //    static MyGUI::OgrePlatform *mPlatform;
     
-//    static UBCBaseSharedPtr base;
     static MyGUIGuiSharedPtr mGUI;  // The MyGUI object
     static MyGUIOgrePlatformSharedPtr mPlatform;  // The MyGUI Platform object
 

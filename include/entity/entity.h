@@ -31,14 +31,8 @@
 #include "BtOgreGP.h"
 #include "BtOgreExtras.h"
 
-//#include "engine/renderengine.h"
 
-
-#include "ubc/ubcbase.h"
-
-//class UBC;
-
-class entity // : public UBCBase // base class for entity objects
+class entity
 {
     public:
     
@@ -48,12 +42,6 @@ class entity // : public UBCBase // base class for entity objects
     bool getInitialized();  // retrieves the value of initialized
     void setInitialized(bool set);  // sets the value of initialized
     
-/*    UBCBaseSharedPtr getBase();  // retrieves the value of base
-    void setBase(UBCBaseSharedPtr set);  // sets the value of base
-
-    bool getBaseInitialized();  // retrieves the value of baseInitialized
-    void setBaseInitialized(bool set);  // sets the value of baseInitialized
-*/
     size_t getEntityID();  // retrieves the value of entityID
     void setEntityID(size_t set);  // sets the value of entityID
     
@@ -91,9 +79,7 @@ class entity // : public UBCBase // base class for entity objects
     private:
     
     bool initialized;  // stores whether entity object has been initialized
-    
-//    static UBCBaseSharedPtr base;  // base class object
-    
+        
     bool baseInitialized;  // stores whether or not the base class has been initialized.
 
     size_t entityID;  // stores the entity ID number to distinguish between entities

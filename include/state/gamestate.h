@@ -39,7 +39,6 @@
 #include "engine/inputengine.h"
 class basketballState;
 class UBC;
-class UBCBase;
 class courtData;
 class courtState;
 class hoopState;
@@ -59,20 +58,6 @@ public:
 
     gameState(); // constructor
     ~gameState();  // destructor
-
-/*BASEREMOVAL    UBCBaseSharedPtr getBase();  // retrieves the value of base
-    void setBase(UBCBaseSharedPtr set);  // sets the value of base
-*/
-/*    gameTypes getGameType();  // retrieves the value of gameType
-    void setGameType(gameTypes set);  // sets the value of gameType
-*/
-//    quarters getQuarter();  // retrieves the value of quarter
-//    void setQuarters(quarters set);  // sets he value of quarter
-
-/*    bool getGameSetupComplete();  // retrieves the value of gameSetupComplete
-    void setGameSetupComplete(bool set);  // sets the value of gameSetupComplete
-*/
-
 
     bool getPlayerHasBasketball();  // retrieves the value of playerHasBasketball
     void setPlayerHasBasketball(bool set);  // setd the value of playerHasBasketball
@@ -215,7 +200,7 @@ protected:
 //    gameState &operator = (const gameState&);
 
 private:
-//BASEREMOVAL    static UBCBaseSharedPtr base;  // static copy of base class
+
     float gameTimeLeft;  // Indicates the time left in the game
     float quarterTimeLeft;  // incates the time left in the current quarter
 

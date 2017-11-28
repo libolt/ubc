@@ -27,9 +27,6 @@
 #include "config.h"
 #endif
 
-//#include "engine/networkengine.h"
-
-//#include "ubc/ubcbase.h"
 #include "SDL.h"
 #include "SDL_syswm.h"
 #include "SDL_test_common.h"
@@ -45,7 +42,6 @@
 #include "gui/gui.h"
 //class GUISystem;
 class gameEngine;
-class UBCBase;
 class UBCGame;
 
 #include "utilities/typedefs.h"
@@ -63,9 +59,6 @@ public:
     GUISystemSharedPtr getGui();  // retrieves the value of gui
     void setGui(GUISystemSharedPtr set);  // sets the value of gui
 
-//    UBCBaseSharedPtr getBase();  // retrieves the value of base
-//    void setBase(UBCBaseSharedPtr set);  // sets the value of base
- 
     UBCGameSharedPtr getGame();  // retrieves the value of game
     void setGame(UBCGameSharedPtr set);  // sets the value of game
 
@@ -101,7 +94,6 @@ private:
 
     static GUISystemSharedPtr gui;  // the GUI object.
 
-//    static UBCBaseSharedPtr base;  // static copy of base class
 
     static UBCGameSharedPtr game;  // static copy of game class
 

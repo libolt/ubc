@@ -32,7 +32,6 @@
 // forward declarations
 class playerSteerPlugin;
 class playerSteer;
-class UBCBase;
 
 class AISystem
 {
@@ -45,12 +44,6 @@ public:
     gameStateSharedPtr getGameInstance();  // retrieves the value of gameInstance
     void setGameInstance(gameStateSharedPtr set);  // sets the value of gameInstance
 
-    UBCBaseSharedPtr getBase();  // retrieves the value of base
-    void setBase(UBCBaseSharedPtr set);  // sets the value of base
-
-    bool getBaseInitialized();  // retrieves the value of baseInitialized
-    void setBaseInitialized(bool set);  // sets the value of baseInitialized
-    
     basketballStateMSharedPtr getActiveBasketballInstance();  // retrieves the value of activeBasketballInstance
     void setActiveBasketballInstance(basketballStateMSharedPtr set);  // sets the value of activeBasketballInstance
 
@@ -130,11 +123,7 @@ protected:
 private:
     //static AISystem *pInstance;
     static sharedPtr<AISystem> pInstance;
-    
-    static UBCBaseSharedPtr base;  // stores copy of base object
-    
-    bool baseInitialized;  // stores whether the base object has been initialized
-    
+        
 	// currently selected plug-in (user can choose or cycle through them)
 //    OpenSteer::PlugIn* selectedPlugIn;
     OpenSteerPluginSharedPtr selectedPlugIn;

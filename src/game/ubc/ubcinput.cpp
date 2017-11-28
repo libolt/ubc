@@ -19,7 +19,6 @@
  ***************************************************************************/
 
 #include "ubc/ubc.h"
-#include "ubc/ubcbase.h"
 #include "ubc/ubcinput.h"
 #include "utilities/conversion.h"
 #include "utilities/logging.h"

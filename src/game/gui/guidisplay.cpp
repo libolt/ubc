@@ -20,7 +20,6 @@
 
 #include "engine/networkengine.h"
 
-#include "ubc/ubcbase.h"
 #include "gui/gui.h"
 #include "utilities/conversion.h"
 #include "data/courtdata.h"

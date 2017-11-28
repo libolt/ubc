@@ -21,11 +21,8 @@
 #ifndef _STATE_H_
 #define _STATE_H_
 
-//#include "ubc/ubcbase.h"
 
-//class UBC;
-
-class state //: public UBCBase
+class state
 {
     public:
     

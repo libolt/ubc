@@ -54,22 +54,6 @@ class playerState //: public state
         playerState();
         ~playerState();
 
-/*        sharedPtr<playerData> getData();  // retrieves the value of data
-        void setData(sharedPtr<playerData> set);  // sets the value of data
-
-        sharedPtr<playerEntity> getEntity();  // retrieves the value of entity
-        void setEntity(sharedPtr<playerEntity> set);  // sets the value of entity
-
-
-        sharedPtr<playerStatistics> getStatistics();  // retrieves the value of statistics
-        void setStatistics(sharedPtr<playerStatistics> set);  // sets the value of statistics
-*/
-//        UBCBaseSharedPtr getBase();  // retrieves the value of base
-//        void setBase(UBCBaseSharedPtr set);  // sets the value of base
-
-//        bool getBaseInitialized();  // retrieves the value of baseInitialized
-//        void setBaseInitialized(bool set);  // sets the value of baseInitialized
-
         teamTypes getTeamType();  // retrieves the value of teamType
         void setTeamType(teamTypes set);  // sets the value of teamType
         
@@ -82,6 +66,7 @@ class playerState //: public state
 
         bool getIsActive();  // retrieves the value of isActive
         void setIsActive(bool set);  // sets the value of isActive
+
 
         size_t getOffDef();  // retrieves the value of offDef
         void setOffDef(size_t set);  // sets the value of offDef
@@ -195,18 +180,6 @@ class playerState //: public state
         void shotLogic(Ogre::Vector3 playerPos);  // carries out basketball shot logic
 
     private:
-
-//        sharedPtr<playerData> data;  // instance of playerData object
-
-//        sharedPtr<playerEntity> entity;  // instance of playerEntity object
-        
-//        sharedPtr<playerStatistics> statistics;  // instance of playerStatistics object
- 
-//        static UBCBaseSharedPtr base;  // base class object
-        
-//        bool baseInitialized;  // stores whether or not the base class has been initialized.
-
-//        size_t playerID;  // stores the ID of the player which is unique to each player in the game
 
         teamTypes teamType;  // stores which of the two teams the player belongs to
         

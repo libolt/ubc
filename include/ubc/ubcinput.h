@@ -23,7 +23,6 @@
 
 #include "utilities/typedefs.h"
 
-class UBCBase;
 class input;
 class users;
 

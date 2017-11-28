@@ -58,7 +58,6 @@
 #include "users/users.h"
 
 // static declarations
-//UBCBaseSharedPtr gameState::base;  // static copy of base class
 gameState::gameState()  // constructor
 {
     inputReceived = false;
@@ -103,15 +102,6 @@ gameState::gameState()  // constructor
 gameState::~gameState()  // destructor
 {
 }
-
-/*BASEREMOVAL UBCBaseSharedPtr gameState::getBase()  // retrieves the value of base
-{
-    return (base);
-}
-void gameState::setBase(UBCBaseSharedPtr set)  // sets the value of base
-{
-    base = set;
-}*/
 
 courtDataVec  gameState::getCourtDataInstance()  // retrieves the value of courtDataInstance
 {
@@ -1455,11 +1445,7 @@ bool gameState::setupState()  // sets up the game condition
         logMsg(func +" ATIIT.second->getActivePlayerInstance().size() == " +convert->toString(ATIIT.second->getActivePlayerInstance().size()));
     }
 //    exit(0);
-    if (!ai->getBaseInitialized())
-    {
-//BASEREMOVAL        ai->setBase(getBase());
-//BASEREMOVAL        ai->setBaseInitialized(true);
-    }
+
 //FIXME!AI    ai->setup(getActiveBasketballInstance(), getActiveCourtInstance(), getActiveTeamInstance(), getTeamWithBall(), getHumanPlayer());
 
 //        Ogre::Entity *ent;

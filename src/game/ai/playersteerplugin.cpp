@@ -32,14 +32,11 @@
 #include "state/playerstate.h"
 #include "ai/playersteer.h"
 #include "utilities/logging.h"
-#include "ubc/ubcbase.h"
 
 // static declarations
-UBCBaseSharedPtr playerSteerPlugin::base;  // stores copy of base object
 
 playerSteerPlugin::playerSteerPlugin()  // constructor
 {
-    baseInitialized = false;
 }
 playerSteerPlugin::~playerSteerPlugin()  // destructor
 {
@@ -53,15 +50,6 @@ gameStateSharedPtr playerSteerPlugin::getGameInstance()  // retrieves the value 
 void playerSteerPlugin::setGameInstance(gameStateSharedPtr set)  // sets the value of gameInstance
 {
     gameInstance = set;
-}
-
-UBCBaseSharedPtr playerSteerPlugin::getBase()  // retrieves the value of base
-{
-    return (base);
-}
-void playerSteerPlugin::setBase(UBCBaseSharedPtr set)  // sets the value of base
-{
-    base = set;
 }
 
 bool playerSteerPlugin::getBaseInitialized()  // retrieves the value of baseInitialized
@@ -148,11 +136,12 @@ void playerSteerPlugin::open()  // opens the plugin
     teamWithBall = ai->getTeamWithBall();
     humanPlayer = ai->getHumanPlayer();
 
-    if (!baseInitialized)
+/*    if (!baseInitialized)
     {
         base = ai->getBase();
         baseInitialized = true;
-    }
+    }*/
+
 	// builds team 0 steering instances
     logMsg(func +" activeTeamInstance.size() == " +convert->toString(activeTeamInstance.size()));
 //    exit(0);

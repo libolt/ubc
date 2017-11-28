@@ -44,7 +44,6 @@
 //sharedPtr<playerData> playerState::data;  // instance of playerData object
 //sharedPtr<playerEntity> playerState::playerEnt;  // instance of playerEntity object
 //sharedPtr<playerPhysics> playerState::physics;  // instance of physics object
-//UBCBaseSharedPtr playerState::base;  // base class object
 
 playerState::playerState()
 {
@@ -91,51 +90,6 @@ playerState::playerState()
 playerState::~playerState() // destructor
 {
 }
-
-/*sharedPtr<playerData> playerState::getData()  // retrieves the value of data
-{
-    return (data);
-}
-void playerState::setData(sharedPtr<playerData> set)  // sets the value of data
-{
-    data = set;
-}
-
-sharedPtr<playerEntity> playerState::getEntity()  // retrieves the value of entity
-{
-    return (entity);
-}
-void playerState::setEntity(sharedPtr<playerEntity> set)  // sets the value of entity
-{
-    entity = set;
-}
-
-sharedPtr<playerStatistics> playerState::getStatistics()  // retrieves the value of statistics
-{
-    return (statistics);
-}
-void playerState::setStatistics(sharedPtr<playerStatistics> set)  // sets the value of statistics
-{
-    statistics = set;
-}*/
-
-/*UBCBaseSharedPtr playerState::getBase()  // retrieves the value of base
-{
-    return (base);
-}
-void playerState::setBase(UBCBaseSharedPtr set)  // sets the value of base
-{
-    base = set;
-}
-
-bool playerState::getBaseInitialized()  // retrieves the value of baseInitialized
-{
-    return (baseInitialized);
-}
-void playerState::setBaseInitialized(bool set)  // sets the value of baseInitialized
-{
-    baseInitialized = set;
-}*/
 
 teamTypes playerState::getTeamType()  // retrieves the value of teamType
 {

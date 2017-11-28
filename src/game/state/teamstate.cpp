@@ -42,21 +42,11 @@
 #include "ai/playersteer.h"
 #include "utilities/enums.h"
 #include "jumpballs.h"
-#include "ubc/ubcbase.h"
 
 // static declarations
-UBCBaseSharedPtr teamState::base;  // static copy of base class
-//std::unordered_map<std::string, playerStateSharedPtr> teamState::activePlayerInstance;  // stores instance of the playerState class containing the active players
-
-//playerStateMSharedPtr teamState::playerInstance;
-//    sizeTVec teamState::activePlayerID; 
-//static size_t teamState::teamID; 
 
 teamState::teamState()  // constructor
 {
-
-//    UBCBaseSharedPtr tempBaseSharedPtr; //(new UBCBase);
-//    base = tempBaseSharedPtr;
     
     //teamNumber = -1;
 //    teamID = 0;
@@ -106,15 +96,6 @@ sharedPtr<teamStatistics> teamState::getStatistics()  // retrieves the value of 
 void teamState::setStatistics(sharedPtr<teamStatistics> set)  // sets the value of statistics
 {
     statistics = set;
-}
-
-UBCBaseSharedPtr teamState::getBase()  // retrieves the value of base
-{
-    return (base);
-}
-void teamState::setBase(UBCBaseSharedPtr set)  // sets the value of base
-{
-    base = set;
 }
 
 teamTypes teamState::getTeamType()  // retrieves the value of teamType

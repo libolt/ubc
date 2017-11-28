@@ -37,7 +37,6 @@
 #include "load/loadusersinputs.h"
 #include "utilities/logging.h"
 #include "ubc/ubc.h"
-#include "ubc/ubcbase.h"
 #include "ubc/ubcgame.h"
 #include "ubc/ubcinput.h"
 #include "network/networkplayerstateobject.h"
@@ -52,7 +51,6 @@
 // static declarations 
 gameEngineSharedPtr UBC::gameE;  // the gameEngine object
 GUISystemSharedPtr UBC::gui;  // the GUI object.
-//UBCBaseSharedPtr UBC::base;  // static copy of UBCBase class
 UBCGameSharedPtr UBC::game;  // static copy of UBCGame class
 UBCInputSharedPtr UBC::input;  // static copy of UBCInput class
 
@@ -84,15 +82,6 @@ void UBC::setGui(GUISystemSharedPtr set)  // sets the value of gui
 {
     gui = set;
 }
-
-/*UBCBaseSharedPtr UBC::getBase()  // retrieves the value of base
-{
-    return (base);
-}
-void UBC::setBase(UBCBaseSharedPtr set)  // sets the value of base
-{
-    base = set;
-}*/
 
 UBCGameSharedPtr UBC::getGame()  // retrieves the value of game
 {
@@ -132,10 +121,6 @@ bool UBC::setup()  // sets up UBC object
 //    gameE(new gameEngine);
     logMsg(func +" gameE->setup()");
     gameE->setup();  // sets up the game engine
-
-    
-    UBCBaseSharedPtr tempBaseSharedPtr(new UBCBase);
-//    base = tempBaseSharedPtr;
     
     logMsg(func +" beginning");
 

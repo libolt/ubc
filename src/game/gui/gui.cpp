@@ -18,7 +18,6 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "ubc/ubcbase.h"
 
 #include "engine/networkengine.h"
 
@@ -65,8 +64,6 @@ sharedPtr<GUISystem> GUISystem::Instance()
 */
 
 // static declarations
-
-//UBCBaseSharedPtr GUISystem::base;
 
 bool GUISystem::setupComplete;
 bool GUISystem::mainMenuCreated; 
@@ -263,36 +260,6 @@ GUISystem::~GUISystem()
 {
 
 }
-
-
-/*BASEREMOVAL UBCBaseSharedPtr GUISystem::getBase()  // retrieves the value of base
-{
-    return(base);
-}
-void GUISystem::setBase(UBCBaseSharedPtr set)  // sets the value of base
-{
-    base = set;
-}*/
-
-/*sharedPtr<networkEngimmnmne> GUISystem::getNetworkG()  // retrieves the value of network
-{
-    return (networkG);
-}
-void GUISystem::setNetworkG(networkEngineSharedPtr set)  // sets the value of network
-{
-    networkG = set;
-}
-
-sharedPtr<renderEngine> GUISystem::getRenderE()  // retrieves the value of render
-{
-    return (render);
-}
-void GUISystem::setRender(sharedPtr<renderEngine> set)  // sets the value of render
-{
-    render = set;
-}
-*/
-
 
 bool GUISystem::getSetupComplete()  // retrieves the value of setupComplete
 {

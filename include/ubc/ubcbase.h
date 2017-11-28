@@ -34,27 +34,16 @@ class UBCBase
 {
     public:
     
-        UBCBase();  // constructor
+/*        UBCBase();  // constructor
         ~UBCBase();  // destructor
 
         bool getStateSetup();  // retrieves the value of stateSetup
         void setStateSetup(bool set);  // sets the value of stateSetup           
                 
-        GUISystemSharedPtr getGui();  // retrieves the value of gui
-        void setGui(GUISystemSharedPtr set);  // sets the value of gui
-
-        networkStateSharedPtr getNetworkS();  // retrieves the value of networkS
-        void setNetworkS(networkStateSharedPtr set);  // sets the value of networkS
-    
-        loaderSharedPtr getLoad();  // retrieves the value of load
-        void setLoad(loaderSharedPtr set);  // sets the value of load
-        
-        bool setup();  // sets up the engine and states
-
+         bool setup();  // sets up the engine and states
+*/
 
     private:
-        static bool stateSetup;  // stores whether or not the initial state setup has completed
-                        static loaderSharedPtr load;  // the loader object
         
 };
 

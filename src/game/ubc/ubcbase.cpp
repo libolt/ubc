@@ -1,10 +1,10 @@
 /***************************************************************************
  *   Copyright (C) 1999 - 2017 by Mike McLean                              *
- *   libolt@libolt.net                                                     *
+ *   libolt@libolt.net               'uu                                    *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
+ *   the Fre8e Swhat are you doing my phoneoftware Foundation; either version 2 of the License, or     *
  *   (at your option) any later version.                                   *
  *                                                                         *
  *   This program is distributed in the hope that it will be useful,       *
@@ -38,7 +38,7 @@
 //loaderSharedPtr UBCBase::load;  // the loader object
 
 
-UBCBase::UBCBase()  // constructor
+/*UBCBase::UBCBase()  // constructor
 {
     stateSetup = false;
 
@@ -49,7 +49,7 @@ UBCBase::UBCBase()  // constructor
 UBCBase::~UBCBase()  // destructor
 {
     
-}
+}*/
 
 /*bool UBCBase::getStateSetup()  // retrieves the value of stateSetup
 {

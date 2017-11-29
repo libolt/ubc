@@ -749,7 +749,7 @@ bool gameState::setupActiveTeamInstances()  // sets up the active team instances
 
 bool gameState::setupEnvironment()
 {
-//    sharedPtr<renderEngine> render = renderEngine::Instance();
+//    renderEngineSharedPtr render = renderEngine::Instance();
     
 /*
     // Set ambient light
@@ -1237,7 +1237,7 @@ bool gameState::setupState()  // sets up the game condition
 //    exit(0);
 
     AISystemSharedPtr ai = AISystem::Instance();
-//    sharedPtr<renderEngine> render = renderEngine::Instance();
+//    renderEngineSharedPtr render = renderEngine::Instance();
 //    sharedPtr<loader> load = loader::Instance();
     //sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;

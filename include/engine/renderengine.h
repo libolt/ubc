@@ -60,7 +60,7 @@ class renderEngine : public engine
     public:
 
     //static renderEngine *Instance();
-//    static sharedPtr<renderEngine> Instance();
+//    static renderEngineSharedPtr Instance();
 
     renderEngine();  // constructor 
     
@@ -188,7 +188,7 @@ class renderEngine : public engine
     private:
 
 //    static renderEngine *pInstance;
-//    static sharedPtr<renderEngine> pInstance;
+//    static renderEngineSharedPtr pInstance;
     bool useRTSS;
 
 };

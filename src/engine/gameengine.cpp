@@ -42,7 +42,7 @@ bool gameEngine::movePlayer;
 timing gameEngine::timer;*/
 
 // static declarations
-//sharedPtr<renderEngine> gameEngine::renderE;
+//renderEngineSharedPtr gameEngine::renderE;
 
 gameEngine::gameEngine()  // constructor
 //    : player[0](0),
@@ -167,11 +167,11 @@ void gameEngine::setYOffset(float set)  // sets the value of yOffset
     yOffset = set;
 }
 
-sharedPtr<renderEngine> gameEngine::getRenderE()  // retrieves the value of renderE
+renderEngineSharedPtr gameEngine::getRenderE()  // retrieves the value of renderE
 {
     return (renderE);
 }
-void gameEngine::setRenderE(sharedPtr<renderEngine> set)  // sets the value of renderE
+void gameEngine::setRenderE(renderEngineSharedPtr set)  // sets the value of renderE
 {
 //    renderE = set;
 }
@@ -207,7 +207,7 @@ bool gameEngine::setup()  // sets up engine state
     // initialize subclasses
 
     // renderEngine
-    sharedPtr<renderEngine> tempRenderSharedPtr(new renderEngine);
+    renderEngineSharedPtr tempRenderSharedPtr(new renderEngine);
     renderE = tempRenderSharedPtr;
 
     inputEngineSharedPtr tempInputSharedPtr(new inputEngine);

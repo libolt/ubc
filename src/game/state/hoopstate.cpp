@@ -108,7 +108,7 @@ void hoopState::setStateSet(bool set)  // sets the value of stateSet
 
 bool hoopState::loadModel()  // loads the 3D Model and attaches it to the node as well as sets coordinates
 {
-    sharedPtr<renderEngine> render = renderEngine::Instance();
+    renderEngineSharedPtr render = renderEngine::Instance();
 
     model = render->getMSceneMgr()->createEntity(entityName, modelName);  // loads the hoop model
 

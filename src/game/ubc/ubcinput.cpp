@@ -366,7 +366,7 @@ bool UBCInput::processKeyboard(gameEngineSharedPtr gameE, gameStateSharedPtr gam
         if (gameE->getMenuActive())  // sends key input to the GUI system if menu is active
         {
             logMsg(func +" gameE->getMenuActive()");
-            gui->menuReceiveKeyPress(convert->toString(gameE->getInputE()->getKeyPressed())); // sends input to menu key input processing function
+            gui->menuReceiveKeyPress(convert->toString(gameE->getInputE()->getKeyPressed()), gameE->getRenderE()); // sends input to menu key input processing function
             logMsg(func +" base->getGui");
             //            exit(0);
         }

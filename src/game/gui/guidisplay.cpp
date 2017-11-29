@@ -75,7 +75,7 @@ void GUISystem::hideNetworkSetupWidgets()  // hides the widgets tied to the Netw
 }
 void GUISystem::showNetworkSetupWidgets()  // shows all widgets tied to the Network Setup Menu
 {
-    sharedPtr<renderEngine> render;  // = renderEngine::Instance();
+    renderEngineSharedPtr render;  // = renderEngine::Instance();
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getgetRenderE()->getViewPort()();
 
 //    ipAddressBox->setVisible(true);
@@ -110,7 +110,7 @@ void GUISystem::hideNetworkServerSetupWidgets()  // hides all widgets tied to th
 }
 void GUISystem::showNetworkServerSetupWidgets()  // shows all widgets tied to the Network Server Setup Menu
 {
-    sharedPtr<renderEngine> render; // = renderEngine::Instance();
+    renderEngineSharedPtr render; // = renderEngine::Instance();
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
 
     numClientsSelectBox->setVisible(true);
@@ -133,7 +133,7 @@ void GUISystem::hideNetworkClientSetupWidgets()  // hides the widgets tied to th
 }
 void GUISystem::showNetworkClientSetupWidgets()  // shows all widgets tied to the Network Setup Menu
 {
-    sharedPtr<renderEngine> render; // = renderEngine::Instance();
+    renderEngineSharedPtr render; // = renderEngine::Instance();
 
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
 
@@ -157,7 +157,7 @@ void GUISystem::hideOptionsMenuWidgets()  // hides all widgets tied to the Optio
 }
 void GUISystem::showOptionsMenuWidgets()  // shows all widgets tied to the Options Menu
 {
-    sharedPtr<renderEngine> render; // = renderEngine::Instance();
+    renderEngineSharedPtr render; // = renderEngine::Instance();
 
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
 
@@ -240,7 +240,7 @@ void GUISystem::hideGameSetupMenuWidgets()  // hides all widgets tied to the Gam
 }
 void GUISystem::showGameSetupMenuWidgets()  // shows all widgets tied to the Game Setup Menu
 {
-    sharedPtr<renderEngine> render; // = renderEngine::Instance();
+    renderEngineSharedPtr render; // = renderEngine::Instance();
 
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
 /*
@@ -326,7 +326,7 @@ void GUISystem::hidePlayerStartSelectionMenuWidgets()  // hides all widgets tied
 void GUISystem::showPlayerStartSelectionMenuWidgets()  // shows all widgets tied to the Player Start Selection Menu
 {
 
-    sharedPtr<renderEngine> render; // = renderEngine::Instance();
+    renderEngineSharedPtr render; // = renderEngine::Instance();
 
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
 
@@ -434,15 +434,14 @@ void GUISystem::hideTeamSelectionMenuWidgets()  // hides all widgets tied to the
 //    backCourtSelectionMenuButton->setVisible(false);
 }
 
-void GUISystem::showTeamSelectionMenuWidgets()  // show all widgets tied to the Team Selection Menu
+void GUISystem::showTeamSelectionMenuWidgets(renderEngineSharedPtr render)  // show all widgets tied to the Team Selection Menu
 {
-    sharedPtr<renderEngine> render; // = renderEngine::Instance();
+//    renderEngineSharedPtr render; // = renderEngine::Instance();
 
-//    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
-    logMsg("GUISystem::showTeamSelectionMenuWidgets");
-//    logMsg("Blip");
-//    exit(0);
-    
+    std::string func = "GUISystem::showTeamSelectionMenuWidgets()";
+
+    logMsg(func +" begin");
+
     teamSelectBox[0]->setVisible(true);
     teamSelectBox[0]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.10 *render->getViewPort()->getActualHeight()) );
 //    exit(0);
@@ -461,6 +460,7 @@ void GUISystem::showTeamSelectionMenuWidgets()  // show all widgets tied to the 
     teamSelectionMenuButtons["backCourtSelectionMenuButton"]->setVisible(true);
     teamSelectionMenuButtons["backCourtSelectionMenuButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.30 *render->getViewPort()->getActualHeight()) );
 
+    logMsg(func +" end");
 //    exit(0);
 }
 
@@ -473,17 +473,17 @@ void GUISystem::hideCourtSelectionMenuWidgets()  // hides all widgets tied to th
     courtSelectionMenuButtons["courtSelectButton"]->setVisible(false);
 //    exit(0);
 }
-void GUISystem::showCourtSelectionMenuWidgets()  // show all widgets tied to the Court Selection Menu
+void GUISystem::showCourtSelectionMenuWidgets(renderEngineSharedPtr render)  // show all widgets tied to the Court Selection Menu
 {
-    sharedPtr<renderEngine> render; // = renderEngine::Instance();
-
-//    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
+//    renderEngineSharedPtr render; // = renderEngine::Instance();
     conversionSharedPtr convert = conversion::Instance();
-    
+    std::string func = "GUISystem::showCourtSelectionMenuWidgets()";
     displayCount += 1;
 //    teamSelectionMenu();
 
-    logMsg("court displayCount == " +convert->toString(displayCount));
+    logMsg(func +" begin");
+
+    logMsg(func +" court displayCount == " +convert->toString(displayCount));
     
     courtSelectionMenuButtons["backMainMenuButton"]->setVisible(true);
     courtSelectionMenuButtons["backMainMenuButton"]->setPosition((0.25 *render->getViewPort()->getActualWidth() ), (0.4 *render->getViewPort()->getActualHeight()) );
@@ -496,6 +496,7 @@ void GUISystem::showCourtSelectionMenuWidgets()  // show all widgets tied to the
     courtSelectionMenuButtons["courtSelectButton"]->setVisible(true);
     courtSelectionMenuButtons["courtSelectButton"]->setPosition((0.25 *render->getViewPort()->getActualWidth() ), (0.36 *render->getViewPort()->getActualHeight()) );
 
+    logMsg(func +" end");
 }
 
 void GUISystem::hideActiveMenuWidgets()  // hides active menus widgets
@@ -545,7 +546,7 @@ void GUISystem::hideActiveMenuWidgets()  // hides active menus widgets
     }
 }
 
-void GUISystem::showActiveMenuWidgets()  // shows active menus widgets
+void GUISystem::showActiveMenuWidgets(renderEngineSharedPtr render)  // shows active menus widgets
 {
 //    exit(0);
     switch (activeMenu)
@@ -583,17 +584,17 @@ void GUISystem::showActiveMenuWidgets()  // shows active menus widgets
         case TEAMSELECT:
             logMsg("TEAMSELECT");
 //            exit(0);
-            showTeamSelectionMenuWidgets();
+            showTeamSelectionMenuWidgets(render);
             break;
         case COURTSELECT:
-            showCourtSelectionMenuWidgets();
+            showCourtSelectionMenuWidgets(render);
             break;
         default:
             break;
     }
 }
 
-void GUISystem::changeActiveMenu(activeMenus menu)  // changes the actively displayed menu
+void GUISystem::changeActiveMenu(activeMenus menu, renderEngineSharedPtr render)  // changes the actively displayed menu
 {
 //    exit(0);
     hideActiveMenuWidgets();
@@ -601,5 +602,5 @@ void GUISystem::changeActiveMenu(activeMenus menu)  // changes the actively disp
     gameE->setMenuActive(true);
     previousActiveMenu = activeMenu;
     activeMenu = menu;
-    showActiveMenuWidgets();
+    showActiveMenuWidgets(render);
 }

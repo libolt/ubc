@@ -65,8 +65,8 @@ public:
 /*    networkEngineSharedPtr getNetworkG();  // retrieves the value of networkG
     void setNetworkG(networkEngineSharedPtr set);  // sets the value of networkG
 
-    sharedPtr<renderEngine> getRenderE();  // retrieves the value of render
-    void setRender(sharedPtr<renderEngine> set);  // sets the value of render
+    renderEngineSharedPtr getRenderE();  // retrieves the value of render
+    void setRender(renderEngineSharedPtr set);  // sets the value of render
 */
 
     bool getSetupComplete();  // retrieves the value of setupComplete
@@ -139,50 +139,50 @@ public:
     void setViewPort(const Ogre::Viewport &set);  // sets the value of viewPort
 */
 
-    bool setup(sharedPtr<renderEngine> render);  // sets up the in game gui
-    bool initMyGUI(sharedPtr<renderEngine> render);  // Initializes MyGUI
-    bool createMainMenuGUI();  // creates GUI gor main menu screen.
-    bool createNetworkSetupGUI();  // creates GUI for network setup screen.
-    bool createNetworkClientSetupGUI();  // creates GUI for network client setup screen.
-    bool createNetworkServerSetupGUI();  // creates GUI for network server setup screen.
-    bool createOptionsMenuGUI();  // creates GUI for options menu screen.
+    bool setup(renderEngineSharedPtr render);  // sets up the in game gui
+    bool initMyGUI(renderEngineSharedPtr render);  // Initializes MyGUI
+    bool createMainMenuGUI(renderEngineSharedPtr render);  // creates GUI gor main menu screen.
+    bool createNetworkSetupGUI(renderEngineSharedPtr render);  // creates GUI for network setup screen.
+    bool createNetworkClientSetupGUI(renderEngineSharedPtr render);  // creates GUI for network client setup screen.
+    bool createNetworkServerSetupGUI(renderEngineSharedPtr render);  // creates GUI for network server setup screen.
+    bool createOptionsMenuGUI(renderEngineSharedPtr render);  // creates GUI for options menu screen.
     bool createDisplaySetupGUI();  // creates GUI for display settings screen.
     bool createInputSetupGUI();  // creates GUI for input settings screen.
     bool createAudioSetupGUI();	 // creates GUI for audo settings screen.
     bool createGameSetupMenuGUI();  // creates GUI for game setup menu screen.
-    bool createPlayerStartSelectionMenuGUI();  // creates GUI for player start selection menu screen.
-    bool createTeamSelectionMenuGUI();	// creates GUI for team selection menu screen.
-    bool createCourtSelectionMenuGUI();  // creates GUI for court selection menu screen.
+    bool createPlayerStartSelectionMenuGUI(renderEngineSharedPtr render);  // creates GUI for player start selection menu screen.
+    bool createTeamSelectionMenuGUI(renderEngineSharedPtr render);	// creates GUI for team selection menu screen.
+    bool createCourtSelectionMenuGUI(renderEngineSharedPtr render);  // creates GUI for court selection menu screen.
     bool createBackButtons();  // creates the back buttons for the menus
 
-    void menuReceiveKeyPress(std::string keyPressed);  // processes key input
-    void processMainMenuKeyPress(std::string keyPressed);  // processes main menu key input
-    void processNetworkMenuKeyPress(std::string keyPressed);  // processes network menu key input
-    void processNetworkServerMenuKeyPress(std::string keyPressed);  // process network server menu key input
-    void processNetworkClientMenuKeyPress(std::string keyPressed);  // process network client menu key input
-    void processOptionsMenuKeyPress(std::string keyPressed);  // processes options menu key input
-    void processDisplayMenuKeyPress(std::string keyPressed);  // processes display settings menu key input
-    void processInputMenuKeyPress(std::string keyPressed);  // processes input settings menu key input
-    void processAudioMenuKeyPress(std::string keyPressed);  // processes audio settings menu key input
-    void processGameSetupMenuKeyPress(std::string keyPressed);  // processes game setup menu key input
-    void processPlayerStartSelectionMenuKeyPress(std::string keyPressed);  // process player start selection menu key input
-    void processTeamSelectionMenuKeyPress(std::string keyPressed);  // process team selection menu key input
-    void processCourtSelectionMenuKeyPress(std::string keyPressed);  // process court selection menu key input
+    void menuReceiveKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // processes key input
+    void processMainMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // processes main menu key input
+    void processNetworkMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // processes network menu key input
+    void processNetworkServerMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // process network server menu key input
+    void processNetworkClientMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // process network client menu key input
+    void processOptionsMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // processes options menu key input
+    void processDisplayMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // processes display settings menu key input
+    void processInputMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // processes input settings menu key input
+    void processAudioMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // processes audio settings menu key input
+    void processGameSetupMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // processes game setup menu key input
+    void processPlayerStartSelectionMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // process player start selection menu key input
+    void processTeamSelectionMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // process team selection menu key input
+    void processCourtSelectionMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // process court selection menu key input
 	
-    void mainMenu();  // msin in game menu
+    void mainMenu(renderEngineSharedPtr render);  // msin in game menu
     void backButtons();  // handles the back buttons
-    void startSinglePlayerGame();  // starts single player game
-    void startMultiPlayerGame();  // starts multiplayer game
-    void optionsMenu();  // displays options menu
-    void displayMenu();  // displays display menu
-    void inputMenu();  // displays the input menu
-    void audioMenu();  // displays the audio menu
-    void gameSetupMenu();  // displays game setup menu
-    void playerStartSelectionMenu();  // displays player start selection menu
-    void teamSelectionMenu();  // displays team selection menu
-    void courtSelectionMenu();  // displays court selection menu
-    void networkClientSetupMenu();  // sets up the network client connection
-    void networkServerSetupMenu();  // sets up the networkServer instance
+    void startSinglePlayerGame(renderEngineSharedPtr render);  // starts single player game
+    void startMultiPlayerGame(renderEngineSharedPtr render);  // starts multiplayer game
+    void optionsMenu(renderEngineSharedPtr render);  // displays options menu
+    void displayMenu(renderEngineSharedPtr render);  // displays display menu
+    void inputMenu(renderEngineSharedPtr render);  // displays the input menu
+    void audioMenu(renderEngineSharedPtr render);  // displays the audio menu
+    void gameSetupMenu(renderEngineSharedPtr render);  // displays game setup menu
+    void playerStartSelectionMenu(renderEngineSharedPtr render);  // displays player start selection menu
+    void teamSelectionMenu(renderEngineSharedPtr render);  // displays team selection menu
+    void courtSelectionMenu(renderEngineSharedPtr render);  // displays court selection menu
+    void networkClientSetupMenu(renderEngineSharedPtr render);  // sets up the network client connection
+    void networkServerSetupMenu(renderEngineSharedPtr render);  // sets up the networkServer instance
     
     bool addCourtSelectionMenuData();  // adds data to Court Selection Menu widgets
 
@@ -200,9 +200,9 @@ public:
     void playerStartSelected();  // process player start selection
     void gameSetupAwaySelected();  // processes away team selectdion on game setup menu
     void gameSetupHomeSelected();  // process home team selection on game setup menu
-    void backMainMenuSelected();  // processes back to main menu selection
-    void backNetworkSetupMenuSelected();  // returns back to network setup screen
-    void backNetworkClientMenuSelected();  // returns back to the network client menu
+    void backMainMenuSelected(renderEngineSharedPtr render);  // processes back to main menu selection
+    void backNetworkSetupMenuSelected(renderEngineSharedPtr render);  // returns back to network setup screen
+    void backNetworkClientMenuSelected(renderEngineSharedPtr render);  // returns back to the network client menu
     
     bool checkTeamInstancesCreated();  // Checks if team instances have been created and if not creates them.
 
@@ -276,15 +276,15 @@ public:
     void showPlayerStartSelectionMenuWidgets(); // shows all widgets tied to the Player Start Selection Menu
 
     void hideTeamSelectionMenuWidgets(); // hides all widgets tied to the Team Selection Menu
-    void showTeamSelectionMenuWidgets(); // show all widgets tied to the Team Selection Menu
+    void showTeamSelectionMenuWidgets(renderEngineSharedPtr render); // show all widgets tied to the Team Selection Menu
 
     void hideCourtSelectionMenuWidgets(); // hides all widgets tied to the Court Selection Menu
-    void showCourtSelectionMenuWidgets(); // show all widgets tied to the Court Selection Menu
+    void showCourtSelectionMenuWidgets(renderEngineSharedPtr render); // show all widgets tied to the Court Selection Menu
 	
     void hideActiveMenuWidgets();  // hides active menus widgets
-    void showActiveMenuWidgets();  // shows active menus widgets
+    void showActiveMenuWidgets(renderEngineSharedPtr render);  // shows active menus widgets
     
-    void changeActiveMenu(activeMenus menu);  // changes the actively displayed menu
+    void changeActiveMenu(activeMenus menu, renderEngineSharedPtr render);  // changes the actively displayed menu
     
 private:
 
@@ -430,7 +430,7 @@ private:
     MyGUITextBoxSharedPtr courtNameTxtBox;
 
     // OGRE specific code
-/*    sharedPtr<renderEngine> render;  // stores a copy of the render object for use in the gui
+/*    renderEngineSharedPtr render;  // stores a copy of the render object for use in the gui
     Ogre::Viewport *viewPort; // stores the view port for mygui
 
     // network engine

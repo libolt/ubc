@@ -57,7 +57,7 @@ public:
 
     bool setup();  // sets up the physicsEngine object
 
-    void setupState(sharedPtr<renderEngine> render);  // sets up state of physics engine.
+    void setupState(renderEngineSharedPtr render);  // sets up state of physics engine.
 
     void updateState();  // updates the state of the physics engine.
     void updatePositions();  // updates thr position of objects

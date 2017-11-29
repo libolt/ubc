@@ -61,7 +61,7 @@ void logging::setOgreRootInitialized(bool set)  // sets the value of ogreRootIni
  
 void logging::logMessage(std::string msg)  // logs a message to appropriate output
 {
-//    sharedPtr<renderEngine> render = renderEngine::Instance();
+//    renderEngineSharedPtr render = renderEngine::Instance();
 
 #ifdef __ANDROID__
     __android_log_print(ANDROID_LOG_DEBUG, "com.libolt.ubc", msg.c_str());

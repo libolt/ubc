@@ -189,7 +189,7 @@ usersInputsVecSharedPtr loadUsersInputs::loadUsersInputFiles()  // load user inp
 stdStringVec loadUsersInputs::loadUsersInputListFile(std::string fileName)  // loads the user input list file
 {
     conversionSharedPtr convert = conversion::Instance();
-//    sharedPtr<renderEngine> render = renderEngine::Instance();
+//    renderEngineSharedPtr render = renderEngine::Instance();
     stdStringVec uInputFiles;
     std::string fileContents;
     tinyxml2::XMLDocument doc;

@@ -146,7 +146,7 @@ bool entity::loadModel()  // loads the 3D model
 {
     conversionSharedPtr convert = conversion::Instance();
     std::string func = "entity::loadModel()";
-//BASEREMOVAL    sharedPtr<renderEngine> render = base->getGameE()->getRenderE();
+//BASEREMOVAL    renderEngineSharedPtr render = base->getGameE()->getRenderE();
     renderEngineSharedPtr render;
     sharedPtr<Ogre::SceneManager> mSceneMgr = render->getMSceneMgr();
     Ogre::ResourceGroupManager &rsm = Ogre::ResourceGroupManager::getSingleton();

@@ -136,9 +136,9 @@ bool physicsEngine::setup()  // sets up the physicsEngine object
     return (true);
 }
 
-void physicsEngine::setupState(sharedPtr<renderEngine> render)  // sets up the state of the physics engine
+void physicsEngine::setupState(renderEngineSharedPtr render)  // sets up the state of the physics engine
 {
-//    sharedPtr<renderEngine> render = renderEngine::Instance();
+//    renderEngineSharedPtr render = renderEngine::Instance();
 
     // Debug drawing!
     //debugDraw = new BtOgre::DebugDrawer(render->getMSceneMgr()->getRootSceneNode(), world.get());

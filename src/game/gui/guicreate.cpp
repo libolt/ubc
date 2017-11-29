@@ -40,9 +40,9 @@
  
 //MyGUI::Button *GUISystem::backMainMenuButton;  // static
 
-bool GUISystem::createMainMenuGUI()  // creates the main menu gui
+bool GUISystem::createMainMenuGUI(renderEngineSharedPtr render)  // creates the main menu gui
 {
-    sharedPtr<renderEngine> render; // = renderEngine::Instance();
+//    renderEngineSharedPtr render; // = renderEngine::Instance();
     std::string func = "GUISystem::createMainMenuGUI()";
 //    Ogre::Viewport *viewPort = render->getViewPort();
 //    exit(0); 
@@ -116,9 +116,9 @@ bool GUISystem::createMainMenuGUI()  // creates the main menu gui
     return (true);
 }
 
-bool GUISystem::createNetworkSetupGUI()  // loads the GUI for the network setup screen
+bool GUISystem::createNetworkSetupGUI(renderEngineSharedPtr render)  // loads the GUI for the network setup screen
 {
-    sharedPtr<renderEngine> render; // = renderEngine::Instance();
+//    renderEngineSharedPtr render; // = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
     std::string func = "GUISystem::createNetworkSetupGUI()";
 
@@ -154,9 +154,9 @@ bool GUISystem::createNetworkSetupGUI()  // loads the GUI for the network setup 
     return true;
 }
 
-bool GUISystem::createNetworkClientSetupGUI()  // creates GUI for network client setup screen.
+bool GUISystem::createNetworkClientSetupGUI(renderEngineSharedPtr render)  // creates GUI for network client setup screen.
 {
-    sharedPtr<renderEngine> render; // = renderEngine::Instance();
+//    renderEngineSharedPtr render; // = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
     std::string func = "GUISystem::createNetworkClientSetupGUI()";
 
@@ -185,9 +185,9 @@ bool GUISystem::createNetworkClientSetupGUI()  // creates GUI for network client
     return true;
 }
 
-bool GUISystem::createNetworkServerSetupGUI()  // creates GUI for network server setup screen.
+bool GUISystem::createNetworkServerSetupGUI(renderEngineSharedPtr render)  // creates GUI for network server setup screen.
 {
-    sharedPtr<renderEngine> render; // = renderEngine::Instance();
+//    renderEngineSharedPtr render; // = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
 
     std::string func = "GUISystem::createNetworkServerSetupGUI()";
@@ -221,9 +221,9 @@ bool GUISystem::createNetworkServerSetupGUI()  // creates GUI for network server
     return true;
 }
 
-bool GUISystem::createCourtSelectionMenuGUI()  // creates GUI for court selection menu screen.
+bool GUISystem::createCourtSelectionMenuGUI(renderEngineSharedPtr render)  // creates GUI for court selection menu screen.
 {
-    sharedPtr<renderEngine> render; // = renderEngine::Instance();
+//    renderEngineSharedPtr render; // = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
     courtStateSharedPtr courtInst(new courtState);
     std::string func = "GUISystem::createCourtSelectionMenuGUI()";
@@ -262,9 +262,9 @@ bool GUISystem::createCourtSelectionMenuGUI()  // creates GUI for court selectio
     return true;
 }
 
-bool GUISystem::createOptionsMenuGUI()  // creates GUI for options menu screen.
+bool GUISystem::createOptionsMenuGUI(renderEngineSharedPtr render)  // creates GUI for options menu screen.
 {
-    sharedPtr<renderEngine> render; // = renderEngine::Instance();
+//    renderEngineSharedPtr render; // = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
     std::string func = "GUISystem::createOptionsMenuGUI()";
 
@@ -302,7 +302,7 @@ bool GUISystem::createOptionsMenuGUI()  // creates GUI for options menu screen.
 
 bool GUISystem::createBackButtons()  // creates the back buttons for the menus
 {
-//    sharedPtr<renderEngine> render = renderEngine::Instance();
+//    renderEngineSharedPtr render = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
 //    exit(0);
     std::string func = "GUISystem::createBackButtons()";
@@ -361,7 +361,7 @@ bool GUISystem::createBackButtons()  // creates the back buttons for the menus
 
 bool GUISystem::createDisplaySetupGUI()  // creates GUI for display settings screen.
 {
-//    sharedPtr<renderEngine> render = renderEngine::Instance();
+//    renderEngineSharedPtr render = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
     std::string func = "GUISystem::createDisplaySetupGUI()";
 
@@ -387,7 +387,7 @@ bool GUISystem::createDisplaySetupGUI()  // creates GUI for display settings scr
 
 bool GUISystem::createInputSetupGUI()  // creates GUI for input settings screen.
 {
-//    sharedPtr<renderEngine> render = renderEngine::Instance();
+//    renderEngineSharedPtr render = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
     std::string func = "GUISystem::createCourtInputSetupGUI()";
 
@@ -412,7 +412,7 @@ bool GUISystem::createInputSetupGUI()  // creates GUI for input settings screen.
 
 bool GUISystem::createAudioSetupGUI()  // creates GUI for audo settings screen.
 {
-//    sharedPtr<renderEngine> render = renderEngine::Instance();
+//    renderEngineSharedPtr render = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
 
     std::string func = "GUISystem::createAudioSetupGUI()";
@@ -449,7 +449,7 @@ bool GUISystem::createGameSetupMenuGUI()    // creates GUI for game setup menu s
     //gameState *gameS = gameState::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    sharedPtr<loader> load(new loader);
-//    sharedPtr<renderEngine> render = renderEngine::Instance();
+//    renderEngineSharedPtr render = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
 
     std::string func = "GUISystem::createCourtGameSetupMenuGUI()";
@@ -465,15 +465,8 @@ bool GUISystem::createGameSetupMenuGUI()    // creates GUI for game setup menu s
     return (true);
 }
 
-bool GUISystem::createPlayerStartSelectionMenuGUI()  // creates GUI for player selection menu screen.
+bool GUISystem::createPlayerStartSelectionMenuGUI(renderEngineSharedPtr render)  // creates GUI for player selection menu screen.
 {
-    sharedPtr<renderEngine> render; // = renderEngine::Instance();
-//    Ogre::Viewport *viewPort = render->getViewPort();
-
-//    load->loadTeams();
-//    std::vector<teamData> teamDataInstance = gameS->getTeamDataInstance();
-
-//    exit(0);
 
     std::string func = "GUISystem::createPlayerStartSelectionMenuGUI()";
     
@@ -625,9 +618,9 @@ bool GUISystem::createPlayerStartSelectionMenuGUI()  // creates GUI for player s
     return (true);
 }
 
-bool GUISystem::createTeamSelectionMenuGUI()  // creates GUI for team selection menu screen.
+bool GUISystem::createTeamSelectionMenuGUI(renderEngineSharedPtr render)  // creates GUI for team selection menu screen.
 {
-    sharedPtr<renderEngine> render;
+//    renderEngineSharedPtr render;
 
     conversionSharedPtr convert = conversion::Instance();
     //

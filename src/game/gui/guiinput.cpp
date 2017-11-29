@@ -42,17 +42,17 @@
 
 void GUISystem::startSingleGameButtonClicked(MyGUI::Widget *_sender)  // handles startSingleGameButton click event
 {
-    startSinglePlayerGame();
+    startSinglePlayerGame(gameE->getRenderE());
 }
 
 void GUISystem::startMultiGameButtonClicked(MyGUI::Widget *_sender)  // handles startMultiGameButton click event
 {
-    startMultiPlayerGame();
+    startMultiPlayerGame(gameE->getRenderE());
 }
 
 void GUISystem::optionsButtonClicked(MyGUI::Widget *_sender)  // handles optionsButton click event
 {
-    optionsMenu();
+    optionsMenu(gameE->getRenderE());
 
 }
 void GUISystem::exitButtonClicked(MyGUI::Widget *_sender)  // handles exitButton click event
@@ -62,12 +62,12 @@ void GUISystem::exitButtonClicked(MyGUI::Widget *_sender)  // handles exitButton
 
 void GUISystem::serverButtonClicked(MyGUI::Widget *_sender)  // handles serverButton click event
 {
-    networkServerSetupMenu();
+    networkServerSetupMenu(gameE->getRenderE());
 }
 
 void GUISystem::clientButtonClicked(MyGUI::Widget *_sender)  // handles clientButton click event
 {
-    networkClientSetupMenu();
+    networkClientSetupMenu(gameE->getRenderE());
 }
 
 void GUISystem::serverHostButtonClicked(MyGUI::Widget *_sender)  // handles serverHostButton click event
@@ -81,12 +81,12 @@ void GUISystem::clientConnectButtonClicked(MyGUI::Widget *_sender)  // handles c
 
 void GUISystem::backMainMenuButtonClicked(MyGUI::Widget *_sender)  // handles backMainMenuButton click event
 {
-    backMainMenuSelected();
+    backMainMenuSelected(gameE->getRenderE());
 }
 
 void GUISystem::backNetworkSetupButtonClicked(MyGUI::Widget *_sender)  // handles backNetworkSetupButton click event
 {
-    backNetworkSetupMenuSelected();
+    backNetworkSetupMenuSelected(gameE->getRenderE());
 }
 
 void GUISystem::displayButtonClicked(MyGUI::Widget *_sender)  // handles didplayButton click event
@@ -96,12 +96,12 @@ void GUISystem::displayButtonClicked(MyGUI::Widget *_sender)  // handles didplay
 
 void GUISystem::inputButtonClicked(MyGUI::Widget *_sender)  // handles inputButton click event
 {
-    inputMenu();
+    inputMenu(gameE->getRenderE());
 }
 
 void GUISystem::audioButtonClicked(MyGUI::Widget *_sender)  // handles audioButton click event
 {
-    audioMenu();
+    audioMenu(gameE->getRenderE());
 }
 
 void GUISystem::changeResolutionButtonClicked(MyGUI::Widget *_sender)  // handles changeResolutionButton click event
@@ -138,7 +138,7 @@ void GUISystem::teamsSelectedButtonClicked(MyGUI::Widget *_sender)  // handles t
 {
     logMsg("teamsSelectedButtonClicked");
     teamsSelected();
-    playerStartSelectionMenu();
+    playerStartSelectionMenu(gameE->getRenderE());
 
 }
 
@@ -162,12 +162,12 @@ void GUISystem::startingLineupSetButtonClicked(MyGUI::Widget *_sender)  // handl
 
 void GUISystem::backNetworkClientButtonClicked(MyGUI::Widget *_sender)  // handles backNetworkClientButton click event
 {
-    networkClientSetupMenu();
+    networkClientSetupMenu(gameE->getRenderE());
 }
 
 void GUISystem::backOptionsMenuButtonClicked(MyGUI::Widget *_sender)  // handles backOptionsMenuButton click event
 {
-    optionsMenu();
+    optionsMenu(gameE->getRenderE());
 }
 
 void GUISystem::backPlayerStartSelectionMenuButtonClicked(MyGUI::Widget *_sender)  // handles backPlayerStartSelectionMenuButton click event
@@ -177,17 +177,17 @@ void GUISystem::backPlayerStartSelectionMenuButtonClicked(MyGUI::Widget *_sender
 
 void GUISystem::backTeamSelectionMenuButtonClicked(MyGUI::Widget *_sender)  // handles backTeamSelectionMenuButton click event
 {
-    teamSelectionMenu();
+    teamSelectionMenu(gameE->getRenderE());
 }
 
-void GUISystem::backCourtSelectionMenuButtonClicked(MyGUI::Widget *_sender)  // handles backCourtSelectionMenuButton click event
+void GUISystem::backCourtSelectionMenuButtonClicked(MyGUI::Widget *_sender) // handles backCourtSelectionMenuButton click event
 {
-    courtSelectionMenu();
+    courtSelectionMenu(gameE->getRenderE());
 }
 
 void GUISystem::backGameSetupMenuButtonClicked(MyGUI::Widget *_sender)  // handles backGameSetupMenuButton click event
 {
-    gameSetupMenu();
+    gameSetupMenu(gameE->getRenderE());
 }
 
 void GUISystem::courtSelectButtonClicked(MyGUI::Widget *_sender)  // handles courtSelectButton click event
@@ -196,7 +196,7 @@ void GUISystem::courtSelectButtonClicked(MyGUI::Widget *_sender)  // handles cou
 }
 
 
-void GUISystem::menuReceiveKeyPress(std::string keyPressed)  // processes key input
+void GUISystem::menuReceiveKeyPress(std::string keyPressed, renderEngineSharedPtr render)  // processes key input
 {
     conversionSharedPtr convert = conversion::Instance();
 
@@ -209,41 +209,41 @@ void GUISystem::menuReceiveKeyPress(std::string keyPressed)  // processes key in
         switch (activeMenu)
         {
             case MAIN:
-                processMainMenuKeyPress(keyPressed);
+                processMainMenuKeyPress(keyPressed, render);
                 break;
             case NETWORK:
-                processNetworkMenuKeyPress(keyPressed);
+                processNetworkMenuKeyPress(keyPressed, render);
                 break;
             case NETWORKSERVER:
-                processNetworkServerMenuKeyPress(keyPressed);
+                processNetworkServerMenuKeyPress(keyPressed, render);
                 break;
             case NETWORKCLIENT:
-                processNetworkClientMenuKeyPress(keyPressed);
+                processNetworkClientMenuKeyPress(keyPressed, render);
                 break;
             case OPTIONS:
-                processOptionsMenuKeyPress(keyPressed);
+                processOptionsMenuKeyPress(keyPressed, render);
                 break;
             case DISPLAY:
-                processDisplayMenuKeyPress(keyPressed);
+                processDisplayMenuKeyPress(keyPressed, render);
                 break;
             case INPUTMENU:
-                processInputMenuKeyPress(keyPressed);
+                processInputMenuKeyPress(keyPressed, render);
                 break;
             case AUDIO:
-                processAudioMenuKeyPress(keyPressed);
+                processAudioMenuKeyPress(keyPressed, render);
                 break;
             case GAMESETUP:
-                processGameSetupMenuKeyPress(keyPressed);
+                processGameSetupMenuKeyPress(keyPressed, render);
                 break;
             case PLAYERSTART:
-                processPlayerStartSelectionMenuKeyPress(keyPressed);
+                processPlayerStartSelectionMenuKeyPress(keyPressed, render);
                 break;
             case TEAMSELECT:
-                processTeamSelectionMenuKeyPress(keyPressed);
+                processTeamSelectionMenuKeyPress(keyPressed, render);
 //                exit(0);
                 break;
             case COURTSELECT:
-                processCourtSelectionMenuKeyPress(keyPressed);
+                processCourtSelectionMenuKeyPress(keyPressed, render);
                 break;
             default:
                 break;
@@ -251,21 +251,21 @@ void GUISystem::menuReceiveKeyPress(std::string keyPressed)  // processes key in
     }
 }
 
-void GUISystem::processMainMenuKeyPress(std::string keyPressed)  // processes main menu key input
+void GUISystem::processMainMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render)  // processes main menu key input
 {
 //    exit(0);
     if (keyPressed == "s")
     {
 //        exit(0);
-        startSinglePlayerGame();
+        startSinglePlayerGame(render);
     }
     else if (keyPressed == "m")
     {
-        startMultiPlayerGame();
+        startMultiPlayerGame(render);
     }
     else if (keyPressed == "o")
     {
-        optionsMenu();
+        optionsMenu(render);
     }
     else if (keyPressed == "e")
     {
@@ -276,19 +276,19 @@ void GUISystem::processMainMenuKeyPress(std::string keyPressed)  // processes ma
 
     }
 }
-void GUISystem::processNetworkMenuKeyPress(std::string keyPressed)  // processes network menu key input
+void GUISystem::processNetworkMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render)  // processes network menu key input
 {
    if (keyPressed == "c")
     {
-       networkClientSetupMenu();
+       networkClientSetupMenu(render);
     }
     else if (keyPressed == "b")
     {
-        backMainMenuSelected();
+        backMainMenuSelected(render);
     }
     else if (keyPressed == "s")
     {
-        networkServerSetupMenu();
+        networkServerSetupMenu(render);
     }
     else
     {
@@ -296,7 +296,7 @@ void GUISystem::processNetworkMenuKeyPress(std::string keyPressed)  // processes
     }
 }
 
-void GUISystem::processNetworkServerMenuKeyPress(std::string keyPressed)  // process network server menu key input
+void GUISystem::processNetworkServerMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render)  // process network server menu key input
 {
     if (MyGUI::InputManager::getInstance().getKeyFocusWidget() == serverIPAddressBox.get())
     {
@@ -366,11 +366,11 @@ void GUISystem::processNetworkServerMenuKeyPress(std::string keyPressed)  // pro
     }
     else if (keyPressed == "b")
     {
-        startMultiPlayerGame();
+        startMultiPlayerGame(render);
     }
 }
 
-void GUISystem::processNetworkClientMenuKeyPress(std::string keyPressed)  // processes network menu key input
+void GUISystem::processNetworkClientMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render)  // processes network menu key input
 {
     if (MyGUI::InputManager::getInstance().getKeyFocusWidget() == clientIPAddressBox.get())
     {
@@ -433,28 +433,28 @@ void GUISystem::processNetworkClientMenuKeyPress(std::string keyPressed)  // pro
     }
     else if (keyPressed == "b")
     {
-        startMultiPlayerGame();
+        startMultiPlayerGame(render);
     }
 
 }
 
-void GUISystem::processOptionsMenuKeyPress(std::string keyPressed)  // processes options menu key input
+void GUISystem::processOptionsMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render)  // processes options menu key input
 {
     if (keyPressed == "d")
     {
-       displayMenu();
+       displayMenu(render);
     }
     else if (keyPressed == "b")
     {
-        backMainMenuSelected();
+        backMainMenuSelected(render);
     }
     else if (keyPressed == "i")
     {
-        inputMenu();
+        inputMenu(render);
     }
     else if (keyPressed == "a")
     {
-        audioMenu();
+        audioMenu(render);
     }
     else
     {
@@ -462,7 +462,7 @@ void GUISystem::processOptionsMenuKeyPress(std::string keyPressed)  // processes
     }
 }
 
-void GUISystem::processDisplayMenuKeyPress(std::string keyPressed)  // processes display settings menu key input
+void GUISystem::processDisplayMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render)  // processes display settings menu key input
 {
 
     if (keyPressed == "c")
@@ -471,12 +471,12 @@ void GUISystem::processDisplayMenuKeyPress(std::string keyPressed)  // processes
     }
     else if (keyPressed == "b")
     {
-        optionsMenu();
+        optionsMenu(render);
     }
 
 }
 
-void GUISystem::processInputMenuKeyPress(std::string keyPressed) // processes input settings menu key input
+void GUISystem::processInputMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render) // processes input settings menu key input
 {
     if (keyPressed == "c")
     {
@@ -484,11 +484,11 @@ void GUISystem::processInputMenuKeyPress(std::string keyPressed) // processes in
     }
     else if (keyPressed == "b")
     {
-        optionsMenu();
+        optionsMenu(render);
     }
 }
 
-void GUISystem::processAudioMenuKeyPress(std::string keyPressed)  // processes audio settings menu key input
+void GUISystem::processAudioMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render)  // processes audio settings menu key input
 {
     if (keyPressed == "c")
     {
@@ -496,11 +496,11 @@ void GUISystem::processAudioMenuKeyPress(std::string keyPressed)  // processes a
     }
     else if (keyPressed == "b")
     {
-        optionsMenu();
+        optionsMenu(render);
     }
 }
 
-void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed)  // processes game setup menu key input
+void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render)  // processes game setup menu key input
 {
     //gameState *gameS = gameState::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
@@ -520,15 +520,15 @@ void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed)  // process
     {
         if (previousActiveMenu == MAIN)
         {
-            backMainMenuSelected();
+            backMainMenuSelected(render);
         }
         else if (previousActiveMenu == NETWORKCLIENT)
         {
-            networkClientSetupMenu();
+            networkClientSetupMenu(render);
         }
         else if (previousActiveMenu == NETWORKSERVER)
         {
-            networkServerSetupMenu();
+            networkServerSetupMenu(render);
         }
     }
     // FIXME!
@@ -539,7 +539,7 @@ void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed)  // process
         teamsSelected();
 
     exit(0);
-        playerStartSelectionMenu();
+        playerStartSelectionMenu(render);
     }
     else if (keyPressed == "x")
     {
@@ -614,7 +614,7 @@ void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed)  // process
     }
 }
 
-void GUISystem::processPlayerStartSelectionMenuKeyPress(std::string keyPressed)  // process player start selection menu key input
+void GUISystem::processPlayerStartSelectionMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render)  // process player start selection menu key input
 {
 
     //gameState *gameS = gameState::Instance();
@@ -636,13 +636,13 @@ void GUISystem::processPlayerStartSelectionMenuKeyPress(std::string keyPressed) 
     }
     else if (keyPressed == "b")
     {
-        teamSelectionMenu();
+        teamSelectionMenu(render);
     }
 
 //    exit(0);
 }
 
-void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed)  // process team selection menu key input
+void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render)  // process team selection menu key input
 {
     //gameState *gameS = gameState::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
@@ -676,7 +676,7 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed)  // pro
             networkServerSetupMenu();
         }
         */
-        courtSelectionMenu();
+        courtSelectionMenu(render);
     }
     else if (keyPressed == "t")
     {
@@ -684,7 +684,7 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed)  // pro
 //        exit(0);
         teamsSelected();
     
-        playerStartSelectionMenu();
+        playerStartSelectionMenu(render);
 //        exit(0);
     }
     else if (keyPressed == "x")
@@ -761,7 +761,7 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed)  // pro
 
 }
 
-void GUISystem::processCourtSelectionMenuKeyPress(std::string keyPressed)  // process court selection menu key input
+void GUISystem::processCourtSelectionMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render)  // process court selection menu key input
 {
 //    exit(0);
     //gameState *gameS = gameState::Instance();
@@ -769,7 +769,7 @@ void GUISystem::processCourtSelectionMenuKeyPress(std::string keyPressed)  // pr
 
     if (keyPressed == "b")
     {
-        backMainMenuSelected();
+        backMainMenuSelected(render);
     }
     else if (keyPressed == "q")
     {
@@ -778,7 +778,7 @@ void GUISystem::processCourtSelectionMenuKeyPress(std::string keyPressed)  // pr
     else if (keyPressed == "s")
     {
         courtSelected();
-        teamSelectionMenu();
+        teamSelectionMenu(render);
         
     }
 }

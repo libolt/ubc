@@ -221,7 +221,7 @@ bool inputEngine::processInput()  // processes all input
     conversionSharedPtr convert = conversion::Instance();
     std::string func = "inputEngine::processInput()";
     
-//    sharedPtr<renderEngine> render = renderEngine::Instance();
+//    renderEngineSharedPtr render = renderEngine::Instance();
     
 //    keyPressed = "";  // resets value of keyPressed
 
@@ -836,7 +836,7 @@ bool inputEngine::processTextInput()  // reads in text input
 bool inputEngine::processMouseInput()  // processes the unbuffered mouse input
 {
     conversionSharedPtr convert = conversion::Instance();
-//    sharedPtr<renderEngine> render = renderEngine::Instance();
+//    renderEngineSharedPtr render = renderEngine::Instance();
 
     int x, y;
     int state = -1;
@@ -892,7 +892,7 @@ bool inputEngine::processMouseInput()  // processes the unbuffered mouse input
 bool inputEngine::processTouchInput() // processes the unbuffered touch input
 {
     conversionSharedPtr convert = conversion::Instance();
-//    sharedPtr<renderEngine> render = renderEngine::Instance();
+//    renderEngineSharedPtr render = renderEngine::Instance();
     std::string func = "inputEngine::processTouchInput()";
     int state = -1;
     SDL_TouchFingerEvent touchMotion;

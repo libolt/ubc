@@ -53,7 +53,7 @@ loader::~loader()  // destructor
 int loader::readFile(const char *sourceFile, char **destination)  // loads an xml file using SDL so that it can be passed to TinyXML
 {
     conversionSharedPtr convert = conversion::Instance();
-//    sharedPtr<renderEngine> render = renderEngine::Instance();
+//    renderEngineSharedPtr render = renderEngine::Instance();
     int BLOCK_SIZE = 8;
     int MAX_BLOCKS = 1024;
     std::string func = "loader::readFile()";

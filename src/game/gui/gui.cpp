@@ -376,7 +376,7 @@ void GUISystem::setViewPort(const Ogre::Viewport &set)  // sets the value of vie
     *viewPort = set;
 }*/
 
-bool GUISystem::setup(sharedPtr<renderEngine> render)  // sets up the in game gui
+bool GUISystem::setup(renderEngineSharedPtr render)  // sets up the in game gui
 {
 
     if (initMyGUI(render)) // Initializes MyGUI
@@ -393,10 +393,10 @@ bool GUISystem::setup(sharedPtr<renderEngine> render)  // sets up the in game gu
     return (true);
 }
 
-bool GUISystem::initMyGUI(sharedPtr<renderEngine> render)  // Initializes MyGUI
+bool GUISystem::initMyGUI(renderEngineSharedPtr render)  // Initializes MyGUI
 {
 //    exit(0);
-//    sharedPtr<renderEngine> render; // = renderEngine::Instance();
+//    renderEngineSharedPtr render; // = renderEngine::Instance();
     std::string func = "GUISystem::initMyGUI()";
     
     logMsg(func +" begin");
@@ -426,7 +426,7 @@ mPlatform->initialise(render->getMWindow().get(), render->getMSceneMgr().get(), 
     return true;
 }
 
-void GUISystem::mainMenu()  // msin in game menu
+void GUISystem::mainMenu(renderEngineSharedPtr render)  // msin in game menu
 {
 //    exit(0);
     std::string func = "GUISystem::mainMenu()";
@@ -438,7 +438,7 @@ void GUISystem::mainMenu()  // msin in game menu
     {
         logMsg(func + " mainMenu not created yet!");
 //        exit(0);
-        if (createMainMenuGUI()) // creates the main menu gui.
+        if (createMainMenuGUI(render)) // creates the main menu gui.
         {
             logMsg(func + " Main Menu created successfully!");
             mainMenuCreated = true;
@@ -490,7 +490,7 @@ void GUISystem::backButtons()  // handles the back buttons
 
 }
 
-void GUISystem::startSinglePlayerGame()  // starts single player game
+void GUISystem::startSinglePlayerGame(renderEngineSharedPtr render)  // starts single player game
 {
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    exit(0);
@@ -502,63 +502,63 @@ void GUISystem::startSinglePlayerGame()  // starts single player game
 
 //    exit(0);
 //    hideMainMenuWidgets();	// Hides the widgets from the main menu
-    courtSelectionMenu();   // displays the menu for selecting which court to use
+    courtSelectionMenu(render);   // displays the menu for selecting which court to use
     //   gameSetupMenu();
 //	menuActive = false;
     
     logMsg(func +" end");
 }
 
-void GUISystem::startMultiPlayerGame()  // starts multiplayer game
+void GUISystem::startMultiPlayerGame(renderEngineSharedPtr render)  // starts multiplayer game
 {
     if (!networkSetupMenuCreated)
     {
-        createNetworkSetupGUI();  // creates the GUI for the Network Setup Screen
+        createNetworkSetupGUI(render);  // creates the GUI for the Network Setup Screen
     }
 
-    changeActiveMenu(NETWORK);
+    changeActiveMenu(NETWORK, render);
 }
 
-void GUISystem::optionsMenu()  // displays options menu
+void GUISystem::optionsMenu(renderEngineSharedPtr render)  // displays options menu
 {
     if (!optionsMenuCreated)
     {
-        createOptionsMenuGUI();
+        createOptionsMenuGUI(render);
     }
 
-    changeActiveMenu(OPTIONS);
+    changeActiveMenu(OPTIONS, render);
 }
 
-void GUISystem::displayMenu()  // displays display menu
+void GUISystem::displayMenu(renderEngineSharedPtr render)  // displays display menu
 {
     if (!displaySetupMenuCreated)
     {
         createDisplaySetupGUI();
     }
 
-    changeActiveMenu(DISPLAY);
+    changeActiveMenu(DISPLAY, render);
 }
 
-void GUISystem::inputMenu()  // displays the input menu
+void GUISystem::inputMenu(renderEngineSharedPtr render)  // displays the input menu
 {
     if (!inputSetupMenuCreated)
     {
         createInputSetupGUI();
     }
 
-    changeActiveMenu(INPUTMENU);
+    changeActiveMenu(INPUTMENU, render);
 }
-void GUISystem::audioMenu()  // displays the audio menu
+void GUISystem::audioMenu(renderEngineSharedPtr render)  // displays the audio menu
 {
     if (!audioSetupMenuCreated)
     {
         createAudioSetupGUI();
     }
 
-    changeActiveMenu(AUDIO);
+    changeActiveMenu(AUDIO, render);
 }
 
-void GUISystem::gameSetupMenu()  // displays game setup menu
+void GUISystem::gameSetupMenu(renderEngineSharedPtr render)  // displays game setup menu
 {
     if (!gameSetupMenuCreated)
     {
@@ -566,10 +566,10 @@ void GUISystem::gameSetupMenu()  // displays game setup menu
         gameSetupMenuCreated = true;
     }
 	
-    changeActiveMenu(GAMESETUP);
+    changeActiveMenu(GAMESETUP, render);
 }
 
-void GUISystem::playerStartSelectionMenu()  // displays player start selection menu
+void GUISystem::playerStartSelectionMenu(renderEngineSharedPtr render)  // displays player start selection menu
 {
     std::string func = "GUISystem::playerStartSelectionMenu()";
     
@@ -581,7 +581,7 @@ void GUISystem::playerStartSelectionMenu()  // displays player start selection m
         logMsg(func +" !playerStartSelectionMenuCreated");
 //         exit(0);
         
-        if (createPlayerStartSelectionMenuGUI())
+        if (createPlayerStartSelectionMenuGUI(render))
         {
             logMsg(func +" createPlayerStartSelectionMenuGUI!");
             playerStartSelectionMenuCreated = true;
@@ -601,12 +601,12 @@ void GUISystem::playerStartSelectionMenu()  // displays player start selection m
 
 //    exit(0);
     setSelectedIndexes();
-    changeActiveMenu(PLAYERSTART);
+    changeActiveMenu(PLAYERSTART, render);
     logMsg(func +" end");
 //    exit(0);
 }
 
-void GUISystem::teamSelectionMenu()  // displays team selection menu
+void GUISystem::teamSelectionMenu(renderEngineSharedPtr render)  // displays team selection menu
 {
     conversionSharedPtr convert = conversion::Instance();
     gameSetupTeamsSharedPtr gameSetupTeam(new gameSetupTeams);
@@ -685,7 +685,7 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
     else
     {
         logMsg(func +" teamSelectionMenuGUI Not Yet Created!");
-        if (createTeamSelectionMenuGUI())
+        if (createTeamSelectionMenuGUI(render))
         {            
             teamSelectionMenuCreated = true;
             
@@ -717,7 +717,7 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
     {
         logMsg(func +" Changing activeMenu to TEAMSELECT!");
 //        exit(0);
-        changeActiveMenu(TEAMSELECT);
+        changeActiveMenu(TEAMSELECT, render);
     }
     else
     {
@@ -731,7 +731,7 @@ void GUISystem::teamSelectionMenu()  // displays team selection menu
 
 }
 
-void GUISystem::courtSelectionMenu() // displays court selection menu
+void GUISystem::courtSelectionMenu(renderEngineSharedPtr render) // displays court selection menu
 {
 //    sharedPtr<gameState> gameS = gameState::Instance();
     conversionSharedPtr convert = conversion::Instance();
@@ -743,7 +743,7 @@ void GUISystem::courtSelectionMenu() // displays court selection menu
     
     if (!courtSelectionMenuCreated)
     {
-        createCourtSelectionMenuGUI();
+        createCourtSelectionMenuGUI(render);
     }
 //    exit(0);
     if (!courtSelectionDataLoaded)
@@ -765,7 +765,7 @@ void GUISystem::courtSelectionMenu() // displays court selection menu
 //        exit(0);
     }
 
-    changeActiveMenu(COURTSELECT);
+    changeActiveMenu(COURTSELECT, render);
 //    exit(0);
     
     logMsg(func +" end");
@@ -795,25 +795,25 @@ void GUISystem::setSelectedIndexes()  // sets all player listbox indexes to zero
 
 }
 
-void GUISystem::networkClientSetupMenu() // sets up the client connection
+void GUISystem::networkClientSetupMenu(renderEngineSharedPtr render) // sets up the client connection
 {
     if (!networkClientSetupMenuCreated)
     {
-        createNetworkClientSetupGUI();
+        createNetworkClientSetupGUI(render);
     }
-    changeActiveMenu(NETWORKCLIENT);
+    changeActiveMenu(NETWORKCLIENT, render);
     MyGUI::InputManager::getInstance().setKeyFocusWidget(clientIPAddressBox.get());
 //    mGUI::InputManager->getInstance().setKeyFocusWidget(clientIPAddressBox);
 }
 
-void GUISystem::networkServerSetupMenu()  // sets up the networkServer instance
+void GUISystem::networkServerSetupMenu(renderEngineSharedPtr render)  // sets up the networkServer instance
 {
     if (!networkServerSetupMenuCreated)
     {
-        createNetworkServerSetupGUI();
+        createNetworkServerSetupGUI(render);
     }
 
-    changeActiveMenu(NETWORKSERVER);
+    changeActiveMenu(NETWORKSERVER, render);
     MyGUI::InputManager::getInstance().setKeyFocusWidget(serverIPAddressBox.get());
 
 }
@@ -1519,19 +1519,19 @@ void GUISystem::gameSetupHomeSelected()  // process home team selection on game 
     gameSetupMenuAwaySelected = false;
 }
 
-void GUISystem::backNetworkSetupMenuSelected()  // returns back to network setup screen
+void GUISystem::backNetworkSetupMenuSelected(renderEngineSharedPtr render)  // returns back to network setup screen
 {
-    changeActiveMenu(NETWORK);
+    changeActiveMenu(NETWORK, render);
 }
 
-void GUISystem::backMainMenuSelected()  // processes back to main menu selection
+void GUISystem::backMainMenuSelected(renderEngineSharedPtr render)  // processes back to main menu selection
 {
-    changeActiveMenu(MAIN);
+    changeActiveMenu(MAIN, render);
 }
 
-void GUISystem::backNetworkClientMenuSelected()  // returns back to the network client menu
+void GUISystem::backNetworkClientMenuSelected(renderEngineSharedPtr render)  // returns back to the network client menu
 {
-    changeActiveMenu(NETWORKCLIENT);
+    changeActiveMenu(NETWORKCLIENT, render);
 }
 
 bool GUISystem::checkTeamInstancesCreated()  // Checks if team instances have been created and if not creates them.

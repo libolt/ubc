@@ -229,7 +229,7 @@ teamStateMSharedPtr loadTeams::loadTeamFiles()  // load teams from XML files
 stdStringVec loadTeams::loadTeamListFile(std::string fileName)  // loads the team list file
 {
     conversionSharedPtr convert = conversion::Instance();
-//    sharedPtr<renderEngine> render = renderEngine::Instance();
+//    renderEngineSharedPtr render = renderEngine::Instance();
 
     stdStringVec teamName;
     stdStringVec files;
@@ -322,7 +322,7 @@ teamStateSharedPtr loadTeams::loadTeamFile(std::string fileName)  // loads the t
 {
     conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
-//    sharedPtr<renderEngine> render = renderEngine::Instance();
+//    renderEngineSharedPtr render = renderEngine::Instance();
 //    teamStateVecSharedPtr teamInstance = gameS->getTeamInstance();
   
     teamStateSharedPtr teamInstance(new teamState);

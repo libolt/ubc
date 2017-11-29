@@ -189,7 +189,7 @@ basketballStateMSharedPtr loadBasketballs::loadFiles()  // load basketball setti
 stdStringVec loadBasketballs::loadListFile(std::string fileName) // loads the list of baskteball list file
 {
     conversionSharedPtr convert = conversion::Instance();
-//    sharedPtr<renderEngine> render = renderEngine::Instance();
+//    renderEngineSharedPtr render = renderEngine::Instance();
     stdStringVec bballFiles;
     std::string fileContents;
     tinyxml2::XMLDocument doc;

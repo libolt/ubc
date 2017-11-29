@@ -206,7 +206,7 @@ playerEntityMSharedPtr loadPlayers::loadPlayerFiles()  // loads the players
 stdStringVec loadPlayers::loadPlayerListFile(std::string fileName)  // loads the player list file
 {
     conversionSharedPtr convert = conversion::Instance();
-  //   sharedPtr<renderEngine> render = renderEngine::Instance();
+  //   renderEngineSharedPtr render = renderEngine::Instance();
     stdStringVec pFiles;
     std::string fileContents;
     tinyxml2::XMLDocument doc;
@@ -265,7 +265,7 @@ playerEntitySharedPtr loadPlayers::loadPlayerFile(std::string fileName)  // load
 {
     conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
-//    sharedPtr<renderEngine> render = renderEngine::Instance();
+//    renderEngineSharedPtr render = renderEngine::Instance();
     std::string func = "loader::loadPlayerFile()";
     playerEntitySharedPtr playerInstance(new playerEntity);
     std::string firstName;

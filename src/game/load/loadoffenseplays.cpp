@@ -174,7 +174,7 @@ offensePlaysVecSharedPtr loadOffensePlays::loadOffensePlayFiles()  // load offen
 stdStringVec loadOffensePlays::loadOffensePlayListFile(std::string fileName)  // loads the play list file
 {
     conversionSharedPtr convert = conversion::Instance();
-//    sharedPtr<renderEngine> render = renderEngine::Instance();
+//    renderEngineSharedPtr render = renderEngine::Instance();
 
     stdStringVec playFiles;
     std::string func = "loader::loadOffensePlayListFile()";

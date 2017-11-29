@@ -165,7 +165,7 @@ bool UBC::setupState()  // sets up the UBC game state
 //        exit(0);
         gui->setSetupComplete(true);
 //        exit(0);
-        gui->mainMenu();
+        gui->mainMenu(gameE->getRenderE());
 //        exit(0);
         gui->backButtons();
     }
@@ -190,7 +190,7 @@ void UBC::run()  // runs the game
 {
     conversionSharedPtr convert = conversion::Instance();
 //    exit(0);
-//    sharedPtr<renderEngine> renderTemp = gameE->getRenderE();
+//    renderEngineSharedPtr renderTemp = gameE->getRenderE();
 //    exit(0);
     std::string func = "UBC::run()";
 
@@ -454,7 +454,7 @@ void UBC::gameLoop_old()  // Main Game Loop
 /*    sharedPtr<gameState> gameS = gameState::Instance();
 //    sharedPtr<GUISystem> gui = GUISystem::Instance();
 //    sharedPtr<inputSystem> input = inputSystem::Instance();
-//    sharedPtr<renderEngine> render = renderEngine::Instance();
+//    renderEngineSharedPtr render = renderEngine::Instance();
 //    networkEngineSharedPtr network = networkEngine::Instance();
 //    sharedPtr<soundEngine> sound = soundEngine::Instance();
 
@@ -675,7 +675,7 @@ int main(int argc, char *argv[])
 //    sharedPtr<UBC> ubc;
     sharedPtr<UBC> ubc(new UBC);
 //    exit(0);
-//    sharedPtr<renderEngine> render = ubc.getRenderE();
+//    renderEngineSharedPtr render = ubc.getRenderE();
 //    sharedPtr<gameEngine> gameE = gameEngine::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    sharedPtr<GUISystem> gui = ubc.getGui();

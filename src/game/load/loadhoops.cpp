@@ -161,7 +161,7 @@ hoopStateMSharedPtr  loadHoops::loadHoopFiles()  // load hoop XML files
 stdStringVec loadHoops::loadHoopListFile(std::string fileName)  // load the list of hoops from hoops.xml
 {
     conversionSharedPtr convert = conversion::Instance();
-//    sharedPtr<renderEngine> render = renderEngine::Instance();
+//    renderEngineSharedPtr render = renderEngine::Instance();
     stdStringVec hFiles;
     std::string fileContents;
     tinyxml2::XMLDocument doc;

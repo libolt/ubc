@@ -54,6 +54,7 @@ GUISystemSharedPtr UBC::gui;  // the GUI object.
 UBCGameSharedPtr UBC::game;  // static copy of UBCGame class
 UBCInputSharedPtr UBC::input;  // static copy of UBCInput class
 
+
 UBC::UBC()  // constructor
 {
 //    quitGame = false;

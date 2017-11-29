@@ -145,25 +145,25 @@ class renderEngine : public engine
 
 #endif
     
-    static int instance;  // used to count number of instances
+    size_t instance;  // used to count number of instances
 
     // SDL code
-    static SDL_Window *sdlWindow;  // stores the SDL window
+    SDL_Window *sdlWindow;  // stores the SDL window
     SDL_GLContext sdlGLContext;  // the SDL GL Context
-    static SDL_SysWMinfo sysInfo;  // stores the SDL System information
+    SDL_SysWMinfo sysInfo;  // stores the SDL System information
     SDLTest_CommonState *state;  // stores the state
 
     // Ogre code
-    static sharedPtr<Ogre::Root> RERoot;  // stores the OGRE Root
-    static sharedPtr<Ogre::Camera> mCamera;  // stores the camera used by OGRE
-    static sharedPtr<Ogre::SceneManager> mSceneMgr;  // store the OGRE Scene Manager
-    static sharedPtr<Ogre::RenderWindow> mWindow;  // stores the OGRE Render Window
-    static sharedPtr<Ogre::Viewport> viewPort;  // stores the OGRE View Port
-    static sharedPtr<Ogre::Light> l;  // stores the vslue of light
-    static sharedPtr<Ogre::ResourceGroupManager> rsm;  // stores resources
-    static std::string mResourceGroup;  // stores resource locations
-    static Ogre::NameValuePairList misc;  // options to pass to mWindow during creation
-    static std::string winHandle;  // window handle
+    sharedPtr<Ogre::Root> RERoot;  // stores the OGRE Root
+    sharedPtr<Ogre::Camera> mCamera;  // stores the camera used by OGRE
+    sharedPtr<Ogre::SceneManager> mSceneMgr;  // store the OGRE Scene Manager
+    sharedPtr<Ogre::RenderWindow> mWindow;  // stores the OGRE Render Window
+    sharedPtr<Ogre::Viewport> viewPort;  // stores the OGRE View Port
+    sharedPtr<Ogre::Light> l;  // stores the vslue of light
+    sharedPtr<Ogre::ResourceGroupManager> rsm;  // stores resources
+    std::string mResourceGroup;  // stores resource locations
+    Ogre::NameValuePairList misc;  // options to pass to mWindow during creation
+    std::string winHandle;  // window handle
 
     // general
 //    uint32_t windowWidth;  // stores the width of the window
@@ -173,17 +173,17 @@ class renderEngine : public engine
     static AAssetManager* mAssetMgr;  // stores the android asset manager
 #endif
 
-    static Ogre::ShaderGeneratorTechniqueResolverListener* mMatListener;  // stores the material listener
-    static Ogre::RenderSystem *selectedRenderSystem;
+    Ogre::ShaderGeneratorTechniqueResolverListener* mMatListener;  // stores the material listener
+    Ogre::RenderSystem *selectedRenderSystem;
 
     // InputReader* mInputDevice;
-    static Ogre::Vector3 mTranslateVector;  // stores the translate vector
-    static Ogre::Radian mRotX, mRotY;  // stores x and y rotations
-    static Ogre::Real mMoveSpeed;  // stores the movement speed
-    static Ogre::Degree mRotateSpeed;  // stores the rotation speed
-    static float mMoveScale;  // stores the movement scale
-    static Ogre::Degree mRotScale;  // stores the rotation scale
-    static Ogre::Real mTimeUntilNextToggle;  // stores the time until next toggle
+    Ogre::Vector3 mTranslateVector;  // stores the translate vector
+    Ogre::Radian mRotX, mRotY;  // stores x and y rotations
+    Ogre::Real mMoveSpeed;  // stores the movement speed
+    Ogre::Degree mRotateSpeed;  // stores the rotation speed
+    float mMoveScale;  // stores the movement scale
+    Ogre::Degree mRotScale;  // stores the rotation scale
+    Ogre::Real mTimeUntilNextToggle;  // stores the time until next toggle
     
     private:
 

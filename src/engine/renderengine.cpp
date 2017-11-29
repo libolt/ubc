@@ -47,10 +47,10 @@
     AConfiguration *renderEngine::config;
 #endif
 
-
+/*
 // static declarations
 int renderEngine::instance;
-SDL_Window *renderEngine::sdlWindow;
+//SDL_Window *renderEngine::sdlWindow;
 SDL_SysWMinfo renderEngine::sysInfo; 
 sharedPtr<Ogre::Root> renderEngine::RERoot;  // stores the OGRE Root
 sharedPtr<Ogre::SceneManager> renderEngine::mSceneMgr;  // static declaration of mSceneMgr
@@ -72,7 +72,7 @@ Ogre::Degree renderEngine::mRotScale;
 Ogre::Real renderEngine::mTimeUntilNextToggle;
 std::string renderEngine::winHandle;
 std::string renderEngine::mResourceGroup;
-
+*/
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 AAssetManager *renderEngine::mAssetMgr; 
 #endif

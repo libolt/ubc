@@ -401,13 +401,13 @@ bool GUISystem::initMyGUI()  // Initializes MyGUI
 {
 //    exit(0);
     sharedPtr<renderEngine> render; // = renderEngine::Instance();
-//    Ogre::RenderWindow *mWindow = render->getMWindow();
-//    Ogre::SceneManager *mSceneMgr = render->getMSceneMgr();
-
-    logMsg("*** Initializing MyGUI ***");
+    std::string func = "GUISystem::initMyGUI()";
+    
+    logMsg(func +" begin");
+    logMsg(func +" *** Initializing MyGUI ***");
     MyGUIOgrePlatformSharedPtr tempPlatform(new MyGUI::OgrePlatform());
     mPlatform = tempPlatform;
-    logMsg("Crash?");
+    logMsg(func +" Crash?");
 //    exit(0);
 /*#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     mPlatform->initialise(mWindow, mSceneMgr, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
@@ -418,15 +418,16 @@ mPlatform->initialise(render->getMWindow().get(), render->getMSceneMgr().get(), 
 
 //#endif
 //    exit(0);
-    logMsg("Crash??");
+    logMsg(func +" Crash??");
     MyGUIGuiSharedPtr tempGUI(new MyGUI::Gui());
 //    exit(0);
     mGUI = tempGUI;
 //    exit(0);
-    logMsg("Crash???");
+    logMsg(func +" Crash???");
     mGUI->initialise();
 //    exit(0);
-    logMsg("*** MyGUI Initialized ***");
+    logMsg(func +" *** MyGUI Initialized ***");
+    logMsg(func +" end");
     return true;
 }
 

@@ -376,14 +376,10 @@ void GUISystem::setViewPort(const Ogre::Viewport &set)  // sets the value of vie
     *viewPort = set;
 }*/
 
-bool GUISystem::setup()  // sets up the in game gui
+bool GUISystem::setup(sharedPtr<renderEngine> render)  // sets up the in game gui
 {
-//    exit(0);
-/*    if (base->getGameS() == NULL)
-    {
-        exit(0);
-    }*/
-    if (initMyGUI()) // Initializes MyGUI
+
+    if (initMyGUI(render)) // Initializes MyGUI
     {
         logMsg ("MyGUI initialized successfully!");
         logMsg("is the main menu created?");
@@ -397,10 +393,10 @@ bool GUISystem::setup()  // sets up the in game gui
     return (true);
 }
 
-bool GUISystem::initMyGUI()  // Initializes MyGUI
+bool GUISystem::initMyGUI(sharedPtr<renderEngine> render)  // Initializes MyGUI
 {
 //    exit(0);
-    sharedPtr<renderEngine> render; // = renderEngine::Instance();
+//    sharedPtr<renderEngine> render; // = renderEngine::Instance();
     std::string func = "GUISystem::initMyGUI()";
     
     logMsg(func +" begin");
@@ -414,8 +410,7 @@ bool GUISystem::initMyGUI()  // Initializes MyGUI
 #else
 */
 //BASEREMOVAL    mPlatform->initialise(base->getGameE()->getRenderE()->getMWindow().get(), base->getGameE()->getRenderE()->getMSceneMgr().get(), "UBCData"); // mWindow is Ogre::RenderWindow*, mSceneManager is Ogre::SceneManager*
-mPlatform->initialise(render->getMWindow().get(), render->getMSceneMgr().get(), "UBCData"); // mWindow is Ogre::RenderWindow*, mSceneManager is Ogre::SceneManager*
-
+mPlatform->initialise(render->getMWindow().get(), render->getMSceneMgr().get(), "UBCData"); // mWindow is Ogre::RenderWindow*, mSceneManager is Ogre::SceneManager*a@aa
 //#endif
 //    exit(0);
     logMsg(func +" Crash??");

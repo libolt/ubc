@@ -139,8 +139,8 @@ public:
     void setViewPort(const Ogre::Viewport &set);  // sets the value of viewPort
 */
 
-    bool setup();  // sets up the in game gui
-    bool initMyGUI();  // Initializes MyGUI
+    bool setup(sharedPtr<renderEngine> render);  // sets up the in game gui
+    bool initMyGUI(sharedPtr<renderEngine> render);  // Initializes MyGUI
     bool createMainMenuGUI();  // creates GUI gor main menu screen.
     bool createNetworkSetupGUI();  // creates GUI for network setup screen.
     bool createNetworkClientSetupGUI();  // creates GUI for network client setup screen.

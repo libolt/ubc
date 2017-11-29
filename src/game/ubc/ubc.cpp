@@ -158,7 +158,7 @@ bool UBC::setupState()  // sets up the UBC game state
     logMsg(func +" beginning");
 
 //    GUISystemSharedPtr gui = base->getGui();
-    if (gui->setup())  // sets up the game GUI
+    if (gui->setup(gameE->getRenderE()))  // sets up the game GUI
     {
     
 //        exit(0);

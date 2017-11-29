@@ -762,7 +762,8 @@ bool gameState::setupEnvironment()
 
     return (true);
 }
-bool gameState::loadBasketballModel()  // loads selected basketball model
+
+/*bool gameState::loadBasketballModel()  // loads selected basketball model
 {
     conversionSharedPtr convert = conversion::Instance();
     loaderSharedPtr load(new loader);
@@ -806,14 +807,14 @@ bool gameState::loadBasketballModel()  // loads selected basketball model
         logMsg(func +" activeBasketballInstance == " +convert->toString(ABIIT.first));
     
 
-/*        if (!activeBasketballInstance[0]->getEntity()->getBaseInitialized()) // checks to see if the base object for basketballInstance[activeBBallIntance has been initialized
-        {
-            logMsg(func +" Initializing base!");
-            if (!ABIIT.second->getEntity()->getBaseInitialized())
-            {
-                ABIIT.second->getEntity()->setBase(base);
-            }
-        }*/
+///        if (!activeBasketballInstance[0]->getEntity()->getBaseInitialized()) // checks to see if the base object for basketballInstance[activeBBallIntance has been initialized
+///        {
+///            logMsg(func +" Initializing base!");
+///            if (!ABIIT.second->getEntity()->getBaseInitialized())
+///            {
+///                ABIIT.second->getEntity()->setBase(base);
+///            }
+///        }
        
         if (ABIIT.second->getEntity()->getEntityName() == "")
         {
@@ -842,10 +843,10 @@ bool gameState::loadBasketballModel()  // loads selected basketball model
             ABIIT.second->getEntity()->setModelLoaded(true);
             logMsg(func +" blii!");
             ABIIT.second->getEntity()->setupPhysicsObject();
-/*            logMsg(func +" bluu!");
-            setActiveBasketballInstance(activeBasketballInstance);
-            logMsg(func +" Basketball Model Loaded!");
-*/
+///            logMsg(func +" bluu!");
+///            setActiveBasketballInstance(activeBasketballInstance);
+///            logMsg(func +" Basketball Model Loaded!");
+
             returnType = true;
 
         }
@@ -862,9 +863,9 @@ bool gameState::loadBasketballModel()  // loads selected basketball model
 //    exit(0);
     logMsg(func + " end");
     return (returnType);
-}
+}*/
 
-bool gameState::loadCourtModel()  // loads selected court model
+/* bool gameState::loadCourtModel()  // loads selected court model
 {
     conversionSharedPtr convert = conversion::Instance();
     loaderSharedPtr load(new loader);
@@ -925,9 +926,9 @@ bool gameState::loadCourtModel()  // loads selected court model
     logMsg(func +" end");
 //    exit(0);
     return (returnType);
-}
+} */
 
-bool gameState::loadHoopModel()  // loads selected hoop model
+/*bool gameState::loadHoopModel()  // loads selected hoop model
 {
     conversionSharedPtr convert = conversion::Instance();
     hoopStateMSharedPtr activeHoopInstance = getActiveHoopInstance();
@@ -937,23 +938,22 @@ bool gameState::loadHoopModel()  // loads selected hoop model
 
     logMsg(func +" beginning");
 
-/*    if (activeHoopInstance.size() == 0)
-    {
-        if (createActiveHoopInstances())
-        {
-            logMsg(func +" Active Hoop Instances created!");
-        }
-        else
-        {
-            logMsg(func +" Unable to create Active Hoop Instances!");
-            exit(0);
-        }
-    }
-    else
-    {
-        
-    }
-*/
+///    if (activeHoopInstance.size() == 0)
+///    {
+///        if (createActiveHoopInstances())
+///        {
+///            logMsg(func +" Active Hoop Instances created!");
+///        }
+///        else
+///        {
+///            logMsg(func +" Unable to create Active Hoop Instances!");
+///            exit(0);
+///        }
+///    }
+///    else
+///    {        
+///    }
+
     logMsg(func +" activeHoopInstance.size() == " +convert->toString(activeHoopInstance.size()));
 //    logMsg(func + " activeCourtInstance == " +convert->toString(activeCourtInstance));
     for (auto AHIIT : getActiveHoopInstance())
@@ -972,10 +972,10 @@ bool gameState::loadHoopModel()  // loads selected hoop model
         logMsg(func + " Name == " +AHIIT.second->getName());
         logMsg(func +" Model Name = " +AHIIT.second->getEntityModelFileName());
 
-/*        logMsg(func + "Name == " +AHIIT.second->getName());
-        logMsg(func +" Model Name = " +AHIIT.second->getEntityModelFileName());
-        logMsg("AHIIT index == " +convert->toString(AHIIT.second->getEntityID()));
-*/
+///        logMsg(func + "Name == " +AHIIT.second->getName());
+///        logMsg(func +" Model Name = " +AHIIT.second->getEntityModelFileName());
+///        logMsg("AHIIT index == " +convert->toString(AHIIT.second->getEntityID()));
+
         std::string name = AHIIT.second->getName();
         std:: string nodeName = name +"node";
         logMsg(func +" blnodeName == " +nodeName);
@@ -996,16 +996,16 @@ bool gameState::loadHoopModel()  // loads selected hoop model
         }
         
     }
-/*    if (hoopInstance[1]->loadModel())
-    {
-        hoopInstance[1]->getNode()->setScale(0.8f,0.8f,0.8f);
-    }
-    else
-    {
-        logMsg(func +" Unable to load model for hoopInstance[1]");
-        returnType = false;
-    }
-    */
+///    if (hoopInstance[1]->loadModel())
+///    {
+///        hoopInstance[1]->getNode()->setScale(0.8f,0.8f,0.8f);
+///    }
+///    else
+///    {
+///        logMsg(func +" Unable to load model for hoopInstance[1]");
+///        returnType = false;
+///    }
+    
     setActiveHoopInstance(activeHoopInstance);
     for (auto AHIIT : getActiveHoopInstance())
     {
@@ -1019,7 +1019,8 @@ bool gameState::loadHoopModel()  // loads selected hoop model
 //    exit(0);
     
     return (returnType);
-}
+} 
+*/
 
 bool gameState::loadModels()  // loads all game object models excluding the players
 {
@@ -1031,8 +1032,9 @@ bool gameState::loadModels()  // loads all game object models excluding the play
     if (!basketballModelLoaded)  // Checks if basketball model has been loaded
     {
 //        setActiveBBallInstance(0);  // Sets the active basketball instance
+        loadBasketballsSharedPtr loadBasketball(new loadBasketballs);
         logMsg("Loading basketball Model!");
-        if (loadBasketballModel())  // Loads the basketball model
+        if (loadBasketball->loadModels())  // Loads the basketball model
         {
             basketballModelLoaded = true;
 //            return (true);

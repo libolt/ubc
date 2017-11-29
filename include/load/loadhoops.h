@@ -42,6 +42,10 @@ class loadHoops : public loader
         stdStringVec loadHoopListFile(std::string fileName);  // load the list of hoops from hoops.xml
         hoopStateSharedPtr loadHoopFile(std::string fileName);  // loads data from the hoop XML files.
 
+        bool loadModels();  // loads selected hoop model
+
+        bool loadModelFile();  // loads the 3D model from file specified in modelName
+
     private:
     
         static hoopStateMSharedPtr  hInstance;

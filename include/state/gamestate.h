@@ -183,9 +183,9 @@ public:
     
     bool setupActiveTeamInstances();  // sets up the active team instances
 
-    bool loadBasketballModel();  // loads selected basketball model
-    bool loadCourtModel();  // loads selected court model
-    bool loadHoopModel();  // loads selected hoop model
+//    bool loadBasketballModel();  // loads selected basketball model
+//    bool loadCourtModel();  // loads selected court model
+//    bool loadHoopModel();  // loads selected hoop model
     bool loadModels();  // loads all game object models excluding the players
 
     bool setupState();  // sets up the game condition

@@ -323,10 +323,11 @@ void GUISystem::hidePlayerStartSelectionMenuWidgets()  // hides all widgets tied
 //    backTeamSelectionMenuButton->setVisible(false);
 
 }
-void GUISystem::showPlayerStartSelectionMenuWidgets()  // shows all widgets tied to the Player Start Selection Menu
+
+void GUISystem::showPlayerStartSelectionMenuWidgets(renderEngineSharedPtr render)  // shows all widgets tied to the Player Start Selection Menu
 {
 
-    renderEngineSharedPtr render; // = renderEngine::Instance();
+//    renderEngineSharedPtr render; // = renderEngine::Instance();
 
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
 
@@ -548,59 +549,82 @@ void GUISystem::hideActiveMenuWidgets()  // hides active menus widgets
 
 void GUISystem::showActiveMenuWidgets(renderEngineSharedPtr render)  // shows active menus widgets
 {
-//    exit(0);
+
+    std::string func = "GUISystem::showActiveMenuWidgets()";
+    
+    logMsg(func +" begin");
+    
     switch (activeMenu)
     {
         case MAIN:
+            logMsg(func + " MAIN");
             showMainMenuWidgets();
-            break;
+        break;
         case NETWORK:
+            logMsg(func + " NETWORK");
             showNetworkSetupWidgets();
-            break;
+        break;
         case NETWORKCLIENT:
+            logMsg(func + " NETWORKCLIENT");
             showNetworkClientSetupWidgets();
-            break;
+        break;
         case NETWORKSERVER:
+            logMsg(func + " NETWORKSERVER");
             showNetworkServerSetupWidgets();
-            break;
+        break;
         case OPTIONS:
+            logMsg(func + " OPTIONS");
             showOptionsMenuWidgets();
-            break;
+        break;
         case DISPLAY:
+            logMsg(func + " DISPLAY");
             showDisplayMenuWidgets();
-            break;
+        break;
         case INPUTMENU:
+            logMsg(func + " INPUTMENU");
             showInputMenuWidgets();
-            break;
+        break;
         case AUDIO:
+            logMsg(func + " AUDIO");
             showAudioMenuWidgets();
-            break;
+        break;
         case GAMESETUP:
+            logMsg(func + " GAMESETUP");
             showGameSetupMenuWidgets();
-            break;
+        break;
         case PLAYERSTART:
-            showPlayerStartSelectionMenuWidgets();
-            break;
+            logMsg(func + " PLAYERSTART");
+            showPlayerStartSelectionMenuWidgets(render);
+        break;
         case TEAMSELECT:
-            logMsg("TEAMSELECT");
+            logMsg(func + " TEAMSELECT");
 //            exit(0);
             showTeamSelectionMenuWidgets(render);
-            break;
+        break;
         case COURTSELECT:
+            logMsg(func + " COURTSELECT");
             showCourtSelectionMenuWidgets(render);
-            break;
+        break;
         default:
-            break;
+        break;
     }
+    
+    logMsg(func +" end");
+
 }
 
 void GUISystem::changeActiveMenu(activeMenus menu, renderEngineSharedPtr render)  // changes the actively displayed menu
 {
 //    exit(0);
+    std::string func = "GUISystem::changeActiveMenu()";
+    
+    logMsg(func + " begin");
+    
     hideActiveMenuWidgets();
     menuActive = true;
     gameE->setMenuActive(true);
     previousActiveMenu = activeMenu;
     activeMenu = menu;
     showActiveMenuWidgets(render);
+    logMsg(func + " end");
 }

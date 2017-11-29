@@ -273,7 +273,7 @@ public:
     void showGameSetupMenuWidgets();  // shows all widgets tied to the Game Setup Menu
 
     void hidePlayerStartSelectionMenuWidgets(); // hides all widgets tied to the Player Start Selection Menu
-    void showPlayerStartSelectionMenuWidgets(); // shows all widgets tied to the Player Start Selection Menu
+    void showPlayerStartSelectionMenuWidgets(renderEngineSharedPtr render); // shows all widgets tied to the Player Start Selection Menu
 
     void hideTeamSelectionMenuWidgets(); // hides all widgets tied to the Team Selection Menu
     void showTeamSelectionMenuWidgets(renderEngineSharedPtr render); // show all widgets tied to the Team Selection Menu

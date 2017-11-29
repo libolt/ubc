@@ -602,6 +602,7 @@ void GUISystem::playerStartSelectionMenu(renderEngineSharedPtr render)  // displ
 //    exit(0);
     setSelectedIndexes();
     changeActiveMenu(PLAYERSTART, render);
+    
     logMsg(func +" end");
 //    exit(0);
 }

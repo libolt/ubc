@@ -477,3 +477,165 @@ courtStateSharedPtr loadCourts::loadCourtFile(std::string fileName)  // loads da
     return (courtInstance);
 }
 
+bool loadCourts::loadModels()  // loads selected court model
+{
+    conversionSharedPtr convert = conversion::Instance();
+    loaderSharedPtr load(new loader);
+    courtStateMSharedPtr courtInstance = getCourtInstance();
+    courtStateMSharedPtr activeCourtInstance = getActiveCourtInstance();
+    gameSetupCourtsSharedPtr gameSetupCourt(new gameSetupCourts);
+    bool activeCourtInstancesCreated = getActiveCourtInstancesCreated();
+    bool returnType = false;
+    std::string func = "loadCourts::loadModels()";
+
+    logMsg(func +" beginning");
+    
+    if (!activeCourtInstancesCreated && activeCourtInstance.size() == 0)
+    {
+        activeCourtInstance = gameSetupCourt->createActiveCourtInstances(courtInstance);
+        if (activeCourtInstance.size() > 0)
+        {
+            logMsg(func +" Active Court Instances Created!");
+            activeCourtInstancesCreated = true;
+            setActiveCourtInstance(activeCourtInstance);
+        }
+        else
+        {
+            logMsg(func +" Unable to create Active Court Instances!");
+            exit(0);
+        }
+    }
+    else
+    {
+
+    }
+
+    logMsg(func +" courtInstance.size() == " +convert->toString(courtInstance.size()));
+    logMsg(func + " activeCourtInstance.size() == " +convert->toString(activeCourtInstance.size()));
+    logMsg(func +" Model Name = " +activeCourtInstance[0]->getData()->getModelFileName());
+    logMsg(func +" entity initialized == " +convert->toString(activeCourtInstance[0]->getEntity()->getInitialized()));
+    activeCourtInstance[0]->getEntity()->setEntityModelFileName(activeCourtInstance[0]->getData()->getModelFileName());
+    logMsg(func +" Model Name = " +activeCourtInstance[0]->getEntity()->getEntityModelFileName());
+//    exit(0);
+    activeCourtInstance[0]->getEntity()->setEntityNodeName(activeCourtInstance[0]->getData()->getModelFileName());
+    activeCourtInstance[0]->getEntity()->setEntityName(activeCourtInstance[0]->getData()->getModelFileName());
+    if (activeCourtInstance[0]->getEntity()->loadModel())
+    {
+        activeCourtInstance[0]->getEntity()->getNode()->setScale(1.0f,1.0f,1.0f);
+        setActiveCourtInstance(activeCourtInstance);
+        returnType = true;
+    }
+    else
+    {
+        logMsg(func +" Court model not loaded!");
+    }
+
+    // sets up the physics object for the court instance
+    activeCourtInstance[0]->getEntity()->setupPhysicsObject();
+    
+    setActiveCourtInstancesCreated(activeCourtInstancesCreated);
+
+    logMsg(func +" end");
+//    exit(0);
+    return (returnType);
+}
+
+bool loadCourts::loadModelFile()  // loads the 3D model
+{
+    conversionSharedPtr convert = conversion::Instance();
+    std::string func = "loadBasketballs::loadModelFile()";
+//BASEREMOVAL    renderEngineSharedPtr render = base->getGameE()->getRenderE();
+    renderEngineSharedPtr render;
+    sharedPtr<Ogre::SceneManager> mSceneMgr = render->getMSceneMgr();
+    Ogre::ResourceGroupManager &rsm = Ogre::ResourceGroupManager::getSingleton();
+    OgreEntitySharedPtr tempModel;
+    OgreSceneNodeSharedPtr tempNode; //(new Ogre::SceneNode);
+
+    entityNodeName = entityName + "node";
+    logMsg(func +" beginning");
+    logMsg(func +" baseInitialized == " +convert->toString(baseInitialized));
+    logMsg(func +" ECB entityName == " +entityName);
+    logMsg(func +" ECB entityModelFileName == " +entityModelFileName);
+    logMsg(func +" ECB entityNodeName == " +entityNodeName);
+        
+    if (rsm.resourceGroupExists("UBCData"))
+    {
+        logMsg(func +" UBData exists!");
+        if (rsm.resourceExists("UBCData", entityModelFileName))
+        {
+            logMsg(func +" " +entityModelFileName +" exists!");
+        }
+        else
+        {
+            logMsg(func +" " +entityModelFileName +" doesn't exist!");
+        }
+    }
+    else
+    {
+        logMsg(func +" UBData doesnt exist!");
+
+    }
+    
+//BASEREMOVAL    if (base->getGameE()->getRenderE().get()->getMSceneMgr()->hasCamera("camera"))
+    if (render.get()->getMSceneMgr()->hasCamera("camera"))
+    {
+        logMsg(func +" mSceneMgr has camera!");
+    }
+    else
+    {
+        logMsg(func +" mSceneMgr does not have camera!");
+    }
+    
+    logMsg(func +" Entity Name == " +entityName + " Model File Name == " +entityModelFileName);
+//BASEREMOVAL    tempModel = OgreEntitySharedPtr(base->getGameE()->getRenderE()->getMSceneMgr()->createEntity(entityName, entityModelFileName, "UBCData"));  // loads the model
+    tempModel = OgreEntitySharedPtr(render->getMSceneMgr()->createEntity(entityName, entityModelFileName, "UBCData"));  // loads the model
+
+    logMsg(func +" tempModel loaded!");
+    
+//    render->getMSceneMgr()->
+//    Ogre::Entity *tempModel = render->getMSceneMgr()->createEntity("dah!", "Player.mesh");
+    
+    model = OgreEntitySharedPtr(tempModel);
+    logMsg(func +" Entity Created!");
+//    exit(0);
+    // creates and instantiates the node object
+//    node = getRenderE()->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName);
+///    if (entityNodeName == "")
+///    {
+///        entityNodeName = entityName +"node";
+//        entityNodeName = "das";
+///    }
+
+    logMsg(func +" entityNodeName == " +entityNodeName);
+//    exit(0);
+//BASEREMOVAL    tempNode = OgreSceneNodeSharedPtr(base->getGameE()->getRenderE()->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName));
+    tempNode = OgreSceneNodeSharedPtr(render->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName));
+
+//    tempNode->setName(entityNodeName);
+    tempNode->attachObject(model.get());
+    logMsg(func +" node attached!");
+    
+    // attaches 3D model to the node
+//    node->attachObject(model);
+    // sets the size of the bball node
+    tempNode->setScale(0.25f,0.25f,0.25f);
+    tempNode->setPosition(0.0f,0.0f,0.0f);
+    
+    node = tempNode;
+    logMsg(func +" ECB node name == " +node->getName());
+    logMsg(func +" node position == " +convert->toString(node->getPosition()));
+//    exit(0);
+///    logMsg("scene node created!");
+///    node->attachObject(model);
+///    logMsg("node attached!");
+    // attaches 3D model to the node
+//    node->attachObject(model);
+    // sets the size of the bball node
+///    node->setScale(0.25f,0.25f,0.25f);
+///    node->setPosition(0.0f,0.0f,0.0f);
+
+    logMsg(func +" end");
+    
+    return (true);
+}
+

@@ -142,7 +142,7 @@ void entity::setNodePosition(Ogre::Vector3 set)  // sets the value of nodePositi
     nodePosition = set;
 }
 
-bool entity::loadModel()  // loads the 3D model
+/*bool entity::loadModel()  // loads the 3D model
 {
     conversionSharedPtr convert = conversion::Instance();
     std::string func = "entity::loadModel()";
@@ -239,7 +239,7 @@ bool entity::loadModel()  // loads the 3D model
     logMsg(func +" end");
     
     return (true);
-}
+}*/
 
 /*bool entity::setupPhysics()  // sets up the physics object
 {

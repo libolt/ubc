@@ -402,7 +402,7 @@ void basketballState::updateState()  // updates the state of the basketball
     std::string func = "basketballState::updateState()";
     
     logMsg(func + " beginning");
-    if (entity->getModelNeedsLoaded())
+/*    if (entity->getModelNeedsLoaded())
     {
         
         if (entity->loadModel())
@@ -412,7 +412,7 @@ void basketballState::updateState()  // updates the state of the basketball
             
         }
     }
-
+*/
     if (numberSet)  // runs the physics update code
     {
         entity->getPhysics()->updatePhysObj();

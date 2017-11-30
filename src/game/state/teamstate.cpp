@@ -970,8 +970,9 @@ bool teamState::setPlayerStartDirections()  // sets the initial directions for t
 bool teamState::setupActivePlayerInstances()  // sets up active player objects
 {
     conversionSharedPtr convert = conversion::Instance();
+    loadPlayersSharedPtr loadPlayer(new loadPlayers);
     std::string func = "teamState::setupActivePlayerInstances()";
-    
+   
     logMsg(func +" beginning");
     for (auto APIIT : activePlayerInstance)
     {

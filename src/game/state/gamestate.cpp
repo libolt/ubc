@@ -1052,8 +1052,10 @@ bool gameState::loadModels()  // loads all game object models excluding the play
 
     if (!courtModelLoaded)  // Checks if the court model has been loaded
     {
+        loadCourtsSharedPtr loadCourt(new loadCourts);
+
         logMsg(func +" Loading court model!");
-        if (loadCourtModel())  // load the court model
+        if (loadCourt->loadModels())  // load the court model
         {
             courtModelLoaded = true;
 //            return (true);
@@ -1068,8 +1070,10 @@ bool gameState::loadModels()  // loads all game object models excluding the play
 
     if (!hoopModelLoaded)  // Checks if the hoop model(s) have been loaded
     {
+        loadHoopsSharedPtr loadHoop(new loadHoops);
+
         logMsg(func +" Loading hoop model(s)!");
-        if (loadHoopModel())  // Creates the hoop instances
+        if (loadHoop->loadModels())  // Creates the hoop instances
         {
             hoopModelLoaded = true;
 //            return (true);

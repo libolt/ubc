@@ -465,6 +465,10 @@ bool playerEntity::initialize()  // initializes the player entity object
     return (true);
 }
 
+bool playerEntity::loadModel()  // loads the 3D model from file specified in modelName
+{
+    return (true);
+}
 bool playerEntity::setupPhysicsObject()  // sets up the physics object
 {
     std::string func = "playerEntity::setupPhysicsObject()!";

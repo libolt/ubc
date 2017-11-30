@@ -328,12 +328,12 @@ basketballStateSharedPtr loadBasketballs::loadFile(std::string fileName)  // loa
     return (basketballInstance);
 }
 
-bool loadBasketballs::loadModels()  // loads selected basketball model
+bool loadBasketballs::loadModels(basketballStateMSharedPtr activeBasketballInstance)  // loads selected basketball model
 {
     conversionSharedPtr convert = conversion::Instance();
     loaderSharedPtr load(new loader);
     gameSetupBasketballsSharedPtr gameSetupBasketball;
-    basketballStateMSharedPtr activeBasketballInstance = getActiveBasketballInstance();
+//    basketballStateMSharedPtr activeBasketballInstance = getActiveBasketballInstance();
     bool activeBasketballInstancesCreated = getActiveBasketballInstancesCreated();
 //    size_t activeBBallInstance = getActiveBBallInstance();
     basketballStateMSharedPtr basketballInstance = getBasketballInstance();

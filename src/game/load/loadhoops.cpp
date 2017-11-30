@@ -290,11 +290,11 @@ hoopStateSharedPtr loadHoops::loadHoopFile(std::string fileName)  // loads data 
     return (hoopInstance);
 }
 
-bool loadHoops::loadModels()  // loads selected hoop model
+hoopStateMSharedPtr loadHoops::loadModels(hoopStateMSharedPtr activeHoopInstance)  // loads selected hoop model
 {
     conversionSharedPtr convert = conversion::Instance();
-    hoopStateMSharedPtr activeHoopInstance = getActiveHoopInstance();
-    loaderSharedPtr load(new loader);
+//    hoopStateMSharedPtr activeHoopInstance = getActiveHoopInstance();
+//    loaderSharedPtr load(new loader);
     std::string func = "gameState::loadHoopModel()";
     bool returnType = true;
 
@@ -318,7 +318,7 @@ bool loadHoops::loadModels()  // loads selected hoop model
 
     logMsg(func +" activeHoopInstance.size() == " +convert->toString(activeHoopInstance.size()));
 //    logMsg(func + " activeCourtInstance == " +convert->toString(activeCourtInstance));
-    for (auto AHIIT : getActiveHoopInstance())
+    for (auto AHIIT : activeHoopInstance)
     {
         logMsg(func + " AHIIT index == " +convert->toString(AHIIT.first));
         std::string name = AHIIT.second->getName();
@@ -368,8 +368,8 @@ bool loadHoops::loadModels()  // loads selected hoop model
 ///        returnType = false;
 ///    }
     
-    setActiveHoopInstance(activeHoopInstance);
-    for (auto AHIIT : getActiveHoopInstance())
+//    setActiveHoopInstance(activeHoopInstance);
+    for (auto AHIIT : activeHoopInstance())
     {
 //        logMsg ("blhoop " +convert->toString(AHIIT.first) +" name === " +AHIIT.second->getEntityName());
 
@@ -380,7 +380,7 @@ bool loadHoops::loadModels()  // loads selected hoop model
     logMsg(func +" end");
 //    exit(0);
     
-    return (returnType);
+    return (activeHoopInstance);
 } 
 
 bool loadHoops::loadModelFile()  // loads the 3D model

@@ -51,7 +51,7 @@ class loadCourts : public loader
         stdStringVec loadCourtListFile(std::string fileName);  // load the list of courts from courts.xml
         courtStateSharedPtr loadCourtFile(std::string fileName);  // loads data from the court XML files.
 
-        bool loadModels();  // loads selected court model
+        courtStateMSharedPtr loadModels(courtStateMSharedPtr activeCourtInstance);  // loads selected court model
 
         bool loadModelFile();  // loads the 3D model from file specified in modelName
 

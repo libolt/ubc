@@ -51,7 +51,7 @@ class loadBasketballs  : public loader
     stdStringVec loadListFile(std::string fileName);  // load the list of basketballs from basketballs.xml
     basketballStateSharedPtr loadFile(std::string fileName);  // loads data from the basketball XML files.
 
-    bool loadModels(basketballStateMSharedPtr activeBasketballInstance);  // loads selected basketball model
+    basketballStateMSharedPtr loadModels(basketballStateMSharedPtr activeBasketballInstance);  // loads selected basketball model
 
     bool loadModelFile();  // loads the 3D model from file specified in modelName
 

@@ -477,20 +477,20 @@ courtStateSharedPtr loadCourts::loadCourtFile(std::string fileName)  // loads da
     return (courtInstance);
 }
 
-bool loadCourts::loadModels()  // loads selected court model
+courtStateMSharedPtr loadCourts::loadModels(courtStateMSharedPtr activeCourtInstance)  // loads selected court model
 {
     conversionSharedPtr convert = conversion::Instance();
     loaderSharedPtr load(new loader);
-    courtStateMSharedPtr courtInstance = getCourtInstance();
-    courtStateMSharedPtr activeCourtInstance = getActiveCourtInstance();
-    gameSetupCourtsSharedPtr gameSetupCourt(new gameSetupCourts);
-    bool activeCourtInstancesCreated = getActiveCourtInstancesCreated();
-    bool returnType = false;
+//    courtStateMSharedPtr courtInstance = getCourtInstance();
+//    courtStateMSharedPtr activeCourtInstance = getActiveCourtInstance();
+//    gameSetupCourtsSharedPtr gameSetupCourt(new gameSetupCourts);
+//    bool activeCourtInstancesCreated = getActiveCourtInstancesCreated();
+//    bool returnType = false;
     std::string func = "loadCourts::loadModels()";
 
     logMsg(func +" beginning");
     
-    if (!activeCourtInstancesCreated && activeCourtInstance.size() == 0)
+/*    if (!activeCourtInstancesCreated && activeCourtInstance.size() == 0)
     {
         activeCourtInstance = gameSetupCourt->createActiveCourtInstances(courtInstance);
         if (activeCourtInstance.size() > 0)
@@ -509,8 +509,8 @@ bool loadCourts::loadModels()  // loads selected court model
     {
 
     }
-
-    logMsg(func +" courtInstance.size() == " +convert->toString(courtInstance.size()));
+*/
+/*    logMsg(func +" courtInstance.size() == " +convert->toString(courtInstance.size()));
     logMsg(func + " activeCourtInstance.size() == " +convert->toString(activeCourtInstance.size()));
     logMsg(func +" Model Name = " +activeCourtInstance[0]->getData()->getModelFileName());
     logMsg(func +" entity initialized == " +convert->toString(activeCourtInstance[0]->getEntity()->getInitialized()));
@@ -519,6 +519,7 @@ bool loadCourts::loadModels()  // loads selected court model
 //    exit(0);
     activeCourtInstance[0]->getEntity()->setEntityNodeName(activeCourtInstance[0]->getData()->getModelFileName());
     activeCourtInstance[0]->getEntity()->setEntityName(activeCourtInstance[0]->getData()->getModelFileName());
+*/
     if (activeCourtInstance[0]->getEntity()->loadModel())
     {
         activeCourtInstance[0]->getEntity()->getNode()->setScale(1.0f,1.0f,1.0f);
@@ -531,13 +532,13 @@ bool loadCourts::loadModels()  // loads selected court model
     }
 
     // sets up the physics object for the court instance
-    activeCourtInstance[0]->getEntity()->setupPhysicsObject();
+//    activeCourtInstance[0]->getEntity()->setupPhysicsObject();
     
-    setActiveCourtInstancesCreated(activeCourtInstancesCreated);
+//    setActiveCourtInstancesCreated(activeCourtInstancesCreated);
 
     logMsg(func +" end");
 //    exit(0);
-    return (returnType);
+    return (activeCourtInstance);
 }
 
 bool loadCourts::loadModelFile()  // loads the 3D model

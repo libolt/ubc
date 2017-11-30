@@ -328,21 +328,21 @@ basketballStateSharedPtr loadBasketballs::loadFile(std::string fileName)  // loa
     return (basketballInstance);
 }
 
-bool loadBasketballs::loadModels(basketballStateMSharedPtr activeBasketballInstance)  // loads selected basketball model
+basketballStateMSharedPtr loadBasketballs::loadModels(basketballStateMSharedPtr activeBasketballInstance)  // loads selected basketball model
 {
     conversionSharedPtr convert = conversion::Instance();
     loaderSharedPtr load(new loader);
     gameSetupBasketballsSharedPtr gameSetupBasketball;
 //    basketballStateMSharedPtr activeBasketballInstance = getActiveBasketballInstance();
-    bool activeBasketballInstancesCreated = getActiveBasketballInstancesCreated();
+//    bool activeBasketballInstancesCreated = getActiveBasketballInstancesCreated();
 //    size_t activeBBallInstance = getActiveBBallInstance();
-    basketballStateMSharedPtr basketballInstance = getBasketballInstance();
+//    basketballStateMSharedPtr basketballInstance = getBasketballInstance();
     std::string func = "loadBasketballs::loadModels()";
     bool returnType = false;
     
     logMsg(func +" beginning");
     
-    if (!activeBasketballInstancesCreated && activeBasketballInstance.size() == 0)
+/*    if (!activeBasketballInstancesCreated && activeBasketballInstance.size() == 0)
     {
         if (basketballInstance.size() == 0)
         {
@@ -364,7 +364,7 @@ bool loadBasketballs::loadModels(basketballStateMSharedPtr activeBasketballInsta
     {
         
     }
-
+*/
     logMsg(func +" activeBasketballInstance.size() == " +convert->toString(activeBasketballInstance.size()));
 
     for (auto ABIIT : activeBasketballInstance)
@@ -422,12 +422,12 @@ bool loadBasketballs::loadModels(basketballStateMSharedPtr activeBasketballInsta
         
     }
     logMsg(func +" alive?");
-    setActiveBasketballInstance(activeBasketballInstance);
+//    setActiveBasketballInstance(activeBasketballInstance);
     logMsg(func +" still alive?");
-    setActiveBasketballInstancesCreated(activeBasketballInstancesCreated);
+//    setActiveBasketballInstancesCreated(activeBasketballInstancesCreated);
 //    exit(0);
     logMsg(func + " end");
-    return (returnType);
+    return (activeBasketballInstance);
 }
 
 bool loadBasketballs::loadModelFile()  // loads the 3D model

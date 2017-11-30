@@ -1022,7 +1022,7 @@ bool gameState::setupEnvironment()
 } 
 */
 
-bool gameState::loadModels()  // loads all game object models excluding the players
+bool gameState::loadModels(renderEngineSharedPtr render)  // loads all game object models excluding the players
 {
     conversionSharedPtr convert = conversion::Instance();
     bool returnType = true;
@@ -1033,10 +1033,13 @@ bool gameState::loadModels()  // loads all game object models excluding the play
     {
 //        setActiveBBallInstance(0);  // Sets the active basketball instance
         loadBasketballsSharedPtr loadBasketball(new loadBasketballs);
+        basketballStateMSharedPtr activeBasketballInstance;
         logMsg("Loading basketball Model!");
-        if (loadBasketball->loadModels())  // Loads the basketball model
+        activeBasketballInstance = loadBasketball->loadModels(getActiveBasketballInstance(), render);  // Loads the basketball model
+        if (activeBasketballInstance.size() >0)
         {
             basketballModelLoaded = true;
+            setActiveBasketballInstance(activeBasketballInstance);
 //            return (true);
         }
         else
@@ -1053,11 +1056,14 @@ bool gameState::loadModels()  // loads all game object models excluding the play
     if (!courtModelLoaded)  // Checks if the court model has been loaded
     {
         loadCourtsSharedPtr loadCourt(new loadCourts);
-
+        courtStateMSharedPtr activeCourtInstance;
+        
         logMsg(func +" Loading court model!");
-        if (loadCourt->loadModels())  // load the court model
+        activeCourtInstance = loadCourt->loadModels(getActiveCourtInstance());  // load the court model
+        if (activeCourtInstance.size() > 0)
         {
             courtModelLoaded = true;
+            setActiveCourtInstance(activeCourtInstance);
 //            return (true);
         }
         else
@@ -1071,11 +1077,14 @@ bool gameState::loadModels()  // loads all game object models excluding the play
     if (!hoopModelLoaded)  // Checks if the hoop model(s) have been loaded
     {
         loadHoopsSharedPtr loadHoop(new loadHoops);
-
+        hoopStateMSharedPtr activeHoopInstance;
+        
         logMsg(func +" Loading hoop model(s)!");
-        if (loadHoop->loadModels())  // Creates the hoop instances
+        activeHoopInstance = loadHoop->loadModels(getActiveHoopInstance());  // Creates the hoop instances
+        if (activeHoopInstance.size() > 0)
         {
             hoopModelLoaded = true;
+            setActiveHoopInstance(activeHoopInstance);
 //            return (true);
         }
         else
@@ -1238,7 +1247,7 @@ bool gameState::executeTipOff()  // executes tip off
 }
 
 // sets up the game condition
-bool gameState::setupState()  // sets up the game condition
+bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game condition
 {
 //    exit(0);
 
@@ -1377,7 +1386,7 @@ bool gameState::setupState()  // sets up the game condition
     if (!modelsLoaded)
     {
 //        exit(0);
-        if (loadModels())
+        if (loadModels(render))
         {
             modelsLoaded = true;
         }

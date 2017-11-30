@@ -66,6 +66,8 @@ class loader
 
         SDL_RWops *readBinaryFile(const char *sourceFile);
 
+        OgreEntitySharedPtr loadModelFile(std::string modelFileName, std::string entityName, renderEngineSharedPtr render);  // loads the 3D model
+    
     private:
 
         static int count;  // counts number of times a function has been called

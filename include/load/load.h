@@ -70,6 +70,7 @@ class loader
        
         OgreSceneNodeSharedPtr createNode(OgreEntitySharedPtr model, std::string entityName, renderEngineSharedPtr render);  // create scene node for model
 
+        
     private:
 
         static int count;  // counts number of times a function has been called

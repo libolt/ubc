@@ -220,11 +220,10 @@ std::string loader::findFile(std::string fileName)  // finds the location of a f
 OgreEntitySharedPtr loader::loadModelFile(std::string modelFileName, std::string entityName, renderEngineSharedPtr render)  // loads the 3D model
 {
     conversionSharedPtr convert = conversion::Instance();
-    std::string func = "loadBasketballs::loadModelFile()";
+    std::string func = "loader::loadModelFile()";
     sharedPtr<Ogre::SceneManager> mSceneMgr = render->getMSceneMgr();
     Ogre::ResourceGroupManager &rsm = Ogre::ResourceGroupManager::getSingleton();
     OgreEntitySharedPtr tempModel;
-    OgreSceneNodeSharedPtr tempNode; //(new Ogre::SceneNode);
     std::string entityNodeName;
     entityNodeName = entityName + "node";
     logMsg(func +" beginning");
@@ -266,13 +265,22 @@ OgreEntitySharedPtr loader::loadModelFile(std::string modelFileName, std::string
 
     logMsg(func +" tempModel loaded!");
     
-//    render->getMSceneMgr()->
-//    Ogre::Entity *tempModel = render->getMSceneMgr()->createEntity("dah!", "Player.mesh");
-    
 //    model = OgreEntitySharedPtr(tempModel);
     logMsg(func +" Entity Created!");
-//    exit(0);
-    // creates and instantiates the node object
+
+
+    logMsg(func +" end");
+    
+    return (tempModel);
+}
+
+OgreSceneNodeSharedPtr loader::createNode(OgreEntitySharedPtr model, renderEngineSharedPtr render)  // create scene node for model
+{
+    OgreSceneNodeSharedPtr tempNode; //(new Ogre::SceneNode);
+    conversionSharedPtr convert = conversion::Instance();
+    std::string func = "loader::createNode()";
+
+        // creates and instantiates the node object
 //    node = getRenderE()->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName);
 ///    if (entityNodeName == "")
 ///    {
@@ -282,7 +290,6 @@ OgreEntitySharedPtr loader::loadModelFile(std::string modelFileName, std::string
 
     logMsg(func +" entityNodeName == " +entityNodeName);
 //    exit(0);
-//BASEREMOVAL    tempNode = OgreSceneNodeSharedPtr(base->getGameE()->getRenderE()->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName));
     tempNode = OgreSceneNodeSharedPtr(render->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName));
 
 //    tempNode->setName(entityNodeName);
@@ -308,7 +315,4 @@ OgreEntitySharedPtr loader::loadModelFile(std::string modelFileName, std::string
 ///    node->setScale(0.25f,0.25f,0.25f);
 ///    node->setPosition(0.0f,0.0f,0.0f);
 
-    logMsg(func +" end");
-    
-    return (tempModel);
 }

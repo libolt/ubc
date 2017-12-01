@@ -68,7 +68,7 @@ class loader
 
         OgreEntitySharedPtr loadModelFile(std::string modelFileName, std::string entityName, renderEngineSharedPtr render);  // loads the 3D model
        
-        OgreSceneNodeSharedPtr createNode(OgreEntitySharedPtr model, renderEngineSharedPtr render);  // create scene node for model
+        OgreSceneNodeSharedPtr createNode(OgreEntitySharedPtr model, std::string entityName, renderEngineSharedPtr render);  // create scene node for model
 
     private:
 

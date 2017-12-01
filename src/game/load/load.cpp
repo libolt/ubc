@@ -274,20 +274,22 @@ OgreEntitySharedPtr loader::loadModelFile(std::string modelFileName, std::string
     return (tempModel);
 }
 
-OgreSceneNodeSharedPtr loader::createNode(OgreEntitySharedPtr model, renderEngineSharedPtr render)  // create scene node for model
+OgreSceneNodeSharedPtr loader::createNode(OgreEntitySharedPtr model,std::string entityName, renderEngineSharedPtr render)  // create scene node for model
 {
     OgreSceneNodeSharedPtr tempNode; //(new Ogre::SceneNode);
     conversionSharedPtr convert = conversion::Instance();
+    std::string entityNodeName;
     std::string func = "loader::createNode()";
 
         // creates and instantiates the node object
 //    node = getRenderE()->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName);
 ///    if (entityNodeName == "")
 ///    {
-///        entityNodeName = entityName +"node";
+///
 //        entityNodeName = "das";
 ///    }
 
+    entityNodeName = entityName +"node";
     logMsg(func +" entityNodeName == " +entityNodeName);
 //    exit(0);
     tempNode = OgreSceneNodeSharedPtr(render->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName));

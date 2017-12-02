@@ -44,6 +44,12 @@ class hoopState : public state, public hoopEntity, public hoopPhysics
     std::string getName();  // retrieves the value of name
     void setName(std::string set);  // sets the value of name
 
+/*    sharedPtr<hoopData> getData();  // retrieves the value of data
+    void setData(sharedPtr<hoopData> set);  // sets the value of data
+*/
+    sharedPtr<hoopEntity> getEntity();  // retrieves the value of entity
+    void setEntity(sharedPtr<hoopEntity> set);  // sets the value of entity
+
 /*    std::string getModelName();  // retrieves the value of modelName
     void setModelName(std::string set);  // sets the value of modelName
 
@@ -70,6 +76,11 @@ class hoopState : public state, public hoopEntity, public hoopPhysics
     private:
 
     std::string name;  // stores the object name
+
+//    sharedPtr<hoopData> data;  // stores the court data object
+
+    sharedPtr<hoopEntity> entity;  // stores the court entity object
+
 /*    std::string modelName;  // stores the file name of the 3D Model
     std::string entityName;  // stores the name of the model object in the scene
     std::string nodeName;  // stores the name of the scene node

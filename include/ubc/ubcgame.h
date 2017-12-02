@@ -79,7 +79,7 @@ class UBCGame
 
         bool loop(gameEngineSharedPtr gameE, UBCInputSharedPtr input, GUISystemSharedPtr gui);  // runs the Main loop for the game
 
-        bool startGame();  // starts a game
+        bool startGame(renderEngineSharedPtr render);  // starts a game
 
         bool createUserInstances();  // creates the user instances
 

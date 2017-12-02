@@ -26,6 +26,7 @@
 
 #include "utilities/conversion.h"
 #include "load/loadcourts.h"
+#include "entity/courtentity.h"
 #include "utilities/logging.h"
 #include "data/courtdata.h"
 #include "state/courtstate.h"
@@ -477,7 +478,7 @@ courtStateSharedPtr loadCourts::loadCourtFile(std::string fileName)  // loads da
     return (courtInstance);
 }
 
-courtStateMSharedPtr loadCourts::loadModels(courtStateMSharedPtr activeCourtInstance)  // loads selected court model
+courtStateMSharedPtr loadCourts::loadModels(courtStateMSharedPtr activeCourtInstance, renderEngineSharedPtr render)  // loads selected court model
 {
     conversionSharedPtr convert = conversion::Instance();
     loaderSharedPtr load(new loader);
@@ -486,10 +487,41 @@ courtStateMSharedPtr loadCourts::loadModels(courtStateMSharedPtr activeCourtInst
 //    gameSetupCourtsSharedPtr gameSetupCourt(new gameSetupCourts);
 //    bool activeCourtInstancesCreated = getActiveCourtInstancesCreated();
 //    bool returnType = false;
+    OgreEntitySharedPtr model;  // stores the model returned by loadModel() function
     std::string func = "loadCourts::loadModels()";
 
     logMsg(func +" beginning");
     
+    logMsg(func +" activeCourtInstance.size() == " +convert->toString(activeCourtInstance.size()));
+
+    for (auto ACIIT : activeCourtInstance)
+    {
+        logMsg(func +" activeCourtInstance == " +convert->toString(ACIIT.first));
+
+        if (ACIIT.second->getEntity()->getEntityName() == "")  // checks if entityName has been set
+        {
+            std::string name = ACIIT.second->getData()->getName();
+            ACIIT.second->getEntity()->setEntityName(name);
+        }
+        logMsg(func +" entityName == " +ACIIT.second->getEntity()->getEntityName());
+//        exit(0);
+        if (ACIIT.second->getEntity()->getEntityNodeName() == "")  // checks if entityNodeName has been set
+        {
+            std::string nodeName = ACIIT.second->getData()->getName() +"node";
+            ACIIT.second->getEntity()->setEntityNodeName(nodeName);
+        }
+        logMsg(func +" basketball name == " +ACIIT.second->getData()->getName());
+        logMsg(func + " basketball node name == " +ACIIT.second->getEntity()->getEntityNodeName());
+//        exit(0);
+        logMsg(func +" loading model == " +ACIIT.second->getEntity()->getEntityModelFileName());
+        std::string modelFileName = ACIIT.second->getEntity()->getEntityModelFileName();
+        std::string entityName = ACIIT.second->getEntity()->getEntityName();
+        std::string entityNodeName = ACIIT.second->getEntity()->getEntityNodeName();
+
+        model = loadModelFile(modelFileName, entityName, render);
+        ACIIT.second->getEntity()->setModelLoaded(true);
+        ACIIT.second->getEntity()->setModel(model);
+    }
 /*    if (!activeCourtInstancesCreated && activeCourtInstance.size() == 0)
     {
         activeCourtInstance = gameSetupCourt->createActiveCourtInstances(courtInstance);
@@ -520,7 +552,8 @@ courtStateMSharedPtr loadCourts::loadModels(courtStateMSharedPtr activeCourtInst
     activeCourtInstance[0]->getEntity()->setEntityNodeName(activeCourtInstance[0]->getData()->getModelFileName());
     activeCourtInstance[0]->getEntity()->setEntityName(activeCourtInstance[0]->getData()->getModelFileName());
 */
-    if (activeCourtInstance[0]->getEntity()->loadModel())
+
+/*    if (activeCourtInstance[0]->getEntity()->loadModel())
     {
         activeCourtInstance[0]->getEntity()->getNode()->setScale(1.0f,1.0f,1.0f);
         setActiveCourtInstance(activeCourtInstance);
@@ -530,7 +563,7 @@ courtStateMSharedPtr loadCourts::loadModels(courtStateMSharedPtr activeCourtInst
     {
         logMsg(func +" Court model not loaded!");
     }
-
+*/
     // sets up the physics object for the court instance
 //    activeCourtInstance[0]->getEntity()->setupPhysicsObject();
     
@@ -539,104 +572,5 @@ courtStateMSharedPtr loadCourts::loadModels(courtStateMSharedPtr activeCourtInst
     logMsg(func +" end");
 //    exit(0);
     return (activeCourtInstance);
-}
-
-bool loadCourts::loadModelFile()  // loads the 3D model
-{
-    conversionSharedPtr convert = conversion::Instance();
-    std::string func = "loadBasketballs::loadModelFile()";
-//BASEREMOVAL    renderEngineSharedPtr render = base->getGameE()->getRenderE();
-    renderEngineSharedPtr render;
-    sharedPtr<Ogre::SceneManager> mSceneMgr = render->getMSceneMgr();
-    Ogre::ResourceGroupManager &rsm = Ogre::ResourceGroupManager::getSingleton();
-    OgreEntitySharedPtr tempModel;
-    OgreSceneNodeSharedPtr tempNode; //(new Ogre::SceneNode);
-
-    entityNodeName = entityName + "node";
-    logMsg(func +" beginning");
-    logMsg(func +" baseInitialized == " +convert->toString(baseInitialized));
-    logMsg(func +" ECB entityName == " +entityName);
-    logMsg(func +" ECB entityModelFileName == " +entityModelFileName);
-    logMsg(func +" ECB entityNodeName == " +entityNodeName);
-        
-    if (rsm.resourceGroupExists("UBCData"))
-    {
-        logMsg(func +" UBData exists!");
-        if (rsm.resourceExists("UBCData", entityModelFileName))
-        {
-            logMsg(func +" " +entityModelFileName +" exists!");
-        }
-        else
-        {
-            logMsg(func +" " +entityModelFileName +" doesn't exist!");
-        }
-    }
-    else
-    {
-        logMsg(func +" UBData doesnt exist!");
-
-    }
-    
-//BASEREMOVAL    if (base->getGameE()->getRenderE().get()->getMSceneMgr()->hasCamera("camera"))
-    if (render.get()->getMSceneMgr()->hasCamera("camera"))
-    {
-        logMsg(func +" mSceneMgr has camera!");
-    }
-    else
-    {
-        logMsg(func +" mSceneMgr does not have camera!");
-    }
-    
-    logMsg(func +" Entity Name == " +entityName + " Model File Name == " +entityModelFileName);
-//BASEREMOVAL    tempModel = OgreEntitySharedPtr(base->getGameE()->getRenderE()->getMSceneMgr()->createEntity(entityName, entityModelFileName, "UBCData"));  // loads the model
-    tempModel = OgreEntitySharedPtr(render->getMSceneMgr()->createEntity(entityName, entityModelFileName, "UBCData"));  // loads the model
-
-    logMsg(func +" tempModel loaded!");
-    
-//    render->getMSceneMgr()->
-//    Ogre::Entity *tempModel = render->getMSceneMgr()->createEntity("dah!", "Player.mesh");
-    
-    model = OgreEntitySharedPtr(tempModel);
-    logMsg(func +" Entity Created!");
-//    exit(0);
-    // creates and instantiates the node object
-//    node = getRenderE()->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName);
-///    if (entityNodeName == "")
-///    {
-///        entityNodeName = entityName +"node";
-//        entityNodeName = "das";
-///    }
-
-    logMsg(func +" entityNodeName == " +entityNodeName);
-//    exit(0);
-//BASEREMOVAL    tempNode = OgreSceneNodeSharedPtr(base->getGameE()->getRenderE()->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName));
-    tempNode = OgreSceneNodeSharedPtr(render->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName));
-
-//    tempNode->setName(entityNodeName);
-    tempNode->attachObject(model.get());
-    logMsg(func +" node attached!");
-    
-    // attaches 3D model to the node
-//    node->attachObject(model);
-    // sets the size of the bball node
-    tempNode->setScale(0.25f,0.25f,0.25f);
-    tempNode->setPosition(0.0f,0.0f,0.0f);
-    
-    node = tempNode;
-    logMsg(func +" ECB node name == " +node->getName());
-    logMsg(func +" node position == " +convert->toString(node->getPosition()));
-//    exit(0);
-///    logMsg("scene node created!");
-///    node->attachObject(model);
-///    logMsg("node attached!");
-    // attaches 3D model to the node
-//    node->attachObject(model);
-    // sets the size of the bball node
-///    node->setScale(0.25f,0.25f,0.25f);
-///    node->setPosition(0.0f,0.0f,0.0f);
-
-    logMsg(func +" end");
-    
-    return (true);
 }
 

@@ -338,60 +338,27 @@ basketballStateMSharedPtr loadBasketballs::loadModels(basketballStateMSharedPtr 
 //    bool activeBasketballInstancesCreated = getActiveBasketballInstancesCreated();
 //    size_t activeBBallInstance = getActiveBBallInstance();
 //    basketballStateMSharedPtr basketballInstance = getBasketballInstance();
-    basketballStateSharedPtr basketballModelInstance(new basketballState);
-    
+//    basketballStateSharedPtr basketballModelInstance(new basketballState);
+    OgreEntitySharedPtr model;  // stores the model returned by loadModel() function
     std::string func = "loadBasketballs::loadModels()";
     bool returnType = false;
     
     logMsg(func +" beginning");
     
-/*    if (!activeBasketballInstancesCreated && activeBasketballInstance.size() == 0)
-    {
-        if (basketballInstance.size() == 0)
-        {
-            basketballInstance = gameSetupBasketball->createBasketballInstances();
-            activeBasketballInstance = gameSetupBasketball->createActiveBasketballInstances(basketballInstance, getNumActiveBasketballs());
-            if (activeBasketballInstance.size() > 0)
-            {
-                logMsg(func +" Active Basketball Instances Created!");
-                activeBasketballInstancesCreated = true;
-            }
-            else
-            {
-                logMsg(func +" Unable to create Active Basketball Instances!");
-                exit(0);
-            }
-        }
-    }
-    else
-    {
-        
-    }
-*/
     logMsg(func +" activeBasketballInstance.size() == " +convert->toString(activeBasketballInstance.size()));
 
     for (auto ABIIT : activeBasketballInstance)
     {
         logMsg(func +" activeBasketballInstance == " +convert->toString(ABIIT.first));
-    
-
-/*        if (!activeBasketballInstance[0]->getEntity()->getBaseInitialized()) // checks to see if the base object for basketballInstance[activeBBallIntance has been initialized
-        {
-            logMsg(func +" Initializing base!");
-            if (!ABIIT.second->getEntity()->getBaseInitialized())
-            {
-                ABIIT.second->getEntity()->setBase(base);
-            }
-        }*/
        
-        if (ABIIT.second->getEntity()->getEntityName() == "")
+        if (ABIIT.second->getEntity()->getEntityName() == "")  // checks if entityName has been set
         {
             std::string name = ABIIT.second->getData()->getName();
             ABIIT.second->getEntity()->setEntityName(name);
         }
         logMsg(func +" entityName == " +ABIIT.second->getEntity()->getEntityName());
 //        exit(0);
-        if (ABIIT.second->getEntity()->getEntityNodeName() == "")
+        if (ABIIT.second->getEntity()->getEntityNodeName() == "")  // checks if entityNodeName has been set
         {
             std::string nodeName = ABIIT.second->getData()->getName() +"node";
             ABIIT.second->getEntity()->setEntityNodeName(nodeName);
@@ -404,7 +371,10 @@ basketballStateMSharedPtr loadBasketballs::loadModels(basketballStateMSharedPtr 
         std::string entityName = ABIIT.second->getEntity()->getEntityName();
         std::string entityNodeName = ABIIT.second->getEntity()->getEntityNodeName();
 
-        basketballModelInstance = loadModelFile(modelFileName, entityName, render);
+        model = loadModelFile(modelFileName, entityName, render);
+        ABIIT.second->getEntity()->setModelLoaded(true);
+        ABIIT.second->getEntity()->setModel(model);
+
 /*        if (ABIIT.second->getEntity()->loadModel())
         {
             logMsg(func +" modelName == " +ABIIT.second->getEntity()->getModel()->getName());

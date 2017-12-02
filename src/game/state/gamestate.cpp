@@ -1059,7 +1059,7 @@ bool gameState::loadModels(renderEngineSharedPtr render)  // loads all game obje
         courtStateMSharedPtr activeCourtInstance;
         
         logMsg(func +" Loading court model!");
-        activeCourtInstance = loadCourt->loadModels(getActiveCourtInstance());  // load the court model
+        activeCourtInstance = loadCourt->loadModels(getActiveCourtInstance(), render);  // load the court model
         if (activeCourtInstance.size() > 0)
         {
             courtModelLoaded = true;
@@ -1080,7 +1080,7 @@ bool gameState::loadModels(renderEngineSharedPtr render)  // loads all game obje
         hoopStateMSharedPtr activeHoopInstance;
         
         logMsg(func +" Loading hoop model(s)!");
-        activeHoopInstance = loadHoop->loadModels(getActiveHoopInstance());  // Creates the hoop instances
+        activeHoopInstance = loadHoop->loadModels(getActiveHoopInstance(), render);  // Creates the hoop instances
         if (activeHoopInstance.size() > 0)
         {
             hoopModelLoaded = true;

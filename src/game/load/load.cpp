@@ -304,9 +304,9 @@ OgreSceneNodeSharedPtr loader::createNode(OgreEntitySharedPtr model,std::string 
     tempNode->setScale(0.25f,0.25f,0.25f);
     tempNode->setPosition(0.0f,0.0f,0.0f);
     
-    node = tempNode;
-    logMsg(func +" ECB node name == " +node->getName());
-    logMsg(func +" node position == " +convert->toString(node->getPosition()));
+//    node = tempNode;
+    logMsg(func +" ECB node name == " +tempNode->getName());
+    logMsg(func +" node position == " +convert->toString(tempNode->getPosition()));
 //    exit(0);
 ///    logMsg("scene node created!");
 ///    node->attachObject(model);

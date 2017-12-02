@@ -41,6 +41,24 @@ void hoopState::setName(std::string set)  // sets the value of name
     name = set;
 }
 
+/*sharedPtr<hoopData> hoopState::getData()  // retrieves the value of data
+{
+    return (data);
+}
+void hoopState::setData(sharedPtr<hoopData> set)  // sets the value of data
+{
+    data = set;
+}*/
+
+sharedPtr<hoopEntity> hoopState::getEntity()  // retrieves the value of entity
+{
+    return (entity);
+}
+void hoopState::setEntity(sharedPtr<hoopEntity> set)  // sets the value of entity
+{
+    entity = set;
+}
+
 /*
 std::string hoopState::getModelName()  // retrieves the value of modelName
 {

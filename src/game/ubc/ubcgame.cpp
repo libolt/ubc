@@ -361,7 +361,7 @@ bool UBCGame::loop(gameEngineSharedPtr gameE, UBCInputSharedPtr input, GUISystem
 
         if (startActiveGame)
         {
-            if (startGame())
+            if (startGame(gameE->getRenderE()))
             {
                 gameE->setStart(false);
                 gameE->setRenderScene(true);
@@ -414,7 +414,7 @@ bool UBCGame::loop(gameEngineSharedPtr gameE, UBCInputSharedPtr input, GUISystem
     return (true);
 }
 
-bool UBCGame::startGame()  // starts the game
+bool UBCGame::startGame(renderEngineSharedPtr render)  // starts the game
 {
 //    sharedPtr<gameState> gameS = gameState::Instance();
     std::string func = "UBC::startGame()";
@@ -423,7 +423,7 @@ bool UBCGame::startGame()  // starts the game
 
 //    exit(0);
 //BASEREMOVAL    gameInstance->setBase(base);
-    gameInstance->setupState();
+    gameInstance->setupState(render);
 
     logMsg(func +" end");
 //    exit(0);

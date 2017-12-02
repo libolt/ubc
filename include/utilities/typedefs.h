@@ -65,6 +65,9 @@ class networkEngine;
 class physicsEngine;
 class renderEngine;
 
+class basketballEntity;
+class courtEntity;
+class hoopEntity;
 class playerEntity;
 
 class basketballState;
@@ -139,6 +142,12 @@ typedef sharedPtr<networkEngine> networkEngineSharedPtr;
 typedef sharedPtr<physicsEngine> physicsEngineSharedPtr;
 
 typedef sharedPtr<renderEngine> renderEngineSharedPtr;
+
+typedef sharedPtr<basketballEntity> basketballEntitySharedPtr;
+
+typedef sharedPtr<courtEntity> courtEntitySharedPtr;
+
+typedef sharedPtr<hoopEntity> hoopEntitySharedPtr;
 
 typedef sharedPtr<playerEntity> playerEntitySharedPtr;
 

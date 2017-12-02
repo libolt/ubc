@@ -26,6 +26,7 @@
 
 courtState::courtState()
 {
+    entityInitialized = false;
     initialized = false;
 //    stateSet = false;
 }
@@ -43,13 +44,22 @@ void courtState::setData(sharedPtr<courtData> set)  // sets the value of data
     data = set;
 }
 
-sharedPtr<courtEntity> courtState::getEntity()  // retrieves the value of entity
+courtEntitySharedPtr courtState::getEntity()  // retrieves the value of entity
 {
     return (entity);
 }
-void courtState::setEntity(sharedPtr<courtEntity> set)  // sets the value of entity
+void courtState::setEntity(courtEntitySharedPtr set)  // sets the value of entity
 {
     entity = set;
+}
+
+bool courtState::getEntityInitialized()  // retrieves the value of entityInitialized
+{
+    return (entityInitialized);
+}
+void courtState::setEntityInitialized(bool set)  // sets the value of entityInitialized
+{
+    entityInitialized = set;
 }
 
 bool courtState::getInitialized()  // retrieves the value of initialized
@@ -66,7 +76,7 @@ bool courtState::initialize()  // initializes the courtState object
     sharedPtr<courtData> tempData(new courtData);
     data = tempData;
 
-    sharedPtr<courtEntity> temppEntity(new courtEntity);
+    courtEntitySharedPtr temppEntity(new courtEntity);
     entity = temppEntity;
 
     if (!entity->getInitialized())

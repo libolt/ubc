@@ -351,6 +351,9 @@ basketballStateMSharedPtr loadBasketballs::loadModels(basketballStateMSharedPtr 
     {
         logMsg(func +" activeBasketballInstance == " +convert->toString(ABIIT.first));
        
+        //FIXME! This should be done in a cleaner way!
+        ABIIT.second->getEntity()->setEntityModelFileName(ABIIT.second->getData()->getModelFileName());
+
         if (ABIIT.second->getEntity()->getEntityName() == "")  // checks if entityName has been set
         {
             std::string name = ABIIT.second->getData()->getName();

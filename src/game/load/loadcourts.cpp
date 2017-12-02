@@ -497,6 +497,8 @@ courtStateMSharedPtr loadCourts::loadModels(courtStateMSharedPtr activeCourtInst
     for (auto ACIIT : activeCourtInstance)
     {
         logMsg(func +" activeCourtInstance == " +convert->toString(ACIIT.first));
+        //FIXME! This should be done in a cleaner way!
+        ACIIT.second->getEntity()->setEntityModelFileName(ACIIT.second->getData()->getModelFileName());
 
         if (ACIIT.second->getEntity()->getEntityName() == "")  // checks if entityName has been set
         {
@@ -510,10 +512,11 @@ courtStateMSharedPtr loadCourts::loadModels(courtStateMSharedPtr activeCourtInst
             std::string nodeName = ACIIT.second->getData()->getName() +"node";
             ACIIT.second->getEntity()->setEntityNodeName(nodeName);
         }
-        logMsg(func +" basketball name == " +ACIIT.second->getData()->getName());
-        logMsg(func + " basketball node name == " +ACIIT.second->getEntity()->getEntityNodeName());
+        logMsg(func +" court name == " +ACIIT.second->getData()->getName());
+        logMsg(func + " court node name == " +ACIIT.second->getEntity()->getEntityNodeName());
 //        exit(0);
         logMsg(func +" loading model == " +ACIIT.second->getEntity()->getEntityModelFileName());
+//        exit(0);
         std::string modelFileName = ACIIT.second->getEntity()->getEntityModelFileName();
         std::string entityName = ACIIT.second->getEntity()->getEntityName();
         std::string entityNodeName = ACIIT.second->getEntity()->getEntityNodeName();

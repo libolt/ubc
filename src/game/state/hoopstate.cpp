@@ -24,6 +24,7 @@
 hoopState::hoopState()  // constructor
 {
 //    stateSet = false;
+    entityInitialized = false;
 }
 
 hoopState::~hoopState()  // destructor
@@ -50,13 +51,22 @@ void hoopState::setData(sharedPtr<hoopData> set)  // sets the value of data
     data = set;
 }*/
 
-sharedPtr<hoopEntity> hoopState::getEntity()  // retrieves the value of entity
+hoopEntitySharedPtr hoopState::getEntity()  // retrieves the value of entity
 {
     return (entity);
 }
-void hoopState::setEntity(sharedPtr<hoopEntity> set)  // sets the value of entity
+void hoopState::setEntity(hoopEntitySharedPtr set)  // sets the value of entity
 {
     entity = set;
+}
+
+bool hoopState::getEntityInitialized()  // retrieves the value of entityInitialized
+{
+    return (entityInitialized);
+}
+void hoopState::setEntityInitialized(bool set)  // sets the value of entityInitialized
+{
+    entityInitialized = set;
 }
 
 /*

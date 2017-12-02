@@ -37,6 +37,7 @@
 basketballState::basketballState()  // constructor
 {
 //    playerControlBasketball = -1;
+    entityInitialized = false;
     initialized = false;
     maxHeight = 0;
     maxHeightReached = false;
@@ -106,13 +107,22 @@ void basketballState::setData(sharedPtr<basketballData> set)  // sets the value 
     data = set;
 }
 
-sharedPtr<basketballEntity> basketballState::getEntity()  // retrieves the value of entity
+basketballEntitySharedPtr basketballState::getEntity()  // retrieves the value of entity
 {
     return(entity);
 }
-void basketballState::setEntity(sharedPtr<basketballEntity> set)  // sets the value of entity
+void basketballState::setEntity(basketballEntitySharedPtr set)  // sets the value of entity
 {
     entity = set;
+}
+
+bool basketballState::getEntityInitialized()  // retrieves the value of entityInitialized
+{
+    return (entityInitialized);
+}
+void basketballState::setEntityInitialized(bool set)  // sets the value of entityInitialized
+{
+    entityInitialized = set;
 }
 
 bool basketballState::getInitialized()  // retrieves the value of initialized
@@ -360,7 +370,7 @@ bool basketballState::initialize()  // initializes the basketballState object
     sharedPtr<basketballData> tempData(new basketballData);
     data = tempData;
 
-    sharedPtr<basketballEntity> tempEntity(new basketballEntity);
+    basketballEntitySharedPtr tempEntity(new basketballEntity);
     entity = tempEntity;
 
     if (!entity->getInitialized())

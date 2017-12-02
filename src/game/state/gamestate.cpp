@@ -1293,6 +1293,20 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
         if (activeBasketballInstance.size() > 0)
         {
             logMsg("activeBasketballInstances Created!");
+            basketballEntitySharedPtr tempBasketball(new basketballEntity);
+
+            for (auto ABIIT : activeBasketballInstance) // loop that checks if each active hoop instance's entity has been initialized
+            {
+                if (!ABIIT.second->getEntityInitialized()) // if not initialized it initializes the entity
+                {
+                    ABIIT.second->setEntity(tempBasketball);
+                    ABIIT.second->setEntityInitialized(true);
+                }
+                else
+                {
+
+                }
+            }
             setActiveBasketballInstancesCreated(true);
             setActiveBasketballInstance(activeBasketballInstance);
         }
@@ -1330,6 +1344,21 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
         if (activeCourtInstance.size() > 0)
         {
             logMsg(func +" Active Court Instances Created!!");
+
+            courtEntitySharedPtr tempCourt(new courtEntity);
+
+            for (auto ACIIT : activeCourtInstance) // loop that checks if each active hoop instance's entity has been initialized
+            {
+                if (!ACIIT.second->getEntityInitialized()) // if not initialized it initializes the entity
+                {
+                    ACIIT.second->setEntity(tempCourt);
+                    ACIIT.second->setEntityInitialized(true);
+                }
+                else
+                {
+
+                }
+            }
             setActiveCourtInstancesCreated(true);
             setActiveCourtInstance(activeCourtInstance);
         }
@@ -1369,8 +1398,25 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
         if (activeHoopInstance.size() > 0)
         {
             logMsg(func +"Active Hoop Instances Created!");
+
+            hoopEntitySharedPtr tempHoop(new hoopEntity);
+
+            for (auto AHIIT : activeHoopInstance) // loop that checks if each active hoop instance's entity has been initialized
+            {
+                if (!AHIIT.second->getEntityInitialized()) // if not initialized it initializes the entity
+                {
+                    AHIIT.second->setEntity(tempHoop);
+                    AHIIT.second->setEntityInitialized(true);
+                }
+                else
+                {
+
+                }
+            }
             setActiveHoopInstancesCreated(true);
             setActiveHoopInstance(activeHoopInstance);
+
+
         }
         else
         {

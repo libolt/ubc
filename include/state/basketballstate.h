@@ -66,8 +66,11 @@ public:
     sharedPtr<basketballData> getData();  // retrievees the value of data
     void setData(sharedPtr<basketballData> set);  // sets the value of data
 
-    sharedPtr<basketballEntity> getEntity();  // retrieves the value of entity
-    void setEntity(sharedPtr<basketballEntity> set);  // sets the value of entity
+    basketballEntitySharedPtr getEntity();  // retrieves the value of entity
+    void setEntity(basketballEntitySharedPtr set);  // sets the value of entity
+
+    bool getEntityInitialized();  // retrieves the value of entityInitialized
+    void setEntityInitialized(bool set);  // sets the value of entityInitialized
 
     bool getInitialized();  // retrieves the value of initialized
     void setInitialized(bool set);  // sets the value of initialized
@@ -174,7 +177,9 @@ private:
 
     sharedPtr<basketballData> data;
 
-    sharedPtr<basketballEntity> entity;
+    basketballEntitySharedPtr entity;
+
+    bool entityInitialized;  // stores whether the entity has been initialized
 
     bool initialized;  // stores whether the basketball object has been initialized
 

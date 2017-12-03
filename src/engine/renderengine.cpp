@@ -839,10 +839,51 @@ bool renderEngine::createScene()
 return (true);
 }
 
-//bool renderEngine::createScene()
-//{
-//    return (true);
-//}
+OgreSceneNodeSharedPtr renderEngine::createNode(OgreEntitySharedPtr model,std::string entityName)  // create scene node for model
+{
+    OgreSceneNodeSharedPtr tempNode; //(new Ogre::SceneNode);
+    conversionSharedPtr convert = conversion::Instance();
+    std::string entityNodeName;
+    std::string func = "render::createNode()";
+
+        // creates and instantiates the node object
+//    node = getRenderE()->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName);
+///    if (entityNodeName == "")
+///    {
+///
+//        entityNodeName = "das";
+///    }
+
+    entityNodeName = entityName +"node";
+    logMsg(func +" entityNodeName == " +entityNodeName);
+//    exit(0);
+    tempNode = OgreSceneNodeSharedPtr(mSceneMgr->getRootSceneNode()->createChildSceneNode(entityNodeName));
+
+//    tempNode->setName(entityNodeName);
+    tempNode->attachObject(model.get());
+    logMsg(func +" node attached!");
+
+    // attaches 3D model to the node
+//    node->attachObject(model);
+    // sets the size of the bball node
+    tempNode->setScale(0.25f,0.25f,0.25f);
+    tempNode->setPosition(0.0f,0.0f,0.0f);
+
+//    node = tempNode;
+    logMsg(func +" ECB node name == " +tempNode->getName());
+    logMsg(func +" node position == " +convert->toString(tempNode->getPosition()));
+//    exit(0);
+///    logMsg("scene node created!");
+///    node->attachObject(model);
+///    logMsg("node attached!");
+    // attaches 3D model to the node
+//    node->attachObject(model);
+    // sets the size of the bball node
+///    node->setScale(0.25f,0.25f,0.25f);
+///    node->setPosition(0.0f,0.0f,0.0f);
+
+    return (tempNode);
+}
 
 bool renderEngine::renderFrame()  // renders a frame to the screen
 {
@@ -878,3 +919,4 @@ bool renderEngine::renderFrame()  // renders a frame to the screen
 
     return (true);
 }
+

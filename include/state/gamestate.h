@@ -187,7 +187,8 @@ public:
 //    bool loadCourtModel();  // loads selected court model
 //    bool loadHoopModel();  // loads selected hoop model
     bool loadModels(renderEngineSharedPtr render);  // loads all game object models excluding the players
-
+    bool createNodes(renderEngineSharedPtr render);  // creates scene nodes for game objects
+    
     bool setupState(renderEngineSharedPtr render);  // sets up the game condition
     bool updateState();  // updates the state of the game
     bool updateActiveTeamInstances();  // updates all active team instancesa

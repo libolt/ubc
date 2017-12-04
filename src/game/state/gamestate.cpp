@@ -1037,9 +1037,9 @@ bool gameState::loadModels(renderEngineSharedPtr render)  // loads all game obje
         logMsg("Loading basketball Model!");
         activeBasketballInstance = loadBasketball->loadModels(getActiveBasketballInstance(), render);  // Loads the basketball model
         if (activeBasketballInstance.size() >0)
-        {
+        {          
             basketballModelLoaded = true;
-            setActiveBasketballInstance(activeBasketballInstance);
+            setActiveBasketballInstance(activeBasketballInstance);          
 //            return (true);
         }
         else
@@ -1096,6 +1096,34 @@ bool gameState::loadModels(renderEngineSharedPtr render)  // loads all game obje
 
     logMsg(func +" end");
 //    exit(0);
+    
+    return (returnType);
+}
+
+bool gameState::createNodes(renderEngineSharedPtr render)  // creates scene nodes for game objects
+{
+    conversionSharedPtr convert = conversion::Instance();
+    bool returnType = true;
+    OgreEntitySharedPtr activeBasketballModel;
+    OgreSceneNodeSharedPtr activeBasketballNode;
+    std::string entityName;
+    std::string func = "gameState::createNodes()";
+    
+    logMsg(func +" beginning");
+
+    if (basketballModelLoaded)  // Checks if basketball model has been loaded
+    {
+        for (auto ABIIT : getActiveBasketballInstance())
+        {
+            activeBasketballModel = ABIIT->getEntity()->getModel();
+            entityName = ABIIT->getEntity()->getEntityName();
+            activeBasketballNode = render->createNode(activeBasketballModel, activeBasketballNode);
+        }
+    }
+    
+    
+    
+    logMsg(func + " end");
     
     return (returnType);
 }

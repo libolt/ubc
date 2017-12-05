@@ -34,8 +34,6 @@
 
 #include "utilities/typedefs.h"
 
-
-
 // static declarations
 int loader::count;
 

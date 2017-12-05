@@ -72,6 +72,7 @@ gameState::gameState()  // constructor
     courtModelLoaded = false;
     hoopModelLoaded = false;
     modelsLoaded = false;
+    nodesCreated = false;
     setupEnvironmentCompleted = false;
     courtDataLoaded = false;
     gameStarted = false;
@@ -1104,24 +1105,61 @@ bool gameState::createNodes(renderEngineSharedPtr render)  // creates scene node
 {
     conversionSharedPtr convert = conversion::Instance();
     bool returnType = true;
-    OgreEntitySharedPtr activeBasketballModel;
-    OgreSceneNodeSharedPtr activeBasketballNode;
-    std::string entityName;
+    OgreEntitySharedPtr activeModel;
+    OgreSceneNodeSharedPtr activeNode;
+    std::string activeEntityName;
+    size_t activeNodeNum;
     std::string func = "gameState::createNodes()";
     
     logMsg(func +" beginning");
 
     if (basketballModelLoaded)  // Checks if basketball model has been loaded
     {
-        for (auto ABIIT : getActiveBasketballInstance())
+        for (auto ABIIT : getActiveBasketballInstance())  // loop through active basketball instances
         {
-            activeBasketballModel = ABIIT->getEntity()->getModel();
-            entityName = ABIIT->getEntity()->getEntityName();
-            activeBasketballNode = render->createNode(activeBasketballModel, activeBasketballNode);
+            activeModel = ABIIT.second->getEntity()->getModel();
+            activeEntityName = ABIIT.second->getEntity()->getEntityName();
+            activeNodeNum = ABIIT.first;
+            activeNode = render->createNode(activeModel, activeEntityName, activeNodeNum);  // creates node
+            ABIIT.second->getEntity()->setNode(activeNode);  // saves node to current instance
         }
     }
+    else
+    {
+        logMsg(func + " Basketball Models Not Loaded!");
+    }
     
+    if (courtModelLoaded)  // Checks if court model has been loaded
+    {
+        for (auto ACIIT : getActiveCourtInstance())  // loop through active court instances
+        {
+            activeModel = ACIIT.second->getEntity()->getModel();
+            activeEntityName = ACIIT.second->getEntity()->getEntityName();
+            activeNodeNum = ACIIT.first;
+            activeNode = render->createNode(activeModel, activeEntityName, activeNodeNum);  // creates node
+            ACIIT.second->getEntity()->setNode(activeNode);  // saves node to current instance
+        }
+    }
+    else
+    {
+        logMsg(func + " Court Models Not Loaded!");
+    }
     
+    if (hoopModelLoaded)  // Checks if hoop model has been loaded
+    {
+        for (auto AHIIT : getActiveHoopInstance())  // loop through active hoop instances
+        {
+            activeModel = AHIIT.second->getEntity()->getModel();
+            activeEntityName = AHIIT.second->getEntity()->getEntityName();
+            activeNodeNum = AHIIT.first;
+            activeNode = render->createNode(activeModel, activeEntityName, activeNodeNum);  // creates node
+            AHIIT.second->getEntity()->setNode(activeNode);  // saves node to current instance
+        }
+    }
+    else
+    {
+        logMsg(func + " Hoop Models Not Loaded!");
+    }
     
     logMsg(func + " end");
     
@@ -1463,6 +1501,7 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
         if (loadModels(render))
         {
             modelsLoaded = true;
+            
         }
         else
         {
@@ -1473,7 +1512,21 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
     {
 
     }
-
+    if (!nodesCreated && modelsLoaded)
+    {
+        if (createNodes(render))
+        {
+            nodesCreated = true;
+        }
+        else
+        {
+            logMsg(func + "Unable to Create Nodes!");
+        }
+    }
+    else
+    {
+        
+    }
     setBasketballStartPositions();  // sets starting positions for all basketballs that are instantiated
     setCourtStartPositions();  // sets starting positions for all courts that are instantiated
     setHoopStartPositions();  // sets starting positions for all hoops that are instantiated

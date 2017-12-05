@@ -221,6 +221,7 @@ private:
     bool courtModelLoaded;  // stores whether court model has been loaded
     bool hoopModelLoaded;  // stores whether the hoop model has been loaded
     bool modelsLoaded;  // stores whether all models have been loaded
+    bool nodesCreated;  // stores whether object scene nodes have been created
     bool sceneCreated;  // stores whether the scene has been created
     bool gameStarted;  // Determines whether or not a basketball game has been started
     bool tipOffSetupComplete;  // Determines whether or not game Tip Off has been setup

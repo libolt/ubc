@@ -333,7 +333,7 @@ hoopStateMSharedPtr loadHoops::loadModels(hoopStateMSharedPtr activeHoopInstance
         std::string modelFileName = AHIIT.second->getEntity()->getEntityModelFileName();
         std::string entityName = AHIIT.second->getEntity()->getEntityName() +convert->toString(AHIIT.first);
         std::string entityNodeName = AHIIT.second->getEntity()->getEntityNodeName();
-        logMsg(func +" entityName == " +entityName;
+        logMsg(func +" entityName == " +entityName);
 
         model = loadModelFile(modelFileName, entityName, render);
         AHIIT.second->getEntity()->setModelLoaded(true);

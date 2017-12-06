@@ -93,7 +93,7 @@ OgreEntitySharedPtr entity::getModel()  // retrieves the value of model
 }
  void entity::setModel(OgreEntitySharedPtr set)  // sets the value of model
 {
-    logMsg("die here?");
+    
     model = set;
 }
 

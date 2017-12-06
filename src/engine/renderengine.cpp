@@ -859,7 +859,7 @@ OgreSceneNodeSharedPtr renderEngine::createNode(OgreEntitySharedPtr model,std::s
     logMsg(func +" entityNodeName == " +entityNodeName);
 //    exit(0);
     tempNode = OgreSceneNodeSharedPtr(mSceneMgr->getRootSceneNode()->createChildSceneNode(entityNodeName));
-
+    logMsg(func +" tempNode created!");
 //    tempNode->setName(entityNodeName);
     tempNode->attachObject(model.get());
     logMsg(func +" node attached!");

@@ -113,11 +113,12 @@ SDL_RWops *loader::readBinaryFile(const char *sourceFile)  // reads in a binary 
 {
     //conversion *convert = conversion::Instance();
     conversionSharedPtr convert = conversion::Instance();
-    
+    std::string func = "loader::readBinaryFile()";
     int BLOCK_SIZE = 8;
     int MAX_BLOCKS = 1024;
     
-    logMsg("sourceFile = " +convert->toString(sourceFile));
+    logMsg(func +" beginning");
+    logMsg(func +" sourceFile = " +convert->toString(sourceFile));
 
     SDL_RWops *file;
     file = SDL_RWFromFile(sourceFile, "rb");
@@ -157,6 +158,7 @@ std::string loader::findFile(std::string fileName)  // finds the location of a f
     std::string filePath = "";        // stores path to a file
     stdStringVec pathArray;
     std::string dataPath;
+    std::string func = "loader::findFile()";
     
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     dataPath = "";
@@ -164,7 +166,9 @@ std::string loader::findFile(std::string fileName)  // finds the location of a f
     dataPath = UBC_DATADIR;
 #endif
 
-    logMsg("dataPath = " +dataPath);
+    logMsg(func +" begin");
+    
+    logMsg(func +" dataPath = " +dataPath);
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     filePath = fileName;
 #else
@@ -172,7 +176,7 @@ std::string loader::findFile(std::string fileName)  // finds the location of a f
 
     pathArray = pathSplit(dataPath);
 
-    logMsg("pathArray[0] = " +pathArray[0]);
+    logMsg(func +" pathArray[0] = " +pathArray[0]);
  //   logMsg("pathArray[1] = " +pathArray[1]);
 
     for (int x = 0; x < 3; x++)
@@ -181,16 +185,16 @@ std::string loader::findFile(std::string fileName)  // finds the location of a f
         {
             filePath.clear();
             filePath.append(pathArray[x]);
-            logMsg("pathArray == " + pathArray[x]);
+            logMsg(func + " pathArray == " + pathArray[x]);
 
             filePath.append(fileName);
-            logMsg("filePath = " +filePath);
+            logMsg(func + " filePath = " +filePath);
             std::fstream fileOpen;
             // if (!(lineupFont = TTF_OpenFont(file.c_str(), 20)));
             fileOpen.open(filePath.c_str(), std::ios::in);
             if (!fileOpen)
             {
-                logMsg("failed to load " + filePath);
+                logMsg(func +" failed to load " + filePath);
 //                exit(0);
             }
             else
@@ -208,10 +212,12 @@ std::string loader::findFile(std::string fileName)  // finds the location of a f
     }
     if (!fileLoaded)
     {
-        logMsg("failed to find file: " + fileName);
+        logMsg(func +" failed to find file: " + fileName);
         exit(0);
     }
 #endif
+    logMsg(func + " end");
+    
     return ("");
 }
 
@@ -224,10 +230,11 @@ OgreEntitySharedPtr loader::loadModelFile(std::string modelFileName, std::string
     OgreEntitySharedPtr tempModel;
     std::string entityNodeName;
     entityNodeName = entityName + "node";
-    logMsg(func +" beginning");
-    logMsg(func +" ECB entityName == " +entityName);
-    logMsg(func +" ECB modelFileName == " +modelFileName);
-    logMsg(func +" ECB entityNodeName == " +entityNodeName);
+    
+    logMsg(func +" begin");
+    logMsg(func +" entityName == " +entityName);
+    logMsg(func +" modelFileName == " +modelFileName);
+//    logMsg(func +" entityNodeName == " +entityNodeName);
         
     if (rsm.resourceGroupExists("UBCData"))
     {
@@ -262,7 +269,8 @@ OgreEntitySharedPtr loader::loadModelFile(std::string modelFileName, std::string
     tempModel = OgreEntitySharedPtr(render->getMSceneMgr()->createEntity(entityName, modelFileName, "UBCData"));  // loads the model
 
     logMsg(func +" tempModel loaded!");
-    
+    logMsg(func +" tempModel name == " +tempModel->getName());
+
 //    model = OgreEntitySharedPtr(tempModel);
     logMsg(func +" Entity Created!");
 

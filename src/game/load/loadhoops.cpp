@@ -313,15 +313,20 @@ hoopStateMSharedPtr loadHoops::loadModels(hoopStateMSharedPtr activeHoopInstance
 
         logMsg(func + " name = " +AHIIT.second->getName());
 //        logMsg(func + " entity name = " +AHIIT.second->getEntity()->getEntityName());
-        if (AHIIT.second->getEntity()->getEntityName() == "")  // checks if entityName has been set
+        if (!AHIIT.second->getEntity()->getEntityNameSet())  // checks if entityName has been set
         {
             std::string name = AHIIT.second->getName();
             logMsg(func +" name == " +name);
             AHIIT.second->getEntity()->setEntityName(name);
         }
+        else
+        {
+            logMsg(func +" entityName == " +AHIIT.second->getEntity()->getEntityName());
+//            exit(0);
+        }
 //        logMsg(func +" entityName == " +AHIIT.second->getEntity()->getEntityName());
-//        exit(0);
-        if (AHIIT.second->getEntity()->getEntityNodeName() == "")  // checks if entityNodeName has been set
+        exit(0);
+        if (!AHIIT.second->getEntity()->getEntityNodeNameSet())  // checks if entityNodeName has been set
         {
             std::string nodeName = AHIIT.second->getName() +"node";
             AHIIT.second->getEntity()->setEntityNodeName(nodeName);

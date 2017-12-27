@@ -30,7 +30,9 @@
 entity::entity()  // constructor
 {
     initialized = false;
-
+    entityNameSet = false;
+    entityNodeNameSet = false;
+    
     entityID = 0;
     physicsSetup = false;
     modelNeedsLoaded = false;
@@ -49,6 +51,24 @@ bool entity::getInitialized()  // retrieves the value of initialized
 void entity::setInitialized(bool set)  // sets the value of initialized
 {
     initialized = set;
+}
+
+bool entity::getEntityNameSet()  // retrieves the value of entityNameSet
+{
+    return (entityNameSet);
+}
+void entity::setEntityNameSet(bool set)  // sets the value of entityNameSet
+{
+    entityNameSet = set;
+}
+
+bool entity::getEntityNodeNameSet()  // retrieves the value of entityNodeNameSet
+{
+    return(entityNodeNameSet);
+}
+void entity::setEntityNodeNameSet(bool set)  // sets the value of entityNodeNameSet
+{
+    entityNodeNameSet = set;
 }
 
 size_t entity::getEntityID()  // retrieves the value of ID

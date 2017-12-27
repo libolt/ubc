@@ -42,6 +42,12 @@ class entity
     bool getInitialized();  // retrieves the value of initialized
     void setInitialized(bool set);  // sets the value of initialized
     
+    bool getEntityNameSet();  // retrieves the value of entityNameSet
+    void setEntityNameSet(bool set);  // sets the value of entityNameSet
+
+    bool getEntityNodeNameSet();  // retrieves the value of entityNodeNameSet
+    void setEntityNodeNameSet(bool set);  // sets the value of entityNodeNameSet
+
     size_t getEntityID();  // retrieves the value of entityID
     void setEntityID(size_t set);  // sets the value of entityID
     
@@ -80,7 +86,9 @@ class entity
     
     bool initialized;  // stores whether entity object has been initialized
         
-    bool baseInitialized;  // stores whether or not the base class has been initialized.
+    bool entityNameSet;  // stores the name of the value of entityNameSet
+
+    bool entityNodeNameSet;  // stores the value of entityNodeNameSet
 
     size_t entityID;  // stores the entity ID number to distinguish between entities
     

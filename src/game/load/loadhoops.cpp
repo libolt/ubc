@@ -298,10 +298,10 @@ hoopStateMSharedPtr loadHoops::loadModels(hoopStateMSharedPtr activeHoopInstance
 //    loaderSharedPtr load(new loader);
     OgreEntitySharedPtr model;  // stores the model returned by loadModel() function
 
-    std::string func = "loadHoops::loadModels";
+    std::string func = "loadHoops::loadModels()";
     bool returnType = true;
 
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 
     logMsg(func +" activeHoopInstance.size() == " +convert->toString(activeHoopInstance.size()));
 
@@ -311,7 +311,7 @@ hoopStateMSharedPtr loadHoops::loadModels(hoopStateMSharedPtr activeHoopInstance
         //FIXME! This should be done in a cleaner way!
         AHIIT.second->getEntity()->setEntityModelFileName(AHIIT.second->getEntityModelFileName());
 
-        logMsg(func + " name = " +AHIIT.second->getName());
+//        logMsg(func + " name = " +AHIIT.second->getName());
 //        logMsg(func + " entity name = " +AHIIT.second->getEntity()->getEntityName());
         if (!AHIIT.second->getEntity()->getEntityNameSet())  // checks if entityName has been set
         {
@@ -324,34 +324,44 @@ hoopStateMSharedPtr loadHoops::loadModels(hoopStateMSharedPtr activeHoopInstance
             logMsg(func +" entityName == " +AHIIT.second->getEntity()->getEntityName());
 //            exit(0);
         }
+ 
+
 //        logMsg(func +" entityName == " +AHIIT.second->getEntity()->getEntityName());
-        exit(0);
+//        exit(0);
         if (!AHIIT.second->getEntity()->getEntityNodeNameSet())  // checks if entityNodeName has been set
         {
             std::string nodeName = AHIIT.second->getName() +"node";
             AHIIT.second->getEntity()->setEntityNodeName(nodeName);
         }
-        logMsg(func +" hoop name == " +AHIIT.second->getName());
+        else
+        {
+            
+        }
+        logMsg(func +"nodeName == " +AHIIT.second->getEntity()->getEntityNodeName());
+        
+//        logMsg(func +" hoop name == " +AHIIT.second->getName());
 //        logMsg(func + " hoop node name == " +AHIIT.second->getEntity()->getEntityNodeName());
 //        exit(0);
         logMsg(func +" loading model == " +AHIIT.second->getEntity()->getEntityModelFileName());
         std::string modelFileName = AHIIT.second->getEntity()->getEntityModelFileName();
         std::string entityName = AHIIT.second->getEntity()->getEntityName() +convert->toString(AHIIT.first);
         std::string entityNodeName = AHIIT.second->getEntity()->getEntityNodeName();
+        logMsg(func +" modelFileName == " +modelFileName);
         logMsg(func +" entityName == " +entityName);
+        logMsg(func +" entityNodeName == " +entityNodeName);
 
         model = loadModelFile(modelFileName, entityName, render);
         AHIIT.second->getEntity()->setModelLoaded(true);
         AHIIT.second->getEntity()->setModel(model);
 
     }
-    
+
     for (auto AHIIT : activeHoopInstance)
     {
         logMsg(func + " model name == " +AHIIT.second->getEntity()->getModel()->getName());
     }
     exit(0);
-    /*
+/*    
 ///    if (activeHoopInstance.size() == 0)
 ///    {
 ///        if (createActiveHoopInstances())
@@ -408,8 +418,10 @@ hoopStateMSharedPtr loadHoops::loadModels(hoopStateMSharedPtr activeHoopInstance
             logMsg(func +" Unable to load model for activeHoopInstance[" +convert->toString(AHIIT.first) +"]");
             returnType = false;
         }
-        
+
     }
+*/
+    exit(0);
 ///    if (hoopInstance[1]->loadModel())
 ///    {
 ///        hoopInstance[1]->getNode()->setScale(0.8f,0.8f,0.8f);
@@ -421,7 +433,7 @@ hoopStateMSharedPtr loadHoops::loadModels(hoopStateMSharedPtr activeHoopInstance
 ///    }
     
 //    setActiveHoopInstance(activeHoopInstance);
-    for (auto AHIIT : activeHoopInstance())
+/*    for (auto AHIIT : activeHoopInstance())
     {
 //        logMsg ("blhoop " +convert->toString(AHIIT.first) +" name === " +AHIIT.second->getEntityName());
 
@@ -429,7 +441,7 @@ hoopStateMSharedPtr loadHoops::loadModels(hoopStateMSharedPtr activeHoopInstance
         logMsg ("blhoop " +convert->toString(AHIIT.first) +" entityID === " +convert->toString(AHIIT.second->getEntityID()));
 
     }
-    */
+*/
 
     logMsg(func +" end");
 //    exit(0);

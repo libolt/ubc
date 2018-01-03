@@ -307,6 +307,9 @@ hoopStateMSharedPtr loadHoops::loadModels(hoopStateMSharedPtr activeHoopInstance
 
     for (auto AHIIT : activeHoopInstance)
     {
+        bool modelLoaded = AHIIT.second->getEntity()->getModelLoaded();
+        if (!modelLoaded)
+        {
         logMsg(func +" activeHoopInstance == " +convert->toString(AHIIT.first));
         //FIXME! This should be done in a cleaner way!
         AHIIT.second->getEntity()->setEntityModelFileName(AHIIT.second->getEntityModelFileName());
@@ -321,12 +324,12 @@ hoopStateMSharedPtr loadHoops::loadModels(hoopStateMSharedPtr activeHoopInstance
         }
         else
         {
-            logMsg(func +" entityName == " +AHIIT.second->getEntity()->getEntityName());
+///            logMsg(func +" entityName == " +AHIIT.second->getEntity()->getEntityName());
 //            exit(0);
         }
  
 
-//        logMsg(func +" entityName == " +AHIIT.second->getEntity()->getEntityName());
+        logMsg(func +" entityName == " +AHIIT.second->getEntity()->getEntityName());
 //        exit(0);
         if (!AHIIT.second->getEntity()->getEntityNodeNameSet())  // checks if entityNodeName has been set
         {
@@ -346,14 +349,14 @@ hoopStateMSharedPtr loadHoops::loadModels(hoopStateMSharedPtr activeHoopInstance
         std::string modelFileName = AHIIT.second->getEntity()->getEntityModelFileName();
         std::string entityName = AHIIT.second->getEntity()->getEntityName() +convert->toString(AHIIT.first);
         std::string entityNodeName = AHIIT.second->getEntity()->getEntityNodeName();
-        logMsg(func +" modelFileName == " +modelFileName);
-        logMsg(func +" entityName == " +entityName);
+//        logMsg(func +" modelFileName == " +modelFileName);
+        logMsg(func +"load entityName == " +entityName);/*
         logMsg(func +" entityNodeName == " +entityNodeName);
-
+*/
         model = loadModelFile(modelFileName, entityName, render);
         AHIIT.second->getEntity()->setModelLoaded(true);
         AHIIT.second->getEntity()->setModel(model);
-
+        }
     }
 
     for (auto AHIIT : activeHoopInstance)

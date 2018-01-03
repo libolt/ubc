@@ -213,13 +213,13 @@ class gameStateShared
         static teamTypes teamWithBall;  // store which team has the basketball
         static basketballStateMSharedPtr activeBasketballInstance;  // creates instance of the basketballState class
         static courtStateMSharedPtr activeCourtInstance;  // stores the active court instance
-        static hoopStateMSharedPtr activeHoopInstance;  // creates instance of the hoopState class
+        hoopStateMSharedPtr activeHoopInstance;  // creates instance of the hoopState class
         static teamStateMSharedPtr activeTeamInstance;  // stores active team instance
         
 //        static size_t activeBBallInstance;  // stores which instance of the baskteball class is active
         static basketballStateMSharedPtr basketballInstance;  // creates instance of the basketballs class
         static courtStateMSharedPtr courtInstance;  // stores the court instance
-        static hoopStateMSharedPtr hoopInstance;  // creates instance of the hoop class
+        hoopStateMSharedPtr hoopInstance;  // creates instance of the hoop class
         static playerEntityMSharedPtr playerInstance;  // stores the map of the players loaded from the xml files
         static teamStateMSharedPtr  teamInstance;  // creates instance of the teamState class
 

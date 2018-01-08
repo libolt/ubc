@@ -34,15 +34,15 @@
 //class hoopEntity;
 //class hoopPhysics;
 
-class hoopState : public state, public hoopEntity, public hoopPhysics
+class hoopState : public state
 {
     public:
 
     hoopState(); // constructor
     ~hoopState();  // destructor
 
-    std::string getName();  // retrieves the value of name
-    void setName(std::string set);  // sets the value of name
+//    std::string getName();  // retrieves the value of name
+//    void setName(std::string set);  // sets the value of name
 
 /*    sharedPtr<hoopData> getData();  // retrieves the value of data
     void setData(sharedPtr<hoopData> set);  // sets the value of data
@@ -78,7 +78,7 @@ class hoopState : public state, public hoopEntity, public hoopPhysics
 */
     private:
 
-    std::string name;  // stores the object name
+//    std::string name;  // stores the object name
 
 //    sharedPtr<hoopData> data;  // stores the court data object
 

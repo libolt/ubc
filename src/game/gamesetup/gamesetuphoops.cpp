@@ -106,7 +106,7 @@ hoopStateMSharedPtr gameSetupHoops::createActiveHoopInstances(hoopStateMSharedPt
     {
         activeHoopInstance.insert(std::pair<size_t, hoopStateSharedPtr>(x, hoopInstance[x]));
         logMsg(func +" glee!");
-        logMsg(func + "name == " +hoopInstance[x]->getName());
+        logMsg(func + "name == " +hoopInstance[x]->getEntity()->getEntityName());
     }
     x = 0;
 ///    for (auto AHIIT : activeHoopInstance)

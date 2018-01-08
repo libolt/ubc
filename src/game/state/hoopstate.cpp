@@ -32,7 +32,7 @@ hoopState::~hoopState()  // destructor
 }
 
 
-std::string hoopState::getName()  // retrieves the value of name
+/*std::string hoopState::getName()  // retrieves the value of name
 {
     return (name);
 }
@@ -40,7 +40,7 @@ std::string hoopState::getName()  // retrieves the value of name
 void hoopState::setName(std::string set)  // sets the value of name
 {
     name = set;
-}
+}*/
 
 /*sharedPtr<hoopData> hoopState::getData()  // retrieves the value of data
 {

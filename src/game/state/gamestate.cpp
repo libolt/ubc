@@ -1225,18 +1225,18 @@ void gameState::setHoopStartPositions()  // sets the initial coordinates for the
 
     logMsg(func +" beginning");
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-    activeHoopInstance[0]->getNode()->setPosition(45.0f,-6.5f,370.0f);
-    activeHoopInstance[1]->getNode()->setPosition(-45.0f,-6.5f,370.0f);
+    activeHoopInstance[0]->getEntity()->getNode()->setPosition(45.0f,-6.5f,370.0f);
+    activeHoopInstance[1]->getEntity()->getNode()->setPosition(-45.0f,-6.5f,370.0f);
 #else
     activeHoopInstance[0]->getNode()->setPosition(45.0f,-23.5f,370.0f);
     activeHoopInstance[1]->getNode()->setPosition(-45.0f,-23.5f,370.0f);
 #endif
 
     Ogre::Quaternion hoop0Rotation(Ogre::Degree(-90), Ogre::Vector3::UNIT_Y);
-    activeHoopInstance[0]->getNode()->rotate(hoop0Rotation);
+    activeHoopInstance[0]->getEntity()->getNode()->rotate(hoop0Rotation);
 
     Ogre::Quaternion hoop1Rotation(Ogre::Degree(90), Ogre::Vector3::UNIT_Y);
-    activeHoopInstance[1]->getNode()->rotate(hoop1Rotation);
+    activeHoopInstance[1]->getEntity()->getNode()->rotate(hoop1Rotation);
 
     setActiveHoopInstance(activeHoopInstance);
     logMsg(func +" end");
@@ -1458,6 +1458,11 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
         }
 
     }
+    logMsg("hoop instance size == " +convert->toString(getHoopInstance().size()));
+    logMsg("hoop instance name == " +getHoopInstance()[0]->getEntity()->getEntityName());
+   
+    exit(0);
+    
     if (!getActiveHoopInstancesCreated())
     {
         //FIXME! Should not be hard coded!

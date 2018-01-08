@@ -219,8 +219,9 @@ stdStringVec loadHoops::loadHoopListFile(std::string fileName)  // load the list
 hoopStateSharedPtr loadHoops::loadHoopFile(std::string fileName)  // loads data from the hoop XML files.
 {
     conversionSharedPtr convert = conversion::Instance();
-    sharedPtr<hoopState> hoopInstance(new hoopState);
-
+    hoopStateSharedPtr hoopInstance(new hoopState);
+    hoopEntitySharedPtr entity(new hoopEntity);
+    
 //    hoopState *hoop = new hoopState;
     std::string name;
     std::string modelName;
@@ -283,11 +284,13 @@ hoopStateSharedPtr loadHoops::loadHoopFile(std::string fileName)  // loads data 
             logMsg(func +" modelName = " +modelName);
         }
     }
-    hoopInstance->setName(name);
+    entity->setEntityName(name);
 //    hoopInstance->setModelFileName(modelName);
 //    hoopInstance->setEntityName(name);
-    hoopInstance->setEntityModelFileName(modelName);
-
+    entity->setEntityModelFileName(modelName);
+    hoopInstance->setEntity(entity);
+    logMsg(func + " Entity Model Name = " +hoopInstance->getEntity()->getEntityModelFileName());
+//    exit(0);
     return (hoopInstance);
 }
 
@@ -304,7 +307,7 @@ hoopStateMSharedPtr loadHoops::loadModels(hoopStateMSharedPtr activeHoopInstance
     logMsg(func +" begin");
 
     logMsg(func +" activeHoopInstance.size() == " +convert->toString(activeHoopInstance.size()));
-
+    
     for (auto AHIIT : activeHoopInstance)
     {
         bool modelLoaded = AHIIT.second->getEntity()->getModelLoaded();
@@ -312,13 +315,13 @@ hoopStateMSharedPtr loadHoops::loadModels(hoopStateMSharedPtr activeHoopInstance
         {
         logMsg(func +" activeHoopInstance == " +convert->toString(AHIIT.first));
         //FIXME! This should be done in a cleaner way!
-        AHIIT.second->getEntity()->setEntityModelFileName(AHIIT.second->getEntityModelFileName());
+//        AHIIT.second->getEntity()->setEntityModelFileName(AHIIT.second->getEntityModelFileName());
 
 //        logMsg(func + " name = " +AHIIT.second->getName());
 //        logMsg(func + " entity name = " +AHIIT.second->getEntity()->getEntityName());
         if (!AHIIT.second->getEntity()->getEntityNameSet())  // checks if entityName has been set
         {
-            std::string name = AHIIT.second->getName();
+            std::string name = AHIIT.second->getEntity()->getEntityName();
             logMsg(func +" name == " +name);
             AHIIT.second->getEntity()->setEntityName(name);
         }
@@ -330,10 +333,10 @@ hoopStateMSharedPtr loadHoops::loadModels(hoopStateMSharedPtr activeHoopInstance
  
 
         logMsg(func +" entityName == " +AHIIT.second->getEntity()->getEntityName());
-//        exit(0);
+        exit(0);
         if (!AHIIT.second->getEntity()->getEntityNodeNameSet())  // checks if entityNodeName has been set
         {
-            std::string nodeName = AHIIT.second->getName() +"node";
+            std::string nodeName = AHIIT.second->getEntity()->getEntityName() +"node";
             AHIIT.second->getEntity()->setEntityNodeName(nodeName);
         }
         else
@@ -349,11 +352,12 @@ hoopStateMSharedPtr loadHoops::loadModels(hoopStateMSharedPtr activeHoopInstance
         std::string modelFileName = AHIIT.second->getEntity()->getEntityModelFileName();
         std::string entityName = AHIIT.second->getEntity()->getEntityName() +convert->toString(AHIIT.first);
         std::string entityNodeName = AHIIT.second->getEntity()->getEntityNodeName();
-//        logMsg(func +" modelFileName == " +modelFileName);
-        logMsg(func +"load entityName == " +entityName);/*
-        logMsg(func +" entityNodeName == " +entityNodeName);
-*/
-        model = loadModelFile(modelFileName, entityName, render);
+        logMsg(func +" modelFileName == " +modelFileName);
+        exit(0);
+        logMsg(func +"load entityName == " +entityName);
+//        logMsg(func +" entityNodeName == " +entityNodeName);
+
+//        model = loadModelFile(modelFileName, entityName, render);
         AHIIT.second->getEntity()->setModelLoaded(true);
         AHIIT.second->getEntity()->setModel(model);
         }

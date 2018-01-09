@@ -1458,11 +1458,9 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
         }
 
     }
-    logMsg("hoop instance size == " +convert->toString(getHoopInstance().size()));
-    logMsg("hoop instance name == " +getHoopInstance()[0]->getEntity()->getEntityName());
-   
-    exit(0);
-    
+    logMsg(func +" hoop instance size == " +convert->toString(getHoopInstance().size()));
+    logMsg(func +" hoop instance name == " +getHoopInstance()[0]->getEntity()->getEntityName());
+        
     if (!getActiveHoopInstancesCreated())
     {
         //FIXME! Should not be hard coded!
@@ -1503,6 +1501,10 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
         
     }
     
+    logMsg(func +" active hoop instance size == " +convert->toString(getActiveHoopInstance().size()));
+    logMsg(func +" active hoop instance name == " +getActiveHoopInstance()[0]->getEntity()->getEntityName());
+
+    exit(0);
     if (!modelsLoaded)
     {
 //        exit(0);

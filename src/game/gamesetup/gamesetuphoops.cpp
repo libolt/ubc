@@ -80,6 +80,8 @@ hoopStateMSharedPtr gameSetupHoops::createActiveHoopInstances(hoopStateMSharedPt
     size_t x = 0;
     logMsg(func +" beginning");
 
+    logMsg(func +" hoopInstance.size() == " +convert->toString(hoopInstance.size()));
+    
     if (hoopInstance.size() == 0)
     {
         if (loadHoop->checkIfHoopsLoaded())
@@ -98,16 +100,19 @@ hoopStateMSharedPtr gameSetupHoops::createActiveHoopInstances(hoopStateMSharedPt
     {
 
     }
-//    logMsg(func + "name 0 == " +hoopInstance[0]->getName());
+    logMsg(func + "name 0 == " +hoopInstance[0]->getEntity()->getEntityName());
 //    logMsg(func + "name 1 == " +hoopInstance[1]->getName());
 
-//    exit(0);
+    
     for (x=0;x<numActiveHoops; ++x)
     {
         activeHoopInstance.insert(std::pair<size_t, hoopStateSharedPtr>(x, hoopInstance[x]));
-        logMsg(func +" glee!");
-        logMsg(func + "name == " +hoopInstance[x]->getEntity()->getEntityName());
+//        logMsg(func +" glee!");
+        logMsg(func + " hoopInstance name == " +hoopInstance[x]->getEntity()->getEntityName());
+        logMsg(func + " activeHoopInstance name == " +activeHoopInstance[x]->getEntity()->getEntityName());
+
     }
+//    exit(0);
     x = 0;
 ///    for (auto AHIIT : activeHoopInstance)
 ///    {

@@ -289,6 +289,7 @@ hoopStateSharedPtr loadHoops::loadHoopFile(std::string fileName)  // loads data 
 //    hoopInstance->setEntityName(name);
     entity->setEntityModelFileName(modelName);
     hoopInstance->setEntity(entity);
+    hoopInstance->setEntityInitialized(true);
     logMsg(func + " Entity Model Name = " +hoopInstance->getEntity()->getEntityModelFileName());
 //    exit(0);
     return (hoopInstance);
@@ -333,7 +334,7 @@ hoopStateMSharedPtr loadHoops::loadModels(hoopStateMSharedPtr activeHoopInstance
  
 
         logMsg(func +" entityName == " +AHIIT.second->getEntity()->getEntityName());
-        exit(0);
+//        exit(0);
         if (!AHIIT.second->getEntity()->getEntityNodeNameSet())  // checks if entityNodeName has been set
         {
             std::string nodeName = AHIIT.second->getEntity()->getEntityName() +"node";
@@ -353,16 +354,18 @@ hoopStateMSharedPtr loadHoops::loadModels(hoopStateMSharedPtr activeHoopInstance
         std::string entityName = AHIIT.second->getEntity()->getEntityName() +convert->toString(AHIIT.first);
         std::string entityNodeName = AHIIT.second->getEntity()->getEntityNodeName();
         logMsg(func +" modelFileName == " +modelFileName);
-        exit(0);
+//        exit(0);
         logMsg(func +"load entityName == " +entityName);
 //        logMsg(func +" entityNodeName == " +entityNodeName);
 
 //        model = loadModelFile(modelFileName, entityName, render);
         AHIIT.second->getEntity()->setModelLoaded(true);
         AHIIT.second->getEntity()->setModel(model);
+        
         }
+        
     }
-
+//    exit(0);
     for (auto AHIIT : activeHoopInstance)
     {
         logMsg(func + " model name == " +AHIIT.second->getEntity()->getModel()->getName());

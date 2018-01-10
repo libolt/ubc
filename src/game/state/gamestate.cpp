@@ -1467,10 +1467,14 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
         size_t numActiveHoops = 2;
         hoopStateMSharedPtr hoopInstance = getHoopInstance();
         hoopStateMSharedPtr activeHoopInstance = gameSetupHoop->createActiveHoopInstances(hoopInstance, numActiveHoops);
+        logMsg(func +" active hoop instance size == " +convert->toString(activeHoopInstance.size()));
+        logMsg(func +" active hoop instance name == " +activeHoopInstance[0]->getEntity()->getEntityName());
+//        exit(0);
+        
         if (activeHoopInstance.size() > 0)
         {
             logMsg(func +"Active Hoop Instances Created!");
-
+//            exit(0);
             hoopEntitySharedPtr tempHoop(new hoopEntity);
 
             for (auto AHIIT : activeHoopInstance) // loop that checks if each active hoop instance's entity has been initialized
@@ -1482,12 +1486,13 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
                 }
                 else
                 {
-
+                    logMsg(func +"Entity already initialized!");
                 }
-            }
-            setActiveHoopInstancesCreated(true);
-            setActiveHoopInstance(activeHoopInstance);
+                
+                logMsg(func +" active hoop instance name == " +AHIIT.second->getEntity()->getEntityName());
 
+            }          
+//            exit(0);
 
         }
         else
@@ -1495,6 +1500,9 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
             logMsg(func +" Unable to create Active Hoop Instances!");
             exit(0);
         }
+        setActiveHoopInstancesCreated(true);
+        setActiveHoopInstance(activeHoopInstance);
+
     }
     else
     {
@@ -1504,7 +1512,7 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
     logMsg(func +" active hoop instance size == " +convert->toString(getActiveHoopInstance().size()));
     logMsg(func +" active hoop instance name == " +getActiveHoopInstance()[0]->getEntity()->getEntityName());
 
-    exit(0);
+//    exit(0);
     if (!modelsLoaded)
     {
 //        exit(0);

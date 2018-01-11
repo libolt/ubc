@@ -358,7 +358,7 @@ hoopStateMSharedPtr loadHoops::loadModels(hoopStateMSharedPtr activeHoopInstance
         logMsg(func +"load entityName == " +entityName);
 //        logMsg(func +" entityNodeName == " +entityNodeName);
 
-//        model = loadModelFile(modelFileName, entityName, render);
+        model = loadModelFile(modelFileName, entityName, render);
         AHIIT.second->getEntity()->setModelLoaded(true);
         AHIIT.second->getEntity()->setModel(model);
         
@@ -370,7 +370,7 @@ hoopStateMSharedPtr loadHoops::loadModels(hoopStateMSharedPtr activeHoopInstance
     {
         logMsg(func + " model name == " +AHIIT.second->getEntity()->getModel()->getName());
     }
-    exit(0);
+//    exit(0);
 /*    
 ///    if (activeHoopInstance.size() == 0)
 ///    {
@@ -431,7 +431,7 @@ hoopStateMSharedPtr loadHoops::loadModels(hoopStateMSharedPtr activeHoopInstance
 
     }
 */
-    exit(0);
+/*    exit(0);
 ///    if (hoopInstance[1]->loadModel())
 ///    {
 ///        hoopInstance[1]->getNode()->setScale(0.8f,0.8f,0.8f);

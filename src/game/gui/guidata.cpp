@@ -58,6 +58,9 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
     courtStateMSharedPtr  courtInstance;
     stdStringVec courtName;
     stdStringVec::iterator CNIT;
+    std::string func = "GUISystem::addCourtSelectionMenuData()";
+    
+    logMsg(func +" begin");
     
 //    if (!gameS->getCourtInstancesCreated())
 /*BASEREMOVAL    if (base->getStateSetup())
@@ -89,8 +92,9 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
         courtInstance = gameSetupCourt->createCourtInstances();
         if (courtInstance.size() > 0)
         {
-//            exit(0);
+            
             gameInstance->setCourtInstance(courtInstance);
+            exit(0);
             gameInstance->setCourtInstancesCreated(true);
             logMsg("Court Instances Created!!");
         }

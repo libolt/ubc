@@ -57,14 +57,14 @@ std::vector<std::unordered_map<std::string, size_t> > gameStateShared::teamStart
 Ogre::Vector3 gameStateShared::bballNodePosition;  // stores a copy of the basketball node position
 teamTypes gameStateShared::teamWithBall;  // store which team has the basketball
 basketballStateMSharedPtr gameStateShared::activeBasketballInstance;  // stores active basketball instance
-courtStateMSharedPtr gameStateShared::activeCourtInstance;  // stores active court instance
-hoopStateMSharedPtr gameStateShared::activeHoopInstance;  // stores active hoop instance
+//courtStateMSharedPtr gameStateShared::activeCourtInstance;  // stores active court instance
+//hoopStateMSharedPtr gameStateShared::activeHoopInstance;  // stores active hoop instance
 teamStateMSharedPtr gameStateShared::activeTeamInstance;  // stores active team instance
 
 //size_t gameStateShared::activeBBallInstance;  // stores which instance of the baskteball class is active
 basketballStateMSharedPtr gameStateShared::basketballInstance;  // creates instance of the basketballs class
-courtStateMSharedPtr gameStateShared::courtInstance;  // stores the court instance
-hoopStateMSharedPtr gameStateShared::hoopInstance;  // creates instance of the hoop class
+//courtStateMSharedPtr gameStateShared::courtInstance;  // stores the court instance
+//hoopStateMSharedPtr gameStateShared::hoopInstance;  // creates instance of the hoop class
 playerEntityMSharedPtr gameStateShared::playerInstance;  // stores the vector of the players loaded from the xml files
 teamStateMSharedPtr  gameStateShared::teamInstance;  // creates instance of the teamState class
 jumpBallsSharedPtr gameStateShared::jumpBall; // instance that is used for jumpBall functions.
@@ -102,6 +102,8 @@ gameStateShared::gameStateShared()  // constructor
     tipOffComplete = false;
 //    activeBBallInstance = -1;
     gameType = NOGAME;
+    courtStateMSharedPtr tempCI(new courtState);
+    courtInstance = tempCI;
     
 }
 

@@ -1152,10 +1152,10 @@ bool gameState::createNodes(renderEngineSharedPtr render)  // creates scene node
             activeModel = AHIIT.second->getEntity()->getModel();
             activeEntityName = AHIIT.second->getEntity()->getModel()->getName();
             logMsg(func +" activeEntityName == " +activeEntityName);
-/*            activeNodeNum = AHIIT.first;
+            activeNodeNum = AHIIT.first;
             activeNode = render->createNode(activeModel, activeEntityName, activeNodeNum);  // creates node
             AHIIT.second->getEntity()->setNode(activeNode);  // saves node to current instance
-*/
+
         }
         exit(0);
     }

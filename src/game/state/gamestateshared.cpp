@@ -102,8 +102,7 @@ gameStateShared::gameStateShared()  // constructor
     tipOffComplete = false;
 //    activeBBallInstance = -1;
     gameType = NOGAME;
-    courtStateMSharedPtr tempCI(new courtState);
-    courtInstance = tempCI;
+
     
 }
 

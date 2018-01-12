@@ -29,6 +29,7 @@
 #include "data/courtdata.h"
 #include "data/playerdata.h"
 #include "engine/gameengine.h"
+#include "entity/courtentity.h"
 #include "entity/playerentity.h"
 #include "gamesetup/gamesetupcourts.h"
 #include "gamesetup/gamesetupplayers.h"
@@ -92,19 +93,19 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
         courtInstance = gameSetupCourt->createCourtInstances();
         if (courtInstance.size() > 0)
         {
-            
+            logMsg(func +" Court entity initialized == " +convert->toString(courtInstance[0]->getEntity()->getInitialized()));
             gameInstance->setCourtInstance(courtInstance);
             exit(0);
             gameInstance->setCourtInstancesCreated(true);
-            logMsg("Court Instances Created!!");
+            logMsg(func +" Court Instances Created!!");
         }
         else
         {
-            logMsg("Court Instances NOT Created!");
+            logMsg(func +" Court Instances NOT Created!");
             exit(0);
         }
     }
-    logMsg("fleeart!");
+    logMsg(func +" fleeart!");
 //    exit(0);
 
 //    courtInstance = gameS->getCourtInstance();
@@ -116,16 +117,16 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
     }
 
 //    courtInstance.courtNameFunc(getName());
-    logMsg("GUISystem::addCourtSelectionMenuData() courtName.size() == " +convert->toString(courtName.size()));
+    logMsg(func +" courtName.size() == " +convert->toString(courtName.size()));
     if (courtInstance.size() == 0)
     {
-        logMsg("courtInstane.size == " +convert->toString(courtInstance.size()));
+        logMsg(func +" courtInstane.size == " +convert->toString(courtInstance.size()));
 //        exit(0);
     }
 //    exit(0);
 
-    logMsg("courtName = " +courtName[0]);
-    logMsg("courtName size = " +convert->toString(courtName.size()));
+    logMsg(func +" courtName = " +courtName[0]);
+    logMsg(func +" courtName size = " +convert->toString(courtName.size()));
 //    exit(0);u
 //    auto i = 0;
     for (CNIT = courtName.begin(); CNIT != courtName.end(); ++CNIT)
@@ -134,7 +135,7 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
         
     }
 
-    logMsg("Court names added!");
+    logMsg(func +" Court names added!");
 //    exit(0);
     return (true);
 }

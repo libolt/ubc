@@ -1228,8 +1228,8 @@ void gameState::setHoopStartPositions()  // sets the initial coordinates for the
     activeHoopInstance[0]->getEntity()->getNode()->setPosition(45.0f,-6.5f,370.0f);
     activeHoopInstance[1]->getEntity()->getNode()->setPosition(-45.0f,-6.5f,370.0f);
 #else
-    activeHoopInstance[0]->getNode()->setPosition(45.0f,-23.5f,370.0f);
-    activeHoopInstance[1]->getNode()->setPosition(-45.0f,-23.5f,370.0f);
+    activeHoopInstance[0]->getEntity()->getNode()->setPosition(45.0f,-23.5f,370.0f);
+    activeHoopInstance[1]->getEntity()->getNode()->setPosition(-45.0f,-23.5f,370.0f);
 #endif
 
     Ogre::Quaternion hoop0Rotation(Ogre::Degree(-90), Ogre::Vector3::UNIT_Y);

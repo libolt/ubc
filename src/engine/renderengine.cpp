@@ -447,7 +447,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 #elif OGRE_PLATFORM == OGRE_PLATFORM_APPLE
     RERoot->loadPlugin("RenderSystem_GL");
 #else
-    RERoot->loadPlugin(pluginDir + "/RenderSystem_GL_d");
+    RERoot->loadPlugin(pluginDir + "/RenderSystem_GL");
 //    RERoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager");
 #endif
 //    exit(0);

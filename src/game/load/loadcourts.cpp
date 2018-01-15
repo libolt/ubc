@@ -458,6 +458,7 @@ courtStateSharedPtr loadCourts::loadCourtFile(std::string fileName)  // loads da
         logMsg(func +" courtInstance already Initialized!");
     }
     
+    courtInstance->getData()->setInitialized(true);
     courtInstance->getData()->setName(name);
 //    logMsg(func +" dah");
     courtInstance->getData()->setModelFileName(modelName);

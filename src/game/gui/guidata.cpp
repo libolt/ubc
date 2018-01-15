@@ -64,18 +64,7 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
     logMsg(func +" begin");
     
 //    if (!gameS->getCourtInstancesCreated())
-/*BASEREMOVAL    if (base->getStateSetup())
-    {
-        logMsg("WOOT Base STATE SETUP!");
-    }
-    else
-    {
-//        exit(0);
-        logMsg("Base NOT STATE SETUP!!!");
-        base->setup();
-//        exit(0);
-    }
-*/
+
 //    exit(0);
     if (gameInstance->getCourtInstancesCreated())
     {
@@ -93,7 +82,10 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
         courtInstance = gameSetupCourt->createCourtInstances();
         if (courtInstance.size() > 0)
         {
-            logMsg(func +" Court entity initialized == " +convert->toString(courtInstance[0]->getEntity()->getInitialized()));
+            logMsg(func +" Court Data Initialized == " +convert->toString(courtInstance[0]->getData()->getInitialized()));
+            logMsg(func +" Court Entity Initialized == " +convert->toString(courtInstance[0]->getEntity()->getInitialized()));
+            logMsg(func +" Court Initialized == " +convert->toString(courtInstance[0]->getInitialized()));
+  
             gameInstance->setCourtInstance(courtInstance);
             exit(0);
             gameInstance->setCourtInstancesCreated(true);

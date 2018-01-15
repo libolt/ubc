@@ -49,9 +49,6 @@ class courtState : public state
         courtEntitySharedPtr getEntity();  // retrieves the value of entity
         void setEntity(courtEntitySharedPtr set);  // sets the value of entity
 
-        bool getEntityInitialized();  // retrieves the value of entityInitialized
-        void setEntityInitialized(bool set);  // sets the value of entityInitialized
-
         bool getInitialized();  // retrieves the value of initialized
         void setInitialized(bool set);  // sets the value of initialized
 
@@ -59,10 +56,8 @@ class courtState : public state
 
     private:
 
-        sharedPtr<courtData> data;  // stores the court data object
+        courtDataSharedPtr data;  // stores the court data object
         courtEntitySharedPtr entity;  // stores the court entity object
-        bool entityInitialized;  // stores whether the entity has been initialized
-
         bool initialized;  // stores whether the courtState object has been initialized
 };
 

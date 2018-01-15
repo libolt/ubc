@@ -133,6 +133,8 @@ typedef sharedPtr<GUISystem> GUISystemSharedPtr;
 
 typedef sharedPtr<conversion> conversionSharedPtr;
 
+typedef sharedPtr<courtData> courtDataSharedPtr;
+
 typedef sharedPtr<gameEngine> gameEngineSharedPtr;
 
 typedef sharedPtr<inputEngine> inputEngineSharedPtr;

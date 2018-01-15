@@ -63,7 +63,7 @@ void courtState::setInitialized(bool set)  // sets the value of initialized
 
 bool courtState::initialize()  // initializes the courtState object
 {
-    courtDataSharedPte tempData(new courtData);
+    courtDataSharedPtr tempData(new courtData);
     data = tempData;
 
     courtEntitySharedPtr tempEntity(new courtEntity);

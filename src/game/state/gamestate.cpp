@@ -1418,10 +1418,10 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
 
             for (auto ACIIT : activeCourtInstance) // loop that checks if each active hoop instance's entity has been initialized
             {
-                if (!ACIIT.second->getEntityInitialized()) // if not initialized it initializes the entity
+                if (!ACIIT.second->getEntity()->getInitialized()) // if not initialized it initializes the entity
                 {
                     ACIIT.second->setEntity(tempCourt);
-                    ACIIT.second->setEntityInitialized(true);
+                    ACIIT.second->getEntity()->setInitialized(true);
                 }
                 else
                 {

@@ -1,9 +1,5 @@
-
 /***************************************************************************
- *   Copyright (C) 1999 - 2017 by Mike McLean                         ????m?''''
- 
- 
- *
+ *   Copyright (C) 1999 - 2017 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -83,7 +79,9 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
         if (courtInstance.size() > 0)
         {
             logMsg(func +" Court Data Initialized == " +convert->toString(courtInstance[0]->getData()->getInitialized()));
+            logMsg(func +" Court Data Name == " +courtInstance[0]->getData()->getName());
             logMsg(func +" Court Entity Name == " +courtInstance[0]->getEntity()->getName());
+            logMsg(func +" Court Entity modelFileName == " +courtInstance[0]->getEntity()->getModelFileName());
             logMsg(func +" Court Entity Initialized == " +convert->toString(courtInstance[0]->getEntity()->getInitialized()));
             logMsg(func +" Court Initialized == " +convert->toString(courtInstance[0]->getInitialized()));
             logMsg(func +" Game Initialized == " +convert->toString(gameInstance->getInitialized()));

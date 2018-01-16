@@ -19,6 +19,8 @@
  ***************************************************************************/
 
 #include "gamesetup/gamesetupcourts.h"
+#include "data/courtdata.h"
+#include "entity/courtentity.h"
 #include "state/courtstate.h"
 #include "load/loadcourts.h"
 #include "utilities/conversion.h"
@@ -52,6 +54,14 @@ courtStateMSharedPtr gameSetupCourts::createCourtInstances()  // creates court I
 //        setCourtInstance(loadCourt->getCInstance());
         logMsg(func +" Court Instances Created!!");
         courtInstance = loadCourt->getCInstance();
+        for (auto CIIT : courtInstance)
+        {
+            logMsg("Court Name == " +CIIT.second->getData()->getName());
+            CIIT.second->getEntity()->setName(CIIT.second->getData()->getName());
+            CIIT.second->getEntity()->setModelFileName(CIIT.second->getData()->getModelFileName());
+
+        }
+//        exit(0);
     }
     else
     {

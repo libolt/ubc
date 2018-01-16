@@ -74,6 +74,7 @@ bool courtState::initialize()  // initializes the courtState object
         if (entity->initialize())
         {
             entity->setInitialized(true);
+            
         }
         else
         {

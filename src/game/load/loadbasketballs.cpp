@@ -324,7 +324,7 @@ basketballStateSharedPtr loadBasketballs::loadFile(std::string fileName)  // loa
     }
     basketballInstance->getData()->setName(name);
     basketballInstance->getData()->setModelFileName(modelName);
-    basketballInstance->getEntity()->setEntityModelFileName(modelName);
+    basketballInstance->getEntity()->setModelFileName(modelName);
     
     return (basketballInstance);
 }
@@ -352,27 +352,27 @@ basketballStateMSharedPtr loadBasketballs::loadModels(basketballStateMSharedPtr 
         logMsg(func +" activeBasketballInstance == " +convert->toString(ABIIT.first));
        
         //FIXME! This should be done in a cleaner way!
-        ABIIT.second->getEntity()->setEntityModelFileName(ABIIT.second->getData()->getModelFileName());
+        ABIIT.second->getEntity()->setModelFileName(ABIIT.second->getData()->getModelFileName());
 
-        if (ABIIT.second->getEntity()->getEntityName() == "")  // checks if entityName has been set
+        if (ABIIT.second->getEntity()->getName() == "")  // checks if entityName has been set
         {
             std::string name = ABIIT.second->getData()->getName();
-            ABIIT.second->getEntity()->setEntityName(name);
+            ABIIT.second->getEntity()->setName(name);
         }
-        logMsg(func +" entityName == " +ABIIT.second->getEntity()->getEntityName());
+        logMsg(func +" entityName == " +ABIIT.second->getEntity()->getName());
 //        exit(0);
-        if (ABIIT.second->getEntity()->getEntityNodeName() == "")  // checks if entityNodeName has been set
+        if (ABIIT.second->getEntity()->getNodeName() == "")  // checks if entityNodeName has been set
         {
             std::string nodeName = ABIIT.second->getData()->getName() +"node";
-            ABIIT.second->getEntity()->setEntityNodeName(nodeName);
+            ABIIT.second->getEntity()->setNodeName(nodeName);
         }
         logMsg(func +" basketball name == " +ABIIT.second->getData()->getName());
-        logMsg(func + " basketball node name == " +ABIIT.second->getEntity()->getEntityNodeName());
+        logMsg(func + " basketball node name == " +ABIIT.second->getEntity()->getNodeName());
 //        exit(0);
-        logMsg(func +" loading model == " +ABIIT.second->getEntity()->getEntityModelFileName());
-        std::string modelFileName = ABIIT.second->getEntity()->getEntityModelFileName();
-        std::string entityName = ABIIT.second->getEntity()->getEntityName();
-        std::string entityNodeName = ABIIT.second->getEntity()->getEntityNodeName();
+        logMsg(func +" loading model == " +ABIIT.second->getEntity()->getModelFileName());
+        std::string modelFileName = ABIIT.second->getEntity()->getModelFileName();
+        std::string entityName = ABIIT.second->getEntity()->getName();
+        std::string entityNodeName = ABIIT.second->getEntity()->getNodeName();
 
         model = loadModelFile(modelFileName, entityName, render);
         ABIIT.second->getEntity()->setModelLoaded(true);

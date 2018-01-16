@@ -499,28 +499,28 @@ courtStateMSharedPtr loadCourts::loadModels(courtStateMSharedPtr activeCourtInst
     {
         logMsg(func +" activeCourtInstance == " +convert->toString(ACIIT.first));
         //FIXME! This should be done in a cleaner way!
-        ACIIT.second->getEntity()->setEntityModelFileName(ACIIT.second->getData()->getModelFileName());
+        ACIIT.second->getEntity()->setModelFileName(ACIIT.second->getData()->getModelFileName());
 
-        if (ACIIT.second->getEntity()->getEntityName() == "")  // checks if entityName has been set
+        if (ACIIT.second->getEntity()->getName() == "")  // checks if entityName has been set
         {
             std::string name = ACIIT.second->getData()->getName();
-            ACIIT.second->getEntity()->setEntityName(name);
+            ACIIT.second->getEntity()->setName(name);
         }
-        logMsg(func +" entityName == " +ACIIT.second->getEntity()->getEntityName());
+        logMsg(func +" entityName == " +ACIIT.second->getEntity()->getName());
 //        exit(0);
-        if (ACIIT.second->getEntity()->getEntityNodeName() == "")  // checks if entityNodeName has been set
+        if (ACIIT.second->getEntity()->getNodeName() == "")  // checks if entityNodeName has been set
         {
             std::string nodeName = ACIIT.second->getData()->getName() +"node";
-            ACIIT.second->getEntity()->setEntityNodeName(nodeName);
+            ACIIT.second->getEntity()->setNodeName(nodeName);
         }
         logMsg(func +" court name == " +ACIIT.second->getData()->getName());
-        logMsg(func + " court node name == " +ACIIT.second->getEntity()->getEntityNodeName());
+        logMsg(func + " court node name == " +ACIIT.second->getEntity()->getNodeName());
 //        exit(0);
-        logMsg(func +" loading model == " +ACIIT.second->getEntity()->getEntityModelFileName());
+        logMsg(func +" loading model == " +ACIIT.second->getEntity()->getModelFileName());
 //        exit(0);
-        std::string modelFileName = ACIIT.second->getEntity()->getEntityModelFileName();
-        std::string entityName = ACIIT.second->getEntity()->getEntityName();
-        std::string entityNodeName = ACIIT.second->getEntity()->getEntityNodeName();
+        std::string modelFileName = ACIIT.second->getEntity()->getModelFileName();
+        std::string entityName = ACIIT.second->getEntity()->getName();
+        std::string entityNodeName = ACIIT.second->getEntity()->getNodeName();
 
         model = loadModelFile(modelFileName, entityName, render);
         ACIIT.second->getEntity()->setModelLoaded(true);

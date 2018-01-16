@@ -1118,7 +1118,7 @@ bool gameState::createNodes(renderEngineSharedPtr render)  // creates scene node
         for (auto ABIIT : getActiveBasketballInstance())  // loop through active basketball instances
         {
             activeModel = ABIIT.second->getEntity()->getModel();
-            activeEntityName = ABIIT.second->getEntity()->getEntityName();
+            activeEntityName = ABIIT.second->getEntity()->getName();
             activeNodeNum = ABIIT.first;
             activeNode = render->createNode(activeModel, activeEntityName, activeNodeNum);  // creates node
             ABIIT.second->getEntity()->setNode(activeNode);  // saves node to current instance
@@ -1134,7 +1134,7 @@ bool gameState::createNodes(renderEngineSharedPtr render)  // creates scene node
         for (auto ACIIT : getActiveCourtInstance())  // loop through active court instances
         {
             activeModel = ACIIT.second->getEntity()->getModel();
-            activeEntityName = ACIIT.second->getEntity()->getEntityName();
+            activeEntityName = ACIIT.second->getEntity()->getName();
             activeNodeNum = ACIIT.first;
             activeNode = render->createNode(activeModel, activeEntityName, activeNodeNum);  // creates node
             ACIIT.second->getEntity()->setNode(activeNode);  // saves node to current instance
@@ -1459,7 +1459,7 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
 
     }
     logMsg(func +" hoop instance size == " +convert->toString(getHoopInstance().size()));
-    logMsg(func +" hoop instance name == " +getHoopInstance()[0]->getEntity()->getEntityName());
+    logMsg(func +" hoop instance name == " +getHoopInstance()[0]->getEntity()->getName());
         
     if (!getActiveHoopInstancesCreated())
     {
@@ -1468,7 +1468,7 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
         hoopStateMSharedPtr hoopInstance = getHoopInstance();
         hoopStateMSharedPtr activeHoopInstance = gameSetupHoop->createActiveHoopInstances(hoopInstance, numActiveHoops);
         logMsg(func +" active hoop instance size == " +convert->toString(activeHoopInstance.size()));
-        logMsg(func +" active hoop instance name == " +activeHoopInstance[0]->getEntity()->getEntityName());
+        logMsg(func +" active hoop instance name == " +activeHoopInstance[0]->getEntity()->getName());
 //        exit(0);
         
         if (activeHoopInstance.size() > 0)
@@ -1489,7 +1489,7 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
                     logMsg(func +"Entity already initialized!");
                 }
                 
-                logMsg(func +" active hoop instance name == " +AHIIT.second->getEntity()->getEntityName());
+                logMsg(func +" active hoop instance name == " +AHIIT.second->getEntity()->getName());
 
             }          
 //            exit(0);
@@ -1510,7 +1510,7 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
     }
     
     logMsg(func +" active hoop instance size == " +convert->toString(getActiveHoopInstance().size()));
-    logMsg(func +" active hoop instance name == " +getActiveHoopInstance()[0]->getEntity()->getEntityName());
+    logMsg(func +" active hoop instance name == " +getActiveHoopInstance()[0]->getEntity()->getName());
 
 //    exit(0);
     if (!modelsLoaded)

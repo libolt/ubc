@@ -664,8 +664,8 @@ playerEntitySharedPtr loadPlayers::loadPlayerFile(std::string fileName)  // load
     playerInstance->getData()->setWeight(weight);
     playerInstance->getData()->setID(ID);
     playerInstance->getData()->setTeamID(teamID);
-    playerInstance->setEntityName(firstName + lastName);
-    playerInstance->setEntityModelFileName(modelName);
+    playerInstance->setName(firstName + lastName);
+    playerInstance->setModelFileName(modelName);
     playerInstance->getData()->setPrimaryPosition(primaryPosition);
     playerInstance->getData()->setSecondaryPosition(secondaryPosition);
     playerInstance->getData()->setShooting(shooting);

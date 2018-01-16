@@ -83,6 +83,7 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
         if (courtInstance.size() > 0)
         {
             logMsg(func +" Court Data Initialized == " +convert->toString(courtInstance[0]->getData()->getInitialized()));
+            logMsg(func +" Court Entity Name == " +courtInstance[0]->getEntity()->getName());
             logMsg(func +" Court Entity Initialized == " +convert->toString(courtInstance[0]->getEntity()->getInitialized()));
             logMsg(func +" Court Initialized == " +convert->toString(courtInstance[0]->getInitialized()));
             logMsg(func +" Game Initialized == " +convert->toString(gameInstance->getInitialized()));

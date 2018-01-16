@@ -100,7 +100,7 @@ hoopStateMSharedPtr gameSetupHoops::createActiveHoopInstances(hoopStateMSharedPt
     {
 
     }
-    logMsg(func + "name 0 == " +hoopInstance[0]->getEntity()->getEntityName());
+    logMsg(func + "name 0 == " +hoopInstance[0]->getEntity()->getName());
 //    logMsg(func + "name 1 == " +hoopInstance[1]->getName());
 
     
@@ -108,8 +108,8 @@ hoopStateMSharedPtr gameSetupHoops::createActiveHoopInstances(hoopStateMSharedPt
     {
         activeHoopInstance.insert(std::pair<size_t, hoopStateSharedPtr>(x, hoopInstance[x]));
 //        logMsg(func +" glee!");
-        logMsg(func + " hoopInstance name == " +hoopInstance[x]->getEntity()->getEntityName());
-        logMsg(func + " activeHoopInstance name == " +activeHoopInstance[x]->getEntity()->getEntityName());
+        logMsg(func + " hoopInstance name == " +hoopInstance[x]->getEntity()->getName());
+        logMsg(func + " activeHoopInstance name == " +activeHoopInstance[x]->getEntity()->getName());
 
     }
 //    exit(0);

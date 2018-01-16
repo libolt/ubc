@@ -42,23 +42,23 @@ class entity
     bool getInitialized();  // retrieves the value of initialized
     void setInitialized(bool set);  // sets the value of initialized
     
-    bool getEntityNameSet();  // retrieves the value of entityNameSet
-    void setEntityNameSet(bool set);  // sets the value of entityNameSet
+    bool getNameSet();  // retrieves the value of nameSet
+    void setNameSet(bool set);  // sets the value of nameSet
 
-    bool getEntityNodeNameSet();  // retrieves the value of entityNodeNameSet
-    void setEntityNodeNameSet(bool set);  // sets the value of entityNodeNameSet
+    bool getNodeNameSet();  // retrieves the value of nodeNameSet
+    void setNodeNameSet(bool set);  // sets the value of nodeNameSet
 
-    size_t getEntityID();  // retrieves the value of entityID
-    void setEntityID(size_t set);  // sets the value of entityID
+    size_t getID();  // retrieves the value of ID
+    void setID(size_t set);  // sets the value of ID
     
-    std::string getEntityModelFileName();  // retrieves the value of modelName
-    void setEntityModelFileName(std::string set);  // sets the value of modelName
+    std::string getModelFileName();  // retrieves the value of modelFileName
+    void setModelFileName(std::string set);  // sets the value of modelFileName
 
-    std::string getEntityName();  // retrieves the value of entityName
-    void setEntityName(std::string set);  // sets the value of entityName
+    std::string getName();  // retrieves the value of name
+    void setName(std::string set);  // sets the value of name
 
-    std::string getEntityNodeName();  // retrieves the value of nodeName
-    void setEntityNodeName(std::string set);  // sets the value of nodeName
+    std::string getNodeName();  // retrieves the value of nodeName
+    void setNodeName(std::string set);  // sets the value of nodeName
 
     OgreEntitySharedPtr getModel();  // retrieves the value of model
     void setModel(OgreEntitySharedPtr set);  // sets the value of model
@@ -86,17 +86,17 @@ class entity
     
     bool initialized;  // stores whether entity object has been initialized
         
-    bool entityNameSet;  // stores the name of the value of entityNameSet
+    bool nameSet;  // stores the name of the value of nameSet
 
-    bool entityNodeNameSet;  // stores the value of entityNodeNameSet
+    bool nodeNameSet;  // stores the value of bodeNameSet
 
-    size_t entityID;  // stores the entity ID number to distinguish between entities
+    size_t ID;  // stores the ID number to distinguish between entities
     
-    std::string entityModelFileName;  // stores the file name of the 3d model
+    std::string modelFileName;  // stores the file name of the 3d model
 
-    std::string entityName;  // stores the name of the model object in the scene
+    std::string name;  // stores the name of the model object in the scene
 
-    std::string entityNodeName;  // stores the name of the scene node
+    std::string nodeName;  // stores the name of the scene node
 
     OgreEntitySharedPtr model;  // stores 3d model
 

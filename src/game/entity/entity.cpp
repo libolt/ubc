@@ -30,10 +30,10 @@
 entity::entity()  // constructor
 {
     initialized = false;
-    entityNameSet = false;
-    entityNodeNameSet = false;
-    
-    entityID = 0;
+    nameSet = false;
+    nodeNameSet = false;
+
+    ID = 0;
     physicsSetup = false;
     modelNeedsLoaded = false;
     modelLoaded = false;
@@ -53,58 +53,58 @@ void entity::setInitialized(bool set)  // sets the value of initialized
     initialized = set;
 }
 
-bool entity::getEntityNameSet()  // retrieves the value of entityNameSet
+bool entity::getNameSet()  // retrieves the value of nameSet
 {
-    return (entityNameSet);
+    return (nameSet);
 }
-void entity::setEntityNameSet(bool set)  // sets the value of entityNameSet
+void entity::setNameSet(bool set)  // sets the value of nameSet
 {
-    entityNameSet = set;
-}
-
-bool entity::getEntityNodeNameSet()  // retrieves the value of entityNodeNameSet
-{
-    return(entityNodeNameSet);
-}
-void entity::setEntityNodeNameSet(bool set)  // sets the value of entityNodeNameSet
-{
-    entityNodeNameSet = set;
+    nameSet = set;
 }
 
-size_t entity::getEntityID()  // retrieves the value of ID
+bool entity::getNodeNameSet()  // retrieves the value of nodeNameSet
 {
-    return (entityID);
+    return(nodeNameSet);
 }
-void entity::setEntityID(size_t set)  // sets the value of ID
+void entity::setNodeNameSet(bool set)  // sets the value of nodeNameSet
 {
-    entityID = set;
-}
-
-std::string entity::getEntityModelFileName()  // retrieves the value of entityModelName
-{
-    return (entityModelFileName);
-}
-void entity::setEntityModelFileName(std::string set)  // sets the value of entityNodelName
-{
-    entityModelFileName = set;
+    nodeNameSet = set;
 }
 
-std::string entity::getEntityName()  // retrieves the value of entityName
+size_t entity::getID()  // retrieves the value of ID
 {
-    return (entityName);
+    return (ID);
 }
-void entity::setEntityName(std::string set)  // sets the value of entityName
+void entity::setID(size_t set)  // sets the value of ID
 {
-    entityName = set;
+    ID = set;
 }
 
-std::string entity::getEntityNodeName()  // retrieves the value of entityNodeName
+std::string entity::getModelFileName()  // retrieves the value of modelFileName
 {
-    return (entityNodeName);
+    return (modelFileName);
 }
-void entity::setEntityNodeName(std::string set)  // sets the value of entityNodeName
+void entity::setModelFileName(std::string set)  // sets the value of modelFileName
 {
-    entityNodeName = set;
+    modelFileName = set;
+}
+
+std::string entity::getName()  // retrieves the value of name
+{
+    return (name);
+}
+void entity::setName(std::string set)  // sets the value of name
+{
+    name = set;
+}
+
+std::string entity::getNodeName()  // retrieves the value of nodeName
+{
+    return (nodeName);
+}
+void entity::setNodeName(std::string set)  // sets the value of nodeName
+{
+    nodeName = set;
 }
 
 OgreEntitySharedPtr entity::getModel()  // retrieves the value of model

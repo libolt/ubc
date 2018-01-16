@@ -52,9 +52,9 @@ basketballStateMSharedPtr gameSetupBasketballs::createBasketballInstances()  // 
 
     for (auto BIIT : basketballInstance)  // loop
     {
-        BIIT.second->getEntity()->setEntityModelFileName("bball.mesh");
-        BIIT.second->getEntity()->setEntityName(BIIT.second->getData()->getModelFileName());
-        BIIT.second->getEntity()->setEntityNodeName(BIIT.second->getData()->getModelFileName());
+        BIIT.second->getEntity()->setModelFileName("bball.mesh");
+        BIIT.second->getEntity()->setName(BIIT.second->getData()->getModelFileName());
+        BIIT.second->getEntity()->setNodeName(BIIT.second->getData()->getModelFileName());
 /*BASEREMOVAL        if (!BIIT.second->getEntity()->getBaseInitialized())
         {
 //            BIIT.second->getEntity()->setBase(getBase());

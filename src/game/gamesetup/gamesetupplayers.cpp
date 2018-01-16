@@ -507,7 +507,7 @@ playerEntityMSharedPtr gameSetupPlayers::setupActivePlayerInstances(playerEntity
     
     for (auto APIIT : activePlayerInstance)
     {
-        logMsg(func +" Entity Node Name == " +APIIT.second->getEntityNodeName());
+        logMsg(func +" Entity Node Name == " +APIIT.second->getNodeName());
         logMsg(func +" Node Name == " +APIIT.second->getNode()->getName());
     }
 //    exit(0);

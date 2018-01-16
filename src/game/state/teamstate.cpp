@@ -1156,7 +1156,7 @@ bool teamState::setupActivePlayerInstances()  // sets up active player objects
     
     for (auto APIIT : activePlayerInstance)
     {
-        logMsg(func +" Entity Node Name == " +APIIT.second->getEntityNodeName());
+        logMsg(func +" Entity Node Name == " +APIIT.second->getNodeName());
         logMsg(func +" Node Name == " +APIIT.second->getNode()->getName());
     }
 //    exit(0);

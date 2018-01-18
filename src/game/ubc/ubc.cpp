@@ -156,12 +156,12 @@ bool UBC::setupState()  // sets up the UBC game state
     bool stateSetup = true;
     std::string func = "UBC::setupState()";
 
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 
 //    GUISystemSharedPtr gui = base->getGui();
     if (gui->setup(gameE->getRenderE()))  // sets up the game GUI
     {
-    
+        gui->setGameInstance(game->getGameInstance());  // shares gameInstance with gui object
 //        exit(0);
         gui->setSetupComplete(true);
 //        exit(0);

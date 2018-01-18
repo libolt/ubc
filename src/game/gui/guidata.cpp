@@ -317,24 +317,10 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     gameSetupTeamsSharedPtr gameSetupTeam(new gameSetupTeams);
     loadTeamsSharedPtr loadTeam; // = base->getLoadTeam();
     teamStateMSharedPtr teamInstance; // = gameS->getTeamDataInstance();
+    std::string func = "GUISystem::addTeamStartSelectionMenuData()";
 
-//    if (!base->getGameS()->getTeamInstancesCreated())
-//    {
-//        logMsg("Team Instances not Created!");
-//        exit(0);
-//    }
-
-//    teamInstance = load->loadTeams();
-//    if (teamInstance.size() > 0)
-//    {
-//        base->getGameS()->setTeamInstance(teamInstance);
-//    }
-//    else
-//    {
-//        logMsg("Unable to load Team data!");
-//        return (false);
-//    }
-
+    logMsg(func +" begin");
+    
     if (loadTeam->checkIfTeamsLoaded())
     {
         teamInstance = loadTeam->getTInstance();
@@ -342,29 +328,29 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     gameInstance->setTeamInstance(teamInstance);  // copies data to teamInstance object
     gameInstance->setTeamInstancesCreated(true);
     
-    logMsg("GUI ADD TEAM 0 teamInstance.size() == " +convert->toString(teamInstance.size()));
+    logMsg(func +" GUI ADD TEAM 0 teamInstance.size() == " +convert->toString(teamInstance.size()));
 //    exit(0);
     auto x = 0;
 //    while (x < teamInstance.size())
     for (auto TIIT : teamInstance)
     {
-        logMsg("GUI ADD TEAM teamInstance[" +convert->toString(TIIT.first) +"]->getID() ID == " +convert->toString(TIIT.second->getID()));
+        logMsg(func +" GUI ADD TEAM teamInstance[" +convert->toString(TIIT.first) +"]->getID() ID == " +convert->toString(TIIT.second->getID()));
 //        ++x;
     }
 //    exit(0);
-     logMsg("GUI ADD TEAM gameInstance->getTeamInstance()[3]->getID() ID == " +convert->toString(gameInstance->getTeamInstance()[0]->getID()));
+     logMsg(func +" GUI ADD TEAM gameInstance->getTeamInstance()[3]->getID() ID == " +convert->toString(gameInstance->getTeamInstance()[0]->getID()));
     if (gameInstance->getTeamInstancesCreated())
     {        
-        logMsg("Woot!");
+        logMsg(func +" Woot!");
 //        exit(0);
         if (gameInstance->getTeamInstance().size() > 0)
         {
             teamInstance = gameInstance->getTeamInstance();
-            logMsg("GUI ADD TEAM 1 teamInstance.size() == " +convert->toString(gameInstance->getTeamInstance().size()));
+            logMsg(func +" GUI ADD TEAM 1 teamInstance.size() == " +convert->toString(gameInstance->getTeamInstance().size()));
         }
         else
         {
-            logMsg("getGameS()->getTeamInstance() is EMPTY! IF");
+            logMsg(func +" getGameS()->getTeamInstance() is EMPTY! IF");
             return (false);           
         }
 //        exit(0);
@@ -374,7 +360,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
         teamInstance = gameSetupTeam->createTeamInstances();  // creates team instances
         if (teamInstance.size() > 0)
         {
-             logMsg("GUI ADD TEAM 2 teamInstance.size() == " +convert->toString(gameInstance->getTeamInstance().size()));
+             logMsg(func +" GUI ADD TEAM 2 teamInstance.size() == " +convert->toString(gameInstance->getTeamInstance().size()));
 //            exit(0);
 /*            if (base->getGameS()->getTeamInstance().size() > 0)
             {
@@ -389,7 +375,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
         }
         else
         {
-            logMsg("Failed to create teamSelectioMenuGUI");
+            logMsg(func +" Failed to create teamSelectioMenuGUI");
             return (false);
         }
         
@@ -400,18 +386,18 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
 //    gameS->setTeamDataInstance(teamDataInstance);
 //
 //    teamInstance = gameS->getTeamInstance();
-    logMsg("teamInstance.size() == " +convert->toString(gameInstance->getTeamInstance().size()));
-    logMsg("BLEEET!");
+    logMsg(func +" teamInstance.size() == " +convert->toString(gameInstance->getTeamInstance().size()));
+    logMsg(func +" BLEEET!");
     if (teamInstance.size() == 0)
     {
-        logMsg("teamInstance is empty!");
+        logMsg(func +" teamInstance is empty!");
         exit(0);
     }
-    logMsg(convert->toString(teamInstance.size()));
-    logMsg("Team City == a" +teamInstance[0]->getCity() +"b");
-    logMsg("Team City == a" +teamInstance[1]->getCity() +"b");
-    logMsg("Team City == a" +teamInstance[2]->getCity() +"b");
-    logMsg("Team City == a" +teamInstance[3]->getCity() +"b");
+    logMsg(func +" " +convert->toString(teamInstance.size()));
+    logMsg(func +" Team City == a" +teamInstance[0]->getCity() +"b");
+    logMsg(func +" Team City == a" +teamInstance[1]->getCity() +"b");
+    logMsg(func +" Team City == a" +teamInstance[2]->getCity() +"b");
+    logMsg(func +" Team City == a" +teamInstance[3]->getCity() +"b");
 
 
 //    exit(0);
@@ -419,7 +405,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     {
         if (TIIT.second->getCity() == "")
         {
-            logMsg("City is blank!");
+            logMsg(func +" City is blank!");
             exit(0);
         }
         std::string teamName = TIIT.second->getCity() + " " +TIIT.second->getName();
@@ -429,8 +415,8 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     }
     teamSelectBox[0]->setIndexSelected(0);
     teamSelectBox[1]->setIndexSelected(1);
-    logMsg("End of addTeamStartSelectionMenuData!");
-//    exit(0);
+    logMsg(func +" end");//    exit(0);
 
+    
     return (true);
 }

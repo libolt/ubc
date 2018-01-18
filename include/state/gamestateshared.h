@@ -211,17 +211,17 @@ class gameStateShared
         static std::vector<std::unordered_map<std::string, size_t> > teamStarterID;  // stores the selected starters for each team
         static Ogre::Vector3 bballNodePosition;  // stores a copy of the basketball node position
         static teamTypes teamWithBall;  // store which team has the basketball
-        static basketballStateMSharedPtr activeBasketballInstance;  // creates instance of the basketballState class
+        basketballStateMSharedPtr activeBasketballInstance;  // creates instance of the basketballState class
         courtStateMSharedPtr activeCourtInstance;  // stores the active court instance
         hoopStateMSharedPtr activeHoopInstance;  // creates instance of the hoopState class
-        static teamStateMSharedPtr activeTeamInstance;  // stores active team instance
+        teamStateMSharedPtr activeTeamInstance;  // stores active team instance
         
 //        static size_t activeBBallInstance;  // stores which instance of the baskteball class is active
-        static basketballStateMSharedPtr basketballInstance;  // creates instance of the basketballs class
+        basketballStateMSharedPtr basketballInstance;  // creates instance of the basketballs class
         courtStateMSharedPtr courtInstance;  // stores the court instance
         hoopStateMSharedPtr hoopInstance;  // creates instance of the hoop class
-        static playerEntityMSharedPtr playerInstance;  // stores the map of the players loaded from the xml files
-        static teamStateMSharedPtr  teamInstance;  // creates instance of the teamState class
+        playerEntityMSharedPtr playerInstance;  // stores the map of the players loaded from the xml files
+        teamStateMSharedPtr  teamInstance;  // creates instance of the teamState class
 
         static jumpBallsSharedPtr jumpBall; // instance that is used for jumpBall functions.
 

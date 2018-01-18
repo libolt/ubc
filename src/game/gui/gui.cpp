@@ -614,14 +614,14 @@ void GUISystem::teamSelectionMenu(renderEngineSharedPtr render)  // displays tea
     bool changeMenu = false;  // determinrs if menu is to be changed
     teamStateMSharedPtr teamInstance; // = gameS->getTeamDataInstance();
     std::string func = "GUISystem::teamSelectionMenu()";
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 
 //    teamInstance = load->loadTeams();
 //    exit(0);
     if (teamSelectionMenuCreated)
     {      
         logMsg(func +"teamSelectionMenuCreated");
-//        exit(0);
+        exit(0);
         if (gameInstance->getTeamInstancesCreated())
         {
             logMsg(func +" getTeamInstancesCreated");
@@ -649,7 +649,7 @@ void GUISystem::teamSelectionMenu(renderEngineSharedPtr render)  // displays tea
         else
         {
             logMsg(func +" !getTeamInstancesCreated");
-//            exit(0);
+            
             teamInstance = gameSetupTeam->createTeamInstances();  // creates team instances
             if (teamInstance.size() > 0)
             {
@@ -686,6 +686,7 @@ void GUISystem::teamSelectionMenu(renderEngineSharedPtr render)  // displays tea
     else
     {
         logMsg(func +" teamSelectionMenuGUI Not Yet Created!");
+        
         if (createTeamSelectionMenuGUI(render))
         {            
             teamSelectionMenuCreated = true;
@@ -694,7 +695,7 @@ void GUISystem::teamSelectionMenu(renderEngineSharedPtr render)  // displays tea
             {
                 
                 logMsg(func +" addTeamStartSelectionMenuData()!");
-//                exit(0);
+                exit(0);
                 logMsg(func +" teamInstance.size() == " +convert->toString(gameInstance->getTeamInstance().size()));
 //                exit(0);
                 teamSelectionMenuDataAdded = true;
@@ -902,7 +903,7 @@ void GUISystem::teamsSelected()  // processes team selection
     sizeTVec teamID;
     teamID.push_back(teamSelectBox[0]->getIndexSelected());
     teamID.push_back(teamSelectBox[1]->getIndexSelected());
-
+    logMsg(func +" activeTeamInstance");
     activeTeamInstance = gameSetupTeam->createActiveTeamInstances(gameInstance->getTeamInstance(), teamID);
 
     // sets the base class of the teamInstance objects to the same as the GUI which avoids crashes due to uninitialized sharedPtrs

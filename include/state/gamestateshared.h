@@ -181,28 +181,28 @@ class gameStateShared
     private:
 
         // used to determine if calling class needs to uldate its copy of the variable
-        static bool initialized;  // if true then tbe object has been initialized
-        static bool activeBasketballInstancesCreated;  // stores whether the active basketball instances have been created
-        static bool activeCourtInstancesCreated;  // stores whether the active court instances have been created
-        static bool activeHoopInstancesCreated;  // stores whether the active hoop instances have been created
-        static bool activeTeamInstancesCreated;  // stores whether the active team instances have been created
-        static bool activeTeamInstancesSetup;  // stores whether or not to setup active team instances
-        static bool basketballInstanceCreated;  // stores whether basketball instance(s) have been created
-        static bool basketballInstanceNeedCreated;  // stores whether or not to create basketball instance(s)
-        static bool courtInstancesCreated;  // stores whether court instances have been created
-        static bool courtInstancesNeedCreated;  // stores whether or not to create court instances
-        static bool hoopInstancesCreated;  // stores whether hoop instances have been created
-        static bool hoopInstancesNeedCreated;  // stores whether or not to create hoop instances
-        static bool playerInstanceCreated;  // stores whether player instances have been created
-        static bool playerInstanceNeedCreated;  // stores whether or not to create player instances
-        static bool teamInstancesCreated;  // stores whether team instances have been created
-        static bool teamInstancesNeedCreated;  // stores whether or not to create team instances
-        static bool bballNodePositionChanged;  // stores whether basketball node position has changed
-        static bool teamWithBallChanged;  // stores whether team with ball has changed
-        static bool activeTeamInstanceChanged;  // stores whether activeTeamInstance has changed
-        static bool gameSetupComplete;  // indicates whether initial game setup is complete.
-        static bool jumpBallCreated;  // indicates whether jumpBall object has been created.
-        static bool tipOffComplete;  // Determines whether or not game Tip Off has completed
+        bool initialized;  // if true then tbe object has been initialized
+        bool activeBasketballInstancesCreated;  // stores whether the active basketball instances have been created
+        bool activeCourtInstancesCreated;  // stores whether the active court instances have been created
+        bool activeHoopInstancesCreated;  // stores whether the active hoop instances have been created
+        bool activeTeamInstancesCreated;  // stores whether the active team instances have been created
+        bool activeTeamInstancesSetup;  // stores whether or not to setup active team instances
+        bool basketballInstanceCreated;  // stores whether basketball instance(s) have been created
+        bool basketballInstanceNeedCreated;  // stores whether or not to create basketball instance(s)
+        bool courtInstancesCreated;  // stores whether court instances have been created
+        bool courtInstancesNeedCreated;  // stores whether or not to create court instances
+        bool hoopInstancesCreated;  // stores whether hoop instances have been created
+        bool hoopInstancesNeedCreated;  // stores whether or not to create hoop instances
+        bool playerInstanceCreated;  // stores whether player instances have been created
+        bool playerInstanceNeedCreated;  // stores whether or not to create player instances
+        bool teamInstancesCreated;  // stores whether team instances have been created
+        bool teamInstancesNeedCreated;  // stores whether or not to create team instances
+        bool bballNodePositionChanged;  // stores whether basketball node position has changed
+        bool teamWithBallChanged;  // stores whether team with ball has changed
+        bool activeTeamInstanceChanged;  // stores whether activeTeamInstance has changed
+        bool gameSetupComplete;  // indicates whether initial game setup is complete.
+        bool jumpBallCreated;  // indicates whether jumpBall object has been created.
+        bool tipOffComplete;  // Determines whether or not game Tip Off has completed
 
         static gameTypes gameType;  // Indicates whether a single or multi player game is being played.
         static quarters quarter;  // stores the quarter currently being played

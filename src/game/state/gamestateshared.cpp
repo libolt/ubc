@@ -26,7 +26,7 @@
 #include "state/teamstate.h"
 
 // static declarations
-bool gameStateShared::initialized;  // if true then tbe object has been initialized
+/*bool gameStateShared::initialized;  // if true then tbe object has been initialized
 bool gameStateShared::activeBasketballInstancesCreated;  // stores whether the active basketball instances have been created
 bool gameStateShared::activeCourtInstancesCreated;  // stores whether the active court instances have been created.
 bool gameStateShared::activeHoopInstancesCreated;  // stores whether the active hoop instances have been created
@@ -48,6 +48,7 @@ bool gameStateShared::activeTeamInstanceChanged;  // stores whether activeTeamIn
 bool gameStateShared::gameSetupComplete;  // indicates whether initial game setup is complete.
 bool gameStateShared::jumpBallCreated;  // indicates whether jumpBall object has been created.
 bool gameStateShared::tipOffComplete;  // Determines whether or not game Tip Off has completed
+*/
 
 gameTypes gameStateShared::gameType;  // Indicates whether a single or multi player game is being played.
 quarters gameStateShared::quarter;  // stores the quarter currently being played

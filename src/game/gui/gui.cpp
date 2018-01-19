@@ -620,7 +620,7 @@ void GUISystem::teamSelectionMenu(renderEngineSharedPtr render)  // displays tea
 //    exit(0);
     if (teamSelectionMenuCreated)
     {      
-        logMsg(func +"teamSelectionMenuCreated");
+        logMsg(func +" teamSelectionMenuCreated");
         exit(0);
         if (gameInstance->getTeamInstancesCreated())
         {
@@ -695,7 +695,6 @@ void GUISystem::teamSelectionMenu(renderEngineSharedPtr render)  // displays tea
             {
                 
                 logMsg(func +" addTeamStartSelectionMenuData()!");
-                exit(0);
                 logMsg(func +" teamInstance.size() == " +convert->toString(gameInstance->getTeamInstance().size()));
 //                exit(0);
                 teamSelectionMenuDataAdded = true;
@@ -727,6 +726,9 @@ void GUISystem::teamSelectionMenu(renderEngineSharedPtr render)  // displays tea
         exit(0);
     }
 
+    logMsg(func +" teamInstance.size() == " +convert->toString(gameInstance->getTeamInstance().size()));
+//    exit(0);
+    
     logMsg(func +" end");
 
 //    exit(0);
@@ -899,19 +901,14 @@ void GUISystem::teamsSelected()  // processes team selection
 //    teamInstance = base->getGameS()->getTeamInstance();
     
     logMsg(func +" beginning");
-
+    
     sizeTVec teamID;
     teamID.push_back(teamSelectBox[0]->getIndexSelected());
     teamID.push_back(teamSelectBox[1]->getIndexSelected());
     logMsg(func +" activeTeamInstance");
+    logMsg(func +" setupComplete == " +convert->toString(setupComplete)); 
     activeTeamInstance = gameSetupTeam->createActiveTeamInstances(gameInstance->getTeamInstance(), teamID);
-
-    // sets the base class of the teamInstance objects to the same as the GUI which avoids crashes due to uninitialized sharedPtrs
-/*BASEREMOVAL    for (auto ATIIT : activeTeamInstance)
-    {
-        ATIIT.second->setBase(base);
-    }*/
-    
+//    exit(0);
     //    gameS->setTeamID(teamID);
     logMsg(func +" teamSelectBox[0]->getIndexSelected() == " +convert->toString(teamSelectBox[0]->getIndexSelected()));
     logMsg(func +" teamID[0] == " +convert->toString(teamID[0]));

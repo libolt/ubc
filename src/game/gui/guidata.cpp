@@ -387,17 +387,16 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
 //
 //    teamInstance = gameS->getTeamInstance();
     logMsg(func +" teamInstance.size() == " +convert->toString(gameInstance->getTeamInstance().size()));
-    logMsg(func +" BLEEET!");
     if (teamInstance.size() == 0)
     {
         logMsg(func +" teamInstance is empty!");
         exit(0);
     }
     logMsg(func +" " +convert->toString(teamInstance.size()));
-    logMsg(func +" Team City == a" +teamInstance[0]->getCity() +"b");
-    logMsg(func +" Team City == a" +teamInstance[1]->getCity() +"b");
-    logMsg(func +" Team City == a" +teamInstance[2]->getCity() +"b");
-    logMsg(func +" Team City == a" +teamInstance[3]->getCity() +"b");
+    logMsg(func +" Team City == " +teamInstance[0]->getCity() +"b");
+    logMsg(func +" Team City == " +teamInstance[1]->getCity() +"b");
+    logMsg(func +" Team City == " +teamInstance[2]->getCity() +"b");
+    logMsg(func +" Team City == " +teamInstance[3]->getCity() +"b");
 
 
 //    exit(0);

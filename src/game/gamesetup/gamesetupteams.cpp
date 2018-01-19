@@ -139,7 +139,7 @@ teamStateMSharedPtr gameSetupTeams::createActiveTeamInstances(teamStateMSharedPt
     gameStateSharedPtr gameInstance;
     logMsg(func +" Team Instances created == " +convert->toString(gameInstance->getTeamInstancesCreated()));
     logMsg(func +" teamInstance size == " +convert->toString(teamInstance.size()));
-    logMsg(func +" gameInstance teamInstance size == " +convert->toString(gameInstance->getTeamInstance().size()));
+//    logMsg(func +" gameInstance teamInstance size == " +convert->toString(gameInstance->getTeamInstance().size()));
     
 //    exit(0);
     logMsg(func +" teamI");

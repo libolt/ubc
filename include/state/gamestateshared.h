@@ -204,13 +204,13 @@ class gameStateShared
         bool jumpBallCreated;  // indicates whether jumpBall object has been created.
         bool tipOffComplete;  // Determines whether or not game Tip Off has completed
 
-        static gameTypes gameType;  // Indicates whether a single or multi player game is being played.
-        static quarters quarter;  // stores the quarter currently being played
-        static size_t numActiveBasketballs;  // stores the number of active basketballs in the game.
-        static sizeTVec teamIDS;  // std::vector that stores the IDs of the 2 teams currently playing
-        static std::vector<std::unordered_map<std::string, size_t> > teamStarterID;  // stores the selected starters for each team
-        static Ogre::Vector3 bballNodePosition;  // stores a copy of the basketball node position
-        static teamTypes teamWithBall;  // store which team has the basketball
+        gameTypes gameType;  // Indicates whether a single or multi player game is being played.
+        quarters quarter;  // stores the quarter currently being played
+        size_t numActiveBasketballs;  // stores the number of active basketballs in the game.
+        sizeTVec teamIDS;  // std::vector that stores the IDs of the 2 teams currently playing
+        std::vector<std::unordered_map<std::string, size_t> > teamStarterID;  // stores the selected starters for each team
+        Ogre::Vector3 bballNodePosition;  // stores a copy of the basketball node position
+        teamTypes teamWithBall;  // store which team has the basketball
         basketballStateMSharedPtr activeBasketballInstance;  // creates instance of the basketballState class
         courtStateMSharedPtr activeCourtInstance;  // stores the active court instance
         hoopStateMSharedPtr activeHoopInstance;  // creates instance of the hoopState class
@@ -223,11 +223,11 @@ class gameStateShared
         playerEntityMSharedPtr playerInstance;  // stores the map of the players loaded from the xml files
         teamStateMSharedPtr  teamInstance;  // creates instance of the teamState class
 
-        static jumpBallsSharedPtr jumpBall; // instance that is used for jumpBall functions.
+        jumpBallsSharedPtr jumpBall; // instance that is used for jumpBall functions.
 
-        static float yOffset; // stores the y offset for objects on the screen
+        float yOffset; // stores the y offset for objects on the screen
 
-        static std::vector<bool> teamActivePlayersChanged;  // stores whether the active players for each team have changed
+        std::vector<bool> teamActivePlayersChanged;  // stores whether the active players for each team have changed
                 
 };
 

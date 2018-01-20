@@ -48,7 +48,7 @@ bool gameStateShared::activeTeamInstanceChanged;  // stores whether activeTeamIn
 bool gameStateShared::gameSetupComplete;  // indicates whether initial game setup is complete.
 bool gameStateShared::jumpBallCreated;  // indicates whether jumpBall object has been created.
 bool gameStateShared::tipOffComplete;  // Determines whether or not game Tip Off has completed
-*/
+
 
 gameTypes gameStateShared::gameType;  // Indicates whether a single or multi player game is being played.
 quarters gameStateShared::quarter;  // stores the quarter currently being played
@@ -71,6 +71,7 @@ teamTypes gameStateShared::teamWithBall;  // store which team has the basketball
 jumpBallsSharedPtr gameStateShared::jumpBall; // instance that is used for jumpBall functions.
 float gameStateShared::yOffset; // stores the y offset for objects on the screen
 std::vector<bool> gameStateShared::teamActivePlayersChanged;  // stores whether the team's active player instances have changed
+*/
 
 gameStateShared::gameStateShared()  // constructor
 {

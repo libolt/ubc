@@ -135,9 +135,9 @@ teamStateMSharedPtr gameSetupTeams::createActiveTeamInstances(teamStateMSharedPt
     teamStateMSharedPtr activeTeamInstance;
     std::string func = "gameSetupTeams::createActiveTeamInstances()";
        
-    logMsg(func +" beginning");
-    gameStateSharedPtr gameInstance;
-    logMsg(func +" Team Instances created == " +convert->toString(gameInstance->getTeamInstancesCreated()));
+    logMsg(func +" begin");
+//    gameStateSharedPtr gameInstance;
+//    logMsg(func +" Team Instances created == " +convert->toString(gameInstance->getTeamInstancesCreated()));
     logMsg(func +" teamInstance size == " +convert->toString(teamInstance.size()));
 //    logMsg(func +" gameInstance teamInstance size == " +convert->toString(gameInstance->getTeamInstance().size()));
     

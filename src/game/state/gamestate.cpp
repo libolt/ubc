@@ -1157,7 +1157,7 @@ bool gameState::createNodes(renderEngineSharedPtr render)  // creates scene node
             AHIIT.second->getEntity()->setNode(activeNode);  // saves node to current instance
 
         }
-        exit(0);
+//        exit(0);
     }
     else
     {

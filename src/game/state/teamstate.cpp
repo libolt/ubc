@@ -372,7 +372,7 @@ void teamState::setupState()  // sets up the state of the object
     logMsg(func +" end");
 
 }
-void teamState::updateState(gameStateSharedPtr gameInstance)  // updates the state of the object
+void teamState::updateState(jumpBallsSharedPtr jumpBall, courtStateMSharedPtr courtInstance, teamStarterIDsVecM teamStarterID)  // updates the state of the object
 {
 
     //conversion *convert = conversion::Instance();
@@ -384,7 +384,7 @@ void teamState::updateState(gameStateSharedPtr gameInstance)  // updates the sta
     ///sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
     gameSetupPlayersSharedPtr gameSetupPlayer(new gameSetupPlayers);
-    jumpBallsSharedPtr jumpBall = gameInstance->getJumpBall();
+//    jumpBallsSharedPtr jumpBall = gameInstance->getJumpBall();
     std::string func = "teamState::updateState()";
 
     logMsg(func +" beginning");
@@ -696,17 +696,17 @@ void updateActivePlayerSettings()  // updates the settings of active players
     return (true);
 }*/
 
-bool teamState::setPlayerStartPositions(gameStateSharedPtr gameInstance)  // sets the initial coordinates for the players.
+bool teamState::setPlayerStartPositions(courtStateMSharedPtr courtInstance, teamStarterIDsVecM teamStarterID)  // sets the initial coordinates for the players.
 {
     conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    sharedPtr<gameEngine> gameE = gameEngine::Instance();
     gameSetupPlayerPositionsSharedPtr gameSetupPlayerPosition(new gameSetupPlayerPositions);
-    std::vector<std::unordered_map<std::string, size_t> > teamStarterID = gameInstance->getTeamStarterID();
+//    std::vector<std::unordered_map<std::string, size_t> > teamStarterID = gameInstance->getTeamStarterID();
     OgreVector3Vec startingPos;
 //    directions playerDirection; // stores the direction players face at start
     std::string func = "teamState::setPlayerStartPositions()";
-    courtStateMSharedPtr courtInstance = gameInstance->getCourtInstance();
+//    courtStateMSharedPtr courtInstance = gameInstance->getCourtInstance();
     Ogre::Vector3 courtPos = courtInstance[0]->getEntity()->getNodePosition();
 
 //    exit(0);

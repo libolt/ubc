@@ -59,8 +59,8 @@ class gameStateShared
         sizeTVec getTeamIDS();  // retrieves the value of teamIDS
         void setTeamIDS(sizeTVec set);  // sets the value of teamIDS
         
-        std::vector<std::unordered_map<std::string, size_t> > getTeamStarterID();  // retrieves value of teamStarterID
-        void setTeamStarterID(std::vector<std::unordered_map<std::string, size_t> > set);  // sets the value of teamStarterID
+        teamStarterIDsVecM getTeamStarterID();  // retrieves value of teamStarterID
+        void setTeamStarterID(teamStarterIDsVecM set);  // sets the value of teamStarterID
 
         bool getActiveBasketballInstancesCreated();  // retrieves the value of activeBasketballInstancesCreated
         void setActiveBasketballInstancesCreated(bool set);  // sets the value of activeBasketballInstancesCreated
@@ -208,7 +208,7 @@ class gameStateShared
         quarters quarter;  // stores the quarter currently being played
         size_t numActiveBasketballs;  // stores the number of active basketballs in the game.
         sizeTVec teamIDS;  // std::vector that stores the IDs of the 2 teams currently playing
-        std::vector<std::unordered_map<std::string, size_t> > teamStarterID;  // stores the selected starters for each team
+        teamStarterIDsVecM teamStarterID;  // stores the selected starters for each team
         Ogre::Vector3 bballNodePosition;  // stores a copy of the basketball node position
         teamTypes teamWithBall;  // store which team has the basketball
         basketballStateMSharedPtr activeBasketballInstance;  // creates instance of the basketballState class

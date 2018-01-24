@@ -1848,9 +1848,12 @@ bool gameState::updateActiveTeamInstances()  // updates all active team instance
     logMsg(func +" beginning");
 //    exit(0);
     // temporary hack
+    logMsg(func +" activeTeamInstance.size() == " +convert->toString(activeTeamInstance.size()));
+    
     for (auto ATIIT : activeTeamInstance)
     {
-        ATIIT.second->updateState(gameInstance);
+        ATIIT.second->updateState(getJumpBall(), getCourtInstance(), getTeamStarterID());
+        exit(0);
     }
 //FIXME! Needs fixed for playerStateMachine refactoring
 /*

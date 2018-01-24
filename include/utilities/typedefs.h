@@ -353,4 +353,6 @@ typedef std::vector<basketballStateMSharedPtr> basketballStateVecMSharedPtr;
 
 typedef std::vector<playerEntityMSharedPtr> playerEntityVecMSharedPtr;
 
+// Vector maps
+typedef std::vector<std::unordered_map<std::string, size_t> > teamStarterIDsVecM;
 #endif

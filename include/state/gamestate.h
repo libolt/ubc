@@ -41,6 +41,7 @@ class basketballState;
 class UBC;
 class courtData;
 class courtState;
+class gameFlags;
 class hoopState;
 class playerState;
 class teamState;
@@ -59,12 +60,9 @@ public:
     gameState(); // constructor
     ~gameState();  // destructor
 
-    bool getPlayerHasBasketball();  // retrieves the value of playerHasBasketball
-    void setPlayerHasBasketball(bool set);  // setd the value of playerHasBasketball
+    gameFlags getFlag();  // retrieves the value of flag
+    void setFlag(gameFlags set);  // sets the value of flag
     
-    bool getGameStarted();  // retrieves the gameStarted value
-    void setGameStarted(bool set);  // sets gameStarted value
-
 /*    jumpBallsSharedPtr getJumpBall();  // retrieves the value of jumpBall
     void setJumpBall(jumpBallsSharedPtr set);  // sets the value of jumpBall
 */
@@ -74,9 +72,6 @@ public:
 
     size_t getBballBounce();  // retrieves the value of bballBounce
     void setBballBounce(size_t set);  // sets the value of bballBounce
-
-    bool getCourtDataLoaded();  // retrieves the value of courtDataLoaded
-    void setCourtDataLoaded(bool set);  // sets the value of courtDataLoaded
 
     size_t getSelectedCourtDataInstance();  // retrieves the value of selectedCourtDataInstance
     void setSelectedCourtDataInstance(size_t set);  // sets the value of selectedCourtDataInstance
@@ -102,18 +97,6 @@ public:
     void setActiveTeamInstancesCreated(bool set);	 // sets the value of activeTeamInstancesCreated
 */
 
-    bool getBasketballModelLoaded();  // retrieves the value of basketballModelLoaded
-    void setBasketballModelLoaded(bool set);  // sets the value of basketballModelLoaded
-
-    bool getCourtModelLoaded();  // retrieves the value of courtModelLoaded
-    void setCourtModelLoaded(bool set);  // sets the value of courtModelLoaded
-
-    bool getHoopModelLoaded();  // retrieves the value of hoopModelLoaded
-    void setHoopModelLoaded(bool set);  // sets the value of hoopModelLoaded
-
-    bool getModelsLoaded();  // retrieves the value of modelsLoaded
-    void setModelsLoaded(bool set);  // sets the value of modelsLoaded
-
     courtDataVec getCourtDataInstance();  // retrieves the value of courtDataInstance
     void setCourtDataInstance(courtDataVec set);  // sets the value of courtDataInstance
 
@@ -131,14 +114,6 @@ public:
 
     sizeTVec getPlayerID();  // retrieves the value of playerID
     void setPlayerID(sizeTVec set);  // sets the value of playerID
-
-
-    bool getTipOffSetupComplete();  // retrieves the value of tipOffSetupComplete
-    void setTipOffSetupComplete(bool set);  // sets the value of tipOffSetupComplete
-
-
-    bool getInputReceived();  // retrieves the value of inputReceived
-    void setInputReceived(bool set);  // sets the value of inputReceived
     
     inputInGameWorkQueues getInputInGameWorkQueue();  // retrieves the value of inputInGameWorkQueue
     void setInputInGameWorkQueue(inputInGameWorkQueues set);  // sets the value of inputInGameWorkQueue
@@ -202,10 +177,9 @@ protected:
 
 private:
 
+    gameFlags flag;  // booleqn flags object
     float gameTimeLeft;  // Indicates the time left in the game
     float quarterTimeLeft;  // incates the time left in the current quarter
-
-    bool finished;  // indicates whether a game is finished.
 
     courtDataVec courtDataInstance;  // stores the vector the courts loaded from the xml files
 
@@ -215,19 +189,6 @@ private:
 
     std::vector< sizeTVec > teamStarterID;  // stores the selected starters for each team
 
-    bool setupEnvironmentCompleted;  // stores whether environment has been setup
-    bool courtDataLoaded;  // stores whether or not the court data has been loaded from file
-    bool basketballModelLoaded;  // stores whether basketball model has been loaded
-    bool courtModelLoaded;  // stores whether court model has been loaded
-    bool hoopModelLoaded;  // stores whether the hoop model has been loaded
-    bool modelsLoaded;  // stores whether all models have been loaded
-    bool nodesCreated;  // stores whether object scene nodes have been created
-    bool sceneCreated;  // stores whether the scene has been created
-    bool gameStarted;  // Determines whether or not a basketball game has been started
-    bool tipOffSetupComplete;  // Determines whether or not game Tip Off has been setup
-
-    bool inputReceived;  // if true process input    
-    
     inputInGameWorkQueues inputInGameWorkQueue;  // queue of input events for game
     
     size_t bballBounce;  // stores which direction the ball is bouncing;

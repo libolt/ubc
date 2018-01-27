@@ -27,6 +27,7 @@
 #include "utilities/conversion.h"
 #include "entity/basketballentity.h"
 #include "entity/courtentity.h"
+#include "flags/gameflags.h"
 #include "gamesetup/gamesetupbasketballs.h"
 #include "gamesetup/gamesetupcourts.h"
 #include "gamesetup/gamesetuphoops.h"
@@ -60,48 +61,28 @@
 // static declarations
 gameState::gameState()  // constructor
 {
-    inputReceived = false;
-    
-//    basketballInstancesCreated = false;
-//    courtInstancesCreated = false;
-//    hoopInstancesCreated = false;
-//    playerInstancesCreated = false;
-//    teamInstancesCreated = false;
-//    activeTeamInstancesCreated = false;
-    basketballModelLoaded = false;
-    courtModelLoaded = false;
-    hoopModelLoaded = false;
-    modelsLoaded = false;
-    nodesCreated = false;
-    setupEnvironmentCompleted = false;
-    courtDataLoaded = false;
-    gameStarted = false;
-//    teamWithBall = NOTEAM;
-    tipOffSetupComplete = false;
-//    tipOffComplete = false;
-    selectedCourtDataInstance = -1;
-    sceneCreated = false;
-//    activeBBallInstance = -1;
-//    activeCourtInstance = -1;
-
-//    gameType = NOGAME;
-//    gameSetupComplete = false;
-
-    //playerHasBasketball = false;
-    bballBounce = -1;
-//    quarter = NOQUARTER;
-    gameTimeLeft = 0.0f;
-    quarterTimeLeft = 0.0f;
-    finished = false;
 
     numActiveHoops = 2;
-    
+    bballBounce = -1;
+    gameTimeLeft = 0.0f;
+    quarterTimeLeft = 0.0f;
+    selectedCourtDataInstance = -1;
+
 //    stateSet = false;
     
 }
 
 gameState::~gameState()  // destructor
 {
+}
+
+gameFlags gameState::getFlag()  // retrieves the value of flag
+{
+    return (flag);
+}
+void gameState::setFlag(gameFlags set);  // sets the value of flag
+{
+    flag = set;
 }
 
 courtDataVec  gameState::getCourtDataInstance()  // retrieves the value of courtDataInstance
@@ -131,24 +112,6 @@ void gameState::setPlayerID(sizeTVec set)  // sets the value of playerID
     playerID = set;
 }
 
-bool gameState::getGameStarted()  // retrieves the value of gameStarted
-{
-    return(gameStarted);
-}
-void gameState::setGameStarted(bool set)  // sets the value of gameStarted
-{
-    gameStarted = set;
-}
-
-bool gameState::getTipOffSetupComplete()  // retrieves the value of tipOffSetupComplete
-{
-    return (tipOffSetupComplete);
-}
-void gameState::setTipOffSetupComplete(bool set)  // sets the value of tipOffSetupComplete
-{
-    tipOffSetupComplete = set;
-}
-
 size_t gameState::getBballBounce()  // retrieves the value of bballBounce
 {
     return (bballBounce);
@@ -156,33 +119,6 @@ size_t gameState::getBballBounce()  // retrieves the value of bballBounce
 void gameState::setBballBounce(size_t set)  // sets the value of bballBounce
 {
     bballBounce = set;
-}
-
-bool gameState::getCourtDataLoaded()  // retrieves the value of courtDataLoaded
-{
-    return (courtDataLoaded);
-}
-void gameState::setCourtDataLoaded(bool set)  // sets the value of courtDataLoaded
-{
-    courtDataLoaded = set;
-}
-
-bool gameState::getModelsLoaded()  // retrieves the value of modelsLoaded
-{
-    return (modelsLoaded);
-}
-void gameState::setModelsLoaded(bool set)  // sets the value of modelsLoaded
-{
-    modelsLoaded = set;
-}
-
-bool gameState::getInputReceived()  // retrieves the value of inputReceived
-{
-    return (inputReceived);
-}
-void gameState::setInputReceived(bool set)  // sets the value of inputReceived
-{
-    inputReceived = set;
 }
 
 inputInGameWorkQueues gameState::getInputInGameWorkQueue()  // retrieves the value of inputInGameWorkQueue

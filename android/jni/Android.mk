@@ -293,7 +293,7 @@ LOCAL_SRC_FILES := \
                        $(wildcard $(LOCAL_PATH)/../../src/game/input/*.cpp)) \
                    $(subst $(LOCAL_PATH)/,, \
                        $(wildcard $(LOCAL_PATH)/../../src/game/ubc/*.cpp)) \
-                   $(subst $(LOCAL_PATH)/,, \
+                   $(subst $(LOCAL_PATH)/,, \ 
                        $(wildcard $(LOCAL_PATH)/../../src/game/utilities/*.cpp)) \
                    $(subst $(LOCAL_PATH)/,, \
                        $(wildcard $(LOCAL_PATH)/../../src/game/gamesetup/*.cpp)) \

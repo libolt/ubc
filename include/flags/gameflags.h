@@ -23,7 +23,7 @@
 
 class gameFlags
 {
-    public:
+    public: 
     
         gameFlags();  // constructor
         ~gameFlags();  // destructor

@@ -418,7 +418,7 @@ void teamState::updateState(jumpBallsSharedPtr jumpBall, courtStateMSharedPtr co
         if (!playerStartPositionsSet)
         {
             logMsg(func +" Player Start Positions Not Set!");
-            if (setPlayerStartPositions(gameInstance))  // sets starting positions for the players
+            if (setPlayerStartPositions(courtInstance,teamStarterID))  // sets starting positions for the players
             {
                 playerStartPositionsSet = true;
                 logMsg("Player Start Positions set!");

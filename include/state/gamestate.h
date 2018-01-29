@@ -25,6 +25,7 @@
 #include <boost/shared_ptr.hpp>
 #include "BulletDynamics/Dynamics/btRigidBody.h"
 
+#include "flags/gameflags.h"
 //#include "state/basketballstate.h"
 //#include "data/courtdata.h"
 //#include "state/courtstate.h"
@@ -41,7 +42,7 @@ class basketballState;
 class UBC;
 class courtData;
 class courtState;
-class gameFlags;
+//class gameFlags;
 class hoopState;
 class playerState;
 class teamState;
@@ -177,7 +178,7 @@ protected:
 
 private:
 
-    gameFlags flag;  // booleqn flags object
+    gameFlags flag;  // boolean flags object
     float gameTimeLeft;  // Indicates the time left in the game
     float quarterTimeLeft;  // incates the time left in the current quarter
 

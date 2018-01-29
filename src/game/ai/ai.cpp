@@ -25,6 +25,7 @@
 #include "utilities/logging.h"
 #include "utilities/typedefs.h"
 #include "utilities/conversion.h"
+#include "flags/gameflags.h"
 #include "state/gamestate.h"
 #include "state/teamstate.h"
 #include <ctime>

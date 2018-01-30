@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2017 by Mike McLean                              *
+ *   Copyright (C) 1999 - 2018 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -46,7 +46,7 @@ bool gameSetupPlayers::checkIfGamePlayerInstancesCreated(gameStateSharedPtr game
     
     logMsg(func +" beginning");
 
-    if (gameS->getPlayerInstanceCreated())
+    if (gameS->getFlag()->getPlayerInstanceCreated())
     {
         if (playerInstance.size() > 0)
         {
@@ -63,7 +63,7 @@ bool gameSetupPlayers::checkIfGamePlayerInstancesCreated(gameStateSharedPtr game
             
                 logMsg(func +" Player Instances created!");
 //                exit(0);
-                gameS->setPlayerInstanceCreated(true);
+                gameS->getFlag()->setPlayerInstanceCreated(true);
                 gameS->setPlayerInstance(playerInstance);
                 returnType = true;
 //            exit(0);
@@ -85,7 +85,7 @@ bool gameSetupPlayers::checkIfGamePlayerInstancesCreated(gameStateSharedPtr game
 
             logMsg(func +" Player Instances created!");
 
-            gameS->setPlayerInstanceCreated(true);
+            gameS->getFlag()->setPlayerInstanceCreated(true);
             gameS->setPlayerInstance(playerInstance);
             returnType = true;
 //            exit(0);

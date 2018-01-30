@@ -53,6 +53,12 @@ class gameStateShared
         gameTypes getGameType();  // retrieves the value of gameType
         void setGameType(gameTypes set);  // sets the value of gameType
 
+        sizeTVec getTeamIDS();  // retrieves the value of teamIDS
+        void setTeamIDS(sizeTVec set);  // sets the value of teamIDS
+
+        teamStarterIDsVecM getTeamStarterID();  // retrieves value of teamStarterID
+        void setTeamStarterID(teamStarterIDsVecM set);  // sets the value of teamStarterID
+
         quarters getQuarter();  // retrieves the value of quarter
         void setQuarter(quarters set);  // sets the value of quarter
 

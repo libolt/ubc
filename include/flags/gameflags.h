@@ -33,12 +33,6 @@ class gameFlags
         bool getInitialized();  // retrieves the value of initialized
         void setInitialized(bool set);  // sets the value of initialized
 
-        sizeTVec getTeamIDS();  // retrieves the value of teamIDS
-        void setTeamIDS(sizeTVec set);  // sets the value of teamIDS
-        
-        teamStarterIDsVecM getTeamStarterID();  // retrieves value of teamStarterID
-        void setTeamStarterID(teamStarterIDsVecM set);  // sets the value of teamStarterID
-
         bool getActiveBasketballInstancesCreated();  // retrieves the value of activeBasketballInstancesCreated
         void setActiveBasketballInstancesCreated(bool set);  // sets the value of activeBasketballInstancesCreated
 

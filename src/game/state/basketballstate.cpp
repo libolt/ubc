@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2017 by Mike McLean                              *
+ *   Copyright (C) 1999 - 2018 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -634,7 +634,7 @@ TS*/
     jumpBallsSharedPtr jumpBall = gameS->getJumpBall();
 
 //TS    logMsg("directplayerwithballInstance == " +convert->toString(playerWithBallInstance));
-    bool tipOffComplete = gameS->getTipOffComplete();
+    bool tipOffComplete = gameS->getFlag()->getTipOffComplete();
     size_t x = 0;
     std::string func = "basketballState::updateDirection()";
 

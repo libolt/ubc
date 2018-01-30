@@ -80,7 +80,7 @@ gameFlagsSharedPtr gameState::getFlag()  // retrieves the value of flag
 {
     return (flag);
 }
-void gameState::setFlag(gameFlagsSharedPtr set);  // sets the value of flag
+void gameState::setFlag(gameFlagsSharedPtr set)  // sets the value of flag
 {
     flag = set;
 }
@@ -966,7 +966,7 @@ bool gameState::loadModels(renderEngineSharedPtr render)  // loads all game obje
     std::string func = "gameState::loadModels()";
     logMsg(func +" beginning");
 
-    if (!basketballModelLoaded)  // Checks if basketball model has been loaded
+    if (!getFlag()->getBasketballModelLoaded())  // Checks if basketball model has been loaded
     {
 //        setActiveBBallInstance(0);  // Sets the active basketball instance
         loadBasketballsSharedPtr loadBasketball(new loadBasketballs);
@@ -975,7 +975,7 @@ bool gameState::loadModels(renderEngineSharedPtr render)  // loads all game obje
         activeBasketballInstance = loadBasketball->loadModels(getActiveBasketballInstance(), render);  // Loads the basketball model
         if (activeBasketballInstance.size() >0)
         {          
-            basketballModelLoaded = true;
+            getFlag()->setBasketballModelLoaded(true);
             setActiveBasketballInstance(activeBasketballInstance);          
 //            return (true);
         }
@@ -990,7 +990,7 @@ bool gameState::loadModels(renderEngineSharedPtr render)  // loads all game obje
     logMsg(func +" weeee");
 //    exit(0);
 
-    if (!courtModelLoaded)  // Checks if the court model has been loaded
+    if (!getFlag()->getCourtModelLoaded())  // Checks if the court model has been loaded
     {
         loadCourtsSharedPtr loadCourt(new loadCourts);
         courtStateMSharedPtr activeCourtInstance;
@@ -999,7 +999,7 @@ bool gameState::loadModels(renderEngineSharedPtr render)  // loads all game obje
         activeCourtInstance = loadCourt->loadModels(getActiveCourtInstance(), render);  // load the court model
         if (activeCourtInstance.size() > 0)
         {
-            courtModelLoaded = true;
+            getFlag()->setCourtModelLoaded(true);
             setActiveCourtInstance(activeCourtInstance);
 //            return (true);
         }
@@ -1011,7 +1011,7 @@ bool gameState::loadModels(renderEngineSharedPtr render)  // loads all game obje
     }
 
 
-    if (!hoopModelLoaded)  // Checks if the hoop model(s) have been loaded
+    if (!getFlag()->getHoopModelLoaded())  // Checks if the hoop model(s) have been loaded
     {
         loadHoopsSharedPtr loadHoop(new loadHoops);
         hoopStateMSharedPtr activeHoopInstance;
@@ -1020,7 +1020,7 @@ bool gameState::loadModels(renderEngineSharedPtr render)  // loads all game obje
         activeHoopInstance = loadHoop->loadModels(getActiveHoopInstance(), render);  // Creates the hoop instances
         if (activeHoopInstance.size() > 0)
         {
-            hoopModelLoaded = true;
+            getFlag()->getHoopModelLoaded(true);
             setActiveHoopInstance(activeHoopInstance);
 //            return (true);
         }
@@ -1049,7 +1049,7 @@ bool gameState::createNodes(renderEngineSharedPtr render)  // creates scene node
     
     logMsg(func +" beginning");
 
-    if (basketballModelLoaded)  // Checks if basketball model has been loaded
+    if (getFlag()->getBasketballModelLoaded())  // Checks if basketball model has been loaded
     {
         for (auto ABIIT : getActiveBasketballInstance())  // loop through active basketball instances
         {
@@ -1065,7 +1065,7 @@ bool gameState::createNodes(renderEngineSharedPtr render)  // creates scene node
         logMsg(func + " Basketball Models Not Loaded!");
     }
     
-    if (courtModelLoaded)  // Checks if court model has been loaded
+    if (getFlag()->getCourtModelLoaded)()  // Checks if court model has been loaded
     {
         for (auto ACIIT : getActiveCourtInstance())  // loop through active court instances
         {
@@ -1081,7 +1081,7 @@ bool gameState::createNodes(renderEngineSharedPtr render)  // creates scene node
         logMsg(func + " Court Models Not Loaded!");
     }
     
-    if (hoopModelLoaded)  // Checks if hoop model has been loaded
+    if (getFlag()->getHoopModelLoaded())  // Checks if hoop model has been loaded
     {
         for (auto AHIIT : getActiveHoopInstance())  // loop through active hoop instances
         {

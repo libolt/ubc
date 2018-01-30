@@ -76,7 +76,7 @@ std::vector<bool> gameStateShared::teamActivePlayersChanged;  // stores whether 
 
 gameStateShared::gameStateShared()  // constructor
 {
-    initialized = false;
+/*    initialized = false;
     activeBasketballInstancesCreated = false;
     activeCourtInstancesCreated = false;
     activeHoopInstancesCreated = false;
@@ -97,12 +97,13 @@ gameStateShared::gameStateShared()  // constructor
     teamWithBallChanged = false;
     activeTeamInstanceChanged = false;
     gameSetupComplete = false;
+*/
     quarter = NOQUARTER;
     numActiveBasketballs = 0;
     yOffset = 0.0;
     teamWithBall = NOTEAM;
-    jumpBallCreated = false;
-    tipOffComplete = false;
+//    jumpBallCreated = false;
+//    tipOffComplete = false;
 //    activeBBallInstance = -1;
     gameType = NOGAME;
 

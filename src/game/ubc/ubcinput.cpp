@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2017 by Mike McLean                              *
+ *   Copyright (C) 1999 - 2018 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -373,7 +373,7 @@ bool UBCInput::processKeyboard(gameEngineSharedPtr gameE, gameStateSharedPtr gam
         else
         {
 //            exit(0);
-            gameInstance->setInputReceived(true);
+            gameInstance->getFlag()->setInputReceived(true);
 
             gameInstance->setInputInGameWorkQueue(inputKeyboard->getInputInstance()->getInputInGameWorkQueue());
 

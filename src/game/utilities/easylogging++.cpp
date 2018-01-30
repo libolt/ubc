@@ -4,7 +4,7 @@
 //  Easylogging++ v9.93
 //  Cross-platform logging library for C++ applications
 //
-//  Copyright (c) 2017 muflihun.com
+//  Copyright (c) 2018 muflihun.com
 //
 //  This library is released under the MIT Licence.
 //  http://easylogging.muflihun.com/licence.php
@@ -2972,7 +2972,7 @@ const std::string VersionInfo::version(void) {
 }
 /// @brief Release date of current version
 const std::string VersionInfo::releaseDate(void) {
-  return std::string("04-02-2017 1532hrs");
+  return std::string("04-02-2018 1532hrs");
 }
 
 } // namespace el

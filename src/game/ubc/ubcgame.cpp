@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2017 by Mike McLean                              *
+ *   Copyright (C) 1999 - 2018 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -205,7 +205,7 @@ bool UBCGame::setup()  // sets up a game instance
     gameStateSharedPtr tempGameStateSharedPtr(new gameState);
     gameInstance = tempGameStateSharedPtr;
     logMsg(func +" getGameS()->setInitialized(true)");
-    getGameInstance()->setInitialized(true);
+    getGameInstance()->getFlag()->setInitialized(true);
 
 /*    for (size_t x=0;x<numUsers;++x)
     {

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2017 by Mike McLean                              *
+ *   Copyright (C) 1999 - 2018 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -159,7 +159,7 @@ public:
     void updatePositions();  // updates player on court positionss
 
     void setupState();  // sets up the state for teamState object
-    void updateState(jumpBallsSharedPtr jumpBall, courtStateMSharedPtr courtInstance, teamStarterIDsVecM teamStarterID);  // updates the state of the teamState object
+    void updateState(jumpBallsSharedPtr jumpBall, courtStateMSharedPtr courtInstance, teamStarterIDsVecM teamStarterID, gameFlagsSharedPtr gameFlag);  // updates the state of the teamState object
     void updateActivePlayerSettings();  // updates the settings of active players
         
 protected:

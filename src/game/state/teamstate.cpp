@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2017 by Mike McLean                              *
+ *   Copyright (C) 1999 - 2018 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -372,7 +372,7 @@ void teamState::setupState()  // sets up the state of the object
     logMsg(func +" end");
 
 }
-void teamState::updateState(jumpBallsSharedPtr jumpBall, courtStateMSharedPtr courtInstance, teamStarterIDsVecM teamStarterID)  // updates the state of the object
+void teamState::updateState(jumpBallsSharedPtr jumpBall, courtStateMSharedPtr courtInstance, teamStarterIDsVecM teamStarterID, gameFlagsSharedPtr gameFlag)  // updates the state of the object
 {
 
     //conversion *convert = conversion::Instance();
@@ -418,7 +418,7 @@ void teamState::updateState(jumpBallsSharedPtr jumpBall, courtStateMSharedPtr co
         if (!playerStartPositionsSet)
         {
             logMsg(func +" Player Start Positions Not Set!");
-            if (setPlayerStartPositions(courtInstance,teamStarterID))  // sets starting positions for the players
+            if (setPlayerStartPositions(courtInstance, teamStarterID))  // sets starting positions for the players
             {
                 playerStartPositionsSet = true;
                 logMsg("Player Start Positions set!");
@@ -464,7 +464,7 @@ void teamState::updateState(jumpBallsSharedPtr jumpBall, courtStateMSharedPtr co
         
     }
 //    exit(0);
-    if (gameInstance->getBasketballInstanceCreated() && gameInstance->getPlayerInstanceCreated())
+    if (gameFlag->getBasketballInstanceCreated() && gameFlag->getPlayerInstanceCreated())
     {
         
         basketballStateMSharedPtr activeBasketballInstance = gameInstance->getActiveBasketballInstance();
@@ -595,11 +595,11 @@ void teamState::updateState(jumpBallsSharedPtr jumpBall, courtStateMSharedPtr co
     }
 //  exit(0);
 
-    if (gameInstance->getTipOffComplete())
+    if (gameFlag->getTipOffComplete())
     {
         logMsg("tipOff Complete!");
 //        exit(0);
-        if (gameInstance->getTeamWithBall() == teamType)
+        if (gameFlag->getTeamWithBall() == teamType)
         {
             if (!offenseInstance->getGameSInitialized())
             {

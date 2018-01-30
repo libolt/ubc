@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2017 by Mike McLean                              *
+ *   Copyright (C) 1999 - 2018 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -913,7 +913,7 @@ void GUISystem::teamsSelected()  // processes team selection
     logMsg(func +" teamSelectBox[0]->getIndexSelected() == " +convert->toString(teamSelectBox[0]->getIndexSelected()));
     logMsg(func +" teamID[0] == " +convert->toString(teamID[0]));
 //    exit(0);
-    gameInstance->getFlag()->setTeamIDS(teamID);
+    gameInstance->setTeamIDS(teamID);
     gameInstance->setActiveTeamInstance(activeTeamInstance);
     gameInstance->getFlag()->setActiveTeamInstancesCreated(true);
  
@@ -1245,7 +1245,7 @@ void GUISystem::playerStartSelected()  // process player start selection
 */
 //    exit(0);
 //    gameS->setTeamStarterID(teamStarterID); // sets the selected starters for both teams in gameState class
-    gameInstance->getFlag()->setTeamStarterID(teamStarterID); // sets the selected starters for both teams in gameState class
+    gameInstance->setTeamStarterID(teamStarterID); // sets the selected starters for both teams in gameState class
     
     sizeTVec activePlayerID;
 //    x = 0;

@@ -84,6 +84,7 @@ class playerState;
 class teamState;
 
 class courtData;
+class gameData;
 
 class loader;
 class loadBasketballs;
@@ -134,6 +135,8 @@ typedef sharedPtr<GUISystem> GUISystemSharedPtr;
 typedef sharedPtr<conversion> conversionSharedPtr;
 
 typedef sharedPtr<courtData> courtDataSharedPtr;
+
+typedef sharedPtr<gameData> gameDataSharedPtr;
 
 typedef sharedPtr<gameEngine> gameEngineSharedPtr;
 

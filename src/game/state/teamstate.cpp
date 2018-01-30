@@ -19,10 +19,12 @@
  ***************************************************************************/
 
 #include "utilities/conversion.h"
+#include "data/gamedata.h"
 #include "data/playerdata.h"
 #include "entity/basketballentity.h"
 #include "entity/courtentity.h"
 #include "entity/playerentity.h"
+#include "flags/gameflags.h"
 #include "gamesetup/gamesetupplayers.h"
 #include "gamesetup/gamesetupplayerpositions.h"
 #include "physics/basketballphysics.h"
@@ -372,7 +374,7 @@ void teamState::setupState()  // sets up the state of the object
     logMsg(func +" end");
 
 }
-void teamState::updateState(jumpBallsSharedPtr jumpBall, courtStateMSharedPtr courtInstance, teamStarterIDsVecM teamStarterID, gameFlagsSharedPtr gameFlag)  // updates the state of the object
+void teamState::updateState(jumpBallsSharedPtr jumpBall, courtStateMSharedPtr courtInstance, gameFlagsSharedPtr gameFlag, gameDataSharedPtr gameData)  // updates the state of the object
 {
 
     //conversion *convert = conversion::Instance();
@@ -599,7 +601,7 @@ void teamState::updateState(jumpBallsSharedPtr jumpBall, courtStateMSharedPtr co
     {
         logMsg("tipOff Complete!");
 //        exit(0);
-        if (gameFlag->getTeamWithBall() == teamType)
+        if (gameData->getTeamWithBall() == teamType)
         {
             if (!offenseInstance->getGameSInitialized())
             {

@@ -43,6 +43,7 @@ class UBC;
 class courtData;
 class courtState;
 //class gameFlags;
+class gameData;
 class hoopState;
 class playerState;
 class teamState;
@@ -64,6 +65,9 @@ public:
     gameFlagsSharedPtr getFlag();  // retrieves the value of flag
     void setFlag(gameFlagsSharedPtr set);  // sets the value of flag
     
+    gameDataSharedPtr getData();  // retrieves the value of data
+    void setData(gameDataSharedPtr set);  // sets the value of data
+
 /*    jumpBallsSharedPtr getJumpBall();  // retrieves the value of jumpBall
     void setJumpBall(jumpBallsSharedPtr set);  // sets the value of jumpBall
 */
@@ -71,11 +75,6 @@ public:
 //    teamTypes getTeamWithBall();  // retrieves teamWithBall value
 //    void setTeamWithBall(teamTypes set);	 // sets teamWithBall value
 
-    size_t getBballBounce();  // retrieves the value of bballBounce
-    void setBballBounce(size_t set);  // sets the value of bballBounce
-
-    size_t getSelectedCourtDataInstance();  // retrieves the value of selectedCourtDataInstance
-    void setSelectedCourtDataInstance(size_t set);  // sets the value of selectedCourtDataInstance
 
 /*    bool getBasketballInstancesCreated();  // retrieves the value of basketballInstancesCreated
     void setBasketballInstancesCreated(bool set);   // sets the value of basketballInstancesCreated
@@ -112,9 +111,6 @@ public:
 /*    sizeTVec getTeamID();  // retrieves the value of teamID
     void setTeamID(sizeTVec set);  // sets the value of teamID
 */
-
-    sizeTVec getPlayerID();  // retrieves the value of playerID
-    void setPlayerID(sizeTVec set);  // sets the value of playerID
     
     inputInGameWorkQueues getInputInGameWorkQueue();  // retrieves the value of inputInGameWorkQueue
     void setInputInGameWorkQueue(inputInGameWorkQueues set);  // sets the value of inputInGameWorkQueue
@@ -179,22 +175,12 @@ protected:
 private:
 
     gameFlagsSharedPtr flag;  // boolean flags object
-    float gameTimeLeft;  // Indicates the time left in the game
-    float quarterTimeLeft;  // incates the time left in the current quarter
-
-    courtDataVec courtDataInstance;  // stores the vector the courts loaded from the xml files
-
-    size_t selectedCourtDataInstance;  // stores which court should be loaded by courtInstance
+    gameDataSharedPtr data; // game data object
     
-    sizeTVec playerID;  // std::vector that stores the IDs of the players currently being used.
-
-    std::vector< sizeTVec > teamStarterID;  // stores the selected starters for each team
-
+    courtDataVec courtDataInstance;  // stores the vector the courts loaded from the xml files
+    
     inputInGameWorkQueues inputInGameWorkQueue;  // queue of input events for game
     
-    size_t bballBounce;  // stores which direction the ball is bouncing;
-
-    size_t numActiveHoops;  // stores the nimber of active hoop instances
 };
 
 

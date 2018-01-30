@@ -29,8 +29,28 @@ class gameData
         gameData();  // constructor
         ~gameData();  // destructor
     
+        size_t getBballBounce();  // retrieves the value of bballBounce
+        void setBballBounce(size_t set);  // sets the value of bballBounce
+
+        size_t getSelectedCourtDataInstance();  // retrieves the value of selectedCourtDataInstance
+        void setSelectedCourtDataInstance(size_t set);  // sets the value of selectedCourtDataInstance
+
+        sizeTVec getPlayerID();  // retrieves the value of playerID
+        void setPlayerID(sizeTVec set);  // sets the value of playerID
+
     private:
     
+        float gameTimeLeft;  // Indicates the time left in the game
+        float quarterTimeLeft;  // incates the time left in the current quarter
+        size_t selectedCourtDataInstance;  // stores which court should be loaded by courtInstance
+    
+        sizeTVec playerID;  // std::vector that stores the IDs of the players currently being used.
+
+        std::vector< sizeTVec > teamStarterID;  // stores the selected starters for each team
+        size_t bballBounce;  // stores which direction the ball is bouncing;
+
+        size_t numActiveHoops;  // stores the nimber of active hoop instances
+
 };
 
 #endif

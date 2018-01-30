@@ -22,9 +22,41 @@
 
 gameData::gameData()  // constructor
 {
-    
+    numActiveHoops = 2;
+    bballBounce = -1;
+    gameTimeLeft = 0.0f;
+    quarterTimeLeft = 0.0f;
+    selectedCourtDataInstance = -1;
+
 }
 gameData::~gameData()  // destructor
 {
     
+}
+
+size_t gameData::getSelectedCourtDataInstance()  // retrieves the value of selectedCourtDataInstance
+{
+    return (selectedCourtDataInstance);
+}
+void gameData::setSelectedCourtDataInstance(size_t set)  // sets the value of selectedCourtDataInstance
+{
+    selectedCourtDataInstance = set;
+}
+
+sizeTVec gameData::getPlayerID()  // retrieves the value of playerID
+{
+    return (playerID);
+}
+void gameData::setPlayerID(sizeTVec set)  // sets the value of playerID
+{
+    playerID = set;
+}
+
+size_t gameData::getBballBounce()  // retrieves the value of bballBounce
+{
+    return (bballBounce);
+}
+void gameData::setBballBounce(size_t set)  // sets the value of bballBounce
+{
+    bballBounce = set;
 }

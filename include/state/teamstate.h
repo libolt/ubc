@@ -34,6 +34,8 @@
 #include "data/teamdata.h"
 #include "utilities/typedefs.h"
 
+class gameFlags;
+class gameData;
 class offenseState;
 class defenseState;
 class basketballState;
@@ -159,7 +161,7 @@ public:
     void updatePositions();  // updates player on court positionss
 
     void setupState();  // sets up the state for teamState object
-    void updateState(jumpBallsSharedPtr jumpBall, courtStateMSharedPtr courtInstance, teamStarterIDsVecM teamStarterID, gameFlagsSharedPtr gameFlag);  // updates the state of the teamState object
+    void updateState(jumpBallsSharedPtr jumpBall, courtStateMSharedPtr courtInstance, gameFlagsSharedPtr gameFlag, gameDataSharedPtr gameData);  // updates the state of the teamState object
     void updateActivePlayerSettings();  // updates the settings of active players
         
 protected:

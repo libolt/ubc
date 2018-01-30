@@ -50,6 +50,7 @@
 #include "network/networkplayerstateobject.h"
 #include "data/basketballdata.h"
 #include "data/courtdata.h"
+#include "data/gamedata.h"
 #include "data/playerdata.h"
 #include "engine/physicsengine.h"
 #include "engine/renderengine.h"
@@ -61,15 +62,7 @@
 // static declarations
 gameState::gameState()  // constructor
 {
-
-    numActiveHoops = 2;
-    bballBounce = -1;
-    gameTimeLeft = 0.0f;
-    quarterTimeLeft = 0.0f;
-    selectedCourtDataInstance = -1;
-
 //    stateSet = false;
-    
 }
 
 gameState::~gameState()  // destructor
@@ -85,6 +78,15 @@ void gameState::setFlag(gameFlagsSharedPtr set)  // sets the value of flag
     flag = set;
 }
 
+gameDataSharedPtr gameState::getData()  // retrieves the value of data
+{
+    return (data);
+}
+void gameState::setData(gameDataSharedPtr set)  // sets the value of data
+{
+    data = set;
+}
+
 courtDataVec  gameState::getCourtDataInstance()  // retrieves the value of courtDataInstance
 {
     return (courtDataInstance);
@@ -92,33 +94,6 @@ courtDataVec  gameState::getCourtDataInstance()  // retrieves the value of court
 void gameState::setCourtDataInstance(courtDataVec set)  // sets the value of courtDataInstance
 {
     courtDataInstance = set;
-}
-
-size_t gameState::getSelectedCourtDataInstance()  // retrieves the value of selectedCourtDataInstance
-{
-    return (selectedCourtDataInstance);
-}
-void gameState::setSelectedCourtDataInstance(size_t set)  // sets the value of selectedCourtDataInstance
-{
-    selectedCourtDataInstance = set;
-}
-
-sizeTVec gameState::getPlayerID()  // retrieves the value of playerID
-{
-    return (playerID);
-}
-void gameState::setPlayerID(sizeTVec set)  // sets the value of playerID
-{
-    playerID = set;
-}
-
-size_t gameState::getBballBounce()  // retrieves the value of bballBounce
-{
-    return (bballBounce);
-}
-void gameState::setBballBounce(size_t set)  // sets the value of bballBounce
-{
-    bballBounce = set;
 }
 
 inputInGameWorkQueues gameState::getInputInGameWorkQueue()  // retrieves the value of inputInGameWorkQueue

@@ -69,13 +69,13 @@ gameState::~gameState()  // destructor
 {
 }
 
-gameFlagsSharedPtr gameState::getFlag()  // retrieves the value of flag
+gameComponentsSharedPtr gameState::getComponent()  // retrieves the value of component
 {
-    return (flag);
+    return (component);
 }
-void gameState::setFlag(gameFlagsSharedPtr set)  // sets the value of flag
+void gameState::setComponent(gameComponentSharedPtr set)  // sets the value of component
 {
-    flag = set;
+    component = set;
 }
 
 gameDataSharedPtr gameState::getData()  // retrieves the value of data
@@ -87,22 +87,13 @@ void gameState::setData(gameDataSharedPtr set)  // sets the value of data
     data = set;
 }
 
-courtDataVec  gameState::getCourtDataInstance()  // retrieves the value of courtDataInstance
+gameFlagsSharedPtr gameState::getFlag()  // retrieves the value of flag
 {
-    return (courtDataInstance);
+    return (flag);
 }
-void gameState::setCourtDataInstance(courtDataVec set)  // sets the value of courtDataInstance
+void gameState::setFlag(gameFlagsSharedPtr set)  // sets the value of flag
 {
-    courtDataInstance = set;
-}
-
-inputInGameWorkQueues gameState::getInputInGameWorkQueue()  // retrieves the value of inputInGameWorkQueue
-{
-    return (inputInGameWorkQueue);
-}
-void gameState::setInputInGameWorkQueue(inputInGameWorkQueues set)  // sets the value of inputInGameWorkQueue
-{
-    inputInGameWorkQueue = set;
+    flag = set;
 }
 
 bool gameState::assignHoopToTeams()  // assigns which hoop belongs to each team

@@ -38,6 +38,33 @@ class gameData
         sizeTVec getPlayerID();  // retrieves the value of playerID
         void setPlayerID(sizeTVec set);  // sets the value of playerID
 
+        gameTypes getGameType();  // retrieves the value of gameType
+        void setGameType(gameTypes set);  // sets the value of gameType
+
+        sizeTVec getTeamIDS();  // retrieves the value of teamIDS
+        void setTeamIDS(sizeTVec set);  // sets the value of teamIDS
+
+        teamStarterIDsVecM getTeamStarterID();  // retrieves value of teamStarterID
+        void setTeamStarterID(teamStarterIDsVecM set);  // sets the value of teamStarterID
+
+        quarters getQuarter();  // retrieves the value of quarter
+        void setQuarter(quarters set);  // sets the value of quarter
+
+        size_t getNumActiveBasketballs();  // retrieves the value of numActiveBasketballs
+        void setNumActiveBasketballs(size_t set);  // sets the value of numActiveBasketballs
+
+        Ogre::Vector3 getBBallNodePosition();  // retrieves the value of bballNodePosition
+        void setBBallNodePosition(Ogre::Vector3 set);  // sets the value of bballNodePosition
+        
+        teamTypes getTeamWithBall();  // retrieves the value of teamWithBall
+        void setTeamWithBall(teamTypes set);  // sets the value of teamWithBall
+
+        float getYOffset();  // retrieves the value of yOffset
+        void setYOffset(float set);  // sets the value of yOffset
+
+        std::vector<bool> getTeamActivePlayersChanged();  // retrieves the value of teamActivePlayersChanged
+        void setTeamActivePlayersChanged(std::vector<bool> set);  // sets the value of teamActivePlayersChanged
+
     private:
     
         float gameTimeLeft;  // Indicates the time left in the game
@@ -51,6 +78,18 @@ class gameData
 
         size_t numActiveHoops;  // stores the nimber of active hoop instances
 
+        gameTypes gameType;  // Indicates whether a single or multi player game is being played.
+        quarters quarter;  // stores the quarter currently being played
+        size_t numActiveBasketballs;  // stores the number of active basketballs in the game.
+        sizeTVec teamIDS;  // std::vector that stores the IDs of the 2 teams currently playing
+        teamStarterIDsVecM teamStarterID;  // stores the selected starters for each team
+        Ogre::Vector3 bballNodePosition;  // stores a copy of the basketball node position
+        teamTypes teamWithBall;  // store which team has the basketball
+        float yOffset; // stores the y offset for objects on the screen
+
+        std::vector<bool> teamActivePlayersChanged;  // stores whether the active players for each team have changed
+
+        
 };
 
 #endif

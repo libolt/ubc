@@ -64,7 +64,7 @@ class inputEngine;
 class networkEngine;
 class physicsEngine;
 class renderEngine;
-
+class gameComponents;
 class basketballEntity;
 class courtEntity;
 class hoopEntity;
@@ -133,6 +133,8 @@ typedef sharedPtr<UBCInput> UBCInputSharedPtr;
 typedef sharedPtr<GUISystem> GUISystemSharedPtr;
 
 typedef sharedPtr<conversion> conversionSharedPtr;
+
+typedef sharedPtr<gameComponents> gameComponentsSharedPtr;
 
 typedef sharedPtr<courtData> courtDataSharedPtr;
 

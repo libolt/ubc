@@ -43,6 +43,7 @@ class UBC;
 class courtData;
 class courtState;
 //class gameFlags;
+class gameComponents;
 class gameData;
 class hoopState;
 class playerState;
@@ -62,11 +63,15 @@ public:
     gameState(); // constructor
     ~gameState();  // destructor
 
+    gameComponentsSharedPtr getComponent();  // retrieves the value of component
+    void setComponent(gameComponentsSharedPtr set);  // sets the value of component
+
+    gameDataSharedPtr getData();  // retrieves the value of data
+    void setData(gameDataSharedPtr set);  // sets the value of data
+
     gameFlagsSharedPtr getFlag();  // retrieves the value of flag
     void setFlag(gameFlagsSharedPtr set);  // sets the value of flag
     
-    gameDataSharedPtr getData();  // retrieves the value of data
-    void setData(gameDataSharedPtr set);  // sets the value of data
 
 /*    jumpBallsSharedPtr getJumpBall();  // retrieves the value of jumpBall
     void setJumpBall(jumpBallsSharedPtr set);  // sets the value of jumpBall
@@ -97,9 +102,6 @@ public:
     void setActiveTeamInstancesCreated(bool set);	 // sets the value of activeTeamInstancesCreated
 */
 
-    courtDataVec getCourtDataInstance();  // retrieves the value of courtDataInstance
-    void setCourtDataInstance(courtDataVec set);  // sets the value of courtDataInstance
-
 /*    size_t getActiveBBallInstance();  // retrieves the value of activeBBallInstance
     void setActiveBBallInstance(size_t set);  // sets the value of activeBBallInstance
 */
@@ -112,8 +114,6 @@ public:
     void setTeamID(sizeTVec set);  // sets the value of teamID
 */
     
-    inputInGameWorkQueues getInputInGameWorkQueue();  // retrieves the value of inputInGameWorkQueue
-    void setInputInGameWorkQueue(inputInGameWorkQueues set);  // sets the value of inputInGameWorkQueue
     
     // These functions check if an object has been created and attmpt to do so if not
 //    bool checkIfPlayerInstanceCreated();  // check if playerInstance object has been created and loaded
@@ -167,19 +167,11 @@ public:
     bool updatePlayerCollisionObjects();  // updates the player collision objects for a team instance
     bool processInput();  // processes input received from the inputState object
 
-protected:
-    
-//    gameState(const gameState&);
-//    gameState &operator = (const gameState&);
-
 private:
 
     gameFlagsSharedPtr flag;  // boolean flags object
+    gameComponentsSharedPtr component;  // game component object
     gameDataSharedPtr data; // game data object
-    
-    courtDataVec courtDataInstance;  // stores the vector the courts loaded from the xml files
-    
-    inputInGameWorkQueues inputInGameWorkQueue;  // queue of input events for game
     
 };
 

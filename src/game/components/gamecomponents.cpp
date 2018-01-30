@@ -29,3 +29,112 @@ gameComponents::~gameComponents()  // destructor
     
 }
 
+courtDataVec  gameComponents::getCourtDataInstance()  // retrieves the value of courtDataInstance
+{
+    return (courtDataInstance);
+}
+void gameComponents::setCourtDataInstance(courtDataVec set)  // sets the value of courtDataInstance
+{
+    courtDataInstance = set;
+}
+
+inputInGameWorkQueues gameComponents::getInputInGameWorkQueue()  // retrieves the value of inputInGameWorkQueue
+{
+    return (inputInGameWorkQueue);
+}
+void gameComponents::setInputInGameWorkQueue(inputInGameWorkQueues set)  // sets the value of inputInGameWorkQueue
+{
+    inputInGameWorkQueue = set;
+}
+
+basketballStateMSharedPtr gameComponents::getActiveBasketballInstance()  // retrieves the value of activeBasketballInstance
+{
+    return (activeBasketballInstance);
+}
+void gameComponents::setActiveBasketballInstance(basketballStateMSharedPtr set)  // sets the value of activeBasketballInstance
+{
+    activeBasketballInstance = set;
+}
+
+courtStateMSharedPtr gameComponents::getActiveCourtInstance()  // retrieves the value of activeCourtInstance
+{
+    return (activeCourtInstance);
+}
+void gameComponents::setActiveCourtInstance(courtStateMSharedPtr set)  // sets the value of activeCourtInstance
+{
+    activeCourtInstance = set;
+}
+
+hoopStateMSharedPtr gameComponents::getActiveHoopInstance()  // retrieves the value of activeHoopInstance
+{
+    return(activeHoopInstance);
+}
+void gameComponents::setActiveHoopInstance(hoopStateMSharedPtr set)  // sets the value of activeHoopInstance
+{
+    activeHoopInstance = set;
+}
+
+teamStateMSharedPtr gameComponents::getActiveTeamInstance()  // retrieves the value of activeTeamInstance
+{
+    return (activeTeamInstance);
+}
+void gameComponents::setActiveTeamInstance(teamStateMSharedPtr set)  // sets the value of activeTeamInstance
+{
+    activeTeamInstance = set;
+}
+
+basketballStateMSharedPtr gameComponents::getBasketballInstance()  // retrieves the value of basketballInstance
+{
+    return (basketballInstance);
+}
+void gameComponents::setBasketballInstance(basketballStateMSharedPtr set)  // sets the value of basketballInstance
+{
+    basketballInstance = set;
+}
+
+courtStateMSharedPtr gameComponents::getCourtInstance()  // retrieves the value of courtInstance
+{
+    return (courtInstance);
+}
+void gameComponents::setCourtInstance(courtStateMSharedPtr set)  // sets the value of courtInstance
+{
+    courtInstance = set;
+}
+
+hoopStateMSharedPtr gameComponents::getHoopInstance()  // retrieves the value of hoopInstance
+{
+    return (hoopInstance);
+}
+void gameComponents::setHoopInstance(hoopStateMSharedPtr set)  // sets the value of hoopInstance
+{
+    hoopInstance = set;
+}
+
+playerEntityMSharedPtr gameComponents::getPlayerInstance()  // retrieves the value of playerInstance
+{
+    return (playerInstance);
+}
+void gameComponents::setPlayerInstance(playerEntityMSharedPtr set)  // sets the value of playerInstance
+{
+    playerInstance = set;
+}
+
+teamStateMSharedPtr gameComponents::getTeamInstance()  // retrieves the value of teamInstance
+{
+    return (teamInstance);
+}
+void gameComponents::setTeamInstance(teamStateMSharedPtr set)  // sets the value of teamInstance
+{
+    teamInstance = set;
+}
+
+jumpBallsSharedPtr gameComponents::getJumpBall()  // retrieves the value of jumpBall
+{
+    return (jumpBall);
+}
+void gameComponents::setJumpBall(jumpBallsSharedPtr set)  // sets the value of jumpBall
+{
+    jumpBall = set;
+}
+
+

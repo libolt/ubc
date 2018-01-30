@@ -23,12 +23,67 @@
 
 #include "utilities/typedefs.h"
 
-class gameData
+class gameComponents
 {
     public:
-        gameData();  // constructor
-        ~gameData();  // destructor
+        gameComponents();  // constructor
+        ~gameComponents();  // destructor
     
+        courtDataVec getCourtDataInstance();  // retrieves the value of courtDataInstance
+        void setCourtDataInstance(courtDataVec set);  // sets the value of courtDataInstance
+
+        inputInGameWorkQueues getInputInGameWorkQueue();  // retrieves the value of inputInGameWorkQueue
+        void setInputInGameWorkQueue(inputInGameWorkQueues set);  // sets the value of inputInGameWorkQueue
+
+        basketballStateMSharedPtr getActiveBasketballInstance();  // retrieves the value of activeBasketballInstance
+        void setActiveBasketballInstance(basketballStateMSharedPtr set);  // sets the value of activeBasketballInstance
+
+        courtStateMSharedPtr getActiveCourtInstance();  // retrieves the value of activeCourtInstance
+        void setActiveCourtInstance(courtStateMSharedPtr set);  // sets the value of activeCourtInstance
+
+        hoopStateMSharedPtr getActiveHoopInstance();  // retrieves the value of activeHoopInstance
+        void setActiveHoopInstance(hoopStateMSharedPtr set);  // sets the value of activeHoopInstance
+
+        teamStateMSharedPtr getActiveTeamInstance();  // retrieves the value of activeTeamInstance
+        void setActiveTeamInstance(teamStateMSharedPtr set);  // sets the value of activeTeamInstance
+               
+//        size_t getActiveBBallInstance();  // retrieves the value of activeBBallInstance
+//        void setActiveBBallInstance(size_t set);  // sets the value of activeBBallInstance
+
+        basketballStateMSharedPtr getBasketballInstance();  // retrieves the value of basketballInstance
+        void setBasketballInstance(basketballStateMSharedPtr set);  // sets the value of basketballInstance
+
+        courtStateMSharedPtr  getCourtInstance();  // retrieves the value of courtInstance
+        void setCourtInstance(courtStateMSharedPtr  set);  // sets the value of courtInstance
+
+        hoopStateMSharedPtr getHoopInstance();  // retrieves the value of hoopInstance
+        void setHoopInstance(hoopStateMSharedPtr set);  // sets the value of hoopInstance
+
+        playerEntityMSharedPtr getPlayerInstance();  // retrieves the value of playerInstance
+        void setPlayerInstance(playerEntityMSharedPtr set);  // sets the value of  playerInstance
+
+        teamStateMSharedPtr getTeamInstance();  // retireves the value of teamInstance
+        void setTeamInstance(teamStateMSharedPtr set);  // sets the value of teamInstance
+
+        jumpBallsSharedPtr getJumpBall();  // retrieves the value of jumpBall
+        void setJumpBall(jumpBallsSharedPtr set);  // sets the value of jumpBall
+
     private:
     
+        courtDataVec courtDataInstance;  // stores the vector the courts loaded from the xml files
+        inputInGameWorkQueues inputInGameWorkQueue;  // queue of input events for game
+
+        basketballStateMSharedPtr activeBasketballInstance;  // creates instance of the basketballState class
+        courtStateMSharedPtr activeCourtInstance;  // stores the active court instance
+        hoopStateMSharedPtr activeHoopInstance;  // creates instance of the hoopState class
+        teamStateMSharedPtr activeTeamInstance;  // stores active team instance
+        
+        basketballStateMSharedPtr basketballInstance;  // creates instance of the basketballs class
+        courtStateMSharedPtr courtInstance;  // stores the court instance
+        hoopStateMSharedPtr hoopInstance;  // creates instance of the hoop class
+        playerEntityMSharedPtr playerInstance;  // stores the map of the players loaded from the xml files
+        teamStateMSharedPtr  teamInstance;  // creates instance of the teamState class
+
+        jumpBallsSharedPtr jumpBall; // instance that is used for jumpBall functions.
+
 };

@@ -50,7 +50,9 @@ class gameStateShared
 
         // getters and setters
            
-        
+        gameTypes getGameType();  // retrieves the value of gameType
+        void setGameType(gameTypes set);  // sets the value of gameType
+
         quarters getQuarter();  // retrieves the value of quarter
         void setQuarter(quarters set);  // sets the value of quarter
 

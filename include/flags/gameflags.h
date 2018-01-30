@@ -32,9 +32,6 @@ class gameFlags
         bool getInitialized();  // retrieves the value of initialized
         void setInitialized(bool set);  // sets the value of initialized
 
-        gameTypes getGameType();  // retrieves the value of gameType
-        void setGameType(gameTypes set);  // sets the value of gameType
-
         sizeTVec getTeamIDS();  // retrieves the value of teamIDS
         void setTeamIDS(sizeTVec set);  // sets the value of teamIDS
         

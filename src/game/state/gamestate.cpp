@@ -76,11 +76,11 @@ gameState::~gameState()  // destructor
 {
 }
 
-gameFlags gameState::getFlag()  // retrieves the value of flag
+gameFlagsSharedPtr gameState::getFlag()  // retrieves the value of flag
 {
     return (flag);
 }
-void gameState::setFlag(gameFlags set);  // sets the value of flag
+void gameState::setFlag(gameFlagsSharedPtr set);  // sets the value of flag
 {
     flag = set;
 }

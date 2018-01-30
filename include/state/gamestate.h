@@ -61,8 +61,8 @@ public:
     gameState(); // constructor
     ~gameState();  // destructor
 
-    gameFlags getFlag();  // retrieves the value of flag
-    void setFlag(gameFlags set);  // sets the value of flag
+    gameFlagsSharedPtr getFlag();  // retrieves the value of flag
+    void setFlag(gameFlagsSharedPtr set);  // sets the value of flag
     
 /*    jumpBallsSharedPtr getJumpBall();  // retrieves the value of jumpBall
     void setJumpBall(jumpBallsSharedPtr set);  // sets the value of jumpBall
@@ -178,7 +178,7 @@ protected:
 
 private:
 
-    gameFlags flag;  // boolean flags object
+    gameFlagsSharedPtr flag;  // boolean flags object
     float gameTimeLeft;  // Indicates the time left in the game
     float quarterTimeLeft;  // incates the time left in the current quarter
 

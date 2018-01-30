@@ -622,7 +622,7 @@ void GUISystem::teamSelectionMenu(renderEngineSharedPtr render)  // displays tea
     {      
         logMsg(func +" teamSelectionMenuCreated");
         exit(0);
-        if (gameInstance->getTeamInstancesCreated())
+        if (gameInstance->getFlag()->getTeamInstancesCreated())
         {
             logMsg(func +" getTeamInstancesCreated");
 //            exit(0);
@@ -656,7 +656,7 @@ void GUISystem::teamSelectionMenu(renderEngineSharedPtr render)  // displays tea
                 logMsg(func +" createTeamInstances");
 
 //                exit(0);
-                gameInstance->setTeamInstancesCreated(true);
+                gameInstance->getFlag()->setTeamInstancesCreated(true);
                 if (teamSelectionMenuDataAdded)
                 {
                     logMsg(func +" Team Selection Menu Data Added already!");
@@ -913,9 +913,9 @@ void GUISystem::teamsSelected()  // processes team selection
     logMsg(func +" teamSelectBox[0]->getIndexSelected() == " +convert->toString(teamSelectBox[0]->getIndexSelected()));
     logMsg(func +" teamID[0] == " +convert->toString(teamID[0]));
 //    exit(0);
-    gameInstance->setTeamIDS(teamID);
+    gameInstance->getFlag()->setTeamIDS(teamID);
     gameInstance->setActiveTeamInstance(activeTeamInstance);
-    gameInstance->setActiveTeamInstancesCreated(true);
+    gameInstance->getFlag()->setActiveTeamInstancesCreated(true);
  
     logMsg(func +" Teams selected");
     
@@ -1481,7 +1481,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     if (gameSetupLineup->checkActivePlayerInstancesCreated(activeTeamInstance))
     {
         logMsg("All active player instances created successfully!");
-        gameInstance->setGameSetupComplete(true);
+        gameInstance->getFlag()->setGameSetupComplete(true);
 
 //        exit(0);
     }
@@ -1539,7 +1539,7 @@ bool GUISystem::checkTeamInstancesCreated()  // Checks if team instances have be
     //gameState *gameS = gameState::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 
-    if (!gameInstance->getActiveTeamInstancesCreated())
+    if (!gameInstance->getFlag()->getActiveTeamInstancesCreated())
     {
 //        base->getGameS()->setActiveTeamInstancesNeedCreated(true);
 /*        logMsg("Creating active team instances!");

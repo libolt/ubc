@@ -1245,7 +1245,7 @@ void GUISystem::playerStartSelected()  // process player start selection
 */
 //    exit(0);
 //    gameS->setTeamStarterID(teamStarterID); // sets the selected starters for both teams in gameState class
-    gameInstance->setTeamStarterID(teamStarterID); // sets the selected starters for both teams in gameState class
+    gameInstance->getFlag()->setTeamStarterID(teamStarterID); // sets the selected starters for both teams in gameState class
     
     sizeTVec activePlayerID;
 //    x = 0;

@@ -21,6 +21,7 @@
 #ifndef _GAMEFLAGS_H_
 #define _GAMEFLAGS_H_
 
+#include "utilities/typedefs.h"
 class gameFlags
 {
     public: 

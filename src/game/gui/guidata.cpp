@@ -64,13 +64,13 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
 //    if (!gameS->getCourtInstancesCreated())
 
 //    exit(0);
-    if (gameInstance->getCourtInstancesCreated())
+    if (gameInstance->getFlag()->getCourtInstancesCreated())
     {
 //        exit(0);
 
         courtInstance = gameInstance->getCourtInstance();
 //        exit(0);
-        gameInstance->setCourtInstancesNeedCreated(true);
+        gameInstance->getFlag()->setCourtInstancesNeedCreated(true);
 //        exit(0);
 
     }
@@ -86,11 +86,11 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
             logMsg(func +" Court Entity modelFileName == " +courtInstance[0]->getEntity()->getModelFileName());
             logMsg(func +" Court Entity Initialized == " +convert->toString(courtInstance[0]->getEntity()->getInitialized()));
             logMsg(func +" Court Initialized == " +convert->toString(courtInstance[0]->getInitialized()));
-            logMsg(func +" Game Initialized == " +convert->toString(gameInstance->getInitialized()));
+            logMsg(func +" Game Initialized == " +convert->toString(gameInstance->getFlag()->getInitialized()));
 
             gameInstance->setCourtInstance(courtInstance);
 //            exit(0);
-            gameInstance->setCourtInstancesCreated(true);
+            gameInstance->getFlag()->setCourtInstancesCreated(true);
             logMsg(func +" Court Instances Created!!");
         }
         else
@@ -143,7 +143,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     playerEntityMSharedPtr gamePlayerInstance;
     playerEntityMSharedPtr playerInstance;
     std::string func = "GUISystem::addPlayerStartSelectionMenuData";
-    sizeTVec teamIDs = gameInstance->getTeamIDS();
+    sizeTVec teamIDs = gameInstance->getFlag()->getTeamIDS();
 
     logMsg(func +" beginning");
     
@@ -326,7 +326,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
         teamInstance = loadTeam->getTInstance();
     }
     gameInstance->setTeamInstance(teamInstance);  // copies data to teamInstance object
-    gameInstance->setTeamInstancesCreated(true);
+    gameInstance->getFlag()->setTeamInstancesCreated(true);
     
     logMsg(func +" GUI ADD TEAM 0 teamInstance.size() == " +convert->toString(teamInstance.size()));
 //    exit(0);
@@ -339,7 +339,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     }
 //    exit(0);
      logMsg(func +" GUI ADD TEAM gameInstance->getTeamInstance()[3]->getID() ID == " +convert->toString(gameInstance->getTeamInstance()[0]->getID()));
-    if (gameInstance->getTeamInstancesCreated())
+    if (gameInstance->getFlag()->getTeamInstancesCreated())
     {        
         logMsg(func +" Woot!");
 //        exit(0);

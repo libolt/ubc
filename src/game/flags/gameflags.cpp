@@ -289,6 +289,15 @@ void gameFlags::setModelsLoaded(bool set)  // sets the value of modelsLoaded
     modelsLoaded = set;
 }
 
+bool gameFlags::getNodesCreated()  // retrieves the value of nodesCreated
+{
+    return(nodesCreated);
+}
+void gameFlags::setNodesCreated(bool set)  // sets the value of nodesCreated
+{
+    nodesCreated = set;
+}
+
 bool gameFlags::getInputReceived()  // retrieves the value of inputReceived
 {
     return (inputReceived);
@@ -298,4 +307,11 @@ void gameFlags::setInputReceived(bool set)  // sets the value of inputReceived
     inputReceived = set;
 }
 
-
+bool gameFlags::getSetupEnvironmentCompleted()  // retrieves the value of setupEnvironmentCompleted
+{
+    returb(setupEnvironmentCompleted);
+}
+void gameFlags::setSetupEnvironmentCompleted(bool set)  // sets the value of setupEnvironmentCompleted
+{
+    setupEnvironmentCompleted = set;
+}

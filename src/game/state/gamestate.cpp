@@ -1020,7 +1020,7 @@ bool gameState::loadModels(renderEngineSharedPtr render)  // loads all game obje
         activeHoopInstance = loadHoop->loadModels(getActiveHoopInstance(), render);  // Creates the hoop instances
         if (activeHoopInstance.size() > 0)
         {
-            getFlag()->getHoopModelLoaded(true);
+            getFlag()->setHoopModelLoaded(true);
             setActiveHoopInstance(activeHoopInstance);
 //            return (true);
         }
@@ -1065,7 +1065,7 @@ bool gameState::createNodes(renderEngineSharedPtr render)  // creates scene node
         logMsg(func + " Basketball Models Not Loaded!");
     }
     
-    if (getFlag()->getCourtModelLoaded)()  // Checks if court model has been loaded
+    if (getFlag()->getCourtModelLoaded())  // Checks if court model has been loaded
     {
         for (auto ACIIT : getActiveCourtInstance())  // loop through active court instances
         {
@@ -1203,7 +1203,7 @@ bool gameState::setupTipOff()  // sets up tip off conditions
     playerPositionsVec jumpBallPlayer = jBall->getJumpBallPlayer();
     logMsg(func +" jumpBallPlayer");
 
-    if (getTeamWithBall() == NOTEAM && getActiveTeamInstancesCreated())
+    if (getTeamWithBall() == NOTEAM && getFlag()->getActiveTeamInstancesCreated())
     {
         if (!jBall->getSetupComplete())
         {
@@ -1273,13 +1273,13 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
    
     logMsg(func +" beginning");
     
-    if (!getBasketballInstanceCreated())
+    if (!getFlag()->getBasketballInstanceCreated())
     {
         basketballStateMSharedPtr basketballInstance = gameSetupBasketball->createBasketballInstances();
         if (basketballInstance.size() > 0)
         {
             logMsg("Basketball Instances Created!");
-            setBasketballInstanceCreated(true);
+            getFlag()->setBasketballInstanceCreated(true);
             setBasketballInstance(basketballInstance);
 
         }
@@ -1292,7 +1292,7 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
 
     //FIXME! Should not be hard coded
     setNumActiveBasketballs(1);
-    if (!getActiveBasketballInstancesCreated())
+    if (!getFlag()->getActiveBasketballInstancesCreated())
     {
         basketballStateMSharedPtr activeBasketballInstance = gameSetupBasketball->createBasketballInstances();
         if (activeBasketballInstance.size() > 0)
@@ -1312,7 +1312,7 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
 
                 }
             }
-            setActiveBasketballInstancesCreated(true);
+            getFlag()->setActiveBasketballInstancesCreated(true);
             setActiveBasketballInstance(activeBasketballInstance);
         }
         else
@@ -1326,13 +1326,13 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
         
     }
 
-    if (!getCourtInstancesCreated())
+    if (!getFlag()->getCourtInstancesCreated())
     {
         courtStateMSharedPtr courtInstance = gameSetupCourt->createCourtInstances();
         if (courtInstance.size() > 0)
         {
             logMsg(func +" Court Instances Created!!");
-            setCourtInstancesCreated(true);
+            getFlag()->setCourtInstancesCreated(true);
             setCourtInstance(courtInstance);
         }
         else
@@ -1341,7 +1341,7 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
             exit(0);
         }
     }
-    if (!getActiveCourtInstancesCreated())
+    if (!getFlag()->getActiveCourtInstancesCreated())
     {
         courtStateMSharedPtr courtInstance = getCourtInstance();
         courtStateMSharedPtr activeCourtInstance;
@@ -1364,7 +1364,7 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
 
                 }
             }
-            setActiveCourtInstancesCreated(true);
+            getFlag()->setActiveCourtInstancesCreated(true);
             setActiveCourtInstance(activeCourtInstance);
         }
         else
@@ -1378,13 +1378,13 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
 
     }
     
-    if (!getHoopInstancesCreated())
+    if (!getFlag()->getHoopInstancesCreated())
     {
         hoopStateMSharedPtr hoopInstance = gameSetupHoop->createHoopInstances();
         if (hoopInstance.size() > 0)
         {
             logMsg(func +"Hoop Instances Created!");
-            setHoopInstancesCreated(true);
+            getFlag()->setHoopInstancesCreated(true);
             setHoopInstance(hoopInstance);
         }
         else
@@ -1397,7 +1397,7 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
     logMsg(func +" hoop instance size == " +convert->toString(getHoopInstance().size()));
     logMsg(func +" hoop instance name == " +getHoopInstance()[0]->getEntity()->getName());
         
-    if (!getActiveHoopInstancesCreated())
+    if (!getFlag()->getActiveHoopInstancesCreated())
     {
         //FIXME! Should not be hard coded!
         size_t numActiveHoops = 2;
@@ -1436,7 +1436,7 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
             logMsg(func +" Unable to create Active Hoop Instances!");
             exit(0);
         }
-        setActiveHoopInstancesCreated(true);
+        getFlag()->setActiveHoopInstancesCreated(true);
         setActiveHoopInstance(activeHoopInstance);
 
     }
@@ -1449,12 +1449,12 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
     logMsg(func +" active hoop instance name == " +getActiveHoopInstance()[0]->getEntity()->getName());
 
 //    exit(0);
-    if (!modelsLoaded)
+    if (!getFlag()->getModelsLoaded())
     {
 //        exit(0);
         if (loadModels(render))
         {
-            modelsLoaded = true;
+            getFlag()->setModelsLoaded(true);
             
         }
         else
@@ -1466,11 +1466,11 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
     {
 
     }
-    if (!nodesCreated && modelsLoaded)
+    if (!getFlag()->getNodesCreated() && getFlag()->getModelsLoaded())
     {
         if (createNodes(render))
         {
-            nodesCreated = true;
+            getFlag()->setNodesCreated(true);
         }
         else
         {
@@ -1494,7 +1494,7 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
 //        if(createTeamInstances())  // creates the team instances
 //        {
             logMsg(func +" TIC!");
-            setTeamInstancesCreated(true);
+            getFlag()->setTeamInstancesCreated(true);
 //            assignHoopToTeams();  // assigns proper hoop to the teams that were created.
 //        }
     }
@@ -1507,12 +1507,12 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
 /// FIXME    physEngine.setupState();  // sets up the Physics Engine state
 //    exit(0);
     
-    if (!getActiveTeamInstancesSetup())
+    if (!getFlag()->getActiveTeamInstancesSetup())
     {
         if (setupActiveTeamInstances())
         {
             logMsg(func +" Team instances setup!");
-            setActiveTeamInstancesSetup(true);
+            getFlag()->setActiveTeamInstancesSetup(true);
         }
         else
         {
@@ -1561,24 +1561,24 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
     logMsg(func +" dahdah");
     
 
-    if (!setupEnvironmentCompleted)  // checks if environment has been setup
+    if (!getFlag()->getSetupEnvironmentCompleted())  // checks if environment has been setup
     {
         logMsg(func +" !setupEnvironmentCompleted");
         if(setupEnvironment())  // sets up environment
         {
             logMsg(func +" Environment setup successfully!");
-            setupEnvironmentCompleted = true;
+            getFlag()->setSetupEnvironmentCompleted(true);
         }
     }
 //    loads("../../data/players/players.xml");
     
-    if (!tipOffSetupComplete)
+    if (!getFlag()->getTipOffSetupComplete())
     {
         logMsg(func +" !tipOffSetupComplete");
         if (setupTipOff())
         {
             logMsg(func + " Tip Off Setup Complete!");
-            tipOffSetupComplete = true;  // sets up tip off conditions
+            getFlag()->setTipOffSetupComplete(true);  // sets up tip off conditions
         }
     }
     
@@ -1599,7 +1599,7 @@ bool gameState::updateState()  // updates the game state
 
     logMsg(func +" beginning");
    
-    if (inputReceived)
+    if (getFlag()->getInputReceived())
     {
         logMsg(func +" received input!");
         for (auto IIGWQ : getInputInGameWorkQueue())
@@ -1636,7 +1636,7 @@ bool gameState::updateState()  // updates the game state
     }
     logMsg(func +" blah");
 //    exit(0);
-    if (getGameSetupComplete())
+    if (getFlag()->getGameSetupComplete())
     {
 
         logMsg(func + " Game Setup Complete!");
@@ -1681,11 +1681,11 @@ bool gameState::updateState()  // updates the game state
             
         }
 //        exit(0);
-        if (!getTipOffComplete())  // calls tip off execution
+        if (!getFlag()->getTipOffComplete())  // calls tip off execution
         {
             if (executeTipOff())
             {
-                setTipOffComplete(true);
+                getFlag()->setTipOffComplete(true);
 //                exit(0);
             }
             else
@@ -1788,7 +1788,7 @@ bool gameState::updateActiveTeamInstances()  // updates all active team instance
     
     for (auto ATIIT : activeTeamInstance)
     {
-        ATIIT.second->updateState(getJumpBall(), getCourtInstance(), getTeamStarterID());
+        ATIIT.second->updateState(getJumpBall(), getCourtInstance(), getTeamStarterID(), getFlag());
         exit(0);
     }
 //FIXME! Needs fixed for playerStateMachine refactoring
@@ -2270,7 +2270,7 @@ bool gameState::checkifJumpBallCreated()  // checks if jumpBall object has been 
 
     logMsg(func +" beginning");
 
-    if (getJumpBallCreated())
+    if (getFlag()->getJumpBallCreated())
     {
         return (true);
     }
@@ -2278,7 +2278,7 @@ bool gameState::checkifJumpBallCreated()  // checks if jumpBall object has been 
     {
         sharedPtr<jumpBalls> tempJumpBall(new jumpBalls);
         setJumpBall(tempJumpBall);
-        setJumpBallCreated(true);
+        getFlag()->setJumpBallCreated(true);
         if (tempJumpBall != nullptr)
         {
             return (true);

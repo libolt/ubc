@@ -117,11 +117,17 @@ class gameFlags
         bool getModelsLoaded();  // retrieves the value of modelsLoaded
         void setModelsLoaded(bool set);  // sets the value of modelsLoaded
 
+        bool getNodesCreated();  // retrieves the value of nodesCreated
+        void setNodesCreated(bool set);  // sets the value of nodesCreated
+
         bool getTipOffSetupComplete();  // retrieves the value of tipOffSetupComplete
         void setTipOffSetupComplete(bool set);  // sets the value of tipOffSetupComplete
 
         bool getInputReceived();  // retrieves the value of inputReceived
         void setInputReceived(bool set);  // sets the value of inputReceived
+
+        bool getSetupEnvironmentCompleted();  // retrieves the value of setupEnvironmentCompleted
+        void setSetupEnvironmentCompleted(bool set);  // sets the value of setupEnvironmentCompleted
 
     private:
     

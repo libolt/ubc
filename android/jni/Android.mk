@@ -298,9 +298,9 @@ LOCAL_SRC_FILES := \
                    $(subst $(LOCAL_PATH)/,, \
                        $(wildcard $(LOCAL_PATH)/../../src/game/gamesetup/*.cpp)) \
                    $(subst $(LOCAL_PATH)/,, \
-                       $(wildcard $(LOCAL_PATH)/../../src/game/gameflags/*.cpp)) \
+                       $(wildcard $(LOCAL_PATH)/../../src/game/flags/*.cpp)) \
                    $(subst $(LOCAL_PATH)/,, \
-                       $(wildcard $(LOCAL_PATH)/../../src/game/gamedata/*.cpp)) \
+                       $(wildcard $(LOCAL_PATH)/../../src/game/components/*.cpp)) \
 
 LOCAL_LDLIBS	:= -landroid -lc -lm -ldl -llog -lEGL -lGLESv1_CM -lGLESv2 
 

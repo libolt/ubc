@@ -19,6 +19,8 @@
  ***************************************************************************/
 
 #include "utilities/conversion.h"
+#include "components/gamecomponents.h"
+#include "data/gamedata.h"
 #include "engine/gameengine.h"
 #include "load/loadoffenseplays.h"
 #include "utilities/logging.h"
@@ -221,7 +223,7 @@ void offenseState::updateState(teamTypes teamType)  // updates the state of the 
 {
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
-    teamStateMSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
+    teamStateMSharedPtr activeTeamInstance = gameS->getComponent()->getActiveTeamInstance();
 //TS    playerStateVecSharedPtr activePlayerInstance = activeTeamInstance[teamType]->getActivePlayerInstance();
 
     if (!offenseSetup)
@@ -233,7 +235,7 @@ void offenseState::updateState(teamTypes teamType)  // updates the state of the 
         executeOffense();
     }
 //TS    activeTeamInstance[teamType]->setActivePlayerInstance(activePlayerInstance);
-    gameS->setActiveTeamInstance(activeTeamInstance);
+    gameS->getComponent()->setActiveTeamInstance(activeTeamInstance);
 }
 
 void offenseState::loadPlays()  // loads offense plays from file
@@ -257,7 +259,7 @@ void offenseState::setupOffense()  // sets up box offense
 //    sharedPtr<gameState> gameS = gameState::Instance();
 
 //    quarters currentQuarter = gameS->getQuarter();  // gets the current quarter the game is in.
-    quarters currentQuarter = gameS->getQuarter();
+    quarters currentQuarter = gameS->getData()->getQuarter();
 
     switch (currentQuarter)
     {
@@ -351,7 +353,7 @@ void offenseState::setupOffense()  // sets up box offense
     
     // checks for a Y Offset so that players dont fall through the court
   
-    float yOffset = gameS->getYOffset();
+    float yOffset = gameS->getData()->getYOffset();
     for (size_t y=0;y < startPositions.size(); ++y)
     {
         startPositions[y].y = yOffset;
@@ -372,9 +374,9 @@ void offenseState::executeOffense() // executes box offense
 {
     conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
-    teamTypes teamWithBall = gameS->getTeamWithBall();
+    teamTypes teamWithBall = gameS->getData()->getTeamWithBall();
 
-    teamStateMSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
+    teamStateMSharedPtr activeTeamInstance = gameS->getComponent()->getActiveTeamInstance();
 /*TS    playerStateVecSharedPtr activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
 
     size_t playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();

@@ -374,7 +374,7 @@ void teamState::setupState()  // sets up the state of the object
     logMsg(func +" end");
 
 }
-void teamState::updateState(jumpBallsSharedPtr jumpBall, courtStateMSharedPtr courtInstance, gameFlagsSharedPtr gameFlag, gameDataSharedPtr gameData)  // updates the state of the object
+void teamState::updateState(gameComponentsSharedPtr gameComponent, gameFlagsSharedPtr gameFlag, gameDataSharedPtr gameData)  // updates the state of the object
 {
 
     //conversion *convert = conversion::Instance();
@@ -420,7 +420,7 @@ void teamState::updateState(jumpBallsSharedPtr jumpBall, courtStateMSharedPtr co
         if (!playerStartPositionsSet)
         {
             logMsg(func +" Player Start Positions Not Set!");
-            if (setPlayerStartPositions(courtInstance, teamStarterID))  // sets starting positions for the players
+            if (setPlayerStartPositions(gameComponent->getCourtInstance(), data->getTeamStarterID()))  // sets starting positions for the players
             {
                 playerStartPositionsSet = true;
                 logMsg("Player Start Positions set!");
@@ -469,7 +469,7 @@ void teamState::updateState(jumpBallsSharedPtr jumpBall, courtStateMSharedPtr co
     if (gameFlag->getBasketballInstanceCreated() && gameFlag->getPlayerInstanceCreated())
     {
         
-        basketballStateMSharedPtr activeBasketballInstance = gameInstance->getActiveBasketballInstance();
+        basketballStateMSharedPtr activeBasketballInstance = gameComponent->getActiveBasketballInstance();
 //      exit(0);
         // checks whether to execute offense or defense logic
         if (offense == true && defense == false)

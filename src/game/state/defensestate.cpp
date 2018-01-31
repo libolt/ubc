@@ -19,10 +19,12 @@
  ***************************************************************************/
 
 #include "utilities/conversion.h"
+#include "utilities/logging.h"
+#include "components/gamecomponents.h"
+#include "data/gamedata.h"
 #include "state/defensestate.h"
 #include "state/gamestate.h"
 #include "state/playerstate.h"
-#include "utilities/logging.h"
 #include "state/teamstate.h"
 
 defenseState::defenseState() // constructor
@@ -86,9 +88,9 @@ void defenseState::updateState(teamTypes teamOnDefense) // updates the state of 
 {
     conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
-    teamTypes teamWithBall = gameS->getTeamWithBall();
+    teamTypes teamWithBall = gameS->getData()->getTeamWithBall();
 
-    teamStateMSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
+    teamStateMSharedPtr activeTeamInstance = gameS->getComponent()->getActiveTeamInstance();
 //TS    playerStateVecSharedPtr playerDInstance = activeTeamInstance[teamOnDefense]->getActivePlayerInstance();
 //TS    playerStateVecSharedPtr playerOInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
 //TS    sizeTVec activeDID = activeTeamInstance[teamOnDefense]->getActivePlayerID();
@@ -505,6 +507,6 @@ TS*/
     }
 
 //TS    activeTeamInstance[teamOnDefense]->setActivePlayerInstance(playerDInstance);
-    gameS->setActiveTeamInstance(activeTeamInstance);
+    gameS->getComponent()->setActiveTeamInstance(activeTeamInstance);
 
 }

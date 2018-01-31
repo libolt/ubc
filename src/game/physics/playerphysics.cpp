@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "utilities/conversion.h"
+#include "components/gamecomponents.h"
 #include "state/gamestate.h"
 /*#include "state/basketballstate.h"
 #include "state/courtstate.h"
@@ -200,9 +201,9 @@ void playerPhysics::updatePosition()  // updates the position of player objecgts
 //    teamTypes teamWithBall = getGameS()->getTeamWithBall();
     int playerWithBall;
 
-    teamStateMSharedPtr activeTeamInstance = getGameS()->getActiveTeamInstance();
+    teamStateMSharedPtr activeTeamInstance = getGameS()->getComponent()->getActiveTeamInstance();
     playerEntityVecMSharedPtr activePlayerInstance;
-    basketballStateMSharedPtr basketballInstance = getGameS()->getBasketballInstance();
+    basketballStateMSharedPtr basketballInstance = getGameS()->getComponent()->getBasketballInstance();
 
     // checks to see if player positions need updated
     size_t z = 0;
@@ -250,7 +251,7 @@ void playerPhysics::updatePosition()  // updates the position of player objecgts
 TS*/
     ++z;
     }
-    getGameS()->setActiveTeamInstance(activeTeamInstance);
+    getGameS()->getComponent()->setActiveTeamInstance(activeTeamInstance);
 }
 
 bool playerPhysics::jump(teamTypes teamType, int playerID)  // calculates and executes player jumping in the air
@@ -258,8 +259,8 @@ bool playerPhysics::jump(teamTypes teamType, int playerID)  // calculates and ex
     conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 
-    courtStateMSharedPtr  courtInstance = getGameS()->getCourtInstance();
-    teamStateMSharedPtr activeTeamInstance = getGameS()->getActiveTeamInstance();
+    courtStateMSharedPtr  courtInstance = getGameS()->getComponent()->getCourtInstance();
+    teamStateMSharedPtr activeTeamInstance = getGameS()->getComponent()->getActiveTeamInstance();
 /*TS    playerStateVecSharedPtr activePlayerInstance = getActiveTeamInstance()[teamType]->getActivePlayerInstance();
     sizeTVec activePlayerID = activeTeamInstance[teamType]->getActivePlayerID();
     btVector3 playerJumpBeginPos;

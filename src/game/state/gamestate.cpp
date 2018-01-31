@@ -23,6 +23,8 @@
 #include "engine/networkengine.h"
 #include "ai/ai.h"
 #include "ai/basketballsteer.h"
+#include "data/gamedata.h"
+#include "components/gamecomponents.h"
 #include "entity/playerentity.h"
 #include "utilities/conversion.h"
 #include "entity/basketballentity.h"
@@ -47,6 +49,7 @@
 #include "load/loadplayers.h"
 #include "load/loadteams.h"
 #include "utilities/logging.h"
+#include "utilities/typedefs.h"
 #include "network/networkplayerstateobject.h"
 #include "data/basketballdata.h"
 #include "data/courtdata.h"
@@ -73,7 +76,7 @@ gameComponentsSharedPtr gameState::getComponent()  // retrieves the value of com
 {
     return (component);
 }
-void gameState::setComponent(gameComponentSharedPtr set)  // sets the value of component
+void gameState::setComponent(gameComponentsSharedPtr set)  // sets the value of component
 {
     component = set;
 }
@@ -612,9 +615,9 @@ bool gameState::createInstances()  // creates object instances
 bool gameState::setupActiveTeamInstances()  // sets up the active team instances
 {
     teamStateSharedPtr tInstance;
-    teamStateMSharedPtr activeTeamInstance = getActiveTeamInstance();
-    teamStateMSharedPtr teamInstance = getTeamInstance();
-    sizeTVec teamIDS = getTeamIDS();
+    teamStateMSharedPtr activeTeamInstance = component->getActiveTeamInstance();
+    teamStateMSharedPtr teamInstance = component->getTeamInstance();
+    sizeTVec teamIDS = data->getTeamIDS();
     std::string func = "gameState::setupActiveTeamInstances()";
 
     logMsg(func +" beginning");
@@ -637,7 +640,7 @@ bool gameState::setupActiveTeamInstances()  // sets up the active team instances
     activeTeamInstance[0]->setupState();
     activeTeamInstance[1]->setupState();
 
-    setActiveTeamInstance(activeTeamInstance);
+    component->setActiveTeamInstance(activeTeamInstance);
     std::vector<bool> teamActivePlayersChanged;
     // hard coded.  Shood be changed
 
@@ -645,7 +648,7 @@ bool gameState::setupActiveTeamInstances()  // sets up the active team instances
     {
         teamActivePlayersChanged.push_back(false);
     }
-    setTeamActivePlayersChanged(teamActivePlayersChanged);
+    data->setTeamActivePlayersChanged(teamActivePlayersChanged);
     logMsg(func +" end");
     return (true);
 }
@@ -938,11 +941,11 @@ bool gameState::loadModels(renderEngineSharedPtr render)  // loads all game obje
         loadBasketballsSharedPtr loadBasketball(new loadBasketballs);
         basketballStateMSharedPtr activeBasketballInstance;
         logMsg("Loading basketball Model!");
-        activeBasketballInstance = loadBasketball->loadModels(getActiveBasketballInstance(), render);  // Loads the basketball model
+        activeBasketballInstance = loadBasketball->loadModels(component->getActiveBasketballInstance(), render);  // Loads the basketball model
         if (activeBasketballInstance.size() >0)
         {          
             getFlag()->setBasketballModelLoaded(true);
-            setActiveBasketballInstance(activeBasketballInstance);          
+            component->setActiveBasketballInstance(activeBasketballInstance);          
 //            return (true);
         }
         else
@@ -962,11 +965,11 @@ bool gameState::loadModels(renderEngineSharedPtr render)  // loads all game obje
         courtStateMSharedPtr activeCourtInstance;
         
         logMsg(func +" Loading court model!");
-        activeCourtInstance = loadCourt->loadModels(getActiveCourtInstance(), render);  // load the court model
+        activeCourtInstance = loadCourt->loadModels(component->getActiveCourtInstance(), render);  // load the court model
         if (activeCourtInstance.size() > 0)
         {
             getFlag()->setCourtModelLoaded(true);
-            setActiveCourtInstance(activeCourtInstance);
+            component->setActiveCourtInstance(activeCourtInstance);
 //            return (true);
         }
         else
@@ -983,11 +986,11 @@ bool gameState::loadModels(renderEngineSharedPtr render)  // loads all game obje
         hoopStateMSharedPtr activeHoopInstance;
         
         logMsg(func +" Loading hoop model(s)!");
-        activeHoopInstance = loadHoop->loadModels(getActiveHoopInstance(), render);  // Creates the hoop instances
+        activeHoopInstance = loadHoop->loadModels(component->getActiveHoopInstance(), render);  // Creates the hoop instances
         if (activeHoopInstance.size() > 0)
         {
             getFlag()->setHoopModelLoaded(true);
-            setActiveHoopInstance(activeHoopInstance);
+            component->setActiveHoopInstance(activeHoopInstance);
 //            return (true);
         }
         else
@@ -1017,7 +1020,7 @@ bool gameState::createNodes(renderEngineSharedPtr render)  // creates scene node
 
     if (getFlag()->getBasketballModelLoaded())  // Checks if basketball model has been loaded
     {
-        for (auto ABIIT : getActiveBasketballInstance())  // loop through active basketball instances
+        for (auto ABIIT : component->getActiveBasketballInstance())  // loop through active basketball instances
         {
             activeModel = ABIIT.second->getEntity()->getModel();
             activeEntityName = ABIIT.second->getEntity()->getName();
@@ -1033,7 +1036,7 @@ bool gameState::createNodes(renderEngineSharedPtr render)  // creates scene node
     
     if (getFlag()->getCourtModelLoaded())  // Checks if court model has been loaded
     {
-        for (auto ACIIT : getActiveCourtInstance())  // loop through active court instances
+        for (auto ACIIT : component->getActiveCourtInstance())  // loop through active court instances
         {
             activeModel = ACIIT.second->getEntity()->getModel();
             activeEntityName = ACIIT.second->getEntity()->getName();
@@ -1049,7 +1052,7 @@ bool gameState::createNodes(renderEngineSharedPtr render)  // creates scene node
     
     if (getFlag()->getHoopModelLoaded())  // Checks if hoop model has been loaded
     {
-        for (auto AHIIT : getActiveHoopInstance())  // loop through active hoop instances
+        for (auto AHIIT : component->getActiveHoopInstance())  // loop through active hoop instances
         {
             activeModel = AHIIT.second->getEntity()->getModel();
             activeEntityName = AHIIT.second->getEntity()->getModel()->getName();
@@ -1076,7 +1079,7 @@ void gameState::setBasketballStartPositions()  // sets the initial coordinates f
     conversionSharedPtr convert = conversion::Instance();
 //    size_t activeBBallInstance = getActiveBBallInstance();
 //    basketballStateVecSharedPtr basketballInstance = getBasketballInstance();
-    basketballStateMSharedPtr activeBasketballInstance = getActiveBasketballInstance();
+    basketballStateMSharedPtr activeBasketballInstance = component->getActiveBasketballInstance();
     std::string func = "gameState::setBasketballStartPositions()";
     
     logMsg(func +" beginning");
@@ -1094,14 +1097,14 @@ void gameState::setBasketballStartPositions()  // sets the initial coordinates f
 //    exit(0);
 #endif
     }
-    setActiveBasketballInstance(activeBasketballInstance);
+    component->setActiveBasketballInstance(activeBasketballInstance);
     logMsg(func +" end");
 }
 
 void gameState::setCourtStartPositions()  // sets the initial coordinates for the basketball(s)
 {
 
-    courtStateMSharedPtr courtInstance = getCourtInstance();
+    courtStateMSharedPtr courtInstance = component->getCourtInstance();
     std::string func = "gameState::setCourtStartPositions()";
 
     logMsg(func +" beginning");
@@ -1115,14 +1118,14 @@ void gameState::setCourtStartPositions()  // sets the initial coordinates for th
     courtInstance[0]->getEntity()->setNodePosition(Ogre::Vector3(0.0f,-27.5f,360.0f));
 #endif
 
-    setCourtInstance(courtInstance);
+    component->setCourtInstance(courtInstance);
     logMsg(func +" end");
 }
 
 void gameState::setHoopStartPositions()  // sets the initial coordinates for the basketball(s)
 {
 
-    hoopStateMSharedPtr activeHoopInstance = getActiveHoopInstance();
+    hoopStateMSharedPtr activeHoopInstance = component->getActiveHoopInstance();
     std::string func = "gameState::setHoopStartPositions()";
 
     logMsg(func +" beginning");
@@ -1140,7 +1143,7 @@ void gameState::setHoopStartPositions()  // sets the initial coordinates for the
     Ogre::Quaternion hoop1Rotation(Ogre::Degree(90), Ogre::Vector3::UNIT_Y);
     activeHoopInstance[1]->getEntity()->getNode()->rotate(hoop1Rotation);
 
-    setActiveHoopInstance(activeHoopInstance);
+    component->setActiveHoopInstance(activeHoopInstance);
     logMsg(func +" end");
 }
 
@@ -1154,7 +1157,7 @@ bool gameState::setupTipOff()  // sets up tip off conditions
 
     if (checkifJumpBallCreated())
     {
-        jBall = getJumpBall();
+        jBall = component->getJumpBall();
     }
     else
     {
@@ -1169,7 +1172,7 @@ bool gameState::setupTipOff()  // sets up tip off conditions
     playerPositionsVec jumpBallPlayer = jBall->getJumpBallPlayer();
     logMsg(func +" jumpBallPlayer");
 
-    if (getTeamWithBall() == NOTEAM && getFlag()->getActiveTeamInstancesCreated())
+    if (data->getTeamWithBall() == NOTEAM && flag->getActiveTeamInstancesCreated())
     {
         if (!jBall->getSetupComplete())
         {
@@ -1180,7 +1183,7 @@ bool gameState::setupTipOff()  // sets up tip off conditions
             jBall->setJumpBallPlayer(jumpBallPlayer);
             jBall->setSetupComplete(true);
             jBall->setExecuteJumpBall(true);
-            setJumpBall(jBall);
+            component->setJumpBall(jBall);
             return (true);
         }
         else
@@ -1196,13 +1199,13 @@ bool gameState::setupTipOff()  // sets up tip off conditions
 
 bool gameState::executeTipOff()  // executes tip off
 {
-    basketballStateMSharedPtr activeBasketballInstance = getActiveBasketballInstance();
+    basketballStateMSharedPtr activeBasketballInstance = component->getActiveBasketballInstance();
     std::string func = "gameState::executeTipOff()";
 
     logMsg(func +" beginning");
 
     
-    if (!getJumpBall()->updateState(getTeamWithBall(), activeBasketballInstance, getActiveTeamInstance(),getQuarter()))
+    if (!component->getJumpBall()->updateState(data->getTeamWithBall(), activeBasketballInstance, component->getActiveTeamInstance(), data->getQuarter()))
     {
         logMsg("tipOff not complete!");
 //        exit(0);
@@ -1246,7 +1249,7 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
         {
             logMsg("Basketball Instances Created!");
             getFlag()->setBasketballInstanceCreated(true);
-            setBasketballInstance(basketballInstance);
+            component->setBasketballInstance(basketballInstance);
 
         }
         else
@@ -1257,7 +1260,7 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
     }
 
     //FIXME! Should not be hard coded
-    setNumActiveBasketballs(1);
+    data->setNumActiveBasketballs(1);
     if (!getFlag()->getActiveBasketballInstancesCreated())
     {
         basketballStateMSharedPtr activeBasketballInstance = gameSetupBasketball->createBasketballInstances();
@@ -1279,7 +1282,7 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
                 }
             }
             getFlag()->setActiveBasketballInstancesCreated(true);
-            setActiveBasketballInstance(activeBasketballInstance);
+            component->setActiveBasketballInstance(activeBasketballInstance);
         }
         else
         {
@@ -1299,7 +1302,7 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
         {
             logMsg(func +" Court Instances Created!!");
             getFlag()->setCourtInstancesCreated(true);
-            setCourtInstance(courtInstance);
+            component->setCourtInstance(courtInstance);
         }
         else
         {
@@ -1309,7 +1312,7 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
     }
     if (!getFlag()->getActiveCourtInstancesCreated())
     {
-        courtStateMSharedPtr courtInstance = getCourtInstance();
+        courtStateMSharedPtr courtInstance = component->getCourtInstance();
         courtStateMSharedPtr activeCourtInstance;
         activeCourtInstance = gameSetupCourt->createActiveCourtInstances(courtInstance);
         if (activeCourtInstance.size() > 0)
@@ -1331,7 +1334,7 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
                 }
             }
             getFlag()->setActiveCourtInstancesCreated(true);
-            setActiveCourtInstance(activeCourtInstance);
+            component->setActiveCourtInstance(activeCourtInstance);
         }
         else
         {
@@ -1351,7 +1354,7 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
         {
             logMsg(func +"Hoop Instances Created!");
             getFlag()->setHoopInstancesCreated(true);
-            setHoopInstance(hoopInstance);
+            component->setHoopInstance(hoopInstance);
         }
         else
         {
@@ -1360,14 +1363,14 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
         }
 
     }
-    logMsg(func +" hoop instance size == " +convert->toString(getHoopInstance().size()));
-    logMsg(func +" hoop instance name == " +getHoopInstance()[0]->getEntity()->getName());
+    logMsg(func +" hoop instance size == " +convert->toString(component->getHoopInstance().size()));
+    logMsg(func +" hoop instance name == " +component->getHoopInstance()[0]->getEntity()->getName());
         
     if (!getFlag()->getActiveHoopInstancesCreated())
     {
         //FIXME! Should not be hard coded!
         size_t numActiveHoops = 2;
-        hoopStateMSharedPtr hoopInstance = getHoopInstance();
+        hoopStateMSharedPtr hoopInstance = component->getHoopInstance();
         hoopStateMSharedPtr activeHoopInstance = gameSetupHoop->createActiveHoopInstances(hoopInstance, numActiveHoops);
         logMsg(func +" active hoop instance size == " +convert->toString(activeHoopInstance.size()));
         logMsg(func +" active hoop instance name == " +activeHoopInstance[0]->getEntity()->getName());
@@ -1403,7 +1406,7 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
             exit(0);
         }
         getFlag()->setActiveHoopInstancesCreated(true);
-        setActiveHoopInstance(activeHoopInstance);
+        component->setActiveHoopInstance(activeHoopInstance);
 
     }
     else
@@ -1411,8 +1414,8 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
         
     }
     
-    logMsg(func +" active hoop instance size == " +convert->toString(getActiveHoopInstance().size()));
-    logMsg(func +" active hoop instance name == " +getActiveHoopInstance()[0]->getEntity()->getName());
+    logMsg(func +" active hoop instance size == " +convert->toString(component->getActiveHoopInstance().size()));
+    logMsg(func +" active hoop instance name == " +component->getActiveHoopInstance()[0]->getEntity()->getName());
 
 //    exit(0);
     if (!getFlag()->getModelsLoaded())
@@ -1453,8 +1456,8 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
 
 //    logMsg("court y == " +convert->toString(getCourtInstance()[0].getNode()->getPosition().y));
 //    exit(0);
-    setTeamInstance(gameSetupTeam->createTeamInstances());  // creates team instances
-    if (getTeamInstance().size() > 0)
+    component->setTeamInstance(gameSetupTeam->createTeamInstances());  // creates team instances
+    if (component->getTeamInstance().size() > 0)
     {
         
 //        if(createTeamInstances())  // creates the team instances
@@ -1466,7 +1469,7 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
     }
 
     // sets the quarter being played to the first one.
-    setQuarter(FIRST);
+    data->setQuarter(FIRST);
 //    basketballInstance[activeBBallInstance].getNode()->setPosition(1.4f,5.0f,366.0f);
 
 
@@ -1491,7 +1494,7 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
         
     }
     
-    for (auto ATIIT : getActiveTeamInstance())
+    for (auto ATIIT : component->getActiveTeamInstance())
     {
         if (ATIIT.second->getActivePlayerInstancesCreated())
         {
@@ -1559,7 +1562,7 @@ bool gameState::updateState()  // updates the game state
     AISystemSharedPtr ai = AISystem::Instance();
     timing timer;  //BASEREMOVAL = getBase()->getGameE()->getTimer();
     Ogre::Vector3 playerPos;
-    basketballStateMSharedPtr activeBasketballInstance = getActiveBasketballInstance();
+    basketballStateMSharedPtr activeBasketballInstance = component->getActiveBasketballInstance();
 //    teamStateMSharedPtr activeTeamInstance = getActiveTeamInstance();
     std::string func = "gameState::updateState()";
 
@@ -1568,7 +1571,7 @@ bool gameState::updateState()  // updates the game state
     if (getFlag()->getInputReceived())
     {
         logMsg(func +" received input!");
-        for (auto IIGWQ : getInputInGameWorkQueue())
+        for (auto IIGWQ : component->getInputInGameWorkQueue())
         {
             logMsg (func +" INQ = " +convert->toString(IIGWQ));
         }
@@ -1590,13 +1593,13 @@ bool gameState::updateState()  // updates the game state
         ABIIT.second->updateState();
         ABIIT.second->setPlayer(5);
     }
-    
-    setActiveBasketballInstance(activeBasketballInstance);
-    if (getGameType() == SINGLE)
+  
+    component->setActiveBasketballInstance(activeBasketballInstance);
+    if (data->getGameType() == SINGLE)
     {
         logMsg(func +" gameType == SINGLE");
     }
-    else if (getGameType() == NOGAME)
+    else if (data->getGameType() == NOGAME)
     {
         logMsg(func +" gameType == NOGAME");
     }
@@ -1619,9 +1622,9 @@ bool gameState::updateState()  // updates the game state
  */     
         logMsg(func +" network events processed");
 
-        logMsg(func +" getActiveTeamInstance().size() == " +convert->toString(getActiveTeamInstance().size()));
+        logMsg(func +" getActiveTeamInstance().size() == " +convert->toString(component->getActiveTeamInstance().size()));
 
-        teamStateMSharedPtr activeTeamInstance = getActiveTeamInstance();
+        teamStateMSharedPtr activeTeamInstance = component->getActiveTeamInstance();
         if (activeTeamInstance.size() > 0)
         {
             logMsg(func + " activeTeamInstance.size() == " +convert->toString(activeTeamInstance.size()));
@@ -1742,7 +1745,7 @@ bool gameState::updateState()  // updates the game state
 
 bool gameState::updateActiveTeamInstances()  // updates all active team instances
 {
-    teamStateMSharedPtr activeTeamInstance = getActiveTeamInstance();
+    teamStateMSharedPtr activeTeamInstance = component->getActiveTeamInstance();
     conversionSharedPtr convert = conversion::Instance();
     gameStateSharedPtr gameInstance;
     std::string func = "gameState::updateActiveTeamInstances()";
@@ -1754,7 +1757,7 @@ bool gameState::updateActiveTeamInstances()  // updates all active team instance
     
     for (auto ATIIT : activeTeamInstance)
     {
-        ATIIT.second->updateState(getJumpBall(), getCourtInstance(), getTeamStarterID(), getFlag());
+        ATIIT.second->updateState(component->getJumpBall(), component->getCourtInstance(), flag, data);
         exit(0);
     }
 //FIXME! Needs fixed for playerStateMachine refactoring
@@ -1852,12 +1855,12 @@ bool gameState::updateActiveTeamInstances()  // updates all active team instance
 
 bool gameState::updatePlayerCollisionObjects()  // updates the player collision objects for a team instance
 {
-    teamStateMSharedPtr activeTeamInstance = getActiveTeamInstance();
+    teamStateMSharedPtr activeTeamInstance = component->getActiveTeamInstance();
     conversionSharedPtr convert = conversion::Instance();
  
     std::unordered_map<std::string, btRigidBodySharedPtr> collisionBodies;  // physical bodies to test for collisions with players physBody objects
 
-    std::vector<bool> teamActivePlayersChanged = getTeamActivePlayersChanged();
+    std::vector<bool> teamActivePlayersChanged = data->getTeamActivePlayersChanged();
     size_t teamNumber = 0;
     std::string func = "gameState::updatePlayerCollisionObjects()";
 
@@ -2243,7 +2246,7 @@ bool gameState::checkifJumpBallCreated()  // checks if jumpBall object has been 
     else
     {
         sharedPtr<jumpBalls> tempJumpBall(new jumpBalls);
-        setJumpBall(tempJumpBall);
+        component->setJumpBall(tempJumpBall);
         getFlag()->setJumpBallCreated(true);
         if (tempJumpBall != nullptr)
         {
@@ -2270,7 +2273,7 @@ void gameState::updateDirectionsAndMovements()
     logMsg(func +" beginning");
 
 
-    if (getTeamWithBall() >= 0) // && playerHasBasketball)
+    if (data->getTeamWithBall() >= 0) // && playerHasBasketball)
     {
 //      logMsg("teamWithBall ios " +convert->toString(teamWithBall));
 //      logMsg("playetWithBall is " +convert->toString(activeTeamInstance[teamWithBall].getPlayerWithBall()));

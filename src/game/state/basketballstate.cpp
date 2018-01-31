@@ -20,6 +20,8 @@
 
 #include "utilities/conversion.h"
 #include "ai/basketballsteer.h"
+#include "components/gamecomponents.h"
+#include "data/gamedata.h"
 #include "state/basketballstate.h"
 #include "state/gamestate.h"
 #include "state/playerstate.h"
@@ -549,8 +551,8 @@ void basketballState::updateMovement()  // updates the basketball(s) movements
 {
     conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
-    teamStateMSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
-    size_t teamWithBall = gameS->getTeamWithBall();
+    teamStateMSharedPtr activeTeamInstance = gameS->getComponent()->getActiveTeamInstance();
+    size_t teamWithBall = gameS->getData()->getTeamWithBall();
 /*TS    playerStateVecSharedPtr activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
     size_t playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();
     size_t playerWithBallID = activeTeamInstance[teamWithBall]->getPlayerWithBallID();
@@ -623,15 +625,15 @@ void basketballState::updateDirection()  // updates basketball direction(s)
     //conversion *convert = conversion::Instance();
     conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
-    teamStateMSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
-    size_t teamWithBall = gameS->getTeamWithBall();
+    teamStateMSharedPtr activeTeamInstance = gameS->getComponent()->getActiveTeamInstance();
+    size_t teamWithBall = gameS->getData()->getTeamWithBall();
 /*TS    playerStateVecSharedPtr activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
     sizeTVec activePlayerID = activeTeamInstance[teamWithBall]->getActivePlayerID();
     
     size_t playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();
     size_t playerWithBallID = activeTeamInstance[teamWithBall]->getPlayerWithBallID();
 TS*/
-    jumpBallsSharedPtr jumpBall = gameS->getJumpBall();
+    jumpBallsSharedPtr jumpBall = gameS->getComponent()->getJumpBall();
 
 //TS    logMsg("directplayerwithballInstance == " +convert->toString(playerWithBallInstance));
     bool tipOffComplete = gameS->getFlag()->getTipOffComplete();
@@ -731,7 +733,7 @@ TS*/
 
     }
 TS*/
-    gameS->setJumpBall(jumpBall);
+    gameS->getComponent()->setJumpBall(jumpBall);
     
     logMsg(func + " end");
 

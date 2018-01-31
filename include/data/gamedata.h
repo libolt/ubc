@@ -73,7 +73,6 @@ class gameData
     
         sizeTVec playerID;  // std::vector that stores the IDs of the players currently being used.
 
-        std::vector< sizeTVec > teamStarterID;  // stores the selected starters for each team
         size_t bballBounce;  // stores which direction the ball is bouncing;
 
         size_t numActiveHoops;  // stores the nimber of active hoop instances

@@ -22,6 +22,7 @@
 
 #include "ubc/ubcgame.h"
 #include "gui/gui.h"
+#include "components/gamecomponents.h"
 #include "data/courtdata.h"
 #include "engine/gameengine.h"
 #include "state/gamestate.h"
@@ -546,7 +547,7 @@ void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed, renderEngin
         if (gameSetupMenuAwaySelected)
         {
             auto x = teamSelectBox[1]->getIndexSelected() +1;
-            if (x < gameInstance->getTeamInstance().size())
+            if (x < gameInstance->getComponent()->getTeamInstance().size())
             {
                 teamSelectBox[1]->setIndexSelected(x);
                 teamSelectBox[1]->beginToItemAt(x);
@@ -560,7 +561,7 @@ void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed, renderEngin
         else if (gameSetupMenuHomeSelected)
         {
             auto x = teamSelectBox[0]->getIndexSelected() +1;
-            if (x < gameInstance->getTeamInstance().size())
+            if (x < gameInstance->getComponent()->getTeamInstance().size())
             {
                 teamSelectBox[0]->setIndexSelected(x);
                 teamSelectBox[0]->beginToItemAt(x);
@@ -583,8 +584,8 @@ void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed, renderEngin
             auto x = teamSelectBox[1]->getIndexSelected() -1;
             if (x < 0)
             {
-                teamSelectBox[1]->setIndexSelected(gameInstance->getTeamInstance().size() -1);
-                teamSelectBox[1]->beginToItemAt(gameInstance->getTeamInstance().size() -1);
+                teamSelectBox[1]->setIndexSelected(gameInstance->getComponent()->getTeamInstance().size() -1);
+                teamSelectBox[1]->beginToItemAt(gameInstance->getComponent()->getTeamInstance().size() -1);
             }
             else
             {
@@ -598,8 +599,8 @@ void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed, renderEngin
             auto x = teamSelectBox[0]->getIndexSelected() -1;
             if (x < 0)
             {
-                teamSelectBox[0]->setIndexSelected(gameInstance->getTeamInstance().size() -1);
-                teamSelectBox[0]->beginToItemAt(gameInstance->getTeamInstance().size() -1);
+                teamSelectBox[0]->setIndexSelected(gameInstance->getComponent()->getTeamInstance().size() -1);
+                teamSelectBox[0]->beginToItemAt(gameInstance->getComponent()->getTeamInstance().size() -1);
             }
             else
             {
@@ -692,7 +693,7 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed, renderE
         if (gameSetupMenuAwaySelected)
         {
             auto x = teamSelectBox[1]->getIndexSelected() +1;
-            if (x < gameInstance->getTeamInstance().size())
+            if (x < gameInstance->getComponent()->getTeamInstance().size())
             {
                 teamSelectBox[1]->setIndexSelected(x);
                 teamSelectBox[1]->beginToItemAt(x);
@@ -706,7 +707,7 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed, renderE
         else if (gameSetupMenuHomeSelected)
         {
             auto x = teamSelectBox[0]->getIndexSelected() +1;
-            if (x < gameInstance->getTeamInstance().size())
+            if (x < gameInstance->getComponent()->getTeamInstance().size())
             {
                 teamSelectBox[0]->setIndexSelected(x);
                 teamSelectBox[0]->beginToItemAt(x);
@@ -729,8 +730,8 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed, renderE
             auto x = teamSelectBox[1]->getIndexSelected() -1;
             if (x < 0)
             {
-                teamSelectBox[1]->setIndexSelected(gameInstance->getTeamInstance().size() -1);
-                teamSelectBox[1]->beginToItemAt(gameInstance->getTeamInstance().size() -1);
+                teamSelectBox[1]->setIndexSelected(gameInstance->getComponent()->getTeamInstance().size() -1);
+                teamSelectBox[1]->beginToItemAt(gameInstance->getComponent()->getTeamInstance().size() -1);
             }
             else
             {
@@ -744,8 +745,8 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed, renderE
             auto x = teamSelectBox[0]->getIndexSelected() -1;
             if (x < 0)
             {
-                teamSelectBox[0]->setIndexSelected(gameInstance->getTeamInstance().size() -1);
-                teamSelectBox[0]->beginToItemAt(gameInstance->getTeamInstance().size() -1);
+                teamSelectBox[0]->setIndexSelected(gameInstance->getComponent()->getTeamInstance().size() -1);
+                teamSelectBox[0]->beginToItemAt(gameInstance->getComponent()->getTeamInstance().size() -1);
             }
             else
             {

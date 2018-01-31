@@ -317,7 +317,7 @@ void playerSteerPlugin::update(const float currentTime, const float elapsedTime)
 
 //    team1ActivePlayerInstance[3].getSteer()->update(currentTime, elapsedTime);
 
-    for (auto ATIIT : gameInstance->getActiveTeamInstance())
+    for (auto ATIIT : gameInstance->getComponent()->getActiveTeamInstance())
     {
         activePlayerInstance.push_back(ATIIT.second->getActivePlayerInstance());
         for (auto APIIT : activePlayerInstance[ATIIT.first])

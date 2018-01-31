@@ -23,7 +23,9 @@
 
 #include "gui/gui.h"
 #include "utilities/conversion.h"
+#include "components/gamecomponents.h"
 #include "data/courtdata.h"
+#include "data/gamedata.h"
 #include "data/playerdata.h"
 #include "engine/gameengine.h"
 #include "entity/playerentity.h"
@@ -498,7 +500,7 @@ void GUISystem::startSinglePlayerGame(renderEngineSharedPtr render)  // starts s
     
     std::string func = "GUISystem::startSinglePlayerGame()";
 
-    gameInstance->setGameType(SINGLE);
+    gameInstance->getData()->setGameType(SINGLE);
 
 //    exit(0);
 //    hideMainMenuWidgets();	// Hides the widgets from the main menu
@@ -695,7 +697,7 @@ void GUISystem::teamSelectionMenu(renderEngineSharedPtr render)  // displays tea
             {
                 
                 logMsg(func +" addTeamStartSelectionMenuData()!");
-                logMsg(func +" teamInstance.size() == " +convert->toString(gameInstance->getTeamInstance().size()));
+                logMsg(func +" teamInstance.size() == " +convert->toString(gameInstance->getComponent()->getTeamInstance().size()));
 //                exit(0);
                 teamSelectionMenuDataAdded = true;
                 changeMenu = true;
@@ -726,7 +728,7 @@ void GUISystem::teamSelectionMenu(renderEngineSharedPtr render)  // displays tea
         exit(0);
     }
 
-    logMsg(func +" teamInstance.size() == " +convert->toString(gameInstance->getTeamInstance().size()));
+    logMsg(func +" teamInstance.size() == " +convert->toString(gameInstance->getComponent()->getTeamInstance().size()));
 //    exit(0);
     
     logMsg(func +" end");
@@ -832,7 +834,7 @@ void GUISystem::networkServer()  // sets up  game as a network server
 //    sharedPtr<gameState> gameS = gameState::Instance();
 
 //    gameS->setGameType(MULTI);
-    gameInstance->setGameType(MULTINET);
+    gameInstance->getData()->setGameType(MULTINET);
 //   hideNetworkSetupWidgets();  // Hides Network Setup Menu widgets
     menuActive = false;
     gameE->getNetworkE()->setIPAddress(serverIPAddressBox->getCaption());  // sets the neworkEngine's ipAddress string to that of the caption
@@ -852,7 +854,7 @@ void GUISystem::networkClient()  // sets up game as a network client
 //    sharedPtr<gameState> gameS = gameState::Instance();
 
 //    gameS->setGameType(MULTI);
-    gameInstance->setGameType(MULTINET);
+    gameInstance->getData()->setGameType(MULTINET);
 //    hideNetworkSetupWidgets();  // Hides Network Setup Menu widgets
     menuActive = false;
     gameE->getNetworkE()->setIPAddress(clientIPAddressBox->getCaption());  // sets the neworkEngine's ipAddress string to that of the caption
@@ -907,14 +909,14 @@ void GUISystem::teamsSelected()  // processes team selection
     teamID.push_back(teamSelectBox[1]->getIndexSelected());
     logMsg(func +" activeTeamInstance");
     logMsg(func +" setupComplete == " +convert->toString(setupComplete)); 
-    activeTeamInstance = gameSetupTeam->createActiveTeamInstances(gameInstance->getTeamInstance(), teamID);
+    activeTeamInstance = gameSetupTeam->createActiveTeamInstances(gameInstance->getComponent()->getTeamInstance(), teamID);
 //    exit(0);
     //    gameS->setTeamID(teamID);
     logMsg(func +" teamSelectBox[0]->getIndexSelected() == " +convert->toString(teamSelectBox[0]->getIndexSelected()));
     logMsg(func +" teamID[0] == " +convert->toString(teamID[0]));
 //    exit(0);
-    gameInstance->setTeamIDS(teamID);
-    gameInstance->setActiveTeamInstance(activeTeamInstance);
+    gameInstance->getData()->setTeamIDS(teamID);
+    gameInstance->getComponent()->setActiveTeamInstance(activeTeamInstance);
     gameInstance->getFlag()->setActiveTeamInstancesCreated(true);
  
     logMsg(func +" Teams selected");
@@ -930,10 +932,10 @@ void GUISystem::playerStartSelected()  // process player start selection
     std::vector<std::unordered_map <std::string, std::string> > teamStarters;
 //    teamStarters.push_back(tempStarters);
     std::unordered_map<std::string, size_t> tempStarterID; // used for initial creatio  of teamStarterID vector
-    teamStateMSharedPtr activeTeamInstance = gameInstance->getActiveTeamInstance();
+    teamStateMSharedPtr activeTeamInstance = gameInstance->getComponent()->getActiveTeamInstance();
   
 //    std::vector<playerStateMSharedPtr > playerInstance;
-    playerEntityMSharedPtr gamePlayerInstance = gameInstance->getPlayerInstance();
+    playerEntityMSharedPtr gamePlayerInstance = gameInstance->getComponent()->getPlayerInstance();
     playerEntityVecMSharedPtr playerInstance;
 //    std::unordered_map<std::string, playerStateSharedPtr> activePlayerInstance;
     playerEntityMSharedPtr activePlayerInstance;
@@ -1245,7 +1247,7 @@ void GUISystem::playerStartSelected()  // process player start selection
 */
 //    exit(0);
 //    gameS->setTeamStarterID(teamStarterID); // sets the selected starters for both teams in gameState class
-    gameInstance->setTeamStarterID(teamStarterID); // sets the selected starters for both teams in gameState class
+    gameInstance->getData()->setTeamStarterID(teamStarterID); // sets the selected starters for both teams in gameState class
     
     sizeTVec activePlayerID;
 //    x = 0;
@@ -1359,7 +1361,7 @@ void GUISystem::playerStartSelected()  // process player start selection
 ///    
     activeTeamInstance = gameSetupLineup->setupStartingLineups(activeTeamInstance, teamStarterID);
     
-    gameInstance->setActiveTeamInstance(activeTeamInstance);
+    gameInstance->getComponent()->setActiveTeamInstance(activeTeamInstance);
 //    exit(0);
 //    playerInstance.clear();
 //    activePlayerInstance.clear();

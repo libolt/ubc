@@ -87,3 +87,5 @@ class gameComponents
         jumpBallsSharedPtr jumpBall; // instance that is used for jumpBall functions.
 
 };
+
+#endif

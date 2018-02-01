@@ -110,7 +110,7 @@ void UBCInput::process(gameEngineSharedPtr gameE, gameComponentsSharedPtr gameCo
         {
             case KEYBOARD:
                 logMsg(func +" Keyboard Input!");
-                processKeyboard(gameE, gameComponent, gui);
+                processKeyboard(gameE, gameComponent, gameFlag, gui);
             break;
             case GAMEPAD:
                 logMsg(func +" GamePad Input!");
@@ -353,7 +353,7 @@ void UBCInput::process(gameEngineSharedPtr gameE, gameComponentsSharedPtr gameCo
 
 }
 
-bool UBCInput::processKeyboard(gameEngineSharedPtr gameE, gameComponentsSharedPtr gameComponent, gameFlags gameFlag, GUISystemSharedPtr gui)  // process keyboard input
+bool UBCInput::processKeyboard(gameEngineSharedPtr gameE, gameComponentsSharedPtr gameComponent, gameFlagsSharedPtr gameFlag, GUISystemSharedPtr gui)  // process keyboard input
 {
     conversionSharedPtr convert;
 

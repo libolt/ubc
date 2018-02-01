@@ -47,7 +47,7 @@ class UBCInput
 
         void process(gameEngineSharedPtr gameE, gameComponentsSharedPtr gameComponent, gameFlagsSharedPtr gameFlag, usersMSharedPtr usersInstance, GUISystemSharedPtr gui);  // processes game input
 
-        bool processKeyboard(gameEngineSharedPtr gameE, gameComponentsSharedPtr gameComponent, gameFlags gameFlag, GUISystemSharedPtr gui);  // process keyboard input
+        bool processKeyboard(gameEngineSharedPtr gameE, gameComponentsSharedPtr gameComponent, gameFlagsSharedPtr gameFlag, GUISystemSharedPtr gui);  // process keyboard input
         bool processGamePad();  // process gamePad input
         bool processMouse();  // process mouse input
         bool processTouch();  // process touch input

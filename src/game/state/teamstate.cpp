@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "utilities/conversion.h"
+#include "components/gamecomponents.h"
 #include "data/gamedata.h"
 #include "data/playerdata.h"
 #include "entity/basketballentity.h"
@@ -420,7 +421,7 @@ void teamState::updateState(gameComponentsSharedPtr gameComponent, gameFlagsShar
         if (!playerStartPositionsSet)
         {
             logMsg(func +" Player Start Positions Not Set!");
-            if (setPlayerStartPositions(gameComponent->getCourtInstance(), data->getTeamStarterID()))  // sets starting positions for the players
+            if (setPlayerStartPositions(gameComponent->getCourtInstance(), gameData->getTeamStarterID()))  // sets starting positions for the players
             {
                 playerStartPositionsSet = true;
                 logMsg("Player Start Positions set!");
@@ -497,13 +498,13 @@ void teamState::updateState(gameComponentsSharedPtr gameComponent, gameFlagsShar
 
         }
 
-        if (gameInstance->getTipOffComplete())
+        if (gameFlag->getTipOffComplete())
         {
 //          exit(0);
 //          logMsg("hTeam with ball ==  "  +convert->toStringi(gameS->getTeamWithBall()));
 //          logMsg("Player with ball ==  "  +convert->toString(playerWithBall));
 
-            if (gameInstance->getTeamWithBall() == teamType) // checks if the team has the basketball
+            if (gameData->getTeamWithBall() == teamType) // checks if the team has the basketball
             {
                 logMsg("tipoffcomplete playerWithBallInstance == " +convert->toString(playerWithBallInstance));
 
@@ -1228,7 +1229,7 @@ void teamState::updatePlayerDirections(gameStateSharedPtr gameInstance)  // upda
 //    playerStateVec pInstance = getPlayerInstance();
  //   sizeTVec playerDirection = player->getPlayerDirection(); // stores contents of playerDirectdion from players class in local variable
 //    sizeTVec oldPlayerDirection = player->getOldPlayerDirection();   // stores contents of oldPlayerDirection form players in local variable
-    basketballStateMSharedPtr basketballInstance = gameInstance->getBasketballInstance();
+    basketballStateMSharedPtr basketballInstance = gameComponent->getBasketballInstance();
     std::vector<Ogre::SceneNode>::iterator playersIT;
 
     std::string playerID = convert->toString(playerInstance[4]->getData()->getID());

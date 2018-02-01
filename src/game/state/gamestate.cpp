@@ -1757,7 +1757,7 @@ bool gameState::updateActiveTeamInstances()  // updates all active team instance
     
     for (auto ATIIT : activeTeamInstance)
     {
-        ATIIT.second->updateState(component->getJumpBall(), component->getCourtInstance(), flag, data);
+        ATIIT.second->updateState(component, flag, data);
         exit(0);
     }
 //FIXME! Needs fixed for playerStateMachine refactoring

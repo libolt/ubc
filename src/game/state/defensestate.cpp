@@ -29,13 +29,13 @@
 
 defenseState::defenseState() // constructor
 {
-    gameSInitialized = false;
+//    gameSInitialized = false;
     teamType = NOTEAM;
     courtSide = NOSIDE;
     execute = false;
 }
 
-gameStateSharedPtr defenseState::getGameS()  // retrieves the value of gameS
+/*gameStateSharedPtr defenseState::getGameS()  // retrieves the value of gameS
 {
     return (gameS);
 }
@@ -52,6 +52,7 @@ void defenseState::setGameSInitialized(bool set)  // sets the value of gameSInit
 {
     gameSInitialized = set;
 }
+*/
 
 teamTypes defenseState::getTeamType()  // retrieves the value of teamType
 {
@@ -80,17 +81,18 @@ void defenseState::setExecute(bool ex)  // sets the value of the execute variabl
     execute = ex;
 }
 
-void defenseState::setupState()  // sets up initial state of the object
+void defenseState::setupState(gameComponentsSharedPtr gameComponent)  // sets up initial state of the object
 {
 
 }
-void defenseState::updateState(teamTypes teamOnDefense) // updates the state of the object
+
+void defenseState::updateState(teamTypes teamType, gameComponentsSharedPtr gameComponent, gameDataSharedPtr gameData)  // updates the state of the object
 {
     conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
-    teamTypes teamWithBall = gameS->getData()->getTeamWithBall();
+    teamTypes teamWithBall = gameData->getTeamWithBall();
 
-    teamStateMSharedPtr activeTeamInstance = gameS->getComponent()->getActiveTeamInstance();
+    teamStateMSharedPtr activeTeamInstance = gameComponent->getActiveTeamInstance();
 //TS    playerStateVecSharedPtr playerDInstance = activeTeamInstance[teamOnDefense]->getActivePlayerInstance();
 //TS    playerStateVecSharedPtr playerOInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
 //TS    sizeTVec activeDID = activeTeamInstance[teamOnDefense]->getActivePlayerID();
@@ -507,6 +509,6 @@ TS*/
     }
 
 //TS    activeTeamInstance[teamOnDefense]->setActivePlayerInstance(playerDInstance);
-    gameS->getComponent()->setActiveTeamInstance(activeTeamInstance);
+    gameComponent->setActiveTeamInstance(activeTeamInstance);
 
 }

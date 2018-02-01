@@ -20,6 +20,7 @@
 
 #include "utilities/conversion.h"
 #include "OgrePrerequisites.h"
+#include "data/gamedata.h"
 #include "engine/gameengine.h"
 #include "engine/inputengine.h"
 #include "engine/renderengine.h"
@@ -501,18 +502,18 @@ void UBC::gameLoop_old()  // Main Game Loop
 ///            sound->loadSound("cbeep.wav");
 ///        }
 
-        if (gameInstance->getGameSetupComplete())  // checks to make sure game setup is complete before continuing
+        if (gameInstance->getFlag()->getGameSetupComplete())  // checks to make sure game setup is complete before continuing
         {
 //            exit(0);
             if (!gameE->getSceneCreated())
             {
                 
-                if (gameInstance->getGameType() == SINGLE)
+                if (gameInstance->getData()->getGameType() == SINGLE)
                 {
                     gameE->setCreateScene(true);
                     exit(0);
                 }
-                else if (gameInstance->getGameType() == MULTINET)
+                else if (gameInstance->getData()->getGameType() == MULTINET)
                 {
                     if (gameE->getNetworkE()->getServerReceivedConnection() || gameE->getNetworkE()->getClientEstablishedConnection())  // checks if server and client are connected
                     {
@@ -565,7 +566,7 @@ void UBC::gameLoop_old()  // Main Game Loop
             gameE->getNetworkE()->setIsClient(true);
         }
 
-        if (gameInstance->getGameType() == MULTINET && gameE->getNetworkE()->getTeamType() == NOTEAM)
+        if (gameInstance->getData()->getGameType() == MULTINET && gameE->getNetworkE()->getTeamType() == NOTEAM)
         {
             if (gameE->getNetworkE()->getIsServer())
             {

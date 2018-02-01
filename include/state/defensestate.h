@@ -26,7 +26,9 @@
 //#include "state/gamestateshared.h"
 
 // forward declaration 
-class gameState;
+class gameComponents;
+class gameData;
+
 //class state;
 
 class defenseState : public state
@@ -35,12 +37,12 @@ public:
 
     defenseState();	// constructor
 
-    gameStateSharedPtr getGameS();  // retrieves the value of gameS
+/*    gameStateSharedPtr getGameS();  // retrieves the value of gameS
     void setGameS(gameStateSharedPtr set);  // sets the value of gameS
 
     bool getGameSInitialized();  // retrieves the value of gameSInitialized
     void setGameSInitialized(bool set);  // sets the value of gameSInitialized
-    
+*/
     teamTypes getTeamType();  // retrieves the value of teamType
     void setTeamType(teamTypes set);  // sets the value of teamType
     
@@ -50,14 +52,14 @@ public:
     bool getExecute();	// retrieves the value of execute variable
     void setExecute(bool ex);	// sets the value of the execute variable
 
-    void setupState();  // sets up initial state of the object
+    void setupState(gameComponentsSharedPtr gameComponent);  // sets up initial state of the object
 
-    void updateState(teamTypes teamType);  // updates the state of the object
+    void updateState(teamTypes teamType, gameComponentsSharedPtr gameComponent, gameDataSharedPtr gameData);  // updates the state of the object
 
 private:
 
-    gameStateSharedPtr gameS;  // the gameState object
-    bool gameSInitialized;  // stores whether or not the gameState object has been initialized
+//    gameStateSharedPtr gameS;  // the gameState object
+//    bool gameSInitialized;  // stores whether or not the gameState object has been initialized
     teamTypes teamType;  // stores the type of team on defense
     courtSide_t courtSide;  // stores which side of the court the defense executes on.
     bool execute;	// If set then execute the defense logic

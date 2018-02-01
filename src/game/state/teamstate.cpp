@@ -604,7 +604,7 @@ void teamState::updateState(gameComponentsSharedPtr gameComponent, gameFlagsShar
 //        exit(0);
         if (gameData->getTeamWithBall() == teamType)
         {
-            if (!offenseInstance->getGameSInitialized())
+/*            if (!offenseInstance->getGameSInitialized())
             {
                 offenseInstance->setGameS(gameInstance);
                 offenseInstance->setGameSInitialized(true);            
@@ -613,10 +613,11 @@ void teamState::updateState(gameComponentsSharedPtr gameComponent, gameFlagsShar
             {              
             }
             offenseInstance->updateState(teamType); // updates the state of the offenseInstance object
+*/
         }
         else
         {
-            if (!defenseInstance->getGameSInitialized())
+/*            if (!defenseInstance->getGameSInitialized())
             {
                 defenseInstance->setGameS(gameInstance);
                 defenseInstance->setGameSInitialized(true);            
@@ -624,8 +625,8 @@ void teamState::updateState(gameComponentsSharedPtr gameComponent, gameFlagsShar
             else
             {              
             }
-            
-            defenseInstance->updateState(teamType); // updates the state of the defenseInstance object
+*/          
+            defenseInstance->updateState(teamType, gameComponent, gameData); // updates the state of the defenseInstance object
         }
 
     }

@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "ubc/ubcgame.h"
+#include "data/gamedata.h"
 #include "engine/gameengine.h"
 #include "engine/physicsengine.h"
 #include "engine/renderengine.h"
@@ -322,7 +323,7 @@ bool UBCGame::loop(gameEngineSharedPtr gameE, UBCInputSharedPtr input, GUISystem
     
     while (!quitGame)
     {
-        input->process(gameE, gameInstance, usersInstance, gui);
+        input->process(gameE, gameInstance->getComponent(), gameInstance->getFlag(), usersInstance, gui);
 //        processPhysicsEvents();
         
 ///        if (gameInstance->getGameSetupComplete())  // checks to make sure game setup is complete before continuing
@@ -387,7 +388,7 @@ bool UBCGame::loop(gameEngineSharedPtr gameE, UBCInputSharedPtr input, GUISystem
         {
             logMsg(func +"changeInTime > 10!");
 //            exit(0);
-            if (gameInstance->getGameType() == MULTINET)
+            if (gameInstance->getData()->getGameType() == MULTINET)
             {
                 processNetworkEvents(gameE);
             }

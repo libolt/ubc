@@ -38,12 +38,12 @@ public:
 
     offenseState(); // constructor
 
-    gameStateSharedPtr getGameS();  // retrieves the value of gameS
+/*    gameStateSharedPtr getGameS();  // retrieves the value of gameS
     void setGameS(gameStateSharedPtr set);  // sets the value of gameS
 
     bool getGameSInitialized();  // retrieves the value of gameSInitialized
     void setGameSInitialized(bool set);  // sets the value of gameSInitialized
-
+*/
     teamTypes getTeamType();  // retrieves the value of teamType
     void setTeamType(teamTypes set);  // sets the value of teamType
 
@@ -85,18 +85,18 @@ public:
 
     void setupState();  // sets up initial state of the object
 
-    void updateState(teamTypes set);  // updates the state of the object
+    void updateState(teamTypes teamType, gameComponentsSharedPtr gameComponent, gameDataSharedPtr gameData);  // updates the state of the object
 
     void loadPlays();  // loads offense plays from file
 
-    void setupOffense();  // sets up box offense
-    void executeOffense();  // executes box offense
+    void setupOffense(gameDataSharedPtr gameData);  // sets up box offense
+    void executeOffense(gameComponentsSharedPtr gameComponent, gameDataSharedPtr gameData);  // executes box offense
     bool checkForDirective(playerPositions set);  // checks if a directive needs to be completed before execution
 
 private:
 
-    gameStateSharedPtr gameS;  // the gameState object
-    bool gameSInitialized;  // stores whether or not the gameState object has been initialized
+//    gameStateSharedPtr gameS;  // the gameState object
+//    bool gameSInitialized;  // stores whether or not the gameState object has been initialized
 
     teamTypes teamType;  // stores whether the offense is being run by the home or away team.
     courtSide_t courtSide;  // stores which side of the court the offense executes on.

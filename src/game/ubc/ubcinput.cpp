@@ -20,6 +20,9 @@
 
 #include "ubc/ubc.h"
 #include "ubc/ubcinput.h"
+#include "components/gamecomponents.h"
+#include "data/gamedata.h"
+#include "engine/gameengine.h"
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
 #include "utilities/typedefs.h"
@@ -30,7 +33,6 @@
 #include "input/inputgamepads.h"
 #include "input/inputkeyboards.h"
 #include "input/input.h"
-#include "engine/gameengine.h"
 
 // static declarations
 inputSharedPtr UBCInput::inputInstance;  // the input object
@@ -84,14 +86,14 @@ void UBCInput::setSetupComplete(bool set)  // sets the value of setupComplete
     setupComplete = set;
 }
 
-void UBCInput::process(gameEngineSharedPtr gameE, gameStateSharedPtr gameInstance, usersMSharedPtr usersInstance, GUISystemSharedPtr gui)  // processes game input
+void UBCInput::process(gameEngineSharedPtr gameE, gameComponentsSharedPtr gameComponent, gameFlagsSharedPtr gameFlag, usersMSharedPtr usersInstance, GUISystemSharedPtr gui)  // processes game input
 {
     conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    sharedPtr<GUISystem> gui = GUISystem::Instance();
 //    sharedPtr<inputSystem> input = inputSystem::Instance();
 //    networkEngineSharedPtr network = networkEngine::Instance();
-    teamStateMSharedPtr activeTeamInstance = gameInstance->getActiveTeamInstance();
+    teamStateMSharedPtr activeTeamInstance = gameComponent->getActiveTeamInstance();
     networkPlayerStateObject netPStateObj;
     std::string func = "UBCInput::process()";
 
@@ -108,7 +110,7 @@ void UBCInput::process(gameEngineSharedPtr gameE, gameStateSharedPtr gameInstanc
         {
             case KEYBOARD:
                 logMsg(func +" Keyboard Input!");
-                processKeyboard(gameE, gameInstance, gui);
+                processKeyboard(gameE, gameComponent, gui);
             break;
             case GAMEPAD:
                 logMsg(func +" GamePad Input!");
@@ -149,8 +151,8 @@ void UBCInput::process(gameEngineSharedPtr gameE, gameStateSharedPtr gameInstanc
 
     }
 */
-    logMsg("INQ Size = " +convert->toString(gameInstance->getInputInGameWorkQueue().size()));
-    for (auto IIGWQ : gameInstance->getInputInGameWorkQueue())
+    logMsg("INQ Size = " +convert->toString(gameComponent->getInputInGameWorkQueue().size()));
+    for (auto IIGWQ : gameComponent->getInputInGameWorkQueue())
     {
         logMsg ("INQ = " +convert->toString(IIGWQ));
     }
@@ -351,7 +353,7 @@ void UBCInput::process(gameEngineSharedPtr gameE, gameStateSharedPtr gameInstanc
 
 }
 
-bool UBCInput::processKeyboard(gameEngineSharedPtr gameE, gameStateSharedPtr gameInstance, GUISystemSharedPtr gui)  // process keyboard input
+bool UBCInput::processKeyboard(gameEngineSharedPtr gameE, gameComponentsSharedPtr gameComponent, gameFlags gameFlag, GUISystemSharedPtr gui)  // process keyboard input
 {
     conversionSharedPtr convert;
 
@@ -373,9 +375,9 @@ bool UBCInput::processKeyboard(gameEngineSharedPtr gameE, gameStateSharedPtr gam
         else
         {
 //            exit(0);
-            gameInstance->getFlag()->setInputReceived(true);
+            gameFlag->setInputReceived(true);
 
-            gameInstance->setInputInGameWorkQueue(inputKeyboard->getInputInstance()->getInputInGameWorkQueue());
+            gameComponent->setInputInGameWorkQueue(inputKeyboard->getInputInstance()->getInputInGameWorkQueue());
 
         }
         gameE->getInputE()->setKeyPressed(INKEY_NONE);

@@ -153,7 +153,7 @@ public:
     bool setupActivePlayerInstances();  // sets up active player objects
     
     void updateActivePlayers();  // updates the states of active players
-    void updatePlayerDirections(gameStateSharedPtr gameInstance);  // updates the direction players are facing
+    void updatePlayerDirections(gameComponentsSharedPtr gameComponent);  // updates the direction players are facing
     void updatePlayerMovements();	// updates the movement status of players
 
     void executePass();  // executes the pass between players

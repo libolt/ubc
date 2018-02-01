@@ -153,7 +153,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 //    exit(0);
     size_t teamNum = 0;
     
-    if (gameSetupPlayer->checkIfGamePlayerInstancesCreated(gameInstance))
+    if (gameSetupPlayer->checkIfGamePlayerInstancesCreated(gameInstance->getComponent(), gameInstance->getFlag()))
     {
         logMsg(func + " gameState Player Instances Created!");
         gamePlayerInstance = gameInstance->getComponent()->getPlayerInstance();

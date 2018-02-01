@@ -1220,7 +1220,7 @@ void teamState::updateActivePlayers()  // updates the states of active players
 
 }
 
-void teamState::updatePlayerDirections(gameStateSharedPtr gameInstance)  // updates the direction players are facing
+void teamState::updatePlayerDirections(gameComponentsSharedPtr gameComponent)  // updates the direction players are facing
 {
     conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();

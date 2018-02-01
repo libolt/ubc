@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "components/gamecomponents.h"
+#include "data/courtdata.h"
 
 gameComponents::gameComponents()  // constructor
 {

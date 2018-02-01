@@ -19,8 +19,10 @@
  ***************************************************************************/
 
 #include "gamesetup/gamesetupplayers.h"
+#include "components/gamecomponents.h"
 #include "data/playerdata.h"
 #include "entity/playerentity.h"
+#include "flags/gameflags.h"
 #include "load/loadplayers.h"
 #include "state/gamestate.h"
 #include "state/teamstate.h"
@@ -37,20 +39,20 @@ gameSetupPlayers::~gameSetupPlayers()  // destructor
 
 }
 
-bool gameSetupPlayers::checkIfGamePlayerInstancesCreated(gameStateSharedPtr gameS)  // checks if the gameState Objects Player Instances have been created
+bool gameSetupPlayers::checkIfGamePlayerInstancesCreated(gameComponentsSharedPtr gameComponent, gameFlagsSharedPtr gameFlag)  // checks if the gameState Objects Player Instances have been created
 {
     conversionSharedPtr convert = conversion::Instance();
-    playerEntityMSharedPtr playerInstance = gameS->getPlayerInstance();
+    playerEntityMSharedPtr playerInstance = gameComponent->getPlayerInstance();
     bool returnType = false;
     std::string func = "gameSetupPlayers::checkIfGamePlayerInstanceCreated()";
     
     logMsg(func +" beginning");
 
-    if (gameS->getFlag()->getPlayerInstanceCreated())
+    if (gameFlag->getPlayerInstanceCreated())
     {
         if (playerInstance.size() > 0)
         {
-            logMsg(func +" playerInstance.size() == " +convert->toString(gameS->getPlayerInstance().size()));
+            logMsg(func +" playerInstance.size() == " +convert->toString(gameComponent->getPlayerInstance().size()));
             returnType = true;
         }
         else
@@ -63,8 +65,8 @@ bool gameSetupPlayers::checkIfGamePlayerInstancesCreated(gameStateSharedPtr game
             
                 logMsg(func +" Player Instances created!");
 //                exit(0);
-                gameS->getFlag()->setPlayerInstanceCreated(true);
-                gameS->setPlayerInstance(playerInstance);
+                gameFlag->setPlayerInstanceCreated(true);
+                gameComponent->setPlayerInstance(playerInstance);
                 returnType = true;
 //            exit(0);
             }
@@ -85,8 +87,8 @@ bool gameSetupPlayers::checkIfGamePlayerInstancesCreated(gameStateSharedPtr game
 
             logMsg(func +" Player Instances created!");
 
-            gameS->getFlag()->setPlayerInstanceCreated(true);
-            gameS->setPlayerInstance(playerInstance);
+            gameFlag->setPlayerInstanceCreated(true);
+            gameComponent->setPlayerInstance(playerInstance);
             returnType = true;
 //            exit(0);
         }

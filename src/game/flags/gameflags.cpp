@@ -309,7 +309,7 @@ void gameFlags::setInputReceived(bool set)  // sets the value of inputReceived
 
 bool gameFlags::getSetupEnvironmentCompleted()  // retrieves the value of setupEnvironmentCompleted
 {
-    returb(setupEnvironmentCompleted);
+    return(setupEnvironmentCompleted);
 }
 void gameFlags::setSetupEnvironmentCompleted(bool set)  // sets the value of setupEnvironmentCompleted
 {

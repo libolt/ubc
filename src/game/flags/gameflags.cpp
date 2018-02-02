@@ -280,6 +280,33 @@ void gameFlags::setCourtDataLoaded(bool set)  // sets the value of courtDataLoad
     courtDataLoaded = set;
 }
 
+bool gameFlags::getBasketballModelLoaded()  // retrieves the value of basketballModelLoaded
+{
+    return (basketballModelLoaded);
+}
+void gameFlags::setBasketballModelLoaded(bool set)  // sets the value of basketballModelLoaded
+{
+    basketballModelLoaded = set;
+}
+
+bool gameFlags::getCourtModelLoaded()  // retrieves the value of courtModelLoaded
+{
+    return (courtModelLoaded);
+}
+void gameFlags::setCourtModelLoaded(bool set)  // sets the value of courtModelLoaded
+{
+    courtModelLoaded = set;
+}
+
+bool gameFlags::getHoopModelLoaded()  // retrieves the value of hoopModelLoaded
+{
+    return (hoopModelLoaded);
+}
+void gameFlags::setHoopModelLoaded(bool set)  // sets the value of hoopModelLoaded
+{
+    hoopModelLoaded = set;
+}
+
 bool gameFlags::getModelsLoaded()  // retrieves the value of modelsLoaded
 {
     return (modelsLoaded);
@@ -315,3 +342,5 @@ void gameFlags::setSetupEnvironmentCompleted(bool set)  // sets the value of set
 {
     setupEnvironmentCompleted = set;
 }
+
+

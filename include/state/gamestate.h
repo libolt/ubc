@@ -72,51 +72,14 @@ public:
     gameFlagsSharedPtr getFlag();  // retrieves the value of flag
     void setFlag(gameFlagsSharedPtr set);  // sets the value of flag
     
+    bool getComponentInitialized();  // retrieves the value of componentInitialized
+    void setComponentInitialized(bool set);  // sets the value of componentInitialized
 
-/*    jumpBallsSharedPtr getJumpBall();  // retrieves the value of jumpBall
-    void setJumpBall(jumpBallsSharedPtr set);  // sets the value of jumpBall
-*/
+    bool getDataInitialized();  // retrieves the value of dataInitialized
+    void setDataInitialized(bool set);  // sets the value of dataInitialized
 
-//    teamTypes getTeamWithBall();  // retrieves teamWithBall value
-//    void setTeamWithBall(teamTypes set);	 // sets teamWithBall value
-
-
-/*    bool getBasketballInstancesCreated();  // retrieves the value of basketballInstancesCreated
-    void setBasketballInstancesCreated(bool set);   // sets the value of basketballInstancesCreated
-*/
-
-/*    bool getCourtInstancesCreated();  // retrieves the value of courtInstancesCreated
-    void setCourtInstancesCreated(bool created);  // sets the value of courtInstancesCreated
-*/
-
-/*    bool getHoopInstancesCreated();  // retrieves the value of hoopInstancesCreated
-    void setHoopInstancesCreated(bool created);  // sets the value of hoopInstancesCreated
-*/
-/*    bool getPlayerInstanceCreated();  // retrieves the value of playerInstancesCreated
-    void setPlayerInstanceCreated(bool created);  // sets the value of playerInstancesCreated
-*/
-/*    bool getTeamInstancesCreated();	 // retrieves the value of teamInstancesCreated
-    void setTeamInstancesCreated(bool set);	 // sets the value of teamInstancesCreated
-*/
-/*    bool getActiveTeamInstancesCreated();	 // retrieves the value of activeTeamInstancesCreated
-    void setActiveTeamInstancesCreated(bool set);	 // sets the value of activeTeamInstancesCreated
-*/
-
-/*    size_t getActiveBBallInstance();  // retrieves the value of activeBBallInstance
-    void setActiveBBallInstance(size_t set);  // sets the value of activeBBallInstance
-*/
-
-/*    size_t getActiveCourtInstance();  // retrieves the value of activeCourtInstance
-    void setActiveCourtInstance(size_t set);  // sets the value of activeCourtInstance
-*/
-
-/*    sizeTVec getTeamID();  // retrieves the value of teamID
-    void setTeamID(sizeTVec set);  // sets the value of teamID
-*/
-    
-    
-    // These functions check if an object has been created and attmpt to do so if not
-//    bool checkIfPlayerInstanceCreated();  // check if playerInstance object has been created and loaded
+    bool getFlagInitialized();  // retrieves the value of flagInitialized
+    void setFlagInitialized(bool set);  // sets the value of flagInitialized
     
     bool checkifJumpBallCreated();  // checks if jumpBall object has been created
 //    void processNetworkEvents();  // processes events received from network connection.
@@ -172,6 +135,10 @@ private:
     gameFlagsSharedPtr flag;  // boolean flags object
     gameComponentsSharedPtr component;  // game component object
     gameDataSharedPtr data; // game data object
+
+    bool flagInitialized;  // stores whether the gameFlags object has been initialized
+    bool componentInitialized;  // stores whether the gameComoponents object has been initialized
+    bool dataInitialized;  // stores whether the gameData object has been initialized
     
 };
 

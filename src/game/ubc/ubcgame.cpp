@@ -19,7 +19,9 @@
  ***************************************************************************/
 
 #include "ubc/ubcgame.h"
+#include "components/gamecomponents.h"
 #include "data/gamedata.h"
+#include "flags/gameflags.h"
 #include "engine/gameengine.h"
 #include "engine/physicsengine.h"
 #include "engine/renderengine.h"
@@ -206,6 +208,38 @@ bool UBCGame::setup()  // sets up a game instance
     gameStateSharedPtr tempGameStateSharedPtr(new gameState);
     gameInstance = tempGameStateSharedPtr;
     logMsg(func +" getGameS()->setInitialized(true)");
+    if (!gameInstance->getComponentInitialized())
+    {
+        gameComponentsSharedPtr tempComponent(new gameComponents);
+        gameInstance->setComponent(tempComponent);
+        gameInstance->setComponentInitialized(true);
+    }
+    else
+    {
+        gameInstance->setComponentInitialized(true);
+    }
+
+    if (!gameInstance->getDataInitialized())
+    {
+        gameDataSharedPtr tempData(new gameData);
+        gameInstance->setData(tempData);
+        gameInstance->setDataInitialized(true);
+    }
+    else
+    {
+        gameInstance->setDataInitialized(true);
+    }
+    if (!gameInstance->getFlagInitialized())
+    {
+        gameFlagsSharedPtr tempFlag(new gameFlags);
+        gameInstance->setFlag(tempFlag);
+        gameInstance->setFlagInitialized(true);
+    }
+    else
+    {
+        gameInstance->setFlagInitialized(true);
+    }
+
     getGameInstance()->getFlag()->setInitialized(true);
 
 /*    for (size_t x=0;x<numUsers;++x)

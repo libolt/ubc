@@ -66,6 +66,9 @@
 gameState::gameState()  // constructor
 {
 //    stateSet = false;
+    componentInitialized = false;
+    dataInitialized = false;
+    flagInitialized = false;
 }
 
 gameState::~gameState()  // destructor
@@ -104,6 +107,34 @@ bool gameState::assignHoopToTeams()  // assigns which hoop belongs to each team
 //TS    getActiveTeamInstance()[0]->setHoop(1);
 //TS    getActiveTeamInstance()[1]->setHoop(0);
     return (true);
+}
+
+
+bool gameState::getComponentInitialized()  // retrieves the value of componentInitialized
+{
+    return (componentInitialized);
+}
+void gameState::setComponentInitialized(bool set)  // sets the value of componentInitialized
+{
+    componentInitialized = set;
+}
+
+bool gameState::getDataInitialized()  // retrieves the value of dataInitialized
+{
+    return (dataInitialized);
+}
+void gameState::setDataInitialized(bool set)  // sets the value of dataInitialized
+{
+    dataInitialized = set;
+}
+
+bool gameState::getFlagInitialized()  // retrieves the value of flagInitialized
+{
+    return (flagInitialized);
+}
+void gameState::setFlagInitialized(bool set)  // sets the value of flagInitialized
+{
+    flagInitialized = set;
 }
 
 bool gameState::createInstances()  // creates object instances

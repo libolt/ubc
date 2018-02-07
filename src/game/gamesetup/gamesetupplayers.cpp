@@ -320,7 +320,7 @@ playerEntityMSharedPtr gameSetupPlayers::createActivePlayerInstances(playerEntit
     return (activePlayerInstance);
 }
 
-playerEntityMSharedPtr gameSetupPlayers::setupActivePlayerInstances(playerEntityMSharedPtr activePlayerInstance, renderEngine render)  // sets up active player instances
+playerEntityMSharedPtr gameSetupPlayers::setupActivePlayerInstances(playerEntityMSharedPtr activePlayerInstance, renderEngineSharedPtr render)  // sets up active player instances
 {
     conversionSharedPtr convert = conversion::Instance();
     std::string func = "teamState::setupActivePlayerInstances()";

@@ -50,6 +50,18 @@
 #include "SDL_main.h"
 #endif
 
+UBC::UBC()  // constructor
+{
+
+
+}
+
+UBC::~UBC()  // destructor
+{
+
+}
+
+
 UBCComponentsSharedPtr UBC::getComponent()  // retrieves the value of component
 {
     return (component);
@@ -109,23 +121,21 @@ bool UBC::setupState()  // sets up the UBC game state
     logMsg(func +" begin");
 
 //    GUISystemSharedPtr gui = base->getGui();
-    if (gui->setup(gameE->getRenderE()))  // sets up the game GUI
+    if (component->getGui()->setup(component->getGameE()->getRenderE()))  // sets up the game GUI
     {
-        gui->setGameInstance(game->getGameInstance());  // shares gameInstance with gui object
+        component->getGui()->setGameInstance(component->getGame()->getGameInstance());  // shares gameInstance with gui object
 //        exit(0);
-        gui->setSetupComplete(true);
+        component->getGui()->setSetupComplete(true);
 //        exit(0);
-        gui->mainMenu(gameE->getRenderE());
+        component->getGui()->mainMenu(component->getGameE()->getRenderE());
 //        exit(0);
-        gui->backButtons();
+        component->getGui()->backButtons();
     }
     else
     {
         logMsg(func +" Unable to setup GUI!");
         exit(0);
     }
-//    base->setGui(gui);
-//    exit(0); 
     
     logMsg(func +" end");
 
@@ -148,12 +158,12 @@ void UBC::run()  // runs the game
 
 //    exit(0);
 //    base->setup();
-    game->setup();
-    gameE->getRenderE()->initSDL(); // Initializes the SDL Subsystem
+    component->getGame()->setup();
+    component->getGameE()->getRenderE()->initSDL(); // Initializes the SDL Subsystem
 //    exit(0);
-    gameE->getRenderE()->initOgre(); // Initializes the Ogre Subsystem
+    component->getGameE()->getRenderE()->initOgre(); // Initializes the Ogre Subsystem
 //    exit(0);
-    gameE->getRenderE()->createScene(); // creates rendering scene.
+    component->getGameE()->getRenderE()->createScene(); // creates rendering scene.
 
 //    sharedPtr<entity> gameStateSharedPtr(new entity);
 
@@ -173,7 +183,7 @@ void UBC::run()  // runs the game
 //    gameInstance->createInstances();  // creates object instances
 //    sharedPtr<entity> gameStateSharedPtr(new entity);
 
-    if (gameE->getRenderE()->getMWindow() == NULL)
+    if (component->getGameE()->getRenderE()->getMWindow() == NULL)
     {
         logMsg(func +" mWindow == NULL!");
 //        exit(0);
@@ -181,20 +191,20 @@ void UBC::run()  // runs the game
 //    exit(0);
 //    setupState();  // sets up the game state
 
-    sharedPtr<Ogre::Viewport> vp = gameE->getRenderE()->getViewPort();
+    sharedPtr<Ogre::Viewport> vp = component->getGameE()->getRenderE()->getViewPort();
 //    setViewPort(*vp);  // sets the viewPort for MyGUI
 
 //    exit(0);
     
     //FIXME! Hard coded until code is restructured
-    game->setNumUsers(1);
+    component->getGame()->setNumUsers(1);
     
     logMsg(func + " Creating Users Instances!");
-    if (!game->getUsersInstancesCreated())
+    if (!component->getGame()->getUsersInstancesCreated())
     {
-        if (game->createUserInstances())
+        if (component->getGame()->createUserInstances())
         {
-            game->setUsersInstancesCreated(true);
+            component->getGame()->setUsersInstancesCreated(true);
         }
         else
         {
@@ -208,11 +218,11 @@ void UBC::run()  // runs the game
     
     logMsg(func + "Setting up Users Input");
     // sets up users input
-    if (game->getUsersInstancesCreated() && !game->getUserInstancesInputSetup())
+    if (component->getGame()->getUsersInstancesCreated() && !component->getGame()->getUserInstancesInputSetup())
     {
-        if (game->setupUserInstancesInput())
+        if (component->getGame()->setupUserInstancesInput())
         {
-            game->setUserInstancesInputSetup(true);
+            component->getGame()->setUserInstancesInputSetup(true);
         }
         else
         {
@@ -225,13 +235,13 @@ void UBC::run()  // runs the game
     }
     
     logMsg(func +" Setting up input object");
-    if (!input->getSetupComplete())
+    if (!component->getInput()->getSetupComplete())
     {
         logMsg(func +" setting up UBCInput object");
-        if (input->setup())
+        if (component->getInput()->setup())
         {
             logMsg(func +" Input setup!");
-            input->setSetupComplete(true);
+            component->getInput()->setSetupComplete(true);
         }
         else
         {
@@ -263,7 +273,7 @@ void UBC::run()  // runs the game
 
 //    bool quitGame = gameE->getQuitGame();
        
-    game->loop(gameE, input, gui);
+    component->getGame()->loop(component->getGameE(), component->getInput(), component->getGui());
 
     logMsg(func +" end");
 
@@ -430,7 +440,7 @@ void UBC::gameLoop_old()  // Main Game Loop
     int x = 0;
     SDL_StartTextInput();
 //    gameE->gameEngine();
-    bool quitGame = gameE->getQuitGame();
+    bool quitGame = component->getGameE()->getQuitGame();
 //    exit(0);
 //    while (!getQuitGame())
     while (x < 1)
@@ -454,44 +464,44 @@ void UBC::gameLoop_old()  // Main Game Loop
         if (gameInstance->getFlag()->getGameSetupComplete())  // checks to make sure game setup is complete before continuing
         {
 //            exit(0);
-            if (!gameE->getSceneCreated())
+            if (!component->getGameE()->getSceneCreated())
             {
                 
                 if (gameInstance->getData()->getGameType() == SINGLE)
                 {
-                    gameE->setCreateScene(true);
+                    component->getGameE()->setCreateScene(true);
                     exit(0);
                 }
                 else if (gameInstance->getData()->getGameType() == MULTINET)
                 {
-                    if (gameE->getNetworkE()->getServerReceivedConnection() || gameE->getNetworkE()->getClientEstablishedConnection())  // checks if server and client are connected
+                    if (component->getGameE()->getNetworkE()->getServerReceivedConnection() || component->getGameE()->getNetworkE()->getClientEstablishedConnection())  // checks if server and client are connected
                     {
-                        gameE->setCreateScene(true);
+                        component->getGameE()->setCreateScene(true);
                     }
     //             exit(0);
                 }
             }
         }
 //        exit(0);
-        if (gameE->getCreateScene())  // checks if the scene should be created
+        if (component->getGameE()->getCreateScene())  // checks if the scene should be created
         {
 //            exit(0);
 //              if (render->createScene())
 //            {
-                gameE->setCreateScene(false);
-                gameE->setStart(true);
+                component->getGameE()->setCreateScene(false);
+                component->getGameE()->setStart(true);
 //                  renderScene = true;
-                gameE->setSceneCreated(true);
+                component->getGameE()->setSceneCreated(true);
 //            }
         }
 //        exit(0);
-//        if (gameE->getStart())  // checks if it's time to start the game
+//        if (component->getGameE()->getStart())  // checks if it's time to start the game
 //        {
 //            exit(0);
 /*            if (startGame())
             {
-                gameE->setStart(false);
-                gameE->setRenderScene(true);
+                component->getGameE()->setStart(false);
+                component->getGameE()->setRenderScene(true);
             }
 */
  //       }
@@ -506,66 +516,66 @@ void UBC::gameLoop_old()  // Main Game Loop
 
 //          logMsg("changeInTime = " +toString(changeInTime));
         // updates game logic every 100 milliseconds
-        if (gameE->getServerRunning() && !gameE->getNetworkE()->getIsServer())
+        if (component->getGameE()->getServerRunning() && !component->getGameE()->getNetworkE()->getIsServer())
         {
-            gameE->getNetworkE()->setIsServer(true);
+            component->getGameE()->getNetworkE()->setIsServer(true);
         }
-        if (gameE->getClientRunning() && !gameE->getNetworkE()->getIsClient())
+        if (component->getGameE()->getClientRunning() && !component->getGameE()->getNetworkE()->getIsClient())
         {
-            gameE->getNetworkE()->setIsClient(true);
+            component->getGameE()->getNetworkE()->setIsClient(true);
         }
 
-        if (gameInstance->getData()->getGameType() == MULTINET && gameE->getNetworkE()->getTeamType() == NOTEAM)
+        if (gameInstance->getData()->getGameType() == MULTINET && component->getGameE()->getNetworkE()->getTeamType() == NOTEAM)
         {
-            if (gameE->getNetworkE()->getIsServer())
+            if (component->getGameE()->getNetworkE()->getIsServer())
             {
-                gameE->getNetworkE()->setTeamType(HOMETEAM);
+                component->getGameE()->getNetworkE()->setTeamType(HOMETEAM);
             }
             
-            if (gameE->getNetworkE()->getIsClient())
+            if (component->getGameE()->getNetworkE()->getIsClient())
             {
-                gameE->getNetworkE()->setTeamType(AWAYTEAM);
+                component->getGameE()->getNetworkE()->setTeamType(AWAYTEAM);
             }
         }
         
-        logMsg("serverRunning = " +gameE->getServerRunning());
-        logMsg("clientRunning = " +gameE->getClientRunning());
-        boost::chrono::microseconds changeInTimeMicro = gameE->getTimer().calcChangeInTimeMicro();
+        logMsg("serverRunning = " +component->getGameE()->getServerRunning());
+        logMsg("clientRunning = " +component->getGameE()->getClientRunning());
+        boost::chrono::microseconds changeInTimeMicro = component->getGameE()->getTimer().calcChangeInTimeMicro();
         
-        boost::chrono::milliseconds changeInTimeMill = gameE->getTimer().calcChangeInTimeMill();
-        changeInTime = gameE->getTimer().getChangeInTimeMill().count();
+        boost::chrono::milliseconds changeInTimeMill = component->getGameE()->getTimer().calcChangeInTimeMill();
+        changeInTime = component->getGameE()->getTimer().getChangeInTimeMill().count();
         logMsg ("loopchange = " +convert->toString(changeInTime));
 //        exit(0);
         if (changeInTime >= 10)
         {
 //              exit(0);
-            if (gameE->getServerRunning())
+            if (component->getGameE()->getServerRunning())
             {
-                gameE->getNetworkE()->networkServer();   // Runs network server code
+                component->getGameE()->getNetworkE()->networkServer();   // Runs network server code
                 
             }
-            if (gameE->getClientRunning())
+            if (component->getGameE()->getClientRunning())
             {
-                gameE->getNetworkE()->networkClient();   // runs network client code
+                component->getGameE()->getNetworkE()->networkClient();   // runs network client code
             }
 
 
 //            logMsg("changeInTime = " +toString(changeInTime));
-            if (gameE->getRenderScene())
+            if (component->getGameE()->getRenderScene())
             {
                 logMsg("gameS->updateState()");
-                gameInstance->updateState();  // updates the state of the game instance
+                gameInstance->updateState(component->getGameE()->getRenderE());  // updates the state of the game instance
             }
             
             //boost::chrono::system_clock::time_point newT = boost::chrono::system_clock::now();
             //boost::chrono::milliseconds milliSecs = boost::chrono::duration_cast<boost::chrono::milliseconds>(newT);
             //oldTime = milliSecs.count();
-            gameE->getTimer().setPreviousTime(boost::chrono::system_clock::now());
+            component->getGameE()->getTimer().setPreviousTime(boost::chrono::system_clock::now());
         }
 //        exit(0);
 //        input->process(gameE, gameInstance);
 //        exit(0);
-        if (!gameE->getRenderE()->renderFrame())
+        if (!component->getGameE()->getRenderE()->renderFrame())
         {
             logMsg("Unable to render frame!");
             exit(0);
@@ -581,15 +591,15 @@ bool UBC::updateGUI()  // updates the gui based on received events
     logMsg(func +" beginning");
 
 //    GUISystemSharedPtr gui = base->getGui();
-    if (gameE->getInputE()->getMouseClicked())
+    if (component->getGameE()->getInputE()->getMouseClicked())
     {
         logMsg(func +" updateGUI Mouse Clicked!");
         exit(0);
-        gui->getMGUI()->injectMousePress(gameE->getInputE()->getMouseX(), gameE->getInputE()->getMouseY(), MyGUI::MouseButton::Enum(0));
+        component->getGui()->getMGUI()->injectMousePress(component->getGameE()->getInputE()->getMouseX(), component->getGameE()->getInputE()->getMouseY(), MyGUI::MouseButton::Enum(0));
     }
     else
     {
-        gui->getMGUI()->injectMouseRelease(gameE->getInputE()->getMouseX(), gameE->getInputE()->getMouseY(), MyGUI::MouseButton::Enum(0));
+        component->getGui()->getMGUI()->injectMouseRelease(component->getGameE()->getInputE()->getMouseX(), component->getGameE()->getInputE()->getMouseY(), MyGUI::MouseButton::Enum(0));
     }
 //    base->setGui(gui);
 
@@ -605,7 +615,7 @@ bool UBC::setupInputSObjUserInput()  // sets up user input mapping for inputS ob
     usersMSharedPtr tempUsersInstance;
     usersInputsVecSharedPtr tempUserInput;
     
-    tempUsersInstance = game->getUsersInstance();
+    tempUsersInstance = component->getGame()->getUsersInstance();
 
     
     for ( auto TUIIT : tempUsersInstance)
@@ -613,8 +623,8 @@ bool UBC::setupInputSObjUserInput()  // sets up user input mapping for inputS ob
         tempUserInput.push_back(TUIIT.second->getUserInput());
     }
     
-    input->getInputGamePad()->getInputInstance()->setUInput(tempUserInput);
-    input->getInputKeyboard()->getInputInstance()->setUInput(tempUserInput);
+    component->getInput()->getInputGamePad()->getInputInstance()->setUInput(tempUserInput);
+    component->getInput()->getInputKeyboard()->getInputInstance()->setUInput(tempUserInput);
 
     return (true);
 }

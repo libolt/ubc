@@ -29,7 +29,7 @@ UBCInputSharedPtr UBCComponents::input;  // static copy of UBCInput class
 
 UBCComponents::UBCComponents()  // constructor
 {
-//    quitGame = false;
+
 
 }
 
@@ -42,7 +42,7 @@ gameEngineSharedPtr UBCComponents::getGameE()  // retrieves the value of gameE
 {
     return (gameE);
 }
-void UBC::setGameE(gameEngineSharedPtr set)  // sets the value of gameE
+void UBCComponents::setGameE(gameEngineSharedPtr set)  // sets the value of gameE
 {
     gameE = set;
 }

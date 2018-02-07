@@ -83,13 +83,13 @@ void UBCGame::setNetworkS(networkStateSharedPtr set)  // sets the value of netwo
     networkS = set;
 }
 
-UBCComponentsSharedPtr UBC::getUBCComponent()  // retrieves the value of component
+UBCComponentsSharedPtr UBCGame::getUBCComponent()  // retrieves the value of component
 {
-    return (component);
+    return (UBCComponent);
 }
-void UBC::setUBCComponent(UBCComponentsSharedPtr set)  // sets the value of component
+void UBCGame::setUBCComponent(UBCComponentsSharedPtr set)  // sets the value of component
 {
-    component = set;
+    UBCComponent = set;
 }
 
 bool UBCGame::getStartActiveGame()  // retrieves the value of startActiveGame
@@ -441,7 +441,7 @@ bool UBCGame::loop(gameEngineSharedPtr gameE, UBCInputSharedPtr input, GUISystem
             {
                 logMsg(func +" gameS->getRenderScene()");
                 
-                gameInstance->updateState();  // updates the state of the game instance
+                gameInstance->updateState(gameE->getRenderE());  // updates the state of the game instance
             }
             gameE->getTimer().setPreviousTime(boost::chrono::system_clock::now());
         }

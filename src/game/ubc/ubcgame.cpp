@@ -83,6 +83,15 @@ void UBCGame::setNetworkS(networkStateSharedPtr set)  // sets the value of netwo
     networkS = set;
 }
 
+UBCComponentsSharedPtr UBC::getUBCComponent()  // retrieves the value of component
+{
+    return (component);
+}
+void UBC::setUBCComponent(UBCComponentsSharedPtr set)  // sets the value of component
+{
+    component = set;
+}
+
 bool UBCGame::getStartActiveGame()  // retrieves the value of startActiveGame
 {
     return (startActiveGame);

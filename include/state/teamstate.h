@@ -161,7 +161,7 @@ public:
     void updatePositions();  // updates player on court positionss
 
     void setupState();  // sets up the state for teamState object
-    void updateState(gameComponentsSharedPtr gameComponent, gameFlagsSharedPtr gameFlag, gameDataSharedPtr gameData);  // updates the state of the teamState object
+    void updateState(gameComponentsSharedPtr gameComponent, gameFlagsSharedPtr gameFlag, gameDataSharedPtr gameData, renderEngineSharedPtr render);  // updates the state of the teamState object
     void updateActivePlayerSettings();  // updates the settings of active players
         
 protected:

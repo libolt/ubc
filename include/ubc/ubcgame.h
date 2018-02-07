@@ -36,13 +36,16 @@ class UBCGame
         networkStateSharedPtr getNetworkS();  // retrieves the value of networkS
         void setNetworkS(networkStateSharedPtr set);  // sets the value of networkS
 
+        UBCComponentsSharedPtr getUBCComponent();  // retrieves the value of component
+        void setUBCComponent(UBCComponentsSharedPtr set);  // sets the value of component
+
         bool getStartActiveGame();  // retrieves the value of startActiveGame
         void setStartActiveGame(bool set);  // sets the value of startActiveGame
 
         bool getUsersInstancesCreated();  // retrieves the value of userInstancesCreated
         void setUsersInstancesCreated(bool set);  // sets the value of userInstancesCreated
 
-       loadBasketballsSharedPtr getLoadBasketball();  // retrieves the value of loadBasketball
+        loadBasketballsSharedPtr getLoadBasketball();  // retrieves the value of loadBasketball
         void setLoadBasketball(loadBasketballsSharedPtr set);  // sets the value of loadBasketball
 
         loadCourtsSharedPtr getLoadCourt();  // retrieves the value of loadCourt
@@ -93,6 +96,8 @@ class UBCGame
 
         gameStateSharedPtr gameInstance;  // the gameState object
         static networkStateSharedPtr networkS;  // the gameState object
+
+        UBCComponentsSharedPtr UBCComponent;  // Components object
 
         static bool startActiveGame;  // stores whether to begin an active game instance
         static bool userInstancesCreated;  // stores whether user instances have been created

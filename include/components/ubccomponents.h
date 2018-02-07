@@ -18,28 +18,40 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef _GAMESETUPPLAYERS_H_
-#define _GAMESETUPPLAYERS_H_
+#ifndef _UBCCOMPONENTS_H_
+#define _UBCCOMPONENTS_H_
 
 #include "utilities/typedefs.h"
 
-class gameSetupPlayers
+class UBCComponents
 {
     public:
 
-        gameSetupPlayers();  // constructor
-        ~gameSetupPlayers();  // destructor
+        UBCComponents();  // constructor
+        ~UBCComponents();  // destructor
+        
+        gameEngineSharedPtr getGameE();  // retrieves the value of gameE
+        void setGameE(gameEngineSharedPtr set);  // sets the value of gameE
 
-        bool checkIfGamePlayerInstancesCreated(gameComponentsSharedPtr gameComponent, gameFlagsSharedPtr gameFlag);  // checks if the gameState Objects Player Instances have been created
-        bool checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr gamePlayerInstance, teamStateMSharedPtr activeTeamInstance);  // checks if the gameState Objects Player Instances have been created
-        playerEntityMSharedPtr createPlayerInstances();  // creates player Instances
-        playerEntityMSharedPtr createTeamPlayerInstances(playerEntityMSharedPtr gamePlayerInstance, size_t teamID);  // creates player instances for a team
-        playerEntityMSharedPtr createActivePlayerInstances(playerEntityMSharedPtr playerInstance,std::unordered_map<std::string, size_t> activePlayerID);  // creates active player instances
-        playerEntityMSharedPtr setupActivePlayerInstances(playerEntityMSharedPtr playerInstance, renderEngineSharedPtr render);  // sets up active player instances
+        GUISystemSharedPtr getGui();  // retrieves the value of gui
+        void setGui(GUISystemSharedPtr set);  // sets the value of gui
+
+        UBCGameSharedPtr getGame();  // retrieves the value of game
+        void setGame(UBCGameSharedPtr set);  // sets the value of game
+
+        UBCInputSharedPtr getInput();  // retrieves the value of input
+        void setInput(UBCInputSharedPtr set);  // sets the value of input
 
     private:
+    
+        static gameEngineSharedPtr gameE;  // the gameEngine object
+
+        static GUISystemSharedPtr gui;  // the GUI object.
+
+        static UBCGameSharedPtr game;  // static copy of game class
+
+        static UBCInputSharedPtr input;  // static copy of input class
 
 };
 
 #endif
-

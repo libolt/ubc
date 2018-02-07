@@ -18,28 +18,58 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef _GAMESETUPPLAYERS_H_
-#define _GAMESETUPPLAYERS_H_
+#include "components/ubccomponents.h"
 
-#include "utilities/typedefs.h"
+// static declarations 
+gameEngineSharedPtr UBCComponents::gameE;  // the gameEngine object
+GUISystemSharedPtr UBCComponents::gui;  // the GUI object.
+UBCGameSharedPtr UBCComponents::game;  // static copy of UBCGame class
+UBCInputSharedPtr UBCComponents::input;  // static copy of UBCInput class
 
-class gameSetupPlayers
+
+UBCComponents::UBCComponents()  // constructor
 {
-    public:
+//    quitGame = false;
 
-        gameSetupPlayers();  // constructor
-        ~gameSetupPlayers();  // destructor
+}
 
-        bool checkIfGamePlayerInstancesCreated(gameComponentsSharedPtr gameComponent, gameFlagsSharedPtr gameFlag);  // checks if the gameState Objects Player Instances have been created
-        bool checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr gamePlayerInstance, teamStateMSharedPtr activeTeamInstance);  // checks if the gameState Objects Player Instances have been created
-        playerEntityMSharedPtr createPlayerInstances();  // creates player Instances
-        playerEntityMSharedPtr createTeamPlayerInstances(playerEntityMSharedPtr gamePlayerInstance, size_t teamID);  // creates player instances for a team
-        playerEntityMSharedPtr createActivePlayerInstances(playerEntityMSharedPtr playerInstance,std::unordered_map<std::string, size_t> activePlayerID);  // creates active player instances
-        playerEntityMSharedPtr setupActivePlayerInstances(playerEntityMSharedPtr playerInstance, renderEngineSharedPtr render);  // sets up active player instances
+UBCComponents::~UBCComponents()  // destructor
+{
 
-    private:
+}
 
-};
+gameEngineSharedPtr UBCComponents::getGameE()  // retrieves the value of gameE
+{
+    return (gameE);
+}
+void UBC::setGameE(gameEngineSharedPtr set)  // sets the value of gameE
+{
+    gameE = set;
+}
 
-#endif
+GUISystemSharedPtr UBCComponents::getGui()  // retrieves the value of gui
+{
+    return (gui);
+}
+void UBCComponents::setGui(GUISystemSharedPtr set)  // sets the value of gui
+{
+    gui = set;
+}
 
+UBCGameSharedPtr UBCComponents::getGame()  // retrieves the value of game
+{
+    return (game);
+}
+void UBCComponents::setGame(UBCGameSharedPtr set)  // sets the value of game
+{
+    game = set;
+}
+
+UBCInputSharedPtr UBCComponents::getInput()  // retrieves the value of input
+{
+    return (input);
+}
+void UBCComponents::setInput(UBCInputSharedPtr set)  // sets the value of input
+{
+    input = set;
+}

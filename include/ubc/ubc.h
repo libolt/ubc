@@ -43,66 +43,42 @@
 //class GUISystem;
 class gameEngine;
 class UBCGame;
+class UBCComponents;
 
 #include "utilities/typedefs.h"
 
 
 class UBC 
 {
-public: 
-    UBC(); // constructor
-    ~UBC();	// destructor
+    public: 
+        UBC(); // constructor
+        ~UBC();	// destructor
 
-    gameEngineSharedPtr getGameE();  // retrieves the value of gameE
-    void setGameE(gameEngineSharedPtr set);  // sets the value of gameE
+        UBCComponentsSharedPtr getComponent();  // retrieves the value of component
+        void setComponent(UBCComponentsSharedPtr set);  // sets the value of component
 
-    GUISystemSharedPtr getGui();  // retrieves the value of gui
-    void setGui(GUISystemSharedPtr set);  // sets the value of gui
+        bool setup();  // sets up UBC object
 
-    UBCGameSharedPtr getGame();  // retrieves the value of game
-    void setGame(UBCGameSharedPtr set);  // sets the value of game
+        bool setupState();  // sets up the UBC game state
+        void executeState();  // executes the UBC game code
 
-    UBCInputSharedPtr getInput();  // retrieves the value of input
-    void setInput(UBCInputSharedPtr set);  // sets the value of input
-
-/*    bool getQuitGame();  // retrieves the value of quitGame
-    void setQuitGame(bool quit);  // sets the value of quitGame
-*/
-
-    bool setup();  // sets up UBC object
-
-    bool setupState();  // sets up the UBC game state
-    void executeState();  // executes the UBC game code
-
-    void run();  // runs the game
+        void run();  // runs the game
         
 //    bool gameLoop();  // runs the Main loop for the game
 
-    void gameLoop_old();  // runs the Main loop for the game
+        void gameLoop_old();  // runs the Main loop for the game
 
-    bool updateGUI();  // updates the gui based on received events
+        bool updateGUI();  // updates the gui based on received events
     
-
+        bool setupInputSObjUserInput();  // sets up user input mapping for inputS object
     
-    bool setupInputSObjUserInput();  // sets up user input mapping for inputS object
+    private:
     
-protected:
-  
-private:
-
-    static gameEngineSharedPtr gameE;  // the gameEngine object
-
-    static GUISystemSharedPtr gui;  // the GUI object.
-
-
-    static UBCGameSharedPtr game;  // static copy of game class
-
-    static UBCInputSharedPtr input;  // static copy of input class
+        UBCComponentsSharedPtr component;  // Components object
         
-    float inputXPos;  // stores the x coordinate of input
-    float inputYPos;  // stores the y coordinate of input
-    bool inputLeftMouseClick;  // stores
-//    bool quitGame;
+        float inputXPos;  // stores the x coordinate of input
+        float inputYPos;  // stores the y coordinate of input
+        bool inputLeftMouseClick;  // stores
 };
 
 #endif

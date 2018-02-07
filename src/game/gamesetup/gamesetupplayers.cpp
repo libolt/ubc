@@ -320,7 +320,7 @@ playerEntityMSharedPtr gameSetupPlayers::createActivePlayerInstances(playerEntit
     return (activePlayerInstance);
 }
 
-playerEntityMSharedPtr gameSetupPlayers::setupActivePlayerInstances(playerEntityMSharedPtr activePlayerInstance)  // sets up active player instances
+playerEntityMSharedPtr gameSetupPlayers::setupActivePlayerInstances(playerEntityMSharedPtr activePlayerInstance, renderEngine render)  // sets up active player instances
 {
     conversionSharedPtr convert = conversion::Instance();
     std::string func = "teamState::setupActivePlayerInstances()";
@@ -328,17 +328,6 @@ playerEntityMSharedPtr gameSetupPlayers::setupActivePlayerInstances(playerEntity
     logMsg(func +" beginning");
     for (auto APIIT : activePlayerInstance)
     {
-/*BASEREMOVAL        if (!APIIT.second->getBaseInitialized())
-        {
-//REMOVE?            APIIT.second->setBase(base);
-            APIIT.second->setBaseInitialized(true);
-        }
-        else
-        {
-            logMsg(func +" Unable to initialize base!");
-            exit(0);
-        }
-*/
         if (!APIIT.second->getInitialized())
         {
             logMsg("Player Entity not yet Initialized!");
@@ -360,6 +349,33 @@ playerEntityMSharedPtr gameSetupPlayers::setupActivePlayerInstances(playerEntity
         if (!APIIT.second->getModelLoaded())
         {
             logMsg(func +" Model not loaded yet!");
+            if (APIIT.second->loadModel())
+            {
+                logMsg(func + " Model loaded successfully!");
+                APIIT.second->setModelLoaded(true);
+            }
+            else
+            {
+                logMsg(func + " Unable to load model!");
+                exit(0);
+            }
+        }
+        else
+        {
+                        
+        }
+        
+        if (!APIIT.second->getNodeCreated())
+        {
+            logMsg(func +" Node not created yet!");
+            logMsg(func +" nodeName == " +APIIT.second->getNodeName());
+            if (APIIT.second->getNodeName() == "")
+            {
+                std::string nodeName = APIIT.second->getName() + convert->toString(APIIT.second->getData()->getID());
+                APIIT.second->setNodeName(nodeName);
+                logMsg(func +" nodeName == " +APIIT.second->getNodeName());
+            }
+            exit(0);
             if (APIIT.second->loadModel())
             {
                 logMsg(func + " Model loaded successfully!");

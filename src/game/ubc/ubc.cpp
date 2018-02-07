@@ -20,6 +20,7 @@
 
 #include "utilities/conversion.h"
 #include "OgrePrerequisites.h"
+#include "components/ubccomponents.h"
 #include "data/gamedata.h"
 #include "engine/gameengine.h"
 #include "engine/inputengine.h"
@@ -49,96 +50,44 @@
 #include "SDL_main.h"
 #endif
 
-// static declarations 
-gameEngineSharedPtr UBC::gameE;  // the gameEngine object
-GUISystemSharedPtr UBC::gui;  // the GUI object.
-UBCGameSharedPtr UBC::game;  // static copy of UBCGame class
-UBCInputSharedPtr UBC::input;  // static copy of UBCInput class
-
-
-UBC::UBC()  // constructor
+UBCComponentsSharedPtr UBC::getComponent()  // retrieves the value of component
 {
-//    quitGame = false;
-
+    return (component);
 }
-
-UBC::~UBC()  // destructor
+void UBC::setComponent(UBCComponentsSharedPtr set)  // sets the value of component
 {
-
+    component = set;
 }
-
-gameEngineSharedPtr UBC::getGameE()  // retrieves the value of gameE
-{
-    return (gameE);
-}
-void UBC::setGameE(gameEngineSharedPtr set)  // sets the value of gameE
-{
-    gameE = set;
-}
-
-GUISystemSharedPtr UBC::getGui()  // retrieves the value of gui
-{
-    return (gui);
-}
-void UBC::setGui(GUISystemSharedPtr set)  // sets the value of gui
-{
-    gui = set;
-}
-
-UBCGameSharedPtr UBC::getGame()  // retrieves the value of game
-{
-    return (game);
-}
-void UBC::setGame(UBCGameSharedPtr set)  // sets the value of game
-{
-    game = set;
-}
-
-UBCInputSharedPtr UBC::getInput()  // retrieves the value of input
-{
-    return (input);
-}
-void UBC::setInput(UBCInputSharedPtr set)  // sets the value of input
-{
-    input = set;
-}
-
-/*bool UBC::getQuitGame()  // retrieves the value of quitGame
-{
-	return (quitGame);
-}
- 
-void UBC::setQuitGame(bool set)  // sets the value of quitGame
-{
-    quitGame = set;
-}*/
 
 bool UBC::setup()  // sets up UBC object
 {
     std::string func = "UBC::setup()";
 
+    UBCComponentsSharedPtr tempComponent(new UBCComponents);
+    component = tempComponent;
     //    gameEngine *tempGameEObj = new gameEngine;
     gameEngineSharedPtr tempGameESharedPtr(new gameEngine);
-    gameE = tempGameESharedPtr;
+    component->setGameE(tempGameESharedPtr);
 //    gameE(new gameEngine);
     logMsg(func +" gameE->setup()");
-    gameE->setup();  // sets up the game engine
+    component->getGameE()->setup();  // sets up the game engine
     
     logMsg(func +" beginning");
 
     GUISystemSharedPtr tempGUISharedPtr(new GUISystem);
-    gui = tempGUISharedPtr;
+    component->setGui(tempGUISharedPtr);
     
-    gui->setGameE(gameE);
+    component->getGui()->setGameE(component->getGameE());
     
     // setup game object
     UBCGameSharedPtr tempGameSharedPtr(new UBCGame);
 
-    game = tempGameSharedPtr;
-
+    component->setGame(tempGameSharedPtr);
+    component->getGame()->setUBCComponent(component);
+    
     // setup input object
     UBCInputSharedPtr tempInputSharedPtr(new UBCInput);
-    input = tempInputSharedPtr;
+    component->setInput(tempInputSharedPtr);
 //    input->setBase(base);
 //    base->getInputKeyboard()->setBase(base);
 //    base->getInputGamePad()->setBase(base);

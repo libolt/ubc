@@ -109,7 +109,6 @@ bool gameState::assignHoopToTeams()  // assigns which hoop belongs to each team
     return (true);
 }
 
-
 bool gameState::getComponentInitialized()  // retrieves the value of componentInitialized
 {
     return (componentInitialized);
@@ -1587,11 +1586,11 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
     return true;
 }
 
-bool gameState::updateState()  // updates the game state
+bool gameState::updateState(renderEngineSharedPtr render)  // updates the game state
 {
     conversionSharedPtr convert = conversion::Instance();
     AISystemSharedPtr ai = AISystem::Instance();
-    timing timer;  //BASEREMOVAL = getBase()->getGameE()->getTimer();
+    timing timer; 
     Ogre::Vector3 playerPos;
     basketballStateMSharedPtr activeBasketballInstance = component->getActiveBasketballInstance();
 //    teamStateMSharedPtr activeTeamInstance = getActiveTeamInstance();
@@ -1727,7 +1726,7 @@ bool gameState::updateState()  // updates the game state
             
         }*/
 
-        if (updateActiveTeamInstances())
+        if (updateActiveTeamInstances(render))
         {
             logMsg(func +" active team instances updated!");
         }
@@ -1774,7 +1773,7 @@ bool gameState::updateState()  // updates the game state
     return true;
 }
 
-bool gameState::updateActiveTeamInstances()  // updates all active team instances
+bool gameState::updateActiveTeamInstances(renderEngineSharedPtr render)  // updates all active team instances
 {
     teamStateMSharedPtr activeTeamInstance = component->getActiveTeamInstance();
     conversionSharedPtr convert = conversion::Instance();
@@ -1788,7 +1787,7 @@ bool gameState::updateActiveTeamInstances()  // updates all active team instance
     
     for (auto ATIIT : activeTeamInstance)
     {
-        ATIIT.second->updateState(component, flag, data);
+        ATIIT.second->updateState(component, flag, data, render);
         exit(0);
     }
 //FIXME! Needs fixed for playerStateMachine refactoring

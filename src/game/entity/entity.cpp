@@ -37,6 +37,7 @@ entity::entity()  // constructor
     physicsSetup = false;
     modelNeedsLoaded = false;
     modelLoaded = false;
+    nodeCreated = false;
 }
 
 entity::~entity()  // destructor
@@ -160,6 +161,15 @@ Ogre::Vector3 entity::getNodePosition()  // retrieves the value of nodePosition
 void entity::setNodePosition(Ogre::Vector3 set)  // sets the value of nodePosition
 {
     nodePosition = set;
+}
+
+bool entity::getNodeCreated()  // retrieves the value of nodeaCreated
+{
+    return (nodeCreated);
+}
+void entity::setNodeCreated(bool set)  // sets the value of nodeCreated
+{
+    nodeCreated = set;
 }
 
 /*bool entity::loadModel()  // loads the 3D model

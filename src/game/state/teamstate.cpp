@@ -375,7 +375,7 @@ void teamState::setupState()  // sets up the state of the object
     logMsg(func +" end");
 
 }
-void teamState::updateState(gameComponentsSharedPtr gameComponent, gameFlagsSharedPtr gameFlag, gameDataSharedPtr gameData)  // updates the state of the object
+void teamState::updateState(gameComponentsSharedPtr gameComponent, gameFlagsSharedPtr gameFlag, gameDataSharedPtr gameData, renderEngineSharedPtr render)  // updates the state of the object
 {
 
     //conversion *convert = conversion::Instance();
@@ -402,7 +402,7 @@ void teamState::updateState(gameComponentsSharedPtr gameComponent, gameFlagsShar
         if (!activePlayerInstancesSetup)
         {
             // setup Active Player Instances
-            activePlayerInstance = gameSetupPlayer->setupActivePlayerInstances(activePlayerInstance);
+            activePlayerInstance = gameSetupPlayer->setupActivePlayerInstances(activePlayerInstance, render);
             if (setupActivePlayerInstances())
             {
                 activePlayerInstancesSetup = true;
@@ -993,6 +993,7 @@ bool teamState::setupActivePlayerInstances()  // sets up active player objects
         if (!APIIT.second->getInitialized())
         {
             logMsg("Player Entity not yet Initialized!");
+            exit(0);
             if (APIIT.second->initialize())
             {
                 APIIT.second->setInitialized(true);
@@ -1008,6 +1009,8 @@ bool teamState::setupActivePlayerInstances()  // sets up active player objects
 
         }
 
+
+        
         if (!APIIT.second->getModelLoaded())
         {
             logMsg(func +" Model not loaded yet!");
@@ -1163,7 +1166,7 @@ bool teamState::setupActivePlayerInstances()  // sets up active player objects
         logMsg(func +" Entity Node Name == " +APIIT.second->getNodeName());
         logMsg(func +" Node Name == " +APIIT.second->getNode()->getName());
     }
-//    exit(0);
+    exit(0);
     logMsg(func +" end");
 
     return (true);

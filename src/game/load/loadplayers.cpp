@@ -655,8 +655,6 @@ playerEntitySharedPtr loadPlayers::loadPlayerFile(std::string fileName)  // load
     }
     
     playerInstance->getData()->setFirstName(firstName);
-//    exit(0);
-    
     playerInstance->getData()->setLastName(lastName);
     playerInstance->getData()->setPlayerName(firstName +" " +lastName);
     playerInstance->getData()->setAge(age);

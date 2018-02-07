@@ -75,6 +75,9 @@ class entity
     bool getModelLoaded();  // retrieves the value of modelLoaded
     void setModelLoaded(bool set);  // sets the value of modelLoaded
 
+    bool getNodeCreated();  // retrieves the value of nodeaCreated
+    void setNodeCreated(bool set);  // sets the value of nodeCreated
+
     Ogre::Vector3 getNodePosition();  // retrieves the value of nodePosition
     void setNodePosition(Ogre::Vector3 set);  // sets the value of nodePosition
 
@@ -110,6 +113,7 @@ class entity
 
     bool modelLoaded;  // stores whether the 3D model of the basketball has been loaded
     
+    bool nodeCreated;  // stores whether entitiy's node has been created
 };
 
 #endif

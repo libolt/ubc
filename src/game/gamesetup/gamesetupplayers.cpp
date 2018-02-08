@@ -21,6 +21,7 @@
 #include "gamesetup/gamesetupplayers.h"
 #include "components/gamecomponents.h"
 #include "data/playerdata.h"
+#include "engine/renderengine.h"
 #include "entity/playerentity.h"
 #include "flags/gameflags.h"
 #include "load/loadplayers.h"
@@ -323,7 +324,9 @@ playerEntityMSharedPtr gameSetupPlayers::createActivePlayerInstances(playerEntit
 playerEntityMSharedPtr gameSetupPlayers::setupActivePlayerInstances(playerEntityMSharedPtr activePlayerInstance, renderEngineSharedPtr render)  // sets up active player instances
 {
     conversionSharedPtr convert = conversion::Instance();
-    std::string func = "teamState::setupActivePlayerInstances()";
+    loaderSharedPtr load; 
+    
+    std::string func = "gameSetupPlayers::setupActivePlayerInstances()";
     
     logMsg(func +" beginning");
     for (auto APIIT : activePlayerInstance)
@@ -348,10 +351,18 @@ playerEntityMSharedPtr gameSetupPlayers::setupActivePlayerInstances(playerEntity
 
         if (!APIIT.second->getModelLoaded())
         {
+            OgreEntitySharedPtr tempModel;
+            std::string entityName = APIIT.second->getName();
+            std::string entityModelFileName = APIIT.second->getModelFileName();
+            
             logMsg(func +" Model not loaded yet!");
-            if (APIIT.second->loadModel())
+            logMsg(" name == " +APIIT.second->getName());
+            tempModel = load->loadModelFile(entityModelFileName, entityName, render);
+//            exit(0);
+            if (tempModel != nullptr)
             {
                 logMsg(func + " Model loaded successfully!");
+                APIIT.second->setModel(tempModel);
                 APIIT.second->setModelLoaded(true);
             }
             else
@@ -367,6 +378,7 @@ playerEntityMSharedPtr gameSetupPlayers::setupActivePlayerInstances(playerEntity
         
         if (!APIIT.second->getNodeCreated())
         {
+            OgreSceneNodeSharedPtr tempNode;
             logMsg(func +" Node not created yet!");
             logMsg(func +" nodeName == " +APIIT.second->getNodeName());
             if (APIIT.second->getNodeName() == "")
@@ -375,15 +387,22 @@ playerEntityMSharedPtr gameSetupPlayers::setupActivePlayerInstances(playerEntity
                 APIIT.second->setNodeName(nodeName);
                 logMsg(func +" nodeName == " +APIIT.second->getNodeName());
             }
-            exit(0);
-            if (APIIT.second->loadModel())
+            else
             {
-                logMsg(func + " Model loaded successfully!");
-                APIIT.second->setModelLoaded(true);
+                logMsg(func +" nodeName == " +APIIT.second->getNodeName());
+            }
+            tempNode = render->createNode(APIIT.second->getModel(), APIIT.second->getNodeName());
+            logMsg(func +" tempNode!");
+//            exit(0);
+            if (tempNode != nullptr)
+            {
+                logMsg(func + " Node created successfully!");
+                APIIT.second->setNode(tempNode);
+                APIIT.second->setNodeCreated(true);
             }
             else
             {
-                logMsg(func + " Unable to load model!");
+                logMsg(func + " Unable to create node!");
                 exit(0);
             }
         }

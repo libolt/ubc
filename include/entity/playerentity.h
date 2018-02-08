@@ -163,8 +163,6 @@ class playerEntity : public entity
 
     bool initialize();  // initializes the court entity object
 
-    bool loadModel();  // loads the 3D model from file specified in modelName
-
     bool setupPhysicsObject();  // sets up the physics object
  
     bool initializeStateMachine();  // initializes the stateMachine object

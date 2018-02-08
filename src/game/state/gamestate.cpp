@@ -1043,7 +1043,9 @@ bool gameState::createNodes(renderEngineSharedPtr render)  // creates scene node
     OgreEntitySharedPtr activeModel;
     OgreSceneNodeSharedPtr activeNode;
     std::string activeEntityName;
-    size_t activeNodeNum;
+    std::string activeNodeNum;
+    std::string activeNodeName;
+
     std::string func = "gameState::createNodes()";
     
     logMsg(func +" beginning");
@@ -1054,8 +1056,18 @@ bool gameState::createNodes(renderEngineSharedPtr render)  // creates scene node
         {
             activeModel = ABIIT.second->getEntity()->getModel();
             activeEntityName = ABIIT.second->getEntity()->getName();
-            activeNodeNum = ABIIT.first;
-            activeNode = render->createNode(activeModel, activeEntityName, activeNodeNum);  // creates node
+            activeNodeNum = convert->toString(ABIIT.first);
+            activeNodeName = ABIIT.second->getEntity()->getNodeName();
+            if (activeNodeName == "")
+            {
+                activeNodeName = activeEntityName + activeNodeNum;
+                ABIIT.second->getEntity()->setNodeName(activeNodeName);
+            }
+            else
+            {
+                
+            }
+            activeNode = render->createNode(activeModel, activeNodeName);  // creates node
             ABIIT.second->getEntity()->setNode(activeNode);  // saves node to current instance
         }
     }
@@ -1070,8 +1082,18 @@ bool gameState::createNodes(renderEngineSharedPtr render)  // creates scene node
         {
             activeModel = ACIIT.second->getEntity()->getModel();
             activeEntityName = ACIIT.second->getEntity()->getName();
-            activeNodeNum = ACIIT.first;
-            activeNode = render->createNode(activeModel, activeEntityName, activeNodeNum);  // creates node
+            activeNodeNum = convert->toString(ACIIT.first);
+            activeNodeName = ACIIT.second->getEntity()->getNodeName();
+            if (activeNodeName == "")
+            {
+                activeNodeName = activeEntityName + activeNodeNum;
+                ACIIT.second->getEntity()->setNodeName(activeNodeName);
+            }
+            else
+            {
+                
+            }
+            activeNode = render->createNode(activeModel, activeNodeName);  // creates node
             ACIIT.second->getEntity()->setNode(activeNode);  // saves node to current instance
         }
     }
@@ -1087,8 +1109,18 @@ bool gameState::createNodes(renderEngineSharedPtr render)  // creates scene node
             activeModel = AHIIT.second->getEntity()->getModel();
             activeEntityName = AHIIT.second->getEntity()->getModel()->getName();
             logMsg(func +" activeEntityName == " +activeEntityName);
-            activeNodeNum = AHIIT.first;
-            activeNode = render->createNode(activeModel, activeEntityName, activeNodeNum);  // creates node
+            activeNodeNum = convert->toString(AHIIT.first);
+            activeNodeName = AHIIT.second->getEntity()->getNodeName();
+            if (activeNodeName == "")
+            {
+                activeNodeName = activeEntityName + activeNodeNum;
+                AHIIT.second->getEntity()->setNodeName(activeNodeName);
+            }
+            else
+            {
+                
+            }
+            activeNode = render->createNode(activeModel, activeNodeName);  // creates node
             AHIIT.second->getEntity()->setNode(activeNode);  // saves node to current instance
 
         }
@@ -1788,7 +1820,7 @@ bool gameState::updateActiveTeamInstances(renderEngineSharedPtr render)  // upda
     for (auto ATIIT : activeTeamInstance)
     {
         ATIIT.second->updateState(component, flag, data, render);
-        exit(0);
+//        exit(0);
     }
 //FIXME! Needs fixed for playerStateMachine refactoring
 /*

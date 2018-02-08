@@ -390,12 +390,12 @@ void teamState::updateState(gameComponentsSharedPtr gameComponent, gameFlagsShar
 //    jumpBallsSharedPtr jumpBall = gameInstance->getJumpBall();
     std::string func = "teamState::updateState()";
 
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 //    exit(0);
 
 //    size_t activeBBallInstance = gameInstance->getActiveBBallInstance();
 
-//  logMsg("Updating team state " +convert->toString(teamNumber));
+//  logMsg(func +" Updating team state " +convert->toString(teamNumber));
     if (activePlayerInstancesCreated)
     {
         
@@ -403,7 +403,7 @@ void teamState::updateState(gameComponentsSharedPtr gameComponent, gameFlagsShar
         {
             // setup Active Player Instances
             activePlayerInstance = gameSetupPlayer->setupActivePlayerInstances(activePlayerInstance, render);
-            if (setupActivePlayerInstances())
+            if (activePlayerInstance.size() != 0)
             {
                 activePlayerInstancesSetup = true;
             }
@@ -424,12 +424,12 @@ void teamState::updateState(gameComponentsSharedPtr gameComponent, gameFlagsShar
             if (setPlayerStartPositions(gameComponent->getCourtInstance(), gameData->getTeamStarterID()))  // sets starting positions for the players
             {
                 playerStartPositionsSet = true;
-                logMsg("Player Start Positions set!");
+                logMsg(func +" Player Start Positions set!");
 //                exit(0);
             }
             else
             {
-                logMsg("Player Start Positions NOT set!");
+                logMsg(func +" Player Start Positions NOT set!");
                 exit(0);
             }          
         }
@@ -445,7 +445,7 @@ void teamState::updateState(gameComponentsSharedPtr gameComponent, gameFlagsShar
             if (setPlayerStartDirections())  // sets starting directions for the players
             {
                 playerStartDirectionsSet = true;
-                logMsg("Player Start Directions set!");
+                logMsg(func +" Player Start Directions set!");
 //                    exit(0);
             }
             else
@@ -506,7 +506,7 @@ void teamState::updateState(gameComponentsSharedPtr gameComponent, gameFlagsShar
 
             if (gameData->getTeamWithBall() == teamType) // checks if the team has the basketball
             {
-                logMsg("tipoffcomplete playerWithBallInstance == " +convert->toString(playerWithBallInstance));
+                logMsg(func +" tipoffcomplete playerWithBallInstance == " +convert->toString(playerWithBallInstance));
 
                 size_t x = 0;
                 size_t instanceWithBall;
@@ -525,7 +525,7 @@ void teamState::updateState(gameComponentsSharedPtr gameComponent, gameFlagsShar
                 }
                 else if (activePlayerInstance[instanceWithBall]->getPassBall())
                 {
-                    logMsg("Calculating Pass");
+                    logMsg(func +" Calculating Pass");
     //              exit(0);
                     if (!activePlayerInstance[instanceWithBall]->getPassCalculated())
                     {
@@ -566,14 +566,14 @@ void teamState::updateState(gameComponentsSharedPtr gameComponent, gameFlagsShar
 
                     }
                 }
-//              logMsg("Player with ball ==  "  +convert->toString(playerWithBall));
-//              logMsg("Player with ball's name: "  +activePlayerInstance[playerWithBall]->getPlayerName());
-//              logMsg("Player with ball's current position: "  +convert->toString(activePlayerInstance[playerWithBall]->getNode()->getPosition()));
+//              logMsg(func +" Player with ball ==  "  +convert->toString(playerWithBall));
+//              logMsg(func +" Player with ball's name: "  +activePlayerInstance[playerWithBall]->getPlayerName());
+//              logMsg(func +" Player with ball's current position: "  +convert->toString(activePlayerInstance[playerWithBall]->getNode()->getPosition()));
             }
         }
-        logMsg("Team type = " +convert->toString(teamType));
+        logMsg(func +" Team type = " +convert->toString(teamType));
 
-        logMsg("Human player = " +humanPlayer);
+        logMsg(func +" Human player = " +humanPlayer);
                                         
         //updatePlayerMovements();  // updates movement of player objects
         //updatePlayerDirections(); // updates the direction the players are facing
@@ -589,7 +589,7 @@ void teamState::updateState(gameComponentsSharedPtr gameComponent, gameFlagsShar
 ///        {
 ///        }
 
-//    logMsg("Team ==  "  +toString(teamType));
+//    logMsg(func +" Team ==  "  +toString(teamType));
 
         //      exit(0);
     }
@@ -600,7 +600,7 @@ void teamState::updateState(gameComponentsSharedPtr gameComponent, gameFlagsShar
 
     if (gameFlag->getTipOffComplete())
     {
-        logMsg("tipOff Complete!");
+        logMsg(func +" tipOff Complete!");
 //        exit(0);
         if (gameData->getTeamWithBall() == teamType)
         {
@@ -635,70 +635,13 @@ void teamState::updateState(gameComponentsSharedPtr gameComponent, gameFlagsShar
     }
 
     
-//   logMsg("team state updated = " +convert->toString(teamType));
+//   logMsg(func +" team state updated = " +convert->toString(teamType));
 }
 
 void updateActivePlayerSettings()  // updates the settings of active players
 {
 
 }
-
-/*bool teamState::createPlayerInstances()  // creates the player instances
-{
-    conversionSharedPtr convert = conversion::Instance();
-    playerEntityMSharedPtr gamePlayerInstance;
-    std::string func = "teamState::createPlayerInstances()";
-
-    logMsg(func +" beginning");
-    
-    if (gameInstance->checkIfPlayerInstanceCreated())
-    {
-    
-        logMsg(func +"game player instances created!");
-        gamePlayerInstance = gameInstance->getPlayerInstance();
-    }
-    else
-    {
-        logMsg(func +"game player instances not created!");
-        exit(0);
-    }
-    logMsg(func + " gamePlayerInstance.size() == " +convert->toString(gamePlayerInstance.size()));
-//    exit(0);
-    auto i = 0;
-    auto ID = 0;
-    playerInstance.clear();
-    for (auto GPIIT : gamePlayerInstance)
-    {
-        logMsg(func +" gamePlayerInstance->getData()->getTeamID() == " +convert->toString(gamePlayerInstance[0]->getData()->getTeamID()));
-        logMsg(func +" getID() == " +convert->toString(getID()));
-
-        if (GPIIT.second->getData()->getTeamID() == getID())  // checks if player is assigned to this team
-        {
-
-            logMsg(func + " Team " +convert->toString(getID()) + " GPI Name == " +GPIIT.second->getData()->getFirstName() +" " +GPIIT.second->getData()->getLastName());
-            playerInstance.insert(std::pair<size_t, playerEntitySharedPtr>(GPIIT.first, GPIIT.second));    // adds pInstance to the playerInstance std::vector.
-//            logMsg(func +"Team ID == " +convert->toString(getID()) +" playerInstance[" +convert->toString(it.first) +"]->getFirstName() == " +playerInstance[it.first]->getFirstName());
-            ++ID;
-        }
-//        ++i;
-    }
-    for (auto PIIT : playerInstance)
-    {
-        logMsg(func +"Team ID == " +convert->toString(getID()) +" playerInstance[" +convert->toString(PIIT.first) +"]->getData()->getFirstName() == " +PIIT.second->getData()->getFirstName());
-
-    }
-//    exit(0);
-///    if (getID() == 1)
-///    {
-///        logMsg(func +"playerInstance.size() == " +convert->toString(playerInstance.size()));
-///        logMsg(func +" ID Count == " +convert->toString(ID));
-//        exit(0);
-///    }
-
-    logMsg(func +" end");
-
-    return (true);
-}*/
 
 bool teamState::setPlayerStartPositions(courtStateMSharedPtr courtInstance, teamStarterIDsVecM teamStarterID)  // sets the initial coordinates for the players.
 {
@@ -968,207 +911,6 @@ bool teamState::setPlayerStartDirections()  // sets the initial directions for t
     
     logMsg(func +" end");
 //    exit(0);
-    return (true);
-}
-
-bool teamState::setupActivePlayerInstances()  // sets up active player objects
-{
-    conversionSharedPtr convert = conversion::Instance();
-//    loadPlayersSharedPtr loadPlayer(new loadPlayers);
-    std::string func = "teamState::setupActivePlayerInstances()";
-   
-    logMsg(func +" beginning");
-    for (auto APIIT : activePlayerInstance)
-    {
-/*        if (!APIIT.second->getBaseInitialized())
-        {
-            APIIT.second->setBase(base);
-            APIIT.second->setBaseInitialized(true);
-        }
-        else
-        {
-            logMsg(func +" Unable to initialize base!");
-            exit(0);
-        }*/
-        if (!APIIT.second->getInitialized())
-        {
-            logMsg("Player Entity not yet Initialized!");
-            exit(0);
-            if (APIIT.second->initialize())
-            {
-                APIIT.second->setInitialized(true);
-            }
-            else
-            {
-                logMsg(func + " Unable to initialize player entity!");
-                exit(0);
-            }
-        }
-        else
-        {
-
-        }
-
-
-        
-        if (!APIIT.second->getModelLoaded())
-        {
-            logMsg(func +" Model not loaded yet!");
-            if (APIIT.second->loadModel())
-            {
-                logMsg(func + " Model loaded successfully!");
-                APIIT.second->setModelLoaded(true);
-            }
-            else
-            {
-                logMsg(func + " Unable to load model!");
-                exit(0);
-            }
-        }
-        else
-        {
-                        
-        }
-//        exit(0);
-
-// FIXME! Broken by playerStateMachine work
-/*        logMsg(func + " setting up Physics!");
-        if (!APIIT.second->getPhysicsSetup())
-        {
-            if (!APIIT.second->getPhysics()->getGameSInitialized())
-            {
-                APIIT.second->getPhysics()->setGameS(gameInstance);
-                APIIT.second->getPhysics()->setGameSInitialized(true);
-            }
-            else
-            {
-                
-            }
-            if (APIIT.second->setupPhysicsObject())  // attempts to setup the physics object and sets physBodyInitialized to true if successful
-            {
-                APIIT.second->setPhysBodyInitialized(true);
-            }
-//            APIIT.second->setPhysicsSetup(true);
-        }
-        else
-        {
-                        
-        }*/
-        
-        if (!APIIT.second->getStateMachineInitialized())
-        {
-            logMsg(func + " stateMachine not initialized!");
-            if (APIIT.second->initializeStateMachine())
-            {
-                logMsg(func + " stateMachine is now Initialized!");
-                
-                if (!APIIT.second->getSMNodeSet())  // sets the value of node if it has not been set already
-                {
-                    playerSMData *SMData = new playerSMData;
-                    SMData->node = APIIT.second->getNode();
-                    APIIT.second->setStateChanged(true);
-                    if (APIIT.second->updateStateMachine(SETNODE, SMData))
-                    {
-                        APIIT.second->setSMNodeSet(true);
-                        logMsg(func +" stateMachine node has been set!");
-                    }
-                    else
-                    {
-                        logMsg(func +" Unable to set stateMachine node");
-                        exit(0);
-                    }
-//                    exit(0);
-                }
-                else
-                {
-                    logMsg(func +" stateMachine node already set");
-                }
-
-                if (!APIIT.second->getSMModelSet())  // sets the value of model if it has not been set already
-                {
-                    playerSMData *SMData = new playerSMData;
-                    SMData->model = APIIT.second->getModel();
-                    APIIT.second->setStateChanged(true);
-                    if (APIIT.second->updateStateMachine(SETMODEL, SMData))
-                    {
-                        APIIT.second->setSMModelSet(true);
-                        logMsg(func +" stateMachine model has been set!");
-                    }
-                    else
-                    {
-                        logMsg(func +" Unable to set stateMachine model");
-                        exit(0);
-                    }
-//                    exit(0);
-                }
-                else
-                {
-                    logMsg(func +" stateMachine model already set");
-                }
-            }
-            else
-            {
-                logMsg(func + " Unable to initialize stateMachine !");
-            }
-        }
-        else
-        {
-            logMsg(func + " stateMachine already Initialized!");
-            if (!APIIT.second->getSMNodeSet())  // sets the value of node if it has not been set already
-            {
-                playerSMData *SMData = new playerSMData;
-                SMData->node = APIIT.second->getNode();
-                APIIT.second->setStateChanged(true);
-                if (APIIT.second->updateStateMachine(SETNODE, SMData))
-                {
-                    APIIT.second->setSMNodeSet(true);
-                    logMsg(func +" stateMachine node has been set!");
-                }
-                else
-                {
-                    logMsg(func +" Unable to set stateMachine node");
-                    exit(0);
-                }
-//                    exit(0);
-            }
-            else
-            {
-                logMsg(func +" stateMachine node already set");
-            }
-
-            if (!APIIT.second->getSMModelSet())  // sets the value of model if it has not been set already
-            {
-                playerSMData *SMData = new playerSMData;
-                SMData->model = APIIT.second->getModel();
-                APIIT.second->setStateChanged(true);
-                if (APIIT.second->updateStateMachine(SETMODEL, SMData))
-                {
-                    APIIT.second->setSMModelSet(true);
-                    logMsg(func +" stateMachine model has been set!");
-                }
-                else
-                {
-                    logMsg(func +" Unable to set stateMachine model");
-                    exit(0);
-                }
-//                    exit(0);
-            }
-            else
-            {
-                logMsg(func +" stateMachine model already set");
-            }
-        }
-//        exit(0);
-    }
-    
-    for (auto APIIT : activePlayerInstance)
-    {
-        logMsg(func +" Entity Node Name == " +APIIT.second->getNodeName());
-        logMsg(func +" Node Name == " +APIIT.second->getNode()->getName());
-    }
-    exit(0);
-    logMsg(func +" end");
-
     return (true);
 }
 

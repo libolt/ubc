@@ -839,26 +839,20 @@ bool renderEngine::createScene()
 return (true);
 }
 
-OgreSceneNodeSharedPtr renderEngine::createNode(OgreEntitySharedPtr model,std::string entityName, size_t nodeNum)  // create scene node for model
+OgreSceneNodeSharedPtr renderEngine::createNode(OgreEntitySharedPtr model,std::string entityNodeName)  // create scene node for model
 {
     OgreSceneNodeSharedPtr tempNode; //(new Ogre::SceneNode);
     conversionSharedPtr convert = conversion::Instance();
-    std::string entityNodeName;
-    std::string entityNodeNum;
+//    std::string entityNodeName;
+//    std::string entityNodeNum;
     std::string func = "render::createNode()";
 
-        // creates and instantiates the node object
-//    node = getRenderE()->getMSceneMgr()->getRootSceneNode()->createChildSceneNode(entityNodeName);
-///    if (entityNodeName == "")
-///    {
-///
-//        entityNodeName = "das";
-///    }
-    entityNodeNum = convert->toString(nodeNum);
-    entityNodeName = entityName +"node" +entityNodeNum;
-    logMsg(func +" entityNodeName == " +entityNodeName);
+
+//    entityNodeNum = convert->toString(nodeNum);
+//    entityNodeName = entityName +"node" +entityNodeNum;
+//    logMsg(func +" entityNodeName == " +entityNodeName);
 //    exit(0);
-    tempNode = OgreSceneNodeSharedPtr(mSceneMgr->getRootSceneNode()->createChildSceneNode(entityNodeName));
+    tempNode = OgreSceneNodeSharedPtr(mSceneMgr->getRootSceneNode()->createChildSceneNode(entityNodeName+"df"));
     logMsg(func +" tempNode created!");
 //    tempNode->setName(entityNodeName);
     tempNode->attachObject(model.get());

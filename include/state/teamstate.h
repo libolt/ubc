@@ -150,8 +150,6 @@ public:
 
     bool setPlayerStartDirections();  // sets the initial directions for the players.
 
-    bool setupActivePlayerInstances();  // sets up active player objects
-    
     void updateActivePlayers();  // updates the states of active players
     void updatePlayerDirections(gameComponentsSharedPtr gameComponent);  // updates the direction players are facing
     void updatePlayerMovements();	// updates the movement status of players

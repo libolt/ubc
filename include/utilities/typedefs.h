@@ -70,6 +70,7 @@ class basketballEntity;
 class courtEntity;
 class hoopEntity;
 class playerEntity;
+class playerData;
 class gameFlags;
 class basketballState;
 class courtState;
@@ -162,6 +163,8 @@ typedef sharedPtr<hoopEntity> hoopEntitySharedPtr;
 typedef sharedPtr<playerEntity> playerEntitySharedPtr;
 
 typedef sharedPtr<gameFlags> gameFlagsSharedPtr;
+
+typedef sharedPtr<playerFlags> playerFlagsSharedPtr;
 
 typedef sharedPtr<basketballState> basketballStateSharedPtr;
 

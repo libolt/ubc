@@ -24,8 +24,8 @@
 #ifndef _ENET_ISINCLUDED_
 #define _ENET_ISINCLUDED_
 #include "enet/enet.h"
-#endif 5
-;
+#endif 
+
 #include <vector>
 #include <unordered_map>
 #include <boost/shared_ptr.hpp>

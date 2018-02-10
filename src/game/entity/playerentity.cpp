@@ -203,16 +203,19 @@ void playerEntity::setCourtPositionChangedType(positionChangedTypes set)  // set
 
 bool playerEntity::initialize()  // initializes the player entity object
 {
-    sharedPtr<playerPhysics> tempPhysics(new playerPhysics);
+    playerPhysicsSharedPtr tempPhysics(new playerPhysics);
     physics = tempPhysics;
 
-    sharedPtr<playerData> tempData(new playerData);
-    data = tempData;
+    playerFlagsSharedPtr tempFlag(new playerFlags);
+    flag = tempFlag;
     
-    sharedPtr<playerStatistics> tempStats(new playerStatistics);
+    playerDataSharedPtr tempData(new playerData);
+    data = tempData;
+
+    playerStatisticsSharedPtr tempStats(new playerStatistics);
     statistics = tempStats;
     
-    sharedPtr<playerStateMachine> tempStateMachine(new playerStateMachine);
+    playerStateMachineSharedPtr tempStateMachine(new playerStateMachine);
     stateMachine = tempStateMachine;
     
     return (true);

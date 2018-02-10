@@ -26,6 +26,7 @@
 #include "components/gamecomponents.h"
 #include "entity/courtentity.h"
 #include "entity/playerentity.h"
+#include "flags/playerflags.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
 #include "state/gamestate.h"
@@ -169,7 +170,7 @@ void playerSteerPlugin::open()  // opens the plugin
             {
                 logMsg(func +" for (auto APIIT : activePlayerInstance[ATIIT.first])");
                 playerSteerSharedPtr steer = APIIT.second->getSteer();
-                bool steerInitialized = APIIT.second->getSteerInitialized();
+                bool steerInitialized = APIIT.second->getFlag()->getSteerInitialized();
                 if (!steerInitialized)
                 {
                     playerSteerSharedPtr tempSteer(new playerSteer);
@@ -195,7 +196,7 @@ void playerSteerPlugin::open()  // opens the plugin
                 logMsg(func +" allPlayerSteers.push_back(APIIT.second->getSteer());");
                 APIIT.second->setSteer(steer);
                 logMsg(func +" APIIT.second->setSteerInitialized(steerInitialized);");
-                APIIT.second->setSteerInitialized(steerInitialized);
+                APIIT.second->getFlag()->setSteerInitialized(steerInitialized);
             }
             logMsg(func +" ATIIT.second->setActivePlayerInstance(activePlayerInstance);");
             ATIIT.second->setActivePlayerInstance(activePlayerInstance);

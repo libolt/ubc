@@ -69,8 +69,12 @@ class UBCComponents;
 class basketballEntity;
 class courtEntity;
 class hoopEntity;
-class playerEntity;
 class playerData;
+class playerEntity;
+class playerFlags;
+class playerPhysics;
+class playerStateMachine;
+class playerStatistics;
 class gameFlags;
 class basketballState;
 class courtState;
@@ -143,6 +147,14 @@ typedef sharedPtr<UBCComponents> UBCComponentsSharedPtr;
 typedef sharedPtr<courtData> courtDataSharedPtr;
 
 typedef sharedPtr<gameData> gameDataSharedPtr;
+
+typedef sharedPtr<playerData> playerDataSharedPtr;
+
+typedef sharedPtr<playerPhysics> playerPhysicsSharedPtr;
+
+typedef sharedPtr<playerStateMachine> playerStateMachineSharedPtr;
+
+typedef sharedPtr<playerStatistics> playerStatisticsSharedPtr;
 
 typedef sharedPtr<gameEngine> gameEngineSharedPtr;
 

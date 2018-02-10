@@ -30,6 +30,7 @@
 #include "entity/basketballentity.h"
 #include "entity/courtentity.h"
 #include "flags/gameflags.h"
+#include "flags/playerflags.h"
 #include "gamesetup/gamesetupbasketballs.h"
 #include "gamesetup/gamesetupcourts.h"
 #include "gamesetup/gamesetuphoops.h"
@@ -1700,7 +1701,7 @@ bool gameState::updateState(renderEngineSharedPtr render)  // updates the game s
         
                     for (auto APIIT : activePlayerInstance)
                     {
-                        if (APIIT.second->getSMNodeSet())
+                        if (APIIT.second->getFlag()->getSMNodeSet())
                         {
                             logMsg(func +" Wioooot!");
                             Ogre::Vector3 pos = APIIT.second->getNode()->getPosition();
@@ -1970,7 +1971,7 @@ bool gameState::updatePlayerCollisionObjects()  // updates the player collision 
                         btRigidBodySharedPtr physBody;
                         for (auto CPIIT : collisionPlayerInstance)  // loops through the other team's activePlayerInstance
                         {
-                            if (CPIIT.second->getPhysBodyInitialized())  // verifies that each player's physBody has been initialized
+                            if (CPIIT.second->getFlag()->getPhysBodyInitialized())  // verifies that each player's physBody has been initialized
                             {  // inserts the player's position and their collisionBody into newCollisionBodies
                                 logMsg(func +" physBody Initialized!");
                                 position = CPIIT.first;

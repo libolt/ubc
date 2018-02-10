@@ -20,6 +20,7 @@
 
 #include "gamesetup/gamesetupplayerpositions.h"
 #include "entity/playerentity.h"
+#include "flags/playerflags.h"
 #include "ai/playersteer.h"
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
@@ -96,47 +97,47 @@ playerEntityMSharedPtr gameSetupPlayerPositions::setJumpBallPositions(playerEnti
             switch (APIIT.second->getActivePosition())
             {
                 case PG:
-                    APIIT.second->setCourtPositionChanged(true);
+                    APIIT.second->getFlag()->setCourtPositionChanged(true);
                     APIIT.second->setCourtPositionChangedType(STARTCHANGE);
                     APIIT.second->setNewCourtPosition(startingPos[0]);
-                    APIIT.second->setStateChanged(true);
+                    APIIT.second->getFlag()->setStateChanged(true);
                     stateAction.push_back(CHANGECOURTPOS);
                     APIIT.second->setStateAction(stateAction);
 //FIXME!AI                    APIIT.second->getSteer()->setPlayerPosition(PG);
 //                    exit(0);
                 break;
                 case SG:
-                    APIIT.second->setCourtPositionChanged(true);
+                    APIIT.second->getFlag()->setCourtPositionChanged(true);
                     APIIT.second->setCourtPositionChangedType(STARTCHANGE);
                     APIIT.second->setNewCourtPosition(startingPos[1]);
-                    APIIT.second->setStateChanged(true);
+                    APIIT.second->getFlag()->setStateChanged(true);
                     stateAction.push_back(CHANGECOURTPOS);
                     APIIT.second->setStateAction(stateAction);
 //FIXME!AI                    APIIT.second->getSteer()->setPlayerPosition(SG);
                 break;
                 case SF:
-                    APIIT.second->setCourtPositionChanged(true);
+                    APIIT.second->getFlag()->setCourtPositionChanged(true);
                     APIIT.second->setCourtPositionChangedType(STARTCHANGE);
                     APIIT.second->setNewCourtPosition(startingPos[2]);
-                    APIIT.second->setStateChanged(true);
+                    APIIT.second->getFlag()->setStateChanged(true);
                     stateAction.push_back(CHANGECOURTPOS);
                     APIIT.second->setStateAction(stateAction);
 //FIXME!AI                    APIIT.second->getSteer()->setPlayerPosition(SF);
                 break;
                 case PF:
-                    APIIT.second->setCourtPositionChanged(true);
+                    APIIT.second->getFlag()->setCourtPositionChanged(true);
                     APIIT.second->setCourtPositionChangedType(STARTCHANGE);
                     APIIT.second->setNewCourtPosition(startingPos[3]);
-                    APIIT.second->setStateChanged(true);
+                    APIIT.second->getFlag()->setStateChanged(true);
                     stateAction.push_back(CHANGECOURTPOS);
                     APIIT.second->setStateAction(stateAction);
 //FIXME!AI                    APIIT.second->getSteer()->setPlayerPosition(PF);
                 break;
                 case C:
-                    APIIT.second->setCourtPositionChanged(true);
+                    APIIT.second->getFlag()->setCourtPositionChanged(true);
                     APIIT.second->setCourtPositionChangedType(STARTCHANGE);
                     APIIT.second->setNewCourtPosition(startingPos[4]);
-                    APIIT.second->setStateChanged(true);
+                    APIIT.second->getFlag()->setStateChanged(true);
                     stateAction.push_back(CHANGECOURTPOS);
                     APIIT.second->setStateAction(stateAction);
 //FIXME!AI                    APIIT.second->getSteer()->setPlayerPosition(C);

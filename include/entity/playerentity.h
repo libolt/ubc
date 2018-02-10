@@ -50,7 +50,7 @@ class playerEntity : public entity
     playerStateMachineSharedPtr getStateMachine();  // retrieves the value of stateMachine
     void setStateMachine(playerStateMachineSharedPtr set);  // sets the value of stateMachine
 
-    sharedPtr<playerStatisticsSharedPtr getStatistics();  // retrieves the value of statistics
+    playerStatisticsSharedPtr getStatistics();  // retrieves the value of statistics
     void setStatistics(playerStatisticsSharedPtr set);  // sets the value of statistics
 
     playerSteerSharedPtr getSteer();  // retrieves the value of steer

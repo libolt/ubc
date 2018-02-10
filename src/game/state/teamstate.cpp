@@ -26,6 +26,7 @@
 #include "entity/courtentity.h"
 #include "entity/playerentity.h"
 #include "flags/gameflags.h"
+#include "flags/playerflags.h"
 #include "gamesetup/gamesetupplayers.h"
 #include "gamesetup/gamesetupplayerpositions.h"
 #include "physics/basketballphysics.h"
@@ -519,15 +520,15 @@ void teamState::updateState(gameComponentsSharedPtr gameComponent, gameFlagsShar
                     }
 //                    ++x;
                 }
-                if (!activePlayerInstance[instanceWithBall]->getPassBall()) // checks if the player with ball is passing it.
+                if (!activePlayerInstance[instanceWithBall]->getFlag()->getPassBall()) // checks if the player with ball is passing it.
                 {
     //              exit(0);
                 }
-                else if (activePlayerInstance[instanceWithBall]->getPassBall())
+                else if (activePlayerInstance[instanceWithBall]->getFlag()->getPassBall())
                 {
                     logMsg(func +" Calculating Pass");
     //              exit(0);
-                    if (!activePlayerInstance[instanceWithBall]->getPassCalculated())
+                    if (!activePlayerInstance[instanceWithBall]->getFlag()->getPassCalculated())
                     {
     //                  exit(0);
                         Ogre::Vector3 bballPos;
@@ -543,14 +544,14 @@ void teamState::updateState(gameComponentsSharedPtr gameComponent, gameFlagsShar
                         activeBasketballInstance[0]->getEntity()->getNode()->setPosition(bballPos);
 
                     }
-                    else if (activePlayerInstance[instanceWithBall]->getPassCalculated())
+                    else if (activePlayerInstance[instanceWithBall]->getFlag()->getPassCalculated())
                     {
 //                      exit(0);
                         executePass();
                         if (physEngine.getPassCollision())  // checks if ball has collided with player being passed to.
                         {
 //                          exit(0);
-                            activePlayerInstance[instanceWithBall]->setPassBall(false); // player is no longer passing the ball
+                            activePlayerInstance[instanceWithBall]->getFlag()->setPassBall(false); // player is no longer passing the ball
                             playerWithBallInstance = activePlayerInstance[instanceWithBall]->getPassToPlayer(); // playerWithBall has changed
 
                             if (humanControlled)
@@ -850,32 +851,32 @@ bool teamState::setPlayerStartDirections()  // sets the initial directions for t
         {
             case PG:
                 SMData->direction = playerDirection[0];
-                APIIT.second->setStateChanged(true);
+                APIIT.second->getFlag()->setStateChanged(true);
                 stateAction.push_back(CHANGEDIRECTION);
                 APIIT.second->setStateAction(stateAction);
 //                exit(0);
             break;       
             case SG:
                 SMData->direction = playerDirection[1];
-                APIIT.second->setStateChanged(true);
+                APIIT.second->getFlag()->setStateChanged(true);
                 stateAction.push_back(CHANGEDIRECTION);
                 APIIT.second->setStateAction(stateAction);
             break;
             case SF:
                 SMData->direction = playerDirection[2];
-                APIIT.second->setStateChanged(true);
+                APIIT.second->getFlag()->setStateChanged(true);
                 stateAction.push_back(CHANGEDIRECTION);
                 APIIT.second->setStateAction(stateAction);
             break;
             case PF:
                 SMData->direction = playerDirection[3];
-                APIIT.second->setStateChanged(true);
+                APIIT.second->getFlag()->setStateChanged(true);
                 stateAction.push_back(CHANGEDIRECTION);
                 APIIT.second->setStateAction(stateAction);
             break;
             case C:
                 SMData->direction = playerDirection[4];
-                APIIT.second->setStateChanged(true);
+                APIIT.second->getFlag()->setStateChanged(true);
                 stateAction.push_back(CHANGEDIRECTION);
                 APIIT.second->setStateAction(stateAction);
             break;
@@ -1106,7 +1107,7 @@ void teamState::updatePlayerMovements()  // updates player movements
 
     for (auto APIIT : activePlayerInstance)
     {
-        if (APIIT.second->getMovement()) // if true sets coordinate change accordingly
+        if (APIIT.second->getFlag()->getMovement()) // if true sets coordinate change accordingly
         {
 //                    exit(0);
             if (APIIT.second->getDirection() == UP)
@@ -1148,7 +1149,7 @@ void teamState::updatePlayerMovements()  // updates player movements
             }
 
         }
-        else if (!APIIT.second->getMovement())   // if false then sets their coordinate changes to 0.0
+        else if (!APIIT.second->getFlag()->getMovement())   // if false then sets their coordinate changes to 0.0
         {
             posChange = Ogre::Vector3(0.0f, 0.0f, 0.0f);
         }
@@ -1156,9 +1157,9 @@ void teamState::updatePlayerMovements()  // updates player movements
         if (posChange.x != 0 || posChange.y != 0 || posChange.z != 0)
         {
             APIIT.second->setNewCourtPosition(posChange);    // sets the newCourtPosition for current playerInstance
-            APIIT.second->setCourtPositionChanged(true);
+            APIIT.second->getFlag()->setCourtPositionChanged(true);
             APIIT.second->setCourtPositionChangedType(INPUTCHANGE);
-            APIIT.second->setMovement(false);
+            APIIT.second->getFlag()->setMovement(false);
         }       
 //        ++x;
     }

@@ -62,7 +62,7 @@ playerFlagsSharedPtr playerEntity::getFlag()  // retrieves the value of flag
 }
 void playerEntity::setFlag(playerFlagsSharedPtr set)  // sets the value of flag
 {
-    flag =cset;
+    flag = set;
 }
 
 playerStateMachineSharedPtr playerEntity::getStateMachine()  // retrieves the value of stateMachine
@@ -342,7 +342,7 @@ bool playerEntity::update() // executes any updates that need to be performed
     }*/
 //    exit(0);
     
-    if (stateChanged)
+    if (flag->getStateChanged())
     {
         logMsg(func +" stateAction.size() = " +convert->toString(stateAction.size()));
         for (auto SAIT : stateAction)
@@ -378,7 +378,7 @@ bool playerEntity::update() // executes any updates that need to be performed
             }
         }
         stateAction.clear();
-        stateChanged = false;  // sets stateChanged back to false now that hte stateMachine has been updated
+        getFlag()->setStateChanged(false);  // sets stateChanged back to false now that hte stateMachine has been updated
     }
     else
     {

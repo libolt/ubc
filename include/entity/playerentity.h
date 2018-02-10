@@ -24,6 +24,7 @@
 #include "entity/entity.h"
 #include "physics/playerphysics.h"
 
+class playerComponents;
 class playerData;
 class playerFlags;
 class playerStateMachine;
@@ -38,23 +39,14 @@ class playerEntity : public entity
     playerEntity();  // constructor
     ~playerEntity();  // destructor
     
+    playerComponentsSharedPtr getComponent();  // retrieves the value of component
+    void setComponent(playerComponentsSharedPtr set);  // sets the value of component
+
     playerDataSharedPtr getData();  // retrieves the value of data
     void setData(playerDataSharedPtr set);  // sets the value of data
 
     playerFlagsSharedPtr getFlag();  // retrieves the value of flag
     void setFlag(playerFlagsSharedPtr set);  // sets the value of flag
-
-    playerPhysicsSharedPtr getPhysics();  // retrieves the value of physics
-    void setPhysics(playerPhysicsSharedPtr set);  // sets the value of physics
-
-    playerStateMachineSharedPtr getStateMachine();  // retrieves the value of stateMachine
-    void setStateMachine(playerStateMachineSharedPtr set);  // sets the value of stateMachine
-
-    playerStatisticsSharedPtr getStatistics();  // retrieves the value of statistics
-    void setStatistics(playerStatisticsSharedPtr set);  // sets the value of statistics
-
-    playerSteerSharedPtr getSteer();  // retrieves the value of steer
-    void setSteer(playerSteerSharedPtr set);  // sets the value of steer
 
     playerPositions getActivePosition();  // retrieves the value of activePosition
     void setActivePosition(playerPositions set);  // sets the value of activePosition
@@ -101,17 +93,11 @@ class playerEntity : public entity
 
     private:
 
+    playerComponentsSharedPtr component;  // instance of playerData object
+
     playerDataSharedPtr data;  // instance of playerData object
     
     playerFlagsSharedPtr flag;  // instance of playerFlags object
-
-    playerStateMachineSharedPtr stateMachine;  // instance of playerStateMachine object
-
-    playerPhysicsSharedPtr physics;  // instance of playerPhysics object
-
-    playerStatisticsSharedPtr statistics;  // instance of playerStatistics object
-
-    playerSteerSharedPtr steer;  // stores the steering objerct that represents the player
 
     playerPositions activePosition;  // stores the active position of the player
 

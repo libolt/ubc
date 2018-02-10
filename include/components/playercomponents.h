@@ -18,18 +18,37 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef _PLAYERFLAGS_H_
+#ifndef _PLAYERCOMPONENTS_H_
 #define _PLAYERFLAGS_H_
 
-class playerFlags
+class playerComponents
 {
     public:
-        playerFlags();  // constructor
-        ~playerFlags();  // destructor
+        playerComponents();  // constructor
+        ~playerComponents();  // destructor
         
+        playerPhysicsSharedPtr getPhysics();  // retrieves the value of physics
+        void setPhysics(playerPhysicsSharedPtr set);  // sets the value of physics
+
+        playerStateMachineSharedPtr getStateMachine();  // retrieves the value of stateMachine
+        void setStateMachine(playerStateMachineSharedPtr set);  // sets the value of stateMachine
+
+        playerStatisticsSharedPtr getStatistics();  // retrieves the value of statistics
+        void setStatistics(playerStatisticsSharedPtr set);  // sets the value of statistics
+
+        playerSteerSharedPtr getSteer();  // retrieves the value of steer
+        void setSteer(playerSteerSharedPtr set);  // sets the value of steer
+
+
     private:
     
-    
+        playerStateMachineSharedPtr stateMachine;  // instance of playerStateMachine object
+
+        playerPhysicsSharedPtr physics;  // instance of playerPhysics object
+
+        playerStatisticsSharedPtr statistics;  // instance of playerStatistics object
+
+        playerSteerSharedPtr steer;  // stores the steering objerct that represents the player
     
 };
 

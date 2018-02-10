@@ -29,5 +29,40 @@ playerComponents::~playerComponents()  // destructor
     
 }
 
+playerStateMachineSharedPtr playerComponents::getStateMachine()  // retrieves the value of stateMachine
+{
+    return (stateMachine);
+}
+void playerComponents::setStateMachine(playerStateMachineSharedPtr set)  // sets the value of stateMachine
+{
+    stateMachine = set;
+}
+
+playerPhysicsSharedPtr playerComponents::getPhysics()  // retrieves the value of physics
+{
+    return (physics);
+}
+void playerComponents::setPhysics(playerPhysicsSharedPtr set)  // sets the value of physics
+{
+    physics = set;
+}
+
+playerSteerSharedPtr playerComponents::getSteer()  // retrieves the value of steer
+{
+    return (steer);
+}
+void playerComponents::setSteer(playerSteerSharedPtr set)  // sets the value of steer
+{
+    steer = set;
+}
+
+playerStatisticsSharedPtr playerComponents::getStatistics()  // retrieves the value of statistics
+{
+    return (statistics);
+}
+void playerComponents::setStatistics(playerStatisticsSharedPtr set)  // sets the value of statistics
+{
+    statistics = set;
+}
 
 

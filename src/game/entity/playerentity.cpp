@@ -24,6 +24,7 @@
 #include "engine/gameengine.h"
 #include "engine/renderengine.h"
 #include "statistics/playerstatistics.h"
+#include "components/playercomponents.h"
 #include "data/playerdata.h"
 #include "flags/playerflags.h"
 #include "statemachine/playerstatemachine.h"
@@ -47,6 +48,15 @@ playerEntity::~playerEntity()  // destructor
 
 }
 
+playerComponentsSharedPtr playerEntity::getComponent()  // retrieves the value of component
+{
+    return (component);
+}
+void playerEntity::setComponent(playerComponentsSharedPtr set)  // sets the value of component
+{
+    component = set;
+}
+
 playerDataSharedPtr playerEntity::getData()  // retrieves the value of data
 {
     return (data);
@@ -65,41 +75,6 @@ void playerEntity::setFlag(playerFlagsSharedPtr set)  // sets the value of flag
     flag = set;
 }
 
-playerStateMachineSharedPtr playerEntity::getStateMachine()  // retrieves the value of stateMachine
-{
-    return (stateMachine);
-}
-void playerEntity::setStateMachine(playerStateMachineSharedPtr set)  // sets the value of stateMachine
-{
-    stateMachine = set;
-}
-
-playerPhysicsSharedPtr playerEntity::getPhysics()  // retrieves the value of physics
-{
-    return (physics);
-}
-void playerEntity::setPhysics(playerPhysicsSharedPtr set)  // sets the value of physics
-{
-    physics = set;
-}
-
-playerSteerSharedPtr playerEntity::getSteer()  // retrieves the value of steer
-{
-    return (steer);
-}
-void playerEntity::setSteer(playerSteerSharedPtr set)  // sets the value of steer
-{
-    steer = set;
-}
-
-playerStatisticsSharedPtr playerEntity::getStatistics()  // retrieves the value of statistics
-{
-    return (statistics);
-}
-void playerEntity::setStatistics(playerStatisticsSharedPtr set)  // sets the value of statistics
-{
-    statistics = set;
-}
 
 playerPositions playerEntity::getActivePosition()  // retrieves the value of activePosition
 {
@@ -203,21 +178,25 @@ void playerEntity::setCourtPositionChangedType(positionChangedTypes set)  // set
 
 bool playerEntity::initialize()  // initializes the player entity object
 {
-    playerPhysicsSharedPtr tempPhysics(new playerPhysics);
-    physics = tempPhysics;
+    
+    playerComponentsSharedPtr tempComponent(new playerComponents);
+    component = tempComponent;
+
+    playerDataSharedPtr tempData(new playerData);
+    data = tempData;
 
     playerFlagsSharedPtr tempFlag(new playerFlags);
     flag = tempFlag;
     
-    playerDataSharedPtr tempData(new playerData);
-    data = tempData;
-
-    playerStatisticsSharedPtr tempStats(new playerStatistics);
-    statistics = tempStats;
+    playerPhysicsSharedPtr tempPhysics(new playerPhysics);
+    physics = tempPhysics;
     
     playerStateMachineSharedPtr tempStateMachine(new playerStateMachine);
     stateMachine = tempStateMachine;
     
+    playerStatisticsSharedPtr tempStats(new playerStatistics);
+    statistics = tempStats;
+
     return (true);
 }
 

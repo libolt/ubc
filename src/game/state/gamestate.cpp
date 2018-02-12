@@ -25,6 +25,7 @@
 #include "ai/basketballsteer.h"
 #include "data/gamedata.h"
 #include "components/gamecomponents.h"
+#include "components/playercomponents.h"
 #include "entity/playerentity.h"
 #include "utilities/conversion.h"
 #include "entity/basketballentity.h"
@@ -1975,7 +1976,7 @@ bool gameState::updatePlayerCollisionObjects()  // updates the player collision 
                             {  // inserts the player's position and their collisionBody into newCollisionBodies
                                 logMsg(func +" physBody Initialized!");
                                 position = CPIIT.first;
-                                physBody = CPIIT.second->getPhysics()->getPhysBody();
+                                physBody = CPIIT.second->getComponent()->getPhysics()->getPhysBody();
                                 newCollisionBodies.insert(std::pair<std::string, btRigidBodySharedPtr>(position, physBody));  // loads the second hoop
 //                                tempBody = physBody;
                                 logMsg(func +" position = " +position);

@@ -23,6 +23,7 @@
 #include "Ogre.h"
 #include "ai/playersteerplugin.h"
 #include "ai/ai.h"
+#include "components/playercomponents.h"
 #include "components/gamecomponents.h"
 #include "entity/courtentity.h"
 #include "entity/playerentity.h"
@@ -169,7 +170,7 @@ void playerSteerPlugin::open()  // opens the plugin
             for (auto APIIT : activePlayerInstance)
             {
                 logMsg(func +" for (auto APIIT : activePlayerInstance[ATIIT.first])");
-                playerSteerSharedPtr steer = APIIT.second->getSteer();
+                playerSteerSharedPtr steer = APIIT.second->getComponent()->getSteer();
                 bool steerInitialized = APIIT.second->getFlag()->getSteerInitialized();
                 if (!steerInitialized)
                 {
@@ -189,12 +190,12 @@ void playerSteerPlugin::open()  // opens the plugin
                 logMsg(func +" ai->selectedVehicle = steer");
                 ai->selectedVehicle = steer;
                 logMsg(func +" APIIT.second->setSteer(steer);");
-                APIIT.second->setSteer(steer);
+                APIIT.second->getComponent()->setSteer(steer);
                 logMsg(func + " allPlayerSteers.push_back(APIIT.second->getSteer());");
-                allPlayerSteers.push_back(APIIT.second->getSteer());
+                allPlayerSteers.push_back(APIIT.second->getComponent()->getSteer());
         //            ++y;
                 logMsg(func +" allPlayerSteers.push_back(APIIT.second->getSteer());");
-                APIIT.second->setSteer(steer);
+                APIIT.second->getComponent()->setSteer(steer);
                 logMsg(func +" APIIT.second->setSteerInitialized(steerInitialized);");
                 APIIT.second->getFlag()->setSteerInitialized(steerInitialized);
             }

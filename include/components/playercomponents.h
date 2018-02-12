@@ -19,7 +19,9 @@
  ***************************************************************************/
 
 #ifndef _PLAYERCOMPONENTS_H_
-#define _PLAYERFLAGS_H_
+#define _PLAYERCOMPONENTS_H_
+
+#include "utilities/typedefs.h"
 
 class playerComponents
 {

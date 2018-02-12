@@ -189,13 +189,13 @@ bool playerEntity::initialize()  // initializes the player entity object
     flag = tempFlag;
     
     playerPhysicsSharedPtr tempPhysics(new playerPhysics);
-    physics = tempPhysics;
+    component->setPhysics(tempPhysics);
     
     playerStateMachineSharedPtr tempStateMachine(new playerStateMachine);
-    stateMachine = tempStateMachine;
+    component->setStateMachine(tempStateMachine);
     
     playerStatisticsSharedPtr tempStats(new playerStatistics);
-    statistics = tempStats;
+    component->setStatistics(tempStats);
 
     return (true);
 }
@@ -205,26 +205,26 @@ bool playerEntity::setupPhysicsObject()  // sets up the physics object
     std::string func = "playerEntity::setupPhysicsObject()!";
     OgreEntitySharedPtr tempModel = getModel();
     OgreSceneNodeSharedPtr tempNode = getNode();
-    btRigidBody *tempPhysBody = getPhysics()->getPhysBody().get();
+    btRigidBody *tempPhysBody = component->getPhysics()->getPhysBody().get();
     
     logMsg(func +" beginning");
 //    exit(0);
     
-    if (!getPhysics()->getGameSInitialized())
+    if (!component->getPhysics()->getGameSInitialized())
     {
 //BASEREMOVAL        getPhysics()->setGameS(getBase()->getGameS());
-        getPhysics()->setGameSInitialized(true);
+        component->getPhysics()->setGameSInitialized(true);
     }
 
-    getPhysics()->setMass(1.0f);
-    getPhysics()->setRestitution(0.0f);
-    getPhysics()->setFriction(0.0f);
+    component->getPhysics()->setMass(1.0f);
+    component->getPhysics()->setRestitution(0.0f);
+    component->getPhysics()->setFriction(0.0f);
 //    exit(0);
-    getPhysics()->setShapeType(CAPSULE);
-    getPhysics()->setColObject(COL_PLAYER0);
-    getPhysics()->setCollidesWith(COL_COURT);
+    component->getPhysics()->setShapeType(CAPSULE);
+    component->getPhysics()->setColObject(COL_PLAYER0);
+    component->getPhysics()->setCollidesWith(COL_COURT);
 
-    if (getPhysics()->setupPhysics(&tempModel, &tempNode, &tempPhysBody))
+    if (component->getPhysics()->setupPhysics(&tempModel, &tempNode, &tempPhysBody))
     {
         
 
@@ -235,7 +235,7 @@ bool playerEntity::setupPhysicsObject()  // sets up the physics object
         logMsg(func +" tempNode name == " +tempNode->getName());
         setNode(OgreSceneNodeSharedPtr(tempNode));
         logMsg(func +" setPhysBody");
-        getPhysics()->setPhysBody(btRigidBodySharedPtr(tempPhysBody));
+        component->getPhysics()->setPhysBody(btRigidBodySharedPtr(tempPhysBody));
 //        exit(0);
 
         return (true);
@@ -256,8 +256,8 @@ bool playerEntity::initializeStateMachine()  // initializes the stateMachine obj
 //    SMData->speed = 100;
     SMData->model = getModel();  //
     SMData->node = getNode();
-    stateMachine->setSpeed(SMData);
-    stateMachine->halt();
+    component->getStateMachine()->setSpeed(SMData);
+    component->getStateMachine()->halt();
     return (true);
 }
 
@@ -273,7 +273,7 @@ bool playerEntity::updateStateMachine(playerActions actionType, playerSMData *SM
     {
         case CHANGECOURTPOS:
             logMsg(func + " CHANGECOURTPOS");
-            stateMachine->pChangePosition(SMData);
+            component->getStateMachine()->pChangePosition(SMData);
         break;
         case CHANGEDIRECTION:
             logMsg(func + " CHANGEDIRECTION");
@@ -281,13 +281,13 @@ bool playerEntity::updateStateMachine(playerActions actionType, playerSMData *SM
         break;
         case SETNODE:
             logMsg(func +" SETNODE");
-            stateMachine->setPNode(SMData);
+            component->getStateMachine()->setPNode(SMData);
             logMsg(func +" NODESET");
             
         break;
         case SETMODEL:
             logMsg(func +" SETMODEL");
-            stateMachine->setPModel(SMData);
+            component->getStateMachine()->setPModel(SMData);
             logMsg(func +" MODELSET");
             
         break;

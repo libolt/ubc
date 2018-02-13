@@ -18,22 +18,22 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
- #ifndef _PLAYERSTATISTICS_H_
- #define _PLAYERSTATISTICS_H_
+#ifndef _PLAYERSTATISTICS_H_
+#define _PLAYERSTATISTICS_H_
  
- #include "statistics/statistics.h"
+#include "statistics/statistics.h"
  
- class playerStatistics : public statistics
- {
-     public:
+class playerStatistics : public statistics
+{
+    public:
         playerStatistics();  // constructor
         ~playerStatistics();  // destructor
 
         size_t getStamina();  // retrieves the value of stamina
         void setStamina(size_t set);  // sets the value of stamina
 
-     private:
+    private:
         size_t stamina;  // stores the player's energy level
- };
+};
  
- #endif
+#endif

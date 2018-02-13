@@ -22,8 +22,115 @@
 
 playerGameData::playerGameData()  // constructor
 {
+    activePosition = NONE;
+    courtPosition = Ogre::Vector3(0.0f,0.0f,0.0f);
+    posChange = Ogre::Vector3(0.0f,0.0f,0.0f);
+    passToPlayer = NONE;
+    direction = NODIRECT;
+    oldDirection = NODIRECT;
 }
 playerGameData::~playerGameData()  // destructor
 {
 }
+
+playerPositions playerGameData::getActivePosition()  // retrieves the value of activePosition
+{
+    return (activePosition);
+}
+void playerGameData::setActivePosition(playerPositions set)  // sets the value of activePosition
+{
+    activePosition = set;
+}
+
+Ogre::Vector3 playerGameData::getCourtPosition()  // retrieves the value of courtPosition
+{
+    return (courtPosition);
+}
+void playerGameData::setCourtPosition(Ogre::Vector3 set)  // sets the value of courtPosition
+{
+    courtPosition = set;
+}
+
+
+std::vector<playerActions> playerGameData::getStateAction()  // retrieves the value of stateAction
+{
+    return (stateAction);
+}
+void playerGameData::setStateAction(std::vector<playerActions> set)  // sets the value of stateAction
+{
+    stateAction = set; 
+}
+
+directions playerGameData::getDirection()  // retrieves the value of direction
+{
+    return (direction);
+}
+void playerGameData::setDirection(directions set)  // sets the value of direction
+{
+    direction = set;
+}
+
+directions playerGameData::getOldDirection()  // retrieves the value of oldDirection
+{
+    return (oldDirection);
+}
+void playerGameData::setOldDirection(directions set)  // sets the value of oldDirection
+{
+    oldDirection = set;
+}
+
+Ogre::Vector3 playerGameData::getPosChange()  // retrieves the value of posChange
+{
+    return (posChange);
+}
+void playerGameData::setPosChange(Ogre::Vector3 set)  // sets the value of posChange
+{
+    posChange = set;
+}
+
+playerPositions playerGameData::getPassToPlayer()  // retrieves the value of passToPlayer
+{
+    return (passToPlayer);
+}
+void playerGameData::setPassToPlayer(playerPositions set)  // sets the value of passToPlayer
+{
+    passToPlayer = set;
+}
+
+Ogre::Vector3 playerGameData::getJumpBeginPos()  // retrieves the value of playerJumpBeginPos
+{
+    return (jumpBeginPos);
+}
+void playerGameData::setJumpBeginPos(Ogre::Vector3 set)  // sets the value of playerJumpBeginPos
+{
+    jumpBeginPos = set;
+}
+
+Ogre::Vector3 playerGameData::getJumpEndPos()  // retrieves the value of playerJumpEndPos
+{
+    return (jumpEndPos);
+}
+void playerGameData::setJumpEndPos(Ogre::Vector3 set)  // sets the value of playerJumpEndPos
+{
+    jumpEndPos = set;
+}
+
+Ogre::Vector3 playerGameData::getNewCourtPosition()  // retrieves the value of newCourtPosition
+{
+    return (newCourtPosition);
+}
+void playerGameData::setNewCourtPosition(Ogre::Vector3 set)  // sets the value of newCourtPosition
+{
+    newCourtPosition = set;
+}
+
+positionChangedTypes playerGameData::getCourtPositionChangedType()  // retrieves the value of courtPositionChangedType
+{
+    return (courtPositionChangedType);
+}
+void playerGameData::setCourtPositionChangedType(positionChangedTypes set)  // sets the value of courtPositionChangedType
+{
+    courtPositionChangedType = set;
+}
+
 

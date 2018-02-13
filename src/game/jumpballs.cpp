@@ -21,6 +21,7 @@
 #include "utilities/conversion.h"
 #include "components/playercomponents.h"
 #include "data/playerdata.h"
+#include "data/playergamedata.h"
 #include "entity/basketballentity.h"
 #include "entity/playerentity.h"
 #include "physics/basketballphysics.h"
@@ -255,7 +256,7 @@ bool jumpBalls::jumpBallExecute(basketballStateMSharedPtr activeBasketballInstan
             
 //            exit(0);
             logMsg(func +" jump i == " +convert->toString(APIIT.first));
-            if (APIIT.second->getActivePosition() == C)
+            if (APIIT.second->getGameData()->getActivePosition() == C)
             {
                 logMsg(func +" jumpPlayerInstance = " +convert->toString(APIIT.first));
                  // logMsg("PlayerName = " +activePlayerInstance[x][i].getPlayerName());
@@ -374,7 +375,7 @@ bool jumpBalls::tipToPlayer(basketballStateMSharedPtr activeBasketballInstance, 
 //    for (APIIT = activePlayerInstance.begin(); APIIT != activePlayerInstance.end(); ++APIIT)
     for (APIIT = activePlayerInstance.begin(); APIIT != activePlayerInstance.end(); ++APIIT)
     {
-        if (APIIT->getActivePosition() == ballTippedToPosition)
+        if (APIIT->getGameData()->getActivePosition() == ballTippedToPosition)
         {
             ballTippedToPlayerID = APIIT->getData()->getID();
 //FIXME!            ballTippedToPlayerInstance = *APIIT->;

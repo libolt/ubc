@@ -26,7 +26,10 @@
 #include "statistics/playerstatistics.h"
 #include "components/playercomponents.h"
 #include "data/playerdata.h"
+#include "data/playergamedata.h"
+
 #include "flags/playerflags.h"
+
 #include "statemachine/playerstatemachine.h"
 
 // static declarations
@@ -36,12 +39,7 @@
 
 playerEntity::playerEntity()  // constructor
 {
-    activePosition = NONE;
-    courtPosition = Ogre::Vector3(0.0f,0.0f,0.0f);
-    posChange = Ogre::Vector3(0.0f,0.0f,0.0f);
-    passToPlayer = NONE;
-    direction = NODIRECT;
-    oldDirection = NODIRECT;
+    
 }
 playerEntity::~playerEntity()  // destructor
 {
@@ -75,105 +73,13 @@ void playerEntity::setFlag(playerFlagsSharedPtr set)  // sets the value of flag
     flag = set;
 }
 
-
-playerPositions playerEntity::getActivePosition()  // retrieves the value of activePosition
+playerGameDataSharedPtr playerEntity::getGameData()  // retrieves the value of gameData
 {
-    return (activePosition);
+    return (gameData);
 }
-void playerEntity::setActivePosition(playerPositions set)  // sets the value of activePosition
+void playerEntity::setGameData(playerGameDataSharedPtr set)  // sets the value of gameData
 {
-    activePosition = set;
-}
-
-Ogre::Vector3 playerEntity::getCourtPosition()  // retrieves the value of courtPosition
-{
-    return (courtPosition);
-}
-void playerEntity::setCourtPosition(Ogre::Vector3 set)  // sets the value of courtPosition
-{
-    courtPosition = set;
-}
-
-
-std::vector<playerActions> playerEntity::getStateAction()  // retrieves the value of stateAction
-{
-    return (stateAction);
-}
-void playerEntity::setStateAction(std::vector<playerActions> set)  // sets the value of stateAction
-{
-    stateAction = set; 
-}
-
-directions playerEntity::getDirection()  // retrieves the value of direction
-{
-    return (direction);
-}
-void playerEntity::setDirection(directions set)  // sets the value of direction
-{
-    direction = set;
-}
-
-directions playerEntity::getOldDirection()  // retrieves the value of oldDirection
-{
-    return (oldDirection);
-}
-void playerEntity::setOldDirection(directions set)  // sets the value of oldDirection
-{
-    oldDirection = set;
-}
-
-Ogre::Vector3 playerEntity::getPosChange()  // retrieves the value of posChange
-{
-    return (posChange);
-}
-void playerEntity::setPosChange(Ogre::Vector3 set)  // sets the value of posChange
-{
-    posChange = set;
-}
-
-playerPositions playerEntity::getPassToPlayer()  // retrieves the value of passToPlayer
-{
-    return (passToPlayer);
-}
-void playerEntity::setPassToPlayer(playerPositions set)  // sets the value of passToPlayer
-{
-    passToPlayer = set;
-}
-
-Ogre::Vector3 playerEntity::getJumpBeginPos()  // retrieves the value of playerJumpBeginPos
-{
-    return (jumpBeginPos);
-}
-void playerEntity::setJumpBeginPos(Ogre::Vector3 set)  // sets the value of playerJumpBeginPos
-{
-    jumpBeginPos = set;
-}
-
-Ogre::Vector3 playerEntity::getJumpEndPos()  // retrieves the value of playerJumpEndPos
-{
-    return (jumpEndPos);
-}
-void playerEntity::setJumpEndPos(Ogre::Vector3 set)  // sets the value of playerJumpEndPos
-{
-    jumpEndPos = set;
-}
-
-Ogre::Vector3 playerEntity::getNewCourtPosition()  // retrieves the value of newCourtPosition
-{
-    return (newCourtPosition);
-}
-void playerEntity::setNewCourtPosition(Ogre::Vector3 set)  // sets the value of newCourtPosition
-{
-    newCourtPosition = set;
-}
-
-positionChangedTypes playerEntity::getCourtPositionChangedType()  // retrieves the value of courtPositionChangedType
-{
-    return (courtPositionChangedType);
-}
-void playerEntity::setCourtPositionChangedType(positionChangedTypes set)  // sets the value of courtPositionChangedType
-{
-    courtPositionChangedType = set;
+    gameData = set;
 }
 
 bool playerEntity::initialize()  // initializes the player entity object
@@ -188,6 +94,9 @@ bool playerEntity::initialize()  // initializes the player entity object
     playerFlagsSharedPtr tempFlag(new playerFlags);
     flag = tempFlag;
     
+    playerGameDataSharedPtr tempGameData(new playerGameData);
+    gameData = tempGameData;
+
     playerPhysicsSharedPtr tempPhysics(new playerPhysics);
     component->setPhysics(tempPhysics);
     
@@ -326,8 +235,8 @@ bool playerEntity::update() // executes any updates that need to be performed
     
     if (flag->getStateChanged())
     {
-        logMsg(func +" stateAction.size() = " +convert->toString(stateAction.size()));
-        for (auto SAIT : stateAction)
+        logMsg(func +" stateAction.size() = " +convert->toString(gameData->getStateAction().size()));
+        for (auto SAIT : gameData->getStateAction())
         {
             switch (SAIT)
             {
@@ -359,7 +268,7 @@ bool playerEntity::update() // executes any updates that need to be performed
                 logMsg(func +" Unable to update stateMachine!");
             }
         }
-        stateAction.clear();
+        gameData->getStateAction.clear();
         getFlag()->setStateChanged(false);  // sets stateChanged back to false now that hte stateMachine has been updated
     }
     else

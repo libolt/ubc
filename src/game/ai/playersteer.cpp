@@ -24,6 +24,7 @@
 #include "ai/ai.h"
 #include "utilities/conversion.h"
 #include "components/playercomponents.h"
+#include "data/playergamedata.h"
 #include "entity/basketballentity.h"
 #include "entity/playerentity.h"
 #include "state/basketballstate.h"
@@ -365,7 +366,7 @@ void playerSteer::update(const float currentTime, float elapsedTime)  // update 
 */
     OpenSteer::Vec3 playerSteerPos;
 //    playerSteerPos = convert->toOpenSteerVec3(activePlayerInstance[teamType][ID].getCourtPosition());
-    logMsg(convert->toString(activePlayerInstance[teamType][playerPosition]->getCourtPosition()));
+    logMsg(convert->toString(activePlayerInstance[teamType][playerPosition]->getGameData()->getCourtPosition()));
 //    exit(0);
     /*
     size_t z = 0;
@@ -539,7 +540,7 @@ void playerSteer::checkCourtPosition()  // checks if the player's position has c
         activePlayerInstance.push_back(ATIIT.second->getActivePlayerInstance());
 	for (auto APIIT : activePlayerInstance[ATIIT.first])
 	{
-            if (convert->toString(APIIT.second->getActivePosition()) != humanPlayer)  // makes sure to not steer human player
+            if (convert->toString(APIIT.second->getGameData()->getActivePosition()) != humanPlayer)  // makes sure to not steer human player
             {
                 logMsg(func +" activePosition != humanPlayer");
             }	    

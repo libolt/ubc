@@ -25,6 +25,7 @@
 #include "ai/ai.h"
 #include "components/playercomponents.h"
 #include "components/gamecomponents.h"
+#include "data/playergamedata.h"
 #include "entity/courtentity.h"
 #include "entity/playerentity.h"
 #include "flags/playerflags.h"
@@ -181,8 +182,8 @@ void playerSteerPlugin::open()  // opens the plugin
                 }
             //      logMsg("Alive1");
                 logMsg(" APIIT.first = " +APIIT.first);
-                logMsg(" player position = " +convert->toString(APIIT.second->getCourtPosition()));
-                steer->setPosition(convert->toOpenSteerVec3(APIIT.second->getCourtPosition()));
+                logMsg(" player position = " +convert->toString(APIIT.second->getGameData()->getCourtPosition()));
+                steer->setPosition(convert->toOpenSteerVec3(APIIT.second->getGameData()->getCourtPosition()));
             //      steer.setPosition(OpenSteer::Vec3(0,0,0));
             //      logMsg("Alive2");
 

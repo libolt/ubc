@@ -73,6 +73,7 @@ class playerComponents;
 class playerData;
 class playerEntity;
 class playerFlags;
+class playerGameData;
 class playerPhysics;
 class playerStateMachine;
 class playerStatistics;
@@ -152,6 +153,8 @@ typedef sharedPtr<gameData> gameDataSharedPtr;
 typedef sharedPtr<playerComponents> playerComponentsSharedPtr;
 
 typedef sharedPtr<playerData> playerDataSharedPtr;
+
+typedef sharedPtr<playerGameData> playerGameDataSharedPtr;
 
 typedef sharedPtr<playerPhysics> playerPhysicsSharedPtr;
 

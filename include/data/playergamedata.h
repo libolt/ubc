@@ -27,7 +27,61 @@ class playerGameData
         playerGameData();  // constructor
         ~playerGameData();  // destructor
 
+        playerPositions getActivePosition();  // retrieves the value of activePosition
+        void setActivePosition(playerPositions set);  // sets the value of activePosition
+   
+        Ogre::Vector3 getCourtPosition();  // retrieves the value of courtPosition
+        void setCourtPosition(Ogre::Vector3 set);  // sets the value of courtPosition
+        
+        std::vector<playerActions> getStateAction();  // retrieves the value of stateAction
+        void setStateAction(std::vector<playerActions> set);  // sets the value of stateAction
+        
+        directions getDirection();  // retrieves the value of direction
+        void setDirection(directions set);  // sets the value of direction
+
+        directions getOldDirection();  // retrieves the value of oldDirection
+        void setOldDirection(directions set);  // sets the value of oldDirection
+
+        Ogre::Vector3 getPosChange();  // retrieves the value of posChange
+        void setPosChange(Ogre::Vector3 set);  // sets the value of posChange
+
+        playerPositions getPassToPlayer();  // retrieves the value of passToPlayer
+        void setPassToPlayer(playerPositions set);  // sets the value of passToPlayer
+
+        Ogre::Vector3 getJumpBeginPos();  // retrieves the value of playerJumpBeginPos
+        void setJumpBeginPos(Ogre::Vector3 set);  // sets the value of playerJumpBeginPos
+
+        Ogre::Vector3 getJumpEndPos();  // retrieves the value of playerJumpEndPos
+        void setJumpEndPos(Ogre::Vector3 set);  // sets the value of playerJumpEndPos
+
+        Ogre::Vector3 getNewCourtPosition();  // retrieves the value of newCourtPosition
+        void setNewCourtPosition(Ogre::Vector3 set);  // sets the value of newCourtPosition
+
+        positionChangedTypes getCourtPositionChangedType();  // retrieves the value of courtPositionChangedType
+        void setCourtPositionChangedType(positionChangedTypes set);  // sets the value of courtPositionChangedType
+
     private:
+    
+        playerPositions activePosition;  // stores the active position of the player
+
+        Ogre::Vector3 courtPosition;  // stores the position of the player on the court in an Ogre::Vector3
+      
+        directions direction;  // stores direction player is moving
+        directions oldDirection;  // stores the previous player direction.
+
+        Ogre::Vector3 posChange;  // stores value of players' position changes during logic updates
+
+        playerPositions passToPlayer;  // stores the value of the player to be passed to.
+
+        // player Jump variables
+        Ogre::Vector3 jumpBeginPos;  // stores the coordinates of the player at the beginning of the jump
+        Ogre::Vector3 jumpEndPos;  // stores the coordinates the player should reach at the end of the jump
+    
+        Ogre::Vector3 newCourtPosition;  // stores the upfated position of the player on the court in an Ogre::Vector3
+
+        positionChangedTypes courtPositionChangedType;  // stores what subsystem changed the position of the player
+    
+        std::vector<playerActions> stateAction;  // controls the action performed by stateMachine
 
 };
  

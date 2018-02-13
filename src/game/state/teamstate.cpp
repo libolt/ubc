@@ -22,6 +22,7 @@
 #include "components/gamecomponents.h"
 #include "data/gamedata.h"
 #include "data/playerdata.h"
+#include "data/playergamedata.h"
 #include "entity/basketballentity.h"
 #include "entity/courtentity.h"
 #include "entity/playerentity.h"
@@ -552,7 +553,7 @@ void teamState::updateState(gameComponentsSharedPtr gameComponent, gameFlagsShar
                         {
 //                          exit(0);
                             activePlayerInstance[instanceWithBall]->getFlag()->setPassBall(false); // player is no longer passing the ball
-                            playerWithBallInstance = activePlayerInstance[instanceWithBall]->getPassToPlayer(); // playerWithBall has changed
+                            playerWithBallInstance = activePlayerInstance[instanceWithBall]->getGameData()->getPassToPlayer(); // playerWithBall has changed
 
                             if (humanControlled)
                             {
@@ -761,7 +762,7 @@ bool teamState::setPlayerStartPositions(courtStateMSharedPtr courtInstance, team
 
     for (auto APIIT : activePlayerInstance)
     {
-        logMsg(func +" APIIT.second->getStateAction().size() = " +convert->toString(APIIT.second->getStateAction().size()));
+        logMsg(func +" APIIT.second->getStateAction().size() = " +convert->toString(APIIT.second->getGameData()->getStateAction().size()));
     }
 //    exit(0);
         
@@ -791,11 +792,11 @@ void teamState::setPlayerStartActivePositions()  // sets the position the player
     logMsg(func + " activePlayerInstance.size() == " +convert->toString(activePlayerInstance.size()));
     if (activePlayerInstance.size() > 0) // checks that activePlayerInstance has data before executing
     {
-        activePlayerInstance[0]->setActivePosition(PG);
-        activePlayerInstance[1]->setActivePosition(SG);
-        activePlayerInstance[2]->setActivePosition(SF);
-        activePlayerInstance[3]->setActivePosition(PF);
-        activePlayerInstance[4]->setActivePosition(C);
+        activePlayerInstance[0]->getGameData()->setActivePosition(PG);
+        activePlayerInstance[1]->getGameData()->setActivePosition(SG);
+        activePlayerInstance[2]->getGameData()->setActivePosition(SF);
+        activePlayerInstance[3]->getGameData()->setActivePosition(PF);
+        activePlayerInstance[4]->getGameData()->setActivePosition(C);
     }
     // set steer IDs
     for (auto APIIT : activePlayerInstance)
@@ -818,7 +819,7 @@ bool teamState::setPlayerStartDirections()  // sets the initial directions for t
     
     for (auto APIIT : activePlayerInstance)
     {
-        logMsg(func +" APIIT.second->getStateAction().size() = " +convert->toString(APIIT.second->getStateAction().size()));
+        logMsg(func +" APIIT.second->getGameData()->getStateAction().size() = " +convert->toString(APIIT.second->getGameData()->getStateAction().size()));
     }
 //    exit(0);
     
@@ -843,42 +844,42 @@ bool teamState::setPlayerStartDirections()  // sets the initial directions for t
     for (auto APIIT : activePlayerInstance)
     {
         playerSMData *SMData = new playerSMData;
-        std::vector<playerActions> stateAction = APIIT.second->getStateAction();
+        std::vector<playerActions> stateAction = APIIT.second->getGameData()->getStateAction();
 
         logMsg(func +" activePlayerInstance.size > 0!");
 //           exit(0);
-        switch (APIIT.second->getActivePosition())
+        switch (APIIT.second->getGameData()->getActivePosition())
         {
             case PG:
                 SMData->direction = playerDirection[0];
                 APIIT.second->getFlag()->setStateChanged(true);
                 stateAction.push_back(CHANGEDIRECTION);
-                APIIT.second->setStateAction(stateAction);
+                APIIT.second->getGameData()->setStateAction(stateAction);
 //                exit(0);
             break;       
             case SG:
                 SMData->direction = playerDirection[1];
                 APIIT.second->getFlag()->setStateChanged(true);
                 stateAction.push_back(CHANGEDIRECTION);
-                APIIT.second->setStateAction(stateAction);
+                APIIT.second->getGameData()->setStateAction(stateAction);
             break;
             case SF:
                 SMData->direction = playerDirection[2];
                 APIIT.second->getFlag()->setStateChanged(true);
                 stateAction.push_back(CHANGEDIRECTION);
-                APIIT.second->setStateAction(stateAction);
+                APIIT.second->getGameData()->setStateAction(stateAction);
             break;
             case PF:
                 SMData->direction = playerDirection[3];
                 APIIT.second->getFlag()->setStateChanged(true);
                 stateAction.push_back(CHANGEDIRECTION);
-                APIIT.second->setStateAction(stateAction);
+                APIIT.second->getGameData()->setStateAction(stateAction);
             break;
             case C:
                 SMData->direction = playerDirection[4];
                 APIIT.second->getFlag()->setStateChanged(true);
                 stateAction.push_back(CHANGEDIRECTION);
-                APIIT.second->setStateAction(stateAction);
+                APIIT.second->getGameData()->setStateAction(stateAction);
             break;
         }
         
@@ -907,7 +908,7 @@ bool teamState::setPlayerStartDirections()  // sets the initial directions for t
     
     for (auto APIIT : activePlayerInstance)
     {
-        logMsg(func +" APIIT.second->getStateAction().size() = " +convert->toString(APIIT.second->getStateAction().size()));
+        logMsg(func +" APIIT.second->getGameData()->getStateAction().size() = " +convert->toString(APIIT.second->getGameData()->getStateAction().size()));
     }
     
     logMsg(func +" end");
@@ -924,7 +925,7 @@ void teamState::updateActivePlayers()  // updates the states of active players
     
     for (auto APIIT : activePlayerInstance)
     {
-        logMsg(func +" APIIT.second->getStateAction().size() = " +convert->toString(APIIT.second->getStateAction().size()));
+        logMsg(func +" APIIT.second->getGameData()->getStateAction().size() = " +convert->toString(APIIT.second->getGameData()->getStateAction().size()));
     }
 //    exit(0);
     
@@ -991,8 +992,8 @@ void teamState::updatePlayerDirections(gameComponentsSharedPtr gameComponent)  /
     exit(0);
     for (auto APIIT : activePlayerInstance)
     {
-        playerDirection = APIIT.second->getDirection();
-        oldPlayerDirection = APIIT.second->getOldDirection();
+        playerDirection = APIIT.second->getGameData()->getDirection();
+        oldPlayerDirection = APIIT.second->getGameData()->getOldDirection();
         if (oldPlayerDirection != playerDirection)
         {
             
@@ -1082,7 +1083,7 @@ void teamState::updatePlayerDirections(gameComponentsSharedPtr gameComponent)  /
         if (APIIT.second->getData()->getID() != playerWithBallID)
         {
             oldPlayerDirection = playerDirection;
-            APIIT.second->setOldDirection(oldPlayerDirection);  // copies contents of oldPlayerDirection to the oldDirection variable
+            APIIT.second->getGameData()->setOldDirection(oldPlayerDirection);  // copies contents of oldPlayerDirection to the oldDirection variable
         }
         else
         {
@@ -1110,40 +1111,40 @@ void teamState::updatePlayerMovements()  // updates player movements
         if (APIIT.second->getFlag()->getMovement()) // if true sets coordinate change accordingly
         {
 //                    exit(0);
-            if (APIIT.second->getDirection() == UP)
+            if (APIIT.second->getGameData()->getDirection() == UP)
             {
                 posChange = Ogre::Vector3(0.0f, 0.0f, -0.400f);
                 logMsg("UP!");
 //              exit(0);
             }
-            else if (APIIT.second->getDirection() == DOWN)
+            else if (APIIT.second->getGameData()->getDirection() == DOWN)
             {
                 posChange = Ogre::Vector3(0.0f, 0.0f, 0.400f);
             }
-            else if (APIIT.second->getDirection() == LEFT)
+            else if (APIIT.second->getGameData()->getDirection() == LEFT)
             {
 //              exit(0);
 
                 posChange = Ogre::Vector3(-0.400f, 0.0f, 0.0f);
 //              playerInstance[i]->getPhysBody()->setLinearVelocity(btVector3(0.4,0,0));
             }
-            else if (APIIT.second->getDirection() == RIGHT)
+            else if (APIIT.second->getGameData()->getDirection() == RIGHT)
             {
                 posChange = Ogre::Vector3(0.400f, 0.0f, 0.0f);
             }
-            else if (APIIT.second->getDirection() == UPLEFT)
+            else if (APIIT.second->getGameData()->getDirection() == UPLEFT)
             {
                 posChange = Ogre::Vector3(-0.400f, 0.0f, -0.400f);
             }
-            else if (APIIT.second->getDirection() == UPRIGHT)
+            else if (APIIT.second->getGameData()->getDirection() == UPRIGHT)
             {
                 posChange = Ogre::Vector3(0.400f, 0.0f, -0.400f);
             }
-            else if (APIIT.second->getDirection() == DOWNLEFT)
+            else if (APIIT.second->getGameData()->getDirection() == DOWNLEFT)
             {
                 posChange = Ogre::Vector3(-0.400f, 0.0f, 0.400f);
             }
-            else if (APIIT.second->getDirection() == DOWNRIGHT)
+            else if (APIIT.second->getGameData()->getDirection() == DOWNRIGHT)
             {
                 posChange = Ogre::Vector3(0.400f, 0.0f, 0.400f);
             }
@@ -1156,9 +1157,9 @@ void teamState::updatePlayerMovements()  // updates player movements
 
         if (posChange.x != 0 || posChange.y != 0 || posChange.z != 0)
         {
-            APIIT.second->setNewCourtPosition(posChange);    // sets the newCourtPosition for current playerInstance
+            APIIT.second->getGameData()->setNewCourtPosition(posChange);    // sets the newCourtPosition for current playerInstance
             APIIT.second->getFlag()->setCourtPositionChanged(true);
-            APIIT.second->setCourtPositionChangedType(INPUTCHANGE);
+            APIIT.second->getGameData()->setCourtPositionChangedType(INPUTCHANGE);
             APIIT.second->getFlag()->setMovement(false);
         }       
 //        ++x;

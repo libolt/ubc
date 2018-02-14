@@ -20,7 +20,11 @@
 
 #ifndef _PLAYERGAMEDATA_H_
 #define _PLAYERGAMEDATA_H_
- 
+
+#include "utilities/enums.h"
+
+#include "OgreVector3.h"
+
 class playerGameData
 {
     public:

@@ -54,45 +54,43 @@
 
 // forward declarations
 
-class UBCGame;
-class UBCInput;
-class GUISystem;
+class AISystem;
+
+class basketballEntity;
+class basketballState;
+class basketballSteer;
+
 class conversion;
 
-class gameEngine;
-class inputEngine;
-class networkEngine;
-class physicsEngine;
-class renderEngine;
-class gameComponents;
-class UBCComponents;
-class basketballEntity;
-class courtEntity;
-class hoopEntity;
-class playerComponents;
-class playerData;
-class playerEntity;
-class playerFlags;
-class playerGameData;
-class playerPhysics;
-class playerStateMachine;
-class playerStatistics;
-class gameFlags;
-class basketballState;
-class courtState;
-class defenseState;
-class gameState;
-class hoopState;
-class input;
-class inputKeyboards;
-class inputGamePads;
-class networkState;
-class offenseState;
-class playerState;
-class teamState;
-
 class courtData;
+class courtEntity;
+class courtState;
+
+class defenseState;
+
+class gameComponents;
 class gameData;
+class gameEngine;
+class gameFlags;
+class gameSetupBasketballs;
+class gameSetupCourts;
+class gameSetupHoops;
+class gameSetupLineups;
+class gameSetupPlayers;
+class gameSetupPlayerPositions;
+class gameSetupTeams;
+class gameState;
+class GUISystem;
+
+class hoopEntity;
+class hoopState;
+
+class inputEngine;
+class input;
+class inputGamePads;
+class inputKeyboards;
+
+class jumpBalls;
 
 class loader;
 class loadBasketballs;
@@ -103,30 +101,37 @@ class loadPlayers;
 class loadTeams;
 class loadUsersInputs;
 class logging;
-class usersInputs;
 
-class AISystem;
-class basketballSteer;
-class playerSteer;
-class playerSteerPlugin;
-//class steering;
-//class steering::AABBox;
-//class OpenSteer;
+class networkEngine;
+class networkState;
 
 class offensePlays;
-//class offensePlays::playerDirectives;
-class jumpBalls;
-//class playerDirectives;
-//class ENetHost;
-class users;
+class offenseState;
 
-class gameSetupBasketballs;
-class gameSetupCourts;
-class gameSetupHoops;
-class gameSetupLineups;
-class gameSetupPlayers;
-class gameSetupPlayerPositions;
-class gameSetupTeams;
+class playerComponents;
+class playerData;
+class playerEntity;
+class playerFlags;
+class playerGameData;
+class playerPhysics;
+class playerStateMachine;
+class playerStatistics;
+class playerSteer;
+class playerSteerPlugin;
+class physicsEngine;
+
+class renderEngine;
+
+class teamComponents;
+class teamFlags;
+class teamGameData;
+class teamState;
+
+class UBCComponents;
+class UBCGame;
+class UBCInput;
+class users;
+class usersInputs;
 
 #ifndef sharedPtr
 #define sharedPtr std::shared_ptr
@@ -205,6 +210,12 @@ typedef sharedPtr<networkState> networkStateSharedPtr;
 typedef sharedPtr<offenseState> offenseStateSharedPtr;
 
 typedef sharedPtr<playerState> playerStateSharedPtr;
+
+typedef sharedPtr<teamComponents> teamComponentsSharedPtr;
+
+typedef sharedPtr<teamFlags> teamFlagsSharedPtr;
+
+typedef sharedPtr<teamGameData> teamGameDataSharedPtr;
 
 typedef sharedPtr<teamState> teamStateSharedPtr;
 

@@ -19,6 +19,9 @@
  ***************************************************************************/
 
 #include "data/playergamedata.h"
+#include "utilities/typedefs.h"
+
+#include "OgreVector3.h"
 
 playerGameData::playerGameData()  // constructor
 {

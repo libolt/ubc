@@ -242,12 +242,12 @@ bool playerEntity::update() // executes any updates that need to be performed
             {
                 case CHANGECOURTPOS:
                     logMsg(func + " CHANGECOURTPOS!");
-                    stateData->position = newCourtPosition;
-//                    exit(0);
+                    stateData->position = gameData->getNewCourtPosition();
+//                    exit(0);o
                 break;
                 case CHANGEDIRECTION:
                     logMsg(func + " CHANGEDIRECTION!");
-                    stateData->direction = direction;
+                    stateData->direction = gameData->getDirection();
                 break;
                 case SETNODE:
                     logMsg(func + " SETNODE!");
@@ -268,7 +268,7 @@ bool playerEntity::update() // executes any updates that need to be performed
                 logMsg(func +" Unable to update stateMachine!");
             }
         }
-        gameData->getStateAction.clear();
+        gameData->getStateAction().clear();
         getFlag()->setStateChanged(false);  // sets stateChanged back to false now that hte stateMachine has been updated
     }
     else

@@ -21,6 +21,7 @@
 #include "gamesetup/gamesetupplayers.h"
 #include "components/gamecomponents.h"
 #include "data/playerdata.h"
+#include "data/playergamedata.h"
 #include "engine/renderengine.h"
 #include "entity/playerentity.h"
 #include "flags/gameflags.h"
@@ -287,31 +288,31 @@ playerEntityMSharedPtr gameSetupPlayers::createActivePlayerInstances(playerEntit
         {
             logMsg(func +" PG");
             activePlayerInstance.insert(std::pair<playerPositions, playerEntitySharedPtr>(PG, PIIT.second));
-            activePlayerInstance[PG]->setActivePosition(PG);
+            activePlayerInstance[PG]->getGameData()->setActivePosition(PG);
             logMsg(func +" WOOT PG!");
         }
         else if (PIIT.second->getData()->getID() == activePlayerID["SG"])
         {
             activePlayerInstance.insert(std::pair<playerPositions, playerEntitySharedPtr>(SG, PIIT.second));
-            activePlayerInstance[SG]->setActivePosition(SG);
+            activePlayerInstance[SG]->getGameData()->setActivePosition(SG);
             logMsg(func +" WOOT SG!");
         }
         else if (PIIT.second->getData()->getID() == activePlayerID["SF"])
         {
             activePlayerInstance.insert(std::pair<playerPositions, playerEntitySharedPtr>(SF, PIIT.second));
-            activePlayerInstance[SF]->setActivePosition(SF);
+            activePlayerInstance[SF]->getGameData()->setActivePosition(SF);
             logMsg(func +" WOOT SF!");
         }
         else if (PIIT.second->getData()->getID() == activePlayerID["PF"])
         {
             activePlayerInstance.insert(std::pair<playerPositions, playerEntitySharedPtr>(PF, PIIT.second));
-            activePlayerInstance[PF]->setActivePosition(PF);
+            activePlayerInstance[PF]->getGameData()->setActivePosition(PF);
             logMsg(func +" WOOT PF!");
         }
         else if (PIIT.second->getData()->getID() == activePlayerID["C"])
         {
             activePlayerInstance.insert(std::pair<playerPositions, playerEntitySharedPtr>(C, PIIT.second));
-            activePlayerInstance[C]->setActivePosition(C);
+            activePlayerInstance[C]->getGameData()->setActivePosition(C);
             logMsg(func +" WOOT C!");
         }
         logMsg(func +" WOOT!");

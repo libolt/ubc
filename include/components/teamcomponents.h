@@ -29,8 +29,31 @@ class teamComponents
         teamComponents();  // constructor
         ~teamComponents();  // destructor
 
+        playerEntityMSharedPtr getPlayerInstance();  // retrieves the value of playerInstance
+        void setPlayerInstance(playerEntityMSharedPtr set);  // sets the value of  playerInstance
+
+        playerEntityMSharedPtr getActivePlayerInstance();  // retrieves the value of activePlayerInstance
+        void setActivePlayerInstance(playerEntityMSharedPtr set);  // sets the value of activePlayerInstance
+
+        offenseStateSharedPtr getOffenseInstance();  // retrievers the value of offenseInstance
+        void setOffenseInstance(offenseStateSharedPtr set);  // sets the value of offenseInstance
+
+        defenseStateSharedPtr getDefenseInstance();  // retrieves the value of defenseInstance
+        void setDefenseInstance(defenseStateSharedPtr set);  // sets the value of defenseInstance
+
+        std::unordered_map<std::string, btRigidBodySharedPtr> getCollisionBodies();  // retrieves the value of collisionBodies
+        void setCollisionBodies(std::unordered_map<std::string, btRigidBodySharedPtr> set);  // sets the value of collisionBodies
+
     private:
     
+        playerEntityMSharedPtr playerInstance;  // stores instance of the playerState class containing all team players
+        playerEntityMSharedPtr activePlayerInstance;  // stores instance of the playerState class containing the active players
+
+        offenseStateSharedPtr offenseInstance;  // stores the offenseState instance
+        defenseStateSharedPtr defenseInstance;  // stores the defenseState instance
+
+        std::unordered_map<std::string, btRigidBodySharedPtr> collisionBodies;  // physical bodies to test for collisions with players physBody objects
+
 };
 
 #endif

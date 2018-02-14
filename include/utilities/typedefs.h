@@ -126,6 +126,7 @@ class teamComponents;
 class teamFlags;
 class teamGameData;
 class teamState;
+class teamStatistics;
 
 class UBCComponents;
 class UBCGame;
@@ -209,7 +210,7 @@ typedef sharedPtr<networkState> networkStateSharedPtr;
 
 typedef sharedPtr<offenseState> offenseStateSharedPtr;
 
-typedef sharedPtr<playerState> playerStateSharedPtr;
+//typedef sharedPtr<playerState> playerStateSharedPtr;
 
 typedef sharedPtr<teamComponents> teamComponentsSharedPtr;
 
@@ -218,6 +219,8 @@ typedef sharedPtr<teamFlags> teamFlagsSharedPtr;
 typedef sharedPtr<teamGameData> teamGameDataSharedPtr;
 
 typedef sharedPtr<teamState> teamStateSharedPtr;
+
+typedef sharedPtr<teamStatistics> teamStatisticsSharedPtr;
 
 typedef sharedPtr<jumpBalls> jumpBallsSharedPtr;
 
@@ -318,7 +321,7 @@ typedef std::vector<basketballStateSharedPtr> basketballStateVecSharedPtr;
 
 typedef std::vector<sharedPtr<hoopState> > hoopStateVecSharedPtr;
 
-typedef std::vector<sharedPtr<playerState> > playerStateVecSharedPtr;
+//typedef std::vector<sharedPtr<playerState> > playerStateVecSharedPtr;
 
 typedef std::vector<sharedPtr<teamState> > teamStateVecSharedPtr;
 
@@ -349,7 +352,7 @@ typedef std::vector<courtState> courtStateVec;
 
 typedef std::vector<hoopState> hoopStateVec;
 
-typedef std::vector<playerState> playerStateVec;
+//typedef std::vector<playerState> playerStateVec;
 
 typedef std::vector<teamState> teamStateVec;
 
@@ -373,7 +376,7 @@ typedef std::map <size_t, courtStateSharedPtr> courtStateMSharedPtr;
 
 typedef std::map <size_t, hoopStateSharedPtr> hoopStateMSharedPtr;
 
-typedef std::map <size_t, playerStateSharedPtr> playerStateMSharedPtr;
+//typedef std::map <size_t, playerStateSharedPtr> playerStateMSharedPtr;
 
 typedef std::map <size_t, teamStateSharedPtr> teamStateMSharedPtr;
 

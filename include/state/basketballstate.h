@@ -123,8 +123,8 @@ public:
     bool getPlayerControlled();  // retrieves the value of player controlled
     void setPlayerControlled(bool set);  // sets the value of playerControlled
     
-    playerStateSharedPtr getPlayerWithBall();  // retrieves the value of playerWithBall
-    void setPlayerWithBall(playerStateSharedPtr set);  // sets the value of playerWithBall
+//    playerStateSharedPtr getPlayerWithBall();  // retrieves the value of playerWithBall
+//    void setPlayerWithBall(playerStateSharedPtr set);  // sets the value of playerWithBall
     
     courtStateSharedPtr getCourtInstance();  // retrieves the value of courtInstance
     void setCourtInstance(courtStateSharedPtr set);  // sets the value of courtInstance
@@ -214,7 +214,7 @@ private:
 
     bool playerControlled;  // set to true if human or cpu player has the ball
     
-    playerStateSharedPtr playerWithBall;  // stores copy of player that controls ball
+//    playerStateSharedPtr playerWithBall;  // stores copy of player that controls ball
     
     courtStateSharedPtr courtInstance;  // storee the active courtInstance
     

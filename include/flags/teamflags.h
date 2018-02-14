@@ -29,8 +29,52 @@ class teamFlags
         teamFlags();  // constructor
         ~teamFlags();  // destructor
 
+        bool getOffense();  // retrieves the value of offense
+        void setOffense(bool set);  // sets the value of offense
+
+        bool getDefense();  // retrieves the value of defense
+        void setDefense(bool set);  // sets the value of defense
+
+        bool getActivePlayerInstancesCreated();  // retrieves the value of activePlayerInstancesCreated
+        void setActivePlayerInstancesCreated(bool set);  // sets the value of activePlayerInstancesCreated
+
+        bool getActivePlayerInstancesSetup();  // retrieves the value of activePlayerInstancesSetup
+        void setActivePlayerInstancesSetup(bool set);  // sets the value of activePlayerInstancesSetup
+
+        bool getActivePlayerInstancesChanged();  // retrieves the value of activePlayerInstancesChanged
+        void setActivePlayerInstancesChanged(bool set);  // sets the value of activePlayerInstancesChanged
+
+        bool getPlayerInstancesCreated();  // retrieves the value of the playerInstancesCreated
+        void setPlayerInstancesCreated(bool set);  // sets the value of the playerInstancesCreated
+
+        bool getPlayerStartPositionsSet();  // retrieves the value of the playerStartPositionsSet
+        void setPlayerStartPositionsSet(bool set);  // sets the value of the playerStartPositionsSet
+
+        bool getPlayerStartDirectionsSet();  // retrieves the value of the playerStartDirectionsSet
+        void setPlayerStartDirectionsSet(bool set);  // sets the value of the playerStartDirectionsSet
+
+        bool getPlayerWithBallDribbling();  // retrieves the value of the playerWithBallDribbling
+        void setPlayerWithBallDribbling(bool set);  // sets the value of the playerWithBallDribbling
+
+        bool getHumanControlled();  // retrieves the value of the humanControlled
+        void setHumanControlled(bool set);  // sets the value of the humanControlled
+
     private:
     
+        bool offense;  // if set then the team is on offense
+        bool defense;  // if set then the team is on defense
+
+        bool activePlayerInstancesCreated;  // stores whether the active player instances have been created
+        bool activePlayerInstancesSetup;  // stores whether the active player instances have been configured
+        bool activePlayerInstancesChanged;  // stores whether the active player instances have been changed
+        bool playerInstancesCreated;  // storea whethet player instances have been created.
+        bool playerStartPositionsSet;  // stores whether player starting positions have been set
+        bool playerStartDirectionsSet;  // stores whether player starting directions have been set
+
+        bool playerWithBallDribbling;  // stores whether the player with the ball is dribbling
+
+        bool humanControlled;  // stores whether the team object is controlled by a human player;
+
 };
 
 #endif

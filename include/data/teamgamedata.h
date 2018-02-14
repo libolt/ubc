@@ -29,8 +29,62 @@ class teamGameData
         teamGameData();  // constructor
         ~teamGameData();  // destructor
 
+        teamTypes getTeamType();  // retrieves the value of teamType
+        void setTeamType(teamTypes set);  // sets the value of teamType
+
+        std::string getPlayerType();  // retrieves the value of playerType
+        void setPlayerType(std::string set);  // sets the value of playerType
+
+        sizeTVec getPlayerID();  // retrieves the value of playerID
+        void setPlayerID(sizeTVec set);  // sets the value of playerID
+
+        sizeTVec getActivePlayerID();  // retrieves the value of activePlayerID
+        void setActivePlayerID(sizeTVec set);  // sets the value of activePlayerID
+
+        sizeTVec getStarterID();  // retrieves the value of starterID
+        void setStarterID(sizeTVec set);  // sets the value of starterID
+
+        size_t getPlayerWithBallID();  // retrieves the value of the playerWithBallID
+        void setPlayerWithBallID(size_t set);  // sets the value of the playerWithBallID
+
+        playerPositions getPlayerWithBallInstance();  // retrieves the value of the playerWithBall
+        void setPlayerWithBallInstance(playerPositions set);  // sets the value of the playerWithBall
+
+        std::string getHumanPlayer();  // retrieves the value of the humanPlayer
+        void setHumanPlayer(std::string set);  // sets the value of the human player
+
+        size_t getHoop();  // retrieves the value of hoop
+        void setHoop(size_t set);  // sets the value of hoop
+
+        size_t getTeamColObject();  // retrieves the value of teamColObject
+        void setTeamColObject(size_t set); // sets the value of teamColObject
+    
+        size_t getTeamCollidesWith();  // retrieves the value of teamCollidesWith
+        void setTeamCollidesWith(size_t set); // sets the value of teamCollidesWith
+
     private:
     
+        size_t teamNumber;  // stores which team number the object is
+        teamTypes teamType;  // stores which type of team this object is
+//    static size_t teamID;  // stores the ID number of the team;
+
+        std::string playerType;  // stores the type of player in control of the team (human,network,ai) are valid values
+
+        sizeTVec playerID;  // stores the player IDs from the teams class
+        sizeTVec activePlayerID;  // stores which players are currently on the court.
+        sizeTVec starterID;  // stores the IDs of which players are listed as starters.
+
+        std::vector <std::string> playerModelsLoaded;  // creates a vector of strings that holds the models which are loaded
+
+        size_t playerInstanceCreatedCount;  // stores number of playerInstances that have been created
+        size_t playerWithBallID;  // stores the ID of the player that has the ball
+        playerPositions playerWithBallInstance;  // stores which player has control of the basketball, valid values are 0 - 4
+        std::string humanPlayer;  // stores which player is human controlled
+
+        size_t hoop;  // holds which hoop the team is shooting on
+        size_t teamColObject;  // stores the object that collides with others
+        size_t teamCollidesWith;   // stores what team players collides with
+
 };
 
 #endif

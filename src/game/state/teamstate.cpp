@@ -20,14 +20,17 @@
 
 #include "utilities/conversion.h"
 #include "components/gamecomponents.h"
+#include "components/teamcomponents.h"
 #include "data/gamedata.h"
 #include "data/playerdata.h"
 #include "data/playergamedata.h"
+#include "data/teamgamedata.h"
 #include "entity/basketballentity.h"
 #include "entity/courtentity.h"
 #include "entity/playerentity.h"
 #include "flags/gameflags.h"
 #include "flags/playerflags.h"
+#include "flags/teamflags.h"
 #include "gamesetup/gamesetupplayers.h"
 #include "gamesetup/gamesetupplayerpositions.h"
 #include "physics/basketballphysics.h"
@@ -52,41 +55,6 @@
 
 teamState::teamState()  // constructor
 {
-    
-    //teamNumber = -1;
-//    teamID = 0;
-    teamType = NOTEAM;
-    playerType = ' ';
-/*    assists = 0;
-    blocks = 0;
-    fouls = 0;
-    rebounds = 0;
-    steals = 0;
-    technicals = 0;
-    timeouts = 0;
-*/
-//    activePlayerID = new size_t[5];
-
-    activePlayerInstancesCreated = false;
-    activePlayerInstancesSetup = false;
-    activePlayerInstancesChanged = false;
-    playerInstancesCreated = false;
-    playerStartPositionsSet = false;
-    playerStartDirectionsSet = false;
-    playerInstanceCreatedCount = 0;
-    playerWithBallInstance = NONE;
-    playerWithBallID = -1;
-    playerWithBallDribbling = false;
-
-    humanControlled = false;
-    humanPlayer = 4;
-
-    hoop = -1;
-
-//    teamCollidesWith = COL_COURT; // | COL_BBALL | COL_TEAM2;  // determines what team1 collides with
-
-//    stateSet = false;
-//    setupState();
 
 }
 
@@ -94,247 +62,40 @@ teamState::~teamState()  // destructor
 {
 }
 
-sharedPtr<teamStatistics> teamState::getStatistics()  // retrieves the value of statistics
+teamComponentsSharedPtr teamState::getComponent()  // retrieves the value of component
+{
+    return (component);
+}
+void teamState::setComponent(teamComponentsSharedPtr set)  // sets the value of component
+{
+    component = set;
+}
+
+teamFlagsSharedPtr teamState::getFlag()  // retrieves the value of flag
+{
+    return (flag);
+}
+void teamState::setFlag(teamFlagsSharedPtr set)  // sets the value of flag
+{
+    flag = set;
+}
+
+teamGameDataSharedPtr teamState::getGameData()  // retrieves the value of gameData
+{
+    return (gameData);
+}
+void teamState::setGameData(teamGameDataSharedPtr set)  // sets the value of gameData
+{
+    gameData = set;
+}
+
+teamStatisticsSharedPtr teamState::getStatistics()  // retrieves the value of statistics
 {
     return (statistics);
 }
-void teamState::setStatistics(sharedPtr<teamStatistics> set)  // sets the value of statistics
+void teamState::setStatistics(teamStatisticsSharedPtr set)  // sets the value of statistics
 {
     statistics = set;
-}
-
-teamTypes teamState::getTeamType()  // retrieves the value of teamType
-{
- return (teamType);
-}
-void teamState::setTeamType(teamTypes set)  // sets the value of teamType
-{
-    teamType = set;
-}
-
-std::string teamState::getPlayerType()  // retrieves the value of playerType
-{
-    return (playerType);
-}
-void teamState::setPlayerType(std::string set)  // sets the value of playerType
-{
-    playerType = set;
-}
-
-
-sizeTVec teamState::getPlayerID()  // retrieves the value of playerID
-{
-    return (playerID);
-}
-void teamState::setPlayerID(sizeTVec set)  // sets the value of playerID
-{
-    playerID = set;
-}
-
-sizeTVec teamState::getActivePlayerID()  // retrieves the value of activePlayerID
-{
-    return (activePlayerID);
-}
-void teamState::setActivePlayerID(sizeTVec set)  // sets the value of activePlayerID
-{
-    activePlayerID = set;
-}
-
-sizeTVec teamState::getStarterID()  // retrieves the value of starterID
-{
-    return (starterID);
-}
-void teamState::setStarterID(sizeTVec set)  // sets the value of starterID
-{
-    logMsg("blap");
-    starterID = set;
-}
-
-bool teamState::getOffense()  // returns the value of offense
-{
-    return (offense);
-}
-void teamState::setOffense(bool set)  // sets the value of offense
-{
-    offense = set;
-}
-bool teamState::getDefense()  // returns the value of defense
-{
-    return (defense);
-}
-void teamState::setDefense(bool set)  // sets the value of defense
-{
-    defense = set;
-}
-
-playerEntityMSharedPtr teamState::getPlayerInstance()  // retrieves the value of playerInstance
-{
-    return (playerInstance);
-}
-void teamState::setPlayerInstance(playerEntityMSharedPtr set)  // sets the value of playerInstance
-{
-    playerInstance = set;
-}
-
-playerEntityMSharedPtr teamState::getActivePlayerInstance()  // retrieves the value of activePlayerInstance
-{
-    return (activePlayerInstance);
-}
-void teamState::setActivePlayerInstance(playerEntityMSharedPtr set)  // sets the value of activePlayerInstance
-{
-    activePlayerInstance = set;
-}
-
-bool teamState::getActivePlayerInstancesSetup()  // retrieves the value of activePlayerInstancesSetup
-{
-    return (activePlayerInstancesSetup);
-}
-void teamState::setActivePlayerInstancesSetup(bool set)  // sets the value of activePlayerInstancesSetup
-{
-    activePlayerInstancesSetup = set;
-}
-
-bool teamState::getActivePlayerInstancesChanged()  // retrieves the value of activePlayerInstancesChanged
-{
-    return (activePlayerInstancesChanged);
-}
-void teamState::setActivePlayerInstancesChanged(bool set)  // sets the value of activePlayerInstancesChanged
-{
-    activePlayerInstancesChanged = set;
-}
-
-bool teamState::getActivePlayerInstancesCreated()  // retrieves the value of activePlayerInstancesCreated
-{
-    return (activePlayerInstancesCreated);
-}
-void teamState::setActivePlayerInstancesCreated(bool set)  // sets the value of activePlayerInstancesCreated
-{
-    activePlayerInstancesCreated = set;
-}
-
-bool teamState::getPlayerInstancesCreated()  // retrieves the value of playerInstancesCreated
-{
-    return (playerInstancesCreated);
-}
-void teamState::setPlayerInstancesCreated(bool set)  // sets the value of playerInstancesCreated
-{
-    playerInstancesCreated = set;
-}
-
-bool teamState::getPlayerStartPositionsSet()  // retrieves the value of the playerStartPositionsSet
-{
-    return (playerStartPositionsSet);
-}
-void teamState::setPlayerStartPositionsSet(bool set)  // sets the value of the playerStartPositionsSet
-{
-    playerStartPositionsSet = set;
-}
-
-bool teamState::getPlayerStartDirectionsSet()  // retrieves the value of the playerStartDirectionsSet
-{
-    return (playerStartDirectionsSet);
-}
-void teamState::setPlayerStartDirectionsSet(bool set)  // sets the value of the playerStartDirectionsSet
-{
-    playerStartDirectionsSet = set;
-}
-
-size_t teamState::getPlayerWithBallID()  // retrieves the value of the playerWithBallID
-{
-    return (playerWithBallID);
-}
-void teamState::setPlayerWithBallID(size_t set)  // sets the value of the playerWithBallID
-{
-    playerWithBallID = set;
-}
-
-playerPositions teamState::getPlayerWithBallInstance()  // retrives the value of playerWithBall
-{
-    return (playerWithBallInstance);
-}
-void teamState::setPlayerWithBallInstance(playerPositions set)  // sets the value of playerWithBall
-{
-    playerWithBallInstance = set;
-}
-
-bool teamState::getPlayerWithBallDribbling()  // retrieves the value of playerWithBallDribbling
-{
-    return (playerWithBallDribbling);
-}
-void teamState::setPlayerWithBallDribbling(bool set)  // sets the value of playerWithBallDribbling
-{
-    playerWithBallDribbling = set;
-}
-
-bool teamState::getHumanControlled()  // retrieves the value of humanControlled
-{
-    return (humanControlled);
-}
-void teamState::setHumanControlled(bool set)  // sets the value of humanControlled
-{
-    humanControlled = set;
-}
-
-std::string teamState::getHumanPlayer()  // retrieves the value of the humanPlayer
-{
-    return (humanPlayer);
-}
-void teamState::setHumanPlayer(std::string set)  // sets the value of human player
-{
-    humanPlayer = set;
-}
-
-size_t teamState::getHoop()  // retrieves the value of hoop
-{
-    return (hoop);
-}
-void teamState::setHoop(size_t set)  // sets the value of hoop
-{
-    hoop = set;
-}
-
-offenseStateSharedPtr teamState::getOffenseInstance()  // retrievers the value of offenseInstance
-{
-    return (offenseInstance);
-}
-void teamState::setOffenseInstance(offenseStateSharedPtr set)  // sets the value of offenseInstance
-{
-    offenseInstance = set;
-}
-defenseStateSharedPtr teamState::getDefenseInstance()  // retrieves the value of defenseInstance
-{
-    return (defenseInstance);
-}
-void teamState::setDefenseInstance(defenseStateSharedPtr set)  // sets the value of defenseInstance
-{
-    defenseInstance = set;
-}
-
-size_t teamState::getTeamColObject()  // retrieves the value of teamColObject
-{
-    return (teamColObject);
-}
-void teamState::setTeamColObject(size_t set)  // sets the value of teamColObject
-{
-    teamColObject = set;
-}
-
-size_t teamState::getTeamCollidesWith()  // retrieves the value of teamCollidesWith
-{
-    return (teamCollidesWith);
-}
-void teamState::setTeamCollidesWith(size_t set)  // sets the value of teamCollidesWith
-{
-    teamCollidesWith = set;
-}
-
-std::unordered_map<std::string, btRigidBodySharedPtr> teamState::getCollisionBodies()  // retrieves the value of collisionBodies
-{
-    return (collisionBodies);
-}
-void teamState::setCollisionBodies(std::unordered_map<std::string, btRigidBodySharedPtr> set)  // sets the value of collisionBodies
-{
-    collisionBodies = set;
 }
 
 void teamState::setupState()  // sets up the state of the object

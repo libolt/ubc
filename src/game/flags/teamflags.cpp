@@ -26,6 +26,104 @@ teamFlags::teamFlags()  // constructor
 }
 teamFlags::~teamFlags()  // destructor
 {
+    activePlayerInstancesCreated = false;
+    activePlayerInstancesSetup = false;
+    activePlayerInstancesChanged = false;
+    playerInstancesCreated = false;
+    playerStartPositionsSet = false;
+    playerStartDirectionsSet = false;
+    playerWithBallDribbling = false;
+    humanControlled = false;
     
 }
+
+bool teamFlags::getOffense()  // returns the value of offense
+{
+    return (offense);
+}
+void teamFlags::setOffense(bool set)  // sets the value of offense
+{
+    offense = set;
+}
+bool teamFlags::getDefense()  // returns the value of defense
+{
+    return (defense);
+}
+void teamFlags::setDefense(bool set)  // sets the value of defense
+{
+    defense = set;
+}
+
+bool teamFlags::getActivePlayerInstancesSetup()  // retrieves the value of activePlayerInstancesSetup
+{
+    return (activePlayerInstancesSetup);
+}
+void teamFlags::setActivePlayerInstancesSetup(bool set)  // sets the value of activePlayerInstancesSetup
+{
+    activePlayerInstancesSetup = set;
+}
+
+bool teamFlags::getActivePlayerInstancesChanged()  // retrieves the value of activePlayerInstancesChanged
+{
+    return (activePlayerInstancesChanged);
+}
+void teamFlags::setActivePlayerInstancesChanged(bool set)  // sets the value of activePlayerInstancesChanged
+{
+    activePlayerInstancesChanged = set;
+}
+
+bool teamFlags::getActivePlayerInstancesCreated()  // retrieves the value of activePlayerInstancesCreated
+{
+    return (activePlayerInstancesCreated);
+}
+void teamFlags::setActivePlayerInstancesCreated(bool set)  // sets the value of activePlayerInstancesCreated
+{
+    activePlayerInstancesCreated = set;
+}
+
+bool teamFlags::getPlayerInstancesCreated()  // retrieves the value of playerInstancesCreated
+{
+    return (playerInstancesCreated);
+}
+void teamFlags::setPlayerInstancesCreated(bool set)  // sets the value of playerInstancesCreated
+{
+    playerInstancesCreated = set;
+}
+
+bool teamFlags::getPlayerStartPositionsSet()  // retrieves the value of the playerStartPositionsSet
+{
+    return (playerStartPositionsSet);
+}
+void teamFlags::setPlayerStartPositionsSet(bool set)  // sets the value of the playerStartPositionsSet
+{
+    playerStartPositionsSet = set;
+}
+
+bool teamFlags::getPlayerStartDirectionsSet()  // retrieves the value of the playerStartDirectionsSet
+{
+    return (playerStartDirectionsSet);
+}
+void teamFlags::setPlayerStartDirectionsSet(bool set)  // sets the value of the playerStartDirectionsSet
+{
+    playerStartDirectionsSet = set;
+}
+
+bool teamFlags::getPlayerWithBallDribbling()  // retrieves the value of playerWithBallDribbling
+{
+    return (playerWithBallDribbling);
+}
+void teamFlags::setPlayerWithBallDribbling(bool set)  // sets the value of playerWithBallDribbling
+{
+    playerWithBallDribbling = set;
+}
+
+bool teamFlags::getHumanControlled()  // retrieves the value of humanControlled
+{
+    return (humanControlled);
+}
+void teamFlags::setHumanControlled(bool set)  // sets the value of humanControlled
+{
+    humanControlled = set;
+}
+
 

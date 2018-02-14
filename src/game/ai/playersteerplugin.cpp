@@ -23,12 +23,14 @@
 #include "Ogre.h"
 #include "ai/playersteerplugin.h"
 #include "ai/ai.h"
-#include "components/playercomponents.h"
 #include "components/gamecomponents.h"
+#include "components/playercomponents.h"
+#include "components/teamcomponents.h"
 #include "data/playergamedata.h"
 #include "entity/courtentity.h"
 #include "entity/playerentity.h"
 #include "flags/playerflags.h"
+#include "flags/teamflags.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
 #include "state/gamestate.h"
@@ -144,7 +146,7 @@ void playerSteerPlugin::open()  // opens the plugin
     {
         for (auto ATIIT : activeTeamInstance)
         {
-            if (ATIIT.second->getActivePlayerInstancesCreated())
+            if (ATIIT.second->getFlag()->getActivePlayerInstancesCreated())
             {
                 logMsg(func +" activePlayerInstances Created!");
     //            exit(0);
@@ -154,9 +156,9 @@ void playerSteerPlugin::open()  // opens the plugin
                 logMsg(func + " activePlayerInstances NOT Created!!");
                 exit(0);
             }
-            activePlayerInstance = ATIIT.second->getActivePlayerInstance();
+            activePlayerInstance = ATIIT.second->getComponent()->getActivePlayerInstance();
             logMsg(func +" team name == " +ATIIT.second->getName());
-            logMsg(func +" ATIIT.second->getActivePlayerInstance().size() == " +convert->toString(ATIIT.second->getActivePlayerInstance().size()));
+            logMsg(func +" ATIIT.second->getComponent()->getActivePlayerInstance().size() == " +convert->toString(ATIIT.second->getComponent()->getActivePlayerInstance().size()));
 
     //        exit(0);
             logMsg(func +" for (auto ATIIT : getActiveTeamInstance())");
@@ -201,7 +203,7 @@ void playerSteerPlugin::open()  // opens the plugin
                 APIIT.second->getFlag()->setSteerInitialized(steerInitialized);
             }
             logMsg(func +" ATIIT.second->setActivePlayerInstance(activePlayerInstance);");
-            ATIIT.second->setActivePlayerInstance(activePlayerInstance);
+            ATIIT.second->getComponent()->setActivePlayerInstance(activePlayerInstance);
     //        ++x;
         }
     }
@@ -322,7 +324,7 @@ void playerSteerPlugin::update(const float currentTime, const float elapsedTime)
 
     for (auto ATIIT : gameInstance->getComponent()->getActiveTeamInstance())
     {
-        activePlayerInstance.push_back(ATIIT.second->getActivePlayerInstance());
+        activePlayerInstance.push_back(ATIIT.second->getComponent()->getActivePlayerInstance());
         for (auto APIIT : activePlayerInstance[ATIIT.first])
         {
 /*FIXME!            if (APIIT.first != ATIIT.second->getHumanPlayer() && APIIT.second->getModelLoaded())

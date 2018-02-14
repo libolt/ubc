@@ -271,14 +271,14 @@ void basketballState::setPlayerControlled(bool set)  // sets the value of player
     playerControlled = set;
 }
 
-playerStateSharedPtr basketballState::getPlayerWithBall()  // retrieves the value of playerWithBall
+/*playerStateSharedPtr basketballState::getPlayerWithBall()  // retrieves the value of playerWithBall
 {
     return (playerWithBall);
 }
 void basketballState::setPlayerWithBall(playerStateSharedPtr set)  // sets the value of playerWithBall
 {
     playerWithBall = set;
-}
+}*/
 
 courtStateSharedPtr basketballState::getCourtInstance()  // retrieves the value of courtInstance
 {

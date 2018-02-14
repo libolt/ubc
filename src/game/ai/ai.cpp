@@ -20,12 +20,14 @@
 
 #include "ai/ai.h"
 #include "ai/playersteerplugin.h"
+#include "components/teamcomponents.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
 #include "utilities/logging.h"
 #include "utilities/typedefs.h"
 #include "utilities/conversion.h"
 #include "flags/gameflags.h"
+#include "flags/teamflags.h"
 #include "state/gamestate.h"
 #include "state/teamstate.h"
 #include <ctime>
@@ -156,7 +158,7 @@ bool AISystem::setup(basketballStateMSharedPtr activeBasketballInstance, courtSt
 
     for (auto ATIIT : activeTeamInstance)
     {
-        if (ATIIT.second->getActivePlayerInstancesCreated())
+        if (ATIIT.second->getFlag()->getActivePlayerInstancesCreated())
         {
             logMsg(func +" activePlayerInstances Created!");
 //            exit(0);
@@ -167,7 +169,7 @@ bool AISystem::setup(basketballStateMSharedPtr activeBasketballInstance, courtSt
             exit(0);
         }
         logMsg(func +" team name == " +ATIIT.second->getName());
-        logMsg(func +" ATIIT.second->getActivePlayerInstance().size() == " +convert->toString(ATIIT.second->getActivePlayerInstance().size()));
+        logMsg(func +" ATIIT.second->getComponent()->getActivePlayerInstance().size() == " +convert->toString(ATIIT.second->getComponent()->getActivePlayerInstance().size()));
     }
 //    exit(0);
     // select the default PlugIn

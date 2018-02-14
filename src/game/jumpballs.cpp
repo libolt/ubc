@@ -20,8 +20,10 @@
 
 #include "utilities/conversion.h"
 #include "components/playercomponents.h"
+#include "components/teamcomponents.h"
 #include "data/playerdata.h"
 #include "data/playergamedata.h"
+#include "data/teamgamedata.h"
 #include "entity/basketballentity.h"
 #include "entity/playerentity.h"
 #include "physics/basketballphysics.h"
@@ -243,7 +245,7 @@ bool jumpBalls::jumpBallExecute(basketballStateMSharedPtr activeBasketballInstan
     for (auto ATIIT : activeTeamInstance)
     {
         activePlayerInstance.clear();
-        activePlayerInstance = ATIIT.second->getActivePlayerInstance();
+        activePlayerInstance = ATIIT.second->getComponent()->getActivePlayerInstance();
 //TS        activePlayerInstance.push_back(activeTeamInstance[x]->getActivePlayerInstance());
 //        activePlayerInstance->( activeTeamInstance[x]->getActivePlayerInstance();
         
@@ -283,7 +285,7 @@ bool jumpBalls::jumpBallExecute(basketballStateMSharedPtr activeBasketballInstan
     bool collCheck = false;
 //    collCheck = /*physEngine.*/ collisionCheck(basketballInstance[activeBBallInstance].getPhysBody(), activePlayerInstance[0][jumpPlayerInstance[0]].getPhysBody());
 //    size_t y = 0;
-    playerStateSharedPtr activePInstance;
+//    playerStateSharedPtr activePInstance;
     for (auto ATIIT : activeTeamInstance)
     {
 /*TS        switch(ATIIT.second->getTeamType())

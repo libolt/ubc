@@ -23,8 +23,11 @@
 #include "utilities/conversion.h"
 #include "state/teamstate.h"
 #include "state/gamestate.h"
-#include "entity/playerentity.h"
+#include "components/teamcomponents.h"
 #include "data/playerdata.h"
+#include "data/teamgamedata.h"
+#include "entity/playerentity.h"
+#include "flags/teamflags.h"
 #include "utilities/logging.h"
 
 gameSetupLineups::gameSetupLineups()  // constructor
@@ -69,7 +72,7 @@ std::vector<std::unordered_map<std::string, size_t> > gameSetupLineups::createTe
                 logMsg(func +" ATIIT");
 //                std::unordered_map<std::string, size_t> tempStarterID;
 
-                for (auto PIIT : ATIIT.second->getPlayerInstance())
+                for (auto PIIT : ATIIT.second->getComponent()->getPlayerInstance())
                 {
                     logMsg(func +" PIIT");
                     std::string playerName = PIIT.second->getData()->getFirstName() +" " +PIIT.second->getData()->getLastName();
@@ -229,7 +232,7 @@ bool gameSetupLineups::checkActivePlayerInstancesCreated(teamStateMSharedPtr act
     size_t activePlayerInstancesCreated = 0;
     for (auto ATIIT : activeTeamInstance)
     {
-        if (ATIIT.second->getActivePlayerInstancesCreated())
+        if (ATIIT.second->getFlag()->getActivePlayerInstancesCreated())
         {
             ++activePlayerInstancesCreated;
         }
@@ -258,8 +261,8 @@ teamStateMSharedPtr gameSetupLineups::setupStartingLineups(teamStateMSharedPtr a
         logMsg(func +" Team == " +ATIIT.second->getCity() + " " +ATIIT.second->getName());
 //        activePlayerInstance.clear();
         
-        logMsg(func + " Team Type == " +convert->toString(ATIIT.second->getTeamType()));
-        switch (ATIIT.second->getTeamType())
+        logMsg(func + " Team Type == " +convert->toString(ATIIT.second->getGameData()->getTeamType()));
+        switch (ATIIT.second->getGameData()->getTeamType())
         {
             case HOMETEAM:
                 teamIDNum = 0;
@@ -270,13 +273,13 @@ teamStateMSharedPtr gameSetupLineups::setupStartingLineups(teamStateMSharedPtr a
         }
         
         logMsg(func +" teamIDNum == " +convert->toString(teamIDNum));
-        playerEntityMSharedPtr activePlayerInstance = gameSetupPlayer->createActivePlayerInstances(ATIIT.second->getPlayerInstance(), teamStarterID[teamIDNum]);
+        playerEntityMSharedPtr activePlayerInstance = gameSetupPlayer->createActivePlayerInstances(ATIIT.second->getComponent()->getPlayerInstance(), teamStarterID[teamIDNum]);
         
 
 //        exit(0);
-        ATIIT.second->setActivePlayerInstance(activePlayerInstance);
-        ATIIT.second->setActivePlayerInstancesCreated(true);
-        ATIIT.second->setActivePlayerInstancesChanged(true);
+        ATIIT.second->getComponent()->setActivePlayerInstance(activePlayerInstance);
+        ATIIT.second->getFlag()->setActivePlayerInstancesCreated(true);
+        ATIIT.second->getFlag()->setActivePlayerInstancesChanged(true);
 
 //        ATIIT.second->setPlayerStartActivePositions();
         logMsg(func +" team name == " +ATIIT.second->getName());
@@ -288,7 +291,7 @@ teamStateMSharedPtr gameSetupLineups::setupStartingLineups(teamStateMSharedPtr a
     
     for (auto ATIIT : activeTeamInstance)  // loop through activeTeamInstance
     {
-        logMsg(func + " activePlayerInstance size() == " +convert->toString(ATIIT.second->getActivePlayerInstance().size()));
+        logMsg(func + " activePlayerInstance size() == " +convert->toString(ATIIT.second->getComponent()->getActivePlayerInstance().size()));
     }
     
     return (activeTeamInstance);
@@ -393,7 +396,7 @@ bool gameSetupLineups::setupStartingLineups_old(teamStateMSharedPtr activeTeamIn
                 logMsg(func +" ATIIT");
 //                std::unordered_map<std::string, size_t> tempStarterID;
 
-                for (auto PIIT : ATIIT.second->getPlayerInstance())
+                for (auto PIIT : ATIIT.second->getComponent()->getPlayerInstance())
                 {
                     logMsg(func +" PIIT");
                     std::string playerName = PIIT.second->getData()->getFirstName() +" " +PIIT.second->getData()->getLastName();

@@ -25,9 +25,11 @@
 #include "state/playerstate.h"
 #include "state/teamstate.h"
 #include "network/networkplayerstateobject.h"
+#include "data/teamgamedata.h"
 #include "engine/networkengine.h"
 #include "engine/inputengine.h"
 #include "entity/playerentity.h"
+#include "flags/teamflags.h"
 
 networkState::networkState()  // constructor
 {
@@ -58,8 +60,8 @@ void networkState::processLocalInput(teamStateVecSharedPtr activeTeamInstance)  
     networkPlayerStateObject netPStateObj;
     
 //    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
-    int humanControlled = activeTeamInstance[getNetworkE()->getTeamType()]->getHumanControlled();
-    std::string humanPlayer = activeTeamInstance[getNetworkE()->getTeamType()]->getHumanPlayer();
+    int humanControlled = activeTeamInstance[getNetworkE()->getTeamType()]->getFlag()->getHumanControlled();
+    std::string humanPlayer = activeTeamInstance[getNetworkE()->getTeamType()]->getGameData()->getHumanPlayer();
 
 //                              logMsg("INPUT MAP ======== "  +toString(inputMap));
     std::string packetData;

@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "gamesetup/gamesetupteams.h"
+#include "data/teamgamedata.h"
 #include "utilities/conversion.h"
 #include "state/gamestate.h"
 #include "state/teamstate.h"
@@ -170,7 +171,8 @@ teamStateMSharedPtr gameSetupTeams::createActiveTeamInstances(teamStateMSharedPt
                 
             break;
         }
-        ATIIT.second->setTeamType(teamType);
+        ATIIT.second->getGameData()->setTeamType(teamType);
+        logMsg(func +" teamType set!");
     }
 //    exit(0);
     logMsg(func +" end");

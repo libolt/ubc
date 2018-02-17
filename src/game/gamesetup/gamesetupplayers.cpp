@@ -20,12 +20,15 @@
 
 #include "gamesetup/gamesetupplayers.h"
 #include "components/gamecomponents.h"
+#include "components/teamcomponents.h"
 #include "data/playerdata.h"
 #include "data/playergamedata.h"
+#include "data/teamgamedata.h"
 #include "engine/renderengine.h"
 #include "entity/playerentity.h"
 #include "flags/gameflags.h"
 #include "flags/playerflags.h"
+#include "flags/teamflags.h"
 #include "load/loadplayers.h"
 #include "state/gamestate.h"
 #include "state/teamstate.h"
@@ -118,13 +121,13 @@ bool gameSetupPlayers::checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr 
     for (auto ATIIT : activeTeamInstance)  // loop through activeTeamInstance
     {
 //        logMsg(convert->toString(teamIDs.size()));
-        logMsg(convert->toString(ATIIT.second->getPlayerInstancesCreated()));
+        logMsg(convert->toString(ATIIT.second->getFlag()->getPlayerInstancesCreated()));
 //        exit(0);
 
-        if (ATIIT.second->getPlayerInstancesCreated())  // check if playerInstances created is true
+        if (ATIIT.second->getFlag()->getPlayerInstancesCreated())  // check if playerInstances created is true
         {
 //            exit(0);
-            if (ATIIT.second->getPlayerInstance().size() > 0)
+            if (ATIIT.second->getComponent()->getPlayerInstance().size() > 0)
             {
                 logMsg(func +" " +ATIIT.second->getCity() +" " +ATIIT.second->getName() + " Player Instances Created!");
             }
@@ -135,8 +138,8 @@ bool gameSetupPlayers::checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr 
                 if (playerInstance.size() > 0)
                 {
                     logMsg(func +" " +ATIIT.second->getCity() +" " +ATIIT.second->getName() + " Player Instances Created!");
-                    ATIIT.second->setPlayerInstancesCreated(true);
-                    ATIIT.second->setPlayerInstance(playerInstance);
+                    ATIIT.second->getFlag()->setPlayerInstancesCreated(true);
+                    ATIIT.second->getComponent()->setPlayerInstance(playerInstance);
                     returnType = true;
                 }
                 else
@@ -151,8 +154,8 @@ bool gameSetupPlayers::checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr 
             if (playerInstance.size() > 0)
             {
                 logMsg(func +" " +ATIIT.second->getCity() +" " +ATIIT.second->getName() + " Player Instances Created!");
-                ATIIT.second->setPlayerInstancesCreated(true);
-                ATIIT.second->setPlayerInstance(playerInstance);
+                ATIIT.second->getFlag()->setPlayerInstancesCreated(true);
+                ATIIT.second->getComponent()->setPlayerInstance(playerInstance);
                 returnType = true;
             }
             else

@@ -105,14 +105,24 @@ void teamState::setupState()  // sets up the state of the object
     
     logMsg(func +" beginning");
 
-    sharedPtr<teamStatistics> tempTeamStats(new teamStatistics);
+    teamComponentsSharedPtr tempTeamComponent(new teamComponents);
+    component = tempTeamComponent;
+
+    teamFlagsSharedPtr tempTeamFlag(new teamFlags);
+    flag = tempTeamFlag;
+
+    teamGameDataSharedPtr tempTeamGameData(new teamGameData);
+    gameData = tempTeamGameData;
+
+    teamStatisticsSharedPtr tempTeamStats(new teamStatistics);
     statistics = tempTeamStats;
 
     offenseStateSharedPtr tempOffenseInst(new offenseState);
-    offenseInstance = tempOffenseInst;
+    component->setOffenseInstance(tempOffenseInst);
 
     defenseStateSharedPtr tempDefenseInst(new defenseState);
-    defenseInstance = tempDefenseInst;
+    component->setDefenseInstance(tempDefenseInst);
+    
     if (!stateSet)
     {
         logMsg(func +" Setting state");
@@ -138,7 +148,7 @@ void teamState::setupState()  // sets up the state of the object
     logMsg(func +" end");
 
 }
-void teamState::updateState(gameComponentsSharedPtr gameComponent, gameFlagsSharedPtr gameFlag, gameDataSharedPtr gameData, renderEngineSharedPtr render)  // updates the state of the object
+void teamState::updateState(gameComponentsSharedPtr gameInstanceComponent, gameFlagsSharedPtr gameInstanceFlag, gameDataSharedPtr gameInstanceData, renderEngineSharedPtr render)  // updates the state of the object
 {
 
     //conversion *convert = conversion::Instance();
@@ -159,16 +169,17 @@ void teamState::updateState(gameComponentsSharedPtr gameComponent, gameFlagsShar
 //    size_t activeBBallInstance = gameInstance->getActiveBBallInstance();
 
 //  logMsg(func +" Updating team state " +convert->toString(teamNumber));
-    if (activePlayerInstancesCreated)
+    if (flag->getActivePlayerInstancesCreated())
     {
-        
-        if (!activePlayerInstancesSetup)
+        playerEntityMSharedPtr activePlayerInstance = component->getActivePlayerInstance();
+        if (!flag->getActivePlayerInstancesSetup())
         {
             // setup Active Player Instances
             activePlayerInstance = gameSetupPlayer->setupActivePlayerInstances(activePlayerInstance, render);
             if (activePlayerInstance.size() != 0)
             {
-                activePlayerInstancesSetup = true;
+                component->setActivePlayerInstance(activePlayerInstance);
+                flag->setActivePlayerInstancesSetup(true);
             }
             else 
             {
@@ -181,12 +192,12 @@ void teamState::updateState(gameComponentsSharedPtr gameComponent, gameFlagsShar
             
         }
         
-        if (!playerStartPositionsSet)
+        if (!flag->getPlayerStartPositionsSet())
         {
             logMsg(func +" Player Start Positions Not Set!");
-            if (setPlayerStartPositions(gameComponent->getCourtInstance(), gameData->getTeamStarterID()))  // sets starting positions for the players
+            if (setPlayerStartPositions(gameInstanceComponent->getCourtInstance(), gameInstanceData->getTeamStarterID()))  // sets starting positions for the players
             {
-                playerStartPositionsSet = true;
+                flag->setPlayerStartPositionsSet(true);
                 logMsg(func +" Player Start Positions set!");
 //                exit(0);
             }
@@ -203,11 +214,11 @@ void teamState::updateState(gameComponentsSharedPtr gameComponent, gameFlagsShar
     
 //        updateActivePlayers();
         
-        if (!playerStartDirectionsSet)
+        if (!flag->getPlayerStartDirectionsSet())
         {
             if (setPlayerStartDirections())  // sets starting directions for the players
             {
-                playerStartDirectionsSet = true;
+                flag->setPlayerStartDirectionsSet(true);
                 logMsg(func +" Player Start Directions set!");
 //                    exit(0);
             }
@@ -230,30 +241,30 @@ void teamState::updateState(gameComponentsSharedPtr gameComponent, gameFlagsShar
         
     }
 //    exit(0);
-    if (gameFlag->getBasketballInstanceCreated() && gameFlag->getPlayerInstanceCreated())
+    if (gameInstanceFlag->getBasketballInstanceCreated() && gameInstanceFlag->getPlayerInstanceCreated())
     {
         
-        basketballStateMSharedPtr activeBasketballInstance = gameComponent->getActiveBasketballInstance();
+        basketballStateMSharedPtr activeBasketballInstance = gameInstanceComponent->getActiveBasketballInstance();
 //      exit(0);
         // checks whether to execute offense or defense logic
-        if (offense == true && defense == false)
+        if (flag->getOffense() && !flag->getDefense())
         {
             logMsg(func +" offense executing");
 //            exit(0);
-            offenseInstance->setExecute(true);
-            defenseInstance->setExecute(false);
-            if (offenseInstance->getTeamType() !=  teamType)  // sets type of team for offense
+            component->getOffenseInstance()->setExecute(true);
+            component->getDefenseInstance()->setExecute(false);
+            if (component->getOffenseInstance()->getTeamType() != gameData->getTeamType())  // sets type of team for offense
             {
-                offenseInstance->setTeamType(teamType);
+                component->getOffenseInstance()->setTeamType(gameData->getTeamType());
             }
         }
-        else if (defense == true && offense == false)
+        else if (flag->getDefense() && !flag->getOffense())
         {
-            offenseInstance->setExecute(false);
-            defenseInstance->setExecute(true);
-            if (defenseInstance->getTeamType() !=  teamType)  // sets type of team for defense
+            component->getOffenseInstance()->setExecute(false);
+            component->getDefenseInstance()->setExecute(true);
+            if (component->getDefenseInstance()->getTeamType() !=  gameData->getTeamType())  // sets type of team for defense
             {
-                defenseInstance->setTeamType(teamType);
+                component->getDefenseInstance()->setTeamType(gameData->getTeamType());
             }
         }
         else
@@ -261,21 +272,22 @@ void teamState::updateState(gameComponentsSharedPtr gameComponent, gameFlagsShar
 
         }
 
-        if (gameFlag->getTipOffComplete())
+        if (gameInstanceFlag->getTipOffComplete())
         {
 //          exit(0);
 //          logMsg("hTeam with ball ==  "  +convert->toStringi(gameS->getTeamWithBall()));
 //          logMsg("Player with ball ==  "  +convert->toString(playerWithBall));
 
-            if (gameData->getTeamWithBall() == teamType) // checks if the team has the basketball
+            if (gameInstanceData->getTeamWithBall() == gameData->getTeamType()) // checks if the team has the basketball
             {
-                logMsg(func +" tipoffcomplete playerWithBallInstance == " +convert->toString(playerWithBallInstance));
+                logMsg(func +" tipoffcomplete playerWithBallInstance == " +convert->toString(gameData->getPlayerWithBallInstance()));
 
                 size_t x = 0;
                 size_t instanceWithBall;
+                playerEntityMSharedPtr activePlayerInstance = component->getActivePlayerInstance();
                 for (auto APIIT : activePlayerInstance)
                 {                    
-                    if (APIIT.second->getData()->getID() == playerWithBallID)
+                    if (APIIT.second->getData()->getID() == gameData->getPlayerWithBallID())
                     {
                         instanceWithBall = APIIT.first;
                         break;
@@ -314,11 +326,11 @@ void teamState::updateState(gameComponentsSharedPtr gameComponent, gameFlagsShar
                         {
 //                          exit(0);
                             activePlayerInstance[instanceWithBall]->getFlag()->setPassBall(false); // player is no longer passing the ball
-                            playerWithBallInstance = activePlayerInstance[instanceWithBall]->getGameData()->getPassToPlayer(); // playerWithBall has changed
+                            gameData->setPlayerWithBallInstance(activePlayerInstance[instanceWithBall]->getGameData()->getPassToPlayer()); // playerWithBall has changed
 
-                            if (humanControlled)
+                            if (flag->getHumanControlled())
                             {
-                                humanPlayer = instanceWithBall;
+                                gameData->setHumanPlayer(instanceWithBall);
                             }
                             physEngine.setPassCollision(false); // resets the pass collision state
 
@@ -334,9 +346,9 @@ void teamState::updateState(gameComponentsSharedPtr gameComponent, gameFlagsShar
 //              logMsg(func +" Player with ball's current position: "  +convert->toString(activePlayerInstance[playerWithBall]->getNode()->getPosition()));
             }
         }
-        logMsg(func +" Team type = " +convert->toString(teamType));
+        logMsg(func +" Team type = " +convert->toString(gameData->getTeamType()));
 
-        logMsg(func +" Human player = " +humanPlayer);
+        logMsg(func +" Human player = " +gameData->getHumanPlayer());
                                         
         //updatePlayerMovements();  // updates movement of player objects
         //updatePlayerDirections(); // updates the direction the players are facing
@@ -361,11 +373,11 @@ void teamState::updateState(gameComponentsSharedPtr gameComponent, gameFlagsShar
     }
 //  exit(0);
 
-    if (gameFlag->getTipOffComplete())
+    if (gameInstanceFlag->getTipOffComplete())
     {
         logMsg(func +" tipOff Complete!");
 //        exit(0);
-        if (gameData->getTeamWithBall() == teamType)
+        if (gameInstanceData->getTeamWithBall() == gameData->getTeamType())
         {
 /*            if (!offenseInstance->getGameSInitialized())
             {
@@ -389,7 +401,7 @@ void teamState::updateState(gameComponentsSharedPtr gameComponent, gameFlagsShar
             {              
             }
 */          
-            defenseInstance->updateState(teamType, gameComponent, gameData); // updates the state of the defenseInstance object
+            component->getDefenseInstance()->updateState(gameData->getTeamType(), gameInstanceComponent, gameInstanceData); // updates the state of the defenseInstance object
         }
 
     }
@@ -409,15 +421,11 @@ void updateActivePlayerSettings()  // updates the settings of active players
 bool teamState::setPlayerStartPositions(courtStateMSharedPtr courtInstance, teamStarterIDsVecM teamStarterID)  // sets the initial coordinates for the players.
 {
     conversionSharedPtr convert = conversion::Instance();
-//    sharedPtr<gameState> gameS = gameState::Instance();
-//    sharedPtr<gameEngine> gameE = gameEngine::Instance();
     gameSetupPlayerPositionsSharedPtr gameSetupPlayerPosition(new gameSetupPlayerPositions);
-//    std::vector<std::unordered_map<std::string, size_t> > teamStarterID = gameInstance->getTeamStarterID();
+    playerEntityMSharedPtr activePlayerInstance = component->getActivePlayerInstance();
     OgreVector3Vec startingPos;
-//    directions playerDirection; // stores the direction players face at start
-    std::string func = "teamState::setPlayerStartPositions()";
-//    courtStateMSharedPtr courtInstance = gameInstance->getCourtInstance();
     Ogre::Vector3 courtPos = courtInstance[0]->getEntity()->getNodePosition();
+    std::string func = "teamState::setPlayerStartPositions()";
 
 //    exit(0);
     logMsg(func +" begining");
@@ -430,7 +438,7 @@ bool teamState::setPlayerStartPositions(courtStateMSharedPtr courtInstance, team
 
 //    exit(0);
 
-    activePlayerInstance = gameSetupPlayerPosition->setJumpBallPositions(activePlayerInstance, teamType, courtPos);
+    activePlayerInstance = gameSetupPlayerPosition->setJumpBallPositions(activePlayerInstance, gameData->getTeamType(), courtPos);
     // set initial player coordinates for the tipoff
 
 /*    switch (teamType)
@@ -539,6 +547,9 @@ bool teamState::setPlayerStartPositions(courtStateMSharedPtr courtInstance, team
 ///    }
     
 //    exit(0);
+    
+    component->setActivePlayerInstance(activePlayerInstance);
+    
     logMsg(func +" end");
     return (true);
 }
@@ -546,9 +557,10 @@ bool teamState::setPlayerStartPositions(courtStateMSharedPtr courtInstance, team
 void teamState::setPlayerStartActivePositions()  // sets the position the players will play at the start of the game
 {
     conversionSharedPtr convert = conversion::Instance();
+    playerEntityMSharedPtr activePlayerInstance = component->getActivePlayerInstance();
     std::string func = "teamState::setPlayerStartActivePositions()";
 
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
     
     logMsg(func + " activePlayerInstance.size() == " +convert->toString(activePlayerInstance.size()));
     if (activePlayerInstance.size() > 0) // checks that activePlayerInstance has data before executing
@@ -566,17 +578,20 @@ void teamState::setPlayerStartActivePositions()  // sets the position the player
        // pSteer->setID(x);
 //FIXME!        APIIT.second->getSteer()->setID(APIIT.second->getID());
     }
+    
+    component->setActivePlayerInstance(activePlayerInstance);
+
     logMsg(func +" end");
 }
 
 bool teamState::setPlayerStartDirections()  // sets the initial directions for the players.
 {
     conversionSharedPtr convert = conversion::Instance();
-
+    playerEntityMSharedPtr activePlayerInstance = component->getActivePlayerInstance();
     std::vector<directions> playerDirection; // stores the direction players face at start
     std::string func = "teamState::setPlayerStartDirections()";
 
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
     
     for (auto APIIT : activePlayerInstance)
     {
@@ -584,7 +599,7 @@ bool teamState::setPlayerStartDirections()  // sets the initial directions for t
     }
 //    exit(0);
     
-    switch (teamType)
+    switch (gameData->getTeamType())
     {
         case HOMETEAM:   // assigns the positions and directions for team 1 player
             playerDirection.push_back(LEFT);  
@@ -672,6 +687,8 @@ bool teamState::setPlayerStartDirections()  // sets the initial directions for t
         logMsg(func +" APIIT.second->getGameData()->getStateAction().size() = " +convert->toString(APIIT.second->getGameData()->getStateAction().size()));
     }
     
+    component->setActivePlayerInstance(activePlayerInstance);
+
     logMsg(func +" end");
 //    exit(0);
     return (true);
@@ -680,9 +697,11 @@ bool teamState::setPlayerStartDirections()  // sets the initial directions for t
 void teamState::updateActivePlayers()  // updates the states of active players
 {
     conversionSharedPtr convert = conversion::Instance();
+    playerEntityMSharedPtr activePlayerInstance = component->getActivePlayerInstance();
+
     std::string func = "teamState::updateActivePlayers()";
 
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
     
     for (auto APIIT : activePlayerInstance)
     {
@@ -700,7 +719,7 @@ void teamState::updateActivePlayers()  // updates the states of active players
     std::string func = "teamState::updatePlayerStates()";
     size_t x = 0;
     
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 //    exit(0);
     //    while (x<activePlayerInstance.size())
     for (auto APIIT : activePlayerInstance)
@@ -725,6 +744,9 @@ void teamState::updateActivePlayers()  // updates the states of active players
 
 //    exit(0);
 */
+
+    component->setActivePlayerInstance(activePlayerInstance);
+
     logMsg(func +" end");
 
 }
@@ -732,23 +754,14 @@ void teamState::updateActivePlayers()  // updates the states of active players
 void teamState::updatePlayerDirections(gameComponentsSharedPtr gameComponent)  // updates the direction players are facing
 {
     conversionSharedPtr convert = conversion::Instance();
-//    sharedPtr<gameState> gameS = gameState::Instance();
-
+    playerEntityMSharedPtr activePlayerInstance = component->getActivePlayerInstance();
     directions playerDirection, oldPlayerDirection;
-//    playerStateVec pInstance = getPlayerInstance();
- //   sizeTVec playerDirection = player->getPlayerDirection(); // stores contents of playerDirectdion from players class in local variable
-//    sizeTVec oldPlayerDirection = player->getOldPlayerDirection();   // stores contents of oldPlayerDirection form players in local variable
     basketballStateMSharedPtr basketballInstance = gameComponent->getBasketballInstance();
     std::vector<Ogre::SceneNode>::iterator playersIT;
+    std::string playerID = convert->toString(activePlayerInstance[4]->getData()->getID());
+    std::string func = "teamState::updatePlayerDirections()";
 
-    std::string playerID = convert->toString(playerInstance[4]->getData()->getID());
-//    exit(0);
-//    logMsg("playerID == " +playerID);
-    // checks if a player's direction has changed and rotates the model accordingly.
-//    for(playersIT = playerNodes.begin(); playersIT != playerNodes.end(); ++playersIT)
-
-    size_t x = 0;
-    size_t y = 0;
+    logMsg(func +" begin");
 
     exit(0);
     for (auto APIIT : activePlayerInstance)
@@ -762,9 +775,9 @@ void teamState::updatePlayerDirections(gameComponentsSharedPtr gameComponent)  /
 ///            std::string oldPlayerDirect = Ogre::SingConverter::toString(oldPlayerDirection[i]);
 ///            std::string playerDirect = toString(playerDirection[i]);
 ///            std::string bballPlayer = toString(basketballInstance[activeBBallInstance].getPlayer());
-///            logMsg("oldPlayerDirection = " + oldPlayerDirect);
-///            logMsg("playerDirection = " + playerDirect);
-///            logMsg("bball player = " + bballPlayer);
+///            logMsg(func +" oldPlayerDirection = " + oldPlayerDirect);
+///            logMsg(func +" playerDirection = " + playerDirect);
+///            logMsg(func +" bball player = " + bballPlayer);
 ///            playerInstance[basketballInstance[activeBBallInstance]->getPlayer()] = playerInstance[i];
 //            playerNodes.at(basketballInstance[activeBBallInstance]->getPlayer()) = playerNodes.at(i);  // sets the current player node
             
@@ -839,9 +852,9 @@ void teamState::updatePlayerDirections(gameComponentsSharedPtr gameComponent)  /
                     break;
             }
         }
-        logMsg("directPlayerID == " +convert->toString(APIIT.second->getData()->getID()));
-        logMsg("directPlayerWithBallInstance == " +convert->toString(playerWithBallInstance));
-        if (APIIT.second->getData()->getID() != playerWithBallID)
+        logMsg(func +" directPlayerID == " +convert->toString(APIIT.second->getData()->getID()));
+        logMsg(func +" directPlayerWithBallInstance == " +convert->toString(gameData->getPlayerWithBallInstance()));
+        if (APIIT.second->getData()->getID() != gameData->getPlayerWithBallID())
         {
             oldPlayerDirection = playerDirection;
             APIIT.second->getGameData()->setOldDirection(oldPlayerDirection);  // copies contents of oldPlayerDirection to the oldDirection variable
@@ -856,6 +869,9 @@ void teamState::updatePlayerDirections(gameComponentsSharedPtr gameComponent)  /
 //        ++x;
     }
 
+    component->setActivePlayerInstance(activePlayerInstance);
+
+    logMsg(func + " end");
 }
 
 
@@ -863,9 +879,13 @@ void teamState::updatePlayerMovements()  // updates player movements
 {
     //conversion *convert = conversion::Instance();
     conversionSharedPtr convert = conversion::Instance();
-    
+    playerEntityMSharedPtr activePlayerInstance = component->getActivePlayerInstance();
     Ogre::Vector3 posChange;    // stores change in position
     posChange = Ogre::Vector3(0.0f, 0.0f, 0.0f);
+    std::string func = "teamState::updatePlayerMovements()";
+
+    logMsg(func +" begin");
+
 
     for (auto APIIT : activePlayerInstance)
     {
@@ -926,7 +946,10 @@ void teamState::updatePlayerMovements()  // updates player movements
 //        ++x;
     }
 
-//  exit(0);
+    component->setActivePlayerInstance(activePlayerInstance);
+
+    logMsg(func + " end");
+    
 }
 
 // FIXME! update for class reorganization

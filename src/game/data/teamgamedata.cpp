@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "data/teamgamedata.h"
+#include "utilities/logging.h"
 
 teamGameData::teamGameData()  // constructor
 {

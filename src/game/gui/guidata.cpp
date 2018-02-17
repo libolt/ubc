@@ -23,12 +23,14 @@
 #include "gui/gui.h"
 #include "utilities/conversion.h"
 #include "components/gamecomponents.h"
+#include "components/teamcomponents.h"
 #include "data/courtdata.h"
 #include "data/gamedata.h"
 #include "data/playerdata.h"
 #include "engine/gameengine.h"
 #include "entity/courtentity.h"
 #include "entity/playerentity.h"
+#include "flags/teamflags.h"
 #include "gamesetup/gamesetupcourts.h"
 #include "gamesetup/gamesetupplayers.h"
 #include "gamesetup/gamesetupteams.h"
@@ -176,17 +178,17 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     logMsg(func + " gameState Player Instance Size == " +convert->toString(gamePlayerInstance.size()));
     for (auto ATIIT : activeTeamInstance)
     {
-        logMsg(func + " gameState Player Instance Size == " +convert->toString(ATIIT.second->getPlayerInstance().size()));
+        logMsg(func + " gameState Player Instance Size == " +convert->toString(ATIIT.second->getComponent()->getPlayerInstance().size()));
     }
 //    exit(0);
     for (auto ATIIT : activeTeamInstance)  // loop through activeTeamInstance
     {
         logMsg(func +" yabadaba");
         logMsg(convert->toString(teamIDs.size()));
-        logMsg(convert->toString(ATIIT.second->getPlayerInstancesCreated()));
+        logMsg(convert->toString(ATIIT.second->getFlag()->getPlayerInstancesCreated()));
 //        exit(0);
 
-        playerInstance = ATIIT.second->getPlayerInstance();
+        playerInstance = ATIIT.second->getComponent()->getPlayerInstance();
         for (auto PIIT : playerInstance)
         {
             std::string playerName = PIIT.second->getData()->getFirstName() +" " +PIIT.second->getData()->getLastName();

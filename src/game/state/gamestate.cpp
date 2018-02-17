@@ -23,15 +23,19 @@
 #include "engine/networkengine.h"
 #include "ai/ai.h"
 #include "ai/basketballsteer.h"
-#include "data/gamedata.h"
+
 #include "components/gamecomponents.h"
 #include "components/playercomponents.h"
+#include "components/teamcomponents.h"
+#include "data/gamedata.h"
+#include "data/teamgamedata.h"
 #include "entity/playerentity.h"
 #include "utilities/conversion.h"
 #include "entity/basketballentity.h"
 #include "entity/courtentity.h"
 #include "flags/gameflags.h"
 #include "flags/playerflags.h"
+#include "flags/teamflags.h"
 #include "gamesetup/gamesetupbasketballs.h"
 #include "gamesetup/gamesetupcourts.h"
 #include "gamesetup/gamesetuphoops.h"
@@ -661,14 +665,14 @@ bool gameState::setupActiveTeamInstances()  // sets up the active team instances
     activeTeamInstance[0]->setID(teamIDS[0]);
     activeTeamInstance[1]->setID(teamIDS[1]);
 */    
-    activeTeamInstance[0]->setTeamType(HOMETEAM);
-    activeTeamInstance[1]->setTeamType(AWAYTEAM);
-    activeTeamInstance[0]->setHumanControlled(true);
-    activeTeamInstance[1]->setHumanControlled(false);
-    activeTeamInstance[0]->setTeamColObject(COL_TEAM1);
-    activeTeamInstance[1]->setTeamColObject(COL_TEAM2);
-    activeTeamInstance[0]->setTeamCollidesWith(COL_COURT); // | COL_BBALL | COL_TEAM2;   determines what team0 collides with
-    activeTeamInstance[1]->setTeamCollidesWith(COL_COURT); // | COL_BBALL | COL_TEAM2;   determines what team1 collides with
+    activeTeamInstance[0]->getGameData()->setTeamType(HOMETEAM);
+    activeTeamInstance[1]->getGameData()->setTeamType(AWAYTEAM);
+    activeTeamInstance[0]->getFlag()->setHumanControlled(true);
+    activeTeamInstance[1]->getFlag()->setHumanControlled(false);
+    activeTeamInstance[0]->getGameData()->setTeamColObject(COL_TEAM1);
+    activeTeamInstance[1]->getGameData()->setTeamColObject(COL_TEAM2);
+    activeTeamInstance[0]->getGameData()->setTeamCollidesWith(COL_COURT); // | COL_BBALL | COL_TEAM2;   determines what team0 collides with
+    activeTeamInstance[1]->getGameData()->setTeamCollidesWith(COL_COURT); // | COL_BBALL | COL_TEAM2;   determines what team1 collides with
     activeTeamInstance[0]->setupState();
     activeTeamInstance[1]->setupState();
 
@@ -1560,7 +1564,7 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
     
     for (auto ATIIT : component->getActiveTeamInstance())
     {
-        if (ATIIT.second->getActivePlayerInstancesCreated())
+        if (ATIIT.second->getFlag()->getActivePlayerInstancesCreated())
         {
             logMsg(func +" activePlayerInstances Created!");
 //            exit(0);
@@ -1571,7 +1575,7 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
             exit(0);
         }
         logMsg(func +" team name == " +ATIIT.second->getName());
-        logMsg(func +" ATIIT.second->getActivePlayerInstance().size() == " +convert->toString(ATIIT.second->getActivePlayerInstance().size()));
+        logMsg(func +" ATIIT.second->getActivePlayerInstance().size() == " +convert->toString(ATIIT.second->getComponent()->getActivePlayerInstance().size()));
     }
 //    exit(0);
 
@@ -1694,8 +1698,8 @@ bool gameState::updateState(renderEngineSharedPtr render)  // updates the game s
             logMsg(func + " activeTeamInstance.size() == " +convert->toString(activeTeamInstance.size()));
             for (auto ATIIT : activeTeamInstance)
             {
-                playerEntityMSharedPtr activePlayerInstance = ATIIT.second->getActivePlayerInstance();
-                if (ATIIT.second->getActivePlayerInstancesCreated())
+                playerEntityMSharedPtr activePlayerInstance = ATIIT.second->getComponent()->getActivePlayerInstance();
+                if (ATIIT.second->getFlag()->getActivePlayerInstancesCreated())
                 {
                     logMsg(func +" Wiot!");
                     logMsg(func + " activePlayerInstance.size() == " +convert->toString(activePlayerInstance.size()));
@@ -1956,18 +1960,18 @@ bool gameState::updatePlayerCollisionObjects()  // updates the player collision 
                 btRigidBodySharedPtr tempBody;
                 for (auto ATIIT : activeTeamInstance)
                 {
-                    if (ATIIT.second->getTeamType() == teamType)
+                    if (ATIIT.second->getGameData()->getTeamType() == teamType)
                     {
                         logMsg(func +" woot woot!");
-                        activePlayerInstance = ATIIT.second->getActivePlayerInstance();
-                        activeCollisionBodies = ATIIT.second->getCollisionBodies();
+                        activePlayerInstance = ATIIT.second->getComponent()->getActivePlayerInstance();
+                        activeCollisionBodies = ATIIT.second->getComponent()->getCollisionBodies();
 
                         
                     }
                     else
                     {
                         logMsg(func +" toot toot!");
-                        collisionPlayerInstance = ATIIT.second->getActivePlayerInstance();
+                        collisionPlayerInstance = ATIIT.second->getComponent()->getActivePlayerInstance();
                         std::string position;
                         btRigidBodySharedPtr physBody;
                         for (auto CPIIT : collisionPlayerInstance)  // loops through the other team's activePlayerInstance
@@ -2034,9 +2038,9 @@ bool gameState::updatePlayerCollisionObjects()  // updates the player collision 
                 }
                 for (auto ATIIT : activeTeamInstance) // updates collisionBodies with the new data
                 {
-                    if (ATIIT.second->getTeamType() == teamType)
+                    if (ATIIT.second->getGameData()->getTeamType() == teamType)
                     {
-                        ATIIT.second->setCollisionBodies(activeCollisionBodies);
+                        ATIIT.second->getComponent()->setCollisionBodies(activeCollisionBodies);
                         loopDone = true;
                     }
                     else

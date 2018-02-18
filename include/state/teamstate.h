@@ -52,6 +52,9 @@ public:
     teamState();  // constructor
     ~teamState();  // destructor
 
+    bool getInitialized();  // retrieves the value of initialized
+    void setInitialized(bool set);  // sets the value of initialized
+
     teamComponentsSharedPtr getComponent();  // retrieves the value of component
     void setComponent(teamComponentsSharedPtr set);  // sets the value of component
 
@@ -78,12 +81,15 @@ public:
 
     void updatePositions();  // updates player on court positionss
 
-    void setupState();  // sets up the state for teamState object
+    bool initialize();  // initializes teamState object
+
     void updateState(gameComponentsSharedPtr gameComponent, gameFlagsSharedPtr gameFlag, gameDataSharedPtr gameData, renderEngineSharedPtr render);  // updates the state of the teamState object
     void updateActivePlayerSettings();  // updates the settings of active players
         
 protected:
 private:
+
+    bool initialized;  // stores whether object has been initialized
 
     teamComponentsSharedPtr component;  // instance of teamComponents object
 

@@ -54,14 +54,14 @@ void networkState::processLocalInput(teamStateVecSharedPtr activeTeamInstance)  
 {
 //    sharedPtr<inputSystem> input = inputSystem::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
-    
+    conversionSharedPtr convert;
     inputInGameWorkQueues inputQueue;
     inputInGameWorkQueues::iterator IQITT;
     networkPlayerStateObject netPStateObj;
     
 //    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
     int humanControlled = activeTeamInstance[getNetworkE()->getTeamType()]->getFlag()->getHumanControlled();
-    std::string humanPlayer = activeTeamInstance[getNetworkE()->getTeamType()]->getGameData()->getHumanPlayer();
+    std::string humanPlayer = convert->toString(activeTeamInstance[getNetworkE()->getTeamType()]->getGameData()->getHumanPlayer());
 
 //                              logMsg("INPUT MAP ======== "  +toString(inputMap));
     std::string packetData;

@@ -55,11 +55,20 @@
 
 teamState::teamState()  // constructor
 {
-
+    initialized = false;
 }
 
 teamState::~teamState()  // destructor
 {
+}
+
+bool teamState::getInitialized()  // retrieves the value of initialized
+{
+    return (initialized);
+}
+void teamState::setInitialized(bool set) // sets the value of initialized
+{
+    initialized = set;
 }
 
 teamComponentsSharedPtr teamState::getComponent()  // retrieves the value of component
@@ -98,7 +107,7 @@ void teamState::setStatistics(teamStatisticsSharedPtr set)  // sets the value of
     statistics = set;
 }
 
-void teamState::setupState()  // sets up the state of the object
+bool teamState::initialize()  // initializes the object
 {
     bool stateSet = this->getStateSet();
     std::string func = "teamState::setupState()";
@@ -147,7 +156,9 @@ void teamState::setupState()  // sets up the state of the object
     }
     logMsg(func +" end");
 
+    return (true);
 }
+
 void teamState::updateState(gameComponentsSharedPtr gameInstanceComponent, gameFlagsSharedPtr gameInstanceFlag, gameDataSharedPtr gameInstanceData, renderEngineSharedPtr render)  // updates the state of the object
 {
 
@@ -348,7 +359,7 @@ void teamState::updateState(gameComponentsSharedPtr gameInstanceComponent, gameF
         }
         logMsg(func +" Team type = " +convert->toString(gameData->getTeamType()));
 
-        logMsg(func +" Human player = " +gameData->getHumanPlayer());
+        logMsg(func +" Human player = " +convert->toString(gameData->getHumanPlayer()));
                                         
         //updatePlayerMovements();  // updates movement of player objects
         //updatePlayerDirections(); // updates the direction the players are facing

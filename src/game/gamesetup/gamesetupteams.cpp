@@ -159,6 +159,19 @@ teamStateMSharedPtr gameSetupTeams::createActiveTeamInstances(teamStateMSharedPt
     {
         logMsg(func +" ATIIT.first == " +convert->toString(ATIIT.first));
 
+        if (!ATIIT.second->getInitialized())
+        {
+            if (ATIIT.second->initialize())
+            {
+                ATIIT.second->setInitialized(true);
+            }
+            else
+            {
+                logMsg(func +" Unable to initialize Active Team Instance!");
+                exit(0);
+            }
+        }
+
         switch (ATIIT.first)
         {
             case 0:

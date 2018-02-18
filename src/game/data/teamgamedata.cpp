@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "data/teamgamedata.h"
+#include "utilities/conversion.h"
 #include "utilities/logging.h"
 
 teamGameData::teamGameData()  // constructor
@@ -102,11 +103,11 @@ void teamGameData::setPlayerWithBallInstance(playerPositions set)  // sets the v
     playerWithBallInstance = set;
 }
 
-std::string teamGameData::getHumanPlayer()  // retrieves the value of the humanPlayer
+size_t teamGameData::getHumanPlayer()  // retrieves the value of humanPlayer
 {
     return (humanPlayer);
 }
-void teamGameData::setHumanPlayer(std::string set)  // sets the value of human player
+void teamGameData::setHumanPlayer(size_t set)  // sets the value of humanPlayer
 {
     humanPlayer = set;
 }

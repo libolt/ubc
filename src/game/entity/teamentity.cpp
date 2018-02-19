@@ -22,8 +22,53 @@
 
 teamEntity::teamEntity()
 {
+    initialized = false;
 }
-
 teamEntity::~teamEntity()
 {
+}
+
+bool teamEntity::getInitialized()  // retrieves the value of initialized
+{
+    return (initialized);
+}
+void teamEntity::setInitialized(bool set) // sets the value of initialized
+{
+    initialized = set;
+}
+
+teamComponentsSharedPtr teamEntity::getComponent()  // retrieves the value of component
+{
+    return (component);
+}
+void teamEntity::setComponent(teamComponentsSharedPtr set)  // sets the value of component
+{
+    component = set;
+}
+
+teamFlagsSharedPtr teamEntity::getFlag()  // retrieves the value of flag
+{
+    return (flag);
+}
+void teamEntity::setFlag(teamFlagsSharedPtr set)  // sets the value of flag
+{
+    flag = set;
+}
+
+teamGameDataSharedPtr teamEntity::getGameData()  // retrieves the value of gameData
+{
+    return (gameData);
+}
+void teamEntity::setGameData(teamGameDataSharedPtr set)  // sets the value of gameData
+{
+    gameData = set;
+}
+
+teamStatisticsSharedPtr teamEntity::getStatistics()  // retrieves the value of statistics
+{
+    return (statistics);
+}
+void teamEntity::setStatistics(teamStatisticsSharedPtr set)  // sets the value of statistics
+{
+    statistics = set;
 }

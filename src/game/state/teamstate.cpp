@@ -55,56 +55,11 @@
 
 teamState::teamState()  // constructor
 {
-    initialized = false;
+    
 }
 
 teamState::~teamState()  // destructor
 {
-}
-
-bool teamState::getInitialized()  // retrieves the value of initialized
-{
-    return (initialized);
-}
-void teamState::setInitialized(bool set) // sets the value of initialized
-{
-    initialized = set;
-}
-
-teamComponentsSharedPtr teamState::getComponent()  // retrieves the value of component
-{
-    return (component);
-}
-void teamState::setComponent(teamComponentsSharedPtr set)  // sets the value of component
-{
-    component = set;
-}
-
-teamFlagsSharedPtr teamState::getFlag()  // retrieves the value of flag
-{
-    return (flag);
-}
-void teamState::setFlag(teamFlagsSharedPtr set)  // sets the value of flag
-{
-    flag = set;
-}
-
-teamGameDataSharedPtr teamState::getGameData()  // retrieves the value of gameData
-{
-    return (gameData);
-}
-void teamState::setGameData(teamGameDataSharedPtr set)  // sets the value of gameData
-{
-    gameData = set;
-}
-
-teamStatisticsSharedPtr teamState::getStatistics()  // retrieves the value of statistics
-{
-    return (statistics);
-}
-void teamState::setStatistics(teamStatisticsSharedPtr set)  // sets the value of statistics
-{
-    statistics = set;
 }
 
 bool teamState::initialize()  // initializes the object

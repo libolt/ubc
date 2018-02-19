@@ -52,22 +52,6 @@ public:
     teamState();  // constructor
     ~teamState();  // destructor
 
-    bool getInitialized();  // retrieves the value of initialized
-    void setInitialized(bool set);  // sets the value of initialized
-
-    teamComponentsSharedPtr getComponent();  // retrieves the value of component
-    void setComponent(teamComponentsSharedPtr set);  // sets the value of component
-
-    teamFlagsSharedPtr getFlag();  // retrieves the value of flag
-    void setFlag(teamFlagsSharedPtr set);  // sets the value of flag
-
-    teamGameDataSharedPtr getGameData();  // retrieves the value of gameData
-    void setGameData(teamGameDataSharedPtr set);  // sets the value of gameData
-
-    teamStatisticsSharedPtr getStatistics();  // retrieves the value of statistics
-    void setStatistics(teamStatisticsSharedPtr set);  // sets the value of statistics
-
-
     bool setPlayerStartPositions(courtStateMSharedPtr courtInstance, teamStarterIDsVecM teamStarterID);	 // sets the initial coordinates for the players.
     void setPlayerStartActivePositions();  // sets the position the players will play at the start of the game
 
@@ -88,16 +72,6 @@ public:
         
 protected:
 private:
-
-    bool initialized;  // stores whether object has been initialized
-
-    teamComponentsSharedPtr component;  // instance of teamComponents object
-
-    teamFlagsSharedPtr flag;  // instance of teamFlags object
-
-    teamGameDataSharedPtr gameData;  // instance of teamGameData object
-
-    teamStatisticsSharedPtr statistics;  // instance of teamStatistics object
     
 };
 

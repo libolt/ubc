@@ -32,6 +32,7 @@
 // forward declarations
 class playerSteerPlugin;
 class playerSteer;
+class teamEntity;
 
 class AISystem
 {
@@ -50,8 +51,8 @@ public:
     courtStateMSharedPtr getActiveCourtInstance();  // retrieves the value of activeCourtInstance
     void setActiveCourtInstance(courtStateMSharedPtr set);  // sets the value of activeCourtInstance
 
-    teamStateMSharedPtr getActiveTeamInstance();  // retrieves the value of activeTeamInstance
-    void setActiveTeamInstance(teamStateMSharedPtr set);  // sets the value of activeTeamInstance
+//    teamEntityMSharedPtr getActiveTeamInstance();  // retrieves the value of activeTeamInstance
+//    void setActiveTeamInstance(teamStateMSharedPtr set);  // sets the value of activeTeamInstance
 
     teamTypes getTeamWithBall();  // retrieves the value of teamWithBall
     void setTeamWithBall(teamTypes set);  // sets the value of teamWithBall
@@ -76,7 +77,7 @@ public:
     void setOldTime(float time); // sets the value of oldTime
 
     // initial setup of AI state
-    bool setup(basketballStateMSharedPtr activeBasketballInstance, courtStateMSharedPtr activeCourtInstance, teamStateMSharedPtr activeTeamInstance, teamTypes teamWithBall, std::string humanPlayer);
+    bool setup(basketballStateMSharedPtr activeBasketballInstance, courtStateMSharedPtr activeCourtInstance, teamEntityMSharedPtr activeTeamInstance, teamTypes teamWithBall, std::string humanPlayer);
 
 	// updates AI state
 	void update(const float currentTime, const float elapsedTime);
@@ -87,13 +88,13 @@ public:
     void selectDefaultPlugIn ();
 
 	// select the "next" plug-in, cycling through "plug-in selection order"
-    void selectNextPlugIn (teamStateMSharedPtr activeTeamInstance);
+    void selectNextPlugIn (teamEntityMSharedPtr activeTeamInstance);
 
 	// return name of currently selected plug-in
     const char *nameOfSelectedPlugIn ();
 
 	// open the currently selected plug-in
-    void openSelectedPlugIn (teamStateMSharedPtr activeTeamInstance);
+    void openSelectedPlugIn (teamEntityMSharedPtr activeTeamInstance);
 
 	// do a simulation update for the currently selected plug-in
     void updateSelectedPlugIn (const float currentTime, const float elapsedTime);
@@ -132,7 +133,7 @@ private:
     gameStateSharedPtr gameInstance;  // stores copy of gameInstance
     basketballStateMSharedPtr activeBasketballInstance;  // stores copy of activeBasketballInstance
     courtStateMSharedPtr activeCourtInstance;  // stores copy of activeCourtInstance
-    teamStateMSharedPtr activeTeamInstance;  // stores copy of activeTeamInstance
+//    teamStateMSharedPtr activeTeamInstance;  // stores copy of activeTeamInstance
     teamTypes teamWithBall;  // stores copy of teamWithBall
     std::string humanPlayer;  // stores which player is human controlled
 

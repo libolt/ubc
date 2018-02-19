@@ -123,6 +123,7 @@ class physicsEngine;
 class renderEngine;
 
 class teamComponents;
+class teamEntity;
 class teamFlags;
 class teamGameData;
 class teamState;
@@ -213,6 +214,8 @@ typedef sharedPtr<offenseState> offenseStateSharedPtr;
 //typedef sharedPtr<playerState> playerStateSharedPtr;
 
 typedef sharedPtr<teamComponents> teamComponentsSharedPtr;
+
+typedef sharedPtr<teamEntity> teamEntitySharedPtr;
 
 typedef sharedPtr<teamFlags> teamFlagsSharedPtr;
 
@@ -377,6 +380,8 @@ typedef std::map <size_t, courtStateSharedPtr> courtStateMSharedPtr;
 typedef std::map <size_t, hoopStateSharedPtr> hoopStateMSharedPtr;
 
 //typedef std::map <size_t, playerStateSharedPtr> playerStateMSharedPtr;
+
+typedef std::map <size_t, teamEntitySharedPtr> teamEntityMSharedPtr;
 
 typedef std::map <size_t, teamStateSharedPtr> teamStateMSharedPtr;
 

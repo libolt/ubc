@@ -21,6 +21,7 @@
 #include "ai/ai.h"
 #include "ai/playersteerplugin.h"
 #include "components/teamcomponents.h"
+#include "entity/teamentity.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
 #include "utilities/logging.h"
@@ -89,15 +90,6 @@ void AISystem::setActiveCourtInstance(courtStateMSharedPtr set)  // sets the val
     activeCourtInstance = set;
 }
 
-teamStateMSharedPtr AISystem::getActiveTeamInstance()  // retrieves the value of activeTeamInstance
-{
-    return (activeTeamInstance);
-}
-void AISystem::setActiveTeamInstance(teamStateMSharedPtr set)  // sets the value of activeTeamInstance
-{
-    activeTeamInstance = set;
-}
-
 teamTypes AISystem::getTeamWithBall()  // retrieves the value of teamWithBall
 {
     return (teamWithBall);
@@ -146,12 +138,12 @@ void AISystem::setOldTime(float set)  // sets the value of oldTime
 void printPlugIn(OpenSteer::PlugIn& pi);
 
 // initial setup of AI state
-bool AISystem::setup(basketballStateMSharedPtr activeBasketballInstance, courtStateMSharedPtr activeCourtInstance, teamStateMSharedPtr activeTeamInstance, teamTypes teamWithBall, std::string humanPlayer)
+bool AISystem::setup(basketballStateMSharedPtr activeBasketballInstance, courtStateMSharedPtr activeCourtInstance, teamEntityMSharedPtr activeTeamInstance, teamTypes teamWithBall, std::string humanPlayer)
 {
     conversionSharedPtr convert = conversion::Instance();
 
     std::string func = "AISystem::setup()";
-    setActiveTeamInstance(activeTeamInstance);
+//    setActiveTeamInstance(activeTeamInstance);
     logMsg(func +" beginning");
     playerSteerPluginSharedPtr tempPlugin(new playerSteerPlugin);
     playerSteerPluginInstance = tempPlugin;
@@ -228,7 +220,7 @@ void AISystem::selectDefaultPlugIn()  // selects the default plugin
     logMsg(func +" end");
 }
 
-void AISystem::selectNextPlugIn(teamStateMSharedPtr activeTeamInstance)  // select the "next" plug-in, cycling through "plug-in selection order"
+void AISystem::selectNextPlugIn(teamEntityMSharedPtr activeTeamInstance)  // select the "next" plug-in, cycling through "plug-in selection order"
 {
     std::string func = "AISystem::selectNextPlugIn()";
 

@@ -26,6 +26,7 @@
 #include "data/teamgamedata.h"
 #include "entity/basketballentity.h"
 #include "entity/playerentity.h"
+#include "entity/teamentity.h"
 #include "physics/basketballphysics.h"
 #include "state/basketballstate.h"
 //#include "state/gamestate.h"
@@ -159,7 +160,7 @@ void jumpBalls::setBBallVelocity(const btVector3 &set)  // sets the value of bba
     bballVelocity = set;
 }
 
-bool jumpBalls::updateState(teamTypes teamWithBall, basketballStateMSharedPtr activeBasketballInstance, teamStateMSharedPtr activeTeamInstance, quarters quarter)  // updates state of the jumpBalls instance
+bool jumpBalls::updateState(teamTypes teamWithBall, basketballStateMSharedPtr activeBasketballInstance, teamEntityMSharedPtr activeTeamInstance, quarters quarter)  // updates state of the jumpBalls instance
 {
 //    sharedPtr<gameState> gameS = gameState::Instance();
     conversionSharedPtr convert = conversion::Instance();
@@ -220,19 +221,10 @@ bool jumpBalls::updateState(teamTypes teamWithBall, basketballStateMSharedPtr ac
     return (false);  // returns false until jump ball has com=pleted
 }
 
-bool jumpBalls::jumpBallExecute(basketballStateMSharedPtr activeBasketballInstance, teamStateMSharedPtr activeTeamInstance)  // initiates jump ball from jump ball circle
+bool jumpBalls::jumpBallExecute(basketballStateMSharedPtr activeBasketballInstance, teamEntityMSharedPtr activeTeamInstance)  // initiates jump ball from jump ball circle
 {
-//    exit(0);
     conversionSharedPtr convert = conversion::Instance();
-//    sharedPtr<gameState> gameS = gameState::Instance();
-///    sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
-//    basketballStateVec basketballInstance = gameS->getBasketballInstance();
-//    size_t activeBBallInstance = gameS->getActiveBBallInstance();
-
-//    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
-//    std::unordered_map<std::string, playerStateSharedPtr> activePlayerInstance;
-//    std::unordered_map<std::string, playerStateSharedPtr> jumpPlayerInstance;  // stores playerID of players jumping for the ball
     playerEntityMSharedPtr activePlayerInstance;
     playerEntityMSharedPtr jumpPlayerInstance;  // stores playerID of players jumping for the ball
 
@@ -352,7 +344,7 @@ TS*/
     return (false);  // executeJumpBall has not completed
 }
 
-bool jumpBalls::tipToPlayer(basketballStateMSharedPtr activeBasketballInstance, teamStateMSharedPtr activeTeamInstance, quarters quarter)  // tips the basketball to the appropriate player
+bool jumpBalls::tipToPlayer(basketballStateMSharedPtr activeBasketballInstance, teamEntityMSharedPtr activeTeamInstance, quarters quarter)  // tips the basketball to the appropriate player
 {
 //    sharedPtr<gameState> gameS = gameState::Instance();
     conversionSharedPtr convert = conversion::Instance();

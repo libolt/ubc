@@ -240,7 +240,7 @@ const char *AISystem::nameOfSelectedPlugIn()  // return name of currently select
     return (OpenSteerPluginSharedPtr(selectedPlugIn) ? OpenSteerPluginSharedPtr(selectedPlugIn)->name() : "no PlugIn");
 }
 
-void AISystem::openSelectedPlugIn(teamStateMSharedPtr activeTeamInstance)  // open the currently selected plug-in
+void AISystem::openSelectedPlugIn(teamEntityMSharedPtr activeTeamInstance)  // open the currently selected plug-in
 {
     std::string func = "AISystem::openSelectedPlugIn()";
 

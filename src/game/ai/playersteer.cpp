@@ -29,6 +29,7 @@
 #include "data/teamgamedata.h"
 #include "entity/basketballentity.h"
 #include "entity/playerentity.h"
+#include "entity/teamentity.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
 #include "state/gamestate.h"
@@ -169,11 +170,11 @@ void playerSteer::setActiveCourtInstance(courtStateMSharedPtr set)  // sets the 
     activeCourtInstance = set;
 }
 
-teamStateMSharedPtr playerSteer::getActiveTeamInstance()  // retrieves the value of activeTeamInstance
+teamEntityMSharedPtr playerSteer::getActiveTeamInstance()  // retrieves the value of activeTeamInstance
 {
     return (activeTeamInstance);
 }
-void playerSteer::setActiveTeamInstance(teamStateMSharedPtr set)  // sets the value of activeTeamInstance
+void playerSteer::setActiveTeamInstance(teamEntityMSharedPtr set)  // sets the value of activeTeamInstance
 {
     activeTeamInstance = set;
 }
@@ -583,7 +584,7 @@ void playerSteer::checkCourtPosition()  // checks if the player's position has c
 
 //    gameS->setActiveTeamInstance(getActiveTeamInstance());
 //    teamStateVecSharedPtr teamI = gameS->getActiveTeamInstance();
-    teamStateMSharedPtr teamI = activeTeamInstance;
+    teamEntityMSharedPtr teamI = activeTeamInstance;
 
     playerEntityVecMSharedPtr activePlayerI;
 //    size_t w = 0;

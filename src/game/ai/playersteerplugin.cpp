@@ -29,6 +29,7 @@
 #include "data/playergamedata.h"
 #include "entity/courtentity.h"
 #include "entity/playerentity.h"
+#include "entity/teamentity.h"
 #include "flags/playerflags.h"
 #include "flags/teamflags.h"
 #include "state/basketballstate.h"
@@ -76,11 +77,11 @@ void playerSteerPlugin::setActiveCourtInstance(courtStateMSharedPtr set)  // set
     activeCourtInstance = set;
 }
 
-teamStateMSharedPtr playerSteerPlugin::getActiveTeamInstance()  // retrieves the value of activeTeamInstance
+teamEntityMSharedPtr playerSteerPlugin::getActiveTeamInstance()  // retrieves the value of activeTeamInstance
 {
     return (activeTeamInstance);
 }
-void playerSteerPlugin::setActiveTeamInstance(teamStateMSharedPtr set)  // sets the value of activeTeamInstance
+void playerSteerPlugin::setActiveTeamInstance(teamEntityMSharedPtr set)  // sets the value of activeTeamInstance
 {
     activeTeamInstance = set;
 }
@@ -157,7 +158,7 @@ void playerSteerPlugin::open()  // opens the plugin
                 exit(0);
             }
             activePlayerInstance = ATIIT.second->getComponent()->getActivePlayerInstance();
-            logMsg(func +" team name == " +ATIIT.second->getName());
+            logMsg(func +" team name == " +ATIIT.second->getData()->getName());
             logMsg(func +" ATIIT.second->getComponent()->getActivePlayerInstance().size() == " +convert->toString(ATIIT.second->getComponent()->getActivePlayerInstance().size()));
 
     //        exit(0);
@@ -304,15 +305,6 @@ void playerSteerPlugin::open()  // opens the plugin
 void playerSteerPlugin::update(const float currentTime, const float elapsedTime)
 {
     conversionSharedPtr convert = conversion::Instance();
-//    sharedPtr<gameState> gameS = gameState::Instance();
-    
-//    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
-//    playerStateVec team0ActivePlayerInstance = activeTeamInstance[0].getActivePlayerInstance();
-//    playerStateVec team1ActivePlayerInstance = activeTeamInstance[1].getActivePlayerInstance();
-//    std::vector<int> team0ActivePlayerID = activeTeamInstance[0].getActivePlayerID();
-//    std::vector<int> team1ActivePlayerID = activeTeamInstance[1].getActivePlayerID();
-
-//    std::vector<std::unordered_map<std::string, playerStateSharedPtr> > activePlayerInstance;
     playerEntityVecMSharedPtr activePlayerInstance;
 //	exit(0);
     // update simulation of test vehicle

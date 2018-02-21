@@ -160,7 +160,7 @@ bool AISystem::setup(basketballStateMSharedPtr activeBasketballInstance, courtSt
             logMsg(func + " activePlayerInstances NOT Created!!");
             exit(0);
         }
-        logMsg(func +" team name == " +ATIIT.second->getName());
+        logMsg(func +" team name == " +ATIIT.second->getData()->getName());
         logMsg(func +" ATIIT.second->getComponent()->getActivePlayerInstance().size() == " +convert->toString(ATIIT.second->getComponent()->getActivePlayerInstance().size()));
     }
 //    exit(0);

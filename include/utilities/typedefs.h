@@ -123,6 +123,7 @@ class physicsEngine;
 class renderEngine;
 
 class teamComponents;
+class teamData;
 class teamEntity;
 class teamFlags;
 class teamGameData;
@@ -214,6 +215,8 @@ typedef sharedPtr<offenseState> offenseStateSharedPtr;
 //typedef sharedPtr<playerState> playerStateSharedPtr;
 
 typedef sharedPtr<teamComponents> teamComponentsSharedPtr;
+
+typedef sharedPtr<teamData> teamDataSharedPtr;
 
 typedef sharedPtr<teamEntity> teamEntitySharedPtr;
 

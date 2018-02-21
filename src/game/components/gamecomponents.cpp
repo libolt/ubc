@@ -75,7 +75,7 @@ void gameComponents::setActiveHoopInstance(hoopStateMSharedPtr set)  // sets the
     activeHoopInstance = set;
 }
 
-teamStateMSharedPtr gameComponents::getActiveTeamInstance()  // retrieves the value of activeTeamInstance
+teamEntityMSharedPtr gameComponents::getActiveTeamInstance()  // retrieves the value of activeTeamInstance
 {
     return (activeTeamInstance);
 }
@@ -120,7 +120,7 @@ void gameComponents::setPlayerInstance(playerEntityMSharedPtr set)  // sets the 
     playerInstance = set;
 }
 
-teamStateMSharedPtr gameComponents::getTeamInstance()  // retrieves the value of teamInstance
+teamEntityMSharedPtr gameComponents::getTeamInstance()  // retrieves the value of teamInstance
 {
     return (teamInstance);
 }

@@ -46,6 +46,15 @@ void teamEntity::setComponent(teamComponentsSharedPtr set)  // sets the value of
     component = set;
 }
 
+teamDataSharedPtr teamEntity::getData()  // retrieves the value of data
+{
+    return (data);
+}
+void teamEntity::setData(teamDataSharedPtr set)  // sets the value of data
+{
+    data = set;
+}
+
 teamFlagsSharedPtr teamEntity::getFlag()  // retrieves the value of flag
 {
     return (flag);

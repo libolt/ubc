@@ -48,6 +48,7 @@ class gameData;
 class hoopState;
 class playerState;
 class teamState;
+class teamEntity;
 class teamData;
 class playerData;
 class jumpBalls;

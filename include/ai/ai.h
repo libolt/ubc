@@ -51,8 +51,8 @@ public:
     courtStateMSharedPtr getActiveCourtInstance();  // retrieves the value of activeCourtInstance
     void setActiveCourtInstance(courtStateMSharedPtr set);  // sets the value of activeCourtInstance
 
-//    teamEntityMSharedPtr getActiveTeamInstance();  // retrieves the value of activeTeamInstance
-//    void setActiveTeamInstance(teamStateMSharedPtr set);  // sets the value of activeTeamInstance
+    teamEntityMSharedPtr getActiveTeamInstance();  // retrieves the value of activeTeamInstance
+    void setActiveTeamInstance(teamStateMSharedPtr set);  // sets the value of activeTeamInstance
 
     teamTypes getTeamWithBall();  // retrieves the value of teamWithBall
     void setTeamWithBall(teamTypes set);  // sets the value of teamWithBall

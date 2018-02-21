@@ -34,6 +34,9 @@ class teamEntity
         teamComponentsSharedPtr getComponent();  // retrieves the value of component
         void setComponent(teamComponentsSharedPtr set);  // sets the value of component
 
+        teamDataSharedPtr getData();  // retrieves the value of data
+        void setData(teamDataSharedPtr set);  // sets the value of data
+
         teamFlagsSharedPtr getFlag();  // retrieves the value of flag
         void setFlag(teamFlagsSharedPtr set);  // sets the value of flag
 

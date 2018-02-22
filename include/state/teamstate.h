@@ -52,16 +52,8 @@ public:
     teamState();  // constructor
     ~teamState();  // destructor
 
-    void updateActivePlayers();  // updates the states of active players
-    void updatePlayerDirections(gameComponentsSharedPtr gameComponent);  // updates the direction players are facing
-    void updatePlayerMovements();	// updates the movement status of players
-
     void executePass();  // executes the pass between players
 
-    void updatePositions();  // updates player on court positionss
-
-    void updateActivePlayerSettings();  // updates the settings of active players
-        
 protected:
 private:
     

@@ -62,57 +62,7 @@ teamState::~teamState()  // destructor
 {
 }
 
-bool teamState::initialize()  // initializes the object
-{
-    bool stateSet = this->getStateSet();
-    std::string func = "teamState::setupState()";
-    
-    logMsg(func +" beginning");
 
-    teamComponentsSharedPtr tempTeamComponent(new teamComponents);
-    component = tempTeamComponent;
-
-    teamFlagsSharedPtr tempTeamFlag(new teamFlags);
-    flag = tempTeamFlag;
-
-    teamGameDataSharedPtr tempTeamGameData(new teamGameData);
-    gameData = tempTeamGameData;
-
-    teamStatisticsSharedPtr tempTeamStats(new teamStatistics);
-    statistics = tempTeamStats;
-
-    offenseStateSharedPtr tempOffenseInst(new offenseState);
-    component->setOffenseInstance(tempOffenseInst);
-
-    defenseStateSharedPtr tempDefenseInst(new defenseState);
-    component->setDefenseInstance(tempDefenseInst);
-    
-    if (!stateSet)
-    {
-        logMsg(func +" Setting state");
-//      sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
-///        if (!playerInstancesCreated) // checks if playerInstances have been created
-///        {
-///         if (createPlayerInstances()) // creates the ttances based on playerIDS
-///         {
-///                logMsg("Player instances created!");
-///                playerInstancesCreated = true;
-//          exit(0);
-///         }
-///        }
-
-//    playerWithBall = 3; // FIXME! Temporarily ahrd code player controlling ball
-//    humanPlayer = 3;  // sets the human controlled player to the center for tip off
-///    player->mAnimationState2 =  activePlayerInstance[5].getModel()->getAnimationState("Walk");
-///    player->mAnimationState2->setLoop(true);
-///    player->mAnimationState2->setEnabled(true);
-
-        stateSet = true;
-    }
-    logMsg(func +" end");
-
-    return (true);
-}
 
 void teamState::updateState(gameComponentsSharedPtr gameInstanceComponent, gameFlagsSharedPtr gameInstanceFlag, gameDataSharedPtr gameInstanceData, renderEngineSharedPtr render)  // updates the state of the object
 {

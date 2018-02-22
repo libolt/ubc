@@ -92,7 +92,7 @@ void defenseState::updateState(teamTypes teamType, gameComponentsSharedPtr gameC
 //    sharedPtr<gameState> gameS = gameState::Instance();
     teamTypes teamWithBall = gameData->getTeamWithBall();
 
-    teamStateMSharedPtr activeTeamInstance = gameComponent->getActiveTeamInstance();
+    teamEntityMSharedPtr activeTeamInstance = gameComponent->getActiveTeamInstance();
 //TS    playerStateVecSharedPtr playerDInstance = activeTeamInstance[teamOnDefense]->getActivePlayerInstance();
 //TS    playerStateVecSharedPtr playerOInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
 //TS    sizeTVec activeDID = activeTeamInstance[teamOnDefense]->getActivePlayerID();

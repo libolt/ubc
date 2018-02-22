@@ -30,6 +30,7 @@
 #include "data/gamedata.h"
 #include "data/teamgamedata.h"
 #include "entity/playerentity.h"
+#include "entity/teamentity.h"
 #include "utilities/conversion.h"
 #include "entity/basketballentity.h"
 #include "entity/courtentity.h"
@@ -270,7 +271,7 @@ bool gameState::createInstances()  // creates object instances
     
     logMsg(func +" beginning");
     exit(0);
-    teamStateMSharedPtr tInstance;
+    teamEntityMSharedPtr tInstance;
 ///    teamStateVecSharedPtr tInstance2;
 ///    teamStateSharedPtr tempInstance(new teamState);
 //    teamState *tempInstance = new teamState;
@@ -651,8 +652,8 @@ bool gameState::createInstances()  // creates object instances
 bool gameState::setupActiveTeamInstances()  // sets up the active team instances
 {
     teamStateSharedPtr tInstance;
-    teamStateMSharedPtr activeTeamInstance = component->getActiveTeamInstance();
-    teamStateMSharedPtr teamInstance = component->getTeamInstance();
+    teamEntityMSharedPtr activeTeamInstance = component->getActiveTeamInstance();
+    teamEntityMSharedPtr teamInstance = component->getTeamInstance();
     sizeTVec teamIDS = data->getTeamIDS();
     std::string func = "gameState::setupActiveTeamInstances()";
 
@@ -1574,7 +1575,7 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
             logMsg(func + " activePlayerInstances NOT Created!!");
             exit(0);
         }
-        logMsg(func +" team name == " +ATIIT.second->getName());
+        logMsg(func +" team name == " +ATIIT.second->getData()->getName());
         logMsg(func +" ATIIT.second->getActivePlayerInstance().size() == " +convert->toString(ATIIT.second->getComponent()->getActivePlayerInstance().size()));
     }
 //    exit(0);
@@ -1631,7 +1632,7 @@ bool gameState::updateState(renderEngineSharedPtr render)  // updates the game s
     timing timer; 
     Ogre::Vector3 playerPos;
     basketballStateMSharedPtr activeBasketballInstance = component->getActiveBasketballInstance();
-//    teamStateMSharedPtr activeTeamInstance = getActiveTeamInstance();
+//    teamEntityMSharedPtr activeTeamInstance = getActiveTeamInstance();
     std::string func = "gameState::updateState()";
 
     logMsg(func +" beginning");
@@ -1692,7 +1693,7 @@ bool gameState::updateState(renderEngineSharedPtr render)  // updates the game s
 
         logMsg(func +" getActiveTeamInstance().size() == " +convert->toString(component->getActiveTeamInstance().size()));
 
-        teamStateMSharedPtr activeTeamInstance = component->getActiveTeamInstance();
+        teamEntityMSharedPtr activeTeamInstance = component->getActiveTeamInstance();
         if (activeTeamInstance.size() > 0)
         {
             logMsg(func + " activeTeamInstance.size() == " +convert->toString(activeTeamInstance.size()));
@@ -1813,7 +1814,7 @@ bool gameState::updateState(renderEngineSharedPtr render)  // updates the game s
 
 bool gameState::updateActiveTeamInstances(renderEngineSharedPtr render)  // updates all active team instances
 {
-    teamStateMSharedPtr activeTeamInstance = component->getActiveTeamInstance();
+    teamEntityMSharedPtr activeTeamInstance = component->getActiveTeamInstance();
     conversionSharedPtr convert = conversion::Instance();
     gameStateSharedPtr gameInstance;
     std::string func = "gameState::updateActiveTeamInstances()";
@@ -1923,7 +1924,7 @@ bool gameState::updateActiveTeamInstances(renderEngineSharedPtr render)  // upda
 
 bool gameState::updatePlayerCollisionObjects()  // updates the player collision objects for a team instance
 {
-    teamStateMSharedPtr activeTeamInstance = component->getActiveTeamInstance();
+    teamEntityMSharedPtr activeTeamInstance = component->getActiveTeamInstance();
     conversionSharedPtr convert = conversion::Instance();
  
     std::unordered_map<std::string, btRigidBodySharedPtr> collisionBodies;  // physical bodies to test for collisions with players physBody objects

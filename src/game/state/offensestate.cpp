@@ -224,7 +224,7 @@ void offenseState::updateState(teamTypes teamType, gameComponentsSharedPtr gameC
 {
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
-    teamStateMSharedPtr activeTeamInstance = gameComponent->getActiveTeamInstance();
+    teamEntityMSharedPtr activeTeamInstance = gameComponent->getActiveTeamInstance();
 //TS    playerStateVecSharedPtr activePlayerInstance = activeTeamInstance[teamType]->getActivePlayerInstance();
 
     if (!offenseSetup)
@@ -377,7 +377,7 @@ void offenseState::executeOffense(gameComponentsSharedPtr gameComponent, gameDat
 //    sharedPtr<gameState> gameS = gameState::Instance();
     teamTypes teamWithBall = gameData->getTeamWithBall();
 
-    teamStateMSharedPtr activeTeamInstance = gameComponent->getActiveTeamInstance();
+    teamEntityMSharedPtr activeTeamInstance = gameComponent->getActiveTeamInstance();
 /*TS    playerStateVecSharedPtr activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
 
     size_t playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();

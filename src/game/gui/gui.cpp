@@ -306,11 +306,11 @@ void GUISystem::setGame(UBCGameSharedPtr set) // sets the value of game
     game = set;
 }
 
-teamStateMSharedPtr GUISystem::getTeamInstance()  // retrieves the value of teamInstance
+teamEntityMSharedPtr GUISystem::getTeamInstance()  // retrieves the value of teamInstance
 {
     return (teamInstance);
 }
-void GUISystem::setTeamInstance(teamStateMSharedPtr set)  // sets the value of teamInstance
+void GUISystem::setTeamInstance(teamEntityMSharedPtr set)  // sets the value of teamInstance
 {
     teamInstance = set;
 }
@@ -614,7 +614,7 @@ void GUISystem::teamSelectionMenu(renderEngineSharedPtr render)  // displays tea
     conversionSharedPtr convert = conversion::Instance();
     gameSetupTeamsSharedPtr gameSetupTeam(new gameSetupTeams);
     bool changeMenu = false;  // determinrs if menu is to be changed
-    teamStateMSharedPtr teamInstance; // = gameS->getTeamDataInstance();
+    teamEntityMSharedPtr teamInstance; // = gameS->getTeamDataInstance();
     std::string func = "GUISystem::teamSelectionMenu()";
     logMsg(func +" begin");
 
@@ -895,8 +895,8 @@ void GUISystem::teamsSelected()  // processes team selection
 //    exit(0);
     //gameState *gameS = gameState::Instance();
     conversionSharedPtr convert = conversion::Instance();
-    teamStateMSharedPtr activeTeamInstance;
-//    teamStateMSharedPtr teamInstance;
+    teamEntityMSharedPtr activeTeamInstance;
+//    teamEntityMSharedPtr teamInstance;
     gameSetupTeamsSharedPtr gameSetupTeam;
     std::string func = "GUISystem::teamsSelected()";
   
@@ -932,7 +932,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     std::vector<std::unordered_map <std::string, std::string> > teamStarters;
 //    teamStarters.push_back(tempStarters);
     std::unordered_map<std::string, size_t> tempStarterID; // used for initial creatio  of teamStarterID vector
-    teamStateMSharedPtr activeTeamInstance = gameInstance->getComponent()->getActiveTeamInstance();
+    teamEntityMSharedPtr activeTeamInstance = gameInstance->getComponent()->getActiveTeamInstance();
   
 //    std::vector<playerStateMSharedPtr > playerInstance;
     playerEntityMSharedPtr gamePlayerInstance = gameInstance->getComponent()->getPlayerInstance();

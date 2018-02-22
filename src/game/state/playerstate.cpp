@@ -506,7 +506,7 @@ void playerState::updateState()
         logMsg(func + " oldDirection = direction");
         oldDirection = direction;
         logMsg(func + " activeTeamInstance = base->getGameS()->getActiveTeamInstance()");
-        teamStateMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
+        teamEntityMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
 //        size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
         logMsg(func + " Team Type == " +convert->toString(teamType));
         if (teamType == base->getGameS()->getTeamWithBall() && base->getGameS()->getTipOffComplete())
@@ -658,7 +658,7 @@ void playerState::updateDirection()
     
 /*    conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
-    teamStateMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
+    teamEntityMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
     basketballStateMSharedPtr activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();   
 //    size_t activeBBallInstance = getActiveBBallInstance();
 //    size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
@@ -785,7 +785,7 @@ void playerState::updateMovement()  // updates movement status of the player
 {
 /*    conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
-    teamStateMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
+    teamEntityMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
 //    basketballStateVecSharedPtr bballInstance = getBasketballInstance();
     basketballStateMSharedPtr activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();
 //    size_t activeBBallInstance = getActiveBBallInstance();
@@ -866,7 +866,7 @@ void playerState::calculatePass()   // calculates which player to pass the ball 
     logMsg(func +" beginning");
 /*    logMsg("In calculatePass function");
 
-    teamStateMSharedPtr activeTeamInstance = getActiveTeamInstance();
+    teamEntityMSharedPtr activeTeamInstance = getActiveTeamInstance();
     size_t teamWithBall = getTeamWithBall();
     playerPositions playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();
     passToPlayer = playerWithBallInstance++;

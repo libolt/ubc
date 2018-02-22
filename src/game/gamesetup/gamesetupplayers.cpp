@@ -26,6 +26,7 @@
 #include "data/teamgamedata.h"
 #include "engine/renderengine.h"
 #include "entity/playerentity.h"
+#include "entity/teamentity.h"
 #include "flags/gameflags.h"
 #include "flags/playerflags.h"
 #include "flags/teamflags.h"
@@ -109,7 +110,7 @@ bool gameSetupPlayers::checkIfGamePlayerInstancesCreated(gameComponentsSharedPtr
     return (returnType);
 }
 
-bool gameSetupPlayers::checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr gamePlayerInstance, teamStateMSharedPtr activeTeamInstance)  // checks if the gameState Objects Player Instances have been created
+bool gameSetupPlayers::checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr gamePlayerInstance, teamEntityMSharedPtr activeTeamInstance)  // checks if the gameState Objects Player Instances have been created
 {
     conversionSharedPtr convert = conversion::Instance();
     playerEntityMSharedPtr playerInstance; // = gameS->getPlayerInstance();
@@ -129,38 +130,38 @@ bool gameSetupPlayers::checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr 
 //            exit(0);
             if (ATIIT.second->getComponent()->getPlayerInstance().size() > 0)
             {
-                logMsg(func +" " +ATIIT.second->getCity() +" " +ATIIT.second->getName() + " Player Instances Created!");
+                logMsg(func +" " +ATIIT.second->getData()->getCity() +" " +ATIIT.second->getData()->getName() + " Player Instances Created!");
             }
             else
             {
                 
-                playerInstance = createTeamPlayerInstances(gamePlayerInstance, ATIIT.second->getID());
+                playerInstance = createTeamPlayerInstances(gamePlayerInstance, ATIIT.second->getData()->getID());
                 if (playerInstance.size() > 0)
                 {
-                    logMsg(func +" " +ATIIT.second->getCity() +" " +ATIIT.second->getName() + " Player Instances Created!");
+                    logMsg(func +" " +ATIIT.second->getData()->getCity() +" " +ATIIT.second->getData()->getName() + " Player Instances Created!");
                     ATIIT.second->getFlag()->setPlayerInstancesCreated(true);
                     ATIIT.second->getComponent()->setPlayerInstance(playerInstance);
                     returnType = true;
                 }
                 else
                 {
-                    logMsg(func +" Unable to Create " +ATIIT.second->getCity() +" " +ATIIT.second->getName() + " Player Instances!");
+                    logMsg(func +" Unable to Create " +ATIIT.second->getData()->getCity() +" " +ATIIT.second->getData()->getName() + " Player Instances!");
                 }
             }
         }
         else  // create team's player instances
         {
-            playerInstance = createTeamPlayerInstances(gamePlayerInstance, ATIIT.second->getID());
+            playerInstance = createTeamPlayerInstances(gamePlayerInstance, ATIIT.second->getData()->getID());
             if (playerInstance.size() > 0)
             {
-                logMsg(func +" " +ATIIT.second->getCity() +" " +ATIIT.second->getName() + " Player Instances Created!");
+                logMsg(func +" " +ATIIT.second->getData()->getCity() +" " +ATIIT.second->getData()->getName() + " Player Instances Created!");
                 ATIIT.second->getFlag()->setPlayerInstancesCreated(true);
                 ATIIT.second->getComponent()->setPlayerInstance(playerInstance);
                 returnType = true;
             }
             else
             {
-                logMsg(func +" Unable to Create " +ATIIT.second->getCity() +" " +ATIIT.second->getName() + " Player Instances!");
+                logMsg(func +" Unable to Create " +ATIIT.second->getData()->getCity() +" " +ATIIT.second->getData()->getName() + " Player Instances!");
             }
         }
     }

@@ -36,8 +36,8 @@ class loadTeams : public loader
         stdStringVec getTeamFiles();  // retrieves the value of teamFiles
         void setTeamFiles(stdStringVec set);  // sets the value of teamFiles
 
-        teamStateMSharedPtr getTInstance();  // retrieves the value of tInstance
-        void setTInstance(teamStateMSharedPtr set);  // sets the value of tInstance
+        teamEntityMSharedPtr getTInstance();  // retrieves the value of tInstance
+        void setTInstance(teamEntityMSharedPtr set);  // sets the value of tInstance
     
         bool getTeamFilesLoaded();  // retrieves the value of teamFilesLoaded
         void setTeamFilesLoaded(bool set);  // sets the value of teamFilesLoaded
@@ -45,13 +45,13 @@ class loadTeams : public loader
         bool checkIfTeamsLoaded();  // checks if teams have been loaded into tInstance
 
         // Teams
-        teamStateMSharedPtr loadTeamFiles();  // loads team data from XML files
+        teamEntityMSharedPtr loadTeamFiles();  // loads team data from XML files
         stdStringVec loadTeamListFile(std::string fileName);  // loads list of team files from teams.xml
-        teamStateSharedPtr loadTeamFile(std::string fileName);  // loads data from the team XML files
+        teamEntitySharedPtr loadTeamFile(std::string fileName);  // loads data from the team XML files
     
     private:
     
-        static teamStateMSharedPtr tInstance;
+        static teamEntityMSharedPtr tInstance;
         static bool teamFilesLoaded;
         static stdStringVec teamFiles;   // stores list of team xml files
 

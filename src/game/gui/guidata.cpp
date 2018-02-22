@@ -30,6 +30,7 @@
 #include "engine/gameengine.h"
 #include "entity/courtentity.h"
 #include "entity/playerentity.h"
+#include "entity/teamentity.h"
 #include "flags/teamflags.h"
 #include "gamesetup/gamesetupcourts.h"
 #include "gamesetup/gamesetupplayers.h"
@@ -143,7 +144,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     conversionSharedPtr convert = conversion::Instance();
     gameSetupPlayersSharedPtr gameSetupPlayer(new gameSetupPlayers);
 //    gameStateSharedPtr gameS = base->getGameS();
-    teamStateMSharedPtr activeTeamInstance = gameInstance->getComponent()->getActiveTeamInstance();
+    teamEntityMSharedPtr activeTeamInstance = gameInstance->getComponent()->getActiveTeamInstance();
     playerEntityMSharedPtr gamePlayerInstance;
     playerEntityMSharedPtr playerInstance;
     std::string func = "GUISystem::addPlayerStartSelectionMenuData";
@@ -320,7 +321,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     conversionSharedPtr convert = conversion::Instance();
     gameSetupTeamsSharedPtr gameSetupTeam(new gameSetupTeams);
     loadTeamsSharedPtr loadTeam; // = base->getLoadTeam();
-    teamStateMSharedPtr teamInstance; // = gameS->getTeamDataInstance();
+    teamEntityMSharedPtr teamInstance; // = gameS->getTeamDataInstance();
     std::string func = "GUISystem::addTeamStartSelectionMenuData()";
 
     logMsg(func +" begin");
@@ -338,11 +339,11 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
 //    while (x < teamInstance.size())
     for (auto TIIT : teamInstance)
     {
-        logMsg(func +" GUI ADD TEAM teamInstance[" +convert->toString(TIIT.first) +"]->getID() ID == " +convert->toString(TIIT.second->getID()));
+        logMsg(func +" GUI ADD TEAM teamInstance[" +convert->toString(TIIT.first) +"]->getData()->getID() ID == " +convert->toString(TIIT.second->getData()->getID()));
 //        ++x;
     }
 //    exit(0);
-     logMsg(func +" GUI ADD TEAM gameInstance->getTeamInstance()[3]->getID() ID == " +convert->toString(gameInstance->getComponent()->getTeamInstance()[0]->getID()));
+     logMsg(func +" GUI ADD TEAM gameInstance->getTeamInstance()[3]->getID() ID == " +convert->toString(gameInstance->getComponent()->getTeamInstance()[0]->getData()->getID()));
     if (gameInstance->getFlag()->getTeamInstancesCreated())
     {        
         logMsg(func +" Woot!");
@@ -397,21 +398,21 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
         exit(0);
     }
     logMsg(func +" " +convert->toString(teamInstance.size()));
-    logMsg(func +" Team City == " +teamInstance[0]->getCity() +"b");
-    logMsg(func +" Team City == " +teamInstance[1]->getCity() +"b");
-    logMsg(func +" Team City == " +teamInstance[2]->getCity() +"b");
-    logMsg(func +" Team City == " +teamInstance[3]->getCity() +"b");
+    logMsg(func +" Team City == " +teamInstance[0]->getData()->getCity() +"b");
+    logMsg(func +" Team City == " +teamInstance[1]->getData()->getCity() +"b");
+    logMsg(func +" Team City == " +teamInstance[2]->getData()->getCity() +"b");
+    logMsg(func +" Team City == " +teamInstance[3]->getData()->getCity() +"b");
 
 
 //    exit(0);
     for (auto TIIT : teamInstance)
     {
-        if (TIIT.second->getCity() == "")
+        if (TIIT.second->getData()->getCity() == "")
         {
             logMsg(func +" City is blank!");
             exit(0);
         }
-        std::string teamName = TIIT.second->getCity() + " " +TIIT.second->getName();
+        std::string teamName = TIIT.second->getData()->getCity() + " " +TIIT.second->getData()->getName();
 
         teamSelectBox[0]->addItem(teamName);
         teamSelectBox[1]->addItem(teamName);

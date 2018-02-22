@@ -28,7 +28,7 @@
 //#include "ubc/ubc.h"
 
 // Forward declarations
-class teamState;
+class teamEntity;
 class networkEngine;
 
 class networkState : public state
@@ -41,10 +41,10 @@ class networkState : public state
         networkEngineSharedPtr getNetworkE();  // retrieves the value of network
         void setNetwork(networkEngineSharedPtr set);  // sets the value of network
 
-        void processLocalInput(teamStateVecSharedPtr activeTeamInstance);  // processes local input for sending to remote system
+        void processLocalInput(teamEntityVecSharedPtr activeTeamInstance);  // processes local input for sending to remote system
         void processRemoteInput();  // processes input received from a remote system
-        void processNetworkEvents(teamStateVecSharedPtr activeTeamInstance);  // processes events received from network connection.
-        void processNetworkPlayerEvents(teamStateVecSharedPtr activeTeamInstance);  // processes player evernts received from network connection
+        void processNetworkEvents(teamEntityVecSharedPtr activeTeamInstance);  // processes events received from network connection.
+        void processNetworkPlayerEvents(teamEntityVecSharedPtr activeTeamInstance);  // processes player evernts received from network connection
 
     
     private:

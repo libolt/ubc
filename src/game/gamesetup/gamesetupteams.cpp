@@ -20,6 +20,7 @@
 
 #include "gamesetup/gamesetupteams.h"
 #include "data/teamgamedata.h"
+#include "entity/teamentity.h"
 #include "utilities/conversion.h"
 #include "state/gamestate.h"
 #include "state/teamstate.h"
@@ -35,7 +36,7 @@ gameSetupTeams::~gameSetupTeams()  // destructor
     
 }
 
-teamStateMSharedPtr gameSetupTeams::createTeamInstances()  // creates team Instances
+teamEntityMSharedPtr gameSetupTeams::createTeamInstances()  // creates team Instances
 {
     conversionSharedPtr convert = conversion::Instance();
     loadTeamsSharedPtr loadTeam; // = base->getLoadTeam();
@@ -43,7 +44,7 @@ teamStateMSharedPtr gameSetupTeams::createTeamInstances()  // creates team Insta
     
     logMsg(func +" beginning");
 //    exit(0);
-    teamStateMSharedPtr tInstance;
+    teamEntityMSharedPtr tInstance;
 ///    teamStateVecSharedPtr tInstance2;
 ///    teamStateSharedPtr tempInstance(new teamState);
 //    teamState *tempInstance = new teamState;
@@ -130,10 +131,10 @@ teamStateMSharedPtr gameSetupTeams::createTeamInstances()  // creates team Insta
     return (tInstance);
 }
 
-teamStateMSharedPtr gameSetupTeams::createActiveTeamInstances(teamStateMSharedPtr teamInstance, sizeTVec teamID)  // creates active team instances
+teamEntityMSharedPtr gameSetupTeams::createActiveTeamInstances(teamEntityMSharedPtr teamInstance, sizeTVec teamID)  // creates active team instances
 {
     conversionSharedPtr convert = conversion::Instance();
-    teamStateMSharedPtr activeTeamInstance;
+    teamEntityMSharedPtr activeTeamInstance;
     std::string func = "gameSetupTeams::createActiveTeamInstances()";
        
     logMsg(func +" begin");
@@ -147,7 +148,7 @@ teamStateMSharedPtr gameSetupTeams::createActiveTeamInstances(teamStateMSharedPt
     sizeTVec::iterator TIDIT;
     for (TIDIT = teamID.begin(); TIDIT != teamID.end(); ++TIDIT)  // creates active team instances
     {
-        activeTeamInstance.insert(std::pair<size_t, teamStateSharedPtr>(*TIDIT, teamInstance[*TIDIT]));
+        activeTeamInstance.insert(std::pair<size_t, teamEntitySharedPtr>(*TIDIT, teamInstance[*TIDIT]));
     }
     
     logMsg(func +" teamID.size() == " +convert->toString(teamID.size()));

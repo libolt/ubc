@@ -30,14 +30,14 @@ class gameSetupLineups
         gameSetupLineups();  // constructor
         ~gameSetupLineups();  // destructor
         
-        std::vector<std::unordered_map <std::string, std::string> > createTeamStarters(teamStateMSharedPtr activeTeamInstance);  // creates the teamStarters instance
-        std::vector<std::unordered_map<std::string, size_t> > createTeamStarterID(std::vector<std::unordered_map <std::string, std::string> > teamStarters, teamStateMSharedPtr activeTeamInstance);  // creates the object with each team's starter IDs
+        std::vector<std::unordered_map <std::string, std::string> > createTeamStarters(teamEntityMSharedPtr activeTeamInstance);  // creates the teamStarters instance
+        std::vector<std::unordered_map<std::string, size_t> > createTeamStarterID(std::vector<std::unordered_map <std::string, std::string> > teamStarters, teamEntityMSharedPtr activeTeamInstance);  // creates the object with each team's starter IDs
 
-//        bool checkPlayerInstancesCreated(teamStateMSharedPtr activeTeamInstance);  // checks if player instances have been created
-//        teamStateMSharedPtr createActivePlayerInstances(teamStateMSharedPtr activeTeamInstance, std::vector<std::unordered_map<std::string, size_t> > teamStarterID);  // creates the active playerInstances
-        bool checkActivePlayerInstancesCreated(teamStateMSharedPtr activeTeamInstance);
-        teamStateMSharedPtr setupStartingLineups(teamStateMSharedPtr activeTeamInstance, std::vector<std::unordered_map<std::string, size_t> > teamStarterID);  // sets starting lineups for each team
-        bool setupStartingLineups_old(teamStateMSharedPtr activeTeamInstance, std::vector<std::unordered_map <std::string, std::string> > teamStarters, std::vector<std::unordered_map<std::string, size_t> > teamStarterID);  // sets starting lineups for each team
+//        bool checkPlayerInstancesCreated(teamEntityMSharedPtr activeTeamInstance);  // checks if player instances have been created
+//        teamEntityMSharedPtr createActivePlayerInstances(teamEntityMSharedPtr activeTeamInstance, std::vector<std::unordered_map<std::string, size_t> > teamStarterID);  // creates the active playerInstances
+        bool checkActivePlayerInstancesCreated(teamEntityMSharedPtr activeTeamInstance);
+        teamEntityMSharedPtr setupStartingLineups(teamEntityMSharedPtr activeTeamInstance, std::vector<std::unordered_map<std::string, size_t> > teamStarterID);  // sets starting lineups for each team
+        bool setupStartingLineups_old(teamEntityMSharedPtr activeTeamInstance, std::vector<std::unordered_map <std::string, std::string> > teamStarters, std::vector<std::unordered_map<std::string, size_t> > teamStarterID);  // sets starting lineups for each team
 
     private:
     

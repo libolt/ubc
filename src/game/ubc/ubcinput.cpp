@@ -93,7 +93,7 @@ void UBCInput::process(gameEngineSharedPtr gameE, gameComponentsSharedPtr gameCo
 //    sharedPtr<GUISystem> gui = GUISystem::Instance();
 //    sharedPtr<inputSystem> input = inputSystem::Instance();
 //    networkEngineSharedPtr network = networkEngine::Instance();
-    teamStateMSharedPtr activeTeamInstance = gameComponent->getActiveTeamInstance();
+    teamEntityMSharedPtr activeTeamInstance = gameComponent->getActiveTeamInstance();
     networkPlayerStateObject netPStateObj;
     std::string func = "UBCInput::process()";
 

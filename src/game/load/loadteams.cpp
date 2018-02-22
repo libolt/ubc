@@ -24,13 +24,14 @@
 #include "config.h"
 #endif
 
+#include "entity/teamentity.h"
 #include "utilities/conversion.h"
 #include "load/loadteams.h"
 #include "utilities/logging.h"
 #include "state/teamstate.h"
 
 // static declarations
-teamStateMSharedPtr loadTeams::tInstance;
+teamEntityMSharedPtr loadTeams::tInstance;
 stdStringVec loadTeams::teamFiles;  // stores list of team xml files
 bool loadTeams::teamFilesLoaded;
 
@@ -61,11 +62,11 @@ void loadTeams::setTeamFilesLoaded(bool set)  // sets the value of teamFilesLoad
     teamFilesLoaded = set;
 }
 
-teamStateMSharedPtr loadTeams::getTInstance()  // retrieves the value of tInstance
+teamEntityMSharedPtr loadTeams::getTInstance()  // retrieves the value of tInstance
 {
     return(tInstance);
 }
-void loadTeams::setTInstance(teamStateMSharedPtr set)  // sets the value of tInstance
+void loadTeams::setTInstance(teamEntityMSharedPtr set)  // sets the value of tInstance
 {
     tInstance = set;
 }
@@ -74,7 +75,7 @@ bool loadTeams::checkIfTeamsLoaded()  // checks if teams have been loaded into t
 {
     conversionSharedPtr convert = conversion::Instance();
     teamStateVec tempT;
-    teamStateMSharedPtr tempTInstance;
+    teamEntityMSharedPtr tempTInstance;
     tInstance = tempTInstance;
     std::string func = "loader::checkIfTeamsLoaded()";
     
@@ -149,10 +150,10 @@ bool loadTeams::checkIfTeamsLoaded()  // checks if teams have been loaded into t
     return (true);
 }
 
-teamStateMSharedPtr loadTeams::loadTeamFiles()  // load teams from XML files
+teamEntityMSharedPtr loadTeams::loadTeamFiles()  // load teams from XML files
 {
     conversionSharedPtr convert = conversion::Instance();
-    teamStateMSharedPtr teams;
+    teamEntityMSharedPtr teams;
 
     std::string teamList;
     std::string func = "loader::loadTeams";
@@ -193,12 +194,12 @@ teamStateMSharedPtr loadTeams::loadTeamFiles()  // load teams from XML files
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 //        teams.push_back(loadTeamFile("data/teams/" + *it));
 //          loadTeamFile("data/teams/" + *it);
-        teams.insert(std::pair<size_t, teamStateSharedPtr>(it, loadTeamFile("data/teams/" + teamFiles[it])));
+        teams.insert(std::pair<size_t, teamEntitySharedPtr>(it, loadTeamFile("data/teams/" + teamFiles[it])));
 
 #else
 //        teams.push_back(loadTeamFile(findFile("teams/" + *it)));
 //          loadTeamFile(findFile("teams/" + *it));
-        teams.insert(std::pair<size_t, teamStateSharedPtr>(it, loadTeamFile(findFile("teams/" + teamFiles[it]))));
+        teams.insert(std::pair<size_t, teamEntitySharedPtr>(it, loadTeamFile(findFile("teams/" + teamFiles[it]))));
 
 #endif
     }
@@ -209,7 +210,7 @@ teamStateMSharedPtr loadTeams::loadTeamFiles()  // load teams from XML files
 //    logMsg("loadTeams() 4 Name == " +tInstance[4]->getName());
     for (auto TIIT : teams)
     {
-        logMsg(func +" Team == " +TIIT.second->getCity() +" " +TIIT.second->getName());
+        logMsg(func +" Team == " +TIIT.second->getData()->getCity() +" " +TIIT.second->getData()->getName());
     }
     logMsg("loadTeams() teams.size() == " +convert->toString(teams.size()));
 //    exit(0);
@@ -318,14 +319,14 @@ stdStringVec loadTeams::loadTeamListFile(std::string fileName)  // loads the tea
     return (files);
 }
 
-teamStateSharedPtr loadTeams::loadTeamFile(std::string fileName)  // loads the team file
+teamEntitySharedPtr loadTeams::loadTeamFile(std::string fileName)  // loads the team file
 {
     conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    renderEngineSharedPtr render = renderEngine::Instance();
 //    teamStateVecSharedPtr teamInstance = gameS->getTeamInstance();
   
-    teamStateSharedPtr teamInstance(new teamState);
+    teamEntitySharedPtr teamInstance(new teamEntity);
 //    tInstance = teamStateSharedPtr(new teamState);
 //    teamInstance.reset(new teamState);
 //    teamState tempTeam; // = new teamState;
@@ -421,15 +422,15 @@ teamStateSharedPtr loadTeams::loadTeamFile(std::string fileName)  // loads the t
      
 //    logMsg("ID == " +convert->toString(ID));
 //    exit(0);
-    teamInstance->setID(ID);
-    teamInstance->setCity(City);
-    teamInstance->setName(Name);
-    teamInstance->setCoach(Coach);
-    teamInstance->setInits(Initials);
-    teamInstance->setLogoFile(Logo);
+    teamInstance->getData()->setID(ID);
+    teamInstance->getData()->setCity(City);
+    teamInstance->getData()->setName(Name);
+    teamInstance->getData()->setCoach(Coach);
+    teamInstance->getData()->setInits(Initials);
+    teamInstance->getData()->setLogoFile(Logo);
 //    logMsg("ID == " +convert->toString(ID));
 //    logMsg("Load Teaminstance ID == " +convert->toString(teamInstance->getID()));
-    logMsg("teamInstance->getID() == " +convert->toString(teamInstance->getID()));
+    logMsg("teamInstance->getID() == " +convert->toString(teamInstance->getData()->getID()));
 //    tempInst = &tempTeam;
 //    logMsg("Load Teaminstance Name == " +teamInstance->getName());
 //    logMsg("lawwl");

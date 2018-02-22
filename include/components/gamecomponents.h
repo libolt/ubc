@@ -82,7 +82,7 @@ class gameComponents
         courtStateMSharedPtr courtInstance;  // stores the court instance
         hoopStateMSharedPtr hoopInstance;  // creates instance of the hoop class
         playerEntityMSharedPtr playerInstance;  // stores the map of the players loaded from the xml files
-        teamStateMSharedPtr  teamInstance;  // creates instance of the teamState class
+        teamEntityMSharedPtr  teamInstance;  // creates instance of the teamState class
 
         jumpBallsSharedPtr jumpBall; // instance that is used for jumpBall functions.
 

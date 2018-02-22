@@ -19,6 +19,15 @@
  ***************************************************************************/
 
 #include "entity/teamentity.h"
+#include "components/teamcomponents.h"
+#include "data/teamdata.h"
+#include "data/teamgamedata.h"
+#include "flags/teamflags.h"
+#include "statistics/teamstatistics.h"
+#include "state/offensestate.h"
+#include "state/defensestate.h"
+
+#include "utilities/logging.h"
 
 teamEntity::teamEntity()
 {
@@ -80,4 +89,33 @@ teamStatisticsSharedPtr teamEntity::getStatistics()  // retrieves the value of s
 void teamEntity::setStatistics(teamStatisticsSharedPtr set)  // sets the value of statistics
 {
     statistics = set;
+}
+
+bool teamEntity::initialize()  // initializes the object
+{
+    std::string func = "teamEntity::setupState()";
+
+    logMsg(func +" begin");
+
+    teamComponentsSharedPtr tempTeamComponent(new teamComponents);
+    component = tempTeamComponent;
+
+    teamFlagsSharedPtr tempTeamFlag(new teamFlags);
+    flag = tempTeamFlag;
+
+    teamGameDataSharedPtr tempTeamGameData(new teamGameData);
+    gameData = tempTeamGameData;
+
+    teamStatisticsSharedPtr tempTeamStats(new teamStatistics);
+    statistics = tempTeamStats;
+
+    offenseStateSharedPtr tempOffenseInst(new offenseState);
+    component->setOffenseInstance(tempOffenseInst);
+
+    defenseStateSharedPtr tempDefenseInst(new defenseState);
+    component->setDefenseInstance(tempDefenseInst);
+
+    logMsg(func +" end");
+
+    return (true);
 }

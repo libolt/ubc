@@ -31,7 +31,7 @@ class gameSetupPlayers
         ~gameSetupPlayers();  // destructor
 
         bool checkIfGamePlayerInstancesCreated(gameComponentsSharedPtr gameComponent, gameFlagsSharedPtr gameFlag);  // checks if the gameState Objects Player Instances have been created
-        bool checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr gamePlayerInstance, teamStateMSharedPtr activeTeamInstance);  // checks if the gameState Objects Player Instances have been created
+        bool checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr gamePlayerInstance, teamEntityMSharedPtr activeTeamInstance);  // checks if the gameState Objects Player Instances have been created
         playerEntityMSharedPtr createPlayerInstances();  // creates player Instances
         playerEntityMSharedPtr createTeamPlayerInstances(playerEntityMSharedPtr gamePlayerInstance, size_t teamID);  // creates player instances for a team
         playerEntityMSharedPtr createActivePlayerInstances(playerEntityMSharedPtr playerInstance,std::unordered_map<std::string, size_t> activePlayerID);  // creates active player instances

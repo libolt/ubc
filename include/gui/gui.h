@@ -120,8 +120,8 @@ public:
     gameStateSharedPtr getGameInstance();  // retrieves the value of teamInstance
     void setGameInstance(gameStateSharedPtr set);  // sets the value of teamInstance
 
-    teamStateMSharedPtr getTeamInstance();  // retrieves the value of teamInstance
-    void setTeamInstance(teamStateMSharedPtr set);  // sets the value of teamInstance
+    teamEntityMSharedPtr getTeamInstance();  // retrieves the value of teamInstance
+    void setTeamInstance(teamEntityMSharedPtr set);  // sets the value of teamInstance
 
     bool getMenuActive(); // retrieves the value of menuActive
     void setMenuActive(bool set); // sets the value of menuActive
@@ -460,7 +460,7 @@ private:
     
     UBCGameSharedPtr game;  // stores a copy of the game object
     gameStateSharedPtr gameInstance;  // stores a copy of the gameInstance
-    teamStateMSharedPtr teamInstance;  // stores a copy of the teamInstance
+    teamEntityMSharedPtr teamInstance;  // stores a copy of the teamInstance
     
     gameEngineSharedPtr gameE; // stores a copy of gameE
     

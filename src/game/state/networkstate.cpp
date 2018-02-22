@@ -29,6 +29,7 @@
 #include "engine/networkengine.h"
 #include "engine/inputengine.h"
 #include "entity/playerentity.h"
+#include "entity/teamentity.h"
 #include "flags/teamflags.h"
 
 networkState::networkState()  // constructor
@@ -50,7 +51,7 @@ void networkState::setNetwork(networkEngineSharedPtr set)  // sets the value of 
     network = set;
 }
 
-void networkState::processLocalInput(teamStateVecSharedPtr activeTeamInstance)  // processes local input for sending to remote system
+void networkState::processLocalInput(teamEntityVecSharedPtr activeTeamInstance)  // processes local input for sending to remote system
 {
 //    sharedPtr<inputSystem> input = inputSystem::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
@@ -216,7 +217,7 @@ void networkState::processRemoteInput() // processes input received from a remot
     
 }
 
-void networkState::processNetworkEvents(teamStateVecSharedPtr activeTeamInstance)  // processes events from network code
+void networkState::processNetworkEvents(teamEntityVecSharedPtr activeTeamInstance)  // processes events from network code
 {
 //    teamStateVecSharedPtr activeTeamInstance = getActiveTeamInstance();
     //    networkEngineSharedPtr network = networkEngine::Instance();
@@ -246,7 +247,7 @@ TS*/
 ///    setActiveTeamInstance(activeTeamInstance);
 }
 
-void networkState::processNetworkPlayerEvents(teamStateVecSharedPtr activeTeamInstance)  // processes player events from network code
+void networkState::processNetworkPlayerEvents(teamEntityVecSharedPtr activeTeamInstance)  // processes player events from network code
 {
     conversionSharedPtr convert = conversion::Instance();
 //    networkEngineSharedPtr network = networkEngine::Instance();

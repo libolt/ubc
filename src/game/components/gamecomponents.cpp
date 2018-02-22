@@ -79,7 +79,7 @@ teamEntityMSharedPtr gameComponents::getActiveTeamInstance()  // retrieves the v
 {
     return (activeTeamInstance);
 }
-void gameComponents::setActiveTeamInstance(teamStateMSharedPtr set)  // sets the value of activeTeamInstance
+void gameComponents::setActiveTeamInstance(teamEntityMSharedPtr set)  // sets the value of activeTeamInstance
 {
     activeTeamInstance = set;
 }
@@ -124,7 +124,7 @@ teamEntityMSharedPtr gameComponents::getTeamInstance()  // retrieves the value o
 {
     return (teamInstance);
 }
-void gameComponents::setTeamInstance(teamStateMSharedPtr set)  // sets the value of teamInstance
+void gameComponents::setTeamInstance(teamEntityMSharedPtr set)  // sets the value of teamInstance
 {
     teamInstance = set;
 }

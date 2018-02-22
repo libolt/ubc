@@ -329,6 +329,7 @@ typedef std::vector<sharedPtr<hoopState> > hoopStateVecSharedPtr;
 
 //typedef std::vector<sharedPtr<playerState> > playerStateVecSharedPtr;
 
+typedef std::vector<sharedPtr<teamEntity> > teamEntityVecSharedPtr;
 typedef std::vector<sharedPtr<teamState> > teamStateVecSharedPtr;
 
 typedef std::vector<sharedPtr<courtState> > courtStateVecSharedPtr;

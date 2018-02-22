@@ -21,6 +21,8 @@
 #ifndef _TEAMENTITY_H_
 #define _TEAMENTITY_H_
 
+#include "utilities/typedefs.h"
+
 class teamEntity
 {
     public:
@@ -46,11 +48,15 @@ class teamEntity
         teamStatisticsSharedPtr getStatistics();  // retrieves the value of statistics
         void setStatistics(teamStatisticsSharedPtr set);  // sets the value of statistics
 
+        bool initialize();  // initializes teamEntity object
+
     private:
 
         bool initialized;  // stores whether object has been initialized
 
         teamComponentsSharedPtr component;  // instance of teamComponents object
+
+        teamDataSharedPtr data;  //  instance of the teamData object
 
         teamFlagsSharedPtr flag;  // instance of teamFlags object
 

@@ -30,8 +30,8 @@ class gameSetupTeams
         gameSetupTeams();  // constructor
         ~gameSetupTeams();  // destructor
         
-        teamStateMSharedPtr createTeamInstances();  // creates team Instances
-        teamStateMSharedPtr createActiveTeamInstances(teamStateMSharedPtr teamInstance, sizeTVec teamID);  // creates active team instances
+        teamEntityMSharedPtr createTeamInstances();  // creates team Instances
+        teamEntityMSharedPtr createActiveTeamInstances(teamEntityMSharedPtr teamInstance, sizeTVec teamID);  // creates active team instances
         
     private:
     

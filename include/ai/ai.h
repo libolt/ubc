@@ -52,7 +52,7 @@ public:
     void setActiveCourtInstance(courtStateMSharedPtr set);  // sets the value of activeCourtInstance
 
     teamEntityMSharedPtr getActiveTeamInstance();  // retrieves the value of activeTeamInstance
-    void setActiveTeamInstance(teamStateMSharedPtr set);  // sets the value of activeTeamInstance
+    void setActiveTeamInstance(teamEntityMSharedPtr set);  // sets the value of activeTeamInstance
 
     teamTypes getTeamWithBall();  // retrieves the value of teamWithBall
     void setTeamWithBall(teamTypes set);  // sets the value of teamWithBall
@@ -133,7 +133,7 @@ private:
     gameStateSharedPtr gameInstance;  // stores copy of gameInstance
     basketballStateMSharedPtr activeBasketballInstance;  // stores copy of activeBasketballInstance
     courtStateMSharedPtr activeCourtInstance;  // stores copy of activeCourtInstance
-//    teamStateMSharedPtr activeTeamInstance;  // stores copy of activeTeamInstance
+//    teamEntityMSharedPtr activeTeamInstance;  // stores copy of activeTeamInstance
     teamTypes teamWithBall;  // stores copy of teamWithBall
     std::string humanPlayer;  // stores which player is human controlled
 

@@ -52,11 +52,6 @@ public:
     teamState();  // constructor
     ~teamState();  // destructor
 
-    bool setPlayerStartPositions(courtStateMSharedPtr courtInstance, teamStarterIDsVecM teamStarterID);	 // sets the initial coordinates for the players.
-    void setPlayerStartActivePositions();  // sets the position the players will play at the start of the game
-
-    bool setPlayerStartDirections();  // sets the initial directions for the players.
-
     void updateActivePlayers();  // updates the states of active players
     void updatePlayerDirections(gameComponentsSharedPtr gameComponent);  // updates the direction players are facing
     void updatePlayerMovements();	// updates the movement status of players
@@ -65,8 +60,6 @@ public:
 
     void updatePositions();  // updates player on court positionss
 
-
-    void updateState(gameComponentsSharedPtr gameComponent, gameFlagsSharedPtr gameFlag, gameDataSharedPtr gameData, renderEngineSharedPtr render);  // updates the state of the teamState object
     void updateActivePlayerSettings();  // updates the settings of active players
         
 protected:

@@ -50,6 +50,9 @@ class teamEntity
 
         bool initialize();  // initializes teamEntity object
 
+        void updateState(gameComponentsSharedPtr gameComponent, gameFlagsSharedPtr gameFlag, gameDataSharedPtr gameData, renderEngineSharedPtr render);  // updates the state of the teamState object
+
+        
     private:
 
         bool initialized;  // stores whether object has been initialized

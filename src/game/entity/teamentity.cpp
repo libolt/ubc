@@ -19,14 +19,26 @@
  ***************************************************************************/
 
 #include "entity/teamentity.h"
+#include "components/gamecomponents.h"
 #include "components/teamcomponents.h"
+#include "data/gamedata.h"
+#include "data/playerdata.h"
+#include "data/playergamedata.h"
 #include "data/teamdata.h"
 #include "data/teamgamedata.h"
+#include "engine/physicsengine.h"
+#include "entity/basketballentity.h"
+#include "entity/playerentity.h"
+#include "flags/gameflags.h"
+#include "flags/playerflags.h"
 #include "flags/teamflags.h"
+#include "gamesetup/gamesetupplayers.h"
+#include "gamesetup/gamesetupteams.h"
 #include "statistics/teamstatistics.h"
+#include "state/basketballstate.h"
 #include "state/offensestate.h"
 #include "state/defensestate.h"
-
+#include "utilities/conversion.h"
 #include "utilities/logging.h"
 
 teamEntity::teamEntity()
@@ -123,16 +135,11 @@ bool teamEntity::initialize()  // initializes the object
 void teamEntity::updateState(gameComponentsSharedPtr gameInstanceComponent, gameFlagsSharedPtr gameInstanceFlag, gameDataSharedPtr gameInstanceData, renderEngineSharedPtr render)  // updates the state of the object
 {
 
-    //conversion *convert = conversion::Instance();
     conversionSharedPtr convert = conversion::Instance();
-    //gameEngine *gameE = gameEngine::Instance();
-//    sharedPtr<gameEngine> gameE = gameEngine::Instance();
-    //gameState *gameS = gameState::Instance();
-//  sharedPtr<gameState> gameS = gameState::Instance();
-    ///sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
     gameSetupPlayersSharedPtr gameSetupPlayer(new gameSetupPlayers);
-//    jumpBallsSharedPtr jumpBall = gameInstance->getJumpBall();
+    gameSetupTeamsSharedPtr gameSetupTeam(new gameSetupTeams);
+
     std::string func = "teamEntity::updateState()";
 
     logMsg(func +" begin");
@@ -167,9 +174,13 @@ void teamEntity::updateState(gameComponentsSharedPtr gameInstanceComponent, game
         if (!flag->getPlayerStartPositionsSet())
         {
             logMsg(func +" Player Start Positions Not Set!");
-            if (setPlayerStartPositions(gameInstanceComponent->getCourtInstance(), gameInstanceData->getTeamStarterID()))  // sets starting positions for the players
+            playerEntityMSharedPtr activePlayerInstance;
+            activePlayerInstance = gamesetupteams->setPlayerStartPositions(gameInstanceComponent->getCourtInstance(), gameInstanceData->getTeamStarterID()));
+//            if (setPlayerStartPositions(activePlayerInstance, gameInstanceComponent->getCourtInstance(), gameInstanceData->getTeamStarterID()))  // sets starting positions for the players
+            if (activePlayerInstance != nullptr)
             {
                 flag->setPlayerStartPositionsSet(true);
+                component->setActivePlayerInstance(activePlayerInstance);
                 logMsg(func +" Player Start Positions set!");
 //                exit(0);
             }

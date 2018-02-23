@@ -194,7 +194,7 @@ teamEntityMSharedPtr gameSetupTeams::createActiveTeamInstances(teamEntityMShared
     return (activeTeamInstance);
 }
 
-bool gameSetupTeams::setPlayerStartPositions(courtStateMSharedPtr courtInstance, teamStarterIDsVecM teamStarterID)  // sets the initial coordinates for the players.
+playerEntityMSharedPtr gameSetupTeams::setPlayerStartPositions(playerEntityMSharedPtr activePlayerInstance, courtStateMSharedPtr courtInstance, teamStarterIDsVecM teamStarterID)  // sets the initial coordinates for the players.
 {
     conversionSharedPtr convert = conversion::Instance();
     gameSetupPlayerPositionsSharedPtr gameSetupPlayerPosition(new gameSetupPlayerPositions);

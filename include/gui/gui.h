@@ -93,8 +93,8 @@ public:
     bool getAuduoSetupMenuCreated();  // retrieves the value of audioSettingsMenuCreated
     void setAudioSetupMenuCreated(bool set);  // sets the value of audioSettingsMenuCreated
 
-    bool getGameSetupMenuCreated();  // retrieves the value of gameSetupMenuCreated
-    void setGameSetupMenuCreated(bool set);  // sets the value of gameSetupMenuCreated
+    bool getSetupMenuCreated();  // retrieves the value of setupMenuCreated
+    void setSetupMenuCreated(bool set);  // sets the value of setupMenuCreated
 
     bool getPlayerStartSelectionMenuCreated();  // retrieves the value of playerStartSelectionMenuCreated
     void setPlayerStartSelectionMenuCreated(bool set);  // sets the value of playerStartSelectionMenuCreated
@@ -149,7 +149,7 @@ public:
     bool createDisplaySetupGUI();  // creates GUI for display settings screen.
     bool createInputSetupGUI();  // creates GUI for input settings screen.
     bool createAudioSetupGUI();	 // creates GUI for audo settings screen.
-    bool createGameSetupMenuGUI();  // creates GUI for game setup menu screen.
+    bool createSetupMenuGUI();  // creates GUI for game setup menu screen.
     bool createPlayerStartSelectionMenuGUI(renderEngineSharedPtr render);  // creates GUI for player start selection menu screen.
     bool createTeamSelectionMenuGUI(renderEngineSharedPtr render);	// creates GUI for team selection menu screen.
     bool createCourtSelectionMenuGUI(renderEngineSharedPtr render);  // creates GUI for court selection menu screen.
@@ -164,7 +164,7 @@ public:
     void processDisplayMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // processes display settings menu key input
     void processInputMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // processes input settings menu key input
     void processAudioMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // processes audio settings menu key input
-    void processGameSetupMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // processes game setup menu key input
+    void processSetupMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // processes game setup menu key input
     void processPlayerStartSelectionMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // process player start selection menu key input
     void processTeamSelectionMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // process team selection menu key input
     void processCourtSelectionMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // process court selection menu key input
@@ -177,7 +177,7 @@ public:
     void displayMenu(renderEngineSharedPtr render);  // displays display menu
     void inputMenu(renderEngineSharedPtr render);  // displays the input menu
     void audioMenu(renderEngineSharedPtr render);  // displays the audio menu
-    void gameSetupMenu(renderEngineSharedPtr render);  // displays game setup menu
+    void setupMenu(renderEngineSharedPtr render);  // displays game setup menu
     void playerStartSelectionMenu(renderEngineSharedPtr render);  // displays player start selection menu
     void teamSelectionMenu(renderEngineSharedPtr render);  // displays team selection menu
     void courtSelectionMenu(renderEngineSharedPtr render);  // displays court selection menu
@@ -198,8 +198,8 @@ public:
     void courtSelected();  // processes court selection
     void teamsSelected();  // processes team selection
     void playerStartSelected();  // process player start selection
-    void gameSetupAwaySelected();  // processes away team selectdion on game setup menu
-    void gameSetupHomeSelected();  // process home team selection on game setup menu
+    void setupAwaySelected();  // processes away team selectdion on game setup menu
+    void setupHomeSelected();  // process home team selection on game setup menu
     void backMainMenuSelected(renderEngineSharedPtr render);  // processes back to main menu selection
     void backNetworkSetupMenuSelected(renderEngineSharedPtr render);  // returns back to network setup screen
     void backNetworkClientMenuSelected(renderEngineSharedPtr render);  // returns back to the network client menu
@@ -242,7 +242,7 @@ public:
     void backPlayerStartSelectionMenuButtonClicked(MyGUI::Widget *_sender);  // handles backPlayerStartSelectionMenuButton click event
     void backTeamSelectionMenuButtonClicked(MyGUI::Widget *_sender);  // handles backPlayerStartSelectionMenuButton click event
     void backCourtSelectionMenuButtonClicked(MyGUI::Widget *_sender);  // handles backCourtSelectionMenuButton click event
-    void backGameSetupMenuButtonClicked(MyGUI::Widget *_sender);  // handles backGameSetupMenuButton click event
+    void backSetupMenuButtonClicked(MyGUI::Widget *_sender);  // handles backSetupMenuButton click event
     void courtSelectButtonClicked(MyGUI::Widget *_sender);  // handles courtSelectButton click event
 
     void hideMainMenuWidgets();	 // hides all widgets tied to the Main Menu
@@ -269,8 +269,8 @@ public:
     void hideAudioMenuWidgets();  // hides all widgets tied to the Audio Menu
     void showAudioMenuWidgets();  // shows all widgets tied to the Audio Menu
 
-    void hideGameSetupMenuWidgets();  // hides all widgets tied to the Game Setup Menu
-    void showGameSetupMenuWidgets();  // shows all widgets tied to the Game Setup Menu
+    void hideSetupMenuWidgets();  // hides all widgets tied to the Game Setup Menu
+    void showSetupMenuWidgets();  // shows all widgets tied to the Game Setup Menu
 
     void hidePlayerStartSelectionMenuWidgets(); // hides all widgets tied to the Player Start Selection Menu
     void showPlayerStartSelectionMenuWidgets(renderEngineSharedPtr render); // shows all widgets tied to the Player Start Selection Menu
@@ -335,7 +335,7 @@ private:
 
 //    static sharedPtr<MyGUI::Button> backOptionsMenuButton;
     
-//    static sharedPtr<MyGUI::Button> backGameSetupMenuButton;
+//    static sharedPtr<MyGUI::Button> backSetupMenuButton;
 //    static sharedPtr<MyGUI::Button> backTeamSelectionMenuButton;
 //    static sharedPtr<MyGUI::Button> backCourtSelectionMenuButton;
     
@@ -448,14 +448,14 @@ private:
     bool displaySetupMenuCreated;   // determines whether the display settings menu gui has been created
     bool inputSetupMenuCreated;   // determines whether the input settings menu gui has been created
     bool audioSetupMenuCreated;   // determines whether the audio settings menu gui has been created
-    bool gameSetupMenuCreated;  // determines whether the game setup menu gui has been created
+    bool setupMenuCreated;  // determines whether the game setup menu gui has been created
     bool playerStartSelectionMenuCreated;  // determines whether the player start selection menu gui has been created
     bool teamSelectionMenuCreated;  // determines whether the team selection menu gui has been created
     bool teamSelectionMenuDataAdded;  // determines whether teeam data has been added to the the team selection menu
     bool courtSelectionMenuCreated;  // deteemines whether the court selection menu has been created;
     bool menuActive;  // stores whether a menu is being diplayed
-    bool gameSetupMenuAwaySelected;  // determines whether the away team listbox is selected;
-    bool gameSetupMenuHomeSelected;  // determines whether the home team listbox is selected;
+    bool setupMenuAwaySelected;  // determines whether the away team listbox is selected;
+    bool setupMenuHomeSelected;  // determines whether the home team listbox is selected;
     bool courtSelectionDataLoaded;  // determines whether court names have been added to the select box
     
     UBCGameSharedPtr game;  // stores a copy of the game object

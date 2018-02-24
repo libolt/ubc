@@ -369,7 +369,7 @@ bool UBCGame::loop(gameEngineSharedPtr gameE, UBCInputSharedPtr input, GUISystem
         input->process(gameE, gameInstance->getComponent(), gameInstance->getFlag(), usersInstance, gui);
 //        processPhysicsEvents();
         
-///        if (gameInstance->getGameSetupComplete())  // checks to make sure game setup is complete before continuing
+///        if (gameInstance->getSetupComplete())  // checks to make sure game setup is complete before continuing
 ///        {
             
 ///            if (!gameE->getSceneCreated())

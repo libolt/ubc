@@ -30,11 +30,11 @@ class updateTeams
         updateTeams();  // constructor
         ~updateTeams();  // destructor
         
-        void updateActivePlayers();  // updates the states of active players
-        void updatePlayerDirections(gameComponentsSharedPtr gameComponent);  // updates the direction players are facing
-        void updatePlayerMovements();   // updates the movement status of players
-        void updatePositions();  // updates player on court positionss
-        void updateActivePlayerSettings();  // updates the settings of active players
+        playerEntityMSharedPtr updateActivePlayers(playerEntityMSharedPtr activePlayerInstance);  // updates the states of active players
+        playerEntityMSharedPtr updatePlayerDirections(playerEntityMSharedPtr activePlayerInstance, gameComponentsSharedPtr gameComponent, teamGameDataSharedPtr gameData);  // updates the direction players are facing
+        playerEntityMSharedPtr updatePlayerMovements(playerEntityMSharedPtr activePlayerInstance);   // updates the movement status of players
+        playerEntityMSharedPtr updatePositions(playerEntityMSharedPtr activePlayerInstance);  // updates player on court positionss
+        playerEntityMSharedPtr updateActivePlayerSettings(playerEntityMSharedPtr activePlayerInstance);  // updates the settings of active players
 
     private:
     

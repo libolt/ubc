@@ -18,24 +18,28 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef _GAMESETUPBASKETBALLS_H_
-#define _GAMESETUPBASKETBALLS_H_
+#ifndef _GAMESETUPTEAMS_H_
+#define _GAMESETUPTEAMS_H_
 
 #include "utilities/typedefs.h"
 
-class gameSetupBasketballs
+class setupTeams
 {
     public:
     
-        gameSetupBasketballs();  // constructor
-        ~gameSetupBasketballs();  // destructor
+        setupTeams();  // constructor
+        ~setupTeams();  // destructor
         
-        basketballStateMSharedPtr createBasketballInstances();  // creates basketball Instances
-        basketballStateMSharedPtr createActiveBasketballInstances(basketballStateMSharedPtr basketballInstance, size_t numActiveBasketballs);  // creates active basketball instances
-  
+        teamEntityMSharedPtr createTeamInstances();  // creates team Instances
+        teamEntityMSharedPtr createActiveTeamInstances(teamEntityMSharedPtr teamInstance, sizeTVec teamID);  // creates active team instances
+        
+        playerEntityMSharedPtr setPlayerStartPositions(playerEntityMSharedPtr activePlayerInstance, courtStateMSharedPtr courtInstance, teamGameDataSharedPtr gameData, teamStarterIDsVecM teamStarterID);  // sets the initial coordinates for the players.
+        playerEntityMSharedPtr setPlayerStartActivePositions(playerEntityMSharedPtr activePlayerInstance);  // sets the position the players will play at the start of the game
+
+        playerEntityMSharedPtr setPlayerStartDirections(playerEntityMSharedPtr activePlayerInstance, teamGameDataSharedPtr gameData);  // sets the initial directions for the players.
+
     private:
     
 };
 
 #endif
-

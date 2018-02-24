@@ -18,27 +18,27 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "gamesetup/gamesetuphoops.h"
+#include "setup/setuphoops.h"
 #include "load/loadhoops.h"
 #include "state/hoopstate.h"
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
 
-gameSetupHoops::gameSetupHoops()  // constructor
+setupHoops::setupHoops()  // constructor
 {
     
 }
-gameSetupHoops::~gameSetupHoops()  // destructor
+setupHoops::~setupHoops()  // destructor
 {
     
 }
 
-hoopStateMSharedPtr gameSetupHoops::createHoopInstances()  // creates hoop Instances
+hoopStateMSharedPtr setupHoops::createHoopInstances()  // creates hoop Instances
 {
     hoopStateMSharedPtr hoopInstance;
     hoopStateSharedPtr hInstance;
     loadHoopsSharedPtr loadHoop(new loadHoops);
-    std::string func = "gameSetupHoops::createHoopInstances()";
+    std::string func = "setupHoops::createHoopInstances()";
 
     logMsg(func +" beginning");
 //    exit(0);
@@ -68,7 +68,7 @@ hoopStateMSharedPtr gameSetupHoops::createHoopInstances()  // creates hoop Insta
     return (hoopInstance);
 }
 
-hoopStateMSharedPtr gameSetupHoops::createActiveHoopInstances(hoopStateMSharedPtr hoopInstance, size_t numActiveHoops)  // creates active hoop instances
+hoopStateMSharedPtr setupHoops::createActiveHoopInstances(hoopStateMSharedPtr hoopInstance, size_t numActiveHoops)  // creates active hoop instances
 {
     hoopStateMSharedPtr activeHoopInstance;
     conversionSharedPtr convert = conversion::Instance();
@@ -76,7 +76,7 @@ hoopStateMSharedPtr gameSetupHoops::createActiveHoopInstances(hoopStateMSharedPt
 
 //    hoopStateMSharedPtr hoopInstance = getHoopInstance();
 //    hoopStateMSharedPtr activeHoopInstance = getActiveHoopInstance();
-    std::string func = "gameSetupHoops::createActiveHoopInstances()";
+    std::string func = "setupHoops::createActiveHoopInstances()";
     size_t x = 0;
     logMsg(func +" beginning");
 

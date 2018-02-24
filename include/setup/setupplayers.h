@@ -18,22 +18,25 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef _GAMESETUPPLAYERPOSITIONS_H_
-#define _GAMESETUPPLAYERPOSITIONS_H_
+#ifndef _GAMESETUPPLAYERS_H_
+#define _GAMESETUPPLAYERS_H_
 
 #include "utilities/typedefs.h"
 
-class gameSetupPlayerPositions
+class setupPlayers
 {
     public:
 
-        gameSetupPlayerPositions();  // constructor
-        ~gameSetupPlayerPositions();  // destructor
-        
-        playerEntityMSharedPtr setJumpBallPositions(playerEntityMSharedPtr activePlayerInstance, teamTypes teamType, Ogre::Vector3 courtPos);  // sets player positions for jumpball
-        bool setHalfTimePositions();  // sets player positions for start of the second half
-        bool setTimeOutPositions();  // sets playerpositions coming out of timeout
-        
+        setupPlayers();  // constructor
+        ~setupPlayers();  // destructor
+
+        bool checkIfGamePlayerInstancesCreated(gameComponentsSharedPtr gameComponent, gameFlagsSharedPtr gameFlag);  // checks if the gameState Objects Player Instances have been created
+        bool checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr gamePlayerInstance, teamEntityMSharedPtr activeTeamInstance);  // checks if the gameState Objects Player Instances have been created
+        playerEntityMSharedPtr createPlayerInstances();  // creates player Instances
+        playerEntityMSharedPtr createTeamPlayerInstances(playerEntityMSharedPtr gamePlayerInstance, size_t teamID);  // creates player instances for a team
+        playerEntityMSharedPtr createActivePlayerInstances(playerEntityMSharedPtr playerInstance,std::unordered_map<std::string, size_t> activePlayerID);  // creates active player instances
+        playerEntityMSharedPtr setupActivePlayerInstances(playerEntityMSharedPtr playerInstance, renderEngineSharedPtr render);  // sets up active player instances
+
     private:
 
 };

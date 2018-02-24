@@ -18,29 +18,37 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "gamesetup/gamesetupteams.h"
+#include "setup/setupteams.h"
+#include "data/playergamedata.h"
 #include "data/teamgamedata.h"
+#include "entity/courtentity.h"
+#include "entity/playerentity.h"
 #include "entity/teamentity.h"
+#include "flags/playerflags.h"
+#include "setup/setupplayers.h"
 #include "utilities/conversion.h"
+#include "setup/setupplayerpositions.h"
+#include "state/courtstate.h"
 #include "state/gamestate.h"
 #include "state/teamstate.h"
+#include "statemachine/playerstatemachine.h"
 #include "utilities/logging.h"
 #include "load/loadteams.h"
 
-gameSetupTeams::gameSetupTeams()  // constructor
+setupTeams::setupTeams()  // constructor
 {
     
 }
-gameSetupTeams::~gameSetupTeams()  // destructor
+setupTeams::~setupTeams()  // destructor
 {
     
 }
 
-teamEntityMSharedPtr gameSetupTeams::createTeamInstances()  // creates team Instances
+teamEntityMSharedPtr setupTeams::createTeamInstances()  // creates team Instances
 {
     conversionSharedPtr convert = conversion::Instance();
     loadTeamsSharedPtr loadTeam; // = base->getLoadTeam();
-    std::string func = "gameSetupTeams::createTeamInstances()";
+    std::string func = "setupTeams::createTeamInstances()";
     
     logMsg(func +" begin");
 //    exit(0);
@@ -131,11 +139,11 @@ teamEntityMSharedPtr gameSetupTeams::createTeamInstances()  // creates team Inst
     return (tInstance);
 }
 
-teamEntityMSharedPtr gameSetupTeams::createActiveTeamInstances(teamEntityMSharedPtr teamInstance, sizeTVec teamID)  // creates active team instances
+teamEntityMSharedPtr setupTeams::createActiveTeamInstances(teamEntityMSharedPtr teamInstance, sizeTVec teamID)  // creates active team instances
 {
     conversionSharedPtr convert = conversion::Instance();
     teamEntityMSharedPtr activeTeamInstance;
-    std::string func = "gameSetupTeams::createActiveTeamInstances()";
+    std::string func = "setupTeams::createActiveTeamInstances()";
        
     logMsg(func +" begin");
 //    gameStateSharedPtr gameInstance;
@@ -194,14 +202,13 @@ teamEntityMSharedPtr gameSetupTeams::createActiveTeamInstances(teamEntityMShared
     return (activeTeamInstance);
 }
 
-playerEntityMSharedPtr gameSetupTeams::setPlayerStartPositions(playerEntityMSharedPtr activePlayerInstance, courtStateMSharedPtr courtInstance, teamStarterIDsVecM teamStarterID)  // sets the initial coordinates for the players.
+playerEntityMSharedPtr setupTeams::setPlayerStartPositions(playerEntityMSharedPtr activePlayerInstance, courtStateMSharedPtr courtInstance, teamGameDataSharedPtr gameData, teamStarterIDsVecM teamStarterID)  // sets the initial coordinates for the players.
 {
     conversionSharedPtr convert = conversion::Instance();
-    gameSetupPlayerPositionsSharedPtr gameSetupPlayerPosition(new gameSetupPlayerPositions);
-    playerEntityMSharedPtr activePlayerInstance = component->getActivePlayerInstance();
+    setupPlayerPositionsSharedPtr setupPlayerPosition(new setupPlayerPositions);
     OgreVector3Vec startingPos;
     Ogre::Vector3 courtPos = courtInstance[0]->getEntity()->getNodePosition();
-    std::string func = "gameSetupTeams::setPlayerStartPositions()";
+    std::string func = "setupTeams::setPlayerStartPositions()";
 
 //    exit(0);
     logMsg(func +" begin");
@@ -213,8 +220,7 @@ playerEntityMSharedPtr gameSetupTeams::setPlayerStartPositions(playerEntityMShar
     logMsg(func +" yOffset == " +convert->toString(yOffset));
 
 //    exit(0);
-
-    activePlayerInstance = gameSetupPlayerPosition->setJumpBallPositions(activePlayerInstance, gameData->getTeamType(), courtPos);
+    activePlayerInstance = setupPlayerPosition->setJumpBallPositions(activePlayerInstance, gameData->getTeamType(), courtPos);
     // set initial player coordinates for the tipoff
 
 /*    switch (teamType)
@@ -324,17 +330,17 @@ playerEntityMSharedPtr gameSetupTeams::setPlayerStartPositions(playerEntityMShar
     
 //    exit(0);
     
-    component->setActivePlayerInstance(activePlayerInstance);
+//    component->setActivePlayerInstance(activePlayerInstance);
     
     logMsg(func +" end");
-    return (true);
+    return (activePlayerInstance);
 }
 
-void gameSetupTeams::setPlayerStartActivePositions()  // sets the position the players will play at the start of the game
+playerEntityMSharedPtr setupTeams::setPlayerStartActivePositions(playerEntityMSharedPtr activePlayerInstance)  // sets the position the players will play at the start of the game
 {
     conversionSharedPtr convert = conversion::Instance();
-    playerEntityMSharedPtr activePlayerInstance = component->getActivePlayerInstance();
-    std::string func = "gameSetupTeams::setPlayerStartActivePositions()";
+//    playerEntityMSharedPtr activePlayerInstance = component->getActivePlayerInstance();
+    std::string func = "setupTeams::setPlayerStartActivePositions()";
 
     logMsg(func +" begin");
     
@@ -355,17 +361,18 @@ void gameSetupTeams::setPlayerStartActivePositions()  // sets the position the p
 //FIXME!        APIIT.second->getSteer()->setID(APIIT.second->getID());
     }
     
-    component->setActivePlayerInstance(activePlayerInstance);
-
+//    component->setActivePlayerInstance(activePlayerInstance);
     logMsg(func +" end");
+
+    return (activePlayerInstance);
 }
 
-bool gameSetupTeams::setPlayerStartDirections()  // sets the initial directions for the players.
+playerEntityMSharedPtr setupTeams::setPlayerStartDirections(playerEntityMSharedPtr activePlayerInstance, teamGameDataSharedPtr gameData)  // sets the initial directions for the players.
 {
     conversionSharedPtr convert = conversion::Instance();
-    playerEntityMSharedPtr activePlayerInstance = component->getActivePlayerInstance();
+//    playerEntityMSharedPtr activePlayerInstance = component->getActivePlayerInstance();
     std::vector<directions> playerDirection; // stores the direction players face at start
-    std::string func = "gameSetupTeams::setPlayerStartDirections()";
+    std::string func = "setupTeams::setPlayerStartDirections()";
 
     logMsg(func +" begin");
     
@@ -463,9 +470,9 @@ bool gameSetupTeams::setPlayerStartDirections()  // sets the initial directions 
         logMsg(func +" APIIT.second->getGameData()->getStateAction().size() = " +convert->toString(APIIT.second->getGameData()->getStateAction().size()));
     }
     
-    component->setActivePlayerInstance(activePlayerInstance);
+//    component->setActivePlayerInstance(activePlayerInstance);
 
     logMsg(func +" end");
 //    exit(0);
-    return (true);
+    return (activePlayerInstance);
 }

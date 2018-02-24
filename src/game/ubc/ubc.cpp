@@ -317,7 +317,7 @@ void UBC::run()  // runs the game
         input->process();
 //        processPhysicsEvents();
         
-///        if (gameInstance->getGameSetupComplete())  // checks to make sure game setup is complete before continuing
+///        if (gameInstance->getSetupComplete())  // checks to make sure game setup is complete before continuing
 ///        {
             
 ///            if (!gameE->getSceneCreated())
@@ -461,7 +461,7 @@ void UBC::gameLoop_old()  // Main Game Loop
 ///            sound->loadSound("cbeep.wav");
 ///        }
 
-        if (gameInstance->getFlag()->getGameSetupComplete())  // checks to make sure game setup is complete before continuing
+        if (gameInstance->getFlag()->getSetupComplete())  // checks to make sure game setup is complete before continuing
         {
 //            exit(0);
             if (!component->getGameE()->getSceneCreated())

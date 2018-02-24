@@ -127,12 +127,12 @@ void GUISystem::disableAudioButtonClicked(MyGUI::Widget *_sender)  // handles en
 
 void GUISystem::team0SelectButtonClicked(MyGUI::Widget *_sender)  // handles team0SelectButton click event
 {
-    gameSetupHomeSelected();
+    setupHomeSelected();
 }
 
 void GUISystem::team1SelectButtonClicked(MyGUI::Widget *_sender)  // handles team1SelectButton click event
 {
-    gameSetupAwaySelected();
+    setupAwaySelected();
 }
 
 void GUISystem::teamsSelectedButtonClicked(MyGUI::Widget *_sender)  // handles teamsSelectButton click event
@@ -186,9 +186,9 @@ void GUISystem::backCourtSelectionMenuButtonClicked(MyGUI::Widget *_sender) // h
     courtSelectionMenu(gameE->getRenderE());
 }
 
-void GUISystem::backGameSetupMenuButtonClicked(MyGUI::Widget *_sender)  // handles backGameSetupMenuButton click event
+void GUISystem::backSetupMenuButtonClicked(MyGUI::Widget *_sender)  // handles backSetupMenuButton click event
 {
-    gameSetupMenu(gameE->getRenderE());
+    setupMenu(gameE->getRenderE());
 }
 
 void GUISystem::courtSelectButtonClicked(MyGUI::Widget *_sender)  // handles courtSelectButton click event
@@ -234,7 +234,7 @@ void GUISystem::menuReceiveKeyPress(std::string keyPressed, renderEngineSharedPt
                 processAudioMenuKeyPress(keyPressed, render);
                 break;
             case GAMESETUP:
-                processGameSetupMenuKeyPress(keyPressed, render);
+                processSetupMenuKeyPress(keyPressed, render);
                 break;
             case PLAYERSTART:
                 processPlayerStartSelectionMenuKeyPress(keyPressed, render);
@@ -501,21 +501,21 @@ void GUISystem::processAudioMenuKeyPress(std::string keyPressed, renderEngineSha
     }
 }
 
-void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render)  // processes game setup menu key input
+void GUISystem::processSetupMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render)  // processes game setup menu key input
 {
     //gameState *gameS = gameState::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    teamStateVecSharedPtr teamInstance = gameS->getTeamInstance();
-    std::string func = "GUISystem::processGameSetupMenuKeyPress()";
+    std::string func = "GUISystem::processSetupMenuKeyPress()";
     
     logMsg(func +" beginning");
-    if (keyPressed == "a" && !gameSetupMenuAwaySelected)
+    if (keyPressed == "a" && !setupMenuAwaySelected)
     {
-        gameSetupAwaySelected();
+        setupAwaySelected();
     }
-    else if (keyPressed == "h" && !gameSetupMenuHomeSelected)
+    else if (keyPressed == "h" && !setupMenuHomeSelected)
     {
-        gameSetupHomeSelected();
+        setupHomeSelected();
     }
     else if (keyPressed == "b")
     {
@@ -544,7 +544,7 @@ void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed, renderEngin
     }
     else if (keyPressed == "x")
     {
-        if (gameSetupMenuAwaySelected)
+        if (setupMenuAwaySelected)
         {
             auto x = teamSelectBox[1]->getIndexSelected() +1;
             if (x < gameInstance->getComponent()->getTeamInstance().size())
@@ -558,7 +558,7 @@ void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed, renderEngin
                 teamSelectBox[1]->beginToItemAt(0);
             }
         }
-        else if (gameSetupMenuHomeSelected)
+        else if (setupMenuHomeSelected)
         {
             auto x = teamSelectBox[0]->getIndexSelected() +1;
             if (x < gameInstance->getComponent()->getTeamInstance().size())
@@ -579,7 +579,7 @@ void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed, renderEngin
     }
     else if (keyPressed == "z")
     {
-        if (gameSetupMenuAwaySelected)
+        if (setupMenuAwaySelected)
         {
             auto x = teamSelectBox[1]->getIndexSelected() -1;
             if (x < 0)
@@ -594,7 +594,7 @@ void GUISystem::processGameSetupMenuKeyPress(std::string keyPressed, renderEngin
                 teamSelectBox[1]->beginToItemAt(x);
             }
         }
-        else if (gameSetupMenuHomeSelected)
+        else if (setupMenuHomeSelected)
         {
             auto x = teamSelectBox[0]->getIndexSelected() -1;
             if (x < 0)
@@ -653,13 +653,13 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed, renderE
     
     logMsg(func +" beginning");
 //    exit(0);
-    if (keyPressed == "a" && !gameSetupMenuAwaySelected)
+    if (keyPressed == "a" && !setupMenuAwaySelected)
     {
-        gameSetupAwaySelected();
+        setupAwaySelected();
     }
-    else if (keyPressed == "h" && !gameSetupMenuHomeSelected)
+    else if (keyPressed == "h" && !setupMenuHomeSelected)
     {
-        gameSetupHomeSelected();
+        setupHomeSelected();
     }
     else if (keyPressed == "b")
     {
@@ -690,7 +690,7 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed, renderE
     }
     else if (keyPressed == "x")
     {
-        if (gameSetupMenuAwaySelected)
+        if (setupMenuAwaySelected)
         {
             auto x = teamSelectBox[1]->getIndexSelected() +1;
             if (x < gameInstance->getComponent()->getTeamInstance().size())
@@ -704,7 +704,7 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed, renderE
                 teamSelectBox[1]->beginToItemAt(0);
             }
         }
-        else if (gameSetupMenuHomeSelected)
+        else if (setupMenuHomeSelected)
         {
             auto x = teamSelectBox[0]->getIndexSelected() +1;
             if (x < gameInstance->getComponent()->getTeamInstance().size())
@@ -725,7 +725,7 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed, renderE
     }
     else if (keyPressed == "z")
     {
-        if (gameSetupMenuAwaySelected)
+        if (setupMenuAwaySelected)
         {
             auto x = teamSelectBox[1]->getIndexSelected() -1;
             if (x < 0)
@@ -740,7 +740,7 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed, renderE
                 teamSelectBox[1]->beginToItemAt(x);
             }
         }
-        else if (gameSetupMenuHomeSelected)
+        else if (setupMenuHomeSelected)
         {
             auto x = teamSelectBox[0]->getIndexSelected() -1;
             if (x < 0)

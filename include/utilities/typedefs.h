@@ -72,13 +72,13 @@ class gameComponents;
 class gameData;
 class gameEngine;
 class gameFlags;
-class gameSetupBasketballs;
-class gameSetupCourts;
-class gameSetupHoops;
-class gameSetupLineups;
-class gameSetupPlayers;
-class gameSetupPlayerPositions;
-class gameSetupTeams;
+class setupBasketballs;
+class setupCourts;
+class setupHoops;
+class setupLineups;
+class setupPlayers;
+class setupPlayerPositions;
+class setupTeams;
 class gameState;
 class GUISystem;
 
@@ -133,6 +133,10 @@ class teamStatistics;
 class UBCComponents;
 class UBCGame;
 class UBCInput;
+
+class updatePlayers;
+class updateTeams;
+
 class users;
 class usersInputs;
 
@@ -264,6 +268,10 @@ typedef sharedPtr<logging> loggingSharedPtr;
 
 typedef sharedPtr<offensePlays> offensePlaysSharedPtr;
 
+typedef sharedPtr<updatePlayers> updatePlayersSharedPtr;
+
+typedef sharedPtr<updateTeams> updateTeamsSharedPtr;
+
 typedef sharedPtr<usersInputs> usersInputsSharedPtr;
 
 typedef sharedPtr<users> usersSharedPtr;
@@ -305,19 +313,19 @@ typedef sharedPtr<btRigidBody> btRigidBodySharedPtr;
 
 // game setup classses
 
-typedef sharedPtr<gameSetupBasketballs> gameSetupBasketballsSharedPtr;
+typedef sharedPtr<setupBasketballs> setupBasketballsSharedPtr;
 
-typedef sharedPtr<gameSetupCourts> gameSetupCourtsSharedPtr;
+typedef sharedPtr<setupCourts> setupCourtsSharedPtr;
 
-typedef sharedPtr<gameSetupHoops> gameSetupHoopsSharedPtr;
+typedef sharedPtr<setupHoops> setupHoopsSharedPtr;
 
-typedef sharedPtr<gameSetupLineups> gameSetupLineupsSharedPtr;
+typedef sharedPtr<setupLineups> setupLineupsSharedPtr;
 
-typedef sharedPtr<gameSetupPlayers> gameSetupPlayersSharedPtr;
+typedef sharedPtr<setupPlayers> setupPlayersSharedPtr;
 
-typedef sharedPtr<gameSetupPlayerPositions> gameSetupPlayerPositionsSharedPtr;
+typedef sharedPtr<setupPlayerPositions> setupPlayerPositionsSharedPtr;
 
-typedef sharedPtr<gameSetupTeams> gameSetupTeamsSharedPtr;
+typedef sharedPtr<setupTeams> setupTeamsSharedPtr;
 
 // vector typedefs
 

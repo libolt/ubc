@@ -41,7 +41,7 @@ gameFlags::gameFlags()  // constructor
     bballNodePositionChanged = false;
     teamWithBallChanged = false;
     activeTeamInstanceChanged = false;
-    gameSetupComplete = false;
+    setupComplete = false;
     inputReceived = false;   
     basketballModelLoaded = false;
     courtModelLoaded = false;
@@ -225,13 +225,13 @@ void gameFlags::setActiveTeamInstanceChanged(bool set)  // sets the value of act
     activeTeamInstanceChanged = set;
 }
 
-bool gameFlags::getGameSetupComplete()  // retrieves the value of gameSetupComplete
+bool gameFlags::getSetupComplete()  // retrieves the value of setupComplete
 {
-    return (gameSetupComplete);
+    return (setupComplete);
 }
-void gameFlags::setGameSetupComplete(bool set)  // sets the value of gameSetupComplete
+void gameFlags::setSetupComplete(bool set)  // sets the value of setupComplete
 {
-    gameSetupComplete = set;
+    setupComplete = set;
 }
 
 bool gameFlags::getJumpBallCreated()  // retrieves the value of jumpBallCreated

@@ -32,12 +32,13 @@
 #include "flags/gameflags.h"
 #include "flags/playerflags.h"
 #include "flags/teamflags.h"
-#include "gamesetup/gamesetupplayers.h"
-#include "gamesetup/gamesetupteams.h"
+#include "setup/setupplayers.h"
+#include "setup/setupteams.h"
 #include "statistics/teamstatistics.h"
 #include "state/basketballstate.h"
 #include "state/offensestate.h"
 #include "state/defensestate.h"
+#include "update/updateteams.h"
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
 
@@ -137,8 +138,9 @@ void teamEntity::updateState(gameComponentsSharedPtr gameInstanceComponent, game
 
     conversionSharedPtr convert = conversion::Instance();
     physicsEngine physEngine;
-    gameSetupPlayersSharedPtr gameSetupPlayer(new gameSetupPlayers);
-    gameSetupTeamsSharedPtr gameSetupTeam(new gameSetupTeams);
+    setupPlayersSharedPtr setupPlayer(new setupPlayers);
+    setupTeamsSharedPtr setupTeam(new setupTeams);
+    updateTeamsSharedPtr updateTeam(new updateTeams);
 
     std::string func = "teamEntity::updateState()";
 
@@ -154,7 +156,7 @@ void teamEntity::updateState(gameComponentsSharedPtr gameInstanceComponent, game
         if (!flag->getActivePlayerInstancesSetup())
         {
             // setup Active Player Instances
-            activePlayerInstance = gameSetupPlayer->setupActivePlayerInstances(activePlayerInstance, render);
+            activePlayerInstance = setupPlayer->setupActivePlayerInstances(activePlayerInstance, render);
             if (activePlayerInstance.size() != 0)
             {
                 component->setActivePlayerInstance(activePlayerInstance);
@@ -175,9 +177,9 @@ void teamEntity::updateState(gameComponentsSharedPtr gameInstanceComponent, game
         {
             logMsg(func +" Player Start Positions Not Set!");
             playerEntityMSharedPtr activePlayerInstance;
-            activePlayerInstance = gamesetupteams->setPlayerStartPositions(gameInstanceComponent->getCourtInstance(), gameInstanceData->getTeamStarterID()));
+            activePlayerInstance = setupTeam->setPlayerStartPositions(component->getActivePlayerInstance(), gameInstanceComponent->getCourtInstance(), gameData, gameInstanceData->getTeamStarterID());
 //            if (setPlayerStartPositions(activePlayerInstance, gameInstanceComponent->getCourtInstance(), gameInstanceData->getTeamStarterID()))  // sets starting positions for the players
-            if (activePlayerInstance != nullptr)
+            if (activePlayerInstance.size() > 0)
             {
                 flag->setPlayerStartPositionsSet(true);
                 component->setActivePlayerInstance(activePlayerInstance);
@@ -199,9 +201,12 @@ void teamEntity::updateState(gameComponentsSharedPtr gameInstanceComponent, game
         
         if (!flag->getPlayerStartDirectionsSet())
         {
-            if (setPlayerStartDirections())  // sets starting directions for the players
+            playerEntityMSharedPtr activePlayerInstance;
+            activePlayerInstance = setupTeam->setPlayerStartDirections(component->getActivePlayerInstance(), gameData);
+            if (activePlayerInstance.size() > 0)  // sets starting directions for the players
             {
                 flag->setPlayerStartDirectionsSet(true);
+                component->setActivePlayerInstance(activePlayerInstance);
                 logMsg(func +" Player Start Directions set!");
 //                    exit(0);
             }
@@ -216,7 +221,16 @@ void teamEntity::updateState(gameComponentsSharedPtr gameInstanceComponent, game
             logMsg(func +" Player start directions set");
         }
         
-        updateActivePlayers();
+        activePlayerInstance = updateTeam->updateActivePlayers(component->getActivePlayerInstance());
+        if (activePlayerInstance.size() > 0)
+        {
+            component->setActivePlayerInstance(activePlayerInstance);
+        }
+        else
+        {
+            logMsg(func +" Unable to update Active Player Instances!");
+            exit(0);
+        }
         
     }
     else
@@ -304,7 +318,8 @@ void teamEntity::updateState(gameComponentsSharedPtr gameInstanceComponent, game
                     else if (activePlayerInstance[instanceWithBall]->getFlag()->getPassCalculated())
                     {
 //                      exit(0);
-                        executePass();
+///FIXME!
+///                        offense->executePass();
                         if (physEngine.getPassCollision())  // checks if ball has collided with player being passed to.
                         {
 //                          exit(0);

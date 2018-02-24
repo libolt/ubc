@@ -32,9 +32,9 @@
 #include "entity/playerentity.h"
 #include "entity/teamentity.h"
 #include "flags/teamflags.h"
-#include "gamesetup/gamesetupcourts.h"
-#include "gamesetup/gamesetupplayers.h"
-#include "gamesetup/gamesetupteams.h"
+#include "setup/setupcourts.h"
+#include "setup/setupplayers.h"
+#include "setup/setupteams.h"
 #include "state/courtstate.h"
 #include "state/gamestate.h"
 #include "state/playerstate.h"
@@ -56,7 +56,7 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
 {
 //    sharedPtr<gameState> gameS = gameState::Instance();
     conversionSharedPtr convert = conversion::Instance();
-    gameSetupCourtsSharedPtr gameSetupCourt(new gameSetupCourts);
+    setupCourtsSharedPtr setupCourt(new setupCourts);
     courtStateMSharedPtr  courtInstance;
 //    courtStateSharedPtr court(new courtState);
 //    courtInstance.insert(std::pair<size_t, courtStateSharedPtr>(0, court));
@@ -82,7 +82,7 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
     else
     {
 //        exit(0);
-        courtInstance = gameSetupCourt->createCourtInstances();
+        courtInstance = setupCourt->createCourtInstances();
         if (courtInstance.size() > 0)
         {
             logMsg(func +" Court Data Initialized == " +convert->toString(courtInstance[0]->getData()->getInitialized()));
@@ -142,7 +142,7 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
 void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start Selection Menu widgets
 {
     conversionSharedPtr convert = conversion::Instance();
-    gameSetupPlayersSharedPtr gameSetupPlayer(new gameSetupPlayers);
+    setupPlayersSharedPtr setupPlayer(new setupPlayers);
 //    gameStateSharedPtr gameS = base->getGameS();
     teamEntityMSharedPtr activeTeamInstance = gameInstance->getComponent()->getActiveTeamInstance();
     playerEntityMSharedPtr gamePlayerInstance;
@@ -156,7 +156,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 //    exit(0);
     size_t teamNum = 0;
     
-    if (gameSetupPlayer->checkIfGamePlayerInstancesCreated(gameInstance->getComponent(), gameInstance->getFlag()))
+    if (setupPlayer->checkIfGamePlayerInstancesCreated(gameInstance->getComponent(), gameInstance->getFlag()))
     {
         logMsg(func + " gameState Player Instances Created!");
         gamePlayerInstance = gameInstance->getComponent()->getPlayerInstance();
@@ -166,7 +166,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
         logMsg(func + " Unable to Create gameState Player Instances!");
 
     }
-    if (gameSetupPlayer->checkIfTeamPlayerInstancesCreated(gamePlayerInstance, activeTeamInstance))
+    if (setupPlayer->checkIfTeamPlayerInstancesCreated(gamePlayerInstance, activeTeamInstance))
     {
         logMsg(func + " Team Player Instances Created!");
     }
@@ -319,7 +319,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Selection Menu
 {
     conversionSharedPtr convert = conversion::Instance();
-    gameSetupTeamsSharedPtr gameSetupTeam(new gameSetupTeams);
+    setupTeamsSharedPtr setupTeam(new setupTeams);
     loadTeamsSharedPtr loadTeam; // = base->getLoadTeam();
     teamEntityMSharedPtr teamInstance; // = gameS->getTeamDataInstance();
     std::string func = "GUISystem::addTeamStartSelectionMenuData()";
@@ -362,7 +362,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     }
     else
     {    
-        teamInstance = gameSetupTeam->createTeamInstances();  // creates team instances
+        teamInstance = setupTeam->createTeamInstances();  // creates team instances
         if (teamInstance.size() > 0)
         {
              logMsg(func +" GUI ADD TEAM 2 teamInstance.size() == " +convert->toString(gameInstance->getComponent()->getTeamInstance().size()));

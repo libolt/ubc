@@ -37,11 +37,11 @@
 #include "flags/gameflags.h"
 #include "flags/playerflags.h"
 #include "flags/teamflags.h"
-#include "gamesetup/gamesetupbasketballs.h"
-#include "gamesetup/gamesetupcourts.h"
-#include "gamesetup/gamesetuphoops.h"
-#include "gamesetup/gamesetupplayers.h"
-#include "gamesetup/gamesetupteams.h"
+#include "setup/setupbasketballs.h"
+#include "setup/setupcourts.h"
+#include "setup/setuphoops.h"
+#include "setup/setupplayers.h"
+#include "setup/setupteams.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
 #include "state/gamestate.h"
@@ -710,7 +710,7 @@ bool gameState::setupEnvironment()
 {
     conversionSharedPtr convert = conversion::Instance();
     loaderSharedPtr load(new loader);
-    gameSetupBasketballsSharedPtr gameSetupBasketball;
+    setupBasketballsSharedPtr setupBasketball;
     basketballStateMSharedPtr activeBasketballInstance = getActiveBasketballInstance();
     bool activeBasketballInstancesCreated = getActiveBasketballInstancesCreated();
 //    size_t activeBBallInstance = getActiveBBallInstance();
@@ -724,8 +724,8 @@ bool gameState::setupEnvironment()
     {
         if (basketballInstance.size() == 0)
         {
-            basketballInstance = gameSetupBasketball->createBasketballInstances();
-            activeBasketballInstance = gameSetupBasketball->createActiveBasketballInstances(basketballInstance, getNumActiveBasketballs());
+            basketballInstance = setupBasketball->createBasketballInstances();
+            activeBasketballInstance = setupBasketball->createActiveBasketballInstances(basketballInstance, getNumActiveBasketballs());
             if (activeBasketballInstance.size() > 0)
             {
                 logMsg(func +" Active Basketball Instances Created!");
@@ -814,7 +814,7 @@ bool gameState::setupEnvironment()
     loaderSharedPtr load(new loader);
     courtStateMSharedPtr courtInstance = getCourtInstance();
     courtStateMSharedPtr activeCourtInstance = getActiveCourtInstance();
-    gameSetupCourtsSharedPtr gameSetupCourt(new gameSetupCourts);
+    setupCourtsSharedPtr setupCourt(new setupCourts);
     bool activeCourtInstancesCreated = getActiveCourtInstancesCreated();
     bool returnType = false;
     std::string func = "gameState::loadCourtModel()";
@@ -823,7 +823,7 @@ bool gameState::setupEnvironment()
     
     if (!activeCourtInstancesCreated && activeCourtInstance.size() == 0)
     {
-        activeCourtInstance = gameSetupCourt->createActiveCourtInstances(courtInstance);
+        activeCourtInstance = setupCourt->createActiveCourtInstances(courtInstance);
         if (activeCourtInstance.size() > 0)
         {
             logMsg(func +" Active Court Instances Created!");
@@ -1300,10 +1300,10 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
     //sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
     conversionSharedPtr convert = conversion::Instance();
-    gameSetupBasketballsSharedPtr gameSetupBasketball(new gameSetupBasketballs);
-    gameSetupCourtsSharedPtr gameSetupCourt(new gameSetupCourts);
-    gameSetupHoopsSharedPtr gameSetupHoop(new gameSetupHoops);
-    gameSetupTeamsSharedPtr gameSetupTeam(new gameSetupTeams);
+    setupBasketballsSharedPtr setupBasketball(new setupBasketballs);
+    setupCourtsSharedPtr setupCourt(new setupCourts);
+    setupHoopsSharedPtr setupHoop(new setupHoops);
+    setupTeamsSharedPtr setupTeam(new setupTeams);
 //    courtStateMSharedPtr courtInstance = getCourtInstance();
 //    hoopStateMSharedPtr hoopInstance = getHoopInstance();
 
@@ -1313,7 +1313,7 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
     
     if (!getFlag()->getBasketballInstanceCreated())
     {
-        basketballStateMSharedPtr basketballInstance = gameSetupBasketball->createBasketballInstances();
+        basketballStateMSharedPtr basketballInstance = setupBasketball->createBasketballInstances();
         if (basketballInstance.size() > 0)
         {
             logMsg("Basketball Instances Created!");
@@ -1332,7 +1332,7 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
     data->setNumActiveBasketballs(1);
     if (!getFlag()->getActiveBasketballInstancesCreated())
     {
-        basketballStateMSharedPtr activeBasketballInstance = gameSetupBasketball->createBasketballInstances();
+        basketballStateMSharedPtr activeBasketballInstance = setupBasketball->createBasketballInstances();
         if (activeBasketballInstance.size() > 0)
         {
             logMsg("activeBasketballInstances Created!");
@@ -1366,7 +1366,7 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
 
     if (!getFlag()->getCourtInstancesCreated())
     {
-        courtStateMSharedPtr courtInstance = gameSetupCourt->createCourtInstances();
+        courtStateMSharedPtr courtInstance = setupCourt->createCourtInstances();
         if (courtInstance.size() > 0)
         {
             logMsg(func +" Court Instances Created!!");
@@ -1383,7 +1383,7 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
     {
         courtStateMSharedPtr courtInstance = component->getCourtInstance();
         courtStateMSharedPtr activeCourtInstance;
-        activeCourtInstance = gameSetupCourt->createActiveCourtInstances(courtInstance);
+        activeCourtInstance = setupCourt->createActiveCourtInstances(courtInstance);
         if (activeCourtInstance.size() > 0)
         {
             logMsg(func +" Active Court Instances Created!!");
@@ -1418,7 +1418,7 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
     
     if (!getFlag()->getHoopInstancesCreated())
     {
-        hoopStateMSharedPtr hoopInstance = gameSetupHoop->createHoopInstances();
+        hoopStateMSharedPtr hoopInstance = setupHoop->createHoopInstances();
         if (hoopInstance.size() > 0)
         {
             logMsg(func +"Hoop Instances Created!");
@@ -1440,7 +1440,7 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
         //FIXME! Should not be hard coded!
         size_t numActiveHoops = 2;
         hoopStateMSharedPtr hoopInstance = component->getHoopInstance();
-        hoopStateMSharedPtr activeHoopInstance = gameSetupHoop->createActiveHoopInstances(hoopInstance, numActiveHoops);
+        hoopStateMSharedPtr activeHoopInstance = setupHoop->createActiveHoopInstances(hoopInstance, numActiveHoops);
         logMsg(func +" active hoop instance size == " +convert->toString(activeHoopInstance.size()));
         logMsg(func +" active hoop instance name == " +activeHoopInstance[0]->getEntity()->getName());
 //        exit(0);
@@ -1525,7 +1525,7 @@ bool gameState::setupState(renderEngineSharedPtr render)  // sets up the game co
 
 //    logMsg("court y == " +convert->toString(getCourtInstance()[0].getNode()->getPosition().y));
 //    exit(0);
-    component->setTeamInstance(gameSetupTeam->createTeamInstances());  // creates team instances
+    component->setTeamInstance(setupTeam->createTeamInstances());  // creates team instances
     if (component->getTeamInstance().size() > 0)
     {
         
@@ -1674,7 +1674,7 @@ bool gameState::updateState(renderEngineSharedPtr render)  // updates the game s
     }
     logMsg(func +" blah");
 //    exit(0);
-    if (getFlag()->getGameSetupComplete())
+    if (getFlag()->getSetupComplete())
     {
 
         logMsg(func + " Game Setup Complete!");
@@ -2237,7 +2237,7 @@ bool gameState::processInput()  // processes input received from the inputState 
 /*bool gameState::checkIfPlayerInstanceCreated()  // check if playerInstance object has been created and loaded
 {
     conversionSharedPtr convert = conversion::Instance();
-    gameSetupPlayersSharedPtr gameSetupPlayer(new gameSetupPlayers);
+    setupPlayersSharedPtr setupPlayer(new setupPlayers);
     playerEntityMSharedPtr playerInstance = getPlayerInstance();
     bool returnType = false;
     std::string func = "gameState::checkIfPlayerInstanceCreated()";
@@ -2255,7 +2255,7 @@ bool gameState::processInput()  // processes input received from the inputState 
         {
             logMsg(func +" gameState::checkIfPlayerInstanceCreated() player instances not yet created!");
  //           exit(0);
-            playerInstance = gameSetupPlayer->createPlayerInstances();
+            playerInstance = setupPlayer->createPlayerInstances();
             if (playerInstance.size())
             {
             
@@ -2277,7 +2277,7 @@ bool gameState::processInput()  // processes input received from the inputState 
     else
     {
         logMsg(func +" player instances not yet created!");
-        playerInstance = gameSetupPlayer->createPlayerInstances();
+        playerInstance = setupPlayer->createPlayerInstances();
         if (playerInstance.size())
         {
 

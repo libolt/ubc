@@ -18,7 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "gamesetup/gamesetupbasketballs.h"
+#include "setup/setupbasketballs.h"
 #include "entity/basketballentity.h"
 #include "data/basketballdata.h"
 #include "state/basketballstate.h"
@@ -27,21 +27,21 @@
 #include "utilities/logging.h"
 #include "load/loadbasketballs.h"
 
-gameSetupBasketballs::gameSetupBasketballs()  // constructor
+setupBasketballs::setupBasketballs()  // constructor
 {
     
 }
-gameSetupBasketballs::~gameSetupBasketballs()  // destructor
+setupBasketballs::~setupBasketballs()  // destructor
 {
     
 }
 
-basketballStateMSharedPtr gameSetupBasketballs::createBasketballInstances()  // creates basketball Instances
+basketballStateMSharedPtr setupBasketballs::createBasketballInstances()  // creates basketball Instances
 {
     basketballStateMSharedPtr basketballInstance;
     loadBasketballsSharedPtr loadBasketball(new loadBasketballs);
     basketballInstance = loadBasketball->loadFiles();
-    std::string func = "gameSetupBasketballs::createBasketballInstance()";
+    std::string func = "setupBasketballs::createBasketballInstance()";
 
     logMsg(func +" beginning");
 //    exit(0);
@@ -77,7 +77,7 @@ basketballStateMSharedPtr gameSetupBasketballs::createBasketballInstances()  // 
     return (basketballInstance);
 }
 
-basketballStateMSharedPtr gameSetupBasketballs::createActiveBasketballInstances(basketballStateMSharedPtr basketballInstance, size_t numActiveBasketballs)  // creates active basketball instances
+basketballStateMSharedPtr setupBasketballs::createActiveBasketballInstances(basketballStateMSharedPtr basketballInstance, size_t numActiveBasketballs)  // creates active basketball instances
 {    
     conversionSharedPtr convert = conversion::Instance();
     loadBasketballsSharedPtr loadBasketball;  // = base->getLoad();

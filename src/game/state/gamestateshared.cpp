@@ -46,7 +46,7 @@ bool gameStateShared::teamInstancesNeedCreated;  // stores whether or not to cre
 bool gameStateShared::bballNodePositionChanged;  // stores whether basketball node position has changed
 bool gameStateShared::teamWithBallChanged;  // stores whether team with ball has changed
 bool gameStateShared::activeTeamInstanceChanged;  // stores whether activeTeamInstance has changed
-bool gameStateShared::gameSetupComplete;  // indicates whether initial game setup is complete.
+bool gameStateShared::setupComplete;  // indicates whether initial game setup is complete.
 bool gameStateShared::jumpBallCreated;  // indicates whether jumpBall object has been created.
 bool gameStateShared::tipOffComplete;  // Determines whether or not game Tip Off has completed
 
@@ -96,7 +96,7 @@ gameStateShared::gameStateShared()  // constructor
     bballNodePositionChanged = false;
     teamWithBallChanged = false;
     activeTeamInstanceChanged = false;
-    gameSetupComplete = false;
+    setupComplete = false;
 */
 
 

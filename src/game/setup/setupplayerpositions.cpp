@@ -18,7 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "gamesetup/gamesetupplayerpositions.h"
+#include "setup/setupplayerpositions.h"
 #include "data/playergamedata.h"
 #include "entity/playerentity.h"
 #include "flags/playerflags.h"
@@ -26,16 +26,16 @@
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
 
-gameSetupPlayerPositions::gameSetupPlayerPositions()  // constructor
+setupPlayerPositions::setupPlayerPositions()  // constructor
 {
     
 }
-gameSetupPlayerPositions::~gameSetupPlayerPositions()  // destructor
+setupPlayerPositions::~setupPlayerPositions()  // destructor
 {
     
 }
 
-playerEntityMSharedPtr gameSetupPlayerPositions::setJumpBallPositions(playerEntityMSharedPtr activePlayerInstance, teamTypes teamType, Ogre::Vector3 courtPos)  // sets player positions for jumpball
+playerEntityMSharedPtr setupPlayerPositions::setJumpBallPositions(playerEntityMSharedPtr activePlayerInstance, teamTypes teamType, Ogre::Vector3 courtPos)  // sets player positions for jumpball
 {
     conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
@@ -43,7 +43,7 @@ playerEntityMSharedPtr gameSetupPlayerPositions::setJumpBallPositions(playerEnti
 //    std::vector<std::unordered_map<std::string, size_t> > teamStarterID = base->getGameS()->getTeamStarterID();
     OgreVector3Vec startingPos;
 //    directions playerDirection; // stores the direction players face at start
-    std::string func = "gameSetupPlayerPositions::setJumpBallPositions()";
+    std::string func = "setupPlayerPositions::setJumpBallPositions()";
 //    courtStateMSharedPtr courtInstance = base->getGameS()->getCourtInstance();
 //    Ogre::Vector3 courtPos = courtInstance[0]->getEntity()->getNodePosition();
 
@@ -149,11 +149,11 @@ playerEntityMSharedPtr gameSetupPlayerPositions::setJumpBallPositions(playerEnti
 //    exit(0);
     return (activePlayerInstance);
 }
-bool gameSetupPlayerPositions::setHalfTimePositions()  // sets player positions for start of the second half
+bool setupPlayerPositions::setHalfTimePositions()  // sets player positions for start of the second half
 {
     return (true);
 }
-bool gameSetupPlayerPositions::setTimeOutPositions()  // sets playerpositions coming out of timeout
+bool setupPlayerPositions::setTimeOutPositions()  // sets playerpositions coming out of timeout
 {
     return (true);
 }

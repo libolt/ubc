@@ -90,6 +90,15 @@ void AISystem::setActiveCourtInstance(courtStateMSharedPtr set)  // sets the val
     activeCourtInstance = set;
 }
 
+teamEntityMSharedPtr AISystem::getActiveTeamInstance()  // retrieves the value of activeTeamInstance
+{
+    return (activeTeamInstance);
+}
+void AISystem::setActiveTeamInstance(teamEntityMSharedPtr set)  // sets the value of activeTeamInstance
+{
+    activeTeamInstance = set;
+}
+
 teamTypes AISystem::getTeamWithBall()  // retrieves the value of teamWithBall
 {
     return (teamWithBall);

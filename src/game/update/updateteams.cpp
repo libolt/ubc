@@ -19,8 +19,13 @@
  ***************************************************************************/
 
 #include "update/updateteams.h"
+#include "components/gamecomponents.h"
+#include "data/playerdata.h"
+#include "data/playergamedata.h"
 #include "data/teamgamedata.h"
+#include "entity/playerentity.h"
 #include "entity/teamentity.h"
+#include "flags/playerflags.h"
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
 
@@ -33,10 +38,10 @@ updateTeams::~updateTeams()  // destructor
     
 }
 
-void updateTeams::updateActivePlayers()  // updates the states of active players
+playerEntityMSharedPtr updateTeams::updateActivePlayers(playerEntityMSharedPtr activePlayerInstance)  // updates the states of active players
 {
     conversionSharedPtr convert = conversion::Instance();
-    playerEntityMSharedPtr activePlayerInstance = component->getActivePlayerInstance();
+//    playerEntityMSharedPtr activePlayerInstance = component->getActivePlayerInstance();
 
     std::string func = "updateTeams::updateActivePlayers()";
 
@@ -84,16 +89,17 @@ void updateTeams::updateActivePlayers()  // updates the states of active players
 //    exit(0);
 */
 
-    component->setActivePlayerInstance(activePlayerInstance);
+//    component->setActivePlayerInstance(activePlayerInstance);
 
     logMsg(func +" end");
 
+    return (activePlayerInstance);
 }
 
-void updateTeams::updatePlayerDirections(gameComponentsSharedPtr gameComponent)  // updates the direction players are facing
+playerEntityMSharedPtr updateTeams::updatePlayerDirections(playerEntityMSharedPtr activePlayerInstance, gameComponentsSharedPtr gameComponent, teamGameDataSharedPtr gameData)  // updates the direction players are facing
 {
     conversionSharedPtr convert = conversion::Instance();
-    playerEntityMSharedPtr activePlayerInstance = component->getActivePlayerInstance();
+//    playerEntityMSharedPtr activePlayerInstance = component->getActivePlayerInstance();
     directions playerDirection, oldPlayerDirection;
     basketballStateMSharedPtr basketballInstance = gameComponent->getBasketballInstance();
     std::vector<Ogre::SceneNode>::iterator playersIT;
@@ -208,17 +214,18 @@ void updateTeams::updatePlayerDirections(gameComponentsSharedPtr gameComponent) 
 //        ++x;
     }
 
-    component->setActivePlayerInstance(activePlayerInstance);
+//    component->setActivePlayerInstance(activePlayerInstance);
 
     logMsg(func + " end");
+    return (activePlayerInstance);
 }
 
 
-void updateTeams::updatePlayerMovements()  // updates player movements
+playerEntityMSharedPtr updateTeams::updatePlayerMovements(playerEntityMSharedPtr activePlayerInstance)  // updates player movements
 {
     //conversion *convert = conversion::Instance();
     conversionSharedPtr convert = conversion::Instance();
-    playerEntityMSharedPtr activePlayerInstance = component->getActivePlayerInstance();
+//    playerEntityMSharedPtr activePlayerInstance = component->getActivePlayerInstance();
     Ogre::Vector3 posChange;    // stores change in position
     posChange = Ogre::Vector3(0.0f, 0.0f, 0.0f);
     std::string func = "updateTeams::updatePlayerMovements()";
@@ -285,13 +292,14 @@ void updateTeams::updatePlayerMovements()  // updates player movements
 //        ++x;
     }
 
-    component->setActivePlayerInstance(activePlayerInstance);
+//    component->setActivePlayerInstance(activePlayerInstance);
 
     logMsg(func + " end");
-    
+
+    return (activePlayerInstance);
 }
 
-void updateTeams::updatePositions()  // updates player on court positions
+playerEntityMSharedPtr updateTeams::updatePositions(playerEntityMSharedPtr activePlayerInstance)  // updates player on court positions
 {
 //FIXME! Needs reworked after playerStateMachine migration
 /*
@@ -312,7 +320,7 @@ void updateTeams::updatePositions()  // updates player on court positions
 */
 }
 
-void updateTeams::updateActivePlayerSettings()  // updates the settings of active players
+playerEntityMSharedPtr updateTeams::updateActivePlayerSettings(playerEntityMSharedPtr activePlayerInstance)  // updates the settings of active players
 {
 
 }

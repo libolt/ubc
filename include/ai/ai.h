@@ -133,7 +133,7 @@ private:
     gameStateSharedPtr gameInstance;  // stores copy of gameInstance
     basketballStateMSharedPtr activeBasketballInstance;  // stores copy of activeBasketballInstance
     courtStateMSharedPtr activeCourtInstance;  // stores copy of activeCourtInstance
-//    teamEntityMSharedPtr activeTeamInstance;  // stores copy of activeTeamInstance
+    teamEntityMSharedPtr activeTeamInstance;  // stores copy of activeTeamInstance
     teamTypes teamWithBall;  // stores copy of teamWithBall
     std::string humanPlayer;  // stores which player is human controlled
 

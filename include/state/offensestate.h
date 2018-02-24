@@ -93,6 +93,8 @@ public:
     void executeOffense(gameComponentsSharedPtr gameComponent, gameDataSharedPtr gameData);  // executes box offense
     bool checkForDirective(playerPositions set);  // checks if a directive needs to be completed before execution
 
+    void executePass();  // executes the pass between players
+
 private:
 
 //    gameStateSharedPtr gameS;  // the gameState object

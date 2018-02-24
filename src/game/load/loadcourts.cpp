@@ -485,7 +485,7 @@ courtStateMSharedPtr loadCourts::loadModels(courtStateMSharedPtr activeCourtInst
     loaderSharedPtr load(new loader);
 //    courtStateMSharedPtr courtInstance = getCourtInstance();
 //    courtStateMSharedPtr activeCourtInstance = getActiveCourtInstance();
-//    gameSetupCourtsSharedPtr gameSetupCourt(new gameSetupCourts);
+//    setupCourtsSharedPtr setupCourt(new setupCourts);
 //    bool activeCourtInstancesCreated = getActiveCourtInstancesCreated();
 //    bool returnType = false;
     OgreEntitySharedPtr model;  // stores the model returned by loadModel() function
@@ -528,7 +528,7 @@ courtStateMSharedPtr loadCourts::loadModels(courtStateMSharedPtr activeCourtInst
     }
 /*    if (!activeCourtInstancesCreated && activeCourtInstance.size() == 0)
     {
-        activeCourtInstance = gameSetupCourt->createActiveCourtInstances(courtInstance);
+        activeCourtInstance = setupCourt->createActiveCourtInstances(courtInstance);
         if (activeCourtInstance.size() > 0)
         {
             logMsg(func +" Active Court Instances Created!");

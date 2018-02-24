@@ -52,7 +52,6 @@ public:
     teamState();  // constructor
     ~teamState();  // destructor
 
-    void executePass();  // executes the pass between players
 
 protected:
 private:

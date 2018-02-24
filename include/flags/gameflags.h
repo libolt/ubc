@@ -87,8 +87,8 @@ class gameFlags
         bool getActiveTeamInstanceChanged();  // retrieves the value of activeTeamInstanceChanged
         void setActiveTeamInstanceChanged(bool set);  // sets the value of activeTeamInstanceChanged
         
-        bool getGameSetupComplete();  // retrieves the value of gameSetupComplete
-        void setGameSetupComplete(bool set);  // sets the value of gameSetupComplete
+        bool getSetupComplete();  // retrieves the value of setupComplete
+        void setSetupComplete(bool set);  // sets the value of setupComplete
 
         bool getJumpBallCreated();  // retrieves the value of jumpBallCreated
         void setJumpBallCreated(bool set);  // sets the value of jumpBallCreated
@@ -150,7 +150,7 @@ class gameFlags
         bool bballNodePositionChanged;  // stores whether basketball node position has changed
         bool teamWithBallChanged;  // stores whether team with ball has changed
         bool activeTeamInstanceChanged;  // stores whether activeTeamInstance has changed
-        bool gameSetupComplete;  // indicates whether initial game setup is complete.
+        bool setupComplete;  // indicates whether initial game setup is complete.
         bool jumpBallCreated;  // indicates whether jumpBall object has been created.
         bool tipOffComplete;  // Determines whether or not game Tip Off has completed
         bool finished;  // indicates whether a game is finished.

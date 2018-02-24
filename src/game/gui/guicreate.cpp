@@ -347,10 +347,10 @@ bool GUISystem::createBackButtons()  // creates the back buttons for the menus
 ///    backPlayerStartSelectionMenuButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::backPlayerStartSelectionMenuButtonClicked);
 ///    backPlayerStartSelectionMenuButton->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()) );
 
-///    backGameSetupMenuButton = sharedPtr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("backGameSetupMenuButton"));  // loads Back to Game Setup Menu Button
-///    backGameSetupMenuButton->setVisible(false);
-///    backGameSetupMenuButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::backGameSetupMenuButtonClicked);
-///    backGameSetupMenuButton->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()) );
+///    backSetupMenuButton = sharedPtr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("backSetupMenuButton"));  // loads Back to Game Setup Menu Button
+///    backSetupMenuButton->setVisible(false);
+///    backSetupMenuButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::backSetupMenuButtonClicked);
+///    backSetupMenuButton->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()) );
 
     backButtonsCreated = true;
 
@@ -442,7 +442,7 @@ bool GUISystem::createAudioSetupGUI()  // creates GUI for audo settings screen.
 }
 
 
-bool GUISystem::createGameSetupMenuGUI()    // creates GUI for game setup menu screen.
+bool GUISystem::createSetupMenuGUI()    // creates GUI for game setup menu screen.
 {
     //conversion *convert = conversion::Instance();
     conversionSharedPtr convert = conversion::Instance();
@@ -452,13 +452,13 @@ bool GUISystem::createGameSetupMenuGUI()    // creates GUI for game setup menu s
 //    renderEngineSharedPtr render = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
 
-    std::string func = "GUISystem::createCourtGameSetupMenuGUI()";
+    std::string func = "GUISystem::createCourtSetupMenuGUI()";
 
     logMsg(func +" begin");
 
 
-    MyGUI::LayoutManager::getInstance().loadLayout("GameSetupMenu.layout");
-    gameSetupMenuCreated = true;
+    MyGUI::LayoutManager::getInstance().loadLayout("SetupMenu.layout");
+    setupMenuCreated = true;
 
     logMsg(func +" end");
 

@@ -333,7 +333,7 @@ basketballStateMSharedPtr loadBasketballs::loadModels(basketballStateMSharedPtr 
 {
     conversionSharedPtr convert = conversion::Instance();
     loaderSharedPtr load(new loader);
-    gameSetupBasketballsSharedPtr gameSetupBasketball;
+    setupBasketballsSharedPtr setupBasketball;
 //    basketballStateMSharedPtr activeBasketballInstance = getActiveBasketballInstance();
 //    bool activeBasketballInstancesCreated = getActiveBasketballInstancesCreated();
 //    size_t activeBBallInstance = getActiveBBallInstance();

@@ -29,9 +29,9 @@
 #include "data/playerdata.h"
 #include "engine/gameengine.h"
 #include "entity/playerentity.h"
-#include "gamesetup/gamesetuplineups.h"
-#include "gamesetup/gamesetupplayers.h"
-#include "gamesetup/gamesetupteams.h"
+#include "setup/setuplineups.h"
+#include "setup/setupplayers.h"
+#include "setup/setupteams.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
 #include "state/gamestate.h"
@@ -62,13 +62,13 @@ bool GUISystem::optionsMenuCreated;   // determines whether the options menu gui
 bool GUISystem::displaySetupMenuCreated;   // determines whether the display settings menu gui has been created
 bool GUISystem::inputSetupMenuCreated;   // determines whether the input settings menu gui has been created
 bool GUISystem::audioSetupMenuCreated;   // determines whether the audio settings menu gui has been created
-bool GUISystem::gameSetupMenuCreated;  // determines whether the game setup menu gui has been created
+bool GUISystem::setupMenuCreated;  // determines whether the game setup menu gui has been created
 bool GUISystem::playerStartSelectionMenuCreated;  // determines whether the player start selection menu gui has been created
 bool GUISystem::teamSelectionMenuCreated;  // determines whether the team selection menu gui has been created
 bool GUISystem::teamSelectionMenuDataAdded;  // determines whether teeam data has been added to the the team selection menu
 bool GUISystem::courtSelectionMenuCreated;  // deteemines whether the court selection menu has been created;
-bool GUISystem::gameSetupMenuAwaySelected;  // determines whether the away team listbox is selected;
-bool GUISystem::gameSetupMenuHomeSelected;  // determines whether the home team listbox is selected;
+bool GUISystem::setupMenuAwaySelected;  // determines whether the away team listbox is selected;
+bool GUISystem::setupMenuHomeSelected;  // determines whether the home team listbox is selected;
 bool GUISystem::courtSelectionDataLoaded;  // determines whether court names have been added to the select box
 
 activeMenus GUISystem::activeMenu;  // stores which menu is being displayed
@@ -148,9 +148,9 @@ GUISystem::GUISystem()  // Initialmizes the GUISystem class
     displaySetupMenuCreated = false;
     inputSetupMenuCreated = false;
     audioSetupMenuCreated = false;
-    gameSetupMenuCreated = false;
-    gameSetupMenuAwaySelected = false;
-    gameSetupMenuHomeSelected = false;
+    setupMenuCreated = false;
+    setupMenuAwaySelected = false;
+    setupMenuHomeSelected = false;
     playerStartSelectionMenuCreated = false;
     teamSelectionMenuCreated = false;
     teamSelectionMenuDataAdded = false;
@@ -243,13 +243,13 @@ void GUISystem::setAudioSetupMenuCreated(bool set)  // sets the value of audioSe
 	audioSetupMenuCreated = set;
 }
 
-bool GUISystem::getGameSetupMenuCreated()  // retrieves the value of gameSetupMenuCreated
+bool GUISystem::getSetupMenuCreated()  // retrieves the value of setupMenuCreated
 {
-	return (gameSetupMenuCreated);
+	return (setupMenuCreated);
 }
-void GUISystem::setGameSetupMenuCreated(bool set)  // sets the value of gameSetupMenuCreated
+void GUISystem::setSetupMenuCreated(bool set)  // sets the value of setupMenuCreated
 {
-	gameSetupMenuCreated = set;
+	setupMenuCreated = set;
 }
 
 bool GUISystem::getPlayerStartSelectionMenuCreated()  // retrieves the value of playerStartSelectionMenuCreated
@@ -505,7 +505,7 @@ void GUISystem::startSinglePlayerGame(renderEngineSharedPtr render)  // starts s
 //    exit(0);
 //    hideMainMenuWidgets();	// Hides the widgets from the main menu
     courtSelectionMenu(render);   // displays the menu for selecting which court to use
-    //   gameSetupMenu();
+    //   setupMenu();
 //	menuActive = false;
     
     logMsg(func +" end");
@@ -560,12 +560,12 @@ void GUISystem::audioMenu(renderEngineSharedPtr render)  // displays the audio m
     changeActiveMenu(AUDIO, render);
 }
 
-void GUISystem::gameSetupMenu(renderEngineSharedPtr render)  // displays game setup menu
+void GUISystem::setupMenu(renderEngineSharedPtr render)  // displays game setup menu
 {
-    if (!gameSetupMenuCreated)
+    if (!setupMenuCreated)
     {
-        createGameSetupMenuGUI();
-        gameSetupMenuCreated = true;
+        createSetupMenuGUI();
+        setupMenuCreated = true;
     }
 	
     changeActiveMenu(GAMESETUP, render);
@@ -612,7 +612,7 @@ void GUISystem::playerStartSelectionMenu(renderEngineSharedPtr render)  // displ
 void GUISystem::teamSelectionMenu(renderEngineSharedPtr render)  // displays team selection menu
 {
     conversionSharedPtr convert = conversion::Instance();
-    gameSetupTeamsSharedPtr gameSetupTeam(new gameSetupTeams);
+    setupTeamsSharedPtr setupTeam(new setupTeams);
     bool changeMenu = false;  // determinrs if menu is to be changed
     teamEntityMSharedPtr teamInstance; // = gameS->getTeamDataInstance();
     std::string func = "GUISystem::teamSelectionMenu()";
@@ -652,7 +652,7 @@ void GUISystem::teamSelectionMenu(renderEngineSharedPtr render)  // displays tea
         {
             logMsg(func +" !getTeamInstancesCreated");
             
-            teamInstance = gameSetupTeam->createTeamInstances();  // creates team instances
+            teamInstance = setupTeam->createTeamInstances();  // creates team instances
             if (teamInstance.size() > 0)
             {
                 logMsg(func +" createTeamInstances");
@@ -897,7 +897,7 @@ void GUISystem::teamsSelected()  // processes team selection
     conversionSharedPtr convert = conversion::Instance();
     teamEntityMSharedPtr activeTeamInstance;
 //    teamEntityMSharedPtr teamInstance;
-    gameSetupTeamsSharedPtr gameSetupTeam;
+    setupTeamsSharedPtr setupTeam;
     std::string func = "GUISystem::teamsSelected()";
   
 //    teamInstance = base->getGameS()->getTeamInstance();
@@ -909,7 +909,7 @@ void GUISystem::teamsSelected()  // processes team selection
     teamID.push_back(teamSelectBox[1]->getIndexSelected());
     logMsg(func +" activeTeamInstance");
     logMsg(func +" setupComplete == " +convert->toString(setupComplete)); 
-    activeTeamInstance = gameSetupTeam->createActiveTeamInstances(gameInstance->getComponent()->getTeamInstance(), teamID);
+    activeTeamInstance = setupTeam->createActiveTeamInstances(gameInstance->getComponent()->getTeamInstance(), teamID);
 //    exit(0);
     //    gameS->setTeamID(teamID);
     logMsg(func +" teamSelectBox[0]->getIndexSelected() == " +convert->toString(teamSelectBox[0]->getIndexSelected()));
@@ -943,11 +943,11 @@ void GUISystem::playerStartSelected()  // process player start selection
     size_t IDs = 0;
     std::string func = "GUISystem::playerStartSelected()";
 
-    gameSetupLineupsSharedPtr gameSetupLineup(new gameSetupLineups);
-    gameSetupPlayersSharedPtr gameSetupPlayer(new gameSetupPlayers);
+    setupLineupsSharedPtr setupLineup(new setupLineups);
+    setupPlayersSharedPtr setupPlayer(new setupPlayers);
     logMsg(func +" begin");
 
-    teamStarters = gameSetupLineup->createTeamStarters(activeTeamInstance);  // create the teamStarters instance
+    teamStarters = setupLineup->createTeamStarters(activeTeamInstance);  // create the teamStarters instance
 
 ///
 /*    for (auto ATIIT : activeTeamInstance)  // loop through activeTeamInstance
@@ -1062,7 +1062,7 @@ void GUISystem::playerStartSelected()  // process player start selection
     logMsg(func +" teamStarters.size() == " +convert->toString(teamStarters.size()));
     logMsg(func +" teamStarters[0][PG] == " +teamStarters[0]["PG"]);
 //    exit(0);
-    teamStarterID = gameSetupLineup->createTeamStarterID(teamStarters,activeTeamInstance);  // creates the object with the each team's starter IDs
+    teamStarterID = setupLineup->createTeamStarterID(teamStarters,activeTeamInstance);  // creates the object with the each team's starter IDs
 
     logMsg(func +" teamStarterID.size() == " +convert->toString(teamStarterID.size()));
 //    exit(0);
@@ -1296,7 +1296,7 @@ void GUISystem::playerStartSelected()  // process player start selection
 */
 ///
 
-    gameSetupPlayer->checkIfTeamPlayerInstancesCreated(gamePlayerInstance, activeTeamInstance);
+    setupPlayer->checkIfTeamPlayerInstancesCreated(gamePlayerInstance, activeTeamInstance);
 //    exit(0);
     // create active player Instancea
 
@@ -1359,7 +1359,7 @@ void GUISystem::playerStartSelected()  // process player start selection
         logMsg(func +" activePlayerInstance.size() == " +convert->toString(activePlayerInstance.size()));
     }  */
 ///    
-    activeTeamInstance = gameSetupLineup->setupStartingLineups(activeTeamInstance, teamStarterID);
+    activeTeamInstance = setupLineup->setupStartingLineups(activeTeamInstance, teamStarterID);
     
     gameInstance->getComponent()->setActiveTeamInstance(activeTeamInstance);
 //    exit(0);
@@ -1469,8 +1469,8 @@ void GUISystem::playerStartSelected()  // process player start selection
 /*    if (base->getGameS()->getActiveTeamInstance()[0]->getPlayerInstancesCreated() && base->getGameS()->getActiveTeamInstance()[1]->getPlayerInstancesCreated())
     {
 ///        base->getGameS()->setActiveTeamInstance(activeTeamInstance);  // sets the activeTeamInstance vector
-//        base->getGameS()->setGameSetupComplete(true);
-        base->getGameS()->setGameSetupComplete(true);
+//        base->getGameS()->setSetupComplete(true);
+        base->getGameS()->setSetupComplete(true);
         
     }
     else
@@ -1480,10 +1480,10 @@ void GUISystem::playerStartSelected()  // process player start selection
     }*/
 ///
 
-    if (gameSetupLineup->checkActivePlayerInstancesCreated(activeTeamInstance))
+    if (setupLineup->checkActivePlayerInstancesCreated(activeTeamInstance))
     {
         logMsg("All active player instances created successfully!");
-        gameInstance->getFlag()->setGameSetupComplete(true);
+        gameInstance->getFlag()->setSetupComplete(true);
 
 //        exit(0);
     }
@@ -1506,18 +1506,18 @@ void GUISystem::playerStartSelected()  // process player start selection
 
 }
 
-void GUISystem::gameSetupAwaySelected()  // processes away team selectdion on game setup menu
+void GUISystem::setupAwaySelected()  // processes away team selectdion on game setup menu
 {
     MyGUI::InputManager::getInstance().setKeyFocusWidget(teamSelectBox[1].get());
-    gameSetupMenuAwaySelected = true;
-    gameSetupMenuHomeSelected = false;
+    setupMenuAwaySelected = true;
+    setupMenuHomeSelected = false;
 }
 
-void GUISystem::gameSetupHomeSelected()  // process home team selection on game setup menu
+void GUISystem::setupHomeSelected()  // process home team selection on game setup menu
 {
     MyGUI::InputManager::getInstance().setKeyFocusWidget(teamSelectBox[1].get());
-    gameSetupMenuHomeSelected = true;
-    gameSetupMenuAwaySelected = false;
+    setupMenuHomeSelected = true;
+    setupMenuAwaySelected = false;
 }
 
 void GUISystem::backNetworkSetupMenuSelected(renderEngineSharedPtr render)  // returns back to network setup screen

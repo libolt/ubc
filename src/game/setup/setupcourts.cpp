@@ -18,7 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "gamesetup/gamesetupcourts.h"
+#include "setup/setupcourts.h"
 #include "data/courtdata.h"
 #include "entity/courtentity.h"
 #include "state/courtstate.h"
@@ -26,20 +26,20 @@
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
 
-gameSetupCourts::gameSetupCourts()  // constructor
+setupCourts::setupCourts()  // constructor
 {
     
 }
-gameSetupCourts::~gameSetupCourts()  // destructor
+setupCourts::~setupCourts()  // destructor
 {
     
 }
 
-courtStateMSharedPtr gameSetupCourts::createCourtInstances()  // creates court Instances
+courtStateMSharedPtr setupCourts::createCourtInstances()  // creates court Instances
 {
     courtStateMSharedPtr courtInstance;
     loadCourtsSharedPtr loadCourt;
-    std::string func = "gameSetupCourts::createCourtInstances()";
+    std::string func = "setupCourts::createCourtInstances()";
 
     logMsg(func +" beginning");
 
@@ -75,14 +75,14 @@ courtStateMSharedPtr gameSetupCourts::createCourtInstances()  // creates court I
     return (courtInstance);
 }
 
-courtStateMSharedPtr gameSetupCourts::createActiveCourtInstances(courtStateMSharedPtr courtInstance)  // creates active court instances
+courtStateMSharedPtr setupCourts::createActiveCourtInstances(courtStateMSharedPtr courtInstance)  // creates active court instances
 {
     courtStateMSharedPtr activeCourtInstance;
     conversionSharedPtr convert = conversion::Instance();
     loadCourtsSharedPtr loadCourt(new loadCourts);
 //    courtStateMSharedPtr courtInstance = getCourtInstance();
 //    courtStateMSharedPtr activeCourtInstance = getActiveCourtInstance();
-    std::string func = "gameSetupCourts::createActiveCourtInstances()";
+    std::string func = "setupCourts::createActiveCourtInstances()";
 
     logMsg(func + " beginning");
 

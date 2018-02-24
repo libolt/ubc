@@ -18,8 +18,8 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "gamesetup/gamesetuplineups.h"
-#include "gamesetup/gamesetupplayers.h"
+#include "setup/setuplineups.h"
+#include "setup/setupplayers.h"
 #include "utilities/conversion.h"
 #include "state/teamstate.h"
 #include "state/gamestate.h"
@@ -31,16 +31,16 @@
 #include "flags/teamflags.h"
 #include "utilities/logging.h"
 
-gameSetupLineups::gameSetupLineups()  // constructor
+setupLineups::setupLineups()  // constructor
 {
     
 }
-gameSetupLineups::~gameSetupLineups()  // destructor
+setupLineups::~setupLineups()  // destructor
 {
     
 }
 
-std::vector<std::unordered_map <std::string, std::string> > gameSetupLineups::createTeamStarters(teamEntityMSharedPtr activeTeamInstance)  // creates the teamStarters instance
+std::vector<std::unordered_map <std::string, std::string> > setupLineups::createTeamStarters(teamEntityMSharedPtr activeTeamInstance)  // creates the teamStarters instance
 {
     std::vector<std::unordered_map <std::string, std::string> > teamStarters;
     std::unordered_map <std::string, std::string> tempStarters;  // temporary starters object
@@ -53,14 +53,14 @@ std::vector<std::unordered_map <std::string, std::string> > gameSetupLineups::cr
     return (teamStarters);
 }
 
-std::vector<std::unordered_map<std::string, size_t> > gameSetupLineups::createTeamStarterID(std::vector<std::unordered_map <std::string, std::string> > teamStarters, teamEntityMSharedPtr activeTeamInstance)  // creates the object with each team's starter IDs
+std::vector<std::unordered_map<std::string, size_t> > setupLineups::createTeamStarterID(std::vector<std::unordered_map <std::string, std::string> > teamStarters, teamEntityMSharedPtr activeTeamInstance)  // creates the object with each team's starter IDs
 {
     conversionSharedPtr convert = conversion::Instance();
     std::vector<std::unordered_map<std::string, size_t> > teamStarterID;
     std::unordered_map<std::string, size_t> tempStarterID; // used for initial creatio  of teamStarterID vector
     std::vector<std::unordered_map <std::string, std::string> >::iterator TSVIT;
 
-    std::string func = "gameSetups::createTeamStarterID()";
+    std::string func = "setups::createTeamStarterID()";
     for (TSVIT = teamStarters.begin(); TSVIT != teamStarters.end(); ++TSVIT)  // loop that adds starting player IDs to teamStarterID
     {
         tempStarterID.clear();
@@ -116,11 +116,11 @@ std::vector<std::unordered_map<std::string, size_t> > gameSetupLineups::createTe
     return (teamStarterID);
 }
 
-/*bool gameSetupLineups::checkPlayerInstancesCreated(teamEntityMSharedPtr activeTeamInstance)  // checks if player instances have been created
+/*bool setupLineups::checkPlayerInstancesCreated(teamEntityMSharedPtr activeTeamInstance)  // checks if player instances have been created
 {
     conversionSharedPtr convert = conversion::Instance();
-    gameSetupPlayersSharedPtr gameSetupPlayer(new gameSetupPlayers);
-    std::string func = "gameSetups::checkPlayerInstancesCreated()";
+    setupPlayersSharedPtr setupPlayer(new setupPlayers);
+    std::string func = "setups::checkPlayerInstancesCreated()";
 
     logMsg(func +" activeTeamInstance.size() == " +convert->toString(activeTeamInstance.size()));
     for (auto ATIIT : activeTeamInstance)
@@ -132,7 +132,7 @@ std::vector<std::unordered_map<std::string, size_t> > gameSetupLineups::createTe
 //            exit(0);
 //            if( ATIIT.second->createPlayerInstances())
             playerEntityMSharedPtr gamePlayerInstance = ATIIT.second->getBase()->getGameS()->getPlayerInstance();
-            playerEntityMSharedPtr playerInstance = gameSetupPlayer->createTeamPlayerInstances(gamePlayerInstance, ATIIT.second->getID());
+            playerEntityMSharedPtr playerInstance = setupPlayer->createTeamPlayerInstances(gamePlayerInstance, ATIIT.second->getID());
             if (playerInstance.size() > 0)
             {
                 ATIIT.second->setPlayerInstancesCreated(true);
@@ -158,10 +158,10 @@ std::vector<std::unordered_map<std::string, size_t> > gameSetupLineups::createTe
     return (true);
 }*/
 
-/*teamEntityMSharedPtr gameSetupLineups::createActivePlayerInstances(teamEntityMSharedPtr activeTeamInstance, std::vector<std::unordered_map<std::string, size_t> > teamStarterID)  // creates the active playerInstances
+/*teamEntityMSharedPtr setupLineups::createActivePlayerInstances(teamEntityMSharedPtr activeTeamInstance, std::vector<std::unordered_map<std::string, size_t> > teamStarterID)  // creates the active playerInstances
 {
     conversionSharedPtr convert = conversion::Instance();
-    std::string func = "gameSetups::createActivePlayerInstances()";
+    std::string func = "setups::createActivePlayerInstances()";
 
 //    exit(0);
 
@@ -227,7 +227,7 @@ std::vector<std::unordered_map<std::string, size_t> > gameSetupLineups::createTe
     return (activeTeamInstance);
 }*/
 
-bool gameSetupLineups::checkActivePlayerInstancesCreated(teamEntityMSharedPtr activeTeamInstance)
+bool setupLineups::checkActivePlayerInstancesCreated(teamEntityMSharedPtr activeTeamInstance)
 {
     bool returnType = false;
     size_t activePlayerInstancesCreated = 0;
@@ -249,11 +249,11 @@ bool gameSetupLineups::checkActivePlayerInstancesCreated(teamEntityMSharedPtr ac
     return (returnType);
 }
 
-teamEntityMSharedPtr gameSetupLineups::setupStartingLineups(teamEntityMSharedPtr activeTeamInstance, std::vector<std::unordered_map<std::string, size_t> > teamStarterID)  // sets starting lineups for each team
+teamEntityMSharedPtr setupLineups::setupStartingLineups(teamEntityMSharedPtr activeTeamInstance, std::vector<std::unordered_map<std::string, size_t> > teamStarterID)  // sets starting lineups for each team
 {
-    gameSetupPlayersSharedPtr gameSetupPlayer(new gameSetupPlayers);
+    setupPlayersSharedPtr setupPlayer(new setupPlayers);
     conversionSharedPtr convert = conversion::Instance();
-    std::string func = "gameSetupLineups::setupStartingLineups()";
+    std::string func = "setupLineups::setupStartingLineups()";
     size_t teamIDNum = 0;
     
     for (auto ATIIT : activeTeamInstance)
@@ -274,7 +274,7 @@ teamEntityMSharedPtr gameSetupLineups::setupStartingLineups(teamEntityMSharedPtr
         }
         
         logMsg(func +" teamIDNum == " +convert->toString(teamIDNum));
-        playerEntityMSharedPtr activePlayerInstance = gameSetupPlayer->createActivePlayerInstances(ATIIT.second->getComponent()->getPlayerInstance(), teamStarterID[teamIDNum]);
+        playerEntityMSharedPtr activePlayerInstance = setupPlayer->createActivePlayerInstances(ATIIT.second->getComponent()->getPlayerInstance(), teamStarterID[teamIDNum]);
         
 
 //        exit(0);
@@ -298,7 +298,7 @@ teamEntityMSharedPtr gameSetupLineups::setupStartingLineups(teamEntityMSharedPtr
     return (activeTeamInstance);
 }
 
-bool gameSetupLineups::setupStartingLineups_old(teamEntityMSharedPtr activeTeamInstance, std::vector<std::unordered_map<std::string, std::string> > teamStarters, std::vector<std::unordered_map<std::string, size_t> > teamStarterID)  // sets starting lineups for each team
+bool setupLineups::setupStartingLineups_old(teamEntityMSharedPtr activeTeamInstance, std::vector<std::unordered_map<std::string, std::string> > teamStarters, std::vector<std::unordered_map<std::string, size_t> > teamStarterID)  // sets starting lineups for each team
 {
     conversionSharedPtr convert = conversion::Instance();
 //    std::vector<std::unordered_map <std::string, std::string> > teamStarters;
@@ -308,7 +308,7 @@ bool gameSetupLineups::setupStartingLineups_old(teamEntityMSharedPtr activeTeamI
     std::vector<std::unordered_map <std::string, std::string> >::iterator TSVIT;
     std::vector<std::unordered_map<std::string, size_t> >::iterator TSIDIT;
 
-    std::string func = "gameSetups::setupStartingLineups()";
+    std::string func = "setups::setupStartingLineups()";
 
 /*    for (auto ATIIT : activeTeamInstance)  // loop through activeTeamInstance
     {

@@ -211,7 +211,7 @@ void GUISystem::showAudioMenuWidgets()  // shows all widgets tied to the Main Me
 
 }
 
-void GUISystem::hideGameSetupMenuWidgets()  // hides all widgets tied to the Game Setup Menu
+void GUISystem::hideSetupMenuWidgets()  // hides all widgets tied to the Game Setup Menu
 {
     //conversion *convert = conversion::Instance();
     conversionSharedPtr convert = conversion::Instance();
@@ -238,7 +238,7 @@ void GUISystem::hideGameSetupMenuWidgets()  // hides all widgets tied to the Gam
     }
     */
 }
-void GUISystem::showGameSetupMenuWidgets()  // shows all widgets tied to the Game Setup Menu
+void GUISystem::showSetupMenuWidgets()  // shows all widgets tied to the Game Setup Menu
 {
     renderEngineSharedPtr render; // = renderEngine::Instance();
 
@@ -529,7 +529,7 @@ void GUISystem::hideActiveMenuWidgets()  // hides active menus widgets
             hideAudioMenuWidgets();
             break;
         case GAMESETUP:
-            hideGameSetupMenuWidgets();
+            hideSetupMenuWidgets();
             break;
         case PLAYERSTART:
             hidePlayerStartSelectionMenuWidgets();
@@ -590,7 +590,7 @@ void GUISystem::showActiveMenuWidgets(renderEngineSharedPtr render)  // shows ac
         break;
         case GAMESETUP:
             logMsg(func + " GAMESETUP");
-            showGameSetupMenuWidgets();
+            showSetupMenuWidgets();
         break;
         case PLAYERSTART:
             logMsg(func + " PLAYERSTART");

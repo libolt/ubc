@@ -18,26 +18,20 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef _GAMESETUPLINEUPS_H_
-#define _GAMESETUPLINEUPS_H_
+#ifndef _GAMESETUPHOOPS_H_
+#define _GAMESETUPHOOPS_H_
 
 #include "utilities/typedefs.h"
 
-class gameSetupLineups
+class setupHoops
 {
     public:
     
-        gameSetupLineups();  // constructor
-        ~gameSetupLineups();  // destructor
+        setupHoops();  // constructor
+        ~setupHoops();  // destructor
         
-        std::vector<std::unordered_map <std::string, std::string> > createTeamStarters(teamEntityMSharedPtr activeTeamInstance);  // creates the teamStarters instance
-        std::vector<std::unordered_map<std::string, size_t> > createTeamStarterID(std::vector<std::unordered_map <std::string, std::string> > teamStarters, teamEntityMSharedPtr activeTeamInstance);  // creates the object with each team's starter IDs
-
-//        bool checkPlayerInstancesCreated(teamEntityMSharedPtr activeTeamInstance);  // checks if player instances have been created
-//        teamEntityMSharedPtr createActivePlayerInstances(teamEntityMSharedPtr activeTeamInstance, std::vector<std::unordered_map<std::string, size_t> > teamStarterID);  // creates the active playerInstances
-        bool checkActivePlayerInstancesCreated(teamEntityMSharedPtr activeTeamInstance);
-        teamEntityMSharedPtr setupStartingLineups(teamEntityMSharedPtr activeTeamInstance, std::vector<std::unordered_map<std::string, size_t> > teamStarterID);  // sets starting lineups for each team
-        bool setupStartingLineups_old(teamEntityMSharedPtr activeTeamInstance, std::vector<std::unordered_map <std::string, std::string> > teamStarters, std::vector<std::unordered_map<std::string, size_t> > teamStarterID);  // sets starting lineups for each team
+        hoopStateMSharedPtr createHoopInstances();  // creates hoop Instances
+        hoopStateMSharedPtr createActiveHoopInstances(hoopStateMSharedPtr hoopInstance, size_t numActiveHoops);  // creates active hoop instances
 
     private:
     

@@ -330,6 +330,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     {
         teamInstance = loadTeam->getTInstance();
     }
+    exit(0);
     gameInstance->getComponent()->setTeamInstance(teamInstance);  // copies data to teamInstance object
     gameInstance->getFlag()->setTeamInstancesCreated(true);
     

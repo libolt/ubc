@@ -31,9 +31,9 @@
 #include "state/teamstate.h"
 
 // static declarations
-teamEntityMSharedPtr loadTeams::tInstance;
-stdStringVec loadTeams::teamFiles;  // stores list of team xml files
-bool loadTeams::teamFilesLoaded;
+//teamEntityMSharedPtr loadTeams::tInstance;
+//stdStringVec loadTeams::teamFiles;  // stores list of team xml files
+//bool loadTeams::teamFilesLoaded;
 
 loadTeams::loadTeams()  // constructor
 {
@@ -158,7 +158,7 @@ teamEntityMSharedPtr loadTeams::loadTeamFiles()  // load teams from XML files
     std::string teamList;
     std::string func = "loader::loadTeams";
     
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 
 //    teamStateSharedPtr tempTeamSharedPtr(new teamState);
     
@@ -348,7 +348,7 @@ teamEntitySharedPtr loadTeams::loadTeamFile(std::string fileName)  // loads the 
     char *contents = NULL;
     std::string func = "loader::loadTeamFile";
     
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
     readFile(fileName.c_str(), &contents);
     fileContents = convert->toString(contents);
     doc.Parse(contents);
@@ -421,8 +421,12 @@ teamEntitySharedPtr loadTeams::loadTeamFile(std::string fileName)  // loads the 
     }
      
 //    logMsg("ID == " +convert->toString(ID));
-//    exit(0);
+    
+    teamDataSharedPtr tempData(new teamData);
+    teamInstance->setData(tempData);
+    
     teamInstance->getData()->setID(ID);
+    exit(0);
     teamInstance->getData()->setCity(City);
     teamInstance->getData()->setName(Name);
     teamInstance->getData()->setCoach(Coach);
@@ -430,7 +434,7 @@ teamEntitySharedPtr loadTeams::loadTeamFile(std::string fileName)  // loads the 
     teamInstance->getData()->setLogoFile(Logo);
 //    logMsg("ID == " +convert->toString(ID));
 //    logMsg("Load Teaminstance ID == " +convert->toString(teamInstance->getID()));
-    logMsg("teamInstance->getID() == " +convert->toString(teamInstance->getData()->getID()));
+    logMsg(func + " teamInstance->getID() == " +convert->toString(teamInstance->getData()->getID()));
 //    tempInst = &tempTeam;
 //    logMsg("Load Teaminstance Name == " +teamInstance->getName());
 //    logMsg("lawwl");

@@ -51,9 +51,9 @@ class loadTeams : public loader
     
     private:
     
-        static teamEntityMSharedPtr tInstance;
-        static bool teamFilesLoaded;
-        static stdStringVec teamFiles;   // stores list of team xml files
+        teamEntityMSharedPtr tInstance;
+        bool teamFilesLoaded;
+        stdStringVec teamFiles;   // stores list of team xml files
 
 };
 

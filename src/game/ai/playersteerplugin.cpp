@@ -124,7 +124,7 @@ void playerSteerPlugin::open()  // opens the plugin
     playerSteerVecSharedPtr allPlayerSteers = ai->getAllPlayerSteers();
 //    teamTypes teamWithBall;
     std::string func = "playerSteerPlugin::open()";
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
     logMsg(func +" Opening playerSteer plugin");
 
     gameInstance = ai->getGameInstance();

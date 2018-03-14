@@ -367,7 +367,7 @@ bool basketballState::initialize()  // initializes the basketballState object
 {
     std::string func = "basketballState::initialize()";
 
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 
     sharedPtr<basketballData> tempData(new basketballData);
     data = tempData;

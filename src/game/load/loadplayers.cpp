@@ -158,7 +158,7 @@ playerEntityMSharedPtr loadPlayers::loadPlayerFiles()  // loads the players
     playerEntitySharedPtr player;//(new playerState);
     std::string playerList;
     
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     playerList = "data/players/players.xml";
@@ -309,7 +309,7 @@ playerEntitySharedPtr loadPlayers::loadPlayerFile(std::string fileName)  // load
     tinyxml2::XMLDocument doc;
     char *contents = NULL;
     
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
     readFile(fileName.c_str(), &contents);   
     logMsg(func +" loading: "+fileName);
     fileContents = convert->toString(contents);

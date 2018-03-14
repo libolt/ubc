@@ -121,7 +121,7 @@ bool physicsEngine::setup()  // sets up the physicsEngine object
 //    tempWorld->setGravity(btVector3(0,-9.8,0));
     std::string func = "physicsEngine::setup()";
     
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
     world = sharedPtr<btDynamicsWorld>(tempWorld);
     world->setGravity(btVector3(0,-9.8,0));
 

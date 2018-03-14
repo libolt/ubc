@@ -77,7 +77,7 @@ bool basketballEntity::setupPhysicsObject()  // sets up the physics object
     btRigidBody *tempPhysBody = getPhysics()->getPhysBody().get();
     bool returnType = false;
     
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
     
     if (!getPhysics()->getGameSInitialized())
     {

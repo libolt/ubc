@@ -182,7 +182,7 @@ bool playerPhysics::setupPhysics()  // sets up playerPhysics
 void playerPhysics::update()  // updates the player physics object
 {
     std::string func = "playerPhysics::update()";
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 //exit(0);
     logMsg(func +" end");
 //    exit(0);
@@ -194,7 +194,7 @@ void playerPhysics::updatePosition()  // updates the position of player objecgts
 //    sharedPtr<gameState> gameS = gameState::Instance();
     comparison compare;
     std::string func = "playerPhysics::updatePosition()";
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
     exit(0);
 //    int activeBBallInstance = getGameS()->getActiveBBallInstance();
 

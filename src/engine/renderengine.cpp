@@ -318,7 +318,7 @@ bool renderEngine::initSDL() // Initializes SDL Subsystem
     conversionSharedPtr convert = conversion::Instance();
     std::string func = "renderEngine::initSDL()";
     
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 
 //    exit(0);
     if (SDL_Init(SDL_INIT_VIDEO|SDL_INIT_EVENTS|SDL_INIT_GAMECONTROLLER) != 0)
@@ -383,7 +383,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
     conversionSharedPtr convert = conversion::Instance();
     std::string func = "renderEngine::initOgre()";
     
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
     #ifdef _WIN64
@@ -533,7 +533,7 @@ bool renderEngine::createScene()
     conversionSharedPtr convert = conversion::Instance(); 
     std::string func = "renderEngine::createScene()";
     
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 
     instance += 1;
 //    exit(0);
@@ -886,7 +886,7 @@ bool renderEngine::renderFrame()  // renders a frame to the screen
     conversionSharedPtr convert = conversion::Instance();
     std::string func = "renderEngine::renderFrame()";
     
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 
 //    exit(0);
     logMsg(func +" Rendering Frame!");

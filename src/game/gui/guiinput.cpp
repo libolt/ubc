@@ -508,7 +508,7 @@ void GUISystem::processSetupMenuKeyPress(std::string keyPressed, renderEngineSha
 //    teamStateVecSharedPtr teamInstance = gameS->getTeamInstance();
     std::string func = "GUISystem::processSetupMenuKeyPress()";
     
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
     if (keyPressed == "a" && !setupMenuAwaySelected)
     {
         setupAwaySelected();
@@ -651,7 +651,7 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed, renderE
 //    teamStateVecSharedPtr teamInstance = gameS->getTeamInstance();
     std::string func = "GUISystem::processTeamSelectionMenuKeyPress()";
     
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 //    exit(0);
     if (keyPressed == "a" && !setupMenuAwaySelected)
     {

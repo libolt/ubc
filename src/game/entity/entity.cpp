@@ -184,7 +184,7 @@ void entity::setNodeCreated(bool set)  // sets the value of nodeCreated
     OgreSceneNodeSharedPtr tempNode; //(new Ogre::SceneNode);
 
     entityNodeName = entityName + "node";
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
     logMsg(func +" baseInitialized == " +convert->toString(baseInitialized));
     logMsg(func +" ECB entityName == " +entityName);
     logMsg(func +" ECB entityModelFileName == " +entityModelFileName);

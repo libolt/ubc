@@ -491,7 +491,7 @@ courtStateMSharedPtr loadCourts::loadModels(courtStateMSharedPtr activeCourtInst
     OgreEntitySharedPtr model;  // stores the model returned by loadModel() function
     std::string func = "loadCourts::loadModels()";
 
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
     
     logMsg(func +" activeCourtInstance.size() == " +convert->toString(activeCourtInstance.size()));
 

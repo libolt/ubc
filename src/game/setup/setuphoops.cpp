@@ -40,7 +40,7 @@ hoopStateMSharedPtr setupHoops::createHoopInstances()  // creates hoop Instances
     loadHoopsSharedPtr loadHoop(new loadHoops);
     std::string func = "setupHoops::createHoopInstances()";
 
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 //    exit(0);
 
     if(loadHoop->checkIfHoopsLoaded())
@@ -78,7 +78,7 @@ hoopStateMSharedPtr setupHoops::createActiveHoopInstances(hoopStateMSharedPtr ho
 //    hoopStateMSharedPtr activeHoopInstance = getActiveHoopInstance();
     std::string func = "setupHoops::createActiveHoopInstances()";
     size_t x = 0;
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 
     logMsg(func +" hoopInstance.size() == " +convert->toString(hoopInstance.size()));
     

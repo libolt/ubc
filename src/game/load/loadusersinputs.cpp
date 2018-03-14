@@ -76,7 +76,7 @@ bool loadUsersInputs::checkIfUsersInputsLoaded()  // checks if user inputs have 
         conversionSharedPtr convert = conversion::Instance();
     std::string func = "loadUsersInputs::checkIfUserInputsLoaded()";
 
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 
     if (userInputFilesLoaded)
     {
@@ -156,7 +156,7 @@ usersInputsVecSharedPtr loadUsersInputs::loadUsersInputFiles()  // load user inp
     std::string usersInputList;
     std::string func = "loadUsersInputs::loadUserInputs()";
 
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     usersInputList = "data/users/inputlist.xml";
@@ -195,7 +195,7 @@ stdStringVec loadUsersInputs::loadUsersInputListFile(std::string fileName)  // l
     tinyxml2::XMLDocument doc;
     std::string func = "loadUsersInputs::loadUserInputListFile()";
 
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 
     logMsg(func + " " +fileName);
     char *contents = NULL;
@@ -271,7 +271,7 @@ usersInputsSharedPtr loadUsersInputs::loadUsersInputFile(std::string fileName)  
     char *contents = NULL;
     std::string func = "loadUsersInputs::loadUserInputFile()";
 
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
     logMsg(func +" Load UserInput File");
    
     readFile(fileName.c_str(), &contents);

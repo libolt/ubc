@@ -84,7 +84,7 @@ bool UBC::setup()  // sets up UBC object
     logMsg(func +" gameE->setup()");
     component->getGameE()->setup();  // sets up the game engine
     
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 
     GUISystemSharedPtr tempGUISharedPtr(new GUISystem);
     component->setGui(tempGUISharedPtr);
@@ -154,7 +154,7 @@ void UBC::run()  // runs the game
 //    exit(0);
     std::string func = "UBC::run()";
 
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 
 //    exit(0);
 //    base->setup();
@@ -296,7 +296,7 @@ void UBC::run()  // runs the game
     playerSMData *playerSMD2 = new playerSMData;
     playerSMData *playerSMD3 = new playerSMData;
 
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
     
 ///    playerSMD->speed = 100;
 ///    playerSM.setSpeed(playerSMD);
@@ -588,7 +588,7 @@ bool UBC::updateGUI()  // updates the gui based on received events
 {
     std::string func = "UBC::updateGUI()";
 
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 
 //    GUISystemSharedPtr gui = base->getGui();
     if (component->getGameE()->getInputE()->getMouseClicked())
@@ -642,7 +642,7 @@ int main(int argc, char *argv[])
 //    exit(0);   
     std::string func = "main()";
 
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 
 //    exit(0);
     ubc->setup();

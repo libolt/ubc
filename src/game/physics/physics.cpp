@@ -228,7 +228,7 @@ bool physics::setupPhysics(OgreEntitySharedPtr *model, OgreSceneNodeSharedPtr *n
     btCollisionShape *tempShape; 
     std::string func = "physics::setupPhysics()";
     
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
     
     BtOgre::StaticMeshToShapeConverter converter(model->get());
         

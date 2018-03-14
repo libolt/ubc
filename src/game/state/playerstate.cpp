@@ -394,7 +394,7 @@ bool playerState::initialize()  // initializes the state of the object
 {
     std::string func = "playerState::initialize()";
     
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
     
     sharedPtr<playerData> tempData(new playerData);
 /*    data = tempData;
@@ -432,7 +432,7 @@ void playerState::updateState()
     Ogre::Vector3 playerPos;
     std::string func = "playerState::updateState()";
     
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 //    exit(0);
     logMsg(func +" " +data->getFirstName() + " " +data->getLastName() +" PSUPDATE!");
     logMsg(func +" " +entity->getEntityName() +" PSUPDATE!!");
@@ -666,7 +666,7 @@ void playerState::updateDirection()
 //    exit(0);
     std::string func = "playerState::updateDirection()";
     
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
     
     if (direction != oldDirection)
     {        
@@ -794,7 +794,7 @@ void playerState::updateMovement()  // updates movement status of the player
     posChange = Ogre::Vector3(0.0f, 0.0f, 0.0f);
     std::string func = "playerState::updateMovement()";
     
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
     logMsg(func +" playerTeamType == " +convert->toString(teamType));
     logMsg(func +" passSteal ==  " +convert->toString(passSteal));
     
@@ -863,7 +863,7 @@ void playerState::calculatePass()   // calculates which player to pass the ball 
     conversionSharedPtr convert = conversion::Instance();
     std::string func = "playerState::calculatepass()";
 
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 /*    logMsg("In calculatePass function");
 
     teamEntityMSharedPtr activeTeamInstance = getActiveTeamInstance();

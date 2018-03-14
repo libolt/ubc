@@ -116,7 +116,7 @@ bool playerEntity::setupPhysicsObject()  // sets up the physics object
     OgreSceneNodeSharedPtr tempNode = getNode();
     btRigidBody *tempPhysBody = component->getPhysics()->getPhysBody().get();
     
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 //    exit(0);
     
     if (!component->getPhysics()->getGameSInitialized())
@@ -214,7 +214,7 @@ bool playerEntity::update() // executes any updates that need to be performed
     std::string func = "playerEntity::update()";
     playerSMData *stateData = new playerSMData;
     
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 
 /*    if (getPhysicsSetup())
     {

@@ -604,7 +604,7 @@ void offenseState::executePass()  // executes the pass between players
 //  exit(0);
     std::string func = "teamState::executePass()";
 
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 
     logMsg(func +" Basketball = " + convert->toString(bballCoords));
     logMsg(func +" passToPlayer = " + convert->toString(passToPlayerCoords));

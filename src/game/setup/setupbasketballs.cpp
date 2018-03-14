@@ -43,7 +43,7 @@ basketballStateMSharedPtr setupBasketballs::createBasketballInstances()  // crea
     basketballInstance = loadBasketball->loadFiles();
     std::string func = "setupBasketballs::createBasketballInstance()";
 
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 //    exit(0);
     logMsg(func +" creating temporary baskteball instance");
     logMsg(func +" setting model name");
@@ -85,7 +85,7 @@ basketballStateMSharedPtr setupBasketballs::createActiveBasketballInstances(bask
     basketballStateMSharedPtr activeBasketballInstance;
     std::string func = "gameState::createActiveBasketballInstances()";
 
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 
     logMsg(func +" basketballInstance.size() == " +convert->toString(basketballInstance.size()));
     if (basketballInstance.size() == 0)

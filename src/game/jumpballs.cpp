@@ -231,7 +231,7 @@ bool jumpBalls::jumpBallExecute(basketballStateMSharedPtr activeBasketballInstan
     size_t x = 0;
     std::string func = "jumpBalls::jumpBallExecute()";
     
-    logMsg (func +" beginning");
+    logMsg (func +" begin");
     
     logMsg (func +" activeTeamInstance.size() == " +convert->toString(activeTeamInstance.size()));
     for (auto ATIIT : activeTeamInstance)
@@ -340,7 +340,7 @@ TS*/
     logMsg(func +" Execute ballTippedToTeam == " +convert->toString(ballTippedToTeam));
     logMsg(func +" Execute ballTippedToPosition == " +convert->toString(ballTippedToPosition));
     
-    logMsg (func +" beginning");
+    logMsg (func +" begin");
     return (false);  // executeJumpBall has not completed
 }
 

@@ -159,7 +159,7 @@ basketballStateMSharedPtr loadBasketballs::loadFiles()  // load basketball setti
     std::string basketballList;
     std::string func = "loader::loadBasketballs()";
     
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
     
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     basketballList = "data/basketballs/basketballs.xml";
@@ -196,7 +196,7 @@ stdStringVec loadBasketballs::loadListFile(std::string fileName) // loads the li
     tinyxml2::XMLDocument doc;
     std::string func = "loader::loadListFile()";
     
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 
     logMsg(fileName);
     char *contents = NULL;
@@ -255,7 +255,7 @@ basketballStateSharedPtr loadBasketballs::loadFile(std::string fileName)  // loa
     char *contents = NULL;
     std::string func = "loader::loadFile()";
     
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 
     readFile(fileName.c_str(), &contents);
     fileContents = convert->toString(contents);
@@ -343,7 +343,7 @@ basketballStateMSharedPtr loadBasketballs::loadModels(basketballStateMSharedPtr 
     std::string func = "loadBasketballs::loadModels()";
     bool returnType = false;
     
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
     
     logMsg(func +" activeBasketballInstance.size() == " +convert->toString(activeBasketballInstance.size()));
 

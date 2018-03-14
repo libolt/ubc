@@ -150,7 +150,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     std::string func = "GUISystem::addPlayerStartSelectionMenuData";
     sizeTVec teamIDs = gameInstance->getData()->getTeamIDS();
 
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
     
     logMsg(func +" activeTeamInstance.size() == " +convert->toString(activeTeamInstance.size()));
 //    exit(0);

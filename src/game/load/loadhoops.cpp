@@ -230,7 +230,7 @@ hoopStateSharedPtr loadHoops::loadHoopFile(std::string fileName)  // loads data 
     char *contents = NULL;
     std::string func = "loader::loadHoopFile()";
 
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 
     readFile(fileName.c_str(), &contents);
     fileContents = convert->toString(contents);

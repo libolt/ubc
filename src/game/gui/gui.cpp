@@ -457,7 +457,7 @@ void GUISystem::mainMenu(renderEngineSharedPtr render)  // msin in game menu
         
     }
     showMainMenuWidgets();  // displays main menu
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 
     activeMenu = MAIN;
     
@@ -575,7 +575,7 @@ void GUISystem::playerStartSelectionMenu(renderEngineSharedPtr render)  // displ
 {
     std::string func = "GUISystem::playerStartSelectionMenu()";
     
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
     
 
     if (!playerStartSelectionMenuCreated)
@@ -744,7 +744,7 @@ void GUISystem::courtSelectionMenu(renderEngineSharedPtr render) // displays cou
 //    sharedPtr<loader> load; // = loader::Instance();
     std::string func = "GUISystem::courtSelectionMenu()";
     
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
     
     
     if (!courtSelectionMenuCreated)
@@ -782,7 +782,7 @@ void GUISystem::setSelectedIndexes()  // sets all player listbox indexes to zero
 {
     std::string func = "GUISystem::setSelectedIndexes()";
     
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
     
     teamPlayerPosSelectBox[0]["PG"]->setIndexSelected(0);
     logMsg(func +" PG0");
@@ -875,7 +875,7 @@ void GUISystem::courtSelected()  // processes court selection
 //    sharedPtr<gameState> gameS = gameState::Instance();
     std::string func = "GUISystem::courtSelected()";
     
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 
     logMsg(func +" Selected Court #" +convert->toString(courtSelectBox->getIndexSelected()));
 //    gameS->setSelectedCourtDataInstance(courtSelectBox->getIndexSelected());
@@ -902,7 +902,7 @@ void GUISystem::teamsSelected()  // processes team selection
   
 //    teamInstance = base->getGameS()->getTeamInstance();
     
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
     
     sizeTVec teamID;
     teamID.push_back(teamSelectBox[0]->getIndexSelected());

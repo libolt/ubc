@@ -266,7 +266,7 @@ bool UBCGame::createUserInstances()  // creates the user instances
     usersMSharedPtr tempUserInstance;
     std::string func = "UBC::createUserInstances()";
 
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 
     size_t x = 0;
 
@@ -348,7 +348,7 @@ bool UBCGame::loop(gameEngineSharedPtr gameE, UBCInputSharedPtr input, GUISystem
     playerSMData *playerSMD2 = new playerSMData;
     playerSMData *playerSMD3 = new playerSMData;
 */
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
     
 ///    playerSMD->speed = 100;
 ///    playerSM.setSpeed(playerSMD);
@@ -463,7 +463,7 @@ bool UBCGame::startGame(renderEngineSharedPtr render)  // starts the game
 //    sharedPtr<gameState> gameS = gameState::Instance();
     std::string func = "UBC::startGame()";
 
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 
 //    exit(0);
 //BASEREMOVAL    gameInstance->setBase(base);

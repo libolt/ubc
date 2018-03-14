@@ -98,7 +98,7 @@ void basketballPhysics::setBounce(bballBounces set)  // sets the value of bounce
 bool basketballPhysics::setup()  // sets up physics for the basketball
 {
     std::string func = "basketballPhysics::setup()";
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
     exit(0);
 /*    setCollidesWith(COL_COURT);  // collides with the court
     conversionSharedPtr convert = conversion::Instance();

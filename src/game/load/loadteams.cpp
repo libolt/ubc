@@ -247,7 +247,7 @@ stdStringVec loadTeams::loadTeamListFile(std::string fileName)  // loads the tea
     tinyxml2::XMLDocument doc;
     std::string func = "loader::loadTeamListFile";
     
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 
     
     logMsg(fileName);

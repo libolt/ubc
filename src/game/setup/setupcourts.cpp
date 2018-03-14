@@ -41,7 +41,7 @@ courtStateMSharedPtr setupCourts::createCourtInstances()  // creates court Insta
     loadCourtsSharedPtr loadCourt;
     std::string func = "setupCourts::createCourtInstances()";
 
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 
 //    exit(0);
 //    courtState cInstance;  // creates an instance of the courtState class

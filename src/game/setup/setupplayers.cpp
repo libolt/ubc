@@ -53,7 +53,7 @@ bool setupPlayers::checkIfGamePlayerInstancesCreated(gameComponentsSharedPtr gam
     bool returnType = false;
     std::string func = "setupPlayers::checkIfGamePlayerInstanceCreated()";
     
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 
     if (gameFlag->getPlayerInstanceCreated())
     {
@@ -117,7 +117,7 @@ bool setupPlayers::checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr game
     bool returnType = false;
     std::string func = "setupPlayers::checkIfTeamPlayerInstancesCreated()";
   
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
     
     for (auto ATIIT : activeTeamInstance)  // loop through activeTeamInstance
     {
@@ -178,7 +178,7 @@ playerEntityMSharedPtr setupPlayers::createPlayerInstances()  // creates player 
     playerEntityMSharedPtr playerInstance;
     std::string func = "setupPlayers::createPlayerInstances()";
 
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 
     logMsg(func +" checkIfPlayersLoaded");
     //    exit(0);
@@ -224,7 +224,7 @@ playerEntityMSharedPtr setupPlayers::createTeamPlayerInstances(playerEntityMShar
 //    playerEntityMSharedPtr gamePlayerInstance;
     std::string func = "setupPlayers::createTeamPlayerInstances()";
 
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 
     if (gamePlayerInstance.size() > 0)
     {
@@ -334,7 +334,7 @@ playerEntityMSharedPtr setupPlayers::setupActivePlayerInstances(playerEntityMSha
     
     std::string func = "setupPlayers::setupActivePlayerInstances()";
     
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
     for (auto APIIT : activePlayerInstance)
     {
         if (!APIIT.second->getInitialized())

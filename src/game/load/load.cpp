@@ -56,7 +56,7 @@ int loader::readFile(const char *sourceFile, char **destination)  // loads an xm
     int MAX_BLOCKS = 1024;
     std::string func = "loader::readFile()";
 
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
 
 ///#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 //	Ogre::DataStreamPtr fileData = render->openAPKFile("teamInstance.xml");
@@ -117,7 +117,7 @@ SDL_RWops *loader::readBinaryFile(const char *sourceFile)  // reads in a binary 
     int BLOCK_SIZE = 8;
     int MAX_BLOCKS = 1024;
     
-    logMsg(func +" beginning");
+    logMsg(func +" begin");
     logMsg(func +" sourceFile = " +convert->toString(sourceFile));
 
     SDL_RWops *file;

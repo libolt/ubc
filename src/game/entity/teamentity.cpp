@@ -175,8 +175,10 @@ void teamEntity::updateState(gameComponentsSharedPtr gameInstanceComponent, game
         
         if (!flag->getPlayerStartPositionsSet())
         {
-            logMsg(func +" Player Start Positions Not Set!");
+            logMsg(func +" Player Start Positions Not Yet Set!");
             playerEntityMSharedPtr activePlayerInstance;
+            logMsg(func +" component->getActivePlayerInstance().size() = " +convert->toString(component->getActivePlayerInstance().size()));
+            exit(0);
             activePlayerInstance = setupTeam->setPlayerStartPositions(component->getActivePlayerInstance(), gameInstanceComponent->getCourtInstance(), gameData, gameInstanceData->getTeamStarterID());
 //            if (setPlayerStartPositions(activePlayerInstance, gameInstanceComponent->getCourtInstance(), gameInstanceData->getTeamStarterID()))  // sets starting positions for the players
             if (activePlayerInstance.size() > 0)

@@ -79,8 +79,8 @@ bool loadTeams::checkIfTeamsLoaded()  // checks if teams have been loaded into t
     tInstance = tempTInstance;
     std::string func = "loader::checkIfTeamsLoaded()";
     
-    logMsg(func + " beginning");
-
+    logMsg(func + " begin");
+//    exit(0);
     if (teamFilesLoaded)
     {
         logMsg(func + " getTeamFilesLoaded");
@@ -426,7 +426,7 @@ teamEntitySharedPtr loadTeams::loadTeamFile(std::string fileName)  // loads the 
     teamInstance->setData(tempData);
     
     teamInstance->getData()->setID(ID);
-    exit(0);
+//    exit(0);
     teamInstance->getData()->setCity(City);
     teamInstance->getData()->setName(Name);
     teamInstance->getData()->setCoach(Coach);

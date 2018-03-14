@@ -47,7 +47,7 @@ setupTeams::~setupTeams()  // destructor
 teamEntityMSharedPtr setupTeams::createTeamInstances()  // creates team Instances
 {
     conversionSharedPtr convert = conversion::Instance();
-    loadTeamsSharedPtr loadTeam; // = base->getLoadTeam();
+    loadTeamsSharedPtr loadTeam(new loadTeams); // = base->getLoadTeam();
     std::string func = "setupTeams::createTeamInstances()";
     
     logMsg(func +" begin");
@@ -212,7 +212,7 @@ playerEntityMSharedPtr setupTeams::setPlayerStartPositions(playerEntityMSharedPt
 
 //    exit(0);
     logMsg(func +" begin");
-
+    
     logMsg(func +" courtPos.y == " +convert->toString(courtPos.y));
     float yOffset = courtPos.y + 6.0;
     
@@ -221,6 +221,8 @@ playerEntityMSharedPtr setupTeams::setPlayerStartPositions(playerEntityMSharedPt
 
 //    exit(0);
     activePlayerInstance = setupPlayerPosition->setJumpBallPositions(activePlayerInstance, gameData->getTeamType(), courtPos);
+    logMsg(func +" activePlayerInstance size == " +convert->toString(activePlayerInstance.size()));
+    exit(0);
     // set initial player coordinates for the tipoff
 
 /*    switch (teamType)
@@ -333,6 +335,7 @@ playerEntityMSharedPtr setupTeams::setPlayerStartPositions(playerEntityMSharedPt
 //    component->setActivePlayerInstance(activePlayerInstance);
     
     logMsg(func +" end");
+    
     return (activePlayerInstance);
 }
 
@@ -345,6 +348,7 @@ playerEntityMSharedPtr setupTeams::setPlayerStartActivePositions(playerEntityMSh
     logMsg(func +" begin");
     
     logMsg(func + " activePlayerInstance.size() == " +convert->toString(activePlayerInstance.size()));
+    exit(0);
     if (activePlayerInstance.size() > 0) // checks that activePlayerInstance has data before executing
     {
         activePlayerInstance[0]->getGameData()->setActivePosition(PG);

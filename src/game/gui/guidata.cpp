@@ -320,7 +320,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
 {
     conversionSharedPtr convert = conversion::Instance();
     setupTeamsSharedPtr setupTeam(new setupTeams);
-    loadTeamsSharedPtr loadTeam; // = base->getLoadTeam();
+    loadTeamsSharedPtr loadTeam(new loadTeams); // = base->getLoadTeam();
     teamEntityMSharedPtr teamInstance; // = gameS->getTeamDataInstance();
     std::string func = "GUISystem::addTeamStartSelectionMenuData()";
 
@@ -330,7 +330,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     {
         teamInstance = loadTeam->getTInstance();
     }
-    exit(0);
+//    exit(0);
     gameInstance->getComponent()->setTeamInstance(teamInstance);  // copies data to teamInstance object
     gameInstance->getFlag()->setTeamInstancesCreated(true);
     

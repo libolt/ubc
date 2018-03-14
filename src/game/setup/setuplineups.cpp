@@ -277,8 +277,10 @@ teamEntityMSharedPtr setupLineups::setupStartingLineups(teamEntityMSharedPtr act
         playerEntityMSharedPtr activePlayerInstance = setupPlayer->createActivePlayerInstances(ATIIT.second->getComponent()->getPlayerInstance(), teamStarterID[teamIDNum]);
         
 
+        logMsg(func +" activePlayerInstance.size() == " +convert->toString(activePlayerInstance.size()));
 //        exit(0);
         ATIIT.second->getComponent()->setActivePlayerInstance(activePlayerInstance);
+
         ATIIT.second->getFlag()->setActivePlayerInstancesCreated(true);
         ATIIT.second->getFlag()->setActivePlayerInstancesChanged(true);
 
@@ -294,7 +296,7 @@ teamEntityMSharedPtr setupLineups::setupStartingLineups(teamEntityMSharedPtr act
     {
         logMsg(func + " activePlayerInstance size() == " +convert->toString(ATIIT.second->getComponent()->getActivePlayerInstance().size()));
     }
-    
+    exit(0);
     return (activeTeamInstance);
 }
 

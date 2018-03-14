@@ -335,6 +335,10 @@ playerEntityMSharedPtr setupPlayers::setupActivePlayerInstances(playerEntityMSha
     std::string func = "setupPlayers::setupActivePlayerInstances()";
     
     logMsg(func +" begin");
+
+    logMsg(func +" activePlayerInstance.size() == " +convert->toString(activePlayerInstance.size()));
+    exit(0);
+
     for (auto APIIT : activePlayerInstance)
     {
         if (!APIIT.second->getInitialized())

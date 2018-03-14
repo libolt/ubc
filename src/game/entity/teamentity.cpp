@@ -152,7 +152,11 @@ void teamEntity::updateState(gameComponentsSharedPtr gameInstanceComponent, game
 //  logMsg(func +" Updating team state " +convert->toString(teamNumber));
     if (flag->getActivePlayerInstancesCreated())
     {
+
         playerEntityMSharedPtr activePlayerInstance = component->getActivePlayerInstance();
+        logMsg(func +" activePlayerInstance.size() == " +convert->toString(activePlayerInstance.size()));
+        exit(0);
+
         if (!flag->getActivePlayerInstancesSetup())
         {
             // setup Active Player Instances

@@ -23,6 +23,7 @@
 
 #include "boost/shared_ptr.hpp"
 
+#include "flags/guiflags.h"
 #include "gui/guidefines.h"
 
 #include "MyGUI_Gui.h"
@@ -35,21 +36,10 @@
 #include "MyGUI_LayoutManager.h"
 #include "MyGUI_ImageBox.h"
 
-/* #include "MyGUI.h"
-#include "MyGUI_OgrePlatform.h"
-#include "MyGUI_OgreRenderManager.h"
-*/
+
 
 #include "utilities/enums.h"
 #include "utilities/typedefs.h"
-//#include "input.h" 
-//#include "engine/renderengine.h" 
-
-//#include "ubc/ubc.h"
-
-//class networkEngine;
-//class renderEngine;
-//class gameEngine;
 
 class UBCGame;
 
@@ -58,59 +48,10 @@ class GUISystem
 public:
     GUISystem();  // constructor
     ~GUISystem();  // destructor
-
-    //static GUISystem *Instance();
-//    static sharedPtr<GUISystem> Instance();
-
-/*    networkEngineSharedPtr getNetworkG();  // retrieves the value of networkG
-    void setNetworkG(networkEngineSharedPtr set);  // sets the value of networkG
-
-    renderEngineSharedPtr getRenderE();  // retrieves the value of render
-    void setRender(renderEngineSharedPtr set);  // sets the value of render
-*/
-
-    bool getSetupComplete();  // retrieves the value of setupComplete
-    void setSetupComplete(bool set);  // sets the value of setupComplete
-    
-    bool getMainMenuCreated();   // retrieves the value of mainMenuCreated
-    void setMainMenuCreated(bool set); // sets the value of mainMenuCreated
-
-    bool getBackButtonsCreated(); // retrieves the value of backButtonsCreated
-    void setBackButtonsCreated(bool set); // sets the value of backButtonsCreated
-
-    bool getNetworkSetupMenuCreated();  // retrieves the value of networkSetupMenuCreated
-    void setNetworkSetupMenuCreated(bool set);  // sets the value of networkSetupMenuCreated
-
-    bool getOptionsMenuCreated();  // retrieves the value of optionsMenuCreated
-    void setOptionsMenuCreated(bool set);  // sets the value of optionsMenuCreated
-
-    bool getDisplaySetupMenuCreated();  // retrieves the value of displaySettingsMenuCreated
-    void setDisplaySetupMenuCreated(bool set);  // sets the value of displaySettingsMenuCreated
-
-    bool getInputSetupMenuCreated();  // retrieves the value of inputSettingsMenuCreated
-    void setInputSetupMenuCreated(bool set);  // sets the value of inputSettingsMenuCreated
-
-    bool getAuduoSetupMenuCreated();  // retrieves the value of audioSettingsMenuCreated
-    void setAudioSetupMenuCreated(bool set);  // sets the value of audioSettingsMenuCreated
-
-    bool getSetupMenuCreated();  // retrieves the value of setupMenuCreated
-    void setSetupMenuCreated(bool set);  // sets the value of setupMenuCreated
-
-    bool getPlayerStartSelectionMenuCreated();  // retrieves the value of playerStartSelectionMenuCreated
-    void setPlayerStartSelectionMenuCreated(bool set);  // sets the value of playerStartSelectionMenuCreated
-
-    bool getTeamSelectionMenuCreated();  // retrieves the value of teamSelectionMenuCreated
-    void setTeamSelectionMenuCreated(bool set);  // sets the value of teamSelectionMenuCreated
-
-    bool getTeamSelectionMenuDataAdded();  // retrieves the value of teamSelectionMenuDataAdded
-    void setTeamSelectionMenuDataAdded(bool set);  // sets the value of teamSelectionDataAdded
-
-    bool getCourtSelectionMenuCreated();  // retrieves the value of courtSelectionMenuCreated
-    void setCourtSelectionMenuCreated(bool set);  // sets the value of courtSelectionMenuCreated	
-
-    bool getCourtSelectionDataLoaded();  // retrieves the value of courtSelectionEntriesLoaded
-    void setCourtSelectionDataLoaded(bool set);  // sets the value of courtSelectionEntriesLoaded
 	
+    guiFlagsSharedPtr getFlag();  // retrieves the value of flag
+    void setFlag(guiFlagsSharedPtr set);  // sets the value of flag
+
     UBCGameSharedPtr getGame();  // retrieves the value of game
     void setGame(UBCGameSharedPtr set); // sets the value of game
 
@@ -123,9 +64,6 @@ public:
     teamEntityMSharedPtr getTeamInstance();  // retrieves the value of teamInstance
     void setTeamInstance(teamEntityMSharedPtr set);  // sets the value of teamInstance
 
-    bool getMenuActive(); // retrieves the value of menuActive
-    void setMenuActive(bool set); // sets the value of menuActive
-
     activeMenus getActiveMenu(); // retrieves the value of activeMenu
     void setActiveMenu(activeMenus set); // sets the value of activeMenu
 
@@ -134,10 +72,6 @@ public:
 
     MyGUIGuiSharedPtr getMGUI();  // retrieves the value of mGUI
     void setMGUI(MyGUIGuiSharedPtr set);  // sets the value of mGUI
-    
-/*    Ogre::Viewport *getViewPort();  // retrieves the value of viewPort
-    void setViewPort(const Ogre::Viewport &set);  // sets the value of viewPort
-*/
 
     bool setup(renderEngineSharedPtr render);  // sets up the in game gui
     bool initMyGUI(renderEngineSharedPtr render);  // Initializes MyGUI
@@ -206,13 +140,6 @@ public:
     
     bool checkTeamInstancesCreated();  // Checks if team instances have been created and if not creates them.
 
-
-
-//    GUISystem();
-//    GUISystem(const GUISystem&);
-//    GUISystem& operator= (const GUISystem&);
-
-    
     // MyGUI functions
     void startSingleGameButtonClicked(MyGUI::Widget *_sender);  // handles startSingleGameButton click event
     void startMultiGameButtonClicked(MyGUI::Widget *_sender);  // hands startMultiGameButton click event
@@ -288,12 +215,8 @@ public:
     
 private:
 
-    //static GUISystem *pInstance;
-//    static sharedPtr<GUISystem> pInstance;
-    
-//    static MyGUI::Gui *mGUI;
-//    static MyGUI::OgrePlatform *mPlatform;
-    
+    guiFlagsSharedPtr flag;  // stores gui related flags
+
     MyGUIGuiSharedPtr mGUI;  // The MyGUI object
     MyGUIOgrePlatformSharedPtr mPlatform;  // The MyGUI Platform object
 
@@ -301,61 +224,19 @@ private:
     
     // Main Menu
     MyGUIButtonMSharedPtr mainMenuButtons;
-/*    static sharedPtr<MyGUI::Button> exitButton;
-    static sharedPtr<MyGUI::Button> startSingleGameButton;
-    static sharedPtr<MyGUI::Button> startMultiGameButton;
-    static sharedPtr<MyGUI::Button> optionsButton;
-    static sharedPtr<MyGUI::Button> serverButton;
-    static sharedPtr<MyGUI::Button> clientButton;
-*/
     MyGUIButtonMSharedPtr networkMenuButtons;
-
-//    static sharedPtr<MyGUI::Button> backMainMenuButton;
-//    static sharedPtr<MyGUI::Button> backNetworkSetupButton;
-    
     MyGUIButtonMSharedPtr optionsMenuButtons;
-/*    static sharedPtr<MyGUI::Button> displayButton;
-    static sharedPtr<MyGUI::Button> inputButton;
-    static sharedPtr<MyGUI::Button> audioButton;
-*/
-//    static sharedPtr<MyGUI::Button> startGameButton;
-//    static sharedPtr<MyGUI::Button> backNetworkClientButton;
-//    static sharedPtr<MyGUI::Button> changeResolutionButton;
-
     MyGUIButtonMSharedPtr displayMenuButtons;
-
-//    static sharedPtr<MyGUI::Button> changeInputTypeButton;
-    
     MyGUIButtonMSharedPtr inputMenuButtons;
-
-//    static sharedPtr<MyGUI::Button> enableAudioButton;
-//    static sharedPtr<MyGUI::Button> disableAudioButton;
-    
     MyGUIButtonMSharedPtr audioMenuButtons;
 
-//    static sharedPtr<MyGUI::Button> backOptionsMenuButton;
-    
-//    static sharedPtr<MyGUI::Button> backSetupMenuButton;
-//    static sharedPtr<MyGUI::Button> backTeamSelectionMenuButton;
-//    static sharedPtr<MyGUI::Button> backCourtSelectionMenuButton;
-    
     // Team Selection Menu
     MyGUIButtonMSharedPtr teamSelectionMenuButtons;
 
-/*    static sharedPtr<MyGUI::Button> team0SelectButton;
-    static sharedPtr<MyGUI::Button> team1SelectButton;
-    static sharedPtr<MyGUI::Button> teamsSelectedButton;
-*/
     // Player Start Selection Menu
-/*    static sharedPtr<MyGUI::Button> team0StartingLineupSetButton;
-    static sharedPtr<MyGUI::Button> team1StartingLineupSetButton;
-    static sharedPtr<MyGUI::Button> startingLineupsSetButton;
-*/
     MyGUIButtonMSharedPtr playerStartSelectionMenuButtons;
 
     // Team selection listbox widgets
-//    static MyGUIListBoxSharedPtr team0SelectBox;
-//    static MyGUIListBoxSharedPtr team1SelectBox;
     MyGUIListBoxMSharedPtr teamSelectBox;
 
     // Network Server Setup Widgets
@@ -373,91 +254,19 @@ private:
     
     MyGUIListBoxVecMSharedPtr teamPlayerPosSelectBox;
     
-/*    static MyGUIListBoxSharedPtr team0Player1SelectBox;
-    static MyGUIListBoxSharedPtr team0Player2SelectBox;
-    static MyGUIListBoxSharedPtr team0Player3SelectBox;
-    static MyGUIListBoxSharedPtr team0Player4SelectBox;
-    static MyGUIListBoxSharedPtr team0Player5SelectBox;
-    static MyGUIListBoxSharedPtr team1Player1SelectBox;
-    static MyGUIListBoxSharedPtr team1Player2SelectBox;
-    static MyGUIListBoxSharedPtr team1Player3SelectBox;
-    static MyGUIListBoxSharedPtr team1Player4SelectBox;
-    static MyGUIListBoxSharedPtr team1Player5SelectBox;
-
-    
-    // Player Selection Menu widgets
-    static MyGUIListBoxSharedPtr team0PGSelectBox;
-    static MyGUIListBoxSharedPtr team0SGSelectBox;
-    static MyGUIListBoxSharedPtr team0SFSelectBox;
-    static MyGUIListBoxSharedPtr team0PFSelectBox;
-    static MyGUIListBoxSharedPtr team0CSelectBox;
-
-    static MyGUIListBoxSharedPtr team1PGSelectBox;
-    static MyGUIListBoxSharedPtr team1SGSelectBox;
-    static MyGUIListBoxSharedPtr team1SFSelectBox;
-    static MyGUIListBoxSharedPtr team1PFSelectBox;
-    static MyGUIListBoxSharedPtr team1CSelectBox;
-*/
 
     MyGUITextBoxVecMSharedPtr teamPlayerRating;
 
-
-/*    static MyGUITextBoxSharedPtr> team0PGRating;
-    static MyGUITextBoxSharedPtr> team0SGRating;
-    static MyGUITextBoxSharedPtr> team0SFRating;
-    static MyGUITextBoxSharedPtr> team0PFRating;
-    static MyGUITextBoxSharedPtr> team0CRating;
-
-    static MyGUITextBoxSharedPtr> team1PGRating;
-    static MyGUITextBoxSharedPtr> team1SGRating;
-    static MyGUITextBoxSharedPtr> team1SFRating;
-    static MyGUITextBoxSharedPtr> team1PFRating;
-    static MyGUITextBoxSharedPtr> team1CRating;
-*/
-
     MyGUIImageBoxMSharedPtr teamLogo;
 
-//    static MyGUIImageBoxSharedPtr team0Logo;
-//    static MyGUIImageBoxSharedPtr team1Logo;
-	
     // Court selection menu widgets
     MyGUIButtonMSharedPtr courtSelectionMenuButtons;
 
-//    static sharedPtr<MyGUI::Button> backPlayerStartSelectionMenuButton;
-//    static sharedPtr<MyGUI::Button> courtSelectButton;
     MyGUIListBoxSharedPtr courtSelectBox;
     MyGUIImageBoxSharedPtr courtPreviewImgBox;
     MyGUITextBoxSharedPtr courtNameTxtBox;
 
-    // OGRE specific code
-/*    renderEngineSharedPtr render;  // stores a copy of the render object for use in the gui
-    Ogre::Viewport *viewPort; // stores the view port for mygui
 
-    // network engine
-    networkEngineSharedPtr networkG;  // stores a copy of the network object for use in the gui
-*/
-
-	// booleans
-    bool setupComplete;  // determinrs if the gui has been properly setup.
-    bool mainMenuCreated;   // determines whether the main menu gui has been created
-    bool backButtonsCreated;  // determines whether the back buttons have been created
-    bool networkSetupMenuCreated;   // determines whether the network setup gui has been created
-    bool networkServerSetupMenuCreated;   // determines whether the network server setup gui has been created
-    bool networkClientSetupMenuCreated;   // determines whether the network client setup gui has been created
-    bool optionsMenuCreated;   // determines whether the options menu gui has been created
-    bool displaySetupMenuCreated;   // determines whether the display settings menu gui has been created
-    bool inputSetupMenuCreated;   // determines whether the input settings menu gui has been created
-    bool audioSetupMenuCreated;   // determines whether the audio settings menu gui has been created
-    bool setupMenuCreated;  // determines whether the game setup menu gui has been created
-    bool playerStartSelectionMenuCreated;  // determines whether the player start selection menu gui has been created
-    bool teamSelectionMenuCreated;  // determines whether the team selection menu gui has been created
-    bool teamSelectionMenuDataAdded;  // determines whether teeam data has been added to the the team selection menu
-    bool courtSelectionMenuCreated;  // deteemines whether the court selection menu has been created;
-    bool menuActive;  // stores whether a menu is being diplayed
-    bool setupMenuAwaySelected;  // determines whether the away team listbox is selected;
-    bool setupMenuHomeSelected;  // determines whether the home team listbox is selected;
-    bool courtSelectionDataLoaded;  // determines whether court names have been added to the select box
-    
     UBCGameSharedPtr game;  // stores a copy of the game object
     gameStateSharedPtr gameInstance;  // stores a copy of the gameInstance
     teamEntityMSharedPtr teamInstance;  // stores a copy of the teamInstance

@@ -49,115 +49,8 @@
 #include "config.h"
 #endif
 
-// static declarations
-/*
-bool GUISystem::setupComplete;
-bool GUISystem::mainMenuCreated; 
-bool GUISystem::menuActive;  // stores whether a menu is being diplayed
-bool GUISystem::backButtonsCreated;  // determines whether the back buttons have been created
-bool GUISystem::networkSetupMenuCreated;   // determines whether the network setup gui has been created
-bool GUISystem::networkServerSetupMenuCreated;   // determines whether the network server setup gui has been created
-bool GUISystem::networkClientSetupMenuCreated;   // determines whether the network client setup gui has been created
-bool GUISystem::optionsMenuCreated;   // determines whether the options menu gui has been created
-bool GUISystem::displaySetupMenuCreated;   // determines whether the display settings menu gui has been created
-bool GUISystem::inputSetupMenuCreated;   // determines whether the input settings menu gui has been created
-bool GUISystem::audioSetupMenuCreated;   // determines whether the audio settings menu gui has been created
-bool GUISystem::setupMenuCreated;  // determines whether the game setup menu gui has been created
-bool GUISystem::playerStartSelectionMenuCreated;  // determines whether the player start selection menu gui has been created
-bool GUISystem::teamSelectionMenuCreated;  // determines whether the team selection menu gui has been created
-bool GUISystem::teamSelectionMenuDataAdded;  // determines whether teeam data has been added to the the team selection menu
-bool GUISystem::courtSelectionMenuCreated;  // deteemines whether the court selection menu has been created;
-bool GUISystem::setupMenuAwaySelected;  // determines whether the away team listbox is selected;
-bool GUISystem::setupMenuHomeSelected;  // determines whether the home team listbox is selected;
-bool GUISystem::courtSelectionDataLoaded;  // determines whether court names have been added to the select box
-
-activeMenus GUISystem::activeMenu;  // stores which menu is being displayed
-activeMenus GUISystem::previousActiveMenu;  // stores which menu was last displayed
-
-//MyGUIGuiSharedPtr GUISystem::mGUI;
-MyGUIOgrePlatformSharedPtr GUISystem::mPlatform;
-
-MyGUIButtonMSharedPtr GUISystem::mainMenuButtons;
-
-MyGUIButtonMSharedPtr GUISystem::networkMenuButtons;
-
-MyGUIButtonMSharedPtr GUISystem::playerStartSelectionMenuButtons;
-//sharedPtr<MyGUI::Button> GUISystem::backNetworkSetupButton;
-
-MyGUIButtonMSharedPtr GUISystem::optionsMenuButtons;
-
-MyGUIButtonMSharedPtr GUISystem::displayMenuButtons;
-MyGUIButtonMSharedPtr GUISystem::inputMenuButtons;
-MyGUIButtonMSharedPtr GUISystem::audioMenuButtons;
-
-
-// Team Selection Menu
-MyGUIButtonMSharedPtr GUISystem::teamSelectionMenuButtons;
-
-MyGUIListBoxMSharedPtr GUISystem::teamSelectBox;
-
-// Network Server Setup Widgets
-MyGUIListBoxSharedPtr GUISystem::numClientsSelectBox;  // allows you to select the number of network players
-//sharedPtr<MyGUI::Button> GUISystem::serverHostButton;
-sharedPtr<MyGUI::EditBox> GUISystem::serverIPAddressBox;
-MyGUIButtonMSharedPtr GUISystem::networkServerSetupMenuButtons;
-    
-// Network Client Setup Widgets
-sharedPtr<MyGUI::EditBox> GUISystem::clientIPAddressBox;
-//sharedPtr<MyGUI::Button> GUISystem::clientConnectButton;
-MyGUIButtonMSharedPtr GUISystem::networkClientSetupMenuButtons;
-    
-MyGUIListBoxVecMSharedPtr GUISystem::teamPlayerPosSelectBox;
-
-MyGUITextBoxVecMSharedPtr GUISystem::teamPlayerRating;
-MyGUIImageBoxMSharedPtr GUISystem::teamLogo;
-
-// Court selection menu widgets
-MyGUIButtonMSharedPtr GUISystem::courtSelectionMenuButtons;
-//sharedPtr<MyGUI::Button> GUISystem::backPlayerStartSelectionMenuButton;
-//sharedPtr<MyGUI::Button> GUISystem::courtSelectButton;
-MyGUIListBoxSharedPtr GUISystem::courtSelectBox;  
-MyGUIImageBoxSharedPtr GUISystem::courtPreviewImgBox;
-MyGUITextBoxSharedPtr GUISystem::courtNameTxtBox;
-
-std::vector< stdStringVec > GUISystem::playerNames;
-std::vector< stdStringVec > GUISystem::playerPositionsPlayed;
-std::vector< sizeTVec > GUISystem::playerIDs;  // stores player IDs for each team
-std::vector< sizeTVec > GUISystem::team0IDs;
-std::vector< sizeTVec > GUISystem::team1IDs;
-std::vector<std::unordered_map<std::string, size_t> > GUISystem::teamStarterID; // stores the selected starters for each team 
-
-size_t GUISystem::displayCount;
-*/
-//void GUISystem::startSingleGameButtonClicked(MyGUI::Widget *_sender);
-
 GUISystem::GUISystem()  // Initialmizes the GUISystem class
 {
-//    mGUIRenderer = 0;
-//    mGUISystem = 0;
-//    mEditorGuiSheet =m
-//    Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
-//    QuickGUI::registerScriptParser()m;
-    setupComplete = false;
-    mainMenuCreated = false;
-    backButtonsCreated = false;
-    networkSetupMenuCreated = false;
-    networkServerSetupMenuCreated = false;
-    networkClientSetupMenuCreated = false;
-    optionsMenuCreated = false;
-    displaySetupMenuCreated = false;
-    inputSetupMenuCreated = false;
-    audioSetupMenuCreated = false;
-    setupMenuCreated = false;
-    setupMenuAwaySelected = false;
-    setupMenuHomeSelected = false;
-    playerStartSelectionMenuCreated = false;
-    teamSelectionMenuCreated = false;
-    teamSelectionMenuDataAdded = false;
-    courtSelectionMenuCreated = false;
-    courtSelectionDataLoaded = false;
-    
-    menuActive = false;
 
     //activeMenu = NULL;mm
     //previousActiveMenu = NULL;
@@ -170,131 +63,13 @@ GUISystem::~GUISystem()
 
 }
 
-bool GUISystem::getSetupComplete()  // retrieves the value of setupComplete
+guiFlagsSharedPtr GUISystem::getFlag()  // retrieves the value of flag
 {
-    return (setupComplete);
+    return (flag);
 }
-void GUISystem::setSetupComplete(bool set)  // sets the value of setupComplete
+void GUISystem::setFlag(guiFlagsSharedPtr set)  // sets the value of flag
 {
-    setupComplete = set;
-}
-
-bool GUISystem::getMainMenuCreated()  // retrieves the value of mainMenuCreated
-{
-    return (mainMenuCreated);
-}
-void GUISystem::setMainMenuCreated(bool set)  // sets the value of mainMenuCreated
-{
-    mainMenuCreated = set;
-}
-
-bool GUISystem::getBackButtonsCreated()  // retrieves the value of backButtonsCreated
-{
-	return (backButtonsCreated);
-}
-void GUISystem::setBackButtonsCreated(bool set)  // sets the value of backButtonsCreated
-{
-	backButtonsCreated = set;
-}
-
-bool GUISystem::getNetworkSetupMenuCreated()  // retrieves the value of networkSetupMenuCreated
-{
-    return (networkSetupMenuCreated);
-}
-void GUISystem::setNetworkSetupMenuCreated(bool set)  // sets the value of networkSetupMenuCreated
-{
-    networkSetupMenuCreated = set;
-}
-
-bool GUISystem::getOptionsMenuCreated()  // retrieves the value of optionsMenuCreated
-{
-	return (optionsMenuCreated);
-}
-void GUISystem::setOptionsMenuCreated(bool set)  // sets the value of optionsMenuCreated
-{
-	optionsMenuCreated = set;
-}
-
-bool GUISystem::getDisplaySetupMenuCreated()  // retrieves the value of displaySettingsMenuCreated
-{
-	return (displaySetupMenuCreated);
-}
-void GUISystem::setDisplaySetupMenuCreated(bool set)  // sets the value of displaySettingsMenuCreated
-{
-	displaySetupMenuCreated = set;
-}
-
-bool GUISystem::getInputSetupMenuCreated()  // retrieves the value of inputSettingsMenuCreated
-{
-	return (inputSetupMenuCreated);
-}
-void GUISystem::setInputSetupMenuCreated(bool set)  // sets the value of inputSettingsMenuCreated
-{
-	inputSetupMenuCreated = set;
-}
-
-bool GUISystem::getAuduoSetupMenuCreated()  // retrieves the value of audioSettingsMenuCreated
-{
-	return (audioSetupMenuCreated);
-}
-
-void GUISystem::setAudioSetupMenuCreated(bool set)  // sets the value of audioSettingsMenuCreated
-{
-	audioSetupMenuCreated = set;
-}
-
-bool GUISystem::getSetupMenuCreated()  // retrieves the value of setupMenuCreated
-{
-	return (setupMenuCreated);
-}
-void GUISystem::setSetupMenuCreated(bool set)  // sets the value of setupMenuCreated
-{
-	setupMenuCreated = set;
-}
-
-bool GUISystem::getPlayerStartSelectionMenuCreated()  // retrieves the value of playerStartSelectionMenuCreated
-{
-    return (playerStartSelectionMenuCreated);
-}
-void GUISystem::setPlayerStartSelectionMenuCreated(bool set)  // sets the value of playerStartSelectionMenuCreated
-{
-    playerStartSelectionMenuCreated = set;
-}
-
-bool GUISystem::getTeamSelectionMenuCreated()  // retrieves the value of teamSelectionMenuCreated
-{
-    return (teamSelectionMenuCreated);
-}
-void GUISystem::setTeamSelectionMenuCreated(bool set)  // sets the value of teamSelectionMenuCreated
-{
-    teamSelectionMenuCreated = set;
-}
-
-bool GUISystem::getTeamSelectionMenuDataAdded()  // retrieves the value of teamSelectionMenuDataAdded
-{
-    return (teamSelectionMenuDataAdded);
-}
-void GUISystem::setTeamSelectionMenuDataAdded(bool set)  // sets the value of teamSelectionDataAdded
-{
-    teamSelectionMenuDataAdded = set;
-}
-
-bool GUISystem::getCourtSelectionMenuCreated()  // retrieves the value of courtSelectionMenuCreated
-{
-	return (courtSelectionMenuCreated);
-}
-void GUISystem::setCourtSelectionMenuCreated(bool set)  // sets the value of courtSelectionMenuCreated
-{
-	courtSelectionMenuCreated = set;
-}
-
-bool GUISystem::getCourtSelectionDataLoaded()  // retrieves the value of courtSelectionEntriesLoaded
-{
-    return (courtSelectionDataLoaded);
-}
-void GUISystem::setCourtSelectionDataLoaded(bool set)  // sets the value of courtSelectionEntriesLoaded
-{
-    courtSelectionDataLoaded = set;
+    flag = set;
 }
 
 UBCGameSharedPtr GUISystem::getGame()  // retrieves the value of game
@@ -333,14 +108,6 @@ void GUISystem::setGameE(gameEngineSharedPtr set)  // sets the value of gameE
     gameE = set;
 }
 
-bool GUISystem::getMenuActive()  // retrieves the value of menuActive
-{
-	return (menuActive);
-}
-void GUISystem::setMenuActive(bool set)  // sets the value of menuActive
-{
-	menuActive = set;
-}
 activeMenus GUISystem::getActiveMenu()  // retrieves the value of activeMenu
 {
 	return (activeMenu);

@@ -81,6 +81,7 @@ class setupPlayerPositions;
 class setupTeams;
 class gameState;
 class GUISystem;
+class guiFlags;
 
 class hoopEntity;
 class hoopState;
@@ -151,6 +152,8 @@ typedef sharedPtr<UBCGame> UBCGameSharedPtr;
 typedef sharedPtr<UBCInput> UBCInputSharedPtr;
 
 typedef sharedPtr<GUISystem> GUISystemSharedPtr;
+
+typedef sharedPtr<guiFlags> guiFlagsSharedPtr;
 
 typedef sharedPtr<conversion> conversionSharedPtr;
 

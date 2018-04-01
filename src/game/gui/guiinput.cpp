@@ -509,11 +509,11 @@ void GUISystem::processSetupMenuKeyPress(std::string keyPressed, renderEngineSha
     std::string func = "GUISystem::processSetupMenuKeyPress()";
     
     logMsg(func +" begin");
-    if (keyPressed == "a" && !setupMenuAwaySelected)
+    if (keyPressed == "a" && !flag->getsetupMenuAwaySelected())
     {
         setupAwaySelected();
     }
-    else if (keyPressed == "h" && !setupMenuHomeSelected)
+    else if (keyPressed == "h" && !flag->getSetupMenuHomeSelected())
     {
         setupHomeSelected();
     }

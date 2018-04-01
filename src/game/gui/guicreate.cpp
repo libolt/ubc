@@ -106,7 +106,7 @@ bool GUISystem::createMainMenuGUI(renderEngineSharedPtr render)  // creates the 
     mainMenuButtons["exitButton"]->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()) );
     mainMenuButtons["exitButton"]->setVisible(false);
 //    exit(0);
-    mainMenuCreated = true;
+    flag->setMainMenuCreated(true);
 //    exit(0);
 //    menuActive = true;
 //    exit(0);
@@ -145,7 +145,7 @@ bool GUISystem::createNetworkSetupGUI(renderEngineSharedPtr render)  // loads th
     networkMenuButtons["backMainMenuButton"]->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()) );
 
     
-    networkSetupMenuCreated = true;
+    flag->setNetworkSetupMenuCreated(true);
 /*    menuActive = true;
     previousActiveMenu = activeMenu;
     activeMenu = NETWORK;

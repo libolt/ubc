@@ -621,7 +621,7 @@ void GUISystem::changeActiveMenu(activeMenus menu, renderEngineSharedPtr render)
     logMsg(func + " begin");
     
     hideActiveMenuWidgets();
-    menuActive = true;
+    flag->setMenuActive(true);
     gameE->setMenuActive(true);
     previousActiveMenu = activeMenu;
     activeMenu = menu;

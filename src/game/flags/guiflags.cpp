@@ -93,6 +93,24 @@ void guiFlags::setNetworkSetupMenuCreated(bool set)  // sets the value of networ
     networkSetupMenuCreated = set;
 }
 
+bool guiFlags::getNetworkClientSetupMenuCreated()  // retrieves the value of networkClientSetupMenuCreated
+{
+    return (networkClientSetupMenuCreated);
+}
+void guiFlags::setNetworkClientSetupMenuCreated(bool set)  // sets the value of networkClientSetupMenuCreated
+{
+    networkClientSetupMenuCreated = set;
+}
+
+bool guiFlags::getNetworkServerSetupMenuCreated()  // retrieves the value of networkServerSetupMenuCreated
+{
+    return (networkServerSetupMenuCreated);
+}
+void guiFlags::setNetworkServerSetupMenuCreated(bool set)  // sets the value of networkServerSetupMenuCreated
+{
+    networkServerSetupMenuCreated = set;
+}
+
 bool guiFlags::getOptionsMenuCreated()  // retrieves the value of optionsMenuCreated
 {
     return (optionsMenuCreated);
@@ -100,6 +118,15 @@ bool guiFlags::getOptionsMenuCreated()  // retrieves the value of optionsMenuCre
 void guiFlags::setOptionsMenuCreated(bool set)  // sets the value of optionsMenuCreated
 {
     optionsMenuCreated = set;
+}
+
+bool guiFlags::getAudioSetupMenuCreated()  // retrieves the value of audioSetupMenuCreated
+{
+    return (audioSetupMenuCreated);
+}
+void guiFlags::setAudioSetupMenuCreated(bool set)  // sets the value of audioSetupMenuCreated
+{
+    audioSetupMenuCreated = set;
 }
 
 bool guiFlags::getDisplaySetupMenuCreated()  // retrieves the value of displaySettingsMenuCreated
@@ -120,15 +147,6 @@ void guiFlags::setInputSetupMenuCreated(bool set)  // sets the value of inputSet
     inputSetupMenuCreated = set;
 }
 
-bool guiFlags::getAuduoSetupMenuCreated()  // retrieves the value of audioSettingsMenuCreated
-{
-    return (audioSetupMenuCreated);
-}
-
-void guiFlags::setAudioSetupMenuCreated(bool set)  // sets the value of audioSettingsMenuCreated
-{
-    audioSetupMenuCreated = set;
-}
 
 bool guiFlags::getSetupMenuCreated()  // retrieves the value of setupMenuCreated
 {
@@ -184,11 +202,20 @@ void guiFlags::setCourtSelectionDataLoaded(bool set)  // sets the value of court
     courtSelectionDataLoaded = set;
 }
 
-bool guiFlags::getSetupMenuAwaySelected() // retrieves the value of setupMenuAwaySelected
+bool guiFlags::getSetupMenuAwaySelected()  // retrieves the value of setupMenuAwaySelected
 {
     return (setupMenuAwaySelected);
 }
 void guiFlags::setSetupMenuAwaySelected(bool set)  // sets the value of setupMenuAwaySelected
 {
     setupMenuAwaySelected = set;
+}
+
+bool guiFlags::getSetupMenuHomeSelected()  // retrieves the value of setupMenuHomeSelected
+{
+    return (setupMenuHomeSelected);
+}
+void guiFlags::setSetupMenuHomeSelected(bool set)  // sets the value of setupMenuHomeSelected
+{
+    setupMenuHomeSelected = set;
 }

@@ -40,8 +40,17 @@ class guiFlags
         bool getNetworkSetupMenuCreated();  // retrieves the value of networkSetupMenuCreated
         void setNetworkSetupMenuCreated(bool set);  // sets the value of networkSetupMenuCreated
 
+        bool getNetworkClientSetupMenuCreated();  // retrieves the value of networkClientSetupMenuCreated
+        void setNetworkClientSetupMenuCreated(bool set);  // sets the value of networkClientSetupMenuCreated
+
+        bool getNetworkServerSetupMenuCreated();  // retrieves the value of networkServerSetupMenuCreated
+        void setNetworkServerSetupMenuCreated(bool set);  // sets the value of networkServerSetupMenuCreated
+
         bool getOptionsMenuCreated();  // retrieves the value of optionsMenuCreated
         void setOptionsMenuCreated(bool set);  // sets the value of optionsMenuCreated
+
+        bool getAudioSetupMenuCreated();  // retrieves the value of audioSettingsMenuCreated
+        void setAudioSetupMenuCreated(bool set);  // sets the value of audioSettingsMenuCreated
 
         bool getDisplaySetupMenuCreated();  // retrieves the value of displaySettingsMenuCreated
         void setDisplaySetupMenuCreated(bool set);  // sets the value of displaySettingsMenuCreated
@@ -49,8 +58,6 @@ class guiFlags
         bool getInputSetupMenuCreated();  // retrieves the value of inputSettingsMenuCreated
         void setInputSetupMenuCreated(bool set);  // sets the value of inputSettingsMenuCreated
 
-        bool getAuduoSetupMenuCreated();  // retrieves the value of audioSettingsMenuCreated
-        void setAudioSetupMenuCreated(bool set);  // sets the value of audioSettingsMenuCreated
 
         bool getSetupMenuCreated();  // retrieves the value of setupMenuCreated
         void setSetupMenuCreated(bool set);  // sets the value of setupMenuCreated
@@ -70,11 +77,14 @@ class guiFlags
         bool getCourtSelectionDataLoaded();  // retrieves the value of courtSelectionEntriesLoaded
         void setCourtSelectionDataLoaded(bool set);  // sets the value of courtSelectionEntriesLoaded
 
-        bool getMenuActive(); // retrieves the value of menuActive
-        void setMenuActive(bool set); // sets the value of menuActive
+        bool getMenuActive();  // retrieves the value of menuActive
+        void setMenuActive(bool set);  // sets the value of menuActive
 
-        bool getSetupMenuAwaySelected(); // retrieves the value of setupMenuAwaySelected
+        bool getSetupMenuAwaySelected();  // retrieves the value of setupMenuAwaySelected
         void setSetupMenuAwaySelected(bool set);  // sets the value of setupMenuAwaySelected
+
+        bool getSetupMenuHomeSelected();  // retrieves the value of setupMenuHomeSelected
+        void setSetupMenuHomeSelected(bool set);  // sets the value of setupMenuHomeSelected
 
     private:
 

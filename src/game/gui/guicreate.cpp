@@ -179,7 +179,7 @@ bool GUISystem::createNetworkClientSetupGUI(renderEngineSharedPtr render)  // cr
     networkClientSetupMenuButtons["backNetworkSetupButton"]->setSize((0.4 *render->getViewPort()->getActualWidth()), (0.04 *render->getViewPort()->getActualHeight()));
 
     
-    networkClientSetupMenuCreated = true;
+    flag->setNetworkClientSetupMenuCreated(true);
     
     logMsg(func +" end");
     return true;
@@ -214,7 +214,7 @@ bool GUISystem::createNetworkServerSetupGUI(renderEngineSharedPtr render)  // cr
     networkServerSetupMenuButtons["backNetworkSetupButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::serverHostButtonClicked);
     networkServerSetupMenuButtons["backNetworkSetupButton"]->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
 
-    networkServerSetupMenuCreated = true;
+    flag->setNetworkServerSetupMenuCreated(true);
 
     logMsg(func +" end");
 
@@ -255,7 +255,7 @@ bool GUISystem::createCourtSelectionMenuGUI(renderEngineSharedPtr render)  // cr
 //  courtPreviewImgBox->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::displayButtonClicked);
     courtPreviewImgBox->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()) );
 
-    courtSelectionMenuCreated = true;
+    flag->setCourtSelectionMenuCreated(true);
 
     logMsg(func +" end");
 
@@ -290,7 +290,7 @@ bool GUISystem::createOptionsMenuGUI(renderEngineSharedPtr render)  // creates G
     optionsMenuButtons["backMainMenuButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::backMainMenuButtonClicked);
     optionsMenuButtons["backMainMenuButton"]->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()) );
 
-    optionsMenuCreated = true;
+    flag->setOptionsMenuCreated(true);
 /*    menuActive = true;
     previousActiveMenu = activeMenu;
     activeMenu = OPTIONS;
@@ -352,7 +352,7 @@ bool GUISystem::createBackButtons()  // creates the back buttons for the menus
 ///    backSetupMenuButton->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::backSetupMenuButtonClicked);
 ///    backSetupMenuButton->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()) );
 
-    backButtonsCreated = true;
+    flag->setBackButtonsCreated(true);
 
     logMsg(func +" end");
 
@@ -378,7 +378,7 @@ bool GUISystem::createDisplaySetupGUI()  // creates GUI for display settings scr
     displayMenuButtons["backOptionsMenuButton"]->setVisible(false);
     displayMenuButtons["backOptionsMenuButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeInputTypeButtonClicked);
 
-    displaySetupMenuCreated = true;
+    flag->setDisplaySetupMenuCreated(true);
 
     logMsg(func +" end");
 
@@ -404,7 +404,7 @@ bool GUISystem::createInputSetupGUI()  // creates GUI for input settings screen.
     inputMenuButtons["backOptionsMenuButton"]->setVisible(false);
     inputMenuButtons["backOptionsMenuButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeInputTypeButtonClicked);
 
-    inputSetupMenuCreated = true;
+    flag->setInputSetupMenuCreated(true);
 
     logMsg(func + " end");
     return (true);
@@ -434,7 +434,7 @@ bool GUISystem::createAudioSetupGUI()  // creates GUI for audo settings screen.
     audioMenuButtons["backOptionsMenuButton"]->setVisible(false);
     audioMenuButtons["backOptionsMenuButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeInputTypeButtonClicked);
     
-    audioSetupMenuCreated = true;
+    flag->setAudioSetupMenuCreated(true);
 
     logMsg(func +" end");
 
@@ -458,7 +458,7 @@ bool GUISystem::createSetupMenuGUI()    // creates GUI for game setup menu scree
 
 
     MyGUI::LayoutManager::getInstance().loadLayout("SetupMenu.layout");
-    setupMenuCreated = true;
+    flag->setSetupMenuCreated(true);
 
     logMsg(func +" end");
 
@@ -611,7 +611,7 @@ bool GUISystem::createPlayerStartSelectionMenuGUI(renderEngineSharedPtr render) 
     playerStartSelectionMenuButtons["backTeamSelectionMenuButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::backTeamSelectionMenuButtonClicked);
     playerStartSelectionMenuButtons["backTeamSelectionMenuButton"]->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()) );
     
-    playerStartSelectionMenuCreated = true;
+    flag->setPlayerStartSelectionMenuCreated(true);
 
     logMsg(func +" end");
 
@@ -666,7 +666,7 @@ bool GUISystem::createTeamSelectionMenuGUI(renderEngineSharedPtr render)  // cre
     teamSelectionMenuButtons["backCourtSelectionMenuButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::backCourtSelectionMenuButtonClicked);
     teamSelectionMenuButtons["backCourtSelectionMenuButton"]->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()) );
 
-    teamSelectionMenuCreated = true;
+    flag->setTeamSelectionMenuCreated(true);
 //    exit(0);
 
     logMsg(func +" end");

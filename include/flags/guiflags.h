@@ -31,11 +31,11 @@ class guiFlags
         bool getSetupComplete();  // retrieves the value of setupComplete
         void setSetupComplete(bool set);  // sets the value of setupComplete
 
-        bool getMainMenuCreated();   // retrieves the value of mainMenuCreated
-        void setMainMenuCreated(bool set); // sets the value of mainMenuCreated
-
         bool getBackButtonsCreated(); // retrieves the value of backButtonsCreated
         void setBackButtonsCreated(bool set); // sets the value of backButtonsCreated
+
+        bool getMainMenuCreated();  // retrieves the value of mainMenuCreated
+        void setMainMenuCreated(bool set);  // sets the value of mainMenuCreated
 
         bool getNetworkSetupMenuCreated();  // retrieves the value of networkSetupMenuCreated
         void setNetworkSetupMenuCreated(bool set);  // sets the value of networkSetupMenuCreated

@@ -509,7 +509,7 @@ void GUISystem::processSetupMenuKeyPress(std::string keyPressed, renderEngineSha
     std::string func = "GUISystem::processSetupMenuKeyPress()";
     
     logMsg(func +" begin");
-    if (keyPressed == "a" && !flag->getsetupMenuAwaySelected())
+    if (keyPressed == "a" && !flag->getSetupMenuAwaySelected())
     {
         setupAwaySelected();
     }
@@ -544,7 +544,7 @@ void GUISystem::processSetupMenuKeyPress(std::string keyPressed, renderEngineSha
     }
     else if (keyPressed == "x")
     {
-        if (setupMenuAwaySelected)
+        if (flag->getSetupMenuAwaySelected())
         {
             auto x = teamSelectBox[1]->getIndexSelected() +1;
             if (x < gameInstance->getComponent()->getTeamInstance().size())
@@ -558,7 +558,7 @@ void GUISystem::processSetupMenuKeyPress(std::string keyPressed, renderEngineSha
                 teamSelectBox[1]->beginToItemAt(0);
             }
         }
-        else if (setupMenuHomeSelected)
+        else if (flag->getSetupMenuHomeSelected())
         {
             auto x = teamSelectBox[0]->getIndexSelected() +1;
             if (x < gameInstance->getComponent()->getTeamInstance().size())
@@ -579,7 +579,7 @@ void GUISystem::processSetupMenuKeyPress(std::string keyPressed, renderEngineSha
     }
     else if (keyPressed == "z")
     {
-        if (setupMenuAwaySelected)
+        if (flag->getSetupMenuAwaySelected())
         {
             auto x = teamSelectBox[1]->getIndexSelected() -1;
             if (x < 0)
@@ -594,7 +594,7 @@ void GUISystem::processSetupMenuKeyPress(std::string keyPressed, renderEngineSha
                 teamSelectBox[1]->beginToItemAt(x);
             }
         }
-        else if (setupMenuHomeSelected)
+        else if (flag->getSetupMenuHomeSelected())
         {
             auto x = teamSelectBox[0]->getIndexSelected() -1;
             if (x < 0)
@@ -632,7 +632,7 @@ void GUISystem::processPlayerStartSelectionMenuKeyPress(std::string keyPressed, 
 //        exit(0);
         playerStartSelected();
         game->setStartActiveGame(true);
-        menuActive = false;
+        flag->setMenuActive(false);
 
     }
     else if (keyPressed == "b")
@@ -653,11 +653,11 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed, renderE
     
     logMsg(func +" begin");
 //    exit(0);
-    if (keyPressed == "a" && !setupMenuAwaySelected)
+    if (keyPressed == "a" && !flag->getSetupMenuAwaySelected())
     {
         setupAwaySelected();
     }
-    else if (keyPressed == "h" && !setupMenuHomeSelected)
+    else if (keyPressed == "h" && !flag->getSetupMenuHomeSelected())
     {
         setupHomeSelected();
     }
@@ -690,7 +690,7 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed, renderE
     }
     else if (keyPressed == "x")
     {
-        if (setupMenuAwaySelected)
+        if (flag->getSetupMenuAwaySelected())
         {
             auto x = teamSelectBox[1]->getIndexSelected() +1;
             if (x < gameInstance->getComponent()->getTeamInstance().size())
@@ -704,7 +704,7 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed, renderE
                 teamSelectBox[1]->beginToItemAt(0);
             }
         }
-        else if (setupMenuHomeSelected)
+        else if (flag->getSetupMenuHomeSelected())
         {
             auto x = teamSelectBox[0]->getIndexSelected() +1;
             if (x < gameInstance->getComponent()->getTeamInstance().size())
@@ -725,7 +725,7 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed, renderE
     }
     else if (keyPressed == "z")
     {
-        if (setupMenuAwaySelected)
+        if (flag->getSetupMenuAwaySelected())
         {
             auto x = teamSelectBox[1]->getIndexSelected() -1;
             if (x < 0)
@@ -740,7 +740,7 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed, renderE
                 teamSelectBox[1]->beginToItemAt(x);
             }
         }
-        else if (setupMenuHomeSelected)
+        else if (flag->getSetupMenuHomeSelected())
         {
             auto x = teamSelectBox[0]->getIndexSelected() -1;
             if (x < 0)

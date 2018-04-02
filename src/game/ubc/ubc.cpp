@@ -125,7 +125,7 @@ bool UBC::setupState()  // sets up the UBC game state
     {
         component->getGui()->setGameInstance(component->getGame()->getGameInstance());  // shares gameInstance with gui object
 //        exit(0);
-        component->getGui()->setSetupComplete(true);
+        component->getGui()->getFlag()->setSetupComplete(true);
 //        exit(0);
         component->getGui()->mainMenu(component->getGameE()->getRenderE());
 //        exit(0);

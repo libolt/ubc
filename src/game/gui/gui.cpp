@@ -136,15 +136,6 @@ void GUISystem::setMGUI(MyGUIGuiSharedPtr set)  // sets the value of mGUI
     mGUI = set;
 }
 
-/*Ogre::Viewport *GUISystem::getViewPort()  // retrieves the value of viewPort
-{
-    return (viewPort);
-}
-void GUISystem::setViewPort(const Ogre::Viewport &set)  // sets the value of viewPort
-{
-    *viewPort = set;
-}*/
-
 bool GUISystem::setup(renderEngineSharedPtr render)  // sets up the in game gui
 {
 
@@ -159,6 +150,9 @@ bool GUISystem::setup(renderEngineSharedPtr render)  // sets up the in game gui
         logMsg("Unable to initialize MyGUI!");
         exit(0);
     }
+
+    guiFlagsSharedPtr tempFlag(new guiFlags);
+    flag = tempFlag;
     return (true);
 }
 

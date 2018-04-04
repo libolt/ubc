@@ -157,7 +157,7 @@ void GUISystem::startingLineupSetButtonClicked(MyGUI::Widget *_sender)  // handl
 {
     checkTeamInstancesCreated();
     playerStartSelected();
-    game->setStartActiveGame(true);
+    flag->setStartActiveGame(true);
 //    exit(0);
 }
 
@@ -631,7 +631,7 @@ void GUISystem::processPlayerStartSelectionMenuKeyPress(std::string keyPressed, 
         logMsg("processPlayerStart KeyPressed == " +keyPressed);
 //        exit(0);
         playerStartSelected();
-        game->setStartActiveGame(true);
+        flag->setStartActiveGame(true);
         flag->setMenuActive(false);
 
     }

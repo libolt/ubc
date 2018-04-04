@@ -285,7 +285,7 @@ bool UBC::updateGUI()  // updates the gui based on received events
     std::string func = "UBC::updateGUI()";
 
     logMsg(func +" begin");
-
+    exit(0);
 //    GUISystemSharedPtr gui = base->getGui();
     if (component->getGameE()->getInputE()->getMouseClicked())
     {

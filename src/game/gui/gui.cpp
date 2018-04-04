@@ -81,14 +81,14 @@ void GUISystem::setGame(UBCGameSharedPtr set) // sets the value of game
     game = set;
 }*/
 
-teamEntityMSharedPtr GUISystem::getTeamInstance()  // retrieves the value of teamInstance
+/*teamEntityMSharedPtr GUISystem::getTeamInstance()  // retrieves the value of teamInstance
 {
     return (teamInstance);
 }
 void GUISystem::setTeamInstance(teamEntityMSharedPtr set)  // sets the value of teamInstance
 {
     teamInstance = set;
-}
+}*/
 
 gameStateSharedPtr GUISystem::getGameInstance()  // retrieves the value of teamInstance
 {

@@ -86,6 +86,9 @@ class guiFlags
         bool getSetupMenuHomeSelected();  // retrieves the value of setupMenuHomeSelected
         void setSetupMenuHomeSelected(bool set);  // sets the value of setupMenuHomeSelected
 
+        bool getStartActiveGame();  // retrieves the value of startActiveGame
+        void setStartActiveGame(bool set);  // sets the value of startActiveGame
+
     private:
 
         bool setupComplete;  // determinrs if the gui has been properly setup.
@@ -108,7 +111,7 @@ class guiFlags
         bool setupMenuHomeSelected;  // determines whether the home team listbox is selected;
         bool courtSelectionDataLoaded;  // determines whether court names have been added to the select box
 
-
+        bool startActiveGame;  // dtermines whetehr or not to start the active game
 };
 
 #endif // GUIFLAGS_H

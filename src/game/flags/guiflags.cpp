@@ -41,6 +41,7 @@ guiFlags::guiFlags()
     courtSelectionMenuCreated = false;
     courtSelectionDataLoaded = false;
     menuActive = false;
+    startActiveGame = false;
 }
 
 guiFlags::~guiFlags()
@@ -218,4 +219,13 @@ bool guiFlags::getSetupMenuHomeSelected()  // retrieves the value of setupMenuHo
 void guiFlags::setSetupMenuHomeSelected(bool set)  // sets the value of setupMenuHomeSelected
 {
     setupMenuHomeSelected = set;
+}
+
+bool guiFlags::getStartActiveGame()  // retrieves the value of startActiveGame
+{
+    return (startActiveGame);
+}
+void guiFlags::setStartActiveGame(bool set)  // sets the value of startActiveGame
+{
+    startActiveGame = set;
 }

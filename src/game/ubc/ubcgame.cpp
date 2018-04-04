@@ -25,6 +25,8 @@
 #include "engine/gameengine.h"
 #include "engine/physicsengine.h"
 #include "engine/renderengine.h"
+#include "gui/gui.h"
+#include "flags/guiflags.h"
 #include "load/loadusersinputs.h"
 #include "state/gamestate.h"
 #include "ubc/ubcinput.h"
@@ -264,7 +266,7 @@ bool UBCGame::createUserInstances()  // creates the user instances
 {
     conversionSharedPtr convert = conversion::Instance();
     usersMSharedPtr tempUserInstance;
-    std::string func = "UBC::createUserInstances()";
+    std::string func = "UBCGame::createUserInstances()";
 
     logMsg(func +" begin");
 
@@ -292,9 +294,11 @@ bool UBCGame::setupUserInstancesInput()  // sets up input mapping for each user
 //    inputEngineSharedPtr tempInputSharedPtr(new inputEngine);
 //    inputE = tempInputSharedPtr;
     usersInputsVecSharedPtr tempUserInput;
-
     tempUserInput = loadUsersInput->loadUsersInputFiles();  // loads user defined input from file.
-    std::string func = "UBC::setupUserInstancesInput()";
+
+    std::string func = "UBCGame::setupUserInstancesInput()";
+
+    logMsg(func =" begin");
 
     logMsg(func +" load->checkIfUserInputsLoaded()");
 
@@ -330,6 +334,8 @@ bool UBCGame::setupUserInstancesInput()  // sets up input mapping for each user
 //    exit(0);
     usersInstance = tempUsersInstance;
 
+    logMsg(func +" end");
+
     return (true);
 }
 
@@ -340,7 +346,7 @@ bool UBCGame::loop(gameEngineSharedPtr gameE, UBCInputSharedPtr input, GUISystem
     unsigned long changeInTime = 0;
     unsigned long CITmic = 0;
     unsigned long CITmil = 0;
-    std::string func = "UBC::gameLoop()";
+    std::string func = "UBCGame::loop()";
     boost::chrono::microseconds changeInTimeMicro;
     boost::chrono::milliseconds changeInTimeMill;
 /*    playerStateMachine playerSM;
@@ -403,6 +409,12 @@ bool UBCGame::loop(gameEngineSharedPtr gameE, UBCInputSharedPtr input, GUISystem
         
        // exit(0);
 
+        if (gui->getFlag()->getStartActiveGame())
+        {
+            logMsg(func +" GUI Flag startActiveGame!");
+            exit(0);
+        }
+
         if (startActiveGame)
         {
             if (startGame(gameE->getRenderE()))
@@ -461,7 +473,7 @@ bool UBCGame::loop(gameEngineSharedPtr gameE, UBCInputSharedPtr input, GUISystem
 bool UBCGame::startGame(renderEngineSharedPtr render)  // starts the game
 {
 //    sharedPtr<gameState> gameS = gameState::Instance();
-    std::string func = "UBC::startGame()";
+    std::string func = "UBCGame::startGame()";
 
     logMsg(func +" begin");
 
@@ -476,6 +488,10 @@ bool UBCGame::startGame(renderEngineSharedPtr render)  // starts the game
 
 void UBCGame::processNetworkEvents(gameEngineSharedPtr gameE)  // processes events in the network subsyatem
 {
+    std::string func = "UBCGame::processNetworkEvents()";
+
+    logMsg(func +" begin");
+
     if (gameE->getServerRunning())
     {
         gameE->getNetworkE()->networkServer();   // Runs network server code
@@ -484,9 +500,17 @@ void UBCGame::processNetworkEvents(gameEngineSharedPtr gameE)  // processes even
     {
         gameE->getNetworkE()->networkClient();   // runs network client code
     }
+
+    logMsg(func +" end");
 }
 
 void UBCGame::processPhysicsEvents(gameEngineSharedPtr gameE)  // processes events in the physics subsyatem
 {
+    std::string func = "UBCGame::processPhysicsEvents()";
+
+    logMsg(func +" begin");
+
     gameE->getPhysE()->stepWorld(gameE->getTimer());
+
+    logMsg(func +" end");
 }

@@ -52,8 +52,9 @@ public:
     guiFlagsSharedPtr getFlag();  // retrieves the value of flag
     void setFlag(guiFlagsSharedPtr set);  // sets the value of flag
 
-    UBCGameSharedPtr getGame();  // retrieves the value of game
+/*    UBCGameSharedPtr getGame();  // retrieves the value of game
     void setGame(UBCGameSharedPtr set); // sets the value of game
+*/
 
     gameEngineSharedPtr getGamE();  // retrieves the value of gameE
     void setGameE(gameEngineSharedPtr set);  // sets the value of gameE
@@ -267,7 +268,7 @@ private:
     MyGUITextBoxSharedPtr courtNameTxtBox;
 
 
-    UBCGameSharedPtr game;  // stores a copy of the game object
+//    UBCGameSharedPtr game;  // stores a copy of the game object
     gameStateSharedPtr gameInstance;  // stores a copy of the gameInstance
     teamEntityMSharedPtr teamInstance;  // stores a copy of the teamInstance
     

@@ -72,14 +72,14 @@ void GUISystem::setFlag(guiFlagsSharedPtr set)  // sets the value of flag
     flag = set;
 }
 
-UBCGameSharedPtr GUISystem::getGame()  // retrieves the value of game
+/*UBCGameSharedPtr GUISystem::getGame()  // retrieves the value of game
 {
     return (game);
 }
 void GUISystem::setGame(UBCGameSharedPtr set) // sets the value of game
 {
     game = set;
-}
+}*/
 
 teamEntityMSharedPtr GUISystem::getTeamInstance()  // retrieves the value of teamInstance
 {

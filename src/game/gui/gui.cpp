@@ -24,6 +24,7 @@
 #include "gui/gui.h"
 #include "utilities/conversion.h"
 #include "components/gamecomponents.h"
+#include "components/guicomponents.h"
 #include "data/courtdata.h"
 #include "data/gamedata.h"
 #include "data/playerdata.h"
@@ -63,6 +64,16 @@ GUISystem::~GUISystem()
 
 }
 
+GUIComponentsSharedPtr GUISystem::getComponent()  // retrieves the value of component
+{
+    return (component);
+}
+void GUISystem::setComponent(GUIComponentsSharedPtr set)  // sets the value of component
+{
+    component = set;
+}
+
+
 guiFlagsSharedPtr GUISystem::getFlag()  // retrieves the value of flag
 {
     return (flag);
@@ -71,24 +82,6 @@ void GUISystem::setFlag(guiFlagsSharedPtr set)  // sets the value of flag
 {
     flag = set;
 }
-
-/*UBCGameSharedPtr GUISystem::getGame()  // retrieves the value of game
-{
-    return (game);
-}
-void GUISystem::setGame(UBCGameSharedPtr set) // sets the value of game
-{
-    game = set;
-}*/
-
-/*teamEntityMSharedPtr GUISystem::getTeamInstance()  // retrieves the value of teamInstance
-{
-    return (teamInstance);
-}
-void GUISystem::setTeamInstance(teamEntityMSharedPtr set)  // sets the value of teamInstance
-{
-    teamInstance = set;
-}*/
 
 gameStateSharedPtr GUISystem::getGameInstance()  // retrieves the value of teamInstance
 {
@@ -127,66 +120,34 @@ void GUISystem::setPreviousActiveMenu(activeMenus set)  // sets the value of pre
 }
 
 
-MyGUIGuiSharedPtr GUISystem::getMGUI()  // retrieves the value of mGUI
-{
-    return (mGUI);
-}
-void GUISystem::setMGUI(MyGUIGuiSharedPtr set)  // sets the value of mGUI
-{
-    mGUI = set;
-}
-
 bool GUISystem::setup(renderEngineSharedPtr render)  // sets up the in game gui
 {
 
-    if (initMyGUI(render)) // Initializes MyGUI
+    std::string func = "GUISystem::setup()";
+    
+    logMsg(func +" begin");
+    
+    guiFlagsSharedPtr tempFlag(new guiFlags);
+    flag = tempFlag;
+
+    GUIComponentsSharedPtr tempComponent(new GUIComponents);
+    component = tempComponent;
+
+    if (component->initMyGUI(render)) // Initializes MyGUI
     {
-        logMsg ("MyGUI initialized successfully!");
-        logMsg("is the main menu created?");
+        logMsg (func +" MyGUI initialized successfully!");
+        
 //        exit(0);
     }
     else
     {
-        logMsg("Unable to initialize MyGUI!");
+        logMsg(func +" Unable to initialize MyGUI!");
         exit(0);
     }
 
-    guiFlagsSharedPtr tempFlag(new guiFlags);
-    flag = tempFlag;
-    return (true);
-}
-
-bool GUISystem::initMyGUI(renderEngineSharedPtr render)  // Initializes MyGUI
-{
-//    exit(0);
-//    renderEngineSharedPtr render; // = renderEngine::Instance();
-    std::string func = "GUISystem::initMyGUI()";
-    
-    logMsg(func +" begin");
-    logMsg(func +" *** Initializing MyGUI ***");
-    MyGUIOgrePlatformSharedPtr tempPlatform(new MyGUI::OgrePlatform());
-    mPlatform = tempPlatform;
-    logMsg(func +" Crash?");
-//    exit(0);
-/*#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-    mPlatform->initialise(mWindow, mSceneMgr, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
-#else
-*/
-//BASEREMOVAL    mPlatform->initialise(base->getGameE()->getRenderE()->getMWindow().get(), base->getGameE()->getRenderE()->getMSceneMgr().get(), "UBCData"); // mWindow is Ogre::RenderWindow*, mSceneManager is Ogre::SceneManager*
-mPlatform->initialise(render->getMWindow().get(), render->getMSceneMgr().get(), "UBCData"); // mWindow is Ogre::RenderWindow*, mSceneManager is Ogre::SceneManager*a@aa
-//#endif
-//    exit(0);
-    logMsg(func +" Crash??");
-    MyGUIGuiSharedPtr tempGUI(new MyGUI::Gui());
-//    exit(0);
-    mGUI = tempGUI;
-//    exit(0);
-    logMsg(func +" Crash???");
-    mGUI->initialise();
-//    exit(0);
-    logMsg(func +" *** MyGUI Initialized ***");
     logMsg(func +" end");
-    return true;
+
+    return (true);
 }
 
 void GUISystem::mainMenu(renderEngineSharedPtr render)  // msin in game menu

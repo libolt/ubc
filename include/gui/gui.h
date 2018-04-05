@@ -41,6 +41,7 @@
 #include "utilities/enums.h"
 #include "utilities/typedefs.h"
 
+class GUIComponents;
 class UBCGame;
 
 class GUISystem
@@ -49,12 +50,11 @@ public:
     GUISystem();  // constructor
     ~GUISystem();  // destructor
 	
+    GUIComponentsSharedPtr getComponent();  // retrieves the value of component
+    void setComponent(GUIComponentsSharedPtr set);  // sets the value of component
+
     guiFlagsSharedPtr getFlag();  // retrieves the value of flag
     void setFlag(guiFlagsSharedPtr set);  // sets the value of flag
-
-/*    UBCGameSharedPtr getGame();  // retrieves the value of game
-    void setGame(UBCGameSharedPtr set); // sets the value of game
-*/
 
     gameEngineSharedPtr getGamE();  // retrieves the value of gameE
     void setGameE(gameEngineSharedPtr set);  // sets the value of gameE
@@ -62,21 +62,13 @@ public:
     gameStateSharedPtr getGameInstance();  // retrieves the value of teamInstance
     void setGameInstance(gameStateSharedPtr set);  // sets the value of teamInstance
 
-/*    teamEntityMSharedPtr getTeamInstance();  // retrieves the value of teamInstance
-    void setTeamInstance(teamEntityMSharedPtr set);  // sets the value of teamInstance
-*/
-
     activeMenus getActiveMenu(); // retrieves the value of activeMenu
     void setActiveMenu(activeMenus set); // sets the value of activeMenu
 
     activeMenus getPreviousActiveMenu(); // retrieves the value of previousActiveMenu
     void setPreviousActiveMenu(activeMenus set); // sets the value of previousActiveMenu
 
-    MyGUIGuiSharedPtr getMGUI();  // retrieves the value of mGUI
-    void setMGUI(MyGUIGuiSharedPtr set);  // sets the value of mGUI
-
     bool setup(renderEngineSharedPtr render);  // sets up the in game gui
-    bool initMyGUI(renderEngineSharedPtr render);  // Initializes MyGUI
     bool createMainMenuGUI(renderEngineSharedPtr render);  // creates GUI gor main menu screen.
     bool createNetworkSetupGUI(renderEngineSharedPtr render);  // creates GUI for network setup screen.
     bool createNetworkClientSetupGUI(renderEngineSharedPtr render);  // creates GUI for network client setup screen.
@@ -217,10 +209,9 @@ public:
     
 private:
 
+    GUIComponentsSharedPtr component;  // stores gui related components
+    
     guiFlagsSharedPtr flag;  // stores gui related flags
-
-    MyGUIGuiSharedPtr mGUI;  // The MyGUI object
-    MyGUIOgrePlatformSharedPtr mPlatform;  // The MyGUI Platform object
 
     // button widgets
     

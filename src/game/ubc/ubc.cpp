@@ -20,6 +20,7 @@
 
 #include "utilities/conversion.h"
 #include "OgrePrerequisites.h"
+#include "components/guicomponents.h"
 #include "components/ubccomponents.h"
 #include "data/gamedata.h"
 #include "engine/gameengine.h"
@@ -291,11 +292,11 @@ bool UBC::updateGUI()  // updates the gui based on received events
     {
         logMsg(func +" updateGUI Mouse Clicked!");
         exit(0);
-        component->getGui()->getMGUI()->injectMousePress(component->getGameE()->getInputE()->getMouseX(), component->getGameE()->getInputE()->getMouseY(), MyGUI::MouseButton::Enum(0));
+        component->getGui()->getComponent()->getMGUI()->injectMousePress(component->getGameE()->getInputE()->getMouseX(), component->getGameE()->getInputE()->getMouseY(), MyGUI::MouseButton::Enum(0));
     }
     else
     {
-        component->getGui()->getMGUI()->injectMouseRelease(component->getGameE()->getInputE()->getMouseX(), component->getGameE()->getInputE()->getMouseY(), MyGUI::MouseButton::Enum(0));
+        component->getGui()->getComponent()->getMGUI()->injectMouseRelease(component->getGameE()->getInputE()->getMouseX(), component->getGameE()->getInputE()->getMouseY(), MyGUI::MouseButton::Enum(0));
     }
 //    base->setGui(gui);
 

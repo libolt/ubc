@@ -482,7 +482,7 @@ void GUISystem::courtSelectionMenu(renderEngineSharedPtr render) // displays cou
         if (addCourtSelectionMenuData())
         {
 //            exit(0);
-            courtSelectBox->setIndexSelected(0);
+            component->getCourtSelectBox()->setIndexSelected(0);
             flag->setCourtSelectionDataLoaded(true);
         }
         else
@@ -506,18 +506,18 @@ void GUISystem::setSelectedIndexes()  // sets all player listbox indexes to zero
     
     logMsg(func +" begin");
     
-    teamPlayerPosSelectBox[0]["PG"]->setIndexSelected(0);
+    component->getTeamPlayerPosSelectBox()[0]["PG"]->setIndexSelected(0);
     logMsg(func +" PG0");
     
-    teamPlayerPosSelectBox[0]["SG"]->setIndexSelected(0);
-    teamPlayerPosSelectBox[0]["SF"]->setIndexSelected(0);
-    teamPlayerPosSelectBox[0]["PF"]->setIndexSelected(0);
-    teamPlayerPosSelectBox[0]["C"]->setIndexSelected(0);
-    teamPlayerPosSelectBox[1]["PG"]->setIndexSelected(0);
-    teamPlayerPosSelectBox[1]["SG"]->setIndexSelected(0);
-    teamPlayerPosSelectBox[1]["SF"]->setIndexSelected(0);
-    teamPlayerPosSelectBox[1]["PF"]->setIndexSelected(0);
-    teamPlayerPosSelectBox[1]["C"]->setIndexSelected(0);
+    component->getTeamPlayerPosSelectBox()[0]["SG"]->setIndexSelected(0);
+    component->getTeamPlayerPosSelectBox()[0]["SF"]->setIndexSelected(0);
+    component->getTeamPlayerPosSelectBox()[0]["PF"]->setIndexSelected(0);
+    component->getTeamPlayerPosSelectBox()[0]["C"]->setIndexSelected(0);
+    component->getTeamPlayerPosSelectBox()[1]["PG"]->setIndexSelected(0);
+    component->getTeamPlayerPosSelectBox()[1]["SG"]->setIndexSelected(0);
+    component->getTeamPlayerPosSelectBox()[1]["SF"]->setIndexSelected(0);
+    component->getTeamPlayerPosSelectBox()[1]["PF"]->setIndexSelected(0);
+    component->getTeamPlayerPosSelectBox()[1]["C"]->setIndexSelected(0);
     
     logMsg(func +" end");
 
@@ -530,8 +530,8 @@ void GUISystem::networkClientSetupMenu(renderEngineSharedPtr render) // sets up 
         createNetworkClientSetupGUI(render);
     }
     changeActiveMenu(NETWORKCLIENT, render);
-    MyGUI::InputManager::getInstance().setKeyFocusWidget(clientIPAddressBox.get());
-//    mGUI::InputManager->getInstance().setKeyFocusWidget(clientIPAddressBox);
+    MyGUI::InputManager::getInstance().setKeyFocusWidget(component->getClientIPAddressBox().get());
+//    mGUI::InputManager->getInstance().setKeyFocusWidget(component->getClientIPAddressBox());
 }
 
 void GUISystem::networkServerSetupMenu(renderEngineSharedPtr render)  // sets up the networkServer instance
@@ -542,7 +542,7 @@ void GUISystem::networkServerSetupMenu(renderEngineSharedPtr render)  // sets up
     }
 
     changeActiveMenu(NETWORKSERVER, render);
-    MyGUI::InputManager::getInstance().setKeyFocusWidget(serverIPAddressBox.get());
+    MyGUI::InputManager::getInstance().setKeyFocusWidget(component->getServerIPAddressBox().get());
 
 }
 
@@ -559,7 +559,7 @@ void GUISystem::networkServer()  // sets up  game as a network server
     gameInstance->getData()->setGameType(MULTINET);
 //   hideNetworkSetupWidgets();  // Hides Network Setup Menu widgets
     flag->setMenuActive(false);
-    gameE->getNetworkE()->setIPAddress(serverIPAddressBox->getCaption());  // sets the neworkEngine's ipAddress string to that of the caption
+    gameE->getNetworkE()->setIPAddress(component->getServerIPAddressBox()->getCaption());  // sets the neworkEngine's ipAddress string to that of the caption
     logMsg("server ip = " +gameE->getNetworkE()->getIPAddress());
     if (gameE->getNetworkE()->serverSetup())  // attempts to setup as a network server
     {
@@ -579,7 +579,7 @@ void GUISystem::networkClient()  // sets up game as a network client
     gameInstance->getData()->setGameType(MULTINET);
 //    hideNetworkSetupWidgets();  // Hides Network Setup Menu widgets
     flag->setMenuActive(false);
-    gameE->getNetworkE()->setIPAddress(clientIPAddressBox->getCaption());  // sets the neworkEngine's ipAddress string to that of the caption
+    gameE->getNetworkE()->setIPAddress(component->getClientIPAddressBox()->getCaption());  // sets the neworkEngine's ipAddress string to that of the caption
 //    network->networkClient();
     if (gameE->getNetworkE()->clientConnect()) // attempts to connect to the remote server
     {
@@ -599,7 +599,7 @@ void GUISystem::courtSelected()  // processes court selection
     
     logMsg(func +" begin");
 
-    logMsg(func +" Selected Court #" +convert->toString(courtSelectBox->getIndexSelected()));
+    logMsg(func +" Selected Court #" +convert->toString(component->getCourtSelectBox()->getIndexSelected()));
 //    gameS->setSelectedCourtDataInstance(courtSelectBox->getIndexSelected());
 //    gameS->setActiveCourtInstance(courtSelectBox->getIndexSelected());
     //FIXME! needs reworked!
@@ -627,14 +627,14 @@ void GUISystem::teamsSelected()  // processes team selection
     logMsg(func +" begin");
     
     sizeTVec teamID;
-    teamID.push_back(teamSelectBox[0]->getIndexSelected());
-    teamID.push_back(teamSelectBox[1]->getIndexSelected());
+    teamID.push_back(component->getTeamSelectBox()[0]->getIndexSelected());
+    teamID.push_back(component->getTeamSelectBox()[1]->getIndexSelected());
     logMsg(func +" activeTeamInstance");
     logMsg(func +" setupComplete == " +convert->toString(flag->getSetupComplete())); 
     activeTeamInstance = setupTeam->createActiveTeamInstances(gameInstance->getComponent()->getTeamInstance(), teamID);
 //    exit(0);
     //    gameS->setTeamID(teamID);
-    logMsg(func +" teamSelectBox[0]->getIndexSelected() == " +convert->toString(teamSelectBox[0]->getIndexSelected()));
+    logMsg(func +" teamSelectBox[0]->getIndexSelected() == " +convert->toString(component->getTeamSelectBox()[0]->getIndexSelected()));
     logMsg(func +" teamID[0] == " +convert->toString(teamID[0]));
 //    exit(0);
     gameInstance->getData()->setTeamIDS(teamID);
@@ -717,45 +717,45 @@ void GUISystem::playerStartSelected()  // process player start selection
     }
 */
     // checks to make sure that all player selectBoxes have a valid index value
-    if (teamPlayerPosSelectBox[0]["PG"]->getIndexSelected() < 0 || teamPlayerPosSelectBox[0]["PG"]->getIndexSelected() > teamPlayerPosSelectBox[0]["PG"]->getItemCount())
+    if (component->getTeamPlayerPosSelectBox()[0]["PG"]->getIndexSelected() < 0 || component->getTeamPlayerPosSelectBox()[0]["PG"]->getIndexSelected() > component->getTeamPlayerPosSelectBox()[0]["PG"]->getItemCount())
     {
-        teamPlayerPosSelectBox[0]["PG"]->setIndexSelected(0);
+        component->getTeamPlayerPosSelectBox()[0]["PG"]->setIndexSelected(0);
     }
-    if (teamPlayerPosSelectBox[0]["SG"]->getIndexSelected() < 0 || teamPlayerPosSelectBox[0]["SG"]->getIndexSelected() > teamPlayerPosSelectBox[0]["SG"]->getItemCount())
+    if (component->getTeamPlayerPosSelectBox()[0]["SG"]->getIndexSelected() < 0 || component->getTeamPlayerPosSelectBox()[0]["SG"]->getIndexSelected() > component->getTeamPlayerPosSelectBox()[0]["SG"]->getItemCount())
     {
-        teamPlayerPosSelectBox[0]["SG"]->setIndexSelected(0);
+        component->getTeamPlayerPosSelectBox()[0]["SG"]->setIndexSelected(0);
     }
-    if (teamPlayerPosSelectBox[0]["SF"]->getIndexSelected() < 0 || teamPlayerPosSelectBox[0]["SF"]->getIndexSelected() > teamPlayerPosSelectBox[0]["SF"]->getItemCount())
+    if (component->getTeamPlayerPosSelectBox()[0]["SF"]->getIndexSelected() < 0 || component->getTeamPlayerPosSelectBox()[0]["SF"]->getIndexSelected() > component->getTeamPlayerPosSelectBox()[0]["SF"]->getItemCount())
     {
-        teamPlayerPosSelectBox[0]["SF"]->setIndexSelected(0);
+        component->getTeamPlayerPosSelectBox()[0]["SF"]->setIndexSelected(0);
     }
-    if (teamPlayerPosSelectBox[0]["PF"]->getIndexSelected() < 0 || teamPlayerPosSelectBox[0]["PF"]->getIndexSelected() > teamPlayerPosSelectBox[0]["PF"]->getItemCount())
+    if (component->getTeamPlayerPosSelectBox()[0]["PF"]->getIndexSelected() < 0 || component->getTeamPlayerPosSelectBox()[0]["PF"]->getIndexSelected() > component->getTeamPlayerPosSelectBox()[0]["PF"]->getItemCount())
     {
-        teamPlayerPosSelectBox[0]["PF"]->setIndexSelected(0);
+        component->getTeamPlayerPosSelectBox()[0]["PF"]->setIndexSelected(0);
     }
-    if (teamPlayerPosSelectBox[0]["C"]->getIndexSelected() < 0 || teamPlayerPosSelectBox[0]["C"]->getIndexSelected() > teamPlayerPosSelectBox[0]["C"]->getItemCount())
+    if (component->getTeamPlayerPosSelectBox()[0]["C"]->getIndexSelected() < 0 || component->getTeamPlayerPosSelectBox()[0]["C"]->getIndexSelected() > component->getTeamPlayerPosSelectBox()[0]["C"]->getItemCount())
     {
-        teamPlayerPosSelectBox[0]["C"]->setIndexSelected(0);
+        component->getTeamPlayerPosSelectBox()[0]["C"]->setIndexSelected(0);
     }
-    if (teamPlayerPosSelectBox[1]["PG"]->getIndexSelected() < 0 || teamPlayerPosSelectBox[1]["PG"]->getIndexSelected() > teamPlayerPosSelectBox[1]["PG"]->getItemCount())
+    if (component->getTeamPlayerPosSelectBox()[1]["PG"]->getIndexSelected() < 0 || component->getTeamPlayerPosSelectBox()[1]["PG"]->getIndexSelected() > component->getTeamPlayerPosSelectBox()[1]["PG"]->getItemCount())
     {
-        teamPlayerPosSelectBox[1]["PG"]->setIndexSelected(0);
+        component->getTeamPlayerPosSelectBox()[1]["PG"]->setIndexSelected(0);
     }
-    if (teamPlayerPosSelectBox[1]["SG"]->getIndexSelected() < 0 || teamPlayerPosSelectBox[1]["SG"]->getIndexSelected() > teamPlayerPosSelectBox[1]["SG"]->getItemCount())
+    if (component->getTeamPlayerPosSelectBox()[1]["SG"]->getIndexSelected() < 0 || component->getTeamPlayerPosSelectBox()[1]["SG"]->getIndexSelected() > component->getTeamPlayerPosSelectBox()[1]["SG"]->getItemCount())
     {
-        teamPlayerPosSelectBox[1]["SG"]->setIndexSelected(0);
+        component->getTeamPlayerPosSelectBox()[1]["SG"]->setIndexSelected(0);
     }
-    if (teamPlayerPosSelectBox[1]["SF"]->getIndexSelected() < 0 || teamPlayerPosSelectBox[1]["SF"]->getIndexSelected() > teamPlayerPosSelectBox[1]["SF"]->getItemCount())
+    if (component->getTeamPlayerPosSelectBox()[1]["SF"]->getIndexSelected() < 0 || component->getTeamPlayerPosSelectBox()[1]["SF"]->getIndexSelected() > component->getTeamPlayerPosSelectBox()[1]["SF"]->getItemCount())
     {
-        teamPlayerPosSelectBox[1]["SF"]->setIndexSelected(0);
+        component->getTeamPlayerPosSelectBox()[1]["SF"]->setIndexSelected(0);
     }
-    if (teamPlayerPosSelectBox[1]["PF"]->getIndexSelected() < 0 || teamPlayerPosSelectBox[1]["PF"]->getIndexSelected() > teamPlayerPosSelectBox[1]["PF"]->getItemCount())
+    if (component->getTeamPlayerPosSelectBox()[1]["PF"]->getIndexSelected() < 0 || component->getTeamPlayerPosSelectBox()[1]["PF"]->getIndexSelected() > component->getTeamPlayerPosSelectBox()[1]["PF"]->getItemCount())
     {
-        teamPlayerPosSelectBox[1]["PF"]->setIndexSelected(0);
+        component->getTeamPlayerPosSelectBox()[1]["PF"]->setIndexSelected(0);
     }
-    if (teamPlayerPosSelectBox[1]["C"]->getIndexSelected() < 0 || teamPlayerPosSelectBox[1]["C"]->getIndexSelected() > teamPlayerPosSelectBox[1]["C"]->getItemCount())
+    if (component->getTeamPlayerPosSelectBox()[1]["C"]->getIndexSelected() < 0 || component->getTeamPlayerPosSelectBox()[1]["C"]->getIndexSelected() > component->getTeamPlayerPosSelectBox()[1]["C"]->getItemCount())
     {
-        teamPlayerPosSelectBox[1]["C"]->setIndexSelected(0);
+        component->getTeamPlayerPosSelectBox()[1]["C"]->setIndexSelected(0);
     }
     
     logMsg(func +" next");
@@ -772,11 +772,11 @@ void GUISystem::playerStartSelected()  // process player start selection
     for (TSVIT = teamStarters.begin(); TSVIT != teamStarters.end(); ++TSVIT)
     {
         logMsg(func + " TSVIT begin");
-        TSVIT->insert(std::pair<std::string, std::string>("PG", teamPlayerPosSelectBox[w]["PG"]->getItemNameAt(teamPlayerPosSelectBox[w]["PG"]->getIndexSelected())));
-        TSVIT->insert(std::pair<std::string, std::string>("SG", teamPlayerPosSelectBox[w]["SG"]->getItemNameAt(teamPlayerPosSelectBox[w]["SG"]->getIndexSelected())));
-        TSVIT->insert(std::pair<std::string, std::string>("SF", teamPlayerPosSelectBox[w]["SF"]->getItemNameAt(teamPlayerPosSelectBox[w]["SF"]->getIndexSelected())));
-        TSVIT->insert(std::pair<std::string, std::string>("PF", teamPlayerPosSelectBox[w]["PF"]->getItemNameAt(teamPlayerPosSelectBox[w]["PF"]->getIndexSelected())));
-        TSVIT->insert(std::pair<std::string, std::string>("C", teamPlayerPosSelectBox[w]["C"]->getItemNameAt(teamPlayerPosSelectBox[w]["C"]->getIndexSelected())));
+        TSVIT->insert(std::pair<std::string, std::string>("PG", component->getTeamPlayerPosSelectBox()[w]["PG"]->getItemNameAt(component->getTeamPlayerPosSelectBox()[w]["PG"]->getIndexSelected())));
+        TSVIT->insert(std::pair<std::string, std::string>("SG", component->getTeamPlayerPosSelectBox()[w]["SG"]->getItemNameAt(component->getTeamPlayerPosSelectBox()[w]["SG"]->getIndexSelected())));
+        TSVIT->insert(std::pair<std::string, std::string>("SF", component->getTeamPlayerPosSelectBox()[w]["SF"]->getItemNameAt(component->getTeamPlayerPosSelectBox()[w]["SF"]->getIndexSelected())));
+        TSVIT->insert(std::pair<std::string, std::string>("PF", component->getTeamPlayerPosSelectBox()[w]["PF"]->getItemNameAt(component->getTeamPlayerPosSelectBox()[w]["PF"]->getIndexSelected())));
+        TSVIT->insert(std::pair<std::string, std::string>("C", component->getTeamPlayerPosSelectBox()[w]["C"]->getItemNameAt(component->getTeamPlayerPosSelectBox()[w]["C"]->getIndexSelected())));
         ++w;
         logMsg(func +" TSVIT end");
     }
@@ -1230,14 +1230,14 @@ void GUISystem::playerStartSelected()  // process player start selection
 
 void GUISystem::setupAwaySelected()  // processes away team selectdion on game setup menu
 {
-    MyGUI::InputManager::getInstance().setKeyFocusWidget(teamSelectBox[1].get());
+    MyGUI::InputManager::getInstance().setKeyFocusWidget(component->getTeamSelectBox()[1].get());
     flag->setSetupMenuAwaySelected(true);
     flag->setSetupMenuHomeSelected(false);
 }
 
 void GUISystem::setupHomeSelected()  // process home team selection on game setup menu
 {
-    MyGUI::InputManager::getInstance().setKeyFocusWidget(teamSelectBox[1].get());
+    MyGUI::InputManager::getInstance().setKeyFocusWidget(component->getTeamSelectBox()[1].get());
     flag->setSetupMenuHomeSelected(true);
     flag->setSetupMenuAwaySelected(false);
 }

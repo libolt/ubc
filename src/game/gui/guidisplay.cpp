@@ -22,6 +22,7 @@
 
 #include "gui/gui.h"
 #include "utilities/conversion.h"
+#include "components/guicomponents.h"
 #include "data/courtdata.h"
 #include "engine/gameengine.h"
 #include "state/gamestate.h"
@@ -42,11 +43,11 @@ void GUISystem::hideMainMenuWidgets()  // hides the widgets tied to the Main Men
     
     logMsg(func +" begin");
     
-    mainMenuButtons["startSingleGameButton"]->setVisible(false);
-    mainMenuButtons["startMultiGameButton"]->setVisible(false);
-    mainMenuButtons["optionsButton"]->setVisible(false);
-    mainMenuButtons["exitButton"]->setVisible(false);
-    mainMenuButtons["startSingleGameButton"]->setStateSelected(false);
+    component->getMainMenuButtons()["startSingleGameButton"]->setVisible(false);
+    component->getMainMenuButtons()["startMultiGameButton"]->setVisible(false);
+    component->getMainMenuButtons()["optionsButton"]->setVisible(false);
+    component->getMainMenuButtons()["exitButton"]->setVisible(false);
+    component->getMainMenuButtons()["startSingleGameButton"]->setStateSelected(false);
     logMsg(func +" end");
     
 }
@@ -56,12 +57,12 @@ void GUISystem::showMainMenuWidgets()  // shows all widgets tied to the Main Men
     
     logMsg(func +" begin");
 
-    mainMenuButtons["startSingleGameButton"]->setVisible(true);
-    mainMenuButtons["startMultiGameButton"]->setVisible(true);
-    mainMenuButtons["optionsButton"]->setVisible(true);
-    mainMenuButtons["exitButton"]->setVisible(true);
-    mainMenuButtons["startSingleGameButton"]->setStateSelected(true);
-    MyGUI::InputManager::getInstance().setKeyFocusWidget(mainMenuButtons["startSingleGameButton"].get());
+    component->getMainMenuButtons()["startSingleGameButton"]->setVisible(true);
+    component->getMainMenuButtons()["startMultiGameButton"]->setVisible(true);
+    component->getMainMenuButtons()["optionsButton"]->setVisible(true);
+    component->getMainMenuButtons()["exitButton"]->setVisible(true);
+    component->getMainMenuButtons()["startSingleGameButton"]->setStateSelected(true);
+    MyGUI::InputManager::getInstance().setKeyFocusWidget(component->getMainMenuButtons()["startSingleGameButton"].get());
     logMsg(func +"gameE->setMenuActive(true)");
     gameE->setMenuActive(true);
     logMsg(func +" end");
@@ -69,9 +70,9 @@ void GUISystem::showMainMenuWidgets()  // shows all widgets tied to the Main Men
 void GUISystem::hideNetworkSetupWidgets()  // hides the widgets tied to the Network Setup Menu
 {
 //  ipAddressBox->setVisible(false);
-    networkMenuButtons["serverButton"]->setVisible(false);
-    networkMenuButtons["clientButton"]->setVisible(false);
-    networkMenuButtons["backMainMenuButton"]->setVisible(false);
+    component->getNetworkMenuButtons()["serverButton"]->setVisible(false);
+    component->getNetworkMenuButtons()["clientButton"]->setVisible(false);
+    component->getNetworkMenuButtons()["backMainMenuButton"]->setVisible(false);
 }
 void GUISystem::showNetworkSetupWidgets()  // shows all widgets tied to the Network Setup Menu
 {
@@ -79,32 +80,21 @@ void GUISystem::showNetworkSetupWidgets()  // shows all widgets tied to the Netw
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getgetRenderE()->getViewPort()();
 
 //    ipAddressBox->setVisible(true);
-    networkMenuButtons["serverButton"]->setVisible(true);
-    networkMenuButtons["clientButton"]->setVisible(true);
+    component->getNetworkMenuButtons()["serverButton"]->setVisible(true);
+    component->getNetworkMenuButtons()["clientButton"]->setVisible(true);
 
-    networkMenuButtons["backMainMenuButton"]->setVisible(true);
-    networkMenuButtons["backMainMenuButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.22 *render->getViewPort()->getActualHeight()));
+    component->getNetworkMenuButtons()["backMainMenuButton"]->setVisible(true);
+    component->getNetworkMenuButtons()["backMainMenuButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.22 *render->getViewPort()->getActualHeight()));
 
 }
 
 void GUISystem::hideNetworkServerSetupWidgets()  // hides all widgets tied to the Network Server Setup Menu
 {
 
-    numClientsSelectBox->setVisible(false);
-/*    team0Player1SelectBox->setVisible(false);
-    team0Player2SelectBox->setVisible(false);
-    team0Player3SelectBox->setVisible(false);
-    team0Player4SelectBox->setVisible(false);
-    team0Player5SelectBox->setVisible(false);
-    team1Player1SelectBox->setVisible(false);
-    team1Player2SelectBox->setVisible(false);
-    team1Player3SelectBox->setVisible(false);
-    team1Player4SelectBox->setVisible(false);
-    team1Player5SelectBox->setVisible(false);
-*/
-    serverIPAddressBox->setVisible(false);
-    networkServerSetupMenuButtons["serverHostButton"]->setVisible(false);
-    networkServerSetupMenuButtons["backNetworkSetupButton"]->setVisible(false);
+    component->getNumClientsSelectBox()->setVisible(false);
+    component->getServerIPAddressBox()->setVisible(false);
+    component->getNetworkServerSetupMenuButtons()["serverHostButton"]->setVisible(false);
+    component->getNetworkServerSetupMenuButtons()["backNetworkSetupButton"]->setVisible(false);
     
     
 }
@@ -113,23 +103,23 @@ void GUISystem::showNetworkServerSetupWidgets()  // shows all widgets tied to th
     renderEngineSharedPtr render; // = renderEngine::Instance();
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
 
-    numClientsSelectBox->setVisible(true);
+    component->getNumClientsSelectBox()->setVisible(true);
     
-    serverIPAddressBox->setVisible(true);
-    serverIPAddressBox->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.10 *render->getViewPort()->getActualHeight()) );
+    component->getServerIPAddressBox()->setVisible(true);
+   component->getServerIPAddressBox()->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.10 *render->getViewPort()->getActualHeight()) );
 
-    networkServerSetupMenuButtons["serverHostButton"]->setVisible(true);
-    networkServerSetupMenuButtons["serverHostButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.14 *render->getViewPort()->getActualHeight()) );
+    component->getNetworkServerSetupMenuButtons()["serverHostButton"]->setVisible(true);
+    component->getNetworkServerSetupMenuButtons()["serverHostButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.14 *render->getViewPort()->getActualHeight()) );
     
-    networkServerSetupMenuButtons["backNetworkSetupButton"]->setVisible(true);
-    networkServerSetupMenuButtons["backNetworkSetupButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.18 *render->getViewPort()->getActualHeight()) );
+    component->getNetworkServerSetupMenuButtons()["backNetworkSetupButton"]->setVisible(true);
+    component->getNetworkServerSetupMenuButtons()["backNetworkSetupButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.18 *render->getViewPort()->getActualHeight()) );
 }
 
 void GUISystem::hideNetworkClientSetupWidgets()  // hides the widgets tied to the Network Setup Menu
 {
-    clientIPAddressBox->setVisible(false);
-    networkClientSetupMenuButtons["clientConnectButton"]->setVisible(false);
-    networkClientSetupMenuButtons["backNetworkSetupButton"]->setVisible(false);
+    component->getClientIPAddressBox()->setVisible(false);
+    component->getNetworkClientSetupMenuButtons()["clientConnectButton"]->setVisible(false);
+    component->getNetworkClientSetupMenuButtons()["backNetworkSetupButton"]->setVisible(false);
 }
 void GUISystem::showNetworkClientSetupWidgets()  // shows all widgets tied to the Network Setup Menu
 {
@@ -137,23 +127,23 @@ void GUISystem::showNetworkClientSetupWidgets()  // shows all widgets tied to th
 
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
 
-    clientIPAddressBox->setVisible(true);
-    clientIPAddressBox->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.10 *render->getViewPort()->getActualHeight()) );
+    component->getClientIPAddressBox()->setVisible(true);
+    component->getClientIPAddressBox()->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.10 *render->getViewPort()->getActualHeight()) );
 
-    networkClientSetupMenuButtons["clientConnectButton"]->setVisible(true);
-    networkClientSetupMenuButtons["clientConnectButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.14 *render->getViewPort()->getActualHeight()) );
+    component->getNetworkClientSetupMenuButtons()["clientConnectButton"]->setVisible(true);
+    component->getNetworkClientSetupMenuButtons()["clientConnectButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.14 *render->getViewPort()->getActualHeight()) );
 
-    networkClientSetupMenuButtons["backNetworkSetupButton"]->setVisible(true);
-    networkClientSetupMenuButtons["backNetworkSetupButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.18 *render->getViewPort()->getActualHeight()) );
+    component->getNetworkClientSetupMenuButtons()["backNetworkSetupButton"]->setVisible(true);
+    component->getNetworkClientSetupMenuButtons()["backNetworkSetupButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.18 *render->getViewPort()->getActualHeight()) );
 
 }
 
 void GUISystem::hideOptionsMenuWidgets()  // hides all widgets tied to the Options Menu
 {
-    optionsMenuButtons["displayButton"]->setVisible(false);
-    optionsMenuButtons["inputButton"]->setVisible(false);
-    optionsMenuButtons["audioButton"]->setVisible(false);
-    optionsMenuButtons["backMainMenuButton"]->setVisible(false);
+    component->getOptionsMenuButtons()["displayButton"]->setVisible(false);
+    component->getOptionsMenuButtons()["inputButton"]->setVisible(false);
+    component->getOptionsMenuButtons()["audioButton"]->setVisible(false);
+    component->getOptionsMenuButtons()["backMainMenuButton"]->setVisible(false);
 }
 void GUISystem::showOptionsMenuWidgets()  // shows all widgets tied to the Options Menu
 {
@@ -161,53 +151,53 @@ void GUISystem::showOptionsMenuWidgets()  // shows all widgets tied to the Optio
 
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
 
-    optionsMenuButtons["displayButton"]->setVisible(true);
-    optionsMenuButtons["inputButton"]->setVisible(true);
-    optionsMenuButtons["audioButton"]->setVisible(true);
-    optionsMenuButtons["backMainMenuButton"]->setPosition(362, 275);
-    optionsMenuButtons["backMainMenuButton"]->setVisible(true);
+    component->getOptionsMenuButtons()["displayButton"]->setVisible(true);
+    component->getOptionsMenuButtons()["inputButton"]->setVisible(true);
+    component->getOptionsMenuButtons()["audioButton"]->setVisible(true);
+    component->getOptionsMenuButtons()["backMainMenuButton"]->setPosition(362, 275);
+    component->getOptionsMenuButtons()["backMainMenuButton"]->setVisible(true);
 
 }
 
 void GUISystem::hideDisplayMenuWidgets()  // hides all widgets tied to the Display Menu
 {
-    displayMenuButtons["changeResolutionButton"]->setVisible(false);
-    displayMenuButtons["backOptionsMenuButton"]->setVisible(false);
+    component->getDisplayMenuButtons()["changeResolutionButton"]->setVisible(false);
+    component->getDisplayMenuButtons()["backOptionsMenuButton"]->setVisible(false);
 
 
 }
 void GUISystem::showDisplayMenuWidgets()  // shows all widgets tied to the Display Menu
 {
-    displayMenuButtons["changeResolutionButton"]->setVisible(true);
-    displayMenuButtons["backOptionsMenuButton"]->setVisible(true);
+    component->getDisplayMenuButtons()["changeResolutionButton"]->setVisible(true);
+    component->getDisplayMenuButtons()["backOptionsMenuButton"]->setVisible(true);
 
 }
 
 void GUISystem::hideInputMenuWidgets()  // hides all widgets tied to the Input Menu
 {
-    inputMenuButtons["changeInputTypeButton"]->setVisible(false);
-    inputMenuButtons["backOptionsMenuButton"]->setVisible(false);
+    component->getInputMenuButtons()["changeInputTypeButton"]->setVisible(false);
+    component->getInputMenuButtons()["backOptionsMenuButton"]->setVisible(false);
 
 }
 void GUISystem::showInputMenuWidgets()  // shows all widgets tied to the Input Menu
 {
-    inputMenuButtons["changeInputTypeButton"]->setVisible(true);
-    inputMenuButtons["backOptionsMenuButton"]->setVisible(true);
+    component->getInputMenuButtons()["changeInputTypeButton"]->setVisible(true);
+    component->getInputMenuButtons()["backOptionsMenuButton"]->setVisible(true);
 
 }
 
 void GUISystem::hideAudioMenuWidgets()  // hides all widgets tied to the Audio Menu
 {
-    audioMenuButtons["enableAudioButton"]->setVisible(false);
-    audioMenuButtons["disableAudioButton"]->setVisible(false);
-    audioMenuButtons["backOptionsMenuButton"]->setVisible(false);
+    component->getAudioMenuButtons()["enableAudioButton"]->setVisible(false);
+    component->getAudioMenuButtons()["disableAudioButton"]->setVisible(false);
+    component->getAudioMenuButtons()["backOptionsMenuButton"]->setVisible(false);
 
 }
 void GUISystem::showAudioMenuWidgets()  // shows all widgets tied to the Main Menu
 {
-    audioMenuButtons["enableAudioButton"]->setVisible(true);
-    audioMenuButtons["disableAudioButton"]->setVisible(true);
-    audioMenuButtons["backOptionsMenuButton"]->setVisible(false);
+    component->getAudioMenuButtons()["enableAudioButton"]->setVisible(true);
+    component->getAudioMenuButtons()["disableAudioButton"]->setVisible(true);
+    component->getAudioMenuButtons()["backOptionsMenuButton"]->setVisible(false);
 
 }
 
@@ -282,43 +272,43 @@ void GUISystem::hidePlayerStartSelectionMenuWidgets()  // hides all widgets tied
 {
 
     // Team 0 widgets
-    teamPlayerPosSelectBox[0]["PG"]->setVisible(false);
-    teamPlayerPosSelectBox[0]["SG"]->setVisible(false);
-    teamPlayerPosSelectBox[0]["SF"]->setVisible(false);
-    teamPlayerPosSelectBox[0]["PF"]->setVisible(false);
-    teamPlayerPosSelectBox[0]["C"]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[0]["PG"]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[0]["SG"]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[0]["SF"]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[0]["PF"]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[0]["C"]->setVisible(false);
 
-    teamPlayerPosSelectBox[0]["PG"]->setVisible(false);
-    teamPlayerPosSelectBox[0]["SG"]->setVisible(false);
-    teamPlayerPosSelectBox[0]["SF"]->setVisible(false);
-    teamPlayerPosSelectBox[0]["PF"]->setVisible(false);
-    teamPlayerPosSelectBox[0]["C"]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[0]["PG"]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[0]["SG"]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[0]["SF"]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[0]["PF"]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[0]["C"]->setVisible(false);
 
 // FIXME! need to fix image loading
 //    team0Logo->setVisible(false);
 
-    playerStartSelectionMenuButtons["team0StartingLineupSetButton"]->setVisible(false);
+    component->getPlayerStartSelectionMenuButtons()["team0StartingLineupSetButton"]->setVisible(false);
 
     // Team 1 widgets
-    teamPlayerPosSelectBox[1]["PG"]->setVisible(false);
-    teamPlayerPosSelectBox[1]["SG"]->setVisible(false);
-    teamPlayerPosSelectBox[1]["SF"]->setVisible(false);
-    teamPlayerPosSelectBox[1]["PF"]->setVisible(false);
-    teamPlayerPosSelectBox[1]["C"]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[1]["PG"]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[1]["SG"]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[1]["SF"]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[1]["PF"]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[1]["C"]->setVisible(false);
 
-    teamPlayerPosSelectBox[1]["PG"]->setVisible(false);
-    teamPlayerPosSelectBox[1]["SG"]->setVisible(false);
-    teamPlayerPosSelectBox[1]["SF"]->setVisible(false);
-    teamPlayerPosSelectBox[1]["PF"]->setVisible(false);
-    teamPlayerPosSelectBox[1]["C"]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[1]["PG"]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[1]["SG"]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[1]["SF"]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[1]["PF"]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[1]["C"]->setVisible(false);
 
 // FIXME! need to fix image loading
 //    team1Logo->setVisible(false);
 
-    playerStartSelectionMenuButtons["team1StartingLineupSetButton"]->setVisible(false);
+    component->getPlayerStartSelectionMenuButtons()["team1StartingLineupSetButton"]->setVisible(false);
 
-    playerStartSelectionMenuButtons["startingLineupsSetButton"]->setVisible(false);
-    playerStartSelectionMenuButtons["backTeamSelectionMenuButton"]->setVisible(false);
+    component->getPlayerStartSelectionMenuButtons()["startingLineupsSetButton"]->setVisible(false);
+    component->getPlayerStartSelectionMenuButtons()["backTeamSelectionMenuButton"]->setVisible(false);
 
 //    backTeamSelectionMenuButton->setVisible(false);
 
@@ -332,20 +322,20 @@ void GUISystem::showPlayerStartSelectionMenuWidgets(renderEngineSharedPtr render
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
 
     // Team 0 widgets
-    teamPlayerPosSelectBox[0]["PG"]->setVisible(true);
-    teamPlayerPosSelectBox[0]["PG"]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.05 *render->getViewPort()->getActualHeight()) );
+    component->getTeamPlayerPosSelectBox()[0]["PG"]->setVisible(true);
+    component->getTeamPlayerPosSelectBox()[0]["PG"]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.05 *render->getViewPort()->getActualHeight()) );
 
-    teamPlayerPosSelectBox[0]["SG"]->setVisible(true);
-    teamPlayerPosSelectBox[0]["SG"]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.09 *render->getViewPort()->getActualHeight()) );
+    component->getTeamPlayerPosSelectBox()[0]["SG"]->setVisible(true);
+    component->getTeamPlayerPosSelectBox()[0]["SG"]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.09 *render->getViewPort()->getActualHeight()) );
 
-    teamPlayerPosSelectBox[0]["SF"]->setVisible(true);
-    teamPlayerPosSelectBox[0]["SF"]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.13 *render->getViewPort()->getActualHeight()) );
+    component->getTeamPlayerPosSelectBox()[0]["SF"]->setVisible(true);
+    component->getTeamPlayerPosSelectBox()[0]["SF"]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.13 *render->getViewPort()->getActualHeight()) );
 
-    teamPlayerPosSelectBox[0]["PF"]->setVisible(true);
-    teamPlayerPosSelectBox[0]["PF"]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.17 *render->getViewPort()->getActualHeight()) );
+    component->getTeamPlayerPosSelectBox()[0]["PF"]->setVisible(true);
+    component->getTeamPlayerPosSelectBox()[0]["PF"]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.17 *render->getViewPort()->getActualHeight()) );
 
-    teamPlayerPosSelectBox[0]["C"]->setVisible(true);
-    teamPlayerPosSelectBox[0]["C"]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.21 *render->getViewPort()->getActualHeight()) );
+    component->getTeamPlayerPosSelectBox()[0]["C"]->setVisible(true);
+    component->getTeamPlayerPosSelectBox()[0]["C"]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.21 *render->getViewPort()->getActualHeight()) );
 
 /*    teamPlayerPosSelectBox[0]["PG"]->setVisible(true);
     teamPlayerPosSelectBox[0]["PG"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.05 *render->getViewPort()->getActualHeight()) );
@@ -368,24 +358,24 @@ void GUISystem::showPlayerStartSelectionMenuWidgets(renderEngineSharedPtr render
 // FIXME! needs image loaded to work
 //    team0Logo->setVisible(true);
 
-    playerStartSelectionMenuButtons["team0StartingLineupSetButton"]->setVisible(true);
-    playerStartSelectionMenuButtons["team0StartingLineupSetButton"]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.31 *render->getViewPort()->getActualHeight()) );
+    component->getPlayerStartSelectionMenuButtons()["team0StartingLineupSetButton"]->setVisible(true);
+    component->getPlayerStartSelectionMenuButtons()["team0StartingLineupSetButton"]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.31 *render->getViewPort()->getActualHeight()) );
 
     // Team 1 widgets
-    teamPlayerPosSelectBox[1]["PG"]->setVisible(true);
-    teamPlayerPosSelectBox[1]["PG"]->setPosition((0.5 *render->getViewPort()->getActualWidth() ), (0.05 *render->getViewPort()->getActualHeight()) );
+    component->getTeamPlayerPosSelectBox()[1]["PG"]->setVisible(true);
+    component->getTeamPlayerPosSelectBox()[1]["PG"]->setPosition((0.5 *render->getViewPort()->getActualWidth() ), (0.05 *render->getViewPort()->getActualHeight()) );
 
-    teamPlayerPosSelectBox[1]["SG"]->setVisible(true);
-    teamPlayerPosSelectBox[1]["SG"]->setPosition((0.5 *render->getViewPort()->getActualWidth() ), (0.09 *render->getViewPort()->getActualHeight()) );
+    component->getTeamPlayerPosSelectBox()[1]["SG"]->setVisible(true);
+    component->getTeamPlayerPosSelectBox()[1]["SG"]->setPosition((0.5 *render->getViewPort()->getActualWidth() ), (0.09 *render->getViewPort()->getActualHeight()) );
 
-    teamPlayerPosSelectBox[1]["SF"]->setVisible(true);
-    teamPlayerPosSelectBox[1]["SF"]->setPosition((0.5 *render->getViewPort()->getActualWidth() ), (0.13 *render->getViewPort()->getActualHeight()) );
+    component->getTeamPlayerPosSelectBox()[1]["SF"]->setVisible(true);
+    component->getTeamPlayerPosSelectBox()[1]["SF"]->setPosition((0.5 *render->getViewPort()->getActualWidth() ), (0.13 *render->getViewPort()->getActualHeight()) );
 
-    teamPlayerPosSelectBox[1]["PF"]->setVisible(true);
-    teamPlayerPosSelectBox[1]["PF"]->setPosition((0.5 *render->getViewPort()->getActualWidth() ), (0.17 *render->getViewPort()->getActualHeight()) );
+    component->getTeamPlayerPosSelectBox()[1]["PF"]->setVisible(true);
+    component->getTeamPlayerPosSelectBox()[1]["PF"]->setPosition((0.5 *render->getViewPort()->getActualWidth() ), (0.17 *render->getViewPort()->getActualHeight()) );
 
-    teamPlayerPosSelectBox[1]["C"]->setVisible(true);
-    teamPlayerPosSelectBox[1]["C"]->setPosition((0.5 *render->getViewPort()->getActualWidth() ), (0.21 *render->getViewPort()->getActualHeight()) );
+    component->getTeamPlayerPosSelectBox()[1]["C"]->setVisible(true);
+    component->getTeamPlayerPosSelectBox()[1]["C"]->setPosition((0.5 *render->getViewPort()->getActualWidth() ), (0.21 *render->getViewPort()->getActualHeight()) );
 
 /*    teamPlayerPosSelectBox[1]["PG"]->setVisible(true);
     teamPlayerPosSelectBox[1]["PG"]->setPosition((0.8 *render->getViewPort()->getActualWidth() ), (0.21 *render->getViewPort()->getActualHeight()) );
@@ -405,15 +395,15 @@ void GUISystem::showPlayerStartSelectionMenuWidgets(renderEngineSharedPtr render
 // FIXME! needs image loaded to work
 //    team1Logo->setVisible(true);
 
-    playerStartSelectionMenuButtons["team1StartingLineupSetButton"]->setVisible(true);
-    playerStartSelectionMenuButtons["team1StartingLineupSetButton"]->setPosition((0.5 *render->getViewPort()->getActualWidth() ), (0.31 *render->getViewPort()->getActualHeight()) );
+    component->getPlayerStartSelectionMenuButtons()["team1StartingLineupSetButton"]->setVisible(true);
+    component->getPlayerStartSelectionMenuButtons()["team1StartingLineupSetButton"]->setPosition((0.5 *render->getViewPort()->getActualWidth() ), (0.31 *render->getViewPort()->getActualHeight()) );
 
 
-    playerStartSelectionMenuButtons["startingLineupsSetButton"]->setVisible(true);
-    playerStartSelectionMenuButtons["startingLineupsSetButton"]->setPosition((0.25 *render->getViewPort()->getActualWidth() ), (0.38 *render->getViewPort()->getActualHeight()) );
+    component->getPlayerStartSelectionMenuButtons()["startingLineupsSetButton"]->setVisible(true);
+    component->getPlayerStartSelectionMenuButtons()["startingLineupsSetButton"]->setPosition((0.25 *render->getViewPort()->getActualWidth() ), (0.38 *render->getViewPort()->getActualHeight()) );
 
-    playerStartSelectionMenuButtons["backTeamSelectionMenuButton"]->setVisible(true);
-    playerStartSelectionMenuButtons["backTeamSelectionMenuButton"]->setPosition((0.25 *render->getViewPort()->getActualWidth() ), (0.43 *render->getViewPort()->getActualHeight()) );
+    component->getPlayerStartSelectionMenuButtons()["backTeamSelectionMenuButton"]->setVisible(true);
+    component->getPlayerStartSelectionMenuButtons()["backTeamSelectionMenuButton"]->setPosition((0.25 *render->getViewPort()->getActualWidth() ), (0.43 *render->getViewPort()->getActualHeight()) );
 
 }
 
@@ -422,13 +412,13 @@ void GUISystem::hideTeamSelectionMenuWidgets()  // hides all widgets tied to the
     //conversion *convert = conversion::Instance();
     conversionSharedPtr convert = conversion::Instance();
 
-    teamSelectBox[0]->setVisible(false);
-    teamSelectBox[1]->setVisible(false);
-    teamSelectionMenuButtons["team0SelectButton"]->setVisible(false);
-    teamSelectionMenuButtons["team1SelectButton"]->setVisible(false);
-    teamSelectionMenuButtons["teamsSelectedButton"]->setVisible(false);
-    teamSelectionMenuButtons["backMainMenuButton"]->setVisible(false);
-    teamSelectionMenuButtons["backCourtSelectionMenuButton"]->setVisible(false);
+    component->getTeamSelectBox()[0]->setVisible(false);
+    component->getTeamSelectBox()[1]->setVisible(false);
+    component->getTeamSelectionMenuButtons()["team0SelectButton"]->setVisible(false);
+    component->getTeamSelectionMenuButtons()["team1SelectButton"]->setVisible(false);
+    component->getTeamSelectionMenuButtons()["teamsSelectedButton"]->setVisible(false);
+    component->getTeamSelectionMenuButtons()["backMainMenuButton"]->setVisible(false);
+    component->getTeamSelectionMenuButtons()["backCourtSelectionMenuButton"]->setVisible(false);
 
     logMsg("previousActiveMenu = " +convert->toString(previousActiveMenu));
 
@@ -443,23 +433,23 @@ void GUISystem::showTeamSelectionMenuWidgets(renderEngineSharedPtr render)  // s
 
     logMsg(func +" begin");
 
-    teamSelectBox[0]->setVisible(true);
-    teamSelectBox[0]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.10 *render->getViewPort()->getActualHeight()) );
+    component->getTeamSelectBox()[0]->setVisible(true);
+    component->getTeamSelectBox()[0]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.10 *render->getViewPort()->getActualHeight()) );
 //    exit(0);
-    teamSelectBox[1]->setVisible(true);
-    teamSelectBox[1]->setPosition((0.5*render->getViewPort()->getActualWidth() ), (0.10 *render->getViewPort()->getActualHeight()) );
+    component->getTeamSelectBox()[1]->setVisible(true);
+    component->getTeamSelectBox()[1]->setPosition((0.5*render->getViewPort()->getActualWidth() ), (0.10 *render->getViewPort()->getActualHeight()) );
 
-    teamSelectionMenuButtons["team0SelectButton"]->setVisible(true);
-    teamSelectionMenuButtons["team0SelectButton"]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.19 *render->getViewPort()->getActualHeight()) );
+    component->getTeamSelectionMenuButtons()["team0SelectButton"]->setVisible(true);
+    component->getTeamSelectionMenuButtons()["team0SelectButton"]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.19 *render->getViewPort()->getActualHeight()) );
 
-    teamSelectionMenuButtons["team1SelectButton"]->setVisible(true);
-    teamSelectionMenuButtons["team1SelectButton"]->setPosition((0.5 *render->getViewPort()->getActualWidth() ), (0.19 *render->getViewPort()->getActualHeight()) );
+    component->getTeamSelectionMenuButtons()["team1SelectButton"]->setVisible(true);
+    component->getTeamSelectionMenuButtons()["team1SelectButton"]->setPosition((0.5 *render->getViewPort()->getActualWidth() ), (0.19 *render->getViewPort()->getActualHeight()) );
 
-    teamSelectionMenuButtons["teamsSelectedButton"]->setVisible(true);
-    teamSelectionMenuButtons["teamsSelectedButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.25 *render->getViewPort()->getActualHeight()) );
+    component->getTeamSelectionMenuButtons()["teamsSelectedButton"]->setVisible(true);
+    component->getTeamSelectionMenuButtons()["teamsSelectedButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.25 *render->getViewPort()->getActualHeight()) );
     
-    teamSelectionMenuButtons["backCourtSelectionMenuButton"]->setVisible(true);
-    teamSelectionMenuButtons["backCourtSelectionMenuButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.30 *render->getViewPort()->getActualHeight()) );
+    component->getTeamSelectionMenuButtons()["backCourtSelectionMenuButton"]->setVisible(true);
+    component->getTeamSelectionMenuButtons()["backCourtSelectionMenuButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.30 *render->getViewPort()->getActualHeight()) );
 
     logMsg(func +" end");
 //    exit(0);
@@ -467,11 +457,11 @@ void GUISystem::showTeamSelectionMenuWidgets(renderEngineSharedPtr render)  // s
 
 void GUISystem::hideCourtSelectionMenuWidgets()  // hides all widgets tied to the Court Selection Menu
 {
-    courtSelectionMenuButtons["backMainMenuButton"]->setVisible(false);
-    courtSelectBox->setVisible(false);
-    courtNameTxtBox->setVisible(false);
-    courtPreviewImgBox->setVisible(false);
-    courtSelectionMenuButtons["courtSelectButton"]->setVisible(false);
+    component->getCourtSelectionMenuButtons()["backMainMenuButton"]->setVisible(false);
+    component->getCourtSelectBox()->setVisible(false);
+    component->getCourtNameTxtBox()->setVisible(false);
+    component->getCourtPreviewImgBox()->setVisible(false);
+    component->getCourtSelectionMenuButtons()["courtSelectButton"]->setVisible(false);
 //    exit(0);
 }
 void GUISystem::showCourtSelectionMenuWidgets(renderEngineSharedPtr render)  // show all widgets tied to the Court Selection Menu
@@ -486,16 +476,16 @@ void GUISystem::showCourtSelectionMenuWidgets(renderEngineSharedPtr render)  // 
 
     logMsg(func +" court displayCount == " +convert->toString(displayCount));
     
-    courtSelectionMenuButtons["backMainMenuButton"]->setVisible(true);
-    courtSelectionMenuButtons["backMainMenuButton"]->setPosition((0.25 *render->getViewPort()->getActualWidth() ), (0.4 *render->getViewPort()->getActualHeight()) );
+    component->getCourtSelectionMenuButtons()["backMainMenuButton"]->setVisible(true);
+    component->getCourtSelectionMenuButtons()["backMainMenuButton"]->setPosition((0.25 *render->getViewPort()->getActualWidth() ), (0.4 *render->getViewPort()->getActualHeight()) );
 //    exit(0);
-    courtSelectBox->setVisible(true);
-    courtSelectBox->setPosition((0.25 *render->getViewPort()->getActualWidth() ), (0.31 *render->getViewPort()->getActualHeight()) );
+    component->getCourtSelectBox()->setVisible(true);
+    component->getCourtSelectBox()->setPosition((0.25 *render->getViewPort()->getActualWidth() ), (0.31 *render->getViewPort()->getActualHeight()) );
     
-    courtNameTxtBox->setVisible(true);
-    courtPreviewImgBox->setVisible(true);
-    courtSelectionMenuButtons["courtSelectButton"]->setVisible(true);
-    courtSelectionMenuButtons["courtSelectButton"]->setPosition((0.25 *render->getViewPort()->getActualWidth() ), (0.36 *render->getViewPort()->getActualHeight()) );
+    component->getCourtNameTxtBox()->setVisible(true);
+    component->getCourtPreviewImgBox()->setVisible(true);
+    component->getCourtSelectionMenuButtons()["courtSelectButton"]->setVisible(true);
+    component->getCourtSelectionMenuButtons()["courtSelectButton"]->setPosition((0.25 *render->getViewPort()->getActualWidth() ), (0.36 *render->getViewPort()->getActualHeight()) );
 
     logMsg(func +" end");
 }

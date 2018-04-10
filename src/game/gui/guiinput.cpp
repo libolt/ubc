@@ -23,6 +23,7 @@
 #include "ubc/ubcgame.h"
 #include "gui/gui.h"
 #include "components/gamecomponents.h"
+#include "components/guicomponents.h"
 #include "data/courtdata.h"
 #include "engine/gameengine.h"
 #include "state/gamestate.h"
@@ -40,11 +41,6 @@
 
 // static variables/functions
 //void GUISystem::startSingleGameButtonClicked(MyGUI::Widget *_sender);
-
-void GUISystem::startSingleGameButtonClicked(MyGUI::Widget *_sender)  // handles startSingleGameButton click event
-{
-    startSinglePlayerGame(gameE->getRenderE());
-}
 
 void GUISystem::startMultiGameButtonClicked(MyGUI::Widget *_sender)  // handles startMultiGameButton click event
 {
@@ -299,59 +295,59 @@ void GUISystem::processNetworkMenuKeyPress(std::string keyPressed, renderEngineS
 
 void GUISystem::processNetworkServerMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render)  // process network server menu key input
 {
-    if (MyGUI::InputManager::getInstance().getKeyFocusWidget() == serverIPAddressBox.get())
+    if (MyGUI::InputManager::getInstance().getKeyFocusWidget() == component->getServerIPAddressBox().get())
     {
         logMsg("keypress = " +keyPressed);
 //        exit(0);
         if (keyPressed == "0")
         {
-            serverIPAddressBox->addText("0");
+            component->getServerIPAddressBox()->addText("0");
         }
         else if (keyPressed == "1")
         {
-            serverIPAddressBox->addText("1");
+            component->getServerIPAddressBox()->addText("1");
         }
         else if (keyPressed == "2")
         {
-            serverIPAddressBox->addText("2");
+            component->getServerIPAddressBox()->addText("2");
         }
         else if (keyPressed == "3")
         {
-            serverIPAddressBox->addText("3");
+            component->getServerIPAddressBox()->addText("3");
         }
         else if (keyPressed == "4")
         {
-            serverIPAddressBox->addText("4");
+            component->getServerIPAddressBox()->addText("4");
         }
         else if (keyPressed == "5")
         {
-            serverIPAddressBox->addText("5");
+            component->getServerIPAddressBox()->addText("5");
         }
         else if (keyPressed == "6")
         {
-            serverIPAddressBox->addText("6");
+            component->getServerIPAddressBox()->addText("6");
         }
         else if (keyPressed == "7")
         {
-            serverIPAddressBox->addText("7");
+            component->getServerIPAddressBox()->addText("7");
         }
         else if (keyPressed == "8")
         {
-            serverIPAddressBox->addText("8");
+            component->getServerIPAddressBox()->addText("8");
         }
         else if (keyPressed == "9")
         {
-            serverIPAddressBox->addText("9");
+            component->getServerIPAddressBox()->addText("9");
         }
         else if (keyPressed == ".")
         {
-            serverIPAddressBox->addText(".");
+            component->getServerIPAddressBox()->addText(".");
         }
         else if (keyPressed == "Backspace")
         {
             logMsg("Backspace!");
 //            exit(0);
-        //    serverIPAddressBox->addText(".");
+        //    component->getServerIPAddressBox()->addText(".");
 //            MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Backspace, 0);
         }
     }
@@ -373,53 +369,53 @@ void GUISystem::processNetworkServerMenuKeyPress(std::string keyPressed, renderE
 
 void GUISystem::processNetworkClientMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render)  // processes network menu key input
 {
-    if (MyGUI::InputManager::getInstance().getKeyFocusWidget() == clientIPAddressBox.get())
+    if (MyGUI::InputManager::getInstance().getKeyFocusWidget() == component->getClientIPAddressBox().get())
     {
 //        logMsg("clientIPAddressBox is focus!");
 //        exit(0);
         if (keyPressed == "0")
         {
-            clientIPAddressBox->addText("0");
+            component->getClientIPAddressBox()->addText("0");
         }
         else if (keyPressed == "1")
         {
-            clientIPAddressBox->addText("1");
+            component->getClientIPAddressBox()->addText("1");
         }
         else if (keyPressed == "2")
         {
-            clientIPAddressBox->addText("2");
+            component->getClientIPAddressBox()->addText("2");
         }
         else if (keyPressed == "3")
         {
-            clientIPAddressBox->addText("3");
+            component->getClientIPAddressBox()->addText("3");
         }
         else if (keyPressed == "4")
         {
-            clientIPAddressBox->addText("4");
+            component->getClientIPAddressBox()->addText("4");
         }
         else if (keyPressed == "5")
         {
-            clientIPAddressBox->addText("5");
+            component->getClientIPAddressBox()->addText("5");
         }
         else if (keyPressed == "6")
         {
-            clientIPAddressBox->addText("6");
+            component->getClientIPAddressBox()->addText("6");
         }
         else if (keyPressed == "7")
         {
-            clientIPAddressBox->addText("7");
+            component->getClientIPAddressBox()->addText("7");
         }
         else if (keyPressed == "8")
         {
-            clientIPAddressBox->addText("8");
+            component->getClientIPAddressBox()->addText("8");
         }
         else if (keyPressed == "9")
         {
-            clientIPAddressBox->addText("9");
+            component->getClientIPAddressBox()->addText("9");
         }
         else if (keyPressed == ".")
         {
-            clientIPAddressBox->addText(".");
+            component->getClientIPAddressBox()->addText(".");
         }
     }
     else
@@ -546,30 +542,30 @@ void GUISystem::processSetupMenuKeyPress(std::string keyPressed, renderEngineSha
     {
         if (flag->getSetupMenuAwaySelected())
         {
-            auto x = teamSelectBox[1]->getIndexSelected() +1;
+            auto x = component->getTeamSelectBox()[1]->getIndexSelected() +1;
             if (x < gameInstance->getComponent()->getTeamInstance().size())
             {
-                teamSelectBox[1]->setIndexSelected(x);
-                teamSelectBox[1]->beginToItemAt(x);
+                component->getTeamSelectBox()[1]->setIndexSelected(x);
+                component->getTeamSelectBox()[1]->beginToItemAt(x);
             }
             else
             {
-                teamSelectBox[1]->setIndexSelected(0);
-                teamSelectBox[1]->beginToItemAt(0);
+                component->getTeamSelectBox()[1]->setIndexSelected(0);
+                component->getTeamSelectBox()[1]->beginToItemAt(0);
             }
         }
         else if (flag->getSetupMenuHomeSelected())
         {
-            auto x = teamSelectBox[0]->getIndexSelected() +1;
+            auto x = component->getTeamSelectBox()[0]->getIndexSelected() +1;
             if (x < gameInstance->getComponent()->getTeamInstance().size())
             {
-                teamSelectBox[0]->setIndexSelected(x);
-                teamSelectBox[0]->beginToItemAt(x);
+                component->getTeamSelectBox()[0]->setIndexSelected(x);
+                component->getTeamSelectBox()[0]->beginToItemAt(x);
             }
             else
             {
-                teamSelectBox[0]->setIndexSelected(0);
-                teamSelectBox[0]->beginToItemAt(0);
+                component->getTeamSelectBox()[0]->setIndexSelected(0);
+                component->getTeamSelectBox()[0]->beginToItemAt(0);
             }
         }
         else
@@ -581,31 +577,31 @@ void GUISystem::processSetupMenuKeyPress(std::string keyPressed, renderEngineSha
     {
         if (flag->getSetupMenuAwaySelected())
         {
-            auto x = teamSelectBox[1]->getIndexSelected() -1;
+            auto x = component->getTeamSelectBox()[1]->getIndexSelected() -1;
             if (x < 0)
             {
-                teamSelectBox[1]->setIndexSelected(gameInstance->getComponent()->getTeamInstance().size() -1);
-                teamSelectBox[1]->beginToItemAt(gameInstance->getComponent()->getTeamInstance().size() -1);
+                component->getTeamSelectBox()[1]->setIndexSelected(gameInstance->getComponent()->getTeamInstance().size() -1);
+                component->getTeamSelectBox()[1]->beginToItemAt(gameInstance->getComponent()->getTeamInstance().size() -1);
             }
             else
             {
                 //exit(0);
-                teamSelectBox[1]->setIndexSelected(x);
-                teamSelectBox[1]->beginToItemAt(x);
+                component->getTeamSelectBox()[1]->setIndexSelected(x);
+                component->getTeamSelectBox()[1]->beginToItemAt(x);
             }
         }
         else if (flag->getSetupMenuHomeSelected())
         {
-            auto x = teamSelectBox[0]->getIndexSelected() -1;
+            auto x = component->getTeamSelectBox()[0]->getIndexSelected() -1;
             if (x < 0)
             {
-                teamSelectBox[0]->setIndexSelected(gameInstance->getComponent()->getTeamInstance().size() -1);
-                teamSelectBox[0]->beginToItemAt(gameInstance->getComponent()->getTeamInstance().size() -1);
+                component->getTeamSelectBox()[0]->setIndexSelected(gameInstance->getComponent()->getTeamInstance().size() -1);
+                component->getTeamSelectBox()[0]->beginToItemAt(gameInstance->getComponent()->getTeamInstance().size() -1);
             }
             else
             {
-                teamSelectBox[0]->setIndexSelected(x);
-                teamSelectBox[0]->beginToItemAt(x);
+                component->getTeamSelectBox()[0]->setIndexSelected(x);
+                component->getTeamSelectBox()[0]->beginToItemAt(x);
             }
         }
         else
@@ -692,30 +688,30 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed, renderE
     {
         if (flag->getSetupMenuAwaySelected())
         {
-            auto x = teamSelectBox[1]->getIndexSelected() +1;
+            auto x = component->getTeamSelectBox()[1]->getIndexSelected() +1;
             if (x < gameInstance->getComponent()->getTeamInstance().size())
             {
-                teamSelectBox[1]->setIndexSelected(x);
-                teamSelectBox[1]->beginToItemAt(x);
+                component->getTeamSelectBox()[1]->setIndexSelected(x);
+                component->getTeamSelectBox()[1]->beginToItemAt(x);
             }
             else
             {
-                teamSelectBox[1]->setIndexSelected(0);
-                teamSelectBox[1]->beginToItemAt(0);
+                component->getTeamSelectBox()[1]->setIndexSelected(0);
+                component->getTeamSelectBox()[1]->beginToItemAt(0);
             }
         }
         else if (flag->getSetupMenuHomeSelected())
         {
-            auto x = teamSelectBox[0]->getIndexSelected() +1;
+            auto x = component->getTeamSelectBox()[0]->getIndexSelected() +1;
             if (x < gameInstance->getComponent()->getTeamInstance().size())
             {
-                teamSelectBox[0]->setIndexSelected(x);
-                teamSelectBox[0]->beginToItemAt(x);
+                component->getTeamSelectBox()[0]->setIndexSelected(x);
+                component->getTeamSelectBox()[0]->beginToItemAt(x);
             }
             else
             {
-                teamSelectBox[0]->setIndexSelected(0);
-                teamSelectBox[0]->beginToItemAt(0);
+                component->getTeamSelectBox()[0]->setIndexSelected(0);
+                component->getTeamSelectBox()[0]->beginToItemAt(0);
             }
         }
         else
@@ -727,31 +723,31 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed, renderE
     {
         if (flag->getSetupMenuAwaySelected())
         {
-            auto x = teamSelectBox[1]->getIndexSelected() -1;
+            auto x = component->getTeamSelectBox()[1]->getIndexSelected() -1;
             if (x < 0)
             {
-                teamSelectBox[1]->setIndexSelected(gameInstance->getComponent()->getTeamInstance().size() -1);
-                teamSelectBox[1]->beginToItemAt(gameInstance->getComponent()->getTeamInstance().size() -1);
+                component->getTeamSelectBox()[1]->setIndexSelected(gameInstance->getComponent()->getTeamInstance().size() -1);
+                component->getTeamSelectBox()[1]->beginToItemAt(gameInstance->getComponent()->getTeamInstance().size() -1);
             }
             else
             {
                 //exit(0);
-                teamSelectBox[1]->setIndexSelected(x);
-                teamSelectBox[1]->beginToItemAt(x);
+                component->getTeamSelectBox()[1]->setIndexSelected(x);
+                component->getTeamSelectBox()[1]->beginToItemAt(x);
             }
         }
         else if (flag->getSetupMenuHomeSelected())
         {
-            auto x = teamSelectBox[0]->getIndexSelected() -1;
+            auto x = component->getTeamSelectBox()[0]->getIndexSelected() -1;
             if (x < 0)
             {
-                teamSelectBox[0]->setIndexSelected(gameInstance->getComponent()->getTeamInstance().size() -1);
-                teamSelectBox[0]->beginToItemAt(gameInstance->getComponent()->getTeamInstance().size() -1);
+                component->getTeamSelectBox()[0]->setIndexSelected(gameInstance->getComponent()->getTeamInstance().size() -1);
+                component->getTeamSelectBox()[0]->beginToItemAt(gameInstance->getComponent()->getTeamInstance().size() -1);
             }
             else
             {
-                teamSelectBox[0]->setIndexSelected(x);
-                teamSelectBox[0]->beginToItemAt(x);
+                component->getTeamSelectBox()[0]->setIndexSelected(x);
+                component->getTeamSelectBox()[0]->beginToItemAt(x);
             }
         }
         else

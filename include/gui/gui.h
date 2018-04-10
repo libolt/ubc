@@ -135,7 +135,6 @@ public:
     bool checkTeamInstancesCreated();  // Checks if team instances have been created and if not creates them.
 
     // MyGUI functions
-    void startSingleGameButtonClicked(MyGUI::Widget *_sender);  // handles startSingleGameButton click event
     void startMultiGameButtonClicked(MyGUI::Widget *_sender);  // hands startMultiGameButton click event
     void optionsButtonClicked(MyGUI::Widget *_sender);  // handles optionsButton click event
     void exitButtonClicked(MyGUI::Widget *_sender);  // handles exitButton click event
@@ -212,53 +211,6 @@ private:
     GUIComponentsSharedPtr component;  // stores gui related components
     
     guiFlagsSharedPtr flag;  // stores gui related flags
-
-    // button widgets
-    
-    // Main Menu
-    MyGUIButtonMSharedPtr mainMenuButtons;
-    MyGUIButtonMSharedPtr networkMenuButtons;
-    MyGUIButtonMSharedPtr optionsMenuButtons;
-    MyGUIButtonMSharedPtr displayMenuButtons;
-    MyGUIButtonMSharedPtr inputMenuButtons;
-    MyGUIButtonMSharedPtr audioMenuButtons;
-
-    // Team Selection Menu
-    MyGUIButtonMSharedPtr teamSelectionMenuButtons;
-
-    // Player Start Selection Menu
-    MyGUIButtonMSharedPtr playerStartSelectionMenuButtons;
-
-    // Team selection listbox widgets
-    MyGUIListBoxMSharedPtr teamSelectBox;
-
-    // Network Server Setup Widgets
-    MyGUIListBoxSharedPtr numClientsSelectBox;  // allows you to select the number of network players
-//    static sharedPtr<MyGUI::Button> serverHostButton;
-    sharedPtr<MyGUI::EditBox> serverIPAddressBox;
-    
-    MyGUIButtonMSharedPtr networkServerSetupMenuButtons;
-    
-    // Network Client Setup Widgets
-    sharedPtr<MyGUI::EditBox> clientIPAddressBox;
-//    static sharedPtr<MyGUI::Button> clientConnectButton;
-    
-    MyGUIButtonMSharedPtr networkClientSetupMenuButtons;
-    
-    MyGUIListBoxVecMSharedPtr teamPlayerPosSelectBox;
-    
-
-    MyGUITextBoxVecMSharedPtr teamPlayerRating;
-
-    MyGUIImageBoxMSharedPtr teamLogo;
-
-    // Court selection menu widgets
-    MyGUIButtonMSharedPtr courtSelectionMenuButtons;
-
-    MyGUIListBoxSharedPtr courtSelectBox;
-    MyGUIImageBoxSharedPtr courtPreviewImgBox;
-    MyGUITextBoxSharedPtr courtNameTxtBox;
-
 
 //    UBCGameSharedPtr game;  // stores a copy of the game object
     gameStateSharedPtr gameInstance;  // stores a copy of the gameInstance

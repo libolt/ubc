@@ -23,6 +23,7 @@
 #include "gui/gui.h"
 #include "utilities/conversion.h"
 #include "components/gamecomponents.h"
+#include "components/guicomponents.h"
 #include "components/teamcomponents.h"
 #include "data/courtdata.h"
 #include "data/gamedata.h"
@@ -130,7 +131,7 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
 //    auto i = 0;
     for (CNIT = courtName.begin(); CNIT != courtName.end(); ++CNIT)
     {
-        courtSelectBox->addItem(*CNIT);
+        component->getCourtSelectBox()->addItem(*CNIT);
         
     }
 
@@ -198,33 +199,33 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
             switch (PIIT.second->getData()->getPrimaryPosition())
             {
                 case PG:
-                    teamPlayerPosSelectBox[teamNum]["PG"]->addItem(playerName);
+                    component->getTeamPlayerPosSelectBox()[teamNum]["PG"]->addItem(playerName);
 //                    teamPlayerRating[i]["PG"]->setCaption(playerOverallRating);
                     logMsg(func +" PG playerName == " +playerName);
                     logMsg(func +" PG playerRating == " +playerOverallRating);
                 break;
                 case SG:
-                    teamPlayerPosSelectBox[teamNum]["SG"]->addItem(playerName);         
+                    component->getTeamPlayerPosSelectBox()[teamNum]["SG"]->addItem(playerName);         
 //                    teamPlayerRating[i]["SG"]->setCaption(playerOverallRating);
                     logMsg(func +" SG playerName == " +playerName);
                     logMsg(func +" SG playerRating == " +playerOverallRating);
  
                 break;
                 case SF:
-                    teamPlayerPosSelectBox[teamNum]["SF"]->addItem(playerName);
+                    component->getTeamPlayerPosSelectBox()[teamNum]["SF"]->addItem(playerName);
 //                    teamPlayerRating[i]["SF"]->addItem(playerOverallRating);
                     logMsg(func +" SF playerName == " +playerName);
                     logMsg(func +" SF playerRating == " +playerOverallRating);
                 break;
                 case PF:
-                    teamPlayerPosSelectBox[teamNum]["PF"]->addItem(playerName);
+                    component->getTeamPlayerPosSelectBox()[teamNum]["PF"]->addItem(playerName);
 //                    teamPlayerRating[i]["PF"]->addItem(playerOverallRating);
                     logMsg(func +" PF playerName == " +playerName);
                     logMsg(func +" PF playerRating == " +playerOverallRating);
   
                 break;
                 case C:
-                    teamPlayerPosSelectBox[teamNum]["C"]->addItem(playerName);
+                    component->getTeamPlayerPosSelectBox()[teamNum]["C"]->addItem(playerName);
 //                    teamPlayerRating[i]["C"]->addItem(playerOverallRating);
                     logMsg(func +" C playerName == " +playerName);
                     logMsg(func +" C playerRating == " +playerOverallRating);
@@ -415,11 +416,11 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
         }
         std::string teamName = TIIT.second->getData()->getCity() + " " +TIIT.second->getData()->getName();
 
-        teamSelectBox[0]->addItem(teamName);
-        teamSelectBox[1]->addItem(teamName);
+        component->getTeamSelectBox()[0]->addItem(teamName);
+        component->getTeamSelectBox()[1]->addItem(teamName);
     }
-    teamSelectBox[0]->setIndexSelected(0);
-    teamSelectBox[1]->setIndexSelected(1);
+    component->getTeamSelectBox()[0]->setIndexSelected(0);
+    component->getTeamSelectBox()[1]->setIndexSelected(1);
     logMsg(func +" end");//    exit(0);
 
     

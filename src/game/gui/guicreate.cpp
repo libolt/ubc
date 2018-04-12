@@ -75,7 +75,7 @@ bool GUISystem::createMainMenuGUI(renderEngineSharedPtr render)  // creates the 
     component->getMainMenuButtons().insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("startSingleGameButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("startSingleGameButton"))));
     logMsg(func +" Insert Start Single Game Button");
 //    exit(0);
-    component->getMainMenuButtons()["startSingleGameButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUIComponents::startSingleGameButtonClicked);
+    component->getMainMenuButtons()["startSingleGameButton"]->eventMouseButtonClick += MyGUI::newDelegate(component.get(), &GUIComponents::startSingleGameButtonClicked);
     logMsg(func +" Insert Start Single Game Button Mouse Click");
 
 //    exit(0);

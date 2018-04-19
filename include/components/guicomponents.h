@@ -39,6 +39,9 @@ class GUIComponents
         GUIComponents();  // constructor
         ~GUIComponents();  // destructor
         
+        bool getInitialized();  // retrieves the value of initialized
+        void setInitialized(bool set);  // sets the value of initialized
+
         MyGUIGuiSharedPtr getMGUI();  // retrieves the value of mGUI
         void setMGUI(MyGUIGuiSharedPtr set);  // sets the value of mGUI
 

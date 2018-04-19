@@ -99,7 +99,7 @@ bool GUISystem::createMainMenuGUI(renderEngineSharedPtr render)  // creates the 
     tempButtons["startSingleGameButton"]->setVisible(false);
 //    exit(0);
     
-    tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("startSingleGameButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("startSingleGameButton"))));
+//    tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("startSingleGameButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("startSingleGameButton"))));
     
     tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("startMultiGameButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("startMultiGameButton"))));
 //    exit(0);
@@ -266,11 +266,9 @@ bool GUISystem::createCourtSelectionMenuGUI(renderEngineSharedPtr render)  // cr
     logMsg(func +" begin");
 
     MyGUI::LayoutManager::getInstance().loadLayout("CourtSelectionMenu.layout");
-    MyGUI::ListBox *tempBox = component->getMGUI()->findWidget<MyGUI::ListBox>("courtSelectBox");
-    exit(0);
     tempSelectBox = MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("courtSelectBox"));  // loads Court Selection ListBox
     logMsg(func +" tempSelectBox");
-    exit(0);
+//    exit(0);
     tempSelectBox->setVisible(false);
 //  courtSelectBox->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::displayButtonClicked);
 

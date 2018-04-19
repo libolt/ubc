@@ -53,11 +53,16 @@ void GUISystem::hideMainMenuWidgets()  // hides the widgets tied to the Main Men
 }
 void GUISystem::showMainMenuWidgets()  // shows all widgets tied to the Main Menu
 {
+    conversionSharedPtr convert;
     std::string func = "GUISystem::showMainMenuWidgets()";
-    
-    logMsg(func +" begin");
+    MyGUIButtonMSharedPtr tempButtons = component->getMainMenuButtons();
 
+    logMsg(func +" begin");
+    logMsg(func + " component initialized == " +convert->toString(component->getInitialized()));
+    logMsg("tempButtons size == " +convert->toString(tempButtons.size()));
+    tempButtons["startSingleGameButton"]->setVisible(true);
     component->getMainMenuButtons()["startSingleGameButton"]->setVisible(true);
+    logMsg(func +" startSingleGameButton");
     component->getMainMenuButtons()["startMultiGameButton"]->setVisible(true);
     component->getMainMenuButtons()["optionsButton"]->setVisible(true);
     component->getMainMenuButtons()["exitButton"]->setVisible(true);

@@ -132,6 +132,7 @@ bool GUISystem::setup(renderEngineSharedPtr render)  // sets up the in game gui
 
     GUIComponentsSharedPtr tempComponent(new GUIComponents);
     component = tempComponent;
+    component->setInitialized(true);
 
     if (component->initMyGUI(render)) // Initializes MyGUI
     {

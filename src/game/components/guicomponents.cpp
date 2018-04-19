@@ -24,12 +24,22 @@
 
 GUIComponents::GUIComponents()  // constructor
 {
-
+    initialized = false;
 }
 
 GUIComponents::~GUIComponents()  // destructor
 {
 
+}
+
+
+bool GUIComponents::getInitialized()  // retrieves the value of initialized
+{
+    return (initialized);
+}
+void GUIComponents::setInitialized(bool set)  // sets the value of initialized
+{
+    initialized = true;
 }
 
 MyGUIGuiSharedPtr GUIComponents::getMGUI()  // retrieves the value of mGUI

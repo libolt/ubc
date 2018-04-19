@@ -238,15 +238,13 @@ void GUIComponents::startSingleGameButtonClicked(MyGUI::Widget *_sender)  // han
 
 bool GUIComponents::initMyGUI(renderEngineSharedPtr render)  // Initializes MyGUI
 {
-//    exit(0);
-//    renderEngineSharedPtr render; // = renderEngine::Instance();
     std::string func = "GUIComponents::initMyGUI()";
     
     logMsg(func +" begin");
     logMsg(func +" *** Initializing MyGUI ***");
     MyGUIOgrePlatformSharedPtr tempPlatform(new MyGUI::OgrePlatform());
     mPlatform = tempPlatform;
-    logMsg(func +" Crash?");
+//    logMsg(func +" Crash?");
 
     mPlatform->initialise(render->getMWindow().get(), render->getMSceneMgr().get(), "UBCData"); // mWindow is Ogre::RenderWindow*, mSceneManager is Ogre::SceneManager*a@aa
 
@@ -255,7 +253,7 @@ bool GUIComponents::initMyGUI(renderEngineSharedPtr render)  // Initializes MyGU
 //    exit(0);
     mGUI = tempGUI;
 //    exit(0);
-    logMsg(func +" Crash???");
+//    logMsg(func +" Crash???");
     mGUI->initialise();
 //    exit(0);
     logMsg(func +" *** MyGUI Initialized ***");

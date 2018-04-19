@@ -111,6 +111,8 @@ class GUIComponents
 
     private:
     
+        bool initialized;  // stores whether object has been initialized
+        
         MyGUIGuiSharedPtr mGUI;  // The MyGUI object
         MyGUIOgrePlatformSharedPtr mPlatform;  // The MyGUI Platform object
 

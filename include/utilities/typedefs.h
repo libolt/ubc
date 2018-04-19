@@ -409,13 +409,17 @@ typedef std::map<std::string, sharedPtr<MyGUI::Button> > MyGUIButtonMSharedPtr;
 
 typedef std::map<size_t, sharedPtr<MyGUI::ListBox> > MyGUIListBoxMSharedPtr;
 
+typedef std::map<size_t, sharedPtr<MyGUI::TextBox> > MyGUITextBoxMSharedPtr;
+
 typedef std::map<std::string, sharedPtr<MyGUI::ImageBox> > MyGUIImageBoxMSharedPtr;
 
 // Vector Unordered_map shared pointers
 
-typedef std::vector<std::map <std::string, sharedPtr<MyGUI::ListBox> > > MyGUIListBoxVecMSharedPtr;
+//typedef std::vector<std::map <std::string, sharedPtr<MyGUI::ListBox> > > MyGUIListBoxVecMSharedPtr;
 
-typedef std::vector<std::map<std::string, sharedPtr<MyGUI::TextBox> > > MyGUITextBoxVecMSharedPtr;
+typedef std::vector <MyGUIListBoxMSharedPtr> MyGUIListBoxVecMSharedPtr;
+
+typedef std::vector<MyGUITextBoxMSharedPtr> MyGUITextBoxVecMSharedPtr;
 
 typedef std::vector<basketballStateMSharedPtr> basketballStateVecMSharedPtr;
 

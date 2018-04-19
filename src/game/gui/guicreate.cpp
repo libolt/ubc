@@ -521,128 +521,129 @@ bool GUISystem::createPlayerStartSelectionMenuGUI(renderEngineSharedPtr render) 
 {
 
     MyGUIButtonMSharedPtr tempButtons;
-
+    MyGUIListBoxVecMSharedPtr tempSelectBox = component->getTeamPlayerPosSelectBox();
+    MyGUITextBoxVecMSharedPtr tempRating = component->getTeamPlayerRating();
     std::string func = "GUISystem::createPlayerStartSelectionMenuGUI()";
     
     logMsg(func + " beginning");
     
     MyGUI::LayoutManager::getInstance().loadLayout("PlayerStartSelection.layout");
 
-    if (component->getTeamPlayerPosSelectBox().size() == 0)
+    if (tempSelectBox.size() == 0)
     {
-        std::map <std::string, MyGUIListBoxSharedPtr > playerPosSelectBox;
-        component->getTeamPlayerPosSelectBox().push_back(playerPosSelectBox);
-        component->getTeamPlayerPosSelectBox().push_back(playerPosSelectBox);
+        MyGUIListBoxMSharedPtr playerPosSelectBox;
+        tempSelectBox.push_back(playerPosSelectBox);
+        tempSelectBox.push_back(playerPosSelectBox);
     }
     
-    if (component->getTeamPlayerRating().size() == 0)
+    if (tempRating.size() == 0)
     {
-        std::map <std::string, MyGUITextBoxSharedPtr > playerRating;
-        component->getTeamPlayerRating().push_back(playerRating);
-        component->getTeamPlayerRating().push_back(playerRating);
+        MyGUITextBoxVecMSharedPtr playerRating;
+        tempRating.push_back(playerRating);
+        tempRating.push_back(playerRating);
     }
     
     
-    component->getTeamPlayerPosSelectBox()[0].insert(std::pair<std::string, MyGUIListBoxSharedPtr >("PG", MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("team0PGSelectBox"))));  // loads team0PGSelectBox
+    tempSelectBox[0].insert(std::pair<std::string, MyGUIListBoxSharedPtr >("PG", MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("team0PGSelectBox"))));  // loads team0PGSelectBox
 //    exit(0);
-    component->getTeamPlayerPosSelectBox()[0]["PG"]->setVisible(false);
+    tempSelectBox[0]["PG"]->setVisible(false);
 //    team0PGSelectBox->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    component->getTeamPlayerPosSelectBox()[0]["PG"]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
+    tempSelectBox[0]["PG"]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
     
-    component->getTeamPlayerPosSelectBox()[0].insert(std::pair<std::string, MyGUIListBoxSharedPtr >("SG", MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("team0SGSelectBox"))));  // loads team0SGSelectBox
-    component->getTeamPlayerPosSelectBox()[0]["SG"]->setVisible(false);
+    tempSelectBox[0].insert(std::pair<std::string, MyGUIListBoxSharedPtr >("SG", MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("team0SGSelectBox"))));  // loads team0SGSelectBox
+    tempSelectBox[0]["SG"]->setVisible(false);
 //    team0SGSelectBox->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    component->getTeamPlayerPosSelectBox()[0]["SG"]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
+    tempSelectBox[0]["SG"]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
 
-    component->getTeamPlayerPosSelectBox()[0].insert(std::pair<std::string, MyGUIListBoxSharedPtr >("SF", MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("team0SFSelectBox"))));  // loads team0SFSelectBox
-    component->getTeamPlayerPosSelectBox()[0]["SF"]->setVisible(false);
+    tempSelectBox[0].insert(std::pair<std::string, MyGUIListBoxSharedPtr >("SF", MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("team0SFSelectBox"))));  // loads team0SFSelectBox
+    tempSelectBox[0]["SF"]->setVisible(false);
 //    team0SFSelectBox->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    component->getTeamPlayerPosSelectBox()[0]["SF"]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
+    tempSelectBox[0]["SF"]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
 
-    component->getTeamPlayerPosSelectBox()[0].insert(std::pair<std::string, MyGUIListBoxSharedPtr >("PF", MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("team0PFSelectBox"))));  // loads team0PFSelectBox
-    component->getTeamPlayerPosSelectBox()[0]["PF"]->setVisible(false);
+    tempSelectBox[0].insert(std::pair<std::string, MyGUIListBoxSharedPtr >("PF", MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("team0PFSelectBox"))));  // loads team0PFSelectBox
+    tempSelectBox[0]["PF"]->setVisible(false);
 //    team0PFSelectBox->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    component->getTeamPlayerPosSelectBox()[0]["PF"]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
+    tempSelectBox[0]["PF"]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
 
-    component->getTeamPlayerPosSelectBox()[0].insert(std::pair<std::string, MyGUIListBoxSharedPtr >("C", MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("team0CSelectBox"))));  // loads team0CSelectBox
-    component->getTeamPlayerPosSelectBox()[0]["C"]->setVisible(false);
+    tempSelectBox[0].insert(std::pair<std::string, MyGUIListBoxSharedPtr >("C", MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("team0CSelectBox"))));  // loads team0CSelectBox
+    tempSelectBox[0]["C"]->setVisible(false);
 //    team0CSelectBox->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    component->getTeamPlayerPosSelectBox()[0]["C"]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
+    tempSelectBox[0]["C"]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
 
-    component->getTeamPlayerPosSelectBox()[1].insert(std::pair<std::string, MyGUIListBoxSharedPtr >("PG", MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("team1PGSelectBox"))));  // loads team1PGSelectBox
-    component->getTeamPlayerPosSelectBox()[1]["PG"]->setVisible(false);
+    tempSelectBox[1].insert(std::pair<std::string, MyGUIListBoxSharedPtr >("PG", MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("team1PGSelectBox"))));  // loads team1PGSelectBox
+    tempSelectBox[1]["PG"]->setVisible(false);
 //    team1PGSelectBox->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    component->getTeamPlayerPosSelectBox()[1]["PG"]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
+    tempSelectBox[1]["PG"]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
 
-    component->getTeamPlayerPosSelectBox()[1].insert(std::pair<std::string, MyGUIListBoxSharedPtr >("SG", MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("team1SGSelectBox"))));  // loads team1SGSelectBox
-    component->getTeamPlayerPosSelectBox()[1]["SG"]->setVisible(false);
+    tempSelectBox[1].insert(std::pair<std::string, MyGUIListBoxSharedPtr >("SG", MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("team1SGSelectBox"))));  // loads team1SGSelectBox
+    tempSelectBox[1]["SG"]->setVisible(false);
 //    team1SGSelectBox->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    component->getTeamPlayerPosSelectBox()[1]["SG"]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
+    tempSelectBox[1]["SG"]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
 
-    component->getTeamPlayerPosSelectBox()[1].insert(std::pair<std::string, MyGUIListBoxSharedPtr >("SF", MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("team1SFSelectBox"))));  // loads team1SFSelectBox
-    component->getTeamPlayerPosSelectBox()[1]["SF"]->setVisible(false);
+    tempSelectBox[1].insert(std::pair<std::string, MyGUIListBoxSharedPtr >("SF", MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("team1SFSelectBox"))));  // loads team1SFSelectBox
+    tempSelectBox[1]["SF"]->setVisible(false);
 //    team1SFSelectBox->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    component->getTeamPlayerPosSelectBox()[1]["SF"]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
+    tempSelectBox[1]["SF"]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
 
-    component->getTeamPlayerPosSelectBox()[1].insert(std::pair<std::string, MyGUIListBoxSharedPtr >("PF", MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("team1PFSelectBox"))));  // loads team0PFSelectBox
-    component->getTeamPlayerPosSelectBox()[1]["PF"]->setVisible(false);
+    tempSelectBox[1].insert(std::pair<std::string, MyGUIListBoxSharedPtr >("PF", MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("team1PFSelectBox"))));  // loads team0PFSelectBox
+    tempSelectBox[1]["PF"]->setVisible(false);
 //    team1PFSelectBox->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    component->getTeamPlayerPosSelectBox()[1]["PF"]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
+    tempSelectBox[1]["PF"]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
 
-    component->getTeamPlayerPosSelectBox()[1].insert(std::pair<std::string, MyGUIListBoxSharedPtr >("C", MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("team1CSelectBox"))));  // loads team1CSelectBox
+    tempSelectBox[1].insert(std::pair<std::string, MyGUIListBoxSharedPtr >("C", MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("team1CSelectBox"))));  // loads team1CSelectBox
     component->getTeamPlayerPosSelectBox()[1]["C"]->setVisible(false);
 //    team1CSelectBox->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    component->getTeamPlayerPosSelectBox()[1]["C"]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
+    tempSelectBox[1]["C"]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
 
-    component->getTeamPlayerRating()[0].insert(std::pair<std::string, MyGUITextBoxSharedPtr> ("PG", MyGUITextBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::TextBox>("team0PGRating"))));  // loads team0PGRatimg
-    component->getTeamPlayerRating()[0]["PG"]->setVisible(false);
+    tempRating[0].insert(std::pair<std::string, MyGUITextBoxSharedPtr> ("PG", MyGUITextBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::TextBox>("team0PGRating"))));  // loads team0PGRatimg
+    tempRating[0]["PG"]->setVisible(false);
 //    team0PGRating->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    component->getTeamPlayerRating()[0]["PG"]->setSize((0.1 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
+    tempRating[0]["PG"]->setSize((0.1 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
 
-    component->getTeamPlayerRating()[0].insert(std::pair<std::string, MyGUITextBoxSharedPtr> ("SG", MyGUITextBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::TextBox>("team0SGRating"))));  // loads team0SGRatimg
-    component->getTeamPlayerRating()[0]["SG"]->setVisible(false);
+    tempRating[0].insert(std::pair<std::string, MyGUITextBoxSharedPtr> ("SG", MyGUITextBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::TextBox>("team0SGRating"))));  // loads team0SGRatimg
+    tempRating[0]["SG"]->setVisible(false);
 //    team0SGRating->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    component->getTeamPlayerRating()[0]["SG"]->setSize((0.1 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
+    tempRating[0]["SG"]->setSize((0.1 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
 
-    component->getTeamPlayerRating()[0].insert(std::pair<std::string, MyGUITextBoxSharedPtr> ("SF", MyGUITextBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::TextBox>("team0SFRating"))));  // loads team0SFRatimg
-    component->getTeamPlayerRating()[0]["SF"]->setVisible(false);
+    tempRating[0].insert(std::pair<std::string, MyGUITextBoxSharedPtr> ("SF", MyGUITextBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::TextBox>("team0SFRating"))));  // loads team0SFRatimg
+    tempRating[0]["SF"]->setVisible(false);
 //    team0SFRating->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    component->getTeamPlayerRating()[0]["SF"]->setSize((0.1 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
+    tempRating[0]["SF"]->setSize((0.1 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
 
-    component->getTeamPlayerRating()[0].insert(std::pair<std::string, MyGUITextBoxSharedPtr> ("PF", MyGUITextBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::TextBox>("team0PFRating"))));  // loads team0PFRatimg
-    component->getTeamPlayerRating()[0]["PF"]->setVisible(false);
+    tempRating[0].insert(std::pair<std::string, MyGUITextBoxSharedPtr> ("PF", MyGUITextBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::TextBox>("team0PFRating"))));  // loads team0PFRatimg
+    tempRating[0]["PF"]->setVisible(false);
 //    team0PFRating->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    component->getTeamPlayerRating()[0]["PF"]->setSize((0.1 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
+    tempRating[0]["PF"]->setSize((0.1 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
 
-    component->getTeamPlayerRating()[0].insert(std::pair<std::string, MyGUITextBoxSharedPtr> ("C", MyGUITextBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::TextBox>("team0CRating"))));  // loads team0CRatimg
-    component->getTeamPlayerRating()[0]["C"]->setVisible(false);
+    tempRating[0].insert(std::pair<std::string, MyGUITextBoxSharedPtr> ("C", MyGUITextBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::TextBox>("team0CRating"))));  // loads team0CRatimg
+    tempRating[0]["C"]->setVisible(false);
 //    team0CRating->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    component->getTeamPlayerRating()[0]["C"]->setSize((0.1 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
+    tempRating[0]["C"]->setSize((0.1 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
 
-    component->getTeamPlayerRating()[1].insert(std::pair<std::string, MyGUITextBoxSharedPtr> ("PG", MyGUITextBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::TextBox>("team1PGRating"))));  // loads team1PGRatimg
-    component->getTeamPlayerRating()[1]["PG"]->setVisible(false);
+    tempRating[1].insert(std::pair<std::string, MyGUITextBoxSharedPtr> ("PG", MyGUITextBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::TextBox>("team1PGRating"))));  // loads team1PGRatimg
+    tempRating[1]["PG"]->setVisible(false);
 //    team1PGRating->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    component->getTeamPlayerRating()[1]["PG"]->setSize((0.1 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
+    tempRating[1]["PG"]->setSize((0.1 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
 
-    component->getTeamPlayerRating()[1].insert(std::pair<std::string, MyGUITextBoxSharedPtr> ("SG", MyGUITextBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::TextBox>("team1SGRating"))));  // loads team1SGRatimg
-    component->getTeamPlayerRating()[1]["SG"]->setVisible(false);
+    tempRating[1].insert(std::pair<std::string, MyGUITextBoxSharedPtr> ("SG", MyGUITextBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::TextBox>("team1SGRating"))));  // loads team1SGRatimg
+    tempRating[1]["SG"]->setVisible(false);
 //    team1SGRating->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    component->getTeamPlayerRating()[1]["SG"]->setSize((0.1 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
+    tempRating[1]["SG"]->setSize((0.1 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
 
-    component->getTeamPlayerRating()[1].insert(std::pair<std::string, MyGUITextBoxSharedPtr> ("SF", MyGUITextBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::TextBox>("team1SFRating"))));  // loads team1SFRatimg
-    component->getTeamPlayerRating()[1]["SF"]->setVisible(false);
+    tempRating[1].insert(std::pair<std::string, MyGUITextBoxSharedPtr> ("SF", MyGUITextBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::TextBox>("team1SFRating"))));  // loads team1SFRatimg
+    tempRating[1]["SF"]->setVisible(false);
 //    team1SFRating->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    component->getTeamPlayerRating()[1]["SF"]->setSize((0.1 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
+    tempRating[1]["SF"]->setSize((0.1 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
 
-    component->getTeamPlayerRating()[1].insert(std::pair<std::string, MyGUITextBoxSharedPtr> ("PF", MyGUITextBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::TextBox>("team1PFRating"))));  // loads team1PFRatimg
-    component->getTeamPlayerRating()[1]["PF"]->setVisible(false);
+    tempRating[1].insert(std::pair<std::string, MyGUITextBoxSharedPtr> ("PF", MyGUITextBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::TextBox>("team1PFRating"))));  // loads team1PFRatimg
+    tempRating[1]["PF"]->setVisible(false);
 //    team1PFRating->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    component->getTeamPlayerRating()[1]["PF"]->setSize((0.1 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
+    tempRating[1]["PF"]->setSize((0.1 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
 
-    component->getTeamPlayerRating()[1].insert(std::pair<std::string, MyGUITextBoxSharedPtr> ("C", MyGUITextBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::TextBox>("team1CRating"))));  // loads team1CRatimg
-    component->getTeamPlayerRating()[1]["C"]->setVisible(false);
+    tempRating[1].insert(std::pair<std::string, MyGUITextBoxSharedPtr> ("C", MyGUITextBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::TextBox>("team1CRating"))));  // loads team1CRatimg
+    tempRating[1]["C"]->setVisible(false);
 //    team1CRating->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    component->getTeamPlayerRating()[1]["C"]->setSize((0.1 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
+    tempRating[1]["C"]->setSize((0.1 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
 
 
     tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("team0StartingLineupSetButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("team0StartingLineupSetButton"))));  // loads team0StartingLineupSetButton
@@ -666,6 +667,8 @@ bool GUISystem::createPlayerStartSelectionMenuGUI(renderEngineSharedPtr render) 
     tempButtons["backTeamSelectionMenuButton"]->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()) );
     
     component->setPlayerStartSelectionMenuButtons(tempButtons);
+    component->setTeamPlayerPosSelectBox(tempSelectBox);
+    component->setTeamPlayerRating(tempRating);
 
     flag->setPlayerStartSelectionMenuCreated(true);
 
@@ -679,7 +682,7 @@ bool GUISystem::createTeamSelectionMenuGUI(renderEngineSharedPtr render)  // cre
 //    renderEngineSharedPtr render;
 
     MyGUIButtonMSharedPtr tempButtons;
-
+    MyGUIListBoxMSharedPtr tempSelectBox;
     conversionSharedPtr convert = conversion::Instance();
     //
     MyGUI::LayoutManager::getInstance().loadLayout("TeamSelectionMenu.layout");
@@ -692,18 +695,21 @@ bool GUISystem::createTeamSelectionMenuGUI(renderEngineSharedPtr render)  // cre
     logMsg(func +" begin");
 
 
-    component->getTeamSelectBox().insert(std::pair<size_t, MyGUIListBoxSharedPtr > (0, MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("team0SelectBox"))));  // loads team 0 ListBox
-    component->getTeamSelectBox()[0]->setVisible(false);
-    component->getTeamSelectBox()[0]->setSize((0.4 *vpWidth), (0.04 *vpHeight));
+    tempSelectBox.insert(std::pair<size_t, MyGUIListBoxSharedPtr > (0, MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("team0SelectBox"))));  // loads team 0 ListBox
     
-    component->getTeamSelectBox().insert(std::pair<size_t, MyGUIListBoxSharedPtr > (1, MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("team1SelectBox"))));  // loads team 1 ListBox
-    component->getTeamSelectBox()[1]->setVisible(false);
-    component->getTeamSelectBox()[1]->setSize((0.4 *vpWidth), (0.04 *vpHeight));
+    tempSelectBox[0]->setVisible(false);
+    tempSelectBox[0]->setSize((0.4 *vpWidth), (0.04 *vpHeight));
+    
+    tempSelectBox.insert(std::pair<size_t, MyGUIListBoxSharedPtr > (1, MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("team1SelectBox"))));  // loads team 1 ListBox
+    tempSelectBox[1]->setVisible(false);
+    tempSelectBox[1]->setSize((0.4 *vpWidth), (0.04 *vpHeight));
+    logMsg(func +" team1SelectBox");
     
     tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("team0SelectButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("team0SelectButton"))));  // loads team 0 Select Button  
     tempButtons["team0SelectButton"]->setVisible(false);
     tempButtons["team0SelectButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::team0SelectButtonClicked);
     tempButtons["team0SelectButton"]->setSize((0.4 *vpWidth), (0.04 *vpHeight));
+    logMsg(func +" team0SelectButton");
     tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("team1SelectButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("team1SelectButton"))));  // loads team 1 Button
     tempButtons["team1SelectButton"]->setVisible(false);
     tempButtons["team1SelectButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::team1SelectButtonClicked);
@@ -725,6 +731,7 @@ bool GUISystem::createTeamSelectionMenuGUI(renderEngineSharedPtr render)  // cre
     tempButtons["backCourtSelectionMenuButton"]->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()) );
 
     component->setTeamSelectionMenuButtons(tempButtons);
+    component->setTeamSelectBox(tempSelectBox);
 
     flag->setTeamSelectionMenuCreated(true);
 //    exit(0);

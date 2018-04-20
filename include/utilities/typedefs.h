@@ -1,7 +1,7 @@
 /***************************************************************************
  *   Copyright (C) 1999 - 2018 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
- *                                                                         *
+( *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
@@ -409,9 +409,11 @@ typedef std::map<std::string, sharedPtr<MyGUI::Button> > MyGUIButtonMSharedPtr;
 
 typedef std::map<size_t, sharedPtr<MyGUI::ListBox> > MyGUIListBoxMSharedPtr;
 
-typedef std::map<size_t, sharedPtr<MyGUI::TextBox> > MyGUITextBoxMSharedPtr;
+typedef std::map<std::string, sharedPtr<MyGUI::TextBox> > MyGUITextBoxMSharedPtr;
 
 typedef std::map<std::string, sharedPtr<MyGUI::ImageBox> > MyGUIImageBoxMSharedPtr;
+
+typedef std::map<playerPositions, size_t> teamStarterIDsM;
 
 // Vector Unordered_map shared pointers
 
@@ -426,5 +428,5 @@ typedef std::vector<basketballStateMSharedPtr> basketballStateVecMSharedPtr;
 typedef std::vector<playerEntityMSharedPtr> playerEntityVecMSharedPtr;
 
 // Vector maps
-typedef std::vector<std::unordered_map<std::string, size_t> > teamStarterIDsVecM;
+typedef std::vector<std::map<playerPositions, size_t> > teamStarterIDsVecM;
 #endif

@@ -102,11 +102,11 @@ void gameData::setTeamIDS(sizeTVec set)  // sets the value of teamIDS
     teamIDS = set;
 }
 
-std::vector<std::unordered_map<std::string, size_t> > gameData::getTeamStarterID()  // retrieves value of teamStarterID
+teamStarterIDsVecM gameData::getTeamStarterID()  // retrieves value of teamStarterID
 {
     return (teamStarterID);
 }
-void gameData::setTeamStarterID(std::vector<std::unordered_map<std::string, size_t> > set)  // sets the value of teamStarterID
+void gameData::setTeamStarterID(teamStarterIDsVecM set)  // sets the value of teamStarterID
 {
     teamStarterID = set;
 }

@@ -226,7 +226,7 @@ private:
     std::vector<sizeTVec> playerIDs;  // stores player IDs for each team
     std::vector<sizeTVec> team0IDs;
     std::vector<sizeTVec> team1IDs;
-    std::vector<std::unordered_map<std::string, size_t> > teamStarterID; // stores the selected starters for each team 
+    teamStarterIDsVecM teamStarterID; // stores the selected starters for each team 
 
     size_t displayCount;
 };

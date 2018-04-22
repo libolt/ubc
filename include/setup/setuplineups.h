@@ -37,7 +37,6 @@ class setupLineups
 //        teamEntityMSharedPtr createActivePlayerInstances(teamEntityMSharedPtr activeTeamInstance, std::vector<std::unordered_map<std::string, size_t> > teamStarterID);  // creates the active playerInstances
         bool checkActivePlayerInstancesCreated(teamEntityMSharedPtr activeTeamInstance);
         teamEntityMSharedPtr setupStartingLineups(teamEntityMSharedPtr activeTeamInstance, teamStarterIDsVecM teamStarterID);  // sets starting lineups for each team
-        bool setupStartingLineups_old(teamEntityMSharedPtr activeTeamInstance, std::vector<std::unordered_map <std::string, std::string> > teamStarters, teamStarterIDsVecM teamStarterID);  // sets starting lineups for each team
 
     private:
     

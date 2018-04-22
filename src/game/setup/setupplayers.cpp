@@ -274,7 +274,7 @@ playerEntityMSharedPtr setupPlayers::createTeamPlayerInstances(playerEntityMShar
     return (playerInstance);
 }
 
-playerEntityMSharedPtr setupPlayers::createActivePlayerInstances(playerEntityMSharedPtr playerInstance, std::unordered_map<std::string, size_t> activePlayerID)  // creates active court instances
+playerEntityMSharedPtr setupPlayers::createActivePlayerInstances(playerEntityMSharedPtr playerInstance, std::map<playerPositions, size_t> activePlayerID)  // creates active court instances
 {
     conversionSharedPtr convert = conversion::Instance();
     std::string func = "setupPlayers::createActivePlayerInstances()";
@@ -288,32 +288,32 @@ playerEntityMSharedPtr setupPlayers::createActivePlayerInstances(playerEntityMSh
         logMsg(func +" teamStarterID[ATIIT.first][PG] == " +teamStarterIDPG);
         logMsg(func +" playerInstance ID == " +convert->toString(PIIT.second->getData()->getID()));
 */           
-        if (PIIT.second->getData()->getID() == activePlayerID["PG"])
+        if (PIIT.second->getData()->getID() == activePlayerID[PG])
         {
             logMsg(func +" PG");
             activePlayerInstance.insert(std::pair<playerPositions, playerEntitySharedPtr>(PG, PIIT.second));
             activePlayerInstance[PG]->getGameData()->setActivePosition(PG);
             logMsg(func +" WOOT PG!");
         }
-        else if (PIIT.second->getData()->getID() == activePlayerID["SG"])
+        else if (PIIT.second->getData()->getID() == activePlayerID[SG])
         {
             activePlayerInstance.insert(std::pair<playerPositions, playerEntitySharedPtr>(SG, PIIT.second));
             activePlayerInstance[SG]->getGameData()->setActivePosition(SG);
             logMsg(func +" WOOT SG!");
         }
-        else if (PIIT.second->getData()->getID() == activePlayerID["SF"])
+        else if (PIIT.second->getData()->getID() == activePlayerID[SF])
         {
             activePlayerInstance.insert(std::pair<playerPositions, playerEntitySharedPtr>(SF, PIIT.second));
             activePlayerInstance[SF]->getGameData()->setActivePosition(SF);
             logMsg(func +" WOOT SF!");
         }
-        else if (PIIT.second->getData()->getID() == activePlayerID["PF"])
+        else if (PIIT.second->getData()->getID() == activePlayerID[PF])
         {
             activePlayerInstance.insert(std::pair<playerPositions, playerEntitySharedPtr>(PF, PIIT.second));
             activePlayerInstance[PF]->getGameData()->setActivePosition(PF);
             logMsg(func +" WOOT PF!");
         }
-        else if (PIIT.second->getData()->getID() == activePlayerID["C"])
+        else if (PIIT.second->getData()->getID() == activePlayerID[C])
         {
             activePlayerInstance.insert(std::pair<playerPositions, playerEntitySharedPtr>(C, PIIT.second));
             activePlayerInstance[C]->getGameData()->setActivePosition(C);

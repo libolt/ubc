@@ -186,16 +186,19 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
     for (auto ATIIT : activeTeamInstance)  // loop through activeTeamInstance
     {
         logMsg(func +" yabadaba");
-        logMsg(convert->toString(teamIDs.size()));
-        logMsg(convert->toString(ATIIT.second->getFlag()->getPlayerInstancesCreated()));
+        logMsg(func +" " +convert->toString(teamIDs.size()));
+        logMsg(func +" " +convert->toString(ATIIT.second->getFlag()->getPlayerInstancesCreated()));
 //        exit(0);
 
         playerInstance = ATIIT.second->getComponent()->getPlayerInstance();
         for (auto PIIT : playerInstance)
         {
+            logMsg(func +" playerInstance loop");
+            
             std::string playerName = PIIT.second->getData()->getFirstName() +" " +PIIT.second->getData()->getLastName();
             std::string playerOverallRating = convert->toString(PIIT.second->getData()->getOverallRating());
- 
+            logMsg(func +" playerName == " +playerName);
+            
             switch (PIIT.second->getData()->getPrimaryPosition())
             {
                 case PG:

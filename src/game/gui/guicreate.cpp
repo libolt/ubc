@@ -543,63 +543,67 @@ bool GUISystem::createPlayerStartSelectionMenuGUI(renderEngineSharedPtr render) 
         tempRating.push_back(playerRating);
     }
     
+    logMsg(func +" tempRating");
     
     tempSelectBox[0].insert(std::pair<size_t, MyGUIListBoxSharedPtr >(0, MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("team0PGSelectBox"))));  // loads team0PGSelectBox
+    logMsg(func +" tempSelectBox");
 //    exit(0);
-    tempSelectBox[0]["PG"]->setVisible(false);
+    tempSelectBox[0][0]->setVisible(false);
+    logMsg(func +" tempSelectBox PG");
 //    team0PGSelectBox->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    tempSelectBox[0]["PG"]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
+    tempSelectBox[0][0]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
     
     tempSelectBox[0].insert(std::pair<size_t, MyGUIListBoxSharedPtr >(1, MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("team0SGSelectBox"))));  // loads team0SGSelectBox
-    tempSelectBox[0]["SG"]->setVisible(false);
+    tempSelectBox[0][1]->setVisible(false);
 //    team0SGSelectBox->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    tempSelectBox[0]["SG"]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
+    tempSelectBox[0][1]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
 
     tempSelectBox[0].insert(std::pair<size_t, MyGUIListBoxSharedPtr >(2, MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("team0SFSelectBox"))));  // loads team0SFSelectBox
-    tempSelectBox[0]["SF"]->setVisible(false);
+    tempSelectBox[0][2]->setVisible(false);
 //    team0SFSelectBox->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    tempSelectBox[0]["SF"]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
+    tempSelectBox[0][2]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
 
     tempSelectBox[0].insert(std::pair<size_t, MyGUIListBoxSharedPtr >(3, MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("team0PFSelectBox"))));  // loads team0PFSelectBox
-    tempSelectBox[0]["PF"]->setVisible(false);
+    tempSelectBox[0][3]->setVisible(false);
 //    team0PFSelectBox->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    tempSelectBox[0]["PF"]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
+    tempSelectBox[0][3]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
 
     tempSelectBox[0].insert(std::pair<size_t, MyGUIListBoxSharedPtr >(4, MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("team0CSelectBox"))));  // loads team0CSelectBox
-    tempSelectBox[0]["C"]->setVisible(false);
+    tempSelectBox[0][4]->setVisible(false);
 //    team0CSelectBox->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    tempSelectBox[0]["C"]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
+    tempSelectBox[0][4]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
 
     tempSelectBox[1].insert(std::pair<size_t, MyGUIListBoxSharedPtr >(0, MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("team1PGSelectBox"))));  // loads team1PGSelectBox
-    tempSelectBox[1]["PG"]->setVisible(false);
+    tempSelectBox[1][0]->setVisible(false);
 //    team1PGSelectBox->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    tempSelectBox[1]["PG"]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
+    tempSelectBox[1][0]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
 
     tempSelectBox[1].insert(std::pair<size_t, MyGUIListBoxSharedPtr >(1, MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("team1SGSelectBox"))));  // loads team1SGSelectBox
-    tempSelectBox[1]["SG"]->setVisible(false);
+    tempSelectBox[1][1]->setVisible(false);
 //    team1SGSelectBox->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    tempSelectBox[1]["SG"]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
+    tempSelectBox[1][1]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
 
     tempSelectBox[1].insert(std::pair<size_t, MyGUIListBoxSharedPtr >(2, MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("team1SFSelectBox"))));  // loads team1SFSelectBox
-    tempSelectBox[1]["SF"]->setVisible(false);
+    tempSelectBox[1][2]->setVisible(false);
 //    team1SFSelectBox->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    tempSelectBox[1]["SF"]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
+    tempSelectBox[1][2]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
 
     tempSelectBox[1].insert(std::pair<size_t, MyGUIListBoxSharedPtr >(3, MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("team1PFSelectBox"))));  // loads team0PFSelectBox
-    tempSelectBox[1]["PF"]->setVisible(false);
+    tempSelectBox[1][3]->setVisible(false);
 //    team1PFSelectBox->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    tempSelectBox[1]["PF"]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
+    tempSelectBox[1][3]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
 
     tempSelectBox[1].insert(std::pair<size_t, MyGUIListBoxSharedPtr >(4, MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("team1CSelectBox"))));  // loads team1CSelectBox
-    component->getTeamPlayerPosSelectBox()[1]["C"]->setVisible(false);
+    tempSelectBox[1][4]->setVisible(false);
 //    team1CSelectBox->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
-    tempSelectBox[1]["C"]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
+    tempSelectBox[1][4]->setSize((0.3 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
 
     tempRating[0].insert(std::pair<std::string, MyGUITextBoxSharedPtr> ("PG", MyGUITextBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::TextBox>("team0PGRating"))));  // loads team0PGRatimg
     tempRating[0]["PG"]->setVisible(false);
 //    team0PGRating->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
     tempRating[0]["PG"]->setSize((0.1 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
-
+    logMsg(func +" tempRaating");
+    
     tempRating[0].insert(std::pair<std::string, MyGUITextBoxSharedPtr> ("SG", MyGUITextBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::TextBox>("team0SGRating"))));  // loads team0SGRatimg
     tempRating[0]["SG"]->setVisible(false);
 //    team0SGRating->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);

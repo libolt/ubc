@@ -412,7 +412,9 @@ bool UBCGame::loop(gameEngineSharedPtr gameE, UBCInputSharedPtr input, GUISystem
         if (gui->getFlag()->getStartActiveGame())
         {
             logMsg(func +" GUI Flag startActiveGame!");
-            exit(0);
+            startActiveGame = true;
+            gui->getFlag()->setStartActiveGame(false);
+//            exit(0);
         }
 
         if (startActiveGame)
@@ -422,6 +424,7 @@ bool UBCGame::loop(gameEngineSharedPtr gameE, UBCInputSharedPtr input, GUISystem
                 gameE->setStart(false);
                 gameE->setRenderScene(true);
                 startActiveGame = false;
+//                exit(0);
             }
             else
             {

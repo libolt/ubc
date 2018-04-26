@@ -177,11 +177,11 @@ void GUIComponents::setNetworkClientSetupMenuButtons(MyGUIButtonMSharedPtr set) 
     networkClientSetupMenuButtons = set;
 }
 
-MyGUIListBoxVecMSharedPtr GUIComponents::getTeamPlayerPosSelectBox()  // retrieves the value of teamPlayerPosSelectBox
+MyGUIPlayerListBoxVecMSharedPtr GUIComponents::getTeamPlayerPosSelectBox()  // retrieves the value of teamPlayerPosSelectBox
 {
     return(teamPlayerPosSelectBox);
 }
-void GUIComponents::setTeamPlayerPosSelectBox(MyGUIListBoxVecMSharedPtr set)  // sets the value of teamPlayerPosSelectBox
+void GUIComponents::setTeamPlayerPosSelectBox(MyGUIPlayerListBoxVecMSharedPtr set)  // sets the value of teamPlayerPosSelectBox
 {
     teamPlayerPosSelectBox = set;
 }

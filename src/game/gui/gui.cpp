@@ -718,45 +718,45 @@ void GUISystem::playerStartSelected()  // process player start selection
     }
 */
     // checks to make sure that all player selectBoxes have a valid index value
-    if (component->getTeamPlayerPosSelectBox()[0][0]->getIndexSelected() < 0 || component->getTeamPlayerPosSelectBox()[0]["PG"]->getIndexSelected() > component->getTeamPlayerPosSelectBox()[0]["PG"]->getItemCount())
+    if (component->getTeamPlayerPosSelectBox()[0][PG]->getIndexSelected() < 0 || component->getTeamPlayerPosSelectBox()[0][PG]->getIndexSelected() > component->getTeamPlayerPosSelectBox()[0][PG]->getItemCount())
     {
-        component->getTeamPlayerPosSelectBox()[0][0]->setIndexSelected(0);
+        component->getTeamPlayerPosSelectBox()[0][PG]->setIndexSelected(0);
     }
-    if (component->getTeamPlayerPosSelectBox()[0][1]->getIndexSelected() < 0 || component->getTeamPlayerPosSelectBox()[0]["SG"]->getIndexSelected() > component->getTeamPlayerPosSelectBox()[0]["SG"]->getItemCount())
+    if (component->getTeamPlayerPosSelectBox()[0][SG]->getIndexSelected() < 0 || component->getTeamPlayerPosSelectBox()[0][SG]->getIndexSelected() > component->getTeamPlayerPosSelectBox()[0][SG]->getItemCount())
     {
-        component->getTeamPlayerPosSelectBox()[0][1]->setIndexSelected(0);
+        component->getTeamPlayerPosSelectBox()[0][SG]->setIndexSelected(0);
     }
-    if (component->getTeamPlayerPosSelectBox()[0][2]->getIndexSelected() < 0 || component->getTeamPlayerPosSelectBox()[0]["SF"]->getIndexSelected() > component->getTeamPlayerPosSelectBox()[0]["SF"]->getItemCount())
+    if (component->getTeamPlayerPosSelectBox()[0][SF]->getIndexSelected() < 0 || component->getTeamPlayerPosSelectBox()[0][SF]->getIndexSelected() > component->getTeamPlayerPosSelectBox()[0][SF]->getItemCount())
     {
-        component->getTeamPlayerPosSelectBox()[0][2]->setIndexSelected(0);
+        component->getTeamPlayerPosSelectBox()[0][SF]->setIndexSelected(0);
     }
-    if (component->getTeamPlayerPosSelectBox()[0][3]->getIndexSelected() < 0 || component->getTeamPlayerPosSelectBox()[0]["PF"]->getIndexSelected() > component->getTeamPlayerPosSelectBox()[0]["PF"]->getItemCount())
+    if (component->getTeamPlayerPosSelectBox()[0][PF]->getIndexSelected() < 0 || component->getTeamPlayerPosSelectBox()[0][PF]->getIndexSelected() > component->getTeamPlayerPosSelectBox()[0][PF]->getItemCount())
     {
-        component->getTeamPlayerPosSelectBox()[0][3]->setIndexSelected(0);
+        component->getTeamPlayerPosSelectBox()[0][PF]->setIndexSelected(0);
     }
-    if (component->getTeamPlayerPosSelectBox()[0][4]->getIndexSelected() < 0 || component->getTeamPlayerPosSelectBox()[0]["C"]->getIndexSelected() > component->getTeamPlayerPosSelectBox()[0]["C"]->getItemCount())
+    if (component->getTeamPlayerPosSelectBox()[0][C]->getIndexSelected() < 0 || component->getTeamPlayerPosSelectBox()[0][C]->getIndexSelected() > component->getTeamPlayerPosSelectBox()[0][C]->getItemCount())
     {
-        component->getTeamPlayerPosSelectBox()[0][4]->setIndexSelected(0);
+        component->getTeamPlayerPosSelectBox()[0][C]->setIndexSelected(0);
     }
-    if (component->getTeamPlayerPosSelectBox()[1][0]->getIndexSelected() < 0 || component->getTeamPlayerPosSelectBox()[1]["PG"]->getIndexSelected() > component->getTeamPlayerPosSelectBox()[1]["PG"]->getItemCount())
+    if (component->getTeamPlayerPosSelectBox()[1][PG]->getIndexSelected() < 0 || component->getTeamPlayerPosSelectBox()[1][PG]->getIndexSelected() > component->getTeamPlayerPosSelectBox()[1][PG]->getItemCount())
     {
-        component->getTeamPlayerPosSelectBox()[1][0]->setIndexSelected(0);
+        component->getTeamPlayerPosSelectBox()[1][PG]->setIndexSelected(0);
     }
-    if (component->getTeamPlayerPosSelectBox()[1][1]->getIndexSelected() < 0 || component->getTeamPlayerPosSelectBox()[1]["SG"]->getIndexSelected() > component->getTeamPlayerPosSelectBox()[1]["SG"]->getItemCount())
+    if (component->getTeamPlayerPosSelectBox()[1][SG]->getIndexSelected() < 0 || component->getTeamPlayerPosSelectBox()[1][SG]->getIndexSelected() > component->getTeamPlayerPosSelectBox()[1][SG]->getItemCount())
     {
-        component->getTeamPlayerPosSelectBox()[1][1]->setIndexSelected(0);
+        component->getTeamPlayerPosSelectBox()[1][SG]->setIndexSelected(0);
     }
-    if (component->getTeamPlayerPosSelectBox()[1][2]->getIndexSelected() < 0 || component->getTeamPlayerPosSelectBox()[1]["SF"]->getIndexSelected() > component->getTeamPlayerPosSelectBox()[1]["SF"]->getItemCount())
+    if (component->getTeamPlayerPosSelectBox()[1][SF]->getIndexSelected() < 0 || component->getTeamPlayerPosSelectBox()[1][SF]->getIndexSelected() > component->getTeamPlayerPosSelectBox()[1][SF]->getItemCount())
     {
-        component->getTeamPlayerPosSelectBox()[1][2]->setIndexSelected(0);
+        component->getTeamPlayerPosSelectBox()[1][SF]->setIndexSelected(0);
     }
-    if (component->getTeamPlayerPosSelectBox()[1][3]->getIndexSelected() < 0 || component->getTeamPlayerPosSelectBox()[1]["PF"]->getIndexSelected() > component->getTeamPlayerPosSelectBox()[1]["PF"]->getItemCount())
+    if (component->getTeamPlayerPosSelectBox()[1][PF]->getIndexSelected() < 0 || component->getTeamPlayerPosSelectBox()[1][PF]->getIndexSelected() > component->getTeamPlayerPosSelectBox()[1][PF]->getItemCount())
     {
-        component->getTeamPlayerPosSelectBox()[1][3]->setIndexSelected(0);
+        component->getTeamPlayerPosSelectBox()[1][PF]->setIndexSelected(0);
     }
-    if (component->getTeamPlayerPosSelectBox()[1][4]->getIndexSelected() < 0 || component->getTeamPlayerPosSelectBox()[1]["C"]->getIndexSelected() > component->getTeamPlayerPosSelectBox()[1]["C"]->getItemCount())
+    if (component->getTeamPlayerPosSelectBox()[1][C]->getIndexSelected() < 0 || component->getTeamPlayerPosSelectBox()[1][C]->getIndexSelected() > component->getTeamPlayerPosSelectBox()[1][C]->getItemCount())
     {
-        component->getTeamPlayerPosSelectBox()[1][4]->setIndexSelected(0);
+        component->getTeamPlayerPosSelectBox()[1][C]->setIndexSelected(0);
     }
     
     logMsg(func +" next");
@@ -773,11 +773,11 @@ void GUISystem::playerStartSelected()  // process player start selection
     for (TSVIT = teamStarters.begin(); TSVIT != teamStarters.end(); ++TSVIT)
     {
         logMsg(func + " TSVIT begin");
-        TSVIT->insert(std::pair<playerPositions, std::string>(PG, component->getTeamPlayerPosSelectBox()[w][0]->getItemNameAt(component->getTeamPlayerPosSelectBox()[w]["PG"]->getIndexSelected())));
-        TSVIT->insert(std::pair<playerPositions, std::string>(SG, component->getTeamPlayerPosSelectBox()[w][1]->getItemNameAt(component->getTeamPlayerPosSelectBox()[w]["SG"]->getIndexSelected())));
-        TSVIT->insert(std::pair<playerPositions, std::string>(SF, component->getTeamPlayerPosSelectBox()[w][2]->getItemNameAt(component->getTeamPlayerPosSelectBox()[w]["SF"]->getIndexSelected())));
-        TSVIT->insert(std::pair<playerPositions, std::string>(PF, component->getTeamPlayerPosSelectBox()[w][3]->getItemNameAt(component->getTeamPlayerPosSelectBox()[w]["PF"]->getIndexSelected())));
-        TSVIT->insert(std::pair<playerPositions, std::string>(C, component->getTeamPlayerPosSelectBox()[w][4]->getItemNameAt(component->getTeamPlayerPosSelectBox()[w]["C"]->getIndexSelected())));
+        TSVIT->insert(std::pair<playerPositions, std::string>(PG, component->getTeamPlayerPosSelectBox()[w][PG]->getItemNameAt(component->getTeamPlayerPosSelectBox()[w][PG]->getIndexSelected())));
+        TSVIT->insert(std::pair<playerPositions, std::string>(SG, component->getTeamPlayerPosSelectBox()[w][SG]->getItemNameAt(component->getTeamPlayerPosSelectBox()[w][SG]->getIndexSelected())));
+        TSVIT->insert(std::pair<playerPositions, std::string>(SF, component->getTeamPlayerPosSelectBox()[w][SF]->getItemNameAt(component->getTeamPlayerPosSelectBox()[w][SF]->getIndexSelected())));
+        TSVIT->insert(std::pair<playerPositions, std::string>(PF, component->getTeamPlayerPosSelectBox()[w][PF]->getItemNameAt(component->getTeamPlayerPosSelectBox()[w][PF]->getIndexSelected())));
+        TSVIT->insert(std::pair<playerPositions, std::string>(C, component->getTeamPlayerPosSelectBox()[w][C]->getItemNameAt(component->getTeamPlayerPosSelectBox()[w][C]->getIndexSelected())));
         ++w;
         logMsg(func +" TSVIT end");
     }

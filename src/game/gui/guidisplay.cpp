@@ -277,17 +277,17 @@ void GUISystem::hidePlayerStartSelectionMenuWidgets()  // hides all widgets tied
 {
 
     // Team 0 widgets
-    component->getTeamPlayerPosSelectBox()[0]["PG"]->setVisible(false);
-    component->getTeamPlayerPosSelectBox()[0]["SG"]->setVisible(false);
-    component->getTeamPlayerPosSelectBox()[0]["SF"]->setVisible(false);
-    component->getTeamPlayerPosSelectBox()[0]["PF"]->setVisible(false);
-    component->getTeamPlayerPosSelectBox()[0]["C"]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[0][PG]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[0][SG]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[0][SF]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[0][PF]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[0][C]->setVisible(false);
 
-    component->getTeamPlayerPosSelectBox()[0]["PG"]->setVisible(false);
-    component->getTeamPlayerPosSelectBox()[0]["SG"]->setVisible(false);
-    component->getTeamPlayerPosSelectBox()[0]["SF"]->setVisible(false);
-    component->getTeamPlayerPosSelectBox()[0]["PF"]->setVisible(false);
-    component->getTeamPlayerPosSelectBox()[0]["C"]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[0][PG]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[0][SG]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[0][SF]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[0][PF]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[0][C]->setVisible(false);
 
 // FIXME! need to fix image loading
 //    team0Logo->setVisible(false);
@@ -295,17 +295,17 @@ void GUISystem::hidePlayerStartSelectionMenuWidgets()  // hides all widgets tied
     component->getPlayerStartSelectionMenuButtons()["team0StartingLineupSetButton"]->setVisible(false);
 
     // Team 1 widgets
-    component->getTeamPlayerPosSelectBox()[1]["PG"]->setVisible(false);
-    component->getTeamPlayerPosSelectBox()[1]["SG"]->setVisible(false);
-    component->getTeamPlayerPosSelectBox()[1]["SF"]->setVisible(false);
-    component->getTeamPlayerPosSelectBox()[1]["PF"]->setVisible(false);
-    component->getTeamPlayerPosSelectBox()[1]["C"]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[1][PG]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[1][SG]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[1][SF]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[1][PF]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[1][C]->setVisible(false);
 
-    component->getTeamPlayerPosSelectBox()[1]["PG"]->setVisible(false);
-    component->getTeamPlayerPosSelectBox()[1]["SG"]->setVisible(false);
-    component->getTeamPlayerPosSelectBox()[1]["SF"]->setVisible(false);
-    component->getTeamPlayerPosSelectBox()[1]["PF"]->setVisible(false);
-    component->getTeamPlayerPosSelectBox()[1]["C"]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[1][PG]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[1][SG]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[1][SF]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[1][PF]->setVisible(false);
+    component->getTeamPlayerPosSelectBox()[1][C]->setVisible(false);
 
 // FIXME! need to fix image loading
 //    team1Logo->setVisible(false);
@@ -327,20 +327,20 @@ void GUISystem::showPlayerStartSelectionMenuWidgets(renderEngineSharedPtr render
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
 
     // Team 0 widgets
-    component->getTeamPlayerPosSelectBox()[0]["PG"]->setVisible(true);
-    component->getTeamPlayerPosSelectBox()[0]["PG"]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.05 *render->getViewPort()->getActualHeight()) );
+    component->getTeamPlayerPosSelectBox()[0][PG]->setVisible(true);
+    component->getTeamPlayerPosSelectBox()[0][PG]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.05 *render->getViewPort()->getActualHeight()) );
 
-    component->getTeamPlayerPosSelectBox()[0]["SG"]->setVisible(true);
-    component->getTeamPlayerPosSelectBox()[0]["SG"]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.09 *render->getViewPort()->getActualHeight()) );
+    component->getTeamPlayerPosSelectBox()[0][SG]->setVisible(true);
+    component->getTeamPlayerPosSelectBox()[0][SG]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.09 *render->getViewPort()->getActualHeight()) );
 
-    component->getTeamPlayerPosSelectBox()[0]["SF"]->setVisible(true);
-    component->getTeamPlayerPosSelectBox()[0]["SF"]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.13 *render->getViewPort()->getActualHeight()) );
+    component->getTeamPlayerPosSelectBox()[0][SF]->setVisible(true);
+    component->getTeamPlayerPosSelectBox()[0][SF]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.13 *render->getViewPort()->getActualHeight()) );
 
-    component->getTeamPlayerPosSelectBox()[0]["PF"]->setVisible(true);
-    component->getTeamPlayerPosSelectBox()[0]["PF"]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.17 *render->getViewPort()->getActualHeight()) );
+    component->getTeamPlayerPosSelectBox()[0][PF]->setVisible(true);
+    component->getTeamPlayerPosSelectBox()[0][PF]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.17 *render->getViewPort()->getActualHeight()) );
 
-    component->getTeamPlayerPosSelectBox()[0]["C"]->setVisible(true);
-    component->getTeamPlayerPosSelectBox()[0]["C"]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.21 *render->getViewPort()->getActualHeight()) );
+    component->getTeamPlayerPosSelectBox()[0][C]->setVisible(true);
+    component->getTeamPlayerPosSelectBox()[0][C]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.21 *render->getViewPort()->getActualHeight()) );
 
 /*    teamPlayerPosSelectBox[0]["PG"]->setVisible(true);
     teamPlayerPosSelectBox[0]["PG"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.05 *render->getViewPort()->getActualHeight()) );
@@ -367,20 +367,20 @@ void GUISystem::showPlayerStartSelectionMenuWidgets(renderEngineSharedPtr render
     component->getPlayerStartSelectionMenuButtons()["team0StartingLineupSetButton"]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.31 *render->getViewPort()->getActualHeight()) );
 
     // Team 1 widgets
-    component->getTeamPlayerPosSelectBox()[1]["PG"]->setVisible(true);
-    component->getTeamPlayerPosSelectBox()[1]["PG"]->setPosition((0.5 *render->getViewPort()->getActualWidth() ), (0.05 *render->getViewPort()->getActualHeight()) );
+    component->getTeamPlayerPosSelectBox()[1][PG]->setVisible(true);
+    component->getTeamPlayerPosSelectBox()[1][PG]->setPosition((0.5 *render->getViewPort()->getActualWidth() ), (0.05 *render->getViewPort()->getActualHeight()) );
 
-    component->getTeamPlayerPosSelectBox()[1]["SG"]->setVisible(true);
-    component->getTeamPlayerPosSelectBox()[1]["SG"]->setPosition((0.5 *render->getViewPort()->getActualWidth() ), (0.09 *render->getViewPort()->getActualHeight()) );
+    component->getTeamPlayerPosSelectBox()[1][SG]->setVisible(true);
+    component->getTeamPlayerPosSelectBox()[1][SG]->setPosition((0.5 *render->getViewPort()->getActualWidth() ), (0.09 *render->getViewPort()->getActualHeight()) );
 
-    component->getTeamPlayerPosSelectBox()[1]["SF"]->setVisible(true);
-    component->getTeamPlayerPosSelectBox()[1]["SF"]->setPosition((0.5 *render->getViewPort()->getActualWidth() ), (0.13 *render->getViewPort()->getActualHeight()) );
+    component->getTeamPlayerPosSelectBox()[1][SF]->setVisible(true);
+    component->getTeamPlayerPosSelectBox()[1][SF]->setPosition((0.5 *render->getViewPort()->getActualWidth() ), (0.13 *render->getViewPort()->getActualHeight()) );
 
-    component->getTeamPlayerPosSelectBox()[1]["PF"]->setVisible(true);
-    component->getTeamPlayerPosSelectBox()[1]["PF"]->setPosition((0.5 *render->getViewPort()->getActualWidth() ), (0.17 *render->getViewPort()->getActualHeight()) );
+    component->getTeamPlayerPosSelectBox()[1][PF]->setVisible(true);
+    component->getTeamPlayerPosSelectBox()[1][PF]->setPosition((0.5 *render->getViewPort()->getActualWidth() ), (0.17 *render->getViewPort()->getActualHeight()) );
 
-    component->getTeamPlayerPosSelectBox()[1]["C"]->setVisible(true);
-    component->getTeamPlayerPosSelectBox()[1]["C"]->setPosition((0.5 *render->getViewPort()->getActualWidth() ), (0.21 *render->getViewPort()->getActualHeight()) );
+    component->getTeamPlayerPosSelectBox()[1][C]->setVisible(true);
+    component->getTeamPlayerPosSelectBox()[1][C]->setPosition((0.5 *render->getViewPort()->getActualWidth() ), (0.21 *render->getViewPort()->getActualHeight()) );
 
 /*    teamPlayerPosSelectBox[1]["PG"]->setVisible(true);
     teamPlayerPosSelectBox[1]["PG"]->setPosition((0.8 *render->getViewPort()->getActualWidth() ), (0.21 *render->getViewPort()->getActualHeight()) );

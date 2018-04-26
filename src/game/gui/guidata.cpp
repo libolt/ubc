@@ -202,33 +202,33 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
             switch (PIIT.second->getData()->getPrimaryPosition())
             {
                 case PG:
-                    component->getTeamPlayerPosSelectBox()[teamNum]["PG"]->addItem(playerName);
+                    component->getTeamPlayerPosSelectBox()[teamNum][PG]->addItem(playerName);
 //                    teamPlayerRating[i]["PG"]->setCaption(playerOverallRating);
                     logMsg(func +" PG playerName == " +playerName);
                     logMsg(func +" PG playerRating == " +playerOverallRating);
                 break;
                 case SG:
-                    component->getTeamPlayerPosSelectBox()[teamNum]["SG"]->addItem(playerName);         
+                    component->getTeamPlayerPosSelectBox()[teamNum][SG]->addItem(playerName);         
 //                    teamPlayerRating[i]["SG"]->setCaption(playerOverallRating);
                     logMsg(func +" SG playerName == " +playerName);
                     logMsg(func +" SG playerRating == " +playerOverallRating);
  
                 break;
                 case SF:
-                    component->getTeamPlayerPosSelectBox()[teamNum]["SF"]->addItem(playerName);
+                    component->getTeamPlayerPosSelectBox()[teamNum][SF]->addItem(playerName);
 //                    teamPlayerRating[i]["SF"]->addItem(playerOverallRating);
                     logMsg(func +" SF playerName == " +playerName);
                     logMsg(func +" SF playerRating == " +playerOverallRating);
                 break;
                 case PF:
-                    component->getTeamPlayerPosSelectBox()[teamNum]["PF"]->addItem(playerName);
+                    component->getTeamPlayerPosSelectBox()[teamNum][PF]->addItem(playerName);
 //                    teamPlayerRating[i]["PF"]->addItem(playerOverallRating);
                     logMsg(func +" PF playerName == " +playerName);
                     logMsg(func +" PF playerRating == " +playerOverallRating);
   
                 break;
                 case C:
-                    component->getTeamPlayerPosSelectBox()[teamNum]["C"]->addItem(playerName);
+                    component->getTeamPlayerPosSelectBox()[teamNum][C]->addItem(playerName);
 //                    teamPlayerRating[i]["C"]->addItem(playerOverallRating);
                     logMsg(func +" C playerName == " +playerName);
                     logMsg(func +" C playerRating == " +playerOverallRating);

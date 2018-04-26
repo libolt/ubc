@@ -87,8 +87,8 @@ class GUIComponents
         MyGUIButtonMSharedPtr getNetworkClientSetupMenuButtons();  // retrieves the value of networkClientSetupMenuButtons
         void setNetworkClientSetupMenuButtons(MyGUIButtonMSharedPtr set);  // sets the value of networkClientSetupMenuButtons
     
-        MyGUIListBoxVecMSharedPtr getTeamPlayerPosSelectBox();  // retrieves the value of teamPlayerPosSelectBox
-        void setTeamPlayerPosSelectBox(MyGUIListBoxVecMSharedPtr set);  // sets the value of teamPlayerPosSelectBox
+        MyGUIPlayerListBoxVecMSharedPtr getTeamPlayerPosSelectBox();  // retrieves the value of teamPlayerPosSelectBox
+        void setTeamPlayerPosSelectBox(MyGUIPlayerListBoxVecMSharedPtr set);  // sets the value of teamPlayerPosSelectBox
 
         MyGUITextBoxVecMSharedPtr getTeamPlayerRating();  // retrieves the value of teamPlayerRating
         void setTeamPlayerRating(MyGUITextBoxVecMSharedPtr set);  // sets the value of teamPlayerRating
@@ -151,7 +151,7 @@ class GUIComponents
     
         MyGUIButtonMSharedPtr networkClientSetupMenuButtons;
     
-        MyGUIListBoxVecMSharedPtr teamPlayerPosSelectBox;
+        MyGUIPlayerListBoxVecMSharedPtr teamPlayerPosSelectBox;
 
         MyGUITextBoxVecMSharedPtr teamPlayerRating;
 

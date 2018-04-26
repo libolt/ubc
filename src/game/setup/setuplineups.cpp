@@ -290,7 +290,7 @@ teamEntityMSharedPtr setupLineups::setupStartingLineups(teamEntityMSharedPtr act
         logMsg(func +" activePlayerInstance.size() == " +convert->toString(activePlayerInstance.size()));
         
     }
-    exit(0);
+//    exit(0);
     
     for (auto ATIIT : activeTeamInstance)  // loop through activeTeamInstance
     {

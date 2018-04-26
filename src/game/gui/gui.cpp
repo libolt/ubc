@@ -503,22 +503,27 @@ void GUISystem::courtSelectionMenu(renderEngineSharedPtr render) // displays cou
 
 void GUISystem::setSelectedIndexes()  // sets all player listbox indexes to zero
 {
+    MyGUIPlayerListBoxVecMSharedPtr tempPlayerPosSelectBox;
     std::string func = "GUISystem::setSelectedIndexes()";
     
     logMsg(func +" begin");
     
-    component->getTeamPlayerPosSelectBox()[0][0]->setIndexSelected(0);
+    tempPlayerPosSelectBox = component->getTeamPlayerPosSelectBox();
+    
+    tempPlayerPosSelectBox[0][PG]->setIndexSelected(0);
     logMsg(func +" PG0");
     
-    component->getTeamPlayerPosSelectBox()[0][1]->setIndexSelected(0);
-    component->getTeamPlayerPosSelectBox()[0][2]->setIndexSelected(0);
-    component->getTeamPlayerPosSelectBox()[0][3]->setIndexSelected(0);
-    component->getTeamPlayerPosSelectBox()[0][4]->setIndexSelected(0);
-    component->getTeamPlayerPosSelectBox()[1][0]->setIndexSelected(0);
-    component->getTeamPlayerPosSelectBox()[1][1]->setIndexSelected(0);
-    component->getTeamPlayerPosSelectBox()[1][2]->setIndexSelected(0);
-    component->getTeamPlayerPosSelectBox()[1][3]->setIndexSelected(0);
-    component->getTeamPlayerPosSelectBox()[1][4]->setIndexSelected(0);
+    tempPlayerPosSelectBox[0][SG]->setIndexSelected(0);
+    tempPlayerPosSelectBox[0][SF]->setIndexSelected(0);
+    tempPlayerPosSelectBox[0][PF]->setIndexSelected(0);
+    tempPlayerPosSelectBox[0][C]->setIndexSelected(0);
+    tempPlayerPosSelectBox[1][PG]->setIndexSelected(0);
+    tempPlayerPosSelectBox[1][SG]->setIndexSelected(0);
+    tempPlayerPosSelectBox[1][SF]->setIndexSelected(0);
+    tempPlayerPosSelectBox[1][PF]->setIndexSelected(0);
+    tempPlayerPosSelectBox[1][C]->setIndexSelected(0);
+    
+    component->setTeamPlayerPosSelectBox(tempPlayerPosSelectBox);
     
     logMsg(func +" end");
 

@@ -46,47 +46,46 @@ public:
     // in the state map.
     enum States
     {
-        ST_SET_NODE,
-        ST_SET_MODEL,
-        ST_IDLE,
-        ST_STOP_MOVEMENT,
-        ST_START_MOVEMENT,
-        ST_CHANGE_POSITION,  
-        ST_CHANGE_SPEED,
-        ST_JUMP,
-        ST_CHANGE_DIRECTION,
-        ST_SHOOT,
-        ST_PASS,
+        ST_CREATE_INSTANCES,
+        ST_SET_START_POS,
+        ST_SETUP_TIPOFF,
+        ST_EXECUTE_TIPOFF,
+        ST_PAUSE,
+        ST_CHANGE_SCORE,  
+        ST_CHANGE_QUARTER,
+        ST_SETUP_FREETHROW,
+        ST_EXECUTE_FREETHROW,
+        ST_CHANGE_POSSESSION,
         ST_MAX_STATES
     };
 
     // Define the state machine state functions with event data type
-    STATE_DECLARE(playerStateMachine,    SetNode,    playerSMData)
-    STATE_DECLARE(playerStateMachine,    SetModel,    playerSMData)
-    STATE_DECLARE(playerStateMachine,    Idle,            noEventData)
-    STATE_DECLARE(playerStateMachine,    StopMovement,    noEventData)
-    STATE_DECLARE(playerStateMachine,    StartMovement,   playerSMData)
-    STATE_DECLARE(playerStateMachine,    ChangePosition,  playerSMData)
-    STATE_DECLARE(playerStateMachine,    ChangeSpeed,     playerSMData)
-    STATE_DECLARE(playerStateMachine,    Jump,            playerSMData)
-    STATE_DECLARE(playerStateMachine,    ChangeDirection, playerSMData)
-    STATE_DECLARE(playerStateMachine,    Shoot,           playerSMData)
-    STATE_DECLARE(playerStateMachine,    Pass,            playerSMData)
+    STATE_DECLARE(gameStateMachine,    createInstances,         gameSMData)
+    STATE_DECLARE(gameStateMachine,    setStartPositions,        gameSMData)
+    STATE_DECLARE(gameStateMachine,    setupTipOff,            gameSMData)
+    STATE_DECLARE(gameStateMachine,    executeTipOff,    gameSMData)
+    STATE_DECLARE(gameStateMachine,    pause,   noEventData)
+    STATE_DECLARE(gameStateMachine,    changeScore,  gameSMData)
+    STATE_DECLARE(gameStateMachine,    changeQuarter,     gameSMData)
+    STATE_DECLARE(gameStateMachine,    setupFreethrow,            gameSMData)
+    STATE_DECLARE(gameStateMachine,    executeFreethrow, gameSMData)
+    STATE_DECLARE(gameStateMachine,    changePosession,           gameSMData)
+//    STATE_DECLARE(gameStateMachine,    Pass,            gameSMData)
 
     // State map to define state object order. Each state map entry defines a
     // state object.
     BEGIN_STATE_MAP
-        STATE_MAP_ENTRY(&SetNode)
-        STATE_MAP_ENTRY(&SetModel)
-        STATE_MAP_ENTRY(&Idle)
-        STATE_MAP_ENTRY(&StopMovement)
-        STATE_MAP_ENTRY(&StartMovement)
-        STATE_MAP_ENTRY(&ChangePosition)
-        STATE_MAP_ENTRY(&ChangeSpeed)
-        STATE_MAP_ENTRY(&Jump)
-        STATE_MAP_ENTRY(&ChangeDirection)
-        STATE_MAP_ENTRY(&Shoot)
-        STATE_MAP_ENTRY(&Pass)       
+        STATE_MAP_ENTRY(&createInstances)
+        STATE_MAP_ENTRY(&setStartPositions)
+        STATE_MAP_ENTRY(&setupTipOff)
+        STATE_MAP_ENTRY(&executeTipOff)
+        STATE_MAP_ENTRY(&pause)
+        STATE_MAP_ENTRY(&changeScore)
+        STATE_MAP_ENTRY(&changeQuarter)
+        STATE_MAP_ENTRY(&setupFreethrow)
+        STATE_MAP_ENTRY(&executeFreethrow)
+        STATE_MAP_ENTRY(&changePosession)
+//        STATE_MAP_ENTRY(&Pass)       
     END_STATE_MAP   
 };
 

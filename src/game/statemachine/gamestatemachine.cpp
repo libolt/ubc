@@ -23,7 +23,7 @@
 
 #include "utilities/logging.h"
 
-playerStateMachine::playerStateMachine() :
+gameStateMachine::gameStateMachine() :
     stateMachine(ST_MAX_STATES),
     currentSpeed(0),
     currentDirection(NODIRECT),

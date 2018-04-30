@@ -71,6 +71,7 @@ class defenseState;
 class gameComponents;
 class gameData;
 class gameEngine;
+class gameEntity;
 class gameFlags;
 class setupBasketballs;
 class setupCourts;
@@ -193,6 +194,8 @@ typedef sharedPtr<renderEngine> renderEngineSharedPtr;
 typedef sharedPtr<basketballEntity> basketballEntitySharedPtr;
 
 typedef sharedPtr<courtEntity> courtEntitySharedPtr;
+
+typedef sharedPtr<gameEntity> gameEntitySharedPtr;
 
 typedef sharedPtr<hoopEntity> hoopEntitySharedPtr;
 

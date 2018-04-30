@@ -42,6 +42,21 @@ class gameStateMachine : public stateMachine
 public:
     gameStateMachine();
 
+    // External events taken by this state machine
+    void pCreateInstances(gameSMData *data);  // sets the node to that of the entity parent object
+    void pSetStartPositions(gameSMData *data);  // sets the model to that of the entity parent object
+    void pSetupTipOff(gameSMData *data);
+    void pExecuteTipOff(gameSMData *data);
+    void pPause();
+    void pChangeScore(gameSMData *data);
+    void pChangeQuarter(gameSMData *data);
+    void pSetupFreethrow(gameSMData *data);
+    void pExecuteFreethrow(gameSMData *data);
+    void pChangePossession(gameSMData *data);
+
+    
+private:
+
     // State enumeration order must match the order of state method entries
     // in the state map.
     enum States

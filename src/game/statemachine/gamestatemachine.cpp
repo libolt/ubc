@@ -52,7 +52,7 @@ void gameStateMachine::pCreateInstances(gameSMData *data) // sets the node to th
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_DIRECTION
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SHOOT
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_PASS
-    END_TRANSITION_MAP(data)
+    END_TRANSITION_MAP(NULL)
 
     logMsg(func +" end");
 //    exit(0);
@@ -66,18 +66,18 @@ void gameStateMachine::pSetStartPositions(gameSMData *data) // sets the model to
     logMsg(func +" begin");
 
     BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (ST_START_POSITIONS)             // ST_SET_NODE
-        TRANSITION_MAP_ENTRY (ST_START_POSITIONS)             // ST_SET_MODEL
-        TRANSITION_MAP_ENTRY (ST_START_POSITIONS)             // ST_IDLE
-        TRANSITION_MAP_ENTRY (ST_START_POSITIONS)             // ST_STOP
+        TRANSITION_MAP_ENTRY (ST_SET_START_POS)             // ST_SET_NODE
+        TRANSITION_MAP_ENTRY (ST_SET_START_POS)             // ST_SET_MODEL
+        TRANSITION_MAP_ENTRY (ST_SET_START_POS)             // ST_IDLE
+        TRANSITION_MAP_ENTRY (ST_SET_START_POS)             // ST_STOP
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_START
-        TRANSITION_MAP_ENTRY (ST_START_POSITIONS)             // ST_CHANGE_POSITION
+        TRANSITION_MAP_ENTRY (ST_SET_START_POS)             // ST_CHANGE_POSITION
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_SPEED
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_JUMP
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_DIRECTION
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SHOOT
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_PASS
-    END_TRANSITION_MAP(data)
+    END_TRANSITION_MAP(NULL)
 
     logMsg(func +" end");
 //    exit(0);
@@ -127,7 +127,7 @@ void gameStateMachine::pExecuteTipOff(gameSMData *data)
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_CHANGE_DIRECTION
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_SHOOT
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_PASS
-    END_TRANSITION_MAP(NULL)
+    END_TRANSITION_MAP(data)
 
     logMsg(func +" end");
 
@@ -152,7 +152,7 @@ void gameStateMachine::pPause()
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_DIRECTION
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SHOOT
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_PASS
-    END_TRANSITION_MAP(data)
+    END_TRANSITION_MAP(NULL)
     logMsg(func +" end");
 //    exit(0);
 }
@@ -274,7 +274,7 @@ void gameStateMachine::pChangePossession(gameSMData *data)
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSSESSION)           // ST_CHANGE_DIRECTION
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSSESSION)           // ST_SHOOT
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSSESSION)           // ST_PASS
-    END_TRANSITION_MAP(data)
+    END_TRANSITION_MAP(NULL)
     logMsg(func +" end");
 //    exit(0);
 }
@@ -293,20 +293,20 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
 }
 
 // sets the model object
-STATE_DEFINE(gameStateMachine, executeFreethrow, gameSMData)
+STATE_DEFINE(gameStateMachine, setStartPositions, gameSMData)
 {
     std:: string func = "gameStateMachine::SetModel";
 
     logMsg(func +" begin");
 
-    currentModel = data->model;
+//    currentModel = data->model;
 
     logMsg(func +" end");
 
 }
 
 // state machine sits here when player is not moving
-STATE_DEFINE(gameStateMachine, Idle, noEventData)
+STATE_DEFINE(gameStateMachine, setupTipOff, gameSMData)
 {
     std:: string func = "gameStateMachine::Idle";
 
@@ -319,34 +319,34 @@ STATE_DEFINE(gameStateMachine, Idle, noEventData)
 }
 
 // stop the player
-STATE_DEFINE(gameStateMachine, StopMovement, noEventData)
+STATE_DEFINE(gameStateMachine, executeTipOff, gameSMData)
 {
     std:: string func = "gameStateMachine::StopMovement";
 
     logMsg(func +" begin");
 
     logMsg("gameStateMachine::ST_Stop");
-    currentSpeed = 0; 
-    currentDirection = NODIRECT;
+//    currentSpeed = 0; 
+//    currentDirection = NODIRECT;
 
     // perform the stop motor processing here
     // transition to Idle via an internal event
-    internalEvent(ST_IDLE);
+///    internalEvent(ST_IDLE);
 //    exit(0);
     logMsg(func +" end");
 
 }
 
 // start the player moving
-STATE_DEFINE(gameStateMachine, StartMovement, gameSMData)
+STATE_DEFINE(gameStateMachine, pause, noEventData)
 {
     conversionSharedPtr convert = conversion::Instance();
     std:: string func = "gameStateMachine::StartMovement";
 
     logMsg(func +" begin");
 
-    logMsg("gameStateMachine::ST_Start : Speed is " +convert->toString(data->speed));
-    currentSpeed = data->speed;
+//    logMsg("gameStateMachine::ST_Start : Speed is " +convert->toString(data->speed));
+//    currentSpeed = data->speed;
 //    exit(0);
     // set initial player speed processing here
     logMsg(func +" end");
@@ -354,7 +354,7 @@ STATE_DEFINE(gameStateMachine, StartMovement, gameSMData)
 }
 
 // changes the player's position on the court
-STATE_DEFINE(gameStateMachine, ChangePosition, gameSMData)
+STATE_DEFINE(gameStateMachine, changeScore, gameSMData)
 {
 //    exit(0);
     conversionSharedPtr convert = conversion::Instance();
@@ -363,15 +363,15 @@ STATE_DEFINE(gameStateMachine, ChangePosition, gameSMData)
     logMsg(func +" begin");
 
     logMsg("gameStateMachine::ST_ChangePosition : court position is " +convert->toString(data->position));
-    currentPosition = data->position;
-    currentNode->setPosition(currentPosition);
-    logMsg(func +" Node Position == " +convert->toString(currentNode->getPosition()));
+//    currentPosition = data->position;
+//    currentNode->setPosition(currentPosition);
+//    logMsg(func +" Node Position == " +convert->toString(currentNode->getPosition()));
     logMsg(func +" end");
 
 //    exit(0);
 }
 // changes the player's speed once the player is moving
-STATE_DEFINE(gameStateMachine, ChangeSpeed, gameSMData)
+STATE_DEFINE(gameStateMachine, changeQuarter, gameSMData)
 {
 //    exit(0);
     conversionSharedPtr convert = conversion::Instance();
@@ -380,7 +380,7 @@ STATE_DEFINE(gameStateMachine, ChangeSpeed, gameSMData)
     logMsg(func +" begin");
 
     logMsg("gameStateMachine::ST_ChangeSpeed : Speed is " +convert->toString(data->speed));
-    currentSpeed = data->speed;
+//    currentSpeed = data->speed;
 
     logMsg(func +" end");
 
@@ -389,7 +389,7 @@ STATE_DEFINE(gameStateMachine, ChangeSpeed, gameSMData)
 }
 
 // changes the player's direction once the player is moving
-STATE_DEFINE(gameStateMachine, ChangeDirection, gameSMData)
+STATE_DEFINE(gameStateMachine, setupFreethrow, gameSMData)
 {
     conversionSharedPtr convert = conversion::Instance();
     std:: string func = "gameStateMachine::ChangeDirection";
@@ -399,7 +399,7 @@ STATE_DEFINE(gameStateMachine, ChangeDirection, gameSMData)
 //    exit(0);
     logMsg("gameStateMachine::ST_ChangeDirection : Direction is " +convert->toString(data->direction));
 
-    switch (currentDirection)
+/*    switch (currentDirection)
     {
         case UP:
             switch (data->direction)
@@ -488,7 +488,7 @@ STATE_DEFINE(gameStateMachine, ChangeDirection, gameSMData)
             break;
             default:
         break;
-    }
+    }*/
     logMsg(func +" end");
 
 //    currentSpeed = data->direction;
@@ -496,7 +496,7 @@ STATE_DEFINE(gameStateMachine, ChangeDirection, gameSMData)
     // perform the change player direction to data->direction here
 }
 
-STATE_DEFINE(gameStateMachine, Jump, gameSMData)
+STATE_DEFINE(gameStateMachine, executeFreethrow, gameSMData)
 {
     std:: string func = "gameStateMachine::Jump";
 //    exit(0)
@@ -508,7 +508,7 @@ STATE_DEFINE(gameStateMachine, Jump, gameSMData)
     conversionSharedPtr convert = conversion::Instance();
     
     logMsg("gameStateMachine::ST_Jump : Speed is " +convert->toString(data->speed));
-    internalEvent(ST_IDLE);
+///    internalEvent(ST_IDLE);
 
     logMsg(func +" end");
 
@@ -517,7 +517,7 @@ STATE_DEFINE(gameStateMachine, Jump, gameSMData)
     // set initial player speed processing here
 }
 
-STATE_DEFINE(gameStateMachine, Shoot, gameSMData)
+STATE_DEFINE(gameStateMachine, changePosession, gameSMData)
 {
     conversionSharedPtr convert = conversion::Instance();
     std:: string func = "gameStateMachine::Shoot";
@@ -525,7 +525,7 @@ STATE_DEFINE(gameStateMachine, Shoot, gameSMData)
     logMsg(func +" begin");
 
     logMsg("gameStateMachine::ST_Shoot : Speed is " +convert->toString(data->speed));
-    currentSpeed = data->speed;
+//    currentSpeed = data->speed;
 
     logMsg(func +" end");
 
@@ -534,7 +534,7 @@ STATE_DEFINE(gameStateMachine, Shoot, gameSMData)
     // set initial player shoot processing here
 }
 
-STATE_DEFINE(gameStateMachine, Pass, gameSMData)
+/*STATE_DEFINE(gameStateMachine, Pass, gameSMData)
 {
     conversionSharedPtr convert = conversion::Instance();
     std:: string func = "gameStateMachine::Pass";
@@ -543,10 +543,10 @@ STATE_DEFINE(gameStateMachine, Pass, gameSMData)
     logMsg(func +" begin");
 
     logMsg("gameStateMachine::ST_Pass : Speed is " +convert->toString(data->speed));
-    currentSpeed = data->speed;
+//    currentSpeed = data->speed;
 
     logMsg(func +" end");
 
 //    exit(0);
     // set initial player pass processing here
-}
+}*/

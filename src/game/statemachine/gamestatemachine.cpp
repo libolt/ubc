@@ -51,7 +51,7 @@ void gameStateMachine::pCreateInstances(gameSMData *data) // sets the node to th
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_JUMP
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_DIRECTION
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SHOOT
-        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_PASS
+//        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_PASS
     END_TRANSITION_MAP(NULL)
 
     logMsg(func +" end");
@@ -76,7 +76,7 @@ void gameStateMachine::pSetStartPositions(gameSMData *data) // sets the model to
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_JUMP
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_DIRECTION
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SHOOT
-        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_PASS
+//        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_PASS
     END_TRANSITION_MAP(NULL)
 
     logMsg(func +" end");
@@ -101,7 +101,7 @@ void gameStateMachine::pSetupTipOff(gameSMData *data)
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_JUMP
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_DIRECTION
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SHOOT
-        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_PASS
+//        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_PASS
     END_TRANSITION_MAP(data)
 
     logMsg(func +" end");
@@ -126,7 +126,7 @@ void gameStateMachine::pExecuteTipOff(gameSMData *data)
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_JUMP
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_CHANGE_DIRECTION
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_SHOOT
-        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_PASS
+//        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_PASS
     END_TRANSITION_MAP(data)
 
     logMsg(func +" end");
@@ -151,7 +151,7 @@ void gameStateMachine::pPause()
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_JUMP
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_DIRECTION
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SHOOT
-        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_PASS
+//        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_PASS
     END_TRANSITION_MAP(NULL)
     logMsg(func +" end");
 //    exit(0);
@@ -175,7 +175,7 @@ void gameStateMachine::pChangeScore(gameSMData *data)
         TRANSITION_MAP_ENTRY (ST_CHANGE_SCORE)          // ST_JUMP
         TRANSITION_MAP_ENTRY (ST_CHANGE_SCORE)          // ST_CHANGE_DIRECTION
         TRANSITION_MAP_ENTRY (ST_CHANGE_SCORE)          // ST_SHOOT
-        TRANSITION_MAP_ENTRY (ST_CHANGE_SCORE)          // ST_PASS
+//        TRANSITION_MAP_ENTRY (ST_CHANGE_SCORE)          // ST_PASS
     END_TRANSITION_MAP(data)
 
     logMsg(func +" end");
@@ -201,7 +201,7 @@ void gameStateMachine::pChangeQuarter(gameSMData *data)
         TRANSITION_MAP_ENTRY (ST_CHANGE_QUARTER)           // ST_JUMP
         TRANSITION_MAP_ENTRY (ST_CHANGE_QUARTER)           // ST_CHANGE_DIRECTION
         TRANSITION_MAP_ENTRY (ST_CHANGE_QUARTER)           // ST_SHOOT
-        TRANSITION_MAP_ENTRY (ST_CHANGE_QUARTER)           // ST_PASS
+//        TRANSITION_MAP_ENTRY (ST_CHANGE_QUARTER)           // ST_PASS
     END_TRANSITION_MAP(data)
     logMsg(func +" end");
 //    exit(0);
@@ -225,7 +225,7 @@ void gameStateMachine::pSetupFreethrow(gameSMData *data)
         TRANSITION_MAP_ENTRY (ST_SETUP_FREETHROW)           // ST_JUMP
         TRANSITION_MAP_ENTRY (ST_SETUP_FREETHROW)           // ST_CHANGE_DIRECTION
         TRANSITION_MAP_ENTRY (ST_SETUP_FREETHROW)           // ST_SHOOT
-        TRANSITION_MAP_ENTRY (ST_SETUP_FREETHROW)           // ST_PASS
+//        TRANSITION_MAP_ENTRY (ST_SETUP_FREETHROW)           // ST_PASS
     END_TRANSITION_MAP(data)
     logMsg(func +" end");
 //    exit(0);
@@ -249,7 +249,7 @@ void gameStateMachine::pExecuteFreethrow(gameSMData *data)
         TRANSITION_MAP_ENTRY (ST_EXECUTE_FREETHROW)           // ST_JUMP
         TRANSITION_MAP_ENTRY (ST_EXECUTE_FREETHROW)           // ST_CHANGE_DIRECTION
         TRANSITION_MAP_ENTRY (ST_EXECUTE_FREETHROW)           // ST_SHOOT
-        TRANSITION_MAP_ENTRY (ST_EXECUTE_FREETHROW)           // ST_PASS
+//        TRANSITION_MAP_ENTRY (ST_EXECUTE_FREETHROW)           // ST_PASS
     END_TRANSITION_MAP(data)
     logMsg(func +" end");
 //    exit(0);
@@ -273,7 +273,7 @@ void gameStateMachine::pChangePossession(gameSMData *data)
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSSESSION)           // ST_JUMP
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSSESSION)           // ST_CHANGE_DIRECTION
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSSESSION)           // ST_SHOOT
-        TRANSITION_MAP_ENTRY (ST_CHANGE_POSSESSION)           // ST_PASS
+//        TRANSITION_MAP_ENTRY (ST_CHANGE_POSSESSION)           // ST_PASS
     END_TRANSITION_MAP(NULL)
     logMsg(func +" end");
 //    exit(0);

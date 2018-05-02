@@ -26,7 +26,7 @@
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
 #include "utilities/typedefs.h"
-#include "state/gamestate.h"
+#include "entity/gameentity.h"
 #include "state/teamstate.h"
 #include "network/networkplayerstateobject.h"
 #include "users/users.h"

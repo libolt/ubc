@@ -22,7 +22,7 @@
 #include "setup/setupplayers.h"
 #include "utilities/conversion.h"
 #include "state/teamstate.h"
-#include "state/gamestate.h"
+#include "entity/gameentity.h"
 #include "components/teamcomponents.h"
 #include "data/playerdata.h"
 #include "data/teamgamedata.h"

@@ -23,7 +23,7 @@
 #include "components/gamecomponents.h"
 #include "data/gamedata.h"
 #include "state/defensestate.h"
-#include "state/gamestate.h"
+#include "entity/gameentity.h"
 #include "state/playerstate.h"
 #include "state/teamstate.h"
 

@@ -31,7 +31,7 @@
 #include "flags/playerflags.h"
 #include "flags/teamflags.h"
 #include "load/loadplayers.h"
-#include "state/gamestate.h"
+#include "entity/gameentity.h"
 #include "state/teamstate.h"
 #include "statemachine/playerstatemachine.h"
 #include "utilities/conversion.h"

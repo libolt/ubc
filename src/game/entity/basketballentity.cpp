@@ -79,10 +79,10 @@ bool basketballEntity::setupPhysicsObject()  // sets up the physics object
     
     logMsg(func +" begin");
     
-    if (!getPhysics()->getGameSInitialized())
+    if (!getPhysics()->getGameInstanceInitialized())
     {
 //BASEREMOVAL        getPhysics()->setGameS(getBase()->getGameS());
-        getPhysics()->setGameSInitialized(true);
+        getPhysics()->setGameInstanceInitialized(true);
     }
     
     getPhysics()->setMass(0.05f);

@@ -28,7 +28,7 @@
 #include "gui/gui.h"
 #include "flags/guiflags.h"
 #include "load/loadusersinputs.h"
-#include "state/gamestate.h"
+#include "entity/gameentity.h"
 #include "ubc/ubcinput.h"
 #include "users/users.h"
 #include "users/usersinputs.h"
@@ -67,11 +67,11 @@ UBCGame::~UBCGame()  // destructor
 
 }
 
-gameStateSharedPtr UBCGame::getGameInstance()  // retrieves the value of gameS
+gameEntitySharedPtr UBCGame::getGameInstance()  // retrieves the value of gameS
 {
     return (gameInstance);
 }
-void UBCGame::setGameInstance(gameStateSharedPtr set)  // sets the value of gameS
+void UBCGame::setGameInstance(gameEntitySharedPtr set)  // sets the value of gameS
 {
     gameInstance = set;
 }
@@ -216,8 +216,8 @@ bool UBCGame::setup()  // sets up a game instance
 //    gameState *tempGameStateObj = new gameState;
     std::string func = "UBCGame::setup()";
 
-    gameStateSharedPtr tempGameStateSharedPtr(new gameState);
-    gameInstance = tempGameStateSharedPtr;
+    gameEntitySharedPtr tempGameInstance(new gameEntity);
+    gameInstance = tempGameInstance;
     logMsg(func +" getGameS()->setInitialized(true)");
     if (!gameInstance->getComponentInitialized())
     {

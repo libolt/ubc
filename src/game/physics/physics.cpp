@@ -21,9 +21,10 @@
 #include "utilities/logging.h"
 #include "physics/physics.h"
 #include "engine/physicsengine.h"
+#include "entity/gameentity.h"
 
 // static declarations
-gameStateSharedPtr physics::gameS;
+//gameStateSharedPtr physics::gameS;
 physicsEngineSharedPtr physics::physE;  // physics engine object
 
 //bool physics::gameSInitialized;  // stores whether the gameState object has been initialized
@@ -31,7 +32,7 @@ physicsEngineSharedPtr physics::physE;  // physics engine object
 physics::physics()  // constructor
 {
     
-    gameSInitialized = false;
+    gameInstanceInitialized = false;
     physEInitialized = false;
 //    physicsSetup = false;
 
@@ -51,22 +52,22 @@ physics::~physics()  // destructor
 
 }
 
-gameStateSharedPtr physics::getGameS()  // retrieves the value of gameS
+gameEntitySharedPtr physics::getGameInstance()  // retrieves the value of gameS
 {
-    return (gameS);
+    return (gameInstance);
 }
-void physics::setGameS(gameStateSharedPtr set)  // sets the value of gameS
+void physics::setGameInstance(gameEntitySharedPtr set)  // sets the value of gameS
 {
-    gameS = set;
+    gameInstance = set;
 }
 
-bool physics::getGameSInitialized() // retrieves the value of gameSInitialized
+bool physics::getGameInstanceInitialized() // retrieves the value of gameSInitialized
 {
-    return (gameSInitialized);
+    return (gameInstanceInitialized);
 }
-void physics::setGameSInitialized(bool set)  // sets the value of gameSInitialized
+void physics::setGameInstanceInitialized(bool set)  // sets the value of gameSInitialized
 {
-    gameSInitialized = set;
+    gameInstanceInitialized = set;
 }
 
 physicsEngineSharedPtr physics::getPhysE()  // retrieves the value of physE

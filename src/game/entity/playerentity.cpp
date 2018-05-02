@@ -119,10 +119,9 @@ bool playerEntity::setupPhysicsObject()  // sets up the physics object
     logMsg(func +" begin");
 //    exit(0);
     
-    if (!component->getPhysics()->getGameSInitialized())
+    if (!component->getPhysics()->getGameInstanceInitialized())
     {
-//BASEREMOVAL        getPhysics()->setGameS(getBase()->getGameS());
-        component->getPhysics()->setGameSInitialized(true);
+        component->getPhysics()->setGameInstanceInitialized(true);
     }
 
     component->getPhysics()->setMass(1.0f);

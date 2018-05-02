@@ -31,7 +31,7 @@
 #include "entity/playerentity.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
-#include "state/gamestate.h"
+#include "entity/gameentity.h"
 #include "state/hoopstate.h"
 //#include "state/gamestate.h"
 #include "state/playerstate.h"

@@ -35,7 +35,7 @@
 #include "setup/setupteams.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
-#include "state/gamestate.h"
+#include "entity/gameentity.h"
 #include "state/teamstate.h"
 #include "state/playerstate.h"
 #include "load/load.h"
@@ -83,11 +83,11 @@ void GUISystem::setFlag(guiFlagsSharedPtr set)  // sets the value of flag
     flag = set;
 }
 
-gameStateSharedPtr GUISystem::getGameInstance()  // retrieves the value of teamInstance
+gameEntitySharedPtr GUISystem::getGameInstance()  // retrieves the value of teamInstance
 {
     return (gameInstance);
 }
-void GUISystem::setGameInstance(gameStateSharedPtr set)  // sets the value of teamInstance
+void GUISystem::setGameInstance(gameEntitySharedPtr set)  // sets the value of teamInstance
 {
     gameInstance = set;
 }

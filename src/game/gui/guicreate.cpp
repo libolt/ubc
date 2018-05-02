@@ -25,7 +25,7 @@
 #include "components/guicomponents.h"
 #include "data/courtdata.h"
 //#include mmloukoo"engine/gameengine.h" 
-#include "state/gamestate.h"
+#include "entity/gameentity.h"
 #include "load/load.h"
 #include "utilities/logging.h"
 #include "engine/gameengine.h"

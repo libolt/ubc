@@ -65,10 +65,9 @@ bool courtEntity::setupPhysicsObject()  // sets up the physics object
     btScalar restitution = 1.0f;
     btScalar friction = 15.5f;
 
-    if (!getPhysics()->getGameSInitialized())
+    if (!getPhysics()->getGameInstanceInitialized())
     {
-//BASEREMOVAL        getPhysics()->setGameS(getBase()->getGameS());
-        getPhysics()->setGameSInitialized(true);
+        getPhysics()->setGameInstanceInitialized(true);
     }
     
     getPhysics()->setMass(0.0f);

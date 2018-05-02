@@ -60,8 +60,8 @@ public:
     basketballState();  // constructor
     ~basketballState();	// destructor
 
-    gameStateSharedPtr getGameS();  // retrieves the value of gameS
-    void setGameS(gameStateSharedPtr set);  // sets the value of gameS
+    gameEntitySharedPtr getGameInstance();  // retrieves the value of gameS
+    void setGameInstance(gameEntitySharedPtr set);  // sets the value of gameS
 
     sharedPtr<basketballData> getData();  // retrievees the value of data
     void setData(sharedPtr<basketballData> set);  // sets the value of data
@@ -173,7 +173,7 @@ protected:
 
 private:
 
-    gameStateSharedPtr gameS;  // the gameState object
+    gameEntitySharedPtr gameInstance;  // the gameState object
 
     sharedPtr<basketballData> data;
 

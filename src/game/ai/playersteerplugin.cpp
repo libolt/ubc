@@ -34,7 +34,7 @@
 #include "flags/teamflags.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
-#include "state/gamestate.h"
+#include "entity/gameentity.h"
 #include "state/teamstate.h"
 #include "state/playerstate.h"
 #include "ai/playersteer.h"
@@ -50,11 +50,11 @@ playerSteerPlugin::~playerSteerPlugin()  // destructor
     
 }
 
-gameStateSharedPtr playerSteerPlugin::getGameInstance()  // retrieves the value of gameInstance
+gameEntitySharedPtr playerSteerPlugin::getGameInstance()  // retrieves the value of gameInstance
 {
     return (gameInstance);
 }
-void playerSteerPlugin::setGameInstance(gameStateSharedPtr set)  // sets the value of gameInstance
+void playerSteerPlugin::setGameInstance(gameEntitySharedPtr set)  // sets the value of gameInstance
 {
     gameInstance = set;
 }

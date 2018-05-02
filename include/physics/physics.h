@@ -25,7 +25,7 @@
 #include "BtOgreGP.h"
 #include "BtOgreExtras.h"
 #include "BulletDynamics/Dynamics/btRigidBody.h"
-#include "state/gamestateshared.h"
+//#include "state/gamestateshared.h"
 
 #include "utilities/enums.h"
 
@@ -37,11 +37,11 @@ class physics
         physics();  // constructor
         ~physics();  // destructor
 
-        gameStateSharedPtr getGameS();  // retrieves the value of gameS
-        void setGameS(gameStateSharedPtr set);  // sets the value of gameS
+        gameEntitySharedPtr getGameInstance();  // retrieves the value of gameS
+        void setGameInstance(gameEntitySharedPtr set);  // sets the value of gameS
         
-        bool getGameSInitialized(); // retrieves the value of gameSInitialized
-        void setGameSInitialized(bool set);  // sets the value of gameSInitialized
+        bool getGameInstanceInitialized(); // retrieves the value of gameSInitialized
+        void setGameInstanceInitialized(bool set);  // sets the value of gameSInitialized
 
         physicsEngineSharedPtr getPhysE();  // retrieves the value of physE
         void setPhysE(physicsEngineSharedPtr set);  // sets the value of physE
@@ -99,8 +99,8 @@ class physics
 
     private:
 
-        static gameStateSharedPtr gameS;  // stores a copy of gameState object
-        bool gameSInitialized;  // stores whether the gameState object has been initialized
+        gameEntitySharedPtr gameInstance;  // stores a copy of gameState object
+        bool gameInstanceInitialized;  // stores whether the gameState object has been initialized
 
         static physicsEngineSharedPtr physE;  // physics engine object
 

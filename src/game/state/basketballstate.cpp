@@ -23,7 +23,7 @@
 #include "components/gamecomponents.h"
 #include "data/gamedata.h"
 #include "state/basketballstate.h"
-#include "state/gamestate.h"
+#include "entity/gameentity.h"
 #include "state/playerstate.h"
 #include "state/teamstate.h"
 #include "engine/renderengine.h"
@@ -91,13 +91,13 @@ basketballState::~basketballState()  // destructor
 }
 
 
-sharedPtr<gameState> basketballState::getGameS()  // retrieves the value of gameS
+gameEntitySharedPtr basketballState::getGameInstance()  // retrieves the value of gameS
 {
-    return (gameS);
+    return (gameInstance);
 }
-void basketballState::setGameS(sharedPtr<gameState> set)  // sets the value of gameS
+void basketballState::setGameInstance(gameEntitySharedPtr set)  // sets the value of gameS
 {
-    gameS = set;
+    gameInstance = set;
 }
 
 sharedPtr<basketballData> basketballState::getData()  // retrievees the value of data
@@ -551,8 +551,8 @@ void basketballState::updateMovement()  // updates the basketball(s) movements
 {
     conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
-    teamEntityMSharedPtr activeTeamInstance = gameS->getComponent()->getActiveTeamInstance();
-    size_t teamWithBall = gameS->getData()->getTeamWithBall();
+    teamEntityMSharedPtr activeTeamInstance = gameInstance->getComponent()->getActiveTeamInstance();
+    size_t teamWithBall = gameInstance->getData()->getTeamWithBall();
 /*TS    playerStateVecSharedPtr activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
     size_t playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();
     size_t playerWithBallID = activeTeamInstance[teamWithBall]->getPlayerWithBallID();
@@ -625,18 +625,18 @@ void basketballState::updateDirection()  // updates basketball direction(s)
     //conversion *convert = conversion::Instance();
     conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
-    teamEntityMSharedPtr activeTeamInstance = gameS->getComponent()->getActiveTeamInstance();
-    size_t teamWithBall = gameS->getData()->getTeamWithBall();
+    teamEntityMSharedPtr activeTeamInstance = gameInstance->getComponent()->getActiveTeamInstance();
+    size_t teamWithBall = gameInstance->getData()->getTeamWithBall();
 /*TS    playerStateVecSharedPtr activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
     sizeTVec activePlayerID = activeTeamInstance[teamWithBall]->getActivePlayerID();
     
     size_t playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();
     size_t playerWithBallID = activeTeamInstance[teamWithBall]->getPlayerWithBallID();
 TS*/
-    jumpBallsSharedPtr jumpBall = gameS->getComponent()->getJumpBall();
+    jumpBallsSharedPtr jumpBall = gameInstance->getComponent()->getJumpBall();
 
 //TS    logMsg("directplayerwithballInstance == " +convert->toString(playerWithBallInstance));
-    bool tipOffComplete = gameS->getFlag()->getTipOffComplete();
+    bool tipOffComplete = gameInstance->getFlag()->getTipOffComplete();
     size_t x = 0;
     std::string func = "basketballState::updateDirection()";
 
@@ -733,7 +733,7 @@ TS*/
 
     }
 TS*/
-    gameS->getComponent()->setJumpBall(jumpBall);
+    gameInstance->getComponent()->setJumpBall(jumpBall);
     
     logMsg(func + " end");
 

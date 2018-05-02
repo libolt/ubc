@@ -59,8 +59,8 @@ public:
     gameEngineSharedPtr getGamE();  // retrieves the value of gameE
     void setGameE(gameEngineSharedPtr set);  // sets the value of gameE
     
-    gameStateSharedPtr getGameInstance();  // retrieves the value of teamInstance
-    void setGameInstance(gameStateSharedPtr set);  // sets the value of teamInstance
+    gameEntitySharedPtr getGameInstance();  // retrieves the value of teamInstance
+    void setGameInstance(gameEntitySharedPtr set);  // sets the value of teamInstance
 
     activeMenus getActiveMenu(); // retrieves the value of activeMenu
     void setActiveMenu(activeMenus set); // sets the value of activeMenu
@@ -213,7 +213,7 @@ private:
     guiFlagsSharedPtr flag;  // stores gui related flags
 
 //    UBCGameSharedPtr game;  // stores a copy of the game object
-    gameStateSharedPtr gameInstance;  // stores a copy of the gameInstance
+    gameEntitySharedPtr gameInstance;  // stores a copy of the gameInstance
 //    teamEntityMSharedPtr teamInstance;  // stores a copy of the teamInstance
     
     gameEngineSharedPtr gameE; // stores a copy of gameE

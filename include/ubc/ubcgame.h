@@ -30,8 +30,8 @@ class UBCGame
         UBCGame();  // constructor
         ~UBCGame();  // destructor
 
-        gameStateSharedPtr getGameInstance();  // retrieves the value of gameS
-        void setGameInstance(gameStateSharedPtr set);  // sets the value of gameS
+        gameEntitySharedPtr getGameInstance();  // retrieves the value of gameS
+        void setGameInstance(gameEntitySharedPtr set);  // sets the value of gameS
 
         networkStateSharedPtr getNetworkS();  // retrieves the value of networkS
         void setNetworkS(networkStateSharedPtr set);  // sets the value of networkS
@@ -94,7 +94,7 @@ class UBCGame
 
     private:
 
-        gameStateSharedPtr gameInstance;  // the gameState object
+        gameEntitySharedPtr gameInstance;  // the gameEntity object
         static networkStateSharedPtr networkS;  // the gameState object
 
         UBCComponentsSharedPtr UBCComponent;  // Components object

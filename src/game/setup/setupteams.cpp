@@ -29,7 +29,7 @@
 #include "utilities/conversion.h"
 #include "setup/setupplayerpositions.h"
 #include "state/courtstate.h"
-#include "state/gamestate.h"
+#include "entity/gameentity.h"
 #include "state/teamstate.h"
 #include "statemachine/playerstatemachine.h"
 #include "utilities/logging.h"

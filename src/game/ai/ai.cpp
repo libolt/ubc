@@ -29,7 +29,7 @@
 #include "utilities/conversion.h"
 #include "flags/gameflags.h"
 #include "flags/teamflags.h"
-#include "state/gamestate.h"
+#include "entity/gameentity.h"
 #include "state/teamstate.h"
 #include <ctime>
 
@@ -63,11 +63,11 @@ AISystem::~AISystem()
 
 }
 
-gameStateSharedPtr AISystem::getGameInstance()  // retrieves the value of gameInstance
+gameEntitySharedPtr AISystem::getGameInstance()  // retrieves the value of gameInstance
 {
     return (gameInstance);
 }
-void AISystem::setGameInstance(gameStateSharedPtr set)  // sets the value of gameInstance
+void AISystem::setGameInstance(gameEntitySharedPtr set)  // sets the value of gameInstance
 {
     gameInstance = set;
 }

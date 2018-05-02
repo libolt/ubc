@@ -29,7 +29,7 @@
 #include "engine/physicsengine.h"
 #include "entity/playerentity.h"
 #include "state/basketballstate.h"
-#include "state/gamestate.h"
+#include "entity/gameentity.h"
 #include "input/inputgamepads.h"
 #include "input/inputkeyboards.h"
 #include "state/networkstate.h"

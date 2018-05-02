@@ -80,7 +80,7 @@ class setupLineups;
 class setupPlayers;
 class setupPlayerPositions;
 class setupTeams;
-class gameState;
+//class gameState;
 class GUISystem;
 class GUIComponents;
 class guiFlags;
@@ -211,7 +211,7 @@ typedef sharedPtr<courtState> courtStateSharedPtr;
 
 typedef sharedPtr<defenseState> defenseStateSharedPtr;
 
-typedef sharedPtr<gameState> gameStateSharedPtr;
+//typedef sharedPtr<gameState> gameStateSharedPtr;
 
 typedef sharedPtr<hoopState> hoopStateSharedPtr;
 

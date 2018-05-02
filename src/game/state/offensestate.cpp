@@ -26,7 +26,7 @@
 #include "utilities/logging.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
-#include "state/gamestate.h"
+#include "entity/gameentity.h"
 #include "state/offensestate.h"
 #include "state/playerstate.h"
 #include "ai/playersteer.h"

@@ -29,6 +29,7 @@
 #include "flags/guiflags.h"
 #include "load/loadusersinputs.h"
 #include "entity/gameentity.h"
+#include "statemachine/gamestatemachine.h"
 #include "ubc/ubcinput.h"
 #include "users/users.h"
 #include "users/usersinputs.h"
@@ -253,6 +254,20 @@ bool UBCGame::setup()  // sets up a game instance
 
     getGameInstance()->getFlag()->setInitialized(true);
 
+    if (!gameInstance->getFlag()->getStateMachineInitialized())
+    {
+        gameComponentsSharedPtr tempComponent;
+        tempComponent = gameInstance->getComponent();
+        gameStateMachineSharedPtr tempStateMachine(new gameStateMachine);
+        tempComponent->setStateMachine(tempStateMachine);
+        gameInstance->setComponent(tempComponent);
+        gameInstance->getFlag()->setStateMachineInitialized(true);
+    }
+    else
+    {
+//        gameInstance->setFlagInitialized(true);
+    }
+    
 /*    for (size_t x=0;x<numUsers;++x)
     {
         usersSharedPtr tempUser(new users);
@@ -480,12 +495,13 @@ bool UBCGame::startGame(renderEngineSharedPtr render)  // starts the game
 
     logMsg(func +" begin");
 
-//    exit(0);
-//BASEREMOVAL    gameInstance->setBase(base);
-    gameInstance->setupState(render);
+    
 
+//    gameInstance->setupState(render);
+
+    gameInstance->initializeStateMachine();
     logMsg(func +" end");
-//    exit(0);
+    exit(0);
     return (true);
 }
 

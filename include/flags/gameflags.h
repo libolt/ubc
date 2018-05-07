@@ -33,6 +33,9 @@ class gameFlags
         bool getInitialized();  // retrieves the value of initialized
         void setInitialized(bool set);  // sets the value of initialized
 
+        bool getStateMachineInitialized();  // retrieves the value of stateMachineInitialized
+        void setStateMachineInitialized(bool set);  // sets the value of stateMachineInitialized
+
         bool getActiveBasketballInstancesCreated();  // retrieves the value of activeBasketballInstancesCreated
         void setActiveBasketballInstancesCreated(bool set);  // sets the value of activeBasketballInstancesCreated
 
@@ -131,7 +134,8 @@ class gameFlags
 
     private:
     
-        bool initialized;  // if true then tbe object has been initialized
+        bool initialized;  // if true then the object has been initialized
+        bool stateMachineInitialized;  // stores whether stateMachine has been initialized
         bool activeBasketballInstancesCreated;  // stores whether the active basketball instances have been created
         bool activeCourtInstancesCreated;  // stores whether the active court instances have been created
         bool activeHoopInstancesCreated;  // stores whether the active hoop instances have been created

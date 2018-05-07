@@ -23,12 +23,15 @@
 
 #include "utilities/typedefs.h"
 
+class gameStateMachine;
+class gameSMData;
+
 class gameComponents
 {
     public:
         gameComponents();  // constructor
         ~gameComponents();  // destructor
-    
+
         courtDataVec getCourtDataInstance();  // retrieves the value of courtDataInstance
         void setCourtDataInstance(courtDataVec set);  // sets the value of courtDataInstance
 

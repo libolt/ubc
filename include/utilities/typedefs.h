@@ -73,6 +73,8 @@ class gameData;
 class gameEngine;
 class gameEntity;
 class gameFlags;
+class gameStateMachine;
+class gameSMData;
 class setupBasketballs;
 class setupCourts;
 class setupHoops;
@@ -162,6 +164,8 @@ typedef sharedPtr<guiFlags> guiFlagsSharedPtr;
 typedef sharedPtr<conversion> conversionSharedPtr;
 
 typedef sharedPtr<gameComponents> gameComponentsSharedPtr;
+
+typedef sharedPtr<gameStateMachine> gameStateMachineSharedPtr;
 
 typedef sharedPtr<UBCComponents> UBCComponentsSharedPtr;
 

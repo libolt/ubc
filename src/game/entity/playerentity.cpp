@@ -160,10 +160,14 @@ bool playerEntity::setupPhysicsObject()  // sets up the physics object
 bool playerEntity::initializeStateMachine()  // initializes the stateMachine object
 {
     playerSMData *SMData = new playerSMData;
-    
+    std::string func = "playerEntity::initializeStateMachine()!";
+
 //    SMData->speed = 100;
     SMData->model = getModel();  //
     SMData->node = getNode();
+    logMsg(func +" begin");
+
+    exit(0);
     component->getStateMachine()->setSpeed(SMData);
     component->getStateMachine()->halt();
     return (true);

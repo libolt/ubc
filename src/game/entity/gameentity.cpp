@@ -110,6 +110,15 @@ void gameEntity::setFlag(gameFlagsSharedPtr set)  // sets the value of flag
     flag = set;
 }
 
+gameStateMachineSharedPtr gameEntity::getStateMachine()  // retrieves the value of stateMachineInitialized
+{
+    return (stateMachineInitialized);
+}
+void gameEntity::setStateMachine(gameStateMachineSharedPtr set)  // sets the value of stateMachineInitialized
+{
+    stateMachineInitialized = set;
+}
+
 bool gameEntity::assignHoopToTeams()  // assigns which hoop belongs to each team
 {
 //TS    getActiveTeamInstance()[0]->setHoop(1);
@@ -142,6 +151,15 @@ bool gameEntity::getFlagInitialized()  // retrieves the value of flagInitialized
 void gameEntity::setFlagInitialized(bool set)  // sets the value of flagInitialized
 {
     flagInitialized = set;
+}
+
+gameStateMachineSharedPtr gameEntity::getStateMachine()  // retrieves the value of stateMachine
+{
+    return (stateMachine);
+}
+void gameEntity::setStateMachine(gameStateMachineSharedPtr set)  // sets the value of stateMachine
+{
+    stateMachine = set;
 }
 
 bool gameEntity::createInstances()  // creates object instances
@@ -1290,6 +1308,26 @@ bool gameEntity::executeTipOff()  // executes tip off
     return (false);
 }
 
+bool gameEntity::initializeStateMachine()  // sets up the game condition
+{
+    gameSMData *SMData = new gameSMData;
+    std::string func = "gameEntity::initializeStateMachine()";
+
+//    SMData->speed = 100;
+    SMData->model = getModel();  //
+    SMData->node = getNode();
+    logMsg(func +" begin");
+
+    exit(0);
+    component->getStateMachine()->setSpeed(SMData);
+    component->getStateMachin
+    logMsg(func +" begin");
+    
+    logMsg(func +" end");
+
+    return (true);
+}
+
 // sets up the game condition
 bool gameEntity::setupState(renderEngineSharedPtr render)  // sets up the game condition
 {
@@ -1624,7 +1662,7 @@ bool gameEntity::setupState(renderEngineSharedPtr render)  // sets up the game c
     logMsg(func +" end");
 
     return true;
-}
+}*/
 
 bool gameEntity::updateState(renderEngineSharedPtr render)  // updates the game state
 {

@@ -45,6 +45,7 @@ class courtState;
 //class gameFlags;
 class gameComponents;
 class gameData;
+class gameSMData;
 class hoopState;
 class playerState;
 class teamState;
@@ -70,6 +71,9 @@ class gameEntity //: public state, public gameStateShared, public std::enable_sh
         gameFlagsSharedPtr getFlag();  // retrieves the value of flag
         void setFlag(gameFlagsSharedPtr set);  // sets the value of flag
     
+        gameStateMachineSharedPtr getStateMachine();  // retrieves the value of stateMachine
+        void setStateMachine(gameStateMachineSharedPtr set);  // sets the value of stateMachine
+
         bool getComponentInitialized();  // retrieves the value of componentInitialized
         void setComponentInitialized(bool set);  // sets the value of componentInitialized
 
@@ -79,8 +83,15 @@ class gameEntity //: public state, public gameStateShared, public std::enable_sh
         bool getFlagInitialized();  // retrieves the value of flagInitialized
         void setFlagInitialized(bool set);  // sets the value of flagInitialized
     
+        bool getStateMachineInitialized();  // retrieves the value of stateMachineInitialized
+        void setStateMachineInitialized(bool set);  // sets the value of stateMachineInitialized
+
         bool checkifJumpBallCreated();  // checks if jumpBall object has been created
      
+        bool initializeStateMachine();  // initializes the stateMachine object
+    
+        bool updateStateMachine(playerActions actionType, gameSMData *SMData);  // updates state machine with external input
+
         void updateDirectionsAndMovements();  // updates the movement and directions of game world objecxts
         bool assignHoopToTeams();  // assigns which hoop belongs to each team
         bool setupEnvironment();  // sets up the 3D environment for the game
@@ -103,7 +114,7 @@ class gameEntity //: public state, public gameStateShared, public std::enable_sh
         bool loadModels(renderEngineSharedPtr render);  // loads all game object models excluding the players
         bool createNodes(renderEngineSharedPtr render);  // creates scene nodes for game objects
     
-        bool setupState(renderEngineSharedPtr render);  // sets up the game condition
+//        bool setupState(renderEngineSharedPtr render);  // sets up the game condition
         bool updateState(renderEngineSharedPtr render);  // updates the state of the game
         bool updateActiveTeamInstances(renderEngineSharedPtr render);  // updates all active team instancesa
         bool updatePlayerCollisionObjects();  // updates the player collision objects for a team instance
@@ -111,14 +122,16 @@ class gameEntity //: public state, public gameStateShared, public std::enable_sh
 
     private:
 
-        gameFlagsSharedPtr flag;  // boolean flags object
         gameComponentsSharedPtr component;  // game component object
         gameDataSharedPtr data; // game data object
+        gameFlagsSharedPtr flag;  // boolean flags object
+        gameStateMachineSharedPtr stateMachine;  // instance of gameStateMachine object
 
-        bool flagInitialized;  // stores whether the gameFlags object has been initialized
         bool componentInitialized;  // stores whether the gameComoponents object has been initialized
         bool dataInitialized;  // stores whether the gameData object has been initialized
-    
+        bool flagInitialized;  // stores whether the gameFlags object has been initialized
+        bool stateMachineInitialized;  // stores whether the gameStateMachine object has been initialized
+
 };
 
 #endif // _GAMEENTITY_H_

@@ -23,6 +23,7 @@
 gameFlags::gameFlags()  // constructor
 {
     initialized = false;
+    stateMachineInitialized = false;
     activeBasketballInstancesCreated = false;
     activeCourtInstancesCreated = false;
     activeHoopInstancesCreated = false;
@@ -69,6 +70,15 @@ bool gameFlags::getInitialized()  // retrieves the value of initialized
 void gameFlags::setInitialized(bool set)  // sets the value of initialized
 {
     initialized = set;
+}
+
+bool gameFlags::getStateMachineInitialized()  // retrieves the value of initialized
+{
+    return (stateMachineInitialized);
+}
+void gameFlags::setStateMachineInitialized(bool set)  // sets the value of initialized
+{
+    stateMachineInitialized = set;
 }
 
 bool gameFlags::getActiveBasketballInstancesCreated()  // retrieves the value of activeBasketballInstancesCreated

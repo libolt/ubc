@@ -31,7 +31,7 @@ class gameComponents;
 class gameSMData : public eventData
 {
     public:
-    
+        gameComponentsSharedPtr component;
 };
 
 class gameStateMachine : public stateMachine
@@ -40,7 +40,7 @@ class gameStateMachine : public stateMachine
         gameStateMachine();
 
         // External events taken by this state machine
-        void pCreateInstances(gameSMData *data);  // sets the node to that of the entity parent object
+        void pCreateInstances(sharedPtr<gameSMData> data);  // sets the node to that of the entity parent object
         void pSetStartPositions(gameSMData *data);  // sets the model to that of the entity parent object
         void pSetupTipOff(gameSMData *data);
         void pExecuteTipOff(gameSMData *data);

@@ -34,9 +34,9 @@ gameStateMachine::gameStateMachine() :
 {
 }
 
-void gameStateMachine::pCreateInstances(gameSMData *data) // sets the node to that of the entity parent object
+void gameStateMachine::pCreateInstances(sharedPtr<gameSMData> data) // sets the node to that of the entity parent object
 {
-    std:: string func = "gameStateMachine::setPNode";
+    std:: string func = "gameStateMachine::pCreateInstances";
 
     logMsg(func +" begin");
 
@@ -362,7 +362,7 @@ STATE_DEFINE(gameStateMachine, changeScore, gameSMData)
 
     logMsg(func +" begin");
 
-    logMsg("gameStateMachine::ST_ChangePosition : court position is " +convert->toString(data->position));
+//    logMsg("gameStateMachine::ST_ChangePosition : court position is " +convert->toString(data->position));
 //    currentPosition = data->position;
 //    currentNode->setPosition(currentPosition);
 //    logMsg(func +" Node Position == " +convert->toString(currentNode->getPosition()));
@@ -379,7 +379,7 @@ STATE_DEFINE(gameStateMachine, changeQuarter, gameSMData)
 
     logMsg(func +" begin");
 
-    logMsg("gameStateMachine::ST_ChangeSpeed : Speed is " +convert->toString(data->speed));
+//    logMsg("gameStateMachine::ST_ChangeSpeed : Speed is " +convert->toString(data->speed));
 //    currentSpeed = data->speed;
 
     logMsg(func +" end");
@@ -397,7 +397,7 @@ STATE_DEFINE(gameStateMachine, setupFreethrow, gameSMData)
     logMsg(func +" begin");
 
 //    exit(0);
-    logMsg("gameStateMachine::ST_ChangeDirection : Direction is " +convert->toString(data->direction));
+//    logMsg("gameStateMachine::ST_ChangeDirection : Direction is " +convert->toString(data->direction));
 
 /*    switch (currentDirection)
     {
@@ -507,7 +507,7 @@ STATE_DEFINE(gameStateMachine, executeFreethrow, gameSMData)
     logMsg("flee");
     conversionSharedPtr convert = conversion::Instance();
     
-    logMsg("gameStateMachine::ST_Jump : Speed is " +convert->toString(data->speed));
+//    logMsg("gameStateMachine::ST_Jump : Speed is " +convert->toString(data->speed));
 ///    internalEvent(ST_IDLE);
 
     logMsg(func +" end");
@@ -524,7 +524,7 @@ STATE_DEFINE(gameStateMachine, changePosession, gameSMData)
 
     logMsg(func +" begin");
 
-    logMsg("gameStateMachine::ST_Shoot : Speed is " +convert->toString(data->speed));
+//    logMsg("gameStateMachine::ST_Shoot : Speed is " +convert->toString(data->speed));
 //    currentSpeed = data->speed;
 
     logMsg(func +" end");

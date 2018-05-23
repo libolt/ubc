@@ -259,7 +259,7 @@ bool UBCGame::setup()  // sets up a game instance
         gameComponentsSharedPtr tempComponent;
         tempComponent = gameInstance->getComponent();
         gameStateMachineSharedPtr tempStateMachine(new gameStateMachine);
-        tempComponent->setStateMachine(tempStateMachine);
+//        tempComponent->setStateMachine(tempStateMachine);
         gameInstance->setComponent(tempComponent);
         gameInstance->getFlag()->setStateMachineInitialized(true);
     }

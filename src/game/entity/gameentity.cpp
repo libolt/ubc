@@ -43,6 +43,7 @@
 #include "setup/setuphoops.h"
 #include "setup/setupplayers.h"
 #include "setup/setupteams.h"
+#include "statemachine/gamestatemachine.h"
 #include "state/basketballstate.h"
 #include "state/courtstate.h"
 #include "entity/gameentity.h"
@@ -110,13 +111,13 @@ void gameEntity::setFlag(gameFlagsSharedPtr set)  // sets the value of flag
     flag = set;
 }
 
-gameStateMachineSharedPtr gameEntity::getStateMachine()  // retrieves the value of stateMachineInitialized
+gameStateMachineSharedPtr gameEntity::getStateMachine()  // retrieves the value of stateMachine
 {
-    return (stateMachineInitialized);
+    return (stateMachine);
 }
-void gameEntity::setStateMachine(gameStateMachineSharedPtr set)  // sets the value of stateMachineInitialized
+void gameEntity::setStateMachine(gameStateMachineSharedPtr set)  // sets the value of stateMachine
 {
-    stateMachineInitialized = set;
+    stateMachine = set;
 }
 
 bool gameEntity::assignHoopToTeams()  // assigns which hoop belongs to each team
@@ -153,13 +154,13 @@ void gameEntity::setFlagInitialized(bool set)  // sets the value of flagInitiali
     flagInitialized = set;
 }
 
-gameStateMachineSharedPtr gameEntity::getStateMachine()  // retrieves the value of stateMachine
+bool gameEntity::getStateMachineInitialized()  // retrieves the value of stateMachineInitialized
 {
-    return (stateMachine);
+    return (stateMachineInitialized);
 }
-void gameEntity::setStateMachine(gameStateMachineSharedPtr set)  // sets the value of stateMachine
+void gameEntity::setStateMachineInitialized(bool set)  // sets the value of stateMachineInitialized
 {
-    stateMachine = set;
+    stateMachineInitialized = set;
 }
 
 bool gameEntity::createInstances()  // creates object instances
@@ -1310,26 +1311,26 @@ bool gameEntity::executeTipOff()  // executes tip off
 
 bool gameEntity::initializeStateMachine()  // sets up the game condition
 {
-    gameSMData *SMData = new gameSMData;
+    gameSMData *tempSMData = new gameSMData;
+    sharedPtr<gameSMData> SMData(new gameSMData); 
     std::string func = "gameEntity::initializeStateMachine()";
 
-//    SMData->speed = 100;
-    SMData->model = getModel();  //
-    SMData->node = getNode();
+    SMData->component = component;
+//    SMData->model = getModel();  //
+//    SMData->node = getNode();
     logMsg(func +" begin");
 
+//    component->getStateMachine()->setSpeed(SMData);
+//    component->getStateMachin
+    stateMachine->pCreateInstances(SMData);
     exit(0);
-    component->getStateMachine()->setSpeed(SMData);
-    component->getStateMachin
-    logMsg(func +" begin");
-    
     logMsg(func +" end");
 
     return (true);
 }
 
 // sets up the game condition
-bool gameEntity::setupState(renderEngineSharedPtr render)  // sets up the game condition
+/*bool gameEntity::setupState(renderEngineSharedPtr render)  // sets up the game condition
 {
 //    exit(0);
 

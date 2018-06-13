@@ -1312,17 +1312,19 @@ bool gameEntity::executeTipOff()  // executes tip off
 bool gameEntity::initializeStateMachine()  // sets up the game condition
 {
     gameSMData *tempSMData = new gameSMData;
-    sharedPtr<gameSMData> SMData(new gameSMData); 
+    gameSMData *SMData(new gameSMData); 
     std::string func = "gameEntity::initializeStateMachine()";
 
-    SMData->component = component;
+    gameComponentsSharedPtr tempComponent(new gameComponents);
+    component = tempComponent;
+//    SMData->component = component;
 //    SMData->model = getModel();  //
 //    SMData->node = getNode();
     logMsg(func +" begin");
 
 //    component->getStateMachine()->setSpeed(SMData);
 //    component->getStateMachin
-    stateMachine->pCreateInstances(SMData);
+    stateMachine->pCreateInstances(/*SMData*/);
     exit(0);
     logMsg(func +" end");
 

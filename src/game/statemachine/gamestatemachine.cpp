@@ -34,13 +34,25 @@ gameStateMachine::gameStateMachine() :
 {
 }
 
-void gameStateMachine::pCreateInstances(sharedPtr<gameSMData> data) // sets the node to that of the entity parent object
+void gameStateMachine::pCreateInstances(/*gameSMData *data*/) // sets the node to that of the entity parent object
 {
     std:: string func = "gameStateMachine::pCreateInstances";
 
     logMsg(func +" begin");
 
     BEGIN_TRANSITION_MAP                                    // - Current State -
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)             // ST_SET_NODE
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)             // ST_SET_MODEL
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)             // ST_IDLE
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)             // ST_STOP
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_START
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)             // ST_CHANGE_POSITION
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_CHANGE_SPEED
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_JUMP
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_CHANGE_DIRECTION
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_SHOOT
+
+/*        
         TRANSITION_MAP_ENTRY (ST_CREATE_INSTANCES)             // ST_SET_NODE
         TRANSITION_MAP_ENTRY (ST_CREATE_INSTANCES)             // ST_SET_MODEL
         TRANSITION_MAP_ENTRY (ST_CREATE_INSTANCES)             // ST_IDLE
@@ -52,6 +64,7 @@ void gameStateMachine::pCreateInstances(sharedPtr<gameSMData> data) // sets the 
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_DIRECTION
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SHOOT
 //        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_PASS
+        */
     END_TRANSITION_MAP(NULL)
 
     logMsg(func +" end");

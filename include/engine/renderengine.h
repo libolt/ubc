@@ -51,7 +51,7 @@
 #include "SDL.h"
 #include "SDL_syswm.h"
 #include "SDL_test_common.h"
-#include <boost/shared_ptr.hpp>
+//#include <boost/shared_ptr.hpp>
 
 #include "engine.h"
 
@@ -175,7 +175,7 @@ class renderEngine : public engine
     static AAssetManager* mAssetMgr;  // stores the android asset manager
 #endif
 
-    Ogre::ShaderGeneratorTechniqueResolverListener* mMatListener;  // stores the material listener
+//    Ogre::ShaderGeneratorTechniqueResolverListener* mMatListener;  // stores the material listener
     Ogre::RenderSystem *selectedRenderSystem;
 
     // InputReader* mInputDevice;

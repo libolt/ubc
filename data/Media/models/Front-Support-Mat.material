@@ -32,7 +32,7 @@ material Front-Support-Mat
 
             texture_unit 
             {
-                texture front-support-mapped.png
+                texture front-support-mapped.dds
                 tex_address_mode wrap
                 scale 1.0 1.0
                 colour_op modulate

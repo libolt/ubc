@@ -32,7 +32,7 @@ material Rear-Support-Base-Mat
 
             texture_unit 
             {
-                texture rear-support-base-mapped.png
+                texture rear-support-base-mapped.dds
                 tex_address_mode wrap
                 scale 1.0 1.0
                 colour_op modulate

@@ -33,7 +33,7 @@ threads::threads()
 // Consumes items in work queue
 void threads::consumerThread()
 {
-    //conversion *convert = conversion::Instance();
+/*    //conversion *convert = conversion::Instance();
     conversionSharedPtr convert = conversion::Instance();
     
     while (gRunning)
@@ -51,8 +51,8 @@ void threads::consumerThread()
             }
 
             // Hold the mutex for a little while
-            boost::posix_time::milliseconds delayTime(50);
-            boost::this_thread::sleep(delayTime);
+            std::posix_time::milliseconds delayTime(50);
+            std::this_thread::sleep(delayTime);
 
             gWorkQueueMutex.unlock();
         }
@@ -63,15 +63,15 @@ void threads::consumerThread()
         }
 
         // Slow things down a little
-        boost::posix_time::milliseconds delayTime(rand() % kMaxSleepTime_ms);
-        boost::this_thread::sleep(delayTime);
-    }
+        std::posix_time::milliseconds delayTime(rand() % kMaxSleepTime_ms);
+        std::this_thread::sleep(delayTime);
+    }*/
 }
 
 // Produces work items for queue
 void threads::producerThread()
 {
-    //conversion *convert = conversion::Instance();
+/*    //conversion *convert = conversion::Instance();
     conversionSharedPtr convert = conversion::Instance();
     
     long val = 0;
@@ -90,8 +90,8 @@ void threads::producerThread()
             //}
 
             // Hold the mutex for a little while
-            boost::posix_time::milliseconds delayTime(50);
-            boost::this_thread::sleep(delayTime);
+            std::posix_time::milliseconds delayTime(50);
+            std::this_thread::sleep(delayTime);
 
             gWorkQueueMutex.unlock();
         }
@@ -102,9 +102,9 @@ void threads::producerThread()
         }
 
         // Slow things down a little
-        boost::posix_time::milliseconds delayTime(rand() % kMaxSleepTime_ms);
-        boost::this_thread::sleep(delayTime);
-    }
+        std::posix_time::milliseconds delayTime(rand() % kMaxSleepTime_ms);
+        std::this_thread::sleep(delayTime);
+    }*/
 }
 
 bool threads::getGRunning() // retrieves the value of gRunning
@@ -127,24 +127,24 @@ threads* threads::Instance()
     return pInstance; // address of sole instance
 }
 
-boost::mutex threads::Writer::_writerMutex;
+std::mutex threads::Writer::_writerMutex;
 //-------------------------------------------------------------------------------------
 threads::threads()
 {
     value = 0;
     count = 0;
     globalVariable = 0;
-    globalVariableProtector = new boost::mutex;
+    globalVariableProtector = new std::mutex;
 }
  
 void threads::workerFunc()
 {
-    boost::posix_time::seconds workTime(3);
+    std::posix_time::seconds workTime(3);
 
     logMsg("Worker: running");
 
     // Pretend to do something useful...
-    boost::this_thread::sleep(workTime);
+    std::this_thread::sleep(workTime);
 
     logMsg("Worker: finished");
 //	exit(0);
@@ -152,12 +152,12 @@ void threads::workerFunc()
 
 void threads::workerFunc2()
 {
-    boost::posix_time::seconds workTime(3);
+    std::posix_time::seconds workTime(3);
 
     logMsg("Worker2: running");
 
     // Pretend to do something useful...
-    boost::this_thread::sleep(workTime);
+    std::this_thread::sleep(workTime);
 
     logMsg("Worker2: finished");
 //	exit(0);
@@ -187,7 +187,7 @@ void threads::producer()
         }
 
         // Simulate exaggerated 2ms delay
-        boost::this_thread::sleep(boost::posix_time::milliseconds(200));
+        std::this_thread::sleep(std::posix_time::milliseconds(200));
     }
 }
 
@@ -207,7 +207,7 @@ void threads::consumer()
             while (count == currentCount)
             {
                 // Wait for producer to signal that there is a new value.
-                // While we are waiting, Boost releases the mutex so that
+                // While we are waiting, std releases the mutex so that
                 // other threads may acquire it.
                 condvar.wait(lock);
             }
@@ -226,7 +226,7 @@ void threads::consumer()
         std::cout << "value = " << currentValue << "\n";
 
         // Simulate exaggerated 5ms delay
-        boost::this_thread::sleep(boost::posix_time::milliseconds(500));
+        std::this_thread::sleep(std::posix_time::milliseconds(500));
     }
 }
 */

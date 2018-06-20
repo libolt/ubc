@@ -25,12 +25,13 @@
 #include "SDL.h"
 #include "SDL_syswm.h"
 #include "Ogre.h"
-#include <boost/shared_ptr.hpp>
+/*#include <boost/shared_ptr.hpp>
 #include <boost/thread/thread.hpp>
 #include <boost/date_time.hpp>
 #include <boost/thread/mutex.hpp>
 #include <boost/thread/condition_variable.hpp>
 #include <boost/thread/locks.hpp>
+*/
 
 #include "utilities/enums.h"
 
@@ -154,7 +155,7 @@ private:
     inputKeyWorkQueues internalInputKeyWorkQueue;
     inputGamePadWorkQueues inputGamePadWorkQueue;
     inputTypeQueues inputTypeQueue;  // stores queue of input types to process
-    boost::mutex inputWorkQueueMutex;
+    std::mutex inputWorkQueueMutex;
 };
 
 

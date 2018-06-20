@@ -32,7 +32,7 @@ material Support-Arm-Mat
 
             texture_unit 
             {
-                texture support-arm-mapped.png
+                texture support-arm-mapped.dds
                 tex_address_mode wrap
                 scale 1.0 1.0
                 colour_op modulate

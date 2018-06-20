@@ -21,7 +21,7 @@
 #ifndef _GUI_H_
 #define _GUI_H_
 
-#include "boost/shared_ptr.hpp"
+//#include "boost/shared_ptr.hpp"
 
 #include "flags/guiflags.h"
 #include "gui/guidefines.h"

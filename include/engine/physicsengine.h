@@ -30,7 +30,7 @@
 #include "BtOgreExtras.h"
 #include "BulletDynamics/Dynamics/btRigidBody.h"
 #include "BulletDynamics/Dynamics/btDynamicsWorld.h"
-#include <boost/shared_ptr.hpp>
+//#include <boost/shared_ptr.hpp>
 
 #include "utilities/enums.h"
 //#include "engine/renderengine.h"

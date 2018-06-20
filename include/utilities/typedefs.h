@@ -28,7 +28,7 @@
 
 #include <vector>
 #include <unordered_map>
-#include <boost/shared_ptr.hpp>
+//#include <boost/shared_ptr.hpp>
 
 #include "BtOgrePG.h"
 #include "BtOgreGP.h"

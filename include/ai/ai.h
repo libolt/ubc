@@ -23,7 +23,7 @@
 
 #include "ai/steering.h"
 #include "OpenSteer/Clock.h"
-#include <boost/shared_ptr.hpp>
+//#include <boost/shared_ptr.hpp>
 
 #include "utilities/typedefs.h"
 

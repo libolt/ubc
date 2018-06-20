@@ -40,7 +40,7 @@
 #include "SDL.h"
 #include "SDL_thread.h"
 #include "SDL_timer.h"
-#include <boost/shared_ptr.hpp>
+//#include <boost/shared_ptr.hpp>
 
 #include "utilities/logging.h"
 

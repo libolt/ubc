@@ -26,7 +26,7 @@
 
 #include <vector>
 #include <string>
-#include <boost/shared_ptr.hpp>
+//#include <boost/shared_ptr.hpp>
 
 // physics
 #include "BtOgrePG.h"

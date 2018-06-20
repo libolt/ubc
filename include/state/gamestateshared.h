@@ -30,7 +30,7 @@
 #include <cstddef>
 #include <unordered_map>
 #include "Ogre.h"
-#include "boost/shared_ptr.hpp"
+//#include "boost/shared_ptr.hpp"
 
 class playerEntity;
 class basketballState;

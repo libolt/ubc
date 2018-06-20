@@ -20,7 +20,7 @@ material DarkGreen/SOLID
 		}
 	}
 }
-material court-blue-green.002/SOLID/TEX/court-wood-blue-green.png
+material court-blue-green.002/SOLID/TEX/court-wood-blue-green.dds
 {
 	technique
 	{
@@ -30,7 +30,7 @@ material court-blue-green.002/SOLID/TEX/court-wood-blue-green.png
 			specular 0.500000 0.500000 0.500000 12.500000
 			texture_unit
 			{
-				texture court-wood-blue-green.png
+				texture court-wood-blue-green.dds
 			}
 		}
 	}

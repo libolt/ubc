@@ -23,12 +23,12 @@
 #define _THREADS_H_
  
 #include <vector>
-#include <boost/thread/thread.hpp>
+/*#include <boost/thread/thread.hpp>
 #include <boost/date_time.hpp>
 #include <boost/thread/mutex.hpp>
 #include <boost/thread/condition_variable.hpp>
 #include <boost/thread/locks.hpp>
-
+*/
 #include "utilities/logging.h"
  
 //const int globalVariable;
@@ -56,7 +56,7 @@ class threads
     unsigned kMaxSleepTime_ms;
     // Work queue, a shared resource protected by a mutex
     workqueue_t                 gWorkQueue;
-    boost::mutex                gWorkQueueMutex;
+    std::mutex                gWorkQueueMutex;
     // Flag to tell threads to quit
     bool gRunning;
 

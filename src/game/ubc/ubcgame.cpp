@@ -362,8 +362,8 @@ bool UBCGame::loop(gameEngineSharedPtr gameE, UBCInputSharedPtr input, GUISystem
     unsigned long CITmic = 0;
     unsigned long CITmil = 0;
     std::string func = "UBCGame::loop()";
-    boost::chrono::microseconds changeInTimeMicro;
-    boost::chrono::milliseconds changeInTimeMill;
+    std::chrono::microseconds changeInTimeMicro;
+    std::chrono::milliseconds changeInTimeMill;
 /*    playerStateMachine playerSM;
     playerSMData *playerSMD = new playerSMData;
     playerSMData *playerSMD2 = new playerSMData;
@@ -473,7 +473,7 @@ bool UBCGame::loop(gameEngineSharedPtr gameE, UBCInputSharedPtr input, GUISystem
                 
                 gameInstance->updateState(gameE->getRenderE());  // updates the state of the game instance
             }
-            gameE->getTimer().setPreviousTime(boost::chrono::system_clock::now());
+            gameE->getTimer().setPreviousTime(std::chrono::system_clock::now());
         }
 //        exit(0);
         

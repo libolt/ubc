@@ -22,7 +22,7 @@
 #define _GAMEENTITY_H_
 
 #include <vector>
-#include <boost/shared_ptr.hpp>
+//#include <boost/shared_ptr.hpp>
 #include "BulletDynamics/Dynamics/btRigidBody.h"
 
 #include "flags/gameflags.h"

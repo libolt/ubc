@@ -19,6 +19,8 @@ FIND_PATH(ENet_INCLUDE_DIRS enet/enet.h
     $ENV{ENET_HOME}/include
     /usr/local
     /usr
+    /mingw64
+    /mingw32
     PATH_SUFFIXES include
     )
 
@@ -28,6 +30,8 @@ FIND_LIBRARY(ENet_LIBRARY_DBG
     $ENV{ENET_HOME}/lib
     /usr/local
     /usr
+    /mingw64
+    /mingw32
     PATH_SUFFIXES lib
     )
 

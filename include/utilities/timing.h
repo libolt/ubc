@@ -21,37 +21,37 @@
 #ifndef _TIMING_H
 #define _TIMING_H
 
-#include <boost/chrono.hpp>
+//#include <boost/chrono.hpp>
 
 class timing
 {
     public:
         timing();
         
-        boost::chrono::nanoseconds getChangeInTimeNano();  // retrieves the value of changeInTimeNano
-        void setChangeInTimeNano(boost::chrono::nanoseconds time);  // sets the value of changeInTimeNano
+        std::chrono::nanoseconds getChangeInTimeNano();  // retrieves the value of changeInTimeNano
+        void setChangeInTimeNano(std::chrono::nanoseconds time);  // sets the value of changeInTimeNano
 
-        boost::chrono::milliseconds getChangeInTimeMill();  // retrieves the value of changeInTimeMill
-        void setChangeInTimeMill(boost::chrono::milliseconds time);  // sets the value of changeInTimeMill
+        std::chrono::milliseconds getChangeInTimeMill();  // retrieves the value of changeInTimeMill
+        void setChangeInTimeMill(std::chrono::milliseconds time);  // sets the value of changeInTimeMill
 
-        boost::chrono::system_clock::time_point getPreviousTime();  // retrieves the value of previousTime
-        void setPreviousTime(boost::chrono::system_clock::time_point time);  // sets the value of previousTime
+        std::chrono::system_clock::time_point getPreviousTime();  // retrieves the value of previousTime
+        void setPreviousTime(std::chrono::system_clock::time_point time);  // sets the value of previousTime
 
-        boost::chrono::microseconds calcChangeInTimeMicro();  // calculates change in time in microseconds
-        boost::chrono::milliseconds calcChangeInTimeMill();  // calculates change in time in milliseconds
+        std::chrono::microseconds calcChangeInTimeMicro();  // calculates change in time in microseconds
+        std::chrono::milliseconds calcChangeInTimeMill();  // calculates change in time in milliseconds
         
-        boost::chrono::milliseconds getLoopTimeMill();  // returns the current loop time
+        std::chrono::milliseconds getLoopTimeMill();  // returns the current loop time
     
     private:
     
-    boost::chrono::system_clock::time_point startTime;  // stores the start time
-    boost::chrono::system_clock::time_point currentTime;  // stores the current time
-    boost::chrono::system_clock::time_point previousTime;  // stores the previous time
-    boost::chrono::nanoseconds changeInTimeNano;  // stores the change in time in nanoseconds
-    boost::chrono::microseconds changeInTimeMicro;  // stores the change in time in microseconds
-    static boost::chrono::milliseconds changeInTimeMill;  // stores the change in time in milliseconds
-    boost::chrono::milliseconds loopTimeMill;  // stores the loop time in milliseconds
-    boost::chrono::milliseconds previousTimeMill;  // stores the previous time in milliseconds
+    std::chrono::system_clock::time_point startTime;  // stores the start time
+    std::chrono::system_clock::time_point currentTime;  // stores the current time
+    std::chrono::system_clock::time_point previousTime;  // stores the previous time
+    std::chrono::nanoseconds changeInTimeNano;  // stores the change in time in nanoseconds
+    std::chrono::microseconds changeInTimeMicro;  // stores the change in time in microseconds
+    static std::chrono::milliseconds changeInTimeMill;  // stores the change in time in milliseconds
+    std::chrono::milliseconds loopTimeMill;  // stores the loop time in milliseconds
+    std::chrono::milliseconds previousTimeMill;  // stores the previous time in milliseconds
 };
 
 #endif

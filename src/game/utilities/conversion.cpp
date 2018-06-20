@@ -20,7 +20,7 @@
 
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
-
+#include "boost/lexical_cast.hpp"
 conversionSharedPtr conversion::pInstance;
 
 conversionSharedPtr conversion::Instance()

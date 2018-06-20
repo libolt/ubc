@@ -22,7 +22,7 @@
 #define _LOGGING_H_
  
 #include <string>
-#include "boost/shared_ptr.hpp"
+//#include "boost/shared_ptr.hpp"
 
 #include "utilities/typedefs.h"
 

@@ -18,69 +18,70 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
- #include "utilities/timing.h"
- 
+#include <chrono>
+#include "utilities/timing.h"
+
  // static declarations
-boost::chrono::milliseconds timing::changeInTimeMill;  // stores the change in time in milliseconds
+std::chrono::milliseconds timing::changeInTimeMill;  // stores the change in time in milliseconds
 
 timing::timing()
 {
-    startTime = boost::chrono::system_clock::now();
+    startTime = std::chrono::system_clock::now();
     previousTime = startTime;
 }
 
-boost::chrono::nanoseconds timing::getChangeInTimeNano()  // retrieves the value of changeInTimeNano
+std::chrono::nanoseconds timing::getChangeInTimeNano()  // retrieves the value of changeInTimeNano
 {
     return (changeInTimeNano);
 }
-void timing::setChangeInTimeNano(boost::chrono::nanoseconds time)  // sets the value of changeInTimeNano
+void timing::setChangeInTimeNano(std::chrono::nanoseconds time)  // sets the value of changeInTimeNano
 {
     changeInTimeNano = time;
 }
 
-boost::chrono::milliseconds timing::getChangeInTimeMill()  // retrieves the value of changeInTimeMill
+std::chrono::milliseconds timing::getChangeInTimeMill()  // retrieves the value of changeInTimeMill
 {
     return (changeInTimeMill);
 }
-void timing::setChangeInTimeMill(boost::chrono::milliseconds time) // sets the value of changeInTimeMill
+void timing::setChangeInTimeMill(std::chrono::milliseconds time) // sets the value of changeInTimeMill
 {
     changeInTimeNano = time;
 }
 
-boost::chrono::system_clock::time_point timing::getPreviousTime()  // retrieves the value of previousTime
+std::chrono::system_clock::time_point timing::getPreviousTime()  // retrieves the value of previousTime
 {
     return (previousTime);
 }
-void timing::setPreviousTime(boost::chrono::system_clock::time_point time)  // sets the value of previousTime
+void timing::setPreviousTime(std::chrono::system_clock::time_point time)  // sets the value of previousTime
 {
     previousTime = time;
 }
 
-boost::chrono::microseconds timing::calcChangeInTimeMicro()  // calculates change in time in microseconds
+std::chrono::microseconds timing::calcChangeInTimeMicro()  // calculates change in time in microseconds
 {
-    currentTime = boost::chrono::system_clock::now();
+    currentTime = std::chrono::system_clock::now();
     changeInTimeNano = currentTime - previousTime;
-    changeInTimeMicro = boost::chrono::duration_cast<boost::chrono::microseconds>(changeInTimeNano);
+    changeInTimeMicro = std::chrono::duration_cast<std::chrono::microseconds>(changeInTimeNano);
     //previousTime = currentTime;
     
     return (changeInTimeMicro);
 }
 
-boost::chrono::milliseconds timing::calcChangeInTimeMill()  // calculates change in time in milliseconds
+std::chrono::milliseconds timing::calcChangeInTimeMill()  // calculates change in time in milliseconds
 {
-    currentTime = boost::chrono::system_clock::now();
+    currentTime = std::chrono::system_clock::now();
     changeInTimeNano = currentTime - previousTime;
-    changeInTimeMill = boost::chrono::duration_cast<boost::chrono::milliseconds>(changeInTimeNano);
+    changeInTimeMill = std::chrono::duration_cast<std::chrono::milliseconds>(changeInTimeNano);
     //previousTime = currentTime;
     
     return (changeInTimeMill);
 }
 
-boost::chrono::milliseconds timing::getLoopTimeMill()  // returns the current loop time
+std::chrono::milliseconds timing::getLoopTimeMill()  // returns the current loop time
 {
-    currentTime = boost::chrono::system_clock::now();
-    boost::chrono::nanoseconds loopTimeNano = currentTime - startTime;
-    boost::chrono::milliseconds loopTimeMilli = boost::chrono::duration_cast<boost::chrono::milliseconds>(loopTimeNano);
+    currentTime = std::chrono::system_clock::now();
+    std::chrono::nanoseconds loopTimeNano = currentTime - startTime;
+    std::chrono::milliseconds loopTimeMilli = std::chrono::duration_cast<std::chrono::milliseconds>(loopTimeNano);
     
     return (loopTimeMilli);
 }

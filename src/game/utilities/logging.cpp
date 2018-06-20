@@ -19,7 +19,7 @@
  ***************************************************************************/
 #include "utilities/easylogging++.h"
 
-#include <boost/shared_ptr.hpp>
+//#include <boost/shared_ptr.hpp>
 
 #include "utilities/logging.h"
 #include "utilities/conversion.h"

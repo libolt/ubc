@@ -31,9 +31,9 @@
 #include "engine/sound/soundengine.h"
 
 #define FREEIMAGE_LIB
-#include "FreeImage.h"
+//#include "FreeImage.h"
 #include "OgreDDSCodec.h"
-#include "OgreFreeImageCodec.h"
+//#include "OgreFreeImageCodec.h"
 
 #include "OgreRenderWindow.h"
 
@@ -427,13 +427,18 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 
     if (buildType == "Debug")
     {
-        logMsg(func +" Loading GL Debug RenderSystem!");
+        logMsg(func +"Loading STBI Image Codec Plguin!");
+        RERoot->loadPlugin(pluginDir +"/Codec_STBI_d.dll");
 
+        logMsg(func +" Loading GL Debug RenderSystem!");
         RERoot->loadPlugin(pluginDir + "/RenderSystem_GL_d.dll");
 //        RERoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager_d");
     }
     else
     {
+        logMsg(func +"Loading STBI Image Codec Plugin!");
+        RERoot->loadPlugin(pluginDir +"/Codec_STBI.dll");
+        
         logMsg(func +" Loading GL Release RenderSystem!");
         RERoot->loadPlugin(pluginDir + "/RenderSystem_GL");
 //        RERoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager");
@@ -898,7 +903,7 @@ bool renderEngine::renderFrame()  // renders a frame to the screen
     
     if (mWindow != NULL && mWindow->isActive())
     {
-        logMsg(func +" LastFPS == " +convert->toString(mWindow->getLastFPS()));
+//        logMsg(func +" LastFPS == " +convert->toString(mWindow->getLastFPS()));
 //      Ogre::LogManager::getSingletonPtr()->logMessage("Rendering frame");
         mWindow->windowMovedOrResized();
 //        exit(0);

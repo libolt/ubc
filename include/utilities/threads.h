@@ -10,7 +10,7 @@
  *   This program is distributed in the hope that it will be useful,       *
  *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
  *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *9   GNU General Public License for more details.                         *
+ *   GNU General Public License for more details.                         *
  *                                                                         *
  *   You should have received a copy of the GNU General Public License     *
  *   along with this program; if not, write to the                         *
@@ -56,7 +56,7 @@ class threads
     unsigned kMaxSleepTime_ms;
     // Work queue, a shared resource protected by a mutex
     workqueue_t                 gWorkQueue;
-    std::mutex                gWorkQueueMutex;
+//    std::mutex                gWorkQueueMutex;
     // Flag to tell threads to quit
     bool gRunning;
 

@@ -22,6 +22,7 @@
 #define _TIMING_H
 
 //#include <boost/chrono.hpp>
+#include <chrono>
 
 class timing
 {

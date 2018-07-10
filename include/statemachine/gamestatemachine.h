@@ -26,78 +26,86 @@
 #include "utilities/enums.h"
 #include "utilities/typedefs.h"
 
-class gameComponents;
-
 class gameSMData : public eventData
 {
-    public:
-//        gameComponentsSharedPtr component;
+public:
+    size_t speed;
+    directions direction;
+    playerActions action;
+    Ogre::Vector3 position;
+    OgreEntitySharedPtr model;  // stores 3d model
+    OgreSceneNodeSharedPtr node;  // stores node 3d model is attached to
 };
 
 class gameStateMachine : public stateMachine
 {
-    public:
-        gameStateMachine();
+public:
+    gameStateMachine();
 
-        // External events taken by this state machine
-        void pCreateInstances(/*gameSMData *data*/);  // sets the node to that of the entity parent object
-        void pSetStartPositions(gameSMData *data);  // sets the model to that of the entity parent object
-        void pSetupTipOff(gameSMData *data);
-        void pExecuteTipOff(gameSMData *data);
-        void pPause();
-        void pChangeScore(gameSMData *data);
-        void pChangeQuarter(gameSMData *data);
-        void pSetupFreethrow(gameSMData *data);
-        void pExecuteFreethrow(gameSMData *data);
-        void pChangePossession(gameSMData *data);
+    // External events taken by this state machine
+    void pCreateInstancea(gameSMData *data);  // creates game object instances
+    void setPModel(gameSMData *data);  // sets the model to that of the entity parent object
+    void setSpeed(gameSMData *data);
+    void halt();
+    void pJump(gameSMData *data);
+    void pChangeDirection(gameSMData *data);
+    void pChangePosition(gameSMData *data);
+
     
-    private:
+private:
+    size_t currentSpeed; 
+    directions currentDirection;
+    playerActions currentAction;
+    Ogre::Vector3 currentPosition;
+    OgreEntitySharedPtr currentModel;  // stores 3d model
+    OgreSceneNodeSharedPtr currentNode;  // stores node 3d model is attached to
 
-        // State enumeration order must match the order of state method entries
-        // in the state map.
-        enum States
-        {
-            ST_CREATE_INSTANCES,
-            ST_SET_START_POS,
-            ST_SETUP_TIPOFF,
-            ST_EXECUTE_TIPOFF,
-            ST_PAUSE,
-            ST_CHANGE_SCORE,  
-            ST_CHANGE_QUARTER,
-            ST_SETUP_FREETHROW,
-            ST_EXECUTE_FREETHROW,
-            ST_CHANGE_POSSESSION,
-            ST_MAX_STATES
-        };
+    // State enumeration order must match the order of state method entries
+    // in the state map.
+    enum States
+    {
+        ST_CREATE_INSTANCES,
+        ST_SET_MODEL,
+        ST_IDLE,
+        ST_STOP_MOVEMENT,
+        ST_START_MOVEMENT,
+        ST_CHANGE_POSITION,  
+        ST_CHANGE_SPEED,
+        ST_JUMP,
+        ST_CHANGE_DIRECTION,
+        ST_SHOOT,
+        ST_PASS,
+        ST_MAX_STATES
+    };
 
-        // Define the state machine state functions with event data type
-        STATE_DECLARE(gameStateMachine,    createInstances,         gameSMData)
-        STATE_DECLARE(gameStateMachine,    setStartPositions,        gameSMData)
-        STATE_DECLARE(gameStateMachine,    setupTipOff,            gameSMData)
-        STATE_DECLARE(gameStateMachine,    executeTipOff,    gameSMData)
-        STATE_DECLARE(gameStateMachine,    pause,   noEventData)
-        STATE_DECLARE(gameStateMachine,    changeScore,  gameSMData)
-        STATE_DECLARE(gameStateMachine,    changeQuarter,     gameSMData)
-        STATE_DECLARE(gameStateMachine,    setupFreethrow,            gameSMData)
-        STATE_DECLARE(gameStateMachine,    executeFreethrow, gameSMData)
-        STATE_DECLARE(gameStateMachine,    changePosession,           gameSMData)
-//    STATE_DECLARE(gameStateMachine,    Pass,            gameSMData)
+    // Define the state machine state functions with event data type
+    STATE_DECLARE(gameStateMachine,    createInstances,    gameSMData)
+    STATE_DECLARE(gameStateMachine,    SetModel,    gameSMData)
+    STATE_DECLARE(gameStateMachine,    Idle,            noEventData)
+    STATE_DECLARE(gameStateMachine,    StopMovement,    noEventData)
+    STATE_DECLARE(gameStateMachine,    StartMovement,   gameSMData)
+    STATE_DECLARE(gameStateMachine,    ChangePosition,  gameSMData)
+    STATE_DECLARE(gameStateMachine,    ChangeSpeed,     gameSMData)
+    STATE_DECLARE(gameStateMachine,    Jump,            gameSMData)
+    STATE_DECLARE(gameStateMachine,    ChangeDirection, gameSMData)
+    STATE_DECLARE(gameStateMachine,    Shoot,           gameSMData)
+    STATE_DECLARE(gameStateMachine,    Pass,            gameSMData)
 
-        // State map to define state object order. Each state map entry defines a
-        // state object.
-        BEGIN_STATE_MAP
-            STATE_MAP_ENTRY(&createInstances)
-            STATE_MAP_ENTRY(&setStartPositions)
-            STATE_MAP_ENTRY(&setupTipOff)
-            STATE_MAP_ENTRY(&executeTipOff)
-            STATE_MAP_ENTRY(&pause)
-            STATE_MAP_ENTRY(&changeScore)
-            STATE_MAP_ENTRY(&changeQuarter)
-            STATE_MAP_ENTRY(&setupFreethrow)
-            STATE_MAP_ENTRY(&executeFreethrow)
-            STATE_MAP_ENTRY(&changePosession)
-//        STATE_MAP_ENTRY(&Pass)       
-        END_STATE_MAP   
+    // State map to define state object order. Each state map entry defines a
+    // state object.
+    BEGIN_STATE_MAP
+        STATE_MAP_ENTRY(&createInstances)
+        STATE_MAP_ENTRY(&SetModel)
+        STATE_MAP_ENTRY(&Idle)
+        STATE_MAP_ENTRY(&StopMovement)
+        STATE_MAP_ENTRY(&StartMovement)
+        STATE_MAP_ENTRY(&ChangePosition)
+        STATE_MAP_ENTRY(&ChangeSpeed)
+        STATE_MAP_ENTRY(&Jump)
+        STATE_MAP_ENTRY(&ChangeDirection)
+        STATE_MAP_ENTRY(&Shoot)
+        STATE_MAP_ENTRY(&Pass)       
+    END_STATE_MAP   
 };
 
 #endif

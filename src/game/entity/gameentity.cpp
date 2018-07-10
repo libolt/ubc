@@ -1317,14 +1317,16 @@ bool gameEntity::initializeStateMachine()  // sets up the game condition
 
     gameComponentsSharedPtr tempComponent(new gameComponents);
     component = tempComponent;
-//    SMData->component = component;
+//    SMData->status = true;
 //    SMData->model = getModel();  //
 //    SMData->node = getNode();
     logMsg(func +" begin");
 
 //    component->getStateMachine()->setSpeed(SMData);
 //    component->getStateMachin
-    stateMachine->pCreateInstances(/*SMData*/);
+    gameStateMachineSharedPtr tempSM(new gameStateMachine);
+    stateMachine = tempSM;
+    stateMachine->pCreateInstances(SMData);
     exit(0);
     logMsg(func +" end");
 

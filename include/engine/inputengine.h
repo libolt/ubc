@@ -155,7 +155,7 @@ private:
     inputKeyWorkQueues internalInputKeyWorkQueue;
     inputGamePadWorkQueues inputGamePadWorkQueue;
     inputTypeQueues inputTypeQueue;  // stores queue of input types to process
-    std::mutex inputWorkQueueMutex;
+//    std::mutex inputWorkQueueMutex;
 };
 
 

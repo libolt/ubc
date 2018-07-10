@@ -175,7 +175,7 @@ class renderEngine : public engine
     static AAssetManager* mAssetMgr;  // stores the android asset manager
 #endif
 
-//    Ogre::ShaderGeneratorTechniqueResolverListener* mMatListener;  // stores the material listener
+    Ogre::ShaderGeneratorTechniqueResolverListener* mMatListener;  // stores the material listener
     Ogre::RenderSystem *selectedRenderSystem;
 
     // InputReader* mInputDevice;

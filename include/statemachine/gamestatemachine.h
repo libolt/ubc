@@ -43,7 +43,7 @@ public:
     gameStateMachine();
 
     // External events taken by this state machine
-    void pCreateInstancea(gameSMData *data);  // creates game object instances
+    void pCreateInstances(gameSMData *data);  // creates game object instances
     void setPModel(gameSMData *data);  // sets the model to that of the entity parent object
     void setSpeed(gameSMData *data);
     void halt();

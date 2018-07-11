@@ -65,12 +65,12 @@ void gameStateMachine::setPModel(gameSMData *data) // sets the model to that of 
     logMsg(func +" begin");
 
     BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (ST_SET_MODEL)             // ST_SET_NODE
-        TRANSITION_MAP_ENTRY (ST_SET_MODEL)             // ST_SET_MODEL
-        TRANSITION_MAP_ENTRY (ST_SET_MODEL)             // ST_IDLE
-        TRANSITION_MAP_ENTRY (ST_SET_MODEL)             // ST_STOP
+        TRANSITION_MAP_ENTRY (ST_SET_START_POS)             // ST_SET_NODE
+        TRANSITION_MAP_ENTRY (ST_SET_START_POS)             // ST_SET_MODEL
+        TRANSITION_MAP_ENTRY (ST_SET_START_POS)             // ST_IDLE
+        TRANSITION_MAP_ENTRY (ST_SET_START_POS)             // ST_STOP
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_START
-        TRANSITION_MAP_ENTRY (ST_SET_MODEL)             // ST_CHANGE_POSITION
+        TRANSITION_MAP_ENTRY (ST_SET_START_POS)             // ST_CHANGE_POSITION
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_SPEED
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_JUMP
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_DIRECTION
@@ -220,9 +220,9 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
 }
 
 // sets the model object
-STATE_DEFINE(gameStateMachine, SetModel, gameSMData)
+STATE_DEFINE(gameStateMachine, setStartPositions, gameSMData)
 {
-    std:: string func = "playerStateMachine::SetModel";
+    std:: string func = "gameStateMachine::setStartPositions";
 
     logMsg(func +" begin");
 

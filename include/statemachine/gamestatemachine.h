@@ -26,15 +26,17 @@
 #include "utilities/enums.h"
 #include "utilities/typedefs.h"
 
+class gameFlags;
+
 class gameSMData : public eventData
 {
-public:
+    public:
+        gameFlagsSharedPtr flag;  // boolean flags object
     size_t speed;
     directions direction;
     playerActions action;
     Ogre::Vector3 position;
     OgreEntitySharedPtr model;  // stores 3d model
-    OgreSceneNodeSharedPtr node;  // stores node 3d model is attached to
 };
 
 class gameStateMachine : public stateMachine
@@ -53,6 +55,7 @@ public:
 
     
 private:
+    gameFlagsSharedPtr currentFlag;  // boolean flags object
     size_t currentSpeed; 
     directions currentDirection;
     playerActions currentAction;
@@ -65,7 +68,7 @@ private:
     enum States
     {
         ST_CREATE_INSTANCES,
-        ST_SET_MODEL,
+        ST_SET_START_POS,
         ST_IDLE,
         ST_STOP_MOVEMENT,
         ST_START_MOVEMENT,
@@ -80,7 +83,7 @@ private:
 
     // Define the state machine state functions with event data type
     STATE_DECLARE(gameStateMachine,    createInstances,    gameSMData)
-    STATE_DECLARE(gameStateMachine,    SetModel,    gameSMData)
+    STATE_DECLARE(gameStateMachine,    setStartPositions,    gameSMData)
     STATE_DECLARE(gameStateMachine,    Idle,            noEventData)
     STATE_DECLARE(gameStateMachine,    StopMovement,    noEventData)
     STATE_DECLARE(gameStateMachine,    StartMovement,   gameSMData)
@@ -95,7 +98,7 @@ private:
     // state object.
     BEGIN_STATE_MAP
         STATE_MAP_ENTRY(&createInstances)
-        STATE_MAP_ENTRY(&SetModel)
+        STATE_MAP_ENTRY(&setStartPositions)
         STATE_MAP_ENTRY(&Idle)
         STATE_MAP_ENTRY(&StopMovement)
         STATE_MAP_ENTRY(&StartMovement)

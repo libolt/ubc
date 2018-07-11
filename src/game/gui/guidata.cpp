@@ -32,6 +32,7 @@
 #include "entity/courtentity.h"
 #include "entity/playerentity.h"
 #include "entity/teamentity.h"
+#include "flags/gameflags.h"
 #include "flags/teamflags.h"
 #include "setup/setupcourts.h"
 #include "setup/setupplayers.h"

@@ -24,6 +24,7 @@
 #include "data/gamedata.h"
 #include "state/basketballstate.h"
 #include "entity/gameentity.h"
+#include "flags/gameflags.h"
 #include "state/playerstate.h"
 #include "state/teamstate.h"
 #include "engine/renderengine.h"

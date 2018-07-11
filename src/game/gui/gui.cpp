@@ -29,6 +29,7 @@
 #include "data/gamedata.h"
 #include "data/playerdata.h"
 #include "engine/gameengine.h"
+#include "flags/gameflags.h"
 #include "entity/playerentity.h"
 #include "setup/setuplineups.h"
 #include "setup/setupplayers.h"

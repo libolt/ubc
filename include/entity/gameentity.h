@@ -25,7 +25,7 @@
 //#include <boost/shared_ptr.hpp>
 #include "BulletDynamics/Dynamics/btRigidBody.h"
 
-#include "flags/gameflags.h"
+//#include "flags/gameflags.h"
 //#include "state/basketballstate.h"
 //#include "data/courtdata.h"
 //#include "state/courtstate.h"
@@ -45,6 +45,7 @@ class courtState;
 //class gameFlags;
 class gameComponents;
 class gameData;
+class gameFlags;
 class gameSMData;
 class hoopState;
 class playerState;

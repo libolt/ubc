@@ -31,7 +31,9 @@ class gameFlags;
 class gameSMData : public eventData
 {
     public:
+        gameComponentsSharedPtr component;  // component object
         gameFlagsSharedPtr flag;  // boolean flags object
+        renderEngineSharedPtr render;  // copy of renderEngine object
     size_t speed;
     directions direction;
     playerActions action;
@@ -46,7 +48,8 @@ public:
 
     // External events taken by this state machine
     void pCreateInstances(gameSMData *data);  // creates game object instances
-    void setPModel(gameSMData *data);  // sets the model to that of the entity parent object
+    void pLoadModels(gameSMData *data);  // loads the object model
+    void pSetStartPositions(gameSMData *data);  // sets the model to that of the entity parent object
     void setSpeed(gameSMData *data);
     void halt();
     void pJump(gameSMData *data);
@@ -68,6 +71,7 @@ private:
     enum States
     {
         ST_CREATE_INSTANCES,
+        ST_LOAD_MODELS,
         ST_SET_START_POS,
         ST_IDLE,
         ST_STOP_MOVEMENT,
@@ -83,6 +87,7 @@ private:
 
     // Define the state machine state functions with event data type
     STATE_DECLARE(gameStateMachine,    createInstances,    gameSMData)
+    STATE_DECLARE(gameStateMachine,    loadModels,    gameSMData)
     STATE_DECLARE(gameStateMachine,    setStartPositions,    gameSMData)
     STATE_DECLARE(gameStateMachine,    Idle,            noEventData)
     STATE_DECLARE(gameStateMachine,    StopMovement,    noEventData)
@@ -98,6 +103,7 @@ private:
     // state object.
     BEGIN_STATE_MAP
         STATE_MAP_ENTRY(&createInstances)
+        STATE_MAP_ENTRY(&loadModels)
         STATE_MAP_ENTRY(&setStartPositions)
         STATE_MAP_ENTRY(&Idle)
         STATE_MAP_ENTRY(&StopMovement)

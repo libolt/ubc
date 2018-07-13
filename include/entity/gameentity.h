@@ -89,7 +89,7 @@ class gameEntity //: public state, public gameStateShared, public std::enable_sh
 
         bool checkifJumpBallCreated();  // checks if jumpBall object has been created
      
-        bool initializeStateMachine();  // initializes the stateMachine object
+        bool initializeStateMachine(renderEngineSharedPtr render);  // initializes the stateMachine object
     
         bool updateStateMachine(playerActions actionType, gameSMData *SMData);  // updates state machine with external input
 
@@ -112,7 +112,7 @@ class gameEntity //: public state, public gameStateShared, public std::enable_sh
     
         bool setupActiveTeamInstances();  // sets up the active team instances
 
-        bool loadModels(renderEngineSharedPtr render);  // loads all game object models excluding the players
+//        bool loadModels(renderEngineSharedPtr render);  // loads all game object models excluding the players
         bool createNodes(renderEngineSharedPtr render);  // creates scene nodes for game objects
     
 //        bool setupState(renderEngineSharedPtr render);  // sets up the game condition

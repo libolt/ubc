@@ -20,7 +20,11 @@
 
 #include "utilities/conversion.h"
 #include "statemachine/gamestatemachine.h"
-
+#include "components/gamecomponents.h"
+#include "flags/gameflags.h"
+#include "load/loadbasketballs.h"
+#include "load/loadcourts.h"
+#include "load/loadhoops.h"
 #include "utilities/logging.h"
 
 gameStateMachine::gameStateMachine() :
@@ -33,19 +37,20 @@ gameStateMachine::gameStateMachine() :
 {
 }
 
-void gameStateMachine::pCreateInstances(gameSMData *data) // sets the node to that of the entity parent object
+void gameStateMachine::pCreateInstances(gameSMData *data) // creates the object instances
 {
     std:: string func = "gameStateMachine::pCreateInstances";
 
     logMsg(func +" begin");
 
     BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (ST_CREATE_INSTANCES)             // ST_SET_NODE
-        TRANSITION_MAP_ENTRY (ST_CREATE_INSTANCES)             // ST_SET_MODEL
-        TRANSITION_MAP_ENTRY (ST_CREATE_INSTANCES)             // ST_IDLE
-        TRANSITION_MAP_ENTRY (ST_CREATE_INSTANCES)             // ST_STOP
+        TRANSITION_MAP_ENTRY (ST_CREATE_INSTANCES)          // ST_CREATE_INSTANCES
+        TRANSITION_MAP_ENTRY (ST_CREATE_INSTANCES)          // ST_LOAD_MODELS
+        TRANSITION_MAP_ENTRY (ST_CREATE_INSTANCES)          // ST_SET_START_POS
+        TRANSITION_MAP_ENTRY (ST_CREATE_INSTANCES)          // ST_IDLE
+        TRANSITION_MAP_ENTRY (ST_CREATE_INSTANCES)          // ST_STOP
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_START
-        TRANSITION_MAP_ENTRY (ST_CREATE_INSTANCES)             // ST_CHANGE_POSITION
+        TRANSITION_MAP_ENTRY (ST_CREATE_INSTANCES)          // ST_CHANGE_POSITION
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_SPEED
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_JUMP
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_DIRECTION
@@ -58,15 +63,41 @@ void gameStateMachine::pCreateInstances(gameSMData *data) // sets the node to th
 
 }
 
-void gameStateMachine::setPModel(gameSMData *data) // sets the model to that of the entity parent object
+void gameStateMachine::pLoadModels(gameSMData *data) // loads the object models
+{
+    std:: string func = "gameStateMachine::pLoadModels";
+
+    logMsg(func +" begin");
+
+    BEGIN_TRANSITION_MAP                                    // - Current State -
+        TRANSITION_MAP_ENTRY (ST_LOAD_MODELS)               // ST_CREATE_INSTANCES
+        TRANSITION_MAP_ENTRY (ST_LOAD_MODELS)               // ST_LOAD_MODELS
+        TRANSITION_MAP_ENTRY (ST_LOAD_MODELS)               // ST_SET_START_POS
+        TRANSITION_MAP_ENTRY (ST_LOAD_MODELS)               // ST_IDLE
+        TRANSITION_MAP_ENTRY (ST_LOAD_MODELS)               // ST_STOP
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_START
+        TRANSITION_MAP_ENTRY (ST_LOAD_MODELS)               // ST_CHANGE_POSITION
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_SPEED
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_JUMP
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_DIRECTION
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SHOOT
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_PASS
+    END_TRANSITION_MAP(data)
+
+    logMsg(func +" end");
+//    exit(0);
+
+}
+void gameStateMachine::pSetStartPositions(gameSMData *data) // sets the object start positions
 {
     std:: string func = "playerStateMachine::setPModel";
 
     logMsg(func +" begin");
 
     BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (ST_SET_START_POS)             // ST_SET_NODE
-        TRANSITION_MAP_ENTRY (ST_SET_START_POS)             // ST_SET_MODEL
+        TRANSITION_MAP_ENTRY (ST_SET_START_POS)             // ST_CREATE_INSTANCES
+        TRANSITION_MAP_ENTRY (ST_SET_START_POS)             // ST_LOAD_MODELS
+        TRANSITION_MAP_ENTRY (ST_SET_START_POS)             // ST_SET_START_POS
         TRANSITION_MAP_ENTRY (ST_SET_START_POS)             // ST_IDLE
         TRANSITION_MAP_ENTRY (ST_SET_START_POS)             // ST_STOP
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_START
@@ -90,8 +121,9 @@ void gameStateMachine::setSpeed(gameSMData *data)
     logMsg(func +" begin");
 
     BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (ST_START_MOVEMENT)            // ST_SET_NODE
-        TRANSITION_MAP_ENTRY (ST_START_MOVEMENT)             // ST_SET_MODEL
+        TRANSITION_MAP_ENTRY (ST_START_MOVEMENT)            // ST_CREATE_INSTANCES
+        TRANSITION_MAP_ENTRY (ST_START_MOVEMENT)            // ST_LOAD_MODELS
+        TRANSITION_MAP_ENTRY (ST_START_MOVEMENT)            // ST_SET_START_POS
         TRANSITION_MAP_ENTRY (ST_START_MOVEMENT)            // ST_IDLE
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STOP
         TRANSITION_MAP_ENTRY (ST_CHANGE_SPEED)              // ST_START
@@ -115,8 +147,9 @@ void gameStateMachine::halt()
     logMsg(func +" begin");
 
     BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_SET_NODE
-        TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_SET_MODEL
+        TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_CREATE_INSTANCES
+        TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_LOAD_MODELS
+        TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_SET_START_POS
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_IDLE
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STOP
         TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_START
@@ -140,8 +173,9 @@ void gameStateMachine::pJump(gameSMData *data)
     logMsg(func +" begin");
 
     BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (ST_JUMP)                      // ST_SET_NODE
-        TRANSITION_MAP_ENTRY (ST_JUMP)                      // ST_SET_MODEL
+        TRANSITION_MAP_ENTRY (ST_JUMP)                      // ST_CREATE_INSTANCES
+        TRANSITION_MAP_ENTRY (ST_JUMP)                      // ST_LOAD_MODELS
+        TRANSITION_MAP_ENTRY (ST_JUMP)                      // ST_SET_START_POS
         TRANSITION_MAP_ENTRY (ST_JUMP)                      // ST_IDLE
         TRANSITION_MAP_ENTRY (ST_JUMP)                      // ST_STOP
         TRANSITION_MAP_ENTRY (ST_JUMP)                      // ST_START
@@ -164,8 +198,9 @@ void gameStateMachine::pChangeDirection(gameSMData *data)
     logMsg(func +" begin");
 
     BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_SET_NODE
-        TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_SET_MODEL
+        TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_CREATE_INSTANCES
+        TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_LOAD_MODELS
+        TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_SET_START_POS
         TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_IDLE
         TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_STOP
         TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_START
@@ -190,8 +225,9 @@ void gameStateMachine::pChangePosition(gameSMData *data)
     logMsg(func +" begin");
 
     BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_SET_NODE
-        TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_SET_MODEL
+        TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_CREATE_INSTANCES
+        TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_LOAD_MODELS
+        TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_SET_START_POS
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_IDLE
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_STOP
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_START
@@ -219,6 +255,82 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
     exit(0);
 }
 
+// loads the model object
+STATE_DEFINE(gameStateMachine, loadModels, gameSMData)
+{
+    conversionSharedPtr convert = conversion::Instance();
+    std:: string func = "gameStateMachine::loadModels";
+
+    logMsg(func +" begin");
+
+    if (!data->flag->getBasketballModelLoaded())  // Checks if basketball model has been loaded
+    {
+//        setActiveBBallInstance(0);  // Sets the active basketball instance
+        loadBasketballsSharedPtr loadBasketball(new loadBasketballs);
+        basketballStateMSharedPtr activeBasketballInstance;
+        logMsg("Loading basketball Model!");
+        activeBasketballInstance = loadBasketball->loadModels(data->component->getActiveBasketballInstance(), data->render);  // Loads the basketball model
+        if (activeBasketballInstance.size() >0)
+        {          
+            data->flag->setBasketballModelLoaded(true);
+            data->component->setActiveBasketballInstance(activeBasketballInstance);          
+//            return (true);
+        }
+        else
+        {
+            logMsg(func +" Unable to load basketball model!");
+//            returnType = false;
+        }
+
+        // FIXEME! this should not be hard coded
+    }
+    logMsg(func +" weeee");
+//    exit(0);
+
+    if (!data->flag->getCourtModelLoaded())  // Checks if the court model has been loaded
+    {
+        loadCourtsSharedPtr loadCourt(new loadCourts);
+        courtStateMSharedPtr activeCourtInstance;
+        
+        logMsg(func +" Loading court model!");
+        activeCourtInstance = loadCourt->loadModels(data->component->getActiveCourtInstance(), data->render);  // load the court model
+        if (activeCourtInstance.size() > 0)
+        {
+            data->flag->setCourtModelLoaded(true);
+            data->component->setActiveCourtInstance(activeCourtInstance);
+//            return (true);
+        }
+        else
+        {
+            logMsg(func +" Unable to load the court model!");
+//            returnType = false;
+        }
+    }
+
+
+    if (!data->flag->getHoopModelLoaded())  // Checks if the hoop model(s) have been loaded
+    {
+        loadHoopsSharedPtr loadHoop(new loadHoops);
+        hoopStateMSharedPtr activeHoopInstance;
+        
+        logMsg(func +" Loading hoop model(s)!");
+        activeHoopInstance = loadHoop->loadModels(data->component->getActiveHoopInstance(), data->render);  // Creates the hoop instances
+        if (activeHoopInstance.size() > 0)
+        {
+            data->flag->setHoopModelLoaded(true);
+            data->component->setActiveHoopInstance(activeHoopInstance);
+//            return (true);
+        }
+        else
+        {
+            logMsg(func +" Unable to load the hoop model(s)!");
+//            returnType = false;
+        }
+    }
+
+    logMsg(func +" end");
+//    exit(0);
+}
 // sets the model object
 STATE_DEFINE(gameStateMachine, setStartPositions, gameSMData)
 {

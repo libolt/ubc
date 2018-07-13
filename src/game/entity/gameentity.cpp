@@ -985,7 +985,7 @@ bool gameEntity::setupEnvironment()
 } 
 */
 
-bool gameEntity::loadModels(renderEngineSharedPtr render)  // loads all game object models excluding the players
+/*bool gameEntity::loadModels(renderEngineSharedPtr render)  // loads all game object models excluding the players
 {
     conversionSharedPtr convert = conversion::Instance();
     bool returnType = true;
@@ -1061,7 +1061,7 @@ bool gameEntity::loadModels(renderEngineSharedPtr render)  // loads all game obj
 //    exit(0);
     
     return (returnType);
-}
+}*/
 
 bool gameEntity::createNodes(renderEngineSharedPtr render)  // creates scene nodes for game objects
 {
@@ -1309,9 +1309,8 @@ bool gameEntity::executeTipOff()  // executes tip off
     return (false);
 }
 
-bool gameEntity::initializeStateMachine()  // sets up the game condition
+bool gameEntity::initializeStateMachine(renderEngineSharedPtr render)  // sets up the game condition
 {
-    gameSMData *tempSMData = new gameSMData;
     gameSMData *SMData(new gameSMData); 
     std::string func = "gameEntity::initializeStateMachine()";
 

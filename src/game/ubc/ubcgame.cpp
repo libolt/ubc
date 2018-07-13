@@ -499,7 +499,7 @@ bool UBCGame::startGame(renderEngineSharedPtr render)  // starts the game
 
 //    gameInstance->setupState(render);
 
-    gameInstance->initializeStateMachine();
+    gameInstance->initializeStateMachine(render);
     logMsg(func +" end");
     exit(0);
     return (true);

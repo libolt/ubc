@@ -246,6 +246,7 @@ bool UBCGame::setup()  // sets up a game instance
         gameFlagsSharedPtr tempFlag(new gameFlags);
         gameInstance->setFlag(tempFlag);
         gameInstance->setFlagInitialized(true);
+        
     }
     else
     {

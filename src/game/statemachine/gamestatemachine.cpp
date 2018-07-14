@@ -21,10 +21,20 @@
 #include "utilities/conversion.h"
 #include "statemachine/gamestatemachine.h"
 #include "components/gamecomponents.h"
+#include "entity/basketballentity.h"
+#include "entity/courtentity.h"
+#include "entity/hoopentity.h"
 #include "flags/gameflags.h"
 #include "load/loadbasketballs.h"
 #include "load/loadcourts.h"
 #include "load/loadhoops.h"
+#include "setup/setupbasketballs.h"
+#include "setup/setupcourts.h"
+#include "setup/setuphoops.h"
+#include "setup/setupteams.h"
+#include "state/basketballstate.h"
+#include "state/courtstate.h"
+#include "state/hoopstate.h"
 #include "utilities/logging.h"
 
 gameStateMachine::gameStateMachine() :
@@ -242,17 +252,172 @@ void gameStateMachine::pChangePosition(gameSMData *data)
 //    exit(0);
 }
 
-// sets the node object
+// creates game object instances
 STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
 {
+    conversionSharedPtr convert = conversion::Instance();
+    setupBasketballsSharedPtr setupBasketball(new setupBasketballs);
+    setupCourtsSharedPtr setupCourt(new setupCourts);
+    setupHoopsSharedPtr setupHoop(new setupHoops);
+    setupTeamsSharedPtr setupTeam(new setupTeams);
     std:: string func = "gameStateMachine::createInstances";
 
     logMsg(func +" begin");
 
-//    currentNode = data->node;
+    if (!data->flag->getActiveBasketballInstancesCreated())
+    {
+        basketballStateMSharedPtr activeBasketballInstance = setupBasketball->createBasketballInstances();
+        if (activeBasketballInstance.size() > 0)
+        {
+            logMsg("activeBasketballInstances Created!");
+            basketballEntitySharedPtr tempBasketball(new basketballEntity);
 
+            for (auto ABIIT : activeBasketballInstance) // loop that checks if each active hoop instance's entity has been initialized
+            {
+                if (!ABIIT.second->getEntityInitialized()) // if not initialized it initializes the entity
+                {
+                    ABIIT.second->setEntity(tempBasketball);
+                    ABIIT.second->setEntityInitialized(true);
+                }
+                else
+                {
+
+                }
+            }
+            data->flag->setActiveBasketballInstancesCreated(true);
+            data->component->setActiveBasketballInstance(activeBasketballInstance);
+        }
+        else
+        {
+            logMsg(func +" Unable to create Active Basketball Instances!");
+            exit(0);
+        }
+    }
+    else
+    {
+        
+    }
+
+    if (!data->flag->getCourtInstancesCreated())
+    {
+        courtStateMSharedPtr courtInstance = setupCourt->createCourtInstances();
+        if (courtInstance.size() > 0)
+        {
+            logMsg(func +" Court Instances Created!!");
+            data->flag->setCourtInstancesCreated(true);
+            data->component->setCourtInstance(courtInstance);
+        }
+        else
+        {
+            logMsg(func +" Unable to Create Court Instances!");
+            exit(0);
+        }
+    }
+    if (!data->flag->getActiveCourtInstancesCreated())
+    {
+        courtStateMSharedPtr courtInstance = data->component->getCourtInstance();
+        courtStateMSharedPtr activeCourtInstance;
+        activeCourtInstance = setupCourt->createActiveCourtInstances(courtInstance);
+        if (activeCourtInstance.size() > 0)
+        {
+            logMsg(func +" Active Court Instances Created!!");
+
+            courtEntitySharedPtr tempCourt(new courtEntity);
+
+            for (auto ACIIT : activeCourtInstance) // loop that checks if each active hoop instance's entity has been initialized
+            {
+                if (!ACIIT.second->getEntity()->getInitialized()) // if not initialized it initializes the entity
+                {
+                    ACIIT.second->setEntity(tempCourt);
+                    ACIIT.second->getEntity()->setInitialized(true);
+                }
+                else
+                {
+
+                }
+            }
+            data->flag->setActiveCourtInstancesCreated(true);
+            data->component->setActiveCourtInstance(activeCourtInstance);
+        }
+        else
+        {
+            logMsg(func +" Unable to create Active Court Instances!");
+            exit(0);
+        }
+    }
+    else
+    {
+
+    }
+    
+    if (!data->flag->getHoopInstancesCreated())
+    {
+        hoopStateMSharedPtr hoopInstance = setupHoop->createHoopInstances();
+        if (hoopInstance.size() > 0)
+        {
+            logMsg(func +"Hoop Instances Created!");
+            data->flag->setHoopInstancesCreated(true);
+            data->component->setHoopInstance(hoopInstance);
+        }
+        else
+        {
+            logMsg(func +" Unable to Create Hoop Instances!");
+            exit(0);
+        }
+
+    }
+    logMsg(func +" hoop instance size == " +convert->toString(data->component->getHoopInstance().size()));
+    logMsg(func +" hoop instance name == " +data->component->getHoopInstance()[0]->getEntity()->getName());
+        
+    if (!data->flag->getActiveHoopInstancesCreated())
+    {
+        //FIXME! Should not be hard coded!
+        size_t numActiveHoops = 2;
+        hoopStateMSharedPtr hoopInstance = data->component->getHoopInstance();
+        hoopStateMSharedPtr activeHoopInstance = setupHoop->createActiveHoopInstances(hoopInstance, numActiveHoops);
+        logMsg(func +" active hoop instance size == " +convert->toString(activeHoopInstance.size()));
+        logMsg(func +" active hoop instance name == " +activeHoopInstance[0]->getEntity()->getName());
+//        exit(0);
+        
+        if (activeHoopInstance.size() > 0)
+        {
+            logMsg(func +"Active Hoop Instances Created!");
+//            exit(0);
+            hoopEntitySharedPtr tempHoop(new hoopEntity);
+
+            for (auto AHIIT : activeHoopInstance) // loop that checks if each active hoop instance's entity has been initialized
+            {
+                if (!AHIIT.second->getEntityInitialized()) // if not initialized it initializes the entity
+                {
+                    AHIIT.second->setEntity(tempHoop);
+                    AHIIT.second->setEntityInitialized(true);
+                }
+                else
+                {
+                    logMsg(func +"Entity already initialized!");
+                }
+                
+                logMsg(func +" active hoop instance name == " +AHIIT.second->getEntity()->getName());
+
+            }          
+//            exit(0);
+
+        }
+        else
+        {
+            logMsg(func +" Unable to create Active Hoop Instances!");
+            exit(0);
+        }
+        data->flag->setActiveHoopInstancesCreated(true);
+        data->component->setActiveHoopInstance(activeHoopInstance);
+
+    }
+    else
+    {
+        
+    }
     logMsg(func +" end");
-    exit(0);
+//    exit(0);
 }
 
 // loads the model object

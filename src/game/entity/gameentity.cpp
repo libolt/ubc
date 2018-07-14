@@ -1314,10 +1314,8 @@ bool gameEntity::initializeStateMachine(renderEngineSharedPtr render)  // sets u
     gameSMData *SMData(new gameSMData); 
     std::string func = "gameEntity::initializeStateMachine()";
 
-    gameComponentsSharedPtr tempComponent(new gameComponents);
-    component = tempComponent;
-//    SMData->status = true;
-//    SMData->model = getModel();  //
+    SMData->component = component;
+    SMData->flag = flag;  
 //    SMData->node = getNode();
     logMsg(func +" begin");
 
@@ -1326,7 +1324,7 @@ bool gameEntity::initializeStateMachine(renderEngineSharedPtr render)  // sets u
     gameStateMachineSharedPtr tempSM(new gameStateMachine);
     stateMachine = tempSM;
     stateMachine->pCreateInstances(SMData);
-    exit(0);
+//    exit(0);
     logMsg(func +" end");
 
     return (true);

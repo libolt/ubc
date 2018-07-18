@@ -82,7 +82,10 @@ bool GUISystem::createMainMenuGUI(renderEngineSharedPtr render)  // creates the 
     logMsg(func +" tempButtons.size() == " +convert->toString(tempButtons.size()));
 
 //    exit(0);
-    tempButtons["startSingleGameButton"]->eventMouseButtonClick += MyGUI::newDelegate(component.get(), &component.get()->startSingleGameButtonClicked);
+//    tempButtons["startSingleGameButton"]->eventMouseButtonClick += MyGUI::newDelegate(component.get(), &component.get()->startSingleGameButtonClicked);
+
+    tempButtons["startSingleGameButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::startSingleGameButtonClicked);
+
     logMsg(func +" Insert Start Single Game Button Mouse Click");
 
 //    exit(0);

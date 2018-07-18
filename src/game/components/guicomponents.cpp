@@ -240,10 +240,10 @@ void GUIComponents::setCourtNameTxtBox(MyGUITextBoxSharedPtr set)  // sets the v
     courtNameTxtBox = set;
 }
 
-void GUIComponents::startSingleGameButtonClicked(MyGUI::Widget *_sender)  // handles startSingleGameButton click event
+/*  void GUIComponents::startSingleGameButtonClicked(MyGUI::Widget *_sender)  // handles startSingleGameButton click event
 {
 //    startSinglePlayerGame(gameE->getRenderE());
-}
+}*/
 
 
 bool GUIComponents::initMyGUI(renderEngineSharedPtr render)  // Initializes MyGUI

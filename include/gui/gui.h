@@ -134,7 +134,9 @@ public:
     
     bool checkTeamInstancesCreated();  // Checks if team instances have been created and if not creates them.
 
+
     // MyGUI functions
+    void startSingleGameButtonClicked(MyGUI::Widget *_sender);  // handles startSingleGameButton click event
     void startMultiGameButtonClicked(MyGUI::Widget *_sender);  // hands startMultiGameButton click event
     void optionsButtonClicked(MyGUI::Widget *_sender);  // handles optionsButton click event
     void exitButtonClicked(MyGUI::Widget *_sender);  // handles exitButton click event

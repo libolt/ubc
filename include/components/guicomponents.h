@@ -108,7 +108,7 @@ class GUIComponents
         MyGUITextBoxSharedPtr getCourtNameTxtBox();  // retrieves the value of courtNameTxtBox
         void setCourtNameTxtBox(MyGUITextBoxSharedPtr set);  // sets the value of courtNameTxtBox  
        
-        void startSingleGameButtonClicked(MyGUI::Widget *_sender);  // handles startSingleGameButton click event
+//        void startSingleGameButtonClicked(MyGUI::Widget *_sender);  // handles startSingleGameButton click event
         
         bool initMyGUI(renderEngineSharedPtr render);  // Initializes MyGUI
 

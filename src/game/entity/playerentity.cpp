@@ -167,7 +167,7 @@ bool playerEntity::initializeStateMachine()  // initializes the stateMachine obj
     SMData->node = getNode();
     logMsg(func +" begin");
 
-    exit(0);
+//    exit(0);
     component->getStateMachine()->setSpeed(SMData);
     component->getStateMachine()->halt();
     return (true);

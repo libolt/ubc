@@ -337,7 +337,7 @@ playerEntityMSharedPtr setupPlayers::setupActivePlayerInstances(playerEntityMSha
     logMsg(func +" begin");
 
     logMsg(func +" activePlayerInstance.size() == " +convert->toString(activePlayerInstance.size()));
-    exit(0);
+//    exit(0);
 
     for (auto APIIT : activePlayerInstance)
     {

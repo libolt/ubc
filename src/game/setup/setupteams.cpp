@@ -222,7 +222,7 @@ playerEntityMSharedPtr setupTeams::setPlayerStartPositions(playerEntityMSharedPt
 //    exit(0);
     activePlayerInstance = setupPlayerPosition->setJumpBallPositions(activePlayerInstance, gameData->getTeamType(), courtPos);
     logMsg(func +" activePlayerInstance size == " +convert->toString(activePlayerInstance.size()));
-    exit(0);
+//    exit(0);
     // set initial player coordinates for the tipoff
 
 /*    switch (teamType)

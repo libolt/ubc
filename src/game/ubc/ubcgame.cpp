@@ -448,6 +448,9 @@ bool UBCGame::loop(gameEngineSharedPtr gameE, UBCInputSharedPtr input, GUISystem
                 exit(0);
             }
         }
+        logMsg(func + " startGame complete!");
+//        exit(0);
+        
         changeInTimeMicro = gameE->getTimer().calcChangeInTimeMicro();
         changeInTimeMill = gameE->getTimer().calcChangeInTimeMill();
         CITmic = changeInTimeMicro.count();
@@ -502,7 +505,7 @@ bool UBCGame::startGame(renderEngineSharedPtr render)  // starts the game
 
     gameInstance->initializeStateMachine(render);
     logMsg(func +" end");
-    exit(0);
+//    exit(0);
     return (true);
 }
 

@@ -416,8 +416,9 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
     {
         
     }
+    logMsg(func +" activeHoopInstance.size() == " +convert->toString(data->component->getActiveHoopInstance().size()));
     logMsg(func +" end");
-//    exit(0);
+    exit(0);
 }
 
 // loads the model object
@@ -427,7 +428,8 @@ STATE_DEFINE(gameStateMachine, loadModels, gameSMData)
     std:: string func = "gameStateMachine::loadModels";
 
     logMsg(func +" begin");
-
+    exit(0);
+    
     if (!data->flag->getBasketballModelLoaded())  // Checks if basketball model has been loaded
     {
 //        setActiveBBallInstance(0);  // Sets the active basketball instance

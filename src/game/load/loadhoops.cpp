@@ -56,27 +56,28 @@ void loadHoops::setHInstance(hoopStateMSharedPtr set)  // sets the value of hIns
 bool loadHoops::checkIfHoopsLoaded()  // checks if the hooops have been loaded into hInstance
 {
 
-    std::string func = "loader::checkIfHoopsLoaded()";
-    logMsg(func + " beginning");
+    std::string func = "loadHoops::checkIfHoopsLoaded()";
+    
+    logMsg(func +" begin");
     
     if (hoopFilesLoaded)
     {
-        logMsg(func + " getHoooFilesLoaded");
+        logMsg(func +" getHoooFilesLoaded");
 //        exit(0);
         if (hInstance.size() > 0)
         {
-            logMsg(func + " Hoop Files Loaded!");
+            logMsg(func +" Hoop Files Loaded!");
             return(true);
         }
         else
         {
-            logMsg(func + " Hoop Files not yet Loaded!");
+            logMsg(func +" Hoop Files not yet Loaded!");
 
             hoopFilesLoaded = false;
             hInstance = loadHoopFiles();
             if (hInstance.size() > 0)
             {
-                logMsg(func + "  > 0!");
+                logMsg(func +"  > 0!");
 
 //                load->setTInstance(tInstance);
                 hoopFilesLoaded = true;
@@ -84,31 +85,31 @@ bool loadHoops::checkIfHoopsLoaded()  // checks if the hooops have been loaded i
             }
             else
             {
-                logMsg(func + " Failed to load Hoop Files! IF");
+                logMsg(func +" Failed to load Hoop Files! IF");
                 exit(0);
             }
         }
     }
     else 
     {
-        logMsg(func + " ELSE");
+        logMsg(func +" ELSE");
 //        exit(0);
         if (hInstance.size() > 0)
         {
-            logMsg(func + " load->getHInstance().size() > 0! ELSE");
+            logMsg(func +" load->getHInstance().size() > 0! ELSE");
 //            load->setTInstance(tInstance);
             hoopFilesLoaded = true;
             return(true);
         }
         else
         {
-            logMsg(func + " ELSE ELSE!");
+            logMsg(func +" ELSE ELSE!");
 
             hInstance = loadHoopFiles();
             logMsg(func);
             if (hInstance.size() > 0)
             {
-                logMsg(func + " load->getHInstance().size() > 0! ELSE ELSE");
+                logMsg(func +" load->getHInstance().size() > 0! ELSE ELSE");
 
 //                load->setTInstance(tInstance);
                 hoopFilesLoaded = true;
@@ -116,13 +117,13 @@ bool loadHoops::checkIfHoopsLoaded()  // checks if the hooops have been loaded i
             }
             else
             {
-                logMsg(func + " Failed to load Hop Files!");
+                logMsg(func +" Failed to load Hop Files!");
                 return(false);
             }
         }
     }
     
-    logMsg(func + " end");
+    logMsg(func +" end");
     
     return (false);
 }
@@ -132,9 +133,9 @@ hoopStateMSharedPtr  loadHoops::loadHoopFiles()  // load hoop XML files
 //    exit(0);
     hoopStateMSharedPtr  hoops;
     std::string hoopList;
-    std::string func = "loader::loadHoops()";
+    std::string func = "loadHoops::loadHoops()";
 
-    logMsg(func + " beginning");
+    logMsg(func +" begin");
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     hoopList = "data/hoops/hoops.xml";
@@ -154,7 +155,7 @@ hoopStateMSharedPtr  loadHoops::loadHoopFiles()  // load hoop XML files
 #endif
     }
 
-    logMsg(func + " end");
+    logMsg(func +" end");
 
     return (hoops);
 }
@@ -166,11 +167,11 @@ stdStringVec loadHoops::loadHoopListFile(std::string fileName)  // load the list
     stdStringVec hFiles;
     std::string fileContents;
     tinyxml2::XMLDocument doc;
-    std::string func = "loader::loadHoopListFile()";
+    std::string func = "loadHoops::loadHoopListFile()";
 
-    logMsg(func + " beginning");
+    logMsg(func +" begin");
 
-    logMsg(func + " " +fileName);
+    logMsg(func +" " +fileName);
     char *contents = NULL;
     readFile(fileName.c_str(), &contents);
     fileContents = convert->toString(contents);
@@ -195,7 +196,7 @@ stdStringVec loadHoops::loadHoopListFile(std::string fileName)  // load the list
     // should always have a valid root but handle gracefully if it does
     if (!pElem)
     {
-        logMsg("Unable to find a vlid court list root!");
+        logMsg(func +" Unable to find a vlid court list root!");
     }
 
     // save this for later
@@ -209,7 +210,7 @@ stdStringVec loadHoops::loadHoopListFile(std::string fileName)  // load the list
         hFiles.push_back(pText);
     }
 
-    logMsg(func + " end");
+    logMsg(func +" end");
 
 //    setCourtFiles(courtFile);
 //    return true;
@@ -228,7 +229,7 @@ hoopStateSharedPtr loadHoops::loadHoopFile(std::string fileName)  // loads data 
     std::string fileContents;
     tinyxml2::XMLDocument doc;
     char *contents = NULL;
-    std::string func = "loader::loadHoopFile()";
+    std::string func = "loadHoops::loadHoopFile()";
 
     logMsg(func +" begin");
 
@@ -252,12 +253,12 @@ hoopStateSharedPtr loadHoops::loadHoopFile(std::string fileName)  // loads data 
     tinyxml2::XMLElement *child;
     tinyxml2::XMLHandle hRoot(0);
 
-    logMsg(func + " rootElement?");
+    logMsg(func +" rootElement?");
 
     rootElement = hDoc.FirstChildElement().ToElement();
 
-    logMsg(func + " rootElement!");
-    logMsg(func + " rootElement = " + convert->toString(rootElement));
+    logMsg(func +" rootElement!");
+    logMsg(func +" rootElement = " + convert->toString(rootElement));
 
     // should always have a valid root but handle gracefully if it does
     if (!rootElement)
@@ -266,14 +267,14 @@ hoopStateSharedPtr loadHoops::loadHoopFile(std::string fileName)  // loads data 
         exit(0);
     }
 
-    logMsg(func + " child?");
+    logMsg(func +" child?");
     child = rootElement->FirstChild()->ToElement();
     if (child)
     {
         std::string cKey = child->Value();
         if (cKey == "Name")
         {
-            logMsg(func +"name!");
+            logMsg(func +" name!");
             name = child->GetText();
             logMsg(func +" name = " +name);
         }
@@ -290,7 +291,7 @@ hoopStateSharedPtr loadHoops::loadHoopFile(std::string fileName)  // loads data 
     entity->setModelFileName(modelName);
     hoopInstance->setEntity(entity);
     hoopInstance->setEntityInitialized(true);
-    logMsg(func + " Entity Model Name = " +hoopInstance->getEntity()->getModelFileName());
+    logMsg(func +" Entity Model Name = " +hoopInstance->getEntity()->getModelFileName());
 //    exit(0);
     return (hoopInstance);
 }
@@ -368,7 +369,7 @@ hoopStateMSharedPtr loadHoops::loadModels(hoopStateMSharedPtr activeHoopInstance
 //    exit(0);
     for (auto AHIIT : activeHoopInstance)
     {
-        logMsg(func + " model name == " +AHIIT.second->getEntity()->getModel()->getName());
+        logMsg(func +" model name == " +AHIIT.second->getEntity()->getModel()->getName());
     }
 //    exit(0);
 /*    

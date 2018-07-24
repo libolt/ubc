@@ -77,13 +77,13 @@ bool loadTeams::checkIfTeamsLoaded()  // checks if teams have been loaded into t
     teamStateVec tempT;
     teamEntityMSharedPtr tempTInstance;
     tInstance = tempTInstance;
-    std::string func = "loader::checkIfTeamsLoaded()";
+    std::string func = "loadTeams::checkIfTeamsLoaded()";
     
     logMsg(func + " begin");
 //    exit(0);
     if (teamFilesLoaded)
     {
-        logMsg(func + " getTeamFilesLoaded");
+        logMsg(func +" getTeamFilesLoaded");
 
         if (tInstance.size() > 0)
         {
@@ -92,13 +92,13 @@ bool loadTeams::checkIfTeamsLoaded()  // checks if teams have been loaded into t
         }
         else
         {
-            logMsg(func + " Team Files not yet Loaded!");
+            logMsg(func +" Team Files not yet Loaded!");
 
             teamFilesLoaded = false;
             tInstance = loadTeamFiles();
             if (tInstance.size() > 0)
             {
-                logMsg(func + " > 0!");
+                logMsg(func +" > 0!");
 
 //                load->setTInstance(tInstance);
                 teamFilesLoaded = true;
@@ -106,32 +106,32 @@ bool loadTeams::checkIfTeamsLoaded()  // checks if teams have been loaded into t
             }
             else
             {
-                logMsg(func + " Failed to load Team Files! IF");
+                logMsg(func +" Failed to load Team Files! IF");
                 exit(0);
             }
         }
     }
     else 
     {
-        logMsg(func + " ELSE");
+        logMsg(func +" ELSE");
 
         if (tInstance.size() > 0)
         {
-            logMsg(func + " load->getTInstance().size() > 0! ELSE");
+            logMsg(func +" load->getTInstance().size() > 0! ELSE");
 //            load->setTInstance(tInstance);
             teamFilesLoaded = true;
             return(true);
         }
         else
         {
-            logMsg(func + " ELSE ELSE!");
+            logMsg(func +" ELSE ELSE!");
 
             tInstance = loadTeamFiles();
-            logMsg(func + " tInstance.size() == " +convert->toString(tInstance.size()));
+            logMsg(func +" tInstance.size() == " +convert->toString(tInstance.size()));
 //            exit(0);
             if (tInstance.size() > 0)
             {
-                logMsg(func + " load->getTInstance().size() > 0! ELSE ELSE");
+                logMsg(func +" load->getTInstance().size() > 0! ELSE ELSE");
 
 //                load->setTInstance(tInstance);
                 teamFilesLoaded = true;
@@ -139,13 +139,13 @@ bool loadTeams::checkIfTeamsLoaded()  // checks if teams have been loaded into t
             }
             else
             {
-                logMsg(func + " Failed to load Team Files!");
+                logMsg(func +" Failed to load Team Files!");
                 return(false);
             }
         }
     }
     
-    logMsg(func + " end");
+    logMsg(func +" end");
     
     return (true);
 }
@@ -156,7 +156,7 @@ teamEntityMSharedPtr loadTeams::loadTeamFiles()  // load teams from XML files
     teamEntityMSharedPtr teams;
 
     std::string teamList;
-    std::string func = "loader::loadTeams";
+    std::string func = "loadTeams::loadTeams";
     
     logMsg(func +" begin");
 
@@ -180,7 +180,7 @@ teamEntityMSharedPtr loadTeams::loadTeamFiles()  // load teams from XML files
 //    logMsg("Bleeep!");
     teamFiles = loadTeamListFile(teamList);
 //    stdStringVec playerFiles = load->getPlayerFiles();
-    logMsg("teamFiles.size() = " +convert->toString(teamFiles.size()));
+    logMsg(func +" teamFiles.size() = " +convert->toString(teamFiles.size()));
 
 //    exit(0);
 //    stdStringVec::iterator it;
@@ -212,13 +212,13 @@ teamEntityMSharedPtr loadTeams::loadTeamFiles()  // load teams from XML files
     {
         logMsg(func +" Team == " +TIIT.second->getData()->getCity() +" " +TIIT.second->getData()->getName());
     }
-    logMsg("loadTeams() teams.size() == " +convert->toString(teams.size()));
+    logMsg(func +"  teams.size() == " +convert->toString(teams.size()));
 //    exit(0);
-    logMsg("dah");
+    logMsg(func +" dah");
 //    exit(0);
     if (teams.size() == 0)
     {
-        logMsg("teams.size() == " +teams.size());
+        logMsg(func +" teams.size() == " +teams.size());
 //        exit(0);
     }
     
@@ -245,13 +245,13 @@ stdStringVec loadTeams::loadTeamListFile(std::string fileName)  // loads the tea
 //  char *fileContents = NULL;
     std::string fileContents;
     tinyxml2::XMLDocument doc;
-    std::string func = "loader::loadTeamListFile";
+    std::string func = "loadTeams::loadTeamListFile";
     
     logMsg(func +" begin");
 
     
     logMsg(fileName);
-    logMsg("bate");
+    logMsg(func +" bate");
 //#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 //  Ogre::DataStreamPtr fileData = render->openAPKFile(fileName);
 //  fileContents = fileData->getAsString();
@@ -285,7 +285,7 @@ stdStringVec loadTeams::loadTeamListFile(std::string fileName)  // loads the tea
     // should always have a valid root but handle gracefully if it does
     if (!pElem)
     {
-        logMsg("Unable to find a valid teamListFile root!");
+        logMsg(func +" Unable to find a valid teamListFile root!");
         exit(0);
     } 
 
@@ -300,16 +300,16 @@ stdStringVec loadTeams::loadTeamListFile(std::string fileName)  // loads the tea
     {
 //      string pText=pElem->GetText();
         files.push_back(pElem->GetText());
-        logMsg("teamFile = " +convert->toString(pElem->GetText()));
+        logMsg(func +" teamFile = " +convert->toString(pElem->GetText()));
     }
 
     stdStringVec::iterator it;
     for (it = files.begin(); it != files.end(); ++it)
     {
-        logMsg("team file = " +*it);
+        logMsg(func +" team file = " +*it);
     }
 
-    logMsg("files.size() = " +convert->toString(files.size()));
+    logMsg(func +" files.size() = " +convert->toString(files.size()));
 //    teamFiles = files;  // sets teamFiles = to the std::vector data in files
 
 //    setTeamFiles(teamFiles);
@@ -346,7 +346,7 @@ teamEntitySharedPtr loadTeams::loadTeamFile(std::string fileName)  // loads the 
     std::string fileContents;
     tinyxml2::XMLDocument doc;
     char *contents = NULL;
-    std::string func = "loader::loadTeamFile";
+    std::string func = "loadTeams::loadTeamFile";
     
     logMsg(func +" begin");
     readFile(fileName.c_str(), &contents);
@@ -371,7 +371,7 @@ teamEntitySharedPtr loadTeams::loadTeamFile(std::string fileName)  // loads the 
     // should always have a valid root but handle gracefully if it does
     if (!pElem)
     {
-        logMsg("Unable to find valid root. Exiting!");
+        logMsg(func +" Unable to find valid root. Exiting!");
         exit(0);
     } 
 
@@ -434,7 +434,7 @@ teamEntitySharedPtr loadTeams::loadTeamFile(std::string fileName)  // loads the 
     teamInstance->getData()->setLogoFile(Logo);
 //    logMsg("ID == " +convert->toString(ID));
 //    logMsg("Load Teaminstance ID == " +convert->toString(teamInstance->getID()));
-    logMsg(func + " teamInstance->getID() == " +convert->toString(teamInstance->getData()->getID()));
+    logMsg(func +" teamInstance->getID() == " +convert->toString(teamInstance->getData()->getID()));
 //    tempInst = &tempTeam;
 //    logMsg("Load Teaminstance Name == " +teamInstance->getName());
 //    logMsg("lawwl");

@@ -197,7 +197,7 @@ stdStringVec loadUsersInputs::loadUsersInputListFile(std::string fileName)  // l
 
     logMsg(func +" begin");
 
-    logMsg(func + " " +fileName);
+    logMsg(func +" " +fileName);
     char *contents = NULL;
     readFile(fileName.c_str(), &contents);
     fileContents = convert->toString(contents);

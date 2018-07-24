@@ -73,27 +73,27 @@ void loadOffensePlays::setOffensePlayFilesLoaded(bool set)  // sets the value of
 
 bool loadOffensePlays::checkIfOffensePlaysLoaded()  // checks if offense plays have been loaded into opInstance
 {
-    std::string func = "loader::checkIfOffensePlaysLoaded()";
+    std::string func = "loadOffensePlays::checkIfOffensePlaysLoaded()";
 
-    logMsg(func + " beginning");
+    logMsg(func +" begin");
     if (offensePlayFilesLoaded)
     {
-        logMsg(func + " getOffensePlayFilesLoaded");
+        logMsg(func +" getOffensePlayFilesLoaded");
 
         if (opInstance.size() > 0)
         {
-            logMsg(func + " Offense Play Files Loaded!");
+            logMsg(func +" Offense Play Files Loaded!");
             return(true);
         }
         else
         {
-            logMsg(func + " Offense Plays Files not yet Loaded!");
+            logMsg(func +" Offense Plays Files not yet Loaded!");
 
             offensePlayFilesLoaded = false;
             opInstance = loadOffensePlayFiles();
             if (opInstance.size() > 0)
             {
-                logMsg(func + " > 0!");
+                logMsg(func +" > 0!");
 
 //                load->setTInstance(tInstance);
                 offensePlayFilesLoaded = true;
@@ -101,30 +101,30 @@ bool loadOffensePlays::checkIfOffensePlaysLoaded()  // checks if offense plays h
             }
             else
             {
-                logMsg(func + " Failed to load Offense Play Files! IF");
+                logMsg(func +" Failed to load Offense Play Files! IF");
                 exit(0);
             }
         }
     }
     else
     {
-        logMsg(func + " ELSE");
+        logMsg(func +" ELSE");
 
         if (opInstance.size() > 0)
         {
-            logMsg(func + " load->getOPInstance().size() > 0! ELSE");
+            logMsg(func +" load->getOPInstance().size() > 0! ELSE");
 //            load->setTInstance(tInstance);
             offensePlayFilesLoaded = true;
             return(true);
         }
         else
         {
-            logMsg(func + " ELSE ELSE!");
+            logMsg(func +" ELSE ELSE!");
 
             opInstance = loadOffensePlayFiles();
             if (opInstance.size() > 0)
             {
-                logMsg(func + " load->getOPInstance().size() > 0! ELSE ELSE");
+                logMsg(func +" load->getOPInstance().size() > 0! ELSE ELSE");
 
 //                load->setTInstance(tInstance);
                 offensePlayFilesLoaded = true;
@@ -132,14 +132,14 @@ bool loadOffensePlays::checkIfOffensePlaysLoaded()  // checks if offense plays h
             }
             else
             {
-                logMsg(func + " Failed to load Offense Play Files!");
+                logMsg(func +" Failed to load Offense Play Files!");
                 return(false);
             }
         }
     }
 
 
-    logMsg(func + " end");
+    logMsg(func +" end");
 
     return (false);
 }
@@ -149,25 +149,32 @@ offensePlaysVecSharedPtr loadOffensePlays::loadOffensePlayFiles()  // load offen
 {
     offensePlaysVecSharedPtr plays;
     std::string playList;
+    std::string func = "loadOffensePlays::loadOffensePlayFiles()";
+
+    logMsg(func +" begin");
     
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     playList = "data/offense/plays/plays.xml";
 #else
     playList = findFile("offense/plays/plays.xml");
 #endif
+
     offensePlayFiles = loadOffensePlayListFile(playList);
 //    stdStringVec playerFiles = load->getPlayerFiles();
 
     stdStringVec::iterator it;
     for (it = offensePlayFiles.begin(); it != offensePlayFiles.end(); ++it)
     {
-        logMsg("offensePlayFile = " +*it);
+        logMsg(func +" offensePlayFile = " +*it);
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
         plays.push_back(loadOffensePlayFile("data/offense/plays/" + *it));
 #else
         plays.push_back(loadOffensePlayFile(findFile("offense/plays/" + *it)));
 #endif
     }
+    
+    logMsg(func +" end");
+    
     return (plays);
 }
 
@@ -177,10 +184,10 @@ stdStringVec loadOffensePlays::loadOffensePlayListFile(std::string fileName)  //
 //    renderEngineSharedPtr render = renderEngine::Instance();
 
     stdStringVec playFiles;
-    std::string func = "loader::loadOffensePlayListFile()";
+    std::string func = "loadOffensePlays::loadOffensePlayListFile()";
     std::string fileContents;
     tinyxml2::XMLDocument doc;
-    logMsg(fileName);
+    logMsg(func +" " +fileName);
     char *contents = NULL;
     readFile(fileName.c_str(), &contents);
     fileContents = convert->toString(contents);
@@ -206,7 +213,7 @@ stdStringVec loadOffensePlays::loadOffensePlayListFile(std::string fileName)  //
     // should always have a valid root but handle gracefully if it does
     if (!pElem)
     {
-        logMsg("Unable to find a valid offense play list file root!");
+        logMsg(func +" Unable to find a valid offense play list file root!");
         exit(0);
     }
     
@@ -260,6 +267,9 @@ sharedPtr<offensePlays> loadOffensePlays::loadOffensePlayFile(std::string fileNa
     std::string fileContents;
     tinyxml2::XMLDocument doc;
     char *contents = NULL;
+    std::string func = "loadOffensePlays::loadOffensePlayFile()";
+
+    
     readFile(fileName.c_str(), &contents);
     fileContents = convert->toString(contents);
 
@@ -293,7 +303,7 @@ sharedPtr<offensePlays> loadOffensePlays::loadOffensePlayFile(std::string fileNa
     // should always have a valid root but handle gracefully if it does
     if (!rootElement)
     {
-        logMsg("Unable to load offense play element");
+        logMsg(func +" Unable to load offense play element");
         exit(0);
     }
 

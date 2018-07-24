@@ -77,9 +77,9 @@ bool loadCourts::checkIfCourtsLoaded()  // checks if courts have been loaded int
 {
 //    exit(0);
 
-    std::string func = "loader::checkIfCourtsLoaded()";
+    std::string func = "loadCourts::checkIfCourtsLoaded()";
 
-    logMsg(func + " beginning");
+    logMsg(func +" begin");
 
     if (courtFilesLoaded)
     {
@@ -92,13 +92,13 @@ bool loadCourts::checkIfCourtsLoaded()  // checks if courts have been loaded int
         }
         else
         {
-            logMsg(func + " Court Files not yet Loaded!");
+            logMsg(func +" Court Files not yet Loaded!");
 
             courtFilesLoaded = false;
             cInstance = loadCourtFiles();
             if (cInstance.size() > 0)
             {
-                logMsg(func + "  > 0!");
+                logMsg(func +"  > 0!");
 
 //                load->setTInstance(tInstance);
                 courtFilesLoaded = true;
@@ -106,7 +106,7 @@ bool loadCourts::checkIfCourtsLoaded()  // checks if courts have been loaded int
             }
             else
             {
-                logMsg(func + " Failed to load Court Files! IF");
+                logMsg(func +" Failed to load Court Files! IF");
                 exit(0);
             }
         }
@@ -117,20 +117,20 @@ bool loadCourts::checkIfCourtsLoaded()  // checks if courts have been loaded int
 //        exit(0);
         if (cInstance.size() > 0)
         {
-            logMsg(func + " load->getCInstance().size() > 0! ELSE");
+            logMsg(func +" load->getCInstance().size() > 0! ELSE");
 //            load->setTInstance(tInstance);
             courtFilesLoaded = true;
             return(true);
         }
         else
         {
-            logMsg(func + " ELSE ELSE!");
+            logMsg(func +" ELSE ELSE!");
 
             cInstance = loadCourtFiles();
             logMsg(func);
             if (cInstance.size() > 0)
             {
-                logMsg(func + " load->getCInstance().size() > 0! ELSE ELSE");
+                logMsg(func +" load->getCInstance().size() > 0! ELSE ELSE");
 
 //                load->setTInstance(tInstance);
                 courtFilesLoaded = true;
@@ -138,14 +138,14 @@ bool loadCourts::checkIfCourtsLoaded()  // checks if courts have been loaded int
             }
             else
             {
-                logMsg(func + " Failed to load Court Files!");
+                logMsg(func +" Failed to load Court Files!");
                 return(false);
             }
         }
     }
 //    exit(0);
 
-    logMsg(func + " end");
+    logMsg(func +" end");
 
     return (false);
 }
@@ -156,16 +156,16 @@ courtStateMSharedPtr loadCourts::loadCourtFiles()  // load court settings from X
 //    exit(0);
     courtStateMSharedPtr  courts;
     std::string courtList;
-    std::string func = "loader::loadCourts()";
+    std::string func = "loadCourts::loadCourts()";
 
-    logMsg(func + " beginning");
+    logMsg(func +" begin");
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     courtList = "data/courts/courts.xml";
 #else
     courtList = findFile("courts/courts.xml");
 #endif
-    logMsg("courtList == " +courtList);
+    logMsg(func +" courtList == " +courtList);
     courtFiles = loadCourtListFile(courtList);
 //    stdStringVec playerFiles = load->getPlayerFiles();
 
@@ -195,11 +195,11 @@ stdStringVec loadCourts::loadCourtListFile(std::string fileName)    // loads the
     stdStringVec cFiles;
     std::string fileContents;
     tinyxml2::XMLDocument doc;
-    std::string func = "loader::loadCourtListFile()";
+    std::string func = "loadCourts::loadCourtListFile()";
 
-    logMsg(func + " beginning");
+    logMsg(func +" begin");
 
-    logMsg(func + " " +fileName);
+    logMsg(func +" " +fileName);
     char *contents = NULL;
     readFile(fileName.c_str(), &contents);
     fileContents = convert->toString(contents);
@@ -224,7 +224,7 @@ stdStringVec loadCourts::loadCourtListFile(std::string fileName)    // loads the
     // should always have a valid root but handle gracefully if it does
     if (!pElem)
     {
-        logMsg("Unable to find a vlid court list root!");
+        logMsg(func +" Unable to find a vlid court list root!");
     } 
 
     // save this for later
@@ -238,7 +238,7 @@ stdStringVec loadCourts::loadCourtListFile(std::string fileName)    // loads the
         cFiles.push_back(pText);
     }
 
-    logMsg(func + " end");
+    logMsg(func +" end");
 
 //    setCourtFiles(courtFile);
 //    return true;
@@ -273,7 +273,7 @@ courtStateSharedPtr loadCourts::loadCourtFile(std::string fileName)  // loads da
     std::string fileContents;
     tinyxml2::XMLDocument doc;
     char *contents = NULL;
-    std::string func = "loader::loadCourtFile()";
+    std::string func = "loadCourts::loadCourtFile()";
 
     logMsg(func + " beginning");
 
@@ -303,7 +303,7 @@ courtStateSharedPtr loadCourts::loadCourtFile(std::string fileName)  // loads da
     // should always have a valid root but handle gracefully if it does
     if (!rootElement)
     {
-        logMsg("Unable to load court element");
+        logMsg(func +" Unable to load court element");
         //exit(0);
     }
 
@@ -474,7 +474,7 @@ courtStateSharedPtr loadCourts::loadCourtFile(std::string fileName)  // loads da
     courtInstance->getData()->setBaselineInboundPos(baselineInboundPos);
     courtInstance->getData()->setSidelineInboundPos(sidelineInboundPos);
 
-    logMsg(func + " end");
+    logMsg(func +" end");
 //    courtInstance = courtStateSharedPtr(court);
     return (courtInstance);
 }

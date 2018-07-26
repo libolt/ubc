@@ -418,7 +418,7 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
     }
     logMsg(func +" activeHoopInstance.size() == " +convert->toString(data->component->getActiveHoopInstance().size()));
     logMsg(func +" end");
-    exit(0);
+//    exit(0);
 }
 
 // loads the model object

@@ -218,7 +218,7 @@ teamEntityMSharedPtr loadTeams::loadTeamFiles()  // load teams from XML files
 //    exit(0);
     if (teams.size() == 0)
     {
-        logMsg(func +" teams.size() == " +teams.size());
+        logMsg(func +" teams.size() == " +convert->toString(teams.size()));
 //        exit(0);
     }
     

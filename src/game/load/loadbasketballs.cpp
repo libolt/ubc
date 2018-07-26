@@ -77,9 +77,9 @@ void loadBasketballs::setBasketballFilesLoaded(bool set)  // sets the value of b
 bool loadBasketballs::checkIfBasketballFilesLoaded()  // checks if basketballs have been loaded into bInstance
 {
     conversionSharedPtr convert = conversion::Instance();
-    std::string func = "loader::checkBasketballsLoaded()";
+    std::string func = "loadBasketballs::checkBasketballsLoaded()";
     
-    logMsg(func + " beginning");
+    logMsg(func +" begin");
     
     if (basketballFilesLoaded)
     {
@@ -157,7 +157,7 @@ basketballStateMSharedPtr loadBasketballs::loadFiles()  // load basketball setti
 //    exit(0);
     basketballStateMSharedPtr basketballs;
     std::string basketballList;
-    std::string func = "loader::loadBasketballs()";
+    std::string func = "loadBasketballs::loadBasketballs()";
     
     logMsg(func +" begin");
     
@@ -194,7 +194,7 @@ stdStringVec loadBasketballs::loadListFile(std::string fileName) // loads the li
     stdStringVec bballFiles;
     std::string fileContents;
     tinyxml2::XMLDocument doc;
-    std::string func = "loader::loadListFile()";
+    std::string func = "loadBasketballs::loadListFile()";
     
     logMsg(func +" begin");
 
@@ -253,7 +253,7 @@ basketballStateSharedPtr loadBasketballs::loadFile(std::string fileName)  // loa
     std::string fileContents;
     tinyxml2::XMLDocument doc;
     char *contents = NULL;
-    std::string func = "loader::loadFile()";
+    std::string func = "loadBasketballs::loadFile()";
     
     logMsg(func +" begin");
 
@@ -277,12 +277,12 @@ basketballStateSharedPtr loadBasketballs::loadFile(std::string fileName)  // loa
     tinyxml2::XMLElement *child;
     tinyxml2::XMLHandle hRoot(0);
    
-    logMsg(func + " rootElement?");
+    logMsg(func +" rootElement?");
 
     rootElement = hDoc.FirstChildElement().ToElement();
     
-    logMsg(func + " rootElement!");
-    logMsg(func + " rootElement = " + convert->toString(rootElement));
+    logMsg(func +" rootElement!");
+    logMsg(func +" rootElement = " + convert->toString(rootElement));
 
     // should always have a valid root but handle gracefully if it does
     if (!rootElement)
@@ -291,7 +291,7 @@ basketballStateSharedPtr loadBasketballs::loadFile(std::string fileName)  // loa
         exit(0);
     }
 
-    logMsg(func + " child?");
+    logMsg(func +" child?");
     child = rootElement->FirstChild()->ToElement();
     if (child)
     {
@@ -367,7 +367,7 @@ basketballStateMSharedPtr loadBasketballs::loadModels(basketballStateMSharedPtr 
             ABIIT.second->getEntity()->setNodeName(nodeName);
         }
         logMsg(func +" basketball name == " +ABIIT.second->getData()->getName());
-        logMsg(func + " basketball node name == " +ABIIT.second->getEntity()->getNodeName());
+        logMsg(func +" basketball node name == " +ABIIT.second->getEntity()->getNodeName());
 //        exit(0);
         logMsg(func +" loading model == " +ABIIT.second->getEntity()->getModelFileName());
         std::string modelFileName = ABIIT.second->getEntity()->getModelFileName();

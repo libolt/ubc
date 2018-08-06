@@ -83,8 +83,8 @@ bool loadCourts::checkIfCourtsLoaded()  // checks if courts have been loaded int
 
     if (courtFilesLoaded)
     {
-        logMsg(func + " getCourtFilesLoaded");
-        exit(0);
+        logMsg(func + " courtFilesLoaded");
+//        exit(0);
         if (cInstance.size() > 0)
         {
             logMsg(func + " Court Files Loaded!");

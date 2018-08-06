@@ -1341,7 +1341,25 @@ bool gameEntity::updateState(renderEngineSharedPtr render)  // updates the game 
     std::string func = "gameEntity::updateState()";
 
     logMsg(func +" begin");
-   
+    
+    if (flag->getStateMachineInitialized())
+    {
+        if (!flag->getModelsLoaded())
+        {
+            logMsg(func +" Models Not Loaded yet!");
+            gameSMData *SMData(new gameSMData); 
+            // copies required objects to SMData
+            SMData->component = component;
+            SMData->flag = flag;
+            SMData->render = render;
+            stateMachine->pLoadModels(SMData);
+        }
+        else
+        {
+            logMsg(func +" Models Already Loaded!");
+        }
+    }
+//    exit(0);
     if (getFlag()->getInputReceived())
     {
         logMsg(func +" received input!");

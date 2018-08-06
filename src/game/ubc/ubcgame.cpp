@@ -503,7 +503,16 @@ bool UBCGame::startGame(renderEngineSharedPtr render)  // starts the game
 
 //    gameInstance->setupState(render);
 
-    gameInstance->initializeStateMachine(render);
+    if (gameInstance->initializeStateMachine(render))
+    {
+        gameInstance->getFlag()->setStateMachineInitialized(true);
+    }
+    else
+    {
+        logMsg(func +" Unable to initialize gameInstance stateMachine!");
+        exit(0);
+    }
+    
     logMsg(func +" end");
 //    exit(0);
     return (true);

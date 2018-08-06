@@ -264,6 +264,9 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
 
     logMsg(func +" begin");
 
+    gameFlagsSharedPtr tempFlag(new gameFlags);
+    data->flag = tempFlag;
+
     if (!data->flag->getActiveBasketballInstancesCreated())
     {
         basketballStateMSharedPtr activeBasketballInstance = setupBasketball->createBasketballInstances();
@@ -428,15 +431,20 @@ STATE_DEFINE(gameStateMachine, loadModels, gameSMData)
     std:: string func = "gameStateMachine::loadModels";
 
     logMsg(func +" begin");
-    exit(0);
+//    exit(0);
+    
     
     if (!data->flag->getBasketballModelLoaded())  // Checks if basketball model has been loaded
     {
+        logMsg(func +" Basketball models not loaded!");
+//        exit(0);
 //        setActiveBBallInstance(0);  // Sets the active basketball instance
         loadBasketballsSharedPtr loadBasketball(new loadBasketballs);
         basketballStateMSharedPtr activeBasketballInstance;
-        logMsg("Loading basketball Model!");
+        logMsg(func +" Loading basketball Model!");
+//        exit(0);
         activeBasketballInstance = loadBasketball->loadModels(data->component->getActiveBasketballInstance(), data->render);  // Loads the basketball model
+//        exit(0);
         if (activeBasketballInstance.size() >0)
         {          
             data->flag->setBasketballModelLoaded(true);
@@ -451,15 +459,23 @@ STATE_DEFINE(gameStateMachine, loadModels, gameSMData)
 
         // FIXEME! this should not be hard coded
     }
+    else
+    {
+        logMsg(func +" Basketball models loaded!");
+//        exit(0);
+    }
     logMsg(func +" weeee");
 //    exit(0);
 
     if (!data->flag->getCourtModelLoaded())  // Checks if the court model has been loaded
     {
+        logMsg(func +" Court models not loaded!");
+//        exit(0);
         loadCourtsSharedPtr loadCourt(new loadCourts);
         courtStateMSharedPtr activeCourtInstance;
         
         logMsg(func +" Loading court model!");
+//        exit(0);
         activeCourtInstance = loadCourt->loadModels(data->component->getActiveCourtInstance(), data->render);  // load the court model
         if (activeCourtInstance.size() > 0)
         {
@@ -473,14 +489,21 @@ STATE_DEFINE(gameStateMachine, loadModels, gameSMData)
 //            returnType = false;
         }
     }
-
+    else
+    {
+        logMsg(func +" Court models loaded!");
+//        exit(0);
+    }
 
     if (!data->flag->getHoopModelLoaded())  // Checks if the hoop model(s) have been loaded
     {
+        logMsg(func +" Hoop models not loaded!");
+//        exit(0);
         loadHoopsSharedPtr loadHoop(new loadHoops);
         hoopStateMSharedPtr activeHoopInstance;
         
         logMsg(func +" Loading hoop model(s)!");
+//        exit(0);
         activeHoopInstance = loadHoop->loadModels(data->component->getActiveHoopInstance(), data->render);  // Creates the hoop instances
         if (activeHoopInstance.size() > 0)
         {
@@ -494,7 +517,27 @@ STATE_DEFINE(gameStateMachine, loadModels, gameSMData)
 //            returnType = false;
         }
     }
-
+    else
+    {
+        logMsg(func +" Hoop models loaded!");
+//        exit(0);
+    }
+    if (!data->flag->getModelsLoaded())
+    {
+        if (data->flag->getBasketballModelLoaded() && data->flag->getCourtModelLoaded() && data->flag->getHoopModelLoaded())
+        {
+            logMsg(func +" All models loaded!");
+            data->flag->setModelsLoaded(true);
+        }
+        else
+        {
+            
+        }
+    }
+    else
+    {
+        
+    }
     logMsg(func +" end");
 //    exit(0);
 }

@@ -399,7 +399,7 @@ typedef std::vector<Ogre::Vector3> OgreVector3Vec;
 //typedef std::map<size_t, playerEntitySharedPtr, std::hash<int> > playerEntityMSharedPtr;
 typedef std::map <size_t, playerEntitySharedPtr> playerEntityMSharedPtr;
 
-typedef std::map <size_t, basketballStateSharedPtr> basketballStateMSharedPtr;
+typedef std::map <size_t, basketballEntitySharedPtr> basketballEntityMSharedPtr;
 typedef std::map <size_t, courtStateSharedPtr> courtStateMSharedPtr;
 
 typedef std::map <size_t, hoopStateSharedPtr> hoopStateMSharedPtr;
@@ -434,7 +434,7 @@ typedef std::vector <MyGUIPlayerListBoxMSharedPtr> MyGUIPlayerListBoxVecMSharedP
 
 typedef std::vector<MyGUITextBoxMSharedPtr> MyGUITextBoxVecMSharedPtr;
 
-typedef std::vector<basketballStateMSharedPtr> basketballStateVecMSharedPtr;
+typedef std::vector<basketballEntityMSharedPtr> basketballEntityVecMSharedPtr;
 
 typedef std::vector<playerEntityMSharedPtr> playerEntityVecMSharedPtr;
 

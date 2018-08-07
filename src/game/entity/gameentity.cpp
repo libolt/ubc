@@ -1357,6 +1357,13 @@ bool gameEntity::updateState(renderEngineSharedPtr render)  // updates the game 
         else
         {
             logMsg(func +" Models Already Loaded!");
+            logMsg(func +" activeBasketballInstance.size() == " +convert->toString(activeBasketballInstance.size()));
+            for (auto ABIIT : activeBasketballInstance)
+            {
+
+                logMsg(func +"Active Basketball Pos == " +convert->toString(ABIIT.second->getEntity()->getNode()->getPosition()));
+                exit(0);                
+            }
         }
     }
 //    exit(0);

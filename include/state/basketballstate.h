@@ -53,18 +53,12 @@ class state;
 class playerState;
 class courtState;
 
-class basketballState : public state
+/*class basketballState : public state
 {
 public:
 
     basketballState();  // constructor
     ~basketballState();	// destructor
-
-    gameEntitySharedPtr getGameInstance();  // retrieves the value of gameS
-    void setGameInstance(gameEntitySharedPtr set);  // sets the value of gameS
-
-    sharedPtr<basketballData> getData();  // retrievees the value of data
-    void setData(sharedPtr<basketballData> set);  // sets the value of data
 
     basketballEntitySharedPtr getEntity();  // retrieves the value of entity
     void setEntity(basketballEntitySharedPtr set);  // sets the value of entity
@@ -72,6 +66,12 @@ public:
     bool getEntityInitialized();  // retrieves the value of entityInitialized
     void setEntityInitialized(bool set);  // sets the value of entityInitialized
 
+    gameEntitySharedPtr getGameInstance();  // retrieves the value of gameS
+    void setGameInstance(gameEntitySharedPtr set);  // sets the value of gameS
+
+    sharedPtr<basketballData> getData();  // retrievees the value of data
+    void setData(sharedPtr<basketballData> set);  // sets the value of data
+    
     bool getInitialized();  // retrieves the value of initialized
     void setInitialized(bool set);  // sets the value of initialized
 
@@ -173,13 +173,14 @@ protected:
 
 private:
 
+    basketballEntitySharedPtr entity;
+
+    bool entityInitialized;  // stores whether the entity has been initialized
+
     gameEntitySharedPtr gameInstance;  // the gameState object
 
     sharedPtr<basketballData> data;
 
-    basketballEntitySharedPtr entity;
-
-    bool entityInitialized;  // stores whether the entity has been initialized
 
     bool initialized;  // stores whether the basketball object has been initialized
 
@@ -234,7 +235,7 @@ private:
     positionChangedTypes courtPositionChangedType;
 
 //    bool stateSet;  // if true then the basketball state is set
-};
+};*/
 
 #endif
 

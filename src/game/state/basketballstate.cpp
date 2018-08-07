@@ -37,7 +37,7 @@
 
 #include <string>
 
-basketballState::basketballState()  // constructor
+/*basketballState::basketballState()  // constructor
 {
 //    playerControlBasketball = -1;
     entityInitialized = false;
@@ -91,6 +91,23 @@ basketballState::~basketballState()  // destructor
 {
 }
 
+basketballEntitySharedPtr basketballState::getEntity()  // retrieves the value of entity
+{
+    return(entity);
+}
+void basketballState::setEntity(basketballEntitySharedPtr set)  // sets the value of entity
+{
+    entity = set;
+}
+
+bool basketballState::getEntityInitialized()  // retrieves the value of entityInitialized
+{
+    return (entityInitialized);
+}
+void basketballState::setEntityInitialized(bool set)  // sets the value of entityInitialized
+{
+    entityInitialized = set;
+}
 
 gameEntitySharedPtr basketballState::getGameInstance()  // retrieves the value of gameS
 {
@@ -108,24 +125,6 @@ sharedPtr<basketballData> basketballState::getData()  // retrievees the value of
 void basketballState::setData(sharedPtr<basketballData> set)  // sets the value of data
 {
     data = set;
-}
-
-basketballEntitySharedPtr basketballState::getEntity()  // retrieves the value of entity
-{
-    return(entity);
-}
-void basketballState::setEntity(basketballEntitySharedPtr set)  // sets the value of entity
-{
-    entity = set;
-}
-
-bool basketballState::getEntityInitialized()  // retrieves the value of entityInitialized
-{
-    return (entityInitialized);
-}
-void basketballState::setEntityInitialized(bool set)  // sets the value of entityInitialized
-{
-    entityInitialized = set;
 }
 
 bool basketballState::getInitialized()  // retrieves the value of initialized
@@ -272,15 +271,6 @@ void basketballState::setPlayerControlled(bool set)  // sets the value of player
     playerControlled = set;
 }
 
-/*playerStateSharedPtr basketballState::getPlayerWithBall()  // retrieves the value of playerWithBall
-{
-    return (playerWithBall);
-}
-void basketballState::setPlayerWithBall(playerStateSharedPtr set)  // sets the value of playerWithBall
-{
-    playerWithBall = set;
-}*/
-
 courtStateSharedPtr basketballState::getCourtInstance()  // retrieves the value of courtInstance
 {
     return (courtInstance);
@@ -415,17 +405,7 @@ void basketballState::updateState()  // updates the state of the basketball
     std::string func = "basketballState::updateState()";
     
     logMsg(func + " beginning");
-/*    if (entity->getModelNeedsLoaded())
-    {
-        
-        if (entity->loadModel())
-        {
-            entity->setModelNeedsLoaded(false);
-            entity->setModelLoaded(true);
-            
-        }
-    }
-*/
+
     if (numberSet)  // runs the physics update code
     {
         entity->getPhysics()->updatePhysObj();
@@ -540,11 +520,7 @@ void basketballState::updatePosition() // updates the position of the basketball
     
     logMsg("basketball position = " +convert->toString(courtPosition));
 
-/*    node->translate(posChange);
-	btVector3 change; // = btVector3(0,0,0);
-	change = BtOgre::Convert::toBullet(posChange); // converts from Ogre::Vector3 to btVector3
-	physBody->translate(change); // moves physics body in unison with the model
-*/
+
     logMsg(func + " end");
 }
 
@@ -554,10 +530,7 @@ void basketballState::updateMovement()  // updates the basketball(s) movements
 //    sharedPtr<gameState> gameS = gameState::Instance();
     teamEntityMSharedPtr activeTeamInstance = gameInstance->getComponent()->getActiveTeamInstance();
     size_t teamWithBall = gameInstance->getData()->getTeamWithBall();
-/*TS    playerStateVecSharedPtr activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
-    size_t playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();
-    size_t playerWithBallID = activeTeamInstance[teamWithBall]->getPlayerWithBallID();
-TS*/
+
     size_t x = 0;
     
 //TS    bool shotTaken = activePlayerInstance[playerWithBallInstance]->getShotTaken();
@@ -628,12 +601,7 @@ void basketballState::updateDirection()  // updates basketball direction(s)
 //    sharedPtr<gameState> gameS = gameState::Instance();
     teamEntityMSharedPtr activeTeamInstance = gameInstance->getComponent()->getActiveTeamInstance();
     size_t teamWithBall = gameInstance->getData()->getTeamWithBall();
-/*TS    playerStateVecSharedPtr activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
-    sizeTVec activePlayerID = activeTeamInstance[teamWithBall]->getActivePlayerID();
-    
-    size_t playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();
-    size_t playerWithBallID = activeTeamInstance[teamWithBall]->getPlayerWithBallID();
-TS*/
+
     jumpBallsSharedPtr jumpBall = gameInstance->getComponent()->getJumpBall();
 
 //TS    logMsg("directplayerwithballInstance == " +convert->toString(playerWithBallInstance));
@@ -643,97 +611,7 @@ TS*/
 
     logMsg(func + " beginning");
 
-/*TS    bool shotTaken = activePlayerInstance[playerWithBallInstance]->getShotTaken();
 
-    if (!shotTaken)
-    {
-        
-        Ogre::Vector3 posChange;
-        while (x < activePlayerInstance.size())
-        {
-            if (activePlayerInstance[x]->getID() == playerWithBallID)
-            {
-                playerWithBallInstance = x;
-                break;
-            }
-            ++x;
-        }
-        
-        if (playerWithBallInstance >= 0 && playerWithBallInstance < 10 && tipOffComplete == true)  // verifies that the playerWithBall variable is set to a valid number
-        {
-            Ogre::Vector3 playerPos= activePlayerInstance[playerWithBallInstance]->getNode()->getPosition();
-            Ogre::Vector3 bballCurrentPos;
-
-            Ogre::Vector3 bballPos = playerPos;
-            Ogre::Vector3 bballPosChange = Ogre::Vector3(0.0f,0.0f,0.0f);
-            btVector3 change; // = btVector3(0,0,0);
-            btTransform transform;
-    //      basketballInstance[activeBBallInstance].getPhysBody()->forceActivationState(ISLAND_SLEEPING);
-    //        logMsg("playerDirection = " + convert->toString(&playerDirection));
-    //        logMsg("oldPlayerDirection = " + convert->toString(&oldPlayerDirection));
-
-            logMsg("playerWithBallInstance = " +convert->toString(playerWithBallInstance));
-//            exit(0);
-
-            if (courtPosition.x == 0 && courtPosition.y == 0 && courtPosition.z == 0)
-            {
-                bballCurrentPos = getNode()->getPosition();
-            }
-            else
-            {
-                bballCurrentPos = courtPosition;
-            }
-
-            if (direction != oldDirection)
-            {
-                //exit(0);
-                bballPos = Ogre::Vector3(0,0,0);
-                switch (direction)
-                {
-                    case UP:
-                        bballPos[0] += 0.200;
-                        //bballPos[1] = bballCurrentPos[1]; // maintains the current height of the basketball on the court as the player and ball moves
-                        bballPos[2] -= 0.200;
-        //              basketballInstance[activeBBallInstance].setPosChange(bballPosChange);   // sets the posChange for current basketballInstance                        
-                    case DOWN:
-                        bballPos[0] -= 0.200;
-                        //bballPos[1] = bballCurrentPos[1]; // maintains the current height of the basketball on the court as the player and ball moves
-                        bballPos[2] += 0.200;
-        //              basketballInstance[activeBBallInstance].setPosChange(bballPosChange);   // sets the posChange for current basketballInstance
-                        break;
-                    case LEFT:
-                        bballPos[0] -= 0.200;
-                        //bballPos[1] = bballCurrentPos[1]; // maintains the current height of the basketball on the court as the player and ball moves
-//                      exit(0);
-        //              basketballInstance[activeBBallInstance].setPosChange(bballPosChange);   // sets the posChange for current basketballInstance
-                        break;
-                    case RIGHT:
-                        bballPos[0] += 0.200;
-                        //bballPos[1] = bballCurrentPos[1]; // maintains the current height of the basketball on the court as the player and ball moves
-        //              basketballInstance[activeBBallInstance].setPosChange(bballPosChange);   // sets the posChange for current basketballInstance
-                        break;
-                    default:
-                        break;
-                }
-                
-                newCourtPosition = bballPos;
-                courtPositionChanged = true;
-                courtPositionChangedType = PLAYERDIRECTCHANGE;
-//                exit(0);
-
-    //      basketballInstance[activeBBallInstance].getPhysBody()->forceActivationState(ACTIVE_TAG);
-            }
-            else
-            {
-            }
-        }
-        oldDirection = direction;
-    }
-    else
-    {
-
-    }
-TS*/
     gameInstance->getComponent()->setJumpBall(jumpBall);
     
     logMsg(func + " end");
@@ -760,4 +638,4 @@ bool basketballState::calculateShot()
 bool basketballState::shotLogic()
 {
     return true;
-}
+}*/

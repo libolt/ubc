@@ -37,13 +37,15 @@ public:
     /// exists and it evaluates to false, the state action will not execute.
     /// @param[in] sm - A state machine instance.
     /// @param[in] data - The event data.
-    virtual void invokestateAction(stateMachine* sm, const eventData* data) const = 0;
+    virtual void invokestateAction(sharedPtr<stateMachine> sm, const sharedPtr<eventData> data) const = 0;
 };
 
 /// @brief stateAction takes three template arguments: A state machine class,
 /// a state function event data type (derived from eventData) and a state machine
 /// member function pointer.
-template <class SM, class Data, void (SM::*Func)(const Data*)>
+//template <class SM, class Data, void (SM::*Func)(const sharedPtr<Data>)>
+template <class SM, class Data, void (SM::*Func)(const sharedPtr<Data>)>
+
 class stateAction : public stateBase
 {
 public:
@@ -85,7 +87,7 @@ public:
 /// @brief GuardCondition takes three template arguments: A state machine class,
 /// a state function event data type (derived from eventData) and a state machine
 /// member function pointer.
-template <class SM, class Data, BOOL (SM::*Func)(const sharedPtr<Data>)>
+template <class SM, class Data, BOOL (sharedPtr<SM>::*Func)(const sharedPtr<Data>)>
 class GuardCondition : public GuardBase
 {
 public:
@@ -114,7 +116,7 @@ public:
 /// @brief EntryAction takes three template arguments: A state machine class,
 /// a state function event data type (derived from eventData) and a state machine
 /// member function pointer.
-template <class SM, class Data, void (SM::*Func)(const sharedPtr<Data>)>
+template <class SM, class Data, void (sharedPtr<SM>::*Func)(const sharedPtr<Data>)>
 class EntryAction : public EntryBase
 {
 public:

@@ -87,11 +87,7 @@ public:
 /// @brief GuardCondition takes three template arguments: A state machine class,
 /// a state function event data type (derived from eventData) and a state machine
 /// member function pointer.
-<<<<<<< HEAD
 template <class SM, class Data, BOOL (sharedPtr<SM>::*Func)(const sharedPtr<Data>)>
-=======
-template <class SM, class Data, BOOL (SM::*Func)(const sharedPtr<Data>)>
->>>>>>> parent of a26c643... Revert "Began revamping stateMachine to use sharedPtr"
 class GuardCondition : public GuardBase
 {
 public:
@@ -120,11 +116,7 @@ public:
 /// @brief EntryAction takes three template arguments: A state machine class,
 /// a state function event data type (derived from eventData) and a state machine
 /// member function pointer.
-<<<<<<< HEAD
 template <class SM, class Data, void (sharedPtr<SM>::*Func)(const sharedPtr<Data>)>
-=======
-template <class SM, class Data, void (SM::*Func)(const sharedPtr<Data>)>
->>>>>>> parent of a26c643... Revert "Began revamping stateMachine to use sharedPtr"
 class EntryAction : public EntryBase
 {
 public:

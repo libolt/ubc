@@ -288,7 +288,7 @@ STATE_DEFINE(playerStateMachine, ChangePosition, playerSMData)
     std:: string func = "playerStateMachine::ChangePosition";
 
     logMsg(func +" begin");
-    logMsg(func +" node is in scene graph? " +convert->toString(data->node->isInSceneGraph()));
+
     logMsg("playerStateMachine::ST_ChangePosition : court position is " +convert->toString(data->position));
     currentPosition = data->position;
     logMsg(func +" Node Position == " +convert->toString(data->node->getPosition()));

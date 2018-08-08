@@ -247,7 +247,7 @@ void teamEntity::updateState(gameComponentsSharedPtr gameInstanceComponent, game
     if (gameInstanceFlag->getBasketballInstanceCreated() && gameInstanceFlag->getPlayerInstanceCreated())
     {
         
-        basketballStateMSharedPtr activeBasketballInstance = gameInstanceComponent->getActiveBasketballInstance();
+        basketballEntityMSharedPtr activeBasketballInstance = gameInstanceComponent->getActiveBasketballInstance();
 //      exit(0);
         // checks whether to execute offense or defense logic
         if (flag->getOffense() && !flag->getDefense())
@@ -314,11 +314,11 @@ void teamEntity::updateState(gameComponentsSharedPtr gameInstanceComponent, game
 
                         //sets the basketball Height;
                         // FIXME! activeBasketballInstance HARDCODED
-                        bballPos = activeBasketballInstance[0]->getEntity()->getNode()->getPosition();
+                        bballPos = activeBasketballInstance[0]->getNode()->getPosition();
                         playerPos = activePlayerInstance[instanceWithBall]->getNode()->getPosition();
                         bballPos[1] = playerPos[1];
                         // FIXME! activeBasketballInstance HARDCODED
-                        activeBasketballInstance[0]->getEntity()->getNode()->setPosition(bballPos);
+                        activeBasketballInstance[0]->getNode()->setPosition(bballPos);
 
                     }
                     else if (activePlayerInstance[instanceWithBall]->getFlag()->getPassCalculated())

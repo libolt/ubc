@@ -34,7 +34,7 @@
 
 // static declarations
 
-basketballStateMSharedPtr loadBasketballs::bInstance;
+basketballEntityMSharedPtr loadBasketballs::bInstance;
 stdStringVec loadBasketballs::basketballFiles;  // stores list of basketball xml files
 bool loadBasketballs::basketballFilesLoaded;
 
@@ -56,11 +56,11 @@ void loadBasketballs::setBasketballFiles(stdStringVec set)  // sets the value of
     basketballFiles = set;
 }
 
-basketballStateMSharedPtr loadBasketballs::getBInstance()  // retrieves the value of bInstance
+basketballEntityMSharedPtr loadBasketballs::getBInstance()  // retrieves the value of bInstance
 {
     return (bInstance);
 }
-void loadBasketballs::setBInstance(basketballStateMSharedPtr set)  // sets the value of bInstance
+void loadBasketballs::setBInstance(basketballEntityMSharedPtr set)  // sets the value of bInstance
 {
     bInstance = set;
 }
@@ -152,10 +152,10 @@ bool loadBasketballs::checkIfBasketballFilesLoaded()  // checks if basketballs h
 }
 
 // Basketballs
-basketballStateMSharedPtr loadBasketballs::loadFiles()  // load basketball settings from XML files
+basketballEntityMSharedPtr loadBasketballs::loadFiles()  // load basketball settings from XML files
 {
 //    exit(0);
-    basketballStateMSharedPtr basketballs;
+    basketballEntityMSharedPtr basketballs;
     std::string basketballList;
     std::string func = "loadBasketballs::loadBasketballs()";
     
@@ -176,11 +176,11 @@ basketballStateMSharedPtr loadBasketballs::loadFiles()  // load basketball setti
         logMsg("basketballFile = " +basketballFiles[it]);
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 //        basketballs.push_back(loadFile("data/basketballs/" + *it));
-        basketballs.insert(std::pair<size_t, basketballStateSharedPtr>(it, loadFile("data/basketballs/" + basketballFiles[it])));
+        basketballs.insert(std::pair<size_t, basketballEntitySharedPtr>(it, loadFile("data/basketballs/" + basketballFiles[it])));
 
 #else
 //        basketballs.push_back(loadFile(findFile("basketballs/" + *it)));
-        basketballs.insert(std::pair<size_t, basketballStateSharedPtr>(it, loadFile(findFile("basketballs/" + basketballFiles[it]))));
+        basketballs.insert(std::pair<size_t, basketballEntitySharedPtr>(it, loadFile(findFile("basketballs/" + basketballFiles[it]))));
 #endif
     }
     logMsg(func +" end");
@@ -242,10 +242,10 @@ stdStringVec loadBasketballs::loadListFile(std::string fileName) // loads the li
     return (bballFiles);
 }
 
-basketballStateSharedPtr loadBasketballs::loadFile(std::string fileName)  // loads data from the basketball XML files
+basketballEntitySharedPtr loadBasketballs::loadFile(std::string fileName)  // loads data from the basketball XML files
 {
     conversionSharedPtr convert = conversion::Instance();
-    sharedPtr<basketballState> basketballInstance(new basketballState);
+    basketballEntitySharedPtr basketballInstance(new basketballEntity);
     
 //    basketballState *basketball = new basketballState;
     std::string name;
@@ -324,21 +324,21 @@ basketballStateSharedPtr loadBasketballs::loadFile(std::string fileName)  // loa
     }
     basketballInstance->getData()->setName(name);
     basketballInstance->getData()->setModelFileName(modelName);
-    basketballInstance->getEntity()->setModelFileName(modelName);
+    basketballInstance->setModelFileName(modelName);
     
     return (basketballInstance);
 }
 
-basketballStateMSharedPtr loadBasketballs::loadModels(basketballStateMSharedPtr activeBasketballInstance, renderEngineSharedPtr render)  // loads selected basketball model
+basketballEntityMSharedPtr loadBasketballs::loadModels(basketballEntityMSharedPtr activeBasketballInstance, renderEngineSharedPtr render)  // loads selected basketball model
 {
     conversionSharedPtr convert = conversion::Instance();
     loaderSharedPtr load(new loader);
     setupBasketballsSharedPtr setupBasketball;
-//    basketballStateMSharedPtr activeBasketballInstance = getActiveBasketballInstance();
+//    basketballEntityMSharedPtr activeBasketballInstance = getActiveBasketballInstance();
 //    bool activeBasketballInstancesCreated = getActiveBasketballInstancesCreated();
 //    size_t activeBBallInstance = getActiveBBallInstance();
-//    basketballStateMSharedPtr basketballInstance = getBasketballInstance();
-//    basketballStateSharedPtr basketballModelInstance(new basketballState);
+//    basketballEntityMSharedPtr basketballInstance = getBasketballInstance();
+//    basketballEntitySharedPtr basketballModelInstance(new basketballState);
     OgreEntitySharedPtr model;  // stores the model returned by loadModel() function
     std::string func = "loadBasketballs::loadModels()";
     bool returnType = false;
@@ -352,43 +352,43 @@ basketballStateMSharedPtr loadBasketballs::loadModels(basketballStateMSharedPtr 
         logMsg(func +" activeBasketballInstance == " +convert->toString(ABIIT.first));
        
         //FIXME! This should be done in a cleaner way!
-        ABIIT.second->getEntity()->setModelFileName(ABIIT.second->getData()->getModelFileName());
+        ABIIT.second->setModelFileName(ABIIT.second->getData()->getModelFileName());
 
-        if (ABIIT.second->getEntity()->getName() == "")  // checks if entityName has been set
+        if (ABIIT.second->getName() == "")  // checks if entityName has been set
         {
             std::string name = ABIIT.second->getData()->getName();
-            ABIIT.second->getEntity()->setName(name);
+            ABIIT.second->setName(name);
         }
-        logMsg(func +" entityName == " +ABIIT.second->getEntity()->getName());
+        logMsg(func +" entityName == " +ABIIT.second->getName());
 //        exit(0);
-        if (ABIIT.second->getEntity()->getNodeName() == "")  // checks if entityNodeName has been set
+        if (ABIIT.second->getNodeName() == "")  // checks if entityNodeName has been set
         {
             std::string nodeName = ABIIT.second->getData()->getName() +"node";
-            ABIIT.second->getEntity()->setNodeName(nodeName);
+            ABIIT.second->setNodeName(nodeName);
         }
         logMsg(func +" basketball name == " +ABIIT.second->getData()->getName());
-        logMsg(func +" basketball node name == " +ABIIT.second->getEntity()->getNodeName());
+        logMsg(func +" basketball node name == " +ABIIT.second->getNodeName());
 //        exit(0);
-        logMsg(func +" loading model == " +ABIIT.second->getEntity()->getModelFileName());
-        std::string modelFileName = ABIIT.second->getEntity()->getModelFileName();
-        std::string entityName = ABIIT.second->getEntity()->getName();
-        std::string entityNodeName = ABIIT.second->getEntity()->getNodeName();
+        logMsg(func +" loading model == " +ABIIT.second->getModelFileName());
+        std::string modelFileName = ABIIT.second->getModelFileName();
+        std::string entityName = ABIIT.second->getName();
+        std::string entityNodeName = ABIIT.second->getNodeName();
 
         model = loadModelFile(modelFileName, entityName, render);
-        ABIIT.second->getEntity()->setModelLoaded(true);
-        ABIIT.second->getEntity()->setModel(model);
+        ABIIT.second->setModelLoaded(true);
+        ABIIT.second->setModel(model);
 
-/*        if (ABIIT.second->getEntity()->loadModel())
+/*        if (ABIIT.second->loadModel())
         {
-            logMsg(func +" modelName == " +ABIIT.second->getEntity()->getModel()->getName());
-            logMsg(func +" nodeName == " +ABIIT.second->getEntity()->getNode()->getName());
+            logMsg(func +" modelName == " +ABIIT.second->getModel()->getName());
+            logMsg(func +" nodeName == " +ABIIT.second->getNode()->getName());
  
 //            exit(0);
-            ABIIT.second->getEntity()->setModelNeedsLoaded(false);
+            ABIIT.second->setModelNeedsLoaded(false);
             logMsg(func +" blaa!");
-            ABIIT.second->getEntity()->setModelLoaded(true);
+            ABIIT.second->setModelLoaded(true);
             logMsg(func +" blii!");
-            ABIIT.second->getEntity()->setupPhysicsObject();
+            ABIIT.second->setupPhysicsObject();
 ///            logMsg(func +" bluu!");
 ///            setActiveBasketballInstance(activeBasketballInstance);
 ///            logMsg(func +" Basketball Model Loaded!");

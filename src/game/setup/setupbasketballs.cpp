@@ -36,9 +36,9 @@ setupBasketballs::~setupBasketballs()  // destructor
     
 }
 
-basketballStateMSharedPtr setupBasketballs::createBasketballInstances()  // creates basketball Instances
+basketballEntityMSharedPtr setupBasketballs::createBasketballInstances()  // creates basketball Instances
 {
-    basketballStateMSharedPtr basketballInstance;
+    basketballEntityMSharedPtr basketballInstance;
     loadBasketballsSharedPtr loadBasketball(new loadBasketballs);
     basketballInstance = loadBasketball->loadFiles();
     std::string func = "setupBasketballs::createBasketballInstance()";
@@ -52,9 +52,9 @@ basketballStateMSharedPtr setupBasketballs::createBasketballInstances()  // crea
 
     for (auto BIIT : basketballInstance)  // loop
     {
-        BIIT.second->getEntity()->setModelFileName("bball.mesh");
-        BIIT.second->getEntity()->setName(BIIT.second->getData()->getModelFileName());
-        BIIT.second->getEntity()->setNodeName(BIIT.second->getData()->getModelFileName());
+        BIIT.second->setModelFileName("bball.mesh");
+        BIIT.second->setName(BIIT.second->getData()->getModelFileName());
+        BIIT.second->setNodeName(BIIT.second->getData()->getModelFileName());
 /*BASEREMOVAL        if (!BIIT.second->getEntity()->getBaseInitialized())
         {
 //            BIIT.second->getEntity()->setBase(getBase());
@@ -62,7 +62,7 @@ basketballStateMSharedPtr setupBasketballs::createBasketballInstances()  // crea
 */
         logMsg(func +" creating steer object");
         basketballSteer *bballSteer = new basketballSteer;  // steer instance
-        BIIT.second->getEntity()->setSteer(basketballSteerSharedPtr(bballSteer));
+        BIIT.second->setSteer(basketballSteerSharedPtr(bballSteer));
         logMsg(func +" setting instance number");
         BIIT.second->setNumber(bballNum);
         BIIT.second->setNumberSet(true);
@@ -77,12 +77,12 @@ basketballStateMSharedPtr setupBasketballs::createBasketballInstances()  // crea
     return (basketballInstance);
 }
 
-basketballStateMSharedPtr setupBasketballs::createActiveBasketballInstances(basketballStateMSharedPtr basketballInstance, size_t numActiveBasketballs)  // creates active basketball instances
+basketballEntityMSharedPtr setupBasketballs::createActiveBasketballInstances(basketballEntityMSharedPtr basketballInstance, size_t numActiveBasketballs)  // creates active basketball instances
 {    
     conversionSharedPtr convert = conversion::Instance();
     loadBasketballsSharedPtr loadBasketball;  // = base->getLoad();
-//    basketballStateMSharedPtr basketballInstance = getBasketballInstance();
-    basketballStateMSharedPtr activeBasketballInstance;
+//    basketballEntityMSharedPtr basketballInstance = getBasketballInstance();
+    basketballEntityMSharedPtr activeBasketballInstance;
     std::string func = "gameState::createActiveBasketballInstances()";
 
     logMsg(func +" begin");
@@ -110,7 +110,7 @@ basketballStateMSharedPtr setupBasketballs::createActiveBasketballInstances(bask
     logMsg("Creating Active Basketball Instances!");
     for (auto x=0; x<numActiveBasketballs; ++x)
     {
-        activeBasketballInstance.insert(std::pair<size_t, basketballStateSharedPtr>(x, basketballInstance[x]));
+        activeBasketballInstance.insert(std::pair<size_t, basketballEntitySharedPtr>(x, basketballInstance[x]));
 //        activeBasketballInstance[x]->setGameS(base->getGameS());
     }
 //    setBasketballInstance(basketballInstance);

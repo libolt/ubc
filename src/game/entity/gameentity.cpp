@@ -516,8 +516,8 @@ bool gameEntity::createInstances()  // creates object instances
 {
     conversionSharedPtr convert = conversion::Instance();
     loadBasketballsSharedPtr loadBasketball;  // = base->getLoad();
-    basketballStateMSharedPtr basketballInstance = getBasketballInstance();
-    basketballStateMSharedPtr activeBasketballInstance = getActiveBasketballInstance();
+    basketballEntityMSharedPtr basketballInstance = getBasketballInstance();
+    basketballEntityMSharedPtr activeBasketballInstance = getActiveBasketballInstance();
     std::string func = "gameEntity::createActiveBasketballInstances()";
     
     logMsg(func +" begin");
@@ -545,7 +545,7 @@ bool gameEntity::createInstances()  // creates object instances
     logMsg("Creating Active Basketball Instances!");
     for (auto x=0; x<getNumActiveBasketballs(); ++x)
     {
-        activeBasketballInstance.insert(std::pair<size_t, basketballStateSharedPtr>(x, basketballInstance[x]));
+        activeBasketballInstance.insert(std::pair<size_t, basketballEntitySharedPtr>(x, basketballInstance[x]));
         activeBasketballInstance[x]->setGameS(base->getGameS());
     }
     setBasketballInstance(basketballInstance);
@@ -745,21 +745,21 @@ bool gameEntity::createNodes(renderEngineSharedPtr render)  // creates scene nod
     {
         for (auto ABIIT : component->getActiveBasketballInstance())  // loop through active basketball instances
         {
-            activeModel = ABIIT.second->getEntity()->getModel();
-            activeEntityName = ABIIT.second->getEntity()->getName();
+            activeModel = ABIIT.second->getModel();
+            activeEntityName = ABIIT.second->getName();
             activeNodeNum = convert->toString(ABIIT.first);
-            activeNodeName = ABIIT.second->getEntity()->getNodeName();
+            activeNodeName = ABIIT.second->getNodeName();
             if (activeNodeName == "")
             {
                 activeNodeName = activeEntityName + activeNodeNum;
-                ABIIT.second->getEntity()->setNodeName(activeNodeName);
+                ABIIT.second->setNodeName(activeNodeName);
             }
             else
             {
                 
             }
             activeNode = render->createNode(activeModel, activeNodeName);  // creates node
-            ABIIT.second->getEntity()->setNode(activeNode);  // saves node to current instance
+            ABIIT.second->setNode(activeNode);  // saves node to current instance
         }
     }
     else
@@ -832,7 +832,7 @@ void gameEntity::setBasketballStartPositions()  // sets the initial coordinates 
     conversionSharedPtr convert = conversion::Instance();
 //    size_t activeBBallInstance = getActiveBBallInstance();
 //    basketballStateVecSharedPtr basketballInstance = getBasketballInstance();
-    basketballStateMSharedPtr activeBasketballInstance = component->getActiveBasketballInstance();
+    basketballEntityMSharedPtr activeBasketballInstance = component->getActiveBasketballInstance();
     std::string func = "gameEntity::setBasketballStartPositions()";
     
     logMsg(func +" begin");
@@ -844,9 +844,9 @@ void gameEntity::setBasketballStartPositions()  // sets the initial coordinates 
     
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 //    exit(0);
-        ABIIT.second->getEntity()->getNode()->setPosition(0.8f,10.0f,352.0f);
+        ABIIT.second->getNode()->setPosition(0.8f,10.0f,352.0f);
 #else
-        ABIIT.second->getEntity()->getNode()->setPosition(0.8f,-5.0f,352.0f);
+        ABIIT.second->getNode()->setPosition(0.8f,-5.0f,352.0f);
 //    exit(0);
 #endif
     }
@@ -952,7 +952,7 @@ bool gameEntity::setupTipOff()  // sets up tip off conditions
 
 bool gameEntity::executeTipOff()  // executes tip off
 {
-    basketballStateMSharedPtr activeBasketballInstance = component->getActiveBasketballInstance();
+    basketballEntityMSharedPtr activeBasketballInstance = component->getActiveBasketballInstance();
     std::string func = "gameEntity::executeTipOff()";
 
     logMsg(func +" begin");
@@ -1018,7 +1018,7 @@ bool gameEntity::initializeStateMachine(renderEngineSharedPtr render)  // sets u
     
     if (!getFlag()->getBasketballInstanceCreated())
     {
-        basketballStateMSharedPtr basketballInstance = setupBasketball->createBasketballInstances();
+        basketballEntityMSharedPtr basketballInstance = setupBasketball->createBasketballInstances();
         if (basketballInstance.size() > 0)
         {
             logMsg("Basketball Instances Created!");
@@ -1037,7 +1037,7 @@ bool gameEntity::initializeStateMachine(renderEngineSharedPtr render)  // sets u
     data->setNumActiveBasketballs(1);
     if (!getFlag()->getActiveBasketballInstancesCreated())
     {
-        basketballStateMSharedPtr activeBasketballInstance = setupBasketball->createBasketballInstances();
+        basketballEntityMSharedPtr activeBasketballInstance = setupBasketball->createBasketballInstances();
         if (activeBasketballInstance.size() > 0)
         {
             logMsg("activeBasketballInstances Created!");
@@ -1336,7 +1336,7 @@ bool gameEntity::updateState(renderEngineSharedPtr render)  // updates the game 
     AISystemSharedPtr ai = AISystem::Instance();
     timing timer; 
     Ogre::Vector3 playerPos;
-    basketballStateMSharedPtr activeBasketballInstance = component->getActiveBasketballInstance();
+    basketballEntityMSharedPtr activeBasketballInstance = component->getActiveBasketballInstance();
 //    teamEntityMSharedPtr activeTeamInstance = getActiveTeamInstance();
     std::string func = "gameEntity::updateState()";
 
@@ -1361,7 +1361,7 @@ bool gameEntity::updateState(renderEngineSharedPtr render)  // updates the game 
             for (auto ABIIT : activeBasketballInstance)
             {
 
-                logMsg(func +"Active Basketball Pos == " +convert->toString(ABIIT.second->getEntity()->getNode()->getPosition()));
+                logMsg(func +"Active Basketball Pos == " +convert->toString(ABIIT.second->getNode()->getPosition()));
                 exit(0);                
             }
         }
@@ -1389,7 +1389,7 @@ bool gameEntity::updateState(renderEngineSharedPtr render)  // updates the game 
     
     for (auto ABIIT : activeBasketballInstance)
     {
-        ABIIT.second->updateState();
+        ABIIT.second->updateState(component, data, flag);
         ABIIT.second->setPlayer(5);
     }
   

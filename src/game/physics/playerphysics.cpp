@@ -203,7 +203,7 @@ void playerPhysics::updatePosition()  // updates the position of player objecgts
 
     teamEntityMSharedPtr activeTeamInstance = getGameInstance()->getComponent()->getActiveTeamInstance();
     playerEntityVecMSharedPtr activePlayerInstance;
-    basketballStateMSharedPtr basketballInstance = getGameInstance()->getComponent()->getBasketballInstance();
+    basketballEntityMSharedPtr basketballInstance = getGameInstance()->getComponent()->getBasketballInstance();
 
     // checks to see if player positions need updated
     size_t z = 0;

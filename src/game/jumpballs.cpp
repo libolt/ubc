@@ -172,7 +172,7 @@ bool jumpBalls::updateState(teamTypes teamWithBall, basketballEntityMSharedPtr a
 //    size_t activeBBallInstance = gameS->getActiveBBallInstance();
 //    basketballStateVec basketBallInstance = gameS->getBasketballInstance();
    // FIXME! Do NOT hard code activeBasketballInstance in the future
-    bool bballPhysicsSetup = activeBasketballInstance[0]->getEntity()->getPhysicsSetup();
+    bool bballPhysicsSetup = activeBasketballInstance[0]->getPhysicsSetup();
     if (teamWithBall == NOTEAM && bballPhysicsSetup) //&& gameS->getActiveTeamInstancesCreated())
     {
 
@@ -221,7 +221,7 @@ bool jumpBalls::updateState(teamTypes teamWithBall, basketballEntityMSharedPtr a
     return (false);  // returns false until jump ball has com=pleted
 }
 
-bool jumpBalls::jumpBallExecute(basketballStateMSharedPtr activeBasketballInstance, teamEntityMSharedPtr activeTeamInstance)  // initiates jump ball from jump ball circle
+bool jumpBalls::jumpBallExecute(basketballEntityMSharedPtr activeBasketballInstance, teamEntityMSharedPtr activeTeamInstance)  // initiates jump ball from jump ball circle
 {
     conversionSharedPtr convert = conversion::Instance();
     physicsEngine physEngine;
@@ -344,7 +344,7 @@ TS*/
     return (false);  // executeJumpBall has not completed
 }
 
-bool jumpBalls::tipToPlayer(basketballStateMSharedPtr activeBasketballInstance, teamEntityMSharedPtr activeTeamInstance, quarters quarter)  // tips the basketball to the appropriate player
+bool jumpBalls::tipToPlayer(basketballEntityMSharedPtr activeBasketballInstance, teamEntityMSharedPtr activeTeamInstance, quarters quarter)  // tips the basketball to the appropriate player
 {
 //    sharedPtr<gameState> gameS = gameState::Instance();
     conversionSharedPtr convert = conversion::Instance();
@@ -456,7 +456,7 @@ bool jumpBalls::tipToPlayer(basketballStateMSharedPtr activeBasketballInstance, 
             logMsg("ballTippedToPlayerInstance == " +convert->toString(ballTippedToPlayerInstance));
 
             // FIXME! Do NOT hardcode activeBasketballInstance
-            if (physEngine.collisionCheck(activeBasketballInstance[0]->getEntity()->getPhysics()->getPhysBody(), activePlayerInstance[ballTippedToPlayerInstance].getComponent()->getPhysics()->getPhysBody()))
+            if (physEngine.collisionCheck(activeBasketballInstance[0]->getPhysics()->getPhysBody(), activePlayerInstance[ballTippedToPlayerInstance].getComponent()->getPhysics()->getPhysBody()))
             {
  //               exit(0);
 ///                gameS->setTeamWithBall(ballTippedToTeam);

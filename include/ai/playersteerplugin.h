@@ -46,8 +46,8 @@ class playerSteerPlugin : public OpenSteer::PlugIn, steering
     gameEntitySharedPtr getGameInstance();  // retrieves the value of gameInstance
     void setGameInstance(gameEntitySharedPtr set);  // sets the value of gameInstance
 
-    basketballStateMSharedPtr getActiveBasketballInstance();  // retrieves the value of activeBasketballInstance
-    void setActiveBasketballInstance(basketballStateMSharedPtr set);  // sets the value of activeBasketballInstance
+    basketballEntityMSharedPtr getActiveBasketballInstance();  // retrieves the value of activeBasketballInstance
+    void setActiveBasketballInstance(basketballEntityMSharedPtr set);  // sets the value of activeBasketballInstance
 
     courtStateMSharedPtr getActiveCourtInstance();  // retrieves the value of activeCourtInstance
     void setActiveCourtInstance(courtStateMSharedPtr set);  // sets the value of activeCourtInstance
@@ -88,7 +88,7 @@ class playerSteerPlugin : public OpenSteer::PlugIn, steering
     steeringAABBoxSharedPtr courtBBox;  // Axis Aligned Bounding Box for the court
 
     gameEntitySharedPtr gameInstance;  // stores copy of gameInstance
-    basketballStateMSharedPtr activeBasketballInstance;  // stores copy of activeBasketballInstance
+    basketballEntityMSharedPtr activeBasketballInstance;  // stores copy of activeBasketballInstance
     courtStateMSharedPtr activeCourtInstance;  // stores copy of activeCourtInstance
     teamEntityMSharedPtr activeTeamInstance;  // stores copy of activeTeamInstance
     teamTypes teamWithBall;

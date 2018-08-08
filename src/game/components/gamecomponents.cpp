@@ -48,11 +48,11 @@ void gameComponents::setInputInGameWorkQueue(inputInGameWorkQueues set)  // sets
     inputInGameWorkQueue = set;
 }
 
-basketballStateMSharedPtr gameComponents::getActiveBasketballInstance()  // retrieves the value of activeBasketballInstance
+basketballEntityMSharedPtr gameComponents::getActiveBasketballInstance()  // retrieves the value of activeBasketballInstance
 {
     return (activeBasketballInstance);
 }
-void gameComponents::setActiveBasketballInstance(basketballStateMSharedPtr set)  // sets the value of activeBasketballInstance
+void gameComponents::setActiveBasketballInstance(basketballEntityMSharedPtr set)  // sets the value of activeBasketballInstance
 {
     activeBasketballInstance = set;
 }
@@ -84,11 +84,11 @@ void gameComponents::setActiveTeamInstance(teamEntityMSharedPtr set)  // sets th
     activeTeamInstance = set;
 }
 
-basketballStateMSharedPtr gameComponents::getBasketballInstance()  // retrieves the value of basketballInstance
+basketballEntityMSharedPtr gameComponents::getBasketballInstance()  // retrieves the value of basketballInstance
 {
     return (basketballInstance);
 }
-void gameComponents::setBasketballInstance(basketballStateMSharedPtr set)  // sets the value of basketballInstance
+void gameComponents::setBasketballInstance(basketballEntityMSharedPtr set)  // sets the value of basketballInstance
 {
     basketballInstance = set;
 }

@@ -264,18 +264,18 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
 
     logMsg(func +" begin");
 
-    gameFlagsSharedPtr tempFlag(new gameFlags);
+/*    gameFlagsSharedPtr tempFlag(new gameFlags);
     data->flag = tempFlag;
-
+*/
     if (!data->flag->getActiveBasketballInstancesCreated())
     {
-        basketballStateMSharedPtr activeBasketballInstance = setupBasketball->createBasketballInstances();
+        basketballEntityMSharedPtr activeBasketballInstance = setupBasketball->createBasketballInstances();
         if (activeBasketballInstance.size() > 0)
         {
             logMsg("activeBasketballInstances Created!");
             basketballEntitySharedPtr tempBasketball(new basketballEntity);
 
-            for (auto ABIIT : activeBasketballInstance) // loop that checks if each active hoop instance's entity has been initialized
+/*            for (auto ABIIT : activeBasketballInstance) // loop that checks if each active hoop instance's entity has been initialized
             {
                 if (!ABIIT.second->getEntityInitialized()) // if not initialized it initializes the entity
                 {
@@ -286,7 +286,8 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
                 {
 
                 }
-            }
+            }*/
+
             data->flag->setActiveBasketballInstancesCreated(true);
             data->component->setActiveBasketballInstance(activeBasketballInstance);
         }
@@ -440,7 +441,7 @@ STATE_DEFINE(gameStateMachine, loadModels, gameSMData)
 //        exit(0);
 //        setActiveBBallInstance(0);  // Sets the active basketball instance
         loadBasketballsSharedPtr loadBasketball(new loadBasketballs);
-        basketballStateMSharedPtr activeBasketballInstance;
+        basketballEntityMSharedPtr activeBasketballInstance;
         logMsg(func +" Loading basketball Model!");
 //        exit(0);
         activeBasketballInstance = loadBasketball->loadModels(data->component->getActiveBasketballInstance(), data->render);  // Loads the basketball model

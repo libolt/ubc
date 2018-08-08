@@ -30,8 +30,8 @@ class setupBasketballs
         setupBasketballs();  // constructor
         ~setupBasketballs();  // destructor
         
-        basketballStateMSharedPtr createBasketballInstances();  // creates basketball Instances
-        basketballStateMSharedPtr createActiveBasketballInstances(basketballStateMSharedPtr basketballInstance, size_t numActiveBasketballs);  // creates active basketball instances
+        basketballEntityMSharedPtr createBasketballInstances();  // creates basketball Instances
+        basketballEntityMSharedPtr createActiveBasketballInstances(basketballEntityMSharedPtr basketballInstance, size_t numActiveBasketballs);  // creates active basketball instances
   
     private:
     

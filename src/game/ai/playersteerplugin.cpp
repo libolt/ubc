@@ -59,11 +59,11 @@ void playerSteerPlugin::setGameInstance(gameEntitySharedPtr set)  // sets the va
     gameInstance = set;
 }
 
-basketballStateMSharedPtr playerSteerPlugin::getActiveBasketballInstance()  // retrieves the value of activeBasketballInstance
+basketballEntityMSharedPtr playerSteerPlugin::getActiveBasketballInstance()  // retrieves the value of activeBasketballInstance
 {
     return (activeBasketballInstance);
 }
-void playerSteerPlugin::setActiveBasketballInstance(basketballStateMSharedPtr set)  // sets the value of activeBasketballInstance
+void playerSteerPlugin::setActiveBasketballInstance(basketballEntityMSharedPtr set)  // sets the value of activeBasketballInstance
 {
     activeBasketballInstance = set;
 }

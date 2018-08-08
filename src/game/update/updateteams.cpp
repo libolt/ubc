@@ -101,7 +101,7 @@ playerEntityMSharedPtr updateTeams::updatePlayerDirections(playerEntityMSharedPt
     conversionSharedPtr convert = conversion::Instance();
 //    playerEntityMSharedPtr activePlayerInstance = component->getActivePlayerInstance();
     directions playerDirection, oldPlayerDirection;
-    basketballStateMSharedPtr basketballInstance = gameComponent->getBasketballInstance();
+    basketballEntityMSharedPtr basketballInstance = gameComponent->getBasketballInstance();
     std::vector<Ogre::SceneNode>::iterator playersIT;
     std::string playerID = convert->toString(activePlayerInstance[4]->getData()->getID());
     std::string func = "updateTeams::updatePlayerDirections()";

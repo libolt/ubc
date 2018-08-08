@@ -291,6 +291,8 @@ STATE_DEFINE(playerStateMachine, ChangePosition, playerSMData)
 
     logMsg("playerStateMachine::ST_ChangePosition : court position is " +convert->toString(data->position));
     currentPosition = data->position;
+    logMsg(func +" Node Position == " +convert->toString(data->node->getPosition()));
+
     currentNode->setPosition(currentPosition);
     logMsg(func +" Node Position == " +convert->toString(currentNode->getPosition()));
     logMsg(func +" end");

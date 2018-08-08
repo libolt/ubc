@@ -209,7 +209,7 @@ typedef sharedPtr<gameFlags> gameFlagsSharedPtr;
 
 typedef sharedPtr<playerFlags> playerFlagsSharedPtr;
 
-typedef sharedPtr<basketballState> basketballStateSharedPtr;
+//typedef sharedPtr<basketballState> basketballEntitySharedPtr;
 
 typedef sharedPtr<courtState> courtStateSharedPtr;
 
@@ -344,7 +344,7 @@ typedef sharedPtr<setupTeams> setupTeamsSharedPtr;
 
 typedef std::vector<sharedPtr<playerSteer> > playerSteerVecSharedPtr;
 
-typedef std::vector<basketballStateSharedPtr> basketballStateVecSharedPtr;
+typedef std::vector<basketballEntitySharedPtr> basketballEntityVecSharedPtr;
 
 typedef std::vector<sharedPtr<hoopState> > hoopStateVecSharedPtr;
 
@@ -374,7 +374,7 @@ typedef std::vector<usersInputsSharedPtr> usersInputsVecSharedPtr;
 typedef std::vector<playerEntity> playerEntityVecSharedPtr;
 
 
-typedef std::vector<basketballState> basketballStateVec;
+typedef std::vector<basketballEntity> basketballEntityVec;
 
 typedef std::vector<courtState> courtStateVec;
 

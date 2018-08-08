@@ -152,11 +152,11 @@ void playerSteer::setPositionReached(boolVec reached)  // sets the value of posi
     positionReached = reached;
 }
 
-basketballStateMSharedPtr playerSteer::getActiveBasketballInstance()  // retrieves the value of activeBasketballInstance
+basketballEntityMSharedPtr playerSteer::getActiveBasketballInstance()  // retrieves the value of activeBasketballInstance
 {
     return (activeBasketballInstance);
 }
-void playerSteer::setActiveBasketballInstance(basketballStateMSharedPtr set)  // sets the value of activeBasketballInstance
+void playerSteer::setActiveBasketballInstance(basketballEntityMSharedPtr set)  // sets the value of activeBasketballInstance
 {
     activeBasketballInstance = set;
 }
@@ -430,7 +430,7 @@ void playerSteer::update(const float currentTime, float elapsedTime)  // update 
 	//OpenSteer::Vec3 m_home = playerSteerPos;
 //    OpenSteer::Vec3 bballSteerPos = convert->toOpenSteerVec3(basketball[0].getNodePosition());
 //GAMESREMOVAL    OpenSteer::Vec3 bballSteerPos = convert->toOpenSteerVec3(gameS->getBBallNodePosition());
-    OpenSteer::Vec3 bballSteerPos = convert->toOpenSteerVec3(activeBasketballInstance[0]->getEntity()->getNode()->getPosition());
+    OpenSteer::Vec3 bballSteerPos = convert->toOpenSteerVec3(activeBasketballInstance[0]->getNode()->getPosition());
 
     logMsg("upDie?????");
 // 	logMsg("playerSteerPos = " +convert->toString(toOgreVector3(playerSteerPos)));

@@ -72,11 +72,11 @@ void AISystem::setGameInstance(gameEntitySharedPtr set)  // sets the value of ga
     gameInstance = set;
 }
 
-basketballStateMSharedPtr AISystem::getActiveBasketballInstance()  // retrieves the value of activeBasketballInstance
+basketballEntityMSharedPtr AISystem::getActiveBasketballInstance()  // retrieves the value of activeBasketballInstance
 {
     return (activeBasketballInstance);
 }
-void AISystem::setActiveBasketballInstance(basketballStateMSharedPtr set)  // sets the value of activeBasketballInstance
+void AISystem::setActiveBasketballInstance(basketballEntityMSharedPtr set)  // sets the value of activeBasketballInstance
 {
     activeBasketballInstance = set;
 }
@@ -147,7 +147,7 @@ void AISystem::setOldTime(float set)  // sets the value of oldTime
 void printPlugIn(OpenSteer::PlugIn& pi);
 
 // initial setup of AI state
-bool AISystem::setup(basketballStateMSharedPtr activeBasketballInstance, courtStateMSharedPtr activeCourtInstance, teamEntityMSharedPtr activeTeamInstance, teamTypes teamWithBall, std::string humanPlayer)
+bool AISystem::setup(basketballEntityMSharedPtr activeBasketballInstance, courtStateMSharedPtr activeCourtInstance, teamEntityMSharedPtr activeTeamInstance, teamTypes teamWithBall, std::string humanPlayer)
 {
     conversionSharedPtr convert = conversion::Instance();
 

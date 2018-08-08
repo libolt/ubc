@@ -41,21 +41,21 @@ class loadBasketballs  : public loader
     bool getBasketballFilesLoaded();  // retrieves the value of basketballFilesLoaded
     void setBasketballFilesLoaded(bool set);  // sets the value of basketballFilesLoaded
 
-    basketballStateMSharedPtr getBInstance();  // retrieves the value of bInstance
-    void setBInstance(basketballStateMSharedPtr set);  // sets the value of bInstance
+    basketballEntityMSharedPtr getBInstance();  // retrieves the value of bInstance
+    void setBInstance(basketballEntityMSharedPtr set);  // sets the value of bInstance
     
     bool checkIfBasketballFilesLoaded();  // checks if basketballs have been loaded into bInstance
 
     // Basketballs
-    basketballStateMSharedPtr loadFiles();  // load basketball XML files
+    basketballEntityMSharedPtr loadFiles();  // load basketball XML files
     stdStringVec loadListFile(std::string fileName);  // load the list of basketballs from basketballs.xml
-    basketballStateSharedPtr loadFile(std::string fileName);  // loads data from the basketball XML files.
+    basketballEntitySharedPtr loadFile(std::string fileName);  // loads data from the basketball XML files.
 
-    basketballStateMSharedPtr loadModels(basketballStateMSharedPtr activeBasketballInstance, renderEngineSharedPtr render);  // loads selected basketball model
+    basketballEntityMSharedPtr loadModels(basketballEntityMSharedPtr activeBasketballInstance, renderEngineSharedPtr render);  // loads selected basketball model
 
     private:
     
-    static basketballStateMSharedPtr bInstance;
+    static basketballEntityMSharedPtr bInstance;
     static stdStringVec basketballFiles;  // stores list of basketball xml files
     static bool basketballFilesLoaded;
 

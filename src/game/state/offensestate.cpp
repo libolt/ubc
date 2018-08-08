@@ -592,7 +592,7 @@ void offenseState::executePass()  // executes the pass between players
 //    size_t activeBBallInstance = gameInstance->getActiveBBallInstance();
     playerPositions passToPlayer = activePlayerInstance[convert->toString(playerWithBallInstance)]->getPassToPlayer();
 //    basketballStateVecSharedPtr basketballInstance = gameInstance->getBasketballInstance();
-    basketballStateMSharedPtr activeBasketballInstance = gameInstance->getActiveBasketballInstance();
+    basketballEntityMSharedPtr activeBasketballInstance = gameInstance->getActiveBasketballInstance();
     Ogre::Vector3 playerWithBallCoords = activePlayerInstance[convert->toString(playerWithBallInstance)]->getNode()->getPosition();
     Ogre::Vector3 passToPlayerCoords = activePlayerInstance[convert->toString(passToPlayer)]->getNode()->getPosition();
 //  exit(0);

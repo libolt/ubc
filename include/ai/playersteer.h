@@ -60,8 +60,8 @@ class playerSteer : public steering
     boolVec getPositionReached();  // retrieves the value of positionReached
     void setPositionReached(boolVec reached);  // sets the value of positionReached
 	
-    basketballStateMSharedPtr getActiveBasketballInstance();  // retrieves the value of activeBasketballInstance
-    void setActiveBasketballInstance(basketballStateMSharedPtr set);  // sets the value of activeBasketballInstance
+    basketballEntityMSharedPtr getActiveBasketballInstance();  // retrieves the value of activeBasketballInstance
+    void setActiveBasketballInstance(basketballEntityMSharedPtr set);  // sets the value of activeBasketballInstance
 
     courtStateMSharedPtr getActiveCourtInstance();  // retrieves the value of activeCourtInstance
     void setActiveCourtInstance(courtStateMSharedPtr set);  // sets the value of activeCourtInstance
@@ -92,7 +92,7 @@ class playerSteer : public steering
     OpenSteer::Vec3 m_home;  // home point to stear to
     //Ball*	m_Ball;
 
-    basketballStateMSharedPtr activeBasketballInstance;  // stores copy of activeBasketballInstance
+    basketballEntityMSharedPtr activeBasketballInstance;  // stores copy of activeBasketballInstance
     courtStateMSharedPtr activeCourtInstance;  // stores copy of activeCourtInstance
     teamEntityMSharedPtr activeTeamInstance;  // stores copy of activeTeamInstance
 

@@ -516,7 +516,7 @@ void playerState::updateState()
             {
 //                logMsg(func +" playerID == " +convert->toString(data->getID()));
 //                int activeBBallInstance = getActiveBBallInstance();
-                basketballStateMSharedPtr activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();
+                basketballEntityMSharedPtr activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();
                 
                 //FIXME! HARDCODED VALUE!
                 activeBasketballInstance[0]->setMovement(true);
@@ -659,7 +659,7 @@ void playerState::updateDirection()
 /*    conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
     teamEntityMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
-    basketballStateMSharedPtr activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();   
+    basketballEntityMSharedPtr activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();   
 //    size_t activeBBallInstance = getActiveBBallInstance();
 //    size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
     
@@ -787,7 +787,7 @@ void playerState::updateMovement()  // updates movement status of the player
 //    sharedPtr<gameState> gameS = gameState::Instance();
     teamEntityMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
 //    basketballStateVecSharedPtr bballInstance = getBasketballInstance();
-    basketballStateMSharedPtr activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();
+    basketballEntityMSharedPtr activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();
 //    size_t activeBBallInstance = getActiveBBallInstance();
 //    size_t playerWithBallID = activeTeamInstance[teamType]->getPlayerWithBallID();
     Ogre::Vector3 posChange;    // stores change in position

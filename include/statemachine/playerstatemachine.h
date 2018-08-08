@@ -43,13 +43,13 @@ public:
     playerStateMachine();
 
     // External events taken by this state machine
-    void setPNode(sharedPtr<playerSMData> data);  // sets the node to that of the entity parent object
-    void setPModel(sharedPtr<playerSMData> data);  // sets the model to that of the entity parent object
-    void setSpeed(sharedPtr<playerSMData> data);
+    void setPNode(playerSMData *data);  // sets the node to that of the entity parent object
+    void setPModel(playerSMData *data);  // sets the model to that of the entity parent object
+    void setSpeed(playerSMData *data);
     void halt();
-    void pJump(sharedPtr<playerSMData> data);
-    void pChangeDirection(sharedPtr<playerSMData> data);
-    void pChangePosition(sharedPtr<playerSMData> data);
+    void pJump(playerSMData *data);
+    void pChangeDirection(playerSMData *data);
+    void pChangePosition(playerSMData *data);
 
     
 private:

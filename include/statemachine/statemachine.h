@@ -37,15 +37,13 @@ public:
     /// exists and it evaluates to false, the state action will not execute.
     /// @param[in] sm - A state machine instance.
     /// @param[in] data - The event data.
-    virtual void invokestateAction(sharedPtr<stateMachine> sm, const sharedPtr<eventData> data) const = 0;
+    virtual void invokestateAction(stateMachine* sm, const eventData* data) const = 0;
 };
 
 /// @brief stateAction takes three template arguments: A state machine class,
 /// a state function event data type (derived from eventData) and a state machine
 /// member function pointer.
-//template <class SM, class Data, void (SM::*Func)(const sharedPtr<Data>)>
-template <class SM, class Data, void (SM::*Func)(const sharedPtr<Data>)>
-
+template <class SM, class Data, void (SM::*Func)(const Data*)>
 class stateAction : public stateBase
 {
 public:
@@ -53,7 +51,7 @@ public:
     virtual void invokestateAction(stateMachine* sm, const eventData* data) const
     {
         // Downcast the state machine and event data to the correct derived type
-        sharedPtr<SM> derivedSM = static_cast<sharedPtr<SM> >(sm);
+        SM* derivedSM = static_cast<SM*>(sm);
 
         // If this check fails, there is a mismatch between the STATE_DECLARE
         // event data type and the data type being sent to the state function.
@@ -63,7 +61,7 @@ public:
         //    internalEvent(ST_MY_STATE_FUNCTION, new MyeventData());
         // This next internal event is not valid and causes the assert to fail:
         //    internalEvent(ST_MY_STATE_FUNCTION, new OthereventData());
-        const sharedPtr<Data> derivedData = dynamic_cast<const sharedPtr<Data> >(data);
+        const Data* derivedData = dynamic_cast<const Data*>(data);
         ASSERT_TRUE(derivedData != NULL);
 
         // Call the state function
@@ -81,20 +79,20 @@ public:
     /// @param[in] sm - A state machine instance.
     /// @param[in] data - The event data.
     /// @return Returns TRUE if no guard condition or the guard condition evaluates to TRUE.
-    virtual BOOL invokeGuardCondition(sharedPtr<stateMachine> sm, const sharedPtr<eventData> data) const = 0;
+    virtual BOOL invokeGuardCondition(stateMachine* sm, const eventData* data) const = 0;
 };
 
 /// @brief GuardCondition takes three template arguments: A state machine class,
 /// a state function event data type (derived from eventData) and a state machine
 /// member function pointer.
-template <class SM, class Data, BOOL (sharedPtr<SM>::*Func)(const sharedPtr<Data>)>
+template <class SM, class Data, BOOL (SM::*Func)(const Data*)>
 class GuardCondition : public GuardBase
 {
 public:
-    virtual BOOL invokeGuardCondition(sharedPtr<stateMachine> sm, const sharedPtr<eventData> data) const
+    virtual BOOL invokeGuardCondition(stateMachine* sm, const eventData* data) const
     {
-        sharedPtr<SM> derivedSM = static_cast<sharedPtr<SM> >(sm);
-        const sharedPtr<Data> derivedData = dynamic_cast<const sharedPtr<Data> >(data);
+        SM* derivedSM = static_cast<SM*>(sm);
+        const Data* derivedData = dynamic_cast<const Data*>(data);
         ASSERT_TRUE(derivedData != NULL);
 
         // Call the guard function
@@ -110,20 +108,20 @@ public:
     /// entering a state.
     /// @param[in] sm - A state machine instance.
     /// @param[in] data - The event data.
-    virtual void invokeEntryAction(sharedPtr<stateMachine> sm, const sharedPtr<eventData> data) const = 0;
+    virtual void invokeEntryAction(stateMachine* sm, const eventData* data) const = 0;
 };
 
 /// @brief EntryAction takes three template arguments: A state machine class,
 /// a state function event data type (derived from eventData) and a state machine
 /// member function pointer.
-template <class SM, class Data, void (sharedPtr<SM>::*Func)(const sharedPtr<Data>)>
+template <class SM, class Data, void (SM::*Func)(const Data*)>
 class EntryAction : public EntryBase
 {
 public:
-    virtual void invokeEntryAction(sharedPtr<stateMachine> sm, const sharedPtr<eventData> data) const
+    virtual void invokeEntryAction(stateMachine* sm, const eventData* data) const
     {
-        sharedPtr<SM> derivedSM = static_cast<sharedPtr<SM> >(sm);
-        const sharedPtr<Data> derivedData = dynamic_cast<const sharedPtr<Data> >(data);
+        SM* derivedSM = static_cast<SM*>(sm);
+        const Data* derivedData = dynamic_cast<const Data*>(data);
         ASSERT_TRUE(derivedData != NULL);
 
         // Call the entry function
@@ -138,7 +136,7 @@ public:
     /// Called by the state machine engine to execute a state exit action. Called when
     /// leaving a state.
     /// @param[in] sm - A state machine instance.
-    virtual void invokeExitAction(sharedPtr<stateMachine> sm) const = 0;
+    virtual void invokeExitAction(stateMachine* sm) const = 0;
 };
 
 /// @brief ExitAction takes two template arguments: A state machine class and
@@ -147,9 +145,9 @@ template <class SM, void (SM::*Func)(void)>
 class ExitAction : public ExitBase
 {
 public:
-    virtual void invokeExitAction(sharedPtr<stateMachine> sm) const
+    virtual void invokeExitAction(stateMachine* sm) const
     {
-        sharedPtr<SM> derivedSM = static_cast<sharedPtr<SM>>(sm);
+        SM* derivedSM = static_cast<SM*>(sm);
 
         // Call the exit function
         (derivedSM->*Func)();
@@ -159,16 +157,16 @@ public:
 /// @brief A structure to hold a single row within the state map.
 struct stateMapRow
 {
-    const sharedPtr<stateBase> /*const*/ state;
+    const stateBase* const state;
 };
 
 /// @brief A structure to hold a single row within the extended state map.
 struct stateMapRowEx
 {
-    const sharedPtr<stateBase> /*const*/ state;
-    const sharedPtr<GuardBase> /*const*/ Guard;
-    const sharedPtr<EntryBase> /*const*/ Entry;
-    const sharedPtr<ExitBase> /*const*/ Exit;
+    const stateBase* const state;
+    const GuardBase* const Guard;
+    const EntryBase* const Entry;
+    const ExitBase* const Exit;
 };
 
 /// @brief stateMachine implements a software-based state machine.
@@ -195,13 +193,13 @@ protected:
     /// External state machine event.
     /// @param[in] newstate - the state machine state to transition to.
     /// @param[in] pData - the event data sent to the state.
-    void externalEvent(BYTE newstate, const sharedPtr<eventData> pData = NULL);
+    void externalEvent(BYTE newstate, const eventData* pData = NULL);
 
     /// Internal state machine event. These events are generated while executing
     ///	within a state machine state.
     /// @param[in] newstate - the state machine state to transition to.
     /// @param[in] pData - the event data sent to the state.
-    void internalEvent(BYTE newstate, const sharedPtr<eventData> pData = NULL);
+    void internalEvent(BYTE newstate, const eventData* pData = NULL);
 
 private:
     /// The maximum number of state machine states.
@@ -217,7 +215,7 @@ private:
     BOOL m_eventGenerated;
 
     /// The state event data pointer.
-    const sharedPtr<eventData> m_peventData;
+    const eventData* m_peventData;
 
     /// Gets the state map as defined in the derived class. The BEGIN_STATE_MAP,
     /// STATE_MAP_ENTRY and END_STATE_MAP macros are used to assist in creating the
@@ -225,7 +223,7 @@ private:
     /// or GetstateMapEx() but not both.
     /// @return An array of stateMapRow pointers with the array size MAX_STATES or
     /// NULL if the state machine uses the GetstateMapEx().
-    virtual const sharedPtr<stateMapRow> GetstateMap() = 0;
+    virtual const stateMapRow* GetstateMap() = 0;
 
     /// Gets the extended state map as defined in the derived class. The BEGIN_STATE_MAP_EX,
     /// STATE_MAP_ENTRY_EX, STATE_MAP_ENTRY_ALL_EX, and END_STATE_MAP_EX macros are used to
@@ -233,7 +231,7 @@ private:
     /// either GetstateMap() or GetstateMapEx() but not both.
     /// @return An array of stateMapRowEx pointers with the array size MAX_STATES or
     /// NULL if the state machine uses the GetstateMap().
-    virtual const sharedPtr<stateMapRowEx> GetstateMapEx() = 0;
+    virtual const stateMapRowEx* GetstateMapEx() = 0;
 
     /// Set a new current state.
     /// @param[in] newstate - the new state.
@@ -242,30 +240,30 @@ private:
     /// state machine engine that executes the external event and, optionally, all
     /// internal events generated during state execution.
     void stateEngine(void);
-    void stateEngine(const sharedPtr<stateMapRow> /*const*/ pstateMap);
-    void stateEngine(const sharedPtr<stateMapRowEx> /*const*/ pstateMapEx);
+    void stateEngine(const stateMapRow* const pstateMap);
+    void stateEngine(const stateMapRowEx* const pstateMapEx);
 };
 
 #define STATE_DECLARE(stateMachine, stateName, eventData) \
-    void ST_##stateName(const sharedPtr<eventData>); \
-    stateAction<stateMachine, eventData, stateMachine::ST_##stateName > stateName;
+    void ST_##stateName(const eventData*); \
+    stateAction<stateMachine, eventData, &stateMachine::ST_##stateName> stateName;
 
 #define STATE_DEFINE(stateMachine, stateName, eventData) \
-    void stateMachine::ST_##stateName(const sharedPtr<eventData> data)
+    void stateMachine::ST_##stateName(const eventData* data)
 
 #define GUARD_DECLARE(stateMachine, guardName, eventData) \
-    BOOL GD_##guardName(const sharedPtr<eventData>); \
+    BOOL GD_##guardName(const eventData*); \
     GuardCondition<stateMachine, eventData, &stateMachine::GD_##guardName> guardName;
 
 #define GUARD_DEFINE(stateMachine, guardName, eventData) \
-    BOOL stateMachine::GD_##guardName(const sharedPtr<eventData> data)
+    BOOL stateMachine::GD_##guardName(const eventData* data)
 
 #define ENTRY_DECLARE(stateMachine, entryName, eventData) \
-    void EN_##entryName(const sharedPtr<eventData>); \
+    void EN_##entryName(const eventData*); \
     EntryAction<stateMachine, eventData, &stateMachine::EN_##entryName> entryName;
 
 #define ENTRY_DEFINE(stateMachine, entryName, eventData) \
-    void stateMachine::EN_##entryName(const sharedPtr<eventData> data)
+    void stateMachine::EN_##entryName(const eventData* data)
 
 #define EXIT_DECLARE(stateMachine, exitName) \
     void EX_##exitName(void); \
@@ -294,8 +292,8 @@ private:
 
 #define BEGIN_STATE_MAP \
     private:\
-    virtual const sharedPtr<stateMapRowEx> GetstateMapEx() { return NULL; }\
-    virtual const sharedPtr<stateMapRow> GetstateMap() {\
+    virtual const stateMapRowEx* GetstateMapEx() { return NULL; }\
+    virtual const stateMapRow* GetstateMap() {\
         static const stateMapRow STATE_MAP[] = {
 
 #define STATE_MAP_ENTRY(stateName)\
@@ -308,8 +306,8 @@ private:
 
 #define BEGIN_STATE_MAP_EX \
     private:\
-    virtual const sharedPtr<stateMapRow> GetstateMap() { return NULL; }\
-    virtual const sharedPtr<stateMapRowEx> GetstateMapEx() {\
+    virtual const stateMapRow* GetstateMap() { return NULL; }\
+    virtual const stateMapRowEx* GetstateMapEx() {\
         static const stateMapRowEx STATE_MAP[] = {
 
 #define STATE_MAP_ENTRY_EX(stateName)\
@@ -324,3 +322,4 @@ private:
    return &STATE_MAP[0]; }
 
 #endif
+

@@ -127,7 +127,8 @@ class gameEntity //: public state, public gameStateShared, public std::enable_sh
         gameDataSharedPtr data; // game data object
         gameFlagsSharedPtr flag;  // boolean flags object
         gameStateMachineSharedPtr stateMachine;  // instance of gameStateMachine object
-
+        const gameSMData *SMData;  // state machine data object
+        
         bool componentInitialized;  // stores whether the gameComoponents object has been initialized
         bool dataInitialized;  // stores whether the gameData object has been initialized
         bool flagInitialized;  // stores whether the gameFlags object has been initialized

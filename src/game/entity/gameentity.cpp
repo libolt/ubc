@@ -975,12 +975,12 @@ bool gameEntity::executeTipOff()  // executes tip off
 
 bool gameEntity::initializeStateMachine(renderEngineSharedPtr render)  // sets up the game condition
 {
-    gameSMData *tempSMData(new gameSMData); 
+    gameSMData *SMData(new gameSMData); 
     std::string func = "gameEntity::initializeStateMachine()";
 
-    SMData = tempSMData;
+    //SMData->component = std::static_pointer_cast<const gameComponents>(component);
     SMData->component = component;
-    SMData->flag = flag;  
+    SMData->flag = flag;
 //    SMData->node = getNode();
     logMsg(func +" begin");
 
@@ -1338,8 +1338,6 @@ bool gameEntity::updateState(renderEngineSharedPtr render)  // updates the game 
     timing timer; 
     Ogre::Vector3 playerPos;
     basketballEntityMSharedPtr activeBasketballInstance = component->getActiveBasketballInstance();
-    gameSMData *tempSMData(new gameSMData);
-//    SMData = tempSMData;
 //    teamEntityMSharedPtr activeTeamInstance = getActiveTeamInstance();
     std::string func = "gameEntity::updateState()";
 
@@ -1350,11 +1348,9 @@ bool gameEntity::updateState(renderEngineSharedPtr render)  // updates the game 
         if (!flag->getModelsLoaded())
         {
             logMsg(func +" Models Not Loaded yet!");
-//            gameSMData *SMData(new gameSMData); 
+            gameSMData *SMData(new gameSMData); 
             // copies required objects to SMData
-//            exit(0);
             SMData->component = component;
-//            exit(0);
             SMData->flag = flag;
             SMData->render = render;
             stateMachine->pLoadModels(SMData);

@@ -159,11 +159,13 @@ bool playerEntity::setupPhysicsObject()  // sets up the physics object
 
 bool playerEntity::initializeStateMachine()  // initializes the stateMachine object
 {
-    playerSMData *SMData = new playerSMData;
+    playerSMData *tempSMData = new playerSMData;
     std::string func = "playerEntity::initializeStateMachine()!";
 
+    SMData = tempSMData;
 //    SMData->speed = 100;
-    SMData->model = getModel();  //
+//    SMData->model = const_cast<std::const_pointer_cast<Ogre::Entity>(getModel());
+    SMData->model = getModel();
     SMData->node = getNode();
     logMsg(func +" begin");
 
@@ -215,7 +217,7 @@ bool playerEntity::update() // executes any updates that need to be performed
     conversionSharedPtr convert = conversion::Instance();
 
     std::string func = "playerEntity::update()";
-    playerSMData *stateData = new playerSMData;
+//    playerSMData *stateData = new playerSMData;
     
     logMsg(func +" begin");
 
@@ -245,20 +247,20 @@ bool playerEntity::update() // executes any updates that need to be performed
             {
                 case CHANGECOURTPOS:
                     logMsg(func + " CHANGECOURTPOS!");
-                    stateData->position = gameData->getNewCourtPosition();
+                    SMData->position = gameData->getNewCourtPosition();
 //                    exit(0);o
                 break;
                 case CHANGEDIRECTION:
                     logMsg(func + " CHANGEDIRECTION!");
-                    stateData->direction = gameData->getDirection();
+                    SMData->direction = gameData->getDirection();
                 break;
                 case SETNODE:
                     logMsg(func + " SETNODE!");
-                    stateData->node = getNode();
+                    SMData->node = getNode();
                 break;
                 case SETMODEL:
                     logMsg(func + " SETMODEL!");
-                    stateData->model = getModel();  
+                    SMData->model = getModel();
                 break;
             }
         

@@ -78,6 +78,9 @@ gameEntity::gameEntity()  // constructor
     componentInitialized = false;
     dataInitialized = false;
     flagInitialized = false;
+//    gameSMData *tempSMData(new gameSMData); 
+//    SMData = tempSMData;
+
 }
 
 gameEntity::~gameEntity()  // destructor
@@ -975,9 +978,10 @@ bool gameEntity::executeTipOff()  // executes tip off
 
 bool gameEntity::initializeStateMachine(renderEngineSharedPtr render)  // sets up the game condition
 {
-    gameSMData *SMData(new gameSMData); 
     std::string func = "gameEntity::initializeStateMachine()";
+    gameSMData *tempSMData(new gameSMData); 
 
+    SMData = tempSMData;
     //SMData->component = std::static_pointer_cast<const gameComponents>(component);
     SMData->component = component;
     SMData->flag = flag;
@@ -1338,9 +1342,12 @@ bool gameEntity::updateState(renderEngineSharedPtr render)  // updates the game 
     timing timer; 
     Ogre::Vector3 playerPos;
     basketballEntityMSharedPtr activeBasketballInstance = component->getActiveBasketballInstance();
+    
 //    teamEntityMSharedPtr activeTeamInstance = getActiveTeamInstance();
     std::string func = "gameEntity::updateState()";
 
+//    SMData = tempSMData;
+    
     logMsg(func +" begin");
     
     if (flag->getStateMachineInitialized())
@@ -1348,26 +1355,49 @@ bool gameEntity::updateState(renderEngineSharedPtr render)  // updates the game 
         if (!flag->getModelsLoaded())
         {
             logMsg(func +" Models Not Loaded yet!");
-            gameSMData *SMData(new gameSMData); 
+            
             // copies required objects to SMData
-            SMData->component = component;
-            SMData->flag = flag;
-            SMData->render = render;
-            stateMachine->pLoadModels(SMData);
+            gameSMData *modelsSMData(new gameSMData); 
+            modelsSMData->component = component;
+//            exit(0);
+            modelsSMData->flag = flag;
+            modelsSMData->render = render;
+
+            stateMachine->pLoadModels(modelsSMData);
+//            stateMachine->pCreateNodes(SMData);
+
         }
         else
         {
             logMsg(func +" Models Already Loaded!");
             logMsg(func +" activeBasketballInstance.size() == " +convert->toString(activeBasketballInstance.size()));
-            for (auto ABIIT : activeBasketballInstance)
-            {
+ 
+        }
+        if (flag->getModelsLoaded() && !flag->getNodesCreated())
+        {
+            logMsg(func +" Nodea Not Created yet!");
+            gameSMData *nodesSMData(new gameSMData); 
 
+            nodesSMData->component = component;
+//            exit(0);
+            nodesSMData->flag = flag;
+            nodesSMData->render = render;
+            stateMachine->pCreateNodes(nodesSMData);
+
+//            stateMachine->pCreateNodes(SMData);
+//            exit(0);
+        }
+        else
+        {
+            for (auto ABIIT : activeBasketballInstance)
+            {          
                 logMsg(func +"Active Basketball Pos == " +convert->toString(ABIIT.second->getNode()->getPosition()));
-                exit(0);                
+                exit(0);             
             }
+  
         }
     }
-//    exit(0);
+    
     if (getFlag()->getInputReceived())
     {
         logMsg(func +" received input!");

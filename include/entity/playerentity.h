@@ -72,7 +72,7 @@ class playerEntity : public entity
 
     playerGameDataSharedPtr gameData;  // instance of playerGameData object
     
-    const playerSMData *SMData; // state machine data object
+    playerSMData *SMData; // state machine data object
 
 };
 

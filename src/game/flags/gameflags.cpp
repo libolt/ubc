@@ -326,6 +326,33 @@ void gameFlags::setModelsLoaded(bool set)  // sets the value of modelsLoaded
     modelsLoaded = set;
 }
 
+bool gameFlags::getBasketballNodeCreated()  // retrieves the value of basketballNodeCreated
+{
+    return (basketballNodeCreated);
+}
+void gameFlags::setBasketballNodeCreated(bool set)  // sets the value of basketballNodeCreated
+{
+    basketballNodeCreated = set;
+}
+
+bool gameFlags::getCourtNodeCreated()  // retrieves the value of courtNodeCreated
+{
+    return (courtNodeCreated);
+}
+void gameFlags::setCourtNodeCreated(bool set)  // sets the value of courtNodeCreated
+{
+    courtNodeCreated = set;
+}
+
+bool gameFlags::getHoopNodeCreated()  // retrieves the value of hoopNodeCreated
+{
+    return(hoopNodeCreated);
+}
+void gameFlags::setHoopNodeCreated(bool set)  // sets the value of hoopNodeCreated
+{
+    hoopNodeCreated = set;
+}
+
 bool gameFlags::getNodesCreated()  // retrieves the value of nodesCreated
 {
     return(nodesCreated);

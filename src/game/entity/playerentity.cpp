@@ -264,7 +264,7 @@ bool playerEntity::update() // executes any updates that need to be performed
                 break;
             }
         
-            if(updateStateMachine(SAIT,stateData)) // attempts to update the stateMachine and returns true if successful
+            if(updateStateMachine(SAIT,SMData)) // attempts to update the stateMachine and returns true if successful
             {
 //                stateChanged = false;  // sets stateChanged back to false now that hte stateMachine has been updated
             }

@@ -120,6 +120,15 @@ class gameFlags
         bool getModelsLoaded();  // retrieves the value of modelsLoaded
         void setModelsLoaded(bool set);  // sets the value of modelsLoaded
 
+        bool getBasketballNodeCreated();  // retrieves the value of basketballNodeCreated
+        void setBasketballNodeCreated(bool set);  // sets the value of basketballNodeCreated
+
+        bool getCourtNodeCreated();  // retrieves the value of basketballNodeCreated
+        void setCourtNodeCreated(bool set);  // sets the value of basketballNodeCreated
+
+        bool getHoopNodeCreated();  // retrieves the value of basketballNodeCreated
+        void setHoopNodeCreated(bool set);  // sets the value of basketballNodeCreated
+
         bool getNodesCreated();  // retrieves the value of nodesCreated
         void setNodesCreated(bool set);  // sets the value of nodesCreated
 
@@ -164,6 +173,9 @@ class gameFlags
         bool courtModelLoaded;  // stores whether court model has been loaded
         bool hoopModelLoaded;  // stores whether the hoop model has been loaded
         bool modelsLoaded;  // stores whether all models have been loaded
+        bool basketballNodeCreated;  // stores whether basketball node has been created
+        bool courtNodeCreated;  // stores whether basketball node has been created
+        bool hoopNodeCreated;  // stores whether basketball node has been created
         bool nodesCreated;  // stores whether object scene nodes have been created
         bool sceneCreated;  // stores whether the scene has been created
         bool gameStarted;  // Determines whether or not a basketball game has been started

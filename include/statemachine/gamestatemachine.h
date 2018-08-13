@@ -49,7 +49,7 @@ public:
     // External events taken by this state machine
     void pCreateInstances(gameSMData *data);  // creates game object instances
     void pLoadModels(gameSMData *data);  // loads the object model
-    void pSetStartPositions(gameSMData *data);  // sets the model to that of the entity parent object
+    void pCreateNodes(gameSMData *data);  // sets the scene nodes and attaches the models
     void setSpeed(gameSMData *data);
     void halt();
     void pJump(gameSMData *data);
@@ -72,7 +72,7 @@ private:
     {
         ST_CREATE_INSTANCES,
         ST_LOAD_MODELS,
-        ST_SET_START_POS,
+        ST_CREATE_NODES,
         ST_IDLE,
         ST_STOP_MOVEMENT,
         ST_START_MOVEMENT,
@@ -88,7 +88,7 @@ private:
     // Define the state machine state functions with event data type
     STATE_DECLARE(gameStateMachine,    createInstances,    gameSMData)
     STATE_DECLARE(gameStateMachine,    loadModels,    gameSMData)
-    STATE_DECLARE(gameStateMachine,    setStartPositions,    gameSMData)
+    STATE_DECLARE(gameStateMachine,    createNodes,    gameSMData)
     STATE_DECLARE(gameStateMachine,    Idle,            noEventData)
     STATE_DECLARE(gameStateMachine,    StopMovement,    noEventData)
     STATE_DECLARE(gameStateMachine,    StartMovement,   gameSMData)
@@ -104,7 +104,7 @@ private:
     BEGIN_STATE_MAP
         STATE_MAP_ENTRY(&createInstances)
         STATE_MAP_ENTRY(&loadModels)
-        STATE_MAP_ENTRY(&setStartPositions)
+        STATE_MAP_ENTRY(&createNodes)
         STATE_MAP_ENTRY(&Idle)
         STATE_MAP_ENTRY(&StopMovement)
         STATE_MAP_ENTRY(&StartMovement)

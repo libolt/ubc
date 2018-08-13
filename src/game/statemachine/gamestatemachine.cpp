@@ -21,6 +21,7 @@
 #include "utilities/conversion.h"
 #include "statemachine/gamestatemachine.h"
 #include "components/gamecomponents.h"
+#include "engine/renderengine.h"
 #include "entity/basketballentity.h"
 #include "entity/courtentity.h"
 #include "entity/hoopentity.h"
@@ -56,7 +57,7 @@ void gameStateMachine::pCreateInstances(gameSMData *data) // creates the object 
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_CREATE_INSTANCES)          // ST_CREATE_INSTANCES
         TRANSITION_MAP_ENTRY (ST_CREATE_INSTANCES)          // ST_LOAD_MODELS
-        TRANSITION_MAP_ENTRY (ST_CREATE_INSTANCES)          // ST_SET_START_POS
+        TRANSITION_MAP_ENTRY (ST_CREATE_INSTANCES)          // ST_CREATE_NODES
         TRANSITION_MAP_ENTRY (ST_CREATE_INSTANCES)          // ST_IDLE
         TRANSITION_MAP_ENTRY (ST_CREATE_INSTANCES)          // ST_STOP
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_START
@@ -82,7 +83,7 @@ void gameStateMachine::pLoadModels(gameSMData *data) // loads the object models
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_LOAD_MODELS)               // ST_CREATE_INSTANCES
         TRANSITION_MAP_ENTRY (ST_LOAD_MODELS)               // ST_LOAD_MODELS
-        TRANSITION_MAP_ENTRY (ST_LOAD_MODELS)               // ST_SET_START_POS
+        TRANSITION_MAP_ENTRY (ST_LOAD_MODELS)               // ST_CREATE_NODES
         TRANSITION_MAP_ENTRY (ST_LOAD_MODELS)               // ST_IDLE
         TRANSITION_MAP_ENTRY (ST_LOAD_MODELS)               // ST_STOP
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_START
@@ -98,20 +99,20 @@ void gameStateMachine::pLoadModels(gameSMData *data) // loads the object models
 //    exit(0);
 
 }
-void gameStateMachine::pSetStartPositions(gameSMData *data) // sets the object start positions
+void gameStateMachine::pCreateNodes(gameSMData *data) // creates the scene nodes and attaches models
 {
-    std:: string func = "playerStateMachine::setPModel";
+    std:: string func = "gameStateMachine::pCreateNodes";
 
     logMsg(func +" begin");
 
     BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (ST_SET_START_POS)             // ST_CREATE_INSTANCES
-        TRANSITION_MAP_ENTRY (ST_SET_START_POS)             // ST_LOAD_MODELS
-        TRANSITION_MAP_ENTRY (ST_SET_START_POS)             // ST_SET_START_POS
-        TRANSITION_MAP_ENTRY (ST_SET_START_POS)             // ST_IDLE
-        TRANSITION_MAP_ENTRY (ST_SET_START_POS)             // ST_STOP
+        TRANSITION_MAP_ENTRY (ST_CREATE_NODES)             // ST_CREATE_INSTANCES
+        TRANSITION_MAP_ENTRY (ST_CREATE_NODES)             // ST_LOAD_MODELS
+        TRANSITION_MAP_ENTRY (ST_CREATE_NODES)             // ST_CREATE_NODES
+        TRANSITION_MAP_ENTRY (ST_CREATE_NODES)             // ST_IDLE
+        TRANSITION_MAP_ENTRY (ST_CREATE_NODES)             // ST_STOP
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_START
-        TRANSITION_MAP_ENTRY (ST_SET_START_POS)             // ST_CHANGE_POSITION
+        TRANSITION_MAP_ENTRY (ST_CREATE_NODES)             // ST_CHANGE_POSITION
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_SPEED
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_JUMP
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_DIRECTION
@@ -133,7 +134,7 @@ void gameStateMachine::setSpeed(gameSMData *data)
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_START_MOVEMENT)            // ST_CREATE_INSTANCES
         TRANSITION_MAP_ENTRY (ST_START_MOVEMENT)            // ST_LOAD_MODELS
-        TRANSITION_MAP_ENTRY (ST_START_MOVEMENT)            // ST_SET_START_POS
+        TRANSITION_MAP_ENTRY (ST_START_MOVEMENT)            // ST_CREATE_NODES
         TRANSITION_MAP_ENTRY (ST_START_MOVEMENT)            // ST_IDLE
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STOP
         TRANSITION_MAP_ENTRY (ST_CHANGE_SPEED)              // ST_START
@@ -159,7 +160,7 @@ void gameStateMachine::halt()
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_CREATE_INSTANCES
         TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_LOAD_MODELS
-        TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_SET_START_POS
+        TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_CREATE_NODES
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_IDLE
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STOP
         TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_START
@@ -185,7 +186,7 @@ void gameStateMachine::pJump(gameSMData *data)
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_JUMP)                      // ST_CREATE_INSTANCES
         TRANSITION_MAP_ENTRY (ST_JUMP)                      // ST_LOAD_MODELS
-        TRANSITION_MAP_ENTRY (ST_JUMP)                      // ST_SET_START_POS
+        TRANSITION_MAP_ENTRY (ST_JUMP)                      // ST_CREATE_NODES
         TRANSITION_MAP_ENTRY (ST_JUMP)                      // ST_IDLE
         TRANSITION_MAP_ENTRY (ST_JUMP)                      // ST_STOP
         TRANSITION_MAP_ENTRY (ST_JUMP)                      // ST_START
@@ -210,7 +211,7 @@ void gameStateMachine::pChangeDirection(gameSMData *data)
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_CREATE_INSTANCES
         TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_LOAD_MODELS
-        TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_SET_START_POS
+        TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_CREATE_NODES
         TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_IDLE
         TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_STOP
         TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_START
@@ -237,7 +238,7 @@ void gameStateMachine::pChangePosition(gameSMData *data)
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_CREATE_INSTANCES
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_LOAD_MODELS
-        TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_SET_START_POS
+        TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_CREATE_NODES
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_IDLE
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_STOP
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_START
@@ -543,14 +544,110 @@ STATE_DEFINE(gameStateMachine, loadModels, gameSMData)
 //    exit(0);
 }
 // sets the model object
-STATE_DEFINE(gameStateMachine, setStartPositions, gameSMData)
+STATE_DEFINE(gameStateMachine, createNodes, gameSMData)
 {
-    std:: string func = "gameStateMachine::setStartPositions";
+    conversionSharedPtr convert = conversion::Instance();
+    bool returnType = true;
+    OgreEntitySharedPtr activeModel;
+    OgreSceneNodeSharedPtr activeNode;
+    std::string activeEntityName;
+    std::string activeNodeNum;
+    std::string activeNodeName;
+    std:: string func = "gameStateMachine::createNodes";
 
     logMsg(func +" begin");
+    if (!data->flag->getBasketballNodeCreated())
+    {
+        for (auto ABIIT : data->component->getActiveBasketballInstance())  // loop through active basketball instances
+        {
+            activeModel = ABIIT.second->getModel();
+            activeEntityName = ABIIT.second->getName();
+            activeNodeNum = convert->toString(ABIIT.first);
+            activeNodeName = ABIIT.second->getNodeName();
+            if (activeNodeName == "")
+            {
+                activeNodeName = activeEntityName + activeNodeNum;
+                ABIIT.second->setNodeName(activeNodeName);
+            }
+            else
+            {
+                
+            }
+            activeNode = data->render->createNode(activeModel, activeNodeName);  // creates node
+            ABIIT.second->setNode(activeNode);  // saves node to current instance
+        }
+        data->flag->setBasketballNodeCreated(true);
+    }
+    else
+    {
+        logMsg(func +" Basketball Node Already Created!");
+    }
+    
+    if (!data->flag->getCourtNodeCreated())
+    {
+        for (auto ACIIT : data->component->getActiveCourtInstance())  // loop through active court instances
+        {
+            activeModel = ACIIT.second->getEntity()->getModel();
+            activeEntityName = ACIIT.second->getEntity()->getName();
+            activeNodeNum = convert->toString(ACIIT.first);
+            activeNodeName = ACIIT.second->getEntity()->getNodeName();
+            if (activeNodeName == "")
+            {
+                activeNodeName = activeEntityName + activeNodeNum;
+                ACIIT.second->getEntity()->setNodeName(activeNodeName);
+            }
+            else
+            {
+                
+            }
+            activeNode = data->render->createNode(activeModel, activeNodeName);  // creates node
+            ACIIT.second->getEntity()->setNode(activeNode);  // saves node to current instance
+        }
+        data->flag->setCourtNodeCreated(true);
+    }
+    else
+    {
+        logMsg(func +" Court Node Already Created!");
+    }
+    if (!data->flag->getHoopNodeCreated())
+    {
+        for (auto AHIIT : data->component->getActiveHoopInstance())  // loop through active hoop instances
+        {
+            activeModel = AHIIT.second->getEntity()->getModel();
+            activeEntityName = AHIIT.second->getEntity()->getModel()->getName();
+            logMsg(func +" activeEntityName == " +activeEntityName);
+            activeNodeNum = convert->toString(AHIIT.first);
+            activeNodeName = AHIIT.second->getEntity()->getNodeName();
+            if (activeNodeName == "")
+            {
+                activeNodeName = activeEntityName + activeNodeNum;
+                AHIIT.second->getEntity()->setNodeName(activeNodeName);
+            }
+            else
+            {
+                
+            }
+            activeNode = data->render->createNode(activeModel, activeNodeName);  // creates node
+            AHIIT.second->getEntity()->setNode(activeNode);  // saves node to current instance
 
-    currentModel = data->model;
-
+        }
+        data->flag->setHoopNodeCreated(true);
+    }
+    else
+    {
+        logMsg(func +" Hoop Node Already Created!");
+    }
+    
+    if (data->flag->getBasketballNodeCreated() && data->flag->getCourtNodeCreated() && data->flag->getHoopNodeCreated())
+    {
+        logMsg (func +" All Nodes Created!");
+        data->flag->setNodesCreated(true);
+    }
+    else
+    {
+        logMsg(func + " Not all nodes created yet!");
+    }
+    
     logMsg(func +" end");
 
 }

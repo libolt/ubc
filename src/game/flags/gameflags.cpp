@@ -48,7 +48,14 @@ gameFlags::gameFlags()  // constructor
     courtModelLoaded = false;
     hoopModelLoaded = false;
     modelsLoaded = false;
+    basketballNodeCreated = false;
+    courtNodeCreated = false;
+    hoopNodeCreated = false;
     nodesCreated = false;
+    basketballStartPositionSet = false;
+    courtStartPositionSet = false;
+    hoopStartPositionSet = false;
+    startPositionsSet = false;
     setupEnvironmentCompleted = false;
     courtDataLoaded = false;
     gameStarted = false;
@@ -360,6 +367,42 @@ bool gameFlags::getNodesCreated()  // retrieves the value of nodesCreated
 void gameFlags::setNodesCreated(bool set)  // sets the value of nodesCreated
 {
     nodesCreated = set;
+}
+
+bool gameFlags::getBasketballStartPositionSet()  // retrieves the value of basketballStartPositionSet
+{
+    return (basketballStartPositionSet);
+}
+void gameFlags::setBasketballStartPositionSet(bool set)  // sets the value of basketballStartPositionSet
+{
+    basketballStartPositionSet = set;
+}
+
+bool gameFlags::getCourtStartPositionsSet()  // retrieves the value of courtStartPositionSet
+{
+    return (courtStartPositionSet);
+}
+void gameFlags::setCourtStartPositionSet(bool set)  // sets the value of courtStartPositionSet
+{
+    courtStartPositionSet = set;
+}
+
+bool gameFlags::getHoopStartPositionSet()  // retrieves the value of hoopStartPositionSet
+{
+    return (hoopStartPositionSet);
+}
+void gameFlags::setHoopStartPositionSet(bool set);  // sets the value of hoopStartPositionSet
+{
+    hoopStartPositionsSet = set;
+}
+
+bool gameFlags::getStartPositionsSet()  // retrieves the value of startPositionsSet
+{
+    return (startPositionsSet);
+}
+void gameFlags::setStartPositionsSet(bool set)  // sets the value of startPositionsSet
+{
+    startPositionsSet = set;
 }
 
 bool gameFlags::getInputReceived()  // retrieves the value of inputReceived

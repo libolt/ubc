@@ -50,7 +50,7 @@ public:
     void pCreateInstances(gameSMData *data);  // creates game object instances
     void pLoadModels(gameSMData *data);  // loads the object model
     void pCreateNodes(gameSMData *data);  // sets the scene nodes and attaches the models
-    void setSpeed(gameSMData *data);
+    void pSetStartPositions(gameSMData *data);  // sets object start positions
     void halt();
     void pJump(gameSMData *data);
     void pChangeDirection(gameSMData *data);
@@ -73,8 +73,8 @@ private:
         ST_CREATE_INSTANCES,
         ST_LOAD_MODELS,
         ST_CREATE_NODES,
-        ST_IDLE,
-        ST_STOP_MOVEMENT,
+        ST_SET_START_POS,
+        ST_IDLE,      
         ST_START_MOVEMENT,
         ST_CHANGE_POSITION,  
         ST_CHANGE_SPEED,
@@ -89,8 +89,8 @@ private:
     STATE_DECLARE(gameStateMachine,    createInstances,    gameSMData)
     STATE_DECLARE(gameStateMachine,    loadModels,    gameSMData)
     STATE_DECLARE(gameStateMachine,    createNodes,    gameSMData)
+    STATE_DECLARE(gameStateMachine,    setStartPositions,    gameSMData)
     STATE_DECLARE(gameStateMachine,    Idle,            noEventData)
-    STATE_DECLARE(gameStateMachine,    StopMovement,    noEventData)
     STATE_DECLARE(gameStateMachine,    StartMovement,   gameSMData)
     STATE_DECLARE(gameStateMachine,    ChangePosition,  gameSMData)
     STATE_DECLARE(gameStateMachine,    ChangeSpeed,     gameSMData)
@@ -105,8 +105,8 @@ private:
         STATE_MAP_ENTRY(&createInstances)
         STATE_MAP_ENTRY(&loadModels)
         STATE_MAP_ENTRY(&createNodes)
+        STATE_MAP_ENTRY(&setStartPositions)
         STATE_MAP_ENTRY(&Idle)
-        STATE_MAP_ENTRY(&StopMovement)
         STATE_MAP_ENTRY(&StartMovement)
         STATE_MAP_ENTRY(&ChangePosition)
         STATE_MAP_ENTRY(&ChangeSpeed)

@@ -123,14 +123,26 @@ class gameFlags
         bool getBasketballNodeCreated();  // retrieves the value of basketballNodeCreated
         void setBasketballNodeCreated(bool set);  // sets the value of basketballNodeCreated
 
-        bool getCourtNodeCreated();  // retrieves the value of basketballNodeCreated
-        void setCourtNodeCreated(bool set);  // sets the value of basketballNodeCreated
+        bool getCourtNodeCreated();  // retrieves the value of courtNodeCreated
+        void setCourtNodeCreated(bool set);  // sets the value of courtNodeCreated
 
-        bool getHoopNodeCreated();  // retrieves the value of basketballNodeCreated
-        void setHoopNodeCreated(bool set);  // sets the value of basketballNodeCreated
+        bool getHoopNodeCreated();  // retrieves the value of hoopNodeCreated
+        void setHoopNodeCreated(bool set);  // sets the value of hoopNodeCreated
 
         bool getNodesCreated();  // retrieves the value of nodesCreated
         void setNodesCreated(bool set);  // sets the value of nodesCreated
+
+        bool getBasketballStartPositionSet();  // retrieves the value of basketballStartPositionsSet
+        void setBasketballStartPositionSet(bool set);  // sets the value of basketballStartPositionsSet
+
+        bool getCourtStartPositionSet();  // retrieves the value of courtStartPositionsSet
+        void setCourtStartPositionSet(bool set);  // sets the value of courtStartPositionsSet
+
+        bool getHoopStartPositionSet();  // retrieves the value of hoopStartPositionsSet
+        void setHoopStartPositionSet(bool set);  // sets the value of hoopStartPositionsSet
+
+        bool getStartPositionsSet();  // retrieves the value of startPositionsSet
+        void setStartPositionsSet(bool set);  // sets the value of startPositionsSet
 
         bool getTipOffSetupComplete();  // retrieves the value of tipOffSetupComplete
         void setTipOffSetupComplete(bool set);  // sets the value of tipOffSetupComplete
@@ -174,9 +186,13 @@ class gameFlags
         bool hoopModelLoaded;  // stores whether the hoop model has been loaded
         bool modelsLoaded;  // stores whether all models have been loaded
         bool basketballNodeCreated;  // stores whether basketball node has been created
-        bool courtNodeCreated;  // stores whether basketball node has been created
-        bool hoopNodeCreated;  // stores whether basketball node has been created
+        bool courtNodeCreated;  // stores whether court node has been created
+        bool hoopNodeCreated;  // stores whether hoop node has been created
         bool nodesCreated;  // stores whether object scene nodes have been created
+        bool basketballStartPositionSet;  // stores whether basketball start position has been set
+        bool courtStartPositionSet;  // stores whether court start position has been set
+        bool hoopStartPositionSet;  // stores whether hoop start position has been set
+        bool startPositionsSet;  // stores whether object start positions have been set
         bool sceneCreated;  // stores whether the scene has been created
         bool gameStarted;  // Determines whether or not a basketball game has been started
         bool tipOffSetupComplete;  // Determines whether or not game Tip Off has been setup

@@ -125,3 +125,24 @@ courtStateMSharedPtr setupCourts::createActiveCourtInstances(courtStateMSharedPt
     logMsg(func +" end");
     return (activeCourtInstance);
 }
+
+courtStateMSharedPtr setupCourts::setCourtStartPositions(courtStateMSharedPtr courtInstance)  // sets the initial coordinates for the basketball(s)
+{
+
+//    courtStateMSharedPtr courtInstance = component->getCourtInstance();
+    std::string func = "setupCourts::setCourtStartPositions()";
+
+    logMsg(func +" begin");
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+    courtInstance[0]->getEntity()->getNode()->setPosition(0.0f,-6.5f,360.0f);
+    courtInstance[0]->getEntity()->setNodePosition(Ogre::Vector3(0.0f,-6.5f,360.0f));
+    logMsg(func +" courtPosition");
+//exit(0);
+#else
+    courtInstance[0]->getEntity()->getNode()->setPosition(0.0f,-27.5f,360.0f);
+    courtInstance[0]->getEntity()->setNodePosition(Ogre::Vector3(0.0f,-27.5f,360.0f));
+#endif
+
+    return (courtInstance);
+    logMsg(func +" end");
+}

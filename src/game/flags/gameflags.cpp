@@ -378,7 +378,7 @@ void gameFlags::setBasketballStartPositionSet(bool set)  // sets the value of ba
     basketballStartPositionSet = set;
 }
 
-bool gameFlags::getCourtStartPositionsSet()  // retrieves the value of courtStartPositionSet
+bool gameFlags::getCourtStartPositionSet()  // retrieves the value of courtStartPositionSet
 {
     return (courtStartPositionSet);
 }
@@ -391,9 +391,9 @@ bool gameFlags::getHoopStartPositionSet()  // retrieves the value of hoopStartPo
 {
     return (hoopStartPositionSet);
 }
-void gameFlags::setHoopStartPositionSet(bool set);  // sets the value of hoopStartPositionSet
+void gameFlags::setHoopStartPositionSet(bool set)  // sets the value of hoopStartPositionSet
 {
-    hoopStartPositionsSet = set;
+    hoopStartPositionSet = set;
 }
 
 bool gameFlags::getStartPositionsSet()  // retrieves the value of startPositionsSet

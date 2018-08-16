@@ -78,8 +78,6 @@ gameEntity::gameEntity()  // constructor
     componentInitialized = false;
     dataInitialized = false;
     flagInitialized = false;
-//    gameSMData *tempSMData(new gameSMData); 
-//    SMData = tempSMData;
 
 }
 
@@ -1386,6 +1384,23 @@ bool gameEntity::updateState(renderEngineSharedPtr render)  // updates the game 
 
 //            stateMachine->pCreateNodes(SMData);
 //            exit(0);
+        }
+        else
+        {
+            
+        }
+        
+        if (flag->getNodesCreated() && !flag->getStartPositionsSet())
+        {
+            logMsg(func +" Start Positions Not Set yet!");
+            gameSMData *startPosSMData(new gameSMData); 
+
+            startPosSMData->component = component;
+//            exit(0);
+            startPosSMData->flag = flag;
+            startPosSMData->render = render;
+            stateMachine->pSetStartPositions(startPosSMData);
+
         }
         else
         {

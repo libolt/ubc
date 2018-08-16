@@ -655,12 +655,47 @@ STATE_DEFINE(gameStateMachine, createNodes, gameSMData)
 // stop the player
 STATE_DEFINE(gameStateMachine, setStartPositions, gameSMData)
 {
+    conversionSharedPtr convert = conversion::Instance();
+
+    basketballEntityMSharedPtr activeBasketballInstance;
+    setupBasketballsSharedPtr setupBasketball(new setupBasketballs);
+
+    courtStateMSharedPtr activeCourtInstance;
+    setupCourtsSharedPtr setupCourt(new setupCourts);
+
+    hoopStateMSharedPtr activeHoopInstance;
+    setupHoopsSharedPtr setupHoop(new setupHoops);
+
     std:: string func = "gameStateMachine::setStartPositions";
 
     logMsg(func +" begin");
 
- 
-    exit(0);
+    if (!data->flag->getBasketballStartPositionSet())
+    {
+        activeBasketballInstance = data->component->getActiveBasketballInstance();
+        activeBasketballInstance = setupBasketball->setBasketballStartPositions(activeBasketballInstance);
+        data->component->setActiveBasketballInstance(activeBasketballInstance);
+        data->flag->setBasketballStartPositionSet(true);
+        for (auto ABIIT : activeBasketballInstance)
+        {          
+            logMsg(func +"Active Basketball Pos == " +convert->toString(ABIIT.second->getNode()->getPosition()));
+            exit(0);             
+        }
+    }
+    else
+    {
+        logMsg(func +" basketballStartPositionsSet");
+    }
+    activeCourtInstance = data->component->getActiveCourtInstance();
+    activeCourtInstance = setupCourt->setCourtStartPositions(activeCourtInstance);
+    data->component->setActiveCourtInstance(activeCourtInstance);
+    
+    activeHoopInstance = data->component->getActiveHoopInstance();
+    activeHoopInstance = setupHoop->setHoopStartPositions(activeHoopInstance);
+    data->component->setActiveHoopInstance(activeHoopInstance);
+
+    data->flag->setStartPositionsSet(true);
+//    exit(0);
     logMsg(func +" end");
 
 }

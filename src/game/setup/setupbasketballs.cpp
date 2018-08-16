@@ -118,3 +118,33 @@ basketballEntityMSharedPtr setupBasketballs::createActiveBasketballInstances(bas
     logMsg(func +" end");
     return (activeBasketballInstance);
 }
+
+basketballEntityMSharedPtr setupBasketballs::setBasketballStartPositions(basketballEntityMSharedPtr activeBasketballInstance)  // sets the initial coordinates for the basketball(s)
+{
+    conversionSharedPtr convert = conversion::Instance();
+//    size_t activeBBallInstance = getActiveBBallInstance();
+//    basketballStateVecSharedPtr basketballInstance = getBasketballInstance();
+//    basketballEntityMSharedPtr activeBasketballInstance = component->getActiveBasketballInstance();
+    std::string func = "setupBasketballs::setBasketballStartPositions()";
+    
+    logMsg(func +" begin");
+
+    for (auto ABIIT : activeBasketballInstance)
+    {
+        
+        logMsg(func +" activeBasketballInstance == " +convert->toString(ABIIT.first));
+    
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+//    exit(0);
+        ABIIT.second->getNode()->setPosition(0.8f,10.0f,352.0f);
+#else
+        ABIIT.second->getNode()->setPosition(0.8f,-5.0f,352.0f);
+//    exit(0);
+#endif
+    }
+    
+    logMsg(func +" end");
+    
+    return (activeBasketballInstance);
+    
+}

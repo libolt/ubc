@@ -32,6 +32,7 @@ class setupHoops
         
         hoopStateMSharedPtr createHoopInstances();  // creates hoop Instances
         hoopStateMSharedPtr createActiveHoopInstances(hoopStateMSharedPtr hoopInstance, size_t numActiveHoops);  // creates active hoop instances
+        hoopStateMSharedPtr setHoopStartPositions(hoopStateMSharedPtr);  // sets the initial coordinates for the basketball(s)
 
     private:
     

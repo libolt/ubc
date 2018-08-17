@@ -33,7 +33,7 @@
 #include "flags/playerflags.h"
 #include "flags/teamflags.h"
 #include "state/basketballstate.h"
-#include "state/courtstate.h"
+//#include "state/courtstate.h"
 #include "entity/gameentity.h"
 #include "state/teamstate.h"
 #include "state/playerstate.h"
@@ -68,11 +68,11 @@ void playerSteerPlugin::setActiveBasketballInstance(basketballEntityMSharedPtr s
     activeBasketballInstance = set;
 }
 
-courtStateMSharedPtr playerSteerPlugin::getActiveCourtInstance()  // retrieves the value of activeCourtInstance
+courtEntityMSharedPtr playerSteerPlugin::getActiveCourtInstance()  // retrieves the value of activeCourtInstance
 {
     return (activeCourtInstance);
 }
-void playerSteerPlugin::setActiveCourtInstance(courtStateMSharedPtr set)  // sets the value of activeCourtInstance
+void playerSteerPlugin::setActiveCourtInstance(courtEntityMSharedPtr set)  // sets the value of activeCourtInstance
 {
     activeCourtInstance = set;
 }
@@ -252,7 +252,7 @@ void playerSteerPlugin::open()  // opens the plugin
 
 
 	// create the court bounding box based off the meshes bbox
-    Ogre::AxisAlignedBox cbox = gameInstance->getComponent()->getCourtInstance()[0]->getEntity()->getModel()->getBoundingBox();
+    Ogre::AxisAlignedBox cbox = gameInstance->getComponent()->getCourtInstance()[0]->getModel()->getBoundingBox();
     Ogre::Vector3 cboxMin = cbox.getMinimum();
     Ogre::Vector3 cboxMax = cbox.getMaximum();
 

@@ -30,9 +30,9 @@ class setupCourts
         setupCourts();  // constructor
         ~setupCourts();  // destructor
         
-        courtStateMSharedPtr createCourtInstances();  // creates court Instances
-        courtStateMSharedPtr createActiveCourtInstances(courtStateMSharedPtr courtInstance);  // creates active court instances
-        courtStateMSharedPtr setCourtStartPositions(courtStateMSharedPtr courtInstance);  // sets the initial coordinates for the basketball(s)
+        courtEntityMSharedPtr createCourtInstances();  // creates court Instances
+        courtEntityMSharedPtr createActiveCourtInstances(courtEntityMSharedPtr courtInstance);  // creates active court instances
+        courtEntityMSharedPtr setCourtStartPositions(courtEntityMSharedPtr courtInstance);  // sets the initial coordinates for the basketball(s)
 
     private:
     

@@ -30,7 +30,7 @@
 #include "utilities/logging.h"
 #include "engine/gameengine.h"
 #include "engine/renderengine.h"
-#include "state/courtstate.h"
+#include "entity/courtentity.h"
 #include "state/teamstate.h"
 
 #ifdef __ANDROID__
@@ -259,7 +259,7 @@ bool GUISystem::createCourtSelectionMenuGUI(renderEngineSharedPtr render)  // cr
 {
 //    renderEngineSharedPtr render; // = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
-    courtStateSharedPtr courtInst(new courtState);
+//    courtEntityMSharedPtr courtInst(new courtEntity);
     MyGUIButtonMSharedPtr tempButtons;
     MyGUIListBoxSharedPtr tempSelectBox(new MyGUI::ListBox);
     MyGUITextBoxSharedPtr tempTxtBox;

@@ -23,7 +23,7 @@
 #include "components/teamcomponents.h"
 #include "entity/teamentity.h"
 #include "state/basketballstate.h"
-#include "state/courtstate.h"
+//#include "state/courtstate.h"
 #include "utilities/logging.h"
 #include "utilities/typedefs.h"
 #include "utilities/conversion.h"
@@ -81,11 +81,11 @@ void AISystem::setActiveBasketballInstance(basketballEntityMSharedPtr set)  // s
     activeBasketballInstance = set;
 }
 
-courtStateMSharedPtr AISystem::getActiveCourtInstance()  // retrieves the value of activeCourtInstance
+courtEntityMSharedPtr AISystem::getActiveCourtInstance()  // retrieves the value of activeCourtInstance
 {
     return (activeCourtInstance);
 }
-void AISystem::setActiveCourtInstance(courtStateMSharedPtr set)  // sets the value of activeCourtInstance
+void AISystem::setActiveCourtInstance(courtEntityMSharedPtr set)  // sets the value of activeCourtInstance
 {
     activeCourtInstance = set;
 }
@@ -147,7 +147,7 @@ void AISystem::setOldTime(float set)  // sets the value of oldTime
 void printPlugIn(OpenSteer::PlugIn& pi);
 
 // initial setup of AI state
-bool AISystem::setup(basketballEntityMSharedPtr activeBasketballInstance, courtStateMSharedPtr activeCourtInstance, teamEntityMSharedPtr activeTeamInstance, teamTypes teamWithBall, std::string humanPlayer)
+bool AISystem::setup(basketballEntityMSharedPtr activeBasketballInstance, courtEntityMSharedPtr activeCourtInstance, teamEntityMSharedPtr activeTeamInstance, teamTypes teamWithBall, std::string humanPlayer)
 {
     conversionSharedPtr convert = conversion::Instance();
 

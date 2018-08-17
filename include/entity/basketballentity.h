@@ -98,8 +98,8 @@ class basketballEntity : public entity
 //    playerStateSharedPtr getPlayerWithBall();  // retrieves the value of playerWithBall
 //    void setPlayerWithBall(playerStateSharedPtr set);  // sets the value of playerWithBall
     
-    courtStateSharedPtr getCourtInstance();  // retrieves the value of courtInstance
-    void setCourtInstance(courtStateSharedPtr set);  // sets the value of courtInstance
+    courtEntityMSharedPtr getCourtInstance();  // retrieves the value of courtInstance
+    void setCourtInstance(courtEntityMSharedPtr set);  // sets the value of courtInstance
     
     directions getDirection();  // retrieves the value of direction
     void setDirection(directions set);  // sets the value of direction 
@@ -190,7 +190,7 @@ class basketballEntity : public entity
     
 //    playerStateSharedPtr playerWithBall;  // stores copy of player that controls ball
     
-    courtStateSharedPtr courtInstance;  // storee the active courtInstance
+    courtEntityMSharedPtr courtInstance;  // storee the active courtInstance
     
     directions direction;  // stores direction the ball has been moved
     directions oldDirection;  // stores the previous direction of the ball

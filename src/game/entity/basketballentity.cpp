@@ -273,11 +273,11 @@ void basketballState::setPlayerWithBall(playerStateSharedPtr set)  // sets the v
     playerWithBall = set;
 }*/
 
-courtStateSharedPtr basketballEntity::getCourtInstance()  // retrieves the value of courtInstance
+courtEntityMSharedPtr basketballEntity::getCourtInstance()  // retrieves the value of courtInstance
 {
     return (courtInstance);
 }
-void basketballEntity::setCourtInstance(courtStateSharedPtr set)  // sets the value of courtInstance
+void basketballEntity::setCourtInstance(courtEntityMSharedPtr set)  // sets the value of courtInstance
 {
     courtInstance = set;
 }

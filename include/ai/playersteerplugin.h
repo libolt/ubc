@@ -49,8 +49,8 @@ class playerSteerPlugin : public OpenSteer::PlugIn, steering
     basketballEntityMSharedPtr getActiveBasketballInstance();  // retrieves the value of activeBasketballInstance
     void setActiveBasketballInstance(basketballEntityMSharedPtr set);  // sets the value of activeBasketballInstance
 
-    courtStateMSharedPtr getActiveCourtInstance();  // retrieves the value of activeCourtInstance
-    void setActiveCourtInstance(courtStateMSharedPtr set);  // sets the value of activeCourtInstance
+    courtEntityMSharedPtr getActiveCourtInstance();  // retrieves the value of activeCourtInstance
+    void setActiveCourtInstance(courtEntityMSharedPtr set);  // sets the value of activeCourtInstance
 
     teamEntityMSharedPtr getActiveTeamInstance();  // retrieves the value of activeTeamInstance
     void setActiveTeamInstance(teamEntityMSharedPtr set);  // sets the value of activeTeamInstance
@@ -89,7 +89,7 @@ class playerSteerPlugin : public OpenSteer::PlugIn, steering
 
     gameEntitySharedPtr gameInstance;  // stores copy of gameInstance
     basketballEntityMSharedPtr activeBasketballInstance;  // stores copy of activeBasketballInstance
-    courtStateMSharedPtr activeCourtInstance;  // stores copy of activeCourtInstance
+    courtEntityMSharedPtr activeCourtInstance;  // stores copy of activeCourtInstance
     teamEntityMSharedPtr activeTeamInstance;  // stores copy of activeTeamInstance
     teamTypes teamWithBall;
     std::string humanPlayer;  // stores which player is human controlled

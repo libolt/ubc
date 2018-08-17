@@ -41,8 +41,8 @@ class gameComponents
         basketballEntityMSharedPtr getActiveBasketballInstance();  // retrieves the value of activeBasketballInstance
         void setActiveBasketballInstance(basketballEntityMSharedPtr set);  // sets the value of activeBasketballInstance
 
-        courtStateMSharedPtr getActiveCourtInstance();  // retrieves the value of activeCourtInstance
-        void setActiveCourtInstance(courtStateMSharedPtr set);  // sets the value of activeCourtInstance
+        courtEntityMSharedPtr getActiveCourtInstance();  // retrieves the value of activeCourtInstance
+        void setActiveCourtInstance(courtEntityMSharedPtr set);  // sets the value of activeCourtInstance
 
         hoopStateMSharedPtr getActiveHoopInstance();  // retrieves the value of activeHoopInstance
         void setActiveHoopInstance(hoopStateMSharedPtr set);  // sets the value of activeHoopInstance
@@ -56,8 +56,8 @@ class gameComponents
         basketballEntityMSharedPtr getBasketballInstance();  // retrieves the value of basketballInstance
         void setBasketballInstance(basketballEntityMSharedPtr set);  // sets the value of basketballInstance
 
-        courtStateMSharedPtr  getCourtInstance();  // retrieves the value of courtInstance
-        void setCourtInstance(courtStateMSharedPtr  set);  // sets the value of courtInstance
+        courtEntityMSharedPtr  getCourtInstance();  // retrieves the value of courtInstance
+        void setCourtInstance(courtEntityMSharedPtr  set);  // sets the value of courtInstance
 
         hoopStateMSharedPtr getHoopInstance();  // retrieves the value of hoopInstance
         void setHoopInstance(hoopStateMSharedPtr set);  // sets the value of hoopInstance
@@ -77,12 +77,12 @@ class gameComponents
         inputInGameWorkQueues inputInGameWorkQueue;  // queue of input events for game
 
         basketballEntityMSharedPtr activeBasketballInstance;  // creates instance of the basketballState class
-        courtStateMSharedPtr activeCourtInstance;  // stores the active court instance
+        courtEntityMSharedPtr activeCourtInstance;  // stores the active court instance
         hoopStateMSharedPtr activeHoopInstance;  // creates instance of the hoopState class
         teamEntityMSharedPtr activeTeamInstance;  // stores active team instance
         
         basketballEntityMSharedPtr basketballInstance;  // creates instance of the basketballs class
-        courtStateMSharedPtr courtInstance;  // stores the court instance
+        courtEntityMSharedPtr courtInstance;  // stores the court instance
         hoopStateMSharedPtr hoopInstance;  // creates instance of the hoop class
         playerEntityMSharedPtr playerInstance;  // stores the map of the players loaded from the xml files
         teamEntityMSharedPtr  teamInstance;  // creates instance of the teamState class

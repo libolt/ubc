@@ -57,11 +57,11 @@ void gameComponents::setActiveBasketballInstance(basketballEntityMSharedPtr set)
     activeBasketballInstance = set;
 }
 
-courtStateMSharedPtr gameComponents::getActiveCourtInstance()  // retrieves the value of activeCourtInstance
+courtEntityMSharedPtr gameComponents::getActiveCourtInstance()  // retrieves the value of activeCourtInstance
 {
     return (activeCourtInstance);
 }
-void gameComponents::setActiveCourtInstance(courtStateMSharedPtr set)  // sets the value of activeCourtInstance
+void gameComponents::setActiveCourtInstance(courtEntityMSharedPtr set)  // sets the value of activeCourtInstance
 {
     activeCourtInstance = set;
 }
@@ -93,11 +93,11 @@ void gameComponents::setBasketballInstance(basketballEntityMSharedPtr set)  // s
     basketballInstance = set;
 }
 
-courtStateMSharedPtr gameComponents::getCourtInstance()  // retrieves the value of courtInstance
+courtEntityMSharedPtr gameComponents::getCourtInstance()  // retrieves the value of courtInstance
 {
     return (courtInstance);
 }
-void gameComponents::setCourtInstance(courtStateMSharedPtr set)  // sets the value of courtInstance
+void gameComponents::setCourtInstance(courtEntityMSharedPtr set)  // sets the value of courtInstance
 {
     courtInstance = set;
 }

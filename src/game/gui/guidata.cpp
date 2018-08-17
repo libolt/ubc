@@ -37,7 +37,7 @@
 #include "setup/setupcourts.h"
 #include "setup/setupplayers.h"
 #include "setup/setupteams.h"
-#include "state/courtstate.h"
+//#include "state/courtstate.h"
 #include "entity/gameentity.h"
 #include "state/playerstate.h"
 #include "state/teamstate.h"
@@ -59,7 +59,7 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
 //    sharedPtr<gameState> gameS = gameState::Instance();
     conversionSharedPtr convert = conversion::Instance();
     setupCourtsSharedPtr setupCourt(new setupCourts);
-    courtStateMSharedPtr  courtInstance;
+    courtEntityMSharedPtr  courtInstance;
 //    courtStateSharedPtr court(new courtState);
 //    courtInstance.insert(std::pair<size_t, courtStateSharedPtr>(0, court));
     stdStringVec courtName;
@@ -89,9 +89,9 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
         {
             logMsg(func +" Court Data Initialized == " +convert->toString(courtInstance[0]->getData()->getInitialized()));
             logMsg(func +" Court Data Name == " +courtInstance[0]->getData()->getName());
-            logMsg(func +" Court Entity Name == " +courtInstance[0]->getEntity()->getName());
-            logMsg(func +" Court Entity modelFileName == " +courtInstance[0]->getEntity()->getModelFileName());
-            logMsg(func +" Court Entity Initialized == " +convert->toString(courtInstance[0]->getEntity()->getInitialized()));
+            logMsg(func +" Court Entity Name == " +courtInstance[0]->getName());
+            logMsg(func +" Court Entity modelFileName == " +courtInstance[0]->getModelFileName());
+            logMsg(func +" Court Entity Initialized == " +convert->toString(courtInstance[0]->getInitialized()));
             logMsg(func +" Court Initialized == " +convert->toString(courtInstance[0]->getInitialized()));
             logMsg(func +" Game Initialized == " +convert->toString(gameInstance->getFlag()->getInitialized()));
 

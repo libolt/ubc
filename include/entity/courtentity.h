@@ -33,6 +33,9 @@ class courtEntity : public entity
         courtEntity();  // constructor
         ~courtEntity();  // destructor
 
+        sharedPtr<courtData> getData();  // retrieves the value of data
+        void setData(sharedPtr<courtData> set);  // sets the value of data
+
         sharedPtr<courtPhysics> getPhysics();  // retrieves the value of physics
         void setPhysics(sharedPtr<courtPhysics> set);  // sets the value of physics
 
@@ -47,6 +50,7 @@ class courtEntity : public entity
 
         bool initialized;  // stores whether the court entity object has been initialized
 
+        courtDataSharedPtr data;  // stores the court data object
         sharedPtr<courtPhysics> physics;  // instanciates an object to handle the physics for the court
 };
 

@@ -63,8 +63,8 @@ class playerSteer : public steering
     basketballEntityMSharedPtr getActiveBasketballInstance();  // retrieves the value of activeBasketballInstance
     void setActiveBasketballInstance(basketballEntityMSharedPtr set);  // sets the value of activeBasketballInstance
 
-    courtStateMSharedPtr getActiveCourtInstance();  // retrieves the value of activeCourtInstance
-    void setActiveCourtInstance(courtStateMSharedPtr set);  // sets the value of activeCourtInstance
+    courtEntityMSharedPtr getActiveCourtInstance();  // retrieves the value of activeCourtInstance
+    void setActiveCourtInstance(courtEntityMSharedPtr set);  // sets the value of activeCourtInstance
 
     teamEntityMSharedPtr getActiveTeamInstance();  // retrieves the value of activeTeamInstance
     void setActiveTeamInstance(teamEntityMSharedPtr set);  // sets the value of activeTeamInstance
@@ -93,7 +93,7 @@ class playerSteer : public steering
     //Ball*	m_Ball;
 
     basketballEntityMSharedPtr activeBasketballInstance;  // stores copy of activeBasketballInstance
-    courtStateMSharedPtr activeCourtInstance;  // stores copy of activeCourtInstance
+    courtEntityMSharedPtr activeCourtInstance;  // stores copy of activeCourtInstance
     teamEntityMSharedPtr activeTeamInstance;  // stores copy of activeTeamInstance
 
     teamTypes teamType;  // stores which team the player belongs to

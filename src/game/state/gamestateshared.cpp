@@ -21,7 +21,7 @@
 #include "entity/playerentity.h"
 #include "flags/gameflags.h"
 #include "state/basketballstate.h"
-#include "state/courtstate.h"
+//#include "state/courtstate.h"
 #include "state/gamestateshared.h"
 #include "state/hoopstate.h"
 #include "state/teamstate.h"

@@ -28,7 +28,7 @@
 #include "setup/setupplayers.h"
 #include "utilities/conversion.h"
 #include "setup/setupplayerpositions.h"
-#include "state/courtstate.h"
+//#include "state/courtstate.h"
 #include "entity/gameentity.h"
 #include "state/teamstate.h"
 #include "statemachine/playerstatemachine.h"
@@ -202,12 +202,12 @@ teamEntityMSharedPtr setupTeams::createActiveTeamInstances(teamEntityMSharedPtr 
     return (activeTeamInstance);
 }
 
-playerEntityMSharedPtr setupTeams::setPlayerStartPositions(playerEntityMSharedPtr activePlayerInstance, courtStateMSharedPtr courtInstance, teamGameDataSharedPtr gameData, teamStarterIDsVecM teamStarterID)  // sets the initial coordinates for the players.
+playerEntityMSharedPtr setupTeams::setPlayerStartPositions(playerEntityMSharedPtr activePlayerInstance, courtEntityMSharedPtr courtInstance, teamGameDataSharedPtr gameData, teamStarterIDsVecM teamStarterID)  // sets the initial coordinates for the players.
 {
     conversionSharedPtr convert = conversion::Instance();
     setupPlayerPositionsSharedPtr setupPlayerPosition(new setupPlayerPositions);
     OgreVector3Vec startingPos;
-    Ogre::Vector3 courtPos = courtInstance[0]->getEntity()->getNodePosition();
+    Ogre::Vector3 courtPos = courtInstance[0]->getNodePosition();
     std::string func = "setupTeams::setPlayerStartPositions()";
 
 //    exit(0);

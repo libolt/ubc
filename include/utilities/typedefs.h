@@ -64,7 +64,7 @@ class conversion;
 
 class courtData;
 class courtEntity;
-class courtState;
+//class courtState;
 
 class defenseState;
 
@@ -211,7 +211,7 @@ typedef sharedPtr<playerFlags> playerFlagsSharedPtr;
 
 //typedef sharedPtr<basketballState> basketballEntitySharedPtr;
 
-typedef sharedPtr<courtState> courtStateSharedPtr;
+//typedef sharedPtr<courtState> courtStateSharedPtr;
 
 typedef sharedPtr<defenseState> defenseStateSharedPtr;
 
@@ -353,7 +353,7 @@ typedef std::vector<sharedPtr<hoopState> > hoopStateVecSharedPtr;
 typedef std::vector<sharedPtr<teamEntity> > teamEntityVecSharedPtr;
 typedef std::vector<sharedPtr<teamState> > teamStateVecSharedPtr;
 
-typedef std::vector<sharedPtr<courtState> > courtStateVecSharedPtr;
+typedef std::vector<sharedPtr<courtEntity> > courtEntityVecSharedPtr;
 
 typedef std::vector<sharedPtr<offensePlays> > offensePlaysVecSharedPtr;
 
@@ -376,7 +376,7 @@ typedef std::vector<playerEntity> playerEntityVecSharedPtr;
 
 typedef std::vector<basketballEntity> basketballEntityVec;
 
-typedef std::vector<courtState> courtStateVec;
+typedef std::vector<courtEntity> courtEntityVec;
 
 typedef std::vector<hoopState> hoopStateVec;
 
@@ -400,7 +400,7 @@ typedef std::vector<Ogre::Vector3> OgreVector3Vec;
 typedef std::map <size_t, playerEntitySharedPtr> playerEntityMSharedPtr;
 
 typedef std::map <size_t, basketballEntitySharedPtr> basketballEntityMSharedPtr;
-typedef std::map <size_t, courtStateSharedPtr> courtStateMSharedPtr;
+typedef std::map <size_t, courtEntitySharedPtr> courtEntityMSharedPtr;
 
 typedef std::map <size_t, hoopStateSharedPtr> hoopStateMSharedPtr;
 

@@ -38,8 +38,8 @@ class loadCourts : public loader
         stdStringVec getCourtFiles();  // retrieves the value of courtFiles
         void setCourtFiles(stdStringVec set);  // sets the value of courtFiles
         
-        courtStateMSharedPtr  getCInstance();  // retrieves the value of cInstance
-        void setCInstance(courtStateMSharedPtr  set);  // sets the value of cInstance
+        courtEntityMSharedPtr  getCInstance();  // retrieves the value of cInstance
+        void setCInstance(courtEntityMSharedPtr  set);  // sets the value of cInstance
 
         bool getCourtFilesLoaded();  // retrieves the value of courtFilesLoaded
         void setCourtFilesLoaded(bool set);  // sets the value of courtFilesLoaded
@@ -47,15 +47,15 @@ class loadCourts : public loader
         bool checkIfCourtsLoaded();  // checks if courts have been loaded into cInstance
 
         // Courts
-        courtStateMSharedPtr  loadCourtFiles();  // load court XML files
+        courtEntityMSharedPtr  loadCourtFiles();  // load court XML files
         stdStringVec loadCourtListFile(std::string fileName);  // load the list of courts from courts.xml
-        courtStateSharedPtr loadCourtFile(std::string fileName);  // loads data from the court XML files.
+        courtEntitySharedPtr loadCourtFile(std::string fileName);  // loads data from the court XML files.
 
-        courtStateMSharedPtr loadModels(courtStateMSharedPtr activeCourtInstance, renderEngineSharedPtr render);  // loads selected court model
+        courtEntityMSharedPtr loadModels(courtEntityMSharedPtr activeCourtInstance, renderEngineSharedPtr render);  // loads selected court model
 
     private:
     
-        static courtStateMSharedPtr  cInstance;
+        static courtEntityMSharedPtr  cInstance;
         static stdStringVec courtFiles;  // stores list of court xml files
         static bool courtFilesLoaded;
     

@@ -45,7 +45,7 @@
 #include "setup/setupteams.h"
 #include "statemachine/gamestatemachine.h"
 #include "state/basketballstate.h"
-#include "state/courtstate.h"
+//#include "state/courtstate.h"
 #include "entity/gameentity.h"
 #include "state/hoopstate.h"
 #include "state/networkstate.h"
@@ -772,21 +772,21 @@ bool gameEntity::createNodes(renderEngineSharedPtr render)  // creates scene nod
     {
         for (auto ACIIT : component->getActiveCourtInstance())  // loop through active court instances
         {
-            activeModel = ACIIT.second->getEntity()->getModel();
-            activeEntityName = ACIIT.second->getEntity()->getName();
+            activeModel = ACIIT.second->getModel();
+            activeEntityName = ACIIT.second->getName();
             activeNodeNum = convert->toString(ACIIT.first);
-            activeNodeName = ACIIT.second->getEntity()->getNodeName();
+            activeNodeName = ACIIT.second->getNodeName();
             if (activeNodeName == "")
             {
                 activeNodeName = activeEntityName + activeNodeNum;
-                ACIIT.second->getEntity()->setNodeName(activeNodeName);
+                ACIIT.second->setNodeName(activeNodeName);
             }
             else
             {
                 
             }
             activeNode = render->createNode(activeModel, activeNodeName);  // creates node
-            ACIIT.second->getEntity()->setNode(activeNode);  // saves node to current instance
+            ACIIT.second->setNode(activeNode);  // saves node to current instance
         }
     }
     else
@@ -858,13 +858,13 @@ void gameEntity::setBasketballStartPositions()  // sets the initial coordinates 
 void gameEntity::setCourtStartPositions()  // sets the initial coordinates for the basketball(s)
 {
 
-    courtStateMSharedPtr courtInstance = component->getCourtInstance();
+    courtEntityMSharedPtr courtInstance = component->getCourtInstance();
     std::string func = "gameEntity::setCourtStartPositions()";
 
     logMsg(func +" begin");
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-    courtInstance[0]->getEntity()->getNode()->setPosition(0.0f,-6.5f,360.0f);
-    courtInstance[0]->getEntity()->setNodePosition(Ogre::Vector3(0.0f,-6.5f,360.0f));
+    courtInstance[0]->getNode()->setPosition(0.0f,-6.5f,360.0f);
+    courtInstance[0]->setNodePosition(Ogre::Vector3(0.0f,-6.5f,360.0f));
     logMsg(func +" courtPosition");
 //exit(0);
 #else

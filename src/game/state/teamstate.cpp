@@ -37,7 +37,7 @@
 #include "state/teamstate.h"
 #include "engine/gameengine.h"
 #include "state/basketballstate.h"
-#include "state/courtstate.h"
+//#include "state/courtstate.h"
 #include "entity/gameentity.h"
 #include "state/hoopstate.h"
 #include "state/defensestate.h"

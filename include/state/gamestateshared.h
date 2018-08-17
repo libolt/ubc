@@ -34,7 +34,7 @@
 
 class playerEntity;
 class basketballState;
-class courtState;
+//class courtState;
 class hoopState;
 class playerState;
 class teamState;

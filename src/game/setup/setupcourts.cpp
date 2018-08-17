@@ -21,7 +21,7 @@
 #include "setup/setupcourts.h"
 #include "data/courtdata.h"
 #include "entity/courtentity.h"
-#include "state/courtstate.h"
+//#include "state/courtstate.h"
 #include "load/loadcourts.h"
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
@@ -35,9 +35,9 @@ setupCourts::~setupCourts()  // destructor
     
 }
 
-courtStateMSharedPtr setupCourts::createCourtInstances()  // creates court Instances
+courtEntityMSharedPtr setupCourts::createCourtInstances()  // creates court Instances
 {
-    courtStateMSharedPtr courtInstance;
+    courtEntityMSharedPtr courtInstance;
     loadCourtsSharedPtr loadCourt;
     std::string func = "setupCourts::createCourtInstances()";
 
@@ -57,8 +57,8 @@ courtStateMSharedPtr setupCourts::createCourtInstances()  // creates court Insta
         for (auto CIIT : courtInstance)
         {
             logMsg("Court Name == " +CIIT.second->getData()->getName());
-            CIIT.second->getEntity()->setName(CIIT.second->getData()->getName());
-            CIIT.second->getEntity()->setModelFileName(CIIT.second->getData()->getModelFileName());
+            CIIT.second->setName(CIIT.second->getData()->getName());
+            CIIT.second->setModelFileName(CIIT.second->getData()->getModelFileName());
 
         }
 //        exit(0);
@@ -75,9 +75,9 @@ courtStateMSharedPtr setupCourts::createCourtInstances()  // creates court Insta
     return (courtInstance);
 }
 
-courtStateMSharedPtr setupCourts::createActiveCourtInstances(courtStateMSharedPtr courtInstance)  // creates active court instances
+courtEntityMSharedPtr setupCourts::createActiveCourtInstances(courtEntityMSharedPtr courtInstance)  // creates active court instances
 {
-    courtStateMSharedPtr activeCourtInstance;
+    courtEntityMSharedPtr activeCourtInstance;
     conversionSharedPtr convert = conversion::Instance();
     loadCourtsSharedPtr loadCourt(new loadCourts);
 //    courtStateMSharedPtr courtInstance = getCourtInstance();
@@ -106,7 +106,7 @@ courtStateMSharedPtr setupCourts::createActiveCourtInstances(courtStateMSharedPt
 
     logMsg(func +" courtInstance.size() == " +convert->toString(courtInstance.size()));
     //FIXME! should not be hard coded
-    activeCourtInstance.insert(std::pair<size_t, courtStateSharedPtr>(0, courtInstance[0]));
+    activeCourtInstance.insert(std::pair<size_t, courtEntitySharedPtr>(0, courtInstance[0]));
     if (!activeCourtInstance[0]->getInitialized())
     {
         if (activeCourtInstance[0]->initialize())
@@ -126,7 +126,7 @@ courtStateMSharedPtr setupCourts::createActiveCourtInstances(courtStateMSharedPt
     return (activeCourtInstance);
 }
 
-courtStateMSharedPtr setupCourts::setCourtStartPositions(courtStateMSharedPtr courtInstance)  // sets the initial coordinates for the basketball(s)
+courtEntityMSharedPtr setupCourts::setCourtStartPositions(courtEntityMSharedPtr courtInstance)  // sets the initial coordinates for the basketball(s)
 {
 
 //    courtStateMSharedPtr courtInstance = component->getCourtInstance();
@@ -134,13 +134,13 @@ courtStateMSharedPtr setupCourts::setCourtStartPositions(courtStateMSharedPtr co
 
     logMsg(func +" begin");
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-    courtInstance[0]->getEntity()->getNode()->setPosition(0.0f,-6.5f,360.0f);
-    courtInstance[0]->getEntity()->setNodePosition(Ogre::Vector3(0.0f,-6.5f,360.0f));
+    courtInstance[0]->getNode()->setPosition(0.0f,-6.5f,360.0f);
+    courtInstance[0]->setNodePosition(Ogre::Vector3(0.0f,-6.5f,360.0f));
     logMsg(func +" courtPosition");
 //exit(0);
 #else
-    courtInstance[0]->getEntity()->getNode()->setPosition(0.0f,-27.5f,360.0f);
-    courtInstance[0]->getEntity()->setNodePosition(Ogre::Vector3(0.0f,-27.5f,360.0f));
+    courtInstance[0]->getNode()->setPosition(0.0f,-27.5f,360.0f);
+    courtInstance[0]->setNodePosition(Ogre::Vector3(0.0f,-27.5f,360.0f));
 #endif
 
     return (courtInstance);

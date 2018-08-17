@@ -29,10 +29,10 @@
 #include "entity/courtentity.h"
 #include "utilities/logging.h"
 #include "data/courtdata.h"
-#include "state/courtstate.h"
+//#include "state/courtstate.h"
 
 // static declarations
-courtStateMSharedPtr loadCourts::cInstance;
+courtEntityMSharedPtr loadCourts::cInstance;
 stdStringVec loadCourts::courtFiles;  // stores list of court xml files
 bool loadCourts::courtFilesLoaded;
 
@@ -55,11 +55,11 @@ void loadCourts::setCourtFiles(stdStringVec set)  // sets the value of courtFile
     courtFiles = set;
 }
 
-courtStateMSharedPtr loadCourts::getCInstance()  // retrieves the value of cInstance
+courtEntityMSharedPtr loadCourts::getCInstance()  // retrieves the value of cInstance
 {
     return (cInstance);
 }
-void loadCourts::setCInstance(courtStateMSharedPtr set)  // sets the value of cInstance
+void loadCourts::setCInstance(courtEntityMSharedPtr set)  // sets the value of cInstance
 {
     cInstance = set;
 }
@@ -151,10 +151,10 @@ bool loadCourts::checkIfCourtsLoaded()  // checks if courts have been loaded int
 }
 
 // Courts
-courtStateMSharedPtr loadCourts::loadCourtFiles()  // load court settings from XML files
+courtEntityMSharedPtr loadCourts::loadCourtFiles()  // load court settings from XML files
 {
 //    exit(0);
-    courtStateMSharedPtr  courts;
+    courtEntityMSharedPtr  courts;
     std::string courtList;
     std::string func = "loadCourts::loadCourts()";
 
@@ -176,9 +176,9 @@ courtStateMSharedPtr loadCourts::loadCourtFiles()  // load court settings from X
     {
 //        logMsg("courtFile = " +*it);
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-        courts.insert(std::pair<size_t, courtStateSharedPtr>(it, loadCourtFile("data/courts/" + courtFiles[it])));
+        courts.insert(std::pair<size_t, courtEntitySharedPtr>(it, loadCourtFile("data/courts/" + courtFiles[it])));
 #else
-        courts.insert(std::pair<size_t, courtStateSharedPtr>(it, loadCourtFile(findFile("courts/" + courtFiles[it]))));
+        courts.insert(std::pair<size_t, courtEntitySharedPtr>(it, loadCourtFile(findFile("courts/" + courtFiles[it]))));
 #endif
         ++it;
     }
@@ -245,10 +245,10 @@ stdStringVec loadCourts::loadCourtListFile(std::string fileName)    // loads the
     return (cFiles);
 }
 
-courtStateSharedPtr loadCourts::loadCourtFile(std::string fileName)  // loads data from the offense play XML files
+courtEntitySharedPtr loadCourts::loadCourtFile(std::string fileName)  // loads data from the offense play XML files
 {
     conversionSharedPtr convert = conversion::Instance();
-    courtStateSharedPtr courtInstance(new courtState);
+    courtEntitySharedPtr courtInstance(new courtEntity);
 //    courtState *court = new courtState;
     std::string name;
     std::string modelName;
@@ -479,7 +479,7 @@ courtStateSharedPtr loadCourts::loadCourtFile(std::string fileName)  // loads da
     return (courtInstance);
 }
 
-courtStateMSharedPtr loadCourts::loadModels(courtStateMSharedPtr activeCourtInstance, renderEngineSharedPtr render)  // loads selected court model
+courtEntityMSharedPtr loadCourts::loadModels(courtEntityMSharedPtr activeCourtInstance, renderEngineSharedPtr render)  // loads selected court model
 {
     conversionSharedPtr convert = conversion::Instance();
     loaderSharedPtr load(new loader);
@@ -499,32 +499,32 @@ courtStateMSharedPtr loadCourts::loadModels(courtStateMSharedPtr activeCourtInst
     {
         logMsg(func +" activeCourtInstance == " +convert->toString(ACIIT.first));
         //FIXME! This should be done in a cleaner way!
-        ACIIT.second->getEntity()->setModelFileName(ACIIT.second->getData()->getModelFileName());
+        ACIIT.second->setModelFileName(ACIIT.second->getData()->getModelFileName());
 
-        if (ACIIT.second->getEntity()->getName() == "")  // checks if entityName has been set
+        if (ACIIT.second->getName() == "")  // checks if entityName has been set
         {
             std::string name = ACIIT.second->getData()->getName();
-            ACIIT.second->getEntity()->setName(name);
+            ACIIT.second->setName(name);
         }
-        logMsg(func +" entityName == " +ACIIT.second->getEntity()->getName());
+        logMsg(func +" entityName == " +ACIIT.second->getName());
 //        exit(0);
-        if (ACIIT.second->getEntity()->getNodeName() == "")  // checks if entityNodeName has been set
+        if (ACIIT.second->getNodeName() == "")  // checks if entityNodeName has been set
         {
             std::string nodeName = ACIIT.second->getData()->getName() +"node";
-            ACIIT.second->getEntity()->setNodeName(nodeName);
+            ACIIT.second->setNodeName(nodeName);
         }
         logMsg(func +" court name == " +ACIIT.second->getData()->getName());
-        logMsg(func + " court node name == " +ACIIT.second->getEntity()->getNodeName());
+        logMsg(func + " court node name == " +ACIIT.second->getNodeName());
 //        exit(0);
-        logMsg(func +" loading model == " +ACIIT.second->getEntity()->getModelFileName());
+        logMsg(func +" loading model == " +ACIIT.second->getModelFileName());
 //        exit(0);
-        std::string modelFileName = ACIIT.second->getEntity()->getModelFileName();
-        std::string entityName = ACIIT.second->getEntity()->getName();
-        std::string entityNodeName = ACIIT.second->getEntity()->getNodeName();
+        std::string modelFileName = ACIIT.second->getModelFileName();
+        std::string entityName = ACIIT.second->getName();
+        std::string entityNodeName = ACIIT.second->getNodeName();
 
         model = loadModelFile(modelFileName, entityName, render);
-        ACIIT.second->getEntity()->setModelLoaded(true);
-        ACIIT.second->getEntity()->setModel(model);
+        ACIIT.second->setModelLoaded(true);
+        ACIIT.second->setModel(model);
     }
 /*    if (!activeCourtInstancesCreated && activeCourtInstance.size() == 0)
     {

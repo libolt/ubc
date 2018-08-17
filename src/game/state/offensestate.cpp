@@ -25,7 +25,7 @@
 #include "load/loadoffenseplays.h"
 #include "utilities/logging.h"
 #include "state/basketballstate.h"
-#include "state/courtstate.h"
+//#include "state/courtstate.h"
 #include "entity/gameentity.h"
 #include "state/offensestate.h"
 #include "state/playerstate.h"

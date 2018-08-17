@@ -31,7 +31,7 @@
 #include "entity/playerentity.h"
 #include "entity/teamentity.h"
 #include "state/basketballstate.h"
-#include "state/courtstate.h"
+//#include "state/courtstate.h"
 #include "entity/gameentity.h"
 #include "utilities/logging.h"
 #include "state/offensestate.h"
@@ -161,11 +161,11 @@ void playerSteer::setActiveBasketballInstance(basketballEntityMSharedPtr set)  /
     activeBasketballInstance = set;
 }
 
-courtStateMSharedPtr playerSteer::getActiveCourtInstance()  // retrieves the value of activeCourtInstance
+courtEntityMSharedPtr playerSteer::getActiveCourtInstance()  // retrieves the value of activeCourtInstance
 {
     return (activeCourtInstance);
 }
-void playerSteer::setActiveCourtInstance(courtStateMSharedPtr set)  // sets the value of activeCourtInstance
+void playerSteer::setActiveCourtInstance(courtEntityMSharedPtr set)  // sets the value of activeCourtInstance
 {
     activeCourtInstance = set;
 }

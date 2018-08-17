@@ -35,7 +35,7 @@
 #include "setup/setupplayers.h"
 #include "setup/setupteams.h"
 #include "state/basketballstate.h"
-#include "state/courtstate.h"
+#include "entity/courtentity.h"
 #include "entity/gameentity.h"
 #include "state/teamstate.h"
 #include "state/playerstate.h"

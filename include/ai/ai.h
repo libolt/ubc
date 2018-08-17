@@ -48,8 +48,8 @@ public:
     basketballEntityMSharedPtr getActiveBasketballInstance();  // retrieves the value of activeBasketballInstance
     void setActiveBasketballInstance(basketballEntityMSharedPtr set);  // sets the value of activeBasketballInstance
 
-    courtStateMSharedPtr getActiveCourtInstance();  // retrieves the value of activeCourtInstance
-    void setActiveCourtInstance(courtStateMSharedPtr set);  // sets the value of activeCourtInstance
+    courtEntityMSharedPtr getActiveCourtInstance();  // retrieves the value of activeCourtInstance
+    void setActiveCourtInstance(courtEntityMSharedPtr set);  // sets the value of activeCourtInstance
 
     teamEntityMSharedPtr getActiveTeamInstance();  // retrieves the value of activeTeamInstance
     void setActiveTeamInstance(teamEntityMSharedPtr set);  // sets the value of activeTeamInstance
@@ -77,7 +77,7 @@ public:
     void setOldTime(float time); // sets the value of oldTime
 
     // initial setup of AI state
-    bool setup(basketballEntityMSharedPtr activeBasketballInstance, courtStateMSharedPtr activeCourtInstance, teamEntityMSharedPtr activeTeamInstance, teamTypes teamWithBall, std::string humanPlayer);
+    bool setup(basketballEntityMSharedPtr activeBasketballInstance, courtEntityMSharedPtr activeCourtInstance, teamEntityMSharedPtr activeTeamInstance, teamTypes teamWithBall, std::string humanPlayer);
 
 	// updates AI state
 	void update(const float currentTime, const float elapsedTime);
@@ -132,7 +132,7 @@ private:
 
     gameEntitySharedPtr gameInstance;  // stores copy of gameInstance
     basketballEntityMSharedPtr activeBasketballInstance;  // stores copy of activeBasketballInstance
-    courtStateMSharedPtr activeCourtInstance;  // stores copy of activeCourtInstance
+    courtEntityMSharedPtr activeCourtInstance;  // stores copy of activeCourtInstance
     teamEntityMSharedPtr activeTeamInstance;  // stores copy of activeTeamInstance
     teamTypes teamWithBall;  // stores copy of teamWithBall
     std::string humanPlayer;  // stores which player is human controlled

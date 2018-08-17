@@ -19,6 +19,8 @@
  ***************************************************************************/
 
 #include "entity/courtentity.h"
+#include "data/courtdata.h"
+
 #include "physics/courtphysics.h"
 
 courtEntity::courtEntity()  // constructor
@@ -29,6 +31,15 @@ courtEntity::courtEntity()  // constructor
 courtEntity::~courtEntity()  // destructor
 {
 
+}
+
+sharedPtr<courtData> courtEntity::getData()  // retrieves the value of data
+{
+    return (data);
+}
+void courtEntity::setData(sharedPtr<courtData> set)  // sets the value of data
+{
+    data = set;
 }
 
 sharedPtr<courtPhysics> courtEntity::getPhysics()  // retrieves the value of physics
@@ -51,6 +62,9 @@ void courtEntity::setInitialized(bool set)  // sets the value of initialized
 
 bool courtEntity::initialize()  // initializes the court entity object
 {
+    courtDataSharedPtr tempData(new courtData);
+    data = tempData;
+    
     sharedPtr<courtPhysics> tempPhysics(new courtPhysics);
     physics = tempPhysics;
 

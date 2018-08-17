@@ -33,7 +33,7 @@ class setupTeams
         teamEntityMSharedPtr createTeamInstances();  // creates team Instances
         teamEntityMSharedPtr createActiveTeamInstances(teamEntityMSharedPtr teamInstance, sizeTVec teamID);  // creates active team instances
         
-        playerEntityMSharedPtr setPlayerStartPositions(playerEntityMSharedPtr activePlayerInstance, courtStateMSharedPtr courtInstance, teamGameDataSharedPtr gameData, teamStarterIDsVecM teamStarterID);  // sets the initial coordinates for the players.
+        playerEntityMSharedPtr setPlayerStartPositions(playerEntityMSharedPtr activePlayerInstance, courtEntityMSharedPtr courtInstance, teamGameDataSharedPtr gameData, teamStarterIDsVecM teamStarterID);  // sets the initial coordinates for the players.
         playerEntityMSharedPtr setPlayerStartActivePositions(playerEntityMSharedPtr activePlayerInstance);  // sets the position the players will play at the start of the game
 
         playerEntityMSharedPtr setPlayerStartDirections(playerEntityMSharedPtr activePlayerInstance, teamGameDataSharedPtr gameData);  // sets the initial directions for the players.

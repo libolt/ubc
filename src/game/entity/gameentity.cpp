@@ -869,8 +869,8 @@ void gameEntity::setCourtStartPositions()  // sets the initial coordinates for t
     logMsg(func +" courtPosition");
 //exit(0);
 #else
-    courtInstance[0]->getEntity()->getNode()->setPosition(0.0f,-27.5f,360.0f);
-    courtInstance[0]->getEntity()->setNodePosition(Ogre::Vector3(0.0f,-27.5f,360.0f));
+    courtInstance[0]->getNode()->setPosition(0.0f,-27.5f,360.0f);
+    courtInstance[0]->setNodePosition(Ogre::Vector3(0.0f,-27.5f,360.0f));
 #endif
 
     component->setCourtInstance(courtInstance);
@@ -1408,7 +1408,7 @@ bool gameEntity::updateState(renderEngineSharedPtr render)  // updates the game 
             for (auto ABIIT : activeBasketballInstance)
             {          
                 logMsg(func +"Active Basketball Pos == " +convert->toString(ABIIT.second->getNode()->getPosition()));
-                exit(0);             
+ //               exit(0);
             }
   
         }

@@ -700,13 +700,31 @@ STATE_DEFINE(gameStateMachine, setStartPositions, gameSMData)
     {
         logMsg(func +" courtStartPositionsSet");
     }
-    
-    activeHoopInstance = data->component->getActiveHoopInstance();
-    activeHoopInstance = setupHoop->setHoopStartPositions(activeHoopInstance);
-    data->component->setActiveHoopInstance(activeHoopInstance);
+    if (!data->flag->getHoopStartPositionSet())
+    {
+        activeHoopInstance = data->component->getActiveHoopInstance();
+        activeHoopInstance = setupHoop->setHoopStartPositions(activeHoopInstance);
+        data->component->setActiveHoopInstance(activeHoopInstance);
+        data->flag->setHoopStartPositionSet(true);
+        for (auto AHIIT : activeHoopInstance)
+        {
+            logMsg(func +"Active Hoop Pos == " +convert->toString(AHIIT.second->getNode()->getPosition()));
+            if (AHIIT.second->getNode()->getPosition() == Ogre::Vector3(0,0,0))
+            {
+                data->flag->setHoopStartPositionSet(false);
+            }
+        }
+    }
+    else
+    {
+        logMsg(func +" hoopStartPositionsSet");
+    }
+    if (data->flag->getBasketballStartPositionSet() && data->flag->getCourtStartPositionSet() && data->flag->getHoopStartPositionSet())
+    {
+        data->flag->setStartPositionsSet(true);
+    }
 
-    data->flag->setStartPositionsSet(true);
-//    exit(0);
+    //    exit(0);
     logMsg(func +" end");
 
 }

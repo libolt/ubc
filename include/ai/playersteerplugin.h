@@ -23,7 +23,7 @@
 
 #include "ai/steering.h"
 //#include "ai/playersteer.h"
-#include "state/gamestateshared.h"
+//#include "state/gamestateshared.h"
 
 // Forward declarations
 class playerSteer;

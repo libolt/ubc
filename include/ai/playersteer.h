@@ -22,7 +22,7 @@
 #define _PLAYERSTEER_H_
 
 #include "ai/steering.h"
-#include "state/gamestateshared.h"
+//#include "state/gamestateshared.h"
 #include "utilities/enums.h"
 
 class playerState;

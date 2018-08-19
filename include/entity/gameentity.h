@@ -36,7 +36,7 @@
 //#include "data/playerdata.h"
 //#include "jumpballs.h"
 #include "state/state.h"
-#include "state/gamestateshared.h"
+//#include "state/gamestateshared.h"
 #include "engine/inputengine.h"
 class basketballState;
 class UBC;

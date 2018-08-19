@@ -21,7 +21,7 @@
 #include "setup/setupbasketballs.h"
 #include "entity/basketballentity.h"
 #include "data/basketballdata.h"
-#include "state/basketballstate.h"
+//#include "state/basketballstate.h"
 #include "ai/basketballsteer.h"
 #include "utilities/conversion.h"
 #include "utilities/logging.h"

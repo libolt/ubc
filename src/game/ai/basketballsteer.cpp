@@ -20,11 +20,11 @@
 #include "utilities/conversion.h"
 
 #include "ai/basketballsteer.h"
-#include "state/basketballstate.h"
+//#include "state/basketballstate.h"
 //#include "state/courtstate.h"
 #include "entity/entity.h"
 #include "state/playerstate.h"
-#include "state/teamstate.h"
+//#include "state/teamstate.h"
 
 basketballSteer::basketballSteer()  // constructor
 {

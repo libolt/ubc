@@ -88,7 +88,7 @@ class GUIComponents;
 class guiFlags;
 
 class hoopEntity;
-class hoopState;
+//class hoopState;
 
 class inputEngine;
 class input;
@@ -217,7 +217,7 @@ typedef sharedPtr<defenseState> defenseStateSharedPtr;
 
 //typedef sharedPtr<gameState> gameStateSharedPtr;
 
-typedef sharedPtr<hoopState> hoopStateSharedPtr;
+//typedef sharedPtr<hoopState> hoopStateSharedPtr;
 
 typedef sharedPtr<input> inputSharedPtr;
 
@@ -346,7 +346,7 @@ typedef std::vector<sharedPtr<playerSteer> > playerSteerVecSharedPtr;
 
 typedef std::vector<basketballEntitySharedPtr> basketballEntityVecSharedPtr;
 
-typedef std::vector<sharedPtr<hoopState> > hoopStateVecSharedPtr;
+typedef std::vector<sharedPtr<hoopEntity> > hoopEntityVecSharedPtr;
 
 //typedef std::vector<sharedPtr<playerState> > playerStateVecSharedPtr;
 
@@ -378,7 +378,7 @@ typedef std::vector<basketballEntity> basketballEntityVec;
 
 typedef std::vector<courtEntity> courtEntityVec;
 
-typedef std::vector<hoopState> hoopStateVec;
+typedef std::vector<hoopEntity> hoopEntityVec;
 
 //typedef std::vector<playerState> playerStateVec;
 
@@ -402,7 +402,7 @@ typedef std::map <size_t, playerEntitySharedPtr> playerEntityMSharedPtr;
 typedef std::map <size_t, basketballEntitySharedPtr> basketballEntityMSharedPtr;
 typedef std::map <size_t, courtEntitySharedPtr> courtEntityMSharedPtr;
 
-typedef std::map <size_t, hoopStateSharedPtr> hoopStateMSharedPtr;
+typedef std::map <size_t, hoopEntitySharedPtr> hoopEntityMSharedPtr;
 
 //typedef std::map <size_t, playerStateSharedPtr> playerStateMSharedPtr;
 

@@ -35,6 +35,7 @@
 #include "utilities/conversion.h"
 #include "entity/basketballentity.h"
 #include "entity/courtentity.h"
+#include "entity/hoopentity.h"
 #include "flags/gameflags.h"
 #include "flags/playerflags.h"
 #include "flags/teamflags.h"
@@ -44,13 +45,13 @@
 #include "setup/setupplayers.h"
 #include "setup/setupteams.h"
 #include "statemachine/gamestatemachine.h"
-#include "state/basketballstate.h"
+//#include "state/basketballstate.h"
 //#include "state/courtstate.h"
 #include "entity/gameentity.h"
-#include "state/hoopstate.h"
+
 #include "state/networkstate.h"
 #include "state/playerstate.h"
-#include "state/teamstate.h"
+//#include "state/teamstate.h"
 #include "engine/gameengine.h"
 #include "load/loadbasketballs.h"
 #include "load/loadcourts.h"
@@ -798,22 +799,22 @@ bool gameEntity::createNodes(renderEngineSharedPtr render)  // creates scene nod
     {
         for (auto AHIIT : component->getActiveHoopInstance())  // loop through active hoop instances
         {
-            activeModel = AHIIT.second->getEntity()->getModel();
-            activeEntityName = AHIIT.second->getEntity()->getModel()->getName();
+            activeModel = AHIIT.second->getModel();
+            activeEntityName = AHIIT.second->getModel()->getName();
             logMsg(func +" activeEntityName == " +activeEntityName);
             activeNodeNum = convert->toString(AHIIT.first);
-            activeNodeName = AHIIT.second->getEntity()->getNodeName();
+            activeNodeName = AHIIT.second->getNodeName();
             if (activeNodeName == "")
             {
                 activeNodeName = activeEntityName + activeNodeNum;
-                AHIIT.second->getEntity()->setNodeName(activeNodeName);
+                AHIIT.second->setNodeName(activeNodeName);
             }
             else
             {
                 
             }
             activeNode = render->createNode(activeModel, activeNodeName);  // creates node
-            AHIIT.second->getEntity()->setNode(activeNode);  // saves node to current instance
+            AHIIT.second->setNode(activeNode);  // saves node to current instance
 
         }
 //        exit(0);
@@ -879,23 +880,23 @@ void gameEntity::setCourtStartPositions()  // sets the initial coordinates for t
 void gameEntity::setHoopStartPositions()  // sets the initial coordinates for the basketball(s)
 {
 
-    hoopStateMSharedPtr activeHoopInstance = component->getActiveHoopInstance();
+    hoopEntityMSharedPtr activeHoopInstance = component->getActiveHoopInstance();
     std::string func = "gameEntity::setHoopStartPositions()";
 
     logMsg(func +" begin");
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-    activeHoopInstance[0]->getEntity()->getNode()->setPosition(45.0f,-6.5f,370.0f);
-    activeHoopInstance[1]->getEntity()->getNode()->setPosition(-45.0f,-6.5f,370.0f);
+    activeHoopInstance[0]->getNode()->setPosition(45.0f,-6.5f,370.0f);
+    activeHoopInstance[1]->getNode()->setPosition(-45.0f,-6.5f,370.0f);
 #else
-    activeHoopInstance[0]->getEntity()->getNode()->setPosition(45.0f,-23.5f,370.0f);
-    activeHoopInstance[1]->getEntity()->getNode()->setPosition(-45.0f,-23.5f,370.0f);
+    activeHoopInstance[0]->getNode()->setPosition(45.0f,-23.5f,370.0f);
+    activeHoopInstance[1]->getNode()->setPosition(-45.0f,-23.5f,370.0f);
 #endif
 
     Ogre::Quaternion hoop0Rotation(Ogre::Degree(-90), Ogre::Vector3::UNIT_Y);
-    activeHoopInstance[0]->getEntity()->getNode()->rotate(hoop0Rotation);
+    activeHoopInstance[0]->getNode()->rotate(hoop0Rotation);
 
     Ogre::Quaternion hoop1Rotation(Ogre::Degree(90), Ogre::Vector3::UNIT_Y);
-    activeHoopInstance[1]->getEntity()->getNode()->rotate(hoop1Rotation);
+    activeHoopInstance[1]->getNode()->rotate(hoop1Rotation);
 
     component->setActiveHoopInstance(activeHoopInstance);
     logMsg(func +" end");

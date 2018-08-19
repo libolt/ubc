@@ -21,8 +21,9 @@
 #include "ai/ai.h"
 #include "ai/playersteerplugin.h"
 #include "components/teamcomponents.h"
+#include "data/teamdata.h"
 #include "entity/teamentity.h"
-#include "state/basketballstate.h"
+//#include "state/basketballstate.h"
 //#include "state/courtstate.h"
 #include "utilities/logging.h"
 #include "utilities/typedefs.h"
@@ -30,7 +31,7 @@
 #include "flags/gameflags.h"
 #include "flags/teamflags.h"
 #include "entity/gameentity.h"
-#include "state/teamstate.h"
+//#include "state/teamstate.h"
 #include <ctime>
 
 // static declarations

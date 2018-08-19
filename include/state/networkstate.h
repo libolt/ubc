@@ -24,7 +24,7 @@
 //#include "boost/shared_ptr.hpp"
 
 #include "state/state.h"
-#include "state/gamestateshared.h"
+//#include "state/gamestateshared.h"
 //#include "ubc/ubc.h"
 
 // Forward declarations

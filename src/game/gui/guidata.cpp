@@ -40,7 +40,7 @@
 //#include "state/courtstate.h"
 #include "entity/gameentity.h"
 #include "state/playerstate.h"
-#include "state/teamstate.h"
+//#include "state/teamstate.h"
 #include "load/loadteams.h"
 #include "utilities/logging.h"
 #include "engine/renderengine.h"

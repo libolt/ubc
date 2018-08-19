@@ -20,7 +20,7 @@
 
 #include "setup/setuphoops.h"
 #include "load/loadhoops.h"
-#include "state/hoopstate.h"
+#include "entity/hoopentity.h"
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
 
@@ -33,10 +33,10 @@ setupHoops::~setupHoops()  // destructor
     
 }
 
-hoopStateMSharedPtr setupHoops::createHoopInstances()  // creates hoop Instances
+hoopEntityMSharedPtr setupHoops::createHoopInstances()  // creates hoop Instances
 {
-    hoopStateMSharedPtr hoopInstance;
-    hoopStateSharedPtr hInstance;
+    hoopEntityMSharedPtr hoopInstance;
+    hoopEntitySharedPtr hInstance;
     loadHoopsSharedPtr loadHoop(new loadHoops);
     std::string func = "setupHoops::createHoopInstances()";
 
@@ -68,9 +68,9 @@ hoopStateMSharedPtr setupHoops::createHoopInstances()  // creates hoop Instances
     return (hoopInstance);
 }
 
-hoopStateMSharedPtr setupHoops::createActiveHoopInstances(hoopStateMSharedPtr hoopInstance, size_t numActiveHoops)  // creates active hoop instances
+hoopEntityMSharedPtr setupHoops::createActiveHoopInstances(hoopEntityMSharedPtr hoopInstance, size_t numActiveHoops)  // creates active hoop instances
 {
-    hoopStateMSharedPtr activeHoopInstance;
+    hoopEntityMSharedPtr activeHoopInstance;
     conversionSharedPtr convert = conversion::Instance();
     loadHoopsSharedPtr loadHoop(new loadHoops);
 
@@ -100,16 +100,16 @@ hoopStateMSharedPtr setupHoops::createActiveHoopInstances(hoopStateMSharedPtr ho
     {
 
     }
-    logMsg(func + "name 0 == " +hoopInstance[0]->getEntity()->getName());
+    logMsg(func + "name 0 == " +hoopInstance[0]->getName());
 //    logMsg(func + "name 1 == " +hoopInstance[1]->getName());
 
     
     for (x=0;x<numActiveHoops; ++x)
     {
-        activeHoopInstance.insert(std::pair<size_t, hoopStateSharedPtr>(x, hoopInstance[x]));
+        activeHoopInstance.insert(std::pair<size_t, hoopEntitySharedPtr>(x, hoopInstance[x]));
 //        logMsg(func +" glee!");
-        logMsg(func + " hoopInstance name == " +hoopInstance[x]->getEntity()->getName());
-        logMsg(func + " activeHoopInstance name == " +activeHoopInstance[x]->getEntity()->getName());
+        logMsg(func + " hoopInstance name == " +hoopInstance[x]->getName());
+        logMsg(func + " activeHoopInstance name == " +activeHoopInstance[x]->getName());
 
     }
 //    exit(0);
@@ -140,7 +140,7 @@ hoopStateMSharedPtr setupHoops::createActiveHoopInstances(hoopStateMSharedPtr ho
     return (activeHoopInstance);
 }
 
-hoopStateMSharedPtr setupHoops::setHoopStartPositions(hoopStateMSharedPtr activeHoopInstance)  // sets the initial coordinates for the basketball(s)
+hoopEntityMSharedPtr setupHoops::setHoopStartPositions(hoopEntityMSharedPtr activeHoopInstance)  // sets the initial coordinates for the basketball(s)
 {
 
 //    hoopStateMSharedPtr activeHoopInstance = component->getActiveHoopInstance();
@@ -148,18 +148,18 @@ hoopStateMSharedPtr setupHoops::setHoopStartPositions(hoopStateMSharedPtr active
 
     logMsg(func +" begin");
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-    activeHoopInstance[0]->getEntity()->getNode()->setPosition(45.0f,-6.5f,370.0f);
-    activeHoopInstance[1]->getEntity()->getNode()->setPosition(-45.0f,-6.5f,370.0f);
+    activeHoopInstance[0]->getNode()->setPosition(45.0f,-6.5f,370.0f);
+    activeHoopInstance[1]->getNode()->setPosition(-45.0f,-6.5f,370.0f);
 #else
     activeHoopInstance[0]->getEntity()->getNode()->setPosition(45.0f,-23.5f,370.0f);
     activeHoopInstance[1]->getEntity()->getNode()->setPosition(-45.0f,-23.5f,370.0f);
 #endif
 
     Ogre::Quaternion hoop0Rotation(Ogre::Degree(-90), Ogre::Vector3::UNIT_Y);
-    activeHoopInstance[0]->getEntity()->getNode()->rotate(hoop0Rotation);
+    activeHoopInstance[0]->getNode()->rotate(hoop0Rotation);
 
     Ogre::Quaternion hoop1Rotation(Ogre::Degree(90), Ogre::Vector3::UNIT_Y);
-    activeHoopInstance[1]->getEntity()->getNode()->rotate(hoop1Rotation);
+    activeHoopInstance[1]->getNode()->rotate(hoop1Rotation);
 
     logMsg(func +" end");
     

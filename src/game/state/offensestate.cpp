@@ -24,13 +24,13 @@
 #include "engine/gameengine.h"
 #include "load/loadoffenseplays.h"
 #include "utilities/logging.h"
-#include "state/basketballstate.h"
+//#include "state/basketballstate.h"
 //#include "state/courtstate.h"
 #include "entity/gameentity.h"
 #include "state/offensestate.h"
 #include "state/playerstate.h"
 #include "ai/playersteer.h"
-#include "state/teamstate.h"
+//#include "state/teamstate.h"
 
 // static declarations 
 

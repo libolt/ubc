@@ -66,11 +66,11 @@ void gameComponents::setActiveCourtInstance(courtEntityMSharedPtr set)  // sets 
     activeCourtInstance = set;
 }
 
-hoopStateMSharedPtr gameComponents::getActiveHoopInstance()  // retrieves the value of activeHoopInstance
+hoopEntityMSharedPtr gameComponents::getActiveHoopInstance()  // retrieves the value of activeHoopInstance
 {
     return(activeHoopInstance);
 }
-void gameComponents::setActiveHoopInstance(hoopStateMSharedPtr set)  // sets the value of activeHoopInstance
+void gameComponents::setActiveHoopInstance(hoopEntityMSharedPtr set)  // sets the value of activeHoopInstance
 {
     activeHoopInstance = set;
 }
@@ -102,11 +102,11 @@ void gameComponents::setCourtInstance(courtEntityMSharedPtr set)  // sets the va
     courtInstance = set;
 }
 
-hoopStateMSharedPtr gameComponents::getHoopInstance()  // retrieves the value of hoopInstance
+hoopEntityMSharedPtr gameComponents::getHoopInstance()  // retrieves the value of hoopInstance
 {
     return (hoopInstance);
 }
-void gameComponents::setHoopInstance(hoopStateMSharedPtr set)  // sets the value of hoopInstance
+void gameComponents::setHoopInstance(hoopEntityMSharedPtr set)  // sets the value of hoopInstance
 {
     hoopInstance = set;
 }

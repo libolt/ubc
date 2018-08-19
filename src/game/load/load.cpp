@@ -24,7 +24,7 @@
 #include "config.h"
 #endif
 
-#include "state/teamstate.h"
+//#include "state/teamstate.h"
 #include "utilities/conversion.h"
 #include "load/load.h"
 #include "utilities/logging.h"

@@ -26,7 +26,7 @@
 #include "utilities/enums.h"
 #include "offenseplays.h"
 #include "state/state.h"
-#include "state/gamestateshared.h"
+//#include "state/gamestateshared.h"
 
 //class offensePlays:
 //class offensePlays::playerDirectives;

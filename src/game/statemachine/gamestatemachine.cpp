@@ -33,9 +33,9 @@
 #include "setup/setupcourts.h"
 #include "setup/setuphoops.h"
 #include "setup/setupteams.h"
-#include "state/basketballstate.h"
+//#include "state/basketballstate.h"
 //#include "state/courtstate.h"
-#include "state/hoopstate.h"
+//#include "state/hoopstate.h"
 #include "utilities/logging.h"
 
 gameStateMachine::gameStateMachine() :
@@ -357,7 +357,7 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
     
     if (!data->flag->getHoopInstancesCreated())
     {
-        hoopStateMSharedPtr hoopInstance = setupHoop->createHoopInstances();
+        hoopEntityMSharedPtr hoopInstance = setupHoop->createHoopInstances();
         if (hoopInstance.size() > 0)
         {
             logMsg(func +"Hoop Instances Created!");
@@ -372,16 +372,16 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
 
     }
     logMsg(func +" hoop instance size == " +convert->toString(data->component->getHoopInstance().size()));
-    logMsg(func +" hoop instance name == " +data->component->getHoopInstance()[0]->getEntity()->getName());
+    logMsg(func +" hoop instance name == " +data->component->getHoopInstance()[0]->getName());
         
     if (!data->flag->getActiveHoopInstancesCreated())
     {
         //FIXME! Should not be hard coded!
         size_t numActiveHoops = 2;
-        hoopStateMSharedPtr hoopInstance = data->component->getHoopInstance();
-        hoopStateMSharedPtr activeHoopInstance = setupHoop->createActiveHoopInstances(hoopInstance, numActiveHoops);
+        hoopEntityMSharedPtr hoopInstance = data->component->getHoopInstance();
+        hoopEntityMSharedPtr activeHoopInstance = setupHoop->createActiveHoopInstances(hoopInstance, numActiveHoops);
         logMsg(func +" active hoop instance size == " +convert->toString(activeHoopInstance.size()));
-        logMsg(func +" active hoop instance name == " +activeHoopInstance[0]->getEntity()->getName());
+        logMsg(func +" active hoop instance name == " +activeHoopInstance[0]->getName());
 //        exit(0);
         
         if (activeHoopInstance.size() > 0)
@@ -392,17 +392,8 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
 
             for (auto AHIIT : activeHoopInstance) // loop that checks if each active hoop instance's entity has been initialized
             {
-                if (!AHIIT.second->getEntityInitialized()) // if not initialized it initializes the entity
-                {
-                    AHIIT.second->setEntity(tempHoop);
-                    AHIIT.second->setEntityInitialized(true);
-                }
-                else
-                {
-                    logMsg(func +"Entity already initialized!");
-                }
-                
-                logMsg(func +" active hoop instance name == " +AHIIT.second->getEntity()->getName());
+                AHIIT.second = tempHoop;           
+                logMsg(func +" active hoop instance name == " +AHIIT.second->getName());
 
             }          
 //            exit(0);
@@ -502,7 +493,7 @@ STATE_DEFINE(gameStateMachine, loadModels, gameSMData)
         logMsg(func +" Hoop models not loaded!");
 //        exit(0);
         loadHoopsSharedPtr loadHoop(new loadHoops);
-        hoopStateMSharedPtr activeHoopInstance;
+        hoopEntityMSharedPtr activeHoopInstance;
         
         logMsg(func +" Loading hoop model(s)!");
 //        exit(0);
@@ -613,22 +604,22 @@ STATE_DEFINE(gameStateMachine, createNodes, gameSMData)
     {
         for (auto AHIIT : data->component->getActiveHoopInstance())  // loop through active hoop instances
         {
-            activeModel = AHIIT.second->getEntity()->getModel();
-            activeEntityName = AHIIT.second->getEntity()->getModel()->getName();
+            activeModel = AHIIT.second->getModel();
+            activeEntityName = AHIIT.second->getModel()->getName();
             logMsg(func +" activeEntityName == " +activeEntityName);
             activeNodeNum = convert->toString(AHIIT.first);
-            activeNodeName = AHIIT.second->getEntity()->getNodeName();
+            activeNodeName = AHIIT.second->getNodeName();
             if (activeNodeName == "")
             {
                 activeNodeName = activeEntityName + activeNodeNum;
-                AHIIT.second->getEntity()->setNodeName(activeNodeName);
+                AHIIT.second->setNodeName(activeNodeName);
             }
             else
             {
                 
             }
             activeNode = data->render->createNode(activeModel, activeNodeName);  // creates node
-            AHIIT.second->getEntity()->setNode(activeNode);  // saves node to current instance
+            AHIIT.second->setNode(activeNode);  // saves node to current instance
 
         }
         data->flag->setHoopNodeCreated(true);
@@ -663,7 +654,7 @@ STATE_DEFINE(gameStateMachine, setStartPositions, gameSMData)
     courtEntityMSharedPtr activeCourtInstance;
     setupCourtsSharedPtr setupCourt(new setupCourts);
 
-    hoopStateMSharedPtr activeHoopInstance;
+    hoopEntityMSharedPtr activeHoopInstance;
     setupHoopsSharedPtr setupHoop(new setupHoops);
 
     std:: string func = "gameStateMachine::setStartPositions";

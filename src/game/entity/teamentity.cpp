@@ -35,7 +35,7 @@
 #include "setup/setupplayers.h"
 #include "setup/setupteams.h"
 #include "statistics/teamstatistics.h"
-#include "state/basketballstate.h"
+//#include "state/basketballstate.h"
 #include "state/offensestate.h"
 #include "state/defensestate.h"
 #include "update/updateteams.h"

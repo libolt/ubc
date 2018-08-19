@@ -21,7 +21,7 @@
 #include "setup/setuplineups.h"
 #include "setup/setupplayers.h"
 #include "utilities/conversion.h"
-#include "state/teamstate.h"
+#include "data/teamdata.h"
 #include "entity/gameentity.h"
 #include "components/teamcomponents.h"
 #include "data/playerdata.h"

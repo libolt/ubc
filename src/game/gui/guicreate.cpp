@@ -31,7 +31,7 @@
 #include "engine/gameengine.h"
 #include "engine/renderengine.h"
 #include "entity/courtentity.h"
-#include "state/teamstate.h"
+//#include "state/teamstate.h"
 
 #ifdef __ANDROID__
 #include "utilities/android-config.h"

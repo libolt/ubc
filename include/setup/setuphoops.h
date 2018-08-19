@@ -30,9 +30,9 @@ class setupHoops
         setupHoops();  // constructor
         ~setupHoops();  // destructor
         
-        hoopStateMSharedPtr createHoopInstances();  // creates hoop Instances
-        hoopStateMSharedPtr createActiveHoopInstances(hoopStateMSharedPtr hoopInstance, size_t numActiveHoops);  // creates active hoop instances
-        hoopStateMSharedPtr setHoopStartPositions(hoopStateMSharedPtr);  // sets the initial coordinates for the basketball(s)
+        hoopEntityMSharedPtr createHoopInstances();  // creates hoop Instances
+        hoopEntityMSharedPtr createActiveHoopInstances(hoopEntityMSharedPtr hoopInstance, size_t numActiveHoops);  // creates active hoop instances
+        hoopEntityMSharedPtr setHoopStartPositions(hoopEntityMSharedPtr);  // sets the initial coordinates for the basketball(s)
 
     private:
     

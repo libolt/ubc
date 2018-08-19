@@ -25,7 +25,7 @@
 #include "state/defensestate.h"
 #include "entity/gameentity.h"
 #include "state/playerstate.h"
-#include "state/teamstate.h"
+//#include "state/teamstate.h"
 
 defenseState::defenseState() // constructor
 {

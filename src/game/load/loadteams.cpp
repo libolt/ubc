@@ -24,11 +24,12 @@
 #include "config.h"
 #endif
 
+#include "data/teamdata.h"
 #include "entity/teamentity.h"
 #include "utilities/conversion.h"
 #include "load/loadteams.h"
 #include "utilities/logging.h"
-#include "state/teamstate.h"
+//#include "state/teamstate.h"
 
 // static declarations
 //teamEntityMSharedPtr loadTeams::tInstance;
@@ -74,7 +75,7 @@ void loadTeams::setTInstance(teamEntityMSharedPtr set)  // sets the value of tIn
 bool loadTeams::checkIfTeamsLoaded()  // checks if teams have been loaded into tInstance
 {
     conversionSharedPtr convert = conversion::Instance();
-    teamStateVec tempT;
+//    teamStateVec tempT;
     teamEntityMSharedPtr tempTInstance;
     tInstance = tempTInstance;
     std::string func = "loadTeams::checkIfTeamsLoaded()";

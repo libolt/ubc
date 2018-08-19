@@ -96,9 +96,6 @@ class gameEntity //: public state, public gameStateShared, public std::enable_sh
         void updateDirectionsAndMovements();  // updates the movement and directions of game world objecxts
         bool assignHoopToTeams();  // assigns which hoop belongs to each team
         bool setupEnvironment();  // sets up the 3D environment for the game
-        void setBasketballStartPositions();  // sets the initial coordinates for the basketball(s).
-        void setCourtStartPositions();  // sets the initial coordinates for the court(s).
-        void setHoopStartPositions();  // sets the initial coordinates for the hoop(s).
 
     // Tip Off execution code.  // Move to proper class
         bool setupTipOff();  // sets up Tip Off conditions
@@ -111,9 +108,6 @@ class gameEntity //: public state, public gameStateShared, public std::enable_sh
         bool createCourtDataInstances();  // creates instances of court data
     
         bool setupActiveTeamInstances();  // sets up the active team instances
-
-//        bool loadModels(renderEngineSharedPtr render);  // loads all game object models excluding the players
-        bool createNodes(renderEngineSharedPtr render);  // creates scene nodes for game objects
     
 //        bool setupState(renderEngineSharedPtr render);  // sets up the game condition
         bool updateState(renderEngineSharedPtr render);  // updates the state of the game

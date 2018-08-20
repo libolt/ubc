@@ -52,6 +52,7 @@ void gameStateMachine::pCreateInstances(gameSMData *data) // creates the object 
 {
     std:: string func = "gameStateMachine::pCreateInstances";
 
+    
     logMsg(func +" begin");
 
     BEGIN_TRANSITION_MAP                                    // - Current State -
@@ -60,11 +61,11 @@ void gameStateMachine::pCreateInstances(gameSMData *data) // creates the object 
         TRANSITION_MAP_ENTRY (ST_CREATE_INSTANCES)          // ST_CREATE_NODES
         TRANSITION_MAP_ENTRY (ST_CREATE_INSTANCES)          // ST_SET_START_POS
         TRANSITION_MAP_ENTRY (ST_CREATE_INSTANCES)          // ST_IDLE
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SETUP_JUMPBALL
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_EXECUTE_JUMPBALL
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_START
         TRANSITION_MAP_ENTRY (ST_CREATE_INSTANCES)          // ST_CHANGE_POSITION
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_SPEED
-        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_JUMP
-        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_DIRECTION
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SHOOT
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_PASS
     END_TRANSITION_MAP(data)
@@ -85,12 +86,12 @@ void gameStateMachine::pLoadModels(gameSMData *data) // loads the object models
         TRANSITION_MAP_ENTRY (ST_LOAD_MODELS)               // ST_LOAD_MODELS
         TRANSITION_MAP_ENTRY (ST_LOAD_MODELS)               // ST_CREATE_NODES
         TRANSITION_MAP_ENTRY (ST_LOAD_MODELS)               // ST_SET_START_POS
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SETUP_JUMPBALL
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_EXECUTE_JUMPBALL
         TRANSITION_MAP_ENTRY (ST_LOAD_MODELS)               // ST_IDLE
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_START
         TRANSITION_MAP_ENTRY (ST_LOAD_MODELS)               // ST_CHANGE_POSITION
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_SPEED
-        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_JUMP
-        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_DIRECTION
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SHOOT
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_PASS
     END_TRANSITION_MAP(data)
@@ -110,12 +111,12 @@ void gameStateMachine::pCreateNodes(gameSMData *data) // creates the scene nodes
         TRANSITION_MAP_ENTRY (ST_CREATE_NODES)             // ST_LOAD_MODELS
         TRANSITION_MAP_ENTRY (ST_CREATE_NODES)             // ST_CREATE_NODES
         TRANSITION_MAP_ENTRY (ST_CREATE_NODES)             // ST_SET_START_POS
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SETUP_JUMPBALL
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_EXECUTE_JUMPBALL
         TRANSITION_MAP_ENTRY (ST_CREATE_NODES)             // ST_IDLE
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_START
         TRANSITION_MAP_ENTRY (ST_CREATE_NODES)             // ST_CHANGE_POSITION
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_SPEED
-        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_JUMP
-        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_DIRECTION
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SHOOT
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_PASS
     END_TRANSITION_MAP(data)
@@ -136,12 +137,12 @@ void gameStateMachine::pSetStartPositions(gameSMData *data)
         TRANSITION_MAP_ENTRY (ST_SET_START_POS)            // ST_LOAD_MODELS
         TRANSITION_MAP_ENTRY (ST_SET_START_POS)            // ST_CREATE_NODES
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_SET_START_POS
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SETUP_JUMPBALL
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_EXECUTE_JUMPBALL
         TRANSITION_MAP_ENTRY (ST_SET_START_POS)            // ST_IDLE
         TRANSITION_MAP_ENTRY (ST_SET_START_POS)              // ST_START
         TRANSITION_MAP_ENTRY (ST_SET_START_POS)              // ST_CHANGE_POSITION
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_SPEED
-        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_JUMP
-        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_DIRECTION
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SHOOT
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_PASS
     END_TRANSITION_MAP(data)
@@ -162,12 +163,13 @@ void gameStateMachine::halt()
         TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_LOAD_MODELS
         TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_CREATE_NODES
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_SET_START_POS
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_SETUP_JUMPBALL
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_EXECUTE_JUMPBALL
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_IDLE
         TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_START
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_CHANGE_POSITION
         TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_CHANGE_SPEED
-        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_JUMP
-        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_CHANGE_DIRECTION
+
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_SHOOT
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_PASS
     END_TRANSITION_MAP(NULL)
@@ -176,24 +178,24 @@ void gameStateMachine::halt()
 
 }
     
-// jump player external event
-void gameStateMachine::pJump(gameSMData *data)
+// Setup Jump Ball external event
+void gameStateMachine::pSetupJumpBall(gameSMData *data)
 {
-    std:: string func = "playerStateMachine::pJump";
+    std:: string func = "gameStateMachine::pSetupJumpBall";
 
     logMsg(func +" begin");
 
     BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (ST_JUMP)                      // ST_CREATE_INSTANCES
-        TRANSITION_MAP_ENTRY (ST_JUMP)                      // ST_LOAD_MODELS
-        TRANSITION_MAP_ENTRY (ST_JUMP)                      // ST_CREATE_NODES
-        TRANSITION_MAP_ENTRY (ST_JUMP)                      // ST_SET_START_POS
-        TRANSITION_MAP_ENTRY (ST_JUMP)                      // ST_IDLE
-        TRANSITION_MAP_ENTRY (ST_JUMP)                      // ST_START
-        TRANSITION_MAP_ENTRY (ST_JUMP)                      // ST_CHANGE_POSITION
-        TRANSITION_MAP_ENTRY (ST_JUMP)                      // ST_CHANGE_SPEED
-        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_JUMP
-        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_DIRECTION
+        TRANSITION_MAP_ENTRY (ST_SETUP_JUMPBALL)                      // ST_CREATE_INSTANCES
+        TRANSITION_MAP_ENTRY (ST_SETUP_JUMPBALL)                      // ST_LOAD_MODELS
+        TRANSITION_MAP_ENTRY (ST_SETUP_JUMPBALL)                      // ST_CREATE_NODES
+        TRANSITION_MAP_ENTRY (ST_SETUP_JUMPBALL)                      // ST_SET_START_POS
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SETUP_JUMPBALL
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_EXECUTE_JUMPBALL
+        TRANSITION_MAP_ENTRY (ST_SETUP_JUMPBALL)                      // ST_IDLE
+        TRANSITION_MAP_ENTRY (ST_SETUP_JUMPBALL)                      // ST_START
+        TRANSITION_MAP_ENTRY (ST_SETUP_JUMPBALL)                      // ST_CHANGE_POSITION
+        TRANSITION_MAP_ENTRY (ST_SETUP_JUMPBALL)                      // ST_CHANGE_SPEED
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SHOOT
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_PASS
     END_TRANSITION_MAP(data)
@@ -201,26 +203,26 @@ void gameStateMachine::pJump(gameSMData *data)
 //    exit(0);
 }
    
-// change direction player external event
-void gameStateMachine::pChangeDirection(gameSMData *data)
+// Execute Jump Ball external event
+void gameStateMachine::pExecuteJumpBall(gameSMData *data)
 {
-    std:: string func = "playerStateMachine::pChangeDirection";
+    std:: string func = "gameStateMachine::pExecuteJumpBall";
 
     logMsg(func +" begin");
 
     BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_CREATE_INSTANCES
-        TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_LOAD_MODELS
-        TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_CREATE_NODES
-        TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_SET_START_POS
-        TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_IDLE
-        TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_START
-        TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_CHANGE_POSITION
-        TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_CHANGE_SPEED
-        TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_JUMP
-        TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_CHANGE_DIRECTION
-        TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_SHOOT
-        TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_PASS
+        TRANSITION_MAP_ENTRY (ST_EXECUTE_JUMPBALL)          // ST_CREATE_INSTANCES
+        TRANSITION_MAP_ENTRY (ST_EXECUTE_JUMPBALL)          // ST_LOAD_MODELS
+        TRANSITION_MAP_ENTRY (ST_EXECUTE_JUMPBALL)          // ST_CREATE_NODES
+        TRANSITION_MAP_ENTRY (ST_EXECUTE_JUMPBALL)          // ST_SET_START_POS
+        TRANSITION_MAP_ENTRY (ST_EXECUTE_JUMPBALL)          // ST_SETUP_JUMPBALL
+        TRANSITION_MAP_ENTRY (ST_EXECUTE_JUMPBALL)          // ST_EXECUTE_JUMPBALL
+        TRANSITION_MAP_ENTRY (ST_EXECUTE_JUMPBALL)          // ST_IDLE
+        TRANSITION_MAP_ENTRY (ST_EXECUTE_JUMPBALL)          // ST_START
+        TRANSITION_MAP_ENTRY (ST_EXECUTE_JUMPBALL)          // ST_CHANGE_POSITION
+        TRANSITION_MAP_ENTRY (ST_EXECUTE_JUMPBALL)          // ST_CHANGE_SPEED
+        TRANSITION_MAP_ENTRY (ST_EXECUTE_JUMPBALL)          // ST_SHOOT
+        TRANSITION_MAP_ENTRY (ST_EXECUTE_JUMPBALL)          // ST_PASS
     END_TRANSITION_MAP(data)
 
     logMsg(func +" end");
@@ -240,12 +242,12 @@ void gameStateMachine::pChangePosition(gameSMData *data)
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_LOAD_MODELS
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_CREATE_NODES
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_SET_START_POS
+        TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_SETUP_JUMPBALL
+        TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_EXECUTE_JUMPBALL
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_IDLE
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_START
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_CHANGE_POSITION
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_CHANGE_SPEED
-        TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_JUMP
-        TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_CHANGE_DIRECTION
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_SHOOT
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_PASS
     END_TRANSITION_MAP(data)
@@ -729,6 +731,33 @@ STATE_DEFINE(gameStateMachine, setStartPositions, gameSMData)
 
 }
 
+STATE_DEFINE(gameStateMachine, setupJumpBall, gameSMData)
+{
+    std:: string func = "gameStateMachine::setupJumpBall";
+//    exit(0)
+
+    logMsg(func +" begin");
+
+//    internalEvent(ST_IDLE);
+
+    logMsg(func +" end");
+
+}
+
+// changes the player's direction once the player is moving
+STATE_DEFINE(gameStateMachine, executeJumpball, gameSMData)
+{
+    conversionSharedPtr convert = conversion::Instance();
+    std:: string func = "gameStateMachine::setupJumpBall";
+
+    logMsg(func +" begin");
+
+//    exit(0);
+
+    logMsg(func +" end");
+
+}
+
 // state machine sits here when player is not moving
 STATE_DEFINE(gameStateMachine, Idle, noEventData)
 {
@@ -768,8 +797,8 @@ STATE_DEFINE(gameStateMachine, ChangePosition, gameSMData)
     logMsg(func +" begin");
 
     logMsg("playerStateMachine::ST_ChangePosition : court position is " +convert->toString(data->position));
-    currentPosition = data->position;
-    currentNode->setPosition(currentPosition);
+//    currentPosition = data->position;
+//    currentNode->setPosition(currentPosition);
     logMsg(func +" Node Position == " +convert->toString(currentNode->getPosition()));
     logMsg(func +" end");
 
@@ -791,135 +820,6 @@ STATE_DEFINE(gameStateMachine, ChangeSpeed, gameSMData)
 
     //    exit(0);
     // perform the change player speed to data->speed here
-}
-
-// changes the player's direction once the player is moving
-STATE_DEFINE(gameStateMachine, ChangeDirection, gameSMData)
-{
-    conversionSharedPtr convert = conversion::Instance();
-    std:: string func = "playerStateMachine::ChangeDirection";
-
-    logMsg(func +" begin");
-
-//    exit(0);
-    logMsg("playerStateMachine::ST_ChangeDirection : Direction is " +convert->toString(data->direction));
-
-    switch (currentDirection)
-    {
-        case UP:
-            switch (data->direction)
-            {
-                case DOWN:
-                    currentNode->yaw(Ogre::Degree (180));
-                break;
-                case LEFT:
-                    currentNode->yaw(Ogre::Degree (270));
-                break;
-                case RIGHT:
-                    currentNode->yaw(Ogre::Degree (90));
-//                        exit(0);
-                break;
-                default:
-                break;
-            }
-//                exit(0);
-        break;
-        case DOWN:
-            switch (data->direction)
-            {
-                case UP:
-                    currentNode->yaw(Ogre::Degree (180));
-                break;
-                case LEFT:
-                    currentNode->yaw(Ogre::Degree (90));
-                break;
-                case RIGHT:
-                    currentNode->yaw(Ogre::Degree (270));
-                break;
-                default:
-                break;
-            }
-        break;
-        case LEFT:
-            switch (data->direction)
-            {
-                case UP:
-                    currentNode->yaw(Ogre::Degree (90));
-                break;
-                case DOWN:
-                    currentNode->yaw(Ogre::Degree (270));
-                break;
-                case RIGHT:
-                    currentNode->yaw(Ogre::Degree (180));
-                break;
-                default:
-                break;
-            }
-        break;
-        case RIGHT:
-            switch (data->direction)
-            {
-                case UP:
-                    currentNode->yaw(Ogre::Degree (270));
-                break;
-                case DOWN:
-                    currentNode->yaw(Ogre::Degree (90));
-                break;
-                case LEFT:
-                    currentNode->yaw(Ogre::Degree (180));
-                break;
-                default:
-                break;
-            }
-        break;
-        case NODIRECT:
-            switch (data->direction)
-            {
-                case UP:
-                    currentNode->yaw(Ogre::Degree (270));
-                break;
-                case DOWN:
-                    currentNode->yaw(Ogre::Degree (90));
-                break;
-                case LEFT:
-                    currentNode->yaw(Ogre::Degree (0));
-                break;
-                case RIGHT:
-                    currentNode->yaw(Ogre::Degree (180));
-                break;
-                default:
-                break;
-            }
-            break;
-            default:
-        break;
-    }
-    logMsg(func +" end");
-
-//    currentSpeed = data->direction;
-//    exit(0);
-    // perform the change player direction to data->direction here
-}
-
-STATE_DEFINE(gameStateMachine, Jump, gameSMData)
-{
-    std:: string func = "playerStateMachine::Jump";
-//    exit(0)
-
-    logMsg(func +" begin");
-
-    logMsg("jump");
-    logMsg("flee");
-    conversionSharedPtr convert = conversion::Instance();
-    
-    logMsg("playerStateMachine::ST_Jump : Speed is " +convert->toString(data->speed));
-    internalEvent(ST_IDLE);
-
-    logMsg(func +" end");
-
-//    currentSpeed = data->speed;
-//    exit(0);
-    // set initial player speed processing here
 }
 
 STATE_DEFINE(gameStateMachine, Shoot, gameSMData)

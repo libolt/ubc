@@ -37,7 +37,7 @@
 #include "utilities/logging.h"
 
 // static declarations
-bool UBCGame::startActiveGame;  // stores whether to begin an active game instance
+/*bool UBCGame::startActiveGame;  // stores whether to begin an active game instance
 bool UBCGame::userInstancesCreated;  // stores whether user instances have been created
 bool UBCGame::userInstancesInputSetup;  // stores status of input configuration for users
 bool UBCGame::inputSUInputSetup;  // stores whether inputS UInput object has been set
@@ -51,6 +51,7 @@ loadPlayersSharedPtr UBCGame::loadPlayer;  // the loadPlayers Object
 loadTeamsSharedPtr UBCGame::loadTeam;  // the loadTeams Object
 loadUsersInputsSharedPtr UBCGame::loadUsersInput;  // the loadUsersInputs Object
 networkStateSharedPtr UBCGame::networkS;  // the networkState object
+*/
 
 UBCGame::UBCGame()  // constructor
 {

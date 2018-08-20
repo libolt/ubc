@@ -95,24 +95,24 @@ class UBCGame
     private:
 
         gameEntitySharedPtr gameInstance;  // the gameEntity object
-        static networkStateSharedPtr networkS;  // the gameState object
+        networkStateSharedPtr networkS;  // the gameState object
 
         UBCComponentsSharedPtr UBCComponent;  // Components object
 
-        static bool startActiveGame;  // stores whether to begin an active game instance
-        static bool userInstancesCreated;  // stores whether user instances have been created
-        static bool userInstancesInputSetup;  // stores status of input configuration for users
-        static bool inputSUInputSetup;  // stores whether inputS UInput object has been se
-        static size_t numUsers; // stores number of users playing the game
-        static loadBasketballsSharedPtr loadBasketball;  // the loadBasketballs object
-        static loadCourtsSharedPtr loadCourt;  // the loadCourts object
-        static loadHoopsSharedPtr loadHoop;  // the loadHoops object
-        static loadOffensePlaysSharedPtr loadOffensePlay;  // the loadOffensePlays Object
-        static loadPlayersSharedPtr loadPlayer;  // the loadPlayers Object
-        static loadTeamsSharedPtr loadTeam;  // the loadTeams Object
+        bool startActiveGame;  // stores whether to begin an active game instance
+        bool userInstancesCreated;  // stores whether user instances have been created
+        bool userInstancesInputSetup;  // stores status of input configuration for users
+        bool inputSUInputSetup;  // stores whether inputS UInput object has been se
+        size_t numUsers; // stores number of users playing the game
+        loadBasketballsSharedPtr loadBasketball;  // the loadBasketballs object
+        loadCourtsSharedPtr loadCourt;  // the loadCourts object
+        loadHoopsSharedPtr loadHoop;  // the loadHoops object
+        loadOffensePlaysSharedPtr loadOffensePlay;  // the loadOffensePlays Object
+        loadPlayersSharedPtr loadPlayer;  // the loadPlayers Object
+        loadTeamsSharedPtr loadTeam;  // the loadTeams Object
 
-        static loadUsersInputsSharedPtr loadUsersInput;  // the loadUsersInputs Object
-        static usersMSharedPtr usersInstance;  // stores the user object instances
+        loadUsersInputsSharedPtr loadUsersInput;  // the loadUsersInputs Object
+        usersMSharedPtr usersInstance;  // stores the user object instances
 
 };
 #endif // _UBCGAME_H_

@@ -100,12 +100,6 @@ class gameEntity //: public state, public gameStateShared, public std::enable_sh
     // Tip Off execution code.  // Move to proper class
         bool setupTipOff();  // sets up Tip Off conditions
         bool executeTipOff();  // executes the game tip off
-
-        bool createInstances();  // creates object instances
-
-        bool createTeamInstances();  // creates the instances of the teams
-
-        bool createCourtDataInstances();  // creates instances of court data
     
         bool setupActiveTeamInstances();  // sets up the active team instances
     

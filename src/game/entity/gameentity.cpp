@@ -229,7 +229,7 @@ bool gameEntity::setupTipOff()  // sets up tip off conditions
     jumpBallsSharedPtr jBall;
 
     logMsg(func +" begin");
-
+    
     if (checkifJumpBallCreated())
     {
         jBall = component->getJumpBall();

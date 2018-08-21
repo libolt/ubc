@@ -37,7 +37,7 @@
 #include "utilities/comparison.h"
 #include "utilities/logging.h"
 #include "engine/physicsengine.h"
-#include "jumpballs.h"
+#include "jumpballs/jumpballs.h"
 
 // static declarations
 /*jumpBallLocations_t jumpBalls::jumpBallLocation;  // sets where the jump ball is to be held

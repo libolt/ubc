@@ -38,7 +38,8 @@ class jumpBalls
     public:
 
     jumpBalls();  // constructor
-
+    ~jumpBalls();  // destructor
+    
     jumpBallLocations_t getJumpBallLocation();  // retrieves the value of jumpBallLocation
     void setJumpBallLocation(jumpBallLocations_t set);  // sets the value of jumpBallLocation
 

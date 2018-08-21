@@ -273,11 +273,11 @@ void gameFlags::setJumpBallSetup(bool set)  // sets the value of jumpBallSetup
     jumpBallSetup = set;
 }
 
-bool getJumpBallExecuteComplete()  // retrieves the value of jumpBallExecuteComplete
+bool gameFlags::getJumpBallExecuteComplete()  // retrieves the value of jumpBallExecuteComplete
 {
     return (jumpBallExecuteComplete);
 }
-void setJumpBallExecuteComplete(bool set)  // sets the value of jumpBallExecuteComplete
+void gameFlags::setJumpBallExecuteComplete(bool set)  // sets the value of jumpBallExecuteComplete
 {
     jumpBallExecuteComplete = set;
 }

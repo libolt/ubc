@@ -21,18 +21,20 @@
 #include "utilities/conversion.h"
 #include "statemachine/gamestatemachine.h"
 #include "components/gamecomponents.h"
+#include "data/gamedata.h"
 #include "engine/renderengine.h"
 #include "entity/basketballentity.h"
 #include "entity/courtentity.h"
 #include "entity/hoopentity.h"
 #include "flags/gameflags.h"
-#include "jumpballs.h"
+#include "jumpballs/jumpballs.h"
 #include "load/loadbasketballs.h"
 #include "load/loadcourts.h"
 #include "load/loadhoops.h"
 #include "setup/setupbasketballs.h"
 #include "setup/setupcourts.h"
 #include "setup/setuphoops.h"
+#include "setup/setupjumpballs.h"
 #include "setup/setupteams.h"
 //#include "state/basketballstate.h"
 //#include "state/courtstate.h"
@@ -40,7 +42,7 @@
 #include "utilities/logging.h"
 
 gameStateMachine::gameStateMachine() :
-    stateMachine(ST_MAX_STATES),    
+    stateMachine(ST_MAX_STATES)    
 {
 }
 
@@ -731,39 +733,42 @@ STATE_DEFINE(gameStateMachine, setupJumpBall, gameSMData)
 {
     conversionSharedPtr convert = conversion::Instance();
     std:: string func = "gameStateMachine::setupJumpBall";
-    jumpBallsSharedPtr jBall;
-
+    jumpBallsSharedPtr jumpBall;
+    sharedPtr<setupJumpBalls> setupJumpBall;
+   
     logMsg(func +" begin");
+    exit(0);
     
-    if (checkifJumpBallCreated())
+    jumpBall = data->component->getJumpBall();
+    if (!data->flag->getJumpBallCreated())
     {
-        jBall = data->component->getJumpBall();
+        jumpBall = setupJumpBall->checkifJumpBallCreated(jumpBall, data->flag);
     }
     else
     {
-        logMsg("Unable to create Jump Ball!");
+        logMsg("Jump Ball Already Created!");
         exit(0);
     }
     logMsg(func +" jumpBall");
-    logMsg(func +"current Team == " +convert->toString(jBall->getBallTippedToTeam()));
-    teamTypes currentTeam = jBall->getBallTippedToTeam();
+    logMsg(func +"current Team == " +convert->toString(jumpBall->getBallTippedToTeam()));
+    teamTypes currentTeam = jumpBall->getBallTippedToTeam();
     logMsg(func +" currentTeam");
 
-    playerPositionsVec jumpBallPlayer = jBall->getJumpBallPlayer();
+    playerPositionsVec jumpBallPlayer = jumpBall->getJumpBallPlayer();
     logMsg(func +" jumpBallPlayer");
 
     if (data->gData->getTeamWithBall() == NOTEAM && data->flag->getActiveTeamInstancesCreated())
     {
-        if (!jBall->getSetupComplete())
+        if (!jumpBall->getSetupComplete())
         {
-            jBall->setJumpBallLocation(CENTERCIRCLE);
+            jumpBall->setJumpBallLocation(CENTERCIRCLE);
             jumpBallPlayer.clear();
             jumpBallPlayer.push_back(C);
             jumpBallPlayer.push_back(C);
-            jBall->setJumpBallPlayer(jumpBallPlayer);
-            jBall->setSetupComplete(true);
-            jBall->setExecuteJumpBall(true);
-            data->component->setJumpBall(jBall);
+            jumpBall->setJumpBallPlayer(jumpBallPlayer);
+            jumpBall->setSetupComplete(true);
+            jumpBall->setExecuteJumpBall(true);
+            data->component->setJumpBall(jumpBall);
             return (true);
         }
         else
@@ -822,8 +827,8 @@ STATE_DEFINE(gameStateMachine, StartMovement, gameSMData)
 
     logMsg(func +" begin");
 
-    logMsg("playerStateMachine::ST_Start : Speed is " +convert->toString(data->speed));
-    currentSpeed = data->speed;
+//    logMsg("playerStateMachine::ST_Start : Speed is " +convert->toString(data->speed));
+//    currentSpeed = data->speed;
 //    exit(0);
     // set initial player speed processing here
     logMsg(func +" end");
@@ -839,7 +844,7 @@ STATE_DEFINE(gameStateMachine, ChangePosition, gameSMData)
 
     logMsg(func +" begin");
 
-    logMsg("playerStateMachine::ST_ChangePosition : court position is " +convert->toString(data->position));
+//    logMsg("playerStateMachine::ST_ChangePosition : court position is " +convert->toString(data->position));
 //    currentPosition = data->position;
 //    currentNode->setPosition(currentPosition);
 //    logMsg(func +" Node Position == " +convert->toString(currentNode->getPosition()));
@@ -856,8 +861,8 @@ STATE_DEFINE(gameStateMachine, ChangeSpeed, gameSMData)
 
     logMsg(func +" begin");
 
-    logMsg("playerStateMachine::ST_ChangeSpeed : Speed is " +convert->toString(data->speed));
-    currentSpeed = data->speed;
+//    logMsg("playerStateMachine::ST_ChangeSpeed : Speed is " +convert->toString(data->speed));
+//    currentSpeed = data->speed;
 
     logMsg(func +" end");
 
@@ -872,8 +877,8 @@ STATE_DEFINE(gameStateMachine, Shoot, gameSMData)
 
     logMsg(func +" begin");
 
-    logMsg("playerStateMachine::ST_Shoot : Speed is " +convert->toString(data->speed));
-    currentSpeed = data->speed;
+//    logMsg("playerStateMachine::ST_Shoot : Speed is " +convert->toString(data->speed));
+//    currentSpeed = data->speed;
 
     logMsg(func +" end");
 
@@ -890,8 +895,8 @@ STATE_DEFINE(gameStateMachine, Pass, gameSMData)
 
     logMsg(func +" begin");
 
-    logMsg("playerStateMachine::ST_Pass : Speed is " +convert->toString(data->speed));
-    currentSpeed = data->speed;
+//    logMsg("playerStateMachine::ST_Pass : Speed is " +convert->toString(data->speed));
+//    currentSpeed = data->speed;
 
     logMsg(func +" end");
 

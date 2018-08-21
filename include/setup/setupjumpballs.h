@@ -23,12 +23,12 @@
 
 #include "utilities/typedefs.h"
 
-class setupJumpballs
+class setupJumpBalls
 {
     public:
     
-        setupJumpballs();  // constructor
-        ~setupJumpballs();  // destructor
+        setupJumpBalls();  // constructor
+        ~setupJumpBalls();  // destructor
         
         jumpBallsSharedPtr checkifJumpBallCreated(jumpBallsSharedPtr jumpBall, gameFlagsSharedPtr flag);  // checks if jumpBall object has been created
      

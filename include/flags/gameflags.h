@@ -96,6 +96,12 @@ class gameFlags
         bool getJumpBallCreated();  // retrieves the value of jumpBallCreated
         void setJumpBallCreated(bool set);  // sets the value of jumpBallCreated
 
+        bool getJumpBallSetup();  // retrieves the value of jumpBallSetup
+        void setJumpBallSetup(bool set);  // sets the value of jumpBallSetup
+
+        bool getJumpBallExecuteComplete();  // retrieves the value of jumpBallExecuteComplete
+        void setJumpBallExecuteComplete(bool set);  // sets the value of jumpBallExecuteComplete
+
         bool getTipOffComplete();  // retrieves the value of tipOffComplete
         void setTipOffComplete(bool set);  // sets the value of tipOffComplet
 
@@ -177,6 +183,8 @@ class gameFlags
         bool activeTeamInstanceChanged;  // stores whether activeTeamInstance has changed
         bool setupComplete;  // indicates whether initial game setup is complete.
         bool jumpBallCreated;  // indicates whether jumpBall object has been created.
+        bool jumpBallSetup;  // indicates whether jump ball has been setup.
+        bool jumpBallExecuteComplete;  // indicates whether jump ball execution has completed
         bool tipOffComplete;  // Determines whether or not game Tip Off has completed
         bool finished;  // indicates whether a game is finished.
         bool setupEnvironmentCompleted;  // stores whether environment has been setup

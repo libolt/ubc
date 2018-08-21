@@ -59,6 +59,9 @@ gameFlags::gameFlags()  // constructor
     setupEnvironmentCompleted = false;
     courtDataLoaded = false;
     gameStarted = false;
+    jumpBallCreated = false;
+    jumpBallSetup = false;
+    jumpBallExecuteComplete = false;
     tipOffSetupComplete = false;
     sceneCreated = false;
     finished = false;
@@ -259,6 +262,24 @@ bool gameFlags::getJumpBallCreated()  // retrieves the value of jumpBallCreated
 void gameFlags::setJumpBallCreated(bool set)  // sets the value of jumpBallCreated
 {
     jumpBallCreated = set;
+}
+
+bool gameFlags::getJumpBallSetup()  // retrieves the value of jumpBallSetup
+{
+    return (jumpBallSetup);
+}
+void gameFlags::setJumpBallSetup(bool set)  // sets the value of jumpBallSetup
+{
+    jumpBallSetup = set;
+}
+
+bool getJumpBallExecuteComplete()  // retrieves the value of jumpBallExecuteComplete
+{
+    return (jumpBallExecuteComplete);
+}
+void setJumpBallExecuteComplete(bool set)  // sets the value of jumpBallExecuteComplete
+{
+    jumpBallExecuteComplete = set;
 }
 
 bool gameFlags::getTipOffComplete()  // retrieves the value of tipOffComplete

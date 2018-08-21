@@ -96,10 +96,6 @@ class gameEntity //: public state, public gameStateShared, public std::enable_sh
         void updateDirectionsAndMovements();  // updates the movement and directions of game world objecxts
         bool assignHoopToTeams();  // assigns which hoop belongs to each team
         bool setupEnvironment();  // sets up the 3D environment for the game
-
-    // Tip Off execution code.  // Move to proper class
-        bool setupTipOff();  // sets up Tip Off conditions
-        bool executeTipOff();  // executes the game tip off
     
         bool setupActiveTeamInstances();  // sets up the active team instances
     

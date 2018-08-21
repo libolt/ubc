@@ -26,6 +26,7 @@
 #include "entity/courtentity.h"
 #include "entity/hoopentity.h"
 #include "flags/gameflags.h"
+#include "jumpballs.h"
 #include "load/loadbasketballs.h"
 #include "load/loadcourts.h"
 #include "load/loadhoops.h"
@@ -39,12 +40,7 @@
 #include "utilities/logging.h"
 
 gameStateMachine::gameStateMachine() :
-    stateMachine(ST_MAX_STATES),
-    currentSpeed(0),
-    currentDirection(NODIRECT),
-    currentAction(NOACTION)
-//    currentPosition(Ogre::Vector3(0,0,0)
-    
+    stateMachine(ST_MAX_STATES),    
 {
 }
 
@@ -733,11 +729,48 @@ STATE_DEFINE(gameStateMachine, setStartPositions, gameSMData)
 
 STATE_DEFINE(gameStateMachine, setupJumpBall, gameSMData)
 {
+    conversionSharedPtr convert = conversion::Instance();
     std:: string func = "gameStateMachine::setupJumpBall";
-//    exit(0)
+    jumpBallsSharedPtr jBall;
 
     logMsg(func +" begin");
+    
+    if (checkifJumpBallCreated())
+    {
+        jBall = data->component->getJumpBall();
+    }
+    else
+    {
+        logMsg("Unable to create Jump Ball!");
+        exit(0);
+    }
+    logMsg(func +" jumpBall");
+    logMsg(func +"current Team == " +convert->toString(jBall->getBallTippedToTeam()));
+    teamTypes currentTeam = jBall->getBallTippedToTeam();
+    logMsg(func +" currentTeam");
 
+    playerPositionsVec jumpBallPlayer = jBall->getJumpBallPlayer();
+    logMsg(func +" jumpBallPlayer");
+
+    if (data->gData->getTeamWithBall() == NOTEAM && data->flag->getActiveTeamInstancesCreated())
+    {
+        if (!jBall->getSetupComplete())
+        {
+            jBall->setJumpBallLocation(CENTERCIRCLE);
+            jumpBallPlayer.clear();
+            jumpBallPlayer.push_back(C);
+            jumpBallPlayer.push_back(C);
+            jBall->setJumpBallPlayer(jumpBallPlayer);
+            jBall->setSetupComplete(true);
+            jBall->setExecuteJumpBall(true);
+            data->component->setJumpBall(jBall);
+            return (true);
+        }
+        else
+        {
+            
+        }
+    }
 //    internalEvent(ST_IDLE);
 
     logMsg(func +" end");
@@ -745,15 +778,25 @@ STATE_DEFINE(gameStateMachine, setupJumpBall, gameSMData)
 }
 
 // changes the player's direction once the player is moving
-STATE_DEFINE(gameStateMachine, executeJumpball, gameSMData)
+STATE_DEFINE(gameStateMachine, executeJumpBall, gameSMData)
 {
+    basketballEntityMSharedPtr activeBasketballInstance = data->component->getActiveBasketballInstance();
     conversionSharedPtr convert = conversion::Instance();
     std:: string func = "gameStateMachine::setupJumpBall";
-
+    
     logMsg(func +" begin");
 
-//    exit(0);
-
+    
+    if (!data->component->getJumpBall()->updateState(data->gData->getTeamWithBall(), activeBasketballInstance, data->component->getActiveTeamInstance(), data->gData->getQuarter()))
+    {
+        logMsg("tipOff not complete!");
+//        exit(0);
+    }
+    else
+    {
+        return (true);
+    }
+    
     logMsg(func +" end");
 
 }
@@ -799,7 +842,7 @@ STATE_DEFINE(gameStateMachine, ChangePosition, gameSMData)
     logMsg("playerStateMachine::ST_ChangePosition : court position is " +convert->toString(data->position));
 //    currentPosition = data->position;
 //    currentNode->setPosition(currentPosition);
-    logMsg(func +" Node Position == " +convert->toString(currentNode->getPosition()));
+//    logMsg(func +" Node Position == " +convert->toString(currentNode->getPosition()));
     logMsg(func +" end");
 
 //    exit(0);

@@ -69,7 +69,6 @@
 #include "engine/renderengine.h"
 #include "utilities/timing.h"
 #include "ubc/ubc.h"
-#include "jumpballs.h"
 #include "users/users.h"
 
 // static declarations
@@ -220,79 +219,6 @@ bool gameEntity::setupEnvironment()
 */
 
     return (true);
-}
-
-bool gameEntity::setupTipOff()  // sets up tip off conditions
-{
-    conversionSharedPtr convert = conversion::Instance();
-    std::string func = "gameEntity::setupTipOff()";
-    jumpBallsSharedPtr jBall;
-
-    logMsg(func +" begin");
-    
-    if (checkifJumpBallCreated())
-    {
-        jBall = component->getJumpBall();
-    }
-    else
-    {
-        logMsg("Unable to create Jump Ball!");
-        exit(0);
-    }
-    logMsg(func +" jumpBall");
-    logMsg(func +"current Team == " +convert->toString(jBall->getBallTippedToTeam()));
-    teamTypes currentTeam = jBall->getBallTippedToTeam();
-    logMsg(func +" currentTeam");
-
-    playerPositionsVec jumpBallPlayer = jBall->getJumpBallPlayer();
-    logMsg(func +" jumpBallPlayer");
-
-    if (data->getTeamWithBall() == NOTEAM && flag->getActiveTeamInstancesCreated())
-    {
-        if (!jBall->getSetupComplete())
-        {
-            jBall->setJumpBallLocation(CENTERCIRCLE);
-            jumpBallPlayer.clear();
-            jumpBallPlayer.push_back(C);
-            jumpBallPlayer.push_back(C);
-            jBall->setJumpBallPlayer(jumpBallPlayer);
-            jBall->setSetupComplete(true);
-            jBall->setExecuteJumpBall(true);
-            component->setJumpBall(jBall);
-            return (true);
-        }
-        else
-        {
-            
-        }
-    }
-    
-    logMsg(func +" end");
-    
-    return (false);
-}
-
-bool gameEntity::executeTipOff()  // executes tip off
-{
-    basketballEntityMSharedPtr activeBasketballInstance = component->getActiveBasketballInstance();
-    std::string func = "gameEntity::executeTipOff()";
-
-    logMsg(func +" begin");
-
-    
-    if (!component->getJumpBall()->updateState(data->getTeamWithBall(), activeBasketballInstance, component->getActiveTeamInstance(), data->getQuarter()))
-    {
-        logMsg("tipOff not complete!");
-//        exit(0);
-    }
-    else
-    {
-        return (true);
-    }
-    
-    logMsg(func +" end");
-
-    return (false);
 }
 
 bool gameEntity::initializeStateMachine(renderEngineSharedPtr render)  // sets up the game condition
@@ -717,7 +643,6 @@ bool gameEntity::updateState(renderEngineSharedPtr render)  // updates the game 
             gameSMData *startPosSMData(new gameSMData); 
 
             startPosSMData->component = component;
-//            exit(0);
             startPosSMData->flag = flag;
             startPosSMData->render = render;
             stateMachine->pSetStartPositions(startPosSMData);
@@ -731,6 +656,46 @@ bool gameEntity::updateState(renderEngineSharedPtr render)  // updates the game 
 //                exit(0);
             }
   
+        }
+        if (flag->getStartPositionsSet() && !flag->getJumpBallSetup())  // calls tip off execution
+        {
+            logMsg(func +" Jump Ball Not Setup yet!");
+            gameSMData *jumpBallSetupSMData(new gameSMData); 
+
+            jumpBallSetupSMData->component = component;
+            jumpBallSetupSMData->gData = data;
+            jumpBallSetupSMData->flag = flag;
+            jumpBallSetupSMData->render = render;
+            stateMachine->pSetupJumpBall(jumpBallSetupSMData);
+        }
+        else
+        {
+            logMsg(func +" Jump Ball Already Setup!");
+        }
+        
+        if (flag->getJumpBallSetup() && !flag->getTipOffComplete())  // calls tip off execution
+        {
+            logMsg(func +" Tip Off Not Complete yet!");
+            gameSMData *jumpBallExecuteSMData(new gameSMData); 
+
+            jumpBallExecuteSMData->component = component;
+            jumpBallExecuteSMData->gData = data;
+            jumpBallExecuteSMData->flag = flag;
+            jumpBallExecuteSMData->render = render;
+            stateMachine->pExecuteJumpBall(jumpBallExecuteSMDataw);
+            if (flag->getJumpBallExecuteComplete())
+            {
+                flag->setTipOffComplete(true);
+                flag->setJumpBallExecuteComplete(false);
+            }
+            else
+            {
+                
+            }
+        }
+        else
+        {
+            logMsg(func +" Jump Ball ExecutionComplete!");
         }
     }
     
@@ -816,22 +781,6 @@ bool gameEntity::updateState(renderEngineSharedPtr render)  // updates the game 
             
         }
 //        exit(0);
-        if (!getFlag()->getTipOffComplete())  // calls tip off execution
-        {
-            if (executeTipOff())
-            {
-                getFlag()->setTipOffComplete(true);
-//                exit(0);
-            }
-            else
-            {
-            
-            }
-        }
-        else
-        {
-            
-        }
         
 /*FIXME!AI        if (getTeamWithBall() != NOTEAM)
         {

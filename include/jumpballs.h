@@ -78,19 +78,19 @@ class jumpBalls
     private:
 
     
-    static jumpBallLocations_t jumpBallLocation;  // sets where the jump ball is to be held
-    static playerPositionsVec jumpBallPlayer;  // stores which two players will be jumping for the ball
-    static bool ballTipped;  //	stores whether or not the ball has been tipped
-    static bool ballTipForceApplied;// stores whether or not force has been applied to tipped ball
-    static bool playerHasBasketball;  // stores whether or not a player has control of the basketball
-    static teamTypes ballTippedToTeam;  //  stores which team the ball has been tipped to
-    static size_t ballTippedToPlayerID;  // stores which player ID the ball has been tipped to
-    static size_t ballTippedToPlayerInstance;  // stores which player instance the ball has been tipped to
-    static playerPositions ballTippedToPosition;  // stores position that the ball is tipped to
-    static bool setupComplete;  // stores whether a jumpBall scenario has been setup.
-    static bool jumpBallComplete;  // jump ball code has completed and a player is in control of the baskteball
-    static bool executeJumpBall;  // stores whether or not to execute the jump ball sequence
-    static btVector3 bballVelocity;  // stores the velocity of the basketball
+    jumpBallLocations_t jumpBallLocation;  // sets where the jump ball is to be held
+    playerPositionsVec jumpBallPlayer;  // stores which two players will be jumping for the ball
+    bool ballTipped;  //	stores whether or not the ball has been tipped
+    bool ballTipForceApplied;// stores whether or not force has been applied to tipped ball
+    bool playerHasBasketball;  // stores whether or not a player has control of the basketball
+    teamTypes ballTippedToTeam;  //  stores which team the ball has been tipped to
+    size_t ballTippedToPlayerID;  // stores which player ID the ball has been tipped to
+    size_t ballTippedToPlayerInstance;  // stores which player instance the ball has been tipped to
+    playerPositions ballTippedToPosition;  // stores position that the ball is tipped to
+    bool setupComplete;  // stores whether a jumpBall scenario has been setup.
+    bool jumpBallComplete;  // jump ball code has completed and a player is in control of the baskteball
+    bool executeJumpBall;  // stores whether or not to execute the jump ball sequence
+    btVector3 bballVelocity;  // stores the velocity of the basketball
 
 };
 

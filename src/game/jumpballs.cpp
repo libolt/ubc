@@ -40,7 +40,7 @@
 #include "jumpballs.h"
 
 // static declarations
-jumpBallLocations_t jumpBalls::jumpBallLocation;  // sets where the jump ball is to be held
+/*jumpBallLocations_t jumpBalls::jumpBallLocation;  // sets where the jump ball is to be held
 playerPositionsVec jumpBalls::jumpBallPlayer;  // stores which two players will be jumping for the ball
 bool jumpBalls::ballTipped;  // stores whether or not the ball has been tipped
 bool jumpBalls::ballTipForceApplied;// stores whether or not force has been applied to tipped ball
@@ -53,6 +53,7 @@ bool jumpBalls::jumpBalls::setupComplete;  // stores whether a jumpBall scenario
 bool jumpBalls::jumpBallComplete;  // jump ball code has completed and a player is in control of the baskteball
 bool jumpBalls::executeJumpBall;  // stores whether or not to execute the jump ball sequence
 btVector3 jumpBalls::bballVelocity;  // stores the velocity of the basketball
+*/
 
 jumpBalls::jumpBalls()  // constructor
 {

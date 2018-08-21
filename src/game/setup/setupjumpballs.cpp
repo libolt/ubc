@@ -20,6 +20,7 @@
 
 #include "setup/setupjumpballs.h"
 #include "entity/basketballentity.h"
+#include "jumpballs.h"
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
 
@@ -31,4 +32,35 @@ setupJumpballs::setupJumpballs()  // constructor
 setupJumpballs::~setupJumpballs()  // destructor
 {
     
+}
+
+jumpBallsSharedPtr setupJumpballs::checkifJumpBallCreated(jumpBallsSharedPtr jumpBall, gameFlagsSharedPtr flag)  // checks if jumpBall object has been created
+{
+    conversionSharedPtr convert = conversion::Instance();
+    std::string func = "setupJumpballs::checkifJumpBallCreated()";
+
+    logMsg(func +" begin");
+
+    if (!flag->getJumpBallCreated())
+    {
+        logMsg(func +" jumpBall not created yet!");
+        jumpBallsSharedPtr tempJumpBall(new jumpBalls);
+        jumpBall = tempJumpBall;
+        if (jumpBall != nullptr)
+        {
+            flag->setJumpBallCreated(true);
+        }
+        else
+        {
+            
+        }
+    }
+    else
+    {
+        logMsg(func +" jumpBall Already created!");
+    }
+
+    logMsg(func +" end");
+
+    return (jumpBall);
 }

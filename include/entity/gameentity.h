@@ -87,8 +87,6 @@ class gameEntity //: public state, public gameStateShared, public std::enable_sh
         bool getStateMachineInitialized();  // retrieves the value of stateMachineInitialized
         void setStateMachineInitialized(bool set);  // sets the value of stateMachineInitialized
 
-        bool checkifJumpBallCreated();  // checks if jumpBall object has been created
-     
         bool initializeStateMachine(renderEngineSharedPtr render);  // initializes the stateMachine object
     
         bool updateStateMachine(playerActions actionType, gameSMData *SMData);  // updates state machine with external input

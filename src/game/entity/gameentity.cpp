@@ -682,7 +682,7 @@ bool gameEntity::updateState(renderEngineSharedPtr render)  // updates the game 
             jumpBallExecuteSMData->gData = data;
             jumpBallExecuteSMData->flag = flag;
             jumpBallExecuteSMData->render = render;
-            stateMachine->pExecuteJumpBall(jumpBallExecuteSMDataw);
+            stateMachine->pExecuteJumpBall(jumpBallExecuteSMData);
             if (flag->getJumpBallExecuteComplete())
             {
                 flag->setTipOffComplete(true);
@@ -1346,35 +1346,6 @@ bool gameEntity::processInput()  // processes input received from the inputState
     
     return (returnType);
 }*/
-
-bool gameEntity::checkifJumpBallCreated()  // checks if jumpBall object has been created
-{
-    conversionSharedPtr convert = conversion::Instance();
-    std::string func = "gameEntity::checkifJumpBallCreated()";
-
-    logMsg(func +" begin");
-
-    if (getFlag()->getJumpBallCreated())
-    {
-        return (true);
-    }
-    else
-    {
-        sharedPtr<jumpBalls> tempJumpBall(new jumpBalls);
-        component->setJumpBall(tempJumpBall);
-        getFlag()->setJumpBallCreated(true);
-        if (tempJumpBall != nullptr)
-        {
-            return (true);
-
-        }
-    }
-
-
-    logMsg(func +" end");
-
-    return (false);
-}
 
 void gameEntity::updateDirectionsAndMovements()
 {

@@ -30,6 +30,9 @@ class setupJumpballs
         setupJumpballs();  // constructor
         ~setupJumpballs();  // destructor
         
+        jumpBallsSharedPtr checkifJumpBallCreated(jumpBallsSharedPtr jumpBall, gameFlagsSharedPtr flag);  // checks if jumpBall object has been created
+     
+
     private:
     
 };

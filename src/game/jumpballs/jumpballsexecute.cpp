@@ -24,6 +24,6 @@ jumpBallsExecute::jumpBallsExecute()  // constructor
 {
 }
 
-jumpBallsExecute::~jumpBallsExecute();  // destructor
+jumpBallsExecute::~jumpBallsExecute()  // destructor
 {
 }

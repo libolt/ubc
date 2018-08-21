@@ -25,7 +25,7 @@
 #include "engine/physicsengine.h"
 #include "engine/renderengine.h"
 #include "utilities/comparison.h"
-#include "jumpballs.h"
+//#include "jumpballs.h"
 
 // static declarations
 sharedPtr<btDynamicsWorld> physicsEngine::world;  // stores the physics world

@@ -71,6 +71,10 @@ jumpBalls::jumpBalls()  // constructor
     
 }
 
+jumpBalls::~jumpBalls()  // destructor
+{
+}
+
 jumpBallLocations_t jumpBalls::getJumpBallLocation()  // retrieves teh value of jumpBallLocation
 {
     return (jumpBallLocation);

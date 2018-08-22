@@ -787,12 +787,65 @@ STATE_DEFINE(gameStateMachine, executeJumpBall, gameSMData)
 {
     basketballEntityMSharedPtr activeBasketballInstance = data->component->getActiveBasketballInstance();
     conversionSharedPtr convert = conversion::Instance();
+    teamTypes teamWithBall = data->gData->getTeamWithBall();
     std:: string func = "gameStateMachine::setupJumpBall";
     
     logMsg(func +" begin");
 
     
-    if (!data->component->getJumpBall()->updateState(data->gData->getTeamWithBall(), activeBasketballInstance, data->component->getActiveTeamInstance(), data->gData->getQuarter()))
+    logMsg(func +" updating jumpBall state!");
+    logMsg(func +" teamWithBall == " +convert->toString(teamWithBall));
+
+//    size_t activeBBallInstance = gameS->getActiveBBallInstance();
+//    basketballStateVec basketBallInstance = gameS->getBasketballInstance();
+   // FIXME! Do NOT hard code activeBasketballInstance in the future
+    bool bballPhysicsSetup = activeBasketballInstance[0]->getPhysicsSetup();
+    if (teamWithBall == NOTEAM && bballPhysicsSetup) //&& gameS->getActiveTeamInstancesCreated())
+    {
+
+        logMsg(func +" teamWithBall = NOTEAM");
+//        exit(0);
+        logMsg(func +" jumpBallComplete == " +convert->toString(jumpBallComplete));
+        if (!jumpBallComplete)
+        {
+//            exit(0);
+            logMsg(func +" jump ball not complete");
+            logMsg(func +" not complete ballTipped == " +convert->toString(ballTipped));
+            
+//            tipoff complete!exit(0);
+            if (!ballTipped)
+            {
+                ballTipped = jumpBallExecute(activeBasketballInstance, activeTeamInstance);  // executes jump ball until ball is tipped
+                logMsg (func +" Ball Tippped? " +convert->toString(ballTipped));
+//                exit(0);
+            }
+            else
+            {
+//                exit(0);
+                jumpBallComplete = tipToPlayer(activeBasketballInstance, activeTeamInstance, quarter);
+
+                logMsg(func +" jumpBallComplete == " +convert->toString(jumpBallComplete));
+//                exit(0);
+            }
+//            exit(0);
+        }
+        else
+        {
+            logMsg(func +" teamWithBall = " +convert->toString(teamWithBall));
+//            exit(0);
+        }
+        logMsg(func +" ballTipped == " +convert->toString(ballTipped));
+        logMsg(func +" ballTippedToTeam == " +convert->toString(ballTippedToTeam));
+    }
+    else
+    {
+        logMsg(func +" teamWithBall == " +convert->toString(teamWithBall));
+        return (true);
+    }
+    
+    logMsg(func +" jumpBall return(false)");
+  
+/*    if (!data->component->getJumpBall()->updateState(data->gData->getTeamWithBall(), activeBasketballInstance, data->component->getActiveTeamInstance(), data->gData->getQuarter()))
     {
         logMsg("tipOff not complete!");
 //        exit(0);
@@ -800,7 +853,7 @@ STATE_DEFINE(gameStateMachine, executeJumpBall, gameSMData)
     else
     {
         return (true);
-    }
+    }*/
     
     logMsg(func +" end");
 

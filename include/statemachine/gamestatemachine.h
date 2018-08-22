@@ -28,7 +28,7 @@
 
 class gameFlags;
 class gameData;
- 
+
 class gameSMData : public eventData
 {
     public:

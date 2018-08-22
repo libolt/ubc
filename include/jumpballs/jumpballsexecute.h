@@ -27,6 +27,10 @@ class jumpBallsExecute
 
         jumpBallsExecute();  // constructor
         ~jumpBallsExecute();  // destructor
+        
+        bool executeJump(basketballEntityMSharedPtr activeBasketballInstance, teamEntityMSharedPtr activeTeamInstance); // initiates jump ball from jump ball circle
+        bool tipToPlayer(basketballEntityMSharedPtr activeBasketballInstance, teamEntityMSharedPtr activeTeamInstance, quarters quarter);  // tips the basketball to the appropriate player
+
     private:
     
 };

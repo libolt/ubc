@@ -70,6 +70,9 @@ class jumpBalls
     bool getExecuteJumpBall();  // retrieves the value of executeJumpBall
     void setExecuteJumpBall(bool set);  // sets the value of executeJumpBall
 
+    bool getJumpBallComplete();  // retrieves the value of jumpBallComplete
+    void setJumpBallComplete(bool set);  // sets the value of jumpBallComplete
+    
     btVector3 getBBallVelocity();  // retrieves the value of bballVelocity
     void setBBallVelocity(const btVector3 &set);  // sets the value of bballVelocity
 

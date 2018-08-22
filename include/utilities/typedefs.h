@@ -96,6 +96,7 @@ class inputGamePads;
 class inputKeyboards;
 
 class jumpBalls;
+class jumpBallsExecute;
 
 class loader;
 class loadBasketballs;
@@ -246,6 +247,8 @@ typedef sharedPtr<teamState> teamStateSharedPtr;
 typedef sharedPtr<teamStatistics> teamStatisticsSharedPtr;
 
 typedef sharedPtr<jumpBalls> jumpBallsSharedPtr;
+
+typedef sharedPtr<jumpBallsExecute> jumpBallsExecuteSharedPtr;
 
 typedef sharedPtr<AISystem> AISystemSharedPtr;
 

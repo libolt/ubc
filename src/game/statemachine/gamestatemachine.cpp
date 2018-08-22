@@ -28,6 +28,7 @@
 #include "entity/hoopentity.h"
 #include "flags/gameflags.h"
 #include "jumpballs/jumpballs.h"
+#include "jumpballs/jumpballsexecute.h"
 #include "load/loadbasketballs.h"
 #include "load/loadcourts.h"
 #include "load/loadhoops.h"
@@ -788,6 +789,12 @@ STATE_DEFINE(gameStateMachine, executeJumpBall, gameSMData)
     basketballEntityMSharedPtr activeBasketballInstance = data->component->getActiveBasketballInstance();
     conversionSharedPtr convert = conversion::Instance();
     teamTypes teamWithBall = data->gData->getTeamWithBall();
+    jumpBallsSharedPtr jumpBall = data->component->getJumpBall();
+    jumpBallsExecuteSharedPtr jumpBallExecute(new jumpBallsExecute);
+    bool jumpBallComplete = jumpBall->getJumpBallComplete();
+    bool ballTipped = jumpBall->getBallTipped();
+    bool ballTippedToTeam = jumpBall->getBallTippedToTeam();
+
     std:: string func = "gameStateMachine::setupJumpBall";
     
     logMsg(func +" begin");
@@ -815,14 +822,14 @@ STATE_DEFINE(gameStateMachine, executeJumpBall, gameSMData)
 //            tipoff complete!exit(0);
             if (!ballTipped)
             {
-                ballTipped = jumpBallExecute(activeBasketballInstance, activeTeamInstance);  // executes jump ball until ball is tipped
+                ballTipped = jumpBallExecute->executeJump(data->component);  // executes jump ball until ball is tipped
                 logMsg (func +" Ball Tippped? " +convert->toString(ballTipped));
 //                exit(0);
             }
             else
             {
 //                exit(0);
-                jumpBallComplete = tipToPlayer(activeBasketballInstance, activeTeamInstance, quarter);
+                jumpBallComplete = jumpBallExecute->tipToPlayer(data->component, data->gData->getQuarter());
 
                 logMsg(func +" jumpBallComplete == " +convert->toString(jumpBallComplete));
 //                exit(0);
@@ -842,6 +849,9 @@ STATE_DEFINE(gameStateMachine, executeJumpBall, gameSMData)
         logMsg(func +" teamWithBall == " +convert->toString(teamWithBall));
         return (true);
     }
+    
+    jumpBall->setJumpBallComplete(jumpBallComplete);
+    jumpBall->setBallTipped(ballTipped);
     
     logMsg(func +" jumpBall return(false)");
   

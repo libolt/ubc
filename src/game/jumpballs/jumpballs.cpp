@@ -165,6 +165,15 @@ void jumpBalls::setExecuteJumpBall(bool set)  // sets the value of executeJumpBa
     executeJumpBall = set;
 }
 
+bool jumpBalls::getJumpBallComplete()  // retrieves the value of jumpBallComplete
+{
+    return (jumpBallComplete);
+}
+void jumpBalls::setJumpBallComplete(bool set)  // sets the value of jumpBallComplete
+{
+    jumpBallComplete = set;
+}
+
 btVector3 jumpBalls::getBBallVelocity()  // retrieves the value of bballVelocity
 {
     return (bballVelocity);

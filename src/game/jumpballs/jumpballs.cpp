@@ -120,6 +120,15 @@ void jumpBalls::setBallTippedToPlayerID(size_t player)	 // sets the value of bal
     ballTippedToPlayerID = player;
 }
 
+size_t jumpBalls::getBallTippedToPlayerInstance() // retrieves the value of ballTippedToPlayerInstance
+{
+    return (ballTippedToPlayerInstance);
+}
+void jumpBalls::setBallTippedToPlayerInstance(size_t set) // sets the vlaue of ballTippedToPlayerInstance
+{
+    ballTippedToPlayerInstance = set;
+}
+
 playerPositions jumpBalls::getBallTippedToPosition()  // retrieves the value of ballTippedToPosition
 {
     return (ballTippedToPosition);

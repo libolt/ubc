@@ -21,6 +21,8 @@
 #ifndef _JUMPBALLSEXECUTE_H_
 #define _JUMPBALLSEXECUTE_H_
 
+#include "utilities/typedefs.h"
+
 class jumpBallsExecute
 {
     public:
@@ -28,8 +30,8 @@ class jumpBallsExecute
         jumpBallsExecute();  // constructor
         ~jumpBallsExecute();  // destructor
         
-        bool executeJump(basketballEntityMSharedPtr activeBasketballInstance, teamEntityMSharedPtr activeTeamInstance); // initiates jump ball from jump ball circle
-        bool tipToPlayer(basketballEntityMSharedPtr activeBasketballInstance, teamEntityMSharedPtr activeTeamInstance, quarters quarter);  // tips the basketball to the appropriate player
+        bool executeJump(gameComponentsSharedPtr component); // initiates jump ball from jump ball circle
+        bool tipToPlayer(gameComponentsSharedPtr component, quarters quarter);  // tips the basketball to the appropriate player
 
     private:
     

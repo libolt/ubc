@@ -18,7 +18,20 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
- #include "jumpballs/jumpballsexecute.h"
+#include "jumpballs/jumpballsexecute.h"
+#include "jumpballs/jumpballs.h"
+#include "components/gamecomponents.h"
+#include "components/playercomponents.h"
+#include "components/teamcomponents.h"
+#include "data/playerdata.h"
+#include "data/playergamedata.h"
+#include "engine/physicsengine.h"
+#include "entity/basketballentity.h"
+#include "entity/playerentity.h"
+#include "entity/teamentity.h"
+#include "physics/basketballphysics.h"
+#include "utilities/conversion.h"
+#include "utilities/logging.h"
 
 jumpBallsExecute::jumpBallsExecute()  // constructor
 {
@@ -28,12 +41,16 @@ jumpBallsExecute::~jumpBallsExecute()  // destructor
 {
 }
 
-bool jumpBallsExecute::executeJump(basketballEntityMSharedPtr activeBasketballInstance, teamEntityMSharedPtr activeTeamInstance)  // initiates jump ball from jump ball circle
+bool jumpBallsExecute::executeJump(gameComponentsSharedPtr component)  // initiates jump ball from jump ball circle
 {
     conversionSharedPtr convert = conversion::Instance();
+    jumpBallsSharedPtr jumpBall = component->getJumpBall();
     physicsEngine physEngine;
     playerEntityMSharedPtr activePlayerInstance;
     playerEntityMSharedPtr jumpPlayerInstance;  // stores playerID of players jumping for the ball
+    teamEntityMSharedPtr activeTeamInstance = component->getActiveTeamInstance();
+    teamTypes ballTippedToTeam = jumpBall->getBallTippedToTeam();
+    playerPositions ballTippedToPosition = jumpBall->getBallTippedToPosition();
 
     size_t x = 0;
     std::string func = "jumpBalls::jumpBallExecute()";
@@ -151,18 +168,25 @@ TS*/
     return (false);  // executeJumpBall has not completed
 }
 
-bool jumpBallsExecute::tipToPlayer(basketballEntityMSharedPtr activeBasketballInstance, teamEntityMSharedPtr activeTeamInstance, quarters quarter)  // tips the basketball to the appropriate player
+bool jumpBallsExecute::tipToPlayer(gameComponentsSharedPtr component, quarters quarter)  // tips the basketball to the appropriate player
 {
 //    sharedPtr<gameState> gameS = gameState::Instance();
     conversionSharedPtr convert = conversion::Instance();
 //    sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
-
+    jumpBallsSharedPtr jumpBall = component->getJumpBall();
     physicsEngine physEngine;
 //    basketballStateVec basketballInstance = gameS->getBasketballInstance();
 //    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
 //    playerStateVecSharedPtr activePlayerInstance;
     playerEntityVecSharedPtr activePlayerInstance;
     playerEntityVecSharedPtr::iterator APIIT;
+    playerPositions ballTippedToPosition = jumpBall->getBallTippedToPosition();
+    size_t ballTippedToPlayerID = jumpBall->getBallTippedToPlayerID();
+    bool ballTipForceApplied = jumpBall->getBallTipForceApplied();
+    teamTypes ballTippedToTeam = jumpBall->getBallTippedToTeam();
+    btVector3 bballVelocity = jumpBall->getBBallVelocity();
+    size_t ballTippedToPlayerInstance = jumpBall->getBallTippedToPlayerInstance();
+    basketballEntityMSharedPtr activeBasketballInstance = component->getActiveBasketballInstance();
 //    jumpBalls jumpBall = gameS->getJumpBall();
 //    teamTypes ballTippedToTeam = jumpBall.getBallTippedToTeam();
 //    quarters quarter = gameS->getQuarter();

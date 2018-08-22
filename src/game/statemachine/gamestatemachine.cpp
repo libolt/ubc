@@ -769,7 +769,7 @@ STATE_DEFINE(gameStateMachine, setupJumpBall, gameSMData)
             jumpBall->setSetupComplete(true);
             jumpBall->setExecuteJumpBall(true);
             data->component->setJumpBall(jumpBall);
-            return (true);
+//            return (true);
         }
         else
         {

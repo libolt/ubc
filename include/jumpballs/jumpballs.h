@@ -55,6 +55,9 @@ class jumpBalls
     size_t getBallTippedToPlayerID();  // retrieves the value of the ballTippedToPlayerID
     void setBallTippedToPlayerID(size_t player);  // sets the value of the ballTippedToPlayerID
 
+    size_t getBallTippedToPlayerInstance(); // retrieves the value of ballTippedToPlayerInstance
+    void setBallTippedToPlayerInstance(size_t set); // sets the vlaue of ballTippedToPlayerInstance
+
     playerPositions getBallTippedToPosition();  // retrieves the value of ballTippedToPosition
     void setBallTippedToPosition(playerPositions set);  // sets the value of ballTippedToPosition
 

@@ -738,7 +738,7 @@ STATE_DEFINE(gameStateMachine, setupJumpBall, gameSMData)
     sharedPtr<setupJumpBalls> setupJumpBall;
    
     logMsg(func +" begin");
-    exit(0);
+    
     
     jumpBall = data->component->getJumpBall();
     if (!data->flag->getJumpBallCreated())
@@ -762,6 +762,7 @@ STATE_DEFINE(gameStateMachine, setupJumpBall, gameSMData)
     {
         if (!jumpBall->getSetupComplete())
         {
+            logMsg(func + " jumpBall Setup Not Complete!");
             jumpBall->setJumpBallLocation(CENTERCIRCLE);
             jumpBallPlayer.clear();
             jumpBallPlayer.push_back(C);
@@ -774,7 +775,7 @@ STATE_DEFINE(gameStateMachine, setupJumpBall, gameSMData)
         }
         else
         {
-            
+            logMsg(func + " jumpBall Setup Complete!");
         }
     }
 //    internalEvent(ST_IDLE);

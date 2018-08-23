@@ -39,6 +39,7 @@
 #include "flags/gameflags.h"
 #include "flags/playerflags.h"
 #include "flags/teamflags.h"
+#include "jumpballs/jumpballs.h"
 #include "setup/setupbasketballs.h"
 #include "setup/setupcourts.h"
 #include "setup/setuphoops.h"
@@ -667,6 +668,14 @@ bool gameEntity::updateState(renderEngineSharedPtr render)  // updates the game 
             jumpBallSetupSMData->flag = flag;
             jumpBallSetupSMData->render = render;
             stateMachine->pSetupJumpBall(jumpBallSetupSMData);
+            if (component->getJumpBall()->getSetupComplete())
+            {
+                flag->setJumpBallSetup(true);
+            }
+            else
+            {
+                
+            }
         }
         else
         {
@@ -676,6 +685,7 @@ bool gameEntity::updateState(renderEngineSharedPtr render)  // updates the game 
         if (flag->getJumpBallSetup() && !flag->getTipOffComplete())  // calls tip off execution
         {
             logMsg(func +" Tip Off Not Complete yet!");
+            exit(0);
             gameSMData *jumpBallExecuteSMData(new gameSMData); 
 
             jumpBallExecuteSMData->component = component;

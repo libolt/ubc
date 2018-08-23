@@ -32,7 +32,7 @@ void teamStateMachine::setSpeed(teamSMData* data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_START_MOVEMENT)            // ST_IDLE
-        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STOP
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_CREATE_PLAYERINSTANCES
         TRANSITION_MAP_ENTRY (ST_CHANGE_SPEED)              // ST_START
         TRANSITION_MAP_ENTRY (ST_CHANGE_SPEED)              // ST_CHANGE_SPEED
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_JUMP
@@ -41,13 +41,13 @@ void teamStateMachine::setSpeed(teamSMData* data)
 }
 
 // halt motor external event
-void teamStateMachine::halt()
+void teamStateMachine::pCreatePlayerInstances(teamSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_IDLE
-        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STOP
-        TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_START
-        TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_CHANGE_SPEED
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_CREATE_PLAYERINSTANCES
+        TRANSITION_MAP_ENTRY (ST_CREATE_PLAYERINSTANCES)             // ST_START
+        TRANSITION_MAP_ENTRY (ST_CREATE_PLAYERINSTANCES)             // ST_CHANGE_SPEED
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_JUMP
     END_TRANSITION_MAP(NULL)
 }
@@ -58,10 +58,11 @@ STATE_DEFINE(teamStateMachine, Idle, noEventData)
     logMsg("Motor::ST_Idle");
 }
 
-// stop the motor 
-STATE_DEFINE(teamStateMachine, StopMovement, noEventData)
+// creates player instances
+STATE_DEFINE(teamStateMachine, createPlayerInstances, teamSMData)
 {
-    logMsg("Motor::ST_Stop");
+    std::string func = "teamStateMachine::createPlayerInstances";
+    logMsg(func +" begin");
     m_currentSpeed = 0; 
 
     // perform the stop motor processing here

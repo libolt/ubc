@@ -212,6 +212,7 @@ STATE_DEFINE(playerStateMachine, SetNode, playerSMData)
     std:: string func = "playerStateMachine::SetNode";
 
     logMsg(func +" begin");
+//    exit(0);
 
     currentNode = data->node;
 

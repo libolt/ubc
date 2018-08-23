@@ -25,8 +25,12 @@
 
 class teamSMData : public eventData
 {
-public:
-    INT speed;
+    public:
+        INT speed;
+        teamComponentsSharedPtr component;  // instance of teamComponents object
+        teamDataSharedPtr tData;  //  instance of the teamData object
+        teamFlagsSharedPtr flag;  // instance of teamFlags object
+        teamGameDataSharedPtr gData;  // instance of teamGameData object
 };
 
 class teamStateMachine : public stateMachine
@@ -36,7 +40,7 @@ public:
 
     // External events taken by this state machine
     void setSpeed(teamSMData* data);
-    void halt();
+    void pCreatePlayerInstances(teamSMData *data);
 
 private:
     INT m_currentSpeed; 
@@ -46,7 +50,7 @@ private:
     enum States
     {
         ST_IDLE,
-        ST_STOP_MOVEMENT,
+        ST_CREATE_PLAYERINSTANCES,
         ST_START_MOVEMENT, 
         ST_CHANGE_SPEED,
         ST_JUMP,
@@ -55,7 +59,7 @@ private:
 
     // Define the state machine state functions with event data type
     STATE_DECLARE(teamStateMachine,    Idle,           noEventData)
-    STATE_DECLARE(teamStateMachine,    StopMovement,   noEventData)
+    STATE_DECLARE(teamStateMachine,    createPlayerInstances,   teamSMData)
     STATE_DECLARE(teamStateMachine,    StartMovement,  teamSMData)
     STATE_DECLARE(teamStateMachine,    ChangeSpeed,    teamSMData)
     STATE_DECLARE(teamStateMachine,    Jump,           teamSMData)
@@ -64,7 +68,7 @@ private:
     // state object.
     BEGIN_STATE_MAP
         STATE_MAP_ENTRY(&Idle)
-        STATE_MAP_ENTRY(&StopMovement)
+        STATE_MAP_ENTRY(&createPlayerInstances)
         STATE_MAP_ENTRY(&StartMovement)
         STATE_MAP_ENTRY(&ChangeSpeed)
         STATE_MAP_ENTRY(&Jump)

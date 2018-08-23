@@ -848,7 +848,7 @@ STATE_DEFINE(gameStateMachine, executeJumpBall, gameSMData)
     else
     {
         logMsg(func +" teamWithBall == " +convert->toString(teamWithBall));
-        return (true);
+//        return (true);
     }
     
     jumpBall->setJumpBallComplete(jumpBallComplete);

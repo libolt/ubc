@@ -93,7 +93,6 @@ class gameEntity //: public state, public gameStateShared, public std::enable_sh
 
         void updateDirectionsAndMovements();  // updates the movement and directions of game world objecxts
         bool assignHoopToTeams();  // assigns which hoop belongs to each team
-        bool setupEnvironment();  // sets up the 3D environment for the game
     
         bool setupActiveTeamInstances();  // sets up the active team instances
     

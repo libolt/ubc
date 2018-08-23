@@ -38,6 +38,7 @@
 //#include "state/basketballstate.h"
 #include "state/offensestate.h"
 #include "state/defensestate.h"
+#include "statemachine/teamstatemachine.h"
 #include "update/updateteams.h"
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
@@ -95,6 +96,15 @@ void teamEntity::setGameData(teamGameDataSharedPtr set)  // sets the value of ga
     gameData = set;
 }
 
+teamStateMachineSharedPtr teamEntity::getStateMachine()  // retrieves the value of stateMachine
+{
+    return (stateMachine);
+}
+void teamEntity::setStateMachine(teamStateMachineSharedPtr set)  // sets the value of stateMachine
+{
+    stateMachine = set;
+}
+
 teamStatisticsSharedPtr teamEntity::getStatistics()  // retrieves the value of statistics
 {
     return (statistics);
@@ -128,6 +138,32 @@ bool teamEntity::initialize()  // initializes the object
     defenseStateSharedPtr tempDefenseInst(new defenseState);
     component->setDefenseInstance(tempDefenseInst);
 
+    initializeStateMachine();
+    
+    logMsg(func +" end");
+
+    return (true);
+}
+
+bool teamEntity::initializeStateMachine()  // initializes teamStateMachine object
+{
+    std::string func = "teamEntity::initializeStateMachine()";
+    teamSMData *tempSMData(new teamSMData); 
+
+    logMsg(func +" begin");
+//    exit(0);
+    SMData = tempSMData;
+    //SMData->component = std::static_pointer_cast<const gameComponents>(component);
+    SMData->component = component;
+    SMData->flag = flag;
+//    SMData->node = getNode();
+    
+//    component->getStateMachine()->setSpeed(SMData);
+//    component->getStateMachin
+    teamStateMachineSharedPtr tempSM(new teamStateMachine);
+    stateMachine = tempSM;
+    stateMachine->pCreatePlayerInstances(SMData);
+//    exit(0);
     logMsg(func +" end");
 
     return (true);

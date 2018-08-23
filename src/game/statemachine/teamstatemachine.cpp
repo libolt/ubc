@@ -19,6 +19,11 @@
  ***************************************************************************/
 
 #include "statemachine/teamstatemachine.h"
+#include "components/teamcomponents.h"
+#include "data/teamdata.h"
+#include "flags/teamflags.h"
+#include "setup/setupplayers.h"
+#include "setup/setupteams.h"
 #include "utilities/logging.h"
 
 teamStateMachine::teamStateMachine() :
@@ -61,10 +66,23 @@ STATE_DEFINE(teamStateMachine, Idle, noEventData)
 // creates player instances
 STATE_DEFINE(teamStateMachine, createPlayerInstances, teamSMData)
 {
+    playerEntityMSharedPtr playerInstance;
+    setupPlayers setupPlayer;
     std::string func = "teamStateMachine::createPlayerInstances";
     logMsg(func +" begin");
-    m_currentSpeed = 0; 
-
+    
+    playerInstance = setupPlayer.createTeamPlayerInstances(data->gamePlayerInstance, data->tData->getID());
+    if (playerInstance.size() > 0)
+    {
+        logMsg(func +" " +data->tData->getCity() +" " +data->tData->getName() + " Player Instances Created!");
+        data->flag->setPlayerInstancesCreated(true);
+        data->component->setPlayerInstance(playerInstance);
+//        returnType = true;
+    }
+    else
+    {
+        logMsg(func +" Unable to Create " +data->tData->getCity() +" " +data->tData->getName() + " Player Instances!");
+    }
     // perform the stop motor processing here
     // transition to Idle via an internal event
     internalEvent(ST_IDLE);

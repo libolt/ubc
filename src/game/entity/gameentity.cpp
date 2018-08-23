@@ -7,7 +7,7 @@
  *   the Free Software Foundation; either version 2 of the License, or     *
  *   (at your option) any later version.                                   *
  *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
+ *   This program is distributed".  .  " in the hope that it will be useful,       *
  *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
  *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
  *   GNU General Public License for more details.                          *
@@ -167,7 +167,7 @@ void gameEntity::setStateMachineInitialized(bool set)  // sets the value of stat
 
 bool gameEntity::setupActiveTeamInstances()  // sets up the active team instances
 {
-    teamStateSharedPtr tInstance;
+//    teamStateSharedPtr tInstance;
     teamEntityMSharedPtr activeTeamInstance = component->getActiveTeamInstance();
     teamEntityMSharedPtr teamInstance = component->getTeamInstance();
     sizeTVec teamIDS = data->getTeamIDS();
@@ -211,13 +211,14 @@ bool gameEntity::initializeStateMachine(renderEngineSharedPtr render)  // sets u
     std::string func = "gameEntity::initializeStateMachine()";
     gameSMData *tempSMData(new gameSMData); 
 
+    logMsg(func +" begin");
+
     SMData = tempSMData;
     //SMData->component = std::static_pointer_cast<const gameComponents>(component);
     SMData->component = component;
     SMData->flag = flag;
 //    SMData->node = getNode();
-    logMsg(func +" begin");
-
+    
 //    component->getStateMachine()->setSpeed(SMData);
 //    component->getStateMachin
     gameStateMachineSharedPtr tempSM(new gameStateMachine);

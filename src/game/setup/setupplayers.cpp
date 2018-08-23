@@ -34,6 +34,7 @@
 #include "load/loadplayers.h"
 #include "entity/gameentity.h"
 #include "statemachine/playerstatemachine.h"
+#include "statemachine/teamstatemachine.h"
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
 
@@ -118,11 +119,11 @@ bool setupPlayers::checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr game
     std::string func = "setupPlayers::checkIfTeamPlayerInstancesCreated()";
   
     logMsg(func +" begin");
-    
+//    exit(0);
     for (auto ATIIT : activeTeamInstance)  // loop through activeTeamInstance
     {
 //        logMsg(convert->toString(teamIDs.size()));
-        logMsg(convert->toString(ATIIT.second->getFlag()->getPlayerInstancesCreated()));
+        logMsg(func +" " +convert->toString(ATIIT.second->getFlag()->getPlayerInstancesCreated()));
 //        exit(0);
 
         if (ATIIT.second->getFlag()->getPlayerInstancesCreated())  // check if playerInstances created is true
@@ -134,7 +135,8 @@ bool setupPlayers::checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr game
             }
             else
             {
-                
+                logMsg(func +" Creating Team Player Instances!");
+                exit(0);
                 playerInstance = createTeamPlayerInstances(gamePlayerInstance, ATIIT.second->getData()->getID());
                 if (playerInstance.size() > 0)
                 {
@@ -151,6 +153,14 @@ bool setupPlayers::checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr game
         }
         else  // create team's player instances
         {
+            logMsg(func +" team stateMachine creatw player instances");
+            teamSMData *tSMData(new teamSMData);
+            
+            tSMData->component = ATIIT.second->getComponent();
+            tSMData->flag = ATIIT.second->getFlag();
+            tSMData->gamePlayerInstance = gamePlayerInstance;
+            ATIIT.second->getStateMachine()->pCreatePlayerInstances(tSMData);
+            exit(0);
             playerInstance = createTeamPlayerInstances(gamePlayerInstance, ATIIT.second->getData()->getID());
             if (playerInstance.size() > 0)
             {

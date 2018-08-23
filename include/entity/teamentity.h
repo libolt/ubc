@@ -23,6 +23,8 @@
 
 #include "utilities/typedefs.h"
 
+class teamSMData;
+
 class teamEntity
 {
     public:
@@ -45,10 +47,15 @@ class teamEntity
         teamGameDataSharedPtr getGameData();  // retrieves the value of gameData
         void setGameData(teamGameDataSharedPtr set);  // sets the value of gameData
 
+        teamStateMachineSharedPtr getStateMachine();  // retrieves the value of stateMachine
+        void setStateMachine(teamStateMachineSharedPtr set);  // sets the value of stateMachine
+
         teamStatisticsSharedPtr getStatistics();  // retrieves the value of statistics
         void setStatistics(teamStatisticsSharedPtr set);  // sets the value of statistics
 
         bool initialize();  // initializes teamEntity object
+
+        bool initializeStateMachine();  // initializes teamStateMachine object
 
         void updateState(gameComponentsSharedPtr gameComponent, gameFlagsSharedPtr gameFlag, gameDataSharedPtr gameData, renderEngineSharedPtr render);  // updates the state of the teamState object
 
@@ -64,6 +71,10 @@ class teamEntity
         teamFlagsSharedPtr flag;  // instance of teamFlags object
 
         teamGameDataSharedPtr gameData;  // instance of teamGameData object
+
+        teamStateMachineSharedPtr stateMachine;  // instance of teamStateMachine object
+
+        teamSMData *SMData;  // state machine data object
 
         teamStatisticsSharedPtr statistics;  // instance of teamStatistics object
 

@@ -31,6 +31,7 @@ class teamSMData : public eventData
         teamDataSharedPtr tData;  //  instance of the teamData object
         teamFlagsSharedPtr flag;  // instance of teamFlags object
         teamGameDataSharedPtr gData;  // instance of teamGameData object
+        playerEntityMSharedPtr gamePlayerInstance;  // instance of gameEntity player objects
 };
 
 class teamStateMachine : public stateMachine

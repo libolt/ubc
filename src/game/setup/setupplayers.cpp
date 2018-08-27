@@ -160,7 +160,7 @@ bool setupPlayers::checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr game
             tSMData->flag = ATIIT.second->getFlag();
             tSMData->gamePlayerInstance = gamePlayerInstance;
             ATIIT.second->getStateMachine()->pCreatePlayerInstances(tSMData);
-            exit(0);
+/*            exit(0);
             playerInstance = createTeamPlayerInstances(gamePlayerInstance, ATIIT.second->getData()->getID());
             if (playerInstance.size() > 0)
             {
@@ -173,6 +173,7 @@ bool setupPlayers::checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr game
             {
                 logMsg(func +" Unable to Create " +ATIIT.second->getData()->getCity() +" " +ATIIT.second->getData()->getName() + " Player Instances!");
             }
+            */
         }
     }
     

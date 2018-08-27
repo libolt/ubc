@@ -25,12 +25,14 @@
 #include "utilities/conversion.h"
 #include "components/gamecomponents.h"
 #include "components/guicomponents.h"
+#include "components/teamcomponents.h"
 #include "data/courtdata.h"
 #include "data/gamedata.h"
 #include "data/playerdata.h"
 #include "engine/gameengine.h"
 #include "flags/gameflags.h"
 #include "entity/playerentity.h"
+#include "entity/teamentity.h"
 #include "setup/setuplineups.h"
 #include "setup/setupplayers.h"
 #include "setup/setupteams.h"
@@ -512,6 +514,7 @@ void GUISystem::setSelectedIndexes()  // sets all player listbox indexes to zero
     tempPlayerPosSelectBox = component->getTeamPlayerPosSelectBox();
     
     tempPlayerPosSelectBox[0][PG]->setIndexSelected(0);
+    exit(0);
     logMsg(func +" PG0");
     
     tempPlayerPosSelectBox[0][SG]->setIndexSelected(0);
@@ -1026,7 +1029,11 @@ void GUISystem::playerStartSelected()  // process player start selection
 ///
 
     setupPlayer->checkIfTeamPlayerInstancesCreated(gamePlayerInstance, activeTeamInstance);
-//    exit(0);
+    for (auto ATIIT : activeTeamInstance)
+    {
+        logMsg(func +" activePlayerInstance size = " +convert->toString(ATIIT.second->getComponent()->getActivePlayerInstance().size()));
+    }
+    exit(0);
     // create active player Instancea
 
 ///

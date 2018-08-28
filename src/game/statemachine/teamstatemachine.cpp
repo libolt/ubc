@@ -24,6 +24,7 @@
 #include "flags/teamflags.h"
 #include "setup/setupplayers.h"
 #include "setup/setupteams.h"
+#include "utilities/conversion.h"
 #include "utilities/logging.h"
 
 teamStateMachine::teamStateMachine() :
@@ -48,12 +49,16 @@ void teamStateMachine::setSpeed(teamSMData* data)
 // halt motor external event
 void teamStateMachine::pCreatePlayerInstances(teamSMData *data)
 {
+    std::string func = "teamStateMachine::pCreatePlayerInstance()";
+
+    logMsg(func +" begin");
+//    exit(0);
     BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_IDLE
-        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_CREATE_PLAYERINSTANCES
+        TRANSITION_MAP_ENTRY (ST_CREATE_PLAYERINSTANCES)                // ST_IDLE
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CREATE_PLAYERINSTANCES
         TRANSITION_MAP_ENTRY (ST_CREATE_PLAYERINSTANCES)             // ST_START
         TRANSITION_MAP_ENTRY (ST_CREATE_PLAYERINSTANCES)             // ST_CHANGE_SPEED
-        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_JUMP
+        TRANSITION_MAP_ENTRY (ST_CREATE_PLAYERINSTANCES)                // ST_JUMP
     END_TRANSITION_MAP(NULL)
 }
 
@@ -66,12 +71,16 @@ STATE_DEFINE(teamStateMachine, Idle, noEventData)
 // creates player instances
 STATE_DEFINE(teamStateMachine, createPlayerInstances, teamSMData)
 {
+    exit(0);
+    conversionSharedPtr convert;
     playerEntityMSharedPtr playerInstance;
     setupPlayers setupPlayer;
     std::string func = "teamStateMachine::createPlayerInstances";
     logMsg(func +" begin");
-    
+    exit(0);
     playerInstance = setupPlayer.createTeamPlayerInstances(data->gamePlayerInstance, data->tData->getID());
+    logMsg(func +" playerInstance.size() == " +convert->toString(playerInstance.size()));
+    exit(0);
     if (playerInstance.size() > 0)
     {
         logMsg(func +" " +data->tData->getCity() +" " +data->tData->getName() + " Player Instances Created!");

@@ -50,7 +50,6 @@ gameStateMachine::gameStateMachine() :
 void gameStateMachine::pCreateInstances(gameSMData *data) // creates the object instances
 {
     std:: string func = "gameStateMachine::pCreateInstances";
-
     
     logMsg(func +" begin");
 

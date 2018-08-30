@@ -71,7 +71,6 @@ STATE_DEFINE(teamStateMachine, Idle, noEventData)
 // creates player instances
 STATE_DEFINE(teamStateMachine, createPlayerInstances, teamSMData)
 {
-    exit(0);
     conversionSharedPtr convert;
     playerEntityMSharedPtr playerInstance;
     setupPlayers setupPlayer;

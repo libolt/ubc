@@ -28,24 +28,10 @@
 #include "utilities/logging.h"
 
 teamStateMachine::teamStateMachine() :
-    stateMachine(ST_MAX_STATES),
-    m_currentSpeed(0)
+    stateMachine(ST_MAX_STATES)
 {
 }
     
-// set motor speed external event
-void teamStateMachine::setSpeed(teamSMData* data)
-{
-    BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (ST_START_MOVEMENT)            // ST_IDLE
-        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_CREATE_PLAYERINSTANCES
-        TRANSITION_MAP_ENTRY (ST_CHANGE_SPEED)              // ST_START
-        TRANSITION_MAP_ENTRY (ST_CHANGE_SPEED)              // ST_CHANGE_SPEED
-        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_JUMP
-
-    END_TRANSITION_MAP(data)
-}
-
 // halt motor external event
 void teamStateMachine::pCreatePlayerInstances(teamSMData *data)
 {
@@ -55,10 +41,7 @@ void teamStateMachine::pCreatePlayerInstances(teamSMData *data)
 //    exit(0);
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_CREATE_PLAYERINSTANCES)                // ST_IDLE
-        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CREATE_PLAYERINSTANCES
-        TRANSITION_MAP_ENTRY (ST_CREATE_PLAYERINSTANCES)             // ST_START
-        TRANSITION_MAP_ENTRY (ST_CREATE_PLAYERINSTANCES)             // ST_CHANGE_SPEED
-        TRANSITION_MAP_ENTRY (ST_CREATE_PLAYERINSTANCES)                // ST_JUMP
+        TRANSITION_MAP_ENTRY (ST_CREATE_PLAYERINSTANCES)                // ST_CREATE_PLAYERINSTANCES
     END_TRANSITION_MAP(NULL)
 }
 
@@ -96,28 +79,4 @@ STATE_DEFINE(teamStateMachine, createPlayerInstances, teamSMData)
     internalEvent(ST_IDLE);
 }
 
-// start the motor going
-STATE_DEFINE(teamStateMachine, StartMovement, teamSMData)
-{
-    logMsg("Motor::ST_Start : Speed is " +data->speed);
-    m_currentSpeed = data->speed;
 
-    // set initial motor speed processing here
-}
-
-// changes the motor speed once the motor is moving
-STATE_DEFINE(teamStateMachine, ChangeSpeed, teamSMData)
-{
-    logMsg("Motor::ST_ChangeSpeed : Speed is " +data->speed);
-    m_currentSpeed = data->speed;
-
-    // perform the change motor speed to data->speed here
-}
-
-STATE_DEFINE(teamStateMachine, Jump, teamSMData)
-{
-    logMsg("Motor::ST_Jump : Speed is " +data->speed);
-    m_currentSpeed = data->speed;
-
-    // set initial motor speed processing here
-}

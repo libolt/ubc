@@ -163,8 +163,10 @@ bool teamEntity::initializeStateMachine()  // initializes teamStateMachine objec
 //    component->getStateMachin
     teamStateMachineSharedPtr tempSM(new teamStateMachine);
     stateMachine = tempSM;
-    stateMachine->pCreatePlayerInstances(SMData);
+//    stateMachine->pCreatePlayerInstances(SMData);
 //    exit(0);
+    flag->setStateMachineInitialized(true);
+    
     logMsg(func +" end");
 
     return (true);

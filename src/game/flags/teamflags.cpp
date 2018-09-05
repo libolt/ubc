@@ -37,6 +37,15 @@ teamFlags::~teamFlags()  // destructor
     
 }
 
+bool teamFlags::getStateMachineInitialized()  // retrieves the value of stateMachineInitialized
+{
+    return (stateMachineInitialized);
+}
+void teamFlags::setStateMachineInitialized(bool set)  // sets the value of stateMachineInitialized
+{
+    stateMachineInitialized = set;
+}
+
 bool teamFlags::getOffense()  // returns the value of offense
 {
     return (offense);

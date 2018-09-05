@@ -153,14 +153,23 @@ bool setupPlayers::checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr game
         }
         else  // create team's player instances
         {
-            logMsg(func +" team stateMachine creatw player instances");
-            teamSMData *tSMData(new teamSMData);
+            logMsg(func +" Team Player Instancea Not Yet Created!");
+//            exit(0);
+            if (ATIIT.second->getFlag()->getStateMachineInitialized())
+            {
+                logMsg(func +" team stateMachine creatw player instances");
+//                exit(0);
+                teamSMData *tSMData(new teamSMData);
             
-            tSMData->component = ATIIT.second->getComponent();
-            tSMData->flag = ATIIT.second->getFlag();
-            tSMData->gamePlayerInstance = gamePlayerInstance;
-            ATIIT.second->getStateMachine()->pCreatePlayerInstances(tSMData);
-            logMsg(func +"ATIIT.second playerInstances Size == " +convert->toString(ATIIT.second->getComponent()->getPlayerInstance().size()));
+                tSMData->component = ATIIT.second->getComponent();
+                tSMData->flag = ATIIT.second->getFlag();
+                tSMData->gamePlayerInstance = gamePlayerInstance;
+                teamStateMachineSharedPtr tempSM(new teamStateMachine);
+                ATIIT.second->setStateMachine(tempSM);
+                ATIIT.second->getStateMachine()->pCreatePlayerInstances(tSMData);
+                logMsg(func +"ATIIT.second playerInstances Size == " +convert->toString(ATIIT.second->getComponent()->getPlayerInstance().size()));
+                exit(0);
+            }
 /*            exit(0);
             playerInstance = createTeamPlayerInstances(gamePlayerInstance, ATIIT.second->getData()->getID());
             if (playerInstance.size() > 0)

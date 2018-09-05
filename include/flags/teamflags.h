@@ -29,6 +29,9 @@ class teamFlags
         teamFlags();  // constructor
         ~teamFlags();  // destructor
 
+        bool getStateMachineInitialized();  // retrieves the value of stateMachineInitialized
+        void setStateMachineInitialized(bool set);  // sets the value of stateMachineInitialized
+
         bool getOffense();  // retrieves the value of offense
         void setOffense(bool set);  // sets the value of offense
 
@@ -61,6 +64,8 @@ class teamFlags
 
     private:
     
+        bool stateMachineInitialized;  // stores whether stateMachine has been initialized
+        
         bool offense;  // if set then the team is on offense
         bool defense;  // if set then the team is on defense
 

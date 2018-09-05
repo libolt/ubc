@@ -26,7 +26,6 @@
 class teamSMData : public eventData
 {
     public:
-        INT speed;
         teamComponentsSharedPtr component;  // instance of teamComponents object
         teamDataSharedPtr tData;  //  instance of the teamData object
         teamFlagsSharedPtr flag;  // instance of teamFlags object
@@ -40,11 +39,9 @@ public:
     teamStateMachine();
 
     // External events taken by this state machine
-    void setSpeed(teamSMData* data);
     void pCreatePlayerInstances(teamSMData *data);
 
 private:
-    INT m_currentSpeed; 
 
     // State enumeration order must match the order of state method entries
     // in the state map.
@@ -52,27 +49,18 @@ private:
     {
         ST_IDLE,
         ST_CREATE_PLAYERINSTANCES,
-        ST_START_MOVEMENT, 
-        ST_CHANGE_SPEED,
-        ST_JUMP,
         ST_MAX_STATES
     };
 
     // Define the state machine state functions with event data type
     STATE_DECLARE(teamStateMachine,    Idle,           noEventData)
     STATE_DECLARE(teamStateMachine,    createPlayerInstances,   teamSMData)
-    STATE_DECLARE(teamStateMachine,    StartMovement,  teamSMData)
-    STATE_DECLARE(teamStateMachine,    ChangeSpeed,    teamSMData)
-    STATE_DECLARE(teamStateMachine,    Jump,           teamSMData)
-
+    
     // State map to define state object order. Each state map entry defines a
     // state object.
     BEGIN_STATE_MAP
         STATE_MAP_ENTRY(&Idle)
         STATE_MAP_ENTRY(&createPlayerInstances)
-        STATE_MAP_ENTRY(&StartMovement)
-        STATE_MAP_ENTRY(&ChangeSpeed)
-        STATE_MAP_ENTRY(&Jump)
     END_STATE_MAP   
 };
 

@@ -32,6 +32,19 @@ teamStateMachine::teamStateMachine() :
 {
 }
     
+void teamStateMachine::pInit(teamSMData *data)
+{
+    std::string func = "teamStateMachine::pInit()";
+
+    logMsg(func +" begin");
+    
+    BEGIN_TRANSITION_MAP                                    // - Current State -
+        TRANSITION_MAP_ENTRY (ST_INIT)                // ST_INIT
+        TRANSITION_MAP_ENTRY (ST_INIT)                // ST_IDLE
+        TRANSITION_MAP_ENTRY (ST_INIT)                // ST_CREATE_PLAYERINSTANCES
+    END_TRANSITION_MAP(data)
+
+}
 // halt motor external event
 void teamStateMachine::pCreatePlayerInstances(teamSMData *data)
 {
@@ -40,15 +53,25 @@ void teamStateMachine::pCreatePlayerInstances(teamSMData *data)
     logMsg(func +" begin");
 //    exit(0);
     BEGIN_TRANSITION_MAP                                    // - Current State -
+        TRANSITION_MAP_ENTRY (ST_CREATE_PLAYERINSTANCES)                // ST_INIT
         TRANSITION_MAP_ENTRY (ST_CREATE_PLAYERINSTANCES)                // ST_IDLE
         TRANSITION_MAP_ENTRY (ST_CREATE_PLAYERINSTANCES)                // ST_CREATE_PLAYERINSTANCES
-    END_TRANSITION_MAP(NULL)
+    END_TRANSITION_MAP(data)
+}
+
+STATE_DEFINE(teamStateMachine, init, teamSMData)
+{
+    std::string func = "teamStateMachine::ST_INIT";
+    logMsg(func +" begin");
+//    exit(0);
 }
 
 // state machine sits here when motor is not running
 STATE_DEFINE(teamStateMachine, Idle, noEventData)
 {
-    logMsg("Motor::ST_Idle");
+    std::string func = "teamStateMachine::ST_Idle";
+    logMsg(func +" begin");
+//    exit(0);
 }
 
 // creates player instances
@@ -59,7 +82,7 @@ STATE_DEFINE(teamStateMachine, createPlayerInstances, teamSMData)
     setupPlayers setupPlayer;
     std::string func = "teamStateMachine::createPlayerInstances";
     logMsg(func +" begin");
-    exit(0);
+//    exit(0);
     playerInstance = setupPlayer.createTeamPlayerInstances(data->gamePlayerInstance, data->tData->getID());
     logMsg(func +" playerInstance.size() == " +convert->toString(playerInstance.size()));
     exit(0);
@@ -77,6 +100,7 @@ STATE_DEFINE(teamStateMachine, createPlayerInstances, teamSMData)
     // perform the stop motor processing here
     // transition to Idle via an internal event
     internalEvent(ST_IDLE);
+    
 }
 
 

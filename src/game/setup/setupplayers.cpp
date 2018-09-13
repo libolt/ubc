@@ -155,6 +155,10 @@ bool setupPlayers::checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr game
         {
             logMsg(func +" Team Player Instancea Not Yet Created!");
 //            exit(0);
+            if (!ATIIT.second->getInitialized())
+            {
+                exit(0);
+            }
             if (ATIIT.second->getFlag()->getStateMachineInitialized())
             {
                 logMsg(func +" team stateMachine creatw player instances");
@@ -164,6 +168,7 @@ bool setupPlayers::checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr game
                 tSMData->component = ATIIT.second->getComponent();
                 tSMData->flag = ATIIT.second->getFlag();
                 tSMData->gamePlayerInstance = gamePlayerInstance;
+
                 teamStateMachineSharedPtr tempSM(new teamStateMachine);
                 ATIIT.second->setStateMachine(tempSM);
                 ATIIT.second->getStateMachine()->pCreatePlayerInstances(tSMData);

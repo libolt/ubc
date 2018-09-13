@@ -31,6 +31,7 @@ class teamSMData : public eventData
         teamFlagsSharedPtr flag;  // instance of teamFlags object
         teamGameDataSharedPtr gData;  // instance of teamGameData object
         playerEntityMSharedPtr gamePlayerInstance;  // instance of gameEntity player objects
+
 };
 
 class teamStateMachine : public stateMachine
@@ -39,6 +40,8 @@ public:
     teamStateMachine();
 
     // External events taken by this state machine
+    
+    void pInit(teamSMData *data);
     void pCreatePlayerInstances(teamSMData *data);
 
 private:
@@ -46,19 +49,22 @@ private:
     // State enumeration order must match the order of state method entries
     // in the state map.
     enum States
-    {
+    {       
+        ST_INIT,
         ST_IDLE,
         ST_CREATE_PLAYERINSTANCES,
         ST_MAX_STATES
     };
 
     // Define the state machine state functions with event data type
+    STATE_DECLARE(teamStateMachine,    init,   teamSMData)
     STATE_DECLARE(teamStateMachine,    Idle,           noEventData)
     STATE_DECLARE(teamStateMachine,    createPlayerInstances,   teamSMData)
     
     // State map to define state object order. Each state map entry defines a
     // state object.
     BEGIN_STATE_MAP
+        STATE_MAP_ENTRY(&init)
         STATE_MAP_ENTRY(&Idle)
         STATE_MAP_ENTRY(&createPlayerInstances)
     END_STATE_MAP   

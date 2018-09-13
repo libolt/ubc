@@ -157,13 +157,17 @@ bool teamEntity::initializeStateMachine()  // initializes teamStateMachine objec
     SMData->component = component;
     SMData->gData = gameData;
     SMData->flag = flag;
+
+    
 //    SMData->node = getNode();
     
 //    component->getStateMachine()->setSpeed(SMData);
 //    component->getStateMachin
     teamStateMachineSharedPtr tempSM(new teamStateMachine);
     stateMachine = tempSM;
-//    stateMachine->pCreatePlayerInstances(SMData);
+    teamSMData *tempSMData2(new teamSMData); 
+
+    stateMachine->pInit(tempSMData2);
 //    exit(0);
     flag->setStateMachineInitialized(true);
     

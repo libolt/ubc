@@ -1029,11 +1029,6 @@ void GUISystem::playerStartSelected()  // process player start selection
 ///
 
     setupPlayer->checkIfTeamPlayerInstancesCreated(gamePlayerInstance, activeTeamInstance);
-    for (auto ATIIT : activeTeamInstance)
-    {
-        logMsg(func +" activePlayerInstance size = " +convert->toString(ATIIT.second->getComponent()->getActivePlayerInstance().size()));
-    }
-    exit(0);
     // create active player Instancea
 
 ///
@@ -1215,6 +1210,12 @@ void GUISystem::playerStartSelected()  // process player start selection
         exit(0);
     }*/
 ///
+
+    for (auto ATIIT : activeTeamInstance)
+    {
+        logMsg(func +"ATIIT activePlayerInstance size = " +convert->toString(ATIIT.second->getComponent()->getActivePlayerInstance().size()));
+    }
+//    exit(0);
 
     if (setupLineup->checkActivePlayerInstancesCreated(activeTeamInstance))
     {

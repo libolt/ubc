@@ -47,7 +47,7 @@ setupPlayers::~setupPlayers()  // destructor
 
 }
 
-bool setupPlayers::checkIfGamePlayerInstancesCreated(gameComponentsSharedPtr gameComponent, gameFlagsSharedPtr gameFlag)  // checks if the gameState Objects Player Instances have been created
+bool setupPlayers::checkIfGamePlayerInstancesCreated(const gameComponentsSharedPtr &gameComponent, const gameFlagsSharedPtr &gameFlag)  // checks if the gameState Objects Player Instances have been created
 {
     conversionSharedPtr convert = conversion::Instance();
     playerEntityMSharedPtr playerInstance = gameComponent->getPlayerInstance();
@@ -111,7 +111,7 @@ bool setupPlayers::checkIfGamePlayerInstancesCreated(gameComponentsSharedPtr gam
     return (returnType);
 }
 
-bool setupPlayers::checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr gamePlayerInstance, teamEntityMSharedPtr activeTeamInstance)  // checks if the gameState Objects Player Instances have been created
+bool setupPlayers::checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr gamePlayerInstance, const teamEntityMSharedPtr &activeTeamInstance)  // checks if the gameState Objects Player Instances have been created
 {
     conversionSharedPtr convert = conversion::Instance();
     playerEntityMSharedPtr playerInstance; // = gameS->getPlayerInstance();
@@ -171,10 +171,10 @@ bool setupPlayers::checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr game
                 tSMData->gamePlayerInstance = gamePlayerInstance;
                 tSMData->tData = ATIIT.second->getData();
                 
-                teamStateMachineSharedPtr tempSM(new teamStateMachine);
-                ATIIT.second->setStateMachine(tempSM);
+//                teamStateMachineSharedPtr tempSM(new teamStateMachine);
+//                ATIIT.second->setStateMachine(tempSM);
                 ATIIT.second->getStateMachine()->pCreatePlayerInstances(tSMData);
-                logMsg(func +"ATIIT.second playerInstances Size == " +convert->toString(ATIIT.second->getComponent()->getPlayerInstance().size()));
+                logMsg(func +" ATIIT.second playerInstances Size == " +convert->toString(ATIIT.second->getComponent()->getPlayerInstance().size()));
 //                exit(0);
             }
 /*            exit(0);

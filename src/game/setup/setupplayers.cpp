@@ -157,6 +157,7 @@ bool setupPlayers::checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr game
 //            exit(0);
             if (!ATIIT.second->getInitialized())
             {
+                logMsg(func +" team not initialized!");
                 exit(0);
             }
             if (ATIIT.second->getFlag()->getStateMachineInitialized())
@@ -168,12 +169,13 @@ bool setupPlayers::checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr game
                 tSMData->component = ATIIT.second->getComponent();
                 tSMData->flag = ATIIT.second->getFlag();
                 tSMData->gamePlayerInstance = gamePlayerInstance;
-
+                tSMData->tData = ATIIT.second->getData();
+                
                 teamStateMachineSharedPtr tempSM(new teamStateMachine);
                 ATIIT.second->setStateMachine(tempSM);
                 ATIIT.second->getStateMachine()->pCreatePlayerInstances(tSMData);
                 logMsg(func +"ATIIT.second playerInstances Size == " +convert->toString(ATIIT.second->getComponent()->getPlayerInstance().size()));
-                exit(0);
+//                exit(0);
             }
 /*            exit(0);
             playerInstance = createTeamPlayerInstances(gamePlayerInstance, ATIIT.second->getData()->getID());
@@ -191,9 +193,9 @@ bool setupPlayers::checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr game
             */
         }
     }
-    exit(0);
-    logMsg(func +" end");
     
+    logMsg(func +" end");
+//    exit(0);
     return (returnType);
 }
 

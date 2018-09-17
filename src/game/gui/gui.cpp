@@ -514,7 +514,7 @@ void GUISystem::setSelectedIndexes()  // sets all player listbox indexes to zero
     tempPlayerPosSelectBox = component->getTeamPlayerPosSelectBox();
     
     tempPlayerPosSelectBox[0][PG]->setIndexSelected(0);
-    exit(0);
+//    exit(0);
     logMsg(func +" PG0");
     
     tempPlayerPosSelectBox[0][SG]->setIndexSelected(0);

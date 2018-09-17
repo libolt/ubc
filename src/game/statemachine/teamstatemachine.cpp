@@ -85,7 +85,7 @@ STATE_DEFINE(teamStateMachine, createPlayerInstances, teamSMData)
 //    exit(0);
     playerInstance = setupPlayer.createTeamPlayerInstances(data->gamePlayerInstance, data->tData->getID());
     logMsg(func +" playerInstance.size() == " +convert->toString(playerInstance.size()));
-    exit(0);
+//    exit(0);
     if (playerInstance.size() > 0)
     {
         logMsg(func +" " +data->tData->getCity() +" " +data->tData->getName() + " Player Instances Created!");

@@ -45,11 +45,17 @@ std::vector<std::map <playerPositions, std::string> > setupLineups::createTeamSt
     std::vector<std::map <playerPositions, std::string> > teamStarters;
     std::map <playerPositions, std::string> tempStarters;  // temporary starters object
 
+    std::string func = "setupLineups::createTeamStarterID()";
+    
+    logMsg(func +" begin");
+
     for (auto ATIIT : activeTeamInstance)  // loop through activeTeamInstance
     {
         teamStarters.push_back(tempStarters);  // add empty entry to teamStarters
     }
+    logMsg(func +" end");
 
+    
     return (teamStarters);
 }
 
@@ -59,8 +65,10 @@ teamStarterIDsVecM setupLineups::createTeamStarterID(std::vector<std::map <playe
     teamStarterIDsVecM teamStarterID;
     teamStarterIDsM tempStarterID; // used for initial creatio  of teamStarterID vector
     std::vector<std::map <playerPositions, std::string> >::iterator TSVIT;
-
-    std::string func = "setups::createTeamStarterID()";
+    std::string func = "setupLineups::createTeamStarterID()";
+    
+    logMsg(func +" begin");
+    
     for (TSVIT = teamStarters.begin(); TSVIT != teamStarters.end(); ++TSVIT)  // loop that adds starting player IDs to teamStarterID
     {
         tempStarterID.clear();
@@ -112,7 +120,8 @@ teamStarterIDsVecM setupLineups::createTeamStarterID(std::vector<std::map <playe
 //                exit(0);
         teamStarterID.push_back(tempStarterID);  // add entry to tesmStarterID for every activeTeamInstance
     }
-
+    logMsg(func +" end");
+    
     return (teamStarterID);
 }
 
@@ -231,6 +240,10 @@ bool setupLineups::checkActivePlayerInstancesCreated(teamEntityMSharedPtr active
 {
     bool returnType = false;
     size_t activePlayerInstancesCreated = 0;
+    std::string func = "setupLineups::checkActivePlayerInstancesCreated()";
+
+    logMsg(func +" begin");
+    
     for (auto ATIIT : activeTeamInstance)
     {
         if (ATIIT.second->getFlag()->getActivePlayerInstancesCreated())
@@ -246,6 +259,8 @@ bool setupLineups::checkActivePlayerInstancesCreated(teamEntityMSharedPtr active
     {
         returnType = true;
     }
+    logMsg(func +" end");
+    
     return (returnType);
 }
 
@@ -255,6 +270,8 @@ teamEntityMSharedPtr setupLineups::setupStartingLineups(teamEntityMSharedPtr act
     conversionSharedPtr convert = conversion::Instance();
     std::string func = "setupLineups::setupStartingLineups()";
     size_t teamIDNum = 0;
+    
+    logMsg(func +" begin");
     
     for (auto ATIIT : activeTeamInstance)
     {
@@ -296,6 +313,8 @@ teamEntityMSharedPtr setupLineups::setupStartingLineups(teamEntityMSharedPtr act
     {
         logMsg(func + " end activePlayerInstance size() == " +convert->toString(ATIIT.second->getComponent()->getActivePlayerInstance().size()));
     }
+    
+    logMsg(func +" end");
 //    exit(0);
     return (activeTeamInstance);
 }

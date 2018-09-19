@@ -203,7 +203,12 @@ void teamEntity::updateState(gameComponentsSharedPtr gameInstanceComponent, game
         if (!flag->getActivePlayerInstancesSetup())
         {
             // setup Active Player Instances
-            activePlayerInstance = setupPlayer->setupActivePlayerInstances(activePlayerInstance, render);
+            teamSMData *spSMData = new teamSMData;
+            spSMData->component = component;
+            spSMData->flag = flag;
+            spSMData->render = render;
+            stateMachine->pSetupPlayerInstances(spSMData);
+/*            activePlayerInstance = setupPlayer->setupActivePlayerInstances(activePlayerInstance, render);
             if (activePlayerInstance.size() != 0)
             {
                 component->setActivePlayerInstance(activePlayerInstance);
@@ -214,6 +219,7 @@ void teamEntity::updateState(gameComponentsSharedPtr gameInstanceComponent, game
                 logMsg(func +"Unable to setup playerInstances!");
                 exit(0);
             }
+*/
         }
         else
         {
@@ -222,7 +228,15 @@ void teamEntity::updateState(gameComponentsSharedPtr gameInstanceComponent, game
         
         if (!flag->getPlayerStartPositionsSet())
         {
-            logMsg(func +" Player Start Positions Not Yet Set!");
+            teamSMData *spspSMData = new teamSMData;
+            spspSMData->component = component;
+            spspSMData->flag = flag;
+            spspSMData->gData = gameData;
+            spspSMData->courtInstance = gameInstanceComponent->getCourtInstance();
+            spspSMData->teamStarterID = gameInstanceData->getTeamStarterID();
+            stateMachine->pSetPlayerStartPositions(spspSMData);
+
+/*            logMsg(func +" Player Start Positions Not Yet Set!");
             playerEntityMSharedPtr activePlayerInstance;
             logMsg(func +" component->getActivePlayerInstance().size() = " +convert->toString(component->getActivePlayerInstance().size()));
 //            exit(0);
@@ -240,6 +254,7 @@ void teamEntity::updateState(gameComponentsSharedPtr gameInstanceComponent, game
                 logMsg(func +" Player Start Positions NOT set!");
                 exit(0);
             }          
+*/
         }
         else
         {
@@ -250,7 +265,12 @@ void teamEntity::updateState(gameComponentsSharedPtr gameInstanceComponent, game
         
         if (!flag->getPlayerStartDirectionsSet())
         {
-            playerEntityMSharedPtr activePlayerInstance;
+            teamSMData *spsdSMData = new teamSMData;
+            spsdSMData->component = component;
+            spsdSMData->flag = flag;
+            spsdSMData->gData = gameData;
+            stateMachine->pSetPlayerStartDirections(spsdSMData);
+/*            playerEntityMSharedPtr activePlayerInstance;
             activePlayerInstance = setupTeam->setPlayerStartDirections(component->getActivePlayerInstance(), gameData);
             if (activePlayerInstance.size() > 0)  // sets starting directions for the players
             {
@@ -264,6 +284,7 @@ void teamEntity::updateState(gameComponentsSharedPtr gameInstanceComponent, game
                 logMsg("Player Start Directions NOT set!");
                 exit(0);
             }
+*/
         }
         else
         {

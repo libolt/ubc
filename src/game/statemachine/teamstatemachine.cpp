@@ -21,6 +21,7 @@
 #include "statemachine/teamstatemachine.h"
 #include "components/teamcomponents.h"
 #include "data/teamdata.h"
+#include "engine/renderengine.h"
 #include "flags/teamflags.h"
 #include "setup/setupplayers.h"
 #include "setup/setupteams.h"
@@ -38,24 +39,83 @@ void teamStateMachine::pInit(teamSMData *data)
 
     logMsg(func +" begin");
     
-    BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (ST_INIT)                // ST_INIT
-        TRANSITION_MAP_ENTRY (ST_INIT)                // ST_IDLE
-        TRANSITION_MAP_ENTRY (ST_INIT)                // ST_CREATE_PLAYERINSTANCES
+    BEGIN_TRANSITION_MAP                    // - Current State -
+        TRANSITION_MAP_ENTRY (ST_INIT)      // ST_INIT
+        TRANSITION_MAP_ENTRY (ST_INIT)      // ST_IDLE
+        TRANSITION_MAP_ENTRY (ST_INIT)      // ST_CREATE_PLAYERINSTANCES
+        TRANSITION_MAP_ENTRY (ST_INIT)      // ST_SETUP_PLAYERINSTANCES
+        TRANSITION_MAP_ENTRY (ST_INIT)      // ST_SET_PLAYER_START_POSITIONS
+        TRANSITION_MAP_ENTRY (ST_INIT)      // ST_SET_PLAYER_START_DIRECTIONS
+
     END_TRANSITION_MAP(data)
 
 }
-// halt motor external event
+
+// Create Player Instances external event
 void teamStateMachine::pCreatePlayerInstances(teamSMData *data)
 {
     std::string func = "teamStateMachine::pCreatePlayerInstance()";
 
     logMsg(func +" begin");
 //    exit(0);
-    BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (ST_CREATE_PLAYERINSTANCES)                // ST_INIT
-        TRANSITION_MAP_ENTRY (ST_CREATE_PLAYERINSTANCES)                // ST_IDLE
-        TRANSITION_MAP_ENTRY (ST_CREATE_PLAYERINSTANCES)                // ST_CREATE_PLAYERINSTANCES
+    BEGIN_TRANSITION_MAP                                      // - Current State -
+        TRANSITION_MAP_ENTRY (ST_CREATE_PLAYERINSTANCES)      // ST_INIT
+        TRANSITION_MAP_ENTRY (ST_CREATE_PLAYERINSTANCES)      // ST_IDLE
+        TRANSITION_MAP_ENTRY (ST_CREATE_PLAYERINSTANCES)      // ST_CREATE_PLAYERINSTANCES
+        TRANSITION_MAP_ENTRY (ST_CREATE_PLAYERINSTANCES)      // ST_SETUP_PLAYERINSTANCES
+        TRANSITION_MAP_ENTRY (ST_CREATE_PLAYERINSTANCES)      // ST_SET_PLAYER_START_POSITIONS
+        TRANSITION_MAP_ENTRY (ST_CREATE_PLAYERINSTANCES)      // ST_SET_PLAYER_START_DIRECTIONS
+    END_TRANSITION_MAP(data)
+}
+
+// Setup Player Instances external event
+void teamStateMachine::pSetupPlayerInstances(teamSMData *data)
+{
+    std::string func = "teamStateMachine::pSetupPlayerInstances()";
+
+    logMsg(func +" begin");
+//    exit(0);
+    BEGIN_TRANSITION_MAP                                      // - Current State -
+        TRANSITION_MAP_ENTRY (ST_SETUP_PLAYERINSTANCES)      // ST_INIT
+        TRANSITION_MAP_ENTRY (ST_SETUP_PLAYERINSTANCES)      // ST_IDLE
+        TRANSITION_MAP_ENTRY (ST_SETUP_PLAYERINSTANCES)      // ST_CREATE_PLAYERINSTANCES
+        TRANSITION_MAP_ENTRY (ST_SETUP_PLAYERINSTANCES)      // ST_SETUP_PLAYERINSTANCES
+        TRANSITION_MAP_ENTRY (ST_SETUP_PLAYERINSTANCES)      // ST_SET_PLAYER_START_POSITIONS
+        TRANSITION_MAP_ENTRY (ST_SETUP_PLAYERINSTANCES)      // ST_SET_PLAYER_START_DIRECTIONS
+    END_TRANSITION_MAP(data)
+}
+
+// Set Player Start Positions external event
+void teamStateMachine::pSetPlayerStartPositions(teamSMData *data)
+{
+    std::string func = "teamStateMachine::pSetPlayerStartPositions()";
+
+    logMsg(func +" begin");
+//    exit(0);
+    BEGIN_TRANSITION_MAP                                      // - Current State -
+        TRANSITION_MAP_ENTRY (ST_SET_PLAYER_START_POSITIONS)      // ST_INIT
+        TRANSITION_MAP_ENTRY (ST_SET_PLAYER_START_POSITIONS)      // ST_IDLE
+        TRANSITION_MAP_ENTRY (ST_SET_PLAYER_START_POSITIONS)      // ST_CREATE_PLAYERINSTANCES
+        TRANSITION_MAP_ENTRY (ST_SET_PLAYER_START_POSITIONS)      // ST_SETUP_PLAYERINSTANCES
+        TRANSITION_MAP_ENTRY (ST_SET_PLAYER_START_POSITIONS)      // ST_SET_PLAYER_START_POSITIONS
+        TRANSITION_MAP_ENTRY (ST_SET_PLAYER_START_POSITIONS)      // ST_SET_PLAYER_START_DIRECTIONS
+    END_TRANSITION_MAP(data)
+}
+
+// Set Player Start Positions external event
+void teamStateMachine::pSetPlayerStartDirections(teamSMData *data)
+{
+    std::string func = "teamStateMachine::pSetPlayerStartDirections()";
+
+    logMsg(func +" begin");
+//    exit(0);
+    BEGIN_TRANSITION_MAP                                      // - Current State -
+        TRANSITION_MAP_ENTRY (ST_SET_PLAYER_START_DIRECTIONS)      // ST_INIT
+        TRANSITION_MAP_ENTRY (ST_SET_PLAYER_START_DIRECTIONS)      // ST_IDLE
+        TRANSITION_MAP_ENTRY (ST_SET_PLAYER_START_DIRECTIONS)      // ST_CREATE_PLAYERINSTANCES
+        TRANSITION_MAP_ENTRY (ST_SET_PLAYER_START_DIRECTIONS)      // ST_SETUP_PLAYERINSTANCES
+        TRANSITION_MAP_ENTRY (ST_SET_PLAYER_START_DIRECTIONS)      // ST_SET_PLAYER_START_POSITIONS
+        TRANSITION_MAP_ENTRY (ST_SET_PLAYER_START_DIRECTIONS)      // ST_SET_PLAYER_START_DIRECTIONS
     END_TRANSITION_MAP(data)
 }
 
@@ -97,10 +157,90 @@ STATE_DEFINE(teamStateMachine, createPlayerInstances, teamSMData)
     {
         logMsg(func +" Unable to Create " +data->tData->getCity() +" " +data->tData->getName() + " Player Instances!");
     }
+
+    logMsg(func +" end");
     // perform the stop motor processing here
     // transition to Idle via an internal event
     internalEvent(ST_IDLE);
     
 }
 
+// creates player instances
+STATE_DEFINE(teamStateMachine, setupPlayerInstances, teamSMData)
+{
+    conversionSharedPtr convert;
+    playerEntityMSharedPtr activePlayerInstance = data->component->getActivePlayerInstance();
+    setupPlayers setupPlayer;
+    std::string func = "teamStateMachine::setupPlayerInstances";
+    logMsg(func +" begin");
+//    exit(0);
+    activePlayerInstance = setupPlayer.setupActivePlayerInstances(activePlayerInstance, data->render);
+    if (activePlayerInstance.size() != 0)
+    {
+        data->component->setActivePlayerInstance(activePlayerInstance);
+        data->flag->setActivePlayerInstancesSetup(true);
+    }
+    else
+    {
+        logMsg(func +"Unable to setup playerInstances!");
+        exit(0);
+    }
+    logMsg(func +" end");
 
+}
+
+STATE_DEFINE(teamStateMachine, setPlayerStartPositions, teamSMData)
+{
+    conversionSharedPtr convert;
+    playerEntityMSharedPtr activePlayerInstance = data->component->getActivePlayerInstance();
+    setupTeams setupTeam;
+    std::string func = "teamStateMachine::setPlayerStartPositions";
+    logMsg(func +" begin");
+//    exit(0);
+    logMsg(func +" Player Start Positions Not Yet Set!");
+    logMsg(func +" component->getActivePlayerInstance().size() = " +convert->toString(activePlayerInstance.size()));
+//            exit(0);
+    activePlayerInstance = setupTeam.setPlayerStartPositions(activePlayerInstance, data->courtInstance, data->gData, data->teamStarterID);
+//            if (setPlayerStartPositions(activePlayerInstance, gameInstanceComponent->getCourtInstance(), gameInstanceData->getTeamStarterID()))  //   sets starting positions for the players
+    if (activePlayerInstance.size() > 0)
+    {
+        data->flag->setPlayerStartPositionsSet(true);
+        data->component->setActivePlayerInstance(activePlayerInstance);
+        logMsg(func +" Player Start Positions set!");
+//                exit(0);
+    }
+    else
+    {
+        logMsg(func +" Player Start Positions NOT set!");
+        exit(0);
+    }
+    logMsg(func +" end");
+
+}
+
+// Set player start positions
+STATE_DEFINE(teamStateMachine, setPlayerStartDirections, teamSMData)
+{
+    conversionSharedPtr convert;
+    playerEntityMSharedPtr activePlayerInstance = data->component->getActivePlayerInstance();
+    setupTeams setupTeam;
+    std::string func = "teamStateMachine::setPlayerStartDirections";
+    logMsg(func +" begin");
+//    exit(0);
+
+    activePlayerInstance = setupTeam.setPlayerStartDirections(activePlayerInstance, data->gData);
+    if (activePlayerInstance.size() > 0)  // sets starting directions for the players
+    {
+        data->flag->setPlayerStartDirectionsSet(true);
+        data->component->setActivePlayerInstance(activePlayerInstance);
+        logMsg(func +" Player Start Directions set!");
+//                    exit(0);
+    }
+    else
+    {
+        logMsg("Player Start Directions NOT set!");
+        exit(0);
+    }
+    logMsg(func +" end");
+
+}

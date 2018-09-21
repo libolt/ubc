@@ -114,6 +114,15 @@ void teamEntity::setStatistics(teamStatisticsSharedPtr set)  // sets the value o
     statistics = set;
 }
 
+offDefs teamEntity::getOffDef()  // retrieves the value of offDef
+{
+    return (offDef);
+}
+void teamEntity::setOffDef(offDefs set)  // sets the value of offDef
+{
+    offDef = set;
+}
+
 bool teamEntity::initialize()  // initializes the object
 {
     std::string func = "teamEntity::setupState()";
@@ -148,11 +157,10 @@ bool teamEntity::initialize()  // initializes the object
 bool teamEntity::initializeStateMachine()  // initializes teamStateMachine object
 {
     std::string func = "teamEntity::initializeStateMachine()";
-    teamSMData *tempSMData(new teamSMData); 
+    teamSMData *SMData(new teamSMData);
 
     logMsg(func +" begin");
 //    exit(0);
-    SMData = tempSMData;
     //SMData->component = std::static_pointer_cast<const gameComponents>(component);
     SMData->component = component;
     SMData->gData = gameData;
@@ -290,10 +298,14 @@ void teamEntity::updateState(gameComponentsSharedPtr gameInstanceComponent, game
         {
             logMsg(func +" Player start directions set");
         }
-        
-        activePlayerInstance = updateTeam->updateActivePlayers(component->getActivePlayerInstance());
+
+        teamSMData *uapSMData = new teamSMData;
+        uapSMData->component = component;
+        stateMachine->pUpdateActivePlayers(uapSMData);
+/*        activePlayerInstance = updateTeam->updateActivePlayers(component->getActivePlayerInstance());
         if (activePlayerInstance.size() > 0)
         {
+            exit(0);
             component->setActivePlayerInstance(activePlayerInstance);
         }
         else
@@ -301,7 +313,7 @@ void teamEntity::updateState(gameComponentsSharedPtr gameInstanceComponent, game
             logMsg(func +" Unable to update Active Player Instances!");
             exit(0);
         }
-        
+*/
     }
     else
     {
@@ -313,7 +325,23 @@ void teamEntity::updateState(gameComponentsSharedPtr gameInstanceComponent, game
         
         basketballEntityMSharedPtr activeBasketballInstance = gameInstanceComponent->getActiveBasketballInstance();
 //      exit(0);
+        teamSMData *odSMData(new teamSMData);
+        odSMData->component = component;
+        odSMData->gData = gameData;
+
         // checks whether to execute offense or defense logic
+        switch (offDef)
+        {
+            case OFFENSE:
+                stateMachine->pExecuteOffense(odSMData);
+            break;
+            case DEFENSE:
+                stateMachine->pExecuteDefense(odSMData);
+            break;
+            case NOOFFDEF:
+            break;
+        }
+
         if (flag->getOffense() && !flag->getDefense())
         {
             logMsg(func +" offense executing");

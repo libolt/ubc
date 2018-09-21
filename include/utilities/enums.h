@@ -153,6 +153,7 @@
     enum jumpBallLocations_t { NOLOCATION, CENTERCIRCLE, RIGHTKEYCIRCLE, LEFTKEYCIRCLE };
 
     // offense / defense
+    enum offDefs { NOOFFDEF, OFFENSE, DEFENSE };
     enum playerPositions { NONE, PG, SG, SF, PF, C }; // defines the name for each player position
     enum directiveTypes { WAIT, FREELANCE}; // defines the type of directive a player has
     enum offenseWaitFor { PLAYERPOSITIONSET, TIME }; // defines what an offensive player is waiting for

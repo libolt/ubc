@@ -48,6 +48,9 @@ public:
     void pSetupPlayerInstances(teamSMData *data);
     void pSetPlayerStartPositions(teamSMData *data);
     void pSetPlayerStartDirections(teamSMData *data);
+    void pUpdateActivePlayers(teamSMData *data);
+    void pExecuteOffense(teamSMData *data);
+    void pExecuteDefense(teamSMData *data);
 
 private:
 
@@ -61,6 +64,9 @@ private:
         ST_SETUP_PLAYERINSTANCES,
         ST_SET_PLAYER_START_POSITIONS,
         ST_SET_PLAYER_START_DIRECTIONS,
+        ST_UPDATE_ACTIVEPLAYERS,
+        ST_EXECUTE_OFFENSE,
+        ST_EXECUTE_DEFENSE,
         ST_MAX_STATES
     };
 
@@ -71,6 +77,9 @@ private:
     STATE_DECLARE(teamStateMachine, setupPlayerInstances, teamSMData)
     STATE_DECLARE(teamStateMachine, setPlayerStartPositions, teamSMData)
     STATE_DECLARE(teamStateMachine, setPlayerStartDirections, teamSMData)
+    STATE_DECLARE(teamStateMachine, updateActivePlayers, teamSMData)
+    STATE_DECLARE(teamStateMachine, executeOffense, teamSMData)
+    STATE_DECLARE(teamStateMachine, executeDefense, teamSMData)
 
     // State map to define state object order. Each state map entry defines a
     // state object.
@@ -81,6 +90,9 @@ private:
         STATE_MAP_ENTRY(&setupPlayerInstances)
         STATE_MAP_ENTRY(&setPlayerStartPositions)
         STATE_MAP_ENTRY(&setPlayerStartDirections)
+        STATE_MAP_ENTRY(&updateActivePlayers)
+        STATE_MAP_ENTRY(&executeOffense)
+        STATE_MAP_ENTRY(&executeDefense)
     END_STATE_MAP
 };
 

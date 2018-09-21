@@ -53,6 +53,9 @@ class teamEntity
         teamStatisticsSharedPtr getStatistics();  // retrieves the value of statistics
         void setStatistics(teamStatisticsSharedPtr set);  // sets the value of statistics
 
+        offDefs getOffDef();  // retrieves the value of offDef
+        void setOffDef(offDefs set);  // sets the value of offDef
+
         bool initialize();  // initializes teamEntity object
 
         bool initializeStateMachine();  // initializes teamStateMachine object
@@ -74,10 +77,9 @@ class teamEntity
 
         teamStateMachineSharedPtr stateMachine;  // instance of teamStateMachine object
 
-        teamSMData *SMData;  // state machine data object
-
         teamStatisticsSharedPtr statistics;  // instance of teamStatistics object
 
+        offDefs offDef;  // stores whether to execute offense, defense or neither
 };
 
 #endif // _TEAMENTITY_H_

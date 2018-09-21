@@ -21,10 +21,14 @@
 #include "statemachine/teamstatemachine.h"
 #include "components/teamcomponents.h"
 #include "data/teamdata.h"
+#include "data/teamgamedata.h"
 #include "engine/renderengine.h"
 #include "flags/teamflags.h"
 #include "setup/setupplayers.h"
 #include "setup/setupteams.h"
+#include "state/defensestate.h"
+#include "state/offensestate.h"
+#include "update/updateteams.h"
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
 
@@ -46,7 +50,9 @@ void teamStateMachine::pInit(teamSMData *data)
         TRANSITION_MAP_ENTRY (ST_INIT)      // ST_SETUP_PLAYERINSTANCES
         TRANSITION_MAP_ENTRY (ST_INIT)      // ST_SET_PLAYER_START_POSITIONS
         TRANSITION_MAP_ENTRY (ST_INIT)      // ST_SET_PLAYER_START_DIRECTIONS
-
+        TRANSITION_MAP_ENTRY (ST_INIT)      // ST_UPDATE_ACTIVEPLAYERS
+        TRANSITION_MAP_ENTRY (ST_INIT)      // ST_EXECUTE_OFFENSE
+        TRANSITION_MAP_ENTRY (ST_INIT)      // ST_EXECUTE_DEFENSE
     END_TRANSITION_MAP(data)
 
 }
@@ -65,6 +71,9 @@ void teamStateMachine::pCreatePlayerInstances(teamSMData *data)
         TRANSITION_MAP_ENTRY (ST_CREATE_PLAYERINSTANCES)      // ST_SETUP_PLAYERINSTANCES
         TRANSITION_MAP_ENTRY (ST_CREATE_PLAYERINSTANCES)      // ST_SET_PLAYER_START_POSITIONS
         TRANSITION_MAP_ENTRY (ST_CREATE_PLAYERINSTANCES)      // ST_SET_PLAYER_START_DIRECTIONS
+        TRANSITION_MAP_ENTRY (ST_CREATE_PLAYERINSTANCES)      // ST_UPDATE_ACTIVEPLAYERS
+        TRANSITION_MAP_ENTRY (ST_CREATE_PLAYERINSTANCES)      // ST_EXECUTE_OFFENSE
+        TRANSITION_MAP_ENTRY (ST_CREATE_PLAYERINSTANCES)      // ST_EXECUTE_DEFENSE
     END_TRANSITION_MAP(data)
 }
 
@@ -82,6 +91,9 @@ void teamStateMachine::pSetupPlayerInstances(teamSMData *data)
         TRANSITION_MAP_ENTRY (ST_SETUP_PLAYERINSTANCES)      // ST_SETUP_PLAYERINSTANCES
         TRANSITION_MAP_ENTRY (ST_SETUP_PLAYERINSTANCES)      // ST_SET_PLAYER_START_POSITIONS
         TRANSITION_MAP_ENTRY (ST_SETUP_PLAYERINSTANCES)      // ST_SET_PLAYER_START_DIRECTIONS
+        TRANSITION_MAP_ENTRY (ST_SETUP_PLAYERINSTANCES)      // ST_UPDATE_ACTIVEPLAYERS
+        TRANSITION_MAP_ENTRY (ST_SETUP_PLAYERINSTANCES)      // ST_EXECUTE_OFFENSE
+        TRANSITION_MAP_ENTRY (ST_SETUP_PLAYERINSTANCES)      // ST_EXECUTE_DEFENSE
     END_TRANSITION_MAP(data)
 }
 
@@ -99,6 +111,9 @@ void teamStateMachine::pSetPlayerStartPositions(teamSMData *data)
         TRANSITION_MAP_ENTRY (ST_SET_PLAYER_START_POSITIONS)      // ST_SETUP_PLAYERINSTANCES
         TRANSITION_MAP_ENTRY (ST_SET_PLAYER_START_POSITIONS)      // ST_SET_PLAYER_START_POSITIONS
         TRANSITION_MAP_ENTRY (ST_SET_PLAYER_START_POSITIONS)      // ST_SET_PLAYER_START_DIRECTIONS
+        TRANSITION_MAP_ENTRY (ST_SET_PLAYER_START_POSITIONS)      // ST_UPDATE_ACTIVEPLAYERS
+        TRANSITION_MAP_ENTRY (ST_SET_PLAYER_START_POSITIONS)      // ST_EXECUTE_OFFENSE
+        TRANSITION_MAP_ENTRY (ST_SET_PLAYER_START_POSITIONS)      // ST_EXECUTE_DEFENSE
     END_TRANSITION_MAP(data)
 }
 
@@ -116,6 +131,66 @@ void teamStateMachine::pSetPlayerStartDirections(teamSMData *data)
         TRANSITION_MAP_ENTRY (ST_SET_PLAYER_START_DIRECTIONS)      // ST_SETUP_PLAYERINSTANCES
         TRANSITION_MAP_ENTRY (ST_SET_PLAYER_START_DIRECTIONS)      // ST_SET_PLAYER_START_POSITIONS
         TRANSITION_MAP_ENTRY (ST_SET_PLAYER_START_DIRECTIONS)      // ST_SET_PLAYER_START_DIRECTIONS
+        TRANSITION_MAP_ENTRY (ST_SET_PLAYER_START_DIRECTIONS)      // ST_UPDATE_ACTIVEPLAYERS
+        TRANSITION_MAP_ENTRY (ST_SET_PLAYER_START_DIRECTIONS)      // ST_EXECUTE_OFFENSE
+        TRANSITION_MAP_ENTRY (ST_SET_PLAYER_START_DIRECTIONS)      // ST_EXECUTE_DEFENSE
+    END_TRANSITION_MAP(data)
+}
+
+void teamStateMachine::pUpdateActivePlayers(teamSMData *data)
+{
+    std::string func = "teamStateMachine::pUpdateActivePlayers()";
+
+    logMsg(func +" begin");
+//    exit(0);
+    BEGIN_TRANSITION_MAP                                      // - Current State -
+        TRANSITION_MAP_ENTRY (ST_UPDATE_ACTIVEPLAYERS)      // ST_INIT
+        TRANSITION_MAP_ENTRY (ST_UPDATE_ACTIVEPLAYERS)      // ST_IDLE
+        TRANSITION_MAP_ENTRY (ST_UPDATE_ACTIVEPLAYERS)      // ST_CREATE_PLAYERINSTANCES
+        TRANSITION_MAP_ENTRY (ST_UPDATE_ACTIVEPLAYERS)      // ST_SETUP_PLAYERINSTANCES
+        TRANSITION_MAP_ENTRY (ST_UPDATE_ACTIVEPLAYERS)      // ST_SET_PLAYER_START_POSITIONS
+        TRANSITION_MAP_ENTRY (ST_UPDATE_ACTIVEPLAYERS)      // ST_SET_PLAYER_START_DIRECTIONS
+        TRANSITION_MAP_ENTRY (ST_UPDATE_ACTIVEPLAYERS)      // ST_UPDATE_ACTIVEPLAYERS
+        TRANSITION_MAP_ENTRY (ST_UPDATE_ACTIVEPLAYERS)      // ST_EXECUTE_OFFENSE
+        TRANSITION_MAP_ENTRY (ST_UPDATE_ACTIVEPLAYERS)      // ST_EXECUTE_DEFENSE
+    END_TRANSITION_MAP(data)
+}
+
+void teamStateMachine::pExecuteOffense(teamSMData *data)
+{
+    std::string func = "teamStateMachine::pExecuteOffense()";
+
+    logMsg(func +" begin");
+//    exit(0);
+    BEGIN_TRANSITION_MAP                                      // - Current State -
+        TRANSITION_MAP_ENTRY (ST_EXECUTE_OFFENSE)      // ST_INIT
+        TRANSITION_MAP_ENTRY (ST_EXECUTE_OFFENSE)      // ST_IDLE
+        TRANSITION_MAP_ENTRY (ST_EXECUTE_OFFENSE)      // ST_CREATE_PLAYERINSTANCES
+        TRANSITION_MAP_ENTRY (ST_EXECUTE_OFFENSE)      // ST_SETUP_PLAYERINSTANCES
+        TRANSITION_MAP_ENTRY (ST_EXECUTE_OFFENSE)      // ST_SET_PLAYER_START_POSITIONS
+        TRANSITION_MAP_ENTRY (ST_EXECUTE_OFFENSE)      // ST_SET_PLAYER_START_DIRECTIONS
+        TRANSITION_MAP_ENTRY (ST_EXECUTE_OFFENSE)      // ST_UPDATE_ACTIVEPLAYERS
+        TRANSITION_MAP_ENTRY (ST_EXECUTE_OFFENSE)      // ST_EXECUTE_OFFENSE
+        TRANSITION_MAP_ENTRY (ST_EXECUTE_OFFENSE)      // ST_EXECUTE_DEFENSE
+    END_TRANSITION_MAP(data)
+}
+
+void teamStateMachine::pExecuteDefense(teamSMData *data)
+{
+    std::string func = "teamStateMachine::pExecuteDefense()";
+
+    logMsg(func +" begin");
+//    exit(0);
+    BEGIN_TRANSITION_MAP                                      // - Current State -
+        TRANSITION_MAP_ENTRY (ST_EXECUTE_DEFENSE)      // ST_INIT
+        TRANSITION_MAP_ENTRY (ST_EXECUTE_DEFENSE)      // ST_IDLE
+        TRANSITION_MAP_ENTRY (ST_EXECUTE_DEFENSE)      // ST_CREATE_PLAYERINSTANCES
+        TRANSITION_MAP_ENTRY (ST_EXECUTE_DEFENSE)      // ST_SETUP_PLAYERINSTANCES
+        TRANSITION_MAP_ENTRY (ST_EXECUTE_DEFENSE)      // ST_SET_PLAYER_START_POSITIONS
+        TRANSITION_MAP_ENTRY (ST_EXECUTE_DEFENSE)      // ST_SET_PLAYER_START_DIRECTIONS
+        TRANSITION_MAP_ENTRY (ST_EXECUTE_DEFENSE)      // ST_UPDATE_ACTIVEPLAYERS
+        TRANSITION_MAP_ENTRY (ST_EXECUTE_DEFENSE)      // ST_EXECUTE_OFFENSE
+        TRANSITION_MAP_ENTRY (ST_EXECUTE_DEFENSE)      // ST_EXECUTE_DEFENSE
     END_TRANSITION_MAP(data)
 }
 
@@ -241,6 +316,69 @@ STATE_DEFINE(teamStateMachine, setPlayerStartDirections, teamSMData)
         logMsg("Player Start Directions NOT set!");
         exit(0);
     }
+    logMsg(func +" end");
+
+}
+
+STATE_DEFINE(teamStateMachine, updateActivePlayers, teamSMData)
+{
+    conversionSharedPtr convert;
+    playerEntityMSharedPtr activePlayerInstance = data->component->getActivePlayerInstance();
+    updateTeams updateTeam;
+    std::string func = "teamStateMachine::updateActivePlayers";
+    logMsg(func +" begin");
+
+    activePlayerInstance = updateTeam.updateActivePlayers(activePlayerInstance);
+    if (activePlayerInstance.size() > 0)
+    {
+//        exit(0);
+        data->component->setActivePlayerInstance(activePlayerInstance);
+    }
+    else
+    {
+        logMsg(func +" Unable to update Active Player Instances!");
+        exit(0);
+    }
+
+    logMsg(func +" end");
+
+}
+
+STATE_DEFINE(teamStateMachine, executeOffense, teamSMData)
+{
+    conversionSharedPtr convert;
+    playerEntityMSharedPtr activePlayerInstance = data->component->getActivePlayerInstance();
+    updateTeams updateTeam;
+    std::string func = "teamStateMachine::executeOffense";
+    logMsg(func +" begin");
+
+    logMsg(func +" offense executing");
+//            exit(0);
+    data->component->getOffenseInstance()->setExecute(true);
+    data->component->getDefenseInstance()->setExecute(false);
+    if (data->component->getOffenseInstance()->getTeamType() != data->gData->getTeamType())  // sets type of team for offense
+    {
+        data->component->getOffenseInstance()->setTeamType(data->gData->getTeamType());
+    }
+
+    logMsg(func +" end");
+
+}
+
+STATE_DEFINE(teamStateMachine, executeDefense, teamSMData)
+{
+    conversionSharedPtr convert;
+    playerEntityMSharedPtr activePlayerInstance = data->component->getActivePlayerInstance();
+    updateTeams updateTeam;
+    std::string func = "teamStateMachine::executeDefense";
+    logMsg(func +" begin");
+    data->component->getOffenseInstance()->setExecute(false);
+    data->component->getDefenseInstance()->setExecute(true);
+    if (data->component->getDefenseInstance()->getTeamType() !=  data->gData->getTeamType())  // sets type of team for defense
+    {
+        data->component->getDefenseInstance()->setTeamType(data->gData->getTeamType());
+    }
+
     logMsg(func +" end");
 
 }

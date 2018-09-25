@@ -150,7 +150,7 @@ void printPlugIn(OpenSteer::PlugIn& pi);
 // initial setup of AI state
 bool AISystem::setup(basketballEntityMSharedPtr activeBasketballInstance, courtEntityMSharedPtr activeCourtInstance, teamEntityMSharedPtr activeTeamInstance, teamTypes teamWithBall, std::string humanPlayer)
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 
     std::string func = "AISystem::setup()";
 //    setActiveTeamInstance(activeTeamInstance);

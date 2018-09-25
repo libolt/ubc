@@ -43,8 +43,10 @@
 class conversion  // class for conversion between data types
 {
     public:
+        conversion();  // constructor
+        ~conversion();  // destructor
 //        static conversion *Instance();
-        static conversionSharedPtr Instance();
+//        static conversionSharedPtr Instance();
 
         // convert to string
         std::string toString(char *data);  // converts char * data to string
@@ -282,16 +284,16 @@ class conversion  // class for conversion between data types
         inputTypes toInputType(const std::string &data);  // converts from string to inputTypes
 
     protected:
-    conversion();
+/*    conversion();
     conversion(const conversion&);
     conversion& operator= (const conversion&);
-
+*/
 //    ~conversion();
 
     private:
     
 //    static conversion *pInstance;
-    static conversionSharedPtr pInstance;
+//    static conversionSharedPtr pInstance;
 /*    
     T toString(const T& x, TL y)
 {

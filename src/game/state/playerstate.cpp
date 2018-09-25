@@ -424,7 +424,7 @@ bool playerState::initialize()  // initializes the state of the object
 
 void playerState::updateState()
 {
-/*    conversionSharedPtr convert = conversion::Instance();
+/*    conversionSharedPtr convert ;
 //    sharedPtr<gameState> gameS = gameState::Instance();
 ///    sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
@@ -534,7 +534,7 @@ void playerState::updateState()
 bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3D model
 {
 /*    std::string func = "playerState::updateCourtPosition() ";
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     ///sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
     comparison compare;
@@ -656,7 +656,7 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
 void playerState::updateDirection()
 {
     
-/*    conversionSharedPtr convert = conversion::Instance();
+/*    conversionSharedPtr convert ;
 //    sharedPtr<gameState> gameS = gameState::Instance();
     teamEntityMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
     basketballEntityMSharedPtr activeBasketballInstance = base->getGameS()->getActiveBasketballInstance();   
@@ -783,7 +783,7 @@ void playerState::updateDirection()
 
 void playerState::updateMovement()  // updates movement status of the player
 {
-/*    conversionSharedPtr convert = conversion::Instance();
+/*    conversionSharedPtr convert ;
 //    sharedPtr<gameState> gameS = gameState::Instance();
     teamEntityMSharedPtr activeTeamInstance = base->getGameS()->getActiveTeamInstance();
 //    basketballStateVecSharedPtr bballInstance = getBasketballInstance();
@@ -860,7 +860,7 @@ void playerState::updateMovement()  // updates movement status of the player
 
 void playerState::calculatePass()   // calculates which player to pass the ball to
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     std::string func = "playerState::calculatepass()";
 
     logMsg(func +" begin");

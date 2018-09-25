@@ -187,7 +187,7 @@ bool teamEntity::initializeStateMachine()  // initializes teamStateMachine objec
 void teamEntity::updateState(gameComponentsSharedPtr gameInstanceComponent, gameFlagsSharedPtr gameInstanceFlag, gameDataSharedPtr gameInstanceData, renderEngineSharedPtr render)  // updates the state of the object
 {
 
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     physicsEngine physEngine;
     setupPlayersSharedPtr setupPlayer(new setupPlayers);
     setupTeamsSharedPtr setupTeam(new setupTeams);

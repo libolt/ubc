@@ -61,7 +61,7 @@ std::vector<std::map <playerPositions, std::string> > setupLineups::createTeamSt
 
 teamStarterIDsVecM setupLineups::createTeamStarterID(std::vector<std::map <playerPositions, std::string> > teamStarters, teamEntityMSharedPtr activeTeamInstance)  // creates the object with each team's starter IDs
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     teamStarterIDsVecM teamStarterID;
     teamStarterIDsM tempStarterID; // used for initial creatio  of teamStarterID vector
     std::vector<std::map <playerPositions, std::string> >::iterator TSVIT;
@@ -127,7 +127,7 @@ teamStarterIDsVecM setupLineups::createTeamStarterID(std::vector<std::map <playe
 
 /*bool setupLineups::checkPlayerInstancesCreated(teamEntityMSharedPtr activeTeamInstance)  // checks if player instances have been created
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     setupPlayersSharedPtr setupPlayer(new setupPlayers);
     std::string func = "setups::checkPlayerInstancesCreated()";
 
@@ -169,7 +169,7 @@ teamStarterIDsVecM setupLineups::createTeamStarterID(std::vector<std::map <playe
 
 /*teamEntityMSharedPtr setupLineups::createActivePlayerInstances(teamEntityMSharedPtr activeTeamInstance, std::vector<std::unordered_map<std::string, size_t> > teamStarterID)  // creates the active playerInstances
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     std::string func = "setups::createActivePlayerInstances()";
 
 //    exit(0);
@@ -267,7 +267,7 @@ bool setupLineups::checkActivePlayerInstancesCreated(teamEntityMSharedPtr active
 teamEntityMSharedPtr setupLineups::setupStartingLineups(teamEntityMSharedPtr activeTeamInstance, teamStarterIDsVecM teamStarterID)  // sets starting lineups for each team
 {
     setupPlayersSharedPtr setupPlayer(new setupPlayers);
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     std::string func = "setupLineups::setupStartingLineups()";
     size_t teamIDNum = 0;
     

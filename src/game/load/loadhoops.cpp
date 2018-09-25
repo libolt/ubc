@@ -162,7 +162,7 @@ hoopEntityMSharedPtr  loadHoops::loadHoopFiles()  // load hoop XML files
 
 stdStringVec loadHoops::loadHoopListFile(std::string fileName)  // load the list of hoops from hoops.xml
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 //    renderEngineSharedPtr render = renderEngine::Instance();
     stdStringVec hFiles;
     std::string fileContents;
@@ -219,7 +219,7 @@ stdStringVec loadHoops::loadHoopListFile(std::string fileName)  // load the list
 
 hoopEntitySharedPtr loadHoops::loadHoopFile(std::string fileName)  // loads data from the hoop XML files.
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     hoopEntitySharedPtr hoopInstance(new hoopEntity);
 //    hoopEntitySharedPtr entity(new hoopEntity);
     
@@ -298,7 +298,7 @@ hoopEntitySharedPtr loadHoops::loadHoopFile(std::string fileName)  // loads data
 
 hoopEntityMSharedPtr loadHoops::loadModels(hoopEntityMSharedPtr activeHoopInstance, renderEngineSharedPtr render)  // loads selected hoop model
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 //    hoopStateMSharedPtr activeHoopInstance = getActiveHoopInstance();
 //    loaderSharedPtr load(new loader);
     OgreEntitySharedPtr model;  // stores the model returned by loadModel() function

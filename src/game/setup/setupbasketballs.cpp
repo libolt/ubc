@@ -79,7 +79,7 @@ basketballEntityMSharedPtr setupBasketballs::createBasketballInstances()  // cre
 
 basketballEntityMSharedPtr setupBasketballs::createActiveBasketballInstances(basketballEntityMSharedPtr basketballInstance, size_t numActiveBasketballs)  // creates active basketball instances
 {    
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     loadBasketballsSharedPtr loadBasketball;  // = base->getLoad();
 //    basketballEntityMSharedPtr basketballInstance = getBasketballInstance();
     basketballEntityMSharedPtr activeBasketballInstance;
@@ -121,7 +121,7 @@ basketballEntityMSharedPtr setupBasketballs::createActiveBasketballInstances(bas
 
 basketballEntityMSharedPtr setupBasketballs::setBasketballStartPositions(basketballEntityMSharedPtr activeBasketballInstance)  // sets the initial coordinates for the basketball(s)
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 //    size_t activeBBallInstance = getActiveBBallInstance();
 //    basketballStateVecSharedPtr basketballInstance = getBasketballInstance();
 //    basketballEntityMSharedPtr activeBasketballInstance = component->getActiveBasketballInstance();

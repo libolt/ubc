@@ -74,7 +74,7 @@ bool playerPhysics::setupState()  // sets up state of player physics
 bool playerPhysics::setupPhysics()  // sets up playerPhysics
 {
 //    exit(0);
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     sharedPtr<gameState> gameS = gameState::Instance();
     sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
 
@@ -190,7 +190,7 @@ void playerPhysics::update()  // updates the player physics object
 
 void playerPhysics::updatePosition()  // updates the position of player objecgts
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 //    sharedPtr<gameState> gameS = gameState::Instance();
     comparison compare;
     std::string func = "playerPhysics::updatePosition()";
@@ -256,7 +256,7 @@ TS*/
 
 bool playerPhysics::jump(teamTypes teamType, int playerID)  // calculates and executes player jumping in the air
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 //    sharedPtr<gameState> gameS = gameState::Instance();
 
     courtEntityMSharedPtr  courtInstance = getGameInstance()->getComponent()->getCourtInstance();
@@ -350,7 +350,7 @@ bool playerPhysics::shootBasketball(teamTypes teamType, int playerID)  // calcul
 {
 
     // FIXME! Disabled until I can do a proper rewrite
-/*    conversionSharedPtr convert = conversion::Instance();
+/*    conversionSharedPtr convert ;
 //    sharedPtr<gameState> gameS = gameState::Instance();
 
     comparison compare;

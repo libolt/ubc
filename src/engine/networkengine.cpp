@@ -364,7 +364,7 @@ bool networkEngine::serverSetup()  // sets up the network server
 
 void networkEngine::networkServer()  // executes the network server code
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert;
 //    sharedPtr<gameEngine> gameE = gameEngine::Instance();
     
     char *host; 
@@ -442,7 +442,7 @@ void networkEngine::networkServer()  // executes the network server code
 
 void networkEngine::sendPacket(std::string packetData)  // sends a packet to remote system
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert;
 //    sharedPtr<gameEngine> gameE = gameEngine::Instance();
 
 //    if (gameE->getServerRunning())

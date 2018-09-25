@@ -50,7 +50,7 @@ loader::~loader()  // destructor
 
 int loader::readFile(const char *sourceFile, char **destination)  // loads an xml file using SDL so that it can be passed to TinyXML
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 //    renderEngineSharedPtr render = renderEngine::Instance();
     int BLOCK_SIZE = 8;
     int MAX_BLOCKS = 1024;
@@ -112,7 +112,7 @@ int loader::readFile(const char *sourceFile, char **destination)  // loads an xm
 SDL_RWops *loader::readBinaryFile(const char *sourceFile)  // reads in a binary file
 {
     //conversion *convert = conversion::Instance();
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     std::string func = "loader::readBinaryFile()";
     int BLOCK_SIZE = 8;
     int MAX_BLOCKS = 1024;
@@ -223,7 +223,7 @@ std::string loader::findFile(std::string fileName)  // finds the location of a f
 
 OgreEntitySharedPtr loader::loadModelFile(std::string modelFileName, std::string entityName, renderEngineSharedPtr render)  // loads the 3D model
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     std::string func = "loader::loadModelFile()";
     sharedPtr<Ogre::SceneManager> mSceneMgr = render->getMSceneMgr();
     Ogre::ResourceGroupManager &rsm = Ogre::ResourceGroupManager::getSingleton();

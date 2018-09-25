@@ -57,7 +57,7 @@
 bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Selection Menu widgets
 {
 //    sharedPtr<gameState> gameS = gameState::Instance();
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     setupCourtsSharedPtr setupCourt(new setupCourts);
     courtEntityMSharedPtr  courtInstance;
 //    courtStateSharedPtr court(new courtState);
@@ -143,7 +143,7 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
 
 void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start Selection Menu widgets
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     setupPlayersSharedPtr setupPlayer(new setupPlayers);
 //    gameStateSharedPtr gameS = base->getGameS();
     teamEntityMSharedPtr activeTeamInstance = gameInstance->getComponent()->getActiveTeamInstance();
@@ -325,7 +325,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 
 bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Selection Menu
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     setupTeamsSharedPtr setupTeam(new setupTeams);
     loadTeamsSharedPtr loadTeam(new loadTeams); // = base->getLoadTeam();
     teamEntityMSharedPtr teamInstance; // = gameS->getTeamDataInstance();

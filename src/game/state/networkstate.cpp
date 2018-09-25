@@ -249,7 +249,7 @@ TS*/
 
 void networkState::processNetworkPlayerEvents(teamEntityVecSharedPtr activeTeamInstance)  // processes player events from network code
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 //    networkEngineSharedPtr network = networkEngine::Instance();
 
 //    teamStateVecSharedPtr activeTeamInstance = getActiveTeamInstance();

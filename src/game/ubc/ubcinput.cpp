@@ -89,7 +89,7 @@ void UBCInput::setSetupComplete(bool set)  // sets the value of setupComplete
 
 void UBCInput::process(gameEngineSharedPtr gameE, gameComponentsSharedPtr gameComponent, gameFlagsSharedPtr gameFlag, usersMSharedPtr usersInstance, GUISystemSharedPtr gui)  // processes game input
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    sharedPtr<GUISystem> gui = GUISystem::Instance();
 //    sharedPtr<inputSystem> input = inputSystem::Instance();

@@ -73,7 +73,7 @@ void loadUsersInputs::setUsersInputFilesLoaded(bool set)  // sets the value of u
 
 bool loadUsersInputs::checkIfUsersInputsLoaded()  // checks if user inputs have been loaded into pInstance
 {
-        conversionSharedPtr convert = conversion::Instance();
+        conversionSharedPtr convert ;
     std::string func = "loadUsersInputs::checkIfUserInputsLoaded()";
 
     logMsg(func +" begin");
@@ -150,7 +150,7 @@ bool loadUsersInputs::checkIfUsersInputsLoaded()  // checks if user inputs have 
 // User input
 usersInputsVecSharedPtr loadUsersInputs::loadUsersInputFiles()  // load user input settings from XML files
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     usersInputsVecSharedPtr usersInputs;
     usersInputsSharedPtr input;
     std::string usersInputList;
@@ -188,7 +188,7 @@ usersInputsVecSharedPtr loadUsersInputs::loadUsersInputFiles()  // load user inp
 
 stdStringVec loadUsersInputs::loadUsersInputListFile(std::string fileName)  // loads the user input list file
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 //    renderEngineSharedPtr render = renderEngine::Instance();
     stdStringVec uInputFiles;
     std::string fileContents;
@@ -249,7 +249,7 @@ stdStringVec loadUsersInputs::loadUsersInputListFile(std::string fileName)  // l
 
 usersInputsSharedPtr loadUsersInputs::loadUsersInputFile(std::string fileName)  // loads data from the user input files
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     const sharedPtr<usersInputs> uInput(new usersInputs);
     std::string inputName;
     std::string type;

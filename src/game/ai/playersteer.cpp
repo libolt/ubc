@@ -191,7 +191,7 @@ void playerSteer::setHumanPlayer(std::string set)  // sets the value of human pl
 
 void playerSteer::reset()    // reset state
 {
-/*    conversionSharedPtr convert = conversion::Instance();
+/*    conversionSharedPtr convert ;
     logMsg("steer alive?");
     steering::reset ();  // reset the vehicle
    logMsg("steer alive?2");
@@ -268,7 +268,7 @@ void playerSteer::update(const float currentTime, float elapsedTime)  // update 
 {
     AISystemSharedPtr ai = AISystem::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 
 //	exit(0);
 	counter += 1;
@@ -519,7 +519,7 @@ void playerSteer::update(const float currentTime, float elapsedTime)  // update 
 
 void playerSteer::checkCourtPosition()  // checks if the player's position has changed
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 //    sharedPtr<gameState> gameS = gameState::Instance();
     
     comparison compare;
@@ -603,7 +603,7 @@ void playerSteer::checkCourtPosition()  // checks if the player's position has c
 
 void playerSteer::updateOffense(const float currentTime, const float elapsedTime)  // updates the offense steering sim
 {
-	conversionSharedPtr convert = conversion::Instance();
+	conversionSharedPtr convert ;
 //    sharedPtr<gameState> gameS = gameState::Instance();
 
 //    teamStateVecSharedPtr getActiveTeamInstance = gameS->getActiveTeamInstance();
@@ -756,7 +756,7 @@ void playerSteer::updateOffense(const float currentTime, const float elapsedTime
 
 void playerSteer::updateDefense(const float currentTime, const float elapsedTime)  // updates the defense steering sim
 {
-	conversionSharedPtr convert = conversion::Instance();
+	conversionSharedPtr convert ;
 //    sharedPtr<gameState> gameS = gameState::Instance();
 
 //    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();

@@ -49,7 +49,7 @@ setupPlayers::~setupPlayers()  // destructor
 
 bool setupPlayers::checkIfGamePlayerInstancesCreated(const gameComponentsSharedPtr &gameComponent, const gameFlagsSharedPtr &gameFlag)  // checks if the gameState Objects Player Instances have been created
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     playerEntityMSharedPtr playerInstance = gameComponent->getPlayerInstance();
     bool returnType = false;
     std::string func = "setupPlayers::checkIfGamePlayerInstanceCreated()";
@@ -113,7 +113,7 @@ bool setupPlayers::checkIfGamePlayerInstancesCreated(const gameComponentsSharedP
 
 bool setupPlayers::checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr gamePlayerInstance, const teamEntityMSharedPtr &activeTeamInstance)  // checks if the gameState Objects Player Instances have been created
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     playerEntityMSharedPtr playerInstance; // = gameS->getPlayerInstance();
     bool returnType = false;
     std::string func = "setupPlayers::checkIfTeamPlayerInstancesCreated()";
@@ -201,7 +201,7 @@ bool setupPlayers::checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr game
 
 playerEntityMSharedPtr setupPlayers::createPlayerInstances()  // creates player Instances
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     loadPlayersSharedPtr loadPlayer(new loadPlayers);
     playerEntityMSharedPtr playerInstance;
     std::string func = "setupPlayers::createPlayerInstances()";
@@ -248,7 +248,7 @@ playerEntityMSharedPtr setupPlayers::createPlayerInstances()  // creates player 
 playerEntityMSharedPtr setupPlayers::createTeamPlayerInstances(playerEntityMSharedPtr gamePlayerInstance, size_t teamID)  // creates player instances for a team
 {
     playerEntityMSharedPtr playerInstance;  // stores player objects that will be returned when the function completes
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 //    playerEntityMSharedPtr gamePlayerInstance;
     std::string func = "setupPlayers::createTeamPlayerInstances()";
 
@@ -304,7 +304,7 @@ playerEntityMSharedPtr setupPlayers::createTeamPlayerInstances(playerEntityMShar
 
 playerEntityMSharedPtr setupPlayers::createActivePlayerInstances(playerEntityMSharedPtr playerInstance, std::map<playerPositions, size_t> activePlayerID)  // creates active court instances
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     std::string func = "setupPlayers::createActivePlayerInstances()";
 
     playerEntityMSharedPtr activePlayerInstance;
@@ -357,7 +357,7 @@ playerEntityMSharedPtr setupPlayers::createActivePlayerInstances(playerEntityMSh
 
 playerEntityMSharedPtr setupPlayers::setupActivePlayerInstances(playerEntityMSharedPtr activePlayerInstance, renderEngineSharedPtr render)  // sets up active player instances
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     loaderSharedPtr load; 
     
     std::string func = "setupPlayers::setupActivePlayerInstances()";

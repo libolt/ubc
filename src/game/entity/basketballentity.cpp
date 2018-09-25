@@ -391,7 +391,7 @@ bool basketballEntity::initialize()  // initializes the basketball entity object
 
 bool basketballEntity::setupPhysicsObject()  // sets up the physics object
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     std::string func = "basketballEntity::setupPhysicsObject()";
     OgreEntitySharedPtr tempModel = getModel();
     OgreSceneNodeSharedPtr tempNode = getNode();
@@ -537,7 +537,7 @@ void basketballEntity::updateState(gameComponentsSharedPtr gameComponent, gameDa
 
 void basketballEntity::updatePosition() // updates the position of the basketball
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     comparison compare;
     Ogre::Vector3 changePos;
     btVector3 physChange = btVector3(0,0,0);
@@ -631,7 +631,7 @@ void basketballEntity::updatePosition() // updates the position of the basketbal
 
 void basketballEntity::updateMovement(gameComponentsSharedPtr gameComponent, gameDataSharedPtr gameDta, gameFlagsSharedPtr gameFlag)  // updates the basketball(s) movements
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 //    sharedPtr<gameState> gameS = gameState::Instance();
     teamEntityMSharedPtr activeTeamInstance = gameComponent->getActiveTeamInstance();
     size_t teamWithBall = gameDta->getTeamWithBall();
@@ -705,7 +705,7 @@ TS*/
 void basketballEntity::updateDirection(gameComponentsSharedPtr gameComponent, gameDataSharedPtr gameDta, gameFlagsSharedPtr gameFlag)  // updates basketball direction(s)
 {
     //conversion *convert = conversion::Instance();
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 //    sharedPtr<gameState> gameS = gameState::Instance();
     teamEntityMSharedPtr activeTeamInstance = gameComponent->getActiveTeamInstance();
     size_t teamWithBall = gameDta->getTeamWithBall();

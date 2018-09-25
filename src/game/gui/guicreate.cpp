@@ -43,7 +43,7 @@
 
 bool GUISystem::createMainMenuGUI(renderEngineSharedPtr render)  // creates the main menu gui
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 
     MyGUIButtonMSharedPtr tempButtons;
     std::string func = "GUISystem::createMainMenuGUI()";
@@ -505,7 +505,7 @@ bool GUISystem::createAudioSetupGUI()  // creates GUI for audo settings screen.
 
 bool GUISystem::createSetupMenuGUI()    // creates GUI for game setup menu screen.
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 
     std::string func = "GUISystem::createCourtSetupMenuGUI()";
 
@@ -690,7 +690,7 @@ bool GUISystem::createTeamSelectionMenuGUI(renderEngineSharedPtr render)  // cre
 
     MyGUIButtonMSharedPtr tempButtons;
     MyGUIListBoxMSharedPtr tempSelectBox;
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     //
     MyGUI::LayoutManager::getInstance().loadLayout("TeamSelectionMenu.layout");
     

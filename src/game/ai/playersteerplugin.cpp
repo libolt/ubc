@@ -109,7 +109,7 @@ void playerSteerPlugin::setHumanPlayer(std::string set)  // sets the value of hu
 void playerSteerPlugin::open()  // opens the plugin
 {
     AISystemSharedPtr ai = AISystem::Instance();
-	conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 //    sharedPtr<gameState> gameS = gameState::Instance();
 
 //    courtStateVec courtInstance = gameS->getCourtInstance();
@@ -306,7 +306,7 @@ void playerSteerPlugin::open()  // opens the plugin
 
 void playerSteerPlugin::update(const float currentTime, const float elapsedTime)
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     playerEntityVecMSharedPtr activePlayerInstance;
 //	exit(0);
     // update simulation of test vehicle

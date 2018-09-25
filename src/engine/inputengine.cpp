@@ -218,7 +218,7 @@ bool inputEngine::destroy()  // destroys the OIS Input System and related object
 
 bool inputEngine::processInput()  // processes all input
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     std::string func = "inputEngine::processInput()";
     
 //    renderEngineSharedPtr render = renderEngine::Instance();
@@ -400,7 +400,7 @@ bool inputEngine::processInput()  // processes all input
 
 bool inputEngine::processKeyInput()  // processes unbuffered keyboard input
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     std::string func = "inputEngine::processKeyInput()";
 //    sharedPtr<GUISystem> gui = GUISystem::Instance();
 //	logMsg("Processing keyboard input");
@@ -811,7 +811,7 @@ bool inputEngine::processKeyInput()  // processes unbuffered keyboard input
 
 bool inputEngine::processTextInput()  // reads in text input
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     std::string func = "inputEngine::processTextInput()";
     
     logMsg(func +" textInput!");
@@ -835,7 +835,7 @@ bool inputEngine::processTextInput()  // reads in text input
 }
 bool inputEngine::processMouseInput()  // processes the unbuffered mouse input
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 //    renderEngineSharedPtr render = renderEngine::Instance();
 
     int x, y;
@@ -891,7 +891,7 @@ bool inputEngine::processMouseInput()  // processes the unbuffered mouse input
 
 bool inputEngine::processTouchInput() // processes the unbuffered touch input
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 //    renderEngineSharedPtr render = renderEngine::Instance();
     std::string func = "inputEngine::processTouchInput()";
     int state = -1;

@@ -40,7 +40,7 @@ updateTeams::~updateTeams()  // destructor
 
 playerEntityMSharedPtr updateTeams::updateActivePlayers(playerEntityMSharedPtr activePlayerInstance)  // updates the states of active players
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 //    playerEntityMSharedPtr activePlayerInstance = component->getActivePlayerInstance();
 
     std::string func = "updateTeams::updateActivePlayers()";
@@ -59,7 +59,7 @@ playerEntityMSharedPtr updateTeams::updateActivePlayers(playerEntityMSharedPtr a
     }
 //    exit(0);
 //FIXME! Needs refactored after playerStateMachine migration
-/*    conversionSharedPtr convert = conversion::Instance();
+/*    conversionSharedPtr convert ;
     std::string func = "teamState::updatePlayerStates()";
     size_t x = 0;
     
@@ -98,7 +98,7 @@ playerEntityMSharedPtr updateTeams::updateActivePlayers(playerEntityMSharedPtr a
 
 playerEntityMSharedPtr updateTeams::updatePlayerDirections(playerEntityMSharedPtr activePlayerInstance, gameComponentsSharedPtr gameComponent, teamGameDataSharedPtr gameData)  // updates the direction players are facing
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 //    playerEntityMSharedPtr activePlayerInstance = component->getActivePlayerInstance();
     directions playerDirection, oldPlayerDirection;
     basketballEntityMSharedPtr basketballInstance = gameComponent->getBasketballInstance();
@@ -224,7 +224,7 @@ playerEntityMSharedPtr updateTeams::updatePlayerDirections(playerEntityMSharedPt
 playerEntityMSharedPtr updateTeams::updatePlayerMovements(playerEntityMSharedPtr activePlayerInstance)  // updates player movements
 {
     //conversion *convert = conversion::Instance();
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 //    playerEntityMSharedPtr activePlayerInstance = component->getActivePlayerInstance();
     Ogre::Vector3 posChange;    // stores change in position
     posChange = Ogre::Vector3(0.0f, 0.0f, 0.0f);
@@ -304,7 +304,7 @@ playerEntityMSharedPtr updateTeams::updatePositions(playerEntityMSharedPtr activ
 //FIXME! Needs reworked after playerStateMachine migration
 /*
     //conversion *convert = conversion::Instance();
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     
 //    size_t x = 0;
     // updates the player positions on the court

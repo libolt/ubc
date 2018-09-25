@@ -78,7 +78,7 @@ courtEntityMSharedPtr setupCourts::createCourtInstances()  // creates court Inst
 courtEntityMSharedPtr setupCourts::createActiveCourtInstances(courtEntityMSharedPtr courtInstance)  // creates active court instances
 {
     courtEntityMSharedPtr activeCourtInstance;
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     loadCourtsSharedPtr loadCourt(new loadCourts);
 //    courtStateMSharedPtr courtInstance = getCourtInstance();
 //    courtStateMSharedPtr activeCourtInstance = getActiveCourtInstance();

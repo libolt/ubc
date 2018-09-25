@@ -21,7 +21,8 @@
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
 #include "boost/lexical_cast.hpp"
-conversionSharedPtr conversion::pInstance;
+
+/* conversionSharedPtr conversion::pInstance;
 
 conversionSharedPtr conversion::Instance()
 {
@@ -31,16 +32,16 @@ conversionSharedPtr conversion::Instance()
         pInstance = tInstance;
     }
     return pInstance; // returns the value of pInstance
-}
+}*/
 
 conversion::conversion()  // constructor
 {
     
 }
 
-/*conversion::~conversion()
+conversion::~conversion()
 {
-}*/
+}
 
 // conversion to std::string
 std::string conversion::toString( char *data)  // converts char * data to string

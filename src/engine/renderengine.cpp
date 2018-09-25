@@ -315,7 +315,7 @@ Ogre::DataStreamPtr renderEngine::openAPKFile(const std::string& fileName)  // O
 
 bool renderEngine::initSDL() // Initializes SDL Subsystem
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     std::string func = "renderEngine::initSDL()";
     
     logMsg(func +" begin");
@@ -380,7 +380,7 @@ bool renderEngine::initSDL() // Initializes SDL Subsystem
 
 bool renderEngine::initOgre() // Initializes Ogre Subsystem
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     std::string func = "renderEngine::initOgre()";
     
     logMsg(func +" begin");
@@ -535,7 +535,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 
 bool renderEngine::createScene()
 {
-    conversionSharedPtr convert = conversion::Instance(); 
+    conversionSharedPtr convert ;
     std::string func = "renderEngine::createScene()";
     
     logMsg(func +" begin");
@@ -848,7 +848,7 @@ return (true);
 OgreSceneNodeSharedPtr renderEngine::createNode(OgreEntitySharedPtr model,std::string entityNodeName)  // create scene node for model
 {
     OgreSceneNodeSharedPtr tempNode; //(new Ogre::SceneNode);
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 //    std::string entityNodeName;
 //    std::string entityNodeNum;
     std::string func = "render::createNode()";
@@ -888,7 +888,7 @@ OgreSceneNodeSharedPtr renderEngine::createNode(OgreEntitySharedPtr model,std::s
 
 bool renderEngine::renderFrame()  // renders a frame to the screen
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     std::string func = "renderEngine::renderFrame()";
     
     logMsg(func +" begin");

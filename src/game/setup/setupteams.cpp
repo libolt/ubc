@@ -46,7 +46,7 @@ setupTeams::~setupTeams()  // destructor
 
 teamEntityMSharedPtr setupTeams::createTeamInstances()  // creates team Instances
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     loadTeamsSharedPtr loadTeam(new loadTeams); // = base->getLoadTeam();
     std::string func = "setupTeams::createTeamInstances()";
     
@@ -141,7 +141,7 @@ teamEntityMSharedPtr setupTeams::createTeamInstances()  // creates team Instance
 
 teamEntityMSharedPtr setupTeams::createActiveTeamInstances(teamEntityMSharedPtr teamInstance, sizeTVec teamID)  // creates active team instances
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     teamEntityMSharedPtr activeTeamInstance;
     std::string func = "setupTeams::createActiveTeamInstances()";
        
@@ -204,7 +204,7 @@ teamEntityMSharedPtr setupTeams::createActiveTeamInstances(teamEntityMSharedPtr 
 
 playerEntityMSharedPtr setupTeams::setPlayerStartPositions(playerEntityMSharedPtr activePlayerInstance, courtEntityMSharedPtr courtInstance, teamGameDataSharedPtr gameData, teamStarterIDsVecM teamStarterID)  // sets the initial coordinates for the players.
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     setupPlayerPositionsSharedPtr setupPlayerPosition(new setupPlayerPositions);
     OgreVector3Vec startingPos;
     Ogre::Vector3 courtPos = courtInstance[0]->getNodePosition();
@@ -341,7 +341,7 @@ playerEntityMSharedPtr setupTeams::setPlayerStartPositions(playerEntityMSharedPt
 
 playerEntityMSharedPtr setupTeams::setPlayerStartActivePositions(playerEntityMSharedPtr activePlayerInstance)  // sets the position the players will play at the start of the game
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 //    playerEntityMSharedPtr activePlayerInstance = component->getActivePlayerInstance();
     std::string func = "setupTeams::setPlayerStartActivePositions()";
 
@@ -373,7 +373,7 @@ playerEntityMSharedPtr setupTeams::setPlayerStartActivePositions(playerEntityMSh
 
 playerEntityMSharedPtr setupTeams::setPlayerStartDirections(playerEntityMSharedPtr activePlayerInstance, teamGameDataSharedPtr gameData)  // sets the initial directions for the players.
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 //    playerEntityMSharedPtr activePlayerInstance = component->getActivePlayerInstance();
     std::vector<directions> playerDirection; // stores the direction players face at start
     std::string func = "setupTeams::setPlayerStartDirections()";

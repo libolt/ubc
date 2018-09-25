@@ -101,7 +101,7 @@ bool basketballPhysics::setup()  // sets up physics for the basketball
     logMsg(func +" begin");
     exit(0);
 /*    setCollidesWith(COL_COURT);  // collides with the court
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     sharedPtr<gameState> gameS = gameState::Instance();
     sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
 
@@ -189,7 +189,7 @@ void basketballPhysics::updateState()  // updates basketball physics state
 
 void basketballPhysics::ballDribbling(Ogre::Vector3 bballPos, btRigidBodySharedPtr courtPhysBody, Ogre::Vector3 courtPos)  // simulates basketball dribble
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     physicsEngine physEngine;
 //    sharedPtr<gameState> gameS = gameState::Instance();
 

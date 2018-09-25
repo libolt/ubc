@@ -190,7 +190,7 @@ courtEntityMSharedPtr loadCourts::loadCourtFiles()  // load court settings from 
 
 stdStringVec loadCourts::loadCourtListFile(std::string fileName)    // loads the list of court list file
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 //    renderEngineSharedPtr render = renderEngine::Instance();
     stdStringVec cFiles;
     std::string fileContents;
@@ -247,7 +247,7 @@ stdStringVec loadCourts::loadCourtListFile(std::string fileName)    // loads the
 
 courtEntitySharedPtr loadCourts::loadCourtFile(std::string fileName)  // loads data from the offense play XML files
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     courtEntitySharedPtr courtInstance(new courtEntity);
 //    courtState *court = new courtState;
     std::string name;
@@ -481,7 +481,7 @@ courtEntitySharedPtr loadCourts::loadCourtFile(std::string fileName)  // loads d
 
 courtEntityMSharedPtr loadCourts::loadModels(courtEntityMSharedPtr activeCourtInstance, renderEngineSharedPtr render)  // loads selected court model
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     loaderSharedPtr load(new loader);
 //    courtStateMSharedPtr courtInstance = getCourtInstance();
 //    courtStateMSharedPtr activeCourtInstance = getActiveCourtInstance();

@@ -43,7 +43,7 @@ jumpBallsExecute::~jumpBallsExecute()  // destructor
 
 bool jumpBallsExecute::executeJump(gameComponentsSharedPtr component)  // initiates jump ball from jump ball circle
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     jumpBallsSharedPtr jumpBall = component->getJumpBall();
     physicsEngine physEngine;
     playerEntityMSharedPtr activePlayerInstance;
@@ -171,7 +171,7 @@ TS*/
 bool jumpBallsExecute::tipToPlayer(gameComponentsSharedPtr component, quarters quarter)  // tips the basketball to the appropriate player
 {
 //    sharedPtr<gameState> gameS = gameState::Instance();
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 //    sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
     jumpBallsSharedPtr jumpBall = component->getJumpBall();
     physicsEngine physEngine;

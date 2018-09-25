@@ -255,7 +255,7 @@ void offenseState::loadPlays()  // loads offense plays from file
 
 void offenseState::setupOffense(gameDataSharedPtr gameData)  // sets up box offense
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 //    sharedPtr<gameEngine> gameE = gameEngine::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 
@@ -373,7 +373,7 @@ void offenseState::setupOffense(gameDataSharedPtr gameData)  // sets up box offe
 
 void offenseState::executeOffense(gameComponentsSharedPtr gameComponent, gameDataSharedPtr gameData) // executes box offense
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 //    sharedPtr<gameState> gameS = gameState::Instance();
     teamTypes teamWithBall = gameData->getTeamWithBall();
 
@@ -517,7 +517,7 @@ TS*/
 
 bool offenseState::checkForDirective(playerPositions playerPosition)  // checks if a directive needs to be completed before execution
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     
     size_t x = 0;
     logMsg("playerDirective.size() == " +convert->toString(playerDirective.size()));
@@ -586,7 +586,7 @@ void offenseState::executePass()  // executes the pass between players
 //FIXME! Needs fixed after playerStateMachine is implemented
 /*
     //conversion *convert = conversion::Instance();
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     //gameState *gameS = gameState::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    size_t activeBBallInstance = gameInstance->getActiveBBallInstance();

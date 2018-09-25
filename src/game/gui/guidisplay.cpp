@@ -209,7 +209,7 @@ void GUISystem::showAudioMenuWidgets()  // shows all widgets tied to the Main Me
 void GUISystem::hideSetupMenuWidgets()  // hides all widgets tied to the Game Setup Menu
 {
     //conversion *convert = conversion::Instance();
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 /*
     teamSelectBox[0]->setVisible(false);
     teamSelectBox[1]->setVisible(false);
@@ -415,7 +415,7 @@ void GUISystem::showPlayerStartSelectionMenuWidgets(renderEngineSharedPtr render
 void GUISystem::hideTeamSelectionMenuWidgets()  // hides all widgets tied to the Team Selection Menu
 {
     //conversion *convert = conversion::Instance();
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 
     component->getTeamSelectBox()[0]->setVisible(false);
     component->getTeamSelectBox()[1]->setVisible(false);
@@ -472,7 +472,7 @@ void GUISystem::hideCourtSelectionMenuWidgets()  // hides all widgets tied to th
 void GUISystem::showCourtSelectionMenuWidgets(renderEngineSharedPtr render)  // show all widgets tied to the Court Selection Menu
 {
 //    renderEngineSharedPtr render; // = renderEngine::Instance();
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     std::string func = "GUISystem::showCourtSelectionMenuWidgets()";
     displayCount += 1;
 //    teamSelectionMenu();

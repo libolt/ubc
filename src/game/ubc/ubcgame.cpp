@@ -281,7 +281,7 @@ bool UBCGame::setup()  // sets up a game instance
 
 bool UBCGame::createUserInstances()  // creates the user instances
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     usersMSharedPtr tempUserInstance;
     std::string func = "UBCGame::createUserInstances()";
 
@@ -306,7 +306,7 @@ bool UBCGame::createUserInstances()  // creates the user instances
 
 bool UBCGame::setupUserInstancesInput()  // sets up input mapping for each user
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 //    loadUsersInputsSharedPtr loadUsersInput = loadUsersInput;
 //    inputEngineSharedPtr tempInputSharedPtr(new inputEngine);
 //    inputE = tempInputSharedPtr;
@@ -358,7 +358,7 @@ bool UBCGame::setupUserInstancesInput()  // sets up input mapping for each user
 
 bool UBCGame::loop(gameEngineSharedPtr gameE, UBCInputSharedPtr input, GUISystemSharedPtr gui)  // Main Game Loop
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     bool quitGame = gameE->getQuitGame();
     unsigned long changeInTime = 0;
     unsigned long CITmic = 0;

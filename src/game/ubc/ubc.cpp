@@ -150,7 +150,7 @@ void UBC::executeState()  // executes the UBC game code
 
 void UBC::run()  // runs the game
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 //    exit(0);
 //    renderEngineSharedPtr renderTemp = gameE->getRenderE();
 //    exit(0);
@@ -327,7 +327,7 @@ bool UBC::setupInputSObjUserInput()  // sets up user input mapping for inputS ob
 
 int main(int argc, char *argv[])
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     sharedPtr<UBC> ubc(new UBC);
     std::string func = "main()";
 

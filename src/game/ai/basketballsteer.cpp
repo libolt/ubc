@@ -50,7 +50,7 @@ void basketballSteer::reset(Ogre::Vector3 nodePosition)
 {
     // gameState *gameS = gameState::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 
     steering::reset (); // reset the vehicle
     setSpeed (0.0f);         // speed along Forward direction.

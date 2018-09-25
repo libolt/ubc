@@ -149,7 +149,7 @@ bool loadPlayers::checkIfPlayersLoaded()  // checks if players have been loaded 
 
 playerEntityMSharedPtr loadPlayers::loadPlayerFiles()  // loads the players
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 
     playerEntityMSharedPtr players;
     playerEntitySharedPtr playerInstance; //(new playerState);
@@ -205,7 +205,7 @@ playerEntityMSharedPtr loadPlayers::loadPlayerFiles()  // loads the players
 
 stdStringVec loadPlayers::loadPlayerListFile(std::string fileName)  // loads the player list file
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
   //   renderEngineSharedPtr render = renderEngine::Instance();
     stdStringVec pFiles;
     std::string fileContents;
@@ -263,7 +263,7 @@ stdStringVec loadPlayers::loadPlayerListFile(std::string fileName)  // loads the
 
 playerEntitySharedPtr loadPlayers::loadPlayerFile(std::string fileName)  // loads the player file
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    renderEngineSharedPtr render = renderEngine::Instance();
     std::string func = "loader::loadPlayerFile()";

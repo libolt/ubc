@@ -42,7 +42,7 @@ bool comparison::OgreVector3ToOgreVector3(const Ogre::Vector3 &currentValue, con
 
 Ogre::Vector3 comparison::OgreVector3ToOgreVector3Result(const Ogre::Vector3 &currentValue, const Ogre::Vector3 &newValue)  // compares two Ogre::Vector3 objects and returns their differences
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 
     Ogre::Vector3 change = Ogre::Vector3(0,0,0);
 
@@ -266,7 +266,7 @@ bool comparison::OgreVector3ToOpenSteerVec3(const Ogre::Vector3 &currentValue, c
 }
 Ogre::Vector3 comparison::OgreVector3ToOpenSteerVec3Result(const Ogre::Vector3 &currentValue, const OpenSteer::Vec3 &newValue)  // compares an Ogre::Vector3 object to an OpenSteer::Vec3 and returns their differences in Ogre::Vector3 format
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 
     Ogre::Vector3 change = Ogre::Vector3(0,0,0);
 
@@ -489,7 +489,7 @@ bool comparison::OgreVector3ToBTVector3(const Ogre::Vector3 &currentValue, const
 }
 Ogre::Vector3 comparison::OgreVector3ToBTVector3Result(const Ogre::Vector3 &currentValue, const btVector3 &newValue)  // compares an Ogre::Vector3 object to an btVector3 and returns their differences in Ogre::Vector3 format
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 
     Ogre::Vector3 change = Ogre::Vector3(0,0,0);
 

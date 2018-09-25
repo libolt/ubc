@@ -186,7 +186,7 @@ void jumpBalls::setBBallVelocity(const btVector3 &set)  // sets the value of bba
 /*bool jumpBalls::updateState(teamTypes teamWithBall, basketballEntityMSharedPtr activeBasketballInstance, teamEntityMSharedPtr activeTeamInstance, quarters quarter)  // updates state of the jumpBalls instance
 {
 //    sharedPtr<gameState> gameS = gameState::Instance();
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     std::string func = "jumpBalls::updateState()";
     
     logMsg(func +" updating jumpBall state!");

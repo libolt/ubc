@@ -56,7 +56,7 @@ void inputGamePads::setSetupComplete(bool set)  // sets the value of setupComple
 
 inputInGameMaps inputGamePads::mapInput(inputGamePadMaps inGamePadMap, usersInputsSharedPtr uInput)  // maps value of the gamePad string to inputInGameMaps
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     size_t x = 0;
     std::string func = "inputGamePads::mapInput()";
     logMsg(func + " begin");
@@ -130,7 +130,7 @@ inputInGameMaps inputGamePads::mapInput(inputGamePadMaps inGamePadMap, usersInpu
 
 bool inputGamePads::process()  // processes input
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     inputEngineSharedPtr inputE = getInputE(); 
     usersInputsVecSharedPtr uInput = getUInput();
     std::string func = "inputGamePads::process()";

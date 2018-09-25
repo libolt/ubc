@@ -153,7 +153,7 @@ void physicsEngine::setupState(renderEngineSharedPtr render)  // sets up the sta
 void physicsEngine::updateState()  // updates the state for the physics engine
 {
 /*
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 //    sharedPtr<gameEngine> gameE = gameEngine::Instance();
     sharedPtr<gameState> gameS = gameState::Instance();
 //    sharedPtr<inputSystem> input = inputSystem::Instance();
@@ -338,7 +338,7 @@ void physicsEngine::updateBasketballPosition()  // updates the position of baske
 
 void physicsEngine::updatePlayerPositions()  // updates the position of player objecgts
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 //    sharedPtr<gameState> gameS = gameState::Instance();
 
     comparison compare;
@@ -404,7 +404,7 @@ void physicsEngine::updatePlayerPositions()  // updates the position of player o
 void physicsEngine::stepWorld(timing timer)  // steps the world of the physics simulation
 {
 //    sharedPtr<gameEngine> gameE = gameEngine::Instance();
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 
     btScalar currentTime;
     btScalar fixedTimeStep;
@@ -441,7 +441,7 @@ void physicsEngine::stepWorld(timing timer)  // steps the world of the physics s
 
 /*void physicsEngine::ballDribbling()  // simulates basketball dribble
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     sharedPtr<gameState> gameS = gameState::Instance();
 
 //    playerStateVec pInstance = gameS->getPlayerInstance();
@@ -539,7 +539,7 @@ void physicsEngine::stepWorld(timing timer)  // steps the world of the physics s
 
 bool physicsEngine::collisionCheck(btRigidBodySharedPtr objectA, btRigidBodySharedPtr objectB)  // tests whther or not two objects have collided
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     MyContactResultCallback collisionResult;
     exit(0);
     world->contactPairTest(objectA.get(), objectB.get(), collisionResult);
@@ -557,7 +557,7 @@ void physicsEngine::passCollisionCheck()  // checks whether the ball has collide
     /*
 //  exit(0);
     //conversion *convert = conversion::Instance();
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     //gameState *gameS = gameState::Instance();
     sharedPtr<gameState> gameS = gameState::Instance();
 
@@ -595,7 +595,7 @@ void physicsEngine::passCollisionCheck()  // checks whether the ball has collide
 /*
 bool physicsEngine::playerJump(teamTypes teamType, int playerID)  // calculates and executes player jumping in the air
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     sharedPtr<gameState> gameS = gameState::Instance();
 
     courtStateVec courtInstance = gameS->getCourtInstance();
@@ -686,7 +686,7 @@ bool physicsEngine::playerJump(teamTypes teamType, int playerID)  // calculates 
 
 bool physicsEngine::shootBasketball(teamTypes teamType, int playerID)  // calculates and executes basketball being shot
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     sharedPtr<gameState> gameS = gameState::Instance();
 
     comparison compare;

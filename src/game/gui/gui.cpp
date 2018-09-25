@@ -337,7 +337,7 @@ void GUISystem::playerStartSelectionMenu(renderEngineSharedPtr render)  // displ
 
 void GUISystem::teamSelectionMenu(renderEngineSharedPtr render)  // displays team selection menu
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     setupTeamsSharedPtr setupTeam(new setupTeams);
     bool changeMenu = false;  // determinrs if menu is to be changed
     teamEntityMSharedPtr teamInstance; // = gameS->getTeamDataInstance();
@@ -466,7 +466,7 @@ void GUISystem::teamSelectionMenu(renderEngineSharedPtr render)  // displays tea
 void GUISystem::courtSelectionMenu(renderEngineSharedPtr render) // displays court selection menu
 {
 //    sharedPtr<gameState> gameS = gameState::Instance();
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 //    sharedPtr<loader> load; // = loader::Instance();
     std::string func = "GUISystem::courtSelectionMenu()";
     
@@ -602,7 +602,7 @@ void GUISystem::networkClient()  // sets up game as a network client
 void GUISystem::courtSelected()  // processes court selection
 {
     //conversion *convert = conversion::Instance();
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     //gameState *gameS = gameState::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
     std::string func = "GUISystem::courtSelected()";
@@ -626,7 +626,7 @@ void GUISystem::teamsSelected()  // processes team selection
 {
 //    exit(0);
     //gameState *gameS = gameState::Instance();
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     teamEntityMSharedPtr activeTeamInstance;
 //    teamEntityMSharedPtr teamInstance;
     setupTeamsSharedPtr setupTeam;
@@ -660,7 +660,7 @@ void GUISystem::teamsSelected()  // processes team selection
 
 void GUISystem::playerStartSelected()  // process player start selection
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     std::vector<std::map <playerPositions, std::string> > teamStarters;
 //    teamStarters.push_back(tempStarters);
     std::map<playerPositions, size_t> tempStarterID; // used for initial creatio  of teamStarterID vector

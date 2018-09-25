@@ -76,7 +76,7 @@ void loadBasketballs::setBasketballFilesLoaded(bool set)  // sets the value of b
 
 bool loadBasketballs::checkIfBasketballFilesLoaded()  // checks if basketballs have been loaded into bInstance
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     std::string func = "loadBasketballs::checkBasketballsLoaded()";
     
     logMsg(func +" begin");
@@ -189,7 +189,7 @@ basketballEntityMSharedPtr loadBasketballs::loadFiles()  // load basketball sett
 
 stdStringVec loadBasketballs::loadListFile(std::string fileName) // loads the list of baskteball list file
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 //    renderEngineSharedPtr render = renderEngine::Instance();
     stdStringVec bballFiles;
     std::string fileContents;
@@ -244,7 +244,7 @@ stdStringVec loadBasketballs::loadListFile(std::string fileName) // loads the li
 
 basketballEntitySharedPtr loadBasketballs::loadFile(std::string fileName)  // loads data from the basketball XML files
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     basketballEntitySharedPtr basketballInstance(new basketballEntity);
     
 //    basketballState *basketball = new basketballState;
@@ -331,7 +331,7 @@ basketballEntitySharedPtr loadBasketballs::loadFile(std::string fileName)  // lo
 
 basketballEntityMSharedPtr loadBasketballs::loadModels(basketballEntityMSharedPtr activeBasketballInstance, renderEngineSharedPtr render)  // loads selected basketball model
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     loaderSharedPtr load(new loader);
     setupBasketballsSharedPtr setupBasketball;
 //    basketballEntityMSharedPtr activeBasketballInstance = getActiveBasketballInstance();

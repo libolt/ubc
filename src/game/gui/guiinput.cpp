@@ -200,7 +200,7 @@ void GUISystem::courtSelectButtonClicked(MyGUI::Widget *_sender)  // handles cou
 
 void GUISystem::menuReceiveKeyPress(std::string keyPressed, renderEngineSharedPtr render)  // processes key input
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 
     logMsg("menuReceiveKeyKeyPress!");
     logMsg("activeMenu == " +convert->toString(activeMenu));

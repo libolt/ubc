@@ -71,7 +71,7 @@ hoopEntityMSharedPtr setupHoops::createHoopInstances()  // creates hoop Instance
 hoopEntityMSharedPtr setupHoops::createActiveHoopInstances(hoopEntityMSharedPtr hoopInstance, size_t numActiveHoops)  // creates active hoop instances
 {
     hoopEntityMSharedPtr activeHoopInstance;
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     loadHoopsSharedPtr loadHoop(new loadHoops);
 
 //    hoopStateMSharedPtr hoopInstance = getHoopInstance();

@@ -37,7 +37,7 @@ setupJumpBalls::~setupJumpBalls()  // destructor
 
 jumpBallsSharedPtr setupJumpBalls::checkifJumpBallCreated(jumpBallsSharedPtr jumpBall, gameFlagsSharedPtr flag)  // checks if jumpBall object has been created
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     std::string func = "setupJumpballs::checkifJumpBallCreated()";
 
     logMsg(func +" begin");

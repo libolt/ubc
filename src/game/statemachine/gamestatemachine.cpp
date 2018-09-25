@@ -256,7 +256,7 @@ void gameStateMachine::pChangePosition(gameSMData *data)
 // creates game object instances
 STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     setupBasketballsSharedPtr setupBasketball(new setupBasketballs);
     setupCourtsSharedPtr setupCourt(new setupCourts);
     setupHoopsSharedPtr setupHoop(new setupHoops);
@@ -420,7 +420,7 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
 // loads the model object
 STATE_DEFINE(gameStateMachine, loadModels, gameSMData)
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     std:: string func = "gameStateMachine::loadModels";
 
     logMsg(func +" begin");
@@ -537,7 +537,7 @@ STATE_DEFINE(gameStateMachine, loadModels, gameSMData)
 // sets the model object
 STATE_DEFINE(gameStateMachine, createNodes, gameSMData)
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     bool returnType = true;
     OgreEntitySharedPtr activeModel;
     OgreSceneNodeSharedPtr activeNode;
@@ -646,7 +646,7 @@ STATE_DEFINE(gameStateMachine, createNodes, gameSMData)
 // stop the player
 STATE_DEFINE(gameStateMachine, setStartPositions, gameSMData)
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 
     basketballEntityMSharedPtr activeBasketballInstance;
     setupBasketballsSharedPtr setupBasketball(new setupBasketballs);
@@ -731,7 +731,7 @@ STATE_DEFINE(gameStateMachine, setStartPositions, gameSMData)
 
 STATE_DEFINE(gameStateMachine, setupJumpBall, gameSMData)
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     std:: string func = "gameStateMachine::setupJumpBall";
     jumpBallsSharedPtr jumpBall;
     sharedPtr<setupJumpBalls> setupJumpBall;
@@ -787,7 +787,7 @@ STATE_DEFINE(gameStateMachine, setupJumpBall, gameSMData)
 STATE_DEFINE(gameStateMachine, executeJumpBall, gameSMData)
 {
     basketballEntityMSharedPtr activeBasketballInstance = data->component->getActiveBasketballInstance();
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     teamTypes teamWithBall = data->gData->getTeamWithBall();
     jumpBallsSharedPtr jumpBall = data->component->getJumpBall();
     jumpBallsExecuteSharedPtr jumpBallExecute(new jumpBallsExecute);
@@ -885,7 +885,7 @@ STATE_DEFINE(gameStateMachine, Idle, noEventData)
 // start the player moving
 STATE_DEFINE(gameStateMachine, StartMovement, gameSMData)
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     std:: string func = "playerStateMachine::StartMovement";
 
     logMsg(func +" begin");
@@ -902,7 +902,7 @@ STATE_DEFINE(gameStateMachine, StartMovement, gameSMData)
 STATE_DEFINE(gameStateMachine, ChangePosition, gameSMData)
 {
 //    exit(0);
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     std:: string func = "playerStateMachine::ChangePosition";
 
     logMsg(func +" begin");
@@ -919,7 +919,7 @@ STATE_DEFINE(gameStateMachine, ChangePosition, gameSMData)
 STATE_DEFINE(gameStateMachine, ChangeSpeed, gameSMData)
 {
 //    exit(0);
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     std:: string func = "playerStateMachine::ChangeSpeed";
 
     logMsg(func +" begin");
@@ -935,7 +935,7 @@ STATE_DEFINE(gameStateMachine, ChangeSpeed, gameSMData)
 
 STATE_DEFINE(gameStateMachine, Shoot, gameSMData)
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     std:: string func = "playerStateMachine::Shoot";
 
     logMsg(func +" begin");
@@ -952,7 +952,7 @@ STATE_DEFINE(gameStateMachine, Shoot, gameSMData)
 
 STATE_DEFINE(gameStateMachine, Pass, gameSMData)
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     std:: string func = "playerStateMachine::Pass";
 
 

@@ -240,7 +240,7 @@ bool gameEntity::initializeStateMachine(renderEngineSharedPtr render)  // sets u
 //    sharedPtr<loader> load = loader::Instance();
     //sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
     physicsEngine physEngine;
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     setupBasketballsSharedPtr setupBasketball(new setupBasketballs);
     setupCourtsSharedPtr setupCourt(new setupCourts);
     setupHoopsSharedPtr setupHoop(new setupHoops);
@@ -357,7 +357,7 @@ bool gameEntity::initializeStateMachine(renderEngineSharedPtr render)  // sets u
 
 bool gameEntity::updateState(renderEngineSharedPtr render)  // updates the game state
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     AISystemSharedPtr ai = AISystem::Instance();
     timing timer; 
     Ogre::Vector3 playerPos;
@@ -497,7 +497,7 @@ bool gameEntity::updateState(renderEngineSharedPtr render)  // updates the game 
 
 // BEGINING OF TEST COMMENT
     
-//    conversionSharedPtr convert = conversion::Instance();
+//    conversionSharedPtr convert ;
 //    sharedPtr<gameEngine> gameE = gameEngine::Instance();
 //    networkEngineSharedPtr network = networkEngine::Instance();
     //sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
@@ -645,7 +645,7 @@ bool gameEntity::updateState(renderEngineSharedPtr render)  // updates the game 
 bool gameEntity::updateActiveTeamInstances(renderEngineSharedPtr render)  // updates all active team instances
 {
     teamEntityMSharedPtr activeTeamInstance = component->getActiveTeamInstance();
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
     gameEntitySharedPtr gameInstance;
     std::string func = "gameEntity::updateActiveTeamInstances()";
 
@@ -755,7 +755,7 @@ bool gameEntity::updateActiveTeamInstances(renderEngineSharedPtr render)  // upd
 bool gameEntity::updatePlayerCollisionObjects()  // updates the player collision objects for a team instance
 {
     teamEntityMSharedPtr activeTeamInstance = component->getActiveTeamInstance();
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
  
     std::unordered_map<std::string, btRigidBodySharedPtr> collisionBodies;  // physical bodies to test for collisions with players physBody objects
 
@@ -890,7 +890,7 @@ bool gameEntity::updatePlayerCollisionObjects()  // updates the player collision
 
 bool gameEntity::processInput()  // processes input received from the inputState object
 {
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 
     std::string func = "gameEntity::processInput()";
 
@@ -1066,7 +1066,7 @@ bool gameEntity::processInput()  // processes input received from the inputState
 void gameEntity::updateDirectionsAndMovements()
 {
     //conversion *convert = conversion::Instance();
-    conversionSharedPtr convert = conversion::Instance();
+    conversionSharedPtr convert ;
 //    directions playerDirection, oldPlayerDirection;
 //   logMsg("Updating Directions and Movements");
 

@@ -186,7 +186,7 @@ void playerSteerPlugin::open()  // opens the plugin
                     steerInitialized = true;
                 }
             //      logMsg("Alive1");
-                logMsg(" APIIT.first = " +APIIT.first);
+                logMsg(" APIIT.first = " +convert->toString(APIIT.first));
                 logMsg(" player position = " +convert->toString(APIIT.second->getGameData()->getCourtPosition()));
                 steer->setPosition(convert->toOpenSteerVec3(APIIT.second->getGameData()->getCourtPosition()));
             //      steer.setPosition(OpenSteer::Vec3(0,0,0));

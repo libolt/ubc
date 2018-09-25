@@ -342,7 +342,7 @@ void teamEntity::updateState(gameComponentsSharedPtr gameInstanceComponent, game
             break;
         }
 
-        if (flag->getOffense() && !flag->getDefense())
+/*        if (flag->getOffense() && !flag->getDefense())
         {
             logMsg(func +" offense executing");
 //            exit(0);
@@ -366,7 +366,7 @@ void teamEntity::updateState(gameComponentsSharedPtr gameInstanceComponent, game
         {
 
         }
-
+*/
         if (gameInstanceFlag->getTipOffComplete())
         {
 //          exit(0);

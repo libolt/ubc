@@ -109,6 +109,7 @@ bool UBC::setup()  // sets up UBC object
 //        exit(0);
 //        gui->getBase()->setGameS(gameInstance);
 //        exit(0);
+    return (true);
 }
 
 bool UBC::setupState()  // sets up the UBC game state

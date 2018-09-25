@@ -201,7 +201,7 @@ int networkEngine::initialize()  // initializes the network engine
 bool networkEngine::clientConnect()  // performs a client connection to the server
 {
 //    sharedPtr<gameEngine> gameE = gameEngine::Instance();
-
+    bool returnType = false;
     if (!clientEstablishedConnection)
     {
 
@@ -259,8 +259,9 @@ bool networkEngine::clientConnect()  // performs a client connection to the serv
         }
 //        gameE->setClientRunning(true);
         clientEstablishedConnection = true;
-        return (true);
+        returnType = true;
     }
+    return (returnType);
 }
 
 void networkEngine::networkClient()
@@ -292,7 +293,7 @@ void networkEngine::networkClient()
             case ENET_EVENT_TYPE_RECEIVE:
                 char *data; // char array that stores data received in the packet
 
-                printf ("A packet of length %u containing %s was received from %s on channel %u.\n",
+                printf ("A packet of length %lu containing %s was received from %s on channel %u.\n",
                          event.packet -> dataLength,
                          event.packet -> data,
                          event.peer -> data,
@@ -313,7 +314,7 @@ void networkEngine::networkClient()
             case ENET_EVENT_TYPE_DISCONNECT:
                 printf ("%s disconected.\n", event.peer -> data);
                 // Reset the peer's client information.
-                event.peer -> data = NULL;
+                event.peer -> data = nullptr;
             break;
             case ENET_EVENT_TYPE_NONE:
             break;
@@ -403,7 +404,7 @@ void networkEngine::networkServer()  // executes the network server code
             case ENET_EVENT_TYPE_RECEIVE:
                 char *data;  // char array that stores data received in the packet
 
-                printf ("A packet of length %u containing %s was received from %s on channel %u.\n",
+                printf ("A packet of length %lu containing %s was received from %s on channel %u.\n",
                         event.packet -> dataLength,
                         event.packet -> data,
                         event.peer -> data,
@@ -419,14 +420,14 @@ void networkEngine::networkServer()  // executes the network server code
                 snprintf(data,event.packet->dataLength + 1, "%s", event.packet->data);	// copies contents of packet to data variable
                 receivedData = data;  // copies conetents of data array to receivedData std::string variable
                 logMsg("receivedData == " +receivedData);
-                exit(0);
                 enet_packet_destroy (event.packet);
+//                exit(0);
             break;
             case ENET_EVENT_TYPE_DISCONNECT:
                 logMsg(convert->toString(event.peer->data) +" disconected.");
 
                 // Reset the peer's client information.
-                event.peer -> data = NULL;
+                event.peer -> data = nullptr;
             break;
             case ENET_EVENT_TYPE_NONE:
             break;

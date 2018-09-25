@@ -79,6 +79,8 @@ playerEntityMSharedPtr setupPlayerPositions::setJumpBallPositions(playerEntityMS
             startingPos.push_back(Ogre::Vector3(4.4f,yOffset,348.8f));
             startingPos.push_back(Ogre::Vector3(-0.4f,yOffset,352.0f));
         break;
+        case NOTEAM:
+        break;
     }
 
 
@@ -142,6 +144,8 @@ playerEntityMSharedPtr setupPlayerPositions::setJumpBallPositions(playerEntityMS
                     stateAction.push_back(CHANGECOURTPOS);
                     APIIT.second->getGameData()->setStateAction(stateAction);
 //FIXME!AI                    APIIT.second->getSteer()->setPlayerPosition(C);
+                break;
+                case NONE:
                 break;
             }
         }

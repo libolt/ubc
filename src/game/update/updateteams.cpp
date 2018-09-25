@@ -318,10 +318,11 @@ playerEntityMSharedPtr updateTeams::updatePositions(playerEntityMSharedPtr activ
     }
     logMsg("courtPosition updated!!");
 */
+    return (activePlayerInstance);
 }
 
 playerEntityMSharedPtr updateTeams::updateActivePlayerSettings(playerEntityMSharedPtr activePlayerInstance)  // updates the settings of active players
 {
-
+    return (activePlayerInstance);
 }
 

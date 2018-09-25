@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "statemachine/basketballstatemachine.h"
+#include "utilities/conversion.h"
 #include "utilities/logging.h"
 
 basketballStateMachine::basketballStateMachine() :
@@ -72,7 +73,8 @@ STATE_DEFINE(basketballStateMachine, StopMovement, noEventData)
 // start the motor going
 STATE_DEFINE(basketballStateMachine, StartMovement, basketballSMData)
 {
-    logMsg("Motor::ST_Start : Speed is " +data->speed);
+    conversionSharedPtr convert;
+    logMsg("Motor::ST_Start : Speed is " +convert->toString(data->speed));
     m_currentSpeed = data->speed;
 
     // set initial motor speed processing here
@@ -81,7 +83,9 @@ STATE_DEFINE(basketballStateMachine, StartMovement, basketballSMData)
 // changes the motor speed once the motor is moving
 STATE_DEFINE(basketballStateMachine, ChangeSpeed, basketballSMData)
 {
-    logMsg("Motor::ST_ChangeSpeed : Speed is " +data->speed);
+    conversionSharedPtr convert;
+
+    logMsg("Motor::ST_ChangeSpeed : Speed is " +convert->toString(data->speed));
     m_currentSpeed = data->speed;
 
     // perform the change motor speed to data->speed here
@@ -89,7 +93,9 @@ STATE_DEFINE(basketballStateMachine, ChangeSpeed, basketballSMData)
 
 STATE_DEFINE(basketballStateMachine, Jump, basketballSMData)
 {
-    logMsg("Motor::ST_Jump : Speed is " +data->speed);
+    conversionSharedPtr convert;
+
+    logMsg("Motor::ST_Jump : Speed is " +convert->toString(data->speed));
     m_currentSpeed = data->speed;
 
     // set initial motor speed processing here

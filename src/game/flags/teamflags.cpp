@@ -46,7 +46,7 @@ void teamFlags::setStateMachineInitialized(bool set)  // sets the value of state
     stateMachineInitialized = set;
 }
 
-bool teamFlags::getOffense()  // returns the value of offense
+/*bool teamFlags::getOffense()  // returns the value of offense
 {
     return (offense);
 }
@@ -61,7 +61,7 @@ bool teamFlags::getDefense()  // returns the value of defense
 void teamFlags::setDefense(bool set)  // sets the value of defense
 {
     defense = set;
-}
+}*/
 
 bool teamFlags::getActivePlayerInstancesSetup()  // retrieves the value of activePlayerInstancesSetup
 {

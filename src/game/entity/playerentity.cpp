@@ -282,4 +282,5 @@ bool playerEntity::update() // executes any updates that need to be performed
     }
     
     logMsg(func +" end");
+    return (true);
 }

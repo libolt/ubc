@@ -1060,7 +1060,7 @@ bool gameEntity::processInput()  // processes input received from the inputState
             }            
         }*/
     logMsg(func +" end");
-
+    return (true);
 }
 
 void gameEntity::updateDirectionsAndMovements()
@@ -1075,7 +1075,7 @@ void gameEntity::updateDirectionsAndMovements()
     logMsg(func +" begin");
 
 
-    if (data->getTeamWithBall() >= 0) // && playerHasBasketball)
+    if (data->getTeamWithBall() != NOTEAM) // && playerHasBasketball)
     {
 //      logMsg("teamWithBall ios " +convert->toString(teamWithBall));
 //      logMsg("playetWithBall is " +convert->toString(activeTeamInstance[teamWithBall].getPlayerWithBall()));

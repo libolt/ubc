@@ -442,7 +442,7 @@ void GUISystem::teamSelectionMenu(renderEngineSharedPtr render)  // displays tea
     }
     
 //    hideCourtSelectionMenuWidgets();
-    if (changeMenu = true)
+    if (changeMenu == true)
     {
         logMsg(func +" Changing activeMenu to TEAMSELECT!");
 //        exit(0);

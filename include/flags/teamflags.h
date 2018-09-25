@@ -32,12 +32,12 @@ class teamFlags
         bool getStateMachineInitialized();  // retrieves the value of stateMachineInitialized
         void setStateMachineInitialized(bool set);  // sets the value of stateMachineInitialized
 
-        bool getOffense();  // retrieves the value of offense
+/*        bool getOffense();  // retrieves the value of offense
         void setOffense(bool set);  // sets the value of offense
 
         bool getDefense();  // retrieves the value of defense
         void setDefense(bool set);  // sets the value of defense
-
+*/
         bool getActivePlayerInstancesCreated();  // retrieves the value of activePlayerInstancesCreated
         void setActivePlayerInstancesCreated(bool set);  // sets the value of activePlayerInstancesCreated
 
@@ -66,8 +66,8 @@ class teamFlags
     
         bool stateMachineInitialized;  // stores whether stateMachine has been initialized
         
-        bool offense;  // if set then the team is on offense
-        bool defense;  // if set then the team is on defense
+//        bool offense;  // if set then the team is on offense
+//        bool defense;  // if set then the team is on defense
 
         bool activePlayerInstancesCreated;  // stores whether the active player instances have been created
         bool activePlayerInstancesSetup;  // stores whether the active player instances have been configured

@@ -402,6 +402,8 @@ playerEntityMSharedPtr setupTeams::setPlayerStartDirections(playerEntityMSharedP
             playerDirection.push_back(RIGHT); 
             playerDirection.push_back(RIGHT); 
         break;
+        case NOTEAM:
+        break;
     }
     
     for (auto APIIT : activePlayerInstance)
@@ -443,6 +445,8 @@ playerEntityMSharedPtr setupTeams::setPlayerStartDirections(playerEntityMSharedP
                 APIIT.second->getFlag()->setStateChanged(true);
                 stateAction.push_back(CHANGEDIRECTION);
                 APIIT.second->getGameData()->setStateAction(stateAction);
+            break;
+            case NONE:
             break;
         }
         

@@ -125,6 +125,8 @@ void UBCInput::process(gameEngineSharedPtr gameE, gameComponentsSharedPtr gameCo
                 logMsg(func +" Touch Input!");
                 processTouch();
             break;
+            case INNOTYPE:
+            break;
         }
     }
 //    exit(0);

@@ -288,6 +288,8 @@ teamEntityMSharedPtr setupLineups::setupStartingLineups(teamEntityMSharedPtr act
             case AWAYTEAM:
                 teamIDNum = 1;
             break;
+            case NOTEAM:
+            break;
         }
         
         logMsg(func +" teamIDNum == " +convert->toString(teamIDNum));

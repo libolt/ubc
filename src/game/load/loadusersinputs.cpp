@@ -451,6 +451,8 @@ usersInputsSharedPtr loadUsersInputs::loadUsersInputFile(std::string fileName)  
                 break;
                 case TOUCH:
                 break;
+                case INNOTYPE:
+                break;
             }
         }
     }

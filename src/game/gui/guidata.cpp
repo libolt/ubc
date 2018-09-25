@@ -234,6 +234,8 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
                     logMsg(func +" C playerName == " +playerName);
                     logMsg(func +" C playerRating == " +playerOverallRating);
                 break;
+                case NONE:
+                break;
 //                exit(0);
             }
         }

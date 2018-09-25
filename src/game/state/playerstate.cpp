@@ -553,13 +553,13 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
         switch (courtPositionChangedType)
         {
             case STARTCHANGE:
-/*                logMsg(func + " STARTCHANGE");              
-                logMsg(func +" Node Position == " +convert->toString(entity->getNode()->getPosition()));
-                logMsg(func +" Node Scale == " +convert->toString(entity->getNode()->getScale()));
+///                logMsg(func + " STARTCHANGE");
+///                logMsg(func +" Node Position == " +convert->toString(entity->getNode()->getPosition()));
+///                logMsg(func +" Node Scale == " +convert->toString(entity->getNode()->getScale()));
 
-                logMsg(func +" New Court Position == " +convert->toString(newCourtPosition));
-*/
-/*                logMsg(func + " Name == " +data->getFirstName() +" " +data->getLastName());
+///                logMsg(func +" New Court Position == " +convert->toString(newCourtPosition));
+
+                logMsg(func + " Name == " +data->getFirstName() +" " +data->getLastName());
                 logMsg(func + " UC Entity Name == " +entity->getEntityName());
                 logMsg(func + "Entity UC Node Name == " +entity->getEntityNodeName());
                 logMsg(func + " UC Node Name == " +entity->getNode()->getName());
@@ -633,8 +633,8 @@ bool playerState::updateCourtPosition()  // updates the XYZ coordinates of the 3
 //        logMsg(func + " player ID " +convert->toString(data->getID()) +"change amount = " +convert->toString(posChangeAmount));
         
     }
-*/
-/*    logMsg("posChange = " +convert->toString(posChange));
+
+    logMsg("posChange = " +convert->toString(posChange));
 //  cout << "posChange = " << posChange << endl;
     entity->getNode->translate(posChange);
     btVector3 change = btVector3(0,0,0);

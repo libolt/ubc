@@ -136,7 +136,7 @@ bool setupPlayers::checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr game
             else
             {
                 logMsg(func +" Creating Team Player Instances!");
-                exit(0);
+//                exit(0);
                 playerInstance = createTeamPlayerInstances(gamePlayerInstance, ATIIT.second->getData()->getID());
                 if (playerInstance.size() > 0)
                 {

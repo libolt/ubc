@@ -135,7 +135,7 @@ ENetAddress networkEngine::getListenAddress()  // retrieves the value of listenA
 {
     return (listenAddress);
 }
-void networkEngine::setListenAddress(ENetAddress set)  // sets the value of listenAddress
+void networkEngine::setListenAddress(const ENetAddress &set)  // sets the value of listenAddress
 {
     listenAddress = set;
 }

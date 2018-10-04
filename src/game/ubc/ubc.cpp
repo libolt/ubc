@@ -63,11 +63,11 @@ UBC::~UBC()  // destructor
 }
 
 
-UBCComponentsSharedPtr UBC::getComponent()  // retrieves the value of component
+UBCComponentsSharedPtr UBC::getComponent() const  // retrieves the value of component
 {
     return (component);
 }
-void UBC::setComponent(UBCComponentsSharedPtr set)  // sets the value of component
+void UBC::setComponent(const UBCComponentsSharedPtr &set)  // sets the value of component
 {
     component = set;
 }

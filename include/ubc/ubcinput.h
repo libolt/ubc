@@ -33,17 +33,17 @@ class UBCInput
         UBCInput();  // constructor
         ~UBCInput();  // destructor
 
-        inputSharedPtr getInputInstance();  // retrieves the value of inputS
-        void setInputInstance(inputSharedPtr set);  // sets the value of inputS
+        inputSharedPtr getInputInstance() const;  // retrieves the value of inputS
+        void setInputInstance(const inputSharedPtr &set);  // sets the value of inputS
 
-        inputGamePadsSharedPtr getInputGamePad();  // retrieves the value of inputGamePad
-        void setInputGamePad(inputGamePadsSharedPtr set);  // sets the value of inputGamePad
+        inputGamePadsSharedPtr getInputGamePad() const;  // retrieves the value of inputGamePad
+        void setInputGamePad(const inputGamePadsSharedPtr &set);  // sets the value of inputGamePad
 
-        inputKeyboardsSharedPtr getInputKeyboard();  // retrieves the value of inputKeyboard
-        void setInputKeyboard(inputKeyboardsSharedPtr set);  // sets the value of inputKeyboard
+        inputKeyboardsSharedPtr getInputKeyboard() const;  // retrieves the value of inputKeyboard
+        void setInputKeyboard(const inputKeyboardsSharedPtr &set);  // sets the value of inputKeyboard
 
-        bool getSetupComplete();  // retrieves the value of setupComplete
-        void setSetupComplete(bool set);  // sets the value of setupComplete
+        bool getSetupComplete() const;  // retrieves the value of setupComplete
+        void setSetupComplete(const bool &set);  // sets the value of setupComplete
 
         void process(gameEngineSharedPtr gameE, gameComponentsSharedPtr gameComponent, gameFlagsSharedPtr gameFlag, usersMSharedPtr usersInstance, GUISystemSharedPtr gui);  // processes game input
 

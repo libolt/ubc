@@ -51,38 +51,38 @@ UBCInput::~UBCInput()  // destructor
     
 }
 
-inputSharedPtr UBCInput::getInputInstance()  // retrieves the value of inputS
+inputSharedPtr UBCInput::getInputInstance() const  // retrieves the value of inputS
 {
     return (inputInstance);
 }
-void UBCInput::setInputInstance(inputSharedPtr set)  // sets the value of inputS
+void UBCInput::setInputInstance(const inputSharedPtr &set)  // sets the value of inputS
 {
     inputInstance = set;
 }
 
-inputGamePadsSharedPtr UBCInput::getInputGamePad()  // retrieves the value of inputGamePad
+inputGamePadsSharedPtr UBCInput::getInputGamePad() const  // retrieves the value of inputGamePad
 {
     return (inputGamePad);
 }
-void UBCInput::setInputGamePad(inputGamePadsSharedPtr set)  // sets the value of inputGamePad
+void UBCInput::setInputGamePad(const inputGamePadsSharedPtr &set)  // sets the value of inputGamePad
 {
     inputGamePad = set;
 }
 
-inputKeyboardsSharedPtr UBCInput::getInputKeyboard()  // retrieves the value of inputKeyboard
+inputKeyboardsSharedPtr UBCInput::getInputKeyboard() const  // retrieves the value of inputKeyboard
 {
     return (inputKeyboard);
 }
-void UBCInput::setInputKeyboard(inputKeyboardsSharedPtr set)  // sets the value of inputKeyboard
+void UBCInput::setInputKeyboard(const inputKeyboardsSharedPtr &set)  // sets the value of inputKeyboard
 {
     inputKeyboard = set;
 }
 
-bool UBCInput::getSetupComplete()  // retrieves the value of setupComplete
+bool UBCInput::getSetupComplete() const  // retrieves the value of setupComplete
 {
     return (setupComplete);
 }
-void UBCInput::setSetupComplete(bool set)  // sets the value of setupComplete
+void UBCInput::setSetupComplete(const bool &set)  // sets the value of setupComplete
 {
     setupComplete = set;
 }

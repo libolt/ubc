@@ -30,53 +30,53 @@ class UBCGame
         UBCGame();  // constructor
         ~UBCGame();  // destructor
 
-        gameEntitySharedPtr getGameInstance();  // retrieves the value of gameS
-        void setGameInstance(gameEntitySharedPtr set);  // sets the value of gameS
+        gameEntitySharedPtr getGameInstance() const;  // retrieves the value of gameS
+        void setGameInstance(const gameEntitySharedPtr &set);  // sets the value of gameS
 
-        networkStateSharedPtr getNetworkS();  // retrieves the value of networkS
-        void setNetworkS(networkStateSharedPtr set);  // sets the value of networkS
+        networkStateSharedPtr getNetworkS() const;  // retrieves the value of networkS
+        void setNetworkS(const networkStateSharedPtr &set);  // sets the value of networkS
 
-        UBCComponentsSharedPtr getUBCComponent();  // retrieves the value of component
-        void setUBCComponent(UBCComponentsSharedPtr set);  // sets the value of component
+        UBCComponentsSharedPtr getUBCComponent() const;  // retrieves the value of component
+        void setUBCComponent(const UBCComponentsSharedPtr &set);  // sets the value of component
 
-        bool getStartActiveGame();  // retrieves the value of startActiveGame
-        void setStartActiveGame(bool set);  // sets the value of startActiveGame
+        bool getStartActiveGame() const;  // retrieves the value of startActiveGame
+        void setStartActiveGame(const bool &set);  // sets the value of startActiveGame
 
-        bool getUsersInstancesCreated();  // retrieves the value of userInstancesCreated
-        void setUsersInstancesCreated(bool set);  // sets the value of userInstancesCreated
+        bool getUsersInstancesCreated() const;  // retrieves the value of userInstancesCreated
+        void setUsersInstancesCreated(const bool &set);  // sets the value of userInstancesCreated
 
-        loadBasketballsSharedPtr getLoadBasketball();  // retrieves the value of loadBasketball
-        void setLoadBasketball(loadBasketballsSharedPtr set);  // sets the value of loadBasketball
+        loadBasketballsSharedPtr getLoadBasketball() const;  // retrieves the value of loadBasketball
+        void setLoadBasketball(const loadBasketballsSharedPtr &set);  // sets the value of loadBasketball
 
-        loadCourtsSharedPtr getLoadCourt();  // retrieves the value of loadCourt
-        void setLoadCourt(loadCourtsSharedPtr set);  // sets the value of loadCourt
+        loadCourtsSharedPtr getLoadCourt() const;  // retrieves the value of loadCourt
+        void setLoadCourt(const loadCourtsSharedPtr &set);  // sets the value of loadCourt
 
-        loadHoopsSharedPtr getLoadHoop();  // retrieves the value of loadHoop
-        void setLoadHoop(loadHoopsSharedPtr set);  // sets the value of loadHoop
+        loadHoopsSharedPtr getLoadHoop() const;  // retrieves the value of loadHoop
+        void setLoadHoop(const loadHoopsSharedPtr &set);  // sets the value of loadHoop
 
-        loadOffensePlaysSharedPtr getLoadOffensePlay();  // retrieves the value of loadOffensePlay
-        void setLoadOffensePlay(loadOffensePlaysSharedPtr set);  // sets the value of loadOffensePlay
+        loadOffensePlaysSharedPtr getLoadOffensePlay() const;  // retrieves the value of loadOffensePlay
+        void setLoadOffensePlay(const loadOffensePlaysSharedPtr &set);  // sets the value of loadOffensePlay
 
-        loadPlayersSharedPtr getLoadPlayer();  // retrieves the value of loadPlayer
-        void setLoadPlayer(loadPlayersSharedPtr set);  // sets the value of loadPlayer
+        loadPlayersSharedPtr getLoadPlayer() const;  // retrieves the value of loadPlayer
+        void setLoadPlayer(const loadPlayersSharedPtr &set);  // sets the value of loadPlayer
 
-        loadTeamsSharedPtr getLoadTeam();  // retrieves the value of loadTeam
-        void setLoadTeam(loadTeamsSharedPtr set);  // sets the value of loadTeam
+        loadTeamsSharedPtr getLoadTeam() const;  // retrieves the value of loadTeam
+        void setLoadTeam(const loadTeamsSharedPtr &set);  // sets the value of loadTeam
 
-        loadUsersInputsSharedPtr getLoadUsersInput();  // retrieves the value of loadUsersInput
-        void setLoadUsersInput(loadUsersInputsSharedPtr set);  // sets the value of loadUsersInput
+        loadUsersInputsSharedPtr getLoadUsersInput() const;  // retrieves the value of loadUsersInput
+        void setLoadUsersInput(const loadUsersInputsSharedPtr &set);  // sets the value of loadUsersInput
 
-        bool getUserInstancesInputSetup();  // retrieves the value of userInstancesInputSetup
-        void setUserInstancesInputSetup(bool set);  // sets the value of userInstancesInputSetup
+        bool getUserInstancesInputSetup() const;  // retrieves the value of userInstancesInputSetup
+        void setUserInstancesInputSetup(const bool &set);  // sets the value of userInstancesInputSetup
 
-        usersMSharedPtr getUsersInstance();  // retrieves the value of usersInstance
-        void setUsersInstance(usersMSharedPtr set);  // sets the value of usersInstance
+        usersMSharedPtr getUsersInstance() const;  // retrieves the value of usersInstance
+        void setUsersInstance(const usersMSharedPtr &set);  // sets the value of usersInstance
 
-        bool getInputSUInputSetup();  // retrieves the value of inputSUInputSetup
-        void setInputSUInputSetup(bool set);  // sets the value of inputSUInputSetup
+        bool getInputSUInputSetup() const;  // retrieves the value of inputSUInputSetup
+        void setInputSUInputSetup(const bool &set);  // sets the value of inputSUInputSetup
         
-        size_t getNumUsers();  // retrieves the value of numUsers
-        void setNumUsers(size_t set);  // sets the value of numUsers
+        size_t getNumUsers() const;  // retrieves the value of numUsers
+        void setNumUsers(const size_t &set);  // sets the value of numUsers
 
         bool setup();  // sets up a game instance
 

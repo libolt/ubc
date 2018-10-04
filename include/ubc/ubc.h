@@ -54,8 +54,8 @@ class UBC
         UBC(); // constructor
         ~UBC();	// destructor
 
-        UBCComponentsSharedPtr getComponent();  // retrieves the value of component
-        void setComponent(UBCComponentsSharedPtr set);  // sets the value of component
+        UBCComponentsSharedPtr getComponent() const;  // retrieves the value of component
+        void setComponent(const UBCComponentsSharedPtr &set);  // sets the value of component
 
         bool setup();  // sets up UBC object
 

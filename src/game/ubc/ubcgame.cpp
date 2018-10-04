@@ -69,146 +69,146 @@ UBCGame::~UBCGame()  // destructor
 
 }
 
-gameEntitySharedPtr UBCGame::getGameInstance()  // retrieves the value of gameS
+gameEntitySharedPtr UBCGame::getGameInstance() const  // retrieves the value of gameS
 {
     return (gameInstance);
 }
-void UBCGame::setGameInstance(gameEntitySharedPtr set)  // sets the value of gameS
+void UBCGame::setGameInstance(const gameEntitySharedPtr &set)  // sets the value of gameS
 {
     gameInstance = set;
 }
 
-networkStateSharedPtr UBCGame::getNetworkS()  // retrieves the value of networkS
+networkStateSharedPtr UBCGame::getNetworkS() const  // retrieves the value of networkS
 {
     return (networkS);
 }
-void UBCGame::setNetworkS(networkStateSharedPtr set)  // sets the value of networkS
+void UBCGame::setNetworkS(const networkStateSharedPtr &set)  // sets the value of networkS
 {
     networkS = set;
 }
 
-UBCComponentsSharedPtr UBCGame::getUBCComponent()  // retrieves the value of component
+UBCComponentsSharedPtr UBCGame::getUBCComponent() const  // retrieves the value of component
 {
     return (UBCComponent);
 }
-void UBCGame::setUBCComponent(UBCComponentsSharedPtr set)  // sets the value of component
+void UBCGame::setUBCComponent(const UBCComponentsSharedPtr &set)  // sets the value of component
 {
     UBCComponent = set;
 }
 
-bool UBCGame::getStartActiveGame()  // retrieves the value of startActiveGame
+bool UBCGame::getStartActiveGame() const  // retrieves the value of startActiveGame
 {
     return (startActiveGame);
 }
-void UBCGame::setStartActiveGame(bool set)  // sets the value of startActiveGame
+void UBCGame::setStartActiveGame(const bool &set)  // sets the value of startActiveGame
 {
     startActiveGame = set;
 }
 
-bool UBCGame::getUsersInstancesCreated()  // retrieves the value of userInstancesCreated
+bool UBCGame::getUsersInstancesCreated() const  // retrieves the value of userInstancesCreated
 {
     return (userInstancesCreated);
 }
-void UBCGame::setUsersInstancesCreated(bool set)  // sets the value of userInstancesCreated
+void UBCGame::setUsersInstancesCreated(const bool &set)  // sets the value of userInstancesCreated
 {
     userInstancesCreated = set;
 }
 
-bool UBCGame::getUserInstancesInputSetup()  // retrieves the value of userInstancesInputSetup
+bool UBCGame::getUserInstancesInputSetup() const  // retrieves the value of userInstancesInputSetup
 {
     return (userInstancesInputSetup);
 }
-void UBCGame::setUserInstancesInputSetup(bool set)  // sets the value of userInstancesInputSetup
+void UBCGame::setUserInstancesInputSetup(const bool &set)  // sets the value of userInstancesInputSetup
 {
     userInstancesInputSetup = set;
 }
 
-loadBasketballsSharedPtr UBCGame::getLoadBasketball()  // retrieves the value of loadBasketball
+loadBasketballsSharedPtr UBCGame::getLoadBasketball() const  // retrieves the value of loadBasketball
 {
     return(loadBasketball);
 }
-void UBCGame::setLoadBasketball(loadBasketballsSharedPtr set)  // sets the value of loadBasketball
+void UBCGame::setLoadBasketball(const loadBasketballsSharedPtr &set)  // sets the value of loadBasketball
 {
     loadBasketball = set;
 }
 
-loadCourtsSharedPtr UBCGame::getLoadCourt()  // retrieves the value of loadCourt
+loadCourtsSharedPtr UBCGame::getLoadCourt() const  // retrieves the value of loadCourt
 {
     return (loadCourt);
 }
-void UBCGame::setLoadCourt(loadCourtsSharedPtr set)  // sets the value of loadCourt
+void UBCGame::setLoadCourt(const loadCourtsSharedPtr &set)  // sets the value of loadCourt
 {
     loadCourt = set;
 }
 
-loadHoopsSharedPtr UBCGame::getLoadHoop()  // retrieves the value of loadHoop
+loadHoopsSharedPtr UBCGame::getLoadHoop() const  // retrieves the value of loadHoop
 {
     return (loadHoop);
 }
-void UBCGame::setLoadHoop(loadHoopsSharedPtr set)  // sets the value of loadHoop
+void UBCGame::setLoadHoop(const loadHoopsSharedPtr &set)  // sets the value of loadHoop
 {
     loadHoop = set;
 }
 
-loadOffensePlaysSharedPtr UBCGame::getLoadOffensePlay()  // retrieves the value of loadOffensePlay
+loadOffensePlaysSharedPtr UBCGame::getLoadOffensePlay() const  // retrieves the value of loadOffensePlay
 {
     return (loadOffensePlay);
 }
-void UBCGame::setLoadOffensePlay(loadOffensePlaysSharedPtr set)  // sets the value of loadOffensePlay
+void UBCGame::setLoadOffensePlay(const loadOffensePlaysSharedPtr &set)  // sets the value of loadOffensePlay
 {
     loadOffensePlay = set;
 }
 
-loadPlayersSharedPtr UBCGame::getLoadPlayer()  // retrieves the value of loadPlayer
+loadPlayersSharedPtr UBCGame::getLoadPlayer() const  // retrieves the value of loadPlayer
 {
     return (loadPlayer);
 }
-void UBCGame::setLoadPlayer(loadPlayersSharedPtr set)  // sets the value of loadPlayer
+void UBCGame::setLoadPlayer(const loadPlayersSharedPtr &set)  // sets the value of loadPlayer
 {
     loadPlayer = set;
 }
 
-loadTeamsSharedPtr UBCGame::getLoadTeam()  // retrieves the value of loadTeam
+loadTeamsSharedPtr UBCGame::getLoadTeam() const  // retrieves the value of loadTeam
 {
     return (loadTeam);
 }
-void UBCGame::setLoadTeam(loadTeamsSharedPtr set)  // sets the value of loadTeam
+void UBCGame::setLoadTeam(const loadTeamsSharedPtr &set)  // sets the value of loadTeam
 {
     loadTeam = set;
 }
 
-loadUsersInputsSharedPtr UBCGame::getLoadUsersInput()  // retrieves the value of loadUsersInput
+loadUsersInputsSharedPtr UBCGame::getLoadUsersInput() const  // retrieves the value of loadUsersInput
 {
     return (loadUsersInput);
 }
-void UBCGame::setLoadUsersInput(loadUsersInputsSharedPtr set)  // sets the value of loadUsersInput
+void UBCGame::setLoadUsersInput(const loadUsersInputsSharedPtr &set)  // sets the value of loadUsersInput
 {
     loadUsersInput = set;
 }
 
-usersMSharedPtr UBCGame::getUsersInstance()  // retrieves the value of usersInstance
+usersMSharedPtr UBCGame::getUsersInstance() const  // retrieves the value of usersInstance
 {
     return (usersInstance);
 }
-void UBCGame::setUsersInstance(usersMSharedPtr set)  // sets the value of usersInstance
+void UBCGame::setUsersInstance(const usersMSharedPtr &set)  // sets the value of usersInstance
 {
     usersInstance = set;
 }
 
-bool UBCGame::getInputSUInputSetup()  // retrieves the value of inputSUInputSetup
+bool UBCGame::getInputSUInputSetup() const  // retrieves the value of inputSUInputSetup
 {
     return (inputSUInputSetup);
 }
-void UBCGame::setInputSUInputSetup(bool set)  // sets the value of inputSUInputSetup
+void UBCGame::setInputSUInputSetup(const bool &set)  // sets the value of inputSUInputSetup
 {
     inputSUInputSetup = set;
 }
 
-size_t UBCGame::getNumUsers()  // retrieves the value of numUsers
+size_t UBCGame::getNumUsers() const  // retrieves the value of numUsers
 {
     return (numUsers);
 }
-void UBCGame::setNumUsers(size_t set)  // sets the value of numUsers
+void UBCGame::setNumUsers(const size_t &set)  // sets the value of numUsers
 {
     numUsers = set;
 }

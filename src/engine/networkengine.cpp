@@ -51,7 +51,7 @@ teamTypes networkEngine::getTeamType()  // retrieves the value of teamType
 {
     return (teamType);
 }
-void networkEngine::setTeamType(teamTypes set)  // sets the value of teamType
+void networkEngine::setTeamType(const teamTypes &set)  // sets the value of teamType
 {
     teamType = set;
 }
@@ -60,7 +60,7 @@ bool networkEngine::getIsClient()  // retrieves the value of isClient
 {
     return (isClient);
 }
-void networkEngine::setIsClient(bool set)  // sets the value of isClient
+void networkEngine::setIsClient(const bool &set)  // sets the value of isClient
 {
     isClient = set;
 }
@@ -69,7 +69,7 @@ bool networkEngine::getIsServer()  // retrieves the value of isServer
 {
     return (isServer);
 }
-void networkEngine::setIsServer(bool set)  // sets the value of the isServer 
+void networkEngine::setIsServer(const bool &set)  // sets the value of the isServer
 {
     isServer = set;
 }
@@ -79,7 +79,7 @@ bool networkEngine::getClientEstablishedConnection()  // retrieves the value of 
     return (clientEstablishedConnection);
 }
 
-void networkEngine::setClientEstablishedConnection(bool set)  // sets the value of clientEstablishedConnection
+void networkEngine::setClientEstablishedConnection(const bool &set)  // sets the value of clientEstablishedConnection
 {
     clientEstablishedConnection = set;
 }
@@ -89,7 +89,7 @@ bool networkEngine::getServerReceivedConnection()  // retrieves the value of ser
     return (serverReceivedConnection);
 }
 
-void networkEngine::setServerReceivedConnection(bool set)  // sets the value of serverReceivedConnection
+void networkEngine::setServerReceivedConnection(const bool &set)  // sets the value of serverReceivedConnection
 {
     serverReceivedConnection = set;
 }
@@ -98,7 +98,7 @@ int networkEngine::getClientID()  // retrieves the value of clientID
     return (clientID);
 }
 
-void networkEngine::setClientID(int set)  // sets the value of clientID
+void networkEngine::setClientID(const int &set)  // sets the value of clientID
 {
     clientID = set;
 }
@@ -108,7 +108,7 @@ std::string networkEngine::getIPAddress()  // retrieves ipAddress string
     return(ipAddress);
 }
 
-void networkEngine::setIPAddress(std::string set)  // sets ipAddress string
+void networkEngine::setIPAddress(const std::string &set)  // sets ipAddress string
 {
     ipAddress = set;
 }
@@ -117,7 +117,7 @@ std::string networkEngine::getReceivedData()  // retrieves receivedData variable
 {
     return (receivedData);
 }
-void networkEngine::setReceivedData(std::string set)  // sets receivedData variable
+void networkEngine::setReceivedData(const std::string &set)  // sets receivedData variable
 {
     receivedData = set;
 }
@@ -145,7 +145,7 @@ ENetAddress networkEngine::getServerAddress()  // retrieves the value of serverA
     return (serverAddress);
 }
 
-void networkEngine::setServerAddress(ENetAddress set)  // sets the value of serverAddress
+void networkEngine::setServerAddress(const ENetAddress &set)  // sets the value of serverAddress
 {
     serverAddress = set;
 }
@@ -154,7 +154,7 @@ sharedPtr<ENetHost> networkEngine::getClient()  // retrieves the value of client
 {
     return (client);
 }
-void networkEngine::setClient(sharedPtr<ENetHost> set)  // sets the value of client
+void networkEngine::setClient(const ENetHostSharedPtr &set)  // sets the value of client
 {
     client = set;
 }
@@ -163,7 +163,7 @@ ENetEvent networkEngine::getEvent()  // retrieves the value of event
 {
     return (event);
 }
-void networkEngine::setEvent(ENetEvent set)  // sets the value of event
+void networkEngine::setEvent(const ENetEvent &set)  // sets the value of event
 {
     event = set;
 }
@@ -172,7 +172,7 @@ ENetPeerSharedPtr networkEngine::getPeer()  // retrieves the value of peer
 {
     return (peer);
 }
-void networkEngine::setPeer(ENetPeerSharedPtr set)  // sets the value of peer
+void networkEngine::setPeer(const ENetPeerSharedPtr &set)  // sets the value of peer
 {
     peer = set;
 }
@@ -181,7 +181,7 @@ sharedPtr<ENetHost> networkEngine::getServer()  // retrieves the value of server
 {
     return (server);
 }
-void networkEngine::setServer(sharedPtr<ENetHost> set)  // sets the value of server
+void networkEngine::setServer(const ENetHostSharedPtr &set)  // sets the value of server
 {
     server = set;
 }
@@ -211,13 +211,13 @@ bool networkEngine::clientConnect()  // performs a client connection to the serv
 //                                   0  /* 56K modem with 56 Kbps downstream bandwidth */,
 //                                   0  /* 56K modem with 14 Kbps upstream bandwidth */);
 
-        ENetHost *tempClient = enet_host_create (NULL  /* create a client host */,
+        ENetHost *tempClient = enet_host_create (nullptr  /* create a client host */,
                                                           4  /* only allow 1 outgoing connection */,
                                                           2  /* allow up to 2 channels to be used, 0 and 1*/,
                                                           0  /* 56K modem with 56 Kbps downstream bandwidth */,
                                                           0  /* 56K modem with 14 Kbps upstream bandwidth */);
         client = sharedPtr<ENetHost>(tempClient);
-        if (client.get() == NULL)
+        if (client.get() == nullptr)
         {
             logMsg("An error occurred while trying to create an ENet client host.");
             exit (EXIT_FAILURE);
@@ -236,7 +236,7 @@ bool networkEngine::clientConnect()  // performs a client connection to the serv
 //        peer = enet_host_connect (client.get(), & serverAddress, 2, 0);
         ENetPeer *tempPeer = enet_host_connect (client.get(), & serverAddress, 2, 0);
         peer = ENetPeerSharedPtr(tempPeer);
-        if (peer == NULL)
+        if (peer == nullptr)
         {
             logMsg("No available peers for initiating an ENet connection.");
             exit (EXIT_FAILURE);
@@ -353,7 +353,7 @@ bool networkEngine::serverSetup()  // sets up the network server
                                              0  /* assume any amount of incoming bandwidth */,
                                              0  /* assume any amount of outgoing bandwidth */);
     server = sharedPtr<ENetHost>(tempServer);
-    if (server == NULL)
+    if (server == nullptr)
     {
         logMsg("An error occurred while trying to create an ENet server host.");
         exit (EXIT_FAILURE);
@@ -440,7 +440,7 @@ void networkEngine::networkServer()  // executes the network server code
 /// FIXME! need to migrate this function to a new network state class
 
 
-void networkEngine::sendPacket(std::string packetData)  // sends a packet to remote system
+void networkEngine::sendPacket(const std::string &packetData)  // sends a packet to remote system
 {
     conversionSharedPtr convert;
 //    sharedPtr<gameEngine> gameE = gameEngine::Instance();

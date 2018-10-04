@@ -57,49 +57,49 @@ class networkEngine : public engine
     ~networkEngine();  // destructor
 
     teamTypes getTeamType();  // retrieves the value of teamType
-    void setTeamType(teamTypes set);  // sets the value of teamType
+    void setTeamType(const teamTypes &set);  // sets the value of teamType
     
     bool getIsClient();	 // retrieves the value of isClient 
-    void setIsClient(bool set);  // sets the value of isClient 
+    void setIsClient(const bool &set);  // sets the value of isClient
 
     bool getIsServer();	// retrieves the value of isServer 
-    void setIsServer(bool set);	// sets the value of isServer 
+    void setIsServer(const bool &set);	// sets the value of isServer
 
     bool getClientEstablishedConnection();  // retrieves the value of clientEstablishedConnection 
-    void setClientEstablishedConnection(bool set);  // sets the value of clientEstablishedConnection 
+    void setClientEstablishedConnection(const bool &set);  // sets the value of clientEstablishedConnection
 
     bool getServerReceivedConnection();	 // retrieves the value of serverReceivedConnection 
-    void setServerReceivedConnection(bool set);	  // sets the value of serverReceivedConnection
+    void setServerReceivedConnection(const bool &set);	  // sets the value of serverReceivedConnection
 
     bool getPacketReceived();  // retrieves the value of packetReceived
     void setPacketReceived(bool set);  // sets the value of packetReceived 
 
     int getClientID();	// retrieves the value of clientID 
-    void setClientID(int set);  // sets the value of clientID 
+    void setClientID(const int &set);  // sets the value of clientID
 
     std::string getIPAddress();	// retrieves the value of ipAddress 
-    void setIPAddress(std::string set);	 // sets the value of ipAddress 
+    void setIPAddress(const std::string &set);	 // sets the value of ipAddress
 
     std::string getReceivedData();  // retrieves the value of receivedData
-    void setReceivedData(std::string set);  // sets the value of receivedData
+    void setReceivedData(const std::string &set);  // sets the value of receivedData
 
     ENetAddress getListenAddress();  // retrieves the value of  listenAddress 
-    void setListenAddress(ENetAddress set);  // sets the value of listenAddress 
+    void setListenAddress(const ENetAddress &set);  // sets the value of listenAddress
 
     ENetAddress getServerAddress();  // retrieves the value of serverAddress 
-    void setServerAddress(ENetAddress set);  // sets the value of serverAddress 
+    void setServerAddress(const ENetAddress &set);  // sets the value of serverAddress
 
     ENetHostSharedPtr getClient();  // retrieves the value of client
-    void setClient(ENetHostSharedPtr set);  // sets the value of client
+    void setClient(const ENetHostSharedPtr &set);  // sets the value of client
 
     ENetEvent getEvent();  // retrieves the value of event 
-    void setEvent(ENetEvent set);  // sets event 
+    void setEvent(const ENetEvent &set);  // sets event
 
     ENetPeerSharedPtr getPeer();  // retrieves the value of peer
-    void setPeer(ENetPeerSharedPtr set);  // sets the value of peer
+    void setPeer(const ENetPeerSharedPtr &set);  // sets the value of peer
 
     ENetHostSharedPtr getServer();  // retrieves the value of server
-    void setServer(ENetHostSharedPtr set);  // sets the value of server
+    void setServer(const ENetHostSharedPtr &set);  // sets the value of server
 
     int initialize();  // initialize networkEngine code
     bool clientConnect();  // setup client connection.
@@ -108,7 +108,7 @@ class networkEngine : public engine
     bool serverSetup();	 // setup server.
     void networkServer();  // Server code
 
-    void sendPacket(std::string packetData);  // sends a packet to the peer
+    void sendPacket(const std::string &packetData);  // sends a packet to the peer
 
     protected:
 //    networkEngine();

@@ -49,7 +49,7 @@ gameEngine::gameEngine()  // constructor
  // playerNode[0](0)
 {
 
-//    yOffset = 0.0;
+    yOffset = 0.0;
 
     userInputLoaded = false;
     menuActive = false;
@@ -173,7 +173,7 @@ renderEngineSharedPtr gameEngine::getRenderE()  // retrieves the value of render
 }
 void gameEngine::setRenderE(renderEngineSharedPtr set)  // sets the value of renderE
 {
-//    renderE = set;
+    renderE = set;
 }
 inputEngineSharedPtr gameEngine::getInputE()  // retrieves the value of inputE
 {

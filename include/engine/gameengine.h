@@ -51,55 +51,51 @@ public:
     gameEngine();  // constructor
     ~gameEngine();  // destructor
     
-    //static gameEngine *Instance();
-//    static sharedPtr<gameEngine> Instance();
+    timing getTimer() const;  // retrieves the value of timer
+    void setTimer(const timing &set);  // sets the value of timer
     
-    timing getTimer();  // retrieves the value of timer
-    void setTimer(timing set);  // sets the value of timer
-    
-    bool getMenuActive();  // retrieves the value of menuActive
-    void setMenuActive(bool set);  // sets the value of menuActive 
+    bool getMenuActive() const;  // retrieves the value of menuActive
+    void setMenuActive(const bool &set);  // sets the value of menuActive 
 
         
-    bool getQuitGame();  // retrieves the value of quitGame
-    void setQuitGame(bool set);  // sets the value of quitGame
+    bool getQuitGame() const;  // retrieves the value of quitGame
+    void setQuitGame(const bool &set);  // sets the value of quitGame
 
-    bool getServerRunning();  // retrieves the value of serverRunning 
-    void setServerRunning(bool set);  // the value of sets serverRunning 
+    bool getServerRunning() const;  // retrieves the value of serverRunning 
+    void setServerRunning(const bool &set);  // the value of sets serverRunning 
 
-    bool getClientRunning();  // retrieves the value of clientRunning 
-    void setClientRunning(bool set);  // sets the value of clientRunning 
+    bool getClientRunning() const ;  // retrieves the value of clientRunning 
+    void setClientRunning(const bool &set);  // sets the value of clientRunning 
 
-    bool getCreateScene();  // retrieves the value of createScene 
-    void setCreateScene(bool set);  // sets the value of createScene 
+    bool getCreateScene() const;  // retrieves the value of createScene 
+    void setCreateScene(const bool &set);  // sets the value of createScene 
 
-    bool getSceneCreated();  // retrieves the value of sceneCreated
-    void setSceneCreated(bool set);  // sets the value of sceneCreated 
+    bool getSceneCreated() const ;  // retrieves the value of sceneCreated
+    void setSceneCreated(const bool &set);  // sets the value of sceneCreated 
 
-    bool getRenderScene();  // retrieves the value of renderScene 
-    void setRenderScene(bool set);  // sets the value of renderScene 
+    bool getRenderScene() const ;  // retrieves the value of renderScene 
+    void setRenderScene(const bool &set);  // sets the value of renderScene 
 
-    bool getMovePlayer();  // retrieves the value of movePlayer 
-    void setMovePlayer(bool set);  // sets the value of movePlayer 
+    bool getMovePlayer() const;  // retrieves the value of movePlayer 
+    void setMovePlayer(const bool &set);  // sets the value of movePlayer 
 
-    bool getStart();  // retrieves the value of start
-    void setStart(bool set);  // sets the value of start
+    bool getStart() const;  // retrieves the value of start
+    void setStart(const bool &set);  // sets the value of start
 
-    float getYOffset();  // retrieves the value of yOffset
-    void setYOffset(float set);  // sets the value of yOffset
-
+    float getYOffset() const;  // retrieves the value of yOffset
+    void setYOffset(const float &set);  // sets the value of yOffset
     
-    renderEngineSharedPtr getRenderE();  // retrieves the value of renderE
-    void setRenderE(renderEngineSharedPtr set);  // sets the value of renderE
+    renderEngineSharedPtr getRenderE() const;  // retrieves the value of renderE
+    void setRenderE(const renderEngineSharedPtr &set);  // sets the value of renderE
     
-    inputEngineSharedPtr getInputE();  // retrieves the value of inputE
-    void setInputE(inputEngineSharedPtr set);  // sets the value of inputE
+    inputEngineSharedPtr getInputE() const;  // retrieves the value of inputE
+    void setInputE(const inputEngineSharedPtr &set);  // sets the value of inputE
     
-    networkEngineSharedPtr getNetworkE();  // retrieves the value of networkE
-    void setNetworkE(networkEngineSharedPtr set);  // sets the value of networkE
+    networkEngineSharedPtr getNetworkE() const;  // retrieves the value of networkE
+    void setNetworkE(const networkEngineSharedPtr &set);  // sets the value of networkE
     
-    physicsEngineSharedPtr getPhysE();  // retrieves the value of physE
-    void setPhysE(physicsEngineSharedPtr set);  // sets the value of physE
+    physicsEngineSharedPtr getPhysE() const;  // retrieves the value of physE
+    void setPhysE(const physicsEngineSharedPtr &set);  // sets the value of physE
 
     bool setup();  // sets up the engine state
     bool startGame();  // starts a game
@@ -110,15 +106,8 @@ public:
 
 //    void processInput();  // processes game input
 	
-protected:
-/*    gameEngine();
-    gameEngine(const gameEngine&);
-    gameEngine& operator= (const gameEngine&);
-*/
-private:
 
-    //static gameEngine *pInstance;
-//    static sharedPtr<gameEngine> pInstance;
+private:
 
     renderEngineSharedPtr renderE;  // render object
     inputEngineSharedPtr inputE;  // input object

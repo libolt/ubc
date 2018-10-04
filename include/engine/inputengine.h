@@ -61,47 +61,47 @@ public:
 /*    sharedPtr<GUISystem> getGui();  // retrieves the value of gui
     void setGui(sharedPtr<GUISystem> set);  // sets the value of gui
 */
-    bool getKeyInputReceived();  // retrieves the value of keyInputReceived
-    void setKeyInputReceived(bool set);  // sets the value of keyInputReceived
+    bool getKeyInputReceived() const;  // retrieves the value of keyInputReceived
+    void setKeyInputReceived(const bool &set);  // sets the value of keyInputReceived
 
-    SDL_Event getInputEvent();  // retrieves the value of inputEvent 
-    void setInputEvent(SDL_Event set);  // sets the value of inputEvent 
+    SDL_Event getInputEvent() const;  // retrieves the value of inputEvent 
+    void setInputEvent(const SDL_Event &set);  // sets the value of inputEvent 
 
-    inputKeyMaps getKeyPressed();  // retrieves the value of keyPressed pressed 
-    void setKeyPressed(inputKeyMaps set);  // sets the value of keyPressed 
+    inputKeyMaps getKeyPressed() const;  // retrieves the value of keyPressed pressed 
+    void setKeyPressed(const inputKeyMaps &set);  // sets the value of keyPressed 
 
-    std::string getInputText();  // retrieves the value of inputText
-    void setInputText(std::string set);
+    std::string getInputText() const;  // retrieves the value of inputText
+    void setInputText(const std::string &set);
     
-    inputTypes getInputType();  // retrieve the value of inputType
-    void setInputType(inputTypes set);  // sets the value of inputType
+    inputTypes getInputType() const;  // retrieve the value of inputType
+    void setInputType(const inputTypes &set);  // sets the value of inputType
     
-    bool getInputProcessed();  // retrieves the value of inputProcessed
-    void setInputProcessed(bool set);  // sets the value of inputProcessed
+    bool getInputProcessed() const;  // retrieves the value of inputProcessed
+    void setInputProcessed(const bool &set);  // sets the value of inputProcessed
     
 //    inputMaps getInputMap();  // retrieves the value of inputMap 
 //    void setInputMap(inputMaps set);  // sets the value of inputMap 
 
-    inputKeyWorkQueues getInputKeyWorkQueue();  // retrieves the value of inputKeyWorkQueue
-    void setInputKeyWorkQueue(inputKeyWorkQueues set);  // sets the value of inputKeyWorkQueue
+    inputKeyWorkQueues getInputKeyWorkQueue() const;  // retrieves the value of inputKeyWorkQueue
+    void setInputKeyWorkQueue(const inputKeyWorkQueues &set);  // sets the value of inputKeyWorkQueue
 
-    inputGamePadWorkQueues getInputGamePadWorkQueue();  // retrieves the value of inputGamePadWorkQueue
-    void setInputGamePadWorkQueue(inputGamePadWorkQueues set);  // sets the value of inputGamePadWorkQueue
+    inputGamePadWorkQueues getInputGamePadWorkQueue() const;  // retrieves the value of inputGamePadWorkQueue
+    void setInputGamePadWorkQueue(const inputGamePadWorkQueues &set);  // sets the value of inputGamePadWorkQueue
 
-    inputTypeQueues getInputTypeQueue();  // retrieves the value of inputTypeQueue
-    void setInputTypeQueue(inputTypeQueues set);  // sets the value of inputTypeQueue
+    inputTypeQueues getInputTypeQueue() const;  // retrieves the value of inputTypeQueue
+    void setInputTypeQueue(const inputTypeQueues &set);  // sets the value of inputTypeQueue
         
-    float getMouseX();  // retrieves the value of mouseX
-    void setMouseX(float set);  // sets the value of mouseX
+    float getMouseX() const;  // retrieves the value of mouseX
+    void setMouseX(const float &set);  // sets the value of mouseX
     
-    float getMouseY();  // retrieves the value of mouseY
-    void setMouseY(float set);  // sets the value of mouseY
+    float getMouseY() const;  // retrieves the value of mouseY
+    void setMouseY(const float &set);  // sets the value of mouseY
 
-    mouseClicks getMouseClick();  // retrieves the value of mouseClick
-    void setMouseClicks(mouseClicks set);  // sets the value of mouseClicks
+    mouseClicks getMouseClick() const;  // retrieves the value of mouseClick
+    void setMouseClicks(const mouseClicks &set);  // sets the value of mouseClicks
     
-    bool getMouseClicked();  // retrieves the value of mouseClicked
-    void setMouseClicked(bool set);  // sets the value of mouseClicked
+    bool getMouseClicked() const;  // retrieves the value of mouseClicked
+    void setMouseClicked(const bool &set);  // sets the value of mouseClicked
     
     bool setup();   // sets up and initializes the  Input System
     bool destroy(); // destroys the Input system and related objects

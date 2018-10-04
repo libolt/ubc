@@ -28,11 +28,11 @@ class engine
     engine();  // constructor
     ~engine();  // destructor
 
-    float getWindowWidth();  // retrieves the value of windowWidth
-    void setWindowWidth(float set);  // sets the value of windowWidth
+    float getWindowWidth() const;  // retrieves the value of windowWidth
+    void setWindowWidth(const float &set);  // sets the value of windowWidth
     
-    float getWindowHeight();  // retrieves the value of windowHeight
-    void setWindowHeight(float set);  // sets the value of windowHeight
+    float getWindowHeight() const;  // retrieves the value of windowHeight
+    void setWindowHeight(const float &set);  // sets the value of windowHeight
    
     private:
     

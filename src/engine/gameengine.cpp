@@ -68,136 +68,136 @@ gameEngine::~gameEngine()  // destructor
 {
 }
 
-timing gameEngine::getTimer()  // retrieves the value of timer
+timing gameEngine::getTimer() const  // retrieves the value of timer
 {
     return (timer);
 }
-void gameEngine::setTimer(timing set)  // sets the value of timer
+void gameEngine::setTimer(const timing &set)  // sets the value of timer
 {
     timer = set;
 }
 
-bool gameEngine::getMenuActive()   // retrieves the value of menuActive
+bool gameEngine::getMenuActive() const  // retrieves the value of menuActive
 {
     return(menuActive);
 }
-void gameEngine::setMenuActive(bool set)  // sets the value of menuActive
+void gameEngine::setMenuActive(const bool &set)  // sets the value of menuActive
 {
  
     menuActive = set;
 }
 
-bool gameEngine::getStart()  // retrieves the value of start
+bool gameEngine::getStart() const  // retrieves the value of start
 {
     return (start);
 }
-void gameEngine::setStart(bool set)  // sets the value of start
+void gameEngine::setStart(const bool &set)  // sets the value of start
 {
     start = set;
 }
 
-bool gameEngine::getQuitGame()  // retrieves the value of quitGame
+bool gameEngine::getQuitGame() const  // retrieves the value of quitGame
 {
     return(quitGame);
 }
-void gameEngine::setQuitGame(bool set)  // sets the value of quitGame
+void gameEngine::setQuitGame(const bool &set)  // sets the value of quitGame
 {
     quitGame = set;
 }
 
-bool gameEngine::getServerRunning()  // retrieves the value of serverRunning
+bool gameEngine::getServerRunning() const  // retrieves the value of serverRunning
 {
 	return (serverRunning);
 }
-void gameEngine::setServerRunning(bool set)  // sets the value of serverRunning
+void gameEngine::setServerRunning(const bool &set)  // sets the value of serverRunning
 {
 	serverRunning = set;
 }
 
-bool gameEngine::getClientRunning()  // retrieves the value of clientRunning
+bool gameEngine::getClientRunning() const  // retrieves the value of clientRunning
 {
 	return (clientRunning);
 }
-void gameEngine::setClientRunning(bool set)  // sets the value of clientRunning
+void gameEngine::setClientRunning(const bool &set)  // sets the value of clientRunning
 {
 	clientRunning = set;
 }
 
-bool gameEngine::getCreateScene()  // retrieves the value of createScene
+bool gameEngine::getCreateScene() const  // retrieves the value of createScene
 {
 	return (createScene);
 }
-void gameEngine::setCreateScene(bool set)  // sets the value of createScene
+void gameEngine::setCreateScene(const bool &set)  // sets the value of createScene
 {
 	createScene = set;
 }
 
-bool gameEngine::getSceneCreated()  // retrieves the value of sceneCreated
+bool gameEngine::getSceneCreated() const  // retrieves the value of sceneCreated
 {
 	return (sceneCreated);
 }
-void gameEngine::setSceneCreated(bool set)  // sets the value of sceneCreated
+void gameEngine::setSceneCreated(const bool &set)  // sets the value of sceneCreated
 {
 	sceneCreated = set;
 }
-bool gameEngine::getRenderScene()  // retrieves the value of renderScene
+bool gameEngine::getRenderScene() const  // retrieves the value of renderScene
 {
 	return (renderScene);
 }
-void gameEngine::setRenderScene(bool set)  // sets the value of renderScene
+void gameEngine::setRenderScene(const bool &set)  // sets the value of renderScene
 {
 	renderScene = set;
 }
 
-bool gameEngine::getMovePlayer()  // retrieves the value of moviePlayer
+bool gameEngine::getMovePlayer() const  // retrieves the value of moviePlayer
 {
 	return (movePlayer);
 }
-void gameEngine::setMovePlayer(bool set)  // sets the value of moviePlayer
+void gameEngine::setMovePlayer(const bool &set)  // sets the value of moviePlayer
 {
 	movePlayer = set;
 }
 
-float gameEngine::getYOffset()  // returns the value of yOffset
+float gameEngine::getYOffset() const  // returns the value of yOffset
 {
     return (yOffset);
 }
-void gameEngine::setYOffset(float set)  // sets the value of yOffset
+void gameEngine::setYOffset(const float &set)  // sets the value of yOffset
 {
     yOffset = set;
 }
 
-renderEngineSharedPtr gameEngine::getRenderE()  // retrieves the value of renderE
+renderEngineSharedPtr gameEngine::getRenderE() const  // retrieves the value of renderE
 {
     return (renderE);
 }
-void gameEngine::setRenderE(renderEngineSharedPtr set)  // sets the value of renderE
+void gameEngine::setRenderE(const renderEngineSharedPtr &set)  // sets the value of renderE
 {
     renderE = set;
 }
-inputEngineSharedPtr gameEngine::getInputE()  // retrieves the value of inputE
+inputEngineSharedPtr gameEngine::getInputE() const  // retrieves the value of inputE
 {
     return (inputE);
 }
-void gameEngine::setInputE(inputEngineSharedPtr set)  // sets the value of inputE
+void gameEngine::setInputE(const inputEngineSharedPtr &set)  // sets the value of inputE
 {
     inputE = set;
 }
 
-networkEngineSharedPtr gameEngine::getNetworkE()  // retrieves the value of networkE
+networkEngineSharedPtr gameEngine::getNetworkE() const  // retrieves the value of networkE
 {
     return (networkE);
 }
-void gameEngine::setNetworkE(networkEngineSharedPtr set)  // sets the value of networkE
+void gameEngine::setNetworkE(const networkEngineSharedPtr &set)  // sets the value of networkE
 {
     networkE = set;
 }
 
-physicsEngineSharedPtr gameEngine::getPhysE()  // retrieves the value of physE
+physicsEngineSharedPtr gameEngine::getPhysE() const  // retrieves the value of physE
 {
     return (physE);
 }
-void gameEngine::setPhysE(physicsEngineSharedPtr set)  // sets the value of physE
+void gameEngine::setPhysE(const physicsEngineSharedPtr &set)  // sets the value of physE
 {
     physE = set;
 }

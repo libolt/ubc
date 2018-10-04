@@ -75,56 +75,56 @@ inputEngine::~inputEngine()  // destructor
 {
 }
 
-bool inputEngine::getKeyInputReceived()  // retrieves the value of keyInputReceived
+bool inputEngine::getKeyInputReceived() const  // retrieves the value of keyInputReceived
 {
     return (keyInputReceived);
 }
-void inputEngine::setKeyInputReceived(bool set)  // sets the value of keyInputReceived
+void inputEngine::setKeyInputReceived(const bool &set)  // sets the value of keyInputReceived
 {
    keyInputReceived = set;
 }
  
-SDL_Event inputEngine::getInputEvent()  // retrieves the value of inputEvent
+SDL_Event inputEngine::getInputEvent() const  // retrieves the value of inputEvent
 {
     return (inputEvent);
 }
-void inputEngine::setInputEvent(SDL_Event set)  // sets the value of inputEvent
+void inputEngine::setInputEvent(const SDL_Event &set)  // sets the value of inputEvent
 {
     inputEvent = set;
 }
 
-inputKeyMaps inputEngine::getKeyPressed()  // retrieves the value of keyPressed
+inputKeyMaps inputEngine::getKeyPressed() const  // retrieves the value of keyPressed
 {
     return(keyPressed);
 }
-void inputEngine::setKeyPressed(inputKeyMaps set)
+void inputEngine::setKeyPressed(const inputKeyMaps &set)
 {
     keyPressed = set;
 }
 
-std::string inputEngine::getInputText()  // retrieves the value of inputText
+std::string inputEngine::getInputText() const  // retrieves the value of inputText
 {
     return (inputText);
 }
-void inputEngine::setInputText(std::string set)
+void inputEngine::setInputText(const std::string &set)
 {
     inputText = set;
 }
 
-inputTypes inputEngine::getInputType()  // retrieve the value of inputType
+inputTypes inputEngine::getInputType() const  // retrieve the value of inputType
 {
     return (inputType);
 }
-void inputEngine::setInputType(inputTypes set)  // sets the value of inputType
+void inputEngine::setInputType(const inputTypes &set)  // sets the value of inputType
 {
     inputType = set;
 }
 
-bool inputEngine::getInputProcessed()  // retrieves the value of inputProcessed
+bool inputEngine::getInputProcessed() const  // retrieves the value of inputProcessed
 {
     return (inputProcessed);
 }
-void inputEngine::setInputProcessed(bool set)  // sets the value of inputProcessed
+void inputEngine::setInputProcessed(const bool &set)  // sets the value of inputProcessed
 {
     inputProcessed = set;
 }
@@ -138,65 +138,65 @@ void inputEngine::setInputInGameMap(inputInGameMaps set)  // sets the value of i
     inputInGameMap = set;
 }
 */
-inputKeyWorkQueues inputEngine::getInputKeyWorkQueue()  // retrieves the value of inputKeyWorkQueue
+inputKeyWorkQueues inputEngine::getInputKeyWorkQueue() const  // retrieves the value of inputKeyWorkQueue
 {
     return (inputKeyWorkQueue);
 }
-void inputEngine::setInputKeyWorkQueue(inputKeyWorkQueues set)  // sets the value of inputWorkQueue
+void inputEngine::setInputKeyWorkQueue(const inputKeyWorkQueues &set)  // sets the value of inputWorkQueue
 {
     inputKeyWorkQueue = set;
 }
 
-inputGamePadWorkQueues inputEngine::getInputGamePadWorkQueue()  // retrieves the value of inputGamePadWorkQueue
+inputGamePadWorkQueues inputEngine::getInputGamePadWorkQueue() const  // retrieves the value of inputGamePadWorkQueue
 {
     return (inputGamePadWorkQueue);
 }
-void inputEngine::setInputGamePadWorkQueue(inputGamePadWorkQueues set)  // sets the value of inputGamePadWorkQueue
+void inputEngine::setInputGamePadWorkQueue(const inputGamePadWorkQueues &set)  // sets the value of inputGamePadWorkQueue
 {
     inputGamePadWorkQueue = set;
 }
 
-inputTypeQueues inputEngine::getInputTypeQueue()  // retrieves the value of inputTypeQueue
+inputTypeQueues inputEngine::getInputTypeQueue() const  // retrieves the value of inputTypeQueue
 {
     return (inputTypeQueue);
 }
-void inputEngine::setInputTypeQueue(inputTypeQueues set)  // sets the value of inputTypeQueue
+void inputEngine::setInputTypeQueue(const inputTypeQueues &set)  // sets the value of inputTypeQueue
 {
     inputTypeQueue = set;
 }
 
-float inputEngine::getMouseX()  // retrieves the value of mouseX
+float inputEngine::getMouseX() const  // retrieves the value of mouseX
 {
     return (mouseX);
 }
-void inputEngine::setMouseX(float set)  // sets the value of mouseX
+void inputEngine::setMouseX(const float &set)  // sets the value of mouseX
 {
     mouseX = set;
 }
 
-float inputEngine::getMouseY()  // retrieves the value of mouseY
+float inputEngine::getMouseY() const  // retrieves the value of mouseY
 {
     return (mouseY);
 }
-void inputEngine::setMouseY(float set)  // sets the value of mouseY
+void inputEngine::setMouseY(const float &set)  // sets the value of mouseY
 {
     mouseY = set;
 }
 
-mouseClicks inputEngine::getMouseClick()  // retrieves the value of mouseClick
+mouseClicks inputEngine::getMouseClick() const  // retrieves the value of mouseClick
 {
     return (mouseClick);
 }
-void inputEngine::setMouseClicks(mouseClicks set)  // sets the value of mouseClicks
+void inputEngine::setMouseClicks(const mouseClicks &set)  // sets the value of mouseClicks
 {
     mouseClick = set;
 }
 
-bool inputEngine::getMouseClicked()  // retrieves the value of mouseClicked
+bool inputEngine::getMouseClicked() const  // retrieves the value of mouseClicked
 {
     return (mouseClicked);
 }
-void inputEngine::setMouseClicked(bool set)  // sets the value of mouseClicked
+void inputEngine::setMouseClicked(const bool &set)  // sets the value of mouseClicked
 {
     mouseClicked = set;
 }

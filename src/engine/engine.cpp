@@ -34,20 +34,20 @@ engine::~engine()  // destructor
 {
 }
  
-float engine::getWindowWidth()  // retrieves the value of windowWidth
+float engine::getWindowWidth() const  // retrieves the value of windowWidth
 {
     return (windowWidth);
 }
-void engine::setWindowWidth(float set)  // sets the value of windowWidth
+void engine::setWindowWidth(const float &set)  // sets the value of windowWidth
 {
     windowWidth = set;
 }
 
-float engine::getWindowHeight()  // retrieves the value of windowHeight
+float engine::getWindowHeight() const  // retrieves the value of windowHeight
 {
     return (windowHeight);
 }
-void engine::setWindowHeight(float set)  // sets the value of windowHeight
+void engine::setWindowHeight(const float &set)  // sets the value of windowHeight
 {
     windowHeight = set;
 }

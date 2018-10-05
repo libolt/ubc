@@ -29,20 +29,20 @@ class teamComponents
         teamComponents();  // constructor
         ~teamComponents();  // destructor
 
-        playerEntityMSharedPtr getPlayerInstance();  // retrieves the value of playerInstance
-        void setPlayerInstance(playerEntityMSharedPtr set);  // sets the value of  playerInstance
+        playerEntityMSharedPtr getPlayerInstance() const;  // retrieves the value of playerInstance
+        void setPlayerInstance(const playerEntityMSharedPtr &set);  // sets the value of  playerInstance
 
-        playerEntityMSharedPtr getActivePlayerInstance();  // retrieves the value of activePlayerInstance
-        void setActivePlayerInstance(playerEntityMSharedPtr set);  // sets the value of activePlayerInstance
+        playerEntityMSharedPtr getActivePlayerInstance() const;  // retrieves the value of activePlayerInstance
+        void setActivePlayerInstance(const playerEntityMSharedPtr &set);  // sets the value of activePlayerInstance
 
-        offenseStateSharedPtr getOffenseInstance();  // retrievers the value of offenseInstance
-        void setOffenseInstance(offenseStateSharedPtr set);  // sets the value of offenseInstance
+        offenseStateSharedPtr getOffenseInstance() const;  // retrievers the value of offenseInstance
+        void setOffenseInstance(const offenseStateSharedPtr &set);  // sets the value of offenseInstance
 
-        defenseStateSharedPtr getDefenseInstance();  // retrieves the value of defenseInstance
-        void setDefenseInstance(defenseStateSharedPtr set);  // sets the value of defenseInstance
+        defenseStateSharedPtr getDefenseInstance() const;  // retrieves the value of defenseInstance
+        void setDefenseInstance(const defenseStateSharedPtr &set);  // sets the value of defenseInstance
 
-        std::unordered_map<std::string, btRigidBodySharedPtr> getCollisionBodies();  // retrieves the value of collisionBodies
-        void setCollisionBodies(std::unordered_map<std::string, btRigidBodySharedPtr> set);  // sets the value of collisionBodies
+        std::map<std::string, btRigidBodySharedPtr> getCollisionBodies() const;  // retrieves the value of collisionBodies
+        void setCollisionBodies(const std::map<std::string, btRigidBodySharedPtr> &set);  // sets the value of collisionBodies
 
     private:
     
@@ -52,7 +52,7 @@ class teamComponents
         offenseStateSharedPtr offenseInstance;  // stores the offenseState instance
         defenseStateSharedPtr defenseInstance;  // stores the defenseState instance
 
-        std::unordered_map<std::string, btRigidBodySharedPtr> collisionBodies;  // physical bodies to test for collisions with players physBody objects
+        std::map<std::string, btRigidBodySharedPtr> collisionBodies;  // physical bodies to test for collisions with players physBody objects
 
 };
 

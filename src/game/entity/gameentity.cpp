@@ -785,8 +785,8 @@ bool gameEntity::updatePlayerCollisionObjects()  // updates the player collision
             {
                 playerEntityMSharedPtr activePlayerInstance;
                 playerEntityMSharedPtr collisionPlayerInstance;
-                std::unordered_map<std::string, btRigidBodySharedPtr> activeCollisionBodies;
-                std::unordered_map<std::string, btRigidBodySharedPtr> newCollisionBodies;
+                std::map<std::string, btRigidBodySharedPtr> activeCollisionBodies;
+                std::map<std::string, btRigidBodySharedPtr> newCollisionBodies;
 //                std::unordered_map<std::string, btRigidBodySharedPtr> newCollisionBodies;
                 btRigidBodySharedPtr tempBody;
                 for (auto ATIIT : activeTeamInstance)

@@ -38,38 +38,38 @@ UBCComponents::~UBCComponents()  // destructor
 
 }
 
-gameEngineSharedPtr UBCComponents::getGameE()  // retrieves the value of gameE
+gameEngineSharedPtr UBCComponents::getGameE() const  // retrieves the value of gameE
 {
     return (gameE);
 }
-void UBCComponents::setGameE(gameEngineSharedPtr set)  // sets the value of gameE
+void UBCComponents::setGameE(const gameEngineSharedPtr &set)  // sets the value of gameE
 {
     gameE = set;
 }
 
-GUISystemSharedPtr UBCComponents::getGui()  // retrieves the value of gui
+GUISystemSharedPtr UBCComponents::getGui() const  // retrieves the value of gui
 {
     return (gui);
 }
-void UBCComponents::setGui(GUISystemSharedPtr set)  // sets the value of gui
+void UBCComponents::setGui(const GUISystemSharedPtr &set)  // sets the value of gui
 {
     gui = set;
 }
 
-UBCGameSharedPtr UBCComponents::getGame()  // retrieves the value of game
+UBCGameSharedPtr UBCComponents::getGame() const  // retrieves the value of game
 {
     return (game);
 }
-void UBCComponents::setGame(UBCGameSharedPtr set)  // sets the value of game
+void UBCComponents::setGame(const UBCGameSharedPtr &set)  // sets the value of game
 {
     game = set;
 }
 
-UBCInputSharedPtr UBCComponents::getInput()  // retrieves the value of input
+UBCInputSharedPtr UBCComponents::getInput() const // retrieves the value of input
 {
     return (input);
 }
-void UBCComponents::setInput(UBCInputSharedPtr set)  // sets the value of input
+void UBCComponents::setInput(const UBCInputSharedPtr &set)  // sets the value of input
 {
     input = set;
 }

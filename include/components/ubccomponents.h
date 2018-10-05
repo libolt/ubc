@@ -30,17 +30,17 @@ class UBCComponents
         UBCComponents();  // constructor
         ~UBCComponents();  // destructor
         
-        gameEngineSharedPtr getGameE();  // retrieves the value of gameE
-        void setGameE(gameEngineSharedPtr set);  // sets the value of gameE
+        gameEngineSharedPtr getGameE() const;  // retrieves the value of gameE
+        void setGameE(const gameEngineSharedPtr &set);  // sets the value of gameE
 
-        GUISystemSharedPtr getGui();  // retrieves the value of gui
-        void setGui(GUISystemSharedPtr set);  // sets the value of gui
+        GUISystemSharedPtr getGui() const;  // retrieves the value of gui
+        void setGui(const GUISystemSharedPtr &set);  // sets the value of gui
 
-        UBCGameSharedPtr getGame();  // retrieves the value of game
-        void setGame(UBCGameSharedPtr set);  // sets the value of game
+        UBCGameSharedPtr getGame() const;  // retrieves the value of game
+        void setGame(const UBCGameSharedPtr &set);  // sets the value of game
 
-        UBCInputSharedPtr getInput();  // retrieves the value of input
-        void setInput(UBCInputSharedPtr set);  // sets the value of input
+        UBCInputSharedPtr getInput() const;  // retrieves the value of input
+        void setInput(const UBCInputSharedPtr &set);  // sets the value of input
 
     private:
     

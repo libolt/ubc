@@ -29,18 +29,17 @@ class playerComponents
         playerComponents();  // constructor
         ~playerComponents();  // destructor
         
-        playerPhysicsSharedPtr getPhysics();  // retrieves the value of physics
-        void setPhysics(playerPhysicsSharedPtr set);  // sets the value of physics
+        playerPhysicsSharedPtr getPhysics() const;  // retrieves the value of physics
+        void setPhysics(const playerPhysicsSharedPtr &set);  // sets the value of physics
 
-        playerStateMachineSharedPtr getStateMachine();  // retrieves the value of stateMachine
-        void setStateMachine(playerStateMachineSharedPtr set);  // sets the value of stateMachine
+        playerStateMachineSharedPtr getStateMachine() const;  // retrieves the value of stateMachine
+        void setStateMachine(const playerStateMachineSharedPtr &set);  // sets the value of stateMachine
 
-        playerStatisticsSharedPtr getStatistics();  // retrieves the value of statistics
-        void setStatistics(playerStatisticsSharedPtr set);  // sets the value of statistics
+        playerStatisticsSharedPtr getStatistics() const;  // retrieves the value of statistics
+        void setStatistics(const playerStatisticsSharedPtr &set);  // sets the value of statistics
 
-        playerSteerSharedPtr getSteer();  // retrieves the value of steer
-        void setSteer(playerSteerSharedPtr set);  // sets the value of steer
-
+        playerSteerSharedPtr getSteer() const;  // retrieves the value of steer
+        void setSteer(const playerSteerSharedPtr &set);  // sets the value of steer
 
     private:
     

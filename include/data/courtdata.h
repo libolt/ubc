@@ -31,50 +31,50 @@ public:
     courtData();    // constructor
     ~courtData();   // destructor
 
-    bool getInitialized();  // retrieves the value of initialized
-    void setInitialized(bool set);  // sets the value of initialized
+    bool getInitialized() const;  // retrieves the value of initialized
+    void setInitialized(const bool &set);  // sets the value of initialized
 
-    std::string getName();  // retrieves the value of name
-    void setName(std::string set);  // sets the value of name
+    std::string getName() const;  // retrieves the value of name
+    void setName(const std::string &set);  // sets the value of name
     
-    std::string getModelFileName();  // retrieves the value of modelFileName
-    void setModelFileName(std::string set); // sets the value of modelFileName
+    std::string getModelFileName() const;  // retrieves the value of modelFileName
+    void setModelFileName(const std::string &set); // sets the value of modelFileName
 
-    Ogre::Vector2 getDimensions();  // retrieves the value of dimensions
-    void setDimensions(Ogre::Vector2 set);  // sets the value of dimensions
+    Ogre::Vector2 getDimensions() const;  // retrieves the value of dimensions
+    void setDimensions(const Ogre::Vector2 &set);  // sets the value of dimensions
     
-    Ogre::Vector2 getBoundary();  // retrieves the value of boundary
-    void setBoundary(Ogre::Vector2 set);  // sets the value of boundary
+    Ogre::Vector2 getBoundary() const;  // retrieves the value of boundary
+    void setBoundary(const Ogre::Vector2 &set);  // sets the value of boundary
     
-    Ogre::Vector2 getBoundaryPos();  // retrieves the value of boundaryPos
-    void setBoundaryPos(Ogre::Vector2 set);  // sets the value of boundaryPos
+    Ogre::Vector2 getBoundaryPos() const;  // retrieves the value of boundaryPos
+    void setBoundaryPos(const Ogre::Vector2 &set);  // sets the value of boundaryPos
 
-    float getCenterCourt();  // retrieves the value of centerCourt
-    void setCenterCourt(float set);  // sets the value of centerCourt
+    float getCenterCourt() const;  // retrieves the value of centerCourt
+    void setCenterCourt(const float &set);  // sets the value of centerCourt
     
-    float getCenterJumpRadius();  // retrieves the value of centerJumpRadius
-    void setCenterJumpRadius(float set);  // sets the value of centerJumpRadius
+    float getCenterJumpRadius() const;  // retrieves the value of centerJumpRadius
+    void setCenterJumpRadius(const float &set);  // sets the value of centerJumpRadius
     
-    Ogre::Vector2 getKeyDimensions();  // retrieves the value of keyDimensions
-    void setKeyDimensions(Ogre::Vector2 set);  // sets the value of keyDimensions
+    Ogre::Vector2 getKeyDimensions() const;  // retrieves the value of keyDimensions
+    void setKeyDimensions(const Ogre::Vector2 &set);  // sets the value of keyDimensions
     
-    float getKeyJumpRadius();  // retrieves the value of keyJumpRadius
-    void setKeyJumpRadius(float set);  // sets the value of keyJumpRadius
+    float getKeyJumpRadius() const;  // retrieves the value of keyJumpRadius
+    void setKeyJumpRadius(const float &set);  // sets the value of keyJumpRadius
 
-    float getThreePointSideLength();  // retrieves the value of threePointSideLength
-    void setThreePointSideLength(float set);  // sets the value of threePointSideLength
+    float getThreePointSideLength() const;  // retrieves the value of threePointSideLength
+    void setThreePointSideLength(const float &set);  // sets the value of threePointSideLength
     
-    float getThreePointZPos();  // retrieves the value of threePointZPos
-    void setThreePointZPos(float set);  // sets the value of threePointZPos
+    float getThreePointZPos() const;  // retrieves the value of threePointZPos
+    void setThreePointZPos(const float &set);  // sets the value of threePointZPos
     
-    float getThreePointArcRadius();  // retrieves the value of threePointArcRadius
-    void setThreePointArcRadius(float set);  // sets the value of threePointArcRadius
+    float getThreePointArcRadius() const;  // retrieves the value of threePointArcRadius
+    void setThreePointArcRadius(const float &set);  // sets the value of threePointArcRadius
     
-    Ogre::Vector2 getBaselineInboundPos();  // retrieves the value of baselineInputPos
-    void setBaselineInboundPos(Ogre::Vector2 set);  // sets the value of baselineInputPos
+    Ogre::Vector2 getBaselineInboundPos() const;  // retrieves the value of baselineInputPos
+    void setBaselineInboundPos(const Ogre::Vector2 &set);  // sets the value of baselineInputPos
     
-    Ogre::Vector2 getSidelineInboundPos();  // retrieves the value of sidelineInputPos
-    void setSidelineInboundPos(Ogre::Vector2 set);  // sets the value of sidelineInputPos
+    Ogre::Vector2 getSidelineInboundPos() const;  // retrieves the value of sidelineInputPos
+    void setSidelineInboundPos(const Ogre::Vector2 &set);  // sets the value of sidelineInputPos
     
 protected:
 private:

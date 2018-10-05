@@ -29,41 +29,41 @@ class gameData
         gameData();  // constructor
         ~gameData();  // destructor
     
-        size_t getBballBounce();  // retrieves the value of bballBounce
-        void setBballBounce(size_t set);  // sets the value of bballBounce
+        size_t getBballBounce() const;  // retrieves the value of bballBounce
+        void setBballBounce(const size_t &set);  // sets the value of bballBounce
 
-        size_t getSelectedCourtDataInstance();  // retrieves the value of selectedCourtDataInstance
-        void setSelectedCourtDataInstance(size_t set);  // sets the value of selectedCourtDataInstance
+        size_t getSelectedCourtDataInstance() const;  // retrieves the value of selectedCourtDataInstance
+        void setSelectedCourtDataInstance(const size_t &set);  // sets the value of selectedCourtDataInstance
 
-        sizeTVec getPlayerID();  // retrieves the value of playerID
-        void setPlayerID(sizeTVec set);  // sets the value of playerID
+        sizeTVec getPlayerID() const;  // retrieves the value of playerID
+        void setPlayerID(const sizeTVec &set);  // sets the value of playerID
 
-        gameTypes getGameType();  // retrieves the value of gameType
-        void setGameType(gameTypes set);  // sets the value of gameType
+        gameTypes getGameType() const;  // retrieves the value of gameType
+        void setGameType(const gameTypes &set);  // sets the value of gameType
 
-        sizeTVec getTeamIDS();  // retrieves the value of teamIDS
-        void setTeamIDS(sizeTVec set);  // sets the value of teamIDS
+        sizeTVec getTeamIDS() const;  // retrieves the value of teamIDS
+        void setTeamIDS(const sizeTVec &set);  // sets the value of teamIDS
 
-        teamStarterIDsVecM getTeamStarterID();  // retrieves value of teamStarterID
-        void setTeamStarterID(teamStarterIDsVecM set);  // sets the value of teamStarterID
+        teamStarterIDsVecM getTeamStarterID() const;  // retrieves value of teamStarterID
+        void setTeamStarterID(const teamStarterIDsVecM &set);  // sets the value of teamStarterID
 
-        quarters getQuarter();  // retrieves the value of quarter
-        void setQuarter(quarters set);  // sets the value of quarter
+        quarters getQuarter() const;  // retrieves the value of quarter
+        void setQuarter(const quarters !set);  // sets the value of quarter
 
-        size_t getNumActiveBasketballs();  // retrieves the value of numActiveBasketballs
-        void setNumActiveBasketballs(size_t set);  // sets the value of numActiveBasketballs
+        size_t getNumActiveBasketballs() const;  // retrieves the value of numActiveBasketballs
+        void setNumActiveBasketballs(const size_t &set);  // sets the value of numActiveBasketballs
 
-        Ogre::Vector3 getBBallNodePosition();  // retrieves the value of bballNodePosition
-        void setBBallNodePosition(Ogre::Vector3 set);  // sets the value of bballNodePosition
+        Ogre::Vector3 getBBallNodePosition() const;  // retrieves the value of bballNodePosition
+        void setBBallNodePosition(const Ogre::Vector3 &set);  // sets the value of bballNodePosition
         
-        teamTypes getTeamWithBall();  // retrieves the value of teamWithBall
-        void setTeamWithBall(teamTypes set);  // sets the value of teamWithBall
+        teamTypes getTeamWithBall() const;  // retrieves the value of teamWithBall
+        void setTeamWithBall(const teamTypes &set);  // sets the value of teamWithBall
 
-        float getYOffset();  // retrieves the value of yOffset
-        void setYOffset(float set);  // sets the value of yOffset
+        float getYOffset() const;  // retrieves the value of yOffset
+        void setYOffset(const float &set);  // sets the value of yOffset
 
-        std::vector<bool> getTeamActivePlayersChanged();  // retrieves the value of teamActivePlayersChanged
-        void setTeamActivePlayersChanged(std::vector<bool> set);  // sets the value of teamActivePlayersChanged
+        std::vector<bool> getTeamActivePlayersChanged() const;  // retrieves the value of teamActivePlayersChanged
+        void setTeamActivePlayersChanged(const std::vector<bool> &set);  // sets the value of teamActivePlayersChanged
 
     private:
     

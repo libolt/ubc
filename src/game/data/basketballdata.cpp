@@ -27,20 +27,20 @@ basketballData::~basketballData()  // destructor
 {
 }
 
-std::string  basketballData::getName()   // retrieves the value of name
+std::string  basketballData::getName() const  // retrieves the value of name
 {
     return (name);
 }
-void basketballData::setName(std::string set)  // setes the value of name
+void basketballData::setName(const std::string &set)  // setes the value of name
 {
     name = set;
 }
 
-std::string basketballData::getModelFileName()  // retrieves the value of modelFileName
+std::string basketballData::getModelFileName() const  // retrieves the value of modelFileName
 {
     return (modelFileName);
 }
-void basketballData::setModelFileName(std::string set)  // sets the value of modelFileName
+void basketballData::setModelFileName(const std::string &set)  // sets the value of modelFileName
 {
     modelFileName = set;
 }

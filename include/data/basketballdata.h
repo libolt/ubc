@@ -29,11 +29,11 @@ class basketballData
         basketballData();  // constructor
         ~basketballData();  // destructor
         
-        std::string  getName();   // retrieves the value of name
-        void setName(std::string set);  // setes the value of name
+        std::string  getName() const;   // retrieves the value of name
+        void setName(const std::string &set);  // setes the value of name
 
-        std::string getModelFileName();  // retrieves the value of modelFileName
-        void setModelFileName(std::string set);  // sets the value of modelFileName
+        std::string getModelFileName() const;  // retrieves the value of modelFileName
+        void setModelFileName(const std::string &set);  // sets the value of modelFileName
 
     private:
         std::string name;  // stores the object name

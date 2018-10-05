@@ -70,92 +70,92 @@ playerData::~playerData()  // destructor
 {
 }
 
-std::string playerData::getFirstName()  // retrieves the value of firstName
+std::string playerData::getFirstName() const  // retrieves the value of firstName
 {
     return(firstName);
 }
-void playerData::setFirstName(std::string set)  // sets the value of firstName
+void playerData::setFirstName(const std::string &set)  // sets the value of firstName
 {
     firstName = set;
 }
 
-std::string playerData::getLastName()  // retrieves the value of lastName
+std::string playerData::getLastName() const // retrieves the value of lastName
 {
     return(lastName);
 }
-void playerData::setLastName(std::string set)  // sets the value of lastName
+void playerData::setLastName(const std::string &set)  // sets the value of lastName
 {
     lastName = set;
 }
 
-std::string playerData::getPlayerName()  // retrieves the value of playerName
+std::string playerData::getPlayerName() const // retrieves the value of playerName
 {
     return(playerName);
 }
-void playerData::setPlayerName(std::string set)  // sets the value of playerName
+void playerData::setPlayerName(const std::string &set)  // sets the value of playerName
 {
     playerName = set;
 }
 
-size_t playerData::getAge()  // retrieves the value of age
+size_t playerData::getAge() const // retrieves the value of age
 {
     return(age);
 }
-void playerData::setAge(size_t set)  // sets the value of age
+void playerData::setAge(const size_t &set)  // sets the value of age
 {
     age = set;
 }
 
-size_t playerData::getHeight()  // retrieves the value of height
+size_t playerData::getHeight() const  // retrieves the value of height
 {
     return(height);
 }
-void playerData::setHeight(size_t set)  // sets the value of height
+void playerData::setHeight(const size_t &set)  // sets the value of height
 {
     height = set;
 }
 
-size_t playerData::getWeight()  // retrieves the value of weight
+size_t playerData::getWeight() const  // retrieves the value of weight
 {
     return(weight);
 }
-void playerData::setWeight(size_t set)  // sets the value of weight
+void playerData::setWeight(const size_t &set)  // sets the value of weight
 {
     weight = set;
 }
 
-size_t playerData::getID()  // retrieves the value of ID
+size_t playerData::getID() const // retrieves the value of ID
 {
     return(ID);
 }
-void playerData::setID(size_t set)  // sets the value of ID
+void playerData::setID(const size_t &set)  // sets the value of ID
 {
     ID = set;
 }
 
-size_t playerData::getTeamID()  // retrieves the value of teamID
+size_t playerData::getTeamID() const // retrieves the value of teamID
 {
 	return (teamID);
 }
-void playerData::setTeamID(size_t set)  // sets the value of teamID
+void playerData::setTeamID(const size_t &set)  // sets the value of teamID
 {
 	teamID = set;
 }
 
-playerPositions playerData::getPrimaryPosition()  // retrieves the value of primaryPosition
+playerPositions playerData::getPrimaryPosition() const // retrieves the value of primaryPosition
 {
     return(primaryPosition);
 }
-void playerData::setPrimaryPosition(playerPositions set)  // sets the value of primaryPosition
+void playerData::setPrimaryPosition(const playerPositions &set)  // sets the value of primaryPosition
 {
     primaryPosition = set;
 }
 
-playerPositions playerData::getSecondaryPosition()  // retrieves the value of secondaryPosition
+playerPositions playerData::getSecondaryPosition() const  // retrieves the value of secondaryPosition
 {
     return (secondaryPosition);
 }
-void playerData::setSecondaryPosition(playerPositions set)  // sets the value of secondaryPosition
+void playerData::setSecondaryPosition(const playerPositions &set)  // sets the value of secondaryPosition
 {
     secondaryPosition = set;
 }

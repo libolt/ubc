@@ -33,126 +33,126 @@ class playerData
         playerData();
         ~playerData();
 
-        std::string getFirstName();  // retrieves the value of firstName
-        void setFirstName(std::string set);  // sets the value of firstName
+        std::string getFirstName() const;  // retrieves the value of firstName
+        void setFirstName(const std::string &set);  // sets the value of firstName
 
-        std::string getLastName();  // retrieves the value of lastName
-        void setLastName(std::string set);  // sets the value of lastName
+        std::string getLastName() const;  // retrieves the value of lastName
+        void setLastName(const std::string &set);  // sets the value of lastName
 
-        std::string getPlayerName();  // retrieves the value of playerName
-        void setPlayerName(std::string set);  // sets the value of playerName
+        std::string getPlayerName() const;  // retrieves the value of playerName
+        void setPlayerName(const std::string &set);  // sets the value of playerName
 
-        size_t getAge();  // retrieves the value of age
-        void setAge(size_t set);  // sets the value of  age
+        size_t getAge() const;  // retrieves the value of age
+        void setAge(const size_t &set);  // sets the value of  age
 
-        size_t getHeight();  // retrieves the value of height
-        void setHeight(size_t set);  // sets the value of height 
+        size_t getHeight() const;  // retrieves the value of height
+        void setHeight(const size_t &set);  // sets the value of height 
 
-        size_t getWeight();  // retrieves the value of weight
-        void setWeight(size_t set);  // sets the value of weight
+        size_t getWeight() const;  // retrieves the value of weight
+        void setWeight(const size_t &set);  // sets the value of weight
 
-        size_t getID();  // retrieves the value of ID
-        void setID(size_t set);  // sets the value of ID
+        size_t getID() const;  // retrieves the value of ID
+        void setID(const size_t &set);  // sets the value of ID
 
-        size_t getTeamID();  // retrieves the value of teamID
-        void setTeamID(size_t set);  // sets the value of teamID
+        size_t getTeamID() const;  // retrieves the value of teamID
+        void setTeamID(const size_t &set);  // sets the value of teamID
 
-        playerPositions getPrimaryPosition();  // retrieves the value of primaryPosition
-        void setPrimaryPosition(playerPositions set);  // sets the value of primaryPosition
+        playerPositions getPrimaryPosition() const;  // retrieves the value of primaryPosition
+        void setPrimaryPosition(const playerPositions &set);  // sets the value of primaryPosition
 
-        playerPositions getSecondaryPosition();  // retrieves the value of secondaryPosition
-        void setSecondaryPosition(playerPositions set);  // sets the value of secondaryPosition
+        playerPositions getSecondaryPosition() const;  // retrieves the value of secondaryPosition
+        void setSecondaryPosition(const playerPositions &set);  // sets the value of secondaryPosition
 
-        bool getActive();  // retrieves the value of active
-        void setActive(bool set);  // sets the value of active
+        bool getActive() const;  // retrieves the value of active
+        void setActive(const bool &set);  // sets the value of active
 
 /*        string getModelFileName();  // retrieves the value of modelName
         void setModelFileName(string set);  // sets the value of modelName
 */
 
-        size_t getShooting();  // retrieves the value of shooting
-        void setShooting(size_t set);  // sets the value of shooting
+        size_t getShooting() const;  // retrieves the value of shooting
+        void setShooting(const size_t &set);  // sets the value of shooting
         
-        size_t getFreeThrow();  // retrieves the value of freeThrow
-        void setFreeThrow(size_t set);  // sets the value of freeThrow
+        size_t getFreeThrow() const;  // retrieves the value of freeThrow
+        void setFreeThrow(const size_t &set);  // sets the value of freeThrow
         
-        size_t getLayup();  // retrieves the value of layup
-        void setLayup(size_t set);  // sets the value of layup
+        size_t getLayup() const;  // retrieves the value of layup
+        void setLayup(const size_t &set);  // sets the value of layup
         
-        size_t getDunk();  // retrieves the value of dunk
-        void setDunk(size_t set);  // sets the value of dunk
+        size_t getDunk() const;  // retrieves the value of dunk
+        void setDunk(const size_t &set);  // sets the value of dunk
         
-        size_t getInside();  // retrieves the value of inside
-        void setInside(size_t set);  // sets the value of inside
+        size_t getInside() const;  // retrieves the value of inside
+        void setInside(const size_t &set);  // sets the value of inside
         
-        size_t getMidRange();  // retrieves the value of midRange
-        void setMidRange(size_t set);  // sets the value of midRange
+        size_t getMidRange() const;  // retrieves the value of midRange
+        void setMidRange(const size_t &set);  // sets the value of midRange
         
-        size_t getThreePoint();  // retrieves the value of threePoint
-        void setThreePoint(size_t set);  // sets the value of threePoint
+        size_t getThreePoint() const;  // retrieves the value of threePoint
+        void setThreePoint(const size_t &set);  // sets the value of threePoint
         
-        size_t getBallHandling();  // retrieves the value of ballHandling
-        void setBallHandling(size_t set);  // sets the value of ballHandling
+        size_t getBallHandling() const;  // retrieves the value of ballHandling
+        void setBallHandling(const size_t &set);  // sets the value of ballHandling
         
-        size_t getBallSecurity();  // retrieves the value of ballSecurity
-        void setBallSecurity(size_t set);  // sets the value of ballSecurity
+        size_t getBallSecurity() const;  // retrieves the value of ballSecurity
+        void setBallSecurity(const size_t &set);  // sets the value of ballSecurity
         
-        size_t getPassing();  // retrieves the value of passing
-        void setPassing(size_t set);  // sets the value of passing
+        size_t getPassing() const;  // retrieves the value of passing
+        void setPassing(const size_t &set);  // sets the value of passing
         
-        size_t getPickSetting();  // retrieves the value of pickSetting
-        void setPickSetting(size_t set);  // sets the value of pickSetting
+        size_t getPickSetting() const;  // retrieves the value of pickSetting
+        void setPickSetting(const size_t &set);  // sets the value of pickSetting
         
-        size_t getOffenseAwareness();  // retrieves the value of offenseAwareness
-        void setOffenseAwareness(size_t set);  // sets the value of offenseAwareness
+        size_t getOffenseAwareness() const;  // retrieves the value of offenseAwareness
+        void setOffenseAwareness(const size_t &set);  // sets the value of offenseAwareness
         
-        size_t getDefenseAwareness();  // retrieves the value of defenseAwareness
-        void setDefenseAwareness(size_t set);  // sets the value of defenseAwareness
+        size_t getDefenseAwareness() const;  // retrieves the value of defenseAwareness
+        void setDefenseAwareness(const size_t &set);  // sets the value of defenseAwareness
 
-        size_t getOffenseRebound();  // retrieves the value of offenseRebound
-        void setOffenseRebound(size_t set);  // sets the value of offenseRebound
+        size_t getOffenseRebound() const;  // retrieves the value of offenseRebound
+        void setOffenseRebound(const size_t &set);  // sets the value of offenseRebound
         
-        size_t getDefenseRebound();  // retrieves the value of defenseRebound
-        void setDefenseRebound(size_t set);  // sets the value of defenseRebound
+        size_t getDefenseRebound() const;  // retrieves the value of defenseRebound
+        void setDefenseRebound(const size_t &set);  // sets the value of defenseRebound
         
-        size_t getBlocking();  // retrieves the value of blocking
-        void setBlocking(size_t set);  // sets the value of blocking
+        size_t getBlocking() const;  // retrieves the value of blocking
+        void setBlocking(const size_t &set);  // sets the value of blocking
         
-        size_t getStealing();  // retrieves the value of stealing
-        void setStealing(size_t set);  // sets the value of stealing
+        size_t getStealing() const;  // retrieves the value of stealing
+        void setStealing(const size_t &set);  // sets the value of stealing
         
-        size_t getInteriorDefense();  // retrieves the value of interiorDefense
-        void setInteriorDefense(size_t set);  // sets the value of interiorDefense
+        size_t getInteriorDefense() const;  // retrieves the value of interiorDefense
+        void setInteriorDefense(const size_t &set);  // sets the value of interiorDefense
         
-        size_t getMidRangeDefense();  // retrieves the value of midRangeDefense
-        void setMidRangeDefense(size_t set);  // sets the value of midRangeDefense
+        size_t getMidRangeDefense() const;  // retrieves the value of midRangeDefense
+        void setMidRangeDefense(const size_t &set);  // sets the value of midRangeDefense
         
-        size_t getPerimeterDefense();  // retrieves the value of perimeterDefense
-        void setPerimeterDefense(size_t set);  // sets the value of perimeterDefense
+        size_t getPerimeterDefense() const;  // retrieves the value of perimeterDefense
+        void setPerimeterDefense(const size_t &set);  // sets the value of perimeterDefense
         
-        size_t getHustle();  // retrieves the value of hustle
-        void setHustle(size_t set);  // sets the value of hustle
+        size_t getHustle() const;  // retrieves the value of hustle
+        void setHustle(const size_t &set);  // sets the value of hustle
         
-        size_t getSpeed();  // retrieves the value of speed
-        void setSpeed(size_t set);  // sets the value of speed
+        size_t getSpeed() const;  // retrieves the value of speed
+        void setSpeed(const size_t &set);  // sets the value of speed
         
-        size_t getQuickness();  // retrieves the value of quickness
-        void setQuickness(size_t set);  // sets the value of quickness
+        size_t getQuickness() const;  // retrieves the value of quickness
+        void setQuickness(const size_t &set);  // sets the value of quickness
         
-        size_t getFatigue();  // retrieves the value of fatigue
-        void setFatigue(size_t set);  // sets the value of fatigue
+        size_t getFatigue() const;  // retrieves the value of fatigue
+        void setFatigue(const size_t &set);  // sets the value of fatigue
         
-        size_t getDurability();  // retrieves the value of durability
-        void setDurability(size_t set);  // sets the value of durability
+        size_t getDurability() const;  // retrieves the value of durability
+        void setDurability(const size_t &set);  // sets the value of durability
         
-        size_t getDemeanor();  // retrieves the value of demeanor
-        void setDemeanor(size_t set);  // sets the value of demeanor
+        size_t getDemeanor() const;  // retrieves the value of demeanor
+        void setDemeanor(const size_t &set);  // sets the value of demeanor
         
-        size_t getImprovability();  // retrieves the value of improvability
-        void setImprovability(size_t set);  // sets the value of improvability
+        size_t getImprovability() const;  // retrieves the value of improvability
+        void setImprovability(const size_t &set);  // sets the value of improvability
         
-        size_t getOverallRating();  // retrieves the value of overallRating
-        void setOverallRating(size_t set);  // sets the value of overallRating
+        size_t getOverallRating() const;  // retrieves the value of overallRating
+        void setOverallRating(const size_t &set);  // sets the value of overallRating
         
         void calculateOverallRating();  // calculates the value of overallRating
         

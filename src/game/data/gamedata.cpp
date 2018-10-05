@@ -39,110 +39,110 @@ gameData::~gameData()  // destructor
     
 }
 
-size_t gameData::getSelectedCourtDataInstance()  // retrieves the value of selectedCourtDataInstance
+size_t gameData::getSelectedCourtDataInstance() const  // retrieves the value of selectedCourtDataInstance
 {
     return (selectedCourtDataInstance);
 }
-void gameData::setSelectedCourtDataInstance(size_t set)  // sets the value of selectedCourtDataInstance
+void gameData::setSelectedCourtDataInstance(const size_t &set)  // sets the value of selectedCourtDataInstance
 {
     selectedCourtDataInstance = set;
 }
 
-sizeTVec gameData::getPlayerID()  // retrieves the value of playerID
+sizeTVec gameData::getPlayerID() const  // retrieves the value of playerID
 {
     return (playerID);
 }
-void gameData::setPlayerID(sizeTVec set)  // sets the value of playerID
+void gameData::setPlayerID(const sizeTVec &set)  // sets the value of playerID
 {
     playerID = set;
 }
 
-size_t gameData::getBballBounce()  // retrieves the value of bballBounce
+size_t gameData::getBballBounce() const  // retrieves the value of bballBounce
 {
     return (bballBounce);
 }
-void gameData::setBballBounce(size_t set)  // sets the value of bballBounce
+void gameData::setBballBounce(const size_t &set)  // sets the value of bballBounce
 {
     bballBounce = set;
 }
 
-gameTypes gameData::getGameType()  // retrieves the value of gameType
+gameTypes gameData::getGameType() const  // retrieves the value of gameType
 {
     return(gameType);
 }
-void gameData::setGameType(gameTypes set)  // sets the value of gameType
+void gameData::setGameType(const gameTypes &set)  // sets the value of gameType
 {
     gameType = set;
 }
 
-quarters gameData::getQuarter()  // retrieves the value of quarter
+quarters gameData::getQuarter() const  // retrieves the value of quarter
 {
     return (quarter);
 }
-void gameData::setQuarter(quarters set)  // sets the value of quarter
+void gameData::setQuarter(const quarters &set)  // sets the value of quarter
 {
     quarter = set;
 }
 
-size_t gameData::getNumActiveBasketballs()  // retrieves the value of numActiveBasketballs
+size_t gameData::getNumActiveBasketballs() const  // retrieves the value of numActiveBasketballs
 {
     return (numActiveBasketballs);
 }
-void gameData::setNumActiveBasketballs(size_t set)  // sets the value of numActiveBasketballs
+void gameData::setNumActiveBasketballs(const size_t &set)  // sets the value of numActiveBasketballs
 {
     numActiveBasketballs = set;
 }
 
-sizeTVec gameData::getTeamIDS()  // retrieves the value of teamIDS
+sizeTVec gameData::getTeamIDS() const  // retrieves the value of teamIDS
 {
     return (teamIDS);
 }
-void gameData::setTeamIDS(sizeTVec set)  // sets the value of teamIDS
+void gameData::setTeamIDS(const sizeTVec &set)  // sets the value of teamIDS
 {
     teamIDS = set;
 }
 
-teamStarterIDsVecM gameData::getTeamStarterID()  // retrieves value of teamStarterID
+teamStarterIDsVecM gameData::getTeamStarterID() const  // retrieves value of teamStarterID
 {
     return (teamStarterID);
 }
-void gameData::setTeamStarterID(teamStarterIDsVecM set)  // sets the value of teamStarterID
+void gameData::setTeamStarterID(const teamStarterIDsVecM &set)  // sets the value of teamStarterID
 {
     teamStarterID = set;
 }
 
-Ogre::Vector3 gameData::getBBallNodePosition()  // retrieves the value of bballNodePosition
+Ogre::Vector3 gameData::getBBallNodePosition() const  // retrieves the value of bballNodePosition
 {
     return (bballNodePosition);
 }
-void gameData::setBBallNodePosition(Ogre::Vector3 set)  // sets the value of bballNodePosition
+void gameData::setBBallNodePosition(const Ogre::Vector3 &set)  // sets the value of bballNodePosition
 {
     bballNodePosition = set;
 }
 
-teamTypes gameData::getTeamWithBall()  // retrieves the value of teamWithBall
+teamTypes gameData::getTeamWithBall() const // retrieves the value of teamWithBall
 {
     return (teamWithBall);
 }
-void gameData::setTeamWithBall(teamTypes set)  // sets the value of teamWithBall
+void gameData::setTeamWithBall(const teamTypes &set)  // sets the value of teamWithBall
 {
     teamWithBall = set;
 }
 
-float gameData::getYOffset()  // returns the value of yOffset
+float gameData::getYOffset() const // returns the value of yOffset
 {
     return (yOffset);
 }
-void gameData::setYOffset(float set)  // sets the value of yOffset
+void gameData::setYOffset(const float &set)  // sets the value of yOffset
 {
     yOffset = set;
 }
 
-std::vector<bool> gameData::getTeamActivePlayersChanged()  // retrieves the value of teamActivePlayersChanged
+std::vector<bool> gameData::getTeamActivePlayersChanged() const // retrieves the value of teamActivePlayersChanged
 {
     return (teamActivePlayersChanged);
 }
-void gameData::setTeamActivePlayersChanged(std::vector<bool> set)  // sets the value of teamActivePlayersChanged
+void gameData::setTeamActivePlayersChanged(const std::vector<bool> &set)  // sets the value of teamActivePlayersChanged
 {
     teamActivePlayersChanged = set;
 }

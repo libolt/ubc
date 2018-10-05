@@ -47,7 +47,7 @@ networkEngine::~networkEngine()
 
 }
 
-teamTypes networkEngine::getTeamType()  // retrieves the value of teamType
+teamTypes networkEngine::getTeamType() const  // retrieves the value of teamType
 {
     return (teamType);
 }
@@ -56,7 +56,7 @@ void networkEngine::setTeamType(const teamTypes &set)  // sets the value of team
     teamType = set;
 }
 
-bool networkEngine::getIsClient()  // retrieves the value of isClient 
+bool networkEngine::getIsClient() const  // retrieves the value of isClient 
 {
     return (isClient);
 }
@@ -65,7 +65,7 @@ void networkEngine::setIsClient(const bool &set)  // sets the value of isClient
     isClient = set;
 }
 
-bool networkEngine::getIsServer()  // retrieves the value of isServer 
+bool networkEngine::getIsServer() const  // retrieves the value of isServer 
 {
     return (isServer);
 }
@@ -74,7 +74,7 @@ void networkEngine::setIsServer(const bool &set)  // sets the value of the isSer
     isServer = set;
 }
 
-bool networkEngine::getClientEstablishedConnection()  // retrieves the value of clientEstablishedConnection
+bool networkEngine::getClientEstablishedConnection() const  // retrieves the value of clientEstablishedConnection
 {
     return (clientEstablishedConnection);
 }
@@ -84,7 +84,7 @@ void networkEngine::setClientEstablishedConnection(const bool &set)  // sets the
     clientEstablishedConnection = set;
 }
 
-bool networkEngine::getServerReceivedConnection()  // retrieves the value of serverReceivedConnection
+bool networkEngine::getServerReceivedConnection() const  // retrieves the value of serverReceivedConnection
 {
     return (serverReceivedConnection);
 }
@@ -93,7 +93,7 @@ void networkEngine::setServerReceivedConnection(const bool &set)  // sets the va
 {
     serverReceivedConnection = set;
 }
-int networkEngine::getClientID()  // retrieves the value of clientID
+int networkEngine::getClientID() const  // retrieves the value of clientID
 {
     return (clientID);
 }
@@ -103,7 +103,7 @@ void networkEngine::setClientID(const int &set)  // sets the value of clientID
     clientID = set;
 }
 
-std::string networkEngine::getIPAddress()  // retrieves ipAddress string
+std::string networkEngine::getIPAddress() const  // retrieves ipAddress string
 {
     return(ipAddress);
 }
@@ -113,7 +113,7 @@ void networkEngine::setIPAddress(const std::string &set)  // sets ipAddress stri
     ipAddress = set;
 }
 
-std::string networkEngine::getReceivedData()  // retrieves receivedData variable
+std::string networkEngine::getReceivedData() const  // retrieves receivedData variable
 {
     return (receivedData);
 }
@@ -122,16 +122,16 @@ void networkEngine::setReceivedData(const std::string &set)  // sets receivedDat
     receivedData = set;
 }
 
-bool networkEngine::getPacketReceived()  // retrieves packetReceived variable
+bool networkEngine::getPacketReceived() const  // retrieves packetReceived variable
 {
     return (packetReceived);
 }
-void networkEngine::setPacketReceived(bool set)  // sets packetReceived variable
+void networkEngine::setPacketReceived(const bool &set)  // sets packetReceived variable
 {
     packetReceived = set;
 }
 
-ENetAddress networkEngine::getListenAddress()  // retrieves the value of listenAddress
+ENetAddress networkEngine::getListenAddress() const  // retrieves the value of listenAddress
 {
     return (listenAddress);
 }
@@ -140,7 +140,7 @@ void networkEngine::setListenAddress(const ENetAddress &set)  // sets the value 
     listenAddress = set;
 }
 
-ENetAddress networkEngine::getServerAddress()  // retrieves the value of serverAddress
+ENetAddress networkEngine::getServerAddress() const  // retrieves the value of serverAddress
 {
     return (serverAddress);
 }
@@ -150,7 +150,7 @@ void networkEngine::setServerAddress(const ENetAddress &set)  // sets the value 
     serverAddress = set;
 }
 
-sharedPtr<ENetHost> networkEngine::getClient()  // retrieves the value of client
+sharedPtr<ENetHost> networkEngine::getClient() const  // retrieves the value of client
 {
     return (client);
 }
@@ -159,7 +159,7 @@ void networkEngine::setClient(const ENetHostSharedPtr &set)  // sets the value o
     client = set;
 }
 
-ENetEvent networkEngine::getEvent()  // retrieves the value of event
+ENetEvent networkEngine::getEvent() const  // retrieves the value of event
 {
     return (event);
 }
@@ -168,7 +168,7 @@ void networkEngine::setEvent(const ENetEvent &set)  // sets the value of event
     event = set;
 }
 
-ENetPeerSharedPtr networkEngine::getPeer()  // retrieves the value of peer
+ENetPeerSharedPtr networkEngine::getPeer() const  // retrieves the value of peer
 {
     return (peer);
 }
@@ -177,7 +177,7 @@ void networkEngine::setPeer(const ENetPeerSharedPtr &set)  // sets the value of 
     peer = set;
 }
 
-sharedPtr<ENetHost> networkEngine::getServer()  // retrieves the value of server
+sharedPtr<ENetHost> networkEngine::getServer() const  // retrieves the value of server
 {
     return (server);
 }
@@ -185,7 +185,6 @@ void networkEngine::setServer(const ENetHostSharedPtr &set)  // sets the value o
 {
     server = set;
 }
-
 
 int networkEngine::initialize()  // initializes the network engine
 {

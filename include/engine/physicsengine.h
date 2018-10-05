@@ -37,6 +37,7 @@
 #include "utilities/timing.h"
 
 #include "engine.h"
+#include "utilities/typedefs.h"
 
 class renderEngine;
 
@@ -46,14 +47,14 @@ public:
     physicsEngine();  // constructor
     ~physicsEngine();	// destructor
 
-    bool getPairCollided();	 // retrieves value of pairCollided 
-    void setPairCollided(bool set);  // sets value of pairCollided 
+    bool getPairCollided() const;	 // retrieves value of pairCollided
+    void setPairCollided(const bool &set);  // sets value of pairCollided
 
-    bool getPassCollision();  // retrieves the value of passCollision 
-    void setPassCollision(bool set);  // sets the value of passCollision 
+    bool getPassCollision() const;  // retrieves the value of passCollision
+    void setPassCollision(const bool &set);  // sets the value of passCollision
 
-    sharedPtr<btDynamicsWorld> getWorld();  // retrieves the value of world
-    void setWorld(sharedPtr<btDynamicsWorld> set);  // sets the value of world
+    sharedPtr<btDynamicsWorld> getWorld() const;  // retrieves the value of world
+    void setWorld(const sharedPtr<btDynamicsWorld> &set);  // sets the value of world
 
     bool setup();  // sets up the physicsEngine object
 

@@ -71,33 +71,32 @@ physicsEngine::~physicsEngine()  // destructor
 
 }
 
-bool physicsEngine::getPairCollided()  // retrieves value of pairCollided 
+bool physicsEngine::getPairCollided() const  // retrieves value of pairCollided
 {
     return (pairCollided);
 }
-void physicsEngine::setPairCollided(bool set)  // sets value of pairCollided
+void physicsEngine::setPairCollided(const bool &set)  // sets value of pairCollided
 {
     pairCollided = set;
 }
 
-bool physicsEngine::getPassCollision()  // retrieves the value of passCollision 
+bool physicsEngine::getPassCollision() const  // retrieves the value of passCollision
 {
     return(passCollision);
 }
-void physicsEngine::setPassCollision(bool set)    // sets the value of passCollision
+void physicsEngine::setPassCollision(const bool &set)    // sets the value of passCollision
 {
     passCollision = set;
 }
 
-sharedPtr<btDynamicsWorld> physicsEngine::getWorld()  // retrieves the value of world
+sharedPtr<btDynamicsWorld> physicsEngine::getWorld() const // retrieves the value of world
 {
     return (world);
 }
-void physicsEngine::setWorld(sharedPtr<btDynamicsWorld> set)  // sets the value of world
+void physicsEngine::setWorld(const sharedPtr<btDynamicsWorld> &set)  // sets the value of world
 {
     world = set;
 }
-
 
 bool physicsEngine::setup()  // sets up the physicsEngine object
 {

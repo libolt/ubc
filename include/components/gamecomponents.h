@@ -32,44 +32,44 @@ class gameComponents
         gameComponents();  // constructor
         ~gameComponents();  // destructor
 
-        courtDataVec getCourtDataInstance();  // retrieves the value of courtDataInstance
-        void setCourtDataInstance(courtDataVec set);  // sets the value of courtDataInstance
+        courtDataVec getCourtDataInstance() const;  // retrieves the value of courtDataInstance
+        void setCourtDataInstance(const courtDataVec &set);  // sets the value of courtDataInstance
 
-        inputInGameWorkQueues getInputInGameWorkQueue();  // retrieves the value of inputInGameWorkQueue
-        void setInputInGameWorkQueue(inputInGameWorkQueues set);  // sets the value of inputInGameWorkQueue
+        inputInGameWorkQueues getInputInGameWorkQueue() const;  // retrieves the value of inputInGameWorkQueue
+        void setInputInGameWorkQueue(const inputInGameWorkQueues &set);  // sets the value of inputInGameWorkQueue
 
-        basketballEntityMSharedPtr getActiveBasketballInstance();  // retrieves the value of activeBasketballInstance
+        basketballEntityMSharedPtr getActiveBasketballInstance() const;  // retrieves the value of activeBasketballInstance
         void setActiveBasketballInstance(basketballEntityMSharedPtr set);  // sets the value of activeBasketballInstance
 
-        courtEntityMSharedPtr getActiveCourtInstance();  // retrieves the value of activeCourtInstance
-        void setActiveCourtInstance(courtEntityMSharedPtr set);  // sets the value of activeCourtInstance
+        courtEntityMSharedPtr getActiveCourtInstance() const;  // retrieves the value of activeCourtInstance
+        void setActiveCourtInstance(const courtEntityMSharedPtr &set);  // sets the value of activeCourtInstance
 
-        hoopEntityMSharedPtr getActiveHoopInstance();  // retrieves the value of activeHoopInstance
-        void setActiveHoopInstance(hoopEntityMSharedPtr set);  // sets the value of activeHoopInstance
+        hoopEntityMSharedPtr getActiveHoopInstance() const;  // retrieves the value of activeHoopInstance
+        void setActiveHoopInstance(const hoopEntityMSharedPtr &set);  // sets the value of activeHoopInstance
 
-        teamEntityMSharedPtr getActiveTeamInstance();  // retrieves the value of activeTeamInstance
-        void setActiveTeamInstance(teamEntityMSharedPtr set);  // sets the value of activeTeamInstance
+        teamEntityMSharedPtr getActiveTeamInstance() const;  // retrieves the value of activeTeamInstance
+        void setActiveTeamInstance(const teamEntityMSharedPtr &set);  // sets the value of activeTeamInstance
                
 //        size_t getActiveBBallInstance();  // retrieves the value of activeBBallInstance
 //        void setActiveBBallInstance(size_t set);  // sets the value of activeBBallInstance
 
-        basketballEntityMSharedPtr getBasketballInstance();  // retrieves the value of basketballInstance
-        void setBasketballInstance(basketballEntityMSharedPtr set);  // sets the value of basketballInstance
+        basketballEntityMSharedPtr getBasketballInstance() const;  // retrieves the value of basketballInstance
+        void setBasketballInstance(const basketballEntityMSharedPtr &set);  // sets the value of basketballInstance
 
-        courtEntityMSharedPtr  getCourtInstance();  // retrieves the value of courtInstance
-        void setCourtInstance(courtEntityMSharedPtr  set);  // sets the value of courtInstance
+        courtEntityMSharedPtr  getCourtInstance() const;  // retrieves the value of courtInstance
+        void setCourtInstance(const courtEntityMSharedPtr  &set);  // sets the value of courtInstance
 
-        hoopEntityMSharedPtr getHoopInstance();  // retrieves the value of hoopInstance
-        void setHoopInstance(hoopEntityMSharedPtr set);  // sets the value of hoopInstance
+        hoopEntityMSharedPtr getHoopInstance() const;  // retrieves the value of hoopInstance
+        void setHoopInstance(const hoopEntityMSharedPtr &set);  // sets the value of hoopInstance
 
-        playerEntityMSharedPtr getPlayerInstance();  // retrieves the value of playerInstance
-        void setPlayerInstance(playerEntityMSharedPtr set);  // sets the value of  playerInstance
+        playerEntityMSharedPtr getPlayerInstance() const;  // retrieves the value of playerInstance
+        void setPlayerInstance(const playerEntityMSharedPtr &set);  // sets the value of  playerInstance
 
-        teamEntityMSharedPtr getTeamInstance();  // retireves the value of teamInstance
-        void setTeamInstance(teamEntityMSharedPtr set);  // sets the value of teamInstance
+        teamEntityMSharedPtr getTeamInstance() const;  // retireves the value of teamInstance
+        void setTeamInstance(const teamEntityMSharedPtr &set);  // sets the value of teamInstance
 
-        jumpBallsSharedPtr getJumpBall();  // retrieves the value of jumpBall
-        void setJumpBall(jumpBallsSharedPtr set);  // sets the value of jumpBall
+        jumpBallsSharedPtr getJumpBall() const;  // retrieves the value of jumpBall
+        void setJumpBall(const jumpBallsSharedPtr &set);  // sets the value of jumpBall
 
     private:
     

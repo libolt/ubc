@@ -30,25 +30,25 @@ gameComponents::~gameComponents()  // destructor
     
 }
 
-courtDataVec  gameComponents::getCourtDataInstance()  // retrieves the value of courtDataInstance
+courtDataVec  gameComponents::getCourtDataInstance() const  // retrieves the value of courtDataInstance
 {
     return (courtDataInstance);
 }
-void gameComponents::setCourtDataInstance(courtDataVec set)  // sets the value of courtDataInstance
+void gameComponents::setCourtDataInstance(const courtDataVec &set)  // sets the value of courtDataInstance
 {
     courtDataInstance = set;
 }
 
-inputInGameWorkQueues gameComponents::getInputInGameWorkQueue()  // retrieves the value of inputInGameWorkQueue
+inputInGameWorkQueues gameComponents::getInputInGameWorkQueue() const  // retrieves the value of inputInGameWorkQueue
 {
     return (inputInGameWorkQueue);
 }
-void gameComponents::setInputInGameWorkQueue(inputInGameWorkQueues set)  // sets the value of inputInGameWorkQueue
+void gameComponents::setInputInGameWorkQueue(const inputInGameWorkQueues &set)  // sets the value of inputInGameWorkQueue
 {
     inputInGameWorkQueue = set;
 }
 
-basketballEntityMSharedPtr gameComponents::getActiveBasketballInstance()  // retrieves the value of activeBasketballInstance
+basketballEntityMSharedPtr gameComponents::getActiveBasketballInstance() const  // retrieves the value of activeBasketballInstance
 {
     return (activeBasketballInstance);
 }
@@ -57,83 +57,83 @@ void gameComponents::setActiveBasketballInstance(basketballEntityMSharedPtr set)
     activeBasketballInstance = set;
 }
 
-courtEntityMSharedPtr gameComponents::getActiveCourtInstance()  // retrieves the value of activeCourtInstance
+courtEntityMSharedPtr gameComponents::getActiveCourtInstance() const  // retrieves the value of activeCourtInstance
 {
     return (activeCourtInstance);
 }
-void gameComponents::setActiveCourtInstance(courtEntityMSharedPtr set)  // sets the value of activeCourtInstance
+void gameComponents::setActiveCourtInstance(const courtEntityMSharedPtr &set)  // sets the value of activeCourtInstance
 {
     activeCourtInstance = set;
 }
 
-hoopEntityMSharedPtr gameComponents::getActiveHoopInstance()  // retrieves the value of activeHoopInstance
+hoopEntityMSharedPtr gameComponents::getActiveHoopInstance() const  // retrieves the value of activeHoopInstance
 {
     return(activeHoopInstance);
 }
-void gameComponents::setActiveHoopInstance(hoopEntityMSharedPtr set)  // sets the value of activeHoopInstance
+void gameComponents::setActiveHoopInstance(const hoopEntityMSharedPtr &set)  // sets the value of activeHoopInstance
 {
     activeHoopInstance = set;
 }
 
-teamEntityMSharedPtr gameComponents::getActiveTeamInstance()  // retrieves the value of activeTeamInstance
+teamEntityMSharedPtr gameComponents::getActiveTeamInstance() const  // retrieves the value of activeTeamInstance
 {
     return (activeTeamInstance);
 }
-void gameComponents::setActiveTeamInstance(teamEntityMSharedPtr set)  // sets the value of activeTeamInstance
+void gameComponents::setActiveTeamInstance(const teamEntityMSharedPtr &set)  // sets the value of activeTeamInstance
 {
     activeTeamInstance = set;
 }
 
-basketballEntityMSharedPtr gameComponents::getBasketballInstance()  // retrieves the value of basketballInstance
+basketballEntityMSharedPtr gameComponents::getBasketballInstance() const  // retrieves the value of basketballInstance
 {
     return (basketballInstance);
 }
-void gameComponents::setBasketballInstance(basketballEntityMSharedPtr set)  // sets the value of basketballInstance
+void gameComponents::setBasketballInstance(const basketballEntityMSharedPtr &set)  // sets the value of basketballInstance
 {
     basketballInstance = set;
 }
 
-courtEntityMSharedPtr gameComponents::getCourtInstance()  // retrieves the value of courtInstance
+courtEntityMSharedPtr gameComponents::getCourtInstance() const  // retrieves the value of courtInstance
 {
     return (courtInstance);
 }
-void gameComponents::setCourtInstance(courtEntityMSharedPtr set)  // sets the value of courtInstance
+void gameComponents::setCourtInstance(const courtEntityMSharedPtr &set)  // sets the value of courtInstance
 {
     courtInstance = set;
 }
 
-hoopEntityMSharedPtr gameComponents::getHoopInstance()  // retrieves the value of hoopInstance
+hoopEntityMSharedPtr gameComponents::getHoopInstance() const  // retrieves the value of hoopInstance
 {
     return (hoopInstance);
 }
-void gameComponents::setHoopInstance(hoopEntityMSharedPtr set)  // sets the value of hoopInstance
+void gameComponents::setHoopInstance(const hoopEntityMSharedPtr &set)  // sets the value of hoopInstance
 {
     hoopInstance = set;
 }
 
-playerEntityMSharedPtr gameComponents::getPlayerInstance()  // retrieves the value of playerInstance
+playerEntityMSharedPtr gameComponents::getPlayerInstance() const  // retrieves the value of playerInstance
 {
     return (playerInstance);
 }
-void gameComponents::setPlayerInstance(playerEntityMSharedPtr set)  // sets the value of playerInstance
+void gameComponents::setPlayerInstance(const playerEntityMSharedPtr &set)  // sets the value of playerInstance
 {
     playerInstance = set;
 }
 
-teamEntityMSharedPtr gameComponents::getTeamInstance()  // retrieves the value of teamInstance
+teamEntityMSharedPtr gameComponents::getTeamInstance() const  // retrieves the value of teamInstance
 {
     return (teamInstance);
 }
-void gameComponents::setTeamInstance(teamEntityMSharedPtr set)  // sets the value of teamInstance
+void gameComponents::setTeamInstance(const teamEntityMSharedPtr &set)  // sets the value of teamInstance
 {
     teamInstance = set;
 }
 
-jumpBallsSharedPtr gameComponents::getJumpBall()  // retrieves the value of jumpBall
+jumpBallsSharedPtr gameComponents::getJumpBall() const  // retrieves the value of jumpBall
 {
     return (jumpBall);
 }
-void gameComponents::setJumpBall(jumpBallsSharedPtr set)  // sets the value of jumpBall
+void gameComponents::setJumpBall(const jumpBallsSharedPtr &set)  // sets the value of jumpBall
 {
     jumpBall = set;
 }

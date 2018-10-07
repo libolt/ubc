@@ -193,7 +193,7 @@ size_t playerData::getFreeThrow() const  // retrieves the value of freeThrow
 {
     return (freeThrow);
 }
-void playerData::setFreeThrow(size_t &set)  // sets the value of freeThrow
+void playerData::setFreeThrow(const size_t &set)  // sets the value of freeThrow
 {
     freeThrow = set;
 }

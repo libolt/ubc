@@ -48,7 +48,7 @@ class gameData
         void setTeamStarterID(const teamStarterIDsVecM &set);  // sets the value of teamStarterID
 
         quarters getQuarter() const;  // retrieves the value of quarter
-        void setQuarter(const quarters !set);  // sets the value of quarter
+        void setQuarter(const quarters &set);  // sets the value of quarter
 
         size_t getNumActiveBasketballs() const;  // retrieves the value of numActiveBasketballs
         void setNumActiveBasketballs(const size_t &set);  // sets the value of numActiveBasketballs

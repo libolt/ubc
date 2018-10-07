@@ -31,38 +31,38 @@ class playerGameData
         playerGameData();  // constructor
         ~playerGameData();  // destructor
 
-        playerPositions getActivePosition();  // retrieves the value of activePosition
-        void setActivePosition(playerPositions set);  // sets the value of activePosition
+        playerPositions getActivePosition() const;  // retrieves the value of activePosition
+        void setActivePosition(const playerPositions &set);  // sets the value of activePosition
    
-        Ogre::Vector3 getCourtPosition();  // retrieves the value of courtPosition
-        void setCourtPosition(Ogre::Vector3 set);  // sets the value of courtPosition
+        Ogre::Vector3 getCourtPosition() const;  // retrieves the value of courtPosition
+        void setCourtPosition(const Ogre::Vector3 &set);  // sets the value of courtPosition
         
-        std::vector<playerActions> getStateAction();  // retrieves the value of stateAction
-        void setStateAction(std::vector<playerActions> set);  // sets the value of stateAction
+        std::vector<playerActions> getStateAction() const;  // retrieves the value of stateAction
+        void setStateAction(const std::vector<playerActions> &set);  // sets the value of stateAction
         
-        directions getDirection();  // retrieves the value of direction
-        void setDirection(directions set);  // sets the value of direction
+        directions getDirection() const;  // retrieves the value of direction
+        void setDirection(const directions &set);  // sets the value of direction
 
-        directions getOldDirection();  // retrieves the value of oldDirection
-        void setOldDirection(directions set);  // sets the value of oldDirection
+        directions getOldDirection() const;  // retrieves the value of oldDirection
+        void setOldDirection(const directions &set);  // sets the value of oldDirection
 
-        Ogre::Vector3 getPosChange();  // retrieves the value of posChange
-        void setPosChange(Ogre::Vector3 set);  // sets the value of posChange
+        Ogre::Vector3 getPosChange() const;  // retrieves the value of posChange
+        void setPosChange(const Ogre::Vector3 &set);  // sets the value of posChange
 
-        playerPositions getPassToPlayer();  // retrieves the value of passToPlayer
-        void setPassToPlayer(playerPositions set);  // sets the value of passToPlayer
+        playerPositions getPassToPlayer() const;  // retrieves the value of passToPlayer
+        void setPassToPlayer(const playerPositions &set);  // sets the value of passToPlayer
 
-        Ogre::Vector3 getJumpBeginPos();  // retrieves the value of playerJumpBeginPos
-        void setJumpBeginPos(Ogre::Vector3 set);  // sets the value of playerJumpBeginPos
+        Ogre::Vector3 getJumpBeginPos() const;  // retrieves the value of playerJumpBeginPos
+        void setJumpBeginPos(const Ogre::Vector3 &set);  // sets the value of playerJumpBeginPos
 
-        Ogre::Vector3 getJumpEndPos();  // retrieves the value of playerJumpEndPos
-        void setJumpEndPos(Ogre::Vector3 set);  // sets the value of playerJumpEndPos
+        Ogre::Vector3 getJumpEndPos() const;  // retrieves the value of playerJumpEndPos
+        void setJumpEndPos(const Ogre::Vector3 &set);  // sets the value of playerJumpEndPos
 
-        Ogre::Vector3 getNewCourtPosition();  // retrieves the value of newCourtPosition
-        void setNewCourtPosition(Ogre::Vector3 set);  // sets the value of newCourtPosition
+        Ogre::Vector3 getNewCourtPosition() const;  // retrieves the value of newCourtPosition
+        void setNewCourtPosition(const Ogre::Vector3 &set);  // sets the value of newCourtPosition
 
-        positionChangedTypes getCourtPositionChangedType();  // retrieves the value of courtPositionChangedType
-        void setCourtPositionChangedType(positionChangedTypes set);  // sets the value of courtPositionChangedType
+        positionChangedTypes getCourtPositionChangedType() const;  // retrieves the value of courtPositionChangedType
+        void setCourtPositionChangedType(const positionChangedTypes &set);  // sets the value of courtPositionChangedType
 
     private:
     

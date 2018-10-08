@@ -113,25 +113,25 @@ Ogre::Vector3 playerGameData::getJumpEndPos() const  // retrieves the value of p
 {
     return (jumpEndPos);
 }
-void playerGameData::setJumpEndPos(Ogre::Vector3 set)  // sets the value of playerJumpEndPos
+void playerGameData::setJumpEndPos(const Ogre::Vector3 &set)  // sets the value of playerJumpEndPos
 {
     jumpEndPos = set;
 }
 
-Ogre::Vector3 playerGameData::getNewCourtPosition()  // retrieves the value of newCourtPosition
+Ogre::Vector3 playerGameData::getNewCourtPosition() const  // retrieves the value of newCourtPosition
 {
     return (newCourtPosition);
 }
-void playerGameData::setNewCourtPosition(Ogre::Vector3 set)  // sets the value of newCourtPosition
+void playerGameData::setNewCourtPosition(const Ogre::Vector3 &set)  // sets the value of newCourtPosition
 {
     newCourtPosition = set;
 }
 
-positionChangedTypes playerGameData::getCourtPositionChangedType()  // retrieves the value of courtPositionChangedType
+positionChangedTypes playerGameData::getCourtPositionChangedType() const  // retrieves the value of courtPositionChangedType
 {
     return (courtPositionChangedType);
 }
-void playerGameData::setCourtPositionChangedType(positionChangedTypes set)  // sets the value of courtPositionChangedType
+void playerGameData::setCourtPositionChangedType(const positionChangedTypes &set)  // sets the value of courtPositionChangedType
 {
     courtPositionChangedType = set;
 }

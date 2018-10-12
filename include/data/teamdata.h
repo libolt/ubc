@@ -32,32 +32,32 @@ class teamData
     teamData();  // constructor
     ~teamData();  // destructor
 
-    std::string getName();  // retrieves the value of name
-    void setName(std::string set);  // sets the value of name
+    std::string getName() const;  // retrieves the value of name
+    void setName(const std::string &set);  // sets the value of name
 
-    std::string getCity();  // retrieves the value of city
-    void setCity(std::string set);  // sets the value of city
+    std::string getCity() const; // retrieves the value of city
+    void setCity(const std::string &set);  // sets the value of city
 
-    std::string getCoach();  // retrieves the value of coach
-    void setCoach(std::string set);  // sets the value of coach
+    std::string getCoach() const;  // retrieves the value of coach
+    void setCoach(const std::string &set);  // sets the value of coach
 
-    sizeTVec getRoster();  // retrieves the value of roster
-    void setRoster(sizeTVec set);  // sets the value of roster
+    sizeTVec getRoster() const;  // retrieves the value of roster
+    void setRoster(const sizeTVec &set);  // sets the value of roster
 
-    size_t getPlayerNum();  // retrieves the value of playerNum
-    void setPlayerNum(size_t set);  // sets the value of playerNum
+    size_t getPlayerNum() const;  // retrieves the value of playerNum
+    void setPlayerNum(const size_t &set);  // sets the value of playerNum
 
-    sizeTVec getStarters();  // retrieves the value of starters
-    void setStarters(sizeTVec set); // sets the value of starters
+    sizeTVec getStarters() const;  // retrieves the value of starters
+    void setStarters(const sizeTVec &set); // sets the value of starters
 
-    size_t getID();  // retrieves the value of ID
-    void setID(size_t set);  // sets the value of ID
+    size_t getID() const;  // retrieves the value of ID
+    void setID(const size_t &set);  // sets the value of ID
 
-    std::string getInits();  // retrieves the value of inits
-    void setInits(std::string Inits);  // sets the vlaue of inits
+    std::string getInits() const;  // retrieves the value of inits
+    void setInits(const std::string &set);  // sets the vlaue of inits
 
-    std::string getLogoFile();  // retrieves the value of logoFile
-    void setLogoFile(std::string set);  // sets the value of logoFile
+    std::string getLogoFile() const;  // retrieves the value of logoFile
+    void setLogoFile(const std::string &set);  // sets the value of logoFile
 
 
 private:

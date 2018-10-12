@@ -29,38 +29,38 @@ class teamGameData
         teamGameData();  // constructor
         ~teamGameData();  // destructor
 
-        teamTypes getTeamType();  // retrieves the value of teamType
-        void setTeamType(teamTypes set);  // sets the value of teamType
+        teamTypes getTeamType() const;  // retrieves the value of teamType
+        void setTeamType(const teamTypes &set);  // sets the value of teamType
 
-        std::string getPlayerType();  // retrieves the value of playerType
-        void setPlayerType(std::string set);  // sets the value of playerType
+        std::string getPlayerType() const;  // retrieves the value of playerType
+        void setPlayerType(const std::string &set);  // sets the value of playerType
 
-        sizeTVec getPlayerID();  // retrieves the value of playerID
-        void setPlayerID(sizeTVec set);  // sets the value of playerID
+        sizeTVec getPlayerID() const;  // retrieves the value of playerID
+        void setPlayerID(const sizeTVec &set);  // sets the value of playerID
 
-        sizeTVec getActivePlayerID();  // retrieves the value of activePlayerID
-        void setActivePlayerID(sizeTVec set);  // sets the value of activePlayerID
+        sizeTVec getActivePlayerID() const;  // retrieves the value of activePlayerID
+        void setActivePlayerID(const sizeTVec &set);  // sets the value of activePlayerID
 
-        sizeTVec getStarterID();  // retrieves the value of starterID
-        void setStarterID(sizeTVec set);  // sets the value of starterID
+        sizeTVec getStarterID() const;  // retrieves the value of starterID
+        void setStarterID(const sizeTVec &set);  // sets the value of starterID
 
-        size_t getPlayerWithBallID();  // retrieves the value of playerWithBallID
-        void setPlayerWithBallID(size_t set);  // sets the value of playerWithBallID
+        size_t getPlayerWithBallID() const;  // retrieves the value of playerWithBallID
+        void setPlayerWithBallID(const size_t &set);  // sets the value of playerWithBallID
 
-        playerPositions getPlayerWithBallInstance();  // retrieves the value of playerWithBall
-        void setPlayerWithBallInstance(playerPositions set);  // sets the value of playerWithBall
+        playerPositions getPlayerWithBallInstance() const;  // retrieves the value of playerWithBall
+        void setPlayerWithBallInstance(const playerPositions &set);  // sets the value of playerWithBall
 
-        size_t getHumanPlayer();  // retrieves the value of humanPlayer
-        void setHumanPlayer(size_t set);  // sets the value of humanPlayer
+        size_t getHumanPlayer() const;  // retrieves the value of humanPlayer
+        void setHumanPlayer(const size_t &set);  // sets the value of humanPlayer
 
-        size_t getHoop();  // retrieves the value of hoop
-        void setHoop(size_t set);  // sets the value of hoop
+        size_t getHoop() const;  // retrieves the value of hoop
+        void setHoop(const size_t &set);  // sets the value of hoop
 
-        size_t getTeamColObject();  // retrieves the value of teamColObject
-        void setTeamColObject(size_t set); // sets the value of teamColObject
+        size_t getTeamColObject() const;  // retrieves the value of teamColObject
+        void setTeamColObject(const size_t &set); // sets the value of teamColObject
     
-        size_t getTeamCollidesWith();  // retrieves the value of teamCollidesWith
-        void setTeamCollidesWith(size_t set); // sets the value of teamCollidesWith
+        size_t getTeamCollidesWith() const;  // retrieves the value of teamCollidesWith
+        void setTeamCollidesWith(const size_t &set); // sets the value of teamCollidesWith
 
     private:
     

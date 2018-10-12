@@ -48,92 +48,91 @@ teamData::~teamData()
 //	delete [] teamStarters;
 }
 
-std::string teamData::getCity()
+std::string teamData::getCity() const  // retrieves the value of city
 {
     return(city);
 }
 
-void teamData::setCity(std::string set)
+void teamData::setCity(const std::string &set)  // sets the value of city
 {
     city = set;
 }
 
-std::string teamData::getName()
+std::string teamData::getName() const  // retrieves the value of name
 {
     return(name);
 }
 
-void teamData::setName(std::string set)
+void teamData::setName(const std::string &set)  // sets the value of name
 {
     name = set;
 }
 
-std::string teamData::getCoach()
+std::string teamData::getCoach() const  // retrieves the value of coach
 {
     return(coach);
 }
 
-void teamData::setCoach(std::string set)
+void teamData::setCoach(const std::string &set)  // sets the value of coach
 {
     coach = set;
 }
 
-sizeTVec teamData::getRoster()
+sizeTVec teamData::getRoster() const  // retrieves the value of roster
 {
     return(roster);
 }
 
-void teamData::setRoster(sizeTVec set)
+void teamData::setRoster(const sizeTVec &set)  // sets the value of roster
 {
     roster = set;
 }
 
-size_t teamData::getPlayerNum()
+size_t teamData::getPlayerNum() const  // retrieves the value of playetNum
 {
     return(playerNum);
 }
 
-void teamData::setPlayerNum(size_t set)
+void teamData::setPlayerNum(const size_t &set)  // sets the value of player
 {
     playerNum = set;
 }
 
-sizeTVec teamData::getStarters()
+sizeTVec teamData::getStarters() const  // retrieves the value of starters
 {
     return(starters);
 }
 
-void teamData::setStarters(sizeTVec set)
+void teamData::setStarters(const sizeTVec &set)  // sets the value of starters
 {
     starters = set;
 }
 
-size_t teamData::getID()
+size_t teamData::getID() const  // retrieves the value of ID
 {
     return(ID);
 }
-void teamData::setID(size_t set)
+void teamData::setID(const size_t &set)  // sets the value of ID
 {
     ID = set;
 }
 
-std::string teamData::getInits()
+std::string teamData::getInits() const  // retrieves the value of inits
 {
     return(inits);
 }
 
-void teamData::setInits(std::string set)
+void teamData::setInits(const std::string &set)  // sets the value of inits
 {
     inits = set;
 }
 
-// gets and sets file storing team logo
-std::string teamData::getLogoFile()
+std::string teamData::getLogoFile() const  // retrieves the value of logoFile
 {
     return(logoFile);
 }
 
-void teamData::setLogoFile(std::string set)
+void teamData::setLogoFile(const std::string &set)  // sets the value logoFile
 {
     logoFile = set;
 }

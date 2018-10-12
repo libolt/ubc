@@ -38,103 +38,103 @@ teamGameData::~teamGameData()  // destructor
     
 }
 
-teamTypes teamGameData::getTeamType()  // retrieves the value of teamType
+teamTypes teamGameData::getTeamType() const  // retrieves the value of teamType
 {
  return (teamType);
 }
-void teamGameData::setTeamType(teamTypes set)  // sets the value of teamType
+void teamGameData::setTeamType(const teamTypes &set)  // sets the value of teamType
 {
     teamType = set;
 }
 
-std::string teamGameData::getPlayerType()  // retrieves the value of playerType
+std::string teamGameData::getPlayerType() const  // retrieves the value of playerType
 {
     return (playerType);
 }
-void teamGameData::setPlayerType(std::string set)  // sets the value of playerType
+void teamGameData::setPlayerType(const std::string &set)  // sets the value of playerType
 {
     playerType = set;
 }
 
 
-sizeTVec teamGameData::getPlayerID()  // retrieves the value of playerID
+sizeTVec teamGameData::getPlayerID() const  // retrieves the value of playerID
 {
     return (playerID);
 }
-void teamGameData::setPlayerID(sizeTVec set)  // sets the value of playerID
+void teamGameData::setPlayerID(const sizeTVec &set)  // sets the value of playerID
 {
     playerID = set;
 }
 
-sizeTVec teamGameData::getActivePlayerID()  // retrieves the value of activePlayerID
+sizeTVec teamGameData::getActivePlayerID() const  // retrieves the value of activePlayerID
 {
     return (activePlayerID);
 }
-void teamGameData::setActivePlayerID(sizeTVec set)  // sets the value of activePlayerID
+void teamGameData::setActivePlayerID(const sizeTVec &set)  // sets the value of activePlayerID
 {
     activePlayerID = set;
 }
 
-sizeTVec teamGameData::getStarterID()  // retrieves the value of starterID
+sizeTVec teamGameData::getStarterID() const  // retrieves the value of starterID
 {
     return (starterID);
 }
-void teamGameData::setStarterID(sizeTVec set)  // sets the value of starterID
+void teamGameData::setStarterID(const sizeTVec &set)  // sets the value of starterID
 {
     logMsg("blap");
     starterID = set;
 }
 
-size_t teamGameData::getPlayerWithBallID()  // retrieves the value of the playerWithBallID
+size_t teamGameData::getPlayerWithBallID() const  // retrieves the value of the playerWithBallID
 {
     return (playerWithBallID);
 }
-void teamGameData::setPlayerWithBallID(size_t set)  // sets the value of the playerWithBallID
+void teamGameData::setPlayerWithBallID(const size_t &set)  // sets the value of the playerWithBallID
 {
     playerWithBallID = set;
 }
 
-playerPositions teamGameData::getPlayerWithBallInstance()  // retrives the value of playerWithBall
+playerPositions teamGameData::getPlayerWithBallInstance() const  // retrives the value of playerWithBall
 {
     return (playerWithBallInstance);
 }
-void teamGameData::setPlayerWithBallInstance(playerPositions set)  // sets the value of playerWithBall
+void teamGameData::setPlayerWithBallInstance(const playerPositions &set)  // sets the value of playerWithBall
 {
     playerWithBallInstance = set;
 }
 
-size_t teamGameData::getHumanPlayer()  // retrieves the value of humanPlayer
+size_t teamGameData::getHumanPlayer() const  // retrieves the value of humanPlayer
 {
     return (humanPlayer);
 }
-void teamGameData::setHumanPlayer(size_t set)  // sets the value of humanPlayer
+void teamGameData::setHumanPlayer(const size_t &set)  // sets the value of humanPlayer
 {
     humanPlayer = set;
 }
 
-size_t teamGameData::getHoop()  // retrieves the value of hoop
+size_t teamGameData::getHoop() const  // retrieves the value of hoop
 {
     return (hoop);
 }
-void teamGameData::setHoop(size_t set)  // sets the value of hoop
+void teamGameData::setHoop(const size_t &set)  // sets the value of hoop
 {
     hoop = set;
 }
 
-size_t teamGameData::getTeamColObject()  // retrieves the value of teamColObject
+size_t teamGameData::getTeamColObject() const  // retrieves the value of teamColObject
 {
     return (teamColObject);
 }
-void teamGameData::setTeamColObject(size_t set)  // sets the value of teamColObject
+void teamGameData::setTeamColObject(const size_t &set)  // sets the value of teamColObject
 {
     teamColObject = set;
 }
 
-size_t teamGameData::getTeamCollidesWith()  // retrieves the value of teamCollidesWith
+size_t teamGameData::getTeamCollidesWith() const // retrieves the value of teamCollidesWith
 {
     return (teamCollidesWith);
 }
-void teamGameData::setTeamCollidesWith(size_t set)  // sets the value of teamCollidesWith
+void teamGameData::setTeamCollidesWith(const size_t &set)  // sets the value of teamCollidesWith
 {
     teamCollidesWith = set;
 }

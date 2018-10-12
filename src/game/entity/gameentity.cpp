@@ -86,7 +86,7 @@ gameEntity::~gameEntity()  // destructor
 {
 }
 
-gameComponentsSharedPtr gameEntity::getComponent()  // retrieves the value of component
+gameComponentsSharedPtr gameEntity::getComponent() const  // retrieves the value of component
 {
     return (component);
 }
@@ -95,29 +95,29 @@ void gameEntity::setComponent(gameComponentsSharedPtr set)  // sets the value of
     component = set;
 }
 
-gameDataSharedPtr gameEntity::getData()  // retrieves the value of data
+gameDataSharedPtr gameEntity::getData() const  // retrieves the value of data
 {
     return (data);
 }
-void gameEntity::setData(gameDataSharedPtr set)  // sets the value of data
+void gameEntity::setData(const gameDataSharedPtr &set)  // sets the value of data
 {
     data = set;
 }
 
-gameFlagsSharedPtr gameEntity::getFlag()  // retrieves the value of flag
+gameFlagsSharedPtr gameEntity::getFlag() const  // retrieves the value of flag
 {
     return (flag);
 }
-void gameEntity::setFlag(gameFlagsSharedPtr set)  // sets the value of flag
+void gameEntity::setFlag(const gameFlagsSharedPtr &set)  // sets the value of flag
 {
     flag = set;
 }
 
-gameStateMachineSharedPtr gameEntity::getStateMachine()  // retrieves the value of stateMachine
+gameStateMachineSharedPtr gameEntity::getStateMachine() const  // retrieves the value of stateMachine
 {
     return (stateMachine);
 }
-void gameEntity::setStateMachine(gameStateMachineSharedPtr set)  // sets the value of stateMachine
+void gameEntity::setStateMachine(const gameStateMachineSharedPtr &set)  // sets the value of stateMachine
 {
     stateMachine = set;
 }
@@ -129,38 +129,38 @@ bool gameEntity::assignHoopToTeams()  // assigns which hoop belongs to each team
     return (true);
 }
 
-bool gameEntity::getComponentInitialized()  // retrieves the value of componentInitialized
+bool gameEntity::getComponentInitialized() const  // retrieves the value of componentInitialized
 {
     return (componentInitialized);
 }
-void gameEntity::setComponentInitialized(bool set)  // sets the value of componentInitialized
+void gameEntity::setComponentInitialized(const bool &set)  // sets the value of componentInitialized
 {
     componentInitialized = set;
 }
 
-bool gameEntity::getDataInitialized()  // retrieves the value of dataInitialized
+bool gameEntity::getDataInitialized() const  // retrieves the value of dataInitialized
 {
     return (dataInitialized);
 }
-void gameEntity::setDataInitialized(bool set)  // sets the value of dataInitialized
+void gameEntity::setDataInitialized(const bool &set)  // sets the value of dataInitialized
 {
     dataInitialized = set;
 }
 
-bool gameEntity::getFlagInitialized()  // retrieves the value of flagInitialized
+bool gameEntity::getFlagInitialized() const  // retrieves the value of flagInitialized
 {
     return (flagInitialized);
 }
-void gameEntity::setFlagInitialized(bool set)  // sets the value of flagInitialized
+void gameEntity::setFlagInitialized(const bool &set)  // sets the value of flagInitialized
 {
     flagInitialized = set;
 }
 
-bool gameEntity::getStateMachineInitialized()  // retrieves the value of stateMachineInitialized
+bool gameEntity::getStateMachineInitialized() const  // retrieves the value of stateMachineInitialized
 {
     return (stateMachineInitialized);
 }
-void gameEntity::setStateMachineInitialized(bool set)  // sets the value of stateMachineInitialized
+void gameEntity::setStateMachineInitialized(const bool &set)  // sets the value of stateMachineInitialized
 {
     stateMachineInitialized = set;
 }

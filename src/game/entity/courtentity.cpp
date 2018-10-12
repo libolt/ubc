@@ -33,29 +33,29 @@ courtEntity::~courtEntity()  // destructor
 
 }
 
-sharedPtr<courtData> courtEntity::getData()  // retrieves the value of data
+sharedPtr<courtData> courtEntity::getData() const  // retrieves the value of data
 {
     return (data);
 }
-void courtEntity::setData(sharedPtr<courtData> set)  // sets the value of data
+void courtEntity::setData(const sharedPtr<courtData> &set)  // sets the value of data
 {
     data = set;
 }
 
-sharedPtr<courtPhysics> courtEntity::getPhysics()  // retrieves the value of physics
+sharedPtr<courtPhysics> courtEntity::getPhysics() const  // retrieves the value of physics
 {
     return (physics);
 }
-void courtEntity::setPhysics(sharedPtr<courtPhysics> set)  // sets the value of physics
+void courtEntity::setPhysics(const sharedPtr<courtPhysics> &set)  // sets the value of physics
 {
     physics = set;
 }
 
-bool courtEntity::getInitialized()  // retrieves the value of initialized
+bool courtEntity::getInitialized() const  // retrieves the value of initialized
 {
     return (initialized);
 }
-void courtEntity::setInitialized(bool set)  // sets the value of initialized
+void courtEntity::setInitialized(const bool &set)  // sets the value of initialized
 {
     initialized = set;
 }

@@ -84,272 +84,263 @@ basketballEntity::~basketballEntity()  // destructor
     
 }
 
-sharedPtr<basketballPhysics> basketballEntity::getPhysics()  // retrieves the value of physics
+sharedPtr<basketballPhysics> basketballEntity::getPhysics() const  // retrieves the value of physics
 {
     return (physics);
 }
-void basketballEntity::setPhysics(sharedPtr<basketballPhysics> set)  // sets the value of physics
+void basketballEntity::setPhysics(const sharedPtr<basketballPhysics> &set)  // sets the value of physics
 {
     physics = set;
 }
 
-basketballSteerSharedPtr basketballEntity::getSteer()  // retrieves the value of steer
+basketballSteerSharedPtr basketballEntity::getSteer() const  // retrieves the value of steer
 {
     return (steer);
 }
-void basketballEntity::setSteer(basketballSteerSharedPtr set)  // sets the value of steer
+void basketballEntity::setSteer(const basketballSteerSharedPtr &set)  // sets the value of steer
 {
     steer = set;
 }
 
-bool basketballEntity::getInitialized()  // retrieves the value of initialized
+bool basketballEntity::getInitialized() const  // retrieves the value of initialized
 {
     return (initialized);
 }
-void basketballEntity::setInitialized(bool set)  // sets the value of initialized
+void basketballEntity::setInitialized(const bool &set)  // sets the value of initialized
 {
     initialized = set;
 }
 
-gameEntitySharedPtr basketballEntity::getGameInstance()  // retrieves the value of gameS
+gameEntitySharedPtr basketballEntity::getGameInstance() const  // retrieves the value of gameS
 {
     return (gameInstance);
 }
-void basketballEntity::setGameInstance(gameEntitySharedPtr set)  // sets the value of gameS
+void basketballEntity::setGameInstance(const gameEntitySharedPtr &set)  // sets the value of gameS
 {
     gameInstance = set;
 }
 
-sharedPtr<basketballData> basketballEntity::getData()  // retrievees the value of data
+sharedPtr<basketballData> basketballEntity::getData() const  // retrievees the value of data
 {
     return(data);
 }
-void basketballEntity::setData(sharedPtr<basketballData> set)  // sets the value of data
+void basketballEntity::setData(const sharedPtr<basketballData> &set)  // sets the value of data
 {
     data = set;
 }
 
-float basketballEntity::getMaxHeight()  // retrieves the value of maxHeight
+float basketballEntity::getMaxHeight() const  // retrieves the value of maxHeight
 {
     return(maxHeight);
 }
-void basketballEntity::setMaxHeight(float set)  // sets the value og maxHeight
+void basketballEntity::setMaxHeight(const float &set)  // sets the value og maxHeight
 {
     maxHeight = set;
 }
 
-bool basketballEntity::getMaxHeightReached()  // retrieves the value of maxHeightReached
+bool basketballEntity::getMaxHeightReached() const  // retrieves the value of maxHeightReached
 {
     return(maxHeightReached);
 }
-void basketballEntity::setMaxHeightReached(bool set)  // sets the value of maxHeightReachef
+void basketballEntity::setMaxHeightReached(const bool &set)  // sets the value of maxHeightReachef
 {
     maxHeightReached = set;
 }
 
-float basketballEntity::getMinHeight()  // retrieves the value minHeight
+float basketballEntity::getMinHeight() const  // retrieves the value minHeight
 {
     return(minHeight);
 }
-void basketballEntity::setMinHeight(float set)  // sets the value of minHeight
+void basketballEntity::setMinHeight(const float &set)  // sets the value of minHeight
 {
     minHeight = set;
 }
 
-bool basketballEntity::getMinHeightReached()  // retrieves the value of minHeightReached
+bool basketballEntity::getMinHeightReached() const  // retrieves the value of minHeightReached
 {
     return(minHeightReached);
 }
-void basketballEntity::setMinHeightReached(bool set)  // sets the value of minHeightReached
+void basketballEntity::setMinHeightReached(const bool &set)  // sets the value of minHeightReached
 {
     minHeightReached = set;
 }
 
-size_t basketballEntity::getRotate()  // retrieves the value of rotate
+size_t basketballEntity::getRotate() const  // retrieves the value of rotate
 {
     return (rotate);
 }
-void basketballEntity::setRotate(size_t set)  // sets the value of rotate
+void basketballEntity::setRotate(const size_t &set)  // sets the value of rotate
 {
     rotate = set;
 }
 
-size_t basketballEntity::getTeamNumber()  // retrieves the value of teamNumber
+size_t basketballEntity::getTeamNumber() const  // retrieves the value of teamNumber
 {
     return(teamNumber);
 }
-void basketballEntity::setTeamNumber(size_t set)  // sets the value of teamNumber
+void basketballEntity::setTeamNumber(const size_t &set)  // sets the value of teamNumber
 {
     teamNumber = set;
 }
 
-Ogre::Vector3 basketballEntity::getVelocity()  // retrieves the value of velocity
+Ogre::Vector3 basketballEntity::getVelocity() const  // retrieves the value of velocity
 {
     return(velocity);
 }
-void basketballEntity::setVelocity(Ogre::Vector3 set)  // sets the value of velocity
+void basketballEntity::setVelocity(const Ogre::Vector3 &set)  // sets the value of velocity
 {
     velocity = set;
 }
 
-Ogre::Vector3 basketballEntity::getStartCoords()  // retrieves the value of startCoords
+Ogre::Vector3 basketballEntity::getStartCoords() const  // retrieves the value of startCoords
 {
     return(startCoords);
 }
-void basketballEntity::setStartCoords(Ogre::Vector3 set) // sets the value of startCoords
+void basketballEntity::setStartCoords(const Ogre::Vector3 &set) // sets the value of startCoords
 {
     startCoords = set;
 }
 
-bool basketballEntity::getTipOffStart()  // retroeves the value of tipOffStart
+bool basketballEntity::getTipOffStart() const  // retroeves the value of tipOffStart
 {
     return (tipOffStart);
 }
-void basketballEntity::setTipOffStart(bool set)  // sets the value of tipOffStart
+void basketballEntity::setTipOffStart(const bool &set)  // sets the value of tipOffStart
 {
     tipOffStart = set;
 }
 
-bool basketballEntity::getTipOff()  // retrieves the value of tipOff
+bool basketballEntity::getTipOff() const  // retrieves the value of tipOff
 {
     return (tipOff);
 }
-void basketballEntity::setTipOff(bool set)  // sets the value of tipOff
+void basketballEntity::setTipOff(const bool &set)  // sets the value of tipOff
 {
     tipOff = set;
 }
 
-bool basketballEntity::getDribblingStart()  // retrieves the value of dribblingStart
+bool basketballEntity::getDribblingStart() const  // retrieves the value of dribblingStart
 {
     return (dribblingStart);
 }
-void basketballEntity::setDribblingStart(bool set)  // sets the value of dribblingStart
+void basketballEntity::setDribblingStart(const bool &set)  // sets the value of dribblingStart
 {
     dribblingStart = set;
 }
 
-bool basketballEntity::getDribbling()  // retrieves the value of dribbling
+bool basketballEntity::getDribbling() const  // retrieves the value of dribbling
 {
     return (dribbling);
 }
-void basketballEntity::setDribbling(bool set)  // sets the value of dribbling
+void basketballEntity::setDribbling(const bool &set)  // sets the value of dribbling
 {
     dribbling = set;
 }
 
-bool basketballEntity::getMovement()  // retrieves the value of movement
+bool basketballEntity::getMovement() const  // retrieves the value of movement
 {
     return (movement);
 }
-void basketballEntity::setMovement(bool set)  // sets the value of movement
+void basketballEntity::setMovement(const bool &set)  // sets the value of movement
 {
     movement = set;
 }
 
-bool basketballEntity::getDirectChange() // retrieves the value of directChange
+bool basketballEntity::getDirectChange() const  // retrieves the value of directChange
 {
     return (directChange);
 }
-void basketballEntity::setDirectChange(bool set)  // sets the value of directChange
+void basketballEntity::setDirectChange(const bool &set)  // sets the value of directChange
 {
     directChange = set;
 }
 
-bool basketballEntity::getPlayerControlled()  // retrieves the value of player controlled
+bool basketballEntity::getPlayerControlled() const  // retrieves the value of player controlled
 {
     return (playerControlled);
 }
-void basketballEntity::setPlayerControlled(bool set)  // sets the value of playerControlled
+void basketballEntity::setPlayerControlled(const bool &set)  // sets the value of playerControlled
 {
     playerControlled = set;
 }
 
-/*playerStateSharedPtr basketballState::getPlayerWithBall()  // retrieves the value of playerWithBall
-{
-    return (playerWithBall);
-}
-void basketballState::setPlayerWithBall(playerStateSharedPtr set)  // sets the value of playerWithBall
-{
-    playerWithBall = set;
-}*/
-
-courtEntityMSharedPtr basketballEntity::getCourtInstance()  // retrieves the value of courtInstance
+courtEntityMSharedPtr basketballEntity::getCourtInstance() const  // retrieves the value of courtInstance
 {
     return (courtInstance);
 }
-void basketballEntity::setCourtInstance(courtEntityMSharedPtr set)  // sets the value of courtInstance
+void basketballEntity::setCourtInstance(const courtEntityMSharedPtr &set)  // sets the value of courtInstance
 {
     courtInstance = set;
 }
 
-directions basketballEntity::getDirection()  // retrieves the value of direction
+directions basketballEntity::getDirection() const  // retrieves the value of direction
 {
     return (direction);
 }
-void basketballEntity::setDirection(directions set)  // sets the value of direction
+void basketballEntity::setDirection(const directions &set)  // sets the value of direction
 {
     direction = set;
 }
 
-directions basketballEntity::getOldDirection()  // retrieves the value of oldDirection
+directions basketballEntity::getOldDirection() const  // retrieves the value of oldDirection
 {
     return (oldDirection);
 }
-void basketballEntity::setOldDirection(directions set)  // sets the value of oldDirection
+void basketballEntity::setOldDirection(const directions &set)  // sets the value of oldDirection
 {
     oldDirection = set;
 }
 
-bool basketballEntity::getNumberSet()  // retrieves the value of numberSet
+bool basketballEntity::getNumberSet() const  // retrieves the value of numberSet
 {
     return (numberSet);
 }
-void basketballEntity::setNumberSet(bool set)  // sets the value of numberSet
+void basketballEntity::setNumberSet(const bool &set)  // sets the value of numberSet
 {
     numberSet = set;
 }
 
-Ogre::Vector3 basketballEntity::getCourtPosition()  // retrieves the value of courtPosition
+Ogre::Vector3 basketballEntity::getCourtPosition() const  // retrieves the value of courtPosition
 {
     return (courtPosition);
 }
-void basketballEntity::setCourtPosition(Ogre::Vector3 set)  // sets the value of courtPosition
+void basketballEntity::setCourtPosition(const Ogre::Vector3 &set)  // sets the value of courtPosition
 {
     courtPosition = set;
 }
 
-Ogre::Vector3 basketballEntity::getNewCourtPosition()  // retrieves the value of newCourtPosition
+Ogre::Vector3 basketballEntity::getNewCourtPosition() const  // retrieves the value of newCourtPosition
 {
     return (newCourtPosition);
 }
-void basketballEntity::setNewCourtPosition(Ogre::Vector3 set)  // sets the value of newCourtPosition
+void basketballEntity::setNewCourtPosition(const Ogre::Vector3 &set)  // sets the value of newCourtPosition
 {
     newCourtPosition = set;
 }
 
-bool basketballEntity::getCourtPositionChanged()  // retrieves the value of courtPositionChanged
+bool basketballEntity::getCourtPositionChanged() const  // retrieves the value of courtPositionChanged
 {
     return (courtPositionChanged);
 }
-void basketballEntity::setCourtPositionChanged(bool set)  // sets the value of courtPositionChanged
+void basketballEntity::setCourtPositionChanged(const bool &set)  // sets the value of courtPositionChanged
 {
     courtPositionChanged = set;
 }
 
-positionChangedTypes basketballEntity::getCourtPositionChangedType()  // retrieves the value of courtPositionChangedType
+positionChangedTypes basketballEntity::getCourtPositionChangedType() const  // retrieves the value of courtPositionChangedType
 {
     return (courtPositionChangedType);
 }
-void basketballEntity::setCourtPositionChangedType(positionChangedTypes set)  // sets the value of courtPositionChangedType
+void basketballEntity::setCourtPositionChangedType(const positionChangedTypes &set)  // sets the value of courtPositionChangedType
 {
     courtPositionChangedType = set;
 }
 
-size_t basketballEntity::getNumber()  // retrieves the value of number
+size_t basketballEntity::getNumber() const  // retrieves the value of number
 {
     return (number);
 }
-void basketballEntity::setNumber(size_t set)  // sets the value of number
+void basketballEntity::setNumber(const size_t &set)  // sets the value of number
 {
     number = set;
     getPhysics()->setPhysObjNumber(set); // sets the physics number as well
@@ -821,12 +812,12 @@ TS*/
 
 }
 
-size_t basketballEntity::getPlayer()
+size_t basketballEntity::getPlayer() const
 {
     return (player);
 }
 
-void basketballEntity::setPlayer(size_t Player)
+void basketballEntity::setPlayer(const size_t &Player)
 {
     player = Player;
 }

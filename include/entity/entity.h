@@ -39,52 +39,48 @@ class entity
     entity();  // constructor
     ~entity();  // destructor
     
-    bool getInitialized();  // retrieves the value of initialized
-    void setInitialized(bool set);  // sets the value of initialized
+    bool getInitialized() const;  // retrieves the value of initialized
+    void setInitialized(const bool &set);  // sets the value of initialized
     
-    bool getNameSet();  // retrieves the value of nameSet
-    void setNameSet(bool set);  // sets the value of nameSet
+    bool getNameSet() const;  // retrieves the value of nameSet
+    void setNameSet(const bool &set);  // sets the value of nameSet
 
-    bool getNodeNameSet();  // retrieves the value of nodeNameSet
-    void setNodeNameSet(bool set);  // sets the value of nodeNameSet
+    bool getNodeNameSet() const;  // retrieves the value of nodeNameSet
+    void setNodeNameSet(const bool &set);  // sets the value of nodeNameSet
 
-    size_t getID();  // retrieves the value of ID
-    void setID(size_t set);  // sets the value of ID
+    size_t getID() const;  // retrieves the value of ID
+    void setID(const size_t &set);  // sets the value of ID
     
-    std::string getModelFileName();  // retrieves the value of modelFileName
-    void setModelFileName(std::string set);  // sets the value of modelFileName
+    std::string getModelFileName() const;  // retrieves the value of modelFileName
+    void setModelFileName(const std::string &set);  // sets the value of modelFileName
 
-    std::string getName();  // retrieves the value of name
-    void setName(std::string set);  // sets the value of name
+    std::string getName() const;  // retrieves the value of name
+    void setName(const std::string &set);  // sets the value of name
 
-    std::string getNodeName();  // retrieves the value of nodeName
-    void setNodeName(std::string set);  // sets the value of nodeName
+    std::string getNodeName() const;  // retrieves the value of nodeName
+    void setNodeName(const std::string &set);  // sets the value of nodeName
 
-    OgreEntitySharedPtr getModel();  // retrieves the value of model
-    void setModel(OgreEntitySharedPtr set);  // sets the value of model
+    OgreEntitySharedPtr getModel() const;  // retrieves the value of model
+    void setModel(const OgreEntitySharedPtr &set);  // sets the value of model
 
-    OgreSceneNodeSharedPtr getNode();  // retrieves the value of node
-    void setNode(OgreSceneNodeSharedPtr set);  // sets the value of node
+    OgreSceneNodeSharedPtr getNode() const;  // retrieves the value of node
+    void setNode(const OgreSceneNodeSharedPtr &set);  // sets the value of node
 
-    bool getPhysicsSetup();  // retrieves the value of physicsSetup
-    void setPhysicsSetup(bool set);  // sets the value of physicsSetup
+    bool getPhysicsSetup() const;  // retrieves the value of physicsSetup
+    void setPhysicsSetup(const bool &set);  // sets the value of physicsSetup
     
-    bool getModelNeedsLoaded();  // retrieves the value of modelNeedsLoaded
-    void setModelNeedsLoaded(bool set);  // sets the value of modelNeedsLoaded
+    bool getModelNeedsLoaded() const;  // retrieves the value of modelNeedsLoaded
+    void setModelNeedsLoaded(const bool &set);  // sets the value of modelNeedsLoaded
 
-    bool getModelLoaded();  // retrieves the value of modelLoaded
-    void setModelLoaded(bool set);  // sets the value of modelLoaded
+    bool getModelLoaded() const;  // retrieves the value of modelLoaded
+    void setModelLoaded(const bool &set);  // sets the value of modelLoaded
 
-    bool getNodeCreated();  // retrieves the value of nodeaCreated
-    void setNodeCreated(bool set);  // sets the value of nodeCreated
+    bool getNodeCreated() const;  // retrieves the value of nodeaCreated
+    void setNodeCreated(const bool $set);  // sets the value of nodeCreated
 
-    Ogre::Vector3 getNodePosition();  // retrieves the value of nodePosition
-    void setNodePosition(Ogre::Vector3 set);  // sets the value of nodePosition
+    Ogre::Vector3 getNodePosition() const;  // retrieves the value of nodePosition
+    void setNodePosition(const Ogre::Vector3 &set);  // sets the value of nodePosition
 
-//    bool loadModel();  // loads the 3D model from file specified in modelName
-    
-//    bool setupPhysics();  // sets up the physics object
-    
     private:
     
     bool initialized;  // stores whether entity object has been initialized

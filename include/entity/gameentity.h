@@ -63,29 +63,29 @@ class gameEntity //: public state, public gameStateShared, public std::enable_sh
         gameEntity(); // constructor
         ~gameEntity();  // destructor
 
-        gameComponentsSharedPtr getComponent();  // retrieves the value of component
+        gameComponentsSharedPtr getComponent() const;  // retrieves the value of component
         void setComponent(gameComponentsSharedPtr set);  // sets the value of component
 
-        gameDataSharedPtr getData();  // retrieves the value of data
-        void setData(gameDataSharedPtr set);  // sets the value of data
+        gameDataSharedPtr getData() const;  // retrieves the value of data
+        void setData(const gameDataSharedPtr &set);  // sets the value of data
 
-        gameFlagsSharedPtr getFlag();  // retrieves the value of flag
-        void setFlag(gameFlagsSharedPtr set);  // sets the value of flag
+        gameFlagsSharedPtr getFlag() const;  // retrieves the value of flag
+        void setFlag(const gameFlagsSharedPtr &set);  // sets the value of flag
     
-        gameStateMachineSharedPtr getStateMachine();  // retrieves the value of stateMachine
-        void setStateMachine(gameStateMachineSharedPtr set);  // sets the value of stateMachine
+        gameStateMachineSharedPtr getStateMachine() const;  // retrieves the value of stateMachine
+        void setStateMachine(const gameStateMachineSharedPtr &set);  // sets the value of stateMachine
 
-        bool getComponentInitialized();  // retrieves the value of componentInitialized
-        void setComponentInitialized(bool set);  // sets the value of componentInitialized
+        bool getComponentInitialized() const;  // retrieves the value of componentInitialized
+        void setComponentInitialized(const bool &set);  // sets the value of componentInitialized
 
-        bool getDataInitialized();  // retrieves the value of dataInitialized
-        void setDataInitialized(bool set);  // sets the value of dataInitialized
+        bool getDataInitialized() const;  // retrieves the value of dataInitialized
+        void setDataInitialized(const bool &set);  // sets the value of dataInitialized
 
-        bool getFlagInitialized();  // retrieves the value of flagInitialized
-        void setFlagInitialized(bool set);  // sets the value of flagInitialized
+        bool getFlagInitialized() const;  // retrieves the value of flagInitialized
+        void setFlagInitialized(const bool &set);  // sets the value of flagInitialized
     
-        bool getStateMachineInitialized();  // retrieves the value of stateMachineInitialized
-        void setStateMachineInitialized(bool set);  // sets the value of stateMachineInitialized
+        bool getStateMachineInitialized() const;  // retrieves the value of stateMachineInitialized
+        void setStateMachineInitialized(const bool &set);  // sets the value of stateMachineInitialized
 
         bool initializeStateMachine(renderEngineSharedPtr render);  // initializes the stateMachine object
     

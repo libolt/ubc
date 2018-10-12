@@ -33,14 +33,14 @@ class courtEntity : public entity
         courtEntity();  // constructor
         ~courtEntity();  // destructor
 
-        sharedPtr<courtData> getData();  // retrieves the value of data
-        void setData(sharedPtr<courtData> set);  // sets the value of data
+        sharedPtr<courtData> getData() const;  // retrieves the value of data
+        void setData(const sharedPtr<courtData> &set);  // sets the value of data
 
-        sharedPtr<courtPhysics> getPhysics();  // retrieves the value of physics
-        void setPhysics(sharedPtr<courtPhysics> set);  // sets the value of physics
+        sharedPtr<courtPhysics> getPhysics() const;  // retrieves the value of physics
+        void setPhysics(const sharedPtr<courtPhysics> &set);  // sets the value of physics
 
-        bool getInitialized();  // retrieves the value of initialized
-        void setInitialized(bool set);  // sets the value of initialized
+        bool getInitialized() const;  // retrieves the value of initialized
+        void setInitialized(const bool &set);  // sets the value of initialized
 
         bool initialize();  // initializes the court entity object
 

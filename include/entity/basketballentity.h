@@ -38,98 +38,95 @@ class basketballEntity : public entity
     basketballEntity();  // constructor
     ~basketballEntity();  // destructor
     
-    gameEntitySharedPtr getGameInstance();  // retrieves the value of gameS
-    void setGameInstance(gameEntitySharedPtr set);  // sets the value of gameS
+    gameEntitySharedPtr getGameInstance() const;  // retrieves the value of gameS
+    void setGameInstance(const gameEntitySharedPtr &set);  // sets the value of gameS
 
-    sharedPtr<basketballData> getData();  // retrievees the value of data
-    void setData(sharedPtr<basketballData> set);  // sets the value of data
+    sharedPtr<basketballData> getData() const;  // retrievees the value of data
+    void setData(const sharedPtr<basketballData> &set);  // sets the value of data
     
-    bool getInitialized();  // retrieves the value of initialized
-    void setInitialized(bool set);  // sets the value of initialized
+    bool getInitialized() const;  // retrieves the value of initialized
+    void setInitialized(const bool &set);  // sets the value of initialized
 
-    float getMaxHeight();  //   retrieves the value of maxHeight
-    void setMaxHeight(float set);  //   sets the value of maxHeight
+    float getMaxHeight() const;  //   retrieves the value of maxHeight
+    void setMaxHeight(const float &set);  //   sets the value of maxHeight
 
-    bool getMaxHeightReached();  // retrieves the value of maxHeightReached
-    void setMaxHeightReached(bool set);  // sets the value of maxHeightReached
+    bool getMaxHeightReached() const;  // retrieves the value of maxHeightReached
+    void setMaxHeightReached(const bool &set);  // sets the value of maxHeightReached
 
-    float getMinHeight();  // retrieves the value of minHeight
-    void setMinHeight(float set);    // sets the value of minHeight
+    float getMinHeight()const;  // retrieves the value of minHeight
+    void setMinHeight(const float &set);    // sets the value of minHeight
 
-    bool getMinHeightReached();  // retrieves the value of minHeightReached
-    void setMinHeightReached(bool set);  // sets minHeightReached
+    bool getMinHeightReached() const;  // retrieves the value of minHeightReached
+    void setMinHeightReached(const bool &set);  // sets minHeightReached
 
-    size_t getRotate();  // retrieves the value of rotate
-    void setRotate(size_t set);  // sets the value of rotate
+    size_t getRotate() const;  // retrieves the value of rotate
+    void setRotate(const size_t &set);  // sets the value of rotate
 
-    size_t getTeamNumber();  // retrieves the value of teamNumber
-    void setTeamNumber(size_t set);  // sets the value of teamNumber
+    size_t getTeamNumber() const;  // retrieves the value of teamNumber
+    void setTeamNumber(const size_t &set);  // sets the value of teamNumber
 
-    size_t getPlayer();  // retrieves the value of player
-    void setPlayer(size_t set);  // sets the value of player
+    size_t getPlayer() const;  // retrieves the value of player
+    void setPlayer(const size_t &set);  // sets the value of player
 
-    Ogre::Vector3 getVelocity();  // retrieves xVelocity value
-    void setVelocity(Ogre::Vector3 set);  // sets xVelocity value
+    Ogre::Vector3 getVelocity() const;  // retrieves the value of Velocity
+    void setVelocity(const Ogre::Vector3 &set);  // sets the value of Velocity
 
-    Ogre::Vector3 getStartCoords();  // retreives the value of startCoords
-    void setStartCoords(Ogre::Vector3 set);  // sets the value of startCoords
+    Ogre::Vector3 getStartCoords() const;  // retreives the value of startCoords
+    void setStartCoords(const Ogre::Vector3 &set);  // sets the value of startCoords
 
-    bool getTipOffStart();  // retrieves the value of tipOffStart
-    void setTipOffStart(bool set);  // sets the value of tipOFfStart
+    bool getTipOffStart() const;  // retrieves the value of tipOffStart
+    void setTipOffStart(const bool &set);  // sets the value of tipOFfStart
 
-    bool getTipOff();  // retrieves the value of tipOff
-    void setTipOff(bool set);  // sets the value of tipOff
+    bool getTipOff() const;  // retrieves the value of tipOff
+    void setTipOff(const bool &set);  // sets the value of tipOff
 
-    bool getDribblingStart();  // retrieves the value of dribblingStart
-    void setDribblingStart(bool set);  // sets the value of dribblingStart
+    bool getDribblingStart() const;  // retrieves the value of dribblingStart
+    void setDribblingStart(const bool &set);  // sets the value of dribblingStart
 
-    bool getDribbling();  // retrieves the value of dribbling
-    void setDribbling(bool set);  // sets the value of dribbling
+    bool getDribbling() const;  // retrieves the value of dribbling
+    void setDribbling(const bool &set);  // sets the value of dribbling
 
-    bool getMovement();  // retrieves the value of movement
-    void setMovement(bool set);  // sets the value of movement
+    bool getMovement() const;  // retrieves the value of movement
+    void setMovement(const bool &set);  // sets the value of movement
 
-    bool getDirectChange(); // retrieves the value of directChange
-    void setDirectChange(bool set);  // sets the value of directChange
+    bool getDirectChange() const;  // retrieves the value of directChange
+    void setDirectChange(const bool &set);  // sets the value of directChange
 
-    bool getPlayerControlled();  // retrieves the value of player controlled
-    void setPlayerControlled(bool set);  // sets the value of playerControlled
+    bool getPlayerControlled() const;  // retrieves the value of player controlled
+    void setPlayerControlled(const bool &set);  // sets the value of playerControlled
     
-//    playerStateSharedPtr getPlayerWithBall();  // retrieves the value of playerWithBall
-//    void setPlayerWithBall(playerStateSharedPtr set);  // sets the value of playerWithBall
+    courtEntityMSharedPtr getCourtInstance() const;  // retrieves the value of courtInstance
+    void setCourtInstance(const courtEntityMSharedPtr &set);  // sets the value of courtInstance
     
-    courtEntityMSharedPtr getCourtInstance();  // retrieves the value of courtInstance
-    void setCourtInstance(courtEntityMSharedPtr set);  // sets the value of courtInstance
+    directions getDirection() const;  // retrieves the value of direction
+    void setDirection(const directions &set);  // sets the value of direction
     
-    directions getDirection();  // retrieves the value of direction
-    void setDirection(directions set);  // sets the value of direction 
-    
-    directions getOldDirection();  // retrieves the value of oldDirection
-    void setOldDirection(directions set);  // sets the value of oldDirection 
+    directions getOldDirection() const;  // retrieves the value of oldDirection
+    void setOldDirection(const directions &set);  // sets the value of oldDirection
   
-    bool getNumberSet();  // retrieves the value of numberSet
-    void setNumberSet(bool set);  // sets the value of numberSet
+    bool getNumberSet() const;  // retrieves the value of numberSet
+    void setNumberSet(const bool &set);  // sets the value of numberSet
     
-    Ogre::Vector3 getCourtPosition();  // retrieves the value of courtPosition
-    void setCourtPosition(Ogre::Vector3 set);  // sets the value of courtPosition
+    Ogre::Vector3 getCourtPosition() const;  // retrieves the value of courtPosition
+    void setCourtPosition(const Ogre::Vector3 &set);  // sets the value of courtPosition
 
-    Ogre::Vector3 getNewCourtPosition();  // retrieves the value of newCourtPosition
-    void setNewCourtPosition(Ogre::Vector3 set);  // sets the value of newCourtPosition
+    Ogre::Vector3 getNewCourtPosition() const;  // retrieves the value of newCourtPosition
+    void setNewCourtPosition(const Ogre::Vector3 &set);  // sets the value of newCourtPosition
 
-    bool getCourtPositionChanged();  // retrieves the value of courtPositionChanged
-    void setCourtPositionChanged(bool set);  // sets the value of courtPositionChanged
+    bool getCourtPositionChanged() const;  // retrieves the value of courtPositionChanged
+    void setCourtPositionChanged(const bool &set);  // sets the value of courtPositionChanged
 
-    positionChangedTypes getCourtPositionChangedType();  // retrieves the value of courtPositionChangedType
-    void setCourtPositionChangedType(positionChangedTypes set);  // sets the value of courtPositionChangedType
+    positionChangedTypes getCourtPositionChangedType() const;  // retrieves the value of courtPositionChangedType
+    void setCourtPositionChangedType(const positionChangedTypes &set);  // sets the value of courtPositionChangedType
 
-    sharedPtr<basketballPhysics> getPhysics();  // retrieves the value of physics
-    void setPhysics(sharedPtr<basketballPhysics> set);  // sets the value of physics
+    sharedPtr<basketballPhysics> getPhysics() const;  // retrieves the value of physics
+    void setPhysics(const sharedPtr<basketballPhysics> &set);  // sets the value of physics
 
-    basketballSteerSharedPtr getSteer();  // retrieves the value of steer
-    void setSteer(basketballSteerSharedPtr set);  // sets the value of steer
+    basketballSteerSharedPtr getSteer() const;  // retrieves the value of steer
+    void setSteer(const basketballSteerSharedPtr &set);  // sets the value of steer
 
-    size_t getNumber();  // retrieves the value of number
-    void setNumber(size_t set);  // sets the value of number
+    size_t getNumber() const;  // retrieves the value of number
+    void setNumber(const size_t &set);  // sets the value of number
 
     void updateState(gameComponentsSharedPtr gameComponent, gameDataSharedPtr gameDta, gameFlagsSharedPtr gameFlag);  // updates the state of the basketball
     

@@ -27,11 +27,11 @@ playerStatistics::~playerStatistics()  // destructor
 {
 }
 
-size_t playerStatistics::getStamina()  // retrieves the value of stamina
+size_t playerStatistics::getStamina() const  // retrieves the value of stamina
 {
     return(stamina);
 }
-void playerStatistics::setStamina(size_t set)  // sets the value of stamina
+void playerStatistics::setStamina(const size_t &set)  // sets the value of stamina
 {
     stamina = set;
 }

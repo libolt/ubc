@@ -29,8 +29,8 @@ class teamStatistics : public statistics
         teamStatistics();  // constructor
         ~teamStatistics();  // destructor
 
-        size_t getTimeOuts(); // retrieves the value of timeOuts
-        void setTimeOuts(size_t set);  // sets the value of timeOuts
+        size_t getTimeOuts() const;  // retrieves the value of timeOuts
+        void setTimeOuts(const size_t &set);  // sets the value of timeOuts
 
     private:
         size_t timeOuts;  // stores the number of time outs the team has

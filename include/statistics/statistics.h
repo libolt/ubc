@@ -31,53 +31,53 @@
         statistics();  // constructor
         ~statistics();  // destructor
 
-        size_t getPoints();  // gets the value of points
-        void setPoints(size_t set);  // sets the value of points
+        size_t getPoints() const;  // gets the value of points
+        void setPoints(const size_t &set);  // sets the value of points
 
-        size_t getFouls();  // retrieves the value of fouls
-        void setFouls(size_t set);  // sets the value of fouls;
+        size_t getFouls() const;  // retrieves the value of fouls
+        void setFouls(const size_t &set);  // sets the value of fouls;
 
-        size_t getTechnicalFouls();  // retrieves the value of technicalFouls
-        void setTechnicalFoulds(size_t set);  // sets the value of technicalFouls
+        size_t getTechnicalFouls() const;  // retrieves the value of technicalFouls
+        void setTechnicalFoulds(const size_t &set);  // sets the value of technicalFouls
 
-        size_t getOffensiveRebounds();  // retrieves the value of offensiveRebounds
-        void setOffensiveRebounds(size_t set);  // sets the value of offensiveRebounds
+        size_t getOffensiveRebounds() const;  // retrieves the value of offensiveRebounds
+        void setOffensiveRebounds(const size_t &set);  // sets the value of offensiveRebounds
 
-        size_t getDefensiveRebounds();  // retrieves the value of defensiveRebounds
-        void setDefensiveRebounds(size_t set);  // sets the value of defensiveRebounds
+        size_t getDefensiveRebounds() const;  // retrieves the value of defensiveRebounds
+        void setDefensiveRebounds(const size_t &set);  // sets the value of defensiveRebounds
 
-        size_t getTotalRebounds();  // retrieves the value of totalRebounds
-        void setTotalReboundS(size_t set);  // sets the value of totalRebounds
+        size_t getTotalRebounds() const;  // retrieves the value of totalRebounds
+        void setTotalReboundS(const size_t &set);  // sets the value of totalRebounds
 
-        size_t getSteals();  // retrieves the value of steals
+        size_t getSteals() const;  // retrieves the value of steals
         void setSteals(size_t set);  // sets the value of steals
 
-        size_t getBlocks();  // retrieves the value of blocks
-        void setBlocks(size_t set);  // sets the value of blocks
+        size_t getBlocks() const;  // retrieves the value of blocks
+        void setBlocks(const size_t &set);  // sets the value of blocks
 
-        size_t getTurnovers();  // retrieves the value of turnovers
-        void setTurnovers(size_t set);  // sets the value of turnovers
+        size_t getTurnovers() const;  // retrieves the value of turnovers
+        void setTurnovers(const size_t &set);  // sets the value of turnovers
 
-        size_t getAssists();  // retrieves the values of assists
-        void setAssists(size_t set);  // sets the value of assists
+        size_t getAssists() const;  // retrieves the values of assists
+        void setAssists(const size_t &set);  // sets the value of assists
 
-        size_t getFieldGoalsAttemped();  // retrieves the value of fieldGoalsAttempted
-        void setFieldGoalsAttempted(size_t set);  // sets the value of fieldGoalsAttempted
+        size_t getFieldGoalsAttemped() const;  // retrieves the value of fieldGoalsAttempted
+        void setFieldGoalsAttempted(const size_t &set);  // sets the value of fieldGoalsAttempted
 
-        size_t getFieldGoalsMade();  // retrieves the value of fieldGoalsMade
-        void setFieldGoalsmade(size_t set);  // sets the value of fieldGoalsMade
+        size_t getFieldGoalsMade() const;  // retrieves the value of fieldGoalsMade
+        void setFieldGoalsmade(const size_t &set);  // sets the value of fieldGoalsMade
 
-        size_t getThreePointersAttempted();  // retrieves the value of threePointersMade
-        void setThreePointersAttempted(size_t set);  // sets the value of threePointersAttempted
+        size_t getThreePointersAttempted() const;  // retrieves the value of threePointersMade
+        void setThreePointersAttempted(const size_t &set);  // sets the value of threePointersAttempted
 
-        size_t getThreePointersMade();  // retrieves the value of threePointersMade
-        void setThreePointersMade(size_t set);  // sests the value of threePointersMade
+        size_t getThreePointersMade() const;  // retrieves the value of threePointersMade
+        void setThreePointersMade(const size_t &set);  // sests the value of threePointersMade
 
-        size_t getFreeThrowsAttempted();  // retrieves the value of freeThrowsAttempted
-        void setFreeThrowsAttempted(size_t set);  // sets the value of freeThrowsAttempted
+        size_t getFreeThrowsAttempted() const;  // retrieves the value of freeThrowsAttempted
+        void setFreeThrowsAttempted(const size_t &set);  // sets the value of freeThrowsAttempted
 
-        size_t getFreeThrowsMade();  // retrieves the value of freeThrowsMade
-        void setFreeThrowsMade(size_t set);  // sest the value of freeThrowsMade
+        size_t getFreeThrowsMade() const;  // retrieves the value of freeThrowsMade
+        void setFreeThrowsMade(const size_t &set);  // sest the value of freeThrowsMade
 
     private:
     

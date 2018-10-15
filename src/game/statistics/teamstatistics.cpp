@@ -28,11 +28,11 @@ teamStatistics::~teamStatistics()  // destructor
 {
 }
 
-size_t teamStatistics::getTimeOuts() // retrieves the value of timeOuts
+size_t teamStatistics::getTimeOuts() const  // retrieves the value of timeOuts
 {
     return (timeOuts);
 }
-void teamStatistics::setTimeOuts(size_t set)  // sets the value of timeOuts
+void teamStatistics::setTimeOuts(const size_t &set)  // sets the value of timeOuts
 {
     timeOuts = set;
 }

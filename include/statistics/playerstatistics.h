@@ -29,8 +29,8 @@ class playerStatistics : public statistics
         playerStatistics();  // constructor
         ~playerStatistics();  // destructor
 
-        size_t getStamina();  // retrieves the value of stamina
-        void setStamina(size_t set);  // sets the value of stamina
+        size_t getStamina() const;  // retrieves the value of stamina
+        void setStamina(const size_t &set);  // sets the value of stamina
 
     private:
         size_t stamina;  // stores the player's energy level

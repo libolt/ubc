@@ -30,66 +30,66 @@ users::~users()  // destructor
     
 }
 
-std::string users::getName()  // retrieves the value of name
+std::string users::getName() const  // retrieves the value of name
 {
     return (name);
 }
-void users::setName(std::string set)  // sets the value of name
+void users::setName(const std::string &set)  // sets the value of name
 {
     name = set;
 }
 
-size_t users::getID()  // retrieves the value
+size_t users::getID() const  // retrieves the value
 {
     return (ID);
 }
-void users::setID(size_t set)  // sets the value of ID
+void users::setID(const size_t &set)  // sets the value of ID
 {
     ID = set;
 }
 
-teamTypes users::getTeam()  // retrieves the value of team
+teamTypes users::getTeam() const  // retrieves the value of team
 {
     return (team);
 }
 
-void users::setTeam(teamTypes set)  // sets the value of team
+void users::setTeam(const teamTypes &set)  // sets the value of team
 {
     team = set;
 }
 
-playerPositions users::getPlayer()  // retrieves the value of player       
+playerPositions users::getPlayer() const  // retrieves the value of player
 {
     return (player);
 }
-void users::setPlayer(playerPositions set)  // sets the value of player
+void users::setPlayer(const playerPositions &set)  // sets the value of player
 {
     player = set;
 }
 
-userTypes users::getType()  // retrieves the value of type
+userTypes users::getType() const  // retrieves the value of type
 {
     return (type);
 }
-void users::setType(userTypes set)  // sets the value of type
+void users::setType(const userTypes &set)  // sets the value of type
 {
     type = set;
 }
 
-usersInputsSharedPtr users::getUserInput()  // retrieves the value of userInput
+usersInputsSharedPtr users::getUserInput() const  // retrieves the value of userInput
 {
     return (userInput);
 }
-void users::setUserInput(usersInputsSharedPtr set)  // sets the value of userInput
+void users::setUserInput(const usersInputsSharedPtr &set)  // sets the value of userInput
 {
     userInput = set;
 }
 
-inputTypes users::getInputType()  // retrieves the value of inputType
+inputTypes users::getInputType() const  // retrieves the value of inputType
 {
     return (inputType);
 }
-void users::setInputType(inputTypes set)  // sets the value of inputType
+void users::setInputType(const inputTypes &set)  // sets the value of inputType
 {
     inputType = set;
 }

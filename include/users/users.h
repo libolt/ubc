@@ -34,26 +34,26 @@ class users
         users();  // constructor
         ~users();  // destructor
         
-        std::string getName();  // retrieves the value of name
-        void setName(std::string set);  // sets the value of name
+        std::string getName() const;  // retrieves the value of name
+        void setName(const std::string &set);  // sets the value of name
         
-        size_t getID();  // retrieves the value
-        void setID(size_t set);  // sets the value of ID
+        size_t getID() const;  // retrieves the value
+        void setID(const size_t &set);  // sets the value of ID
         
-        teamTypes getTeam();  // retrieves the value of team
-        void setTeam(teamTypes set);  // sets the value of team
+        teamTypes getTeam() const;  // retrieves the value of team
+        void setTeam(const teamTypes &set);  // sets the value of team
         
-        playerPositions getPlayer();  // retrieves the value of player       
-        void setPlayer(playerPositions set);  // sets the value of player
+        playerPositions getPlayer() const;  // retrieves the value of player
+        void setPlayer(const playerPositions &set);  // sets the value of player
         
-        userTypes getType();  // retrieves the value of type
-        void setType(userTypes set);  // sets the value of type
+        userTypes getType() const;  // retrieves the value of type
+        void setType(const userTypes &set);  // sets the value of type
         
-        inputTypes getInputType();  // retrieves the value of inputType
-        void setInputType(inputTypes set);  // sets the value of inputType
+        inputTypes getInputType() const;  // retrieves the value of inputType
+        void setInputType(const inputTypes &set);  // sets the value of inputType
         
-        usersInputsSharedPtr getUserInput();  // retrieves the value of userInput
-        void setUserInput(usersInputsSharedPtr set);  // sets the value of userInput
+        usersInputsSharedPtr getUserInput() const;  // retrieves the value of userInput
+        void setUserInput(const usersInputsSharedPtr &set);  // sets the value of userInput
         
     private:
     

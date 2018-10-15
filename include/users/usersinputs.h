@@ -34,92 +34,92 @@ class usersInputs
         
         ~usersInputs();  // destructor
         
-        std::string getName();  // retrieves the value of name
-        void setName(std::string set);  // sets the value of name
+        std::string getName() const;  // retrieves the value of name
+        void setName(const std::string &set);  // sets the value of name
         
-        inputTypes getType();  // retrieves the value of type
-        void setType(inputTypes set);  // sets the value of type
+        inputTypes getType() const;  // retrieves the value of type
+        void setType(const inputTypes &set);  // sets the value of type
 
-        inputKeyMaps getKeyUp();  // retrieves the value of keyUp
-        void setKeyUp(inputKeyMaps set);  // sets the value of keyUp
+        inputKeyMaps getKeyUp() const;  // retrieves the value of keyUp
+        void setKeyUp(const inputKeyMaps &set);  // sets the value of keyUp
 
-        inputKeyMaps getKeyDown();  // retrieves the value of keyDown
-        void setKeyDown(inputKeyMaps set);  // sets the value of keyDown
+        inputKeyMaps getKeyDown() const;  // retrieves the value of keyDown
+        void setKeyDown(const inputKeyMaps &set);  // sets the value of keyDown
         
-        inputKeyMaps getKeyLeft();  // retrieves the value of keyLeft
-        void setKeyLeft(inputKeyMaps set);  // sets the value of keyLeft
+        inputKeyMaps getKeyLeft() const;  // retrieves the value of keyLeft
+        void setKeyLeft(const inputKeyMaps &set);  // sets the value of keyLeft
 
-        inputKeyMaps getKeyRight();  // retrieves the value of keyRight
-        void setKeyRight(inputKeyMaps set);  // sets the value of keyRight
+        inputKeyMaps getKeyRight() const;  // retrieves the value of keyRight
+        void setKeyRight(const inputKeyMaps &set);  // sets the value of keyRight
 
-        inputKeyMaps getKeyUpLeft();  // retrieves the value of keyUpLeft
-        void setKeyUpLeft(inputKeyMaps set);  // sets the value of keyUpLeft
+        inputKeyMaps getKeyUpLeft() const;  // retrieves the value of keyUpLeft
+        void setKeyUpLeft(const inputKeyMaps &set);  // sets the value of keyUpLeft
 
-        inputKeyMaps getKeyUpRight();  // retrieves the value of keyUpRight
-        void setKeyUpRight(inputKeyMaps set);  // sets the value of keyUpRight
+        inputKeyMaps getKeyUpRight() const;  // retrieves the value of keyUpRight
+        void setKeyUpRight(const inputKeyMaps &set);  // sets the value of keyUpRight
 
-        inputKeyMaps getKeyDownLeft();  // retrieves the value of keyDownLeft
-        void setKeyDownLeft(inputKeyMaps set);  // sets the value of keyDownLeft
+        inputKeyMaps getKeyDownLeft() const;  // retrieves the value of keyDownLeft
+        void setKeyDownLeft(const inputKeyMaps &set);  // sets the value of keyDownLeft
 
-        inputKeyMaps getKeyDownRight();  // retrieves the value of keyDownRight
-        void setKeyDownRight(inputKeyMaps set);  // sets the value of keyDownRight
+        inputKeyMaps getKeyDownRight() const;  // retrieves the value of keyDownRight
+        void setKeyDownRight(const inputKeyMaps &set);  // sets the value of keyDownRight
 
-        inputKeyMaps getKeyShootBlock();  // retrieves the value of keyShootBlock
-        void setKeyShootBlock(inputKeyMaps set);  // sets the value of keyShootBlock
+        inputKeyMaps getKeyShootBlock() const;  // retrieves the value of keyShootBlock
+        void setKeyShootBlock(const inputKeyMaps &set);  // sets the value of keyShootBlock
 
-        inputKeyMaps getKeyPassSteal();  // retrieves the value of keyPassSteal
-        void setKeyPassSteal(inputKeyMaps set);  // sets the value of keyPassSteal
+        inputKeyMaps getKeyPassSteal() const;  // retrieves the value of keyPassSteal
+        void setKeyPassSteal(const inputKeyMaps &set);  // sets the value of keyPassSteal
 
-        inputKeyMaps getKeyPause();  // retrieves the value of keyPause
-        void setKeyPause(inputKeyMaps set);  // sets the value of keyPause
+        inputKeyMaps getKeyPause() const;  // retrieves the value of keyPause
+        void setKeyPause(const inputKeyMaps &set);  // sets the value of keyPause
 
-        inputKeyMaps getKeyStartSelect();  // retrieves the value of keyStartSelect
-        void setKeyStartSelect(inputKeyMaps set);  // sets the value of keyStartSelect
+        inputKeyMaps getKeyStartSelect() const;  // retrieves the value of keyStartSelect
+        void setKeyStartSelect(const inputKeyMaps &set);  // sets the value of keyStartSelect
 
-        inputKeyMaps getKeyQuit();  // retrieves the value of keyStartSelect
-        void setKeyQuit(inputKeyMaps set);  // sets the value of keyStartSelect
+        inputKeyMaps getKeyQuit() const;  // retrieves the value of keyStartSelect
+        void setKeyQuit(const inputKeyMaps &set);  // sets the value of keyStartSelect
 
-        inputGamePadMaps getGPUp();  // retrieves the value of GPUp
-        void setGPUp(inputGamePadMaps set);  // sets the value of GPUp
+        inputGamePadMaps getGPUp() const;  // retrieves the value of GPUp
+        void setGPUp(const inputGamePadMaps &set);  // sets the value of GPUp
 
-        inputGamePadMaps getGPDown();  // retrieves the value of GPDown
-        void setGPDown(inputGamePadMaps set);  // sets the value of GPDown
+        inputGamePadMaps getGPDown() const;  // retrieves the value of GPDown
+        void setGPDown(const inputGamePadMaps &set);  // sets the value of GPDown
         
-        inputGamePadMaps getGPLeft();  // retrieves the value of GPLeft
-        void setGPLeft(inputGamePadMaps set);  // sets the value of GPLeft
+        inputGamePadMaps getGPLeft() const;  // retrieves the value of GPLeft
+        void setGPLeft(const inputGamePadMaps &set);  // sets the value of GPLeft
 
-        inputGamePadMaps getGPRight();  // retrieves the value of jLGPRight
-        void setGPRight(inputGamePadMaps set);  // sets the value of GPRight
+        inputGamePadMaps getGPRight() const;  // retrieves the value of jLGPRight
+        void setGPRight(const inputGamePadMaps &set);  // sets the value of GPRight
 
-        inputGamePadMaps getGPUpLeft();  // retrieves the value of GPUpLeft
-        void setGPUpLeft(inputGamePadMaps set);  // sets the value of GPUpLeft
+        inputGamePadMaps getGPUpLeft() const;  // retrieves the value of GPUpLeft
+        void setGPUpLeft(const inputGamePadMaps &set);  // sets the value of GPUpLeft
 
-        inputGamePadMaps getGPUpRight();  // retrieves the value of GPUpRight
-        void setGPUpRight(inputGamePadMaps set);  // sets the value of GPUpRight
+        inputGamePadMaps getGPUpRight() const;  // retrieves the value of GPUpRight
+        void setGPUpRight(const inputGamePadMaps &set);  // sets the value of GPUpRight
 
-        inputGamePadMaps getGPDownLeft();  // retrieves the value of GPDownLeft
-        void setGPDownLeft(inputGamePadMaps set);  // sets the value of GPDownLeft
+        inputGamePadMaps getGPDownLeft() const;  // retrieves the value of GPDownLeft
+        void setGPDownLeft(const inputGamePadMaps &set);  // sets the value of GPDownLeft
 
-        inputGamePadMaps getGPDownRight();  // retrieves the value of GPDownRight
-        void setGPDownRight(inputGamePadMaps set);  // sets the value of GPDownRight
+        inputGamePadMaps getGPDownRight() const;  // retrieves the value of GPDownRight
+        void setGPDownRight(const inputGamePadMaps &set);  // sets the value of GPDownRight
 
-        inputGamePadMaps getGPShootBlock();  // retrieves the value of GPShootBlock
-        void setGPShootBlock(inputGamePadMaps set);  // sets the value of GPShootBlock
+        inputGamePadMaps getGPShootBlock() const;  // retrieves the value of GPShootBlock
+        void setGPShootBlock(const inputGamePadMaps &set);  // sets the value of GPShootBlock
 
-        inputGamePadMaps getGPPassSteal();  // retrieves the value of GPPassSteal
-        void setGPPassSteal(inputGamePadMaps set);  // sets the value of GPPassSteal
+        inputGamePadMaps getGPPassSteal() const;  // retrieves the value of GPPassSteal
+        void setGPPassSteal(const inputGamePadMaps &set);  // sets the value of GPPassSteal
 
-        inputGamePadMaps getGPPause();  // retrieves the value of GPPause
-        void setGPPause(inputGamePadMaps set);  // sets the value of GPPause
+        inputGamePadMaps getGPPause() const;  // retrieves the value of GPPause
+        void setGPPause(const inputGamePadMaps &set);  // sets the value of GPPause
 
-        inputGamePadMaps getGPStartSelect();  // retrieves the value of GPStartSelect
-        void setGPStartSelect(inputGamePadMaps set);  // sets the value of GPStartSelect
+        inputGamePadMaps getGPStartSelect() const;  // retrieves the value of GPStartSelect
+        void setGPStartSelect(const inputGamePadMaps &set);  // sets the value of GPStartSelect
         
-        inputGamePadMaps getGPQuit();  // retrieves the value of GPQuit
-        void setGPQuit(inputGamePadMaps set);  // sets the value of GPQuit
+        inputGamePadMaps getGPQuit() const;  // retrieves the value of GPQuit
+        void setGPQuit(const inputGamePadMaps &set);  // sets the value of GPQuit
 
-        bool getActive();  // retrieves the value of active
-        void setActive(bool set);  // sets the value of active
+        bool getActive() const;  // retrieves the value of active
+        void setActive(const bool &set);  // sets the value of active
 
 
     private:

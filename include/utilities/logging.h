@@ -34,8 +34,8 @@ public:
 //    static logging *Instance();
     static loggingSharedPtr Instance();
 
-    bool getOgreRootInitialized();  // retrieves the value of ogreRootInitialized
-    void setOgreRootInitialized(bool set);  // sets the value of ogreRootInitialized
+    bool getOgreRootInitialized() const;  // retrieves the value of ogreRootInitialized
+    void setOgreRootInitialized(const bool &set);  // sets the value of ogreRootInitialized
 
     void logMessage(std::string msg);
 protected:

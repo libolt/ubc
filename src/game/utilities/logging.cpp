@@ -27,6 +27,7 @@
 #include "Ogre.h"
 #include "engine/renderengine.h"
 INITIALIZE_EASYLOGGINGPP
+
 sharedPtr<logging> logging::pInstance;
 
 sharedPtr<logging> logging::Instance()
@@ -39,7 +40,7 @@ sharedPtr<logging> logging::Instance()
     }
     return pInstance; // address of sole instance
 }
- 
+
 logging::logging()  // constructor
 {
     ogreRootInitialized = false;
@@ -50,11 +51,11 @@ logging::~logging()  // destructor
 }
 
 
-bool logging::getOgreRootInitialized()  // retrieves the value of ogreRootInitialized
+bool logging::getOgreRootInitialized() const  // retrieves the value of ogreRootInitialized
 {
     return(ogreRootInitialized);
 }
-void logging::setOgreRootInitialized(bool set)  // sets the value of ogreRootInitialized
+void logging::setOgreRootInitialized(const bool &set)  // sets the value of ogreRootInitialized
 {
     ogreRootInitialized = set;
 }

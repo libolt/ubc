@@ -29,14 +29,14 @@ class timing
     public:
         timing();
         
-        std::chrono::nanoseconds getChangeInTimeNano();  // retrieves the value of changeInTimeNano
-        void setChangeInTimeNano(std::chrono::nanoseconds time);  // sets the value of changeInTimeNano
+        std::chrono::nanoseconds getChangeInTimeNano() const;  // retrieves the value of changeInTimeNano
+        void setChangeInTimeNano(const std::chrono::nanoseconds &time);  // sets the value of changeInTimeNano
 
-        std::chrono::milliseconds getChangeInTimeMill();  // retrieves the value of changeInTimeMill
-        void setChangeInTimeMill(std::chrono::milliseconds time);  // sets the value of changeInTimeMill
+        std::chrono::milliseconds getChangeInTimeMill() const;  // retrieves the value of changeInTimeMill
+        void setChangeInTimeMill(const std::chrono::milliseconds &time);  // sets the value of changeInTimeMill
 
-        std::chrono::system_clock::time_point getPreviousTime();  // retrieves the value of previousTime
-        void setPreviousTime(std::chrono::system_clock::time_point time);  // sets the value of previousTime
+        std::chrono::system_clock::time_point getPreviousTime() const;  // retrieves the value of previousTime
+        void setPreviousTime(const std::chrono::system_clock::time_point &time);  // sets the value of previousTime
 
         std::chrono::microseconds calcChangeInTimeMicro();  // calculates change in time in microseconds
         std::chrono::milliseconds calcChangeInTimeMill();  // calculates change in time in milliseconds

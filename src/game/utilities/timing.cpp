@@ -30,29 +30,29 @@ timing::timing()
     previousTime = startTime;
 }
 
-std::chrono::nanoseconds timing::getChangeInTimeNano()  // retrieves the value of changeInTimeNano
+std::chrono::nanoseconds timing::getChangeInTimeNano() const  // retrieves the value of changeInTimeNano
 {
     return (changeInTimeNano);
 }
-void timing::setChangeInTimeNano(std::chrono::nanoseconds time)  // sets the value of changeInTimeNano
+void timing::setChangeInTimeNano(const std::chrono::nanoseconds &time)  // sets the value of changeInTimeNano
 {
     changeInTimeNano = time;
 }
 
-std::chrono::milliseconds timing::getChangeInTimeMill()  // retrieves the value of changeInTimeMill
+std::chrono::milliseconds timing::getChangeInTimeMill() const // retrieves the value of changeInTimeMill
 {
     return (changeInTimeMill);
 }
-void timing::setChangeInTimeMill(std::chrono::milliseconds time) // sets the value of changeInTimeMill
+void timing::setChangeInTimeMill(const std::chrono::milliseconds &time)  // sets the value of changeInTimeMill
 {
     changeInTimeNano = time;
 }
 
-std::chrono::system_clock::time_point timing::getPreviousTime()  // retrieves the value of previousTime
+std::chrono::system_clock::time_point timing::getPreviousTime() const // retrieves the value of previousTime
 {
     return (previousTime);
 }
-void timing::setPreviousTime(std::chrono::system_clock::time_point time)  // sets the value of previousTime
+void timing::setPreviousTime(const std::chrono::system_clock::time_point &time)  // sets the value of previousTime
 {
     previousTime = time;
 }

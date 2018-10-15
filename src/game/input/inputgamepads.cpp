@@ -36,20 +36,20 @@ inputGamePads::~inputGamePads()  // destructor
     
 }
 
-inputSharedPtr inputGamePads::getInputInstance()  // retrieves the value of inputInstance
+inputSharedPtr inputGamePads::getInputInstance() const  // retrieves the value of inputInstance
 {
     return (inputInstance);
 }
-void inputGamePads::setInputInstance(inputSharedPtr set)  // sets the value of inputInstance
+void inputGamePads::setInputInstance(const inputSharedPtr &set)  // sets the value of inputInstance
 {
     inputInstance = set;
 }
 
-bool inputGamePads::getSetupComplete()  // retrieves the value of setupComplete
+bool inputGamePads::getSetupComplete() const  // retrieves the value of setupComplete
 {
     return (setupComplete);
 }
-void inputGamePads::setSetupComplete(bool set)  // sets the value of setupComplete
+void inputGamePads::setSetupComplete(const bool &set)  // sets the value of setupComplete
 {
     setupComplete = set;
 }

@@ -25,9 +25,9 @@
 #include "BtOgreGP.h"
 #include "BtOgreExtras.h"
 #include "BulletDynamics/Dynamics/btRigidBody.h"
-//#include "state/gamestateshared.h"
 
 #include "utilities/enums.h"
+#include "utilities/typedefs.h"
 
 class physicsEngine;
 
@@ -37,17 +37,17 @@ class physics
         physics();  // constructor
         ~physics();  // destructor
 
-        gameEntitySharedPtr getGameInstance();  // retrieves the value of gameS
-        void setGameInstance(gameEntitySharedPtr set);  // sets the value of gameS
+        gameEntitySharedPtr getGameInstance() const;  // retrieves the value of gameS
+        void setGameInstance(const gameEntitySharedPtr &set);  // sets the value of gameS
         
-        bool getGameInstanceInitialized(); // retrieves the value of gameSInitialized
-        void setGameInstanceInitialized(bool set);  // sets the value of gameSInitialized
+        bool getGameInstanceInitialized() const;  // retrieves the value of gameSInitialized
+        void setGameInstanceInitialized(const bool &set);  // sets the value of gameSInitialized
 
-        physicsEngineSharedPtr getPhysE();  // retrieves the value of physE
-        void setPhysE(physicsEngineSharedPtr set);  // sets the value of physE
+        physicsEngineSharedPtr getPhysE() const;  // retrieves the value of physE
+        void setPhysE(const physicsEngineSharedPtr &set);  // sets the value of physE
 
-        bool getPhysEInitialized(); // retrieves the value of physEInitialized
-        void setPhysEInitialized(bool set);  // sets the value of physEInitialized
+        bool getPhysEInitialized() const;  // retrieves the value of physEInitialized
+        void setPhysEInitialized(const bool &set);  // sets the value of physEInitialized
 
         btCollisionShape *getShape();  // retrieves the value of shape
         void setShape(btCollisionShape *set);  // sets the value of shape
@@ -55,41 +55,41 @@ class physics
         BtOgre::RigidBodyState *getBodyState();  // retrieves the value of bodyState
         void setBodyState(BtOgre::RigidBodyState *set);  // sets the value of bodyState
 
-        physicsShapes getShapeType();  // retrieves the value of shapeType
-        void setShapeType(physicsShapes set);  // sets the value of shapeType
+        physicsShapes getShapeType() const;  // retrieves the value of shapeType
+        void setShapeType(const physicsShapes &set);  // sets the value of shapeType
  
-        btRigidBodySharedPtr getPhysBody();  // retrieves the value of physBody
-        void setPhysBody(btRigidBodySharedPtr set);  // sets the value of physBody
+        btRigidBodySharedPtr getPhysBody() const;  // retrieves the value of physBody
+        void setPhysBody(const btRigidBodySharedPtr &set);  // sets the value of physBody
 
-        std::unordered_map<std::string, btRigidBodySharedPtr> getCollisionBodies();  // retrieves the value of collisionBodies
-        void setCollisionBodies(std::unordered_map<std::string, btRigidBodySharedPtr> set);  // sets the value of collisionBodies
+        std::map<std::string, btRigidBodySharedPtr> getCollisionBodies() const;  // retrieves the value of collisionBodies
+        void setCollisionBodies(const std::map<std::string, btRigidBodySharedPtr> &set);  // sets the value of collisionBodies
 
-        btScalar getMass();  // retrieves the value of mass
-        void setMass(btScalar set);  // sets the value of mass
+        btScalar getMass() const;  // retrieves the value of mass
+        void setMass(const btScalar &set);  // sets the value of mass
         
-        btVector3 getInertia();  // retrieves the value of inertia
-        void setInertia(btVector3 set);  // sets the value of inertia
+        btVector3 getInertia() const;  // retrieves the value of inertia
+        void setInertia(const btVector3 &set);  // sets the value of inertia
   
-        btScalar getRestitution();  // retrieves the value of restitution
-        void setRestitution(btScalar set);  // sets the value of restitution
+        btScalar getRestitution() const;  // retrieves the value of restitution
+        void setRestitution(const btScalar &set);  // sets the value of restitution
 
-        btScalar getFriction();  // retrieves the value of friction
-        void setFriction(btScalar set);  // sets the value of friction
+        btScalar getFriction() const;  // retrieves the value of friction
+        void setFriction(const btScalar &set);  // sets the value of friction
       
-        btScalar getVelocity();  // retrieves the value of velocity
-        void setVelocity(btScalar set);  // sets the value of velocity
+        btScalar getVelocity() const;  // retrieves the value of velocity
+        void setVelocity(const btScalar &set);  // sets the value of velocity
         
-        bool getVelocitySet();  // retrieves the value of velocitySet
-        void setVelocitySet(bool set);  // sets the value of velocitySet
+        bool getVelocitySet() const;  // retrieves the value of velocitySet
+        void setVelocitySet(const bool &set);  // sets the value of velocitySet
 
-        size_t getColObject();  // retrieves the value of colObject
-        void setColObject(size_t set);  // sets the value of colObject
+        size_t getColObject() const;  // retrieves the value of colObject
+        void setColObject(const size_t &set);  // sets the value of colObject
  
-        size_t getCollidesWith();  // retrieves the value of collidesWith
-        void setCollidesWith(size_t set);  // sets the value of collidesWith
+        size_t getCollidesWith() const;  // retrieves the value of collidesWith
+        void setCollidesWith(const size_t &set);  // sets the value of collidesWith
 
-        size_t getPhysObjNumber();  // retrieves the value of number
-        void setPhysObjNumber(size_t set);  // sets the value of number
+        size_t getPhysObjNumber() const;  // retrieves the value of number
+        void setPhysObjNumber(const size_t &set);  // sets the value of number
 
         bool setupPhysics(OgreEntitySharedPtr *model, OgreSceneNodeSharedPtr *node, btRigidBody **body);  // sets up object physics
 
@@ -113,7 +113,7 @@ class physics
         
         btRigidBodySharedPtr physBody;  // stores the physics object that represents the player
 
-        std::unordered_map<std::string, btRigidBodySharedPtr> collisionBodies;  // physical bodies to test for collisions with physBody
+        std::map<std::string, btRigidBodySharedPtr> collisionBodies;  // physical bodies to test for collisions with physBody
 
         btScalar mass;  // stores the mass of the object;
         

@@ -25,6 +25,7 @@
 #include <vector>
 #include <unordered_map>
 #include "load/load.h"
+#include "utilities/typedefs.h"
 
 class loadHoops : public loader
 {

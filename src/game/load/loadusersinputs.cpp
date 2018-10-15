@@ -44,29 +44,29 @@ loadUsersInputs::~loadUsersInputs()  // destructor
 
 }
 
-stdStringVec loadUsersInputs::getUsersInputFiles()   // retrieves the value of userInputFiles
+stdStringVec loadUsersInputs::getUsersInputFiles() const   // retrieves the value of userInputFiles
 {
     return (usersInputFiles);
 }
-void loadUsersInputs::setUsersInputFiles(stdStringVec set)  // sets the value of userInputFiles
+void loadUsersInputs::setUsersInputFiles(const stdStringVec &set)  // sets the value of userInputFiles
 {
     usersInputFiles = set;
 }
 
-usersInputsVecSharedPtr loadUsersInputs::getUIInstance()  // retrieves the value of uoInstance
+usersInputsVecSharedPtr loadUsersInputs::getUIInstance() const  // retrieves the value of uoInstance
 {
     return(uiInstance);
 }
-void loadUsersInputs::setUIInstance(usersInputsVecSharedPtr set)  // sets the value of uiInstance
+void loadUsersInputs::setUIInstance(const usersInputsVecSharedPtr &set)  // sets the value of uiInstance
 {
     uiInstance = set;
 }
 
-bool loadUsersInputs::getUsersInputFilesLoaded()  // retrieves the value of userInputFilesLoaded
+bool loadUsersInputs::getUsersInputFilesLoaded() const  // retrieves the value of userInputFilesLoaded
 {
     return (userInputFilesLoaded);
 }
-void loadUsersInputs::setUsersInputFilesLoaded(bool set)  // sets the value of userInputFilesLoaded
+void loadUsersInputs::setUsersInputFilesLoaded(const bool &set)  // sets the value of userInputFilesLoaded
 {
     userInputFilesLoaded = set;
 }

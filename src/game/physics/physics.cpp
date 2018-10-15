@@ -52,38 +52,38 @@ physics::~physics()  // destructor
 
 }
 
-gameEntitySharedPtr physics::getGameInstance()  // retrieves the value of gameS
+gameEntitySharedPtr physics::getGameInstance() const  // retrieves the value of gameS
 {
     return (gameInstance);
 }
-void physics::setGameInstance(gameEntitySharedPtr set)  // sets the value of gameS
+void physics::setGameInstance(const gameEntitySharedPtr &set)  // sets the value of gameS
 {
     gameInstance = set;
 }
 
-bool physics::getGameInstanceInitialized() // retrieves the value of gameSInitialized
+bool physics::getGameInstanceInitialized() const  // retrieves the value of gameSInitialized
 {
     return (gameInstanceInitialized);
 }
-void physics::setGameInstanceInitialized(bool set)  // sets the value of gameSInitialized
+void physics::setGameInstanceInitialized(const bool &set)  // sets the value of gameSInitialized
 {
     gameInstanceInitialized = set;
 }
 
-physicsEngineSharedPtr physics::getPhysE()  // retrieves the value of physE
+physicsEngineSharedPtr physics::getPhysE() const  // retrieves the value of physE
 {
     return (physE);
 }
-void physics::setPhysE(physicsEngineSharedPtr set)  // sets the value of physE
+void physics::setPhysE(const physicsEngineSharedPtr &set)  // sets the value of physE
 {
     physE = set;
 }
 
-bool physics::getPhysEInitialized() // retrieves the value of physEInitialized
+bool physics::getPhysEInitialized() const  // retrieves the value of physEInitialized
 {
     return (physEInitialized);
 }
-void physics::setPhysEInitialized(bool set)  // sets the value of physEInitialized
+void physics::setPhysEInitialized(const bool &set)  // sets the value of physEInitialized
 {
     physEInitialized = set;
 }
@@ -107,111 +107,111 @@ void physics::setBodyState(BtOgre::RigidBodyState *set)  // sets the value of bo
     bodyState = set;
 }
 
-physicsShapes physics::getShapeType()  // retrieves the value of shapeType
+physicsShapes physics::getShapeType() const  // retrieves the value of shapeType
 {
     return (shapeType);
 }
-void physics::setShapeType(physicsShapes set)  // sets the value of shapeType
+void physics::setShapeType(const physicsShapes &set)  // sets the value of shapeType
 {
     shapeType = set;
 }
 
-btRigidBodySharedPtr physics::getPhysBody()  // retrieves physBody variable
+btRigidBodySharedPtr physics::getPhysBody() const  // retrieves physBody variable
 {
     return (physBody);
 }
 
-void physics::setPhysBody(btRigidBodySharedPtr set)  // sets physBody variable
+void physics::setPhysBody(const btRigidBodySharedPtr &set)  // sets physBody variable
 {
     physBody = set;
 }
 
-std::unordered_map<std::string, btRigidBodySharedPtr> physics::getCollisionBodies()  // retrieves the value of collisionBodies
+std::map<std::string, btRigidBodySharedPtr> physics::getCollisionBodies() const  // retrieves the value of collisionBodies
 {
     return (collisionBodies);
 }
-void physics::setCollisionBodies(std::unordered_map<std::string, btRigidBodySharedPtr> set)  // sets the value of collisionBodies
+void physics::setCollisionBodies(const std::map<std::string, btRigidBodySharedPtr> &set)  // sets the value of collisionBodies
 {
     collisionBodies = set;
 }
 
-btScalar physics::getMass()  // retrieves the value of mass
+btScalar physics::getMass() const  // retrieves the value of mass
 {
     return (mass);
 }
-void physics::setMass(btScalar set)  // sets the value of mass
+void physics::setMass(const btScalar &set)  // sets the value of mass
 {
     mass = set;
 }
 
-btVector3 physics::getInertia()  // retrieves the value of inertia
+btVector3 physics::getInertia() const  // retrieves the value of inertia
 {
     return (inertia);
 }
-void physics::setInertia(btVector3 set)  // sets the value of inertia
+void physics::setInertia(const btVector3 &set)  // sets the value of inertia
 {
     inertia = set;
 }
 
-btScalar physics::getRestitution()  // retrieves the value of restitution
+btScalar physics::getRestitution() const  // retrieves the value of restitution
 {
     return (restitution);
 }
-void physics::setRestitution(btScalar set)  // sets the value of restitution
+void physics::setRestitution(const btScalar &set)  // sets the value of restitution
 {
     restitution = set;
 }
 
-btScalar physics::getFriction()  // retrieves the value of friction
+btScalar physics::getFriction() const  // retrieves the value of friction
 {
     return (friction);
 }
-void physics::setFriction(btScalar set)  // sets the value of friction
+void physics::setFriction(const btScalar &set)  // sets the value of friction
 {
     friction = set;
 }
 
-btScalar physics::getVelocity()  // retrieves the value of velocity
+btScalar physics::getVelocity() const  // retrieves the value of velocity
 {
     return (velocity);
 }
-void physics::setVelocity(btScalar set)  // sets the value of velocity
+void physics::setVelocity(const btScalar &set)  // sets the value of velocity
 {
     velocity = set;
 }
 
-bool physics::getVelocitySet()  // retrieves the value of velocitySet
+bool physics::getVelocitySet() const  // retrieves the value of velocitySet
 {
     return (velocitySet);
 }
-void physics::setVelocitySet(bool set)  // sets the value of velocitySet
+void physics::setVelocitySet(const bool &set)  // sets the value of velocitySet
 {
     velocitySet = set;
 }
 
-size_t physics::getColObject()  // retrieves the value of colObject
+size_t physics::getColObject() const  // retrieves the value of colObject
 {
     return (colObject);
 }
-void physics::setColObject(size_t set)  // sets the value of colObject
+void physics::setColObject(const size_t &set)  // sets the value of colObject
 {
     colObject = set;
 }
 
-size_t physics::getCollidesWith()  // retrieves the value of collidesWith
+size_t physics::getCollidesWith() const  // retrieves the value of collidesWith
 {
     return (collidesWith);
 }
-void physics::setCollidesWith(size_t set)  // sets the value of collidesWith
+void physics::setCollidesWith(const size_t &set)  // sets the value of collidesWith
 {
     collidesWith = set;
 }
 
-size_t physics::getPhysObjNumber()  // retrieves the value of number
+size_t physics::getPhysObjNumber() const  // retrieves the value of number
 {
     return (physObjNumber);
 }
-void physics::setPhysObjNumber(size_t set)  // sets the value of number
+void physics::setPhysObjNumber(const size_t &set)  // sets the value of number
 {
     physObjNumber = set;
 }

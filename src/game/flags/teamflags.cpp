@@ -37,100 +37,83 @@ teamFlags::~teamFlags()  // destructor
     
 }
 
-bool teamFlags::getStateMachineInitialized()  // retrieves the value of stateMachineInitialized
+bool teamFlags::getStateMachineInitialized() const  // retrieves the value of stateMachineInitialized
 {
     return (stateMachineInitialized);
 }
-void teamFlags::setStateMachineInitialized(bool set)  // sets the value of stateMachineInitialized
+void teamFlags::setStateMachineInitialized(const bool &set)  // sets the value of stateMachineInitialized
 {
     stateMachineInitialized = set;
 }
 
-/*bool teamFlags::getOffense()  // returns the value of offense
-{
-    return (offense);
-}
-void teamFlags::setOffense(bool set)  // sets the value of offense
-{
-    offense = set;
-}
-bool teamFlags::getDefense()  // returns the value of defense
-{
-    return (defense);
-}
-void teamFlags::setDefense(bool set)  // sets the value of defense
-{
-    defense = set;
-}*/
-
-bool teamFlags::getActivePlayerInstancesSetup()  // retrieves the value of activePlayerInstancesSetup
+bool teamFlags::getActivePlayerInstancesSetup() const  // retrieves the value of activePlayerInstancesSetup
 {
     return (activePlayerInstancesSetup);
 }
-void teamFlags::setActivePlayerInstancesSetup(bool set)  // sets the value of activePlayerInstancesSetup
+void teamFlags::setActivePlayerInstancesSetup(const bool &set)  // sets the value of activePlayerInstancesSetup
 {
     activePlayerInstancesSetup = set;
 }
 
-bool teamFlags::getActivePlayerInstancesChanged()  // retrieves the value of activePlayerInstancesChanged
+bool teamFlags::getActivePlayerInstancesChanged() const  // retrieves the value of activePlayerInstancesChanged
 {
     return (activePlayerInstancesChanged);
 }
-void teamFlags::setActivePlayerInstancesChanged(bool set)  // sets the value of activePlayerInstancesChanged
+void teamFlags::setActivePlayerInstancesChanged(const bool &set)  // sets the value of activePlayerInstancesChanged
 {
     activePlayerInstancesChanged = set;
 }
 
-bool teamFlags::getActivePlayerInstancesCreated()  // retrieves the value of activePlayerInstancesCreated
+bool teamFlags::getActivePlayerInstancesCreated() const  // retrieves the value of activePlayerInstancesCreated
 {
     return (activePlayerInstancesCreated);
 }
-void teamFlags::setActivePlayerInstancesCreated(bool set)  // sets the value of activePlayerInstancesCreated
+void teamFlags::setActivePlayerInstancesCreated(const bool &set)  // sets the value of activePlayerInstancesCreated
 {
     activePlayerInstancesCreated = set;
 }
 
-bool teamFlags::getPlayerInstancesCreated()  // retrieves the value of playerInstancesCreated
+bool teamFlags::getPlayerInstancesCreated() const  // retrieves the value of playerInstancesCreated
 {
     return (playerInstancesCreated);
 }
-void teamFlags::setPlayerInstancesCreated(bool set)  // sets the value of playerInstancesCreated
+void teamFlags::setPlayerInstancesCreated(const bool &set)  // sets the value of playerInstancesCreated
 {
     playerInstancesCreated = set;
 }
 
-bool teamFlags::getPlayerStartPositionsSet()  // retrieves the value of the playerStartPositionsSet
+bool teamFlags::getPlayerStartPositionsSet() const  // retrieves the value of the playerStartPositionsSet
 {
     return (playerStartPositionsSet);
 }
-void teamFlags::setPlayerStartPositionsSet(bool set)  // sets the value of the playerStartPositionsSet
+void teamFlags::setPlayerStartPositionsSet(const bool &set)  // sets the value of the playerStartPositionsSet
 {
     playerStartPositionsSet = set;
 }
 
-bool teamFlags::getPlayerStartDirectionsSet()  // retrieves the value of the playerStartDirectionsSet
+bool teamFlags::getPlayerStartDirectionsSet() const  // retrieves the value of the playerStartDirectionsSet
 {
     return (playerStartDirectionsSet);
 }
-void teamFlags::setPlayerStartDirectionsSet(bool set)  // sets the value of the playerStartDirectionsSet
+void teamFlags::setPlayerStartDirectionsSet(const bool &set)  // sets the value of the playerStartDirectionsSet
 {
     playerStartDirectionsSet = set;
 }
 
-bool teamFlags::getPlayerWithBallDribbling()  // retrieves the value of playerWithBallDribbling
+bool teamFlags::getPlayerWithBallDribbling() const  // retrieves the value of playerWithBallDribbling
 {
     return (playerWithBallDribbling);
 }
-void teamFlags::setPlayerWithBallDribbling(bool set)  // sets the value of playerWithBallDribbling
+void teamFlags::setPlayerWithBallDribbling(const bool &set)  // sets the value of playerWithBallDribbling
 {
     playerWithBallDribbling = set;
 }
 
-bool teamFlags::getHumanControlled()  // retrieves the value of humanControlled
+bool teamFlags::getHumanControlled() const  // retrieves the value of humanControlled
 {
     return (humanControlled);
 }
-void teamFlags::setHumanControlled(bool set)  // sets the value of humanControlled
+void teamFlags::setHumanControlled(const bool &set)  // sets the value of humanControlled
 {
     humanControlled = set;
 }

@@ -35,14 +35,14 @@ class loadUsersInputs : public loader
         loadUsersInputs();  // constructor
         ~loadUsersInputs();  // destructor
 
-        stdStringVec getUsersInputFiles();  // retrieves the value of userInputFiles
-        void setUsersInputFiles(stdStringVec set);  // sets the value of userInputFiles
+        stdStringVec getUsersInputFiles() const;  // retrieves the value of userInputFiles
+        void setUsersInputFiles(const stdStringVec &set);  // sets the value of userInputFiles
 
-        usersInputsVecSharedPtr getUIInstance();  // retrieves the value of uiInstance
-        void setUIInstance(usersInputsVecSharedPtr set);  // sets the value of uiInstance
+        usersInputsVecSharedPtr getUIInstance() const;  // retrieves the value of uiInstance
+        void setUIInstance(const usersInputsVecSharedPtr &set);  // sets the value of uiInstance
 
-        bool getUsersInputFilesLoaded();  // retrieves the value of userInputFilesLoaded
-        void setUsersInputFilesLoaded(bool set);  // sets the value of userInputFilesLoaded
+        bool getUsersInputFilesLoaded() const;  // retrieves the value of userInputFilesLoaded
+        void setUsersInputFilesLoaded(const bool &set);  // sets the value of userInputFilesLoaded
 
         bool checkIfUsersInputsLoaded();  // checks if uset inputs have been loaded into uiInstance
 

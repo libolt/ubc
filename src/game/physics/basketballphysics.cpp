@@ -86,11 +86,11 @@ void basketballPhysics::setStateSet(bool set)  // sets the value of stateSet
 }
 */
 
-bballBounces basketballPhysics::getBounce()  // retrieves value of bounce
+bballBounces basketballPhysics::getBounce() const  // retrieves value of bounce
 {
     return (bounce);
 }
-void basketballPhysics::setBounce(bballBounces set)  // sets the value of bounce 
+void basketballPhysics::setBounce(const bballBounces &set)  // sets the value of bounce
 {
     bounce = set;
 }

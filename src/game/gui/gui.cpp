@@ -67,57 +67,57 @@ GUISystem::~GUISystem()
 
 }
 
-GUIComponentsSharedPtr GUISystem::getComponent()  // retrieves the value of component
+GUIComponentsSharedPtr GUISystem::getComponent() const  // retrieves the value of component
 {
     return (component);
 }
-void GUISystem::setComponent(GUIComponentsSharedPtr set)  // sets the value of component
+void GUISystem::setComponent(const GUIComponentsSharedPtr &set)  // sets the value of component
 {
     component = set;
 }
 
 
-guiFlagsSharedPtr GUISystem::getFlag()  // retrieves the value of flag
+guiFlagsSharedPtr GUISystem::getFlag() const  // retrieves the value of flag
 {
     return (flag);
 }
-void GUISystem::setFlag(guiFlagsSharedPtr set)  // sets the value of flag
+void GUISystem::setFlag(const guiFlagsSharedPtr &set)  // sets the value of flag
 {
     flag = set;
 }
 
-gameEntitySharedPtr GUISystem::getGameInstance()  // retrieves the value of teamInstance
+gameEntitySharedPtr GUISystem::getGameInstance() const  // retrieves the value of teamInstance
 {
     return (gameInstance);
 }
-void GUISystem::setGameInstance(gameEntitySharedPtr set)  // sets the value of teamInstance
+void GUISystem::setGameInstance(const gameEntitySharedPtr &set)  // sets the value of teamInstance
 {
     gameInstance = set;
 }
 
-gameEngineSharedPtr GUISystem::getGamE()  // retrieves the value of gameE
+gameEngineSharedPtr GUISystem::getGamE() const  // retrieves the value of gameE
 {
     return (gameE);
 }
-void GUISystem::setGameE(gameEngineSharedPtr set)  // sets the value of gameE
+void GUISystem::setGameE(const gameEngineSharedPtr &set)  // sets the value of gameE
 {
     gameE = set;
 }
 
-activeMenus GUISystem::getActiveMenu()  // retrieves the value of activeMenu
+activeMenus GUISystem::getActiveMenu() const  // retrieves the value of activeMenu
 {
 	return (activeMenu);
 }
-void GUISystem::setActiveMenu(activeMenus set)  // sets the value of activeMenu
+void GUISystem::setActiveMenu(const activeMenus &set)  // sets the value of activeMenu
 {
 	activeMenu = set;
 }
 
-activeMenus GUISystem::getPreviousActiveMenu()  // retrieves the value of previousActiveMenu
+activeMenus GUISystem::getPreviousActiveMenu() const  // retrieves the value of previousActiveMenu
 {
 	return (previousActiveMenu);
 }
-void GUISystem::setPreviousActiveMenu(activeMenus set)  // sets the value of previousActiveMenu
+void GUISystem::setPreviousActiveMenu(const activeMenus &set)  // sets the value of previousActiveMenu
 {
 	previousActiveMenu = set;
 }

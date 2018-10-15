@@ -46,29 +46,29 @@ loadCourts::~loadCourts()  // destructor
 
 }
 
-stdStringVec loadCourts::getCourtFiles()   // retrieves the value of courtFiles
+stdStringVec loadCourts::getCourtFiles() const   // retrieves the value of courtFiles
 {
     return (courtFiles);
 }
-void loadCourts::setCourtFiles(stdStringVec set)  // sets the value of courtFiles
+void loadCourts::setCourtFiles(const stdStringVec &set)  // sets the value of courtFiles
 {
     courtFiles = set;
 }
 
-courtEntityMSharedPtr loadCourts::getCInstance()  // retrieves the value of cInstance
+courtEntityMSharedPtr loadCourts::getCInstance() const  // retrieves the value of cInstance
 {
     return (cInstance);
 }
-void loadCourts::setCInstance(courtEntityMSharedPtr set)  // sets the value of cInstance
+void loadCourts::setCInstance(const courtEntityMSharedPtr &set)  // sets the value of cInstance
 {
     cInstance = set;
 }
 
-bool loadCourts::getCourtFilesLoaded()  // retrieves the value of courtFilesLoaded
+bool loadCourts::getCourtFilesLoaded() const  // retrieves the value of courtFilesLoaded
 {
     return (courtFilesLoaded);
 }
-void loadCourts::setCourtFilesLoaded(bool set)  // sets the value of courtFilesLoaded
+void loadCourts::setCourtFilesLoaded(const bool &set)  // sets the value of courtFilesLoaded
 {
     courtFilesLoaded = set;
 }

@@ -45,29 +45,29 @@ loadTeams::~loadTeams()  // destructor
     
 }
 
-stdStringVec loadTeams::getTeamFiles()  // retrieves the value of teamFiles
+stdStringVec loadTeams::getTeamFiles() const  // retrieves the value of teamFiles
 {
     return(teamFiles);
 }
-void loadTeams::setTeamFiles(stdStringVec set)  // sets the value of teamFiles
+void loadTeams::setTeamFiles(const stdStringVec &set)  // sets the value of teamFiles
 {
     teamFiles = set;
 }
 
-bool loadTeams::getTeamFilesLoaded()  // retrieves the value of teamFilesLoaded
+bool loadTeams::getTeamFilesLoaded() const  // retrieves the value of teamFilesLoaded
 {
     return (teamFilesLoaded);
 }
-void loadTeams::setTeamFilesLoaded(bool set)  // sets the value of teamFilesLoaded
+void loadTeams::setTeamFilesLoaded(const bool &set)  // sets the value of teamFilesLoaded
 {
     teamFilesLoaded = set;
 }
 
-teamEntityMSharedPtr loadTeams::getTInstance()  // retrieves the value of tInstance
+teamEntityMSharedPtr loadTeams::getTInstance() const  // retrieves the value of tInstance
 {
     return(tInstance);
 }
-void loadTeams::setTInstance(teamEntityMSharedPtr set)  // sets the value of tInstance
+void loadTeams::setTInstance(const teamEntityMSharedPtr &set)  // sets the value of tInstance
 {
     tInstance = set;
 }

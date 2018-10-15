@@ -34,30 +34,15 @@ class playerPhysics : public physics
         playerPhysics();  // constructor
         ~playerPhysics();  // destructor
             
-/*        bool getPhysicsSetup();  // retrieves the value of physicsSetup
-        void setPhysicsSetup(bool set);  // sets the value of physicsSetup
-        
-        bool getStateSet();  // retrieves the value of stateSet
-        void setStateSet(bool set);  // sets the value of stateSet
-        
-        playerPhysics();  // constructor
+        void update();  // updates the player physics object
 
-        bool setupPhysics();  // sets up player physics
+        void updatePosition();  // updates the position of player objecgts
 
-        bool setupState();  // sets up state of player physics
-*/
-    void update();  // updates the player physics object
-
-    void updatePosition();  // updates the position of player objecgts
-
-    bool jump(teamTypes teamType, int playerID);  // calculates and executes player jumping in the air
-    bool shootBasketball(teamTypes teamType, int playerID);  // calculates and executes basketball being shot
+        bool jump(teamTypes teamType, int playerID);  // calculates and executes player jumping in the air
+        bool shootBasketball(teamTypes teamType, int playerID);  // calculates and executes basketball being shot
    
     private:
                
-/*        bool physicsSetup;  // determines whether all players' physics bodies have been setup
-        bool stateSet;  // if true then the player physics state has been set
-*/
 };
 
 #endif // PLAYERPHYSICS_H

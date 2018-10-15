@@ -40,40 +40,40 @@ class jumpBalls
     jumpBalls();  // constructor
     ~jumpBalls();  // destructor
     
-    jumpBallLocations_t getJumpBallLocation();  // retrieves the value of jumpBallLocation
-    void setJumpBallLocation(jumpBallLocations_t set);  // sets the value of jumpBallLocation
+    jumpBallLocations_t getJumpBallLocation() const;  // retrieves the value of jumpBallLocation
+    void setJumpBallLocation(const jumpBallLocations_t &set);  // sets the value of jumpBallLocation
 
-    playerPositionsVec getJumpBallPlayer();  // retrieves the value of jumpBallPlayer
-    void setJumpBallPlayer(playerPositionsVec set);  // sets the value of jumpBallPlayer
+    playerPositionsVec getJumpBallPlayer() const;  // retrieves the value of jumpBallPlayer
+    void setJumpBallPlayer(const playerPositionsVec &set);  // sets the value of jumpBallPlayer
 
-    bool getBallTipped();  // retrieves the value of the ballTipped
-    void setBallTipped(bool tipped);  // sets the value of the ballTipped
+    bool getBallTipped() const;  // retrieves the value of the ballTipped
+    void setBallTipped(const bool &set);  // sets the value of the ballTipped
 
-    teamTypes getBallTippedToTeam();  // retrieves the value of the ballTippedToTeam
-    void setBallTippedToTeam(teamTypes set);	 // sets the value of the ballTippedToTeam
+    teamTypes getBallTippedToTeam() const;  // retrieves the value of the ballTippedToTeam
+    void setBallTippedToTeam(const teamTypes &set);	 // sets the value of the ballTippedToTeam
 
-    size_t getBallTippedToPlayerID();  // retrieves the value of the ballTippedToPlayerID
-    void setBallTippedToPlayerID(size_t player);  // sets the value of the ballTippedToPlayerID
+    size_t getBallTippedToPlayerID() const;  // retrieves the value of the ballTippedToPlayerID
+    void setBallTippedToPlayerID(const size_t &set);  // sets the value of the ballTippedToPlayerID
 
-    size_t getBallTippedToPlayerInstance(); // retrieves the value of ballTippedToPlayerInstance
-    void setBallTippedToPlayerInstance(size_t set); // sets the vlaue of ballTippedToPlayerInstance
+    size_t getBallTippedToPlayerInstance() const;  // retrieves the value of ballTippedToPlayerInstance
+    void setBallTippedToPlayerInstance(const size_t &set);  // sets the vlaue of ballTippedToPlayerInstance
 
-    playerPositions getBallTippedToPosition();  // retrieves the value of ballTippedToPosition
-    void setBallTippedToPosition(playerPositions set);  // sets the value of ballTippedToPosition
+    playerPositions getBallTippedToPosition() const;  // retrieves the value of ballTippedToPosition
+    void setBallTippedToPosition(const playerPositions &set);  // sets the value of ballTippedToPosition
 
-    bool getBallTipForceApplied();  // retrieves the value of ballTipForceApplied
-    void setBallTipForceApplied(bool tip);  // sets the value of ballTipForceApplied
+    bool getBallTipForceApplied() const;  // retrieves the value of ballTipForceApplied
+    void setBallTipForceApplied(const bool &set);  // sets the value of ballTipForceApplied
 
-    bool getSetupComplete();  // retrieves the value of setup
-    void setSetupComplete(bool set);  // sets the value of setup
+    bool getSetupComplete() const;  // retrieves the value of setup
+    void setSetupComplete(const bool &set);  // sets the value of setup
 
-    bool getExecuteJumpBall();  // retrieves the value of executeJumpBall
-    void setExecuteJumpBall(bool set);  // sets the value of executeJumpBall
+    bool getExecuteJumpBall() const;  // retrieves the value of executeJumpBall
+    void setExecuteJumpBall(const bool &set);  // sets the value of executeJumpBall
 
-    bool getJumpBallComplete();  // retrieves the value of jumpBallComplete
-    void setJumpBallComplete(bool set);  // sets the value of jumpBallComplete
+    bool getJumpBallComplete() const;  // retrieves the value of jumpBallComplete
+    void setJumpBallComplete(const bool &set);  // sets the value of jumpBallComplete
     
-    btVector3 getBBallVelocity();  // retrieves the value of bballVelocity
+    btVector3 getBBallVelocity() const;  // retrieves the value of bballVelocity
     void setBBallVelocity(const btVector3 &set);  // sets the value of bballVelocity
 
 //    bool updateState(teamTypes teamWithBall, basketballEntityMSharedPtr activeBasketballInstance, teamEntityMSharedPtr activeTeamInstance, quarters quarter);  // updates state of the jumpBalls instance until jump ball has completed

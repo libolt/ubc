@@ -51,34 +51,34 @@ teamEntity::~teamEntity()
 {
 }
 
-bool teamEntity::getInitialized()  // retrieves the value of initialized
+bool teamEntity::getInitialized() const  // retrieves the value of initialized
 {
     return (initialized);
 }
-void teamEntity::setInitialized(bool set) // sets the value of initialized
+void teamEntity::setInitialized(const bool &set) // sets the value of initialized
 {
     initialized = set;
 }
 
-teamComponentsSharedPtr teamEntity::getComponent()  // retrieves the value of component
+teamComponentsSharedPtr teamEntity::getComponent() const  // retrieves the value of component
 {
     return (component);
 }
-void teamEntity::setComponent(teamComponentsSharedPtr set)  // sets the value of component
+void teamEntity::setComponent(const teamComponentsSharedPtr &set)  // sets the value of component
 {
     component = set;
 }
 
-teamDataSharedPtr teamEntity::getData()  // retrieves the value of data
+teamDataSharedPtr teamEntity::getData() const  // retrieves the value of data
 {
     return (data);
 }
-void teamEntity::setData(teamDataSharedPtr set)  // sets the value of data
+void teamEntity::setData(const teamDataSharedPtr &set)  // sets the value of data
 {
     data = set;
 }
 
-teamFlagsSharedPtr teamEntity::getFlag()  // retrieves the value of flag
+teamFlagsSharedPtr teamEntity::getFlag() const  // retrieves the value of flag
 {
     return (flag);
 }
@@ -87,38 +87,38 @@ void teamEntity::setFlag(teamFlagsSharedPtr set)  // sets the value of flag
     flag = set;
 }
 
-teamGameDataSharedPtr teamEntity::getGameData()  // retrieves the value of gameData
+teamGameDataSharedPtr teamEntity::getGameData() const  // retrieves the value of gameData
 {
     return (gameData);
 }
-void teamEntity::setGameData(teamGameDataSharedPtr set)  // sets the value of gameData
+void teamEntity::setGameData(const teamGameDataSharedPtr &set)  // sets the value of gameData
 {
     gameData = set;
 }
 
-teamStateMachineSharedPtr teamEntity::getStateMachine()  // retrieves the value of stateMachine
+teamStateMachineSharedPtr teamEntity::getStateMachine() const  // retrieves the value of stateMachine
 {
     return (stateMachine);
 }
-void teamEntity::setStateMachine(teamStateMachineSharedPtr set)  // sets the value of stateMachine
+void teamEntity::setStateMachine(const teamStateMachineSharedPtr &set)  // sets the value of stateMachine
 {
     stateMachine = set;
 }
 
-teamStatisticsSharedPtr teamEntity::getStatistics()  // retrieves the value of statistics
+teamStatisticsSharedPtr teamEntity::getStatistics() const  // retrieves the value of statistics
 {
     return (statistics);
 }
-void teamEntity::setStatistics(teamStatisticsSharedPtr set)  // sets the value of statistics
+void teamEntity::setStatistics(teamStatisticsSharedPtr &set)  // sets the value of statistics
 {
     statistics = set;
 }
 
-offDefs teamEntity::getOffDef()  // retrieves the value of offDef
+offDefs teamEntity::getOffDef() const  // retrieves the value of offDef
 {
     return (offDef);
 }
-void teamEntity::setOffDef(offDefs set)  // sets the value of offDef
+void teamEntity::setOffDef(const offDefs &set)  // sets the value of offDef
 {
     offDef = set;
 }

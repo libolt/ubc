@@ -46,47 +46,47 @@ input::~input()  // destructor
 
 
 
-inputEngineSharedPtr input::getInputE()  // retrieves the value of inputE
+inputEngineSharedPtr input::getInputE() const  // retrieves the value of inputE
 {
     return (inputE);
 }
-void input::setInputE(inputEngineSharedPtr set)  // sets the value of inputE
+void input::setInputE(const inputEngineSharedPtr &set)  // sets the value of inputE
 {
 //    inputE = set;
 }
 
-usersInputsVecSharedPtr input::getUInput()  // retrieves the value of uInput
+usersInputsVecSharedPtr input::getUInput() const  // retrieves the value of uInput
 {
     return (uInput);
 }
-void input::setUInput(usersInputsVecSharedPtr set)  // sets the value of uInput
+void input::setUInput(const usersInputsVecSharedPtr &set)  // sets the value of uInput
 {
     uInput = set;
 }
 
-inputInGameWorkQueues input::getInputInGameWorkQueue()  // retrieves the value of inputInGameWorkQueue
+inputInGameWorkQueues input::getInputInGameWorkQueue() const  // retrieves the value of inputInGameWorkQueue
 {
     return (inputInGameWorkQueue);
 }
-void input::setInputInGameWorkQueue(inputInGameWorkQueues set)  // sets the value of inputInGameWorkQueue
+void input::setInputInGameWorkQueue(const inputInGameWorkQueues &set)  // sets the value of inputInGameWorkQueue
 {
     inputInGameWorkQueue = set;
 }
 
-bool input::getSetupComplete()  // retrieves the value of setupComplete
+bool input::getSetupComplete() const  // retrieves the value of setupComplete
 {
     return (setupComplete);
 }
-void input::setSetupComplete(bool set)  // sets the value of setupComplete
+void input::setSetupComplete(const bool &set)  // sets the value of setupComplete
 {
     setupComplete = set;
 }
 
-bool input::getInputESet()  // retrieves the value of inputESet
+bool input::getInputESet() const  // retrieves the value of inputESet
 {
     return (inputESet);
 }
-void input::setInputESet(bool set)  // sets the value of inputESet
+void input::setInputESet(const bool &set)  // sets the value of inputESet
 {
     inputESet = set;
 }

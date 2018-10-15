@@ -35,14 +35,14 @@ class loadOffensePlays : public loader
         loadOffensePlays();  // constructor
         ~loadOffensePlays();  // destructor
 
-        stdStringVec getOffensePlayFiles();  // retrieves the value of offensePlayFiles
-        void setOffensePlayFiles(stdStringVec set);  // sets the value of offensePlayFiles
+        stdStringVec getOffensePlayFiles() const;  // retrieves the value of offensePlayFiles
+        void setOffensePlayFiles(const stdStringVec &set);  // sets the value of offensePlayFiles
 
-        offensePlaysVecSharedPtr getOPInstance();  // retrieves the value of opInstance
-        void setOPInstance(offensePlaysVecSharedPtr set);  // sets the value of opInstance
+        offensePlaysVecSharedPtr getOPInstance() const;  // retrieves the value of opInstance
+        void setOPInstance(const offensePlaysVecSharedPtr &set);  // sets the value of opInstance
 
-        bool getOffensePlayFilesLoaded();  // retrieves the value of offensePlaFilesLoaded
-        void setOffensePlayFilesLoaded(bool set);  // sets the value of offensePlayFilesLoaded
+        bool getOffensePlayFilesLoaded() const;  // retrieves the value of offensePlaFilesLoaded
+        void setOffensePlayFilesLoaded(const bool &set);  // sets the value of offensePlayFilesLoaded
 
         bool checkIfOffensePlaysLoaded();  // checks if offense plays have been loaded into opInstance
 

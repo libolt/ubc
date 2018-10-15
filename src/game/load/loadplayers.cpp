@@ -46,29 +46,29 @@ loadPlayers::~loadPlayers()  // destructor
     
 }
 
-stdStringVec loadPlayers::getPlayerFiles()  // retrieves the value of playerFiles
+stdStringVec loadPlayers::getPlayerFiles() const  // retrieves the value of playerFiles
 {
     return(playerFiles);
 }
-void loadPlayers::setPlayerFiles(stdStringVec set)  // sets the value of playerFiles
+void loadPlayers::setPlayerFiles(const stdStringVec &set)  // sets the value of playerFiles
 {
     playerFiles = set;
 }
 
-playerEntityMSharedPtr loadPlayers::getPInstance()  // retrieves the value of pInstance
+playerEntityMSharedPtr loadPlayers::getPInstance() const  // retrieves the value of pInstance
 {
     return(pInstance);
 }
-void loadPlayers::setPInstance(playerEntityMSharedPtr set)  // sets the value of pInstance
+void loadPlayers::setPInstance(const playerEntityMSharedPtr &set)  // sets the value of pInstance
 {
     pInstance = set;
 }
 
-bool loadPlayers::getPlayerFilesLoaded()  // retrieves the value of playerFilesLoaded
+bool loadPlayers::getPlayerFilesLoaded() const  // retrieves the value of playerFilesLoaded
 {
     return (playerFilesLoaded);
 }
-void loadPlayers::setPlayerFilesLoaded(bool set)  // sets the value of playerFilesLoaded
+void loadPlayers::setPlayerFilesLoaded(const bool &set)  // sets the value of playerFilesLoaded
 {
     playerFilesLoaded = set;
 }

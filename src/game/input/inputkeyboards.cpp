@@ -38,20 +38,20 @@ inputKeyboards::~inputKeyboards()  // destructor
     
 }
 
-inputSharedPtr inputKeyboards::getInputInstance()  // retrieves the value of inputS
+inputSharedPtr inputKeyboards::getInputInstance() const  // retrieves the value of inputS
 {
     return (inputS);
 }
-void inputKeyboards::setInputInstance(inputSharedPtr set)  // sets the value of inputS
+void inputKeyboards::setInputInstance(const inputSharedPtr &set)  // sets the value of inputS
 {
     inputS = set;
 }
 
-bool inputKeyboards::getSetupComplete()  // retrieves the value of setupComplete
+bool inputKeyboards::getSetupComplete() const  // retrieves the value of setupComplete
 {
     return (setupComplete);
 }
-void inputKeyboards::setSetupComplete(bool set)  // sets the value of setupComplete
+void inputKeyboards::setSetupComplete(const bool &set)  // sets the value of setupComplete
 {
     setupComplete = set;
 }

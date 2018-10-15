@@ -35,14 +35,14 @@ class loadCourts : public loader
         loadCourts();  // constructor
         ~loadCourts();  // destructor
 
-        stdStringVec getCourtFiles();  // retrieves the value of courtFiles
-        void setCourtFiles(stdStringVec set);  // sets the value of courtFiles
+        stdStringVec getCourtFiles() const;  // retrieves the value of courtFiles
+        void setCourtFiles(const stdStringVec &set);  // sets the value of courtFiles
         
-        courtEntityMSharedPtr  getCInstance();  // retrieves the value of cInstance
-        void setCInstance(courtEntityMSharedPtr  set);  // sets the value of cInstance
+        courtEntityMSharedPtr getCInstance() const;  // retrieves the value of cInstance
+        void setCInstance(const courtEntityMSharedPtr  &set);  // sets the value of cInstance
 
-        bool getCourtFilesLoaded();  // retrieves the value of courtFilesLoaded
-        void setCourtFilesLoaded(bool set);  // sets the value of courtFilesLoaded
+        bool getCourtFilesLoaded() const;  // retrieves the value of courtFilesLoaded
+        void setCourtFilesLoaded(const bool &set);  // sets the value of courtFilesLoaded
 
         bool checkIfCourtsLoaded();  // checks if courts have been loaded into cInstance
 

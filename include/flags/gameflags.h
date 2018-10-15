@@ -30,134 +30,134 @@ class gameFlags
         ~gameFlags();  // destructor
 
 
-        bool getInitialized();  // retrieves the value of initialized
-        void setInitialized(bool set);  // sets the value of initialized
+        bool getInitialized() const;  // retrieves the value of initialized
+        void setInitialized(const bool &set);  // sets the value of initialized
 
-        bool getStateMachineInitialized();  // retrieves the value of stateMachineInitialized
-        void setStateMachineInitialized(bool set);  // sets the value of stateMachineInitialized
+        bool getStateMachineInitialized() const;  // retrieves the value of stateMachineInitialized
+        void setStateMachineInitialized(const bool &set);  // sets the value of stateMachineInitialized
 
-        bool getActiveBasketballInstancesCreated();  // retrieves the value of activeBasketballInstancesCreated
-        void setActiveBasketballInstancesCreated(bool set);  // sets the value of activeBasketballInstancesCreated
+        bool getActiveBasketballInstancesCreated() const;  // retrieves the value of activeBasketballInstancesCreated
+        void setActiveBasketballInstancesCreated(const bool &set);  // sets the value of activeBasketballInstancesCreated
 
-        bool getActiveCourtInstancesCreated();  // retrieves the value of activeCourtInstancesCreated
-        void setActiveCourtInstancesCreated(bool set);  // sets the value of activeCourtInstancesCreated
+        bool getActiveCourtInstancesCreated() const;  // retrieves the value of activeCourtInstancesCreated
+        void setActiveCourtInstancesCreated(const bool $set);  // sets the value of activeCourtInstancesCreated
 
-        bool getActiveHoopInstancesCreated();  // retrieves the value of activeHoopInstancesCreated
-        void setActiveHoopInstancesCreated(bool set);  // sets the value of activeHoopInstancesCreated
+        bool getActiveHoopInstancesCreated() const;  // retrieves the value of activeHoopInstancesCreated
+        void setActiveHoopInstancesCreated(const bool &set);  // sets the value of activeHoopInstancesCreated
 
-        bool getActiveTeamInstancesCreated();  // retrieves the value of activeTeamInstancesCreated
-        void setActiveTeamInstancesCreated(bool set);  // sets the value of activeTeamInstancesCreated
+        bool getActiveTeamInstancesCreated() const;  // retrieves the value of activeTeamInstancesCreated
+        void setActiveTeamInstancesCreated(const bool &set);  // sets the value of activeTeamInstancesCreated
 
-        bool getActiveTeamInstancesSetup();  // retrieves the value of activeTeamInstancesSetup
-        void setActiveTeamInstancesSetup(bool set);  // sets the value of activeTeamInstancesSetup
+        bool getActiveTeamInstancesSetup() const;  // retrieves the value of activeTeamInstancesSetup
+        void setActiveTeamInstancesSetup(const bool &set);  // sets the value of activeTeamInstancesSetup
 
-        bool getBasketballInstanceCreated();  // retrieves the value of basketballInstancesCreated
-        void setBasketballInstanceCreated(bool set);  // sets the value of basketballInstancesCreated
+        bool getBasketballInstanceCreated() const;  // retrieves the value of basketballInstancesCreated
+        void setBasketballInstanceCreated(const bool &set);  // sets the value of basketballInstancesCreated
 
-        bool getBasketballInstanceNeedCreated();  // retrieves the value of basketballInstancesNeedCreated
-        void setBasketballInstanceNeedCreated(bool set);  // sets the value of basketballInstancesNeedCreated
+        bool getBasketballInstanceNeedCreated() const;  // retrieves the value of basketballInstancesNeedCreated
+        void setBasketballInstanceNeedCreated(const bool &set);  // sets the value of basketballInstancesNeedCreated
         
-        bool getCourtInstancesCreated();  // retrieves the value of courtInstancesCreated
-        void setCourtInstancesCreated(bool set);  // sets the value of courtInstancesCreated
+        bool getCourtInstancesCreated() const;  // retrieves the value of courtInstancesCreated
+        void setCourtInstancesCreated(const bool &set);  // sets the value of courtInstancesCreated
 
-        bool getCourtInstancesNeedCreated();  // retrieves the value of courtInstancesNeedCreated
-        void setCourtInstancesNeedCreated(bool set);  // sets the value of courtInstancesNeedCreated
+        bool getCourtInstancesNeedCreated() const;  // retrieves the value of courtInstancesNeedCreated
+        void setCourtInstancesNeedCreated(const bool &set);  // sets the value of courtInstancesNeedCreated
 
-        bool getHoopInstancesCreated();  // retrieves the value of hoopInstancesCreated
-        void setHoopInstancesCreated(bool created);  // sets the value of hoopInstancesCreated
+        bool getHoopInstancesCreated() const;  // retrieves the value of hoopInstancesCreated
+        void setHoopInstancesCreated(const bool &created);  // sets the value of hoopInstancesCreated
 
-        bool getHoopInstanceNeedCreated();  // retrieves the value of hoopInstancesNeedCreated
-        void setHoopInstanceNeedCreated(bool created);  // sets the value of hoopInstancesNeedCreated
+        bool getHoopInstanceNeedCreated() const;  // retrieves the value of hoopInstancesNeedCreated
+        void setHoopInstanceNeedCreated(const bool &created);  // sets the value of hoopInstancesNeedCreated
 
-        bool getPlayerInstanceCreated();  // retrieves the value of playerInstanceCreated
-        void setPlayerInstanceCreated(bool set);  // sets the value of playerInstanceCreated
+        bool getPlayerInstanceCreated() const;  // retrieves the value of playerInstanceCreated
+        void setPlayerInstanceCreated(const bool &set);  // sets the value of playerInstanceCreated
 
-        bool getPlayerInstanceNeedCreated();  // retrieves the value of playerInstanceNeedCreated
-        void setPlayerInstanceNeedCreated(bool set);  // sets the value of playerInstanceNeedCreated
+        bool getPlayerInstanceNeedCreated() const;  // retrieves the value of playerInstanceNeedCreated
+        void setPlayerInstanceNeedCreated(const bool &set);  // sets the value of playerInstanceNeedCreated
 
-        bool getTeamInstancesCreated();  // retrieves the value of teamInstancesCreated
-        void setTeamInstancesCreated(bool set);  // sets the value of teamInstancesCreated
+        bool getTeamInstancesCreated() const;  // retrieves the value of teamInstancesCreated
+        void setTeamInstancesCreated(const bool &set);  // sets the value of teamInstancesCreated
 
-        bool getTeamInstancesNeedCreated();  // retrieves the value of teamInstancesNeedCreated
-        void setTeamInstancesNeedCreated(bool set);  // sets the value of teamInstancesNeedCreated
+        bool getTeamInstancesNeedCreated() const;  // retrieves the value of teamInstancesNeedCreated
+        void setTeamInstancesNeedCreated(const bool &set);  // sets the value of teamInstancesNeedCreated
         
-        bool getBBallNodePositionChanged();  // retrieves the value of bballNodePositionChanged
-        void setBBallNodePositionChanged(bool set);  // sets the value of bballNodePositionChanged
+        bool getBBallNodePositionChanged() const;  // retrieves the value of bballNodePositionChanged
+        void setBBallNodePositionChanged(const bool &set);  // sets the value of bballNodePositionChanged
         
-        bool getTeamWithBallChanged();  // retrieves the value of bballNodePositionChanged
-        void setTeamWithBallChanged(bool set);  // sets the value of teamWithBallChanged
+        bool getTeamWithBallChanged() const;  // retrieves the value of bballNodePositionChanged
+        void setTeamWithBallChanged(const bool &set);  // sets the value of teamWithBallChanged
         
-        bool getActiveTeamInstanceChanged();  // retrieves the value of activeTeamInstanceChanged
-        void setActiveTeamInstanceChanged(bool set);  // sets the value of activeTeamInstanceChanged
+        bool getActiveTeamInstanceChanged() const;  // retrieves the value of activeTeamInstanceChanged
+        void setActiveTeamInstanceChanged(const bool &set);  // sets the value of activeTeamInstanceChanged
         
-        bool getSetupComplete();  // retrieves the value of setupComplete
-        void setSetupComplete(bool set);  // sets the value of setupComplete
+        bool getSetupComplete() const;  // retrieves the value of setupComplete
+        void setSetupComplete(const bool &set);  // sets the value of setupComplete
 
-        bool getJumpBallCreated();  // retrieves the value of jumpBallCreated
-        void setJumpBallCreated(bool set);  // sets the value of jumpBallCreated
+        bool getJumpBallCreated() const;  // retrieves the value of jumpBallCreated
+        void setJumpBallCreated(const bool &set);  // sets the value of jumpBallCreated
 
-        bool getJumpBallSetup();  // retrieves the value of jumpBallSetup
-        void setJumpBallSetup(bool set);  // sets the value of jumpBallSetup
+        bool getJumpBallSetup() const;  // retrieves the value of jumpBallSetup
+        void setJumpBallSetup(const bool &set);  // sets the value of jumpBallSetup
 
-        bool getJumpBallExecuteComplete();  // retrieves the value of jumpBallExecuteComplete
-        void setJumpBallExecuteComplete(bool set);  // sets the value of jumpBallExecuteComplete
+        bool getJumpBallExecuteComplete() const;  // retrieves the value of jumpBallExecuteComplete
+        void setJumpBallExecuteComplete(const bool &set);  // sets the value of jumpBallExecuteComplete
 
-        bool getTipOffComplete();  // retrieves the value of tipOffComplete
-        void setTipOffComplete(bool set);  // sets the value of tipOffComplet
+        bool getTipOffComplete() const;  // retrieves the value of tipOffComplete
+        void setTipOffComplete(const bool &set);  // sets the value of tipOffComplet
 
-        bool getPlayerHasBasketball();  // retrieves the value of playerHasBasketball
-        void setPlayerHasBasketball(bool set);  // setd the value of playerHasBasketball
+        bool getPlayerHasBasketball() const;  // retrieves the value of playerHasBasketball
+        void setPlayerHasBasketball(const bool &set);  // setd the value of playerHasBasketball
     
-        bool getGameStarted();  // retrieves the gameStarted value
-        void setGameStarted(bool set);  // sets gameStarted value
+        bool getGameStarted() const;  // retrieves the gameStarted value
+        void setGameStarted(const bool &set);  // sets gameStarted value
 
-        bool getCourtDataLoaded();  // retrieves the value of courtDataLoaded
-        void setCourtDataLoaded(bool set);  // sets the value of courtDataLoaded
+        bool getCourtDataLoaded() const;  // retrieves the value of courtDataLoaded
+        void setCourtDataLoaded(const bool &set);  // sets the value of courtDataLoaded
 
-        bool getBasketballModelLoaded();  // retrieves the value of basketballModelLoaded
-        void setBasketballModelLoaded(bool set);  // sets the value of basketballModelLoaded
+        bool getBasketballModelLoaded() const;  // retrieves the value of basketballModelLoaded
+        void setBasketballModelLoaded(const bool &set);  // sets the value of basketballModelLoaded
 
-        bool getCourtModelLoaded();  // retrieves the value of courtModelLoaded
-        void setCourtModelLoaded(bool set);  // sets the value of courtModelLoaded
+        bool getCourtModelLoaded() const;  // retrieves the value of courtModelLoaded
+        void setCourtModelLoaded(const bool &set);  // sets the value of courtModelLoaded
 
-        bool getHoopModelLoaded();  // retrieves the value of hoopModelLoaded
-        void setHoopModelLoaded(bool set);  // sets the value of hoopModelLoaded
+        bool getHoopModelLoaded() const;  // retrieves the value of hoopModelLoaded
+        void setHoopModelLoaded(const bool &set);  // sets the value of hoopModelLoaded
 
-        bool getModelsLoaded();  // retrieves the value of modelsLoaded
-        void setModelsLoaded(bool set);  // sets the value of modelsLoaded
+        bool getModelsLoaded() const;  // retrieves the value of modelsLoaded
+        void setModelsLoaded(const bool &set);  // sets the value of modelsLoaded
 
-        bool getBasketballNodeCreated();  // retrieves the value of basketballNodeCreated
-        void setBasketballNodeCreated(bool set);  // sets the value of basketballNodeCreated
+        bool getBasketballNodeCreated() const;  // retrieves the value of basketballNodeCreated
+        void setBasketballNodeCreated(const bool &set);  // sets the value of basketballNodeCreated
 
-        bool getCourtNodeCreated();  // retrieves the value of courtNodeCreated
-        void setCourtNodeCreated(bool set);  // sets the value of courtNodeCreated
+        bool getCourtNodeCreated() const;  // retrieves the value of courtNodeCreated
+        void setCourtNodeCreated(const bool &set);  // sets the value of courtNodeCreated
 
-        bool getHoopNodeCreated();  // retrieves the value of hoopNodeCreated
-        void setHoopNodeCreated(bool set);  // sets the value of hoopNodeCreated
+        bool getHoopNodeCreated() const;  // retrieves the value of hoopNodeCreated
+        void setHoopNodeCreated(const bool &set);  // sets the value of hoopNodeCreated
 
-        bool getNodesCreated();  // retrieves the value of nodesCreated
-        void setNodesCreated(bool set);  // sets the value of nodesCreated
+        bool getNodesCreated() const;  // retrieves the value of nodesCreated
+        void setNodesCreated(const bool &set);  // sets the value of nodesCreated
 
-        bool getBasketballStartPositionSet();  // retrieves the value of basketballStartPositionsSet
-        void setBasketballStartPositionSet(bool set);  // sets the value of basketballStartPositionsSet
+        bool getBasketballStartPositionSet() const;  // retrieves the value of basketballStartPositionsSet
+        void setBasketballStartPositionSet(const bool &set);  // sets the value of basketballStartPositionsSet
 
-        bool getCourtStartPositionSet();  // retrieves the value of courtStartPositionsSet
-        void setCourtStartPositionSet(bool set);  // sets the value of courtStartPositionsSet
+        bool getCourtStartPositionSet() const;  // retrieves the value of courtStartPositionsSet
+        void setCourtStartPositionSet(const bool &set);  // sets the value of courtStartPositionsSet
 
-        bool getHoopStartPositionSet();  // retrieves the value of hoopStartPositionsSet
-        void setHoopStartPositionSet(bool set);  // sets the value of hoopStartPositionsSet
+        bool getHoopStartPositionSet() const;  // retrieves the value of hoopStartPositionsSet
+        void setHoopStartPositionSet(const bool &set);  // sets the value of hoopStartPositionsSet
 
-        bool getStartPositionsSet();  // retrieves the value of startPositionsSet
-        void setStartPositionsSet(bool set);  // sets the value of startPositionsSet
+        bool getStartPositionsSet() const;  // retrieves the value of startPositionsSet
+        void setStartPositionsSet(const bool &set);  // sets the value of startPositionsSet
 
-        bool getTipOffSetupComplete();  // retrieves the value of tipOffSetupComplete
-        void setTipOffSetupComplete(bool set);  // sets the value of tipOffSetupComplete
+        bool getTipOffSetupComplete() const;  // retrieves the value of tipOffSetupComplete
+        void setTipOffSetupComplete(const bool &set);  // sets the value of tipOffSetupComplete
 
-        bool getInputReceived();  // retrieves the value of inputReceived
-        void setInputReceived(bool set);  // sets the value of inputReceived
+        bool getInputReceived() const;  // retrieves the value of inputReceived
+        void setInputReceived(const bool &set);  // sets the value of inputReceived
 
-        bool getSetupEnvironmentCompleted();  // retrieves the value of setupEnvironmentCompleted
-        void setSetupEnvironmentCompleted(bool set);  // sets the value of setupEnvironmentCompleted
+        bool getSetupEnvironmentCompleted() const;  // retrieves the value of setupEnvironmentCompleted
+        void setSetupEnvironmentCompleted(const bool &set);  // sets the value of setupEnvironmentCompleted
 
     private:
     

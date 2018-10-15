@@ -35,14 +35,14 @@ class loadBasketballs  : public loader
     loadBasketballs();  // constructor
     ~loadBasketballs();  // destructor
     
-    stdStringVec getBasketballFiles();  // retrieves the value of basketballFiles
-    void setBasketballFiles(stdStringVec set);  // sets the value of basketballFiles
+    stdStringVec getBasketballFiles() const;  // retrieves the value of basketballFiles
+    void setBasketballFiles(const stdStringVec &set);  // sets the value of basketballFiles
 
-    bool getBasketballFilesLoaded();  // retrieves the value of basketballFilesLoaded
-    void setBasketballFilesLoaded(bool set);  // sets the value of basketballFilesLoaded
+    bool getBasketballFilesLoaded() const;  // retrieves the value of basketballFilesLoaded
+    void setBasketballFilesLoaded(const bool &set);  // sets the value of basketballFilesLoaded
 
-    basketballEntityMSharedPtr getBInstance();  // retrieves the value of bInstance
-    void setBInstance(basketballEntityMSharedPtr set);  // sets the value of bInstance
+    basketballEntityMSharedPtr getBInstance() const;  // retrieves the value of bInstance
+    void setBInstance(const basketballEntityMSharedPtr &set);  // sets the value of bInstance
     
     bool checkIfBasketballFilesLoaded();  // checks if basketballs have been loaded into bInstance
 

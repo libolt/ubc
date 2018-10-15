@@ -46,38 +46,38 @@ playerEntity::~playerEntity()  // destructor
 
 }
 
-playerComponentsSharedPtr playerEntity::getComponent()  // retrieves the value of component
+playerComponentsSharedPtr playerEntity::getComponent() const  // retrieves the value of component
 {
     return (component);
 }
-void playerEntity::setComponent(playerComponentsSharedPtr set)  // sets the value of component
+void playerEntity::setComponent(const playerComponentsSharedPtr &set)  // sets the value of component
 {
     component = set;
 }
 
-playerDataSharedPtr playerEntity::getData()  // retrieves the value of data
+playerDataSharedPtr playerEntity::getData() const  // retrieves the value of data
 {
     return (data);
 }
-void playerEntity::setData(playerDataSharedPtr set)  // sets the value of data
+void playerEntity::setData(const playerDataSharedPtr &set)  // sets the value of data
 {
     data = set;
 }
 
-playerFlagsSharedPtr playerEntity::getFlag()  // retrieves the value of flag
+playerFlagsSharedPtr playerEntity::getFlag() const  // retrieves the value of flag
 {
     return (flag);
 }
-void playerEntity::setFlag(playerFlagsSharedPtr set)  // sets the value of flag
+void playerEntity::setFlag(const playerFlagsSharedPtr &set)  // sets the value of flag
 {
     flag = set;
 }
 
-playerGameDataSharedPtr playerEntity::getGameData()  // retrieves the value of gameData
+playerGameDataSharedPtr playerEntity::getGameData() const  // retrieves the value of gameData
 {
     return (gameData);
 }
-void playerEntity::setGameData(playerGameDataSharedPtr set)  // sets the value of gameData
+void playerEntity::setGameData(const playerGameDataSharedPtr &set)  // sets the value of gameData
 {
     gameData = set;
 }

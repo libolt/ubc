@@ -75,106 +75,106 @@ jumpBalls::~jumpBalls()  // destructor
 {
 }
 
-jumpBallLocations_t jumpBalls::getJumpBallLocation()  // retrieves teh value of jumpBallLocation
+jumpBallLocations_t jumpBalls::getJumpBallLocation() const  // retrieves teh value of jumpBallLocation
 {
     return (jumpBallLocation);
 }
-void jumpBalls::setJumpBallLocation(jumpBallLocations_t set)  // sets the value of jumpBallLocation
+void jumpBalls::setJumpBallLocation(const jumpBallLocations_t &set)  // sets the value of jumpBallLocation
 {
     jumpBallLocation = set;
 }
 
-playerPositionsVec jumpBalls::getJumpBallPlayer()  // retrieves the value of jumpBallPlayer
+playerPositionsVec jumpBalls::getJumpBallPlayer() const  // retrieves the value of jumpBallPlayer
 {
     return (jumpBallPlayer);
 }
-void jumpBalls::setJumpBallPlayer(playerPositionsVec set)  // sets the value of jumpBallPlayer
+void jumpBalls::setJumpBallPlayer(const playerPositionsVec &set)  // sets the value of jumpBallPlayer
 {
     jumpBallPlayer = set;
 }
 
-bool jumpBalls::getBallTipped()	 // retrieves the value of ballTipped
+bool jumpBalls::getBallTipped() const	 // retrieves the value of ballTipped
 {
     return (ballTipped);
 }
-void jumpBalls::setBallTipped(bool tipped)  // sets the value of ballTipped
+void jumpBalls::setBallTipped(const bool &set)  // sets the value of ballTipped
 {
-    ballTipped = tipped;
+    ballTipped = set;
 }
 
-teamTypes jumpBalls::getBallTippedToTeam()  // retrieves the value of ballTippedToTeam
+teamTypes jumpBalls::getBallTippedToTeam() const  // retrieves the value of ballTippedToTeam
 {
     return (ballTippedToTeam);
 }
-void jumpBalls::setBallTippedToTeam(teamTypes set)  // sets the value of ballTippedToTeam
+void jumpBalls::setBallTippedToTeam(const teamTypes &set)  // sets the value of ballTippedToTeam
 {
     ballTippedToTeam = set;
 }
 
-size_t jumpBalls::getBallTippedToPlayerID()  // retrieves the value of ballTippedToPlayerID
+size_t jumpBalls::getBallTippedToPlayerID() const  // retrieves the value of ballTippedToPlayerID
 {
     return (ballTippedToPlayerID);
 }
-void jumpBalls::setBallTippedToPlayerID(size_t player)	 // sets the value of ballTippedToPlayerID
+void jumpBalls::setBallTippedToPlayerID(const size_t &set)  // sets the value of ballTippedToPlayerID
 {
-    ballTippedToPlayerID = player;
+    ballTippedToPlayerID = set;
 }
 
-size_t jumpBalls::getBallTippedToPlayerInstance() // retrieves the value of ballTippedToPlayerInstance
+size_t jumpBalls::getBallTippedToPlayerInstance() const  // retrieves the value of ballTippedToPlayerInstance
 {
     return (ballTippedToPlayerInstance);
 }
-void jumpBalls::setBallTippedToPlayerInstance(size_t set) // sets the vlaue of ballTippedToPlayerInstance
+void jumpBalls::setBallTippedToPlayerInstance(const size_t &set)  // sets the vlaue of ballTippedToPlayerInstance
 {
     ballTippedToPlayerInstance = set;
 }
 
-playerPositions jumpBalls::getBallTippedToPosition()  // retrieves the value of ballTippedToPosition
+playerPositions jumpBalls::getBallTippedToPosition() const  // retrieves the value of ballTippedToPosition
 {
     return (ballTippedToPosition);
 }
-void jumpBalls::setBallTippedToPosition(playerPositions set)  // sets the value of ballTippedToPosition
+void jumpBalls::setBallTippedToPosition(const playerPositions &set)  // sets the value of ballTippedToPosition
 {
     ballTippedToPosition = set;
 }
 
-bool jumpBalls::getBallTipForceApplied()  // retrieves the value of ballTipForceApplied
+bool jumpBalls::getBallTipForceApplied() const  // retrieves the value of ballTipForceApplied
 {
     return (ballTipForceApplied);
 }
-void jumpBalls::setBallTipForceApplied(bool tip)  // sets the value of ballTipForceApplied
+void jumpBalls::setBallTipForceApplied(const bool &set)  // sets the value of ballTipForceApplied
 {
-    ballTipForceApplied = tip;
+    ballTipForceApplied = set;
 }
 
-bool jumpBalls::getSetupComplete()  // retrieves the value of setup
+bool jumpBalls::getSetupComplete() const  // retrieves the value of setup
 {
     return (setupComplete);
 }
-void jumpBalls::setSetupComplete(bool set)  // sets the value of setup
+void jumpBalls::setSetupComplete(const bool &set)  // sets the value of setup
 {
     setupComplete = set;
 }
 
-bool jumpBalls::getExecuteJumpBall()  // retrieves the value of executeJumpBall
+bool jumpBalls::getExecuteJumpBall() const  // retrieves the value of executeJumpBall
 {
     return (executeJumpBall);
 }
-void jumpBalls::setExecuteJumpBall(bool set)  // sets the value of executeJumpBall
+void jumpBalls::setExecuteJumpBall(const bool &set)  // sets the value of executeJumpBall
 {
     executeJumpBall = set;
 }
 
-bool jumpBalls::getJumpBallComplete()  // retrieves the value of jumpBallComplete
+bool jumpBalls::getJumpBallComplete() const  // retrieves the value of jumpBallComplete
 {
     return (jumpBallComplete);
 }
-void jumpBalls::setJumpBallComplete(bool set)  // sets the value of jumpBallComplete
+void jumpBalls::setJumpBallComplete(const bool &set)  // sets the value of jumpBallComplete
 {
     jumpBallComplete = set;
 }
 
-btVector3 jumpBalls::getBBallVelocity()  // retrieves the value of bballVelocity
+btVector3 jumpBalls::getBBallVelocity() const  // retrieves the value of bballVelocity
 {
     return (bballVelocity);
 }

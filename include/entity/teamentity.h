@@ -32,29 +32,29 @@ class teamEntity
         teamEntity();  // constructor
         ~teamEntity();  // destructor
 
-        bool getInitialized();  // retrieves the value of initialized
-        void setInitialized(bool set);  // sets the value of initialized
+        bool getInitialized() const;  // retrieves the value of initialized
+        void setInitialized(const bool &set);  // sets the value of initialized
 
-        teamComponentsSharedPtr getComponent();  // retrieves the value of component
-        void setComponent(teamComponentsSharedPtr set);  // sets the value of component
+        teamComponentsSharedPtr getComponent() const;  // retrieves the value of component
+        void setComponent(const teamComponentsSharedPtr &set);  // sets the value of component
 
-        teamDataSharedPtr getData();  // retrieves the value of data
-        void setData(teamDataSharedPtr set);  // sets the value of data
+        teamDataSharedPtr getData() const;  // retrieves the value of data
+        void setData(const teamDataSharedPtr &set);  // sets the value of data
 
-        teamFlagsSharedPtr getFlag();  // retrieves the value of flag
-        void setFlag(teamFlagsSharedPtr set);  // sets the value of flag
+        teamFlagsSharedPtr getFlag() const;  // retrieves the value of flag
+        void setFlag(const teamFlagsSharedPtr set);  // sets the value of flag
 
-        teamGameDataSharedPtr getGameData();  // retrieves the value of gameData
-        void setGameData(teamGameDataSharedPtr set);  // sets the value of gameData
+        teamGameDataSharedPtr getGameData() const;  // retrieves the value of gameData
+        void setGameData(const teamGameDataSharedPtr &set);  // sets the value of gameData
 
-        teamStateMachineSharedPtr getStateMachine();  // retrieves the value of stateMachine
-        void setStateMachine(teamStateMachineSharedPtr set);  // sets the value of stateMachine
+        teamStateMachineSharedPtr getStateMachine() const;  // retrieves the value of stateMachine
+        void setStateMachine(const teamStateMachineSharedPtr &set);  // sets the value of stateMachine
 
-        teamStatisticsSharedPtr getStatistics();  // retrieves the value of statistics
-        void setStatistics(teamStatisticsSharedPtr set);  // sets the value of statistics
+        teamStatisticsSharedPtr getStatistics() const;  // retrieves the value of statistics
+        void setStatistics(teamStatisticsSharedPtr &set);  // sets the value of statistics
 
-        offDefs getOffDef();  // retrieves the value of offDef
-        void setOffDef(offDefs set);  // sets the value of offDef
+        offDefs getOffDef() const;  // retrieves the value of offDef
+        void setOffDef(const offDefs &set);  // sets the value of offDef
 
         bool initialize();  // initializes teamEntity object
 

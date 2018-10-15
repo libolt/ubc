@@ -28,66 +28,65 @@ class guiFlags
         guiFlags();  // constructor
         ~guiFlags();  // destructor
 
-        bool getSetupComplete();  // retrieves the value of setupComplete
-        void setSetupComplete(bool set);  // sets the value of setupComplete
+        bool getSetupComplete() const;  // retrieves the value of setupComplete
+        void setSetupComplete(const bool &set);  // sets the value of setupComplete
 
-        bool getBackButtonsCreated(); // retrieves the value of backButtonsCreated
-        void setBackButtonsCreated(bool set); // sets the value of backButtonsCreated
+        bool getBackButtonsCreated() const;  // retrieves the value of backButtonsCreated
+        void setBackButtonsCreated(const bool &set);  // sets the value of backButtonsCreated
 
-        bool getMainMenuCreated();  // retrieves the value of mainMenuCreated
-        void setMainMenuCreated(bool set);  // sets the value of mainMenuCreated
+        bool getMainMenuCreated() const;  // retrieves the value of mainMenuCreated
+        void setMainMenuCreated(const bool &set);  // sets the value of mainMenuCreated
 
-        bool getNetworkSetupMenuCreated();  // retrieves the value of networkSetupMenuCreated
-        void setNetworkSetupMenuCreated(bool set);  // sets the value of networkSetupMenuCreated
+        bool getNetworkSetupMenuCreated() const;  // retrieves the value of networkSetupMenuCreated
+        void setNetworkSetupMenuCreated(const bool &set);  // sets the value of networkSetupMenuCreated
 
-        bool getNetworkClientSetupMenuCreated();  // retrieves the value of networkClientSetupMenuCreated
-        void setNetworkClientSetupMenuCreated(bool set);  // sets the value of networkClientSetupMenuCreated
+        bool getNetworkClientSetupMenuCreated() const;  // retrieves the value of networkClientSetupMenuCreated
+        void setNetworkClientSetupMenuCreated(const bool &set);  // sets the value of networkClientSetupMenuCreated
 
-        bool getNetworkServerSetupMenuCreated();  // retrieves the value of networkServerSetupMenuCreated
-        void setNetworkServerSetupMenuCreated(bool set);  // sets the value of networkServerSetupMenuCreated
+        bool getNetworkServerSetupMenuCreated() const ;  // retrieves the value of networkServerSetupMenuCreated
+        void setNetworkServerSetupMenuCreated(const bool &set);  // sets the value of networkServerSetupMenuCreated
 
-        bool getOptionsMenuCreated();  // retrieves the value of optionsMenuCreated
-        void setOptionsMenuCreated(bool set);  // sets the value of optionsMenuCreated
+        bool getOptionsMenuCreated() const;  // retrieves the value of optionsMenuCreated
+        void setOptionsMenuCreated(const bool &set);  // sets the value of optionsMenuCreated
 
-        bool getAudioSetupMenuCreated();  // retrieves the value of audioSettingsMenuCreated
-        void setAudioSetupMenuCreated(bool set);  // sets the value of audioSettingsMenuCreated
+        bool getAudioSetupMenuCreated() const;  // retrieves the value of audioSettingsMenuCreated
+        void setAudioSetupMenuCreated(const bool &set);  // sets the value of audioSettingsMenuCreated
 
-        bool getDisplaySetupMenuCreated();  // retrieves the value of displaySettingsMenuCreated
-        void setDisplaySetupMenuCreated(bool set);  // sets the value of displaySettingsMenuCreated
+        bool getDisplaySetupMenuCreated() const;  // retrieves the value of displaySettingsMenuCreated
+        void setDisplaySetupMenuCreated(const bool &set);  // sets the value of displaySettingsMenuCreated
 
-        bool getInputSetupMenuCreated();  // retrieves the value of inputSettingsMenuCreated
-        void setInputSetupMenuCreated(bool set);  // sets the value of inputSettingsMenuCreated
+        bool getInputSetupMenuCreated() const;  // retrieves the value of inputSettingsMenuCreated
+        void setInputSetupMenuCreated(const bool &set);  // sets the value of inputSettingsMenuCreated
 
+        bool getSetupMenuCreated() const;  // retrieves the value of setupMenuCreated
+        void setSetupMenuCreated(const bool &set);  // sets the value of setupMenuCreated
 
-        bool getSetupMenuCreated();  // retrieves the value of setupMenuCreated
-        void setSetupMenuCreated(bool set);  // sets the value of setupMenuCreated
+        bool getPlayerStartSelectionMenuCreated() const;  // retrieves the value of playerStartSelectionMenuCreated
+        void setPlayerStartSelectionMenuCreated(const bool &set);  // sets the value of playerStartSelectionMenuCreated
 
-        bool getPlayerStartSelectionMenuCreated();  // retrieves the value of playerStartSelectionMenuCreated
-        void setPlayerStartSelectionMenuCreated(bool set);  // sets the value of playerStartSelectionMenuCreated
+        bool getTeamSelectionMenuCreated() const;  // retrieves the value of teamSelectionMenuCreated
+        void setTeamSelectionMenuCreated(const bool &set);  // sets the value of teamSelectionMenuCreated
 
-        bool getTeamSelectionMenuCreated();  // retrieves the value of teamSelectionMenuCreated
-        void setTeamSelectionMenuCreated(bool set);  // sets the value of teamSelectionMenuCreated
+        bool getTeamSelectionMenuDataAdded() const;  // retrieves the value of teamSelectionMenuDataAdded
+        void setTeamSelectionMenuDataAdded(const bool &set);  // sets the value of teamSelectionDataAdded
 
-        bool getTeamSelectionMenuDataAdded();  // retrieves the value of teamSelectionMenuDataAdded
-        void setTeamSelectionMenuDataAdded(bool set);  // sets the value of teamSelectionDataAdded
+        bool getCourtSelectionMenuCreated() const;  // retrieves the value of courtSelectionMenuCreated
+        void setCourtSelectionMenuCreated(const bool &set);  // sets the value of courtSelectionMenuCreated
 
-        bool getCourtSelectionMenuCreated();  // retrieves the value of courtSelectionMenuCreated
-        void setCourtSelectionMenuCreated(bool set);  // sets the value of courtSelectionMenuCreated
+        bool getCourtSelectionDataLoaded() const;  // retrieves the value of courtSelectionEntriesLoaded
+        void setCourtSelectionDataLoaded(const bool &set);  // sets the value of courtSelectionEntriesLoaded
 
-        bool getCourtSelectionDataLoaded();  // retrieves the value of courtSelectionEntriesLoaded
-        void setCourtSelectionDataLoaded(bool set);  // sets the value of courtSelectionEntriesLoaded
+        bool getMenuActive() const;  // retrieves the value of menuActive
+        void setMenuActive(const bool &set);  // sets the value of menuActive
 
-        bool getMenuActive();  // retrieves the value of menuActive
-        void setMenuActive(bool set);  // sets the value of menuActive
+        bool getSetupMenuAwaySelected() const;  // retrieves the value of setupMenuAwaySelected
+        void setSetupMenuAwaySelected(const bool &set);  // sets the value of setupMenuAwaySelected
 
-        bool getSetupMenuAwaySelected();  // retrieves the value of setupMenuAwaySelected
-        void setSetupMenuAwaySelected(bool set);  // sets the value of setupMenuAwaySelected
+        bool getSetupMenuHomeSelected() const;  // retrieves the value of setupMenuHomeSelected
+        void setSetupMenuHomeSelected(const bool &set);  // sets the value of setupMenuHomeSelected
 
-        bool getSetupMenuHomeSelected();  // retrieves the value of setupMenuHomeSelected
-        void setSetupMenuHomeSelected(bool set);  // sets the value of setupMenuHomeSelected
-
-        bool getStartActiveGame();  // retrieves the value of startActiveGame
-        void setStartActiveGame(bool set);  // sets the value of startActiveGame
+        bool getStartActiveGame() const;  // retrieves the value of startActiveGame
+        void setStartActiveGame(const bool &set);  // sets the value of startActiveGame
 
     private:
 

@@ -27,74 +27,74 @@ class playerFlags
         playerFlags();  // constructor
         ~playerFlags();  // destructor
     
-        bool getSteerInitialized();  // retrieves the value of steerInitialized
-        void setSteerInitialized(bool set);  // sets the value of steerInitialized
+        bool getSteerInitialized() const;  // retrieves the value of steerInitialized
+        void setSteerInitialized(const bool &set);  // sets the value of steerInitialized
 
-        bool getInitialized();  // retrieves the value of initialized
-        void setInitialized(bool set);  // sets the value of initialized
+        bool getInitialized() const;  // retrieves the value of initialized
+        void setInitialized(const bool &set);  // sets the value of initialized
 
-        bool getPhysBodyInitialized();  // retrieves the value of physBodyInitialized
-        void setPhysBodyInitialized(bool set);  // sets the value of physBodyInitialized
+        bool getPhysBodyInitialized() const;  // retrieves the value of physBodyInitialized
+        void setPhysBodyInitialized(const bool &set);  // sets the value of physBodyInitialized
 
-        bool getStateMachineInitialized();  // retrieves the value of stateMachineInitialized
-        void setStateMachineInitialized(bool set);  // sets the value of stateMachineInitialized
+        bool getStateMachineInitialized() const;  // retrieves the value of stateMachineInitialized
+        void setStateMachineInitialized(const bool &set);  // sets the value of stateMachineInitialized
     
-        bool getStateChanged();  // retrieves the value of stateChanged
-        void setStateChanged(bool set);  // sets the value of stateChanged
+        bool getStateChanged() const;  // retrieves the value of stateChanged
+        void setStateChanged(const bool &set);  // sets the value of stateChanged
 
-        bool getSMNodeSet();  // retrieves the value of SMNodeSet
-        void setSMNodeSet(bool set);  // sets the value of SMNodeSet
+        bool getSMNodeSet() const;  // retrieves the value of SMNodeSet
+        void setSMNodeSet(const bool &set);  // sets the value of SMNodeSet
 
-        bool getSMModelSet();  // retrieves the value of SMModelSet
-        void setSMModelSet(bool set);  // sets the value of SMModelSet
+        bool getSMModelSet() const;  // retrieves the value of SMModelSet
+        void setSMModelSet(const bool &set);  // sets the value of SMModelSet
 
-        bool getSMStartDirectionSet();  // retrieves the value of SMStartDirectionSet
-        void setSMStartDirectionSet(bool set);  // sets the value of SMStartDirectionSet
+        bool getSMStartDirectionSet() const;  // retrieves the value of SMStartDirectionSet
+        void setSMStartDirectionSet(const bool &set);  // sets the value of SMStartDirectionSet
     
-        bool getMovement();  // retrieves the value of movement
-        void setMovement(bool set);  // sets the value of movement
+        bool getMovement() const;  // retrieves the value of movement
+        void setMovement(const bool &set);  // sets the value of movement
 
-        bool getStartPosReached();  // retrieves the value of startPosReached
-        void setStartPosReached(bool set);  // sets the value of startPosReached
+        bool getStartPosReached() const;  // retrieves the value of startPosReached
+        void setStartPosReached(const bool &set);  // sets the value of startPosReached
 
-        bool getShootBlock();  // retrieves the value of shootBlock
-        void setShootBlock(bool set);  // sets the value of shootBlock
+        bool getShootBlock() const;  // retrieves the value of shootBlock
+        void setShootBlock(const bool &set);  // sets the value of shootBlock
 
-        bool getPassSteal();  // retrieves the value of passSteal
-        void setPassSteal(bool set);  // sets the value of passSteal
+        bool getPassSteal() const;  // retrieves the value of passSteal
+        void setPassSteal(const bool &set);  // sets the value of passSteal
 
-        bool getPassBall();  // retrieves the value of passBall
-        void setPassBall(bool set);  // sets the value of passBall
+        bool getPassBall() const;  // retrieves the value of passBall
+        void setPassBall(const bool &set);  // sets the value of passBall
 
-        bool getPassCalculated();  // retrieves the value of passCalculated
-        void setPassCalculated(bool set);  // sets the value of passCalculated
+        bool getPassCalculated() const;  // retrieves the value of passCalculated
+        void setPassCalculated(const bool &set);  // sets the value of passCalculated
 
-        bool getPassCompleted();  // retrieves the value of passCompleted
-        void setPassCompleted(bool set);  // sets the value of passCompleted
+        bool getPassCompleted() const;  // retrieves the value of passCompleted
+        void setPassCompleted(const bool &set);  // sets the value of passCompleted
 
-        bool getShotTaken();  // retrieves the value of shotTaken
-        void setShotTaken(bool set);  // sets the value of shotTaken
+        bool getShotTaken() const;  // retrieves the value of shotTaken
+        void setShotTaken(const bool &set);  // sets the value of shotTaken
 
-        bool getShotSet();  // retrieves the value of shotSet
+        bool getShotSet() const;  // retrieves the value of shotSet
         void setShotSet(bool set);  // sets the value of shotSet
 
         bool getShotComplete();  // retrieves the value of shotComplete
         void setShotComplete(bool set);  // sets the value of shotComplete
 
         bool getJumpSet();  // retrieves the value of jumpSet
-        void setJumpSet(bool set);  // sets the value of jumpSet
+        void setJumpSet(const bool &set);  // sets the value of jumpSet
 
-        bool getJumpComplete();  // retrieves the value of jumpComplete
-        void setJumpComplete(bool set);  // sets the value of jumpComplete
+        bool getJumpComplete() const;  // retrieves the value of jumpComplete
+        void setJumpComplete(const bool &set);  // sets the value of jumpComplete
 
-        bool getOffenseSet();  // retrieves the value of offenseSet
-        void setOffenseSet(bool set);  // sets the value of offenseSet
+        bool getOffenseSet() const;  // retrieves the value of offenseSet
+        void setOffenseSet(const bool &set);  // sets the value of offenseSet
 
-        bool getDefenseSet();  // retrieves the value of defenseSet
-        void setDefenseSet(bool set);  // sets the value of defenseSet
+        bool getDefenseSet() const;  // retrieves the value of defenseSet
+        void setDefenseSet(const bool &set);  // sets the value of defenseSet
 
-        bool getCourtPositionChanged();  // retrieves the value of courtPositionChanged
-        void setCourtPositionChanged(bool set);  // sets the value of courtPositionChanged
+        bool getCourtPositionChanged() const;  // retrieves the value of courtPositionChanged
+        void setCourtPositionChanged(const bool &set);  // sets the value of courtPositionChanged
 
     private:
     

@@ -49,183 +49,183 @@ guiFlags::~guiFlags()
 
 }
 
-bool guiFlags::getMenuActive()  // retrieves the value of menuActive
+bool guiFlags::getMenuActive() const  // retrieves the value of menuActive
 {
     return (menuActive);
 }
-void guiFlags::setMenuActive(bool set)  // sets the value of menuActive
+void guiFlags::setMenuActive(const bool &set)  // sets the value of menuActive
 {
     menuActive = set;
 }
 
-bool guiFlags::getSetupComplete()  // retrieves the value of setupComplete
+bool guiFlags::getSetupComplete() const  // retrieves the value of setupComplete
 {
     return (setupComplete);
 }
-void guiFlags::setSetupComplete(bool set)  // sets the value of setupComplete
+void guiFlags::setSetupComplete(const bool &set)  // sets the value of setupComplete
 {
     setupComplete = set;
 }
 
-bool guiFlags::getMainMenuCreated()  // retrieves the value of mainMenuCreated
+bool guiFlags::getMainMenuCreated() const  // retrieves the value of mainMenuCreated
 {
     return (mainMenuCreated);
 }
-void guiFlags::setMainMenuCreated(bool set)  // sets the value of mainMenuCreated
+void guiFlags::setMainMenuCreated(const bool &set)  // sets the value of mainMenuCreated
 {
     mainMenuCreated = set;
 }
 
-bool guiFlags::getBackButtonsCreated()  // retrieves the value of backButtonsCreated
+bool guiFlags::getBackButtonsCreated() const  // retrieves the value of backButtonsCreated
 {
     return (backButtonsCreated);
 }
-void guiFlags::setBackButtonsCreated(bool set)  // sets the value of backButtonsCreated
+void guiFlags::setBackButtonsCreated(const bool &set)  // sets the value of backButtonsCreated
 {
     backButtonsCreated = set;
 }
 
-bool guiFlags::getNetworkSetupMenuCreated()  // retrieves the value of networkSetupMenuCreated
+bool guiFlags::getNetworkSetupMenuCreated() const  // retrieves the value of networkSetupMenuCreated
 {
     return (networkSetupMenuCreated);
 }
-void guiFlags::setNetworkSetupMenuCreated(bool set)  // sets the value of networkSetupMenuCreated
+void guiFlags::setNetworkSetupMenuCreated(const bool &set)  // sets the value of networkSetupMenuCreated
 {
     networkSetupMenuCreated = set;
 }
 
-bool guiFlags::getNetworkClientSetupMenuCreated()  // retrieves the value of networkClientSetupMenuCreated
+bool guiFlags::getNetworkClientSetupMenuCreated() const  // retrieves the value of networkClientSetupMenuCreated
 {
     return (networkClientSetupMenuCreated);
 }
-void guiFlags::setNetworkClientSetupMenuCreated(bool set)  // sets the value of networkClientSetupMenuCreated
+void guiFlags::setNetworkClientSetupMenuCreated(const bool &set)  // sets the value of networkClientSetupMenuCreated
 {
     networkClientSetupMenuCreated = set;
 }
 
-bool guiFlags::getNetworkServerSetupMenuCreated()  // retrieves the value of networkServerSetupMenuCreated
+bool guiFlags::getNetworkServerSetupMenuCreated() const  // retrieves the value of networkServerSetupMenuCreated
 {
     return (networkServerSetupMenuCreated);
 }
-void guiFlags::setNetworkServerSetupMenuCreated(bool set)  // sets the value of networkServerSetupMenuCreated
+void guiFlags::setNetworkServerSetupMenuCreated(const bool &set)  // sets the value of networkServerSetupMenuCreated
 {
     networkServerSetupMenuCreated = set;
 }
 
-bool guiFlags::getOptionsMenuCreated()  // retrieves the value of optionsMenuCreated
+bool guiFlags::getOptionsMenuCreated() const  // retrieves the value of optionsMenuCreated
 {
     return (optionsMenuCreated);
 }
-void guiFlags::setOptionsMenuCreated(bool set)  // sets the value of optionsMenuCreated
+void guiFlags::setOptionsMenuCreated(const bool &set)  // sets the value of optionsMenuCreated
 {
     optionsMenuCreated = set;
 }
 
-bool guiFlags::getAudioSetupMenuCreated()  // retrieves the value of audioSetupMenuCreated
+bool guiFlags::getAudioSetupMenuCreated() const  // retrieves the value of audioSetupMenuCreated
 {
     return (audioSetupMenuCreated);
 }
-void guiFlags::setAudioSetupMenuCreated(bool set)  // sets the value of audioSetupMenuCreated
+void guiFlags::setAudioSetupMenuCreated(const bool &set)  // sets the value of audioSetupMenuCreated
 {
     audioSetupMenuCreated = set;
 }
 
-bool guiFlags::getDisplaySetupMenuCreated()  // retrieves the value of displaySettingsMenuCreated
+bool guiFlags::getDisplaySetupMenuCreated() const  // retrieves the value of displaySettingsMenuCreated
 {
     return (displaySetupMenuCreated);
 }
-void guiFlags::setDisplaySetupMenuCreated(bool set)  // sets the value of displaySettingsMenuCreated
+void guiFlags::setDisplaySetupMenuCreated(const bool &set)  // sets the value of displaySettingsMenuCreated
 {
     displaySetupMenuCreated = set;
 }
 
-bool guiFlags::getInputSetupMenuCreated()  // retrieves the value of inputSettingsMenuCreated
+bool guiFlags::getInputSetupMenuCreated() const  // retrieves the value of inputSettingsMenuCreated
 {
     return (inputSetupMenuCreated);
 }
-void guiFlags::setInputSetupMenuCreated(bool set)  // sets the value of inputSettingsMenuCreated
+void guiFlags::setInputSetupMenuCreated(const bool &set)  // sets the value of inputSettingsMenuCreated
 {
     inputSetupMenuCreated = set;
 }
 
 
-bool guiFlags::getSetupMenuCreated()  // retrieves the value of setupMenuCreated
+bool guiFlags::getSetupMenuCreated() const  // retrieves the value of setupMenuCreated
 {
     return (setupMenuCreated);
 }
-void guiFlags::setSetupMenuCreated(bool set)  // sets the value of setupMenuCreated
+void guiFlags::setSetupMenuCreated(const bool &set)  // sets the value of setupMenuCreated
 {
     setupMenuCreated = set;
 }
 
-bool guiFlags::getPlayerStartSelectionMenuCreated()  // retrieves the value of playerStartSelectionMenuCreated
+bool guiFlags::getPlayerStartSelectionMenuCreated() const  // retrieves the value of playerStartSelectionMenuCreated
 {
     return (playerStartSelectionMenuCreated);
 }
-void guiFlags::setPlayerStartSelectionMenuCreated(bool set)  // sets the value of playerStartSelectionMenuCreated
+void guiFlags::setPlayerStartSelectionMenuCreated(const bool &set)  // sets the value of playerStartSelectionMenuCreated
 {
     playerStartSelectionMenuCreated = set;
 }
 
-bool guiFlags::getTeamSelectionMenuCreated()  // retrieves the value of teamSelectionMenuCreated
+bool guiFlags::getTeamSelectionMenuCreated() const  // retrieves the value of teamSelectionMenuCreated
 {
     return (teamSelectionMenuCreated);
 }
-void guiFlags::setTeamSelectionMenuCreated(bool set)  // sets the value of teamSelectionMenuCreated
+void guiFlags::setTeamSelectionMenuCreated(const bool &set)  // sets the value of teamSelectionMenuCreated
 {
     teamSelectionMenuCreated = set;
 }
 
-bool guiFlags::getTeamSelectionMenuDataAdded()  // retrieves the value of teamSelectionMenuDataAdded
+bool guiFlags::getTeamSelectionMenuDataAdded() const  // retrieves the value of teamSelectionMenuDataAdded
 {
     return (teamSelectionMenuDataAdded);
 }
-void guiFlags::setTeamSelectionMenuDataAdded(bool set)  // sets the value of teamSelectionDataAdded
+void guiFlags::setTeamSelectionMenuDataAdded(const bool &set)  // sets the value of teamSelectionDataAdded
 {
     teamSelectionMenuDataAdded = set;
 }
 
-bool guiFlags::getCourtSelectionMenuCreated()  // retrieves the value of courtSelectionMenuCreated
+bool guiFlags::getCourtSelectionMenuCreated() const  // retrieves the value of courtSelectionMenuCreated
 {
     return (courtSelectionMenuCreated);
 }
-void guiFlags::setCourtSelectionMenuCreated(bool set)  // sets the value of courtSelectionMenuCreated
+void guiFlags::setCourtSelectionMenuCreated(const bool &set)  // sets the value of courtSelectionMenuCreated
 {
     courtSelectionMenuCreated = set;
 }
 
-bool guiFlags::getCourtSelectionDataLoaded()  // retrieves the value of courtSelectionEntriesLoaded
+bool guiFlags::getCourtSelectionDataLoaded() const  // retrieves the value of courtSelectionEntriesLoaded
 {
     return (courtSelectionDataLoaded);
 }
-void guiFlags::setCourtSelectionDataLoaded(bool set)  // sets the value of courtSelectionEntriesLoaded
+void guiFlags::setCourtSelectionDataLoaded(const bool &set)  // sets the value of courtSelectionEntriesLoaded
 {
     courtSelectionDataLoaded = set;
 }
 
-bool guiFlags::getSetupMenuAwaySelected()  // retrieves the value of setupMenuAwaySelected
+bool guiFlags::getSetupMenuAwaySelected() const  // retrieves the value of setupMenuAwaySelected
 {
     return (setupMenuAwaySelected);
 }
-void guiFlags::setSetupMenuAwaySelected(bool set)  // sets the value of setupMenuAwaySelected
+void guiFlags::setSetupMenuAwaySelected(const bool &set)  // sets the value of setupMenuAwaySelected
 {
     setupMenuAwaySelected = set;
 }
 
-bool guiFlags::getSetupMenuHomeSelected()  // retrieves the value of setupMenuHomeSelected
+bool guiFlags::getSetupMenuHomeSelected() const  // retrieves the value of setupMenuHomeSelected
 {
     return (setupMenuHomeSelected);
 }
-void guiFlags::setSetupMenuHomeSelected(bool set)  // sets the value of setupMenuHomeSelected
+void guiFlags::setSetupMenuHomeSelected(const bool &set)  // sets the value of setupMenuHomeSelected
 {
     setupMenuHomeSelected = set;
 }
 
-bool guiFlags::getStartActiveGame()  // retrieves the value of startActiveGame
+bool guiFlags::getStartActiveGame() const  // retrieves the value of startActiveGame
 {
     return (startActiveGame);
 }
-void guiFlags::setStartActiveGame(bool set)  // sets the value of startActiveGame
+void guiFlags::setStartActiveGame(const bool &set)  // sets the value of startActiveGame
 {
     startActiveGame = set;
 }

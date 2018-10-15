@@ -47,29 +47,29 @@ loadBasketballs::~loadBasketballs()  // destructor
     
 }
 
-stdStringVec loadBasketballs::getBasketballFiles()  // retrieves the value of basketballFiles
+stdStringVec loadBasketballs::getBasketballFiles() const  // retrieves the value of basketballFiles
 {
     return (basketballFiles);
 }
-void loadBasketballs::setBasketballFiles(stdStringVec set)  // sets the value of basketballFiles
+void loadBasketballs::setBasketballFiles(const stdStringVec &set)  // sets the value of basketballFiles
 {
     basketballFiles = set;
 }
 
-basketballEntityMSharedPtr loadBasketballs::getBInstance()  // retrieves the value of bInstance
+basketballEntityMSharedPtr loadBasketballs::getBInstance() const  // retrieves the value of bInstance
 {
     return (bInstance);
 }
-void loadBasketballs::setBInstance(basketballEntityMSharedPtr set)  // sets the value of bInstance
+void loadBasketballs::setBInstance(const basketballEntityMSharedPtr &set)  // sets the value of bInstance
 {
     bInstance = set;
 }
 
-bool loadBasketballs::getBasketballFilesLoaded()  // retrieves the value of basketballFilesLoaded
+bool loadBasketballs::getBasketballFilesLoaded() const  // retrieves the value of basketballFilesLoaded
 {
     return (basketballFilesLoaded);
 }
-void loadBasketballs::setBasketballFilesLoaded(bool set)  // sets the value of basketballFilesLoaded
+void loadBasketballs::setBasketballFilesLoaded(const bool &set)  // sets the value of basketballFilesLoaded
 {
     basketballFilesLoaded = set;
 }

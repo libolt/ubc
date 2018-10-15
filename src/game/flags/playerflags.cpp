@@ -54,151 +54,151 @@ playerFlags::~playerFlags()  // destructor
 
 }
 
-bool playerFlags::getSteerInitialized()  // retrieves the value of steerInitialized
+bool playerFlags::getSteerInitialized() const  // retrieves the value of steerInitialized
 {
     return (steerInitialized);
 }
-void playerFlags::setSteerInitialized(bool set)  // sets the value of steerInitialized
+void playerFlags::setSteerInitialized(const bool &set)  // sets the value of steerInitialized
 {
     steerInitialized = set;
 }
 
-bool playerFlags::getInitialized()  // retrieves the value of initialized
+bool playerFlags::getInitialized() const  // retrieves the value of initialized
 {
     return (initialized);
 }
-void playerFlags::setInitialized(bool set)  // sets the value of initialized
+void playerFlags::setInitialized(const bool &set)  // sets the value of initialized
 {
     initialized = set;
 }
 
-bool playerFlags::getPhysBodyInitialized()  // retrieves the value of physBodyInitialized
+bool playerFlags::getPhysBodyInitialized() const  // retrieves the value of physBodyInitialized
 {
     return (physBodyInitialized);
 }
-void playerFlags::setPhysBodyInitialized(bool set)  // sets the value of physBodyInitialized
+void playerFlags::setPhysBodyInitialized(const bool &set)  // sets the value of physBodyInitialized
 {
     physBodyInitialized = set;
 }
 
-bool playerFlags::getStateMachineInitialized()  // retrieves the value of stateMachineInitialized
+bool playerFlags::getStateMachineInitialized() const  // retrieves the value of stateMachineInitialized
 {
     return (stateMachineInitialized);
 }
-void playerFlags::setStateMachineInitialized(bool set)  // sets the value of stateMachineInitialized
+void playerFlags::setStateMachineInitialized(const bool &set)  // sets the value of stateMachineInitialized
 {
     stateMachineInitialized = set;
 }
 
-bool playerFlags::getStateChanged()  // retrieves the value of stateChanged
+bool playerFlags::getStateChanged() const  // retrieves the value of stateChanged
 {
     return (stateChanged);
 }
-void playerFlags::setStateChanged(bool set)  // sets the value of stateChanged
+void playerFlags::setStateChanged(const bool &set)  // sets the value of stateChanged
 {
     stateChanged = set;
 }
 
-bool playerFlags::getSMNodeSet()  // retrieves the value of SMNodeSet
+bool playerFlags::getSMNodeSet() const  // retrieves the value of SMNodeSet
 {
     return (SMNodeSet);
 }
-void playerFlags::setSMNodeSet(bool set)  // sets the value of SMNodeSet
+void playerFlags::setSMNodeSet(const bool &set)  // sets the value of SMNodeSet
 {
     SMNodeSet = set;
 }
 
-bool playerFlags::getSMModelSet()  // retrieves the value of SMModelSet
+bool playerFlags::getSMModelSet() const  // retrieves the value of SMModelSet
 {
     return (SMModelSet);
 }
-void playerFlags::setSMModelSet(bool set)  // sets the value of SMModelSet
+void playerFlags::setSMModelSet(const bool &set)  // sets the value of SMModelSet
 {
     SMModelSet = set;
 }
 
-bool playerFlags::getSMStartDirectionSet()  // retrieves the value of SMStartDirectionSet
+bool playerFlags::getSMStartDirectionSet() const  // retrieves the value of SMStartDirectionSet
 {
     return (SMStartDirectionSet);
 }
-void playerFlags::setSMStartDirectionSet(bool set)  // sets the value of SMStartDirectionSet
+void playerFlags::setSMStartDirectionSet(const bool &set)  // sets the value of SMStartDirectionSet
 {
     SMStartDirectionSet = set;
 }
 
-bool playerFlags::getMovement()  // retrieves the value of movement
+bool playerFlags::getMovement() const  // retrieves the value of movement
 {
     return (movement);
 }
-void playerFlags::setMovement(bool set)  // sets the value of movement
+void playerFlags::setMovement(const bool &set)  // sets the value of movement
 {
     movement = set;
 }
 
-bool playerFlags::getStartPosReached()  // retrieves the value of startPosReached
+bool playerFlags::getStartPosReached() const  // retrieves the value of startPosReached
 {
     return (startPosReached);
 }
-void playerFlags::setStartPosReached(bool set)  // sets the value of startPosReached
+void playerFlags::setStartPosReached(const bool &set)  // sets the value of startPosReached
 {
     startPosReached = set;
 }
 
-bool playerFlags::getShootBlock()  // retrieves the value of shootBlock
+bool playerFlags::getShootBlock() const  // retrieves the value of shootBlock
 {
     return (shootBlock);
 }
-void playerFlags::setShootBlock(bool set)   // sets the value of shootBlock
+void playerFlags::setShootBlock(const bool &set)   // sets the value of shootBlock
 {
     shootBlock = set;
 }
 
-bool playerFlags::getPassSteal()  // retrieves the value of passSteal
+bool playerFlags::getPassSteal() const  // retrieves the value of passSteal
 {
     return (passSteal);
 }
-void playerFlags::setPassSteal(bool set)  // sets the value of passSteal
+void playerFlags::setPassSteal(const bool &set)  // sets the value of passSteal
 {
     passSteal = set;
 }
 
-bool playerFlags::getPassBall()  // retrieves the value of passBall
+bool playerFlags::getPassBall() const  // retrieves the value of passBall
 {
     return (passBall);
 }
-void playerFlags::setPassBall(bool set)  // sets the value of passBall
+void playerFlags::setPassBall(const bool &set)  // sets the value of passBall
 {
     passBall = set;
 }
 
-bool playerFlags::getPassCalculated()  // retrieves the value of passCalculated
+bool playerFlags::getPassCalculated() const  // retrieves the value of passCalculated
 {
     return (passCalculated);
 }
-void playerFlags::setPassCalculated(bool set)  // sets the value of passCalculated
+void playerFlags::setPassCalculated(const bool &set)  // sets the value of passCalculated
 {
     passCalculated = set;
 }
 
-bool playerFlags::getPassCompleted()  // retrieves the value of passCompleted
+bool playerFlags::getPassCompleted() const  // retrieves the value of passCompleted
 {
     return (passCompleted);
 }
-void playerFlags::setPassCompleted(bool set)  // sets the value of passCompleted
+void playerFlags::setPassCompleted(const bool &set)  // sets the value of passCompleted
 {
     passCompleted = set;
 }
 
-bool playerFlags::getShotTaken()  // retrieves the value of shotTaken
+bool playerFlags::getShotTaken() const  // retrieves the value of shotTaken
 {
     return (shotTaken);
 }
-void playerFlags::setShotTaken(bool set)  // sets the value of shotTaken
+void playerFlags::setShotTaken(const bool &set)  // sets the value of shotTaken
 {
     shotTaken = set;
 }
 
-bool playerFlags::getShotSet()  // retrieves the value of shotSet
+bool playerFlags::getShotSet() const  // retrieves the value of shotSet
 {
     return (shotSet);
 }
@@ -220,43 +220,43 @@ bool playerFlags::getJumpSet()  // retrieves the value of jumpSet
 {
     return (jumpSet);
 }
-void playerFlags::setJumpSet(bool set)  // sets the value of jumpSet
+void playerFlags::setJumpSet(const bool &set)  // sets the value of jumpSet
 {
     jumpSet = set;
 }
 
-bool playerFlags::getJumpComplete()  // retrieves the value of jumpComplete
+bool playerFlags::getJumpComplete() const  // retrieves the value of jumpComplete
 {
     return (jumpComplete);
 }
-void playerFlags::setJumpComplete(bool set)  // sets the value of jumpComplete
+void playerFlags::setJumpComplete(const bool &set)  // sets the value of jumpComplete
 {
     jumpComplete = set;
 }
 
-bool playerFlags::getOffenseSet()  // retrieves the value of offenseSet
+bool playerFlags::getOffenseSet() const  // retrieves the value of offenseSet
 {
     return (offenseSet);
 }
-void playerFlags::setOffenseSet(bool set)  // sets the value of offenseSet
+void playerFlags::setOffenseSet(const bool &set)  // sets the value of offenseSet
 {
     offenseSet = set;
 }
 
-bool playerFlags::getDefenseSet()  // retrieves the value of defenseSet
+bool playerFlags::getDefenseSet() const  // retrieves the value of defenseSet
 {
     return (defenseSet);
 }
-void playerFlags::setDefenseSet(bool set)  // sets the value of defenseSet
+void playerFlags::setDefenseSet(const bool &set)  // sets the value of defenseSet
 {
     defenseSet = set;
 }
 
-bool playerFlags::getCourtPositionChanged()  // retrieves the value of courtPositionChanged
+bool playerFlags::getCourtPositionChanged() const  // retrieves the value of courtPositionChanged
 {
     return (courtPositionChanged);
 }
-void playerFlags::setCourtPositionChanged(bool set)  // sets the value of courtPositionChanged
+void playerFlags::setCourtPositionChanged(const bool &set)  // sets the value of courtPositionChanged
 {
     courtPositionChanged = set;
 }

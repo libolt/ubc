@@ -37,23 +37,8 @@ class basketballPhysics : public physics
 
         basketballPhysics();  // initializer
 
-/*        btCollisionShape *getShape();  // retrieves the value of basketballShape
-        void setShape(btCollisionShape *set);  // sets the value of basketballShape
-
-        BtOgre::RigidBodyState *getBasketballBodyState();  // retrieves the value of basketballBodyState
-        void setBasketBallBodyState(BtOgre::RigidBodyState *set);  // sets the value of basketballBodyState
-
-        size_t getNumber();  // retrieves the value of number
-        void setNumber(size_t set);  // sets the value of number
-
-        bool getStateSet();  // retrieves the value of stateSet
-        void setStateSet(bool set);  // sets the value of stateSet
-        
-        bool getPhysicsSetup();  // retrieves the value of physicsSetup
-        void setPhysicsSetup(bool set);  // sets the value of physicsSetup
-*/
-        bballBounces getBounce();  // retrieves value of bounce
-        void setBounce(bballBounces set);  // sets the value of bounce 
+        bballBounces getBounce() const;  // retrieves value of bounce
+        void setBounce(const bballBounces &set);  // sets the value of bounce
         
         bool setup();  // sets up basketball physics
 

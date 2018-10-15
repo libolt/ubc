@@ -44,29 +44,29 @@ loadOffensePlays::~loadOffensePlays()  // destructor
 
 }
 
-stdStringVec loadOffensePlays::getOffensePlayFiles()  // retrieves the value of offensePlayFiles
+stdStringVec loadOffensePlays::getOffensePlayFiles() const  // retrieves the value of offensePlayFiles
 {
     return (offensePlayFiles);
 }
-void loadOffensePlays::setOffensePlayFiles(stdStringVec set)  // sets the value of offensePlayFiles
+void loadOffensePlays::setOffensePlayFiles(const stdStringVec &set)  // sets the value of offensePlayFiles
 {
     offensePlayFiles = set;
 }
 
-offensePlaysVecSharedPtr loadOffensePlays::getOPInstance()  // retrieves the value of opInstance
+offensePlaysVecSharedPtr loadOffensePlays::getOPInstance() const  // retrieves the value of opInstance
 {
     return (opInstance);
 }
-void loadOffensePlays::setOPInstance(offensePlaysVecSharedPtr set)  // sets the value of opInstance
+void loadOffensePlays::setOPInstance(const offensePlaysVecSharedPtr &set)  // sets the value of opInstance
 {
     opInstance = set;
 }
 
-bool loadOffensePlays::getOffensePlayFilesLoaded()  // retrieves the value of offensePlayFilesLoaded
+bool loadOffensePlays::getOffensePlayFilesLoaded() const  // retrieves the value of offensePlayFilesLoaded
 {
     return (offensePlayFilesLoaded);
 }
-void loadOffensePlays::setOffensePlayFilesLoaded(bool set)  // sets the value of offensePlayFilesLoaded
+void loadOffensePlays::setOffensePlayFilesLoaded(const bool &set)  // sets the value of offensePlayFilesLoaded
 {
     offensePlayFilesLoaded = set;
 }

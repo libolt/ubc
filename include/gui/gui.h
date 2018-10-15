@@ -50,23 +50,23 @@ public:
     GUISystem();  // constructor
     ~GUISystem();  // destructor
 	
-    GUIComponentsSharedPtr getComponent();  // retrieves the value of component
-    void setComponent(GUIComponentsSharedPtr set);  // sets the value of component
+    GUIComponentsSharedPtr getComponent() const;  // retrieves the value of component
+    void setComponent(const GUIComponentsSharedPtr &set);  // sets the value of component
 
-    guiFlagsSharedPtr getFlag();  // retrieves the value of flag
-    void setFlag(guiFlagsSharedPtr set);  // sets the value of flag
+    guiFlagsSharedPtr getFlag() const;  // retrieves the value of flag
+    void setFlag(const guiFlagsSharedPtr &set);  // sets the value of flag
 
-    gameEngineSharedPtr getGamE();  // retrieves the value of gameE
-    void setGameE(gameEngineSharedPtr set);  // sets the value of gameE
+    gameEngineSharedPtr getGamE() const;  // retrieves the value of gameE
+    void setGameE(const gameEngineSharedPtr &set);  // sets the value of gameE
     
-    gameEntitySharedPtr getGameInstance();  // retrieves the value of teamInstance
-    void setGameInstance(gameEntitySharedPtr set);  // sets the value of teamInstance
+    gameEntitySharedPtr getGameInstance() const;  // retrieves the value of teamInstance
+    void setGameInstance(const gameEntitySharedPtr &set);  // sets the value of teamInstance
 
-    activeMenus getActiveMenu(); // retrieves the value of activeMenu
-    void setActiveMenu(activeMenus set); // sets the value of activeMenu
+    activeMenus getActiveMenu() const;  // retrieves the value of activeMenu
+    void setActiveMenu(const activeMenus &set);  // sets the value of activeMenu
 
-    activeMenus getPreviousActiveMenu(); // retrieves the value of previousActiveMenu
-    void setPreviousActiveMenu(activeMenus set); // sets the value of previousActiveMenu
+    activeMenus getPreviousActiveMenu() const;  // retrieves the value of previousActiveMenu
+    void setPreviousActiveMenu(const activeMenus &set);  // sets the value of previousActiveMenu
 
     bool setup(renderEngineSharedPtr render);  // sets up the in game gui
     bool createMainMenuGUI(renderEngineSharedPtr render);  // creates GUI gor main menu screen.

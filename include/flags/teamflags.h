@@ -29,38 +29,32 @@ class teamFlags
         teamFlags();  // constructor
         ~teamFlags();  // destructor
 
-        bool getStateMachineInitialized();  // retrieves the value of stateMachineInitialized
-        void setStateMachineInitialized(bool set);  // sets the value of stateMachineInitialized
+        bool getStateMachineInitialized() const;  // retrieves the value of stateMachineInitialized
+        void setStateMachineInitialized(const bool &set);  // sets the value of stateMachineInitialized
 
-/*        bool getOffense();  // retrieves the value of offense
-        void setOffense(bool set);  // sets the value of offense
+        bool getActivePlayerInstancesCreated() const;  // retrieves the value of activePlayerInstancesCreated
+        void setActivePlayerInstancesCreated(const bool &set);  // sets the value of activePlayerInstancesCreated
 
-        bool getDefense();  // retrieves the value of defense
-        void setDefense(bool set);  // sets the value of defense
-*/
-        bool getActivePlayerInstancesCreated();  // retrieves the value of activePlayerInstancesCreated
-        void setActivePlayerInstancesCreated(bool set);  // sets the value of activePlayerInstancesCreated
+        bool getActivePlayerInstancesSetup() const;  // retrieves the value of activePlayerInstancesSetup
+        void setActivePlayerInstancesSetup(const bool &set);  // sets the value of activePlayerInstancesSetup
 
-        bool getActivePlayerInstancesSetup();  // retrieves the value of activePlayerInstancesSetup
-        void setActivePlayerInstancesSetup(bool set);  // sets the value of activePlayerInstancesSetup
+        bool getActivePlayerInstancesChanged() const;  // retrieves the value of activePlayerInstancesChanged
+        void setActivePlayerInstancesChanged(const bool &set);  // sets the value of activePlayerInstancesChanged
 
-        bool getActivePlayerInstancesChanged();  // retrieves the value of activePlayerInstancesChanged
-        void setActivePlayerInstancesChanged(bool set);  // sets the value of activePlayerInstancesChanged
+        bool getPlayerInstancesCreated() const;  // retrieves the value of the playerInstancesCreated
+        void setPlayerInstancesCreated(const bool &set);  // sets the value of the playerInstancesCreated
 
-        bool getPlayerInstancesCreated();  // retrieves the value of the playerInstancesCreated
-        void setPlayerInstancesCreated(bool set);  // sets the value of the playerInstancesCreated
+        bool getPlayerStartPositionsSet() const;  // retrieves the value of the playerStartPositionsSet
+        void setPlayerStartPositionsSet(const bool &set);  // sets the value of the playerStartPositionsSet
 
-        bool getPlayerStartPositionsSet();  // retrieves the value of the playerStartPositionsSet
-        void setPlayerStartPositionsSet(bool set);  // sets the value of the playerStartPositionsSet
+        bool getPlayerStartDirectionsSet() const;  // retrieves the value of the playerStartDirectionsSet
+        void setPlayerStartDirectionsSet(const bool &set);  // sets the value of the playerStartDirectionsSet
 
-        bool getPlayerStartDirectionsSet();  // retrieves the value of the playerStartDirectionsSet
-        void setPlayerStartDirectionsSet(bool set);  // sets the value of the playerStartDirectionsSet
+        bool getPlayerWithBallDribbling() const;  // retrieves the value of the playerWithBallDribbling
+        void setPlayerWithBallDribbling(const bool &set);  // sets the value of the playerWithBallDribbling
 
-        bool getPlayerWithBallDribbling();  // retrieves the value of the playerWithBallDribbling
-        void setPlayerWithBallDribbling(bool set);  // sets the value of the playerWithBallDribbling
-
-        bool getHumanControlled();  // retrieves the value of the humanControlled
-        void setHumanControlled(bool set);  // sets the value of the humanControlled
+        bool getHumanControlled() const;  // retrieves the value of the humanControlled
+        void setHumanControlled(const bool &set);  // sets the value of the humanControlled
 
     private:
     

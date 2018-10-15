@@ -40,17 +40,17 @@ class playerEntity : public entity
     playerEntity();  // constructor
     ~playerEntity();  // destructor
     
-    playerComponentsSharedPtr getComponent();  // retrieves the value of component
-    void setComponent(playerComponentsSharedPtr set);  // sets the value of component
+    playerComponentsSharedPtr getComponent() const;  // retrieves the value of component
+    void setComponent(const playerComponentsSharedPtr &set);  // sets the value of component
 
-    playerDataSharedPtr getData();  // retrieves the value of data
-    void setData(playerDataSharedPtr set);  // sets the value of data
+    playerDataSharedPtr getData() const;  // retrieves the value of data
+    void setData(const playerDataSharedPtr &set);  // sets the value of data
 
-    playerFlagsSharedPtr getFlag();  // retrieves the value of flag
-    void setFlag(playerFlagsSharedPtr set);  // sets the value of flag
+    playerFlagsSharedPtr getFlag() const;  // retrieves the value of flag
+    void setFlag(const playerFlagsSharedPtr &set);  // sets the value of flag
 
-    playerGameDataSharedPtr getGameData();  // retrieves the value of gameData
-    void setGameData(playerGameDataSharedPtr set);  // sets the value of gameData
+    playerGameDataSharedPtr getGameData() const;  // retrieves the value of gameData
+    void setGameData(const playerGameDataSharedPtr &set);  // sets the value of gameData
 
     bool initialize();  // initializes the court entity object
 

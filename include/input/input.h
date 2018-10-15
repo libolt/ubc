@@ -40,20 +40,20 @@ class input
     input();  // constructor
     ~input();  // destructor
     
-    inputEngineSharedPtr getInputE();  // retrieves the value of gameE
-    void setInputE(inputEngineSharedPtr set);  // sets the value of gameE
+    inputEngineSharedPtr getInputE() const;  // retrieves the value of gameE
+    void setInputE(const inputEngineSharedPtr &set);  // sets the value of gameE
     
-    usersInputsVecSharedPtr getUInput();  // retrieves the value of uInput
-    void setUInput(usersInputsVecSharedPtr set);  // sets the value of uInput
+    usersInputsVecSharedPtr getUInput() const;  // retrieves the value of uInput
+    void setUInput(const usersInputsVecSharedPtr &set);  // sets the value of uInput
     
-    inputInGameWorkQueues getInputInGameWorkQueue();  // retrieves the value of inputInGameWorkQueue
-    void setInputInGameWorkQueue(inputInGameWorkQueues set);  // sets the value of inputInGameWorkQueue
+    inputInGameWorkQueues getInputInGameWorkQueue() const;  // retrieves the value of inputInGameWorkQueue
+    void setInputInGameWorkQueue(const inputInGameWorkQueues &set);  // sets the value of inputInGameWorkQueue
     
-    bool getSetupComplete();  // retrieves the value of setupComplete
-    void setSetupComplete(bool set);  // sets the value of setupComplete
+    bool getSetupComplete() const;  // retrieves the value of setupComplete
+    void setSetupComplete(const bool &set);  // sets the value of setupComplete
 
-    bool getInputESet();  // retrieves the value of inputESet
-    void setInputESet(bool set);  // sets the value of inputESet
+    bool getInputESet() const;  // retrieves the value of inputESet
+    void setInputESet(const bool &set);  // sets the value of inputESet
 
     bool setup();  // sets up the input state
     	      

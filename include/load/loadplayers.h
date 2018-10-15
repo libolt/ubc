@@ -25,6 +25,7 @@
 #include <vector>
 #include <unordered_map>
 #include "load/load.h"
+#include "utilities/typedefs.h"
 
 class loadPlayers : public loader
 {
@@ -33,14 +34,14 @@ class loadPlayers : public loader
     loadPlayers();  // constructor
     ~loadPlayers();  // destructor
     
-    stdStringVec getPlayerFiles();  // retrieves the value of playerFiles
-    void setPlayerFiles(stdStringVec set);  // sets the value of playerFiles
+    stdStringVec getPlayerFiles() const;  // retrieves the value of playerFiles
+    void setPlayerFiles(const stdStringVec &set);  // sets the value of playerFiles
 
-    playerEntityMSharedPtr getPInstance();  // retrieves the value of pInstance
-    void setPInstance(playerEntityMSharedPtr set);  // sets the value of pInstance
+    playerEntityMSharedPtr getPInstance() const;  // retrieves the value of pInstance
+    void setPInstance(const playerEntityMSharedPtr &set);  // sets the value of pInstance
 
-    bool getPlayerFilesLoaded();  // retrieves the value of playerFilesLoaded
-    void setPlayerFilesLoaded(bool set);  // sets the value of playerFilesLoaded
+    bool getPlayerFilesLoaded() const;  // retrieves the value of playerFilesLoaded
+    void setPlayerFilesLoaded(const bool &set);  // sets the value of playerFilesLoaded
     
     bool checkIfPlayersLoaded();  // checks if players have been loaded into pInstance
 

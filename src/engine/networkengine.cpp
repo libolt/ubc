@@ -204,7 +204,7 @@ bool networkEngine::clientConnect()  // performs a client connection to the serv
     if (!clientEstablishedConnection)
     {
 
-//        client = enet_host_create (NULL  /* create a client host */,
+//        client = enet_host_create (nullptr  /* create a client host */,
 //                                   4  /* only allow 1 outgoing connection */,
 //                                   2  /* allow up to 2 channels to be used, 0 and 1*/,
 //                                   0  /* 56K modem with 56 Kbps downstream bandwidth */,

@@ -185,9 +185,9 @@ void UBC::run()  // runs the game
 //    gameInstance->createInstances();  // creates object instances
 //    sharedPtr<entity> gameStateSharedPtr(new entity);
 
-    if (component->getGameE()->getRenderE()->getMWindow() == NULL)
+    if (component->getGameE()->getRenderE()->getMWindow() == nullptr)
     {
-        logMsg(func +" mWindow == NULL!");
+        logMsg(func +" mWindow == nullptr!");
 //        exit(0);
     }
 //    exit(0);

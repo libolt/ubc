@@ -50,7 +50,7 @@ void basketballStateMachine::halt()
         TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_START
         TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_CHANGE_SPEED
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_JUMP
-    END_TRANSITION_MAP(NULL)
+    END_TRANSITION_MAP(nullptr)
 }
 
 // state machine sits here when motor is not running

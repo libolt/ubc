@@ -81,13 +81,13 @@ renderEngine::renderEngine()
 {
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-    gStaticPluginLoader = NULL;
-	mAssetMgr = NULL;
-	mSceneMgr = NULL;
+    gStaticPluginLoader = nullptr;
+    mAssetMgr = nullptr;
+    mSceneMgr = nullptr;
 #endif
 //    sharedPtr<Ogre::RenderWindow> tempWindow(new Ogre::RenderWindow);
-    mWindow = NULL;
-    RERoot = NULL;
+    mWindow = nullptr;
+    RERoot = nullptr;
    
     instance = 0;
 //   windowWidth = 0;
@@ -106,47 +106,47 @@ bool renderEngine::frameEnded()
 {
 	return true;
 }
-sharedPtr<Ogre::Root> renderEngine::getRERoot()  // retrieves the value of RERoot
+sharedPtr<Ogre::Root> renderEngine::getRERoot() const  // retrieves the value of RERoot
 {
 	return (RERoot);
 }
-void renderEngine::setRERoot(sharedPtr<Ogre::Root> set)  // sets the value of RERoot
+void renderEngine::setRERoot(const sharedPtr<Ogre::Root> &set)  // sets the value of RERoot
 {
 	RERoot = set;
 }
 
-sharedPtr<Ogre::Camera> renderEngine::getMCamera()  // retrieves the value of mCamera
+sharedPtr<Ogre::Camera> renderEngine::getMCamera() const  // retrieves the value of mCamera
 {
 	return (mCamera);
 }
-void renderEngine::setMCamera(sharedPtr<Ogre::Camera> set)  // sets the value of mCamera
+void renderEngine::setMCamera(const sharedPtr<Ogre::Camera> &set)  // sets the value of mCamera
 {
 	mCamera = set;
 }
 
-sharedPtr<Ogre::SceneManager> renderEngine::getMSceneMgr()  // retrieves the value of mSceneMgr
+sharedPtr<Ogre::SceneManager> renderEngine::getMSceneMgr() const  // retrieves the value of mSceneMgr
 {
 	return (mSceneMgr);
 }
-void renderEngine::setMSceneMgr(sharedPtr<Ogre::SceneManager> set)  // sets the value of mSceneMgr
+void renderEngine::setMSceneMgr(const sharedPtr<Ogre::SceneManager> &set)  // sets the value of mSceneMgr
 {
 	mSceneMgr = set;
 }
 
-sharedPtr<Ogre::RenderWindow> renderEngine::getMWindow()  // retrieves the value of mWindow
+sharedPtr<Ogre::RenderWindow> renderEngine::getMWindow() const  // retrieves the value of mWindow
 {
 	return (mWindow);
 }
-void renderEngine::setMWindow(sharedPtr<Ogre::RenderWindow> set)  // sets the value of mWindow
+void renderEngine::setMWindow(const sharedPtr<Ogre::RenderWindow> &set)  // sets the value of mWindow
 {
 	mWindow = set;
 }
 
-sharedPtr<Ogre::Viewport> renderEngine::getViewPort() // retrieves the value of viewPort
+sharedPtr<Ogre::Viewport> renderEngine::getViewPort() const  // retrieves the value of viewPort
 {
 	return (viewPort);
 }
-void renderEngine::setViewPort(sharedPtr<Ogre::Viewport> set) // sets the value of viewPort
+void renderEngine::setViewPort(const sharedPtr<Ogre::Viewport> &set) // sets the value of viewPort
 {
 	viewPort = set;
 }
@@ -624,9 +624,9 @@ bool renderEngine::createScene()
     sdlWindow = SDL_CreateWindowFrom(mWindow.get());
 //    exit(0);
 #endif
-     if (mWindow == NULL)
+     if (mWindow == nullptr)
      {
-         logMsg(func +" createScene mWindow == NULL!");
+         logMsg(func +" createScene mWindow == nullptr!");
      }
 //exit(0);
 /*        
@@ -682,7 +682,7 @@ bool renderEngine::createScene()
     Ogre::RTShader::ShaderGenerator* shaderGen = Ogre::RTShader::ShaderGenerator::getSingletonPtr();
 	//Ogre::RTShader::ShaderGenerator::getSingletonPtr()->setTargetLanguage("glsles");
     shaderGen->setTargetLanguage("glsles");
-    if (mMatListener == NULL)
+    if (mMatListener == nullptr)
     {
         mMatListener = new Ogre::ShaderGeneratorTechniqueResolverListener();
         Ogre::MaterialManager::getSingleton().addListener(mMatListener);
@@ -772,9 +772,9 @@ bool renderEngine::createScene()
     l->setPosition(20,80,56);
 
  
-    if (mWindow == NULL)
+    if (mWindow == nullptr)
     {
-        logMsg(func +" createScene mWindow 2 == NULL!");
+        logMsg(func +" createScene mWindow 2 == nullptr!");
     }
 //     exit(0);
 	//	    Ogre::LogManager::getSingletonPtr()->logMessage("winHandle = " +winHandle);
@@ -896,12 +896,12 @@ bool renderEngine::renderFrame()  // renders a frame to the screen
 //    exit(0);
     logMsg(func +" Rendering Frame!");
     logMsg(func +" Render Instance == " +convert->toString(instance));
-    if (mWindow == NULL)
+    if (mWindow == nullptr)
     {
-        logMsg(func +" mWindow is NULL!");
+        logMsg(func +" mWindow is nullptr!");
     }
     
-    if (mWindow != NULL && mWindow->isActive())
+    if (mWindow != nullptr && mWindow->isActive())
     {
 //        logMsg(func +" LastFPS == " +convert->toString(mWindow->getLastFPS()));
 //      Ogre::LogManager::getSingletonPtr()->logMessage("Rendering frame");

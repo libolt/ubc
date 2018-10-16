@@ -199,7 +199,7 @@ stdStringVec loadBasketballs::loadListFile(std::string fileName) // loads the li
     logMsg(func +" begin");
 
     logMsg(fileName);
-    char *contents = NULL;
+    char *contents = nullptr;
     readFile(fileName.c_str(), &contents);
     fileContents = convert->toString(contents);
 //    logMsg("fileContents = " +fileContents);
@@ -252,7 +252,7 @@ basketballEntitySharedPtr loadBasketballs::loadFile(std::string fileName)  // lo
     std::string modelName;
     std::string fileContents;
     tinyxml2::XMLDocument doc;
-    char *contents = NULL;
+    char *contents = nullptr;
     std::string func = "loadBasketballs::loadFile()";
     
     logMsg(func +" begin");

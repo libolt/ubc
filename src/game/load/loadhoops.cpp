@@ -172,7 +172,7 @@ stdStringVec loadHoops::loadHoopListFile(std::string fileName)  // load the list
     logMsg(func +" begin");
 
     logMsg(func +" " +fileName);
-    char *contents = NULL;
+    char *contents = nullptr;
     readFile(fileName.c_str(), &contents);
     fileContents = convert->toString(contents);
 //    logMsg("fileContents = " +fileContents);
@@ -228,7 +228,7 @@ hoopEntitySharedPtr loadHoops::loadHoopFile(std::string fileName)  // loads data
     std::string modelName;
     std::string fileContents;
     tinyxml2::XMLDocument doc;
-    char *contents = NULL;
+    char *contents = nullptr;
     std::string func = "loadHoops::loadHoopFile()";
 
     logMsg(func +" begin");

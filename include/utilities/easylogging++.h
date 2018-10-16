@@ -4432,7 +4432,7 @@ if (ELPP_DEBUG_LOG) C##LEVEL##_EVERY_N(el::base::Writer, n, el::base::DispatchAc
 #undef CCHECK_LE
 #undef CCHECK_GE
 #undef CCHECK_BOUNDS
-#undef CCHECK_NOTNULL
+#undef CCHECK_NOTnullptr
 #undef CCHECK_STRCASEEQ
 #undef CCHECK_STRCASENE
 #undef CHECK
@@ -4444,7 +4444,7 @@ if (ELPP_DEBUG_LOG) C##LEVEL##_EVERY_N(el::base::Writer, n, el::base::DispatchAc
 #undef CHECK_LE
 #undef CHECK_GE
 #undef CHECK_BOUNDS
-#undef CHECK_NOTNULL
+#undef CHECK_NOTnullptr
 #undef CHECK_STRCASEEQ
 #undef CHECK_STRCASENE
 #define CCHECK(condition, ...) CLOG_IF(!(condition), FATAL, __VA_ARGS__) << "Check failed: [" << #condition << "] "
@@ -4465,7 +4465,7 @@ if (ELPP_DEBUG_LOG) C##LEVEL##_EVERY_N(el::base::Writer, n, el::base::DispatchAc
 #define CHECK_LE(a, b) CCHECK_LE(a, b, ELPP_CURR_FILE_LOGGER_ID)
 #define CHECK_GE(a, b) CCHECK_GE(a, b, ELPP_CURR_FILE_LOGGER_ID)
 #define CHECK_BOUNDS(val, min, max) CCHECK_BOUNDS(val, min, max, ELPP_CURR_FILE_LOGGER_ID)
-#define CCHECK_NOTNULL(ptr, ...) CCHECK((ptr) != nullptr, __VA_ARGS__)
+#define CCHECK_NOTnullptr(ptr, ...) CCHECK((ptr) != nullptr, __VA_ARGS__)
 #define CCHECK_STREQ(str1, str2, ...) CLOG_IF(!el::base::utils::Str::cStringEq(str1, str2), FATAL, __VA_ARGS__) \
 << "Check failed: [" << #str1 << " == " << #str2 << "] "
 #define CCHECK_STRNE(str1, str2, ...) CLOG_IF(el::base::utils::Str::cStringEq(str1, str2), FATAL, __VA_ARGS__) \
@@ -4474,7 +4474,7 @@ if (ELPP_DEBUG_LOG) C##LEVEL##_EVERY_N(el::base::Writer, n, el::base::DispatchAc
 << "Check failed: [" << #str1 << " == " << #str2 << "] "
 #define CCHECK_STRCASENE(str1, str2, ...) CLOG_IF(el::base::utils::Str::cStringCaseEq(str1, str2), FATAL, __VA_ARGS__) \
 << "Check failed: [" << #str1 << " != " << #str2 << "] "
-#define CHECK_NOTNULL(ptr) CCHECK_NOTNULL((ptr), ELPP_CURR_FILE_LOGGER_ID)
+#define CHECK_NOTnullptr(ptr) CCHECK_NOTnullptr((ptr), ELPP_CURR_FILE_LOGGER_ID)
 #define CHECK_STREQ(str1, str2) CCHECK_STREQ(str1, str2, ELPP_CURR_FILE_LOGGER_ID)
 #define CHECK_STRNE(str1, str2) CCHECK_STRNE(str1, str2, ELPP_CURR_FILE_LOGGER_ID)
 #define CHECK_STRCASEEQ(str1, str2) CCHECK_STRCASEEQ(str1, str2, ELPP_CURR_FILE_LOGGER_ID)
@@ -4487,7 +4487,7 @@ if (ELPP_DEBUG_LOG) C##LEVEL##_EVERY_N(el::base::Writer, n, el::base::DispatchAc
 #undef DCCHECK_LE
 #undef DCCHECK_GE
 #undef DCCHECK_BOUNDS
-#undef DCCHECK_NOTNULL
+#undef DCCHECK_NOTnullptr
 #undef DCCHECK_STRCASEEQ
 #undef DCCHECK_STRCASENE
 #undef DCPCHECK
@@ -4499,7 +4499,7 @@ if (ELPP_DEBUG_LOG) C##LEVEL##_EVERY_N(el::base::Writer, n, el::base::DispatchAc
 #undef DCHECK_LE
 #undef DCHECK_GE
 #undef DCHECK_BOUNDS_
-#undef DCHECK_NOTNULL
+#undef DCHECK_NOTnullptr
 #undef DCHECK_STRCASEEQ
 #undef DCHECK_STRCASENE
 #undef DPCHECK
@@ -4511,7 +4511,7 @@ if (ELPP_DEBUG_LOG) C##LEVEL##_EVERY_N(el::base::Writer, n, el::base::DispatchAc
 #define DCCHECK_LE(a, b, ...) if (ELPP_DEBUG_LOG) CCHECK_LE(a, b, __VA_ARGS__)
 #define DCCHECK_GE(a, b, ...) if (ELPP_DEBUG_LOG) CCHECK_GE(a, b, __VA_ARGS__)
 #define DCCHECK_BOUNDS(val, min, max, ...) if (ELPP_DEBUG_LOG) CCHECK_BOUNDS(val, min, max, __VA_ARGS__)
-#define DCCHECK_NOTNULL(ptr, ...) if (ELPP_DEBUG_LOG) CCHECK_NOTNULL((ptr), __VA_ARGS__)
+#define DCCHECK_NOTnullptr(ptr, ...) if (ELPP_DEBUG_LOG) CCHECK_NOTnullptr((ptr), __VA_ARGS__)
 #define DCCHECK_STREQ(str1, str2, ...) if (ELPP_DEBUG_LOG) CCHECK_STREQ(str1, str2, __VA_ARGS__)
 #define DCCHECK_STRNE(str1, str2, ...) if (ELPP_DEBUG_LOG) CCHECK_STRNE(str1, str2, __VA_ARGS__)
 #define DCCHECK_STRCASEEQ(str1, str2, ...) if (ELPP_DEBUG_LOG) CCHECK_STRCASEEQ(str1, str2, __VA_ARGS__)
@@ -4525,7 +4525,7 @@ if (ELPP_DEBUG_LOG) C##LEVEL##_EVERY_N(el::base::Writer, n, el::base::DispatchAc
 #define DCHECK_LE(a, b) DCCHECK_LE(a, b, ELPP_CURR_FILE_LOGGER_ID)
 #define DCHECK_GE(a, b) DCCHECK_GE(a, b, ELPP_CURR_FILE_LOGGER_ID)
 #define DCHECK_BOUNDS(val, min, max) DCCHECK_BOUNDS(val, min, max, ELPP_CURR_FILE_LOGGER_ID)
-#define DCHECK_NOTNULL(ptr) DCCHECK_NOTNULL((ptr), ELPP_CURR_FILE_LOGGER_ID)
+#define DCHECK_NOTnullptr(ptr) DCCHECK_NOTnullptr((ptr), ELPP_CURR_FILE_LOGGER_ID)
 #define DCHECK_STREQ(str1, str2) DCCHECK_STREQ(str1, str2, ELPP_CURR_FILE_LOGGER_ID)
 #define DCHECK_STRNE(str1, str2) DCCHECK_STRNE(str1, str2, ELPP_CURR_FILE_LOGGER_ID)
 #define DCHECK_STRCASEEQ(str1, str2) DCCHECK_STRCASEEQ(str1, str2, ELPP_CURR_FILE_LOGGER_ID)
@@ -4552,7 +4552,7 @@ new el::base::AsyncDispatchWorker()))
 #else
 #  define INITIALIZE_EASYLOGGINGPP ELPP_INIT_EASYLOGGINGPP(new el::base::Storage(el::LogBuilderPtr(new el::base::DefaultLogBuilder())))
 #endif  // ELPP_ASYNC_LOGGING
-#define INITIALIZE_NULL_EASYLOGGINGPP \
+#define INITIALIZE_nullptr_EASYLOGGINGPP \
 namespace el {\
 namespace base {\
 el::base::type::StoragePointer elStorage;\

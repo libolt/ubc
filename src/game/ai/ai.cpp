@@ -54,7 +54,7 @@ AISystemSharedPtr AISystem::Instance()
 AISystem::AISystem()
 {
 //    baseInitialized = false;
-    selectedVehicle = NULL;
+    selectedVehicle = nullptr;
     oldTime = 0.0f;
 //    playerSteerPluginInstance = new playerSteerPlugin;
 
@@ -256,7 +256,7 @@ void AISystem::openSelectedPlugIn(teamEntityMSharedPtr activeTeamInstance)  // o
 
     logMsg(func +" begin");
 //    camera.reset ();
-    selectedVehicle = NULL;
+    selectedVehicle = nullptr;
 /*    if (!selectedPlugIn->getBaseInitialized())
     {
         logMsg(func + " selectedPlugIn base not initialized!");
@@ -279,7 +279,7 @@ void AISystem::updateSelectedPlugIn(const float currentTime, const float elapsed
 //    doDelayedResetPlugInXXX ();
 
     // if no vehicle is selected, and some exist, select the first one
-    if (selectedVehicle == NULL)
+    if (selectedVehicle == nullptr)
     {
         const OpenSteer::AVGroup& vehicles = allVehiclesOfSelectedPlugIn();
         if (vehicles.size() > 0)
@@ -302,7 +302,7 @@ void AISystem::closeSelectedPlugIn()  // close the currently selected plug-in
 
     logMsg(func +" begin");
     selectedPlugIn->close();
-    selectedVehicle = NULL;
+    selectedVehicle = nullptr;
     logMsg(func +" end");
 }
 
@@ -329,7 +329,7 @@ void AISystem::selectNextVehicle()  // select the "next" vehicle: the one listed
     std::string func = "AISystem::selectNextVehicle()";
 
     logMsg(func +" begin");
-    if (selectedVehicle != NULL)
+    if (selectedVehicle != nullptr)
     {
         // get a container of all vehicles
         const OpenSteer::AVGroup& all = allVehiclesOfSelectedPlugIn ();
@@ -347,10 +347,10 @@ void AISystem::selectNextVehicle()  // select the "next" vehicle: the one listed
         {
             selectedVehicle = OpenSteerAbstractVehicleSharedPtr(*first);
         }
-        // if the search failed, use NULL
+        // if the search failed, use nullptr
         if (s == last)
         {
-            selectedVehicle = NULL;
+            selectedVehicle = nullptr;
         }
     }
     logMsg(func +" end");

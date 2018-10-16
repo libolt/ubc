@@ -58,7 +58,7 @@ public:
 
     bool setup();  // sets up the physicsEngine object
 
-    void setupState(renderEngineSharedPtr render);  // sets up state of physics engine.
+    void setupState(const renderEngineSharedPtr &render);  // sets up state of physics engine.
 
     void updateState();  // updates the state of the physics engine.
     void updatePositions();  // updates thr position of objects
@@ -66,7 +66,7 @@ public:
 
     void passCollisionCheck();  // checks whether the ball has collided with the player being passed to
 
-    bool collisionCheck(btRigidBodySharedPtr objectA,btRigidBodySharedPtr objectB);  // tests whther or not two objects have collided
+    bool collisionCheck(const btRigidBodySharedPtr &objectA, const btRigidBodySharedPtr &objectB);  // tests whther or not two objects have collided
 
 protected:
 

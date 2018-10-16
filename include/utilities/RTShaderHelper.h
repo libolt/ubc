@@ -12,7 +12,7 @@ namespace Ogre
 	public:
 		Ogre::Technique* handleSchemeNotFound( unsigned short schemeIndex, const Ogre::String& schemeName, Ogre::Material* originalMaterial, unsigned short lodIndex, const Ogre::Renderable* rend )
 		{
-			Ogre::Technique* generatedTech = NULL;
+			Ogre::Technique* generatedTech = nullptr;
 
 			// Case this is the default shader generator scheme.
 			if (schemeName == Ogre::RTShader::ShaderGenerator::DEFAULT_SCHEME_NAME)

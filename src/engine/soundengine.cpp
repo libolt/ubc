@@ -90,7 +90,7 @@ bool soundEngine::loadSound(std::string sound)  // loads sounds from media file
 
     sample = ALmixer_LoadAll(sampleFile.c_str(), 0);
     audio_data = sample;
-    if (sample == NULL)
+    if (sample == nullptr)
     {
         logMsg("Failed to load sample!");
 //        exit(0);

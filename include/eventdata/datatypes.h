@@ -22,11 +22,11 @@
 	typedef double DOUBLE;
 	typedef bool BOOL;
 
-	#ifndef NULL
+	#ifndef nullptr
 	#ifdef __cplusplus
-	#define NULL    0
+	#define nullptr    0
 	#else
-	#define NULL    ((void *)0)
+	#define nullptr    ((void *)0)
 	#endif
 	#endif
 

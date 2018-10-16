@@ -243,7 +243,7 @@ stdStringVec loadTeams::loadTeamListFile(std::string fileName)  // loads the tea
 //  const char *file = fileName.c_str();
 //#endif 
 
-//  char *fileContents = NULL;
+//  char *fileContents = nullptr;
     std::string fileContents;
     tinyxml2::XMLDocument doc;
     std::string func = "loadTeams::loadTeamListFile";
@@ -257,7 +257,7 @@ stdStringVec loadTeams::loadTeamListFile(std::string fileName)  // loads the tea
 //  Ogre::DataStreamPtr fileData = render->openAPKFile(fileName);
 //  fileContents = fileData->getAsString();
 //#else
-    char *contents = NULL;
+    char *contents = nullptr;
     readFile(fileName.c_str(), &contents);
 //  logMsg("read contents = " +contents);
 //  exit(0);
@@ -343,10 +343,10 @@ teamEntitySharedPtr loadTeams::loadTeamFile(std::string fileName)  // loads the 
 
 //    TiXmlDocument doc(fileName.c_str());
 //    if (!doc.LoadFile()) return(false);
-//  const char *fileContents = NULL;
+//  const char *fileContents = nullptr;
     std::string fileContents;
     tinyxml2::XMLDocument doc;
-    char *contents = NULL;
+    char *contents = nullptr;
     std::string func = "loadTeams::loadTeamFile";
     
     logMsg(func +" begin");

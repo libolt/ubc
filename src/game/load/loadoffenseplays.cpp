@@ -188,7 +188,7 @@ stdStringVec loadOffensePlays::loadOffensePlayListFile(std::string fileName)  //
     std::string fileContents;
     tinyxml2::XMLDocument doc;
     logMsg(func +" " +fileName);
-    char *contents = NULL;
+    char *contents = nullptr;
     readFile(fileName.c_str(), &contents);
     fileContents = convert->toString(contents);
 
@@ -266,7 +266,7 @@ sharedPtr<offensePlays> loadOffensePlays::loadOffensePlayFile(std::string fileNa
 
     std::string fileContents;
     tinyxml2::XMLDocument doc;
-    char *contents = NULL;
+    char *contents = nullptr;
     std::string func = "loadOffensePlays::loadOffensePlayFile()";
 
     
@@ -332,7 +332,7 @@ sharedPtr<offensePlays> loadOffensePlays::loadOffensePlayFile(std::string fileNa
             title = pTitle;
         }
         int numPlayers = 0;
-        for (tinyxml2::XMLElement *e = child->NextSiblingElement(); e != NULL; e = e->NextSiblingElement())
+        for (tinyxml2::XMLElement *e = child->NextSiblingElement(); e != nullptr; e = e->NextSiblingElement())
         {
         tinyxml2::XMLElement *f;
 
@@ -380,7 +380,7 @@ sharedPtr<offensePlays> loadOffensePlays::loadOffensePlayFile(std::string fileNa
             {
                 int numPos = 0;
                 pExecuteCoords.clear();  // clears the vector for each player
-                for (tinyxml2::XMLElement *g = f->FirstChildElement(); g != NULL; g = g->NextSiblingElement())
+                for (tinyxml2::XMLElement *g = f->FirstChildElement(); g != nullptr; g = g->NextSiblingElement())
                 {
 //                    logMsg("numPos = " +convert->toString(numPos));
                     numPos += 1;
@@ -439,7 +439,7 @@ sharedPtr<offensePlays> loadOffensePlays::loadOffensePlayFile(std::string fileNa
             if (f)
             {
                 int numDirectives = 0;
-                for (tinyxml2::XMLElement *g = f->FirstChildElement(); g != NULL; g = g->NextSiblingElement())
+                for (tinyxml2::XMLElement *g = f->FirstChildElement(); g != nullptr; g = g->NextSiblingElement())
                 {
                     numDirectives += 1;
                     tinyxml2::XMLElement *h;

@@ -62,7 +62,7 @@ public:
         // This next internal event is not valid and causes the assert to fail:
         //    internalEvent(ST_MY_STATE_FUNCTION, new OthereventData());
         const Data* derivedData = dynamic_cast<const Data*>(data);
-        ASSERT_TRUE(derivedData != NULL);
+        ASSERT_TRUE(derivedData != nullptr);
 
         // Call the state function
         (derivedSM->*Func)(derivedData);
@@ -93,7 +93,7 @@ public:
     {
         SM* derivedSM = static_cast<SM*>(sm);
         const Data* derivedData = dynamic_cast<const Data*>(data);
-        ASSERT_TRUE(derivedData != NULL);
+        ASSERT_TRUE(derivedData != nullptr);
 
         // Call the guard function
         return (derivedSM->*Func)(derivedData);
@@ -122,7 +122,7 @@ public:
     {
         SM* derivedSM = static_cast<SM*>(sm);
         const Data* derivedData = dynamic_cast<const Data*>(data);
-        ASSERT_TRUE(derivedData != NULL);
+        ASSERT_TRUE(derivedData != nullptr);
 
         // Call the entry function
         (derivedSM->*Func)(derivedData);
@@ -193,13 +193,13 @@ protected:
     /// External state machine event.
     /// @param[in] newstate - the state machine state to transition to.
     /// @param[in] pData - the event data sent to the state.
-    void externalEvent(BYTE newstate, const eventData* pData = NULL);
+    void externalEvent(BYTE newstate, const eventData* pData = nullptr);
 
     /// Internal state machine event. These events are generated while executing
     ///	within a state machine state.
     /// @param[in] newstate - the state machine state to transition to.
     /// @param[in] pData - the event data sent to the state.
-    void internalEvent(BYTE newstate, const eventData* pData = NULL);
+    void internalEvent(BYTE newstate, const eventData* pData = nullptr);
 
 private:
     /// The maximum number of state machine states.
@@ -222,7 +222,7 @@ private:
     /// map. A state machine only needs to return a state map using either GetstateMap()
     /// or GetstateMapEx() but not both.
     /// @return An array of stateMapRow pointers with the array size MAX_STATES or
-    /// NULL if the state machine uses the GetstateMapEx().
+    /// nullptr if the state machine uses the GetstateMapEx().
     virtual const stateMapRow* GetstateMap() = 0;
 
     /// Gets the extended state map as defined in the derived class. The BEGIN_STATE_MAP_EX,
@@ -230,7 +230,7 @@ private:
     /// assist in creating the map. A state machine only needs to return a state map using
     /// either GetstateMap() or GetstateMapEx() but not both.
     /// @return An array of stateMapRowEx pointers with the array size MAX_STATES or
-    /// NULL if the state machine uses the GetstateMap().
+    /// nullptr if the state machine uses the GetstateMap().
     virtual const stateMapRowEx* GetstateMapEx() = 0;
 
     /// Set a new current state.
@@ -292,7 +292,7 @@ private:
 
 #define BEGIN_STATE_MAP \
     private:\
-    virtual const stateMapRowEx* GetstateMapEx() { return NULL; }\
+    virtual const stateMapRowEx* GetstateMapEx() { return nullptr; }\
     virtual const stateMapRow* GetstateMap() {\
         static const stateMapRow STATE_MAP[] = {
 
@@ -306,7 +306,7 @@ private:
 
 #define BEGIN_STATE_MAP_EX \
     private:\
-    virtual const stateMapRow* GetstateMap() { return NULL; }\
+    virtual const stateMapRow* GetstateMap() { return nullptr; }\
     virtual const stateMapRowEx* GetstateMapEx() {\
         static const stateMapRowEx STATE_MAP[] = {
 

@@ -38,7 +38,7 @@
 
 // static variables 
 
-SDL_Event inputEngine::inputEvent; 
+/*SDL_Event inputEngine::inputEvent;
 bool inputEngine::inputProcessed;
 bool inputEngine::keyInputReceived;
 bool inputEngine::mouseLeftClick;
@@ -52,6 +52,7 @@ std::string inputEngine::inputText;
 inputTypes inputEngine::inputType; 
 bool inputEngine::textInputStarted;
 inputKeyMaps inputEngine::keyPressed;
+*/
 
 inputEngine::inputEngine()  // constructor
 {
@@ -297,7 +298,7 @@ bool inputEngine::processInput()  // processes all input
                 logMsg(func +" tfinger.y = " +convert->toString(inputEvent.tfinger.y));
 //                exit(0);
                 // processes touch input
-                if (processTouchInput() == false)
+                if (!processTouchInput())
                 {
                     return false;
                 }
@@ -306,7 +307,7 @@ bool inputEngine::processInput()  // processes all input
                 logMsg(func +" Finger Up!");
 //                exit(0);
                 // processes touch input
-                if (processTouchInput() == false)
+                if (!processTouchInput())
                 {
                     return false;
                 }
@@ -315,7 +316,7 @@ bool inputEngine::processInput()  // processes all input
                 logMsg(func +" Multigesture!");
 //                exit(0);
                 // processes touch input
-                if (processTouchInput() == false)
+                if (!processTouchInput())
                 {
                     return false;
                 }
@@ -364,7 +365,7 @@ bool inputEngine::processInput()  // processes all input
             case SDL_MOUSEWHEEL:
                 logMsg(func +" Mouse!");
                 // processes mouse input
-                if (processMouseInput() == false)
+                if (!processMouseInput())
                 {
                     return false;
                 }
@@ -378,7 +379,7 @@ bool inputEngine::processInput()  // processes all input
             case SDL_CONTROLLERDEVICEREMAPPED:
                 logMsg(func +" Controller!");
                 // processes gamepad input
-                if (processGamepadInput() == false)
+                if (!processGamepadInput())
                 {
                     return false;
                 }
@@ -780,7 +781,7 @@ bool inputEngine::processKeyInput()  // processes unbuffered keyboard input
 //        }
             
         
-        logMsg("keyInputPressed == " +keyPressed);
+        logMsg("keyInputPressed == " +convert->toString(keyPressed));
   
 //    }
 //    if (gui->getMenuActive())  // checks if a menu is displayed
@@ -795,7 +796,7 @@ bool inputEngine::processKeyInput()  // processes unbuffered keyboard input
         return (true);
     }
 */
-    logMsg("keyInputPressed == " +keyPressed);
+    logMsg("keyInputPressed == " +convert->toString(keyPressed));
 
 //    keyInputReceived = true;
 //    keyPressed = "";
@@ -857,7 +858,7 @@ bool inputEngine::processMouseInput()  // processes the unbuffered mouse input
     logMsg("mouse x = " +convert->toString(x));
     logMsg("mouse y = " +convert->toString(y));
 */
-/*    state = SDL_GetMouseState(NULL, NULL)&SDL_TOUCH_MOUSEID;
+/*    state = SDL_GetMouseState(nullptr, nullptr)&SDL_TOUCH_MOUSEID;
     logMsg("Mouse state = " +convert->toString(state));
     if (state == 1)
     {
@@ -872,7 +873,7 @@ bool inputEngine::processMouseInput()  // processes the unbuffered mouse input
 
 	//		exit(0);
         }
-        else if (state == 0 && mouseLeftClick == 1) //if (SDL_GetMouseState(NULL, NULL)&SDL_BUTTON(1) == 0)
+        else if (state == 0 && mouseLeftClick == 1) //if (SDL_GetMouseState(nullptr, nullptr)&SDL_BUTTON(1) == 0)
         {
             mouseLeftClick = false;
             MyGUI::InputManager::getInstance().injectMouseRelease(x, y, MyGUI::MouseButton::Enum(0));
@@ -939,7 +940,7 @@ bool inputEngine::processTouchInput() // processes the unbuffered touch input
 //        MyGUI::InputManager::getInstance().injectMousePress(x, y, MyGUI::MouseButton::Enum(0));
 //        exit(0);
     }
-    if (SDL_EventState(SDL_FINGERUP, SDL_QUERY) == 1) //if (SDL_GetMouseState(NULL, NULL)&SDL_BUTTON(1) == 0)
+    if (SDL_EventState(SDL_FINGERUP, SDL_QUERY) == 1) //if (SDL_GetMouseState(nullptr, nullptr)&SDL_BUTTON(1) == 0)
     {
 //            exit(0);
         mouseLeftClick = false;

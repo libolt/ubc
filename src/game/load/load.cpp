@@ -63,7 +63,7 @@ int loader::readFile(const char *sourceFile, char **destination)  // loads an xm
 //	destination = new std::string;
 ///	destination = (char**)fileData->getAsString().c_str();
 //#else
-//    char *contents = NULL;
+//    char *contents = nullptr;
 //	readFile(fileName.c_str(), &contents);
 //	fileContents = toString(contents);
 //#endif

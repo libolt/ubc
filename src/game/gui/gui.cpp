@@ -56,8 +56,8 @@
 GUISystem::GUISystem()  // Initialmizes the GUISystem class
 {
 
-    //activeMenu = NULL;mm
-    //previousActiveMenu = NULL;
+    //activeMenu = nullptr;mm
+    //previousActiveMenu = nullptr;
     displayCount = 0;
 
 }

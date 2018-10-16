@@ -211,7 +211,7 @@ stdStringVec loadPlayers::loadPlayerListFile(std::string fileName)  // loads the
     std::string fileContents;
     tinyxml2::XMLDocument doc;
     logMsg(fileName);
-    char *contents = NULL;
+    char *contents = nullptr;
     readFile(fileName.c_str(), &contents);
     fileContents = convert->toString(contents);
 
@@ -307,7 +307,7 @@ playerEntitySharedPtr loadPlayers::loadPlayerFile(std::string fileName)  // load
     int improvability = 0;
     std::string fileContents;
     tinyxml2::XMLDocument doc;
-    char *contents = NULL;
+    char *contents = nullptr;
     
     logMsg(func +" begin");
     readFile(fileName.c_str(), &contents);   

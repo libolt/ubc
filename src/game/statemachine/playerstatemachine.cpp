@@ -126,7 +126,7 @@ void playerStateMachine::halt()
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_CHANGE_DIRECTION
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_SHOOT
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_PASS
-    END_TRANSITION_MAP(NULL)
+    END_TRANSITION_MAP(nullptr)
 
     logMsg(func +" end");
 

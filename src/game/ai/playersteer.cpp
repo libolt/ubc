@@ -444,7 +444,7 @@ void playerSteer::update(const float currentTime, float elapsedTime)  // update 
     logMsg("dee");
 /*playerSteer *allSteer;
 
-	if (allSteer == NULL)
+	if (allSteer == nullptr)
 	{
 		allSteer= new playerSteer[pSteer.size()];
 	}*/
@@ -810,7 +810,7 @@ void playerSteer::updateDefense(const float currentTime, const float elapsedTime
         logMsg("ID == " +convert->toString(ID));
         logMsg("seeking!");
 //				seekTarget = xxxsteerForSeek(playerOPos);
-        //const AbstractVehicle &quarry = NULL;
+        //const AbstractVehicle &quarry = nullptr;
         playerSteerVecSharedPtr quarrySteer;
         switch (teamType)
         {

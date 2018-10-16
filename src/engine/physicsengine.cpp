@@ -55,6 +55,7 @@ physicsEngine::physicsEngine()  // contructor
     maxShotHeight = 0.0f;
 
     shotSet = false;
+    shotCalcComplete = false;
     shotComplete = false;
     maxShotHeightReached = false;
     forceToApplyXSet = false;
@@ -109,7 +110,8 @@ bool physicsEngine::setup()  // sets up the physicsEngine object
     btDefaultCollisionConfiguration *tempCollisionConfig = new btDefaultCollisionConfiguration;
     collisionConfig = sharedPtr<btDefaultCollisionConfiguration>(tempCollisionConfig);
 //    dispatcher = new btCollisionDispatcher(collisionConfig);
-    btCollisionDispatcher *tempDispatcher = new btCollisionDispatcher(collisionConfig.get());
+//    btCollisionDispatcher *tempDispatcher = new btCollisionDispatcher(collisionConfig.get());
+    auto *tempDispatcher = new btCollisionDispatcher(collisionConfig.get());
     dispatcher = sharedPtr<btCollisionDispatcher>(tempDispatcher);
 //    solver = new btSequentialImpulseConstraintSolver();
     btSequentialImpulseConstraintSolver *tempSolver = new btSequentialImpulseConstraintSolver();
@@ -122,7 +124,7 @@ bool physicsEngine::setup()  // sets up the physicsEngine object
     
     logMsg(func +" begin");
     world = sharedPtr<btDynamicsWorld>(tempWorld);
-    world->setGravity(btVector3(0,-9.8,0));
+    world->setGravity(btVector3(0.0f,-9.8f,0.0f));
 
     contactInfo = world->getSolverInfo();
     contactInfo.m_restingContactRestitutionThreshold = 1e30;
@@ -135,7 +137,7 @@ bool physicsEngine::setup()  // sets up the physicsEngine object
     return (true);
 }
 
-void physicsEngine::setupState(renderEngineSharedPtr render)  // sets up the state of the physics engine
+void physicsEngine::setupState(const renderEngineSharedPtr &render)  // sets up the state of the physics engine
 {
 //    renderEngineSharedPtr render = renderEngine::Instance();
 
@@ -536,7 +538,7 @@ void physicsEngine::stepWorld(timing timer)  // steps the world of the physics s
 }*/
 
 
-bool physicsEngine::collisionCheck(btRigidBodySharedPtr objectA, btRigidBodySharedPtr objectB)  // tests whther or not two objects have collided
+bool physicsEngine::collisionCheck(const btRigidBodySharedPtr &objectA, const btRigidBodySharedPtr &objectB)  // tests whther or not two objects have collided
 {
     conversionSharedPtr convert ;
     MyContactResultCallback collisionResult;

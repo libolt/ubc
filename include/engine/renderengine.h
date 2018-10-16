@@ -47,6 +47,7 @@
 
 #include <memory>
 #include "utilities/RTShaderHelper.h"
+#include "utilities/typedefs.h"
 
 #include "SDL.h"
 #include "SDL_syswm.h"
@@ -64,20 +65,20 @@ class renderEngine : public engine
 
     renderEngine();  // constructor 
     
-    sharedPtr<Ogre::Root> getRERoot();  // retrieves the value of mRoot
-    void setRERoot(sharedPtr<Ogre::Root> set);  // sets the value of mRoot
+    sharedPtr<Ogre::Root> getRERoot() const;  // retrieves the value of mRoot
+    void setRERoot(const sharedPtr<Ogre::Root> &set);  // sets the value of mRoot
 
-    sharedPtr<Ogre::Camera> getMCamera();  // retrieves the value of mCamera
-    void setMCamera(sharedPtr<Ogre::Camera> set);  // sets the value of mCamera
+    sharedPtr<Ogre::Camera> getMCamera() const;  // retrieves the value of mCamera
+    void setMCamera(const sharedPtr<Ogre::Camera> &set);  // sets the value of mCamera
 
-    sharedPtr<Ogre::SceneManager> getMSceneMgr();  // retrieves the value of mSceneMgr
-    void setMSceneMgr(sharedPtr<Ogre::SceneManager> set);  // sets the value of mSceneMgr
+    sharedPtr<Ogre::SceneManager> getMSceneMgr() const;  // retrieves the value of mSceneMgr
+    void setMSceneMgr(const sharedPtr<Ogre::SceneManager> &set);  // sets the value of mSceneMgr
 
-    sharedPtr<Ogre::RenderWindow> getMWindow();  // retrieves the value of mWindow
-    void setMWindow(sharedPtr<Ogre::RenderWindow> set);  // sets the value of mWindow
+    sharedPtr<Ogre::RenderWindow> getMWindow() const;  // retrieves the value of mWindow
+    void setMWindow(const sharedPtr<Ogre::RenderWindow> &set);  // sets the value of mWindow
 
-    sharedPtr<Ogre::Viewport> getViewPort(); // retrieves the value of viewPort
-    void setViewPort(sharedPtr<Ogre::Viewport> set); // sets the value of viewPort
+    sharedPtr<Ogre::Viewport> getViewPort() const; // retrieves the value of viewPort
+    void setViewPort(const sharedPtr<Ogre::Viewport> &set); // sets the value of viewPort
 	
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     Ogre::DataStreamPtr openAPKFile(const std::string &set);  // opens APK file

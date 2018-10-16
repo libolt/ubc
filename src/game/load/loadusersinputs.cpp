@@ -198,7 +198,7 @@ stdStringVec loadUsersInputs::loadUsersInputListFile(std::string fileName)  // l
     logMsg(func +" begin");
 
     logMsg(func +" " +fileName);
-    char *contents = NULL;
+    char *contents = nullptr;
     readFile(fileName.c_str(), &contents);
     fileContents = convert->toString(contents);
     
@@ -268,7 +268,7 @@ usersInputsSharedPtr loadUsersInputs::loadUsersInputFile(std::string fileName)  
     std::string quit;
     std::string fileContents;
     tinyxml2::XMLDocument doc;
-    char *contents = NULL;
+    char *contents = nullptr;
     std::string func = "loadUsersInputs::loadUserInputFile()";
 
     logMsg(func +" begin");

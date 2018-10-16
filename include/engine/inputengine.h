@@ -123,31 +123,31 @@ private:
     
 
     // SDL Input
-    static SDL_Event inputEvent;  // stores input events
+    SDL_Event inputEvent;  // stores input events
     SDL_Event events[EVENT_BUF_SIZE];
     int eventWrite;
 
-    static float mouseX; // stores the X coordinate of the mouse.
-    static float  mouseY; // stores the Y coordinate of the mouse.
-    static mouseClicks mouseClick;  // stores which mouse button has been clicked
-    static bool mouseClicked;  // stores whether or not a mouse button has been clicked
+    float mouseX; // stores the X coordinate of the mouse.
+    float  mouseY; // stores the Y coordinate of the mouse.
+    mouseClicks mouseClick;  // stores which mouse button has been clicked
+    bool mouseClicked;  // stores whether or not a mouse button has been clicked
     
-    static bool mouseLeftClick;	// stores state of Left mouse button
-    static bool mouseRightClick; // stores state of Right mouse button;
+    bool mouseLeftClick;	// stores state of Left mouse button
+    bool mouseRightClick; // stores state of Right mouse button;
 
-    static bool textInputStarted;  // determines if text input has started
+    bool textInputStarted;  // determines if text input has started
     
     //static inputEngine *pInstance;
 //    static inputEngineSharedPtr pInstance;
 
 //    sharedPtr<GUISystem> gui;  // stores the copy of the gui object
-    static bool keyInputReceived;  // stores whether a key has been pressed
-    static inputKeyMaps keyPressed; // stores which key was pressed
+    bool keyInputReceived;  // stores whether a key has been pressed
+    inputKeyMaps keyPressed; // stores which key was pressed
 
-    static std::string inputText;  // stores text inout by user
+    std::string inputText;  // stores text inout by user
     
-    static inputTypes inputType;  // storrs the typee of input that was received
-    static bool inputProcessed;  // stores whether or not any input has been processed
+    inputTypes inputType;  // storrs the typee of input that was received
+    bool inputProcessed;  // stores whether or not any input has been processed
 	
 //    inputMaps inputMap; // stores user input
 

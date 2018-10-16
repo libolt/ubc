@@ -31,7 +31,7 @@ stateMachine::stateMachine(BYTE maxstates, BYTE initialstate) :
     m_currentState(initialstate),
     m_newState(FALSE),
     m_eventGenerated(FALSE),
-    m_peventData(NULL)
+    m_peventData(nullptr)
 {
     ASSERT_TRUE(MAX_STATES < EVENT_IGNORED);
 }
@@ -46,7 +46,7 @@ void stateMachine::externalEvent(BYTE newState, const eventData* pData)
     {
 #ifndef EXTERNAL_EVENT_NO_HEAP_DATA
         // Just delete the event data, if any
-        if (pData != NULL)
+        if (pData != nullptr)
             delete pData;
 #endif
     }
@@ -56,7 +56,7 @@ void stateMachine::externalEvent(BYTE newState, const eventData* pData)
 
 #ifdef EXTERNAL_EVENT_NO_HEAP_DATA
         eventData data;
-        if (pData == NULL)
+        if (pData == nullptr)
             pData = &data;
 #endif
         // Generate the event
@@ -75,7 +75,7 @@ void stateMachine::externalEvent(BYTE newState, const eventData* pData)
 //----------------------------------------------------------------------------
 void stateMachine::internalEvent(BYTE newState, const eventData* pData)
 {
-    if (pData == NULL)
+    if (pData == nullptr)
         pData = new noEventData();
 
     m_peventData = pData;
@@ -89,12 +89,12 @@ void stateMachine::internalEvent(BYTE newState, const eventData* pData)
 void stateMachine::stateEngine(void)
 {
     const stateMapRow* pstateMap = GetstateMap();
-    if (pstateMap != NULL)
+    if (pstateMap != nullptr)
         stateEngine(pstateMap);
     else
     {
         const stateMapRowEx* pstateMapEx = GetstateMapEx();
-        if (pstateMapEx != NULL)
+        if (pstateMapEx != nullptr)
             stateEngine(pstateMapEx);
         else
             ASSERT();
@@ -109,7 +109,7 @@ void stateMachine::stateEngine(const stateMapRow* const pstateMap)
 #if EXTERNAL_EVENT_NO_HEAP_DATA
     BOOL externalEvent = TRUE;
 #endif
-    const eventData* pDataTemp = NULL;
+    const eventData* pDataTemp = nullptr;
 
     // While events are being generated keep executing states
     while (m_eventGenerated)
@@ -124,7 +124,7 @@ void stateMachine::stateEngine(const stateMapRow* const pstateMap)
         pDataTemp = m_peventData;
 
         // Event data used up, reset the pointer
-        m_peventData = NULL;
+        m_peventData = nullptr;
 
         // Event used up, reset the flag
         m_eventGenerated = FALSE;
@@ -133,7 +133,7 @@ void stateMachine::stateEngine(const stateMapRow* const pstateMap)
         SetCurrentstate(m_newState);
 
         // Execute the state action passing in event data
-        ASSERT_TRUE(state != NULL);
+        ASSERT_TRUE(state != nullptr);
         state->invokestateAction(this, pDataTemp);
 
         // If event data was used, then delete it
@@ -142,14 +142,14 @@ void stateMachine::stateEngine(const stateMapRow* const pstateMap)
         {
             if (!externalEvent)
                 delete pDataTemp;
-            pDataTemp = NULL;
+            pDataTemp = nullptr;
         }
         externalEvent = FALSE;
 #else
         if (pDataTemp)
         {
             delete pDataTemp;
-            pDataTemp = NULL;
+            pDataTemp = nullptr;
         }
 #endif
     }
@@ -163,7 +163,7 @@ void stateMachine::stateEngine(const stateMapRowEx* const pstateMapEx)
 #if EXTERNAL_EVENT_NO_HEAP_DATA
     BOOL externalEvent = TRUE;
 #endif
-    const eventData* pDataTemp = NULL;
+    const eventData* pDataTemp = nullptr;
 
     // While events are being generated keep executing states
     while (m_eventGenerated)
@@ -181,14 +181,14 @@ void stateMachine::stateEngine(const stateMapRowEx* const pstateMapEx)
         pDataTemp = m_peventData;
 
         // Event data used up, reset the pointer
-        m_peventData = NULL;
+        m_peventData = nullptr;
 
         // Event used up, reset the flag
         m_eventGenerated = FALSE;
 
         // Execute the guard condition
         BOOL guardResult = TRUE;
-        if (guard != NULL)
+        if (guard != nullptr)
             guardResult = guard->invokeGuardCondition(this, pDataTemp);
 
         // If the guard condition succeeds
@@ -198,11 +198,11 @@ void stateMachine::stateEngine(const stateMapRowEx* const pstateMapEx)
             if (m_newState != m_currentState)
             {
                 // Execute the state exit action on current state before switching to new state
-                if (exit != NULL)
+                if (exit != nullptr)
                     exit->invokeExitAction(this);
 
                 // Execute the state entry action on the new state
-                if (entry != NULL)
+                if (entry != nullptr)
                     entry->invokeEntryAction(this, pDataTemp);
 
                 // Ensure exit/entry actions didn't call InternalEvent by accident
@@ -213,7 +213,7 @@ void stateMachine::stateEngine(const stateMapRowEx* const pstateMapEx)
             SetCurrentstate(m_newState);
 
             // Execute the state action passing in event data
-            ASSERT_TRUE(state != NULL);
+            ASSERT_TRUE(state != nullptr);
             state->invokestateAction(this, pDataTemp);
         }
 
@@ -223,14 +223,14 @@ void stateMachine::stateEngine(const stateMapRowEx* const pstateMapEx)
         {
             if (!externalEvent)
                 delete pDataTemp;
-            pDataTemp = NULL;
+            pDataTemp = nullptr;
         }
         externalEvent = FALSE;
 #else
         if (pDataTemp)
         {
             delete pDataTemp;
-            pDataTemp = NULL;
+            pDataTemp = nullptr;
         }
 #endif
     }

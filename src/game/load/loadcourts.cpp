@@ -200,7 +200,7 @@ stdStringVec loadCourts::loadCourtListFile(std::string fileName)    // loads the
     logMsg(func +" begin");
 
     logMsg(func +" " +fileName);
-    char *contents = NULL;
+    char *contents = nullptr;
     readFile(fileName.c_str(), &contents);
     fileContents = convert->toString(contents);
 //    logMsg("fileContents = " +fileContents);
@@ -272,7 +272,7 @@ courtEntitySharedPtr loadCourts::loadCourtFile(std::string fileName)  // loads d
     float sidelineInboundZPos = 0;
     std::string fileContents;
     tinyxml2::XMLDocument doc;
-    char *contents = NULL;
+    char *contents = nullptr;
     std::string func = "loadCourts::loadCourtFile()";
 
     logMsg(func + " beginning");

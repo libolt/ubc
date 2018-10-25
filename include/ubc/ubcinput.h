@@ -52,15 +52,15 @@ class UBCInput
         bool processMouse();  // process mouse input
         bool processTouch();  // process touch input
 
-        bool setup();  // sets up the UBCInput object
+        bool setup(inputEngineSharedPtr inputE);  // sets up the UBCInput object
 
     private:
     
-        static inputSharedPtr inputInstance;  // the base input object
-        static inputGamePadsSharedPtr inputGamePad;  // the inputGamePads object
-        static inputKeyboardsSharedPtr inputKeyboard;  // the inputKeyboards object
+        inputSharedPtr inputInstance;  // the base input object
+        inputGamePadsSharedPtr inputGamePad;  // the inputGamePads object
+        inputKeyboardsSharedPtr inputKeyboard;  // the inputKeyboards object
 
-        static bool setupComplete;  // stores whether setup has completed successfully
+        bool setupComplete;  // stores whether setup has completed successfully
 };
 
 #endif

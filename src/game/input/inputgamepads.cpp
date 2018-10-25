@@ -183,10 +183,10 @@ bool inputGamePads::setup()  // sets up the inputGamePads object
 
     logMsg(func +" begin");
 
-    if (!inputInstance->getSetupComplete())
+/*    if (!inputInstance->getSetupComplete())
     {
         logMsg(func +" !inputInstance->getSetupComplete()");
-        if (inputInstance->setup())
+        if (inputInstance->setup(inputE))
         {
             inputInstance->setSetupComplete(true);
         }
@@ -199,7 +199,7 @@ bool inputGamePads::setup()  // sets up the inputGamePads object
     {
 
     }
-
+*/
     logMsg(func +" end");
 
     return (true);

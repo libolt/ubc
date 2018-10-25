@@ -181,7 +181,7 @@ bool inputKeyboards::process()  // processes input
 
 bool inputKeyboards::setup()  // sets up the inputGamePads object
 {
-    if (!inputS->getSetupComplete())
+/*    if (!inputS->getSetupComplete())
     {
         if (inputS->setup())
         {
@@ -196,6 +196,6 @@ bool inputKeyboards::setup()  // sets up the inputGamePads object
     {
 
     }
-
+*/
     return (true);
 }

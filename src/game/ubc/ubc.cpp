@@ -240,7 +240,7 @@ void UBC::run()  // runs the game
     if (!component->getInput()->getSetupComplete())
     {
         logMsg(func +" setting up UBCInput object");
-        if (component->getInput()->setup())
+        if (component->getInput()->setup(component->getGameE()->getInputE()))
         {
             logMsg(func +" Input setup!");
             component->getInput()->setSetupComplete(true);

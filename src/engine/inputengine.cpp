@@ -222,6 +222,8 @@ bool inputEngine::processInput()  // processes all input
     conversionSharedPtr convert ;
     std::string func = "inputEngine::processInput()";
     
+    logMsg(func +" begin");
+
 //    renderEngineSharedPtr render = renderEngine::Instance();
     
 //    keyPressed = "";  // resets value of keyPressed
@@ -262,14 +264,18 @@ bool inputEngine::processInput()  // processes all input
 //    exit(0);
     if (!textInputStarted)
     {
+        logMsg(func +" Starting Text Input");
+
         SDL_StartTextInput();
         textInputStarted = true;
         logMsg (func +" textInput Started!");
     }
     else
     {
-        
+        logMsg(func +"textInput already started!");
     }
+
+    logMsg(func +" SDL_PollEvent()");
 
     while (SDL_PollEvent(&inputEvent))
     {
@@ -395,6 +401,8 @@ bool inputEngine::processInput()  // processes all input
 //    SDL_StopTextInput();
 //    exit(0);
     processMouseInput();
+
+    logMsg(func +" end");
 
     return (inputProcessed);
 }

@@ -36,11 +36,11 @@
 #include "input/input.h"
 
 // static declarations
-inputSharedPtr UBCInput::inputInstance;  // the input object
+/*inputSharedPtr UBCInput::inputInstance;  // the input object
 inputKeyboardsSharedPtr UBCInput::inputKeyboard;  // the inputKeyboards object
 inputGamePadsSharedPtr UBCInput::inputGamePad;  // the inputGamePads object
 bool UBCInput::setupComplete;  // stores whether setup has completed successfully
-
+*/
 
 UBCInput::UBCInput()  // constructor
 {
@@ -408,7 +408,7 @@ bool UBCInput::processTouch()  // process touch input
     return (true);
 }
 
-bool UBCInput::setup()  // sets up the UBCInput object
+bool UBCInput::setup(inputEngineSharedPtr inputE)  // sets up the UBCInput object
 {
     std::string func = "UBCInput::setup()";
 
@@ -419,6 +419,11 @@ bool UBCInput::setup()  // sets up the UBCInput object
     // instantiate the inputS Object
     inputSharedPtr tempInputInstance(new input);
     inputInstance = tempInputInstance;
+
+    if (!inputInstance->getSetupComplete())
+    {
+        inputInstance->setup(inputE);
+    }
     // instantiate the inputGamePad Object
     inputGamePadsSharedPtr tempInputGPSharedPtr(new inputGamePads);
     logMsg(func +" tempInputGPSharedPtr");

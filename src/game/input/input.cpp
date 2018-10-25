@@ -44,15 +44,13 @@ input::~input()  // destructor
     
 }
 
-
-
 inputEngineSharedPtr input::getInputE() const  // retrieves the value of inputE
 {
     return (inputE);
 }
 void input::setInputE(const inputEngineSharedPtr &set)  // sets the value of inputE
 {
-//    inputE = set;
+    inputE = set;
 }
 
 usersInputsVecSharedPtr input::getUInput() const  // retrieves the value of uInput
@@ -91,12 +89,12 @@ void input::setInputESet(const bool &set)  // sets the value of inputESet
     inputESet = set;
 }
 
-bool input::setup()  // sets up the input state
+bool input::setup(inputEngineSharedPtr inputE)  // sets up the input state
 {
-
+//    exit(0);
     loaderSharedPtr load(new loader);
-    inputEngineSharedPtr tempInputESharedPtr(new inputEngine);
-    inputE = tempInputESharedPtr;
+//    inputEngineSharedPtr tempInputESharedPtr(new inputEngine);
+//    inputE = tempInputESharedPtr;
 //    uInput = load->loadUserInputs();  // loads user defined input from file.
     std::string func = "input::setup()";
     

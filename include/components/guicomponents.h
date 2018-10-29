@@ -140,14 +140,13 @@ class GUIComponents
 
         // Network Server Setup Widgets
         MyGUIListBoxSharedPtr numClientsSelectBox;  // allows you to select the number of network players
-        //    static sharedPtr<MyGUI::Button> serverHostButton;
+
         sharedPtr<MyGUI::EditBox> serverIPAddressBox;
     
         MyGUIButtonMSharedPtr networkServerSetupMenuButtons;
     
         // Network Client Setup Widgets
         sharedPtr<MyGUI::EditBox> clientIPAddressBox;
-//    static sharedPtr<MyGUI::Button> clientConnectButton;
     
         MyGUIButtonMSharedPtr networkClientSetupMenuButtons;
     

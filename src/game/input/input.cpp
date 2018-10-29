@@ -29,8 +29,8 @@
 #undef None
 
 // static declarations
-inputEngineSharedPtr input::inputE;  // the inputEngine object
-inputInGameWorkQueues input::inputInGameWorkQueue; 
+//inputEngineSharedPtr input::inputE;  // the inputEngine object
+//inputInGameWorkQueues input::inputInGameWorkQueue;
 
 
 input::input()  // constructor
@@ -89,7 +89,7 @@ void input::setInputESet(const bool &set)  // sets the value of inputESet
     inputESet = set;
 }
 
-bool input::setup(inputEngineSharedPtr inputE)  // sets up the input state
+bool input::setup(inputEngineSharedPtr inputEng)  // sets up the input state
 {
 //    exit(0);
     loaderSharedPtr load(new loader);
@@ -98,6 +98,7 @@ bool input::setup(inputEngineSharedPtr inputE)  // sets up the input state
 //    uInput = load->loadUserInputs();  // loads user defined input from file.
     std::string func = "input::setup()";
     
+    inputE = inputEng;
 /* FIXME! Remove once userInput is finished being reworked
 
     logMsg(func +" load->checkIfUserInputsLoaded()");

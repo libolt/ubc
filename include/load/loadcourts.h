@@ -55,9 +55,9 @@ class loadCourts : public loader
 
     private:
     
-        static courtEntityMSharedPtr  cInstance;
-        static stdStringVec courtFiles;  // stores list of court xml files
-        static bool courtFilesLoaded;
+        courtEntityMSharedPtr  cInstance;
+        stdStringVec courtFiles;  // stores list of court xml files
+        bool courtFilesLoaded;
     
 };
 

@@ -126,35 +126,35 @@ class usersInputs
 
     std::string name;  // stores the name of the input map
     // key input strings
-    static inputTypes type;  // stores the type of input
-    static inputKeyMaps keyUp;
-    static inputKeyMaps keyDown;
-    static inputKeyMaps keyLeft;
-    static inputKeyMaps keyRight;
-    static inputKeyMaps keyUpLeft;
-    static inputKeyMaps keyUpRight;
-    static inputKeyMaps keyDownLeft;
-    static inputKeyMaps keyDownRight;
-    static inputKeyMaps keyShootBlock;
-    static inputKeyMaps keyPassSteal;
-    static inputKeyMaps keyPause;
-    static inputKeyMaps keyStartSelect;
-    static inputKeyMaps keyQuit;
+    inputTypes type;  // stores the type of input
+    inputKeyMaps keyUp;
+    inputKeyMaps keyDown;
+    inputKeyMaps keyLeft;
+    inputKeyMaps keyRight;
+    inputKeyMaps keyUpLeft;
+    inputKeyMaps keyUpRight;
+    inputKeyMaps keyDownLeft;
+    inputKeyMaps keyDownRight;
+    inputKeyMaps keyShootBlock;
+    inputKeyMaps keyPassSteal;
+    inputKeyMaps keyPause;
+    inputKeyMaps keyStartSelect;
+    inputKeyMaps keyQuit;
     
     // joystick input strings
-    static inputGamePadMaps GPUp;
-    static inputGamePadMaps GPDown;
-    static inputGamePadMaps GPLeft;
-    static inputGamePadMaps GPRight;
-    static inputGamePadMaps GPUpLeft;
-    static inputGamePadMaps GPUpRight;
-    static inputGamePadMaps GPDownLeft;
-    static inputGamePadMaps GPDownRight;
-    static inputGamePadMaps GPShootBlock;
-    static inputGamePadMaps GPPassSteal;
-    static inputGamePadMaps GPPause;
-    static inputGamePadMaps GPStartSelect;
-    static inputGamePadMaps GPQuit;
+    inputGamePadMaps GPUp;
+    inputGamePadMaps GPDown;
+    inputGamePadMaps GPLeft;
+    inputGamePadMaps GPRight;
+    inputGamePadMaps GPUpLeft;
+    inputGamePadMaps GPUpRight;
+    inputGamePadMaps GPDownLeft;
+    inputGamePadMaps GPDownRight;
+    inputGamePadMaps GPShootBlock;
+    inputGamePadMaps GPPassSteal;
+    inputGamePadMaps GPPause;
+    inputGamePadMaps GPStartSelect;
+    inputGamePadMaps GPQuit;
 
     bool active;  // determines whether this input map is being used.
     

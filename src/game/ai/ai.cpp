@@ -34,22 +34,6 @@
 //#include "state/teamstate.h"
 #include <ctime>
 
-// static declarations
-
-//AISystem* AISystem::pInstance = 0;
-AISystemSharedPtr AISystem::pInstance;
-
-//AISystem* AISystem::Instance()
-AISystemSharedPtr AISystem::Instance()
-{
-    if (pInstance == 0)  // is it the first call?
-    {
-        //pInstance = new AISystem; // create sole instance
-        AISystemSharedPtr tInstance(new AISystem);
-        pInstance = tInstance;
-    }
-    return pInstance; // returns the value of pInstance
-}
 
 AISystem::AISystem()
 {

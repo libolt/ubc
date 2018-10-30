@@ -31,11 +31,6 @@
 #include "data/courtdata.h"
 //#include "state/courtstate.h"
 
-// static declarations
-courtEntityMSharedPtr loadCourts::cInstance;
-stdStringVec loadCourts::courtFiles;  // stores list of court xml files
-bool loadCourts::courtFilesLoaded;
-
 loadCourts::loadCourts()  // constructor
 {
     courtFilesLoaded = false;

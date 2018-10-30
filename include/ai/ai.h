@@ -38,9 +38,8 @@ class AISystem
 {
 public:
 
-    //static AISystem *Instance();
-    static sharedPtr<AISystem> Instance();
-	~AISystem();
+    AISystem();  // constructor
+    ~AISystem();  // destructor
 
     gameEntitySharedPtr getGameInstance();  // retrieves the value of gameInstance
     void setGameInstance(gameEntitySharedPtr set);  // sets the value of gameInstance
@@ -117,14 +116,8 @@ public:
 //	playerSteerPlugin *playerSteerPluginInstance;
     playerSteerPluginSharedPtr playerSteerPluginInstance;
     
-protected:
-    AISystem();
-    AISystem(const AISystem&);
-    AISystem& operator= (const AISystem&);
 private:
-    //static AISystem *pInstance;
-    static sharedPtr<AISystem> pInstance;
-        
+
 	// currently selected plug-in (user can choose or cycle through them)
 //    OpenSteer::PlugIn* selectedPlugIn;
     OpenSteerPluginSharedPtr selectedPlugIn;

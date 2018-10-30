@@ -32,11 +32,6 @@
 
 #include "statemachine/playerstatemachine.h"
 
-// static declarations
-    
-//playerSteerSharedPtr playerEntity::steer;
-//bool playerEntity::steerInitialized;
-
 playerEntity::playerEntity()  // constructor
 {
     

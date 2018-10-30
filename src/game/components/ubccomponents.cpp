@@ -20,13 +20,6 @@
 
 #include "components/ubccomponents.h"
 
-// static declarations 
-gameEngineSharedPtr UBCComponents::gameE;  // the gameEngine object
-GUISystemSharedPtr UBCComponents::gui;  // the GUI object.
-UBCGameSharedPtr UBCComponents::game;  // static copy of UBCGame class
-UBCInputSharedPtr UBCComponents::input;  // static copy of UBCInput class
-
-
 UBCComponents::UBCComponents()  // constructor
 {
 

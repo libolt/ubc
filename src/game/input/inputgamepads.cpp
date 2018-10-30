@@ -24,9 +24,6 @@
 #include "utilities/conversion.h"
 #include "utilities/typedefs.h"
 
-// static declarations
-inputSharedPtr inputGamePads::inputInstance;  // input object
-
 inputGamePads::inputGamePads()  // constructor
 {   
     setupComplete = false;

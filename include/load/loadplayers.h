@@ -54,9 +54,9 @@ class loadPlayers : public loader
 
     private:
     
-        static playerEntityMSharedPtr pInstance;
-        static stdStringVec playerFiles;  // stores list of player xml files
-        static bool playerFilesLoaded;
+        playerEntityMSharedPtr pInstance;
+        stdStringVec playerFiles;  // stores list of player xml files
+        bool playerFilesLoaded;
 
 };
 

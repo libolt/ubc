@@ -55,12 +55,6 @@ public:
     inputEngine();  // constructor
     ~inputEngine();  // destructor
     
-    //static inputEngine *Instance();
-//    static inputEngineSharedPtr Instance();
-
-/*    sharedPtr<GUISystem> getGui();  // retrieves the value of gui
-    void setGui(sharedPtr<GUISystem> set);  // sets the value of gui
-*/
     bool getKeyInputReceived() const;  // retrieves the value of keyInputReceived
     void setKeyInputReceived(const bool &set);  // sets the value of keyInputReceived
 
@@ -115,13 +109,6 @@ public:
 	
 private:
 
-/*    inputEngine();
-    inputEngine(const inputEngine&);
-    inputEngine& operator= (const inputEngine&);
-*/
-    //~inputEngine();
-    
-
     // SDL Input
     SDL_Event inputEvent;  // stores input events
     SDL_Event events[EVENT_BUF_SIZE];
@@ -137,10 +124,6 @@ private:
 
     bool textInputStarted;  // determines if text input has started
     
-    //static inputEngine *pInstance;
-//    static inputEngineSharedPtr pInstance;
-
-//    sharedPtr<GUISystem> gui;  // stores the copy of the gui object
     bool keyInputReceived;  // stores whether a key has been pressed
     inputKeyMaps keyPressed; // stores which key was pressed
 

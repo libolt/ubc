@@ -40,11 +40,6 @@
 #include "utilities/comparison.h"
 //#include "jumpballs.h"
 
-// static declarations
-//sharedPtr<playerData> playerState::data;  // instance of playerData object
-//sharedPtr<playerEntity> playerState::playerEnt;  // instance of playerEntity object
-//sharedPtr<playerPhysics> playerState::physics;  // instance of physics object
-
 playerState::playerState()
 {
 //    playerID = 0;

@@ -29,11 +29,6 @@
 #include "load/loadusersinputs.h"
 #include "utilities/logging.h"
 
-// static declarations
-usersInputsVecSharedPtr loadUsersInputs::uiInstance;
-stdStringVec loadUsersInputs::usersInputFiles;
-bool loadUsersInputs::userInputFilesLoaded;
-
 loadUsersInputs::loadUsersInputs()  // constructor
 {
     userInputFilesLoaded = false;

@@ -30,11 +30,6 @@
 #include "utilities/logging.h"
 #include "entity/hoopentity.h"
 
-// static declarations
-hoopEntityMSharedPtr  loadHoops::hInstance;
-stdStringVec loadHoops::hoopFiles;  // stores list of hoop xml files
-bool loadHoops::hoopFilesLoaded;
-
 loadHoops::loadHoops()  // constructor
 {
     hoopFilesLoaded = false;

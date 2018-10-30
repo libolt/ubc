@@ -60,9 +60,6 @@ class renderEngine : public engine
 {
     public:
 
-    //static renderEngine *Instance();
-//    static renderEngineSharedPtr Instance();
-
     renderEngine();  // constructor 
     
     sharedPtr<Ogre::Root> getRERoot() const;  // retrieves the value of mRoot

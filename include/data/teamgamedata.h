@@ -66,7 +66,6 @@ class teamGameData
     
         size_t teamNumber;  // stores which team number the object is
         teamTypes teamType;  // stores which type of team this object is
-//    static size_t teamID;  // stores the ID number of the team;
 
         std::string playerType;  // stores the type of player in control of the team (human,network,ai) are valid values
 

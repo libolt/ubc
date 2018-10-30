@@ -32,11 +32,6 @@
 #include "load/loadplayers.h"
 #include "utilities/logging.h"
 
-// static declarations
-playerEntityMSharedPtr loadPlayers::pInstance;
-stdStringVec loadPlayers::playerFiles;  // stores list of player xml files
-bool loadPlayers::playerFilesLoaded;
-
 loadPlayers::loadPlayers()  // constructor
 {
     playerFilesLoaded = false;

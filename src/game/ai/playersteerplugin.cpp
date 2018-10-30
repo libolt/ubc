@@ -21,8 +21,9 @@
 #include "utilities/conversion.h"
 
 #include "Ogre.h"
-#include "ai/playersteerplugin.h"
 #include "ai/ai.h"
+#include "ai/playersteerplugin.h"
+#include "ai/playersteer.h"
 #include "components/gamecomponents.h"
 #include "components/playercomponents.h"
 #include "components/teamcomponents.h"
@@ -39,10 +40,8 @@
 #include "entity/gameentity.h"
 //#include "state/teamstate.h"
 #include "state/playerstate.h"
-#include "ai/playersteer.h"
 #include "utilities/logging.h"
-
-// static declarations
+#include "utilities/typedefs.h"
 
 playerSteerPlugin::playerSteerPlugin()  // constructor
 {
@@ -108,7 +107,7 @@ void playerSteerPlugin::setHumanPlayer(std::string set)  // sets the value of hu
 
 void playerSteerPlugin::open()  // opens the plugin
 {
-    AISystemSharedPtr ai = AISystem::Instance();
+    AISystemSharedPtr AI = gameInstance->getComponent()->getAI();
     conversionSharedPtr convert ;
 //    sharedPtr<gameState> gameS = gameState::Instance();
 
@@ -123,18 +122,18 @@ void playerSteerPlugin::open()  // opens the plugin
 //    std::unordered_map<std::string, playerStateSharedPtr> activePlayerInstance;
     playerEntityMSharedPtr activePlayerInstance;
 //    std::vector <std::unordered_map<std::string, playerStateSharedPtr> >::iterator activePlayerInstanceIT;
-    playerSteerVecSharedPtr allPlayerSteers = ai->getAllPlayerSteers();
+    playerSteerVecSharedPtr allPlayerSteers = AI->getAllPlayerSteers();
 //    teamTypes teamWithBall;
     std::string func = "playerSteerPlugin::open()";
     logMsg(func +" begin");
     logMsg(func +" Opening playerSteer plugin");
 
-    gameInstance = ai->getGameInstance();
-    activeBasketballInstance = ai->getActiveBasketballInstance();
-    activeCourtInstance = ai->getActiveCourtInstance();
-    activeTeamInstance = ai->getActiveTeamInstance();
-    teamWithBall = ai->getTeamWithBall();
-    humanPlayer = ai->getHumanPlayer();
+    gameInstance = AI->getGameInstance();
+    activeBasketballInstance = AI->getActiveBasketballInstance();
+    activeCourtInstance = AI->getActiveCourtInstance();
+    activeTeamInstance = AI->getActiveTeamInstance();
+    teamWithBall = AI->getTeamWithBall();
+    humanPlayer = AI->getHumanPlayer();
 
 /*    if (!baseInitialized)
     {
@@ -194,7 +193,7 @@ void playerSteerPlugin::open()  // opens the plugin
 
             //      steer->setID(x);
                 logMsg(func +" ai->selectedVehicle = steer");
-                ai->selectedVehicle = steer;
+                AI->selectedVehicle = steer;
                 logMsg(func +" APIIT.second->setSteer(steer);");
                 APIIT.second->getComponent()->setSteer(steer);
                 logMsg(func + " allPlayerSteers.push_back(APIIT.second->getSteer());");
@@ -249,7 +248,7 @@ void playerSteerPlugin::open()  // opens the plugin
         ++x;
 	}
 */
-    ai->setAllPlayerSteers(allPlayerSteers);	// stores the instances
+    AI->setAllPlayerSteers(allPlayerSteers);	// stores the instances
 //    logMsg("team 0 activePlayerInstance added =  " +convert->toString( ai->getAllPlayerSteers().size()));
 
 

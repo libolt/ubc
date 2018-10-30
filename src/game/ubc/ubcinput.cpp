@@ -35,13 +35,6 @@
 #include "input/inputkeyboards.h"
 #include "input/input.h"
 
-// static declarations
-/*inputSharedPtr UBCInput::inputInstance;  // the input object
-inputKeyboardsSharedPtr UBCInput::inputKeyboard;  // the inputKeyboards object
-inputGamePadsSharedPtr UBCInput::inputGamePad;  // the inputGamePads object
-bool UBCInput::setupComplete;  // stores whether setup has completed successfully
-*/
-
 UBCInput::UBCInput()  // constructor
 {
     setupComplete = false;

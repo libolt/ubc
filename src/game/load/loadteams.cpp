@@ -29,12 +29,6 @@
 #include "utilities/conversion.h"
 #include "load/loadteams.h"
 #include "utilities/logging.h"
-//#include "state/teamstate.h"
-
-// static declarations
-//teamEntityMSharedPtr loadTeams::tInstance;
-//stdStringVec loadTeams::teamFiles;  // stores list of team xml files
-//bool loadTeams::teamFilesLoaded;
 
 loadTeams::loadTeams()  // constructor
 {

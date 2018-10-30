@@ -21,6 +21,7 @@
  
 #include "users/usersinputs.h"
 
+/*
 // static declarations
 inputTypes usersInputs::type;
 inputKeyMaps usersInputs::keyUp;
@@ -51,6 +52,7 @@ inputGamePadMaps usersInputs::GPPassSteal;
 inputGamePadMaps usersInputs::GPPause;
 inputGamePadMaps usersInputs::GPStartSelect;
 inputGamePadMaps usersInputs::GPQuit;
+*/
 
 usersInputs::usersInputs()
 {

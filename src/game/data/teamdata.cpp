@@ -20,9 +20,6 @@
 
 #include "data/teamdata.h"
 
-// static declarations
-//size_t teamData::ID; 
-
 // teamData constructor
 teamData::teamData()
 {

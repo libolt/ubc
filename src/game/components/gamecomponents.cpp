@@ -30,6 +30,15 @@ gameComponents::~gameComponents()  // destructor
     
 }
 
+AISystemSharedPtr gameComponents::getAI() const  // retrieves the value of AI;
+{
+    return (AI);
+}
+void gameComponents::setAI(const AISystemSharedPtr &set)  // sets the value of AI
+{
+    AI = set;
+}
+
 courtDataVec  gameComponents::getCourtDataInstance() const  // retrieves the value of courtDataInstance
 {
     return (courtDataInstance);

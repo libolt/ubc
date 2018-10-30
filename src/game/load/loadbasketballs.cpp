@@ -32,12 +32,6 @@
 #include "entity/basketballentity.h"
 //#include "state/basketballstate.h"
 
-// static declarations
-
-basketballEntityMSharedPtr loadBasketballs::bInstance;
-stdStringVec loadBasketballs::basketballFiles;  // stores list of basketball xml files
-bool loadBasketballs::basketballFilesLoaded;
-
 loadBasketballs::loadBasketballs()  // constructor
 {
     basketballFilesLoaded = false;

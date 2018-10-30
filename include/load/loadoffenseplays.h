@@ -54,9 +54,9 @@ class loadOffensePlays : public loader
 
     private:
 
-        static offensePlaysVecSharedPtr opInstance;
-        static stdStringVec offensePlayFiles;  // stores list of offense play xml files
-        static bool offensePlayFilesLoaded;
+        offensePlaysVecSharedPtr opInstance;
+        stdStringVec offensePlayFiles;  // stores list of offense play xml files
+        bool offensePlayFilesLoaded;
 
 };
 #endif

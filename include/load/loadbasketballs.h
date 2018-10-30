@@ -55,9 +55,9 @@ class loadBasketballs  : public loader
 
     private:
     
-    static basketballEntityMSharedPtr bInstance;
-    static stdStringVec basketballFiles;  // stores list of basketball xml files
-    static bool basketballFilesLoaded;
+    basketballEntityMSharedPtr bInstance;
+    stdStringVec basketballFiles;  // stores list of basketball xml files
+    bool basketballFilesLoaded;
 
 };
 #endif

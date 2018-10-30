@@ -24,8 +24,8 @@
 
 // Static Declarations
 
-int steering::serialNumberCounter = 0;
-float steering::_maxForce;
+// int steering::serialNumberCounter = 0;
+// float steering::_maxForce;
 
 steering::steering ()  // constructor
 {

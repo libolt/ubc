@@ -19,10 +19,6 @@
  ***************************************************************************/
 
 #include "state/state.h"
- 
-// static declarations
-//bool state::initialized;  // if true then tbe object has been initialized
-bool state::stateSet;  // if true then the state is set
 
 state::state()  // constructor
 {

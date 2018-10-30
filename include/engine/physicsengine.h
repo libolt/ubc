@@ -72,13 +72,13 @@ protected:
 
 private:
 
-    static sharedPtr<btDynamicsWorld> world;  // stores the physics world
-    static sharedPtr<BtOgre::DebugDrawer> debugDraw;  // used to draw debug shapes for objects
-    static sharedPtr<btBroadphaseInterface> broadPhase;
-    static sharedPtr<btDefaultCollisionConfiguration> collisionConfig;
-    static sharedPtr<btCollisionDispatcher> dispatcher;
-    static sharedPtr<btSequentialImpulseConstraintSolver> solver;
-    static btContactSolverInfo contactInfo;
+    sharedPtr<btDynamicsWorld> world;  // stores the physics world
+    sharedPtr<BtOgre::DebugDrawer> debugDraw;  // used to draw debug shapes for objects
+    sharedPtr<btBroadphaseInterface> broadPhase;
+    sharedPtr<btDefaultCollisionConfiguration> collisionConfig;
+    sharedPtr<btCollisionDispatcher> dispatcher;
+    sharedPtr<btSequentialImpulseConstraintSolver> solver;
+    btContactSolverInfo contactInfo;
 
     // timer variables
     btScalar changeInTime;  // stores the change in time between loops

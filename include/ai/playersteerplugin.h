@@ -24,7 +24,7 @@
 #include "ai/steering.h"
 //#include "ai/playersteer.h"
 //#include "state/gamestateshared.h"
-
+#include "utilities/typedefs.h"
 // Forward declarations
 class playerSteer;
 

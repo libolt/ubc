@@ -54,7 +54,7 @@ class inputGamePads : public input
 
     private:
 
-        static inputSharedPtr inputInstance;  // input object
+        inputSharedPtr inputInstance;  // input object
 
         bool setupComplete;  // stores whether setup has completed successfully
 

@@ -25,16 +25,6 @@
 #include "engine/physicsengine.h"
 #include "engine/renderengine.h"
 #include "utilities/comparison.h"
-//#include "jumpballs.h"
-
-// static declarations
-sharedPtr<btDynamicsWorld> physicsEngine::world;  // stores the physics world
-sharedPtr<BtOgre::DebugDrawer> physicsEngine::debugDraw;  // used to draw debug shapes for objects
-sharedPtr<btBroadphaseInterface> physicsEngine::broadPhase;
-sharedPtr<btDefaultCollisionConfiguration> physicsEngine::collisionConfig;
-sharedPtr<btCollisionDispatcher> physicsEngine::dispatcher;
-sharedPtr<btSequentialImpulseConstraintSolver> physicsEngine::solver;
-btContactSolverInfo physicsEngine::contactInfo;
 
 physicsEngine::physicsEngine()  // contructor
 {

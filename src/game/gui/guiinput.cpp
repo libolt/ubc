@@ -39,9 +39,6 @@
 #include "config.h"
 #endif
 
-// static variables/functions
-//void GUISystem::startSingleGameButtonClicked(MyGUI::Widget *_sender);
-
 void GUISystem::startSingleGameButtonClicked(MyGUI::Widget *_sender)  // handles startSingleGameButton click event
 {
     startSinglePlayerGame(gameE->getRenderE());

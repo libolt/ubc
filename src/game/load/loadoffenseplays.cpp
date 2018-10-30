@@ -29,12 +29,6 @@
 #include "utilities/logging.h"
 #include "offenseplays.h"
 
-// static declarations
-offensePlaysVecSharedPtr loadOffensePlays::opInstance;
-stdStringVec loadOffensePlays::offensePlayFiles;  // stores list of offense play xml files
-bool loadOffensePlays::offensePlayFilesLoaded;
-
-
 loadOffensePlays::loadOffensePlays()  // constructor
 {
     offensePlayFilesLoaded = false;

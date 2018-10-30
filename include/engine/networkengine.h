@@ -49,10 +49,6 @@ class networkEngine : public engine
 {
     public:
 
-    //static networkEngine *Instance();
-//    static networkEngineSharedPtr Instance();
-
-
     networkEngine();  // constructor
     ~networkEngine();  // destructor
 
@@ -110,17 +106,9 @@ class networkEngine : public engine
 
     void sendPacket(const std::string &packetData);  // sends a packet to the peer
 
-    protected:
-//    networkEngine();
-//    networkEngine(const networkEngine&);
-//    networkEngine& operator= (const networkEngine&);
-
     private:
 
     int counter;
-    //static networkEngine *pInstance;
-//    static networkEngineSharedPtr pInstance;
-
 
     int clientID;  // defines the client ID number used to identify which client is communicating with the server
     std::string ipAddress;  // stores IP Address used for either server or client code

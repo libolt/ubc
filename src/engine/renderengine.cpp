@@ -47,32 +47,7 @@
     AConfiguration *renderEngine::config;
 #endif
 
-/*
-// static declarations
-int renderEngine::instance;
-//SDL_Window *renderEngine::sdlWindow;
-SDL_SysWMinfo renderEngine::sysInfo; 
-sharedPtr<Ogre::Root> renderEngine::RERoot;  // stores the OGRE Root
-sharedPtr<Ogre::SceneManager> renderEngine::mSceneMgr;  // static declaration of mSceneMgr
-sharedPtr<Ogre::Camera> renderEngine::mCamera;  // static declaration of mSceneMgr
-sharedPtr<Ogre::RenderWindow> renderEngine::mWindow;  // static declaration of mSceneMgr
-sharedPtr<Ogre::Viewport> renderEngine::viewPort;  // static declaration of mSceneMgr
-sharedPtr<Ogre::Light> renderEngine::l;  // static declaration of l
-sharedPtr<Ogre::ResourceGroupManager> renderEngine::rsm; // static declaration of rsm
-Ogre::NameValuePairList renderEngine::misc; 
-Ogre::ShaderGeneratorTechniqueResolverListener *renderEngine::mMatListener; 
-Ogre::RenderSystem *renderEngine::selectedRenderSystem;
-Ogre::Vector3 renderEngine::mTranslateVector; 
-Ogre::Radian renderEngine::mRotX;
-Ogre::Radian renderEngine::mRotY; 
-Ogre::Real renderEngine::mMoveSpeed;  
-Ogre::Degree renderEngine::mRotateSpeed;
-float renderEngine::mMoveScale; 
-Ogre::Degree renderEngine::mRotScale; 
-Ogre::Real renderEngine::mTimeUntilNextToggle;
-std::string renderEngine::winHandle;
-std::string renderEngine::mResourceGroup;
-*/
+
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 AAssetManager *renderEngine::mAssetMgr; 
 #endif

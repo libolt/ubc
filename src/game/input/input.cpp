@@ -28,11 +28,6 @@
 #include "utilities/conversion.h"
 #undef None
 
-// static declarations
-//inputEngineSharedPtr input::inputE;  // the inputEngine object
-//inputInGameWorkQueues input::inputInGameWorkQueue;
-
-
 input::input()  // constructor
 {   
 //    uInput[0].setActive(true);

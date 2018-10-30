@@ -53,7 +53,7 @@ class inputKeyboards
 
     private:
     
-        static inputSharedPtr inputS;  // input object
+        inputSharedPtr inputS;  // input object
 
         bool setupComplete;  // stores whether setup has completed successfully
 };

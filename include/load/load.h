@@ -39,7 +39,7 @@
 //#include "state/teamstate.h"
 //#include "offenseplays.h"
 //#include "userinput.h"
-
+#include "utilities/typedefs.h"
 class basketballState;
 class courtState;
 class hoopState;
@@ -70,7 +70,7 @@ class loader
         
     private:
 
-        static int count;  // counts number of times a function has been called
+        int count;  // counts number of times a function has been called
 };
 
 

@@ -24,6 +24,7 @@
 #include "ai/steering.h"
 //#include "state/gamestateshared.h"
 #include "utilities/enums.h"
+#include "utilities/typedefs.h"
 
 class playerState;
 
@@ -60,6 +61,9 @@ class playerSteer : public steering
     boolVec getPositionReached();  // retrieves the value of positionReached
     void setPositionReached(boolVec reached);  // sets the value of positionReached
 	
+    AISystemSharedPtr getAI() const;  // retrieves the value of AI
+    void setAI(const AISystemSharedPtr &set);  // sets the value of AI
+
     basketballEntityMSharedPtr getActiveBasketballInstance();  // retrieves the value of activeBasketballInstance
     void setActiveBasketballInstance(basketballEntityMSharedPtr set);  // sets the value of activeBasketballInstance
 
@@ -92,6 +96,7 @@ class playerSteer : public steering
     OpenSteer::Vec3 m_home;  // home point to stear to
     //Ball*	m_Ball;
 
+    AISystemSharedPtr AI;  // stores copy of AI Instance
     basketballEntityMSharedPtr activeBasketballInstance;  // stores copy of activeBasketballInstance
     courtEntityMSharedPtr activeCourtInstance;  // stores copy of activeCourtInstance
     teamEntityMSharedPtr activeTeamInstance;  // stores copy of activeTeamInstance

@@ -161,7 +161,6 @@ bool teamEntity::initializeStateMachine()  // initializes teamStateMachine objec
 
     logMsg(func +" begin");
 //    exit(0);
-    //SMData->component = std::static_pointer_cast<const gameComponents>(component);
     SMData->component = component;
     SMData->gData = gameData;
     SMData->flag = flag;

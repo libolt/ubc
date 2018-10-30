@@ -53,10 +53,10 @@ class loadUsersInputs : public loader
 
     private:
 
-        static usersInputsVecSharedPtr uiInstance;
-        static stdStringVec usersInputFiles;  // stores list of court xml files
+        usersInputsVecSharedPtr uiInstance;
+        stdStringVec usersInputFiles;  // stores list of court xml files
         // determines whether files have been loaded successfully
-        static bool userInputFilesLoaded;
+        bool userInputFilesLoaded;
 };
 
 #endif // _LOAD_USERSINPUTS_H_

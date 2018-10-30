@@ -23,12 +23,6 @@
 #include "engine/physicsengine.h"
 #include "entity/gameentity.h"
 
-// static declarations
-//gameStateSharedPtr physics::gameS;
-physicsEngineSharedPtr physics::physE;  // physics engine object
-
-//bool physics::gameSInitialized;  // stores whether the gameState object has been initialized
-
 physics::physics()  // constructor
 {
     

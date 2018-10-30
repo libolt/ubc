@@ -44,13 +44,13 @@ class UBCComponents
 
     private:
     
-        static gameEngineSharedPtr gameE;  // the gameEngine object
+        gameEngineSharedPtr gameE;  // the gameEngine object
 
-        static GUISystemSharedPtr gui;  // the GUI object.
+        GUISystemSharedPtr gui;  // the GUI object.
 
-        static UBCGameSharedPtr game;  // static copy of game class
+        UBCGameSharedPtr game;  // copy of game class
 
-        static UBCInputSharedPtr input;  // static copy of input class
+        UBCInputSharedPtr input;  // copy of input class
 
 };
 

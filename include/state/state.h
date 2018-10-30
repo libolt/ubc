@@ -41,10 +41,8 @@ class state
     bool resetState();  // resets the state of the object
     
     private:
-    
-//    static bool initialized;  // if true then tbe object has been initialized
-
-    static bool stateSet;  // if true then the state is set
+\
+    bool stateSet;  // if true then the state is set
 
 };
 #endif

@@ -30,8 +30,6 @@
 #include "physics/playerphysics.h"
 #include "utilities/logging.h"
 #include "utilities/comparison.h"
-
-// static declarations
   
 playerPhysics::playerPhysics()  // constructor
 {

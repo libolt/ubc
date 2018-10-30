@@ -102,7 +102,7 @@ class physics
         gameEntitySharedPtr gameInstance;  // stores a copy of gameState object
         bool gameInstanceInitialized;  // stores whether the gameState object has been initialized
 
-        static physicsEngineSharedPtr physE;  // physics engine object
+        physicsEngineSharedPtr physE;  // physics engine object
 
         bool physEInitialized;  // stores whether the physics engine object has been initialized
 

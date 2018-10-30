@@ -34,9 +34,6 @@
 
 #include "utilities/typedefs.h"
 
-// static declarations
-int loader::count;
-
 loader::loader()  // constructor
 {
 //        pathArray = pathSplit(dataPath);

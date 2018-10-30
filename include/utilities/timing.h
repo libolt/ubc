@@ -50,7 +50,7 @@ class timing
     std::chrono::system_clock::time_point previousTime;  // stores the previous time
     std::chrono::nanoseconds changeInTimeNano;  // stores the change in time in nanoseconds
     std::chrono::microseconds changeInTimeMicro;  // stores the change in time in microseconds
-    static std::chrono::milliseconds changeInTimeMill;  // stores the change in time in milliseconds
+    std::chrono::milliseconds changeInTimeMill;  // stores the change in time in milliseconds
     std::chrono::milliseconds loopTimeMill;  // stores the loop time in milliseconds
     std::chrono::milliseconds previousTimeMill;  // stores the previous time in milliseconds
 };

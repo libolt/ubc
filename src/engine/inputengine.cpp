@@ -36,24 +36,6 @@
 #include "load/load.h"
 #include "utilities/logging.h"
 
-// static variables 
-
-/*SDL_Event inputEngine::inputEvent;
-bool inputEngine::inputProcessed;
-bool inputEngine::keyInputReceived;
-bool inputEngine::mouseLeftClick;
-bool inputEngine::mouseRightClick;
-bool inputEngine::mouseClicked;
-float inputEngine::mouseX;
-float inputEngine::mouseY;
-mouseClicks inputEngine::mouseClick;
-//std::string inputEngine::keyPressed; 
-std::string inputEngine::inputText;
-inputTypes inputEngine::inputType; 
-bool inputEngine::textInputStarted;
-inputKeyMaps inputEngine::keyPressed;
-*/
-
 inputEngine::inputEngine()  // constructor
 {
     keyInputReceived = false;

@@ -25,8 +25,6 @@
 #include "utilities/logging.h"
 #include "ubc/ubc.h"
 
-// static declarations
-
 entity::entity()  // constructor
 {
     initialized = false;

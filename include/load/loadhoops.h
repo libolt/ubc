@@ -47,9 +47,9 @@ class loadHoops : public loader
 
     private:
     
-        static hoopEntityMSharedPtr  hInstance;
-        static stdStringVec hoopFiles;  // stores list of hoop xml files
-        static bool hoopFilesLoaded;
+        hoopEntityMSharedPtr  hInstance;
+        stdStringVec hoopFiles;  // stores list of hoop xml files
+        bool hoopFilesLoaded;
 
 };
 

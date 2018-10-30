@@ -32,8 +32,6 @@
 #include "ai/playersteer.h"
 //#include "state/teamstate.h"
 
-// static declarations 
-
 offenseState::offenseState()  // constructor
 {
 //    gameSInitialized = false;

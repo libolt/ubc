@@ -28,22 +28,6 @@
 #include "engine/physicsengine.h"
 //#include "engine/sound/soundengine.h"
 
-
-/*bool gameEngine::userInputLoaded;
-bool gameEngine::menuActive;
-bool gameEngine::start;
-bool gameEngine::quitGame;
-bool gameEngine::serverRunning;
-bool gameEngine::clientRunning;
-bool gameEngine::createScene;
-bool gameEngine::sceneCreated;
-bool gameEngine::renderScene;
-bool gameEngine::movePlayer;
-timing gameEngine::timer;*/
-
-// static declarations
-//renderEngineSharedPtr gameEngine::renderE;
-
 gameEngine::gameEngine()  // constructor
 //    : player[0](0),
  // playerNode[0](0)

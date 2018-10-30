@@ -145,7 +145,7 @@ public:
 
     // give each vehicle a unique number
     int serialNumber;
-    static int serialNumberCounter;
+    int serialNumberCounter;
 
     // draw lines from vehicle's position showing its velocity and acceleration
     void annotationVelocityAcceleration (float maxLengthA, float maxLengthV);
@@ -165,7 +165,7 @@ private:
     float _speed;  // speed along Forward direction.  Because local space
                        // is velocity-aligned, velocity = Forward * Speed
 
-    static float _maxForce;  // the maximum steering force this vehicle can apply
+    float _maxForce;  // the maximum steering force this vehicle can apply
                        // (steering force is clipped to this magnitude)
     float _maxForces;
     

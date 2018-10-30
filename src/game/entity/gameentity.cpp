@@ -72,7 +72,6 @@
 #include "ubc/ubc.h"
 #include "users/users.h"
 
-// static declarations
 gameEntity::gameEntity()  // constructor
 {
 //    stateSet = false;
@@ -214,7 +213,6 @@ bool gameEntity::initializeStateMachine(renderEngineSharedPtr render)  // sets u
     logMsg(func +" begin");
 
     SMData = tempSMData;
-    //SMData->component = std::static_pointer_cast<const gameComponents>(component);
     SMData->component = component;
     SMData->flag = flag;
 //    SMData->node = getNode();
@@ -358,7 +356,7 @@ bool gameEntity::initializeStateMachine(renderEngineSharedPtr render)  // sets u
 bool gameEntity::updateState(renderEngineSharedPtr render)  // updates the game state
 {
     conversionSharedPtr convert ;
-    AISystemSharedPtr ai = AISystem::Instance();
+//    AISystemSharedPtr ai = AISystem::Instance();
     timing timer; 
     Ogre::Vector3 playerPos;
     basketballEntityMSharedPtr activeBasketballInstance = component->getActiveBasketballInstance();

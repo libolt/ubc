@@ -21,9 +21,6 @@
 #include <chrono>
 #include "utilities/timing.h"
 
- // static declarations
-std::chrono::milliseconds timing::changeInTimeMill;  // stores the change in time in milliseconds
-
 timing::timing()
 {
     startTime = std::chrono::system_clock::now();

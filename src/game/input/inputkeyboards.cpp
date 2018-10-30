@@ -25,10 +25,6 @@
 #include "utilities/conversion.h"
 #include "utilities/typedefs.h"
 
-// static declarations
-inputSharedPtr inputKeyboards::inputS;  // input object
-
-
 inputKeyboards::inputKeyboards()  // constructor
 {   
     setupComplete = false;

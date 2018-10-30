@@ -153,6 +153,15 @@ void playerSteer::setPositionReached(boolVec reached)  // sets the value of posi
     positionReached = reached;
 }
 
+AISystemSharedPtr playerSteer::getAI() const  // retrieves the value of AI
+{
+    return (AI);
+}
+void playerSteer::setAI(const AISystemSharedPtr &set)  // sets the value of AI
+{
+    AI = set;
+}
+
 basketballEntityMSharedPtr playerSteer::getActiveBasketballInstance()  // retrieves the value of activeBasketballInstance
 {
     return (activeBasketballInstance);
@@ -266,7 +275,7 @@ void playerSteer::reset()    // reset state
 
 void playerSteer::update(const float currentTime, float elapsedTime)  // update steering sim every frame
 {
-    AISystemSharedPtr ai = AISystem::Instance();
+
 //    sharedPtr<gameState> gameS = gameState::Instance();
     conversionSharedPtr convert ;
 
@@ -286,7 +295,7 @@ void playerSteer::update(const float currentTime, float elapsedTime)  // update 
     std::vector<sizeTVec> activePlayerID;
 
 //	playerSteerVecSharedPtr playerSteerInstance;
-	playerSteerVecSharedPtr pSteer = ai->getAllPlayerSteers();
+    playerSteerVecSharedPtr pSteer = AI->getAllPlayerSteers();
     //playerSteerVecSharedPtr team0Steers;
     //playerSteerVecSharedPtr team1Steers;
     playerSteerVecSharedPtr teamSteer;

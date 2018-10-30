@@ -32,6 +32,9 @@ class gameComponents
         gameComponents();  // constructor
         ~gameComponents();  // destructor
 
+        AISystemSharedPtr getAI() const;  // retrieves the value of AI;
+        void setAI(const AISystemSharedPtr &set);  // sets the value of AI
+
         courtDataVec getCourtDataInstance() const;  // retrieves the value of courtDataInstance
         void setCourtDataInstance(const courtDataVec &set);  // sets the value of courtDataInstance
 
@@ -73,6 +76,7 @@ class gameComponents
 
     private:
     
+        AISystemSharedPtr AI;  // stores the AI Instance
         courtDataVec courtDataInstance;  // stores the vector the courts loaded from the xml files
         inputInGameWorkQueues inputInGameWorkQueue;  // queue of input events for game
 

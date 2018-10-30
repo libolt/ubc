@@ -39,22 +39,6 @@
 #include "engine/physicsengine.h"
 #include "jumpballs/jumpballs.h"
 
-// static declarations
-/*jumpBallLocations_t jumpBalls::jumpBallLocation;  // sets where the jump ball is to be held
-playerPositionsVec jumpBalls::jumpBallPlayer;  // stores which two players will be jumping for the ball
-bool jumpBalls::ballTipped;  // stores whether or not the ball has been tipped
-bool jumpBalls::ballTipForceApplied;// stores whether or not force has been applied to tipped ball
-bool jumpBalls::playerHasBasketball;  // stores whether or not a player has control of the basketball
-teamTypes jumpBalls::ballTippedToTeam;  //  stores which team the ball has been tipped to
-size_t jumpBalls::ballTippedToPlayerID;  // stores which player ID the ball has been tipped to
-size_t jumpBalls::ballTippedToPlayerInstance;  // stores which player instance the ball has been tipped to
-playerPositions jumpBalls::ballTippedToPosition;  // stores position that the ball is tipped to
-bool jumpBalls::jumpBalls::setupComplete;  // stores whether a jumpBall scenario has been setup.l
-bool jumpBalls::jumpBallComplete;  // jump ball code has completed and a player is in control of the baskteball
-bool jumpBalls::executeJumpBall;  // stores whether or not to execute the jump ball sequence
-btVector3 jumpBalls::bballVelocity;  // stores the velocity of the basketball
-*/
-
 jumpBalls::jumpBalls()  // constructor
 {
     ballTipped = false;

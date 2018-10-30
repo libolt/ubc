@@ -46,6 +46,7 @@ UBCGame::UBCGame()  // constructor
     userInstancesInputSetup = false;
 
     inputSUInputSetup = false;
+    loadUsersInputInitialized = false;
 }
 
 UBCGame::~UBCGame()  // destructor
@@ -294,6 +295,13 @@ bool UBCGame::setupUserInstancesInput()  // sets up input mapping for each user
 //    loadUsersInputsSharedPtr loadUsersInput = loadUsersInput;
 //    inputEngineSharedPtr tempInputSharedPtr(new inputEngine);
 //    inputE = tempInputSharedPtr;
+    if (!loadUsersInputInitialized)
+    {
+        loadUsersInputsSharedPtr tempLoadUI(new loadUsersInputs);
+        loadUsersInput = tempLoadUI;
+        loadUsersInputInitialized = true;
+    }
+
     usersInputsVecSharedPtr tempUserInput;
     tempUserInput = loadUsersInput->loadUsersInputFiles();  // loads user defined input from file.
 

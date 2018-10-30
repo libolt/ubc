@@ -102,7 +102,8 @@ class UBCGame
         bool startActiveGame;  // stores whether to begin an active game instance
         bool userInstancesCreated;  // stores whether user instances have been created
         bool userInstancesInputSetup;  // stores status of input configuration for users
-        bool inputSUInputSetup;  // stores whether inputS UInput object has been se
+        bool inputSUInputSetup;  // stores whether inputS UInput object has been set
+        bool loadUsersInputInitialized;  // stores whether loadUsersInputs object has been initialized
         size_t numUsers; // stores number of users playing the game
         loadBasketballsSharedPtr loadBasketball;  // the loadBasketballs object
         loadCourtsSharedPtr loadCourt;  // the loadCourts object

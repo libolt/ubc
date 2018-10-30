@@ -38,7 +38,7 @@ setupCourts::~setupCourts()  // destructor
 courtEntityMSharedPtr setupCourts::createCourtInstances()  // creates court Instances
 {
     courtEntityMSharedPtr courtInstance;
-    loadCourtsSharedPtr loadCourt;
+    loadCourtsSharedPtr loadCourt(new loadCourts);
     std::string func = "setupCourts::createCourtInstances()";
 
     logMsg(func +" begin");

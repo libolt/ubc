@@ -197,9 +197,21 @@ bool playerEntity::updateStateMachine(playerActions actionType, playerSMData *SM
         case SETMODEL:
             logMsg(func +" SETMODEL");
             component->getStateMachine()->setPModel(SMData);
-            logMsg(func +" MODELSET");
-            
+            logMsg(func +" MODELSET");            
         break;
+        case MOVE:
+        break;
+        case JUMP:
+        break;
+        case SHOOT:
+        break;
+        case PASS:
+        break;
+        case STEAL:
+        break;
+        case BLOCK:
+        break;
+
     }
     logMsg(func + " end");
 //    exit(0);
@@ -256,6 +268,18 @@ bool playerEntity::update() // executes any updates that need to be performed
                 case SETMODEL:
                     logMsg(func + " SETMODEL!");
                     SMData->model = getModel();
+                break;
+                case MOVE:
+                break;
+                case JUMP:
+                break;
+                case SHOOT:
+                break;
+                case PASS:
+                break;
+                case STEAL:
+                break;
+                case BLOCK:
                 break;
             }
         

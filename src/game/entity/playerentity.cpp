@@ -34,7 +34,7 @@
 
 playerEntity::playerEntity()  // constructor
 {
-    
+    SMData = nullptr;
 }
 playerEntity::~playerEntity()  // destructor
 {

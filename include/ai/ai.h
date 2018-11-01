@@ -41,42 +41,42 @@ public:
     AISystem();  // constructor
     ~AISystem();  // destructor
 
-    gameEntitySharedPtr getGameInstance();  // retrieves the value of gameInstance
-    void setGameInstance(gameEntitySharedPtr set);  // sets the value of gameInstance
+    gameEntitySharedPtr getGameInstance() const;  // retrieves the value of gameInstance
+    void setGameInstance(const gameEntitySharedPtr &set);  // sets the value of gameInstance
 
-    basketballEntityMSharedPtr getActiveBasketballInstance();  // retrieves the value of activeBasketballInstance
-    void setActiveBasketballInstance(basketballEntityMSharedPtr set);  // sets the value of activeBasketballInstance
+    basketballEntityMSharedPtr getActiveBasketballInstance() const;  // retrieves the value of activeBasketballInstance
+    void setActiveBasketballInstance(const basketballEntityMSharedPtr &set);  // sets the value of activeBasketballInstance
 
-    courtEntityMSharedPtr getActiveCourtInstance();  // retrieves the value of activeCourtInstance
-    void setActiveCourtInstance(courtEntityMSharedPtr set);  // sets the value of activeCourtInstance
+    courtEntityMSharedPtr getActiveCourtInstance() const;  // retrieves the value of activeCourtInstance
+    void setActiveCourtInstance(const courtEntityMSharedPtr &set);  // sets the value of activeCourtInstance
 
-    teamEntityMSharedPtr getActiveTeamInstance();  // retrieves the value of activeTeamInstance
-    void setActiveTeamInstance(teamEntityMSharedPtr set);  // sets the value of activeTeamInstance
+    teamEntityMSharedPtr getActiveTeamInstance() const;  // retrieves the value of activeTeamInstance
+    void setActiveTeamInstance(const teamEntityMSharedPtr &set);  // sets the value of activeTeamInstance
 
-    teamTypes getTeamWithBall();  // retrieves the value of teamWithBall
-    void setTeamWithBall(teamTypes set);  // sets the value of teamWithBall
+    teamTypes getTeamWithBall() const;  // retrieves the value of teamWithBall
+    void setTeamWithBall(const teamTypes &set);  // sets the value of teamWithBall
 
-    std::string getHumanPlayer();  // retrieves the value of the humanPlayer
-    void setHumanPlayer(std::string set);  // sets the value of the human player
+    std::string getHumanPlayer() const;  // retrieves the value of the humanPlayer
+    void setHumanPlayer(const std::string &set);  // sets the value of the human player
 
 //    OpenSteer::AbstractVehicle* getSelectedVehicle(); // retrieves the value of selectedVehicle
-    OpenSteerAbstractVehicleSharedPtr getSelectedVehicle(); // retrieves the value of selectedVehicle
+    OpenSteerAbstractVehicleSharedPtr getSelectedVehicle() const; // retrieves the value of selectedVehicle
 
-    void setSelectedVehicle(OpenSteerAbstractVehicleSharedPtr vehicle);  // sets the value of selectedVehicle
+    void setSelectedVehicle(const OpenSteerAbstractVehicleSharedPtr &set);  // sets the value of selectedVehicle
 //    void setSelectedVehicle(OpenSteer::AbstractVehicle vehicle);  // sets the value of selectedVehicle
 
     
 //    playerSteerVecSharedPtr getAllPlayerSteers();	// retrieves the value of allPlayerSteers
 //    void setAllPlayerSteers(const playerSteerVecSharedPtr steers);	// sets the value of allPlayerSteers
 
-    playerSteerVecSharedPtr getAllPlayerSteers(); // retrieves the value of allPlayerSteers
-    void setAllPlayerSteers(const playerSteerVecSharedPtr steers);    // sets the value of allPlayerSteers
+    playerSteerVecSharedPtr getAllPlayerSteers() const;  // retrieves the value of allPlayerSteers
+    void setAllPlayerSteers(const playerSteerVecSharedPtr &steers);  // sets the value of allPlayerSteers
 
-    float getOldTime(); // returns the value of oldTime
-    void setOldTime(float time); // sets the value of oldTime
+    float getOldTime() const;  // returns the value of oldTime
+    void setOldTime(const float &time);  // sets the value of oldTime
 
     // initial setup of AI state
-    bool setup(basketballEntityMSharedPtr activeBasketballInstance, courtEntityMSharedPtr activeCourtInstance, teamEntityMSharedPtr activeTeamInstance, teamTypes teamWithBall, std::string humanPlayer);
+    bool setup(const basketballEntityMSharedPtr &activeBasketballInstance, const courtEntityMSharedPtr &activeCourtInstance, const teamEntityMSharedPtr &activeTeamInstance, const teamTypes &teamWithBall, const std::string &humanPlayer);
 
 	// updates AI state
 	void update(const float currentTime, const float elapsedTime);
@@ -87,13 +87,13 @@ public:
     void selectDefaultPlugIn ();
 
 	// select the "next" plug-in, cycling through "plug-in selection order"
-    void selectNextPlugIn (teamEntityMSharedPtr activeTeamInstance);
+    void selectNextPlugIn (const teamEntityMSharedPtr &activeTeamInstance);
 
 	// return name of currently selected plug-in
     const char *nameOfSelectedPlugIn ();
 
 	// open the currently selected plug-in
-    void openSelectedPlugIn (teamEntityMSharedPtr activeTeamInstance);
+    void openSelectedPlugIn (const teamEntityMSharedPtr &activeTeamInstance);
 
 	// do a simulation update for the currently selected plug-in
     void updateSelectedPlugIn (const float currentTime, const float elapsedTime);

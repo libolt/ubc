@@ -46,6 +46,7 @@
 teamEntity::teamEntity()
 {
     initialized = false;
+    offDef = NOOFFDEF;
 }
 teamEntity::~teamEntity()
 {
@@ -82,7 +83,7 @@ teamFlagsSharedPtr teamEntity::getFlag() const  // retrieves the value of flag
 {
     return (flag);
 }
-void teamEntity::setFlag(teamFlagsSharedPtr set)  // sets the value of flag
+void teamEntity::setFlag(const teamFlagsSharedPtr &set)  // sets the value of flag
 {
     flag = set;
 }
@@ -183,7 +184,7 @@ bool teamEntity::initializeStateMachine()  // initializes teamStateMachine objec
     return (true);
 }
 
-void teamEntity::updateState(gameComponentsSharedPtr gameInstanceComponent, gameFlagsSharedPtr gameInstanceFlag, gameDataSharedPtr gameInstanceData, renderEngineSharedPtr render)  // updates the state of the object
+void teamEntity::updateState(const gameComponentsSharedPtr &gameInstanceComponent, const gameFlagsSharedPtr &gameInstanceFlag, const gameDataSharedPtr &gameInstanceData, const renderEngineSharedPtr &render)  // updates the state of the object
 {
 
     conversionSharedPtr convert ;

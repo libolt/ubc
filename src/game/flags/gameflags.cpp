@@ -65,6 +65,7 @@ gameFlags::gameFlags()  // constructor
     tipOffSetupComplete = false;
     sceneCreated = false;
     finished = false;
+    tipOffComplete = false;
     
 }
 

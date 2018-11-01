@@ -78,6 +78,8 @@ gameEntity::gameEntity()  // constructor
     componentInitialized = false;
     dataInitialized = false;
     flagInitialized = false;
+    SMData = nullptr;
+    stateMachineInitialized = false;
 
 }
 
@@ -89,7 +91,7 @@ gameComponentsSharedPtr gameEntity::getComponent() const  // retrieves the value
 {
     return (component);
 }
-void gameEntity::setComponent(gameComponentsSharedPtr set)  // sets the value of component
+void gameEntity::setComponent(const gameComponentsSharedPtr &set)  // sets the value of component
 {
     component = set;
 }
@@ -205,7 +207,7 @@ bool gameEntity::setupActiveTeamInstances()  // sets up the active team instance
     return (true);
 }
 
-bool gameEntity::initializeStateMachine(renderEngineSharedPtr render)  // sets up the game condition
+bool gameEntity::initializeStateMachine(const renderEngineSharedPtr &render)  // sets up the game condition
 {
     std::string func = "gameEntity::initializeStateMachine()";
     gameSMData *tempSMData(new gameSMData); 
@@ -353,7 +355,7 @@ bool gameEntity::initializeStateMachine(renderEngineSharedPtr render)  // sets u
     return true;
 }*/
 
-bool gameEntity::updateState(renderEngineSharedPtr render)  // updates the game state
+bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates the game state
 {
     conversionSharedPtr convert ;
 //    AISystemSharedPtr ai = AISystem::Instance();
@@ -640,7 +642,7 @@ bool gameEntity::updateState(renderEngineSharedPtr render)  // updates the game 
     return true;
 }
 
-bool gameEntity::updateActiveTeamInstances(renderEngineSharedPtr render)  // updates all active team instances
+bool gameEntity::updateActiveTeamInstances(const renderEngineSharedPtr &render)  // updates all active team instances
 {
     teamEntityMSharedPtr activeTeamInstance = component->getActiveTeamInstance();
     conversionSharedPtr convert ;

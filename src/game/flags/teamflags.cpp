@@ -22,10 +22,6 @@
 
 teamFlags::teamFlags()  // constructor
 {
-
-}
-teamFlags::~teamFlags()  // destructor
-{
     activePlayerInstancesCreated = false;
     activePlayerInstancesSetup = false;
     activePlayerInstancesChanged = false;
@@ -34,6 +30,11 @@ teamFlags::~teamFlags()  // destructor
     playerStartDirectionsSet = false;
     playerWithBallDribbling = false;
     humanControlled = false;
+    stateMachineInitialized = false;
+
+}
+teamFlags::~teamFlags()  // destructor
+{
     
 }
 

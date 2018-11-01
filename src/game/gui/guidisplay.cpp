@@ -319,7 +319,7 @@ void GUISystem::hidePlayerStartSelectionMenuWidgets()  // hides all widgets tied
 
 }
 
-void GUISystem::showPlayerStartSelectionMenuWidgets(renderEngineSharedPtr render)  // shows all widgets tied to the Player Start Selection Menu
+void GUISystem::showPlayerStartSelectionMenuWidgets(const renderEngineSharedPtr &render)  // shows all widgets tied to the Player Start Selection Menu
 {
 
 //    renderEngineSharedPtr render; // = renderEngine::Instance();
@@ -430,7 +430,7 @@ void GUISystem::hideTeamSelectionMenuWidgets()  // hides all widgets tied to the
 //    backCourtSelectionMenuButton->setVisible(false);
 }
 
-void GUISystem::showTeamSelectionMenuWidgets(renderEngineSharedPtr render)  // show all widgets tied to the Team Selection Menu
+void GUISystem::showTeamSelectionMenuWidgets(const renderEngineSharedPtr &render)  // show all widgets tied to the Team Selection Menu
 {
 //    renderEngineSharedPtr render; // = renderEngine::Instance();
 
@@ -469,7 +469,7 @@ void GUISystem::hideCourtSelectionMenuWidgets()  // hides all widgets tied to th
     component->getCourtSelectionMenuButtons()["courtSelectButton"]->setVisible(false);
 //    exit(0);
 }
-void GUISystem::showCourtSelectionMenuWidgets(renderEngineSharedPtr render)  // show all widgets tied to the Court Selection Menu
+void GUISystem::showCourtSelectionMenuWidgets(const renderEngineSharedPtr &render)  // show all widgets tied to the Court Selection Menu
 {
 //    renderEngineSharedPtr render; // = renderEngine::Instance();
     conversionSharedPtr convert ;
@@ -542,7 +542,7 @@ void GUISystem::hideActiveMenuWidgets()  // hides active menus widgets
     }
 }
 
-void GUISystem::showActiveMenuWidgets(renderEngineSharedPtr render)  // shows active menus widgets
+void GUISystem::showActiveMenuWidgets(const renderEngineSharedPtr &render)  // shows active menus widgets
 {
 
     std::string func = "GUISystem::showActiveMenuWidgets()";
@@ -608,7 +608,7 @@ void GUISystem::showActiveMenuWidgets(renderEngineSharedPtr render)  // shows ac
 
 }
 
-void GUISystem::changeActiveMenu(activeMenus menu, renderEngineSharedPtr render)  // changes the actively displayed menu
+void GUISystem::changeActiveMenu(activeMenus menu, const renderEngineSharedPtr &render)  // changes the actively displayed menu
 {
 //    exit(0);
     std::string func = "GUISystem::changeActiveMenu()";

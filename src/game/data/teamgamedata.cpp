@@ -31,6 +31,7 @@ teamGameData::teamGameData()  // constructor
     playerWithBallID = -1;
     humanPlayer = 4;
     hoop = -1;
+    teamCollidesWith = 0;
 
 }
 teamGameData::~teamGameData()  // destructor

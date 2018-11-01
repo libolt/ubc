@@ -57,7 +57,7 @@ GUISystem::GUISystem()  // Initialmizes the GUISystem class
 {
 
     //activeMenu = nullptr;mm
-    //previousActiveMenu = nullptr;
+    previousActiveMenu = NOACTIVEMENU;
     displayCount = 0;
 
 }
@@ -123,7 +123,7 @@ void GUISystem::setPreviousActiveMenu(const activeMenus &set)  // sets the value
 }
 
 
-bool GUISystem::setup(renderEngineSharedPtr render)  // sets up the in game gui
+bool GUISystem::setup(const renderEngineSharedPtr &render)  // sets up the in game gui
 {
 
     std::string func = "GUISystem::setup()";
@@ -154,7 +154,7 @@ bool GUISystem::setup(renderEngineSharedPtr render)  // sets up the in game gui
     return (true);
 }
 
-void GUISystem::mainMenu(renderEngineSharedPtr render)  // msin in game menu
+void GUISystem::mainMenu(const renderEngineSharedPtr &render)  // msin in game menu
 {
 //    exit(0);
     std::string func = "GUISystem::mainMenu()";
@@ -218,7 +218,7 @@ void GUISystem::backButtons()  // handles the back buttons
 
 }
 
-void GUISystem::startSinglePlayerGame(renderEngineSharedPtr render)  // starts single player game
+void GUISystem::startSinglePlayerGame(const renderEngineSharedPtr &render)  // starts single player game
 {
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    exit(0);
@@ -237,7 +237,7 @@ void GUISystem::startSinglePlayerGame(renderEngineSharedPtr render)  // starts s
     logMsg(func +" end");
 }
 
-void GUISystem::startMultiPlayerGame(renderEngineSharedPtr render)  // starts multiplayer game
+void GUISystem::startMultiPlayerGame(const renderEngineSharedPtr &render)  // starts multiplayer game
 {
     if (!flag->getNetworkSetupMenuCreated())
     {
@@ -247,7 +247,7 @@ void GUISystem::startMultiPlayerGame(renderEngineSharedPtr render)  // starts mu
     changeActiveMenu(NETWORK, render);
 }
 
-void GUISystem::optionsMenu(renderEngineSharedPtr render)  // displays options menu
+void GUISystem::optionsMenu(const renderEngineSharedPtr &render)  // displays options menu
 {
     if (!flag->getOptionsMenuCreated())
     {
@@ -257,7 +257,7 @@ void GUISystem::optionsMenu(renderEngineSharedPtr render)  // displays options m
     changeActiveMenu(OPTIONS, render);
 }
 
-void GUISystem::displayMenu(renderEngineSharedPtr render)  // displays display menu
+void GUISystem::displayMenu(const renderEngineSharedPtr &render)  // displays display menu
 {
     if (!flag->getDisplaySetupMenuCreated())
     {
@@ -267,7 +267,7 @@ void GUISystem::displayMenu(renderEngineSharedPtr render)  // displays display m
     changeActiveMenu(DISPLAY, render);
 }
 
-void GUISystem::inputMenu(renderEngineSharedPtr render)  // displays the input menu
+void GUISystem::inputMenu(const renderEngineSharedPtr &render)  // displays the input menu
 {
     if (!flag->getInputSetupMenuCreated())
     {
@@ -276,7 +276,7 @@ void GUISystem::inputMenu(renderEngineSharedPtr render)  // displays the input m
 
     changeActiveMenu(INPUTMENU, render);
 }
-void GUISystem::audioMenu(renderEngineSharedPtr render)  // displays the audio menu
+void GUISystem::audioMenu(const renderEngineSharedPtr &render)  // displays the audio menu
 {
     if (!flag->getAudioSetupMenuCreated())
     {
@@ -286,7 +286,7 @@ void GUISystem::audioMenu(renderEngineSharedPtr render)  // displays the audio m
     changeActiveMenu(AUDIO, render);
 }
 
-void GUISystem::setupMenu(renderEngineSharedPtr render)  // displays game setup menu
+void GUISystem::setupMenu(const renderEngineSharedPtr &render)  // displays game setup menu
 {
     if (!flag->getSetupMenuCreated())
     {
@@ -297,7 +297,7 @@ void GUISystem::setupMenu(renderEngineSharedPtr render)  // displays game setup 
     changeActiveMenu(GAMESETUP, render);
 }
 
-void GUISystem::playerStartSelectionMenu(renderEngineSharedPtr render)  // displays player start selection menu
+void GUISystem::playerStartSelectionMenu(const renderEngineSharedPtr &render)  // displays player start selection menu
 {
     std::string func = "GUISystem::playerStartSelectionMenu()";
     
@@ -335,7 +335,7 @@ void GUISystem::playerStartSelectionMenu(renderEngineSharedPtr render)  // displ
 //    exit(0);
 }
 
-void GUISystem::teamSelectionMenu(renderEngineSharedPtr render)  // displays team selection menu
+void GUISystem::teamSelectionMenu(const renderEngineSharedPtr &render)  // displays team selection menu
 {
     conversionSharedPtr convert ;
     setupTeamsSharedPtr setupTeam(new setupTeams);
@@ -442,7 +442,7 @@ void GUISystem::teamSelectionMenu(renderEngineSharedPtr render)  // displays tea
     }
     
 //    hideCourtSelectionMenuWidgets();
-    if (changeMenu == true)
+    if (changeMenu)
     {
         logMsg(func +" Changing activeMenu to TEAMSELECT!");
 //        exit(0);
@@ -463,7 +463,7 @@ void GUISystem::teamSelectionMenu(renderEngineSharedPtr render)  // displays tea
 
 }
 
-void GUISystem::courtSelectionMenu(renderEngineSharedPtr render) // displays court selection menu
+void GUISystem::courtSelectionMenu(const renderEngineSharedPtr &render) // displays court selection menu
 {
 //    sharedPtr<gameState> gameS = gameState::Instance();
     conversionSharedPtr convert ;
@@ -533,7 +533,7 @@ void GUISystem::setSelectedIndexes()  // sets all player listbox indexes to zero
 
 }
 
-void GUISystem::networkClientSetupMenu(renderEngineSharedPtr render) // sets up the client connection
+void GUISystem::networkClientSetupMenu(const renderEngineSharedPtr &render) // sets up the client connection
 {
     if (!flag->getNetworkClientSetupMenuCreated())
     {
@@ -544,7 +544,7 @@ void GUISystem::networkClientSetupMenu(renderEngineSharedPtr render) // sets up 
 //    mGUI::InputManager->getInstance().setKeyFocusWidget(component->getClientIPAddressBox());
 }
 
-void GUISystem::networkServerSetupMenu(renderEngineSharedPtr render)  // sets up the networkServer instance
+void GUISystem::networkServerSetupMenu(const renderEngineSharedPtr &render)  // sets up the networkServer instance
 {
     if (!flag->getNetworkServerSetupMenuCreated())
     {
@@ -1257,17 +1257,17 @@ void GUISystem::setupHomeSelected()  // process home team selection on game setu
     flag->setSetupMenuAwaySelected(false);
 }
 
-void GUISystem::backNetworkSetupMenuSelected(renderEngineSharedPtr render)  // returns back to network setup screen
+void GUISystem::backNetworkSetupMenuSelected(const renderEngineSharedPtr &render)  // returns back to network setup screen
 {
     changeActiveMenu(NETWORK, render);
 }
 
-void GUISystem::backMainMenuSelected(renderEngineSharedPtr render)  // processes back to main menu selection
+void GUISystem::backMainMenuSelected(const renderEngineSharedPtr &render)  // processes back to main menu selection
 {
     changeActiveMenu(MAIN, render);
 }
 
-void GUISystem::backNetworkClientMenuSelected(renderEngineSharedPtr render)  // returns back to the network client menu
+void GUISystem::backNetworkClientMenuSelected(const renderEngineSharedPtr &render)  // returns back to the network client menu
 {
     changeActiveMenu(NETWORKCLIENT, render);
 }

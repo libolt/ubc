@@ -246,7 +246,7 @@ void GUIComponents::setCourtNameTxtBox(const MyGUITextBoxSharedPtr &set)  // set
 }*/
 
 
-bool GUIComponents::initMyGUI(renderEngineSharedPtr render)  // Initializes MyGUI
+bool GUIComponents::initMyGUI(const renderEngineSharedPtr &render)  // Initializes MyGUI
 {
     std::string func = "GUIComponents::initMyGUI()";
     

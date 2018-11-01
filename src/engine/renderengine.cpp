@@ -128,83 +128,83 @@ void renderEngine::setViewPort(const sharedPtr<Ogre::Viewport> &set) // sets the
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 
-AAssetManager *renderEngine::getMAssetMgr()  // retrieves the value of mAssetMgr
+AAssetManager *renderEngine::getMAssetMgr() const  // retrieves the value of mAssetMgr
 {
 	return (mAssetMgr);
 }
-void renderEngine::setMAssetMgr(AAssetManager *set)  // sets the value of mAssetMgr
+void renderEngine::setMAssetMgr(const AAssetManager* &set)  // sets the value of mAssetMgr
 {
 	mAssetMgr = set;
 }
-android_app *renderEngine::getApp()  // retrieves the value of app
+android_app *renderEngine::getApp() const  // retrieves the value of app
 {
 	return (app);
 }
-void renderEngine::setApp(android_app *set)  // sets the value of app
+void renderEngine::setApp(const android_app* &set)  // sets the value of app
 {
 	app = set;
 }
 #endif
 
-Ogre::Vector3 renderEngine::getMTranslateVector()  // retrieves the value of mTranslateVector
+Ogre::Vector3 renderEngine::getMTranslateVector() const  // retrieves the value of mTranslateVector
 {
 	return (mTranslateVector);
 }
-void renderEngine::setMTranslateVector(Ogre::Vector3 set)  // sets the value of mTranslateVector
+void renderEngine::setMTranslateVector(const Ogre::Vector3 &set)  // sets the value of mTranslateVector
 {
 	mTranslateVector = set;
 }
 
-Ogre::Radian renderEngine::getMRotX()  // retrieves the value of mRotX
+Ogre::Radian renderEngine::getMRotX() const  // retrieves the value of mRotX
 {
 	return (mRotX);
 }
-void renderEngine::setMRotX(Ogre::Radian set)  // sets the value of mRotX
+void renderEngine::setMRotX(const Ogre::Radian &set)  // sets the value of mRotX
 {
 	mRotX = set;
 }
 
-Ogre::Radian renderEngine::getMRotY()  // retrieves the value of mRotY
+Ogre::Radian renderEngine::getMRotY() const  // retrieves the value of mRotY
 {
 	return (mRotY);
 }
-void renderEngine::setMRotY(Ogre::Radian set)  // stes the value of mRotY
+void renderEngine::setMRotY(const Ogre::Radian &set)  // stes the value of mRotY
 {
 	mRotY = set;
 }
 
-Ogre::Real renderEngine::getMMoveSpeed()  // retrieves the value of mMoveSpeed
+Ogre::Real renderEngine::getMMoveSpeed() const  // retrieves the value of mMoveSpeed
 {
 	return (mMoveSpeed);
 }
-void renderEngine::setMMoveSpeed(Ogre::Real set)  // sets the value of mMoveSpeed
+void renderEngine::setMMoveSpeed(const Ogre::Real &set)  // sets the value of mMoveSpeed
 {
 	mMoveSpeed = set;
 }
 
-Ogre::Degree renderEngine::getMRotateSpeed()  // retrieves the value of mRotateSpeed
+Ogre::Degree renderEngine::getMRotateSpeed() const  // retrieves the value of mRotateSpeed
 {
 	return (mRotateSpeed);
 }
-void renderEngine::setMRotateSpeed(Ogre::Degree set)  // sets the value of mRotateSpeed
+void renderEngine::setMRotateSpeed(const Ogre::Degree &set)  // sets the value of mRotateSpeed
 {
 	mRotateSpeed = set;
 }
 
-float renderEngine::getMMoveScale()  // retrieves the value of mMoveScale
+float renderEngine::getMMoveScale() const  // retrieves the value of mMoveScale
 {
 	return (mMoveScale);
 }
-void renderEngine::setMMoveScale(float set)  // sets the value of mMoveScale
+void renderEngine::setMMoveScale(const float &set)  // sets the value of mMoveScale
 {
 	mMoveScale = set;
 }
 
-Ogre::Degree renderEngine::getMRotScale()  // retrieves the value of mRotScale
+Ogre::Degree renderEngine::getMRotScale() const  // retrieves the value of mRotScale
 {
 	return (mRotScale);
 }
-void renderEngine::setMRotScale(Ogre::Degree set)  // sets the value of mRotScale
+void renderEngine::setMRotScale(const Ogre::Degree &set)  // sets the value of mRotScale
 {
 	mRotScale = set;
 }
@@ -213,12 +213,12 @@ std::string renderEngine::getMResourceGroup()  // retrieves the value of mResour
 {
 	return (mResourceGroup);
 }
-void renderEngine::setMResourceGroup(std::string set)  // sets the value of mResourceGroup
+void renderEngine::setMResourceGroup(const std::string &set)  // sets the value of mResourceGroup
 {
 	mResourceGroup = set;
 }
 
-SDL_Window *renderEngine::getSDLWindow()  // retrieves the value of sdlWindow
+SDL_Window *renderEngine::getSDLWindow() const  // retrieves the value of sdlWindow
 {
 	return (sdlWindow);
 }
@@ -307,7 +307,7 @@ bool renderEngine::initSDL() // Initializes SDL Subsystem
         logMsg(func +" " +msg);
 #endif
 
-        return 1;
+        return (true);
     }
 
 //    exit(0);
@@ -443,7 +443,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 
     int c = 0;
     bool foundit = false;
-    Ogre::RenderSystem *selectedRenderSystem = 0;
+    Ogre::RenderSystem *selectedRenderSystem = nullptr;
     while (c < (int)rsList.size())
     {
         selectedRenderSystem = rsList.at(c);

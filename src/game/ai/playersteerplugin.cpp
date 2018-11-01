@@ -51,56 +51,56 @@ playerSteerPlugin::~playerSteerPlugin()  // destructor
     
 }
 
-gameEntitySharedPtr playerSteerPlugin::getGameInstance()  // retrieves the value of gameInstance
+gameEntitySharedPtr playerSteerPlugin::getGameInstance() const  // retrieves the value of gameInstance
 {
     return (gameInstance);
 }
-void playerSteerPlugin::setGameInstance(gameEntitySharedPtr set)  // sets the value of gameInstance
+void playerSteerPlugin::setGameInstance(const gameEntitySharedPtr &set)  // sets the value of gameInstance
 {
     gameInstance = set;
 }
 
-basketballEntityMSharedPtr playerSteerPlugin::getActiveBasketballInstance()  // retrieves the value of activeBasketballInstance
+basketballEntityMSharedPtr playerSteerPlugin::getActiveBasketballInstance() const  // retrieves the value of activeBasketballInstance
 {
     return (activeBasketballInstance);
 }
-void playerSteerPlugin::setActiveBasketballInstance(basketballEntityMSharedPtr set)  // sets the value of activeBasketballInstance
+void playerSteerPlugin::setActiveBasketballInstance(const basketballEntityMSharedPtr &set)  // sets the value of activeBasketballInstance
 {
     activeBasketballInstance = set;
 }
 
-courtEntityMSharedPtr playerSteerPlugin::getActiveCourtInstance()  // retrieves the value of activeCourtInstance
+courtEntityMSharedPtr playerSteerPlugin::getActiveCourtInstance() const  // retrieves the value of activeCourtInstance
 {
     return (activeCourtInstance);
 }
-void playerSteerPlugin::setActiveCourtInstance(courtEntityMSharedPtr set)  // sets the value of activeCourtInstance
+void playerSteerPlugin::setActiveCourtInstance(const courtEntityMSharedPtr &set)  // sets the value of activeCourtInstance
 {
     activeCourtInstance = set;
 }
 
-teamEntityMSharedPtr playerSteerPlugin::getActiveTeamInstance()  // retrieves the value of activeTeamInstance
+teamEntityMSharedPtr playerSteerPlugin::getActiveTeamInstance() const  // retrieves the value of activeTeamInstance
 {
     return (activeTeamInstance);
 }
-void playerSteerPlugin::setActiveTeamInstance(teamEntityMSharedPtr set)  // sets the value of activeTeamInstance
+void playerSteerPlugin::setActiveTeamInstance(const teamEntityMSharedPtr &set)  // sets the value of activeTeamInstance
 {
     activeTeamInstance = set;
 }
 
-teamTypes playerSteerPlugin::getTeamWithBall()  // retrieves the value of teamWithBall
+teamTypes playerSteerPlugin::getTeamWithBall() const  // retrieves the value of teamWithBall
 {
     return (teamWithBall);
 }
-void playerSteerPlugin::setTeamWithBall(teamTypes set)  // sets the value of teamWithBall
+void playerSteerPlugin::setTeamWithBall(const teamTypes &set)  // sets the value of teamWithBall
 {
     teamWithBall = set;
 }
 
-std::string playerSteerPlugin::getHumanPlayer()  // retrieves the value of the humanPlayer
+std::string playerSteerPlugin::getHumanPlayer() const  // retrieves the value of the humanPlayer
 {
     return (humanPlayer);
 }
-void playerSteerPlugin::setHumanPlayer(std::string set)  // sets the value of human player
+void playerSteerPlugin::setHumanPlayer(const std::string &set)  // sets the value of human player
 {
     humanPlayer = set;
 }

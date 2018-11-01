@@ -330,7 +330,7 @@ bool inputEngine::processInput()  // processes all input
                 inputText = inputEvent.text.text;
                 logMsg(func +" inputText! == " +inputText);
 //                exit(0);
-                if (inputText != "")
+                if (!inputText.empty())
                 {
                     logMsg(func +" inputText == " +convert->toString(keyPressed));
                     if (processTextInput())

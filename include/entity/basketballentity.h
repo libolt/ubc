@@ -128,13 +128,13 @@ class basketballEntity : public entity
     size_t getNumber() const;  // retrieves the value of number
     void setNumber(const size_t &set);  // sets the value of number
 
-    void updateState(gameComponentsSharedPtr gameComponent, gameDataSharedPtr gameDta, gameFlagsSharedPtr gameFlag);  // updates the state of the basketball
+    void updateState(const gameComponentsSharedPtr &gameComponent, const gameDataSharedPtr &gameDta, const gameFlagsSharedPtr &gameFlag);  // updates the state of the basketball
     
     void updatePosition();  // updates the position of the basketball
 
-    void updateMovement(gameComponentsSharedPtr gameComponent, gameDataSharedPtr gameDta, gameFlagsSharedPtr gameFlag);  // updates the movement of basketball(s)
+    void updateMovement(const gameComponentsSharedPtr &gameComponent, const gameDataSharedPtr &gameDta, const gameFlagsSharedPtr &gameFlag);  // updates the movement of basketball(s)
    
-    void updateDirection(gameComponentsSharedPtr gameComponent, gameDataSharedPtr gameDta, gameFlagsSharedPtr gameFlag);  // updates the direction of basketball(s)
+    void updateDirection(const gameComponentsSharedPtr &gameComponent, const gameDataSharedPtr &gameDta, const gameFlagsSharedPtr &gameFlag);  // updates the direction of basketball(s)
     
     Ogre::Vector3 calculatePositionChange();  // calculates the change in position of the basketball model in x,y,z coordinates
 

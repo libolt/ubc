@@ -42,7 +42,7 @@ class teamEntity
         void setData(const teamDataSharedPtr &set);  // sets the value of data
 
         teamFlagsSharedPtr getFlag() const;  // retrieves the value of flag
-        void setFlag(const teamFlagsSharedPtr set);  // sets the value of flag
+        void setFlag(const teamFlagsSharedPtr &set);  // sets the value of flag
 
         teamGameDataSharedPtr getGameData() const;  // retrieves the value of gameData
         void setGameData(const teamGameDataSharedPtr &set);  // sets the value of gameData
@@ -60,7 +60,7 @@ class teamEntity
 
         bool initializeStateMachine();  // initializes teamStateMachine object
 
-        void updateState(gameComponentsSharedPtr gameComponent, gameFlagsSharedPtr gameFlag, gameDataSharedPtr gameData, renderEngineSharedPtr render);  // updates the state of the teamState object
+        void updateState(const gameComponentsSharedPtr &gameComponent, const gameFlagsSharedPtr &gameFlag, const gameDataSharedPtr &gameData, const renderEngineSharedPtr &render);  // updates the state of the teamState object
 
         
     private:

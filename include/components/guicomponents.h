@@ -110,7 +110,7 @@ class GUIComponents
 
 //        void startSingleGameButtonClicked(MyGUI::Widget *_sender);  // handles startSingleGameButton click event
 
-        bool initMyGUI(renderEngineSharedPtr render);  // Initializes MyGUI
+        bool initMyGUI(const renderEngineSharedPtr &render);  // Initializes MyGUI
 
     private:
 

@@ -68,7 +68,7 @@ public:
     activeMenus getPreviousActiveMenu() const;  // retrieves the value of previousActiveMenu
     void setPreviousActiveMenu(const activeMenus &set);  // sets the value of previousActiveMenu
 
-    bool setup(renderEngineSharedPtr render);  // sets up the in game gui
+    bool setup(const renderEngineSharedPtr &render);  // sets up the in game gui
     bool createMainMenuGUI(renderEngineSharedPtr render);  // creates GUI gor main menu screen.
     bool createNetworkSetupGUI(renderEngineSharedPtr render);  // creates GUI for network setup screen.
     bool createNetworkClientSetupGUI(renderEngineSharedPtr render);  // creates GUI for network client setup screen.
@@ -97,20 +97,20 @@ public:
     void processTeamSelectionMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // process team selection menu key input
     void processCourtSelectionMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // process court selection menu key input
 	
-    void mainMenu(renderEngineSharedPtr render);  // msin in game menu
+    void mainMenu(const renderEngineSharedPtr &render);  // msin in game menu
     void backButtons();  // handles the back buttons
-    void startSinglePlayerGame(renderEngineSharedPtr render);  // starts single player game
-    void startMultiPlayerGame(renderEngineSharedPtr render);  // starts multiplayer game
-    void optionsMenu(renderEngineSharedPtr render);  // displays options menu
-    void displayMenu(renderEngineSharedPtr render);  // displays display menu
-    void inputMenu(renderEngineSharedPtr render);  // displays the input menu
-    void audioMenu(renderEngineSharedPtr render);  // displays the audio menu
-    void setupMenu(renderEngineSharedPtr render);  // displays game setup menu
-    void playerStartSelectionMenu(renderEngineSharedPtr render);  // displays player start selection menu
-    void teamSelectionMenu(renderEngineSharedPtr render);  // displays team selection menu
-    void courtSelectionMenu(renderEngineSharedPtr render);  // displays court selection menu
-    void networkClientSetupMenu(renderEngineSharedPtr render);  // sets up the network client connection
-    void networkServerSetupMenu(renderEngineSharedPtr render);  // sets up the networkServer instance
+    void startSinglePlayerGame(const renderEngineSharedPtr &render);  // starts single player game
+    void startMultiPlayerGame(const renderEngineSharedPtr &render);  // starts multiplayer game
+    void optionsMenu(const renderEngineSharedPtr &render);  // displays options menu
+    void displayMenu(const renderEngineSharedPtr &render);  // displays display menu
+    void inputMenu(const renderEngineSharedPtr &render);  // displays the input menu
+    void audioMenu(const renderEngineSharedPtr &render);  // displays the audio menu
+    void setupMenu(const renderEngineSharedPtr &render);  // displays game setup menu
+    void playerStartSelectionMenu(const renderEngineSharedPtr &render);  // displays player start selection menu
+    void teamSelectionMenu(const renderEngineSharedPtr &render);  // displays team selection menu
+    void courtSelectionMenu(const renderEngineSharedPtr &render);  // displays court selection menu
+    void networkClientSetupMenu(const renderEngineSharedPtr &render);  // sets up the network client connection
+    void networkServerSetupMenu(const renderEngineSharedPtr &render);  // sets up the networkServer instance
     
     bool addCourtSelectionMenuData();  // adds data to Court Selection Menu widgets
 
@@ -128,9 +128,9 @@ public:
     void playerStartSelected();  // process player start selection
     void setupAwaySelected();  // processes away team selectdion on game setup menu
     void setupHomeSelected();  // process home team selection on game setup menu
-    void backMainMenuSelected(renderEngineSharedPtr render);  // processes back to main menu selection
-    void backNetworkSetupMenuSelected(renderEngineSharedPtr render);  // returns back to network setup screen
-    void backNetworkClientMenuSelected(renderEngineSharedPtr render);  // returns back to the network client menu
+    void backMainMenuSelected(const renderEngineSharedPtr &render);  // processes back to main menu selection
+    void backNetworkSetupMenuSelected(const renderEngineSharedPtr &render);  // returns back to network setup screen
+    void backNetworkClientMenuSelected(const renderEngineSharedPtr &render);  // returns back to the network client menu
     
     bool checkTeamInstancesCreated();  // Checks if team instances have been created and if not creates them.
 
@@ -194,19 +194,19 @@ public:
     void hideSetupMenuWidgets();  // hides all widgets tied to the Game Setup Menu
     void showSetupMenuWidgets();  // shows all widgets tied to the Game Setup Menu
 
-    void hidePlayerStartSelectionMenuWidgets(); // hides all widgets tied to the Player Start Selection Menu
-    void showPlayerStartSelectionMenuWidgets(renderEngineSharedPtr render); // shows all widgets tied to the Player Start Selection Menu
+    void hidePlayerStartSelectionMenuWidgets();  // hides all widgets tied to the Player Start Selection Menu
+    void showPlayerStartSelectionMenuWidgets(const renderEngineSharedPtr &render);  // shows all widgets tied to the Player Start Selection Menu
 
     void hideTeamSelectionMenuWidgets(); // hides all widgets tied to the Team Selection Menu
-    void showTeamSelectionMenuWidgets(renderEngineSharedPtr render); // show all widgets tied to the Team Selection Menu
+    void showTeamSelectionMenuWidgets(const renderEngineSharedPtr &render);  // show all widgets tied to the Team Selection Menu
 
     void hideCourtSelectionMenuWidgets(); // hides all widgets tied to the Court Selection Menu
-    void showCourtSelectionMenuWidgets(renderEngineSharedPtr render); // show all widgets tied to the Court Selection Menu
+    void showCourtSelectionMenuWidgets(const renderEngineSharedPtr &render); // show all widgets tied to the Court Selection Menu
 	
     void hideActiveMenuWidgets();  // hides active menus widgets
-    void showActiveMenuWidgets(renderEngineSharedPtr render);  // shows active menus widgets
+    void showActiveMenuWidgets(const renderEngineSharedPtr &render);  // shows active menus widgets
     
-    void changeActiveMenu(activeMenus menu, renderEngineSharedPtr render);  // changes the actively displayed menu
+    void changeActiveMenu(activeMenus menu, const renderEngineSharedPtr &render);  // changes the actively displayed menu
     
 private:
 

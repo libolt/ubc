@@ -42,7 +42,7 @@ class gameComponents
         void setInputInGameWorkQueue(const inputInGameWorkQueues &set);  // sets the value of inputInGameWorkQueue
 
         basketballEntityMSharedPtr getActiveBasketballInstance() const;  // retrieves the value of activeBasketballInstance
-        void setActiveBasketballInstance(basketballEntityMSharedPtr set);  // sets the value of activeBasketballInstance
+        void setActiveBasketballInstance(const basketballEntityMSharedPtr &set);  // sets the value of activeBasketballInstance
 
         courtEntityMSharedPtr getActiveCourtInstance() const;  // retrieves the value of activeCourtInstance
         void setActiveCourtInstance(const courtEntityMSharedPtr &set);  // sets the value of activeCourtInstance

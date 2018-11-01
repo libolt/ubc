@@ -80,38 +80,38 @@ class renderEngine : public engine
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     Ogre::DataStreamPtr openAPKFile(const std::string &set);  // opens APK file
 
-    AAssetManager* getMAssetMgr();  // retrieves the value of mAssetMgr
-    void setMAssetMgr(AAssetManager* set);  // stes the value of mAssetMgr
+    AAssetManager* getMAssetMgr() const;  // retrieves the value of mAssetMgr
+    void setMAssetMgr(const AAssetManager* &set);  // sets the value of mAssetMgr
 	
-    android_app *getApp();  // retireves the value of app
-    void setApp(android_app *set);  // sets the value of app
+    android_app *getApp() const;  // retireves the value of app
+    void setApp(const android_app* &set);  // sets the value of app
 #endif
 
-    Ogre::Vector3 getMTranslateVector();  // retrieves the value of mTranslateVector
-    void setMTranslateVector(Ogre::Vector3 set);  // sets the value of mTranslateVector
+    Ogre::Vector3 getMTranslateVector() const;  // retrieves the value of mTranslateVector
+    void setMTranslateVector(const Ogre::Vector3 &set);  // sets the value of mTranslateVector
 
-    Ogre::Radian getMRotX();  // retrieves the value of mRotX
-    void setMRotX(Ogre::Radian set);  // sets the value of mRotX
+    Ogre::Radian getMRotX() const;  // retrieves the value of mRotX
+    void setMRotX(const Ogre::Radian &set);  // sets the value of mRotX
 
-    Ogre::Radian getMRotY();  // retrieves the value of mRotY
-    void setMRotY(Ogre::Radian set);  // sets the value of mRotY
+    Ogre::Radian getMRotY() const;  // retrieves the value of mRotY
+    void setMRotY(const Ogre::Radian &set);  // sets the value of mRotY
 
-    Ogre::Real getMMoveSpeed();  // retrieves the value of mMoveSpeed
-    void setMMoveSpeed(Ogre::Real set);  // sets the value of mMoveSpeed
+    Ogre::Real getMMoveSpeed() const;  // retrieves the value of mMoveSpeed
+    void setMMoveSpeed(const Ogre::Real &set);  // sets the value of mMoveSpeed
 
-    Ogre::Degree getMRotateSpeed();  // retrieves the value of mRotateSpeed
-    void setMRotateSpeed(Ogre::Degree set);  // stes the value of mRotateSpeed
+    Ogre::Degree getMRotateSpeed() const;  // retrieves the value of mRotateSpeed
+    void setMRotateSpeed(const Ogre::Degree &set);  // stes the value of mRotateSpeed
 
-    float getMMoveScale();  // retrieves the value of mMoveScale
-    void setMMoveScale(float set);  // sets the value of mMoveScale
+    float getMMoveScale() const;  // retrieves the value of mMoveScale
+    void setMMoveScale(const float &set);  // sets the value of mMoveScale
 
-    Ogre::Degree getMRotScale();  // retrieves the value of mRotScale
-    void setMRotScale(Ogre::Degree set);  // sets the value of mRotScale
+    Ogre::Degree getMRotScale() const;  // retrieves the value of mRotScale
+    void setMRotScale(const Ogre::Degree &set);  // sets the value of mRotScale
 
     std::string getMResourceGroup();  // retrieves the value of mResourceGroup
-    void setMResourceGroup(std::string set);  // sets the value of mResourceGroup
+    void setMResourceGroup(const std::string &set);  // sets the value of mResourceGroup
 
-    SDL_Window *getSDLWindow();  // retireves the value of SDLWindow
+    SDL_Window *getSDLWindow() const;  // retireves the value of SDLWindow
     void setSDLWindow(SDL_Window *set);  // sets the value of SDLWindow
 
 /*    uint32_t getWindowWidth();  // retrieves the value of windowWidth

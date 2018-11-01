@@ -481,7 +481,7 @@ Ogre::Vector3 basketballEntity::calculatePositionChange()
     return(changeInPosition);
 }
 
-void basketballEntity::updateState(gameComponentsSharedPtr gameComponent, gameDataSharedPtr gameDta, gameFlagsSharedPtr gameFlag)  // updates the state of the basketball
+void basketballEntity::updateState(const gameComponentsSharedPtr &gameComponent, const gameDataSharedPtr &gameDta, const gameFlagsSharedPtr &gameFlag)  // updates the state of the basketball
 {
     bool modelNeedsLoaded = getModelNeedsLoaded();
     std::string func = "basketballState::updateState()";
@@ -620,7 +620,7 @@ void basketballEntity::updatePosition() // updates the position of the basketbal
     logMsg(func + " end");
 }
 
-void basketballEntity::updateMovement(gameComponentsSharedPtr gameComponent, gameDataSharedPtr gameDta, gameFlagsSharedPtr gameFlag)  // updates the basketball(s) movements
+void basketballEntity::updateMovement(const gameComponentsSharedPtr &gameComponent, const gameDataSharedPtr &gameDta, const gameFlagsSharedPtr &gameFlag)  // updates the basketball(s) movements
 {
     conversionSharedPtr convert ;
 //    sharedPtr<gameState> gameS = gameState::Instance();
@@ -693,7 +693,7 @@ TS*/
     logMsg(func + " end");
 }
 
-void basketballEntity::updateDirection(gameComponentsSharedPtr gameComponent, gameDataSharedPtr gameDta, gameFlagsSharedPtr gameFlag)  // updates basketball direction(s)
+void basketballEntity::updateDirection(const gameComponentsSharedPtr &gameComponent, const gameDataSharedPtr &gameDta, const gameFlagsSharedPtr &gameFlag)  // updates basketball direction(s)
 {
     //conversion *convert = conversion::Instance();
     conversionSharedPtr convert ;

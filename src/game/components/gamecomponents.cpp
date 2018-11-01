@@ -61,7 +61,7 @@ basketballEntityMSharedPtr gameComponents::getActiveBasketballInstance() const  
 {
     return (activeBasketballInstance);
 }
-void gameComponents::setActiveBasketballInstance(basketballEntityMSharedPtr set)  // sets the value of activeBasketballInstance
+void gameComponents::setActiveBasketballInstance(const basketballEntityMSharedPtr &set)  // sets the value of activeBasketballInstance
 {
     activeBasketballInstance = set;
 }

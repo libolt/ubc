@@ -31,6 +31,7 @@ playerGameData::playerGameData()  // constructor
     passToPlayer = NONE;
     direction = NODIRECT;
     oldDirection = NODIRECT;
+    courtPositionChangedType = NOCHANGE;
 }
 playerGameData::~playerGameData()  // destructor
 {

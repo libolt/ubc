@@ -43,23 +43,23 @@ class playerSteerPlugin : public OpenSteer::PlugIn, steering
     playerSteerPlugin();  // constructor
     ~playerSteerPlugin();  // destructor
 
-    gameEntitySharedPtr getGameInstance();  // retrieves the value of gameInstance
-    void setGameInstance(gameEntitySharedPtr set);  // sets the value of gameInstance
+    gameEntitySharedPtr getGameInstance() const;  // retrieves the value of gameInstance
+    void setGameInstance(const gameEntitySharedPtr &set);  // sets the value of gameInstance
 
-    basketballEntityMSharedPtr getActiveBasketballInstance();  // retrieves the value of activeBasketballInstance
-    void setActiveBasketballInstance(basketballEntityMSharedPtr set);  // sets the value of activeBasketballInstance
+    basketballEntityMSharedPtr getActiveBasketballInstance() const;  // retrieves the value of activeBasketballInstance
+    void setActiveBasketballInstance(const basketballEntityMSharedPtr &set);  // sets the value of activeBasketballInstance
 
-    courtEntityMSharedPtr getActiveCourtInstance();  // retrieves the value of activeCourtInstance
-    void setActiveCourtInstance(courtEntityMSharedPtr set);  // sets the value of activeCourtInstance
+    courtEntityMSharedPtr getActiveCourtInstance() const;  // retrieves the value of activeCourtInstance
+    void setActiveCourtInstance(const courtEntityMSharedPtr &set);  // sets the value of activeCourtInstance
 
-    teamEntityMSharedPtr getActiveTeamInstance();  // retrieves the value of activeTeamInstance
-    void setActiveTeamInstance(teamEntityMSharedPtr set);  // sets the value of activeTeamInstance
+    teamEntityMSharedPtr getActiveTeamInstance() const;  // retrieves the value of activeTeamInstance
+    void setActiveTeamInstance(const teamEntityMSharedPtr &set);  // sets the value of activeTeamInstance
 
-    teamTypes getTeamWithBall();  // retrieves the value of teamWithBall
-    void setTeamWithBall(teamTypes set);  // sets the value of teamWithBall
+    teamTypes getTeamWithBall() const;  // retrieves the value of teamWithBall
+    void setTeamWithBall(const teamTypes &set);  // sets the value of teamWithBall
 
-    std::string getHumanPlayer();  // retrieves the value of the humanPlayer
-    void setHumanPlayer(std::string set);  // sets the value of the human player
+    std::string getHumanPlayer() const;  // retrieves the value of the humanPlayer
+    void setHumanPlayer(const std::string &set);  // sets the value of the human player
 
     void open();  // opens the plugin
 

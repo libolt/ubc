@@ -48,6 +48,7 @@ playerFlags::playerFlags()  // constructor
     stateChanged = false;
     SMNodeSet = false;
     SMModelSet = false;
+    passCompleted = false;
 }
 playerFlags::~playerFlags()  // destructor
 {

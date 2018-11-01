@@ -90,67 +90,67 @@ void playerSteer::setGameS(sharedPtr<gameState> set)  // sets the value of gameS
     gameS = set;
 }*/
 
-teamTypes playerSteer::getTeamType()  // retrieves the value of teamType
+teamTypes playerSteer::getTeamType() const  // retrieves the value of teamType
 {
     return (teamType);
 }
-void playerSteer::setTeamType(teamTypes set)  // sets the value of teamType
+void playerSteer::setTeamType(const teamTypes &set)  // sets the value of teamType
 {
     teamType = set;
 }
 
-size_t playerSteer::getID()  // retrieves the value of ID
+size_t playerSteer::getID() const  // retrieves the value of ID
 {
     return (ID);
 }
-void playerSteer::setID(size_t set)  // sets the value of ID
+void playerSteer::setID(const size_t &set)  // sets the value of ID
 {
     ID = set;
 }
 
-playerPositions playerSteer::getPlayerPosition()  // retrieves the value of position
+playerPositions playerSteer::getPlayerPosition() const  // retrieves the value of position
 {
     return (playerPosition);
 }
-void playerSteer::setPlayerPosition(playerPositions set)  // sets the value of position
+void playerSteer::setPlayerPosition(const playerPositions &set)  // sets the value of position
 {
     playerPosition = set;
 }
 
-float playerSteer::getDistToPosition() // retrieves the value of distToPosition
+float playerSteer::getDistToPosition() const // retrieves the value of distToPosition
 {
 	return (distToPosition);
 }
-void playerSteer::setDistToPosition(float set)  // sets value of distToPosition
+void playerSteer::setDistToPosition(const float &set)  // sets value of distToPosition
 {
     distToPosition = set;
 }
 
-bool playerSteer::getExecute()  // retrieves the value of execute
+bool playerSteer::getExecute() const  // retrieves the value of execute
 {
     return (execute);
 }
-void playerSteer::setExecute(bool set)  // sets the value of execute
+void playerSteer::setExecute(const bool &set)  // sets the value of execute
 {
     execute = set;
 }
 
-OpenSteer::Vec3 playerSteer::getSteerCoords()  // retrieves the value of steerCoords
+OpenSteer::Vec3 playerSteer::getSteerCoords() const  // retrieves the value of steerCoords
 {
     return (steerCoords);
 }
-void playerSteer::setSteerCoords(OpenSteer::Vec3 coords)  // sets the value of steerCoords
+void playerSteer::setSteerCoords(const OpenSteer::Vec3 &coords)  // sets the value of steerCoords
 {
     steerCoords = coords;
 }
 
-boolVec playerSteer::getPositionReached()  // retrieves the value of positionReached
+boolVec playerSteer::getPositionReached() const  // retrieves the value of positionReached
 {
     return (positionReached);
 }
-void playerSteer::setPositionReached(boolVec reached)  // sets the value of positionReached
+void playerSteer::setPositionReached(const boolVec &set)  // sets the value of positionReached
 {
-    positionReached = reached;
+    positionReached = set;
 }
 
 AISystemSharedPtr playerSteer::getAI() const  // retrieves the value of AI
@@ -162,38 +162,47 @@ void playerSteer::setAI(const AISystemSharedPtr &set)  // sets the value of AI
     AI = set;
 }
 
-basketballEntityMSharedPtr playerSteer::getActiveBasketballInstance()  // retrieves the value of activeBasketballInstance
+basketballEntityMSharedPtr playerSteer::getActiveBasketballInstance() const  // retrieves the value of activeBasketballInstance
 {
     return (activeBasketballInstance);
 }
-void playerSteer::setActiveBasketballInstance(basketballEntityMSharedPtr set)  // sets the value of activeBasketballInstance
+void playerSteer::setActiveBasketballInstance(const basketballEntityMSharedPtr &set)  // sets the value of activeBasketballInstance
 {
     activeBasketballInstance = set;
 }
 
-courtEntityMSharedPtr playerSteer::getActiveCourtInstance()  // retrieves the value of activeCourtInstance
+courtEntityMSharedPtr playerSteer::getActiveCourtInstance() const  // retrieves the value of activeCourtInstance
 {
     return (activeCourtInstance);
 }
-void playerSteer::setActiveCourtInstance(courtEntityMSharedPtr set)  // sets the value of activeCourtInstance
+void playerSteer::setActiveCourtInstance(const courtEntityMSharedPtr &set)  // sets the value of activeCourtInstance
 {
     activeCourtInstance = set;
 }
 
-teamEntityMSharedPtr playerSteer::getActiveTeamInstance()  // retrieves the value of activeTeamInstance
+teamEntityMSharedPtr playerSteer::getActiveTeamInstance() const  // retrieves the value of activeTeamInstance
 {
     return (activeTeamInstance);
 }
-void playerSteer::setActiveTeamInstance(teamEntityMSharedPtr set)  // sets the value of activeTeamInstance
+void playerSteer::setActiveTeamInstance(const teamEntityMSharedPtr &set)  // sets the value of activeTeamInstance
 {
     activeTeamInstance = set;
 }
 
-std::string playerSteer::getHumanPlayer()  // retrieves the value of the humanPlayer
+teamTypes playerSteer::getTeamWithBall() const  // retrieves the value of teamWithBall
+{
+    return (teamWithBall);
+}
+void playerSteer::setTeamWithBall(const teamTypes &set)  // sets the value of teamWithBall
+{
+    teamWithBall = set;
+}
+
+std::string playerSteer::getHumanPlayer() const  // retrieves the value of the humanPlayer
 {
     return (humanPlayer);
 }
-void playerSteer::setHumanPlayer(std::string set)  // sets the value of human player
+void playerSteer::setHumanPlayer(const std::string &set)  // sets the value of human player
 {
     humanPlayer = set;
 }

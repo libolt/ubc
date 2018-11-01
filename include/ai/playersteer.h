@@ -40,44 +40,44 @@ class playerSteer : public steering
 //    gameStateSharedPtr getGameS();  // retrieves the value of gameS
 //    void setGameS(gameStateSharedPtr set);  // sets the value of gameS
 
-    teamTypes getTeamType();  // retrieves the value of teamType
-    void setTeamType(teamTypes set);  // sets the value of teamType
+    teamTypes getTeamType() const;  // retrieves the value of teamType
+    void setTeamType(const teamTypes &set);  // sets the value of teamType
 
-    size_t getID();  // retrieves the value of ID
-    void setID(size_t set);  // sets the value of ID
+    size_t getID() const;  // retrieves the value of ID
+    void setID(const size_t &set);  // sets the value of ID
 
-    playerPositions getPlayerPosition();  // retrieves the value of playerPosition
-    void setPlayerPosition(playerPositions set);  // sets the value of playerPosition
+    playerPositions getPlayerPosition() const;  // retrieves the value of playerPosition
+    void setPlayerPosition(const playerPositions &set);  // sets the value of playerPosition
 	
-    float getDistToPosition();  // retrieves the value of distToPosition
-    void setDistToPosition(float dist);  // sets value of distToPosition
+    float getDistToPosition() const;  // retrieves the value of distToPosition
+    void setDistToPosition(const float &dist);  // sets value of distToPosition
 	
-    bool getExecute();  // retrieves the value of execute
-    void setExecute(bool set);  // sets the value of execute
+    bool getExecute() const;  // retrieves the value of execute
+    void setExecute(const bool &set);  // sets the value of execute
 	
-    OpenSteer::Vec3 getSteerCoords();  // retrieves the value of steerCoords
-    void setSteerCoords(OpenSteer::Vec3 coords);  // sets the value of steerCoords
+    OpenSteer::Vec3 getSteerCoords() const;  // retrieves the value of steerCoords
+    void setSteerCoords(const OpenSteer::Vec3 &coords);  // sets the value of steerCoords
 	
-    boolVec getPositionReached();  // retrieves the value of positionReached
-    void setPositionReached(boolVec reached);  // sets the value of positionReached
+    boolVec getPositionReached() const;  // retrieves the value of positionReached
+    void setPositionReached(const boolVec &set);  // sets the value of positionReached
 	
     AISystemSharedPtr getAI() const;  // retrieves the value of AI
     void setAI(const AISystemSharedPtr &set);  // sets the value of AI
 
-    basketballEntityMSharedPtr getActiveBasketballInstance();  // retrieves the value of activeBasketballInstance
-    void setActiveBasketballInstance(basketballEntityMSharedPtr set);  // sets the value of activeBasketballInstance
+    basketballEntityMSharedPtr getActiveBasketballInstance() const;  // retrieves the value of activeBasketballInstance
+    void setActiveBasketballInstance(const basketballEntityMSharedPtr &set);  // sets the value of activeBasketballInstance
 
-    courtEntityMSharedPtr getActiveCourtInstance();  // retrieves the value of activeCourtInstance
-    void setActiveCourtInstance(courtEntityMSharedPtr set);  // sets the value of activeCourtInstance
+    courtEntityMSharedPtr getActiveCourtInstance() const;  // retrieves the value of activeCourtInstance
+    void setActiveCourtInstance(const courtEntityMSharedPtr &set);  // sets the value of activeCourtInstance
 
-    teamEntityMSharedPtr getActiveTeamInstance();  // retrieves the value of activeTeamInstance
-    void setActiveTeamInstance(teamEntityMSharedPtr set);  // sets the value of activeTeamInstance
+    teamEntityMSharedPtr getActiveTeamInstance() const;  // retrieves the value of activeTeamInstance
+    void setActiveTeamInstance(const teamEntityMSharedPtr &set);  // sets the value of activeTeamInstance
 
-    teamTypes getTeamWithBall();  // retrieves the value of teamWithBall
-    void setTeamWithBall(teamTypes set);  // sets the value of teamWithBall
+    teamTypes getTeamWithBall() const;  // retrieves the value of teamWithBall
+    void setTeamWithBall(const teamTypes &set);  // sets the value of teamWithBall
 
-    std::string getHumanPlayer();  // retrieves the value of the humanPlayer
-    void setHumanPlayer(std::string set);  // sets the value of the human player
+    std::string getHumanPlayer() const;  // retrieves the value of the humanPlayer
+    void setHumanPlayer(const std::string &set);  // sets the value of the human player
 
     void reset();  // resets the state
     void update(const float currentTime, const float elapsedTime);  // update steering sim every frame

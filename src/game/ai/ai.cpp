@@ -40,6 +40,7 @@ AISystem::AISystem()
 //    baseInitialized = false;
     selectedVehicle = nullptr;
     oldTime = 0.0f;
+    teamWithBall = NOTEAM;
 //    playerSteerPluginInstance = new playerSteerPlugin;
 
 }
@@ -48,83 +49,83 @@ AISystem::~AISystem()
 
 }
 
-gameEntitySharedPtr AISystem::getGameInstance()  // retrieves the value of gameInstance
+gameEntitySharedPtr AISystem::getGameInstance() const  // retrieves the value of gameInstance
 {
     return (gameInstance);
 }
-void AISystem::setGameInstance(gameEntitySharedPtr set)  // sets the value of gameInstance
+void AISystem::setGameInstance(const gameEntitySharedPtr &set)  // sets the value of gameInstance
 {
     gameInstance = set;
 }
 
-basketballEntityMSharedPtr AISystem::getActiveBasketballInstance()  // retrieves the value of activeBasketballInstance
+basketballEntityMSharedPtr AISystem::getActiveBasketballInstance() const  // retrieves the value of activeBasketballInstance
 {
     return (activeBasketballInstance);
 }
-void AISystem::setActiveBasketballInstance(basketballEntityMSharedPtr set)  // sets the value of activeBasketballInstance
+void AISystem::setActiveBasketballInstance(const basketballEntityMSharedPtr &set)  // sets the value of activeBasketballInstance
 {
     activeBasketballInstance = set;
 }
 
-courtEntityMSharedPtr AISystem::getActiveCourtInstance()  // retrieves the value of activeCourtInstance
+courtEntityMSharedPtr AISystem::getActiveCourtInstance() const  // retrieves the value of activeCourtInstance
 {
     return (activeCourtInstance);
 }
-void AISystem::setActiveCourtInstance(courtEntityMSharedPtr set)  // sets the value of activeCourtInstance
+void AISystem::setActiveCourtInstance(const courtEntityMSharedPtr &set)  // sets the value of activeCourtInstance
 {
     activeCourtInstance = set;
 }
 
-teamEntityMSharedPtr AISystem::getActiveTeamInstance()  // retrieves the value of activeTeamInstance
+teamEntityMSharedPtr AISystem::getActiveTeamInstance() const  // retrieves the value of activeTeamInstance
 {
     return (activeTeamInstance);
 }
-void AISystem::setActiveTeamInstance(teamEntityMSharedPtr set)  // sets the value of activeTeamInstance
+void AISystem::setActiveTeamInstance(const teamEntityMSharedPtr &set)  // sets the value of activeTeamInstance
 {
     activeTeamInstance = set;
 }
 
-teamTypes AISystem::getTeamWithBall()  // retrieves the value of teamWithBall
+teamTypes AISystem::getTeamWithBall() const  // retrieves the value of teamWithBall
 {
     return (teamWithBall);
 }
-void AISystem::setTeamWithBall(teamTypes set)  // sets the value of teamWithBall
+void AISystem::setTeamWithBall(const teamTypes &set)  // sets the value of teamWithBall
 {
     teamWithBall = set;
 }
 
-std::string AISystem::getHumanPlayer()  // retrieves the value of the humanPlayer
+std::string AISystem::getHumanPlayer() const  // retrieves the value of the humanPlayer
 {
     return (humanPlayer);
 }
-void AISystem::setHumanPlayer(std::string set)  // sets the value of human player
+void AISystem::setHumanPlayer(const std::string &set)  // sets the value of human player
 {
     humanPlayer = set;
 }
 
-OpenSteerAbstractVehicleSharedPtr AISystem::getSelectedVehicle()  // retrieves the value of selectedVehicle
+OpenSteerAbstractVehicleSharedPtr AISystem::getSelectedVehicle() const  // retrieves the value of selectedVehicle
 {
     return (selectedVehicle);
 }
-void AISystem::setSelectedVehicle(OpenSteerAbstractVehicleSharedPtr set)  // sets the value of selectedVehicle
+void AISystem::setSelectedVehicle(const OpenSteerAbstractVehicleSharedPtr &set)  // sets the value of selectedVehicle
 {
     selectedVehicle = set;
 }
 
-playerSteerVecSharedPtr AISystem::getAllPlayerSteers()  // retrieves the value of allPlayerSteers
+playerSteerVecSharedPtr AISystem::getAllPlayerSteers() const  // retrieves the value of allPlayerSteers
 {
     return (allPlayerSteers);
 }
-void AISystem::setAllPlayerSteers(playerSteerVecSharedPtr set)  // sets the value of allPlayerSteers
+void AISystem::setAllPlayerSteers(const playerSteerVecSharedPtr &set)  // sets the value of allPlayerSteers
 {
     allPlayerSteers = set;
 }
 
-float AISystem::getOldTime()  // returns the value of oldTime
+float AISystem::getOldTime() const  // returns the value of oldTime
 {
     return oldTime;
 }
-void AISystem::setOldTime(float set)  // sets the value of oldTime
+void AISystem::setOldTime(const float &set)  // sets the value of oldTime
 {
     oldTime = set;
 }
@@ -132,7 +133,7 @@ void AISystem::setOldTime(float set)  // sets the value of oldTime
 void printPlugIn(OpenSteer::PlugIn& pi);
 
 // initial setup of AI state
-bool AISystem::setup(basketballEntityMSharedPtr activeBasketballInstance, courtEntityMSharedPtr activeCourtInstance, teamEntityMSharedPtr activeTeamInstance, teamTypes teamWithBall, std::string humanPlayer)
+bool AISystem::setup(const basketballEntityMSharedPtr &activeBasketballInstance, const courtEntityMSharedPtr &activeCourtInstance, const teamEntityMSharedPtr &activeTeamInstance, const teamTypes &teamWithBall, const std::string &humanPlayer)
 {
     conversionSharedPtr convert ;
 
@@ -214,7 +215,7 @@ void AISystem::selectDefaultPlugIn()  // selects the default plugin
     logMsg(func +" end");
 }
 
-void AISystem::selectNextPlugIn(teamEntityMSharedPtr activeTeamInstance)  // select the "next" plug-in, cycling through "plug-in selection order"
+void AISystem::selectNextPlugIn(const teamEntityMSharedPtr &activeTeamInstance)  // select the "next" plug-in, cycling through "plug-in selection order"
 {
     std::string func = "AISystem::selectNextPlugIn()";
 
@@ -234,7 +235,7 @@ const char *AISystem::nameOfSelectedPlugIn()  // return name of currently select
     return (OpenSteerPluginSharedPtr(selectedPlugIn) ? OpenSteerPluginSharedPtr(selectedPlugIn)->name() : "no PlugIn");
 }
 
-void AISystem::openSelectedPlugIn(teamEntityMSharedPtr activeTeamInstance)  // open the currently selected plug-in
+void AISystem::openSelectedPlugIn(const teamEntityMSharedPtr &activeTeamInstance)  // open the currently selected plug-in
 {
     std::string func = "AISystem::openSelectedPlugIn()";
 

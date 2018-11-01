@@ -64,7 +64,7 @@ class gameEntity //: public state, public gameStateShared, public std::enable_sh
         ~gameEntity();  // destructor
 
         gameComponentsSharedPtr getComponent() const;  // retrieves the value of component
-        void setComponent(gameComponentsSharedPtr set);  // sets the value of component
+        void setComponent(const gameComponentsSharedPtr &set);  // sets the value of component
 
         gameDataSharedPtr getData() const;  // retrieves the value of data
         void setData(const gameDataSharedPtr &set);  // sets the value of data
@@ -87,7 +87,7 @@ class gameEntity //: public state, public gameStateShared, public std::enable_sh
         bool getStateMachineInitialized() const;  // retrieves the value of stateMachineInitialized
         void setStateMachineInitialized(const bool &set);  // sets the value of stateMachineInitialized
 
-        bool initializeStateMachine(renderEngineSharedPtr render);  // initializes the stateMachine object
+        bool initializeStateMachine(const renderEngineSharedPtr &render);  // initializes the stateMachine object
     
         bool updateStateMachine(playerActions actionType, gameSMData *SMData);  // updates state machine with external input
 
@@ -97,8 +97,8 @@ class gameEntity //: public state, public gameStateShared, public std::enable_sh
         bool setupActiveTeamInstances();  // sets up the active team instances
     
 //        bool setupState(renderEngineSharedPtr render);  // sets up the game condition
-        bool updateState(renderEngineSharedPtr render);  // updates the state of the game
-        bool updateActiveTeamInstances(renderEngineSharedPtr render);  // updates all active team instancesa
+        bool updateState(const renderEngineSharedPtr &render);  // updates the state of the game
+        bool updateActiveTeamInstances(const renderEngineSharedPtr &render);  // updates all active team instancesa
         bool updatePlayerCollisionObjects();  // updates the player collision objects for a team instance
         bool processInput();  // processes input received from the inputState object
 

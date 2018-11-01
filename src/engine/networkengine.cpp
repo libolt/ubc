@@ -312,6 +312,7 @@ void networkEngine::networkClient()
             break;
             case ENET_EVENT_TYPE_DISCONNECT:
                 printf ("%s disconected.\n", event.peer -> data);
+//                logMsg(event.peer->data +" disconnected.");
                 // Reset the peer's client information.
                 event.peer -> data = nullptr;
             break;

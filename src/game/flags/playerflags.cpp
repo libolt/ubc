@@ -48,12 +48,10 @@ playerFlags::playerFlags()  // constructor
     stateChanged = false;
     SMNodeSet = false;
     SMModelSet = false;
+    SMStartDirectionSet = false;
     passCompleted = false;
 }
-playerFlags::~playerFlags()  // destructor
-{
-
-}
+playerFlags::~playerFlags() = default;  // destructor
 
 bool playerFlags::getSteerInitialized() const  // retrieves the value of steerInitialized
 {

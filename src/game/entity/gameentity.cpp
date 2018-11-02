@@ -83,9 +83,7 @@ gameEntity::gameEntity()  // constructor
 
 }
 
-gameEntity::~gameEntity()  // destructor
-{
-}
+gameEntity::~gameEntity() = default;  // destructor
 
 gameComponentsSharedPtr gameEntity::getComponent() const  // retrieves the value of component
 {
@@ -540,7 +538,7 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
         logMsg(func +" getActiveTeamInstance().size() == " +convert->toString(component->getActiveTeamInstance().size()));
 
         teamEntityMSharedPtr activeTeamInstance = component->getActiveTeamInstance();
-        if (activeTeamInstance.size() > 0)
+        if (!activeTeamInstance.empty())
         {
             logMsg(func + " activeTeamInstance.size() == " +convert->toString(activeTeamInstance.size()));
             for (auto ATIIT : activeTeamInstance)
@@ -810,7 +808,7 @@ bool gameEntity::updatePlayerCollisionObjects()  // updates the player collision
                             if (CPIIT.second->getFlag()->getPhysBodyInitialized())  // verifies that each player's physBody has been initialized
                             {  // inserts the player's position and their collisionBody into newCollisionBodies
                                 logMsg(func +" physBody Initialized!");
-                                position = CPIIT.first;
+                                position = convert->toString(CPIIT.first);
                                 physBody = CPIIT.second->getComponent()->getPhysics()->getPhysBody();
                                 newCollisionBodies.insert(std::pair<std::string, btRigidBodySharedPtr>(position, physBody));  // loads the second hoop
 //                                tempBody = physBody;
@@ -828,7 +826,7 @@ bool gameEntity::updatePlayerCollisionObjects()  // updates the player collision
 //                activeCollisionBodies.insert(std::pair<std::string, btRigidBodySharedPtr>(tempPos, tempBody));  // loads the second hoop
 //                activeCollisionBodies.insert(std::pair<std::string, btRigidBodySharedPtr>("PG", tempBody));  // loads the second hoop
 
-                if (activeCollisionBodies.size() > 0)
+                if (!activeCollisionBodies.empty())
                 {    
                     std::unordered_map<std::string, bool> ACBFound;  // stores whether an active collision body entry has been found
                     

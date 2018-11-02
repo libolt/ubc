@@ -22,14 +22,10 @@
 
 #include "physics/courtphysics.h"
 
-courtPhysics::courtPhysics()  // constructor
-{
+courtPhysics::courtPhysics() = default;  // constructor
 
-}
-courtPhysics::~courtPhysics()  // destructor
-{
+courtPhysics::~courtPhysics() = default;  // destructor
 
-}
 /*
 bool physicsEngine::setupCourtPhysics()
 {

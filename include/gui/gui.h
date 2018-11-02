@@ -69,33 +69,33 @@ public:
     void setPreviousActiveMenu(const activeMenus &set);  // sets the value of previousActiveMenu
 
     bool setup(const renderEngineSharedPtr &render);  // sets up the in game gui
-    bool createMainMenuGUI(renderEngineSharedPtr render);  // creates GUI gor main menu screen.
-    bool createNetworkSetupGUI(renderEngineSharedPtr render);  // creates GUI for network setup screen.
-    bool createNetworkClientSetupGUI(renderEngineSharedPtr render);  // creates GUI for network client setup screen.
-    bool createNetworkServerSetupGUI(renderEngineSharedPtr render);  // creates GUI for network server setup screen.
-    bool createOptionsMenuGUI(renderEngineSharedPtr render);  // creates GUI for options menu screen.
+    bool createMainMenuGUI(const renderEngineSharedPtr &render);  // creates GUI gor main menu screen.
+    bool createNetworkSetupGUI(const renderEngineSharedPtr &render);  // creates GUI for network setup screen.
+    bool createNetworkClientSetupGUI(const renderEngineSharedPtr &render);  // creates GUI for network client setup screen.
+    bool createNetworkServerSetupGUI(const renderEngineSharedPtr &render);  // creates GUI for network server setup screen.
+    bool createOptionsMenuGUI(const renderEngineSharedPtr &render);  // creates GUI for options menu screen.
     bool createDisplaySetupGUI();  // creates GUI for display settings screen.
     bool createInputSetupGUI();  // creates GUI for input settings screen.
     bool createAudioSetupGUI();	 // creates GUI for audo settings screen.
     bool createSetupMenuGUI();  // creates GUI for game setup menu screen.
-    bool createPlayerStartSelectionMenuGUI(renderEngineSharedPtr render);  // creates GUI for player start selection menu screen.
-    bool createTeamSelectionMenuGUI(renderEngineSharedPtr render);	// creates GUI for team selection menu screen.
-    bool createCourtSelectionMenuGUI(renderEngineSharedPtr render);  // creates GUI for court selection menu screen.
+    bool createPlayerStartSelectionMenuGUI(const renderEngineSharedPtr &render);  // creates GUI for player start selection menu screen.
+    bool createTeamSelectionMenuGUI(const renderEngineSharedPtr &render);	// creates GUI for team selection menu screen.
+    bool createCourtSelectionMenuGUI(const renderEngineSharedPtr &render);  // creates GUI for court selection menu screen.
     bool createBackButtons();  // creates the back buttons for the menus
 
-    void menuReceiveKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // processes key input
-    void processMainMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // processes main menu key input
-    void processNetworkMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // processes network menu key input
-    void processNetworkServerMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // process network server menu key input
-    void processNetworkClientMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // process network client menu key input
-    void processOptionsMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // processes options menu key input
-    void processDisplayMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // processes display settings menu key input
-    void processInputMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // processes input settings menu key input
-    void processAudioMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // processes audio settings menu key input
-    void processSetupMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // processes game setup menu key input
-    void processPlayerStartSelectionMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // process player start selection menu key input
-    void processTeamSelectionMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // process team selection menu key input
-    void processCourtSelectionMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render);  // process court selection menu key input
+    void menuReceiveKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // processes key input
+    void processMainMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // processes main menu key input
+    void processNetworkMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // processes network menu key input
+    void processNetworkServerMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // process network server menu key input
+    void processNetworkClientMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // process network client menu key input
+    void processOptionsMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // processes options menu key input
+    void processDisplayMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // processes display settings menu key input
+    void processInputMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // processes input settings menu key input
+    void processAudioMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // processes audio settings menu key input
+    void processSetupMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // processes game setup menu key input
+    void processPlayerStartSelectionMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // process player start selection menu key input
+    void processTeamSelectionMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // process team selection menu key input
+    void processCourtSelectionMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // process court selection menu key input
 	
     void mainMenu(const renderEngineSharedPtr &render);  // msin in game menu
     void backButtons();  // handles the back buttons

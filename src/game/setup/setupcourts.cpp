@@ -26,14 +26,9 @@
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
 
-setupCourts::setupCourts()  // constructor
-{
-    
-}
-setupCourts::~setupCourts()  // destructor
-{
-    
-}
+setupCourts::setupCourts() = default;  // constructor
+
+setupCourts::~setupCourts() = default;  // destructor
 
 courtEntityMSharedPtr setupCourts::createCourtInstances()  // creates court Instances
 {
@@ -87,7 +82,7 @@ courtEntityMSharedPtr setupCourts::createActiveCourtInstances(courtEntityMShared
     logMsg(func + " beginning");
 
     logMsg(func +" courtInstance.size() == " +convert->toString(courtInstance.size()));
-    if (courtInstance.size() == 0)
+    if (courtInstance.empty())
     {
         if (loadCourt->checkIfCourtsLoaded())
         {

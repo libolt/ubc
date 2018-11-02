@@ -44,10 +44,7 @@ AISystem::AISystem()
 //    playerSteerPluginInstance = new playerSteerPlugin;
 
 }
-AISystem::~AISystem()
-{
-
-}
+AISystem::~AISystem() = default;  // destructor
 
 gameEntitySharedPtr AISystem::getGameInstance() const  // retrieves the value of gameInstance
 {
@@ -267,7 +264,8 @@ void AISystem::updateSelectedPlugIn(const float currentTime, const float elapsed
     if (selectedVehicle == nullptr)
     {
         const OpenSteer::AVGroup& vehicles = allVehiclesOfSelectedPlugIn();
-        if (vehicles.size() > 0)
+//        if (vehicles.size() > 0)
+        if (!vehicles.empty())
         {
             selectedVehicle = OpenSteerAbstractVehicleSharedPtr(vehicles.front());
         }

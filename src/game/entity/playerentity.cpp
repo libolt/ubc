@@ -36,10 +36,7 @@ playerEntity::playerEntity()  // constructor
 {
     SMData = nullptr;
 }
-playerEntity::~playerEntity()  // destructor
-{
-
-}
+playerEntity::~playerEntity() = default;  // destructor
 
 playerComponentsSharedPtr playerEntity::getComponent() const  // retrieves the value of component
 {
@@ -110,7 +107,7 @@ bool playerEntity::setupPhysicsObject()  // sets up the physics object
     OgreEntitySharedPtr tempModel = getModel();
     OgreSceneNodeSharedPtr tempNode = getNode();
     btRigidBody *tempPhysBody = component->getPhysics()->getPhysBody().get();
-    
+    bool retVal = false;
     logMsg(func +" begin");
 //    exit(0);
     
@@ -141,7 +138,7 @@ bool playerEntity::setupPhysicsObject()  // sets up the physics object
         component->getPhysics()->setPhysBody(btRigidBodySharedPtr(tempPhysBody));
 //        exit(0);
 
-        return (true);
+        retVal = true;
     }
     else
     {
@@ -149,7 +146,7 @@ bool playerEntity::setupPhysicsObject()  // sets up the physics object
     
     logMsg(func +" end");
     
-    return (false);
+    return (retVal);
 }
 
 bool playerEntity::initializeStateMachine()  // initializes the stateMachine object
@@ -210,6 +207,8 @@ bool playerEntity::updateStateMachine(playerActions actionType, playerSMData *SM
         case STEAL:
         break;
         case BLOCK:
+        break;
+        case NOACTION:
         break;
 
     }
@@ -280,6 +279,8 @@ bool playerEntity::update() // executes any updates that need to be performed
                 case STEAL:
                 break;
                 case BLOCK:
+                break;
+                case NOACTION:
                 break;
             }
         

@@ -39,11 +39,10 @@ loader::loader()  // constructor
 //        pathArray = pathSplit(dataPath);
 //      cout << pathArray[2] << endl;
 //      exit(0);
+    count = 0;
 }
 
-loader::~loader()  // destructor
-{
-}
+loader::~loader() = default;  // destructor
 
 int loader::readFile(const char *sourceFile, char **destination)  // loads an xml file using SDL so that it can be passed to TinyXML
 {
@@ -123,7 +122,7 @@ SDL_RWops *loader::readBinaryFile(const char *sourceFile)  // reads in a binary 
     return (file);
 }
 
-stdStringVec loader::pathSplit(const std::string paths)  // splits the path data into separate strings
+stdStringVec loader::pathSplit(const std::string &paths)  // splits the path data into separate strings
 {
     int x = 0;
     stdStringVec stringArray;
@@ -148,11 +147,11 @@ stdStringVec loader::pathSplit(const std::string paths)  // splits the path data
     return(stringArray);
 }
 
-std::string loader::findFile(std::string fileName)  // finds the location of a file
+std::string loader::findFile(const std::string &fileName)  // finds the location of a file
 {
     // tries to load file from locations specified in the pathArray
     bool fileLoaded = false;
-    std::string filePath = "";        // stores path to a file
+    std::string filePath;        // stores path to a file
     stdStringVec pathArray;
     std::string dataPath;
     std::string func = "loader::findFile()";
@@ -218,7 +217,7 @@ std::string loader::findFile(std::string fileName)  // finds the location of a f
     return ("");
 }
 
-OgreEntitySharedPtr loader::loadModelFile(std::string modelFileName, std::string entityName, renderEngineSharedPtr render)  // loads the 3D model
+OgreEntitySharedPtr loader::loadModelFile(const std::string &modelFileName, const std::string &entityName, const renderEngineSharedPtr &render)  // loads the 3D model
 {
     conversionSharedPtr convert ;
     std::string func = "loader::loadModelFile()";

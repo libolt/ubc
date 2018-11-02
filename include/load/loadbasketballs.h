@@ -48,10 +48,10 @@ class loadBasketballs  : public loader
 
     // Basketballs
     basketballEntityMSharedPtr loadFiles();  // load basketball XML files
-    stdStringVec loadListFile(std::string fileName);  // load the list of basketballs from basketballs.xml
-    basketballEntitySharedPtr loadFile(std::string fileName);  // loads data from the basketball XML files.
+    stdStringVec loadListFile(const std::string &fileName);  // load the list of basketballs from basketballs.xml
+    basketballEntitySharedPtr loadFile(const std::string &fileName);  // loads data from the basketball XML files.
 
-    basketballEntityMSharedPtr loadModels(basketballEntityMSharedPtr activeBasketballInstance, renderEngineSharedPtr render);  // loads selected basketball model
+    basketballEntityMSharedPtr loadModels(basketballEntityMSharedPtr activeBasketballInstance, const renderEngineSharedPtr &render);  // loads selected basketball model
 
     private:
     

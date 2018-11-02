@@ -22,12 +22,12 @@
 
 playerComponents::playerComponents()  // constructor
 {
-
+    stateMachine = nullptr;
+    physics = nullptr;
+    steer = nullptr;
+    statistics = nullptr;
 }
-playerComponents::~playerComponents()  // destructor
-{
-    
-}
+playerComponents::~playerComponents() = default;  // destructor
 
 playerStateMachineSharedPtr playerComponents::getStateMachine() const  // retrieves the value of stateMachine
 {

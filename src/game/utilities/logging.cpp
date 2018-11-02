@@ -32,7 +32,7 @@ sharedPtr<logging> logging::pInstance;
 
 sharedPtr<logging> logging::Instance()
 {
-    if (pInstance == 0)  // is it the first call?
+    if (pInstance == nullptr)  // is it the first call?
     {
         sharedPtr<logging> tInstance(new logging);
         pInstance = tInstance;
@@ -46,10 +46,7 @@ logging::logging()  // constructor
     ogreRootInitialized = false;
 }
  
-logging::~logging()  // destructor
-{
-}
-
+logging::~logging() = default;  // destructor
 
 bool logging::getOgreRootInitialized() const  // retrieves the value of ogreRootInitialized
 {
@@ -60,7 +57,7 @@ void logging::setOgreRootInitialized(const bool &set)  // sets the value of ogre
     ogreRootInitialized = set;
 }
  
-void logging::logMessage(std::string msg)  // logs a message to appropriate output
+void logging::logMessage(const std::string &msg)  // logs a message to appropriate output
 {
 //    renderEngineSharedPtr render = renderEngine::Instance();
 

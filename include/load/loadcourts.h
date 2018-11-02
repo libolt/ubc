@@ -48,10 +48,10 @@ class loadCourts : public loader
 
         // Courts
         courtEntityMSharedPtr  loadCourtFiles();  // load court XML files
-        stdStringVec loadCourtListFile(std::string fileName);  // load the list of courts from courts.xml
-        courtEntitySharedPtr loadCourtFile(std::string fileName);  // loads data from the court XML files.
+        stdStringVec loadCourtListFile(const std::string &fileName);  // load the list of courts from courts.xml
+        courtEntitySharedPtr loadCourtFile(const std::string &fileName);  // loads data from the court XML files.
 
-        courtEntityMSharedPtr loadModels(courtEntityMSharedPtr activeCourtInstance, renderEngineSharedPtr render);  // loads selected court model
+        courtEntityMSharedPtr loadModels(courtEntityMSharedPtr activeCourtInstance, const renderEngineSharedPtr &render);  // loads selected court model
 
     private:
     

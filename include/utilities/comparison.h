@@ -26,7 +26,9 @@
 class comparison
 {
     public:
-        comparison();
+        comparison();  // constructor
+        ~comparison();   // destructor
+
         bool OgreVector3ToOgreVector3(const Ogre::Vector3 &currentValue, const Ogre::Vector3 &newValue);  // compares two Ogre::Vector3 objects and returns true if the same,false if different
         Ogre::Vector3 OgreVector3ToOgreVector3Result(const Ogre::Vector3 &currentValue, const Ogre::Vector3 &newValue);  // compares two Ogre::Vector3 objects and returns their differences in Ogre::Vector3 format
 

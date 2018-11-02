@@ -47,8 +47,8 @@ class loadTeams : public loader
 
         // Teams
         teamEntityMSharedPtr loadTeamFiles();  // loads team data from XML files
-        stdStringVec loadTeamListFile(std::string fileName);  // loads list of team files from teams.xml
-        teamEntitySharedPtr loadTeamFile(std::string fileName);  // loads data from the team XML files
+        stdStringVec loadTeamListFile(const std::string &fileName);  // loads list of team files from teams.xml
+        teamEntitySharedPtr loadTeamFile(const std::string &fileName);  // loads data from the team XML files
     
     private:
     

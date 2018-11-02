@@ -36,10 +36,7 @@ loadPlayers::loadPlayers()  // constructor
 {
     playerFilesLoaded = false;
 }
-loadPlayers::~loadPlayers()  // destructor
-{
-    
-}
+loadPlayers::~loadPlayers() = default;  // destructor
 
 stdStringVec loadPlayers::getPlayerFiles() const  // retrieves the value of playerFiles
 {
@@ -70,6 +67,7 @@ void loadPlayers::setPlayerFilesLoaded(const bool &set)  // sets the value of pl
 
 bool loadPlayers::checkIfPlayersLoaded()  // checks if players have been loaded into pInstance
 {
+    bool retVal = false;
     std::string func = "loadPlayers::checkIfPlayersLoaded()";
     
     logMsg(func + " beginning");
@@ -78,10 +76,10 @@ bool loadPlayers::checkIfPlayersLoaded()  // checks if players have been loaded 
     {
         logMsg(func + " getPlayerFilesLoaded");
 
-        if (pInstance.size() > 0)
+        if (!pInstance.empty())
         {
             logMsg(func + " Player Files Loaded!");
-            return(true);
+            retVal = true;
         }
         else
         {
@@ -89,13 +87,13 @@ bool loadPlayers::checkIfPlayersLoaded()  // checks if players have been loaded 
 
             playerFilesLoaded = false;
             pInstance = loadPlayerFiles();
-            if (pInstance.size() > 0)
+            if (!pInstance.empty())
             {
                 logMsg(func + " > 0!");
 
 //                load->setTInstance(tInstance);
                 playerFilesLoaded = true;
-                return(true);
+                retVal = true;
             }
             else
             {
@@ -108,12 +106,12 @@ bool loadPlayers::checkIfPlayersLoaded()  // checks if players have been loaded 
     {
         logMsg(func + " ELSE");
 
-        if (pInstance.size() > 0)
+        if (!pInstance.empty())
         {
             logMsg(func + " load->getPInstance().size() > 0! ELSE");
 //            load->setTInstance(tInstance);
             playerFilesLoaded = true;
-            return(true);
+            retVal = true;
         }
         else
         {
@@ -121,25 +119,25 @@ bool loadPlayers::checkIfPlayersLoaded()  // checks if players have been loaded 
 
             pInstance = loadPlayerFiles();
 
-            if (pInstance.size() > 0)
+            if (!pInstance.empty())
             {
                 logMsg(func + " load->getPInstance().size() > 0! ELSE ELSE");
 
 //                load->setTInstance(tInstance);
                 playerFilesLoaded = true;
-                return(true);
+                retVal = true;
             }
             else
             {
                 logMsg(func + " Failed to load Player Files!");
-//                return(false);
+                retVal = false;
             }
         }
     }
 //    exit(0);
     logMsg(func + " end");
 
-    return (true);
+    return (retVal);
 }
 
 playerEntityMSharedPtr loadPlayers::loadPlayerFiles()  // loads the players
@@ -198,7 +196,7 @@ playerEntityMSharedPtr loadPlayers::loadPlayerFiles()  // loads the players
     return (players);
 }
 
-stdStringVec loadPlayers::loadPlayerListFile(std::string fileName)  // loads the player list file
+stdStringVec loadPlayers::loadPlayerListFile(const std::string &fileName)  // loads the player list file
 {
     conversionSharedPtr convert ;
   //   renderEngineSharedPtr render = renderEngine::Instance();
@@ -224,7 +222,7 @@ stdStringVec loadPlayers::loadPlayerListFile(std::string fileName)  // loads the
 
     tinyxml2::XMLElement *pElem;
     
-    tinyxml2::XMLHandle hRoot(0);
+    tinyxml2::XMLHandle hRoot(nullptr);
 
     pElem=hDoc.FirstChildElement().ToElement();
     // should always have a valid root but handle gracefully if it does
@@ -256,7 +254,7 @@ stdStringVec loadPlayers::loadPlayerListFile(std::string fileName)  // loads the
     return (pFiles);
 }
 
-playerEntitySharedPtr loadPlayers::loadPlayerFile(std::string fileName)  // loads the player file
+playerEntitySharedPtr loadPlayers::loadPlayerFile(const std::string &fileName)  // loads the player file
 {
     conversionSharedPtr convert ;
 //    sharedPtr<gameState> gameS = gameState::Instance();
@@ -325,7 +323,7 @@ playerEntitySharedPtr loadPlayers::loadPlayerFile(std::string fileName)  // load
     tinyxml2::XMLElement *rootElement;
     tinyxml2::XMLElement *childElement;
 
-    tinyxml2::XMLHandle hRoot(0);
+    tinyxml2::XMLHandle hRoot(nullptr);
 
     pElem=hDoc.FirstChildElement().ToElement();
     // should always have a valid root but handle gracefully if it does

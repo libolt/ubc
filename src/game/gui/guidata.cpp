@@ -85,7 +85,7 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
     {
 //        exit(0);
         courtInstance = setupCourt->createCourtInstances();
-        if (courtInstance.size() > 0)
+        if (!courtInstance.empty())
         {
             logMsg(func +" Court Data Initialized == " +convert->toString(courtInstance[0]->getData()->getInitialized()));
             logMsg(func +" Court Data Name == " +courtInstance[0]->getData()->getName());
@@ -119,7 +119,7 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
 
 //    courtInstance.courtNameFunc(getName());
     logMsg(func +" courtName.size() == " +convert->toString(courtName.size()));
-    if (courtInstance.size() == 0)
+    if (!courtInstance.empty())
     {
         logMsg(func +" courtInstane.size == " +convert->toString(courtInstance.size()));
 //        exit(0);
@@ -356,7 +356,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     {        
         logMsg(func +" Woot!");
 //        exit(0);
-        if (gameInstance->getComponent()->getTeamInstance().size() > 0)
+        if (!gameInstance->getComponent()->getTeamInstance().empty())
         {
             teamInstance = gameInstance->getComponent()->getTeamInstance();
             logMsg(func +" GUI ADD TEAM 1 teamInstance.size() == " +convert->toString(gameInstance->getComponent()->getTeamInstance().size()));
@@ -371,7 +371,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
     else
     {    
         teamInstance = setupTeam->createTeamInstances();  // creates team instances
-        if (teamInstance.size() > 0)
+        if (!teamInstance.empty())
         {
              logMsg(func +" GUI ADD TEAM 2 teamInstance.size() == " +convert->toString(gameInstance->getComponent()->getTeamInstance().size()));
 //            exit(0);
@@ -400,7 +400,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
 //
 //    teamInstance = gameS->getTeamInstance();
     logMsg(func +" teamInstance.size() == " +convert->toString(gameInstance->getComponent()->getTeamInstance().size()));
-    if (teamInstance.size() == 0)
+    if (teamInstance.empty())
     {
         logMsg(func +" teamInstance is empty!");
         exit(0);
@@ -415,7 +415,7 @@ bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Sele
 //    exit(0);
     for (auto TIIT : teamInstance)
     {
-        if (TIIT.second->getData()->getCity() == "")
+        if (TIIT.second->getData()->getCity().empty())
         {
             logMsg(func +" City is blank!");
             exit(0);

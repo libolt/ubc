@@ -31,14 +31,9 @@
 #include "flags/teamflags.h"
 #include "utilities/logging.h"
 
-setupLineups::setupLineups()  // constructor
-{
-    
-}
-setupLineups::~setupLineups()  // destructor
-{
-    
-}
+setupLineups::setupLineups() = default;  // constructor
+
+setupLineups::~setupLineups() = default;  // destructor
 
 std::vector<std::map <playerPositions, std::string> > setupLineups::createTeamStarters(teamEntityMSharedPtr activeTeamInstance)  // creates the teamStarters instance
 {
@@ -49,7 +44,7 @@ std::vector<std::map <playerPositions, std::string> > setupLineups::createTeamSt
     
     logMsg(func +" begin");
 
-    for (auto ATIIT : activeTeamInstance)  // loop through activeTeamInstance
+    for (const auto &ATIIT : activeTeamInstance)  // loop through activeTeamInstance
     {
         teamStarters.push_back(tempStarters);  // add empty entry to teamStarters
     }

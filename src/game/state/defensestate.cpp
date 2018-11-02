@@ -81,12 +81,12 @@ void defenseState::setExecute(bool ex)  // sets the value of the execute variabl
     execute = ex;
 }
 
-void defenseState::setupState(gameComponentsSharedPtr gameComponent)  // sets up initial state of the object
+void defenseState::setupState(const gameComponentsSharedPtr &gameComponent)  // sets up initial state of the object
 {
 
 }
 
-void defenseState::updateState(teamTypes teamType, gameComponentsSharedPtr gameComponent, gameDataSharedPtr gameData)  // updates the state of the object
+void defenseState::updateState(teamTypes teamType, const gameComponentsSharedPtr &gameComponent, const gameDataSharedPtr &gameData)  // updates the state of the object
 {
     conversionSharedPtr convert ;
 //    sharedPtr<gameState> gameS = gameState::Instance();

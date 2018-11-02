@@ -23,8 +23,10 @@
 state::state()  // constructor
 {
 //    initialized = false;
-//    stateSet = false;
+    stateSet = false;
 }
+
+state::~state() = default;  // destructor
 
 /*bool state::getInitialized()  // retrieves the value of initialized
 {

@@ -26,14 +26,9 @@
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
 
-setupPlayerPositions::setupPlayerPositions()  // constructor
-{
-    
-}
-setupPlayerPositions::~setupPlayerPositions()  // destructor
-{
-    
-}
+setupPlayerPositions::setupPlayerPositions() = default;  // constructor
+
+setupPlayerPositions::~setupPlayerPositions() = default;  // destructor
 
 playerEntityMSharedPtr setupPlayerPositions::setJumpBallPositions(playerEntityMSharedPtr activePlayerInstance, teamTypes teamType, Ogre::Vector3 courtPos)  // sets player positions for jumpball
 {
@@ -84,7 +79,7 @@ playerEntityMSharedPtr setupPlayerPositions::setJumpBallPositions(playerEntityMS
     }
 
 
-    if (startingPos.size() > 0)
+    if (!startingPos.empty())
     {
         logMsg(func +" startingPosition.size > 0");
 //        exit(0);

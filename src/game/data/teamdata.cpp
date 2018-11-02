@@ -40,10 +40,7 @@ teamData::teamData()
     }
 }
 
-teamData::~teamData()
-{
-//	delete [] teamStarters;
-}
+teamData::~teamData() = default;  // destructor
 
 std::string teamData::getCity() const  // retrieves the value of city
 {

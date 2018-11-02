@@ -49,10 +49,7 @@ UBCGame::UBCGame()  // constructor
     loadUsersInputInitialized = false;
 }
 
-UBCGame::~UBCGame()  // destructor
-{
-
-}
+UBCGame::~UBCGame() = default;  // destructor
 
 gameEntitySharedPtr UBCGame::getGameInstance() const  // retrieves the value of gameS
 {
@@ -314,7 +311,7 @@ bool UBCGame::setupUserInstancesInput()  // sets up input mapping for each user
     if (loadUsersInput->checkIfUsersInputsLoaded())
     {
         tempUserInput = loadUsersInput->getUIInstance();
-        if (tempUserInput.size() > 0)
+        if (!tempUserInput.empty())
         {
             logMsg(func +" tempUserInput Loaded!");
         }
@@ -348,7 +345,7 @@ bool UBCGame::setupUserInstancesInput()  // sets up input mapping for each user
     return (true);
 }
 
-bool UBCGame::loop(gameEngineSharedPtr gameE, UBCInputSharedPtr input, GUISystemSharedPtr gui)  // Main Game Loop
+bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &input, const GUISystemSharedPtr &gui)  // Main Game Loop
 {
     conversionSharedPtr convert ;
     bool quitGame = gameE->getQuitGame();
@@ -485,7 +482,7 @@ bool UBCGame::loop(gameEngineSharedPtr gameE, UBCInputSharedPtr input, GUISystem
     return (true);
 }
 
-bool UBCGame::startGame(renderEngineSharedPtr render)  // starts the game
+bool UBCGame::startGame(const renderEngineSharedPtr &render)  // starts the game
 {
 //    sharedPtr<gameState> gameS = gameState::Instance();
     std::string func = "UBCGame::startGame()";
@@ -511,7 +508,7 @@ bool UBCGame::startGame(renderEngineSharedPtr render)  // starts the game
     return (true);
 }
 
-void UBCGame::processNetworkEvents(gameEngineSharedPtr gameE)  // processes events in the network subsyatem
+void UBCGame::processNetworkEvents(const gameEngineSharedPtr &gameE)  // processes events in the network subsyatem
 {
     std::string func = "UBCGame::processNetworkEvents()";
 
@@ -529,7 +526,7 @@ void UBCGame::processNetworkEvents(gameEngineSharedPtr gameE)  // processes even
     logMsg(func +" end");
 }
 
-void UBCGame::processPhysicsEvents(gameEngineSharedPtr gameE)  // processes events in the physics subsyatem
+void UBCGame::processPhysicsEvents(const gameEngineSharedPtr &gameE)  // processes events in the physics subsyatem
 {
     std::string func = "UBCGame::processPhysicsEvents()";
 

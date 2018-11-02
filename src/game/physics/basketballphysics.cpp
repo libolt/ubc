@@ -187,7 +187,7 @@ void basketballPhysics::updateState()  // updates basketball physics state
 }
 */
 
-void basketballPhysics::ballDribbling(Ogre::Vector3 bballPos, btRigidBodySharedPtr courtPhysBody, Ogre::Vector3 courtPos)  // simulates basketball dribble
+void basketballPhysics::ballDribbling(Ogre::Vector3 bballPos, const btRigidBodySharedPtr &courtPhysBody, Ogre::Vector3 courtPos)  // simulates basketball dribble
 {
     conversionSharedPtr convert ;
     physicsEngine physEngine;

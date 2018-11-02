@@ -24,11 +24,6 @@
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
 
-updatePlayers::updatePlayers()  // constructor
-{
-    
-}
-updatePlayers::~updatePlayers()  // destructor
-{
-    
-}
+updatePlayers::updatePlayers() = default;  // constructor
+
+updatePlayers::~updatePlayers() = default;  // destructor

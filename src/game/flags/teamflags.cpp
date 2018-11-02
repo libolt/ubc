@@ -33,10 +33,7 @@ teamFlags::teamFlags()  // constructor
     stateMachineInitialized = false;
 
 }
-teamFlags::~teamFlags()  // destructor
-{
-    
-}
+teamFlags::~teamFlags() = default;  // destructor
 
 bool teamFlags::getStateMachineInitialized() const  // retrieves the value of stateMachineInitialized
 {

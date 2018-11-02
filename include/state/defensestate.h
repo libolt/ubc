@@ -22,6 +22,7 @@
 #define _DEFENSESTATE_H_
 
 #include "utilities/enums.h"
+#include "utilities/typedefs.h"
 #include "state/state.h"
 //#include "state/gamestateshared.h"
 
@@ -52,9 +53,9 @@ public:
     bool getExecute();	// retrieves the value of execute variable
     void setExecute(bool ex);	// sets the value of the execute variable
 
-    void setupState(gameComponentsSharedPtr gameComponent);  // sets up initial state of the object
+    void setupState(const gameComponentsSharedPtr &gameComponent);  // sets up initial state of the object
 
-    void updateState(teamTypes teamType, gameComponentsSharedPtr gameComponent, gameDataSharedPtr gameData);  // updates the state of the object
+    void updateState(teamTypes teamType, const gameComponentsSharedPtr &gameComponent, const gameDataSharedPtr &gameData);  // updates the state of the object
 
 private:
 

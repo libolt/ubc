@@ -26,16 +26,11 @@
 #include "utilities/logging.h"
 
 
-setupJumpBalls::setupJumpBalls()  // constructor
-{
-    
-}
-setupJumpBalls::~setupJumpBalls()  // destructor
-{
-    
-}
+setupJumpBalls::setupJumpBalls() = default;  // constructor
 
-jumpBallsSharedPtr setupJumpBalls::checkifJumpBallCreated(jumpBallsSharedPtr jumpBall, gameFlagsSharedPtr flag)  // checks if jumpBall object has been created
+setupJumpBalls::~setupJumpBalls() = default;  // destructor
+
+jumpBallsSharedPtr setupJumpBalls::checkifJumpBallCreated(jumpBallsSharedPtr jumpBall, const gameFlagsSharedPtr &flag)  // checks if jumpBall object has been created
 {
     conversionSharedPtr convert ;
     std::string func = "setupJumpballs::checkifJumpBallCreated()";

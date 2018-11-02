@@ -55,6 +55,11 @@ playerState::playerState()
     userControlled = false;
     user = -1;
 
+    age = 0;
+    height = 0;
+    weight = 0;
+    movement = 0;
+    posChangeAmount = 0;
 /*    posChange = Ogre::Vector3(0.0f,0.0f,0.0f);
 //    movement = false;
     startPosReached = false;
@@ -82,9 +87,7 @@ playerState::playerState()
 */
 }
 
-playerState::~playerState() // destructor
-{
-}
+playerState::~playerState() = default;  // destructor
 
 teamTypes playerState::getTeamType()  // retrieves the value of teamType
 {

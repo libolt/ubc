@@ -142,7 +142,7 @@
 	enum mouseClicks { NOCLICK, LEFTCLICK, RIGHTCLICK, MIDDLECLICK, WHEELCLICK };  // stores which mouse button has been clicked
     enum directions { NODIRECT, UP, DOWN, LEFT, RIGHT, UPLEFT, UPRIGHT, DOWNLEFT, DOWNRIGHT };	// direction objects are moving
     enum gameTypes { NOGAME, SINGLE, MULTILOCAL, MULTINET }; // defines whether a game is single or multi player
-    enum netGameTypes { CLIENT, SERVER}; // defines which type of network game this instance is running
+    enum netGameTypes { NONETGT, CLIENT, SERVER}; // defines which type of network game this instance is running
     enum quarters { NOQUARTER, FIRST, SECOND, THIRD, FOURTH }; // defines the quarters within the game
     enum courtSide_t {NOSIDE, RIGHTSIDE, LEFTSIDE };	// defines which side of the court the offensive team is on
 
@@ -178,7 +178,7 @@
 
     enum playerActions {NOACTION, MOVE, CHANGECOURTPOS, CHANGEDIRECTION, SETNODE, SETMODEL, JUMP, SHOOT, PASS, STEAL, BLOCK };
     
-    enum userTypes {LOCALUSER, NETWORKUSER };
+    enum userTypes {NOUSER, LOCALUSER, NETWORKUSER };
     
     enum collisionTypes
     {

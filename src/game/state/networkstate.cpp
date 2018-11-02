@@ -34,19 +34,16 @@
 
 networkState::networkState()  // constructor
 {
-
+    network = nullptr;
 }
-networkState::~networkState()  // destructor
-{
+networkState::~networkState() = default;  // destructor
 
-}
-
-networkEngineSharedPtr networkState::getNetworkE()  // retrieves the value of network
+networkEngineSharedPtr networkState::getNetworkE() const  // retrieves the value of network
 {
     return (network);
 }
 
-void networkState::setNetwork(networkEngineSharedPtr set)  // sets the value of network
+void networkState::setNetwork(const networkEngineSharedPtr &set)  // sets the value of network
 {
     network = set;
 }
@@ -69,7 +66,7 @@ void networkState::processLocalInput(teamEntityVecSharedPtr activeTeamInstance) 
     std::stringstream ss;
     //  exit(0);
     size_t x = 0;
-    while (inputQueue.size() > 0)
+    while (!inputQueue.empty())
     {
         // switch (inputMap)
         switch (inputQueue[x])
@@ -189,7 +186,7 @@ void networkState::processLocalInput(teamEntityVecSharedPtr activeTeamInstance) 
                 packetData = "";
             break;
         }
-        if (packetData != "")
+        if (!packetData.empty())
         {
             getNetworkE()->sendPacket(packetData);
         }
@@ -217,7 +214,7 @@ void networkState::processRemoteInput() // processes input received from a remot
     
 }
 
-void networkState::processNetworkEvents(teamEntityVecSharedPtr activeTeamInstance)  // processes events from network code
+void networkState::processNetworkEvents(const teamEntityVecSharedPtr &activeTeamInstance)  // processes events from network code
 {
 //    teamStateVecSharedPtr activeTeamInstance = getActiveTeamInstance();
     //    networkEngineSharedPtr network = networkEngine::Instance();
@@ -247,7 +244,7 @@ TS*/
 ///    setActiveTeamInstance(activeTeamInstance);
 }
 
-void networkState::processNetworkPlayerEvents(teamEntityVecSharedPtr activeTeamInstance)  // processes player events from network code
+void networkState::processNetworkPlayerEvents(const teamEntityVecSharedPtr &activeTeamInstance)  // processes player events from network code
 {
     conversionSharedPtr convert ;
 //    networkEngineSharedPtr network = networkEngine::Instance();
@@ -295,7 +292,7 @@ void networkState::processNetworkPlayerEvents(teamEntityVecSharedPtr activeTeamI
     logMsg("alive????");
 */
     playerNumber = netPStateObj.getPlayerID();
-    if (activePlayerInstance.size() > 0)
+    if (!activePlayerInstance.empty())
     {
         if (netPStateObj.getMovement())
         {

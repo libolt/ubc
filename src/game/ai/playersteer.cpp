@@ -61,6 +61,9 @@ playerSteer::playerSteer()  // constructor
     distToPosition = -1.0f;
     execute = false;
     m_home = OpenSteer::Vec3::zero;
+    teamWithBall = NOTEAM;
+    playerPosition = NONE;
+
 //    steering::reset ();  // reset the vehicle
     
 ///    reset();
@@ -76,19 +79,7 @@ playerSteer::playerSteer()  // constructor
 */
     }
 
-playerSteer::~playerSteer()  // destructor
-{
-
-}
-
-/*sharedPtr<gameState> playerSteer::getGameS()  // retrieves the value of gameS
-{
-    return (gameS);
-}
-void playerSteer::setGameS(sharedPtr<gameState> set)  // sets the value of gameS
-{
-    gameS = set;
-}*/
+playerSteer::~playerSteer() = default;  // destructor
 
 teamTypes playerSteer::getTeamType() const  // retrieves the value of teamType
 {

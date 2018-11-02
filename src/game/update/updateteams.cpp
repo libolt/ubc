@@ -29,14 +29,9 @@
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
 
-updateTeams::updateTeams()  // constructor
-{
-    
-}
-updateTeams::~updateTeams()  // destructor
-{
-    
-}
+updateTeams::updateTeams() = default;  // constructor
+
+updateTeams::~updateTeams() = default;  // destructor
 
 playerEntityMSharedPtr updateTeams::updateActivePlayers(playerEntityMSharedPtr activePlayerInstance)  // updates the states of active players
 {
@@ -96,7 +91,7 @@ playerEntityMSharedPtr updateTeams::updateActivePlayers(playerEntityMSharedPtr a
     return (activePlayerInstance);
 }
 
-playerEntityMSharedPtr updateTeams::updatePlayerDirections(playerEntityMSharedPtr activePlayerInstance, gameComponentsSharedPtr gameComponent, teamGameDataSharedPtr gameData)  // updates the direction players are facing
+playerEntityMSharedPtr updateTeams::updatePlayerDirections(playerEntityMSharedPtr activePlayerInstance, const gameComponentsSharedPtr &gameComponent, const teamGameDataSharedPtr &gameData)  // updates the direction players are facing
 {
     conversionSharedPtr convert ;
 //    playerEntityMSharedPtr activePlayerInstance = component->getActivePlayerInstance();

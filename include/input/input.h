@@ -55,7 +55,7 @@ class input
     bool getInputESet() const;  // retrieves the value of inputESet
     void setInputESet(const bool &set);  // sets the value of inputESet
 
-    bool setup(inputEngineSharedPtr inputEng);  // sets up the input state
+    bool setup(const inputEngineSharedPtr &inputEng);  // sets up the input state
     	      
     private:
     

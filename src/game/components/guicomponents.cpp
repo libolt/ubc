@@ -25,12 +25,16 @@
 GUIComponents::GUIComponents()  // constructor
 {
     initialized = false;
+    mGUI = nullptr;
+    numClientsSelectBox = nullptr;
+    serverIPAddressBox = nullptr;
+    clientIPAddressBox = nullptr;
+    courtSelectBox = nullptr;
+    courtPreviewImgBox = nullptr;
+    courtNameTxtBox = nullptr;
 }
 
-GUIComponents::~GUIComponents()  // destructor
-{
-
-}
+GUIComponents::~GUIComponents() = default;  // destructor
 
 
 bool GUIComponents::getInitialized() const  // retrieves the value of initialized
@@ -39,7 +43,7 @@ bool GUIComponents::getInitialized() const  // retrieves the value of initialize
 }
 void GUIComponents::setInitialized(const bool &set)  // sets the value of initialized
 {
-    initialized = true;
+    initialized = set;
 }
 
 MyGUIGuiSharedPtr GUIComponents::getMGUI() const  // retrieves the value of mGUI

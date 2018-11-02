@@ -22,10 +22,10 @@
 
 basketballData::basketballData()  // constructor
 {
+    name = nullptr;
+    modelFileName = nullptr;
 }
-basketballData::~basketballData()  // destructor
-{
-}
+basketballData::~basketballData() = default;  // destructor
 
 std::string  basketballData::getName() const  // retrieves the value of name
 {

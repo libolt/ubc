@@ -34,16 +34,16 @@ class loadHoops : public loader
         loadHoops();  // constructor
         ~loadHoops();  // destructor
 
-        hoopEntityMSharedPtr  getHInstance();  // retrieves the value of hInstance
-        void setHInstance(hoopEntityMSharedPtr  set);  // sets the value of hInstance
+        hoopEntityMSharedPtr  getHInstance() const;  // retrieves the value of hInstance
+        void setHInstance(const hoopEntityMSharedPtr  &set);  // sets the value of hInstance
         bool checkIfHoopsLoaded();  // checks if the hooops have been loaded into hInstance
 
         // Hoops
         hoopEntityMSharedPtr  loadHoopFiles();  // load hoop XML files
-        stdStringVec loadHoopListFile(std::string fileName);  // load the list of hoops from hoops.xml
-        hoopEntitySharedPtr loadHoopFile(std::string fileName);  // loads data from the hoop XML files.
+        stdStringVec loadHoopListFile(const std::string &fileName);  // load the list of hoops from hoops.xml
+        hoopEntitySharedPtr loadHoopFile(const std::string &fileName);  // loads data from the hoop XML files.
 
-        hoopEntityMSharedPtr loadModels(hoopEntityMSharedPtr activeHoopInstance, renderEngineSharedPtr render);  // loads selected hoop model
+        hoopEntityMSharedPtr loadModels(hoopEntityMSharedPtr activeHoopInstance, const renderEngineSharedPtr &render);  // loads selected hoop model
 
     private:
     

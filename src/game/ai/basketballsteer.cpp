@@ -31,10 +31,7 @@ basketballSteer::basketballSteer()  // constructor
 	ID = -1;
 }
 
-basketballSteer::~basketballSteer()  // destructor
-{
-
-}
+basketballSteer::~basketballSteer() = default;  // destructor
 
 int basketballSteer::getID() // retrieves the value of ID
 {

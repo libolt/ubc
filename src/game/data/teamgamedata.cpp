@@ -32,12 +32,11 @@ teamGameData::teamGameData()  // constructor
     humanPlayer = 4;
     hoop = -1;
     teamCollidesWith = 0;
+    teamNumber = 0;
+    teamColObject = 0;
 
 }
-teamGameData::~teamGameData()  // destructor
-{
-    
-}
+teamGameData::~teamGameData() = default;  // destructor
 
 teamTypes teamGameData::getTeamType() const  // retrieves the value of teamType
 {

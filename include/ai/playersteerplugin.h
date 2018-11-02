@@ -75,9 +75,7 @@ class playerSteerPlugin : public OpenSteer::PlugIn, steering
     OpenSteer::AVGroup& allVehicles () {return (OpenSteer::AVGroup&) TeamA;} // returns list of all 'vehicles' in the game
 
     private: 
-      
-    bool baseInitialized;  // stores whether the base object has been initialized
-    
+          
     unsigned int m_PlayerCountA;  // counts number of players on Team A
     unsigned int m_PlayerCountB;  // counts number of playres on Team B
     playerSteerVecSharedPtr TeamA;  // stores steering objects for Team A

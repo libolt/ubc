@@ -55,9 +55,7 @@ jumpBalls::jumpBalls()  // constructor
     
 }
 
-jumpBalls::~jumpBalls()  // destructor
-{
-}
+jumpBalls::~jumpBalls() = default;  // destructor
 
 jumpBallLocations_t jumpBalls::getJumpBallLocation() const  // retrieves teh value of jumpBallLocation
 {

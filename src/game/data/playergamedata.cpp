@@ -33,9 +33,7 @@ playerGameData::playerGameData()  // constructor
     oldDirection = NODIRECT;
     courtPositionChangedType = NOCHANGE;
 }
-playerGameData::~playerGameData()  // destructor
-{
-}
+playerGameData::~playerGameData() = default;  // destructor
 
 playerPositions playerGameData::getActivePosition() const  // retrieves the value of activePosition
 {

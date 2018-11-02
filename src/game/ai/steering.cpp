@@ -33,9 +33,11 @@ steering::steering ()  // constructor
     _radius = 0.0f;
     _speed = 0.0f;
     _maxForce = 0.0f;
+    _maxForces = 0.0f;
     _maxSpeed = 0.0f;
     _curvature = 0.0f;
     _smoothedCurvature = 0.0f;
+    serialNumberCounter = 0;
     
     // set inital state
     reset ();
@@ -44,9 +46,7 @@ steering::steering ()  // constructor
     serialNumber = serialNumberCounter++;
 }
 
-steering::~steering ()  // destructor
-{
-}
+steering::~steering () = default;  // destructor
 
 float steering::mass () const // retrieves the value of _mass 
 {
@@ -183,10 +183,10 @@ void steering::reset()
 OpenSteer::Vec3 steering::adjustRawSteeringForce (const OpenSteer::Vec3& force, const float /* deltaTime */)
 {
     const float maxAdjustedSpeed = 0.2f * maxSpeed ();
-
+    OpenSteer::Vec3 retVal;  // stores the return value
     if ((speed () > maxAdjustedSpeed) || (force ==OpenSteer::Vec3::zero))
     {
-        return force;
+        retVal = force;
     }
     else
     {
@@ -197,8 +197,9 @@ OpenSteer::Vec3 steering::adjustRawSteeringForce (const OpenSteer::Vec3& force, 
         // const float cosine = interpolate (pow (range, 100), 1.0f, -1.0f);
         // const float cosine = interpolate (pow (range, 50), 1.0f, -1.0f);
         const float cosine = OpenSteer::interpolate (pow (range, 20), 1.0f, -1.0f);
-        return limitMaxDeviationAngle (force, cosine, forward());
+        retVal = limitMaxDeviationAngle (force, cosine, forward());
     }
+    return (retVal);
 }
 
 

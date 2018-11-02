@@ -128,7 +128,7 @@ class renderEngine : public engine
 
     bool createWindow();  // creates a window
     bool createScene();  // creates a scene
-    OgreSceneNodeSharedPtr createNode(OgreEntitySharedPtr model, std::string entityNodeName);  // create scene node for model
+    OgreSceneNodeSharedPtr createNode(const OgreEntitySharedPtr &model, const std::string &entityNodeName);  // create scene node for model
 
     bool frameStarted();  // begins a frame
     bool frameEnded();  // ends a frame

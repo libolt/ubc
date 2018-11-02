@@ -59,13 +59,11 @@ GUISystem::GUISystem()  // Initialmizes the GUISystem class
     //activeMenu = nullptr;mm
     previousActiveMenu = NOACTIVEMENU;
     displayCount = 0;
+    activeMenu = NOACTIVEMENU;
 
 }
 
-GUISystem::~GUISystem()
-{
-
-}
+GUISystem::~GUISystem() = default;  // destructor
 
 GUIComponentsSharedPtr GUISystem::getComponent() const  // retrieves the value of component
 {
@@ -379,7 +377,7 @@ void GUISystem::teamSelectionMenu(const renderEngineSharedPtr &render)  // displ
             logMsg(func +" !getTeamInstancesCreated");
             
             teamInstance = setupTeam->createTeamInstances();  // creates team instances
-            if (teamInstance.size() > 0)
+            if (!teamInstance.empty())
             {
                 logMsg(func +" createTeamInstances");
 
@@ -1274,6 +1272,7 @@ void GUISystem::backNetworkClientMenuSelected(const renderEngineSharedPtr &rende
 
 bool GUISystem::checkTeamInstancesCreated()  // Checks if team instances have been created and if not creates them.
 {
+    bool retVal = false;
 //    exit(0);
     //gameState *gameS = gameState::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
@@ -1287,11 +1286,12 @@ bool GUISystem::checkTeamInstancesCreated()  // Checks if team instances have be
         gameS->assignHoopToTeams();
         logMsg("Team instances created!");
 */
-        return (false);
+//        retVal = false;
 //        exit(0);
     }
     else 
     {
-        return (true);
+        retVal = true;
     }
+    return (retVal);
 }

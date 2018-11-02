@@ -22,12 +22,11 @@
 
 teamComponents::teamComponents()  // constructor
 {
+    offenseInstance = nullptr;
+    defenseInstance = nullptr;
 
 }
-teamComponents::~teamComponents()  // destructor
-{
-    
-}
+teamComponents::~teamComponents() = default;  // destructor
 
 playerEntityMSharedPtr teamComponents::getPlayerInstance() const  // retrieves the value of playerInstance
 {

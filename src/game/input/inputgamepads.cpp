@@ -28,10 +28,7 @@ inputGamePads::inputGamePads()  // constructor
 {   
     setupComplete = false;
 }
-inputGamePads::~inputGamePads()  // destructor
-{
-    
-}
+inputGamePads::~inputGamePads() = default;  // destructor
 
 inputSharedPtr inputGamePads::getInputInstance() const  // retrieves the value of inputInstance
 {
@@ -51,11 +48,13 @@ void inputGamePads::setSetupComplete(const bool &set)  // sets the value of setu
     setupComplete = set;
 }
 
-inputInGameMaps inputGamePads::mapInput(inputGamePadMaps inGamePadMap, usersInputsSharedPtr uInput)  // maps value of the gamePad string to inputInGameMaps
+inputInGameMaps inputGamePads::mapInput(inputGamePadMaps inGamePadMap, const usersInputsSharedPtr &uInput)  // maps value of the gamePad string to inputInGameMaps
 {
     conversionSharedPtr convert ;
     size_t x = 0;
+    inputInGameMaps retVal;
     std::string func = "inputGamePads::mapInput()";
+
     logMsg(func + " begin");
     logMsg(func + " userInput name == " +uInput->getName());
 //    exit(0);
@@ -65,64 +64,65 @@ inputInGameMaps inputGamePads::mapInput(inputGamePadMaps inGamePadMap, usersInpu
 
     if (inGamePadMap == uInput->getGPUp())
     {
-        return(INUP);
+        retVal = INUP;
     }
     else if (inGamePadMap == uInput->getGPDown())
     {
-        return(INDOWN);
+        retVal = INDOWN;
     }
     else if (inGamePadMap == uInput->getGPLeft())
     {
-        return(INLEFT);
+        retVal = INLEFT;
     }
     else if (inGamePadMap == uInput->getGPRight())
     {
-        return(INRIGHT);
+        retVal = INRIGHT;
     }
     else if (inGamePadMap == uInput->getGPUpLeft())
     {
-        return(INUPLEFT);
+        retVal = INUPLEFT;
     }
     else if (inGamePadMap == uInput->getGPUpRight())
     {
-        return(INUPRIGHT);
+        retVal = INUPRIGHT;
     }
     else if (inGamePadMap == uInput->getGPDownLeft())
     {
-        return(INDOWNLEFT);
+        retVal = INDOWNLEFT;
     }
     else if (inGamePadMap == uInput->getGPDownRight())
     {
-        return(INDOWNRIGHT);
+        retVal = INDOWNRIGHT;
     }
     else if (inGamePadMap == uInput->getGPPassSteal())
     {
-        return(INPASSSTEAL);
+        retVal = INPASSSTEAL;
     }
     else if (inGamePadMap == uInput->getGPShootBlock())
     {
-        return(INSHOOTBLOCK);
+        retVal = INSHOOTBLOCK;
     }
     else if (inGamePadMap == uInput->getGPPause())
     {
-        return(INPAUSE);
+        retVal = INPAUSE;
     }
     else if (inGamePadMap == uInput->getGPStartSelect())
     {
-        return(INSTARTSELECT);
+        retVal = INSTARTSELECT;
     }
     else if (inGamePadMap == uInput->getGPQuit())
     {
         logMsg(func +" GPQuit = " +convert->toString(uInput->getGPQuit()));
 //        exit(0);
-        return(INQUIT);
+        retVal = INQUIT;
     }
     else
     {
-        return(INNO);
+        retVal = INNO;
     }
 //    exit(0);
     logMsg(func + " end");
+    return (retVal);
 }
 
 bool inputGamePads::process()  // processes input

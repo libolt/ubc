@@ -28,10 +28,7 @@ courtEntity::courtEntity()  // constructor
     initialized = false;
 //    physics = new courtPhysics;
 }
-courtEntity::~courtEntity()  // destructor
-{
-
-}
+courtEntity::~courtEntity() = default;  // destructor
 
 sharedPtr<courtData> courtEntity::getData() const  // retrieves the value of data
 {
@@ -78,7 +75,7 @@ bool courtEntity::setupPhysicsObject()  // sets up the physics object
     btRigidBody *tempPhysBody = getPhysics()->getPhysBody().get();
     btScalar restitution = 1.0f;
     btScalar friction = 15.5f;
-
+    bool retVal = false;
     if (!getPhysics()->getGameInstanceInitialized())
     {
         getPhysics()->setGameInstanceInitialized(true);
@@ -99,12 +96,12 @@ bool courtEntity::setupPhysicsObject()  // sets up the physics object
         setModel(OgreEntitySharedPtr(tempModel));
         setNode(OgreSceneNodeSharedPtr(tempNode));
         getPhysics()->setPhysBody(btRigidBodySharedPtr(tempPhysBody));
-        return (true);
+        retVal = true;
     }
     else
     {
     } 
 //    getPhysics()->getPhysBody()->setActivationState(ACTIVE_TAG);
 
-    return (false);
+    return (retVal);
 }

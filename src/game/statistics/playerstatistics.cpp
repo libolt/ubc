@@ -22,10 +22,9 @@
 
 playerStatistics::playerStatistics()  // constructor
 {
+    stamina = 0;
 }
-playerStatistics::~playerStatistics()  // destructor
-{
-}
+playerStatistics::~playerStatistics() = default;  // destructor
 
 size_t playerStatistics::getStamina() const  // retrieves the value of stamina
 {

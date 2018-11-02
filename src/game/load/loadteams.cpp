@@ -34,10 +34,7 @@ loadTeams::loadTeams()  // constructor
 {
     teamFilesLoaded = false;
 }
-loadTeams::~loadTeams()  // destructor
-{
-    
-}
+loadTeams::~loadTeams() = default;  // destructor
 
 stdStringVec loadTeams::getTeamFiles() const  // retrieves the value of teamFiles
 {
@@ -72,6 +69,7 @@ bool loadTeams::checkIfTeamsLoaded()  // checks if teams have been loaded into t
 //    teamStateVec tempT;
     teamEntityMSharedPtr tempTInstance;
     tInstance = tempTInstance;
+    bool retVal = false;
     std::string func = "loadTeams::checkIfTeamsLoaded()";
     
     logMsg(func + " begin");
@@ -80,10 +78,10 @@ bool loadTeams::checkIfTeamsLoaded()  // checks if teams have been loaded into t
     {
         logMsg(func +" getTeamFilesLoaded");
 
-        if (tInstance.size() > 0)
+        if (!tInstance.empty())
         {
             logMsg(func + " Team Files Loaded!");
-            return(true);
+            retVal = true;
         }
         else
         {
@@ -91,13 +89,13 @@ bool loadTeams::checkIfTeamsLoaded()  // checks if teams have been loaded into t
 
             teamFilesLoaded = false;
             tInstance = loadTeamFiles();
-            if (tInstance.size() > 0)
+            if (!tInstance.empty())
             {
                 logMsg(func +" > 0!");
 
 //                load->setTInstance(tInstance);
                 teamFilesLoaded = true;
-                return(true);
+                retVal = true;
             }
             else
             {
@@ -110,12 +108,12 @@ bool loadTeams::checkIfTeamsLoaded()  // checks if teams have been loaded into t
     {
         logMsg(func +" ELSE");
 
-        if (tInstance.size() > 0)
+        if (!tInstance.empty())
         {
             logMsg(func +" load->getTInstance().size() > 0! ELSE");
 //            load->setTInstance(tInstance);
             teamFilesLoaded = true;
-            return(true);
+            retVal = true;
         }
         else
         {
@@ -124,25 +122,25 @@ bool loadTeams::checkIfTeamsLoaded()  // checks if teams have been loaded into t
             tInstance = loadTeamFiles();
             logMsg(func +" tInstance.size() == " +convert->toString(tInstance.size()));
 //            exit(0);
-            if (tInstance.size() > 0)
+            if (!tInstance.empty())
             {
                 logMsg(func +" load->getTInstance().size() > 0! ELSE ELSE");
 
 //                load->setTInstance(tInstance);
                 teamFilesLoaded = true;
-                return(true);
+                retVal = true;
             }
             else
             {
                 logMsg(func +" Failed to load Team Files!");
-                return(false);
+                retVal = false;
             }
         }
     }
     
     logMsg(func +" end");
     
-    return (true);
+    return (retVal);
 }
 
 teamEntityMSharedPtr loadTeams::loadTeamFiles()  // load teams from XML files
@@ -211,7 +209,7 @@ teamEntityMSharedPtr loadTeams::loadTeamFiles()  // load teams from XML files
 //    exit(0);
     logMsg(func +" dah");
 //    exit(0);
-    if (teams.size() == 0)
+    if (teams.empty())
     {
         logMsg(func +" teams.size() == " +convert->toString(teams.size()));
 //        exit(0);
@@ -222,7 +220,7 @@ teamEntityMSharedPtr loadTeams::loadTeamFiles()  // load teams from XML files
     return (teams);
 }
 
-stdStringVec loadTeams::loadTeamListFile(std::string fileName)  // loads the team list file
+stdStringVec loadTeams::loadTeamListFile(const std::string &fileName)  // loads the team list file
 {
     conversionSharedPtr convert ;
 //    renderEngineSharedPtr render = renderEngine::Instance();
@@ -273,7 +271,7 @@ stdStringVec loadTeams::loadTeamListFile(std::string fileName)  // loads the tea
     }
     tinyxml2::XMLHandle hDoc(&doc);
     tinyxml2::XMLElement *pElem;
-    tinyxml2::XMLHandle hRoot(0);
+    tinyxml2::XMLHandle hRoot(nullptr);
     //tinyxml2::XMLText *textNode = doc.FirstChildElement("Teams")->FirstChildElement("TeamFile")->ToText();
     //logMsg("first element = " +convert->toString(textNode->Value()));
     pElem=hDoc.FirstChildElement().ToElement();
@@ -314,7 +312,7 @@ stdStringVec loadTeams::loadTeamListFile(std::string fileName)  // loads the tea
     return (files);
 }
 
-teamEntitySharedPtr loadTeams::loadTeamFile(std::string fileName)  // loads the team file
+teamEntitySharedPtr loadTeams::loadTeamFile(const std::string &fileName)  // loads the team file
 {
     conversionSharedPtr convert ;
 //    sharedPtr<gameState> gameS = gameState::Instance();
@@ -359,7 +357,7 @@ teamEntitySharedPtr loadTeams::loadTeamFile(std::string fileName)  // loads the 
     tinyxml2::XMLHandle hDoc(&doc);
     tinyxml2::XMLElement *pElem;
     
-    tinyxml2::XMLHandle hRoot(0);
+    tinyxml2::XMLHandle hRoot(nullptr);
     
     pElem=hDoc.FirstChildElement().ToElement();
     

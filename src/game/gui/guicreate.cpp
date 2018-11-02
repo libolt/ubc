@@ -41,7 +41,7 @@
  
 //MyGUI::Button *GUISystem::backMainMenuButton;  // static
 
-bool GUISystem::createMainMenuGUI(renderEngineSharedPtr render)  // creates the main menu gui
+bool GUISystem::createMainMenuGUI(const renderEngineSharedPtr &render)  // creates the main menu gui
 {
     conversionSharedPtr convert ;
 
@@ -139,7 +139,7 @@ bool GUISystem::createMainMenuGUI(renderEngineSharedPtr render)  // creates the 
     return (true);
 }
 
-bool GUISystem::createNetworkSetupGUI(renderEngineSharedPtr render)  // loads the GUI for the network setup screen
+bool GUISystem::createNetworkSetupGUI(const renderEngineSharedPtr &render)  // loads the GUI for the network setup screen
 {
 //    renderEngineSharedPtr render; // = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
@@ -180,7 +180,7 @@ bool GUISystem::createNetworkSetupGUI(renderEngineSharedPtr render)  // loads th
     return true;
 }
 
-bool GUISystem::createNetworkClientSetupGUI(renderEngineSharedPtr render)  // creates GUI for network client setup screen.
+bool GUISystem::createNetworkClientSetupGUI(const renderEngineSharedPtr &render)  // creates GUI for network client setup screen.
 {
 //    renderEngineSharedPtr render; // = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
@@ -215,7 +215,7 @@ bool GUISystem::createNetworkClientSetupGUI(renderEngineSharedPtr render)  // cr
     return true;
 }
 
-bool GUISystem::createNetworkServerSetupGUI(renderEngineSharedPtr render)  // creates GUI for network server setup screen.
+bool GUISystem::createNetworkServerSetupGUI(const renderEngineSharedPtr &render)  // creates GUI for network server setup screen.
 {
 //    renderEngineSharedPtr render; // = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
@@ -255,7 +255,7 @@ bool GUISystem::createNetworkServerSetupGUI(renderEngineSharedPtr render)  // cr
     return true;
 }
 
-bool GUISystem::createCourtSelectionMenuGUI(renderEngineSharedPtr render)  // creates GUI for court selection menu screen.
+bool GUISystem::createCourtSelectionMenuGUI(const renderEngineSharedPtr &render)  // creates GUI for court selection menu screen.
 {
 //    renderEngineSharedPtr render; // = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
@@ -306,7 +306,7 @@ bool GUISystem::createCourtSelectionMenuGUI(renderEngineSharedPtr render)  // cr
     return true;
 }
 
-bool GUISystem::createOptionsMenuGUI(renderEngineSharedPtr render)  // creates GUI for options menu screen.
+bool GUISystem::createOptionsMenuGUI(const renderEngineSharedPtr &render)  // creates GUI for options menu screen.
 {
 //    renderEngineSharedPtr render; // = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
@@ -520,7 +520,7 @@ bool GUISystem::createSetupMenuGUI()    // creates GUI for game setup menu scree
     return (true);
 }
 
-bool GUISystem::createPlayerStartSelectionMenuGUI(renderEngineSharedPtr render)  // creates GUI for player selection menu screen.
+bool GUISystem::createPlayerStartSelectionMenuGUI(const renderEngineSharedPtr &render)  // creates GUI for player selection menu screen.
 {
 
     MyGUIButtonMSharedPtr tempButtons;
@@ -532,14 +532,14 @@ bool GUISystem::createPlayerStartSelectionMenuGUI(renderEngineSharedPtr render) 
     
     MyGUI::LayoutManager::getInstance().loadLayout("PlayerStartSelection.layout");
 
-    if (tempSelectBox.size() == 0)
+    if (tempSelectBox.empty())
     {
         MyGUIPlayerListBoxMSharedPtr playerPosSelectBox;
         tempSelectBox.push_back(playerPosSelectBox);
         tempSelectBox.push_back(playerPosSelectBox);
     }
     
-    if (tempRating.size() == 0)
+    if (tempRating.empty())
     {
         MyGUITextBoxMSharedPtr playerRating;
         tempRating.push_back(playerRating);
@@ -684,7 +684,7 @@ bool GUISystem::createPlayerStartSelectionMenuGUI(renderEngineSharedPtr render) 
     return (true);
 }
 
-bool GUISystem::createTeamSelectionMenuGUI(renderEngineSharedPtr render)  // creates GUI for team selection menu screen.
+bool GUISystem::createTeamSelectionMenuGUI(const renderEngineSharedPtr &render)  // creates GUI for team selection menu screen.
 {
 //    renderEngineSharedPtr render;
 

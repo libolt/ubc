@@ -34,10 +34,7 @@ input::input()  // constructor
     setupComplete = false;
     inputESet = false;
 }
-input::~input()  // destructor
-{
-    
-}
+input::~input() = default;  // destructor
 
 inputEngineSharedPtr input::getInputE() const  // retrieves the value of inputE
 {
@@ -84,7 +81,7 @@ void input::setInputESet(const bool &set)  // sets the value of inputESet
     inputESet = set;
 }
 
-bool input::setup(inputEngineSharedPtr inputEng)  // sets up the input state
+bool input::setup(const inputEngineSharedPtr &inputEng)  // sets up the input state
 {
 //    exit(0);
     loaderSharedPtr load(new loader);

@@ -48,8 +48,8 @@ class loadOffensePlays : public loader
 
         //Offense
         offensePlaysVecSharedPtr loadOffensePlayFiles();  // load offense plays from XML files
-        stdStringVec loadOffensePlayListFile(std::string fileName);  // loads the list of offense play files from plays.xml
-        offensePlaysSharedPtr loadOffensePlayFile(std::string fileName); // loads data from the offense play XML files
+        stdStringVec loadOffensePlayListFile(const std::string &fileName);  // loads the list of offense play files from plays.xml
+        offensePlaysSharedPtr loadOffensePlayFile(const std::string &fileName); // loads data from the offense play XML files
 
 
     private:

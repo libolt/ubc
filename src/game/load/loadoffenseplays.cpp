@@ -33,10 +33,7 @@ loadOffensePlays::loadOffensePlays()  // constructor
 {
     offensePlayFilesLoaded = false;
 }
-loadOffensePlays::~loadOffensePlays()  // destructor
-{
-
-}
+loadOffensePlays::~loadOffensePlays() = default;  // destructor
 
 stdStringVec loadOffensePlays::getOffensePlayFiles() const  // retrieves the value of offensePlayFiles
 {
@@ -67,6 +64,7 @@ void loadOffensePlays::setOffensePlayFilesLoaded(const bool &set)  // sets the v
 
 bool loadOffensePlays::checkIfOffensePlaysLoaded()  // checks if offense plays have been loaded into opInstance
 {
+    bool retVal = false;
     std::string func = "loadOffensePlays::checkIfOffensePlaysLoaded()";
 
     logMsg(func +" begin");
@@ -74,10 +72,10 @@ bool loadOffensePlays::checkIfOffensePlaysLoaded()  // checks if offense plays h
     {
         logMsg(func +" getOffensePlayFilesLoaded");
 
-        if (opInstance.size() > 0)
+        if (!opInstance.empty())
         {
             logMsg(func +" Offense Play Files Loaded!");
-            return(true);
+            retVal = true;
         }
         else
         {
@@ -85,13 +83,13 @@ bool loadOffensePlays::checkIfOffensePlaysLoaded()  // checks if offense plays h
 
             offensePlayFilesLoaded = false;
             opInstance = loadOffensePlayFiles();
-            if (opInstance.size() > 0)
+            if (!opInstance.empty())
             {
                 logMsg(func +" > 0!");
 
 //                load->setTInstance(tInstance);
                 offensePlayFilesLoaded = true;
-                return(true);
+                retVal = true;
             }
             else
             {
@@ -104,30 +102,30 @@ bool loadOffensePlays::checkIfOffensePlaysLoaded()  // checks if offense plays h
     {
         logMsg(func +" ELSE");
 
-        if (opInstance.size() > 0)
+        if (!opInstance.empty())
         {
             logMsg(func +" load->getOPInstance().size() > 0! ELSE");
 //            load->setTInstance(tInstance);
             offensePlayFilesLoaded = true;
-            return(true);
+            retVal = true;
         }
         else
         {
             logMsg(func +" ELSE ELSE!");
 
             opInstance = loadOffensePlayFiles();
-            if (opInstance.size() > 0)
+            if (!opInstance.empty())
             {
                 logMsg(func +" load->getOPInstance().size() > 0! ELSE ELSE");
 
 //                load->setTInstance(tInstance);
                 offensePlayFilesLoaded = true;
-                return(true);
+                retVal = true;
             }
             else
             {
                 logMsg(func +" Failed to load Offense Play Files!");
-                return(false);
+                retVal = false;
             }
         }
     }
@@ -135,7 +133,7 @@ bool loadOffensePlays::checkIfOffensePlaysLoaded()  // checks if offense plays h
 
     logMsg(func +" end");
 
-    return (false);
+    return (retVal);
 }
 
 //Offense
@@ -172,7 +170,7 @@ offensePlaysVecSharedPtr loadOffensePlays::loadOffensePlayFiles()  // load offen
     return (plays);
 }
 
-stdStringVec loadOffensePlays::loadOffensePlayListFile(std::string fileName)  // loads the play list file
+stdStringVec loadOffensePlays::loadOffensePlayListFile(const std::string &fileName)  // loads the play list file
 {
     conversionSharedPtr convert ;
 //    renderEngineSharedPtr render = renderEngine::Instance();
@@ -201,7 +199,7 @@ stdStringVec loadOffensePlays::loadOffensePlayListFile(std::string fileName)  //
 
     tinyxml2::XMLElement *pElem;
 
-    tinyxml2::XMLHandle hRoot(0);
+    tinyxml2::XMLHandle hRoot(nullptr);
 
     pElem=hDoc.FirstChildElement().ToElement();
     // should always have a valid root but handle gracefully if it does
@@ -226,7 +224,7 @@ stdStringVec loadOffensePlays::loadOffensePlayListFile(std::string fileName)  //
     return (playFiles);
 }
 
-sharedPtr<offensePlays> loadOffensePlays::loadOffensePlayFile(std::string fileName)  // loads data from the offense play XML files
+sharedPtr<offensePlays> loadOffensePlays::loadOffensePlayFile(const std::string &fileName)  // loads data from the offense play XML files
 {
     conversionSharedPtr convert ;
     
@@ -290,7 +288,7 @@ sharedPtr<offensePlays> loadOffensePlays::loadOffensePlayFile(std::string fileNa
 
     tinyxml2::XMLNode *childNode;
 
-    tinyxml2::XMLHandle hRoot(0);
+    tinyxml2::XMLHandle hRoot(nullptr);
 
     rootElement=hDoc.FirstChildElement().ToElement();
 
@@ -424,7 +422,7 @@ sharedPtr<offensePlays> loadOffensePlays::loadOffensePlayFile(std::string fileNa
                     }
                 }
                 // checks if there are execute coords and puts them in the vector
-                if (pExecuteCoords.size() > 0)
+                if (!pExecuteCoords.empty())
                 {
                     executeCoords.push_back(pExecuteCoords);
                 }

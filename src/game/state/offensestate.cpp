@@ -39,6 +39,7 @@ offenseState::offenseState()  // constructor
     selectedOffense = -1; // sets the default offense to box
     execute = false;
     offenseSet = false;
+    courtSide = NOSIDE;
 /*  startPositions = new Ogre::Vector3[5];
 
     for (int x=0; x<5; ++x)
@@ -55,10 +56,10 @@ offenseState::offenseState()  // constructor
 
     executePositions.resize(5);
 
-    startXPosSet = new bool[5];
+/*    startXPosSet = new bool[5];
     startYPosSet = new bool[5];
     startZPosSet = new bool[5];
-
+*/
     allStartPositionsReached = false;
     allExecutePositionsReached = false;
 
@@ -96,119 +97,119 @@ void offenseState::setGameSInitialized(bool set)  // sets the value of gameSInit
 }
 */
 
-teamTypes offenseState::getTeamType()  // retrieves the value of teamType
+teamTypes offenseState::getTeamType() const  // retrieves the value of teamType
 {
     return (teamType);
 }
-void offenseState::setTeamType(teamTypes set)  // sets the value of teamType
+void offenseState::setTeamType(const teamTypes &set)  // sets the value of teamType
 {
     teamType = set;
 }
 
-courtSide_t offenseState::getCourtSide()  // retrieves the value of courtSide
+courtSide_t offenseState::getCourtSide() const  // retrieves the value of courtSide
 {
     return (courtSide);
 }
-void offenseState::setCourtSide(courtSide_t set)  // sets the value of courtSide
+void offenseState::setCourtSide(const courtSide_t &set)  // sets the value of courtSide
 {
     courtSide = set;
 }
 
-int offenseState::getSelectedOffense()  // returns value of selectedOffense
+int offenseState::getSelectedOffense() const  // returns value of selectedOffense
 {
     return (selectedOffense);
 }
-void offenseState::setSelectedOffense(int set)  // sets the value of selectedOffense
+void offenseState::setSelectedOffense(const int &set)  // sets the value of selectedOffense
 {
     selectedOffense = set;
 }
 
-bool offenseState::getExecute()  // retrieves the value of execute variable
+bool offenseState::getExecute() const  // retrieves the value of execute variable
 {
     return (execute);
 }
-void offenseState::setExecute(bool set)  // sets the value of the execute variable
+void offenseState::setExecute(const bool &set)  // sets the value of the execute variable
 {
     execute = set;
 }
 
-offensePlaysVecSharedPtr offenseState::getPlays()  // returns the value of plays
+offensePlaysVecSharedPtr offenseState::getPlays() const  // returns the value of plays
 {
     return (plays);
 }
-void offenseState::setPlays(offensePlaysVecSharedPtr set)  // sets the value of plays
+void offenseState::setPlays(const offensePlaysVecSharedPtr &set)  // sets the value of plays
 {
     plays = set;
 }
 
-OgreVector3Vec offenseState::getStartPositions()  // retrieves the value of startPositions
+OgreVector3Vec offenseState::getStartPositions() const  // retrieves the value of startPositions
 {
     return (startPositions);
 }
-void offenseState::setStartPositions(OgreVector3Vec set)  // sets the value of startPositions
+void offenseState::setStartPositions(const OgreVector3Vec &set)  // sets the value of startPositions
 {
     startPositions = set;
 }
 
-std::vector< OgreVector3Vec > offenseState::getExecutePositions()  // retrieves the value of startPositions 
+std::vector< OgreVector3Vec > offenseState::getExecutePositions() const  // retrieves the value of startPositions
 {
     return (executePositions);
 }
-void offenseState::setExecutePositions(std::vector< OgreVector3Vec > set)  // sets the value of startPositions
+void offenseState::setExecutePositions(const std::vector<OgreVector3Vec> &set)  // sets the value of startPositions
 {
     executePositions = set;
 }
 
-bool offenseState::getStartXPosSet()  // returns the value of startXPosSet
+boolVec offenseState::getStartXPosSet() const  // returns the value of startXPosSet
 {
     return (startXPosSet);
 }
-void offenseState::setStartXPosSet(bool *set)  // sets the value of startXPosSet
+void offenseState::setStartXPosSet(const boolVec &set)  // sets the value of startXPosSet
 {
     startXPosSet = set;
 }
 
-bool offenseState::getStartYPosSet()  // returns the value of startYPosSet
+boolVec offenseState::getStartYPosSet() const  // returns the value of startYPosSet
 {
     return (startYPosSet);
 }
-void offenseState::setStartYPosSet(bool *set) // sets the value of startYPosSet
+void offenseState::setStartYPosSet(const boolVec &set) // sets the value of startYPosSet
 {
     startYPosSet = set;
 }
 
-bool offenseState::getStartZPosSet()  // returns the value of startZPosSet
+boolVec offenseState::getStartZPosSet() const  // returns the value of startZPosSet
 {
     return (startZPosSet);
 }
-void offenseState::setStartZPosSet(bool *set)  // sets the value of startZPosSet
+void offenseState::setStartZPosSet(const boolVec &set)  // sets the value of startZPosSet
 {
     startZPosSet = set;
 }
 
-boolVec offenseState::getStartPositionReached()  // returns the value of startPositionReached
+boolVec offenseState::getStartPositionReached() const  // returns the value of startPositionReached
 {
     return (startPositionReached);
 }
-void offenseState::setStartPositionReached(boolVec set) // sets the value of startPositionReached
+void offenseState::setStartPositionReached(const boolVec &set) // sets the value of startPositionReached
 {
     startPositionReached = set;
 }
 
-bool offenseState::getAllStartPositionsReached()  // retrieves the value of allStartPositionsReached
+bool offenseState::getAllStartPositionsReached() const  // retrieves the value of allStartPositionsReached
 {
     return (allStartPositionsReached);
 }
-void offenseState::setAllStartPositionsReached(bool set)  // sets the value of allStartPositionsReached
+void offenseState::setAllStartPositionsReached(const bool &set)  // sets the value of allStartPositionsReached
 {
     allStartPositionsReached = set;
 }
 
-std::vector< boolVec > offenseState::getExecutePositionReached()  // returns the value of executePositionSet
+std::vector< boolVec > offenseState::getExecutePositionReached() const  // returns the value of executePositionSet
 {
     return (executePositionReached);
 }
-void offenseState::setExecutePositionReached(std::vector< boolVec > set) // sets the value of executePositionSet
+void offenseState::setExecutePositionReached(const std::vector<boolVec> &set) // sets the value of executePositionSet
 {
     executePositionReached = set;
 }
@@ -218,7 +219,7 @@ void offenseState::setupState()  // sets up initial state of the object
 //    startPositions[0] = Ogre::Vector3(5.0f,-13.5f,380.0f);
 }
 
-void offenseState::updateState(teamTypes teamType, gameComponentsSharedPtr gameComponent, gameDataSharedPtr gameData)  // updates the state of the object
+void offenseState::updateState(teamTypes teamType, const gameComponentsSharedPtr &gameComponent, const gameDataSharedPtr &gameData)  // updates the state of the object
 {
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
@@ -252,7 +253,7 @@ void offenseState::loadPlays()  // loads offense plays from file
     }
 }
 
-void offenseState::setupOffense(gameDataSharedPtr gameData)  // sets up box offense
+void offenseState::setupOffense(const gameDataSharedPtr &gameData)  // sets up box offense
 {
     conversionSharedPtr convert ;
 //    sharedPtr<gameEngine> gameE = gameEngine::Instance();
@@ -370,7 +371,7 @@ void offenseState::setupOffense(gameDataSharedPtr gameData)  // sets up box offe
     offenseSetup = true;
 }
 
-void offenseState::executeOffense(gameComponentsSharedPtr gameComponent, gameDataSharedPtr gameData) // executes box offense
+void offenseState::executeOffense(const gameComponentsSharedPtr &gameComponent, const gameDataSharedPtr &gameData)  // executes box offense
 {
     conversionSharedPtr convert ;
 //    sharedPtr<gameState> gameS = gameState::Instance();
@@ -517,7 +518,7 @@ TS*/
 bool offenseState::checkForDirective(playerPositions playerPosition)  // checks if a directive needs to be completed before execution
 {
     conversionSharedPtr convert ;
-    
+    bool retVal = true;
     size_t x = 0;
     logMsg("playerDirective.size() == " +convert->toString(playerDirective.size()));
     while (x < playerDirective.size())
@@ -551,14 +552,12 @@ bool offenseState::checkForDirective(playerPositions playerPosition)  // checks 
                                     logMsg("offense position type = EXECUTe");
                                     if (!executePositionReached[playerDirective[x].getPlayerSet()][playerDirective[x].getPosition()])
                                     {
-                                        return (false);
+                                        retVal = false;
                                     }
                                     else
                                     {
                                     }
                                     //exit(0);
-                                break;
-                                default:
                                 break;
                             }
                             //return (true);
@@ -566,17 +565,13 @@ bool offenseState::checkForDirective(playerPositions playerPosition)  // checks 
                         break;
                         case TIME:
                         break;
-                        default:
-                        break;
                     }
-                break;
-                default:
                 break;
             }
         }
         ++x;
     }
-    return (true);
+    return (retVal);
 }
 
 void offenseState::executePass()  // executes the pass between players

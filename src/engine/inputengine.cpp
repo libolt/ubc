@@ -54,9 +54,7 @@ inputEngine::inputEngine()  // constructor
 //    setup();
 }
 
-inputEngine::~inputEngine()  // destructor
-{
-}
+inputEngine::~inputEngine() = default;  // destructor
 
 bool inputEngine::getKeyInputReceived() const  // retrieves the value of keyInputReceived
 {

@@ -36,10 +36,7 @@ loadCourts::loadCourts()  // constructor
     courtFilesLoaded = false;
 
 }
-loadCourts::~loadCourts()  // destructor
-{
-
-}
+loadCourts::~loadCourts() = default;  // destructor
 
 stdStringVec loadCourts::getCourtFiles() const   // retrieves the value of courtFiles
 {
@@ -71,7 +68,7 @@ void loadCourts::setCourtFilesLoaded(const bool &set)  // sets the value of cour
 bool loadCourts::checkIfCourtsLoaded()  // checks if courts have been loaded into cInstance
 {
 //    exit(0);
-
+    bool retVal = false;
     std::string func = "loadCourts::checkIfCourtsLoaded()";
 
     logMsg(func +" begin");
@@ -80,10 +77,10 @@ bool loadCourts::checkIfCourtsLoaded()  // checks if courts have been loaded int
     {
         logMsg(func + " courtFilesLoaded");
 //        exit(0);
-        if (cInstance.size() > 0)
+        if (!cInstance.empty())
         {
             logMsg(func + " Court Files Loaded!");
-            return(true);
+            retVal = true;
         }
         else
         {
@@ -91,13 +88,13 @@ bool loadCourts::checkIfCourtsLoaded()  // checks if courts have been loaded int
 
             courtFilesLoaded = false;
             cInstance = loadCourtFiles();
-            if (cInstance.size() > 0)
+            if (!cInstance.empty())
             {
                 logMsg(func +"  > 0!");
 
 //                load->setTInstance(tInstance);
                 courtFilesLoaded = true;
-                return(true);
+                retVal = true;
             }
             else
             {
@@ -110,12 +107,12 @@ bool loadCourts::checkIfCourtsLoaded()  // checks if courts have been loaded int
     {
         logMsg(func + " ELSE");
 //        exit(0);
-        if (cInstance.size() > 0)
+        if (!cInstance.empty())
         {
             logMsg(func +" load->getCInstance().size() > 0! ELSE");
 //            load->setTInstance(tInstance);
             courtFilesLoaded = true;
-            return(true);
+            retVal = true;
         }
         else
         {
@@ -123,18 +120,18 @@ bool loadCourts::checkIfCourtsLoaded()  // checks if courts have been loaded int
 
             cInstance = loadCourtFiles();
             logMsg(func);
-            if (cInstance.size() > 0)
+            if (!cInstance.empty())
             {
                 logMsg(func +" load->getCInstance().size() > 0! ELSE ELSE");
 
 //                load->setTInstance(tInstance);
                 courtFilesLoaded = true;
-                return(true);
+                retVal = true;
             }
             else
             {
                 logMsg(func +" Failed to load Court Files!");
-                return(false);
+                retVal = false;
             }
         }
     }
@@ -142,7 +139,7 @@ bool loadCourts::checkIfCourtsLoaded()  // checks if courts have been loaded int
 
     logMsg(func +" end");
 
-    return (false);
+    return (retVal);
 }
 
 // Courts
@@ -183,7 +180,7 @@ courtEntityMSharedPtr loadCourts::loadCourtFiles()  // load court settings from 
     return (courts);
 }
 
-stdStringVec loadCourts::loadCourtListFile(std::string fileName)    // loads the list of court list file
+stdStringVec loadCourts::loadCourtListFile(const std::string &fileName)    // loads the list of court list file
 {
     conversionSharedPtr convert ;
 //    renderEngineSharedPtr render = renderEngine::Instance();
@@ -213,7 +210,7 @@ stdStringVec loadCourts::loadCourtListFile(std::string fileName)    // loads the
 
     tinyxml2::XMLHandle hDoc(&doc);
     tinyxml2::XMLElement *pElem;
-    tinyxml2::XMLHandle hRoot(0);
+    tinyxml2::XMLHandle hRoot(nullptr);
 
     pElem=hDoc.FirstChildElement().ToElement();
     // should always have a valid root but handle gracefully if it does
@@ -240,7 +237,7 @@ stdStringVec loadCourts::loadCourtListFile(std::string fileName)    // loads the
     return (cFiles);
 }
 
-courtEntitySharedPtr loadCourts::loadCourtFile(std::string fileName)  // loads data from the offense play XML files
+courtEntitySharedPtr loadCourts::loadCourtFile(const std::string &fileName)  // loads data from the offense play XML files
 {
     conversionSharedPtr convert ;
     courtEntitySharedPtr courtInstance(new courtEntity);
@@ -292,7 +289,7 @@ courtEntitySharedPtr loadCourts::loadCourtFile(std::string fileName)  // loads d
     tinyxml2::XMLHandle hDoc(&doc);
     tinyxml2::XMLElement *rootElement;
     tinyxml2::XMLElement *child;
-    tinyxml2::XMLHandle hRoot(0);
+    tinyxml2::XMLHandle hRoot(nullptr);
 
     rootElement = hDoc.FirstChildElement().ToElement();
     // should always have a valid root but handle gracefully if it does
@@ -474,7 +471,7 @@ courtEntitySharedPtr loadCourts::loadCourtFile(std::string fileName)  // loads d
     return (courtInstance);
 }
 
-courtEntityMSharedPtr loadCourts::loadModels(courtEntityMSharedPtr activeCourtInstance, renderEngineSharedPtr render)  // loads selected court model
+courtEntityMSharedPtr loadCourts::loadModels(courtEntityMSharedPtr activeCourtInstance, const renderEngineSharedPtr &render)  // loads selected court model
 {
     conversionSharedPtr convert ;
     loaderSharedPtr load(new loader);
@@ -496,14 +493,14 @@ courtEntityMSharedPtr loadCourts::loadModels(courtEntityMSharedPtr activeCourtIn
         //FIXME! This should be done in a cleaner way!
         ACIIT.second->setModelFileName(ACIIT.second->getData()->getModelFileName());
 
-        if (ACIIT.second->getName() == "")  // checks if entityName has been set
+        if (ACIIT.second->getName().empty())  // checks if entityName has been set
         {
             std::string name = ACIIT.second->getData()->getName();
             ACIIT.second->setName(name);
         }
         logMsg(func +" entityName == " +ACIIT.second->getName());
 //        exit(0);
-        if (ACIIT.second->getNodeName() == "")  // checks if entityNodeName has been set
+        if (ACIIT.second->getNodeName().empty())  // checks if entityNodeName has been set
         {
             std::string nodeName = ACIIT.second->getData()->getName() +"node";
             ACIIT.second->setNodeName(nodeName);

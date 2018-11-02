@@ -26,9 +26,8 @@ engine::engine()  // constructor
     windowHeight = 0;
 }
 
-engine::~engine()  // destructor
-{
-}
+engine::~engine() = default;  // destructor
+
  
 float engine::getWindowWidth() const  // retrieves the value of windowWidth
 {

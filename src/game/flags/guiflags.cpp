@@ -44,10 +44,7 @@ guiFlags::guiFlags()
     startActiveGame = false;
 }
 
-guiFlags::~guiFlags()
-{
-
-}
+guiFlags::~guiFlags()  = default;  // destructor
 
 bool guiFlags::getMenuActive() const  // retrieves the value of menuActive
 {

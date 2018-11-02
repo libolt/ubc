@@ -45,11 +45,11 @@
 
 playerSteerPlugin::playerSteerPlugin()  // constructor
 {
+    m_PlayerCountA = 0;
+    m_PlayerCountB = 0;
+    teamWithBall = NOTEAM;
 }
-playerSteerPlugin::~playerSteerPlugin()  // destructor
-{
-    
-}
+playerSteerPlugin::~playerSteerPlugin() = default;  // destructor
 
 gameEntitySharedPtr playerSteerPlugin::getGameInstance() const  // retrieves the value of gameInstance
 {
@@ -135,16 +135,11 @@ void playerSteerPlugin::open()  // opens the plugin
     teamWithBall = AI->getTeamWithBall();
     humanPlayer = AI->getHumanPlayer();
 
-/*    if (!baseInitialized)
-    {
-        base = ai->getBase();
-        baseInitialized = true;
-    }*/
-
 	// builds team 0 steering instances
     logMsg(func +" activeTeamInstance.size() == " +convert->toString(activeTeamInstance.size()));
 //    exit(0);
-    if (activeTeamInstance.size() > 0)
+//    if (activeTeamInstance.size() > 0)
+    if (!activeTeamInstance.empty())
     {
         for (auto ATIIT : activeTeamInstance)
         {
@@ -315,10 +310,10 @@ void playerSteerPlugin::update(const float currentTime, const float elapsedTime)
 
 //    team1ActivePlayerInstance[3].getSteer()->update(currentTime, elapsedTime);
 
-    for (auto ATIIT : gameInstance->getComponent()->getActiveTeamInstance())
+    for (const auto &ATIIT : gameInstance->getComponent()->getActiveTeamInstance())
     {
         activePlayerInstance.push_back(ATIIT.second->getComponent()->getActivePlayerInstance());
-        for (auto APIIT : activePlayerInstance[ATIIT.first])
+        for (const auto &APIIT : activePlayerInstance[ATIIT.first])
         {
 /*FIXME!            if (APIIT.first != ATIIT.second->getHumanPlayer() && APIIT.second->getModelLoaded())
             {

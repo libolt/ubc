@@ -27,6 +27,8 @@
 //#include "state/gamestateshared.h"
 //#include "ubc/ubc.h"
 
+#include "utilities/typedefs.h"
+
 // Forward declarations
 class teamEntity;
 class networkEngine;
@@ -38,13 +40,13 @@ class networkState : public state
         ~networkState();  // destructor
         
         // getters and setters
-        networkEngineSharedPtr getNetworkE();  // retrieves the value of network
-        void setNetwork(networkEngineSharedPtr set);  // sets the value of network
+        networkEngineSharedPtr getNetworkE() const;  // retrieves the value of network
+        void setNetwork(const networkEngineSharedPtr &set);  // sets the value of network
 
         void processLocalInput(teamEntityVecSharedPtr activeTeamInstance);  // processes local input for sending to remote system
         void processRemoteInput();  // processes input received from a remote system
-        void processNetworkEvents(teamEntityVecSharedPtr activeTeamInstance);  // processes events received from network connection.
-        void processNetworkPlayerEvents(teamEntityVecSharedPtr activeTeamInstance);  // processes player evernts received from network connection
+        void processNetworkEvents(const teamEntityVecSharedPtr &activeTeamInstance);  // processes events received from network connection.
+        void processNetworkPlayerEvents(const teamEntityVecSharedPtr &activeTeamInstance);  // processes player evernts received from network connection
 
     
     private:

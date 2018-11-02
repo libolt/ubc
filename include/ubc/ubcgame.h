@@ -80,17 +80,17 @@ class UBCGame
 
         bool setup();  // sets up a game instance
 
-        bool loop(gameEngineSharedPtr gameE, UBCInputSharedPtr input, GUISystemSharedPtr gui);  // runs the Main loop for the game
+        bool loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &input, const GUISystemSharedPtr &gui);  // runs the Main loop for the game
 
-        bool startGame(renderEngineSharedPtr render);  // starts a game
+        bool startGame(const renderEngineSharedPtr &render);  // starts a game
 
         bool createUserInstances();  // creates the user instances
 
         bool setupUserInstancesInput();  // sets up input mapping for each user
 
-        void processNetworkEvents(gameEngineSharedPtr gameE);  // processes events in the network subsyatem
+        void processNetworkEvents(const gameEngineSharedPtr &gameE);  // processes events in the network subsyatem
 
-        void processPhysicsEvents(gameEngineSharedPtr gameE);  // processes events in the physics subsyatem
+        void processPhysicsEvents(const gameEngineSharedPtr &gameE);  // processes events in the physics subsyatem
 
     private:
 

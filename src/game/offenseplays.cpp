@@ -101,56 +101,56 @@ void offensePlays::setPlayerDirective(std::vector<offensePlays::playerDirectives
     playerDirective = set;
 }
 
-playerPositions offensePlays::playerDirectives::getPlayerPosition()  // retrieves the value of playerPosition
+playerPositions offensePlays::playerDirectives::getPlayerPosition() const  // retrieves the value of playerPosition
 {
     return (playerPosition);
 }
-void offensePlays::playerDirectives::setPlayerPosition(playerPositions set)  // sets the value of playerPosition
+void offensePlays::playerDirectives::setPlayerPosition(const playerPositions &set)  // sets the value of playerPosition
 {
     playerPosition = set;
 }
 
-directiveTypes offensePlays::playerDirectives::getType()  // retrieves the value of type
+directiveTypes offensePlays::playerDirectives::getType() const  // retrieves the value of type
 {
     return (type);
 }
-void offensePlays::playerDirectives::setType(directiveTypes set)  // sets the value of type
+void offensePlays::playerDirectives::setType(const directiveTypes &set)  // sets the value of type
 {
     type = set;
 }
 
-offenseWaitFor offensePlays::playerDirectives::getWaitFor()  // retrieves the value of waitFor
+offenseWaitFor offensePlays::playerDirectives::getWaitFor() const  // retrieves the value of waitFor
 {
     return (waitFor);
 }
-void offensePlays::playerDirectives::setWaitFor(offenseWaitFor set)  // sets the value of waitFor
+void offensePlays::playerDirectives::setWaitFor(const offenseWaitFor &set)  // sets the value of waitFor
 {
     waitFor = set;
 }
 		
-playerPositions offensePlays::playerDirectives::getPlayerSet()  // retrieves the value of playerSet
+playerPositions offensePlays::playerDirectives::getPlayerSet() const  // retrieves the value of playerSet
 {
     return (playerSet);
 }
-void offensePlays::playerDirectives::setPlayerSet(playerPositions set)  // sets the value of playerSet
+void offensePlays::playerDirectives::setPlayerSet(const playerPositions &set)  // sets the value of playerSet
 {
     playerSet = set;
 }
 
-positionTypes offensePlays::playerDirectives::getPositionType()  // retrieves the value of positionType
+positionTypes offensePlays::playerDirectives::getPositionType() const  // retrieves the value of positionType
 {
     return (positionType);
 }
-void offensePlays::playerDirectives::setPositionType(positionTypes set)  // sets the value of positionType 
+void offensePlays::playerDirectives::setPositionType(const positionTypes &set)  // sets the value of positionType
 {
     positionType = set;
 }
 
-int offensePlays::playerDirectives::getPosition()  // retrieves the value of position
+int offensePlays::playerDirectives::getPosition() const  // retrieves the value of position
 {
     return (position);
 }
-void offensePlays::playerDirectives::setPosition(int set)  // sets the value of position
+void offensePlays::playerDirectives::setPosition(const int &set)  // sets the value of position
 {
     position = set;
 }

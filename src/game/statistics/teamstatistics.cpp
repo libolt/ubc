@@ -24,9 +24,7 @@ teamStatistics::teamStatistics()  // constructor
 {
     timeOuts = 0;
 }
-teamStatistics::~teamStatistics()  // destructor
-{
-}
+teamStatistics::~teamStatistics() = default;  // destructor
 
 size_t teamStatistics::getTimeOuts() const  // retrieves the value of timeOuts
 {

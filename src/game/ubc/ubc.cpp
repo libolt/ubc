@@ -53,14 +53,13 @@
 
 UBC::UBC()  // constructor
 {
-
-
+    component = nullptr;
+    inputXPos = 0;
+    inputYPos = 0;
+    inputLeftMouseClick = false;
 }
 
-UBC::~UBC()  // destructor
-{
-
-}
+UBC::~UBC() = default;  // destructor
 
 
 UBCComponentsSharedPtr UBC::getComponent() const  // retrieves the value of component

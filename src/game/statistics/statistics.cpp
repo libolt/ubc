@@ -39,9 +39,7 @@ statistics::statistics()
     freeThrowsMade = 0;
 }
 
-statistics::~statistics()
-{
-}
+statistics::~statistics() = default;  // destructor
 
 size_t statistics::getPoints() const  // retrieves the value of points
 {

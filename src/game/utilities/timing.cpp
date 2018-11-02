@@ -24,7 +24,7 @@
 timing::timing()
 {
     startTime = std::chrono::system_clock::now();
-    previousTime = startTime;
+    previousTime = startTime;    
 }
 
 std::chrono::nanoseconds timing::getChangeInTimeNano() const  // retrieves the value of changeInTimeNano

@@ -22,22 +22,22 @@
 #include "utilities/logging.h"
 #include "utilities/comparison.h"
 
-comparison::comparison()
-{
-    
-}
+comparison::comparison() = default;  // constructor
+
+comparison::~comparison() = default;  // destructor
 
 bool comparison::OgreVector3ToOgreVector3(const Ogre::Vector3 &currentValue, const Ogre::Vector3 &newValue)  // compares two Ogre::Vector3 objects and returns true if the same,false if diffeeent
 {
+    bool retVal = true;
     if (currentValue.x != newValue.x || currentValue.y != newValue.y || currentValue.z != newValue.z)
     {
-        return (false);
+        retVal = false;
     }
     else
     {
-        return (true);
+        retVal = true;
     }
-    return (true);
+    return (retVal);
 }
 
 Ogre::Vector3 comparison::OgreVector3ToOgreVector3Result(const Ogre::Vector3 &currentValue, const Ogre::Vector3 &newValue)  // compares two Ogre::Vector3 objects and returns their differences

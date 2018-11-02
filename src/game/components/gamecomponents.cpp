@@ -23,12 +23,11 @@
 
 gameComponents::gameComponents()  // constructor
 {
+    AI = nullptr;
+    jumpBall = nullptr;
 
 }
-gameComponents::~gameComponents()  // destructor
-{
-    
-}
+gameComponents::~gameComponents() = default;  // destructor
 
 AISystemSharedPtr gameComponents::getAI() const  // retrieves the value of AI;
 {

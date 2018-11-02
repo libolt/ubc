@@ -29,10 +29,7 @@ inputKeyboards::inputKeyboards()  // constructor
 {   
     setupComplete = false;
 }
-inputKeyboards::~inputKeyboards()  // destructor
-{
-    
-}
+inputKeyboards::~inputKeyboards() = default;  // destructor
 
 inputSharedPtr inputKeyboards::getInputInstance() const  // retrieves the value of inputS
 {
@@ -52,10 +49,11 @@ void inputKeyboards::setSetupComplete(const bool &set)  // sets the value of set
     setupComplete = set;
 }
 
-inputInGameMaps inputKeyboards::mapInput(inputKeyMaps inKeyMap, usersInputsSharedPtr uInput)  // maps value of the keyPressed string to inputInGameMaps
+inputInGameMaps inputKeyboards::mapInput(inputKeyMaps inKeyMap, const usersInputsSharedPtr &uInput)  // maps value of the keyPressed string to inputInGameMaps
 {
     conversionSharedPtr convert ;
     size_t x = 0;
+    inputInGameMaps retVal;
     std::string func = "inputKeyboards::mapInput()";
     logMsg(func + " begin");
     logMsg(func + " userInput name == " +uInput->getName());
@@ -66,64 +64,65 @@ inputInGameMaps inputKeyboards::mapInput(inputKeyMaps inKeyMap, usersInputsShare
 
     if (inKeyMap == uInput->getKeyUp())
     {
-        return(INUP);
+        retVal = INUP;
     }
     else if (inKeyMap == uInput->getKeyDown())
     {
-        return(INDOWN);
+        retVal = INDOWN;
     }
     else if (inKeyMap == uInput->getKeyLeft())
     {
-        return(INLEFT);
+        retVal = INLEFT;
     }
     else if (inKeyMap == uInput->getKeyRight())
     {
-        return(INRIGHT);
+        retVal = INRIGHT;
     }
     else if (inKeyMap == uInput->getKeyUpLeft())
     {
-        return(INUPLEFT);
+        retVal = INUPLEFT;
     }
     else if (inKeyMap == uInput->getKeyUpRight())
     {
-        return(INUPRIGHT);
+        retVal = INUPRIGHT;
     }
     else if (inKeyMap == uInput->getKeyDownLeft())
     {
-        return(INDOWNLEFT);
+        retVal = INDOWNLEFT;
     }
     else if (inKeyMap == uInput->getKeyDownRight())
     {
-        return(INDOWNRIGHT);
+        retVal = INDOWNRIGHT;
     }
     else if (inKeyMap == uInput->getKeyPassSteal())
     {
-        return(INPASSSTEAL);
+        retVal = INPASSSTEAL;
     }
     else if (inKeyMap == uInput->getKeyShootBlock())
     {
-        return(INSHOOTBLOCK);
+        retVal = INSHOOTBLOCK;
     }
     else if (inKeyMap == uInput->getKeyPause())
     {
-        return(INPAUSE);
+        retVal = INPAUSE;
     }
     else if (inKeyMap == uInput->getKeyStartSelect())
     {
-        return(INSTARTSELECT);
+        retVal = INSTARTSELECT;
     }
     else if (inKeyMap == uInput->getKeyQuit())
     {
         logMsg(func +" keyQuit = " +convert->toString(uInput->getKeyQuit()));
 //        exit(0);
-        return(INQUIT);
+        retVal = INQUIT;
     }
     else
     {
-        return(INNO);
+        retVal = INNO;
     }
 //    exit(0);
     logMsg(func + " end");
+    return (retVal);
 }
 
 bool inputKeyboards::process()  // processes input

@@ -37,23 +37,23 @@ class offensePlays  // class that contains the information to run each play
         {
             public:
 
-                playerPositions getPlayerPosition();  // retrieves the value of playerPosition
-                void setPlayerPosition(playerPositions set);  // sets the value of playerPosition
+                playerPositions getPlayerPosition() const;  // retrieves the value of playerPosition
+                void setPlayerPosition(const playerPositions &set);  // sets the value of playerPosition
 
-                directiveTypes getType();  // retrieves the value of type
-                void setType(directiveTypes set);  // sets the value of type
+                directiveTypes getType() const;  // retrieves the value of type
+                void setType(const directiveTypes &set);  // sets the value of type
 
-                offenseWaitFor getWaitFor();  // retrieves the value of waitFor
-                void setWaitFor(offenseWaitFor set);  // sets the value of waitFor
+                offenseWaitFor getWaitFor() const;  // retrieves the value of waitFor
+                void setWaitFor(const offenseWaitFor &set);  // sets the value of waitFor
 
-                playerPositions getPlayerSet();  // retrieves the value of playerSet
-                void setPlayerSet(playerPositions set);  // sets the value of playerSet
+                playerPositions getPlayerSet() const;  // retrieves the value of playerSet
+                void setPlayerSet(const playerPositions &set);  // sets the value of playerSet
 
-                positionTypes getPositionType();  // retrieves the value of positionType
-                void setPositionType(positionTypes set);  // sets the value of positionType
+                positionTypes getPositionType() const;  // retrieves the value of positionType
+                void setPositionType(const positionTypes &set);  // sets the value of positionType
 
-                int getPosition();  // retrieves the value of position
-                void setPosition(int set);  // sets the value of position
+                int getPosition() const;  // retrieves the value of position
+                void setPosition(const int &set);  // sets the value of position
 
             private:
                 playerPositions playerPosition;  // stores which position the directive belongs to

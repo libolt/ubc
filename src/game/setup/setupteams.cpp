@@ -35,14 +35,9 @@
 #include "utilities/logging.h"
 #include "load/loadteams.h"
 
-setupTeams::setupTeams()  // constructor
-{
-    
-}
-setupTeams::~setupTeams()  // destructor
-{
-    
-}
+setupTeams::setupTeams() = default;  // constructor
+
+setupTeams::~setupTeams() = default;  // destructor
 
 teamEntityMSharedPtr setupTeams::createTeamInstances()  // creates team Instances
 {
@@ -70,7 +65,7 @@ teamEntityMSharedPtr setupTeams::createTeamInstances()  // creates team Instance
         logMsg(func +" loadTeam->getTInstance().size() == " +convert->toString(loadTeam->getTInstance().size()));
 //        exit(0);
         tInstance = loadTeam->getTInstance();
-        if (tInstance.size() > 0)
+        if (!tInstance.empty())
         {
             logMsg(func +" tInstance Loaded!");
 //            setTeamInstance(tInstance);
@@ -120,7 +115,7 @@ teamEntityMSharedPtr setupTeams::createTeamInstances()  // creates team Instance
 //    teamInstance[1].setupState();
 //    exit(0);
 
-    if (tInstance.size() > 0)
+    if (!tInstance.empty())
     {
 //        setTeamInstance(tInstance);
 //        setTeamInstancesCreated(true);
@@ -202,7 +197,7 @@ teamEntityMSharedPtr setupTeams::createActiveTeamInstances(teamEntityMSharedPtr 
     return (activeTeamInstance);
 }
 
-playerEntityMSharedPtr setupTeams::setPlayerStartPositions(playerEntityMSharedPtr activePlayerInstance, courtEntityMSharedPtr courtInstance, teamGameDataSharedPtr gameData, teamStarterIDsVecM teamStarterID)  // sets the initial coordinates for the players.
+playerEntityMSharedPtr setupTeams::setPlayerStartPositions(playerEntityMSharedPtr activePlayerInstance, courtEntityMSharedPtr courtInstance, const teamGameDataSharedPtr &gameData, const teamStarterIDsVecM &teamStarterID)  // sets the initial coordinates for the players.
 {
     conversionSharedPtr convert ;
     setupPlayerPositionsSharedPtr setupPlayerPosition(new setupPlayerPositions);
@@ -349,7 +344,7 @@ playerEntityMSharedPtr setupTeams::setPlayerStartActivePositions(playerEntityMSh
     
     logMsg(func + " activePlayerInstance.size() == " +convert->toString(activePlayerInstance.size()));
     exit(0);
-    if (activePlayerInstance.size() > 0) // checks that activePlayerInstance has data before executing
+    if (!activePlayerInstance.empty()) // checks that activePlayerInstance has data before executing
     {
         activePlayerInstance[0]->getGameData()->setActivePosition(PG);
         activePlayerInstance[1]->getGameData()->setActivePosition(SG);
@@ -371,7 +366,7 @@ playerEntityMSharedPtr setupTeams::setPlayerStartActivePositions(playerEntityMSh
     return (activePlayerInstance);
 }
 
-playerEntityMSharedPtr setupTeams::setPlayerStartDirections(playerEntityMSharedPtr activePlayerInstance, teamGameDataSharedPtr gameData)  // sets the initial directions for the players.
+playerEntityMSharedPtr setupTeams::setPlayerStartDirections(playerEntityMSharedPtr activePlayerInstance, const teamGameDataSharedPtr &gameData)  // sets the initial directions for the players.
 {
     conversionSharedPtr convert ;
 //    playerEntityMSharedPtr activePlayerInstance = component->getActivePlayerInstance();

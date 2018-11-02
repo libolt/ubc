@@ -47,8 +47,8 @@ class loadPlayers : public loader
 
     // Players
     playerEntityMSharedPtr loadPlayerFiles();  // loads player data from XML files
-    stdStringVec loadPlayerListFile(std::string fileName);  // loads list of player files from players.xml
-    playerEntitySharedPtr loadPlayerFile(std::string fileName);  // loads data from the player XML files
+    stdStringVec loadPlayerListFile(const std::string &fileName);  // loads list of player files from players.xml
+    playerEntitySharedPtr loadPlayerFile(const std::string &fileName);  // loads data from the player XML files
 
     bool loadModelFile();  // loads the 3D model from file specified in modelName
 

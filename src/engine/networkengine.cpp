@@ -38,6 +38,10 @@ networkEngine::networkEngine()
     serverReceivedConnection = false;
     serverSetupComplete = false;
     packetReceived = false;
+    netGameType = NONETGT;
+    isClient = false;
+    isServer = false;
+
 }
 
 networkEngine::~networkEngine()

@@ -48,9 +48,7 @@ gameEngine::gameEngine()  // constructor
 
 }
 
-gameEngine::~gameEngine()  // destructor
-{
-}
+gameEngine::~gameEngine() = default;  // destructor
 
 timing gameEngine::getTimer() const  // retrieves the value of timer
 {

@@ -57,10 +57,7 @@ physicsEngine::physicsEngine()  // contructor
     
 }
 
-physicsEngine::~physicsEngine()  // destructor
-{
-
-}
+physicsEngine::~physicsEngine() = default;  // destructor
 
 bool physicsEngine::getPairCollided() const  // retrieves value of pairCollided
 {

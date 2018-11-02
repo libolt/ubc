@@ -23,12 +23,15 @@
 
 users::users()  // constructor
 {
-    
+    name = nullptr;
+    ID = 0;
+    team = NOTEAM;
+    player = NONE;
+    type = NOUSER;
+    inputType = INNOTYPE;
+    userInput = nullptr;
 }
-users::~users()  // destructor
-{
-    
-}
+users::~users() = default;  // destructor
 
 std::string users::getName() const  // retrieves the value of name
 {

@@ -38,14 +38,9 @@
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
 
-setupPlayers::setupPlayers()  // constructor
-{
+setupPlayers::setupPlayers()  = default;  // constructor
 
-}
-setupPlayers::~setupPlayers()  // destructor
-{
-
-}
+setupPlayers::~setupPlayers() = default;  // destructor
 
 bool setupPlayers::checkIfGamePlayerInstancesCreated(const gameComponentsSharedPtr &gameComponent, const gameFlagsSharedPtr &gameFlag)  // checks if the gameState Objects Player Instances have been created
 {
@@ -58,7 +53,7 @@ bool setupPlayers::checkIfGamePlayerInstancesCreated(const gameComponentsSharedP
 
     if (gameFlag->getPlayerInstanceCreated())
     {
-        if (playerInstance.size() > 0)
+        if (!playerInstance.empty())
         {
             logMsg(func +" playerInstance.size() == " +convert->toString(gameComponent->getPlayerInstance().size()));
             returnType = true;
@@ -68,7 +63,7 @@ bool setupPlayers::checkIfGamePlayerInstancesCreated(const gameComponentsSharedP
             logMsg(func +" gameState::checkIfPlayerInstanceCreated() player instances not yet created!");
  //           exit(0);
             playerInstance = createPlayerInstances();
-            if (playerInstance.size())
+            if (!playerInstance.empty())
             {
             
                 logMsg(func +" Player Instances created!");
@@ -90,7 +85,7 @@ bool setupPlayers::checkIfGamePlayerInstancesCreated(const gameComponentsSharedP
     {
         logMsg(func +" player instances not yet created!");
         playerInstance = createPlayerInstances();
-        if (playerInstance.size())
+        if (!playerInstance.empty())
         {
 
             logMsg(func +" Player Instances created!");
@@ -111,7 +106,7 @@ bool setupPlayers::checkIfGamePlayerInstancesCreated(const gameComponentsSharedP
     return (returnType);
 }
 
-bool setupPlayers::checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr gamePlayerInstance, const teamEntityMSharedPtr &activeTeamInstance)  // checks if the gameState Objects Player Instances have been created
+bool setupPlayers::checkIfTeamPlayerInstancesCreated(const playerEntityMSharedPtr &gamePlayerInstance, const teamEntityMSharedPtr &activeTeamInstance)  // checks if the gameState Objects Player Instances have been created
 {
     conversionSharedPtr convert ;
     playerEntityMSharedPtr playerInstance; // = gameS->getPlayerInstance();
@@ -129,7 +124,7 @@ bool setupPlayers::checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr game
         if (ATIIT.second->getFlag()->getPlayerInstancesCreated())  // check if playerInstances created is true
         {
 //            exit(0);
-            if (ATIIT.second->getComponent()->getPlayerInstance().size() > 0)
+            if (!ATIIT.second->getComponent()->getPlayerInstance().empty())
             {
                 logMsg(func +" " +ATIIT.second->getData()->getCity() +" " +ATIIT.second->getData()->getName() + " Player Instances Created!");
             }
@@ -138,7 +133,7 @@ bool setupPlayers::checkIfTeamPlayerInstancesCreated(playerEntityMSharedPtr game
                 logMsg(func +" Creating Team Player Instances!");
 //                exit(0);
                 playerInstance = createTeamPlayerInstances(gamePlayerInstance, ATIIT.second->getData()->getID());
-                if (playerInstance.size() > 0)
+                if (!playerInstance.empty())
                 {
                     logMsg(func +" " +ATIIT.second->getData()->getCity() +" " +ATIIT.second->getData()->getName() + " Player Instances Created!");
                     ATIIT.second->getFlag()->setPlayerInstancesCreated(true);
@@ -215,7 +210,7 @@ playerEntityMSharedPtr setupPlayers::createPlayerInstances()  // creates player 
         logMsg(func +" checkIfPlayersLoaded True");
 
         playerInstance = loadPlayer->getPInstance();
-        if (playerInstance.size() > 0)
+        if (!playerInstance.empty())
         {
             logMsg(func +" playerInstance Loaded!");
         }
@@ -254,7 +249,7 @@ playerEntityMSharedPtr setupPlayers::createTeamPlayerInstances(playerEntityMShar
 
     logMsg(func +" begin");
 
-    if (gamePlayerInstance.size() > 0)
+    if (!gamePlayerInstance.empty())
     {
 
         logMsg(func +"Game Player Instances Created!");
@@ -355,7 +350,7 @@ playerEntityMSharedPtr setupPlayers::createActivePlayerInstances(playerEntityMSh
     return (activePlayerInstance);
 }
 
-playerEntityMSharedPtr setupPlayers::setupActivePlayerInstances(playerEntityMSharedPtr activePlayerInstance, renderEngineSharedPtr render)  // sets up active player instances
+playerEntityMSharedPtr setupPlayers::setupActivePlayerInstances(playerEntityMSharedPtr activePlayerInstance, const renderEngineSharedPtr &render)  // sets up active player instances
 {
     conversionSharedPtr convert ;
     loaderSharedPtr load; 
@@ -419,7 +414,7 @@ playerEntityMSharedPtr setupPlayers::setupActivePlayerInstances(playerEntityMSha
             OgreSceneNodeSharedPtr tempNode;
             logMsg(func +" Node not created yet!");
             logMsg(func +" nodeName == " +APIIT.second->getNodeName());
-            if (APIIT.second->getNodeName() == "")
+            if (APIIT.second->getNodeName().empty())
             {
                 std::string nodeName = APIIT.second->getName() + convert->toString(APIIT.second->getData()->getID());
                 APIIT.second->setNodeName(nodeName);

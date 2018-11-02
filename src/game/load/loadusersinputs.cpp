@@ -34,10 +34,7 @@ loadUsersInputs::loadUsersInputs()  // constructor
     userInputFilesLoaded = false;
 
 }
-loadUsersInputs::~loadUsersInputs()  // destructor
-{
-
-}
+loadUsersInputs::~loadUsersInputs() = default;  // destructor
 
 stdStringVec loadUsersInputs::getUsersInputFiles() const   // retrieves the value of userInputFiles
 {
@@ -68,7 +65,8 @@ void loadUsersInputs::setUsersInputFilesLoaded(const bool &set)  // sets the val
 
 bool loadUsersInputs::checkIfUsersInputsLoaded()  // checks if user inputs have been loaded into pInstance
 {
-        conversionSharedPtr convert ;
+    conversionSharedPtr convert;
+    bool retVal = false;
     std::string func = "loadUsersInputs::checkIfUserInputsLoaded()";
 
     logMsg(func +" begin");
@@ -77,10 +75,10 @@ bool loadUsersInputs::checkIfUsersInputsLoaded()  // checks if user inputs have 
     {
         logMsg(func +" getUserInputFilesLoaded");
 
-        if (uiInstance.size() > 0)
+        if (!uiInstance.empty())
         {
             logMsg(func +" User Input Files Loaded!");
-            return(true);
+            retVal = true;
         }
         else
         {
@@ -88,13 +86,13 @@ bool loadUsersInputs::checkIfUsersInputsLoaded()  // checks if user inputs have 
 
             userInputFilesLoaded = false;
             uiInstance = loadUsersInputFiles();
-            if (uiInstance.size() > 0)
+            if (!uiInstance.empty())
             {
                 logMsg(func +" uiInstance.size() ==" +convert->toString(uiInstance.size()));
 
 //                load->setTInstance(tInstance);
                 userInputFilesLoaded = true;
-                return(true);
+                retVal = true;
             }
             else
             {
@@ -107,12 +105,12 @@ bool loadUsersInputs::checkIfUsersInputsLoaded()  // checks if user inputs have 
     {
         logMsg(func +" ELSE");
 
-        if (uiInstance.size() > 0)
+        if (!uiInstance.empty())
         {
             logMsg(func +" uiInstance.size() ==" +convert->toString(uiInstance.size()));
 //            load->setTInstance(tInstance);
             userInputFilesLoaded = true;
-            return(true);
+            retVal = true;
         }
         else
         {
@@ -120,18 +118,18 @@ bool loadUsersInputs::checkIfUsersInputsLoaded()  // checks if user inputs have 
 
             uiInstance = loadUsersInputFiles();
             logMsg("loader::checkIfUserInputsLoaded()");
-            if (uiInstance.size() > 0)
+            if (!uiInstance.empty())
             {
                 logMsg(func +" uiInstance.size() ==" +convert->toString(uiInstance.size()));
 
 //                load->setTInstance(tInstance);
                 userInputFilesLoaded = true;
-                return(true);
+                retVal = true;
             }
             else
             {
                 logMsg(func +" Failed to load User Input Files!");
-                return(false);
+                retVal = false;
             }
             exit(0);
         }
@@ -139,7 +137,7 @@ bool loadUsersInputs::checkIfUsersInputsLoaded()  // checks if user inputs have 
 
     logMsg(func +" end");
 
-    return (false);
+    return (retVal);
 }
 
 // User input
@@ -181,7 +179,7 @@ usersInputsVecSharedPtr loadUsersInputs::loadUsersInputFiles()  // load user inp
     return (usersInputs);
 }
 
-stdStringVec loadUsersInputs::loadUsersInputListFile(std::string fileName)  // loads the user input list file
+stdStringVec loadUsersInputs::loadUsersInputListFile(const std::string &fileName)  // loads the user input list file
 {
     conversionSharedPtr convert ;
 //    renderEngineSharedPtr render = renderEngine::Instance();
@@ -211,7 +209,7 @@ stdStringVec loadUsersInputs::loadUsersInputListFile(std::string fileName)  // l
     
     tinyxml2::XMLHandle hDoc(&doc);
     tinyxml2::XMLElement *pElem;
-    tinyxml2::XMLHandle hRoot(0);
+    tinyxml2::XMLHandle hRoot(nullptr);
 
     pElem=hDoc.FirstChildElement().ToElement();
     
@@ -242,7 +240,7 @@ stdStringVec loadUsersInputs::loadUsersInputListFile(std::string fileName)  // l
     return (uInputFiles);
 }
 
-usersInputsSharedPtr loadUsersInputs::loadUsersInputFile(std::string fileName)  // loads data from the user input files
+usersInputsSharedPtr loadUsersInputs::loadUsersInputFile(const std::string &fileName)  // loads data from the user input files
 {
     conversionSharedPtr convert ;
     const sharedPtr<usersInputs> uInput(new usersInputs);
@@ -290,7 +288,7 @@ usersInputsSharedPtr loadUsersInputs::loadUsersInputFile(std::string fileName)  
     tinyxml2::XMLElement *rootElement;
     tinyxml2::XMLElement *child;
     tinyxml2::XMLElement *nextChild;
-    tinyxml2::XMLHandle hRoot(0);
+    tinyxml2::XMLHandle hRoot(nullptr);
 
     logMsg(func +" rootElement=hDoc.FirstChildElement().ToElement()");
 

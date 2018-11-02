@@ -33,15 +33,11 @@
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
 
-jumpBallsExecute::jumpBallsExecute()  // constructor
-{
-}
+jumpBallsExecute::jumpBallsExecute() = default;  // constructor
 
-jumpBallsExecute::~jumpBallsExecute()  // destructor
-{
-}
+jumpBallsExecute::~jumpBallsExecute() = default;  // destructor
 
-bool jumpBallsExecute::executeJump(gameComponentsSharedPtr component)  // initiates jump ball from jump ball circle
+bool jumpBallsExecute::executeJump(const gameComponentsSharedPtr &component)  // initiates jump ball from jump ball circle
 {
     conversionSharedPtr convert ;
     jumpBallsSharedPtr jumpBall = component->getJumpBall();
@@ -51,7 +47,7 @@ bool jumpBallsExecute::executeJump(gameComponentsSharedPtr component)  // initia
     teamEntityMSharedPtr activeTeamInstance = component->getActiveTeamInstance();
     teamTypes ballTippedToTeam = jumpBall->getBallTippedToTeam();
     playerPositions ballTippedToPosition = jumpBall->getBallTippedToPosition();
-
+    bool retVal = false;
     size_t x = 0;
     std::string func = "jumpBalls::jumpBallExecute()";
     
@@ -154,7 +150,7 @@ TS*/
     if (ballTippedToTeam != NOTEAM)
     {
 //        exit(0);
-        return (true);
+        retVal = true;
     }
     else
     {
@@ -165,10 +161,10 @@ TS*/
     logMsg(func +" Execute ballTippedToPosition == " +convert->toString(ballTippedToPosition));
     
     logMsg (func +" begin");
-    return (false);  // executeJumpBall has not completed
+    return (retVal);  // executeJumpBall has not completed
 }
 
-bool jumpBallsExecute::tipToPlayer(gameComponentsSharedPtr component, quarters quarter)  // tips the basketball to the appropriate player
+bool jumpBallsExecute::tipToPlayer(const gameComponentsSharedPtr &component, quarters quarter)  // tips the basketball to the appropriate player
 {
 //    sharedPtr<gameState> gameS = gameState::Instance();
     conversionSharedPtr convert ;
@@ -187,6 +183,7 @@ bool jumpBallsExecute::tipToPlayer(gameComponentsSharedPtr component, quarters q
     btVector3 bballVelocity = jumpBall->getBBallVelocity();
     size_t ballTippedToPlayerInstance = jumpBall->getBallTippedToPlayerInstance();
     basketballEntityMSharedPtr activeBasketballInstance = component->getActiveBasketballInstance();
+    bool retVal = false;  // stores the return value
 //    jumpBalls jumpBall = gameS->getJumpBall();
 //    teamTypes ballTippedToTeam = jumpBall.getBallTippedToTeam();
 //    quarters quarter = gameS->getQuarter();
@@ -321,7 +318,7 @@ bool jumpBallsExecute::tipToPlayer(gameComponentsSharedPtr component, quarters q
 TS*/
 ///                gameS->setActiveTeamInstance(activeTeamInstance);
 
-                return(true);
+                retVal = true;
             }
             else
             {
@@ -335,5 +332,5 @@ TS*/
     }
  
     logMsg("jump bballVelocity == " +convert->toString(bballVelocity));
-    return (false);  // tipToPlayer has not completed
+    return (retVal);  // tipToPlayer has not completed
 }

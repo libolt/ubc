@@ -46,7 +46,7 @@ class inputKeyboards
         bool getSetupComplete() const;  // retrieves the value of setupComplete
         void setSetupComplete(const bool &set);  // sets the value of setupComplete
 
-        inputInGameMaps mapInput(inputKeyMaps inKeyMap, usersInputsSharedPtr input);  // maps value of the keyPressed string to inputInGameMaps
+        inputInGameMaps mapInput(inputKeyMaps inKeyMap, const usersInputsSharedPtr &input);  // maps value of the keyPressed string to inputInGameMaps
         bool process();  // processes input
     
         bool setup();  // sets up the inputKeyboards object

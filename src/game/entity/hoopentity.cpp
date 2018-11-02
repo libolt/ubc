@@ -20,11 +20,7 @@
 
 #include "entity/hoopentity.h"
 
-hoopEntity::hoopEntity()  // constructor
-{
-}
+hoopEntity::hoopEntity() = default;  // constructor
 
-hoopEntity::~hoopEntity()  // destructor
-{
 
-}
+hoopEntity::~hoopEntity()  = default;  // destructor

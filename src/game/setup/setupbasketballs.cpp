@@ -27,14 +27,9 @@
 #include "utilities/logging.h"
 #include "load/loadbasketballs.h"
 
-setupBasketballs::setupBasketballs()  // constructor
-{
-    
-}
-setupBasketballs::~setupBasketballs()  // destructor
-{
-    
-}
+setupBasketballs::setupBasketballs() = default;  // constructor
+
+setupBasketballs::~setupBasketballs() = default;  // destructor
 
 basketballEntityMSharedPtr setupBasketballs::createBasketballInstances()  // creates basketball Instances
 {
@@ -88,7 +83,7 @@ basketballEntityMSharedPtr setupBasketballs::createActiveBasketballInstances(bas
     logMsg(func +" begin");
 
     logMsg(func +" basketballInstance.size() == " +convert->toString(basketballInstance.size()));
-    if (basketballInstance.size() == 0)
+    if (basketballInstance.empty())
     {
         if (loadBasketball->checkIfBasketballFilesLoaded())
         {

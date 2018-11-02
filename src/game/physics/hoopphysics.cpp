@@ -21,11 +21,5 @@
 
 #include "physics/hoopphysics.h"
 
-hoopPhysics::hoopPhysics()  // constructor
-{
-
-}
-hoopPhysics::~hoopPhysics()  // destructor
-{
-
-}
+hoopPhysics::hoopPhysics() = default;  // constructor
+hoopPhysics::~hoopPhysics() = default;  // destructor

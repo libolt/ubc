@@ -24,14 +24,9 @@
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
 
-setupHoops::setupHoops()  // constructor
-{
-    
-}
-setupHoops::~setupHoops()  // destructor
-{
-    
-}
+setupHoops::setupHoops() = default;  // constructor
+
+setupHoops::~setupHoops() = default;  // destructor
 
 hoopEntityMSharedPtr setupHoops::createHoopInstances()  // creates hoop Instances
 {
@@ -82,7 +77,7 @@ hoopEntityMSharedPtr setupHoops::createActiveHoopInstances(hoopEntityMSharedPtr 
 
     logMsg(func +" hoopInstance.size() == " +convert->toString(hoopInstance.size()));
     
-    if (hoopInstance.size() == 0)
+    if (hoopInstance.empty())
     {
         if (loadHoop->checkIfHoopsLoaded())
         {

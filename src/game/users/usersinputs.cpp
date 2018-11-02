@@ -60,10 +60,7 @@ usersInputs::usersInputs()
     active = false;
 }
 
-usersInputs::~usersInputs()
-{
-
-}
+usersInputs::~usersInputs()  = default;  // destructor
 
 std::string usersInputs::getName() const // retrieves the value of name
 {

@@ -69,10 +69,7 @@ gameFlags::gameFlags()  // constructor
     
 }
 
-gameFlags::~gameFlags()  // destructor
-{
-    
-}
+gameFlags::~gameFlags() = default;  // destructor
 
 bool gameFlags::getInitialized() const  // retrieves the value of initialized
 {

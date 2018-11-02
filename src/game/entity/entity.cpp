@@ -38,10 +38,7 @@ entity::entity()  // constructor
     nodeCreated = false;
 }
 
-entity::~entity()  // destructor
-{
-    
-}
+entity::~entity() = default;  // destructor
 
 bool entity::getInitialized() const  // retrieves the value of initialized
 {

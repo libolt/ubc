@@ -39,9 +39,8 @@ courtData::courtData()  // constructor
     sidelineInboundPos = Ogre::Vector2(0,0);
 }
 
-courtData::~courtData()  // destructor
-{
-}
+courtData::~courtData() = default;  // destructor
+
 
 std::string courtData::getName() const  // retrieves the value of name
 {

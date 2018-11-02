@@ -27,7 +27,8 @@ class state
     public:
     
     state();  // constructor
-    
+    ~state();  // destructor
+
 //    bool getInitialized();  // retrieves the value of initialized
 //    void setInitialized(bool set);  // sets the value of initialized
     

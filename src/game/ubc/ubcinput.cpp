@@ -39,10 +39,7 @@ UBCInput::UBCInput()  // constructor
 {
     setupComplete = false;
 }
-UBCInput::~UBCInput()  // destructor
-{
-    
-}
+UBCInput::~UBCInput() = default;  // destructor
 
 inputSharedPtr UBCInput::getInputInstance() const  // retrieves the value of inputS
 {
@@ -80,7 +77,7 @@ void UBCInput::setSetupComplete(const bool &set)  // sets the value of setupComp
     setupComplete = set;
 }
 
-void UBCInput::process(gameEngineSharedPtr gameE, gameComponentsSharedPtr gameComponent, gameFlagsSharedPtr gameFlag, usersMSharedPtr usersInstance, GUISystemSharedPtr gui)  // processes game input
+void UBCInput::process(const gameEngineSharedPtr &gameE, const gameComponentsSharedPtr &gameComponent, const gameFlagsSharedPtr &gameFlag, usersMSharedPtr usersInstance, const GUISystemSharedPtr &gui)  // processes game input
 {
     conversionSharedPtr convert ;
 //    sharedPtr<gameState> gameS = gameState::Instance();
@@ -349,7 +346,7 @@ void UBCInput::process(gameEngineSharedPtr gameE, gameComponentsSharedPtr gameCo
 
 }
 
-bool UBCInput::processKeyboard(gameEngineSharedPtr gameE, gameComponentsSharedPtr gameComponent, gameFlagsSharedPtr gameFlag, GUISystemSharedPtr gui)  // process keyboard input
+bool UBCInput::processKeyboard(const gameEngineSharedPtr &gameE, const gameComponentsSharedPtr &gameComponent, const gameFlagsSharedPtr &gameFlag, const GUISystemSharedPtr &gui)  // process keyboard input
 {
     conversionSharedPtr convert;
 
@@ -401,7 +398,7 @@ bool UBCInput::processTouch()  // process touch input
     return (true);
 }
 
-bool UBCInput::setup(inputEngineSharedPtr inputE)  // sets up the UBCInput object
+bool UBCInput::setup(const inputEngineSharedPtr &inputE)  // sets up the UBCInput object
 {
     std::string func = "UBCInput::setup()";
 

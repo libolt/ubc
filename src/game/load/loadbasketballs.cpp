@@ -36,10 +36,7 @@ loadBasketballs::loadBasketballs()  // constructor
 {
     basketballFilesLoaded = false;
 }
-loadBasketballs::~loadBasketballs()  // destructor
-{
-    
-}
+loadBasketballs::~loadBasketballs() = default;  // destructor
 
 stdStringVec loadBasketballs::getBasketballFiles() const  // retrieves the value of basketballFiles
 {
@@ -71,6 +68,7 @@ void loadBasketballs::setBasketballFilesLoaded(const bool &set)  // sets the val
 bool loadBasketballs::checkIfBasketballFilesLoaded()  // checks if basketballs have been loaded into bInstance
 {
     conversionSharedPtr convert ;
+    bool retVal = false;
     std::string func = "loadBasketballs::checkBasketballsLoaded()";
     
     logMsg(func +" begin");
@@ -79,10 +77,10 @@ bool loadBasketballs::checkIfBasketballFilesLoaded()  // checks if basketballs h
     {
         logMsg(func +" getBasketballFilesLoaded");
 
-        if (bInstance.size() > 0)
+        if (!bInstance.empty())
         {
             logMsg(func +" Basketball Files Loaded!");
-            return(true);
+            retVal = true;
         }
         else
         {
@@ -90,13 +88,13 @@ bool loadBasketballs::checkIfBasketballFilesLoaded()  // checks if basketballs h
 
             basketballFilesLoaded = false;
             bInstance = loadFiles();
-            if (bInstance.size() > 0)
+            if (!bInstance.empty())
             {
                 logMsg(func +" > 0!");
 
 //                load->setTInstance(tInstance);
                 basketballFilesLoaded = true;
-                return(true);
+                retVal = true;
             }
             else
             {
@@ -109,12 +107,12 @@ bool loadBasketballs::checkIfBasketballFilesLoaded()  // checks if basketballs h
     {
         logMsg(func +" ELSE");
 
-        if (bInstance.size() > 0)
+        if (!bInstance.empty())
         {
             logMsg(func +" load->getBInstance().size() > 0! ELSE");
 //            load->setTInstance(tInstance);
             basketballFilesLoaded = true;
-            return(true);
+            retVal = true;
         }
         else
         {
@@ -125,24 +123,24 @@ bool loadBasketballs::checkIfBasketballFilesLoaded()  // checks if basketballs h
             logMsg(func +" bInstance.size() == " +convert->toString(bInstance.size()));
 
 //            logMsg("loader::checkBasketballsLoaded()");
-            if (bInstance.size() > 0)
+            if (!bInstance.empty())
             {
                 logMsg(func +" load->getBInstance().size() > 0! ELSE ELSE");
 
 //                load->setTInstance(tInstance);
                 basketballFilesLoaded = true;
-                return(true);
+                retVal = true;
             }
             else
             {
                 logMsg(func +" Failed to load Basketball Files!");
-                return(false);
+                retVal = false;
             }
         }
     }
     
     logMsg(func + " end");
-    return (false);
+    return (retVal);
 }
 
 // Basketballs
@@ -181,7 +179,7 @@ basketballEntityMSharedPtr loadBasketballs::loadFiles()  // load basketball sett
     return (basketballs);
 }
 
-stdStringVec loadBasketballs::loadListFile(std::string fileName) // loads the list of baskteball list file
+stdStringVec loadBasketballs::loadListFile(const std::string &fileName) // loads the list of baskteball list file
 {
     conversionSharedPtr convert ;
 //    renderEngineSharedPtr render = renderEngine::Instance();
@@ -211,7 +209,7 @@ stdStringVec loadBasketballs::loadListFile(std::string fileName) // loads the li
 
     tinyxml2::XMLHandle hDoc(&doc);
     tinyxml2::XMLElement *pElem;
-    tinyxml2::XMLHandle hRoot(0);
+    tinyxml2::XMLHandle hRoot(nullptr);
     pElem=hDoc.FirstChildElement().ToElement();
     // should always have a valid root but handle gracefully if it does
     if (!pElem)
@@ -236,7 +234,7 @@ stdStringVec loadBasketballs::loadListFile(std::string fileName) // loads the li
     return (bballFiles);
 }
 
-basketballEntitySharedPtr loadBasketballs::loadFile(std::string fileName)  // loads data from the basketball XML files
+basketballEntitySharedPtr loadBasketballs::loadFile(const std::string &fileName)  // loads data from the basketball XML files
 {
     conversionSharedPtr convert ;
     basketballEntitySharedPtr basketballInstance(new basketballEntity);
@@ -269,7 +267,7 @@ basketballEntitySharedPtr loadBasketballs::loadFile(std::string fileName)  // lo
     tinyxml2::XMLHandle hDoc(&doc);
     tinyxml2::XMLElement *rootElement;
     tinyxml2::XMLElement *child;
-    tinyxml2::XMLHandle hRoot(0);
+    tinyxml2::XMLHandle hRoot(nullptr);
    
     logMsg(func +" rootElement?");
 
@@ -323,7 +321,7 @@ basketballEntitySharedPtr loadBasketballs::loadFile(std::string fileName)  // lo
     return (basketballInstance);
 }
 
-basketballEntityMSharedPtr loadBasketballs::loadModels(basketballEntityMSharedPtr activeBasketballInstance, renderEngineSharedPtr render)  // loads selected basketball model
+basketballEntityMSharedPtr loadBasketballs::loadModels(basketballEntityMSharedPtr activeBasketballInstance, const renderEngineSharedPtr &render)  // loads selected basketball model
 {
     conversionSharedPtr convert ;
     loaderSharedPtr load(new loader);
@@ -348,14 +346,14 @@ basketballEntityMSharedPtr loadBasketballs::loadModels(basketballEntityMSharedPt
         //FIXME! This should be done in a cleaner way!
         ABIIT.second->setModelFileName(ABIIT.second->getData()->getModelFileName());
 
-        if (ABIIT.second->getName() == "")  // checks if entityName has been set
+        if (ABIIT.second->getName().empty())  // checks if entityName has been set
         {
             std::string name = ABIIT.second->getData()->getName();
             ABIIT.second->setName(name);
         }
         logMsg(func +" entityName == " +ABIIT.second->getName());
 //        exit(0);
-        if (ABIIT.second->getNodeName() == "")  // checks if entityNodeName has been set
+        if (ABIIT.second->getNodeName().empty())  // checks if entityNodeName has been set
         {
             std::string nodeName = ABIIT.second->getData()->getName() +"node";
             ABIIT.second->setNodeName(nodeName);

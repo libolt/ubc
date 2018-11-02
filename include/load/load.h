@@ -56,8 +56,8 @@ class loader
         loader();  // constructor
         ~loader(); // destructor
 
-        stdStringVec pathSplit(const std::string paths);
-        std::string findFile(std::string fileName);
+        stdStringVec pathSplit(const std::string &paths);
+        std::string findFile(const std::string &fileName);
     //	string * pathArray;
 
         bool loadXMLFile(std::string fileName);
@@ -66,7 +66,7 @@ class loader
 
         SDL_RWops *readBinaryFile(const char *sourceFile);
 
-        OgreEntitySharedPtr loadModelFile(std::string modelFileName, std::string entityName, renderEngineSharedPtr render);  // loads the 3D model
+        OgreEntitySharedPtr loadModelFile(const std::string &modelFileName, const std::string &entityName, const renderEngineSharedPtr &render);  // loads the 3D model
         
     private:
 

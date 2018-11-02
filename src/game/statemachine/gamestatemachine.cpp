@@ -271,7 +271,7 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
     if (!data->flag->getActiveBasketballInstancesCreated())
     {
         basketballEntityMSharedPtr activeBasketballInstance = setupBasketball->createBasketballInstances();
-        if (activeBasketballInstance.size() > 0)
+        if (!activeBasketballInstance.empty())
         {
             logMsg("activeBasketballInstances Created!");
             basketballEntitySharedPtr tempBasketball(new basketballEntity);
@@ -306,7 +306,7 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
     if (!data->flag->getCourtInstancesCreated())
     {
         courtEntityMSharedPtr courtInstance = setupCourt->createCourtInstances();
-        if (courtInstance.size() > 0)
+        if (!courtInstance.empty())
         {
             logMsg(func +" Court Instances Created!!");
             data->flag->setCourtInstancesCreated(true);
@@ -323,7 +323,7 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
         courtEntityMSharedPtr courtInstance = data->component->getCourtInstance();
         courtEntityMSharedPtr activeCourtInstance;
         activeCourtInstance = setupCourt->createActiveCourtInstances(courtInstance);
-        if (activeCourtInstance.size() > 0)
+        if (!activeCourtInstance.empty())
         {
             logMsg(func +" Active Court Instances Created!!");
 
@@ -358,7 +358,7 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
     if (!data->flag->getHoopInstancesCreated())
     {
         hoopEntityMSharedPtr hoopInstance = setupHoop->createHoopInstances();
-        if (hoopInstance.size() > 0)
+        if (!hoopInstance.empty())
         {
             logMsg(func +"Hoop Instances Created!");
             data->flag->setHoopInstancesCreated(true);
@@ -384,7 +384,7 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
         logMsg(func +" active hoop instance name == " +activeHoopInstance[0]->getName());
 //        exit(0);
         
-        if (activeHoopInstance.size() > 0)
+        if (!activeHoopInstance.empty())
         {
             logMsg(func +"Active Hoop Instances Created!");
 //            exit(0);
@@ -438,7 +438,7 @@ STATE_DEFINE(gameStateMachine, loadModels, gameSMData)
 //        exit(0);
         activeBasketballInstance = loadBasketball->loadModels(data->component->getActiveBasketballInstance(), data->render);  // Loads the basketball model
 //        exit(0);
-        if (activeBasketballInstance.size() >0)
+        if (!activeBasketballInstance.empty())
         {          
             data->flag->setBasketballModelLoaded(true);
             data->component->setActiveBasketballInstance(activeBasketballInstance);          
@@ -470,7 +470,7 @@ STATE_DEFINE(gameStateMachine, loadModels, gameSMData)
         logMsg(func +" Loading court model!");
 //        exit(0);
         activeCourtInstance = loadCourt->loadModels(data->component->getActiveCourtInstance(), data->render);  // load the court model
-        if (activeCourtInstance.size() > 0)
+        if (!activeCourtInstance.empty())
         {
             data->flag->setCourtModelLoaded(true);
             data->component->setActiveCourtInstance(activeCourtInstance);
@@ -498,7 +498,7 @@ STATE_DEFINE(gameStateMachine, loadModels, gameSMData)
         logMsg(func +" Loading hoop model(s)!");
 //        exit(0);
         activeHoopInstance = loadHoop->loadModels(data->component->getActiveHoopInstance(), data->render);  // Creates the hoop instances
-        if (activeHoopInstance.size() > 0)
+        if (!activeHoopInstance.empty())
         {
             data->flag->setHoopModelLoaded(true);
             data->component->setActiveHoopInstance(activeHoopInstance);
@@ -555,7 +555,7 @@ STATE_DEFINE(gameStateMachine, createNodes, gameSMData)
             activeEntityName = ABIIT.second->getName();
             activeNodeNum = convert->toString(ABIIT.first);
             activeNodeName = ABIIT.second->getNodeName();
-            if (activeNodeName == "")
+            if (activeNodeName.empty())
             {
                 activeNodeName = activeEntityName + activeNodeNum;
                 ABIIT.second->setNodeName(activeNodeName);
@@ -582,7 +582,7 @@ STATE_DEFINE(gameStateMachine, createNodes, gameSMData)
             activeEntityName = ACIIT.second->getName();
             activeNodeNum = convert->toString(ACIIT.first);
             activeNodeName = ACIIT.second->getNodeName();
-            if (activeNodeName == "")
+            if (activeNodeName.empty())
             {
                 activeNodeName = activeEntityName + activeNodeNum;
                 ACIIT.second->setNodeName(activeNodeName);
@@ -609,7 +609,7 @@ STATE_DEFINE(gameStateMachine, createNodes, gameSMData)
             logMsg(func +" activeEntityName == " +activeEntityName);
             activeNodeNum = convert->toString(AHIIT.first);
             activeNodeName = AHIIT.second->getNodeName();
-            if (activeNodeName == "")
+            if (activeNodeName.empty())
             {
                 activeNodeName = activeEntityName + activeNodeNum;
                 AHIIT.second->setNodeName(activeNodeName);

@@ -37,7 +37,7 @@ public:
     bool getOgreRootInitialized() const;  // retrieves the value of ogreRootInitialized
     void setOgreRootInitialized(const bool &set);  // sets the value of ogreRootInitialized
 
-    void logMessage(std::string msg);
+    void logMessage(const std::string &msg);
 protected:
     logging();
     bool ogreRootInitialized;

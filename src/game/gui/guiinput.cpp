@@ -195,7 +195,7 @@ void GUISystem::courtSelectButtonClicked(MyGUI::Widget *_sender)  // handles cou
 }
 
 
-void GUISystem::menuReceiveKeyPress(std::string keyPressed, renderEngineSharedPtr render)  // processes key input
+void GUISystem::menuReceiveKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render)  // processes key input
 {
     conversionSharedPtr convert ;
 
@@ -203,7 +203,7 @@ void GUISystem::menuReceiveKeyPress(std::string keyPressed, renderEngineSharedPt
     logMsg("activeMenu == " +convert->toString(activeMenu));
     logMsg("keyPressed == " +keyPressed);
 //    exit(0);
-    if (keyPressed != "")
+    if (!keyPressed.empty())
     {
         switch (activeMenu)
         {
@@ -250,7 +250,7 @@ void GUISystem::menuReceiveKeyPress(std::string keyPressed, renderEngineSharedPt
     }
 }
 
-void GUISystem::processMainMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render)  // processes main menu key input
+void GUISystem::processMainMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render)  // processes main menu key input
 {
 //    exit(0);
     if (keyPressed == "s")
@@ -275,9 +275,9 @@ void GUISystem::processMainMenuKeyPress(std::string keyPressed, renderEngineShar
 
     }
 }
-void GUISystem::processNetworkMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render)  // processes network menu key input
+void GUISystem::processNetworkMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render)  // processes network menu key input
 {
-   if (keyPressed == "c")
+    if (keyPressed == "c")
     {
        networkClientSetupMenu(render);
     }
@@ -295,7 +295,7 @@ void GUISystem::processNetworkMenuKeyPress(std::string keyPressed, renderEngineS
     }
 }
 
-void GUISystem::processNetworkServerMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render)  // process network server menu key input
+void GUISystem::processNetworkServerMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render)  // process network server menu key input
 {
     if (MyGUI::InputManager::getInstance().getKeyFocusWidget() == component->getServerIPAddressBox().get())
     {
@@ -369,7 +369,7 @@ void GUISystem::processNetworkServerMenuKeyPress(std::string keyPressed, renderE
     }
 }
 
-void GUISystem::processNetworkClientMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render)  // processes network menu key input
+void GUISystem::processNetworkClientMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render)  // processes network menu key input
 {
     if (MyGUI::InputManager::getInstance().getKeyFocusWidget() == component->getClientIPAddressBox().get())
     {
@@ -437,7 +437,7 @@ void GUISystem::processNetworkClientMenuKeyPress(std::string keyPressed, renderE
 
 }
 
-void GUISystem::processOptionsMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render)  // processes options menu key input
+void GUISystem::processOptionsMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render)  // processes options menu key input
 {
     if (keyPressed == "d")
     {
@@ -461,7 +461,7 @@ void GUISystem::processOptionsMenuKeyPress(std::string keyPressed, renderEngineS
     }
 }
 
-void GUISystem::processDisplayMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render)  // processes display settings menu key input
+void GUISystem::processDisplayMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render)  // processes display settings menu key input
 {
 
     if (keyPressed == "c")
@@ -475,7 +475,7 @@ void GUISystem::processDisplayMenuKeyPress(std::string keyPressed, renderEngineS
 
 }
 
-void GUISystem::processInputMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render) // processes input settings menu key input
+void GUISystem::processInputMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render)  // processes input settings menu key input
 {
     if (keyPressed == "c")
     {
@@ -487,7 +487,7 @@ void GUISystem::processInputMenuKeyPress(std::string keyPressed, renderEngineSha
     }
 }
 
-void GUISystem::processAudioMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render)  // processes audio settings menu key input
+void GUISystem::processAudioMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render)  // processes audio settings menu key input
 {
     if (keyPressed == "c")
     {
@@ -499,7 +499,7 @@ void GUISystem::processAudioMenuKeyPress(std::string keyPressed, renderEngineSha
     }
 }
 
-void GUISystem::processSetupMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render)  // processes game setup menu key input
+void GUISystem::processSetupMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render)  // processes game setup menu key input
 {
     //gameState *gameS = gameState::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
@@ -613,7 +613,7 @@ void GUISystem::processSetupMenuKeyPress(std::string keyPressed, renderEngineSha
     }
 }
 
-void GUISystem::processPlayerStartSelectionMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render)  // process player start selection menu key input
+void GUISystem::processPlayerStartSelectionMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render)  // process player start selection menu key input
 {
 
     //gameState *gameS = gameState::Instance();
@@ -641,7 +641,7 @@ void GUISystem::processPlayerStartSelectionMenuKeyPress(std::string keyPressed, 
 //    exit(0);
 }
 
-void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render)  // process team selection menu key input
+void GUISystem::processTeamSelectionMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render)  // process team selection menu key input
 {
     //gameState *gameS = gameState::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
@@ -760,7 +760,7 @@ void GUISystem::processTeamSelectionMenuKeyPress(std::string keyPressed, renderE
 
 }
 
-void GUISystem::processCourtSelectionMenuKeyPress(std::string keyPressed, renderEngineSharedPtr render)  // process court selection menu key input
+void GUISystem::processCourtSelectionMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render)  // process court selection menu key input
 {
 //    exit(0);
     //gameState *gameS = gameState::Instance();

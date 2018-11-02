@@ -39,12 +39,11 @@ physics::physics()  // constructor
     colObject = 999999;
     collidesWith = 999999;
     physObjNumber = 999999;
+    shape = nullptr;
+    bodyState = nullptr;
 
 }
-physics::~physics()  // destructor
-{
-
-}
+physics::~physics() = default;  // destructor
 
 gameEntitySharedPtr physics::getGameInstance() const  // retrieves the value of gameS
 {

@@ -35,22 +35,20 @@ loadHoops::loadHoops()  // constructor
     hoopFilesLoaded = false;
 
 }
-loadHoops::~loadHoops()  // destructor
-{
-}
+loadHoops::~loadHoops() = default;  // destructor
 
-hoopEntityMSharedPtr loadHoops::getHInstance()  // retrieves the value of hInstance
+hoopEntityMSharedPtr loadHoops::getHInstance() const  // retrieves the value of hInstance
 {
     return (hInstance);
 }
-void loadHoops::setHInstance(hoopEntityMSharedPtr set)  // sets the value of hInstance
+void loadHoops::setHInstance(const hoopEntityMSharedPtr &set)  // sets the value of hInstance
 {
     hInstance = set;
 }
 
 bool loadHoops::checkIfHoopsLoaded()  // checks if the hooops have been loaded into hInstance
 {
-
+    bool retVal = false;
     std::string func = "loadHoops::checkIfHoopsLoaded()";
     
     logMsg(func +" begin");
@@ -59,10 +57,10 @@ bool loadHoops::checkIfHoopsLoaded()  // checks if the hooops have been loaded i
     {
         logMsg(func +" getHoooFilesLoaded");
 //        exit(0);
-        if (hInstance.size() > 0)
+        if (!hInstance.empty())
         {
             logMsg(func +" Hoop Files Loaded!");
-            return(true);
+            retVal = true;
         }
         else
         {
@@ -70,13 +68,13 @@ bool loadHoops::checkIfHoopsLoaded()  // checks if the hooops have been loaded i
 
             hoopFilesLoaded = false;
             hInstance = loadHoopFiles();
-            if (hInstance.size() > 0)
+            if (!hInstance.empty())
             {
                 logMsg(func +"  > 0!");
 
 //                load->setTInstance(tInstance);
                 hoopFilesLoaded = true;
-                return(true);
+                retVal = true;
             }
             else
             {
@@ -89,12 +87,12 @@ bool loadHoops::checkIfHoopsLoaded()  // checks if the hooops have been loaded i
     {
         logMsg(func +" ELSE");
 //        exit(0);
-        if (hInstance.size() > 0)
+        if (!hInstance.empty())
         {
             logMsg(func +" load->getHInstance().size() > 0! ELSE");
 //            load->setTInstance(tInstance);
             hoopFilesLoaded = true;
-            return(true);
+            retVal = true;
         }
         else
         {
@@ -102,25 +100,25 @@ bool loadHoops::checkIfHoopsLoaded()  // checks if the hooops have been loaded i
 
             hInstance = loadHoopFiles();
             logMsg(func);
-            if (hInstance.size() > 0)
+            if (!hInstance.empty())
             {
                 logMsg(func +" load->getHInstance().size() > 0! ELSE ELSE");
 
 //                load->setTInstance(tInstance);
                 hoopFilesLoaded = true;
-                return(true);
+                retVal = true;
             }
             else
             {
                 logMsg(func +" Failed to load Hop Files!");
-                return(false);
+                retVal = false;
             }
         }
     }
     
     logMsg(func +" end");
     
-    return (false);
+    return (retVal);
 }
 
 hoopEntityMSharedPtr  loadHoops::loadHoopFiles()  // load hoop XML files
@@ -155,7 +153,7 @@ hoopEntityMSharedPtr  loadHoops::loadHoopFiles()  // load hoop XML files
     return (hoops);
 }
 
-stdStringVec loadHoops::loadHoopListFile(std::string fileName)  // load the list of hoops from hoops.xml
+stdStringVec loadHoops::loadHoopListFile(const std::string &fileName)  // load the list of hoops from hoops.xml
 {
     conversionSharedPtr convert ;
 //    renderEngineSharedPtr render = renderEngine::Instance();
@@ -185,7 +183,7 @@ stdStringVec loadHoops::loadHoopListFile(std::string fileName)  // load the list
 
     tinyxml2::XMLHandle hDoc(&doc);
     tinyxml2::XMLElement *pElem;
-    tinyxml2::XMLHandle hRoot(0);
+    tinyxml2::XMLHandle hRoot(nullptr);
 
     pElem=hDoc.FirstChildElement().ToElement();
     // should always have a valid root but handle gracefully if it does
@@ -212,7 +210,7 @@ stdStringVec loadHoops::loadHoopListFile(std::string fileName)  // load the list
     return (hFiles);
 }
 
-hoopEntitySharedPtr loadHoops::loadHoopFile(std::string fileName)  // loads data from the hoop XML files.
+hoopEntitySharedPtr loadHoops::loadHoopFile(const std::string &fileName)  // loads data from the hoop XML files.
 {
     conversionSharedPtr convert ;
     hoopEntitySharedPtr hoopInstance(new hoopEntity);
@@ -246,7 +244,7 @@ hoopEntitySharedPtr loadHoops::loadHoopFile(std::string fileName)  // loads data
     tinyxml2::XMLHandle hDoc(&doc);
     tinyxml2::XMLElement *rootElement;
     tinyxml2::XMLElement *child;
-    tinyxml2::XMLHandle hRoot(0);
+    tinyxml2::XMLHandle hRoot(nullptr);
 
     logMsg(func +" rootElement?");
 
@@ -291,7 +289,7 @@ hoopEntitySharedPtr loadHoops::loadHoopFile(std::string fileName)  // loads data
     return (hoopInstance);
 }
 
-hoopEntityMSharedPtr loadHoops::loadModels(hoopEntityMSharedPtr activeHoopInstance, renderEngineSharedPtr render)  // loads selected hoop model
+hoopEntityMSharedPtr loadHoops::loadModels(hoopEntityMSharedPtr activeHoopInstance, const renderEngineSharedPtr &render)  // loads selected hoop model
 {
     conversionSharedPtr convert ;
 //    hoopStateMSharedPtr activeHoopInstance = getActiveHoopInstance();

@@ -22,14 +22,13 @@
 
 UBCComponents::UBCComponents()  // constructor
 {
-
-
+    gameE = nullptr;
+    gui = nullptr;
+    game = nullptr;
+    input = nullptr;
 }
 
-UBCComponents::~UBCComponents()  // destructor
-{
-
-}
+UBCComponents::~UBCComponents() = default;  // destructor
 
 gameEngineSharedPtr UBCComponents::getGameE() const  // retrieves the value of gameE
 {

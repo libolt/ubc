@@ -66,9 +66,7 @@ playerData::playerData()  // constructor
     active = false;
 }
 
-playerData::~playerData()  // destructor
-{
-}
+playerData::~playerData() = default;  // destructor
 
 std::string playerData::getFirstName() const  // retrieves the value of firstName
 {

@@ -31,15 +31,9 @@
 #include "utilities/logging.h"
 #include "utilities/comparison.h"
   
-playerPhysics::playerPhysics()  // constructor
-{
-//    physicsSetup = false;
-//    stateSet = false;
-}
+playerPhysics::playerPhysics() = default;  // constructor
 
-playerPhysics::~playerPhysics()  // destructor
-{
-}
+playerPhysics::~playerPhysics() = default;  // destructor
 
 /*bool playerPhysics::getPhysicsSetup()  // retrieves the value of physicsSetup
 {

@@ -48,9 +48,7 @@ teamEntity::teamEntity()
     initialized = false;
     offDef = NOOFFDEF;
 }
-teamEntity::~teamEntity()
-{
-}
+teamEntity::~teamEntity() = default;  // destructor
 
 bool teamEntity::getInitialized() const  // retrieves the value of initialized
 {

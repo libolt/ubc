@@ -221,7 +221,7 @@ STATE_DEFINE(teamStateMachine, createPlayerInstances, teamSMData)
     playerInstance = setupPlayer.createTeamPlayerInstances(data->gamePlayerInstance, data->tData->getID());
     logMsg(func +" playerInstance.size() == " +convert->toString(playerInstance.size()));
 //    exit(0);
-    if (playerInstance.size() > 0)
+    if (!playerInstance.empty())
     {
         logMsg(func +" " +data->tData->getCity() +" " +data->tData->getName() + " Player Instances Created!");
         data->flag->setPlayerInstancesCreated(true);
@@ -250,7 +250,7 @@ STATE_DEFINE(teamStateMachine, setupPlayerInstances, teamSMData)
     logMsg(func +" begin");
 //    exit(0);
     activePlayerInstance = setupPlayer.setupActivePlayerInstances(activePlayerInstance, data->render);
-    if (activePlayerInstance.size() != 0)
+    if (!activePlayerInstance.empty())
     {
         data->component->setActivePlayerInstance(activePlayerInstance);
         data->flag->setActivePlayerInstancesSetup(true);
@@ -277,7 +277,7 @@ STATE_DEFINE(teamStateMachine, setPlayerStartPositions, teamSMData)
 //            exit(0);
     activePlayerInstance = setupTeam.setPlayerStartPositions(activePlayerInstance, data->courtInstance, data->gData, data->teamStarterID);
 //            if (setPlayerStartPositions(activePlayerInstance, gameInstanceComponent->getCourtInstance(), gameInstanceData->getTeamStarterID()))  //   sets starting positions for the players
-    if (activePlayerInstance.size() > 0)
+    if (!activePlayerInstance.empty())
     {
         data->flag->setPlayerStartPositionsSet(true);
         data->component->setActivePlayerInstance(activePlayerInstance);
@@ -304,7 +304,7 @@ STATE_DEFINE(teamStateMachine, setPlayerStartDirections, teamSMData)
 //    exit(0);
 
     activePlayerInstance = setupTeam.setPlayerStartDirections(activePlayerInstance, data->gData);
-    if (activePlayerInstance.size() > 0)  // sets starting directions for the players
+    if (!activePlayerInstance.empty())  // sets starting directions for the players
     {
         data->flag->setPlayerStartDirectionsSet(true);
         data->component->setActivePlayerInstance(activePlayerInstance);
@@ -329,7 +329,7 @@ STATE_DEFINE(teamStateMachine, updateActivePlayers, teamSMData)
     logMsg(func +" begin");
 
     activePlayerInstance = updateTeam.updateActivePlayers(activePlayerInstance);
-    if (activePlayerInstance.size() > 0)
+    if (!activePlayerInstance.empty())
     {
 //        exit(0);
         data->component->setActivePlayerInstance(activePlayerInstance);

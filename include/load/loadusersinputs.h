@@ -48,8 +48,8 @@ class loadUsersInputs : public loader
 
         // User input
         usersInputsVecSharedPtr loadUsersInputFiles();  // load user input XML files
-        stdStringVec loadUsersInputListFile(std::string fileName);  // load the list of user input configs from userinputs.xml
-        usersInputsSharedPtr loadUsersInputFile(std::string fileName);  // loads data from the user input XML files.
+        stdStringVec loadUsersInputListFile(const std::string &fileName);  // load the list of user input configs from userinputs.xml
+        usersInputsSharedPtr loadUsersInputFile(const std::string &fileName);  // loads data from the user input XML files.
 
     private:
 

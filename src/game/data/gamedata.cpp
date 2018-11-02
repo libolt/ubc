@@ -34,10 +34,7 @@ gameData::gameData()  // constructor
     gameType = NOGAME;
 
 }
-gameData::~gameData()  // destructor
-{
-    
-}
+gameData::~gameData() = default;  // destructor
 
 size_t gameData::getSelectedCourtDataInstance() const  // retrieves the value of selectedCourtDataInstance
 {

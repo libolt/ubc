@@ -65,13 +65,15 @@ renderEngine::renderEngine()
     RERoot = nullptr;
    
     instance = 0;
+    useRTSS = false;
+    mMoveSpeed = 0.0;
+    mMoveScale = 0.0;
+    mTimeUntilNextToggle = 0.0;
 //   windowWidth = 0;
 //   windowHeight = 0;
 }
 
-renderEngine::~renderEngine()
-{
-}
+renderEngine::~renderEngine() = default;  // destructor
 
 bool renderEngine::frameStarted()
 {
@@ -820,7 +822,7 @@ bool renderEngine::createScene()
 return (true);
 }
 
-OgreSceneNodeSharedPtr renderEngine::createNode(OgreEntitySharedPtr model,std::string entityNodeName)  // create scene node for model
+OgreSceneNodeSharedPtr renderEngine::createNode(const OgreEntitySharedPtr &model,const std::string &entityNodeName)  // create scene node for model
 {
     OgreSceneNodeSharedPtr tempNode; //(new Ogre::SceneNode);
     conversionSharedPtr convert ;

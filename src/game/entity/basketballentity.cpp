@@ -79,10 +79,7 @@ basketballEntity::basketballEntity()  // constructor
 //    stateSet = false;
 
 }
-basketballEntity::~basketballEntity()  // destructor
-{
-    
-}
+basketballEntity::~basketballEntity() = default;  // destructor
 
 sharedPtr<basketballPhysics> basketballEntity::getPhysics() const  // retrieves the value of physics
 {

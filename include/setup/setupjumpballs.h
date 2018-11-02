@@ -30,7 +30,7 @@ class setupJumpBalls
         setupJumpBalls();  // constructor
         ~setupJumpBalls();  // destructor
         
-        jumpBallsSharedPtr checkifJumpBallCreated(jumpBallsSharedPtr jumpBall, gameFlagsSharedPtr flag);  // checks if jumpBall object has been created
+        jumpBallsSharedPtr checkifJumpBallCreated(jumpBallsSharedPtr jumpBall, const gameFlagsSharedPtr &flag);  // checks if jumpBall object has been created
      
 
     private:

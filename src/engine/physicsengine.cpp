@@ -101,7 +101,8 @@ bool physicsEngine::setup()  // sets up the physicsEngine object
     auto *tempDispatcher = new btCollisionDispatcher(collisionConfig.get());
     dispatcher = sharedPtr<btCollisionDispatcher>(tempDispatcher);
 //    solver = new btSequentialImpulseConstraintSolver();
-    btSequentialImpulseConstraintSolver *tempSolver = new btSequentialImpulseConstraintSolver();
+//    btSequentialImpulseConstraintSolver *tempSolver = new btSequentialImpulseConstraintSolver();
+    auto *tempSolver = new btSequentialImpulseConstraintSolver();
     solver = sharedPtr<btSequentialImpulseConstraintSolver>(tempSolver);
 //    world = new btDiscreteDynamicsWorld(dispatcher, broadPhase, solver, collisionConfig);
 //    world->setGravity(btVector3(0,-9.8,0));

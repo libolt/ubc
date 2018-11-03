@@ -366,10 +366,10 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
     #ifdef _WIN64
         winHandle = convert->toString((size_t)sysInfo.info.win.window);
     #else
-        winHandle = convert->toString((unsigned long int)sysInfo.info.win.window);
+        winHandle = convert->toString(reinterpret_cast<unsigned long int>(sysInfo.info.win.window));
     #endif
 #elif OGRE_PLATFORM == OGRE_PLATFORM_LINUX
-    winHandle = convert->toString((unsigned long)sysInfo.info.x11.window);
+    winHandle = convert->toString(reinterpret_cast<unsigned long>(sysInfo.info.x11.window));
 #elif OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     JNIEnv* env = (JNIEnv*)SDL_AndroidGetJNIEnv();
 
@@ -379,7 +379,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
     ANativeWindow* native_window = ANativeWindow_fromSurface(env, raw_surface);
 //    winHandle = convert->toString((unsigned long)sysInfo.info.android.window);
 //    winHandle =  convert->toString((unsigned long)SDL_GetWindowID(sdlWindow));
-    winHandle =  convert->toString((int)native_window);
+    winHandle =  convert->toString(reinterpret_cast<int>(native_window));
     logMsg(func +" winHandle = " +winHandle);
 //    exit(0);
 //	logMsg("winHandle2 = " +winHandle2);

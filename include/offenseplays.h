@@ -65,32 +65,35 @@ class offensePlays  // class that contains the information to run each play
         };
         typedef std::vector<offensePlays::playerDirectives> playerDirectivesVec;
 
-        std::string getPlayName();  // retrieves the value of playName;
-        void setPlayName(std::string set);  // sets the value of playName
+        offensePlays();  // constructor
+        ~offensePlays();  // destructor
 
-        int getVariation();  // retrieves the value of variation
-        void setVariation(int set);  // sets the value of variation
+        std::string getPlayName() const;  // retrieves the value of playName;
+        void setPlayName(const std::string &set);  // sets the value of playName
 
-        std::string getTitle();  // retrieves the value of title
-        void setTitle(std::string set);  // sets the value of title
+        int getVariation() const;  // retrieves the value of variation
+        void setVariation(const int &set);  // sets the value of variation
 
-        playerPositionsVec getPlayerPosition();  // retrieves the value of playerPosition
-        void setPlayerPosition(playerPositionsVec set);  // sets the value of playerPosition
+        std::string getTitle() const;  // retrieves the value of title
+        void setTitle(const std::string &set);  // sets the value of title
 
-        OgreVector3Vec getStartPositions();  // retrieves the value of startPositions
-        void setStartPositions(OgreVector3Vec set);  // sets the value of startPositions
+        playerPositionsVec getPlayerPosition() const;  // retrieves the value of playerPosition
+        void setPlayerPosition(const playerPositionsVec &set);  // sets the value of playerPosition
 
-        std::vector <OgreVector3Vec > getExecutePositions();    // retrieves the value of executePositions
-        void setExecutePositions(std::vector< OgreVector3Vec > set);    // sets the value of executePositions
+        OgreVector3Vec getStartPositions() const;  // retrieves the value of startPositions
+        void setStartPositions(const OgreVector3Vec &set);  // sets the value of startPositions
 
-        boolVec getStartPositionSet();  // retrieves the value of startPositionSet
-        void setStartPositionSet(boolVec set);  // sets the value of startPositionSet
+        std::vector <OgreVector3Vec > getExecutePositions() const;    // retrieves the value of executePositions
+        void setExecutePositions(const std::vector< OgreVector3Vec > &set);    // sets the value of executePositions
 
-        std::vector< boolVec > getExecutePositionReached();  // retrieves the value of executePositionSet
-        void setExecutePositionReached(std::vector< boolVec > set);  // sets the value of executePositionSet
+        boolVec getStartPositionSet() const;  // retrieves the value of startPositionSet
+        void setStartPositionSet(const boolVec &set);  // sets the value of startPositionSet
 
-        playerDirectivesVec getPlayerDirective();  // returns the value of playerDirective
-        void setPlayerDirective(playerDirectivesVec set);  // sets the value of playerDirective
+        std::vector< boolVec > getExecutePositionReached() const;  // retrieves the value of executePositionSet
+        void setExecutePositionReached(const std::vector< boolVec > &set);  // sets the value of executePositionSet
+
+        playerDirectivesVec getPlayerDirective() const;  // returns the value of playerDirective
+        void setPlayerDirective(const playerDirectivesVec &set);  // sets the value of playerDirective
 
 private:
     std::string playName;  // stores the name of the play

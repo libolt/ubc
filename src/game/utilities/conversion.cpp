@@ -201,9 +201,6 @@ std::string conversion::toString(const bool &data) // converts bool data to stri
         case false:
             strData = "False";
         break;
-        default:
-            strData = "";
-        break;
     }
 
     return (strData);

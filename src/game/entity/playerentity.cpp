@@ -151,7 +151,7 @@ bool playerEntity::setupPhysicsObject()  // sets up the physics object
 
 bool playerEntity::initializeStateMachine()  // initializes the stateMachine object
 {
-    playerSMData *tempSMData = new playerSMData;
+    auto *tempSMData = new playerSMData;
     std::string func = "playerEntity::initializeStateMachine()!";
 
     SMData = tempSMData;

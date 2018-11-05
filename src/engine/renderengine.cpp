@@ -745,9 +745,11 @@ bool renderEngine::createScene()
     mSceneMgr->setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5));
 
     // Create a light
-    l = sharedPtr<Ogre::Light>(mSceneMgr->createLight("MainLight"));
-    l->setPosition(20,80,56);
+    light = sharedPtr<Ogre::Light>(mSceneMgr->createLight("MainLight"));
+    lightNode = OgreSceneNodeSharedPtr(mSceneMgr->getRootSceneNode()->createChildSceneNode("lightNode"));
+    lightNode->attachObject(light.get());
 
+    lightNode->setPosition(20,80,56);
  
     if (mWindow == nullptr)
     {
@@ -817,7 +819,6 @@ bool renderEngine::createScene()
   //  gameE->startGame()
   
   logMsg(func +" end");
-  
   
 return (true);
 }

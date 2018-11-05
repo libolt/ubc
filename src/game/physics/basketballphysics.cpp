@@ -246,11 +246,11 @@ void basketballPhysics::ballDribbling(Ogre::Vector3 bballPos, const btRigidBodyS
 //      btCollisionObject* obA = static_cast<btCollisionObject*>(contactManifold->getBody0());
 //      btCollisionObject* obB = static_cast<btCollisionObject*>(contactManifold->getBody1());
         #if BT_BULLET_VERSION>=281
-        btCollisionObject* obA = const_cast<btCollisionObject*>(contactManifold->getBody0());; // For newer Bullet versions
-        btCollisionObject* obB = const_cast<btCollisionObject*>(contactManifold->getBody1()); // For newer Bullet versions
+        auto *obA = static_cast<btCollisionObject*>(contactManifold->getBody0());; // For newer Bullet versions
+        auto *obB = const_cast<btCollisionObject*>(contactManifold->getBody1()); // For newer Bullet versions
         #else
-        btCollisionObject* obA = static_cast<btCollisionObject*>(contactManifold->getBody0()); // For older Bullet versions (original code)
-        btCollisionObject* obB = static_cast<btCollisionObject*>(contactManifold->getBody1()); // For older Bullet versions (original code)
+        auto *obA = static_cast<btCollisionObject*>(contactManifold->getBody0()); // For older Bullet versions (original code)
+        auto *obB = static_cast<btCollisionObject*>(contactManifold->getBody1()); // For older Bullet versions (original code)
         #endif
         int numContacts = contactManifold->getNumContacts();
         for (int j = 0; j<numContacts; j++)
@@ -262,7 +262,7 @@ void basketballPhysics::ballDribbling(Ogre::Vector3 bballPos, const btRigidBodyS
                 const btVector3& ptB = pt.getPositionWorldOnB();
                 const btVector3& normalOnB = pt.m_normalWorldOnB;
                 // ZOMG A COLLISIONNNNNNNNNNN ...
-                if ((btRigidBody*)obA == getPhysBody().get() || (btRigidBody*)obB == courtPhysBody.get())
+                if (dynamic_cast<btRigidBody*>(obA) == getPhysBody().get() || dynamic_cast<btRigidBody*>(obB) == courtPhysBody.get())
                 {
                     logMsg("ball collided with court!");
                    // exit(0);

@@ -403,7 +403,7 @@ playerEntityMSharedPtr setupTeams::setPlayerStartDirections(playerEntityMSharedP
     
     for (auto APIIT : activePlayerInstance)
     {
-        playerSMData *SMData = new playerSMData;
+        auto *SMData = new playerSMData;
         std::vector<playerActions> stateAction = APIIT.second->getGameData()->getStateAction();
 
         logMsg(func +" activePlayerInstance.size > 0!");

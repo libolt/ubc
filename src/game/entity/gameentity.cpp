@@ -208,7 +208,7 @@ bool gameEntity::setupActiveTeamInstances()  // sets up the active team instance
 bool gameEntity::initializeStateMachine(const renderEngineSharedPtr &render)  // sets up the game condition
 {
     std::string func = "gameEntity::initializeStateMachine()";
-    gameSMData *tempSMData(new gameSMData); 
+    auto *tempSMData(new gameSMData);
 
     logMsg(func +" begin");
 
@@ -375,7 +375,7 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
             logMsg(func +" Models Not Loaded yet!");
             
             // copies required objects to SMData
-            gameSMData *modelsSMData(new gameSMData); 
+            auto *modelsSMData(new gameSMData);
             modelsSMData->component = component;
 //            exit(0);
             modelsSMData->flag = flag;
@@ -394,7 +394,7 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
         if (flag->getModelsLoaded() && !flag->getNodesCreated())
         {
             logMsg(func +" Nodea Not Created yet!");
-            gameSMData *nodesSMData(new gameSMData); 
+            auto *nodesSMData(new gameSMData);
 
             nodesSMData->component = component;
 //            exit(0);
@@ -413,7 +413,7 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
         if (flag->getNodesCreated() && !flag->getStartPositionsSet())
         {
             logMsg(func +" Start Positions Not Set yet!");
-            gameSMData *startPosSMData(new gameSMData); 
+            auto *startPosSMData(new gameSMData);
 
             startPosSMData->component = component;
             startPosSMData->flag = flag;
@@ -433,7 +433,7 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
         if (flag->getStartPositionsSet() && !flag->getJumpBallSetup())  // calls tip off execution
         {
             logMsg(func +" Jump Ball Not Setup yet!");
-            gameSMData *jumpBallSetupSMData(new gameSMData); 
+            auto *jumpBallSetupSMData(new gameSMData);
 
             jumpBallSetupSMData->component = component;
             jumpBallSetupSMData->gData = data;
@@ -458,7 +458,7 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
         {
             logMsg(func +" Tip Off Not Complete yet!");
 //            exit(0);
-            gameSMData *jumpBallExecuteSMData(new gameSMData); 
+            auto *jumpBallExecuteSMData(new gameSMData);
 
             jumpBallExecuteSMData->component = component;
             jumpBallExecuteSMData->gData = data;

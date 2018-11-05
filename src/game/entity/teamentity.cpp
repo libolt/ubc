@@ -156,7 +156,7 @@ bool teamEntity::initialize()  // initializes the object
 bool teamEntity::initializeStateMachine()  // initializes teamStateMachine object
 {
     std::string func = "teamEntity::initializeStateMachine()";
-    teamSMData *SMData(new teamSMData);
+    auto *SMData(new teamSMData);
 
     logMsg(func +" begin");
 //    exit(0);
@@ -171,7 +171,7 @@ bool teamEntity::initializeStateMachine()  // initializes teamStateMachine objec
 //    component->getStateMachin
     teamStateMachineSharedPtr tempSM(new teamStateMachine);
     stateMachine = tempSM;
-    teamSMData *tempSMData2(new teamSMData); 
+    auto *tempSMData2(new teamSMData);
 
     stateMachine->pInit(tempSMData2);
 //    exit(0);
@@ -209,7 +209,7 @@ void teamEntity::updateState(const gameComponentsSharedPtr &gameInstanceComponen
         if (!flag->getActivePlayerInstancesSetup())
         {
             // setup Active Player Instances
-            teamSMData *spSMData = new teamSMData;
+            auto *spSMData = new teamSMData;
             spSMData->component = component;
             spSMData->flag = flag;
             spSMData->render = render;
@@ -234,7 +234,7 @@ void teamEntity::updateState(const gameComponentsSharedPtr &gameInstanceComponen
         
         if (!flag->getPlayerStartPositionsSet())
         {
-            teamSMData *spspSMData = new teamSMData;
+            auto *spspSMData = new teamSMData;
             spspSMData->component = component;
             spspSMData->flag = flag;
             spspSMData->gData = gameData;
@@ -271,7 +271,7 @@ void teamEntity::updateState(const gameComponentsSharedPtr &gameInstanceComponen
         
         if (!flag->getPlayerStartDirectionsSet())
         {
-            teamSMData *spsdSMData = new teamSMData;
+            auto *spsdSMData = new teamSMData;
             spsdSMData->component = component;
             spsdSMData->flag = flag;
             spsdSMData->gData = gameData;
@@ -297,7 +297,7 @@ void teamEntity::updateState(const gameComponentsSharedPtr &gameInstanceComponen
             logMsg(func +" Player start directions set");
         }
 
-        teamSMData *uapSMData = new teamSMData;
+        auto *uapSMData = new teamSMData;
         uapSMData->component = component;
         stateMachine->pUpdateActivePlayers(uapSMData);
 /*        activePlayerInstance = updateTeam->updateActivePlayers(component->getActivePlayerInstance());
@@ -323,7 +323,7 @@ void teamEntity::updateState(const gameComponentsSharedPtr &gameInstanceComponen
         
         basketballEntityMSharedPtr activeBasketballInstance = gameInstanceComponent->getActiveBasketballInstance();
 //      exit(0);
-        teamSMData *odSMData(new teamSMData);
+        auto *odSMData(new teamSMData);
         odSMData->component = component;
         odSMData->gData = gameData;
 

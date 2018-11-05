@@ -472,10 +472,10 @@ void playerSteer::update(const float currentTime, float elapsedTime)  // update 
     switch (teamType)
     {
         case HOMETEAM:
-            steerees = (OpenSteer::AVGroup&)teamSteers[0];
+            steerees = reinterpret_cast<OpenSteer::AVGroup&>(teamSteers[0]);
 			break;
         case AWAYTEAM:
-            steerees = (OpenSteer::AVGroup&)teamSteers[1];
+            steerees = reinterpret_cast<OpenSteer::AVGroup&>(teamSteers[1]);
 			break;
 		default:
 			break;

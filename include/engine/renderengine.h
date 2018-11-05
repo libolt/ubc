@@ -159,7 +159,8 @@ class renderEngine : public engine
     sharedPtr<Ogre::SceneManager> mSceneMgr;  // store the OGRE Scene Manager
     sharedPtr<Ogre::RenderWindow> mWindow;  // stores the OGRE Render Window
     sharedPtr<Ogre::Viewport> viewPort;  // stores the OGRE View Port
-    sharedPtr<Ogre::Light> l;  // stores the vslue of light
+    sharedPtr<Ogre::Light> light;  // stores the vslue of light
+    OgreSceneNodeSharedPtr lightNode;  // stores the light scene node.
     sharedPtr<Ogre::ResourceGroupManager> rsm;  // stores resources
     std::string mResourceGroup;  // stores resource locations
     Ogre::NameValuePairList misc;  // options to pass to mWindow during creation

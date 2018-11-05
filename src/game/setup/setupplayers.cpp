@@ -159,7 +159,7 @@ bool setupPlayers::checkIfTeamPlayerInstancesCreated(const playerEntityMSharedPt
             {
                 logMsg(func +" team stateMachine creatw player instances");
 //                exit(0);
-                teamSMData *tSMData(new teamSMData);
+                auto *tSMData(new teamSMData);
             
                 tSMData->component = ATIIT.second->getComponent();
                 tSMData->flag = ATIIT.second->getFlag();
@@ -478,7 +478,7 @@ playerEntityMSharedPtr setupPlayers::setupActivePlayerInstances(playerEntityMSha
                 
                 if (!APIIT.second->getFlag()->getSMNodeSet())  // sets the value of node if it has not been set already
                 {
-                    playerSMData *SMData = new playerSMData;
+                    auto *SMData = new playerSMData;
                     SMData->node = APIIT.second->getNode();
                     APIIT.second->getFlag()->setStateChanged(true);
                     if (APIIT.second->updateStateMachine(SETNODE, SMData))
@@ -500,7 +500,7 @@ playerEntityMSharedPtr setupPlayers::setupActivePlayerInstances(playerEntityMSha
 
                 if (!APIIT.second->getFlag()->getSMModelSet())  // sets the value of model if it has not been set already
                 {
-                    playerSMData *SMData = new playerSMData;
+                    auto *SMData = new playerSMData;
                     SMData->model = APIIT.second->getModel();
                     APIIT.second->getFlag()->setStateChanged(true);
                     if (APIIT.second->updateStateMachine(SETMODEL, SMData))
@@ -530,7 +530,7 @@ playerEntityMSharedPtr setupPlayers::setupActivePlayerInstances(playerEntityMSha
             logMsg(func + " stateMachine already Initialized!");
             if (!APIIT.second->getFlag()->getSMNodeSet())  // sets the value of node if it has not been set already
             {
-                playerSMData *SMData = new playerSMData;
+                auto *SMData = new playerSMData;
                 SMData->node = APIIT.second->getNode();
                 APIIT.second->getFlag()->setStateChanged(true);
                 if (APIIT.second->updateStateMachine(SETNODE, SMData))
@@ -552,7 +552,7 @@ playerEntityMSharedPtr setupPlayers::setupActivePlayerInstances(playerEntityMSha
 
             if (!APIIT.second->getFlag()->getSMModelSet())  // sets the value of model if it has not been set already
             {
-                playerSMData *SMData = new playerSMData;
+                auto *SMData = new playerSMData;
                 SMData->model = APIIT.second->getModel();
                 APIIT.second->getFlag()->setStateChanged(true);
                 if (APIIT.second->updateStateMachine(SETMODEL, SMData))

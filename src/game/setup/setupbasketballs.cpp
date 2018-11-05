@@ -56,7 +56,7 @@ basketballEntityMSharedPtr setupBasketballs::createBasketballInstances()  // cre
         }
 */
         logMsg(func +" creating steer object");
-        basketballSteer *bballSteer = new basketballSteer;  // steer instance
+        auto *bballSteer = new basketballSteer;  // steer instance
         BIIT.second->setSteer(basketballSteerSharedPtr(bballSteer));
         logMsg(func +" setting instance number");
         BIIT.second->setNumber(bballNum);

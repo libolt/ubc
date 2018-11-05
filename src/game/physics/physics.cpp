@@ -258,7 +258,7 @@ bool physics::setupPhysics(OgreEntitySharedPtr *model, OgreSceneNodeSharedPtr *n
 
 //        exit(0);
 
-    BtOgre::RigidBodyState *tempBodyState = new BtOgre::RigidBodyState(node->get());
+    auto *tempBodyState = new BtOgre::RigidBodyState(node->get());
     logMsg(func +" BtOgre::RigidBodyState *tempBodyState = new BtOgre::RigidBodyState(*node);");
 
     bodyState =  tempBodyState;

@@ -58,7 +58,7 @@ playerState::playerState()
     age = 0;
     height = 0;
     weight = 0;
-    movement = 0;
+    movement = false;
     posChangeAmount = 0;
 /*    posChange = Ogre::Vector3(0.0f,0.0f,0.0f);
 //    movement = false;

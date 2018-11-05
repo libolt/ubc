@@ -316,11 +316,14 @@ void AISystem::selectNextVehicle()  // select the "next" vehicle: the one listed
     {
         // get a container of all vehicles
         const OpenSteer::AVGroup& all = allVehiclesOfSelectedPlugIn ();
-        const OpenSteer::AVIterator first = all.begin();
-        const OpenSteer::AVIterator last = all.end();
+//        const OpenSteer::AVIterator first = all.begin();
+        const auto first = all.begin();
+//        const OpenSteer::AVIterator last = all.end();
+        const auto last = all.end();
 
         // find selected vehicle in container
-        const OpenSteer::AVIterator s = std::find(first, last, selectedVehicle.get());
+//        const OpenSteer::AVIterator s = std::find(first, last, selectedVehicle.get());
+        const auto s = std::find(first, last, selectedVehicle.get());
 
         // normally select the next vehicle in container
         selectedVehicle = OpenSteerAbstractVehicleSharedPtr(*(s+1));

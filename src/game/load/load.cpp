@@ -87,7 +87,7 @@ int loader::readFile(const char *sourceFile, char **destination)  // loads an xm
     // resets the file to beginning
     SDL_RWseek(file, 0, SEEK_SET);
     // Read text from file
-    std::string *contents = new std::string;
+    auto *contents = new std::string;
     int n_blocks = SDL_RWread(file, (*destination), 1, fileLength+1);
     logMsg(func +" contents = " +convert->toString(contents));
     (*destination)[fileLength] = '\0';

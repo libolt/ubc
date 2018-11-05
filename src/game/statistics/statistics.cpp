@@ -37,6 +37,7 @@ statistics::statistics()
     threePointersMade = 0;
     freeThrowsAttempted = 0;
     freeThrowsMade = 0;
+    technicalFouls = 0;
 }
 
 statistics::~statistics() = default;  // destructor

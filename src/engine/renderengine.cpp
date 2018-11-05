@@ -364,7 +364,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
     #ifdef _WIN64
-        winHandle = convert->toString((size_t)sysInfo.info.win.window);
+        winHandle = convert->toString(reinterpret_cast<size_t>(sysInfo.info.win.window));
     #else
         winHandle = convert->toString(reinterpret_cast<unsigned long int>(sysInfo.info.win.window));
     #endif

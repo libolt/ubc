@@ -199,7 +199,6 @@ bool UBCGame::setup()  // sets up a game instance
 {
 //    gameState *tempGameStateObj = new gameState;
     std::string func = "UBCGame::setup()";
-
     gameEntitySharedPtr tempGameInstance(new gameEntity);
     gameInstance = tempGameInstance;
     logMsg(func +" getGameS()->setInitialized(true)");
@@ -268,20 +267,20 @@ bool UBCGame::createUserInstances()  // creates the user instances
     std::string func = "UBCGame::createUserInstances()";
 
     logMsg(func +" begin");
-
-    size_t x = 0;
+    logMsg(func +" numUsers = " +convert->toString(numUsers));
 
     usersSharedPtr tempUsers(new users);
-    for (x=0;x<numUsers;++x)
+/*    for (size_t x=0;x<numUsers;++x)
     {
-       std::string userName = "player" +convert->toString(x);
-       logMsg(func +" " +userName);
-       tempUserInstance.insert(std::pair<size_t, usersSharedPtr>(x, tempUsers));
+        logMsg(func +" x = " +convert->toString(x));
+        std::string userName = "player" +convert->toString(x);
+        logMsg(func +" " +userName);
+        tempUserInstance.insert(std::pair<size_t, usersSharedPtr>(x, tempUsers));
     }
     usersInstance = tempUserInstance;
-
+*/
     logMsg(func +" end");
-//    exit(0);
+    exit(0);
 
     return (true);
 }

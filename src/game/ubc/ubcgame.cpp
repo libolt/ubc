@@ -270,7 +270,7 @@ bool UBCGame::createUserInstances()  // creates the user instances
     logMsg(func +" numUsers = " +convert->toString(numUsers));
 
     usersSharedPtr tempUsers(new users);
-/*    for (size_t x=0;x<numUsers;++x)
+    for (size_t x=0;x<numUsers;++x)
     {
         logMsg(func +" x = " +convert->toString(x));
         std::string userName = "player" +convert->toString(x);
@@ -278,9 +278,9 @@ bool UBCGame::createUserInstances()  // creates the user instances
         tempUserInstance.insert(std::pair<size_t, usersSharedPtr>(x, tempUsers));
     }
     usersInstance = tempUserInstance;
-*/
+
     logMsg(func +" end");
-    exit(0);
+//    exit(0);
 
     return (true);
 }

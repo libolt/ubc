@@ -22,9 +22,8 @@
 
 offensePlays::offensePlays()  // constructor
 {
-    playName = nullptr;
+    playName = "";
     variation = 0;
-    nullptr;
 }
 
 offensePlays::~offensePlays() = default;  // destructor

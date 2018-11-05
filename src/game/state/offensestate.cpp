@@ -64,8 +64,7 @@ offenseState::offenseState()  // constructor
     allExecutePositionsReached = false;
 
 //    executePositionSet = new bool[5];
-
-    for (int x=0;x<5;++x)
+/*    for (int x=0;x<5;++x)
     {
         startXPosSet[x] = false;
         startYPosSet[x] = false;
@@ -73,6 +72,7 @@ offenseState::offenseState()  // constructor
         startPositionReached.push_back(false);
 //      executePositionSet[x] = false;
     }
+*/
     numStartPositionsReached = 0;
     offenseSetup = false;
     loadPlays();

@@ -23,7 +23,7 @@
 
 users::users()  // constructor
 {
-    name = nullptr;
+    name = "";
     ID = 0;
     team = NOTEAM;
     player = NONE;

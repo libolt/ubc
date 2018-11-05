@@ -131,7 +131,7 @@ bool loadUsersInputs::checkIfUsersInputsLoaded()  // checks if user inputs have 
                 logMsg(func +" Failed to load User Input Files!");
                 retVal = false;
             }
-            exit(0);
+//            exit(0);
         }
     }
 

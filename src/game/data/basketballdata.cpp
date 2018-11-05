@@ -22,8 +22,8 @@
 
 basketballData::basketballData()  // constructor
 {
-    name = nullptr;
-    modelFileName = nullptr;
+    name = "";
+    modelFileName = "";
 }
 basketballData::~basketballData() = default;  // destructor
 

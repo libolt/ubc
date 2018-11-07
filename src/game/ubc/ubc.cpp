@@ -292,11 +292,11 @@ bool UBC::updateGUI()  // updates the gui based on received events
     {
         logMsg(func +" updateGUI Mouse Clicked!");
         exit(0);
-        component->getGui()->getComponent()->getMGUI()->injectMousePress(component->getGameE()->getInputE()->getMouseX(), component->getGameE()->getInputE()->getMouseY(), MyGUI::MouseButton::Enum(0));
+        component->getGui()->getComponent()->getMGUI()->injectMousePress(component->getGameE()->getInputE()->getMouseX(), component->getGameE()->getInputE()->getMouseY(), MyGUI::MouseButton::Left);
     }
     else
     {
-        component->getGui()->getComponent()->getMGUI()->injectMouseRelease(component->getGameE()->getInputE()->getMouseX(), component->getGameE()->getInputE()->getMouseY(), MyGUI::MouseButton::Enum(0));
+        component->getGui()->getComponent()->getMGUI()->injectMouseRelease(component->getGameE()->getInputE()->getMouseX(), component->getGameE()->getInputE()->getMouseY(), MyGUI::MouseButton::Left);
     }
 //    base->setGui(gui);
 

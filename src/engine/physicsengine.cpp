@@ -115,7 +115,7 @@ bool physicsEngine::setup()  // sets up the physicsEngine object
     world->setGravity(btVector3(0.0f,-9.8f,0.0f));
 
     contactInfo = world->getSolverInfo();
-    contactInfo.m_restingContactRestitutionThreshold = 1e30;
+    contactInfo.m_restingContactRestitutionThreshold = static_cast<int>(1e30);
     contactInfo.m_restitution = 1.3f;
     contactInfo.m_friction = 1.5f;
     //FIXME: Hack to set total number of players for physics to 10, set this to be dynamic

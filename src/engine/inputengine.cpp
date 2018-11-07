@@ -325,7 +325,7 @@ bool inputEngine::processInput()  // processes all input
             case SDL_TEXTINPUT:
                 inputText = "";
                 
-                inputText = inputEvent.text.text;
+                inputText = static_cast<std::string>(inputEvent.text.text);
                 logMsg(func +" inputText! == " +inputText);
 //                exit(0);
                 if (!inputText.empty())
@@ -802,10 +802,11 @@ bool inputEngine::processTextInput()  // reads in text input
 {
     conversionSharedPtr convert ;
     std::string func = "inputEngine::processTextInput()";
-    
+    std::string inputText;
     logMsg(func +" textInput!");
 //    exit(0);
-    keyPressed = convert->toInputKey(inputEvent.text.text);
+    inputText = static_cast<std::string>(inputEvent.text.text);
+    keyPressed = convert->toInputKey(inputText);
     
     if (keyPressed != INKEY_NONE)
     {

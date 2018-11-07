@@ -812,7 +812,7 @@ bool gameEntity::updatePlayerCollisionObjects()  // updates the player collision
                                 physBody = CPIIT.second->getComponent()->getPhysics()->getPhysBody();
                                 newCollisionBodies.insert(std::pair<std::string, btRigidBodySharedPtr>(position, physBody));  // loads the second hoop
 //                                tempBody = physBody;
-                                logMsg(func +" position = " +position);
+                                logMsg(func +" position = " +=position);
                             }
                             else
                             {

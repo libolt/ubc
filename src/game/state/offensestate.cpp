@@ -314,16 +314,17 @@ void offenseState::setupOffense(const gameDataSharedPtr &gameData)  // sets up b
 
     logMsg("plays.size() = " +convert->toString(plays.size()));
     offensePlaysVecSharedPtr::iterator PIT;
-    for (size_t x=0;x<plays.size();++x)
+//    for (size_t x=0;x<plays.size();++x)
+    for (auto PIT : plays)
 //    for (PIT = plays.begin(); PIT != plays.end(); ++PIT)
     {
-        if (plays[x]->getPlayName() == playName)  // sets up the offense
+        if (PIT->getPlayName() == playName)  // sets up the offense
         {
-            if (plays[x]->getTitle() == playTitle) 
+            if (PIT->getTitle() == playTitle)
             {
-                startPositions = plays[x]->getStartPositions();
-                executePositions = plays[x]->getExecutePositions();
-                playerDirective = plays[x]->getPlayerDirective();
+                startPositions = PIT->getStartPositions();
+                executePositions = PIT->getExecutePositions();
+                playerDirective = PIT->getPlayerDirective();
             }
             else
             {
@@ -355,15 +356,15 @@ void offenseState::setupOffense(const gameDataSharedPtr &gameData)  // sets up b
     // checks for a Y Offset so that players dont fall through the court
   
     float yOffset = gameData->getYOffset();
-    for (size_t y=0;y < startPositions.size(); ++y)
+    for (auto SPIT : startPositions)
     {
-        startPositions[y].y = yOffset;
+        SPIT.y = yOffset;
     }
-    for (size_t x=0;x<executePositions.size();++x)
+    for (auto EPIT : executePositions)
     {
-        for (size_t y=0;y<executePositions[x].size();++y)
+        for (auto EPXIT : EPIT)
         {
-            executePositions[x][y].y = yOffset;
+            EPXIT.y = yOffset;
             //exit(0);
         }
     }
@@ -566,6 +567,8 @@ bool offenseState::checkForDirective(playerPositions playerPosition)  // checks 
                         case TIME:
                         break;
                     }
+                break;
+                case FREELANCE:
                 break;
             }
         }

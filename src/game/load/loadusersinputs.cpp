@@ -226,9 +226,9 @@ stdStringVec loadUsersInputs::loadUsersInputListFile(const std::string &fileName
     for( pElem; pElem; pElem=pElem->NextSiblingElement())
     {
         std::string pKey=pElem->Value();
-        logMsg(func +" pKey == " +pKey);
+        logMsg(func +" pKey == " +=pKey);
         std::string pText=pElem->GetText();
-        logMsg(func +" pText == " +pText);
+        logMsg(func +" pText == " +=pText);
         uInputFiles.push_back(pText);
     }
     logMsg(func +" uInputFiles.size() == " +convert->toString(uInputFiles.size()));
@@ -390,7 +390,7 @@ usersInputsSharedPtr loadUsersInputs::loadUsersInputFile(const std::string &file
                     if (pKey == "Quit")
                     {
                         quit = nextChild->GetText();
-                        logMsg(func +" Quit key == " +quit);
+                        logMsg(func +" Quit key == " +=quit);
 //                        exit(0);
                     }
                 }

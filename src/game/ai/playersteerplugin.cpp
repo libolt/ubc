@@ -255,7 +255,8 @@ void playerSteerPlugin::open()  // opens the plugin
     OpenSteer::Vec3 courtBoxMin = convert->toOpenSteerVec3(cboxMin);
     OpenSteer::Vec3 courtBoxMax = convert->toOpenSteerVec3(cboxMax);
 
-    courtBBox = steeringAABBoxSharedPtr(new steering::AABBox( OpenSteer::Vec3(0,0,0), OpenSteer::Vec3(0,0,0)));
+//    courtBBox = steeringAABBoxSharedPtr(new steering::AABBox( OpenSteer::Vec3(0,0,0), OpenSteer::Vec3(0,0,0)));
+    courtBBox = std::make_shared<steering::AABBox>(OpenSteer::Vec3(0,0,0), OpenSteer::Vec3(0,0,0));
     courtBBox->setMin(courtBoxMin);
 
  /*           // Red goal

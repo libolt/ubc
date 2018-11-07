@@ -37,6 +37,7 @@
 #include "LinearMath/btVector3.h"
 #include "SDL.h"
 #include "ai/steering.h"
+#include "enet/enet.h"
 #include "utilities/enums.h"
 
 //template<class T, class TL>
@@ -72,6 +73,7 @@ class conversion  // class for conversion between data types
         std::string toString(const activeMenus &data); // converts activeMenus data to string
         std::string toString(const directions &data); // converts directions data to string
         std::string toString(const inputTypes &data); // converts inputTypes data to string
+        std::string toString(const _ENetEventType &data);  // converts ENetEventType data to string
 
         // convert to char
         char toChar(const std::string &data);  // converts from std::string to char

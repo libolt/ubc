@@ -154,6 +154,7 @@ std::string loader::findFile(const std::string &fileName)  // finds the location
     std::string filePath;        // stores path to a file
     stdStringVec pathArray;
     std::string dataPath;
+    std::string retVal;  // stores return value
     std::string func = "loader::findFile()";
     
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
@@ -184,13 +185,13 @@ std::string loader::findFile(const std::string &fileName)  // finds the location
             logMsg(func + " pathArray == " + pathArray[x]);
 
             filePath.append(fileName);
-            logMsg(func + " filePath = " +filePath);
+            logMsg(func + " filePath = " +=filePath);
             std::fstream fileOpen;
             // if (!(lineupFont = TTF_OpenFont(file.c_str(), 20)));
             fileOpen.open(filePath.c_str(), std::ios::in);
             if (!fileOpen)
             {
-                logMsg(func +" failed to load " + filePath);
+                logMsg(func +" failed to load " +=filePath);
 //                exit(0);
             }
             else
@@ -203,7 +204,7 @@ std::string loader::findFile(const std::string &fileName)  // finds the location
         }
         else
         {
-            return(filePath);
+            retVal = filePath;
         }
     }
     if (!fileLoaded)
@@ -214,7 +215,7 @@ std::string loader::findFile(const std::string &fileName)  // finds the location
 #endif
     logMsg(func + " end");
     
-    return ("");
+    return (retVal);
 }
 
 OgreEntitySharedPtr loader::loadModelFile(const std::string &modelFileName, const std::string &entityName, const renderEngineSharedPtr &render)  // loads the 3D model

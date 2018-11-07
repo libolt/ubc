@@ -269,6 +269,8 @@ bool networkEngine::clientConnect()  // performs a client connection to the serv
 
 void networkEngine::networkClient()
 {
+    conversionSharedPtr convert;
+    std::string func = "networkEngine::networkClient()";
 //    ENetPeer *peer;
 //    ENetPacket *packet2;
 //    clientConnect();
@@ -289,34 +291,42 @@ void networkEngine::networkClient()
         switch (event.type)
         {
             case ENET_EVENT_TYPE_CONNECT:
-                printf("A new client connected from %x:%u.\n",
+/*                printf("A new client connected from %x:%u.\n",
                         event.peer -> address.host,
-                        event.peer -> address.port);
+                        event.peer -> address.port);*/
+                logMsg(func + " a new client connected from: "
+                       +convert->toString(event.peer->address.host)
+                       +":" +convert->toString(event.peer->address.port));
             break;
             case ENET_EVENT_TYPE_RECEIVE:
                 char *data; // char array that stores data received in the packet
 
-                printf ("A packet of length %lu containing %s was received from %s on channel %u.\n",
+/*                printf ("A packet of length %lu containing %s was received from %s on channel %u.\n",
                          event.packet -> dataLength,
                          event.packet -> data,
                          event.peer -> data,
                          event.channelID);
-
+*/
+                logMsg(func +" A packet of length " +convert->toString(event.packet->dataLength)
+                       +" containing " + convert->toString(event.packet->data) +" was received from "
+                       +convert->toString(event.peer->data) +" on channel "
+                       +convert->toString(event.channelID));
                 packetReceived = true;	// lets code know that a packet was received
 //    cout << "event.packet->data = " << event.packet->data << endl;
 
                 data = new char[event.packet->dataLength + 1];	// creates array the size of the packet data + 1
-                snprintf(data,event.packet->dataLength + 1, "%s", event.packet->data);	// copies contents of packet to data variable
+//                snprintf(data,event.packet->dataLength + 1, "%s", event.packet->data);	// copies contents of packet to data variable
+//                receivedData = data;  // copies conetents of data array to receivedData std::string variable
+                receivedData = convert->toString(event.packet->data);
 
-                receivedData = data;  // copies conetents of data array to receivedData std::string variable
                 logMsg("receivedData == " +receivedData);
                 // Clean up the packet now that we're done using it.
                 enet_packet_destroy (event.packet);
 //            exit(0);
             break;
             case ENET_EVENT_TYPE_DISCONNECT:
-                printf ("%s disconected.\n", event.peer -> data);
-//                logMsg(event.peer->data +" disconnected.");
+//                printf ("%s disconected.\n", event.peer -> data);
+                logMsg(convert->toString(event.peer->data) +" disconnected.");
                 // Reset the peer's client information.
                 event.peer -> data = nullptr;
             break;
@@ -369,6 +379,8 @@ bool networkEngine::serverSetup()  // sets up the network server
 void networkEngine::networkServer()  // executes the network server code
 {
     conversionSharedPtr convert;
+    std::string func = "networkEngine::networkServer()";
+
 //    sharedPtr<gameEngine> gameE = gameEngine::Instance();
     
     char *host; 
@@ -395,6 +407,7 @@ void networkEngine::networkServer()  // executes the network server code
     {
         ENetPeer *tempPeer;
         logMsg("EVENT == " +event.type);
+        std::string pktMsg;
         switch (event.type)
         {
             case ENET_EVENT_TYPE_CONNECT:
@@ -408,21 +421,36 @@ void networkEngine::networkServer()  // executes the network server code
             case ENET_EVENT_TYPE_RECEIVE:
                 char *data;  // char array that stores data received in the packet
 
-                printf ("A packet of length %lu containing %s was received from %s on channel %u.\n",
+/*                printf ("A packet of length %lu containing %s was received from %s on channel %u.\n",
                         event.packet -> dataLength,
                         event.packet -> data,
                         event.peer -> data,
                         event.channelID);
+*/
+                pktMsg = "A packet of length ";
+                pktMsg.append(packetDataLength);
+                pktMsg.append(" containing ");
+                pktMsg.append(packetData);
+                pktMsg.append(" was received from ");
+                pktMsg.append(packetPeer);
+                pktMsg.append(" on channel ");
+                pktMsg.append(packetChannelID);
+                logMsg(pktMsg);
+/*                logMsg(func +" A packet of length " +convert->toString(event.packet->dataLength)
+                       +" containing " + convert->toString(event.packet->data) +" was received from "
+                       +convert->toString(event.peer->data) +" on channel "
+                       +convert->toString(event.channelID));
+*/
                 // converts and writes data to Ogre.log for packet
                 packetData = convert->toString(event.packet->data);
 //                packetDataLength = convert->toString(event.packet->dataLength);
                 packetPeer = convert->toString(event.peer->data);
                 packetChannelID = convert->toString(event.channelID);
-                logMsg("A packet of length " +packetDataLength + " containing " +packetData + " was received from " +packetPeer + " on channel " +packetChannelID);
+
                 packetReceived = true;	// lets code know that a packet was received
                 data = new char[event.packet->dataLength + 1];  // creates array the size of the packet data + 1
-                snprintf(data,event.packet->dataLength + 1, "%s", event.packet->data);	// copies contents of packet to data variable
-                receivedData = data;  // copies conetents of data array to receivedData std::string variable
+//                snprintf(data,event.packet->dataLength + 1, "%s", event.packet->data);	// copies contents of packet to data variable
+                receivedData = convert->toString(event.packet->data);  // copies conetents of data array to receivedData std::string variable
                 logMsg("receivedData == " +receivedData);
                 enet_packet_destroy (event.packet);
 //                exit(0);

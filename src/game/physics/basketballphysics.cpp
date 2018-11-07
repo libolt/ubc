@@ -246,7 +246,7 @@ void basketballPhysics::ballDribbling(Ogre::Vector3 bballPos, const btRigidBodyS
 //      btCollisionObject* obA = static_cast<btCollisionObject*>(contactManifold->getBody0());
 //      btCollisionObject* obB = static_cast<btCollisionObject*>(contactManifold->getBody1());
         #if BT_BULLET_VERSION>=281
-        auto *obA = static_cast<btCollisionObject*>(contactManifold->getBody0());; // For newer Bullet versions
+        auto *obA = const_cast<btCollisionObject*>(contactManifold->getBody0());; // For newer Bullet versions
         auto *obB = const_cast<btCollisionObject*>(contactManifold->getBody1()); // For newer Bullet versions
         #else
         auto *obA = static_cast<btCollisionObject*>(contactManifold->getBody0()); // For older Bullet versions (original code)

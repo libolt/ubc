@@ -173,6 +173,7 @@ bool gameEntity::setupActiveTeamInstances()  // sets up the active team instance
     std::string func = "gameEntity::setupActiveTeamInstances()";
 
     logMsg(func +" begin");
+    exit(0);
 //    activeTeamInstance.insert(std::pair<size_t, teamStateSharedPtr>(0, tInstance));  // adds empty teamState to activeTeamInstance vector
 //    activeTeamInstance.insert(std::pair<size_t, teamStateSharedPtr>(1, tInstance));  // adds empty teamState to activeTeamInstance vector
 //    exit(0);

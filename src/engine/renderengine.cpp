@@ -450,7 +450,8 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
     {
         selectedRenderSystem = rsList.at(c);
         std::string rname = selectedRenderSystem->getName();
-	if (rname.compare("OpenGL Rendering Subsystem") == 0)
+//	if (rname.compare("OpenGL Rendering Subsystem") == 0)
+        if (rname == "OpenGL Rendering Subsystem")
         {
             foundit = true;
             break;
@@ -702,7 +703,13 @@ bool renderEngine::createScene()
 
     rsm->initialiseResourceGroup(mResourceGroup);
 //  exit(0);
+    
+#if OGRE_VERSION_MAJOR == 1 && OGRE_VERSION_MINOR <= 10
     mSceneMgr = sharedPtr<Ogre::SceneManager>(RERoot->createSceneManager(Ogre::ST_GENERIC)); // creates the scene manager
+#else
+    mSceneMgr = sharedPtr<Ogre::SceneManager>(RERoot->createSceneManager()); // creates the scene manager
+#endif
+
 //    mSceneMgr = RERoot->createSceneManager("DefaultSceneManager"); // creates the scene manager
 
     mCamera = sharedPtr<Ogre::Camera>(mSceneMgr->createCamera("camera"));

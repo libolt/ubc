@@ -311,3 +311,4 @@ void basketballPhysics::updatePosition()  // updates the position of basketball 
     }
 }
 
+//>>>>>>> branch 'master' of https://github.com/libolt/ubc.git

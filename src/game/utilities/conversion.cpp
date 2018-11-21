@@ -734,6 +734,28 @@ std::string conversion::toString(const inputTypes &data) // converts inputTypes 
     return (strData);
 }
 
+std::string toString(const _ENetEventType &data)  // converts ENetEventType data to string
+{
+    std::string strData;
+
+    switch (data)
+    {
+        case ENET_EVENT_TYPE_NONE:
+            strData = "ENET_EVENT_TYPE_NONE";
+        break;
+        case ENET_EVENT_TYPE_CONNECT:
+            strData = "ENET_EVENT_TYPE_CONNECT";
+        break;
+        case ENET_EVENT_TYPE_DISCONNECT:
+            strData = "ENET_EVENT_TYPE_DISCONNECT";
+        break;
+        case ENET_EVENT_TYPE_RECEIVE:
+            strData = "ENET_EVENT_TYPE_RECEIVE";
+        break;
+    }
+
+    return (strData);
+}
 // convert to char
 char conversion::toChar(const std::string &data)  // converts from std::string to char
 {

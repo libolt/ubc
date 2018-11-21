@@ -606,7 +606,7 @@ STATE_DEFINE(gameStateMachine, createNodes, gameSMData)
         {
             activeModel = AHIIT.second->getModel();
             activeEntityName = AHIIT.second->getModel()->getName();
-            logMsg(func +" activeEntityName == " +activeEntityName);
+            logMsg(func +" activeEntityName == " +=activeEntityName);
             activeNodeNum = convert->toString(AHIIT.first);
             activeNodeName = AHIIT.second->getNodeName();
             if (activeNodeName.empty())

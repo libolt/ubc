@@ -38,7 +38,7 @@
 #include "state/offensestate.h"
 #include "state/playerstate.h"
 //#include "state/teamstate.h"
-#include "offenseplays.h"
+#include "offense/offenseplays.h"
 #include "utilities/comparison.h"
 
 playerSteer::playerSteer()  // constructor

@@ -317,7 +317,7 @@ hoopEntityMSharedPtr loadHoops::loadModels(hoopEntityMSharedPtr activeHoopInstan
         if (!AHIIT.second->getNameSet())  // checks if entityName has been set
         {
             std::string name = AHIIT.second->getName();
-            logMsg(func +" name == " +name);
+            logMsg(func +" name == " +=name);
             AHIIT.second->setName(name);
         }
         else
@@ -347,9 +347,9 @@ hoopEntityMSharedPtr loadHoops::loadModels(hoopEntityMSharedPtr activeHoopInstan
         std::string modelFileName = AHIIT.second->getModelFileName();
         std::string entityName = AHIIT.second->getName() +convert->toString(AHIIT.first);
         std::string entityNodeName = AHIIT.second->getNodeName();
-        logMsg(func +" modelFileName == " +modelFileName);
+        logMsg(func +" modelFileName == " +=modelFileName);
 //        exit(0);
-        logMsg(func +"load entityName == " +entityName);
+        logMsg(func +"load entityName == "  +=entityName);
 //        logMsg(func +" entityNodeName == " +entityNodeName);
 
         model = loadModelFile(modelFileName, entityName, render);

@@ -66,6 +66,9 @@ class courtData;
 class courtEntity;
 //class courtState;
 
+class defense;
+class defenseComponents;
+class defenseFlags;
 class defenseState;
 
 class gameComponents;
@@ -111,6 +114,9 @@ class logging;
 class networkEngine;
 class networkState;
 
+class offense;
+class offenseComponents;
+class offenseFlags;
 class offensePlays;
 class offenseState;
 
@@ -214,6 +220,10 @@ typedef sharedPtr<playerFlags> playerFlagsSharedPtr;
 
 //typedef sharedPtr<courtState> courtStateSharedPtr;
 
+typedef sharedPtr<defenseComponents> defenseComponentsSharedPtr;
+
+typedef sharedPtr<defenseFlags> defenseFlagsSharedPtr;
+
 typedef sharedPtr<defenseState> defenseStateSharedPtr;
 
 //typedef sharedPtr<gameState> gameStateSharedPtr;
@@ -227,6 +237,10 @@ typedef sharedPtr<inputKeyboards> inputKeyboardsSharedPtr;
 typedef sharedPtr<inputGamePads> inputGamePadsSharedPtr;
 
 typedef sharedPtr<networkState> networkStateSharedPtr;
+
+typedef sharedPtr<offenseComponents> offenseComponentsSharedPtr;
+
+typedef sharedPtr<offenseFlags> offenseFlagsSharedPtr;
 
 typedef sharedPtr<offenseState> offenseStateSharedPtr;
 

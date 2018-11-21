@@ -73,7 +73,7 @@ void basketballSteer::reset(Ogre::Vector3 nodePosition)
 //    setTrailParameters (10, 60);
 }
 
-void basketballSteer::update (const float /*currentTime*/, float elapsedTime)
+void basketballSteer::update (const float /*currentTime*/, float  elapsedTime)
 {
 /*
 	gameState *gameS = gameState::Instance();

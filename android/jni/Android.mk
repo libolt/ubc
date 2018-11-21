@@ -305,7 +305,11 @@ LOCAL_SRC_FILES := \
                        $(wildcard $(LOCAL_PATH)/../../src/game/update/*.cpp)) \
                    $(subst $(LOCAL_PATH)/,, \
                        $(wildcard $(LOCAL_PATH)/../../src/game/jumpballs/*.cpp)) \
-    
+                   $(subst $(LOCAL_PATH)/,, \
+                       $(wildcard $(LOCAL_PATH)/../../src/game/offense/*.cpp)) \
+                   $(subst $(LOCAL_PATH)/,, \
+                       $(wildcard $(LOCAL_PATH)/../../src/game/defense/*.cpp)) \
+
 
 LOCAL_LDLIBS	:= -landroid -lc -lm -ldl -llog -lEGL -lGLESv1_CM -lGLESv2 
 

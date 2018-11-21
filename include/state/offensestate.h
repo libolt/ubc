@@ -24,7 +24,7 @@
 #include "OgreVector3.h"
 
 #include "utilities/enums.h"
-#include "offenseplays.h"
+#include "offense/offenseplays.h"
 #include "state/state.h"
 //#include "state/gamestateshared.h"
 

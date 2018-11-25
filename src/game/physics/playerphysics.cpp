@@ -199,7 +199,8 @@ void playerPhysics::updatePosition()  // updates the position of player objecgts
 
     // checks to see if player positions need updated
     size_t z = 0;
-    while (z < activeTeamInstance.size())
+//    while (z < activeTeamInstance.size())
+    for (auto ATIIT : activeTeamInstance)
     {
 /*TS        activePlayerInstance.push_back(activeTeamInstance[z]->getActivePlayerInstance());
         size_t y = 0;

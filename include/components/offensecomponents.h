@@ -54,6 +54,9 @@ class offenseComponents
         std::string getPlayTitle();  // retrieves the value of playTitle
         void setPlayTitle(std::string set);  // sets the value of playTitle
 
+        std::vector<offensePlays::playerDirectives> getPlayerDirective();  // retrieves the value of playerDirective
+        void setPlayerDirective(std::vector<offensePlays::playerDirectives> set);  // sets the value of playerDirective
+
     private:
     
         teamTypes teamType;  // stores whether the offense is being run by the home or away team.

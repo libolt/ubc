@@ -32,6 +32,8 @@ class offenseSMData : public eventData
         offenseFlagsSharedPtr flag;  // boolean flags object
         quarters currentQuarter;  // stores copy of currentQuarter
         float yOffset;  // stores copy of yOffset
+        teamTypes teamWithBall;  // stores copy of teamWithBall
+        playerPositions playerPosition;  // stores a copy of playerPosition
 };
 
 class offenseStateMachine : public stateMachine

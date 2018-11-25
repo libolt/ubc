@@ -103,3 +103,11 @@ void offenseComponents::setPlayTitle(std::string set)  // sets the value of play
     playTitle = set;
 }
 
+std::vector<offensePlays::playerDirectives> offenseComponents::getPlayerDirective()  // retrieves the value of playerDirective
+{
+    return (playerDirective);
+}
+void offenseComponents::setPlayerDirective(std::vector<offensePlays::playerDirectives> set)  // sets the value of playerDirective
+{
+    playerDirective = set;
+}

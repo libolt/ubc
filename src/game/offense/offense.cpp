@@ -18,5 +18,29 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
- #include "offense/offense.h"
- 
+#include "offense/offense.h"
+
+offense::offense() // constructor
+{
+
+}
+offense::~offense() = default;  // destructor
+
+
+offenseComponentsSharedPtr offense::getComponent()  // retrieves the value of component
+{
+    return (component);
+}
+void offense::setComponent(offenseComponentsSharedPtr set)  // sets the value of component
+{
+    component = set;
+}
+
+offenseFlagsSharedPtr offense::getFlag()  // retrieves the value of flag
+{
+    return (flag);
+}
+void offense::setFlag(offenseFlagsSharedPtr set)  // sets the value of flag
+{
+    flag = set;
+}

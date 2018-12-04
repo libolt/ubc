@@ -35,8 +35,8 @@ class teamComponents
         playerEntityMSharedPtr getActivePlayerInstance() const;  // retrieves the value of activePlayerInstance
         void setActivePlayerInstance(const playerEntityMSharedPtr &set);  // sets the value of activePlayerInstance
 
-        offenseStateSharedPtr getOffenseInstance() const;  // retrievers the value of offenseInstance
-        void setOffenseInstance(const offenseStateSharedPtr &set);  // sets the value of offenseInstance
+        offenseSharedPtr getOffenseInstance() const;  // retrievers the value of offenseInstance
+        void setOffenseInstance(const offenseSharedPtr &set);  // sets the value of offenseInstance
 
         defenseStateSharedPtr getDefenseInstance() const;  // retrieves the value of defenseInstance
         void setDefenseInstance(const defenseStateSharedPtr &set);  // sets the value of defenseInstance
@@ -49,7 +49,7 @@ class teamComponents
         playerEntityMSharedPtr playerInstance;  // stores instance of the playerState class containing all team players
         playerEntityMSharedPtr activePlayerInstance;  // stores instance of the playerState class containing the active players
 
-        offenseStateSharedPtr offenseInstance;  // stores the offenseState instance
+        offenseSharedPtr offenseInstance;  // stores the offenseState instance
         defenseStateSharedPtr defenseInstance;  // stores the defenseState instance
 
         std::map<std::string, btRigidBodySharedPtr> collisionBodies;  // physical bodies to test for collisions with players physBody objects

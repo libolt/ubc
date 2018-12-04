@@ -46,11 +46,11 @@ void teamComponents::setActivePlayerInstance(const playerEntityMSharedPtr &set) 
     activePlayerInstance = set;
 }
 
-offenseStateSharedPtr teamComponents::getOffenseInstance() const  // retrievers the value of offenseInstance
+offenseSharedPtr teamComponents::getOffenseInstance() const  // retrievers the value of offenseInstance
 {
     return (offenseInstance);
 }
-void teamComponents::setOffenseInstance(const offenseStateSharedPtr &set)  // sets the value of offenseInstance
+void teamComponents::setOffenseInstance(const offenseSharedPtr &set)  // sets the value of offenseInstance
 {
     offenseInstance = set;
 }

@@ -31,13 +31,12 @@
 #include "entity/basketballentity.h"
 #include "entity/playerentity.h"
 #include "entity/teamentity.h"
-//#include "state/basketballstate.h"
-//#include "state/courtstate.h"
+#include "flags/offenseflags.h"
 #include "entity/gameentity.h"
 #include "utilities/logging.h"
-#include "state/offensestate.h"
 #include "state/playerstate.h"
 //#include "state/teamstate.h"
+#include "offense/offense.h"
 #include "offense/offenseplays.h"
 #include "utilities/comparison.h"
 
@@ -623,7 +622,7 @@ void playerSteer::updateOffense(const float currentTime, const float elapsedTime
     sizeTVec team0ActivePlayerID = activeTeamInstance[0]->getGameData()->getActivePlayerID();
     sizeTVec team1ActivePlayerID = activeTeamInstance[1]->getGameData()->getActivePlayerID();
 
-    boolVec startPositionReached = activeTeamInstance[teamType]->getComponent()->getOffenseInstance()->getStartPositionReached();
+    boolVec startPositionReached = activeTeamInstance[teamType]->getComponent()->getOffenseInstance()->getFlag()->getStartPositionReached();
 
     OpenSteer::Vec3 seekTarget;
     distToPosition = OpenSteer::Vec3::distance (steerCoords, position());	

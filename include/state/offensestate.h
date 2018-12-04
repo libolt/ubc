@@ -32,18 +32,13 @@
 //class offensePlays::playerDirectives;
 //class state;
 
+/*
 class offenseState : public state
 {
 public:
 
     offenseState(); // constructor
 
-/*    gameStateSharedPtr getGameS();  // retrieves the value of gameS
-    void setGameS(gameStateSharedPtr set);  // sets the value of gameS
-
-    bool getGameSInitialized();  // retrieves the value of gameSInitialized
-    void setGameSInitialized(bool set);  // sets the value of gameSInitialized
-*/
     teamTypes getTeamType() const;  // retrieves the value of teamType
     void setTeamType(const teamTypes &set);  // sets the value of teamType
 
@@ -127,6 +122,7 @@ private:
     // offense type variables
     bool offenseSetup;
 };
+*/
 
 #endif
 

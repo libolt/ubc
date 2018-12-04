@@ -19,15 +19,17 @@
  ***************************************************************************/
 
 #include "statemachine/teamstatemachine.h"
+#include "components/offensecomponents.h"
 #include "components/teamcomponents.h"
 #include "data/teamdata.h"
 #include "data/teamgamedata.h"
 #include "engine/renderengine.h"
+#include "flags/offenseflags.h"
 #include "flags/teamflags.h"
+#include "offense/offense.h"
 #include "setup/setupplayers.h"
 #include "setup/setupteams.h"
 #include "state/defensestate.h"
-#include "state/offensestate.h"
 #include "update/updateteams.h"
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
@@ -354,11 +356,11 @@ STATE_DEFINE(teamStateMachine, executeOffense, teamSMData)
 
     logMsg(func +" offense executing");
 //            exit(0);
-    data->component->getOffenseInstance()->setExecute(true);
+    data->component->getOffenseInstance()->getFlag()->setExecute(true);
     data->component->getDefenseInstance()->setExecute(false);
-    if (data->component->getOffenseInstance()->getTeamType() != data->gData->getTeamType())  // sets type of team for offense
+    if (data->component->getOffenseInstance()->getComponent()->getTeamType() != data->gData->getTeamType())  // sets type of team for offense
     {
-        data->component->getOffenseInstance()->setTeamType(data->gData->getTeamType());
+        data->component->getOffenseInstance()->getComponent()->setTeamType(data->gData->getTeamType());
     }
 
     logMsg(func +" end");
@@ -372,7 +374,7 @@ STATE_DEFINE(teamStateMachine, executeDefense, teamSMData)
     updateTeams updateTeam;
     std::string func = "teamStateMachine::executeDefense";
     logMsg(func +" begin");
-    data->component->getOffenseInstance()->setExecute(false);
+    data->component->getOffenseInstance()->getFlag()->setExecute(false);
     data->component->getDefenseInstance()->setExecute(true);
     if (data->component->getDefenseInstance()->getTeamType() !=  data->gData->getTeamType())  // sets type of team for defense
     {

@@ -118,7 +118,7 @@ class offense;
 class offenseComponents;
 class offenseFlags;
 class offensePlays;
-class offenseState;
+class offense;
 
 class playerComponents;
 class playerData;
@@ -242,7 +242,7 @@ typedef sharedPtr<offenseComponents> offenseComponentsSharedPtr;
 
 typedef sharedPtr<offenseFlags> offenseFlagsSharedPtr;
 
-typedef sharedPtr<offenseState> offenseStateSharedPtr;
+typedef sharedPtr<offense> offenseSharedPtr;
 
 //typedef sharedPtr<playerState> playerStateSharedPtr;
 

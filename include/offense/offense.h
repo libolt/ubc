@@ -21,12 +21,24 @@
 #ifndef _OFFENSE_H_
 #define _OFFENSE_H_
 
+#include "utilities/typedefs.h"
+
 class offense
 {
     public:
         offense();  // constructor
         ~offense();  // destructor
+
+        offenseComponentsSharedPtr getComponent();  // retrieves the value of component
+        void setComponent(offenseComponentsSharedPtr set);  // sets the value of component
+
+        offenseFlagsSharedPtr getFlag();  // retrieves the value of flag
+        void setFlag(offenseFlagsSharedPtr set);  // sets the value of flag
+
     private:
+
+        offenseComponentsSharedPtr component;  // offense components object
+        offenseFlagsSharedPtr flag;  // offense flgs object
 };
 
 #endif // OFFENSE_H

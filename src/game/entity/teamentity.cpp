@@ -32,6 +32,7 @@
 #include "flags/gameflags.h"
 #include "flags/playerflags.h"
 #include "flags/teamflags.h"
+#include "offense/offense.h"
 #include "setup/setupplayers.h"
 #include "setup/setupteams.h"
 #include "statistics/teamstatistics.h"
@@ -140,7 +141,7 @@ bool teamEntity::initialize()  // initializes the object
     teamStatisticsSharedPtr tempTeamStats(new teamStatistics);
     statistics = tempTeamStats;
 
-    offenseStateSharedPtr tempOffenseInst(new offenseState);
+    offenseSharedPtr tempOffenseInst(new offense);
     component->setOffenseInstance(tempOffenseInst);
 
     defenseStateSharedPtr tempDefenseInst(new defenseState);

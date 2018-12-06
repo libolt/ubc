@@ -19,3 +19,37 @@
  ***************************************************************************/
 
  #include "defense/defense.h"
+
+defense::defense()  // constructor
+{
+
+}
+
+defense::~defense() = default;  // destructor
+
+defenseComponentsSharedPtr defense::getComponent()  // retrieves the value of component
+{
+    return (component);
+}
+void defense::setComponent(defenseComponentsSharedPtr set)  // sets the value of component
+{
+    component = set;
+}
+
+defenseFlagsSharedPtr defense::getFlag()  // retrieves the value of flag
+{
+    return (flag);
+}
+void defense::setFlag(defenseFlagsSharedPtr set)  // sets the value of flag
+{
+    flag = set;
+}
+
+defenseStateMachineSharedPtr defense::getStateMachine()  // retrieves the value of stateMachine
+{
+    return (stateMachine);
+}
+void defense::setStateMachine(defenseStateMachineSharedPtr set)  // sets the value of stateMachine
+{
+    stateMachine = set;
+}

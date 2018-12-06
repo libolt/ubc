@@ -55,11 +55,11 @@ void teamComponents::setOffenseInstance(const offenseSharedPtr &set)  // sets th
     offenseInstance = set;
 }
 
-defenseStateSharedPtr teamComponents::getDefenseInstance() const  // retrieves the value of defenseInstance
+defenseSharedPtr teamComponents::getDefenseInstance() const  // retrieves the value of defenseInstance
 {
     return (defenseInstance);
 }
-void teamComponents::setDefenseInstance(const defenseStateSharedPtr &set)  // sets the value of defenseInstance
+void teamComponents::setDefenseInstance(const defenseSharedPtr &set)  // sets the value of defenseInstance
 {
     defenseInstance = set;
 }

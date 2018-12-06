@@ -21,12 +21,29 @@
 #ifndef _DEFENSE_H_
 #define _DEFENSE_H_
 
+#include "utilities/typedefs.h"
+
 class defense
 {
     public:
         defense();  // constructor
         ~defense();  // destructor
+
+        defenseComponentsSharedPtr getComponent();  // retrieves the value of component
+        void setComponent(defenseComponentsSharedPtr set);  // sets the value of component
+
+        defenseFlagsSharedPtr getFlag();  // retrieves the value of flag
+        void setFlag(defenseFlagsSharedPtr set);  // sets the value of flag
+
+        defenseStateMachineSharedPtr getStateMachine();  // retrieves the value of stateMachine
+        void setStateMachine(defenseStateMachineSharedPtr set);  // sets the value of stateMachine
+
     private:
+
+        defenseComponentsSharedPtr component;  // stores the defense components object
+        defenseFlagsSharedPtr flag;  // stores the defense flags object
+        defenseStateMachineSharedPtr stateMachine;  // stores the defense stateMachine object
+
 };
 
 #endif // DEFENSE_H

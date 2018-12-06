@@ -23,13 +23,14 @@
 #include "components/teamcomponents.h"
 #include "data/teamdata.h"
 #include "data/teamgamedata.h"
+#include "defense/defense.h"
 #include "engine/renderengine.h"
+#include "flags/defenseflags.h"
 #include "flags/offenseflags.h"
 #include "flags/teamflags.h"
 #include "offense/offense.h"
 #include "setup/setupplayers.h"
 #include "setup/setupteams.h"
-#include "state/defensestate.h"
 #include "update/updateteams.h"
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
@@ -357,7 +358,7 @@ STATE_DEFINE(teamStateMachine, executeOffense, teamSMData)
     logMsg(func +" offense executing");
 //            exit(0);
     data->component->getOffenseInstance()->getFlag()->setExecute(true);
-    data->component->getDefenseInstance()->setExecute(false);
+    data->component->getDefenseInstance()->getFlag()->setExecute(false);
     if (data->component->getOffenseInstance()->getComponent()->getTeamType() != data->gData->getTeamType())  // sets type of team for offense
     {
         data->component->getOffenseInstance()->getComponent()->setTeamType(data->gData->getTeamType());

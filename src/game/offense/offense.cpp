@@ -44,3 +44,12 @@ void offense::setFlag(offenseFlagsSharedPtr set)  // sets the value of flag
 {
     flag = set;
 }
+
+offenseStateMachineSharedPtr offense::getStateMachine()  // retrieves the value of stateMachine
+{
+    return (stateMachine);
+}
+void offense::setStateMachine(offenseStateMachineSharedPtr set)  // sets the value of stateMachine
+{
+    stateMachine = set;
+}

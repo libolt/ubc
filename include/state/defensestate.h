@@ -31,19 +31,13 @@ class gameComponents;
 class gameData;
 
 //class state;
-
+/*
 class defenseState : public state
 {
 public:
 
     defenseState();	// constructor
 
-/*    gameStateSharedPtr getGameS();  // retrieves the value of gameS
-    void setGameS(gameStateSharedPtr set);  // sets the value of gameS
-
-    bool getGameSInitialized();  // retrieves the value of gameSInitialized
-    void setGameSInitialized(bool set);  // sets the value of gameSInitialized
-*/
     teamTypes getTeamType();  // retrieves the value of teamType
     void setTeamType(teamTypes set);  // sets the value of teamType
     
@@ -66,5 +60,5 @@ private:
     bool execute;	// If set then execute the defense logic
 
 };
-
+*/
 #endif

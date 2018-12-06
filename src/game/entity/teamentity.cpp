@@ -26,6 +26,7 @@
 #include "data/playergamedata.h"
 #include "data/teamdata.h"
 #include "data/teamgamedata.h"
+#include "defense/defense.h"
 #include "engine/physicsengine.h"
 #include "entity/basketballentity.h"
 #include "entity/playerentity.h"
@@ -144,7 +145,7 @@ bool teamEntity::initialize()  // initializes the object
     offenseSharedPtr tempOffenseInst(new offense);
     component->setOffenseInstance(tempOffenseInst);
 
-    defenseStateSharedPtr tempDefenseInst(new defenseState);
+    defenseSharedPtr tempDefenseInst(new defense);
     component->setDefenseInstance(tempDefenseInst);
 
     initializeStateMachine();
@@ -496,7 +497,7 @@ void teamEntity::updateState(const gameComponentsSharedPtr &gameInstanceComponen
             {              
             }
 */          
-            component->getDefenseInstance()->updateState(gameData->getTeamType(), gameInstanceComponent, gameInstanceData); // updates the state of the defenseInstance object
+//FIXME!            component->getDefenseInstance()->updateState(gameData->getTeamType(), gameInstanceComponent, gameInstanceData); // updates the state of the defenseInstance object
         }
 
     }

@@ -35,10 +35,13 @@ class offense
         offenseFlagsSharedPtr getFlag();  // retrieves the value of flag
         void setFlag(offenseFlagsSharedPtr set);  // sets the value of flag
 
+        offenseStateMachineSharedPtr getStateMachine();  // retrieves the value of stateMachine
+        void setStateMachine(offenseStateMachineSharedPtr set);  // sets the value of stateMachine
     private:
 
         offenseComponentsSharedPtr component;  // offense components object
-        offenseFlagsSharedPtr flag;  // offense flgs object
+        offenseFlagsSharedPtr flag;  // offense flags object
+        offenseStateMachineSharedPtr stateMachine;  // offense state machine object
 };
 
 #endif // OFFENSE_H

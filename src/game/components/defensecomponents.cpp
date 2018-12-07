@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2018 by Mike McLean                              *
+  *   Copyright (C) 1999 - 2018 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -18,21 +18,30 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef _DEFENSEFLAGS_H_
-#define _DEFENSEFLAGS_H_
+#include "components/defensecomponents.h"
 
-class defenseFlags
+defenseComponents::defenseComponents()  // constructor
 {
-    public:
-        defenseFlags();
-        ~defenseFlags();
-        
-        bool getExecute();  // retrieves the value of execute variable
-        void setExecute(bool ex);   // sets the value of the execute variable
+    teamType = NOTEAM;
+    courtSide = NOSIDE;
+}
 
-    private:
-        bool execute;   // If set then execute the defense logic
+defenseComponents::~defenseComponents() = default;  // destructor
 
-};
+teamTypes defenseComponents::getTeamType() const  // retrieves the value of teamType
+{
+    return (teamType);
+}
+void defenseComponents::setTeamType(const teamTypes &set)  // sets the value of teamType
+{
+    teamType = set;
+}
 
-#endif // _DEFENSEFLAGS_H_
+courtSide_t defenseComponents::getCourtSide() const  // retrieves the value of courtSide
+{
+    return (courtSide);
+}
+void defenseComponents::setCourtSide(const courtSide_t &set)  // sets the value of courtSide
+{
+    courtSide = set;
+}

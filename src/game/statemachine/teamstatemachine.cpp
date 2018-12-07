@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "statemachine/teamstatemachine.h"
+#include "components/defensecomponents.h"
 #include "components/offensecomponents.h"
 #include "components/teamcomponents.h"
 #include "data/teamdata.h"
@@ -376,10 +377,10 @@ STATE_DEFINE(teamStateMachine, executeDefense, teamSMData)
     std::string func = "teamStateMachine::executeDefense";
     logMsg(func +" begin");
     data->component->getOffenseInstance()->getFlag()->setExecute(false);
-    data->component->getDefenseInstance()->setExecute(true);
-    if (data->component->getDefenseInstance()->getTeamType() !=  data->gData->getTeamType())  // sets type of team for defense
+    data->component->getDefenseInstance()->getFlag()->setExecute(true);
+    if (data->component->getDefenseInstance()->getComponent()->getTeamType() !=  data->gData->getTeamType())  // sets type of team for defense
     {
-        data->component->getDefenseInstance()->setTeamType(data->gData->getTeamType());
+        data->component->getDefenseInstance()->getComponent()->setTeamType(data->gData->getTeamType());
     }
 
     logMsg(func +" end");

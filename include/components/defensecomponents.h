@@ -18,21 +18,20 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef _DEFENSEFLAGS_H_
-#define _DEFENSEFLAGS_H_
+#ifndef _DEFENSECOMPONENTS_H_
+#define _DEFENSECOMPONENTS_H_
 
-class defenseFlags
+class defenseComponents
 {
     public:
-        defenseFlags();
-        ~defenseFlags();
-        
-        bool getExecute();  // retrieves the value of execute variable
-        void setExecute(bool ex);   // sets the value of the execute variable
+    
+        defenseComponents();  // constructor
+        ~defenseComponents();  // destructor
 
-    private:
-        bool execute;   // If set then execute the defense logic
+        teamTypes getTeamType();  // retrieves the value of teamType
+        void setTeamType(teamTypes set);  // sets the value of teamType
+    
+        courtSide_t getCourtSide();  // retrieves the value of courtSide
+        void setCourtSide(courtSide_t set);  // sets the value of courtSide
 
-};
-
-#endif // _DEFENSEFLAGS_H_
+#endif

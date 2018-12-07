@@ -18,21 +18,21 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef _DEFENSEFLAGS_H_
-#define _DEFENSEFLAGS_H_
+#include "flags/defenseflags.h"
 
-class defenseFlags
+defenseFlags::defenseFlags()  // constructor
 {
-    public:
-        defenseFlags();
-        ~defenseFlags();
-        
-        bool getExecute();  // retrieves the value of execute variable
-        void setExecute(bool ex);   // sets the value of the execute variable
+    
+}
 
-    private:
-        bool execute;   // If set then execute the defense logic
+defenseFlags::~defenseFlags() = default;  // destructor
 
-};
+bool defense::getExecute() // retrieves the value of execute variable
+{
+    return (execute);
+}
+void defense::setExecute(bool set)  // sets the value of the execute variable
+{
+    execute = set;
+}
 
-#endif // _DEFENSEFLAGS_H_

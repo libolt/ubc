@@ -27,8 +27,8 @@ class defenseFlags
         defenseFlags();
         ~defenseFlags();
         
-        bool getExecute();  // retrieves the value of execute variable
-        void setExecute(bool ex);   // sets the value of the execute variable
+        bool getExecute() const;  // retrieves the value of execute variable
+        void setExecute(const bool &set);   // sets the value of the execute variable
 
     private:
         bool execute;   // If set then execute the defense logic

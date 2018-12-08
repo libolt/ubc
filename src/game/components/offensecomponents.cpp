@@ -85,29 +85,29 @@ void offenseComponents::setExecutePositions(const std::vector<OgreVector3Vec> &s
     executePositions = set;
 }
 
-std::string offenseComponents::getPlayName()  // retrieves the value of playName
+std::string offenseComponents::getPlayName() const  // retrieves the value of playName
 {
     return (playName);
 }
-void offenseComponents::setPlayName(std::string set)  // sets the value of playName
+void offenseComponents::setPlayName(const std::string &set)  // sets the value of playName
 {
     playName = set;
 }
 
-std::string offenseComponents::getPlayTitle()  // retrieves the value of playTitle
+std::string offenseComponents::getPlayTitle() const  // retrieves the value of playTitle
 {
     return (playTitle);
 }
-void offenseComponents::setPlayTitle(std::string set)  // sets the value of playTitle
+void offenseComponents::setPlayTitle(const std::string &set)  // sets the value of playTitle
 {
     playTitle = set;
 }
 
-std::vector<offensePlays::playerDirectives> offenseComponents::getPlayerDirective()  // retrieves the value of playerDirective
+std::vector<offensePlays::playerDirectives> offenseComponents::getPlayerDirective() const  // retrieves the value of playerDirective
 {
     return (playerDirective);
 }
-void offenseComponents::setPlayerDirective(std::vector<offensePlays::playerDirectives> set)  // sets the value of playerDirective
+void offenseComponents::setPlayerDirective(const std::vector<offensePlays::playerDirectives> &set)  // sets the value of playerDirective
 {
     playerDirective = set;
 }

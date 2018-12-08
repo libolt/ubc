@@ -51,8 +51,8 @@ class offenseFlags
         std::vector< boolVec > getExecutePositionReached() const;  // returns the value of executePositionSet
         void setExecutePositionReached(const std::vector< boolVec > &set);  // sets the value of executePositionSet
 
-        bool getOffenseSetup();  // retrieves the value of offenseSetup
-        void setOffenseSetup(bool set);  // sets the value of offenseSetup
+        bool getOffenseSetup() const;  // retrieves the value of offenseSetup
+        void setOffenseSetup(const bool &set);  // sets the value of offenseSetup
         
     private:
     

@@ -48,14 +48,14 @@ class offenseComponents
         std::vector <OgreVector3Vec > getExecutePositions() const;  // retrieves the value of the executePositions variable
         void setExecutePositions(const std::vector< OgreVector3Vec > &set);  // sets the value executePositions variable
 
-        std::string getPlayName();  // retrieves the value of playName
-        void setPlayName(std::string set);  // sets the value of playName
+        std::string getPlayName() const;  // retrieves the value of playName
+        void setPlayName(const std::string &set);  // sets the value of playName
         
-        std::string getPlayTitle();  // retrieves the value of playTitle
-        void setPlayTitle(std::string set);  // sets the value of playTitle
+        std::string getPlayTitle() const;  // retrieves the value of playTitle
+        void setPlayTitle(const std::string &set);  // sets the value of playTitle
 
-        std::vector<offensePlays::playerDirectives> getPlayerDirective();  // retrieves the value of playerDirective
-        void setPlayerDirective(std::vector<offensePlays::playerDirectives> set);  // sets the value of playerDirective
+        std::vector<offensePlays::playerDirectives> getPlayerDirective() const;  // retrieves the value of playerDirective
+        void setPlayerDirective(const std::vector<offensePlays::playerDirectives> &set);  // sets the value of playerDirective
 
     private:
     

@@ -94,11 +94,11 @@ void offenseFlags::setExecutePositionReached(const std::vector<boolVec> &set) //
     executePositionReached = set;
 }
 
-bool offenseFlags::getOffenseSetup()  // retrieves the value of offenseSetup
+bool offenseFlags::getOffenseSetup() const  // retrieves the value of offenseSetup
 {
     return (offenseSetup);
 }
-void offenseFlags::setOffenseSetup(bool set)  // sets the value of offenseSetup
+void offenseFlags::setOffenseSetup(const bool &set)  // sets the value of offenseSetup
 {
     offenseSetup = set;
 }

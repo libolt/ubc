@@ -27,11 +27,11 @@ defenseFlags::defenseFlags()  // constructor
 
 defenseFlags::~defenseFlags() = default;  // destructor
 
-bool defense::getExecute() // retrieves the value of execute variable
+bool defenseFlags::getExecute() const  // retrieves the value of execute variable
 {
     return (execute);
 }
-void defense::setExecute(bool set)  // sets the value of the execute variable
+void defenseFlags::setExecute(const bool &set)  // sets the value of the execute variable
 {
     execute = set;
 }

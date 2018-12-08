@@ -21,6 +21,8 @@
 #ifndef _DEFENSECOMPONENTS_H_
 #define _DEFENSECOMPONENTS_H_
 
+#include "utilities/enums.h"
+
 class defenseComponents
 {
     public:
@@ -28,10 +30,16 @@ class defenseComponents
         defenseComponents();  // constructor
         ~defenseComponents();  // destructor
 
-        teamTypes getTeamType();  // retrieves the value of teamType
-        void setTeamType(teamTypes set);  // sets the value of teamType
+        teamTypes getTeamType() const;  // retrieves the value of teamType
+        void setTeamType(const teamTypes &set);  // sets the value of teamType
     
-        courtSide_t getCourtSide();  // retrieves the value of courtSide
-        void setCourtSide(courtSide_t set);  // sets the value of courtSide
+        courtSide_t getCourtSide() const;  // retrieves the value of courtSide
+        void setCourtSide(const courtSide_t &set);  // sets the value of courtSide
+
+    private:
+        teamTypes teamType;  // stores the type of team on defense
+        courtSide_t courtSide;  // stores which side of the court the defense executes on.
+
+};
 
 #endif

@@ -345,7 +345,7 @@ STATE_DEFINE(teamStateMachine, updateActivePlayers, teamSMData)
     }
 
     logMsg(func +" end");
-    exit(0);
+//    exit(0);
 }
 
 STATE_DEFINE(teamStateMachine, executeOffense, teamSMData)

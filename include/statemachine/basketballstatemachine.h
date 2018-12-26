@@ -22,11 +22,15 @@
 #define _BASKETBALLSTATEMACHINE_H_
 
 #include "statemachine/statemachine.h"
+#include "utilities/typedefs.h"
 
 class basketballSMData : public eventData
 {
 public:
-    INT speed;
+    basketballComponentsSharedPtr component;  // stores copy of basketballComponents object
+    basketballDataSharedPtr bData;  // stores copy of basketballData object
+    basketballFlagsSharedPtr flag;  // stores copy of basketballFlags object
+
 };
 
 class basketballStateMachine : public stateMachine
@@ -36,7 +40,9 @@ public:
 
     // External events taken by this state machine
     void setSpeed(basketballSMData *data);
+    void pInitialize(basketballSMData *data);
     void halt();
+    
 
 private:
     INT m_currentSpeed; 
@@ -45,6 +51,7 @@ private:
     // in the state map.
     enum States
     {
+        ST_INITIALIZE,
         ST_IDLE,
         ST_STOP_MOVEMENT,
         ST_START_MOVEMENT, 
@@ -54,6 +61,7 @@ private:
     };
 
     // Define the state machine state functions with event data type
+    STATE_DECLARE(basketballStateMachine,    Initialize,     basketballSMData)
     STATE_DECLARE(basketballStateMachine,    Idle,           noEventData)
     STATE_DECLARE(basketballStateMachine,    StopMovement,   noEventData)
     STATE_DECLARE(basketballStateMachine,    StartMovement,  basketballSMData)
@@ -63,6 +71,7 @@ private:
     // State map to define state object order. Each state map entry defines a
     // state object.
     BEGIN_STATE_MAP
+        STATE_MAP_ENTRY(&Idle)
         STATE_MAP_ENTRY(&Idle)
         STATE_MAP_ENTRY(&StopMovement)
         STATE_MAP_ENTRY(&StartMovement)

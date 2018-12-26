@@ -19,6 +19,9 @@
  ***************************************************************************/
 
 #include "statemachine/basketballstatemachine.h"
+#include "components/basketballcomponents.h"
+#include "data/basketballdata.h"
+#include "physics/basketballphysics.h"
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
 
@@ -28,10 +31,24 @@ basketballStateMachine::basketballStateMachine() :
 {
 }
     
+// Initialize state machine external event
+void basketballStateMachine::pInitialize(basketballSMData *data)
+{
+    BEGIN_TRANSITION_MAP                                    // - Current State -
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_INITIALIZE
+        TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_IDLE
+        TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_STOP
+        TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_START
+        TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_CHANGE_SPEED
+        TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_JUMP
+    END_TRANSITION_MAP(nullptr)
+}
+
 // set motor speed external event
 void basketballStateMachine::setSpeed(basketballSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
+        TRANSITION_MAP_ENTRY (ST_START_MOVEMENT)            // ST_INITIALIZE
         TRANSITION_MAP_ENTRY (ST_START_MOVEMENT)            // ST_IDLE
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STOP
         TRANSITION_MAP_ENTRY (ST_CHANGE_SPEED)              // ST_START
@@ -45,12 +62,46 @@ void basketballStateMachine::setSpeed(basketballSMData *data)
 void basketballStateMachine::halt()
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
+        TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_INITIALIZE
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_IDLE
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STOP
         TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_START
         TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_CHANGE_SPEED
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_JUMP
     END_TRANSITION_MAP(nullptr)
+}
+
+// Initialize the state machine
+STATE_DEFINE(basketballStateMachine, Initialize, basketballSMData)
+{
+    sharedPtr<basketballPhysics> tempPhysics(new basketballPhysics);
+    data->component->setPhysics(tempPhysics);
+
+    std::string func = "basketballStateMachine::Initialize()";
+
+    logMsg(func +" begin");
+
+    basketballDataSharedPtr tempData(new basketballData);
+    data->bData = tempData;
+
+/*    basketballEntitySharedPtr tempEntity(new basketballEntity);
+    entity = tempEntity;
+
+    if (!entity->getInitialized())
+    {
+        if (entity->initialize())
+        {
+            entity->setInitialized(true);
+        }
+        else
+        {
+            logMsg(func +"Unable to initialize basketball entity object!");
+            exit(0);
+        }
+    }*/
+
+    logMsg(func +" end");
+
 }
 
 // state machine sits here when motor is not running
@@ -74,8 +125,8 @@ STATE_DEFINE(basketballStateMachine, StopMovement, noEventData)
 STATE_DEFINE(basketballStateMachine, StartMovement, basketballSMData)
 {
     conversionSharedPtr convert;
-    logMsg("Motor::ST_Start : Speed is " +convert->toString(data->speed));
-    m_currentSpeed = data->speed;
+//    logMsg("Motor::ST_Start : Speed is " +convert->toString(data->speed));
+//    m_currentSpeed = data->speed;
 exit(0);
     // set initial motor speed processing here
 }
@@ -85,8 +136,8 @@ STATE_DEFINE(basketballStateMachine, ChangeSpeed, basketballSMData)
 {
     conversionSharedPtr convert;
 
-    logMsg("Motor::ST_ChangeSpeed : Speed is " +convert->toString(data->speed));
-    m_currentSpeed = data->speed;
+//    logMsg("Motor::ST_ChangeSpeed : Speed is " +convert->toString(data->speed));
+//    m_currentSpeed = data->speed;
 
     // perform the change motor speed to data->speed here
 }
@@ -95,8 +146,8 @@ STATE_DEFINE(basketballStateMachine, Jump, basketballSMData)
 {
     conversionSharedPtr convert;
 
-    logMsg("Motor::ST_Jump : Speed is " +convert->toString(data->speed));
-    m_currentSpeed = data->speed;
+//    logMsg("Motor::ST_Jump : Speed is " +convert->toString(data->speed));
+//    m_currentSpeed = data->speed;
 
     // set initial motor speed processing here
 }

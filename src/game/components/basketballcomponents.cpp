@@ -112,6 +112,16 @@ void basketballComponents::setTeamNumber(const size_t &set)  // sets the value o
     teamNumber = set;
 }
 
+size_t basketballComponents::getPlayer() const
+{
+    return (player);
+}
+
+void basketballComponents::setPlayer(const size_t &Player)
+{
+    player = Player;
+}
+
 Ogre::Vector3 basketballComponents::getVelocity() const  // retrieves the value of velocity
 {
     return(velocity);

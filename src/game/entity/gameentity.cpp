@@ -24,7 +24,7 @@
 #include "engine/networkengine.h"
 #include "ai/ai.h"
 #include "ai/basketballsteer.h"
-
+#include "components/basketballcomponents.h"
 #include "components/gamecomponents.h"
 #include "components/playercomponents.h"
 #include "components/teamcomponents.h"
@@ -505,7 +505,7 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
     for (auto ABIIT : activeBasketballInstance)
     {
         ABIIT.second->updateState(component, data, flag);
-        ABIIT.second->setPlayer(5);
+        ABIIT.second->getComponent()->setPlayer(5);
     }
   
     component->setActiveBasketballInstance(activeBasketballInstance);

@@ -56,8 +56,12 @@
 
 class AISystem;
 
+class basketballComponents;
+class basketballData;
 class basketballEntity;
-class basketballState;
+class basketballFlags;
+class basketballPhysics;
+class basketballStateMachine;
 class basketballSteer;
 
 class conversion;
@@ -169,6 +173,16 @@ typedef sharedPtr<GUIComponents> GUIComponentsSharedPtr;
 typedef sharedPtr<guiFlags> guiFlagsSharedPtr;
 
 typedef sharedPtr<conversion> conversionSharedPtr;
+
+typedef sharedPtr<basketballComponents> basketballComponentsSharedPtr;
+
+typedef sharedPtr<basketballData> basketballDataSharedPtr;
+
+typedef sharedPtr<basketballFlags> basketballFlagsSharedPtr;
+
+typedef sharedPtr<basketballPhysics> basketballPhysicsSharedPtr;
+
+typedef sharedPtr<basketballStateMachine> basketballStateMachineSharedPtr;
 
 typedef sharedPtr<gameComponents> gameComponentsSharedPtr;
 

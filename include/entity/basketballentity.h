@@ -38,9 +38,18 @@ class basketballEntity : public entity
     basketballEntity();  // constructor
     ~basketballEntity();  // destructor
     
-    sharedPtr<basketballData> getData() const;  // retrievees the value of data
-    void setData(const sharedPtr<basketballData> &set);  // sets the value of data
+    basketballComponentsSharedPtr getComponent() const;  // retrievees the value of component
+    void setComponent(const basketballComponentsSharedPtr &set);  // sets the value of component
+
+    basketballDataSharedPtr getData() const;  // retrievees the value of data
+    void setData(const basketballDataSharedPtr &set);  // sets the value of data
     
+    basketballFlagsSharedPtr getFlag() const;  // retrievees the value of flag
+    void setFlag(const basketballFlagsSharedPtr &set);  // sets the value of flag
+
+    basketballStateMachineSharedPtr getStateMachine() const;  // retrievees the value of stateMachine
+    void setStateMachine(const basketballStateMachineSharedPtr &set);  // sets the value of stateMachine
+
     void updateState(const gameComponentsSharedPtr &gameComponent, const gameDataSharedPtr &gameDta, const gameFlagsSharedPtr &gameFlag);  // updates the state of the basketball
     
     void updatePosition();  // updates the position of the basketball
@@ -61,8 +70,12 @@ class basketballEntity : public entity
     
     private:
     
-    sharedPtr<basketballData> data;
+    basketballComponentsSharedPtr component;  // basketball components object
+    basketballDataSharedPtr data;  // basketball data object
+    basketballFlagsSharedPtr flag;  // basketball flags object
+    basketballStateMachineSharedPtr stateMachine;  // basketball stateMachine object
 
+    
 };
  
 #endif

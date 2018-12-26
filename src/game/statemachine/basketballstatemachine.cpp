@@ -76,7 +76,7 @@ STATE_DEFINE(basketballStateMachine, StartMovement, basketballSMData)
     conversionSharedPtr convert;
     logMsg("Motor::ST_Start : Speed is " +convert->toString(data->speed));
     m_currentSpeed = data->speed;
-
+exit(0);
     // set initial motor speed processing here
 }
 

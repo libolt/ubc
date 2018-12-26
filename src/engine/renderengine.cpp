@@ -255,7 +255,7 @@ Ogre::DataStreamPtr renderEngine::openAPKFile(const std::string& fileName)  // O
     struct android_app* app;
 	Ogre::DataStreamPtr stream;
 	AConfiguration* config = AConfiguration_new();
-
+    std::string func = "renderEngine::openAPKFile()";
 	JNIEnv* env = (JNIEnv*)SDL_AndroidGetJNIEnv();
 
     jclass class_sdl_activity   = env->FindClass("com/libolt/ubc/UBCActivity");
@@ -271,7 +271,7 @@ Ogre::DataStreamPtr renderEngine::openAPKFile(const std::string& fileName)  // O
 //	state->onInputEvent = &handleInput;
 
 //    AConfiguration_fromAssetManager(config, mAssetMgr);
-    logMsg("APK?");
+    logMsg(func +" APK?");
 
 //	mAssetMgr = app->activity->assetManager;
     AAsset* asset = AAssetManager_open(mAssetMgr, fileName.c_str(), AASSET_MODE_BUFFER);
@@ -306,7 +306,7 @@ bool renderEngine::initSDL() // Initializes SDL Subsystem
 
 //        __android_log_print(ANDROID_LOG_DEBUG, "com.libolt.ubc", "SDL Error = %s", SDL_GetError());
 	std::string msg = "SDL Error = " +convert->toString(SDL_GetError());
-        logMsg(func +" " +msg);
+    logMsg(func +" " +msg);
 #endif
 
         return (true);

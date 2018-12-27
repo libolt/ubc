@@ -20,6 +20,7 @@
 
 #include "jumpballs/jumpballsexecute.h"
 #include "jumpballs/jumpballs.h"
+#include "components/basketballcomponents.h"
 #include "components/gamecomponents.h"
 #include "components/playercomponents.h"
 #include "components/teamcomponents.h"
@@ -284,7 +285,7 @@ bool jumpBallsExecute::tipToPlayer(const gameComponentsSharedPtr &component, qua
             logMsg("ballTippedToPlayerInstance == " +convert->toString(ballTippedToPlayerInstance));
 
             // FIXME! Do NOT hardcode activeBasketballInstance
-            if (physEngine.collisionCheck(activeBasketballInstance[0]->getPhysics()->getPhysBody(), activePlayerInstance[ballTippedToPlayerInstance].getComponent()->getPhysics()->getPhysBody()))
+            if (physEngine.collisionCheck(activeBasketballInstance[0]->getComponent()->getPhysics()->getPhysBody(), activePlayerInstance[ballTippedToPlayerInstance].getComponent()->getPhysics()->getPhysBody()))
             {
  //               exit(0);
 ///                gameS->setTeamWithBall(ballTippedToTeam);

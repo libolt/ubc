@@ -19,8 +19,10 @@
  ***************************************************************************/
 
 #include "setup/setupbasketballs.h"
-#include "entity/basketballentity.h"
+#include "components/basketballcomponents.h"
 #include "data/basketballdata.h"
+#include "entity/basketballentity.h"
+#include "flags/basketballflags.h"
 //#include "state/basketballstate.h"
 #include "ai/basketballsteer.h"
 #include "utilities/conversion.h"
@@ -57,10 +59,10 @@ basketballEntityMSharedPtr setupBasketballs::createBasketballInstances()  // cre
 */
         logMsg(func +" creating steer object");
         auto *bballSteer = new basketballSteer;  // steer instance
-        BIIT.second->setSteer(basketballSteerSharedPtr(bballSteer));
+        BIIT.second->getComponent()->setSteer(basketballSteerSharedPtr(bballSteer));
         logMsg(func +" setting instance number");
-        BIIT.second->setNumber(bballNum);
-        BIIT.second->setNumberSet(true);
+        BIIT.second->getComponent()->setNumber(bballNum);
+        BIIT.second->getFlag()->setNumberSet(true);
         bballNum++;
     }
 

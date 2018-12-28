@@ -52,7 +52,7 @@ class basketballEntity : public entity
 
     void updateState(const gameComponentsSharedPtr &gameComponent, const gameDataSharedPtr &gameDta, const gameFlagsSharedPtr &gameFlag);  // updates the state of the basketball
     
-    void updatePosition();  // updates the position of the basketball
+//    void updatePosition();  // updates the position of the basketball
 
     void updateMovement(const gameComponentsSharedPtr &gameComponent, const gameDataSharedPtr &gameDta, const gameFlagsSharedPtr &gameFlag);  // updates the movement of basketball(s)
    
@@ -64,7 +64,7 @@ class basketballEntity : public entity
     bool shotLogic();  // handles the shot logic as the ball travels towards the hoop
 
     
-    bool initialize();  // initializes the basketball entity object
+    bool initializeStateMachine();  // initializes the basketball stateMachine object
 
     bool setupPhysicsObject();  // sets up the physics object
     

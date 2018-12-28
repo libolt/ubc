@@ -27,10 +27,12 @@
 class basketballSMData : public eventData
 {
 public:
+
     basketballComponentsSharedPtr component;  // stores copy of basketballComponents object
     basketballDataSharedPtr bData;  // stores copy of basketballData object
     basketballFlagsSharedPtr flag;  // stores copy of basketballFlags object
-
+    basketballPhysicsSharedPtr physics;  // stores copy of basketballPhysics object
+    
 };
 
 class basketballStateMachine : public stateMachine
@@ -41,6 +43,7 @@ public:
     // External events taken by this state machine
     void setSpeed(basketballSMData *data);
     void pInitialize(basketballSMData *data);
+    void pUpdatePosition(basketballSMData *data);
     void halt();
     
 
@@ -56,7 +59,7 @@ private:
         ST_STOP_MOVEMENT,
         ST_START_MOVEMENT, 
         ST_CHANGE_SPEED,
-        ST_JUMP,
+        ST_UPDATE_POSITION,
         ST_MAX_STATES
     };
 
@@ -66,17 +69,17 @@ private:
     STATE_DECLARE(basketballStateMachine,    StopMovement,   noEventData)
     STATE_DECLARE(basketballStateMachine,    StartMovement,  basketballSMData)
     STATE_DECLARE(basketballStateMachine,    ChangeSpeed,    basketballSMData)
-    STATE_DECLARE(basketballStateMachine,    Jump,           basketballSMData)
+    STATE_DECLARE(basketballStateMachine,    UpdatePosition, basketballSMData)
 
     // State map to define state object order. Each state map entry defines a
     // state object.
     BEGIN_STATE_MAP
-        STATE_MAP_ENTRY(&Idle)
+        STATE_MAP_ENTRY(&Initialize)
         STATE_MAP_ENTRY(&Idle)
         STATE_MAP_ENTRY(&StopMovement)
         STATE_MAP_ENTRY(&StartMovement)
         STATE_MAP_ENTRY(&ChangeSpeed)
-        STATE_MAP_ENTRY(&Jump)
+        STATE_MAP_ENTRY(&UpdatePosition)
     END_STATE_MAP   
 };
 

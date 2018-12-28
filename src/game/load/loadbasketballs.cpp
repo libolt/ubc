@@ -30,7 +30,7 @@
 #include "data/basketballdata.h"
 #include "engine/renderengine.h"
 #include "entity/basketballentity.h"
-//#include "state/basketballstate.h"
+#include "statemachine/basketballstatemachine.h"
 
 loadBasketballs::loadBasketballs()  // constructor
 {
@@ -304,7 +304,7 @@ basketballEntitySharedPtr loadBasketballs::loadFile(const std::string &fileName)
 
     if (!basketballInstance->getInitialized())
     {
-        if (basketballInstance->initialize())
+        if (basketballInstance->initializeStateMachine())
         {
             basketballInstance->setInitialized(true);
         }

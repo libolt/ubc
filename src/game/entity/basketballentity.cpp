@@ -27,11 +27,10 @@
 #include "flags/basketballflags.h"
 #include "flags/gameflags.h"
 #include "physics/basketballphysics.h"
+#include "statemachine/basketballstatemachine.h"
 #include "utilities/comparison.h"
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
-
-
 
 basketballEntity::basketballEntity()  // constructor
 {
@@ -78,9 +77,9 @@ void basketballEntity::setStateMachine(const basketballStateMachineSharedPtr &se
     stateMachine = set;
 }
 
-bool basketballEntity::initialize()  // initializes the basketball entity object
+/*bool basketballEntity::initialize()  // initializes the basketball entity object
 {
-/*    sharedPtr<basketballPhysics> tempPhysics(new basketballPhysics);
+    sharedPtr<basketballPhysics> tempPhysics(new basketballPhysics);
     physics = tempPhysics;
 
     std::string func = "basketballEntity::initialize()";
@@ -108,10 +107,27 @@ bool basketballEntity::initialize()  // initializes the basketball entity object
 
     logMsg(func +" end");
 
-    */
+    
     return (true);
 }
+*/
 
+bool basketballEntity::initializeStateMachine()  // initializes the basketball stateMachine object
+{
+    
+    basketballStateMachineSharedPtr tempSM(new basketballStateMachine);
+    stateMachine = tempSM;
+    
+    basketballSMData *initSMData(new basketballSMData);
+    
+    initSMData->component = component;
+    initSMData->bData = data;
+    initSMData->flag = flag;
+    
+    stateMachine->pInitialize(initSMData);
+    
+    return (true);
+}
 bool basketballEntity::setupPhysicsObject()  // sets up the physics object
 {
     conversionSharedPtr convert ;
@@ -249,7 +265,7 @@ void basketballEntity::updateState(const gameComponentsSharedPtr &gameComponent,
         logMsg(func + " movement updated!");
     }
     logMsg(func + " updating position!");
-    updatePosition();
+    stateMachine->pUpdatePosition();
     logMsg(func + " position updated!");
    
     logMsg(func + " end");
@@ -257,7 +273,7 @@ void basketballEntity::updateState(const gameComponentsSharedPtr &gameComponent,
 //    exit(0);
 }
 
-void basketballEntity::updatePosition() // updates the position of the basketball
+/*void basketballEntity::updatePosition() // updates the position of the basketball
 {
     conversionSharedPtr convert ;
     comparison compare;
@@ -343,13 +359,13 @@ void basketballEntity::updatePosition() // updates the position of the basketbal
     
     logMsg("basketball position = " +convert->toString(component->getCourtPosition()));
 
-/*    node->translate(posChange);
+    node->translate(posChange);
     btVector3 change; // = btVector3(0,0,0);
     change = BtOgre::Convert::toBullet(posChange); // converts from Ogre::Vector3 to btVector3
     physBody->translate(change); // moves physics body in unison with the model
-*/
+
     logMsg(func + " end");
-}
+}*/
 
 void basketballEntity::updateMovement(const gameComponentsSharedPtr &gameComponent, const gameDataSharedPtr &gameDta, const gameFlagsSharedPtr &gameFlag)  // updates the basketball(s) movements
 {

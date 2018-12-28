@@ -260,12 +260,24 @@ void basketballEntity::updateState(const gameComponentsSharedPtr &gameComponent,
     if (flag->getMovement())
     {
         logMsg(func + " updating movement!");
-        updateMovement(gameComponent, gameDta, gameFlag);
+        //updateMovement(gameComponent, gameDta, gameFlag);
+        basketballSMData *umSMData(new basketballSMData);
+        umSMData->component = component;
+        umSMData->flag = flag;
+        umSMData->gComponent = gameComponent;
+        umSMData->gData = gameDta;
+        umSMData->node = getNode();
+        stateMachine->pUpdateMovement(umSMData);
+
         flag->setMovement(false);
         logMsg(func + " movement updated!");
     }
     logMsg(func + " updating position!");
-    stateMachine->pUpdatePosition();
+    basketballSMData *upSMData(new basketballSMData);
+    upSMData->component = component;
+    upSMData->flag = flag;
+    upSMData->node = getNode();
+    stateMachine->pUpdatePosition(upSMData);
     logMsg(func + " position updated!");
    
     logMsg(func + " end");
@@ -367,16 +379,16 @@ void basketballEntity::updateState(const gameComponentsSharedPtr &gameComponent,
     logMsg(func + " end");
 }*/
 
-void basketballEntity::updateMovement(const gameComponentsSharedPtr &gameComponent, const gameDataSharedPtr &gameDta, const gameFlagsSharedPtr &gameFlag)  // updates the basketball(s) movements
+/*void basketballEntity::updateMovement(const gameComponentsSharedPtr &gameComponent, const gameDataSharedPtr &gameDta, const gameFlagsSharedPtr &gameFlag)  // updates the basketball(s) movements
 {
     conversionSharedPtr convert ;
 //    sharedPtr<gameState> gameS = gameState::Instance();
     teamEntityMSharedPtr activeTeamInstance = gameComponent->getActiveTeamInstance();
     size_t teamWithBall = gameDta->getTeamWithBall();
-/*TS    playerStateVecSharedPtr activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
-    size_t playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();
-    size_t playerWithBallID = activeTeamInstance[teamWithBall]->getPlayerWithBallID();
-TS*/
+///TS    playerStateVecSharedPtr activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
+///    size_t playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();
+///    size_t playerWithBallID = activeTeamInstance[teamWithBall]->getPlayerWithBallID();
+///TS
     size_t x = 0;
     
 //TS    bool shotTaken = activePlayerInstance[playerWithBallInstance]->getShotTaken();
@@ -439,7 +451,7 @@ TS*/
 
     logMsg(func + " end");
 }
-
+*/
 void basketballEntity::updateDirection(const gameComponentsSharedPtr &gameComponent, const gameDataSharedPtr &gameDta, const gameFlagsSharedPtr &gameFlag)  // updates basketball direction(s)
 {
     //conversion *convert = conversion::Instance();

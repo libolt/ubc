@@ -32,7 +32,12 @@ public:
     basketballDataSharedPtr bData;  // stores copy of basketballData object
     basketballFlagsSharedPtr flag;  // stores copy of basketballFlags object
     basketballPhysicsSharedPtr physics;  // stores copy of basketballPhysics object
+    gameComponentsSharedPtr gComponent;  // stores copy of gameComponent object
+    gameDataSharedPtr gData;  // stores copy of gameData object
     
+    OgreEntitySharedPtr model;  // stores 3d model
+    OgreSceneNodeSharedPtr node;  // stores node 3d model is attached to
+
 };
 
 class basketballStateMachine : public stateMachine
@@ -44,8 +49,8 @@ public:
     void setSpeed(basketballSMData *data);
     void pInitialize(basketballSMData *data);
     void pUpdatePosition(basketballSMData *data);
+    void pUpdateMovement(basketballSMData *data);
     void halt();
-    
 
 private:
     INT m_currentSpeed; 
@@ -60,6 +65,7 @@ private:
         ST_START_MOVEMENT, 
         ST_CHANGE_SPEED,
         ST_UPDATE_POSITION,
+        ST_UPDATE_MOVEMENT,
         ST_MAX_STATES
     };
 
@@ -70,6 +76,7 @@ private:
     STATE_DECLARE(basketballStateMachine,    StartMovement,  basketballSMData)
     STATE_DECLARE(basketballStateMachine,    ChangeSpeed,    basketballSMData)
     STATE_DECLARE(basketballStateMachine,    UpdatePosition, basketballSMData)
+    STATE_DECLARE(basketballStateMachine,    UpdateMovement, basketballSMData)
 
     // State map to define state object order. Each state map entry defines a
     // state object.
@@ -80,6 +87,7 @@ private:
         STATE_MAP_ENTRY(&StartMovement)
         STATE_MAP_ENTRY(&ChangeSpeed)
         STATE_MAP_ENTRY(&UpdatePosition)
+        STATE_MAP_ENTRY(&UpdateMovement)
     END_STATE_MAP   
 };
 

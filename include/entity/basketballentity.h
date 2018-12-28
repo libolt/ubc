@@ -54,9 +54,9 @@ class basketballEntity : public entity
     
 //    void updatePosition();  // updates the position of the basketball
 
-    void updateMovement(const gameComponentsSharedPtr &gameComponent, const gameDataSharedPtr &gameDta, const gameFlagsSharedPtr &gameFlag);  // updates the movement of basketball(s)
+//    void updateMovement(const gameComponentsSharedPtr &gameComponent, const gameDataSharedPtr &gameDta, const gameFlagsSharedPtr &gameFlag);  // updates the movement of basketball(s)
    
-    void updateDirection(const gameComponentsSharedPtr &gameComponent, const gameDataSharedPtr &gameDta, const gameFlagsSharedPtr &gameFlag);  // updates the direction of basketball(s)
+//    void updateDirection(const gameComponentsSharedPtr &gameComponent, const gameDataSharedPtr &gameDta, const gameFlagsSharedPtr &gameFlag);  // updates the direction of basketball(s)
     
     Ogre::Vector3 calculatePositionChange();  // calculates the change in position of the basketball model in x,y,z coordinates
 

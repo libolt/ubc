@@ -34,7 +34,8 @@ public:
     basketballPhysicsSharedPtr physics;  // stores copy of basketballPhysics object
     gameComponentsSharedPtr gComponent;  // stores copy of gameComponent object
     gameDataSharedPtr gData;  // stores copy of gameData object
-    
+    gameFlagsSharedPtr gFlag;  // stores copy of gameFlag object
+
     OgreEntitySharedPtr model;  // stores 3d model
     OgreSceneNodeSharedPtr node;  // stores node 3d model is attached to
 
@@ -48,8 +49,10 @@ public:
     // External events taken by this state machine
     void setSpeed(basketballSMData *data);
     void pInitialize(basketballSMData *data);
+    void pSetupPhysics(basketballSMData *data);
     void pUpdatePosition(basketballSMData *data);
     void pUpdateMovement(basketballSMData *data);
+    void pUpdateDirection(basketballSMData *data);
     void halt();
 
 private:
@@ -60,34 +63,34 @@ private:
     enum States
     {
         ST_INITIALIZE,
-        ST_IDLE,
-        ST_STOP_MOVEMENT,
-        ST_START_MOVEMENT, 
+        ST_SETUP_PHYSICS, 
+        ST_IDLE, 
         ST_CHANGE_SPEED,
         ST_UPDATE_POSITION,
         ST_UPDATE_MOVEMENT,
+        ST_UPDATE_DIRECTION, 
         ST_MAX_STATES
     };
 
     // Define the state machine state functions with event data type
     STATE_DECLARE(basketballStateMachine,    Initialize,     basketballSMData)
+    STATE_DECLARE(basketballStateMachine,    SetupPhysics,   noEventData)
     STATE_DECLARE(basketballStateMachine,    Idle,           noEventData)
-    STATE_DECLARE(basketballStateMachine,    StopMovement,   noEventData)
-    STATE_DECLARE(basketballStateMachine,    StartMovement,  basketballSMData)
     STATE_DECLARE(basketballStateMachine,    ChangeSpeed,    basketballSMData)
     STATE_DECLARE(basketballStateMachine,    UpdatePosition, basketballSMData)
     STATE_DECLARE(basketballStateMachine,    UpdateMovement, basketballSMData)
+    STATE_DECLARE(basketballStateMachine,    UpdateDirection, basketballSMData)
 
     // State map to define state object order. Each state map entry defines a
     // state object.
     BEGIN_STATE_MAP
         STATE_MAP_ENTRY(&Initialize)
+        STATE_MAP_ENTRY(&SetupPhysics)
         STATE_MAP_ENTRY(&Idle)
-        STATE_MAP_ENTRY(&StopMovement)
-        STATE_MAP_ENTRY(&StartMovement)
         STATE_MAP_ENTRY(&ChangeSpeed)
         STATE_MAP_ENTRY(&UpdatePosition)
         STATE_MAP_ENTRY(&UpdateMovement)
+        STATE_MAP_ENTRY(&UpdateDirection)
     END_STATE_MAP   
 };
 

@@ -25,6 +25,7 @@
 #include "data/basketballdata.h"
 #include "data/gamedata.h"
 #include "flags/basketballflags.h"
+#include "flags/gameflags.h"
 #include "physics/basketballphysics.h"
 #include "utilities/comparison.h"
 #include "utilities/conversion.h"
@@ -41,12 +42,12 @@ void basketballStateMachine::pInitialize(basketballSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_INITIALIZE
+        TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_IDLE
-        TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_STOP
-        TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_START
         TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_CHANGE_SPEED
         TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_UPDATE_POSITION
         TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_UPDATE_MOVEMENT
+        TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_UPDATE_DIRECTION
     END_TRANSITION_MAP(nullptr)
 }
 
@@ -54,13 +55,13 @@ void basketballStateMachine::pInitialize(basketballSMData *data)
 void basketballStateMachine::setSpeed(basketballSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (ST_START_MOVEMENT)            // ST_INITIALIZE
-        TRANSITION_MAP_ENTRY (ST_START_MOVEMENT)            // ST_IDLE
-        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STOP
-        TRANSITION_MAP_ENTRY (ST_CHANGE_SPEED)              // ST_START
+        TRANSITION_MAP_ENTRY (ST_CHANGE_SPEED)              // ST_INITIALIZE
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_SETUP_PHYSICS
+        TRANSITION_MAP_ENTRY (ST_CHANGE_SPEED)              // ST_IDLE
         TRANSITION_MAP_ENTRY (ST_CHANGE_SPEED)              // ST_CHANGE_SPEED
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_UPDATE_POSITION
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_UPDATE_MOVEMENT
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_UPDATE_DIRECTION
     END_TRANSITION_MAP(data)
 }
 
@@ -69,12 +70,12 @@ void basketballStateMachine::halt()
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_INITIALIZE
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_IDLE
-        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STOP
-        TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_START
         TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_CHANGE_SPEED
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_UPDATE_POSITION
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_UPDATE_MOVEMENT
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_UPDATE_DIRECTION
     END_TRANSITION_MAP(nullptr)
 }
 
@@ -82,13 +83,13 @@ void basketballStateMachine::halt()
 void basketballStateMachine::pUpdatePosition(basketballSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_INITIALIZE
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                     // ST_INITIALIZE
+        TRANSITION_MAP_ENTRY (ST_UPDATE_POSITION)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (ST_UPDATE_POSITION)                // ST_IDLE
-        TRANSITION_MAP_ENTRY (ST_UPDATE_POSITION)                // ST_STOP
-        TRANSITION_MAP_ENTRY (ST_UPDATE_POSITION)                // ST_START
         TRANSITION_MAP_ENTRY (ST_UPDATE_POSITION)                // ST_CHANGE_SPEED
         TRANSITION_MAP_ENTRY (ST_UPDATE_POSITION)                // ST_UPDATE_POSITION
         TRANSITION_MAP_ENTRY (ST_UPDATE_POSITION)                // ST_UPDATE_MOVEMENT
+        TRANSITION_MAP_ENTRY (ST_UPDATE_POSITION)                // ST_UPDATE_DIRECTION
     END_TRANSITION_MAP(nullptr)
 }
 
@@ -96,13 +97,27 @@ void basketballStateMachine::pUpdatePosition(basketballSMData *data)
 void basketballStateMachine::pUpdateMovement(basketballSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_INITIALIZE
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                     // ST_INITIALIZE      
+        TRANSITION_MAP_ENTRY (ST_UPDATE_MOVEMENT)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (ST_UPDATE_MOVEMENT)                // ST_IDLE
-        TRANSITION_MAP_ENTRY (ST_UPDATE_MOVEMENT)                // ST_STOP
-        TRANSITION_MAP_ENTRY (ST_UPDATE_MOVEMENT)                // ST_START
         TRANSITION_MAP_ENTRY (ST_UPDATE_MOVEMENT)                // ST_CHANGE_SPEED
         TRANSITION_MAP_ENTRY (ST_UPDATE_MOVEMENT)                // ST_UPDATE_POSITION
         TRANSITION_MAP_ENTRY (ST_UPDATE_MOVEMENT)                // ST_UPDATE_MOVEMENT
+        TRANSITION_MAP_ENTRY (ST_UPDATE_MOVEMENT)                // ST_UPDATE_DIRECTION
+    END_TRANSITION_MAP(nullptr)
+}
+
+// Update direction external event
+void basketballStateMachine::pUpdateDirection(basketballSMData *data)
+{
+    BEGIN_TRANSITION_MAP                                    // - Current State -
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                      // ST_INITIALIZE       
+        TRANSITION_MAP_ENTRY (ST_UPDATE_DIRECTION)                // ST_SETUP_PHYSICS
+        TRANSITION_MAP_ENTRY (ST_UPDATE_DIRECTION)                // ST_IDLE
+        TRANSITION_MAP_ENTRY (ST_UPDATE_DIRECTION)                // ST_CHANGE_SPEED
+        TRANSITION_MAP_ENTRY (ST_UPDATE_DIRECTION)                // ST_UPDATE_POSITION
+        TRANSITION_MAP_ENTRY (ST_UPDATE_DIRECTION)                // ST_UPDATE_MOVEMENT
+        TRANSITION_MAP_ENTRY (ST_UPDATE_DIRECTION)                // ST_UPDATE_DIRECTION
     END_TRANSITION_MAP(nullptr)
 }
 
@@ -145,32 +160,17 @@ STATE_DEFINE(basketballStateMachine, Initialize, basketballSMData)
 
 }
 
+STATE_DEFINE(basketballStateMachine, SetupPhysics, noEventData)
+{
+    
+}
+
 // state machine sits here when motor is not running
 STATE_DEFINE(basketballStateMachine, Idle, noEventData)
 {
     logMsg("Motor::ST_Idle");
 }
 
-// stop the motor 
-STATE_DEFINE(basketballStateMachine, StopMovement, noEventData)
-{
-    logMsg("Motor::ST_Stop");
-    m_currentSpeed = 0; 
-
-    // perform the stop motor processing here
-    // transition to Idle via an internal event
-    internalEvent(ST_IDLE);
-}
-
-// start the motor going
-STATE_DEFINE(basketballStateMachine, StartMovement, basketballSMData)
-{
-    conversionSharedPtr convert;
-//    logMsg("Motor::ST_Start : Speed is " +convert->toString(data->speed));
-//    m_currentSpeed = data->speed;
-exit(0);
-    // set initial motor speed processing here
-}
 
 // changes the motor speed once the motor is moving
 STATE_DEFINE(basketballStateMachine, ChangeSpeed, basketballSMData)
@@ -369,4 +369,132 @@ TS*/
     data->flag = flag;
 
     logMsg(func + " end");
+}
+
+// updates direction of basketball objects
+STATE_DEFINE(basketballStateMachine, UpdateDirection, basketballSMData)
+{
+    conversionSharedPtr convert;
+    
+    gameComponentsSharedPtr gameComponent = data->gComponent;
+    gameDataSharedPtr gameData = data->gData;
+    gameFlagsSharedPtr gameFlag = data->gFlag;
+    
+//    sharedPtr<gameState> gameS = gameState::Instance();
+    teamEntityMSharedPtr activeTeamInstance = gameComponent->getActiveTeamInstance();
+    size_t teamWithBall = gameData->getTeamWithBall();
+/*TS    playerStateVecSharedPtr activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
+    sizeTVec activePlayerID = activeTeamInstance[teamWithBall]->getActivePlayerID();
+    
+    size_t playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();
+    size_t playerWithBallID = activeTeamInstance[teamWithBall]->getPlayerWithBallID();
+TS*/
+    jumpBallsSharedPtr jumpBall = gameComponent->getJumpBall();
+
+//TS    logMsg("directplayerwithballInstance == " +convert->toString(playerWithBallInstance));
+    bool tipOffComplete = gameFlag->getTipOffComplete();
+    size_t x = 0;
+    std::string func = "basketballStateMachine::updateDirection()";
+
+    logMsg(func + " beginning");
+
+/*TS    bool shotTaken = activePlayerInstance[playerWithBallInstance]->getShotTaken();
+
+    if (!shotTaken)
+    {
+        
+        Ogre::Vector3 posChange;
+        while (x < activePlayerInstance.size())
+        {
+            if (activePlayerInstance[x]->getID() == playerWithBallID)
+            {
+                playerWithBallInstance = x;
+                break;
+            }
+            ++x;
+        }
+        
+        if (playerWithBallInstance >= 0 && playerWithBallInstance < 10 && tipOffComplete == true)  // verifies that the playerWithBall variable is set to a valid number
+        {
+            Ogre::Vector3 playerPos= activePlayerInstance[playerWithBallInstance]->getNode()->getPosition();
+            Ogre::Vector3 bballCurrentPos;
+
+            Ogre::Vector3 bballPos = playerPos;
+            Ogre::Vector3 bballPosChange = Ogre::Vector3(0.0f,0.0f,0.0f);
+            btVector3 change; // = btVector3(0,0,0);
+            btTransform transform;
+    //      basketballInstance[activeBBallInstance].getPhysBody()->forceActivationState(ISLAND_SLEEPING);
+    //        logMsg("playerDirection = " + convert->toString(&playerDirection));
+    //        logMsg("oldPlayerDirection = " + convert->toString(&oldPlayerDirection));
+
+            logMsg("playerWithBallInstance = " +convert->toString(playerWithBallInstance));
+//            exit(0);
+
+            if (courtPosition.x == 0 && courtPosition.y == 0 && courtPosition.z == 0)
+            {
+                bballCurrentPos = getNode()->getPosition();
+            }
+            else
+            {
+                bballCurrentPos = courtPosition;
+            }
+
+            if (direction != oldDirection)
+            {
+                //exit(0);
+                bballPos = Ogre::Vector3(0,0,0);
+                switch (direction)
+                {
+                    case UP:
+                        bballPos[0] += 0.200;
+                        //bballPos[1] = bballCurrentPos[1]; // maintains the current height of the basketball on the court as the player and ball moves
+                        bballPos[2] -= 0.200;
+        //              basketballInstance[activeBBallInstance].setPosChange(bballPosChange);   // sets the posChange for current basketballInstance                        
+                    case DOWN:
+                        bballPos[0] -= 0.200;
+                        //bballPos[1] = bballCurrentPos[1]; // maintains the current height of the basketball on the court as the player and ball moves
+                        bballPos[2] += 0.200;
+        //              basketballInstance[activeBBallInstance].setPosChange(bballPosChange);   // sets the posChange for current basketballInstance
+                        break;
+                    case LEFT:
+                        bballPos[0] -= 0.200;
+                        //bballPos[1] = bballCurrentPos[1]; // maintains the current height of the basketball on the court as the player and ball moves
+//                      exit(0);
+        //              basketballInstance[activeBBallInstance].setPosChange(bballPosChange);   // sets the posChange for current basketballInstance
+                        break;
+                    case RIGHT:
+                        bballPos[0] += 0.200;
+                        //bballPos[1] = bballCurrentPos[1]; // maintains the current height of the basketball on the court as the player and ball moves
+        //              basketballInstance[activeBBallInstance].setPosChange(bballPosChange);   // sets the posChange for current basketballInstance
+                        break;
+                    default:
+                        break;
+                }
+                
+                newCourtPosition = bballPos;
+                courtPositionChanged = true;
+                courtPositionChangedType = PLAYERDIRECTCHANGE;
+//                exit(0);
+
+    //      basketballInstance[activeBBallInstance].getPhysBody()->forceActivationState(ACTIVE_TAG);
+            }
+            else
+            {
+            }
+        }
+        oldDirection = direction;
+    }
+    else
+    {
+
+    }
+TS*/
+    gameComponent->setJumpBall(jumpBall);
+    
+    data->gComponent = gameComponent;
+    data->gData = gameData;
+    data->gFlag = gameFlag;
+    
+    logMsg(func + " end");
+
 }

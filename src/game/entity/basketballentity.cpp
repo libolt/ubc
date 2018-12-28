@@ -252,7 +252,14 @@ void basketballEntity::updateState(const gameComponentsSharedPtr &gameComponent,
     if (flag->getDirectChange())
     {
         logMsg(func +" updating direction!");
-        updateDirection(gameComponent, gameDta, gameFlag);
+//        updateDirection(gameComponent, gameDta, gameFlag);
+        basketballSMData *udSMData(new basketballSMData);
+        udSMData->flag = flag;
+        udSMData->gComponent = gameComponent;
+        udSMData->gData = gameDta;
+        udSMData->gFlag = gameFlag;
+        stateMachine->pUpdateMovement(udSMData);
+
         flag->setDirectChange(false);
         logMsg(func + " direction updated!");
     }
@@ -452,6 +459,7 @@ void basketballEntity::updateState(const gameComponentsSharedPtr &gameComponent,
     logMsg(func + " end");
 }
 */
+/*
 void basketballEntity::updateDirection(const gameComponentsSharedPtr &gameComponent, const gameDataSharedPtr &gameDta, const gameFlagsSharedPtr &gameFlag)  // updates basketball direction(s)
 {
     //conversion *convert = conversion::Instance();
@@ -459,12 +467,12 @@ void basketballEntity::updateDirection(const gameComponentsSharedPtr &gameCompon
 //    sharedPtr<gameState> gameS = gameState::Instance();
     teamEntityMSharedPtr activeTeamInstance = gameComponent->getActiveTeamInstance();
     size_t teamWithBall = gameDta->getTeamWithBall();
-/*TS    playerStateVecSharedPtr activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
+TS    playerStateVecSharedPtr activePlayerInstance = activeTeamInstance[teamWithBall]->getActivePlayerInstance();
     sizeTVec activePlayerID = activeTeamInstance[teamWithBall]->getActivePlayerID();
     
     size_t playerWithBallInstance = activeTeamInstance[teamWithBall]->getPlayerWithBallInstance();
     size_t playerWithBallID = activeTeamInstance[teamWithBall]->getPlayerWithBallID();
-TS*/
+
     jumpBallsSharedPtr jumpBall = gameComponent->getJumpBall();
 
 //TS    logMsg("directplayerwithballInstance == " +convert->toString(playerWithBallInstance));
@@ -474,7 +482,7 @@ TS*/
 
     logMsg(func + " beginning");
 
-/*TS    bool shotTaken = activePlayerInstance[playerWithBallInstance]->getShotTaken();
+TS    bool shotTaken = activePlayerInstance[playerWithBallInstance]->getShotTaken();
 
     if (!shotTaken)
     {
@@ -564,12 +572,13 @@ TS*/
     {
 
     }
-TS*/
+TS
     gameComponent->setJumpBall(jumpBall);
     
     logMsg(func + " end");
 
 }
+*/
 
 // calculates the trajectory the basketball travels when shot
 bool basketballEntity::calculateShot()

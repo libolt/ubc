@@ -26,6 +26,7 @@
 #include "entity/basketballentity.h"
 #include "entity/courtentity.h"
 #include "entity/hoopentity.h"
+#include "flags/basketballflags.h"
 #include "flags/gameflags.h"
 #include "jumpballs/jumpballs.h"
 #include "jumpballs/jumpballsexecute.h"
@@ -806,7 +807,7 @@ STATE_DEFINE(gameStateMachine, executeJumpBall, gameSMData)
 //    size_t activeBBallInstance = gameS->getActiveBBallInstance();
 //    basketballStateVec basketBallInstance = gameS->getBasketballInstance();
    // FIXME! Do NOT hard code activeBasketballInstance in the future
-    bool bballPhysicsSetup = activeBasketballInstance[0]->getPhysicsSetup();
+    bool bballPhysicsSetup = activeBasketballInstance[0]->getFlag()->getPhysicsSetup();
     if (teamWithBall == NOTEAM && bballPhysicsSetup) //&& gameS->getActiveTeamInstancesCreated())
     {
 

@@ -21,7 +21,9 @@
 #ifndef _BASKETBALLFLAGS_H_
 #define _BASKETBALLFLAGS_H_
 
-class basketballFlags
+#include "flags/entityflags.h"
+
+class basketballFlags : public entityFlags
 {
     public:
         basketballFlags();
@@ -85,7 +87,7 @@ class basketballFlags
         bool courtPositionChanged;
 
         bool initialized;  // stores whether the basketball entity object has been initialized
-
+     
 };
 
 

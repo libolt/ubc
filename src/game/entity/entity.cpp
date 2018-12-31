@@ -32,7 +32,7 @@ entity::entity()  // constructor
     nodeNameSet = false;
 
     ID = 0;
-    physicsSetup = false;
+
     modelNeedsLoaded = false;
     modelLoaded = false;
     nodeCreated = false;
@@ -47,123 +47,5 @@ bool entity::getInitialized() const  // retrieves the value of initialized
 void entity::setInitialized(const bool &set)  // sets the value of initialized
 {
     initialized = set;
-}
-
-bool entity::getNameSet() const  // retrieves the value of nameSet
-{
-    return (nameSet);
-}
-void entity::setNameSet(const bool &set)  // sets the value of nameSet
-{
-    nameSet = set;
-}
-
-bool entity::getNodeNameSet() const  // retrieves the value of nodeNameSet
-{
-    return(nodeNameSet);
-}
-void entity::setNodeNameSet(const bool &set)  // sets the value of nodeNameSet
-{
-    nodeNameSet = set;
-}
-
-size_t entity::getID() const  // retrieves the value of ID
-{
-    return (ID);
-}
-void entity::setID(const size_t &set)  // sets the value of ID
-{
-    ID = set;
-}
-
-std::string entity::getModelFileName() const  // retrieves the value of modelFileName
-{
-    return (modelFileName);
-}
-void entity::setModelFileName(const std::string &set)  // sets the value of modelFileName
-{
-    modelFileName = set;
-}
-
-std::string entity::getName() const  // retrieves the value of name
-{
-    return (name);
-}
-void entity::setName(const std::string &set)  // sets the value of name
-{
-    name = set;
-}
-
-std::string entity::getNodeName() const  // retrieves the value of nodeName
-{
-    return (nodeName);
-}
-void entity::setNodeName(const std::string &set)  // sets the value of nodeName
-{
-    nodeName = set;
-}
-
-OgreEntitySharedPtr entity::getModel() const  // retrieves the value of model
-{
-    return (model);
-}
- void entity::setModel(const OgreEntitySharedPtr &set)  // sets the value of model
-{
-    
-    model = set;
-}
-
-OgreSceneNodeSharedPtr entity::getNode() const  // retrieves the value of node
-{
-    return (node);
-}
-void entity::setNode(const OgreSceneNodeSharedPtr &set)  // sets the value of node
-{
-    node = set;
-}
-
-bool entity::getPhysicsSetup() const  // retrieves the value of physicsSetup
-{
-    return (physicsSetup);
-}
-void entity::setPhysicsSetup(const bool &set)  // sets the value of physicsSetup
-{
-    physicsSetup = set;
-}
-
-bool entity::getModelNeedsLoaded() const  // retrieves the value of modelNeedsLoaded
-{
-    return (modelNeedsLoaded);
-}
-void entity::setModelNeedsLoaded(const bool &set)  // sets the value of modelNeedsLoaded
-{
-    modelNeedsLoaded = set;
-}
-
-bool entity::getModelLoaded() const  // retrieves the value of modelLoaded
-{
-    return (modelLoaded);
-}
-void entity::setModelLoaded(const bool &set)  // sets the value of modelLoaded
-{
-    modelLoaded = set;
-}
-
-Ogre::Vector3 entity::getNodePosition() const  // retrieves the value of nodePosition
-{
-    return (nodePosition);
-}
-void entity::setNodePosition(const Ogre::Vector3 &set)  // sets the value of nodePosition
-{
-    nodePosition = set;
-}
-
-bool entity::getNodeCreated() const  // retrieves the value of nodeaCreated
-{
-    return (nodeCreated);
-}
-void entity::setNodeCreated(const bool $set)  // sets the value of nodeCreated
-{
-    nodeCreated = $set;
 }
 

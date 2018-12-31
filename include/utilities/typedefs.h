@@ -68,7 +68,9 @@ class conversion;
 
 class courtData;
 class courtEntity;
-//class courtState;
+class courtFlags;
+class courtPhysics;
+class courtStateMachine;
 
 class defense;
 class defenseComponents;
@@ -191,6 +193,10 @@ typedef sharedPtr<gameStateMachine> gameStateMachineSharedPtr;
 typedef sharedPtr<UBCComponents> UBCComponentsSharedPtr;
 
 typedef sharedPtr<courtData> courtDataSharedPtr;
+
+typedef sharedPtr<courtFlags> courtFlagsSharedPtr;
+
+typedef sharedPtr<courtPhysics> courtPhysicsSharedPtr;
 
 typedef sharedPtr<gameData> gameDataSharedPtr;
 

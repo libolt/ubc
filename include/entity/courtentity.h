@@ -25,6 +25,7 @@
 //#include "physics/courtphysics.h"
 
 //class entity;
+class courtFlags;
 class courtPhysics;
 
 class courtEntity : public entity
@@ -36,20 +37,19 @@ class courtEntity : public entity
         sharedPtr<courtData> getData() const;  // retrieves the value of data
         void setData(const sharedPtr<courtData> &set);  // sets the value of data
 
-        sharedPtr<courtPhysics> getPhysics() const;  // retrieves the value of physics
-        void setPhysics(const sharedPtr<courtPhysics> &set);  // sets the value of physics
+        courtFlagsSharedPtr getFlag() const;  // retrieves the value of flag
+        void setFlag(const courtFlagsSharedPtr &set);  // sets the value of flag
 
-        bool getInitialized() const;  // retrieves the value of initialized
-        void setInitialized(const bool &set);  // sets the value of initialized
-
+        courtPhysicsSharedPtr getPhysics() const;  // retrieves the value of physics
+        void setPhysics(const courtPhysicsSharedPtr &set);  // sets the value of physics
+       
         bool initialize();  // initializes the court entity object
 
         bool setupPhysicsObject();  // sets up the physics object
 
     private:
-
-        bool initialized;  // stores whether the court entity object has been initialized
-
+     
+        courtFlagsSharedPtr flag;  // stores the court flags object
         courtDataSharedPtr data;  // stores the court data object
         sharedPtr<courtPhysics> physics;  // instanciates an object to handle the physics for the court
 };

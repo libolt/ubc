@@ -128,7 +128,7 @@ bool playerEntity::setupPhysicsObject()  // sets up the physics object
     {
         
 
-        setPhysicsSetup(true);
+        flag->setPhysicsSetup(true);
         logMsg(func +" setModel");
         setModel(OgreEntitySharedPtr(tempModel));
         logMsg(func +" setNode");

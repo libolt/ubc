@@ -21,7 +21,9 @@
 #ifndef _PLAYERFLAGS_H_
 #define _PLAYERFLAGS_H_
 
-class playerFlags
+#include "flags/entityflags.h"
+
+class playerFlags : public entityFlags
 {
     public:
         playerFlags();  // constructor

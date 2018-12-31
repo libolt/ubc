@@ -20,41 +20,42 @@
 
 #include "entity/courtentity.h"
 #include "data/courtdata.h"
+#include "flags/courtflags.h"
 
 #include "physics/courtphysics.h"
 
 courtEntity::courtEntity()  // constructor
 {
-    initialized = false;
+
 //    physics = new courtPhysics;
 }
 courtEntity::~courtEntity() = default;  // destructor
 
-sharedPtr<courtData> courtEntity::getData() const  // retrieves the value of data
+courtDataSharedPtr courtEntity::getData() const  // retrieves the value of data
 {
     return (data);
 }
-void courtEntity::setData(const sharedPtr<courtData> &set)  // sets the value of data
+void courtEntity::setData(const courtDataSharedPtr &set)  // sets the value of data
 {
     data = set;
 }
 
-sharedPtr<courtPhysics> courtEntity::getPhysics() const  // retrieves the value of physics
+courtFlagsSharedPtr courtEntity::getFlag() const  // retrieves the value of data
+{
+    return (flag);
+}
+void courtEntity::setFlag(const courtFlagsSharedPtr &set)  // sets the value of data
+{
+    flag = set;
+}
+
+courtPhysicsSharedPtr courtEntity::getPhysics() const  // retrieves the value of physics
 {
     return (physics);
 }
-void courtEntity::setPhysics(const sharedPtr<courtPhysics> &set)  // sets the value of physics
+void courtEntity::setPhysics(const courtPhysicsSharedPtr &set)  // sets the value of physics
 {
     physics = set;
-}
-
-bool courtEntity::getInitialized() const  // retrieves the value of initialized
-{
-    return (initialized);
-}
-void courtEntity::setInitialized(const bool &set)  // sets the value of initialized
-{
-    initialized = set;
 }
 
 bool courtEntity::initialize()  // initializes the court entity object
@@ -92,7 +93,7 @@ bool courtEntity::setupPhysicsObject()  // sets up the physics object
     if (getPhysics()->setupPhysics(&tempModel, &tempNode, &tempPhysBody))
     {
 //        tempPhysBody->setActivationState(DISABLE_SIMULATION);
-        setPhysicsSetup(true);
+        flag->setPhysicsSetup(true);
         setModel(OgreEntitySharedPtr(tempModel));
         setNode(OgreSceneNodeSharedPtr(tempNode));
         getPhysics()->setPhysBody(btRigidBodySharedPtr(tempPhysBody));

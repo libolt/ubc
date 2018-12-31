@@ -128,7 +128,8 @@ bool basketballEntity::initializeStateMachine()  // initializes the basketball s
     
     return (true);
 }
-bool basketballEntity::setupPhysicsObject()  // sets up the physics object
+
+/*bool basketballEntity::setupPhysicsObject()  // sets up the physics object
 {
     conversionSharedPtr convert ;
     std::string func = "basketballEntity::setupPhysicsObject()";
@@ -180,7 +181,7 @@ bool basketballEntity::setupPhysicsObject()  // sets up the physics object
 
 //    exit(0);
     return (returnType);
-}
+}*/
 
 
 /*bool basketballState::initialize()  // initializes the basketballState object

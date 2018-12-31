@@ -39,6 +39,7 @@ basketballFlags::basketballFlags()  // constructor
     numberSet = false;
 
     courtPositionChanged = false;
+        
 }
 
 basketballFlags::~basketballFlags() = default;  // destructor
@@ -150,3 +151,4 @@ void basketballFlags::setCourtPositionChanged(const bool &set)  // sets the valu
 {
     courtPositionChanged = set;
 }
+

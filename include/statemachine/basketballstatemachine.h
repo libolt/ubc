@@ -64,6 +64,7 @@ private:
     {
         ST_INITIALIZE,
         ST_SETUP_PHYSICS, 
+        ST_STOP_MOVEMENT,
         ST_IDLE, 
         ST_CHANGE_SPEED,
         ST_UPDATE_POSITION,
@@ -74,7 +75,8 @@ private:
 
     // Define the state machine state functions with event data type
     STATE_DECLARE(basketballStateMachine,    Initialize,     basketballSMData)
-    STATE_DECLARE(basketballStateMachine,    SetupPhysics,   noEventData)
+    STATE_DECLARE(basketballStateMachine,    SetupPhysics,   basketballSMData)
+    STATE_DECLARE(basketballStateMachine,    StopMovement,   noEventData)
     STATE_DECLARE(basketballStateMachine,    Idle,           noEventData)
     STATE_DECLARE(basketballStateMachine,    ChangeSpeed,    basketballSMData)
     STATE_DECLARE(basketballStateMachine,    UpdatePosition, basketballSMData)
@@ -86,6 +88,7 @@ private:
     BEGIN_STATE_MAP
         STATE_MAP_ENTRY(&Initialize)
         STATE_MAP_ENTRY(&SetupPhysics)
+        STATE_MAP_ENTRY(&StopMovement)
         STATE_MAP_ENTRY(&Idle)
         STATE_MAP_ENTRY(&ChangeSpeed)
         STATE_MAP_ENTRY(&UpdatePosition)

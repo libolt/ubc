@@ -43,6 +43,7 @@ void basketballStateMachine::pInitialize(basketballSMData *data)
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_INITIALIZE
         TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_SETUP_PHYSICS
+        TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_IDLE
         TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_CHANGE_SPEED
         TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_UPDATE_POSITION
@@ -56,6 +57,7 @@ void basketballStateMachine::setSpeed(basketballSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_CHANGE_SPEED)              // ST_INITIALIZE
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (ST_CHANGE_SPEED)              // ST_IDLE
         TRANSITION_MAP_ENTRY (ST_CHANGE_SPEED)              // ST_CHANGE_SPEED
@@ -71,6 +73,7 @@ void basketballStateMachine::halt()
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_INITIALIZE
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_SETUP_PHYSICS
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_IDLE
         TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_CHANGE_SPEED
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_UPDATE_POSITION
@@ -84,6 +87,7 @@ void basketballStateMachine::pUpdatePosition(basketballSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                     // ST_INITIALIZE
+        TRANSITION_MAP_ENTRY (ST_UPDATE_POSITION)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (ST_UPDATE_POSITION)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (ST_UPDATE_POSITION)                // ST_IDLE
         TRANSITION_MAP_ENTRY (ST_UPDATE_POSITION)                // ST_CHANGE_SPEED
@@ -99,6 +103,7 @@ void basketballStateMachine::pUpdateMovement(basketballSMData *data)
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                     // ST_INITIALIZE      
         TRANSITION_MAP_ENTRY (ST_UPDATE_MOVEMENT)                // ST_SETUP_PHYSICS
+        TRANSITION_MAP_ENTRY (ST_UPDATE_MOVEMENT)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (ST_UPDATE_MOVEMENT)                // ST_IDLE
         TRANSITION_MAP_ENTRY (ST_UPDATE_MOVEMENT)                // ST_CHANGE_SPEED
         TRANSITION_MAP_ENTRY (ST_UPDATE_MOVEMENT)                // ST_UPDATE_POSITION
@@ -112,6 +117,7 @@ void basketballStateMachine::pUpdateDirection(basketballSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                      // ST_INITIALIZE       
+        TRANSITION_MAP_ENTRY (ST_UPDATE_DIRECTION)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (ST_UPDATE_DIRECTION)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (ST_UPDATE_DIRECTION)                // ST_IDLE
         TRANSITION_MAP_ENTRY (ST_UPDATE_DIRECTION)                // ST_CHANGE_SPEED
@@ -160,7 +166,62 @@ STATE_DEFINE(basketballStateMachine, Initialize, basketballSMData)
 
 }
 
-STATE_DEFINE(basketballStateMachine, SetupPhysics, noEventData)
+// sets up basketball physics object
+STATE_DEFINE(basketballStateMachine, SetupPhysics, basketballSMData)
+{
+    conversionSharedPtr convert;
+    std::string func = "basketballStateMachine::setupPhysics()";
+    OgreEntitySharedPtr tempModel = data->model;
+    OgreSceneNodeSharedPtr tempNode = data->node;
+    basketballComponentsSharedPtr component = data->component;
+    basketballFlagsSharedPtr flag = data->flag;
+    btRigidBody *tempPhysBody = component->getPhysics()->getPhysBody().get();
+    bool returnType = false;
+    
+    logMsg(func +" begin");
+    
+    if (!component->getPhysics()->getGameInstanceInitialized())
+    {
+        component->getPhysics()->setGameInstanceInitialized(true);
+    }
+    
+    component->getPhysics()->setMass(0.05f);
+    component->getPhysics()->setRestitution(0.85f);
+    component->getPhysics()->setFriction(0.0f);
+    logMsg("tempNode->getName() == " +tempNode->getName());
+    component->getPhysics()->setShapeType(SPHERE);
+    logMsg(func +" setShapeType!");
+    component->getPhysics()->setColObject(COL_BBALL);
+    logMsg(func +" setColObject!");
+    component->getPhysics()->setCollidesWith(COL_COURT);
+    logMsg(func +" setCollidesWith!");
+
+    if (component->getPhysics()->setupPhysics(&tempModel, &tempNode, &tempPhysBody))
+    {
+        
+        logMsg(func +" setupPhysics!");
+        flag->setPhysicsSetup(true);
+
+        logMsg(func +" modelName == " +tempModel->getName());
+        logMsg(func +" nodeName == " +tempNode->getName());
+
+//        exit(0);
+        data->model = OgreEntitySharedPtr(tempModel);
+        data->node = OgreSceneNodeSharedPtr(tempNode);
+        component->getPhysics()->setPhysBody(btRigidBodySharedPtr(tempPhysBody));
+//        exit(0);
+        returnType = true;;
+
+    }
+    else
+    {
+    }
+
+    logMsg(func +" end");
+}
+
+// stops movement of basketball object
+STATE_DEFINE(basketballStateMachine, StopMovement, noEventData)
 {
     
 }

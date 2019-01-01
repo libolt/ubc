@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "setup/setupteams.h"
+#include "components/courtcomponents.h"
 #include "data/playergamedata.h"
 #include "data/teamgamedata.h"
 #include "entity/courtentity.h"
@@ -202,7 +203,7 @@ playerEntityMSharedPtr setupTeams::setPlayerStartPositions(playerEntityMSharedPt
     conversionSharedPtr convert ;
     setupPlayerPositionsSharedPtr setupPlayerPosition(new setupPlayerPositions);
     OgreVector3Vec startingPos;
-    Ogre::Vector3 courtPos = courtInstance[0]->getNodePosition();
+    Ogre::Vector3 courtPos = courtInstance[0]->getComponent()->getNodePosition();
     std::string func = "setupTeams::setPlayerStartPositions()";
 
 //    exit(0);

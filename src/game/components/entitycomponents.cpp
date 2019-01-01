@@ -23,6 +23,7 @@
 
 entityComponents::entityComponents()  // constructor
 {
+    ID = 0;
 }
 
 entityComponents::~entityComponents() = default;  // destructor

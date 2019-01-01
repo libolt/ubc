@@ -24,7 +24,7 @@
 #include "entity/entity.h"
 //#include "physics/courtphysics.h"
 
-//class entity;
+class courtComponents;
 class courtFlags;
 class courtPhysics;
 
@@ -34,24 +34,25 @@ class courtEntity : public entity
         courtEntity();  // constructor
         ~courtEntity();  // destructor
 
-        sharedPtr<courtData> getData() const;  // retrieves the value of data
-        void setData(const sharedPtr<courtData> &set);  // sets the value of data
+        courtComponentsSharedPtr getComponent() const;  // retrieves the value of component
+        void setComponent(const courtComponentsSharedPtr &set);  // sets the value of component
+
+        courtDataSharedPtr getData() const;  // retrieves the value of data
+        void setData(const courtDataSharedPtr &set);  // sets the value of data
 
         courtFlagsSharedPtr getFlag() const;  // retrieves the value of flag
         void setFlag(const courtFlagsSharedPtr &set);  // sets the value of flag
-
-        courtPhysicsSharedPtr getPhysics() const;  // retrieves the value of physics
-        void setPhysics(const courtPhysicsSharedPtr &set);  // sets the value of physics
-       
+      
         bool initialize();  // initializes the court entity object
 
         bool setupPhysicsObject();  // sets up the physics object
 
     private:
      
-        courtFlagsSharedPtr flag;  // stores the court flags object
+        courtComponentsSharedPtr component;  // stores the court components object
         courtDataSharedPtr data;  // stores the court data object
-        sharedPtr<courtPhysics> physics;  // instanciates an object to handle the physics for the court
+        courtFlagsSharedPtr flag;  // stores the court flags object
+
 };
 
 #endif // _COURTENTITY_H_

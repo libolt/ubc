@@ -27,7 +27,7 @@
 
 entity::entity()  // constructor
 {
-    initialized = false;
+/*    initialized = false;
     nameSet = false;
     nodeNameSet = false;
 
@@ -36,11 +36,12 @@ entity::entity()  // constructor
     modelNeedsLoaded = false;
     modelLoaded = false;
     nodeCreated = false;
+*/
 }
 
 entity::~entity() = default;  // destructor
 
-bool entity::getInitialized() const  // retrieves the value of initialized
+/*bool entity::getInitialized() const  // retrieves the value of initialized
 {
     return (initialized);
 }
@@ -48,4 +49,5 @@ void entity::setInitialized(const bool &set)  // sets the value of initialized
 {
     initialized = set;
 }
+*/
 

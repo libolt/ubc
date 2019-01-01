@@ -18,9 +18,40 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
+#include "components/hoopcomponents.h"
 #include "entity/hoopentity.h"
+#include "flags/hoopflags.h"
 
 hoopEntity::hoopEntity() = default;  // constructor
 
-
 hoopEntity::~hoopEntity()  = default;  // destructor
+
+hoopComponentsSharedPtr hoopEntity::getComponent()  // retrieves the value of component
+{
+    return (component);
+}
+void hoopEntity::setComponent(hoopComponentsSharedPtr set)  // sets the value of component
+{
+    component = set;
+}
+
+hoopFlagsSharedPtr hoopEntity::getFlag()  // retrieves the value of flag
+{
+    return (flag);
+}
+void hoopEntity::setFlag(hoopFlagsSharedPtr set)  // sets the value of flag
+{
+    flag = set;
+}
+
+bool hoopEntity::initialize()  // initializes hoop entity objects
+{
+    
+    hoopComponentsSharedPtr tempComponent(new hoopComponents);
+    component = tempComponent;
+    
+    hoopFlagsSharedPtr tempFlag(new hoopFlags);
+    flag = tempFlag;
+
+    return (true);
+}

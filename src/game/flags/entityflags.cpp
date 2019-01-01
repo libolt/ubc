@@ -52,39 +52,47 @@ void entityFlags::setInitialized(const bool &set)  // sets the value of initiali
     initialized = set;
 }
 
-bool entity::getNameSet() const  // retrieves the value of nameSet
+bool entityFlags::getNameSet() const  // retrieves the value of nameSet
 {
     return (nameSet);
 }
-void entity::setNameSet(const bool &set)  // sets the value of nameSet
+void entityFlags::setNameSet(const bool &set)  // sets the value of nameSet
 {
     nameSet = set;
 }
 
-bool entity::getNodeNameSet() const  // retrieves the value of nodeNameSet
+bool entityFlags::getNodeNameSet() const  // retrieves the value of nodeNameSet
 {
     return(nodeNameSet);
 }
-void entity::setNodeNameSet(const bool &set)  // sets the value of nodeNameSet
+void entityFlags::setNodeNameSet(const bool &set)  // sets the value of nodeNameSet
 {
     nodeNameSet = set;
 }
 
-bool entity::getModelNeedsLoaded() const  // retrieves the value of modelNeedsLoaded
+bool entityFlags::getModelNeedsLoaded() const  // retrieves the value of modelNeedsLoaded
 {
     return (modelNeedsLoaded);
 }
-void entity::setModelNeedsLoaded(const bool &set)  // sets the value of modelNeedsLoaded
+void entityFlags::setModelNeedsLoaded(const bool &set)  // sets the value of modelNeedsLoaded
 {
     modelNeedsLoaded = set;
 }
 
-bool entity::getModelLoaded() const  // retrieves the value of modelLoaded
+bool entityFlags::getModelLoaded() const  // retrieves the value of modelLoaded
 {
     return (modelLoaded);
 }
-void entity::setModelLoaded(const bool &set)  // sets the value of modelLoaded
+void entityFlags::setModelLoaded(const bool &set)  // sets the value of modelLoaded
 {
     modelLoaded = set;
 }
 
+bool entityFlags::getNodeCreated() const  // retrieves the value of nodeCreated
+{
+    return (nodeCreated);
+}
+void entityFlags::setNodeCreated(const bool &set)  // sets the value of nodeCreated
+{
+    nodeCreated = set;
+}

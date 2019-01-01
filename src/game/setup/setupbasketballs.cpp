@@ -49,9 +49,9 @@ basketballEntityMSharedPtr setupBasketballs::createBasketballInstances()  // cre
 
     for (auto BIIT : basketballInstance)  // loop
     {
-        BIIT.second->setModelFileName("bball.mesh");
-        BIIT.second->setName(BIIT.second->getData()->getModelFileName());
-        BIIT.second->setNodeName(BIIT.second->getData()->getModelFileName());
+        BIIT.second->getComponent()->setModelFileName("bball.mesh");
+        BIIT.second->getComponent()->setName(BIIT.second->getData()->getModelFileName());
+        BIIT.second->getComponent()->setNodeName(BIIT.second->getData()->getModelFileName());
 /*BASEREMOVAL        if (!BIIT.second->getEntity()->getBaseInitialized())
         {
 //            BIIT.second->getEntity()->setBase(getBase());
@@ -133,9 +133,9 @@ basketballEntityMSharedPtr setupBasketballs::setBasketballStartPositions(basketb
     
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 //    exit(0);
-        ABIIT.second->getNode()->setPosition(0.8f,10.0f,352.0f);
+        ABIIT.second->getComponent()->getNode()->setPosition(0.8f,10.0f,352.0f);
 #else
-        ABIIT.second->getNode()->setPosition(0.8f,-5.0f,352.0f);
+        ABIIT.second->getComponent()->getNode()->setPosition(0.8f,-5.0f,352.0f);
 //    exit(0);
 #endif
     }

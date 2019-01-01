@@ -21,12 +21,13 @@
 #ifndef _BASKETBALLCOMPONENTS_H_
 #define _BASKETBALLCOMPONENTS_H_
 
+#include "components/entitycomponents.h"
 #include "utilities/enums.h"
 #include "utilities/typedefs.h"
 
 class basketballPhysics;
 
-class basketballComponents
+class basketballComponents : public entityComponents
 {
     public:
 

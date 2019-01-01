@@ -39,12 +39,12 @@ class entity
     entity();  // constructor
     ~entity();  // destructor
     
-    bool getInitialized() const;  // retrieves the value of initialized
+/*    bool getInitialized() const;  // retrieves the value of initialized
     void setInitialized(const bool &set);  // sets the value of initialized
-
+*/
     private:
     
-    bool initialized;  // stores whether entity object has been initialized
+//    bool initialized;  // stores whether entity object has been initialized
         
 };
 

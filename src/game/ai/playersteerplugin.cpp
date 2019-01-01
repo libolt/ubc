@@ -24,6 +24,7 @@
 #include "ai/ai.h"
 #include "ai/playersteerplugin.h"
 #include "ai/playersteer.h"
+#include "components/courtcomponents.h"
 #include "components/gamecomponents.h"
 #include "components/playercomponents.h"
 #include "components/teamcomponents.h"
@@ -248,7 +249,7 @@ void playerSteerPlugin::open()  // opens the plugin
 
 
 	// create the court bounding box based off the meshes bbox
-    Ogre::AxisAlignedBox cbox = gameInstance->getComponent()->getCourtInstance()[0]->getModel()->getBoundingBox();
+    Ogre::AxisAlignedBox cbox = gameInstance->getComponent()->getCourtInstance()[0]->getComponent()->getModel()->getBoundingBox();
     Ogre::Vector3 cboxMin = cbox.getMinimum();
     Ogre::Vector3 cboxMax = cbox.getMaximum();
 

@@ -20,6 +20,7 @@
 
 #include "update/updateteams.h"
 #include "components/gamecomponents.h"
+#include "components/playercomponents.h"
 #include "data/playerdata.h"
 #include "data/playergamedata.h"
 #include "data/teamgamedata.h"
@@ -127,13 +128,13 @@ playerEntityMSharedPtr updateTeams::updatePlayerDirections(playerEntityMSharedPt
                     switch (playerDirection)
                     {
                         case DOWN:
-                            APIIT.second->getNode()->yaw(Ogre::Degree (180));
+                            APIIT.second->getComponent()->getNode()->yaw(Ogre::Degree (180));
                             break;
                         case LEFT:
-                            APIIT.second->getNode()->yaw(Ogre::Degree (270));
+                            APIIT.second->getComponent()->getNode()->yaw(Ogre::Degree (270));
                             break;
                         case RIGHT:
-                            APIIT.second->getNode()->yaw(Ogre::Degree (90));
+                            APIIT.second->getComponent()->getNode()->yaw(Ogre::Degree (90));
 //                            exit(0);
                             break;
                         default:
@@ -144,13 +145,13 @@ playerEntityMSharedPtr updateTeams::updatePlayerDirections(playerEntityMSharedPt
                     switch (playerDirection)
                     {
                         case UP:
-                            APIIT.second->getNode()->yaw(Ogre::Degree (180));
+                            APIIT.second->getComponent()->getNode()->yaw(Ogre::Degree (180));
                             break;
                         case LEFT:
-                            APIIT.second->getNode()->yaw(Ogre::Degree (90));
+                            APIIT.second->getComponent()->getNode()->yaw(Ogre::Degree (90));
                             break;
                         case RIGHT:
-                            APIIT.second->getNode()->yaw(Ogre::Degree (270));
+                            APIIT.second->getComponent()->getNode()->yaw(Ogre::Degree (270));
                             break;
                         default:
                             break;
@@ -160,13 +161,13 @@ playerEntityMSharedPtr updateTeams::updatePlayerDirections(playerEntityMSharedPt
                         switch (playerDirection)
                         {
                             case UP:
-                                APIIT.second->getNode()->yaw(Ogre::Degree (90));
+                                APIIT.second->getComponent()->getNode()->yaw(Ogre::Degree (90));
                                 break;
                             case DOWN:
-                                APIIT.second->getNode()->yaw(Ogre::Degree (270));
+                                APIIT.second->getComponent()->getNode()->yaw(Ogre::Degree (270));
                                 break;
                             case RIGHT:
-                                APIIT.second->getNode()->yaw(Ogre::Degree (180));
+                                APIIT.second->getComponent()->getNode()->yaw(Ogre::Degree (180));
                                 break;
                             default:
                                 break;
@@ -176,13 +177,13 @@ playerEntityMSharedPtr updateTeams::updatePlayerDirections(playerEntityMSharedPt
                         switch (playerDirection)
                         {
                             case UP:
-                                APIIT.second->getNode()->yaw(Ogre::Degree (270));
+                                APIIT.second->getComponent()->getNode()->yaw(Ogre::Degree (270));
                                 break;
                             case DOWN:
-                                APIIT.second->getNode()->yaw(Ogre::Degree (90));
+                                APIIT.second->getComponent()->getNode()->yaw(Ogre::Degree (90));
                                 break;
                             case LEFT:
-                                APIIT.second->getNode()->yaw(Ogre::Degree (180));
+                                APIIT.second->getComponent()->getNode()->yaw(Ogre::Degree (180));
                                 break;
                             default:
                                 break;

@@ -26,7 +26,9 @@
 
 #include "utilities/conversion.h"
 #include "load/loadcourts.h"
+#include "components/courtcomponents.h"
 #include "entity/courtentity.h"
+#include "flags/courtflags.h"
 #include "utilities/logging.h"
 #include "data/courtdata.h"
 //#include "state/courtstate.h"
@@ -431,13 +433,13 @@ courtEntitySharedPtr loadCourts::loadCourtFile(const std::string &fileName)  // 
     Ogre::Vector2 sidelineInboundPos = Ogre::Vector2(sidelineInboundXPos,sidelineInboundZPos);
 
     
-    if (!courtInstance->getInitialized())
+    if (!courtInstance->getFlag()->getInitialized())
     {
         logMsg(func +" Initalizing courtInstance!");
         if (courtInstance->initialize())
         {
             logMsg(func +" Court Initialized!");
-            courtInstance->setInitialized(true);
+            courtInstance->getFlag()->setInitialized(true);
         }
         else
         {
@@ -491,32 +493,32 @@ courtEntityMSharedPtr loadCourts::loadModels(courtEntityMSharedPtr activeCourtIn
     {
         logMsg(func +" activeCourtInstance == " +convert->toString(ACIIT.first));
         //FIXME! This should be done in a cleaner way!
-        ACIIT.second->setModelFileName(ACIIT.second->getData()->getModelFileName());
+        ACIIT.second->getComponent()->setModelFileName(ACIIT.second->getData()->getModelFileName());
 
-        if (ACIIT.second->getName().empty())  // checks if entityName has been set
+        if (ACIIT.second->getComponent()->getName().empty())  // checks if entityName has been set
         {
             std::string name = ACIIT.second->getData()->getName();
-            ACIIT.second->setName(name);
+            ACIIT.second->getComponent()->setName(name);
         }
-        logMsg(func +" entityName == " +ACIIT.second->getName());
+        logMsg(func +" entityName == " +ACIIT.second->getComponent()->getName());
 //        exit(0);
-        if (ACIIT.second->getNodeName().empty())  // checks if entityNodeName has been set
+        if (ACIIT.second->getComponent()->getNodeName().empty())  // checks if entityNodeName has been set
         {
             std::string nodeName = ACIIT.second->getData()->getName() +"node";
-            ACIIT.second->setNodeName(nodeName);
+            ACIIT.second->getComponent()->setNodeName(nodeName);
         }
         logMsg(func +" court name == " +ACIIT.second->getData()->getName());
-        logMsg(func + " court node name == " +ACIIT.second->getNodeName());
+        logMsg(func + " court node name == " +ACIIT.second->getComponent()->getNodeName());
 //        exit(0);
-        logMsg(func +" loading model == " +ACIIT.second->getModelFileName());
+        logMsg(func +" loading model == " +ACIIT.second->getComponent()->getModelFileName());
 //        exit(0);
-        std::string modelFileName = ACIIT.second->getModelFileName();
-        std::string entityName = ACIIT.second->getName();
-        std::string entityNodeName = ACIIT.second->getNodeName();
+        std::string modelFileName = ACIIT.second->getComponent()->getModelFileName();
+        std::string entityName = ACIIT.second->getComponent()->getName();
+        std::string entityNodeName = ACIIT.second->getComponent()->getNodeName();
 
         model = loadModelFile(modelFileName, entityName, render);
-        ACIIT.second->setModelLoaded(true);
-        ACIIT.second->setModel(model);
+        ACIIT.second->getFlag()->setModelLoaded(true);
+        ACIIT.second->getComponent()->setModel(model);
     }
 /*    if (!activeCourtInstancesCreated && activeCourtInstance.size() == 0)
     {

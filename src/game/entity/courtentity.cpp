@@ -18,6 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
+#include "components/courtcomponents.h"
 #include "entity/courtentity.h"
 #include "data/courtdata.h"
 #include "flags/courtflags.h"
@@ -30,6 +31,15 @@ courtEntity::courtEntity()  // constructor
 //    physics = new courtPhysics;
 }
 courtEntity::~courtEntity() = default;  // destructor
+
+courtComponentsSharedPtr courtEntity::getComponent() const  // retrieves the value of component
+{
+    return (component);
+}
+void courtEntity::setComponent(const courtComponentsSharedPtr &set)  // sets the value of component
+{
+    component = set;
+}
 
 courtDataSharedPtr courtEntity::getData() const  // retrieves the value of data
 {
@@ -49,54 +59,52 @@ void courtEntity::setFlag(const courtFlagsSharedPtr &set)  // sets the value of 
     flag = set;
 }
 
-courtPhysicsSharedPtr courtEntity::getPhysics() const  // retrieves the value of physics
-{
-    return (physics);
-}
-void courtEntity::setPhysics(const courtPhysicsSharedPtr &set)  // sets the value of physics
-{
-    physics = set;
-}
-
 bool courtEntity::initialize()  // initializes the court entity object
 {
+   
+    courtComponentsSharedPtr tempComponent(new courtComponents);
+    component = tempComponent;
+          
     courtDataSharedPtr tempData(new courtData);
     data = tempData;
     
-    sharedPtr<courtPhysics> tempPhysics(new courtPhysics);
-    physics = tempPhysics;
+    courtFlagsSharedPtr tempFlag(new courtFlags);
+    flag = tempFlag;
+    
+    courtPhysicsSharedPtr tempPhysics(new courtPhysics);
+    component->setPhysics(tempPhysics);
 
     return (true);
 }
 
 bool courtEntity::setupPhysicsObject()  // sets up the physics object
 {
-    OgreEntitySharedPtr tempModel = getModel();
-    OgreSceneNodeSharedPtr tempNode = getNode();
-    btRigidBody *tempPhysBody = getPhysics()->getPhysBody().get();
+    OgreEntitySharedPtr tempModel = component->getModel();
+    OgreSceneNodeSharedPtr tempNode = component->getNode();
+    btRigidBody *tempPhysBody = component->getPhysics()->getPhysBody().get();
     btScalar restitution = 1.0f;
     btScalar friction = 15.5f;
     bool retVal = false;
-    if (!getPhysics()->getGameInstanceInitialized())
+    if (!component->getPhysics()->getGameInstanceInitialized())
     {
-        getPhysics()->setGameInstanceInitialized(true);
+        component->getPhysics()->setGameInstanceInitialized(true);
     }
     
-    getPhysics()->setMass(0.0f);
-    getPhysics()->setRestitution(1.0f);
-    getPhysics()->setFriction(15.5f);
+    component->getPhysics()->setMass(0.0f);
+    component->getPhysics()->setRestitution(1.0f);
+    component->getPhysics()->setFriction(15.5f);
     size_t collides = COL_BBALL | COL_PLAYER0 | COL_TEAM1 | COL_TEAM2;
-    getPhysics()->setShapeType(BOX);
-    getPhysics()->setColObject(COL_COURT);
-    getPhysics()->setCollidesWith(collides);
+    component->getPhysics()->setShapeType(BOX);
+    component->getPhysics()->setColObject(COL_COURT);
+    component->getPhysics()->setCollidesWith(collides);
 //    exit(0);
-    if (getPhysics()->setupPhysics(&tempModel, &tempNode, &tempPhysBody))
+    if (component->getPhysics()->setupPhysics(&tempModel, &tempNode, &tempPhysBody))
     {
 //        tempPhysBody->setActivationState(DISABLE_SIMULATION);
         flag->setPhysicsSetup(true);
-        setModel(OgreEntitySharedPtr(tempModel));
-        setNode(OgreSceneNodeSharedPtr(tempNode));
-        getPhysics()->setPhysBody(btRigidBodySharedPtr(tempPhysBody));
+        component->setModel(OgreEntitySharedPtr(tempModel));
+        component->setNode(OgreSceneNodeSharedPtr(tempNode));
+        component->getPhysics()->setPhysBody(btRigidBodySharedPtr(tempPhysBody));
         retVal = true;
     }
     else

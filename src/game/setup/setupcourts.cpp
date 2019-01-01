@@ -20,7 +20,9 @@
 
 #include "setup/setupcourts.h"
 #include "data/courtdata.h"
+#include "components/courtcomponents.h"
 #include "entity/courtentity.h"
+#include "flags/courtflags.h"
 //#include "state/courtstate.h"
 #include "load/loadcourts.h"
 #include "utilities/conversion.h"
@@ -52,8 +54,8 @@ courtEntityMSharedPtr setupCourts::createCourtInstances()  // creates court Inst
         for (auto CIIT : courtInstance)
         {
             logMsg("Court Name == " +CIIT.second->getData()->getName());
-            CIIT.second->setName(CIIT.second->getData()->getName());
-            CIIT.second->setModelFileName(CIIT.second->getData()->getModelFileName());
+            CIIT.second->getComponent()->setName(CIIT.second->getData()->getName());
+            CIIT.second->getComponent()->setModelFileName(CIIT.second->getData()->getModelFileName());
 
         }
 //        exit(0);
@@ -102,11 +104,11 @@ courtEntityMSharedPtr setupCourts::createActiveCourtInstances(courtEntityMShared
     logMsg(func +" courtInstance.size() == " +convert->toString(courtInstance.size()));
     //FIXME! should not be hard coded
     activeCourtInstance.insert(std::pair<size_t, courtEntitySharedPtr>(0, courtInstance[0]));
-    if (!activeCourtInstance[0]->getInitialized())
+    if (!activeCourtInstance[0]->getFlag()->getInitialized())
     {
         if (activeCourtInstance[0]->initialize())
         {
-            activeCourtInstance[0]->setInitialized(true);
+            activeCourtInstance[0]->getFlag()->setInitialized(true);
         }
         else
         {
@@ -129,8 +131,8 @@ courtEntityMSharedPtr setupCourts::setCourtStartPositions(courtEntityMSharedPtr 
 
     logMsg(func +" begin");
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-    courtInstance[0]->getNode()->setPosition(0.0f,-6.5f,360.0f);
-    courtInstance[0]->setNodePosition(Ogre::Vector3(0.0f,-6.5f,360.0f));
+    courtInstance[0]->getComponent()->getNode()->setPosition(0.0f,-6.5f,360.0f);
+    courtInstance[0]->getComponent()->setNodePosition(Ogre::Vector3(0.0f,-6.5f,360.0f));
     logMsg(func +" courtPosition");
 //exit(0);
 #else

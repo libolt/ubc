@@ -426,7 +426,7 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
         {
             for (auto ABIIT : activeBasketballInstance)
             {          
-                logMsg(func +"Active Basketball Pos == " +convert->toString(ABIIT.second->getNode()->getPosition()));
+                logMsg(func +"Active Basketball Pos == " +convert->toString(ABIIT.second->getComponent()->getNode()->getPosition()));
 //                exit(0);
             }
   
@@ -555,7 +555,7 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
                         if (APIIT.second->getFlag()->getSMNodeSet())
                         {
                             logMsg(func +" Wioooot!");
-                            Ogre::Vector3 pos = APIIT.second->getNode()->getPosition();
+                            Ogre::Vector3 pos = APIIT.second->getComponent()->getNode()->getPosition();
                             logMsg(func +" pos = " +convert->toString(pos));
                         }
                     }

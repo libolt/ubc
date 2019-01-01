@@ -104,8 +104,8 @@ bool playerEntity::initialize()  // initializes the player entity object
 bool playerEntity::setupPhysicsObject()  // sets up the physics object
 {
     std::string func = "playerEntity::setupPhysicsObject()!";
-    OgreEntitySharedPtr tempModel = getModel();
-    OgreSceneNodeSharedPtr tempNode = getNode();
+    OgreEntitySharedPtr tempModel = component->getModel();
+    OgreSceneNodeSharedPtr tempNode = component->getNode();
     btRigidBody *tempPhysBody = component->getPhysics()->getPhysBody().get();
     bool retVal = false;
     logMsg(func +" begin");
@@ -130,10 +130,10 @@ bool playerEntity::setupPhysicsObject()  // sets up the physics object
 
         flag->setPhysicsSetup(true);
         logMsg(func +" setModel");
-        setModel(OgreEntitySharedPtr(tempModel));
+        component->setModel(OgreEntitySharedPtr(tempModel));
         logMsg(func +" setNode");
         logMsg(func +" tempNode name == " +tempNode->getName());
-        setNode(OgreSceneNodeSharedPtr(tempNode));
+        component->setNode(OgreSceneNodeSharedPtr(tempNode));
         logMsg(func +" setPhysBody");
         component->getPhysics()->setPhysBody(btRigidBodySharedPtr(tempPhysBody));
 //        exit(0);
@@ -157,8 +157,8 @@ bool playerEntity::initializeStateMachine()  // initializes the stateMachine obj
     SMData = tempSMData;
 //    SMData->speed = 100;
 //    SMData->model = const_cast<std::const_pointer_cast<Ogre::Entity>(getModel());
-    SMData->model = getModel();
-    SMData->node = getNode();
+    SMData->model = component->getModel();
+    SMData->node = component->getNode();
     logMsg(func +" begin");
 
 //    exit(0);
@@ -262,11 +262,11 @@ bool playerEntity::update() // executes any updates that need to be performed
                 break;
                 case SETNODE:
                     logMsg(func + " SETNODE!");
-                    SMData->node = getNode();
+                    SMData->node = component->getNode();
                 break;
                 case SETMODEL:
                     logMsg(func + " SETMODEL!");
-                    SMData->model = getModel();
+                    SMData->model = component->getModel();
                 break;
                 case MOVE:
                 break;

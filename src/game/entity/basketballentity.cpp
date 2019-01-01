@@ -220,7 +220,7 @@ Ogre::Vector3 basketballEntity::calculatePositionChange()
 //    sharedPtr<gameState> gameS = gameState::Instance();
 
     Ogre::Vector3 changeInPosition; // stores the calculated change in position
-    Ogre::Vector3 pos = getNode()->getPosition();   // stores the basketball nodes position
+    Ogre::Vector3 pos = component->getNode()->getPosition();   // stores the basketball nodes position
 
     // initializes the variable
     changeInPosition[0] = 0.0f;
@@ -231,7 +231,7 @@ Ogre::Vector3 basketballEntity::calculatePositionChange()
 
 void basketballEntity::updateState(const gameComponentsSharedPtr &gameComponent, const gameDataSharedPtr &gameDta, const gameFlagsSharedPtr &gameFlag)  // updates the state of the basketball
 {
-    bool modelNeedsLoaded = getModelNeedsLoaded();
+    bool modelNeedsLoaded = flag->getModelNeedsLoaded();
     std::string func = "basketballState::updateState()";
     
     logMsg(func + " beginning");
@@ -274,7 +274,7 @@ void basketballEntity::updateState(const gameComponentsSharedPtr &gameComponent,
         umSMData->flag = flag;
         umSMData->gComponent = gameComponent;
         umSMData->gData = gameDta;
-        umSMData->node = getNode();
+        umSMData->node = component->getNode();
         stateMachine->pUpdateMovement(umSMData);
 
         flag->setMovement(false);
@@ -284,7 +284,7 @@ void basketballEntity::updateState(const gameComponentsSharedPtr &gameComponent,
     basketballSMData *upSMData(new basketballSMData);
     upSMData->component = component;
     upSMData->flag = flag;
-    upSMData->node = getNode();
+    upSMData->node = component->getNode();
     stateMachine->pUpdatePosition(upSMData);
     logMsg(func + " position updated!");
    

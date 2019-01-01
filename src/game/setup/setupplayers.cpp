@@ -20,6 +20,7 @@
 
 #include "setup/setupplayers.h"
 #include "components/gamecomponents.h"
+#include "components/playercomponents.h"
 #include "components/teamcomponents.h"
 #include "data/playerdata.h"
 #include "data/playergamedata.h"
@@ -364,12 +365,12 @@ playerEntityMSharedPtr setupPlayers::setupActivePlayerInstances(playerEntityMSha
 
     for (auto APIIT : activePlayerInstance)
     {
-        if (!APIIT.second->getInitialized())
+        if (!APIIT.second->getFlag()->getInitialized())
         {
             logMsg("Player Entity not yet Initialized!");
             if (APIIT.second->initialize())
             {
-                APIIT.second->setInitialized(true);
+                APIIT.second->getFlag()->setInitialized(true);
             }
             else
             {
@@ -382,21 +383,21 @@ playerEntityMSharedPtr setupPlayers::setupActivePlayerInstances(playerEntityMSha
 
         }
 
-        if (!APIIT.second->getModelLoaded())
+        if (!APIIT.second->getFlag()->getModelLoaded())
         {
             OgreEntitySharedPtr tempModel;
-            std::string entityName = APIIT.second->getName();
-            std::string entityModelFileName = APIIT.second->getModelFileName();
+            std::string entityName = APIIT.second->getComponent()->getName();
+            std::string entityModelFileName = APIIT.second->getComponent()->getModelFileName();
             
             logMsg(func +" Model not loaded yet!");
-            logMsg(" name == " +APIIT.second->getName());
+            logMsg(" name == " +APIIT.second->getComponent()->getName());
             tempModel = load->loadModelFile(entityModelFileName, entityName, render);
 //            exit(0);
             if (tempModel != nullptr)
             {
                 logMsg(func + " Model loaded successfully!");
-                APIIT.second->setModel(tempModel);
-                APIIT.second->setModelLoaded(true);
+                APIIT.second->getComponent()->setModel(tempModel);
+                APIIT.second->getFlag()->setModelLoaded(true);
             }
             else
             {
@@ -409,29 +410,29 @@ playerEntityMSharedPtr setupPlayers::setupActivePlayerInstances(playerEntityMSha
                         
         }
         
-        if (!APIIT.second->getNodeCreated())
+        if (!APIIT.second->getFlag()->getNodeCreated())
         {
             OgreSceneNodeSharedPtr tempNode;
             logMsg(func +" Node not created yet!");
-            logMsg(func +" nodeName == " +APIIT.second->getNodeName());
-            if (APIIT.second->getNodeName().empty())
+            logMsg(func +" nodeName == " +APIIT.second->getComponent()->getNodeName());
+            if (APIIT.second->getComponent()->getNodeName().empty())
             {
-                std::string nodeName = APIIT.second->getName() + convert->toString(APIIT.second->getData()->getID());
-                APIIT.second->setNodeName(nodeName);
-                logMsg(func +" nodeName == " +APIIT.second->getNodeName());
+                std::string nodeName = APIIT.second->getComponent()->getName() + convert->toString(APIIT.second->getData()->getID());
+                APIIT.second->getComponent()->setNodeName(nodeName);
+                logMsg(func +" nodeName == " +APIIT.second->getComponent()->getNodeName());
             }
             else
             {
-                logMsg(func +" nodeName == " +APIIT.second->getNodeName());
+                logMsg(func +" nodeName == " +APIIT.second->getComponent()->getNodeName());
             }
-            tempNode = render->createNode(APIIT.second->getModel(), APIIT.second->getNodeName());
+            tempNode = render->createNode(APIIT.second->getComponent()->getModel(), APIIT.second->getComponent()->getNodeName());
             logMsg(func +" tempNode!");
 //            exit(0);
             if (tempNode != nullptr)
             {
                 logMsg(func + " Node created successfully!");
-                APIIT.second->setNode(tempNode);
-                APIIT.second->setNodeCreated(true);
+                APIIT.second->getComponent()->setNode(tempNode);
+                APIIT.second->getFlag()->setNodeCreated(true);
             }
             else
             {
@@ -479,7 +480,7 @@ playerEntityMSharedPtr setupPlayers::setupActivePlayerInstances(playerEntityMSha
                 if (!APIIT.second->getFlag()->getSMNodeSet())  // sets the value of node if it has not been set already
                 {
                     auto *SMData = new playerSMData;
-                    SMData->node = APIIT.second->getNode();
+                    SMData->node = APIIT.second->getComponent()->getNode();
                     APIIT.second->getFlag()->setStateChanged(true);
                     if (APIIT.second->updateStateMachine(SETNODE, SMData))
                     {
@@ -501,7 +502,7 @@ playerEntityMSharedPtr setupPlayers::setupActivePlayerInstances(playerEntityMSha
                 if (!APIIT.second->getFlag()->getSMModelSet())  // sets the value of model if it has not been set already
                 {
                     auto *SMData = new playerSMData;
-                    SMData->model = APIIT.second->getModel();
+                    SMData->model = APIIT.second->getComponent()->getModel();
                     APIIT.second->getFlag()->setStateChanged(true);
                     if (APIIT.second->updateStateMachine(SETMODEL, SMData))
                     {
@@ -531,7 +532,7 @@ playerEntityMSharedPtr setupPlayers::setupActivePlayerInstances(playerEntityMSha
             if (!APIIT.second->getFlag()->getSMNodeSet())  // sets the value of node if it has not been set already
             {
                 auto *SMData = new playerSMData;
-                SMData->node = APIIT.second->getNode();
+                SMData->node = APIIT.second->getComponent()->getNode();
                 APIIT.second->getFlag()->setStateChanged(true);
                 if (APIIT.second->updateStateMachine(SETNODE, SMData))
                 {
@@ -553,7 +554,7 @@ playerEntityMSharedPtr setupPlayers::setupActivePlayerInstances(playerEntityMSha
             if (!APIIT.second->getFlag()->getSMModelSet())  // sets the value of model if it has not been set already
             {
                 auto *SMData = new playerSMData;
-                SMData->model = APIIT.second->getModel();
+                SMData->model = APIIT.second->getComponent()->getModel();
                 APIIT.second->getFlag()->setStateChanged(true);
                 if (APIIT.second->updateStateMachine(SETMODEL, SMData))
                 {
@@ -577,8 +578,8 @@ playerEntityMSharedPtr setupPlayers::setupActivePlayerInstances(playerEntityMSha
     
     for (auto APIIT : activePlayerInstance)
     {
-        logMsg(func +" Entity Node Name == " +APIIT.second->getNodeName());
-        logMsg(func +" Node Name == " +APIIT.second->getNode()->getName());
+        logMsg(func +" Entity Node Name == " +APIIT.second->getComponent()->getNodeName());
+        logMsg(func +" Node Name == " +APIIT.second->getComponent()->getNode()->getName());
     }
 //    exit(0);
     logMsg(func +" end");

@@ -66,6 +66,7 @@ class basketballSteer;
 
 class conversion;
 
+class courtComponents;;
 class courtData;
 class courtEntity;
 class courtFlags;
@@ -96,7 +97,9 @@ class GUISystem;
 class GUIComponents;
 class guiFlags;
 
+class hoopComponents;
 class hoopEntity;
+class hoopFlags;
 //class hoopState;
 
 class inputEngine;
@@ -192,6 +195,8 @@ typedef sharedPtr<gameStateMachine> gameStateMachineSharedPtr;
 
 typedef sharedPtr<UBCComponents> UBCComponentsSharedPtr;
 
+typedef sharedPtr<courtComponents> courtComponentsSharedPtr;
+
 typedef sharedPtr<courtData> courtDataSharedPtr;
 
 typedef sharedPtr<courtFlags> courtFlagsSharedPtr;
@@ -228,7 +233,11 @@ typedef sharedPtr<courtEntity> courtEntitySharedPtr;
 
 typedef sharedPtr<gameEntity> gameEntitySharedPtr;
 
+typedef sharedPtr<hoopComponents> hoopComponentsSharedPtr;
+
 typedef sharedPtr<hoopEntity> hoopEntitySharedPtr;
+
+typedef sharedPtr<hoopFlags> hoopFlagsSharedPtr;
 
 typedef sharedPtr<playerEntity> playerEntitySharedPtr;
 

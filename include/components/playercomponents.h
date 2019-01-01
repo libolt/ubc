@@ -23,7 +23,9 @@
 
 #include "utilities/typedefs.h"
 
-class playerComponents
+#include "components/entitycomponents.h"
+
+class playerComponents : public entityComponents
 {
     public:
         playerComponents();  // constructor

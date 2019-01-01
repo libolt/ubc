@@ -25,7 +25,9 @@
 #endif
 
 #include "data/playerdata.h"
+#include "components/playercomponents.h"
 #include "entity/playerentity.h"
+#include "flags/playerflags.h"
 #include "state/playerstate.h"
 
 #include "utilities/conversion.h"
@@ -636,7 +638,7 @@ playerEntitySharedPtr loadPlayers::loadPlayerFile(const std::string &fileName)  
     playerInstance->initialize();
     if (firstName == "Xavier")
     {
-        if (playerInstance->getInitialized())
+        if (playerInstance->getFlag()->getInitialized())
         {
             logMsg(func +" " +firstName +" " +lastName + " playerEnt Initialized!");
         }
@@ -655,8 +657,8 @@ playerEntitySharedPtr loadPlayers::loadPlayerFile(const std::string &fileName)  
     playerInstance->getData()->setWeight(weight);
     playerInstance->getData()->setID(ID);
     playerInstance->getData()->setTeamID(teamID);
-    playerInstance->setName(firstName + lastName);
-    playerInstance->setModelFileName(modelName);
+    playerInstance->getComponent()->setName(firstName + lastName);
+    playerInstance->getComponent()->setModelFileName(modelName);
     playerInstance->getData()->setPrimaryPosition(primaryPosition);
     playerInstance->getData()->setSecondaryPosition(secondaryPosition);
     playerInstance->getData()->setShooting(shooting);

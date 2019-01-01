@@ -22,6 +22,7 @@
 
 #include "gui/gui.h"
 #include "utilities/conversion.h"
+#include "components/courtcomponents.h"
 #include "components/gamecomponents.h"
 #include "components/guicomponents.h"
 #include "components/teamcomponents.h"
@@ -32,6 +33,7 @@
 #include "entity/courtentity.h"
 #include "entity/playerentity.h"
 #include "entity/teamentity.h"
+#include "flags/courtflags.h"
 #include "flags/gameflags.h"
 #include "flags/teamflags.h"
 #include "setup/setupcourts.h"
@@ -89,10 +91,10 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
         {
             logMsg(func +" Court Data Initialized == " +convert->toString(courtInstance[0]->getData()->getInitialized()));
             logMsg(func +" Court Data Name == " +courtInstance[0]->getData()->getName());
-            logMsg(func +" Court Entity Name == " +courtInstance[0]->getName());
-            logMsg(func +" Court Entity modelFileName == " +courtInstance[0]->getModelFileName());
-            logMsg(func +" Court Entity Initialized == " +convert->toString(courtInstance[0]->getInitialized()));
-            logMsg(func +" Court Initialized == " +convert->toString(courtInstance[0]->getInitialized()));
+            logMsg(func +" Court Entity Name == " +courtInstance[0]->getComponent()->getName());
+            logMsg(func +" Court Entity modelFileName == " +courtInstance[0]->getComponent()->getModelFileName());
+            logMsg(func +" Court Entity Initialized == " +convert->toString(courtInstance[0]->getFlag()->getInitialized()));
+            logMsg(func +" Court Initialized == " +convert->toString(courtInstance[0]->getFlag()->getInitialized()));
             logMsg(func +" Game Initialized == " +convert->toString(gameInstance->getFlag()->getInitialized()));
 
             gameInstance->getComponent()->setCourtInstance(courtInstance);

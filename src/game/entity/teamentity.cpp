@@ -19,7 +19,9 @@
  ***************************************************************************/
 
 #include "entity/teamentity.h"
+#include "components/basketballcomponents.h"
 #include "components/gamecomponents.h"
+#include "components/playercomponents.h"
 #include "components/teamcomponents.h"
 #include "data/gamedata.h"
 #include "data/playerdata.h"
@@ -406,11 +408,11 @@ void teamEntity::updateState(const gameComponentsSharedPtr &gameInstanceComponen
 
                         //sets the basketball Height;
                         // FIXME! activeBasketballInstance HARDCODED
-                        bballPos = activeBasketballInstance[0]->getNode()->getPosition();
-                        playerPos = activePlayerInstance[instanceWithBall]->getNode()->getPosition();
+                        bballPos = activeBasketballInstance[0]->getComponent()->getNode()->getPosition();
+                        playerPos = activePlayerInstance[instanceWithBall]->getComponent()->getNode()->getPosition();
                         bballPos[1] = playerPos[1];
                         // FIXME! activeBasketballInstance HARDCODED
-                        activeBasketballInstance[0]->getNode()->setPosition(bballPos);
+                        activeBasketballInstance[0]->getComponent()->getNode()->setPosition(bballPos);
 
                     }
                     else if (activePlayerInstance[instanceWithBall]->getFlag()->getPassCalculated())

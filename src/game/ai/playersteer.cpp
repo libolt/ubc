@@ -23,6 +23,7 @@
 #include "ai/playersteer.h"
 #include "ai/ai.h"
 #include "utilities/conversion.h"
+#include "components/basketballcomponents.h"
 #include "components/playercomponents.h"
 #include "components/teamcomponents.h"
 #include "data/playergamedata.h"
@@ -439,7 +440,7 @@ void playerSteer::update(const float currentTime, float elapsedTime)  // update 
 	//OpenSteer::Vec3 m_home = playerSteerPos;
 //    OpenSteer::Vec3 bballSteerPos = convert->toOpenSteerVec3(basketball[0].getNodePosition());
 //GAMESREMOVAL    OpenSteer::Vec3 bballSteerPos = convert->toOpenSteerVec3(gameS->getBBallNodePosition());
-    OpenSteer::Vec3 bballSteerPos = convert->toOpenSteerVec3(activeBasketballInstance[0]->getNode()->getPosition());
+    OpenSteer::Vec3 bballSteerPos = convert->toOpenSteerVec3(activeBasketballInstance[0]->getComponent()->getNode()->getPosition());
 
     logMsg("upDie?????");
 // 	logMsg("playerSteerPos = " +convert->toString(toOgreVector3(playerSteerPos)));

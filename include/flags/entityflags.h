@@ -47,8 +47,8 @@ class entityFlags
         bool getModelLoaded() const;  // retrieves the value of modelLoaded
         void setModelLoaded(const bool &set);  // sets the value of modelLoaded
 
-        bool getNodeCreated() const;  // retrieves the value of nodeaCreated
-        void setNodeCreated(const bool $set);  // sets the value of nodeCreated
+        bool getNodeCreated() const;  // retrieves the value of nodeCreated
+        void setNodeCreated(const bool &set);  // sets the value of nodeCreated
 
     private:
     

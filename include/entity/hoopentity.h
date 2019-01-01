@@ -25,12 +25,27 @@
 
 //class entity;
 
+class hoopComponents;
+
 class hoopEntity : public entity
 {
     public:
     hoopEntity();  // constructor
     ~hoopEntity();  // destructor
+    
+    hoopComponentsSharedPtr getComponent();  // retrieves the value of component
+    void setComponent(hoopComponentsSharedPtr set);  // sets the value of component
+    
+    hoopFlagsSharedPtr getFlag();  // retrieves the value of flag
+    void setFlag(hoopFlagsSharedPtr set);  // sets the value of flag
+ 
+    bool initialize();  // initializes hoop entity objects
+    
     private:
+    
+    hoopComponentsSharedPtr component;  // stores the hoopComponents object
+    hoopFlagsSharedPtr flag;  // stores the hoopFlags object
+
 };
 
 #endif // _HOOPENTITY_H_

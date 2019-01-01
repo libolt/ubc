@@ -30,6 +30,7 @@
 #include "entity/basketballentity.h"
 #include "entity/playerentity.h"
 #include "entity/teamentity.h"
+#include "flags/playerflags.h"
 #include "physics/basketballphysics.h"
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
@@ -75,7 +76,7 @@ bool jumpBallsExecute::executeJump(const gameComponentsSharedPtr &component)  //
             {
                 logMsg(func +" jumpPlayerInstance = " +convert->toString(APIIT.first));
                  // logMsg("PlayerName = " +activePlayerInstance[x][i].getPlayerName());
-                logMsg(func +" ModelLoaded = " +convert->toString(APIIT.second->getModelLoaded()));
+                logMsg(func +" ModelLoaded = " +convert->toString(APIIT.second->getFlag()->getModelLoaded()));
     //                    exit(0);
                 //jumpPlayerID.push_back(activePlayerInstance[i].getPlayerID());
                 jumpPlayerInstance.insert(std::pair<size_t, playerEntitySharedPtr>(APIIT.first, APIIT.second));

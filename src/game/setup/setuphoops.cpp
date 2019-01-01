@@ -20,7 +20,9 @@
 
 #include "setup/setuphoops.h"
 #include "load/loadhoops.h"
+#include "components/hoopcomponents.h"
 #include "entity/hoopentity.h"
+#include "flags/hoopflags.h"
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
 
@@ -95,16 +97,16 @@ hoopEntityMSharedPtr setupHoops::createActiveHoopInstances(hoopEntityMSharedPtr 
     {
 
     }
-    logMsg(func + "name 0 == " +hoopInstance[0]->getName());
-//    logMsg(func + "name 1 == " +hoopInstance[1]->getName());
+    logMsg(func + "name 0 == " +hoopInstance[0]->getComponent()->getName());
+//    logMsg(func + "name 1 == " +hoopInstance[1]->getComponent()->getName());
 
     
     for (x=0;x<numActiveHoops; ++x)
     {
         activeHoopInstance.insert(std::pair<size_t, hoopEntitySharedPtr>(x, hoopInstance[x]));
 //        logMsg(func +" glee!");
-        logMsg(func + " hoopInstance name == " +hoopInstance[x]->getName());
-        logMsg(func + " activeHoopInstance name == " +activeHoopInstance[x]->getName());
+        logMsg(func + " hoopInstance name == " +hoopInstance[x]->getComponent()->getName());
+        logMsg(func + " activeHoopInstance name == " +activeHoopInstance[x]->getComponent()->getName());
 
     }
 //    exit(0);
@@ -143,18 +145,18 @@ hoopEntityMSharedPtr setupHoops::setHoopStartPositions(hoopEntityMSharedPtr acti
 
     logMsg(func +" begin");
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-    activeHoopInstance[0]->getNode()->setPosition(45.0f,-6.5f,370.0f);
-    activeHoopInstance[1]->getNode()->setPosition(-45.0f,-6.5f,370.0f);
+    activeHoopInstance[0]->getComponent()->getNode()->setPosition(45.0f,-6.5f,370.0f);
+    activeHoopInstance[1]->getComponent()->getNode()->setPosition(-45.0f,-6.5f,370.0f);
 #else
-    activeHoopInstance[0]->getNode()->setPosition(45.0f,-23.5f,370.0f);
-    activeHoopInstance[1]->getNode()->setPosition(-45.0f,-23.5f,370.0f);
+    activeHoopInstance[0]->getComponent()->getNode()->setPosition(45.0f,-23.5f,370.0f);
+    activeHoopInstance[1]->getComponent()->getNode()->setPosition(-45.0f,-23.5f,370.0f);
 #endif
 
     Ogre::Quaternion hoop0Rotation(Ogre::Degree(-90), Ogre::Vector3::UNIT_Y);
-    activeHoopInstance[0]->getNode()->rotate(hoop0Rotation);
+    activeHoopInstance[0]->getComponent()->getNode()->rotate(hoop0Rotation);
 
     Ogre::Quaternion hoop1Rotation(Ogre::Degree(90), Ogre::Vector3::UNIT_Y);
-    activeHoopInstance[1]->getNode()->rotate(hoop1Rotation);
+    activeHoopInstance[1]->getComponent()->getNode()->rotate(hoop1Rotation);
 
     logMsg(func +" end");
     

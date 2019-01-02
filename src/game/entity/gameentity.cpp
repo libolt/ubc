@@ -20,7 +20,6 @@
 
 #include "entity/gameentity.h"
 #include <unordered_map>
-//#include "boost/shared_array.hpp"
 #include "engine/networkengine.h"
 #include "ai/ai.h"
 #include "ai/basketballsteer.h"
@@ -46,13 +45,8 @@
 #include "setup/setupplayers.h"
 #include "setup/setupteams.h"
 #include "statemachine/gamestatemachine.h"
-//#include "state/basketballstate.h"
-//#include "state/courtstate.h"
 #include "entity/gameentity.h"
-
 #include "state/networkstate.h"
-#include "state/playerstate.h"
-//#include "state/teamstate.h"
 #include "engine/gameengine.h"
 #include "load/loadbasketballs.h"
 #include "load/loadcourts.h"

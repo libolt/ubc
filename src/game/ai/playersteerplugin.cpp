@@ -30,17 +30,12 @@
 #include "components/teamcomponents.h"
 #include "data/playergamedata.h"
 #include "data/teamdata.h"
-
 #include "entity/courtentity.h"
 #include "entity/playerentity.h"
 #include "entity/teamentity.h"
 #include "flags/playerflags.h"
 #include "flags/teamflags.h"
-//#include "state/basketballstate.h"
-//#include "state/courtstate.h"
 #include "entity/gameentity.h"
-//#include "state/teamstate.h"
-#include "state/playerstate.h"
 #include "utilities/logging.h"
 #include "utilities/typedefs.h"
 

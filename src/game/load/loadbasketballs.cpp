@@ -306,6 +306,9 @@ basketballEntitySharedPtr loadBasketballs::loadFile(const std::string &fileName)
         }
     }
 
+    basketballFlagsSharedPtr tempFlag(new basketballFlags);
+    basketballInstance->setFlag(tempFlag);
+
     if (!basketballInstance->getFlag()->getInitialized())
     {
         if (basketballInstance->initializeStateMachine())

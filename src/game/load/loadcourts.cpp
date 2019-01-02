@@ -300,7 +300,7 @@ courtEntitySharedPtr loadCourts::loadCourtFile(const std::string &fileName)  // 
         logMsg(func +" Unable to load court element");
         //exit(0);
     }
-
+    
     child = rootElement->FirstChild()->ToElement();
     if (child)
     {
@@ -432,6 +432,8 @@ courtEntitySharedPtr loadCourts::loadCourtFile(const std::string &fileName)  // 
     Ogre::Vector2 baselineInboundPos = Ogre::Vector2(baselineInboundXPos,baselineInboundZPos);
     Ogre::Vector2 sidelineInboundPos = Ogre::Vector2(sidelineInboundXPos,sidelineInboundZPos);
 
+    courtFlagsSharedPtr tempFlag(new courtFlags);
+    courtInstance->setFlag(tempFlag);
     
     if (!courtInstance->getFlag()->getInitialized())
     {

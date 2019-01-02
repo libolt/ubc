@@ -23,7 +23,6 @@
 //#include "state/basketballstate.h"
 //#include "state/courtstate.h"
 #include "entity/entity.h"
-#include "state/playerstate.h"
 //#include "state/teamstate.h"
 
 basketballSteer::basketballSteer()  // constructor

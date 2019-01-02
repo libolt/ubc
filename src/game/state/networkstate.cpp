@@ -22,8 +22,6 @@
 #include "utilities/enums.h"
 #include "utilities/logging.h"
 #include "state/networkstate.h"
-#include "state/playerstate.h"
-//#include "state/teamstate.h"
 #include "network/networkplayerstateobject.h"
 #include "data/teamgamedata.h"
 #include "engine/networkengine.h"

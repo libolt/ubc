@@ -35,7 +35,6 @@
 #include "flags/offenseflags.h"
 #include "entity/gameentity.h"
 #include "utilities/logging.h"
-#include "state/playerstate.h"
 //#include "state/teamstate.h"
 #include "offense/offense.h"
 #include "offense/offenseplays.h"

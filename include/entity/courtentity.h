@@ -43,7 +43,10 @@ class courtEntity : public entity
         courtFlagsSharedPtr getFlag() const;  // retrieves the value of flag
         void setFlag(const courtFlagsSharedPtr &set);  // sets the value of flag
       
-        bool initialize();  // initializes the court entity object
+        courtStateMachineSharedPtr getStateMachine() const;  // retrieves the value of stateMachine
+        void setStateMachine(const courtStateMachineSharedPtr &set);  // sets the value of stateMachine
+
+        bool initializeStateMachine();  // initializes the court entity object
 
         bool setupPhysicsObject();  // sets up the physics object
 
@@ -52,7 +55,7 @@ class courtEntity : public entity
         courtComponentsSharedPtr component;  // stores the court components object
         courtDataSharedPtr data;  // stores the court data object
         courtFlagsSharedPtr flag;  // stores the court flags object
-
+        courtStateMachineSharedPtr stateMachine;  // // stores the court stateMachine object
 };
 
 #endif // _COURTENTITY_H_

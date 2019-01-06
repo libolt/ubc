@@ -203,6 +203,8 @@ typedef sharedPtr<courtFlags> courtFlagsSharedPtr;
 
 typedef sharedPtr<courtPhysics> courtPhysicsSharedPtr;
 
+typedef sharedPtr<courtStateMachine> courtStateMachineSharedPtr;
+
 typedef sharedPtr<gameData> gameDataSharedPtr;
 
 typedef sharedPtr<playerComponents> playerComponentsSharedPtr;

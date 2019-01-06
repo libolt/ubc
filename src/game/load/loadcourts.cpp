@@ -438,7 +438,7 @@ courtEntitySharedPtr loadCourts::loadCourtFile(const std::string &fileName)  // 
     if (!courtInstance->getFlag()->getInitialized())
     {
         logMsg(func +" Initalizing courtInstance!");
-        if (courtInstance->initialize())
+        if (courtInstance->initializeStateMachine())
         {
             logMsg(func +" Court Initialized!");
             courtInstance->getFlag()->setInitialized(true);

@@ -22,8 +22,8 @@
 #include "entity/courtentity.h"
 #include "data/courtdata.h"
 #include "flags/courtflags.h"
-
 #include "physics/courtphysics.h"
+#include "statemachine/courtstatemachine.h"
 
 courtEntity::courtEntity()  // constructor
 {
@@ -59,10 +59,26 @@ void courtEntity::setFlag(const courtFlagsSharedPtr &set)  // sets the value of 
     flag = set;
 }
 
-bool courtEntity::initialize()  // initializes the court entity object
+bool courtEntity::initializeStateMachine()  // initializes the court entity object
 {
    
-    courtComponentsSharedPtr tempComponent(new courtComponents);
+    courtStateMachineSharedPtr tempStateMachine(new courtStateMachine);
+    stateMachine = tempStateMachine;
+ 
+    courtSMData *initSMData(new courtSMData);
+    
+    initSMData->component = component;
+    initSMData->cData = data;
+    initSMData->flag = flag;
+    
+    stateMachine->pInitialize(initSMData);
+    
+    courtSMData *initCSMData(new courtSMData);
+    
+    initCSMData->component = component;
+    stateMachine->pInitializeComponents(initCSMData);
+
+/*    courtComponentsSharedPtr tempComponent(new courtComponents);
     component = tempComponent;
           
     courtDataSharedPtr tempData(new courtData);
@@ -73,6 +89,7 @@ bool courtEntity::initialize()  // initializes the court entity object
     
     courtPhysicsSharedPtr tempPhysics(new courtPhysics);
     component->setPhysics(tempPhysics);
+*/
 
     return (true);
 }

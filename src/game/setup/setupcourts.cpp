@@ -106,7 +106,7 @@ courtEntityMSharedPtr setupCourts::createActiveCourtInstances(courtEntityMShared
     activeCourtInstance.insert(std::pair<size_t, courtEntitySharedPtr>(0, courtInstance[0]));
     if (!activeCourtInstance[0]->getFlag()->getInitialized())
     {
-        if (activeCourtInstance[0]->initialize())
+        if (activeCourtInstance[0]->initializeStateMachine())
         {
             activeCourtInstance[0]->getFlag()->setInitialized(true);
         }

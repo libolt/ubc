@@ -22,7 +22,18 @@
 
 courtFlags::courtFlags()  // constructor
 {
+    dataInitialized = false;
 }
 
 courtFlags::~courtFlags() = default;  // denstructor
+
+
+bool courtFlags::getDataInitialized() const  // retrieves the value of dataInitialized
+{
+    return (dataInitialized);
+}
+void courtFlags::setDataInitialized(const bool &set)  // sets the value of dataInitialized
+{
+    dataInitialized = set;
+}
 

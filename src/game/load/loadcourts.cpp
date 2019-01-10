@@ -454,8 +454,9 @@ courtEntitySharedPtr loadCourts::loadCourtFile(const std::string &fileName)  // 
         logMsg(func +" courtInstance already Initialized!");
     }
     
-    courtInstance->getData()->setInitialized(true);
+    courtInstance->getFlag()->setDataInitialized(true);  
     courtInstance->getData()->setName(name);
+    exit(0);
 //    logMsg(func +" dah");
     courtInstance->getData()->setModelFileName(modelName);
     courtInstance->getData()->setBoundary(boundary);

@@ -22,7 +22,7 @@
 
 courtData::courtData()  // constructor
 {
-    initialized = false;
+
     name = "";
     modelFileName = "";
     dimensions = Ogre::Vector2(0,0);
@@ -49,15 +49,6 @@ std::string courtData::getName() const  // retrieves the value of name
 void courtData::setName(const std::string &set)  // sets the value of name
 {
     name = set;
-}
-
-bool courtData::getInitialized() const  // retrieves the value of initialized
-{
-    return (initialized);
-}
-void courtData::setInitialized(const bool &set)  // sets the value of initialized
-{
-    initialized = set;
 }
 
 std::string courtData::getModelFileName() const  // retrieves the value of modelFileName;

@@ -86,7 +86,7 @@ bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Select
         courtInstance = setupCourt->createCourtInstances();
         if (!courtInstance.empty())
         {
-            logMsg(func +" Court Data Initialized == " +convert->toString(courtInstance[0]->getData()->getInitialized()));
+            logMsg(func +" Court Data Initialized == " +convert->toString(courtInstance[0]->getFlag()->getDataInitialized()));
             logMsg(func +" Court Data Name == " +courtInstance[0]->getData()->getName());
             logMsg(func +" Court Entity Name == " +courtInstance[0]->getComponent()->getName());
             logMsg(func +" Court Entity modelFileName == " +courtInstance[0]->getComponent()->getModelFileName());

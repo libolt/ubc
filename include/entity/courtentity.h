@@ -53,7 +53,7 @@ class courtEntity : public entity
     private:
      
         courtComponentsSharedPtr component;  // stores the court components object
-        courtDataSharedPtr data;  // stores the court data object
+        const courtDataSharedPtr data;  // stores the court data object
         courtFlagsSharedPtr flag;  // stores the court flags object
         courtStateMachineSharedPtr stateMachine;  // // stores the court stateMachine object
 };

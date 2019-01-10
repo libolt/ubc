@@ -143,6 +143,9 @@ STATE_DEFINE(courtStateMachine, Initialize, courtSMData)
     courtFlagsSharedPtr tempFlag(new courtFlags);
     data->flag = tempFlag;
     
+    sharedPtr<courtPhysics> tempPhysics(new courtPhysics);
+    data->component->setPhysics(tempPhysics);   
+
     logMsg(func +" end");
     
 //    internalEvent(ST_INITIALIZE_COMPONENTS);
@@ -167,9 +170,6 @@ STATE_DEFINE(courtStateMachine, InitializeComponents, courtSMData)
     data->flag = tempFlag;
 */
 
-    sharedPtr<courtPhysics> tempPhysics(new courtPhysics);
-    data->component->setPhysics(tempPhysics);
-    exit(0);
 
         logMsg(func +" end");
 

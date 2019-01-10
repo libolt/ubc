@@ -30,8 +30,13 @@ class courtFlags : public entityFlags
         courtFlags();  // constructor
         ~courtFlags();  // destructor
 
+        bool getDataInitialized() const;  // retrieves the value of dataInitialized
+        void setDataInitialized(const bool &set);  // sets the value of dataInitialized
+
     private:
-          
+
+        bool dataInitialized;  // stores whether the data object has been initialized.
+
 };
 
 #endif

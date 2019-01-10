@@ -31,9 +31,6 @@ public:
     courtData();    // constructor
     ~courtData();   // destructor
 
-    bool getInitialized() const;  // retrieves the value of initialized
-    void setInitialized(const bool &set);  // sets the value of initialized
-
     std::string getName() const;  // retrieves the value of name
     void setName(const std::string &set);  // sets the value of name
     
@@ -79,7 +76,6 @@ public:
 protected:
 private:
 
-    bool initialized;  // stores whether the object has been initialized.
     std::string name;  // stores the name of the court
     std::string modelFileName;   // stores the file name of the court 3D model
     Ogre::Vector2 dimensions;  // stores the length and width of the court

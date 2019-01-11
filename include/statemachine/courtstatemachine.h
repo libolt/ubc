@@ -32,10 +32,13 @@ public:
     void setComponent(const courtComponentsSharedPtr &set);  // sets the value of component
 
     courtDataSharedPtr getCData() const;  // retrieves the value of cData
-    void setCData(courtDataSharedPtr set);  // sets the value of cData
+    void setCData(const courtDataSharedPtr &set);  // sets the value of cData
 
     courtFlagsSharedPtr getFlag() const;  // retrieves the value of flag
-    void setFlag(courtFlagsSharedPtr &set) const;  // sets the value of flag
+    void setFlag(const courtFlagsSharedPtr &set);  // sets the value of flag
+
+    OgreEntitySharedPtr model;  // stores 3d model
+    OgreSceneNodeSharedPtr node;  // stores node 3d model is attached to
 
 private:
     courtComponentsSharedPtr component;  // stores copy of courtComponents object
@@ -46,8 +49,6 @@ private:
     gameDataSharedPtr gData;  // stores copy of gameData object
     gameFlagsSharedPtr gFlag;  // stores copy of gameFlag object
 */
-    OgreEntitySharedPtr model;  // stores 3d model
-    OgreSceneNodeSharedPtr node;  // stores node 3d model is attached to
 
 };
 

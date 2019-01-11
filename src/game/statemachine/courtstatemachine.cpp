@@ -50,7 +50,7 @@ courtDataSharedPtr courtSMData::getCData() const  // retrieves the value of cDat
 {
     return (cData);
 }
-void courtSMData::setCData(courtDataSharedPtr set)  // sets the value of cData
+void courtSMData::setCData(const courtDataSharedPtr &set)  // sets the value of cData
 {
     cData = set;
 }
@@ -59,7 +59,7 @@ courtFlagsSharedPtr courtSMData::getFlag() const  // retrieves the value of flag
 {
     return (flag);
 }
-void courtSMData::setFlag(courtFlagsSharedPtr &set)  // sets the value of flag
+void courtSMData::setFlag(const courtFlagsSharedPtr &set)  // sets the value of flag
 {
     flag = set;
 }
@@ -209,8 +209,8 @@ STATE_DEFINE(courtStateMachine, SetupPhysics, courtSMData)
     std::string func = "courtStateMachine::setupPhysics()";
     OgreEntitySharedPtr tempModel = data->model;
     OgreSceneNodeSharedPtr tempNode = data->node;
-    courtComponentsSharedPtr component = data->component;
-    courtFlagsSharedPtr flag = data->flag;
+    courtComponentsSharedPtr component = data->getComponent();
+    courtFlagsSharedPtr flag = data->getFlag();
     btRigidBody *tempPhysBody = component->getPhysics()->getPhysBody().get();
     bool returnType = false;
     

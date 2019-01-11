@@ -37,6 +37,33 @@ courtStateMachine::courtStateMachine() :
 {
 }
     
+courtComponentsSharedPtr courtSMData::getComponent() const  // retrieves the value of component
+{
+    return (component);
+}
+void courtSMData::setComponent(const courtComponentsSharedPtr &set)  // sets the value of component
+{
+    component = set;
+}
+
+courtDataSharedPtr courtSMData::getCData() const  // retrieves the value of cData
+{
+    return (cData);
+}
+void courtSMData::setCData(courtDataSharedPtr set)  // sets the value of cData
+{
+    cData = set;
+}
+
+courtFlagsSharedPtr courtSMData::getFlag() const  // retrieves the value of flag
+{
+    return (flag);
+}
+void courtSMData::setFlag(courtFlagsSharedPtr &set)  // sets the value of flag
+{
+    flag = set;
+}
+
 // Initialize state machine external event
 void courtStateMachine::pInitialize(courtSMData *data)
 {
@@ -135,16 +162,16 @@ STATE_DEFINE(courtStateMachine, Initialize, courtSMData)
     logMsg(func +" begin");
     
     courtDataSharedPtr tempData(new courtData);
-    data->cData = tempData;
+    data->setCData(tempData);
 
     courtComponentsSharedPtr tempComponent(new courtComponents);
-    data->component = tempComponent;
+    data->setComponent(tempComponent);
 
     courtFlagsSharedPtr tempFlag(new courtFlags);
-    data->flag = tempFlag;
+    data->setFlag(tempFlag);
     
     sharedPtr<courtPhysics> tempPhysics(new courtPhysics);
-    data->component->setPhysics(tempPhysics);   
+    data->getComponent()->setPhysics(tempPhysics);
 
     logMsg(func +" end");
     

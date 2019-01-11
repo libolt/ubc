@@ -136,8 +136,8 @@ courtEntityMSharedPtr setupCourts::setCourtStartPositions(courtEntityMSharedPtr 
     logMsg(func +" courtPosition");
 //exit(0);
 #else
-    courtInstance[0]->getNode()->setPosition(0.0f,-27.5f,360.0f);
-    courtInstance[0]->setNodePosition(Ogre::Vector3(0.0f,-27.5f,360.0f));
+    courtInstance[0]->getComponent()->getNode()->setPosition(0.0f,-27.5f,360.0f);
+    courtInstance[0]->getComponent()->setNodePosition(Ogre::Vector3(0.0f,-27.5f,360.0f));
 #endif
 
     return (courtInstance);

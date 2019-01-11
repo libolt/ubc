@@ -67,15 +67,15 @@ bool courtEntity::initializeStateMachine()  // initializes the court entity obje
  
     courtSMData *initSMData(new courtSMData);
     
-    initSMData->component = component;
-    initSMData->cData = data;
-    initSMData->flag = flag;
+    initSMData->setComponent(component);
+    initSMData->setCData(data);
+    initSMData->setFlag(flag);
     
     stateMachine->pInitialize(initSMData);
     
     courtSMData *initCSMData(new courtSMData);
     
-    initCSMData->component = component;
+    initCSMData->setComponent(component);
     stateMachine->pInitializeComponents(initCSMData);
 
 /*    courtComponentsSharedPtr tempComponent(new courtComponents);

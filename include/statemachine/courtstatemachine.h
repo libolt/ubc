@@ -28,9 +28,19 @@ class courtSMData : public eventData
 {
 public:
 
-    const courtComponentsSharedPtr component;  // stores copy of courtComponents object
-    const courtDataSharedPtr cData;  // stores copy of courtData object
-    const courtFlagsSharedPtr flag;  // stores copy of courtFlags object
+    courtComponentsSharedPtr getComponent() const;  // retrieves the value of component
+    void setComponent(const courtComponentsSharedPtr &set);  // sets the value of component
+
+    courtDataSharedPtr getCData() const;  // retrieves the value of cData
+    void setCData(courtDataSharedPtr set);  // sets the value of cData
+
+    courtFlagsSharedPtr getFlag() const;  // retrieves the value of flag
+    void setFlag(courtFlagsSharedPtr &set) const;  // sets the value of flag
+
+private:
+    courtComponentsSharedPtr component;  // stores copy of courtComponents object
+    courtDataSharedPtr cData;  // stores copy of courtData object
+    courtFlagsSharedPtr flag;  // stores copy of courtFlags object
 //    courtPhysicsSharedPtr physics;  // stores copy of courtPhysics object
 /*    gameComponentsSharedPtr gComponent;  // stores copy of gameComponent object
     gameDataSharedPtr gData;  // stores copy of gameData object

@@ -28,22 +28,14 @@ class courtSMData : public eventData
 {
 public:
 
-    courtComponentsSharedPtr getComponent() const;  // retrieves the value of component
-    void setComponent(const courtComponentsSharedPtr &set);  // sets the value of component
-
-    courtDataSharedPtr getCData() const;  // retrieves the value of cData
-    void setCData(const courtDataSharedPtr &set);  // sets the value of cData
-
-    courtFlagsSharedPtr getFlag() const;  // retrieves the value of flag
-    void setFlag(const courtFlagsSharedPtr &set);  // sets the value of flag
+    courtComponentsSharedPtr component;  // stores copy of courtComponents object
+    courtDataSharedPtr cData;  // stores copy of courtData object
+    courtFlagsSharedPtr flag;  // stores copy of courtFlags object
 
     OgreEntitySharedPtr model;  // stores 3d model
     OgreSceneNodeSharedPtr node;  // stores node 3d model is attached to
 
 private:
-    courtComponentsSharedPtr component;  // stores copy of courtComponents object
-    courtDataSharedPtr cData;  // stores copy of courtData object
-    courtFlagsSharedPtr flag;  // stores copy of courtFlags object
 //    courtPhysicsSharedPtr physics;  // stores copy of courtPhysics object
 /*    gameComponentsSharedPtr gComponent;  // stores copy of gameComponent object
     gameDataSharedPtr gData;  // stores copy of gameData object
@@ -59,7 +51,7 @@ public:
 
     // External events taken by this state machine
     void setSpeed(courtSMData *data);
-    void pInitialize(courtSMData *data);
+    void pInitialize(const courtSMData *data);
     void pInitializeComponents(courtSMData *data);
     void pSetupPhysics(courtSMData *data);
     void pUpdatePosition(courtSMData *data);

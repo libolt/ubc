@@ -35,37 +35,10 @@ courtStateMachine::courtStateMachine() :
     stateMachine(ST_MAX_STATES),
     m_currentSpeed(0)
 {
-}
-    
-courtComponentsSharedPtr courtSMData::getComponent() const  // retrieves the value of component
-{
-    return (component);
-}
-void courtSMData::setComponent(const courtComponentsSharedPtr &set)  // sets the value of component
-{
-    component = set;
-}
-
-courtDataSharedPtr courtSMData::getCData() const  // retrieves the value of cData
-{
-    return (cData);
-}
-void courtSMData::setCData(const courtDataSharedPtr &set)  // sets the value of cData
-{
-    cData = set;
-}
-
-courtFlagsSharedPtr courtSMData::getFlag() const  // retrieves the value of flag
-{
-    return (flag);
-}
-void courtSMData::setFlag(const courtFlagsSharedPtr &set)  // sets the value of flag
-{
-    flag = set;
-}
+}    
 
 // Initialize state machine external event
-void courtStateMachine::pInitialize(courtSMData *data)
+void courtStateMachine::pInitialize(const courtSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_INITIALIZE       
@@ -160,18 +133,22 @@ STATE_DEFINE(courtStateMachine, Initialize, courtSMData)
     std::string func = "courtStateMachine::Initialize()";
 
     logMsg(func +" begin");
-    
-    courtDataSharedPtr tempData(new courtData);
-    data->setCData(tempData);
+
+    courtSMData *tempSMData(new courtSMData);
 
     courtComponentsSharedPtr tempComponent(new courtComponents);
-    data->setComponent(tempComponent);
+    tempSMData->component = tempComponent;
+
+    courtDataSharedPtr tempData(new courtData);
+    tempSMData->cData = tempData;
 
     courtFlagsSharedPtr tempFlag(new courtFlags);
-    data->setFlag(tempFlag);
+    tempSMData->flag = tempFlag;
+
+    data = tempSMData;
     
     sharedPtr<courtPhysics> tempPhysics(new courtPhysics);
-    data->getComponent()->setPhysics(tempPhysics);
+    data->component->setPhysics(tempPhysics);
 
     logMsg(func +" end");
     
@@ -209,8 +186,8 @@ STATE_DEFINE(courtStateMachine, SetupPhysics, courtSMData)
     std::string func = "courtStateMachine::setupPhysics()";
     OgreEntitySharedPtr tempModel = data->model;
     OgreSceneNodeSharedPtr tempNode = data->node;
-    courtComponentsSharedPtr component = data->getComponent();
-    courtFlagsSharedPtr flag = data->getFlag();
+    courtComponentsSharedPtr component = data->component;
+    courtFlagsSharedPtr flag = data->flag;
     btRigidBody *tempPhysBody = component->getPhysics()->getPhysBody().get();
     bool returnType = false;
     
@@ -242,9 +219,14 @@ STATE_DEFINE(courtStateMachine, SetupPhysics, courtSMData)
         logMsg(func +" nodeName == " +tempNode->getName());
 
 //        exit(0);
-        data->model = OgreEntitySharedPtr(tempModel);
-        data->node = OgreSceneNodeSharedPtr(tempNode);
+
         component->getPhysics()->setPhysBody(btRigidBodySharedPtr(tempPhysBody));
+
+        courtSMData *tempSMData(new courtSMData);
+        tempSMData->model = OgreEntitySharedPtr(tempModel);
+        tempSMData->node = OgreSceneNodeSharedPtr(tempNode);
+        tempSMData->component = component;
+        data = tempSMData;
 //        exit(0);
         returnType = true;;
 

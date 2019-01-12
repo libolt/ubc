@@ -134,18 +134,21 @@ STATE_DEFINE(basketballStateMachine, Initialize, basketballSMData)
 
     logMsg(func +" begin");
 
+    basketballSMData *tempSMData(new basketballSMData);
+
     basketballDataSharedPtr tempData(new basketballData);
-    data->bData = tempData;
+    tempSMData->bData = tempData;
 
     basketballComponentsSharedPtr tempComponent(new basketballComponents);
-    data->component = tempComponent;
+    tempSMData->component = tempComponent;
 
     basketballFlagsSharedPtr tempFlag(new basketballFlags);
-    data->flag = tempFlag;
+    tempSMData->flag = tempFlag;
 
     sharedPtr<basketballPhysics> tempPhysics(new basketballPhysics);
-    data->physics = tempPhysics;
+    tempSMData->physics = tempPhysics;
 
+    data = tempSMData;
 /*    basketballEntitySharedPtr tempEntity(new basketballEntity);
     entity = tempEntity;
 
@@ -206,9 +209,15 @@ STATE_DEFINE(basketballStateMachine, SetupPhysics, basketballSMData)
         logMsg(func +" nodeName == " +tempNode->getName());
 
 //        exit(0);
-        data->model = OgreEntitySharedPtr(tempModel);
-        data->node = OgreSceneNodeSharedPtr(tempNode);
         component->getPhysics()->setPhysBody(btRigidBodySharedPtr(tempPhysBody));
+
+        basketballSMData *tempSMData(new basketballSMData);
+
+        tempSMData->model = OgreEntitySharedPtr(tempModel);
+        tempSMData->node = OgreSceneNodeSharedPtr(tempNode);
+        tempSMData->component = component;
+
+        data = tempSMData;
 //        exit(0);
         returnType = true;;
 
@@ -343,10 +352,14 @@ STATE_DEFINE(basketballStateMachine, UpdatePosition, basketballSMData)
     physBody->translate(change); // moves physics body in unison with the model
 */
 
-    data->component = component;
-    data->flag = flag;
-    data->node = node;
+    basketballSMData *tempSMData(new basketballSMData);
+
+    tempSMData->component = component;
+    tempSMData->flag = flag;
+    tempSMData->node = node;
     
+    data = tempSMData;
+
     logMsg(func + " end");
     
 }
@@ -426,9 +439,11 @@ TS*/
         //basketballInstance[activeBBallInstance].setMovement(false);
         //basketballInstance[activeBBallInstance] = bballInstance;
 
-    data->component = component;
-    data->flag = flag;
+    basketballSMData *tempSMData(new basketballSMData);
 
+    tempSMData->component = component;
+    tempSMData->flag = flag;
+    data = tempSMData;
     logMsg(func + " end");
 }
 
@@ -552,10 +567,14 @@ TS*/
 TS*/
     gameComponent->setJumpBall(jumpBall);
     
-    data->gComponent = gameComponent;
-    data->gData = gameData;
-    data->gFlag = gameFlag;
+    basketballSMData *tempSMData(new basketballSMData);
+
+    tempSMData->gComponent = gameComponent;
+    tempSMData->gData = gameData;
+    tempSMData->gFlag = gameFlag;
     
+    data = tempSMData;
+
     logMsg(func + " end");
 
 }

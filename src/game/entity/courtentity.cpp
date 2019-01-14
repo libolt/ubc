@@ -67,6 +67,16 @@ bool courtEntity::initializeStateMachine()  // initializes the court entity obje
  
     courtSMData *initSMData(new courtSMData);
     
+    courtComponentsSharedPtr tempComponent(new courtComponents);
+    component = tempComponent;
+          
+    courtDataSharedPtr tempData(new courtData);
+    data = tempData;
+    
+    courtFlagsSharedPtr tempFlag(new courtFlags);
+    flag = tempFlag;
+    
+    
     initSMData->component = component;
     initSMData->cData = data;
     initSMData->flag = flag;
@@ -78,18 +88,10 @@ bool courtEntity::initializeStateMachine()  // initializes the court entity obje
     initCSMData->component = component;
     stateMachine->pInitializeComponents(initCSMData);
 
-/*    courtComponentsSharedPtr tempComponent(new courtComponents);
-    component = tempComponent;
-          
-    courtDataSharedPtr tempData(new courtData);
-    data = tempData;
-    
-    courtFlagsSharedPtr tempFlag(new courtFlags);
-    flag = tempFlag;
-    
-    courtPhysicsSharedPtr tempPhysics(new courtPhysics);
-    component->setPhysics(tempPhysics);
-*/
+
+//    courtPhysicsSharedPtr tempPhysics(new courtPhysics);
+//    component->setPhysics(tempPhysics);
+
 
     return (true);
 }

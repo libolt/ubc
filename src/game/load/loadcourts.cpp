@@ -455,8 +455,9 @@ courtEntitySharedPtr loadCourts::loadCourtFile(const std::string &fileName)  // 
     }
     
     courtInstance->getFlag()->setDataInitialized(true);  
+    
     courtInstance->getData()->setName(name);
-    exit(0);
+    
 //    logMsg(func +" dah");
     courtInstance->getData()->setModelFileName(modelName);
     courtInstance->getData()->setBoundary(boundary);
@@ -470,7 +471,7 @@ courtEntitySharedPtr loadCourts::loadCourtFile(const std::string &fileName)  // 
     courtInstance->getData()->setThreePointArcRadius(threePointArcRadius);
     courtInstance->getData()->setBaselineInboundPos(baselineInboundPos);
     courtInstance->getData()->setSidelineInboundPos(sidelineInboundPos);
-
+//    exit(0);
     logMsg(func +" end");
 //    courtInstance = courtStateSharedPtr(court);
     return (courtInstance);

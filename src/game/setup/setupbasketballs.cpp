@@ -41,12 +41,12 @@ basketballEntityMSharedPtr setupBasketballs::createBasketballInstances()  // cre
     std::string func = "setupBasketballs::createBasketballInstance()";
 
     logMsg(func +" begin");
-//    exit(0);
+    
     logMsg(func +" creating temporary baskteball instance");
     logMsg(func +" setting model name");
 //  FIXME! these are currently hard coded
     size_t bballNum = 0;
-
+    
     for (auto BIIT : basketballInstance)  // loop
     {
         BIIT.second->getComponent()->setModelFileName("bball.mesh");
@@ -60,12 +60,16 @@ basketballEntityMSharedPtr setupBasketballs::createBasketballInstances()  // cre
         logMsg(func +" creating steer object");
         auto *bballSteer = new basketballSteer;  // steer instance
         BIIT.second->getComponent()->setSteer(basketballSteerSharedPtr(bballSteer));
+        
         logMsg(func +" setting instance number");
+        
         BIIT.second->getComponent()->setNumber(bballNum);
+        exit(0);
         BIIT.second->getFlag()->setNumberSet(true);
+        
         bballNum++;
     }
-
+exit(0);
 //    bballInstance->setModelNeedsLoaded(true);
 //    getBasketballInstance().push_back(bballInstance);
 

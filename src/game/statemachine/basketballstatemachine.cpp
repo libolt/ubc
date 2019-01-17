@@ -41,7 +41,7 @@ basketballStateMachine::basketballStateMachine() :
 void basketballStateMachine::pInitialize(basketballSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_INITIALIZE
+        TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_INITIALIZE
         TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_IDLE
@@ -49,7 +49,7 @@ void basketballStateMachine::pInitialize(basketballSMData *data)
         TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_UPDATE_POSITION
         TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_UPDATE_MOVEMENT
         TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_UPDATE_DIRECTION
-    END_TRANSITION_MAP(nullptr)
+    END_TRANSITION_MAP(data)
 }
 
 // set motor speed external event
@@ -94,7 +94,7 @@ void basketballStateMachine::pUpdatePosition(basketballSMData *data)
         TRANSITION_MAP_ENTRY (ST_UPDATE_POSITION)                // ST_UPDATE_POSITION
         TRANSITION_MAP_ENTRY (ST_UPDATE_POSITION)                // ST_UPDATE_MOVEMENT
         TRANSITION_MAP_ENTRY (ST_UPDATE_POSITION)                // ST_UPDATE_DIRECTION
-    END_TRANSITION_MAP(nullptr)
+    END_TRANSITION_MAP(data)
 }
 
 // Update movement external event
@@ -109,7 +109,7 @@ void basketballStateMachine::pUpdateMovement(basketballSMData *data)
         TRANSITION_MAP_ENTRY (ST_UPDATE_MOVEMENT)                // ST_UPDATE_POSITION
         TRANSITION_MAP_ENTRY (ST_UPDATE_MOVEMENT)                // ST_UPDATE_MOVEMENT
         TRANSITION_MAP_ENTRY (ST_UPDATE_MOVEMENT)                // ST_UPDATE_DIRECTION
-    END_TRANSITION_MAP(nullptr)
+    END_TRANSITION_MAP(data)
 }
 
 // Update direction external event
@@ -124,7 +124,7 @@ void basketballStateMachine::pUpdateDirection(basketballSMData *data)
         TRANSITION_MAP_ENTRY (ST_UPDATE_DIRECTION)                // ST_UPDATE_POSITION
         TRANSITION_MAP_ENTRY (ST_UPDATE_DIRECTION)                // ST_UPDATE_MOVEMENT
         TRANSITION_MAP_ENTRY (ST_UPDATE_DIRECTION)                // ST_UPDATE_DIRECTION
-    END_TRANSITION_MAP(nullptr)
+    END_TRANSITION_MAP(data)
 }
 
 // Initialize the state machine
@@ -133,7 +133,7 @@ STATE_DEFINE(basketballStateMachine, Initialize, basketballSMData)
     std::string func = "basketballStateMachine::Initialize()";
 
     logMsg(func +" begin");
-
+//    exit(0);
     basketballSMData *tempSMData(new basketballSMData);
 
     basketballDataSharedPtr tempData(new basketballData);
@@ -147,7 +147,7 @@ STATE_DEFINE(basketballStateMachine, Initialize, basketballSMData)
 
     sharedPtr<basketballPhysics> tempPhysics(new basketballPhysics);
     tempSMData->physics = tempPhysics;
-
+//    exit(0);
     data = tempSMData;
 /*    basketballEntitySharedPtr tempEntity(new basketballEntity);
     entity = tempEntity;

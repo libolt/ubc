@@ -39,7 +39,7 @@
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
 
-setupPlayers::setupPlayers()  = default;  // constructor
+setupPlayers::setupPlayers() = default;  // constructor
 
 setupPlayers::~setupPlayers() = default;  // destructor
 

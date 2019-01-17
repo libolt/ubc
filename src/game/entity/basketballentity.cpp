@@ -37,6 +37,8 @@ basketballEntity::basketballEntity()  // constructor
 //  physics = new basketballPhysics;
 
 //    stateSet = false;
+    
+    objectsInitialized = false;
 
 }
 basketballEntity::~basketballEntity() = default;  // destructor
@@ -112,19 +114,52 @@ void basketballEntity::setStateMachine(const basketballStateMachineSharedPtr &se
 }
 */
 
-bool basketballEntity::initializeStateMachine()  // initializes the basketball stateMachine object
+bool basketballEntity::initializeObjects()  // initializes the basketball objects
 {
+    basketballComponentsSharedPtr tempComponent(new basketballComponents); 
+    component = tempComponent;
+    
+    sharedPtr<basketballPhysics> tempPhysics(new basketballPhysics);
+    component->setPhysics(tempPhysics);
+
+    basketballDataSharedPtr tempData(new basketballData);
+    data = tempData;
+    
+    basketballFlagsSharedPtr tempFlag(new basketballFlags);
+    flag = tempFlag;
     
     basketballStateMachineSharedPtr tempSM(new basketballStateMachine);
     stateMachine = tempSM;
     
+    return (true);
+}
+
+bool basketballEntity::initializeStateMachine()  // initializes the basketball stateMachine object
+{
+    
+    std::string func = "basketballEntity::initializeStateMachine()";
+
+    logMsg(func +" begin");
+    
+    if (!objectsInitialized)
+    {
+        logMsg(func +" Initializing objects!");
+        objectsInitialized = initializeObjects();
+    }
+    else
+    {
+        logMsg(func +" Objects already initialized!");
+    }
+        
     basketballSMData *initSMData(new basketballSMData);
     
     initSMData->component = component;
     initSMData->bData = data;
     initSMData->flag = flag;
-    
+           
     stateMachine->pInitialize(initSMData);
+    
+    logMsg(func +" end");
     
     return (true);
 }

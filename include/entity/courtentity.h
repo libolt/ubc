@@ -46,12 +46,16 @@ class courtEntity : public entity
         courtStateMachineSharedPtr getStateMachine() const;  // retrieves the value of stateMachine
         void setStateMachine(const courtStateMachineSharedPtr &set);  // sets the value of stateMachine
 
+        bool initializeObjects();  // initializes the basketball objects
+
         bool initializeStateMachine();  // initializes the court entity object
 
         bool setupPhysicsObject();  // sets up the physics object
 
     private:
      
+        bool objectsInitialized;  //  stores whether or not objects have been initialized
+
         courtComponentsSharedPtr component;  // stores the court components object
         courtDataSharedPtr data;  // stores the court data object
         courtFlagsSharedPtr flag;  // stores the court flags object

@@ -69,6 +69,7 @@
 gameEntity::gameEntity()  // constructor
 {
 //    stateSet = false;
+    objectsInitialized = false;
     componentInitialized = false;
     dataInitialized = false;
     flagInitialized = false;
@@ -79,40 +80,13 @@ gameEntity::gameEntity()  // constructor
 
 gameEntity::~gameEntity() = default;  // destructor
 
-gameComponentsSharedPtr gameEntity::getComponent() const  // retrieves the value of component
+bool gameEntity::getObjectsInitialized() const  //  retrieves the value of objectsInitialized
 {
-    return (component);
+    return (objectsInitialized);
 }
-void gameEntity::setComponent(const gameComponentsSharedPtr &set)  // sets the value of component
+void gameEntity::setObjectsInitialized(const bool &set)  //  sets the value of objectsInitialized
 {
-    component = set;
-}
-
-gameDataSharedPtr gameEntity::getData() const  // retrieves the value of data
-{
-    return (data);
-}
-void gameEntity::setData(const gameDataSharedPtr &set)  // sets the value of data
-{
-    data = set;
-}
-
-gameFlagsSharedPtr gameEntity::getFlag() const  // retrieves the value of flag
-{
-    return (flag);
-}
-void gameEntity::setFlag(const gameFlagsSharedPtr &set)  // sets the value of flag
-{
-    flag = set;
-}
-
-gameStateMachineSharedPtr gameEntity::getStateMachine() const  // retrieves the value of stateMachine
-{
-    return (stateMachine);
-}
-void gameEntity::setStateMachine(const gameStateMachineSharedPtr &set)  // sets the value of stateMachine
-{
-    stateMachine = set;
+    objectsInitialized = set;
 }
 
 bool gameEntity::assignHoopToTeams()  // assigns which hoop belongs to each team
@@ -158,6 +132,42 @@ void gameEntity::setStateMachineInitialized(const bool &set)  // sets the value 
     stateMachineInitialized = set;
 }
 
+gameComponentsSharedPtr gameEntity::getComponent() const  // retrieves the value of component
+{
+    return (component);
+}
+void gameEntity::setComponent(const gameComponentsSharedPtr &set)  // sets the value of component
+{
+    component = set;
+}
+
+gameDataSharedPtr gameEntity::getData() const  // retrieves the value of data
+{
+    return (data);
+}
+void gameEntity::setData(const gameDataSharedPtr &set)  // sets the value of data
+{
+    data = set;
+}
+
+gameFlagsSharedPtr gameEntity::getFlag() const  // retrieves the value of flag
+{
+    return (flag);
+}
+void gameEntity::setFlag(const gameFlagsSharedPtr &set)  // sets the value of flag
+{
+    flag = set;
+}
+
+gameStateMachineSharedPtr gameEntity::getStateMachine() const  // retrieves the value of stateMachine
+{
+    return (stateMachine);
+}
+void gameEntity::setStateMachine(const gameStateMachineSharedPtr &set)  // sets the value of stateMachine
+{
+    stateMachine = set;
+}
+
 bool gameEntity::setupActiveTeamInstances()  // sets up the active team instances
 {
 //    teamStateSharedPtr tInstance;
@@ -200,6 +210,60 @@ bool gameEntity::setupActiveTeamInstances()  // sets up the active team instance
     return (true);
 }
 
+bool gameEntity::initializeObjects()  // initializes the basketball objects
+{
+    bool retVal = false;
+    
+    if (!componentInitialized)
+    {
+        gameComponentsSharedPtr tempComponent(new gameComponents);
+        component = tempComponent;
+        componentInitialized = true;
+    }
+    else
+    {
+    }
+
+    if (!dataInitialized)
+    {
+        gameDataSharedPtr tempData(new gameData);
+        data = tempData;
+        dataInitialized = true;
+    }
+    else
+    {
+    }
+    
+    if (!flagInitialized)
+    {
+        gameFlagsSharedPtr tempFlag(new gameFlags);
+        flag = tempFlag;
+        flagInitialized = true;
+        
+    }
+    else
+    {
+    }
+    
+    if (!stateMachineInitialized)
+    {
+        gameStateMachineSharedPtr tempStateMachine(new gameStateMachine);
+        stateMachine = tempStateMachine;       
+        stateMachineInitialized = true;
+    }
+    else
+    {
+    }
+    
+    if (componentInitialized && dataInitialized  && flagInitialized && stateMachineInitialized )
+    {
+        retVal = true;
+    }
+    
+    return (retVal);
+}
+
+
 bool gameEntity::initializeStateMachine(const renderEngineSharedPtr &render)  // sets up the game condition
 {
     std::string func = "gameEntity::initializeStateMachine()";
@@ -207,6 +271,16 @@ bool gameEntity::initializeStateMachine(const renderEngineSharedPtr &render)  //
 
     logMsg(func +" begin");
 
+    if (!objectsInitialized)
+    {
+        logMsg(func +" Initializing objects!");
+        objectsInitialized = initializeObjects();
+    }
+    else
+    {
+        logMsg(func +" Objects already initialized!");
+    }
+    
     SMData = tempSMData;
     SMData->component = component;
     SMData->flag = flag;

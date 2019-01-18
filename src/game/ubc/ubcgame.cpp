@@ -202,7 +202,17 @@ bool UBCGame::setup()  // sets up a game instance
     gameEntitySharedPtr tempGameInstance(new gameEntity);
     gameInstance = tempGameInstance;
     logMsg(func +" getGameS()->setInitialized(true)");
-    if (!gameInstance->getComponentInitialized())
+    
+    if (!gameInstance->getObjectsInitialized())
+    {
+        logMsg(func +" Initializing objects!");
+        gameInstance->setObjectsInitialized(initializeObjects());
+    }
+    else
+    {
+        logMsg(func +" Objects already initialized!");
+    }
+    /*    if (!gameInstance->getComponentInitialized())
     {
         gameComponentsSharedPtr tempComponent(new gameComponents);
         gameInstance->setComponent(tempComponent);
@@ -250,7 +260,7 @@ bool UBCGame::setup()  // sets up a game instance
     {
 //        gameInstance->setFlagInitialized(true);
     }
-    
+*/
 /*    for (size_t x=0;x<numUsers;++x)
     {
         usersSharedPtr tempUser(new users);

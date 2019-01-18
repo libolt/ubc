@@ -24,11 +24,13 @@
 #include "flags/courtflags.h"
 #include "physics/courtphysics.h"
 #include "statemachine/courtstatemachine.h"
+#include "utilities/logging.h"
 
 courtEntity::courtEntity()  // constructor
 {
 
 //    physics = new courtPhysics;
+    objectsInitialized = false;
 }
 courtEntity::~courtEntity() = default;  // destructor
 
@@ -59,14 +61,8 @@ void courtEntity::setFlag(const courtFlagsSharedPtr &set)  // sets the value of 
     flag = set;
 }
 
-bool courtEntity::initializeStateMachine()  // initializes the court entity object
+bool courtEntity::initializeObjects()  // initializes the basketball objects
 {
-   
-    courtStateMachineSharedPtr tempStateMachine(new courtStateMachine);
-    stateMachine = tempStateMachine;
- 
-    courtSMData *initSMData(new courtSMData);
-    
     courtComponentsSharedPtr tempComponent(new courtComponents);
     component = tempComponent;
           
@@ -76,6 +72,33 @@ bool courtEntity::initializeStateMachine()  // initializes the court entity obje
     courtFlagsSharedPtr tempFlag(new courtFlags);
     flag = tempFlag;
     
+    courtStateMachineSharedPtr tempStateMachine(new courtStateMachine);
+    stateMachine = tempStateMachine;
+
+    courtPhysicsSharedPtr tempPhysics(new courtPhysics);
+    component->setPhysics(tempPhysics);
+
+    return (true);
+}
+
+bool courtEntity::initializeStateMachine()  // initializes the court entity object
+{
+    
+    std::string func = "courtEntity::initializeStateMachine()";
+
+    logMsg(func +" begin");
+    
+    if (!objectsInitialized)
+    {
+        logMsg(func +" Initializing objects!");
+        objectsInitialized = initializeObjects();
+    }
+    else
+    {
+        logMsg(func +" Objects already initialized!");
+    }
+    
+    courtSMData *initSMData(new courtSMData);
     
     initSMData->component = component;
     initSMData->cData = data;
@@ -87,11 +110,6 @@ bool courtEntity::initializeStateMachine()  // initializes the court entity obje
     
     initCSMData->component = component;
     stateMachine->pInitializeComponents(initCSMData);
-
-
-//    courtPhysicsSharedPtr tempPhysics(new courtPhysics);
-//    component->setPhysics(tempPhysics);
-
 
     return (true);
 }

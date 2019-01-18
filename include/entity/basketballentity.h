@@ -62,22 +62,22 @@ class basketballEntity : public entity
 
     bool calculateShot();  // calculates the trajectory the basketball travels when shot
     bool shotLogic();  // handles the shot logic as the ball travels towards the hoop
-
-    bool initializeObjects();  // initializes the basketball objects
     
+    bool initializeObjects();  // initializes the basketball objects
+
     bool initializeStateMachine();  // initializes the basketball stateMachine object
 
     bool setupPhysicsObject();  // sets up the physics object
     
     private:
     
+    bool objectsInitialized;  //  stores whether or not objects have been initialized
+
     basketballComponentsSharedPtr component;  // basketball components object
     basketballDataSharedPtr data;  // basketball data object
     basketballFlagsSharedPtr flag;  // basketball flags object
     basketballStateMachineSharedPtr stateMachine;  // basketball stateMachine object
 
-    bool objectsInitialized;  //  stores whether or not objects have been initialized
-    
 };
  
 #endif

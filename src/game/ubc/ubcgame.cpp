@@ -206,7 +206,7 @@ bool UBCGame::setup()  // sets up a game instance
     if (!gameInstance->getObjectsInitialized())
     {
         logMsg(func +" Initializing objects!");
-        gameInstance->setObjectsInitialized(initializeObjects());
+        gameInstance->setObjectsInitialized(gameInstance->initializeObjects());
     }
     else
     {

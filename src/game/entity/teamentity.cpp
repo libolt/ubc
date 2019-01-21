@@ -46,18 +46,18 @@
 
 teamEntity::teamEntity()
 {
-    initialized = false;
+    objectsInitialized = false;
     offDef = NOOFFDEF;
 }
 teamEntity::~teamEntity() = default;  // destructor
 
-bool teamEntity::getInitialized() const  // retrieves the value of initialized
+bool teamEntity::getObjectsInitialized() const  // retrieves the value of objectsInitialized
 {
-    return (initialized);
+    return (objectsInitialized);
 }
-void teamEntity::setInitialized(const bool &set) // sets the value of initialized
+void teamEntity::setObjectsInitialized(const bool &set) // sets the value of objectsInitialized
 {
-    initialized = set;
+    objectsInitialized = set;
 }
 
 teamComponentsSharedPtr teamEntity::getComponent() const  // retrieves the value of component
@@ -123,9 +123,9 @@ void teamEntity::setOffDef(const offDefs &set)  // sets the value of offDef
     offDef = set;
 }
 
-bool teamEntity::initialize()  // initializes the object
+bool teamEntity::initializeObjects()  // initializes the object
 {
-    std::string func = "teamEntity::setupState()";
+    std::string func = "teamEntity::initializeObjects()";
 
     logMsg(func +" begin");
 

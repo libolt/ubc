@@ -40,6 +40,9 @@ class playerEntity : public entity
     playerEntity();  // constructor
     ~playerEntity();  // destructor
     
+    bool getObjectsInitialized() const;  //  retrieves the value of objectsInitialized
+    void setObjectsInitialized(const bool &set);  //  sets the value of objectsInitialized
+
     playerComponentsSharedPtr getComponent() const;  // retrieves the value of component
     void setComponent(const playerComponentsSharedPtr &set);  // sets the value of component
 
@@ -52,7 +55,7 @@ class playerEntity : public entity
     playerGameDataSharedPtr getGameData() const;  // retrieves the value of gameData
     void setGameData(const playerGameDataSharedPtr &set);  // sets the value of gameData
 
-    bool initialize();  // initializes the court entity object
+    bool initializeObjects();  // initializes the court entity object
 
     bool setupPhysicsObject();  // sets up the physics object
  
@@ -63,6 +66,8 @@ class playerEntity : public entity
     bool update(); // executes any updates that need to be performed
 
     private:
+
+    bool objectsInitialized;  //  stores whether or not objects have been initialized
 
     playerComponentsSharedPtr component;  // instance of playerData object
 

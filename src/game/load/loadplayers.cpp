@@ -633,7 +633,7 @@ playerEntitySharedPtr loadPlayers::loadPlayerFile(const std::string &fileName)  
 //    playerInstance->setEntity(tempPEnt);
     logMsg(func +" name == " +firstName +" " +lastName);
 
-    playerInstance->initialize();
+    playerInstance->initializeObjects();
     if (firstName == "Xavier")
     {
         if (playerInstance->getFlag()->getInitialized())

@@ -194,8 +194,9 @@ bool gameEntity::setupActiveTeamInstances()  // sets up the active team instance
     activeTeamInstance[1]->getGameData()->setTeamColObject(COL_TEAM2);
     activeTeamInstance[0]->getGameData()->setTeamCollidesWith(COL_COURT); // | COL_BBALL | COL_TEAM2;   determines what team0 collides with
     activeTeamInstance[1]->getGameData()->setTeamCollidesWith(COL_COURT); // | COL_BBALL | COL_TEAM2;   determines what team1 collides with
-    activeTeamInstance[0]->initialize();
-    activeTeamInstance[1]->initialize();
+
+    activeTeamInstance[0]->setObjectsInitialized(activeTeamInstance[0]->initializeObjects());  // initializes active team 0's objects
+    activeTeamInstance[1]->setObjectsInitialized(activeTeamInstance[1]->initializeObjects());  // initializes active team 1's objects
 
     component->setActiveTeamInstance(activeTeamInstance);
     std::vector<bool> teamActivePlayersChanged;

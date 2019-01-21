@@ -151,7 +151,7 @@ bool setupPlayers::checkIfTeamPlayerInstancesCreated(const playerEntityMSharedPt
         {
             logMsg(func +" Team Player Instancea Not Yet Created!");
 //            exit(0);
-            if (!ATIIT.second->getInitialized())
+            if (!ATIIT.second->getObjectsInitialized())
             {
                 logMsg(func +" team not initialized!");
                 exit(0);
@@ -365,12 +365,12 @@ playerEntityMSharedPtr setupPlayers::setupActivePlayerInstances(playerEntityMSha
 
     for (auto APIIT : activePlayerInstance)
     {
-        if (!APIIT.second->getFlag()->getInitialized())
+        if (!APIIT.second->getObjectsInitialized())
         {
             logMsg("Player Entity not yet Initialized!");
-            if (APIIT.second->initialize())
+            if (APIIT.second->initializeObjects())
             {
-                APIIT.second->getFlag()->setInitialized(true);
+                APIIT.second->setObjectsInitialized(true);
             }
             else
             {

@@ -32,8 +32,8 @@ class teamEntity
         teamEntity();  // constructor
         ~teamEntity();  // destructor
 
-        bool getInitialized() const;  // retrieves the value of initialized
-        void setInitialized(const bool &set);  // sets the value of initialized
+        bool getObjectsInitialized() const;  //  retrieves the value of objectsInitialized
+        void setObjectsInitialized(const bool &set);  //  sets the value of objectsInitialized
 
         teamComponentsSharedPtr getComponent() const;  // retrieves the value of component
         void setComponent(const teamComponentsSharedPtr &set);  // sets the value of component
@@ -56,7 +56,7 @@ class teamEntity
         offDefs getOffDef() const;  // retrieves the value of offDef
         void setOffDef(const offDefs &set);  // sets the value of offDef
 
-        bool initialize();  // initializes teamEntity object
+        bool initializeObjects();  // initializes teamEntity object
 
         bool initializeStateMachine();  // initializes teamStateMachine object
 
@@ -65,7 +65,7 @@ class teamEntity
         
     private:
 
-        bool initialized;  // stores whether object has been initialized
+        bool objectsInitialized;  //  stores whether or not objects have been initialized
 
         teamComponentsSharedPtr component;  // instance of teamComponents object
 

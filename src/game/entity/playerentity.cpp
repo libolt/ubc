@@ -34,9 +34,21 @@
 
 playerEntity::playerEntity()  // constructor
 {
+    objectsInitialized = false;
+
     SMData = nullptr;
 }
 playerEntity::~playerEntity() = default;  // destructor
+
+
+bool playerEntity::getObjectsInitialized() const  //  retrieves the value of objectsInitialized
+{
+    return (objectsInitialized);
+}
+void playerEntity::setObjectsInitialized(const bool &set)  //  sets the value of objectsInitialized
+{
+    objectsInitialized = set;
+}
 
 playerComponentsSharedPtr playerEntity::getComponent() const  // retrieves the value of component
 {
@@ -74,7 +86,7 @@ void playerEntity::setGameData(const playerGameDataSharedPtr &set)  // sets the 
     gameData = set;
 }
 
-bool playerEntity::initialize()  // initializes the player entity object
+bool playerEntity::initializeObjects()  // initializes the player entity object
 {
     
     playerComponentsSharedPtr tempComponent(new playerComponents);
@@ -155,11 +167,21 @@ bool playerEntity::initializeStateMachine()  // initializes the stateMachine obj
     std::string func = "playerEntity::initializeStateMachine()!";
 
     SMData = tempSMData;
-//    SMData->speed = 100;
-//    SMData->model = const_cast<std::const_pointer_cast<Ogre::Entity>(getModel());
+
+    logMsg(func +" begin");
+
+    if (!objectsInitialized)
+    {
+        logMsg(func +" Initializing objects!");
+        objectsInitialized = initializeObjects();
+    }
+    else
+    {
+        logMsg(func +" Objects already initialized!");
+    }
+
     SMData->model = component->getModel();
     SMData->node = component->getNode();
-    logMsg(func +" begin");
 
 //    exit(0);
     component->getStateMachine()->setSpeed(SMData);

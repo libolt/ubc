@@ -164,11 +164,11 @@ teamEntityMSharedPtr setupTeams::createActiveTeamInstances(teamEntityMSharedPtr 
     {
         logMsg(func +" ATIIT.first == " +convert->toString(ATIIT.first));
 
-        if (!ATIIT.second->getInitialized())
+        if (!ATIIT.second->getObjectsInitialized())
         {
-            if (ATIIT.second->initialize())
+            if (ATIIT.second->initializeObjects())
             {
-                ATIIT.second->setInitialized(true);
+                ATIIT.second->setObjectsInitialized(true);
             }
             else
             {

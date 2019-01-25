@@ -118,7 +118,7 @@ void GUISystem::setPreviousActiveMenu(const activeMenus &set)  // sets the value
 }
 
 
-bool GUISystem::setup(const renderEngineSharedPtr &render)  // sets up the in game gui
+bool GUISystem::initializeObjects(const renderEngineSharedPtr &render)  // sets up the in game gui
 {
 
     std::string func = "GUISystem::setup()";

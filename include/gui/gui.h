@@ -68,7 +68,7 @@ public:
     activeMenus getPreviousActiveMenu() const;  // retrieves the value of previousActiveMenu
     void setPreviousActiveMenu(const activeMenus &set);  // sets the value of previousActiveMenu
 
-    bool setup(const renderEngineSharedPtr &render);  // sets up the in game gui
+    bool initializeObjects(const renderEngineSharedPtr &render);  // sets up the in game gui
     bool createMainMenuGUI(const renderEngineSharedPtr &render);  // creates GUI gor main menu screen.
     bool createNetworkSetupGUI(const renderEngineSharedPtr &render);  // creates GUI for network setup screen.
     bool createNetworkClientSetupGUI(const renderEngineSharedPtr &render);  // creates GUI for network client setup screen.

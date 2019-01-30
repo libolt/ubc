@@ -94,7 +94,7 @@ class setupPlayerPositions;
 class setupTeams;
 //class gameState;
 class GUISystem;
-class GUIComponents;
+class guiComponents;
 class guiFlags;
 class guiStateMachine;
 
@@ -174,7 +174,7 @@ typedef sharedPtr<UBCInput> UBCInputSharedPtr;
 
 typedef sharedPtr<GUISystem> GUISystemSharedPtr;
 
-typedef sharedPtr<GUIComponents> GUIComponentsSharedPtr;
+typedef sharedPtr<guiComponents> guiComponentsSharedPtr;
 
 typedef sharedPtr<guiFlags> guiFlagsSharedPtr;
 

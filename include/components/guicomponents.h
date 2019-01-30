@@ -33,11 +33,11 @@
 
 #include "utilities/typedefs.h"
 
-class GUIComponents
+class guiComponents
 {
     public:
-        GUIComponents();  // constructor
-        ~GUIComponents();  // destructor
+        guiComponents();  // constructor
+        ~guiComponents();  // destructor
         
         bool getInitialized() const;  // retrieves the value of initialized
         void setInitialized(const bool &set);  // sets the value of initialized

@@ -22,7 +22,7 @@
 #include "utilities/logging.h"
 #include "engine/renderengine.h"
 
-GUIComponents::GUIComponents()  // constructor
+guiComponents::guiComponents()  // constructor
 {
     initialized = false;
     mGUI = nullptr;
@@ -34,223 +34,223 @@ GUIComponents::GUIComponents()  // constructor
     courtNameTxtBox = nullptr;
 }
 
-GUIComponents::~GUIComponents() = default;  // destructor
+guiComponents::~GUIComponents() = default;  // destructor
 
 
-bool GUIComponents::getInitialized() const  // retrieves the value of initialized
+bool guiComponents::getInitialized() const  // retrieves the value of initialized
 {
     return (initialized);
 }
-void GUIComponents::setInitialized(const bool &set)  // sets the value of initialized
+void guiComponents::setInitialized(const bool &set)  // sets the value of initialized
 {
     initialized = set;
 }
 
-MyGUIGuiSharedPtr GUIComponents::getMGUI() const  // retrieves the value of mGUI
+MyGUIGuiSharedPtr guiComponents::getMGUI() const  // retrieves the value of mGUI
 {
     return (mGUI);
 }
-void GUIComponents::setMGUI(const MyGUIGuiSharedPtr &set)  // sets the value of mGUI
+void guiComponents::setMGUI(const MyGUIGuiSharedPtr &set)  // sets the value of mGUI
 {
     mGUI = set;
 }
 
-MyGUIButtonMSharedPtr GUIComponents::getMainMenuButtons() const  // retrieves the value of mainMenuButtons
+MyGUIButtonMSharedPtr guiComponents::getMainMenuButtons() const  // retrieves the value of mainMenuButtons
 {
     return(mainMenuButtons);
 }
-void GUIComponents::setMainMenuButtons(const MyGUIButtonMSharedPtr &set)  // sets the value of mainMenuButtons
+void guiComponents::setMainMenuButtons(const MyGUIButtonMSharedPtr &set)  // sets the value of mainMenuButtons
 {
      mainMenuButtons = set;
 }
 
-MyGUIButtonMSharedPtr GUIComponents::getNetworkMenuButtons() const  // retrieves the value of networkMenuButtons
+MyGUIButtonMSharedPtr guiComponents::getNetworkMenuButtons() const  // retrieves the value of networkMenuButtons
 {
     return(networkMenuButtons);
 }
-void GUIComponents::setNetworkMenuButtons(const MyGUIButtonMSharedPtr &set)  // sets the value of networkMenuButtons
+void guiComponents::setNetworkMenuButtons(const MyGUIButtonMSharedPtr &set)  // sets the value of networkMenuButtons
 {
     networkMenuButtons = set;
 }
 
-MyGUIButtonMSharedPtr GUIComponents::getOptionsMenuButtons() const  // retrieves the value of optionsMenuButtons
+MyGUIButtonMSharedPtr guiComponents::getOptionsMenuButtons() const  // retrieves the value of optionsMenuButtons
 {
     return(optionsMenuButtons);
 }
-void GUIComponents::setOptionsMenuButtons(const MyGUIButtonMSharedPtr &set)  // sets the value of optionsMenuButtons
+void guiComponents::setOptionsMenuButtons(const MyGUIButtonMSharedPtr &set)  // sets the value of optionsMenuButtons
 {
     optionsMenuButtons = set;
 }
 
-MyGUIButtonMSharedPtr GUIComponents::getDisplayMenuButtons() const  // retrieves the value of displayMenuButtons
+MyGUIButtonMSharedPtr guiComponents::getDisplayMenuButtons() const  // retrieves the value of displayMenuButtons
 {
     return(displayMenuButtons);
 }
-void GUIComponents::setDisplayMenuButtons(const MyGUIButtonMSharedPtr &set)  // sets the value of displayMenuButtons
+void guiComponents::setDisplayMenuButtons(const MyGUIButtonMSharedPtr &set)  // sets the value of displayMenuButtons
 {
     displayMenuButtons = set;
 }
 
-MyGUIButtonMSharedPtr GUIComponents::getInputMenuButtons() const  // retrieves the value of inputMenuButtons
+MyGUIButtonMSharedPtr guiComponents::getInputMenuButtons() const  // retrieves the value of inputMenuButtons
 {
     return(inputMenuButtons);
 }
-void GUIComponents::setInputMenuButtons(const MyGUIButtonMSharedPtr &set)  // sets the value of inputMenuButtons
+void guiComponents::setInputMenuButtons(const MyGUIButtonMSharedPtr &set)  // sets the value of inputMenuButtons
 {
     inputMenuButtons = set;
 }
 
-MyGUIButtonMSharedPtr GUIComponents::getAudioMenuButtons() const  // retrieves the value of audioMenuButtons
+MyGUIButtonMSharedPtr guiComponents::getAudioMenuButtons() const  // retrieves the value of audioMenuButtons
 {
     return(audioMenuButtons);
 }
-void GUIComponents::setAudioMenuButtons(const MyGUIButtonMSharedPtr &set)  // sets the value of audioMenuButtons
+void guiComponents::setAudioMenuButtons(const MyGUIButtonMSharedPtr &set)  // sets the value of audioMenuButtons
 {
     audioMenuButtons = set;
 }
 
-MyGUIButtonMSharedPtr GUIComponents::getTeamSelectionMenuButtons() const  // retrieves the value of teamSelectionMenuButtons
+MyGUIButtonMSharedPtr guiComponents::getTeamSelectionMenuButtons() const  // retrieves the value of teamSelectionMenuButtons
 {
     return(teamSelectionMenuButtons);
 }
-void GUIComponents::setTeamSelectionMenuButtons(const MyGUIButtonMSharedPtr &set)  // sets the value of teamSelectionMenuButtons
+void guiComponents::setTeamSelectionMenuButtons(const MyGUIButtonMSharedPtr &set)  // sets the value of teamSelectionMenuButtons
 {
     teamSelectionMenuButtons = set;
 }
 
-MyGUIButtonMSharedPtr GUIComponents::getPlayerStartSelectionMenuButtons() const  // retrieves the value of playerStartSelectionMenuButtons
+MyGUIButtonMSharedPtr guiComponents::getPlayerStartSelectionMenuButtons() const  // retrieves the value of playerStartSelectionMenuButtons
 {
     return(playerStartSelectionMenuButtons);
 }
-void GUIComponents::setPlayerStartSelectionMenuButtons(const MyGUIButtonMSharedPtr &set)  // sets the value of playerStartSelectionMenuButtons
+void guiComponents::setPlayerStartSelectionMenuButtons(const MyGUIButtonMSharedPtr &set)  // sets the value of playerStartSelectionMenuButtons
 {
     playerStartSelectionMenuButtons = set;
 }
 
-MyGUIListBoxMSharedPtr GUIComponents::getTeamSelectBox() const  // retrieves the value of teamSelectBox
+MyGUIListBoxMSharedPtr guiComponents::getTeamSelectBox() const  // retrieves the value of teamSelectBox
 {
     return(teamSelectBox);
 }
-void GUIComponents::setTeamSelectBox(const MyGUIListBoxMSharedPtr &set)  // sets the value of teamSelectBox
+void guiComponents::setTeamSelectBox(const MyGUIListBoxMSharedPtr &set)  // sets the value of teamSelectBox
 {
     teamSelectBox = set;
 }
 
-MyGUIListBoxSharedPtr GUIComponents::getNumClientsSelectBox() const  // retrieves the value of numClientsSelectBox
+MyGUIListBoxSharedPtr guiComponents::getNumClientsSelectBox() const  // retrieves the value of numClientsSelectBox
 {
     return(numClientsSelectBox);
 }
-void GUIComponents::setNumClientsSelectBox(const MyGUIListBoxSharedPtr &set)  // sets the value of numClientsSelectBox
+void guiComponents::setNumClientsSelectBox(const MyGUIListBoxSharedPtr &set)  // sets the value of numClientsSelectBox
 {
     numClientsSelectBox = set;
 }
 
-sharedPtr<MyGUI::EditBox> GUIComponents::getServerIPAddressBox() const  // retrieves the value of serverIPAddressBox
+sharedPtr<MyGUI::EditBox> guiComponents::getServerIPAddressBox() const  // retrieves the value of serverIPAddressBox
 {
     return(serverIPAddressBox);
 }
-void GUIComponents::setServerIPAddressBox(const sharedPtr<MyGUI::EditBox> &set)  // sets the value of serverIPAddressBox
+void guiComponents::setServerIPAddressBox(const sharedPtr<MyGUI::EditBox> &set)  // sets the value of serverIPAddressBox
 {
     serverIPAddressBox = set;
 }
 
-MyGUIButtonMSharedPtr GUIComponents::getNetworkServerSetupMenuButtons() const // retrieves the value of networkServerSetupMenuButtons
+MyGUIButtonMSharedPtr guiComponents::getNetworkServerSetupMenuButtons() const // retrieves the value of networkServerSetupMenuButtons
 {
     return(networkServerSetupMenuButtons);
 }
-void GUIComponents::setNetworkServerSetupMenuButtons(const MyGUIButtonMSharedPtr &set)  // sets the value of networkServerSetupMenuButtons
+void guiComponents::setNetworkServerSetupMenuButtons(const MyGUIButtonMSharedPtr &set)  // sets the value of networkServerSetupMenuButtons
 {
     networkServerSetupMenuButtons = set;
 }
 
-sharedPtr<MyGUI::EditBox> GUIComponents::getClientIPAddressBox() const  // retrieves the value of clientIPAddressBox
+sharedPtr<MyGUI::EditBox> guiComponents::getClientIPAddressBox() const  // retrieves the value of clientIPAddressBox
 {
     return(clientIPAddressBox);
 }
-void GUIComponents::setClientIPAddressBox(const sharedPtr<MyGUI::EditBox> &set)  // sets the value of clientIPAddressBox
+void guiComponents::setClientIPAddressBox(const sharedPtr<MyGUI::EditBox> &set)  // sets the value of clientIPAddressBox
 {
     clientIPAddressBox = set;
 }
 
-MyGUIButtonMSharedPtr GUIComponents::getNetworkClientSetupMenuButtons() const  // retrieves the value of networkClientSetupMenuButtons
+MyGUIButtonMSharedPtr guiComponents::getNetworkClientSetupMenuButtons() const  // retrieves the value of networkClientSetupMenuButtons
 {
     return(networkClientSetupMenuButtons);
 }
-void GUIComponents::setNetworkClientSetupMenuButtons(const MyGUIButtonMSharedPtr &set)  // sets the value of networkClientSetupMenuButtons
+void guiComponents::setNetworkClientSetupMenuButtons(const MyGUIButtonMSharedPtr &set)  // sets the value of networkClientSetupMenuButtons
 {
     networkClientSetupMenuButtons = set;
 }
 
-MyGUIPlayerListBoxVecMSharedPtr GUIComponents::getTeamPlayerPosSelectBox() const  // retrieves the value of teamPlayerPosSelectBox
+MyGUIPlayerListBoxVecMSharedPtr guiComponents::getTeamPlayerPosSelectBox() const  // retrieves the value of teamPlayerPosSelectBox
 {
     return(teamPlayerPosSelectBox);
 }
-void GUIComponents::setTeamPlayerPosSelectBox(const MyGUIPlayerListBoxVecMSharedPtr &set)  // sets the value of teamPlayerPosSelectBox
+void guiComponents::setTeamPlayerPosSelectBox(const MyGUIPlayerListBoxVecMSharedPtr &set)  // sets the value of teamPlayerPosSelectBox
 {
     teamPlayerPosSelectBox = set;
 }
 
-MyGUITextBoxVecMSharedPtr GUIComponents::getTeamPlayerRating() const  // retrieves the value of teamPlayerRating
+MyGUITextBoxVecMSharedPtr guiComponents::getTeamPlayerRating() const  // retrieves the value of teamPlayerRating
 {
     return(teamPlayerRating);
 }
-void GUIComponents::setTeamPlayerRating(const MyGUITextBoxVecMSharedPtr &set)  // sets the value of teamPlayerRating
+void guiComponents::setTeamPlayerRating(const MyGUITextBoxVecMSharedPtr &set)  // sets the value of teamPlayerRating
 {
     teamPlayerRating = set;
 }
 
-MyGUIImageBoxMSharedPtr GUIComponents::getTeamLogo() const  // retrieves the value of teamLogo
+MyGUIImageBoxMSharedPtr guiComponents::getTeamLogo() const  // retrieves the value of teamLogo
 {
     return(teamLogo);
 }
-void GUIComponents::setTeamLogo(const MyGUIImageBoxMSharedPtr &set)  // sets the value of teamLogo
+void guiComponents::setTeamLogo(const MyGUIImageBoxMSharedPtr &set)  // sets the value of teamLogo
 {
     teamLogo = set;
 }
 
-MyGUIButtonMSharedPtr GUIComponents::getCourtSelectionMenuButtons() const  // retrieves the value of courtSelectionMenuButtons
+MyGUIButtonMSharedPtr guiComponents::getCourtSelectionMenuButtons() const  // retrieves the value of courtSelectionMenuButtons
 {
     return(courtSelectionMenuButtons);
 }
-void GUIComponents::setCourtSelectionMenuButtons(const MyGUIButtonMSharedPtr &set)  // sets the value of courtSelectionMenuButtons
+void guiComponents::setCourtSelectionMenuButtons(const MyGUIButtonMSharedPtr &set)  // sets the value of courtSelectionMenuButtons
 {
     courtSelectionMenuButtons = set;
 }
 
-MyGUIListBoxSharedPtr GUIComponents::getCourtSelectBox() const  // retrieves the value of courtSelectBox
+MyGUIListBoxSharedPtr guiComponents::getCourtSelectBox() const  // retrieves the value of courtSelectBox
 {
     return(courtSelectBox);
 }
-void GUIComponents::setCourtSelectBox(const MyGUIListBoxSharedPtr &set)  // sets the value of courtSelectBox
+void guiComponents::setCourtSelectBox(const MyGUIListBoxSharedPtr &set)  // sets the value of courtSelectBox
 {
     courtSelectBox = set;
 }
 
-MyGUIImageBoxSharedPtr GUIComponents::getCourtPreviewImgBox() const  // retrieves the value of courtPreviewImgBox
+MyGUIImageBoxSharedPtr guiComponents::getCourtPreviewImgBox() const  // retrieves the value of courtPreviewImgBox
 {
     return(courtPreviewImgBox);
 }
-void GUIComponents::setCourtPreviewImgBox(const MyGUIImageBoxSharedPtr &set)  // sets the value of courtPreviewImgBox
+void guiComponents::setCourtPreviewImgBox(const MyGUIImageBoxSharedPtr &set)  // sets the value of courtPreviewImgBox
 {
     courtPreviewImgBox = set;
 }
 
-MyGUITextBoxSharedPtr GUIComponents::getCourtNameTxtBox() const  // retrieves the value of courtNameTxtBox
+MyGUITextBoxSharedPtr guiComponents::getCourtNameTxtBox() const  // retrieves the value of courtNameTxtBox
 {
     return(courtNameTxtBox);
 }
-void GUIComponents::setCourtNameTxtBox(const MyGUITextBoxSharedPtr &set)  // sets the value of courtNameTxtBox
+void guiComponents::setCourtNameTxtBox(const MyGUITextBoxSharedPtr &set)  // sets the value of courtNameTxtBox
 {
     courtNameTxtBox = set;
 }
 
-/*  void GUIComponents::startSingleGameButtonClicked(MyGUI::Widget *_sender)  // handles startSingleGameButton click event
+/*  void guiComponents::startSingleGameButtonClicked(MyGUI::Widget *_sender)  // handles startSingleGameButton click event
 {
 //    startSinglePlayerGame(gameE->getRenderE());
 }*/
 
 
-bool GUIComponents::initMyGUI(const renderEngineSharedPtr &render)  // Initializes MyGUI
+bool guiComponents::initMyGUI(const renderEngineSharedPtr &render)  // Initializes MyGUI
 {
     std::string func = "GUIComponents::initMyGUI()";
     

@@ -55,6 +55,9 @@ GUISystem::GUISystem()  // Initialmizes the GUISystem class
 {
 
     //activeMenu = nullptr;mm
+    
+    objectsInitialized = false;
+    
     previousActiveMenu = NOACTIVEMENU;
     displayCount = 0;
     activeMenu = NOACTIVEMENU;
@@ -63,11 +66,20 @@ GUISystem::GUISystem()  // Initialmizes the GUISystem class
 
 GUISystem::~GUISystem() = default;  // destructor
 
-GUIComponentsSharedPtr GUISystem::getComponent() const  // retrieves the value of component
+bool GUISystem::getObjectsInitialized() const  // retrieves the value of objectsInitialized
+{
+    return (objectsInitialized);
+}
+void GUISystem::setObjectsInitialized(const bool &set)  // sets the value of objectsInitialized
+{
+    objectsInitialized = set;
+}
+
+guiComponentsSharedPtr GUISystem::getComponent() const  // retrieves the value of component
 {
     return (component);
 }
-void GUISystem::setComponent(const GUIComponentsSharedPtr &set)  // sets the value of component
+void GUISystem::setComponent(const guiComponentsSharedPtr &set)  // sets the value of component
 {
     component = set;
 }
@@ -131,7 +143,7 @@ void GUISystem::setPreviousActiveMenu(const activeMenus &set)  // sets the value
 bool GUISystem::initializeObjects(const renderEngineSharedPtr &render)  // initializes gui objects
 {
 
-    std::string func = "GUISystem::setup()";
+    std::string func = "GUISystem::initializeObjects()";
     
     logMsg(func +" begin");
     
@@ -165,7 +177,30 @@ bool GUISystem::initializeObjects(const renderEngineSharedPtr &render)  // initi
 
 bool GUISystem::initializeStateMachine(const renderEngineSharedPtr &render)  // initializes gui stateMachine
 {
+    std::string func = "GUISystem::initializeStateMachine()";
     
+    logMsg(func +" begin");
+  
+    if (!objectsInitialized)
+    {
+        logMsg(func +" Initializing objects!");
+        objectsInitialized = initializeObjects(render);
+    }
+    else
+    {
+        logMsg(func +" Objects already initialized!");
+    }
+    
+    
+    guiSMData *initSMData(new guiSMData);
+    
+    initSMData->component = component;
+    initSMData->flag = flag;
+    
+    stateMachine->pInitialize(initSMData);
+    
+    logMsg(func +" end");
+
 }
 
 void GUISystem::mainMenu(const renderEngineSharedPtr &render)  // msin in game menu

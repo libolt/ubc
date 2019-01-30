@@ -50,8 +50,11 @@ public:
     GUISystem();  // constructor
     ~GUISystem();  // destructor
 	
-    GUIComponentsSharedPtr getComponent() const;  // retrieves the value of component
-    void setComponent(const GUIComponentsSharedPtr &set);  // sets the value of component
+    bool getObjectsInitialized() const;  // retrieves the value of objectsInitialized
+    void setObjectsInitialized(const bool &set);  // sets the value of objectsInitialized
+    
+    guuComponentsSharedPtr getComponent() const;  // retrieves the value of component
+    void setComponent(const guiComponentsSharedPtr &set);  // sets the value of component
 
     guiFlagsSharedPtr getFlag() const;  // retrieves the value of flag
     void setFlag(const guiFlagsSharedPtr &set);  // sets the value of flag
@@ -215,7 +218,9 @@ public:
     
 private:
 
-    GUIComponentsSharedPtr component;  // stores gui related components
+    bool objectsInitialized;  // stores whether gui objects have been initialized
+    
+    guiComponentsSharedPtr component;  // stores gui related components
     
     guiFlagsSharedPtr flag;  // stores gui related flags
 

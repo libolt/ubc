@@ -121,10 +121,14 @@ bool UBC::setupState()  // sets up the UBC game state
 //    GUISystemSharedPtr gui = base->getGui();
     if (component->getGui()->initializeObjects(component->getGameE()->getRenderE()))  // sets up the game GUI
     {
+        component->getGui()->setObjectsInitialized(true);
+        
         component->getGui()->setGameInstance(component->getGame()->getGameInstance());  // shares gameInstance with gui object
 //        exit(0);
         component->getGui()->getFlag()->setSetupComplete(true);
 //        exit(0);
+        component->getGui()->initializeStateMachine(component->getGameE()->getRenderE());
+
         component->getGui()->mainMenu(component->getGameE()->getRenderE());
 //        exit(0);
         component->getGui()->backButtons();

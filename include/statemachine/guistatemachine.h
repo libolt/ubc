@@ -8,11 +8,10 @@ class guiSMData : public eventData
 {
 public:
 
-/*    ComponentsSharedPtr component;  // stores copy of courtComponents object
-    courtDataSharedPtr cData;  // stores copy of courtData object
-    courtFlagsSharedPtr flag;  // stores copy of courtFlags object
+    guiComponentsSharedPtr component;  // stores copy of guiComponents object
+    guiFlagsSharedPtr flag;  // stores copy of guiFlags object
 
-    OgreEntitySharedPtr model;  // stores 3d model
+/*    OgreEntitySharedPtr model;  // stores 3d model
     OgreSceneNodeSharedPtr node;  // stores node 3d model is attached to
 */
 

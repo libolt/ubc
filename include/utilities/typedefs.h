@@ -96,6 +96,7 @@ class setupTeams;
 class GUISystem;
 class GUIComponents;
 class guiFlags;
+class guiStateMachine;
 
 class hoopComponents;
 class hoopEntity;
@@ -176,6 +177,8 @@ typedef sharedPtr<GUISystem> GUISystemSharedPtr;
 typedef sharedPtr<GUIComponents> GUIComponentsSharedPtr;
 
 typedef sharedPtr<guiFlags> guiFlagsSharedPtr;
+
+typedef sharedPtr<guiStateMachine> guiStateMachineSharedPtr;
 
 typedef sharedPtr<conversion> conversionSharedPtr;
 

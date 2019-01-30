@@ -56,6 +56,9 @@ public:
     guiFlagsSharedPtr getFlag() const;  // retrieves the value of flag
     void setFlag(const guiFlagsSharedPtr &set);  // sets the value of flag
 
+    guiStateMachineSharedPtr getStateMachine() const;  // retrieves the value of stateMachine
+    void setStateMachine(const guiStateMachineSharedPtr &set);  // sets the value of stateMachine
+
     gameEngineSharedPtr getGamE() const;  // retrieves the value of gameE
     void setGameE(const gameEngineSharedPtr &set);  // sets the value of gameE
     
@@ -68,7 +71,9 @@ public:
     activeMenus getPreviousActiveMenu() const;  // retrieves the value of previousActiveMenu
     void setPreviousActiveMenu(const activeMenus &set);  // sets the value of previousActiveMenu
 
-    bool initializeObjects(const renderEngineSharedPtr &render);  // sets up the in game gui
+    bool initializeObjects(const renderEngineSharedPtr &render);  // initializes gui objects
+    bool initializeStateMachine(const renderEngineSharedPtr &render);  // initializes gui stateMachine
+
     bool createMainMenuGUI(const renderEngineSharedPtr &render);  // creates GUI gor main menu screen.
     bool createNetworkSetupGUI(const renderEngineSharedPtr &render);  // creates GUI for network setup screen.
     bool createNetworkClientSetupGUI(const renderEngineSharedPtr &render);  // creates GUI for network client setup screen.
@@ -213,6 +218,8 @@ private:
     GUIComponentsSharedPtr component;  // stores gui related components
     
     guiFlagsSharedPtr flag;  // stores gui related flags
+
+    guiStateMachineSharedPtr stateMachine;  // stores gui stateMachine object
 
 //    UBCGameSharedPtr game;  // stores a copy of the game object
     gameEntitySharedPtr gameInstance;  // stores a copy of the gameInstance

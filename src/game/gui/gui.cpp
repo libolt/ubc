@@ -36,6 +36,7 @@
 #include "setup/setuplineups.h"
 #include "setup/setupplayers.h"
 #include "setup/setupteams.h"
+#include "statemachine/guistatemachine.h"
 #include "entity/courtentity.h"
 #include "entity/gameentity.h"
 #include "load/load.h"
@@ -81,6 +82,15 @@ void GUISystem::setFlag(const guiFlagsSharedPtr &set)  // sets the value of flag
     flag = set;
 }
 
+guiStateMachineSharedPtr GUISystem::getStateMachine() const  // retrieves the value of stateMachine
+{
+    return (stateMachine);
+}
+void GUISystem::setStateMachine(const guiStateMachineSharedPtr &set)  // sets the value of stateMachine
+{
+    stateMachine = set;
+}
+
 gameEntitySharedPtr GUISystem::getGameInstance() const  // retrieves the value of teamInstance
 {
     return (gameInstance);
@@ -118,7 +128,7 @@ void GUISystem::setPreviousActiveMenu(const activeMenus &set)  // sets the value
 }
 
 
-bool GUISystem::initializeObjects(const renderEngineSharedPtr &render)  // sets up the in game gui
+bool GUISystem::initializeObjects(const renderEngineSharedPtr &render)  // initializes gui objects
 {
 
     std::string func = "GUISystem::setup()";
@@ -144,9 +154,18 @@ bool GUISystem::initializeObjects(const renderEngineSharedPtr &render)  // sets 
         exit(0);
     }
 
+    guiStateMachineSharedPtr tempStateMachine(new guiStateMachine);
+    stateMachine = tempStateMachine;
+    
     logMsg(func +" end");
 
     return (true);
+}
+
+
+bool GUISystem::initializeStateMachine(const renderEngineSharedPtr &render)  // initializes gui stateMachine
+{
+    
 }
 
 void GUISystem::mainMenu(const renderEngineSharedPtr &render)  // msin in game menu

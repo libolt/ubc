@@ -41,7 +41,7 @@
 #include "utilities/enums.h"
 #include "utilities/typedefs.h"
 
-class GUIComponents;
+class guiComponents;
 class UBCGame;
 
 class GUISystem
@@ -53,7 +53,7 @@ public:
     bool getObjectsInitialized() const;  // retrieves the value of objectsInitialized
     void setObjectsInitialized(const bool &set);  // sets the value of objectsInitialized
     
-    guuComponentsSharedPtr getComponent() const;  // retrieves the value of component
+    guiComponentsSharedPtr getComponent() const;  // retrieves the value of component
     void setComponent(const guiComponentsSharedPtr &set);  // sets the value of component
 
     guiFlagsSharedPtr getFlag() const;  // retrieves the value of flag

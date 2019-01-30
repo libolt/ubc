@@ -150,7 +150,7 @@ bool GUISystem::initializeObjects(const renderEngineSharedPtr &render)  // initi
     guiFlagsSharedPtr tempFlag(new guiFlags);
     flag = tempFlag;
 
-    GUIComponentsSharedPtr tempComponent(new GUIComponents);
+    guiComponentsSharedPtr tempComponent(new guiComponents);
     component = tempComponent;
     component->setInitialized(true);
 

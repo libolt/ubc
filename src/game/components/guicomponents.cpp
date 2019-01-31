@@ -34,7 +34,7 @@ guiComponents::guiComponents()  // constructor
     courtNameTxtBox = nullptr;
 }
 
-guiComponents::~GUIComponents() = default;  // destructor
+guiComponents::~guiComponents() = default;  // destructor
 
 
 bool guiComponents::getInitialized() const  // retrieves the value of initialized

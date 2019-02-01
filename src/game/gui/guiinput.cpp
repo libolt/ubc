@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2018 by Mike McLean                              *
+ *   Copyright (C) 1999 - 2019 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -22,6 +22,7 @@
 
 #include "ubc/ubcgame.h"
 #include "gui/gui.h"
+#include "gui/guidisplay.h"
 #include "components/gamecomponents.h"
 #include "components/guicomponents.h"
 #include "data/courtdata.h"
@@ -180,11 +181,12 @@ void GUISystem::menuReceiveKeyPress(const std::string &keyPressed, const renderE
     conversionSharedPtr convert ;
 
     logMsg("menuReceiveKeyKeyPress!");
-    logMsg("activeMenu == " +convert->toString(activeMenu));
+    logMsg("activeMenu == " +convert->toString(component->getActiveMenu()));
     logMsg("keyPressed == " +keyPressed);
 //    exit(0);
     if (!keyPressed.empty())
     {
+        activeMenus activeMenu = component->getActiveMenu();
         switch (activeMenu)
         {
             case MAIN:
@@ -340,7 +342,7 @@ void GUISystem::processNetworkServerMenuKeyPress(const std::string &keyPressed, 
     
     if (keyPressed == "h")
     {
-        hideNetworkServerSetupWidgets();
+        display->hideNetworkServerSetupWidgets();
         networkServer();
     }
     else if (keyPressed == "b")
@@ -407,7 +409,7 @@ void GUISystem::processNetworkClientMenuKeyPress(const std::string &keyPressed, 
     
     if (keyPressed == "c")
     {
-        hideNetworkClientSetupWidgets();
+        display->hideNetworkClientSetupWidgets();
         networkClient();
     }
     else if (keyPressed == "b")
@@ -485,7 +487,8 @@ void GUISystem::processSetupMenuKeyPress(const std::string &keyPressed, const re
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    teamStateVecSharedPtr teamInstance = gameS->getTeamInstance();
     std::string func = "GUISystem::processSetupMenuKeyPress()";
-    
+    activeMenus previousActiveMenu = component->getPreviousActiveMenu();
+
     logMsg(func +" begin");
     if (keyPressed == "a" && !flag->getSetupMenuAwaySelected())
     {

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2018 by Mike McLean                              *
+ *   Copyright (C) 1999 - 2019 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -23,7 +23,7 @@
 #include "components/guicomponents.h"
 #include "flags/guiflags.h"
 #include "gui/guicreate.h"
-
+#include "gui/guidisplay.h"
 #include "utilities/logging.h"
 
 guiStateMachine::guiStateMachine() :
@@ -101,6 +101,8 @@ STATE_DEFINE(guiStateMachine, MainMenu, guiSMData)
 
     guiFlagsSharedPtr flag = data->flag;
     
+    logMsg(func +" mainMenu created?");
+
     if (!flag->getMainMenuCreated())
     {
         logMsg(func + " mainMenu not created yet!");
@@ -121,9 +123,12 @@ STATE_DEFINE(guiStateMachine, MainMenu, guiSMData)
     {
         
     }
-    data->flag = flag;
+
+    guiSMData *tempSMData;
+    tempSMData->flag= flag;
+    data = tempSMData;
     
-    showMainMenuWidgets();  // displays main menu
+    data->display->showMainMenuWidgets();  // displays main menu
     logMsg(func +" begin");
 
     data->component->setActiveMenu(MAIN);

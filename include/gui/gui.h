@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2018 by Mike McLean                              *
+ *   Copyright (C) 1999 - 2019 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -173,47 +173,6 @@ public:
     void backCourtSelectionMenuButtonClicked(MyGUI::Widget *_sender);  // handles backCourtSelectionMenuButton click event
     void backSetupMenuButtonClicked(MyGUI::Widget *_sender);  // handles backSetupMenuButton click event
     void courtSelectButtonClicked(MyGUI::Widget *_sender);  // handles courtSelectButton click event
-
-    void hideMainMenuWidgets();	 // hides all widgets tied to the Main Menu
-    void showMainMenuWidgets();  // shows all widgets tied to the Main Menu
-
-    void hideNetworkSetupWidgets();  // hides all widgets tied to the Network Setup Menu
-    void showNetworkSetupWidgets();  // shows all widgets tied to the Network Setup Menu
-
-    void hideNetworkServerSetupWidgets();  // hides all widgets tied to the Network Server Setup Menu
-    void showNetworkServerSetupWidgets();  // shows all widgets tied to the Network Server Setup Menu
-
-    void hideNetworkClientSetupWidgets();  // hides all widgets tied to the Network Client Setup Menu
-    void showNetworkClientSetupWidgets();  // shows all widgets tied to the Network Client Setup Menu
-
-    void hideOptionsMenuWidgets();	// hides all widgets tied to the Options Menu
-    void showOptionsMenuWidgets();  // shows all widgets tied to the Options Menu
-
-    void hideDisplayMenuWidgets();	// hides all widgets tied to the Display Menu
-    void showDisplayMenuWidgets();  // shows all widgets tied to the Display Menu
-
-    void hideInputMenuWidgets();  // hides all widgets tied to the Input Menu
-    void showInputMenuWidgets();  // shows all widgets tied to the Input Menu
-
-    void hideAudioMenuWidgets();  // hides all widgets tied to the Audio Menu
-    void showAudioMenuWidgets();  // shows all widgets tied to the Audio Menu
-
-    void hideSetupMenuWidgets();  // hides all widgets tied to the Game Setup Menu
-    void showSetupMenuWidgets();  // shows all widgets tied to the Game Setup Menu
-
-    void hidePlayerStartSelectionMenuWidgets();  // hides all widgets tied to the Player Start Selection Menu
-    void showPlayerStartSelectionMenuWidgets(const renderEngineSharedPtr &render);  // shows all widgets tied to the Player Start Selection Menu
-
-    void hideTeamSelectionMenuWidgets(); // hides all widgets tied to the Team Selection Menu
-    void showTeamSelectionMenuWidgets(const renderEngineSharedPtr &render);  // show all widgets tied to the Team Selection Menu
-
-    void hideCourtSelectionMenuWidgets(); // hides all widgets tied to the Court Selection Menu
-    void showCourtSelectionMenuWidgets(const renderEngineSharedPtr &render); // show all widgets tied to the Court Selection Menu
-	
-    void hideActiveMenuWidgets();  // hides active menus widgets
-    void showActiveMenuWidgets(const renderEngineSharedPtr &render);  // shows active menus widgets
-    
-    void changeActiveMenu(activeMenus menu, const renderEngineSharedPtr &render);  // changes the actively displayed menu
     
 private:
 
@@ -223,6 +182,8 @@ private:
     
     guiCreateSharedPtr create;  // stores gui create functions
     
+    guiDisplaySharedPtr display;  // stores gui display functions
+
     guiFlagsSharedPtr flag;  // stores gui related flags
 
     guiStateMachineSharedPtr stateMachine;  // stores gui stateMachine object
@@ -233,9 +194,6 @@ private:
     
     gameEngineSharedPtr gameE; // stores a copy of gameE
     
-    activeMenus activeMenu;  // stores which menu is being displayed
-    activeMenus previousActiveMenu;  // stores which menu was last displayed
-
     std::vector<stdStringVec> playerNames;
     std::vector<stdStringVec> playerPositionsPlayed;
     std::vector<sizeTVec> playerIDs;  // stores player IDs for each team
@@ -243,7 +201,6 @@ private:
     std::vector<sizeTVec> team1IDs;
     teamStarterIDsVecM teamStarterID; // stores the selected starters for each team 
 
-    size_t displayCount;
 };
 
 #endif // GUI_H_INCLUDED

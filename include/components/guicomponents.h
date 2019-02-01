@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2018 by Mike McLean                              *
+ *   Copyright (C) 1999 - 2019 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -41,6 +41,9 @@ class guiComponents
         
         bool getInitialized() const;  // retrieves the value of initialized
         void setInitialized(const bool &set);  // sets the value of initialized
+
+        gameEngineSharedPtr getGamE() const;  // retrieves the value of gameE
+        void setGameE(const gameEngineSharedPtr &set);  // sets the value of gameE
 
         MyGUIGuiSharedPtr getMGUI() const;  // retrieves the value of mGUI
         void setMGUI(const MyGUIGuiSharedPtr &set);  // sets the value of mGUI
@@ -114,6 +117,9 @@ class guiComponents
         activeMenus getPreviousActiveMenu() const;  // retrieves the value of previousActiveMenu
         void setPreviousActiveMenu(const activeMenus &set);  // sets the value of previousActiveMenu
 
+        mainMenuSelects getMainMenuSelect() const;  // retrieves the value of mainMenuSelect
+        void setMainMenuSelect(const mainMenuSelects &set);  // sets the value of mainMenuSelect
+
         void startSingleGameButtonClicked(MyGUI::Widget *_sender);  // handles startSingleGameButton click event
         void startMultiGameButtonClicked(MyGUI::Widget *_sender);  // hands startMultiGameButton click event
         void optionsButtonClicked(MyGUI::Widget *_sender);  // handles optionsButton click event
@@ -126,6 +132,8 @@ class guiComponents
     private:
 
         bool initialized;  // stores whether object has been initialized
+
+        gameEngineSharedPtr gameE; // stores a copy of gameE
 
         MyGUIGuiSharedPtr mGUI;  // The MyGUI object
         MyGUIOgrePlatformSharedPtr mPlatform;  // The MyGUI Platform object
@@ -174,6 +182,10 @@ class guiComponents
         MyGUIImageBoxSharedPtr courtPreviewImgBox;
         MyGUITextBoxSharedPtr courtNameTxtBox;
 
+        activeMenus activeMenu;  // stores which menu is to be displayed
+        activeMenus previousActiveMenu;  // stores which menu was last displayed
+
+        mainMenuSelects mainMenuSelect;  // stores the selction for the mainMenu
 };
 
 #endif

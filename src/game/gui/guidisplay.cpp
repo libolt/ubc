@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2018 by Mike McLean                              *
+ *   Copyright (C) 1999 - 2019 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -20,6 +20,7 @@
 
 #include "engine/networkengine.h"
 
+#include "gui/guidisplay.h"
 #include "gui/gui.h"
 #include "utilities/conversion.h"
 #include "components/guicomponents.h"
@@ -37,9 +38,43 @@
 #include "config.h"
 #endif
 
-void GUISystem::hideMainMenuWidgets()  // hides the widgets tied to the Main Menu
+guiDisplay::guiDisplay()  // constructor
 {
-    std::string func = "GUISystem::hideMainMenuWidgets()";
+    displayCount = 0;
+
+}
+guiDisplay::~guiDisplay() = default;  // destructor
+
+guiComponentsSharedPtr guiDisplay::getComponent() const  // retrieves the value of component
+{
+    return (component);
+}
+void guiDisplay::setComponent(const guiComponentsSharedPtr &set)  // sets the value of component
+{
+    component = set;
+}
+
+guiFlagsSharedPtr guiDisplay::getFlag() const  // retrieves the value of flag
+{
+    return (flag);
+}
+void guiDisplay::setFlag(const guiFlagsSharedPtr &set)  // sets the value of flag
+{
+    flag = set;
+}
+
+gameEngineSharedPtr guiDisplay::getGamE() const  // retrieves the value of gameE
+{
+    return (gameE);
+}
+void guiDisplay::setGameE(const gameEngineSharedPtr &set)  // sets the value of gameE
+{
+    gameE = set;
+}
+
+void guiDisplay::hideMainMenuWidgets()  // hides the widgets tied to the Main Menu
+{
+    std::string func = "guiDisplay::hideMainMenuWidgets()";
     
     logMsg(func +" begin");
     
@@ -51,10 +86,10 @@ void GUISystem::hideMainMenuWidgets()  // hides the widgets tied to the Main Men
     logMsg(func +" end");
     
 }
-void GUISystem::showMainMenuWidgets()  // shows all widgets tied to the Main Menu
+void guiDisplay::showMainMenuWidgets()  // shows all widgets tied to the Main Menu
 {
     conversionSharedPtr convert;
-    std::string func = "GUISystem::showMainMenuWidgets()";
+    std::string func = "guiDisplay::showMainMenuWidgets()";
     MyGUIButtonMSharedPtr tempButtons = component->getMainMenuButtons();
 
     logMsg(func +" begin");
@@ -72,14 +107,14 @@ void GUISystem::showMainMenuWidgets()  // shows all widgets tied to the Main Men
     gameE->setMenuActive(true);
     logMsg(func +" end");
 }
-void GUISystem::hideNetworkSetupWidgets()  // hides the widgets tied to the Network Setup Menu
+void guiDisplay::hideNetworkSetupWidgets()  // hides the widgets tied to the Network Setup Menu
 {
 //  ipAddressBox->setVisible(false);
     component->getNetworkMenuButtons()["serverButton"]->setVisible(false);
     component->getNetworkMenuButtons()["clientButton"]->setVisible(false);
     component->getNetworkMenuButtons()["backMainMenuButton"]->setVisible(false);
 }
-void GUISystem::showNetworkSetupWidgets()  // shows all widgets tied to the Network Setup Menu
+void guiDisplay::showNetworkSetupWidgets()  // shows all widgets tied to the Network Setup Menu
 {
     renderEngineSharedPtr render;  // = renderEngine::Instance();
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getgetRenderE()->getViewPort()();
@@ -93,7 +128,7 @@ void GUISystem::showNetworkSetupWidgets()  // shows all widgets tied to the Netw
 
 }
 
-void GUISystem::hideNetworkServerSetupWidgets()  // hides all widgets tied to the Network Server Setup Menu
+void guiDisplay::hideNetworkServerSetupWidgets()  // hides all widgets tied to the Network Server Setup Menu
 {
 
     component->getNumClientsSelectBox()->setVisible(false);
@@ -103,7 +138,7 @@ void GUISystem::hideNetworkServerSetupWidgets()  // hides all widgets tied to th
     
     
 }
-void GUISystem::showNetworkServerSetupWidgets()  // shows all widgets tied to the Network Server Setup Menu
+void guiDisplay::showNetworkServerSetupWidgets()  // shows all widgets tied to the Network Server Setup Menu
 {
     renderEngineSharedPtr render; // = renderEngine::Instance();
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
@@ -120,13 +155,13 @@ void GUISystem::showNetworkServerSetupWidgets()  // shows all widgets tied to th
     component->getNetworkServerSetupMenuButtons()["backNetworkSetupButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.18 *render->getViewPort()->getActualHeight()) );
 }
 
-void GUISystem::hideNetworkClientSetupWidgets()  // hides the widgets tied to the Network Setup Menu
+void guiDisplay::hideNetworkClientSetupWidgets()  // hides the widgets tied to the Network Setup Menu
 {
     component->getClientIPAddressBox()->setVisible(false);
     component->getNetworkClientSetupMenuButtons()["clientConnectButton"]->setVisible(false);
     component->getNetworkClientSetupMenuButtons()["backNetworkSetupButton"]->setVisible(false);
 }
-void GUISystem::showNetworkClientSetupWidgets()  // shows all widgets tied to the Network Setup Menu
+void guiDisplay::showNetworkClientSetupWidgets()  // shows all widgets tied to the Network Setup Menu
 {
     renderEngineSharedPtr render; // = renderEngine::Instance();
 
@@ -143,14 +178,14 @@ void GUISystem::showNetworkClientSetupWidgets()  // shows all widgets tied to th
 
 }
 
-void GUISystem::hideOptionsMenuWidgets()  // hides all widgets tied to the Options Menu
+void guiDisplay::hideOptionsMenuWidgets()  // hides all widgets tied to the Options Menu
 {
     component->getOptionsMenuButtons()["displayButton"]->setVisible(false);
     component->getOptionsMenuButtons()["inputButton"]->setVisible(false);
     component->getOptionsMenuButtons()["audioButton"]->setVisible(false);
     component->getOptionsMenuButtons()["backMainMenuButton"]->setVisible(false);
 }
-void GUISystem::showOptionsMenuWidgets()  // shows all widgets tied to the Options Menu
+void guiDisplay::showOptionsMenuWidgets()  // shows all widgets tied to the Options Menu
 {
     renderEngineSharedPtr render; // = renderEngine::Instance();
 
@@ -164,41 +199,41 @@ void GUISystem::showOptionsMenuWidgets()  // shows all widgets tied to the Optio
 
 }
 
-void GUISystem::hideDisplayMenuWidgets()  // hides all widgets tied to the Display Menu
+void guiDisplay::hideDisplayMenuWidgets()  // hides all widgets tied to the Display Menu
 {
     component->getDisplayMenuButtons()["changeResolutionButton"]->setVisible(false);
     component->getDisplayMenuButtons()["backOptionsMenuButton"]->setVisible(false);
 
 
 }
-void GUISystem::showDisplayMenuWidgets()  // shows all widgets tied to the Display Menu
+void guiDisplay::showDisplayMenuWidgets()  // shows all widgets tied to the Display Menu
 {
     component->getDisplayMenuButtons()["changeResolutionButton"]->setVisible(true);
     component->getDisplayMenuButtons()["backOptionsMenuButton"]->setVisible(true);
 
 }
 
-void GUISystem::hideInputMenuWidgets()  // hides all widgets tied to the Input Menu
+void guiDisplay::hideInputMenuWidgets()  // hides all widgets tied to the Input Menu
 {
     component->getInputMenuButtons()["changeInputTypeButton"]->setVisible(false);
     component->getInputMenuButtons()["backOptionsMenuButton"]->setVisible(false);
 
 }
-void GUISystem::showInputMenuWidgets()  // shows all widgets tied to the Input Menu
+void guiDisplay::showInputMenuWidgets()  // shows all widgets tied to the Input Menu
 {
     component->getInputMenuButtons()["changeInputTypeButton"]->setVisible(true);
     component->getInputMenuButtons()["backOptionsMenuButton"]->setVisible(true);
 
 }
 
-void GUISystem::hideAudioMenuWidgets()  // hides all widgets tied to the Audio Menu
+void guiDisplay::hideAudioMenuWidgets()  // hides all widgets tied to the Audio Menu
 {
     component->getAudioMenuButtons()["enableAudioButton"]->setVisible(false);
     component->getAudioMenuButtons()["disableAudioButton"]->setVisible(false);
     component->getAudioMenuButtons()["backOptionsMenuButton"]->setVisible(false);
 
 }
-void GUISystem::showAudioMenuWidgets()  // shows all widgets tied to the Main Menu
+void guiDisplay::showAudioMenuWidgets()  // shows all widgets tied to the Main Menu
 {
     component->getAudioMenuButtons()["enableAudioButton"]->setVisible(true);
     component->getAudioMenuButtons()["disableAudioButton"]->setVisible(true);
@@ -206,7 +241,7 @@ void GUISystem::showAudioMenuWidgets()  // shows all widgets tied to the Main Me
 
 }
 
-void GUISystem::hideSetupMenuWidgets()  // hides all widgets tied to the Game Setup Menu
+void guiDisplay::hideSetupMenuWidgets()  // hides all widgets tied to the Game Setup Menu
 {
     //conversion *convert = conversion::Instance();
     conversionSharedPtr convert ;
@@ -233,7 +268,7 @@ void GUISystem::hideSetupMenuWidgets()  // hides all widgets tied to the Game Se
     }
     */
 }
-void GUISystem::showSetupMenuWidgets()  // shows all widgets tied to the Game Setup Menu
+void guiDisplay::showSetupMenuWidgets()  // shows all widgets tied to the Game Setup Menu
 {
     renderEngineSharedPtr render; // = renderEngine::Instance();
 
@@ -273,7 +308,7 @@ void GUISystem::showSetupMenuWidgets()  // shows all widgets tied to the Game Se
     */
 }
 
-void GUISystem::hidePlayerStartSelectionMenuWidgets()  // hides all widgets tied to the Player Start Selection Menu
+void guiDisplay::hidePlayerStartSelectionMenuWidgets()  // hides all widgets tied to the Player Start Selection Menu
 {
 
     // Team 0 widgets
@@ -319,7 +354,7 @@ void GUISystem::hidePlayerStartSelectionMenuWidgets()  // hides all widgets tied
 
 }
 
-void GUISystem::showPlayerStartSelectionMenuWidgets(const renderEngineSharedPtr &render)  // shows all widgets tied to the Player Start Selection Menu
+void guiDisplay::showPlayerStartSelectionMenuWidgets(const renderEngineSharedPtr &render)  // shows all widgets tied to the Player Start Selection Menu
 {
 
 //    renderEngineSharedPtr render; // = renderEngine::Instance();
@@ -412,7 +447,7 @@ void GUISystem::showPlayerStartSelectionMenuWidgets(const renderEngineSharedPtr 
 
 }
 
-void GUISystem::hideTeamSelectionMenuWidgets()  // hides all widgets tied to the Team Selection Menu
+void guiDisplay::hideTeamSelectionMenuWidgets()  // hides all widgets tied to the Team Selection Menu
 {
     //conversion *convert = conversion::Instance();
     conversionSharedPtr convert ;
@@ -425,16 +460,16 @@ void GUISystem::hideTeamSelectionMenuWidgets()  // hides all widgets tied to the
     component->getTeamSelectionMenuButtons()["backMainMenuButton"]->setVisible(false);
     component->getTeamSelectionMenuButtons()["backCourtSelectionMenuButton"]->setVisible(false);
 
-    logMsg("previousActiveMenu = " +convert->toString(previousActiveMenu));
+    logMsg("previousActiveMenu = " +convert->toString(component->getPreviousActiveMenu()));
 
 //    backCourtSelectionMenuButton->setVisible(false);
 }
 
-void GUISystem::showTeamSelectionMenuWidgets(const renderEngineSharedPtr &render)  // show all widgets tied to the Team Selection Menu
+void guiDisplay::showTeamSelectionMenuWidgets(const renderEngineSharedPtr &render)  // show all widgets tied to the Team Selection Menu
 {
 //    renderEngineSharedPtr render; // = renderEngine::Instance();
 
-    std::string func = "GUISystem::showTeamSelectionMenuWidgets()";
+    std::string func = "guiDisplay::showTeamSelectionMenuWidgets()";
 
     logMsg(func +" begin");
 
@@ -460,7 +495,7 @@ void GUISystem::showTeamSelectionMenuWidgets(const renderEngineSharedPtr &render
 //    exit(0);
 }
 
-void GUISystem::hideCourtSelectionMenuWidgets()  // hides all widgets tied to the Court Selection Menu
+void guiDisplay::hideCourtSelectionMenuWidgets()  // hides all widgets tied to the Court Selection Menu
 {
     component->getCourtSelectionMenuButtons()["backMainMenuButton"]->setVisible(false);
     component->getCourtSelectBox()->setVisible(false);
@@ -469,11 +504,11 @@ void GUISystem::hideCourtSelectionMenuWidgets()  // hides all widgets tied to th
     component->getCourtSelectionMenuButtons()["courtSelectButton"]->setVisible(false);
 //    exit(0);
 }
-void GUISystem::showCourtSelectionMenuWidgets(const renderEngineSharedPtr &render)  // show all widgets tied to the Court Selection Menu
+void guiDisplay::showCourtSelectionMenuWidgets(const renderEngineSharedPtr &render)  // show all widgets tied to the Court Selection Menu
 {
 //    renderEngineSharedPtr render; // = renderEngine::Instance();
     conversionSharedPtr convert ;
-    std::string func = "GUISystem::showCourtSelectionMenuWidgets()";
+    std::string func = "guiDisplay::showCourtSelectionMenuWidgets()";
     displayCount += 1;
 //    teamSelectionMenu();
 
@@ -495,8 +530,10 @@ void GUISystem::showCourtSelectionMenuWidgets(const renderEngineSharedPtr &rende
     logMsg(func +" end");
 }
 
-void GUISystem::hideActiveMenuWidgets()  // hides active menus widgets
+void guiDisplay::hideActiveMenuWidgets()  // hides active menus widgets
 {
+    activeMenus activeMenu = component->getActiveMenu();
+
     switch (activeMenu)
     {
         case MAIN: 
@@ -542,13 +579,14 @@ void GUISystem::hideActiveMenuWidgets()  // hides active menus widgets
     }
 }
 
-void GUISystem::showActiveMenuWidgets(const renderEngineSharedPtr &render)  // shows active menus widgets
+void guiDisplay::showActiveMenuWidgets(const renderEngineSharedPtr &render)  // shows active menus widgets
 {
 
-    std::string func = "GUISystem::showActiveMenuWidgets()";
+    std::string func = "guiDisplay::showActiveMenuWidgets()";
     
     logMsg(func +" begin");
     
+    activeMenus activeMenu = component->getActiveMenu();
     switch (activeMenu)
     {
         case MAIN:
@@ -608,18 +646,18 @@ void GUISystem::showActiveMenuWidgets(const renderEngineSharedPtr &render)  // s
 
 }
 
-void GUISystem::changeActiveMenu(activeMenus menu, const renderEngineSharedPtr &render)  // changes the actively displayed menu
+void guiDisplay::changeActiveMenu(activeMenus menu, const renderEngineSharedPtr &render)  // changes the actively displayed menu
 {
 //    exit(0);
-    std::string func = "GUISystem::changeActiveMenu()";
+    std::string func = "guiDisplay::changeActiveMenu()";
     
     logMsg(func + " begin");
     
     hideActiveMenuWidgets();
     flag->setMenuActive(true);
     gameE->setMenuActive(true);
-    previousActiveMenu = activeMenu;
-    activeMenu = menu;
+    component->setPreviousActiveMenu(component->getActiveMenu());
+    component->setActiveMenu(menu);
     showActiveMenuWidgets(render);
     logMsg(func + " end");
 }

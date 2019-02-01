@@ -1,5 +1,5 @@
 /***************************************************************************
-  *   Copyright (C) 1999 - 2018 by Mike McLean                              *
+  *   Copyright (C) 1999 - 2019 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *

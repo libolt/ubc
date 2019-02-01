@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2018 by Mike McLean                              *
+ *   Copyright (C) 1999 - 2019 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -40,6 +40,7 @@
 #include "ubc/ubcgame.h"
 #include "ubc/ubcinput.h"
 #include "network/networkplayerstateobject.h"
+#include "statemachine/guistatemachine.h"
 #include "statemachine/playerstatemachine.h"
 
 #ifdef __ANDROID__
@@ -129,7 +130,11 @@ bool UBC::setupState()  // sets up the UBC game state
 //        exit(0);
         gui->initializeStateMachine(component->getGameE()->getRenderE());
 
-        gui->getStateMachine()->pMainMenu(component->getGameE()->getRenderE());
+        guiSMData *mmSMData(new guiSMData);
+        mmSMData->component = component->getGui()->getComponent();
+        mmSMData->flag = component->getGui()->getFlag();
+        mmSMData->render = component->getGameE()->getRenderE();
+        gui->getStateMachine()->pMainMenu(mmSMData);
 //        exit(0);
         gui->backButtons();
         

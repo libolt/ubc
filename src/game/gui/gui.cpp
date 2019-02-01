@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2018 by Mike McLean                              *
+ *   Copyright (C) 1999 - 2019 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -23,6 +23,7 @@
 
 #include "gui/gui.h"
 #include "gui/guicreate.h"
+#include "gui/guidisplay.h"
 #include "utilities/conversion.h"
 #include "components/gamecomponents.h"
 #include "components/guicomponents.h"
@@ -59,9 +60,6 @@ GUISystem::GUISystem()  // Initialmizes the GUISystem class
     
     objectsInitialized = false;
     
-    previousActiveMenu = NOACTIVEMENU;
-    displayCount = 0;
-    activeMenu = NOACTIVEMENU;
 
 }
 
@@ -163,9 +161,15 @@ bool GUISystem::initializeObjects(const renderEngineSharedPtr &render)  // initi
     component = tempComponent;
     component->setInitialized(true);
 
+    component->setGameE(gameE);
+
     guiCreateSharedPtr tempCreate(new guiCreate);
     create = tempCreate;
     
+    guiDisplaySharedPtr tempDisplay(new guiDisplay);
+    display = tempDisplay;
+    display->setGameE(gameE);
+
     guiStateMachineSharedPtr tempStateMachine(new guiStateMachine);
     stateMachine = tempStateMachine;
     
@@ -294,7 +298,7 @@ void GUISystem::startMultiPlayerGame(const renderEngineSharedPtr &render)  // st
         createNetworkSetupGUI(render);  // creates the GUI for the Network Setup Screen
     }
 
-    changeActiveMenu(NETWORK, render);
+    display->changeActiveMenu(NETWORK, render);
 }
 
 void GUISystem::optionsMenu(const renderEngineSharedPtr &render)  // displays options menu
@@ -304,7 +308,7 @@ void GUISystem::optionsMenu(const renderEngineSharedPtr &render)  // displays op
         createOptionsMenuGUI(render);
     }
 
-    changeActiveMenu(OPTIONS, render);
+    display->changeActiveMenu(OPTIONS, render);
 }
 
 void GUISystem::displayMenu(const renderEngineSharedPtr &render)  // displays display menu
@@ -314,7 +318,7 @@ void GUISystem::displayMenu(const renderEngineSharedPtr &render)  // displays di
         createDisplaySetupGUI();
     }
 
-    changeActiveMenu(DISPLAY, render);
+    display->changeActiveMenu(DISPLAY, render);
 }
 
 void GUISystem::inputMenu(const renderEngineSharedPtr &render)  // displays the input menu
@@ -324,7 +328,7 @@ void GUISystem::inputMenu(const renderEngineSharedPtr &render)  // displays the 
         createInputSetupGUI();
     }
 
-    changeActiveMenu(INPUTMENU, render);
+    display->changeActiveMenu(INPUTMENU, render);
 }
 void GUISystem::audioMenu(const renderEngineSharedPtr &render)  // displays the audio menu
 {
@@ -333,7 +337,7 @@ void GUISystem::audioMenu(const renderEngineSharedPtr &render)  // displays the 
         createAudioSetupGUI();
     }
 
-    changeActiveMenu(AUDIO, render);
+    display->changeActiveMenu(AUDIO, render);
 }
 
 void GUISystem::setupMenu(const renderEngineSharedPtr &render)  // displays game setup menu
@@ -344,7 +348,7 @@ void GUISystem::setupMenu(const renderEngineSharedPtr &render)  // displays game
         flag->setSetupMenuCreated(true);
     }
 	
-    changeActiveMenu(GAMESETUP, render);
+    display->changeActiveMenu(GAMESETUP, render);
 }
 
 void GUISystem::playerStartSelectionMenu(const renderEngineSharedPtr &render)  // displays player start selection menu
@@ -379,7 +383,7 @@ void GUISystem::playerStartSelectionMenu(const renderEngineSharedPtr &render)  /
 
 //    exit(0);
     setSelectedIndexes();
-    changeActiveMenu(PLAYERSTART, render);
+    display->changeActiveMenu(PLAYERSTART, render);
     
     logMsg(func +" end");
 //    exit(0);
@@ -496,7 +500,7 @@ void GUISystem::teamSelectionMenu(const renderEngineSharedPtr &render)  // displ
     {
         logMsg(func +" Changing activeMenu to TEAMSELECT!");
 //        exit(0);
-        changeActiveMenu(TEAMSELECT, render);
+        display->changeActiveMenu(TEAMSELECT, render);
     }
     else
     {
@@ -547,7 +551,7 @@ void GUISystem::courtSelectionMenu(const renderEngineSharedPtr &render) // displ
 //        exit(0);
     }
 
-    changeActiveMenu(COURTSELECT, render);
+    display->changeActiveMenu(COURTSELECT, render);
 //    exit(0);
     
     logMsg(func +" end");
@@ -589,7 +593,7 @@ void GUISystem::networkClientSetupMenu(const renderEngineSharedPtr &render) // s
     {
         createNetworkClientSetupGUI(render);
     }
-    changeActiveMenu(NETWORKCLIENT, render);
+    display->changeActiveMenu(NETWORKCLIENT, render);
     MyGUI::InputManager::getInstance().setKeyFocusWidget(component->getClientIPAddressBox().get());
 //    mGUI::InputManager->getInstance().setKeyFocusWidget(component->getClientIPAddressBox());
 }
@@ -601,7 +605,7 @@ void GUISystem::networkServerSetupMenu(const renderEngineSharedPtr &render)  // 
         createNetworkServerSetupGUI(render);
     }
 
-    changeActiveMenu(NETWORKSERVER, render);
+    display->changeActiveMenu(NETWORKSERVER, render);
     MyGUI::InputManager::getInstance().setKeyFocusWidget(component->getServerIPAddressBox().get());
 
 }
@@ -1285,7 +1289,7 @@ void GUISystem::playerStartSelected()  // process player start selection
 */
 //        exit(0);
 
-    hideActiveMenuWidgets();
+    display->hideActiveMenuWidgets();
     flag->setMenuActive(false);
     gameE->setMenuActive(false);
 
@@ -1309,17 +1313,17 @@ void GUISystem::setupHomeSelected()  // process home team selection on game setu
 
 void GUISystem::backNetworkSetupMenuSelected(const renderEngineSharedPtr &render)  // returns back to network setup screen
 {
-    changeActiveMenu(NETWORK, render);
+    display->changeActiveMenu(NETWORK, render);
 }
 
 void GUISystem::backMainMenuSelected(const renderEngineSharedPtr &render)  // processes back to main menu selection
 {
-    changeActiveMenu(MAIN, render);
+    display->changeActiveMenu(MAIN, render);
 }
 
 void GUISystem::backNetworkClientMenuSelected(const renderEngineSharedPtr &render)  // returns back to the network client menu
 {
-    changeActiveMenu(NETWORKCLIENT, render);
+    display->changeActiveMenu(NETWORKCLIENT, render);
 }
 
 bool GUISystem::checkTeamInstancesCreated()  // Checks if team instances have been created and if not creates them.

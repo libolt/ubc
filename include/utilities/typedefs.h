@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2018 by Mike McLean                              *
+ *   Copyright (C) 1999 - 2019 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -96,6 +96,7 @@ class setupTeams;
 class GUISystem;
 class guiComponents;
 class guiCreate;
+class guiDisplay;
 class guiFlags;
 class guiStateMachine;
 
@@ -178,6 +179,8 @@ typedef sharedPtr<GUISystem> GUISystemSharedPtr;
 typedef sharedPtr<guiComponents> guiComponentsSharedPtr;
 
 typedef sharedPtr<guiCreate> guiCreateSharedPtr;
+
+typedef sharedPtr<guiDisplay> guiDisplaySharedPtr;
 
 typedef sharedPtr<guiFlags> guiFlagsSharedPtr;
 

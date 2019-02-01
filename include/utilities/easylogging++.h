@@ -4,7 +4,7 @@
 //  Easylogging++ v9.93
 //  Single-header only, cross-platform logging library for C++ applications
 //
-//  Copyright (c) 2018 muflihun.com
+//  Copyright (c) 2019 muflihun.com
 //
 //  This library is released under the MIT Licence.
 //  http://easylogging.muflihun.com/licence.php

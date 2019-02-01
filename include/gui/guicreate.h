@@ -21,6 +21,8 @@
 #ifndef _GUICREATE_H_
 #define _GUICREATE_H_
 
+#include "utilities/typedefs.h"
+
 class guiCreate
 {
     public:
@@ -42,4 +44,5 @@ class guiCreate
         guiFlagsSharedPtr flag;  // stores gui related flags
 
 };
+
 #endif

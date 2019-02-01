@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2018 bby Mike McLean                              *
+ *   Copyright (C) 1999 - 2019 bby Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -69,7 +69,7 @@ bool guiCreate::createMainMenuGUI(const renderEngineSharedPtr &render)  // creat
     conversionSharedPtr convert ;
 
     MyGUIButtonMSharedPtr tempButtons;
-    std::string func = "GUISystem::createMainMenuGUI()";
+    std::string func = "guiCreate::createMainMenuGUI()";
 //    Ogre::Viewport *viewPort = render->getViewPort();
 //    exit(0); 
 //    if (render->getViewPort()->getActualHeight() >= 1000)

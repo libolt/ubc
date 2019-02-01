@@ -10,7 +10,7 @@ public:
 
     guiComponentsSharedPtr component;  // stores copy of guiComponents object
     guiCreateSharedPtr create;  // stores copy of guiCreate object
-    
+    guiDisplaySharedPtr display;  // stores copy of guiDisplay object
     guiFlagsSharedPtr flag;  // stores copy of guiFlags object
 
     renderEngineSharedPtr render;  // stores copy of renderEngine object

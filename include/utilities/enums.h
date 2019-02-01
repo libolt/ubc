@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2018 by Mike McLean                              *
+ *   Copyright (C) 1999 - 2019 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -148,6 +148,8 @@
 
     // GUI
     enum activeMenus { NOACTIVEMENU, MAIN, NETWORK, NETWORKCLIENT, NETWORKSERVER, OPTIONS, DISPLAY, INPUTMENU, AUDIO, GAMESETUP, PLAYERSTART, TEAMSELECT, COURTSELECT }; // stores which menu is set to active
+
+    enum mainMenuSelects { NOMAINMENU, STARTSINGLE, STARTMULTI, OPTIONSSELECT };
 
     // jump ball
     enum jumpBallLocations_t { NOLOCATION, CENTERCIRCLE, RIGHTKEYCIRCLE, LEFTKEYCIRCLE };

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 1999 - 2018 by Mike McLean                              *
+ *   Copyright (C) 1999 - 2019 by Mike McLean                              *
  *   libolt@libolt.net                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -19,8 +19,9 @@
  ***************************************************************************/
  
 #include "components/guicomponents.h"
-#include "utilities/logging.h"
+#include "engine/gameengine.h"
 #include "engine/renderengine.h"
+#include "utilities/logging.h"
 
 guiComponents::guiComponents()  // constructor
 {
@@ -32,6 +33,11 @@ guiComponents::guiComponents()  // constructor
     courtSelectBox = nullptr;
     courtPreviewImgBox = nullptr;
     courtNameTxtBox = nullptr;
+
+    activeMenu = NOACTIVEMENU;
+
+    previousActiveMenu = NOACTIVEMENU;
+
 }
 
 guiComponents::~guiComponents() = default;  // destructor
@@ -44,6 +50,15 @@ bool guiComponents::getInitialized() const  // retrieves the value of initialize
 void guiComponents::setInitialized(const bool &set)  // sets the value of initialized
 {
     initialized = set;
+}
+
+gameEngineSharedPtr guiComponents::getGamE() const  // retrieves the value of gameE
+{
+    return (gameE);
+}
+void guiComponents::setGameE(const gameEngineSharedPtr &set)  // sets the value of gameE
+{
+    gameE = set;
 }
 
 MyGUIGuiSharedPtr guiComponents::getMGUI() const  // retrieves the value of mGUI
@@ -262,6 +277,15 @@ void guiComponents::setPreviousActiveMenu(const activeMenus &set)  // sets the v
     previousActiveMenu = set;
 }
 
+mainMenuSelects guiComponents::getMainMenuSelect() const  // retrieves the value of displayedMenu
+{
+    return (mainMenuSelect);
+}
+void guiComponents::setMainMenuSelect(const mainMenuSelects &set)  // sets the value of displayedMenu
+{
+    mainMenuSelect = set;
+}
+
 /*  void guiComponents::startSingleGameButtonClicked(MyGUI::Widget *_sender)  // handles startSingleGameButton click event
 {
 //    startSinglePlayerGame(gameE->getRenderE());
@@ -270,18 +294,20 @@ void guiComponents::setPreviousActiveMenu(const activeMenus &set)  // sets the v
 
 void guiComponents::startSingleGameButtonClicked(MyGUI::Widget *_sender)  // handles startSingleGameButton click event
 {
-    startSinglePlayerGame(gameE->getRenderE());
+    mainMenuSelect = STARTSINGLE;
+//    startSinglePlayerGame(gameE->getRenderE());
 }
 
 void guiComponents::startMultiGameButtonClicked(MyGUI::Widget *_sender)  // handles startMultiGameButton click event
 {
-    startMultiPlayerGame(gameE->getRenderE());
+    mainMenuSelect = STARTMULTI;
+//    startMultiPlayerGame(gameE->getRenderE());
 }
 
 void guiComponents::optionsButtonClicked(MyGUI::Widget *_sender)  // handles optionsButton click event
 {
-    optionsMenu(gameE->getRenderE());
-
+    mainMenuSelect = OPTIONSSELECT;
+//    optionsMenu(gameE->getRenderE());
 }
 
 void guiComponents::exitButtonClicked(MyGUI::Widget *_sender)  // handles exitButton click event

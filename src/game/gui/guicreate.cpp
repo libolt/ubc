@@ -20,6 +20,7 @@
 
 #include "engine/networkengine.h"
 
+#include "gui/guicreate.h"
 #include "gui/gui.h"
 #include "utilities/conversion.h"
 #include "components/guicomponents.h"
@@ -39,9 +40,31 @@
 #include "config.h"
 #endif
  
-//MyGUI::Button *GUISystem::backMainMenuButton;  // static
+guiCreate::guiCreate()  // constructor
+{
+    
+}
+guiCreate::~guiCreate() = default;  // destructor
 
-bool GUISystem::createMainMenuGUI(const renderEngineSharedPtr &render)  // creates the main menu gui
+guiComponentsSharedPtr guiCreate::getComponent() const  // retrieves the value of component
+{
+    return (component);
+}
+void guiCreate::setComponent(const guiComponentsSharedPtr &set)  // sets the value of component
+{
+    component = set;
+}
+
+guiFlagsSharedPtr guiCreate::getFlag() const  // retrieves the value of flag
+{
+    return (flag);
+}
+void guiCreate::setFlag(const guiFlagsSharedPtr &set)  // sets the value of flag
+{
+    flag = set;
+}
+
+bool guiCreate::createMainMenuGUI(const renderEngineSharedPtr &render)  // creates the main menu gui
 {
     conversionSharedPtr convert ;
 
@@ -84,7 +107,7 @@ bool GUISystem::createMainMenuGUI(const renderEngineSharedPtr &render)  // creat
 //    exit(0);
 //    tempButtons["startSingleGameButton"]->eventMouseButtonClick += MyGUI::newDelegate(component.get(), &component.get()->startSingleGameButtonClicked);
 
-    tempButtons["startSingleGameButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::startSingleGameButtonClicked);
+    tempButtons["startSingleGameButton"]->eventMouseButtonClick += MyGUI::newDelegate(component.get(), &guiComponents::startSingleGameButtonClicked);
 
     logMsg(func +" Insert Start Single Game Button Mouse Click");
 
@@ -106,7 +129,7 @@ bool GUISystem::createMainMenuGUI(const renderEngineSharedPtr &render)  // creat
     
     tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("startMultiGameButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("startMultiGameButton"))));
 //    exit(0);
-    tempButtons["startMultiGameButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::startMultiGameButtonClicked);
+    tempButtons["startMultiGameButton"]->eventMouseButtonClick += MyGUI::newDelegate(component.get(), &guiComponents::startMultiGameButtonClicked);
     tempButtons["startMultiGameButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.14 *render->getViewPort()->getActualHeight()) );
     tempButtons["startMultiGameButton"]->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()) );
     tempButtons["startMultiGameButton"]->setVisible(false);
@@ -114,7 +137,7 @@ bool GUISystem::createMainMenuGUI(const renderEngineSharedPtr &render)  // creat
 //  optionsButton->setCaption(",?ik.??..?llmmmmllml.....l.m. onOptions");
     tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("optionsButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("optionsButton"))));
 //    exit(0);
-    tempButtons["optionsButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::optionsButtonClicked);
+    tempButtons["optionsButton"]->eventMouseButtonClick += MyGUI::newDelegate(component.get(), &guiComponents::optionsButtonClicked);
     tempButtons["optionsButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.18 *render->getViewPort()->getActualHeight()) );
     tempButtons["optionsButton"]->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()) );
     tempButtons["optionsButton"]->setVisible(false);
@@ -122,7 +145,7 @@ bool GUISystem::createMainMenuGUI(const renderEngineSharedPtr &render)  // creat
 //  exitButton->setCaption("Exit");mlklkklllmmmmmmm mmllm
     tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("exitButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("exitButton"))));
 //    exit(0);
-    tempButtons["exitButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::exitButtonClicked);
+    tempButtons["exitButton"]->eventMouseButtonClick += MyGUI::newDelegate(component.get(), &guiComponents::exitButtonClicked);
     tempButtons["exitButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.22 *render->getViewPort()->getActualHeight()) );
     tempButtons["exitButton"]->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()) );
     tempButtons["exitButton"]->setVisible(false);
@@ -133,7 +156,7 @@ bool GUISystem::createMainMenuGUI(const renderEngineSharedPtr &render)  // creat
 //    exit(0);
 //    menuActive = true;
 //    exit(0);
-    activeMenu = MAIN;
+    component->setActiveMenu(MAIN);
 //    exit(0);
     logMsg(func +" end");
     return (true);

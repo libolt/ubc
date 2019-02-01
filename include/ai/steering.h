@@ -21,6 +21,8 @@
 #ifndef _STEERING_H_
 #define _STEERING_H_
 
+#include "Ogre.h"
+
 #include "OpenSteer/AbstractVehicle.h"
 #include "OpenSteer/Annotation.h"
 
@@ -30,7 +32,6 @@
 #include "OpenSteer/UnusedParameter.h"
 #include "OpenSteer/Utilities.h"
 
-#include "Ogre.h"
 
 typedef OpenSteer::LocalSpaceMixin<OpenSteer::AbstractVehicle> steering_1;
 typedef OpenSteer::SteerLibraryMixin<steering_1> steering_2;

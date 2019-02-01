@@ -21,11 +21,11 @@
 #ifndef _LOAD_H_
 #define _LOAD_H_
 
+#include "Ogre.h"
 #include <string>
 #include <vector>
 #include <unordered_map>
 
-#include "Ogre.h"
 #include "SDL.h"
 
 #include "tinyxml2.h"

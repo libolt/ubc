@@ -17,6 +17,9 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+
+#include "Ogre.h"
+
 #include "utilities/easylogging++.h"
 
 //#include <boost/shared_ptr.hpp>
@@ -24,7 +27,6 @@
 #include "utilities/logging.h"
 #include "utilities/conversion.h"
 
-#include "Ogre.h"
 #include "engine/renderengine.h"
 INITIALIZE_EASYLOGGINGPP
 

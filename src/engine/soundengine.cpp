@@ -18,12 +18,12 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
- 
+/*
 #include "engine/sound/soundengine.h"
 #include "utilities/conversion.h"
 #include "load/load.h"
 
-/*
+
 sharedPtr<soundEngine> soundEngine::pInstance;
 
 sharedPtr<soundEngine> soundEngine::Instance()

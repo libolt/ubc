@@ -21,6 +21,10 @@
 #ifndef _UBC_H_
 #define _UBC_H_
 
+#include "Ogre.h"
+#include "OgreStringConverter.h"
+#include "OgreString.h"
+
 #ifdef __ANDROID__
 #include "utilities/android-config.h"
 #else
@@ -30,9 +34,7 @@
 #include "SDL.h"
 #include "SDL_syswm.h"
 #include "SDL_test_common.h"
-#include "Ogre.h"
-#include "OgreStringConverter.h" 
-#include "OgreString.h"
+
 //#include "engine/renderengine.h"
 //#include "engine/gameengine.h"
 //#include "state/gamestate.h"

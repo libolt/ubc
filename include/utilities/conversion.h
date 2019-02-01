@@ -21,6 +21,11 @@
 #ifndef _CONVERSION_H_
 #define _CONVERSION_H_
 
+#define WIN32_LEAN_AND_MEAN
+#include "enet/enet.h"
+
+#include "Ogre.h"
+
 #include "engine/networkengine.h"
 
 #include <iostream>
@@ -32,12 +37,10 @@
 //#include <boost/lexical_cast.hpp>
 //#include <boost/shared_ptr.hpp>
 
-#include "Ogre.h"
 #include "OgreVector3.h"
 #include "LinearMath/btVector3.h"
 #include "SDL.h"
 #include "ai/steering.h"
-#include "enet/enet.h"
 #include "utilities/enums.h"
 
 //template<class T, class TL>

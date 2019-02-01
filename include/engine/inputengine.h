@@ -22,9 +22,10 @@
 #ifndef _INPUTENGINE_H_
 #define _INPUTENGINE_H_
 
+#include "Ogre.h"
+
 #include "SDL.h"
 #include "SDL_syswm.h"
-#include "Ogre.h"
 /*#include <boost/shared_ptr.hpp>
 #include <boost/thread/thread.hpp>
 #include <boost/date_time.hpp>

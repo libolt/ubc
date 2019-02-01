@@ -24,6 +24,7 @@
 
 #ifndef _ENET_ISINCLUDED_
 #define _ENET_ISINCLUDED_
+#define WIN32_LEAN_AND_MEAN
 #include "enet/enet.h"
 #endif 
 #include <iostream>

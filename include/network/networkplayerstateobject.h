@@ -21,9 +21,10 @@
 #ifndef _NETWORKPLAYERSTATEOBJECT_H_
 #define _NETWORKPLAYERSTATEOBJECT_H_
 
+#include "Ogre.h"
+
 #include <iostream>
 
-#include "Ogre.h"
 #include "utilities/enums.h"
 
 class networkPlayerStateObject // object that holde network state data for a player

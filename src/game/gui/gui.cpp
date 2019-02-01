@@ -22,6 +22,7 @@
 #include "engine/networkengine.h"
 
 #include "gui/gui.h"
+#include "gui/guicreate.h"
 #include "utilities/conversion.h"
 #include "components/gamecomponents.h"
 #include "components/guicomponents.h"
@@ -84,6 +85,14 @@ void GUISystem::setComponent(const guiComponentsSharedPtr &set)  // sets the val
     component = set;
 }
 
+guiCreateSharedPtr GUISystem::getCreate() const  // retrieves the value of create
+{
+    return (create);
+}
+void GUISystem::setCreate(const guiCreateSharedPtr &set)  // sets the value of create
+{
+    create = set;
+}
 
 guiFlagsSharedPtr GUISystem::getFlag() const  // retrieves the value of flag
 {
@@ -121,7 +130,7 @@ void GUISystem::setGameE(const gameEngineSharedPtr &set)  // sets the value of g
     gameE = set;
 }
 
-activeMenus GUISystem::getActiveMenu() const  // retrieves the value of activeMenu
+/*activeMenus GUISystem::getActiveMenu() const  // retrieves the value of activeMenu
 {
 	return (activeMenu);
 }
@@ -138,7 +147,7 @@ void GUISystem::setPreviousActiveMenu(const activeMenus &set)  // sets the value
 {
 	previousActiveMenu = set;
 }
-
+*/
 
 bool GUISystem::initializeObjects(const renderEngineSharedPtr &render)  // initializes gui objects
 {
@@ -154,18 +163,9 @@ bool GUISystem::initializeObjects(const renderEngineSharedPtr &render)  // initi
     component = tempComponent;
     component->setInitialized(true);
 
-    if (component->initMyGUI(render)) // Initializes MyGUI
-    {
-        logMsg (func +" MyGUI initialized successfully!");
-        
-//        exit(0);
-    }
-    else
-    {
-        logMsg(func +" Unable to initialize MyGUI!");
-        exit(0);
-    }
-
+    guiCreateSharedPtr tempCreate(new guiCreate);
+    create = tempCreate;
+    
     guiStateMachineSharedPtr tempStateMachine(new guiStateMachine);
     stateMachine = tempStateMachine;
     
@@ -196,6 +196,7 @@ bool GUISystem::initializeStateMachine(const renderEngineSharedPtr &render)  // 
     
     initSMData->component = component;
     initSMData->flag = flag;
+    initSMData->render = render;
     
     stateMachine->pInitialize(initSMData);
     
@@ -203,7 +204,7 @@ bool GUISystem::initializeStateMachine(const renderEngineSharedPtr &render)  // 
 
 }
 
-void GUISystem::mainMenu(const renderEngineSharedPtr &render)  // msin in game menu
+/*void GUISystem::mainMenu(const renderEngineSharedPtr &render)  // msin in game menu
 {
 //    exit(0);
     std::string func = "GUISystem::mainMenu()";
@@ -239,7 +240,7 @@ void GUISystem::mainMenu(const renderEngineSharedPtr &render)  // msin in game m
     logMsg(func + " end");
     
 //    exit(0);
-}
+}*/
 
 void GUISystem::backButtons()  // handles the back buttons
 {

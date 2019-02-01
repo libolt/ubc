@@ -39,26 +39,6 @@
 #include "config.h"
 #endif
 
-void GUISystem::startSingleGameButtonClicked(MyGUI::Widget *_sender)  // handles startSingleGameButton click event
-{
-    startSinglePlayerGame(gameE->getRenderE());
-}
-
-void GUISystem::startMultiGameButtonClicked(MyGUI::Widget *_sender)  // handles startMultiGameButton click event
-{
-    startMultiPlayerGame(gameE->getRenderE());
-}
-
-void GUISystem::optionsButtonClicked(MyGUI::Widget *_sender)  // handles optionsButton click event
-{
-    optionsMenu(gameE->getRenderE());
-
-}
-void GUISystem::exitButtonClicked(MyGUI::Widget *_sender)  // handles exitButton click event
-{
-    exit(0);
-}
-
 void GUISystem::serverButtonClicked(MyGUI::Widget *_sender)  // handles serverButton click event
 {
     networkServerSetupMenu(gameE->getRenderE());

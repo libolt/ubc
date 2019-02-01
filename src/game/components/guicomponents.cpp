@@ -244,10 +244,50 @@ void guiComponents::setCourtNameTxtBox(const MyGUITextBoxSharedPtr &set)  // set
     courtNameTxtBox = set;
 }
 
+activeMenus guiComponents::getActiveMenu() const  // retrieves the value of activeMenu
+{
+    return (activeMenu);
+}
+void guiComponents::setActiveMenu(const activeMenus &set)  // sets the value of activeMenu
+{
+    activeMenu = set;
+}
+
+activeMenus guiComponents::getPreviousActiveMenu() const  // retrieves the value of previousActiveMenu
+{
+    return (previousActiveMenu);
+}
+void guiComponents::setPreviousActiveMenu(const activeMenus &set)  // sets the value of previousActiveMenu
+{
+    previousActiveMenu = set;
+}
+
 /*  void guiComponents::startSingleGameButtonClicked(MyGUI::Widget *_sender)  // handles startSingleGameButton click event
 {
 //    startSinglePlayerGame(gameE->getRenderE());
 }*/
+
+
+void guiComponents::startSingleGameButtonClicked(MyGUI::Widget *_sender)  // handles startSingleGameButton click event
+{
+    startSinglePlayerGame(gameE->getRenderE());
+}
+
+void guiComponents::startMultiGameButtonClicked(MyGUI::Widget *_sender)  // handles startMultiGameButton click event
+{
+    startMultiPlayerGame(gameE->getRenderE());
+}
+
+void guiComponents::optionsButtonClicked(MyGUI::Widget *_sender)  // handles optionsButton click event
+{
+    optionsMenu(gameE->getRenderE());
+
+}
+
+void guiComponents::exitButtonClicked(MyGUI::Widget *_sender)  // handles exitButton click event
+{
+    exit(0);
+}
 
 
 bool guiComponents::initMyGUI(const renderEngineSharedPtr &render)  // Initializes MyGUI

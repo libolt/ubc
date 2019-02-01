@@ -108,6 +108,17 @@ class guiComponents
         MyGUITextBoxSharedPtr getCourtNameTxtBox() const;  // retrieves the value of courtNameTxtBox
         void setCourtNameTxtBox(const MyGUITextBoxSharedPtr &set);  // sets the value of courtNameTxtBox
 
+        activeMenus getActiveMenu() const;  // retrieves the value of activeMenu
+        void setActiveMenu(const activeMenus &set);  // sets the value of activeMenu
+
+        activeMenus getPreviousActiveMenu() const;  // retrieves the value of previousActiveMenu
+        void setPreviousActiveMenu(const activeMenus &set);  // sets the value of previousActiveMenu
+
+        void startSingleGameButtonClicked(MyGUI::Widget *_sender);  // handles startSingleGameButton click event
+        void startMultiGameButtonClicked(MyGUI::Widget *_sender);  // hands startMultiGameButton click event
+        void optionsButtonClicked(MyGUI::Widget *_sender);  // handles optionsButton click event
+        void exitButtonClicked(MyGUI::Widget *_sender);  // handles exitButton click event
+
 //        void startSingleGameButtonClicked(MyGUI::Widget *_sender);  // handles startSingleGameButton click event
 
         bool initMyGUI(const renderEngineSharedPtr &render);  // Initializes MyGUI

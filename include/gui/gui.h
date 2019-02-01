@@ -56,6 +56,9 @@ public:
     guiComponentsSharedPtr getComponent() const;  // retrieves the value of component
     void setComponent(const guiComponentsSharedPtr &set);  // sets the value of component
 
+    guiCreateSharedPtr getCreate() const;  // retrieves the value of create
+    void setCreate(const guiCreateSharedPtr &set);  // sets the value of create
+
     guiFlagsSharedPtr getFlag() const;  // retrieves the value of flag
     void setFlag(const guiFlagsSharedPtr &set);  // sets the value of flag
 
@@ -68,16 +71,16 @@ public:
     gameEntitySharedPtr getGameInstance() const;  // retrieves the value of teamInstance
     void setGameInstance(const gameEntitySharedPtr &set);  // sets the value of teamInstance
 
-    activeMenus getActiveMenu() const;  // retrieves the value of activeMenu
+/*    activeMenus getActiveMenu() const;  // retrieves the value of activeMenu
     void setActiveMenu(const activeMenus &set);  // sets the value of activeMenu
 
     activeMenus getPreviousActiveMenu() const;  // retrieves the value of previousActiveMenu
     void setPreviousActiveMenu(const activeMenus &set);  // sets the value of previousActiveMenu
-
+*/
     bool initializeObjects(const renderEngineSharedPtr &render);  // initializes gui objects
     bool initializeStateMachine(const renderEngineSharedPtr &render);  // initializes gui stateMachine
 
-    bool createMainMenuGUI(const renderEngineSharedPtr &render);  // creates GUI gor main menu screen.
+//    bool createMainMenuGUI(const renderEngineSharedPtr &render);  // creates GUI gor main menu screen.
     bool createNetworkSetupGUI(const renderEngineSharedPtr &render);  // creates GUI for network setup screen.
     bool createNetworkClientSetupGUI(const renderEngineSharedPtr &render);  // creates GUI for network client setup screen.
     bool createNetworkServerSetupGUI(const renderEngineSharedPtr &render);  // creates GUI for network server setup screen.
@@ -105,7 +108,7 @@ public:
     void processTeamSelectionMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // process team selection menu key input
     void processCourtSelectionMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // process court selection menu key input
 	
-    void mainMenu(const renderEngineSharedPtr &render);  // msin in game menu
+//    void mainMenu(const renderEngineSharedPtr &render);  // msin in game menu
     void backButtons();  // handles the back buttons
     void startSinglePlayerGame(const renderEngineSharedPtr &render);  // starts single player game
     void startMultiPlayerGame(const renderEngineSharedPtr &render);  // starts multiplayer game
@@ -144,10 +147,6 @@ public:
 
 
     // MyGUI functions
-    void startSingleGameButtonClicked(MyGUI::Widget *_sender);  // handles startSingleGameButton click event
-    void startMultiGameButtonClicked(MyGUI::Widget *_sender);  // hands startMultiGameButton click event
-    void optionsButtonClicked(MyGUI::Widget *_sender);  // handles optionsButton click event
-    void exitButtonClicked(MyGUI::Widget *_sender);  // handles exitButton click event
     void serverButtonClicked(MyGUI::Widget *_sender);  // handles serverButton click event
     void clientButtonClicked(MyGUI::Widget *_sender);  // handles clientButton click event
     void serverHostButtonClicked(MyGUI::Widget *_sender);  // handles hostGameButton click event
@@ -221,6 +220,8 @@ private:
     bool objectsInitialized;  // stores whether gui objects have been initialized
     
     guiComponentsSharedPtr component;  // stores gui related components
+    
+    guiCreateSharedPtr create;  // stores gui create functions
     
     guiFlagsSharedPtr flag;  // stores gui related flags
 

@@ -9,8 +9,12 @@ class guiSMData : public eventData
 public:
 
     guiComponentsSharedPtr component;  // stores copy of guiComponents object
+    guiCreateSharedPtr create;  // stores copy of guiCreate object
+    
     guiFlagsSharedPtr flag;  // stores copy of guiFlags object
 
+    renderEngineSharedPtr render;  // stores copy of renderEngine object
+       
 /*    OgreEntitySharedPtr model;  // stores 3d model
     OgreSceneNodeSharedPtr node;  // stores node 3d model is attached to
 */
@@ -31,7 +35,7 @@ public:
 
     // External events taken by this state machine
     void pInitialize(const guiSMData *data);
-    void pSetupPhysics(guiSMData *data);
+    void pMainMenu(const guiSMData *data);
     void pUpdatePosition(guiSMData *data);
     void pUpdateMovement(guiSMData *data);
     void pUpdateDirection(guiSMData *data);

@@ -19,6 +19,11 @@
  ***************************************************************************/
 
 #include "statemachine/guistatemachine.h"
+
+#include "components/guicomponents.h"
+#include "flags/guiflags.h"
+#include "gui/guicreate.h"
+
 #include "utilities/logging.h"
 
 guiStateMachine::guiStateMachine() :
@@ -46,6 +51,25 @@ void guiStateMachine::pInitialize(const guiSMData *data)
     END_TRANSITION_MAP(data)
 }
 
+void guiStateMachine::pMainMenu(const guiSMData *data)
+{
+    BEGIN_TRANSITION_MAP                                    // - Current State -
+        TRANSITION_MAP_ENTRY (ST_MAIN_MENU)                // ST_INITIALIZE
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_MAIN_MENU
+        TRANSITION_MAP_ENTRY (ST_MAIN_MENU)                // ST_NETWORK_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_NETWORKCLIENT_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_NETWORKSERVER_MENU
+        TRANSITION_MAP_ENTRY (ST_MAIN_MENU)                // ST_IDLE
+        TRANSITION_MAP_ENTRY (ST_MAIN_MENU)                // ST_COURT_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_TEAM_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STARTERS_MENU
+        TRANSITION_MAP_ENTRY (ST_MAIN_MENU)                // ST_OPTIONS_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_AUDIO_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_DISPLAY_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_INPUT_MENU
+    END_TRANSITION_MAP(data)
+}
+
 // Initialize the state machine
 STATE_DEFINE(guiStateMachine, Initialize, guiSMData)
 {
@@ -53,6 +77,18 @@ STATE_DEFINE(guiStateMachine, Initialize, guiSMData)
 
     logMsg(func +" begin");
 
+    if (data->component->initMyGUI(data->render)) // Initializes MyGUI
+    {
+        logMsg (func +" MyGUI initialized successfully!");
+        
+//        exit(0);
+    }
+    else
+    {
+        logMsg(func +" Unable to initialize MyGUI!");
+        exit(0);
+    }
+    
     logMsg(func +" end");
 }
 
@@ -63,6 +99,36 @@ STATE_DEFINE(guiStateMachine, MainMenu, guiSMData)
 
     logMsg(func +" begin");
 
+    guiFlagsSharedPtr flag = data->flag;
+    
+    if (!flag->getMainMenuCreated())
+    {
+        logMsg(func + " mainMenu not created yet!");
+//        exit(0);
+        if (data->create->createMainMenuGUI(data->render)) // creates the main menu gui.
+        {
+            logMsg(func + " Main Menu created successfully!");
+            flag->setMainMenuCreated(true);
+//            exit(0);
+        }
+        else
+        {
+            logMsg(func + " Unable to create Main Menu!");
+            exit(0);
+        }
+    }
+    else
+    {
+        
+    }
+    data->flag = flag;
+    
+    showMainMenuWidgets();  // displays main menu
+    logMsg(func +" begin");
+
+    data->component->setActiveMenu(MAIN);
+    
+    
     logMsg(func +" end");
 }
 

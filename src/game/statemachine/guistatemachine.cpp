@@ -77,17 +77,7 @@ STATE_DEFINE(guiStateMachine, Initialize, guiSMData)
 
     logMsg(func +" begin");
 
-    if (data->component->initMyGUI(data->render)) // Initializes MyGUI
-    {
-        logMsg (func +" MyGUI initialized successfully!");
-        
-//        exit(0);
-    }
-    else
-    {
-        logMsg(func +" Unable to initialize MyGUI!");
-        exit(0);
-    }
+
     
     logMsg(func +" end");
 }

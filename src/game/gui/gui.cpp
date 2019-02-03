@@ -167,7 +167,7 @@ bool GUISystem::initializeObjects(const renderEngineSharedPtr &render)  // initi
 //    if (data->component->initMyGUI(data->render)) // Initializes MyGUI
     {
         logMsg (func +" MyGUI initialized successfully!");
-        
+        component->setMyguiInitialized(true);
 //        exit(0);
     }
     else
@@ -178,7 +178,9 @@ bool GUISystem::initializeObjects(const renderEngineSharedPtr &render)  // initi
     
     guiCreateSharedPtr tempCreate(new guiCreate);
     create = tempCreate;
-    
+    create->setComponent(component);
+    create->setFlag(flag);
+
     guiDisplaySharedPtr tempDisplay(new guiDisplay);
     display = tempDisplay;
     display->setGameE(gameE);

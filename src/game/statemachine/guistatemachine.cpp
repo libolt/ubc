@@ -97,6 +97,11 @@ STATE_DEFINE(guiStateMachine, MainMenu, guiSMData)
     {
         logMsg(func + " mainMenu not created yet!");
 //        exit(0);
+/*        data->create->setFlag(flag);
+        logMsg(func +" Flag set!");
+        data->create->setComponent(data->component);
+        logMsg(func +" Component set!");
+*/
         if (data->create->createMainMenuGUI(data->render)) // creates the main menu gui.
         {
             logMsg(func + " Main Menu created successfully!");
@@ -113,11 +118,12 @@ STATE_DEFINE(guiStateMachine, MainMenu, guiSMData)
     {
         
     }
-
+    logMsg(func +"tempSMData");
     guiSMData *tempSMData;
     tempSMData->flag= flag;
+    logMsg(func +"tempSMData Flag");
     data = tempSMData;
-    
+    logMsg(func +"showMainMenuWidgets?");
     data->display->showMainMenuWidgets();  // displays main menu
     logMsg(func +" begin");
 

@@ -95,8 +95,20 @@ bool guiCreate::createMainMenuGUI(const renderEngineSharedPtr &render)  // creat
     logMsg(func +" MainMenu layout loaded");
 //  startGameButton = mGUI->createWidget<MyGUI::Button>("Button", 362, 100, 300, 26, MyGUI::Align::Default, "Main");
 //  startGameBu  tton->setCaption("Start Game");
-    
+
 //    startSingleGameButton = sharedPtr<MyGUI::Button>(mGUI->findWidget<MyGUI::Button>("startSingleGameButton"));
+    logMsg(func +" component?");
+    if (component->getMygyuiInitialized())
+    {
+        logMsg(func +"MyGUI Initialized!");
+    }
+    else
+    {
+        logMsg(func +"MyGUI NOT Initialized!");
+    }
+//    exit(0);
+    component->getMGUI()->findWidget<MyGUI::Button>("startSingleGameButton");
+    logMsg(func +" startSingleGameButton!");
     tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("startSingleGameButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("startSingleGameButton"))));
     
     //component->getMainMenuButtons().insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("startSingleGameButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("startSingleGameButton"))));

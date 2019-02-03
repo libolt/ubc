@@ -26,6 +26,7 @@
 guiComponents::guiComponents()  // constructor
 {
     initialized = false;
+    myguiInitialized = false;
     mGUI = nullptr;
     numClientsSelectBox = nullptr;
     serverIPAddressBox = nullptr;
@@ -50,6 +51,15 @@ bool guiComponents::getInitialized() const  // retrieves the value of initialize
 void guiComponents::setInitialized(const bool &set)  // sets the value of initialized
 {
     initialized = set;
+}
+
+bool guiComponents::getMygyuiInitialized() const  // retrieves the value of myguiInitialized
+{
+    return (myguiInitialized);
+}
+void guiComponents::setMyguiInitialized(const bool &set)  // sets the value of myguiInitialized
+{
+    myguiInitialized = set;
 }
 
 gameEngineSharedPtr guiComponents::getGamE() const  // retrieves the value of gameE

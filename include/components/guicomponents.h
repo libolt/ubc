@@ -42,6 +42,9 @@ class guiComponents
         bool getInitialized() const;  // retrieves the value of initialized
         void setInitialized(const bool &set);  // sets the value of initialized
 
+        bool getMygyuiInitialized() const;  // retrieves the value of myguiInitialized
+        void setMyguiInitialized(const bool &set);  // sets the value of myguiInitialized
+
         gameEngineSharedPtr getGamE() const;  // retrieves the value of gameE
         void setGameE(const gameEngineSharedPtr &set);  // sets the value of gameE
 
@@ -132,6 +135,7 @@ class guiComponents
     private:
 
         bool initialized;  // stores whether object has been initialized
+        bool myguiInitialized;  // stores whether MyGUI has been initialized
 
         gameEngineSharedPtr gameE; // stores a copy of gameE
 

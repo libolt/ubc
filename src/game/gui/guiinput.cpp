@@ -21,11 +21,14 @@
 #include "engine/networkengine.h"
 
 #include "ubc/ubcgame.h"
+#include "gui/guiinput.h"
 #include "gui/gui.h"
+#include "gui/guidata.h"
 #include "gui/guidisplay.h"
 #include "components/gamecomponents.h"
 #include "components/guicomponents.h"
 #include "data/courtdata.h"
+#include "data/gamedata.h"
 #include "engine/gameengine.h"
 #include "entity/gameentity.h"
 #include "load/load.h"
@@ -57,11 +60,6 @@ void GUISystem::serverHostButtonClicked(MyGUI::Widget *_sender)  // handles serv
 void GUISystem::clientConnectButtonClicked(MyGUI::Widget *_sender)  // handles clientConnectButton click event
 {
     networkClient();
-}
-
-void GUISystem::backMainMenuButtonClicked(MyGUI::Widget *_sender)  // handles backMainMenuButton click event
-{
-    backMainMenuSelected(gameE->getRenderE());
 }
 
 void GUISystem::backNetworkSetupButtonClicked(MyGUI::Widget *_sender)  // handles backNetworkSetupButton click event
@@ -162,19 +160,14 @@ void GUISystem::backTeamSelectionMenuButtonClicked(MyGUI::Widget *_sender)  // h
 
 void GUISystem::backCourtSelectionMenuButtonClicked(MyGUI::Widget *_sender) // handles backCourtSelectionMenuButton click event
 {
-    courtSelectionMenu(gameE->getRenderE());
+//    courtSelectionMenu(gameE->getRenderE());
+    component->setTeamMenuSelect(BACKTEAMCOURT);
 }
 
 void GUISystem::backSetupMenuButtonClicked(MyGUI::Widget *_sender)  // handles backSetupMenuButton click event
 {
     setupMenu(gameE->getRenderE());
 }
-
-void GUISystem::courtSelectButtonClicked(MyGUI::Widget *_sender)  // handles courtSelectButton click event
-{
-     courtSelected();
-}
-
 
 void GUISystem::menuReceiveKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render)  // processes key input
 {
@@ -238,7 +231,11 @@ void GUISystem::processMainMenuKeyPress(const std::string &keyPressed, const ren
     if (keyPressed == "s")
     {
 //        exit(0);
-        startSinglePlayerGame(render);
+//        startSinglePlayerGame(render);
+        gameInstance->getData()->setGameType(SINGLE);
+        component->setMainMenuSelect(STARTSINGLE);
+//        courtSelectionMenu(render);   // displays the menu for selecting which court to use
+
     }
     else if (keyPressed == "m")
     {
@@ -658,7 +655,8 @@ void GUISystem::processTeamSelectionMenuKeyPress(const std::string &keyPressed, 
             networkServerSetupMenu();
         }
         */
-        courtSelectionMenu(render);
+//        courtSelectionMenu(render);
+        component->setTeamMenuSelect(BACKTEAMCOURT);
     }
     else if (keyPressed == "t")
     {

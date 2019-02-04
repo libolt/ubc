@@ -96,8 +96,10 @@ class setupTeams;
 class GUISystem;
 class guiComponents;
 class guiCreate;
+class guiData;
 class guiDisplay;
 class guiFlags;
+class guiInput;
 class guiStateMachine;
 
 class hoopComponents;
@@ -180,9 +182,13 @@ typedef sharedPtr<guiComponents> guiComponentsSharedPtr;
 
 typedef sharedPtr<guiCreate> guiCreateSharedPtr;
 
+typedef sharedPtr<guiData> guiDataSharedPtr;
+
 typedef sharedPtr<guiDisplay> guiDisplaySharedPtr;
 
 typedef sharedPtr<guiFlags> guiFlagsSharedPtr;
+
+typedef sharedPtr<guiInput> guiInputSharedPtr;
 
 typedef sharedPtr<guiStateMachine> guiStateMachineSharedPtr;
 

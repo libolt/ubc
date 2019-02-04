@@ -23,7 +23,9 @@
 
 #include "gui/gui.h"
 #include "gui/guicreate.h"
+#include "gui/guidata.h"
 #include "gui/guidisplay.h"
+#include "gui/guiinput.h"
 #include "utilities/conversion.h"
 #include "components/gamecomponents.h"
 #include "components/guicomponents.h"
@@ -92,6 +94,15 @@ void GUISystem::setCreate(const guiCreateSharedPtr &set)  // sets the value of c
     create = set;
 }
 
+guiDataSharedPtr GUISystem::getData() const  // retrieves the value of data
+{
+    return (data);
+}
+void GUISystem::setData(const guiDataSharedPtr &set)  // sets the value of data
+{
+    data = set;
+}
+
 guiDisplaySharedPtr GUISystem::getDisplay() const  // retrieves the value of display
 {
     return (display);
@@ -108,6 +119,15 @@ guiFlagsSharedPtr GUISystem::getFlag() const  // retrieves the value of flag
 void GUISystem::setFlag(const guiFlagsSharedPtr &set)  // sets the value of flag
 {
     flag = set;
+}
+
+guiInputSharedPtr GUISystem::getInput() const  // retrieves the value of input
+{
+    return (input);
+}
+void GUISystem::setInput(const guiInputSharedPtr &set)  // sets the value of input
+{
+    input = set;
 }
 
 guiStateMachineSharedPtr GUISystem::getStateMachine() const  // retrieves the value of stateMachine
@@ -190,12 +210,24 @@ bool GUISystem::initializeObjects(const renderEngineSharedPtr &render)  // initi
     create->setComponent(component);
     create->setFlag(flag);
 
+    guiDataSharedPtr tempData(new guiData);
+    data = tempData;
+    data->setComponent(component);
+    data->setFlag(flag);
+    data->setGameInstance(gameInstance);
+    
     guiDisplaySharedPtr tempDisplay(new guiDisplay);
     display = tempDisplay;
     display->setComponent(component);
     display->setFlag(flag);
     display->setGameE(gameE);
     display->setInitialized(true);
+
+    guiInputSharedPtr tempInput(new guiInput);
+    input = tempInput;
+    input->setComponent(component);
+    input->setFlag(flag);
+    input->setGameInstance(gameInstance);
 
     guiStateMachineSharedPtr tempStateMachine(new guiStateMachine);
     stateMachine = tempStateMachine;
@@ -301,7 +333,7 @@ void GUISystem::backButtons()  // handles the back buttons
 
 }
 
-void GUISystem::startSinglePlayerGame(const renderEngineSharedPtr &render)  // starts single player game
+/*void GUISystem::startSinglePlayerGame(const renderEngineSharedPtr &render)  // starts single player game
 {
 //    sharedPtr<gameState> gameS = gameState::Instance();
 //    exit(0);
@@ -310,15 +342,13 @@ void GUISystem::startSinglePlayerGame(const renderEngineSharedPtr &render)  // s
     std::string func = "GUISystem::startSinglePlayerGame()";
 
     gameInstance->getData()->setGameType(SINGLE);
-
-//    exit(0);
-//    hideMainMenuWidgets();	// Hides the widgets from the main menu
     courtSelectionMenu(render);   // displays the menu for selecting which court to use
     //   setupMenu();
 //	menuActive = false;
     
     logMsg(func +" end");
 }
+*/
 
 void GUISystem::startMultiPlayerGame(const renderEngineSharedPtr &render)  // starts multiplayer game
 {
@@ -546,7 +576,7 @@ void GUISystem::teamSelectionMenu(const renderEngineSharedPtr &render)  // displ
 
 }
 
-void GUISystem::courtSelectionMenu(const renderEngineSharedPtr &render) // displays court selection menu
+/*void GUISystem::courtSelectionMenu(const renderEngineSharedPtr &render) // displays court selection menu
 {
 //    sharedPtr<gameState> gameS = gameState::Instance();
     conversionSharedPtr convert ;
@@ -585,7 +615,7 @@ void GUISystem::courtSelectionMenu(const renderEngineSharedPtr &render) // displ
     
     logMsg(func +" end");
 }
-
+*/
 
 void GUISystem::setSelectedIndexes()  // sets all player listbox indexes to zero
 {

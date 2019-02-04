@@ -35,6 +35,8 @@ class guiCreate
         guiFlagsSharedPtr getFlag() const;  // retrieves the value of flag
         void setFlag(const guiFlagsSharedPtr &set);  // sets the value of flag
 
+        bool createCourtSelectionMenuGUI(const renderEngineSharedPtr &render);  // creates GUI for court selection menu screen.
+
         bool createMainMenuGUI(const renderEngineSharedPtr &render);  // creates GUI gor main menu screen.
 
     private:

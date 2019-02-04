@@ -10,9 +10,10 @@ public:
 
     guiComponentsSharedPtr component;  // stores copy of guiComponents object
     guiCreateSharedPtr create;  // stores copy of guiCreate object
+    guiDataSharedPtr gData;  // stores copy of guiData object
     guiDisplaySharedPtr display;  // stores copy of guiDisplay object
     guiFlagsSharedPtr flag;  // stores copy of guiFlags object
-
+    guiInputSharedPtr input;  // stores copy of guiInput object
     renderEngineSharedPtr render;  // stores copy of renderEngine object
        
 /*    OgreEntitySharedPtr model;  // stores 3d model
@@ -36,7 +37,7 @@ public:
     // External events taken by this state machine
     void pInitialize(const guiSMData *data);
     void pMainMenu(const guiSMData *data);
-    void pUpdatePosition(guiSMData *data);
+    void pStartSinglePlayerGame(const guiSMData *data);
     void pUpdateMovement(guiSMData *data);
     void pUpdateDirection(guiSMData *data);
     void halt();

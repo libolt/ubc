@@ -59,11 +59,17 @@ public:
     guiCreateSharedPtr getCreate() const;  // retrieves the value of create
     void setCreate(const guiCreateSharedPtr &set);  // sets the value of create
 
+    guiDataSharedPtr getData() const;  // retrieves the value of data
+    void setData(const guiDataSharedPtr &set);  // sets the value of data
+
     guiDisplaySharedPtr getDisplay() const;  // retrieves the value of display
     void setDisplay(const guiDisplaySharedPtr &set);  // sets the value of display
 
     guiFlagsSharedPtr getFlag() const;  // retrieves the value of flag
     void setFlag(const guiFlagsSharedPtr &set);  // sets the value of flag
+
+    guiInputSharedPtr getInput() const;  // retrieves the value of input
+    void setInput(const guiInputSharedPtr &set);  // sets the value of input
 
     guiStateMachineSharedPtr getStateMachine() const;  // retrieves the value of stateMachine
     void setStateMachine(const guiStateMachineSharedPtr &set);  // sets the value of stateMachine
@@ -94,7 +100,7 @@ public:
     bool createSetupMenuGUI();  // creates GUI for game setup menu screen.
     bool createPlayerStartSelectionMenuGUI(const renderEngineSharedPtr &render);  // creates GUI for player start selection menu screen.
     bool createTeamSelectionMenuGUI(const renderEngineSharedPtr &render);	// creates GUI for team selection menu screen.
-    bool createCourtSelectionMenuGUI(const renderEngineSharedPtr &render);  // creates GUI for court selection menu screen.
+//    bool createCourtSelectionMenuGUI(const renderEngineSharedPtr &render);  // creates GUI for court selection menu screen.
     bool createBackButtons();  // creates the back buttons for the menus
 
     void menuReceiveKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // processes key input
@@ -113,7 +119,7 @@ public:
 	
 //    void mainMenu(const renderEngineSharedPtr &render);  // msin in game menu
     void backButtons();  // handles the back buttons
-    void startSinglePlayerGame(const renderEngineSharedPtr &render);  // starts single player game
+//    void startSinglePlayerGame(const renderEngineSharedPtr &render);  // starts single player game
     void startMultiPlayerGame(const renderEngineSharedPtr &render);  // starts multiplayer game
     void optionsMenu(const renderEngineSharedPtr &render);  // displays options menu
     void displayMenu(const renderEngineSharedPtr &render);  // displays display menu
@@ -122,11 +128,11 @@ public:
     void setupMenu(const renderEngineSharedPtr &render);  // displays game setup menu
     void playerStartSelectionMenu(const renderEngineSharedPtr &render);  // displays player start selection menu
     void teamSelectionMenu(const renderEngineSharedPtr &render);  // displays team selection menu
-    void courtSelectionMenu(const renderEngineSharedPtr &render);  // displays court selection menu
+//    void courtSelectionMenu(const renderEngineSharedPtr &render);  // displays court selection menu
     void networkClientSetupMenu(const renderEngineSharedPtr &render);  // sets up the network client connection
     void networkServerSetupMenu(const renderEngineSharedPtr &render);  // sets up the networkServer instance
     
-    bool addCourtSelectionMenuData();  // adds data to Court Selection Menu widgets
+//    bool addCourtSelectionMenuData();  // adds data to Court Selection Menu widgets
 
     void addPlayerStartSelectionMenuData();  // adds data to Player Start Selection Menu widgets
     void addPlayerStartSelectionMenuData_old();  // adds data to Player Start Selection Menu widgets
@@ -154,7 +160,6 @@ public:
     void clientButtonClicked(MyGUI::Widget *_sender);  // handles clientButton click event
     void serverHostButtonClicked(MyGUI::Widget *_sender);  // handles hostGameButton click event
     void clientConnectButtonClicked(MyGUI::Widget *_sender);  // handles connectButton click event
-    void backMainMenuButtonClicked(MyGUI::Widget *_sender);  // handles backMainMenuButton click event
     void backNetworkSetupButtonClicked(MyGUI::Widget *_sender);  // handles backNetworkSetupButton click event
     void displayButtonClicked(MyGUI::Widget *_sender);  // handles didplayButton click event
     void inputButtonClicked(MyGUI::Widget *_sender);  // handles inputButton click event
@@ -175,8 +180,7 @@ public:
     void backTeamSelectionMenuButtonClicked(MyGUI::Widget *_sender);  // handles backPlayerStartSelectionMenuButton click event
     void backCourtSelectionMenuButtonClicked(MyGUI::Widget *_sender);  // handles backCourtSelectionMenuButton click event
     void backSetupMenuButtonClicked(MyGUI::Widget *_sender);  // handles backSetupMenuButton click event
-    void courtSelectButtonClicked(MyGUI::Widget *_sender);  // handles courtSelectButton click event
-    
+        
 private:
 
     bool objectsInitialized;  // stores whether gui objects have been initialized
@@ -185,9 +189,13 @@ private:
     
     guiCreateSharedPtr create;  // stores gui create functions
     
+    guiDataSharedPtr data;  // stores gui data functions
+
     guiDisplaySharedPtr display;  // stores gui display functions
 
     guiFlagsSharedPtr flag;  // stores gui related flags
+
+    guiInputSharedPtr input;  // stores gui input functions
 
     guiStateMachineSharedPtr stateMachine;  // stores gui stateMachine object
 

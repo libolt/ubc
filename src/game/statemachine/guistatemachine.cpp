@@ -23,7 +23,9 @@
 #include "components/guicomponents.h"
 #include "flags/guiflags.h"
 #include "gui/guicreate.h"
+#include "gui/guidata.h"
 #include "gui/guidisplay.h"
+#include "gui/guiinput.h"
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
 
@@ -65,6 +67,26 @@ void guiStateMachine::pMainMenu(const guiSMData *data)
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_TEAM_MENU
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STARTERS_MENU
         TRANSITION_MAP_ENTRY (ST_MAIN_MENU)                // ST_OPTIONS_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_AUDIO_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_DISPLAY_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_INPUT_MENU
+    END_TRANSITION_MAP(data)
+}
+
+
+void guiStateMachine::pStartSinglePlayerGame(const guiSMData *data)
+{
+    BEGIN_TRANSITION_MAP                                    // - Current State -
+        TRANSITION_MAP_ENTRY (ST_COURT_MENU)                // ST_INITIALIZE
+        TRANSITION_MAP_ENTRY (ST_COURT_MENU)                // ST_MAIN_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_NETWORK_MENU
+        TRANSITION_MAP_ENTRY (ST_COURT_MENU)                // ST_NETWORKCLIENT_MENU
+        TRANSITION_MAP_ENTRY (ST_COURT_MENU)                // ST_NETWORKSERVER_MENU
+        TRANSITION_MAP_ENTRY (ST_COURT_MENU)                // ST_IDLE
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_COURT_MENU
+        TRANSITION_MAP_ENTRY (ST_COURT_MENU)                // ST_TEAM_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STARTERS_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_OPTIONS_MENU
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_AUDIO_MENU
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_DISPLAY_MENU
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_INPUT_MENU
@@ -183,10 +205,46 @@ STATE_DEFINE(guiStateMachine, Idle, noEventData)
 // CourtMenu
 STATE_DEFINE(guiStateMachine, CourtMenu, guiSMData)
 {
+    conversionSharedPtr convert ;
+//    sharedPtr<loader> load; // = loader::Instance();
     std::string func = "guiStateMachine::CourtMenu()";
-
+    
     logMsg(func +" begin");
+    
+    guiComponentsSharedPtr component = data->component;
+    guiCreateSharedPtr create = data->create;
+    guiDataSharedPtr gData = data->gData;
+    guiDisplaySharedPtr display = data->display;
+    guiFlagsSharedPtr flag = data->flag;
+    guiInputSharedPtr input = data->input;
+    
+    if (!flag->getCourtSelectionMenuCreated())
+    {
+        create->createCourtSelectionMenuGUI(data->render);
+    }
+//    exit(0);
+    if (!flag->getCourtSelectionDataLoaded())
+    {
+//        exit(0);
+        logMsg("gData->addCourtSelectionMenuData = " +convert->toString(gData->addCourtSelectionMenuData()));
+//        exit(0);
+        if (gData->addCourtSelectionMenuData())
+        {
+//            exit(0);
+            component->getCourtSelectBox()->setIndexSelected(0);
+            flag->setCourtSelectionDataLoaded(true);
+        }
+        else
+        {
+            exit(0);
 
+        }
+//        exit(0);
+    }
+
+    display->changeActiveMenu(COURTSELECT, data->render);
+//    exit(0);
+    
     logMsg(func +" end");
 }
 

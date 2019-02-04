@@ -287,6 +287,15 @@ void guiComponents::setPreviousActiveMenu(const activeMenus &set)  // sets the v
     previousActiveMenu = set;
 }
 
+courtMenuSelects guiComponents::getCourtMenuSelect() const  // retrieves the value of courtMenuSelect
+{
+    return (courtMenuSelect);
+}
+void guiComponents::setCourtMenuSelect(const courtMenuSelects &set)  // sets the value of courtMenuSelect
+{
+    courtMenuSelect = set;
+}
+
 mainMenuSelects guiComponents::getMainMenuSelect() const  // retrieves the value of displayedMenu
 {
     return (mainMenuSelect);
@@ -295,6 +304,16 @@ void guiComponents::setMainMenuSelect(const mainMenuSelects &set)  // sets the v
 {
     mainMenuSelect = set;
 }
+
+teamMenuSelects guiComponents::getTeamMenuSelect() const  // retrieves the value of teamMenuSelect
+{
+    return (teamMenuSelect)
+}
+void guiComponents::setTeamMenuSelect(const teamMenuSelects &set)  // sets the value of teamMenuSelect
+{
+    teamMenuSelect = set;
+}
+
 
 /*  void guiComponents::startSingleGameButtonClicked(MyGUI::Widget *_sender)  // handles startSingleGameButton click event
 {
@@ -325,6 +344,15 @@ void guiComponents::exitButtonClicked(MyGUI::Widget *_sender)  // handles exitBu
     exit(0);
 }
 
+void guiComponents::backMainMenuButtonClicked(MyGUI::Widget *_sender)  // handles backMainMenuButton click event
+{
+    backMainMenuSelected(gameE->getRenderE());
+}
+
+void guiComponents::courtSelectButtonClicked(MyGUI::Widget *_sender)  // handles courtSelectButton click event
+{
+     courtSelected();
+}
 
 bool guiComponents::initMyGUI(const renderEngineSharedPtr &render)  // Initializes MyGUI
 {

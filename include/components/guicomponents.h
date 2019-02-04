@@ -120,13 +120,21 @@ class guiComponents
         activeMenus getPreviousActiveMenu() const;  // retrieves the value of previousActiveMenu
         void setPreviousActiveMenu(const activeMenus &set);  // sets the value of previousActiveMenu
 
+        courtMenuSelects getCourtMenuSelect() const;  // retrieves the value of courtMenuSelect
+        void setCourtMenuSelect(const courtMenuSelects &set);  // sets the value of courtMenuSelect
+
         mainMenuSelects getMainMenuSelect() const;  // retrieves the value of mainMenuSelect
         void setMainMenuSelect(const mainMenuSelects &set);  // sets the value of mainMenuSelect
+
+        teamMenuSelects getTeamMenuSelect() const;  // retrieves the value of teamMenuSelect
+        void setTeamMenuSelect(const teamMenuSelects &set);  // sets the value of teamMenuSelect
 
         void startSingleGameButtonClicked(MyGUI::Widget *_sender);  // handles startSingleGameButton click event
         void startMultiGameButtonClicked(MyGUI::Widget *_sender);  // hands startMultiGameButton click event
         void optionsButtonClicked(MyGUI::Widget *_sender);  // handles optionsButton click event
         void exitButtonClicked(MyGUI::Widget *_sender);  // handles exitButton click event
+        void courtSelectButtonClicked(MyGUI::Widget *_sender);  // handles courtSelectButton click event
+        void backMainMenuButtonClicked(MyGUI::Widget *_sender);  // handles backMainMenuButton click event
 
 //        void startSingleGameButtonClicked(MyGUI::Widget *_sender);  // handles startSingleGameButton click event
 
@@ -189,7 +197,10 @@ class guiComponents
         activeMenus activeMenu;  // stores which menu is to be displayed
         activeMenus previousActiveMenu;  // stores which menu was last displayed
 
+        courtMenuSelects courtMenuSelect;  // stores the selction for the courtMenu
         mainMenuSelects mainMenuSelect;  // stores the selction for the mainMenu
+        teamMenuSelects teamMenuSelect;  // stores the selction for the teamMenu
+
 };
 
 #endif

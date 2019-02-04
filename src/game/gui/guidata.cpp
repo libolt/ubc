@@ -20,6 +20,7 @@
 
 #include "engine/networkengine.h"
 
+#include "gui/guidata.h"
 #include "gui/gui.h"
 #include "utilities/conversion.h"
 #include "components/courtcomponents.h"
@@ -53,7 +54,16 @@
 #include "config.h"
 #endif
 
-bool GUISystem::addCourtSelectionMenuData()  // adds data to Player Start Selection Menu widgets
+gameEntitySharedPtr guiData::getGameInstance() const  // retrieves the value of teamInstance
+{
+    return (gameInstance);
+}
+void guiData::setGameInstance(const gameEntitySharedPtr &set)  // sets the value of teamInstance
+{
+    gameInstance = set;
+}
+
+bool guiData::addCourtSelectionMenuData()  // adds data to Player Start Selection Menu widgets
 {
 //    sharedPtr<gameState> gameS = gameState::Instance();
     conversionSharedPtr convert ;

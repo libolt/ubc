@@ -307,7 +307,7 @@ void guiComponents::setMainMenuSelect(const mainMenuSelects &set)  // sets the v
 
 teamMenuSelects guiComponents::getTeamMenuSelect() const  // retrieves the value of teamMenuSelect
 {
-    return (teamMenuSelect)
+    return (teamMenuSelect);
 }
 void guiComponents::setTeamMenuSelect(const teamMenuSelects &set)  // sets the value of teamMenuSelect
 {

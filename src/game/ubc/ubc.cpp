@@ -133,10 +133,11 @@ bool UBC::setupState()  // sets up the UBC game state
         guiSMData *mmSMData(new guiSMData);
         mmSMData->component = component->getGui()->getComponent();
         mmSMData->create = component->getGui()->getCreate();
+        mmSMData->display = component->getGui()->getDisplay();
         mmSMData->flag = component->getGui()->getFlag();
         mmSMData->render = component->getGameE()->getRenderE();
         gui->getStateMachine()->pMainMenu(mmSMData);
-        exit(0);
+//        exit(0);
         gui->backButtons();
         
         component->setGui(gui);

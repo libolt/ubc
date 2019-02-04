@@ -45,6 +45,15 @@ guiDisplay::guiDisplay()  // constructor
 }
 guiDisplay::~guiDisplay() = default;  // destructor
 
+bool guiDisplay::getInitialized() const  // retrieves the value of initialized
+{
+    return (initialized);
+}
+void guiDisplay::setInitialized(const bool &set)  // sets the value of initialized
+{
+    initialized = set;
+}
+
 guiComponentsSharedPtr guiDisplay::getComponent() const  // retrieves the value of component
 {
     return (component);

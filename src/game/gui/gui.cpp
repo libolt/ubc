@@ -92,6 +92,15 @@ void GUISystem::setCreate(const guiCreateSharedPtr &set)  // sets the value of c
     create = set;
 }
 
+guiDisplaySharedPtr GUISystem::getDisplay() const  // retrieves the value of display
+{
+    return (display);
+}
+void GUISystem::setDisplay(const guiDisplaySharedPtr &set)  // sets the value of display
+{
+    display = set;
+}
+
 guiFlagsSharedPtr GUISystem::getFlag() const  // retrieves the value of flag
 {
     return (flag);
@@ -183,7 +192,10 @@ bool GUISystem::initializeObjects(const renderEngineSharedPtr &render)  // initi
 
     guiDisplaySharedPtr tempDisplay(new guiDisplay);
     display = tempDisplay;
+    display->setComponent(component);
+    display->setFlag(flag);
     display->setGameE(gameE);
+    display->setInitialized(true);
 
     guiStateMachineSharedPtr tempStateMachine(new guiStateMachine);
     stateMachine = tempStateMachine;
@@ -214,6 +226,8 @@ bool GUISystem::initializeStateMachine(const renderEngineSharedPtr &render)  // 
     guiSMData *initSMData(new guiSMData);
     
     initSMData->component = component;
+    initSMData->create = create;
+    initSMData->display = display;
     initSMData->flag = flag;
     initSMData->render = render;
     

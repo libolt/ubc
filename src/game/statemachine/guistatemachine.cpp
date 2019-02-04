@@ -24,6 +24,7 @@
 #include "flags/guiflags.h"
 #include "gui/guicreate.h"
 #include "gui/guidisplay.h"
+#include "utilities/conversion.h"
 #include "utilities/logging.h"
 
 guiStateMachine::guiStateMachine() :
@@ -85,6 +86,7 @@ STATE_DEFINE(guiStateMachine, Initialize, guiSMData)
 // Main Menu
 STATE_DEFINE(guiStateMachine, MainMenu, guiSMData)
 {
+    conversionSharedPtr convert;
     std::string func = "guiStateMachine::MainMenu()";
 
     logMsg(func +" begin");
@@ -119,13 +121,18 @@ STATE_DEFINE(guiStateMachine, MainMenu, guiSMData)
         
     }
     logMsg(func +"tempSMData");
-    guiSMData *tempSMData;
+
+    guiSMData *tempSMData(new guiSMData);
+    tempSMData->component = data->component;
+    tempSMData->create = data->create;
+    tempSMData->display = data->display;
     tempSMData->flag= flag;
     logMsg(func +"tempSMData Flag");
     data = tempSMData;
     logMsg(func +"showMainMenuWidgets?");
+
+    data->display->setComponent(data->component);
     data->display->showMainMenuWidgets();  // displays main menu
-    logMsg(func +" begin");
 
     data->component->setActiveMenu(MAIN);
     

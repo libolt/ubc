@@ -59,6 +59,9 @@ public:
     guiCreateSharedPtr getCreate() const;  // retrieves the value of create
     void setCreate(const guiCreateSharedPtr &set);  // sets the value of create
 
+    guiDisplaySharedPtr getDisplay() const;  // retrieves the value of display
+    void setDisplay(const guiDisplaySharedPtr &set);  // sets the value of display
+
     guiFlagsSharedPtr getFlag() const;  // retrieves the value of flag
     void setFlag(const guiFlagsSharedPtr &set);  // sets the value of flag
 

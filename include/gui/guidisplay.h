@@ -29,6 +29,9 @@ class guiDisplay
         guiDisplay();  // constructor
         ~guiDisplay();  // destructor
 
+        bool getInitialized() const;  // retrieves the value of initialized
+        void setInitialized(const bool &set);  // sets the value of initialized
+
         guiComponentsSharedPtr getComponent() const;  // retrieves the value of component
         void setComponent(const guiComponentsSharedPtr &set);  // sets the value of component
 
@@ -80,6 +83,8 @@ class guiDisplay
         void changeActiveMenu(activeMenus menu, const renderEngineSharedPtr &render);  // changes the actively displayed menu
 
     private:
+
+        bool initialized;  // stores whether the object has been initialized
 
         guiComponentsSharedPtr component;  // stores gui related components
 

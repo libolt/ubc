@@ -199,10 +199,10 @@ bool GUISystem::createNetworkSetupGUI(const renderEngineSharedPtr &render)  // l
     tempButtons["clientButton"]->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()) );
 
     
-    tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("backMainMenuButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("networkBackMainMenuButton"))));  // loads Back to Main Menu Button
-    tempButtons["backMainMenuButton"]->setVisible(false);
-    tempButtons["backMainMenuButton"]->eventMouseButtonClick += MyGUI::newDelegate(component.get(), &guiComponents::backMainMenuButtonClicked);
-    tempButtons["backMainMenuButton"]->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()) );
+    tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("backNetworkMainMenuButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("networkBackMainMenuButton"))));  // loads Back to Main Menu Button
+    tempButtons["backNetworkMainMenuButton"]->setVisible(false);
+    tempButtons["backNetworkMainMenuButton"]->eventMouseButtonClick += MyGUI::newDelegate(component.get(), &guiComponents::backNetworkMainMenuButtonClicked);
+    tempButtons["backNetworkMainMenuButton"]->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()) );
 
     component->setNetworkMenuButtons(tempButtons);
 
@@ -319,10 +319,10 @@ bool guiCreate::createCourtSelectionMenuGUI(const renderEngineSharedPtr &render)
     tempButtons["courtSelectButton"]->eventMouseButtonClick += MyGUI::newDelegate(component.get(), &guiComponents::courtSelectButtonClicked);
     tempButtons["courtSelectButton"]->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()) );
 
-    tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("backMainMenuButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("courtBackMainMenuButton"))));  // loads Back to Main Menu Button
-    tempButtons["backMainMenuButton"]->setVisible(false);
-    tempButtons["backMainMenuButton"]->eventMouseButtonClick += MyGUI::newDelegate(component.get(), &guiComponents::backMainMenuButtonClicked);
-    tempButtons["backMainMenuButton"]->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()) );
+    tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("backCourtMainMenuButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("courtBackMainMenuButton"))));  // loads Back to Main Menu Button
+    tempButtons["backCourtMainMenuButton"]->setVisible(false);
+    tempButtons["backCourtMainMenuButton"]->eventMouseButtonClick += MyGUI::newDelegate(component.get(), &guiComponents::backCourtMainMenuButtonClicked);
+    tempButtons["backCourtMainMenuButton"]->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()) );
 
     tempPreviewImgBox = MyGUIImageBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ImageBox>("courtPreviewImgBox"));  // loads Court Preview ImageBox
     tempPreviewImgBox->setVisible(false);
@@ -366,10 +366,10 @@ bool GUISystem::createOptionsMenuGUI(const renderEngineSharedPtr &render)  // cr
     component->getOptionsMenuButtons()["audioButton"]->setVisible(false);
     component->getOptionsMenuButtons()["audioButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::audioButtonClicked);
 
-    component->getOptionsMenuButtons().insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("backMainMenuButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("optionsBackMainMenuButton"))));  // loads Back to Main Menu Button
-    component->getOptionsMenuButtons()["backMainMenuButton"]->setVisible(false);
-    component->getOptionsMenuButtons()["backMainMenuButton"]->eventMouseButtonClick += MyGUI::newDelegate(component.get(), &guiComponents::backMainMenuButtonClicked);
-    component->getOptionsMenuButtons()["backMainMenuButton"]->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()) );
+    component->getOptionsMenuButtons().insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("backOptionsMainMenuButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("optionsBackMainMenuButton"))));  // loads Back to Main Menu Button
+    component->getOptionsMenuButtons()["backOptionsMainMenuButton"]->setVisible(false);
+    component->getOptionsMenuButtons()["backOptionsMainMenuButton"]->eventMouseButtonClick += MyGUI::newDelegate(component.get(), &guiComponents::backOptionsMainMenuButtonClicked);
+    component->getOptionsMenuButtons()["backOptionsMainMenuButton"]->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()) );
 
     component->setOptionsMenuButtons(tempButtons);
 
@@ -763,10 +763,10 @@ bool GUISystem::createTeamSelectionMenuGUI(const renderEngineSharedPtr &render) 
     tempButtons["teamsSelectedButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::teamsSelectedButtonClicked);
     tempButtons["teamsSelectedButton"]->setSize((0.4 *vpWidth), (0.04 *vpHeight) );
     
-    tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("backMainMenuButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("teamSelectionBackMainMenuButton"))));  // loads Back to Main Menu Button
-    tempButtons["backMainMenuButton"]->setVisible(false);
-    tempButtons["backMainMenuButton"]->eventMouseButtonClick += MyGUI::newDelegate(component.get(), &guiComponents::backMainMenuButtonClicked);
-    tempButtons["backMainMenuButton"]->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()) );
+    tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("backTeamMainMenuButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("teamSelectionBackMainMenuButton"))));  // loads Back to Main Menu Button
+    tempButtons["backTeamMainMenuButton"]->setVisible(false);
+    tempButtons["backTeamMainMenuButton"]->eventMouseButtonClick += MyGUI::newDelegate(component.get(), &guiComponents::backTeamMainMenuButtonClicked);
+    tempButtons["backTeamMainMenuButton"]->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()) );
 
     tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("backCourtSelectionMenuButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("backCourtSelectionMenuButton"))));  // loads Back to Team Selection Menu Button
     tempButtons["backCourtSelectionMenuButton"]->setVisible(false);

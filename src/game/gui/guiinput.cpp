@@ -43,6 +43,38 @@
 #include "config.h"
 #endif
 
+guiInput::guiInput()  // constructor
+{
+
+}
+guiInput::~guiInput() = default;  // destructor
+
+guiComponentsSharedPtr guiInput::getComponent() const  // retrieves the value of component
+{
+    return (component);
+}
+void guiInput::setComponent(const guiComponentsSharedPtr &set)  // sets the value of component
+{
+    component = set;
+}
+guiFlagsSharedPtr guiInput::getFlag() const  // retrieves the value of flag
+{
+    return (flag);
+}
+void guiInput::setFlag(const guiFlagsSharedPtr &set)  // sets the value of flag
+{
+    flag = set;
+}
+
+gameEntitySharedPtr guiInput::getGameInstance() const  // retrieves the value of teamInstance
+{
+    return (gameInstance);
+}
+void guiInput::setGameInstance(const gameEntitySharedPtr &set)  // sets the value of teamInstance
+{
+    gameInstance = set;
+}
+
 void GUISystem::serverButtonClicked(MyGUI::Widget *_sender)  // handles serverButton click event
 {
     networkServerSetupMenu(gameE->getRenderE());

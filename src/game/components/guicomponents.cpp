@@ -305,6 +305,24 @@ void guiComponents::setMainMenuSelect(const mainMenuSelects &set)  // sets the v
     mainMenuSelect = set;
 }
 
+networkMenuSelects guiComponents::getNetworkMenuSelect() const  // retrieves the value of networkMenuSelect
+{
+    return (networkMenuSelect);
+}
+void guiComponents::setNetworkMenuSelect(const networkMenuSelects &set)  // sets the value of networkMenuSelect
+{
+    networkMenuSelect = set;
+}
+
+optionsMenuSelects guiComponents::getOptionsMenuSelect() const  // retrieves the value of optionsMenuSelect
+{
+    return (optionsMenuSelect);
+}
+void guiComponents::setOptionsMenuSelect(const optionsMenuSelects &set)  // sets the value of optionsMenuSelect
+{
+    optionsMenuSelect = set;
+}
+
 teamMenuSelects guiComponents::getTeamMenuSelect() const  // retrieves the value of teamMenuSelect
 {
     return (teamMenuSelect);
@@ -344,14 +362,35 @@ void guiComponents::exitButtonClicked(MyGUI::Widget *_sender)  // handles exitBu
     exit(0);
 }
 
-void guiComponents::backMainMenuButtonClicked(MyGUI::Widget *_sender)  // handles backMainMenuButton click event
+void guiComponents::backCourtMainMenuButtonClicked(MyGUI::Widget *_sender)  // handles backCourtMainMenuButton click event
 {
-    backMainMenuSelected(gameE->getRenderE());
+    courtMenuSelect = BACKCOURTMAIN;
+//    backMainMenuSelected(gameE->getRenderE());
 }
+
+void guiComponents::backNetworkMainMenuButtonClicked(MyGUI::Widget *_sender)  // handles backNetworkMainMenuButton click event
+{
+    networkMenuSelect = BACKNETWORKMAIN;
+//    backMainMenuSelected(gameE->getRenderE());
+}
+
+void guiComponents::backOptionsMainMenuButtonClicked(MyGUI::Widget *_sender)  // handles backOptionsMainMenuButton click event
+{
+    optionsMenuSelect = BACKOPTIONSMAIN;
+//    backMainMenuSelected(gameE->getRenderE());
+}
+
+void guiComponents::backTeamMainMenuButtonClicked(MyGUI::Widget *_sender)  // handles backTeamMainMenuButton click event
+{
+    teamMenuSelect = BACKTEAMMAIN;
+//    backMainMenuSelected(gameE->getRenderE());
+}
+
 
 void guiComponents::courtSelectButtonClicked(MyGUI::Widget *_sender)  // handles courtSelectButton click event
 {
-     courtSelected();
+    courtMenuSelect = COURTSSELECT;
+//    courtSelected();
 }
 
 bool guiComponents::initMyGUI(const renderEngineSharedPtr &render)  // Initializes MyGUI

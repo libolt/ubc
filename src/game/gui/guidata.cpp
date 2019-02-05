@@ -54,6 +54,28 @@
 #include "config.h"
 #endif
 
+guiData::guiData()  // constructor
+{
+}
+guiData::~guiData() = default;  // destructor
+
+guiComponentsSharedPtr guiData::getComponent() const  // retrieves the value of component
+{
+    return (component);
+}
+void guiData::setComponent(const guiComponentsSharedPtr &set)  // sets the value of component
+{
+    component = set;
+}
+guiFlagsSharedPtr guiData::getFlag() const  // retrieves the value of flag
+{
+    return (flag);
+}
+void guiData::setFlag(const guiFlagsSharedPtr &set)  // sets the value of flag
+{
+    flag = set;
+}
+
 gameEntitySharedPtr guiData::getGameInstance() const  // retrieves the value of teamInstance
 {
     return (gameInstance);

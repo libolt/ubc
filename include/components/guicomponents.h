@@ -126,6 +126,12 @@ class guiComponents
         mainMenuSelects getMainMenuSelect() const;  // retrieves the value of mainMenuSelect
         void setMainMenuSelect(const mainMenuSelects &set);  // sets the value of mainMenuSelect
 
+        networkMenuSelects getNetworkMenuSelect() const;  // retrieves the value of networkMenuSelect
+        void setNetworkMenuSelect(const networkMenuSelects &set);  // sets the value of networkMenuSelect
+
+        optionsMenuSelects getOptionsMenuSelect() const;  // retrieves the value of optionsMenuSelect
+        void setOptionsMenuSelect(const optionsMenuSelects &set);  // sets the value of optionsMenuSelect
+
         teamMenuSelects getTeamMenuSelect() const;  // retrieves the value of teamMenuSelect
         void setTeamMenuSelect(const teamMenuSelects &set);  // sets the value of teamMenuSelect
 
@@ -134,7 +140,10 @@ class guiComponents
         void optionsButtonClicked(MyGUI::Widget *_sender);  // handles optionsButton click event
         void exitButtonClicked(MyGUI::Widget *_sender);  // handles exitButton click event
         void courtSelectButtonClicked(MyGUI::Widget *_sender);  // handles courtSelectButton click event
-        void backMainMenuButtonClicked(MyGUI::Widget *_sender);  // handles backMainMenuButton click event
+        void backCourtMainMenuButtonClicked(MyGUI::Widget *_sender);  // handles backCourtMainMenuButton click event
+        void backNetworkMainMenuButtonClicked(MyGUI::Widget *_sender);  // handles backNetworkMainMenuButton click event
+        void backOptionsMainMenuButtonClicked(MyGUI::Widget *_sender);  // handles backOptoinsMainMenuButton click event
+        void backTeamMainMenuButtonClicked(MyGUI::Widget *_sender);  // handles backTeamMainMenuButton click event
 
 //        void startSingleGameButtonClicked(MyGUI::Widget *_sender);  // handles startSingleGameButton click event
 
@@ -199,6 +208,8 @@ class guiComponents
 
         courtMenuSelects courtMenuSelect;  // stores the selction for the courtMenu
         mainMenuSelects mainMenuSelect;  // stores the selction for the mainMenu
+        networkMenuSelects networkMenuSelect;  // stores the selection for the networkMenu
+        optionsMenuSelects optionsMenuSelect;  // stores the selection for the optionsMenu
         teamMenuSelects teamMenuSelect;  // stores the selction for the teamMenu
 
 };

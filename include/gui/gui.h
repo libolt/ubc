@@ -89,6 +89,14 @@ public:
     bool initializeObjects(const renderEngineSharedPtr &render);  // initializes gui objects
     bool initializeStateMachine(const renderEngineSharedPtr &render);  // initializes gui stateMachine
 
+    bool updateStateMachine(const renderEngineSharedPtr &render);  // updates gui stateMachine
+
+    bool checkCourtMenuSelects();  // checks which courtMenu option was selected
+    bool checkMainMenuSelects();  // checks which mainMenu option was selected
+    bool checkNetworkMenuSelects();  // checks which networkMenu option was selected
+    bool checkOptionsMenuSelects();  // checks which optionsMenu option was selected
+    bool checkTeamMenuSelects();  // checks which teamMenu option was selected
+
 //    bool createMainMenuGUI(const renderEngineSharedPtr &render);  // creates GUI gor main menu screen.
     bool createNetworkSetupGUI(const renderEngineSharedPtr &render);  // creates GUI for network setup screen.
     bool createNetworkClientSetupGUI(const renderEngineSharedPtr &render);  // creates GUI for network client setup screen.

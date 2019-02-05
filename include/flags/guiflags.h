@@ -88,6 +88,9 @@ class guiFlags
         bool getStartActiveGame() const;  // retrieves the value of startActiveGame
         void setStartActiveGame(const bool &set);  // sets the value of startActiveGame
 
+        bool getChangeMenu() const;  // retrieves the value of changeMenu
+        void setChangeMenu(const bool &set);  // sets the value of changeMenu
+  
     private:
 
         bool setupComplete;  // determinrs if the gui has been properly setup.
@@ -111,6 +114,7 @@ class guiFlags
         bool courtSelectionDataLoaded;  // determines whether court names have been added to the select box
 
         bool startActiveGame;  // dtermines whetehr or not to start the active game
+        bool changeMenu;  // stores whether to change the menu
 };
 
 #endif // GUIFLAGS_H

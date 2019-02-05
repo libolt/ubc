@@ -155,9 +155,12 @@ STATE_DEFINE(guiStateMachine, MainMenu, guiSMData)
 
     data->display->setComponent(data->component);
     data->display->showMainMenuWidgets();  // displays main menu
-
-    data->component->setActiveMenu(MAIN);
+    if (!data->flag->getMenuActive())
+    {
+        data->flag->setMenuActive(true);
+    }
     
+    data->component->setActiveMenu(MAIN);
     
     logMsg(func +" end");
 }

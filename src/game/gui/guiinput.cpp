@@ -253,7 +253,7 @@ void GUISystem::menuReceiveKeyPress(const std::string &keyPressed, const renderE
                 break;
             default:
                 break;
-        }
+        }      
     }
 }
 
@@ -266,6 +266,7 @@ void GUISystem::processMainMenuKeyPress(const std::string &keyPressed, const ren
 //        startSinglePlayerGame(render);
         gameInstance->getData()->setGameType(SINGLE);
         component->setMainMenuSelect(STARTSINGLE);
+        flag->setChangeMenu(true);
 //        courtSelectionMenu(render);   // displays the menu for selecting which court to use
 
     }

@@ -42,6 +42,7 @@ guiFlags::guiFlags()
     courtSelectionDataLoaded = false;
     menuActive = false;
     startActiveGame = false;
+    changeMenu = false;
 }
 
 guiFlags::~guiFlags()  = default;  // destructor
@@ -225,4 +226,13 @@ bool guiFlags::getStartActiveGame() const  // retrieves the value of startActive
 void guiFlags::setStartActiveGame(const bool &set)  // sets the value of startActiveGame
 {
     startActiveGame = set;
+}
+
+bool guiFlags::getChangeMenu() const  // retrieves the value of changeMenu
+{
+    return (changeMenu);
+}
+void guiFlags::setChangeMenu(const bool &set)  // sets the value of changeMenu
+{
+    changeMenu = set;
 }

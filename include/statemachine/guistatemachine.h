@@ -14,6 +14,7 @@ public:
     guiDisplaySharedPtr display;  // stores copy of guiDisplay object
     guiFlagsSharedPtr flag;  // stores copy of guiFlags object
     guiInputSharedPtr input;  // stores copy of guiInput object
+    gameEngineSharedPtr gameE;  // stores copy of gameEngine object
     renderEngineSharedPtr render;  // stores copy of renderEngine object
        
 /*    OgreEntitySharedPtr model;  // stores 3d model

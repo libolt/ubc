@@ -269,6 +269,112 @@ bool GUISystem::initializeStateMachine(const renderEngineSharedPtr &render)  // 
 
 }
 
+bool GUISystem::updateStateMachine(const renderEngineSharedPtr &render)  // updates gui stateMachine
+{
+    bool retVal = false;
+    std::string func = "GUISystem::updateStateMachine()";
+    
+    logMsg(func +" begin");
+  
+    if (flag->getMenuActive())
+    {
+        logMsg(func +" menuActive!");
+        
+        if (flag->getChangeMenu())
+        {
+            
+            switch (component->getActiveMenu())
+            {
+                case MAIN:
+                    checkMainMenuSelects();
+                break;
+            }
+            flag->setChangeMenu(false);
+        }
+    }
+    guiSMData *uSMData(new guiSMData);
+    logMsg(func +" end");
+    
+    return (retVal);
+}
+
+bool GUISystem::checkCourtMenuSelects()  // checks which courtMenu option was selected
+{
+    bool retVal = false;
+    std::string func = "GUISystem::checkCourtMenuSelects()";
+    
+    logMsg(func +" begin");
+  
+    logMsg(func +" end");
+    
+    return (retVal);
+}
+
+bool GUISystem::checkMainMenuSelects()  // checks which mainMenu option was selected
+{
+    bool retVal = false;
+    std::string func = "GUISystem::checkMainMenuSelects()";
+    
+    logMsg(func +" begin");
+    
+    switch (component->getMainMenuSelect())
+    {
+        case STARTSINGLE:
+//            exit(0);
+            guiSMData *ssSMData(new guiSMData);
+            ssSMData->component = component;
+            ssSMData->create = create;
+            ssSMData->gData = data;
+            ssSMData->display = display;
+            ssSMData->flag = flag;
+            ssSMData->gameE-> gameE;
+            ssSMData->render = gameE->getRenderE();
+            
+            stateMachine->pStartSinglePlayerGame(ssSMData);
+        break;
+    }
+    
+    logMsg(func +" end");
+    
+    return (retVal);
+}
+
+bool GUISystem::checkNetworkMenuSelects()  // checks which networkMenu option was selected
+{
+    bool retVal = false;
+    std::string func = "GUISystem::checkNetworkMenuSelects()";
+    
+    logMsg(func +" begin");
+  
+    logMsg(func +" end");
+    
+    return (retVal);
+}
+
+bool GUISystem::checkOptionsMenuSelects()  // checks which optionsMenu option was selected
+{
+    bool retVal = false;
+    std::string func = "GUISystem::checkOptionsMenuSelects()";
+    
+    logMsg(func +" begin");
+  
+    logMsg(func +" end");
+    
+    return (retVal);
+}
+
+bool GUISystem::checkTeamMenuSelects()  // checks which teamMenu option was selected
+{
+    bool retVal = false;
+    std::string func = "GUISystem::checkTeamMenuSelects()";
+    
+    logMsg(func +" begin");
+  
+    logMsg(func +" end");
+    
+    return (retVal);
+}
+
 /*void GUISystem::mainMenu(const renderEngineSharedPtr &render)  // msin in game menu
 {
 //    exit(0);

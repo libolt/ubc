@@ -424,6 +424,12 @@ bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &in
         
        // exit(0);
 
+        
+        if (gui->updateStateMachine(gameE->getRenderE()))
+        {
+            logMsg(func +" GUI State updated!");
+        }
+        
         if (gui->getFlag()->getStartActiveGame())
         {
             logMsg(func +" GUI Flag startActiveGame!");

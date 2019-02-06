@@ -107,7 +107,7 @@ public:
     bool createInputSetupGUI();  // creates GUI for input settings screen.
     bool createAudioSetupGUI();	 // creates GUI for audo settings screen.
     bool createSetupMenuGUI();  // creates GUI for game setup menu screen.
-    bool createPlayerStartSelectionMenuGUI(const renderEngineSharedPtr &render);  // creates GUI for player start selection menu screen.
+//    bool createPlayerStartSelectionMenuGUI(const renderEngineSharedPtr &render);  // creates GUI for player start selection menu screen.
 //    bool createTeamSelectionMenuGUI(const renderEngineSharedPtr &render);	// creates GUI for team selection menu screen.
 //    bool createCourtSelectionMenuGUI(const renderEngineSharedPtr &render);  // creates GUI for court selection menu screen.
     bool createBackButtons();  // creates the back buttons for the menus
@@ -135,7 +135,7 @@ public:
     void inputMenu(const renderEngineSharedPtr &render);  // displays the input menu
     void audioMenu(const renderEngineSharedPtr &render);  // displays the audio menu
     void setupMenu(const renderEngineSharedPtr &render);  // displays game setup menu
-    void playerStartSelectionMenu(const renderEngineSharedPtr &render);  // displays player start selection menu
+//    void playerStartSelectionMenu(const renderEngineSharedPtr &render);  // displays player start selection menu
 //    void teamSelectionMenu(const renderEngineSharedPtr &render);  // displays team selection menu
 //    void courtSelectionMenu(const renderEngineSharedPtr &render);  // displays court selection menu
     void networkClientSetupMenu(const renderEngineSharedPtr &render);  // sets up the network client connection
@@ -143,8 +143,8 @@ public:
     
 //    bool addCourtSelectionMenuData();  // adds data to Court Selection Menu widgets
 
-    void addPlayerStartSelectionMenuData();  // adds data to Player Start Selection Menu widgets
-    void addPlayerStartSelectionMenuData_old();  // adds data to Player Start Selection Menu widgets
+//    void addPlayerStartSelectionMenuData();  // adds data to Player Start Selection Menu widgets
+//    void addPlayerStartSelectionMenuData_old();  // adds data to Player Start Selection Menu widgets
 
         
     void setSelectedIndexes();  // sets all player listbox indexes to zero
@@ -176,13 +176,9 @@ public:
     void changeInputTypeButtonClicked(MyGUI::Widget *_sender);  // handles changeInputTypeButton click event
     void enableAudioButtonClicked(MyGUI::Widget *_sender);  // handles eneableAudioButton click event
     void disableAudioButtonClicked(MyGUI::Widget *_sender);  // handles eneableAudioButton click event
-    void team0StartingLineupSetButtonClicked(MyGUI::Widget *_sender);  // handles team0StartingLineupSetButton click event
-    void team1StartingLineupSetButtonClicked(MyGUI::Widget *_sender);  // handles team1StartingLineupSetButton click event
-    void startingLineupSetButtonClicked(MyGUI::Widget *_sender);  // handles startingLineupSetButton click event
     void backNetworkClientButtonClicked(MyGUI::Widget *_sender);  // handles backNetworkClientButton click event
     void backOptionsMenuButtonClicked(MyGUI::Widget *_sender);  // handles backOptionsMenuButton click event
     void backPlayerStartSelectionMenuButtonClicked(MyGUI::Widget *_sender);  // handles backPlayerStartSelectionMenuButton click event
-    void backStartersTeamSelectionMenuButtonClicked(MyGUI::Widget *_sender);  // handles backPlayerStartSelectionMenuButton click event
     void backSetupMenuButtonClicked(MyGUI::Widget *_sender);  // handles backSetupMenuButton click event
         
 private:

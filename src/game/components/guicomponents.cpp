@@ -429,6 +429,31 @@ void guiComponents::backCourtSelectionMenuButtonClicked(MyGUI::Widget *_sender) 
     teamMenuSelect = BACKTEAMCOURT;
 }
 
+void guiComponents::team0StartingLineupSetButtonClicked(MyGUI::Widget *_sender)  // handles team0StartingLineupSetButton click event
+{
+
+}
+
+void guiComponents::team1StartingLineupSetButtonClicked(MyGUI::Widget *_sender)  // handles team1StartingLineupSetButton click event
+{
+
+}
+
+void guiComponents::backStartersTeamSelectionMenuButtonClicked(MyGUI::Widget *_sender)  // handles backTeamSelectionMenuButton click event
+{
+
+//    teamSelectionMenu(gameE->getRenderE());
+}
+
+void guiComponents::startingLineupSetButtonClicked(MyGUI::Widget *_sender)  // handles startingLineupSetButton click event
+{
+    checkTeamInstancesCreated();
+    playerStartSelected();
+    flag->setStartActiveGame(true);
+//    exit(0);
+}
+
+
 bool guiComponents::initMyGUI(const renderEngineSharedPtr &render)  // Initializes MyGUI
 {
     std::string func = "GUIComponents::initMyGUI()";

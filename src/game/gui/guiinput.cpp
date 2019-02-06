@@ -134,24 +134,6 @@ void GUISystem::disableAudioButtonClicked(MyGUI::Widget *_sender)  // handles en
 
 }
 
-void GUISystem::team0StartingLineupSetButtonClicked(MyGUI::Widget *_sender)  // handles team0StartingLineupSetButton click event
-{
-
-}
-
-void GUISystem::team1StartingLineupSetButtonClicked(MyGUI::Widget *_sender)  // handles team1StartingLineupSetButton click event
-{
-
-}
-
-void GUISystem::startingLineupSetButtonClicked(MyGUI::Widget *_sender)  // handles startingLineupSetButton click event
-{
-    checkTeamInstancesCreated();
-    playerStartSelected();
-    flag->setStartActiveGame(true);
-//    exit(0);
-}
-
 void GUISystem::backNetworkClientButtonClicked(MyGUI::Widget *_sender)  // handles backNetworkClientButton click event
 {
     networkClientSetupMenu(gameE->getRenderE());
@@ -166,13 +148,6 @@ void GUISystem::backPlayerStartSelectionMenuButtonClicked(MyGUI::Widget *_sender
 {
 
 }
-
-void GUISystem::backStartersTeamSelectionMenuButtonClicked(MyGUI::Widget *_sender)  // handles backTeamSelectionMenuButton click event
-{
-
-//    teamSelectionMenu(gameE->getRenderE());
-}
-
 
 void GUISystem::backSetupMenuButtonClicked(MyGUI::Widget *_sender)  // handles backSetupMenuButton click event
 {
@@ -526,10 +501,10 @@ void GUISystem::processSetupMenuKeyPress(const std::string &keyPressed, const re
     {        
         logMsg("teamsSelected!");
 //        exit(0);
-        teamsSelected();
+//        teamsSelected();
 
     exit(0);
-        playerStartSelectionMenu(render);
+//        playerStartSelectionMenu(render);
     }
     else if (keyPressed == "x")
     {
@@ -674,9 +649,11 @@ void GUISystem::processTeamSelectionMenuKeyPress(const std::string &keyPressed, 
     {
         logMsg("yarp");
 //        exit(0);
-        teamsSelected();
-    
-        playerStartSelectionMenu(render);
+        component->setTeamMenuSelect(TEAMSSELECT);
+        flag->setChangeMenu(true);
+
+//        teamsSelected();  
+//        playerStartSelectionMenu(render);
 //        exit(0);
     }
     else if (keyPressed == "x")

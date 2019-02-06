@@ -38,6 +38,9 @@ class guiCreate
         bool createCourtSelectionMenuGUI(const renderEngineSharedPtr &render);  // creates GUI for court selection menu screen.
 
         bool createMainMenuGUI(const renderEngineSharedPtr &render);  // creates GUI gor main menu screen.
+       
+        bool createStartersSelectionMenuGUI(const renderEngineSharedPtr &render);  // creates GUI for player start selection menu screen.
+
         bool createTeamSelectionMenuGUI(const renderEngineSharedPtr &render);	// creates GUI for team selection menu screen.
 
     private:

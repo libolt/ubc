@@ -96,6 +96,24 @@ void guiStateMachine::pStartSinglePlayerGame(const guiSMData *data)
     END_TRANSITION_MAP(data)
 }
 
+void guiStateMachine::pStartersMenu(guiSMData *data)
+{
+    BEGIN_TRANSITION_MAP                                    // - Current State -
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_INITIALIZE
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_MAIN_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_NETWORK_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_NETWORKCLIENT_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_NETWORKSERVER_MENU
+        TRANSITION_MAP_ENTRY (ST_STARTERS_MENU)                // ST_IDLE
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_COURT_MENU
+        TRANSITION_MAP_ENTRY (ST_STARTERS_MENU)                // ST_TEAM_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STARTERS_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_OPTIONS_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_AUDIO_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_DISPLAY_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_INPUT_MENU
+    END_TRANSITION_MAP(data)
+}
 void guiStateMachine::pTeamMenu(guiSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
@@ -171,8 +189,8 @@ STATE_DEFINE(guiStateMachine, MainMenu, guiSMData)
     tempSMData->create = data->create;
     tempSMData->display = data->display;
     tempSMData->flag= flag;
-    logMsg(func +"tempSMData Flag");
     data = tempSMData;
+    
     logMsg(func +"showMainMenuWidgets?");
 
     data->display->setComponent(data->component);
@@ -269,6 +287,15 @@ STATE_DEFINE(guiStateMachine, CourtMenu, guiSMData)
 //        exit(0);
     }
 
+    guiSMData *tempSMData(new guiSMData);
+    tempSMData->component = data->component;
+    tempSMData->create = data->create;
+    tempSMData->gData = data->gData;
+    tempSMData->display = data->display;
+    tempSMData->flag = flag;
+    tempSMData->input = input;
+    data = tempSMData;
+
     logMsg(func +" component initialized == " +convert->toString(component->getInitialized()));
     display->setComponent(component);
     display->changeActiveMenu(COURTSELECT, data->render);
@@ -286,7 +313,7 @@ STATE_DEFINE(guiStateMachine, TeamMenu, guiSMData)
     teamEntityMSharedPtr teamInstance; // = gameS->getTeamDataInstance();
     std::string func = "guiStateMachine::TeamMenu()";
 
-        guiComponentsSharedPtr component = data->component;
+    guiComponentsSharedPtr component = data->component;
     guiCreateSharedPtr create = data->create;
     guiDataSharedPtr gData = data->gData;
     guiDisplaySharedPtr display = data->display;
@@ -406,6 +433,17 @@ STATE_DEFINE(guiStateMachine, TeamMenu, guiSMData)
 
     logMsg(func +" teamInstance.size() == " +convert->toString(gameInstance->getComponent()->getTeamInstance().size()));
 
+    guiSMData *tempSMData(new guiSMData);
+    tempSMData->component = data->component;
+    tempSMData->create = data->create;
+    tempSMData->gData = data->gData;
+    tempSMData->display = data->display;
+    tempSMData->flag = flag;
+    tempSMData->input = input;
+    tempSMData->gameInstance = gameInstance;
+    tempSMData->render = render;
+    data = tempSMData;
+
     logMsg(func +" end");
 }
 
@@ -413,9 +451,53 @@ STATE_DEFINE(guiStateMachine, TeamMenu, guiSMData)
 STATE_DEFINE(guiStateMachine, StartersMenu, guiSMData)
 {
     std::string func = "guiStateMachine::StartersMenu()";
+    guiComponentsSharedPtr component = data->component;
+    guiCreateSharedPtr create = data->create;
+    guiDataSharedPtr gData = data->gData;
+    guiDisplaySharedPtr display = data->display;
+    guiFlagsSharedPtr flag = data->flag;
+    guiInputSharedPtr input = data->input;
+    renderEngineSharedPtr render = data->render;
 
     logMsg(func +" begin");
+    
+    if (!flag->getPlayerStartSelectionMenuCreated())
+    {
+        logMsg(func +" !playerStartSelectionMenuCreated");
+//         exit(0);
+        
+        if (createPlayerStartSelectionMenuGUI(render))
+        {
+            logMsg(func +" createPlayerStartSelectionMenuGUI!");
+            flag->setPlayerStartSelectionMenuCreated(true);
+        }
+        else
+        {
+            logMsg(func +" Unable to create playerStartSelectionMenu!!");
+            exit(0);
+        }       
+//        exit(0);
+    }
+    else
+    {       
+    }
+    
+    addPlayerStartSelectionMenuData();
 
+//    exit(0);
+    setSelectedIndexes();
+    
+    guiSMData *tempSMData(new guiSMData);
+    tempSMData->component = data->component;
+    tempSMData->create = data->create;
+    tempSMData->gData = data->gData;
+    tempSMData->display = data->display;
+    tempSMData->flag = flag;
+    tempSMData->input = input;
+    tempSMData->render = render;
+    
+    display->changeActiveMenu(PLAYERSTART, data->render);
+ 
     logMsg(func +" end");
 }
 

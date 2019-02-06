@@ -151,6 +151,10 @@ class guiComponents
         void team1SelectButtonClicked(MyGUI::Widget *_sender);  // handles team1SelectButton click event
         void teamsSelectedButtonClicked(MyGUI::Widget *_sender);  // handles teamsSelectedButton click event
         void backCourtSelectionMenuButtonClicked(MyGUI::Widget *_sender);  // handles backCourtSelectionMenuButton click event
+        void team0StartingLineupSetButtonClicked(MyGUI::Widget *_sender);  // handles team0StartingLineupSetButton click event
+        void team1StartingLineupSetButtonClicked(MyGUI::Widget *_sender);  // handles team1StartingLineupSetButton click event
+        void startingLineupSetButtonClicked(MyGUI::Widget *_sender);  // handles startingLineupSetButton click event
+        void backStartersTeamSelectionMenuButtonClicked(MyGUI::Widget *_sender);  // handles backPlayerStartSelectionMenuButton click event
 
 //        void startSingleGameButtonClicked(MyGUI::Widget *_sender);  // handles startSingleGameButton click event
 

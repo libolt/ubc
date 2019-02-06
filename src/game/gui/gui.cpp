@@ -411,7 +411,26 @@ bool GUISystem::checkTeamMenuSelects()  // checks which teamMenu option was sele
     std::string func = "GUISystem::checkTeamMenuSelects()";
     
     logMsg(func +" begin");
-  
+    teamsSelected();
+    
+    switch (component->getTeamMenuSelect())
+    {
+        case STARTSINGLE:
+//            exit(0);
+            guiSMData *tsSMData(new guiSMData);
+            tsSMData->component = component;
+            tsSMData->create = create;
+            tsSMData->gData = data;
+            tsSMData->display = display;
+            tsSMData->flag = flag;
+            tsSMData->gameInstance = gameInstance;
+            tsSMData->render = gameE->getRenderE();
+            
+            stateMachine->pStartersMenu(tsSMData);
+        break;
+    }
+//        playerStartSelectionMenu(render);
+
     logMsg(func +" end");
     
     return (retVal);
@@ -558,7 +577,7 @@ void GUISystem::setupMenu(const renderEngineSharedPtr &render)  // displays game
     display->changeActiveMenu(GAMESETUP, render);
 }
 
-void GUISystem::playerStartSelectionMenu(const renderEngineSharedPtr &render)  // displays player start selection menu
+/*void GUISystem::playerStartSelectionMenu(const renderEngineSharedPtr &render)  // displays player start selection menu
 {
     std::string func = "GUISystem::playerStartSelectionMenu()";
     
@@ -595,6 +614,7 @@ void GUISystem::playerStartSelectionMenu(const renderEngineSharedPtr &render)  /
     logMsg(func +" end");
 //    exit(0);
 }
+*/
 
 /*void GUISystem::teamSelectionMenu(const renderEngineSharedPtr &render)  // displays team selection menu
 {

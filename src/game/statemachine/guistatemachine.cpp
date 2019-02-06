@@ -229,9 +229,10 @@ STATE_DEFINE(guiStateMachine, CourtMenu, guiSMData)
     if (!flag->getCourtSelectionDataLoaded())
     {
 //        exit(0);
+        gData->setGameInstance(data->gameInstance);
+
         logMsg("gData->addCourtSelectionMenuData = " +convert->toString(gData->addCourtSelectionMenuData()));
 //        exit(0);
-        gData->setGameInstance(data->gameInstance);
         if (gData->addCourtSelectionMenuData())
         {
 //            exit(0);
@@ -246,6 +247,8 @@ STATE_DEFINE(guiStateMachine, CourtMenu, guiSMData)
 //        exit(0);
     }
 
+    logMsg(func +" component initialized == " +convert->toString(component->getInitialized()));
+    display->setComponent(component);
     display->changeActiveMenu(COURTSELECT, data->render);
 //    exit(0);
     

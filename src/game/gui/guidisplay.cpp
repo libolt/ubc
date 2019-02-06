@@ -466,7 +466,7 @@ void guiDisplay::hideTeamSelectionMenuWidgets()  // hides all widgets tied to th
     component->getTeamSelectionMenuButtons()["team0SelectButton"]->setVisible(false);
     component->getTeamSelectionMenuButtons()["team1SelectButton"]->setVisible(false);
     component->getTeamSelectionMenuButtons()["teamsSelectedButton"]->setVisible(false);
-    component->getTeamSelectionMenuButtons()["backMainMenuButton"]->setVisible(false);
+    component->getTeamSelectionMenuButtons()["backTeamMainMenuButton"]->setVisible(false);
     component->getTeamSelectionMenuButtons()["backCourtSelectionMenuButton"]->setVisible(false);
 
     logMsg("previousActiveMenu = " +convert->toString(component->getPreviousActiveMenu()));
@@ -506,7 +506,7 @@ void guiDisplay::showTeamSelectionMenuWidgets(const renderEngineSharedPtr &rende
 
 void guiDisplay::hideCourtSelectionMenuWidgets()  // hides all widgets tied to the Court Selection Menu
 {
-    component->getCourtSelectionMenuButtons()["backMainMenuButton"]->setVisible(false);
+    component->getCourtSelectionMenuButtons()["backCourtMainMenuButton"]->setVisible(false);
     component->getCourtSelectBox()->setVisible(false);
     component->getCourtNameTxtBox()->setVisible(false);
     component->getCourtPreviewImgBox()->setVisible(false);
@@ -524,9 +524,10 @@ void guiDisplay::showCourtSelectionMenuWidgets(const renderEngineSharedPtr &rend
     logMsg(func +" begin");
 
     logMsg(func +" court displayCount == " +convert->toString(displayCount));
-    
-    component->getCourtSelectionMenuButtons()["backMainMenuButton"]->setVisible(true);
-    component->getCourtSelectionMenuButtons()["backMainMenuButton"]->setPosition((0.25 *render->getViewPort()->getActualWidth() ), (0.4 *render->getViewPort()->getActualHeight()) );
+    logMsg(func +" component initialized == " +convert->toString(component->getInitialized()));
+
+    component->getCourtSelectionMenuButtons()["backCourtMainMenuButton"]->setVisible(true);
+    component->getCourtSelectionMenuButtons()["backCourtMainMenuButton"]->setPosition((0.25 *render->getViewPort()->getActualWidth() ), (0.4 *render->getViewPort()->getActualHeight()) );
 //    exit(0);
     component->getCourtSelectBox()->setVisible(true);
     component->getCourtSelectBox()->setPosition((0.25 *render->getViewPort()->getActualWidth() ), (0.31 *render->getViewPort()->getActualHeight()) );

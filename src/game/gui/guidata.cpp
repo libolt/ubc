@@ -354,7 +354,7 @@ void GUISystem::addPlayerStartSelectionMenuData()  // adds data to Player Start 
 }
 
 
-bool GUISystem::addTeamStartSelectionMenuData()  // adds data to Team Start Selection Menu
+bool guiData::addTeamStartSelectionMenuData()  // adds data to Team Start Selection Menu
 {
     conversionSharedPtr convert ;
     setupTeamsSharedPtr setupTeam(new setupTeams);

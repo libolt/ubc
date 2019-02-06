@@ -40,6 +40,8 @@ class guiData
 
         bool addCourtSelectionMenuData();  // adds data to Court Selection Menu widgets
 
+        bool addTeamStartSelectionMenuData();  // adds data to Team Start Selection Menu
+
     private:
     
         guiComponentsSharedPtr component;  // stores gui related components

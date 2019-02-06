@@ -288,6 +288,15 @@ bool GUISystem::updateStateMachine(const renderEngineSharedPtr &render)  // upda
                 case MAIN:
                     checkMainMenuSelects();
                 break;
+                case COURTSELECT:                    
+                    checkCourtMenuSelects();
+                break;
+                case PLAYERSTART:
+                    checkStartersMenuSelects();
+                break;
+                case TEAMSELECT:
+                    checkTeamMenuSelects();
+                break;
             }
             flag->setChangeMenu(false);
         }
@@ -304,7 +313,7 @@ bool GUISystem::checkCourtMenuSelects()  // checks which courtMenu option was se
     std::string func = "GUISystem::checkCourtMenuSelects()";
     
     logMsg(func +" begin");
-  
+//    exit(0);
     switch (component->getCourtMenuSelect())
     {
         case BACKCOURTMAIN:
@@ -376,6 +385,18 @@ bool GUISystem::checkOptionsMenuSelects()  // checks which optionsMenu option wa
 {
     bool retVal = false;
     std::string func = "GUISystem::checkOptionsMenuSelects()";
+    
+    logMsg(func +" begin");
+  
+    logMsg(func +" end");
+    
+    return (retVal);
+}
+
+bool GUISystem::checkStartersMenuSelects()  // checks which startersMenu option was selected
+{
+    bool retVal = false;
+    std::string func = "GUISystem::checkStartersmMenuSelects()";
     
     logMsg(func +" begin");
   

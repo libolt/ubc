@@ -95,6 +95,7 @@ public:
     bool checkMainMenuSelects();  // checks which mainMenu option was selected
     bool checkNetworkMenuSelects();  // checks which networkMenu option was selected
     bool checkOptionsMenuSelects();  // checks which optionsMenu option was selected
+    bool checkStartersMenuSelects();  // checks which startersMenu option was selected
     bool checkTeamMenuSelects();  // checks which teamMenu option was selected
 
 //    bool createMainMenuGUI(const renderEngineSharedPtr &render);  // creates GUI gor main menu screen.
@@ -145,8 +146,7 @@ public:
     void addPlayerStartSelectionMenuData();  // adds data to Player Start Selection Menu widgets
     void addPlayerStartSelectionMenuData_old();  // adds data to Player Start Selection Menu widgets
 
-    bool addTeamStartSelectionMenuData();  // adds data to Team Start Selection Menu
-    
+        
     void setSelectedIndexes();  // sets all player listbox indexes to zero
     void networkServer();  // sets up  game as a network server
     void networkClient();  // sets up game as a network client

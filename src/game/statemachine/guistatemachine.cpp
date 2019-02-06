@@ -19,7 +19,7 @@
  ***************************************************************************/
 
 #include "statemachine/guistatemachine.h"
-
+#include "components/gamecomponents.h"
 #include "components/guicomponents.h"
 #include "entity/gameentity.h"
 #include "flags/gameflags.h"
@@ -286,9 +286,14 @@ STATE_DEFINE(guiStateMachine, TeamMenu, guiSMData)
     teamEntityMSharedPtr teamInstance; // = gameS->getTeamDataInstance();
     std::string func = "guiStateMachine::TeamMenu()";
 
+        guiComponentsSharedPtr component = data->component;
+    guiCreateSharedPtr create = data->create;
+    guiDataSharedPtr gData = data->gData;
+    guiDisplaySharedPtr display = data->display;
     guiFlagsSharedPtr flag = data->flag;
+    guiInputSharedPtr input = data->input;
     gameEntitySharedPtr gameInstance = data->gameInstance;
-
+    renderEngineSharedPtr render = data->render;
     logMsg(func +" begin");
 
     if (flag->getTeamSelectionMenuCreated())
@@ -306,7 +311,7 @@ STATE_DEFINE(guiStateMachine, TeamMenu, guiSMData)
             }
             else
             {
-                if (addTeamStartSelectionMenuData())
+                if (gData->addTeamStartSelectionMenuData())
                 {
                     flag->setTeamSelectionMenuDataAdded(true);
                     changeMenu = true;
@@ -337,7 +342,7 @@ STATE_DEFINE(guiStateMachine, TeamMenu, guiSMData)
                 }
                 else
                 {
-                    if (addTeamStartSelectionMenuData())
+                    if (gData->addTeamStartSelectionMenuData())
                     {
                         flag->setTeamSelectionMenuDataAdded(true);
                         changeMenu = true;
@@ -360,11 +365,11 @@ STATE_DEFINE(guiStateMachine, TeamMenu, guiSMData)
     {
         logMsg(func +" teamSelectionMenuGUI Not Yet Created!");
 
-        if (createTeamSelectionMenuGUI(render))
+        if (create->createTeamSelectionMenuGUI(render))
         {
             flag->setTeamSelectionMenuCreated(true);
 
-            if (addTeamStartSelectionMenuData())
+            if (gData->addTeamStartSelectionMenuData())
             {
 
                 logMsg(func +" addTeamStartSelectionMenuData()!");

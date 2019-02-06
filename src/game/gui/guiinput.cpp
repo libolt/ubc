@@ -770,6 +770,8 @@ void GUISystem::processCourtSelectionMenuKeyPress(const std::string &keyPressed,
     else if (keyPressed == "s")
     {
         component->setCourtMenuSelect(COURTSSELECT);
+        flag->setChangeMenu(true);
+
 //        courtSelected();
 //        teamSelectionMenu(render);
         

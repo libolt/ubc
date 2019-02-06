@@ -327,7 +327,7 @@ bool GUISystem::checkMainMenuSelects()  // checks which mainMenu option was sele
             ssSMData->gData = data;
             ssSMData->display = display;
             ssSMData->flag = flag;
-            ssSMData->gameE-> gameE;
+            ssSMData->gameInstance = gameInstance;
             ssSMData->render = gameE->getRenderE();
             
             stateMachine->pStartSinglePlayerGame(ssSMData);

@@ -231,6 +231,7 @@ STATE_DEFINE(guiStateMachine, CourtMenu, guiSMData)
 //        exit(0);
         logMsg("gData->addCourtSelectionMenuData = " +convert->toString(gData->addCourtSelectionMenuData()));
 //        exit(0);
+        gData->setGameInstance(data->gameInstance);
         if (gData->addCourtSelectionMenuData())
         {
 //            exit(0);

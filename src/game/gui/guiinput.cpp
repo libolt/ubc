@@ -134,24 +134,6 @@ void GUISystem::disableAudioButtonClicked(MyGUI::Widget *_sender)  // handles en
 
 }
 
-void GUISystem::team0SelectButtonClicked(MyGUI::Widget *_sender)  // handles team0SelectButton click event
-{
-    setupHomeSelected();
-}
-
-void GUISystem::team1SelectButtonClicked(MyGUI::Widget *_sender)  // handles team1SelectButton click event
-{
-    setupAwaySelected();
-}
-
-void GUISystem::teamsSelectedButtonClicked(MyGUI::Widget *_sender)  // handles teamsSelectButton click event
-{
-    logMsg("teamsSelectedButtonClicked");
-    teamsSelected();
-    playerStartSelectionMenu(gameE->getRenderE());
-
-}
-
 void GUISystem::team0StartingLineupSetButtonClicked(MyGUI::Widget *_sender)  // handles team0StartingLineupSetButton click event
 {
 
@@ -185,16 +167,12 @@ void GUISystem::backPlayerStartSelectionMenuButtonClicked(MyGUI::Widget *_sender
 
 }
 
-void GUISystem::backTeamSelectionMenuButtonClicked(MyGUI::Widget *_sender)  // handles backTeamSelectionMenuButton click event
+void GUISystem::backStartersTeamSelectionMenuButtonClicked(MyGUI::Widget *_sender)  // handles backTeamSelectionMenuButton click event
 {
-    teamSelectionMenu(gameE->getRenderE());
+
+//    teamSelectionMenu(gameE->getRenderE());
 }
 
-void GUISystem::backCourtSelectionMenuButtonClicked(MyGUI::Widget *_sender) // handles backCourtSelectionMenuButton click event
-{
-//    courtSelectionMenu(gameE->getRenderE());
-    component->setTeamMenuSelect(BACKTEAMCOURT);
-}
 
 void GUISystem::backSetupMenuButtonClicked(MyGUI::Widget *_sender)  // handles backSetupMenuButton click event
 {
@@ -648,7 +626,8 @@ void GUISystem::processPlayerStartSelectionMenuKeyPress(const std::string &keyPr
     }
     else if (keyPressed == "b")
     {
-        teamSelectionMenu(render);
+        component->setStartersMenuSelect(BACKSTARTERSTEAM);
+//        teamSelectionMenu(render);
     }
 
 //    exit(0);
@@ -790,8 +769,9 @@ void GUISystem::processCourtSelectionMenuKeyPress(const std::string &keyPressed,
     }
     else if (keyPressed == "s")
     {
-        courtSelected();
-        teamSelectionMenu(render);
+        component->setCourtMenuSelect(COURTSSELECT);
+//        courtSelected();
+//        teamSelectionMenu(render);
         
     }
 }

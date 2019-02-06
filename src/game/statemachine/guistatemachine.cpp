@@ -21,11 +21,14 @@
 #include "statemachine/guistatemachine.h"
 
 #include "components/guicomponents.h"
+#include "entity/gameentity.h"
+#include "flags/gameflags.h"
 #include "flags/guiflags.h"
 #include "gui/guicreate.h"
 #include "gui/guidata.h"
 #include "gui/guidisplay.h"
 #include "gui/guiinput.h"
+#include "setup/setupteams.h"
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
 
@@ -77,7 +80,7 @@ void guiStateMachine::pMainMenu(const guiSMData *data)
 void guiStateMachine::pStartSinglePlayerGame(const guiSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (ST_COURT_MENU)                // ST_INITIALIZE
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_INITIALIZE
         TRANSITION_MAP_ENTRY (ST_COURT_MENU)                // ST_MAIN_MENU
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_NETWORK_MENU
         TRANSITION_MAP_ENTRY (ST_COURT_MENU)                // ST_NETWORKCLIENT_MENU
@@ -86,6 +89,25 @@ void guiStateMachine::pStartSinglePlayerGame(const guiSMData *data)
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_COURT_MENU
         TRANSITION_MAP_ENTRY (ST_COURT_MENU)                // ST_TEAM_MENU
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STARTERS_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_OPTIONS_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_AUDIO_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_DISPLAY_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_INPUT_MENU
+    END_TRANSITION_MAP(data)
+}
+
+void guiStateMachine::pTeamMenu(guiSMData *data)
+{
+    BEGIN_TRANSITION_MAP                                    // - Current State -
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_INITIALIZE
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_MAIN_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_NETWORK_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_NETWORKCLIENT_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_NETWORKSERVER_MENU
+        TRANSITION_MAP_ENTRY (ST_TEAM_MENU)                // ST_IDLE
+        TRANSITION_MAP_ENTRY (ST_TEAM_MENU)                // ST_COURT_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_TEAM_MENU
+        TRANSITION_MAP_ENTRY (ST_TEAM_MENU)                // ST_STARTERS_MENU
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_OPTIONS_MENU
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_AUDIO_MENU
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_DISPLAY_MENU
@@ -258,9 +280,126 @@ STATE_DEFINE(guiStateMachine, CourtMenu, guiSMData)
 // TeamMenu
 STATE_DEFINE(guiStateMachine, TeamMenu, guiSMData)
 {
+    conversionSharedPtr convert ;
+    setupTeamsSharedPtr setupTeam(new setupTeams);
+    bool changeMenu = false;  // determinrs if menu is to be changed
+    teamEntityMSharedPtr teamInstance; // = gameS->getTeamDataInstance();
     std::string func = "guiStateMachine::TeamMenu()";
 
+    guiFlagsSharedPtr flag = data->flag;
+    gameEntitySharedPtr gameInstance = data->gameInstance;
+
     logMsg(func +" begin");
+
+    if (flag->getTeamSelectionMenuCreated())
+    {
+        logMsg(func +" teamSelectionMenuCreated");
+        exit(0);
+        if (gameInstance->getFlag()->getTeamInstancesCreated())
+        {
+            logMsg(func +" getTeamInstancesCreated");
+//            exit(0);
+            if (flag->getTeamSelectionMenuDataAdded())
+            {
+                logMsg(func +" Team Selection Menu Data Added already!");
+                changeMenu = true;
+            }
+            else
+            {
+                if (addTeamStartSelectionMenuData())
+                {
+                    flag->setTeamSelectionMenuDataAdded(true);
+                    changeMenu = true;
+
+                }
+                else
+                {
+                    logMsg(func +" Unable to add data to Team Selection Menus!");
+                    exit(0);
+                }
+            }
+        }
+        else
+        {
+            logMsg(func +" !getTeamInstancesCreated");
+
+            teamInstance = setupTeam->createTeamInstances();  // creates team instances
+            if (!teamInstance.empty())
+            {
+                logMsg(func +" createTeamInstances");
+
+//                exit(0);
+                gameInstance->getFlag()->setTeamInstancesCreated(true);
+                if (flag->getTeamSelectionMenuDataAdded())
+                {
+                    logMsg(func +" Team Selection Menu Data Added already!");
+                    changeMenu = true;
+                }
+                else
+                {
+                    if (addTeamStartSelectionMenuData())
+                    {
+                        flag->setTeamSelectionMenuDataAdded(true);
+                        changeMenu = true;
+                    }
+                    else
+                    {
+                        logMsg(func +" Unable to add data to Team Selection Menus!");
+                        exit(0);
+                    }
+                }
+            }
+            else
+            {
+                logMsg(func +" feeerrrrappp!");
+                exit(0);
+            }
+        }
+    }
+    else
+    {
+        logMsg(func +" teamSelectionMenuGUI Not Yet Created!");
+
+        if (createTeamSelectionMenuGUI(render))
+        {
+            flag->setTeamSelectionMenuCreated(true);
+
+            if (addTeamStartSelectionMenuData())
+            {
+
+                logMsg(func +" addTeamStartSelectionMenuData()!");
+                logMsg(func +" teamInstance.size() == " +convert->toString(gameInstance->getComponent()->getTeamInstance().size()));
+//                exit(0);
+                flag->setTeamSelectionMenuDataAdded(true);
+                changeMenu = true;
+            }
+            else
+            {
+                logMsg(func +" Unable to add data to Team Selection Menus!");
+                exit(0);
+            }
+        }
+        else
+        {
+            logMsg(func +" Unable to create Team Selection Menu!");
+            exit(0);
+        }
+    }
+
+//    hideCourtSelectionMenuWidgets();
+    if (changeMenu)
+    {
+        logMsg(func +" Changing activeMenu to TEAMSELECT!");
+//        exit(0);
+        display->changeActiveMenu(TEAMSELECT, render);
+    }
+    else
+    {
+        logMsg(func +" Failed to change activeMenu to TEAMSELECT!");
+        exit(0);
+    }
+
+    logMsg(func +" teamInstance.size() == " +convert->toString(gameInstance->getComponent()->getTeamInstance().size()));
 
     logMsg(func +" end");
 }

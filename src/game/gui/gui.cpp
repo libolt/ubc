@@ -305,6 +305,27 @@ bool GUISystem::checkCourtMenuSelects()  // checks which courtMenu option was se
     
     logMsg(func +" begin");
   
+    switch (component->getCourtMenuSelect())
+    {
+        case BACKCOURTMAIN:
+        break;
+        case COURTSSELECT:
+            courtSelected();
+            guiSMData *csSMData(new guiSMData);
+            csSMData->component = component;
+            csSMData->create = create;
+            csSMData->gData = data;
+            csSMData->display = display;
+            csSMData->flag = flag;
+            csSMData->gameInstance = gameInstance;
+            csSMData->render = gameE->getRenderE();
+
+            stateMachine->pTeamMenu(csSMData);
+
+//            teamSelectionMenu(render);
+        break;
+    }
+
     logMsg(func +" end");
     
     return (retVal);
@@ -554,7 +575,7 @@ void GUISystem::playerStartSelectionMenu(const renderEngineSharedPtr &render)  /
 //    exit(0);
 }
 
-void GUISystem::teamSelectionMenu(const renderEngineSharedPtr &render)  // displays team selection menu
+/*void GUISystem::teamSelectionMenu(const renderEngineSharedPtr &render)  // displays team selection menu
 {
     conversionSharedPtr convert ;
     setupTeamsSharedPtr setupTeam(new setupTeams);
@@ -681,6 +702,7 @@ void GUISystem::teamSelectionMenu(const renderEngineSharedPtr &render)  // displ
 //    exit(0);
 
 }
+*/
 
 /*void GUISystem::courtSelectionMenu(const renderEngineSharedPtr &render) // displays court selection menu
 {

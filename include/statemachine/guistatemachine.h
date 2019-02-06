@@ -39,7 +39,7 @@ public:
     void pInitialize(const guiSMData *data);
     void pMainMenu(const guiSMData *data);
     void pStartSinglePlayerGame(const guiSMData *data);
-    void pUpdateMovement(guiSMData *data);
+    void pTeamMenu(guiSMData *data);
     void pUpdateDirection(guiSMData *data);
     void halt();
 

@@ -466,7 +466,7 @@ STATE_DEFINE(guiStateMachine, StartersMenu, guiSMData)
         logMsg(func +" !playerStartSelectionMenuCreated");
 //         exit(0);
         
-        if (createPlayerStartSelectionMenuGUI(render))
+        if (create->createStartersSelectionMenuGUI(render))
         {
             logMsg(func +" createPlayerStartSelectionMenuGUI!");
             flag->setPlayerStartSelectionMenuCreated(true);
@@ -482,7 +482,7 @@ STATE_DEFINE(guiStateMachine, StartersMenu, guiSMData)
     {       
     }
     
-    addPlayerStartSelectionMenuData();
+    gData->addStartersSelectionMenuData();
 
 //    exit(0);
     setSelectedIndexes();

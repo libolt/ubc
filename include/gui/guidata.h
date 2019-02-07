@@ -40,7 +40,7 @@ class guiData
 
         bool addCourtSelectionMenuData();  // adds data to Court Selection Menu widgets
 
-        void addPlayerStartSelectionMenuData();  // adds data to Player Start Selection Menu widgets
+        void addStartersSelectionMenuData();  // adds data to Player Start Selection Menu widgets
 
         bool addTeamStartSelectionMenuData();  // adds data to Team Start Selection Menu
 

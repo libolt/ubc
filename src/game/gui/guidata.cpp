@@ -172,7 +172,7 @@ bool guiData::addCourtSelectionMenuData()  // adds data to Player Start Selectio
     return (true);
 }
 
-void guiData::addPlayerStartSelectionMenuData()  // adds data to Player Start Selection Menu widgets
+void guiData::addStartersSelectionMenuData()  // adds data to Player Start Selection Menu widgets
 {
     conversionSharedPtr convert ;
     setupPlayersSharedPtr setupPlayer(new setupPlayers);

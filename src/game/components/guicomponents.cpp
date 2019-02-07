@@ -444,7 +444,6 @@ void guiComponents::backStartersTeamSelectionMenuButtonClicked(MyGUI::Widget *_s
 
 //    teamSelectionMenu(gameE->getRenderE());
 }
-
 void guiComponents::startingLineupSetButtonClicked(MyGUI::Widget *_sender)  // handles startingLineupSetButton click event
 {
     checkTeamInstancesCreated();

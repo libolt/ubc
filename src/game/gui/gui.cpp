@@ -317,7 +317,7 @@ bool GUISystem::updateStateMachine(const renderEngineSharedPtr &render)  // upda
                 case PLAYERSTART:
                     event->checkStartersMenuSelects();
                 break;
-                case TEAMSELECT:
+                case TEAMSELECT:                  
                     event->checkTeamMenuSelects();
                 break;
             }
@@ -416,7 +416,7 @@ void GUISystem::startMultiPlayerGame(const renderEngineSharedPtr &render)  // st
 {
     if (!flag->getNetworkSetupMenuCreated())
     {
-        createNetworkSetupGUI(render);  // creates the GUI for the Network Setup Screen
+        create->createNetworkSetupGUI(render);  // creates the GUI for the Network Setup Screen
     }
 
     display->changeActiveMenu(NETWORK, render);
@@ -682,7 +682,7 @@ void GUISystem::setupMenu(const renderEngineSharedPtr &render)  // displays game
 */
 
 
-void GUISystem::networkClientSetupMenu(const renderEngineSharedPtr &render) // sets up the client connection
+/*void GUISystem::networkClientSetupMenu(const renderEngineSharedPtr &render) // sets up the client connection
 {
     if (!flag->getNetworkClientSetupMenuCreated())
     {
@@ -704,6 +704,7 @@ void GUISystem::networkServerSetupMenu(const renderEngineSharedPtr &render)  // 
     MyGUI::InputManager::getInstance().setKeyFocusWidget(component->getServerIPAddressBox().get());
 
 }
+*/
 
 void GUISystem::networkServer()  // sets up  game as a network server
 {

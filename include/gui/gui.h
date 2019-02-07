@@ -96,9 +96,9 @@ public:
 
 
 //    bool createMainMenuGUI(const renderEngineSharedPtr &render);  // creates GUI gor main menu screen.
-    bool createNetworkSetupGUI(const renderEngineSharedPtr &render);  // creates GUI for network setup screen.
-    bool createNetworkClientSetupGUI(const renderEngineSharedPtr &render);  // creates GUI for network client setup screen.
-    bool createNetworkServerSetupGUI(const renderEngineSharedPtr &render);  // creates GUI for network server setup screen.
+//    bool createNetworkSetupGUI(const renderEngineSharedPtr &render);  // creates GUI for network setup screen.
+//    bool createNetworkClientSetupGUI(const renderEngineSharedPtr &render);  // creates GUI for network client setup screen.
+//    bool createNetworkServerSetupGUI(const renderEngineSharedPtr &render);  // creates GUI for network server setup screen.
     bool createOptionsMenuGUI(const renderEngineSharedPtr &render);  // creates GUI for options menu screen.
     bool createDisplaySetupGUI();  // creates GUI for display settings screen.
     bool createInputSetupGUI();  // creates GUI for input settings screen.
@@ -156,11 +156,6 @@ public:
 
 
     // MyGUI functions
-    void serverButtonClicked(MyGUI::Widget *_sender);  // handles serverButton click event
-    void clientButtonClicked(MyGUI::Widget *_sender);  // handles clientButton click event
-    void serverHostButtonClicked(MyGUI::Widget *_sender);  // handles hostGameButton click event
-    void clientConnectButtonClicked(MyGUI::Widget *_sender);  // handles connectButton click event
-    void backNetworkSetupButtonClicked(MyGUI::Widget *_sender);  // handles backNetworkSetupButton click event
     void displayButtonClicked(MyGUI::Widget *_sender);  // handles didplayButton click event
     void inputButtonClicked(MyGUI::Widget *_sender);  // handles inputButton click event
     void audioButtonClicked(MyGUI::Widget *_sender);  // handles audioButton click event

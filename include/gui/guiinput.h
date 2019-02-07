@@ -55,7 +55,13 @@ class guiInput
         void team1StartingLineupSetButtonClicked(MyGUI::Widget *_sender);  // handles team1StartingLineupSetButton click event
         void startingLineupSetButtonClicked(MyGUI::Widget *_sender);  // handles startingLineupSetButton click event
         void backStartersTeamSelectionMenuButtonClicked(MyGUI::Widget *_sender);  // handles backPlayerStartSelectionMenuButton click event
+        void serverButtonClicked(MyGUI::Widget *_sender);  // handles serverButton click event
+        void clientButtonClicked(MyGUI::Widget *_sender);  // handles clientButton click event
+        void serverHostButtonClicked(MyGUI::Widget *_sender);  // handles hostGameButton click event
+        void clientConnectButtonClicked(MyGUI::Widget *_sender);  // handles connectButton click event
+        void backNetworkSetupButtonClicked(MyGUI::Widget *_sender);  // handles backNetworkSetupButton click event
 
+        
     private:
     
         guiComponentsSharedPtr component;  // stores gui related components

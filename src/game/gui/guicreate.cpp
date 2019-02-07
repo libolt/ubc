@@ -184,13 +184,13 @@ bool guiCreate::createMainMenuGUI(const renderEngineSharedPtr &render)  // creat
     return (true);
 }
 
-bool GUISystem::createNetworkSetupGUI(const renderEngineSharedPtr &render)  // loads the GUI for the network setup screen
+bool guiCreate::createNetworkSetupGUI(const renderEngineSharedPtr &render)  // loads the GUI for the network setup screen
 {
 //    renderEngineSharedPtr render; // = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
     MyGUIButtonMSharedPtr tempButtons;
 
-    std::string func = "GUISystem::createNetworkSetupGUI()";
+    std::string func = "guiCreate::createNetworkSetupGUI()";
 
     logMsg(func +" begin");
 
@@ -198,13 +198,13 @@ bool GUISystem::createNetworkSetupGUI(const renderEngineSharedPtr &render)  // l
 
     tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("serverButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("serverButton")))); // loads Server Button
     tempButtons["serverButton"]->setVisible(false);
-    tempButtons["serverButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::serverButtonClicked);
+    tempButtons["serverButton"]->eventMouseButtonClick += MyGUI::newDelegate(input.get(), &guiInput::serverButtonClicked);
     tempButtons["serverButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.14 *render->getViewPort()->getActualHeight()) );
     tempButtons["serverButton"]->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()) );
 
     tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("clientButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("clientButton")))); // loads Client Button
     tempButtons["clientButton"]->setVisible(false);
-    tempButtons["clientButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::clientButtonClicked);
+    tempButtons["clientButton"]->eventMouseButtonClick += MyGUI::newDelegate(input.get(), &guiInput::clientButtonClicked);
     tempButtons["clientButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.18 *render->getViewPort()->getActualHeight()) );
     tempButtons["clientButton"]->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()) );
 
@@ -225,7 +225,7 @@ bool GUISystem::createNetworkSetupGUI(const renderEngineSharedPtr &render)  // l
     return true;
 }
 
-bool GUISystem::createNetworkClientSetupGUI(const renderEngineSharedPtr &render)  // creates GUI for network client setup screen.
+bool guiCreate::createNetworkClientSetupGUI(const renderEngineSharedPtr &render)  // creates GUI for network client setup screen.
 {
 //    renderEngineSharedPtr render; // = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
@@ -244,12 +244,12 @@ bool GUISystem::createNetworkClientSetupGUI(const renderEngineSharedPtr &render)
 
     tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("clientConnectButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("clientConnectButton"))));  // loads Court Selection Button
     tempButtons["clientConnectButton"]->setVisible(false);
-    tempButtons["clientConnectButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::clientConnectButtonClicked);
+    tempButtons["clientConnectButton"]->eventMouseButtonClick += MyGUI::newDelegate(input.get(), &guiInput::clientConnectButtonClicked);
     tempButtons["clientConnectButton"]->setSize((0.4 *render->getViewPort()->getActualWidth()), (0.04 *render->getViewPort()->getActualHeight()));
 
     tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("backNetworkSetupButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("serverHostButton"))));  // loads Court Selection Button
     tempButtons["backNetworkSetupButton"]->setVisible(false);
-    tempButtons["backNetworkSetupButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::serverHostButtonClicked);
+    tempButtons["backNetworkSetupButton"]->eventMouseButtonClick += MyGUI::newDelegate(input.get(), &guiInput::serverHostButtonClicked);
     tempButtons["backNetworkSetupButton"]->setSize((0.4 *render->getViewPort()->getActualWidth()), (0.04 *render->getViewPort()->getActualHeight()));
 
     component->setNetworkClientSetupMenuButtons(tempButtons);
@@ -260,7 +260,7 @@ bool GUISystem::createNetworkClientSetupGUI(const renderEngineSharedPtr &render)
     return true;
 }
 
-bool GUISystem::createNetworkServerSetupGUI(const renderEngineSharedPtr &render)  // creates GUI for network server setup screen.
+bool guiCreate::createNetworkServerSetupGUI(const renderEngineSharedPtr &render)  // creates GUI for network server setup screen.
 {
 //    renderEngineSharedPtr render; // = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
@@ -283,12 +283,12 @@ bool GUISystem::createNetworkServerSetupGUI(const renderEngineSharedPtr &render)
 
     tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("serverHostButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("serverHostButton"))));  // loads Court Selection Button
     tempButtons["serverHostButton"]->setVisible(false);
-    tempButtons["serverHostButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::serverHostButtonClicked);
+    tempButtons["serverHostButton"]->eventMouseButtonClick += MyGUI::newDelegate(input.get(), &guiInput::serverHostButtonClicked);
     tempButtons["serverHostButton"]->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
 
     tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("backNetworkSetupButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("serverHostButton"))));  // loads Court Selection Button
     tempButtons["backNetworkSetupButton"]->setVisible(false);
-    tempButtons["backNetworkSetupButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::serverHostButtonClicked);
+    tempButtons["backNetworkSetupButton"]->eventMouseButtonClick += MyGUI::newDelegate(input.get(), &guiInput::serverHostButtonClicked);
     tempButtons["backNetworkSetupButton"]->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
 
     component->setNetworkServerSetupMenuButtons(tempButtons);

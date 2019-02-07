@@ -181,26 +181,29 @@ void guiInput::startingLineupSetButtonClicked(MyGUI::Widget *_sender)  // handle
 //    exit(0);
 }
 
-void GUISystem::serverButtonClicked(MyGUI::Widget *_sender)  // handles serverButton click event
+void guiInput::serverButtonClicked(MyGUI::Widget *_sender)  // handles serverButton click event
 {
-    networkServerSetupMenu(gameE->getRenderE());
+    component->setNetworkMenuSelect(SERVERSELECT);
+//    networkServerSetupMenu(gameE->getRenderE());
+    
 }
 
-void GUISystem::clientButtonClicked(MyGUI::Widget *_sender)  // handles clientButton click event
+void guiInput::clientButtonClicked(MyGUI::Widget *_sender)  // handles clientButton click event
 {
-    networkClientSetupMenu(gameE->getRenderE());
+    component->setNetworkMenuSelect(CLIENTSELECT);
+//    networkClientSetupMenu(gameE->getRenderE());
 }
 
-void GUISystem::serverHostButtonClicked(MyGUI::Widget *_sender)  // handles serverHostButton click event
+void guiInput::serverHostButtonClicked(MyGUI::Widget *_sender)  // handles serverHostButton click event
 {
     networkServer();
 }
-void GUISystem::clientConnectButtonClicked(MyGUI::Widget *_sender)  // handles clientConnectButton click event
+void guiInput::clientConnectButtonClicked(MyGUI::Widget *_sender)  // handles clientConnectButton click event
 {
     networkClient();
 }
 
-void GUISystem::backNetworkSetupButtonClicked(MyGUI::Widget *_sender)  // handles backNetworkSetupButton click event
+void guiInput::backNetworkSetupButtonClicked(MyGUI::Widget *_sender)  // handles backNetworkSetupButton click event
 {
     backNetworkSetupMenuSelected(gameE->getRenderE());
 }

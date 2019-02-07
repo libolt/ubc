@@ -185,7 +185,38 @@ bool guiEvents::checkNetworkMenuSelects()  // checks which networkMenu option wa
     std::string func = "GUISystem::checkNetworkMenuSelects()";
 
     logMsg(func +" begin");
+        
+    switch (component->getNetworkMenuSelect())
+    {
+        case COURTSELECT:
+            guiSMData *ncSMData(new guiSMData);
+            ncSMData->component = component;
+            ncSMData->create = create;
+            ncSMData->gData = data;
+            ncSMData->display = display;
+            ncSMData->flag = flag;
+            ncSMData->gameInstance = gameInstance;
+            ncSMData->render = gameE->getRenderE();
 
+            stateMachine->pNetworkClientMenu(ncSMData);
+        break;
+        
+        case SERVERSELECT:
+//            exit(0);
+            guiSMData *nsSMData(new guiSMData);
+            nsSMData->component = component;
+            nsSMData->create = create;
+            nsSMData->gData = data;
+            nsSMData->display = display;
+            nsSMData->flag = flag;
+            nsSMData->gameInstance = gameInstance;
+            nsSMData->render = gameE->getRenderE();
+
+            stateMachine->pNetworkServerMenu(nsSMData);
+        break;
+    }
+
+//    networkServerSetupMenu(gameE->getRenderE());
     logMsg(func +" end");
 
     return (retVal);
@@ -210,6 +241,7 @@ bool guiEvents::checkStartersMenuSelects()  // checks which startersMenu option 
 
     logMsg(func +" begin");
 
+    exit(0);
     switch (component->getStartersMenuSelect())
     {
         case STARTERSSELECT:
@@ -231,16 +263,17 @@ bool guiEvents::checkTeamMenuSelects()  // checks which teamMenu option was sele
 
     logMsg(func +" begin");
     teamsSelected();
-
+//    exit(0);
     switch (component->getTeamMenuSelect())
     {
-        case STARTSINGLE:
+        case TEAMSSELECT:
 //            exit(0);
             guiSMData *tsSMData(new guiSMData);
             tsSMData->component = component;
             tsSMData->create = create;
             tsSMData->gData = data;
             tsSMData->display = display;
+            tsSMData->event = evThis();
             tsSMData->flag = flag;
             tsSMData->gameInstance = gameInstance;
             tsSMData->render = gameE->getRenderE();
@@ -932,10 +965,11 @@ void guiEvents::setSelectedIndexes()  // sets all player listbox indexes to zero
 
     logMsg(func +" begin");
 
+    
     tempPlayerPosSelectBox = component->getTeamPlayerPosSelectBox();
-
-    tempPlayerPosSelectBox[0][PG]->setIndexSelected(0);
 //    exit(0);
+    tempPlayerPosSelectBox[0][PG]->setIndexSelected(0);
+    
     logMsg(func +" PG0");
 
     tempPlayerPosSelectBox[0][SG]->setIndexSelected(0);

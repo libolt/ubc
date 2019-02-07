@@ -23,12 +23,17 @@
 
 #include "utilities/typedefs.h"
 
-class guiEvents
+class guiEvents : public std::enable_shared_from_this<guiEvents>
 {
     public:
         guiEvents();  // constructor
         ~guiEvents();  // destructor
 
+        std::shared_ptr<guiEvents> evThis()
+        {
+            return shared_from_this();
+        }
+        
         guiComponentsSharedPtr getComponent() const;  // retrieves the value of component
         void setComponent(const guiComponentsSharedPtr &set);  // sets the value of component
 

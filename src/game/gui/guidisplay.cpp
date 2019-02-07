@@ -357,7 +357,7 @@ void guiDisplay::hidePlayerStartSelectionMenuWidgets()  // hides all widgets tie
     component->getPlayerStartSelectionMenuButtons()["team1StartingLineupSetButton"]->setVisible(false);
 
     component->getPlayerStartSelectionMenuButtons()["startingLineupsSetButton"]->setVisible(false);
-    component->getPlayerStartSelectionMenuButtons()["backTeamSelectionMenuButton"]->setVisible(false);
+    component->getPlayerStartSelectionMenuButtons()["backStartersTeamSelectionMenuButton"]->setVisible(false);
 
 //    backTeamSelectionMenuButton->setVisible(false);
 
@@ -370,10 +370,15 @@ void guiDisplay::showPlayerStartSelectionMenuWidgets(const renderEngineSharedPtr
 
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
 
+    std::string func = "guiDisplay::showPlayerStartSelectionMenuWidgets()";
+
+    logMsg(func +" begin");
+
     // Team 0 widgets
+    
     component->getTeamPlayerPosSelectBox()[0][PG]->setVisible(true);
     component->getTeamPlayerPosSelectBox()[0][PG]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.05 *render->getViewPort()->getActualHeight()) );
-
+    
     component->getTeamPlayerPosSelectBox()[0][SG]->setVisible(true);
     component->getTeamPlayerPosSelectBox()[0][SG]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.09 *render->getViewPort()->getActualHeight()) );
 
@@ -385,7 +390,7 @@ void guiDisplay::showPlayerStartSelectionMenuWidgets(const renderEngineSharedPtr
 
     component->getTeamPlayerPosSelectBox()[0][C]->setVisible(true);
     component->getTeamPlayerPosSelectBox()[0][C]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.21 *render->getViewPort()->getActualHeight()) );
-
+    
 /*    teamPlayerPosSelectBox[0]["PG"]->setVisible(true);
     teamPlayerPosSelectBox[0]["PG"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.05 *render->getViewPort()->getActualHeight()) );
 //    teamPlayerPosSelectBox[0]["PG"]->setTextColour(MyGUI::Colour("Red"));
@@ -426,6 +431,7 @@ void guiDisplay::showPlayerStartSelectionMenuWidgets(const renderEngineSharedPtr
     component->getTeamPlayerPosSelectBox()[1][C]->setVisible(true);
     component->getTeamPlayerPosSelectBox()[1][C]->setPosition((0.5 *render->getViewPort()->getActualWidth() ), (0.21 *render->getViewPort()->getActualHeight()) );
 
+    
 /*    teamPlayerPosSelectBox[1]["PG"]->setVisible(true);
     teamPlayerPosSelectBox[1]["PG"]->setPosition((0.8 *render->getViewPort()->getActualWidth() ), (0.21 *render->getViewPort()->getActualHeight()) );
 
@@ -447,19 +453,25 @@ void guiDisplay::showPlayerStartSelectionMenuWidgets(const renderEngineSharedPtr
     component->getPlayerStartSelectionMenuButtons()["team1StartingLineupSetButton"]->setVisible(true);
     component->getPlayerStartSelectionMenuButtons()["team1StartingLineupSetButton"]->setPosition((0.5 *render->getViewPort()->getActualWidth() ), (0.31 *render->getViewPort()->getActualHeight()) );
 
-
     component->getPlayerStartSelectionMenuButtons()["startingLineupsSetButton"]->setVisible(true);
     component->getPlayerStartSelectionMenuButtons()["startingLineupsSetButton"]->setPosition((0.25 *render->getViewPort()->getActualWidth() ), (0.38 *render->getViewPort()->getActualHeight()) );
 
-    component->getPlayerStartSelectionMenuButtons()["backTeamSelectionMenuButton"]->setVisible(true);
-    component->getPlayerStartSelectionMenuButtons()["backTeamSelectionMenuButton"]->setPosition((0.25 *render->getViewPort()->getActualWidth() ), (0.43 *render->getViewPort()->getActualHeight()) );
-
+    
+    component->getPlayerStartSelectionMenuButtons()["backStartersTeamSelectionMenuButton"]->setVisible(true);
+   
+    component->getPlayerStartSelectionMenuButtons()["backStartersTeamSelectionMenuButton"]->setPosition((0.25 *render->getViewPort()->getActualWidth() ), (0.43 *render->getViewPort()->getActualHeight()) );
+    
+    logMsg(func +" end");
+    
 }
 
 void guiDisplay::hideTeamSelectionMenuWidgets()  // hides all widgets tied to the Team Selection Menu
 {
     //conversion *convert = conversion::Instance();
     conversionSharedPtr convert ;
+    std::string func = "guiDisplay::hideTeamSelectionMenuWidgets()";
+
+    logMsg(func +" begin");
 
     component->getTeamSelectBox()[0]->setVisible(false);
     component->getTeamSelectBox()[1]->setVisible(false);
@@ -469,8 +481,9 @@ void guiDisplay::hideTeamSelectionMenuWidgets()  // hides all widgets tied to th
     component->getTeamSelectionMenuButtons()["backTeamMainMenuButton"]->setVisible(false);
     component->getTeamSelectionMenuButtons()["backCourtSelectionMenuButton"]->setVisible(false);
 
-    logMsg("previousActiveMenu = " +convert->toString(component->getPreviousActiveMenu()));
+    logMsg(func +" previousActiveMenu = " +convert->toString(component->getPreviousActiveMenu()));
 
+    logMsg(func +" end");
 //    backCourtSelectionMenuButton->setVisible(false);
 }
 

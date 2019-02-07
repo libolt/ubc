@@ -39,6 +39,9 @@ public:
     // External events taken by this state machine
     void pInitialize(const guiSMData *data);
     void pMainMenu(const guiSMData *data);
+    void pNetworkMenu(const guiSMData *data);
+    void pNetworkClientMenu(const guiSMData *data);
+    void pNetworkServerMenu(const guiSMData *data);
     void pStartSinglePlayerGame(const guiSMData *data);
     void pStartersMenu(guiSMData *data);
     void pTeamMenu(guiSMData *data);

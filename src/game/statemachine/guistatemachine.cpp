@@ -77,7 +77,62 @@ void guiStateMachine::pMainMenu(const guiSMData *data)
     END_TRANSITION_MAP(data)
 }
 
+void guiStateMachine::pNetworkMenu(const guiSMData *data)
+{
+    BEGIN_TRANSITION_MAP                                    // - Current State -
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_INITIALIZE
+        TRANSITION_MAP_ENTRY (ST_NETWORK_MENU)              // ST_MAIN_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_NETWORK_MENU
+        TRANSITION_MAP_ENTRY (ST_NETWORK_MENU)              // ST_NETWORKCLIENT_MENU
+        TRANSITION_MAP_ENTRY (ST_NETWORK_MENU)              // ST_NETWORKSERVER_MENU
+        TRANSITION_MAP_ENTRY (ST_NETWORK_MENU)              // ST_IDLE
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_COURT_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_TEAM_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STARTERS_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_OPTIONS_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_AUDIO_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_DISPLAY_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_INPUT_MENU
+    END_TRANSITION_MAP(data)
+}
 
+void guiStateMachine::pNetworkClientMenu(const guiSMData *data)
+{
+    BEGIN_TRANSITION_MAP                                    // - Current State -
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_INITIALIZE
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_MAIN_MENU
+        TRANSITION_MAP_ENTRY (ST_NETWORKCLIENT_MENU)                // ST_NETWORK_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_NETWORKCLIENT_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_NETWORKSERVER_MENU
+        TRANSITION_MAP_ENTRY (ST_NETWORKCLIENT_MENU)                // ST_IDLE
+        TRANSITION_MAP_ENTRY (ST_NETWORKCLIENT_MENU)                // ST_COURT_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_TEAM_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STARTERS_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_OPTIONS_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_AUDIO_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_DISPLAY_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_INPUT_MENU
+    END_TRANSITION_MAP(data)
+}
+
+void guiStateMachine::pNetworkServerMenu(const guiSMData *data)
+{
+    BEGIN_TRANSITION_MAP                                    // - Current State -
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_INITIALIZE
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_MAIN_MENU
+        TRANSITION_MAP_ENTRY (ST_NETWORKSERVER_MENU)                // ST_NETWORK_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_NETWORKCLIENT_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_NETWORKSERVER_MENU
+        TRANSITION_MAP_ENTRY (ST_NETWORKSERVER_MENU)                // ST_IDLE
+        TRANSITION_MAP_ENTRY (ST_NETWORKSERVER_MENU)                // ST_COURT_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_TEAM_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STARTERS_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_OPTIONS_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_AUDIO_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_DISPLAY_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_INPUT_MENU
+    END_TRANSITION_MAP(data)
+}
 void guiStateMachine::pStartSinglePlayerGame(const guiSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
@@ -221,8 +276,33 @@ STATE_DEFINE(guiStateMachine, NetworkClientMenu, guiSMData)
 {
     std::string func = "guiStateMachine::NetworkClientMenu()";
 
+    guiComponentsSharedPtr component = data->component;
+    guiCreateSharedPtr create = data->create;
+    guiDataSharedPtr gData = data->gData;
+    guiDisplaySharedPtr display = data->display;
+    guiFlagsSharedPtr flag = data->flag;
+    guiInputSharedPtr input = data->input;
+    renderEngineSharedPtr render = data->render;
+
     logMsg(func +" begin");
 
+    if (!flag->getNetworkClientSetupMenuCreated())
+    {
+        create->createNetworkClientSetupGUI(render);
+    }
+    display->changeActiveMenu(NETWORKCLIENT, render);
+    MyGUI::InputManager::getInstance().setKeyFocusWidget(component->getClientIPAddressBox().get());
+
+    guiSMData *tempSMData(new guiSMData);
+    tempSMData->component = data->component;
+    tempSMData->create = data->create;
+    tempSMData->gData = data->gData;
+    tempSMData->display = data->display;
+    tempSMData->flag = flag;
+    tempSMData->input = input;
+    tempSMData->render = render;
+    data = tempSMData;
+    
     logMsg(func +" end");
 }
 
@@ -231,7 +311,33 @@ STATE_DEFINE(guiStateMachine, NetworkServerMenu, guiSMData)
 {
     std::string func = "guiStateMachine::NetworkServerMenu()";
 
+    guiComponentsSharedPtr component = data->component;
+    guiCreateSharedPtr create = data->create;
+    guiDataSharedPtr gData = data->gData;
+    guiDisplaySharedPtr display = data->display;
+    guiFlagsSharedPtr flag = data->flag;
+    guiInputSharedPtr input = data->input;
+    renderEngineSharedPtr render = data->render;
+
     logMsg(func +" begin");
+
+    if (!flag->getNetworkServerSetupMenuCreated())
+    {
+        create->createNetworkServerSetupGUI(render);
+    }
+
+    display->changeActiveMenu(NETWORKSERVER, render);
+    MyGUI::InputManager::getInstance().setKeyFocusWidget(component->getServerIPAddressBox().get());
+
+    guiSMData *tempSMData(new guiSMData);
+    tempSMData->component = data->component;
+    tempSMData->create = data->create;
+    tempSMData->gData = data->gData;
+    tempSMData->display = data->display;
+    tempSMData->flag = flag;
+    tempSMData->input = input;
+    tempSMData->render = render;
+    data = tempSMData;
 
     logMsg(func +" end");
 }

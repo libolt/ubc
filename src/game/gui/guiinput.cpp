@@ -25,6 +25,7 @@
 #include "gui/gui.h"
 #include "gui/guidata.h"
 #include "gui/guidisplay.h"
+#include "gui/guievents.h"
 #include "components/gamecomponents.h"
 #include "components/guicomponents.h"
 #include "data/courtdata.h"
@@ -73,6 +74,111 @@ gameEntitySharedPtr guiInput::getGameInstance() const  // retrieves the value of
 void guiInput::setGameInstance(const gameEntitySharedPtr &set)  // sets the value of teamInstance
 {
     gameInstance = set;
+}
+
+void guiInput::startSingleGameButtonClicked(MyGUI::Widget *_sender)  // handles startSingleGameButton click event
+{
+    component->setMainMenuSelect(STARTSINGLE);
+//    startSinglePlayerGame(gameE->getRenderE());
+}
+
+void guiInput::startMultiGameButtonClicked(MyGUI::Widget *_sender)  // handles startMultiGameButton click event
+{
+    component->setMainMenuSelect(STARTMULTI);
+//    startMultiPlayerGame(gameE->getRenderE());
+}
+
+void guiInput::optionsButtonClicked(MyGUI::Widget *_sender)  // handles optionsButton click event
+{
+    component->setMainMenuSelect(OPTIONSSELECT);
+//    optionsMenu(gameE->getRenderE());
+}
+
+void guiInput::exitButtonClicked(MyGUI::Widget *_sender)  // handles exitButton click event
+{
+    exit(0);
+}
+
+void guiInput::backCourtMainMenuButtonClicked(MyGUI::Widget *_sender)  // handles backCourtMainMenuButton click event
+{
+    component->setCourtMenuSelect(BACKCOURTMAIN);
+//    backMainMenuSelected(gameE->getRenderE());
+}
+
+void guiInput::backNetworkMainMenuButtonClicked(MyGUI::Widget *_sender)  // handles backNetworkMainMenuButton click event
+{
+    component->setNetworkMenuSelect(BACKNETWORKMAIN);
+//    backMainMenuSelected(gameE->getRenderE());
+}
+
+void guiInput::backOptionsMainMenuButtonClicked(MyGUI::Widget *_sender)  // handles backOptionsMainMenuButton click event
+{
+    component->setOptionsMenuSelect(BACKOPTIONSMAIN);
+//    backMainMenuSelected(gameE->getRenderE());
+}
+
+void guiInput::backTeamMainMenuButtonClicked(MyGUI::Widget *_sender)  // handles backTeamMainMenuButton click event
+{
+    component->setTeamMenuSelect(BACKTEAMMAIN);
+//    backMainMenuSelected(gameE->getRenderE());
+}
+
+
+void guiInput::courtSelectButtonClicked(MyGUI::Widget *_sender)  // handles courtSelectButton click event
+{
+    component->setCourtMenuSelect(COURTSSELECT);
+//    courtSelected();
+}
+
+void guiInput::team0SelectButtonClicked(MyGUI::Widget *_sender)  // handles team0SelectButton click event
+{
+    component->setTeamMenuSelect(HOMESELECT);
+//    setupHomeSelected();
+}
+
+void guiInput::team1SelectButtonClicked(MyGUI::Widget *_sender)  // handles team1SelectButton click event
+{
+    component->setTeamMenuSelect(AWAYSELECT);
+//    setupAwaySelected();
+}
+
+void guiInput::teamsSelectedButtonClicked(MyGUI::Widget *_sender)  // handles teamsSelectButton click event
+{
+    logMsg("teamsSelectedButtonClicked");
+    component->setTeamMenuSelect(TEAMSSELECT);
+//    teamsSelected();
+//    playerStartSelectionMenu(gameE->getRenderE());
+
+}
+
+void guiInput::backCourtSelectionMenuButtonClicked(MyGUI::Widget *_sender) // handles backCourtSelectionMenuButton click event
+{
+//    courtSelectionMenu(gameE->getRenderE());
+    component->setTeamMenuSelect(BACKTEAMCOURT);
+}
+
+void guiInput::team0StartingLineupSetButtonClicked(MyGUI::Widget *_sender)  // handles team0StartingLineupSetButton click event
+{
+
+}
+
+void guiInput::team1StartingLineupSetButtonClicked(MyGUI::Widget *_sender)  // handles team1StartingLineupSetButton click event
+{
+
+}
+
+void guiInput::backStartersTeamSelectionMenuButtonClicked(MyGUI::Widget *_sender)  // handles backTeamSelectionMenuButton click event
+{
+
+//    teamSelectionMenu(gameE->getRenderE());
+}
+void guiInput::startingLineupSetButtonClicked(MyGUI::Widget *_sender)  // handles startingLineupSetButton click event
+{
+    component->setStartersMenuSelect(STARTERSSELECT);
+//    checkTeamInstancesCreated();
+//    playerStartSelected();
+//    flag->setStartActiveGame(true);
+//    exit(0);
 }
 
 void GUISystem::serverButtonClicked(MyGUI::Widget *_sender)  // handles serverButton click event
@@ -585,7 +691,7 @@ void GUISystem::processPlayerStartSelectionMenuKeyPress(const std::string &keyPr
     //gameState *gameS = gameState::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
 
-    checkTeamInstancesCreated();
+    event->checkTeamInstancesCreated();
 //    teamState testState;
     logMsg("keyPressed == " +keyPressed);
 //    exit(0);
@@ -594,7 +700,7 @@ void GUISystem::processPlayerStartSelectionMenuKeyPress(const std::string &keyPr
 //        exit(0);
         logMsg("processPlayerStart KeyPressed == " +keyPressed);
 //        exit(0);
-        playerStartSelected();
+        event->playerStartSelected();
         flag->setStartActiveGame(true);
         flag->setMenuActive(false);
 

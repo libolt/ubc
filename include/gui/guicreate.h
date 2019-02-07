@@ -35,6 +35,9 @@ class guiCreate
         guiFlagsSharedPtr getFlag() const;  // retrieves the value of flag
         void setFlag(const guiFlagsSharedPtr &set);  // sets the value of flag
 
+        guiInputSharedPtr getInput() const;  // retrieves the value of input
+        void setInput(const guiInputSharedPtr &set);  // sets the value of input
+
         bool createCourtSelectionMenuGUI(const renderEngineSharedPtr &render);  // creates GUI for court selection menu screen.
 
         bool createMainMenuGUI(const renderEngineSharedPtr &render);  // creates GUI gor main menu screen.
@@ -48,6 +51,8 @@ class guiCreate
         guiComponentsSharedPtr component;  // stores gui related components
     
         guiFlagsSharedPtr flag;  // stores gui related flags
+
+        guiInputSharedPtr input;  // stores gui input functions
 
 };
 

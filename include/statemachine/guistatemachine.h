@@ -12,6 +12,7 @@ public:
     guiCreateSharedPtr create;  // stores copy of guiCreate object
     guiDataSharedPtr gData;  // stores copy of guiData object
     guiDisplaySharedPtr display;  // stores copy of guiDisplay object
+    guiEventsSharedPtr event;  // stores copy of guiEvents object
     guiFlagsSharedPtr flag;  // stores copy of guiFlags object
     guiInputSharedPtr input;  // stores copy of guiInput object
     gameEntitySharedPtr gameInstance;  // stores copy of gameEngine object

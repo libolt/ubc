@@ -65,6 +65,9 @@ public:
     guiDisplaySharedPtr getDisplay() const;  // retrieves the value of display
     void setDisplay(const guiDisplaySharedPtr &set);  // sets the value of display
 
+    guiEventsSharedPtr getEvent() const;  // retrieves the value of event
+    void setEvent(const guiEventsSharedPtr &set);  // sets the value of event
+
     guiFlagsSharedPtr getFlag() const;  // retrieves the value of flag
     void setFlag(const guiFlagsSharedPtr &set);  // sets the value of flag
 
@@ -76,7 +79,7 @@ public:
 
     gameEngineSharedPtr getGamE() const;  // retrieves the value of gameE
     void setGameE(const gameEngineSharedPtr &set);  // sets the value of gameE
-    
+
     gameEntitySharedPtr getGameInstance() const;  // retrieves the value of teamInstance
     void setGameInstance(const gameEntitySharedPtr &set);  // sets the value of teamInstance
 
@@ -91,12 +94,6 @@ public:
 
     bool updateStateMachine(const renderEngineSharedPtr &render);  // updates gui stateMachine
 
-    bool checkCourtMenuSelects();  // checks which courtMenu option was selected
-    bool checkMainMenuSelects();  // checks which mainMenu option was selected
-    bool checkNetworkMenuSelects();  // checks which networkMenu option was selected
-    bool checkOptionsMenuSelects();  // checks which optionsMenu option was selected
-    bool checkStartersMenuSelects();  // checks which startersMenu option was selected
-    bool checkTeamMenuSelects();  // checks which teamMenu option was selected
 
 //    bool createMainMenuGUI(const renderEngineSharedPtr &render);  // creates GUI gor main menu screen.
     bool createNetworkSetupGUI(const renderEngineSharedPtr &render);  // creates GUI for network setup screen.
@@ -147,20 +144,15 @@ public:
 //    void addPlayerStartSelectionMenuData_old();  // adds data to Player Start Selection Menu widgets
 
         
-    void setSelectedIndexes();  // sets all player listbox indexes to zero
     void networkServer();  // sets up  game as a network server
     void networkClient();  // sets up game as a network client
 
-    void courtSelected();  // processes court selection
-    void teamsSelected();  // processes team selection
-    void playerStartSelected();  // process player start selection
     void setupAwaySelected();  // processes away team selectdion on game setup menu
     void setupHomeSelected();  // process home team selection on game setup menu
     void backMainMenuSelected(const renderEngineSharedPtr &render);  // processes back to main menu selection
     void backNetworkSetupMenuSelected(const renderEngineSharedPtr &render);  // returns back to network setup screen
     void backNetworkClientMenuSelected(const renderEngineSharedPtr &render);  // returns back to the network client menu
     
-    bool checkTeamInstancesCreated();  // Checks if team instances have been created and if not creates them.
 
 
     // MyGUI functions
@@ -193,6 +185,8 @@ private:
 
     guiDisplaySharedPtr display;  // stores gui display functions
 
+    guiEventsSharedPtr event;  // stores gui display functions
+
     guiFlagsSharedPtr flag;  // stores gui related flags
 
     guiInputSharedPtr input;  // stores gui input functions
@@ -200,17 +194,17 @@ private:
     guiStateMachineSharedPtr stateMachine;  // stores gui stateMachine object
 
 //    UBCGameSharedPtr game;  // stores a copy of the game object
+    gameEngineSharedPtr gameE; // stores a copy of gameE
+
     gameEntitySharedPtr gameInstance;  // stores a copy of the gameInstance
 //    teamEntityMSharedPtr teamInstance;  // stores a copy of the teamInstance
     
-    gameEngineSharedPtr gameE; // stores a copy of gameE
     
     std::vector<stdStringVec> playerNames;
     std::vector<stdStringVec> playerPositionsPlayed;
     std::vector<sizeTVec> playerIDs;  // stores player IDs for each team
     std::vector<sizeTVec> team0IDs;
     std::vector<sizeTVec> team1IDs;
-    teamStarterIDsVecM teamStarterID; // stores the selected starters for each team 
 
 };
 

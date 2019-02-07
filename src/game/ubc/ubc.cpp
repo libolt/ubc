@@ -120,11 +120,12 @@ bool UBC::setupState()  // sets up the UBC game state
     logMsg(func +" begin");
 
     GUISystemSharedPtr gui = component->getGui();
+    gui->setGameInstance(component->getGame()->getGameInstance());  // shares gameInstance with gui object
+
     if (gui->initializeObjects(component->getGameE()->getRenderE()))  // sets up the game GUI
     {
         gui->setObjectsInitialized(true);
         
-        gui->setGameInstance(component->getGame()->getGameInstance());  // shares gameInstance with gui object
 //        exit(0);
         gui->getFlag()->setSetupComplete(true);
 //        exit(0);

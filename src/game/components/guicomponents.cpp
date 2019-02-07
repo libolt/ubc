@@ -341,117 +341,19 @@ void guiComponents::setTeamMenuSelect(const teamMenuSelects &set)  // sets the v
     teamMenuSelect = set;
 }
 
-
 /*  void guiComponents::startSingleGameButtonClicked(MyGUI::Widget *_sender)  // handles startSingleGameButton click event
 {
 //    startSinglePlayerGame(gameE->getRenderE());
 }*/
 
-
-void guiComponents::startSingleGameButtonClicked(MyGUI::Widget *_sender)  // handles startSingleGameButton click event
+teamStarterIDsVecM guiComponents::getTeamStarterID() const // retrieves the value of teamStarterID
 {
-    mainMenuSelect = STARTSINGLE;
-//    startSinglePlayerGame(gameE->getRenderE());
+    return (teamStarterID);
 }
-
-void guiComponents::startMultiGameButtonClicked(MyGUI::Widget *_sender)  // handles startMultiGameButton click event
+void guiComponents::setTeamStarterID(const teamStarterIDsVecM &set)  // sets the value of teamStarterID
 {
-    mainMenuSelect = STARTMULTI;
-//    startMultiPlayerGame(gameE->getRenderE());
+    teamStarterID = set;
 }
-
-void guiComponents::optionsButtonClicked(MyGUI::Widget *_sender)  // handles optionsButton click event
-{
-    mainMenuSelect = OPTIONSSELECT;
-//    optionsMenu(gameE->getRenderE());
-}
-
-void guiComponents::exitButtonClicked(MyGUI::Widget *_sender)  // handles exitButton click event
-{
-    exit(0);
-}
-
-void guiComponents::backCourtMainMenuButtonClicked(MyGUI::Widget *_sender)  // handles backCourtMainMenuButton click event
-{
-    courtMenuSelect = BACKCOURTMAIN;
-//    backMainMenuSelected(gameE->getRenderE());
-}
-
-void guiComponents::backNetworkMainMenuButtonClicked(MyGUI::Widget *_sender)  // handles backNetworkMainMenuButton click event
-{
-    networkMenuSelect = BACKNETWORKMAIN;
-//    backMainMenuSelected(gameE->getRenderE());
-}
-
-void guiComponents::backOptionsMainMenuButtonClicked(MyGUI::Widget *_sender)  // handles backOptionsMainMenuButton click event
-{
-    optionsMenuSelect = BACKOPTIONSMAIN;
-//    backMainMenuSelected(gameE->getRenderE());
-}
-
-void guiComponents::backTeamMainMenuButtonClicked(MyGUI::Widget *_sender)  // handles backTeamMainMenuButton click event
-{
-    teamMenuSelect = BACKTEAMMAIN;
-//    backMainMenuSelected(gameE->getRenderE());
-}
-
-
-void guiComponents::courtSelectButtonClicked(MyGUI::Widget *_sender)  // handles courtSelectButton click event
-{
-    courtMenuSelect = COURTSSELECT;
-//    courtSelected();
-}
-
-void guiComponents::team0SelectButtonClicked(MyGUI::Widget *_sender)  // handles team0SelectButton click event
-{
-    teamMenuSelect = HOMESELECT;
-//    setupHomeSelected();
-}
-
-void guiComponents::team1SelectButtonClicked(MyGUI::Widget *_sender)  // handles team1SelectButton click event
-{
-    teamMenuSelect = AWAYSELECT;
-//    setupAwaySelected();
-}
-
-void guiComponents::teamsSelectedButtonClicked(MyGUI::Widget *_sender)  // handles teamsSelectButton click event
-{
-    logMsg("teamsSelectedButtonClicked");
-    teamMenuSelect = TEAMSSELECT;
-//    teamsSelected();
-//    playerStartSelectionMenu(gameE->getRenderE());
-
-}
-
-void guiComponents::backCourtSelectionMenuButtonClicked(MyGUI::Widget *_sender) // handles backCourtSelectionMenuButton click event
-{
-//    courtSelectionMenu(gameE->getRenderE());
-    teamMenuSelect = BACKTEAMCOURT;
-}
-
-void guiComponents::team0StartingLineupSetButtonClicked(MyGUI::Widget *_sender)  // handles team0StartingLineupSetButton click event
-{
-
-}
-
-void guiComponents::team1StartingLineupSetButtonClicked(MyGUI::Widget *_sender)  // handles team1StartingLineupSetButton click event
-{
-
-}
-
-void guiComponents::backStartersTeamSelectionMenuButtonClicked(MyGUI::Widget *_sender)  // handles backTeamSelectionMenuButton click event
-{
-
-//    teamSelectionMenu(gameE->getRenderE());
-}
-void guiComponents::startingLineupSetButtonClicked(MyGUI::Widget *_sender)  // handles startingLineupSetButton click event
-{
-    checkTeamInstancesCreated();
-    playerStartSelected();
-    flag->setStartActiveGame(true);
-//    exit(0);
-}
-
 
 bool guiComponents::initMyGUI(const renderEngineSharedPtr &render)  // Initializes MyGUI
 {

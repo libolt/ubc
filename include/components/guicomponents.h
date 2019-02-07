@@ -138,23 +138,8 @@ class guiComponents
         teamMenuSelects getTeamMenuSelect() const;  // retrieves the value of teamMenuSelect
         void setTeamMenuSelect(const teamMenuSelects &set);  // sets the value of teamMenuSelect
 
-        void startSingleGameButtonClicked(MyGUI::Widget *_sender);  // handles startSingleGameButton click event
-        void startMultiGameButtonClicked(MyGUI::Widget *_sender);  // hands startMultiGameButton click event
-        void optionsButtonClicked(MyGUI::Widget *_sender);  // handles optionsButton click event
-        void exitButtonClicked(MyGUI::Widget *_sender);  // handles exitButton click event
-        void courtSelectButtonClicked(MyGUI::Widget *_sender);  // handles courtSelectButton click event
-        void backCourtMainMenuButtonClicked(MyGUI::Widget *_sender);  // handles backCourtMainMenuButton click event
-        void backNetworkMainMenuButtonClicked(MyGUI::Widget *_sender);  // handles backNetworkMainMenuButton click event
-        void backOptionsMainMenuButtonClicked(MyGUI::Widget *_sender);  // handles backOptoinsMainMenuButton click event
-        void backTeamMainMenuButtonClicked(MyGUI::Widget *_sender);  // handles backTeamMainMenuButton click event
-        void team0SelectButtonClicked(MyGUI::Widget *_sender);  // handles team0SelectButton click event
-        void team1SelectButtonClicked(MyGUI::Widget *_sender);  // handles team1SelectButton click event
-        void teamsSelectedButtonClicked(MyGUI::Widget *_sender);  // handles teamsSelectedButton click event
-        void backCourtSelectionMenuButtonClicked(MyGUI::Widget *_sender);  // handles backCourtSelectionMenuButton click event
-        void team0StartingLineupSetButtonClicked(MyGUI::Widget *_sender);  // handles team0StartingLineupSetButton click event
-        void team1StartingLineupSetButtonClicked(MyGUI::Widget *_sender);  // handles team1StartingLineupSetButton click event
-        void startingLineupSetButtonClicked(MyGUI::Widget *_sender);  // handles startingLineupSetButton click event
-        void backStartersTeamSelectionMenuButtonClicked(MyGUI::Widget *_sender);  // handles backPlayerStartSelectionMenuButton click event
+        teamStarterIDsVecM getTeamStarterID() const; // retrieves the value of teamStarterID
+        void setTeamStarterID(const teamStarterIDsVecM &set);  // sets the value of teamStarterID
 
 //        void startSingleGameButtonClicked(MyGUI::Widget *_sender);  // handles startSingleGameButton click event
 
@@ -224,6 +209,8 @@ class guiComponents
         startersMenuSelects startersMenuSelect;  // stores the selction for the startersMenu
 
         teamMenuSelects teamMenuSelect;  // stores the selction for the teamMenu
+
+        teamStarterIDsVecM teamStarterID; // stores the selected starters for each team
 
 };
 

@@ -98,6 +98,7 @@ class guiComponents;
 class guiCreate;
 class guiData;
 class guiDisplay;
+class guiEvents;
 class guiFlags;
 class guiInput;
 class guiStateMachine;
@@ -185,6 +186,8 @@ typedef sharedPtr<guiCreate> guiCreateSharedPtr;
 typedef sharedPtr<guiData> guiDataSharedPtr;
 
 typedef sharedPtr<guiDisplay> guiDisplaySharedPtr;
+
+typedef sharedPtr<guiEvents> guiEventsSharedPtr;
 
 typedef sharedPtr<guiFlags> guiFlagsSharedPtr;
 

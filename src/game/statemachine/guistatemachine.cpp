@@ -27,6 +27,7 @@
 #include "gui/guicreate.h"
 #include "gui/guidata.h"
 #include "gui/guidisplay.h"
+#include "gui/guievents.h"
 #include "gui/guiinput.h"
 #include "setup/setupteams.h"
 #include "utilities/conversion.h"
@@ -260,7 +261,8 @@ STATE_DEFINE(guiStateMachine, CourtMenu, guiSMData)
     guiDisplaySharedPtr display = data->display;
     guiFlagsSharedPtr flag = data->flag;
     guiInputSharedPtr input = data->input;
-    
+    renderEngineSharedPtr render = data->render;
+
     if (!flag->getCourtSelectionMenuCreated())
     {
         create->createCourtSelectionMenuGUI(data->render);
@@ -294,6 +296,7 @@ STATE_DEFINE(guiStateMachine, CourtMenu, guiSMData)
     tempSMData->display = data->display;
     tempSMData->flag = flag;
     tempSMData->input = input;
+    tempSMData->render = render;
     data = tempSMData;
 
     logMsg(func +" component initialized == " +convert->toString(component->getInitialized()));
@@ -455,6 +458,7 @@ STATE_DEFINE(guiStateMachine, StartersMenu, guiSMData)
     guiCreateSharedPtr create = data->create;
     guiDataSharedPtr gData = data->gData;
     guiDisplaySharedPtr display = data->display;
+    guiEventsSharedPtr event = data->event;
     guiFlagsSharedPtr flag = data->flag;
     guiInputSharedPtr input = data->input;
     renderEngineSharedPtr render = data->render;
@@ -485,13 +489,14 @@ STATE_DEFINE(guiStateMachine, StartersMenu, guiSMData)
     gData->addStartersSelectionMenuData();
 
 //    exit(0);
-    setSelectedIndexes();
+    event->setSelectedIndexes();
     
     guiSMData *tempSMData(new guiSMData);
     tempSMData->component = data->component;
     tempSMData->create = data->create;
     tempSMData->gData = data->gData;
     tempSMData->display = data->display;
+    tempSMData->event = data->event;
     tempSMData->flag = flag;
     tempSMData->input = input;
     tempSMData->render = render;

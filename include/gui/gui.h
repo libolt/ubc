@@ -135,8 +135,8 @@ public:
 //    void playerStartSelectionMenu(const renderEngineSharedPtr &render);  // displays player start selection menu
 //    void teamSelectionMenu(const renderEngineSharedPtr &render);  // displays team selection menu
 //    void courtSelectionMenu(const renderEngineSharedPtr &render);  // displays court selection menu
-    void networkClientSetupMenu(const renderEngineSharedPtr &render);  // sets up the network client connection
-    void networkServerSetupMenu(const renderEngineSharedPtr &render);  // sets up the networkServer instance
+//    void networkClientSetupMenu(const renderEngineSharedPtr &render);  // sets up the network client connection
+//    void networkServerSetupMenu(const renderEngineSharedPtr &render);  // sets up the networkServer instance
     
 //    bool addCourtSelectionMenuData();  // adds data to Court Selection Menu widgets
 
@@ -144,8 +144,8 @@ public:
 //    void addPlayerStartSelectionMenuData_old();  // adds data to Player Start Selection Menu widgets
 
         
-    void networkServer();  // sets up  game as a network server
-    void networkClient();  // sets up game as a network client
+//    void networkServer();  // sets up  game as a network server
+//    void networkClient();  // sets up game as a network client
 
     void setupAwaySelected();  // processes away team selectdion on game setup menu
     void setupHomeSelected();  // process home team selection on game setup menu

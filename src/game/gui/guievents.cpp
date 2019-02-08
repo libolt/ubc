@@ -124,13 +124,14 @@ bool guiEvents::checkCourtMenuSelects()  // checks which courtMenu option was se
 
     logMsg(func +" begin");
 //    exit(0);
+    guiSMData *csSMData(new guiSMData);
+
     switch (component->getCourtMenuSelect())
     {
         case BACKCOURTMAIN:
         break;
         case COURTSSELECT:
             courtSelected();
-            guiSMData *csSMData(new guiSMData);
             csSMData->component = component;
             csSMData->create = create;
             csSMData->gData = data;
@@ -156,12 +157,12 @@ bool guiEvents::checkMainMenuSelects()  // checks which mainMenu option was sele
     std::string func = "GUISystem::checkMainMenuSelects()";
 
     logMsg(func +" begin");
+    guiSMData *ssSMData(new guiSMData);
 
     switch (component->getMainMenuSelect())
     {
         case STARTSINGLE:
 //            exit(0);
-            guiSMData *ssSMData(new guiSMData);
             ssSMData->component = component;
             ssSMData->create = create;
             ssSMData->gData = data;
@@ -185,11 +186,12 @@ bool guiEvents::checkNetworkMenuSelects()  // checks which networkMenu option wa
     std::string func = "GUISystem::checkNetworkMenuSelects()";
 
     logMsg(func +" begin");
-        
+    guiSMData *ncSMData(new guiSMData);
+    guiSMData *nsSMData(new guiSMData);
+
     switch (component->getNetworkMenuSelect())
     {
-        case COURTSELECT:
-            guiSMData *ncSMData(new guiSMData);
+        case CLIENTSELECT:
             ncSMData->component = component;
             ncSMData->create = create;
             ncSMData->gData = data;
@@ -197,13 +199,10 @@ bool guiEvents::checkNetworkMenuSelects()  // checks which networkMenu option wa
             ncSMData->flag = flag;
             ncSMData->gameInstance = gameInstance;
             ncSMData->render = gameE->getRenderE();
-
             stateMachine->pNetworkClientMenu(ncSMData);
         break;
-        
         case SERVERSELECT:
 //            exit(0);
-            guiSMData *nsSMData(new guiSMData);
             nsSMData->component = component;
             nsSMData->create = create;
             nsSMData->gData = data;
@@ -214,9 +213,35 @@ bool guiEvents::checkNetworkMenuSelects()  // checks which networkMenu option wa
 
             stateMachine->pNetworkServerMenu(nsSMData);
         break;
+        case BACKNETWORKMAIN:
+        break;
     }
 
 //    networkServerSetupMenu(gameE->getRenderE());
+    logMsg(func +" end");
+
+    return (retVal);
+}
+
+bool guiEvents::checkClientNetworkMenuSelects()  // checks which networkMenu option was selected
+{
+    bool retVal = false;
+    std::string func = "GUISystem::checkClientNetworkMenuSelects()";
+
+    logMsg(func +" begin");
+
+    logMsg(func +" end");
+
+    return (retVal);
+}
+
+bool guiEvents::checkServerNetworkMenuSelects()  // checks which networkMenu option was selected
+{
+    bool retVal = false;
+    std::string func = "GUISystem::checkServerNetworkMenuSelects()";
+
+    logMsg(func +" begin");
+
     logMsg(func +" end");
 
     return (retVal);
@@ -264,11 +289,12 @@ bool guiEvents::checkTeamMenuSelects()  // checks which teamMenu option was sele
     logMsg(func +" begin");
     teamsSelected();
 //    exit(0);
+    guiSMData *tsSMData(new guiSMData);
+
     switch (component->getTeamMenuSelect())
     {
         case TEAMSSELECT:
 //            exit(0);
-            guiSMData *tsSMData(new guiSMData);
             tsSMData->component = component;
             tsSMData->create = create;
             tsSMData->gData = data;
@@ -958,13 +984,49 @@ void guiEvents::playerStartSelected()  // process player start selection
 
 }
 
+void guiEvents::hostGame()  // hosts a network game
+{
+    std::string func = "guiEvents::hostGame()";
+
+    logMsg(func +" begin");
+
+    gameInstance->getData()->setGameType(MULTINET);
+//   hideNetworkSetupWidgets();  // Hides Network Setup Menu widgets
+    flag->setMenuActive(false);
+    gameE->getNetworkE()->setIPAddress(component->getServerIPAddressBox()->getCaption());  // sets the neworkEngine's ipAddress string to that of the caption
+    logMsg("server ip = " +gameE->getNetworkE()->getIPAddress());
+    if (gameE->getNetworkE()->serverSetup())  // attempts to setup as a network server
+    {
+        gameE->getNetworkE()->setIsServer(true);  // if successful sets isServer to true
+    }
+    logMsg(func +" end");
+
+}
+void guiEvents::connectGame()  // connects toa  network game
+{
+    std::string func = "guiEvents::connectGame()";
+
+    logMsg(func +" begin");
+
+    gameInstance->getData()->setGameType(MULTINET);
+//    hideNetworkSetupWidgets();  // Hides Network Setup Menu widgets
+    flag->setMenuActive(false);
+    gameE->getNetworkE()->setIPAddress(component->getClientIPAddressBox()->getCaption());  // sets the neworkEngine's ipAddress string to that of the caption
+//    network->networkClient();
+    if (gameE->getNetworkE()->clientConnect()) // attempts to connect to the remote server
+    {
+        gameE->getNetworkE()->setIsClient(true);  // if successful sets isClient to true
+    }
+    logMsg(func +" end");
+
+}
+
 void guiEvents::setSelectedIndexes()  // sets all player listbox indexes to zero
 {
     MyGUIPlayerListBoxVecMSharedPtr tempPlayerPosSelectBox;
     std::string func = "guiEvents::setSelectedIndexes()";
 
     logMsg(func +" begin");
-
     
     tempPlayerPosSelectBox = component->getTeamPlayerPosSelectBox();
 //    exit(0);

@@ -314,6 +314,24 @@ void guiComponents::setNetworkMenuSelect(const networkMenuSelects &set)  // sets
     networkMenuSelect = set;
 }
 
+networkClientMenuSelects guiComponents::getNetworkClientMenuSelect() const  // retrieves the value of networkClientMenuSelect
+{
+    return (networkClientMenuSelect);
+}
+void guiComponents::setNetworkClientMenuSelect(const networkClientMenuSelects &set)  // sets the value of networkClientMenuSelect
+{
+    networkClientMenuSelect = set;
+}
+
+networkServerMenuSelects guiComponents::getNetworkServerMenuSelect() const  // retrieves the value of networkServerMenuSelect
+{
+    return (networkServerMenuSelect);
+}
+void guiComponents::setNetworkServerMenuSelect(const networkServerMenuSelects &set)  // sets the value of networkServerMenuSelect
+{
+    networkServerMenuSelect = set;
+}
+
 optionsMenuSelects guiComponents::getOptionsMenuSelect() const  // retrieves the value of optionsMenuSelect
 {
     return (optionsMenuSelect);

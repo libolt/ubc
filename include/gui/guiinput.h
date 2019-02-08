@@ -59,9 +59,9 @@ class guiInput
         void clientButtonClicked(MyGUI::Widget *_sender);  // handles clientButton click event
         void serverHostButtonClicked(MyGUI::Widget *_sender);  // handles hostGameButton click event
         void clientConnectButtonClicked(MyGUI::Widget *_sender);  // handles connectButton click event
-        void backNetworkSetupButtonClicked(MyGUI::Widget *_sender);  // handles backNetworkSetupButton click event
+        void backNetClientNetworkSetupButtonClicked(MyGUI::Widget *_sender);  // handles backNetClientNetworkSetupButton click event
+        void backNetServerNetworkSetupButtonClicked(MyGUI::Widget *_sender);  // handles backNetServerNetworkSetupButton click event
 
-        
     private:
     
         guiComponentsSharedPtr component;  // stores gui related components

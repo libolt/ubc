@@ -61,6 +61,8 @@ class guiEvents : public std::enable_shared_from_this<guiEvents>
         bool checkCourtMenuSelects();  // checks which courtMenu option was selected
         bool checkMainMenuSelects();  // checks which mainMenu option was selected
         bool checkNetworkMenuSelects();  // checks which networkMenu option was selected
+        bool checkClientNetworkMenuSelects();  // checks which networkMenu option was selected
+        bool checkServerNetworkMenuSelects();  // checks which networkMenu option was selected
         bool checkOptionsMenuSelects();  // checks which optionsMenu option was selected
         bool checkStartersMenuSelects();  // checks which startersMenu option was selected
         bool checkTeamMenuSelects();  // checks which teamMenu option was selected
@@ -70,6 +72,9 @@ class guiEvents : public std::enable_shared_from_this<guiEvents>
         void courtSelected();  // processes court selection
         void teamsSelected();  // processes team selection
         void playerStartSelected();  // process player start selection
+
+        void hostGame();  // hosts a network game
+        void connectGame();  // connects toa  network game
 
         void setSelectedIndexes();  // sets all player listbox indexes to zero
 

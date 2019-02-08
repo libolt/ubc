@@ -129,6 +129,12 @@ class guiComponents
         networkMenuSelects getNetworkMenuSelect() const;  // retrieves the value of networkMenuSelect
         void setNetworkMenuSelect(const networkMenuSelects &set);  // sets the value of networkMenuSelect
 
+        networkClientMenuSelects getNetworkClientMenuSelect() const;  // retrieves the value of networkClientMenuSelect
+        void setNetworkClientMenuSelect(const networkClientMenuSelects &set);  // sets the value of networkClientMenuSelect
+
+        networkServerMenuSelects getNetworkServerMenuSelect() const;  // retrieves the value of networkServerMenuSelect
+        void setNetworkServerMenuSelect(const networkServerMenuSelects &set);  // sets the value of networkServerMenuSelect
+
         optionsMenuSelects getOptionsMenuSelect() const;  // retrieves the value of optionsMenuSelect
         void setOptionsMenuSelect(const optionsMenuSelects &set);  // sets the value of optionsMenuSelect
 
@@ -205,6 +211,8 @@ class guiComponents
         courtMenuSelects courtMenuSelect;  // stores the selction for the courtMenu
         mainMenuSelects mainMenuSelect;  // stores the selction for the mainMenu
         networkMenuSelects networkMenuSelect;  // stores the selection for the networkMenu
+        networkClientMenuSelects networkClientMenuSelect;  // stores the selection for the networkClientMenu
+        networkServerMenuSelects networkServerMenuSelect;  // stores the selection for the networkServerMenu
         optionsMenuSelects optionsMenuSelect;  // stores the selection for the optionsMenu
         startersMenuSelects startersMenuSelect;  // stores the selction for the startersMenu
 

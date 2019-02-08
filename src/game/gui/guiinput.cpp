@@ -196,17 +196,27 @@ void guiInput::clientButtonClicked(MyGUI::Widget *_sender)  // handles clientBut
 
 void guiInput::serverHostButtonClicked(MyGUI::Widget *_sender)  // handles serverHostButton click event
 {
-    networkServer();
+    component->setNetworkServerMenuSelect(HOSTGAME);
+//    networkServer();
 }
 void guiInput::clientConnectButtonClicked(MyGUI::Widget *_sender)  // handles clientConnectButton click event
 {
-    networkClient();
+    component->setNetworkClientMenuSelect(CONNECTGAME);
+//    networkClient();
 }
 
-void guiInput::backNetworkSetupButtonClicked(MyGUI::Widget *_sender)  // handles backNetworkSetupButton click event
+void guiInput::backNetClientNetworkSetupButtonClicked(MyGUI::Widget *_sender)  // handles backNetworkSetupButton click event
 {
-    backNetworkSetupMenuSelected(gameE->getRenderE());
+    component->setNetworkClientMenuSelect(BACKNETCLIENTMAIN);
+//    backNetworkSetupMenuSelected(gameE->getRenderE());
 }
+
+void guiInput::backNetServerNetworkSetupButtonClicked(MyGUI::Widget *_sender)  // handles backNetworkSetupButton click event
+{
+    component->setNetworkServerMenuSelect(BACKNETSERVMAIN);
+//    backNetworkSetupMenuSelected(gameE->getRenderE());
+}
+
 
 void GUISystem::displayButtonClicked(MyGUI::Widget *_sender)  // handles didplayButton click event
 {
@@ -245,7 +255,7 @@ void GUISystem::disableAudioButtonClicked(MyGUI::Widget *_sender)  // handles en
 
 void GUISystem::backNetworkClientButtonClicked(MyGUI::Widget *_sender)  // handles backNetworkClientButton click event
 {
-    networkClientSetupMenu(gameE->getRenderE());
+//    networkClientSetupMenu(gameE->getRenderE());
 }
 
 void GUISystem::backOptionsMenuButtonClicked(MyGUI::Widget *_sender)  // handles backOptionsMenuButton click event
@@ -353,15 +363,18 @@ void GUISystem::processNetworkMenuKeyPress(const std::string &keyPressed, const 
 {
     if (keyPressed == "c")
     {
-       networkClientSetupMenu(render);
+        component->setNetworkMenuSelect(CLIENTSELECT);
+//       networkClientSetupMenu(render);
     }
     else if (keyPressed == "b")
     {
-        backMainMenuSelected(render);
+        component->setNetworkMenuSelect(BACKNETWORKMAIN);
+//        backMainMenuSelected(render);
     }
     else if (keyPressed == "s")
     {
-        networkServerSetupMenu(render);
+        component->setNetworkMenuSelect(SERVERSELECT);
+//        networkServerSetupMenu(render);
     }
     else
     {
@@ -435,7 +448,9 @@ void GUISystem::processNetworkServerMenuKeyPress(const std::string &keyPressed, 
     if (keyPressed == "h")
     {
         display->hideNetworkServerSetupWidgets();
-        networkServer();
+        component->setNetworkServerMenuSelect(HOSTGAME);
+//        networkServer();
+
     }
     else if (keyPressed == "b")
     {
@@ -502,7 +517,8 @@ void GUISystem::processNetworkClientMenuKeyPress(const std::string &keyPressed, 
     if (keyPressed == "c")
     {
         display->hideNetworkClientSetupWidgets();
-        networkClient();
+        component->setNetworkClientMenuSelect(CONNECTGAME);
+//        networkClient();
     }
     else if (keyPressed == "b")
     {
@@ -598,11 +614,13 @@ void GUISystem::processSetupMenuKeyPress(const std::string &keyPressed, const re
         }
         else if (previousActiveMenu == NETWORKCLIENT)
         {
-            networkClientSetupMenu(render);
+            component->setNetworkMenuSelect(CLIENTSELECT);
+//            networkClientSetupMenu(render);
         }
         else if (previousActiveMenu == NETWORKSERVER)
         {
-            networkServerSetupMenu(render);
+            component->setNetworkMenuSelect(SERVERSELECT);
+//            networkServerSetupMenu(render);
         }
     }
     // FIXME!

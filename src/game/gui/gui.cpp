@@ -706,7 +706,7 @@ void GUISystem::networkServerSetupMenu(const renderEngineSharedPtr &render)  // 
 }
 */
 
-void GUISystem::networkServer()  // sets up  game as a network server
+/*void GUISystem::networkServer()  // sets up  game as a network server
 {
     //networkEngine * network = networkEngine::Instance();
 //    networkEngineSharedPtr network = networkEngine::Instance();
@@ -729,7 +729,8 @@ void GUISystem::networkServer()  // sets up  game as a network server
 //    gameE->setCreateScene(true); // sets variable true that tells gameEngine to start rendering the scene
 
 }
-void GUISystem::networkClient()  // sets up game as a network client
+*/
+/*void GUISystem::networkClient()  // sets up game as a network client
 {
 //    networkEngineSharedPtr network = networkEngine::Instance();
 //    sharedPtr<gameEngine> gameE = gameEngine::Instance();
@@ -748,7 +749,7 @@ void GUISystem::networkClient()  // sets up game as a network client
 //    gameE->setCreateScene(true); // sets variable true that tells gameEngine to start rendering the scenetop
 
 }
-
+*/
 
 void GUISystem::setupAwaySelected()  // processes away team selectdion on game setup menu
 {

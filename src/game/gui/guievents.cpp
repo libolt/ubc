@@ -120,7 +120,7 @@ void guiEvents::setGameInstance(const gameEntitySharedPtr &set)  // sets the val
 bool guiEvents::checkCourtMenuSelects()  // checks which courtMenu option was selected
 {
     bool retVal = false;
-    std::string func = "GUISystem::checkCourtMenuSelects()";
+    std::string func = "guiEvents::checkCourtMenuSelects()";
 
     logMsg(func +" begin");
 //    exit(0);
@@ -154,10 +154,11 @@ bool guiEvents::checkCourtMenuSelects()  // checks which courtMenu option was se
 bool guiEvents::checkMainMenuSelects()  // checks which mainMenu option was selected
 {
     bool retVal = false;
-    std::string func = "GUISystem::checkMainMenuSelects()";
+    std::string func = "guiEvents::checkMainMenuSelects()";
 
     logMsg(func +" begin");
     guiSMData *ssSMData(new guiSMData);
+    guiSMData *smSMData(new guiSMData);
 
     switch (component->getMainMenuSelect())
     {
@@ -173,6 +174,19 @@ bool guiEvents::checkMainMenuSelects()  // checks which mainMenu option was sele
 
             stateMachine->pStartSinglePlayerGame(ssSMData);
         break;
+        case STARTMULTI:
+            smSMData->component = component;
+            smSMData->create = create;
+            smSMData->gData = data;
+            smSMData->display = display;
+            smSMData->flag = flag;
+            smSMData->gameInstance = gameInstance;
+            smSMData->render = gameE->getRenderE();
+
+            stateMachine->pNetworkMenu(smSMData);
+
+//            exit(0);
+        break;
     }
 
     logMsg(func +" end");
@@ -183,7 +197,7 @@ bool guiEvents::checkMainMenuSelects()  // checks which mainMenu option was sele
 bool guiEvents::checkNetworkMenuSelects()  // checks which networkMenu option was selected
 {
     bool retVal = false;
-    std::string func = "GUISystem::checkNetworkMenuSelects()";
+    std::string func = "guiEvents::checkNetworkMenuSelects()";
 
     logMsg(func +" begin");
     guiSMData *ncSMData(new guiSMData);
@@ -226,7 +240,7 @@ bool guiEvents::checkNetworkMenuSelects()  // checks which networkMenu option wa
 bool guiEvents::checkClientNetworkMenuSelects()  // checks which networkMenu option was selected
 {
     bool retVal = false;
-    std::string func = "GUISystem::checkClientNetworkMenuSelects()";
+    std::string func = "guiEvents::checkClientNetworkMenuSelects()";
 
     logMsg(func +" begin");
 
@@ -238,7 +252,7 @@ bool guiEvents::checkClientNetworkMenuSelects()  // checks which networkMenu opt
 bool guiEvents::checkServerNetworkMenuSelects()  // checks which networkMenu option was selected
 {
     bool retVal = false;
-    std::string func = "GUISystem::checkServerNetworkMenuSelects()";
+    std::string func = "guiEvents::checkServerNetworkMenuSelects()";
 
     logMsg(func +" begin");
 
@@ -250,7 +264,7 @@ bool guiEvents::checkServerNetworkMenuSelects()  // checks which networkMenu opt
 bool guiEvents::checkOptionsMenuSelects()  // checks which optionsMenu option was selected
 {
     bool retVal = false;
-    std::string func = "GUISystem::checkOptionsMenuSelects()";
+    std::string func = "guiEvents::checkOptionsMenuSelects()";
 
     logMsg(func +" begin");
 
@@ -262,7 +276,7 @@ bool guiEvents::checkOptionsMenuSelects()  // checks which optionsMenu option wa
 bool guiEvents::checkStartersMenuSelects()  // checks which startersMenu option was selected
 {
     bool retVal = false;
-    std::string func = "GUISystem::checkStartersmMenuSelects()";
+    std::string func = "guiEvents::checkStartersmMenuSelects()";
 
     logMsg(func +" begin");
 
@@ -284,7 +298,7 @@ bool guiEvents::checkStartersMenuSelects()  // checks which startersMenu option 
 bool guiEvents::checkTeamMenuSelects()  // checks which teamMenu option was selected
 {
     bool retVal = false;
-    std::string func = "GUISystem::checkTeamMenuSelects()";
+    std::string func = "guiEvents::checkTeamMenuSelects()";
 
     logMsg(func +" begin");
     teamsSelected();
@@ -346,7 +360,7 @@ void guiEvents::courtSelected()  // processes court selection
     conversionSharedPtr convert ;
     //gameState *gameS = gameState::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
-    std::string func = "GUISystem::courtSelected()";
+    std::string func = "guiEvents::courtSelected()";
 
     logMsg(func +" begin");
 
@@ -414,7 +428,7 @@ void guiEvents::playerStartSelected()  // process player start selection
     playerEntityMSharedPtr activePlayerInstance;
 //    std::unordered_map<playerPositions, playerEntitySharedPtr, std::hash<int> > activePlayerInstance;
     size_t IDs = 0;
-    std::string func = "GUISystem::playerStartSelected()";
+    std::string func = "guiEvents::playerStartSelected()";
 
     setupLineupsSharedPtr setupLineup(new setupLineups);
     setupPlayersSharedPtr setupPlayer(new setupPlayers);

@@ -267,7 +267,7 @@ STATE_DEFINE(guiStateMachine, NetworkMenu, guiSMData)
     std::string func = "guiStateMachine::NetworkMenu()";
 
     logMsg(func +" begin");
-
+    exit(0);
     logMsg(func +" end");
 }
 

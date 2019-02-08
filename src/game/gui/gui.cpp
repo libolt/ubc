@@ -311,6 +311,9 @@ bool GUISystem::updateStateMachine(const renderEngineSharedPtr &render)  // upda
                 case MAIN:
                     event->checkMainMenuSelects();
                 break;
+                case NETWORK:
+                    event->checkNetworkMenuSelects();
+                break;
                 case COURTSELECT:                    
                     event->checkCourtMenuSelects();
                 break;

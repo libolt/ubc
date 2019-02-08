@@ -344,7 +344,11 @@ void GUISystem::processMainMenuKeyPress(const std::string &keyPressed, const ren
     }
     else if (keyPressed == "m")
     {
-        startMultiPlayerGame(render);
+        gameInstance->getData()->setGameType(MULTINET);
+        component->setMainMenuSelect(STARTMULTI);
+        flag->setChangeMenu(true);
+
+//        startMultiPlayerGame(render);
     }
     else if (keyPressed == "o")
     {
@@ -364,16 +368,19 @@ void GUISystem::processNetworkMenuKeyPress(const std::string &keyPressed, const 
     if (keyPressed == "c")
     {
         component->setNetworkMenuSelect(CLIENTSELECT);
+        flag->setChangeMenu(true);
 //       networkClientSetupMenu(render);
     }
     else if (keyPressed == "b")
     {
         component->setNetworkMenuSelect(BACKNETWORKMAIN);
+        flag->setChangeMenu(true);
 //        backMainMenuSelected(render);
     }
     else if (keyPressed == "s")
     {
         component->setNetworkMenuSelect(SERVERSELECT);
+        flag->setChangeMenu(true);
 //        networkServerSetupMenu(render);
     }
     else

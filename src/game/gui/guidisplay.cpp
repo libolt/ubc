@@ -125,15 +125,15 @@ void guiDisplay::hideNetworkSetupWidgets()  // hides the widgets tied to the Net
 }
 void guiDisplay::showNetworkSetupWidgets()  // shows all widgets tied to the Network Setup Menu
 {
-    renderEngineSharedPtr render;  // = renderEngine::Instance();
+    renderEngineSharedPtr render = gameE->getRenderE();
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getgetRenderE()->getViewPort()();
 
 //    ipAddressBox->setVisible(true);
     component->getNetworkMenuButtons()["serverButton"]->setVisible(true);
     component->getNetworkMenuButtons()["clientButton"]->setVisible(true);
 
-    component->getNetworkMenuButtons()["backMainMenuButton"]->setVisible(true);
-    component->getNetworkMenuButtons()["backMainMenuButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.22 *render->getViewPort()->getActualHeight()));
+    component->getNetworkMenuButtons()["backNetworkMainMenuButton"]->setVisible(true);
+    component->getNetworkMenuButtons()["backNetworkMainMenuButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.22 *render->getViewPort()->getActualHeight()));
 
 }
 

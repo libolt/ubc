@@ -25,6 +25,7 @@
 #include "components/teamcomponents.h"
 #include "data/gamedata.h"
 #include "engine/gameengine.h"
+#include "engine/renderengine.h"
 #include "entity/gameentity.h"
 #include "entity/teamentity.h"
 #include "flags/gameflags.h"

@@ -232,7 +232,7 @@ bool guiCreate::createNetworkClientSetupGUI(const renderEngineSharedPtr &render)
     
     MyGUIButtonMSharedPtr tempButtons;
 
-    std::string func = "GUISystem::createNetworkClientSetupGUI()";
+    std::string func = "guiCreate::createNetworkClientSetupGUI()";
 
     logMsg(func +" begin");
 
@@ -267,29 +267,36 @@ bool guiCreate::createNetworkServerSetupGUI(const renderEngineSharedPtr &render)
 
     MyGUIButtonMSharedPtr tempButtons;
 
-    std::string func = "GUISystem::createNetworkServerSetupGUI()";
+    std::string func = "guiCreate::createNetworkServerSetupGUI()";
 
     logMsg(func +" begin");
 
     MyGUI::LayoutManager::getInstance().loadLayout("NetworkServerSetupMenu.layout");
 
+    logMsg(func +" numClientsSelectBox");
     component->setNumClientsSelectBox(MyGUIListBoxSharedPtr(component->getMGUI()->findWidget<MyGUI::ListBox>("numClientsSelectBox")));  // loads  Selection box for number of clients allowed
     component->getNumClientsSelectBox()->setVisible(false);
-    
+
+    logMsg(func +" serverIPAddressBox");
+
     component->setServerIPAddressBox(sharedPtr<MyGUI::EditBox>(component->getMGUI()->findWidget<MyGUI::EditBox>("serverIPAddressBox")));  // loads IP Address EditBox
     component->getServerIPAddressBox()->setVisible(false);
     component->getServerIPAddressBox()->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.10 *render->getViewPort()->getActualHeight()) );
     component->getServerIPAddressBox()->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()) );
 
-    tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("serverHostButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("serverHostButton"))));  // loads Court Selection Button
+    logMsg(func +" serverHostButton");
+
+    tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("serverHostButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("serverHostButton"))));  // loads Server Host Button
     tempButtons["serverHostButton"]->setVisible(false);
     tempButtons["serverHostButton"]->eventMouseButtonClick += MyGUI::newDelegate(input.get(), &guiInput::serverHostButtonClicked);
     tempButtons["serverHostButton"]->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
 
-    tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("backNetworkSetupButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("serverHostButton"))));  // loads Court Selection Button
-    tempButtons["backNetworkSetupButton"]->setVisible(false);
-    tempButtons["backNetworkSetupButton"]->eventMouseButtonClick += MyGUI::newDelegate(input.get(), &guiInput::serverHostButtonClicked);
-    tempButtons["backNetworkSetupButton"]->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
+    logMsg(func +" backNetworkSetupButton");
+
+    tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("backNetServNetworkSetupButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("backNetworkSetupButton"))));  // loads Back to Network Setup Button
+    tempButtons["backNetServNetworkSetupButton"]->setVisible(false);
+    tempButtons["backNetServNetworkSetupButton"]->eventMouseButtonClick += MyGUI::newDelegate(input.get(), &guiInput::serverHostButtonClicked);
+    tempButtons["backNetServNetworkSetupButton"]->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()));
 
     component->setNetworkServerSetupMenuButtons(tempButtons);
 

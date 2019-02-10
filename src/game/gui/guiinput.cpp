@@ -461,7 +461,9 @@ void GUISystem::processNetworkServerMenuKeyPress(const std::string &keyPressed, 
     }
     else if (keyPressed == "b")
     {
-        startMultiPlayerGame(render);
+        component->setNetworkServerMenuSelect(BACKNETSERVMAIN);
+        flag->setChangeMenu(true);
+//        startMultiPlayerGame(render);
     }
 }
 
@@ -529,7 +531,9 @@ void GUISystem::processNetworkClientMenuKeyPress(const std::string &keyPressed, 
     }
     else if (keyPressed == "b")
     {
-        startMultiPlayerGame(render);
+        component->setNetworkClientMenuSelect(BACKNETCLIENTMAIN);
+        flag->setChangeMenu(true);
+//        startMultiPlayerGame(render);
     }
 
 }

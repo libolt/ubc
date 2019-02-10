@@ -126,7 +126,7 @@ public:
 //    void mainMenu(const renderEngineSharedPtr &render);  // msin in game menu
     void backButtons();  // handles the back buttons
 //    void startSinglePlayerGame(const renderEngineSharedPtr &render);  // starts single player game
-    void startMultiPlayerGame(const renderEngineSharedPtr &render);  // starts multiplayer game
+//    void startMultiPlayerGame(const renderEngineSharedPtr &render);  // starts multiplayer game
     void optionsMenu(const renderEngineSharedPtr &render);  // displays options menu
     void displayMenu(const renderEngineSharedPtr &render);  // displays display menu
     void inputMenu(const renderEngineSharedPtr &render);  // displays the input menu

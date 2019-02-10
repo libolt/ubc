@@ -415,7 +415,7 @@ void GUISystem::backButtons()  // handles the back buttons
 }
 */
 
-void GUISystem::startMultiPlayerGame(const renderEngineSharedPtr &render)  // starts multiplayer game
+/*void GUISystem::startMultiPlayerGame(const renderEngineSharedPtr &render)  // starts multiplayer game
 {
     if (!flag->getNetworkSetupMenuCreated())
     {
@@ -424,6 +424,7 @@ void GUISystem::startMultiPlayerGame(const renderEngineSharedPtr &render)  // st
 
     display->changeActiveMenu(NETWORK, render);
 }
+*/
 
 void GUISystem::optionsMenu(const renderEngineSharedPtr &render)  // displays options menu
 {

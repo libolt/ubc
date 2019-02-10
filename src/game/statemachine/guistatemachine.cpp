@@ -265,9 +265,32 @@ STATE_DEFINE(guiStateMachine, MainMenu, guiSMData)
 STATE_DEFINE(guiStateMachine, NetworkMenu, guiSMData)
 {
     std::string func = "guiStateMachine::NetworkMenu()";
+    guiComponentsSharedPtr component = data->component;
+    guiCreateSharedPtr create = data->create;
+    guiDataSharedPtr gData = data->gData;
+    guiDisplaySharedPtr display = data->display;
+    guiFlagsSharedPtr flag = data->flag;
+    guiInputSharedPtr input = data->input;
+    renderEngineSharedPtr render = data->render;
 
     logMsg(func +" begin");
-    exit(0);
+    if (!flag->getNetworkSetupMenuCreated())
+    {
+        create->createNetworkSetupGUI(render);  // creates the GUI for the Network Setup Screen
+    }
+
+    display->changeActiveMenu(NETWORK, render);
+
+    guiSMData *tempSMData(new guiSMData);
+    tempSMData->component = data->component;
+    tempSMData->create = data->create;
+    tempSMData->gData = data->gData;
+    tempSMData->display = data->display;
+    tempSMData->flag = flag;
+    tempSMData->input = input;
+    tempSMData->render = render;
+    data = tempSMData;
+
     logMsg(func +" end");
 }
 

@@ -175,6 +175,8 @@ void guiInput::backStartersTeamSelectionMenuButtonClicked(MyGUI::Widget *_sender
 void guiInput::startingLineupSetButtonClicked(MyGUI::Widget *_sender)  // handles startingLineupSetButton click event
 {
     component->setStartersMenuSelect(STARTERSSELECT);
+    flag->setChangeMenu(true);
+
 //    checkTeamInstancesCreated();
 //    playerStartSelected();
 //    flag->setStartActiveGame(true);
@@ -184,6 +186,8 @@ void guiInput::startingLineupSetButtonClicked(MyGUI::Widget *_sender)  // handle
 void guiInput::serverButtonClicked(MyGUI::Widget *_sender)  // handles serverButton click event
 {
     component->setNetworkMenuSelect(SERVERSELECT);
+    flag->setChangeMenu(true);
+
 //    networkServerSetupMenu(gameE->getRenderE());
     
 }
@@ -191,29 +195,39 @@ void guiInput::serverButtonClicked(MyGUI::Widget *_sender)  // handles serverBut
 void guiInput::clientButtonClicked(MyGUI::Widget *_sender)  // handles clientButton click event
 {
     component->setNetworkMenuSelect(CLIENTSELECT);
+    flag->setChangeMenu(true);
+
 //    networkClientSetupMenu(gameE->getRenderE());
 }
 
 void guiInput::serverHostButtonClicked(MyGUI::Widget *_sender)  // handles serverHostButton click event
 {
     component->setNetworkServerMenuSelect(HOSTGAME);
+    flag->setChangeMenu(true);
+
 //    networkServer();
 }
 void guiInput::clientConnectButtonClicked(MyGUI::Widget *_sender)  // handles clientConnectButton click event
 {
     component->setNetworkClientMenuSelect(CONNECTGAME);
+    flag->setChangeMenu(true);
+
 //    networkClient();
 }
 
 void guiInput::backNetClientNetworkSetupButtonClicked(MyGUI::Widget *_sender)  // handles backNetworkSetupButton click event
 {
     component->setNetworkClientMenuSelect(BACKNETCLIENTMAIN);
+    flag->setChangeMenu(true);
+
 //    backNetworkSetupMenuSelected(gameE->getRenderE());
 }
 
 void guiInput::backNetServerNetworkSetupButtonClicked(MyGUI::Widget *_sender)  // handles backNetworkSetupButton click event
 {
     component->setNetworkServerMenuSelect(BACKNETSERVMAIN);
+    flag->setChangeMenu(true);
+
 //    backNetworkSetupMenuSelected(gameE->getRenderE());
 }
 
@@ -258,10 +272,29 @@ void GUISystem::backNetworkClientButtonClicked(MyGUI::Widget *_sender)  // handl
 //    networkClientSetupMenu(gameE->getRenderE());
 }
 
-void GUISystem::backOptionsMenuButtonClicked(MyGUI::Widget *_sender)  // handles backOptionsMenuButton click event
+void guiInput::backAudioOptionsMenuButtonClicked(MyGUI::Widget *_sender)  // handles backOptionsMenuButton click event
 {
-    optionsMenu(gameE->getRenderE());
+    component->setAudioMenuSelect(BACKAUDIOOPTIONS);
+    flag->setChangeMenu(true);
+//    optionsMenu(gameE->getRenderE());
 }
+
+void guiInput::backDisplayOptionsMenuButtonClicked(MyGUI::Widget *_sender)  // handles backOptionsMenuButton click event
+{
+    component->setDisplayenuSelect(BACKDISPLAYOPTOINS);
+    flag->setChangeMenu(true);
+
+//    optionsMenu(gameE->getRenderE());
+}
+
+void guiInput::backInputOptionsMenuButtonClicked(MyGUI::Widget *_sender)  // handles backOptionsMenuButton click event
+{
+    component->setInputMenuSelect(BACKINPUTOPTIONS);
+    flag->setChangeMenu(true);
+
+//    optionsMenu(gameE->getRenderE());
+}
+
 
 void GUISystem::backPlayerStartSelectionMenuButtonClicked(MyGUI::Widget *_sender)  // handles backPlayerStartSelectionMenuButton click event
 {
@@ -588,7 +621,9 @@ void GUISystem::processInputMenuKeyPress(const std::string &keyPressed, const re
     }
     else if (keyPressed == "b")
     {
-        optionsMenu(render);
+        component->setInputMenuSelect(BACKINPUTOPTIONS);
+        flag->setChangeMenu(true);
+//        optionsMenu(render);
     }
 }
 
@@ -600,7 +635,9 @@ void GUISystem::processAudioMenuKeyPress(const std::string &keyPressed, const re
     }
     else if (keyPressed == "b")
     {
-        optionsMenu(render);
+        component->setAudioMenuSelect(BACKAUDIOOPTIONS);
+        flag->setChangeMenu(true);
+//        optionsMenu(render);
     }
 }
 

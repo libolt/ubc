@@ -61,6 +61,9 @@ class guiInput
         void clientConnectButtonClicked(MyGUI::Widget *_sender);  // handles connectButton click event
         void backNetClientNetworkSetupButtonClicked(MyGUI::Widget *_sender);  // handles backNetClientNetworkSetupButton click event
         void backNetServerNetworkSetupButtonClicked(MyGUI::Widget *_sender);  // handles backNetServerNetworkSetupButton click event
+        void backAudioOptionsMenuButtonClicked(MyGUI::Widget *_sender);  // handles backOptionsMenuButton click event
+        void backDisplayOptionsMenuButtonClicked(MyGUI::Widget *_sender);  // handles backOptionsMenuButton click event
+        void backInputOptionsMenuButtonClicked(MyGUI::Widget *_sender);  // handles backOptionsMenuButton click event
         void displayButtonClicked(MyGUI::Widget *_sender);  // handles didplayButton click event
         void inputButtonClicked(MyGUI::Widget *_sender);  // handles inputButton click event
         void audioButtonClicked(MyGUI::Widget *_sender);  // handles audioButton click event

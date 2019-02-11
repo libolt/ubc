@@ -334,6 +334,9 @@ bool GUISystem::updateStateMachine(const renderEngineSharedPtr &render)  // upda
 //                    exit(0);
                     event->checkNetworkServerMenuSelects();
                 break;
+                case OPTIONS:
+                    event->checkOptionsMenuSelects();
+                break;
                 case PLAYERSTART:
                     event->checkStartersMenuSelects();
                 break;

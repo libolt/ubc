@@ -225,7 +225,7 @@ bool guiEvents::checkMainMenuSelects()  // checks which mainMenu option was sele
 
 //            exit(0);
         break;
-        case OPTIONS:
+        case OPTIONSSELECT:
         omSMData->component = component;
         omSMData->create = create;
         omSMData->gData = data;
@@ -338,7 +338,7 @@ bool guiEvents::checkOptionsMenuSelects()  // checks which optionsMenu option wa
     std::string func = "guiEvents::checkOptionsMenuSelects()";
 
     logMsg(func +" begin");
-
+    exit(0);
     logMsg(func +" end");
 
     return (retVal);

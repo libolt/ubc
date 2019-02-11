@@ -99,7 +99,7 @@ public:
 //    bool createNetworkSetupGUI(const renderEngineSharedPtr &render);  // creates GUI for network setup screen.
 //    bool createNetworkClientSetupGUI(const renderEngineSharedPtr &render);  // creates GUI for network client setup screen.
 //    bool createNetworkServerSetupGUI(const renderEngineSharedPtr &render);  // creates GUI for network server setup screen.
-    bool createOptionsMenuGUI(const renderEngineSharedPtr &render);  // creates GUI for options menu screen.
+//    bool createOptionsMenuGUI(const renderEngineSharedPtr &render);  // creates GUI for options menu screen.
     bool createDisplaySetupGUI();  // creates GUI for display settings screen.
     bool createInputSetupGUI();  // creates GUI for input settings screen.
     bool createAudioSetupGUI();	 // creates GUI for audo settings screen.
@@ -127,7 +127,7 @@ public:
     void backButtons();  // handles the back buttons
 //    void startSinglePlayerGame(const renderEngineSharedPtr &render);  // starts single player game
 //    void startMultiPlayerGame(const renderEngineSharedPtr &render);  // starts multiplayer game
-    void optionsMenu(const renderEngineSharedPtr &render);  // displays options menu
+//    void optionsMenu(const renderEngineSharedPtr &render);  // displays options menu
     void displayMenu(const renderEngineSharedPtr &render);  // displays display menu
     void inputMenu(const renderEngineSharedPtr &render);  // displays the input menu
     void audioMenu(const renderEngineSharedPtr &render);  // displays the audio menu
@@ -161,7 +161,6 @@ public:
     void enableAudioButtonClicked(MyGUI::Widget *_sender);  // handles eneableAudioButton click event
     void disableAudioButtonClicked(MyGUI::Widget *_sender);  // handles eneableAudioButton click event
     void backNetworkClientButtonClicked(MyGUI::Widget *_sender);  // handles backNetworkClientButton click event
-    void backOptionsMenuButtonClicked(MyGUI::Widget *_sender);  // handles backOptionsMenuButton click event
     void backPlayerStartSelectionMenuButtonClicked(MyGUI::Widget *_sender);  // handles backPlayerStartSelectionMenuButton click event
     void backSetupMenuButtonClicked(MyGUI::Widget *_sender);  // handles backSetupMenuButton click event
         

@@ -308,6 +308,18 @@ bool GUISystem::updateStateMachine(const renderEngineSharedPtr &render)  // upda
             
             switch (component->getActiveMenu())
             {
+                case AUDIO:
+                    event->checkAudioMenuSelects();
+                break;
+                case COURTSELECT:
+                    event->checkCourtMenuSelects();
+                break;
+                case DISPLAY:
+                    event->checkDisplayMenuSelects();
+                break;
+                case INPUTMENU:
+                    event->checkInputMenuSelects();
+                break;
                 case MAIN:
                     event->checkMainMenuSelects();
                 break;
@@ -318,10 +330,9 @@ bool GUISystem::updateStateMachine(const renderEngineSharedPtr &render)  // upda
                     event->checkNetworkClientMenuSelects();
                 break;
                 case NETWORKSERVER:
+                    logMsg(func +" networkServer event!");
+//                    exit(0);
                     event->checkNetworkServerMenuSelects();
-                break;
-                case COURTSELECT:                    
-                    event->checkCourtMenuSelects();
                 break;
                 case PLAYERSTART:
                     event->checkStartersMenuSelects();
@@ -432,7 +443,7 @@ void GUISystem::backButtons()  // handles the back buttons
 }
 */
 
-void GUISystem::optionsMenu(const renderEngineSharedPtr &render)  // displays options menu
+/*void GUISystem::optionsMenu(const renderEngineSharedPtr &render)  // displays options menu
 {
     if (!flag->getOptionsMenuCreated())
     {
@@ -441,7 +452,7 @@ void GUISystem::optionsMenu(const renderEngineSharedPtr &render)  // displays op
 
     display->changeActiveMenu(OPTIONS, render);
 }
-
+*/
 void GUISystem::displayMenu(const renderEngineSharedPtr &render)  // displays display menu
 {
     if (!flag->getDisplaySetupMenuCreated())

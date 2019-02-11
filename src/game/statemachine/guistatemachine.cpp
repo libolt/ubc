@@ -133,6 +133,26 @@ void guiStateMachine::pNetworkServerMenu(const guiSMData *data)
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_INPUT_MENU
     END_TRANSITION_MAP(data)
 }
+
+void guiStateMachine::pOptionsMenu(const guiSMData *data)
+{
+    BEGIN_TRANSITION_MAP                                    // - Current State -
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_INITIALIZE
+        TRANSITION_MAP_ENTRY (ST_OPTIONS_MENU)                // ST_MAIN_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_NETWORK_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_NETWORKCLIENT_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_NETWORKSERVER_MENU
+        TRANSITION_MAP_ENTRY (ST_OPTIONS_MENU)                // ST_IDLE
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_COURT_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_TEAM_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STARTERS_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_OPTIONS_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_AUDIO_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_DISPLAY_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_INPUT_MENU
+    END_TRANSITION_MAP(data)
+}
+
 void guiStateMachine::pStartSinglePlayerGame(const guiSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
@@ -638,10 +658,34 @@ STATE_DEFINE(guiStateMachine, StartersMenu, guiSMData)
 // OptionsMenu
 STATE_DEFINE(guiStateMachine, OptionsMenu, guiSMData)
 {
+    guiComponentsSharedPtr component = data->component;
+    guiCreateSharedPtr create = data->create;
+    guiDataSharedPtr gData = data->gData;
+    guiDisplaySharedPtr display = data->display;
+    guiEventsSharedPtr event = data->event;
+    guiFlagsSharedPtr flag = data->flag;
+    guiInputSharedPtr input = data->input;
+    renderEngineSharedPtr render = data->render;
+
     std::string func = "guiStateMachine::OptionsMenu()";
 
     logMsg(func +" begin");
+    if (!flag->getOptionsMenuCreated())
+    {
+        create->createOptionsMenuGUI(render);
+    }
 
+    guiSMData *tempSMData(new guiSMData);
+    tempSMData->component = data->component;
+    tempSMData->create = data->create;
+    tempSMData->gData = data->gData;
+    tempSMData->display = data->display;
+    tempSMData->event = data->event;
+    tempSMData->flag = flag;
+    tempSMData->input = input;
+    tempSMData->render = render;
+
+    display->changeActiveMenu(OPTIONS, render);
     logMsg(func +" end");
 }
 

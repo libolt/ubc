@@ -247,10 +247,10 @@ bool guiCreate::createNetworkClientSetupGUI(const renderEngineSharedPtr &render)
     tempButtons["clientConnectButton"]->eventMouseButtonClick += MyGUI::newDelegate(input.get(), &guiInput::clientConnectButtonClicked);
     tempButtons["clientConnectButton"]->setSize((0.4 *render->getViewPort()->getActualWidth()), (0.04 *render->getViewPort()->getActualHeight()));
 
-    tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("backNetworkSetupButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("serverHostButton"))));  // loads Court Selection Button
-    tempButtons["backNetworkSetupButton"]->setVisible(false);
-    tempButtons["backNetworkSetupButton"]->eventMouseButtonClick += MyGUI::newDelegate(input.get(), &guiInput::serverHostButtonClicked);
-    tempButtons["backNetworkSetupButton"]->setSize((0.4 *render->getViewPort()->getActualWidth()), (0.04 *render->getViewPort()->getActualHeight()));
+    tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("backNetCliNetworkSetupButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("backNetworkSetupButton"))));  // loads Court Selection Button
+    tempButtons["backNetCliNetworkSetupButton"]->setVisible(false);
+    tempButtons["backNetCliNetworkSetupButton"]->eventMouseButtonClick += MyGUI::newDelegate(input.get(), &guiInput::backNetClientNetworkSetupButtonClicked);
+    tempButtons["backNetCliNetworkSetupButton"]->setSize((0.4 *render->getViewPort()->getActualWidth()), (0.04 *render->getViewPort()->getActualHeight()));
 
     component->setNetworkClientSetupMenuButtons(tempButtons);
 
@@ -358,7 +358,7 @@ bool guiCreate::createCourtSelectionMenuGUI(const renderEngineSharedPtr &render)
     return true;
 }
 
-bool GUISystem::createOptionsMenuGUI(const renderEngineSharedPtr &render)  // creates GUI for options menu screen.
+bool guiCreate::createOptionsMenuGUI(const renderEngineSharedPtr &render)  // creates GUI for options menu screen.
 {
 //    renderEngineSharedPtr render; // = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
@@ -373,15 +373,15 @@ bool GUISystem::createOptionsMenuGUI(const renderEngineSharedPtr &render)  // cr
 
     component->getOptionsMenuButtons().insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("displayButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("displayButton"))));  // loads Display Settings Button
     component->getOptionsMenuButtons()["displayButton"]->setVisible(false);
-    component->getOptionsMenuButtons()["displayButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::displayButtonClicked);
+    component->getOptionsMenuButtons()["displayButton"]->eventMouseButtonClick += MyGUI::newDelegate(input.get(), &guiInput::displayButtonClicked);
 
     component->getOptionsMenuButtons().insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("inputButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("inputButton"))));  // loads Input Settings Button
     component->getOptionsMenuButtons()["inputButton"]->setVisible(false);
-    component->getOptionsMenuButtons()["inputButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::inputButtonClicked);
+    component->getOptionsMenuButtons()["inputButton"]->eventMouseButtonClick += MyGUI::newDelegate(input.get(), &guiInput::inputButtonClicked);
 
     component->getOptionsMenuButtons().insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("audioButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("audioButton"))));  // loads Audio Settongs Button
     component->getOptionsMenuButtons()["audioButton"]->setVisible(false);
-    component->getOptionsMenuButtons()["audioButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::audioButtonClicked);
+    component->getOptionsMenuButtons()["audioButton"]->eventMouseButtonClick += MyGUI::newDelegate(input.get(), &guiInput::audioButtonClicked);
 
     component->getOptionsMenuButtons().insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("backOptionsMainMenuButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("optionsBackMainMenuButton"))));  // loads Back to Main Menu Button
     component->getOptionsMenuButtons()["backOptionsMainMenuButton"]->setVisible(false);

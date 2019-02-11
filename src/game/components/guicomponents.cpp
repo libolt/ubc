@@ -287,6 +287,15 @@ void guiComponents::setPreviousActiveMenu(const activeMenus &set)  // sets the v
     previousActiveMenu = set;
 }
 
+audioMenuSelects guiComponents::getAudioMenuSelect() const  // retrieves the value of audioMenuSelect
+{
+    return (audioMenuSelct);
+}
+void guiComponents::setAudioMenuSelect(const audioMenuSelects &set)  // sets the value of audioMenuSelect
+{
+    audioMenuSelct = set;
+}
+
 courtMenuSelects guiComponents::getCourtMenuSelect() const  // retrieves the value of courtMenuSelect
 {
     return (courtMenuSelect);
@@ -294,6 +303,24 @@ courtMenuSelects guiComponents::getCourtMenuSelect() const  // retrieves the val
 void guiComponents::setCourtMenuSelect(const courtMenuSelects &set)  // sets the value of courtMenuSelect
 {
     courtMenuSelect = set;
+}
+
+displayMenuSelects guiComponents::getDisplayMenuSelect() const  // retrieves the value of displayMenuSelect
+{
+    return (displayMenuSelect);
+}
+void guiComponents::setDisplayenuSelect(const displayMenuSelects &set)  // sets the value of displayMenuSelect
+{
+    displayMenuSelect = set;
+}
+
+inputMenuSelects guiComponents::getInputMenuSelect() const  // retrieves the value of inputMenuSelect
+{
+    return (inputMenuSelect);
+}
+void guiComponents::setInputMenuSelect(const inputMenuSelects &set)  // sets the value of inputMenuSelect
+{
+    inputMenuSelect = set;
 }
 
 mainMenuSelects guiComponents::getMainMenuSelect() const  // retrieves the value of displayedMenu

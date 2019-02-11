@@ -156,9 +156,6 @@ public:
 
 
     // MyGUI functions
-    void displayButtonClicked(MyGUI::Widget *_sender);  // handles didplayButton click event
-    void inputButtonClicked(MyGUI::Widget *_sender);  // handles inputButton click event
-    void audioButtonClicked(MyGUI::Widget *_sender);  // handles audioButton click event
     void changeResolutionButtonClicked(MyGUI::Widget *_sender);  // handles changeResolutionButton click event
     void changeInputTypeButtonClicked(MyGUI::Widget *_sender);  // handles changeInputTypeButton click event
     void enableAudioButtonClicked(MyGUI::Widget *_sender);  // handles eneableAudioButton click event

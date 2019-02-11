@@ -48,6 +48,8 @@ class guiCreate
     
         bool createNetworkServerSetupGUI(const renderEngineSharedPtr &render);  // creates GUI for network server setup screen.
 
+        bool createOptionsMenuGUI(const renderEngineSharedPtr &render);  // creates GUI for options menu screen.
+
         bool createStartersSelectionMenuGUI(const renderEngineSharedPtr &render);  // creates GUI for player start selection menu screen.
 
         bool createTeamSelectionMenuGUI(const renderEngineSharedPtr &render);	// creates GUI for team selection menu screen.

@@ -118,6 +118,18 @@ void guiEvents::setGameInstance(const gameEntitySharedPtr &set)  // sets the val
     gameInstance = set;
 }
 
+bool guiEvents::checkAudioMenuSelects()  // checks which audioMenu option was selected
+{
+    bool retVal = false;
+    std::string func = "guiEvents::checkAudioMenuSelects()";
+
+    logMsg(func +" begin");
+
+    logMsg(func +" end");
+
+    return (retVal);
+}
+
 bool guiEvents::checkCourtMenuSelects()  // checks which courtMenu option was selected
 {
     bool retVal = false;
@@ -152,6 +164,30 @@ bool guiEvents::checkCourtMenuSelects()  // checks which courtMenu option was se
     return (retVal);
 }
 
+bool guiEvents::checkDisplayMenuSelects()  // checks which displayMenu option was selected
+{
+    bool retVal = false;
+    std::string func = "guiEvents::checkDisplayMenuSelects()";
+
+    logMsg(func +" begin");
+
+    logMsg(func +" end");
+
+    return (retVal);
+}
+
+bool guiEvents::checkInputMenuSelects()  // checks which inputMenu option was selected
+{
+    bool retVal = false;
+    std::string func = "guiEvents::checkInputMenuSelects()";
+
+    logMsg(func +" begin");
+
+    logMsg(func +" end");
+
+    return (retVal);
+}
+
 bool guiEvents::checkMainMenuSelects()  // checks which mainMenu option was selected
 {
     bool retVal = false;
@@ -160,6 +196,7 @@ bool guiEvents::checkMainMenuSelects()  // checks which mainMenu option was sele
     logMsg(func +" begin");
     guiSMData *ssSMData(new guiSMData);
     guiSMData *smSMData(new guiSMData);
+    guiSMData *omSMData(new guiSMData);
 
     switch (component->getMainMenuSelect())
     {
@@ -187,6 +224,18 @@ bool guiEvents::checkMainMenuSelects()  // checks which mainMenu option was sele
             stateMachine->pNetworkMenu(smSMData);
 
 //            exit(0);
+        break;
+        case OPTIONS:
+        omSMData->component = component;
+        omSMData->create = create;
+        omSMData->gData = data;
+        omSMData->display = display;
+        omSMData->flag = flag;
+        omSMData->gameInstance = gameInstance;
+        omSMData->render = gameE->getRenderE();
+
+        stateMachine->pOptionsMenu(omSMData);
+
         break;
     }
 
@@ -229,6 +278,7 @@ bool guiEvents::checkNetworkMenuSelects()  // checks which networkMenu option wa
             stateMachine->pNetworkServerMenu(nsSMData);
         break;
         case BACKNETWORKMAIN:
+        display->changeActiveMenu(MAIN, gameE->getRenderE());
         break;
     }
 
@@ -245,6 +295,17 @@ bool guiEvents::checkNetworkClientMenuSelects()  // checks which networkMenu opt
 
     logMsg(func +" begin");
 
+    switch (component->getNetworkClientMenuSelect())
+    {
+        case CONNECTGAME:
+            display->hideNetworkClientSetupWidgets();
+        break;
+        case BACKNETCLIENTMAIN:
+            display->changeActiveMenu(NETWORK, gameE->getRenderE());
+        break;
+
+    }
+
     logMsg(func +" end");
 
     return (retVal);
@@ -256,7 +317,16 @@ bool guiEvents::checkNetworkServerMenuSelects()  // checks which networkMenu opt
     std::string func = "guiEvents::checkNetworkServerMenuSelects()";
 
     logMsg(func +" begin");
+    switch (component->getNetworkServerMenuSelect())
+    {
+        case HOSTGAME:
+            display->hideNetworkServerSetupWidgets();
+        break;
+        case BACKNETSERVMAIN:
+            display->changeActiveMenu(NETWORK, gameE->getRenderE());
+        break;
 
+    }
     logMsg(func +" end");
 
     return (retVal);

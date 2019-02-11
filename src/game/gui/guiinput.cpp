@@ -218,19 +218,19 @@ void guiInput::backNetServerNetworkSetupButtonClicked(MyGUI::Widget *_sender)  /
 }
 
 
-void GUISystem::displayButtonClicked(MyGUI::Widget *_sender)  // handles didplayButton click event
+void guiInput::displayButtonClicked(MyGUI::Widget *_sender)  // handles didplayButton click event
 {
 
 }
 
-void GUISystem::inputButtonClicked(MyGUI::Widget *_sender)  // handles inputButton click event
+void guiInput::inputButtonClicked(MyGUI::Widget *_sender)  // handles inputButton click event
 {
-    inputMenu(gameE->getRenderE());
+//    inputMenu(gameE->getRenderE());
 }
 
-void GUISystem::audioButtonClicked(MyGUI::Widget *_sender)  // handles audioButton click event
+void guiInput::audioButtonClicked(MyGUI::Widget *_sender)  // handles audioButton click event
 {
-    audioMenu(gameE->getRenderE());
+//    audioMenu(gameE->getRenderE());
 }
 
 void GUISystem::changeResolutionButtonClicked(MyGUI::Widget *_sender)  // handles changeResolutionButton click event
@@ -352,7 +352,9 @@ void GUISystem::processMainMenuKeyPress(const std::string &keyPressed, const ren
     }
     else if (keyPressed == "o")
     {
-        optionsMenu(render);
+       component->setMainMenuSelect(OPTIONSSELECT);
+       flag->setChangeMenu(true);
+//        optionsMenu(render);
     }
     else if (keyPressed == "e")
     {
@@ -387,6 +389,77 @@ void GUISystem::processNetworkMenuKeyPress(const std::string &keyPressed, const 
     {
 
     }
+}
+
+void GUISystem::processNetworkClientMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render)  // processes network menu key input
+{
+    if (MyGUI::InputManager::getInstance().getKeyFocusWidget() == component->getClientIPAddressBox().get())
+    {
+//        logMsg("clientIPAddressBox is focus!");
+//        exit(0);
+        if (keyPressed == "0")
+        {
+            component->getClientIPAddressBox()->addText("0");
+        }
+        else if (keyPressed == "1")
+        {
+            component->getClientIPAddressBox()->addText("1");
+        }
+        else if (keyPressed == "2")
+        {
+            component->getClientIPAddressBox()->addText("2");
+        }
+        else if (keyPressed == "3")
+        {
+            component->getClientIPAddressBox()->addText("3");
+        }
+        else if (keyPressed == "4")
+        {
+            component->getClientIPAddressBox()->addText("4");
+        }
+        else if (keyPressed == "5")
+        {
+            component->getClientIPAddressBox()->addText("5");
+        }
+        else if (keyPressed == "6")
+        {
+            component->getClientIPAddressBox()->addText("6");
+        }
+        else if (keyPressed == "7")
+        {
+            component->getClientIPAddressBox()->addText("7");
+        }
+        else if (keyPressed == "8")
+        {
+            component->getClientIPAddressBox()->addText("8");
+        }
+        else if (keyPressed == "9")
+        {
+            component->getClientIPAddressBox()->addText("9");
+        }
+        else if (keyPressed == ".")
+        {
+            component->getClientIPAddressBox()->addText(".");
+        }
+    }
+    else
+    {
+
+    }
+
+    if (keyPressed == "c")
+    {
+        component->setNetworkClientMenuSelect(CONNECTGAME);
+        flag->setChangeMenu(true);
+//        networkClient();
+    }
+    else if (keyPressed == "b")
+    {
+        component->setNetworkClientMenuSelect(BACKNETCLIENTMAIN);
+        flag->setChangeMenu(true);
+//        startMultiPlayerGame(render);
+    }
+
 }
 
 void GUISystem::processNetworkServerMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render)  // process network server menu key input
@@ -454,8 +527,8 @@ void GUISystem::processNetworkServerMenuKeyPress(const std::string &keyPressed, 
     
     if (keyPressed == "h")
     {
-        display->hideNetworkServerSetupWidgets();
         component->setNetworkServerMenuSelect(HOSTGAME);
+        flag->setChangeMenu(true);
 //        networkServer();
 
     }
@@ -467,76 +540,6 @@ void GUISystem::processNetworkServerMenuKeyPress(const std::string &keyPressed, 
     }
 }
 
-void GUISystem::processNetworkClientMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render)  // processes network menu key input
-{
-    if (MyGUI::InputManager::getInstance().getKeyFocusWidget() == component->getClientIPAddressBox().get())
-    {
-//        logMsg("clientIPAddressBox is focus!");
-//        exit(0);
-        if (keyPressed == "0")
-        {
-            component->getClientIPAddressBox()->addText("0");
-        }
-        else if (keyPressed == "1")
-        {
-            component->getClientIPAddressBox()->addText("1");
-        }
-        else if (keyPressed == "2")
-        {
-            component->getClientIPAddressBox()->addText("2");
-        }
-        else if (keyPressed == "3")
-        {
-            component->getClientIPAddressBox()->addText("3");
-        }
-        else if (keyPressed == "4")
-        {
-            component->getClientIPAddressBox()->addText("4");
-        }
-        else if (keyPressed == "5")
-        {
-            component->getClientIPAddressBox()->addText("5");
-        }
-        else if (keyPressed == "6")
-        {
-            component->getClientIPAddressBox()->addText("6");
-        }
-        else if (keyPressed == "7")
-        {
-            component->getClientIPAddressBox()->addText("7");
-        }
-        else if (keyPressed == "8")
-        {
-            component->getClientIPAddressBox()->addText("8");
-        }
-        else if (keyPressed == "9")
-        {
-            component->getClientIPAddressBox()->addText("9");
-        }
-        else if (keyPressed == ".")
-        {
-            component->getClientIPAddressBox()->addText(".");
-        }
-    }
-    else
-    {
-        
-    }
-    
-    if (keyPressed == "c")
-    {
-        display->hideNetworkClientSetupWidgets();
-        component->setNetworkClientMenuSelect(CONNECTGAME);
-//        networkClient();
-    }
-    else if (keyPressed == "b")
-    {
-        component->setNetworkClientMenuSelect(BACKNETCLIENTMAIN);
-        flag->setChangeMenu(true);
-//        startMultiPlayerGame(render);
-    }
-
-}
 
 void GUISystem::processOptionsMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render)  // processes options menu key input
 {
@@ -571,7 +574,8 @@ void GUISystem::processDisplayMenuKeyPress(const std::string &keyPressed, const 
     }
     else if (keyPressed == "b")
     {
-        optionsMenu(render);
+
+//        optionsMenu(render);
     }
 
 }

@@ -58,7 +58,10 @@ class guiEvents : public std::enable_shared_from_this<guiEvents>
         gameEntitySharedPtr getGameInstance() const;  // retrieves the value of teamInstance
         void setGameInstance(const gameEntitySharedPtr &set);  // sets the value of teamInstance
 
+        bool checkAudioMenuSelects();  // checks which audioMenu option was selected
         bool checkCourtMenuSelects();  // checks which courtMenu option was selected
+        bool checkDisplayMenuSelects();  // checks which displayMenu option was selected
+        bool checkInputMenuSelects();  // checks which inputMenu option was selected
         bool checkMainMenuSelects();  // checks which mainMenu option was selected
         bool checkNetworkMenuSelects();  // checks which networkMenu option was selected
         bool checkNetworkClientMenuSelects();  // checks which networkMenu option was selected

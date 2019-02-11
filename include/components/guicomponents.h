@@ -120,8 +120,17 @@ class guiComponents
         activeMenus getPreviousActiveMenu() const;  // retrieves the value of previousActiveMenu
         void setPreviousActiveMenu(const activeMenus &set);  // sets the value of previousActiveMenu
 
+        audioMenuSelects getAudioMenuSelect() const;  // retrieves the value of audioMenuSelect
+        void setAudioMenuSelect(const audioMenuSelects &set);  // sets the value of audioMenuSelect
+
         courtMenuSelects getCourtMenuSelect() const;  // retrieves the value of courtMenuSelect
         void setCourtMenuSelect(const courtMenuSelects &set);  // sets the value of courtMenuSelect
+
+        displayMenuSelects getDisplayMenuSelect() const;  // retrieves the value of displayMenuSelect
+        void setDisplayenuSelect(const displayMenuSelects &set);  // sets the value of displayMenuSelect
+
+        inputMenuSelects getInputMenuSelect() const;  // retrieves the value of inputMenuSelect
+        void setInputMenuSelect(const inputMenuSelects &set);  // sets the value of inputMenuSelect
 
         mainMenuSelects getMainMenuSelect() const;  // retrieves the value of mainMenuSelect
         void setMainMenuSelect(const mainMenuSelects &set);  // sets the value of mainMenuSelect
@@ -208,7 +217,10 @@ class guiComponents
         activeMenus activeMenu;  // stores which menu is to be displayed
         activeMenus previousActiveMenu;  // stores which menu was last displayed
 
+        audioMenuSelects audioMenuSelct;  // stores the selection for the audioMenu
         courtMenuSelects courtMenuSelect;  // stores the selction for the courtMenu
+        displayMenuSelects displayMenuSelect;  // stores the selection for the displayMenu
+        inputMenuSelects inputMenuSelect;  // stores the selection for the inputMenu
         mainMenuSelects mainMenuSelect;  // stores the selction for the mainMenu
         networkMenuSelects networkMenuSelect;  // stores the selection for the networkMenu
         networkClientMenuSelects networkClientMenuSelect;  // stores the selection for the networkClientMenu

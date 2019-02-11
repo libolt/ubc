@@ -137,6 +137,29 @@ void guiDisplay::showNetworkSetupWidgets()  // shows all widgets tied to the Net
 
 }
 
+void guiDisplay::hideNetworkClientSetupWidgets()  // hides the widgets tied to the Network Setup Menu
+{
+    component->getClientIPAddressBox()->setVisible(false);
+    component->getNetworkClientSetupMenuButtons()["clientConnectButton"]->setVisible(false);
+    component->getNetworkClientSetupMenuButtons()["backNetCliNetworkSetupButton"]->setVisible(false);
+}
+void guiDisplay::showNetworkClientSetupWidgets()  // shows all widgets tied to the Network Setup Menu
+{
+    renderEngineSharedPtr render = gameE->getRenderE();
+
+//    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
+
+    component->getClientIPAddressBox()->setVisible(true);
+    component->getClientIPAddressBox()->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.10 *render->getViewPort()->getActualHeight()) );
+
+    component->getNetworkClientSetupMenuButtons()["clientConnectButton"]->setVisible(true);
+    component->getNetworkClientSetupMenuButtons()["clientConnectButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.14 *render->getViewPort()->getActualHeight()) );
+
+    component->getNetworkClientSetupMenuButtons()["backNetCliNetworkSetupButton"]->setVisible(true);
+    component->getNetworkClientSetupMenuButtons()["backNetCliNetworkSetupButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.18 *render->getViewPort()->getActualHeight()) );
+
+}
+
 void guiDisplay::hideNetworkServerSetupWidgets()  // hides all widgets tied to the Network Server Setup Menu
 {
 
@@ -144,8 +167,7 @@ void guiDisplay::hideNetworkServerSetupWidgets()  // hides all widgets tied to t
     component->getServerIPAddressBox()->setVisible(false);
     component->getNetworkServerSetupMenuButtons()["serverHostButton"]->setVisible(false);
     component->getNetworkServerSetupMenuButtons()["backNetServNetworkSetupButton"]->setVisible(false);
-    
-    
+       
 }
 void guiDisplay::showNetworkServerSetupWidgets()  // shows all widgets tied to the Network Server Setup Menu
 {
@@ -162,29 +184,6 @@ void guiDisplay::showNetworkServerSetupWidgets()  // shows all widgets tied to t
     
     component->getNetworkServerSetupMenuButtons()["backNetServNetworkSetupButton"]->setVisible(true);
     component->getNetworkServerSetupMenuButtons()["backNetServNetworkSetupButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.18 *render->getViewPort()->getActualHeight()) );
-}
-
-void guiDisplay::hideNetworkClientSetupWidgets()  // hides the widgets tied to the Network Setup Menu
-{
-    component->getClientIPAddressBox()->setVisible(false);
-    component->getNetworkClientSetupMenuButtons()["clientConnectButton"]->setVisible(false);
-    component->getNetworkClientSetupMenuButtons()["backNetworkSetupButton"]->setVisible(false);
-}
-void guiDisplay::showNetworkClientSetupWidgets()  // shows all widgets tied to the Network Setup Menu
-{
-    renderEngineSharedPtr render; // = renderEngine::Instance();
-
-//    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
-
-    component->getClientIPAddressBox()->setVisible(true);
-    component->getClientIPAddressBox()->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.10 *render->getViewPort()->getActualHeight()) );
-
-    component->getNetworkClientSetupMenuButtons()["clientConnectButton"]->setVisible(true);
-    component->getNetworkClientSetupMenuButtons()["clientConnectButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.14 *render->getViewPort()->getActualHeight()) );
-
-    component->getNetworkClientSetupMenuButtons()["backNetworkSetupButton"]->setVisible(true);
-    component->getNetworkClientSetupMenuButtons()["backNetworkSetupButton"]->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.18 *render->getViewPort()->getActualHeight()) );
-
 }
 
 void guiDisplay::hideOptionsMenuWidgets()  // hides all widgets tied to the Options Menu

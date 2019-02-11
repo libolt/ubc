@@ -61,8 +61,8 @@ class guiEvents : public std::enable_shared_from_this<guiEvents>
         bool checkCourtMenuSelects();  // checks which courtMenu option was selected
         bool checkMainMenuSelects();  // checks which mainMenu option was selected
         bool checkNetworkMenuSelects();  // checks which networkMenu option was selected
-        bool checkClientNetworkMenuSelects();  // checks which networkMenu option was selected
-        bool checkServerNetworkMenuSelects();  // checks which networkMenu option was selected
+        bool checkNetworkClientMenuSelects();  // checks which networkMenu option was selected
+        bool checkNetworkServerMenuSelects();  // checks which networkMenu option was selected
         bool checkOptionsMenuSelects();  // checks which optionsMenu option was selected
         bool checkStartersMenuSelects();  // checks which startersMenu option was selected
         bool checkTeamMenuSelects();  // checks which teamMenu option was selected

@@ -314,6 +314,12 @@ bool GUISystem::updateStateMachine(const renderEngineSharedPtr &render)  // upda
                 case NETWORK:
                     event->checkNetworkMenuSelects();
                 break;
+                case NETWORKCLIENT:
+                    event->checkNetworkClientMenuSelects();
+                break;
+                case NETWORKSERVER:
+                    event->checkNetworkServerMenuSelects();
+                break;
                 case COURTSELECT:                    
                     event->checkCourtMenuSelects();
                 break;

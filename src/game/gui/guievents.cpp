@@ -238,10 +238,10 @@ bool guiEvents::checkNetworkMenuSelects()  // checks which networkMenu option wa
     return (retVal);
 }
 
-bool guiEvents::checkClientNetworkMenuSelects()  // checks which networkMenu option was selected
+bool guiEvents::checkNetworkClientMenuSelects()  // checks which networkMenu option was selected
 {
     bool retVal = false;
-    std::string func = "guiEvents::checkClientNetworkMenuSelects()";
+    std::string func = "guiEvents::checkNetworkClientMenuSelects()";
 
     logMsg(func +" begin");
 
@@ -250,10 +250,10 @@ bool guiEvents::checkClientNetworkMenuSelects()  // checks which networkMenu opt
     return (retVal);
 }
 
-bool guiEvents::checkServerNetworkMenuSelects()  // checks which networkMenu option was selected
+bool guiEvents::checkNetworkServerMenuSelects()  // checks which networkMenu option was selected
 {
     bool retVal = false;
-    std::string func = "guiEvents::checkServerNetworkMenuSelects()";
+    std::string func = "guiEvents::checkNetworkServerMenuSelects()";
 
     logMsg(func +" begin");
 

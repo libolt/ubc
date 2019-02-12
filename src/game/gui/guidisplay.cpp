@@ -191,7 +191,7 @@ void guiDisplay::hideOptionsMenuWidgets()  // hides all widgets tied to the Opti
     component->getOptionsMenuButtons()["displayButton"]->setVisible(false);
     component->getOptionsMenuButtons()["inputButton"]->setVisible(false);
     component->getOptionsMenuButtons()["audioButton"]->setVisible(false);
-    component->getOptionsMenuButtons()["backMainMenuButton"]->setVisible(false);
+    component->getOptionsMenuButtons()["backOptionsMainMenuButton"]->setVisible(false);
 }
 void guiDisplay::showOptionsMenuWidgets()  // shows all widgets tied to the Options Menu
 {
@@ -202,22 +202,22 @@ void guiDisplay::showOptionsMenuWidgets()  // shows all widgets tied to the Opti
     component->getOptionsMenuButtons()["displayButton"]->setVisible(true);
     component->getOptionsMenuButtons()["inputButton"]->setVisible(true);
     component->getOptionsMenuButtons()["audioButton"]->setVisible(true);
-    component->getOptionsMenuButtons()["backMainMenuButton"]->setPosition(362, 275);
-    component->getOptionsMenuButtons()["backMainMenuButton"]->setVisible(true);
+    component->getOptionsMenuButtons()["backOptionsMainMenuButton"]->setPosition(362, 275);
+    component->getOptionsMenuButtons()["backOptionsMainMenuButton"]->setVisible(true);
 
 }
 
 void guiDisplay::hideDisplayMenuWidgets()  // hides all widgets tied to the Display Menu
 {
     component->getDisplayMenuButtons()["changeResolutionButton"]->setVisible(false);
-    component->getDisplayMenuButtons()["backOptionsMenuButton"]->setVisible(false);
+    component->getDisplayMenuButtons()["backDisplayOptionsMenuButton"]->setVisible(false);
 
 
 }
 void guiDisplay::showDisplayMenuWidgets()  // shows all widgets tied to the Display Menu
 {
     component->getDisplayMenuButtons()["changeResolutionButton"]->setVisible(true);
-    component->getDisplayMenuButtons()["backOptionsMenuButton"]->setVisible(true);
+    component->getDisplayMenuButtons()["backDisplayOptionsMenuButton"]->setVisible(true);
 
 }
 
@@ -238,22 +238,22 @@ void guiDisplay::hideAudioMenuWidgets()  // hides all widgets tied to the Audio 
 {
     component->getAudioMenuButtons()["enableAudioButton"]->setVisible(false);
     component->getAudioMenuButtons()["disableAudioButton"]->setVisible(false);
-    component->getAudioMenuButtons()["backOptionsMenuButton"]->setVisible(false);
+    component->getAudioMenuButtons()["backAudioOptionsMenuButton"]->setVisible(false);
 
 }
 void guiDisplay::showAudioMenuWidgets()  // shows all widgets tied to the Main Menu
 {
     component->getAudioMenuButtons()["enableAudioButton"]->setVisible(true);
     component->getAudioMenuButtons()["disableAudioButton"]->setVisible(true);
-    component->getAudioMenuButtons()["backOptionsMenuButton"]->setVisible(false);
+    component->getAudioMenuButtons()["backAudioOptionsMenuButton"]->setVisible(false);
 
 }
 
-void guiDisplay::hideSetupMenuWidgets()  // hides all widgets tied to the Game Setup Menu
+/*void guiDisplay::hideSetupMenuWidgets()  // hides all widgets tied to the Game Setup Menu
 {
     //conversion *convert = conversion::Instance();
     conversionSharedPtr convert ;
-/*
+
     teamSelectBox[0]->setVisible(false);
     teamSelectBox[1]->setVisible(false);
     teamSelectionMenuButtons["team0SelectButton"]->setVisible(false);
@@ -274,14 +274,14 @@ void guiDisplay::hideSetupMenuWidgets()  // hides all widgets tied to the Game S
         backNetworkSetupButton->setVisible(false);
 
     }
-    */
+
 }
 void guiDisplay::showSetupMenuWidgets()  // shows all widgets tied to the Game Setup Menu
 {
     renderEngineSharedPtr render; // = renderEngine::Instance();
 
 //    Ogre::Viewport *getRenderE()->getViewPort() = render->getViewPort();
-/*
+
     teamSelectBox[0]->setVisible(true);
     teamSelectBox[0]->setPosition((0.1 *render->getViewPort()->getActualWidth() ), (0.10 *render->getViewPort()->getActualHeight()) );
 
@@ -313,9 +313,9 @@ void guiDisplay::showSetupMenuWidgets()  // shows all widgets tied to the Game S
         backNetworkSetupButton->setVisible(true);
         backNetworkSetupButton->setPosition((0.3 *render->getViewPort()->getActualWidth() ), (0.22 *render->getViewPort()->getActualHeight()) );
     }
-    */
-}
 
+}
+*/
 void guiDisplay::hidePlayerStartSelectionMenuWidgets()  // hides all widgets tied to the Player Start Selection Menu
 {
 
@@ -582,9 +582,10 @@ void guiDisplay::hideActiveMenuWidgets()  // hides active menus widgets
         case AUDIO:
             hideAudioMenuWidgets();
             break;
-        case GAMESETUP:
+/*        case GAMESETUP:
             hideSetupMenuWidgets();
             break;
+*/
         case PLAYERSTART:
             hidePlayerStartSelectionMenuWidgets();
             break;
@@ -643,10 +644,11 @@ void guiDisplay::showActiveMenuWidgets(const renderEngineSharedPtr &render)  // 
             logMsg(func + " AUDIO");
             showAudioMenuWidgets();
         break;
-        case GAMESETUP:
+/*        case GAMESETUP:
             logMsg(func + " GAMESETUP");
             showSetupMenuWidgets();
         break;
+*/
         case PLAYERSTART:
             logMsg(func + " PLAYERSTART");
             showPlayerStartSelectionMenuWidgets(render);

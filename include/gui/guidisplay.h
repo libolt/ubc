@@ -65,8 +65,8 @@ class guiDisplay
         void hideAudioMenuWidgets();  // hides all widgets tied to the Audio Menu
         void showAudioMenuWidgets();  // shows all widgets tied to the Audio Menu
 
-        void hideSetupMenuWidgets();  // hides all widgets tied to the Game Setup Menu
-        void showSetupMenuWidgets();  // shows all widgets tied to the Game Setup Menu
+//        void hideSetupMenuWidgets();  // hides all widgets tied to the Game Setup Menu
+//        void showSetupMenuWidgets();  // shows all widgets tied to the Game Setup Menu
 
         void hidePlayerStartSelectionMenuWidgets();  // hides all widgets tied to the Player Start Selection Menu
         void showPlayerStartSelectionMenuWidgets(const renderEngineSharedPtr &render);  // shows all widgets tied to the Player Start Selection Menu

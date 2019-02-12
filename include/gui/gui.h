@@ -100,10 +100,10 @@ public:
 //    bool createNetworkClientSetupGUI(const renderEngineSharedPtr &render);  // creates GUI for network client setup screen.
 //    bool createNetworkServerSetupGUI(const renderEngineSharedPtr &render);  // creates GUI for network server setup screen.
 //    bool createOptionsMenuGUI(const renderEngineSharedPtr &render);  // creates GUI for options menu screen.
-    bool createDisplaySetupGUI();  // creates GUI for display settings screen.
-    bool createInputSetupGUI();  // creates GUI for input settings screen.
-    bool createAudioSetupGUI();	 // creates GUI for audo settings screen.
-    bool createSetupMenuGUI();  // creates GUI for game setup menu screen.
+//    bool createDisplaySetupGUI();  // creates GUI for display settings screen.
+//    bool createInputSetupGUI();  // creates GUI for input settings screen.
+//    bool createAudioSetupGUI();	 // creates GUI for audo settings screen.
+//    bool createSetupMenuGUI();  // creates GUI for game setup menu screen.
 //    bool createPlayerStartSelectionMenuGUI(const renderEngineSharedPtr &render);  // creates GUI for player start selection menu screen.
 //    bool createTeamSelectionMenuGUI(const renderEngineSharedPtr &render);	// creates GUI for team selection menu screen.
 //    bool createCourtSelectionMenuGUI(const renderEngineSharedPtr &render);  // creates GUI for court selection menu screen.
@@ -118,7 +118,7 @@ public:
     void processDisplayMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // processes display settings menu key input
     void processInputMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // processes input settings menu key input
     void processAudioMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // processes audio settings menu key input
-    void processSetupMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // processes game setup menu key input
+//    void processSetupMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // processes game setup menu key input
     void processPlayerStartSelectionMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // process player start selection menu key input
     void processTeamSelectionMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // process team selection menu key input
     void processCourtSelectionMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // process court selection menu key input
@@ -128,10 +128,10 @@ public:
 //    void startSinglePlayerGame(const renderEngineSharedPtr &render);  // starts single player game
 //    void startMultiPlayerGame(const renderEngineSharedPtr &render);  // starts multiplayer game
 //    void optionsMenu(const renderEngineSharedPtr &render);  // displays options menu
-    void displayMenu(const renderEngineSharedPtr &render);  // displays display menu
-    void inputMenu(const renderEngineSharedPtr &render);  // displays the input menu
-    void audioMenu(const renderEngineSharedPtr &render);  // displays the audio menu
-    void setupMenu(const renderEngineSharedPtr &render);  // displays game setup menu
+//    void displayMenu(const renderEngineSharedPtr &render);  // displays display menu
+//    void inputMenu(const renderEngineSharedPtr &render);  // displays the input menu
+//    void audioMenu(const renderEngineSharedPtr &render);  // displays the audio menu
+//    void setupMenu(const renderEngineSharedPtr &render);  // displays game setup menu
 //    void playerStartSelectionMenu(const renderEngineSharedPtr &render);  // displays player start selection menu
 //    void teamSelectionMenu(const renderEngineSharedPtr &render);  // displays team selection menu
 //    void courtSelectionMenu(const renderEngineSharedPtr &render);  // displays court selection menu
@@ -156,13 +156,6 @@ public:
 
 
     // MyGUI functions
-    void changeResolutionButtonClicked(MyGUI::Widget *_sender);  // handles changeResolutionButton click event
-    void changeInputTypeButtonClicked(MyGUI::Widget *_sender);  // handles changeInputTypeButton click event
-    void enableAudioButtonClicked(MyGUI::Widget *_sender);  // handles eneableAudioButton click event
-    void disableAudioButtonClicked(MyGUI::Widget *_sender);  // handles eneableAudioButton click event
-    void backNetworkClientButtonClicked(MyGUI::Widget *_sender);  // handles backNetworkClientButton click event
-    void backPlayerStartSelectionMenuButtonClicked(MyGUI::Widget *_sender);  // handles backPlayerStartSelectionMenuButton click event
-    void backSetupMenuButtonClicked(MyGUI::Widget *_sender);  // handles backSetupMenuButton click event
         
 private:
 

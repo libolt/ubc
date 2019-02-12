@@ -125,6 +125,15 @@ bool guiEvents::checkAudioMenuSelects()  // checks which audioMenu option was se
 
     logMsg(func +" begin");
 
+    switch (component->getAudioMenuSelect())
+    {
+        case ENABLEAUDIO:
+        break;
+        case DISABLEAUDIO:
+        break;
+        case BACKAUDIOOPTIONS:
+        break;
+    }
     logMsg(func +" end");
 
     return (retVal);
@@ -226,16 +235,15 @@ bool guiEvents::checkMainMenuSelects()  // checks which mainMenu option was sele
 //            exit(0);
         break;
         case OPTIONSSELECT:
-        omSMData->component = component;
-        omSMData->create = create;
-        omSMData->gData = data;
-        omSMData->display = display;
-        omSMData->flag = flag;
-        omSMData->gameInstance = gameInstance;
-        omSMData->render = gameE->getRenderE();
+            omSMData->component = component;
+            omSMData->create = create;
+            omSMData->gData = data;
+            omSMData->display = display;
+            omSMData->flag = flag;
+            omSMData->gameInstance = gameInstance;
+            omSMData->render = gameE->getRenderE();
 
-        stateMachine->pOptionsMenu(omSMData);
-
+            stateMachine->pOptionsMenu(omSMData);
         break;
     }
 
@@ -335,10 +343,50 @@ bool guiEvents::checkNetworkServerMenuSelects()  // checks which networkMenu opt
 bool guiEvents::checkOptionsMenuSelects()  // checks which optionsMenu option was selected
 {
     bool retVal = false;
+    guiSMData *asSMData(new guiSMData);
+    guiSMData *dsSMData(new guiSMData);
+    guiSMData *isSMData(new guiSMData);
+    guiSMData *bmSMData(new guiSMData);
+
     std::string func = "guiEvents::checkOptionsMenuSelects()";
 
     logMsg(func +" begin");
-    exit(0);
+    switch (component->getOptionsMenuSelect())
+    {
+        case AUDIOSELECT:
+            asSMData->component = component;
+            asSMData->create = create;
+            asSMData->gData = data;
+            asSMData->display = display;
+            asSMData->flag = flag;
+            asSMData->gameInstance = gameInstance;
+            asSMData->render = gameE->getRenderE();
+            stateMachine->pAudioMenu(asSMData);
+        break;
+        case DISPLAYSELECT:
+            dsSMData->component = component;
+            dsSMData->create = create;
+            dsSMData->gData = data;
+            dsSMData->display = display;
+            dsSMData->flag = flag;
+            dsSMData->gameInstance = gameInstance;
+            dsSMData->render = gameE->getRenderE();
+            stateMachine->pDisplayMenu(dsSMData);
+        break;
+        case INPUTSELECT:
+            isSMData->component = component;
+            isSMData->create = create;
+            isSMData->gData = data;
+            isSMData->display = display;
+            isSMData->flag = flag;
+            isSMData->gameInstance = gameInstance;
+            isSMData->render = gameE->getRenderE();
+            stateMachine->pInputMenu(isSMData);
+        break;
+        case BACKOPTIONSMAIN:
+            display->changeActiveMenu(MAIN, gameE->getRenderE());
+        break;
+    }
     logMsg(func +" end");
 
     return (retVal);

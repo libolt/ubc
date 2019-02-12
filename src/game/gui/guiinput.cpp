@@ -234,40 +234,47 @@ void guiInput::backNetServerNetworkSetupButtonClicked(MyGUI::Widget *_sender)  /
 
 void guiInput::displayButtonClicked(MyGUI::Widget *_sender)  // handles didplayButton click event
 {
-
+    component->setOptionsMenuSelect(DISPLAYSELECT);
+    flag->setChangeMenu(true);
 }
 
 void guiInput::inputButtonClicked(MyGUI::Widget *_sender)  // handles inputButton click event
 {
+    component->setOptionsMenuSelect(INPUTSELECT);
+    flag->setChangeMenu(true);
+
 //    inputMenu(gameE->getRenderE());
 }
 
 void guiInput::audioButtonClicked(MyGUI::Widget *_sender)  // handles audioButton click event
 {
+    component->setOptionsMenuSelect(AUDIOSELECT);
+    flag->setChangeMenu(true);
+
 //    audioMenu(gameE->getRenderE());
 }
 
-void GUISystem::changeResolutionButtonClicked(MyGUI::Widget *_sender)  // handles changeResolutionButton click event
+void guiInput::changeResolutionButtonClicked(MyGUI::Widget *_sender)  // handles changeResolutionButton click event
 {
 
 }
 
-void GUISystem::changeInputTypeButtonClicked(MyGUI::Widget *_sender)  // handles changeInputTypeButton click event
+void guiInput::changeInputTypeButtonClicked(MyGUI::Widget *_sender)  // handles changeInputTypeButton click event
 {
 
 }
 
-void GUISystem::enableAudioButtonClicked(MyGUI::Widget *_sender)  // handles eneableAudioButton click event
+void guiInput::enableAudioButtonClicked(MyGUI::Widget *_sender)  // handles eneableAudioButton click event
 {
 
 }
 
-void GUISystem::disableAudioButtonClicked(MyGUI::Widget *_sender)  // handles eneableAudioButton click event
+void guiInput::disableAudioButtonClicked(MyGUI::Widget *_sender)  // handles eneableAudioButton click event
 {
 
 }
 
-void GUISystem::backNetworkClientButtonClicked(MyGUI::Widget *_sender)  // handles backNetworkClientButton click event
+void guiInput::backNetworkClientButtonClicked(MyGUI::Widget *_sender)  // handles backNetworkClientButton click event
 {
 //    networkClientSetupMenu(gameE->getRenderE());
 }
@@ -296,15 +303,15 @@ void guiInput::backInputOptionsMenuButtonClicked(MyGUI::Widget *_sender)  // han
 }
 
 
-void GUISystem::backPlayerStartSelectionMenuButtonClicked(MyGUI::Widget *_sender)  // handles backPlayerStartSelectionMenuButton click event
+void guiInput::backPlayerStartSelectionMenuButtonClicked(MyGUI::Widget *_sender)  // handles backPlayerStartSelectionMenuButton click event
 {
 
 }
 
-void GUISystem::backSetupMenuButtonClicked(MyGUI::Widget *_sender)  // handles backSetupMenuButton click event
+/*void guiInput::backSetupMenuButtonClicked(MyGUI::Widget *_sender)  // handles backSetupMenuButton click event
 {
     setupMenu(gameE->getRenderE());
-}
+}*/
 
 void GUISystem::menuReceiveKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render)  // processes key input
 {
@@ -343,9 +350,10 @@ void GUISystem::menuReceiveKeyPress(const std::string &keyPressed, const renderE
             case AUDIO:
                 processAudioMenuKeyPress(keyPressed, render);
                 break;
-            case GAMESETUP:
+/*            case GAMESETUP:
                 processSetupMenuKeyPress(keyPressed, render);
                 break;
+*/
             case PLAYERSTART:
                 processPlayerStartSelectionMenuKeyPress(keyPressed, render);
                 break;
@@ -576,25 +584,47 @@ void GUISystem::processNetworkServerMenuKeyPress(const std::string &keyPressed, 
 
 void GUISystem::processOptionsMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render)  // processes options menu key input
 {
-    if (keyPressed == "d")
+    if (keyPressed == "a")
     {
-       displayMenu(render);
+        component->setOptionsMenuSelect(AUDIOSELECT);
+        flag->setChangeMenu(true);
+//        audioMenu(render);
+    }
+    else if (keyPressed == "d")
+    {
+        component->setOptionsMenuSelect(DISPLAYSELECT);
+        flag->setChangeMenu(true);
+//       displayMenu(render);
     }
     else if (keyPressed == "b")
     {
-        backMainMenuSelected(render);
+        component->setOptionsMenuSelect(BACKOPTIONSMAIN);
+        flag->setChangeMenu(true);
+//        backMainMenuSelected(render);
     }
     else if (keyPressed == "i")
     {
-        inputMenu(render);
-    }
-    else if (keyPressed == "a")
-    {
-        audioMenu(render);
+        component->setOptionsMenuSelect(INPUTSELECT);
+        flag->setChangeMenu(true);
+//        inputMenu(render);
     }
     else
     {
 
+    }
+}
+
+void GUISystem::processAudioMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render)  // processes audio settings menu key input
+{
+    if (keyPressed == "c")
+    {
+        // placeholder
+    }
+    else if (keyPressed == "b")
+    {
+        component->setAudioMenuSelect(BACKAUDIOOPTIONS);
+        flag->setChangeMenu(true);
+//        optionsMenu(render);
     }
 }
 
@@ -608,6 +638,8 @@ void GUISystem::processDisplayMenuKeyPress(const std::string &keyPressed, const 
     else if (keyPressed == "b")
     {
 
+        component->setDisplayenuSelect(BACKDISPLAYOPTOINS);
+        flag->setChangeMenu(true);
 //        optionsMenu(render);
     }
 
@@ -627,21 +659,7 @@ void GUISystem::processInputMenuKeyPress(const std::string &keyPressed, const re
     }
 }
 
-void GUISystem::processAudioMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render)  // processes audio settings menu key input
-{
-    if (keyPressed == "c")
-    {
-        // placeholder
-    }
-    else if (keyPressed == "b")
-    {
-        component->setAudioMenuSelect(BACKAUDIOOPTIONS);
-        flag->setChangeMenu(true);
-//        optionsMenu(render);
-    }
-}
-
-void GUISystem::processSetupMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render)  // processes game setup menu key input
+/*void GUISystem::processSetupMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render)  // processes game setup menu key input
 {
     //gameState *gameS = gameState::Instance();
 //    sharedPtr<gameState> gameS = gameState::Instance();
@@ -757,6 +775,7 @@ void GUISystem::processSetupMenuKeyPress(const std::string &keyPressed, const re
         }
     }
 }
+*/
 
 void GUISystem::processPlayerStartSelectionMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render)  // process player start selection menu key input
 {

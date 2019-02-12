@@ -67,6 +67,13 @@ class guiInput
         void displayButtonClicked(MyGUI::Widget *_sender);  // handles didplayButton click event
         void inputButtonClicked(MyGUI::Widget *_sender);  // handles inputButton click event
         void audioButtonClicked(MyGUI::Widget *_sender);  // handles audioButton click event
+        void changeResolutionButtonClicked(MyGUI::Widget *_sender);  // handles changeResolutionButton click event
+        void enableAudioButtonClicked(MyGUI::Widget *_sender);  // handles eneableAudioButton click event
+        void disableAudioButtonClicked(MyGUI::Widget *_sender);  // handles eneableAudioButton click event
+        void changeInputTypeButtonClicked(MyGUI::Widget *_sender);  // handles changeInputTypeButton click event
+        void backNetworkClientButtonClicked(MyGUI::Widget *_sender);  // handles backNetworkClientButton click event
+        void backPlayerStartSelectionMenuButtonClicked(MyGUI::Widget *_sender);  // handles backPlayerStartSelectionMenuButton click event
+//        void backSetupMenuButtonClicked(MyGUI::Widget *_sender);  // handles backSetupMenuButton click event
 
     private:
     

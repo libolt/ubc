@@ -38,6 +38,9 @@ public:
 
     // External events taken by this state machine
     void pInitialize(const guiSMData *data);
+    void pAudioMenu(const guiSMData *data);
+    void pDisplayMenu(const guiSMData *data);
+    void pInputMenu(const guiSMData *data);
     void pMainMenu(const guiSMData *data);
     void pNetworkMenu(const guiSMData *data);
     void pNetworkClientMenu(const guiSMData *data);

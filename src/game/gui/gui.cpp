@@ -456,7 +456,7 @@ void GUISystem::backButtons()  // handles the back buttons
     display->changeActiveMenu(OPTIONS, render);
 }
 */
-void GUISystem::displayMenu(const renderEngineSharedPtr &render)  // displays display menu
+/*void GUISystem::displayMenu(const renderEngineSharedPtr &render)  // displays display menu
 {
     if (!flag->getDisplaySetupMenuCreated())
     {
@@ -464,9 +464,9 @@ void GUISystem::displayMenu(const renderEngineSharedPtr &render)  // displays di
     }
 
     display->changeActiveMenu(DISPLAY, render);
-}
+}*/
 
-void GUISystem::inputMenu(const renderEngineSharedPtr &render)  // displays the input menu
+/*void GUISystem::inputMenu(const renderEngineSharedPtr &render)  // displays the input menu
 {
     if (!flag->getInputSetupMenuCreated())
     {
@@ -475,7 +475,8 @@ void GUISystem::inputMenu(const renderEngineSharedPtr &render)  // displays the 
 
     display->changeActiveMenu(INPUTMENU, render);
 }
-void GUISystem::audioMenu(const renderEngineSharedPtr &render)  // displays the audio menu
+*/
+/*void GUISystem::audioMenu(const renderEngineSharedPtr &render)  // displays the audio menu
 {
     if (!flag->getAudioSetupMenuCreated())
     {
@@ -483,9 +484,9 @@ void GUISystem::audioMenu(const renderEngineSharedPtr &render)  // displays the 
     }
 
     display->changeActiveMenu(AUDIO, render);
-}
+}*/
 
-void GUISystem::setupMenu(const renderEngineSharedPtr &render)  // displays game setup menu
+/*void GUISystem::setupMenu(const renderEngineSharedPtr &render)  // displays game setup menu
 {
     if (!flag->getSetupMenuCreated())
     {
@@ -494,7 +495,7 @@ void GUISystem::setupMenu(const renderEngineSharedPtr &render)  // displays game
     }
 	
     display->changeActiveMenu(GAMESETUP, render);
-}
+}*/
 
 /*void GUISystem::playerStartSelectionMenu(const renderEngineSharedPtr &render)  // displays player start selection menu
 {

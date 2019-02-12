@@ -368,25 +368,24 @@ bool guiCreate::createOptionsMenuGUI(const renderEngineSharedPtr &render)  // cr
 
     logMsg(func +" begin");
 
-
     MyGUI::LayoutManager::getInstance().loadLayout("OptionsMenu.layout");
 
-    component->getOptionsMenuButtons().insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("displayButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("displayButton"))));  // loads Display Settings Button
-    component->getOptionsMenuButtons()["displayButton"]->setVisible(false);
-    component->getOptionsMenuButtons()["displayButton"]->eventMouseButtonClick += MyGUI::newDelegate(input.get(), &guiInput::displayButtonClicked);
+    tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("displayButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("displayButton"))));  // loads Display Settings Button
+    tempButtons["displayButton"]->setVisible(false);
+    tempButtons["displayButton"]->eventMouseButtonClick += MyGUI::newDelegate(input.get(), &guiInput::displayButtonClicked);
 
-    component->getOptionsMenuButtons().insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("inputButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("inputButton"))));  // loads Input Settings Button
-    component->getOptionsMenuButtons()["inputButton"]->setVisible(false);
-    component->getOptionsMenuButtons()["inputButton"]->eventMouseButtonClick += MyGUI::newDelegate(input.get(), &guiInput::inputButtonClicked);
+    tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("inputButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("inputButton"))));  // loads Input Settings Button
+    tempButtons["inputButton"]->setVisible(false);
+    tempButtons["inputButton"]->eventMouseButtonClick += MyGUI::newDelegate(input.get(), &guiInput::inputButtonClicked);
 
-    component->getOptionsMenuButtons().insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("audioButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("audioButton"))));  // loads Audio Settongs Button
-    component->getOptionsMenuButtons()["audioButton"]->setVisible(false);
-    component->getOptionsMenuButtons()["audioButton"]->eventMouseButtonClick += MyGUI::newDelegate(input.get(), &guiInput::audioButtonClicked);
+    tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("audioButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("audioButton"))));  // loads Audio Settongs Button
+    tempButtons["audioButton"]->setVisible(false);
+    tempButtons["audioButton"]->eventMouseButtonClick += MyGUI::newDelegate(input.get(), &guiInput::audioButtonClicked);
 
-    component->getOptionsMenuButtons().insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("backOptionsMainMenuButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("optionsBackMainMenuButton"))));  // loads Back to Main Menu Button
-    component->getOptionsMenuButtons()["backOptionsMainMenuButton"]->setVisible(false);
-    component->getOptionsMenuButtons()["backOptionsMainMenuButton"]->eventMouseButtonClick += MyGUI::newDelegate(input.get(), &guiInput::backOptionsMainMenuButtonClicked);
-    component->getOptionsMenuButtons()["backOptionsMainMenuButton"]->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()) );
+    tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("backOptionsMainMenuButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("optionsBackMainMenuButton"))));  // loads Back to Main Menu Button
+    tempButtons["backOptionsMainMenuButton"]->setVisible(false);
+    tempButtons["backOptionsMainMenuButton"]->eventMouseButtonClick += MyGUI::newDelegate(input.get(), &guiInput::backOptionsMainMenuButtonClicked);
+    tempButtons["backOptionsMainMenuButton"]->setSize((0.4 *render->getViewPort()->getActualWidth() ), (0.04 *render->getViewPort()->getActualHeight()) );
 
     component->setOptionsMenuButtons(tempButtons);
 
@@ -462,26 +461,26 @@ bool GUISystem::createBackButtons()  // creates the back buttons for the menus
     return (true);
 }
 
-bool GUISystem::createDisplaySetupGUI()  // creates GUI for display settings screen.
+bool guiCreate::createDisplaySetupGUI()  // creates GUI for display settings screen.
 {
 //    renderEngineSharedPtr render = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
     MyGUIButtonMSharedPtr tempButtons;
 
-    std::string func = "GUISystem::createDisplaySetupGUI()";
+    std::string func = "guiCreate::createDisplaySetupGUI()";
 
     logMsg(func +" begin");
 
 
-    MyGUI::LayoutManager::getInstance().loadLayout("DispkaySetupMenu.layout");
+    MyGUI::LayoutManager::getInstance().loadLayout("DisplaySetupMenu.layout");
 
     tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("changeResolutionButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("changeResolutionButton"))));  // loads team 1 Button
     tempButtons["changeResolutionButton"]->setVisible(false);
-    tempButtons["changeResolutionButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeResolutionButtonClicked);
+    tempButtons["changeResolutionButton"]->eventMouseButtonClick += MyGUI::newDelegate(input.get(), &guiInput::changeResolutionButtonClicked);
 
-    tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("backOptionsMenuButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("changeInputTypeButton"))));  // loads team 1 Button
-    tempButtons["backOptionsMenuButton"]->setVisible(false);
-    tempButtons["backOptionsMenuButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeInputTypeButtonClicked);
+    tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("backDisplayOptionsMenuButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("backOptionsMenuButton"))));  // loads team 1 Button
+    tempButtons["backDisplayOptionsMenuButton"]->setVisible(false);
+    tempButtons["backDisplayOptionsMenuButton"]->eventMouseButtonClick += MyGUI::newDelegate(input.get(), &guiInput::backDisplayOptionsMenuButtonClicked);
 
     component->setDisplayMenuButtons(tempButtons);
 
@@ -492,7 +491,7 @@ bool GUISystem::createDisplaySetupGUI()  // creates GUI for display settings scr
     return (true);
 }
 
-bool GUISystem::createInputSetupGUI()  // creates GUI for input settings screen.
+bool guiCreate::createInputSetupGUI()  // creates GUI for input settings screen.
 {
 //    renderEngineSharedPtr render = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
@@ -506,11 +505,11 @@ bool GUISystem::createInputSetupGUI()  // creates GUI for input settings screen.
 
     tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("changeInputTypeButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("changeInputTypeButton"))));  // loads team 1 Button
     tempButtons["changeInputTypeButton"]->setVisible(false);
-    tempButtons["changeInputTypeButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeInputTypeButtonClicked);
+    tempButtons["changeInputTypeButton"]->eventMouseButtonClick += MyGUI::newDelegate(input.get(), &guiInput::changeInputTypeButtonClicked);
 
     tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("backOptionsMenuButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("changeInputTypeButton"))));  // loads team 1 Button
     tempButtons["backOptionsMenuButton"]->setVisible(false);
-    tempButtons["backOptionsMenuButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeInputTypeButtonClicked);
+    tempButtons["backOptionsMenuButton"]->eventMouseButtonClick += MyGUI::newDelegate(input.get(), &guiInput::changeInputTypeButtonClicked);
 
     component->setInputMenuButtons(tempButtons);
 
@@ -520,14 +519,14 @@ bool GUISystem::createInputSetupGUI()  // creates GUI for input settings screen.
     return (true);
 }
 
-bool GUISystem::createAudioSetupGUI()  // creates GUI for audo settings screen.
+bool guiCreate::createAudioSetupGUI()  // creates GUI for audo settings screen.
 {
 //    renderEngineSharedPtr render = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
 
     MyGUIButtonMSharedPtr tempButtons;
 
-    std::string func = "GUISystem::createAudioSetupGUI()";
+    std::string func = "guiCreate::createAudioSetupGUI()";
 
     logMsg(func +" begin");
 
@@ -535,15 +534,15 @@ bool GUISystem::createAudioSetupGUI()  // creates GUI for audo settings screen.
 
     tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("enableAudioButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("enableAudioButton"))));  // loads team 1 Button
     tempButtons["enableAudioButton"]->setVisible(false);
-    tempButtons["enableAudioButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::enableAudioButtonClicked);
+    tempButtons["enableAudioButton"]->eventMouseButtonClick += MyGUI::newDelegate(input.get(), &guiInput::enableAudioButtonClicked);
 
     tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("disableAudioButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("disableAudioButton")))); // loads team 1 Button
     tempButtons["disableAudioButton"]->setVisible(false);
-    tempButtons["disableAudioButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::disableAudioButtonClicked);
+    tempButtons["disableAudioButton"]->eventMouseButtonClick += MyGUI::newDelegate(input.get(), &guiInput::disableAudioButtonClicked);
 
-    tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("backOptionsMenuButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("changeInputTypeButton"))));  // loads team 1 Button
-    tempButtons["backOptionsMenuButton"]->setVisible(false);
-    tempButtons["backOptionsMenuButton"]->eventMouseButtonClick += MyGUI::newDelegate(this, &GUISystem::changeInputTypeButtonClicked);
+    tempButtons.insert(std::pair<std::string, sharedPtr<MyGUI::Button> >("backAudioOptionsMenuButton", sharedPtr<MyGUI::Button>(component->getMGUI()->findWidget<MyGUI::Button>("backOptionsMenuButton"))));  // loads team 1 Button
+    tempButtons["backAudioOptionsMenuButton"]->setVisible(false);
+    tempButtons["backAudioOptionsMenuButton"]->eventMouseButtonClick += MyGUI::newDelegate(input.get(), &guiInput::backAudioOptionsMenuButtonClicked);
     
     component->setAudioMenuButtons(tempButtons);
 
@@ -555,7 +554,7 @@ bool GUISystem::createAudioSetupGUI()  // creates GUI for audo settings screen.
 }
 
 
-bool GUISystem::createSetupMenuGUI()    // creates GUI for game setup menu screen.
+/*bool GUISystem::createSetupMenuGUI()    // creates GUI for game setup menu screen.
 {
     conversionSharedPtr convert ;
 
@@ -571,6 +570,7 @@ bool GUISystem::createSetupMenuGUI()    // creates GUI for game setup menu scree
 
     return (true);
 }
+*/
 
 bool guiCreate::createStartersSelectionMenuGUI(const renderEngineSharedPtr &render)  // creates GUI for player selection menu screen.
 {

@@ -58,6 +58,63 @@ void guiStateMachine::pInitialize(const guiSMData *data)
     END_TRANSITION_MAP(data)
 }
 
+void guiStateMachine::pAudioMenu(const guiSMData *data)
+{
+    BEGIN_TRANSITION_MAP                                    // - Current State -
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_INITIALIZE
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_MAIN_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_NETWORK_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_NETWORKCLIENT_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_NETWORKSERVER_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_IDLE
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_COURT_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_TEAM_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STARTERS_MENU
+        TRANSITION_MAP_ENTRY (ST_AUDIO_MENU)                // ST_OPTIONS_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_AUDIO_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_DISPLAY_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_INPUT_MENU
+    END_TRANSITION_MAP(data)
+}
+
+void guiStateMachine::pDisplayMenu(const guiSMData *data)
+{
+    BEGIN_TRANSITION_MAP                                    // - Current State -
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_INITIALIZE
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_MAIN_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_NETWORK_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_NETWORKCLIENT_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_NETWORKSERVER_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_IDLE
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_COURT_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_TEAM_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STARTERS_MENU
+        TRANSITION_MAP_ENTRY (ST_DISPLAY_MENU)                // ST_OPTIONS_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_AUDIO_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_DISPLAY_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_INPUT_MENU
+    END_TRANSITION_MAP(data)
+}
+
+void guiStateMachine::pInputMenu(const guiSMData *data)
+{
+    BEGIN_TRANSITION_MAP                                    // - Current State -
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_INITIALIZE
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_MAIN_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_NETWORK_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_NETWORKCLIENT_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_NETWORKSERVER_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_IDLE
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_COURT_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_TEAM_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STARTERS_MENU
+        TRANSITION_MAP_ENTRY (ST_INPUT_MENU)                // ST_OPTIONS_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_AUDIO_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_DISPLAY_MENU
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_INPUT_MENU
+    END_TRANSITION_MAP(data)
+}
+
 void guiStateMachine::pMainMenu(const guiSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
@@ -649,7 +706,8 @@ STATE_DEFINE(guiStateMachine, StartersMenu, guiSMData)
     tempSMData->flag = flag;
     tempSMData->input = input;
     tempSMData->render = render;
-    
+    data = tempSMData;
+
     display->changeActiveMenu(PLAYERSTART, data->render);
  
     logMsg(func +" end");
@@ -684,6 +742,7 @@ STATE_DEFINE(guiStateMachine, OptionsMenu, guiSMData)
     tempSMData->flag = flag;
     tempSMData->input = input;
     tempSMData->render = render;
+    data = tempSMData;
 
     display->changeActiveMenu(OPTIONS, render);
     logMsg(func +" end");
@@ -692,29 +751,102 @@ STATE_DEFINE(guiStateMachine, OptionsMenu, guiSMData)
 // AudioMenu
 STATE_DEFINE(guiStateMachine, AudioMenu, guiSMData)
 {
+    guiComponentsSharedPtr component = data->component;
+    guiCreateSharedPtr create = data->create;
+    guiDataSharedPtr gData = data->gData;
+    guiDisplaySharedPtr display = data->display;
+    guiEventsSharedPtr event = data->event;
+    guiFlagsSharedPtr flag = data->flag;
+    guiInputSharedPtr input = data->input;
+    renderEngineSharedPtr render = data->render;
     std::string func = "guiStateMachine::AudioMenu()";
 
     logMsg(func +" begin");
+    if (!flag->getAudioSetupMenuCreated())
+    {
+        create->createAudioSetupGUI();
+    }
 
+    guiSMData *tempSMData(new guiSMData);
+    tempSMData->component = data->component;
+    tempSMData->create = data->create;
+    tempSMData->gData = data->gData;
+    tempSMData->display = data->display;
+    tempSMData->event = data->event;
+    tempSMData->flag = flag;
+    tempSMData->input = input;
+    tempSMData->render = render;
+    data = tempSMData;
+
+    display->changeActiveMenu(AUDIO, render);
     logMsg(func +" end");
 }
 
 // DisplayMenu
 STATE_DEFINE(guiStateMachine, DisplayMenu, guiSMData)
 {
+    guiComponentsSharedPtr component = data->component;
+    guiCreateSharedPtr create = data->create;
+    guiDataSharedPtr gData = data->gData;
+    guiDisplaySharedPtr display = data->display;
+    guiEventsSharedPtr event = data->event;
+    guiFlagsSharedPtr flag = data->flag;
+    guiInputSharedPtr input = data->input;
+    renderEngineSharedPtr render = data->render;
+
     std::string func = "guiStateMachine::DisplayMenu()";
 
     logMsg(func +" begin");
+    if (!flag->getDisplaySetupMenuCreated())
+    {
+        create->createDisplaySetupGUI();
+    }
 
+    guiSMData *tempSMData(new guiSMData);
+    tempSMData->component = data->component;
+    tempSMData->create = data->create;
+    tempSMData->gData = data->gData;
+    tempSMData->display = data->display;
+    tempSMData->event = data->event;
+    tempSMData->flag = flag;
+    tempSMData->input = input;
+    tempSMData->render = render;
+    data = tempSMData;
+
+    display->changeActiveMenu(DISPLAY, render);
     logMsg(func +" end");
 }
 
 // InputMenu
 STATE_DEFINE(guiStateMachine, InputMenu, guiSMData)
 {
+    guiComponentsSharedPtr component = data->component;
+    guiCreateSharedPtr create = data->create;
+    guiDataSharedPtr gData = data->gData;
+    guiDisplaySharedPtr display = data->display;
+    guiEventsSharedPtr event = data->event;
+    guiFlagsSharedPtr flag = data->flag;
+    guiInputSharedPtr input = data->input;
+    renderEngineSharedPtr render = data->render;
     std::string func = "guiStateMachine::InputMenu()";
 
     logMsg(func +" begin");
+    if (!flag->getInputSetupMenuCreated())
+    {
+        create->createInputSetupGUI();
+    }
 
+    guiSMData *tempSMData(new guiSMData);
+    tempSMData->component = data->component;
+    tempSMData->create = data->create;
+    tempSMData->gData = data->gData;
+    tempSMData->display = data->display;
+    tempSMData->event = data->event;
+    tempSMData->flag = flag;
+    tempSMData->input = input;
+    tempSMData->render = render;
+    data = tempSMData;
+
+    display->changeActiveMenu(INPUTMENU, render);
     logMsg(func +" end");
 }

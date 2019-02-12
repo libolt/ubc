@@ -38,7 +38,13 @@ class guiCreate
         guiInputSharedPtr getInput() const;  // retrieves the value of input
         void setInput(const guiInputSharedPtr &set);  // sets the value of input
 
+        bool createAudioSetupGUI();	 // creates GUI for audo settings screen.
+
         bool createCourtSelectionMenuGUI(const renderEngineSharedPtr &render);  // creates GUI for court selection menu screen.
+
+        bool createDisplaySetupGUI();  // creates GUI for display settings screen.
+
+        bool createInputSetupGUI();  // creates GUI for input settings screen.
 
         bool createMainMenuGUI(const renderEngineSharedPtr &render);  // creates GUI gor main menu screen.
        

@@ -32,6 +32,9 @@ class guiInput
         guiComponentsSharedPtr getComponent() const;  // retrieves the value of component
         void setComponent(const guiComponentsSharedPtr &set);  // sets the value of component
 
+        guiEventsSharedPtr getEvent() const;  // retrieves the value of event
+        void setEvent(const guiEventsSharedPtr &set);  // sets the value of event
+
         guiFlagsSharedPtr getFlag() const;  // retrieves the value of flag
         void setFlag(const guiFlagsSharedPtr &set);  // sets the value of flag
 
@@ -75,10 +78,26 @@ class guiInput
         void backPlayerStartSelectionMenuButtonClicked(MyGUI::Widget *_sender);  // handles backPlayerStartSelectionMenuButton click event
 //        void backSetupMenuButtonClicked(MyGUI::Widget *_sender);  // handles backSetupMenuButton click event
 
+        void menuReceiveKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // processes key input
+        void processMainMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // processes main menu key input
+        void processNetworkMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // processes network menu key input
+        void processNetworkServerMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // process network server menu key input
+        void processNetworkClientMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // process network client menu key input
+        void processOptionsMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // processes options menu key input
+        void processDisplayMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // processes display settings menu key input
+        void processInputMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // processes input settings menu key input
+        void processAudioMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // processes audio settings menu key input
+    //    void processSetupMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // processes game setup menu key input
+        void processPlayerStartSelectionMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // process player start selection menu key input
+        void processTeamSelectionMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // process team selection menu key input
+        void processCourtSelectionMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // process court selection menu key input
+
     private:
     
         guiComponentsSharedPtr component;  // stores gui related components
     
+        guiEventsSharedPtr event;  // stores gui related events
+
         guiFlagsSharedPtr flag;  // stores gui related flags
 
         gameEntitySharedPtr gameInstance;  // stores a copy of the gameInstance

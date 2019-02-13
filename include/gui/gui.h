@@ -83,80 +83,11 @@ public:
     gameEntitySharedPtr getGameInstance() const;  // retrieves the value of teamInstance
     void setGameInstance(const gameEntitySharedPtr &set);  // sets the value of teamInstance
 
-/*    activeMenus getActiveMenu() const;  // retrieves the value of activeMenu
-    void setActiveMenu(const activeMenus &set);  // sets the value of activeMenu
-
-    activeMenus getPreviousActiveMenu() const;  // retrieves the value of previousActiveMenu
-    void setPreviousActiveMenu(const activeMenus &set);  // sets the value of previousActiveMenu
-*/
     bool initializeObjects(const renderEngineSharedPtr &render);  // initializes gui objects
     bool initializeStateMachine(const renderEngineSharedPtr &render);  // initializes gui stateMachine
 
     bool updateStateMachine(const renderEngineSharedPtr &render);  // updates gui stateMachine
 
-
-//    bool createMainMenuGUI(const renderEngineSharedPtr &render);  // creates GUI gor main menu screen.
-//    bool createNetworkSetupGUI(const renderEngineSharedPtr &render);  // creates GUI for network setup screen.
-//    bool createNetworkClientSetupGUI(const renderEngineSharedPtr &render);  // creates GUI for network client setup screen.
-//    bool createNetworkServerSetupGUI(const renderEngineSharedPtr &render);  // creates GUI for network server setup screen.
-//    bool createOptionsMenuGUI(const renderEngineSharedPtr &render);  // creates GUI for options menu screen.
-//    bool createDisplaySetupGUI();  // creates GUI for display settings screen.
-//    bool createInputSetupGUI();  // creates GUI for input settings screen.
-//    bool createAudioSetupGUI();	 // creates GUI for audo settings screen.
-//    bool createSetupMenuGUI();  // creates GUI for game setup menu screen.
-//    bool createPlayerStartSelectionMenuGUI(const renderEngineSharedPtr &render);  // creates GUI for player start selection menu screen.
-//    bool createTeamSelectionMenuGUI(const renderEngineSharedPtr &render);	// creates GUI for team selection menu screen.
-//    bool createCourtSelectionMenuGUI(const renderEngineSharedPtr &render);  // creates GUI for court selection menu screen.
-    bool createBackButtons();  // creates the back buttons for the menus
-
-    void menuReceiveKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // processes key input
-    void processMainMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // processes main menu key input
-    void processNetworkMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // processes network menu key input
-    void processNetworkServerMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // process network server menu key input
-    void processNetworkClientMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // process network client menu key input
-    void processOptionsMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // processes options menu key input
-    void processDisplayMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // processes display settings menu key input
-    void processInputMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // processes input settings menu key input
-    void processAudioMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // processes audio settings menu key input
-//    void processSetupMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // processes game setup menu key input
-    void processPlayerStartSelectionMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // process player start selection menu key input
-    void processTeamSelectionMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // process team selection menu key input
-    void processCourtSelectionMenuKeyPress(const std::string &keyPressed, const renderEngineSharedPtr &render);  // process court selection menu key input
-	
-//    void mainMenu(const renderEngineSharedPtr &render);  // msin in game menu
-    void backButtons();  // handles the back buttons
-//    void startSinglePlayerGame(const renderEngineSharedPtr &render);  // starts single player game
-//    void startMultiPlayerGame(const renderEngineSharedPtr &render);  // starts multiplayer game
-//    void optionsMenu(const renderEngineSharedPtr &render);  // displays options menu
-//    void displayMenu(const renderEngineSharedPtr &render);  // displays display menu
-//    void inputMenu(const renderEngineSharedPtr &render);  // displays the input menu
-//    void audioMenu(const renderEngineSharedPtr &render);  // displays the audio menu
-//    void setupMenu(const renderEngineSharedPtr &render);  // displays game setup menu
-//    void playerStartSelectionMenu(const renderEngineSharedPtr &render);  // displays player start selection menu
-//    void teamSelectionMenu(const renderEngineSharedPtr &render);  // displays team selection menu
-//    void courtSelectionMenu(const renderEngineSharedPtr &render);  // displays court selection menu
-//    void networkClientSetupMenu(const renderEngineSharedPtr &render);  // sets up the network client connection
-//    void networkServerSetupMenu(const renderEngineSharedPtr &render);  // sets up the networkServer instance
-    
-//    bool addCourtSelectionMenuData();  // adds data to Court Selection Menu widgets
-
-//    void addPlayerStartSelectionMenuData();  // adds data to Player Start Selection Menu widgets
-//    void addPlayerStartSelectionMenuData_old();  // adds data to Player Start Selection Menu widgets
-
-        
-//    void networkServer();  // sets up  game as a network server
-//    void networkClient();  // sets up game as a network client
-
-    void setupAwaySelected();  // processes away team selectdion on game setup menu
-    void setupHomeSelected();  // process home team selection on game setup menu
-    void backMainMenuSelected(const renderEngineSharedPtr &render);  // processes back to main menu selection
-    void backNetworkSetupMenuSelected(const renderEngineSharedPtr &render);  // returns back to network setup screen
-    void backNetworkClientMenuSelected(const renderEngineSharedPtr &render);  // returns back to the network client menu
-    
-
-
-    // MyGUI functions
-        
 private:
 
     bool objectsInitialized;  // stores whether gui objects have been initialized
@@ -177,18 +108,9 @@ private:
 
     guiStateMachineSharedPtr stateMachine;  // stores gui stateMachine object
 
-//    UBCGameSharedPtr game;  // stores a copy of the game object
     gameEngineSharedPtr gameE; // stores a copy of gameE
 
     gameEntitySharedPtr gameInstance;  // stores a copy of the gameInstance
-//    teamEntityMSharedPtr teamInstance;  // stores a copy of the teamInstance
-    
-    
-    std::vector<stdStringVec> playerNames;
-    std::vector<stdStringVec> playerPositionsPlayed;
-    std::vector<sizeTVec> playerIDs;  // stores player IDs for each team
-    std::vector<sizeTVec> team0IDs;
-    std::vector<sizeTVec> team1IDs;
 
 };
 

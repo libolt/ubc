@@ -399,7 +399,7 @@ bool guiCreate::createOptionsMenuGUI(const renderEngineSharedPtr &render)  // cr
     return (true);
 }
 
-bool GUISystem::createBackButtons()  // creates the back buttons for the menus
+/*bool GUISystem::createBackButtons()  // creates the back buttons for the menus
 {
 //    renderEngineSharedPtr render = renderEngine::Instance();
 //    Ogre::Viewport *viewPort = render->getViewPort();
@@ -459,7 +459,7 @@ bool GUISystem::createBackButtons()  // creates the back buttons for the menus
     logMsg(func +" end");
 
     return (true);
-}
+}*/
 
 bool guiCreate::createDisplaySetupGUI()  // creates GUI for display settings screen.
 {

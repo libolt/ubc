@@ -81,6 +81,9 @@ class guiEvents : public std::enable_shared_from_this<guiEvents>
 
         void setSelectedIndexes();  // sets all player listbox indexes to zero
 
+        void setupAwaySelected();  // processes away team selectdion on game setup menu
+        void setupHomeSelected();  // process home team selection on game setup menu
+
     private:
 
         guiComponentsSharedPtr component;  // stores gui related components

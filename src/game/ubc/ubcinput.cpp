@@ -23,6 +23,7 @@
 #include "components/gamecomponents.h"
 #include "data/gamedata.h"
 #include "engine/gameengine.h"
+#include "gui/guiinput.h"
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
 #include "utilities/typedefs.h"
@@ -361,7 +362,7 @@ bool UBCInput::processKeyboard(const gameEngineSharedPtr &gameE, const gameCompo
         if (gameE->getMenuActive())  // sends key input to the GUI system if menu is active
         {
             logMsg(func +" gameE->getMenuActive()");
-            gui->menuReceiveKeyPress(convert->toString(gameE->getInputE()->getKeyPressed()), gameE->getRenderE()); // sends input to menu key input processing function
+            gui->getInput()->menuReceiveKeyPress(convert->toString(gameE->getInputE()->getKeyPressed()), gameE->getRenderE()); // sends input to menu key input processing function
             logMsg(func +" base->getGui");
             //            exit(0);
         }

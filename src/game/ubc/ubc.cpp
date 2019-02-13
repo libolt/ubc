@@ -139,7 +139,7 @@ bool UBC::setupState()  // sets up the UBC game state
         mmSMData->render = component->getGameE()->getRenderE();
         gui->getStateMachine()->pMainMenu(mmSMData);
 //        exit(0);
-        gui->backButtons();
+//        gui->backButtons();
         
         component->setGui(gui);
     }

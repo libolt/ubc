@@ -151,6 +151,7 @@ bool guiEvents::checkCourtMenuSelects()  // checks which courtMenu option was se
     switch (component->getCourtMenuSelect())
     {
         case BACKCOURTMAIN:
+           display->changeActiveMenu(MAIN, gameE->getRenderE());
         break;
         case COURTSSELECT:
             courtSelected();
@@ -1181,4 +1182,18 @@ void guiEvents::setSelectedIndexes()  // sets all player listbox indexes to zero
 
     logMsg(func +" end");
 
+}
+
+void guiEvents::setupAwaySelected()  // processes away team selectdion on game setup menu
+{
+    MyGUI::InputManager::getInstance().setKeyFocusWidget(component->getTeamSelectBox()[1].get());
+    flag->setSetupMenuAwaySelected(true);
+    flag->setSetupMenuHomeSelected(false);
+}
+
+void guiEvents::setupHomeSelected()  // process home team selection on game setup menu
+{
+    MyGUI::InputManager::getInstance().setKeyFocusWidget(component->getTeamSelectBox()[1].get());
+    flag->setSetupMenuHomeSelected(true);
+    flag->setSetupMenuAwaySelected(false);
 }

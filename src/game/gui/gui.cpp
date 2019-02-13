@@ -255,6 +255,8 @@ bool GUISystem::initializeObjects(const renderEngineSharedPtr &render)  // initi
     event->setGameE(gameE);
     event->setGameInstance(gameInstance);
 
+    input->setEvent(event);
+
     logMsg(func +" end");
 
     return (true);
@@ -392,13 +394,13 @@ bool GUISystem::updateStateMachine(const renderEngineSharedPtr &render)  // upda
 //    exit(0);
 }*/
 
-void GUISystem::backButtons()  // handles the back buttons
+/*void GUISystem::backButtons()  // handles the back buttons
 {
 
     if (!flag->getBackButtonsCreated())
     {
         logMsg("Back buttons not created yet!");
-/*        if (createBackButtons()) // creates the back buttons.
+        if (createBackButtons()) // creates the back buttons.
         {
             logMsg("Back Buttons created successfully!");
             backButtonsCreated = true;
@@ -409,7 +411,7 @@ void GUISystem::backButtons()  // handles the back buttons
             logMsg("Unable to create Bsck Buttons!");
 //            return (false);
             exit(0);
-        }*/
+        }
     }
     else
     {
@@ -417,7 +419,7 @@ void GUISystem::backButtons()  // handles the back buttons
     }
 
 }
-
+*/
 /*void GUISystem::startSinglePlayerGame(const renderEngineSharedPtr &render)  // starts single player game
 {
 //    sharedPtr<gameState> gameS = gameState::Instance();
@@ -776,31 +778,22 @@ void GUISystem::networkServerSetupMenu(const renderEngineSharedPtr &render)  // 
 }
 */
 
-void GUISystem::setupAwaySelected()  // processes away team selectdion on game setup menu
-{
-    MyGUI::InputManager::getInstance().setKeyFocusWidget(component->getTeamSelectBox()[1].get());
-    flag->setSetupMenuAwaySelected(true);
-    flag->setSetupMenuHomeSelected(false);
-}
 
-void GUISystem::setupHomeSelected()  // process home team selection on game setup menu
-{
-    MyGUI::InputManager::getInstance().setKeyFocusWidget(component->getTeamSelectBox()[1].get());
-    flag->setSetupMenuHomeSelected(true);
-    flag->setSetupMenuAwaySelected(false);
-}
 
-void GUISystem::backNetworkSetupMenuSelected(const renderEngineSharedPtr &render)  // returns back to network setup screen
+/*void GUISystem::backNetworkSetupMenuSelected(const renderEngineSharedPtr &render)  // returns back to network setup screen
 {
     display->changeActiveMenu(NETWORK, render);
 }
+*/
 
-void GUISystem::backMainMenuSelected(const renderEngineSharedPtr &render)  // processes back to main menu selection
+/*void GUISystem::backMainMenuSelected(const renderEngineSharedPtr &render)  // processes back to main menu selection
 {
     display->changeActiveMenu(MAIN, render);
 }
+*/
 
-void GUISystem::backNetworkClientMenuSelected(const renderEngineSharedPtr &render)  // returns back to the network client menu
+/*void GUISystem::backNetworkClientMenuSelected(const renderEngineSharedPtr &render)  // returns back to the network client menu
 {
     display->changeActiveMenu(NETWORKCLIENT, render);
 }
+*/

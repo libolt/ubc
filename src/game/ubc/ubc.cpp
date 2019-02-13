@@ -29,6 +29,7 @@
 #include "engine/physicsengine.h"
 #include "entity/playerentity.h"
 #include "entity/gameentity.h"
+#include "gui/guievents.h"
 #include "input/inputgamepads.h"
 #include "input/inputkeyboards.h"
 #include "state/networkstate.h"
@@ -131,13 +132,8 @@ bool UBC::setupState()  // sets up the UBC game state
 //        exit(0);
         gui->initializeStateMachine(component->getGameE()->getRenderE());
 
-        guiSMData *mmSMData(new guiSMData);
-        mmSMData->component = component->getGui()->getComponent();
-        mmSMData->create = component->getGui()->getCreate();
-        mmSMData->display = component->getGui()->getDisplay();
-        mmSMData->flag = component->getGui()->getFlag();
-        mmSMData->render = component->getGameE()->getRenderE();
-        gui->getStateMachine()->pMainMenu(mmSMData);
+        gui->getEvent()->mainMenu();
+        
 //        exit(0);
 //        gui->backButtons();
         

@@ -146,25 +146,16 @@ bool guiEvents::checkCourtMenuSelects()  // checks which courtMenu option was se
 
     logMsg(func +" begin");
 //    exit(0);
-    guiSMData *csSMData(new guiSMData);
 
     switch (component->getCourtMenuSelect())
     {
         case BACKCOURTMAIN:
-           display->changeActiveMenu(MAIN, gameE->getRenderE());
+//           display->changeActiveMenu(MAIN, gameE->getRenderE());
+            mainMenu();
         break;
         case COURTSSELECT:
             courtSelected();
-            csSMData->component = component;
-            csSMData->create = create;
-            csSMData->gData = data;
-            csSMData->display = display;
-            csSMData->flag = flag;
-            csSMData->gameInstance = gameInstance;
-            csSMData->render = gameE->getRenderE();
-
-            stateMachine->pTeamMenu(csSMData);
-
+            teamMenu();
 //            teamSelectionMenu(render);
         break;
     }
@@ -204,47 +195,19 @@ bool guiEvents::checkMainMenuSelects()  // checks which mainMenu option was sele
     std::string func = "guiEvents::checkMainMenuSelects()";
 
     logMsg(func +" begin");
-    guiSMData *ssSMData(new guiSMData);
-    guiSMData *smSMData(new guiSMData);
-    guiSMData *omSMData(new guiSMData);
 
     switch (component->getMainMenuSelect())
     {
         case STARTSINGLE:
 //            exit(0);
-            ssSMData->component = component;
-            ssSMData->create = create;
-            ssSMData->gData = data;
-            ssSMData->display = display;
-            ssSMData->flag = flag;
-            ssSMData->gameInstance = gameInstance;
-            ssSMData->render = gameE->getRenderE();
-
-            stateMachine->pStartSinglePlayerGame(ssSMData);
+            courtMenu();
         break;
-        case STARTMULTI:
-            smSMData->component = component;
-            smSMData->create = create;
-            smSMData->gData = data;
-            smSMData->display = display;
-            smSMData->flag = flag;
-            smSMData->gameInstance = gameInstance;
-            smSMData->render = gameE->getRenderE();
-
-            stateMachine->pNetworkMenu(smSMData);
-
+        case STARTMULTI:          
 //            exit(0);
+            networkMenu();
         break;
         case OPTIONSSELECT:
-            omSMData->component = component;
-            omSMData->create = create;
-            omSMData->gData = data;
-            omSMData->display = display;
-            omSMData->flag = flag;
-            omSMData->gameInstance = gameInstance;
-            omSMData->render = gameE->getRenderE();
-
-            stateMachine->pOptionsMenu(omSMData);
+            optionsMenu();
         break;
     }
 
@@ -259,35 +222,18 @@ bool guiEvents::checkNetworkMenuSelects()  // checks which networkMenu option wa
     std::string func = "guiEvents::checkNetworkMenuSelects()";
 
     logMsg(func +" begin");
-    guiSMData *ncSMData(new guiSMData);
-    guiSMData *nsSMData(new guiSMData);
-
+    
     switch (component->getNetworkMenuSelect())
     {
         case CLIENTSELECT:
-            ncSMData->component = component;
-            ncSMData->create = create;
-            ncSMData->gData = data;
-            ncSMData->display = display;
-            ncSMData->flag = flag;
-            ncSMData->gameInstance = gameInstance;
-            ncSMData->render = gameE->getRenderE();
-            stateMachine->pNetworkClientMenu(ncSMData);
+            networkClientMenu();
         break;
         case SERVERSELECT:
 //            exit(0);
-            nsSMData->component = component;
-            nsSMData->create = create;
-            nsSMData->gData = data;
-            nsSMData->display = display;
-            nsSMData->flag = flag;
-            nsSMData->gameInstance = gameInstance;
-            nsSMData->render = gameE->getRenderE();
-
-            stateMachine->pNetworkServerMenu(nsSMData);
+            networkServerMenu();
         break;
         case BACKNETWORKMAIN:
-        display->changeActiveMenu(MAIN, gameE->getRenderE());
+            mainMenu();
         break;
     }
 
@@ -310,7 +256,8 @@ bool guiEvents::checkNetworkClientMenuSelects()  // checks which networkMenu opt
             display->hideNetworkClientSetupWidgets();
         break;
         case BACKNETCLIENTMAIN:
-            display->changeActiveMenu(NETWORK, gameE->getRenderE());
+//            display->changeActiveMenu(NETWORK, gameE->getRenderE());
+            networkMenu();
         break;
 
     }
@@ -332,7 +279,8 @@ bool guiEvents::checkNetworkServerMenuSelects()  // checks which networkMenu opt
             display->hideNetworkServerSetupWidgets();
         break;
         case BACKNETSERVMAIN:
-            display->changeActiveMenu(NETWORK, gameE->getRenderE());
+//            display->changeActiveMenu(NETWORK, gameE->getRenderE());
+            networkMenu();
         break;
 
     }
@@ -344,48 +292,23 @@ bool guiEvents::checkNetworkServerMenuSelects()  // checks which networkMenu opt
 bool guiEvents::checkOptionsMenuSelects()  // checks which optionsMenu option was selected
 {
     bool retVal = false;
-    guiSMData *asSMData(new guiSMData);
-    guiSMData *dsSMData(new guiSMData);
-    guiSMData *isSMData(new guiSMData);
-    guiSMData *bmSMData(new guiSMData);
-
+        
     std::string func = "guiEvents::checkOptionsMenuSelects()";
 
     logMsg(func +" begin");
     switch (component->getOptionsMenuSelect())
     {
         case AUDIOSELECT:
-            asSMData->component = component;
-            asSMData->create = create;
-            asSMData->gData = data;
-            asSMData->display = display;
-            asSMData->flag = flag;
-            asSMData->gameInstance = gameInstance;
-            asSMData->render = gameE->getRenderE();
-            stateMachine->pAudioMenu(asSMData);
+            audioMenu();
         break;
         case DISPLAYSELECT:
-            dsSMData->component = component;
-            dsSMData->create = create;
-            dsSMData->gData = data;
-            dsSMData->display = display;
-            dsSMData->flag = flag;
-            dsSMData->gameInstance = gameInstance;
-            dsSMData->render = gameE->getRenderE();
-            stateMachine->pDisplayMenu(dsSMData);
+            displayMenu();
         break;
         case INPUTSELECT:
-            isSMData->component = component;
-            isSMData->create = create;
-            isSMData->gData = data;
-            isSMData->display = display;
-            isSMData->flag = flag;
-            isSMData->gameInstance = gameInstance;
-            isSMData->render = gameE->getRenderE();
-            stateMachine->pInputMenu(isSMData);
+            inputMenu();
         break;
         case BACKOPTIONSMAIN:
-            display->changeActiveMenu(MAIN, gameE->getRenderE());
+            mainMenu();
         break;
     }
     logMsg(func +" end");
@@ -423,22 +346,18 @@ bool guiEvents::checkTeamMenuSelects()  // checks which teamMenu option was sele
     logMsg(func +" begin");
     teamsSelected();
 //    exit(0);
-    guiSMData *tsSMData(new guiSMData);
-
+    
     switch (component->getTeamMenuSelect())
     {
         case TEAMSSELECT:
 //            exit(0);
-            tsSMData->component = component;
-            tsSMData->create = create;
-            tsSMData->gData = data;
-            tsSMData->display = display;
-            tsSMData->event = evThis();
-            tsSMData->flag = flag;
-            tsSMData->gameInstance = gameInstance;
-            tsSMData->render = gameE->getRenderE();
-
-            stateMachine->pStartersMenu(tsSMData);
+            startersMenu();
+        break;
+        case BACKTEAMCOURT:
+            courtMenu();
+        break;
+        case BACKTEAMMAIN:
+            mainMenu();
         break;
     }
 //        playerStartSelectionMenu(render);
@@ -472,6 +391,149 @@ bool guiEvents::checkTeamInstancesCreated()  // Checks if team instances have be
         retVal = true;
     }
     return (retVal);
+}
+
+void guiEvents::audioMenu()  // switches to the audioMenu
+{
+    guiSMData *asSMData(new guiSMData);
+    asSMData->component = component;
+    asSMData->create = create;
+    asSMData->gData = data;
+    asSMData->display = display;
+    asSMData->flag = flag;
+    asSMData->gameInstance = gameInstance;
+    asSMData->render = gameE->getRenderE();
+    stateMachine->pAudioMenu(asSMData);
+}
+
+void guiEvents::courtMenu()  // switches to the courtMenu
+{
+    guiSMData *cmSMData(new guiSMData);
+    cmSMData->component = component;
+    cmSMData->create = create;
+    cmSMData->gData = data;
+    cmSMData->display = display;
+    cmSMData->flag = flag;
+    cmSMData->gameInstance = gameInstance;
+    cmSMData->render = gameE->getRenderE();
+    stateMachine->pCourtMenu(cmSMData);
+}
+
+void guiEvents::displayMenu()  // switches to the displayMenu
+{
+    guiSMData *dsSMData(new guiSMData);
+    dsSMData->component = component;
+    dsSMData->create = create;
+    dsSMData->gData = data;
+    dsSMData->display = display;
+    dsSMData->flag = flag;
+    dsSMData->gameInstance = gameInstance;
+    dsSMData->render = gameE->getRenderE();
+    stateMachine->pDisplayMenu(dsSMData);
+
+}
+
+void guiEvents::inputMenu()  // switches to the inputMenu
+{
+    guiSMData *isSMData(new guiSMData);
+    isSMData->component = component;
+    isSMData->create = create;
+    isSMData->gData = data;
+    isSMData->display = display;
+    isSMData->flag = flag;
+    isSMData->gameInstance = gameInstance;
+    isSMData->render = gameE->getRenderE();
+    stateMachine->pInputMenu(isSMData);
+}
+
+void guiEvents::mainMenu()  // switches to the mainMenu
+{
+    guiSMData *mmSMData(new guiSMData);
+    mmSMData->component = component;
+    mmSMData->create = create;
+    mmSMData->display = display;
+    mmSMData->flag = flag;
+    mmSMData->render = gameE->getRenderE();
+    stateMachine->pMainMenu(mmSMData);
+}
+
+void guiEvents::networkMenu()  // switches to the networkMenu
+{
+    guiSMData *nmSMData(new guiSMData);
+    
+    nmSMData->component = component;
+    nmSMData->create = create;
+    nmSMData->gData = data;
+    nmSMData->display = display;
+    nmSMData->flag = flag;
+    nmSMData->gameInstance = gameInstance;
+    nmSMData->render = gameE->getRenderE();
+    stateMachine->pNetworkMenu(nmSMData);
+}
+
+void guiEvents::networkClientMenu()  // switches to the networkClientMenu
+{
+    guiSMData *ncSMData(new guiSMData);
+    ncSMData->component = component;
+    ncSMData->create = create;
+    ncSMData->gData = data;
+    ncSMData->display = display;
+    ncSMData->flag = flag;
+    ncSMData->gameInstance = gameInstance;
+    ncSMData->render = gameE->getRenderE();
+    stateMachine->pNetworkClientMenu(ncSMData);
+}
+void guiEvents::networkServerMenu()  // switches to the networkServerMenu
+{
+    guiSMData *nsSMData(new guiSMData);
+    nsSMData->component = component;
+    nsSMData->create = create;
+    nsSMData->gData = data;
+    nsSMData->display = display;
+    nsSMData->flag = flag;
+    nsSMData->gameInstance = gameInstance;
+    nsSMData->render = gameE->getRenderE();
+    stateMachine->pNetworkServerMenu(nsSMData);
+}
+
+void guiEvents::startersMenu()  // switches to the startersMenu
+{
+    guiSMData *tsSMData(new guiSMData);
+    tsSMData->component = component;
+    tsSMData->create = create;
+    tsSMData->gData = data;
+    tsSMData->display = display;
+    tsSMData->event = evThis();
+    tsSMData->flag = flag;
+    tsSMData->gameInstance = gameInstance;
+    tsSMData->render = gameE->getRenderE();
+    stateMachine->pStartersMenu(tsSMData);
+}
+
+void guiEvents::optionsMenu()  // switches to optionsMenu
+{
+    guiSMData *omSMData(new guiSMData);
+    omSMData->component = component;
+    omSMData->create = create;
+    omSMData->gData = data;
+    omSMData->display = display;
+    omSMData->flag = flag;
+    omSMData->gameInstance = gameInstance;
+    omSMData->render = gameE->getRenderE();
+    stateMachine->pOptionsMenu(omSMData);
+}
+
+void guiEvents::teamMenu()  // switches to the teamMenu
+{
+    guiSMData *csSMData(new guiSMData);
+    csSMData->component = component;
+    csSMData->create = create;
+    csSMData->gData = data;
+    csSMData->display = display;
+    csSMData->flag = flag;
+    csSMData->gameInstance = gameInstance;
+    csSMData->render = gameE->getRenderE();
+    stateMachine->pTeamMenu(csSMData);
 }
 
 void guiEvents::courtSelected()  // processes court selection
@@ -1197,3 +1259,4 @@ void guiEvents::setupHomeSelected()  // process home team selection on game setu
     flag->setSetupMenuHomeSelected(true);
     flag->setSetupMenuAwaySelected(false);
 }
+

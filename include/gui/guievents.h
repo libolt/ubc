@@ -84,6 +84,18 @@ class guiEvents : public std::enable_shared_from_this<guiEvents>
         void setupAwaySelected();  // processes away team selectdion on game setup menu
         void setupHomeSelected();  // process home team selection on game setup menu
 
+        void audioMenu();  // switches to the audioMenu
+        void courtMenu();  // starts a single player gamr
+        void displayMenu();  // switches to the displayMenu
+        void inputMenu();  // switches to the inputMenu
+        void mainMenu();  // switches to the mainMenu
+        void networkMenu();  // starts a multi player game
+        void networkClientMenu();  // switches to the networkClientMenu
+        void networkServerMenu();  // switches to the networkServerMenu
+        void startersMenu();  // switches to the startersMenu
+        void optionsMenu();  // switches to optionsMenu
+        void teamMenu();  // switches to the teamMenu
+        
     private:
 
         guiComponentsSharedPtr component;  // stores gui related components

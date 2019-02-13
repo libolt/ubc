@@ -46,7 +46,7 @@ public:
     void pNetworkClientMenu(const guiSMData *data);
     void pNetworkServerMenu(const guiSMData *data);
     void pOptionsMenu(const guiSMData *data);
-    void pStartSinglePlayerGame(const guiSMData *data);
+    void pCourtMenu(const guiSMData *data);
     void pStartersMenu(guiSMData *data);
     void pTeamMenu(guiSMData *data);
     void halt();

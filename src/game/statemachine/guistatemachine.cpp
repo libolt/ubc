@@ -210,7 +210,7 @@ void guiStateMachine::pOptionsMenu(const guiSMData *data)
     END_TRANSITION_MAP(data)
 }
 
-void guiStateMachine::pStartSinglePlayerGame(const guiSMData *data)
+void guiStateMachine::pCourtMenu(const guiSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_INITIALIZE

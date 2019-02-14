@@ -802,14 +802,19 @@ void guiInput::processPlayerStartSelectionMenuKeyPress(const std::string &keyPre
 //        exit(0);
         logMsg("processPlayerStart KeyPressed == " +keyPressed);
 //        exit(0);
-        event->playerStartSelected();
+        
+        component->setStartersMenuSelect(STARTERSSELECT);
+        flag->setChangeMenu(true);
+
+/*        event->playerStartSelected();
         flag->setStartActiveGame(true);
         flag->setMenuActive(false);
-
+*/
     }
     else if (keyPressed == "b")
     {
         component->setStartersMenuSelect(BACKSTARTERSTEAM);
+        flag->setChangeMenu(true);
 //        teamSelectionMenu(render);
     }
 

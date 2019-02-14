@@ -64,12 +64,12 @@ basketballEntityMSharedPtr setupBasketballs::createBasketballInstances()  // cre
         logMsg(func +" setting instance number");
         
         BIIT.second->getComponent()->setNumber(bballNum);
-        exit(0);
+//        exit(0);
         BIIT.second->getFlag()->setNumberSet(true);
         
         bballNum++;
     }
-exit(0);
+//exit(0);
 //    bballInstance->setModelNeedsLoaded(true);
 //    getBasketballInstance().push_back(bballInstance);
 

@@ -336,13 +336,14 @@ bool guiEvents::checkStartersMenuSelects()  // checks which startersMenu option 
 
     logMsg(func +" begin");
 
-    exit(0);
+//    exit(0);
     switch (component->getStartersMenuSelect())
     {
         case STARTERSSELECT:
             checkTeamInstancesCreated();
             playerStartSelected();
             flag->setStartActiveGame(true);
+            flag->setMenuActive(false);
         break;
     }
 

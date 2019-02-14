@@ -142,6 +142,7 @@ void guiDisplay::hideNetworkClientSetupWidgets()  // hides the widgets tied to t
     component->getClientIPAddressBox()->setVisible(false);
     component->getNetworkClientSetupMenuButtons()["clientConnectButton"]->setVisible(false);
     component->getNetworkClientSetupMenuButtons()["backNetCliNetworkSetupButton"]->setVisible(false);
+    exit(0);
 }
 void guiDisplay::showNetworkClientSetupWidgets()  // shows all widgets tied to the Network Setup Menu
 {
@@ -224,13 +225,13 @@ void guiDisplay::showDisplayMenuWidgets()  // shows all widgets tied to the Disp
 void guiDisplay::hideInputMenuWidgets()  // hides all widgets tied to the Input Menu
 {
     component->getInputMenuButtons()["changeInputTypeButton"]->setVisible(false);
-    component->getInputMenuButtons()["backOptionsMenuButton"]->setVisible(false);
+    component->getInputMenuButtons()["backInputOptionsMenuButton"]->setVisible(false);
 
 }
 void guiDisplay::showInputMenuWidgets()  // shows all widgets tied to the Input Menu
 {
     component->getInputMenuButtons()["changeInputTypeButton"]->setVisible(true);
-    component->getInputMenuButtons()["backOptionsMenuButton"]->setVisible(true);
+    component->getInputMenuButtons()["backInputOptionsMenuButton"]->setVisible(true);
 
 }
 

@@ -132,6 +132,7 @@ bool guiEvents::checkAudioMenuSelects()  // checks which audioMenu option was se
         case DISABLEAUDIO:
         break;
         case BACKAUDIOOPTIONS:
+            optionsMenu();
         break;
     }
     logMsg(func +" end");
@@ -171,7 +172,14 @@ bool guiEvents::checkDisplayMenuSelects()  // checks which displayMenu option wa
     std::string func = "guiEvents::checkDisplayMenuSelects()";
 
     logMsg(func +" begin");
-
+    switch (component->getDisplayMenuSelect())
+    {
+        case CHANGERESOLUTION:
+        break;
+        case BACKDISPLAYOPTOINS:
+            optionsMenu();
+        break;
+    }
     logMsg(func +" end");
 
     return (retVal);
@@ -183,7 +191,12 @@ bool guiEvents::checkInputMenuSelects()  // checks which inputMenu option was se
     std::string func = "guiEvents::checkInputMenuSelects()";
 
     logMsg(func +" begin");
-
+    switch (component->getInputMenuSelect())
+    {
+        case BACKINPUTOPTIONS:
+            optionsMenu();
+        break;
+    }
     logMsg(func +" end");
 
     return (retVal);

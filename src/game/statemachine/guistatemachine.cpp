@@ -204,9 +204,9 @@ void guiStateMachine::pOptionsMenu(const guiSMData *data)
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_TEAM_MENU
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STARTERS_MENU
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_OPTIONS_MENU
-        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_AUDIO_MENU
-        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_DISPLAY_MENU
-        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_INPUT_MENU
+        TRANSITION_MAP_ENTRY (ST_OPTIONS_MENU)                // ST_AUDIO_MENU
+        TRANSITION_MAP_ENTRY (ST_OPTIONS_MENU)                // ST_DISPLAY_MENU
+        TRANSITION_MAP_ENTRY (ST_OPTIONS_MENU)                // ST_INPUT_MENU
     END_TRANSITION_MAP(data)
 }
 
@@ -327,7 +327,8 @@ STATE_DEFINE(guiStateMachine, MainMenu, guiSMData)
     logMsg(func +"showMainMenuWidgets?");
 
     data->display->setComponent(data->component);
-    data->display->showMainMenuWidgets();  // displays main menu
+    data->display->changeActiveMenu(MAIN, data->render);
+
     if (!data->flag->getMenuActive())
     {
         data->flag->setMenuActive(true);

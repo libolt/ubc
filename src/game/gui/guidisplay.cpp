@@ -139,10 +139,15 @@ void guiDisplay::showNetworkSetupWidgets()  // shows all widgets tied to the Net
 
 void guiDisplay::hideNetworkClientSetupWidgets()  // hides the widgets tied to the Network Setup Menu
 {
+    std::string func = "guiDisplay::hideNetworkClientSetupWidgets()";
+
+    logMsg(func +" begin");
+
     component->getClientIPAddressBox()->setVisible(false);
     component->getNetworkClientSetupMenuButtons()["clientConnectButton"]->setVisible(false);
     component->getNetworkClientSetupMenuButtons()["backNetCliNetworkSetupButton"]->setVisible(false);
-    exit(0);
+
+    logMsg(func +" end");
 }
 void guiDisplay::showNetworkClientSetupWidgets()  // shows all widgets tied to the Network Setup Menu
 {
@@ -557,50 +562,60 @@ void guiDisplay::hideActiveMenuWidgets()  // hides active menus widgets
 {
     activeMenus activeMenu = component->getActiveMenu();
 
+    std::string func = "guiDisplay::hideActiveMenuWidgets()";
+
+    logMsg(func +" begin");
+    
     switch (activeMenu)
     {
         case MAIN: 
+            logMsg(func +" hideMainMenuWidgets");
             hideMainMenuWidgets();
             break;
         case NETWORK:
+            logMsg(func +" hideNetworkSetupWidgets");
             hideNetworkSetupWidgets();
             break;
         case NETWORKCLIENT:
+            logMsg(func +" hideNetworkClientSetupWidgets");
             hideNetworkClientSetupWidgets();
             break;
-            case NETWORKSERVER:
+        case NETWORKSERVER:
+            logMsg(func +" hideNetworkServerSetupWidgets");
             hideNetworkServerSetupWidgets();
             break;
         case OPTIONS:
+            logMsg(func +" hideOptionsMenuWidgets");
             hideOptionsMenuWidgets();
             break;
         case DISPLAY:
+            logMsg(func +" hideDisplayMenuWidgets");
             hideDisplayMenuWidgets();
             break;
         case INPUTMENU:
+            logMsg(func +" hideInputMenuWidgets");
             hideInputMenuWidgets();
             break;
         case AUDIO:
+            logMsg(func +" hideAudioMenuWidgets");
             hideAudioMenuWidgets();
             break;
-/*        case GAMESETUP:
-            hideSetupMenuWidgets();
-            break;
-*/
-        case PLAYERSTART:
+       case PLAYERSTART:
+           logMsg(func +" hidePlayerStartSelectionMenuWidgets");
             hidePlayerStartSelectionMenuWidgets();
             break;
         case TEAMSELECT:
+            logMsg(func +" hideTeamSelectionMenuWidgets");
             hideTeamSelectionMenuWidgets();
             break;
         case COURTSELECT:
 //            exit(0);
+            logMsg(func +" hideCourtSelectionMenuWidgets");
             hideCourtSelectionMenuWidgets();
-            
-            break;
-        default:
             break;
     }
+    
+    logMsg(func +" end");
 }
 
 void guiDisplay::showActiveMenuWidgets(const renderEngineSharedPtr &render)  // shows active menus widgets

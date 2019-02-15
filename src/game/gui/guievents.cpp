@@ -289,7 +289,7 @@ bool guiEvents::checkNetworkServerMenuSelects()  // checks which networkMenu opt
     switch (component->getNetworkServerMenuSelect())
     {
         case HOSTGAME:
-            display->hideNetworkServerSetupWidgets();
+            hostGame();     
         break;
         case BACKNETSERVMAIN:
 //            display->changeActiveMenu(NETWORK, gameE->getRenderE());
@@ -1200,6 +1200,7 @@ void guiEvents::hostGame()  // hosts a network game
 
     logMsg(func +" begin");
 
+    display->hideNetworkServerSetupWidgets();
     gameInstance->getData()->setGameType(MULTINET);
 //   hideNetworkSetupWidgets();  // Hides Network Setup Menu widgets
     flag->setMenuActive(false);

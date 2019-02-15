@@ -39,7 +39,7 @@ class hoopEntity : public entity
     hoopFlagsSharedPtr getFlag();  // retrieves the value of flag
     void setFlag(hoopFlagsSharedPtr set);  // sets the value of flag
  
-    bool initialize();  // initializes hoop entity objects
+    bool initializeObjects();  // initializes hoop entity objects
     
     private:
     

@@ -44,7 +44,7 @@ void hoopEntity::setFlag(hoopFlagsSharedPtr set)  // sets the value of flag
     flag = set;
 }
 
-bool hoopEntity::initialize()  // initializes hoop entity objects
+bool hoopEntity::initializeObjects()  // initializes hoop entity objects
 {
     
     hoopComponentsSharedPtr tempComponent(new hoopComponents);

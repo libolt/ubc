@@ -70,6 +70,7 @@ bool loadHoops::checkIfHoopsLoaded()  // checks if the hooops have been loaded i
 
             hoopFilesLoaded = false;
             hInstance = loadHoopFiles();
+//            exit(0);
             if (!hInstance.empty())
             {
                 logMsg(func +"  > 0!");
@@ -280,7 +281,9 @@ hoopEntitySharedPtr loadHoops::loadHoopFile(const std::string &fileName)  // loa
             logMsg(func +" modelName = " +modelName);
         }
     }
+    hoopInstance->initializeObjects();
     hoopInstance->getComponent()->setName(name);
+//    exit(0);
 //    hoopInstance->setModelFileName(modelName);
 //    hoopInstance->setEntityName(name);
     hoopInstance->getComponent()->setModelFileName(modelName);

@@ -38,12 +38,13 @@ hoopEntityMSharedPtr setupHoops::createHoopInstances()  // creates hoop Instance
     std::string func = "setupHoops::createHoopInstances()";
 
     logMsg(func +" begin");
-//    exit(0);
+    
 
     if(loadHoop->checkIfHoopsLoaded())
     {
         hoopInstance = loadHoop->getHInstance();
     }
+//    exit(0);
 /*
     hoopStateSharedPtr hInstance0(new hoopState);  // creates an instance of the hoopState class
     hoopStateSharedPtr hInstance1(new hoopState);  // creates an instance of the hoopState class

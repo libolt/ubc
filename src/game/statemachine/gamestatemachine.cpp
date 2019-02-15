@@ -364,6 +364,7 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
     if (!data->flag->getHoopInstancesCreated())
     {
         hoopEntityMSharedPtr hoopInstance = setupHoop->createHoopInstances();
+        exit(0);
         if (!hoopInstance.empty())
         {
             logMsg(func +"Hoop Instances Created!");
@@ -377,6 +378,7 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
         }
 
     }
+//    exit(0);
     logMsg(func +" hoop instance size == " +convert->toString(data->component->getHoopInstance().size()));
     logMsg(func +" hoop instance name == " +data->component->getHoopInstance()[0]->getComponent()->getName());
         
@@ -401,7 +403,7 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
                 AHIIT.second = tempHoop;        
                 if (!AHIIT.second->getFlag()->getInitialized()) // if not initialized it initializes the entity
                 {
-                    if (AHIIT.second->initialize())
+                    if (AHIIT.second->initializeObjects())
                     {
                         AHIIT.second->getFlag()->setInitialized(true);
                     }

@@ -86,7 +86,7 @@ void basketballStateMachine::halt()
 void basketballStateMachine::pUpdatePosition(basketballSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                     // ST_INITIALIZE
+        TRANSITION_MAP_ENTRY (ST_UPDATE_POSITION)                     // ST_INITIALIZE
         TRANSITION_MAP_ENTRY (ST_UPDATE_POSITION)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (ST_UPDATE_POSITION)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (ST_UPDATE_POSITION)                // ST_IDLE

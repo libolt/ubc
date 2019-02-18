@@ -364,7 +364,7 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
     if (!data->flag->getHoopInstancesCreated())
     {
         hoopEntityMSharedPtr hoopInstance = setupHoop->createHoopInstances();
-        exit(0);
+//        exit(0);
         if (!hoopInstance.empty())
         {
             logMsg(func +"Hoop Instances Created!");
@@ -397,7 +397,7 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
             logMsg(func +"Active Hoop Instances Created!");
 //            exit(0);
             hoopEntitySharedPtr tempHoop(new hoopEntity);
-
+            tempHoop->initializeObjects();
             for (auto AHIIT : activeHoopInstance) // loop that checks if each active hoop instance's entity has been initialized
             {
                 AHIIT.second = tempHoop;        

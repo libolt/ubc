@@ -159,6 +159,9 @@ class gameFlags
         bool getSetupEnvironmentCompleted() const;  // retrieves the value of setupEnvironmentCompleted
         void setSetupEnvironmentCompleted(const bool &set);  // sets the value of setupEnvironmentCompleted
 
+        bool getInstancesCreated() const;  // retrieves the value of instancesCreated
+        void setInstancesCreated(const bool &set);  // sets the value of instancesCreated
+        
     private:
     
         bool initialized;  // if true then the object has been initialized
@@ -205,7 +208,7 @@ class gameFlags
         bool gameStarted;  // Determines whether or not a basketball game has been started
         bool tipOffSetupComplete;  // Determines whether or not game Tip Off has been setup
         bool inputReceived;  // if true process input    
-
+        bool instancesCreated;  // stores whether object instances have been created
 };
 
 #endif

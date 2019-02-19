@@ -66,6 +66,7 @@ gameFlags::gameFlags()  // constructor
     sceneCreated = false;
     finished = false;
     tipOffComplete = false;
+    instancesCreated = false;
     
 }
 
@@ -442,4 +443,11 @@ void gameFlags::setSetupEnvironmentCompleted(const bool &set)  // sets the value
     setupEnvironmentCompleted = set;
 }
 
-
+bool gameFlags::getInstancesCreated() const  // retrieves the value of instancesCreated
+{
+    return (instancesCreated);
+}
+void gameFlags::setInstancesCreated(const bool &set)  // sets the value of instancesCreated
+{
+    instancesCreated = set;
+}

@@ -435,11 +435,12 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
     std::string func = "gameEntity::updateState()";
 
 //    SMData = tempSMData;
-    
+//    exit(0);
     logMsg(func +" begin");
     
     if (flag->getStateMachineInitialized())
     {
+        exit(0);
         if (!flag->getModelsLoaded())
         {
             logMsg(func +" Models Not Loaded yet!");
@@ -447,7 +448,7 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
             // copies required objects to SMData
             auto *modelsSMData(new gameSMData);
             modelsSMData->component = component;
-//            exit(0);
+            exit(0);
             modelsSMData->flag = flag;
             modelsSMData->render = render;
 
@@ -473,7 +474,7 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
             stateMachine->pCreateNodes(nodesSMData);
 
 //            stateMachine->pCreateNodes(SMData);
-//            exit(0);
+            exit(0);
         }
         else
         {
@@ -489,14 +490,14 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
             startPosSMData->flag = flag;
             startPosSMData->render = render;
             stateMachine->pSetStartPositions(startPosSMData);
-
+            exit(0);
         }
         else
         {
             for (auto ABIIT : activeBasketballInstance)
             {          
                 logMsg(func +"Active Basketball Pos == " +convert->toString(ABIIT.second->getComponent()->getNode()->getPosition()));
-//                exit(0);
+                exit(0);
             }
   
         }

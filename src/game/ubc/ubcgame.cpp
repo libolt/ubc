@@ -424,20 +424,21 @@ bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &in
         
        // exit(0);
 
-        
-        if (gui->updateStateMachine(gameE->getRenderE()))
+        if (gui->getFlag()->getMenuActive())
         {
-            logMsg(func +" GUI State updated!");
-        }
+            if (gui->updateStateMachine(gameE->getRenderE()))
+            {
+                logMsg(func +" GUI State updated!");
+            }
         
-        if (gui->getFlag()->getStartActiveGame())
-        {
-            logMsg(func +" GUI Flag startActiveGame!");
-            startActiveGame = true;
-            gui->getFlag()->setStartActiveGame(false);
+            if (gui->getFlag()->getStartActiveGame())
+            {
+                logMsg(func +" GUI Flag startActiveGame!");
+                startActiveGame = true;
+                gui->getFlag()->setStartActiveGame(false);
 //            exit(0);
+            }
         }
-
         if (startActiveGame)
         {
             if (startGame(gameE->getRenderE()))
@@ -445,7 +446,7 @@ bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &in
                 gameE->setStart(false);
                 gameE->setRenderScene(true);
                 startActiveGame = false;
-//                exit(0);
+                
             }
             else
             {
@@ -479,7 +480,7 @@ bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &in
             if (gameE->getRenderScene())
             {
                 logMsg(func +" gameS->getRenderScene()");
-                
+ //               exit(0);
                 gameInstance->updateState(gameE->getRenderE());  // updates the state of the game instance
             }
             gameE->getTimer().setPreviousTime(std::chrono::system_clock::now());

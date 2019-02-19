@@ -263,6 +263,8 @@ void gameStateMachine::pChangePosition(gameSMData *data)
 STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
 {
     conversionSharedPtr convert ;
+    gameComponentsSharedPtr component = data->component;
+    gameFlagsSharedPtr flag = data->flag;
     setupBasketballsSharedPtr setupBasketball(new setupBasketballs);
     setupCourtsSharedPtr setupCourt(new setupCourts);
     setupHoopsSharedPtr setupHoop(new setupHoops);
@@ -274,7 +276,7 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
 /*    gameFlagsSharedPtr tempFlag(new gameFlags);
     data->flag = tempFlag;
 */
-    if (!data->flag->getActiveBasketballInstancesCreated())
+    if (!flag->getActiveBasketballInstancesCreated())
     {
         basketballEntityMSharedPtr activeBasketballInstance = setupBasketball->createBasketballInstances();
         if (!activeBasketballInstance.empty())
@@ -295,8 +297,8 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
                 }
             }*/
 
-            data->flag->setActiveBasketballInstancesCreated(true);
-            data->component->setActiveBasketballInstance(activeBasketballInstance);
+            flag->setActiveBasketballInstancesCreated(true);
+            component->setActiveBasketballInstance(activeBasketballInstance);
         }
         else
         {
@@ -309,14 +311,14 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
         
     }
 
-    if (!data->flag->getCourtInstancesCreated())
+    if (!flag->getCourtInstancesCreated())
     {
         courtEntityMSharedPtr courtInstance = setupCourt->createCourtInstances();
         if (!courtInstance.empty())
         {
             logMsg(func +" Court Instances Created!!");
-            data->flag->setCourtInstancesCreated(true);
-            data->component->setCourtInstance(courtInstance);
+            flag->setCourtInstancesCreated(true);
+            component->setCourtInstance(courtInstance);
         }
         else
         {
@@ -324,9 +326,9 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
             exit(0);
         }
     }
-    if (!data->flag->getActiveCourtInstancesCreated())
+    if (!flag->getActiveCourtInstancesCreated())
     {
-        courtEntityMSharedPtr courtInstance = data->component->getCourtInstance();
+        courtEntityMSharedPtr courtInstance = component->getCourtInstance();
         courtEntityMSharedPtr activeCourtInstance;
         activeCourtInstance = setupCourt->createActiveCourtInstances(courtInstance);
         if (!activeCourtInstance.empty())
@@ -347,8 +349,8 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
 
                 }
             }
-            data->flag->setActiveCourtInstancesCreated(true);
-            data->component->setActiveCourtInstance(activeCourtInstance);
+            flag->setActiveCourtInstancesCreated(true);
+            component->setActiveCourtInstance(activeCourtInstance);
         }
         else
         {
@@ -361,15 +363,15 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
 
     }
     
-    if (!data->flag->getHoopInstancesCreated())
+    if (!flag->getHoopInstancesCreated())
     {
         hoopEntityMSharedPtr hoopInstance = setupHoop->createHoopInstances();
 //        exit(0);
         if (!hoopInstance.empty())
         {
             logMsg(func +"Hoop Instances Created!");
-            data->flag->setHoopInstancesCreated(true);
-            data->component->setHoopInstance(hoopInstance);
+            flag->setHoopInstancesCreated(true);
+            component->setHoopInstance(hoopInstance);
         }
         else
         {
@@ -379,14 +381,14 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
 
     }
 //    exit(0);
-    logMsg(func +" hoop instance size == " +convert->toString(data->component->getHoopInstance().size()));
-    logMsg(func +" hoop instance name == " +data->component->getHoopInstance()[0]->getComponent()->getName());
+    logMsg(func +" hoop instance size == " +convert->toString(component->getHoopInstance().size()));
+    logMsg(func +" hoop instance name == " +component->getHoopInstance()[0]->getComponent()->getName());
         
-    if (!data->flag->getActiveHoopInstancesCreated())
+    if (!flag->getActiveHoopInstancesCreated())
     {
         //FIXME! Should not be hard coded!
         size_t numActiveHoops = 2;
-        hoopEntityMSharedPtr hoopInstance = data->component->getHoopInstance();
+        hoopEntityMSharedPtr hoopInstance = component->getHoopInstance();
         hoopEntityMSharedPtr activeHoopInstance = setupHoop->createActiveHoopInstances(hoopInstance, numActiveHoops);
         logMsg(func +" active hoop instance size == " +convert->toString(activeHoopInstance.size()));
         logMsg(func +" active hoop instance name == " +activeHoopInstance[0]->getComponent()->getName());
@@ -423,15 +425,25 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
             logMsg(func +" Unable to create Active Hoop Instances!");
             exit(0);
         }
-        data->flag->setActiveHoopInstancesCreated(true);
-        data->component->setActiveHoopInstance(activeHoopInstance);
+        flag->setActiveHoopInstancesCreated(true);
+        component->setActiveHoopInstance(activeHoopInstance);
 
     }
     else
     {
         
     }
-    logMsg(func +" activeHoopInstance.size() == " +convert->toString(data->component->getActiveHoopInstance().size()));
+    
+    
+    logMsg(func +" activeHoopInstance.size() == " +convert->toString(component->getActiveHoopInstance().size()));
+    
+    if (flag->getActiveBasketballInstancesCreated() && flag->getActiveCourtInstancesCreated() && flag->getActiveHoopInstancesCreated())
+    {
+        logMsg(func +" All Instances created!");
+        flag->setInstancesCreated(true);
+        exit(0);
+    }
+    
     logMsg(func +" end");
 //    exit(0);
 }
@@ -743,7 +755,7 @@ STATE_DEFINE(gameStateMachine, setStartPositions, gameSMData)
         data->flag->setStartPositionsSet(true);
     }
 
-    //    exit(0);
+        exit(0);
     logMsg(func +" end");
 
 }

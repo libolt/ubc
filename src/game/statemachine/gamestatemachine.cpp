@@ -441,8 +441,13 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
     {
         logMsg(func +" All Instances created!");
         flag->setInstancesCreated(true);
-        exit(0);
+//        exit(0);
     }
+    
+    gameSMData *tempSMData(new gameSMData);
+    tempSMData->component = component;
+    tempSMData->flag = flag;
+    data = tempSMData;
     
     logMsg(func +" end");
 //    exit(0);

@@ -291,7 +291,22 @@ bool gameEntity::initializeStateMachine(const renderEngineSharedPtr &render)  //
 //    component->getStateMachin
     gameStateMachineSharedPtr tempSM(new gameStateMachine);
     stateMachine = tempSM;
-    stateMachine->pCreateInstances(SMData);
+    
+    if (!flag->getInstancesCreated())
+    {
+        stateMachine->pCreateInstances(SMData);
+        if (flag->getInstancesCreated())
+        {
+            logMsg(func +" Instances created!");
+            
+        }
+        else
+        {
+            logMsg(func +" Unable to Create Instances!");
+            
+        }
+    }
+   
 //    exit(0);
     logMsg(func +" end");
 
@@ -438,17 +453,17 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
 //    exit(0);
     logMsg(func +" begin");
     
-    if (flag->getStateMachineInitialized())
+    if (flag->getInstancesCreated())
     {
-        exit(0);
+//        exit(0);
         if (!flag->getModelsLoaded())
         {
             logMsg(func +" Models Not Loaded yet!");
-            
+           
             // copies required objects to SMData
             auto *modelsSMData(new gameSMData);
             modelsSMData->component = component;
-            exit(0);
+//            exit(0);
             modelsSMData->flag = flag;
             modelsSMData->render = render;
 
@@ -464,7 +479,7 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
         }
         if (flag->getModelsLoaded() && !flag->getNodesCreated())
         {
-            logMsg(func +" Nodea Not Created yet!");
+            logMsg(func +" Nodes Not Created yet!");
             auto *nodesSMData(new gameSMData);
 
             nodesSMData->component = component;

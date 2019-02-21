@@ -34,12 +34,52 @@
 
 playerEntity::playerEntity()  // constructor
 {
+    componentInitialized = false;
+    dataInitialized = false;
+    flagInitialized = false;
+    gameDataInitialized = false;
     objectsInitialized = false;
 
     SMData = nullptr;
 }
 playerEntity::~playerEntity() = default;  // destructor
 
+
+bool playerEntity::getComponentInitialized() const  // retrieves the value of componentInitialized
+{
+    return (componentInitialized);
+}
+void playerEntity::setComponentInotialized(const bool &set)  // sets the value of componentInitialized
+{
+    componentInitialized = set;
+}
+
+bool playerEntity::getDataInitialized() const  // retrieves the value of dataInitialized
+{
+    return (dataInitialized);
+}
+void playerEntity::setDataInotialized(const bool &set)  // sets the value of dataInitialized
+{
+    dataInitialized = set;
+}
+
+bool playerEntity::getFlagInitialized() const  // retrieves the value of flagInitialized
+{
+    return (flagInitialized);
+}
+void playerEntity::setFlagInotialized(const bool &set)  // sets the value of flagInitialized
+{
+    flagInitialized = set;
+}
+
+bool playerEntity::getGameDataInitialized() const  // retrieves the value of gameDataInitialized
+{
+    return (gameDataInitialized);
+}
+void playerEntity::setGameDataInotialized(const bool &set)  // sets the value of gameDataInitialized
+{
+    gameDataInitialized = set;
+}
 
 bool playerEntity::getObjectsInitialized() const  //  retrieves the value of objectsInitialized
 {
@@ -88,19 +128,11 @@ void playerEntity::setGameData(const playerGameDataSharedPtr &set)  // sets the 
 
 bool playerEntity::initializeObjects()  // initializes the player entity object
 {
+    bool retVal = false;
     
     playerComponentsSharedPtr tempComponent(new playerComponents);
     component = tempComponent;
-
-    playerDataSharedPtr tempData(new playerData);
-    data = tempData;
-
-    playerFlagsSharedPtr tempFlag(new playerFlags);
-    flag = tempFlag;
     
-    playerGameDataSharedPtr tempGameData(new playerGameData);
-    gameData = tempGameData;
-
     playerPhysicsSharedPtr tempPhysics(new playerPhysics);
     component->setPhysics(tempPhysics);
     
@@ -110,7 +142,26 @@ bool playerEntity::initializeObjects()  // initializes the player entity object
     playerStatisticsSharedPtr tempStats(new playerStatistics);
     component->setStatistics(tempStats);
 
-    return (true);
+    componentInitialized = true;
+    
+    playerDataSharedPtr tempData(new playerData);
+    data = tempData;
+    dataInitialized = true;
+    
+    playerFlagsSharedPtr tempFlag(new playerFlags);
+    flag = tempFlag;
+    flagInitialized = true;
+    
+    playerGameDataSharedPtr tempGameData(new playerGameData);
+    gameData = tempGameData;
+    gameDataInitialized = true;
+    
+    if (componentInitialized && dataInitialized && flagInitialized && gameDataInitialized)
+    {
+        retVal = true;
+    }
+    
+    return (retVal);
 }
 
 bool playerEntity::setupPhysicsObject()  // sets up the physics object

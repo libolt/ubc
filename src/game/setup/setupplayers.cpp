@@ -346,7 +346,7 @@ playerEntityMSharedPtr setupPlayers::createActivePlayerInstances(playerEntityMSh
         logMsg(func +" WOOT!");
         logMsg(func +" loop activePlayerInstance.size() == " +convert->toString(activePlayerInstance.size()));
 
-    }
+    }   
     
     return (activePlayerInstance);
 }
@@ -363,6 +363,8 @@ playerEntityMSharedPtr setupPlayers::setupActivePlayerInstances(playerEntityMSha
     logMsg(func +" activePlayerInstance.size() == " +convert->toString(activePlayerInstance.size()));
 //    exit(0);
 
+    
+    
     for (auto APIIT : activePlayerInstance)
     {
         if (!APIIT.second->getObjectsInitialized())
@@ -382,13 +384,13 @@ playerEntityMSharedPtr setupPlayers::setupActivePlayerInstances(playerEntityMSha
         {
 
         }
-
+        
         if (!APIIT.second->getFlag()->getModelLoaded())
         {
             OgreEntitySharedPtr tempModel;
             std::string entityName = APIIT.second->getComponent()->getName();
             std::string entityModelFileName = APIIT.second->getComponent()->getModelFileName();
-            
+            logMsg(func +" entityModelFileName == " +entityModelFileName);
             logMsg(func +" Model not loaded yet!");
             logMsg(" name == " +APIIT.second->getComponent()->getName());
             tempModel = load->loadModelFile(entityModelFileName, entityName, render);

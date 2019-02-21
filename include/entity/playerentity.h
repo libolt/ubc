@@ -40,6 +40,18 @@ class playerEntity : public entity
     playerEntity();  // constructor
     ~playerEntity();  // destructor
     
+    bool getComponentInitialized() const;  // retrieves the value of componentInitialized
+    void setComponentInotialized(const bool &set);  // sets the value of componentInitialized
+    
+    bool getDataInitialized() const;  // retrieves the value of dataInitialized
+    void setDataInotialized(const bool &set);  // sets the value of dataInitialized
+ 
+    bool getFlagInitialized() const;  // retrieves the value of flagInitialized
+    void setFlagInotialized(const bool &set);  // sets the value of flagInitialized
+ 
+    bool getGameDataInitialized() const;  // retrieves the value of gameDataInitialized
+    void setGameDataInotialized(const bool &set);  // sets the value of gameDataInitialized
+    
     bool getObjectsInitialized() const;  //  retrieves the value of objectsInitialized
     void setObjectsInitialized(const bool &set);  //  sets the value of objectsInitialized
 
@@ -67,6 +79,14 @@ class playerEntity : public entity
 
     private:
 
+    bool componentInitialized;  // stores whether component object has been initialized
+    
+    bool dataInitialized;  // stores whether data object has been initialized
+  
+    bool flagInitialized;  // stores whether flag object has been initialized
+  
+    bool gameDataInitialized;  // stores whether gameData object has been initialized
+  
     bool objectsInitialized;  //  stores whether or not objects have been initialized
 
     playerComponentsSharedPtr component;  // instance of playerData object

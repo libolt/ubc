@@ -200,7 +200,7 @@ class playerData
         // if player is playing this is true
         bool active;
 
-        std::string modelFileName;  // stores the name of the 3D model to load for the player
+//        std::string modelFileName;  // stores the name of the 3D model to load for the player
         
 
 

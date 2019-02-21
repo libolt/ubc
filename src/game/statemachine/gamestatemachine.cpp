@@ -760,7 +760,7 @@ STATE_DEFINE(gameStateMachine, setStartPositions, gameSMData)
         data->flag->setStartPositionsSet(true);
     }
 
-        exit(0);
+//        exit(0);
     logMsg(func +" end");
 
 }

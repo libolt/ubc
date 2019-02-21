@@ -422,7 +422,7 @@ bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &in
 ///            }
 ///        }
         
-       // exit(0);
+//        exit(0);
 
         if (gui->getFlag()->getMenuActive())
         {
@@ -439,8 +439,10 @@ bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &in
 //            exit(0);
             }
         }
+
         if (startActiveGame)
         {
+//            exit(0);
             if (startGame(gameE->getRenderE()))
             {
                 gameE->setStart(false);
@@ -464,7 +466,8 @@ bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &in
 
         logMsg ("changeInTimeMicro = " +convert->toString(CITmic));
         logMsg ("changeInTimeMill = " +convert->toString(CITmil));
-        changeInTime = gameE->getTimer().getChangeInTimeMill().count();
+//        gameE->getTimer().setChangeInTimeMill(changeInTimeMill);
+        changeInTime = changeInTimeMill.count();
         logMsg ("loopchange = " +convert->toString(changeInTime));
 //        exit(0);
         if (changeInTime >= 10)
@@ -475,12 +478,12 @@ bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &in
             {
                 processNetworkEvents(gameE);
             }
-
+//        exit(0);
 //            logMsg("changeInTime = " +toString(changeInTime));
             if (gameE->getRenderScene())
             {
                 logMsg(func +" gameS->getRenderScene()");
- //               exit(0);
+//                exit(0);
                 gameInstance->updateState(gameE->getRenderE());  // updates the state of the game instance
             }
             gameE->getTimer().setPreviousTime(std::chrono::system_clock::now());

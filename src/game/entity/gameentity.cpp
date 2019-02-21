@@ -452,7 +452,7 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
 //    SMData = tempSMData;
 //    exit(0);
     logMsg(func +" begin");
-    
+
     if (flag->getInstancesCreated())
     {
 //        exit(0);
@@ -489,13 +489,13 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
             stateMachine->pCreateNodes(nodesSMData);
 
 //            stateMachine->pCreateNodes(SMData);
-            exit(0);
+//            exit(0);
         }
         else
         {
             
         }
-        
+//    exit(0);
         if (flag->getNodesCreated() && !flag->getStartPositionsSet())
         {
             logMsg(func +" Start Positions Not Set yet!");
@@ -505,7 +505,7 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
             startPosSMData->flag = flag;
             startPosSMData->render = render;
             stateMachine->pSetStartPositions(startPosSMData);
-            exit(0);
+//            exit(0);
         }
         else
         {

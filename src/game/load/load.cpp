@@ -243,6 +243,7 @@ OgreEntitySharedPtr loader::loadModelFile(const std::string &modelFileName, cons
         else
         {
             logMsg(func +" " +modelFileName +" doesn't exist!");
+            exit(0);
         }
     }
     else

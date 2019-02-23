@@ -40,7 +40,7 @@ playerEntity::playerEntity()  // constructor
     gameDataInitialized = false;
     objectsInitialized = false;
 
-    SMData = nullptr;
+//    SMData = nullptr;
 }
 playerEntity::~playerEntity() = default;  // destructor
 
@@ -214,10 +214,10 @@ bool playerEntity::setupPhysicsObject()  // sets up the physics object
 
 bool playerEntity::initializeStateMachine()  // initializes the stateMachine object
 {
-    auto *tempSMData = new playerSMData;
+    auto *initSMData = new playerSMData;
     std::string func = "playerEntity::initializeStateMachine()!";
 
-    SMData = tempSMData;
+//    SMData = tempSMData;
 
     logMsg(func +" begin");
 
@@ -231,11 +231,11 @@ bool playerEntity::initializeStateMachine()  // initializes the stateMachine obj
         logMsg(func +" Objects already initialized!");
     }
 
-    SMData->model = component->getModel();
-    SMData->node = component->getNode();
+    initSMData->model = component->getModel();
+    initSMData->node = component->getNode();
 
 //    exit(0);
-    component->getStateMachine()->setSpeed(SMData);
+    component->getStateMachine()->setSpeed(initSMData);
     component->getStateMachine()->halt();
     return (true);
 }
@@ -244,7 +244,8 @@ bool playerEntity::updateStateMachine(playerActions actionType, playerSMData *SM
 {
     conversionSharedPtr convert ;
 
-    std::string func = "playerEntity::updateStateMachine()";
+//    std::string func = "playerEntity::updateStateMachine()";
+    std::string func = "dah";
 
     logMsg(func + " beginning");
 //    exit(0);
@@ -294,6 +295,7 @@ bool playerEntity::updateStateMachine(playerActions actionType, playerSMData *SM
 bool playerEntity::update() // executes any updates that need to be performed
 {
     conversionSharedPtr convert ;
+    auto updateSMData(new playerSMData);
 
     std::string func = "playerEntity::update()";
 //    playerSMData *stateData = new playerSMData;
@@ -326,20 +328,20 @@ bool playerEntity::update() // executes any updates that need to be performed
             {
                 case CHANGECOURTPOS:
                     logMsg(func + " CHANGECOURTPOS!");
-                    SMData->position = gameData->getNewCourtPosition();
+                    updateSMData->position = gameData->getNewCourtPosition();
 //                    exit(0);o
                 break;
                 case CHANGEDIRECTION:
                     logMsg(func + " CHANGEDIRECTION!");
-                    SMData->direction = gameData->getDirection();
+                    updateSMData->direction = gameData->getDirection();
                 break;
                 case SETNODE:
                     logMsg(func + " SETNODE!");
-                    SMData->node = component->getNode();
+                    updateSMData->node = component->getNode();
                 break;
                 case SETMODEL:
                     logMsg(func + " SETMODEL!");
-                    SMData->model = component->getModel();
+                    updateSMData->model = component->getModel();
                 break;
                 case MOVE:
                 break;
@@ -357,7 +359,7 @@ bool playerEntity::update() // executes any updates that need to be performed
                 break;
             }
         
-            if(updateStateMachine(SAIT,SMData)) // attempts to update the stateMachine and returns true if successful
+            if(updateStateMachine(SAIT,updateSMData)) // attempts to update the stateMachine and returns true if successful
             {
 //                stateChanged = false;  // sets stateChanged back to false now that hte stateMachine has been updated
             }

@@ -191,7 +191,7 @@ void playerStateMachine::pChangePosition(playerSMData *data)
 
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_SET_NODE
-        TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_SET_MODEL
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)           // ST_SET_MODEL
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_IDLE
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_STOP
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_START

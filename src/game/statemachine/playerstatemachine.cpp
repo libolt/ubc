@@ -20,7 +20,7 @@
 
 #include "utilities/conversion.h"
 #include "statemachine/playerstatemachine.h"
-
+#include "flags/playerflags.h"
 #include "utilities/logging.h"
 
 playerStateMachine::playerStateMachine() :
@@ -216,6 +216,7 @@ STATE_DEFINE(playerStateMachine, SetNode, playerSMData)
 
     currentNode = data->node;
 
+    data->flag->setSMNodeSet(true);
     logMsg(func +" end");
 
 }
@@ -228,6 +229,7 @@ STATE_DEFINE(playerStateMachine, SetModel, playerSMData)
     logMsg(func +" begin");
 
     currentModel = data->model;
+    data->flag->setSMModelSet(true);
 
     logMsg(func +" end");
 

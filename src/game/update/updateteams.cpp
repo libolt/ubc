@@ -51,7 +51,7 @@ playerEntityMSharedPtr updateTeams::updateActivePlayers(playerEntityMSharedPtr a
     
     for (auto APIIT : activePlayerInstance)  // executes updates to activePlayerInstances
     {
-        APIIT.second->update();
+        APIIT.second->updateStateMachine();
     }
 //    exit(0);
 //FIXME! Needs refactored after playerStateMachine migration

@@ -240,85 +240,17 @@ bool playerEntity::initializeStateMachine()  // initializes the stateMachine obj
     return (true);
 }
 
-bool playerEntity::updateStateMachine(playerActions actionType, playerSMData *SMData)  // updates state machine with external input
-{
-    conversionSharedPtr convert ;
-
-//    std::string func = "playerEntity::updateStateMachine()";
-    std::string func = "dah";
-
-    logMsg(func + " beginning");
-//    exit(0);
-    switch (actionType)
-    {
-        case CHANGECOURTPOS:
-            logMsg(func + " CHANGECOURTPOS");
-            component->getStateMachine()->pChangePosition(SMData);
-        break;
-        case CHANGEDIRECTION:
-            logMsg(func + " CHANGEDIRECTION");
-//            stateMachine->pChangeDirection(SMData);
-        break;
-        case SETNODE:
-            logMsg(func +" SETNODE");
-            component->getStateMachine()->setPNode(SMData);
-            logMsg(func +" NODESET");
-            
-        break;
-        case SETMODEL:
-            logMsg(func +" SETMODEL");
-            component->getStateMachine()->setPModel(SMData);
-            logMsg(func +" MODELSET");            
-        break;
-        case MOVE:
-        break;
-        case JUMP:
-        break;
-        case SHOOT:
-        break;
-        case PASS:
-        break;
-        case STEAL:
-        break;
-        case BLOCK:
-        break;
-        case NOACTION:
-        break;
-
-    }
-    logMsg(func + " end");
-//    exit(0);
-    
-    return (true);
-}
-
-bool playerEntity::update() // executes any updates that need to be performed
+bool playerEntity::updateStateMachine()  // updates state machine with external input
 {
     conversionSharedPtr convert ;
     auto updateSMData(new playerSMData);
 
-    std::string func = "playerEntity::update()";
-//    playerSMData *stateData = new playerSMData;
-    
-    logMsg(func +" begin");
+    std::string func = "playerEntity::updateStateMachine()";
+//    std::string func = "dah";
 
-/*    if (getPhysicsSetup())
-    {
-        logMsg(func + " Updating player physics");
-
-        getPhysics()->update();
-        logMsg(func +" Updating Court Position");
-//        updateCourtPosition();
-        logMsg(func +" Court Position Updated!");
-//        exit(0);
-    }
-    else
-    {
-        logMsg(func +" " +data->getFirstName() + " " +data->getLastName() +" physics NOT SETUP!");
-
-    }*/
+//    logMsg(func + " beginning");
 //    exit(0);
-    
+
     if (flag->getStateChanged())
     {
         logMsg(func +" stateAction.size() = " +convert->toString(gameData->getStateAction().size()));
@@ -329,19 +261,26 @@ bool playerEntity::update() // executes any updates that need to be performed
                 case CHANGECOURTPOS:
                     logMsg(func + " CHANGECOURTPOS!");
                     updateSMData->position = gameData->getNewCourtPosition();
+                    component->getStateMachine()->pChangePosition(updateSMData);
+
 //                    exit(0);o
                 break;
                 case CHANGEDIRECTION:
                     logMsg(func + " CHANGEDIRECTION!");
                     updateSMData->direction = gameData->getDirection();
+                    component->getStateMachine()->pChangeDirection(updateSMData);
                 break;
                 case SETNODE:
                     logMsg(func + " SETNODE!");
                     updateSMData->node = component->getNode();
+                    component->getStateMachine()->setPNode(updateSMData);
+
                 break;
                 case SETMODEL:
                     logMsg(func + " SETMODEL!");
                     updateSMData->model = component->getModel();
+                    component->getStateMachine()->setPModel(updateSMData);
+
                 break;
                 case MOVE:
                 break;
@@ -358,24 +297,21 @@ bool playerEntity::update() // executes any updates that need to be performed
                 case NOACTION:
                 break;
             }
-        
-            if(updateStateMachine(SAIT,updateSMData)) // attempts to update the stateMachine and returns true if successful
-            {
-//                stateChanged = false;  // sets stateChanged back to false now that hte stateMachine has been updated
-            }
-            else
-            {
-                logMsg(func +" Unable to update stateMachine!");
-            }
+
+
         }
         gameData->getStateAction().clear();
         getFlag()->setStateChanged(false);  // sets stateChanged back to false now that hte stateMachine has been updated
     }
     else
     {
-        
+
     }
+
+
+    logMsg(func + " end");
+//    exit(0);
     
-    logMsg(func +" end");
     return (true);
 }
+

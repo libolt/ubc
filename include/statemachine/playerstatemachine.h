@@ -29,6 +29,7 @@
 class playerSMData : public eventData
 {
 public:
+    playerFlagsSharedPtr flag;
     size_t speed;
     directions direction;
     playerActions action;

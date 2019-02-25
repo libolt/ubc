@@ -512,7 +512,7 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
             for (auto ABIIT : activeBasketballInstance)
             {          
                 logMsg(func +"Active Basketball Pos == " +convert->toString(ABIIT.second->getComponent()->getNode()->getPosition()));
-                exit(0);
+//                exit(0);
             }
   
         }

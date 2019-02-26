@@ -243,8 +243,7 @@ bool playerEntity::initializeStateMachine()  // initializes the stateMachine obj
 bool playerEntity::updateStateMachine()  // updates state machine with external input
 {
     conversionSharedPtr convert ;
-    auto updateSMData(new playerSMData);
-
+    
     std::string func = "playerEntity::updateStateMachine()";
 //    std::string func = "dah";
 
@@ -256,6 +255,8 @@ bool playerEntity::updateStateMachine()  // updates state machine with external 
         logMsg(func +" stateAction.size() = " +convert->toString(gameData->getStateAction().size()));
         for (auto SAIT : gameData->getStateAction())
         {
+            auto updateSMData(new playerSMData);
+
             switch (SAIT)
             {
                 case CHANGECOURTPOS:
@@ -308,7 +309,8 @@ bool playerEntity::updateStateMachine()  // updates state machine with external 
 
     }
 
-
+    logMsg(func +" playerPos == " +convert->toString(component->getNode()->getPosition()));
+    component->getNode()->setPosition(OgreV::ector3(100,100,0);
     logMsg(func + " end");
 //    exit(0);
     

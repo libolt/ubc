@@ -164,7 +164,7 @@ void playerStateMachine::pChangeDirection(playerSMData *data)
     logMsg(func +" begin");
 
     BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_SET_NODE
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)          // ST_SET_NODE
         TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_SET_MODEL
         TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_IDLE
         TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_STOP
@@ -172,7 +172,7 @@ void playerStateMachine::pChangeDirection(playerSMData *data)
         TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_CHANGE_POSITION
         TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_CHANGE_SPEED
         TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_JUMP
-        TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_CHANGE_DIRECTION
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)          // ST_CHANGE_DIRECTION
         TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_SHOOT
         TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_PASS
     END_TRANSITION_MAP(data)

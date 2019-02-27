@@ -310,7 +310,7 @@ bool playerEntity::updateStateMachine()  // updates state machine with external 
     }
 
     logMsg(func +" playerPos == " +convert->toString(component->getNode()->getPosition()));
-    component->getNode()->setPosition(OgreV::ector3(100,100,0);
+    component->getNode()->setPosition(Ogre::Vector3::ector3(100,100,0);
     logMsg(func + " end");
 //    exit(0);
     

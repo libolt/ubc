@@ -191,7 +191,7 @@ void playerStateMachine::pChangePosition(playerSMData *data)
 
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_SET_NODE
-        TRANSITION_MAP_ENTRY (EVENT_IGNORED)           // ST_SET_MODEL
+        TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_SET_MODEL
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_IDLE
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_STOP
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_START
@@ -203,7 +203,7 @@ void playerStateMachine::pChangePosition(playerSMData *data)
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_PASS
     END_TRANSITION_MAP(data)
     logMsg(func +" end");
-//    exit(0);
+    
 }
 
 // sets the node object
@@ -291,11 +291,13 @@ STATE_DEFINE(playerStateMachine, ChangePosition, playerSMData)
     std:: string func = "playerStateMachine::ChangePosition";
 
     logMsg(func +" begin");
-
+//    exit(0);
     logMsg("playerStateMachine::ST_ChangePosition : court position is " +convert->toString(data->position));
+    
     currentPosition = data->position;
+    
     logMsg(func +" Node Position == " +convert->toString(data->node->getPosition()));
-
+//    exit(0);
     currentNode->setPosition(currentPosition);
     logMsg(func +" Node Position == " +convert->toString(currentNode->getPosition()));
     logMsg(func +" end");

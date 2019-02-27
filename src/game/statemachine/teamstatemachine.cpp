@@ -294,7 +294,7 @@ STATE_DEFINE(teamStateMachine, setPlayerStartPositions, teamSMData)
         exit(0);
     }
     logMsg(func +" end");
-
+//    exit(0);
 }
 
 // Set player start positions

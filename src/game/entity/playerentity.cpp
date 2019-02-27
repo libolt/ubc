@@ -266,7 +266,10 @@ bool playerEntity::updateStateMachine()  // updates state machine with external 
             {
                 case CHANGECOURTPOS:
                     logMsg(func + " CHANGECOURTPOS!");
+                    logMsg(func + " newCourtPosition == " +convert->toString(gameData->getNewCourtPosition()));
+//                    exit(0);
                     updateSMData->position = gameData->getNewCourtPosition();
+                    updateSMData->node = component->getNode();
                     component->getStateMachine()->pChangePosition(updateSMData);
 
 //                    exit(0);o
@@ -315,7 +318,7 @@ bool playerEntity::updateStateMachine()  // updates state machine with external 
     }
 
     logMsg(func +" playerPos == " +convert->toString(component->getNode()->getPosition()));
-    component->getNode()->setPosition(Ogre::Vector3(100,100,0));
+//    component->getNode()->setPosition(Ogre::Vector3(100,100,0));
     logMsg(func + " end");
 //    exit(0);
     

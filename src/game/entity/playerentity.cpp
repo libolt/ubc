@@ -237,6 +237,9 @@ bool playerEntity::initializeStateMachine()  // initializes the stateMachine obj
 //    exit(0);
     component->getStateMachine()->setSpeed(initSMData);
     component->getStateMachine()->halt();
+
+    logMsg(func +" end");
+
     return (true);
 }
 
@@ -253,6 +256,8 @@ bool playerEntity::updateStateMachine()  // updates state machine with external 
     if (flag->getStateChanged())
     {
         logMsg(func +" stateAction.size() = " +convert->toString(gameData->getStateAction().size()));
+        logMsg(func +" gameData->getStateAction().size() == " +convert->toString(gameData->getStateAction().size()));
+//        exit(0);
         for (auto SAIT : gameData->getStateAction())
         {
             auto updateSMData(new playerSMData);
@@ -269,18 +274,18 @@ bool playerEntity::updateStateMachine()  // updates state machine with external 
                 case CHANGEDIRECTION:
                     logMsg(func + " CHANGEDIRECTION!");
                     updateSMData->direction = gameData->getDirection();
-                    component->getStateMachine()->pChangeDirection(updateSMData);
+//                    component->getStateMachine()->pChangeDirection(updateSMData);
                 break;
                 case SETNODE:
                     logMsg(func + " SETNODE!");
                     updateSMData->node = component->getNode();
-                    component->getStateMachine()->setPNode(updateSMData);
+//                    component->getStateMachine()->setPNode(updateSMData);
 
                 break;
                 case SETMODEL:
                     logMsg(func + " SETMODEL!");
                     updateSMData->model = component->getModel();
-                    component->getStateMachine()->setPModel(updateSMData);
+//                    component->getStateMachine()->setPModel(updateSMData);
 
                 break;
                 case MOVE:

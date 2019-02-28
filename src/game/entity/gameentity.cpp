@@ -589,7 +589,7 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
     
     for (auto ABIIT : activeBasketballInstance)
     {
-        ABIIT.second->updateState(component, data, flag);
+        ABIIT.second->updateStateMachine(component, data, flag);
         ABIIT.second->getComponent()->setPlayer(5);
     }
   

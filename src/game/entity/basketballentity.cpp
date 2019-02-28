@@ -79,6 +79,15 @@ void basketballEntity::setStateMachine(const basketballStateMachineSharedPtr &se
     stateMachine = set;
 }
 
+basketballActions basketballEntity::getAction() const  // retrieves the value of action
+{
+    return (action);
+}
+void basketballEntity::setAction(const basketballActions &set)
+{
+    action = set;
+}
+
 /*bool basketballEntity::initialize()  // initializes the basketball entity object
 {
     sharedPtr<basketballPhysics> tempPhysics(new basketballPhysics);
@@ -264,9 +273,13 @@ Ogre::Vector3 basketballEntity::calculatePositionChange()
     return(changeInPosition);
 }
 
-void basketballEntity::updateState(const gameComponentsSharedPtr &gameComponent, const gameDataSharedPtr &gameDta, const gameFlagsSharedPtr &gameFlag)  // updates the state of the basketball
+void basketballEntity::updateStateMachine(const gameComponentsSharedPtr &gameComponent, const gameDataSharedPtr &gameDta, const gameFlagsSharedPtr &gameFlag)  // updates the state of the basketball
 {
     bool modelNeedsLoaded = flag->getModelNeedsLoaded();
+    basketballSMData *udSMData(new basketballSMData);
+    basketballSMData *umSMData(new basketballSMData);
+    basketballSMData *upSMData(new basketballSMData);
+
     std::string func = "basketballState::updateState()";
     
     logMsg(func + " beginning");
@@ -281,48 +294,62 @@ void basketballEntity::updateState(const gameComponentsSharedPtr &gameComponent,
         }
     }
 */
+    if (flag->getStateChanged())
+    {
+        switch (action)
+        {
+            case BSETMODEL:
+            break;
+            case BSETNODE:
+            break;
+            case BCHANGEDIRECTION:
+                logMsg(func +" updating direction!");
+        //        updateDirection(gameComponent, gameDta, gameFlag);
+                udSMData->flag = flag;
+                udSMData->gComponent = gameComponent;
+                udSMData->gData = gameDta;
+                udSMData->gFlag = gameFlag;
+                stateMachine->pUpdateMovement(udSMData);
+
+//            flag->setDirectChange(false);
+                logMsg(func + " direction updated!");
+            break;
+            case BCHANGEPOS:
+                logMsg(func + " updating position!");
+                upSMData->component = component;
+                upSMData->flag = flag;
+                upSMData->node = component->getNode();
+                stateMachine->pUpdatePosition(upSMData);
+                logMsg(func + " position updated!");
+            break;
+            case BMOVE:
+                logMsg(func + " updating movement!");
+                //updateMovement(gameComponent, gameDta, gameFlag);
+                umSMData->component = component;
+                umSMData->flag = flag;
+                umSMData->gComponent = gameComponent;
+                umSMData->gData = gameDta;
+                umSMData->node = component->getNode();
+                stateMachine->pUpdateMovement(umSMData);
+                logMsg(func + " movement updated!");
+            break;
+
+        }
+    }
     if (flag->getNumberSet())  // runs the physics update code
     {
         component->getPhysics()->updatePhysObj();
     }
-    if (flag->getDirectChange())
+/*    if (flag->getDirectChange())
     {
-        logMsg(func +" updating direction!");
-//        updateDirection(gameComponent, gameDta, gameFlag);
-        basketballSMData *udSMData(new basketballSMData);
-        udSMData->flag = flag;
-        udSMData->gComponent = gameComponent;
-        udSMData->gData = gameDta;
-        udSMData->gFlag = gameFlag;
-        stateMachine->pUpdateMovement(udSMData);
-
-        flag->setDirectChange(false);
-        logMsg(func + " direction updated!");
     }
 
     if (flag->getMovement())
     {
-        logMsg(func + " updating movement!");
-        //updateMovement(gameComponent, gameDta, gameFlag);
-        basketballSMData *umSMData(new basketballSMData);
-        umSMData->component = component;
-        umSMData->flag = flag;
-        umSMData->gComponent = gameComponent;
-        umSMData->gData = gameDta;
-        umSMData->node = component->getNode();
-        stateMachine->pUpdateMovement(umSMData);
+     }
+*/
 
-        flag->setMovement(false);
-        logMsg(func + " movement updated!");
-    }
-    logMsg(func + " updating position!");
-    basketballSMData *upSMData(new basketballSMData);
-    upSMData->component = component;
-    upSMData->flag = flag;
-    upSMData->node = component->getNode();
-    stateMachine->pUpdatePosition(upSMData);
-    logMsg(func + " position updated!");
-   
+
     logMsg(func + " end");
     
 //    exit(0);

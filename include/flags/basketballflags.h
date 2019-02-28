@@ -50,11 +50,11 @@ class basketballFlags : public entityFlags
         bool getDribbling() const;  // retrieves the value of dribbling
         void setDribbling(const bool &set);  // sets the value of dribbling
 
-        bool getMovement() const;  // retrieves the value of movement
-        void setMovement(const bool &set);  // sets the value of movement
+//        bool getMovement() const;  // retrieves the value of movement
+//        void setMovement(const bool &set);  // sets the value of movement
 
-        bool getDirectChange() const;  // retrieves the value of directChange
-        void setDirectChange(const bool &set);  // sets the value of directChange
+//        bool getDirectChange() const;  // retrieves the value of directChange
+//        void setDirectChange(const bool &set);  // sets the value of directChange
 
         bool getPlayerControlled() const;  // retrieves the value of player controlled
         void setPlayerControlled(const bool &set);  // sets the value of playerControlled
@@ -64,6 +64,9 @@ class basketballFlags : public entityFlags
 
         bool getCourtPositionChanged() const;  // retrieves the value of courtPositionChanged
         void setCourtPositionChanged(const bool &set);  // sets the value of courtPositionChanged
+
+        bool getStateChanged() const;  // retrieves the value of stateChanged
+        void setStateChanged(const bool &set);  // sets the value of stateChanged
 
     private:
 
@@ -78,8 +81,8 @@ class basketballFlags : public entityFlags
         bool dribblingStart;  // defines whether or not to start the dribbling animation
         bool dribbling;  // defines whether or not the ball is being dribbled
 
-        bool movement;  // basketball has been moved by an outside force.
-        bool directChange; // baskteball has changed direction
+//        bool movement;  // basketball has been moved by an outside force.
+//        bool directChange; // baskteball has changed direction
 
         bool playerControlled;  // set to true if human or cpu player has the ball
 
@@ -88,6 +91,8 @@ class basketballFlags : public entityFlags
 
         bool initialized;  // stores whether the basketball entity object has been initialized
      
+        bool stateChanged;  // Determines if the stateMachine needs to be updated
+
 };
 
 

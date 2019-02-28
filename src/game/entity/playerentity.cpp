@@ -279,19 +279,19 @@ bool playerEntity::updateStateMachine()  // updates state machine with external 
                     updateSMData->direction = gameData->getDirection();
 //                    component->getStateMachine()->pChangeDirection(updateSMData);
                 break;
-                case SETNODE:
+                case PSETNODE:
                     logMsg(func + " SETNODE!");
                     updateSMData->node = component->getNode();
 //                    component->getStateMachine()->setPNode(updateSMData);
 
                 break;
-                case SETMODEL:
+                case PSETMODEL:
                     logMsg(func + " SETMODEL!");
                     updateSMData->model = component->getModel();
 //                    component->getStateMachine()->setPModel(updateSMData);
 
                 break;
-                case MOVE:
+                case PMOVE:
                 break;
                 case JUMP:
                 break;
@@ -303,7 +303,7 @@ bool playerEntity::updateStateMachine()  // updates state machine with external 
                 break;
                 case BLOCK:
                 break;
-                case NOACTION:
+                case PNOACTION:
                 break;
             }
 

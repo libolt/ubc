@@ -32,13 +32,14 @@ basketballFlags::basketballFlags()  // constructor
     dribblingStart = true;
     dribbling = false;
 
-    movement = false;
-    directChange = false;
+//    movement = false;
+//    directChange = false;
 
     playerControlled = false;
     numberSet = false;
 
     courtPositionChanged = false;
+    stateChanged = false;
         
 }
 
@@ -107,23 +108,23 @@ void basketballFlags::setDribbling(const bool &set)  // sets the value of dribbl
     dribbling = set;
 }
 
-bool basketballFlags::getMovement() const  // retrieves the value of movement
+/*bool basketballFlags::getMovement() const  // retrieves the value of movement
 {
     return (movement);
 }
 void basketballFlags::setMovement(const bool &set)  // sets the value of movement
 {
     movement = set;
-}
+}*/
 
-bool basketballFlags::getDirectChange() const  // retrieves the value of directChange
+/*bool basketballFlags::getDirectChange() const  // retrieves the value of directChange
 {
     return (directChange);
 }
 void basketballFlags::setDirectChange(const bool &set)  // sets the value of directChange
 {
     directChange = set;
-}
+}*/
 
 bool basketballFlags::getPlayerControlled() const  // retrieves the value of player controlled
 {
@@ -152,3 +153,11 @@ void basketballFlags::setCourtPositionChanged(const bool &set)  // sets the valu
     courtPositionChanged = set;
 }
 
+bool basketballFlags::getStateChanged() const  // retrieves the value of stateChanged
+{
+    return (stateChanged);
+}
+void basketballFlags::setStateChanged(const bool &set)  // sets the value of stateChanged
+{
+    stateChanged = set;
+}

@@ -50,7 +50,10 @@ class basketballEntity : public entity
     basketballStateMachineSharedPtr getStateMachine() const;  // retrievees the value of stateMachine
     void setStateMachine(const basketballStateMachineSharedPtr &set);  // sets the value of stateMachine
 
-    void updateState(const gameComponentsSharedPtr &gameComponent, const gameDataSharedPtr &gameDta, const gameFlagsSharedPtr &gameFlag);  // updates the state of the basketball
+    basketballActions getAction() const;  // retrieves the value of action
+    void setAction(const basketballActions &set);
+
+    void updateStateMachine(const gameComponentsSharedPtr &gameComponent, const gameDataSharedPtr &gameDta, const gameFlagsSharedPtr &gameFlag);  // updates the state of the basketball
     
 //    void updatePosition();  // updates the position of the basketball
 
@@ -77,6 +80,8 @@ class basketballEntity : public entity
     basketballDataSharedPtr data;  // basketball data object
     basketballFlagsSharedPtr flag;  // basketball flags object
     basketballStateMachineSharedPtr stateMachine;  // basketball stateMachine object
+
+    basketballActions action;  // stores the basketballActions object
 
 };
  

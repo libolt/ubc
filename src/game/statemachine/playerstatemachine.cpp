@@ -27,7 +27,7 @@ playerStateMachine::playerStateMachine() :
     stateMachine(ST_MAX_STATES),
     currentSpeed(0),
     currentDirection(NODIRECT),
-    currentAction(NOACTION)
+    currentAction(PNOACTION)
 //    currentPosition(Ogre::Vector3(0,0,0)
     
 {

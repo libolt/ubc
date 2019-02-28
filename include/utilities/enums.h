@@ -198,7 +198,9 @@
     // physics
     enum physicsShapes {CAPSULE, BOX, CYLINDER, SPHERE };  // Defines what type of physics object to create
 
-    enum playerActions {NOACTION, MOVE, CHANGECOURTPOS, CHANGEDIRECTION, SETNODE, SETMODEL, JUMP, SHOOT, PASS, STEAL, BLOCK };
+    enum basketballActions {BNOACTION, BMOVE, BCHANGEDIRECTION, BCHANGEPOS, BSETMODEL, BSETNODE };
+
+    enum playerActions {PNOACTION, PMOVE, CHANGECOURTPOS, CHANGEDIRECTION, PSETMODEL, PSETNODE, JUMP, SHOOT, PASS, STEAL, BLOCK };
     
     enum userTypes {NOUSER, LOCALUSER, NETWORKUSER };
     

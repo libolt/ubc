@@ -65,6 +65,9 @@ class gameData
         std::vector<bool> getTeamActivePlayersChanged() const;  // retrieves the value of teamActivePlayersChanged
         void setTeamActivePlayersChanged(const std::vector<bool> &set);  // sets the value of teamActivePlayersChanged
 
+        std::vector<gameActions> getStateAction() const;  // retrieves the value of stateAction
+        void setStateAction(const std::vector<gameActions> &set);  // sets the value of stateAction
+
     private:
     
         float gameTimeLeft;  // Indicates the time left in the game
@@ -88,6 +91,7 @@ class gameData
 
         std::vector<bool> teamActivePlayersChanged;  // stores whether the active players for each team have changed
 
+        std::vector<gameActions> stateAction;  // controls the action performed by stateMachine
         
 };
 

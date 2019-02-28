@@ -144,4 +144,11 @@ void gameData::setTeamActivePlayersChanged(const std::vector<bool> &set)  // set
     teamActivePlayersChanged = set;
 }
 
-
+std::vector<gameActions> gameData::getStateAction() const  // retrieves the value of stateAction
+{
+    return (stateAction);
+}
+void gameData::setStateAction(const std::vector<gameActions> &set)  // sets the value of stateAction
+{
+    stateAction = set;
+}

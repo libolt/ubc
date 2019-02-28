@@ -283,6 +283,7 @@ void basketballEntity::updateStateMachine(const gameComponentsSharedPtr &gameCom
     std::string func = "basketballState::updateState()";
     
     logMsg(func + " beginning");
+    exit(0);
 /*    if (entity->getModelNeedsLoaded())
     {
         

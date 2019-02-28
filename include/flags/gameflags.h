@@ -123,8 +123,8 @@ class gameFlags
         bool getHoopModelLoaded() const;  // retrieves the value of hoopModelLoaded
         void setHoopModelLoaded(const bool &set);  // sets the value of hoopModelLoaded
 
-        bool getModelsLoaded() const;  // retrieves the value of modelsLoaded
-        void setModelsLoaded(const bool &set);  // sets the value of modelsLoaded
+//        bool getModelsLoaded() const;  // retrieves the value of modelsLoaded
+//        void setModelsLoaded(const bool &set);  // sets the value of modelsLoaded
 
         bool getBasketballNodeCreated() const;  // retrieves the value of basketballNodeCreated
         void setBasketballNodeCreated(const bool &set);  // sets the value of basketballNodeCreated
@@ -162,6 +162,9 @@ class gameFlags
         bool getInstancesCreated() const;  // retrieves the value of instancesCreated
         void setInstancesCreated(const bool &set);  // sets the value of instancesCreated
         
+        bool getStateChanged() const;  // retrieves the value of stateChanged
+        void setStateChanged(const bool &set);  // sets the value of stateChanged
+
     private:
     
         bool initialized;  // if true then the object has been initialized
@@ -195,7 +198,7 @@ class gameFlags
         bool basketballModelLoaded;  // stores whether basketball model has been loaded
         bool courtModelLoaded;  // stores whether court model has been loaded
         bool hoopModelLoaded;  // stores whether the hoop model has been loaded
-        bool modelsLoaded;  // stores whether all models have been loaded
+//        bool modelsLoaded;  // stores whether all models have been loaded
         bool basketballNodeCreated;  // stores whether basketball node has been created
         bool courtNodeCreated;  // stores whether court node has been created
         bool hoopNodeCreated;  // stores whether hoop node has been created
@@ -209,6 +212,8 @@ class gameFlags
         bool tipOffSetupComplete;  // Determines whether or not game Tip Off has been setup
         bool inputReceived;  // if true process input    
         bool instancesCreated;  // stores whether object instances have been created
+        bool stateChanged;  // Determines if the stateMachine needs to be updated
+
 };
 
 #endif

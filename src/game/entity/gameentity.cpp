@@ -452,23 +452,49 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
 //    SMData = tempSMData;
 //    exit(0);
     logMsg(func +" begin");
+    if (flag->getStateChanged())
+    {
 
+        for (auto SAIT : data->getStateAction())
+        {
+//        exit(0);
+            auto *saSMData(new gameSMData);
+
+            switch (SAIT)
+            {
+                case GCREATEINSTANCES:
+                break;
+                case GLOADMODELS:
+                    logMsg(func +" Models Not Loaded yet!");
+           
+                    // copies required objects to SMData
+                    saSMData->component = component;
+//            exit(0);
+                    saSMData->flag = flag;
+                    saSMData->render = render;
+
+                    stateMachine->pLoadModels(saSMData);
+                break;
+                case GCREATENODES:
+                break;
+                case GSETSTARTPOS:
+                break;
+                case GSETUPJUMPBALL:
+                break;
+                case GEXECJUMPBALL:
+                break;
+                case GINPUTRECEIVED:
+                break;
+            }
+        }
+    }
+    
     if (flag->getInstancesCreated())
     {
 //        exit(0);
-        if (!flag->getModelsLoaded())
+/*        if (!flag->getModelsLoaded())
         {
-            logMsg(func +" Models Not Loaded yet!");
-           
-            // copies required objects to SMData
-            auto *modelsSMData(new gameSMData);
-            modelsSMData->component = component;
-//            exit(0);
-            modelsSMData->flag = flag;
-            modelsSMData->render = render;
-
-            stateMachine->pLoadModels(modelsSMData);
-//            stateMachine->pCreateNodes(SMData);
+            //            stateMachine->pCreateNodes(SMData);
 
         }
         else
@@ -476,8 +502,9 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
             logMsg(func +" Models Already Loaded!");
             logMsg(func +" activeBasketballInstance.size() == " +convert->toString(activeBasketballInstance.size()));
  
-        }
-        if (flag->getModelsLoaded() && !flag->getNodesCreated())
+        }*/
+        
+/*        if (flag->getModelsLoaded() && !flag->getNodesCreated())
         {
             logMsg(func +" Nodes Not Created yet!");
             auto *nodesSMData(new gameSMData);
@@ -494,7 +521,7 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
         else
         {
             
-        }
+        }*/
 //    exit(0);
         if (flag->getNodesCreated() && !flag->getStartPositionsSet())
         {

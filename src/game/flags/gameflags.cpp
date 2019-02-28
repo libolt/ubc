@@ -47,7 +47,7 @@ gameFlags::gameFlags()  // constructor
     basketballModelLoaded = false;
     courtModelLoaded = false;
     hoopModelLoaded = false;
-    modelsLoaded = false;
+//    modelsLoaded = false;
     basketballNodeCreated = false;
     courtNodeCreated = false;
     hoopNodeCreated = false;
@@ -67,6 +67,7 @@ gameFlags::gameFlags()  // constructor
     finished = false;
     tipOffComplete = false;
     instancesCreated = false;
+    stateChanged = false;
     
 }
 
@@ -344,7 +345,7 @@ void gameFlags::setHoopModelLoaded(const bool &set)  // sets the value of hoopMo
     hoopModelLoaded = set;
 }
 
-bool gameFlags::getModelsLoaded() const  // retrieves the value of modelsLoaded
+/*bool gameFlags::getModelsLoaded() const  // retrieves the value of modelsLoaded
 {
     return (modelsLoaded);
 }
@@ -352,6 +353,7 @@ void gameFlags::setModelsLoaded(const bool &set)  // sets the value of modelsLoa
 {
     modelsLoaded = set;
 }
+*/
 
 bool gameFlags::getBasketballNodeCreated() const  // retrieves the value of basketballNodeCreated
 {
@@ -450,4 +452,13 @@ bool gameFlags::getInstancesCreated() const  // retrieves the value of instances
 void gameFlags::setInstancesCreated(const bool &set)  // sets the value of instancesCreated
 {
     instancesCreated = set;
+}
+
+bool gameFlags::getStateChanged() const  // retrieves the value of stateChanged
+{
+    return (stateChanged);
+}
+void gameFlags::setStateChanged(const bool &set)  // sets the value of stateChanged
+{
+    stateChanged = set;
 }

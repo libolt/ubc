@@ -452,6 +452,7 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
 //    SMData = tempSMData;
 //    exit(0);
     logMsg(func +" begin");
+    exit(0);
     if (flag->getStateChanged())
     {
 

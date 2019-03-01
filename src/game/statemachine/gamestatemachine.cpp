@@ -551,7 +551,7 @@ STATE_DEFINE(gameStateMachine, loadModels, gameSMData)
         logMsg(func +" Hoop models loaded!");
 //        exit(0);
     }
-/*    if (!data->flag->getModelsLoaded())
+    if (!data->flag->getModelsLoaded())
     {
         if (data->flag->getBasketballModelLoaded() && data->flag->getCourtModelLoaded() && data->flag->getHoopModelLoaded())
         {
@@ -567,10 +567,11 @@ STATE_DEFINE(gameStateMachine, loadModels, gameSMData)
     {
         
     }
-    */
+
     logMsg(func +" end");
 //    exit(0);
 }
+
 // sets the model object
 STATE_DEFINE(gameStateMachine, createNodes, gameSMData)
 {

@@ -47,7 +47,7 @@ gameFlags::gameFlags()  // constructor
     basketballModelLoaded = false;
     courtModelLoaded = false;
     hoopModelLoaded = false;
-//    modelsLoaded = false;
+    modelsLoaded = false;
     basketballNodeCreated = false;
     courtNodeCreated = false;
     hoopNodeCreated = false;
@@ -345,7 +345,7 @@ void gameFlags::setHoopModelLoaded(const bool &set)  // sets the value of hoopMo
     hoopModelLoaded = set;
 }
 
-/*bool gameFlags::getModelsLoaded() const  // retrieves the value of modelsLoaded
+bool gameFlags::getModelsLoaded() const  // retrieves the value of modelsLoaded
 {
     return (modelsLoaded);
 }
@@ -353,7 +353,7 @@ void gameFlags::setModelsLoaded(const bool &set)  // sets the value of modelsLoa
 {
     modelsLoaded = set;
 }
-*/
+
 
 bool gameFlags::getBasketballNodeCreated() const  // retrieves the value of basketballNodeCreated
 {

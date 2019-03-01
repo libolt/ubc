@@ -282,9 +282,9 @@ bool gameEntity::initializeStateMachine(const renderEngineSharedPtr &render)  //
         logMsg(func +" Objects already initialized!");
     }
     
-    SMData = tempSMData;
-    SMData->component = component;
-    SMData->flag = flag;
+//    SMData = tempSMData;
+//    SMData->component = component;
+//    SMData->flag = flag;
 //    SMData->node = getNode();
     
 //    component->getStateMachine()->setSpeed(SMData);
@@ -292,20 +292,14 @@ bool gameEntity::initializeStateMachine(const renderEngineSharedPtr &render)  //
     gameStateMachineSharedPtr tempSM(new gameStateMachine);
     stateMachine = tempSM;
     
-    if (!flag->getInstancesCreated())
-    {
-        stateMachine->pCreateInstances(SMData);
-        if (flag->getInstancesCreated())
-        {
-            logMsg(func +" Instances created!");
-            
-        }
-        else
-        {
-            logMsg(func +" Unable to Create Instances!");
-            
-        }
-    }
+    flag->setStateChanged(true);
+    std::vector<gameActions> gameAction;
+    gameAction.push_back(GCREATEINSTANCES);
+    data->setStateAction(gameAction);
+
+//    if (!flag->getInstancesCreated())
+//    {
+//    }
    
 //    exit(0);
     logMsg(func +" end");
@@ -452,11 +446,13 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
 //    SMData = tempSMData;
 //    exit(0);
     logMsg(func +" begin");
-    exit(0);
     if (flag->getStateChanged())
     {
-
-        for (auto SAIT : data->getStateAction())
+//        exit(0);
+        logMsg(func +" stateAction.size() == " +convert->toString(data->getStateAction().size()));
+//        exit(0);
+        std::vector<gameActions> stateAction = data->getStateAction();
+        for (auto SAIT : stateAction)
         {
 //        exit(0);
             auto *saSMData(new gameSMData);
@@ -464,17 +460,41 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
             switch (SAIT)
             {
                 case GCREATEINSTANCES:
+                    saSMData->component = component;
+                    saSMData->flag = flag;
+                    stateMachine->pCreateInstances(saSMData);
+                    if (flag->getInstancesCreated())
+                    {
+                        logMsg(func +" Instances created!");
+                    }
+                    else
+                    {
+                        logMsg(func +" Unable to Create Instances!");
+                        exit(0);
+                    }
+//                    SAIT = stateAction.erase(SAIT);
+                    stateAction.pop_back();
+                    stateAction.push_back(GLOADMODELS);
+//                    exit(0);
+                //    data->getStateAction().
                 break;
                 case GLOADMODELS:
-                    logMsg(func +" Models Not Loaded yet!");
-           
+                    logMsg(func +" Models Not Loaded yet!");        
                     // copies required objects to SMData
                     saSMData->component = component;
-//            exit(0);
                     saSMData->flag = flag;
                     saSMData->render = render;
-
                     stateMachine->pLoadModels(saSMData);
+                    if (flag->getModelsLoaded())
+                    {
+                        logMsg(func +" Models loaded!");
+                    }
+                    else
+                    {
+                        logMsg(func +" Unable to Load Models!");
+                        exit(0);
+                    }
+
                 break;
                 case GCREATENODES:
                 break;
@@ -488,6 +508,15 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
                 break;
             }
         }
+        logMsg(func +" stateAction.size() == " +convert->toString(stateAction.size()));
+        if (stateAction.size() == 0)
+        {
+            flag->setStateChanged(false);
+        }
+        else
+        {
+        }
+        data->setStateAction(stateAction);
     }
     
     if (flag->getInstancesCreated())

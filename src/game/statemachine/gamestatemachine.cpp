@@ -472,10 +472,15 @@ STATE_DEFINE(gameStateMachine, loadModels, gameSMData)
         basketballEntityMSharedPtr activeBasketballInstance;
         logMsg(func +" Loading basketball Model!");
 //        exit(0);
+        logMsg(func +" activeBasketballInstance.size() == " +convert->toString(data->component->getActiveBasketballInstance().size()));
+        exit(0);
         activeBasketballInstance = loadBasketball->loadModels(data->component->getActiveBasketballInstance(), data->render);  // Loads the basketball model
 //        exit(0);
+        
         if (!activeBasketballInstance.empty())
         {          
+            logMsg(func +" activeBasketballInstance NOT Empty!");
+            exit(0);
             data->flag->setBasketballModelLoaded(true);
             data->component->setActiveBasketballInstance(activeBasketballInstance);          
 //            return (true);
@@ -569,7 +574,7 @@ STATE_DEFINE(gameStateMachine, loadModels, gameSMData)
     }
 
     logMsg(func +" end");
-//    exit(0);
+    exit(0);
 }
 
 // sets the model object

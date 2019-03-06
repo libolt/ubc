@@ -472,6 +472,9 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
                         logMsg(func +" Unable to Create Instances!");
                         exit(0);
                     }
+                    logMsg(func +" GCREATEINSTANCES activeBasketballInstance.size() == " +convert->toString(component->getActiveBasketballInstance().size()));
+//                    exit(0);
+
 //                    SAIT = stateAction.erase(SAIT);
                     stateAction.pop_back();
                     stateAction.push_back(GLOADMODELS);
@@ -484,6 +487,8 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
                     saSMData->component = component;
                     saSMData->flag = flag;
                     saSMData->render = render;
+                    logMsg(func +" GLOADMODELS activeBasketballInstance.size() == " +convert->toString(component->getActiveBasketballInstance().size()));
+                    exit(0);
                     stateMachine->pLoadModels(saSMData);
                     if (flag->getModelsLoaded())
                     {

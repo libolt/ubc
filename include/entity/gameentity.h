@@ -96,7 +96,10 @@ class gameEntity //: public state, public gameStateShared, public std::enable_sh
     
         bool updateStateMachine(playerActions actionType, gameSMData *SMData);  // updates state machine with external input
 
+        std::vector<gameActions> updateActions(std::vector<gameActions> stateAction);  // updates stateAction based on flags
+        
         void updateDirectionsAndMovements();  // updates the movement and directions of game world objecxts
+       
         bool assignHoopToTeams();  // assigns which hoop belongs to each team
     
         bool setupActiveTeamInstances();  // sets up the active team instances

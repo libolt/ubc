@@ -439,7 +439,8 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
     timing timer; 
     Ogre::Vector3 playerPos;
     basketballEntityMSharedPtr activeBasketballInstance = component->getActiveBasketballInstance();
-    
+    std::vector<gameActions> stateAction = data->getStateAction();
+
 //    teamEntityMSharedPtr activeTeamInstance = getActiveTeamInstance();
     std::string func = "gameEntity::updateState()";
 
@@ -451,7 +452,7 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
 //        exit(0);
         logMsg(func +" stateAction.size() == " +convert->toString(data->getStateAction().size()));
 //        exit(0);
-        std::vector<gameActions> stateAction = data->getStateAction();
+//        stateAction.push_back(GLOADMODELS);
         for (auto SAIT : stateAction)
         {
 //        exit(0);
@@ -460,24 +461,26 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
             switch (SAIT)
             {
                 case GCREATEINSTANCES:
-                    saSMData->component = component;
-                    saSMData->flag = flag;
-                    stateMachine->pCreateInstances(saSMData);
                     if (flag->getInstancesCreated())
                     {
-                        logMsg(func +" Instances created!");
+                        logMsg(func +" Instances Already Created!");
                     }
                     else
                     {
-                        logMsg(func +" Unable to Create Instances!");
-                        exit(0);
+                        logMsg(func +" Creating Instances!");
+                        saSMData->component = component;
+                        saSMData->flag = flag;
+                        stateMachine->pCreateInstances(saSMData);               
+//                        stateAction.pop_back();
+//                        stateAction.push_back(GLOADMODELS);
+
+//                        exit(0);
                     }
+                         
                     logMsg(func +" GCREATEINSTANCES activeBasketballInstance.size() == " +convert->toString(component->getActiveBasketballInstance().size()));
 //                    exit(0);
 
 //                    SAIT = stateAction.erase(SAIT);
-                    stateAction.pop_back();
-                    stateAction.push_back(GLOADMODELS);
 //                    exit(0);
                 //    data->getStateAction().
                 break;
@@ -486,10 +489,10 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
                     // copies required objects to SMData
                     saSMData->component = component;
                     saSMData->flag = flag;
-                    saSMData->render = render;
+                    saSMData->render = render;         
                     logMsg(func +" GLOADMODELS activeBasketballInstance.size() == " +convert->toString(component->getActiveBasketballInstance().size()));
                     exit(0);
-                    stateMachine->pLoadModels(saSMData);
+/*                    stateMachine->pLoadModels(saSMData);
                     if (flag->getModelsLoaded())
                     {
                         logMsg(func +" Models loaded!");
@@ -499,7 +502,7 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
                         logMsg(func +" Unable to Load Models!");
                         exit(0);
                     }
-
+*/
                 break;
                 case GCREATENODES:
                 break;
@@ -521,9 +524,14 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
         else
         {
         }
-        data->setStateAction(stateAction);
+                
     }
+    logMsg(func +" Post stateAction activeBasketballInstance.size() == " +convert->toString(component->getActiveBasketballInstance().size()));
+//    exit(0);
     
+    stateAction = updateActions(stateAction);
+    data->setStateAction(stateAction);
+
     if (flag->getInstancesCreated())
     {
 //        exit(0);
@@ -558,7 +566,7 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
             
         }*/
 //    exit(0);
-        if (flag->getNodesCreated() && !flag->getStartPositionsSet())
+/*        if (flag->getNodesCreated() && !flag->getStartPositionsSet())
         {
             logMsg(func +" Start Positions Not Set yet!");
             auto *startPosSMData(new gameSMData);
@@ -627,6 +635,7 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
         {
             logMsg(func +" Jump Ball ExecutionComplete!");
         }
+        */
     }
     
     if (getFlag()->getInputReceived())
@@ -786,6 +795,38 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
     logMsg(func +" end");
 
     return true;
+}
+
+std::vector<gameActions> gameEntity::updateActions(std::vector<gameActions> stateAction)  // updates stateAction based on flags
+{
+    
+    if (flag->getInstancesCreated() !flag->getModelsLoaded())
+    {
+        stateAction.push_back(GLOADMODELS);
+    }
+    if (flag->getModelsLoaded() && !flag->getNodesCreated())
+    {
+        stateAction.push_back(GCREATENODES);
+    }
+    if (flag->getNodesCreated() && !flag->getStartPositionsSet())
+    {
+        stateAction.push_back(GSETSTARTPOS);
+    }
+    if (flag->getStartPositionsSet() && !flag->getJumpBallSetup())  // calls tip off execution
+    {
+        stateAction.push_back(GSETUPJUMPBALL);
+    }
+    if (flag->getJumpBallSetup() && !flag->getTipOffComplete())  // calls tip off execution
+    {
+        stateAction.push_back(GEXECJUMPBALL);
+    }
+    
+    if (!stateAction.empty())
+    {
+             flag->setStateChanged(true);
+    }
+    
+    return (action);
 }
 
 bool gameEntity::updateActiveTeamInstances(const renderEngineSharedPtr &render)  // updates all active team instances

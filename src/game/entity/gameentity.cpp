@@ -447,6 +447,7 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
 //    SMData = tempSMData;
 //    exit(0);
     logMsg(func +" begin");
+    
     if (flag->getStateChanged())
     {
 //        exit(0);
@@ -517,6 +518,8 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
             }
         }
         logMsg(func +" stateAction.size() == " +convert->toString(stateAction.size()));
+//        exit(0);
+        
         if (stateAction.size() == 0)
         {
             flag->setStateChanged(false);
@@ -526,6 +529,7 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
         }
                 
     }
+    stateAction.clear();
     logMsg(func +" Post stateAction activeBasketballInstance.size() == " +convert->toString(component->getActiveBasketballInstance().size()));
 //    exit(0);
     
@@ -799,9 +803,16 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
 
 std::vector<gameActions> gameEntity::updateActions(std::vector<gameActions> stateAction)  // updates stateAction based on flags
 {
-    
-    if (flag->getInstancesCreated() !flag->getModelsLoaded())
+    conversionSharedPtr convert;
+
+    std::string func = "gameEntity::updateActions()";
+
+    logMsg(func +" begin");
+
+    if (flag->getInstancesCreated() && !flag->getModelsLoaded())
     {
+        logMsg(func +" GLOADMODELS");
+//        exit(0);
         stateAction.push_back(GLOADMODELS);
     }
     if (flag->getModelsLoaded() && !flag->getNodesCreated())
@@ -821,18 +832,23 @@ std::vector<gameActions> gameEntity::updateActions(std::vector<gameActions> stat
         stateAction.push_back(GEXECJUMPBALL);
     }
     
+    logMsg(func +" stateAction.size() == " +convert->toString(stateAction.size()));
+//    exit(0);
+    
     if (!stateAction.empty())
     {
-             flag->setStateChanged(true);
+        flag->setStateChanged(true);
+        
     }
     
-    return (action);
+    logMsg(func +" end");
+    return (stateAction);
 }
 
 bool gameEntity::updateActiveTeamInstances(const renderEngineSharedPtr &render)  // updates all active team instances
 {
     teamEntityMSharedPtr activeTeamInstance = component->getActiveTeamInstance();
-    conversionSharedPtr convert ;
+    conversionSharedPtr convert;
     gameEntitySharedPtr gameInstance;
     std::string func = "gameEntity::updateActiveTeamInstances()";
 

@@ -5,4 +5,4 @@
 - Implement collision detection (ODE?).
 - Implement shot clock and game clock.
 - Implement basic statistics support.
-- Implement basic audio support via OgreAL
+- Implement basic audio support

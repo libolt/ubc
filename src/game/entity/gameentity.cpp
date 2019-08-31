@@ -447,7 +447,8 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
 //    SMData = tempSMData;
 //    exit(0);
     logMsg(func +" begin");
-    
+    logMsg(func +" activeBasketballInstance.size() == " +convert->toString(component->getActiveBasketballInstance().size()));
+
     if (flag->getStateChanged())
     {
 //        exit(0);
@@ -490,9 +491,10 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
                     // copies required objects to SMData
                     saSMData->component = component;
                     saSMData->flag = flag;
-                    saSMData->render = render;         
+                    saSMData->render = render;
+
                     logMsg(func +" GLOADMODELS activeBasketballInstance.size() == " +convert->toString(component->getActiveBasketballInstance().size()));
-                    exit(0);
+//                    exit(0);
 /*                    stateMachine->pLoadModels(saSMData);
                     if (flag->getModelsLoaded())
                     {
@@ -538,6 +540,8 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
 
     if (flag->getInstancesCreated())
     {
+        logMsg(func +" instancesCreated activeBasketballInstance.size() == " +convert->toString(component->getActiveBasketballInstance().size()));
+
 //        exit(0);
 /*        if (!flag->getModelsLoaded())
         {
@@ -651,6 +655,8 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
         }
 //        exit(0);
     }
+    logMsg(func +" Post IIGWQ activeBasketballInstance.size() == " +convert->toString(component->getActiveBasketballInstance().size()));
+
 //    exit(0);
 //    logMsg("Updating gameEntity Logic");
 
@@ -662,12 +668,15 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
     //sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
 //    physicsEngine physEngine;
     
+    activeBasketballInstance = component->getActiveBasketballInstance();
+
+    logMsg(func +" Pre ABIIT activeBasketballInstance.size() == " +convert->toString(activeBasketballInstance.size()));
+
     for (auto ABIIT : activeBasketballInstance)
     {
         ABIIT.second->updateStateMachine(component, data, flag);
         ABIIT.second->getComponent()->setPlayer(5);
     }
-  
     component->setActiveBasketballInstance(activeBasketballInstance);
     if (data->getGameType() == SINGLE)
     {
@@ -693,8 +702,9 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
         {
             
         }
- */     
+
         logMsg(func +" network events processed");
+*/
 
         logMsg(func +" getActiveTeamInstance().size() == " +convert->toString(component->getActiveTeamInstance().size()));
 
@@ -795,6 +805,8 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
 
 //  logMsg("gameEntity logic updated");
 //    exit(0);
+
+    logMsg(func +" endFunc ABIIT activeBasketballInstance.size() == " +convert->toString(activeBasketballInstance.size()));
 
     logMsg(func +" end");
 

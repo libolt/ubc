@@ -275,15 +275,25 @@ Ogre::Vector3 basketballEntity::calculatePositionChange()
 
 void basketballEntity::updateStateMachine(const gameComponentsSharedPtr &gameComponent, const gameDataSharedPtr &gameDta, const gameFlagsSharedPtr &gameFlag)  // updates the state of the basketball
 {
+    conversionSharedPtr convert;
     bool modelNeedsLoaded = flag->getModelNeedsLoaded();
     basketballSMData *udSMData(new basketballSMData);
     basketballSMData *umSMData(new basketballSMData);
     basketballSMData *upSMData(new basketballSMData);
 
-    std::string func = "basketballState::updateState()";
+    std::string func = "basketballEntity::updateStateMachine()";
     
-    logMsg(func + " beginning");
-    exit(0);
+    logMsg(func + " begin");
+
+    if (objectsInitialized)
+    {
+        if (component != nullptr && component->getNode() != nullptr)
+        {
+            logMsg(func +" activeBasketballInstance Pos = " +convert->toString(component->getNode()->getPosition()));
+            exit(0);
+        }
+    }
+//    exit(0);
 /*    if (entity->getModelNeedsLoaded())
     {
         
@@ -297,6 +307,8 @@ void basketballEntity::updateStateMachine(const gameComponentsSharedPtr &gameCom
 */
     if (flag->getStateChanged())
     {
+        logMsg(func +" State Changed!");
+        exit(0);
         switch (action)
         {
             case BSETMODEL:
@@ -314,6 +326,7 @@ void basketballEntity::updateStateMachine(const gameComponentsSharedPtr &gameCom
 
 //            flag->setDirectChange(false);
                 logMsg(func + " direction updated!");
+                exit(0);
             break;
             case BCHANGEPOS:
                 logMsg(func + " updating position!");
@@ -322,6 +335,7 @@ void basketballEntity::updateStateMachine(const gameComponentsSharedPtr &gameCom
                 upSMData->node = component->getNode();
                 stateMachine->pUpdatePosition(upSMData);
                 logMsg(func + " position updated!");
+                exit(0);
             break;
             case BMOVE:
                 logMsg(func + " updating movement!");
@@ -333,6 +347,7 @@ void basketballEntity::updateStateMachine(const gameComponentsSharedPtr &gameCom
                 umSMData->node = component->getNode();
                 stateMachine->pUpdateMovement(umSMData);
                 logMsg(func + " movement updated!");
+                exit(0);
             break;
 
         }

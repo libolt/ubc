@@ -349,7 +349,7 @@ basketballEntityMSharedPtr loadBasketballs::loadModels(basketballEntityMSharedPt
     for (auto ABIIT : activeBasketballInstance)
     {
         logMsg(func +" activeBasketballInstance == " +convert->toString(ABIIT.first));
-        exit(0);
+//        exit(0);
         //FIXME! This should be done in a cleaner way!
         ABIIT.second->getComponent()->setModelFileName(ABIIT.second->getData()->getModelFileName());
 
@@ -403,7 +403,7 @@ basketballEntityMSharedPtr loadBasketballs::loadModels(basketballEntityMSharedPt
     }
     
     logMsg(func +" activeBasketballInstance.size() == " +convert->toString(activeBasketballInstance.size()));
-    exit(0);
+//    exit(0);
 //    setActiveBasketballInstance(activeBasketballInstance);
     logMsg(func +" still alive?");
 //    setActiveBasketballInstancesCreated(activeBasketballInstancesCreated);

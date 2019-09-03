@@ -273,7 +273,7 @@ Ogre::Vector3 basketballEntity::calculatePositionChange()
     return(changeInPosition);
 }
 
-void basketballEntity::updateStateMachine(const gameComponentsSharedPtr &gameComponent, const gameDataSharedPtr &gameDta, const gameFlagsSharedPtr &gameFlag)  // updates the state of the basketball
+void basketballEntity::updateStateMachine(const gameComponentsSharedPtr &gameComponent, const gameDataSharedPtr &gameDta, const gameFlagsSharedPtr &gameFlag, const renderEngineSharedPtr &render)  // updates the state of the basketball
 {
     conversionSharedPtr convert;
     bool modelNeedsLoaded = flag->getModelNeedsLoaded();
@@ -290,7 +290,7 @@ void basketballEntity::updateStateMachine(const gameComponentsSharedPtr &gameCom
         if (component != nullptr && component->getNode() != nullptr)
         {
             logMsg(func +" activeBasketballInstance Pos = " +convert->toString(component->getNode()->getPosition()));
-            exit(0);
+//            exit(0);
         }
     }
 //    exit(0);
@@ -308,12 +308,29 @@ void basketballEntity::updateStateMachine(const gameComponentsSharedPtr &gameCom
     if (flag->getStateChanged())
     {
         logMsg(func +" State Changed!");
-        exit(0);
+//        exit(0);
         switch (action)
         {
-            case BSETMODEL:
+            case BLOADMODEL:
+                logMsg(func +" BLOADMODEL");
+                udSMData->component = component;
+                udSMData->flag = flag;
+                udSMData->gComponent = gameComponent;
+                udSMData->gData = gameDta;
+                udSMData->gFlag = gameFlag;
+                udSMData->render = render;
+                stateMachine->pLoadModel(udSMData);
+                exit(0);
             break;
-            case BSETNODE:
+            case BCREATENODE:
+            logMsg(func +" BCREATENODE");
+            udSMData->component = component;
+            udSMData->flag = flag;
+            udSMData->gComponent = gameComponent;
+            udSMData->gData = gameDta;
+            udSMData->gFlag = gameFlag;
+            udSMData->render = render;
+            stateMachine->pCreateNode(udSMData);
             break;
             case BCHANGEDIRECTION:
                 logMsg(func +" updating direction!");

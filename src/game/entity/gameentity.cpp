@@ -505,9 +505,27 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
                         logMsg(func +" Unable to Load Models!");
                         exit(0);
                     }
-
                 break;
                 case GCREATENODES:
+                logMsg(func +" GCREATENODES");
+                // copies required objects to SMData
+                saSMData->component = component;
+                saSMData->flag = flag;
+                saSMData->render = render;
+
+                logMsg(func +" GCREATENODES activeBasketballInstance.size() == " +convert->toString(component->getActiveBasketballInstance().size()));
+//                    exit(0);
+                stateMachine->pCreateNodes(saSMData);
+                if (flag->getNodesCreated())
+                {
+                    logMsg(func +" Nodes created!");
+                }
+                else
+                {
+                    logMsg(func +" Unable to Create Nodes!");
+                    exit(0);
+                }
+//                exit(0);
                 break;
                 case GSETSTARTPOS:
                 break;
@@ -669,7 +687,7 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
 
     for (auto ABIIT : activeBasketballInstance)
     {
-        ABIIT.second->updateStateMachine(component, data, flag);
+        ABIIT.second->updateStateMachine(component, data, flag, render);
         ABIIT.second->getComponent()->setPlayer(5);
     }
     component->setActiveBasketballInstance(activeBasketballInstance);

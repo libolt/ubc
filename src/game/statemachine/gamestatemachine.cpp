@@ -480,7 +480,7 @@ STATE_DEFINE(gameStateMachine, loadModels, gameSMData)
         if (!activeBasketballInstance.empty())
         {          
             logMsg(func +" activeBasketballInstance NOT Empty!");
-            exit(0);
+//            exit(0);
             data->flag->setBasketballModelLoaded(true);
             data->component->setActiveBasketballInstance(activeBasketballInstance);          
 //            return (true);
@@ -574,7 +574,7 @@ STATE_DEFINE(gameStateMachine, loadModels, gameSMData)
     }
 
     logMsg(func +" end");
-    exit(0);
+//    exit(0);
 }
 
 // sets the model object
@@ -590,25 +590,14 @@ STATE_DEFINE(gameStateMachine, createNodes, gameSMData)
     std:: string func = "gameStateMachine::createNodes";
 
     logMsg(func +" begin");
+  //  exit(0);
     if (!data->flag->getBasketballNodeCreated())
     {
         for (auto ABIIT : data->component->getActiveBasketballInstance())  // loop through active basketball instances
         {
-            activeModel = ABIIT.second->getComponent()->getModel();
-            activeEntityName = ABIIT.second->getComponent()->getName();
-            activeNodeNum = convert->toString(ABIIT.first);
-            activeNodeName = ABIIT.second->getComponent()->getNodeName();
-            if (activeNodeName.empty())
-            {
-                activeNodeName = activeEntityName + activeNodeNum;
-                ABIIT.second->getComponent()->setNodeName(activeNodeName);
-            }
-            else
-            {
-                
-            }
-            activeNode = data->render->createNode(activeModel, activeNodeName);  // creates node
-            ABIIT.second->getComponent()->setNode(activeNode);  // saves node to current instance
+            ABIIT.second->getFlag()->setStateChanged(true);
+            ABIIT.second->setAction(BCREATENODE);
+//            ABIIT.second->updateStateMachine(data->component, data->gData,data->flag,data->render);
         }
         data->flag->setBasketballNodeCreated(true);
     }

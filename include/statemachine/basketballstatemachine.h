@@ -38,6 +38,7 @@ public:
 
     OgreEntitySharedPtr model;  // stores 3d model
     OgreSceneNodeSharedPtr node;  // stores node 3d model is attached to
+    renderEngineSharedPtr render; // stores copy of render
 
 };
 
@@ -49,6 +50,8 @@ public:
     // External events taken by this state machine
     void setSpeed(basketballSMData *data);
     void pInitialize(basketballSMData *data);
+    void pLoadModel(basketballSMData *data);
+    void pCreateNode(basketballSMData *data);
     void pSetupPhysics(basketballSMData *data);
     void pUpdatePosition(basketballSMData *data);
     void pUpdateMovement(basketballSMData *data);
@@ -63,6 +66,8 @@ private:
     enum States
     {
         ST_INITIALIZE,
+        ST_LOAD_MODEL,
+        ST_CREATE_NODE,
         ST_SETUP_PHYSICS, 
         ST_STOP_MOVEMENT,
         ST_IDLE, 
@@ -74,19 +79,23 @@ private:
     };
 
     // Define the state machine state functions with event data type
-    STATE_DECLARE(basketballStateMachine,    Initialize,     basketballSMData)
-    STATE_DECLARE(basketballStateMachine,    SetupPhysics,   basketballSMData)
-    STATE_DECLARE(basketballStateMachine,    StopMovement,   noEventData)
-    STATE_DECLARE(basketballStateMachine,    Idle,           noEventData)
-    STATE_DECLARE(basketballStateMachine,    ChangeSpeed,    basketballSMData)
-    STATE_DECLARE(basketballStateMachine,    UpdatePosition, basketballSMData)
-    STATE_DECLARE(basketballStateMachine,    UpdateMovement, basketballSMData)
+    STATE_DECLARE(basketballStateMachine,    Initialize,      basketballSMData)
+    STATE_DECLARE(basketballStateMachine,    LoadModel,       basketballSMData)
+    STATE_DECLARE(basketballStateMachine,    CreateNode,      basketballSMData)
+    STATE_DECLARE(basketballStateMachine,    SetupPhysics,    basketballSMData)
+    STATE_DECLARE(basketballStateMachine,    StopMovement,    noEventData)
+    STATE_DECLARE(basketballStateMachine,    Idle,            noEventData)
+    STATE_DECLARE(basketballStateMachine,    ChangeSpeed,     basketballSMData)
+    STATE_DECLARE(basketballStateMachine,    UpdatePosition,  basketballSMData)
+    STATE_DECLARE(basketballStateMachine,    UpdateMovement,  basketballSMData)
     STATE_DECLARE(basketballStateMachine,    UpdateDirection, basketballSMData)
 
     // State map to define state object order. Each state map entry defines a
     // state object.
     BEGIN_STATE_MAP
         STATE_MAP_ENTRY(&Initialize)
+        STATE_MAP_ENTRY(&LoadModel)
+        STATE_MAP_ENTRY(&CreateNode)
         STATE_MAP_ENTRY(&SetupPhysics)
         STATE_MAP_ENTRY(&StopMovement)
         STATE_MAP_ENTRY(&Idle)

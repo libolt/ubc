@@ -24,6 +24,7 @@
 #include "components/gamecomponents.h"
 #include "data/basketballdata.h"
 #include "data/gamedata.h"
+#include "engine/renderengine.h"
 #include "flags/basketballflags.h"
 #include "flags/gameflags.h"
 #include "physics/basketballphysics.h"
@@ -42,6 +43,8 @@ void basketballStateMachine::pInitialize(basketballSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_INITIALIZE
+        TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_LOAD_MODEL
+        TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_CREATE_NODE
         TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_IDLE
@@ -52,11 +55,47 @@ void basketballStateMachine::pInitialize(basketballSMData *data)
     END_TRANSITION_MAP(data)
 }
 
+// Load Model external event
+void basketballStateMachine::pLoadModel(basketballSMData *data)
+{
+    BEGIN_TRANSITION_MAP                                    // - Current State -
+        TRANSITION_MAP_ENTRY (ST_LOAD_MODEL)                // ST_INITIALIZE
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_LOAD_MODEL
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_CREATE_NODE
+        TRANSITION_MAP_ENTRY (ST_LOAD_MODEL)                // ST_SETUP_PHYSICS
+        TRANSITION_MAP_ENTRY (ST_LOAD_MODEL)                // ST_SETUP_PHYSICS
+        TRANSITION_MAP_ENTRY (ST_LOAD_MODEL)                // ST_IDLE
+        TRANSITION_MAP_ENTRY (ST_LOAD_MODEL)                // ST_CHANGE_SPEED
+        TRANSITION_MAP_ENTRY (ST_LOAD_MODEL)                // ST_UPDATE_POSITION
+        TRANSITION_MAP_ENTRY (ST_LOAD_MODEL)                // ST_UPDATE_MOVEMENT
+        TRANSITION_MAP_ENTRY (ST_LOAD_MODEL)                // ST_UPDATE_DIRECTION
+    END_TRANSITION_MAP(data)
+}
+
+// Create Node state machine external event
+void basketballStateMachine::pCreateNode(basketballSMData *data)
+{
+    BEGIN_TRANSITION_MAP                                    // - Current State -
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_INITIALIZE
+        TRANSITION_MAP_ENTRY (ST_CREATE_NODE)                // ST_LOAD_MODEL
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CREATE_NODE
+        TRANSITION_MAP_ENTRY (ST_CREATE_NODE)                // ST_SETUP_PHYSICS
+        TRANSITION_MAP_ENTRY (ST_CREATE_NODE)                // ST_SETUP_PHYSICS
+        TRANSITION_MAP_ENTRY (ST_CREATE_NODE)                // ST_IDLE
+        TRANSITION_MAP_ENTRY (ST_CREATE_NODE)                // ST_CHANGE_SPEED
+        TRANSITION_MAP_ENTRY (ST_CREATE_NODE)                // ST_UPDATE_POSITION
+        TRANSITION_MAP_ENTRY (ST_CREATE_NODE)                // ST_UPDATE_MOVEMENT
+        TRANSITION_MAP_ENTRY (ST_CREATE_NODE)                // ST_UPDATE_DIRECTION
+    END_TRANSITION_MAP(data)
+}
+
 // set motor speed external event
 void basketballStateMachine::setSpeed(basketballSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_CHANGE_SPEED)              // ST_INITIALIZE
+        TRANSITION_MAP_ENTRY (ST_CHANGE_SPEED)              // ST_LOAD_MODEL
+        TRANSITION_MAP_ENTRY (ST_CHANGE_SPEED)              // ST_CREATE_NODE
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (ST_CHANGE_SPEED)              // ST_IDLE
@@ -72,6 +111,8 @@ void basketballStateMachine::halt()
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_INITIALIZE
+        TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_LOAD_MODEL
+        TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_CREATE_NODE
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_IDLE
@@ -86,7 +127,9 @@ void basketballStateMachine::halt()
 void basketballStateMachine::pUpdatePosition(basketballSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (ST_UPDATE_POSITION)                     // ST_INITIALIZE
+        TRANSITION_MAP_ENTRY (ST_UPDATE_POSITION)                // ST_INITIALIZE
+        TRANSITION_MAP_ENTRY (ST_UPDATE_POSITION)                // ST_LOAD_MODEL
+        TRANSITION_MAP_ENTRY (ST_UPDATE_POSITION)                // ST_CREATE_NODE
         TRANSITION_MAP_ENTRY (ST_UPDATE_POSITION)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (ST_UPDATE_POSITION)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (ST_UPDATE_POSITION)                // ST_IDLE
@@ -101,7 +144,9 @@ void basketballStateMachine::pUpdatePosition(basketballSMData *data)
 void basketballStateMachine::pUpdateMovement(basketballSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                     // ST_INITIALIZE      
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                     // ST_INITIALIZE
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                     // ST_LOAD_MODEL
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                     // ST_CREATE_NODE
         TRANSITION_MAP_ENTRY (ST_UPDATE_MOVEMENT)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (ST_UPDATE_MOVEMENT)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (ST_UPDATE_MOVEMENT)                // ST_IDLE
@@ -116,7 +161,9 @@ void basketballStateMachine::pUpdateMovement(basketballSMData *data)
 void basketballStateMachine::pUpdateDirection(basketballSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                      // ST_INITIALIZE       
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                      // ST_INITIALIZE
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                      // ST_LOAD_MODEL
+        TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                      // ST_CREATE_NODE
         TRANSITION_MAP_ENTRY (ST_UPDATE_DIRECTION)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (ST_UPDATE_DIRECTION)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (ST_UPDATE_DIRECTION)                // ST_IDLE
@@ -134,6 +181,7 @@ STATE_DEFINE(basketballStateMachine, Initialize, basketballSMData)
 
     logMsg(func +" begin");
 //    exit(0);
+
     basketballSMData *tempSMData(new basketballSMData);
 
     basketballDataSharedPtr tempData(new basketballData);
@@ -164,6 +212,56 @@ STATE_DEFINE(basketballStateMachine, Initialize, basketballSMData)
             exit(0);
         }
     }*/
+
+    logMsg(func +" end");
+
+}
+
+
+// Initialize the state machine
+STATE_DEFINE(basketballStateMachine, LoadModel, basketballSMData)
+{
+    conversionSharedPtr convert;
+
+
+    std::string func = "basketballStateMachine::LoadModel()";
+
+    logMsg(func +" begin");
+
+
+    logMsg(func +" end");
+}
+
+// Initialize the state machine
+STATE_DEFINE(basketballStateMachine, CreateNode, basketballSMData)
+{
+    conversionSharedPtr convert;
+
+    OgreEntitySharedPtr activeModel;
+    OgreSceneNodeSharedPtr activeNode;
+    std::string activeEntityName;
+    std::string activeNodeNum;
+    std::string activeNodeName;
+
+    std::string func = "basketballStateMachine::CreateNode()";
+
+    logMsg(func +" begin");
+
+    activeModel = data->component->getModel();
+    activeEntityName = data->component->getName();
+    activeNodeNum = convert->toString(data->component->getNumber());
+    activeNodeName = data->component->getNodeName();
+    if (activeNodeName.empty())
+    {
+        activeNodeName = activeEntityName + activeNodeNum;
+        data->component->setNodeName(activeNodeName);
+    }
+    else
+    {
+
+    }
+    activeNode = data->render->createNode(activeModel, activeNodeName);  // creates node
+    data->component->setNode(activeNode);  // saves node to current instance
 
     logMsg(func +" end");
 

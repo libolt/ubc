@@ -61,6 +61,15 @@ void courtEntity::setFlag(const courtFlagsSharedPtr &set)  // sets the value of 
     flag = set;
 }
 
+courtActions courtEntity::getAction() const  // retrieves the value of action
+{
+    return (action);
+}
+void courtEntity::setAction(const courtActions &set)  // sets the vlue of action
+{
+    action = set;
+}
+
 bool courtEntity::initializeObjects()  // initializes the basketball objects
 {
     courtComponentsSharedPtr tempComponent(new courtComponents);
@@ -113,6 +122,71 @@ bool courtEntity::initializeStateMachine()  // initializes the court entity obje
 
     return (true);
 }
+
+bool courtEntity::updateStateMachine(renderEngineSharedPtr render)  // updates the stateMahine object
+{
+
+    conversionSharedPtr convert;
+    bool modelNeedsLoaded = flag->getModelNeedsLoaded();
+    courtSMData *udSMData(new courtSMData);
+    courtSMData *umSMData(new courtSMData);
+    courtSMData *upSMData(new courtSMData);
+
+    std::string func = "courtEntity::updateStateMachine()";
+
+    logMsg(func + " begin");
+
+    if (objectsInitialized)
+    {
+        if (component != nullptr && component->getNode() != nullptr)
+        {
+//            logMsg(func +" activeBasketballInstance Pos = " +convert->toString(component->getNode()->getPosition()));
+//            exit(0);
+        }
+    }
+//    exit(0);
+/*    if (entity->getModelNeedsLoaded())
+    {
+
+        if (entity->loadModel())
+        {
+            entity->setModelNeedsLoaded(false);
+            entity->setModelLoaded(true);
+
+        }
+    }
+*/
+//    exit(0);
+    if (flag->getStateChanged())
+    {
+        logMsg(func +" State Changed!");
+//        exit(0);
+        switch (action)
+        {
+            case CLOADMODEL:
+                logMsg(func +" CLOADMODEL");
+                udSMData->cData = data;
+                udSMData->component = component;
+                udSMData->flag = flag;
+                udSMData->render = render;
+                stateMachine->pLoadModel(udSMData);
+//                exit(0);
+            break;
+            case CCREATENODE:
+                logMsg(func +" CCREATENODE");
+                udSMData->component = component;
+                udSMData->flag = flag;
+                udSMData->render = render;
+                stateMachine->pCreateNode(udSMData);
+            break;
+        }
+    }
+
+    logMsg(func +" end");
+
+    return (true);
+}
+
 
 bool courtEntity::setupPhysicsObject()  // sets up the physics object
 {

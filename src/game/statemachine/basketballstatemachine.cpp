@@ -27,6 +27,7 @@
 #include "engine/renderengine.h"
 #include "flags/basketballflags.h"
 #include "flags/gameflags.h"
+#include "load/load.h"
 #include "physics/basketballphysics.h"
 #include "utilities/comparison.h"
 #include "utilities/conversion.h"
@@ -223,13 +224,53 @@ STATE_DEFINE(basketballStateMachine, LoadModel, basketballSMData)
 {
     conversionSharedPtr convert;
 
+    basketballComponentsSharedPtr component = data->component;
+    basketballDataSharedPtr bData = data->bData;
+    basketballFlagsSharedPtr flag = data->flag;
+    OgreEntitySharedPtr model;  // stores the model returned by loadModel() function
+    loaderSharedPtr load(new loader);
+
+    basketballSMData *tempSMData = new basketballSMData;
 
     std::string func = "basketballStateMachine::LoadModel()";
 
     logMsg(func +" begin");
 
+    component->setModelFileName(bData->getModelFileName());
+
+    if (component->getName().empty())  // checks if entityName has been set
+    {
+        std::string name = bData->getName();
+        component->setName(name);
+    }
+    logMsg(func +" entityName == " +component->getName());
+//        exit(0);
+    if (component->getNodeName().empty())  // checks if entityNodeName has been set
+    {
+        std::string nodeName = bData->getName() +"node";
+        component->setNodeName(nodeName);
+    }
+    logMsg(func +" basketball name == " +bData->getName());
+    logMsg(func +" basketball node name == " +component->getNodeName());
+//        exit(0);
+    logMsg(func +" loading model == " +component->getModelFileName());
+    std::string modelFileName = component->getModelFileName();
+    std::string entityName = component->getName();
+    std::string entityNodeName = component->getNodeName();
+
+    model = load->loadModelFile(modelFileName, entityName, data->render);
+    flag->setModelLoaded(true);
+    component->setModel(model);
+
+    tempSMData->component = component;
+    tempSMData->bData = bData;
+    tempSMData->flag = flag;
+    tempSMData->render = data->render;
+
+    data = tempSMData;
 
     logMsg(func +" end");
+
 }
 
 // Initialize the state machine

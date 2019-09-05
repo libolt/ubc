@@ -439,6 +439,8 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
     timing timer; 
     Ogre::Vector3 playerPos;
     basketballEntityMSharedPtr activeBasketballInstance = component->getActiveBasketballInstance();
+    courtEntityMSharedPtr activeCourtInstance = component->getActiveCourtInstance();
+
     std::vector<gameActions> stateAction = data->getStateAction();
 
 //    teamEntityMSharedPtr activeTeamInstance = getActiveTeamInstance();
@@ -503,7 +505,7 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
                     else
                     {
                         logMsg(func +" Unable to Load Models!");
-                        exit(0);
+//                        exit(0);
                     }
                 break;
                 case GCREATENODES:
@@ -682,7 +684,8 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
 //    networkEngineSharedPtr network = networkEngine::Instance();
     //sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
 //    physicsEngine physEngine;
-    
+
+    // update Active Basketball Instances stateMachines
     activeBasketballInstance = component->getActiveBasketballInstance();
 
     for (auto ABIIT : activeBasketballInstance)
@@ -691,6 +694,21 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
         ABIIT.second->getComponent()->setPlayer(5);
     }
     component->setActiveBasketballInstance(activeBasketballInstance);
+
+    activeCourtInstance = component->getActiveCourtInstance();
+    logMsg(func +" activeCourtInstance.size() == " +convert->toString(component->getActiveCourtInstance().size()));
+
+    // update Active Court Instances stateMachines
+    for (auto ACIIT : activeCourtInstance)
+    {
+        logMsg(func +" updating activeCourtInstance stateMachine");
+        ACIIT.second->updateStateMachine(render);
+//        exit(0);
+
+    }
+    component->setActiveCourtInstance(activeCourtInstance);
+
+
     if (data->getGameType() == SINGLE)
     {
         logMsg(func +" gameType == SINGLE");

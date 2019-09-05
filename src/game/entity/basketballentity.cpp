@@ -313,6 +313,7 @@ void basketballEntity::updateStateMachine(const gameComponentsSharedPtr &gameCom
         {
             case BLOADMODEL:
                 logMsg(func +" BLOADMODEL");
+                udSMData->bData = data;
                 udSMData->component = component;
                 udSMData->flag = flag;
                 udSMData->gComponent = gameComponent;
@@ -320,17 +321,17 @@ void basketballEntity::updateStateMachine(const gameComponentsSharedPtr &gameCom
                 udSMData->gFlag = gameFlag;
                 udSMData->render = render;
                 stateMachine->pLoadModel(udSMData);
-                exit(0);
+//                exit(0);
             break;
             case BCREATENODE:
-            logMsg(func +" BCREATENODE");
-            udSMData->component = component;
-            udSMData->flag = flag;
-            udSMData->gComponent = gameComponent;
-            udSMData->gData = gameDta;
-            udSMData->gFlag = gameFlag;
-            udSMData->render = render;
-            stateMachine->pCreateNode(udSMData);
+                logMsg(func +" BCREATENODE");
+                udSMData->component = component;
+                udSMData->flag = flag;
+                udSMData->gComponent = gameComponent;
+                udSMData->gData = gameDta;
+                udSMData->gFlag = gameFlag;
+                udSMData->render = render;
+                stateMachine->pCreateNode(udSMData);
             break;
             case BCHANGEDIRECTION:
                 logMsg(func +" updating direction!");

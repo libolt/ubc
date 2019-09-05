@@ -477,7 +477,7 @@ courtEntitySharedPtr loadCourts::loadCourtFile(const std::string &fileName)  // 
     return (courtInstance);
 }
 
-courtEntityMSharedPtr loadCourts::loadModels(courtEntityMSharedPtr activeCourtInstance, const renderEngineSharedPtr &render)  // loads selected court model
+void loadCourts::loadModel(courtComponentsSharedPtr &component, courtDataSharedPtr &data, courtFlagsSharedPtr &flag, const renderEngineSharedPtr &render)  // loads selected court model
 {
     conversionSharedPtr convert ;
     loaderSharedPtr load(new loader);
@@ -491,39 +491,44 @@ courtEntityMSharedPtr loadCourts::loadModels(courtEntityMSharedPtr activeCourtIn
 
     logMsg(func +" begin");
     
-    logMsg(func +" activeCourtInstance.size() == " +convert->toString(activeCourtInstance.size()));
+//    logMsg(func +" activeCourtInstance.size() == " +convert->toString(activeCourtInstance.size()));
 
-    for (auto ACIIT : activeCourtInstance)
-    {
-        logMsg(func +" activeCourtInstance == " +convert->toString(ACIIT.first));
+//    for (auto ACIIT : activeCourtInstance)
+//    {
+//        logMsg(func +" activeCourtInstance == " +convert->toString(ACIIT.first));
+
+/*        ACIIT.second->getFlag()->setStateChanged(true);
+        ACIIT.second->setAction(CLOADMODEL);
+        exit(0);
+*/
         //FIXME! This should be done in a cleaner way!
-        ACIIT.second->getComponent()->setModelFileName(ACIIT.second->getData()->getModelFileName());
+        component->setModelFileName(data->getModelFileName());
 
-        if (ACIIT.second->getComponent()->getName().empty())  // checks if entityName has been set
+        if (component->getName().empty())  // checks if entityName has been set
         {
-            std::string name = ACIIT.second->getData()->getName();
-            ACIIT.second->getComponent()->setName(name);
+            std::string name = data->getName();
+            component->setName(name);
         }
-        logMsg(func +" entityName == " +ACIIT.second->getComponent()->getName());
+        logMsg(func +" entityName == " +component->getName());
 //        exit(0);
-        if (ACIIT.second->getComponent()->getNodeName().empty())  // checks if entityNodeName has been set
+        if (component->getNodeName().empty())  // checks if entityNodeName has been set
         {
-            std::string nodeName = ACIIT.second->getData()->getName() +"node";
-            ACIIT.second->getComponent()->setNodeName(nodeName);
+            std::string nodeName = data->getName() +"node";
+            component->setNodeName(nodeName);
         }
-        logMsg(func +" court name == " +ACIIT.second->getData()->getName());
-        logMsg(func + " court node name == " +ACIIT.second->getComponent()->getNodeName());
+        logMsg(func +" court name == " +data->getName());
+        logMsg(func + " court node name == " +component->getNodeName());
 //        exit(0);
-        logMsg(func +" loading model == " +ACIIT.second->getComponent()->getModelFileName());
+        logMsg(func +" loading model == " +component->getModelFileName());
 //        exit(0);
-        std::string modelFileName = ACIIT.second->getComponent()->getModelFileName();
-        std::string entityName = ACIIT.second->getComponent()->getName();
-        std::string entityNodeName = ACIIT.second->getComponent()->getNodeName();
+        std::string modelFileName = component->getModelFileName();
+        std::string entityName = component->getName();
+        std::string entityNodeName = component->getNodeName();
 
         model = loadModelFile(modelFileName, entityName, render);
-        ACIIT.second->getFlag()->setModelLoaded(true);
-        ACIIT.second->getComponent()->setModel(model);
-    }
+        flag->setModelLoaded(true);
+        component->setModel(model);
+//    }
 /*    if (!activeCourtInstancesCreated && activeCourtInstance.size() == 0)
     {
         activeCourtInstance = setupCourt->createActiveCourtInstances(courtInstance);
@@ -573,6 +578,5 @@ courtEntityMSharedPtr loadCourts::loadModels(courtEntityMSharedPtr activeCourtIn
 
     logMsg(func +" end");
 //    exit(0);
-    return (activeCourtInstance);
 }
 

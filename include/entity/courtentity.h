@@ -46,9 +46,14 @@ class courtEntity : public entity
         courtStateMachineSharedPtr getStateMachine() const;  // retrieves the value of stateMachine
         void setStateMachine(const courtStateMachineSharedPtr &set);  // sets the value of stateMachine
 
+        courtActions getAction() const;  // retrieves the value of action
+        void setAction(const courtActions &set);  // sets the vlue of action
+
         bool initializeObjects();  // initializes the basketball objects
 
-        bool initializeStateMachine();  // initializes the court entity object
+        bool initializeStateMachine();  // initializes the court stateMachine object
+
+        bool updateStateMachine(renderEngineSharedPtr render);  // updates the stateMahine object
 
         bool setupPhysicsObject();  // sets up the physics object
 
@@ -60,6 +65,9 @@ class courtEntity : public entity
         courtDataSharedPtr data;  // stores the court data object
         courtFlagsSharedPtr flag;  // stores the court flags object
         courtStateMachineSharedPtr stateMachine;  // // stores the court stateMachine object
+
+        courtActions action;  // stores the courtActions object
+
 };
 
 #endif // _COURTENTITY_H_

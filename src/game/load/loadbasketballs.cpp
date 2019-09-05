@@ -328,7 +328,7 @@ basketballEntitySharedPtr loadBasketballs::loadFile(const std::string &fileName)
     return (basketballInstance);
 }
 
-basketballEntityMSharedPtr loadBasketballs::loadModels(basketballEntityMSharedPtr activeBasketballInstance, const renderEngineSharedPtr &render)  // loads selected basketball model
+void loadBasketballs::loadModel(basketballComponentsSharedPtr &component, basketballDataSharedPtr &data, basketballFlagsSharedPtr &flag, const renderEngineSharedPtr &render)  // loads selected basketball model
 {
     conversionSharedPtr convert ;
     loaderSharedPtr load(new loader);
@@ -344,38 +344,43 @@ basketballEntityMSharedPtr loadBasketballs::loadModels(basketballEntityMSharedPt
     
     logMsg(func +" begin");
     
-    logMsg(func +" activeBasketballInstance.size() == " +convert->toString(activeBasketballInstance.size()));
+//    logMsg(func +" activeBasketballInstance.size() == " +convert->toString(component.size()));
 
-    for (auto ABIIT : activeBasketballInstance)
-    {
-        logMsg(func +" activeBasketballInstance == " +convert->toString(ABIIT.first));
+//   for (auto ABIIT : component)
+//    {
+//        logMsg(func +" activeBasketballInstance == " +convert->toString(ABIIT.first));
+//        ABIIT.second->getFlag()->setStateChanged(true);
+//        ABIIT.second->setAction(BLOADMODEL);
+//        ABIIT.second->updateStateMachine(ABIIT.second->get
 //        exit(0);
         //FIXME! This should be done in a cleaner way!
-        ABIIT.second->getComponent()->setModelFileName(ABIIT.second->getData()->getModelFileName());
+        component->setModelFileName(data->getModelFileName());
 
-        if (ABIIT.second->getComponent()->getName().empty())  // checks if entityName has been set
+        if (component->getName().empty())  // checks if entityName has been set
         {
-            std::string name = ABIIT.second->getData()->getName();
-            ABIIT.second->getComponent()->setName(name);
+            std::string name = data->getName();
+            component->setName(name);
         }
-        logMsg(func +" entityName == " +ABIIT.second->getComponent()->getName());
+        logMsg(func +" entityName == " +component->getName());
 //        exit(0);
-        if (ABIIT.second->getComponent()->getNodeName().empty())  // checks if entityNodeName has been set
+        if (component->getNodeName().empty())  // checks if entityNodeName has been set
         {
-            std::string nodeName = ABIIT.second->getData()->getName() +"node";
-            ABIIT.second->getComponent()->setNodeName(nodeName);
+            std::string nodeName = data->getName() +"node";
+            component->setNodeName(nodeName);
         }
-        logMsg(func +" basketball name == " +ABIIT.second->getData()->getName());
-        logMsg(func +" basketball node name == " +ABIIT.second->getComponent()->getNodeName());
+        logMsg(func +" basketball name == " +data->getName());
+        logMsg(func +" basketball node name == " +component->getNodeName());
 //        exit(0);
-        logMsg(func +" loading model == " +ABIIT.second->getComponent()->getModelFileName());
-        std::string modelFileName = ABIIT.second->getComponent()->getModelFileName();
-        std::string entityName = ABIIT.second->getComponent()->getName();
-        std::string entityNodeName = ABIIT.second->getComponent()->getNodeName();
+        logMsg(func +" loading model == " +component->getModelFileName());
+        std::string modelFileName = component->getModelFileName();
+        std::string entityName = component->getName();
+        std::string entityNodeName = component->getNodeName();
 
         model = loadModelFile(modelFileName, entityName, render);
-        ABIIT.second->getFlag()->setModelLoaded(true);
-        ABIIT.second->getComponent()->setModel(model);
+        flag->setModelLoaded(true);
+        component->setModel(model);
+
+
 
 /*        if (ABIIT.second->loadModel())
         {
@@ -400,16 +405,16 @@ basketballEntityMSharedPtr loadBasketballs::loadModels(basketballEntityMSharedPt
             logMsg("Failed to load the basketball model!");
         }
  */       
-    }
+//    }
     
-    logMsg(func +" activeBasketballInstance.size() == " +convert->toString(activeBasketballInstance.size()));
+//    logMsg(func +" activeBasketballInstance.size() == " +convert->toString(component.size()));
 //    exit(0);
 //    setActiveBasketballInstance(activeBasketballInstance);
     logMsg(func +" still alive?");
 //    setActiveBasketballInstancesCreated(activeBasketballInstancesCreated);
 //    exit(0);
     logMsg(func + " end");
-    return (activeBasketballInstance);
+//    return (component);
 }
 
 

@@ -26,6 +26,7 @@
 //#include "data/gamedata.h"
 #include "flags/courtflags.h"
 //#include "flags/gameflags.h"
+#include "load/loadcourts.h"
 #include "physics/courtphysics.h"
 #include "utilities/comparison.h"
 #include "utilities/conversion.h"
@@ -43,6 +44,8 @@ void courtStateMachine::pInitialize(const courtSMData *data)
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_INITIALIZE       
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_INITIALIZE_COMPONENTS
+        TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_LOAD_MDOEL
+        TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_CREATE_NODE
         TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_IDLE
@@ -52,12 +55,14 @@ void courtStateMachine::pInitialize(const courtSMData *data)
     END_TRANSITION_MAP(data)
 }
 
-// set motor speed external event
+// Initailize Components external event
 void courtStateMachine::pInitializeComponents(courtSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_INITIALIZE_COMPONENTS)     // ST_INITIALIZE
         TRANSITION_MAP_ENTRY (ST_INITIALIZE_COMPONENTS)     // ST_INITIALIZE_COMPONENTS
+        TRANSITION_MAP_ENTRY (ST_INITIALIZE_COMPONENTS)     // ST_LOAD_MDOEL
+        TRANSITION_MAP_ENTRY (ST_INITIALIZE_COMPONENTS)     // ST_CREATE_NODE
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (ST_INITIALIZE_COMPONENTS)              // ST_IDLE
@@ -67,12 +72,49 @@ void courtStateMachine::pInitializeComponents(courtSMData *data)
     END_TRANSITION_MAP(data)
 }
 
+// Initailize Components external event
+void courtStateMachine::pLoadModel(courtSMData *data)
+{
+    BEGIN_TRANSITION_MAP                                    // - Current State -
+        TRANSITION_MAP_ENTRY (ST_LOAD_MDOEL)     // ST_INITIALIZE
+        TRANSITION_MAP_ENTRY (ST_LOAD_MDOEL)     // ST_INITIALIZE_COMPONENTS
+        TRANSITION_MAP_ENTRY (ST_LOAD_MDOEL)     // ST_LOAD_MDOEL
+        TRANSITION_MAP_ENTRY (ST_LOAD_MDOEL)     // ST_CREATE_NODE
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SETUP_PHYSICS
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SETUP_PHYSICS
+        TRANSITION_MAP_ENTRY (ST_LOAD_MDOEL)              // ST_IDLE
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_UPDATE_POSITION
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_UPDATE_MOVEMENT
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_UPDATE_DIRECTION
+    END_TRANSITION_MAP(data)
+}
+
+// Initailize Components external event
+void courtStateMachine::pCreateNode(courtSMData *data)
+{
+    BEGIN_TRANSITION_MAP                                    // - Current State -
+        TRANSITION_MAP_ENTRY (ST_CREATE_NODE)     // ST_INITIALIZE
+        TRANSITION_MAP_ENTRY (ST_CREATE_NODE)     // ST_INITIALIZE_COMPONENTS
+        TRANSITION_MAP_ENTRY (ST_CREATE_NODE)     // ST_LOAD_MODEL
+        TRANSITION_MAP_ENTRY (ST_CREATE_NODE)     // ST_CREATE_NODE
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SETUP_PHYSICS
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_SETUP_PHYSICS
+        TRANSITION_MAP_ENTRY (ST_CREATE_NODE)              // ST_IDLE
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_UPDATE_POSITION
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_UPDATE_MOVEMENT
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_UPDATE_DIRECTION
+    END_TRANSITION_MAP(data)
+}
+
+
 // halt motor external event
 void courtStateMachine::halt()
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_INITIALIZE
         TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_INITIALIZE_COMPONENTS
+        TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_LOAD_MODEL
+        TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_CREATE_NODE
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_IDLE
@@ -88,6 +130,8 @@ void courtStateMachine::pUpdatePosition(courtSMData *data)
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                     // ST_INITIALIZE
         TRANSITION_MAP_ENTRY (ST_UPDATE_POSITION)                // ST_INITIALIZE_COMPONENTS
+        TRANSITION_MAP_ENTRY (ST_UPDATE_POSITION)                // ST_LOAD_MODEL
+        TRANSITION_MAP_ENTRY (ST_UPDATE_POSITION)                // ST_CREATE_NODE
         TRANSITION_MAP_ENTRY (ST_UPDATE_POSITION)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (ST_UPDATE_POSITION)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (ST_UPDATE_POSITION)                // ST_IDLE
@@ -103,6 +147,8 @@ void courtStateMachine::pUpdateMovement(courtSMData *data)
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                     // ST_INITIALIZE
         TRANSITION_MAP_ENTRY (ST_UPDATE_MOVEMENT)                // ST_INITIALIZE_COMPONENTS
+        TRANSITION_MAP_ENTRY (ST_UPDATE_MOVEMENT)                // ST_LOAD_MODEL
+        TRANSITION_MAP_ENTRY (ST_UPDATE_MOVEMENT)                // ST_CREATE_NODE
         TRANSITION_MAP_ENTRY (ST_UPDATE_MOVEMENT)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (ST_UPDATE_MOVEMENT)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (ST_UPDATE_MOVEMENT)                // ST_IDLE
@@ -118,6 +164,8 @@ void courtStateMachine::pUpdateDirection(courtSMData *data)
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                      // ST_INITIALIZE
         TRANSITION_MAP_ENTRY (ST_UPDATE_DIRECTION)                // ST_INITIALIZE_COMPONENTS
+        TRANSITION_MAP_ENTRY (ST_UPDATE_DIRECTION)                // ST_LOAD_MODEL
+        TRANSITION_MAP_ENTRY (ST_UPDATE_DIRECTION)                // ST_CREATE_NODE
         TRANSITION_MAP_ENTRY (ST_UPDATE_DIRECTION)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (ST_UPDATE_DIRECTION)                // ST_SETUP_PHYSICS
         TRANSITION_MAP_ENTRY (ST_UPDATE_DIRECTION)                // ST_IDLE
@@ -179,6 +227,58 @@ STATE_DEFINE(courtStateMachine, InitializeComponents, courtSMData)
 
 }
 
+// Loads the court model
+STATE_DEFINE(courtStateMachine, LoadModel, courtSMData)
+{
+
+    conversionSharedPtr convert;
+    loadCourtsSharedPtr loadCourt(new loadCourts);
+    courtSMData *lmSMData(new courtSMData);
+    std::string func = "courtStateMachine::LoadModel()";
+    logMsg(func +" begin");
+
+/*    courtDataSharedPtr tempData(new courtData);
+    data->cData = tempData;
+
+    courtComponentsSharedPtr tempComponent(new courtComponents);
+    data->component = tempComponent;
+
+    courtFlagsSharedPtr tempFlag(new courtFlags);
+    data->flag = tempFlag;
+*/
+
+    lmSMData->component = data->component;
+    lmSMData->cData = data->cData;
+    lmSMData->flag = data->flag;
+    lmSMData->render = data->render;
+
+    loadCourt->loadModel(lmSMData->component, lmSMData->cData, lmSMData->flag, lmSMData->render);
+    logMsg(func +" end");
+    exit(0);
+}
+// Creates the court node
+STATE_DEFINE(courtStateMachine, CreateNode, courtSMData)
+{
+
+    conversionSharedPtr convert;
+    std::string func = "courtStateMachine::CreateNode()";
+
+    logMsg(func +" begin");
+
+/*    courtDataSharedPtr tempData(new courtData);
+    data->cData = tempData;
+
+    courtComponentsSharedPtr tempComponent(new courtComponents);
+    data->component = tempComponent;
+
+    courtFlagsSharedPtr tempFlag(new courtFlags);
+    data->flag = tempFlag;
+*/
+
+
+        logMsg(func +" end");
+
+}
 // sets up basketball physics object
 STATE_DEFINE(courtStateMachine, SetupPhysics, courtSMData)
 {

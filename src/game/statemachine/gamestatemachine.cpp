@@ -362,7 +362,8 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
     {
 
     }
-    
+    logMsg(func +" activeCourtInstance.size() == " +convert->toString(component->getActiveCourtInstance().size()));
+//    exit(0);
     if (!flag->getHoopInstancesCreated())
     {
         hoopEntityMSharedPtr hoopInstance = setupHoop->createHoopInstances();
@@ -474,9 +475,14 @@ STATE_DEFINE(gameStateMachine, loadModels, gameSMData)
 //        exit(0);
         logMsg(func +" activeBasketballInstance.size() == " +convert->toString(data->component->getActiveBasketballInstance().size()));
 //        exit(0);
-        activeBasketballInstance = loadBasketball->loadModels(data->component->getActiveBasketballInstance(), data->render);  // Loads the basketball model
+//        activeBasketballInstance = loadBasketball->loadModels(data->component->getActiveBasketballInstance(), data->render);  // Loads the basketball model
 //        exit(0);
-        
+        activeBasketballInstance = data->component->getActiveBasketballInstance();
+        for (auto ABIIT : activeBasketballInstance)
+        {
+            ABIIT.second->getFlag()->setStateChanged(true);
+            ABIIT.second->setAction(BLOADMODEL);
+        }
         if (!activeBasketballInstance.empty())
         {          
             logMsg(func +" activeBasketballInstance NOT Empty!");
@@ -510,7 +516,13 @@ STATE_DEFINE(gameStateMachine, loadModels, gameSMData)
         
         logMsg(func +" Loading court model!");
 //        exit(0);
-        activeCourtInstance = loadCourt->loadModels(data->component->getActiveCourtInstance(), data->render);  // load the court model
+//        activeCourtInstance = loadCourt->loadModels(data->component->getActiveCourtInstance(), data->render);  // load the court model
+        activeCourtInstance = data->component->getActiveCourtInstance();
+        for (auto ACIIT : activeCourtInstance)
+        {
+            ACIIT.second->getFlag()->setStateChanged(true);
+            ACIIT.second->setAction(CLOADMODEL);
+        }
         if (!activeCourtInstance.empty())
         {
             data->flag->setCourtModelLoaded(true);

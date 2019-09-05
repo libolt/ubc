@@ -24,6 +24,8 @@
 #include "statemachine/statemachine.h"
 #include "utilities/typedefs.h"
 
+class renderEngine;
+
 class courtSMData : public eventData
 {
 public:
@@ -34,6 +36,7 @@ public:
 
     OgreEntitySharedPtr model;  // stores 3d model
     OgreSceneNodeSharedPtr node;  // stores node 3d model is attached to
+    renderEngineSharedPtr render;  // stores copy of render
 
 private:
 //    courtPhysicsSharedPtr physics;  // stores copy of courtPhysics object
@@ -53,6 +56,8 @@ public:
     void setSpeed(courtSMData *data);
     void pInitialize(const courtSMData *data);
     void pInitializeComponents(courtSMData *data);
+    void pLoadModel(courtSMData *data);
+    void pCreateNode(courtSMData *data);
     void pSetupPhysics(courtSMData *data);
     void pUpdatePosition(courtSMData *data);
     void pUpdateMovement(courtSMData *data);
@@ -68,6 +73,8 @@ private:
     {
         ST_INITIALIZE,
         ST_INITIALIZE_COMPONENTS,
+        ST_LOAD_MDOEL,
+        ST_CREATE_NODE,
         ST_SETUP_PHYSICS, 
         ST_STOP_MOVEMENT,
         ST_IDLE,        
@@ -80,6 +87,8 @@ private:
     // Define the state machine state functions with event data type
     STATE_DECLARE(courtStateMachine,    Initialize,     courtSMData)
     STATE_DECLARE(courtStateMachine,    InitializeComponents,    courtSMData)
+    STATE_DECLARE(courtStateMachine,    LoadModel,     courtSMData)
+    STATE_DECLARE(courtStateMachine,    CreateNode,     courtSMData)
     STATE_DECLARE(courtStateMachine,    SetupPhysics,   courtSMData)
     STATE_DECLARE(courtStateMachine,    StopMovement,   noEventData)
     STATE_DECLARE(courtStateMachine,    Idle,           noEventData)
@@ -92,6 +101,8 @@ private:
     BEGIN_STATE_MAP
         STATE_MAP_ENTRY(&Initialize)
         STATE_MAP_ENTRY(&InitializeComponents)
+        STATE_MAP_ENTRY(&LoadModel)
+        STATE_MAP_ENTRY(&CreateNode)
         STATE_MAP_ENTRY(&SetupPhysics)
         STATE_MAP_ENTRY(&StopMovement)
         STATE_MAP_ENTRY(&Idle)

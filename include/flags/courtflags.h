@@ -33,9 +33,13 @@ class courtFlags : public entityFlags
         bool getDataInitialized() const;  // retrieves the value of dataInitialized
         void setDataInitialized(const bool &set);  // sets the value of dataInitialized
 
+        bool getStateChanged() const;  // retrieves the value of stateChanged
+        void setStateChanged(const bool &set);  // sets the value of stateChanged
+
     private:
 
         bool dataInitialized;  // stores whether the data object has been initialized.
+        bool stateChanged;  // Determines if the stateMachine needs to be updated
 
 };
 

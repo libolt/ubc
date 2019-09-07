@@ -24,6 +24,7 @@
 //#include "components/gamecomponents.h"
 #include "data/courtdata.h"
 //#include "data/gamedata.h"
+#include "engine/renderengine.h"
 #include "flags/courtflags.h"
 //#include "flags/gameflags.h"
 #include "load/loadcourts.h"
@@ -235,17 +236,8 @@ STATE_DEFINE(courtStateMachine, LoadModel, courtSMData)
     loadCourtsSharedPtr loadCourt(new loadCourts);
     courtSMData *lmSMData(new courtSMData);
     std::string func = "courtStateMachine::LoadModel()";
+
     logMsg(func +" begin");
-
-/*    courtDataSharedPtr tempData(new courtData);
-    data->cData = tempData;
-
-    courtComponentsSharedPtr tempComponent(new courtComponents);
-    data->component = tempComponent;
-
-    courtFlagsSharedPtr tempFlag(new courtFlags);
-    data->flag = tempFlag;
-*/
 
     lmSMData->component = data->component;
     lmSMData->cData = data->cData;
@@ -254,30 +246,41 @@ STATE_DEFINE(courtStateMachine, LoadModel, courtSMData)
 
     loadCourt->loadModel(lmSMData->component, lmSMData->cData, lmSMData->flag, lmSMData->render);
     logMsg(func +" end");
-    exit(0);
+//    exit(0);
 }
 // Creates the court node
 STATE_DEFINE(courtStateMachine, CreateNode, courtSMData)
 {
 
     conversionSharedPtr convert;
+    OgreEntitySharedPtr activeModel;
+    OgreSceneNodeSharedPtr activeNode;
+    std::string activeEntityName;
+    std::string activeNodeNum;
+    std::string activeNodeName;
     std::string func = "courtStateMachine::CreateNode()";
 
     logMsg(func +" begin");
 
-/*    courtDataSharedPtr tempData(new courtData);
-    data->cData = tempData;
+    activeModel = data->component->getModel();
+    activeEntityName = data->component->getName();
+    activeNodeNum = convert->toString(data->component->getNumber());
+    activeNodeName = data->component->getNodeName();
+    if (activeNodeName.empty())
+    {
+        activeNodeName = activeEntityName + activeNodeNum;
+        data->component->setNodeName(activeNodeName);
+    }
+    else
+    {
 
-    courtComponentsSharedPtr tempComponent(new courtComponents);
-    data->component = tempComponent;
-
-    courtFlagsSharedPtr tempFlag(new courtFlags);
-    data->flag = tempFlag;
-*/
+    }
+    activeNode = data->render->createNode(activeModel, activeNodeName);  // creates node
+    data->component->setNode(activeNode);  // saves node to current instance
 
 
-        logMsg(func +" end");
-
+    logMsg(func +" end");
+//    exit(0);
 }
 // sets up basketball physics object
 STATE_DEFINE(courtStateMachine, SetupPhysics, courtSMData)

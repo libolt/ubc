@@ -24,6 +24,7 @@
 #include "flags/courtflags.h"
 #include "physics/courtphysics.h"
 #include "statemachine/courtstatemachine.h"
+#include "utilities/conversion.h"
 #include "utilities/logging.h"
 
 courtEntity::courtEntity()  // constructor
@@ -140,7 +141,7 @@ bool courtEntity::updateStateMachine(renderEngineSharedPtr render)  // updates t
     {
         if (component != nullptr && component->getNode() != nullptr)
         {
-//            logMsg(func +" activeBasketballInstance Pos = " +convert->toString(component->getNode()->getPosition()));
+            logMsg(func +" activeCourtInstance Pos = " +convert->toString(component->getNode()->getPosition()));
 //            exit(0);
         }
     }
@@ -180,6 +181,8 @@ bool courtEntity::updateStateMachine(renderEngineSharedPtr render)  // updates t
                 stateMachine->pCreateNode(udSMData);
             break;
         }
+        flag->setStateChanged(false);
+        action = CNOACTION;
     }
 
     logMsg(func +" end");

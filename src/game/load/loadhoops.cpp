@@ -282,6 +282,19 @@ hoopEntitySharedPtr loadHoops::loadHoopFile(const std::string &fileName)  // loa
         }
     }
     hoopInstance->initializeObjects();
+
+    if (!hoopInstance->getFlag()->getInitialized())
+    {
+        if (hoopInstance->initializeStateMachine())
+        {
+            hoopInstance->getFlag()->setInitialized(true);
+        }
+        else
+        {
+//            logMsg(func +" Unable to initialize basketball instance!");
+            exit(0);
+        }
+    }
     hoopInstance->getComponent()->setName(name);
 //    exit(0);
 //    hoopInstance->setModelFileName(modelName);
@@ -294,7 +307,7 @@ hoopEntitySharedPtr loadHoops::loadHoopFile(const std::string &fileName)  // loa
     return (hoopInstance);
 }
 
-hoopEntityMSharedPtr loadHoops::loadModels(hoopEntityMSharedPtr activeHoopInstance, const renderEngineSharedPtr &render)  // loads selected hoop model
+/*hoopEntityMSharedPtr loadHoops::loadModels(hoopEntityMSharedPtr activeHoopInstance, const renderEngineSharedPtr &render)  // loads selected hoop model
 {
     conversionSharedPtr convert ;
 //    hoopStateMSharedPtr activeHoopInstance = getActiveHoopInstance();
@@ -369,91 +382,50 @@ hoopEntityMSharedPtr loadHoops::loadModels(hoopEntityMSharedPtr activeHoopInstan
     {
         logMsg(func +" model name == " +AHIIT.second->getComponent()->getModel()->getName());
     }
-//    exit(0);
-/*    
-///    if (activeHoopInstance.size() == 0)
-///    {
-///        if (createActiveHoopInstances())
-///        {
-///            logMsg(func +" Active Hoop Instances created!");
-///        }
-///        else
-///        {
-///            logMsg(func +" Unable to create Active Hoop Instances!");
-///            exit(0);
-///        }
-///    }
-///    else
-///    {        
-///    }
-
-    logMsg(func +" activeHoopInstance.size() == " +convert->toString(activeHoopInstance.size()));
-//    logMsg(func + " activeCourtInstance == " +convert->toString(activeCourtInstance));
-    for (auto AHIIT : activeHoopInstance)
-    {
-        logMsg(func + " AHIIT index == " +convert->toString(AHIIT.first));
-        std::string name = AHIIT.second->getName();
-        std:: string nodeName = name +"node";
-        logMsg(func +" blnodeName == " +nodeName);
-
-    }
-    
-    
-    for (auto AHIIT : activeHoopInstance)
-    {
-        logMsg(func + " wAHIIT index == " +convert->toString(AHIIT.first));
-        logMsg(func + " Name == " +AHIIT.second->getName());
-        logMsg(func +" Model Name = " +AHIIT.second->getEntityModelFileName());
-
-///        logMsg(func + "Name == " +AHIIT.second->getName());
-///        logMsg(func +" Model Name = " +AHIIT.second->getEntityModelFileName());
-///        logMsg("AHIIT index == " +convert->toString(AHIIT.second->getEntityID()));
-
-        std::string name = AHIIT.second->getName();
-        std:: string nodeName = name +"node";
-        logMsg(func +" blnodeName == " +nodeName);
-        AHIIT.second->setEntityName(name);
-        AHIIT.second->setEntityNodeName(nodeName);
-        logMsg("AHIIT.second->loadModel()");
-        
-        if (AHIIT.second->loadModel())
-        {
-            logMsg(func +" Model loaded successfully!");
-            AHIIT.second->getNode()->setScale(0.8f,0.8f,0.8f);
-        }
-        else
-        {
-            
-            logMsg(func +" Unable to load model for activeHoopInstance[" +convert->toString(AHIIT.first) +"]");
-            returnType = false;
-        }
-
-    }
-*/
-/*    exit(0);
-///    if (hoopInstance[1]->loadModel())
-///    {
-///        hoopInstance[1]->getNode()->setScale(0.8f,0.8f,0.8f);
-///    }
-///    else
-///    {
-///        logMsg(func +" Unable to load model for hoopInstance[1]");
-///        returnType = false;
-///    }
-    
-//    setActiveHoopInstance(activeHoopInstance);
-/*    for (auto AHIIT : activeHoopInstance())
-    {
-//        logMsg ("blhoop " +convert->toString(AHIIT.first) +" name === " +AHIIT.second->getEntityName());
-
-        logMsg ("blhoop " +convert->toString(AHIIT.first) +" nodename === " +AHIIT.second->getNode()->getName());
-        logMsg ("blhoop " +convert->toString(AHIIT.first) +" entityID === " +convert->toString(AHIIT.second->getEntityID()));
-
-    }
-*/
 
     logMsg(func +" end");
 //    exit(0);
     
     return (activeHoopInstance);
-} 
+} */
+
+void loadHoops::loadModel(hoopComponentsSharedPtr &component, hoopFlagsSharedPtr &flag, const renderEngineSharedPtr &render)  // loads selected court model
+{
+    conversionSharedPtr convert ;
+    loaderSharedPtr load(new loader);
+    OgreEntitySharedPtr model;  // stores the model returned by loadModel() function
+    std::string func = "loadHoops::loadModels()";
+
+    logMsg(func +" begin");
+
+    //FIXME! This should be done in a cleaner way!
+///        component->setModelFileName(data->getModelFileName());
+
+///        if (component->getName().empty())  // checks if entityName has been set
+///        {
+///            std::string name = data->getName();
+///            component->setName(name);
+///        }
+    logMsg(func +" entityName == " +component->getName());
+//        exit(0);
+///        if (component->getNodeName().empty())  // checks if entityNodeName has been set
+///        {
+///            std::string nodeName = data->getName() +"node";
+///            component->setNodeName(nodeName);
+///        }
+///        logMsg(func +" court name == " +data->getName());
+    logMsg(func + " court node name == " +component->getNodeName());
+//        exit(0);
+    logMsg(func +" loading model == " +component->getModelFileName());
+//        exit(0);
+    std::string modelFileName = component->getModelFileName();
+    std::string entityName = component->getName();
+    std::string entityNodeName = component->getNodeName();
+
+    model = loadModelFile(modelFileName, entityName, render);
+    flag->setModelLoaded(true);
+    component->setModel(model);
+
+    logMsg(func +" end");
+//    exit(0);
+}

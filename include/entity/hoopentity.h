@@ -39,12 +39,29 @@ class hoopEntity : public entity
     hoopFlagsSharedPtr getFlag();  // retrieves the value of flag
     void setFlag(hoopFlagsSharedPtr set);  // sets the value of flag
  
+    hoopStateMachineSharedPtr getStateMachine() const;  // retrievees the value of stateMachine
+    void setStateMachine(const hoopStateMachineSharedPtr &set);  // sets the value of stateMachine
+
+
+    hoopActions getAction() const;  // retrieves the value of action
+    void setAction(const hoopActions &set);  // sets the vlue of action
+
     bool initializeObjects();  // initializes hoop entity objects
     
+    bool initializeStateMachine();  // initializes the basketball stateMachine object
+
+    bool updateStateMachine(renderEngineSharedPtr render);  // updates the stateMahine object
+
     private:
     
+    bool objectsInitialized;  //  stores whether or not objects have been initialized
+
     hoopComponentsSharedPtr component;  // stores the hoopComponents object
     hoopFlagsSharedPtr flag;  // stores the hoopFlags object
+    hoopStateMachineSharedPtr stateMachine; // stores the state machine object
+
+    hoopActions action;  // stores the hoopActions object
+
 
 };
 

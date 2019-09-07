@@ -19,28 +19,28 @@
  ***************************************************************************/
 
 #include "ai/basketballsteer.h"
-#include "statemachine/courtstatemachine.h"
-#include "components/courtcomponents.h"
+#include "statemachine/hoopstatemachine.h"
+#include "components/hoopcomponents.h"
 //#include "components/gamecomponents.h"
-#include "data/courtdata.h"
+//#include "data/hoopdata.h"
 //#include "data/gamedata.h"
 #include "engine/renderengine.h"
-#include "flags/courtflags.h"
+#include "flags/hoopflags.h"
 //#include "flags/gameflags.h"
-#include "load/loadcourts.h"
-#include "physics/courtphysics.h"
+#include "load/loadhoops.h"
+#include "physics/hoopphysics.h"
 #include "utilities/comparison.h"
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
 
-courtStateMachine::courtStateMachine() :
+hoopStateMachine::hoopStateMachine() :
     stateMachine(ST_MAX_STATES),
     m_currentSpeed(0)
 {
 }    
 
 // Initialize state machine external event
-void courtStateMachine::pInitialize(const courtSMData *data)
+void hoopStateMachine::pInitialize(const hoopSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_INITIALIZE       
@@ -57,7 +57,7 @@ void courtStateMachine::pInitialize(const courtSMData *data)
 }
 
 // Initailize Components external event
-void courtStateMachine::pInitializeComponents(courtSMData *data)
+void hoopStateMachine::pInitializeComponents(hoopSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_INITIALIZE_COMPONENTS)     // ST_INITIALIZE
@@ -74,7 +74,7 @@ void courtStateMachine::pInitializeComponents(courtSMData *data)
 }
 
 // Initailize Components external event
-void courtStateMachine::pLoadModel(courtSMData *data)
+void hoopStateMachine::pLoadModel(hoopSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_LOAD_MDOEL)     // ST_INITIALIZE
@@ -91,7 +91,7 @@ void courtStateMachine::pLoadModel(courtSMData *data)
 }
 
 // Initailize Components external event
-void courtStateMachine::pCreateNode(courtSMData *data)
+void hoopStateMachine::pCreateNode(hoopSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_CREATE_NODE)     // ST_INITIALIZE
@@ -109,7 +109,7 @@ void courtStateMachine::pCreateNode(courtSMData *data)
 
 
 // halt motor external event
-void courtStateMachine::halt()
+void hoopStateMachine::halt()
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_INITIALIZE
@@ -126,7 +126,7 @@ void courtStateMachine::halt()
 }
 
 // Update positions external event
-void courtStateMachine::pUpdatePosition(courtSMData *data)
+void hoopStateMachine::pUpdatePosition(hoopSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                     // ST_INITIALIZE
@@ -143,7 +143,7 @@ void courtStateMachine::pUpdatePosition(courtSMData *data)
 }
 
 // Update movement external event
-void courtStateMachine::pUpdateMovement(courtSMData *data)
+void hoopStateMachine::pUpdateMovement(hoopSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                     // ST_INITIALIZE
@@ -160,7 +160,7 @@ void courtStateMachine::pUpdateMovement(courtSMData *data)
 }
 
 // Update direction external event
-void courtStateMachine::pUpdateDirection(courtSMData *data)
+void hoopStateMachine::pUpdateDirection(hoopSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                      // ST_INITIALIZE
@@ -177,26 +177,26 @@ void courtStateMachine::pUpdateDirection(courtSMData *data)
 }
 
 // Initialize the state machine
-STATE_DEFINE(courtStateMachine, Initialize, courtSMData)
+STATE_DEFINE(hoopStateMachine, Initialize, hoopSMData)
 {
-    std::string func = "courtStateMachine::Initialize()";
+    std::string func = "hoopStateMachine::Initialize()";
 
     logMsg(func +" begin");
 
-    courtSMData *tempSMData(new courtSMData);
+    hoopSMData *tempSMData(new hoopSMData);
 
-    courtComponentsSharedPtr tempComponent(new courtComponents);
+    hoopComponentsSharedPtr tempComponent(new hoopComponents);
     tempSMData->component = tempComponent;
 
-    courtDataSharedPtr tempData(new courtData);
-    tempSMData->cData = tempData;
+//    hoopDataSharedPtr tempData(new hoopData);
+//    tempSMData->cData = tempData;
 
-    courtFlagsSharedPtr tempFlag(new courtFlags);
+    hoopFlagsSharedPtr tempFlag(new hoopFlags);
     tempSMData->flag = tempFlag;
 
     data = tempSMData;
     
-    sharedPtr<courtPhysics> tempPhysics(new courtPhysics);
+    hoopPhysicsSharedPtr tempPhysics(new hoopPhysics);
     data->component->setPhysics(tempPhysics);
 
     logMsg(func +" end");
@@ -205,21 +205,21 @@ STATE_DEFINE(courtStateMachine, Initialize, courtSMData)
 }
 
 // Initialize the component objects
-STATE_DEFINE(courtStateMachine, InitializeComponents, courtSMData)
+STATE_DEFINE(hoopStateMachine, InitializeComponents, hoopSMData)
 {
     
     conversionSharedPtr convert;
-    std::string func = "courtStateMachine::InitializeComponents()";
+    std::string func = "hoopStateMachine::InitializeComponents()";
 
     logMsg(func +" begin");
 
-/*    courtDataSharedPtr tempData(new courtData);
+/*    hoopDataSharedPtr tempData(new hoopData);
     data->cData = tempData;
 
-    courtComponentsSharedPtr tempComponent(new courtComponents);
+    hoopComponentsSharedPtr tempComponent(new hoopComponents);
     data->component = tempComponent;
 
-    courtFlagsSharedPtr tempFlag(new courtFlags);
+    hoopFlagsSharedPtr tempFlag(new hoopFlags);
     data->flag = tempFlag;
 */
 
@@ -228,28 +228,27 @@ STATE_DEFINE(courtStateMachine, InitializeComponents, courtSMData)
 
 }
 
-// Loads the court model
-STATE_DEFINE(courtStateMachine, LoadModel, courtSMData)
+// Loads the hoop model
+STATE_DEFINE(hoopStateMachine, LoadModel, hoopSMData)
 {
 
     conversionSharedPtr convert;
-    loadCourtsSharedPtr loadCourt(new loadCourts);
-    courtSMData *lmSMData(new courtSMData);
-    std::string func = "courtStateMachine::LoadModel()";
+    loadHoopsSharedPtr loadhoop(new loadHoops);
+    hoopSMData *lmSMData(new hoopSMData);
+    std::string func = "hoopStateMachine::LoadModel()";
 
     logMsg(func +" begin");
 
     lmSMData->component = data->component;
-    lmSMData->cData = data->cData;
     lmSMData->flag = data->flag;
     lmSMData->render = data->render;
 
-    loadCourt->loadModel(lmSMData->component, lmSMData->cData, lmSMData->flag, lmSMData->render);
+    loadhoop->loadModel(lmSMData->component, lmSMData->flag, lmSMData->render);
     logMsg(func +" end");
 //    exit(0);
 }
-// Creates the court node
-STATE_DEFINE(courtStateMachine, CreateNode, courtSMData)
+// Creates the hoop node
+STATE_DEFINE(hoopStateMachine, CreateNode, hoopSMData)
 {
 
     conversionSharedPtr convert;
@@ -258,7 +257,7 @@ STATE_DEFINE(courtStateMachine, CreateNode, courtSMData)
     std::string activeEntityName;
     std::string activeNodeNum;
     std::string activeNodeName;
-    std::string func = "courtStateMachine::CreateNode()";
+    std::string func = "hoopStateMachine::CreateNode()";
 
     logMsg(func +" begin");
 
@@ -283,14 +282,14 @@ STATE_DEFINE(courtStateMachine, CreateNode, courtSMData)
 //    exit(0);
 }
 // sets up basketball physics object
-STATE_DEFINE(courtStateMachine, SetupPhysics, courtSMData)
+STATE_DEFINE(hoopStateMachine, SetupPhysics, hoopSMData)
 {
     conversionSharedPtr convert;
-    std::string func = "courtStateMachine::setupPhysics()";
+    std::string func = "hoopStateMachine::setupPhysics()";
     OgreEntitySharedPtr tempModel = data->model;
     OgreSceneNodeSharedPtr tempNode = data->node;
-    courtComponentsSharedPtr component = data->component;
-    courtFlagsSharedPtr flag = data->flag;
+    hoopComponentsSharedPtr component = data->component;
+    hoopFlagsSharedPtr flag = data->flag;
     btRigidBody *tempPhysBody = component->getPhysics()->getPhysBody().get();
     bool returnType = false;
     
@@ -309,7 +308,7 @@ STATE_DEFINE(courtStateMachine, SetupPhysics, courtSMData)
     logMsg(func +" setShapeType!");
     component->getPhysics()->setColObject(COL_BBALL);
     logMsg(func +" setColObject!");
-    component->getPhysics()->setCollidesWith(COL_COURT);
+    component->getPhysics()->setCollidesWith(COL_HOOP);
     logMsg(func +" setCollidesWith!");
 
     if (component->getPhysics()->setupPhysics(&tempModel, &tempNode, &tempPhysBody))
@@ -325,7 +324,7 @@ STATE_DEFINE(courtStateMachine, SetupPhysics, courtSMData)
 
         component->getPhysics()->setPhysBody(btRigidBodySharedPtr(tempPhysBody));
 
-        courtSMData *tempSMData(new courtSMData);
+        hoopSMData *tempSMData(new hoopSMData);
         tempSMData->model = OgreEntitySharedPtr(tempModel);
         tempSMData->node = OgreSceneNodeSharedPtr(tempNode);
         tempSMData->component = component;
@@ -342,19 +341,19 @@ STATE_DEFINE(courtStateMachine, SetupPhysics, courtSMData)
 }
 
 // stops movement of basketball object
-STATE_DEFINE(courtStateMachine, StopMovement, noEventData)
+STATE_DEFINE(hoopStateMachine, StopMovement, noEventData)
 {
     
 }
 
 // state machine sits here when motor is not running
-STATE_DEFINE(courtStateMachine, Idle, noEventData)
+STATE_DEFINE(hoopStateMachine, Idle, noEventData)
 {
     logMsg("Motor::ST_Idle");
 }
 
 // updates position of basketball objects
-STATE_DEFINE(courtStateMachine, UpdatePosition, courtSMData)
+STATE_DEFINE(hoopStateMachine, UpdatePosition, hoopSMData)
 {
 /*    conversionSharedPtr convert;
     comparison compare;
@@ -365,86 +364,86 @@ STATE_DEFINE(courtStateMachine, UpdatePosition, courtSMData)
     basketballFlagsSharedPtr flag = data->flag;
     basketballPhysicsSharedPtr physics = data->physics;
     OgreSceneNodeSharedPtr node = data->node;
-    std::string func = "courtStateMachine::updatePosition()";
+    std::string func = "hoopStateMachine::updatePosition()";
 
     
     logMsg(func + " beginning");
-    if (flag->getCourtPositionChanged())
+    if (flag->gethoopPositionChanged())
     {
         //exit(0);
-        switch (component->getCourtPositionChangedType())
+        switch (component->gethoopPositionChangedType())
         {
             case STARTCHANGE:
-                logMsg(func + " Updating basketball court position based on start position");
+                logMsg(func + " Updating basketball hoop position based on start position");
                 
-                node->translate(component->getNewCourtPosition());
-                physChange = BtOgre::Convert::toBullet(component->getNewCourtPosition()); // converts from Ogre::Vector3 to btVector3
+                node->translate(component->getNewhoopPosition());
+                physChange = BtOgre::Convert::toBullet(component->getNewhoopPosition()); // converts from Ogre::Vector3 to btVector3
                 component->getPhysics()->getPhysBody()->translate(physChange); // moves physics body in unison with the model
-                component->getSteer()->setPosition(convert->toOpenSteerVec3(component->getNewCourtPosition()));
-                flag->setCourtPositionChanged(false);
-                component->setCourtPositionChangedType(NOCHANGE);
+                component->getSteer()->setPosition(convert->toOpenSteerVec3(component->getNewhoopPosition()));
+                flag->sethoopPositionChanged(false);
+                component->sethoopPositionChangedType(NOCHANGE);
             break;
             
             case STEERCHANGE:
-                logMsg(func + " Updating basketball court position based on steering");
+                logMsg(func + " Updating basketball hoop position based on steering");
                 //logMsg("Team " +convert->toString(teamNumber) + " Player " +convert->toString(playerID));
-                changePos = compare.OgreVector3ToOgreVector3Result(component->getCourtPosition(), component->getNewCourtPosition());
+                changePos = compare.OgreVector3ToOgreVector3Result(component->gethoopPosition(), component->getNewhoopPosition());
                 node->translate(changePos);
                 physChange = BtOgre::Convert::toBullet(changePos); // converts from Ogre::Vector3 to btVector3
                 component->getPhysics()->getPhysBody()->translate(physChange); // moves physics body in unison with the model
                
-                flag->setCourtPositionChanged(false);
-                component->setCourtPositionChangedType(NOCHANGE);
+                flag->sethoopPositionChanged(false);
+                component->sethoopPositionChangedType(NOCHANGE);
             break;   
 
             case INPUTCHANGE:
-                logMsg(func + " Updating court position based on input");
-                node->translate(component->getNewCourtPosition());
-                physChange = BtOgre::Convert::toBullet(component->getNewCourtPosition()); // converts from Ogre::Vector3 to btVector3
+                logMsg(func + " Updating hoop position based on input");
+                node->translate(component->getNewhoopPosition());
+                physChange = BtOgre::Convert::toBullet(component->getNewhoopPosition()); // converts from Ogre::Vector3 to btVector3
                 component->getPhysics()->getPhysBody()->translate(physChange); // moves physics body in unison with the model
-                component->getSteer()->setPosition(convert->toOpenSteerVec3(component->getNewCourtPosition()));
-                flag->setCourtPositionChanged(false);
-                component->setCourtPositionChangedType(NOCHANGE);
+                component->getSteer()->setPosition(convert->toOpenSteerVec3(component->getNewhoopPosition()));
+                flag->sethoopPositionChanged(false);
+                component->sethoopPositionChangedType(NOCHANGE);
                 //exit(0);
             break;
 
             case PHYSICSCHANGE:
-                logMsg(func + " Updating basketball court position based on physics");
+                logMsg(func + " Updating basketball hoop position based on physics");
                 //exit(0);
             break;
             case PLAYERMOVECHANGE:
-                logMsg(func + " Updating basketball court position based on player movement");
-                node->translate(component->getNewCourtPosition());
-                logMsg(func + " bball newCourtPosition = " +convert->toString(component->getNewCourtPosition()));
+                logMsg(func + " Updating basketball hoop position based on player movement");
+                node->translate(component->getNewhoopPosition());
+                logMsg(func + " bball newhoopPosition = " +convert->toString(component->getNewhoopPosition()));
                 logMsg(func + " bball node position" +convert->toString((node->getPosition())));
                 //exit(0);
-                physChange = BtOgre::Convert::toBullet(component->getNewCourtPosition()); // converts from Ogre::Vector3 to btVector3
+                physChange = BtOgre::Convert::toBullet(component->getNewhoopPosition()); // converts from Ogre::Vector3 to btVector3
                 component->getPhysics()->getPhysBody()->translate(physChange); // moves physics body in unison with the model
-                //steer->setPosition(convert->toOpenSteerVec3(component->getNewCourtPosition()));
-                flag->setCourtPositionChanged(false);
-                component->setCourtPositionChangedType(NOCHANGE);
+                //steer->setPosition(convert->toOpenSteerVec3(component->getNewhoopPosition()));
+                flag->sethoopPositionChanged(false);
+                component->sethoopPositionChangedType(NOCHANGE);
 //                exit(0);
             break;
             case PLAYERDIRECTCHANGE:
-                logMsg(func + " Updating basketball court position based on player movement");
-                node->translate(component->getNewCourtPosition());
-                logMsg(func + " bball newCourtPosition = " +convert->toString(component->getNewCourtPosition()));
+                logMsg(func + " Updating basketball hoop position based on player movement");
+                node->translate(component->getNewhoopPosition());
+                logMsg(func + " bball newhoopPosition = " +convert->toString(component->getNewhoopPosition()));
                 logMsg(func + " bball node position" +convert->toString((node->getPosition())));
                 //exit(0);
-                physChange = BtOgre::Convert::toBullet(component->getNewCourtPosition()); // converts from Ogre::Vector3 to btVector3
+                physChange = BtOgre::Convert::toBullet(component->getNewhoopPosition()); // converts from Ogre::Vector3 to btVector3
                 component->getPhysics()->getPhysBody()->translate(physChange); // moves physics body in unison with the model
-                //steer->setPosition(convert->toOpenSteerVec3(component->getNewCourtPosition()));
-                flag->setCourtPositionChanged(false);
-                component->setCourtPositionChangedType(NOCHANGE);
+                //steer->setPosition(convert->toOpenSteerVec3(component->getNewhoopPosition()));
+                flag->sethoopPositionChanged(false);
+                component->sethoopPositionChangedType(NOCHANGE);
             break;
             default:
             break;
         }
-        component->setCourtPosition(node->getPosition());
-        logMsg("basketball position = " +convert->toString(component->getCourtPosition()));
+        component->sethoopPosition(node->getPosition());
+        logMsg("basketball position = " +convert->toString(component->gethoopPosition()));
     }
     
-    logMsg("basketball position = " +convert->toString(component->getCourtPosition()));
+    logMsg("basketball position = " +convert->toString(component->gethoopPosition()));
 
 
     data->component = component;
@@ -456,7 +455,7 @@ STATE_DEFINE(courtStateMachine, UpdatePosition, courtSMData)
 }
 
 // updates movement of basketball objects
-STATE_DEFINE(courtStateMachine, UpdateMovement, courtSMData)
+STATE_DEFINE(hoopStateMachine, UpdateMovement, hoopSMData)
 {
     
 /*    conversionSharedPtr convert;
@@ -475,19 +474,19 @@ STATE_DEFINE(courtStateMachine, UpdateMovement, courtSMData)
     basketballComponentsSharedPtr component = data->component;
     basketballFlagsSharedPtr flag = data->flag;
     OgreSceneNodeSharedPtr node = data->node;
-    std::string func = "courtStateMachine:Machine:updateMovement()";
+    std::string func = "hoopStateMachine:Machine:updateMovement()";
 
     logMsg(func + " beginning");
 
-    if (component->getCourtPosition().x == 0 && component->getCourtPosition().y == 0 && component->getCourtPosition().z == 0)
+    if (component->gethoopPosition().x == 0 && component->gethoopPosition().y == 0 && component->gethoopPosition().z == 0)
     {
         bballCurrentPos = node->getPosition();
     }
     else
     {
-        bballCurrentPos = component->getCourtPosition();
+        bballCurrentPos = component->gethoopPosition();
     }
-//TS    playerPos = activePlayerInstance[playerWithBallInstance]->getCourtPosition();  // stores the current position of player with ball
+//TS    playerPos = activePlayerInstance[playerWithBallInstance]->gethoopPosition();  // stores the current position of player with ball
     //bballPos = bballCurrentPos;
     bballPos = Ogre::Vector3(0,0,0);
     logMsg(func + " bballHere???");
@@ -495,12 +494,12 @@ STATE_DEFINE(courtStateMachine, UpdateMovement, courtSMData)
     {
         case UP:
             bballPos.x += 0;
-            bballPos.y += 0; // maintains the current height of the basketball on the court as the player and ball moves
+            bballPos.y += 0; // maintains the current height of the basketball on the hoop as the player and ball moves
             bballPos.z -= 0.200;
         break;
         case DOWN:
             bballPos.x += 0;
-            bballPos.y += 0; // maintains the current height of the basketball on the court as the player and ball moves
+            bballPos.y += 0; // maintains the current height of the basketball on the hoop as the player and ball moves
             bballPos.z += 0.200;
         break;
         case LEFT:
@@ -510,7 +509,7 @@ STATE_DEFINE(courtStateMachine, UpdateMovement, courtSMData)
         break;
         case RIGHT:
             bballPos.x += 0.200;
-            bballPos.y += 0; // maintains the current height of the basketball on the court as the player and ball moves
+            bballPos.y += 0; // maintains the current height of the basketball on the hoop as the player and ball moves
             bballPos.z += 0;
         break;
         default:
@@ -519,11 +518,11 @@ STATE_DEFINE(courtStateMachine, UpdateMovement, courtSMData)
 
     logMsg(func + " bballPos == " +convert->toString(bballPos));
     logMsg(func + " cbballPos == " +convert->toString(bballCurrentPos));
-//TS        logMsg("pbballPos == " +convert->toString(activePlayerInstance[x]->getCourtPosition()));
-    logMsg(func + " new bball court Position == " +convert->toString(bballPos));
-    component->setNewCourtPosition(bballPos);
-    flag->setCourtPositionChanged(true);
-    component->setCourtPositionChangedType(PLAYERMOVECHANGE);
+//TS        logMsg("pbballPos == " +convert->toString(activePlayerInstance[x]->gethoopPosition()));
+    logMsg(func + " new bball hoop Position == " +convert->toString(bballPos));
+    component->setNewhoopPosition(bballPos);
+    flag->sethoopPositionChanged(true);
+    component->sethoopPositionChangedType(PLAYERMOVECHANGE);
         //basketballInstance[activeBBallInstance].setMovement(false);
         //basketballInstance[activeBBallInstance] = bballInstance;
 
@@ -535,7 +534,7 @@ STATE_DEFINE(courtStateMachine, UpdateMovement, courtSMData)
 }
 
 // updates direction of basketball objects
-STATE_DEFINE(courtStateMachine, UpdateDirection, courtSMData)
+STATE_DEFINE(hoopStateMachine, UpdateDirection, hoopSMData)
 {
 /*    conversionSharedPtr convert;
     
@@ -552,7 +551,7 @@ STATE_DEFINE(courtStateMachine, UpdateDirection, courtSMData)
 //TS    logMsg("directplayerwithballInstance == " +convert->toString(playerWithBallInstance));
     bool tipOffComplete = gameFlag->getTipOffComplete();
     size_t x = 0;
-    std::string func = "courtStateMachine::updateDirection()";
+    std::string func = "hoopStateMachine::updateDirection()";
 
     logMsg(func + " beginning");
 

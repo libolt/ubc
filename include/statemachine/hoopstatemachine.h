@@ -30,16 +30,16 @@ class hoopSMData : public eventData
 {
 public:
 
-    hoopComponentsSharedPtr component;  // stores copy of courtComponents object
-    hoopDataSharedPtr cData;  // stores copy of courtData object
-    hoopFlagsSharedPtr flag;  // stores copy of courtFlags object
+    hoopComponentsSharedPtr component;  // stores copy of hoopComponents object
+//    hoopDataSharedPtr cData;  // stores copy of hoopData object
+    hoopFlagsSharedPtr flag;  // stores copy of hoopFlags object
 
     OgreEntitySharedPtr model;  // stores 3d model
     OgreSceneNodeSharedPtr node;  // stores node 3d model is attached to
     renderEngineSharedPtr render;  // stores copy of render
 
 private:
-//    courtPhysicsSharedPtr physics;  // stores copy of courtPhysics object
+//    hoopPhysicsSharedPtr physics;  // stores copy of hoopPhysics object
 /*    gameComponentsSharedPtr gComponent;  // stores copy of gameComponent object
     gameDataSharedPtr gData;  // stores copy of gameData object
     gameFlagsSharedPtr gFlag;  // stores copy of gameFlag object
@@ -50,17 +50,17 @@ private:
 class hoopStateMachine : public stateMachine
 {
 public:
-    courtStateMachine();
+    hoopStateMachine();
 
     // External events taken by this state machine
-    void pInitialize(const courtSMData *data);
-    void pInitializeComponents(courtSMData *data);
-    void pLoadModel(courtSMData *data);
-    void pCreateNode(courtSMData *data);
-    void pSetupPhysics(courtSMData *data);
-    void pUpdatePosition(courtSMData *data);
-    void pUpdateMovement(courtSMData *data);
-    void pUpdateDirection(courtSMData *data);
+    void pInitialize(const hoopSMData *data);
+    void pInitializeComponents(hoopSMData *data);
+    void pLoadModel(hoopSMData *data);
+    void pCreateNode(hoopSMData *data);
+    void pSetupPhysics(hoopSMData *data);
+    void pUpdatePosition(hoopSMData *data);
+    void pUpdateMovement(hoopSMData *data);
+    void pUpdateDirection(hoopSMData *data);
     void halt();
 
 private:

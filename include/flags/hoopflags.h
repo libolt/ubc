@@ -30,8 +30,17 @@ class hoopFlags : public entityFlags
         hoopFlags();  // constructor
         ~hoopFlags();  // destructor
 
+        bool getNumberSet() const;  // retrieves the value of numberSet
+        void setNumberSet(const bool &set);  // sets the value of numberSet
+
+        bool getStateChanged() const;  // retrieves the value of stateChanged
+        void setStateChanged(const bool &set);  // sets the value of stateChanged
+
     private:
-          
+        bool numberSet;  // stores whether the the instance number had been set
+        bool stateChanged;  // Determines if the stateMachine needs to be updated
+
+
 };
 
 #endif

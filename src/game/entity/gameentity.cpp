@@ -440,6 +440,7 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
     Ogre::Vector3 playerPos;
     basketballEntityMSharedPtr activeBasketballInstance = component->getActiveBasketballInstance();
     courtEntityMSharedPtr activeCourtInstance = component->getActiveCourtInstance();
+    hoopEntityMSharedPtr activeHoopInstance = component->getActiveHoopInstance();
 
     std::vector<gameActions> stateAction = data->getStateAction();
 
@@ -708,6 +709,19 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
     }
     component->setActiveCourtInstance(activeCourtInstance);
 
+
+    activeHoopInstance = component->getActiveHoopInstance();
+    logMsg(func +" activeHoopInstance.size() == " +convert->toString(component->getActiveHoopInstance().size()));
+
+    // update Active Hoop Instances stateMachines
+    for (auto AHIIT : activeHoopInstance)
+    {
+        logMsg(func +" updating activeHoopInstance stateMachine");
+        AHIIT.second->updateStateMachine(render);
+//        exit(0);
+
+    }
+    component->setActiveHoopInstance(activeHoopInstance);
 
     if (data->getGameType() == SINGLE)
     {

@@ -546,12 +546,15 @@ STATE_DEFINE(gameStateMachine, loadModels, gameSMData)
         logMsg(func +" Hoop models not loaded!");
 //        exit(0);
         loadHoopsSharedPtr loadHoop(new loadHoops);
-        hoopEntityMSharedPtr activeHoopInstance;
+        hoopEntityMSharedPtr activeHoopInstance = data->component->getActiveHoopInstance();
         
         logMsg(func +" Loading hoop model(s)!");
 //        exit(0);
-        activeHoopInstance = loadHoop->loadModels(data->component->getActiveHoopInstance(), data->render);  // Creates the hoop instances
-        if (!activeHoopInstance.empty())
+        for (auto AHIIT : activeHoopInstance)
+        {
+            AHIIT.second->getFlag()->setStateChanged(true);
+            AHIIT.second->setAction(HLOADMODEL);
+        }        if (!activeHoopInstance.empty())
         {
             data->flag->setHoopModelLoaded(true);
             data->component->setActiveHoopInstance(activeHoopInstance);
@@ -622,21 +625,8 @@ STATE_DEFINE(gameStateMachine, createNodes, gameSMData)
     {
         for (auto ACIIT : data->component->getActiveCourtInstance())  // loop through active court instances
         {
-            activeModel = ACIIT.second->getComponent()->getModel();
-            activeEntityName = ACIIT.second->getComponent()->getName();
-            activeNodeNum = convert->toString(ACIIT.first);
-            activeNodeName = ACIIT.second->getComponent()->getNodeName();
-            if (activeNodeName.empty())
-            {
-                activeNodeName = activeEntityName + activeNodeNum;
-                ACIIT.second->getComponent()->setNodeName(activeNodeName);
-            }
-            else
-            {
-                
-            }
-            activeNode = data->render->createNode(activeModel, activeNodeName);  // creates node
-            ACIIT.second->getComponent()->setNode(activeNode);  // saves node to current instance
+            ACIIT.second->getFlag()->setStateChanged(true);
+            ACIIT.second->setAction(CCREATENODE);
         }
         data->flag->setCourtNodeCreated(true);
     }
@@ -648,7 +638,10 @@ STATE_DEFINE(gameStateMachine, createNodes, gameSMData)
     {
         for (auto AHIIT : data->component->getActiveHoopInstance())  // loop through active hoop instances
         {
-            activeModel = AHIIT.second->getComponent()->getModel();
+            AHIIT.second->getFlag()->setStateChanged(true);
+            AHIIT.second->setAction(HCREATENODE);
+
+/*            activeModel = AHIIT.second->getComponent()->getModel();
             activeEntityName = AHIIT.second->getComponent()->getModel()->getName();
             logMsg(func +" activeEntityName == " +=activeEntityName);
             activeNodeNum = convert->toString(AHIIT.first);
@@ -664,7 +657,7 @@ STATE_DEFINE(gameStateMachine, createNodes, gameSMData)
             }
             activeNode = data->render->createNode(activeModel, activeNodeName);  // creates node
             AHIIT.second->getComponent()->setNode(activeNode);  // saves node to current instance
-
+*/
         }
         data->flag->setHoopNodeCreated(true);
     }

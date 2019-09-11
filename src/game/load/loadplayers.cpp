@@ -699,3 +699,35 @@ playerEntitySharedPtr loadPlayers::loadPlayerFile(const std::string &fileName)  
     return (playerInstance);
 }
 
+void loadPlayers::loadModel(playerComponentsSharedPtr &component, playerFlagsSharedPtr &flag, const renderEngineSharedPtr &render)  // loads selected basketball model
+{
+    conversionSharedPtr convert ;
+    loaderSharedPtr load(new loader);
+    setupBasketballsSharedPtr setupBasketball;
+    std::string entityName = component->getName();
+    std::string entityModelFileName = component->getModelFileName();
+
+    OgreEntitySharedPtr model;  // stores the model returned by loadModel() function
+    std::string func = "loadPlayers::loadModels()";
+    bool returnType = false;
+
+    logMsg(func +" begin");
+    logMsg(func +" entityModelFileName == " +entityModelFileName);
+    logMsg(func +" Model not loaded yet!");
+    logMsg(" name == " +component->getName());
+    model = load->loadModelFile(entityModelFileName, entityName, render);
+//            exit(0);
+    if (model != nullptr)
+    {
+        logMsg(func + " Model loaded successfully!");
+        component->setModel(model);
+        flag->setModelLoaded(true);
+//        exit(0);
+    }
+    else
+    {
+        logMsg(func + " Unable to load model!");
+        exit(0);
+    }
+    logMsg(func +" end");
+}

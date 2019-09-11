@@ -50,7 +50,7 @@ class loadPlayers : public loader
     stdStringVec loadPlayerListFile(const std::string &fileName);  // loads list of player files from players.xml
     playerEntitySharedPtr loadPlayerFile(const std::string &fileName);  // loads data from the player XML files
 
-    bool loadModelFile();  // loads the 3D model from file specified in modelName
+    void loadModel(playerComponentsSharedPtr &component, playerFlagsSharedPtr &flag, const renderEngineSharedPtr &render);  // loads selected basketball model
 
     private:
     

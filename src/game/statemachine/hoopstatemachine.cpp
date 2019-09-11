@@ -233,7 +233,7 @@ STATE_DEFINE(hoopStateMachine, LoadModel, hoopSMData)
 {
 
     conversionSharedPtr convert;
-    loadHoopsSharedPtr loadhoop(new loadHoops);
+    loadHoopsSharedPtr loadHoop(new loadHoops);
     hoopSMData *lmSMData(new hoopSMData);
     std::string func = "hoopStateMachine::LoadModel()";
 
@@ -243,7 +243,7 @@ STATE_DEFINE(hoopStateMachine, LoadModel, hoopSMData)
     lmSMData->flag = data->flag;
     lmSMData->render = data->render;
 
-    loadhoop->loadModel(lmSMData->component, lmSMData->flag, lmSMData->render);
+    loadHoop->loadModel(lmSMData->component, lmSMData->flag, lmSMData->render);
     logMsg(func +" end");
 //    exit(0);
 }

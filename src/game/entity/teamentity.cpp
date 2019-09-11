@@ -241,7 +241,23 @@ void teamEntity::updateState(const gameComponentsSharedPtr &gameInstanceComponen
             spspSMData->gData = gameData;
             spspSMData->courtInstance = gameInstanceComponent->getCourtInstance();
             spspSMData->teamStarterID = gameInstanceData->getTeamStarterID();
-            stateMachine->pSetPlayerStartPositions(spspSMData);
+            bool nodesCreated = true;
+            for (auto APIIT : activePlayerInstance)  // check if all player nodes have been
+            {
+                if (APIIT.second->getFlag()->getNodeCreated() != true)
+                {
+                    nodesCreated = false;
+                }
+            }
+            if (nodesCreated)
+            {
+                stateMachine->pSetPlayerStartPositions(spspSMData);
+            }
+            else
+            {
+                logMsg("Player Nodes not created!");
+//                exit(0);
+            }
 
 /*            logMsg(func +" Player Start Positions Not Yet Set!");
             playerEntityMSharedPtr activePlayerInstance;
@@ -300,6 +316,7 @@ void teamEntity::updateState(const gameComponentsSharedPtr &gameInstanceComponen
 
         auto *uapSMData = new teamSMData;
         uapSMData->component = component;
+        uapSMData->render = render;
         stateMachine->pUpdateActivePlayers(uapSMData);
 /*        activePlayerInstance = updateTeam->updateActivePlayers(component->getActivePlayerInstance());
         if (activePlayerInstance.size() > 0)

@@ -231,8 +231,6 @@ bool playerEntity::initializeStateMachine()  // initializes the stateMachine obj
         logMsg(func +" Objects already initialized!");
     }
 
-    initSMData->model = component->getModel();
-    initSMData->node = component->getNode();
 
 //    exit(0);
     component->getStateMachine()->setSpeed(initSMData);
@@ -243,7 +241,7 @@ bool playerEntity::initializeStateMachine()  // initializes the stateMachine obj
     return (true);
 }
 
-bool playerEntity::updateStateMachine()  // updates state machine with external input
+bool playerEntity::updateStateMachine(renderEngineSharedPtr render)  // updates state machine with external input
 {
     conversionSharedPtr convert ;
     
@@ -264,12 +262,33 @@ bool playerEntity::updateStateMachine()  // updates state machine with external 
 
             switch (SAIT)
             {
+            case PLOADMODEL:
+                logMsg(func + " PLOADMODEL!");
+//                exit(0);
+                updateSMData->component = component;
+                updateSMData->pData = data;
+                updateSMData->flag = flag;
+                updateSMData->render = render;
+                component->getStateMachine()->pLoadModel(updateSMData);
+                logMsg(func +" Model loaded == " +convert->toString(flag->getModelLoaded()));
+//                exit(0);
+            break;
+            case PCREATENODE:
+                logMsg(func + " PCREATENODE!");
+//                updateSMData->model = component->getModel();
+                updateSMData->component = component;
+                updateSMData->pData = data;
+                updateSMData->flag = flag;
+                updateSMData->render = render;
+                component->getStateMachine()->pCreateNode(updateSMData);
+//                exit(0);
+            break;
                 case CHANGECOURTPOS:
                     logMsg(func + " CHANGECOURTPOS!");
                     logMsg(func + " newCourtPosition == " +convert->toString(gameData->getNewCourtPosition()));
 //                    exit(0);
                     updateSMData->position = gameData->getNewCourtPosition();
-                    updateSMData->node = component->getNode();
+//                    updateSMData->node = component->getNode();
                     component->getStateMachine()->pChangePosition(updateSMData);
 
 //                    exit(0);o
@@ -278,18 +297,6 @@ bool playerEntity::updateStateMachine()  // updates state machine with external 
                     logMsg(func + " CHANGEDIRECTION!");
                     updateSMData->direction = gameData->getDirection();
 //                    component->getStateMachine()->pChangeDirection(updateSMData);
-                break;
-                case PSETNODE:
-                    logMsg(func + " SETNODE!");
-                    updateSMData->node = component->getNode();
-//                    component->getStateMachine()->setPNode(updateSMData);
-
-                break;
-                case PSETMODEL:
-                    logMsg(func + " SETMODEL!");
-                    updateSMData->model = component->getModel();
-//                    component->getStateMachine()->setPModel(updateSMData);
-
                 break;
                 case PMOVE:
                 break;
@@ -309,6 +316,7 @@ bool playerEntity::updateStateMachine()  // updates state machine with external 
 
 
         }
+//        exit(0);
         gameData->getStateAction().clear();
         getFlag()->setStateChanged(false);  // sets stateChanged back to false now that hte stateMachine has been updated
     }
@@ -317,8 +325,11 @@ bool playerEntity::updateStateMachine()  // updates state machine with external 
 
     }
 
-    logMsg(func +" playerPos == " +convert->toString(component->getNode()->getPosition()));
-//    component->getNode()->setPosition(Ogre::Vector3(100,100,0));
+    if (component->getNode() != nullptr)
+    {
+        logMsg(func +" playerPos == " +convert->toString(component->getNode()->getPosition()));
+    }
+    //    component->getNode()->setPosition(Ogre::Vector3(100,100,0));
     logMsg(func + " end");
 //    exit(0);
     

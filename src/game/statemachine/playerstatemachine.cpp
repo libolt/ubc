@@ -324,19 +324,21 @@ STATE_DEFINE(playerStateMachine, StartMovement, playerSMData)
 STATE_DEFINE(playerStateMachine, ChangePosition, playerSMData)
 {
 //    exit(0);
-    conversionSharedPtr convert ;
+    conversionSharedPtr convert;
+    OgreSceneNodeSharedPtr node = data->component->getNode();
     std:: string func = "playerStateMachine::ChangePosition";
 
     logMsg(func +" begin");
 //    exit(0);
-    logMsg("playerStateMachine::ST_ChangePosition : court position is " +convert->toString(data->position));
+    logMsg(func +" court position is " +convert->toString(data->position));
     
     currentPosition = data->position;
     
 //    logMsg(func +" Node Position == " +convert->toString(data->node->getPosition()));
 //    exit(0);
-    currentNode->setPosition(currentPosition);
-    logMsg(func +" Node Position == " +convert->toString(currentNode->getPosition()));
+    node->setPosition(currentPosition);
+    data->component->setNode(node);
+    logMsg(func +" Node Position == " +convert->toString(data->component->getNode()->getPosition()));
     logMsg(func +" end");
 
 //    exit(0);
@@ -362,7 +364,8 @@ STATE_DEFINE(playerStateMachine, ChangeSpeed, playerSMData)
 // changes the player's direction once the player is moving
 STATE_DEFINE(playerStateMachine, ChangeDirection, playerSMData)
 {
-    conversionSharedPtr convert ;
+    conversionSharedPtr convert;
+    OgreSceneNodeSharedPtr node = data->component->getNode();
     std:: string func = "playerStateMachine::ChangeDirection";
 
     logMsg(func +" begin");
@@ -376,13 +379,13 @@ STATE_DEFINE(playerStateMachine, ChangeDirection, playerSMData)
             switch (data->direction)
             {
                 case DOWN:
-                    currentNode->yaw(Ogre::Degree (180));
+                    node->yaw(Ogre::Degree (180));
                 break;
                 case LEFT:
-                    currentNode->yaw(Ogre::Degree (270));
+                    node->yaw(Ogre::Degree (270));
                 break;
                 case RIGHT:
-                    currentNode->yaw(Ogre::Degree (90));
+                    node->yaw(Ogre::Degree (90));
 //                        exit(0);
                 break;
                 default:
@@ -394,13 +397,13 @@ STATE_DEFINE(playerStateMachine, ChangeDirection, playerSMData)
             switch (data->direction)
             {
                 case UP:
-                    currentNode->yaw(Ogre::Degree (180));
+                    node->yaw(Ogre::Degree (180));
                 break;
                 case LEFT:
-                    currentNode->yaw(Ogre::Degree (90));
+                    node->yaw(Ogre::Degree (90));
                 break;
                 case RIGHT:
-                    currentNode->yaw(Ogre::Degree (270));
+                    node->yaw(Ogre::Degree (270));
                 break;
                 default:
                 break;
@@ -410,13 +413,13 @@ STATE_DEFINE(playerStateMachine, ChangeDirection, playerSMData)
             switch (data->direction)
             {
                 case UP:
-                    currentNode->yaw(Ogre::Degree (90));
+                    node->yaw(Ogre::Degree (90));
                 break;
                 case DOWN:
-                    currentNode->yaw(Ogre::Degree (270));
+                    node->yaw(Ogre::Degree (270));
                 break;
                 case RIGHT:
-                    currentNode->yaw(Ogre::Degree (180));
+                    node->yaw(Ogre::Degree (180));
                 break;
                 default:
                 break;
@@ -426,13 +429,13 @@ STATE_DEFINE(playerStateMachine, ChangeDirection, playerSMData)
             switch (data->direction)
             {
                 case UP:
-                    currentNode->yaw(Ogre::Degree (270));
+                    node->yaw(Ogre::Degree (270));
                 break;
                 case DOWN:
-                    currentNode->yaw(Ogre::Degree (90));
+                    node->yaw(Ogre::Degree (90));
                 break;
                 case LEFT:
-                    currentNode->yaw(Ogre::Degree (180));
+                    node->yaw(Ogre::Degree (180));
                 break;
                 default:
                 break;
@@ -442,16 +445,16 @@ STATE_DEFINE(playerStateMachine, ChangeDirection, playerSMData)
             switch (data->direction)
             {
                 case UP:
-                    currentNode->yaw(Ogre::Degree (270));
+                    node->yaw(Ogre::Degree (270));
                 break;
                 case DOWN:
-                    currentNode->yaw(Ogre::Degree (90));
+                    node->yaw(Ogre::Degree (90));
                 break;
                 case LEFT:
-                    currentNode->yaw(Ogre::Degree (0));
+                    node->yaw(Ogre::Degree (0));
                 break;
                 case RIGHT:
-                    currentNode->yaw(Ogre::Degree (180));
+                    node->yaw(Ogre::Degree (180));
                 break;
                 default:
                 break;

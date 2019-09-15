@@ -256,7 +256,8 @@ bool playerEntity::updateStateMachine(renderEngineSharedPtr render)  // updates 
         logMsg(func +" stateAction.size() = " +convert->toString(gameData->getStateAction().size()));
         logMsg(func +" gameData->getStateAction().size() == " +convert->toString(gameData->getStateAction().size()));
 //        exit(0);
-        for (auto SAIT : gameData->getStateAction())
+        auto stateAction = gameData->getStateAction();
+        for (auto SAIT : stateAction)
         {
             auto updateSMData(new playerSMData);
 
@@ -264,7 +265,7 @@ bool playerEntity::updateStateMachine(renderEngineSharedPtr render)  // updates 
             {
             case PLOADMODEL:
                 logMsg(func + " PLOADMODEL!");
-//                exit(0);
+                logMsg(func +" PLOADMODELName == " +component->getName());
                 updateSMData->component = component;
                 updateSMData->pData = data;
                 updateSMData->flag = flag;
@@ -287,6 +288,7 @@ bool playerEntity::updateStateMachine(renderEngineSharedPtr render)  // updates 
                     logMsg(func + " CHANGECOURTPOS!");
                     logMsg(func + " newCourtPosition == " +convert->toString(gameData->getNewCourtPosition()));
 //                    exit(0);
+                    updateSMData->component = component;
                     updateSMData->position = gameData->getNewCourtPosition();
 //                    updateSMData->node = component->getNode();
                     component->getStateMachine()->pChangePosition(updateSMData);
@@ -317,7 +319,8 @@ bool playerEntity::updateStateMachine(renderEngineSharedPtr render)  // updates 
 
         }
 //        exit(0);
-        gameData->getStateAction().clear();
+        stateAction.clear();
+        gameData->setStateAction(stateAction);
         getFlag()->setStateChanged(false);  // sets stateChanged back to false now that hte stateMachine has been updated
     }
     else

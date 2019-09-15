@@ -278,7 +278,7 @@ STATE_DEFINE(teamStateMachine, setPlayerStartPositions, teamSMData)
 //    exit(0);
     logMsg(func +" Player Start Positions Not Yet Set!");
     logMsg(func +" component->getActivePlayerInstance().size() = " +convert->toString(activePlayerInstance.size()));
-            exit(0);
+//            exit(0);
     activePlayerInstance = setupTeam.setPlayerStartPositions(activePlayerInstance, data->courtInstance, data->gData, data->teamStarterID);
 //            if (setPlayerStartPositions(activePlayerInstance, gameInstanceComponent->getCourtInstance(), gameInstanceData->getTeamStarterID()))  //   sets starting positions for the players
     if (!activePlayerInstance.empty())

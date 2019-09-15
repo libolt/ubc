@@ -391,7 +391,7 @@ playerEntityMSharedPtr setupPlayers::setupActivePlayerInstances(playerEntityMSha
             APIIT.second->getFlag()->setStateChanged(true);
             tempStateAction.push_back(PLOADMODEL);
             APIIT.second->getGameData()->setStateAction(tempStateAction);
-            logMsg(func +" " +APIIT.second->getData()->getFirstName() +" set to load");
+            logMsg(func +" PLOADMODELName " +APIIT.second->getData()->getFirstName() +" set to load");
 /*            OgreEntitySharedPtr tempModel;
             std::string entityName = APIIT.second->getComponent()->getName();
             std::string entityModelFileName = APIIT.second->getComponent()->getModelFileName();

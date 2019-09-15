@@ -60,8 +60,8 @@ private:
     directions currentDirection;
     playerActions currentAction;
     Ogre::Vector3 currentPosition;
-    OgreEntitySharedPtr currentModel;  // stores 3d model
-    OgreSceneNodeSharedPtr currentNode;  // stores node 3d model is attached to
+//    OgreEntitySharedPtr currentModel;  // stores 3d model
+//    OgreSceneNodeSharedPtr currentNode;  // stores node 3d model is attached to
 
     // State enumeration order must match the order of state method entries
     // in the state map.

@@ -34,14 +34,18 @@ class courtComponents : public entityComponents
         size_t getNumber() const;  // retrieves the value of number
         void setNumber(const size_t &set);  // sets the value of number
 
+#ifdef BTOGRE_MYGUI_ENABLED
         courtPhysicsSharedPtr getPhysics() const;  // retrieves the value of physics
         void setPhysics(const courtPhysicsSharedPtr &set);  // sets the value of physics
+#endif
 
     private:
     
         size_t number;  // stores the court object number
 
+#ifdef BTOGRE_MYGUI_ENABLED
         courtPhysicsSharedPtr physics;  // instanciates an object to handle the physics for the court
+#endif
 
 };
 

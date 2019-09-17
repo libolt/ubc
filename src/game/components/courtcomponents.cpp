@@ -35,10 +35,13 @@ size_t courtComponents::getNumber() const  // retrieves the value of number
 void courtComponents::setNumber(const size_t &set)  // sets the value of number
 {
     number = set;
+#ifdef BTOGRE_MYGUI_ENABLED
     physics->setPhysObjNumber(set); // sets the physics number as well
+#endif
 //    numberSet = true;
 }
 
+#ifdef BTOGRE_MYGUI_ENABLED
 courtPhysicsSharedPtr courtComponents::getPhysics() const  // retrieves the value of physics
 {
     return (physics);
@@ -48,3 +51,4 @@ void courtComponents::setPhysics(const courtPhysicsSharedPtr &set)  // sets the 
     physics = set;
 }
 
+#endif

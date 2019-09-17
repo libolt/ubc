@@ -49,6 +49,8 @@ basketballComponents::basketballComponents()  // constructor
 
 basketballComponents::~basketballComponents() = default;  // destructor
 
+#ifdef BTOGRE_MYGUI_ENABLE
+
 sharedPtr<basketballPhysics> basketballComponents::getPhysics() const  // retrieves the value of physics
 {
     return (physics);
@@ -57,6 +59,7 @@ void basketballComponents::setPhysics(const sharedPtr<basketballPhysics> &set)  
 {
     physics = set;
 }
+#endif
 
 basketballSteerSharedPtr basketballComponents::getSteer() const  // retrieves the value of steer
 {
@@ -201,7 +204,10 @@ size_t basketballComponents::getNumber() const  // retrieves the value of number
 void basketballComponents::setNumber(const size_t &set)  // sets the value of number
 {
     number = set;
+#ifdef BTOGRE_MYGUI_ENABLE
     physics->setPhysObjNumber(set); // sets the physics number as well
+#endif
+
 //    numberSet = true;
 }
 

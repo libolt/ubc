@@ -76,8 +76,10 @@ class basketballComponents : public entityComponents
         positionChangedTypes getCourtPositionChangedType() const;  // retrieves the value of courtPositionChangedType
         void setCourtPositionChangedType(const positionChangedTypes &set);  // sets the value of courtPositionChangedType
 
+#ifdef BTOGRE_MYGUI_ENABLE
         sharedPtr<basketballPhysics> getPhysics() const;  // retrieves the value of physics
         void setPhysics(const sharedPtr<basketballPhysics> &set);  // sets the value of physics
+#endif
 
         basketballSteerSharedPtr getSteer() const;  // retrieves the value of steer
         void setSteer(const basketballSteerSharedPtr &set);  // sets the value of steer
@@ -114,8 +116,9 @@ class basketballComponents : public entityComponents
         // stores what subsystem changed the position of the baskteball
         positionChangedTypes courtPositionChangedType;
 
+#ifdef BTOGRE_MYGUI_ENABLE
         sharedPtr<basketballPhysics> physics;  // instanciates an object to handle the physics for the basketball
-
+#endif
         basketballSteerSharedPtr steer;  // instance of the basketballSteer class
 
 };

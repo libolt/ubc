@@ -30,10 +30,12 @@
 #include <unordered_map>
 //#include <boost/shared_ptr.hpp>
 
+#ifdef BTOGRE_MYGUI_ENABLED
 #include "BtOgrePG.h"
 #include "BtOgreGP.h"
 #include "BtOgreExtras.h"
 #include "BulletDynamics/Dynamics/btRigidBody.h"
+#endif
 
 #include "utilities/enums.h"
 
@@ -389,6 +391,8 @@ typedef sharedPtr<MyGUI::ImageBox> MyGUIImageBoxSharedPtr;
 
 typedef sharedPtr<MyGUI::TextBox> MyGUITextBoxSharedPtr;
 
+#ifdef BTOGRE_MYGUI_ENABLED
+
 // physics
 
 typedef sharedPtr<btDynamicsWorld> btDynamicsWorldSharedPtr;
@@ -398,6 +402,7 @@ typedef sharedPtr<btCollisionShape> btCollisionShapeSharedPtr;
 typedef sharedPtr<BtOgre::RigidBodyState> BtOgreRigidBodyStateSharedPtr;
 
 typedef sharedPtr<btRigidBody> btRigidBodySharedPtr;
+#endif
 
 // game setup classses
 
@@ -487,6 +492,8 @@ typedef std::map <size_t, teamStateMachineSharedPtr> teamStateMachineMSharedPtr;
 
 typedef std::map <size_t, usersSharedPtr> usersMSharedPtr;
 
+#ifdef BTOGRE_MYGUI_ENABLED
+
 typedef std::map<std::string, sharedPtr<MyGUI::Button> > MyGUIButtonMSharedPtr;
 
 typedef std::map<size_t, sharedPtr<MyGUI::ListBox> > MyGUIListBoxMSharedPtr;
@@ -496,6 +503,7 @@ typedef std::map<playerPositions, sharedPtr<MyGUI::ListBox> > MyGUIPlayerListBox
 typedef std::map<std::string, sharedPtr<MyGUI::TextBox> > MyGUITextBoxMSharedPtr;
 
 typedef std::map<std::string, sharedPtr<MyGUI::ImageBox> > MyGUIImageBoxMSharedPtr;
+#endif
 
 typedef std::map<playerPositions, size_t> teamStarterIDsM;
 

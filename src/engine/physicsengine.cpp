@@ -17,6 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+#ifdef BTOGRE_MYGUI_ENABLE
 
 #include "utilities/conversion.h"
 #include "engine/gameengine.h"
@@ -940,3 +941,5 @@ bool physicsEngine::shootBasketball(teamTypes teamType, int playerID)  // calcul
     return (true);
 }
 */
+
+#endif

@@ -30,7 +30,7 @@ class playerComponents : public entityComponents
     public:
         playerComponents();  // constructor
         ~playerComponents();  // destructor
-        
+
         playerPhysicsSharedPtr getPhysics() const;  // retrieves the value of physics
         void setPhysics(const playerPhysicsSharedPtr &set);  // sets the value of physics
 

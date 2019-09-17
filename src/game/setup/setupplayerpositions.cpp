@@ -45,7 +45,11 @@ playerEntityMSharedPtr setupPlayerPositions::setJumpBallPositions(playerEntityMS
 //    exit(0);
     logMsg(func +" begining");
 
+    logMsg(func +" courtPos.y == " +convert->toString(courtPos.x));
     logMsg(func +" courtPos.y == " +convert->toString(courtPos.y));
+    logMsg(func +" courtPos.z == " +convert->toString(courtPos.z));
+//    exit(0);
+
     Ogre::Real yOffset = Ogre::Real(courtPos.y + 6.0);
 
     logMsg(func +" courtpos.y == " +convert->toString(courtPos.y));

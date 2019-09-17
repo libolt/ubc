@@ -376,6 +376,7 @@ void basketballEntity::updateStateMachine(const gameComponentsSharedPtr &gameCom
     {
         component->getPhysics()->updatePhysObj();
     }
+
 /*    if (flag->getDirectChange())
     {
     }

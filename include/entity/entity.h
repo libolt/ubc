@@ -27,9 +27,11 @@
 #include <string>
 #include "OgreEntity.h"
 #include "OgreVector3.h"
+
 #include "BtOgrePG.h"
 #include "BtOgreGP.h"
 #include "BtOgreExtras.h"
+
 #include "utilities/typedefs.h"
 
 class entity

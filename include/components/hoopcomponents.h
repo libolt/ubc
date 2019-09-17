@@ -35,7 +35,7 @@ class hoopComponents : public entityComponents
 
         hoopPhysicsSharedPtr getPhysics() const;  // retrieves the value of physics
         void setPhysics(const hoopPhysicsSharedPtr &set);  // sets the value of physis
-        
+
         size_t getNumber() const;  // retrieves the value of number
         void setNumber(const size_t &set);  // sets the value of number
 

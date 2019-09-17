@@ -291,6 +291,7 @@ STATE_DEFINE(courtStateMachine, SetupPhysics, courtSMData)
     OgreSceneNodeSharedPtr tempNode = data->node;
     courtComponentsSharedPtr component = data->component;
     courtFlagsSharedPtr flag = data->flag;
+
     btRigidBody *tempPhysBody = component->getPhysics()->getPhysBody().get();
     bool returnType = false;
     
@@ -339,6 +340,7 @@ STATE_DEFINE(courtStateMachine, SetupPhysics, courtSMData)
     }
 
     logMsg(func +" end");
+
 }
 
 // stops movement of basketball object

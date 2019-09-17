@@ -531,6 +531,10 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
 //                exit(0);
                 break;
                 case GSETSTARTPOS:
+                    logMsg(func +" GSETSTARTPOS");
+                    saSMData->component = component;
+                    saSMData->flag = flag;
+                    stateMachine->pSetStartPositions(saSMData);
                 break;
                 case GSETUPJUMPBALL:
                 break;

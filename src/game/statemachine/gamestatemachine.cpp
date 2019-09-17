@@ -680,7 +680,7 @@ STATE_DEFINE(gameStateMachine, createNodes, gameSMData)
 
 }
 
-// stop the player
+// set object start positions.
 STATE_DEFINE(gameStateMachine, setStartPositions, gameSMData)
 {
     conversionSharedPtr convert ;
@@ -697,7 +697,7 @@ STATE_DEFINE(gameStateMachine, setStartPositions, gameSMData)
     std:: string func = "gameStateMachine::setStartPositions";
 
     logMsg(func +" begin");
-
+//    exit(0);
     if (!data->flag->getBasketballStartPositionSet())
     {
         activeBasketballInstance = data->component->getActiveBasketballInstance();
@@ -720,6 +720,8 @@ STATE_DEFINE(gameStateMachine, setStartPositions, gameSMData)
     
     if (!data->flag->getCourtStartPositionSet())
     {
+        logMsg(func +"set Court Start Poisition");
+//        exit(0);
         activeCourtInstance = data->component->getActiveCourtInstance();
         activeCourtInstance = setupCourt->setCourtStartPositions(activeCourtInstance);
         data->component->setActiveCourtInstance(activeCourtInstance);

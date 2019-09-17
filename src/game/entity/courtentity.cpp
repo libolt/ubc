@@ -85,8 +85,10 @@ bool courtEntity::initializeObjects()  // initializes the basketball objects
     courtStateMachineSharedPtr tempStateMachine(new courtStateMachine);
     stateMachine = tempStateMachine;
 
+#ifdef BTOGRE_MYGUI_ENABLED
     courtPhysicsSharedPtr tempPhysics(new courtPhysics);
     component->setPhysics(tempPhysics);
+#endif
 
     return (true);
 }
@@ -204,7 +206,7 @@ bool courtEntity::updateStateMachine(renderEngineSharedPtr render)  // updates t
     return (true);
 }
 
-
+#ifdef BTOGRE_MYGUI_ENABLED
 bool courtEntity::setupPhysicsObject()  // sets up the physics object
 {
     OgreEntitySharedPtr tempModel = component->getModel();
@@ -242,3 +244,4 @@ bool courtEntity::setupPhysicsObject()  // sets up the physics object
 
     return (retVal);
 }
+#endif

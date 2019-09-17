@@ -354,7 +354,7 @@ bool UBCGame::setupUserInstancesInput()  // sets up input mapping for each user
     return (true);
 }
 
-bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &input, const GUISystemSharedPtr &gui)  // Main Game Loop
+bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &input)  // Main Game Loop
 {
     conversionSharedPtr convert ;
     bool quitGame = gameE->getQuitGame();
@@ -387,7 +387,9 @@ bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &in
     
     while (!quitGame)
     {
+#ifdef BTOGRE_MYGUI_ENABLED
         input->process(gameE, gameInstance->getComponent(), gameInstance->getFlag(), usersInstance, gui);
+#endif
 //        processPhysicsEvents();
         
 ///        if (gameInstance->getSetupComplete())  // checks to make sure game setup is complete before continuing

@@ -17,11 +17,14 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
- 
+
+#ifdef BTOGRE_MYGUI_ENABLED
+
 #include "components/guicomponents.h"
 #include "engine/gameengine.h"
 #include "engine/renderengine.h"
 #include "utilities/logging.h"
+
 
 guiComponents::guiComponents()  // constructor
 {
@@ -424,4 +427,6 @@ bool guiComponents::initMyGUI(const renderEngineSharedPtr &render)  // Initializ
     logMsg(func +" end");
     return true;
 }
+#endif
+
 

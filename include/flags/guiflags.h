@@ -21,6 +21,8 @@
 #ifndef _GUIFLAGS_H_
 #define _GUIFLAGS_H_
 
+#ifdef BTOGRE_MYGUI_ENABLED
+
 class guiFlags
 {
     public:
@@ -116,5 +118,6 @@ class guiFlags
         bool startActiveGame;  // dtermines whetehr or not to start the active game
         bool changeMenu;  // stores whether to change the menu
 };
+#endif
 
 #endif // GUIFLAGS_H

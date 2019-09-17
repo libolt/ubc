@@ -31,8 +31,10 @@ class playerComponents : public entityComponents
         playerComponents();  // constructor
         ~playerComponents();  // destructor
 
+#ifdef BTOGRE_MYGUI_ENABLED
         playerPhysicsSharedPtr getPhysics() const;  // retrieves the value of physics
         void setPhysics(const playerPhysicsSharedPtr &set);  // sets the value of physics
+#endif
 
         playerStateMachineSharedPtr getStateMachine() const;  // retrieves the value of stateMachine
         void setStateMachine(const playerStateMachineSharedPtr &set);  // sets the value of stateMachine
@@ -47,7 +49,9 @@ class playerComponents : public entityComponents
     
         playerStateMachineSharedPtr stateMachine;  // instance of playerStateMachine object
 
+#ifdef BTOGRE_MYGUI_ENABLED
         playerPhysicsSharedPtr physics;  // instance of playerPhysics object
+#endif
 
         playerStatisticsSharedPtr statistics;  // instance of playerStatistics object
 

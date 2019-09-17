@@ -33,8 +33,10 @@ class UBCComponents
         gameEngineSharedPtr getGameE() const;  // retrieves the value of gameE
         void setGameE(const gameEngineSharedPtr &set);  // sets the value of gameE
 
+#ifdef BTOGRE_MYGUI_ENABLED
         GUISystemSharedPtr getGui() const;  // retrieves the value of gui
         void setGui(const GUISystemSharedPtr &set);  // sets the value of gui
+#endif
 
         UBCGameSharedPtr getGame() const;  // retrieves the value of game
         void setGame(const UBCGameSharedPtr &set);  // sets the value of game
@@ -46,7 +48,9 @@ class UBCComponents
     
         gameEngineSharedPtr gameE;  // the gameEngine object
 
+#ifdef BTOGRE_MYGUI_ENABLED
         GUISystemSharedPtr gui;  // the GUI object.
+#endif
 
         UBCGameSharedPtr game;  // copy of game class
 

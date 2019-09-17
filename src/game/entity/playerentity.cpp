@@ -133,9 +133,11 @@ bool playerEntity::initializeObjects()  // initializes the player entity object
     playerComponentsSharedPtr tempComponent(new playerComponents);
     component = tempComponent;
     
+#ifdef BTOGRE_MYGUI_ENABLED
     playerPhysicsSharedPtr tempPhysics(new playerPhysics);
     component->setPhysics(tempPhysics);
-    
+#endif
+
     playerStateMachineSharedPtr tempStateMachine(new playerStateMachine);
     component->setStateMachine(tempStateMachine);
     
@@ -164,6 +166,7 @@ bool playerEntity::initializeObjects()  // initializes the player entity object
     return (retVal);
 }
 
+#ifdef BTOGRE_MYGUI_ENABLED
 bool playerEntity::setupPhysicsObject()  // sets up the physics object
 {
     std::string func = "playerEntity::setupPhysicsObject()!";
@@ -211,6 +214,7 @@ bool playerEntity::setupPhysicsObject()  // sets up the physics object
     
     return (retVal);
 }
+#endif
 
 bool playerEntity::initializeStateMachine()  // initializes the stateMachine object
 {

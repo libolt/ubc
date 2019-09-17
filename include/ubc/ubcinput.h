@@ -45,9 +45,11 @@ class UBCInput
         bool getSetupComplete() const;  // retrieves the value of setupComplete
         void setSetupComplete(const bool &set);  // sets the value of setupComplete
 
+#ifdef BTOGRE_MYGUI_ENABLED
         void process(const gameEngineSharedPtr &gameE, const gameComponentsSharedPtr &gameComponent, const gameFlagsSharedPtr &gameFlag, usersMSharedPtr usersInstance, const GUISystemSharedPtr &gui);  // processes game input
 
         bool processKeyboard(const gameEngineSharedPtr &gameE, const gameComponentsSharedPtr &gameComponent, const gameFlagsSharedPtr &gameFlag, const GUISystemSharedPtr &gui);  // process keyboard input
+#endif
         bool processGamePad();  // process gamePad input
         bool processMouse();  // process mouse input
         bool processTouch();  // process touch input

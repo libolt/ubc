@@ -17,6 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+#ifdef BTOGRE_MYGUI_ENABLED
 
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
@@ -310,4 +311,4 @@ void basketballPhysics::updatePosition()  // updates the position of basketball 
 
     }
 }
-
+#endif

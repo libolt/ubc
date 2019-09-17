@@ -31,7 +31,10 @@ public:
     basketballComponentsSharedPtr component;  // stores copy of basketballComponents object
     basketballDataSharedPtr bData;  // stores copy of basketballData object
     basketballFlagsSharedPtr flag;  // stores copy of basketballFlags object
+#ifdef BTOGRE_MYGUI_ENABLED
     basketballPhysicsSharedPtr physics;  // stores copy of basketballPhysics object
+#endif
+
     gameComponentsSharedPtr gComponent;  // stores copy of gameComponent object
     gameDataSharedPtr gData;  // stores copy of gameData object
     gameFlagsSharedPtr gFlag;  // stores copy of gameFlag object

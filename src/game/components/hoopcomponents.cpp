@@ -27,6 +27,8 @@ hoopComponents::hoopComponents()  // constructor
 
 hoopComponents::~hoopComponents() = default;  // destructor
 
+#ifdef BTOGRE_MYGUI_ENABLED
+
 hoopPhysicsSharedPtr hoopComponents::getPhysics() const  // retrieves the value of physics
 {
     return (physics);
@@ -35,6 +37,7 @@ void hoopComponents::setPhysics(const hoopPhysicsSharedPtr &set)  // sets the va
 {
     physics = set;
 }
+#endif
 
 size_t hoopComponents::getNumber() const  // retrieves the value of number
 {

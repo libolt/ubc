@@ -69,7 +69,9 @@ class playerEntity : public entity
 
     bool initializeObjects();  // initializes the court entity object
 
+#ifdef BTOGRE_MYGUI_ENABLED
     bool setupPhysicsObject();  // sets up the physics object
+#endif
 
     bool initializeStateMachine();  // initializes the stateMachine object
     

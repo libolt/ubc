@@ -23,7 +23,9 @@
 UBCComponents::UBCComponents()  // constructor
 {
     gameE = nullptr;
+#ifdef BTOGRE_MYGUI_ENABLED
     gui = nullptr;
+#endif
     game = nullptr;
     input = nullptr;
 }
@@ -39,6 +41,7 @@ void UBCComponents::setGameE(const gameEngineSharedPtr &set)  // sets the value 
     gameE = set;
 }
 
+#ifdef BTOGRE_MYGUI_ENABLED
 GUISystemSharedPtr UBCComponents::getGui() const  // retrieves the value of gui
 {
     return (gui);
@@ -47,6 +50,7 @@ void UBCComponents::setGui(const GUISystemSharedPtr &set)  // sets the value of 
 {
     gui = set;
 }
+#endif
 
 UBCGameSharedPtr UBCComponents::getGame() const  // retrieves the value of game
 {

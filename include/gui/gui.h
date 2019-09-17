@@ -22,6 +22,7 @@
 #define _GUI_H_
 
 //#include "boost/shared_ptr.hpp"
+#ifdef BTOGRE_MYGUI_ENABLED
 
 #include "flags/guiflags.h"
 #include "gui/guidefines.h"
@@ -113,5 +114,6 @@ private:
     gameEntitySharedPtr gameInstance;  // stores a copy of the gameInstance
 
 };
+#endif
 
 #endif // GUI_H_INCLUDED

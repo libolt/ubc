@@ -54,7 +54,9 @@ class courtEntity : public entity
 
         bool updateStateMachine(renderEngineSharedPtr render);  // updates the stateMahine object
 
+#ifdef BTOGRE_MYGUI_ENABLED
         bool setupPhysicsObject();  // sets up the physics object
+#endif
 
     private:
      

@@ -196,8 +196,10 @@ STATE_DEFINE(hoopStateMachine, Initialize, hoopSMData)
 
     data = tempSMData;
     
+#ifdef BTOGRE_MYGUI_ENABLED
     hoopPhysicsSharedPtr tempPhysics(new hoopPhysics);
     data->component->setPhysics(tempPhysics);
+#endif
 
     logMsg(func +" end");
     
@@ -284,6 +286,8 @@ STATE_DEFINE(hoopStateMachine, CreateNode, hoopSMData)
 // sets up basketball physics object
 STATE_DEFINE(hoopStateMachine, SetupPhysics, hoopSMData)
 {
+#ifdef BTOGRE_MYGUI_ENABLED
+
     conversionSharedPtr convert;
     std::string func = "hoopStateMachine::setupPhysics()";
     OgreEntitySharedPtr tempModel = data->model;
@@ -339,6 +343,7 @@ STATE_DEFINE(hoopStateMachine, SetupPhysics, hoopSMData)
     }
 
     logMsg(func +" end");
+#endif
 
 }
 

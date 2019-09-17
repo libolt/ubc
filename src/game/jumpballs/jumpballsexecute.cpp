@@ -43,7 +43,9 @@ bool jumpBallsExecute::executeJump(const gameComponentsSharedPtr &component)  //
 {
     conversionSharedPtr convert ;
     jumpBallsSharedPtr jumpBall = component->getJumpBall();
+#ifdef BTOGRE_MYGUI_ENABLED
     physicsEngine physEngine;
+#endif
 
     playerEntityMSharedPtr activePlayerInstance;
     playerEntityMSharedPtr jumpPlayerInstance;  // stores playerID of players jumping for the ball
@@ -173,7 +175,9 @@ bool jumpBallsExecute::tipToPlayer(const gameComponentsSharedPtr &component, qua
     conversionSharedPtr convert ;
 //    sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
     jumpBallsSharedPtr jumpBall = component->getJumpBall();
+#ifdef BTOGRE_MYGUI_ENABLED
     physicsEngine physEngine;
+#endif
 //    basketballStateVec basketballInstance = gameS->getBasketballInstance();
 //    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
 //    playerStateVecSharedPtr activePlayerInstance;
@@ -287,6 +291,7 @@ bool jumpBallsExecute::tipToPlayer(const gameComponentsSharedPtr &component, qua
             logMsg("ballTippedToPlayerInstance == " +convert->toString(ballTippedToPlayerInstance));
 
             // FIXME! Do NOT hardcode activeBasketballInstance
+#ifdef BTOGRE_MYGUI_ENABLED
             if (physEngine.collisionCheck(activeBasketballInstance[0]->getComponent()->getPhysics()->getPhysBody(), activePlayerInstance[ballTippedToPlayerInstance].getComponent()->getPhysics()->getPhysBody()))
             {
  //               exit(0);
@@ -326,6 +331,7 @@ TS*/
             else
             {
             }
+#endif
 //            exit(0);
         }
         else

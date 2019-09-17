@@ -18,6 +18,8 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
+#ifdef BTOGRE_MYGUI_ENABLED
+
 #include "statemachine/guistatemachine.h"
 #include "components/gamecomponents.h"
 #include "components/guicomponents.h"
@@ -851,3 +853,4 @@ STATE_DEFINE(guiStateMachine, InputMenu, guiSMData)
     display->changeActiveMenu(INPUTMENU, render);
     logMsg(func +" end");
 }
+#endif

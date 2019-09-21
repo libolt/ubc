@@ -404,11 +404,11 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 
     if (buildType == "Debug")
     {
-        logMsg(func +"Loading STBI Image Codec Plguin!");
-        RERoot->loadPlugin(pluginDir +"/Codec_STBI_d.dll");
+//        logMsg(func +"Loading STBI Image Codec Plguin!");
+//        RERoot->loadPlugin(pluginDir +"/Codec_STBI_d.dll");
 
         logMsg(func +" Loading GL Debug RenderSystem!");
-        RERoot->loadPlugin(pluginDir + "/RenderSystem_GL_d.dll");
+        RERoot->loadPlugin(pluginDir + "/RenderSystem_GL3Plus_d.dll");
 //        RERoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager_d");
     }
     else
@@ -451,7 +451,9 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
         selectedRenderSystem = rsList.at(c);
         std::string rname = selectedRenderSystem->getName();
 //	if (rname.compare("OpenGL Rendering Subsystem") == 0)
-        if (rname == "OpenGL Rendering Subsystem")
+        logMsg(func +"rname == " +rname);
+//        exit(0);
+        if (rname == "OpenGL 3+ Rendering Subsystem (ALPHA)")
         {
             foundit = true;
             break;
@@ -707,7 +709,7 @@ bool renderEngine::createScene()
 #if OGRE_VERSION_MAJOR == 1 && OGRE_VERSION_MINOR <= 10
     mSceneMgr = sharedPtr<Ogre::SceneManager>(RERoot->createSceneManager(Ogre::ST_GENERIC)); // creates the scene manager
 #else
-    mSceneMgr = sharedPtr<Ogre::SceneManager>(RERoot->createSceneManager()); // creates the scene manager
+    mSceneMgr = sharedPtr<Ogre::SceneManager>(RERoot->createSceneManager(Ogre::ST_GENERIC, 1, Ogre::INSTANCING_CULLING_SINGLETHREAD)); // creates the scene manager
 #endif
 
 //    mSceneMgr = RERoot->createSceneManager("DefaultSceneManager"); // creates the scene manager
@@ -731,8 +733,10 @@ bool renderEngine::createScene()
 
     mCamera->setNearClipDistance(5);
     mCamera->setFarClipDistance(5000);
-    viewPort = sharedPtr<Ogre::Viewport>(mWindow->addViewport(mCamera.get()));
-    viewPort->setBackgroundColour(Ogre::ColourValue(0, 0, 0));
+//    viewPort = sharedPtr<Ogre::Viewport>(mWindow->addViewport(mCamera.get()));
+    viewPort = sharedPtr<Ogre::Viewport>(mWindow->addViewport());
+
+//    viewPort->setBackgroundColour(Ogre::ColourValue(0, 0, 0));
 
     mCamera->setAspectRatio(Ogre::Real(viewPort->getActualWidth()) / Ogre::Real(viewPort->getActualHeight()));
     // most examples get the viewport size to calculate this; for now, we'll just
@@ -752,8 +756,8 @@ bool renderEngine::createScene()
     mSceneMgr->setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5));
 
     // Create a light
-    light = sharedPtr<Ogre::Light>(mSceneMgr->createLight("MainLight"));
-    lightNode = OgreSceneNodeSharedPtr(mSceneMgr->getRootSceneNode()->createChildSceneNode("lightNode"));
+    light = sharedPtr<Ogre::Light>(mSceneMgr->createLight());
+    lightNode = OgreSceneNodeSharedPtr(mSceneMgr->getRootSceneNode()->createChildSceneNode());
     lightNode->attachObject(light.get());
 
     lightNode->setPosition(20,80,56);
@@ -843,7 +847,7 @@ OgreSceneNodeSharedPtr renderEngine::createNode(const OgreEntitySharedPtr &model
 //    entityNodeName = entityName +"node" +entityNodeNum;
 //    logMsg(func +" entityNodeName == " +entityNodeName);
 //    exit(0);
-    tempNode = OgreSceneNodeSharedPtr(mSceneMgr->getRootSceneNode()->createChildSceneNode(entityNodeName+"df"));
+    tempNode = OgreSceneNodeSharedPtr(mSceneMgr->getRootSceneNode()->createChildSceneNode());
     logMsg(func +" tempNode created!");
 //    tempNode->setName(entityNodeName);
     tempNode->attachObject(model.get());

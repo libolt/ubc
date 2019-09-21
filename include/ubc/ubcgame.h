@@ -90,7 +90,9 @@ class UBCGame
 
         void processNetworkEvents(const gameEngineSharedPtr &gameE);  // processes events in the network subsyatem
 
+#ifdef BTOGRE_MYGUI_ENABLED
         void processPhysicsEvents(const gameEngineSharedPtr &gameE);  // processes events in the physics subsyatem
+#endif
 
     private:
 
@@ -104,6 +106,11 @@ class UBCGame
         bool userInstancesInputSetup;  // stores status of input configuration for users
         bool inputSUInputSetup;  // stores whether inputS UInput object has been set
         bool loadUsersInputInitialized;  // stores whether loadUsersInputs object has been initialized
+
+#ifndef BTOGRE_MYGUI_ENABLED
+        bool basketballLoaded;  // stores whether basketball and model have been loaded
+#endif
+
         size_t numUsers; // stores number of users playing the game
         loadBasketballsSharedPtr loadBasketball;  // the loadBasketballs object
         loadCourtsSharedPtr loadCourt;  // the loadCourts object

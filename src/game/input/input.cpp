@@ -24,7 +24,9 @@
 //#include "engine/gameengine.h"
 #include "users/usersinputs.h"
 #include "load/load.h"
+#ifdef BTOGRE_MYGUI_ENABLED
 #include "gui/gui.h"
+#endif
 #include "utilities/conversion.h"
 #undef None
 

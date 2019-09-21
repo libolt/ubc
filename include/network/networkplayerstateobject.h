@@ -21,7 +21,7 @@
 #ifndef _NETWORKPLAYERSTATEOBJECT_H_
 #define _NETWORKPLAYERSTATEOBJECT_H_
 
-#include "Ogre.h"
+//#include "Ogre.h"
 
 #include <iostream>
 

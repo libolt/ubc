@@ -21,6 +21,10 @@
 #ifndef _STATEMACHINE_H_
 #define _STATEMACHINE_H_
 
+#ifdef _MSC_VER
+#define NOMINMAX
+#include "winsock2.h"
+#endif
 #include "eventdata/datatypes.h"
 #include "eventdata/eventdata.h"
 #include "statemachine/fault.h"

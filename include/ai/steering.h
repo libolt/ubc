@@ -21,7 +21,7 @@
 #ifndef _STEERING_H_
 #define _STEERING_H_
 
-#include "Ogre.h"
+//#include "Ogre.h"
 
 #include "OpenSteer/AbstractVehicle.h"
 #include "OpenSteer/Annotation.h"

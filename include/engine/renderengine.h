@@ -22,6 +22,7 @@
 #ifndef _RENDERENGINE_H_
 #define _RENDERENGINE_H_
 
+#include <algorithm>
 #ifdef __ANDROID__
 //#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     #define OGRE_STATIC_GLES2

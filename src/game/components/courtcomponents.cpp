@@ -17,62 +17,39 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
- 
-#ifndef _LOAD_H_
-#define _LOAD_H_
 
-//#include "Ogre.h"
-#include <string>
-#include <vector>
-#include <unordered_map>
+#include "components/courtcomponents.h"
+#include "physics/courtphysics.h"
 
-#include "SDL.h"
-
-#include "tinyxml2.h"
-
-
-
-//#include "state/basketballstate.h"
-//#include "state/courtstate.h"
-//#include "state/hoopstate.h"
-//#include "state/gamestate.h"
-//#include "state/teamstate.h"
-//#include "offenseplays.h"
-//#include "userinput.h"
-#include "utilities/typedefs.h"
-class basketballState;
-class courtState;
-class hoopState;
-class gameState;
-class playerState;
-class teamState;
-class offensePlays;
-class usersInput;
-
-class loader
+courtComponents::courtComponents()  // constructor
 {
-    public:
+    number = 99999;
+}
 
-        loader();  // constructor
-        ~loader(); // destructor
+courtComponents::~courtComponents() = default;  // destructor
 
-        stdStringVec pathSplit(const std::string &paths);
-        std::string findFile(const std::string &fileName);
-    //	string * pathArray;
+size_t courtComponents::getNumber() const  // retrieves the value of number
+{
+    return (number);
+}
+void courtComponents::setNumber(const size_t &set)  // sets the value of number
+{
+    number = set;
+#ifdef BTOGRE_MYGUI_ENABLED
+    physics->setPhysObjNumber(set); // sets the physics number as well
+#endif
 
-        bool loadXMLFile(std::string fileName);
+//    numberSet = true;
+}
 
-        int readFile(const char *sourceFile, char **destination);  // reads in the XML file
-
-        SDL_RWops *readBinaryFile(const char *sourceFile);
-
-        OgreEntitySharedPtr loadModelFile(const std::string &modelFileName, const std::string &entityName, const renderEngineSharedPtr &render);  // loads the 3D model
-        
-    private:
-
-        int count;  // counts number of times a function has been called
-};
-
-
+#ifdef BTOGRE_MYGUI_ENABLED
+courtPhysicsSharedPtr courtComponents::getPhysics() const  // retrieves the value of physics
+{
+    return (physics);
+}
+void courtComponents::setPhysics(const courtPhysicsSharedPtr &set)  // sets the value of physics
+{
+    physics = set;
+}
 #endif
 

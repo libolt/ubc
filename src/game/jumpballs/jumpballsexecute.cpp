@@ -171,13 +171,16 @@ TS*/
 
 bool jumpBallsExecute::tipToPlayer(const gameComponentsSharedPtr &component, quarters quarter)  // tips the basketball to the appropriate player
 {
+    bool retVal = false;  // stores the return value
+
+#ifdef BTOGRE_MYGUI_ENABLED
+
 //    sharedPtr<gameState> gameS = gameState::Instance();
     conversionSharedPtr convert ;
 //    sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
     jumpBallsSharedPtr jumpBall = component->getJumpBall();
-#ifdef BTOGRE_MYGUI_ENABLED
     physicsEngine physEngine;
-#endif
+
 //    basketballStateVec basketballInstance = gameS->getBasketballInstance();
 //    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
 //    playerStateVecSharedPtr activePlayerInstance;
@@ -190,7 +193,6 @@ bool jumpBallsExecute::tipToPlayer(const gameComponentsSharedPtr &component, qua
     btVector3 bballVelocity = jumpBall->getBBallVelocity();
     size_t ballTippedToPlayerInstance = jumpBall->getBallTippedToPlayerInstance();
     basketballEntityMSharedPtr activeBasketballInstance = component->getActiveBasketballInstance();
-    bool retVal = false;  // stores the return value
 //    jumpBalls jumpBall = gameS->getJumpBall();
 //    teamTypes ballTippedToTeam = jumpBall.getBallTippedToTeam();
 //    quarters quarter = gameS->getQuarter();
@@ -291,7 +293,6 @@ bool jumpBallsExecute::tipToPlayer(const gameComponentsSharedPtr &component, qua
             logMsg("ballTippedToPlayerInstance == " +convert->toString(ballTippedToPlayerInstance));
 
             // FIXME! Do NOT hardcode activeBasketballInstance
-#ifdef BTOGRE_MYGUI_ENABLED
             if (physEngine.collisionCheck(activeBasketballInstance[0]->getComponent()->getPhysics()->getPhysBody(), activePlayerInstance[ballTippedToPlayerInstance].getComponent()->getPhysics()->getPhysBody()))
             {
  //               exit(0);
@@ -331,7 +332,6 @@ TS*/
             else
             {
             }
-#endif
 //            exit(0);
         }
         else
@@ -339,7 +339,8 @@ TS*/
         }
 //        exit(0);
     }
- 
     logMsg("jump bballVelocity == " +convert->toString(bballVelocity));
+#endif
+
     return (retVal);  // tipToPlayer has not completed
 }

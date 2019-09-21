@@ -21,7 +21,12 @@
 #ifndef _AI_H_
 #define _AI_H_
 
+#ifdef _MSC_VER
+#include "winsock2.h"
+#endif
+
 #include "ai/steering.h"
+
 #include "OpenSteer/Clock.h"
 //#include <boost/shared_ptr.hpp>
 

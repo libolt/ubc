@@ -21,14 +21,20 @@
 #ifndef _TYPEDEFS_H_
 #define _TYPEDEFS_H_
 
+
 #ifndef _ENET_ISINCLUDED_
 #define _ENET_ISINCLUDED_
+#ifdef _MSC_VER
+#include "winsock2.h"
+#endif
 #include "enet/enet.h"
 #endif 
 
 #include <vector>
 #include <unordered_map>
-//#include <boost/shared_ptr.hpp>
+#include <algorithm>
+#include "Ogre.h"
+#include "OgreInstancedEntity.h"
 
 #ifdef BTOGRE_MYGUI_ENABLED
 #include "BtOgrePG.h"
@@ -390,7 +396,7 @@ typedef sharedPtr<ENetPacket> ENetPacketSharedPtr;
 
 // OGRE Shared Ptr
 
-typedef sharedPtr<Ogre::Entity> OgreEntitySharedPtr;
+typedef sharedPtr<Ogre::InstancedEntity> OgreEntitySharedPtr;
 
 typedef sharedPtr<Ogre::SceneNode> OgreSceneNodeSharedPtr;
 
@@ -532,11 +538,11 @@ typedef std::vector <MyGUIListBoxMSharedPtr> MyGUIListBoxVecMSharedPtr;
 typedef std::vector <MyGUIPlayerListBoxMSharedPtr> MyGUIPlayerListBoxVecMSharedPtr;
 
 typedef std::vector<MyGUITextBoxMSharedPtr> MyGUITextBoxVecMSharedPtr;
+#endif
 
 typedef std::vector<basketballEntityMSharedPtr> basketballEntityVecMSharedPtr;
 
 typedef std::vector<playerEntityMSharedPtr> playerEntityVecMSharedPtr;
-#endif
 
 
 // Vector maps

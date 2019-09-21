@@ -21,6 +21,10 @@
 #ifndef _BASKETBALLENTITY_H_
 #define _BASKETBALLENTITY_H
 
+#ifdef _MSC_VER
+#define NOMINMAX
+#endif
+
 #include "entity/entity.h"
 
 //class entity;

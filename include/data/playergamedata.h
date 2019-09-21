@@ -21,8 +21,15 @@
 #ifndef _PLAYERGAMEDATA_H_
 #define _PLAYERGAMEDATA_H_
 
+#include <algorithm>
+
 #include "utilities/enums.h"
 
+#ifdef _MSC_VER
+#define NOMINMAX
+#endif
+
+//#include "Ogre.h"
 #include "OgreVector3.h"
 
 class playerGameData

@@ -30,7 +30,11 @@
 #undef Button5
 #undef Button6
 #undef Button7
+
+#ifdef BTOGRE_MYGUI_ENABLED
 #include "MyGUI_OgrePlatform.h"
+#endif
+
 #include "engine/inputengine.h"
 #include "engine/gameengine.h"
 #include "load/load.h"

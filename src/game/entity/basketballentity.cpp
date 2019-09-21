@@ -18,12 +18,13 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
+#include "entity/basketballentity.h"
+
 #include "ai/basketballsteer.h"
 #include "components/basketballcomponents.h"
 #include "components/gamecomponents.h"
 #include "data/basketballdata.h"
 #include "data/gamedata.h"
-#include "entity/basketballentity.h"
 #include "flags/basketballflags.h"
 #include "flags/gameflags.h"
 #include "physics/basketballphysics.h"

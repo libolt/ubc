@@ -27,9 +27,14 @@
 #include "engine/renderengine.h"
 #include "gui/gui.h"
 #include "flags/guiflags.h"
+#include "load/loadbasketballs.h"
 #include "load/loadusersinputs.h"
 #include "entity/gameentity.h"
 #include "statemachine/gamestatemachine.h"
+#ifndef BTOGRE_MYGUI_ENALBED
+#include "entity/basketballentity.h"
+#include "setup/setupbasketballs.h"
+#endif
 #include "ubc/ubcinput.h"
 #include "users/users.h"
 #include "users/usersinputs.h"
@@ -47,6 +52,10 @@ UBCGame::UBCGame()  // constructor
 
     inputSUInputSetup = false;
     loadUsersInputInitialized = false;
+
+#ifndef BTOGRE_MYGUI_ENABLED
+    basketballLoaded = false;
+#endif
 }
 
 UBCGame::~UBCGame() = default;  // destructor
@@ -426,6 +435,7 @@ bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &in
         
 //        exit(0);
 
+#ifdef BTOGRE_MYGUI_ENABLED
         if (gui->getFlag()->getMenuActive())
         {
             if (gui->updateStateMachine(gameE->getRenderE()))
@@ -441,6 +451,23 @@ bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &in
 //            exit(0);
             }
         }
+#endif
+
+#ifndef BTOGRE_MYGUI_ENABLED
+        if (!basketballLoaded)
+        {
+            setupBasketballs setupbasketball;
+            basketballEntityMSharedPtr basketballInstance = setupbasketball.createBasketballInstances();
+            basketballEntityMSharedPtr activeBasketballInstance;
+            logMsg(func +" basketballInstance.size == " +convert->toString(basketballInstance.size()));
+            activeBasketballInstance = setupbasketball.createActiveBasketballInstances(basketballInstance, 1);
+            for (auto ABIIT : activeBasketballInstance)
+            {
+            //    BIIT.second->setComponent()
+            }
+            exit(0);
+        }
+#endif
 
         if (startActiveGame)
         {
@@ -547,6 +574,7 @@ void UBCGame::processNetworkEvents(const gameEngineSharedPtr &gameE)  // process
     logMsg(func +" end");
 }
 
+#ifdef BTOGRE_MYGUI_ENABLED
 void UBCGame::processPhysicsEvents(const gameEngineSharedPtr &gameE)  // processes events in the physics subsyatem
 {
     std::string func = "UBCGame::processPhysicsEvents()";
@@ -557,3 +585,4 @@ void UBCGame::processPhysicsEvents(const gameEngineSharedPtr &gameE)  // process
 
     logMsg(func +" end");
 }
+#endif

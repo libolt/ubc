@@ -125,12 +125,15 @@ std::string conversion::toString(const OpenSteer::Vec3 &data)  // converts Ogre:
     strData = "OpenSteerVec3(" +boost::lexical_cast<std::string>(data.x) +"," +boost::lexical_cast<std::string>(data.y) +"," + boost::lexical_cast<std::string>(data.z) +")";
     return(strData);
 }
+#ifdef BTOGRE_MYGUI_ENABLED
 std::string conversion::toString(const btVector3 &data) // converts btVector3 data to string
 {
     std::string strData;
     strData = "btVector3(" +boost::lexical_cast<std::string>(data.getX()) +"," +boost::lexical_cast<std::string>(data.getY()) +"," + boost::lexical_cast<std::string>(data.getZ()) +")";
     return(strData);
 }
+#endif
+
 std::string conversion::toString(void *data)  // converts void * data to string
 {
     std::string strData;
@@ -1786,6 +1789,7 @@ Ogre::Vector3 conversion::toOgreVector3(const OpenSteer::Vec3 &vect) // converts
     return (vector3);
 }
 
+#ifdef BTOGRE_MYGUI_ENABLED
 Ogre::Vector3 conversion::toOgreVector3(const btVector3 &vect) // converts from btVector3 to Ogre::Vector3
 {
     Ogre::Vector3 vector3;
@@ -1795,6 +1799,7 @@ Ogre::Vector3 conversion::toOgreVector3(const btVector3 &vect) // converts from 
 
     return (vector3);
 }
+#endif
 
 inputKeyMaps conversion::toInputKey(const std::string &data)  // converts from string to inputKey
 {

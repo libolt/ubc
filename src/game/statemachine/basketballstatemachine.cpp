@@ -406,7 +406,9 @@ STATE_DEFINE(basketballStateMachine, UpdatePosition, basketballSMData)
     conversionSharedPtr convert;
     comparison compare;
     Ogre::Vector3 changePos;
+#ifdef BTOGRE_MYGUI_ENABLED
     btVector3 physChange = btVector3(0,0,0);
+#endif
 
     basketballComponentsSharedPtr component = data->component;
 //    basketballDataSharedPtr bData;  // stores copy of basketballData object

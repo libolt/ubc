@@ -23,7 +23,9 @@
 
 #include <vector>
 //#include <boost/shared_ptr.hpp>
+#ifdef BTOGRE_MYGUI_ENABLED
 #include "BulletDynamics/Dynamics/btRigidBody.h"
+#endif
 
 //#include "flags/gameflags.h"
 //#include "state/basketballstate.h"

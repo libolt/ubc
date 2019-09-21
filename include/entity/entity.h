@@ -22,11 +22,11 @@
 #define _ENTITY_H_
 
 //#include "utilities/conversion.h"
-#include "Ogre.h"
+//#include "Ogre.h"
 
 #include <string>
-#include "OgreEntity.h"
-#include "OgreVector3.h"
+//#include "OgreEntity.h"
+//#include "OgreVector3.h"
 
 #ifdef BTOGRE_MYGUI_ENABLED
 

@@ -22,7 +22,10 @@
 #define _COMPARISON_H_
 
 #include "OgreVector3.h"
+
+#ifdef BTOGRE_MYGUI_ENABLED
 #include "LinearMath/btVector3.h"
+#endif
 class comparison
 {
     public:
@@ -32,11 +35,13 @@ class comparison
         bool OgreVector3ToOgreVector3(const Ogre::Vector3 &currentValue, const Ogre::Vector3 &newValue);  // compares two Ogre::Vector3 objects and returns true if the same,false if different
         Ogre::Vector3 OgreVector3ToOgreVector3Result(const Ogre::Vector3 &currentValue, const Ogre::Vector3 &newValue);  // compares two Ogre::Vector3 objects and returns their differences in Ogre::Vector3 format
 
+#ifdef BTOGRE_MYGUI_ENABLED
         bool OgreVector3ToOpenSteerVec3(const Ogre::Vector3 &currentValue, const OpenSteer::Vec3 &newValue);  // compares an Ogre::Vector3 object to an OpenSteer::Vec3 and returns true if the same,false if different
         Ogre::Vector3 OgreVector3ToOpenSteerVec3Result(const Ogre::Vector3 &currentValue, const OpenSteer::Vec3 &newValue);  // compares an Ogre::Vector3 object to an OpenSteer::Vec3 and returns their differences in Ogre::Vector3 format
 
         bool OgreVector3ToBTVector3(const Ogre::Vector3 &currentValue, const btVector3 &newValue);  // compares an Ogre::Vector3 object to an btVector3 and returns true if the same,false if different
         Ogre::Vector3 OgreVector3ToBTVector3Result(const Ogre::Vector3 &currentValue, const btVector3 &newValue);  // compares an Ogre::Vector3 object to an btVector3 and returns their differences in Ogre::Vector3 format
+#endif
 
     private:
 };

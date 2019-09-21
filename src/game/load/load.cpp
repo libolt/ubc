@@ -253,7 +253,7 @@ OgreEntitySharedPtr loader::loadModelFile(const std::string &modelFileName, cons
     }
     
 //BASEREMOVAL    if (base->getGameE()->getRenderE().get()->getMSceneMgr()->hasCamera("camera"))
-    if (render.get()->getMSceneMgr()->hasCamera("camera"))
+/*    if (render.get()->getMSceneMgr()->hasCamera("camera"))
     {
         logMsg(func +" mSceneMgr has camera!");
     }
@@ -261,11 +261,12 @@ OgreEntitySharedPtr loader::loadModelFile(const std::string &modelFileName, cons
     {
         logMsg(func +" mSceneMgr does not have camera!");
     }
-    
+*/
+
 //    logMsg(func +" Entity Name == " +entityName + " Model File Name == " +modelFileName);
 //BASEREMOVAL    tempModel = OgreEntitySharedPtr(base->getGameE()->getRenderE()->getMSceneMgr()->createEntity(entityName, entityModelFileName, "UBCData"));  // loads the model
-    tempModel = OgreEntitySharedPtr(render->getMSceneMgr()->createEntity(entityName, modelFileName, "UBCData"));  // loads the model
-
+    tempModel = OgreEntitySharedPtr(render->getMSceneMgr()->createInstancedEntity(modelFileName, "UBCData"));  // loads the model
+    tempModel->setName(entityName);
 //    logMsg(func +" tempModel loaded!");
 //    logMsg(func +" tempModel name == " +tempModel->getName());
 

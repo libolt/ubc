@@ -21,6 +21,11 @@
 #ifndef _LOGGING_H_
 #define _LOGGING_H_
  
+#ifdef _MSC_VER
+#define NOMINMAX
+#include "winsock2.h"
+#endif
+
 #include <string>
 //#include "boost/shared_ptr.hpp"
 

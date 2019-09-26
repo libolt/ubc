@@ -498,8 +498,32 @@ bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &in
                 ABIIT.second->getFlag()->setModelLoaded(true);
                 ABIIT.second->getComponent()->setModel(model);
 
+
+            OgreEntitySharedPtr activeModel;
+            OgreSceneNodeSharedPtr activeNode;
+            std::string activeEntityName;
+            std::string activeNodeNum;
+            std::string activeNodeName;
+
+                activeModel = ABIIT.second->getComponent()->getModel();
+                activeEntityName = ABIIT.second->getComponent()->getName();
+                activeNodeNum = convert->toString(ABIIT.second->getComponent()->getNumber());
+                activeNodeName = ABIIT.second->getComponent()->getNodeName();
+                if (activeNodeName.empty())
+                {
+                    activeNodeName = activeEntityName + activeNodeNum;
+                    ABIIT.second->getComponent()->setNodeName(activeNodeName);
+                }
+                else
+                {
+
+                }
+                activeNode = gameE->getRenderE()->createNode(activeModel, activeNodeName);  // creates node
+                ABIIT.second->getComponent()->setNode(activeNode);  // saves node to current instance
+                ABIIT.second->getComponent()->getNode()->setPosition(0.8f,-5.0f,352.0f);
+
             }
-//            exit(0);
+
             basketballLoaded = true;
         }
 #endif

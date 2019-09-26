@@ -265,7 +265,7 @@ OgreEntitySharedPtr loader::loadModelFile(const std::string &modelFileName, cons
 
 //    logMsg(func +" Entity Name == " +entityName + " Model File Name == " +modelFileName);
 //BASEREMOVAL    tempModel = OgreEntitySharedPtr(base->getGameE()->getRenderE()->getMSceneMgr()->createEntity(entityName, entityModelFileName, "UBCData"));  // loads the model
-    tempModel = OgreEntitySharedPtr(render->getMSceneMgr()->createInstancedEntity(modelFileName, "UBCData"));  // loads the model
+    tempModel = OgreEntitySharedPtr(render->getMSceneMgr()->createEntity(modelFileName, "UBCData"));  // loads the model
     tempModel->setName(entityName);
 //    logMsg(func +" tempModel loaded!");
 //    logMsg(func +" tempModel name == " +tempModel->getName());

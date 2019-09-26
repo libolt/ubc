@@ -32,7 +32,10 @@
 #include "entity/gameentity.h"
 #include "statemachine/gamestatemachine.h"
 #ifndef BTOGRE_MYGUI_ENALBED
+#include "components/basketballcomponents.h"
+#include "data/basketballdata.h"
 #include "entity/basketballentity.h"
+#include "flags/basketballflags.h"
 #include "setup/setupbasketballs.h"
 #endif
 #include "ubc/ubcinput.h"
@@ -463,9 +466,41 @@ bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &in
             activeBasketballInstance = setupbasketball.createActiveBasketballInstances(basketballInstance, 1);
             for (auto ABIIT : activeBasketballInstance)
             {
-            //    BIIT.second->setComponent()
+                OgreEntitySharedPtr model;  // stores the model returned by loadModel() function
+                loaderSharedPtr load(new loader);
+
+                logMsg(func +" begin");
+
+
+                ABIIT.second->getComponent()->setModelFileName(ABIIT.second->getData()->getModelFileName());
+
+                if (ABIIT.second->getComponent()->getName().empty())  // checks if entityName has been set
+                {
+                    std::string name = ABIIT.second->getData()->getName();
+                    ABIIT.second->getComponent()->setName(name);
+                }
+                logMsg(func +" entityName == " +ABIIT.second->getComponent()->getName());
+            //        exit(0);
+                if (ABIIT.second->getComponent()->getNodeName().empty())  // checks if entityNodeName has been set
+                {
+                    std::string nodeName = ABIIT.second->getData()->getName() +"node";
+                    ABIIT.second->getComponent()->setNodeName(nodeName);
+                }
+                logMsg(func +" basketball name == " +ABIIT.second->getData()->getName());
+                logMsg(func +" basketball node name == " +ABIIT.second->getComponent()->getNodeName());
+            //        exit(0);
+                logMsg(func +" loading model == " +ABIIT.second->getComponent()->getModelFileName());
+                std::string modelFileName = ABIIT.second->getComponent()->getModelFileName();
+                std::string entityName = ABIIT.second->getComponent()->getName();
+                std::string entityNodeName = ABIIT.second->getComponent()->getNodeName();
+
+                model = load->loadModelFile(modelFileName, entityName, gameE->getRenderE());
+                ABIIT.second->getFlag()->setModelLoaded(true);
+                ABIIT.second->getComponent()->setModel(model);
+
             }
-            exit(0);
+//            exit(0);
+            basketballLoaded = true;
         }
 #endif
 

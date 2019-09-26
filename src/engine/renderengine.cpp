@@ -29,7 +29,8 @@
 #include "engine/physicsengine.h"
 #include "engine/renderengine.h"
 #include "engine/sound/soundengine.h"
-
+#include "OgreIdString.h"
+#include "Compositor/OgreCompositorManager2.h"
 #define FREEIMAGE_LIB
 //#include "FreeImage.h"
 #include "OgreDDSCodec.h"
@@ -430,7 +431,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 #elif OGRE_PLATFORM == OGRE_PLATFORM_APPLE
     RERoot->loadPlugin("RenderSystem_GL");
 #else
-    RERoot->loadPlugin(pluginDir + "/RenderSystem_GL");
+    RERoot->loadPlugin(pluginDir + "/RenderSystem_GL_d");
 //    RERoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager");
 #endif
 //    exit(0);
@@ -453,7 +454,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 //	if (rname.compare("OpenGL Rendering Subsystem") == 0)
         logMsg(func +"rname == " +rname);
 //        exit(0);
-        if (rname == "OpenGL 3+ Rendering Subsystem (ALPHA)")
+        if (rname == "OpenGL Rendering Subsystem" || rname == "OpenGL 3+ Rendering Subsystem (ALPHA)")
         {
             foundit = true;
             break;
@@ -469,7 +470,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
     }
     else
     {
-        logMsg(func +" renersystem not found!");
+        logMsg(func +" rendersystem not found!");
 	    exit(0);
     }
 #endif
@@ -716,6 +717,15 @@ bool renderEngine::createScene()
 
     mCamera = sharedPtr<Ogre::Camera>(mSceneMgr->createCamera("camera"));
 
+#if OGRE_VERSION_MAJOR == 2
+
+    const Ogre::IdString workspaceName( "MyOwnWorkspace" );
+    Ogre::CompositorManager2 *compositorManager = RERoot->getCompositorManager2();
+    if( !compositorManager->hasWorkspaceDefinition( workspaceName ) )
+        compositorManager->createBasicWorkspaceDef( workspaceName, Ogre::ColourValue( 0.5f, 0.5f, 0.5f ) );
+    compositorManager->addWorkspace( mSceneMgr.get(), mWindow.get(), mCamera.get(), workspaceName, true );
+
+#endif
 /*
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 	mCamera->setNearClipDistance(1.0f);
@@ -725,6 +735,8 @@ bool renderEngine::createScene()
 	mCamera->setAutoAspectRatio(true);
 #endif
 */
+
+
 
     // Position it at 500 in Z direction
     mCamera->setPosition(Ogre::Vector3(0, 0, 455));
@@ -828,7 +840,8 @@ bool renderEngine::createScene()
 //	load->loadPlayerFile(
 //    exit(0);
   //  gameE->startGame()
-  
+
+
   logMsg(func +" end");
   
 return (true);

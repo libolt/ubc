@@ -14,7 +14,7 @@
 # Lots of simplifications by Adrian Friedli
 # > www.orxonox.net <
 
-FIND_PATH(OpenSteer_INCLUDE_DIRS OpenSteer/OpenSteer.h
+FIND_PATH(OpenSteer_INCLUDE_DIR OpenSteer/OpenSteer.h
     PATHS
     $ENV{OpenSteer_HOME}/include
     /usr/local
@@ -23,7 +23,7 @@ FIND_PATH(OpenSteer_INCLUDE_DIRS OpenSteer/OpenSteer.h
     )
 
 FIND_LIBRARY(OpenSteer_LIBRARY_DBG
-    NAMES opensteer_d opensteer_debug libopensteer_debug.a libopensteer_debug
+	NAMES opensteer_d opensteer_debug libopensteer_debug.a libopensteer_debug libopensteer_d libopensteer_d.a libOpenSteer_d libOpenSteer_d.a
     PATHS
     $ENV{OpenSteer_HOME}
     /usr/local
@@ -32,7 +32,7 @@ FIND_LIBRARY(OpenSteer_LIBRARY_DBG
     )
 
 FIND_LIBRARY(OpenSteer_LIBRARY_REL
-    NAMES opensteer libopensteer.a libopensteer
+	NAMES opensteer libopensteer.a libopensteer libOpeSteer.a libOpenSteer
     PATHS
     $ENV{OpenSteer_HOME}
     /usr/local
@@ -45,10 +45,11 @@ make_library_set(OpenSteer_LIBRARY)
 # handle the QUIETLY and REQUIRED arguments and set OpenSteer_FOUND to TRUE if
 # all listed variables are TRUE
 INCLUDE(FindPackageHandleStandardArgs)
-FIND_PACKAGE_HANDLE_STANDARD_ARGS(OpenSteer DEFAULT_MSG OpenSteer_LIBRARY OpenSteer_INCLUDE_DIRS)
+FIND_PACKAGE_HANDLE_STANDARD_ARGS(OpenSteer DEFAULT_MSG OpenSteer_LIBRARY OpenSteer_INCLUDE_DIR)
 
 IF (OpenSteer_FOUND)
     MESSAGE("OpenSteer Found!")
+    MESSAGE(${OpenSteer_INCLUDE_DIR})
     IF (WIN32)
         SET(OpenSteer_LIBRARIES optimized ${OpenSteer_LIBRARIES_REL} debug ${OpenSteer_LIBRARIES_DBG})
     ELSE (WIN32)

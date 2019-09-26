@@ -308,6 +308,7 @@ STATE_DEFINE(basketballStateMachine, CreateNode, basketballSMData)
     data->component->setNode(activeNode);  // saves node to current instance
 
     logMsg(func +" end");
+    exit(0);
 
 }
 

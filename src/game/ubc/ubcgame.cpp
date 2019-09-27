@@ -37,6 +37,7 @@
 #include "entity/basketballentity.h"
 #include "flags/basketballflags.h"
 #include "setup/setupbasketballs.h"
+#include "Compositor/OgreCompositorManager2.h"
 #endif
 #include "ubc/ubcinput.h"
 #include "users/users.h"
@@ -519,6 +520,11 @@ bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &in
 
                 }
                 activeNode = gameE->getRenderE()->createNode(activeModel, activeNodeName);  // creates node
+
+                sharedPtr<Ogre::CompositorManager2> compositorManagerr = gameE->getRenderE()->getCompositorManager();
+                compositorManagerr->addNodeDefinition(activeNodeName);
+//                        ->addNodeDefinition(activeNodeName);
+                gameE->getRenderE()->setCompositorManager(compositorManagerr);
                 ABIIT.second->getComponent()->setNode(activeNode);  // saves node to current instance
                 ABIIT.second->getComponent()->getNode()->setPosition(0.8f,-5.0f,352.0f);
 

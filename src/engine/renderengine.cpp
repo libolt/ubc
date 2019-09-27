@@ -102,6 +102,15 @@ void renderEngine::setMCamera(const sharedPtr<Ogre::Camera> &set)  // sets the v
 	mCamera = set;
 }
 
+OgreSceneNodeSharedPtr renderEngine::getCameraNode() const  // retrieves the value of cameraNode
+{
+    return (cameraNode);
+}
+void renderEngine::setCameraNode(const OgreSceneNodeSharedPtr &set)  // stes the value of cameraNode
+{
+    cameraNode = set;
+}
+
 sharedPtr<Ogre::SceneManager> renderEngine::getMSceneMgr() const  // retrieves the value of mSceneMgr
 {
 	return (mSceneMgr);
@@ -249,6 +258,18 @@ void renderEngine::setWindowHeight(uint32_t set)  // sets the value of windowHei
     windowHeight = set;
 }
 */
+
+#if OGRE_VERSION_MAJOR == 2
+    sharedPtr<Ogre::CompositorManager2> renderEngine::getCompositorManager() const
+    {
+        return (compositorManager);
+    }
+    void renderEngine::setCompositorManager(const sharedPtr<Ogre::CompositorManager2> &set)
+    {
+        compositorManager = set;
+    }
+#endif
+
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 Ogre::DataStreamPtr renderEngine::openAPKFile(const std::string& fileName)  // Opens the UBC apk file
@@ -720,9 +741,9 @@ bool renderEngine::createScene()
 #if OGRE_VERSION_MAJOR == 2
 
     const Ogre::IdString workspaceName( "MyOwnWorkspace" );
-    Ogre::CompositorManager2 *compositorManager = RERoot->getCompositorManager2();
+    compositorManager = sharedPtr<Ogre::CompositorManager2>(RERoot->getCompositorManager2());
     if( !compositorManager->hasWorkspaceDefinition( workspaceName ) )
-        compositorManager->createBasicWorkspaceDef( workspaceName, Ogre::ColourValue( 0.5f, 0.5f, 0.5f ) );
+        compositorManager->createBasicWorkspaceDef( workspaceName, Ogre::ColourValue( 0.6f, 0.0f, 0.6f ) );
     compositorManager->addWorkspace( mSceneMgr.get(), mWindow.get(), mCamera.get(), workspaceName, true );
 
 #endif
@@ -735,7 +756,6 @@ bool renderEngine::createScene()
 	mCamera->setAutoAspectRatio(true);
 #endif
 */
-
 
 
     // Position it at 500 in Z direction
@@ -751,6 +771,10 @@ bool renderEngine::createScene()
 //    viewPort->setBackgroundColour(Ogre::ColourValue(0, 0, 0));
 
     mCamera->setAspectRatio(Ogre::Real(viewPort->getActualWidth()) / Ogre::Real(viewPort->getActualHeight()));
+    cameraNode = OgreSceneNodeSharedPtr(mSceneMgr->getRootSceneNode()->createChildSceneNode());
+
+//    cameraNode->attachObject(mCamera);
+
     // most examples get the viewport size to calculate this; for now, we'll just
     // set it to 4:3 the easy way
 

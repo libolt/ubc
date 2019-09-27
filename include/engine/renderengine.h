@@ -69,6 +69,9 @@ class renderEngine : public engine
     sharedPtr<Ogre::Camera> getMCamera() const;  // retrieves the value of mCamera
     void setMCamera(const sharedPtr<Ogre::Camera> &set);  // sets the value of mCamera
 
+    OgreSceneNodeSharedPtr getCameraNode() const;  // retrieves the value of cameraNode
+    void setCameraNode(const OgreSceneNodeSharedPtr &set);  // stes the value of cameraNode
+
     sharedPtr<Ogre::SceneManager> getMSceneMgr() const;  // retrieves the value of mSceneMgr
     void setMSceneMgr(const sharedPtr<Ogre::SceneManager> &set);  // sets the value of mSceneMgr
 
@@ -121,6 +124,10 @@ class renderEngine : public engine
     uint32_t getWindowHeight();  // retrieves the value of windowHeight
     void setWindowHeight(uint32_t set);  // sets the value of windowHeight
 */
+#if OGRE_VERSION_MAJOR == 2
+    sharedPtr<Ogre::CompositorManager2> getCompositorManager() const;
+    void setCompositorManager(const sharedPtr<Ogre::CompositorManager2> &set);
+#endif
     ~renderEngine();
 
 
@@ -157,6 +164,7 @@ class renderEngine : public engine
     // Ogre code
     sharedPtr<Ogre::Root> RERoot;  // stores the OGRE Root
     sharedPtr<Ogre::Camera> mCamera;  // stores the camera used by OGRE
+    OgreSceneNodeSharedPtr cameraNode;  // stores the camera node
     sharedPtr<Ogre::SceneManager> mSceneMgr;  // store the OGRE Scene Manager
     sharedPtr<Ogre::RenderWindow> mWindow;  // stores the OGRE Render Window
     sharedPtr<Ogre::Viewport> viewPort;  // stores the OGRE View Port
@@ -167,6 +175,9 @@ class renderEngine : public engine
     Ogre::NameValuePairList misc;  // options to pass to mWindow during creation
     std::string winHandle;  // window handle
 
+#if OGRE_VERSION_MAJOR == 2
+    sharedPtr<Ogre::CompositorManager2> compositorManager;
+#endif
     // general
 //    uint32_t windowWidth;  // stores the width of the window
 //    uint32_t windowHeight;  // stores the height of the window

@@ -772,8 +772,8 @@ bool renderEngine::createScene()
 
     mCamera->setAspectRatio(Ogre::Real(viewPort->getActualWidth()) / Ogre::Real(viewPort->getActualHeight()));
     cameraNode = OgreSceneNodeSharedPtr(mSceneMgr->getRootSceneNode()->createChildSceneNode());
-
-//    cameraNode->attachObject(mCamera);
+    mCamera->detachFromParent();
+    cameraNode->attachObject(mCamera.get());
 
     // most examples get the viewport size to calculate this; for now, we'll just
     // set it to 4:3 the easy way

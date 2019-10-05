@@ -462,7 +462,6 @@ bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &in
         {
             setupBasketballs setupbasketball;
             basketballEntityMSharedPtr basketballInstance = setupbasketball.createBasketballInstances();
-            basketballEntityMSharedPtr activeBasketballInstance;
             logMsg(func +" basketballInstance.size == " +convert->toString(basketballInstance.size()));
             activeBasketballInstance = setupbasketball.createActiveBasketballInstances(basketballInstance, 1);
             for (auto ABIIT : activeBasketballInstance)
@@ -526,12 +525,23 @@ bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &in
 //                        ->addNodeDefinition(activeNodeName);
                 gameE->getRenderE()->setCompositorManager(compositorManagerr);
                 ABIIT.second->getComponent()->setNode(activeNode);  // saves node to current instance
+                ABIIT.second->getComponent()->getNode()->setScale(3.0f,3.0f,3.0f);
                 ABIIT.second->getComponent()->getNode()->setPosition(0.8f,-5.0f,352.0f);
+//                exit(0);
 
             }
 
             basketballLoaded = true;
         }
+    if (basketballLoaded)
+    {
+        for (auto ABIIT : activeBasketballInstance)
+        {
+
+            logMsg(func +"bballPos == " +convert->toString(ABIIT.second->getComponent()->getNode()->getPosition()));
+
+        }
+    }
 #endif
 
         if (startActiveGame)

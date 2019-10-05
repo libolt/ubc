@@ -108,6 +108,8 @@ class UBCGame
         bool loadUsersInputInitialized;  // stores whether loadUsersInputs object has been initialized
 
 #ifndef BTOGRE_MYGUI_ENABLED
+        basketballEntityMSharedPtr activeBasketballInstance;
+
         bool basketballLoaded;  // stores whether basketball and model have been loaded
 #endif
 

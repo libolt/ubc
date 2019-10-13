@@ -35,7 +35,6 @@
 //#include "FreeImage.h"
 #include "OgreDDSCodec.h"
 //#include "OgreFreeImageCodec.h"
-
 #include "OgreRenderWindow.h"
 
 #ifndef OGRE_PLUGIN_DIR
@@ -452,7 +451,9 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 #elif OGRE_PLATFORM == OGRE_PLATFORM_APPLE
     RERoot->loadPlugin("RenderSystem_GL");
 #else
-    RERoot->loadPlugin(pluginDir + "/RenderSystem_GL_d");
+
+//    RERoot->loadPlugin(pluginDir +"/RenderSystem_GL_d");
+    RERoot->loadPlugin(pluginDir + "/RenderSystem_GL3Plus_d");
 //    RERoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager");
 #endif
 //    exit(0);
@@ -731,7 +732,7 @@ bool renderEngine::createScene()
 #if OGRE_VERSION_MAJOR == 1 && OGRE_VERSION_MINOR <= 10
     mSceneMgr = sharedPtr<Ogre::SceneManager>(RERoot->createSceneManager(Ogre::ST_GENERIC)); // creates the scene manager
 #else
-    mSceneMgr = sharedPtr<Ogre::SceneManager>(RERoot->createSceneManager(Ogre::ST_GENERIC, 1, Ogre::INSTANCING_CULLING_SINGLETHREAD)); // creates the scene manager
+    mSceneMgr = sharedPtr<Ogre::SceneManager>(RERoot->createSceneManager(Ogre::ST_GENERIC, 4, Ogre::INSTANCING_CULLING_THREADED, "SceneManager")); // creates the scene manager
 #endif
 
 //    mSceneMgr = RERoot->createSceneManager("DefaultSceneManager"); // creates the scene manager
@@ -759,21 +760,23 @@ bool renderEngine::createScene()
 
 
     // Position it at 500 in Z direction
+    mCamera->setAutoAspectRatio(true);
     mCamera->setPosition(Ogre::Vector3(0, 0, 455));
     // Look back along -Z
     mCamera->lookAt(Ogre::Vector3(0, 0, -300));
 
     mCamera->setNearClipDistance(5);
     mCamera->setFarClipDistance(5000);
+    cameraNode = OgreSceneNodeSharedPtr(mSceneMgr->getRootSceneNode()->createChildSceneNode());
+    mCamera->detachFromParent();
+    cameraNode->attachObject(mCamera.get());
+
 //    viewPort = sharedPtr<Ogre::Viewport>(mWindow->addViewport(mCamera.get()));
     viewPort = sharedPtr<Ogre::Viewport>(mWindow->addViewport());
 
 //    viewPort->setBackgroundColour(Ogre::ColourValue(0, 0, 0));
 
-    mCamera->setAspectRatio(Ogre::Real(viewPort->getActualWidth()) / Ogre::Real(viewPort->getActualHeight()));
-    cameraNode = OgreSceneNodeSharedPtr(mSceneMgr->getRootSceneNode()->createChildSceneNode());
-    mCamera->detachFromParent();
-    cameraNode->attachObject(mCamera.get());
+//    mCamera->setAspectRatio(Ogre::Real(viewPort->getActualWidth()) / Ogre::Real(viewPort->getActualHeight()));
 
     // most examples get the viewport size to calculate this; for now, we'll just
     // set it to 4:3 the easy way
@@ -786,7 +789,7 @@ bool renderEngine::createScene()
     bool overlayEnabled = viewPort->getOverlaysEnabled();
     logMsg(func +" overlayEnabled = " +convert->toString(overlayEnabled));
 //.0.236	exit(0);
-    mCamera->setAspectRatio((Ogre::Real)1.333333);
+//    mCamera->setAspectRatio((Ogre::Real)1.333333);
 
     // Set ambient light
     mSceneMgr->setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5));
@@ -795,14 +798,28 @@ bool renderEngine::createScene()
     light = sharedPtr<Ogre::Light>(mSceneMgr->createLight());
     lightNode = OgreSceneNodeSharedPtr(mSceneMgr->getRootSceneNode()->createChildSceneNode());
     lightNode->attachObject(light.get());
-
     lightNode->setPosition(20,80,56);
- 
+    light->setPowerScale(1);
+
     if (mWindow == nullptr)
     {
         logMsg(func +" createScene mWindow 2 == nullptr!");
+        exit(0);
     }
-//     exit(0);
+
+    bball = OgreEntitySharedPtr(mSceneMgr->createEntity("bball.mesh", "UBCData"));
+    bballNode = OgreSceneNodeSharedPtr(mSceneMgr->getRootSceneNode()->createChildSceneNode());
+    bballNode->setName("bball");
+    bballNode->attachObject(bball.get());
+    bballNode->setScale(1.0f,1.0f,1.0f);
+    bballNode->setPosition(0.8f,-5.0f,352.0f);
+    compositorManager->addNodeDefinition("bball");
+
+    if (bball == nullptr)
+    {
+        logMsg(func +"bball.mesh didn't load");
+        exit(0);
+    }
 	//	    Ogre::LogManager::getSingletonPtr()->logMessage("winHandle = " +winHandle);
 
 	// this next bit is for the sake of the input handler
@@ -886,7 +903,8 @@ OgreSceneNodeSharedPtr renderEngine::createNode(const OgreEntitySharedPtr &model
 //    exit(0);
     tempNode = OgreSceneNodeSharedPtr(mSceneMgr->getRootSceneNode()->createChildSceneNode());
     logMsg(func +" tempNode created!");
-//    tempNode->setName(entityNodeName);
+    tempNode->setName(entityNodeName);
+//    tempNode->setName();
     tempNode->attachObject(model.get());
     logMsg(func +" node attached!");
 

@@ -457,7 +457,7 @@ bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &in
         }
 #endif
 
-#ifndef BTOGRE_MYGUI_ENABLED
+#ifdef BTOGRE_MYGUI_ENABLED
         if (!basketballLoaded)
         {
             setupBasketballs setupbasketball;
@@ -520,10 +520,10 @@ bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &in
                 }
                 activeNode = gameE->getRenderE()->createNode(activeModel, activeNodeName);  // creates node
 
-                sharedPtr<Ogre::CompositorManager2> compositorManagerr = gameE->getRenderE()->getCompositorManager();
-                compositorManagerr->addNodeDefinition(activeNodeName);
+                sharedPtr<Ogre::CompositorManager2> compositorManager = gameE->getRenderE()->getCompositorManager();
+                compositorManager->addNodeDefinition(activeNodeName);
 //                        ->addNodeDefinition(activeNodeName);
-                gameE->getRenderE()->setCompositorManager(compositorManagerr);
+                gameE->getRenderE()->setCompositorManager(compositorManager);
                 ABIIT.second->getComponent()->setNode(activeNode);  // saves node to current instance
                 ABIIT.second->getComponent()->getNode()->setScale(3.0f,3.0f,3.0f);
                 ABIIT.second->getComponent()->getNode()->setPosition(0.8f,-5.0f,352.0f);

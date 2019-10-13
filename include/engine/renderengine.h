@@ -127,6 +127,9 @@ class renderEngine : public engine
 #if OGRE_VERSION_MAJOR == 2
     sharedPtr<Ogre::CompositorManager2> getCompositorManager() const;
     void setCompositorManager(const sharedPtr<Ogre::CompositorManager2> &set);
+    OgreEntitySharedPtr bball;
+    OgreSceneNodeSharedPtr bballNode;
+
 #endif
     ~renderEngine();
 

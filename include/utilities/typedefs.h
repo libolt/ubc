@@ -396,7 +396,7 @@ typedef sharedPtr<ENetPacket> ENetPacketSharedPtr;
 
 // OGRE Shared Ptr
 
-typedef sharedPtr<Ogre::Entity> OgreEntitySharedPtr;
+typedef sharedPtr<Ogre::v1::Entity> OgreEntitySharedPtr;
 
 typedef sharedPtr<Ogre::SceneNode> OgreSceneNodeSharedPtr;
 

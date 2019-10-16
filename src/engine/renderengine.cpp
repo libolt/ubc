@@ -429,7 +429,9 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 //        RERoot->loadPlugin(pluginDir +"/Codec_STBI_d.dll");
 
         logMsg(func +" Loading GL Debug RenderSystem!");
+//        RERoot->loadPlugin(pluginDir + "/RenderSystem_Direct3D11_d.dll");
         RERoot->loadPlugin(pluginDir + "/RenderSystem_GL3Plus_d.dll");
+
 //        RERoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager_d");
     }
     else
@@ -474,9 +476,9 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
         selectedRenderSystem = rsList.at(c);
         std::string rname = selectedRenderSystem->getName();
 //	if (rname.compare("OpenGL Rendering Subsystem") == 0)
-        logMsg(func +"rname == " +rname);
+        logMsg(func +" rname == " +rname);
 //        exit(0);
-        if (rname == "OpenGL Rendering Subsystem" || rname == "OpenGL 3+ Rendering Subsystem (ALPHA)")
+        if (rname == "OpenGL Rendering Subsystem" || rname == "OpenGL 3+ Rendering Subsystem" || rname == "Direct3D11 Rendering Subsystem")
         {
             foundit = true;
             break;
@@ -726,7 +728,9 @@ bool renderEngine::createScene()
     rsm->addResourceLocation(dataPath + "/Media/Audio", "FileSystem", mResourceGroup);
 #endif
 
-    rsm->initialiseResourceGroup(mResourceGroup);
+    rsm->initialiseResourceGroup("UBCData", false);
+//    rsm->initialiseResourceGroup(mResourceGroup);
+
 //  exit(0);
     
 #if OGRE_VERSION_MAJOR == 1 && OGRE_VERSION_MINOR <= 10
@@ -741,7 +745,7 @@ bool renderEngine::createScene()
 
 #if OGRE_VERSION_MAJOR == 2
 
-    const Ogre::IdString workspaceName( "MyOwnWorkspace" );
+    const Ogre::String workspaceName( "MyOwnWorkspace" );
     compositorManager = sharedPtr<Ogre::CompositorManager2>(RERoot->getCompositorManager2());
     if( !compositorManager->hasWorkspaceDefinition( workspaceName ) )
         compositorManager->createBasicWorkspaceDef( workspaceName, Ogre::ColourValue( 0.6f, 0.0f, 0.6f ) );
@@ -792,7 +796,10 @@ bool renderEngine::createScene()
 //    mCamera->setAspectRatio((Ogre::Real)1.333333);
 
     // Set ambient light
-    mSceneMgr->setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5));
+    mSceneMgr->setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5),
+                               Ogre::ColourValue( 0.6f, 0.45f, 0.3f ) * 0.065f * 0.75f,
+                               -light->getDirection() + Ogre::Vector3::UNIT_Y * 0.2f );
+
 
     // Create a light
     light = sharedPtr<Ogre::Light>(mSceneMgr->createLight());

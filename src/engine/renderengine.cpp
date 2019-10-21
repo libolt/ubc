@@ -729,9 +729,69 @@ bool renderEngine::createScene()
 #endif
 
     rsm->initialiseResourceGroup("UBCData", false);
-//    rsm->initialiseResourceGroup(mResourceGroup);
+    //register HLMS
+    rootHlmsFolder = dataPath + "/Media/";
 
-//  exit(0);
+    //For retrieval of the paths to the different folders needed
+    Ogre::String mainFolderPath;
+    Ogre::StringVector libraryFoldersPaths;
+    Ogre::StringVector::const_iterator libraryFolderPathIt;
+    Ogre::StringVector::const_iterator libraryFolderPathEn;
+
+    Ogre::ArchiveManager &archiveManager = Ogre::ArchiveManager::getSingleton();
+
+    {
+        //Create & Register HlmsUnlit
+        //Get the path to all the subdirectories used by HlmsUnlit
+        Ogre::HlmsUnlit::getDefaultPaths( mainFolderPath, libraryFoldersPaths );
+        Ogre::Archive *archiveUnlit = archiveManager.load( rootHlmsFolder + mainFolderPath,
+                                                           "FileSystem", true );
+        Ogre::ArchiveVec archiveUnlitLibraryFolders;
+        libraryFolderPathIt = libraryFoldersPaths.begin();
+        libraryFolderPathEn = libraryFoldersPaths.end();
+        while( libraryFolderPathIt != libraryFolderPathEn )
+        {
+            Ogre::Archive *archiveLibrary =
+                    archiveManager.load( rootHlmsFolder + *libraryFolderPathIt, "FileSystem", true );
+            archiveUnlitLibraryFolders.push_back( archiveLibrary );
+
+            ++libraryFolderPathIt;
+        }
+
+        //Create and register the unlit Hlms
+        mHlmsUnlit = OGRE_NEW Ogre::HlmsUnlit( archiveUnlit, &archiveUnlitLibraryFolders );
+        Ogre::Root::getSingleton().getHlmsManager()->registerHlms( mHlmsUnlit );
+    }
+
+    {
+        //Create & Register HlmsPbs
+        //Do the same for HlmsPbs:
+        Ogre::HlmsPbs::getDefaultPaths( mainFolderPath, libraryFoldersPaths );
+        Ogre::Archive *archivePbs = archiveManager.load( rootHlmsFolder + mainFolderPath,
+                                                         "FileSystem", true );
+
+        //Get the library archive(s)
+        Ogre::ArchiveVec archivePbsLibraryFolders;
+        libraryFolderPathIt = libraryFoldersPaths.begin();
+        libraryFolderPathEn = libraryFoldersPaths.end();
+        while( libraryFolderPathIt != libraryFolderPathEn )
+        {
+            Ogre::Archive *archiveLibrary =
+                    archiveManager.load( rootHlmsFolder + *libraryFolderPathIt, "FileSystem", true );
+            archivePbsLibraryFolders.push_back( archiveLibrary );
+            ++libraryFolderPathIt;
+        }
+
+        //Create and register
+        mHlmsPbs = OGRE_NEW Ogre::HlmsPbs( archivePbs, &archivePbsLibraryFolders );
+        Ogre::Root::getSingleton().getHlmsManager()->registerHlms( mHlmsPbs );
+    }
+
+
+
+    //configure shadow quality
+    mHlmsPbs->setShadowSettings(Ogre::HlmsPbs::PCF_4x4);
+
     
 #if OGRE_VERSION_MAJOR == 1 && OGRE_VERSION_MINOR <= 10
     mSceneMgr = sharedPtr<Ogre::SceneManager>(RERoot->createSceneManager(Ogre::ST_GENERIC)); // creates the scene manager
@@ -796,9 +856,10 @@ bool renderEngine::createScene()
 //    mCamera->setAspectRatio((Ogre::Real)1.333333);
 
     // Set ambient light
-    mSceneMgr->setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5),
-                               Ogre::ColourValue( 0.6f, 0.45f, 0.3f ) * 0.065f * 0.75f,
-                               -light->getDirection() + Ogre::Vector3::UNIT_Y * 0.2f );
+/// OGRE21 Removal
+///    mSceneMgr->setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5),
+///                               Ogre::ColourValue( 0.6f, 0.45f, 0.3f ) * 0.065f * 0.75f,
+///                               -light->getDirection() + Ogre::Vector3::UNIT_Y * 0.2f );
 
 
     // Create a light

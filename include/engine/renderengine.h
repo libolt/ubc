@@ -44,6 +44,12 @@
 #include "Android/OgreAPKZipArchive.h"
 #else
 #include "Ogre.h"
+#include "OgreHlms.h"
+#include "OgreHlmsPbs.h"
+#include "OgreHlmsUnlit.h"
+#include "OgreHlmsManager.h"
+#include "OgreHlmsPbsDatablock.h"
+#include "OgreHlmsUnlitDatablock.h"
 #endif
 
 #include <memory>
@@ -175,6 +181,7 @@ class renderEngine : public engine
     OgreSceneNodeSharedPtr lightNode;  // stores the light scene node.
     sharedPtr<Ogre::ResourceGroupManager> rsm;  // stores resources
     std::string mResourceGroup;  // stores resource locations
+    Ogre::String rootHlmsFolder;  // stores the root Hlms folder
     Ogre::NameValuePairList misc;  // options to pass to mWindow during creation
     std::string winHandle;  // window handle
 

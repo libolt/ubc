@@ -180,6 +180,8 @@ class renderEngine : public engine
     sharedPtr<Ogre::Light> light;  // stores the vslue of light
     OgreSceneNodeSharedPtr lightNode;  // stores the light scene node.
     sharedPtr<Ogre::ResourceGroupManager> rsm;  // stores resources
+    Ogre::HlmsPbs* mHlmsPbs;
+    Ogre::HlmsUnlit* mHlmsUnlit;
     std::string mResourceGroup;  // stores resource locations
     Ogre::String rootHlmsFolder;  // stores the root Hlms folder
     Ogre::NameValuePairList misc;  // options to pass to mWindow during creation

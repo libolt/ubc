@@ -43,6 +43,7 @@
 #include "Android/OgreAPKFileSystemArchive.h"
 #include "Android/OgreAPKZipArchive.h"
 #else
+#undef None
 #include "Ogre.h"
 #include "OgreHlms.h"
 #include "OgreHlmsPbs.h"

@@ -778,7 +778,7 @@ bool renderEngine::createScene()
         //Get the path to all the subdirectories used by HlmsUnlit
         Ogre::HlmsUnlit::getDefaultPaths( mainFolderPath, libraryFoldersPaths );
         logMsg(func +" mainFolderPath" +mainFolderPath);
-        exit(0);
+//        exit(0);
         Ogre::Archive *archiveUnlit = archiveManager.load( rootHlmsFolder
                                                            +mainFolderPath,
                                                            "FileSystem", true );

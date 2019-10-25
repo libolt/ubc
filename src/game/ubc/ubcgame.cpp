@@ -383,7 +383,7 @@ bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &in
     playerSMData *playerSMD3 = new playerSMData;
 */
     logMsg(func +" begin");
-    
+//    exit(0);
 ///    playerSMD->speed = 100;
 ///    playerSM.setSpeed(playerSMD);
 ///    playerSM.halt();

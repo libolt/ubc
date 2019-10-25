@@ -759,11 +759,24 @@ bool renderEngine::createScene()
                              mResourceGroup);
     rsm->addResourceLocation(dataPath + "/Media/Audio", "FileSystem",
                              mResourceGroup);
+    rsm->initialiseResourceGroup("UBCData", false);
+
 #endif
 
-    rsm->initialiseResourceGroup("UBCData", false);
+
+    Ogre::Archive *archiveLibrary = Ogre::ArchiveManager::getSingletonPtr()->load(
+                    dataPath + "/Media/Hlms/Common/GLSL", "FileSystem", true );
+    Ogre::ArchiveVec library;
+    library.push_back( archiveLibrary );
+    Ogre::Archive *archivePbs = Ogre::ArchiveManager::getSingletonPtr()->load(
+                  dataPath + "/Media/Hlms/Pbs/GLSL", "FileSystem", true );
+    Ogre::HlmsPbs *hlmsPbs = OGRE_NEW Ogre::HlmsPbs( archivePbs, &library );
+
+    Ogre::Root::getSingleton().getHlmsManager()->registerHlms( hlmsPbs );
+
+
     //register HLMS
-    rootHlmsFolder = dataPath + "/Media/";
+/*    rootHlmsFolder = dataPath + "/Media/";
 
     //For retrieval of the paths to the different folders needed
     Ogre::String mainFolderPath;
@@ -832,7 +845,7 @@ bool renderEngine::createScene()
 
     //configure shadow quality
     mHlmsPbs->setShadowSettings(Ogre::HlmsPbs::PCF_4x4);
-
+*/
     
 #if OGRE_VERSION_MAJOR == 1 && OGRE_VERSION_MINOR <= 10
     mSceneMgr = sharedPtr<Ogre::SceneManager>(

@@ -287,9 +287,9 @@ void UBC::run()  // runs the game
     component->getGame()->loop(component->getGameE(), component->getInput(), component->getGui());
 #endif
 
-#if OGRE_VERSION_MAJOR == 2 && OGRE_VERSION_MINOR == 0
+//#if OGRE_VERSION_MAJOR == 2 && OGRE_VERSION_MINOR == 0
     component->getGame()->loop(component->getGameE(), component->getInput());
-#endif
+//#endif
 
     logMsg(func +" end");
 

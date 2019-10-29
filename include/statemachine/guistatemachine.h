@@ -1,7 +1,7 @@
 #ifndef _GUISTATEMACHINE_H_
 #define _GUISTATEMACHINE_H_
 
-#ifdef BTOGRE_MYGUI_ENABLED
+//#ifdef BTOGRE_MYGUI_ENABLED
 
 #include "statemachine/statemachine.h"
 #include "utilities/typedefs.h"
@@ -109,6 +109,6 @@ private:
         STATE_MAP_ENTRY(&InputMenu)
     END_STATE_MAP
 };
-#endif
+//#endif
 
 #endif // _GUISTATEMACHINE_H_

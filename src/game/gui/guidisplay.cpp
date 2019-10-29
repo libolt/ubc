@@ -18,7 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifdef BTOGRE_MYGUI_ENABLED
+//#ifdef BTOGRE_MYGUI_ENABLED
 
 #include "engine/networkengine.h"
 
@@ -705,4 +705,4 @@ void guiDisplay::changeActiveMenu(activeMenus menu, const renderEngineSharedPtr 
     logMsg(func + " end");
 }
 
-#endif
+//#endif

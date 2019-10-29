@@ -18,7 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifdef BTOGRE_MYGUI_ENABLED
+//#ifdef BTOGRE_MYGUI_ENABLED
 
 #include "components/guicomponents.h"
 #include "engine/gameengine.h"
@@ -409,7 +409,7 @@ bool guiComponents::initMyGUI(const renderEngineSharedPtr &render)  // Initializ
     
     logMsg(func +" begin");
     logMsg(func +" *** Initializing MyGUI ***");
-    MyGUIOgrePlatformSharedPtr tempPlatform(new MyGUI::OgrePlatform());
+    MyGUIOgrePlatformSharedPtr tempPlatform(new MyGUI::Ogre2Platform());
     mPlatform = tempPlatform;
 //    logMsg(func +" Crash?");
 
@@ -427,6 +427,6 @@ bool guiComponents::initMyGUI(const renderEngineSharedPtr &render)  // Initializ
     logMsg(func +" end");
     return true;
 }
-#endif
+//#endif
 
 

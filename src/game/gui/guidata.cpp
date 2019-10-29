@@ -18,7 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifdef BTOGRE_MYGUI_ENABLED
+//#ifdef BTOGRE_MYGUI_ENABLED
 
 #include "engine/networkengine.h"
 
@@ -465,4 +465,4 @@ bool guiData::addTeamStartSelectionMenuData()  // adds data to Team Start Select
     
     return (true);
 }
-#endif
+//#endif

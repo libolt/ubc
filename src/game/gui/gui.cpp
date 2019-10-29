@@ -18,7 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifdef BTOGRE_MYGUI_ENABLED
+//#ifdef BTOGRE_MYGUI_ENABLED
 
 #include "engine/networkengine.h"
 
@@ -292,7 +292,7 @@ bool GUISystem::initializeStateMachine(const renderEngineSharedPtr &render)  // 
     stateMachine->pInitialize(initSMData);
     
     logMsg(func +" end");
-
+    return (true);
 }
 
 bool GUISystem::updateStateMachine(const renderEngineSharedPtr &render)  // updates gui stateMachine
@@ -798,4 +798,4 @@ void GUISystem::networkServerSetupMenu(const renderEngineSharedPtr &render)  // 
     display->changeActiveMenu(NETWORKCLIENT, render);
 }
 */
-#endif
+//#endif

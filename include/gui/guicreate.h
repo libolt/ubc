@@ -21,7 +21,7 @@
 #ifndef _GUICREATE_H_
 #define _GUICREATE_H_
 
-#ifdef BTOGRE_MYGUI_ENABLED
+//#ifdef BTOGRE_MYGUI_ENABLED
 
 #include "utilities/typedefs.h"
 
@@ -71,6 +71,6 @@ class guiCreate
         guiInputSharedPtr input;  // stores gui input functions
 
 };
-#endif
+//#endif
 
 #endif

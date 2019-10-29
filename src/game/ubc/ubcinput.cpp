@@ -78,8 +78,6 @@ void UBCInput::setSetupComplete(const bool &set)  // sets the value of setupComp
     setupComplete = set;
 }
 
-#ifdef BTOGRE_MYGUI_ENABLED
-
 void UBCInput::process(const gameEngineSharedPtr &gameE, const gameComponentsSharedPtr &gameComponent, const gameFlagsSharedPtr &gameFlag, usersMSharedPtr usersInstance, const GUISystemSharedPtr &gui)  // processes game input
 {
     conversionSharedPtr convert ;
@@ -385,7 +383,6 @@ bool UBCInput::processKeyboard(const gameEngineSharedPtr &gameE, const gameCompo
     logMsg(func +" end");
     return (true);
 }
-#endif
 
 bool UBCInput::processGamePad()  // process gamePad input
 {

@@ -28,12 +28,10 @@
 //#include "OgreEntity.h"
 //#include "OgreVector3.h"
 
-#ifdef BTOGRE_MYGUI_ENABLED
 
 #include "BtOgrePG.h"
 #include "BtOgreGP.h"
 #include "BtOgreExtras.h"
-#endif
 
 #include "utilities/typedefs.h"
 

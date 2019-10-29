@@ -23,9 +23,7 @@
 playerComponents::playerComponents()  // constructor
 {
     stateMachine = nullptr;
-#ifdef BTOGRE_MYGUI_ENABLED
     physics = nullptr;
-#endif
     steer = nullptr;
     statistics = nullptr;
 }
@@ -40,8 +38,6 @@ void playerComponents::setStateMachine(const playerStateMachineSharedPtr &set)  
     stateMachine = set;
 }
 
-#ifdef BTOGRE_MYGUI_ENABLED
-
 playerPhysicsSharedPtr playerComponents::getPhysics() const  // retrieves the value of physics
 {
     return (physics);
@@ -50,7 +46,6 @@ void playerComponents::setPhysics(const playerPhysicsSharedPtr &set)  // sets th
 {
     physics = set;
 }
-#endif
 
 playerSteerSharedPtr playerComponents::getSteer() const  // retrieves the value of steer
 {

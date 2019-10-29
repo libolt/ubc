@@ -36,12 +36,10 @@
 #include "Ogre.h"
 #include "OgreInstancedEntity.h"
 
-#ifdef BTOGRE_MYGUI_ENABLED
 #include "BtOgrePG.h"
 #include "BtOgreGP.h"
 #include "BtOgreExtras.h"
 #include "BulletDynamics/Dynamics/btRigidBody.h"
-#endif
 
 #include "utilities/enums.h"
 
@@ -51,7 +49,6 @@
 
 #include "gui/guidefines.h"
 
-#ifdef BTOGRE_MYGUI_ENABLED
 
 #include "MyGUI_Gui.h"
 #include "MyGUI_OgrePlatform.h"
@@ -62,7 +59,6 @@
 #include "MyGUI_FontManager.h"
 #include "MyGUI_LayoutManager.h"
 #include "MyGUI_ImageBox.h"
-#endif
 
 // forward declarations
 
@@ -190,7 +186,6 @@ typedef sharedPtr<UBCGame> UBCGameSharedPtr;
 
 typedef sharedPtr<UBCInput> UBCInputSharedPtr;
 
-#ifdef BTOGRE_MYGUI_ENABLED
 typedef sharedPtr<GUISystem> GUISystemSharedPtr;
 
 typedef sharedPtr<guiComponents> guiComponentsSharedPtr;
@@ -208,7 +203,6 @@ typedef sharedPtr<guiFlags> guiFlagsSharedPtr;
 typedef sharedPtr<guiInput> guiInputSharedPtr;
 
 typedef sharedPtr<guiStateMachine> guiStateMachineSharedPtr;
-#endif
 
 typedef sharedPtr<conversion> conversionSharedPtr;
 
@@ -218,9 +212,7 @@ typedef sharedPtr<basketballData> basketballDataSharedPtr;
 
 typedef sharedPtr<basketballFlags> basketballFlagsSharedPtr;
 
-#ifdef BTOGRE_MYGUI_ENABLED
 typedef sharedPtr<basketballPhysics> basketballPhysicsSharedPtr;
-#endif
 
 typedef sharedPtr<basketballStateMachine> basketballStateMachineSharedPtr;
 
@@ -236,9 +228,7 @@ typedef sharedPtr<courtData> courtDataSharedPtr;
 
 typedef sharedPtr<courtFlags> courtFlagsSharedPtr;
 
-#ifdef BTOGRE_MYGUI_ENABLED
 typedef sharedPtr<courtPhysics> courtPhysicsSharedPtr;
-#endif
 
 typedef sharedPtr<courtStateMachine> courtStateMachineSharedPtr;
 
@@ -250,9 +240,7 @@ typedef sharedPtr<playerData> playerDataSharedPtr;
 
 typedef sharedPtr<playerGameData> playerGameDataSharedPtr;
 
-#ifdef BTOGRE_MYGUI_ENABLED
 typedef sharedPtr<playerPhysics> playerPhysicsSharedPtr;
-#endif
 
 typedef sharedPtr<playerStateMachine> playerStateMachineSharedPtr;
 
@@ -264,9 +252,7 @@ typedef sharedPtr<inputEngine> inputEngineSharedPtr;
 
 typedef sharedPtr<networkEngine> networkEngineSharedPtr;
 
-#ifdef BTOGRE_MYGUI_ENABLED
 typedef sharedPtr<physicsEngine> physicsEngineSharedPtr;
-#endif
 
 typedef sharedPtr<renderEngine> renderEngineSharedPtr;
 
@@ -282,9 +268,7 @@ typedef sharedPtr<hoopEntity> hoopEntitySharedPtr;
 
 typedef sharedPtr<hoopFlags> hoopFlagsSharedPtr;
 
-#ifdef BTOGRE_MYGUI_ENABLED
 typedef sharedPtr<hoopPhysics> hoopPhysicsSharedPtr;
-#endif
 
 typedef sharedPtr<hoopStateMachine> hoopStateMachineSharedPtr;
 
@@ -400,7 +384,6 @@ typedef sharedPtr<Ogre::Entity> OgreEntitySharedPtr;
 
 typedef sharedPtr<Ogre::SceneNode> OgreSceneNodeSharedPtr;
 
-#ifdef BTOGRE_MYGUI_ENABLED
 // MyGUI Shared Ptr
 
 typedef sharedPtr<MyGUI::Gui> MyGUIGuiSharedPtr;
@@ -422,7 +405,6 @@ typedef sharedPtr<btCollisionShape> btCollisionShapeSharedPtr;
 typedef sharedPtr<BtOgre::RigidBodyState> BtOgreRigidBodyStateSharedPtr;
 
 typedef sharedPtr<btRigidBody> btRigidBodySharedPtr;
-#endif
 
 // game setup classses
 
@@ -512,8 +494,6 @@ typedef std::map <size_t, teamStateMachineSharedPtr> teamStateMachineMSharedPtr;
 
 typedef std::map <size_t, usersSharedPtr> usersMSharedPtr;
 
-#ifdef BTOGRE_MYGUI_ENABLED
-
 typedef std::map<std::string, sharedPtr<MyGUI::Button> > MyGUIButtonMSharedPtr;
 
 typedef std::map<size_t, sharedPtr<MyGUI::ListBox> > MyGUIListBoxMSharedPtr;
@@ -523,7 +503,6 @@ typedef std::map<playerPositions, sharedPtr<MyGUI::ListBox> > MyGUIPlayerListBox
 typedef std::map<std::string, sharedPtr<MyGUI::TextBox> > MyGUITextBoxMSharedPtr;
 
 typedef std::map<std::string, sharedPtr<MyGUI::ImageBox> > MyGUIImageBoxMSharedPtr;
-#endif
 
 typedef std::map<playerPositions, size_t> teamStarterIDsM;
 
@@ -531,14 +510,11 @@ typedef std::map<playerPositions, size_t> teamStarterIDsM;
 
 //typedef std::vector<std::map <std::string, sharedPtr<MyGUI::ListBox> > > MyGUIListBoxVecMSharedPtr;
 
-#ifdef BTOGRE_MYGUI_ENABLED
-
 typedef std::vector <MyGUIListBoxMSharedPtr> MyGUIListBoxVecMSharedPtr;
 
 typedef std::vector <MyGUIPlayerListBoxMSharedPtr> MyGUIPlayerListBoxVecMSharedPtr;
 
 typedef std::vector<MyGUITextBoxMSharedPtr> MyGUITextBoxVecMSharedPtr;
-#endif
 
 typedef std::vector<basketballEntityMSharedPtr> basketballEntityVecMSharedPtr;
 

@@ -64,7 +64,6 @@ void teamComponents::setDefenseInstance(const defenseSharedPtr &set)  // sets th
     defenseInstance = set;
 }
 
-#ifdef BTOGRE_MYGUI_ENABLE
 std::map<std::string, btRigidBodySharedPtr> teamComponents::getCollisionBodies() const  // retrieves the value of collisionBodies
 {
     return (collisionBodies);
@@ -73,4 +72,3 @@ void teamComponents::setCollisionBodies(const std::map<std::string, btRigidBodyS
 {
     collisionBodies = set;
 }
-#endif

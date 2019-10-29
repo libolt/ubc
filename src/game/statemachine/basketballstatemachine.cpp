@@ -193,11 +193,8 @@ STATE_DEFINE(basketballStateMachine, Initialize, basketballSMData)
 
     basketballFlagsSharedPtr tempFlag(new basketballFlags);
     tempSMData->flag = tempFlag;
-
-#ifdef BTOGRE_MYGUI_ENABLED
     sharedPtr<basketballPhysics> tempPhysics(new basketballPhysics);
     tempSMData->physics = tempPhysics;
-#endif
 
 //    exit(0);
     data = tempSMData;
@@ -315,7 +312,6 @@ STATE_DEFINE(basketballStateMachine, CreateNode, basketballSMData)
 // sets up basketball physics object
 STATE_DEFINE(basketballStateMachine, SetupPhysics, basketballSMData)
 {
-#ifdef BTOGRE_MYGUI_ENABLED
 
     conversionSharedPtr convert;
     std::string func = "basketballStateMachine::setupPhysics()";
@@ -373,7 +369,6 @@ STATE_DEFINE(basketballStateMachine, SetupPhysics, basketballSMData)
     }
 
     logMsg(func +" end");
-#endif
 
 }
 
@@ -407,16 +402,12 @@ STATE_DEFINE(basketballStateMachine, UpdatePosition, basketballSMData)
     conversionSharedPtr convert;
     comparison compare;
     Ogre::Vector3 changePos;
-#ifdef BTOGRE_MYGUI_ENABLED
     btVector3 physChange = btVector3(0,0,0);
-#endif
 
     basketballComponentsSharedPtr component = data->component;
 //    basketballDataSharedPtr bData;  // stores copy of basketballData object
     basketballFlagsSharedPtr flag = data->flag;
-#ifdef BTOGRE_MYGUI_ENABLED
     basketballPhysicsSharedPtr physics = data->physics;
-#endif
     OgreSceneNodeSharedPtr node = data->node;
     std::string func = "basketballStateMachine::updatePosition()";
 
@@ -431,10 +422,9 @@ STATE_DEFINE(basketballStateMachine, UpdatePosition, basketballSMData)
                 logMsg(func + " Updating basketball court position based on start position");
                 node->translate(component->getNewCourtPosition());
 
-#ifdef BTOGRE_MYGUI_ENABLED
                 physChange = BtOgre::Convert::toBullet(component->getNewCourtPosition()); // converts from Ogre::Vector3 to btVector3
                 component->getPhysics()->getPhysBody()->translate(physChange); // moves physics body in unison with the model
-#endif
+
                 component->getSteer()->setPosition(convert->toOpenSteerVec3(component->getNewCourtPosition()));
                 flag->setCourtPositionChanged(false);
                 component->setCourtPositionChangedType(NOCHANGE);
@@ -446,10 +436,8 @@ STATE_DEFINE(basketballStateMachine, UpdatePosition, basketballSMData)
                 changePos = compare.OgreVector3ToOgreVector3Result(component->getCourtPosition(), component->getNewCourtPosition());
                 node->translate(changePos);
 
-#ifdef BTOGRE_MYGUI_ENABLED
                 physChange = BtOgre::Convert::toBullet(changePos); // converts from Ogre::Vector3 to btVector3
                 component->getPhysics()->getPhysBody()->translate(physChange); // moves physics body in unison with the model
-#endif
 
                 flag->setCourtPositionChanged(false);
                 component->setCourtPositionChangedType(NOCHANGE);
@@ -459,10 +447,8 @@ STATE_DEFINE(basketballStateMachine, UpdatePosition, basketballSMData)
                 logMsg(func + " Updating court position based on input");
                 node->translate(component->getNewCourtPosition());
 
-#ifdef BTOGRE_MYGUI_ENABLED
                 physChange = BtOgre::Convert::toBullet(component->getNewCourtPosition()); // converts from Ogre::Vector3 to btVector3
                 component->getPhysics()->getPhysBody()->translate(physChange); // moves physics body in unison with the model
-#endif
 
                 component->getSteer()->setPosition(convert->toOpenSteerVec3(component->getNewCourtPosition()));
                 flag->setCourtPositionChanged(false);
@@ -480,10 +466,8 @@ STATE_DEFINE(basketballStateMachine, UpdatePosition, basketballSMData)
                 logMsg(func + " bball newCourtPosition = " +convert->toString(component->getNewCourtPosition()));
                 logMsg(func + " bball node position" +convert->toString((node->getPosition())));
 
-#ifdef BTOGRE_MYGUI_ENABLED
                 physChange = BtOgre::Convert::toBullet(component->getNewCourtPosition()); // converts from Ogre::Vector3 to btVector3
                 component->getPhysics()->getPhysBody()->translate(physChange); // moves physics body in unison with the model
-#endif
 
                 //steer->setPosition(convert->toOpenSteerVec3(component->getNewCourtPosition()));
                 flag->setCourtPositionChanged(false);
@@ -496,10 +480,8 @@ STATE_DEFINE(basketballStateMachine, UpdatePosition, basketballSMData)
                 logMsg(func + " bball newCourtPosition = " +convert->toString(component->getNewCourtPosition()));
                 logMsg(func + " bball node position" +convert->toString((node->getPosition())));
 
-#ifdef BTOGRE_MYGUI_ENABLED
                 physChange = BtOgre::Convert::toBullet(component->getNewCourtPosition()); // converts from Ogre::Vector3 to btVector3
                 component->getPhysics()->getPhysBody()->translate(physChange); // moves physics body in unison with the model
-#endif
 
                 //steer->setPosition(convert->toOpenSteerVec3(component->getNewCourtPosition()));
                 flag->setCourtPositionChanged(false);

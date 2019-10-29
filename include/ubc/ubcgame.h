@@ -90,9 +90,7 @@ class UBCGame
 
         void processNetworkEvents(const gameEngineSharedPtr &gameE);  // processes events in the network subsyatem
 
-#ifdef BTOGRE_MYGUI_ENABLED
         void processPhysicsEvents(const gameEngineSharedPtr &gameE);  // processes events in the physics subsyatem
-#endif
 
     private:
 

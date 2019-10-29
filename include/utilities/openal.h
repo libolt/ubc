@@ -1,7 +1,6 @@
 #ifndef OPEN_AL_H
 #define OPEN_AL_H
 
-#ifdef BTOGRE_MYGUI_ENABLED
 
 #ifdef _MSC_VER	
 	#pragma comment(lib, "OpenAL32.lib")
@@ -74,8 +73,6 @@ inline void CheckOpenALError(const char* stmt, const char* fname, int line)
 #else
     #define AL_CHECK(stmt) stmt
 #endif
-#endif
-
 #endif
 
 #endif

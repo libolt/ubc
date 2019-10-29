@@ -31,14 +31,14 @@
 #include "load/loadusersinputs.h"
 #include "entity/gameentity.h"
 #include "statemachine/gamestatemachine.h"
-#ifndef BTOGRE_MYGUI_ENALBED
+//#ifndef BTOGRE_MYGUI_ENALBED
 #include "components/basketballcomponents.h"
 #include "data/basketballdata.h"
 #include "entity/basketballentity.h"
 #include "flags/basketballflags.h"
 #include "setup/setupbasketballs.h"
 #include "Compositor/OgreCompositorManager2.h"
-#endif
+//#endif
 #include "ubc/ubcinput.h"
 #include "users/users.h"
 #include "users/usersinputs.h"
@@ -400,9 +400,7 @@ bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &in
     
     while (!quitGame)
     {
-#ifdef BTOGRE_MYGUI_ENABLED
         input->process(gameE, gameInstance->getComponent(), gameInstance->getFlag(), usersInstance, gui);
-#endif
 //        processPhysicsEvents();
         
 ///        if (gameInstance->getSetupComplete())  // checks to make sure game setup is complete before continuing
@@ -439,7 +437,6 @@ bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &in
         
 //        exit(0);
 
-#ifdef BTOGRE_MYGUI_ENABLED
         if (gui->getFlag()->getMenuActive())
         {
             if (gui->updateStateMachine(gameE->getRenderE()))
@@ -455,9 +452,7 @@ bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &in
 //            exit(0);
             }
         }
-#endif
 
-#ifdef BTOGRE_MYGUI_ENABLED
         if (!basketballLoaded)
         {
             setupBasketballs setupbasketball;
@@ -542,7 +537,6 @@ bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &in
 
         }
     }
-#endif
 
         if (startActiveGame)
         {
@@ -649,7 +643,6 @@ void UBCGame::processNetworkEvents(const gameEngineSharedPtr &gameE)  // process
     logMsg(func +" end");
 }
 
-#ifdef BTOGRE_MYGUI_ENABLED
 void UBCGame::processPhysicsEvents(const gameEngineSharedPtr &gameE)  // processes events in the physics subsyatem
 {
     std::string func = "UBCGame::processPhysicsEvents()";
@@ -660,4 +653,3 @@ void UBCGame::processPhysicsEvents(const gameEngineSharedPtr &gameE)  // process
 
     logMsg(func +" end");
 }
-#endif

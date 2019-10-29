@@ -41,10 +41,8 @@ class teamComponents
         defenseSharedPtr getDefenseInstance() const;  // retrieves the value of defenseInstance
         void setDefenseInstance(const defenseSharedPtr &set);  // sets the value of defenseInstance
 
-#ifdef BTOGRE_MYGUI_ENABLE
         std::map<std::string, btRigidBodySharedPtr> getCollisionBodies() const;  // retrieves the value of collisionBodies
         void setCollisionBodies(const std::map<std::string, btRigidBodySharedPtr> &set);  // sets the value of collisionBodies
-#endif
 
     private:
     
@@ -54,9 +52,7 @@ class teamComponents
         offenseSharedPtr offenseInstance;  // stores the offenseState instance
         defenseSharedPtr defenseInstance;  // stores the defenseState instance
 
-#ifdef BTOGRE_MYGUI_ENABLE
         std::map<std::string, btRigidBodySharedPtr> collisionBodies;  // physical bodies to test for collisions with players physBody objects
-#endif
 };
 
 #endif

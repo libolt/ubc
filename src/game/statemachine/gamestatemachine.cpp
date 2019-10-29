@@ -846,7 +846,6 @@ STATE_DEFINE(gameStateMachine, executeJumpBall, gameSMData)
 //    basketballStateVec basketBallInstance = gameS->getBasketballInstance();
    // FIXME! Do NOT hard code activeBasketballInstance in the future
 
-#ifdef BTOGRE_MYGUI_ENABLED
     bool bballPhysicsSetup = activeBasketballInstance[0]->getFlag()->getPhysicsSetup();
     if (teamWithBall == NOTEAM && bballPhysicsSetup) //&& gameS->getActiveTeamInstancesCreated())
     {
@@ -890,7 +889,7 @@ STATE_DEFINE(gameStateMachine, executeJumpBall, gameSMData)
         logMsg(func +" teamWithBall == " +convert->toString(teamWithBall));
 //        return (true);
     }
-#endif
+
     jumpBall->setJumpBallComplete(jumpBallComplete);
     jumpBall->setBallTipped(ballTipped);
     

@@ -23,9 +23,7 @@
 
 #include <vector>
 //#include <boost/shared_ptr.hpp>
-#ifdef BTOGRE_MYGUI_ENABLED
 #include "BulletDynamics/Dynamics/btRigidBody.h"
-#endif
 
 //#include "flags/gameflags.h"
 //#include "state/basketballstate.h"
@@ -109,9 +107,7 @@ class gameEntity //: public state, public gameStateShared, public std::enable_sh
 //        bool setupState(renderEngineSharedPtr render);  // sets up the game condition
         bool updateState(const renderEngineSharedPtr &render);  // updates the state of the game
         bool updateActiveTeamInstances(const renderEngineSharedPtr &render);  // updates all active team instancesa
-#ifdef BTOGRE_MYGUI_ENABLE
         bool updatePlayerCollisionObjects();  // updates the player collision objects for a team instance
-#endif
 
         bool processInput();  // processes input received from the inputState object
 

@@ -21,7 +21,6 @@
 #ifndef _GUICOMPONENTS_H_
 #define _GUICOMPONENTS_H_
 
-#ifdef BTOGRE_MYGUI_ENABLED
 
 #include "MyGUI_Gui.h"
 #include "MyGUI_OgrePlatform.h"
@@ -236,7 +235,5 @@ class guiComponents
         teamStarterIDsVecM teamStarterID; // stores the selected starters for each team
 
 };
-
-#endif
 
 #endif

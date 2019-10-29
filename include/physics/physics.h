@@ -21,8 +21,6 @@
 #ifndef _PHYSICS_H_
 #define _PHYSICS_H_
 
-#ifdef BTOGRE_MYGUI_ENABLED
-
 #include "BtOgrePG.h"
 #include "BtOgreGP.h"
 #include "BtOgreExtras.h"
@@ -140,6 +138,5 @@ class physics
         size_t physObjNumber;  // stores the number of the object
 
 };
-#endif
 
 #endif // _PHYSICS_H_

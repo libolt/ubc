@@ -176,7 +176,6 @@ void gameEngine::setNetworkE(const networkEngineSharedPtr &set)  // sets the val
     networkE = set;
 }
 
-#ifdef BTOGRE_MYGUI_ENABLED
 physicsEngineSharedPtr gameEngine::getPhysE() const  // retrieves the value of physE
 {
     return (physE);
@@ -185,7 +184,6 @@ void gameEngine::setPhysE(const physicsEngineSharedPtr &set)  // sets the value 
 {
     physE = set;
 }
-#endif
 
 bool gameEngine::setup()  // sets up engine state
 {
@@ -203,13 +201,11 @@ bool gameEngine::setup()  // sets up engine state
     networkE = tempNetworkSharedPtr;
     networkE->initialize();
 
-#ifdef BTOGRE_MYGUI_ENABLED
     // physicsEngine
     sharedPtr<physicsEngine> tempPhysicsSharedPtr(new physicsEngine);
     physE = tempPhysicsSharedPtr;
     physE->setup();
 ///    physE->setup();
-#endif
 
 // inputEngine
 //    inputEngine *tempInputObj = new inputEngine;

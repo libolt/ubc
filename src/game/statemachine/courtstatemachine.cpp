@@ -197,10 +197,8 @@ STATE_DEFINE(courtStateMachine, Initialize, courtSMData)
 
     data = tempSMData;
     
-#ifdef BTOGRE_MYGUI_ENABLED
     sharedPtr<courtPhysics> tempPhysics(new courtPhysics);
     data->component->setPhysics(tempPhysics);
-#endif
 
     logMsg(func +" end");
     
@@ -288,7 +286,6 @@ STATE_DEFINE(courtStateMachine, CreateNode, courtSMData)
 // sets up basketball physics object
 STATE_DEFINE(courtStateMachine, SetupPhysics, courtSMData)
 {
-#ifdef BTOGRE_MYGUI_ENABLED
 
     conversionSharedPtr convert;
     std::string func = "courtStateMachine::setupPhysics()";
@@ -345,7 +342,6 @@ STATE_DEFINE(courtStateMachine, SetupPhysics, courtSMData)
     }
 
     logMsg(func +" end");
-#endif
 }
 
 // stops movement of basketball object

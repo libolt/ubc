@@ -187,9 +187,7 @@ void teamEntity::updateState(const gameComponentsSharedPtr &gameInstanceComponen
 {
 
     conversionSharedPtr convert ;
-#ifdef BTOGRE_MYGUI_ENABLED
     physicsEngine physEngine;
-#endif
 
     setupPlayersSharedPtr setupPlayer(new setupPlayers);
     setupTeamsSharedPtr setupTeam(new setupTeams);
@@ -437,7 +435,6 @@ void teamEntity::updateState(const gameComponentsSharedPtr &gameInstanceComponen
 //                      exit(0);
 ///FIXME!
 ///                        offense->executePass();
-#ifdef BTOGRE_MYGUI_ENABLED
 
                         if (physEngine.getPassCollision())  // checks if ball has collided with player being passed to.
                         {
@@ -455,7 +452,6 @@ void teamEntity::updateState(const gameComponentsSharedPtr &gameInstanceComponen
                         else
                         {
                         }
-#endif
 
                     }
                 }

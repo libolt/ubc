@@ -67,9 +67,7 @@ class conversion  // class for conversion between data types
 #ifdef _WIN64
         std::string toString(const size_t &data);  // converts size_t data to string
 #endif
-#ifdef BTOGRE_MYGUI_ENABLED
         std::string toString(const btVector3 &data); // converts btVector3 data to string
-#endif
         std::string toString(const playerPositions &data); // converts playerPositions data to string
         std::string toString(const teamTypes &data); // converts teamTypes data to string
         std::string toString(const bool &data); // converts bool data to string
@@ -277,9 +275,7 @@ class conversion  // class for conversion between data types
         OpenSteer::Vec3 toOpenSteerVec3(const Ogre::Vector3 &vect);  // converts from Ogre::Vector3 to OpenSteer::Vec3
 
         Ogre::Vector3 toOgreVector3(const OpenSteer::Vec3 &vect); // converts from OpenSteer::Vec3 to Ogre::Vector3
-#ifdef BTOGRE_MYGUI_ENABLED
         Ogre::Vector3 toOgreVector3(const btVector3 &vect); // converts from btVector3 to Ogre::Vector3
-#endif
 
         
         // inputKm Maps conversion

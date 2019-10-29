@@ -129,10 +129,8 @@ bool basketballEntity::initializeObjects()  // initializes the basketball object
     basketballComponentsSharedPtr tempComponent(new basketballComponents); 
     component = tempComponent;
     
-#ifdef BTOGRE_MYGUI_ENABLED
     sharedPtr<basketballPhysics> tempPhysics(new basketballPhysics);
     component->setPhysics(tempPhysics);
-#endif
 
     basketballDataSharedPtr tempData(new basketballData);
     data = tempData;
@@ -376,12 +374,10 @@ void basketballEntity::updateStateMachine(const gameComponentsSharedPtr &gameCom
         action = BNOACTION;
     }
 
-#ifdef BTOGRE_MYGUI_ENABLED
     if (flag->getNumberSet())  // runs the physics update code
     {
         component->getPhysics()->updatePhysObj();
     }
-#endif
 /*    if (flag->getDirectChange())
     {
     }

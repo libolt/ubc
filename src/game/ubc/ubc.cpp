@@ -85,12 +85,11 @@ bool UBC::setup()  // sets up UBC object
     
     logMsg(func +" begin");
 
-#ifdef BTOGRE_MYGUI_ENABLED
     GUISystemSharedPtr tempGUISharedPtr(new GUISystem);
     component->setGui(tempGUISharedPtr);
     
     component->getGui()->setGameE(component->getGameE());
-#endif
+
     // setup game object
     UBCGameSharedPtr tempGameSharedPtr(new UBCGame);
 
@@ -121,7 +120,6 @@ bool UBC::setupState()  // sets up the UBC game state
 
     logMsg(func +" begin");
 
-#ifdef BTOGRE_MYGUI_ENABLED
     GUISystemSharedPtr gui = component->getGui();
     gui->setGameInstance(component->getGame()->getGameInstance());  // shares gameInstance with gui object
 
@@ -146,7 +144,6 @@ bool UBC::setupState()  // sets up the UBC game state
         logMsg(func +" Unable to setup GUI!");
         exit(0);
     }
-#endif
     logMsg(func +" end");
 
     return (stateSetup);
@@ -287,9 +284,9 @@ void UBC::run()  // runs the game
     component->getGame()->loop(component->getGameE(), component->getInput(), component->getGui());
 #endif
 
-#if OGRE_VERSION_MAJOR == 2 && OGRE_VERSION_MINOR == 0
+//#if OGRE_VERSION_MAJOR == 2 && OGRE_VERSION_MINOR == 1
     component->getGame()->loop(component->getGameE(), component->getInput());
-#endif
+//#endif
 
     logMsg(func +" end");
 
@@ -303,7 +300,6 @@ bool UBC::updateGUI()  // updates the gui based on received events
     logMsg(func +" begin");
     exit(0);
 //    GUISystemSharedPtr gui = base->getGui();
-#ifdef BTOGRE_MYGUI_ENABLED
     if (component->getGameE()->getInputE()->getMouseClicked())
     {
         logMsg(func +" updateGUI Mouse Clicked!");
@@ -314,7 +310,6 @@ bool UBC::updateGUI()  // updates the gui based on received events
     {
         component->getGui()->getComponent()->getMGUI()->injectMouseRelease(component->getGameE()->getInputE()->getMouseX(), component->getGameE()->getInputE()->getMouseY(), MyGUI::MouseButton::Left);
     }
-#endif
 
 //    base->setGui(gui);
 

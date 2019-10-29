@@ -18,8 +18,6 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifdef BTOGRE_MYGUI_ENABLED
-
 #include "flags/guiflags.h"
 
 guiFlags::guiFlags()
@@ -238,4 +236,3 @@ void guiFlags::setChangeMenu(const bool &set)  // sets the value of changeMenu
 {
     changeMenu = set;
 }
-#endif

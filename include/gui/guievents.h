@@ -21,7 +21,6 @@
 #ifndef _GUIEVENTS_H_
 #define _GUIEVENTS_H_
 
-#ifdef BTOGRE_MYGUI_ENABLED
 
 #include "utilities/typedefs.h"
 
@@ -117,6 +116,5 @@ class guiEvents : public std::enable_shared_from_this<guiEvents>
         gameEntitySharedPtr gameInstance;  // stores a copy of the gameInstance
 
 };
-#endif
 
 #endif // _GUIEVENTS_H_

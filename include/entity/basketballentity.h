@@ -72,9 +72,7 @@ class basketballEntity : public entity
 
     bool initializeStateMachine();  // initializes the basketball stateMachine object
 
-#ifdef BTOGRE_MYGUI_ENABLED
     bool setupPhysicsObject();  // sets up the physics object
-#endif
 
     private:
     

@@ -21,8 +21,6 @@
 #ifndef _GUIDISPLAY_H_
 #define _GUIDISPLAY_H_
 
-#ifdef BTOGRE_MYGUI_ENABLED
-
 #include "utilities/typedefs.h"
 
 class guiDisplay
@@ -97,6 +95,6 @@ class guiDisplay
         size_t displayCount;
 
 };
-#endif
+//#endif
 
 #endif  // _GUIDISPLAY_H_

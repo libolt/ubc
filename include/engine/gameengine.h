@@ -94,10 +94,8 @@ public:
     networkEngineSharedPtr getNetworkE() const;  // retrieves the value of networkE
     void setNetworkE(const networkEngineSharedPtr &set);  // sets the value of networkE
     
-#ifdef BTOGRE_MYGUI_ENABLED
     physicsEngineSharedPtr getPhysE() const;  // retrieves the value of physE
     void setPhysE(const physicsEngineSharedPtr &set);  // sets the value of physE
-#endif
 
     bool setup();  // sets up the engine state
     bool startGame();  // starts a game
@@ -114,9 +112,7 @@ private:
     renderEngineSharedPtr renderE;  // render object
     inputEngineSharedPtr inputE;  // input object
     networkEngineSharedPtr networkE;  // network object
-#ifdef BTOGRE_MYGUI_ENABLED
     physicsEngineSharedPtr physE;  // physics engine object
-#endif
 
     float yOffset; // stores the y offset for objects on the screen
     

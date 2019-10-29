@@ -22,7 +22,6 @@
 #define _PHYSICSENGINE_H_
 
 //#include "engine/gameengine.h"
-#ifdef BTOGRE_MYGUI_ENABLED
 
 #include <vector>
 #include "BtOgrePG.h"
@@ -124,5 +123,4 @@ struct MyContactResultCallback : public btCollisionWorld::ContactResultCallback
         return 1.f;
     }
 };
-#endif
-#endif // PHYSICS_H_INCLUDED
+#endif // PHYSICSENGINE_H_INCLUDED

@@ -21,8 +21,6 @@
 #ifndef _GUIDATA_H_
 #define _GUIDATA_H_
 
-#ifdef BTOGRE_MYGUI_ENABLED
-
 #include "utilities/typedefs.h"
 
 class guiData
@@ -55,6 +53,5 @@ class guiData
         gameEntitySharedPtr gameInstance;  // stores a copy of the gameInstance
 
 };
-#endif
 
 #endif

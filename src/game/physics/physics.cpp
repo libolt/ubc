@@ -18,8 +18,6 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifdef BTOGRE_MYGUI_ENABLED
-
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
 #include "physics/physics.h"
@@ -345,4 +343,3 @@ void physics::updatePhysObj()  // updates object physics state
     }
 */
 }
-#endif

@@ -33,19 +33,15 @@ class hoopComponents : public entityComponents
         hoopComponents();  // constructor
         ~hoopComponents();  // destructor
 
-#ifdef BTOGRE_MYGUI_ENABLED
         hoopPhysicsSharedPtr getPhysics() const;  // retrieves the value of physics
         void setPhysics(const hoopPhysicsSharedPtr &set);  // sets the value of physis
-#endif
 
         size_t getNumber() const;  // retrieves the value of number
         void setNumber(const size_t &set);  // sets the value of number
 
 
     private:
-#ifdef BTOGRE_MYGUI_ENABLED
         hoopPhysicsSharedPtr physics;
-#endif
 
         size_t number;  // stores the hoop object number
 

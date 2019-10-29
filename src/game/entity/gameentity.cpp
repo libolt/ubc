@@ -1015,7 +1015,6 @@ bool gameEntity::updateActiveTeamInstances(const renderEngineSharedPtr &render) 
     return (true);
 }
 
-#ifdef BTOGRE_MYGUI_ENABLED
 bool gameEntity::updatePlayerCollisionObjects()  // updates the player collision objects for a team instance
 {
     teamEntityMSharedPtr activeTeamInstance = component->getActiveTeamInstance();
@@ -1151,7 +1150,6 @@ bool gameEntity::updatePlayerCollisionObjects()  // updates the player collision
 
     return (true);
 }
-#endif
 
 bool gameEntity::processInput()  // processes input received from the inputState object
 {

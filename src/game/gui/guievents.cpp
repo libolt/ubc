@@ -18,8 +18,6 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifdef BTOGRE_MYGUI_ENABLED
-
 #include "gui/guievents.h"
 
 #include "components/gamecomponents.h"
@@ -1276,5 +1274,3 @@ void guiEvents::setupHomeSelected()  // process home team selection on game setu
     flag->setSetupMenuHomeSelected(true);
     flag->setSetupMenuAwaySelected(false);
 }
-#endif
-

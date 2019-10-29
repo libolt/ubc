@@ -43,9 +43,7 @@ bool jumpBallsExecute::executeJump(const gameComponentsSharedPtr &component)  //
 {
     conversionSharedPtr convert ;
     jumpBallsSharedPtr jumpBall = component->getJumpBall();
-#ifdef BTOGRE_MYGUI_ENABLED
     physicsEngine physEngine;
-#endif
 
     playerEntityMSharedPtr activePlayerInstance;
     playerEntityMSharedPtr jumpPlayerInstance;  // stores playerID of players jumping for the ball
@@ -172,8 +170,6 @@ TS*/
 bool jumpBallsExecute::tipToPlayer(const gameComponentsSharedPtr &component, quarters quarter)  // tips the basketball to the appropriate player
 {
     bool retVal = false;  // stores the return value
-
-#ifdef BTOGRE_MYGUI_ENABLED
 
 //    sharedPtr<gameState> gameS = gameState::Instance();
     conversionSharedPtr convert ;
@@ -340,7 +336,6 @@ TS*/
 //        exit(0);
     }
     logMsg("jump bballVelocity == " +convert->toString(bballVelocity));
-#endif
 
     return (retVal);  // tipToPlayer has not completed
 }

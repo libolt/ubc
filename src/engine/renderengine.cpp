@@ -429,7 +429,9 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 //        RERoot->loadPlugin(pluginDir +"/Codec_STBI_d.dll");
 
         logMsg(func +" Loading GL Debug RenderSystem!");
-        RERoot->loadPlugin(pluginDir + "/RenderSystem_GL3Plus_d.dll");
+        RERoot->loadPlugin(pluginDir + "/RenderSystem_Direct3D11_d.dll");
+//        RERoot->loadPlugin(pluginDir + "/RenderSystem_GL3Plus_d.dll");
+
 //        RERoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager_d");
     }
     else
@@ -474,9 +476,9 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
         selectedRenderSystem = rsList.at(c);
         std::string rname = selectedRenderSystem->getName();
 //	if (rname.compare("OpenGL Rendering Subsystem") == 0)
-        logMsg(func +"rname == " +rname);
+        logMsg(func +" rname == " +rname);
 //        exit(0);
-        if (rname == "OpenGL Rendering Subsystem" || rname == "OpenGL 3+ Rendering Subsystem (ALPHA)")
+        if (rname == "OpenGL Rendering Subsystem" || rname == "OpenGL 3+ Rendering Subsystem (ALPHA)" || rname == "Direct3D11 Rendering Subsystem")
         {
             foundit = true;
             break;

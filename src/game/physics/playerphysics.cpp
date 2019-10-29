@@ -18,8 +18,6 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifdef BTOGRE_MYGUI_ENABLED
-
 #include "utilities/conversion.h"
 #include "components/gamecomponents.h"
 #include "entity/gameentity.h"
@@ -610,5 +608,3 @@ bool playerPhysics::shootBasketball(teamTypes teamType, int playerID)  // calcul
     return (true);
 
 }
-
-#endif

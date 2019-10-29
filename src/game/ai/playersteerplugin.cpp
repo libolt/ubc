@@ -243,7 +243,6 @@ void playerSteerPlugin::open()  // opens the plugin
 
 
 	// create the court bounding box based off the meshes bbox
-#ifdef BTOGRE_MYGUI_ENABLEd
     Ogre::AxisAlignedBox cbox = gameInstance->getComponent()->getCourtInstance()[0]->getComponent()->getModel()->getBoundingBox();
     Ogre::Vector3 cboxMin = cbox.getMinimum();
     Ogre::Vector3 cboxMax = cbox.getMaximum();
@@ -254,7 +253,6 @@ void playerSteerPlugin::open()  // opens the plugin
 //    courtBBox = steeringAABBoxSharedPtr(new steering::AABBox( OpenSteer::Vec3(0,0,0), OpenSteer::Vec3(0,0,0)));
     courtBBox = std::make_shared<steering::AABBox>(OpenSteer::Vec3(0,0,0), OpenSteer::Vec3(0,0,0));
     courtBBox->setMin(courtBoxMin);
-#endif
  /*           // Red goal
             m_TeamAGoal = new AABBox(Vec3(-21,0,-7), Vec3(-19,0,7));
             // Blue Goal

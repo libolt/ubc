@@ -24,7 +24,7 @@ find_package (SDL2)
 #find_package (SDL_Mixer)
 find_package (MyGUI)
 find_package (Bulletlibs)
-find_package (BtOgre)
+find_package (BtOgre21)
 find_package (TinyXML2)
 find_package (OpenSteer)
 find_package (OpenAL)
@@ -34,14 +34,14 @@ find_package (OpenAL)
 #    system thread REQUIRED)
 find_package(Threads REQUIRED)
 #find_package(OGRE COMPONENTS Bites RTShaderSystem)
-if (UNIX)
-    find_package (TIFF)
-    find_package (OpenJPEG2)
-    find_package (WebP)
-    find_package (OpenEXR)
-    find_package (LibRaw)
-    find_package (JXR)
-endif (UNIX)
+#if (UNIX)
+#    find_package (TIFF)
+#    find_package (OpenJPEG2)
+#    find_package (WebP)
+#    find_package (OpenEXR)
+#    find_package (LibRaw)
+#    find_package (JXR)
+#endif (UNIX)
 SET (UBC_DEPENDENCIES_DIR ${CMAKE_CURRENT_SOURCE_DIR}/dependencies)
 SET (UBC_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 SET (UBC_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
@@ -62,12 +62,11 @@ ELSE ()
 ENDIF (WIN32)
 
 INCLUDE_DIRECTORIES(${UBC_INCLUDE_DIR} ${ENet_INCLUDE_DIRS}
-    ${FreeImage_INCLUDE_DIR} ${OGRE_INCLUDE_DIRS} ${OGRE_HlmsPbs_INCLUDE_DIRS}
-    ${OGRE_HlmsUnlit_INCLUDE_DIRS} ${OGRE_HLMSCOMMON_DIR}
-    ${OGRE_RTShaderSystem_INCLUDE_DIRS} ${SDL2_INCLUDE_DIR}
-    ${SDL_Mixer_INCLUDE_DIRS} ${TinyXML2_INCLUDE_DIRS} ${OpenSteer_INCLUDE_DIR}
-    ${TIFF_INCLUDE_DIR} ${WEBP_INCLUDE_DIRS} ${OPENJPEG2_INCLUDE_DIR}
-    ${OPENEXR_INCLUDE_DIR} ${LibRaw_INCLUDE_DIR} ${JXR_INCLUDE_DIRS})
+    ${FreeImage_INCLUDE_DIR} ${BtOgre21_INCLUDE_DIRS} ${OGRE_INCLUDE_DIRS}
+    ${OGRE_HlmsPbs_INCLUDE_DIRS} ${OGRE_HlmsUnlit_INCLUDE_DIRS}
+    ${OGRE_HLMSCOMMON_DIR} ${OGRE_RTShaderSystem_INCLUDE_DIRS}
+    ${SDL2_INCLUDE_DIR} ${SDL_Mixer_INCLUDE_DIRS} ${TinyXML2_INCLUDE_DIRS}
+    ${OpenSteer_INCLUDE_DIR})
 
 LINK_DIRECTORIES(${ENET_LIBDIR} ${OGRE_LIBRARY_DIRS}
     ${OGRE_HlmsPbs_LIBRARY_DIRS} ${OGRE_DEPENDLIBDIR} ${TinyXML2_LIB_DIRS}
@@ -87,7 +86,7 @@ IF (WIN32)
         ${UBC_HEADERS})
     TARGET_LINK_LIBRARIES(ubc ${ENet_LIBRARIES} ${TinyXML2_LIBRARIES}
         ${OpenSteer_LIBRARY} ${SDL2_LIBRARY} ${FreeImage_LIBRARY}
-        ${OGRE_LIBRARIES} ${OGRE_HlmsPbs_LIBRARIES} ${OGRE_HlmsUnlit_LIBRARIES}
+        ${BtOgre21_LIBRARIES} ${OGRE_LIBRARIES} ${OGRE_HlmsPbs_LIBRARIES}
         ${OGRE_RTShaderSystem_LIBRARIES}  version.lib imm32.lib)
 
 ELSEIF (APPLE)
@@ -110,10 +109,8 @@ ELSE (APPLE)
 
     ADD_EXECUTABLE(ubc ${ENGINE_SRCS} ${UBC_SRCS} ${UBC_SRCS2} ${UBC_HEADERS})
     TARGET_LINK_LIBRARIES(ubc ${ENet_LIBRARIES} ${TinyXML2_LIBRARIES}
-        ${OpenSteer_LIBRARY} ${BULLET_LIBRARIES} ${SDL2_LIBRARY}
-        ${FreeImage_LIBRARY} ${TIFF_LIBRARIES} ${WEBP_LIBRARIES}
-        ${OPENJPEG2_LIBRARIES} ${OPENEXR_LIBRARIES} ${LibRaw_LIBRARIES}
-        ${JXR_LIBRARIES} ${OGRE_LIBRARIES} ${OGRE_HlmsPbs_LIBRARIES}
-        ${OGRE_HlmsUnlit_LIBRARIES} ${OGRE_RTShaderSystem_LIBRARIES}
+        ${OpenSteer_LIBRARY} ${BtOgre21_LIBRARIES} ${BULLET_LIBRARIES}
+        ${SDL2_LIBRARY} ${FreeImage_LIBRARY} ${OGRE_LIBRARIES}
+        ${OGRE_HlmsPbs_LIBRARIES} ${OGRE_RTShaderSystem_LIBRARIES}
         ${OPENAL_LIBRARY} ${ALMIXER_LIBRARY})
 ENDIF (WIN32)

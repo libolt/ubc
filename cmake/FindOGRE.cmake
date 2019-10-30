@@ -95,7 +95,7 @@ elseif (UNIX)
   )
   if (APPLE)
     set(OGRE_PREFIX_GUESSES 
-      ${CMAKE_CURRENT_SOURCE_DIR}/lib/macosx
+      ${CMAKE_CURRENT_SOURCE_DIR}/lib/${CMAKE_BUILD_TYPE}
       ${OGRE_PREFIX_GUESSES}
     )
   endif ()
@@ -175,6 +175,7 @@ if(NOT OGRE_STATIC)
       /Network/Library/Frameworks
       ${CMAKE_CURRENT_SOURCE_DIR}/lib/macosx/Release
       ${CMAKE_CURRENT_SOURCE_DIR}/lib/macosx/Debug
+      ${CMAKE_CURRENT_SOURCE_DIR}/lib/${CMAKE_BUILD_TYPE}
     )
 else()
 	set(OGRE_LIBRARY_FWK "")
@@ -384,10 +385,10 @@ set(OGRE_COMPONENT_SEARCH_PATH_DBG
   ${OGRE_BIN_SEARCH_PATH}
 )
 
-macro(ogre_find_component COMPONENT HEADER)
+macro(ogre_find_component COMPONENT HEADER PATH_HINTS)
   set(OGRE_${COMPONENT}_FIND_QUIETLY ${OGRE_FIND_QUIETLY})
   findpkg_begin(OGRE_${COMPONENT})
-  find_path(OGRE_${COMPONENT}_INCLUDE_DIR NAMES ${HEADER} HINTS ${OGRE_INCLUDE_DIRS} ${OGRE_PREFIX_SOURCE} PATH_SUFFIXES ${COMPONENT} OGRE/${COMPONENT} Components/${COMPONENT}/include)
+  find_path(OGRE_${COMPONENT}_INCLUDE_DIR NAMES ${HEADER} HINTS ${OGRE_INCLUDE_DIRS} ${OGRE_PREFIX_SOURCE} PATH_SUFFIXES ${PATH_HINTS} ${COMPONENT} OGRE/${COMPONENT} )
   set(OGRE_${COMPONENT}_LIBRARY_NAMES "Ogre${COMPONENT}${OGRE_LIB_SUFFIX}")
   get_debug_names(OGRE_${COMPONENT}_LIBRARY_NAMES)
   find_library(OGRE_${COMPONENT}_LIBRARY_REL NAMES ${OGRE_${COMPONENT}_LIBRARY_NAMES} HINTS ${OGRE_LIBRARY_DIR_REL} ${OGRE_FRAMEWORK_PATH} PATH_SUFFIXES "" "Release" "RelWithDebInfo" "MinSizeRel")
@@ -408,17 +409,25 @@ macro(ogre_find_component COMPONENT HEADER)
 endmacro()
 
 # look for Paging component
-ogre_find_component(Paging OgrePaging.h)
+ogre_find_component(Paging OgrePaging.h "")
 # look for Terrain component
-ogre_find_component(Terrain OgreTerrain.h)
+ogre_find_component(Terrain OgreTerrain.h "")
 # look for Property component
-ogre_find_component(Property OgreProperty.h)
+ogre_find_component(Property OgreProperty.h "")
 # look for RTShaderSystem component
-ogre_find_component(RTShaderSystem OgreRTShaderSystem.h)
+ogre_find_component(RTShaderSystem OgreRTShaderSystem.h "")
 # look for Volume component
-ogre_find_component(Volume OgreVolumePrerequisites.h)
+ogre_find_component(Volume OgreVolumePrerequisites.h "")
 # look for Overlay component
-ogre_find_component(Overlay OgreOverlaySystem.h)
+ogre_find_component(Overlay OgreOverlaySystem.h "")
+#look for HlmsPbs component
+ogre_find_component(HlmsPbs OgreHlmsPbs.h Hlms/Pbs/)
+#look for HlmsPbsMobile component
+ogre_find_component(HlmsPbsMobile OgreHlmsPbsMobile.h Hlms/PbsMobile/)
+#look for HlmsPbsMobile component
+ogre_find_component(HlmsUnlit OgreHlmsUnlit.h Hlms/Unlit)
+#look for HlmsUnlit component
+ogre_find_component(HlmsUnlitMobile OgreHlmsUnlitMobile.h Hlms/UnlitMobile)
 
 #########################################################
 # Find Ogre plugins

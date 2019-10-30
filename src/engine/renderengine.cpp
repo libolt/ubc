@@ -295,7 +295,8 @@ Ogre::DataStreamPtr renderEngine::openAPKFile(const std::string& fileName)  // O
     logMsg(func +" APK?");
 
 //	mAssetMgr = app->activity->assetManager;
-    AAsset* asset = AAssetManager_open(mAssetMgr, fileName.c_str(), AASSET_MODE_BUFFER);
+    AAsset* asset = AAssetManager_open(mAssetMgr, fileName.c_str(),
+                                       AASSET_MODE_BUFFER);
     if(asset)
     {
 		off_t length = AAsset_getLength(asset);
@@ -303,7 +304,8 @@ Ogre::DataStreamPtr renderEngine::openAPKFile(const std::string& fileName)  // O
         memcpy(membuf, AAsset_getBuffer(asset), length);
         AAsset_close(asset);
 
-        stream = Ogre::DataStreamPtr(new Ogre::MemoryDataStream(membuf, length, true, true));
+        stream = Ogre::DataStreamPtr(new Ogre::MemoryDataStream(membuf, length,
+                                                                true, true));
     }
     return stream;
 }
@@ -322,7 +324,8 @@ bool renderEngine::initSDL() // Initializes SDL Subsystem
     if (SDL_Init(SDL_INIT_VIDEO|SDL_INIT_EVENTS|SDL_INIT_GAMECONTROLLER) != 0)
     {
 //        exit(0);
-        logMsg(func +" Unable to initialize SDL: " +convert->toString(SDL_GetError()));
+        logMsg(func +" Unable to initialize SDL: "
+               +convert->toString(SDL_GetError()));
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 
 //        __android_log_print(ANDROID_LOG_DEBUG, "com.libolt.ubc", "SDL Error = %s", SDL_GetError());
@@ -429,8 +432,8 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 //        RERoot->loadPlugin(pluginDir +"/Codec_STBI_d.dll");
 
         logMsg(func +" Loading GL Debug RenderSystem!");
-        RERoot->loadPlugin(pluginDir + "/RenderSystem_Direct3D11_d.dll");
-//        RERoot->loadPlugin(pluginDir + "/RenderSystem_GL3Plus_d.dll");
+//        RERoot->loadPlugin(pluginDir + "/RenderSystem_Direct3D11_d.dll");
+        RERoot->loadPlugin(pluginDir + "/RenderSystem_GL3Plus_d.dll");
 
 //        RERoot->loadPlugin(pluginDir + "/Plugin_CgProgramManager_d");
     }
@@ -478,7 +481,10 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 //	if (rname.compare("OpenGL Rendering Subsystem") == 0)
         logMsg(func +" rname == " +rname);
 //        exit(0);
-        if (rname == "OpenGL Rendering Subsystem" || rname == "OpenGL 3+ Rendering Subsystem (ALPHA)" || rname == "Direct3D11 Rendering Subsystem")
+
+        if (rname == "OpenGL Rendering Subsystem"
+                || rname == "OpenGL 3+ Rendering Subsystem"
+                || rname == "Direct3D11 Rendering Subsystem")
         {
             foundit = true;
             break;
@@ -557,8 +563,11 @@ bool renderEngine::createScene()
     JNIEnv* env = (JNIEnv*)SDL_AndroidGetJNIEnv();
 
     jclass class_sdl_activity   = env->FindClass("com/libolt/ubc/UBCActivity");
-    jmethodID method_get_native_surface = env->GetStaticMethodID(class_sdl_activity, "getNativeSurface", "()Landroid/view/Surface;");
-    jobject raw_surface = env->CallStaticObjectMethod(class_sdl_activity, method_get_native_surface);
+    jmethodID method_get_native_surface = env->GetStaticMethodID(class_sdl_activity,
+                                                                 "getNativeSurface",
+                                                                 "()Landroid/view/Surface;");
+    jobject raw_surface = env->CallStaticObjectMethod(class_sdl_activity,
+                                                      method_get_native_surface);
     ANativeWindow* native_window = ANativeWindow_fromSurface(env, raw_surface);
     
     if ( !native_window )
@@ -569,11 +578,17 @@ bool renderEngine::createScene()
     
     jclass class_activity = env->FindClass("com/libolt/ubc/UBCActivity");
     jclass class_resources = env->FindClass("android/content/res/Resources");
-    jmethodID method_get_resources = env->GetMethodID(class_activity, "getResources", "()Landroid/content/res/Resources;");
-    jmethodID method_get_assets = env->GetMethodID(class_resources, "getAssets", "()Landroid/content/res/AssetManager;");
+    jmethodID method_get_resources = env->GetMethodID(class_activity,
+                                                      "getResources",
+                                                      "()Landroid/content/res/Resources;");
+    jmethodID method_get_assets = env->GetMethodID(class_resources,
+                                                   "getAssets",
+                                                   "()Landroid/content/res/AssetManager;");
     jobject raw_activity = (jobject)SDL_AndroidGetActivity();
-    jobject raw_resources = env->CallObjectMethod(raw_activity, method_get_resources);
-    jobject raw_asset_manager = env->CallObjectMethod(raw_resources, method_get_assets);
+    jobject raw_resources = env->CallObjectMethod(raw_activity,
+                                                  method_get_resources);
+    jobject raw_asset_manager = env->CallObjectMethod(raw_resources,
+                                                      method_get_assets);
 //    jobject raw_surface = env->CallStaticObjectMethod(class_sdl_activity, method_get_native_surface);
 
 //    ANativeWindow* native_window = ANativeWindow_fromSurface(env, raw_surface);
@@ -593,8 +608,10 @@ bool renderEngine::createScene()
     logMsg(func +" Bello");
 //	mAssetMgr = app->activity->assetManager;
 
-    Ogre::ArchiveManager::getSingleton().addArchiveFactory( new Ogre::APKFileSystemArchiveFactory(mAssetMgr) );
-    Ogre::ArchiveManager::getSingleton().addArchiveFactory( new Ogre::APKZipArchiveFactory(mAssetMgr) );
+    Ogre::ArchiveManager::getSingleton().addArchiveFactory(
+                new Ogre::APKFileSystemArchiveFactory(mAssetMgr) );
+    Ogre::ArchiveManager::getSingleton().addArchiveFactory(
+                new Ogre::APKZipArchiveFactory(mAssetMgr) );
     logMsg(func +" Hello?");
 //    exit(0);
 #endif
@@ -616,7 +633,9 @@ bool renderEngine::createScene()
 //    exit(0);
     logMsg(func +" Hello??");
 //    exit(0);
-    mWindow = sharedPtr<Ogre::RenderWindow>(RERoot->createRenderWindow("Ultimate Basketball Challenge", 0, 0, false, &misc));
+    mWindow = sharedPtr<Ogre::RenderWindow>(
+                RERoot->createRenderWindow("Ultimate Basketball Challenge", 0,
+                                           0, false, &misc));
 
 //    exit(0);
     logMsg(func +" renderWindow created!");
@@ -653,7 +672,8 @@ bool renderEngine::createScene()
 
     mResourceGroup = "UBCData";
 //	Ogre::ResourceGroupManager *rsm
-    rsm = sharedPtr<Ogre::ResourceGroupManager>(Ogre::ResourceGroupManager::getSingletonPtr());
+    rsm = sharedPtr<Ogre::ResourceGroupManager>(
+                Ogre::ResourceGroupManager::getSingletonPtr());
     rsm->createResourceGroup(mResourceGroup);
 
     Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
@@ -684,7 +704,8 @@ bool renderEngine::createScene()
 
     Ogre::RTShader::ShaderGenerator::initialize();
      // The Shader generator instance
-    Ogre::RTShader::ShaderGenerator* shaderGen = Ogre::RTShader::ShaderGenerator::getSingletonPtr();
+    Ogre::RTShader::ShaderGenerator* shaderGen =
+            Ogre::RTShader::ShaderGenerator::getSingletonPtr();
 	//Ogre::RTShader::ShaderGenerator::getSingletonPtr()->setTargetLanguage("glsles");
     shaderGen->setTargetLanguage("glsles");
     if (mMatListener == nullptr)
@@ -713,28 +734,128 @@ bool renderEngine::createScene()
 
     // load the basic resource location(s)
     rsm->addResourceLocation(dataPath + "/Media", "FileSystem", mResourceGroup);
-    rsm->addResourceLocation(dataPath + "/Media/fonts", "FileSystem", mResourceGroup);
-    rsm->addResourceLocation(dataPath + "/Media/gui", "FileSystem", mResourceGroup);
-    rsm->addResourceLocation(dataPath + "/Media/MyGUI_Media", "FileSystem", mResourceGroup);
-    rsm->addResourceLocation(dataPath + "/Media/models", "FileSystem", mResourceGroup);
-    rsm->addResourceLocation(dataPath + "/Media/materials/textures", "FileSystem", mResourceGroup);
-    rsm->addResourceLocation(dataPath + "/Media/materials/programs", "FileSystem", mResourceGroup);
-    rsm->addResourceLocation(dataPath + "/Media/materialss/scripts", "FileSystem", mResourceGroup);
-    rsm->addResourceLocation(dataPath + "/Media/materials", "FileSystem", mResourceGroup);
-    rsm->addResourceLocation(dataPath + "/Media/overlays", "FileSystem", mResourceGroup);
-    rsm->addResourceLocation(dataPath + "/Media/packs", "FileSystem", mResourceGroup);
-    rsm->addResourceLocation(dataPath + "/Media/skins", "FileSystem", mResourceGroup);
-    rsm->addResourceLocation(dataPath + "/Media/skins/qgui", "FileSystem", mResourceGroup);
-    rsm->addResourceLocation(dataPath + "/Media/Audio", "FileSystem", mResourceGroup);
+    rsm->addResourceLocation(dataPath + "/Media/fonts", "FileSystem",
+                             mResourceGroup);
+    rsm->addResourceLocation(dataPath + "/Media/gui", "FileSystem",
+                             mResourceGroup);
+    rsm->addResourceLocation(dataPath + "/Media/MyGUI_Media", "FileSystem",
+                             mResourceGroup);
+    rsm->addResourceLocation(dataPath + "/Media/models", "FileSystem",
+                             mResourceGroup);
+    rsm->addResourceLocation(dataPath + "/Media/materials/textures", "FileSystem",
+                             mResourceGroup);
+    rsm->addResourceLocation(dataPath + "/Media/materials/programs", "FileSystem",
+                             mResourceGroup);
+    rsm->addResourceLocation(dataPath + "/Media/materialss/scripts", "FileSystem",
+                             mResourceGroup);
+    rsm->addResourceLocation(dataPath + "/Media/materials", "FileSystem",
+                             mResourceGroup);
+    rsm->addResourceLocation(dataPath + "/Media/overlays", "FileSystem",
+                             mResourceGroup);
+    rsm->addResourceLocation(dataPath + "/Media/packs", "FileSystem",
+                             mResourceGroup);
+    rsm->addResourceLocation(dataPath + "/Media/skins", "FileSystem",
+                             mResourceGroup);
+    rsm->addResourceLocation(dataPath + "/Media/skins/qgui", "FileSystem",
+                             mResourceGroup);
+    rsm->addResourceLocation(dataPath + "/Media/Audio", "FileSystem",
+                             mResourceGroup);
+    rsm->initialiseResourceGroup("UBCData", false);
+
 #endif
 
-    rsm->initialiseResourceGroup(mResourceGroup);
-//  exit(0);
+
+    Ogre::Archive *archiveLibrary = Ogre::ArchiveManager::getSingletonPtr()->load(
+                    dataPath + "/Media/Hlms/Common/GLSL", "FileSystem", true );
+    Ogre::ArchiveVec library;
+    library.push_back( archiveLibrary );
+    Ogre::Archive *archivePbs = Ogre::ArchiveManager::getSingletonPtr()->load(
+                  dataPath + "/Media/Hlms/Pbs/GLSL", "FileSystem", true );
+    Ogre::HlmsPbs *hlmsPbs = OGRE_NEW Ogre::HlmsPbs( archivePbs, &library );
+
+    Ogre::Root::getSingleton().getHlmsManager()->registerHlms( hlmsPbs );
+
+
+    //register HLMS
+/*    rootHlmsFolder = dataPath + "/Media/";
+
+    //For retrieval of the paths to the different folders needed
+    Ogre::String mainFolderPath;
+    Ogre::StringVector libraryFoldersPaths;
+    Ogre::StringVector::const_iterator libraryFolderPathIt;
+    Ogre::StringVector::const_iterator libraryFolderPathEn;
+
+    Ogre::ArchiveManager &archiveManager = Ogre::ArchiveManager::getSingleton();
+
+    {
+        //Create & Register HlmsUnlit
+        //Get the path to all the subdirectories used by HlmsUnlit
+        Ogre::HlmsUnlit::getDefaultPaths( mainFolderPath, libraryFoldersPaths );
+        logMsg(func +" mainFolderPath" +mainFolderPath);
+//        exit(0);
+        Ogre::Archive *archiveUnlit = archiveManager.load( rootHlmsFolder
+                                                           +mainFolderPath,
+                                                           "FileSystem", true );
+        Ogre::ArchiveVec archiveUnlitLibraryFolders;
+        libraryFolderPathIt = libraryFoldersPaths.begin();
+        libraryFolderPathEn = libraryFoldersPaths.end();
+        while( libraryFolderPathIt != libraryFolderPathEn )
+        {
+            Ogre::Archive *archiveLibrary =
+                    archiveManager.load( rootHlmsFolder + *libraryFolderPathIt,
+                                         "FileSystem", true );
+            archiveUnlitLibraryFolders.push_back( archiveLibrary );
+
+            ++libraryFolderPathIt;
+        }
+
+        //Create and register the unlit Hlms
+        mHlmsUnlit = OGRE_NEW Ogre::HlmsUnlit( archiveUnlit,
+                                               &archiveUnlitLibraryFolders );
+        Ogre::Root::getSingleton().getHlmsManager()->registerHlms( mHlmsUnlit );
+    }
+
+    {
+        //Create & Register HlmsPbs
+        //Do the same for HlmsPbs:
+        Ogre::HlmsPbs::getDefaultPaths( mainFolderPath, libraryFoldersPaths );
+        Ogre::Archive *archivePbs = archiveManager.load( rootHlmsFolder
+                                                         +mainFolderPath,
+                                                         "FileSystem", true );
+
+        //Get the library archive(s)
+        Ogre::ArchiveVec archivePbsLibraryFolders;
+        libraryFolderPathIt = libraryFoldersPaths.begin();
+        libraryFolderPathEn = libraryFoldersPaths.end();
+        while( libraryFolderPathIt != libraryFolderPathEn )
+        {
+            Ogre::Archive *archiveLibrary =
+                    archiveManager.load( rootHlmsFolder + *libraryFolderPathIt,
+                                         "FileSystem", true );
+            archivePbsLibraryFolders.push_back( archiveLibrary );
+            ++libraryFolderPathIt;
+        }
+
+        //Create and register
+        mHlmsPbs = OGRE_NEW Ogre::HlmsPbs( archivePbs,
+                                           &archivePbsLibraryFolders );
+        Ogre::Root::getSingleton().getHlmsManager()->registerHlms( mHlmsPbs );
+    }
+
+
+
+    //configure shadow quality
+    mHlmsPbs->setShadowSettings(Ogre::HlmsPbs::PCF_4x4);
+*/
     
 #if OGRE_VERSION_MAJOR == 1 && OGRE_VERSION_MINOR <= 10
-    mSceneMgr = sharedPtr<Ogre::SceneManager>(RERoot->createSceneManager(Ogre::ST_GENERIC)); // creates the scene manager
+    mSceneMgr = sharedPtr<Ogre::SceneManager>(
+                RERoot->createSceneManager(Ogre::ST_GENERIC)); // creates the scene manager
 #else
-    mSceneMgr = sharedPtr<Ogre::SceneManager>(RERoot->createSceneManager(Ogre::ST_GENERIC, 4, Ogre::INSTANCING_CULLING_THREADED, "SceneManager")); // creates the scene manager
+    mSceneMgr = sharedPtr<Ogre::SceneManager>(
+                RERoot->createSceneManager(Ogre::ST_GENERIC, 4,
+                                           Ogre::INSTANCING_CULLING_THREADED,
+                                           "SceneManager")); // creates the scene manager
 #endif
 
 //    mSceneMgr = RERoot->createSceneManager("DefaultSceneManager"); // creates the scene manager
@@ -743,11 +864,16 @@ bool renderEngine::createScene()
 
 #if OGRE_VERSION_MAJOR == 2
 
-    const Ogre::IdString workspaceName( "MyOwnWorkspace" );
-    compositorManager = sharedPtr<Ogre::CompositorManager2>(RERoot->getCompositorManager2());
+    const Ogre::String workspaceName( "MyOwnWorkspace" );
+    compositorManager = sharedPtr<Ogre::CompositorManager2>(
+                RERoot->getCompositorManager2());
     if( !compositorManager->hasWorkspaceDefinition( workspaceName ) )
-        compositorManager->createBasicWorkspaceDef( workspaceName, Ogre::ColourValue( 0.6f, 0.0f, 0.6f ) );
-    compositorManager->addWorkspace( mSceneMgr.get(), mWindow.get(), mCamera.get(), workspaceName, true );
+        compositorManager->createBasicWorkspaceDef( workspaceName,
+                                                    Ogre::ColourValue( 0.6f,
+                                                                       0.0f,
+                                                                       0.6f));
+    compositorManager->addWorkspace( mSceneMgr.get(), mWindow.get(),
+                                     mCamera.get(), workspaceName, true );
 
 #endif
 /*
@@ -769,7 +895,8 @@ bool renderEngine::createScene()
 
     mCamera->setNearClipDistance(5);
     mCamera->setFarClipDistance(5000);
-    cameraNode = OgreSceneNodeSharedPtr(mSceneMgr->getRootSceneNode()->createChildSceneNode());
+    cameraNode = OgreSceneNodeSharedPtr(
+                mSceneMgr->getRootSceneNode()->createChildSceneNode());
     mCamera->detachFromParent();
     cameraNode->attachObject(mCamera.get());
 
@@ -784,7 +911,8 @@ bool renderEngine::createScene()
     // set it to 4:3 the easy way
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-    viewPort->setMaterialScheme(Ogre::RTShader::ShaderGenerator::DEFAULT_SCHEME_NAME);
+    viewPort->setMaterialScheme(
+                Ogre::RTShader::ShaderGenerator::DEFAULT_SCHEME_NAME);
 #endif
     viewPort->setOverlaysEnabled(true);	// sets overlays true so that MyGUI can render
 
@@ -794,11 +922,16 @@ bool renderEngine::createScene()
 //    mCamera->setAspectRatio((Ogre::Real)1.333333);
 
     // Set ambient light
-    mSceneMgr->setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5));
+/// OGRE21 Removal
+///    mSceneMgr->setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5),
+///                               Ogre::ColourValue( 0.6f, 0.45f, 0.3f ) * 0.065f * 0.75f,
+///                               -light->getDirection() + Ogre::Vector3::UNIT_Y * 0.2f );
+
 
     // Create a light
     light = sharedPtr<Ogre::Light>(mSceneMgr->createLight());
-    lightNode = OgreSceneNodeSharedPtr(mSceneMgr->getRootSceneNode()->createChildSceneNode());
+    lightNode = OgreSceneNodeSharedPtr(
+                mSceneMgr->getRootSceneNode()->createChildSceneNode());
     lightNode->attachObject(light.get());
     lightNode->setPosition(20,80,56);
     light->setPowerScale(1);
@@ -809,8 +942,10 @@ bool renderEngine::createScene()
         exit(0);
     }
 
-    bball = OgreEntitySharedPtr(mSceneMgr->createEntity("bball.mesh", "UBCData"));
-    bballNode = OgreSceneNodeSharedPtr(mSceneMgr->getRootSceneNode()->createChildSceneNode());
+    bball = OgreEntitySharedPtr(mSceneMgr->createEntity("bball.mesh",
+                                                        "UBCData"));
+    bballNode = OgreSceneNodeSharedPtr(
+                mSceneMgr->getRootSceneNode()->createChildSceneNode());
     bballNode->setName("bball");
     bballNode->attachObject(bball.get());
     bballNode->setScale(1.0f,1.0f,1.0f);
@@ -890,7 +1025,8 @@ bool renderEngine::createScene()
 return (true);
 }
 
-OgreSceneNodeSharedPtr renderEngine::createNode(const OgreEntitySharedPtr &model,const std::string &entityNodeName)  // create scene node for model
+OgreSceneNodeSharedPtr renderEngine::createNode(const OgreEntitySharedPtr &model,
+                                                const std::string &entityNodeName)  // create scene node for model
 {
     OgreSceneNodeSharedPtr tempNode; //(new Ogre::SceneNode);
     conversionSharedPtr convert ;
@@ -903,7 +1039,8 @@ OgreSceneNodeSharedPtr renderEngine::createNode(const OgreEntitySharedPtr &model
 //    entityNodeName = entityName +"node" +entityNodeNum;
 //    logMsg(func +" entityNodeName == " +entityNodeName);
 //    exit(0);
-    tempNode = OgreSceneNodeSharedPtr(mSceneMgr->getRootSceneNode()->createChildSceneNode());
+    tempNode = OgreSceneNodeSharedPtr(
+                mSceneMgr->getRootSceneNode()->createChildSceneNode());
     logMsg(func +" tempNode created!");
     tempNode->setName(entityNodeName);
 //    tempNode->setName();
@@ -918,7 +1055,8 @@ OgreSceneNodeSharedPtr renderEngine::createNode(const OgreEntitySharedPtr &model
 
 //    node = tempNode;
     logMsg(func +" ECB node name == " +tempNode->getName());
-    logMsg(func +" node position == " +convert->toString(tempNode->getPosition()));
+    logMsg(func +" node position == " +convert->toString(
+               tempNode->getPosition()));
 //    exit(0);
 ///    logMsg("scene node created!");
 ///    node->attachObject(model);
@@ -954,7 +1092,8 @@ bool renderEngine::renderFrame()  // renders a frame to the screen
         mWindow->windowMovedOrResized();
 //        exit(0);
         logMsg(func +" windowMovedOrResized()");
-        logMsg(func +" RERoot is initialized = " +convert->toString(RERoot->isInitialised()));
+        logMsg(func +" RERoot is initialized = " +convert->toString(
+                   RERoot->isInitialised()));
         RERoot->renderOneFrame();
 //        exit(0);
         logMsg(func +" Frame Rendered!");

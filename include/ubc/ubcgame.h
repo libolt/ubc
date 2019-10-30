@@ -80,7 +80,7 @@ class UBCGame
 
         bool setup();  // sets up a game instance
 
-        bool loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &input/*, const GUISystemSharedPtr &gui*/);  // runs the Main loop for the game
+        bool loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &input, const GUISystemSharedPtr &gui);  // runs the Main loop for the game
 
         bool startGame(const renderEngineSharedPtr &render);  // starts a game
 

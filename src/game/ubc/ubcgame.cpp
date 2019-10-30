@@ -367,7 +367,7 @@ bool UBCGame::setupUserInstancesInput()  // sets up input mapping for each user
     return (true);
 }
 
-bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &input)  // Main Game Loop
+bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &input, const GUISystemSharedPtr &gui)  // Main Game Loop
 {
     conversionSharedPtr convert ;
     bool quitGame = gameE->getQuitGame();
@@ -383,7 +383,7 @@ bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &in
     playerSMData *playerSMD3 = new playerSMData;
 */
     logMsg(func +" begin");
-    
+//    exit(0);
 ///    playerSMD->speed = 100;
 ///    playerSM.setSpeed(playerSMD);
 ///    playerSM.halt();

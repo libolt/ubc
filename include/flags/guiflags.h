@@ -21,7 +21,6 @@
 #ifndef _GUIFLAGS_H_
 #define _GUIFLAGS_H_
 
-
 class guiFlags
 {
     public:

@@ -43,7 +43,14 @@
 #include "Android/OgreAPKFileSystemArchive.h"
 #include "Android/OgreAPKZipArchive.h"
 #else
+#undef None
 #include "Ogre.h"
+#include "OgreHlms.h"
+#include "OgreHlmsPbs.h"
+#include "OgreHlmsUnlit.h"
+#include "OgreHlmsManager.h"
+#include "OgreHlmsPbsDatablock.h"
+#include "OgreHlmsUnlitDatablock.h"
 #endif
 
 #include <memory>
@@ -139,7 +146,8 @@ class renderEngine : public engine
 
     bool createWindow();  // creates a window
     bool createScene();  // creates a scene
-    OgreSceneNodeSharedPtr createNode(const OgreEntitySharedPtr &model, const std::string &entityNodeName);  // create scene node for model
+    OgreSceneNodeSharedPtr createNode(const OgreEntitySharedPtr &model,
+                                      const std::string &entityNodeName);  // create scene node for model
 
     bool frameStarted();  // begins a frame
     bool frameEnded();  // ends a frame
@@ -174,7 +182,10 @@ class renderEngine : public engine
     sharedPtr<Ogre::Light> light;  // stores the vslue of light
     OgreSceneNodeSharedPtr lightNode;  // stores the light scene node.
     sharedPtr<Ogre::ResourceGroupManager> rsm;  // stores resources
+    Ogre::HlmsPbs* mHlmsPbs;
+    Ogre::HlmsUnlit* mHlmsUnlit;
     std::string mResourceGroup;  // stores resource locations
+    Ogre::String rootHlmsFolder;  // stores the root Hlms folder
     Ogre::NameValuePairList misc;  // options to pass to mWindow during creation
     std::string winHandle;  // window handle
 

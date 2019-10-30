@@ -36,6 +36,7 @@
 #include "Ogre.h"
 #include "OgreInstancedEntity.h"
 
+
 #include "BtOgrePG.h"
 #include "BtOgreGP.h"
 #include "BtOgreExtras.h"
@@ -51,7 +52,7 @@
 
 
 #include "MyGUI_Gui.h"
-#include "MyGUI_OgrePlatform.h"
+#include "MyGUI_Ogre2Platform.h"
 #include "MyGUI_IItemContainer.h"
 #include "MyGUI_ListBox.h"
 #include "MyGUI_InputManager.h"
@@ -380,15 +381,14 @@ typedef sharedPtr<ENetPacket> ENetPacketSharedPtr;
 
 // OGRE Shared Ptr
 
-typedef sharedPtr<Ogre::Entity> OgreEntitySharedPtr;
+typedef sharedPtr<Ogre::v1::Entity> OgreEntitySharedPtr;
 
 typedef sharedPtr<Ogre::SceneNode> OgreSceneNodeSharedPtr;
 
-// MyGUI Shared Ptr
 
 typedef sharedPtr<MyGUI::Gui> MyGUIGuiSharedPtr;
 
-typedef sharedPtr<MyGUI::OgrePlatform> MyGUIOgrePlatformSharedPtr;
+typedef sharedPtr<MyGUI::Ogre2Platform> MyGUIOgrePlatformSharedPtr;
 
 typedef sharedPtr<MyGUI::ListBox> MyGUIListBoxSharedPtr;
 

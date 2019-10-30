@@ -291,7 +291,7 @@ bool GUISystem::initializeStateMachine(const renderEngineSharedPtr &render)  // 
     stateMachine->pInitialize(initSMData);
     
     logMsg(func +" end");
-
+    return (true);
 }
 
 bool GUISystem::updateStateMachine(const renderEngineSharedPtr &render)  // updates gui stateMachine

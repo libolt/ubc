@@ -280,13 +280,7 @@ void UBC::run()  // runs the game
 
 //    bool quitGame = gameE->getQuitGame();
        
-#ifdef BTOGRE_MYGUI_ENABLED
     component->getGame()->loop(component->getGameE(), component->getInput(), component->getGui());
-#endif
-
-//#if OGRE_VERSION_MAJOR == 2 && OGRE_VERSION_MINOR == 1
-    component->getGame()->loop(component->getGameE(), component->getInput());
-//#endif
 
     logMsg(func +" end");
 

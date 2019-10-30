@@ -44,7 +44,7 @@
 
 #include "utilities/logging.h"
 
-#include "utilities/openal.h"
+/*#include "utilities/openal.h"
 
 #ifndef AL_CHECK
 #ifdef _DEBUG
@@ -56,7 +56,7 @@
     #define AL_CHECK(stmt) stmt
 #endif
 #endif
-
+*/
 
 
 class soundEngine

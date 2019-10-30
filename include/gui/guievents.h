@@ -21,7 +21,6 @@
 #ifndef _GUIEVENTS_H_
 #define _GUIEVENTS_H_
 
-
 #include "utilities/typedefs.h"
 
 class guiEvents : public std::enable_shared_from_this<guiEvents>

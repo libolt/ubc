@@ -407,7 +407,7 @@ bool guiComponents::initMyGUI(const renderEngineSharedPtr &render)  // Initializ
     
     logMsg(func +" begin");
     logMsg(func +" *** Initializing MyGUI ***");
-    MyGUIOgrePlatformSharedPtr tempPlatform(new MyGUI::OgrePlatform());
+    MyGUIOgrePlatformSharedPtr tempPlatform(new MyGUI::Ogre2Platform());
     mPlatform = tempPlatform;
 //    logMsg(func +" Crash?");
 

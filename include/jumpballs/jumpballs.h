@@ -24,7 +24,7 @@
 #include <vector>
 #include <unordered_map>
 
-include "LinearMath/btVector3.h"
+#include "LinearMath/btVector3.h"
 
 #include "utilities/enums.h"
 #include "utilities/typedefs.h"

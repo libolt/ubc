@@ -775,7 +775,7 @@ bool renderEngine::createScene()
 
     Ogre::Root::getSingleton().getHlmsManager()->registerHlms( hlmsPbs );
 
-
+    logMsg(func +"Hlms setup");
     //register HLMS
 /*    rootHlmsFolder = dataPath + "/Media/";
 
@@ -856,6 +856,7 @@ bool renderEngine::createScene()
                 RERoot->createSceneManager(Ogre::ST_GENERIC, 4,
                                            Ogre::INSTANCING_CULLING_THREADED,
                                            "SceneManager")); // creates the scene manager
+    logMsg(func +"mSceneMgr setup");
 #endif
 
 //    mSceneMgr = RERoot->createSceneManager("DefaultSceneManager"); // creates the scene manager
@@ -874,7 +875,7 @@ bool renderEngine::createScene()
                                                                        0.6f));
     compositorManager->addWorkspace( mSceneMgr.get(), mWindow.get(),
                                      mCamera.get(), workspaceName, true );
-
+    logMsg(func +"Compositor setup");
 #endif
 /*
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
@@ -899,7 +900,7 @@ bool renderEngine::createScene()
                 mSceneMgr->getRootSceneNode()->createChildSceneNode());
     mCamera->detachFromParent();
     cameraNode->attachObject(mCamera.get());
-
+    logMsg(func +"Camera setup");
 //    viewPort = sharedPtr<Ogre::Viewport>(mWindow->addViewport(mCamera.get()));
     viewPort = sharedPtr<Ogre::Viewport>(mWindow->addViewport());
 
@@ -935,6 +936,7 @@ bool renderEngine::createScene()
     lightNode->attachObject(light.get());
     lightNode->setPosition(20,80,56);
     light->setPowerScale(1);
+    logMsg(func +"light setup");
 
     if (mWindow == nullptr)
     {

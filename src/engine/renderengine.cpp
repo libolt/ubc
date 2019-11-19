@@ -258,16 +258,14 @@ void renderEngine::setWindowHeight(uint32_t set)  // sets the value of windowHei
 }
 */
 
-#if OGRE_VERSION_MAJOR == 2
-    sharedPtr<Ogre::CompositorManager2> renderEngine::getCompositorManager() const
-    {
-        return (compositorManager);
-    }
-    void renderEngine::setCompositorManager(const sharedPtr<Ogre::CompositorManager2> &set)
-    {
-        compositorManager = set;
-    }
-#endif
+sharedPtr<Ogre::CompositorManager2> renderEngine::getCompositorManager() const
+{
+    return (compositorManager);
+}
+void renderEngine::setCompositorManager(const sharedPtr<Ogre::CompositorManager2> &set)
+{
+    compositorManager = set;
+}
 
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
@@ -775,6 +773,13 @@ bool renderEngine::createScene()
 
     Ogre::Root::getSingleton().getHlmsManager()->registerHlms( hlmsPbs );
 
+    Ogre::Archive *archiveUnlit = Ogre::ArchiveManager::getSingletonPtr()->load(
+                  dataPath + "/Media/Hlms/Unlit/GLSL", "FileSystem", true );
+    Ogre::HlmsUnlit *hlmsUnlit = OGRE_NEW Ogre::HlmsUnlit( archiveUnlit, &library );
+
+    Ogre::Root::getSingleton().getHlmsManager()->registerHlms( hlmsUnlit );
+
+
     logMsg(func +"Hlms setup");
     //register HLMS
 /*    rootHlmsFolder = dataPath + "/Media/";
@@ -863,8 +868,6 @@ bool renderEngine::createScene()
 
     mCamera = sharedPtr<Ogre::Camera>(mSceneMgr->createCamera("camera"));
 
-#if OGRE_VERSION_MAJOR == 2
-
     const Ogre::String workspaceName( "MyOwnWorkspace" );
     compositorManager = sharedPtr<Ogre::CompositorManager2>(
                 RERoot->getCompositorManager2());
@@ -876,7 +879,7 @@ bool renderEngine::createScene()
     compositorManager->addWorkspace( mSceneMgr.get(), mWindow.get(),
                                      mCamera.get(), workspaceName, true );
     logMsg(func +"Compositor setup");
-#endif
+
 /*
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
 	mCamera->setNearClipDistance(1.0f);

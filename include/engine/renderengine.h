@@ -131,13 +131,11 @@ class renderEngine : public engine
     uint32_t getWindowHeight();  // retrieves the value of windowHeight
     void setWindowHeight(uint32_t set);  // sets the value of windowHeight
 */
-#if OGRE_VERSION_MAJOR == 2
     sharedPtr<Ogre::CompositorManager2> getCompositorManager() const;
     void setCompositorManager(const sharedPtr<Ogre::CompositorManager2> &set);
     OgreEntitySharedPtr bball;
     OgreSceneNodeSharedPtr bballNode;
 
-#endif
     ~renderEngine();
 
 

@@ -23,18 +23,18 @@ FIND_PATH(OpenSteer_INCLUDE_DIRS OpenSteer/OpenSteer.h
     )
 
 FIND_LIBRARY(OpenSteer_LIBRARY_DBG
-    NAMES opensteer_d opensteer_debug libopensteer_debug.a libopensteer_debug
+    NAMES opensteer_d opensteer_debug libopensteer_debug.a libopensteer_debug libOpenSteer_d.a
     PATHS
-    $ENV{OpenSteer_HOME}
+    $ENV{OpenSteer_HOME}/lib
     /usr/local
     /usr
     PATH_SUFFIXES lib
     )
 
 FIND_LIBRARY(OpenSteer_LIBRARY_REL
-    NAMES opensteer libopensteer.a libopensteer
+    NAMES opensteer libopensteer.a libopensteer libOpenSteer.a
     PATHS
-    $ENV{OpenSteer_HOME}
+    $ENV{OpenSteer_HOME}/lib
     /usr/local
     /usr
     PATH_SUFFIXES lib/Release lib

@@ -108,7 +108,7 @@ ELSE (WIN32) #Unix
                 SET(MYGUI_LIB_DIR ${MYGUI_LIBDIR})
                 SET(MYGUI_LIBRARIES ${MYGUI_LIBRARIES} CACHE STRING "")
             ELSE (MYGUI_INCLUDE_DIRS)
-                FIND_PATH(MYGUI_INCLUDE_DIRS MyGUI.h PATHS /usr/local/include /usr/include PATH_SUFFIXES MyGUI MYGUI)
+                FIND_PATH( MYGUI_INCLUDE_DIRS MyGUI.h PATHS $ENV{MYGUI_HOME}/include /usr/local/include /usr/include PATH_SUFFIXES MyGUI MYGUI)
 		FIND_LIBRARY(MYGUI_LIBRARIES myguistatic MyGUI.OgrePlatform PATHS /usr/lib /usr/local/lib)
                 SET(MYGUI_LIB_DIR ${MYGUI_LIBRARIES})
                 STRING(REGEX REPLACE "(.*)/.*" "\\1" MYGUI_LIB_DIR "${MYGUI_LIB_DIR}")
@@ -116,7 +116,7 @@ ELSE (WIN32) #Unix
             ENDIF (MYGUI_INCLUDE_DIRS)
         ELSE (NOT APPLE)
             SET(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} ${MYGUI_DEPENDENCIES_DIR} ${OGRE_DEPENDENCIES_DIR})
-            FIND_PATH(MYGUI_INCLUDE_DIRS MyGUI.h PATHS /usr/local/include /usr/include PATH_SUFFIXES MyGUI MYGUI)
+            FIND_PATH(MYGUI_INCLUDE_DIRS MyGUI.h PATHS $ENV{MYGUI_HOME}/include /usr/local/include /usr/include PATH_SUFFIXES MyGUI MYGUI)
 	    FIND_LIBRARY(MYGUI_LIBRARIES MyGUIEngineStatic MyGUI.OgrePlatform PATHS /usr/lib /usr/local/lib)
             SET(MYGUI_LIB_DIR ${MYGUI_LIBRARIES})
             STRING(REGEX REPLACE "(.*)/.*" "\\1" MYGUI_LIB_DIR "${MYGUI_LIB_DIR}")
@@ -127,8 +127,8 @@ ELSE (WIN32) #Unix
         ENDIF (NOT APPLE)
     ELSE(MYGUI_STATIC)
         # Linux shared library
-        FIND_PATH(MYGUI_INCLUDE_DIRS MyGUI.h PATHS /usr/local/include /usr/include PATH_SUFFIXES MyGUI MYGUI)
-	FIND_LIBRARY(MYGUI_LIBRARIES MyGUIEngine MyGUI.OgrePlatform PATHS /usr/lib /usr/local/lib)
+        FIND_PATH(MYGUI_INCLUDE_DIRS MyGUI.h PATHS $ENV{MYGUI_HOME}/include /usr/local/include /usr/include PATH_SUFFIXES MyGUI MYGUI)
+	FIND_LIBRARY(MYGUI_LIBRARIES MyGUIEngine MyGUI.OgrePlatform PATHS $ENV{MYGUI_HOME}/lib /usr/lib /usr/local/lib)
         STRING(REGEX REPLACE "(.*)/.*" "\\1" MYGUI_LIB_DIR "${MYGUI_LIBRARIES}")
     ENDIF(MYGUI_STATIC)
 

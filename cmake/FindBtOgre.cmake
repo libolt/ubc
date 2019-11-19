@@ -41,7 +41,7 @@ ELSE (WIN32)
     FIND_LIBRARY(BtOgre_LIBRARY
     NAMES BtOgre libBtOgre.a
 	PATHS
-	$ENV{BTOGRE_HOME}
+	$ENV{BTOGRE_HOME}/lib
         /usr/local
 	/usr
         )

@@ -26,3 +26,22 @@ hoopFlags::hoopFlags()  // constructor
 
 hoopFlags::~hoopFlags() = default;  // denstructor
 
+bool hoopFlags::getNumberSet() const  // retrieves the value of numberSet
+{
+    return (numberSet);
+}
+void hoopFlags::setNumberSet(const bool &set)  // sets the value of numberSet
+{
+    numberSet = set;
+}
+
+bool hoopFlags::getStateChanged() const  // retrieves the value of stateChanged
+{
+    return (stateChanged);
+}
+void hoopFlags::setStateChanged(const bool &set)  // sets the value of stateChanged
+{
+    stateChanged = set;
+}
+
+

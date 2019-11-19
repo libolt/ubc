@@ -332,7 +332,7 @@ STATE_DEFINE(teamStateMachine, updateActivePlayers, teamSMData)
     std::string func = "teamStateMachine::updateActivePlayers";
     logMsg(func +" begin");
 
-    activePlayerInstance = updateTeam.updateActivePlayers(activePlayerInstance);
+    activePlayerInstance = updateTeam.updateActivePlayers(activePlayerInstance, data->render);
     if (!activePlayerInstance.empty())
     {
 //        exit(0);

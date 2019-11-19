@@ -51,12 +51,17 @@ courtEntityMSharedPtr setupCourts::createCourtInstances()  // creates court Inst
 //        setCourtInstance(loadCourt->getCInstance());
         logMsg(func +" Court Instances Created!!");
         courtInstance = loadCourt->getCInstance();
+        size_t courtNum = 0;
+
         for (auto CIIT : courtInstance)
         {
             logMsg("Court Name == " +CIIT.second->getData()->getName());
             CIIT.second->getComponent()->setName(CIIT.second->getData()->getName());
             CIIT.second->getComponent()->setModelFileName(CIIT.second->getData()->getModelFileName());
+            CIIT.second->getComponent()->setNumber(courtNum);
 
+
+            courtNum++;
         }
 //        exit(0);
     }

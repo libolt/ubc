@@ -23,10 +23,21 @@
 
 courtComponents::courtComponents()  // constructor
 {
-    
+    number = 99999;
 }
 
 courtComponents::~courtComponents() = default;  // destructor
+
+size_t courtComponents::getNumber() const  // retrieves the value of number
+{
+    return (number);
+}
+void courtComponents::setNumber(const size_t &set)  // sets the value of number
+{
+    number = set;
+    physics->setPhysObjNumber(set); // sets the physics number as well
+//    numberSet = true;
+}
 
 courtPhysicsSharedPtr courtComponents::getPhysics() const  // retrieves the value of physics
 {
@@ -36,3 +47,4 @@ void courtComponents::setPhysics(const courtPhysicsSharedPtr &set)  // sets the 
 {
     physics = set;
 }
+

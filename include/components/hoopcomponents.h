@@ -25,14 +25,26 @@
 
 #include "components/entitycomponents.h"
 
+class hoopPhysics;
+
 class hoopComponents : public entityComponents
 {
     public:
         hoopComponents();  // constructor
         ~hoopComponents();  // destructor
-        
+
+        hoopPhysicsSharedPtr getPhysics() const;  // retrieves the value of physics
+        void setPhysics(const hoopPhysicsSharedPtr &set);  // sets the value of physis
+
+        size_t getNumber() const;  // retrieves the value of number
+        void setNumber(const size_t &set);  // sets the value of number
+
+
     private:
-    
+        hoopPhysicsSharedPtr physics;
+
+        size_t number;  // stores the hoop object number
+
 };
 
 #endif

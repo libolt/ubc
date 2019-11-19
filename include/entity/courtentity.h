@@ -22,7 +22,6 @@
 #define _COURTENTITY_H_
 
 #include "entity/entity.h"
-//#include "physics/courtphysics.h"
 
 class courtComponents;
 class courtFlags;

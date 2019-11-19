@@ -20,7 +20,11 @@
 
 #include "utilities/conversion.h"
 #include "statemachine/playerstatemachine.h"
+#include "components/playercomponents.h"
+#include "data/playerdata.h"
+#include "engine/renderengine.h"
 #include "flags/playerflags.h"
+#include "load/loadplayers.h"
 #include "utilities/logging.h"
 
 playerStateMachine::playerStateMachine() :
@@ -33,19 +37,19 @@ playerStateMachine::playerStateMachine() :
 {
 }
 
-void playerStateMachine::setPNode(playerSMData *data) // sets the node to that of the entity parent object
+void playerStateMachine::pLoadModel(playerSMData *data) // Loads the model object
 {
-    std:: string func = "playerStateMachine::setPNode";
+    std:: string func = "playerStateMachine::pLoadModel";
 
     logMsg(func +" begin");
 
     BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (ST_SET_NODE)             // ST_SET_NODE
-        TRANSITION_MAP_ENTRY (ST_SET_NODE)             // ST_SET_MODEL
-        TRANSITION_MAP_ENTRY (ST_SET_NODE)             // ST_IDLE
-        TRANSITION_MAP_ENTRY (ST_SET_NODE)             // ST_STOP
+        TRANSITION_MAP_ENTRY (ST_LOAD_MODEL)             // ST_LOAD_MODEL
+        TRANSITION_MAP_ENTRY (ST_LOAD_MODEL)             // ST_CREATE_NODE
+        TRANSITION_MAP_ENTRY (ST_LOAD_MODEL)             // ST_IDLE
+        TRANSITION_MAP_ENTRY (ST_LOAD_MODEL)             // ST_STOP
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_START
-        TRANSITION_MAP_ENTRY (ST_SET_NODE)             // ST_CHANGE_POSITION
+        TRANSITION_MAP_ENTRY (ST_LOAD_MODEL)             // ST_CHANGE_POSITION
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_SPEED
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_JUMP
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_DIRECTION
@@ -58,19 +62,19 @@ void playerStateMachine::setPNode(playerSMData *data) // sets the node to that o
 
 }
 
-void playerStateMachine::setPModel(playerSMData *data) // sets the model to that of the entity parent object
+void playerStateMachine::pCreateNode(playerSMData *data) // sets the model to that of the entity parent object
 {
     std:: string func = "playerStateMachine::setPModel";
 
     logMsg(func +" begin");
 
     BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (ST_SET_MODEL)             // ST_SET_NODE
-        TRANSITION_MAP_ENTRY (ST_SET_MODEL)             // ST_SET_MODEL
-        TRANSITION_MAP_ENTRY (ST_SET_MODEL)             // ST_IDLE
-        TRANSITION_MAP_ENTRY (ST_SET_MODEL)             // ST_STOP
+        TRANSITION_MAP_ENTRY (ST_CREATE_NODE)             // ST_LOAD_MODEL
+        TRANSITION_MAP_ENTRY (ST_CREATE_NODE)             // ST_CREATE_NODE
+        TRANSITION_MAP_ENTRY (ST_CREATE_NODE)             // ST_IDLE
+        TRANSITION_MAP_ENTRY (ST_CREATE_NODE)             // ST_STOP
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_START
-        TRANSITION_MAP_ENTRY (ST_SET_MODEL)             // ST_CHANGE_POSITION
+        TRANSITION_MAP_ENTRY (ST_CREATE_NODE)             // ST_CHANGE_POSITION
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_SPEED
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_JUMP
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_CHANGE_DIRECTION
@@ -90,8 +94,8 @@ void playerStateMachine::setSpeed(playerSMData *data)
     logMsg(func +" begin");
 
     BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (ST_START_MOVEMENT)            // ST_SET_NODE
-        TRANSITION_MAP_ENTRY (ST_START_MOVEMENT)             // ST_SET_MODEL
+        TRANSITION_MAP_ENTRY (ST_START_MOVEMENT)            // ST_LOAD_MODEL
+        TRANSITION_MAP_ENTRY (ST_START_MOVEMENT)             // ST_CREATE_NODE
         TRANSITION_MAP_ENTRY (ST_START_MOVEMENT)            // ST_IDLE
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STOP
         TRANSITION_MAP_ENTRY (ST_CHANGE_SPEED)              // ST_START
@@ -115,8 +119,8 @@ void playerStateMachine::halt()
     logMsg(func +" begin");
 
     BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_SET_NODE
-        TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_SET_MODEL
+        TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_LOAD_MODEL
+        TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_CREATE_NODE
         TRANSITION_MAP_ENTRY (EVENT_IGNORED)                // ST_IDLE
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                // ST_STOP
         TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_START
@@ -140,8 +144,8 @@ void playerStateMachine::pJump(playerSMData *data)
     logMsg(func +" begin");
 
     BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (ST_JUMP)                      // ST_SET_NODE
-        TRANSITION_MAP_ENTRY (ST_JUMP)                      // ST_SET_MODEL
+        TRANSITION_MAP_ENTRY (ST_JUMP)                      // ST_LOAD_MODEL
+        TRANSITION_MAP_ENTRY (ST_JUMP)                      // ST_CREATE_NODE
         TRANSITION_MAP_ENTRY (ST_JUMP)                      // ST_IDLE
         TRANSITION_MAP_ENTRY (ST_JUMP)                      // ST_STOP
         TRANSITION_MAP_ENTRY (ST_JUMP)                      // ST_START
@@ -164,8 +168,8 @@ void playerStateMachine::pChangeDirection(playerSMData *data)
     logMsg(func +" begin");
 
     BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (EVENT_IGNORED)          // ST_SET_NODE
-        TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_SET_MODEL
+        TRANSITION_MAP_ENTRY (EVENT_IGNORED)          // ST_LOAD_MODEL
+        TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_CREATE_NODE
         TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_IDLE
         TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_STOP
         TRANSITION_MAP_ENTRY (ST_CHANGE_DIRECTION)          // ST_START
@@ -190,8 +194,8 @@ void playerStateMachine::pChangePosition(playerSMData *data)
     logMsg(func +" begin");
 
     BEGIN_TRANSITION_MAP                                    // - Current State -
-        TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_SET_NODE
-        TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_SET_MODEL
+        TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_LOAD_MODEL
+        TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_CREATE_NODE
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_IDLE
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_STOP
         TRANSITION_MAP_ENTRY (ST_CHANGE_POSITION)           // ST_START
@@ -207,29 +211,62 @@ void playerStateMachine::pChangePosition(playerSMData *data)
 }
 
 // sets the node object
-STATE_DEFINE(playerStateMachine, SetNode, playerSMData)
+STATE_DEFINE(playerStateMachine, LoadModel, playerSMData)
 {
-    std:: string func = "playerStateMachine::SetNode";
+    conversionSharedPtr convert;
+    loadPlayersSharedPtr loadPlayer(new loadPlayers);
+    playerSMData *lmSMData(new playerSMData);
+    std:: string func = "playerStateMachine::LoadModel";
 
     logMsg(func +" begin");
+
+    lmSMData->component = data->component;
+    lmSMData->flag = data->flag;
+    lmSMData->render = data->render;
+
+    loadPlayer->loadModel(lmSMData->component, lmSMData->flag, lmSMData->render);
+    logMsg(func +" flag->getModelLoaded() == " +convert->toString(lmSMData->flag->getModelLoaded()));
 //    exit(0);
-
-    currentNode = data->node;
-
-    data->flag->setSMNodeSet(true);
     logMsg(func +" end");
-
 }
 
 // sets the model object
-STATE_DEFINE(playerStateMachine, SetModel, playerSMData)
+STATE_DEFINE(playerStateMachine, CreateNode, playerSMData)
 {
-    std:: string func = "playerStateMachine::SetModel";
+    conversionSharedPtr convert;
+    OgreEntitySharedPtr activeModel;
+    OgreSceneNodeSharedPtr tempNode;
+    std::string activeEntityName;
+    std::string activeNodeNum;
+    std::string activeNodeName;
+    std:: string func = "playerStateMachine::CreateNode";
 
     logMsg(func +" begin");
-
-    currentModel = data->model;
-    data->flag->setSMModelSet(true);
+    logMsg(func +" nodeName == " +data->component->getNodeName());
+    if (data->component->getNodeName().empty())
+    {
+        std::string nodeName = data->component->getName() + convert->toString(data->pData->getID());
+        data->component->setNodeName(nodeName);
+        logMsg(func +" nodeName == " +data->component->getNodeName());
+    }
+    else
+    {
+        logMsg(func +" nodeName == " +data->component->getNodeName());
+    }
+    tempNode = data->render->createNode(data->component->getModel(), data->component->getNodeName());
+    logMsg(func +" tempNode!");
+//            exit(0);
+    if (tempNode != nullptr)
+    {
+        logMsg(func + " Node created successfully!");
+        data->component->setNode(tempNode);
+        data->flag->setNodeCreated(true);
+    }
+    else
+    {
+        logMsg(func + " Unable to create node!");
+        exit(0);
+    }
 
     logMsg(func +" end");
 
@@ -287,19 +324,21 @@ STATE_DEFINE(playerStateMachine, StartMovement, playerSMData)
 STATE_DEFINE(playerStateMachine, ChangePosition, playerSMData)
 {
 //    exit(0);
-    conversionSharedPtr convert ;
+    conversionSharedPtr convert;
+    OgreSceneNodeSharedPtr node = data->component->getNode();
     std:: string func = "playerStateMachine::ChangePosition";
 
     logMsg(func +" begin");
 //    exit(0);
-    logMsg("playerStateMachine::ST_ChangePosition : court position is " +convert->toString(data->position));
+    logMsg(func +" court position is " +convert->toString(data->position));
     
     currentPosition = data->position;
     
-    logMsg(func +" Node Position == " +convert->toString(data->node->getPosition()));
+//    logMsg(func +" Node Position == " +convert->toString(data->node->getPosition()));
 //    exit(0);
-    currentNode->setPosition(currentPosition);
-    logMsg(func +" Node Position == " +convert->toString(currentNode->getPosition()));
+    node->setPosition(currentPosition);
+    data->component->setNode(node);
+    logMsg(func +" Node Position == " +convert->toString(data->component->getNode()->getPosition()));
     logMsg(func +" end");
 
 //    exit(0);
@@ -325,7 +364,8 @@ STATE_DEFINE(playerStateMachine, ChangeSpeed, playerSMData)
 // changes the player's direction once the player is moving
 STATE_DEFINE(playerStateMachine, ChangeDirection, playerSMData)
 {
-    conversionSharedPtr convert ;
+    conversionSharedPtr convert;
+    OgreSceneNodeSharedPtr node = data->component->getNode();
     std:: string func = "playerStateMachine::ChangeDirection";
 
     logMsg(func +" begin");
@@ -339,13 +379,13 @@ STATE_DEFINE(playerStateMachine, ChangeDirection, playerSMData)
             switch (data->direction)
             {
                 case DOWN:
-                    currentNode->yaw(Ogre::Degree (180));
+                    node->yaw(Ogre::Degree (180));
                 break;
                 case LEFT:
-                    currentNode->yaw(Ogre::Degree (270));
+                    node->yaw(Ogre::Degree (270));
                 break;
                 case RIGHT:
-                    currentNode->yaw(Ogre::Degree (90));
+                    node->yaw(Ogre::Degree (90));
 //                        exit(0);
                 break;
                 default:
@@ -357,13 +397,13 @@ STATE_DEFINE(playerStateMachine, ChangeDirection, playerSMData)
             switch (data->direction)
             {
                 case UP:
-                    currentNode->yaw(Ogre::Degree (180));
+                    node->yaw(Ogre::Degree (180));
                 break;
                 case LEFT:
-                    currentNode->yaw(Ogre::Degree (90));
+                    node->yaw(Ogre::Degree (90));
                 break;
                 case RIGHT:
-                    currentNode->yaw(Ogre::Degree (270));
+                    node->yaw(Ogre::Degree (270));
                 break;
                 default:
                 break;
@@ -373,13 +413,13 @@ STATE_DEFINE(playerStateMachine, ChangeDirection, playerSMData)
             switch (data->direction)
             {
                 case UP:
-                    currentNode->yaw(Ogre::Degree (90));
+                    node->yaw(Ogre::Degree (90));
                 break;
                 case DOWN:
-                    currentNode->yaw(Ogre::Degree (270));
+                    node->yaw(Ogre::Degree (270));
                 break;
                 case RIGHT:
-                    currentNode->yaw(Ogre::Degree (180));
+                    node->yaw(Ogre::Degree (180));
                 break;
                 default:
                 break;
@@ -389,13 +429,13 @@ STATE_DEFINE(playerStateMachine, ChangeDirection, playerSMData)
             switch (data->direction)
             {
                 case UP:
-                    currentNode->yaw(Ogre::Degree (270));
+                    node->yaw(Ogre::Degree (270));
                 break;
                 case DOWN:
-                    currentNode->yaw(Ogre::Degree (90));
+                    node->yaw(Ogre::Degree (90));
                 break;
                 case LEFT:
-                    currentNode->yaw(Ogre::Degree (180));
+                    node->yaw(Ogre::Degree (180));
                 break;
                 default:
                 break;
@@ -405,16 +445,16 @@ STATE_DEFINE(playerStateMachine, ChangeDirection, playerSMData)
             switch (data->direction)
             {
                 case UP:
-                    currentNode->yaw(Ogre::Degree (270));
+                    node->yaw(Ogre::Degree (270));
                 break;
                 case DOWN:
-                    currentNode->yaw(Ogre::Degree (90));
+                    node->yaw(Ogre::Degree (90));
                 break;
                 case LEFT:
-                    currentNode->yaw(Ogre::Degree (0));
+                    node->yaw(Ogre::Degree (0));
                 break;
                 case RIGHT:
-                    currentNode->yaw(Ogre::Degree (180));
+                    node->yaw(Ogre::Degree (180));
                 break;
                 default:
                 break;

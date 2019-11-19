@@ -30,7 +30,7 @@
 #include "physics/playerphysics.h"
 #include "utilities/logging.h"
 #include "utilities/comparison.h"
-  
+
 playerPhysics::playerPhysics() = default;  // constructor
 
 playerPhysics::~playerPhysics() = default;  // destructor
@@ -608,4 +608,3 @@ bool playerPhysics::shootBasketball(teamTypes teamType, int playerID)  // calcul
     return (true);
 
 }
-

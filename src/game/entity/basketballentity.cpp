@@ -369,11 +369,14 @@ void basketballEntity::updateStateMachine(const gameComponentsSharedPtr &gameCom
             break;
 
         }
+        flag->setStateChanged(false);
+        action = BNOACTION;
     }
     if (flag->getNumberSet())  // runs the physics update code
     {
         component->getPhysics()->updatePhysObj();
     }
+
 /*    if (flag->getDirectChange())
     {
     }

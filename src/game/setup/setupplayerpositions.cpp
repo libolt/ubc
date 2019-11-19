@@ -45,8 +45,12 @@ playerEntityMSharedPtr setupPlayerPositions::setJumpBallPositions(playerEntityMS
 //    exit(0);
     logMsg(func +" begining");
 
+    logMsg(func +" courtPos.y == " +convert->toString(courtPos.x));
     logMsg(func +" courtPos.y == " +convert->toString(courtPos.y));
-    float yOffset = courtPos.y + 6.0;
+    logMsg(func +" courtPos.z == " +convert->toString(courtPos.z));
+//    exit(0);
+
+    Ogre::Real yOffset = Ogre::Real(courtPos.y + 6.0);
 
     logMsg(func +" courtpos.y == " +convert->toString(courtPos.y));
     logMsg(func +" yOffset == " +convert->toString(yOffset));
@@ -84,9 +88,7 @@ playerEntityMSharedPtr setupPlayerPositions::setJumpBallPositions(playerEntityMS
         logMsg(func +" startingPosition.size > 0");
 //        exit(0);
 //        for (size_t i=0;i<5;++i)
-        size_t i = 0;
 
-        size_t x = 0;
         for (auto APIIT : activePlayerInstance)
         {
             logMsg(func +" activePlayerInstance.size > 0!");

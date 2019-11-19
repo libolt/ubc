@@ -44,6 +44,7 @@ bool jumpBallsExecute::executeJump(const gameComponentsSharedPtr &component)  //
     conversionSharedPtr convert ;
     jumpBallsSharedPtr jumpBall = component->getJumpBall();
     physicsEngine physEngine;
+
     playerEntityMSharedPtr activePlayerInstance;
     playerEntityMSharedPtr jumpPlayerInstance;  // stores playerID of players jumping for the ball
     teamEntityMSharedPtr activeTeamInstance = component->getActiveTeamInstance();

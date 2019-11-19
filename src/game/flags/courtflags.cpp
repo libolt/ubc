@@ -23,6 +23,7 @@
 courtFlags::courtFlags()  // constructor
 {
     dataInitialized = false;
+    numberSet = false;
     stateChanged = false;
 }
 
@@ -36,6 +37,15 @@ bool courtFlags::getDataInitialized() const  // retrieves the value of dataIniti
 void courtFlags::setDataInitialized(const bool &set)  // sets the value of dataInitialized
 {
     dataInitialized = set;
+}
+
+bool courtFlags::getNumberSet() const  // retrieves the value of numberSet
+{
+    return (numberSet);
+}
+void courtFlags::setNumberSet(const bool &set)  // sets the value of numberSet
+{
+    numberSet = set;
 }
 
 bool courtFlags::getStateChanged() const  // retrieves the value of stateChanged

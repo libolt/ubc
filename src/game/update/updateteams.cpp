@@ -34,7 +34,7 @@ updateTeams::updateTeams() = default;  // constructor
 
 updateTeams::~updateTeams() = default;  // destructor
 
-playerEntityMSharedPtr updateTeams::updateActivePlayers(playerEntityMSharedPtr activePlayerInstance)  // updates the states of active players
+playerEntityMSharedPtr updateTeams::updateActivePlayers(playerEntityMSharedPtr activePlayerInstance, renderEngineSharedPtr render)  // updates the states of active players
 {
     conversionSharedPtr convert ;
 //    playerEntityMSharedPtr activePlayerInstance = component->getActivePlayerInstance();
@@ -51,7 +51,7 @@ playerEntityMSharedPtr updateTeams::updateActivePlayers(playerEntityMSharedPtr a
     
     for (auto APIIT : activePlayerInstance)  // executes updates to activePlayerInstances
     {
-        APIIT.second->updateStateMachine();
+        APIIT.second->updateStateMachine(render);
     }
 //    exit(0);
 //FIXME! Needs refactored after playerStateMachine migration

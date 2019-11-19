@@ -29,13 +29,15 @@
 class playerSMData : public eventData
 {
 public:
+    playerComponentsSharedPtr component;  // stores copy of component
+    playerDataSharedPtr pData;  // stores copy of data
+    playerGameDataSharedPtr gameData;  // stores copy of gameData
     playerFlagsSharedPtr flag;
     size_t speed;
     directions direction;
     playerActions action;
     Ogre::Vector3 position;
-    OgreEntitySharedPtr model;  // stores 3d model
-    OgreSceneNodeSharedPtr node;  // stores node 3d model is attached to
+    renderEngineSharedPtr render; // stores copy of render
 };
 
 class playerStateMachine : public stateMachine
@@ -44,8 +46,8 @@ public:
     playerStateMachine();
 
     // External events taken by this state machine
-    void setPNode(playerSMData *data);  // sets the node to that of the entity parent object
-    void setPModel(playerSMData *data);  // sets the model to that of the entity parent object
+    void pLoadModel(playerSMData *data);  // sets the node to that of the entity parent object
+    void pCreateNode(playerSMData *data);  // sets the model to that of the entity parent object
     void setSpeed(playerSMData *data);
     void halt();
     void pJump(playerSMData *data);
@@ -58,15 +60,15 @@ private:
     directions currentDirection;
     playerActions currentAction;
     Ogre::Vector3 currentPosition;
-    OgreEntitySharedPtr currentModel;  // stores 3d model
-    OgreSceneNodeSharedPtr currentNode;  // stores node 3d model is attached to
+//    OgreEntitySharedPtr currentModel;  // stores 3d model
+//    OgreSceneNodeSharedPtr currentNode;  // stores node 3d model is attached to
 
     // State enumeration order must match the order of state method entries
     // in the state map.
     enum States
     {
-        ST_SET_NODE,
-        ST_SET_MODEL,
+        ST_LOAD_MODEL,
+        ST_CREATE_NODE,
         ST_IDLE,
         ST_STOP_MOVEMENT,
         ST_START_MOVEMENT,
@@ -80,8 +82,8 @@ private:
     };
 
     // Define the state machine state functions with event data type
-    STATE_DECLARE(playerStateMachine,    SetNode,    playerSMData)
-    STATE_DECLARE(playerStateMachine,    SetModel,    playerSMData)
+    STATE_DECLARE(playerStateMachine,    LoadModel,    playerSMData)
+    STATE_DECLARE(playerStateMachine,    CreateNode,    playerSMData)
     STATE_DECLARE(playerStateMachine,    Idle,            noEventData)
     STATE_DECLARE(playerStateMachine,    StopMovement,    noEventData)
     STATE_DECLARE(playerStateMachine,    StartMovement,   playerSMData)
@@ -95,8 +97,8 @@ private:
     // State map to define state object order. Each state map entry defines a
     // state object.
     BEGIN_STATE_MAP
-        STATE_MAP_ENTRY(&SetNode)
-        STATE_MAP_ENTRY(&SetModel)
+        STATE_MAP_ENTRY(&LoadModel)
+        STATE_MAP_ENTRY(&CreateNode)
         STATE_MAP_ENTRY(&Idle)
         STATE_MAP_ENTRY(&StopMovement)
         STATE_MAP_ENTRY(&StartMovement)

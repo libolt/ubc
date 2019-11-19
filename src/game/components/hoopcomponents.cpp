@@ -22,8 +22,25 @@
 
 hoopComponents::hoopComponents()  // constructor
 {
-    
+    number = 99999;
 }
 
 hoopComponents::~hoopComponents() = default;  // destructor
 
+hoopPhysicsSharedPtr hoopComponents::getPhysics() const  // retrieves the value of physics
+{
+    return (physics);
+}
+void hoopComponents::setPhysics(const hoopPhysicsSharedPtr &set)  // sets the value of physis
+{
+    physics = set;
+}
+
+size_t hoopComponents::getNumber() const  // retrieves the value of number
+{
+    return (number);
+}
+void hoopComponents::setNumber(const size_t &set)  // sets the value of number
+{
+    number = set;
+}

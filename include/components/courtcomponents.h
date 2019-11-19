@@ -31,11 +31,16 @@ class courtComponents : public entityComponents
         courtComponents();  // constructor
         ~courtComponents();  // destructor
 
+        size_t getNumber() const;  // retrieves the value of number
+        void setNumber(const size_t &set);  // sets the value of number
+
         courtPhysicsSharedPtr getPhysics() const;  // retrieves the value of physics
         void setPhysics(const courtPhysicsSharedPtr &set);  // sets the value of physics
 
     private:
     
+        size_t number;  // stores the court object number
+
         courtPhysicsSharedPtr physics;  // instanciates an object to handle the physics for the court
 
 };

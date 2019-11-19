@@ -24,6 +24,7 @@
 #include "flags/courtflags.h"
 #include "physics/courtphysics.h"
 #include "statemachine/courtstatemachine.h"
+#include "utilities/conversion.h"
 #include "utilities/logging.h"
 
 courtEntity::courtEntity()  // constructor
@@ -134,13 +135,27 @@ bool courtEntity::updateStateMachine(renderEngineSharedPtr render)  // updates t
 
     std::string func = "courtEntity::updateStateMachine()";
 
+    if (component->getNode() != nullptr)
+    {
+        Ogre::Vector3 courtScale = component->getNode()->getScale();
+        logMsg(func +" court Scale == " +convert->toString(component->getNode()->getScale()));
+        if (courtScale != Ogre::Vector3(1.0,1.0,1.0))
+        {
+            courtScale = Ogre::Vector3(1.0,1.0,1.0);
+            component->getNode()->setScale(courtScale);
+            logMsg(func +" court Scale set!");
+        }
+
+//        component->getNode()->setPosition(Ogre::Vector3(0.0f,-27.5f,360.0f));
+    }
+
     logMsg(func + " begin");
 
     if (objectsInitialized)
     {
         if (component != nullptr && component->getNode() != nullptr)
         {
-//            logMsg(func +" activeBasketballInstance Pos = " +convert->toString(component->getNode()->getPosition()));
+            logMsg(func +" activeCourtInstance Pos = " +convert->toString(component->getNode()->getPosition()));
 //            exit(0);
         }
     }
@@ -180,6 +195,8 @@ bool courtEntity::updateStateMachine(renderEngineSharedPtr render)  // updates t
                 stateMachine->pCreateNode(udSMData);
             break;
         }
+        flag->setStateChanged(false);
+        action = CNOACTION;
     }
 
     logMsg(func +" end");

@@ -106,7 +106,8 @@ class guiStateMachine;
 class hoopComponents;
 class hoopEntity;
 class hoopFlags;
-//class hoopState;
+class hoopPhysics;
+class hoopStateMachine;
 
 class inputEngine;
 class input;
@@ -258,6 +259,10 @@ typedef sharedPtr<hoopComponents> hoopComponentsSharedPtr;
 typedef sharedPtr<hoopEntity> hoopEntitySharedPtr;
 
 typedef sharedPtr<hoopFlags> hoopFlagsSharedPtr;
+
+typedef sharedPtr<hoopPhysics> hoopPhysicsSharedPtr;
+
+typedef sharedPtr<hoopStateMachine> hoopStateMachineSharedPtr;
 
 typedef sharedPtr<playerEntity> playerEntitySharedPtr;
 

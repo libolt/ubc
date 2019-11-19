@@ -22,8 +22,6 @@
 #define _BASKETBALLENTITY_H
 
 #include "entity/entity.h"
-//#include "physics/basketballphysics.h"
-//#include "ai/basketballsteer.h"
 
 //class entity;
 class basketballData;
@@ -71,7 +69,7 @@ class basketballEntity : public entity
     bool initializeStateMachine();  // initializes the basketball stateMachine object
 
     bool setupPhysicsObject();  // sets up the physics object
-    
+
     private:
     
     bool objectsInitialized;  //  stores whether or not objects have been initialized

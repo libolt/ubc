@@ -115,6 +115,7 @@ void guiDisplay::showMainMenuWidgets()  // shows all widgets tied to the Main Me
     logMsg(func +"gameE->setMenuActive(true)");
     gameE->setMenuActive(true);
     logMsg(func +" end");
+//    exit(0);
 }
 void guiDisplay::hideNetworkSetupWidgets()  // hides the widgets tied to the Network Setup Menu
 {

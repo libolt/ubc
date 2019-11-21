@@ -272,7 +272,6 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
     std:: string func = "gameStateMachine::createInstances";
 
     logMsg(func +" begin");
-
 /*    gameFlagsSharedPtr tempFlag(new gameFlags);
     data->flag = tempFlag;
 */
@@ -319,6 +318,7 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
             logMsg(func +" Court Instances Created!!");
             flag->setCourtInstancesCreated(true);
             component->setCourtInstance(courtInstance);
+
         }
         else
         {
@@ -461,7 +461,7 @@ STATE_DEFINE(gameStateMachine, loadModels, gameSMData)
     std:: string func = "gameStateMachine::loadModels";
 
     logMsg(func +" begin");
-//    exit(0);
+    exit(0);
     
     
     if (!data->flag->getBasketballModelLoaded())  // Checks if basketball model has been loaded

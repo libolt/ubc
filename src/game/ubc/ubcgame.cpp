@@ -437,6 +437,7 @@ bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &in
         
 //        exit(0);
 
+#ifndef NOGUI
         if (gui->getFlag()->getMenuActive())
         {
             if (gui->updateStateMachine(gameE->getRenderE()))
@@ -452,8 +453,11 @@ bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &in
 //            exit(0);
             }
         }
+#else
+    startActiveGame = true;
+#endif
 
-        if (!basketballLoaded)
+/*        if (!basketballLoaded)
         {
             setupBasketballs setupbasketball;
             basketballEntityMSharedPtr basketballInstance = setupbasketball.createBasketballInstances();
@@ -537,7 +541,7 @@ bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &in
 
         }
     }
-
+*/
         if (startActiveGame)
         {
 //            exit(0);

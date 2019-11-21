@@ -947,6 +947,7 @@ bool renderEngine::createScene()
         exit(0);
     }
 
+/*
     bball = OgreEntitySharedPtr(mSceneMgr->createEntity("bball.mesh",
                                                         "UBCData"));
     bballNode = OgreSceneNodeSharedPtr(
@@ -962,6 +963,7 @@ bool renderEngine::createScene()
         logMsg(func +"bball.mesh didn't load");
         exit(0);
     }
+*/
 	//	    Ogre::LogManager::getSingletonPtr()->logMessage("winHandle = " +winHandle);
 
 	// this next bit is for the sake of the input handler

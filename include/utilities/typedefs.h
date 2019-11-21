@@ -61,6 +61,10 @@
 #include "MyGUI_LayoutManager.h"
 #include "MyGUI_ImageBox.h"
 
+
+// Skip the GUI and start a test game
+#define NOGUI
+
 // forward declarations
 
 class AISystem;

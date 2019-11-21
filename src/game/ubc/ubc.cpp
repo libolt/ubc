@@ -120,6 +120,7 @@ bool UBC::setupState()  // sets up the UBC game state
 
     logMsg(func +" begin");
 
+#ifndef NOGUI
     GUISystemSharedPtr gui = component->getGui();
     gui->setGameInstance(component->getGame()->getGameInstance());  // shares gameInstance with gui object
 
@@ -145,6 +146,7 @@ bool UBC::setupState()  // sets up the UBC game state
         exit(0);
     }
     logMsg(func +" end");
+#endif
 
     return (stateSetup);
 }

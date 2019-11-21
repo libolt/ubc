@@ -475,6 +475,7 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
                         logMsg(func +" Creating Instances!");
                         saSMData->component = component;
                         saSMData->flag = flag;
+//                        exit(0);
                         stateMachine->pCreateInstances(saSMData);               
 //                        stateAction.pop_back();
 //                        stateAction.push_back(GLOADMODELS);
@@ -490,7 +491,8 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
                 //    data->getStateAction().
                 break;
                 case GLOADMODELS:
-                    logMsg(func +" Models Not Loaded yet!");        
+                    logMsg(func +" Models Not Loaded yet!");
+                    exit(0);
                     // copies required objects to SMData
                     saSMData->component = component;
                     saSMData->flag = flag;

@@ -18,6 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
+#include "config.h"
 #include "components/guicomponents.h"
 #include "engine/gameengine.h"
 #include "engine/renderengine.h"
@@ -404,24 +405,46 @@ void guiComponents::setTeamStarterID(const teamStarterIDsVecM &set)  // sets the
 bool guiComponents::initMyGUI(const renderEngineSharedPtr &render)  // Initializes MyGUI
 {
     std::string func = "GUIComponents::initMyGUI()";
-    
+    sharedPtr<Ogre::ResourceGroupManager> guiRSM;  // stores resources
+    std::string guiResourceGroup;  // stores resource locations
+
     logMsg(func +" begin");
     logMsg(func +" *** Initializing MyGUI ***");
     MyGUIOgrePlatformSharedPtr tempPlatform(new MyGUI::Ogre2Platform());
     mPlatform = tempPlatform;
 //    logMsg(func +" Crash?");
 
-    mPlatform->initialise(render->getMWindow().get(), render->getMSceneMgr().get(), "UBCData"); // mWindow is Ogre::RenderWindow*, mSceneManager is Ogre::SceneManager*a@aa
+    guiResourceGroup = "GUIData";
+
+    guiRSM = sharedPtr<Ogre::ResourceGroupManager>(
+                Ogre::ResourceGroupManager::getSingletonPtr());
+    guiRSM->createResourceGroup(guiResourceGroup);
+
+
+
+    mPlatform->initialise(render->getMWindow().get(), render->getMSceneMgr().get(), "GUIData"); // mWindow is Ogre::RenderWindow*, mSceneManager is Ogre::SceneManager*a@aa
 
     logMsg(func +" Crash??");
     MyGUIGuiSharedPtr tempGUI(new MyGUI::Gui());
-//    exit(0);
     mGUI = tempGUI;
 //    exit(0);
 //    logMsg(func +" Crash???");
 
+
     mGUI->initialise();
-//    exit(0);
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+    std::string dataPath = "data";
+#else
+    std::string dataPath = UBC_DATADIR;
+
+
+    // load the basic resource location(s)
+    guiRSM->addResourceLocation(dataPath + "/Media/compositor", "FileSystem",
+                             guiResourceGroup);
+    guiRSM->initialiseResourceGroup("GUIData", false);
+
+#endif
+    exit(0);
     logMsg(func +" *** MyGUI Initialized ***");
     logMsg(func +" end");
     return true;

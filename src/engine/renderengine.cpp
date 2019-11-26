@@ -732,8 +732,6 @@ bool renderEngine::createScene()
 
     // load the basic resource location(s)
     rsm->addResourceLocation(dataPath + "/Media", "FileSystem", mResourceGroup);
-    rsm->addResourceLocation(dataPath + "/Media/compositor", "FileSystem",
-                             mResourceGroup);
     rsm->addResourceLocation(dataPath + "/Media/fonts", "FileSystem",
                              mResourceGroup);
     rsm->addResourceLocation(dataPath + "/Media/gui", "FileSystem",
@@ -873,12 +871,12 @@ bool renderEngine::createScene()
     const Ogre::String workspaceName( "MyOwnWorkspace" );
     compositorManager = sharedPtr<Ogre::CompositorManager2>(
                 RERoot->getCompositorManager2());
-/*    if( !compositorManager->hasWorkspaceDefinition( workspaceName ) )
+    if( !compositorManager->hasWorkspaceDefinition( workspaceName ) )
         compositorManager->createBasicWorkspaceDef( workspaceName,
                                                     Ogre::ColourValue( 0.6f,
                                                                        0.0f,
                                                                        0.6f));
-*/
+
     compositorManager->addWorkspace( mSceneMgr.get(), mWindow.get(),
                                      mCamera.get(), workspaceName, true );
 

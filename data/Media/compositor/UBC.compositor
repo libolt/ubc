@@ -7,9 +7,6 @@ compositor_node MyOwnWorkspace_Node
         {
             colour_value 0.6 0 0.6 1
         }
-        pass custom MYGUI
-        {
-        }
         pass render_scene
         {
             rq_first    0
@@ -17,7 +14,7 @@ compositor_node MyOwnWorkspace_Node
         }
     }
 }
-workspace MyOwnWorkspace
+workspace GUIOwnWorkspace
 {
     connect_output MyOwnWorkspace_Node 0
 }

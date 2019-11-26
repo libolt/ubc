@@ -410,28 +410,27 @@ bool guiComponents::initMyGUI(const renderEngineSharedPtr &render)  // Initializ
 
     logMsg(func +" begin");
     logMsg(func +" *** Initializing MyGUI ***");
-    MyGUIOgrePlatformSharedPtr tempPlatform(new MyGUI::Ogre2Platform());
-    mPlatform = tempPlatform;
-//    logMsg(func +" Crash?");
 
     guiResourceGroup = "GUIData";
-
     guiRSM = sharedPtr<Ogre::ResourceGroupManager>(
                 Ogre::ResourceGroupManager::getSingletonPtr());
     guiRSM->createResourceGroup(guiResourceGroup);
 
-
-
+    MyGUIOgrePlatformSharedPtr tempPlatform(new MyGUI::Ogre2Platform());
+    mPlatform = tempPlatform;
     mPlatform->initialise(render->getMWindow().get(), render->getMSceneMgr().get(), "GUIData"); // mWindow is Ogre::RenderWindow*, mSceneManager is Ogre::SceneManager*a@aa
-
-    logMsg(func +" Crash??");
     MyGUIGuiSharedPtr tempGUI(new MyGUI::Gui());
     mGUI = tempGUI;
-//    exit(0);
-//    logMsg(func +" Crash???");
 
 
     mGUI->initialise();
+
+
+
+
+
+    logMsg(func +" Crash??");
+
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     std::string dataPath = "data";
 #else

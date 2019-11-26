@@ -873,13 +873,16 @@ bool renderEngine::createScene()
     const Ogre::String workspaceName( "MyOwnWorkspace" );
     compositorManager = sharedPtr<Ogre::CompositorManager2>(
                 RERoot->getCompositorManager2());
-    if( !compositorManager->hasWorkspaceDefinition( workspaceName ) )
+/*    if( !compositorManager->hasWorkspaceDefinition( workspaceName ) )
         compositorManager->createBasicWorkspaceDef( workspaceName,
                                                     Ogre::ColourValue( 0.6f,
                                                                        0.0f,
                                                                        0.6f));
+*/
     compositorManager->addWorkspace( mSceneMgr.get(), mWindow.get(),
                                      mCamera.get(), workspaceName, true );
+
+
     logMsg(func +"Compositor setup");
 
 /*

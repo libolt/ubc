@@ -407,6 +407,7 @@ bool guiComponents::initMyGUI(const renderEngineSharedPtr &render)  // Initializ
     std::string func = "GUIComponents::initMyGUI()";
     sharedPtr<Ogre::ResourceGroupManager> guiRSM;  // stores resources
     std::string guiResourceGroup;  // stores resource locations
+    std::string dataPath = UBC_DATADIR;
 
     logMsg(func +" begin");
     logMsg(func +" *** Initializing MyGUI ***");
@@ -422,27 +423,13 @@ bool guiComponents::initMyGUI(const renderEngineSharedPtr &render)  // Initializ
     MyGUIGuiSharedPtr tempGUI(new MyGUI::Gui());
     mGUI = tempGUI;
 
-
     mGUI->initialise();
-
-
-
-
-
-    logMsg(func +" Crash??");
-
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
-    std::string dataPath = "data";
-#else
-    std::string dataPath = UBC_DATADIR;
-
 
     // load the basic resource location(s)
     guiRSM->addResourceLocation(dataPath + "/Media/compositor", "FileSystem",
                              guiResourceGroup);
     guiRSM->initialiseResourceGroup("GUIData", false);
 
-#endif
     exit(0);
     logMsg(func +" *** MyGUI Initialized ***");
     logMsg(func +" end");

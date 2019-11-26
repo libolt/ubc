@@ -12,7 +12,10 @@ compositor_node MyOwnWorkspace_Node
             rq_first    0
             rq_last     max
         }
-    }
+        		pass custom MYGUI
+		{
+
+        }
 }
 workspace GUIOwnWorkspace
 {

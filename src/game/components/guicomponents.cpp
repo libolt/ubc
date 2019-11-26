@@ -419,7 +419,8 @@ bool guiComponents::initMyGUI(const renderEngineSharedPtr &render)  // Initializ
 
     MyGUIOgrePlatformSharedPtr tempPlatform(new MyGUI::Ogre2Platform());
     mPlatform = tempPlatform;
-    mPlatform->initialise(render->getMWindow().get(), render->getMSceneMgr().get(), "GUIData"); // mWindow is Ogre::RenderWindow*, mSceneManager is Ogre::SceneManager*a@aa
+    mPlatform->initialise(render->getMWindow().get(), render->getMSceneMgr().get(),
+                          "UBCData"); // mWindow is Ogre::RenderWindow*, mSceneManager is Ogre::SceneManager*a@aa
     MyGUIGuiSharedPtr tempGUI(new MyGUI::Gui());
     mGUI = tempGUI;
 
@@ -430,7 +431,7 @@ bool guiComponents::initMyGUI(const renderEngineSharedPtr &render)  // Initializ
                              guiResourceGroup);
     guiRSM->initialiseResourceGroup("GUIData", false);
 
-    exit(0);
+//    exit(0);
     logMsg(func +" *** MyGUI Initialized ***");
     logMsg(func +" end");
     return true;

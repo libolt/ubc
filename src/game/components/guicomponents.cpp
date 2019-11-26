@@ -419,6 +419,7 @@ bool guiComponents::initMyGUI(const renderEngineSharedPtr &render)  // Initializ
     mGUI = tempGUI;
 //    exit(0);
 //    logMsg(func +" Crash???");
+
     mGUI->initialise();
 //    exit(0);
     logMsg(func +" *** MyGUI Initialized ***");

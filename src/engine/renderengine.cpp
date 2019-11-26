@@ -732,6 +732,8 @@ bool renderEngine::createScene()
 
     // load the basic resource location(s)
     rsm->addResourceLocation(dataPath + "/Media", "FileSystem", mResourceGroup);
+    rsm->addResourceLocation(dataPath + "/Media/compositor", "FileSystem",
+                             mResourceGroup);
     rsm->addResourceLocation(dataPath + "/Media/fonts", "FileSystem",
                              mResourceGroup);
     rsm->addResourceLocation(dataPath + "/Media/gui", "FileSystem",

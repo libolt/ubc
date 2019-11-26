@@ -63,7 +63,7 @@
 
 
 // Skip the GUI and start a test game
-#define NOGUI
+//#define NOGUI
 
 // forward declarations
 

@@ -286,6 +286,7 @@ void basketballEntity::updateStateMachine(const gameComponentsSharedPtr &gameCom
     
     logMsg(func + " begin");
 
+//    exit(0);
     if (objectsInitialized)
     {
         if (component != nullptr && component->getNode() != nullptr)
@@ -306,10 +307,11 @@ void basketballEntity::updateStateMachine(const gameComponentsSharedPtr &gameCom
         }
     }
 */
+
     if (flag->getStateChanged())
     {
         logMsg(func +" State Changed!");
-//        exit(0);
+        exit(0);
         switch (action)
         {
             case BLOADMODEL:

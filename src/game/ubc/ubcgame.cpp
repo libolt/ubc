@@ -31,7 +31,6 @@
 #include "load/loadusersinputs.h"
 #include "entity/gameentity.h"
 #include "statemachine/gamestatemachine.h"
-//#ifndef BTOGRE_MYGUI_ENALBED
 #include "components/basketballcomponents.h"
 #include "data/basketballdata.h"
 #include "entity/basketballentity.h"
@@ -57,9 +56,7 @@ UBCGame::UBCGame()  // constructor
     inputSUInputSetup = false;
     loadUsersInputInitialized = false;
 
-#ifndef BTOGRE_MYGUI_ENABLED
-    basketballLoaded = false;
-#endif
+
 }
 
 UBCGame::~UBCGame() = default;  // destructor
@@ -586,7 +583,22 @@ bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &in
             {
                 logMsg(func +" gameS->getRenderScene()");
 //                exit(0);
+                for (auto SAIT : gameInstance->getData()->getStateAction())
+                {
+
+                    if (SAIT == GLOADMODELS)
+                    {
+                        logMsg(func +" SAITA flag->getStateChanged() "
+                               +convert->toString(gameInstance->getFlag()->getStateChanged()));
+                        logMsg(func +" SAITA stateAction.size() "
+                               +convert->toString(gameInstance->getData()->getStateAction().size()));
+                        logMsg(func +" SAITA GLOADMODELS");
+                        gameInstance->updateState(gameE->getRenderE());
+                    }
+                }
                 gameInstance->updateState(gameE->getRenderE());  // updates the state of the game instance
+
+//                exit(0);
             }
             gameE->getTimer().setPreviousTime(std::chrono::system_clock::now());
         }

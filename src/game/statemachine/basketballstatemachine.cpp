@@ -235,6 +235,7 @@ STATE_DEFINE(basketballStateMachine, LoadModel, basketballSMData)
     std::string func = "basketballStateMachine::LoadModel()";
 
     logMsg(func +" begin");
+    exit(0);
 
     component->setModelFileName(bData->getModelFileName());
 

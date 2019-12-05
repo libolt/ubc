@@ -474,7 +474,7 @@ STATE_DEFINE(gameStateMachine, loadModels, gameSMData)
         logMsg(func +" Loading basketball Model!");
 //        exit(0);
         logMsg(func +" activeBasketballInstance.size() == " +convert->toString(data->component->getActiveBasketballInstance().size()));
-//        exit(0);
+        exit(0);
 //        activeBasketballInstance = loadBasketball->loadModels(data->component->getActiveBasketballInstance(), data->render);  // Loads the basketball model
 //        exit(0);
         activeBasketballInstance = data->component->getActiveBasketballInstance();

@@ -426,12 +426,6 @@ bool guiComponents::initMyGUI(const renderEngineSharedPtr &render)  // Initializ
 
     mGUI->initialise();
 
-    // load the basic resource location(s)
-    guiRSM->addResourceLocation(dataPath + "/Media/compositor", "FileSystem",
-                             guiResourceGroup);
-    guiRSM->initialiseResourceGroup("GUIData", false);
-
-//    exit(0);
     logMsg(func +" *** MyGUI Initialized ***");
     logMsg(func +" end");
     return true;

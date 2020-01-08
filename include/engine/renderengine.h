@@ -24,7 +24,7 @@
 
 #include <algorithm>
 #ifdef __ANDROID__
-//#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+//#ifdef __ANDROID
     #define OGRE_STATIC_GLES2
 //    #define OGRE_STATIC_ParticleFX
 //    #define OGRE_STATIC_OctreeSceneManager
@@ -88,7 +88,7 @@ class renderEngine : public engine
     sharedPtr<Ogre::Viewport> getViewPort() const; // retrieves the value of viewPort
     void setViewPort(const sharedPtr<Ogre::Viewport> &set); // sets the value of viewPort
 	
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
     Ogre::DataStreamPtr openAPKFile(const std::string &set);  // opens APK file
 
     AAssetManager* getMAssetMgr() const;  // retrieves the value of mAssetMgr
@@ -154,7 +154,7 @@ class renderEngine : public engine
     bool renderFrame();  // renders a frame to the screen
     
     protected:
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
     static android_app *app;
     //static
     static Ogre::StaticPluginLoader *gStaticPluginLoader;
@@ -194,7 +194,7 @@ class renderEngine : public engine
 //    uint32_t windowWidth;  // stores the width of the window
 //    uint32_t windowHeight;  // stores the height of the window
     // Android support
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
     static AAssetManager* mAssetMgr;  // stores the android asset manager
 #endif
 

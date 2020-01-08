@@ -145,7 +145,7 @@ offensePlaysVecSharedPtr loadOffensePlays::loadOffensePlayFiles()  // load offen
 
     logMsg(func +" begin");
     
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
     playList = "data/offense/plays/plays.xml";
 #else
     playList = findFile("offense/plays/plays.xml");
@@ -158,7 +158,7 @@ offensePlaysVecSharedPtr loadOffensePlays::loadOffensePlayFiles()  // load offen
     for (it = offensePlayFiles.begin(); it != offensePlayFiles.end(); ++it)
     {
         logMsg(func +" offensePlayFile = " +*it);
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
         plays.push_back(loadOffensePlayFile("data/offense/plays/" + *it));
 #else
         plays.push_back(loadOffensePlayFile(findFile("offense/plays/" + *it)));

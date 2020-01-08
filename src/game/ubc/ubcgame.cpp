@@ -593,6 +593,7 @@ bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &in
                         logMsg(func +" SAITA stateAction.size() "
                                +convert->toString(gameInstance->getData()->getStateAction().size()));
                         logMsg(func +" SAITA GLOADMODELS");
+                        exit(0);
                         gameInstance->updateState(gameE->getRenderE());
                     }
                 }

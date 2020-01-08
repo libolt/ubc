@@ -153,7 +153,7 @@ playerEntityMSharedPtr loadPlayers::loadPlayerFiles()  // loads the players
     
     logMsg(func +" begin");
 
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
     playerList = "data/players/players.xml";
 #else
     playerList = findFile("players/players.xml");
@@ -167,7 +167,7 @@ playerEntityMSharedPtr loadPlayers::loadPlayerFiles()  // loads the players
     {
         logMsg(func +" it == " +convert->toString(it));
         logMsg("playerFile = " +playerFiles[it]);
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
 //        playerInstance = loadPlayerFile("data/players/" + playerFiles[it]);
         players.insert(std::pair<size_t, playerEntitySharedPtr>(it, loadPlayerFile("data/players/" + playerFiles[it])));
 //        players.emplace(it, loadPlayerFile(findFile("data/players/" + playerFiles[it])));

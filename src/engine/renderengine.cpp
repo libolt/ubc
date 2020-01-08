@@ -41,21 +41,21 @@
 #define OGRE_PLUGIN_DIRr
 #endif
 
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
     android_app *renderEngine::app;
     Ogre::StaticPluginLoader *renderEngine::gStaticPluginLoader;
     AConfiguration *renderEngine::config;
 #endif
 
 
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
 AAssetManager *renderEngine::mAssetMgr; 
 #endif
 
 renderEngine::renderEngine()
 {
 
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
     gStaticPluginLoader = nullptr;
     mAssetMgr = nullptr;
     mSceneMgr = nullptr;
@@ -137,7 +137,7 @@ void renderEngine::setViewPort(const sharedPtr<Ogre::Viewport> &set) // sets the
 	viewPort = set;
 }
 
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
 
 AAssetManager *renderEngine::getMAssetMgr() const  // retrieves the value of mAssetMgr
 {
@@ -268,7 +268,7 @@ void renderEngine::setCompositorManager(const sharedPtr<Ogre::CompositorManager2
 }
 
 
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
 Ogre::DataStreamPtr renderEngine::openAPKFile(const std::string& fileName)  // Opens the UBC apk file
 {
     struct android_app* app;
@@ -324,7 +324,7 @@ bool renderEngine::initSDL() // Initializes SDL Subsystem
 //        exit(0);
         logMsg(func +" Unable to initialize SDL: "
                +convert->toString(SDL_GetError()));
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
 
 //        __android_log_print(ANDROID_LOG_DEBUG, "com.libolt.ubc", "SDL Error = %s", SDL_GetError());
 	std::string msg = "SDL Error = " +convert->toString(SDL_GetError());
@@ -336,7 +336,7 @@ bool renderEngine::initSDL() // Initializes SDL Subsystem
 
 //    exit(0);
     
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
     SDL_DisplayMode mode;
 	SDL_GetDesktopDisplayMode(0,&mode);
 
@@ -417,7 +417,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
     const std::string pluginDir = OGRE_PLUGIN_DIR;
     logMsg(func +" winHandle for Ogre = " +winHandle);
 //    exit(0);
-//#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+//#ifdef __ANDROID
 //#else
 //	inputSystem *input = inputSystem::Instance();
 //#endif
@@ -461,7 +461,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 #endif
 //    exit(0);
 
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
     RERoot->setRenderSystem(RERoot->getAvailableRenderers().at(0));
 //    RERoot->initialise(false);
 //    RERoot->init = true;
@@ -551,7 +551,7 @@ bool renderEngine::createScene()
 
     instance += 1;
 //    exit(0);
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
     logMsg(func +" Hello");
     config = AConfiguration_new();
     logMsg(func +" Mello");
@@ -642,7 +642,7 @@ bool renderEngine::createScene()
     logMsg(func +" mWindow handle = " +convert->toString(handle));
 //    exit(0);
     logMsg(func +" Dead");
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
     sdlWindow = SDL_CreateWindowFrom(mWindow.get());
 //    exit(0);
 #endif
@@ -676,7 +676,7 @@ bool renderEngine::createScene()
 
     Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
 
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#if __ANDROID__
     Ogre::ConfigFile cf;
     cf.load(openAPKFile("resources.cfg"));
     logMsg(func +" or");
@@ -724,11 +724,11 @@ bool renderEngine::createScene()
 #endif
     logMsg(func +" Alive?");
 
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#if __ANDROID__
     std::string dataPath = "data";
 #else
     std::string dataPath = UBC_DATADIR;
-
+//exit(0);
 
     // load the basic resource location(s)
     rsm->addResourceLocation(dataPath + "/Media", "FileSystem", mResourceGroup);
@@ -764,6 +764,7 @@ bool renderEngine::createScene()
 
 #endif
 
+    logMsg(func +"Setting up HLMS");
 
     Ogre::Archive *archiveLibrary = Ogre::ArchiveManager::getSingletonPtr()->load(
                     dataPath + "/Media/Hlms/Common/GLSL", "FileSystem", true );
@@ -886,7 +887,7 @@ bool renderEngine::createScene()
     logMsg(func +"Compositor setup");
 
 /*
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
 	mCamera->setNearClipDistance(1.0f);
 	mCamera->setFarClipDistance(100000.0f);
 	mCamera->setPosition(0, 0, 20.0f);
@@ -919,7 +920,7 @@ bool renderEngine::createScene()
     // most examples get the viewport size to calculate this; for now, we'll just
     // set it to 4:3 the easy way
 
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
     viewPort->setMaterialScheme(
                 Ogre::RTShader::ShaderGenerator::DEFAULT_SCHEME_NAME);
 #endif
@@ -952,8 +953,8 @@ bool renderEngine::createScene()
         exit(0);
     }
 
-/*
-    bball = OgreEntitySharedPtr(mSceneMgr->createEntity("bball.mesh",
+
+/*    bball = OgreEntitySharedPtr(mSceneMgr->createEntity("bball.mesh",
                                                         "UBCData"));
     bballNode = OgreSceneNodeSharedPtr(
                 mSceneMgr->getRootSceneNode()->createChildSceneNode());
@@ -975,7 +976,7 @@ bool renderEngine::createScene()
 	//	unsigned long hWnd;
 	//		mWindow->getCustomAttribute("WINDOW", &winHandle);
 /*
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
 	Ogre::Entity* pEntity = mSceneMgr->createEntity("court", "Player.mesh");
 	Ogre::SceneNode* pNode = mSceneMgr->getRootSceneNode()->createChildSceneNode("court");
 	pNode->attachObject(pEntity);

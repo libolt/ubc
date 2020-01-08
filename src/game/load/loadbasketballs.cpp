@@ -157,7 +157,7 @@ basketballEntityMSharedPtr loadBasketballs::loadFiles()  // load basketball sett
     
     logMsg(func +" begin");
     
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
     basketballList = "data/basketballs/basketballs.xml";
 #else
     basketballList = findFile("basketballs/basketballs.xml");
@@ -170,7 +170,7 @@ basketballEntityMSharedPtr loadBasketballs::loadFiles()  // load basketball sett
     //    for (it = basketballFiles.begin(); it != basketballFiles.end(); ++it)
     {
         logMsg("basketballFile = " +basketballFiles[it]);
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
 //        basketballs.push_back(loadFile("data/basketballs/" + *it));
         basketballs.insert(std::pair<size_t, basketballEntitySharedPtr>(it, loadFile("data/basketballs/" + basketballFiles[it])));
 

@@ -81,7 +81,7 @@ bool soundEngine::loadSound(std::string sound)  // loads sounds from media file
 ///		return (false);
 ///    }
     
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
     std::string sampleFile = "data/Media/Audio/roar.wav";
 #else
     std::string sampleFile = load->findFile("Media/Audio/roar.wav");
@@ -119,7 +119,7 @@ bool soundEngine::setup()  // sets up the sound engine
 ///        logMsg("Maximum supported files is "  +convert->toString(MAX_SOURCES));
 ///    }
 
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
 
     JNIEnv* env = (JNIEnv*)SDL_AndroidGetJNIEnv();
     jobject UBCActivity = (jobject)SDL_AndroidGetActivity();

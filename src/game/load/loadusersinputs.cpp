@@ -151,7 +151,7 @@ usersInputsVecSharedPtr loadUsersInputs::loadUsersInputFiles()  // load user inp
 
     logMsg(func +" begin");
 
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
     usersInputList = "data/users/inputlist.xml";
 #else
     usersInputList = findFile("users/inputlist.xml");
@@ -164,7 +164,7 @@ usersInputsVecSharedPtr loadUsersInputs::loadUsersInputFiles()  // load user inp
     for (it = usersInputFiles.begin(); it != usersInputFiles.end(); ++it)
     {
         logMsg(func +" userInputFile = " +*it);
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
         usersInputs.push_back(loadUsersInputFile("data/users/" + *it));
         input = loadUsersInputFile("data/users/" + *it);
         logMsg(func +" input quit == " +convert->toString(input->getKeyQuit()));

@@ -54,7 +54,7 @@ int loader::readFile(const char *sourceFile, char **destination)  // loads an xm
 
     logMsg(func +" begin");
 
-///#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+///#ifdef __ANDROID
 //	Ogre::DataStreamPtr fileData = render->openAPKFile("teamInstance.xml");
 //	destination = new std::string;
 ///	destination = (char**)fileData->getAsString().c_str();
@@ -93,7 +93,7 @@ int loader::readFile(const char *sourceFile, char **destination)  // loads an xm
     (*destination)[fileLength] = '\0';
 //    logMsg("destination = " +convert->toString((*destination)));
 //    exit(0);
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
 //    logMsg("destination = " +convert->toString(destination));
 #endif
 
@@ -157,7 +157,7 @@ std::string loader::findFile(const std::string &fileName)  // finds the location
     std::string retVal;  // stores return value
     std::string func = "loader::findFile()";
     
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
     dataPath = "";
 #else
     dataPath = UBC_DATADIR;
@@ -166,7 +166,7 @@ std::string loader::findFile(const std::string &fileName)  // finds the location
     logMsg(func +" begin");
     
     logMsg(func +" dataPath = " +dataPath);
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
     filePath = fileName;
 #else
     dataPath += "/";

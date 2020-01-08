@@ -135,7 +135,7 @@ basketballEntityMSharedPtr setupBasketballs::setBasketballStartPositions(basketb
         
         logMsg(func +" activeBasketballInstance == " +convert->toString(ABIIT.first));
     
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
 //    exit(0);
         ABIIT.second->getComponent()->getNode()->setPosition(0.8f,10.0f,352.0f);
 #else

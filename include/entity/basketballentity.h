@@ -55,7 +55,10 @@ class basketballEntity : public entity
     basketballActions getAction() const;  // retrieves the value of action
     void setAction(const basketballActions &set);
 
-    void updateStateMachine(const gameComponentsSharedPtr &gameComponent, const gameDataSharedPtr &gameDta, const gameFlagsSharedPtr &gameFlag, const renderEngineSharedPtr &render);  // updates the state of the basketball
+    void updateStateMachine(const gameComponentsSharedPtr &gameComponent,
+                            const gameDataSharedPtr &gameDta,
+                            const gameFlagsSharedPtr &gameFlag,
+                            const renderEngineSharedPtr &render);  // updates the state of the basketball
     
 //    void updatePosition();  // updates the position of the basketball
 

@@ -42,7 +42,8 @@ class teamComponents
         void setDefenseInstance(const defenseSharedPtr &set);  // sets the value of defenseInstance
 
         std::map<std::string, btRigidBodySharedPtr> getCollisionBodies() const;  // retrieves the value of collisionBodies
-        void setCollisionBodies(const std::map<std::string, btRigidBodySharedPtr> &set);  // sets the value of collisionBodies
+        void setCollisionBodies(const std::map<std::string,
+                                btRigidBodySharedPtr> &set);  // sets the value of collisionBodies
 
     private:
     

@@ -21,7 +21,9 @@
 #ifndef _ENUMS_H_
 #define _ENUMS_H_
 
-    enum inputInGameMaps { INNO, INUP, INDOWN, INLEFT, INRIGHT, INUPLEFT, INUPRIGHT, INDOWNLEFT, INDOWNRIGHT, INSHOOTBLOCK, INPASSSTEAL, INPAUSE, INSTARTSELECT, INQUIT }; // map of human player input
+    enum inputInGameMaps { INNO, INUP, INDOWN, INLEFT, INRIGHT, INUPLEFT,
+                           INUPRIGHT, INDOWNLEFT, INDOWNRIGHT, INSHOOTBLOCK,
+                           INPASSSTEAL, INPAUSE, INSTARTSELECT, INQUIT }; // map of human player input
     enum inputKeyMaps  // maps input to appropriate keys
     {
         INKEY_A,
@@ -140,36 +142,48 @@
     
     enum inputTypes { KEYBOARD, MOUSE, GAMEPAD, TOUCH, INNOTYPE };  // types of inputs used in the game
 	enum mouseClicks { NOCLICK, LEFTCLICK, RIGHTCLICK, MIDDLECLICK, WHEELCLICK };  // stores which mouse button has been clicked
-    enum directions { NODIRECT, UP, DOWN, LEFT, RIGHT, UPLEFT, UPRIGHT, DOWNLEFT, DOWNRIGHT };	// direction objects are moving
+    enum directions { NODIRECT, UP, DOWN, LEFT, RIGHT, UPLEFT, UPRIGHT, DOWNLEFT,
+                      DOWNRIGHT };	// direction objects are moving
     enum gameTypes { NOGAME, SINGLE, MULTILOCAL, MULTINET }; // defines whether a game is single or multi player
     enum netGameTypes { NONETGT, CLIENT, SERVER}; // defines which type of network game this instance is running
     enum quarters { NOQUARTER, FIRST, SECOND, THIRD, FOURTH }; // defines the quarters within the game
     enum courtSide_t {NOSIDE, RIGHTSIDE, LEFTSIDE };	// defines which side of the court the offensive team is on
 
     // GUI
-    enum activeMenus { NOACTIVEMENU, MAIN, NETWORK, NETWORKCLIENT, NETWORKSERVER, OPTIONS, DISPLAY, INPUTMENU, AUDIO, GAMESETUP, PLAYERSTART, TEAMSELECT, COURTSELECT }; // stores which menu is set to active
+    enum activeMenus { NOACTIVEMENU, MAIN, NETWORK, NETWORKCLIENT, NETWORKSERVER,
+                       OPTIONS, DISPLAY, INPUTMENU, AUDIO, GAMESETUP, PLAYERSTART,
+                       TEAMSELECT, COURTSELECT }; // stores which menu is set to active
 
-    enum audioMenuSelects { NOAUDIOMENU, ENABLEAUDIO, DISABLEAUDIO, BACKAUDIOOPTIONS };
+    enum audioMenuSelects { NOAUDIOMENU, ENABLEAUDIO, DISABLEAUDIO,
+                            BACKAUDIOOPTIONS };
 
     enum courtMenuSelects { NOCOURTMENU, COURTSSELECT, BACKCOURTMAIN };
 
-    enum displayMenuSelects { NODSIPLAYMENU, CHANGERESOLUTION, BACKDISPLAYOPTOINS };
+    enum displayMenuSelects { NODSIPLAYMENU, CHANGERESOLUTION,
+                              BACKDISPLAYOPTOINS };
 
     enum inputMenuSelects { NOINPUTMENU, CHANGEINPUTTYPE, BACKINPUTOPTIONS };
 
     enum mainMenuSelects { NOMAINMENU, STARTSINGLE, STARTMULTI, OPTIONSSELECT };
 
-    enum networkMenuSelects { NONETWORKMENU, SERVERSELECT, CLIENTSELECT, BACKNETWORKMAIN };
+    enum networkMenuSelects { NONETWORKMENU, SERVERSELECT, CLIENTSELECT,
+                              BACKNETWORKMAIN };
 
-    enum networkServerMenuSelects { NONETWORKSERVERMENU, HOSTGAME, BACKNETSERVMAIN };
+    enum networkServerMenuSelects { NONETWORKSERVERMENU, HOSTGAME,
+                                    BACKNETSERVMAIN };
 
-    enum networkClientMenuSelects { NONETWORKCLIENTMENU, CONNECTGAME, BACKNETCLIENTMAIN };
+    enum networkClientMenuSelects { NONETWORKCLIENTMENU, CONNECTGAME,
+                                    BACKNETCLIENTMAIN };
 
-    enum optionsMenuSelects { NOOPTIONSMENU, AUDIOSELECT, DISPLAYSELECT, INPUTSELECT, BACKOPTIONSMAIN };
+    enum optionsMenuSelects { NOOPTIONSMENU, AUDIOSELECT, DISPLAYSELECT,
+                              INPUTSELECT, BACKOPTIONSMAIN };
 
-    enum startersMenuSelects { NOSTARTERSMENU, HOMESTARTERSSELECT, AWAYSTARTERSSELECT, STARTERSSELECT, BACKSTARTERSTEAM };
+    enum startersMenuSelects { NOSTARTERSMENU, HOMESTARTERSSELECT,
+                               AWAYSTARTERSSELECT, STARTERSSELECT,
+                               BACKSTARTERSTEAM };
 
-    enum teamMenuSelects { NOTEAMMENU, AWAYSELECT, HOMESELECT, TEAMSSELECT, BACKTEAMCOURT, BACKTEAMMAIN };
+    enum teamMenuSelects { NOTEAMMENU, AWAYSELECT, HOMESELECT, TEAMSSELECT,
+                           BACKTEAMCOURT, BACKTEAMMAIN };
 
     // jump ball
     enum jumpBallLocations_t { NOLOCATION, CENTERCIRCLE, RIGHTKEYCIRCLE, LEFTKEYCIRCLE };
@@ -183,12 +197,14 @@
 
     enum bballBounces { NOBOUNCE, BOUNCEUP, BOUNCEDOWN};  // defines state of basketball bounce
     // Network
-    enum packetTypes { GAMEDATA, GAMESTATE, PLAYERDATA, PLAYERSTATE, TEAMDATA, TEAMSTATE }; // Defines what type of data is being sent over the network
+    enum packetTypes { GAMEDATA, GAMESTATE, PLAYERDATA, PLAYERSTATE, TEAMDATA,
+                       TEAMSTATE }; // Defines what type of data is being sent over the network
     // Physics bit masks
     #define BIT(x) (1<<(x))
 
     // Player and Basketball
-    enum positionChangedTypes { NOCHANGE, STARTCHANGE, STEERCHANGE, INPUTCHANGE, PHYSICSCHANGE, PLAYERMOVECHANGE, PLAYERDIRECTCHANGE }; // Defines the type of position change that occured
+    enum positionChangedTypes { NOCHANGE, STARTCHANGE, STEERCHANGE, INPUTCHANGE,
+                                PHYSICSCHANGE, PLAYERMOVECHANGE, PLAYERDIRECTCHANGE }; // Defines the type of position change that occured
 
     // Teams
     enum teamTypes {NOTEAM, HOMETEAM, AWAYTEAM };  // Defines the type of team
@@ -198,15 +214,20 @@
     // physics
     enum physicsShapes {CAPSULE, BOX, CYLINDER, SPHERE };  // Defines what type of physics object to create
 
-    enum basketballActions {BNOACTION, BLOADMODEL, BCREATENODE, BMOVE, BCHANGEDIRECTION, BCHANGEPOS };
+    enum basketballActions {BNOACTION, BLOADMODEL, BCREATENODE, BMOVE,
+                            BCHANGEDIRECTION, BCHANGEPOS };
 
     enum courtActions {CNOACTION, CLOADMODEL, CCREATENODE, CMOVE, CCHANGEDIRECTION, CCHANGEPOS };
 
-    enum gameActions {GNOACTION, GCREATEINSTANCES, GLOADMODELS, GCREATENODES, GSETSTARTPOS, GSETUPJUMPBALL, GEXECJUMPBALL, GINPUTRECEIVED};
+    enum gameActions {GNOACTION, GCREATEINSTANCES, GLOADMODELS, GCREATENODES,
+                      GSETSTARTPOS, GSETUPJUMPBALL, GEXECJUMPBALL, GINPUTRECEIVED};
 
-    enum hoopActions {HNOACTION, HLOADMODEL, HCREATENODE, HMOVE, HCHANGEDIRECTION, HCHANGEPOS};
+    enum hoopActions {HNOACTION, HLOADMODEL, HCREATENODE, HMOVE,
+                      HCHANGEDIRECTION, HCHANGEPOS};
     
-    enum playerActions {PNOACTION, PLOADMODEL, PCREATENODE, PMOVE, CHANGECOURTPOS, CHANGEDIRECTION, JUMP, SHOOT, PASS, STEAL, BLOCK };
+    enum playerActions {PNOACTION, PLOADMODEL, PCREATENODE, PMOVE,
+                        CHANGECOURTPOS, CHANGEDIRECTION, JUMP, SHOOT, PASS,
+                        STEAL, BLOCK };
     
     enum userTypes {NOUSER, LOCALUSER, NETWORKUSER };
     
@@ -226,8 +247,10 @@
         COL_PLAYER7 = BIT(10), // Collides with player 7
         COL_PLAYER8 = BIT(11), // Collides with player 8
         COL_PLAYER9 = BIT(12), // Collides with player 9
-        COL_TEAM1 = COL_PLAYER0 | COL_PLAYER1 | COL_PLAYER2 | COL_PLAYER3 | COL_PLAYER4, //<Collide with team1
-        COL_TEAM2 = COL_PLAYER5 | COL_PLAYER6 | COL_PLAYER7 | COL_PLAYER8 | COL_PLAYER9  //<Collide with team2
+        COL_TEAM1 = COL_PLAYER0 | COL_PLAYER1 | COL_PLAYER2 | COL_PLAYER3 |
+        COL_PLAYER4, //<Collide with team1
+        COL_TEAM2 = COL_PLAYER5 | COL_PLAYER6 | COL_PLAYER7 | COL_PLAYER8 |
+        COL_PLAYER9  //<Collide with team2
 
     };
 

@@ -30,12 +30,21 @@ class setupPlayers
         setupPlayers();  // constructor
         ~setupPlayers();  // destructor
 
-        bool checkIfGamePlayerInstancesCreated(const gameComponentsSharedPtr &gameComponent, const gameFlagsSharedPtr &gameFlag);  // checks if the gameState Objects Player Instances have been created
-        bool checkIfTeamPlayerInstancesCreated(const playerEntityMSharedPtr &gamePlayerInstance, const teamEntityMSharedPtr &activeTeamInstance);  // checks if the gameState Objects Player Instances have been created
+        bool checkIfGamePlayerInstancesCreated(
+                const gameComponentsSharedPtr &gameComponent,
+                const gameFlagsSharedPtr &gameFlag);  // checks if the gameState Objects Player Instances have been created
+        bool checkIfTeamPlayerInstancesCreated(
+                const playerEntityMSharedPtr &gamePlayerInstance,
+                const teamEntityMSharedPtr &activeTeamInstance);  // checks if the gameState Objects Player Instances have been created
         playerEntityMSharedPtr createPlayerInstances();  // creates player Instances
-        playerEntityMSharedPtr createTeamPlayerInstances(playerEntityMSharedPtr gamePlayerInstance, size_t teamID);  // creates player instances for a team
-        playerEntityMSharedPtr createActivePlayerInstances(playerEntityMSharedPtr playerInstance,std::map<playerPositions, size_t> activePlayerID);  // creates active player instances
-        playerEntityMSharedPtr setupActivePlayerInstances(playerEntityMSharedPtr playerInstance, const renderEngineSharedPtr &render);  // sets up active player instances
+        playerEntityMSharedPtr createTeamPlayerInstances(
+                playerEntityMSharedPtr gamePlayerInstance, size_t teamID);  // creates player instances for a team
+        playerEntityMSharedPtr createActivePlayerInstances(
+                playerEntityMSharedPtr playerInstance,std::map<playerPositions,
+                size_t> activePlayerID);  // creates active player instances
+        playerEntityMSharedPtr setupActivePlayerInstances(
+                playerEntityMSharedPtr playerInstance,
+                const renderEngineSharedPtr &render);  // sets up active player instances
 
     private:
 

@@ -31,8 +31,11 @@ class setupBasketballs
         ~setupBasketballs();  // destructor
         
         basketballEntityMSharedPtr createBasketballInstances();  // creates basketball Instances
-        basketballEntityMSharedPtr createActiveBasketballInstances(basketballEntityMSharedPtr basketballInstance, size_t numActiveBasketballs);  // creates active basketball instances
-        basketballEntityMSharedPtr setBasketballStartPositions(basketballEntityMSharedPtr activeBasketballInstance);  // sets the initial coordinates for the basketball(s)
+        basketballEntityMSharedPtr createActiveBasketballInstances(
+                basketballEntityMSharedPtr basketballInstance,
+                size_t numActiveBasketballs);  // creates active basketball instances
+        basketballEntityMSharedPtr setBasketballStartPositions(
+                basketballEntityMSharedPtr activeBasketballInstance);  // sets the initial coordinates for the basketball(s)
 
     private:
     

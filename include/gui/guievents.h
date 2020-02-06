@@ -104,7 +104,7 @@ class guiEvents : public std::enable_shared_from_this<guiEvents>
 
         guiDataSharedPtr data;  // stores gui data functions
 
-        guiDisplaySharedPtr display;  // stores gui display functions        guiFlagsSharedPtr flag;  // stores gui related flags
+        guiDisplaySharedPtr display;  // stores gui display functions
 
         guiFlagsSharedPtr flag;  // stores gui related flags
 

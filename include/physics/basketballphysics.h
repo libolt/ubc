@@ -47,7 +47,9 @@ class basketballPhysics : public physics
 
         void updateState();  // updates the basketball physics state
 
-        void ballDribbling(Ogre::Vector3 bballPos, const btRigidBodySharedPtr &courtPhysBody, Ogre::Vector3 courtPos);  // simulates basketball dribble
+        void ballDribbling(Ogre::Vector3 bballPos,
+                           const btRigidBodySharedPtr &courtPhysBody,
+                           Ogre::Vector3 courtPos);  // simulates basketball dribble
 
         void updatePosition();  // updates the position of basketball object(s)
 

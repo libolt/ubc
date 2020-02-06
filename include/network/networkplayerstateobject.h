@@ -64,15 +64,19 @@ class networkPlayerStateObject // object that holde network state data for a pla
     void setZCoord(float coord); // sets the value of ZCoord
 
 
-    friend std::ostream& operator<< (std::ostream& out, networkPlayerStateObject& object)
+    friend std::ostream& operator<< (std::ostream& out,
+                                     networkPlayerStateObject& object)
     {
-        out << object.packetType << " " << object.teamID << " " << object.playerID << " " << object.movement
-        << " " << object.direction << " " << object.shootBlock << " " << object.passSteal << " "
+        out << object.packetType << " " << object.teamID << " "
+            << object.playerID << " " << object.movement
+        << " " << object.direction << " " << object.shootBlock << " "
+        << object.passSteal << " "
         <<  object.XCoord << " " << object.YCoord << " " << object.ZCoord;   //The space (" ") is necessary for separate elements
         return out;
     }
 
-    friend std::istream& operator>> (std::istream& in, networkPlayerStateObject& object)
+    friend std::istream& operator>> (std::istream& in,
+                                     networkPlayerStateObject& object)
     {
 
         in >> object.packetType;

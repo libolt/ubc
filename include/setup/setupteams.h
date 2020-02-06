@@ -31,12 +31,20 @@ class setupTeams
         ~setupTeams();  // destructor
         
         teamEntityMSharedPtr createTeamInstances();  // creates team Instances
-        teamEntityMSharedPtr createActiveTeamInstances(teamEntityMSharedPtr teamInstance, sizeTVec teamID);  // creates active team instances
+        teamEntityMSharedPtr createActiveTeamInstances(
+                teamEntityMSharedPtr teamInstance, sizeTVec teamID);  // creates active team instances
         
-        playerEntityMSharedPtr setPlayerStartPositions(playerEntityMSharedPtr activePlayerInstance, courtEntityMSharedPtr courtInstance, const teamGameDataSharedPtr &gameData, const teamStarterIDsVecM &teamStarterID);  // sets the initial coordinates for the players.
-        playerEntityMSharedPtr setPlayerStartActivePositions(playerEntityMSharedPtr activePlayerInstance);  // sets the position the players will play at the start of the game
+        playerEntityMSharedPtr setPlayerStartPositions(
+                playerEntityMSharedPtr activePlayerInstance,
+                courtEntityMSharedPtr courtInstance,
+                const teamGameDataSharedPtr &gameData,
+                const teamStarterIDsVecM &teamStarterID);  // sets the initial coordinates for the players.
+        playerEntityMSharedPtr setPlayerStartActivePositions(
+                playerEntityMSharedPtr activePlayerInstance);  // sets the position the players will play at the start of the game
 
-        playerEntityMSharedPtr setPlayerStartDirections(playerEntityMSharedPtr activePlayerInstance, const teamGameDataSharedPtr &gameData);  // sets the initial directions for the players.
+        playerEntityMSharedPtr setPlayerStartDirections(
+                playerEntityMSharedPtr activePlayerInstance,
+                const teamGameDataSharedPtr &gameData);  // sets the initial directions for the players.
 
     private:
     

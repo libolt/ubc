@@ -95,8 +95,10 @@ bool physicsEngine::setup()  // sets up the physicsEngine object
     btBroadphaseInterface *tempBroadPhase = new btDbvtBroadphase;
     broadPhase = sharedPtr<btBroadphaseInterface>(tempBroadPhase);
 //    collisionConfig = new btDefaultCollisionConfiguration();
-    btDefaultCollisionConfiguration *tempCollisionConfig = new btDefaultCollisionConfiguration;
-    collisionConfig = sharedPtr<btDefaultCollisionConfiguration>(tempCollisionConfig);
+    btDefaultCollisionConfiguration *tempCollisionConfig =
+            new btDefaultCollisionConfiguration;
+    collisionConfig =
+            sharedPtr<btDefaultCollisionConfiguration>(tempCollisionConfig);
 //    dispatcher = new btCollisionDispatcher(collisionConfig);
 //    btCollisionDispatcher *tempDispatcher = new btCollisionDispatcher(collisionConfig.get());
     auto *tempDispatcher = new btCollisionDispatcher(collisionConfig.get());
@@ -107,7 +109,10 @@ bool physicsEngine::setup()  // sets up the physicsEngine object
     solver = sharedPtr<btSequentialImpulseConstraintSolver>(tempSolver);
 //    world = new btDiscreteDynamicsWorld(dispatcher, broadPhase, solver, collisionConfig);
 //    world->setGravity(btVector3(0,-9.8,0));
-    btDynamicsWorld *tempWorld = new btDiscreteDynamicsWorld(dispatcher.get(), broadPhase.get(), solver.get(), collisionConfig.get());
+    btDynamicsWorld *tempWorld = new btDiscreteDynamicsWorld(dispatcher.get(),
+                                                             broadPhase.get(),
+                                                             solver.get(),
+                                                             collisionConfig.get());
 //    tempWorld->setGravity(btVector3(0,-9.8,0));
     std::string func = "physicsEngine::setup()";
     
@@ -132,7 +137,9 @@ void physicsEngine::setupState(const renderEngineSharedPtr &render)  // sets up 
 
     // Debug drawing!
     //debugDraw = new BtOgre::DebugDrawer(render->getMSceneMgr()->getRootSceneNode(), world.get());
-    BtOgre::DebugDrawer *tempDebugDraw = new BtOgre::DebugDrawer(render->getMSceneMgr()->getRootSceneNode(), world.get());
+    BtOgre::DebugDrawer *tempDebugDraw =
+            new BtOgre::DebugDrawer(render->getMSceneMgr()->getRootSceneNode(),
+                                    world.get());
     debugDraw = sharedPtr<BtOgre::DebugDrawer>(tempDebugDraw);
     world->setDebugDrawer(debugDraw.get());
 

@@ -307,8 +307,10 @@ void networkEngine::networkClient()
                          event.peer -> data,
                          event.channelID);
 */
-                logMsg(func +" A packet of length " +convert->toString(event.packet->dataLength)
-                       +" containing " + convert->toString(event.packet->data) +" was received from "
+                logMsg(func +" A packet of length "
+                       +convert->toString(event.packet->dataLength)
+                       +" containing " + convert->toString(event.packet->data)
+                       +" was received from "
                        +convert->toString(event.peer->data) +" on channel "
                        +convert->toString(event.channelID));
                 packetReceived = true;	// lets code know that a packet was received
@@ -384,7 +386,8 @@ void networkEngine::networkServer()  // executes the network server code
 //    sharedPtr<gameEngine> gameE = gameEngine::Instance();
     
     char *host; 
-    std::string addressHost, addressPort, packetData, packetDataLength, packetPeer, packetChannelID;
+    std::string addressHost, addressPort, packetData, packetDataLength,
+            packetPeer, packetChannelID;
     int x = 0;
     networkPlayerStateObject netPStateObj;
     std::stringstream ss;
@@ -496,7 +499,9 @@ void networkEngine::sendPacket(const std::string &packetData)  // sends a packet
     logMsg("Peer host == " +host);
     exit(0);
     //packet = enet_packet_create(packetData.c_str(),strlen(packetData.c_str())+1,ENET_PACKET_FLAG_RELIABLE);
-    ENetPacket *tempPacket = enet_packet_create(packetData.c_str(),strlen(packetData.c_str())+1,ENET_PACKET_FLAG_RELIABLE);
+    ENetPacket *tempPacket = enet_packet_create(packetData.c_str(),
+                                                strlen(packetData.c_str())+1,
+                                                ENET_PACKET_FLAG_RELIABLE);
     packet = sharedPtr<ENetPacket>(tempPacket);
     enet_peer_send (peer.get(), 0, packet.get());
 }

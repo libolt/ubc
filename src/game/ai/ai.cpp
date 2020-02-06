@@ -131,7 +131,11 @@ void AISystem::setOldTime(const float &set)  // sets the value of oldTime
 void printPlugIn(OpenSteer::PlugIn& pi);
 
 // initial setup of AI state
-bool AISystem::setup(const basketballEntityMSharedPtr &activeBasketballInstance, const courtEntityMSharedPtr &activeCourtInstance, const teamEntityMSharedPtr &activeTeamInstance, const teamTypes &teamWithBall, const std::string &humanPlayer)
+bool AISystem::setup(const basketballEntityMSharedPtr &activeBasketballInstance,
+                     const courtEntityMSharedPtr &activeCourtInstance,
+                     const teamEntityMSharedPtr &activeTeamInstance,
+                     const teamTypes &teamWithBall,
+                     const std::string &humanPlayer)
 {
     conversionSharedPtr convert ;
 
@@ -154,7 +158,10 @@ bool AISystem::setup(const basketballEntityMSharedPtr &activeBasketballInstance,
             exit(0);
         }
         logMsg(func +" team name == " +ATIIT.second->getData()->getName());
-        logMsg(func +" ATIIT.second->getComponent()->getActivePlayerInstance().size() == " +convert->toString(ATIIT.second->getComponent()->getActivePlayerInstance().size()));
+        logMsg(func
+               +" ATIIT.second->getComponent()->getActivePlayerInstance().size() "
+                "== " +convert->toString(
+                ATIIT.second->getComponent()->getActivePlayerInstance().size()));
     }
 //    exit(0);
     // select the default PlugIn
@@ -193,7 +200,8 @@ void AISystem::update(const float currentTime, const float elapsedTime) // updat
     logMsg(func +" begin");
 	aiTimer.update();
 //	updateSelectedPlugIn( currentTime, elapsedTime);
-    updateSelectedPlugIn(aiTimer.getTotalSimulationTime(), aiTimer.getElapsedSimulationTime());
+    updateSelectedPlugIn(aiTimer.getTotalSimulationTime(),
+                         aiTimer.getElapsedSimulationTime());
     logMsg(func +" end");
 }
 
@@ -230,7 +238,8 @@ const char *AISystem::nameOfSelectedPlugIn()  // return name of currently select
 
     logMsg(func +" begin");
     logMsg(func +" end");
-    return (OpenSteerPluginSharedPtr(selectedPlugIn) ? OpenSteerPluginSharedPtr(selectedPlugIn)->name() : "no PlugIn");
+    return (OpenSteerPluginSharedPtr(selectedPlugIn)
+            ? OpenSteerPluginSharedPtr(selectedPlugIn)->name() : "no PlugIn");
 }
 
 void AISystem::openSelectedPlugIn(const teamEntityMSharedPtr &activeTeamInstance)  // open the currently selected plug-in
@@ -250,7 +259,8 @@ void AISystem::openSelectedPlugIn(const teamEntityMSharedPtr &activeTeamInstance
     logMsg(func +" end");
 }
 
-void AISystem::updateSelectedPlugIn(const float currentTime, const float elapsedTime)  // do a simulation update for the currently selected plug-in
+void AISystem::updateSelectedPlugIn(const float currentTime,
+                                    const float elapsedTime)  // do a simulation update for the currently selected plug-in
 {
     std::string func = "AISystem::updateSelectedPlugIn()";
 

@@ -262,7 +262,8 @@ sharedPtr<Ogre::CompositorManager2> renderEngine::getCompositorManager() const
 {
     return (compositorManager);
 }
-void renderEngine::setCompositorManager(const sharedPtr<Ogre::CompositorManager2> &set)
+void renderEngine::setCompositorManager(
+        const sharedPtr<Ogre::CompositorManager2> &set)
 {
     compositorManager = set;
 }

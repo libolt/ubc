@@ -81,7 +81,10 @@ public:
     void setOldTime(const float &time);  // sets the value of oldTime
 
     // initial setup of AI state
-    bool setup(const basketballEntityMSharedPtr &activeBasketballInstance, const courtEntityMSharedPtr &activeCourtInstance, const teamEntityMSharedPtr &activeTeamInstance, const teamTypes &teamWithBall, const std::string &humanPlayer);
+    bool setup(const basketballEntityMSharedPtr &activeBasketballInstance,
+               const courtEntityMSharedPtr &activeCourtInstance,
+               const teamEntityMSharedPtr &activeTeamInstance,
+               const teamTypes &teamWithBall, const std::string &humanPlayer);
 
 	// updates AI state
 	void update(const float currentTime, const float elapsedTime);

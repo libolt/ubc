@@ -60,7 +60,10 @@ class teamEntity
 
         bool initializeStateMachine();  // initializes teamStateMachine object
 
-        void updateState(const gameComponentsSharedPtr &gameComponent, const gameFlagsSharedPtr &gameFlag, const gameDataSharedPtr &gameData, const renderEngineSharedPtr &render);  // updates the state of the teamState object
+        void updateState(const gameComponentsSharedPtr &gameComponent,
+                         const gameFlagsSharedPtr &gameFlag,
+                         const gameDataSharedPtr &gameData,
+                         const renderEngineSharedPtr &render);  // updates the state of the teamState object
 
         
     private:

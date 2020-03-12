@@ -434,7 +434,7 @@ bool gameEntity::initializeStateMachine(const renderEngineSharedPtr &render)  //
 
 bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates the game state
 {
-    conversionSharedPtr convert ;
+    conversionSharedPtr convert;
 //    AISystemSharedPtr ai = AISystem::Instance();
     timing timer; 
     Ogre::Vector3 playerPos;
@@ -451,16 +451,21 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
 //    exit(0);
     logMsg(func +" begin");
     logMsg(func +" activeBasketballInstance.size() == " +convert->toString(component->getActiveBasketballInstance().size()));
-
+//    exit(0);
     if (flag->getStateChanged())
     {
-//        exit(0);
         logMsg(func +" stateAction.size() == " +convert->toString(data->getStateAction().size()));
 //        exit(0);
 //        stateAction.push_back(GLOADMODELS);
         for (auto SAIT : stateAction)
         {
-//        exit(0);
+            logMsg(func +" stateAction loop");
+//            exit(0);
+            if (SAIT == GLOADMODELS)
+            {
+                logMsg(func +" GLOADMODELS");
+                exit(0);
+            }
             auto *saSMData(new gameSMData);
 
             switch (SAIT)
@@ -475,6 +480,7 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
                         logMsg(func +" Creating Instances!");
                         saSMData->component = component;
                         saSMData->flag = flag;
+//                        exit(0);
                         stateMachine->pCreateInstances(saSMData);               
 //                        stateAction.pop_back();
 //                        stateAction.push_back(GLOADMODELS);
@@ -490,14 +496,15 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
                 //    data->getStateAction().
                 break;
                 case GLOADMODELS:
-                    logMsg(func +" Models Not Loaded yet!");        
+                    logMsg(func +" Models Not Loaded yet!");
+                    exit(0);
                     // copies required objects to SMData
                     saSMData->component = component;
                     saSMData->flag = flag;
                     saSMData->render = render;
 
                     logMsg(func +" GLOADMODELS activeBasketballInstance.size() == " +convert->toString(component->getActiveBasketballInstance().size()));
-//                    exit(0);
+                    exit(0);
                     stateMachine->pLoadModels(saSMData);
                     if (flag->getModelsLoaded())
                     {
@@ -560,6 +567,19 @@ bool gameEntity::updateState(const renderEngineSharedPtr &render)  // updates th
 //    exit(0);
     
     stateAction = updateActions(stateAction);
+    for (auto SAIT : stateAction)
+    {
+        if (SAIT == GLOADMODELS)
+        {
+         logMsg(func +" SAIT GLOADMODELS");
+//         exit(0);
+        }
+    }
+    if (!stateAction.empty())
+    {
+        flag->setStateChanged(true);
+//        exit(0);
+    }
     data->setStateAction(stateAction);
 
     if (flag->getInstancesCreated())

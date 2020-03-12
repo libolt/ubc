@@ -10,6 +10,8 @@
 */
 #endif
 
+#ifdef OPENAL_ENABLED
+
 #include <al.h>
 #include <alc.h>
 
@@ -75,6 +77,6 @@ inline void CheckOpenALError(const char* stmt, const char* fname, int line)
 #endif
 #endif
 
-
+#endif
 
 #endif

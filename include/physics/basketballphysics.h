@@ -21,7 +21,6 @@
 #ifndef _BASKETBALLPHYSICS_H_
 #define _BASKETBALLPHYSICS_H_
 
-
 #include "BtOgrePG.h"
 #include "BtOgreGP.h"
 #include "BtOgreExtras.h"
@@ -48,7 +47,9 @@ class basketballPhysics : public physics
 
         void updateState();  // updates the basketball physics state
 
-        void ballDribbling(Ogre::Vector3 bballPos, const btRigidBodySharedPtr &courtPhysBody, Ogre::Vector3 courtPos);  // simulates basketball dribble
+        void ballDribbling(Ogre::Vector3 bballPos,
+                           const btRigidBodySharedPtr &courtPhysBody,
+                           Ogre::Vector3 courtPos);  // simulates basketball dribble
 
         void updatePosition();  // updates the position of basketball object(s)
 
@@ -68,6 +69,5 @@ class basketballPhysics : public physics
         bool stateSet;  // if true then the basketball physics state has been set
 */
 };
-
 #endif // _BASKETBALLPHYSICS_H_
 

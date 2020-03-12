@@ -145,7 +145,7 @@ hoopEntityMSharedPtr setupHoops::setHoopStartPositions(hoopEntityMSharedPtr acti
     std::string func = "setupHoops::setHoopStartPositions()";
 
     logMsg(func +" begin");
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
     activeHoopInstance[0]->getComponent()->getNode()->setPosition(45.0f,-6.5f,370.0f);
     activeHoopInstance[1]->getComponent()->getNode()->setPosition(-45.0f,-6.5f,370.0f);
 #else

@@ -18,7 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "Ogre.h"
+//#include "Ogre.h"
 #include "ai/steering.h"
 #include <algorithm>
 
@@ -124,7 +124,8 @@ OpenSteer::Vec3 steering::smoothedAcceleration ()  // retrieves the value of _sm
 {
     return (_smoothedAcceleration);
 }
-OpenSteer::Vec3 steering::resetSmoothedAcceleration (const OpenSteer::Vec3& value /*= OpenSteer::Vec3::zero*/)  // resets the value of _smoothedAcceleration
+OpenSteer::Vec3 steering::resetSmoothedAcceleration (
+        const OpenSteer::Vec3& value /*= OpenSteer::Vec3::zero*/)  // resets the value of _smoothedAcceleration
 {
     return (_smoothedAcceleration = value);
 }
@@ -180,7 +181,8 @@ void steering::reset()
 // parameter names commented out to prevent compiler warning from "-W"
 
 
-OpenSteer::Vec3 steering::adjustRawSteeringForce (const OpenSteer::Vec3& force, const float /* deltaTime */)
+OpenSteer::Vec3 steering::adjustRawSteeringForce (const OpenSteer::Vec3& force,
+                                                  const float /* deltaTime */)
 {
     const float maxAdjustedSpeed = 0.2f * maxSpeed ();
     OpenSteer::Vec3 retVal;  // stores the return value
@@ -196,7 +198,8 @@ OpenSteer::Vec3 steering::adjustRawSteeringForce (const OpenSteer::Vec3& force, 
         // const float cosine = interpolate (pow (range, 20), 1.0f, -1.0f);
         // const float cosine = interpolate (pow (range, 100), 1.0f, -1.0f);
         // const float cosine = interpolate (pow (range, 50), 1.0f, -1.0f);
-        const float cosine = OpenSteer::interpolate (pow (range, 20), 1.0f, -1.0f);
+        const float cosine = OpenSteer::interpolate (pow (range, 20), 1.0f,
+                                                     -1.0f);
         retVal = limitMaxDeviationAngle (force, cosine, forward());
     }
     return (retVal);
@@ -234,12 +237,15 @@ void steering::applyBrakingForce (const float rate, const float deltaTime)
 // adjusting our orientation to maintain velocity-alignment.
 
 
-void steering::applySteeringForce (const OpenSteer::Vec3& force, const float elapsedTime)
+void steering::applySteeringForce (const OpenSteer::Vec3& force,
+                                   const float elapsedTime)
 {
-    const OpenSteer::Vec3 adjustedForce = adjustRawSteeringForce (force, elapsedTime);
+    const OpenSteer::Vec3 adjustedForce = adjustRawSteeringForce (force,
+                                                                  elapsedTime);
 
     // enforce limit on magnitude of steering force
-    const OpenSteer::Vec3 clippedForce = adjustedForce.truncateLength (maxForce ());
+    const OpenSteer::Vec3 clippedForce =
+            adjustedForce.truncateLength(maxForce());
 
     // compute acceleration and velocity
    OpenSteer::Vec3 newAcceleration = (clippedForce / mass());
@@ -250,7 +256,8 @@ void steering::applySteeringForce (const OpenSteer::Vec3& force, const float ela
     if (elapsedTime > 0)
     {
         const float smoothRate = OpenSteer::clip (9 * elapsedTime, 0.15f, 0.4f);
-        blendIntoAccumulator (smoothRate, newAcceleration, _smoothedAcceleration);
+        blendIntoAccumulator (smoothRate, newAcceleration,
+                              _smoothedAcceleration);
     }
 
     // Euler integrate (per frame) acceleration into velocity
@@ -284,7 +291,8 @@ void steering::applySteeringForce (const OpenSteer::Vec3& force, const float ela
 // parameter names commented out to prevent compiler warning from "-W"
 
 
-void steering::regenerateLocalSpace (const OpenSteer::Vec3& newVelocity, const float /* elapsedTime */)
+void steering::regenerateLocalSpace (const OpenSteer::Vec3& newVelocity,
+                                     const float /* elapsedTime */)
 {
     // adjust orthonormal basis vectors to be aligned with new velocity
     if (speed() > 0) regenerateOrthonormalBasisUF (newVelocity / speed());
@@ -299,7 +307,8 @@ void steering::regenerateLocalSpace (const OpenSteer::Vec3& newVelocity, const f
 // XXX experimental cwr 6-5-03
 
 
-void steering::regenerateLocalSpaceForBanking (const OpenSteer::Vec3& newVelocity, const float elapsedTime)
+void steering::regenerateLocalSpaceForBanking (
+        const OpenSteer::Vec3& newVelocity, const float elapsedTime)
 {
     // the length of this global-upward-pointing vector controls the vehicle's
     // tendency to right itself as it is rolled over from turning acceleration
@@ -341,7 +350,8 @@ void steering::measurePathCurvature (const float elapsedTime)
         const OpenSteer::Vec3 lateral = dF.perpendicularComponent (forward ());
         const float sign = (lateral.dot (side ()) < 0) ? 1.0f : -1.0f;
         _curvature = lateral.length() * sign;
-        OpenSteer::blendIntoAccumulator (elapsedTime * 4.0f, _curvature, _smoothedCurvature);
+        OpenSteer::blendIntoAccumulator (elapsedTime * 4.0f, _curvature,
+                                         _smoothedCurvature);
         _lastForward = forward ();
         _lastPosition = position ();
     }
@@ -352,7 +362,8 @@ void steering::measurePathCurvature (const float elapsedTime)
 // draw lines from vehicle's position showing its velocity and acceleration
 
 
-void steering::annotationVelocityAcceleration (float maxLengthA, float maxLengthV)
+void steering::annotationVelocityAcceleration (float maxLengthA,
+                                               float maxLengthV)
 {
     const float desat = 0.4f;
     const float aScale = maxLengthA / maxForce ();
@@ -376,7 +387,8 @@ void steering::annotationVelocityAcceleration (float maxLengthA, float maxLength
 // XXX move to a vehicle utility mixin?
 
 
-OpenSteer::Vec3 steering::predictFuturePosition (const float predictionTime) const
+OpenSteer::Vec3 steering::predictFuturePosition (const float predictionTime)
+const
 {
     return (position() + (velocity() * predictionTime));
 }

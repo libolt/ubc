@@ -800,5 +800,3 @@ bool guiCreate::createTeamSelectionMenuGUI(const renderEngineSharedPtr &render) 
 
     return (true);
 }
-
-

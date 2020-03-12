@@ -1,16 +1,3 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?> 
 <MyGUI type="Layout" version="3.2.0"> 
-    <Widget type="Button" skin="Button" position="362 100 500 52" align="Default" layer="Main" name="startSingleGameButton"> 
-        <Property key="Caption" value="#00ff00Start (S)ingle Player Game"/> 
-    </Widget> 
-    <Widget type="Button" skin="Button" position="362 150 500 52" align="Default" layer="Main" name="startMultiGameButton"> 
-        <Property key="Caption" value="Start (M)ulti Player Game" /> 
-    </Widget> 
-    <Widget type="Button" skin="Button" position="362 200 500 52" align="Default" layer="Main" name="optionsButton"> 
-        <Property key="Caption" value="(O)ptions"/> 
-    </Widget> 
-    <Widget type="Button" skin="Button" position="362 250 500 52" align="Default" layer="Main" name="exitButton"> 
-        <Property key="Caption" value="(E)xit"/> 
-    </Widget> 
-    <CodeGeneratorSettings/> 
 </MyGUI> 

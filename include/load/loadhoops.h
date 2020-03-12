@@ -44,7 +44,9 @@ class loadHoops : public loader
         hoopEntitySharedPtr loadHoopFile(const std::string &fileName);  // loads data from the hoop XML files.
 
 //        hoopEntityMSharedPtr loadModels(hoopEntityMSharedPtr activeHoopInstance, const renderEngineSharedPtr &render);  // loads selected hoop model
-        void loadModel(hoopComponentsSharedPtr &component, hoopFlagsSharedPtr &flag, const renderEngineSharedPtr &render);  // loads selected court model
+        void loadModel(hoopComponentsSharedPtr &component,
+                       hoopFlagsSharedPtr &flag,
+                       const renderEngineSharedPtr &render);  // loads selected court model
 
     private:
     

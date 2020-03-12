@@ -18,7 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "Ogre.h"
+//#include "Ogre.h"
 #include "utilities/conversion.h"
 #include "ai/ai.h"
 #include "ai/playersteerplugin.h"
@@ -59,7 +59,8 @@ basketballEntityMSharedPtr playerSteerPlugin::getActiveBasketballInstance() cons
 {
     return (activeBasketballInstance);
 }
-void playerSteerPlugin::setActiveBasketballInstance(const basketballEntityMSharedPtr &set)  // sets the value of activeBasketballInstance
+void playerSteerPlugin::setActiveBasketballInstance(
+        const basketballEntityMSharedPtr &set)  // sets the value of activeBasketballInstance
 {
     activeBasketballInstance = set;
 }
@@ -131,7 +132,8 @@ void playerSteerPlugin::open()  // opens the plugin
     humanPlayer = AI->getHumanPlayer();
 
 	// builds team 0 steering instances
-    logMsg(func +" activeTeamInstance.size() == " +convert->toString(activeTeamInstance.size()));
+    logMsg(func +" activeTeamInstance.size() == "
+           +convert->toString(activeTeamInstance.size()));
 //    exit(0);
 //    if (activeTeamInstance.size() > 0)
     if (!activeTeamInstance.empty())
@@ -148,9 +150,13 @@ void playerSteerPlugin::open()  // opens the plugin
                 logMsg(func + " activePlayerInstances NOT Created!!");
                 exit(0);
             }
-            activePlayerInstance = ATIIT.second->getComponent()->getActivePlayerInstance();
+            activePlayerInstance = ATIIT.second->getComponent()
+                    ->getActivePlayerInstance();
             logMsg(func +" team name == " +ATIIT.second->getData()->getName());
-            logMsg(func +" ATIIT.second->getComponent()->getActivePlayerInstance().size() == " +convert->toString(ATIIT.second->getComponent()->getActivePlayerInstance().size()));
+            logMsg(func +" ATIIT.second->getComponent()"
+                         "->getActivePlayerInstance().size() == "
+                   +convert->toString(ATIIT.second->getComponent()
+                                      ->getActivePlayerInstance().size()));
 
     //        exit(0);
             logMsg(func +" for (auto ATIIT : getActiveTeamInstance())");
@@ -164,9 +170,12 @@ void playerSteerPlugin::open()  // opens the plugin
 
             for (auto APIIT : activePlayerInstance)
             {
-                logMsg(func +" for (auto APIIT : activePlayerInstance[ATIIT.first])");
-                playerSteerSharedPtr steer = APIIT.second->getComponent()->getSteer();
-                bool steerInitialized = APIIT.second->getFlag()->getSteerInitialized();
+                logMsg(func +" for (auto APIIT : "
+                             "activePlayerInstance[ATIIT.first])");
+                playerSteerSharedPtr steer =
+                        APIIT.second->getComponent()->getSteer();
+                bool steerInitialized =
+                        APIIT.second->getFlag()->getSteerInitialized();
                 if (!steerInitialized)
                 {
                     playerSteerSharedPtr tempSteer(new playerSteer);
@@ -176,8 +185,11 @@ void playerSteerPlugin::open()  // opens the plugin
                 }
             //      logMsg("Alive1");
                 logMsg(" APIIT.first = " +convert->toString(APIIT.first));
-                logMsg(" player position = " +convert->toString(APIIT.second->getGameData()->getCourtPosition()));
-                steer->setPosition(convert->toOpenSteerVec3(APIIT.second->getGameData()->getCourtPosition()));
+                logMsg(" player position = " +convert->toString(
+                           APIIT.second->getGameData()->getCourtPosition()));
+                steer->setPosition(convert->toOpenSteerVec3(
+                                       APIIT.second->getGameData()
+                                       ->getCourtPosition()));
             //      steer.setPosition(OpenSteer::Vec3(0,0,0));
             //      logMsg("Alive2");
 
@@ -186,16 +198,22 @@ void playerSteerPlugin::open()  // opens the plugin
                 AI->selectedVehicle = steer;
                 logMsg(func +" APIIT.second->setSteer(steer);");
                 APIIT.second->getComponent()->setSteer(steer);
-                logMsg(func + " allPlayerSteers.push_back(APIIT.second->getSteer());");
-                allPlayerSteers.push_back(APIIT.second->getComponent()->getSteer());
+                logMsg(func + " allPlayerSteers.push_back(APIIT.second"
+                              "->getSteer());");
+                allPlayerSteers.push_back(APIIT.second->getComponent()
+                                          ->getSteer());
         //            ++y;
-                logMsg(func +" allPlayerSteers.push_back(APIIT.second->getSteer());");
+                logMsg(func +" allPlayerSteers.push_back(APIIT.second"
+                             "->getSteer());");
                 APIIT.second->getComponent()->setSteer(steer);
-                logMsg(func +" APIIT.second->setSteerInitialized(steerInitialized);");
+                logMsg(func +" APIIT.second->setSteerInitialized("
+                             "steerInitialized);");
                 APIIT.second->getFlag()->setSteerInitialized(steerInitialized);
             }
-            logMsg(func +" ATIIT.second->setActivePlayerInstance(activePlayerInstance);");
-            ATIIT.second->getComponent()->setActivePlayerInstance(activePlayerInstance);
+            logMsg(func +" ATIIT.second->setActivePlayerInstance("
+                         "activePlayerInstance);");
+            ATIIT.second->getComponent()->setActivePlayerInstance(
+                        activePlayerInstance);
     //        ++x;
         }
     }
@@ -243,18 +261,23 @@ void playerSteerPlugin::open()  // opens the plugin
 
 
 	// create the court bounding box based off the meshes bbox
-    Ogre::AxisAlignedBox cbox = gameInstance->getComponent()->getCourtInstance()[0]->getComponent()->getModel()->getBoundingBox();
+#ifdef COURTBB
+    Ogre::AxisAlignedBox cbox = gameInstance->getComponent()
+            ->getCourtInstance()[0]->getComponent()->getModel()
+            ->getBoundingBox();
     Ogre::Vector3 cboxMin = cbox.getMinimum();
     Ogre::Vector3 cboxMax = cbox.getMaximum();
 
     OpenSteer::Vec3 courtBoxMin = convert->toOpenSteerVec3(cboxMin);
     OpenSteer::Vec3 courtBoxMax = convert->toOpenSteerVec3(cboxMax);
 
-//    courtBBox = steeringAABBoxSharedPtr(new steering::AABBox( OpenSteer::Vec3(0,0,0), OpenSteer::Vec3(0,0,0)));
-    courtBBox = std::make_shared<steering::AABBox>(OpenSteer::Vec3(0,0,0), OpenSteer::Vec3(0,0,0));
+//    courtBBox = steeringAABBoxSharedPtr(new steering::AABBox(
+    OpenSteer::Vec3(0,0,0), OpenSteer::Vec3(0,0,0)));
+    courtBBox = std::make_shared<steering::AABBox>(OpenSteer::Vec3(0,0,0),
+                                                   OpenSteer::Vec3(0,0,0));
     courtBBox->setMin(courtBoxMin);
-
- /*           // Red goal
+#endif
+    /*           // Red goal
             m_TeamAGoal = new AABBox(Vec3(-21,0,-7), Vec3(-19,0,7));
             // Blue Goal
             m_TeamBGoal = new AABBox(Vec3(19,0,-7), Vec3(21,0,7));
@@ -306,9 +329,11 @@ void playerSteerPlugin::update(const float currentTime, const float elapsedTime)
 
 //    team1ActivePlayerInstance[3].getSteer()->update(currentTime, elapsedTime);
 
-    for (const auto &ATIIT : gameInstance->getComponent()->getActiveTeamInstance())
+    for (const auto &ATIIT : gameInstance->getComponent()
+         ->getActiveTeamInstance())
     {
-        activePlayerInstance.push_back(ATIIT.second->getComponent()->getActivePlayerInstance());
+        activePlayerInstance.push_back(ATIIT.second->getComponent()
+                                       ->getActivePlayerInstance());
         for (const auto &APIIT : activePlayerInstance[ATIIT.first])
         {
 /*FIXME!            if (APIIT.first != ATIIT.second->getHumanPlayer() && APIIT.second->getModelLoaded())

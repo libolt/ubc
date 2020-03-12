@@ -132,10 +132,10 @@ bool playerEntity::initializeObjects()  // initializes the player entity object
     
     playerComponentsSharedPtr tempComponent(new playerComponents);
     component = tempComponent;
-    
+
     playerPhysicsSharedPtr tempPhysics(new playerPhysics);
     component->setPhysics(tempPhysics);
-    
+
     playerStateMachineSharedPtr tempStateMachine(new playerStateMachine);
     component->setStateMachine(tempStateMachine);
     

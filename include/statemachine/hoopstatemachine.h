@@ -21,6 +21,11 @@
 #ifndef _HOOPSTATEMACHINE_H_
 #define _HOOPSTATEMACHINE_H_
 
+#ifdef _MSC_VER
+#define NOMINMAX
+#include "winsock2.h"
+#endif
+
 #include "statemachine/statemachine.h"
 #include "utilities/typedefs.h"
 

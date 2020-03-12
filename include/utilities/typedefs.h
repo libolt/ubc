@@ -21,14 +21,21 @@
 #ifndef _TYPEDEFS_H_
 #define _TYPEDEFS_H_
 
+
 #ifndef _ENET_ISINCLUDED_
 #define _ENET_ISINCLUDED_
+#ifdef _MSC_VER
+#include "winsock2.h"
+#endif
 #include "enet/enet.h"
 #endif 
 
 #include <vector>
 #include <unordered_map>
-//#include <boost/shared_ptr.hpp>
+#include <algorithm>
+#include "Ogre.h"
+#include "OgreInstancedEntity.h"
+
 
 #include "BtOgrePG.h"
 #include "BtOgreGP.h"
@@ -40,10 +47,12 @@
 #include "ai/steering.h"
 //#include "offenseplays.h"
 
+
 #include "gui/guidefines.h"
 
+
 #include "MyGUI_Gui.h"
-#include "MyGUI_OgrePlatform.h"
+#include "MyGUI_Ogre2Platform.h"
 #include "MyGUI_IItemContainer.h"
 #include "MyGUI_ListBox.h"
 #include "MyGUI_InputManager.h"
@@ -51,6 +60,10 @@
 #include "MyGUI_FontManager.h"
 #include "MyGUI_LayoutManager.h"
 #include "MyGUI_ImageBox.h"
+
+
+// Skip the GUI and start a test game
+#define NOGUI
 
 // forward declarations
 
@@ -372,16 +385,14 @@ typedef sharedPtr<ENetPacket> ENetPacketSharedPtr;
 
 // OGRE Shared Ptr
 
-typedef sharedPtr<Ogre::Entity> OgreEntitySharedPtr;
+typedef sharedPtr<Ogre::v1::Entity> OgreEntitySharedPtr;
 
 typedef sharedPtr<Ogre::SceneNode> OgreSceneNodeSharedPtr;
 
 
-// MyGUI Shared Ptr
-
 typedef sharedPtr<MyGUI::Gui> MyGUIGuiSharedPtr;
 
-typedef sharedPtr<MyGUI::OgrePlatform> MyGUIOgrePlatformSharedPtr;
+typedef sharedPtr<MyGUI::Ogre2Platform> MyGUIOgrePlatformSharedPtr;
 
 typedef sharedPtr<MyGUI::ListBox> MyGUIListBoxSharedPtr;
 
@@ -512,6 +523,7 @@ typedef std::vector<MyGUITextBoxMSharedPtr> MyGUITextBoxVecMSharedPtr;
 typedef std::vector<basketballEntityMSharedPtr> basketballEntityVecMSharedPtr;
 
 typedef std::vector<playerEntityMSharedPtr> playerEntityVecMSharedPtr;
+
 
 // Vector maps
 typedef std::vector<std::map<playerPositions, size_t> > teamStarterIDsVecM;

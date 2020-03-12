@@ -21,7 +21,7 @@
 #ifndef _LOAD_H_
 #define _LOAD_H_
 
-#include "Ogre.h"
+//#include "Ogre.h"
 #include <string>
 #include <vector>
 #include <unordered_map>
@@ -66,7 +66,9 @@ class loader
 
         SDL_RWops *readBinaryFile(const char *sourceFile);
 
-        OgreEntitySharedPtr loadModelFile(const std::string &modelFileName, const std::string &entityName, const renderEngineSharedPtr &render);  // loads the 3D model
+        OgreEntitySharedPtr loadModelFile(const std::string &modelFileName,
+                                          const std::string &entityName,
+                                          const renderEngineSharedPtr &render);  // loads the 3D model
         
     private:
 

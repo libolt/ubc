@@ -135,7 +135,7 @@ courtEntityMSharedPtr setupCourts::setCourtStartPositions(courtEntityMSharedPtr 
     std::string func = "setupCourts::setCourtStartPositions()";
 
     logMsg(func +" begin");
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
     courtInstance[0]->getComponent()->getNode()->setPosition(0.0f,-6.5f,360.0f);
     courtInstance[0]->getComponent()->setNodePosition(Ogre::Vector3(0.0f,-6.5f,360.0f));
     logMsg(func +" courtPosition");

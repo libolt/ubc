@@ -193,7 +193,6 @@ STATE_DEFINE(basketballStateMachine, Initialize, basketballSMData)
 
     basketballFlagsSharedPtr tempFlag(new basketballFlags);
     tempSMData->flag = tempFlag;
-
     sharedPtr<basketballPhysics> tempPhysics(new basketballPhysics);
     tempSMData->physics = tempPhysics;
 
@@ -236,6 +235,7 @@ STATE_DEFINE(basketballStateMachine, LoadModel, basketballSMData)
     std::string func = "basketballStateMachine::LoadModel()";
 
     logMsg(func +" begin");
+    exit(0);
 
     component->setModelFileName(bData->getModelFileName());
 
@@ -306,12 +306,14 @@ STATE_DEFINE(basketballStateMachine, CreateNode, basketballSMData)
     data->component->setNode(activeNode);  // saves node to current instance
 
     logMsg(func +" end");
+    exit(0);
 
 }
 
 // sets up basketball physics object
 STATE_DEFINE(basketballStateMachine, SetupPhysics, basketballSMData)
 {
+
     conversionSharedPtr convert;
     std::string func = "basketballStateMachine::setupPhysics()";
     OgreEntitySharedPtr tempModel = data->model;
@@ -423,6 +425,7 @@ STATE_DEFINE(basketballStateMachine, UpdatePosition, basketballSMData)
 
                 physChange = BtOgre::Convert::toBullet(component->getNewCourtPosition()); // converts from Ogre::Vector3 to btVector3
                 component->getPhysics()->getPhysBody()->translate(physChange); // moves physics body in unison with the model
+
                 component->getSteer()->setPosition(convert->toOpenSteerVec3(component->getNewCourtPosition()));
                 flag->setCourtPositionChanged(false);
                 component->setCourtPositionChangedType(NOCHANGE);
@@ -466,6 +469,7 @@ STATE_DEFINE(basketballStateMachine, UpdatePosition, basketballSMData)
 
                 physChange = BtOgre::Convert::toBullet(component->getNewCourtPosition()); // converts from Ogre::Vector3 to btVector3
                 component->getPhysics()->getPhysBody()->translate(physChange); // moves physics body in unison with the model
+
                 //steer->setPosition(convert->toOpenSteerVec3(component->getNewCourtPosition()));
                 flag->setCourtPositionChanged(false);
                 component->setCourtPositionChangedType(NOCHANGE);

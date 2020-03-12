@@ -204,7 +204,6 @@ bool courtEntity::updateStateMachine(renderEngineSharedPtr render)  // updates t
     return (true);
 }
 
-
 bool courtEntity::setupPhysicsObject()  // sets up the physics object
 {
     OgreEntitySharedPtr tempModel = component->getModel();

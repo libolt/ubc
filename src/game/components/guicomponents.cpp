@@ -17,11 +17,13 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
- 
+
+#include "config.h"
 #include "components/guicomponents.h"
 #include "engine/gameengine.h"
 #include "engine/renderengine.h"
 #include "utilities/logging.h"
+
 
 guiComponents::guiComponents()  // constructor
 {
@@ -403,23 +405,27 @@ void guiComponents::setTeamStarterID(const teamStarterIDsVecM &set)  // sets the
 bool guiComponents::initMyGUI(const renderEngineSharedPtr &render)  // Initializes MyGUI
 {
     std::string func = "GUIComponents::initMyGUI()";
-    
+    sharedPtr<Ogre::ResourceGroupManager> guiRSM;  // stores resources
+    std::string guiResourceGroup;  // stores resource locations
+    std::string dataPath = UBC_DATADIR;
+
     logMsg(func +" begin");
     logMsg(func +" *** Initializing MyGUI ***");
-    MyGUIOgrePlatformSharedPtr tempPlatform(new MyGUI::OgrePlatform());
+
+    guiResourceGroup = "GUIData";
+    guiRSM = sharedPtr<Ogre::ResourceGroupManager>(
+                Ogre::ResourceGroupManager::getSingletonPtr());
+    guiRSM->createResourceGroup(guiResourceGroup);
+
+    MyGUIOgrePlatformSharedPtr tempPlatform(new MyGUI::Ogre2Platform());
     mPlatform = tempPlatform;
-//    logMsg(func +" Crash?");
-
-    mPlatform->initialise(render->getMWindow().get(), render->getMSceneMgr().get(), "UBCData"); // mWindow is Ogre::RenderWindow*, mSceneManager is Ogre::SceneManager*a@aa
-
-    logMsg(func +" Crash??");
+    mPlatform->initialise(render->getMWindow().get(), render->getMSceneMgr().get(),
+                          "UBCData"); // mWindow is Ogre::RenderWindow*, mSceneManager is Ogre::SceneManager*a@aa
     MyGUIGuiSharedPtr tempGUI(new MyGUI::Gui());
-//    exit(0);
     mGUI = tempGUI;
-//    exit(0);
-//    logMsg(func +" Crash???");
+
     mGUI->initialise();
-//    exit(0);
+
     logMsg(func +" *** MyGUI Initialized ***");
     logMsg(func +" end");
     return true;

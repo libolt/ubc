@@ -133,7 +133,7 @@ hoopEntityMSharedPtr  loadHoops::loadHoopFiles()  // load hoop XML files
 
     logMsg(func +" begin");
 
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
     hoopList = "data/hoops/hoops.xml";
 #else
     hoopList = findFile("hoops/hoops.xml");
@@ -144,7 +144,7 @@ hoopEntityMSharedPtr  loadHoops::loadHoopFiles()  // load hoop XML files
     for (it=0;it<hoopFiles.size();++it)
     {
 //        logMsg("hoopFile = " +*it);
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
         hoops.insert(std::pair<size_t, hoopEntitySharedPtr>(it, loadHoopFile("data/hoops/" + hoopFiles[it])));
 #else
         hoops.insert(std::pair<size_t, hoopEntitySharedPtr>(it, loadHoopFile(findFile("hoops/" + hoopFiles[it]))));

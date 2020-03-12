@@ -169,11 +169,14 @@ TS*/
 
 bool jumpBallsExecute::tipToPlayer(const gameComponentsSharedPtr &component, quarters quarter)  // tips the basketball to the appropriate player
 {
+    bool retVal = false;  // stores the return value
+
 //    sharedPtr<gameState> gameS = gameState::Instance();
     conversionSharedPtr convert ;
 //    sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
     jumpBallsSharedPtr jumpBall = component->getJumpBall();
     physicsEngine physEngine;
+
 //    basketballStateVec basketballInstance = gameS->getBasketballInstance();
 //    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
 //    playerStateVecSharedPtr activePlayerInstance;
@@ -186,7 +189,6 @@ bool jumpBallsExecute::tipToPlayer(const gameComponentsSharedPtr &component, qua
     btVector3 bballVelocity = jumpBall->getBBallVelocity();
     size_t ballTippedToPlayerInstance = jumpBall->getBallTippedToPlayerInstance();
     basketballEntityMSharedPtr activeBasketballInstance = component->getActiveBasketballInstance();
-    bool retVal = false;  // stores the return value
 //    jumpBalls jumpBall = gameS->getJumpBall();
 //    teamTypes ballTippedToTeam = jumpBall.getBallTippedToTeam();
 //    quarters quarter = gameS->getQuarter();
@@ -333,7 +335,7 @@ TS*/
         }
 //        exit(0);
     }
- 
     logMsg("jump bballVelocity == " +convert->toString(bballVelocity));
+
     return (retVal);  // tipToPlayer has not completed
 }

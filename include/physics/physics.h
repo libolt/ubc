@@ -62,7 +62,8 @@ class physics
         void setPhysBody(const btRigidBodySharedPtr &set);  // sets the value of physBody
 
         std::map<std::string, btRigidBodySharedPtr> getCollisionBodies() const;  // retrieves the value of collisionBodies
-        void setCollisionBodies(const std::map<std::string, btRigidBodySharedPtr> &set);  // sets the value of collisionBodies
+        void setCollisionBodies(const std::map<std::string,
+                                btRigidBodySharedPtr> &set);  // sets the value of collisionBodies
 
         btScalar getMass() const;  // retrieves the value of mass
         void setMass(const btScalar &set);  // sets the value of mass
@@ -91,7 +92,8 @@ class physics
         size_t getPhysObjNumber() const;  // retrieves the value of number
         void setPhysObjNumber(const size_t &set);  // sets the value of number
 
-        bool setupPhysics(OgreEntitySharedPtr *model, OgreSceneNodeSharedPtr *node, btRigidBody **body);  // sets up object physics
+        bool setupPhysics(OgreEntitySharedPtr *model,
+                          OgreSceneNodeSharedPtr *node, btRigidBody **body);  // sets up object physics
 
         bool setup();  // sets up the object
 

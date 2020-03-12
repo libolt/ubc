@@ -21,6 +21,10 @@
 #ifndef _STATEMACHINE_H_
 #define _STATEMACHINE_H_
 
+#ifdef _MSC_VER
+#define NOMINMAX
+#include "winsock2.h"
+#endif
 #include "eventdata/datatypes.h"
 #include "eventdata/eventdata.h"
 #include "statemachine/fault.h"
@@ -37,7 +41,8 @@ public:
     /// exists and it evaluates to false, the state action will not execute.
     /// @param[in] sm - A state machine instance.
     /// @param[in] data - The event data.
-    virtual void invokestateAction(stateMachine* sm, const eventData* data) const = 0;
+    virtual void invokestateAction(stateMachine* sm, const eventData* data)
+    const = 0;
 };
 
 /// @brief stateAction takes three template arguments: A state machine class,
@@ -79,7 +84,8 @@ public:
     /// @param[in] sm - A state machine instance.
     /// @param[in] data - The event data.
     /// @return Returns TRUE if no guard condition or the guard condition evaluates to TRUE.
-    virtual BOOL invokeGuardCondition(stateMachine* sm, const eventData* data) const = 0;
+    virtual BOOL invokeGuardCondition(stateMachine* sm, const eventData* data)
+    const = 0;
 };
 
 /// @brief GuardCondition takes three template arguments: A state machine class,
@@ -89,7 +95,8 @@ template <class SM, class Data, BOOL (SM::*Func)(const Data*)>
 class GuardCondition : public GuardBase
 {
 public:
-    virtual BOOL invokeGuardCondition(stateMachine* sm, const eventData* data) const
+    virtual BOOL invokeGuardCondition(stateMachine* sm, const eventData* data)
+    const
     {
         SM* derivedSM = static_cast<SM*>(sm);
         const Data* derivedData = dynamic_cast<const Data*>(data);
@@ -108,7 +115,8 @@ public:
     /// entering a state.
     /// @param[in] sm - A state machine instance.
     /// @param[in] data - The event data.
-    virtual void invokeEntryAction(stateMachine* sm, const eventData* data) const = 0;
+    virtual void invokeEntryAction(stateMachine* sm, const eventData* data)
+    const = 0;
 };
 
 /// @brief EntryAction takes three template arguments: A state machine class,

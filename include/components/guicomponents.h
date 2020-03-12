@@ -21,8 +21,10 @@
 #ifndef _GUICOMPONENTS_H_
 #define _GUICOMPONENTS_H_
 
+
+
 #include "MyGUI_Gui.h"
-#include "MyGUI_OgrePlatform.h"
+#include "MyGUI_Ogre2Platform.h"
 #include "MyGUI_IItemContainer.h"
 #include "MyGUI_ListBox.h"
 #include "MyGUI_InputManager.h"
@@ -32,6 +34,7 @@
 #include "MyGUI_ImageBox.h"
 
 #include "utilities/typedefs.h"
+
 
 class guiComponents
 {

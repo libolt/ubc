@@ -1274,4 +1274,3 @@ void guiEvents::setupHomeSelected()  // process home team selection on game setu
     flag->setSetupMenuHomeSelected(true);
     flag->setSetupMenuAwaySelected(false);
 }
-

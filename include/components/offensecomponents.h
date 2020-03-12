@@ -55,7 +55,8 @@ class offenseComponents
         void setPlayTitle(const std::string &set);  // sets the value of playTitle
 
         std::vector<offensePlays::playerDirectives> getPlayerDirective() const;  // retrieves the value of playerDirective
-        void setPlayerDirective(const std::vector<offensePlays::playerDirectives> &set);  // sets the value of playerDirective
+        void setPlayerDirective(
+                const std::vector<offensePlays::playerDirectives> &set);  // sets the value of playerDirective
 
     private:
     

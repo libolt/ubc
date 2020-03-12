@@ -24,7 +24,8 @@
 #define WIN32_LEAN_AND_MEAN
 #include "enet/enet.h"
 
-#include "Ogre.h"
+#include <algorithm>
+//#include "Ogre.h"
 
 #include "engine/networkengine.h"
 
@@ -38,7 +39,6 @@
 //#include <boost/shared_ptr.hpp>
 
 #include "OgreVector3.h"
-#include "LinearMath/btVector3.h"
 #include "SDL.h"
 #include "ai/steering.h"
 #include "utilities/enums.h"

@@ -108,5 +108,4 @@ private:
     END_STATE_MAP
 };
 
-
 #endif // _GUISTATEMACHINE_H_

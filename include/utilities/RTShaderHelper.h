@@ -3,7 +3,11 @@
 #ifdef RTSHADER_SYSTEM_BUILD_CORE_SHADERS
 
 #include "Ogre.h"
+#if OGRE_VERSION_MAJOR == 2 && OGRE_VERSION_MINOR == 0
+#include "RTShaderSystem/OgreRTShaderSystem.h"
+#else
 #include "OgreRTShaderSystem.h"
+#endif
 
 namespace Ogre
 {

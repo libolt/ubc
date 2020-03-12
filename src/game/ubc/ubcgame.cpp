@@ -27,9 +27,17 @@
 #include "engine/renderengine.h"
 #include "gui/gui.h"
 #include "flags/guiflags.h"
+#include "load/loadbasketballs.h"
 #include "load/loadusersinputs.h"
 #include "entity/gameentity.h"
 #include "statemachine/gamestatemachine.h"
+#include "components/basketballcomponents.h"
+#include "data/basketballdata.h"
+#include "entity/basketballentity.h"
+#include "flags/basketballflags.h"
+#include "setup/setupbasketballs.h"
+#include "Compositor/OgreCompositorManager2.h"
+//#endif
 #include "ubc/ubcinput.h"
 #include "users/users.h"
 #include "users/usersinputs.h"
@@ -47,6 +55,8 @@ UBCGame::UBCGame()  // constructor
 
     inputSUInputSetup = false;
     loadUsersInputInitialized = false;
+
+
 }
 
 UBCGame::~UBCGame() = default;  // destructor
@@ -370,7 +380,7 @@ bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &in
     playerSMData *playerSMD3 = new playerSMData;
 */
     logMsg(func +" begin");
-    
+//    exit(0);
 ///    playerSMD->speed = 100;
 ///    playerSM.setSpeed(playerSMD);
 ///    playerSM.halt();
@@ -424,6 +434,7 @@ bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &in
         
 //        exit(0);
 
+#ifndef NOGUI
         if (gui->getFlag()->getMenuActive())
         {
             if (gui->updateStateMachine(gameE->getRenderE()))
@@ -439,7 +450,95 @@ bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &in
 //            exit(0);
             }
         }
+#else
+    startActiveGame = true;
+#endif
 
+/*        if (!basketballLoaded)
+        {
+            setupBasketballs setupbasketball;
+            basketballEntityMSharedPtr basketballInstance = setupbasketball.createBasketballInstances();
+            logMsg(func +" basketballInstance.size == " +convert->toString(basketballInstance.size()));
+            activeBasketballInstance = setupbasketball.createActiveBasketballInstances(basketballInstance, 1);
+            for (auto ABIIT : activeBasketballInstance)
+            {
+                OgreEntitySharedPtr model;  // stores the model returned by loadModel() function
+                loaderSharedPtr load(new loader);
+
+                logMsg(func +" begin");
+
+
+                ABIIT.second->getComponent()->setModelFileName(ABIIT.second->getData()->getModelFileName());
+
+                if (ABIIT.second->getComponent()->getName().empty())  // checks if entityName has been set
+                {
+                    std::string name = ABIIT.second->getData()->getName();
+                    ABIIT.second->getComponent()->setName(name);
+                }
+                logMsg(func +" entityName == " +ABIIT.second->getComponent()->getName());
+            //        exit(0);
+                if (ABIIT.second->getComponent()->getNodeName().empty())  // checks if entityNodeName has been set
+                {
+                    std::string nodeName = ABIIT.second->getData()->getName() +"node";
+                    ABIIT.second->getComponent()->setNodeName(nodeName);
+                }
+                logMsg(func +" basketball name == " +ABIIT.second->getData()->getName());
+                logMsg(func +" basketball node name == " +ABIIT.second->getComponent()->getNodeName());
+            //        exit(0);
+                logMsg(func +" loading model == " +ABIIT.second->getComponent()->getModelFileName());
+                std::string modelFileName = ABIIT.second->getComponent()->getModelFileName();
+                std::string entityName = ABIIT.second->getComponent()->getName();
+                std::string entityNodeName = ABIIT.second->getComponent()->getNodeName();
+
+                model = load->loadModelFile(modelFileName, entityName, gameE->getRenderE());
+                ABIIT.second->getFlag()->setModelLoaded(true);
+                ABIIT.second->getComponent()->setModel(model);
+
+
+            OgreEntitySharedPtr activeModel;
+            OgreSceneNodeSharedPtr activeNode;
+            std::string activeEntityName;
+            std::string activeNodeNum;
+            std::string activeNodeName;
+
+                activeModel = ABIIT.second->getComponent()->getModel();
+                activeEntityName = ABIIT.second->getComponent()->getName();
+                activeNodeNum = convert->toString(ABIIT.second->getComponent()->getNumber());
+                activeNodeName = ABIIT.second->getComponent()->getNodeName();
+                if (activeNodeName.empty())
+                {
+                    activeNodeName = activeEntityName + activeNodeNum;
+                    ABIIT.second->getComponent()->setNodeName(activeNodeName);
+                }
+                else
+                {
+
+                }
+                activeNode = gameE->getRenderE()->createNode(activeModel, activeNodeName);  // creates node
+
+                sharedPtr<Ogre::CompositorManager2> compositorManager = gameE->getRenderE()->getCompositorManager();
+                compositorManager->addNodeDefinition(activeNodeName);
+//                        ->addNodeDefinition(activeNodeName);
+                gameE->getRenderE()->setCompositorManager(compositorManager);
+                ABIIT.second->getComponent()->setNode(activeNode);  // saves node to current instance
+                ABIIT.second->getComponent()->getNode()->setScale(3.0f,3.0f,3.0f);
+                ABIIT.second->getComponent()->getNode()->setPosition(0.8f,-5.0f,352.0f);
+//                exit(0);
+
+            }
+
+            basketballLoaded = true;
+        }
+    if (basketballLoaded)
+    {
+        for (auto ABIIT : activeBasketballInstance)
+        {
+
+            logMsg(func +"bballPos == " +convert->toString(ABIIT.second->getComponent()->getNode()->getPosition()));
+
+        }
+    }
+*/
         if (startActiveGame)
         {
 //            exit(0);
@@ -484,7 +583,23 @@ bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &in
             {
                 logMsg(func +" gameS->getRenderScene()");
 //                exit(0);
+                for (auto SAIT : gameInstance->getData()->getStateAction())
+                {
+
+                    if (SAIT == GLOADMODELS)
+                    {
+                        logMsg(func +" SAITA flag->getStateChanged() "
+                               +convert->toString(gameInstance->getFlag()->getStateChanged()));
+                        logMsg(func +" SAITA stateAction.size() "
+                               +convert->toString(gameInstance->getData()->getStateAction().size()));
+                        logMsg(func +" SAITA GLOADMODELS");
+                        exit(0);
+                        gameInstance->updateState(gameE->getRenderE());
+                    }
+                }
                 gameInstance->updateState(gameE->getRenderE());  // updates the state of the game instance
+
+//                exit(0);
             }
             gameE->getTimer().setPreviousTime(std::chrono::system_clock::now());
         }

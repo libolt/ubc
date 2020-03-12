@@ -21,6 +21,11 @@
 #ifndef _BASKETBALLSTATEMACHINE_H_
 #define _BASKETBALLSTATEMACHINE_H_
 
+#ifdef _MSC_VER
+#define NOMINMAX
+#include "winsock2.h"
+#endif
+
 #include "statemachine/statemachine.h"
 #include "utilities/typedefs.h"
 
@@ -32,6 +37,7 @@ public:
     basketballDataSharedPtr bData;  // stores copy of basketballData object
     basketballFlagsSharedPtr flag;  // stores copy of basketballFlags object
     basketballPhysicsSharedPtr physics;  // stores copy of basketballPhysics object
+
     gameComponentsSharedPtr gComponent;  // stores copy of gameComponent object
     gameDataSharedPtr gData;  // stores copy of gameData object
     gameFlagsSharedPtr gFlag;  // stores copy of gameFlag object

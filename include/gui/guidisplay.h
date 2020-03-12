@@ -69,7 +69,8 @@ class guiDisplay
 //        void showSetupMenuWidgets();  // shows all widgets tied to the Game Setup Menu
 
         void hidePlayerStartSelectionMenuWidgets();  // hides all widgets tied to the Player Start Selection Menu
-        void showPlayerStartSelectionMenuWidgets(const renderEngineSharedPtr &render);  // shows all widgets tied to the Player Start Selection Menu
+        void showPlayerStartSelectionMenuWidgets(
+                const renderEngineSharedPtr &render);  // shows all widgets tied to the Player Start Selection Menu
 
         void hideTeamSelectionMenuWidgets(); // hides all widgets tied to the Team Selection Menu
         void showTeamSelectionMenuWidgets(const renderEngineSharedPtr &render);  // show all widgets tied to the Team Selection Menu
@@ -80,7 +81,8 @@ class guiDisplay
         void hideActiveMenuWidgets();  // hides active menus widgets
         void showActiveMenuWidgets(const renderEngineSharedPtr &render);  // shows active menus widgets
 
-        void changeActiveMenu(activeMenus menu, const renderEngineSharedPtr &render);  // changes the actively displayed menu
+        void changeActiveMenu(activeMenus menu,
+                              const renderEngineSharedPtr &render);  // changes the actively displayed menu
 
     private:
 
@@ -95,5 +97,6 @@ class guiDisplay
         size_t displayCount;
 
 };
+//#endif
 
 #endif  // _GUIDISPLAY_H_

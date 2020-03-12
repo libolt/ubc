@@ -31,7 +31,8 @@ class jumpBallsExecute
         ~jumpBallsExecute();  // destructor
         
         bool executeJump(const gameComponentsSharedPtr &component); // initiates jump ball from jump ball circle
-        bool tipToPlayer(const gameComponentsSharedPtr &component, quarters quarter);  // tips the basketball to the appropriate player
+        bool tipToPlayer(const gameComponentsSharedPtr &component,
+                         quarters quarter);  // tips the basketball to the appropriate player
 
     private:
     

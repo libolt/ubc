@@ -30,7 +30,9 @@
 #undef Button5
 #undef Button6
 #undef Button7
-#include "MyGUI_OgrePlatform.h"
+
+#include "MyGUI_Ogre2Platform.h"
+
 #include "engine/inputengine.h"
 #include "engine/gameengine.h"
 #include "load/load.h"

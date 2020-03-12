@@ -284,6 +284,7 @@ STATE_DEFINE(hoopStateMachine, CreateNode, hoopSMData)
 // sets up basketball physics object
 STATE_DEFINE(hoopStateMachine, SetupPhysics, hoopSMData)
 {
+
     conversionSharedPtr convert;
     std::string func = "hoopStateMachine::setupPhysics()";
     OgreEntitySharedPtr tempModel = data->model;

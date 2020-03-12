@@ -33,11 +33,7 @@
 
 //#include <boost/shared_ptr.hpp>
 
-/*
-#include "OgreString.h"
-#include "OgreStringConverter.h"
-#include "Ogre.h"
-*/
+
 #include "utilities/enums.h"
 // #include "engine/inputengine.h"
 #include "engine.h"

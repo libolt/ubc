@@ -80,7 +80,8 @@ class UBCGame
 
         bool setup();  // sets up a game instance
 
-        bool loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &input, const GUISystemSharedPtr &gui);  // runs the Main loop for the game
+        bool loop(const gameEngineSharedPtr &gameE,
+                  const UBCInputSharedPtr &input, const GUISystemSharedPtr &gui);  // runs the Main loop for the game
 
         bool startGame(const renderEngineSharedPtr &render);  // starts a game
 
@@ -104,6 +105,13 @@ class UBCGame
         bool userInstancesInputSetup;  // stores status of input configuration for users
         bool inputSUInputSetup;  // stores whether inputS UInput object has been set
         bool loadUsersInputInitialized;  // stores whether loadUsersInputs object has been initialized
+
+#ifndef BTOGRE_MYGUI_ENABLED
+        basketballEntityMSharedPtr activeBasketballInstance;
+
+        bool basketballLoaded;  // stores whether basketball and model have been loaded
+#endif
+
         size_t numUsers; // stores number of users playing the game
         loadBasketballsSharedPtr loadBasketball;  // the loadBasketballs object
         loadCourtsSharedPtr loadCourt;  // the loadCourts object

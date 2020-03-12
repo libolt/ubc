@@ -21,7 +21,7 @@
 #ifndef _OFFENSEPLAYS_H_
 #define _OFFENSEPLAYS_H_
 
-#include "Ogre.h"
+//#include "Ogre.h"
 #include "utilities/enums.h"
 #include "utilities/typedefs.h"
 

@@ -30,11 +30,19 @@ class updateTeams
         updateTeams();  // constructor
         ~updateTeams();  // destructor
         
-        playerEntityMSharedPtr updateActivePlayers(playerEntityMSharedPtr activePlayerInstance, renderEngineSharedPtr render);  // updates the states of active players
-        playerEntityMSharedPtr updatePlayerDirections(playerEntityMSharedPtr activePlayerInstance, const gameComponentsSharedPtr &gameComponent, const teamGameDataSharedPtr &gameData);  // updates the direction players are facing
-        playerEntityMSharedPtr updatePlayerMovements(playerEntityMSharedPtr activePlayerInstance);   // updates the movement status of players
-        playerEntityMSharedPtr updatePositions(playerEntityMSharedPtr activePlayerInstance);  // updates player on court positionss
-        playerEntityMSharedPtr updateActivePlayerSettings(playerEntityMSharedPtr activePlayerInstance);  // updates the settings of active players
+        playerEntityMSharedPtr updateActivePlayers(
+                playerEntityMSharedPtr activePlayerInstance,
+                renderEngineSharedPtr render);  // updates the states of active players
+        playerEntityMSharedPtr updatePlayerDirections(
+                playerEntityMSharedPtr activePlayerInstance,
+                const gameComponentsSharedPtr &gameComponent,
+                const teamGameDataSharedPtr &gameData);  // updates the direction players are facing
+        playerEntityMSharedPtr updatePlayerMovements(
+                playerEntityMSharedPtr activePlayerInstance);   // updates the movement status of players
+        playerEntityMSharedPtr updatePositions(
+                playerEntityMSharedPtr activePlayerInstance);  // updates player on court positionss
+        playerEntityMSharedPtr updateActivePlayerSettings(
+                playerEntityMSharedPtr activePlayerInstance);  // updates the settings of active players
 
     private:
     

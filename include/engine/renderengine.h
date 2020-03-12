@@ -22,8 +22,9 @@
 #ifndef _RENDERENGINE_H_
 #define _RENDERENGINE_H_
 
+#include <algorithm>
 #ifdef __ANDROID__
-//#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+//#ifdef __ANDROID
     #define OGRE_STATIC_GLES2
 //    #define OGRE_STATIC_ParticleFX
 //    #define OGRE_STATIC_OctreeSceneManager
@@ -42,7 +43,14 @@
 #include "Android/OgreAPKFileSystemArchive.h"
 #include "Android/OgreAPKZipArchive.h"
 #else
+#undef None
 #include "Ogre.h"
+#include "OgreHlms.h"
+#include "OgreHlmsPbs.h"
+#include "OgreHlmsUnlit.h"
+#include "OgreHlmsManager.h"
+#include "OgreHlmsPbsDatablock.h"
+#include "OgreHlmsUnlitDatablock.h"
 #endif
 
 #include <memory>
@@ -68,6 +76,9 @@ class renderEngine : public engine
     sharedPtr<Ogre::Camera> getMCamera() const;  // retrieves the value of mCamera
     void setMCamera(const sharedPtr<Ogre::Camera> &set);  // sets the value of mCamera
 
+    OgreSceneNodeSharedPtr getCameraNode() const;  // retrieves the value of cameraNode
+    void setCameraNode(const OgreSceneNodeSharedPtr &set);  // stes the value of cameraNode
+
     sharedPtr<Ogre::SceneManager> getMSceneMgr() const;  // retrieves the value of mSceneMgr
     void setMSceneMgr(const sharedPtr<Ogre::SceneManager> &set);  // sets the value of mSceneMgr
 
@@ -77,7 +88,7 @@ class renderEngine : public engine
     sharedPtr<Ogre::Viewport> getViewPort() const; // retrieves the value of viewPort
     void setViewPort(const sharedPtr<Ogre::Viewport> &set); // sets the value of viewPort
 	
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
     Ogre::DataStreamPtr openAPKFile(const std::string &set);  // opens APK file
 
     AAssetManager* getMAssetMgr() const;  // retrieves the value of mAssetMgr
@@ -120,6 +131,11 @@ class renderEngine : public engine
     uint32_t getWindowHeight();  // retrieves the value of windowHeight
     void setWindowHeight(uint32_t set);  // sets the value of windowHeight
 */
+    sharedPtr<Ogre::CompositorManager2> getCompositorManager() const;
+    void setCompositorManager(const sharedPtr<Ogre::CompositorManager2> &set);
+    OgreEntitySharedPtr bball;
+    OgreSceneNodeSharedPtr bballNode;
+
     ~renderEngine();
 
 
@@ -128,7 +144,8 @@ class renderEngine : public engine
 
     bool createWindow();  // creates a window
     bool createScene();  // creates a scene
-    OgreSceneNodeSharedPtr createNode(const OgreEntitySharedPtr &model, const std::string &entityNodeName);  // create scene node for model
+    OgreSceneNodeSharedPtr createNode(const OgreEntitySharedPtr &model,
+                                      const std::string &entityNodeName);  // create scene node for model
 
     bool frameStarted();  // begins a frame
     bool frameEnded();  // ends a frame
@@ -137,7 +154,7 @@ class renderEngine : public engine
     bool renderFrame();  // renders a frame to the screen
     
     protected:
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
     static android_app *app;
     //static
     static Ogre::StaticPluginLoader *gStaticPluginLoader;
@@ -156,21 +173,28 @@ class renderEngine : public engine
     // Ogre code
     sharedPtr<Ogre::Root> RERoot;  // stores the OGRE Root
     sharedPtr<Ogre::Camera> mCamera;  // stores the camera used by OGRE
+    OgreSceneNodeSharedPtr cameraNode;  // stores the camera node
     sharedPtr<Ogre::SceneManager> mSceneMgr;  // store the OGRE Scene Manager
     sharedPtr<Ogre::RenderWindow> mWindow;  // stores the OGRE Render Window
     sharedPtr<Ogre::Viewport> viewPort;  // stores the OGRE View Port
     sharedPtr<Ogre::Light> light;  // stores the vslue of light
     OgreSceneNodeSharedPtr lightNode;  // stores the light scene node.
     sharedPtr<Ogre::ResourceGroupManager> rsm;  // stores resources
+    Ogre::HlmsPbs* mHlmsPbs;
+    Ogre::HlmsUnlit* mHlmsUnlit;
     std::string mResourceGroup;  // stores resource locations
+    Ogre::String rootHlmsFolder;  // stores the root Hlms folder
     Ogre::NameValuePairList misc;  // options to pass to mWindow during creation
     std::string winHandle;  // window handle
 
+#if OGRE_VERSION_MAJOR == 2
+    sharedPtr<Ogre::CompositorManager2> compositorManager;
+#endif
     // general
 //    uint32_t windowWidth;  // stores the width of the window
 //    uint32_t windowHeight;  // stores the height of the window
     // Android support
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
     static AAssetManager* mAssetMgr;  // stores the android asset manager
 #endif
 

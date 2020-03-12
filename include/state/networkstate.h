@@ -45,8 +45,10 @@ class networkState : public state
 
         void processLocalInput(teamEntityVecSharedPtr activeTeamInstance);  // processes local input for sending to remote system
         void processRemoteInput();  // processes input received from a remote system
-        void processNetworkEvents(const teamEntityVecSharedPtr &activeTeamInstance);  // processes events received from network connection.
-        void processNetworkPlayerEvents(const teamEntityVecSharedPtr &activeTeamInstance);  // processes player evernts received from network connection
+        void processNetworkEvents(
+                const teamEntityVecSharedPtr &activeTeamInstance);  // processes events received from network connection.
+        void processNetworkPlayerEvents(
+                const teamEntityVecSharedPtr &activeTeamInstance);  // processes player evernts received from network connection
 
     
     private:

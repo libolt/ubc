@@ -18,12 +18,13 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
+#include "entity/basketballentity.h"
+
 #include "ai/basketballsteer.h"
 #include "components/basketballcomponents.h"
 #include "components/gamecomponents.h"
 #include "data/basketballdata.h"
 #include "data/gamedata.h"
-#include "entity/basketballentity.h"
 #include "flags/basketballflags.h"
 #include "flags/gameflags.h"
 #include "physics/basketballphysics.h"
@@ -285,6 +286,7 @@ void basketballEntity::updateStateMachine(const gameComponentsSharedPtr &gameCom
     
     logMsg(func + " begin");
 
+//    exit(0);
     if (objectsInitialized)
     {
         if (component != nullptr && component->getNode() != nullptr)
@@ -305,10 +307,11 @@ void basketballEntity::updateStateMachine(const gameComponentsSharedPtr &gameCom
         }
     }
 */
+
     if (flag->getStateChanged())
     {
         logMsg(func +" State Changed!");
-//        exit(0);
+        exit(0);
         switch (action)
         {
             case BLOADMODEL:
@@ -372,11 +375,11 @@ void basketballEntity::updateStateMachine(const gameComponentsSharedPtr &gameCom
         flag->setStateChanged(false);
         action = BNOACTION;
     }
+
     if (flag->getNumberSet())  // runs the physics update code
     {
         component->getPhysics()->updatePhysObj();
     }
-
 /*    if (flag->getDirectChange())
     {
     }

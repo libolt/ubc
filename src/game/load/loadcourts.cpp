@@ -154,7 +154,7 @@ courtEntityMSharedPtr loadCourts::loadCourtFiles()  // load court settings from 
 
     logMsg(func +" begin");
 
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
     courtList = "data/courts/courts.xml";
 #else
     courtList = findFile("courts/courts.xml");
@@ -169,7 +169,7 @@ courtEntityMSharedPtr loadCourts::loadCourtFiles()  // load court settings from 
     for (it=0;it<courtFiles.size();++it)
     {
 //        logMsg("courtFile = " +*it);
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
         courts.insert(std::pair<size_t, courtEntitySharedPtr>(it, loadCourtFile("data/courts/" + courtFiles[it])));
 #else
         courts.insert(std::pair<size_t, courtEntitySharedPtr>(it, loadCourtFile(findFile("courts/" + courtFiles[it]))));

@@ -65,7 +65,8 @@ public:
 
     void passCollisionCheck();  // checks whether the ball has collided with the player being passed to
 
-    bool collisionCheck(const btRigidBodySharedPtr &objectA, const btRigidBodySharedPtr &objectB);  // tests whther or not two objects have collided
+    bool collisionCheck(const btRigidBodySharedPtr &objectA,
+                        const btRigidBodySharedPtr &objectB);  // tests whther or not two objects have collided
 
 protected:
 
@@ -114,7 +115,11 @@ struct MyContactResultCallback : public btCollisionWorld::ContactResultCallback
     {
     }
 //	  btScalar   addSingleResult(btManifoldPoint& cp, const btCollisionObject* colObj0, int partId0, int index0, const btCollisionObject* colObj1, int partId1, int index1)
-    btScalar addSingleResult(btManifoldPoint& cp, const btCollisionObjectWrapper* colObj0Wrap, int partId0, int index0, const btCollisionObjectWrapper* colObj1Wrap, int partId1, int index1)
+    btScalar addSingleResult(btManifoldPoint& cp,
+                             const btCollisionObjectWrapper* colObj0Wrap,
+                             int partId0, int index0,
+                             const btCollisionObjectWrapper* colObj1Wrap,
+                             int partId1, int index1)
     {
         if (cp.getDistance() <= 0)
         {
@@ -123,5 +128,4 @@ struct MyContactResultCallback : public btCollisionWorld::ContactResultCallback
         return 1.f;
     }
 };
-
-#endif // PHYSICS_H_INCLUDED
+#endif // PHYSICSENGINE_H_INCLUDED

@@ -42,7 +42,8 @@ class teamComponents
         void setDefenseInstance(const defenseSharedPtr &set);  // sets the value of defenseInstance
 
         std::map<std::string, btRigidBodySharedPtr> getCollisionBodies() const;  // retrieves the value of collisionBodies
-        void setCollisionBodies(const std::map<std::string, btRigidBodySharedPtr> &set);  // sets the value of collisionBodies
+        void setCollisionBodies(const std::map<std::string,
+                                btRigidBodySharedPtr> &set);  // sets the value of collisionBodies
 
     private:
     
@@ -53,7 +54,6 @@ class teamComponents
         defenseSharedPtr defenseInstance;  // stores the defenseState instance
 
         std::map<std::string, btRigidBodySharedPtr> collisionBodies;  // physical bodies to test for collisions with players physBody objects
-
 };
 
 #endif

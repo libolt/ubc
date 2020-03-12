@@ -188,6 +188,7 @@ void teamEntity::updateState(const gameComponentsSharedPtr &gameInstanceComponen
 
     conversionSharedPtr convert ;
     physicsEngine physEngine;
+
     setupPlayersSharedPtr setupPlayer(new setupPlayers);
     setupTeamsSharedPtr setupTeam(new setupTeams);
     updateTeamsSharedPtr updateTeam(new updateTeams);
@@ -434,6 +435,7 @@ void teamEntity::updateState(const gameComponentsSharedPtr &gameInstanceComponen
 //                      exit(0);
 ///FIXME!
 ///                        offense->executePass();
+
                         if (physEngine.getPassCollision())  // checks if ball has collided with player being passed to.
                         {
 //                          exit(0);

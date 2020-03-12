@@ -272,7 +272,6 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
     std:: string func = "gameStateMachine::createInstances";
 
     logMsg(func +" begin");
-
 /*    gameFlagsSharedPtr tempFlag(new gameFlags);
     data->flag = tempFlag;
 */
@@ -319,6 +318,7 @@ STATE_DEFINE(gameStateMachine, createInstances, gameSMData)
             logMsg(func +" Court Instances Created!!");
             flag->setCourtInstancesCreated(true);
             component->setCourtInstance(courtInstance);
+
         }
         else
         {
@@ -461,7 +461,7 @@ STATE_DEFINE(gameStateMachine, loadModels, gameSMData)
     std:: string func = "gameStateMachine::loadModels";
 
     logMsg(func +" begin");
-//    exit(0);
+    exit(0);
     
     
     if (!data->flag->getBasketballModelLoaded())  // Checks if basketball model has been loaded
@@ -474,7 +474,7 @@ STATE_DEFINE(gameStateMachine, loadModels, gameSMData)
         logMsg(func +" Loading basketball Model!");
 //        exit(0);
         logMsg(func +" activeBasketballInstance.size() == " +convert->toString(data->component->getActiveBasketballInstance().size()));
-//        exit(0);
+        exit(0);
 //        activeBasketballInstance = loadBasketball->loadModels(data->component->getActiveBasketballInstance(), data->render);  // Loads the basketball model
 //        exit(0);
         activeBasketballInstance = data->component->getActiveBasketballInstance();
@@ -845,6 +845,7 @@ STATE_DEFINE(gameStateMachine, executeJumpBall, gameSMData)
 //    size_t activeBBallInstance = gameS->getActiveBBallInstance();
 //    basketballStateVec basketBallInstance = gameS->getBasketballInstance();
    // FIXME! Do NOT hard code activeBasketballInstance in the future
+
     bool bballPhysicsSetup = activeBasketballInstance[0]->getFlag()->getPhysicsSetup();
     if (teamWithBall == NOTEAM && bballPhysicsSetup) //&& gameS->getActiveTeamInstancesCreated())
     {
@@ -888,7 +889,7 @@ STATE_DEFINE(gameStateMachine, executeJumpBall, gameSMData)
         logMsg(func +" teamWithBall == " +convert->toString(teamWithBall));
 //        return (true);
     }
-    
+
     jumpBall->setJumpBallComplete(jumpBallComplete);
     jumpBall->setBallTipped(ballTipped);
     

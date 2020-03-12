@@ -30,7 +30,9 @@ class setupPlayerPositions
         setupPlayerPositions();  // constructor
         ~setupPlayerPositions();  // destructor
         
-        playerEntityMSharedPtr setJumpBallPositions(playerEntityMSharedPtr activePlayerInstance, teamTypes teamType, Ogre::Vector3 courtPos);  // sets player positions for jumpball
+        playerEntityMSharedPtr setJumpBallPositions(
+                playerEntityMSharedPtr activePlayerInstance, teamTypes teamType,
+                Ogre::Vector3 courtPos);  // sets player positions for jumpball
         bool setHalfTimePositions();  // sets player positions for start of the second half
         bool setTimeOutPositions();  // sets playerpositions coming out of timeout
         

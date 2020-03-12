@@ -21,7 +21,7 @@
 #ifndef _STEERING_H_
 #define _STEERING_H_
 
-#include "Ogre.h"
+//#include "Ogre.h"
 
 #include "OpenSteer/AbstractVehicle.h"
 #include "OpenSteer/Annotation.h"
@@ -43,8 +43,10 @@ public:
     // a box object for the field and the goals.
     class AABBox{
     public:
-        AABBox(OpenSteer::Vec3 &min, OpenSteer::Vec3& max): m_min(min), m_max(max){}
-        AABBox(OpenSteer::Vec3 min, OpenSteer::Vec3 max): m_min(min), m_max(max){}
+        AABBox(OpenSteer::Vec3 &min, OpenSteer::Vec3& max):
+            m_min(min), m_max(max){}
+        AABBox(OpenSteer::Vec3 min, OpenSteer::Vec3 max):
+            m_min(min), m_max(max){}
 
         OpenSteer::Vec3 getMin()
         {
@@ -64,8 +66,12 @@ public:
             m_max = max;
         }
 
-        bool    InsideX(const OpenSteer::Vec3 p){if(p.x < m_min.x || p.x > m_max.x) return false;return true;}
-        bool    InsideZ(const OpenSteer::Vec3 p){if(p.z < m_min.z || p.z > m_max.z) return false;return true;}
+        bool    InsideX(const OpenSteer::Vec3 p){if(p.x < m_min.x ||
+                                                    p.x > m_max.x)
+                return false;return true;}
+        bool    InsideZ(const OpenSteer::Vec3 p){if(p.z < m_min.z ||
+                                                    p.z > m_max.z)
+                return false;return true;}
 
     private:
         OpenSteer::Vec3 m_min;
@@ -105,22 +111,26 @@ public:
 
     // apply a given steering force to our momentum,
     // adjusting our orientation to maintain velocity-alignment.
-    void applySteeringForce (const OpenSteer::Vec3& force, const float deltaTime);
+    void applySteeringForce (const OpenSteer::Vec3& force,
+                             const float deltaTime);
 
     // the default version: keep FORWARD parallel to velocity, change
     // UP as little as possible.
-    void regenerateLocalSpace (const OpenSteer::Vec3& newVelocity, const float elapsedTime);
+    void regenerateLocalSpace (const OpenSteer::Vec3& newVelocity,
+                               const float elapsedTime);
 
     // alternate version: keep FORWARD parallel to velocity, adjust UP
     // according to a no-basis-in-reality "banking" behavior, something
     // like what birds and airplanes do.  (XXX experimental cwr 6-5-03)
-    void regenerateLocalSpaceForBanking (const OpenSteer::Vec3& newVelocity, const float elapsedTime);
+    void regenerateLocalSpaceForBanking (const OpenSteer::Vec3& newVelocity,
+                                         const float elapsedTime);
 
     // adjust the steering force passed to applySteeringForce.
     // allows a specific vehicle class to redefine this adjustment.
     // default is to disallow backward-facing steering at low speed.
     // xxx experimental 8-20-02
-    OpenSteer::Vec3 adjustRawSteeringForce (const OpenSteer::Vec3& force, const float deltaTime);
+    OpenSteer::Vec3 adjustRawSteeringForce (const OpenSteer::Vec3& force,
+                                            const float deltaTime);
 
     // apply a given braking force (for a given dt) to our momentum.
     // xxx experimental 9-6-02
@@ -139,10 +149,12 @@ public:
     float resetSmoothedCurvature (float value = 0);  // resets the value of _smoothedCurvature
     
     OpenSteer::Vec3 smoothedAcceleration ();  // retrieves the value of _smoothedAcceleration 
-    OpenSteer::Vec3 resetSmoothedAcceleration (const OpenSteer::Vec3& value = OpenSteer::Vec3::zero);  // resets the value of _smoothedAcceleration
+    OpenSteer::Vec3 resetSmoothedAcceleration (const OpenSteer::Vec3& value =
+            OpenSteer::Vec3::zero);  // resets the value of _smoothedAcceleration
  
     OpenSteer::Vec3 smoothedPosition ();  // retrieves the value of _smoothedPosition
-    OpenSteer::Vec3 resetSmoothedPosition (const OpenSteer::Vec3& value = OpenSteer::Vec3::zero);  // resets the value of _smoothedPosition
+    OpenSteer::Vec3 resetSmoothedPosition (const OpenSteer::Vec3& value =
+            OpenSteer::Vec3::zero);  // resets the value of _smoothedPosition
 
     // give each vehicle a unique number
     int serialNumber;

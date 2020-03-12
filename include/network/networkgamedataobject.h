@@ -31,13 +31,15 @@ class networkGameDataObject
     int ID;
     int packetType;
 	
-    friend std::ostream& operator<< (std::ostream& out, networkGameDataObject& object) 
+    friend std::ostream& operator<< (std::ostream& out,
+                                     networkGameDataObject& object)
     {
         out << object.ID << " " << object.packetType;   //The space (" ") is necessari for separete elements
         return out;
     }
 
-    friend std::istream& operator>> (std::istream& in, networkGameDataObject& object) 
+    friend std::istream& operator>> (std::istream& in,
+                                     networkGameDataObject& object)
     {
         in >> object.ID;
         in >> object.packetType;

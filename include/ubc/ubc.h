@@ -21,9 +21,10 @@
 #ifndef _UBC_H_
 #define _UBC_H_
 
-#include "Ogre.h"
+/*#include "Ogre.h"
 #include "OgreStringConverter.h"
 #include "OgreString.h"
+*/
 
 #ifdef __ANDROID__
 #include "utilities/android-config.h"

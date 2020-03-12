@@ -163,7 +163,7 @@ teamEntityMSharedPtr loadTeams::loadTeamFiles()  // load teams from XML files
 
 
     //teams = tempTeams;
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
     teamList = "data/teams/teams.xml";
 #else
     teamList = findFile("teams/teams.xml");
@@ -184,7 +184,7 @@ teamEntityMSharedPtr loadTeams::loadTeamFiles()  // load teams from XML files
     {
 //        logMsg("teamFile = " +*it);
 
-#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#ifdef __ANDROID
 //        teams.push_back(loadTeamFile("data/teams/" + *it));
 //          loadTeamFile("data/teams/" + *it);
         teams.insert(std::pair<size_t, teamEntitySharedPtr>(it, loadTeamFile("data/teams/" + teamFiles[it])));
@@ -229,7 +229,7 @@ stdStringVec loadTeams::loadTeamListFile(const std::string &fileName)  // loads 
     stdStringVec files;
 
 //  players::playerData player;
-//#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+//#ifdef __ANDROID
 //    const char *file = "teams.xml";
 //#else
 //  const char *file = fileName.c_str();
@@ -245,7 +245,7 @@ stdStringVec loadTeams::loadTeamListFile(const std::string &fileName)  // loads 
     
     logMsg(fileName);
     logMsg(func +" bate");
-//#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+//#ifdef __ANDROID
 //  Ogre::DataStreamPtr fileData = render->openAPKFile(fileName);
 //  fileContents = fileData->getAsString();
 //#else

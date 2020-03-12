@@ -202,6 +202,7 @@ void basketballComponents::setNumber(const size_t &set)  // sets the value of nu
 {
     number = set;
     physics->setPhysObjNumber(set); // sets the physics number as well
+
 //    numberSet = true;
 }
 

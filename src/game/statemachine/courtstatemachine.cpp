@@ -18,6 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
+
 #include "ai/basketballsteer.h"
 #include "statemachine/courtstatemachine.h"
 #include "components/courtcomponents.h"
@@ -285,6 +286,7 @@ STATE_DEFINE(courtStateMachine, CreateNode, courtSMData)
 // sets up basketball physics object
 STATE_DEFINE(courtStateMachine, SetupPhysics, courtSMData)
 {
+
     conversionSharedPtr convert;
     std::string func = "courtStateMachine::setupPhysics()";
     OgreEntitySharedPtr tempModel = data->model;
@@ -340,7 +342,6 @@ STATE_DEFINE(courtStateMachine, SetupPhysics, courtSMData)
     }
 
     logMsg(func +" end");
-
 }
 
 // stops movement of basketball object

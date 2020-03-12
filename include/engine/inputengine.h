@@ -22,7 +22,7 @@
 #ifndef _INPUTENGINE_H_
 #define _INPUTENGINE_H_
 
-#include "Ogre.h"
+//#include "Ogre.h"
 
 #include "SDL.h"
 #include "SDL_syswm.h"

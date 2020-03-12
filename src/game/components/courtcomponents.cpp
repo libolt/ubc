@@ -36,6 +36,7 @@ void courtComponents::setNumber(const size_t &set)  // sets the value of number
 {
     number = set;
     physics->setPhysObjNumber(set); // sets the physics number as well
+
 //    numberSet = true;
 }
 

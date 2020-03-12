@@ -46,7 +46,8 @@ class inputGamePads : public input
         bool getSetupComplete() const;  // retrieves the value of setupComplete
         void setSetupComplete(const bool &set);  // sets the value of setupComplete
 
-        inputInGameMaps mapInput(inputGamePadMaps inGamePadMap, const usersInputsSharedPtr &input);  // maps value of the keyPressed string to inputInGameMaps
+        inputInGameMaps mapInput(inputGamePadMaps inGamePadMap,
+                                 const usersInputsSharedPtr &input);  // maps value of the keyPressed string to inputInGameMaps
         bool process();  // processes input
 
         bool setup();  // sets up the inputGamePads object

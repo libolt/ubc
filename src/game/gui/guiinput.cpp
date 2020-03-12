@@ -969,4 +969,3 @@ void guiInput::processCourtSelectionMenuKeyPress(const std::string &keyPressed, 
         
     }
 }
-

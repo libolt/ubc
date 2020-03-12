@@ -89,7 +89,7 @@ bool UBC::setup()  // sets up UBC object
     component->setGui(tempGUISharedPtr);
     
     component->getGui()->setGameE(component->getGameE());
-    
+
     // setup game object
     UBCGameSharedPtr tempGameSharedPtr(new UBCGame);
 
@@ -120,6 +120,7 @@ bool UBC::setupState()  // sets up the UBC game state
 
     logMsg(func +" begin");
 
+#ifndef NOGUI
     GUISystemSharedPtr gui = component->getGui();
     gui->setGameInstance(component->getGame()->getGameInstance());  // shares gameInstance with gui object
 
@@ -144,8 +145,8 @@ bool UBC::setupState()  // sets up the UBC game state
         logMsg(func +" Unable to setup GUI!");
         exit(0);
     }
-    
     logMsg(func +" end");
+#endif
 
     return (stateSetup);
 }
@@ -305,6 +306,7 @@ bool UBC::updateGUI()  // updates the gui based on received events
     {
         component->getGui()->getComponent()->getMGUI()->injectMouseRelease(component->getGameE()->getInputE()->getMouseX(), component->getGameE()->getInputE()->getMouseY(), MyGUI::MouseButton::Left);
     }
+
 //    base->setGui(gui);
 
     logMsg(func +" end");

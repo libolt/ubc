@@ -185,6 +185,7 @@ class renderEngine : public engine
     std::string mResourceGroup;  // stores resource locations
     Ogre::String rootHlmsFolder;  // stores the root Hlms folder
     Ogre::NameValuePairList misc;  // options to pass to mWindow during creation
+    Ogre::ConfigOptionMap cfgOpts;  // stores render window config options
     std::string winHandle;  // window handle
 
 #if OGRE_VERSION_MAJOR == 2
@@ -217,8 +218,10 @@ class renderEngine : public engine
 
 //    static renderEngine *pInstance;
 //    static renderEngineSharedPtr pInstance;
-    bool useRTSS;
 
+        bool useRTSS;
+        size_t windowWidth;  // stoers the width of the SDL and OGRE windows
+        size_t windowHeight;   // stores the height of the SDL and OGRE windows
 };
 
 #endif // RENDERENGINE_H_INCLUDED

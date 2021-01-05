@@ -63,12 +63,15 @@ renderEngine::renderEngine()
 //    sharedPtr<Ogre::Window> tempWindow(new Ogre::Window);
     mWindow = nullptr;
     RERoot = nullptr;
-   
+//    cfgOpts = 0;
+
     instance = 0;
     useRTSS = false;
     mMoveSpeed = 0.0;
     mMoveScale = 0.0;
     mTimeUntilNextToggle = 0.0;
+    windowWidth = 1280;
+    windowHeight = 720;
 //   windowWidth = 0;
 //   windowHeight = 0;
 }
@@ -362,7 +365,7 @@ bool renderEngine::initSDL() // Initializes SDL Subsystem
     sdlWindow = SDL_CreateWindow("Ultimate Basketball Challenge",
 	                             SDL_WINDOWPOS_UNDEFINED,
 	                             SDL_WINDOWPOS_UNDEFINED,
-                                 1280,1024,0);
+                                 windowWidth,windowHeight,0);
 //    exit(0);
     SDL_VERSION( &sysInfo.version );
 
@@ -387,14 +390,18 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
     #ifdef _WIN64
-        winHandle = convert->toString(reinterpret_cast<size_t>(sysInfo.info.win.window));
+//        winHandle = convert->toString(reinterpret_cast<size_t>(sysInfo.info.win.window));
+        winHandle = convert->toString((uintptr_t)sysInfo.info.win.window);
     #else
-        winHandle = convert->toString(reinterpret_cast<unsigned long int>(sysInfo.info.win.window));
+//        winHandle = convert->toString(reinterpret_cast<unsigned long int>(sysInfo.info.win.window));
+        winHandle = convert->toString((uintptr_t)sysInfo.info.win.window);
     #endif
 #elif OGRE_PLATFORM == OGRE_PLATFORM_LINUX
 //    winHandle = convert->toString(reinterpret_cast<unsigned long>(sysInfo.info.x11.window));
     winHandle = convert->toString((uintptr_t)sysInfo.info.x11.window);
-
+    misc.insert( std::make_pair(
+                     "SDL2x11", convert->toString(
+                         (uintptr_t)&sysInfo.info.x11 ) ) );
 #elif OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     JNIEnv* env = (JNIEnv*)SDL_AndroidGetJNIEnv();
 
@@ -508,6 +515,33 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
     
     
     mWindow = sharedPtr<Ogre::Window>(RERoot->initialise(false));
+
+    // sets configuration options for Ogre Window
+    cfgOpts =RERoot->getRenderSystem()->getConfigOptions();
+
+    Ogre::ConfigOptionMap::iterator opt = cfgOpts.find( "Video Mode" );
+
+    int width = 1280;
+    int height = 720;
+
+    if( opt != cfgOpts.end() && !opt->second.currentValue.empty() )
+    {
+        //Ignore leading space
+        const Ogre::String::size_type start =
+                opt->second.currentValue.find_first_of("012356789");
+        //Get the width and height
+        Ogre::String::size_type widthEnd = opt->second.currentValue.find(' ',
+                                                                         start);
+        // we know that the height starts 3 characters after the width and goes until the next space
+        Ogre::String::size_type heightEnd =
+                opt->second.currentValue.find(' ', widthEnd+3);
+        // Now we can parse out the values
+        width = Ogre::StringConverter::parseInt(
+                    opt->second.currentValue.substr( 0, widthEnd ) );
+        height =
+                Ogre::StringConverter::parseInt( opt->second.currentValue.substr(
+                                                     widthEnd+3, heightEnd ) );
+    }
 
 /*    misc["externalWindowHandle"] = winHandle;
 //    misc["externalGLContext"] = convert->toString((unsigned long)SDL_GL_GetCurrentContext());
@@ -628,15 +662,35 @@ bool renderEngine::createScene()
 //    exit(0);
     logMsg(func +" winHandle = " +winHandle);
 
+    std::string windowTitle = "Ultimate Basketball Challenge";
+
 //    exit(0);
-    misc["externalWindowHandle"] = winHandle;
+    #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
+        misc.insert( std::make_pair("externalWindowHandle",  winHandle) );
+    #elif OGRE_PLATFORM == OGRE_PLATFORM_LINUX
+        misc.insert( std::make_pair("parentWindowHandle",  winHandle) );
+    #endif
+
+    misc.insert( std::make_pair("title", windowTitle) );
+    misc.insert( std::make_pair("gamma",
+                                cfgOpts["sRGB Gamma Conversion"].currentValue) );
+    if( cfgOpts.find( "VSync Method" ) != cfgOpts.end() )
+        misc.insert( std::make_pair( "vsync_method",
+                                     cfgOpts["VSync Method"].currentValue ) );
+    misc.insert( std::make_pair("FSAA", cfgOpts["FSAA"].currentValue) );
+    misc.insert( std::make_pair("vsync", cfgOpts["VSync"].currentValue) );
+    misc.insert( std::make_pair("reverse_depth", "Yes" ) );
+
+
+//    misc["externalWindowHandle"] = winHandle;
 //	misc["externalGLContext"] = convert->toString((unsigned long)SDL_GL_GetCurrentContext());
 //    exit(0);
     logMsg(func +" Hello??");
 //    exit(0);
+
     mWindow = sharedPtr<Ogre::Window>(
-                RERoot->createRenderWindow("Ultimate Basketball Challenge", 0,
-                                           0, false, &misc));
+                RERoot->createRenderWindow(windowTitle, windowWidth,
+                                           windowHeight, false, &misc));
 
 //    exit(0);
     logMsg(func +" renderWindow created!");

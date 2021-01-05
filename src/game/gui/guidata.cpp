@@ -18,6 +18,8 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
+#ifdef ENABLE_MYGUI
+
 #include "engine/networkengine.h"
 
 #include "gui/guidata.h"
@@ -463,3 +465,5 @@ bool guiData::addTeamStartSelectionMenuData()  // adds data to Team Start Select
     
     return (true);
 }
+
+#endif // ENABLE_MYGUI

@@ -42,7 +42,11 @@
 //#include "input.h"
 //#include "playerdata.h"
 //#include "state/playerstate.h"
+
+#ifdef ENABLE_MYGUI
+
 #include "gui/gui.h"
+#endif
 //class GUISystem;
 class gameEngine;
 class UBCGame;
@@ -71,8 +75,10 @@ class UBC
 
         void gameLoop_old();  // runs the Main loop for the game
 
+#ifdef ENABLE_MYGUI
         bool updateGUI();  // updates the gui based on received events
-    
+#endif
+
         bool setupInputSObjUserInput();  // sets up user input mapping for inputS object
     
     private:

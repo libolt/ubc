@@ -30,11 +30,13 @@
 #include "enet/enet.h"
 #endif 
 
+#undef None
+
 #include <vector>
 #include <unordered_map>
 #include <algorithm>
 #include "Ogre.h"
-#include "OgreInstancedEntity.h"
+//#include "OgreInstancedEntity.h"
 
 
 #include "BtOgrePG.h"
@@ -50,6 +52,7 @@
 
 #include "gui/guidefines.h"
 
+#ifdef ENABLE_MYGUI
 
 #include "MyGUI_Gui.h"
 #include "MyGUI_Ogre2Platform.h"
@@ -60,7 +63,7 @@
 #include "MyGUI_FontManager.h"
 #include "MyGUI_LayoutManager.h"
 #include "MyGUI_ImageBox.h"
-
+#endif
 
 // Skip the GUI and start a test game
 #define NOGUI
@@ -390,6 +393,8 @@ typedef sharedPtr<Ogre::v1::Entity> OgreEntitySharedPtr;
 typedef sharedPtr<Ogre::SceneNode> OgreSceneNodeSharedPtr;
 
 
+#ifdef ENABLE_MYGUI
+
 typedef sharedPtr<MyGUI::Gui> MyGUIGuiSharedPtr;
 
 typedef sharedPtr<MyGUI::Ogre2Platform> MyGUIOgrePlatformSharedPtr;
@@ -399,6 +404,7 @@ typedef sharedPtr<MyGUI::ListBox> MyGUIListBoxSharedPtr;
 typedef sharedPtr<MyGUI::ImageBox> MyGUIImageBoxSharedPtr;
 
 typedef sharedPtr<MyGUI::TextBox> MyGUITextBoxSharedPtr;
+#endif
 
 // physics
 
@@ -498,6 +504,8 @@ typedef std::map <size_t, teamStateMachineSharedPtr> teamStateMachineMSharedPtr;
 
 typedef std::map <size_t, usersSharedPtr> usersMSharedPtr;
 
+#ifdef ENABLE_MYGUI
+
 typedef std::map<std::string, sharedPtr<MyGUI::Button> > MyGUIButtonMSharedPtr;
 
 typedef std::map<size_t, sharedPtr<MyGUI::ListBox> > MyGUIListBoxMSharedPtr;
@@ -508,9 +516,14 @@ typedef std::map<std::string, sharedPtr<MyGUI::TextBox> > MyGUITextBoxMSharedPtr
 
 typedef std::map<std::string, sharedPtr<MyGUI::ImageBox> > MyGUIImageBoxMSharedPtr;
 
+#endif
+
 typedef std::map<playerPositions, size_t> teamStarterIDsM;
 
+
 // Vector Unordered_map shared pointers
+
+#ifdef ENABLE_MYGUI
 
 //typedef std::vector<std::map <std::string, sharedPtr<MyGUI::ListBox> > > MyGUIListBoxVecMSharedPtr;
 
@@ -519,6 +532,8 @@ typedef std::vector <MyGUIListBoxMSharedPtr> MyGUIListBoxVecMSharedPtr;
 typedef std::vector <MyGUIPlayerListBoxMSharedPtr> MyGUIPlayerListBoxVecMSharedPtr;
 
 typedef std::vector<MyGUITextBoxMSharedPtr> MyGUITextBoxVecMSharedPtr;
+
+#endif
 
 typedef std::vector<basketballEntityMSharedPtr> basketballEntityVecMSharedPtr;
 

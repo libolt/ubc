@@ -33,9 +33,9 @@
 #include "Compositor/OgreCompositorManager2.h"
 #define FREEIMAGE_LIB
 //#include "FreeImage.h"
-#include "OgreDDSCodec.h"
+//#include "OgreDDSCodec.h"
 //#include "OgreFreeImageCodec.h"
-#include "OgreRenderWindow.h"
+#include "OgreWindow.h"
 
 #ifndef OGRE_PLUGIN_DIR
 #define OGRE_PLUGIN_DIRr
@@ -60,7 +60,7 @@ renderEngine::renderEngine()
     mAssetMgr = nullptr;
     mSceneMgr = nullptr;
 #endif
-//    sharedPtr<Ogre::RenderWindow> tempWindow(new Ogre::RenderWindow);
+//    sharedPtr<Ogre::Window> tempWindow(new Ogre::Window);
     mWindow = nullptr;
     RERoot = nullptr;
    
@@ -119,11 +119,11 @@ void renderEngine::setMSceneMgr(const sharedPtr<Ogre::SceneManager> &set)  // se
 	mSceneMgr = set;
 }
 
-sharedPtr<Ogre::RenderWindow> renderEngine::getMWindow() const  // retrieves the value of mWindow
+sharedPtr<Ogre::Window> renderEngine::getMWindow() const  // retrieves the value of mWindow
 {
 	return (mWindow);
 }
-void renderEngine::setMWindow(const sharedPtr<Ogre::RenderWindow> &set)  // sets the value of mWindow
+void renderEngine::setMWindow(const sharedPtr<Ogre::Window> &set)  // sets the value of mWindow
 {
 	mWindow = set;
 }
@@ -392,7 +392,9 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
         winHandle = convert->toString(reinterpret_cast<unsigned long int>(sysInfo.info.win.window));
     #endif
 #elif OGRE_PLATFORM == OGRE_PLATFORM_LINUX
-    winHandle = convert->toString(reinterpret_cast<unsigned long>(sysInfo.info.x11.window));
+//    winHandle = convert->toString(reinterpret_cast<unsigned long>(sysInfo.info.x11.window));
+    winHandle = convert->toString((uintptr_t)sysInfo.info.x11.window);
+
 #elif OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     JNIEnv* env = (JNIEnv*)SDL_AndroidGetJNIEnv();
 
@@ -505,7 +507,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 #endif
     
     
-    mWindow = sharedPtr<Ogre::RenderWindow>(RERoot->initialise(false));
+    mWindow = sharedPtr<Ogre::Window>(RERoot->initialise(false));
 
 /*    misc["externalWindowHandle"] = winHandle;
 //    misc["externalGLContext"] = convert->toString((unsigned long)SDL_GL_GetCurrentContext());
@@ -515,7 +517,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
     mWindow = RERoot->createRenderWindow("Ultimate Basketball Challenge", 0, 0, false, &misc);
     exit(0);
 */
-    Ogre::DDSCodec::startup();
+//    Ogre::DDSCodec::startup();
     
 //    Ogre::FreeImageCodec::startup();
 //    FreeImage_Initialise();
@@ -632,7 +634,7 @@ bool renderEngine::createScene()
 //    exit(0);
     logMsg(func +" Hello??");
 //    exit(0);
-    mWindow = sharedPtr<Ogre::RenderWindow>(
+    mWindow = sharedPtr<Ogre::Window>(
                 RERoot->createRenderWindow("Ultimate Basketball Challenge", 0,
                                            0, false, &misc));
 
@@ -675,7 +677,7 @@ bool renderEngine::createScene()
                 Ogre::ResourceGroupManager::getSingletonPtr());
     rsm->createResourceGroup(mResourceGroup);
 
-    Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
+//    Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
 
 #if __ANDROID__
     Ogre::ConfigFile cf;
@@ -721,7 +723,8 @@ bool renderEngine::createScene()
 //    mWindow = RERoot->createRenderWindow("Ultimate Basketball Challenge", 0, 0, false, &misc);
 
 	//    exit(0);
-    mWindow->setVisible(true);
+//    mWindow->set
+//    mWindow->setVisible(true);
 #endif
     logMsg(func +" Alive?");
 
@@ -863,7 +866,6 @@ bool renderEngine::createScene()
 #else
     mSceneMgr = sharedPtr<Ogre::SceneManager>(
                 RERoot->createSceneManager(Ogre::ST_GENERIC, 4,
-                                           Ogre::INSTANCING_CULLING_THREADED,
                                            "SceneManager")); // creates the scene manager
     logMsg(func +"mSceneMgr setup");
 #endif
@@ -875,15 +877,16 @@ bool renderEngine::createScene()
     const Ogre::String workspaceName( "MyOwnWorkspace" );
     compositorManager = sharedPtr<Ogre::CompositorManager2>(
                 RERoot->getCompositorManager2());
+    Ogre::CompositorChannelVec externalChannels(1);
+
     if( !compositorManager->hasWorkspaceDefinition( workspaceName ) )
         compositorManager->createBasicWorkspaceDef( workspaceName,
                                                     Ogre::ColourValue( 0.6f,
                                                                        0.0f,
                                                                        0.6f));
 
-    compositorManager->addWorkspace( mSceneMgr.get(), mWindow.get(),
+    compositorManager->addWorkspace( mSceneMgr.get(), mWindow.get()->getTexture(),
                                      mCamera.get(), workspaceName, true );
-
 
     logMsg(func +"Compositor setup");
 
@@ -912,7 +915,7 @@ bool renderEngine::createScene()
     cameraNode->attachObject(mCamera.get());
     logMsg(func +"Camera setup");
 //    viewPort = sharedPtr<Ogre::Viewport>(mWindow->addViewport(mCamera.get()));
-    viewPort = sharedPtr<Ogre::Viewport>(mWindow->addViewport());
+// 2.2    viewPort = sharedPtr<Ogre::Viewport>(mWindow->addViewport());
 
 //    viewPort->setBackgroundColour(Ogre::ColourValue(0, 0, 0));
 
@@ -1099,7 +1102,7 @@ bool renderEngine::renderFrame()  // renders a frame to the screen
         logMsg(func +" mWindow is nullptr!");
     }
     
-    if (mWindow != nullptr && mWindow->isActive())
+    if (mWindow != nullptr && mWindow->isFocused())
     {
 //        logMsg(func +" LastFPS == " +convert->toString(mWindow->getLastFPS()));
 //      Ogre::LogManager::getSingletonPtr()->logMessage("Rendering frame");

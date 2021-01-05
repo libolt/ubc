@@ -18,6 +18,8 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
+#ifdef ENABLE_MYGUI
+
 #include "engine/networkengine.h"
 
 #include "gui/guidisplay.h"
@@ -703,3 +705,4 @@ void guiDisplay::changeActiveMenu(activeMenus menu, const renderEngineSharedPtr 
     showActiveMenuWidgets(render);
     logMsg(func + " end");
 }
+#endif

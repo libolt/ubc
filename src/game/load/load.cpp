@@ -24,6 +24,8 @@
 #include "config.h"
 #endif
 
+#include <fstream>
+
 //#include "state/teamstate.h"
 #include "utilities/conversion.h"
 #include "load/load.h"

@@ -21,6 +21,8 @@
 #ifndef _GUIINPUT_H_
 #define _GUIINPUT_H_
 
+#ifdef ENABLE_MYGUI
+
 #include "utilities/typedefs.h"
 
 class guiInput
@@ -116,5 +118,5 @@ class guiInput
         gameEntitySharedPtr gameInstance;  // stores a copy of the gameInstance
 
 };
-
+#endif
 #endif

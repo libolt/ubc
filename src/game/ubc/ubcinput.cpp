@@ -362,8 +362,10 @@ bool UBCInput::processKeyboard(const gameEngineSharedPtr &gameE, const gameCompo
         if (gameE->getMenuActive())  // sends key input to the GUI system if menu is active
         {
             logMsg(func +" gameE->getMenuActive()");
+#ifdef ENABLE_MYGUI
             gui->getInput()->menuReceiveKeyPress(convert->toString(gameE->getInputE()->getKeyPressed()), gameE->getRenderE()); // sends input to menu key input processing function
             logMsg(func +" base->getGui");
+#endif
             //            exit(0);
         }
         else

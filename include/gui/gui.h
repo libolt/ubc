@@ -21,6 +21,8 @@
 #ifndef _GUI_H_
 #define _GUI_H_
 
+#ifdef ENABLE_MYGUI
+
 #include "flags/guiflags.h"
 #include "gui/guidefines.h"
 
@@ -112,4 +114,5 @@ private:
 
 };
 
+#endif
 #endif // GUI_H_INCLUDED

@@ -38,7 +38,7 @@
 #include "Android/OgreAPKZipArchive.h"
 
 
-//static Ogre::RenderWindow* gRenderWnd = nullptr;
+//static Ogre::Window* gRenderWnd = nullptr;
 //static Ogre::Root* gRoot = nullptr;
 static Ogre::StaticPluginLoader* gStaticPluginLoader = nullptr;
 //static AAssetManager* gAssetMgr = nullptr; 

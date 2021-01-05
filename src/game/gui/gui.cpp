@@ -18,6 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
+#ifdef ENABLE_MYGUI
 
 #include "engine/networkengine.h"
 
@@ -797,3 +798,4 @@ void GUISystem::networkServerSetupMenu(const renderEngineSharedPtr &render)  // 
     display->changeActiveMenu(NETWORKCLIENT, render);
 }
 */
+#endif

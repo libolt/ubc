@@ -18,6 +18,8 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
+#ifdef ENABLE_MYGUI
+
 
 #include "statemachine/guistatemachine.h"
 #include "components/gamecomponents.h"
@@ -852,3 +854,4 @@ STATE_DEFINE(guiStateMachine, InputMenu, guiSMData)
     display->changeActiveMenu(INPUTMENU, render);
     logMsg(func +" end");
 }
+#endif

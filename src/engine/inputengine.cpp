@@ -31,7 +31,10 @@
 #undef Button6
 #undef Button7
 
+#ifdef ENABLE_MYGUI
+
 #include "MyGUI_Ogre2Platform.h"
+#endif
 
 #include "engine/inputengine.h"
 #include "engine/gameengine.h"

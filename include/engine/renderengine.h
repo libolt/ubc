@@ -82,8 +82,8 @@ class renderEngine : public engine
     sharedPtr<Ogre::SceneManager> getMSceneMgr() const;  // retrieves the value of mSceneMgr
     void setMSceneMgr(const sharedPtr<Ogre::SceneManager> &set);  // sets the value of mSceneMgr
 
-    sharedPtr<Ogre::RenderWindow> getMWindow() const;  // retrieves the value of mWindow
-    void setMWindow(const sharedPtr<Ogre::RenderWindow> &set);  // sets the value of mWindow
+    sharedPtr<Ogre::Window> getMWindow() const;  // retrieves the value of mWindow
+    void setMWindow(const sharedPtr<Ogre::Window> &set);  // sets the value of mWindow
 
     sharedPtr<Ogre::Viewport> getViewPort() const; // retrieves the value of viewPort
     void setViewPort(const sharedPtr<Ogre::Viewport> &set); // sets the value of viewPort
@@ -175,7 +175,7 @@ class renderEngine : public engine
     sharedPtr<Ogre::Camera> mCamera;  // stores the camera used by OGRE
     OgreSceneNodeSharedPtr cameraNode;  // stores the camera node
     sharedPtr<Ogre::SceneManager> mSceneMgr;  // store the OGRE Scene Manager
-    sharedPtr<Ogre::RenderWindow> mWindow;  // stores the OGRE Render Window
+    sharedPtr<Ogre::Window> mWindow;  // stores the OGRE Render Window
     sharedPtr<Ogre::Viewport> viewPort;  // stores the OGRE View Port
     sharedPtr<Ogre::Light> light;  // stores the vslue of light
     OgreSceneNodeSharedPtr lightNode;  // stores the light scene node.

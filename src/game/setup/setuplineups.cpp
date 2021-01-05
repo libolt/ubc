@@ -30,6 +30,7 @@
 #include "entity/teamentity.h"
 #include "flags/teamflags.h"
 #include "utilities/logging.h"
+#include "utilities/typedefs.h"
 
 setupLineups::setupLineups() = default;  // constructor
 

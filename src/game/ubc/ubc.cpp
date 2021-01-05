@@ -85,10 +85,12 @@ bool UBC::setup()  // sets up UBC object
     
     logMsg(func +" begin");
 
+#ifdef ENABLE_MYGUI
     GUISystemSharedPtr tempGUISharedPtr(new GUISystem);
     component->setGui(tempGUISharedPtr);
-    
+
     component->getGui()->setGameE(component->getGameE());
+#endif
 
     // setup game object
     UBCGameSharedPtr tempGameSharedPtr(new UBCGame);
@@ -288,6 +290,7 @@ void UBC::run()  // runs the game
 
 }
 
+#ifdef ENABLE_MYGUI
 
 bool UBC::updateGUI()  // updates the gui based on received events
 {
@@ -313,6 +316,7 @@ bool UBC::updateGUI()  // updates the gui based on received events
 
     return (true);
 }
+#endif
 
 bool UBC::setupInputSObjUserInput()  // sets up user input mapping for inputS object
 {

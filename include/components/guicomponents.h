@@ -21,7 +21,7 @@
 #ifndef _GUICOMPONENTS_H_
 #define _GUICOMPONENTS_H_
 
-
+#ifdef MYGUI_ENABLED
 
 #include "MyGUI_Gui.h"
 #include "MyGUI_Ogre2Platform.h"
@@ -237,4 +237,5 @@ class guiComponents
 
 };
 
+#endif // MYGUI_ENABLED
 #endif

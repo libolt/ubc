@@ -17,7 +17,6 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-
 #ifdef __ANDROID__
 #include "utilities/android-config.h"
 #else
@@ -694,7 +693,7 @@ bool renderEngine::createScene()
 
 //    exit(0);
     logMsg(func +" renderWindow created!");
-    size_t handle = 0;
+    std::size_t handle = 0;
     mWindow->getCustomAttribute("WINDOW", &handle);
     logMsg(func +" mWindow handle = " +convert->toString(handle));
 //    exit(0);
@@ -824,6 +823,9 @@ bool renderEngine::createScene()
 
     logMsg(func +"Setting up HLMS");
 
+
+    hlmsManager = RERoot->getHlmsManager();
+
     Ogre::Archive *archiveLibrary = Ogre::ArchiveManager::getSingletonPtr()->load(
                     dataPath + "/Media/Hlms/Common/GLSL", "FileSystem", true );
     Ogre::ArchiveVec library;
@@ -832,14 +834,15 @@ bool renderEngine::createScene()
                   dataPath + "/Media/Hlms/Pbs/GLSL", "FileSystem", true );
     Ogre::HlmsPbs *hlmsPbs = OGRE_NEW Ogre::HlmsPbs( archivePbs, &library );
 
-    Ogre::Root::getSingleton().getHlmsManager()->registerHlms( hlmsPbs );
-
+//    Ogre::Root::getSingleton().getHlmsManager()->registerHlms( hlmsPbs );
+    hlmsManager->registerHlms(hlmsPbs);
     Ogre::Archive *archiveUnlit = Ogre::ArchiveManager::getSingletonPtr()->load(
                   dataPath + "/Media/Hlms/Unlit/GLSL", "FileSystem", true );
-    Ogre::HlmsUnlit *hlmsUnlit = OGRE_NEW Ogre::HlmsUnlit( archiveUnlit, &library );
+// 2.1    Ogre::HlmsUnlit *hlmsUnlit = OGRE_NEW Ogre::HlmsUnlit( archiveUnlit, &library );
+    Ogre::HlmsUnlit *hlmsUnlit = static_cast<Ogre::HlmsUnlit*>(hlmsManager->getHlms(Ogre::HLMS_UNLIT));
 
-    Ogre::Root::getSingleton().getHlmsManager()->registerHlms( hlmsUnlit );
-
+//    Ogre::Root::getSingleton().getHlmsManager()->registerHlms( hlmsUnlit );
+    hlmsManager->registerHlms(hlmsUnlit);
 
     logMsg(func +"Hlms setup");
     //register HLMS
@@ -918,8 +921,10 @@ bool renderEngine::createScene()
     mSceneMgr = sharedPtr<Ogre::SceneManager>(
                 RERoot->createSceneManager(Ogre::ST_GENERIC)); // creates the scene manager
 #else
+    const std::size_t numThreads = std::max<std::size_t>(1,
+                                               Ogre::PlatformInformation::getNumLogicalCores() );
     mSceneMgr = sharedPtr<Ogre::SceneManager>(
-                RERoot->createSceneManager(Ogre::ST_GENERIC, 4,
+                RERoot->createSceneManager(Ogre::ST_GENERIC, numThreads,
                                            "SceneManager")); // creates the scene manager
     logMsg(func +"mSceneMgr setup");
 #endif

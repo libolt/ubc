@@ -182,6 +182,7 @@ class renderEngine : public engine
     sharedPtr<Ogre::ResourceGroupManager> rsm;  // stores resources
     Ogre::HlmsPbs* mHlmsPbs;
     Ogre::HlmsUnlit* mHlmsUnlit;
+    Ogre::HlmsManager *hlmsManager;
     std::string mResourceGroup;  // stores resource locations
     Ogre::String rootHlmsFolder;  // stores the root Hlms folder
     Ogre::NameValuePairList misc;  // options to pass to mWindow during creation

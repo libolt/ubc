@@ -22,14 +22,14 @@
 #define _GAMESTATEMACHINE_H_
 
 #include <cstdio>
-#include "statemachine/statemachine.h"
+#include "statemachine/StateMachine.h"
 #include "utilities/enums.h"
 #include "utilities/typedefs.h"
 
 class gameFlags;
 class gameData;
 
-class gameSMData : public eventData
+class gameSMData : public EventData
 {
     public:
         gameComponentsSharedPtr component;  // component object
@@ -38,7 +38,7 @@ class gameSMData : public eventData
         renderEngineSharedPtr render;  // copy of renderEngine object
 };
 
-class gameStateMachine : public stateMachine
+class gameStateMachine : public StateMachine
 {
     public:
         gameStateMachine();
@@ -83,7 +83,7 @@ class gameStateMachine : public stateMachine
         STATE_DECLARE(gameStateMachine,    setStartPositions,    gameSMData)
         STATE_DECLARE(gameStateMachine,    setupJumpBall, gameSMData)
         STATE_DECLARE(gameStateMachine,    executeJumpBall, gameSMData)
-        STATE_DECLARE(gameStateMachine,    Idle,            noEventData)
+        STATE_DECLARE(gameStateMachine,    Idle,            NoEventData)
         STATE_DECLARE(gameStateMachine,    StartMovement,   gameSMData)
         STATE_DECLARE(gameStateMachine,    ChangePosition,  gameSMData)
         STATE_DECLARE(gameStateMachine,    ChangeSpeed,     gameSMData)

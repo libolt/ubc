@@ -21,6 +21,8 @@
 #ifndef _PHYSICS_H_
 #define _PHYSICS_H_
 
+#ifdef _ENABLE_BTOGRE
+
 #include "BtOgrePG.h"
 #include "BtOgreGP.h"
 #include "BtOgreExtras.h"
@@ -92,8 +94,8 @@ class physics
         size_t getPhysObjNumber() const;  // retrieves the value of number
         void setPhysObjNumber(const size_t &set);  // sets the value of number
 
-        bool setupPhysics(OgreEntitySharedPtr *model,
-                          OgreSceneNodeSharedPtr *node, btRigidBody **body);  // sets up object physics
+        bool setupPhysics(Ogre::v1::Entity *model,
+                          Ogre::SceneNode *node, btRigidBody **body);  // sets up object physics
 
         bool setup();  // sets up the object
 
@@ -140,5 +142,5 @@ class physics
         size_t physObjNumber;  // stores the number of the object
 
 };
-
+#endif
 #endif // _PHYSICS_H_

@@ -34,14 +34,14 @@
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
 
-courtStateMachine::courtStateMachine() :
-    stateMachine(ST_MAX_STATES),
+courtstatemachine::courtstatemachine() :
+    StateMachine(ST_MAX_STATES),
     m_currentSpeed(0)
 {
 }    
 
 // Initialize state machine external event
-void courtStateMachine::pInitialize(const courtSMData *data)
+void courtstatemachine::pInitialize(const courtSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_INITIALIZE)                // ST_INITIALIZE       
@@ -58,7 +58,7 @@ void courtStateMachine::pInitialize(const courtSMData *data)
 }
 
 // Initailize Components external event
-void courtStateMachine::pInitializeComponents(courtSMData *data)
+void courtstatemachine::pInitializeComponents(courtSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_INITIALIZE_COMPONENTS)     // ST_INITIALIZE
@@ -75,7 +75,7 @@ void courtStateMachine::pInitializeComponents(courtSMData *data)
 }
 
 // Initailize Components external event
-void courtStateMachine::pLoadModel(courtSMData *data)
+void courtstatemachine::pLoadModel(courtSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_LOAD_MDOEL)     // ST_INITIALIZE
@@ -92,7 +92,7 @@ void courtStateMachine::pLoadModel(courtSMData *data)
 }
 
 // Initailize Components external event
-void courtStateMachine::pCreateNode(courtSMData *data)
+void courtstatemachine::pCreateNode(courtSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_CREATE_NODE)     // ST_INITIALIZE
@@ -110,7 +110,7 @@ void courtStateMachine::pCreateNode(courtSMData *data)
 
 
 // halt motor external event
-void courtStateMachine::halt()
+void courtstatemachine::halt()
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (ST_STOP_MOVEMENT)             // ST_INITIALIZE
@@ -127,7 +127,7 @@ void courtStateMachine::halt()
 }
 
 // Update positions external event
-void courtStateMachine::pUpdatePosition(courtSMData *data)
+void courtstatemachine::pUpdatePosition(courtSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                     // ST_INITIALIZE
@@ -144,7 +144,7 @@ void courtStateMachine::pUpdatePosition(courtSMData *data)
 }
 
 // Update movement external event
-void courtStateMachine::pUpdateMovement(courtSMData *data)
+void courtstatemachine::pUpdateMovement(courtSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                     // ST_INITIALIZE
@@ -161,7 +161,7 @@ void courtStateMachine::pUpdateMovement(courtSMData *data)
 }
 
 // Update direction external event
-void courtStateMachine::pUpdateDirection(courtSMData *data)
+void courtstatemachine::pUpdateDirection(courtSMData *data)
 {
     BEGIN_TRANSITION_MAP                                    // - Current State -
         TRANSITION_MAP_ENTRY (CANNOT_HAPPEN)                      // ST_INITIALIZE
@@ -178,9 +178,9 @@ void courtStateMachine::pUpdateDirection(courtSMData *data)
 }
 
 // Initialize the state machine
-STATE_DEFINE(courtStateMachine, Initialize, courtSMData)
+STATE_DEFINE(courtstatemachine, Initialize, courtSMData)
 {
-    std::string func = "courtStateMachine::Initialize()";
+    std::string func = "courtstatemachine::Initialize()";
 
     logMsg(func +" begin");
 
@@ -197,20 +197,21 @@ STATE_DEFINE(courtStateMachine, Initialize, courtSMData)
 
     data = tempSMData;
     
+#ifdef _ENABLE_BTOGRE
     sharedPtr<courtPhysics> tempPhysics(new courtPhysics);
     data->component->setPhysics(tempPhysics);
-
+#endif
     logMsg(func +" end");
     
-//    internalEvent(ST_INITIALIZE_COMPONENTS);
+//    InternalEvent(ST_INITIALIZE_COMPONENTS);
 }
 
 // Initialize the component objects
-STATE_DEFINE(courtStateMachine, InitializeComponents, courtSMData)
+STATE_DEFINE(courtstatemachine, InitializeComponents, courtSMData)
 {
     
     conversionSharedPtr convert;
-    std::string func = "courtStateMachine::InitializeComponents()";
+    std::string func = "courtstatemachine::InitializeComponents()";
 
     logMsg(func +" begin");
 
@@ -230,13 +231,13 @@ STATE_DEFINE(courtStateMachine, InitializeComponents, courtSMData)
 }
 
 // Loads the court model
-STATE_DEFINE(courtStateMachine, LoadModel, courtSMData)
+STATE_DEFINE(courtstatemachine, LoadModel, courtSMData)
 {
 
     conversionSharedPtr convert;
     loadCourtsSharedPtr loadCourt(new loadCourts);
     courtSMData *lmSMData(new courtSMData);
-    std::string func = "courtStateMachine::LoadModel()";
+    std::string func = "courtstatemachine::LoadModel()";
 
     logMsg(func +" begin");
 
@@ -250,16 +251,16 @@ STATE_DEFINE(courtStateMachine, LoadModel, courtSMData)
 //    exit(0);
 }
 // Creates the court node
-STATE_DEFINE(courtStateMachine, CreateNode, courtSMData)
+STATE_DEFINE(courtstatemachine, CreateNode, courtSMData)
 {
 
     conversionSharedPtr convert;
-    OgreEntitySharedPtr activeModel;
-    OgreSceneNodeSharedPtr activeNode;
+    Ogre::v1::Entity *activeModel;
+    Ogre::SceneNode *activeNode;
     std::string activeEntityName;
     std::string activeNodeNum;
     std::string activeNodeName;
-    std::string func = "courtStateMachine::CreateNode()";
+    std::string func = "courtstatemachine::CreateNode()";
 
     logMsg(func +" begin");
 
@@ -284,13 +285,14 @@ STATE_DEFINE(courtStateMachine, CreateNode, courtSMData)
 //    exit(0);
 }
 // sets up basketball physics object
-STATE_DEFINE(courtStateMachine, SetupPhysics, courtSMData)
+STATE_DEFINE(courtstatemachine, SetupPhysics, courtSMData)
 {
+#ifdef _ENABLE_BTOGRE
 
     conversionSharedPtr convert;
-    std::string func = "courtStateMachine::setupPhysics()";
-    OgreEntitySharedPtr tempModel = data->model;
-    OgreSceneNodeSharedPtr tempNode = data->node;
+    std::string func = "courtstatemachine::setupPhysics()";
+    Ogre::v1::Entity *tempModel = data->model;
+    Ogre::SceneNode *tempNode = data->node;
     courtComponentsSharedPtr component = data->component;
     courtFlagsSharedPtr flag = data->flag;
 
@@ -315,7 +317,7 @@ STATE_DEFINE(courtStateMachine, SetupPhysics, courtSMData)
     component->getPhysics()->setCollidesWith(COL_COURT);
     logMsg(func +" setCollidesWith!");
 
-    if (component->getPhysics()->setupPhysics(&tempModel, &tempNode, &tempPhysBody))
+    if (component->getPhysics()->setupPhysics(tempModel, tempNode, &tempPhysBody))
     {
         
         logMsg(func +" setupPhysics!");
@@ -329,8 +331,8 @@ STATE_DEFINE(courtStateMachine, SetupPhysics, courtSMData)
         component->getPhysics()->setPhysBody(btRigidBodySharedPtr(tempPhysBody));
 
         courtSMData *tempSMData(new courtSMData);
-        tempSMData->model = OgreEntitySharedPtr(tempModel);
-        tempSMData->node = OgreSceneNodeSharedPtr(tempNode);
+        tempSMData->model = tempModel;
+        tempSMData->node = tempNode;
         tempSMData->component = component;
         data = tempSMData;
 //        exit(0);
@@ -342,22 +344,23 @@ STATE_DEFINE(courtStateMachine, SetupPhysics, courtSMData)
     }
 
     logMsg(func +" end");
+#endif
 }
 
 // stops movement of basketball object
-STATE_DEFINE(courtStateMachine, StopMovement, noEventData)
+STATE_DEFINE(courtstatemachine, StopMovement, NoEventData)
 {
     
 }
 
 // state machine sits here when motor is not running
-STATE_DEFINE(courtStateMachine, Idle, noEventData)
+STATE_DEFINE(courtstatemachine, Idle, NoEventData)
 {
     logMsg("Motor::ST_Idle");
 }
 
 // updates position of basketball objects
-STATE_DEFINE(courtStateMachine, UpdatePosition, courtSMData)
+STATE_DEFINE(courtstatemachine, UpdatePosition, courtSMData)
 {
 /*    conversionSharedPtr convert;
     comparison compare;
@@ -367,8 +370,8 @@ STATE_DEFINE(courtStateMachine, UpdatePosition, courtSMData)
 //    basketballDataSharedPtr bData;  // stores copy of basketballData object
     basketballFlagsSharedPtr flag = data->flag;
     basketballPhysicsSharedPtr physics = data->physics;
-    OgreSceneNodeSharedPtr node = data->node;
-    std::string func = "courtStateMachine::updatePosition()";
+    Ogre::SceneNode node = data->node;
+    std::string func = "courtstatemachine::updatePosition()";
 
     
     logMsg(func + " beginning");
@@ -459,7 +462,7 @@ STATE_DEFINE(courtStateMachine, UpdatePosition, courtSMData)
 }
 
 // updates movement of basketball objects
-STATE_DEFINE(courtStateMachine, UpdateMovement, courtSMData)
+STATE_DEFINE(courtstatemachine, UpdateMovement, courtSMData)
 {
     
 /*    conversionSharedPtr convert;
@@ -477,8 +480,8 @@ STATE_DEFINE(courtStateMachine, UpdateMovement, courtSMData)
     
     basketballComponentsSharedPtr component = data->component;
     basketballFlagsSharedPtr flag = data->flag;
-    OgreSceneNodeSharedPtr node = data->node;
-    std::string func = "courtStateMachine:Machine:updateMovement()";
+    Ogre::SceneNode node = data->node;
+    std::string func = "courtstatemachine:Machine:updateMovement()";
 
     logMsg(func + " beginning");
 
@@ -538,7 +541,7 @@ STATE_DEFINE(courtStateMachine, UpdateMovement, courtSMData)
 }
 
 // updates direction of basketball objects
-STATE_DEFINE(courtStateMachine, UpdateDirection, courtSMData)
+STATE_DEFINE(courtstatemachine, UpdateDirection, courtSMData)
 {
 /*    conversionSharedPtr convert;
     
@@ -555,7 +558,7 @@ STATE_DEFINE(courtStateMachine, UpdateDirection, courtSMData)
 //TS    logMsg("directplayerwithballInstance == " +convert->toString(playerWithBallInstance));
     bool tipOffComplete = gameFlag->getTipOffComplete();
     size_t x = 0;
-    std::string func = "courtStateMachine::updateDirection()";
+    std::string func = "courtstatemachine::updateDirection()";
 
     logMsg(func + " beginning");
 

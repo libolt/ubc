@@ -26,16 +26,16 @@
 #include "winsock2.h"
 #endif
 
-#include "statemachine/statemachine.h"
+#include "statemachine/StateMachine.h"
 #include "utilities/enums.h"
 #include "utilities/typedefs.h"
 
-class defenseSMData : public eventData
+class defenseSMData : public EventData
 {
     public:
 };
 
-class defenseStateMachine : public stateMachine
+class defenseStateMachine : public StateMachine
 {
 public:
     defenseStateMachine();
@@ -60,7 +60,7 @@ private:
     // Define the state machine state functions with event data type
     STATE_DECLARE(defenseStateMachine,    setup,    defenseSMData)
     STATE_DECLARE(defenseStateMachine,    execute,    defenseSMData)
-    STATE_DECLARE(defenseStateMachine,    Idle,            noEventData)
+    STATE_DECLARE(defenseStateMachine,    Idle,            NoEventData)
 
     // State map to define state object order. Each state map entry defines a
     // state object.

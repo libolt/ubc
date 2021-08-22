@@ -26,11 +26,11 @@
 #include "winsock2.h"
 #endif
 
-#include "statemachine/statemachine.h"
+#include "statemachine/StateMachine.h"
 #include "utilities/enums.h"
 #include "utilities/typedefs.h"
 
-class offenseSMData : public eventData
+class offenseSMData : public EventData
 {
     public:
         offenseComponentsSharedPtr component;  // component object
@@ -41,7 +41,7 @@ class offenseSMData : public eventData
         playerPositions playerPosition;  // stores a copy of playerPosition
 };
 
-class offenseStateMachine : public stateMachine
+class offenseStateMachine : public StateMachine
 {
 public:
     offenseStateMachine();
@@ -74,7 +74,7 @@ private:
     STATE_DECLARE(offenseStateMachine,    execute,    offenseSMData)
     STATE_DECLARE(offenseStateMachine,    checkDirectives,    offenseSMData)
     STATE_DECLARE(offenseStateMachine,    executePass,    offenseSMData)
-    STATE_DECLARE(offenseStateMachine,    Idle, noEventData)
+    STATE_DECLARE(offenseStateMachine,    Idle, NoEventData)
 
     // State map to define state object order. Each state map entry defines a
     // state object.

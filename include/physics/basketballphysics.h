@@ -21,6 +21,8 @@
 #ifndef _BASKETBALLPHYSICS_H_
 #define _BASKETBALLPHYSICS_H_
 
+#ifdef _ENABLE_BTOGRE
+
 #include "BtOgrePG.h"
 #include "BtOgreGP.h"
 #include "BtOgreExtras.h"
@@ -69,5 +71,7 @@ class basketballPhysics : public physics
         bool stateSet;  // if true then the basketball physics state has been set
 */
 };
+#endif
+
 #endif // _BASKETBALLPHYSICS_H_
 

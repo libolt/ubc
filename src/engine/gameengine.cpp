@@ -202,10 +202,13 @@ bool gameEngine::setup()  // sets up engine state
     networkE->initialize();
 
     // physicsEngine
+#ifdef _ENABLE_BTOGRE
+
     sharedPtr<physicsEngine> tempPhysicsSharedPtr(new physicsEngine);
     physE = tempPhysicsSharedPtr;
     physE->setup();
 ///    physE->setup();
+#endif
 
 // inputEngine
 //    inputEngine *tempInputObj = new inputEngine;

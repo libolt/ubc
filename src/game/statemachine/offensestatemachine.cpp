@@ -29,7 +29,7 @@
 
 
 offenseStateMachine::offenseStateMachine() :
-    stateMachine(ST_MAX_STATES)
+    StateMachine(ST_MAX_STATES)
 {
 }
 
@@ -570,7 +570,7 @@ STATE_DEFINE(offenseStateMachine, executePass, offenseSMData)
 }
 
 // sets offense to Idle
-STATE_DEFINE(offenseStateMachine, Idle, noEventData)
+STATE_DEFINE(offenseStateMachine, Idle, NoEventData)
 {
 
 }

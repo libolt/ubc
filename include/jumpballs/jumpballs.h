@@ -24,7 +24,9 @@
 #include <vector>
 #include <unordered_map>
 
+#ifdef _ENABLE_BTOGRE
 #include "LinearMath/btVector3.h"
+#endif
 
 #include "utilities/enums.h"
 #include "utilities/typedefs.h"
@@ -73,9 +75,10 @@ class jumpBalls
     bool getJumpBallComplete() const;  // retrieves the value of jumpBallComplete
     void setJumpBallComplete(const bool &set);  // sets the value of jumpBallComplete
     
+#ifdef _ENABLE_BTOGRE
     btVector3 getBBallVelocity() const;  // retrieves the value of bballVelocity
     void setBBallVelocity(const btVector3 &set);  // sets the value of bballVelocity
-
+#endif
 //    bool updateState(teamTypes teamWithBall, basketballEntityMSharedPtr activeBasketballInstance, teamEntityMSharedPtr activeTeamInstance, quarters quarter);  // updates state of the jumpBalls instance until jump ball has completed
 
     private:
@@ -93,7 +96,9 @@ class jumpBalls
     bool setupComplete;  // stores whether a jumpBall scenario has been setup.
     bool jumpBallComplete;  // jump ball code has completed and a player is in control of the baskteball
     bool executeJumpBall;  // stores whether or not to execute the jump ball sequence
+#ifdef _ENABLE_BTOGRE
     btVector3 bballVelocity;  // stores the velocity of the basketball
+#endif
 
 };
 

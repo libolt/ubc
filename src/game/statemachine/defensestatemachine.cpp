@@ -22,7 +22,7 @@
 #include "utilities/logging.h"
 
 defenseStateMachine::defenseStateMachine() :
-    stateMachine(ST_MAX_STATES)
+    StateMachine(ST_MAX_STATES)
 {
 }
 
@@ -90,7 +90,7 @@ STATE_DEFINE(defenseStateMachine, execute, defenseSMData)
 }
 
 // sets defense to Idle
-STATE_DEFINE(defenseStateMachine, Idle, noEventData)
+STATE_DEFINE(defenseStateMachine, Idle, NoEventData)
 {
 
 }

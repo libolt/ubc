@@ -35,8 +35,9 @@ size_t courtComponents::getNumber() const  // retrieves the value of number
 void courtComponents::setNumber(const size_t &set)  // sets the value of number
 {
     number = set;
+#ifdef _ENABLE_BTOGRE
     physics->setPhysObjNumber(set); // sets the physics number as well
-
+#endif
 //    numberSet = true;
 }
 

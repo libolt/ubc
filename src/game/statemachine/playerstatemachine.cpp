@@ -28,7 +28,7 @@
 #include "utilities/logging.h"
 
 playerStateMachine::playerStateMachine() :
-    stateMachine(ST_MAX_STATES),
+    StateMachine(ST_MAX_STATES),
     currentSpeed(0),
     currentDirection(NODIRECT),
     currentAction(PNOACTION)
@@ -234,8 +234,8 @@ STATE_DEFINE(playerStateMachine, LoadModel, playerSMData)
 STATE_DEFINE(playerStateMachine, CreateNode, playerSMData)
 {
     conversionSharedPtr convert;
-    OgreEntitySharedPtr activeModel;
-    OgreSceneNodeSharedPtr tempNode;
+    Ogre::v1::Entity *activeModel;
+    Ogre::SceneNode *tempNode;
     std::string activeEntityName;
     std::string activeNodeNum;
     std::string activeNodeName;
@@ -273,7 +273,7 @@ STATE_DEFINE(playerStateMachine, CreateNode, playerSMData)
 }
 
 // state machine sits here when player is not moving
-STATE_DEFINE(playerStateMachine, Idle, noEventData)
+STATE_DEFINE(playerStateMachine, Idle, NoEventData)
 {
     std:: string func = "playerStateMachine::Idle";
 
@@ -286,7 +286,7 @@ STATE_DEFINE(playerStateMachine, Idle, noEventData)
 }
 
 // stop the player
-STATE_DEFINE(playerStateMachine, StopMovement, noEventData)
+STATE_DEFINE(playerStateMachine, StopMovement, NoEventData)
 {
     std:: string func = "playerStateMachine::StopMovement";
 
@@ -298,7 +298,7 @@ STATE_DEFINE(playerStateMachine, StopMovement, noEventData)
 
     // perform the stop motor processing here
     // transition to Idle via an internal event
-    internalEvent(ST_IDLE);
+    InternalEvent(ST_IDLE);
 //    exit(0);
     logMsg(func +" end");
 
@@ -325,7 +325,7 @@ STATE_DEFINE(playerStateMachine, ChangePosition, playerSMData)
 {
 //    exit(0);
     conversionSharedPtr convert;
-    OgreSceneNodeSharedPtr node = data->component->getNode();
+    Ogre::SceneNode *node = data->component->getNode();
     std:: string func = "playerStateMachine::ChangePosition";
 
     logMsg(func +" begin");
@@ -365,7 +365,7 @@ STATE_DEFINE(playerStateMachine, ChangeSpeed, playerSMData)
 STATE_DEFINE(playerStateMachine, ChangeDirection, playerSMData)
 {
     conversionSharedPtr convert;
-    OgreSceneNodeSharedPtr node = data->component->getNode();
+    Ogre::SceneNode *node = data->component->getNode();
     std:: string func = "playerStateMachine::ChangeDirection";
 
     logMsg(func +" begin");
@@ -482,7 +482,7 @@ STATE_DEFINE(playerStateMachine, Jump, playerSMData)
     conversionSharedPtr convert ;
     
     logMsg("playerStateMachine::ST_Jump : Speed is " +convert->toString(data->speed));
-    internalEvent(ST_IDLE);
+    InternalEvent(ST_IDLE);
 
     logMsg(func +" end");
 

@@ -26,10 +26,10 @@
 #include "winsock2.h"
 #endif
 
-#include "statemachine/statemachine.h"
+#include "statemachine/StateMachine.h"
 #include "utilities/typedefs.h"
 
-class basketballSMData : public eventData
+class basketballSMData : public EventData
 {
 public:
 
@@ -42,13 +42,13 @@ public:
     gameDataSharedPtr gData;  // stores copy of gameData object
     gameFlagsSharedPtr gFlag;  // stores copy of gameFlag object
 
-    OgreEntitySharedPtr model;  // stores 3d model
-    OgreSceneNodeSharedPtr node;  // stores node 3d model is attached to
+    Ogre::v1::Entity *model;  // stores 3d model
+    Ogre::SceneNode *node;  // stores node 3d model is attached to
     renderEngineSharedPtr render; // stores copy of render
 
 };
 
-class basketballStateMachine : public stateMachine
+class basketballStateMachine : public StateMachine
 {
 public:
     basketballStateMachine();
@@ -89,8 +89,8 @@ private:
     STATE_DECLARE(basketballStateMachine,    LoadModel,       basketballSMData)
     STATE_DECLARE(basketballStateMachine,    CreateNode,      basketballSMData)
     STATE_DECLARE(basketballStateMachine,    SetupPhysics,    basketballSMData)
-    STATE_DECLARE(basketballStateMachine,    StopMovement,    noEventData)
-    STATE_DECLARE(basketballStateMachine,    Idle,            noEventData)
+    STATE_DECLARE(basketballStateMachine,    StopMovement,    NoEventData)
+    STATE_DECLARE(basketballStateMachine,    Idle,            NoEventData)
     STATE_DECLARE(basketballStateMachine,    ChangeSpeed,     basketballSMData)
     STATE_DECLARE(basketballStateMachine,    UpdatePosition,  basketballSMData)
     STATE_DECLARE(basketballStateMachine,    UpdateMovement,  basketballSMData)

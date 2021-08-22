@@ -201,8 +201,9 @@ size_t basketballComponents::getNumber() const  // retrieves the value of number
 void basketballComponents::setNumber(const size_t &set)  // sets the value of number
 {
     number = set;
-    physics->setPhysObjNumber(set); // sets the physics number as well
-
+#ifdef _ENABLE_BTOGRE
+        physics->setPhysObjNumber(set); // sets the physics number as well
+#endif
 //    numberSet = true;
 }
 

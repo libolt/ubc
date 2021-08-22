@@ -150,6 +150,7 @@ void jumpBalls::setJumpBallComplete(const bool &set)  // sets the value of jumpB
     jumpBallComplete = set;
 }
 
+#ifdef _ENABLE_BTOGRE
 btVector3 jumpBalls::getBBallVelocity() const  // retrieves the value of bballVelocity
 {
     return (bballVelocity);
@@ -158,6 +159,7 @@ void jumpBalls::setBBallVelocity(const btVector3 &set)  // sets the value of bba
 {
     bballVelocity = set;
 }
+#endif
 
 /*bool jumpBalls::updateState(teamTypes teamWithBall, basketballEntityMSharedPtr activeBasketballInstance, teamEntityMSharedPtr activeTeamInstance, quarters quarter)  // updates state of the jumpBalls instance
 {

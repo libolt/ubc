@@ -26,12 +26,12 @@
 #include "winsock2.h"
 #endif
 
-#include "statemachine/statemachine.h"
+#include "statemachine/StateMachine.h"
 #include "utilities/typedefs.h"
 
 class renderEngine;
 
-class courtSMData : public eventData
+class courtSMData : public EventData
 {
 public:
 
@@ -39,8 +39,8 @@ public:
     courtDataSharedPtr cData;  // stores copy of courtData object
     courtFlagsSharedPtr flag;  // stores copy of courtFlags object
 
-    OgreEntitySharedPtr model;  // stores 3d model
-    OgreSceneNodeSharedPtr node;  // stores node 3d model is attached to
+    Ogre::v1::Entity *model;  // stores 3d model
+    Ogre::SceneNode *node;  // stores node 3d model is attached to
     renderEngineSharedPtr render;  // stores copy of render
 
 private:
@@ -52,10 +52,10 @@ private:
 
 };
 
-class courtStateMachine : public stateMachine
+class courtstatemachine : public StateMachine
 {
 public:
-    courtStateMachine();
+    courtstatemachine();
 
     // External events taken by this state machine
     void setSpeed(courtSMData *data);
@@ -90,16 +90,16 @@ private:
     };
 
     // Define the state machine state functions with event data type
-    STATE_DECLARE(courtStateMachine,    Initialize,     courtSMData)
-    STATE_DECLARE(courtStateMachine,    InitializeComponents,    courtSMData)
-    STATE_DECLARE(courtStateMachine,    LoadModel,     courtSMData)
-    STATE_DECLARE(courtStateMachine,    CreateNode,     courtSMData)
-    STATE_DECLARE(courtStateMachine,    SetupPhysics,   courtSMData)
-    STATE_DECLARE(courtStateMachine,    StopMovement,   noEventData)
-    STATE_DECLARE(courtStateMachine,    Idle,           noEventData)
-    STATE_DECLARE(courtStateMachine,    UpdatePosition, courtSMData)
-    STATE_DECLARE(courtStateMachine,    UpdateMovement, courtSMData)
-    STATE_DECLARE(courtStateMachine,    UpdateDirection, courtSMData)
+    STATE_DECLARE(courtstatemachine,    Initialize,     courtSMData)
+    STATE_DECLARE(courtstatemachine,    InitializeComponents,    courtSMData)
+    STATE_DECLARE(courtstatemachine,    LoadModel,     courtSMData)
+    STATE_DECLARE(courtstatemachine,    CreateNode,     courtSMData)
+    STATE_DECLARE(courtstatemachine,    SetupPhysics,   courtSMData)
+    STATE_DECLARE(courtstatemachine,    StopMovement,   NoEventData)
+    STATE_DECLARE(courtstatemachine,    Idle,           NoEventData)
+    STATE_DECLARE(courtstatemachine,    UpdatePosition, courtSMData)
+    STATE_DECLARE(courtstatemachine,    UpdateMovement, courtSMData)
+    STATE_DECLARE(courtstatemachine,    UpdateDirection, courtSMData)
 
     // State map to define state object order. Each state map entry defines a
     // state object.

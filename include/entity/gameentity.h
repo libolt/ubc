@@ -22,8 +22,10 @@
 #define _GAMEENTITY_H_
 
 #include <vector>
-//#include <boost/shared_ptr.hpp>
+
+#ifdef _ENABLE_BTOGRE
 #include "BulletDynamics/Dynamics/btRigidBody.h"
+#endif
 
 //#include "flags/gameflags.h"
 //#include "state/basketballstate.h"

@@ -39,10 +39,12 @@
 //#include "OgreInstancedEntity.h"
 
 
+#ifdef _ENABLE_BTOGRE
 #include "BtOgrePG.h"
 #include "BtOgreGP.h"
 #include "BtOgreExtras.h"
 #include "BulletDynamics/Dynamics/btRigidBody.h"
+#endif
 
 #include "utilities/enums.h"
 
@@ -87,7 +89,7 @@ class courtData;
 class courtEntity;
 class courtFlags;
 class courtPhysics;
-class courtStateMachine;
+class courtstatemachine;
 
 class defense;
 class defenseComponents;
@@ -238,7 +240,7 @@ typedef sharedPtr<courtFlags> courtFlagsSharedPtr;
 
 typedef sharedPtr<courtPhysics> courtPhysicsSharedPtr;
 
-typedef sharedPtr<courtStateMachine> courtStateMachineSharedPtr;
+typedef sharedPtr<courtstatemachine> courtstatemachineSharedPtr;
 
 typedef sharedPtr<gameData> gameDataSharedPtr;
 
@@ -407,7 +409,7 @@ typedef sharedPtr<MyGUI::TextBox> MyGUITextBoxSharedPtr;
 #endif
 
 // physics
-
+#ifdef _ENABLE_BTOGRE
 typedef sharedPtr<btDynamicsWorld> btDynamicsWorldSharedPtr;
 
 typedef sharedPtr<btCollisionShape> btCollisionShapeSharedPtr;
@@ -415,7 +417,7 @@ typedef sharedPtr<btCollisionShape> btCollisionShapeSharedPtr;
 typedef sharedPtr<BtOgre::RigidBodyState> BtOgreRigidBodyStateSharedPtr;
 
 typedef sharedPtr<btRigidBody> btRigidBodySharedPtr;
-
+#endif
 // game setup classses
 
 typedef sharedPtr<setupBasketballs> setupBasketballsSharedPtr;

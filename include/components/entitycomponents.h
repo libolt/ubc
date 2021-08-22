@@ -43,11 +43,11 @@ class entityComponents
         std::string getNodeName() const;  // retrieves the value of nodeName
         void setNodeName(const std::string &set);  // sets the value of nodeName
 
-        OgreEntitySharedPtr getModel() const;  // retrieves the value of model
-        void setModel(const OgreEntitySharedPtr &set);  // sets the value of model
+        Ogre::v1::Entity *getModel() const;  // retrieves the value of model
+        void setModel(Ogre::v1::Entity *set);  // sets the value of model
 
-        OgreSceneNodeSharedPtr getNode() const;  // retrieves the value of node
-        void setNode(const OgreSceneNodeSharedPtr &set);  // sets the value of node
+        Ogre::SceneNode *getNode() const;  // retrieves the value of node
+        void setNode(Ogre::SceneNode *set);  // sets the value of node
 
         Ogre::Vector3 getNodePosition() const;  // retrieves the value of nodePosition
         void setNodePosition(const Ogre::Vector3 &set);  // sets the value of nodePosition
@@ -62,9 +62,9 @@ class entityComponents
 
         std::string nodeName;  // stores the name of the scene node
 
-        OgreEntitySharedPtr model;  // stores 3d model
+        Ogre::v1::Entity *model;  // stores 3d model
 
-        OgreSceneNodeSharedPtr node;  // stores node 3d model is attached to
+        Ogre::SceneNode *node;  // stores node 3d model is attached to
 
         Ogre::Vector3 nodePosition;  // stores the position of the node
     

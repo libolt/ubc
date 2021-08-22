@@ -18,6 +18,8 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
+#ifdef _ENABLE_BTOGRE
+
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
 #include "physics/basketballphysics.h"
@@ -310,3 +312,4 @@ void basketballPhysics::updatePosition()  // updates the position of basketball 
 
     }
 }
+#endif

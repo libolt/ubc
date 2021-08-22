@@ -18,6 +18,8 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
+#ifdef _ENABLE_BTOGRE
+
 #include "utilities/conversion.h"
 #include "utilities/logging.h"
 #include "physics/physics.h"
@@ -215,7 +217,7 @@ bool physics::setup()  // sets up the state of the object
     return (true);
 }
 
-bool physics::setupPhysics(OgreEntitySharedPtr *model, OgreSceneNodeSharedPtr *node, btRigidBody **body)  // sets up physics for the object
+bool physics::setupPhysics(Ogre::v1::Entity *model, Ogre::SceneNode *node, btRigidBody **body)  // sets up physics for the object
 {
 
     conversionSharedPtr convert ;
@@ -225,7 +227,7 @@ bool physics::setupPhysics(OgreEntitySharedPtr *model, OgreSceneNodeSharedPtr *n
     
     logMsg(func +" begin");
     
-    BtOgre::StaticMeshToShapeConverter converter(model->get());
+    BtOgre::StaticMeshToShapeConverter converter(model);
         
     logMsg(func +" BtOgre::StaticMeshToShapeConverter");
         
@@ -259,7 +261,7 @@ bool physics::setupPhysics(OgreEntitySharedPtr *model, OgreSceneNodeSharedPtr *n
 
 //        exit(0);
 
-    auto *tempBodyState = new BtOgre::RigidBodyState(node->get());
+    auto *tempBodyState = new BtOgre::RigidBodyState(node);
     logMsg(func +" BtOgre::RigidBodyState *tempBodyState = new BtOgre::RigidBodyState(*node);");
 
     bodyState =  tempBodyState;
@@ -343,3 +345,4 @@ void physics::updatePhysObj()  // updates object physics state
     }
 */
 }
+#endif

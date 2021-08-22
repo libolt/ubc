@@ -60,7 +60,6 @@
 #include "SDL.h"
 #include "SDL_syswm.h"
 #include "SDL_test_common.h"
-//#include <boost/shared_ptr.hpp>
 
 #include "engine.h"
 
@@ -70,23 +69,23 @@ class renderEngine : public engine
 
     renderEngine();  // constructor 
     
-    sharedPtr<Ogre::Root> getRERoot() const;  // retrieves the value of mRoot
-    void setRERoot(const sharedPtr<Ogre::Root> &set);  // sets the value of mRoot
+    Ogre::Root *getRERoot() const;  // retrieves the value of mRoot
+    void setRERoot(Ogre::Root *set);  // sets the value of mRoot
 
-    sharedPtr<Ogre::Camera> getMCamera() const;  // retrieves the value of mCamera
-    void setMCamera(const sharedPtr<Ogre::Camera> &set);  // sets the value of mCamera
+    Ogre::Camera *getMCamera() const;  // retrieves the value of mCamera
+    void setMCamera(Ogre::Camera *set);  // sets the value of mCamera
 
-    OgreSceneNodeSharedPtr getCameraNode() const;  // retrieves the value of cameraNode
-    void setCameraNode(const OgreSceneNodeSharedPtr &set);  // stes the value of cameraNode
+    Ogre::SceneNode *getCameraNode() const;  // retrieves the value of cameraNode
+    void setCameraNode(Ogre::SceneNode *set);  // stes the value of cameraNode
 
-    sharedPtr<Ogre::SceneManager> getMSceneMgr() const;  // retrieves the value of mSceneMgr
-    void setMSceneMgr(const sharedPtr<Ogre::SceneManager> &set);  // sets the value of mSceneMgr
+    Ogre::SceneManager *getMSceneMgr() const;  // retrieves the value of mSceneMgr
+    void setMSceneMgr(Ogre::SceneManager *set);  // sets the value of mSceneMgr
 
-    sharedPtr<Ogre::Window> getMWindow() const;  // retrieves the value of mWindow
-    void setMWindow(const sharedPtr<Ogre::Window> &set);  // sets the value of mWindow
+    Ogre::Window *getMWindow() const;  // retrieves the value of mWindow
+    void setMWindow(Ogre::Window *set);  // sets the value of mWindow
 
-    sharedPtr<Ogre::Viewport> getViewPort() const; // retrieves the value of viewPort
-    void setViewPort(const sharedPtr<Ogre::Viewport> &set); // sets the value of viewPort
+    Ogre::Viewport *getViewPort() const; // retrieves the value of viewPort
+    void setViewPort(Ogre::Viewport *set); // sets the value of viewPort
 	
 #ifdef __ANDROID
     Ogre::DataStreamPtr openAPKFile(const std::string &set);  // opens APK file
@@ -131,10 +130,10 @@ class renderEngine : public engine
     uint32_t getWindowHeight();  // retrieves the value of windowHeight
     void setWindowHeight(uint32_t set);  // sets the value of windowHeight
 */
-    sharedPtr<Ogre::CompositorManager2> getCompositorManager() const;
-    void setCompositorManager(const sharedPtr<Ogre::CompositorManager2> &set);
-    OgreEntitySharedPtr bball;
-    OgreSceneNodeSharedPtr bballNode;
+    Ogre::CompositorManager2 *getCompositorManager() const;
+    void setCompositorManager(Ogre::CompositorManager2 *set);
+    Ogre::v1::Entity *bball;
+//    Ogre::SceneNode bballNode;
 
     ~renderEngine();
 
@@ -142,9 +141,11 @@ class renderEngine : public engine
     bool initSDL();  // initializes the SDL Subsystem
     bool initOgre();  // initializes the OGRE Subsystem
 
+    const char *getMediaReadArchiveType() const;
+    void registerHlms();  // registers the Hlms shader system
     bool createWindow();  // creates a window
     bool createScene();  // creates a scene
-    OgreSceneNodeSharedPtr createNode(const OgreEntitySharedPtr &model,
+    Ogre::SceneNode *createNode(Ogre::v1::Entity *model,
                                       const std::string &entityNodeName);  // create scene node for model
 
     bool frameStarted();  // begins a frame
@@ -171,15 +172,15 @@ class renderEngine : public engine
     SDLTest_CommonState *state;  // stores the state
 
     // Ogre code
-    sharedPtr<Ogre::Root> RERoot;  // stores the OGRE Root
-    sharedPtr<Ogre::Camera> mCamera;  // stores the camera used by OGRE
-    OgreSceneNodeSharedPtr cameraNode;  // stores the camera node
-    sharedPtr<Ogre::SceneManager> mSceneMgr;  // store the OGRE Scene Manager
-    sharedPtr<Ogre::Window> mWindow;  // stores the OGRE Render Window
-    sharedPtr<Ogre::Viewport> viewPort;  // stores the OGRE View Port
-    sharedPtr<Ogre::Light> light;  // stores the vslue of light
-    OgreSceneNodeSharedPtr lightNode;  // stores the light scene node.
-    sharedPtr<Ogre::ResourceGroupManager> rsm;  // stores resources
+    Ogre::Root *RERoot;  // stores the OGRE Root
+    Ogre::Camera *mCamera;  // stores the camera used by OGRE
+    Ogre::SceneNode *cameraNode;  // stores the camera node
+    Ogre::SceneManager *mSceneMgr;  // store the OGRE Scene Manager
+    Ogre::Window *mWindow;  // stores the OGRE Render Window
+    Ogre::Viewport *viewPort;  // stores the OGRE View Port
+    Ogre::Light *light;  // stores the vslue of light
+    Ogre::SceneNode *lightNode;  // stores the light scene node.
+    Ogre::ResourceGroupManager *rsm;  // stores resources
     Ogre::HlmsPbs* mHlmsPbs;
     Ogre::HlmsUnlit* mHlmsUnlit;
     Ogre::HlmsManager *hlmsManager;
@@ -189,9 +190,8 @@ class renderEngine : public engine
     Ogre::ConfigOptionMap cfgOpts;  // stores render window config options
     std::string winHandle;  // window handle
 
-#if OGRE_VERSION_MAJOR == 2
-    sharedPtr<Ogre::CompositorManager2> compositorManager;
-#endif
+    Ogre::CompositorManager2 *compositorManager;
+
     // general
 //    uint32_t windowWidth;  // stores the width of the window
 //    uint32_t windowHeight;  // stores the height of the window

@@ -43,7 +43,9 @@ bool jumpBallsExecute::executeJump(const gameComponentsSharedPtr &component)  //
 {
     conversionSharedPtr convert ;
     jumpBallsSharedPtr jumpBall = component->getJumpBall();
+#ifdef _ENABLE_BTOGRE
     physicsEngine physEngine;
+#endif
 
     playerEntityMSharedPtr activePlayerInstance;
     playerEntityMSharedPtr jumpPlayerInstance;  // stores playerID of players jumping for the ball
@@ -175,8 +177,9 @@ bool jumpBallsExecute::tipToPlayer(const gameComponentsSharedPtr &component, qua
     conversionSharedPtr convert ;
 //    sharedPtr<physicsEngine> physEngine = physicsEngine::Instance();
     jumpBallsSharedPtr jumpBall = component->getJumpBall();
+#ifdef _ENABLE_BTOGRE
     physicsEngine physEngine;
-
+#endif
 //    basketballStateVec basketballInstance = gameS->getBasketballInstance();
 //    teamStateVecSharedPtr activeTeamInstance = gameS->getActiveTeamInstance();
 //    playerStateVecSharedPtr activePlayerInstance;
@@ -186,7 +189,9 @@ bool jumpBallsExecute::tipToPlayer(const gameComponentsSharedPtr &component, qua
     size_t ballTippedToPlayerID = jumpBall->getBallTippedToPlayerID();
     bool ballTipForceApplied = jumpBall->getBallTipForceApplied();
     teamTypes ballTippedToTeam = jumpBall->getBallTippedToTeam();
+#ifdef _ENABLE_BTOGRE
     btVector3 bballVelocity = jumpBall->getBBallVelocity();
+#endif
     size_t ballTippedToPlayerInstance = jumpBall->getBallTippedToPlayerInstance();
     basketballEntityMSharedPtr activeBasketballInstance = component->getActiveBasketballInstance();
 //    jumpBalls jumpBall = gameS->getJumpBall();
@@ -227,18 +232,23 @@ bool jumpBallsExecute::tipToPlayer(const gameComponentsSharedPtr &component, qua
                 switch (ballTippedToTeam)
                 {
                     case HOMETEAM:
+#ifdef _ENABLE_BTOGRE
+
                         bballVelocity.setX(20);
                         bballVelocity.setY(-1);
                         bballVelocity.setZ(0);
                         logMsg("jump HOMETEAM bballVelocity == " +convert->toString(bballVelocity));
+#endif
 //                        exit(0);
 //                        return (true);
                     break;
                     case AWAYTEAM:
+#ifdef _ENABLE_BTOGRE
                         bballVelocity.setX(-20);
                         bballVelocity.setY(-1);
                         bballVelocity.setZ(0);
                         logMsg("jump AWAYTEAM bballVelocity == " +convert->toString(bballVelocity));
+#endif
 //                        return (true);
                     break;
                     default:
@@ -251,15 +261,19 @@ bool jumpBallsExecute::tipToPlayer(const gameComponentsSharedPtr &component, qua
                 switch (ballTippedToTeam)
                 {
                     case HOMETEAM:
+#ifdef _ENABLE_BTOGRE
                         bballVelocity.setX(-20);
                         bballVelocity.setY(-1);
                         bballVelocity.setZ(0);
+#endif
 //                        return (true);
                     break;
                     case AWAYTEAM:
+#ifdef _ENABLE_BTOGRE
                         bballVelocity.setX(20);
                         bballVelocity.setY(-1);
                         bballVelocity.setZ(0);
+#endif
 //                        return (true);
                     break;
                     default:
@@ -269,6 +283,7 @@ bool jumpBallsExecute::tipToPlayer(const gameComponentsSharedPtr &component, qua
             default:
             break;
         }
+#ifdef _ENABLE_BTOGRE
         if (bballVelocity.getX() != 0 || bballVelocity.getY() != 0 || bballVelocity.getZ() != 0)
         {
             // FIXME! NEEDS moved to basketball physics code!
@@ -280,6 +295,7 @@ bool jumpBallsExecute::tipToPlayer(const gameComponentsSharedPtr &component, qua
         else
         {
         }
+#endif
     }
     else
     {
@@ -289,6 +305,7 @@ bool jumpBallsExecute::tipToPlayer(const gameComponentsSharedPtr &component, qua
             logMsg("ballTippedToPlayerInstance == " +convert->toString(ballTippedToPlayerInstance));
 
             // FIXME! Do NOT hardcode activeBasketballInstance
+#ifdef _ENABLE_BTOGRE
             if (physEngine.collisionCheck(activeBasketballInstance[0]->getComponent()->getPhysics()->getPhysBody(), activePlayerInstance[ballTippedToPlayerInstance].getComponent()->getPhysics()->getPhysBody()))
             {
  //               exit(0);
@@ -328,6 +345,7 @@ TS*/
             else
             {
             }
+#endif
 //            exit(0);
         }
         else
@@ -335,7 +353,8 @@ TS*/
         }
 //        exit(0);
     }
+#ifdef _ENABLE_BTOGRE
     logMsg("jump bballVelocity == " +convert->toString(bballVelocity));
-
+#endif
     return (retVal);  // tipToPlayer has not completed
 }

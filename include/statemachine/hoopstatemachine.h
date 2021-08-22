@@ -26,12 +26,12 @@
 #include "winsock2.h"
 #endif
 
-#include "statemachine/statemachine.h"
+#include "statemachine/StateMachine.h"
 #include "utilities/typedefs.h"
 
 class renderEngine;
 
-class hoopSMData : public eventData
+class hoopSMData : public EventData
 {
 public:
 
@@ -39,8 +39,8 @@ public:
 //    hoopDataSharedPtr cData;  // stores copy of hoopData object
     hoopFlagsSharedPtr flag;  // stores copy of hoopFlags object
 
-    OgreEntitySharedPtr model;  // stores 3d model
-    OgreSceneNodeSharedPtr node;  // stores node 3d model is attached to
+    Ogre::v1::Entity *model;  // stores 3d model
+    Ogre::SceneNode *node;  // stores node 3d model is attached to
     renderEngineSharedPtr render;  // stores copy of render
 
 private:
@@ -52,7 +52,7 @@ private:
 
 };
 
-class hoopStateMachine : public stateMachine
+class hoopStateMachine : public StateMachine
 {
 public:
     hoopStateMachine();
@@ -94,8 +94,8 @@ private:
     STATE_DECLARE(hoopStateMachine,    LoadModel,     hoopSMData)
     STATE_DECLARE(hoopStateMachine,    CreateNode,     hoopSMData)
     STATE_DECLARE(hoopStateMachine,    SetupPhysics,   hoopSMData)
-    STATE_DECLARE(hoopStateMachine,    StopMovement,   noEventData)
-    STATE_DECLARE(hoopStateMachine,    Idle,           noEventData)
+    STATE_DECLARE(hoopStateMachine,    StopMovement,   NoEventData)
+    STATE_DECLARE(hoopStateMachine,    Idle,           NoEventData)
     STATE_DECLARE(hoopStateMachine,    UpdatePosition, hoopSMData)
     STATE_DECLARE(hoopStateMachine,    UpdateMovement, hoopSMData)
     STATE_DECLARE(hoopStateMachine,    UpdateDirection, hoopSMData)

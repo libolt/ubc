@@ -18,6 +18,8 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
+#ifdef _ENABLE_BTOGRE
+
 #include "utilities/conversion.h"
 #include "engine/gameengine.h"
 #include "engine/inputengine.h"
@@ -947,3 +949,5 @@ bool physicsEngine::shootBasketball(teamTypes teamType, int playerID)  // calcul
     return (true);
 }
 */
+
+#endif

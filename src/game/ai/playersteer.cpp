@@ -541,8 +541,10 @@ void playerSteer::checkCourtPosition()  // checks if the player's position has c
     //playerStateVec team1ActivePlayerInstance = activeTeamInstance[1].getActivePlayerInstance();
     playerEntityVecMSharedPtr activePlayerInstance;
     // moves the player model and physics body
+#ifdef _ENABLE_BTOGRE
     btVector3 physBodyChange; // = btVector3(0,0,0);
     btTransform physBodyTransform;
+#endif
     // updates player's position
     Ogre::Vector3 posChange = convert->toOgreVector3(position());
     Ogre::Vector3 *offenseStartPositions;

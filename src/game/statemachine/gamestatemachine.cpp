@@ -49,7 +49,7 @@
 #include "utilities/logging.h"
 
 gameStateMachine::gameStateMachine() :
-    stateMachine(ST_MAX_STATES)    
+    StateMachine(ST_MAX_STATES)    
 {
 }
 
@@ -597,8 +597,8 @@ STATE_DEFINE(gameStateMachine, createNodes, gameSMData)
 {
     conversionSharedPtr convert ;
     bool returnType = true;
-    OgreEntitySharedPtr activeModel;
-    OgreSceneNodeSharedPtr activeNode;
+    Ogre::v1::Entity *activeModel;
+    Ogre::SceneNode *activeNode;
     std::string activeEntityName;
     std::string activeNodeNum;
     std::string activeNodeName;
@@ -816,7 +816,7 @@ STATE_DEFINE(gameStateMachine, setupJumpBall, gameSMData)
             logMsg(func + " jumpBall Setup Complete!");
         }
     }
-//    internalEvent(ST_IDLE);
+//    InternalEvent(ST_IDLE);
 
     logMsg(func +" end");
 
@@ -910,7 +910,7 @@ STATE_DEFINE(gameStateMachine, executeJumpBall, gameSMData)
 }
 
 // state machine sits here when player is not moving
-STATE_DEFINE(gameStateMachine, Idle, noEventData)
+STATE_DEFINE(gameStateMachine, Idle, NoEventData)
 {
     std:: string func = "playerStateMachine::Idle";
 

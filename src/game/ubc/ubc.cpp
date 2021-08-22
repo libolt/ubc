@@ -202,7 +202,7 @@ void UBC::run()  // runs the game
 //    exit(0);
 //    setupState();  // sets up the game state
 
-    sharedPtr<Ogre::Viewport> vp = component->getGameE()->getRenderE()->getViewPort();
+    Ogre::Viewport *vp = component->getGameE()->getRenderE()->getViewPort();
 //    setViewPort(*vp);  // sets the viewPort for MyGUI
 
 //    exit(0);

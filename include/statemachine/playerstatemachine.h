@@ -22,11 +22,11 @@
 #define _PLAYERSTATEMACHINE_H_
 
 #include <cstdio>
-#include "statemachine/statemachine.h"
+#include "statemachine/StateMachine.h"
 #include "utilities/enums.h"
 #include "utilities/typedefs.h"
 
-class playerSMData : public eventData
+class playerSMData : public EventData
 {
 public:
     playerComponentsSharedPtr component;  // stores copy of component
@@ -40,7 +40,7 @@ public:
     renderEngineSharedPtr render; // stores copy of render
 };
 
-class playerStateMachine : public stateMachine
+class playerStateMachine : public StateMachine
 {
 public:
     playerStateMachine();
@@ -60,8 +60,8 @@ private:
     directions currentDirection;
     playerActions currentAction;
     Ogre::Vector3 currentPosition;
-//    OgreEntitySharedPtr currentModel;  // stores 3d model
-//    OgreSceneNodeSharedPtr currentNode;  // stores node 3d model is attached to
+//    Ogre::v1::Entity currentModel;  // stores 3d model
+//    Ogre::SceneNode currentNode;  // stores node 3d model is attached to
 
     // State enumeration order must match the order of state method entries
     // in the state map.
@@ -84,8 +84,8 @@ private:
     // Define the state machine state functions with event data type
     STATE_DECLARE(playerStateMachine,    LoadModel,    playerSMData)
     STATE_DECLARE(playerStateMachine,    CreateNode,    playerSMData)
-    STATE_DECLARE(playerStateMachine,    Idle,            noEventData)
-    STATE_DECLARE(playerStateMachine,    StopMovement,    noEventData)
+    STATE_DECLARE(playerStateMachine,    Idle,            NoEventData)
+    STATE_DECLARE(playerStateMachine,    StopMovement,    NoEventData)
     STATE_DECLARE(playerStateMachine,    StartMovement,   playerSMData)
     STATE_DECLARE(playerStateMachine,    ChangePosition,  playerSMData)
     STATE_DECLARE(playerStateMachine,    ChangeSpeed,     playerSMData)

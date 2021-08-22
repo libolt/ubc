@@ -34,7 +34,7 @@
 #include "utilities/logging.h"
 
 hoopStateMachine::hoopStateMachine() :
-    stateMachine(ST_MAX_STATES),
+    StateMachine(ST_MAX_STATES),
     m_currentSpeed(0)
 {
 }    
@@ -196,12 +196,14 @@ STATE_DEFINE(hoopStateMachine, Initialize, hoopSMData)
 
     data = tempSMData;
     
+#ifdef _ENABLE_BTOGRE
     hoopPhysicsSharedPtr tempPhysics(new hoopPhysics);
     data->component->setPhysics(tempPhysics);
+#endif
 
     logMsg(func +" end");
     
-//    internalEvent(ST_INITIALIZE_COMPONENTS);
+//    InternalEvent(ST_INITIALIZE_COMPONENTS);
 }
 
 // Initialize the component objects
@@ -252,8 +254,8 @@ STATE_DEFINE(hoopStateMachine, CreateNode, hoopSMData)
 {
 
     conversionSharedPtr convert;
-    OgreEntitySharedPtr activeModel;
-    OgreSceneNodeSharedPtr activeNode;
+    Ogre::v1::Entity *activeModel;
+    Ogre::SceneNode *activeNode;
     std::string activeEntityName;
     std::string activeNodeNum;
     std::string activeNodeName;
@@ -284,11 +286,12 @@ STATE_DEFINE(hoopStateMachine, CreateNode, hoopSMData)
 // sets up basketball physics object
 STATE_DEFINE(hoopStateMachine, SetupPhysics, hoopSMData)
 {
+#ifdef _ENABLE_BTOGRE
 
     conversionSharedPtr convert;
     std::string func = "hoopStateMachine::setupPhysics()";
-    OgreEntitySharedPtr tempModel = data->model;
-    OgreSceneNodeSharedPtr tempNode = data->node;
+    Ogre::v1::Entity *tempModel = data->model;
+    Ogre::SceneNode *tempNode = data->node;
     hoopComponentsSharedPtr component = data->component;
     hoopFlagsSharedPtr flag = data->flag;
 
@@ -313,7 +316,7 @@ STATE_DEFINE(hoopStateMachine, SetupPhysics, hoopSMData)
     component->getPhysics()->setCollidesWith(COL_HOOP);
     logMsg(func +" setCollidesWith!");
 
-    if (component->getPhysics()->setupPhysics(&tempModel, &tempNode, &tempPhysBody))
+    if (component->getPhysics()->setupPhysics(tempModel, tempNode, &tempPhysBody))
     {
         
         logMsg(func +" setupPhysics!");
@@ -327,8 +330,8 @@ STATE_DEFINE(hoopStateMachine, SetupPhysics, hoopSMData)
         component->getPhysics()->setPhysBody(btRigidBodySharedPtr(tempPhysBody));
 
         hoopSMData *tempSMData(new hoopSMData);
-        tempSMData->model = OgreEntitySharedPtr(tempModel);
-        tempSMData->node = OgreSceneNodeSharedPtr(tempNode);
+        tempSMData->model = tempModel;
+        tempSMData->node = tempNode;
         tempSMData->component = component;
         data = tempSMData;
 //        exit(0);
@@ -340,17 +343,17 @@ STATE_DEFINE(hoopStateMachine, SetupPhysics, hoopSMData)
     }
 
     logMsg(func +" end");
-
+#endif
 }
 
 // stops movement of basketball object
-STATE_DEFINE(hoopStateMachine, StopMovement, noEventData)
+STATE_DEFINE(hoopStateMachine, StopMovement, NoEventData)
 {
     
 }
 
 // state machine sits here when motor is not running
-STATE_DEFINE(hoopStateMachine, Idle, noEventData)
+STATE_DEFINE(hoopStateMachine, Idle, NoEventData)
 {
     logMsg("Motor::ST_Idle");
 }
@@ -366,7 +369,7 @@ STATE_DEFINE(hoopStateMachine, UpdatePosition, hoopSMData)
 //    basketballDataSharedPtr bData;  // stores copy of basketballData object
     basketballFlagsSharedPtr flag = data->flag;
     basketballPhysicsSharedPtr physics = data->physics;
-    OgreSceneNodeSharedPtr node = data->node;
+    Ogre::SceneNode node = data->node;
     std::string func = "hoopStateMachine::updatePosition()";
 
     
@@ -476,7 +479,7 @@ STATE_DEFINE(hoopStateMachine, UpdateMovement, hoopSMData)
     
     basketballComponentsSharedPtr component = data->component;
     basketballFlagsSharedPtr flag = data->flag;
-    OgreSceneNodeSharedPtr node = data->node;
+    Ogre::SceneNode node = data->node;
     std::string func = "hoopStateMachine:Machine:updateMovement()";
 
     logMsg(func + " beginning");

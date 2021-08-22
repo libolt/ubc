@@ -24,12 +24,14 @@
 //#include "engine/gameengine.h"
 
 #include <vector>
+
+#ifdef _ENABLE_BTOGRE
 #include "BtOgrePG.h"
 #include "BtOgreGP.h"
 #include "BtOgreExtras.h"
 #include "BulletDynamics/Dynamics/btRigidBody.h"
 #include "BulletDynamics/Dynamics/btDynamicsWorld.h"
-//#include <boost/shared_ptr.hpp>
+
 
 #include "utilities/enums.h"
 //#include "engine/renderengine.h"
@@ -128,4 +130,5 @@ struct MyContactResultCallback : public btCollisionWorld::ContactResultCallback
         return 1.f;
     }
 };
+#endif
 #endif // PHYSICSENGINE_H_INCLUDED

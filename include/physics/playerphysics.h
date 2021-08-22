@@ -21,6 +21,8 @@
 #ifndef _PLAYERPHYSICS_H_
 #define _PLAYERPHYSICS_H_
 
+#ifdef _ENABLE_BTOGRE
+
 #include "physics/physics.h"
 #include "utilities/typedefs.h"
 //#include "state/gamestateshared.h"
@@ -44,6 +46,6 @@ class playerPhysics : public physics
     private:
                
 };
-
+#endif
 #endif // PLAYERPHYSICS_H
 

@@ -27,7 +27,6 @@
 #endif
 
 #include <string>
-//#include "boost/shared_ptr.hpp"
 
 #include "utilities/typedefs.h"
 

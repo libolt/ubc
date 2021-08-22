@@ -476,6 +476,7 @@ Ogre::Vector3 comparison::OgreVector3ToOpenSteerVec3Result(const Ogre::Vector3 &
     return (change);
 }
 
+#ifdef _ENABLE_BTOGRE
 bool comparison::OgreVector3ToBTVector3(const Ogre::Vector3 &currentValue, const btVector3 &newValue)  // compares an Ogre::Vector3 object to an btVector3 and returns true if the same,false if different
 {
     bool retVal = true;
@@ -700,3 +701,4 @@ Ogre::Vector3 comparison::OgreVector3ToBTVector3Result(const Ogre::Vector3 &curr
     }
     return (change);
 }
+#endif

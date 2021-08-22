@@ -462,7 +462,7 @@ bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &in
             activeBasketballInstance = setupbasketball.createActiveBasketballInstances(basketballInstance, 1);
             for (auto ABIIT : activeBasketballInstance)
             {
-                OgreEntitySharedPtr model;  // stores the model returned by loadModel() function
+                Ogre::v1::Entity model;  // stores the model returned by loadModel() function
                 loaderSharedPtr load(new loader);
 
                 logMsg(func +" begin");
@@ -495,8 +495,8 @@ bool UBCGame::loop(const gameEngineSharedPtr &gameE, const UBCInputSharedPtr &in
                 ABIIT.second->getComponent()->setModel(model);
 
 
-            OgreEntitySharedPtr activeModel;
-            OgreSceneNodeSharedPtr activeNode;
+            Ogre::v1::Entity activeModel;
+            Ogre::SceneNode activeNode;
             std::string activeEntityName;
             std::string activeNodeNum;
             std::string activeNodeName;
@@ -660,6 +660,7 @@ void UBCGame::processNetworkEvents(const gameEngineSharedPtr &gameE)  // process
     logMsg(func +" end");
 }
 
+#ifdef _ENABLE_BTOGRE
 void UBCGame::processPhysicsEvents(const gameEngineSharedPtr &gameE)  // processes events in the physics subsyatem
 {
     std::string func = "UBCGame::processPhysicsEvents()";
@@ -670,3 +671,4 @@ void UBCGame::processPhysicsEvents(const gameEngineSharedPtr &gameE)  // process
 
     logMsg(func +" end");
 }
+#endif

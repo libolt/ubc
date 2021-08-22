@@ -21,6 +21,8 @@
 #ifndef _COURTPHYSICS_H_
 #define _COURTPHYSICS_H_
 
+#ifdef _ENABLE_BTOGRE
+
 #include "physics/physics.h"
 
 //class physics;
@@ -33,6 +35,6 @@ class courtPhysics : public physics
 
     private:
 };
-
+#endif
 #endif // COURTPHYSICS_H
 

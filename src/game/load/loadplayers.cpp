@@ -707,7 +707,7 @@ void loadPlayers::loadModel(playerComponentsSharedPtr &component, playerFlagsSha
     std::string entityName = component->getName();
     std::string entityModelFileName = component->getModelFileName();
 
-    OgreEntitySharedPtr model;  // stores the model returned by loadModel() function
+    Ogre::v1::Entity *model;  // stores the model returned by loadModel() function
     std::string func = "loadPlayers::loadModels()";
     bool returnType = false;
 

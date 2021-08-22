@@ -220,13 +220,13 @@ std::string loader::findFile(const std::string &fileName)  // finds the location
     return (retVal);
 }
 
-OgreEntitySharedPtr loader::loadModelFile(const std::string &modelFileName, const std::string &entityName, const renderEngineSharedPtr &render)  // loads the 3D model
+Ogre::v1::Entity *loader::loadModelFile(const std::string &modelFileName, const std::string &entityName, const renderEngineSharedPtr &render)  // loads the 3D model
 {
     conversionSharedPtr convert ;
     std::string func = "loader::loadModelFile()";
-    sharedPtr<Ogre::SceneManager> mSceneMgr = render->getMSceneMgr();
+    Ogre::SceneManager *mSceneMgr = render->getMSceneMgr();
     Ogre::ResourceGroupManager &rsm = Ogre::ResourceGroupManager::getSingleton();
-    OgreEntitySharedPtr tempModel;
+    Ogre::v1::Entity *tempModel;
     std::string entityNodeName;
     entityNodeName = entityName + "node";
     
@@ -266,13 +266,13 @@ OgreEntitySharedPtr loader::loadModelFile(const std::string &modelFileName, cons
 */
 
 //    logMsg(func +" Entity Name == " +entityName + " Model File Name == " +modelFileName);
-//BASEREMOVAL    tempModel = OgreEntitySharedPtr(base->getGameE()->getRenderE()->getMSceneMgr()->createEntity(entityName, entityModelFileName, "UBCData"));  // loads the model
-    tempModel = OgreEntitySharedPtr(render->getMSceneMgr()->createEntity(modelFileName, "UBCData"));  // loads the model
+//BASEREMOVAL    tempModel = Ogre::v1::Entity(base->getGameE()->getRenderE()->getMSceneMgr()->createEntity(entityName, entityModelFileName, "UBCData"));  // loads the model
+    tempModel = render->getMSceneMgr()->createEntity(modelFileName, "UBCData");  // loads the model
     tempModel->setName(entityName);
 //    logMsg(func +" tempModel loaded!");
 //    logMsg(func +" tempModel name == " +tempModel->getName());
 
-//    model = OgreEntitySharedPtr(tempModel);
+//    model = Ogre::v1::Entity(tempModel);
 //    logMsg(func +" Entity Created!");
 
 

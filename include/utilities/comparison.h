@@ -23,7 +23,9 @@
 
 #include "OgreVector3.h"
 
+#ifdef _ENABLE_BTOGRE
 #include "LinearMath/btVector3.h"
+#endif
 
 class comparison
 {
@@ -43,11 +45,12 @@ class comparison
                 const Ogre::Vector3 &currentValue,
                 const OpenSteer::Vec3 &newValue);  // compares an Ogre::Vector3 object to an OpenSteer::Vec3 and returns their differences in Ogre::Vector3 format
 
+#ifdef _ENABLE_BTOGRE
         bool OgreVector3ToBTVector3(const Ogre::Vector3 &currentValue,
                                     const btVector3 &newValue);  // compares an Ogre::Vector3 object to an btVector3 and returns true if the same,false if different
         Ogre::Vector3 OgreVector3ToBTVector3Result(
                 const Ogre::Vector3 &currentValue, const btVector3 &newValue);  // compares an Ogre::Vector3 object to an btVector3 and returns their differences in Ogre::Vector3 format
-
+#endif
     private:
 };
 

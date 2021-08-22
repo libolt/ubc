@@ -29,6 +29,7 @@
 #include "engine/renderengine.h"
 #include "engine/sound/soundengine.h"
 #include "OgreIdString.h"
+#include "OgrePlatformInformation.h"
 #include "Compositor/OgreCompositorManager2.h"
 #define FREEIMAGE_LIB
 //#include "FreeImage.h"
@@ -62,6 +63,7 @@ renderEngine::renderEngine()
 //    sharedPtr<Ogre::Window> tempWindow(new Ogre::Window);
     mWindow = nullptr;
     RERoot = nullptr;
+//    bballNode = new Ogre::SceneNode;
 //    cfgOpts = 0;
 
     instance = 0;
@@ -85,56 +87,56 @@ bool renderEngine::frameEnded()
 {
 	return true;
 }
-sharedPtr<Ogre::Root> renderEngine::getRERoot() const  // retrieves the value of RERoot
+Ogre::Root *renderEngine::getRERoot() const  // retrieves the value of RERoot
 {
 	return (RERoot);
 }
-void renderEngine::setRERoot(const sharedPtr<Ogre::Root> &set)  // sets the value of RERoot
+void renderEngine::setRERoot( Ogre::Root *set)  // sets the value of RERoot
 {
 	RERoot = set;
 }
 
-sharedPtr<Ogre::Camera> renderEngine::getMCamera() const  // retrieves the value of mCamera
+Ogre::Camera *renderEngine::getMCamera() const  // retrieves the value of mCamera
 {
 	return (mCamera);
 }
-void renderEngine::setMCamera(const sharedPtr<Ogre::Camera> &set)  // sets the value of mCamera
+void renderEngine::setMCamera(Ogre::Camera *set)  // sets the value of mCamera
 {
 	mCamera = set;
 }
 
-OgreSceneNodeSharedPtr renderEngine::getCameraNode() const  // retrieves the value of cameraNode
+Ogre::SceneNode *renderEngine::getCameraNode() const  // retrieves the value of cameraNode
 {
     return (cameraNode);
 }
-void renderEngine::setCameraNode(const OgreSceneNodeSharedPtr &set)  // stes the value of cameraNode
+void renderEngine::setCameraNode(Ogre::SceneNode *set)  // stes the value of cameraNode
 {
     cameraNode = set;
 }
 
-sharedPtr<Ogre::SceneManager> renderEngine::getMSceneMgr() const  // retrieves the value of mSceneMgr
+Ogre::SceneManager *renderEngine::getMSceneMgr() const  // retrieves the value of mSceneMgr
 {
 	return (mSceneMgr);
 }
-void renderEngine::setMSceneMgr(const sharedPtr<Ogre::SceneManager> &set)  // sets the value of mSceneMgr
+void renderEngine::setMSceneMgr(Ogre::SceneManager *set)  // sets the value of mSceneMgr
 {
 	mSceneMgr = set;
 }
 
-sharedPtr<Ogre::Window> renderEngine::getMWindow() const  // retrieves the value of mWindow
+Ogre::Window *renderEngine::getMWindow() const  // retrieves the value of mWindow
 {
 	return (mWindow);
 }
-void renderEngine::setMWindow(const sharedPtr<Ogre::Window> &set)  // sets the value of mWindow
+void renderEngine::setMWindow(Ogre::Window *set)  // sets the value of mWindow
 {
 	mWindow = set;
 }
 
-sharedPtr<Ogre::Viewport> renderEngine::getViewPort() const  // retrieves the value of viewPort
+Ogre::Viewport *renderEngine::getViewPort() const  // retrieves the value of viewPort
 {
 	return (viewPort);
 }
-void renderEngine::setViewPort(const sharedPtr<Ogre::Viewport> &set) // sets the value of viewPort
+void renderEngine::setViewPort(Ogre::Viewport *set) // sets the value of viewPort
 {
 	viewPort = set;
 }
@@ -260,12 +262,11 @@ void renderEngine::setWindowHeight(uint32_t set)  // sets the value of windowHei
 }
 */
 
-sharedPtr<Ogre::CompositorManager2> renderEngine::getCompositorManager() const
+Ogre::CompositorManager2 *renderEngine::getCompositorManager() const
 {
     return (compositorManager);
 }
-void renderEngine::setCompositorManager(
-        const sharedPtr<Ogre::CompositorManager2> &set)
+void renderEngine::setCompositorManager(Ogre::CompositorManager2 *set)
 {
     compositorManager = set;
 }
@@ -401,6 +402,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
     misc.insert( std::make_pair(
                      "SDL2x11", convert->toString(
                          (uintptr_t)&sysInfo.info.x11 ) ) );
+    logMsg(func +"winHandle = " +winHandle);
 #elif OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
     JNIEnv* env = (JNIEnv*)SDL_AndroidGetJNIEnv();
 
@@ -422,7 +424,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 
 //    exit(0);
 	//std::cout << "winHandle = " << winHandle << std::endl;
-    RERoot = sharedPtr<Ogre::Root>(new Ogre::Root("", "", "Ogre.log"));
+    RERoot = new Ogre::Root("", "", "Ogre.log");
     const std::string pluginDir = OGRE_PLUGIN_DIR;
     logMsg(func +" winHandle for Ogre = " +winHandle);
 //    exit(0);
@@ -472,9 +474,6 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 
 #ifdef __ANDROID
     RERoot->setRenderSystem(RERoot->getAvailableRenderers().at(0));
-//    RERoot->initialise(false);
-//    RERoot->init = true;
-//    exit(0);
 #else
     Ogre::RenderSystemList rsList = RERoot->getAvailableRenderers();
 
@@ -513,7 +512,7 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
 #endif
     
     
-    mWindow = sharedPtr<Ogre::Window>(RERoot->initialise(false));
+    mWindow = RERoot->initialise(false);
 
     // sets configuration options for Ogre Window
     cfgOpts =RERoot->getRenderSystem()->getConfigOptions();
@@ -577,6 +576,173 @@ bool renderEngine::initOgre() // Initializes Ogre Subsystem
     
     return true;
 }
+
+const char *renderEngine::getMediaReadArchiveType() const
+{
+#if OGRE_PLATFORM != OGRE_PLATFORM_ANDROID
+    return "FileSystem";
+#else
+    return "APKFileSystem";
+#endif
+}
+
+void renderEngine::registerHlms(void)
+{
+    std::string func = "renderEngine::registerHlms()";
+
+    logMsg(func +"Setting up HLMS");
+
+
+#if __ANDROID__
+    std::string dataPath = "data";
+#else
+    std::string dataPath = UBC_DATADIR;
+#endif
+
+    hlmsManager = RERoot->getHlmsManager();
+
+    logMsg(func +"Hlms setup");
+    Ogre::ConfigFile cf;
+ //   cf.load( AndroidSystems::openFile( mResourcePath + "resources2.cfg" ) );
+
+
+    Ogre::String rootHlmsFolder = dataPath +"/Media/" +
+                                  cf.getSetting("DoNotUseAsResource","Hlms","");
+
+    logMsg(func +" " +rootHlmsFolder);
+    if( rootHlmsFolder.empty() )
+        rootHlmsFolder = "./";
+    else if( *( rootHlmsFolder.end() - 1 ) != '/' )
+        rootHlmsFolder += "/";
+
+    Ogre::HlmsUnlit *hlmsUnlit = 0;
+    Ogre::HlmsPbs *hlmsPbs = 0;
+
+    //For retrieval of the paths to the different folders needed
+    Ogre::String mainFolderPath;
+    Ogre::StringVector libraryFoldersPaths;
+    Ogre::StringVector::const_iterator libraryFolderPathIt;
+    Ogre::StringVector::const_iterator libraryFolderPathEn;
+
+    Ogre::ArchiveManager &archiveManager = Ogre::ArchiveManager::getSingleton();
+
+    {
+           // Create & Register HlmsUnlit
+           // Get the path to all the subdirectories used by HlmsUnlit
+           Ogre::HlmsUnlit::getDefaultPaths( mainFolderPath, libraryFoldersPaths );
+           Ogre::Archive *archiveUnlit =
+               archiveManager.load( rootHlmsFolder + mainFolderPath, "FileSystem", true );
+           Ogre::ArchiveVec archiveUnlitLibraryFolders;
+           libraryFolderPathIt = libraryFoldersPaths.begin();
+           libraryFolderPathEn = libraryFoldersPaths.end();
+           while( libraryFolderPathIt != libraryFolderPathEn )
+           {
+               Ogre::Archive *archiveLibrary =
+                   archiveManager.load( rootHlmsFolder + *libraryFolderPathIt, "FileSystem", true );
+               logMsg(func +" Unlit Path = " +*libraryFolderPathIt);
+
+               archiveUnlitLibraryFolders.push_back( archiveLibrary );
+               ++libraryFolderPathIt;
+           }
+
+           // Create and register the unlit Hlms
+           hlmsUnlit = OGRE_NEW Ogre::HlmsUnlit( archiveUnlit, &archiveUnlitLibraryFolders );
+           Ogre::Root::getSingleton().getHlmsManager()->registerHlms( hlmsUnlit );
+       }
+
+       {
+           // Create & Register HlmsPbs
+           // Do the same for HlmsPbs:
+           Ogre::HlmsPbs::getDefaultPaths( mainFolderPath, libraryFoldersPaths );
+           Ogre::Archive *archivePbs = archiveManager.load( rootHlmsFolder + mainFolderPath, "FileSystem", true );
+
+           // Get the library archive(s)
+           Ogre::ArchiveVec archivePbsLibraryFolders;
+           libraryFolderPathIt = libraryFoldersPaths.begin();
+           libraryFolderPathEn = libraryFoldersPaths.end();
+           while( libraryFolderPathIt != libraryFolderPathEn )
+           {
+               Ogre::Archive *archiveLibrary =
+                   archiveManager.load( rootHlmsFolder + *libraryFolderPathIt, "FileSystem", true );
+               logMsg(func +" Pbs Path = " +*libraryFolderPathIt);
+               archivePbsLibraryFolders.push_back( archiveLibrary );
+               ++libraryFolderPathIt;
+           }
+
+           // Create and register
+           hlmsPbs = OGRE_NEW Ogre::HlmsPbs( archivePbs, &archivePbsLibraryFolders );
+           Ogre::Root::getSingleton().getHlmsManager()->registerHlms( hlmsPbs );
+       }
+
+/*    {
+        //Create & Register HlmsUnlit
+        //Get the path to all the subdirectories used by HlmsUnlit
+        Ogre::HlmsUnlit::getDefaultPaths( mainFolderPath, libraryFoldersPaths );
+        Ogre::Archive *archiveUnlit = archiveManager.load(rootHlmsFolder
+                                                          +mainFolderPath,
+                                                           archiveType, true );
+        Ogre::ArchiveVec archiveUnlitLibraryFolders;
+        libraryFolderPathIt = libraryFoldersPaths.begin();
+        libraryFolderPathEn = libraryFoldersPaths.end();
+        while( libraryFolderPathIt != libraryFolderPathEn )
+        {
+            logMsg(func +" dah");
+            Ogre::Archive *archiveLibrary =
+                    archiveManager.load( rootHlmsFolder + *libraryFolderPathIt, archiveType, true );
+            archiveUnlitLibraryFolders.push_back( archiveLibrary );
+            ++libraryFolderPathIt;
+        }
+
+        //Create and register the unlit Hlms
+        hlmsUnlit = OGRE_NEW Ogre::HlmsUnlit( archiveUnlit, &archiveUnlitLibraryFolders );
+        Ogre::Root::getSingleton().getHlmsManager()->registerHlms( hlmsUnlit );
+    }
+
+    {
+        //Create & Register HlmsPbs
+        //Do the same for HlmsPbs:
+        Ogre::HlmsPbs::getDefaultPaths( mainFolderPath, libraryFoldersPaths );
+        Ogre::Archive *archivePbs = archiveManager.load( rootHlmsFolder
+                                                         +mainFolderPath,
+                                                         archiveType, true );
+
+        //Get the library archive(s)
+        Ogre::ArchiveVec archivePbsLibraryFolders;
+        libraryFolderPathIt = libraryFoldersPaths.begin();
+        libraryFolderPathEn = libraryFoldersPaths.end();
+        while( libraryFolderPathIt != libraryFolderPathEn )
+        {
+            Ogre::Archive *archiveLibrary =
+                    archiveManager.load( rootHlmsFolder + *libraryFolderPathIt,
+                                         archiveType, true );
+            archivePbsLibraryFolders.push_back( archiveLibrary );
+            ++libraryFolderPathIt;
+        }
+
+        //Create and register
+        hlmsPbs = OGRE_NEW Ogre::HlmsPbs( archivePbs, &archivePbsLibraryFolders );
+        Ogre::Root::getSingleton().getHlmsManager()->registerHlms( hlmsPbs );
+    }
+*/
+
+    Ogre::RenderSystem *renderSystem = RERoot->getRenderSystem();
+    if( renderSystem->getName() == "Direct3D11 Rendering Subsystem" )
+    {
+        //Set lower limits 512kb instead of the default 4MB per Hlms in D3D 11.0
+        //and below to avoid saturating AMD's discard limit (8MB) or
+        //saturate the PCIE bus in some low end machines.
+        bool supportsNoOverwriteOnTextureBuffers;
+        renderSystem->getCustomAttribute( "MapNoOverwriteOnDynamicBufferSRV",
+                                          &supportsNoOverwriteOnTextureBuffers );
+
+        if( !supportsNoOverwriteOnTextureBuffers )
+        {
+            hlmsPbs->setTextureBufferDefaultSize( 512 * 1024 );
+            hlmsUnlit->setTextureBufferDefaultSize( 512 * 1024 );
+        }
+    }
+}
+
 
 bool renderEngine::createScene()
 {
@@ -649,21 +815,11 @@ bool renderEngine::createScene()
     logMsg(func +" Hello?");
 //    exit(0);
 #endif
-	//  AConfiguration_fromAssetManager(config, app->activity->assetManager);
-	//gAssetMgr = app->activity->assetManager;
-//	misc["currentGLContext"] = "true";
-//	misc["androidConfig"] = convert->toString((int)config);
-	//    misc["externalWindowHandle"] = convert->toString((int)app->window);
 
-//	misc["currentGLContext"]     = "true";
-//    misc["externalGLContext"]    = convert->toString((int)sdlWindow);
-//    winHandle = convert->toString((unsigned long)sysInfo.info.android.window);
-//    exit(0);
     logMsg(func +" winHandle = " +winHandle);
 
     std::string windowTitle = "Ultimate Basketball Challenge";
 
-//    exit(0);
     #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
         misc.insert( std::make_pair("externalWindowHandle",  winHandle) );
     #elif OGRE_PLATFORM == OGRE_PLATFORM_LINUX
@@ -681,53 +837,30 @@ bool renderEngine::createScene()
     misc.insert( std::make_pair("reverse_depth", "Yes" ) );
 
 
-//    misc["externalWindowHandle"] = winHandle;
-//	misc["externalGLContext"] = convert->toString((unsigned long)SDL_GL_GetCurrentContext());
-//    exit(0);
-    logMsg(func +" Hello??");
-//    exit(0);
+    logMsg(func + " windowTitle = " +windowTitle);
+    logMsg(func +" windowWidth = " +convert->toString(windowWidth));
+    logMsg(func +" windowHeight = " +convert->toString(windowHeight));
 
-    mWindow = sharedPtr<Ogre::Window>(
-                RERoot->createRenderWindow(windowTitle, windowWidth,
-                                           windowHeight, false, &misc));
+    mWindow = RERoot->createRenderWindow(windowTitle, windowWidth,windowHeight,
+                                         false, &misc);
 
-//    exit(0);
     logMsg(func +" renderWindow created!");
-    std::size_t handle = 0;
-    mWindow->getCustomAttribute("WINDOW", &handle);
-    logMsg(func +" mWindow handle = " +convert->toString(handle));
-//    exit(0);
+//    std::size_t handle = 0;
+//    mWindow->getCustomAttribute("WINDOW", &handle);
+//    logMsg(func +" mWindow handle = " +convert->toString(handle));
     logMsg(func +" Dead");
 #ifdef __ANDROID
     sdlWindow = SDL_CreateWindowFrom(mWindow.get());
-//    exit(0);
 #endif
      if (mWindow == nullptr)
      {
          logMsg(func +" createScene mWindow == nullptr!");
      }
-//exit(0);
-/*        
-//    SDL_SetWindowSize(sdlWindow, w, h);
-//    SDL_GetWindowSize(sdlWindow, w, h);
-    Ogre::WindowEventUtilities::messagePump();
-    w = mWindow->getViewport(0)->getActualWidth();
-    h = mWindow->getViewport(0)->getActualHeight();
-    logMsg("Width = " +convert->toString(w));
-    logMsg("Height = " +convert->toString(h));
-//    exit(0);
-    logMsg("window ID = " +convert->toString(SDL_GetWindowID(sdlWindow)));
-	SDL_ShowWindow(sdlWindow);
-	SDL_SetWindowGrab(sdlWindow,SDL_TRUE);
-	SDL_MaximizeWindow(sdlWindow);
-*/
 
-//#endif
 
     mResourceGroup = "UBCData";
 //	Ogre::ResourceGroupManager *rsm
-    rsm = sharedPtr<Ogre::ResourceGroupManager>(
-                Ogre::ResourceGroupManager::getSingletonPtr());
+    rsm = Ogre::ResourceGroupManager::getSingletonPtr();
     rsm->createResourceGroup(mResourceGroup);
 
 //    Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
@@ -821,30 +954,8 @@ bool renderEngine::createScene()
 
 #endif
 
-    logMsg(func +"Setting up HLMS");
+    registerHlms();  // registers Hlms shader system
 
-
-    hlmsManager = RERoot->getHlmsManager();
-
-    Ogre::Archive *archiveLibrary = Ogre::ArchiveManager::getSingletonPtr()->load(
-                    dataPath + "/Media/Hlms/Common/GLSL", "FileSystem", true );
-    Ogre::ArchiveVec library;
-    library.push_back( archiveLibrary );
-    Ogre::Archive *archivePbs = Ogre::ArchiveManager::getSingletonPtr()->load(
-                  dataPath + "/Media/Hlms/Pbs/GLSL", "FileSystem", true );
-    Ogre::HlmsPbs *hlmsPbs = OGRE_NEW Ogre::HlmsPbs( archivePbs, &library );
-
-//    Ogre::Root::getSingleton().getHlmsManager()->registerHlms( hlmsPbs );
-    hlmsManager->registerHlms(hlmsPbs);
-    Ogre::Archive *archiveUnlit = Ogre::ArchiveManager::getSingletonPtr()->load(
-                  dataPath + "/Media/Hlms/Unlit/GLSL", "FileSystem", true );
-// 2.1    Ogre::HlmsUnlit *hlmsUnlit = OGRE_NEW Ogre::HlmsUnlit( archiveUnlit, &library );
-    Ogre::HlmsUnlit *hlmsUnlit = static_cast<Ogre::HlmsUnlit*>(hlmsManager->getHlms(Ogre::HLMS_UNLIT));
-
-//    Ogre::Root::getSingleton().getHlmsManager()->registerHlms( hlmsUnlit );
-    hlmsManager->registerHlms(hlmsUnlit);
-
-    logMsg(func +"Hlms setup");
     //register HLMS
 /*    rootHlmsFolder = dataPath + "/Media/";
 
@@ -923,19 +1034,17 @@ bool renderEngine::createScene()
 #else
     const std::size_t numThreads = std::max<std::size_t>(1,
                                                Ogre::PlatformInformation::getNumLogicalCores() );
-    mSceneMgr = sharedPtr<Ogre::SceneManager>(
-                RERoot->createSceneManager(Ogre::ST_GENERIC, numThreads,
-                                           "SceneManager")); // creates the scene manager
+    mSceneMgr = RERoot->createSceneManager(Ogre::ST_GENERIC, numThreads,
+                                           "UBCSceneManager"); // creates the scene manager
     logMsg(func +"mSceneMgr setup");
 #endif
 
 //    mSceneMgr = RERoot->createSceneManager("DefaultSceneManager"); // creates the scene manager
 
-    mCamera = sharedPtr<Ogre::Camera>(mSceneMgr->createCamera("camera"));
+    mCamera = mSceneMgr->createCamera("camera");
 
     const Ogre::String workspaceName( "MyOwnWorkspace" );
-    compositorManager = sharedPtr<Ogre::CompositorManager2>(
-                RERoot->getCompositorManager2());
+    compositorManager = RERoot->getCompositorManager2();
     Ogre::CompositorChannelVec externalChannels(1);
 
     if( !compositorManager->hasWorkspaceDefinition( workspaceName ) )
@@ -944,8 +1053,8 @@ bool renderEngine::createScene()
                                                                        0.0f,
                                                                        0.6f));
 
-    compositorManager->addWorkspace( mSceneMgr.get(), mWindow.get()->getTexture(),
-                                     mCamera.get(), workspaceName, true );
+    compositorManager->addWorkspace( mSceneMgr, mWindow->getTexture(),
+                                     mCamera, workspaceName, true );
 
     logMsg(func +"Compositor setup");
 
@@ -968,10 +1077,9 @@ bool renderEngine::createScene()
 
     mCamera->setNearClipDistance(5);
     mCamera->setFarClipDistance(5000);
-    cameraNode = OgreSceneNodeSharedPtr(
-                mSceneMgr->getRootSceneNode()->createChildSceneNode());
+    cameraNode = mSceneMgr->getRootSceneNode()->createChildSceneNode();
     mCamera->detachFromParent();
-    cameraNode->attachObject(mCamera.get());
+    cameraNode->attachObject(mCamera);
     logMsg(func +"Camera setup");
 //    viewPort = sharedPtr<Ogre::Viewport>(mWindow->addViewport(mCamera.get()));
 // 2.2    viewPort = sharedPtr<Ogre::Viewport>(mWindow->addViewport());
@@ -1002,10 +1110,9 @@ bool renderEngine::createScene()
 
 
     // Create a light
-    light = sharedPtr<Ogre::Light>(mSceneMgr->createLight());
-    lightNode = OgreSceneNodeSharedPtr(
-                mSceneMgr->getRootSceneNode()->createChildSceneNode());
-    lightNode->attachObject(light.get());
+    light = mSceneMgr->createLight();
+    lightNode = mSceneMgr->getRootSceneNode()->createChildSceneNode();
+    lightNode->attachObject(light);
     lightNode->setPosition(20,80,56);
     light->setPowerScale(1);
     logMsg(func +"light setup");
@@ -1017,9 +1124,9 @@ bool renderEngine::createScene()
     }
 
 
-/*    bball = OgreEntitySharedPtr(mSceneMgr->createEntity("bball.mesh",
+/*    bball = Ogre::v1::Entity(mSceneMgr->createEntity("bball.mesh",
                                                         "UBCData"));
-    bballNode = OgreSceneNodeSharedPtr(
+    bballNode = Ogre::SceneNode(
                 mSceneMgr->getRootSceneNode()->createChildSceneNode());
     bballNode->setName("bball");
     bballNode->attachObject(bball.get());
@@ -1101,10 +1208,10 @@ bool renderEngine::createScene()
 return (true);
 }
 
-OgreSceneNodeSharedPtr renderEngine::createNode(const OgreEntitySharedPtr &model,
+Ogre::SceneNode *renderEngine::createNode(Ogre::v1::Entity *model,
                                                 const std::string &entityNodeName)  // create scene node for model
 {
-    OgreSceneNodeSharedPtr tempNode; //(new Ogre::SceneNode);
+    Ogre::SceneNode *tempNode; //(new Ogre::SceneNode);
     conversionSharedPtr convert ;
 //    std::string entityNodeName;
 //    std::string entityNodeNum;
@@ -1115,12 +1222,11 @@ OgreSceneNodeSharedPtr renderEngine::createNode(const OgreEntitySharedPtr &model
 //    entityNodeName = entityName +"node" +entityNodeNum;
 //    logMsg(func +" entityNodeName == " +entityNodeName);
 //    exit(0);
-    tempNode = OgreSceneNodeSharedPtr(
-                mSceneMgr->getRootSceneNode()->createChildSceneNode());
+    tempNode = mSceneMgr->getRootSceneNode()->createChildSceneNode();
     logMsg(func +" tempNode created!");
     tempNode->setName(entityNodeName);
 //    tempNode->setName();
-    tempNode->attachObject(model.get());
+//FIXME!    tempNode->attachObject(model);
     logMsg(func +" node attached!");
 
     // attaches 3D model to the node

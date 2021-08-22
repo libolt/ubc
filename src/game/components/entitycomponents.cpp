@@ -64,21 +64,21 @@ void entityComponents::setNodeName(const std::string &set)  // sets the value of
     nodeName = set;
 }
 
-OgreEntitySharedPtr entityComponents::getModel() const  // retrieves the value of model
+Ogre::v1::Entity *entityComponents::getModel() const  // retrieves the value of model
 {
     return (model);
 }
- void entityComponents::setModel(const OgreEntitySharedPtr &set)  // sets the value of model
+ void entityComponents::setModel(Ogre::v1::Entity *set)  // sets the value of model
 {
     
     model = set;
 }
 
-OgreSceneNodeSharedPtr entityComponents::getNode() const  // retrieves the value of node
+Ogre::SceneNode *entityComponents::getNode() const  // retrieves the value of node
 {
     return (node);
 }
-void entityComponents::setNode(const OgreSceneNodeSharedPtr &set)  // sets the value of node
+void entityComponents::setNode(Ogre::SceneNode *set)  // sets the value of node
 {
     node = set;
 }

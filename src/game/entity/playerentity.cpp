@@ -133,8 +133,10 @@ bool playerEntity::initializeObjects()  // initializes the player entity object
     playerComponentsSharedPtr tempComponent(new playerComponents);
     component = tempComponent;
 
+#ifdef _ENABLE_BTOGRE
     playerPhysicsSharedPtr tempPhysics(new playerPhysics);
     component->setPhysics(tempPhysics);
+#endif
 
     playerStateMachineSharedPtr tempStateMachine(new playerStateMachine);
     component->setStateMachine(tempStateMachine);
@@ -164,11 +166,12 @@ bool playerEntity::initializeObjects()  // initializes the player entity object
     return (retVal);
 }
 
+#ifdef _ENABLE_BTOGRE
 bool playerEntity::setupPhysicsObject()  // sets up the physics object
 {
     std::string func = "playerEntity::setupPhysicsObject()!";
-    OgreEntitySharedPtr tempModel = component->getModel();
-    OgreSceneNodeSharedPtr tempNode = component->getNode();
+    Ogre::v1::Entity *tempModel = component->getModel();
+    Ogre::SceneNode *tempNode = component->getNode();
     btRigidBody *tempPhysBody = component->getPhysics()->getPhysBody().get();
     bool retVal = false;
     logMsg(func +" begin");
@@ -187,16 +190,16 @@ bool playerEntity::setupPhysicsObject()  // sets up the physics object
     component->getPhysics()->setColObject(COL_PLAYER0);
     component->getPhysics()->setCollidesWith(COL_COURT);
 
-    if (component->getPhysics()->setupPhysics(&tempModel, &tempNode, &tempPhysBody))
+    if (component->getPhysics()->setupPhysics(tempModel, tempNode, &tempPhysBody))
     {
         
 
         flag->setPhysicsSetup(true);
         logMsg(func +" setModel");
-        component->setModel(OgreEntitySharedPtr(tempModel));
+        component->setModel(tempModel);
         logMsg(func +" setNode");
         logMsg(func +" tempNode name == " +tempNode->getName());
-        component->setNode(OgreSceneNodeSharedPtr(tempNode));
+        component->setNode(tempNode);
         logMsg(func +" setPhysBody");
         component->getPhysics()->setPhysBody(btRigidBodySharedPtr(tempPhysBody));
 //        exit(0);
@@ -211,6 +214,7 @@ bool playerEntity::setupPhysicsObject()  // sets up the physics object
     
     return (retVal);
 }
+#endif
 
 bool playerEntity::initializeStateMachine()  // initializes the stateMachine object
 {

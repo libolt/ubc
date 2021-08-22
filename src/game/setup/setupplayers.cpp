@@ -392,7 +392,7 @@ playerEntityMSharedPtr setupPlayers::setupActivePlayerInstances(playerEntityMSha
             tempStateAction.push_back(PLOADMODEL);
             APIIT.second->getGameData()->setStateAction(tempStateAction);
             logMsg(func +" PLOADMODELName " +APIIT.second->getData()->getFirstName() +" set to load");
-/*            OgreEntitySharedPtr tempModel;
+/*            Ogre::v1::Entity tempModel;
             std::string entityName = APIIT.second->getComponent()->getName();
             std::string entityModelFileName = APIIT.second->getComponent()->getModelFileName();
             logMsg(func +" entityModelFileName == " +entityModelFileName);
@@ -424,7 +424,7 @@ playerEntityMSharedPtr setupPlayers::setupActivePlayerInstances(playerEntityMSha
             APIIT.second->getFlag()->setStateChanged(true);
             tempStateAction.push_back(PCREATENODE);
             APIIT.second->getGameData()->setStateAction(tempStateAction);
-            OgreSceneNodeSharedPtr tempNode;
+            Ogre::SceneNode *tempNode;
             logMsg(func +" Node not created yet!");
 //            exit(0);
 

@@ -312,7 +312,7 @@ hoopEntitySharedPtr loadHoops::loadHoopFile(const std::string &fileName)  // loa
     conversionSharedPtr convert ;
 //    hoopStateMSharedPtr activeHoopInstance = getActiveHoopInstance();
 //    loaderSharedPtr load(new loader);
-    OgreEntitySharedPtr model;  // stores the model returned by loadModel() function
+    Ogre::v1::Entity model;  // stores the model returned by loadModel() function
 
     std::string func = "loadHoops::loadModels()";
     bool returnType = true;
@@ -393,7 +393,7 @@ void loadHoops::loadModel(hoopComponentsSharedPtr &component, hoopFlagsSharedPtr
 {
     conversionSharedPtr convert ;
     loaderSharedPtr load(new loader);
-    OgreEntitySharedPtr model;  // stores the model returned by loadModel() function
+    Ogre::v1::Entity *model;  // stores the model returned by loadModel() function
     std::string func = "loadHoops::loadModels()";
 
     logMsg(func +" begin");

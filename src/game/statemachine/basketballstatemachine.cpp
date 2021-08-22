@@ -34,7 +34,7 @@
 #include "utilities/logging.h"
 
 basketballStateMachine::basketballStateMachine() :
-    stateMachine(ST_MAX_STATES),
+    StateMachine(ST_MAX_STATES),
     m_currentSpeed(0)
 {
 }
@@ -193,9 +193,10 @@ STATE_DEFINE(basketballStateMachine, Initialize, basketballSMData)
 
     basketballFlagsSharedPtr tempFlag(new basketballFlags);
     tempSMData->flag = tempFlag;
+#ifdef _ENABLE_BTOGRE
     sharedPtr<basketballPhysics> tempPhysics(new basketballPhysics);
     tempSMData->physics = tempPhysics;
-
+#endif
 //    exit(0);
     data = tempSMData;
 /*    basketballEntitySharedPtr tempEntity(new basketballEntity);
@@ -227,7 +228,7 @@ STATE_DEFINE(basketballStateMachine, LoadModel, basketballSMData)
     basketballComponentsSharedPtr component = data->component;
     basketballDataSharedPtr bData = data->bData;
     basketballFlagsSharedPtr flag = data->flag;
-    OgreEntitySharedPtr model;  // stores the model returned by loadModel() function
+    Ogre::v1::Entity *model;  // stores the model returned by loadModel() function
     loaderSharedPtr load(new loader);
 
     basketballSMData *tempSMData = new basketballSMData;
@@ -279,8 +280,8 @@ STATE_DEFINE(basketballStateMachine, CreateNode, basketballSMData)
 {
     conversionSharedPtr convert;
 
-    OgreEntitySharedPtr activeModel;
-    OgreSceneNodeSharedPtr activeNode;
+    Ogre::v1::Entity *activeModel = nullptr;
+    Ogre::SceneNode *activeNode = nullptr;
     std::string activeEntityName;
     std::string activeNodeNum;
     std::string activeNodeName;
@@ -313,11 +314,12 @@ STATE_DEFINE(basketballStateMachine, CreateNode, basketballSMData)
 // sets up basketball physics object
 STATE_DEFINE(basketballStateMachine, SetupPhysics, basketballSMData)
 {
+#ifdef _ENABLE_BTOGRE
 
     conversionSharedPtr convert;
     std::string func = "basketballStateMachine::setupPhysics()";
-    OgreEntitySharedPtr tempModel = data->model;
-    OgreSceneNodeSharedPtr tempNode = data->node;
+    Ogre::v1::Entity *tempModel = data->model;
+    Ogre::SceneNode *tempNode = data->node;
     basketballComponentsSharedPtr component = data->component;
     basketballFlagsSharedPtr flag = data->flag;
     btRigidBody *tempPhysBody = component->getPhysics()->getPhysBody().get();
@@ -342,7 +344,7 @@ STATE_DEFINE(basketballStateMachine, SetupPhysics, basketballSMData)
     component->getPhysics()->setCollidesWith(COL_COURT);
     logMsg(func +" setCollidesWith!");
 
-    if (component->getPhysics()->setupPhysics(&tempModel, &tempNode, &tempPhysBody))
+    if (component->getPhysics()->setupPhysics(tempModel, tempNode, &tempPhysBody))
     {
         
         logMsg(func +" setupPhysics!");
@@ -356,8 +358,8 @@ STATE_DEFINE(basketballStateMachine, SetupPhysics, basketballSMData)
 
         basketballSMData *tempSMData(new basketballSMData);
 
-        tempSMData->model = OgreEntitySharedPtr(tempModel);
-        tempSMData->node = OgreSceneNodeSharedPtr(tempNode);
+        tempSMData->model = tempModel;
+        tempSMData->node = tempNode;
         tempSMData->component = component;
 
         data = tempSMData;
@@ -370,17 +372,17 @@ STATE_DEFINE(basketballStateMachine, SetupPhysics, basketballSMData)
     }
 
     logMsg(func +" end");
-
+#endif
 }
 
 // stops movement of basketball object
-STATE_DEFINE(basketballStateMachine, StopMovement, noEventData)
+STATE_DEFINE(basketballStateMachine, StopMovement, NoEventData)
 {
     
 }
 
 // state machine sits here when motor is not running
-STATE_DEFINE(basketballStateMachine, Idle, noEventData)
+STATE_DEFINE(basketballStateMachine, Idle, NoEventData)
 {
     logMsg("Motor::ST_Idle");
 }
@@ -403,13 +405,14 @@ STATE_DEFINE(basketballStateMachine, UpdatePosition, basketballSMData)
     conversionSharedPtr convert;
     comparison compare;
     Ogre::Vector3 changePos;
+#ifdef _ENABLE_BTOGRE
     btVector3 physChange = btVector3(0,0,0);
-
+#endif
     basketballComponentsSharedPtr component = data->component;
 //    basketballDataSharedPtr bData;  // stores copy of basketballData object
     basketballFlagsSharedPtr flag = data->flag;
     basketballPhysicsSharedPtr physics = data->physics;
-    OgreSceneNodeSharedPtr node = data->node;
+    Ogre::SceneNode *node = data->node;
     std::string func = "basketballStateMachine::updatePosition()";
 
     
@@ -423,9 +426,10 @@ STATE_DEFINE(basketballStateMachine, UpdatePosition, basketballSMData)
                 logMsg(func + " Updating basketball court position based on start position");
                 node->translate(component->getNewCourtPosition());
 
+#ifdef _ENABLE_BTOGRE
                 physChange = BtOgre::Convert::toBullet(component->getNewCourtPosition()); // converts from Ogre::Vector3 to btVector3
                 component->getPhysics()->getPhysBody()->translate(physChange); // moves physics body in unison with the model
-
+#endif
                 component->getSteer()->setPosition(convert->toOpenSteerVec3(component->getNewCourtPosition()));
                 flag->setCourtPositionChanged(false);
                 component->setCourtPositionChangedType(NOCHANGE);
@@ -437,9 +441,10 @@ STATE_DEFINE(basketballStateMachine, UpdatePosition, basketballSMData)
                 changePos = compare.OgreVector3ToOgreVector3Result(component->getCourtPosition(), component->getNewCourtPosition());
                 node->translate(changePos);
 
+#ifdef _ENABLE_BTOGRE
                 physChange = BtOgre::Convert::toBullet(changePos); // converts from Ogre::Vector3 to btVector3
                 component->getPhysics()->getPhysBody()->translate(physChange); // moves physics body in unison with the model
-
+#endif
                 flag->setCourtPositionChanged(false);
                 component->setCourtPositionChangedType(NOCHANGE);
             break;   
@@ -448,8 +453,10 @@ STATE_DEFINE(basketballStateMachine, UpdatePosition, basketballSMData)
                 logMsg(func + " Updating court position based on input");
                 node->translate(component->getNewCourtPosition());
 
+#ifdef _ENABLE_BTOGRE
                 physChange = BtOgre::Convert::toBullet(component->getNewCourtPosition()); // converts from Ogre::Vector3 to btVector3
                 component->getPhysics()->getPhysBody()->translate(physChange); // moves physics body in unison with the model
+#endif
 
                 component->getSteer()->setPosition(convert->toOpenSteerVec3(component->getNewCourtPosition()));
                 flag->setCourtPositionChanged(false);
@@ -467,8 +474,10 @@ STATE_DEFINE(basketballStateMachine, UpdatePosition, basketballSMData)
                 logMsg(func + " bball newCourtPosition = " +convert->toString(component->getNewCourtPosition()));
                 logMsg(func + " bball node position" +convert->toString((node->getPosition())));
 
+#ifdef _ENABLE_BTOGRE
                 physChange = BtOgre::Convert::toBullet(component->getNewCourtPosition()); // converts from Ogre::Vector3 to btVector3
                 component->getPhysics()->getPhysBody()->translate(physChange); // moves physics body in unison with the model
+#endif
 
                 //steer->setPosition(convert->toOpenSteerVec3(component->getNewCourtPosition()));
                 flag->setCourtPositionChanged(false);
@@ -481,8 +490,10 @@ STATE_DEFINE(basketballStateMachine, UpdatePosition, basketballSMData)
                 logMsg(func + " bball newCourtPosition = " +convert->toString(component->getNewCourtPosition()));
                 logMsg(func + " bball node position" +convert->toString((node->getPosition())));
 
+#ifdef _ENABLE_BTOGRE
                 physChange = BtOgre::Convert::toBullet(component->getNewCourtPosition()); // converts from Ogre::Vector3 to btVector3
                 component->getPhysics()->getPhysBody()->translate(physChange); // moves physics body in unison with the model
+#endif
 
                 //steer->setPosition(convert->toOpenSteerVec3(component->getNewCourtPosition()));
                 flag->setCourtPositionChanged(false);
@@ -537,7 +548,7 @@ TS*/
     
     basketballComponentsSharedPtr component = data->component;
     basketballFlagsSharedPtr flag = data->flag;
-    OgreSceneNodeSharedPtr node = data->node;
+    Ogre::SceneNode *node = data->node;
     std::string func = "basketballState:Machine:updateMovement()";
 
     logMsg(func + " beginning");

@@ -21,9 +21,10 @@
 #ifndef _TEAMSTATEMACHINE_H_
 #define _TEAMSTATEMACHINE_H_
 
-#include "statemachine/statemachine.h"
+#include "statemachine/StateMachine.h"
+#include "utilities/typedefs.h"
 
-class teamSMData : public eventData
+class teamSMData : public EventData
 {
     public:
         teamComponentsSharedPtr component;  // instance of teamComponents object
@@ -36,7 +37,7 @@ class teamSMData : public eventData
         teamStarterIDsVecM teamStarterID;  // copy of teamStartID object
 };
 
-class teamStateMachine : public stateMachine
+class teamStateMachine : public StateMachine
 {
 public:
     teamStateMachine();
@@ -72,7 +73,7 @@ private:
 
     // Define the state machine state functions with event data type
     STATE_DECLARE(teamStateMachine,    init,   teamSMData)
-    STATE_DECLARE(teamStateMachine,    Idle,           noEventData)
+    STATE_DECLARE(teamStateMachine,    Idle,           NoEventData)
     STATE_DECLARE(teamStateMachine,    createPlayerInstances,   teamSMData)
     STATE_DECLARE(teamStateMachine, setupPlayerInstances, teamSMData)
     STATE_DECLARE(teamStateMachine, setPlayerStartPositions, teamSMData)

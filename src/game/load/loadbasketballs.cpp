@@ -338,7 +338,7 @@ void loadBasketballs::loadModel(basketballComponentsSharedPtr &component, basket
 //    size_t activeBBallInstance = getActiveBBallInstance();
 //    basketballEntityMSharedPtr basketballInstance = getBasketballInstance();
 //    basketballEntitySharedPtr basketballModelInstance(new basketballState);
-    OgreEntitySharedPtr model;  // stores the model returned by loadModel() function
+    Ogre::v1::Entity *model;  // stores the model returned by loadModel() function
     std::string func = "loadBasketballs::loadModels()";
     bool returnType = false;
     

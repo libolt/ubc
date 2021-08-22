@@ -82,12 +82,13 @@ bool courtEntity::initializeObjects()  // initializes the basketball objects
     courtFlagsSharedPtr tempFlag(new courtFlags);
     flag = tempFlag;
     
-    courtStateMachineSharedPtr tempStateMachine(new courtStateMachine);
+    courtstatemachineSharedPtr tempStateMachine(new courtstatemachine);
     stateMachine = tempStateMachine;
 
+#ifdef _ENABLE_BTOGRE
     courtPhysicsSharedPtr tempPhysics(new courtPhysics);
     component->setPhysics(tempPhysics);
-
+#endif
     return (true);
 }
 
@@ -204,10 +205,11 @@ bool courtEntity::updateStateMachine(renderEngineSharedPtr render)  // updates t
     return (true);
 }
 
+#ifdef _ENABLE_BTOGRE
 bool courtEntity::setupPhysicsObject()  // sets up the physics object
 {
-    OgreEntitySharedPtr tempModel = component->getModel();
-    OgreSceneNodeSharedPtr tempNode = component->getNode();
+    Ogre::v1::Entity *tempModel = component->getModel();
+    Ogre::SceneNode *tempNode = component->getNode();
     btRigidBody *tempPhysBody = component->getPhysics()->getPhysBody().get();
     btScalar restitution = 1.0f;
     btScalar friction = 15.5f;
@@ -225,12 +227,12 @@ bool courtEntity::setupPhysicsObject()  // sets up the physics object
     component->getPhysics()->setColObject(COL_COURT);
     component->getPhysics()->setCollidesWith(collides);
 //    exit(0);
-    if (component->getPhysics()->setupPhysics(&tempModel, &tempNode, &tempPhysBody))
+    if (component->getPhysics()->setupPhysics(tempModel, tempNode, &tempPhysBody))
     {
 //        tempPhysBody->setActivationState(DISABLE_SIMULATION);
         flag->setPhysicsSetup(true);
-        component->setModel(OgreEntitySharedPtr(tempModel));
-        component->setNode(OgreSceneNodeSharedPtr(tempNode));
+        component->setModel(tempModel);
+        component->setNode(tempNode);
         component->getPhysics()->setPhysBody(btRigidBodySharedPtr(tempPhysBody));
         retVal = true;
     }
@@ -241,3 +243,4 @@ bool courtEntity::setupPhysicsObject()  // sets up the physics object
 
     return (retVal);
 }
+#endif

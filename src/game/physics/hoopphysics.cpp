@@ -18,6 +18,8 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
+#ifdef _ENABLE_BTOGRE
+
 #include "entity/gameentity.h"
 
 #include "physics/hoopphysics.h"
@@ -25,3 +27,4 @@
 hoopPhysics::hoopPhysics() = default;  // constructor
 hoopPhysics::~hoopPhysics() = default;  // destructor
 
+#endif

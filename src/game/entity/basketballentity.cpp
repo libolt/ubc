@@ -129,8 +129,10 @@ bool basketballEntity::initializeObjects()  // initializes the basketball object
     basketballComponentsSharedPtr tempComponent(new basketballComponents); 
     component = tempComponent;
     
+#ifdef _ENABLE_BTOGRE
     sharedPtr<basketballPhysics> tempPhysics(new basketballPhysics);
     component->setPhysics(tempPhysics);
+#endif
 
     basketballDataSharedPtr tempData(new basketballData);
     data = tempData;
@@ -178,8 +180,8 @@ bool basketballEntity::initializeStateMachine()  // initializes the basketball s
 {
     conversionSharedPtr convert ;
     std::string func = "basketballEntity::setupPhysicsObject()";
-    OgreEntitySharedPtr tempModel = getModel();
-    OgreSceneNodeSharedPtr tempNode = getNode();
+    Ogre::v1::Entity tempModel = getModel();
+    Ogre::SceneNode tempNode = getNode();
     btRigidBody *tempPhysBody = component->getPhysics()->getPhysBody().get();
     bool returnType = false;
     
@@ -211,8 +213,8 @@ bool basketballEntity::initializeStateMachine()  // initializes the basketball s
         logMsg(func +" nodeName == " +tempNode->getName());
 
 //        exit(0);
-        setModel(OgreEntitySharedPtr(tempModel));
-        setNode(OgreSceneNodeSharedPtr(tempNode));
+        setModel(Ogre::v1::Entity(tempModel));
+        setNode(Ogre::SceneNode(tempNode));
         component->getPhysics()->setPhysBody(btRigidBodySharedPtr(tempPhysBody));
 //        exit(0);
         returnType = true;;
@@ -378,7 +380,9 @@ void basketballEntity::updateStateMachine(const gameComponentsSharedPtr &gameCom
 
     if (flag->getNumberSet())  // runs the physics update code
     {
+#ifdef _ENABLE_BTOGRE
         component->getPhysics()->updatePhysObj();
+#endif
     }
 /*    if (flag->getDirectChange())
     {

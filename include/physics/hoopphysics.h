@@ -21,6 +21,8 @@
 #ifndef _HOOPPHYSICS_H_
 #define _HOOPPHYSICS_H_
 
+#ifdef _ENABLE_BTOGRE
+
 #include "physics.h"
 
 //class physics;
@@ -33,6 +35,6 @@ class hoopPhysics : public physics
 
     private:
 };
-
+#endif
 #endif // HOOPPHYSICS_H
 

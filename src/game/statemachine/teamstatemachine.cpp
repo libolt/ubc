@@ -37,7 +37,7 @@
 #include "utilities/logging.h"
 
 teamStateMachine::teamStateMachine() :
-    stateMachine(ST_MAX_STATES)
+    StateMachine(ST_MAX_STATES)
 {
 }
     
@@ -206,7 +206,7 @@ STATE_DEFINE(teamStateMachine, init, teamSMData)
 }
 
 // state machine sits here when motor is not running
-STATE_DEFINE(teamStateMachine, Idle, noEventData)
+STATE_DEFINE(teamStateMachine, Idle, NoEventData)
 {
     std::string func = "teamStateMachine::ST_Idle";
     logMsg(func +" begin");
@@ -240,7 +240,7 @@ STATE_DEFINE(teamStateMachine, createPlayerInstances, teamSMData)
     logMsg(func +" end");
     // perform the stop motor processing here
     // transition to Idle via an internal event
-    internalEvent(ST_IDLE);
+    InternalEvent(ST_IDLE);
     
 }
 

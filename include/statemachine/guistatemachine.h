@@ -1,10 +1,10 @@
 #ifndef _GUISTATEMACHINE_H_
 #define _GUISTATEMACHINE_H_
 
-#include "statemachine/statemachine.h"
+#include "statemachine/StateMachine.h"
 #include "utilities/typedefs.h"
 
-class guiSMData : public eventData
+class guiSMData : public EventData
 {
 public:
 
@@ -18,8 +18,8 @@ public:
     gameEntitySharedPtr gameInstance;  // stores copy of gameEngine object
     renderEngineSharedPtr render;  // stores copy of renderEngine object
        
-/*    OgreEntitySharedPtr model;  // stores 3d model
-    OgreSceneNodeSharedPtr node;  // stores node 3d model is attached to
+/*    Ogre::v1::Entity model;  // stores 3d model
+    Ogre::SceneNode node;  // stores node 3d model is attached to
 */
 
 private:
@@ -31,7 +31,7 @@ private:
 
 };
 
-class guiStateMachine : public stateMachine
+class guiStateMachine : public StateMachine
 {
 public:
     guiStateMachine();
@@ -80,7 +80,7 @@ private:
     STATE_DECLARE(guiStateMachine,    NetworkMenu,    guiSMData)
     STATE_DECLARE(guiStateMachine,    NetworkClientMenu,    guiSMData)
     STATE_DECLARE(guiStateMachine,    NetworkServerMenu,    guiSMData)
-    STATE_DECLARE(guiStateMachine,    Idle,    noEventData)
+    STATE_DECLARE(guiStateMachine,    Idle,    NoEventData)
     STATE_DECLARE(guiStateMachine,    CourtMenu,    guiSMData)
     STATE_DECLARE(guiStateMachine,    TeamMenu,    guiSMData)
     STATE_DECLARE(guiStateMachine,    StartersMenu,    guiSMData)

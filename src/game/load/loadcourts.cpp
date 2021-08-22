@@ -486,7 +486,7 @@ void loadCourts::loadModel(courtComponentsSharedPtr &component, courtDataSharedP
 //    setupCourtsSharedPtr setupCourt(new setupCourts);
 //    bool activeCourtInstancesCreated = getActiveCourtInstancesCreated();
 //    bool returnType = false;
-    OgreEntitySharedPtr model;  // stores the model returned by loadModel() function
+    Ogre::v1::Entity *model;  // stores the model returned by loadModel() function
     std::string func = "loadCourts::loadModels()";
 
     logMsg(func +" begin");

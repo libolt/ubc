@@ -21,8 +21,6 @@
 #ifndef _NETWORKSTATE_H_
 #define _NETWORKSTATE_H_
 
-//#include "boost/shared_ptr.hpp"
-
 #include "state/state.h"
 //#include "state/gamestateshared.h"
 //#include "ubc/ubc.h"

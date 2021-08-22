@@ -37,7 +37,7 @@
 #include "utilities/logging.h"
 
 guiStateMachine::guiStateMachine() :
-    stateMachine(ST_MAX_STATES)
+    StateMachine(ST_MAX_STATES)
 {
 }
 
@@ -447,7 +447,7 @@ STATE_DEFINE(guiStateMachine, NetworkServerMenu, guiSMData)
 }
 
 // Idle
-STATE_DEFINE(guiStateMachine, Idle, noEventData)
+STATE_DEFINE(guiStateMachine, Idle, NoEventData)
 {
     std::string func = "guiStateMachine::Idle()";
 
